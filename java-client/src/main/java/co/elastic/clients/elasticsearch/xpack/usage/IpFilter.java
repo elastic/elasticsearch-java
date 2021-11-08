@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.Objects;
@@ -38,35 +40,35 @@ import java.util.function.Function;
 
 // typedef: xpack.usage.IpFilter
 @JsonpDeserializable
-public final class IpFilter implements JsonpSerializable {
+public class IpFilter implements JsonpSerializable {
 	private final boolean http;
 
 	private final boolean transport;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public IpFilter(Builder builder) {
+	private IpFilter(Builder builder) {
 
-		this.http = Objects.requireNonNull(builder.http, "http");
-		this.transport = Objects.requireNonNull(builder.transport, "transport");
+		this.http = ModelTypeHelper.requireNonNull(builder.http, this, "http");
+		this.transport = ModelTypeHelper.requireNonNull(builder.transport, this, "transport");
 
 	}
 
-	public IpFilter(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static IpFilter of(Function<Builder, ObjectBuilder<IpFilter>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code http}
 	 */
-	public boolean http() {
+	public final boolean http() {
 		return this.http;
 	}
 
 	/**
 	 * Required - API name: {@code transport}
 	 */
-	public boolean transport() {
+	public final boolean transport() {
 		return this.transport;
 	}
 
@@ -94,7 +96,7 @@ public final class IpFilter implements JsonpSerializable {
 	/**
 	 * Builder for {@link IpFilter}.
 	 */
-	public static class Builder implements ObjectBuilder<IpFilter> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<IpFilter> {
 		private Boolean http;
 
 		private Boolean transport;
@@ -102,7 +104,7 @@ public final class IpFilter implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code http}
 		 */
-		public Builder http(boolean value) {
+		public final Builder http(boolean value) {
 			this.http = value;
 			return this;
 		}
@@ -110,7 +112,7 @@ public final class IpFilter implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code transport}
 		 */
-		public Builder transport(boolean value) {
+		public final Builder transport(boolean value) {
 			this.transport = value;
 			return this;
 		}
@@ -122,6 +124,7 @@ public final class IpFilter implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public IpFilter build() {
+			_checkSingleUse();
 
 			return new IpFilter(this);
 		}

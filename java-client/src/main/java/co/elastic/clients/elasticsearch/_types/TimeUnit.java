@@ -29,7 +29,7 @@ import co.elastic.clients.util.StringEnum;
 
 @JsonpDeserializable
 public enum TimeUnit implements StringEnum {
-	NanoSeconds("nanos"), MicroSeconds("micros"), MilliSeconds("ms"), Seconds("s"), Minutes("m"), Hours("h"), Days("d");
+	Nanoseconds("nanos"), Microseconds("micros"), Milliseconds("ms"), Seconds("s"), Minutes("m"), Hours("h"), Days("d");
 
 	private final String jsonValue;
 

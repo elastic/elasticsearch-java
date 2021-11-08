@@ -32,10 +32,10 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
@@ -44,7 +44,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.PluginStats
 @JsonpDeserializable
-public final class PluginStats implements JsonpSerializable {
+public class PluginStats implements JsonpSerializable {
 	private final String classname;
 
 	private final String description;
@@ -67,92 +67,94 @@ public final class PluginStats implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public PluginStats(Builder builder) {
+	private PluginStats(Builder builder) {
 
-		this.classname = Objects.requireNonNull(builder.classname, "classname");
-		this.description = Objects.requireNonNull(builder.description, "description");
-		this.elasticsearchVersion = Objects.requireNonNull(builder.elasticsearchVersion, "elasticsearch_version");
-		this.extendedPlugins = ModelTypeHelper.unmodifiableNonNull(builder.extendedPlugins, "extended_plugins");
-		this.hasNativeController = Objects.requireNonNull(builder.hasNativeController, "has_native_controller");
-		this.javaVersion = Objects.requireNonNull(builder.javaVersion, "java_version");
-		this.name = Objects.requireNonNull(builder.name, "name");
-		this.version = Objects.requireNonNull(builder.version, "version");
-		this.licensed = Objects.requireNonNull(builder.licensed, "licensed");
-		this.type = Objects.requireNonNull(builder.type, "type");
+		this.classname = ModelTypeHelper.requireNonNull(builder.classname, this, "classname");
+		this.description = ModelTypeHelper.requireNonNull(builder.description, this, "description");
+		this.elasticsearchVersion = ModelTypeHelper.requireNonNull(builder.elasticsearchVersion, this,
+				"elasticsearchVersion");
+		this.extendedPlugins = ModelTypeHelper.unmodifiableRequired(builder.extendedPlugins, this, "extendedPlugins");
+		this.hasNativeController = ModelTypeHelper.requireNonNull(builder.hasNativeController, this,
+				"hasNativeController");
+		this.javaVersion = ModelTypeHelper.requireNonNull(builder.javaVersion, this, "javaVersion");
+		this.name = ModelTypeHelper.requireNonNull(builder.name, this, "name");
+		this.version = ModelTypeHelper.requireNonNull(builder.version, this, "version");
+		this.licensed = ModelTypeHelper.requireNonNull(builder.licensed, this, "licensed");
+		this.type = ModelTypeHelper.requireNonNull(builder.type, this, "type");
 
 	}
 
-	public PluginStats(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static PluginStats of(Function<Builder, ObjectBuilder<PluginStats>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code classname}
 	 */
-	public String classname() {
+	public final String classname() {
 		return this.classname;
 	}
 
 	/**
 	 * Required - API name: {@code description}
 	 */
-	public String description() {
+	public final String description() {
 		return this.description;
 	}
 
 	/**
 	 * Required - API name: {@code elasticsearch_version}
 	 */
-	public String elasticsearchVersion() {
+	public final String elasticsearchVersion() {
 		return this.elasticsearchVersion;
 	}
 
 	/**
 	 * Required - API name: {@code extended_plugins}
 	 */
-	public List<String> extendedPlugins() {
+	public final List<String> extendedPlugins() {
 		return this.extendedPlugins;
 	}
 
 	/**
 	 * Required - API name: {@code has_native_controller}
 	 */
-	public boolean hasNativeController() {
+	public final boolean hasNativeController() {
 		return this.hasNativeController;
 	}
 
 	/**
 	 * Required - API name: {@code java_version}
 	 */
-	public String javaVersion() {
+	public final String javaVersion() {
 		return this.javaVersion;
 	}
 
 	/**
 	 * Required - API name: {@code name}
 	 */
-	public String name() {
+	public final String name() {
 		return this.name;
 	}
 
 	/**
 	 * Required - API name: {@code version}
 	 */
-	public String version() {
+	public final String version() {
 		return this.version;
 	}
 
 	/**
 	 * Required - API name: {@code licensed}
 	 */
-	public boolean licensed() {
+	public final boolean licensed() {
 		return this.licensed;
 	}
 
 	/**
 	 * Required - API name: {@code type}
 	 */
-	public String type() {
+	public final String type() {
 		return this.type;
 	}
 
@@ -176,14 +178,16 @@ public final class PluginStats implements JsonpSerializable {
 		generator.writeKey("elasticsearch_version");
 		generator.write(this.elasticsearchVersion);
 
-		generator.writeKey("extended_plugins");
-		generator.writeStartArray();
-		for (String item0 : this.extendedPlugins) {
-			generator.write(item0);
+		if (ModelTypeHelper.isDefined(this.extendedPlugins)) {
+			generator.writeKey("extended_plugins");
+			generator.writeStartArray();
+			for (String item0 : this.extendedPlugins) {
+				generator.write(item0);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
-
 		generator.writeKey("has_native_controller");
 		generator.write(this.hasNativeController);
 
@@ -209,7 +213,7 @@ public final class PluginStats implements JsonpSerializable {
 	/**
 	 * Builder for {@link PluginStats}.
 	 */
-	public static class Builder implements ObjectBuilder<PluginStats> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PluginStats> {
 		private String classname;
 
 		private String description;
@@ -233,7 +237,7 @@ public final class PluginStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code classname}
 		 */
-		public Builder classname(String value) {
+		public final Builder classname(String value) {
 			this.classname = value;
 			return this;
 		}
@@ -241,7 +245,7 @@ public final class PluginStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code description}
 		 */
-		public Builder description(String value) {
+		public final Builder description(String value) {
 			this.description = value;
 			return this;
 		}
@@ -249,7 +253,7 @@ public final class PluginStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code elasticsearch_version}
 		 */
-		public Builder elasticsearchVersion(String value) {
+		public final Builder elasticsearchVersion(String value) {
 			this.elasticsearchVersion = value;
 			return this;
 		}
@@ -257,7 +261,7 @@ public final class PluginStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code extended_plugins}
 		 */
-		public Builder extendedPlugins(List<String> value) {
+		public final Builder extendedPlugins(List<String> value) {
 			this.extendedPlugins = value;
 			return this;
 		}
@@ -265,26 +269,15 @@ public final class PluginStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code extended_plugins}
 		 */
-		public Builder extendedPlugins(String... value) {
+		public final Builder extendedPlugins(String... value) {
 			this.extendedPlugins = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #extendedPlugins(List)}, creating the list if needed.
-		 */
-		public Builder addExtendedPlugins(String value) {
-			if (this.extendedPlugins == null) {
-				this.extendedPlugins = new ArrayList<>();
-			}
-			this.extendedPlugins.add(value);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code has_native_controller}
 		 */
-		public Builder hasNativeController(boolean value) {
+		public final Builder hasNativeController(boolean value) {
 			this.hasNativeController = value;
 			return this;
 		}
@@ -292,7 +285,7 @@ public final class PluginStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code java_version}
 		 */
-		public Builder javaVersion(String value) {
+		public final Builder javaVersion(String value) {
 			this.javaVersion = value;
 			return this;
 		}
@@ -300,7 +293,7 @@ public final class PluginStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code name}
 		 */
-		public Builder name(String value) {
+		public final Builder name(String value) {
 			this.name = value;
 			return this;
 		}
@@ -308,7 +301,7 @@ public final class PluginStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code version}
 		 */
-		public Builder version(String value) {
+		public final Builder version(String value) {
 			this.version = value;
 			return this;
 		}
@@ -316,7 +309,7 @@ public final class PluginStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code licensed}
 		 */
-		public Builder licensed(boolean value) {
+		public final Builder licensed(boolean value) {
 			this.licensed = value;
 			return this;
 		}
@@ -324,7 +317,7 @@ public final class PluginStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code type}
 		 */
-		public Builder type(String value) {
+		public final Builder type(String value) {
 			this.type = value;
 			return this;
 		}
@@ -336,6 +329,7 @@ public final class PluginStats implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public PluginStats build() {
+			_checkSingleUse();
 
 			return new PluginStats(this);
 		}

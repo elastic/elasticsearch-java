@@ -29,8 +29,10 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
+import java.lang.Boolean;
 import java.lang.Integer;
 import java.util.Objects;
 import java.util.function.Function;
@@ -38,26 +40,31 @@ import javax.annotation.Nullable;
 
 // typedef: _types.analysis.EdgeNGramTokenFilter
 @JsonpDeserializable
-public final class EdgeNGramTokenFilter extends TokenFilterBase implements TokenFilterVariant {
+public class EdgeNGramTokenFilter extends TokenFilterBase implements TokenFilterVariant {
 	private final int maxGram;
 
 	private final int minGram;
 
+	@Nullable
 	private final EdgeNGramSide side;
+
+	@Nullable
+	private final Boolean preserveOriginal;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public EdgeNGramTokenFilter(Builder builder) {
+	private EdgeNGramTokenFilter(Builder builder) {
 		super(builder);
 
-		this.maxGram = Objects.requireNonNull(builder.maxGram, "max_gram");
-		this.minGram = Objects.requireNonNull(builder.minGram, "min_gram");
-		this.side = Objects.requireNonNull(builder.side, "side");
+		this.maxGram = ModelTypeHelper.requireNonNull(builder.maxGram, this, "maxGram");
+		this.minGram = ModelTypeHelper.requireNonNull(builder.minGram, this, "minGram");
+		this.side = builder.side;
+		this.preserveOriginal = builder.preserveOriginal;
 
 	}
 
-	public EdgeNGramTokenFilter(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static EdgeNGramTokenFilter of(Function<Builder, ObjectBuilder<EdgeNGramTokenFilter>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -71,37 +78,52 @@ public final class EdgeNGramTokenFilter extends TokenFilterBase implements Token
 	/**
 	 * Required - API name: {@code max_gram}
 	 */
-	public int maxGram() {
+	public final int maxGram() {
 		return this.maxGram;
 	}
 
 	/**
 	 * Required - API name: {@code min_gram}
 	 */
-	public int minGram() {
+	public final int minGram() {
 		return this.minGram;
 	}
 
 	/**
-	 * Required - API name: {@code side}
+	 * API name: {@code side}
 	 */
-	public EdgeNGramSide side() {
+	@Nullable
+	public final EdgeNGramSide side() {
 		return this.side;
+	}
+
+	/**
+	 * API name: {@code preserve_original}
+	 */
+	@Nullable
+	public final Boolean preserveOriginal() {
+		return this.preserveOriginal;
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.write("type", "edge_ngram");
 		super.serializeInternal(generator, mapper);
-
 		generator.writeKey("max_gram");
 		generator.write(this.maxGram);
 
 		generator.writeKey("min_gram");
 		generator.write(this.minGram);
 
-		generator.writeKey("side");
-		this.side.serialize(generator, mapper);
+		if (this.side != null) {
+			generator.writeKey("side");
+			this.side.serialize(generator, mapper);
+		}
+		if (this.preserveOriginal != null) {
+			generator.writeKey("preserve_original");
+			generator.write(this.preserveOriginal);
+
+		}
 
 	}
 
@@ -117,12 +139,16 @@ public final class EdgeNGramTokenFilter extends TokenFilterBase implements Token
 
 		private Integer minGram;
 
+		@Nullable
 		private EdgeNGramSide side;
+
+		@Nullable
+		private Boolean preserveOriginal;
 
 		/**
 		 * Required - API name: {@code max_gram}
 		 */
-		public Builder maxGram(int value) {
+		public final Builder maxGram(int value) {
 			this.maxGram = value;
 			return this;
 		}
@@ -130,16 +156,24 @@ public final class EdgeNGramTokenFilter extends TokenFilterBase implements Token
 		/**
 		 * Required - API name: {@code min_gram}
 		 */
-		public Builder minGram(int value) {
+		public final Builder minGram(int value) {
 			this.minGram = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code side}
+		 * API name: {@code side}
 		 */
-		public Builder side(EdgeNGramSide value) {
+		public final Builder side(@Nullable EdgeNGramSide value) {
 			this.side = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code preserve_original}
+		 */
+		public final Builder preserveOriginal(@Nullable Boolean value) {
+			this.preserveOriginal = value;
 			return this;
 		}
 
@@ -155,6 +189,7 @@ public final class EdgeNGramTokenFilter extends TokenFilterBase implements Token
 		 *             if some of the required fields are null.
 		 */
 		public EdgeNGramTokenFilter build() {
+			_checkSingleUse();
 
 			return new EdgeNGramTokenFilter(this);
 		}
@@ -174,6 +209,7 @@ public final class EdgeNGramTokenFilter extends TokenFilterBase implements Token
 		op.add(Builder::maxGram, JsonpDeserializer.integerDeserializer(), "max_gram");
 		op.add(Builder::minGram, JsonpDeserializer.integerDeserializer(), "min_gram");
 		op.add(Builder::side, EdgeNGramSide._DESERIALIZER, "side");
+		op.add(Builder::preserveOriginal, JsonpDeserializer.booleanDeserializer(), "preserve_original");
 
 		op.ignore("type");
 	}

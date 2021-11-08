@@ -30,6 +30,7 @@ import co.elastic.clients.json.JsonpSerializer;
 import co.elastic.clients.json.NdJsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -42,7 +43,7 @@ import javax.annotation.Nullable;
 
 // typedef: _global.bulk.UpdateOperation
 
-public final class UpdateOperation<TDocument> extends OperationBase implements NdJsonpSerializable, OperationVariant {
+public class UpdateOperation<TDocument> extends OperationBase implements NdJsonpSerializable, OperationVariant {
 	private final TDocument document;
 
 	@Nullable
@@ -56,9 +57,9 @@ public final class UpdateOperation<TDocument> extends OperationBase implements N
 
 	// ---------------------------------------------------------------------------------------------
 
-	public UpdateOperation(Builder<TDocument> builder) {
+	private UpdateOperation(Builder<TDocument> builder) {
 		super(builder);
-		this.document = Objects.requireNonNull(builder.document, "document");
+		this.document = ModelTypeHelper.requireNonNull(builder.document, this, "document");
 
 		this.requireAlias = builder.requireAlias;
 		this.retryOnConflict = builder.retryOnConflict;
@@ -66,8 +67,9 @@ public final class UpdateOperation<TDocument> extends OperationBase implements N
 
 	}
 
-	public UpdateOperation(Function<Builder<TDocument>, Builder<TDocument>> fn) {
-		this(fn.apply(new Builder<>()));
+	public static <TDocument> UpdateOperation<TDocument> of(
+			Function<Builder<TDocument>, ObjectBuilder<UpdateOperation<TDocument>>> fn) {
+		return fn.apply(new Builder<>()).build();
 	}
 
 	/**
@@ -81,7 +83,7 @@ public final class UpdateOperation<TDocument> extends OperationBase implements N
 	/**
 	 * Required - API name: {@code document}
 	 */
-	public TDocument document() {
+	public final TDocument document() {
 		return this.document;
 	}
 
@@ -94,7 +96,7 @@ public final class UpdateOperation<TDocument> extends OperationBase implements N
 	 * API name: {@code require_alias}
 	 */
 	@Nullable
-	public Boolean requireAlias() {
+	public final Boolean requireAlias() {
 		return this.requireAlias;
 	}
 
@@ -102,7 +104,7 @@ public final class UpdateOperation<TDocument> extends OperationBase implements N
 	 * API name: {@code retry_on_conflict}
 	 */
 	@Nullable
-	public Integer retryOnConflict() {
+	public final Integer retryOnConflict() {
 		return this.retryOnConflict;
 	}
 
@@ -110,13 +112,11 @@ public final class UpdateOperation<TDocument> extends OperationBase implements N
 
 		super.serializeInternal(generator, mapper);
 		if (this.requireAlias != null) {
-
 			generator.writeKey("require_alias");
 			generator.write(this.requireAlias);
 
 		}
 		if (this.retryOnConflict != null) {
-
 			generator.writeKey("retry_on_conflict");
 			generator.write(this.retryOnConflict);
 
@@ -137,7 +137,7 @@ public final class UpdateOperation<TDocument> extends OperationBase implements N
 		/**
 		 * Required - API name: {@code document}
 		 */
-		public Builder<TDocument> document(TDocument value) {
+		public final Builder<TDocument> document(TDocument value) {
 			this.document = value;
 			return this;
 		}
@@ -154,7 +154,7 @@ public final class UpdateOperation<TDocument> extends OperationBase implements N
 		/**
 		 * API name: {@code require_alias}
 		 */
-		public Builder<TDocument> requireAlias(@Nullable Boolean value) {
+		public final Builder<TDocument> requireAlias(@Nullable Boolean value) {
 			this.requireAlias = value;
 			return this;
 		}
@@ -162,7 +162,7 @@ public final class UpdateOperation<TDocument> extends OperationBase implements N
 		/**
 		 * API name: {@code retry_on_conflict}
 		 */
-		public Builder<TDocument> retryOnConflict(@Nullable Integer value) {
+		public final Builder<TDocument> retryOnConflict(@Nullable Integer value) {
 			this.retryOnConflict = value;
 			return this;
 		}
@@ -171,7 +171,7 @@ public final class UpdateOperation<TDocument> extends OperationBase implements N
 		 * Serializer for TDocument. If not set, an attempt will be made to find a
 		 * serializer from the JSON context.
 		 */
-		public Builder<TDocument> tDocumentSerializer(@Nullable JsonpSerializer<TDocument> value) {
+		public final Builder<TDocument> tDocumentSerializer(@Nullable JsonpSerializer<TDocument> value) {
 			this.tDocumentSerializer = value;
 			return this;
 		}
@@ -188,6 +188,7 @@ public final class UpdateOperation<TDocument> extends OperationBase implements N
 		 *             if some of the required fields are null.
 		 */
 		public UpdateOperation<TDocument> build() {
+			_checkSingleUse();
 
 			return new UpdateOperation<TDocument>(this);
 		}

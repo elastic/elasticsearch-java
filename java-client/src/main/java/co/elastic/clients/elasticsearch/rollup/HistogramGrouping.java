@@ -32,10 +32,10 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
@@ -44,35 +44,35 @@ import javax.annotation.Nullable;
 
 // typedef: rollup._types.HistogramGrouping
 @JsonpDeserializable
-public final class HistogramGrouping implements JsonpSerializable {
+public class HistogramGrouping implements JsonpSerializable {
 	private final List<String> fields;
 
 	private final long interval;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public HistogramGrouping(Builder builder) {
+	private HistogramGrouping(Builder builder) {
 
-		this.fields = ModelTypeHelper.unmodifiableNonNull(builder.fields, "fields");
-		this.interval = Objects.requireNonNull(builder.interval, "interval");
+		this.fields = ModelTypeHelper.unmodifiableRequired(builder.fields, this, "fields");
+		this.interval = ModelTypeHelper.requireNonNull(builder.interval, this, "interval");
 
 	}
 
-	public HistogramGrouping(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static HistogramGrouping of(Function<Builder, ObjectBuilder<HistogramGrouping>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code fields}
 	 */
-	public List<String> fields() {
+	public final List<String> fields() {
 		return this.fields;
 	}
 
 	/**
 	 * Required - API name: {@code interval}
 	 */
-	public long interval() {
+	public final long interval() {
 		return this.interval;
 	}
 
@@ -87,14 +87,16 @@ public final class HistogramGrouping implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("fields");
-		generator.writeStartArray();
-		for (String item0 : this.fields) {
-			generator.write(item0);
+		if (ModelTypeHelper.isDefined(this.fields)) {
+			generator.writeKey("fields");
+			generator.writeStartArray();
+			for (String item0 : this.fields) {
+				generator.write(item0);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
-
 		generator.writeKey("interval");
 		generator.write(this.interval);
 
@@ -105,7 +107,7 @@ public final class HistogramGrouping implements JsonpSerializable {
 	/**
 	 * Builder for {@link HistogramGrouping}.
 	 */
-	public static class Builder implements ObjectBuilder<HistogramGrouping> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<HistogramGrouping> {
 		private List<String> fields;
 
 		private Long interval;
@@ -113,7 +115,7 @@ public final class HistogramGrouping implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code fields}
 		 */
-		public Builder fields(List<String> value) {
+		public final Builder fields(List<String> value) {
 			this.fields = value;
 			return this;
 		}
@@ -121,26 +123,15 @@ public final class HistogramGrouping implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code fields}
 		 */
-		public Builder fields(String... value) {
+		public final Builder fields(String... value) {
 			this.fields = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #fields(List)}, creating the list if needed.
-		 */
-		public Builder addFields(String value) {
-			if (this.fields == null) {
-				this.fields = new ArrayList<>();
-			}
-			this.fields.add(value);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code interval}
 		 */
-		public Builder interval(long value) {
+		public final Builder interval(long value) {
 			this.interval = value;
 			return this;
 		}
@@ -152,6 +143,7 @@ public final class HistogramGrouping implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public HistogramGrouping build() {
+			_checkSingleUse();
 
 			return new HistogramGrouping(this);
 		}

@@ -35,6 +35,7 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.SimpleEndpoint;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
@@ -44,7 +45,7 @@ import javax.annotation.Nullable;
 
 // typedef: ml.preview_datafeed.Request
 @JsonpDeserializable
-public final class PreviewDatafeedRequest extends RequestBase implements JsonpSerializable {
+public class PreviewDatafeedRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
 	private final DatafeedConfig datafeedConfig;
 
@@ -56,7 +57,7 @@ public final class PreviewDatafeedRequest extends RequestBase implements JsonpSe
 
 	// ---------------------------------------------------------------------------------------------
 
-	public PreviewDatafeedRequest(Builder builder) {
+	private PreviewDatafeedRequest(Builder builder) {
 
 		this.datafeedConfig = builder.datafeedConfig;
 		this.datafeedId = builder.datafeedId;
@@ -64,15 +65,15 @@ public final class PreviewDatafeedRequest extends RequestBase implements JsonpSe
 
 	}
 
-	public PreviewDatafeedRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static PreviewDatafeedRequest of(Function<Builder, ObjectBuilder<PreviewDatafeedRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * API name: {@code datafeed_config}
 	 */
 	@Nullable
-	public DatafeedConfig datafeedConfig() {
+	public final DatafeedConfig datafeedConfig() {
 		return this.datafeedConfig;
 	}
 
@@ -82,7 +83,7 @@ public final class PreviewDatafeedRequest extends RequestBase implements JsonpSe
 	 * API name: {@code datafeed_id}
 	 */
 	@Nullable
-	public String datafeedId() {
+	public final String datafeedId() {
 		return this.datafeedId;
 	}
 
@@ -90,7 +91,7 @@ public final class PreviewDatafeedRequest extends RequestBase implements JsonpSe
 	 * API name: {@code job_config}
 	 */
 	@Nullable
-	public JobConfig jobConfig() {
+	public final JobConfig jobConfig() {
 		return this.jobConfig;
 	}
 
@@ -106,13 +107,11 @@ public final class PreviewDatafeedRequest extends RequestBase implements JsonpSe
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.datafeedConfig != null) {
-
 			generator.writeKey("datafeed_config");
 			this.datafeedConfig.serialize(generator, mapper);
 
 		}
 		if (this.jobConfig != null) {
-
 			generator.writeKey("job_config");
 			this.jobConfig.serialize(generator, mapper);
 
@@ -125,7 +124,7 @@ public final class PreviewDatafeedRequest extends RequestBase implements JsonpSe
 	/**
 	 * Builder for {@link PreviewDatafeedRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<PreviewDatafeedRequest> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PreviewDatafeedRequest> {
 		@Nullable
 		private DatafeedConfig datafeedConfig;
 
@@ -138,7 +137,7 @@ public final class PreviewDatafeedRequest extends RequestBase implements JsonpSe
 		/**
 		 * API name: {@code datafeed_config}
 		 */
-		public Builder datafeedConfig(@Nullable DatafeedConfig value) {
+		public final Builder datafeedConfig(@Nullable DatafeedConfig value) {
 			this.datafeedConfig = value;
 			return this;
 		}
@@ -146,7 +145,7 @@ public final class PreviewDatafeedRequest extends RequestBase implements JsonpSe
 		/**
 		 * API name: {@code datafeed_config}
 		 */
-		public Builder datafeedConfig(Function<DatafeedConfig.Builder, ObjectBuilder<DatafeedConfig>> fn) {
+		public final Builder datafeedConfig(Function<DatafeedConfig.Builder, ObjectBuilder<DatafeedConfig>> fn) {
 			return this.datafeedConfig(fn.apply(new DatafeedConfig.Builder()).build());
 		}
 
@@ -155,7 +154,7 @@ public final class PreviewDatafeedRequest extends RequestBase implements JsonpSe
 		 * <p>
 		 * API name: {@code datafeed_id}
 		 */
-		public Builder datafeedId(@Nullable String value) {
+		public final Builder datafeedId(@Nullable String value) {
 			this.datafeedId = value;
 			return this;
 		}
@@ -163,7 +162,7 @@ public final class PreviewDatafeedRequest extends RequestBase implements JsonpSe
 		/**
 		 * API name: {@code job_config}
 		 */
-		public Builder jobConfig(@Nullable JobConfig value) {
+		public final Builder jobConfig(@Nullable JobConfig value) {
 			this.jobConfig = value;
 			return this;
 		}
@@ -171,7 +170,7 @@ public final class PreviewDatafeedRequest extends RequestBase implements JsonpSe
 		/**
 		 * API name: {@code job_config}
 		 */
-		public Builder jobConfig(Function<JobConfig.Builder, ObjectBuilder<JobConfig>> fn) {
+		public final Builder jobConfig(Function<JobConfig.Builder, ObjectBuilder<JobConfig>> fn) {
 			return this.jobConfig(fn.apply(new JobConfig.Builder()).build());
 		}
 
@@ -182,6 +181,7 @@ public final class PreviewDatafeedRequest extends RequestBase implements JsonpSe
 		 *             if some of the required fields are null.
 		 */
 		public PreviewDatafeedRequest build() {
+			_checkSingleUse();
 
 			return new PreviewDatafeedRequest(this);
 		}

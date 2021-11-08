@@ -36,16 +36,16 @@ import java.util.function.Function;
 
 // typedef: _types.mapping.VersionProperty
 @JsonpDeserializable
-public final class VersionProperty extends DocValuesPropertyBase implements PropertyVariant {
+public class VersionProperty extends DocValuesPropertyBase implements PropertyVariant {
 	// ---------------------------------------------------------------------------------------------
 
-	public VersionProperty(Builder builder) {
+	private VersionProperty(Builder builder) {
 		super(builder);
 
 	}
 
-	public VersionProperty(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static VersionProperty of(Function<Builder, ObjectBuilder<VersionProperty>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -83,6 +83,7 @@ public final class VersionProperty extends DocValuesPropertyBase implements Prop
 		 *             if some of the required fields are null.
 		 */
 		public VersionProperty build() {
+			_checkSingleUse();
 
 			return new VersionProperty(this);
 		}

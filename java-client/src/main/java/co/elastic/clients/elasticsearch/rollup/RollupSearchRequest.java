@@ -36,16 +36,15 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.SimpleEndpoint;
+import co.elastic.clients.util.MapBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -55,9 +54,8 @@ import javax.annotation.Nullable;
 
 // typedef: rollup.rollup_search.Request
 @JsonpDeserializable
-public final class RollupSearchRequest extends RequestBase implements JsonpSerializable {
-	@Nullable
-	private final Map<String, Aggregation> aggs;
+public class RollupSearchRequest extends RequestBase implements JsonpSerializable {
+	private final Map<String, Aggregation> aggregations;
 
 	private final List<String> index;
 
@@ -70,32 +68,27 @@ public final class RollupSearchRequest extends RequestBase implements JsonpSeria
 	@Nullable
 	private final String type;
 
-	@Nullable
-	private final Boolean typedKeys;
-
 	// ---------------------------------------------------------------------------------------------
 
-	public RollupSearchRequest(Builder builder) {
+	private RollupSearchRequest(Builder builder) {
 
-		this.aggs = ModelTypeHelper.unmodifiable(builder.aggs);
-		this.index = ModelTypeHelper.unmodifiableNonNull(builder.index, "index");
+		this.aggregations = ModelTypeHelper.unmodifiable(builder.aggregations);
+		this.index = ModelTypeHelper.unmodifiableRequired(builder.index, this, "index");
 		this.query = builder.query;
 		this.size = builder.size;
 		this.type = builder.type;
-		this.typedKeys = builder.typedKeys;
 
 	}
 
-	public RollupSearchRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static RollupSearchRequest of(Function<Builder, ObjectBuilder<RollupSearchRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * API name: {@code aggs}
+	 * API name: {@code aggregations}
 	 */
-	@Nullable
-	public Map<String, Aggregation> aggs() {
-		return this.aggs;
+	public final Map<String, Aggregation> aggregations() {
+		return this.aggregations;
 	}
 
 	/**
@@ -104,7 +97,7 @@ public final class RollupSearchRequest extends RequestBase implements JsonpSeria
 	 * <p>
 	 * API name: {@code index}
 	 */
-	public List<String> index() {
+	public final List<String> index() {
 		return this.index;
 	}
 
@@ -112,15 +105,17 @@ public final class RollupSearchRequest extends RequestBase implements JsonpSeria
 	 * API name: {@code query}
 	 */
 	@Nullable
-	public Query query() {
+	public final Query query() {
 		return this.query;
 	}
 
 	/**
+	 * Must be zero if set, as rollups work on pre-aggregated data
+	 * <p>
 	 * API name: {@code size}
 	 */
 	@Nullable
-	public Integer size() {
+	public final Integer size() {
 		return this.size;
 	}
 
@@ -130,19 +125,8 @@ public final class RollupSearchRequest extends RequestBase implements JsonpSeria
 	 * API name: {@code type}
 	 */
 	@Nullable
-	public String type() {
+	public final String type() {
 		return this.type;
-	}
-
-	/**
-	 * Specify whether aggregation and suggester names should be prefixed by their
-	 * respective types in the response
-	 * <p>
-	 * API name: {@code typed_keys}
-	 */
-	@Nullable
-	public Boolean typedKeys() {
-		return this.typedKeys;
 	}
 
 	/**
@@ -156,11 +140,10 @@ public final class RollupSearchRequest extends RequestBase implements JsonpSeria
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (this.aggs != null) {
-
-			generator.writeKey("aggs");
+		if (ModelTypeHelper.isDefined(this.aggregations)) {
+			generator.writeKey("aggregations");
 			generator.writeStartObject();
-			for (Map.Entry<String, Aggregation> item0 : this.aggs.entrySet()) {
+			for (Map.Entry<String, Aggregation> item0 : this.aggregations.entrySet()) {
 				generator.writeKey(item0.getKey());
 				item0.getValue().serialize(generator, mapper);
 
@@ -169,13 +152,11 @@ public final class RollupSearchRequest extends RequestBase implements JsonpSeria
 
 		}
 		if (this.query != null) {
-
 			generator.writeKey("query");
 			this.query.serialize(generator, mapper);
 
 		}
 		if (this.size != null) {
-
 			generator.writeKey("size");
 			generator.write(this.size);
 
@@ -188,9 +169,9 @@ public final class RollupSearchRequest extends RequestBase implements JsonpSeria
 	/**
 	 * Builder for {@link RollupSearchRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<RollupSearchRequest> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RollupSearchRequest> {
 		@Nullable
-		private Map<String, Aggregation> aggs;
+		private Map<String, Aggregation> aggregations;
 
 		private List<String> index;
 
@@ -203,40 +184,24 @@ public final class RollupSearchRequest extends RequestBase implements JsonpSeria
 		@Nullable
 		private String type;
 
-		@Nullable
-		private Boolean typedKeys;
-
 		/**
-		 * API name: {@code aggs}
+		 * API name: {@code aggregations}
 		 */
-		public Builder aggs(@Nullable Map<String, Aggregation> value) {
-			this.aggs = value;
+		public final Builder aggregations(@Nullable Map<String, Aggregation> value) {
+			this.aggregations = value;
 			return this;
 		}
 
 		/**
-		 * Add a key/value to {@link #aggs(Map)}, creating the map if needed.
+		 * Set {@link #aggregations(Map)} to a singleton map.
 		 */
-		public Builder putAggs(String key, Aggregation value) {
-			if (this.aggs == null) {
-				this.aggs = new HashMap<>();
-			}
-			this.aggs.put(key, value);
-			return this;
+		public Builder aggregations(String key, Function<Aggregation.Builder, ObjectBuilder<Aggregation>> fn) {
+			return this.aggregations(Collections.singletonMap(key, fn.apply(new Aggregation.Builder()).build()));
 		}
 
-		/**
-		 * Set {@link #aggs(Map)} to a singleton map.
-		 */
-		public Builder aggs(String key, Function<Aggregation.Builder, ObjectBuilder<Aggregation>> fn) {
-			return this.aggs(Collections.singletonMap(key, fn.apply(new Aggregation.Builder()).build()));
-		}
-
-		/**
-		 * Add a key/value to {@link #aggs(Map)}, creating the map if needed.
-		 */
-		public Builder putAggs(String key, Function<Aggregation.Builder, ObjectBuilder<Aggregation>> fn) {
-			return this.putAggs(key, fn.apply(new Aggregation.Builder()).build());
+		public final Builder aggregations(
+				Function<MapBuilder<String, Aggregation, Aggregation.Builder>, ObjectBuilder<Map<String, Aggregation>>> fn) {
+			return aggregations(fn.apply(new MapBuilder<>(Aggregation.Builder::new)).build());
 		}
 
 		/**
@@ -245,7 +210,7 @@ public final class RollupSearchRequest extends RequestBase implements JsonpSeria
 		 * <p>
 		 * API name: {@code index}
 		 */
-		public Builder index(List<String> value) {
+		public final Builder index(List<String> value) {
 			this.index = value;
 			return this;
 		}
@@ -256,26 +221,15 @@ public final class RollupSearchRequest extends RequestBase implements JsonpSeria
 		 * <p>
 		 * API name: {@code index}
 		 */
-		public Builder index(String... value) {
+		public final Builder index(String... value) {
 			this.index = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #index(List)}, creating the list if needed.
-		 */
-		public Builder addIndex(String value) {
-			if (this.index == null) {
-				this.index = new ArrayList<>();
-			}
-			this.index.add(value);
 			return this;
 		}
 
 		/**
 		 * API name: {@code query}
 		 */
-		public Builder query(@Nullable Query value) {
+		public final Builder query(@Nullable Query value) {
 			this.query = value;
 			return this;
 		}
@@ -283,14 +237,16 @@ public final class RollupSearchRequest extends RequestBase implements JsonpSeria
 		/**
 		 * API name: {@code query}
 		 */
-		public Builder query(Function<Query.Builder, ObjectBuilder<Query>> fn) {
+		public final Builder query(Function<Query.Builder, ObjectBuilder<Query>> fn) {
 			return this.query(fn.apply(new Query.Builder()).build());
 		}
 
 		/**
+		 * Must be zero if set, as rollups work on pre-aggregated data
+		 * <p>
 		 * API name: {@code size}
 		 */
-		public Builder size(@Nullable Integer value) {
+		public final Builder size(@Nullable Integer value) {
 			this.size = value;
 			return this;
 		}
@@ -300,19 +256,8 @@ public final class RollupSearchRequest extends RequestBase implements JsonpSeria
 		 * <p>
 		 * API name: {@code type}
 		 */
-		public Builder type(@Nullable String value) {
+		public final Builder type(@Nullable String value) {
 			this.type = value;
-			return this;
-		}
-
-		/**
-		 * Specify whether aggregation and suggester names should be prefixed by their
-		 * respective types in the response
-		 * <p>
-		 * API name: {@code typed_keys}
-		 */
-		public Builder typedKeys(@Nullable Boolean value) {
-			this.typedKeys = value;
 			return this;
 		}
 
@@ -323,6 +268,7 @@ public final class RollupSearchRequest extends RequestBase implements JsonpSeria
 		 *             if some of the required fields are null.
 		 */
 		public RollupSearchRequest build() {
+			_checkSingleUse();
 
 			return new RollupSearchRequest(this);
 		}
@@ -338,7 +284,8 @@ public final class RollupSearchRequest extends RequestBase implements JsonpSeria
 
 	protected static void setupRollupSearchRequestDeserializer(DelegatingDeserializer<RollupSearchRequest.Builder> op) {
 
-		op.add(Builder::aggs, JsonpDeserializer.stringMapDeserializer(Aggregation._DESERIALIZER), "aggs");
+		op.add(Builder::aggregations, JsonpDeserializer.stringMapDeserializer(Aggregation._DESERIALIZER),
+				"aggregations", "aggs");
 		op.add(Builder::query, Query._DESERIALIZER, "query");
 		op.add(Builder::size, JsonpDeserializer.integerDeserializer(), "size");
 
@@ -389,11 +336,7 @@ public final class RollupSearchRequest extends RequestBase implements JsonpSeria
 
 			// Request parameters
 			request -> {
-				Map<String, String> params = new HashMap<>();
-				if (request.typedKeys != null) {
-					params.put("typed_keys", String.valueOf(request.typedKeys));
-				}
-				return params;
+				return Collections.emptyMap();
 
 			}, SimpleEndpoint.emptyMap(), true, null);
 

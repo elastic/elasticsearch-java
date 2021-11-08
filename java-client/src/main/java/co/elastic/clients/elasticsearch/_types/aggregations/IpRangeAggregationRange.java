@@ -31,6 +31,7 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -39,7 +40,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.IpRangeAggregationRange
 @JsonpDeserializable
-public final class IpRangeAggregationRange implements JsonpSerializable {
+public class IpRangeAggregationRange implements JsonpSerializable {
 	@Nullable
 	private final String from;
 
@@ -51,7 +52,7 @@ public final class IpRangeAggregationRange implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public IpRangeAggregationRange(Builder builder) {
+	private IpRangeAggregationRange(Builder builder) {
 
 		this.from = builder.from;
 		this.mask = builder.mask;
@@ -59,15 +60,15 @@ public final class IpRangeAggregationRange implements JsonpSerializable {
 
 	}
 
-	public IpRangeAggregationRange(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static IpRangeAggregationRange of(Function<Builder, ObjectBuilder<IpRangeAggregationRange>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * API name: {@code from}
 	 */
 	@Nullable
-	public String from() {
+	public final String from() {
 		return this.from;
 	}
 
@@ -75,7 +76,7 @@ public final class IpRangeAggregationRange implements JsonpSerializable {
 	 * API name: {@code mask}
 	 */
 	@Nullable
-	public String mask() {
+	public final String mask() {
 		return this.mask;
 	}
 
@@ -83,7 +84,7 @@ public final class IpRangeAggregationRange implements JsonpSerializable {
 	 * API name: {@code to}
 	 */
 	@Nullable
-	public String to() {
+	public final String to() {
 		return this.to;
 	}
 
@@ -99,19 +100,16 @@ public final class IpRangeAggregationRange implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.from != null) {
-
 			generator.writeKey("from");
 			generator.write(this.from);
 
 		}
 		if (this.mask != null) {
-
 			generator.writeKey("mask");
 			generator.write(this.mask);
 
 		}
 		if (this.to != null) {
-
 			generator.writeKey("to");
 			generator.write(this.to);
 
@@ -124,7 +122,7 @@ public final class IpRangeAggregationRange implements JsonpSerializable {
 	/**
 	 * Builder for {@link IpRangeAggregationRange}.
 	 */
-	public static class Builder implements ObjectBuilder<IpRangeAggregationRange> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<IpRangeAggregationRange> {
 		@Nullable
 		private String from;
 
@@ -137,7 +135,7 @@ public final class IpRangeAggregationRange implements JsonpSerializable {
 		/**
 		 * API name: {@code from}
 		 */
-		public Builder from(@Nullable String value) {
+		public final Builder from(@Nullable String value) {
 			this.from = value;
 			return this;
 		}
@@ -145,7 +143,7 @@ public final class IpRangeAggregationRange implements JsonpSerializable {
 		/**
 		 * API name: {@code mask}
 		 */
-		public Builder mask(@Nullable String value) {
+		public final Builder mask(@Nullable String value) {
 			this.mask = value;
 			return this;
 		}
@@ -153,7 +151,7 @@ public final class IpRangeAggregationRange implements JsonpSerializable {
 		/**
 		 * API name: {@code to}
 		 */
-		public Builder to(@Nullable String value) {
+		public final Builder to(@Nullable String value) {
 			this.to = value;
 			return this;
 		}
@@ -165,6 +163,7 @@ public final class IpRangeAggregationRange implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public IpRangeAggregationRange build() {
+			_checkSingleUse();
 
 			return new IpRangeAggregationRange(this);
 		}

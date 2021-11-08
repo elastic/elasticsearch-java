@@ -38,21 +38,21 @@ import javax.annotation.Nullable;
 
 // typedef: _types.mapping.ObjectProperty
 @JsonpDeserializable
-public final class ObjectProperty extends CorePropertyBase implements PropertyVariant {
+public class ObjectProperty extends CorePropertyBase implements PropertyVariant {
 	@Nullable
 	private final Boolean enabled;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public ObjectProperty(Builder builder) {
+	private ObjectProperty(Builder builder) {
 		super(builder);
 
 		this.enabled = builder.enabled;
 
 	}
 
-	public ObjectProperty(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ObjectProperty of(Function<Builder, ObjectBuilder<ObjectProperty>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -67,7 +67,7 @@ public final class ObjectProperty extends CorePropertyBase implements PropertyVa
 	 * API name: {@code enabled}
 	 */
 	@Nullable
-	public Boolean enabled() {
+	public final Boolean enabled() {
 		return this.enabled;
 	}
 
@@ -76,7 +76,6 @@ public final class ObjectProperty extends CorePropertyBase implements PropertyVa
 		generator.write("type", "object");
 		super.serializeInternal(generator, mapper);
 		if (this.enabled != null) {
-
 			generator.writeKey("enabled");
 			generator.write(this.enabled);
 
@@ -98,7 +97,7 @@ public final class ObjectProperty extends CorePropertyBase implements PropertyVa
 		/**
 		 * API name: {@code enabled}
 		 */
-		public Builder enabled(@Nullable Boolean value) {
+		public final Builder enabled(@Nullable Boolean value) {
 			this.enabled = value;
 			return this;
 		}
@@ -115,6 +114,7 @@ public final class ObjectProperty extends CorePropertyBase implements PropertyVa
 		 *             if some of the required fields are null.
 		 */
 		public ObjectProperty build() {
+			_checkSingleUse();
 
 			return new ObjectProperty(this);
 		}

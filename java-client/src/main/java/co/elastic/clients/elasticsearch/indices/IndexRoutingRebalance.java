@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;
@@ -38,25 +40,25 @@ import javax.annotation.Nullable;
 
 // typedef: indices._types.IndexRoutingRebalance
 @JsonpDeserializable
-public final class IndexRoutingRebalance implements JsonpSerializable {
+public class IndexRoutingRebalance implements JsonpSerializable {
 	private final IndexRoutingRebalanceOptions enable;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public IndexRoutingRebalance(Builder builder) {
+	private IndexRoutingRebalance(Builder builder) {
 
-		this.enable = Objects.requireNonNull(builder.enable, "enable");
+		this.enable = ModelTypeHelper.requireNonNull(builder.enable, this, "enable");
 
 	}
 
-	public IndexRoutingRebalance(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static IndexRoutingRebalance of(Function<Builder, ObjectBuilder<IndexRoutingRebalance>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code enable}
 	 */
-	public IndexRoutingRebalanceOptions enable() {
+	public final IndexRoutingRebalanceOptions enable() {
 		return this.enable;
 	}
 
@@ -81,13 +83,13 @@ public final class IndexRoutingRebalance implements JsonpSerializable {
 	/**
 	 * Builder for {@link IndexRoutingRebalance}.
 	 */
-	public static class Builder implements ObjectBuilder<IndexRoutingRebalance> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<IndexRoutingRebalance> {
 		private IndexRoutingRebalanceOptions enable;
 
 		/**
 		 * Required - API name: {@code enable}
 		 */
-		public Builder enable(IndexRoutingRebalanceOptions value) {
+		public final Builder enable(IndexRoutingRebalanceOptions value) {
 			this.enable = value;
 			return this;
 		}
@@ -99,6 +101,7 @@ public final class IndexRoutingRebalance implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public IndexRoutingRebalance build() {
+			_checkSingleUse();
 
 			return new IndexRoutingRebalance(this);
 		}

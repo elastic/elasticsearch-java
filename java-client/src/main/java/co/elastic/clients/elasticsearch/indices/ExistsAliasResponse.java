@@ -34,7 +34,7 @@ import java.util.function.Function;
 
 // typedef: indices.exists_alias.Response
 
-public final class ExistsAliasResponse {
+public class ExistsAliasResponse {
 	public ExistsAliasResponse() {
 	}
 

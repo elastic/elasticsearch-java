@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;
@@ -38,19 +40,19 @@ import javax.annotation.Nullable;
 
 // typedef: cluster.state.Response
 @JsonpDeserializable
-public final class StateResponse implements JsonpSerializable {
+public class StateResponse implements JsonpSerializable {
 	private final JsonData valueBody;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public StateResponse(Builder builder) {
+	private StateResponse(Builder builder) {
 
-		this.valueBody = Objects.requireNonNull(builder.valueBody, "_value_body");
+		this.valueBody = ModelTypeHelper.requireNonNull(builder.valueBody, this, "valueBody");
 
 	}
 
-	public StateResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static StateResponse of(Function<Builder, ObjectBuilder<StateResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -58,7 +60,7 @@ public final class StateResponse implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code _value_body}
 	 */
-	public JsonData valueBody() {
+	public final JsonData valueBody() {
 		return this.valueBody;
 	}
 
@@ -75,7 +77,7 @@ public final class StateResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link StateResponse}.
 	 */
-	public static class Builder implements ObjectBuilder<StateResponse> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<StateResponse> {
 		private JsonData valueBody;
 
 		/**
@@ -83,7 +85,7 @@ public final class StateResponse implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code _value_body}
 		 */
-		public Builder valueBody(JsonData value) {
+		public final Builder valueBody(JsonData value) {
 			this.valueBody = value;
 			return this;
 		}
@@ -95,6 +97,7 @@ public final class StateResponse implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public StateResponse build() {
+			_checkSingleUse();
 
 			return new StateResponse(this);
 		}

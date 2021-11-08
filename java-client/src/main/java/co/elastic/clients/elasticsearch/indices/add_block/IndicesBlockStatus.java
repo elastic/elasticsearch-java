@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
@@ -40,35 +42,35 @@ import javax.annotation.Nullable;
 
 // typedef: indices.add_block.IndicesBlockStatus
 @JsonpDeserializable
-public final class IndicesBlockStatus implements JsonpSerializable {
+public class IndicesBlockStatus implements JsonpSerializable {
 	private final String name;
 
 	private final boolean blocked;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public IndicesBlockStatus(Builder builder) {
+	private IndicesBlockStatus(Builder builder) {
 
-		this.name = Objects.requireNonNull(builder.name, "name");
-		this.blocked = Objects.requireNonNull(builder.blocked, "blocked");
+		this.name = ModelTypeHelper.requireNonNull(builder.name, this, "name");
+		this.blocked = ModelTypeHelper.requireNonNull(builder.blocked, this, "blocked");
 
 	}
 
-	public IndicesBlockStatus(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static IndicesBlockStatus of(Function<Builder, ObjectBuilder<IndicesBlockStatus>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code name}
 	 */
-	public String name() {
+	public final String name() {
 		return this.name;
 	}
 
 	/**
 	 * Required - API name: {@code blocked}
 	 */
-	public boolean blocked() {
+	public final boolean blocked() {
 		return this.blocked;
 	}
 
@@ -96,7 +98,7 @@ public final class IndicesBlockStatus implements JsonpSerializable {
 	/**
 	 * Builder for {@link IndicesBlockStatus}.
 	 */
-	public static class Builder implements ObjectBuilder<IndicesBlockStatus> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<IndicesBlockStatus> {
 		private String name;
 
 		private Boolean blocked;
@@ -104,7 +106,7 @@ public final class IndicesBlockStatus implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code name}
 		 */
-		public Builder name(String value) {
+		public final Builder name(String value) {
 			this.name = value;
 			return this;
 		}
@@ -112,7 +114,7 @@ public final class IndicesBlockStatus implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code blocked}
 		 */
-		public Builder blocked(boolean value) {
+		public final Builder blocked(boolean value) {
 			this.blocked = value;
 			return this;
 		}
@@ -124,6 +126,7 @@ public final class IndicesBlockStatus implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public IndicesBlockStatus build() {
+			_checkSingleUse();
 
 			return new IndicesBlockStatus(this);
 		}

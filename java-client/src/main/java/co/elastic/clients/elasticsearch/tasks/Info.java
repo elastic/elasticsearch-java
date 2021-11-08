@@ -32,13 +32,13 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Long;
 import java.lang.String;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -47,12 +47,11 @@ import javax.annotation.Nullable;
 
 // typedef: tasks._types.Info
 @JsonpDeserializable
-public final class Info implements JsonpSerializable {
+public class Info implements JsonpSerializable {
 	private final String action;
 
 	private final boolean cancellable;
 
-	@Nullable
 	private final List<Info> children;
 
 	@Nullable
@@ -78,46 +77,46 @@ public final class Info implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public Info(Builder builder) {
+	private Info(Builder builder) {
 
-		this.action = Objects.requireNonNull(builder.action, "action");
-		this.cancellable = Objects.requireNonNull(builder.cancellable, "cancellable");
+		this.action = ModelTypeHelper.requireNonNull(builder.action, this, "action");
+		this.cancellable = ModelTypeHelper.requireNonNull(builder.cancellable, this, "cancellable");
 		this.children = ModelTypeHelper.unmodifiable(builder.children);
 		this.description = builder.description;
-		this.headers = ModelTypeHelper.unmodifiableNonNull(builder.headers, "headers");
-		this.id = Objects.requireNonNull(builder.id, "id");
-		this.node = Objects.requireNonNull(builder.node, "node");
-		this.runningTimeInNanos = Objects.requireNonNull(builder.runningTimeInNanos, "running_time_in_nanos");
-		this.startTimeInMillis = Objects.requireNonNull(builder.startTimeInMillis, "start_time_in_millis");
+		this.headers = ModelTypeHelper.unmodifiableRequired(builder.headers, this, "headers");
+		this.id = ModelTypeHelper.requireNonNull(builder.id, this, "id");
+		this.node = ModelTypeHelper.requireNonNull(builder.node, this, "node");
+		this.runningTimeInNanos = ModelTypeHelper.requireNonNull(builder.runningTimeInNanos, this,
+				"runningTimeInNanos");
+		this.startTimeInMillis = ModelTypeHelper.requireNonNull(builder.startTimeInMillis, this, "startTimeInMillis");
 		this.status = builder.status;
-		this.type = Objects.requireNonNull(builder.type, "type");
+		this.type = ModelTypeHelper.requireNonNull(builder.type, this, "type");
 		this.parentTaskId = builder.parentTaskId;
 
 	}
 
-	public Info(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static Info of(Function<Builder, ObjectBuilder<Info>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code action}
 	 */
-	public String action() {
+	public final String action() {
 		return this.action;
 	}
 
 	/**
 	 * Required - API name: {@code cancellable}
 	 */
-	public boolean cancellable() {
+	public final boolean cancellable() {
 		return this.cancellable;
 	}
 
 	/**
 	 * API name: {@code children}
 	 */
-	@Nullable
-	public List<Info> children() {
+	public final List<Info> children() {
 		return this.children;
 	}
 
@@ -125,42 +124,42 @@ public final class Info implements JsonpSerializable {
 	 * API name: {@code description}
 	 */
 	@Nullable
-	public String description() {
+	public final String description() {
 		return this.description;
 	}
 
 	/**
 	 * Required - API name: {@code headers}
 	 */
-	public Map<String, List<String>> headers() {
+	public final Map<String, List<String>> headers() {
 		return this.headers;
 	}
 
 	/**
 	 * Required - API name: {@code id}
 	 */
-	public long id() {
+	public final long id() {
 		return this.id;
 	}
 
 	/**
 	 * Required - API name: {@code node}
 	 */
-	public String node() {
+	public final String node() {
 		return this.node;
 	}
 
 	/**
 	 * Required - API name: {@code running_time_in_nanos}
 	 */
-	public long runningTimeInNanos() {
+	public final long runningTimeInNanos() {
 		return this.runningTimeInNanos;
 	}
 
 	/**
 	 * Required - API name: {@code start_time_in_millis}
 	 */
-	public long startTimeInMillis() {
+	public final long startTimeInMillis() {
 		return this.startTimeInMillis;
 	}
 
@@ -168,14 +167,14 @@ public final class Info implements JsonpSerializable {
 	 * API name: {@code status}
 	 */
 	@Nullable
-	public Status status() {
+	public final Status status() {
 		return this.status;
 	}
 
 	/**
 	 * Required - API name: {@code type}
 	 */
-	public String type() {
+	public final String type() {
 		return this.type;
 	}
 
@@ -183,7 +182,7 @@ public final class Info implements JsonpSerializable {
 	 * API name: {@code parent_task_id}
 	 */
 	@Nullable
-	public String parentTaskId() {
+	public final String parentTaskId() {
 		return this.parentTaskId;
 	}
 
@@ -204,8 +203,7 @@ public final class Info implements JsonpSerializable {
 		generator.writeKey("cancellable");
 		generator.write(this.cancellable);
 
-		if (this.children != null) {
-
+		if (ModelTypeHelper.isDefined(this.children)) {
 			generator.writeKey("children");
 			generator.writeStartArray();
 			for (Info item0 : this.children) {
@@ -216,26 +214,28 @@ public final class Info implements JsonpSerializable {
 
 		}
 		if (this.description != null) {
-
 			generator.writeKey("description");
 			generator.write(this.description);
 
 		}
+		if (ModelTypeHelper.isDefined(this.headers)) {
+			generator.writeKey("headers");
+			generator.writeStartObject();
+			for (Map.Entry<String, List<String>> item0 : this.headers.entrySet()) {
+				generator.writeKey(item0.getKey());
+				generator.writeStartArray();
+				if (item0.getValue() != null) {
+					for (String item1 : item0.getValue()) {
+						generator.write(item1);
 
-		generator.writeKey("headers");
-		generator.writeStartObject();
-		for (Map.Entry<String, List<String>> item0 : this.headers.entrySet()) {
-			generator.writeKey(item0.getKey());
-			generator.writeStartArray();
-			for (String item1 : item0.getValue()) {
-				generator.write(item1);
+					}
+				}
+				generator.writeEnd();
 
 			}
 			generator.writeEnd();
 
 		}
-		generator.writeEnd();
-
 		generator.writeKey("id");
 		generator.write(this.id);
 
@@ -249,17 +249,14 @@ public final class Info implements JsonpSerializable {
 		generator.write(this.startTimeInMillis);
 
 		if (this.status != null) {
-
 			generator.writeKey("status");
 			this.status.serialize(generator, mapper);
 
 		}
-
 		generator.writeKey("type");
 		generator.write(this.type);
 
 		if (this.parentTaskId != null) {
-
 			generator.writeKey("parent_task_id");
 			generator.write(this.parentTaskId);
 
@@ -272,7 +269,7 @@ public final class Info implements JsonpSerializable {
 	/**
 	 * Builder for {@link Info}.
 	 */
-	public static class Builder implements ObjectBuilder<Info> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Info> {
 		private String action;
 
 		private Boolean cancellable;
@@ -304,7 +301,7 @@ public final class Info implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code action}
 		 */
-		public Builder action(String value) {
+		public final Builder action(String value) {
 			this.action = value;
 			return this;
 		}
@@ -312,7 +309,7 @@ public final class Info implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code cancellable}
 		 */
-		public Builder cancellable(boolean value) {
+		public final Builder cancellable(boolean value) {
 			this.cancellable = value;
 			return this;
 		}
@@ -320,7 +317,7 @@ public final class Info implements JsonpSerializable {
 		/**
 		 * API name: {@code children}
 		 */
-		public Builder children(@Nullable List<Info> value) {
+		public final Builder children(@Nullable List<Info> value) {
 			this.children = value;
 			return this;
 		}
@@ -328,40 +325,27 @@ public final class Info implements JsonpSerializable {
 		/**
 		 * API name: {@code children}
 		 */
-		public Builder children(Info... value) {
+		public final Builder children(Info... value) {
 			this.children = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #children(List)}, creating the list if needed.
+		 * API name: {@code children}
 		 */
-		public Builder addChildren(Info value) {
-			if (this.children == null) {
-				this.children = new ArrayList<>();
+		@SafeVarargs
+		public final Builder children(Function<Info.Builder, ObjectBuilder<Info>>... fns) {
+			this.children = new ArrayList<>(fns.length);
+			for (Function<Info.Builder, ObjectBuilder<Info>> fn : fns) {
+				this.children.add(fn.apply(new Info.Builder()).build());
 			}
-			this.children.add(value);
 			return this;
-		}
-
-		/**
-		 * Set {@link #children(List)} to a singleton list.
-		 */
-		public Builder children(Function<Info.Builder, ObjectBuilder<Info>> fn) {
-			return this.children(fn.apply(new Info.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #children(List)}, creating the list if needed.
-		 */
-		public Builder addChildren(Function<Info.Builder, ObjectBuilder<Info>> fn) {
-			return this.addChildren(fn.apply(new Info.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code description}
 		 */
-		public Builder description(@Nullable String value) {
+		public final Builder description(@Nullable String value) {
 			this.description = value;
 			return this;
 		}
@@ -369,26 +353,15 @@ public final class Info implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code headers}
 		 */
-		public Builder headers(Map<String, List<String>> value) {
+		public final Builder headers(Map<String, List<String>> value) {
 			this.headers = value;
-			return this;
-		}
-
-		/**
-		 * Add a key/value to {@link #headers(Map)}, creating the map if needed.
-		 */
-		public Builder putHeaders(String key, List<String> value) {
-			if (this.headers == null) {
-				this.headers = new HashMap<>();
-			}
-			this.headers.put(key, value);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code id}
 		 */
-		public Builder id(long value) {
+		public final Builder id(long value) {
 			this.id = value;
 			return this;
 		}
@@ -396,7 +369,7 @@ public final class Info implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code node}
 		 */
-		public Builder node(String value) {
+		public final Builder node(String value) {
 			this.node = value;
 			return this;
 		}
@@ -404,7 +377,7 @@ public final class Info implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code running_time_in_nanos}
 		 */
-		public Builder runningTimeInNanos(long value) {
+		public final Builder runningTimeInNanos(long value) {
 			this.runningTimeInNanos = value;
 			return this;
 		}
@@ -412,7 +385,7 @@ public final class Info implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code start_time_in_millis}
 		 */
-		public Builder startTimeInMillis(long value) {
+		public final Builder startTimeInMillis(long value) {
 			this.startTimeInMillis = value;
 			return this;
 		}
@@ -420,7 +393,7 @@ public final class Info implements JsonpSerializable {
 		/**
 		 * API name: {@code status}
 		 */
-		public Builder status(@Nullable Status value) {
+		public final Builder status(@Nullable Status value) {
 			this.status = value;
 			return this;
 		}
@@ -428,14 +401,14 @@ public final class Info implements JsonpSerializable {
 		/**
 		 * API name: {@code status}
 		 */
-		public Builder status(Function<Status.Builder, ObjectBuilder<Status>> fn) {
+		public final Builder status(Function<Status.Builder, ObjectBuilder<Status>> fn) {
 			return this.status(fn.apply(new Status.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code type}
 		 */
-		public Builder type(String value) {
+		public final Builder type(String value) {
 			this.type = value;
 			return this;
 		}
@@ -443,7 +416,7 @@ public final class Info implements JsonpSerializable {
 		/**
 		 * API name: {@code parent_task_id}
 		 */
-		public Builder parentTaskId(@Nullable String value) {
+		public final Builder parentTaskId(@Nullable String value) {
 			this.parentTaskId = value;
 			return this;
 		}
@@ -455,6 +428,7 @@ public final class Info implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public Info build() {
+			_checkSingleUse();
 
 			return new Info(this);
 		}

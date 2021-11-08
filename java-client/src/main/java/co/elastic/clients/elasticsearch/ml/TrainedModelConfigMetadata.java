@@ -32,11 +32,11 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -45,22 +45,18 @@ import javax.annotation.Nullable;
 
 // typedef: ml._types.TrainedModelConfigMetadata
 @JsonpDeserializable
-public final class TrainedModelConfigMetadata implements JsonpSerializable {
-	@Nullable
+public class TrainedModelConfigMetadata implements JsonpSerializable {
 	private final List<String> modelAliases;
 
-	@Nullable
 	private final Map<String, String> featureImportanceBaseline;
 
-	@Nullable
 	private final List<Hyperparameter> hyperparameters;
 
-	@Nullable
 	private final List<TotalFeatureImportance> totalFeatureImportance;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public TrainedModelConfigMetadata(Builder builder) {
+	private TrainedModelConfigMetadata(Builder builder) {
 
 		this.modelAliases = ModelTypeHelper.unmodifiable(builder.modelAliases);
 		this.featureImportanceBaseline = ModelTypeHelper.unmodifiable(builder.featureImportanceBaseline);
@@ -69,15 +65,14 @@ public final class TrainedModelConfigMetadata implements JsonpSerializable {
 
 	}
 
-	public TrainedModelConfigMetadata(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static TrainedModelConfigMetadata of(Function<Builder, ObjectBuilder<TrainedModelConfigMetadata>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * API name: {@code model_aliases}
 	 */
-	@Nullable
-	public List<String> modelAliases() {
+	public final List<String> modelAliases() {
 		return this.modelAliases;
 	}
 
@@ -88,8 +83,7 @@ public final class TrainedModelConfigMetadata implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code feature_importance_baseline}
 	 */
-	@Nullable
-	public Map<String, String> featureImportanceBaseline() {
+	public final Map<String, String> featureImportanceBaseline() {
 		return this.featureImportanceBaseline;
 	}
 
@@ -99,8 +93,7 @@ public final class TrainedModelConfigMetadata implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code hyperparameters}
 	 */
-	@Nullable
-	public List<Hyperparameter> hyperparameters() {
+	public final List<Hyperparameter> hyperparameters() {
 		return this.hyperparameters;
 	}
 
@@ -112,8 +105,7 @@ public final class TrainedModelConfigMetadata implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code total_feature_importance}
 	 */
-	@Nullable
-	public List<TotalFeatureImportance> totalFeatureImportance() {
+	public final List<TotalFeatureImportance> totalFeatureImportance() {
 		return this.totalFeatureImportance;
 	}
 
@@ -128,8 +120,7 @@ public final class TrainedModelConfigMetadata implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (this.modelAliases != null) {
-
+		if (ModelTypeHelper.isDefined(this.modelAliases)) {
 			generator.writeKey("model_aliases");
 			generator.writeStartArray();
 			for (String item0 : this.modelAliases) {
@@ -139,8 +130,7 @@ public final class TrainedModelConfigMetadata implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (this.featureImportanceBaseline != null) {
-
+		if (ModelTypeHelper.isDefined(this.featureImportanceBaseline)) {
 			generator.writeKey("feature_importance_baseline");
 			generator.writeStartObject();
 			for (Map.Entry<String, String> item0 : this.featureImportanceBaseline.entrySet()) {
@@ -151,8 +141,7 @@ public final class TrainedModelConfigMetadata implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (this.hyperparameters != null) {
-
+		if (ModelTypeHelper.isDefined(this.hyperparameters)) {
 			generator.writeKey("hyperparameters");
 			generator.writeStartArray();
 			for (Hyperparameter item0 : this.hyperparameters) {
@@ -162,8 +151,7 @@ public final class TrainedModelConfigMetadata implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (this.totalFeatureImportance != null) {
-
+		if (ModelTypeHelper.isDefined(this.totalFeatureImportance)) {
 			generator.writeKey("total_feature_importance");
 			generator.writeStartArray();
 			for (TotalFeatureImportance item0 : this.totalFeatureImportance) {
@@ -181,7 +169,7 @@ public final class TrainedModelConfigMetadata implements JsonpSerializable {
 	/**
 	 * Builder for {@link TrainedModelConfigMetadata}.
 	 */
-	public static class Builder implements ObjectBuilder<TrainedModelConfigMetadata> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TrainedModelConfigMetadata> {
 		@Nullable
 		private List<String> modelAliases;
 
@@ -197,7 +185,7 @@ public final class TrainedModelConfigMetadata implements JsonpSerializable {
 		/**
 		 * API name: {@code model_aliases}
 		 */
-		public Builder modelAliases(@Nullable List<String> value) {
+		public final Builder modelAliases(@Nullable List<String> value) {
 			this.modelAliases = value;
 			return this;
 		}
@@ -205,19 +193,8 @@ public final class TrainedModelConfigMetadata implements JsonpSerializable {
 		/**
 		 * API name: {@code model_aliases}
 		 */
-		public Builder modelAliases(String... value) {
+		public final Builder modelAliases(String... value) {
 			this.modelAliases = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #modelAliases(List)}, creating the list if needed.
-		 */
-		public Builder addModelAliases(String value) {
-			if (this.modelAliases == null) {
-				this.modelAliases = new ArrayList<>();
-			}
-			this.modelAliases.add(value);
 			return this;
 		}
 
@@ -228,20 +205,8 @@ public final class TrainedModelConfigMetadata implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code feature_importance_baseline}
 		 */
-		public Builder featureImportanceBaseline(@Nullable Map<String, String> value) {
+		public final Builder featureImportanceBaseline(@Nullable Map<String, String> value) {
 			this.featureImportanceBaseline = value;
-			return this;
-		}
-
-		/**
-		 * Add a key/value to {@link #featureImportanceBaseline(Map)}, creating the map
-		 * if needed.
-		 */
-		public Builder putFeatureImportanceBaseline(String key, String value) {
-			if (this.featureImportanceBaseline == null) {
-				this.featureImportanceBaseline = new HashMap<>();
-			}
-			this.featureImportanceBaseline.put(key, value);
 			return this;
 		}
 
@@ -251,7 +216,7 @@ public final class TrainedModelConfigMetadata implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code hyperparameters}
 		 */
-		public Builder hyperparameters(@Nullable List<Hyperparameter> value) {
+		public final Builder hyperparameters(@Nullable List<Hyperparameter> value) {
 			this.hyperparameters = value;
 			return this;
 		}
@@ -262,34 +227,24 @@ public final class TrainedModelConfigMetadata implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code hyperparameters}
 		 */
-		public Builder hyperparameters(Hyperparameter... value) {
+		public final Builder hyperparameters(Hyperparameter... value) {
 			this.hyperparameters = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #hyperparameters(List)}, creating the list if needed.
+		 * List of the available hyperparameters optimized during the
+		 * fine_parameter_tuning phase as well as specified by the user.
+		 * <p>
+		 * API name: {@code hyperparameters}
 		 */
-		public Builder addHyperparameters(Hyperparameter value) {
-			if (this.hyperparameters == null) {
-				this.hyperparameters = new ArrayList<>();
+		@SafeVarargs
+		public final Builder hyperparameters(Function<Hyperparameter.Builder, ObjectBuilder<Hyperparameter>>... fns) {
+			this.hyperparameters = new ArrayList<>(fns.length);
+			for (Function<Hyperparameter.Builder, ObjectBuilder<Hyperparameter>> fn : fns) {
+				this.hyperparameters.add(fn.apply(new Hyperparameter.Builder()).build());
 			}
-			this.hyperparameters.add(value);
 			return this;
-		}
-
-		/**
-		 * Set {@link #hyperparameters(List)} to a singleton list.
-		 */
-		public Builder hyperparameters(Function<Hyperparameter.Builder, ObjectBuilder<Hyperparameter>> fn) {
-			return this.hyperparameters(fn.apply(new Hyperparameter.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #hyperparameters(List)}, creating the list if needed.
-		 */
-		public Builder addHyperparameters(Function<Hyperparameter.Builder, ObjectBuilder<Hyperparameter>> fn) {
-			return this.addHyperparameters(fn.apply(new Hyperparameter.Builder()).build());
 		}
 
 		/**
@@ -300,7 +255,7 @@ public final class TrainedModelConfigMetadata implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code total_feature_importance}
 		 */
-		public Builder totalFeatureImportance(@Nullable List<TotalFeatureImportance> value) {
+		public final Builder totalFeatureImportance(@Nullable List<TotalFeatureImportance> value) {
 			this.totalFeatureImportance = value;
 			return this;
 		}
@@ -313,38 +268,27 @@ public final class TrainedModelConfigMetadata implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code total_feature_importance}
 		 */
-		public Builder totalFeatureImportance(TotalFeatureImportance... value) {
+		public final Builder totalFeatureImportance(TotalFeatureImportance... value) {
 			this.totalFeatureImportance = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #totalFeatureImportance(List)}, creating the list if
-		 * needed.
+		 * An array of the total feature importance for each feature used from the
+		 * training data set. This array of objects is returned if data frame analytics
+		 * trained the model and the request includes total_feature_importance in the
+		 * include request parameter.
+		 * <p>
+		 * API name: {@code total_feature_importance}
 		 */
-		public Builder addTotalFeatureImportance(TotalFeatureImportance value) {
-			if (this.totalFeatureImportance == null) {
-				this.totalFeatureImportance = new ArrayList<>();
+		@SafeVarargs
+		public final Builder totalFeatureImportance(
+				Function<TotalFeatureImportance.Builder, ObjectBuilder<TotalFeatureImportance>>... fns) {
+			this.totalFeatureImportance = new ArrayList<>(fns.length);
+			for (Function<TotalFeatureImportance.Builder, ObjectBuilder<TotalFeatureImportance>> fn : fns) {
+				this.totalFeatureImportance.add(fn.apply(new TotalFeatureImportance.Builder()).build());
 			}
-			this.totalFeatureImportance.add(value);
 			return this;
-		}
-
-		/**
-		 * Set {@link #totalFeatureImportance(List)} to a singleton list.
-		 */
-		public Builder totalFeatureImportance(
-				Function<TotalFeatureImportance.Builder, ObjectBuilder<TotalFeatureImportance>> fn) {
-			return this.totalFeatureImportance(fn.apply(new TotalFeatureImportance.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #totalFeatureImportance(List)}, creating the list if
-		 * needed.
-		 */
-		public Builder addTotalFeatureImportance(
-				Function<TotalFeatureImportance.Builder, ObjectBuilder<TotalFeatureImportance>> fn) {
-			return this.addTotalFeatureImportance(fn.apply(new TotalFeatureImportance.Builder()).build());
 		}
 
 		/**
@@ -354,6 +298,7 @@ public final class TrainedModelConfigMetadata implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public TrainedModelConfigMetadata build() {
+			_checkSingleUse();
 
 			return new TrainedModelConfigMetadata(this);
 		}

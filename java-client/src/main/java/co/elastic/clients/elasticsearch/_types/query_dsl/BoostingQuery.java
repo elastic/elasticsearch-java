@@ -29,6 +29,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
@@ -38,7 +39,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.BoostingQuery
 @JsonpDeserializable
-public final class BoostingQuery extends QueryBase implements QueryVariant {
+public class BoostingQuery extends QueryBase implements QueryVariant {
 	private final double negativeBoost;
 
 	private final Query negative;
@@ -47,17 +48,17 @@ public final class BoostingQuery extends QueryBase implements QueryVariant {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public BoostingQuery(Builder builder) {
+	private BoostingQuery(Builder builder) {
 		super(builder);
 
-		this.negativeBoost = Objects.requireNonNull(builder.negativeBoost, "negative_boost");
-		this.negative = Objects.requireNonNull(builder.negative, "negative");
-		this.positive = Objects.requireNonNull(builder.positive, "positive");
+		this.negativeBoost = ModelTypeHelper.requireNonNull(builder.negativeBoost, this, "negativeBoost");
+		this.negative = ModelTypeHelper.requireNonNull(builder.negative, this, "negative");
+		this.positive = ModelTypeHelper.requireNonNull(builder.positive, this, "positive");
 
 	}
 
-	public BoostingQuery(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static BoostingQuery of(Function<Builder, ObjectBuilder<BoostingQuery>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -71,28 +72,27 @@ public final class BoostingQuery extends QueryBase implements QueryVariant {
 	/**
 	 * Required - API name: {@code negative_boost}
 	 */
-	public double negativeBoost() {
+	public final double negativeBoost() {
 		return this.negativeBoost;
 	}
 
 	/**
 	 * Required - API name: {@code negative}
 	 */
-	public Query negative() {
+	public final Query negative() {
 		return this.negative;
 	}
 
 	/**
 	 * Required - API name: {@code positive}
 	 */
-	public Query positive() {
+	public final Query positive() {
 		return this.positive;
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
-
 		generator.writeKey("negative_boost");
 		generator.write(this.negativeBoost);
 
@@ -119,7 +119,7 @@ public final class BoostingQuery extends QueryBase implements QueryVariant {
 		/**
 		 * Required - API name: {@code negative_boost}
 		 */
-		public Builder negativeBoost(double value) {
+		public final Builder negativeBoost(double value) {
 			this.negativeBoost = value;
 			return this;
 		}
@@ -127,7 +127,7 @@ public final class BoostingQuery extends QueryBase implements QueryVariant {
 		/**
 		 * Required - API name: {@code negative}
 		 */
-		public Builder negative(Query value) {
+		public final Builder negative(Query value) {
 			this.negative = value;
 			return this;
 		}
@@ -135,14 +135,14 @@ public final class BoostingQuery extends QueryBase implements QueryVariant {
 		/**
 		 * Required - API name: {@code negative}
 		 */
-		public Builder negative(Function<Query.Builder, ObjectBuilder<Query>> fn) {
+		public final Builder negative(Function<Query.Builder, ObjectBuilder<Query>> fn) {
 			return this.negative(fn.apply(new Query.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code positive}
 		 */
-		public Builder positive(Query value) {
+		public final Builder positive(Query value) {
 			this.positive = value;
 			return this;
 		}
@@ -150,7 +150,7 @@ public final class BoostingQuery extends QueryBase implements QueryVariant {
 		/**
 		 * Required - API name: {@code positive}
 		 */
-		public Builder positive(Function<Query.Builder, ObjectBuilder<Query>> fn) {
+		public final Builder positive(Function<Query.Builder, ObjectBuilder<Query>> fn) {
 			return this.positive(fn.apply(new Query.Builder()).build());
 		}
 
@@ -166,6 +166,7 @@ public final class BoostingQuery extends QueryBase implements QueryVariant {
 		 *             if some of the required fields are null.
 		 */
 		public BoostingQuery build() {
+			_checkSingleUse();
 
 			return new BoostingQuery(this);
 		}

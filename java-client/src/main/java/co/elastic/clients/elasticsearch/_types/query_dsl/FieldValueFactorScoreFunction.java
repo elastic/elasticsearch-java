@@ -29,6 +29,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
@@ -39,7 +40,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.FieldValueFactorScoreFunction
 @JsonpDeserializable
-public final class FieldValueFactorScoreFunction extends ScoreFunctionBase implements FunctionScoreVariant {
+public class FieldValueFactorScoreFunction extends ScoreFunctionBase implements FunctionScoreVariant {
 	private final String field;
 
 	@Nullable
@@ -53,18 +54,18 @@ public final class FieldValueFactorScoreFunction extends ScoreFunctionBase imple
 
 	// ---------------------------------------------------------------------------------------------
 
-	public FieldValueFactorScoreFunction(Builder builder) {
+	private FieldValueFactorScoreFunction(Builder builder) {
 		super(builder);
 
-		this.field = Objects.requireNonNull(builder.field, "field");
+		this.field = ModelTypeHelper.requireNonNull(builder.field, this, "field");
 		this.factor = builder.factor;
 		this.missing = builder.missing;
 		this.modifier = builder.modifier;
 
 	}
 
-	public FieldValueFactorScoreFunction(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static FieldValueFactorScoreFunction of(Function<Builder, ObjectBuilder<FieldValueFactorScoreFunction>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -78,7 +79,7 @@ public final class FieldValueFactorScoreFunction extends ScoreFunctionBase imple
 	/**
 	 * Required - API name: {@code field}
 	 */
-	public String field() {
+	public final String field() {
 		return this.field;
 	}
 
@@ -86,7 +87,7 @@ public final class FieldValueFactorScoreFunction extends ScoreFunctionBase imple
 	 * API name: {@code factor}
 	 */
 	@Nullable
-	public Double factor() {
+	public final Double factor() {
 		return this.factor;
 	}
 
@@ -94,7 +95,7 @@ public final class FieldValueFactorScoreFunction extends ScoreFunctionBase imple
 	 * API name: {@code missing}
 	 */
 	@Nullable
-	public Double missing() {
+	public final Double missing() {
 		return this.missing;
 	}
 
@@ -102,31 +103,27 @@ public final class FieldValueFactorScoreFunction extends ScoreFunctionBase imple
 	 * API name: {@code modifier}
 	 */
 	@Nullable
-	public FieldValueFactorModifier modifier() {
+	public final FieldValueFactorModifier modifier() {
 		return this.modifier;
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
-
 		generator.writeKey("field");
 		generator.write(this.field);
 
 		if (this.factor != null) {
-
 			generator.writeKey("factor");
 			generator.write(this.factor);
 
 		}
 		if (this.missing != null) {
-
 			generator.writeKey("missing");
 			generator.write(this.missing);
 
 		}
 		if (this.modifier != null) {
-
 			generator.writeKey("modifier");
 			this.modifier.serialize(generator, mapper);
 		}
@@ -155,7 +152,7 @@ public final class FieldValueFactorScoreFunction extends ScoreFunctionBase imple
 		/**
 		 * Required - API name: {@code field}
 		 */
-		public Builder field(String value) {
+		public final Builder field(String value) {
 			this.field = value;
 			return this;
 		}
@@ -163,7 +160,7 @@ public final class FieldValueFactorScoreFunction extends ScoreFunctionBase imple
 		/**
 		 * API name: {@code factor}
 		 */
-		public Builder factor(@Nullable Double value) {
+		public final Builder factor(@Nullable Double value) {
 			this.factor = value;
 			return this;
 		}
@@ -171,7 +168,7 @@ public final class FieldValueFactorScoreFunction extends ScoreFunctionBase imple
 		/**
 		 * API name: {@code missing}
 		 */
-		public Builder missing(@Nullable Double value) {
+		public final Builder missing(@Nullable Double value) {
 			this.missing = value;
 			return this;
 		}
@@ -179,7 +176,7 @@ public final class FieldValueFactorScoreFunction extends ScoreFunctionBase imple
 		/**
 		 * API name: {@code modifier}
 		 */
-		public Builder modifier(@Nullable FieldValueFactorModifier value) {
+		public final Builder modifier(@Nullable FieldValueFactorModifier value) {
 			this.modifier = value;
 			return this;
 		}
@@ -196,6 +193,7 @@ public final class FieldValueFactorScoreFunction extends ScoreFunctionBase imple
 		 *             if some of the required fields are null.
 		 */
 		public FieldValueFactorScoreFunction build() {
+			_checkSingleUse();
 
 			return new FieldValueFactorScoreFunction(this);
 		}

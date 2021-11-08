@@ -32,6 +32,7 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.SimpleEndpoint;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Integer;
@@ -44,7 +45,7 @@ import javax.annotation.Nullable;
 
 // typedef: transform.get_transform.Request
 
-public final class GetTransformRequest extends RequestBase {
+public class GetTransformRequest extends RequestBase {
 	@Nullable
 	private final Boolean allowNoMatch;
 
@@ -62,7 +63,7 @@ public final class GetTransformRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public GetTransformRequest(Builder builder) {
+	private GetTransformRequest(Builder builder) {
 
 		this.allowNoMatch = builder.allowNoMatch;
 		this.excludeGenerated = builder.excludeGenerated;
@@ -72,8 +73,8 @@ public final class GetTransformRequest extends RequestBase {
 
 	}
 
-	public GetTransformRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static GetTransformRequest of(Function<Builder, ObjectBuilder<GetTransformRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -83,7 +84,7 @@ public final class GetTransformRequest extends RequestBase {
 	 * API name: {@code allow_no_match}
 	 */
 	@Nullable
-	public Boolean allowNoMatch() {
+	public final Boolean allowNoMatch() {
 		return this.allowNoMatch;
 	}
 
@@ -93,7 +94,7 @@ public final class GetTransformRequest extends RequestBase {
 	 * API name: {@code exclude_generated}
 	 */
 	@Nullable
-	public Boolean excludeGenerated() {
+	public final Boolean excludeGenerated() {
 		return this.excludeGenerated;
 	}
 
@@ -103,7 +104,7 @@ public final class GetTransformRequest extends RequestBase {
 	 * API name: {@code from}
 	 */
 	@Nullable
-	public Integer from() {
+	public final Integer from() {
 		return this.from;
 	}
 
@@ -113,7 +114,7 @@ public final class GetTransformRequest extends RequestBase {
 	 * API name: {@code size}
 	 */
 	@Nullable
-	public Integer size() {
+	public final Integer size() {
 		return this.size;
 	}
 
@@ -124,7 +125,7 @@ public final class GetTransformRequest extends RequestBase {
 	 * API name: {@code transform_id}
 	 */
 	@Nullable
-	public String transformId() {
+	public final String transformId() {
 		return this.transformId;
 	}
 
@@ -133,7 +134,7 @@ public final class GetTransformRequest extends RequestBase {
 	/**
 	 * Builder for {@link GetTransformRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<GetTransformRequest> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetTransformRequest> {
 		@Nullable
 		private Boolean allowNoMatch;
 
@@ -155,7 +156,7 @@ public final class GetTransformRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code allow_no_match}
 		 */
-		public Builder allowNoMatch(@Nullable Boolean value) {
+		public final Builder allowNoMatch(@Nullable Boolean value) {
 			this.allowNoMatch = value;
 			return this;
 		}
@@ -165,7 +166,7 @@ public final class GetTransformRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code exclude_generated}
 		 */
-		public Builder excludeGenerated(@Nullable Boolean value) {
+		public final Builder excludeGenerated(@Nullable Boolean value) {
 			this.excludeGenerated = value;
 			return this;
 		}
@@ -175,7 +176,7 @@ public final class GetTransformRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code from}
 		 */
-		public Builder from(@Nullable Integer value) {
+		public final Builder from(@Nullable Integer value) {
 			this.from = value;
 			return this;
 		}
@@ -185,7 +186,7 @@ public final class GetTransformRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code size}
 		 */
-		public Builder size(@Nullable Integer value) {
+		public final Builder size(@Nullable Integer value) {
 			this.size = value;
 			return this;
 		}
@@ -196,7 +197,7 @@ public final class GetTransformRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code transform_id}
 		 */
-		public Builder transformId(@Nullable String value) {
+		public final Builder transformId(@Nullable String value) {
 			this.transformId = value;
 			return this;
 		}
@@ -208,6 +209,7 @@ public final class GetTransformRequest extends RequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public GetTransformRequest build() {
+			_checkSingleUse();
 
 			return new GetTransformRequest(this);
 		}

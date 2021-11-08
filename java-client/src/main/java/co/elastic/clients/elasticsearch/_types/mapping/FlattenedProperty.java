@@ -41,7 +41,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.mapping.FlattenedProperty
 @JsonpDeserializable
-public final class FlattenedProperty extends PropertyBase implements PropertyVariant {
+public class FlattenedProperty extends PropertyBase implements PropertyVariant {
 	@Nullable
 	private final Double boost;
 
@@ -71,7 +71,7 @@ public final class FlattenedProperty extends PropertyBase implements PropertyVar
 
 	// ---------------------------------------------------------------------------------------------
 
-	public FlattenedProperty(Builder builder) {
+	private FlattenedProperty(Builder builder) {
 		super(builder);
 
 		this.boost = builder.boost;
@@ -86,8 +86,8 @@ public final class FlattenedProperty extends PropertyBase implements PropertyVar
 
 	}
 
-	public FlattenedProperty(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static FlattenedProperty of(Function<Builder, ObjectBuilder<FlattenedProperty>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -102,7 +102,7 @@ public final class FlattenedProperty extends PropertyBase implements PropertyVar
 	 * API name: {@code boost}
 	 */
 	@Nullable
-	public Double boost() {
+	public final Double boost() {
 		return this.boost;
 	}
 
@@ -110,7 +110,7 @@ public final class FlattenedProperty extends PropertyBase implements PropertyVar
 	 * API name: {@code depth_limit}
 	 */
 	@Nullable
-	public Integer depthLimit() {
+	public final Integer depthLimit() {
 		return this.depthLimit;
 	}
 
@@ -118,7 +118,7 @@ public final class FlattenedProperty extends PropertyBase implements PropertyVar
 	 * API name: {@code doc_values}
 	 */
 	@Nullable
-	public Boolean docValues() {
+	public final Boolean docValues() {
 		return this.docValues;
 	}
 
@@ -126,7 +126,7 @@ public final class FlattenedProperty extends PropertyBase implements PropertyVar
 	 * API name: {@code eager_global_ordinals}
 	 */
 	@Nullable
-	public Boolean eagerGlobalOrdinals() {
+	public final Boolean eagerGlobalOrdinals() {
 		return this.eagerGlobalOrdinals;
 	}
 
@@ -134,7 +134,7 @@ public final class FlattenedProperty extends PropertyBase implements PropertyVar
 	 * API name: {@code index}
 	 */
 	@Nullable
-	public Boolean index() {
+	public final Boolean index() {
 		return this.index;
 	}
 
@@ -142,7 +142,7 @@ public final class FlattenedProperty extends PropertyBase implements PropertyVar
 	 * API name: {@code index_options}
 	 */
 	@Nullable
-	public IndexOptions indexOptions() {
+	public final IndexOptions indexOptions() {
 		return this.indexOptions;
 	}
 
@@ -150,7 +150,7 @@ public final class FlattenedProperty extends PropertyBase implements PropertyVar
 	 * API name: {@code null_value}
 	 */
 	@Nullable
-	public String nullValue() {
+	public final String nullValue() {
 		return this.nullValue;
 	}
 
@@ -158,7 +158,7 @@ public final class FlattenedProperty extends PropertyBase implements PropertyVar
 	 * API name: {@code similarity}
 	 */
 	@Nullable
-	public String similarity() {
+	public final String similarity() {
 		return this.similarity;
 	}
 
@@ -166,7 +166,7 @@ public final class FlattenedProperty extends PropertyBase implements PropertyVar
 	 * API name: {@code split_queries_on_whitespace}
 	 */
 	@Nullable
-	public Boolean splitQueriesOnWhitespace() {
+	public final Boolean splitQueriesOnWhitespace() {
 		return this.splitQueriesOnWhitespace;
 	}
 
@@ -175,54 +175,45 @@ public final class FlattenedProperty extends PropertyBase implements PropertyVar
 		generator.write("type", "flattened");
 		super.serializeInternal(generator, mapper);
 		if (this.boost != null) {
-
 			generator.writeKey("boost");
 			generator.write(this.boost);
 
 		}
 		if (this.depthLimit != null) {
-
 			generator.writeKey("depth_limit");
 			generator.write(this.depthLimit);
 
 		}
 		if (this.docValues != null) {
-
 			generator.writeKey("doc_values");
 			generator.write(this.docValues);
 
 		}
 		if (this.eagerGlobalOrdinals != null) {
-
 			generator.writeKey("eager_global_ordinals");
 			generator.write(this.eagerGlobalOrdinals);
 
 		}
 		if (this.index != null) {
-
 			generator.writeKey("index");
 			generator.write(this.index);
 
 		}
 		if (this.indexOptions != null) {
-
 			generator.writeKey("index_options");
 			this.indexOptions.serialize(generator, mapper);
 		}
 		if (this.nullValue != null) {
-
 			generator.writeKey("null_value");
 			generator.write(this.nullValue);
 
 		}
 		if (this.similarity != null) {
-
 			generator.writeKey("similarity");
 			generator.write(this.similarity);
 
 		}
 		if (this.splitQueriesOnWhitespace != null) {
-
 			generator.writeKey("split_queries_on_whitespace");
 			generator.write(this.splitQueriesOnWhitespace);
 
@@ -268,7 +259,7 @@ public final class FlattenedProperty extends PropertyBase implements PropertyVar
 		/**
 		 * API name: {@code boost}
 		 */
-		public Builder boost(@Nullable Double value) {
+		public final Builder boost(@Nullable Double value) {
 			this.boost = value;
 			return this;
 		}
@@ -276,7 +267,7 @@ public final class FlattenedProperty extends PropertyBase implements PropertyVar
 		/**
 		 * API name: {@code depth_limit}
 		 */
-		public Builder depthLimit(@Nullable Integer value) {
+		public final Builder depthLimit(@Nullable Integer value) {
 			this.depthLimit = value;
 			return this;
 		}
@@ -284,7 +275,7 @@ public final class FlattenedProperty extends PropertyBase implements PropertyVar
 		/**
 		 * API name: {@code doc_values}
 		 */
-		public Builder docValues(@Nullable Boolean value) {
+		public final Builder docValues(@Nullable Boolean value) {
 			this.docValues = value;
 			return this;
 		}
@@ -292,7 +283,7 @@ public final class FlattenedProperty extends PropertyBase implements PropertyVar
 		/**
 		 * API name: {@code eager_global_ordinals}
 		 */
-		public Builder eagerGlobalOrdinals(@Nullable Boolean value) {
+		public final Builder eagerGlobalOrdinals(@Nullable Boolean value) {
 			this.eagerGlobalOrdinals = value;
 			return this;
 		}
@@ -300,7 +291,7 @@ public final class FlattenedProperty extends PropertyBase implements PropertyVar
 		/**
 		 * API name: {@code index}
 		 */
-		public Builder index(@Nullable Boolean value) {
+		public final Builder index(@Nullable Boolean value) {
 			this.index = value;
 			return this;
 		}
@@ -308,7 +299,7 @@ public final class FlattenedProperty extends PropertyBase implements PropertyVar
 		/**
 		 * API name: {@code index_options}
 		 */
-		public Builder indexOptions(@Nullable IndexOptions value) {
+		public final Builder indexOptions(@Nullable IndexOptions value) {
 			this.indexOptions = value;
 			return this;
 		}
@@ -316,7 +307,7 @@ public final class FlattenedProperty extends PropertyBase implements PropertyVar
 		/**
 		 * API name: {@code null_value}
 		 */
-		public Builder nullValue(@Nullable String value) {
+		public final Builder nullValue(@Nullable String value) {
 			this.nullValue = value;
 			return this;
 		}
@@ -324,7 +315,7 @@ public final class FlattenedProperty extends PropertyBase implements PropertyVar
 		/**
 		 * API name: {@code similarity}
 		 */
-		public Builder similarity(@Nullable String value) {
+		public final Builder similarity(@Nullable String value) {
 			this.similarity = value;
 			return this;
 		}
@@ -332,7 +323,7 @@ public final class FlattenedProperty extends PropertyBase implements PropertyVar
 		/**
 		 * API name: {@code split_queries_on_whitespace}
 		 */
-		public Builder splitQueriesOnWhitespace(@Nullable Boolean value) {
+		public final Builder splitQueriesOnWhitespace(@Nullable Boolean value) {
 			this.splitQueriesOnWhitespace = value;
 			return this;
 		}
@@ -349,6 +340,7 @@ public final class FlattenedProperty extends PropertyBase implements PropertyVar
 		 *             if some of the required fields are null.
 		 */
 		public FlattenedProperty build() {
+			_checkSingleUse();
 
 			return new FlattenedProperty(this);
 		}

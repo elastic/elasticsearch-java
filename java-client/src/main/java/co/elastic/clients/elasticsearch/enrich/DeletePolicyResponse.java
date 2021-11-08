@@ -36,16 +36,16 @@ import java.util.function.Function;
 
 // typedef: enrich.delete_policy.Response
 @JsonpDeserializable
-public final class DeletePolicyResponse extends AcknowledgedResponseBase {
+public class DeletePolicyResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
-	public DeletePolicyResponse(Builder builder) {
+	private DeletePolicyResponse(Builder builder) {
 		super(builder);
 
 	}
 
-	public DeletePolicyResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static DeletePolicyResponse of(Function<Builder, ObjectBuilder<DeletePolicyResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -68,6 +68,7 @@ public final class DeletePolicyResponse extends AcknowledgedResponseBase {
 		 *             if some of the required fields are null.
 		 */
 		public DeletePolicyResponse build() {
+			_checkSingleUse();
 
 			return new DeletePolicyResponse(this);
 		}

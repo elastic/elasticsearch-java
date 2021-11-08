@@ -32,6 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -42,19 +43,19 @@ import javax.annotation.Nullable;
 
 // typedef: cat.indices.Response
 @JsonpDeserializable
-public final class IndicesResponse implements JsonpSerializable {
+public class IndicesResponse implements JsonpSerializable {
 	private final List<IndicesRecord> valueBody;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public IndicesResponse(Builder builder) {
+	private IndicesResponse(Builder builder) {
 
-		this.valueBody = ModelTypeHelper.unmodifiableNonNull(builder.valueBody, "_value_body");
+		this.valueBody = ModelTypeHelper.unmodifiableRequired(builder.valueBody, this, "valueBody");
 
 	}
 
-	public IndicesResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static IndicesResponse of(Function<Builder, ObjectBuilder<IndicesResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -62,7 +63,7 @@ public final class IndicesResponse implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code _value_body}
 	 */
-	public List<IndicesRecord> valueBody() {
+	public final List<IndicesRecord> valueBody() {
 		return this.valueBody;
 	}
 
@@ -84,7 +85,7 @@ public final class IndicesResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link IndicesResponse}.
 	 */
-	public static class Builder implements ObjectBuilder<IndicesResponse> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<IndicesResponse> {
 		private List<IndicesRecord> valueBody;
 
 		/**
@@ -92,7 +93,7 @@ public final class IndicesResponse implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code _value_body}
 		 */
-		public Builder valueBody(List<IndicesRecord> value) {
+		public final Builder valueBody(List<IndicesRecord> value) {
 			this.valueBody = value;
 			return this;
 		}
@@ -102,34 +103,23 @@ public final class IndicesResponse implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code _value_body}
 		 */
-		public Builder valueBody(IndicesRecord... value) {
+		public final Builder valueBody(IndicesRecord... value) {
 			this.valueBody = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #valueBody(List)}, creating the list if needed.
+		 * Required - Response value.
+		 * <p>
+		 * API name: {@code _value_body}
 		 */
-		public Builder addValueBody(IndicesRecord value) {
-			if (this.valueBody == null) {
-				this.valueBody = new ArrayList<>();
+		@SafeVarargs
+		public final Builder valueBody(Function<IndicesRecord.Builder, ObjectBuilder<IndicesRecord>>... fns) {
+			this.valueBody = new ArrayList<>(fns.length);
+			for (Function<IndicesRecord.Builder, ObjectBuilder<IndicesRecord>> fn : fns) {
+				this.valueBody.add(fn.apply(new IndicesRecord.Builder()).build());
 			}
-			this.valueBody.add(value);
 			return this;
-		}
-
-		/**
-		 * Set {@link #valueBody(List)} to a singleton list.
-		 */
-		public Builder valueBody(Function<IndicesRecord.Builder, ObjectBuilder<IndicesRecord>> fn) {
-			return this.valueBody(fn.apply(new IndicesRecord.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #valueBody(List)}, creating the list if needed.
-		 */
-		public Builder addValueBody(Function<IndicesRecord.Builder, ObjectBuilder<IndicesRecord>> fn) {
-			return this.addValueBody(fn.apply(new IndicesRecord.Builder()).build());
 		}
 
 		/**
@@ -139,6 +129,7 @@ public final class IndicesResponse implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public IndicesResponse build() {
+			_checkSingleUse();
 
 			return new IndicesResponse(this);
 		}

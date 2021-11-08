@@ -34,7 +34,7 @@ import java.util.function.Function;
 
 // typedef: logstash.put_pipeline.Response
 
-public final class PutPipelineResponse {
+public class PutPipelineResponse {
 	public PutPipelineResponse() {
 	}
 

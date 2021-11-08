@@ -36,16 +36,16 @@ import java.util.function.Function;
 
 // typedef: _types.mapping.IpRangeProperty
 @JsonpDeserializable
-public final class IpRangeProperty extends RangePropertyBase implements PropertyVariant {
+public class IpRangeProperty extends RangePropertyBase implements PropertyVariant {
 	// ---------------------------------------------------------------------------------------------
 
-	public IpRangeProperty(Builder builder) {
+	private IpRangeProperty(Builder builder) {
 		super(builder);
 
 	}
 
-	public IpRangeProperty(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static IpRangeProperty of(Function<Builder, ObjectBuilder<IpRangeProperty>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -83,6 +83,7 @@ public final class IpRangeProperty extends RangePropertyBase implements Property
 		 *             if some of the required fields are null.
 		 */
 		public IpRangeProperty build() {
+			_checkSingleUse();
 
 			return new IpRangeProperty(this);
 		}

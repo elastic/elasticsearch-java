@@ -38,20 +38,21 @@ import javax.annotation.Nullable;
 
 // typedef: _types.analysis.LowercaseTokenFilter
 @JsonpDeserializable
-public final class LowercaseTokenFilter extends TokenFilterBase implements TokenFilterVariant {
+public class LowercaseTokenFilter extends TokenFilterBase implements TokenFilterVariant {
+	@Nullable
 	private final String language;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public LowercaseTokenFilter(Builder builder) {
+	private LowercaseTokenFilter(Builder builder) {
 		super(builder);
 
-		this.language = Objects.requireNonNull(builder.language, "language");
+		this.language = builder.language;
 
 	}
 
-	public LowercaseTokenFilter(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static LowercaseTokenFilter of(Function<Builder, ObjectBuilder<LowercaseTokenFilter>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -63,9 +64,10 @@ public final class LowercaseTokenFilter extends TokenFilterBase implements Token
 	}
 
 	/**
-	 * Required - API name: {@code language}
+	 * API name: {@code language}
 	 */
-	public String language() {
+	@Nullable
+	public final String language() {
 		return this.language;
 	}
 
@@ -73,9 +75,11 @@ public final class LowercaseTokenFilter extends TokenFilterBase implements Token
 
 		generator.write("type", "lowercase");
 		super.serializeInternal(generator, mapper);
+		if (this.language != null) {
+			generator.writeKey("language");
+			generator.write(this.language);
 
-		generator.writeKey("language");
-		generator.write(this.language);
+		}
 
 	}
 
@@ -87,12 +91,13 @@ public final class LowercaseTokenFilter extends TokenFilterBase implements Token
 	public static class Builder extends TokenFilterBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<LowercaseTokenFilter> {
+		@Nullable
 		private String language;
 
 		/**
-		 * Required - API name: {@code language}
+		 * API name: {@code language}
 		 */
-		public Builder language(String value) {
+		public final Builder language(@Nullable String value) {
 			this.language = value;
 			return this;
 		}
@@ -109,6 +114,7 @@ public final class LowercaseTokenFilter extends TokenFilterBase implements Token
 		 *             if some of the required fields are null.
 		 */
 		public LowercaseTokenFilter build() {
+			_checkSingleUse();
 
 			return new LowercaseTokenFilter(this);
 		}

@@ -32,6 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.util.ArrayList;
@@ -43,35 +44,35 @@ import javax.annotation.Nullable;
 
 // typedef: ml.get_records.Response
 @JsonpDeserializable
-public final class GetRecordsResponse implements JsonpSerializable {
+public class GetRecordsResponse implements JsonpSerializable {
 	private final long count;
 
 	private final List<Anomaly> records;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public GetRecordsResponse(Builder builder) {
+	private GetRecordsResponse(Builder builder) {
 
-		this.count = Objects.requireNonNull(builder.count, "count");
-		this.records = ModelTypeHelper.unmodifiableNonNull(builder.records, "records");
+		this.count = ModelTypeHelper.requireNonNull(builder.count, this, "count");
+		this.records = ModelTypeHelper.unmodifiableRequired(builder.records, this, "records");
 
 	}
 
-	public GetRecordsResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static GetRecordsResponse of(Function<Builder, ObjectBuilder<GetRecordsResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code count}
 	 */
-	public long count() {
+	public final long count() {
 		return this.count;
 	}
 
 	/**
 	 * Required - API name: {@code records}
 	 */
-	public List<Anomaly> records() {
+	public final List<Anomaly> records() {
 		return this.records;
 	}
 
@@ -89,13 +90,16 @@ public final class GetRecordsResponse implements JsonpSerializable {
 		generator.writeKey("count");
 		generator.write(this.count);
 
-		generator.writeKey("records");
-		generator.writeStartArray();
-		for (Anomaly item0 : this.records) {
-			item0.serialize(generator, mapper);
+		if (ModelTypeHelper.isDefined(this.records)) {
+			generator.writeKey("records");
+			generator.writeStartArray();
+			for (Anomaly item0 : this.records) {
+				item0.serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
 
 	}
 
@@ -104,7 +108,7 @@ public final class GetRecordsResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link GetRecordsResponse}.
 	 */
-	public static class Builder implements ObjectBuilder<GetRecordsResponse> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetRecordsResponse> {
 		private Long count;
 
 		private List<Anomaly> records;
@@ -112,7 +116,7 @@ public final class GetRecordsResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code count}
 		 */
-		public Builder count(long value) {
+		public final Builder count(long value) {
 			this.count = value;
 			return this;
 		}
@@ -120,7 +124,7 @@ public final class GetRecordsResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code records}
 		 */
-		public Builder records(List<Anomaly> value) {
+		public final Builder records(List<Anomaly> value) {
 			this.records = value;
 			return this;
 		}
@@ -128,34 +132,21 @@ public final class GetRecordsResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code records}
 		 */
-		public Builder records(Anomaly... value) {
+		public final Builder records(Anomaly... value) {
 			this.records = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #records(List)}, creating the list if needed.
+		 * Required - API name: {@code records}
 		 */
-		public Builder addRecords(Anomaly value) {
-			if (this.records == null) {
-				this.records = new ArrayList<>();
+		@SafeVarargs
+		public final Builder records(Function<Anomaly.Builder, ObjectBuilder<Anomaly>>... fns) {
+			this.records = new ArrayList<>(fns.length);
+			for (Function<Anomaly.Builder, ObjectBuilder<Anomaly>> fn : fns) {
+				this.records.add(fn.apply(new Anomaly.Builder()).build());
 			}
-			this.records.add(value);
 			return this;
-		}
-
-		/**
-		 * Set {@link #records(List)} to a singleton list.
-		 */
-		public Builder records(Function<Anomaly.Builder, ObjectBuilder<Anomaly>> fn) {
-			return this.records(fn.apply(new Anomaly.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #records(List)}, creating the list if needed.
-		 */
-		public Builder addRecords(Function<Anomaly.Builder, ObjectBuilder<Anomaly>> fn) {
-			return this.addRecords(fn.apply(new Anomaly.Builder()).build());
 		}
 
 		/**
@@ -165,6 +156,7 @@ public final class GetRecordsResponse implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public GetRecordsResponse build() {
+			_checkSingleUse();
 
 			return new GetRecordsResponse(this);
 		}

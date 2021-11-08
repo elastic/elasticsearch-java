@@ -36,16 +36,16 @@ import java.util.function.Function;
 
 // typedef: indices.put_settings.Response
 @JsonpDeserializable
-public final class PutSettingsResponse extends AcknowledgedResponseBase {
+public class PutSettingsResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
-	public PutSettingsResponse(Builder builder) {
+	private PutSettingsResponse(Builder builder) {
 		super(builder);
 
 	}
 
-	public PutSettingsResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static PutSettingsResponse of(Function<Builder, ObjectBuilder<PutSettingsResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -68,6 +68,7 @@ public final class PutSettingsResponse extends AcknowledgedResponseBase {
 		 *             if some of the required fields are null.
 		 */
 		public PutSettingsResponse build() {
+			_checkSingleUse();
 
 			return new PutSettingsResponse(this);
 		}

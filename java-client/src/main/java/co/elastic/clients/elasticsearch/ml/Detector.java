@@ -32,6 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Integer;
@@ -45,11 +46,10 @@ import javax.annotation.Nullable;
 
 // typedef: ml._types.Detector
 @JsonpDeserializable
-public final class Detector implements JsonpSerializable {
+public class Detector implements JsonpSerializable {
 	@Nullable
 	private final String byFieldName;
 
-	@Nullable
 	private final List<DetectionRule> customRules;
 
 	@Nullable
@@ -77,7 +77,7 @@ public final class Detector implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public Detector(Builder builder) {
+	private Detector(Builder builder) {
 
 		this.byFieldName = builder.byFieldName;
 		this.customRules = ModelTypeHelper.unmodifiable(builder.customRules);
@@ -85,15 +85,15 @@ public final class Detector implements JsonpSerializable {
 		this.detectorIndex = builder.detectorIndex;
 		this.excludeFrequent = builder.excludeFrequent;
 		this.fieldName = builder.fieldName;
-		this.function = Objects.requireNonNull(builder.function, "function");
+		this.function = ModelTypeHelper.requireNonNull(builder.function, this, "function");
 		this.overFieldName = builder.overFieldName;
 		this.partitionFieldName = builder.partitionFieldName;
 		this.useNull = builder.useNull;
 
 	}
 
-	public Detector(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static Detector of(Function<Builder, ObjectBuilder<Detector>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -104,7 +104,7 @@ public final class Detector implements JsonpSerializable {
 	 * API name: {@code by_field_name}
 	 */
 	@Nullable
-	public String byFieldName() {
+	public final String byFieldName() {
 		return this.byFieldName;
 	}
 
@@ -115,8 +115,7 @@ public final class Detector implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code custom_rules}
 	 */
-	@Nullable
-	public List<DetectionRule> customRules() {
+	public final List<DetectionRule> customRules() {
 		return this.customRules;
 	}
 
@@ -126,7 +125,7 @@ public final class Detector implements JsonpSerializable {
 	 * API name: {@code detector_description}
 	 */
 	@Nullable
-	public String detectorDescription() {
+	public final String detectorDescription() {
 		return this.detectorDescription;
 	}
 
@@ -138,7 +137,7 @@ public final class Detector implements JsonpSerializable {
 	 * API name: {@code detector_index}
 	 */
 	@Nullable
-	public Integer detectorIndex() {
+	public final Integer detectorIndex() {
 		return this.detectorIndex;
 	}
 
@@ -152,7 +151,7 @@ public final class Detector implements JsonpSerializable {
 	 * API name: {@code exclude_frequent}
 	 */
 	@Nullable
-	public ExcludeFrequent excludeFrequent() {
+	public final ExcludeFrequent excludeFrequent() {
 		return this.excludeFrequent;
 	}
 
@@ -164,7 +163,7 @@ public final class Detector implements JsonpSerializable {
 	 * API name: {@code field_name}
 	 */
 	@Nullable
-	public String fieldName() {
+	public final String fieldName() {
 		return this.fieldName;
 	}
 
@@ -175,7 +174,7 @@ public final class Detector implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code function}
 	 */
-	public String function() {
+	public final String function() {
 		return this.function;
 	}
 
@@ -187,7 +186,7 @@ public final class Detector implements JsonpSerializable {
 	 * API name: {@code over_field_name}
 	 */
 	@Nullable
-	public String overFieldName() {
+	public final String overFieldName() {
 		return this.overFieldName;
 	}
 
@@ -198,7 +197,7 @@ public final class Detector implements JsonpSerializable {
 	 * API name: {@code partition_field_name}
 	 */
 	@Nullable
-	public String partitionFieldName() {
+	public final String partitionFieldName() {
 		return this.partitionFieldName;
 	}
 
@@ -209,7 +208,7 @@ public final class Detector implements JsonpSerializable {
 	 * API name: {@code use_null}
 	 */
 	@Nullable
-	public Boolean useNull() {
+	public final Boolean useNull() {
 		return this.useNull;
 	}
 
@@ -225,13 +224,11 @@ public final class Detector implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.byFieldName != null) {
-
 			generator.writeKey("by_field_name");
 			generator.write(this.byFieldName);
 
 		}
-		if (this.customRules != null) {
-
+		if (ModelTypeHelper.isDefined(this.customRules)) {
 			generator.writeKey("custom_rules");
 			generator.writeStartArray();
 			for (DetectionRule item0 : this.customRules) {
@@ -242,46 +239,38 @@ public final class Detector implements JsonpSerializable {
 
 		}
 		if (this.detectorDescription != null) {
-
 			generator.writeKey("detector_description");
 			generator.write(this.detectorDescription);
 
 		}
 		if (this.detectorIndex != null) {
-
 			generator.writeKey("detector_index");
 			generator.write(this.detectorIndex);
 
 		}
 		if (this.excludeFrequent != null) {
-
 			generator.writeKey("exclude_frequent");
 			this.excludeFrequent.serialize(generator, mapper);
 		}
 		if (this.fieldName != null) {
-
 			generator.writeKey("field_name");
 			generator.write(this.fieldName);
 
 		}
-
 		generator.writeKey("function");
 		generator.write(this.function);
 
 		if (this.overFieldName != null) {
-
 			generator.writeKey("over_field_name");
 			generator.write(this.overFieldName);
 
 		}
 		if (this.partitionFieldName != null) {
-
 			generator.writeKey("partition_field_name");
 			generator.write(this.partitionFieldName);
 
 		}
 		if (this.useNull != null) {
-
 			generator.writeKey("use_null");
 			generator.write(this.useNull);
 
@@ -294,7 +283,7 @@ public final class Detector implements JsonpSerializable {
 	/**
 	 * Builder for {@link Detector}.
 	 */
-	public static class Builder implements ObjectBuilder<Detector> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Detector> {
 		@Nullable
 		private String byFieldName;
 
@@ -331,7 +320,7 @@ public final class Detector implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code by_field_name}
 		 */
-		public Builder byFieldName(@Nullable String value) {
+		public final Builder byFieldName(@Nullable String value) {
 			this.byFieldName = value;
 			return this;
 		}
@@ -343,7 +332,7 @@ public final class Detector implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code custom_rules}
 		 */
-		public Builder customRules(@Nullable List<DetectionRule> value) {
+		public final Builder customRules(@Nullable List<DetectionRule> value) {
 			this.customRules = value;
 			return this;
 		}
@@ -355,34 +344,25 @@ public final class Detector implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code custom_rules}
 		 */
-		public Builder customRules(DetectionRule... value) {
+		public final Builder customRules(DetectionRule... value) {
 			this.customRules = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #customRules(List)}, creating the list if needed.
+		 * Custom rules enable you to customize the way detectors operate. For example,
+		 * a rule may dictate conditions under which results should be skipped. Kibana
+		 * refers to custom rules as job rules.
+		 * <p>
+		 * API name: {@code custom_rules}
 		 */
-		public Builder addCustomRules(DetectionRule value) {
-			if (this.customRules == null) {
-				this.customRules = new ArrayList<>();
+		@SafeVarargs
+		public final Builder customRules(Function<DetectionRule.Builder, ObjectBuilder<DetectionRule>>... fns) {
+			this.customRules = new ArrayList<>(fns.length);
+			for (Function<DetectionRule.Builder, ObjectBuilder<DetectionRule>> fn : fns) {
+				this.customRules.add(fn.apply(new DetectionRule.Builder()).build());
 			}
-			this.customRules.add(value);
 			return this;
-		}
-
-		/**
-		 * Set {@link #customRules(List)} to a singleton list.
-		 */
-		public Builder customRules(Function<DetectionRule.Builder, ObjectBuilder<DetectionRule>> fn) {
-			return this.customRules(fn.apply(new DetectionRule.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #customRules(List)}, creating the list if needed.
-		 */
-		public Builder addCustomRules(Function<DetectionRule.Builder, ObjectBuilder<DetectionRule>> fn) {
-			return this.addCustomRules(fn.apply(new DetectionRule.Builder()).build());
 		}
 
 		/**
@@ -390,7 +370,7 @@ public final class Detector implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code detector_description}
 		 */
-		public Builder detectorDescription(@Nullable String value) {
+		public final Builder detectorDescription(@Nullable String value) {
 			this.detectorDescription = value;
 			return this;
 		}
@@ -402,7 +382,7 @@ public final class Detector implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code detector_index}
 		 */
-		public Builder detectorIndex(@Nullable Integer value) {
+		public final Builder detectorIndex(@Nullable Integer value) {
 			this.detectorIndex = value;
 			return this;
 		}
@@ -416,7 +396,7 @@ public final class Detector implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code exclude_frequent}
 		 */
-		public Builder excludeFrequent(@Nullable ExcludeFrequent value) {
+		public final Builder excludeFrequent(@Nullable ExcludeFrequent value) {
 			this.excludeFrequent = value;
 			return this;
 		}
@@ -428,7 +408,7 @@ public final class Detector implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code field_name}
 		 */
-		public Builder fieldName(@Nullable String value) {
+		public final Builder fieldName(@Nullable String value) {
 			this.fieldName = value;
 			return this;
 		}
@@ -440,7 +420,7 @@ public final class Detector implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code function}
 		 */
-		public Builder function(String value) {
+		public final Builder function(String value) {
 			this.function = value;
 			return this;
 		}
@@ -452,7 +432,7 @@ public final class Detector implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code over_field_name}
 		 */
-		public Builder overFieldName(@Nullable String value) {
+		public final Builder overFieldName(@Nullable String value) {
 			this.overFieldName = value;
 			return this;
 		}
@@ -463,7 +443,7 @@ public final class Detector implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code partition_field_name}
 		 */
-		public Builder partitionFieldName(@Nullable String value) {
+		public final Builder partitionFieldName(@Nullable String value) {
 			this.partitionFieldName = value;
 			return this;
 		}
@@ -474,7 +454,7 @@ public final class Detector implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code use_null}
 		 */
-		public Builder useNull(@Nullable Boolean value) {
+		public final Builder useNull(@Nullable Boolean value) {
 			this.useNull = value;
 			return this;
 		}
@@ -486,6 +466,7 @@ public final class Detector implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public Detector build() {
+			_checkSingleUse();
 
 			return new Detector(this);
 		}

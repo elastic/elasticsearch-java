@@ -31,13 +31,14 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.MapBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
@@ -45,7 +46,7 @@ import javax.annotation.Nullable;
 
 // typedef: security.get_service_credentials.Response
 @JsonpDeserializable
-public final class GetServiceCredentialsResponse implements JsonpSerializable {
+public class GetServiceCredentialsResponse implements JsonpSerializable {
 	private final String serviceAccount;
 
 	private final String nodeName;
@@ -58,52 +59,52 @@ public final class GetServiceCredentialsResponse implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public GetServiceCredentialsResponse(Builder builder) {
+	private GetServiceCredentialsResponse(Builder builder) {
 
-		this.serviceAccount = Objects.requireNonNull(builder.serviceAccount, "service_account");
-		this.nodeName = Objects.requireNonNull(builder.nodeName, "node_name");
-		this.count = Objects.requireNonNull(builder.count, "count");
-		this.tokens = ModelTypeHelper.unmodifiableNonNull(builder.tokens, "tokens");
-		this.fileTokens = ModelTypeHelper.unmodifiableNonNull(builder.fileTokens, "file_tokens");
+		this.serviceAccount = ModelTypeHelper.requireNonNull(builder.serviceAccount, this, "serviceAccount");
+		this.nodeName = ModelTypeHelper.requireNonNull(builder.nodeName, this, "nodeName");
+		this.count = ModelTypeHelper.requireNonNull(builder.count, this, "count");
+		this.tokens = ModelTypeHelper.unmodifiableRequired(builder.tokens, this, "tokens");
+		this.fileTokens = ModelTypeHelper.unmodifiableRequired(builder.fileTokens, this, "fileTokens");
 
 	}
 
-	public GetServiceCredentialsResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static GetServiceCredentialsResponse of(Function<Builder, ObjectBuilder<GetServiceCredentialsResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code service_account}
 	 */
-	public String serviceAccount() {
+	public final String serviceAccount() {
 		return this.serviceAccount;
 	}
 
 	/**
 	 * Required - API name: {@code node_name}
 	 */
-	public String nodeName() {
+	public final String nodeName() {
 		return this.nodeName;
 	}
 
 	/**
 	 * Required - API name: {@code count}
 	 */
-	public int count() {
+	public final int count() {
 		return this.count;
 	}
 
 	/**
 	 * Required - API name: {@code tokens}
 	 */
-	public Map<String, EmptyObject> tokens() {
+	public final Map<String, EmptyObject> tokens() {
 		return this.tokens;
 	}
 
 	/**
 	 * Required - API name: {@code file_tokens}
 	 */
-	public Map<String, EmptyObject> fileTokens() {
+	public final Map<String, EmptyObject> fileTokens() {
 		return this.fileTokens;
 	}
 
@@ -127,23 +128,28 @@ public final class GetServiceCredentialsResponse implements JsonpSerializable {
 		generator.writeKey("count");
 		generator.write(this.count);
 
-		generator.writeKey("tokens");
-		generator.writeStartObject();
-		for (Map.Entry<String, EmptyObject> item0 : this.tokens.entrySet()) {
-			generator.writeKey(item0.getKey());
-			item0.getValue().serialize(generator, mapper);
+		if (ModelTypeHelper.isDefined(this.tokens)) {
+			generator.writeKey("tokens");
+			generator.writeStartObject();
+			for (Map.Entry<String, EmptyObject> item0 : this.tokens.entrySet()) {
+				generator.writeKey(item0.getKey());
+				item0.getValue().serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
+		if (ModelTypeHelper.isDefined(this.fileTokens)) {
+			generator.writeKey("file_tokens");
+			generator.writeStartObject();
+			for (Map.Entry<String, EmptyObject> item0 : this.fileTokens.entrySet()) {
+				generator.writeKey(item0.getKey());
+				item0.getValue().serialize(generator, mapper);
 
-		generator.writeKey("file_tokens");
-		generator.writeStartObject();
-		for (Map.Entry<String, EmptyObject> item0 : this.fileTokens.entrySet()) {
-			generator.writeKey(item0.getKey());
-			item0.getValue().serialize(generator, mapper);
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
 
 	}
 
@@ -152,7 +158,7 @@ public final class GetServiceCredentialsResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link GetServiceCredentialsResponse}.
 	 */
-	public static class Builder implements ObjectBuilder<GetServiceCredentialsResponse> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetServiceCredentialsResponse> {
 		private String serviceAccount;
 
 		private String nodeName;
@@ -166,7 +172,7 @@ public final class GetServiceCredentialsResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code service_account}
 		 */
-		public Builder serviceAccount(String value) {
+		public final Builder serviceAccount(String value) {
 			this.serviceAccount = value;
 			return this;
 		}
@@ -174,7 +180,7 @@ public final class GetServiceCredentialsResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code node_name}
 		 */
-		public Builder nodeName(String value) {
+		public final Builder nodeName(String value) {
 			this.nodeName = value;
 			return this;
 		}
@@ -182,7 +188,7 @@ public final class GetServiceCredentialsResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code count}
 		 */
-		public Builder count(int value) {
+		public final Builder count(int value) {
 			this.count = value;
 			return this;
 		}
@@ -190,19 +196,8 @@ public final class GetServiceCredentialsResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code tokens}
 		 */
-		public Builder tokens(Map<String, EmptyObject> value) {
+		public final Builder tokens(Map<String, EmptyObject> value) {
 			this.tokens = value;
-			return this;
-		}
-
-		/**
-		 * Add a key/value to {@link #tokens(Map)}, creating the map if needed.
-		 */
-		public Builder putTokens(String key, EmptyObject value) {
-			if (this.tokens == null) {
-				this.tokens = new HashMap<>();
-			}
-			this.tokens.put(key, value);
 			return this;
 		}
 
@@ -213,29 +208,16 @@ public final class GetServiceCredentialsResponse implements JsonpSerializable {
 			return this.tokens(Collections.singletonMap(key, fn.apply(new EmptyObject.Builder()).build()));
 		}
 
-		/**
-		 * Add a key/value to {@link #tokens(Map)}, creating the map if needed.
-		 */
-		public Builder putTokens(String key, Function<EmptyObject.Builder, ObjectBuilder<EmptyObject>> fn) {
-			return this.putTokens(key, fn.apply(new EmptyObject.Builder()).build());
+		public final Builder tokens(
+				Function<MapBuilder<String, EmptyObject, EmptyObject.Builder>, ObjectBuilder<Map<String, EmptyObject>>> fn) {
+			return tokens(fn.apply(new MapBuilder<>(EmptyObject.Builder::new)).build());
 		}
 
 		/**
 		 * Required - API name: {@code file_tokens}
 		 */
-		public Builder fileTokens(Map<String, EmptyObject> value) {
+		public final Builder fileTokens(Map<String, EmptyObject> value) {
 			this.fileTokens = value;
-			return this;
-		}
-
-		/**
-		 * Add a key/value to {@link #fileTokens(Map)}, creating the map if needed.
-		 */
-		public Builder putFileTokens(String key, EmptyObject value) {
-			if (this.fileTokens == null) {
-				this.fileTokens = new HashMap<>();
-			}
-			this.fileTokens.put(key, value);
 			return this;
 		}
 
@@ -246,11 +228,9 @@ public final class GetServiceCredentialsResponse implements JsonpSerializable {
 			return this.fileTokens(Collections.singletonMap(key, fn.apply(new EmptyObject.Builder()).build()));
 		}
 
-		/**
-		 * Add a key/value to {@link #fileTokens(Map)}, creating the map if needed.
-		 */
-		public Builder putFileTokens(String key, Function<EmptyObject.Builder, ObjectBuilder<EmptyObject>> fn) {
-			return this.putFileTokens(key, fn.apply(new EmptyObject.Builder()).build());
+		public final Builder fileTokens(
+				Function<MapBuilder<String, EmptyObject, EmptyObject.Builder>, ObjectBuilder<Map<String, EmptyObject>>> fn) {
+			return fileTokens(fn.apply(new MapBuilder<>(EmptyObject.Builder::new)).build());
 		}
 
 		/**
@@ -260,6 +240,7 @@ public final class GetServiceCredentialsResponse implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public GetServiceCredentialsResponse build() {
+			_checkSingleUse();
 
 			return new GetServiceCredentialsResponse(this);
 		}

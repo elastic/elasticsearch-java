@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -39,7 +41,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.FieldLookup
 @JsonpDeserializable
-public final class FieldLookup implements JsonpSerializable {
+public class FieldLookup implements JsonpSerializable {
 	private final String id;
 
 	@Nullable
@@ -53,23 +55,23 @@ public final class FieldLookup implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public FieldLookup(Builder builder) {
+	private FieldLookup(Builder builder) {
 
-		this.id = Objects.requireNonNull(builder.id, "id");
+		this.id = ModelTypeHelper.requireNonNull(builder.id, this, "id");
 		this.index = builder.index;
 		this.path = builder.path;
 		this.routing = builder.routing;
 
 	}
 
-	public FieldLookup(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static FieldLookup of(Function<Builder, ObjectBuilder<FieldLookup>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code id}
 	 */
-	public String id() {
+	public final String id() {
 		return this.id;
 	}
 
@@ -77,7 +79,7 @@ public final class FieldLookup implements JsonpSerializable {
 	 * API name: {@code index}
 	 */
 	@Nullable
-	public String index() {
+	public final String index() {
 		return this.index;
 	}
 
@@ -85,7 +87,7 @@ public final class FieldLookup implements JsonpSerializable {
 	 * API name: {@code path}
 	 */
 	@Nullable
-	public String path() {
+	public final String path() {
 		return this.path;
 	}
 
@@ -93,7 +95,7 @@ public final class FieldLookup implements JsonpSerializable {
 	 * API name: {@code routing}
 	 */
 	@Nullable
-	public String routing() {
+	public final String routing() {
 		return this.routing;
 	}
 
@@ -112,19 +114,16 @@ public final class FieldLookup implements JsonpSerializable {
 		generator.write(this.id);
 
 		if (this.index != null) {
-
 			generator.writeKey("index");
 			generator.write(this.index);
 
 		}
 		if (this.path != null) {
-
 			generator.writeKey("path");
 			generator.write(this.path);
 
 		}
 		if (this.routing != null) {
-
 			generator.writeKey("routing");
 			generator.write(this.routing);
 
@@ -137,7 +136,7 @@ public final class FieldLookup implements JsonpSerializable {
 	/**
 	 * Builder for {@link FieldLookup}.
 	 */
-	public static class Builder implements ObjectBuilder<FieldLookup> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<FieldLookup> {
 		private String id;
 
 		@Nullable
@@ -152,7 +151,7 @@ public final class FieldLookup implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code id}
 		 */
-		public Builder id(String value) {
+		public final Builder id(String value) {
 			this.id = value;
 			return this;
 		}
@@ -160,7 +159,7 @@ public final class FieldLookup implements JsonpSerializable {
 		/**
 		 * API name: {@code index}
 		 */
-		public Builder index(@Nullable String value) {
+		public final Builder index(@Nullable String value) {
 			this.index = value;
 			return this;
 		}
@@ -168,7 +167,7 @@ public final class FieldLookup implements JsonpSerializable {
 		/**
 		 * API name: {@code path}
 		 */
-		public Builder path(@Nullable String value) {
+		public final Builder path(@Nullable String value) {
 			this.path = value;
 			return this;
 		}
@@ -176,7 +175,7 @@ public final class FieldLookup implements JsonpSerializable {
 		/**
 		 * API name: {@code routing}
 		 */
-		public Builder routing(@Nullable String value) {
+		public final Builder routing(@Nullable String value) {
 			this.routing = value;
 			return this;
 		}
@@ -188,6 +187,7 @@ public final class FieldLookup implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public FieldLookup build() {
+			_checkSingleUse();
 
 			return new FieldLookup(this);
 		}

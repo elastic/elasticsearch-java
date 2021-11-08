@@ -38,21 +38,21 @@ import javax.annotation.Nullable;
 
 // typedef: _types.mapping.LongNumberProperty
 @JsonpDeserializable
-public final class LongNumberProperty extends StandardNumberProperty implements PropertyVariant {
+public class LongNumberProperty extends StandardNumberProperty implements PropertyVariant {
 	@Nullable
 	private final Long nullValue;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public LongNumberProperty(Builder builder) {
+	private LongNumberProperty(Builder builder) {
 		super(builder);
 
 		this.nullValue = builder.nullValue;
 
 	}
 
-	public LongNumberProperty(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static LongNumberProperty of(Function<Builder, ObjectBuilder<LongNumberProperty>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -67,7 +67,7 @@ public final class LongNumberProperty extends StandardNumberProperty implements 
 	 * API name: {@code null_value}
 	 */
 	@Nullable
-	public Long nullValue() {
+	public final Long nullValue() {
 		return this.nullValue;
 	}
 
@@ -76,7 +76,6 @@ public final class LongNumberProperty extends StandardNumberProperty implements 
 		generator.write("type", "long");
 		super.serializeInternal(generator, mapper);
 		if (this.nullValue != null) {
-
 			generator.writeKey("null_value");
 			generator.write(this.nullValue);
 
@@ -98,7 +97,7 @@ public final class LongNumberProperty extends StandardNumberProperty implements 
 		/**
 		 * API name: {@code null_value}
 		 */
-		public Builder nullValue(@Nullable Long value) {
+		public final Builder nullValue(@Nullable Long value) {
 			this.nullValue = value;
 			return this;
 		}
@@ -115,6 +114,7 @@ public final class LongNumberProperty extends StandardNumberProperty implements 
 		 *             if some of the required fields are null.
 		 */
 		public LongNumberProperty build() {
+			_checkSingleUse();
 
 			return new LongNumberProperty(this);
 		}

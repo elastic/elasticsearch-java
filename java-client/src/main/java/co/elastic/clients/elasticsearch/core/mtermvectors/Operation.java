@@ -35,11 +35,11 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Long;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
@@ -48,7 +48,7 @@ import javax.annotation.Nullable;
 
 // typedef: _global.mtermvectors.Operation
 @JsonpDeserializable
-public final class Operation implements JsonpSerializable {
+public class Operation implements JsonpSerializable {
 	private final JsonData doc;
 
 	private final List<String> fields;
@@ -77,116 +77,116 @@ public final class Operation implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public Operation(Builder builder) {
+	private Operation(Builder builder) {
 
-		this.doc = Objects.requireNonNull(builder.doc, "doc");
-		this.fields = ModelTypeHelper.unmodifiableNonNull(builder.fields, "fields");
-		this.fieldStatistics = Objects.requireNonNull(builder.fieldStatistics, "field_statistics");
-		this.filter = Objects.requireNonNull(builder.filter, "filter");
-		this.id = Objects.requireNonNull(builder.id, "_id");
-		this.index = Objects.requireNonNull(builder.index, "_index");
-		this.offsets = Objects.requireNonNull(builder.offsets, "offsets");
-		this.payloads = Objects.requireNonNull(builder.payloads, "payloads");
-		this.positions = Objects.requireNonNull(builder.positions, "positions");
-		this.routing = Objects.requireNonNull(builder.routing, "routing");
-		this.termStatistics = Objects.requireNonNull(builder.termStatistics, "term_statistics");
-		this.version = Objects.requireNonNull(builder.version, "version");
-		this.versionType = Objects.requireNonNull(builder.versionType, "version_type");
+		this.doc = ModelTypeHelper.requireNonNull(builder.doc, this, "doc");
+		this.fields = ModelTypeHelper.unmodifiableRequired(builder.fields, this, "fields");
+		this.fieldStatistics = ModelTypeHelper.requireNonNull(builder.fieldStatistics, this, "fieldStatistics");
+		this.filter = ModelTypeHelper.requireNonNull(builder.filter, this, "filter");
+		this.id = ModelTypeHelper.requireNonNull(builder.id, this, "id");
+		this.index = ModelTypeHelper.requireNonNull(builder.index, this, "index");
+		this.offsets = ModelTypeHelper.requireNonNull(builder.offsets, this, "offsets");
+		this.payloads = ModelTypeHelper.requireNonNull(builder.payloads, this, "payloads");
+		this.positions = ModelTypeHelper.requireNonNull(builder.positions, this, "positions");
+		this.routing = ModelTypeHelper.requireNonNull(builder.routing, this, "routing");
+		this.termStatistics = ModelTypeHelper.requireNonNull(builder.termStatistics, this, "termStatistics");
+		this.version = ModelTypeHelper.requireNonNull(builder.version, this, "version");
+		this.versionType = ModelTypeHelper.requireNonNull(builder.versionType, this, "versionType");
 
 	}
 
-	public Operation(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static Operation of(Function<Builder, ObjectBuilder<Operation>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code doc}
 	 */
-	public JsonData doc() {
+	public final JsonData doc() {
 		return this.doc;
 	}
 
 	/**
 	 * Required - API name: {@code fields}
 	 */
-	public List<String> fields() {
+	public final List<String> fields() {
 		return this.fields;
 	}
 
 	/**
 	 * Required - API name: {@code field_statistics}
 	 */
-	public boolean fieldStatistics() {
+	public final boolean fieldStatistics() {
 		return this.fieldStatistics;
 	}
 
 	/**
 	 * Required - API name: {@code filter}
 	 */
-	public Filter filter() {
+	public final Filter filter() {
 		return this.filter;
 	}
 
 	/**
 	 * Required - API name: {@code _id}
 	 */
-	public String id() {
+	public final String id() {
 		return this.id;
 	}
 
 	/**
 	 * Required - API name: {@code _index}
 	 */
-	public String index() {
+	public final String index() {
 		return this.index;
 	}
 
 	/**
 	 * Required - API name: {@code offsets}
 	 */
-	public boolean offsets() {
+	public final boolean offsets() {
 		return this.offsets;
 	}
 
 	/**
 	 * Required - API name: {@code payloads}
 	 */
-	public boolean payloads() {
+	public final boolean payloads() {
 		return this.payloads;
 	}
 
 	/**
 	 * Required - API name: {@code positions}
 	 */
-	public boolean positions() {
+	public final boolean positions() {
 		return this.positions;
 	}
 
 	/**
 	 * Required - API name: {@code routing}
 	 */
-	public String routing() {
+	public final String routing() {
 		return this.routing;
 	}
 
 	/**
 	 * Required - API name: {@code term_statistics}
 	 */
-	public boolean termStatistics() {
+	public final boolean termStatistics() {
 		return this.termStatistics;
 	}
 
 	/**
 	 * Required - API name: {@code version}
 	 */
-	public long version() {
+	public final long version() {
 		return this.version;
 	}
 
 	/**
 	 * Required - API name: {@code version_type}
 	 */
-	public VersionType versionType() {
+	public final VersionType versionType() {
 		return this.versionType;
 	}
 
@@ -204,14 +204,16 @@ public final class Operation implements JsonpSerializable {
 		generator.writeKey("doc");
 		this.doc.serialize(generator, mapper);
 
-		generator.writeKey("fields");
-		generator.writeStartArray();
-		for (String item0 : this.fields) {
-			generator.write(item0);
+		if (ModelTypeHelper.isDefined(this.fields)) {
+			generator.writeKey("fields");
+			generator.writeStartArray();
+			for (String item0 : this.fields) {
+				generator.write(item0);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
-
 		generator.writeKey("field_statistics");
 		generator.write(this.fieldStatistics);
 
@@ -252,7 +254,7 @@ public final class Operation implements JsonpSerializable {
 	/**
 	 * Builder for {@link Operation}.
 	 */
-	public static class Builder implements ObjectBuilder<Operation> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Operation> {
 		private JsonData doc;
 
 		private List<String> fields;
@@ -282,7 +284,7 @@ public final class Operation implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code doc}
 		 */
-		public Builder doc(JsonData value) {
+		public final Builder doc(JsonData value) {
 			this.doc = value;
 			return this;
 		}
@@ -290,7 +292,7 @@ public final class Operation implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code fields}
 		 */
-		public Builder fields(List<String> value) {
+		public final Builder fields(List<String> value) {
 			this.fields = value;
 			return this;
 		}
@@ -298,26 +300,15 @@ public final class Operation implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code fields}
 		 */
-		public Builder fields(String... value) {
+		public final Builder fields(String... value) {
 			this.fields = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #fields(List)}, creating the list if needed.
-		 */
-		public Builder addFields(String value) {
-			if (this.fields == null) {
-				this.fields = new ArrayList<>();
-			}
-			this.fields.add(value);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code field_statistics}
 		 */
-		public Builder fieldStatistics(boolean value) {
+		public final Builder fieldStatistics(boolean value) {
 			this.fieldStatistics = value;
 			return this;
 		}
@@ -325,7 +316,7 @@ public final class Operation implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code filter}
 		 */
-		public Builder filter(Filter value) {
+		public final Builder filter(Filter value) {
 			this.filter = value;
 			return this;
 		}
@@ -333,14 +324,14 @@ public final class Operation implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code filter}
 		 */
-		public Builder filter(Function<Filter.Builder, ObjectBuilder<Filter>> fn) {
+		public final Builder filter(Function<Filter.Builder, ObjectBuilder<Filter>> fn) {
 			return this.filter(fn.apply(new Filter.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code _id}
 		 */
-		public Builder id(String value) {
+		public final Builder id(String value) {
 			this.id = value;
 			return this;
 		}
@@ -348,7 +339,7 @@ public final class Operation implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code _index}
 		 */
-		public Builder index(String value) {
+		public final Builder index(String value) {
 			this.index = value;
 			return this;
 		}
@@ -356,7 +347,7 @@ public final class Operation implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code offsets}
 		 */
-		public Builder offsets(boolean value) {
+		public final Builder offsets(boolean value) {
 			this.offsets = value;
 			return this;
 		}
@@ -364,7 +355,7 @@ public final class Operation implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code payloads}
 		 */
-		public Builder payloads(boolean value) {
+		public final Builder payloads(boolean value) {
 			this.payloads = value;
 			return this;
 		}
@@ -372,7 +363,7 @@ public final class Operation implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code positions}
 		 */
-		public Builder positions(boolean value) {
+		public final Builder positions(boolean value) {
 			this.positions = value;
 			return this;
 		}
@@ -380,7 +371,7 @@ public final class Operation implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code routing}
 		 */
-		public Builder routing(String value) {
+		public final Builder routing(String value) {
 			this.routing = value;
 			return this;
 		}
@@ -388,7 +379,7 @@ public final class Operation implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code term_statistics}
 		 */
-		public Builder termStatistics(boolean value) {
+		public final Builder termStatistics(boolean value) {
 			this.termStatistics = value;
 			return this;
 		}
@@ -396,7 +387,7 @@ public final class Operation implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code version}
 		 */
-		public Builder version(long value) {
+		public final Builder version(long value) {
 			this.version = value;
 			return this;
 		}
@@ -404,7 +395,7 @@ public final class Operation implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code version_type}
 		 */
-		public Builder versionType(VersionType value) {
+		public final Builder versionType(VersionType value) {
 			this.versionType = value;
 			return this;
 		}
@@ -416,6 +407,7 @@ public final class Operation implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public Operation build() {
+			_checkSingleUse();
 
 			return new Operation(this);
 		}

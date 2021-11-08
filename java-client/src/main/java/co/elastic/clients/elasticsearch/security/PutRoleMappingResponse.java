@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.Objects;
@@ -39,7 +41,7 @@ import javax.annotation.Nullable;
 
 // typedef: security.put_role_mapping.Response
 @JsonpDeserializable
-public final class PutRoleMappingResponse implements JsonpSerializable {
+public class PutRoleMappingResponse implements JsonpSerializable {
 	@Nullable
 	private final Boolean created;
 
@@ -47,29 +49,29 @@ public final class PutRoleMappingResponse implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public PutRoleMappingResponse(Builder builder) {
+	private PutRoleMappingResponse(Builder builder) {
 
 		this.created = builder.created;
-		this.roleMapping = Objects.requireNonNull(builder.roleMapping, "role_mapping");
+		this.roleMapping = ModelTypeHelper.requireNonNull(builder.roleMapping, this, "roleMapping");
 
 	}
 
-	public PutRoleMappingResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static PutRoleMappingResponse of(Function<Builder, ObjectBuilder<PutRoleMappingResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * API name: {@code created}
 	 */
 	@Nullable
-	public Boolean created() {
+	public final Boolean created() {
 		return this.created;
 	}
 
 	/**
 	 * Required - API name: {@code role_mapping}
 	 */
-	public CreatedStatus roleMapping() {
+	public final CreatedStatus roleMapping() {
 		return this.roleMapping;
 	}
 
@@ -85,12 +87,10 @@ public final class PutRoleMappingResponse implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.created != null) {
-
 			generator.writeKey("created");
 			generator.write(this.created);
 
 		}
-
 		generator.writeKey("role_mapping");
 		this.roleMapping.serialize(generator, mapper);
 
@@ -101,7 +101,7 @@ public final class PutRoleMappingResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link PutRoleMappingResponse}.
 	 */
-	public static class Builder implements ObjectBuilder<PutRoleMappingResponse> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PutRoleMappingResponse> {
 		@Nullable
 		private Boolean created;
 
@@ -110,7 +110,7 @@ public final class PutRoleMappingResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code created}
 		 */
-		public Builder created(@Nullable Boolean value) {
+		public final Builder created(@Nullable Boolean value) {
 			this.created = value;
 			return this;
 		}
@@ -118,7 +118,7 @@ public final class PutRoleMappingResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code role_mapping}
 		 */
-		public Builder roleMapping(CreatedStatus value) {
+		public final Builder roleMapping(CreatedStatus value) {
 			this.roleMapping = value;
 			return this;
 		}
@@ -126,7 +126,7 @@ public final class PutRoleMappingResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code role_mapping}
 		 */
-		public Builder roleMapping(Function<CreatedStatus.Builder, ObjectBuilder<CreatedStatus>> fn) {
+		public final Builder roleMapping(Function<CreatedStatus.Builder, ObjectBuilder<CreatedStatus>> fn) {
 			return this.roleMapping(fn.apply(new CreatedStatus.Builder()).build());
 		}
 
@@ -137,6 +137,7 @@ public final class PutRoleMappingResponse implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public PutRoleMappingResponse build() {
+			_checkSingleUse();
 
 			return new PutRoleMappingResponse(this);
 		}

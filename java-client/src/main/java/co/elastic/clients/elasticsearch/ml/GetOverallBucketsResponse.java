@@ -32,6 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.util.ArrayList;
@@ -43,28 +44,28 @@ import javax.annotation.Nullable;
 
 // typedef: ml.get_overall_buckets.Response
 @JsonpDeserializable
-public final class GetOverallBucketsResponse implements JsonpSerializable {
+public class GetOverallBucketsResponse implements JsonpSerializable {
 	private final long count;
 
 	private final List<OverallBucket> overallBuckets;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public GetOverallBucketsResponse(Builder builder) {
+	private GetOverallBucketsResponse(Builder builder) {
 
-		this.count = Objects.requireNonNull(builder.count, "count");
-		this.overallBuckets = ModelTypeHelper.unmodifiableNonNull(builder.overallBuckets, "overall_buckets");
+		this.count = ModelTypeHelper.requireNonNull(builder.count, this, "count");
+		this.overallBuckets = ModelTypeHelper.unmodifiableRequired(builder.overallBuckets, this, "overallBuckets");
 
 	}
 
-	public GetOverallBucketsResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static GetOverallBucketsResponse of(Function<Builder, ObjectBuilder<GetOverallBucketsResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code count}
 	 */
-	public long count() {
+	public final long count() {
 		return this.count;
 	}
 
@@ -73,7 +74,7 @@ public final class GetOverallBucketsResponse implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code overall_buckets}
 	 */
-	public List<OverallBucket> overallBuckets() {
+	public final List<OverallBucket> overallBuckets() {
 		return this.overallBuckets;
 	}
 
@@ -91,13 +92,16 @@ public final class GetOverallBucketsResponse implements JsonpSerializable {
 		generator.writeKey("count");
 		generator.write(this.count);
 
-		generator.writeKey("overall_buckets");
-		generator.writeStartArray();
-		for (OverallBucket item0 : this.overallBuckets) {
-			item0.serialize(generator, mapper);
+		if (ModelTypeHelper.isDefined(this.overallBuckets)) {
+			generator.writeKey("overall_buckets");
+			generator.writeStartArray();
+			for (OverallBucket item0 : this.overallBuckets) {
+				item0.serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
 
 	}
 
@@ -106,7 +110,7 @@ public final class GetOverallBucketsResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link GetOverallBucketsResponse}.
 	 */
-	public static class Builder implements ObjectBuilder<GetOverallBucketsResponse> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetOverallBucketsResponse> {
 		private Long count;
 
 		private List<OverallBucket> overallBuckets;
@@ -114,7 +118,7 @@ public final class GetOverallBucketsResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code count}
 		 */
-		public Builder count(long value) {
+		public final Builder count(long value) {
 			this.count = value;
 			return this;
 		}
@@ -124,7 +128,7 @@ public final class GetOverallBucketsResponse implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code overall_buckets}
 		 */
-		public Builder overallBuckets(List<OverallBucket> value) {
+		public final Builder overallBuckets(List<OverallBucket> value) {
 			this.overallBuckets = value;
 			return this;
 		}
@@ -134,34 +138,23 @@ public final class GetOverallBucketsResponse implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code overall_buckets}
 		 */
-		public Builder overallBuckets(OverallBucket... value) {
+		public final Builder overallBuckets(OverallBucket... value) {
 			this.overallBuckets = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #overallBuckets(List)}, creating the list if needed.
+		 * Required - Array of overall bucket objects
+		 * <p>
+		 * API name: {@code overall_buckets}
 		 */
-		public Builder addOverallBuckets(OverallBucket value) {
-			if (this.overallBuckets == null) {
-				this.overallBuckets = new ArrayList<>();
+		@SafeVarargs
+		public final Builder overallBuckets(Function<OverallBucket.Builder, ObjectBuilder<OverallBucket>>... fns) {
+			this.overallBuckets = new ArrayList<>(fns.length);
+			for (Function<OverallBucket.Builder, ObjectBuilder<OverallBucket>> fn : fns) {
+				this.overallBuckets.add(fn.apply(new OverallBucket.Builder()).build());
 			}
-			this.overallBuckets.add(value);
 			return this;
-		}
-
-		/**
-		 * Set {@link #overallBuckets(List)} to a singleton list.
-		 */
-		public Builder overallBuckets(Function<OverallBucket.Builder, ObjectBuilder<OverallBucket>> fn) {
-			return this.overallBuckets(fn.apply(new OverallBucket.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #overallBuckets(List)}, creating the list if needed.
-		 */
-		public Builder addOverallBuckets(Function<OverallBucket.Builder, ObjectBuilder<OverallBucket>> fn) {
-			return this.addOverallBuckets(fn.apply(new OverallBucket.Builder()).build());
 		}
 
 		/**
@@ -171,6 +164,7 @@ public final class GetOverallBucketsResponse implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public GetOverallBucketsResponse build() {
+			_checkSingleUse();
 
 			return new GetOverallBucketsResponse(this);
 		}

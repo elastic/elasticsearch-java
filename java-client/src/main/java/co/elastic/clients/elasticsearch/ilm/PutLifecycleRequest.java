@@ -34,7 +34,9 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.SimpleEndpoint;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
@@ -44,7 +46,7 @@ import javax.annotation.Nullable;
 
 // typedef: ilm.put_lifecycle.Request
 @JsonpDeserializable
-public final class PutLifecycleRequest extends RequestBase implements JsonpSerializable {
+public class PutLifecycleRequest extends RequestBase implements JsonpSerializable {
 	private final String name;
 
 	@Nullable
@@ -52,15 +54,15 @@ public final class PutLifecycleRequest extends RequestBase implements JsonpSeria
 
 	// ---------------------------------------------------------------------------------------------
 
-	public PutLifecycleRequest(Builder builder) {
+	private PutLifecycleRequest(Builder builder) {
 
-		this.name = Objects.requireNonNull(builder.name, "policy");
+		this.name = ModelTypeHelper.requireNonNull(builder.name, this, "name");
 		this.policy = builder.policy;
 
 	}
 
-	public PutLifecycleRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static PutLifecycleRequest of(Function<Builder, ObjectBuilder<PutLifecycleRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -68,7 +70,7 @@ public final class PutLifecycleRequest extends RequestBase implements JsonpSeria
 	 * <p>
 	 * API name: {@code policy}
 	 */
-	public String name() {
+	public final String name() {
 		return this.name;
 	}
 
@@ -76,7 +78,7 @@ public final class PutLifecycleRequest extends RequestBase implements JsonpSeria
 	 * API name: {@code policy}
 	 */
 	@Nullable
-	public Policy policy() {
+	public final Policy policy() {
 		return this.policy;
 	}
 
@@ -92,7 +94,6 @@ public final class PutLifecycleRequest extends RequestBase implements JsonpSeria
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.policy != null) {
-
 			generator.writeKey("policy");
 			this.policy.serialize(generator, mapper);
 
@@ -105,7 +106,7 @@ public final class PutLifecycleRequest extends RequestBase implements JsonpSeria
 	/**
 	 * Builder for {@link PutLifecycleRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<PutLifecycleRequest> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PutLifecycleRequest> {
 		private String name;
 
 		@Nullable
@@ -116,7 +117,7 @@ public final class PutLifecycleRequest extends RequestBase implements JsonpSeria
 		 * <p>
 		 * API name: {@code policy}
 		 */
-		public Builder name(String value) {
+		public final Builder name(String value) {
 			this.name = value;
 			return this;
 		}
@@ -124,7 +125,7 @@ public final class PutLifecycleRequest extends RequestBase implements JsonpSeria
 		/**
 		 * API name: {@code policy}
 		 */
-		public Builder policy(@Nullable Policy value) {
+		public final Builder policy(@Nullable Policy value) {
 			this.policy = value;
 			return this;
 		}
@@ -132,7 +133,7 @@ public final class PutLifecycleRequest extends RequestBase implements JsonpSeria
 		/**
 		 * API name: {@code policy}
 		 */
-		public Builder policy(Function<Policy.Builder, ObjectBuilder<Policy>> fn) {
+		public final Builder policy(Function<Policy.Builder, ObjectBuilder<Policy>> fn) {
 			return this.policy(fn.apply(new Policy.Builder()).build());
 		}
 
@@ -143,6 +144,7 @@ public final class PutLifecycleRequest extends RequestBase implements JsonpSeria
 		 *             if some of the required fields are null.
 		 */
 		public PutLifecycleRequest build() {
+			_checkSingleUse();
 
 			return new PutLifecycleRequest(this);
 		}

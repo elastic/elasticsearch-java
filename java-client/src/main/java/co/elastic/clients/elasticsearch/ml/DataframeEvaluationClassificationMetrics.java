@@ -34,7 +34,6 @@ import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
@@ -42,16 +41,14 @@ import javax.annotation.Nullable;
 
 // typedef: ml._types.DataframeEvaluationClassificationMetrics
 @JsonpDeserializable
-public final class DataframeEvaluationClassificationMetrics extends DataframeEvaluationMetrics {
-	@Nullable
+public class DataframeEvaluationClassificationMetrics extends DataframeEvaluationMetrics {
 	private final Map<String, JsonData> accuracy;
 
-	@Nullable
 	private final Map<String, JsonData> multiclassConfusionMatrix;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public DataframeEvaluationClassificationMetrics(Builder builder) {
+	private DataframeEvaluationClassificationMetrics(Builder builder) {
 		super(builder);
 
 		this.accuracy = ModelTypeHelper.unmodifiable(builder.accuracy);
@@ -59,8 +56,9 @@ public final class DataframeEvaluationClassificationMetrics extends DataframeEva
 
 	}
 
-	public DataframeEvaluationClassificationMetrics(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static DataframeEvaluationClassificationMetrics of(
+			Function<Builder, ObjectBuilder<DataframeEvaluationClassificationMetrics>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -68,8 +66,7 @@ public final class DataframeEvaluationClassificationMetrics extends DataframeEva
 	 * <p>
 	 * API name: {@code accuracy}
 	 */
-	@Nullable
-	public Map<String, JsonData> accuracy() {
+	public final Map<String, JsonData> accuracy() {
 		return this.accuracy;
 	}
 
@@ -78,16 +75,14 @@ public final class DataframeEvaluationClassificationMetrics extends DataframeEva
 	 * <p>
 	 * API name: {@code multiclass_confusion_matrix}
 	 */
-	@Nullable
-	public Map<String, JsonData> multiclassConfusionMatrix() {
+	public final Map<String, JsonData> multiclassConfusionMatrix() {
 		return this.multiclassConfusionMatrix;
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
-		if (this.accuracy != null) {
-
+		if (ModelTypeHelper.isDefined(this.accuracy)) {
 			generator.writeKey("accuracy");
 			generator.writeStartObject();
 			for (Map.Entry<String, JsonData> item0 : this.accuracy.entrySet()) {
@@ -98,8 +93,7 @@ public final class DataframeEvaluationClassificationMetrics extends DataframeEva
 			generator.writeEnd();
 
 		}
-		if (this.multiclassConfusionMatrix != null) {
-
+		if (ModelTypeHelper.isDefined(this.multiclassConfusionMatrix)) {
 			generator.writeKey("multiclass_confusion_matrix");
 			generator.writeStartObject();
 			for (Map.Entry<String, JsonData> item0 : this.multiclassConfusionMatrix.entrySet()) {
@@ -132,19 +126,8 @@ public final class DataframeEvaluationClassificationMetrics extends DataframeEva
 		 * <p>
 		 * API name: {@code accuracy}
 		 */
-		public Builder accuracy(@Nullable Map<String, JsonData> value) {
+		public final Builder accuracy(@Nullable Map<String, JsonData> value) {
 			this.accuracy = value;
-			return this;
-		}
-
-		/**
-		 * Add a key/value to {@link #accuracy(Map)}, creating the map if needed.
-		 */
-		public Builder putAccuracy(String key, JsonData value) {
-			if (this.accuracy == null) {
-				this.accuracy = new HashMap<>();
-			}
-			this.accuracy.put(key, value);
 			return this;
 		}
 
@@ -153,20 +136,8 @@ public final class DataframeEvaluationClassificationMetrics extends DataframeEva
 		 * <p>
 		 * API name: {@code multiclass_confusion_matrix}
 		 */
-		public Builder multiclassConfusionMatrix(@Nullable Map<String, JsonData> value) {
+		public final Builder multiclassConfusionMatrix(@Nullable Map<String, JsonData> value) {
 			this.multiclassConfusionMatrix = value;
-			return this;
-		}
-
-		/**
-		 * Add a key/value to {@link #multiclassConfusionMatrix(Map)}, creating the map
-		 * if needed.
-		 */
-		public Builder putMulticlassConfusionMatrix(String key, JsonData value) {
-			if (this.multiclassConfusionMatrix == null) {
-				this.multiclassConfusionMatrix = new HashMap<>();
-			}
-			this.multiclassConfusionMatrix.put(key, value);
 			return this;
 		}
 
@@ -182,6 +153,7 @@ public final class DataframeEvaluationClassificationMetrics extends DataframeEva
 		 *             if some of the required fields are null.
 		 */
 		public DataframeEvaluationClassificationMetrics build() {
+			_checkSingleUse();
 
 			return new DataframeEvaluationClassificationMetrics(this);
 		}

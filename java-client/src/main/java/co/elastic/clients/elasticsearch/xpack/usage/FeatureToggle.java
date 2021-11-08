@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.Objects;
@@ -43,16 +45,16 @@ public class FeatureToggle implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public FeatureToggle(AbstractBuilder<?> builder) {
+	protected FeatureToggle(AbstractBuilder<?> builder) {
 
-		this.enabled = Objects.requireNonNull(builder.enabled, "enabled");
+		this.enabled = ModelTypeHelper.requireNonNull(builder.enabled, this, "enabled");
 
 	}
 
 	/**
 	 * Required - API name: {@code enabled}
 	 */
-	public boolean enabled() {
+	public final boolean enabled() {
 		return this.enabled;
 	}
 
@@ -90,18 +92,21 @@ public class FeatureToggle implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public FeatureToggle build() {
+			_checkSingleUse();
 
 			return new FeatureToggle(this);
 		}
 	}
 
-	protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>> {
+	protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>>
+			extends
+				ObjectBuilderBase {
 		private Boolean enabled;
 
 		/**
 		 * Required - API name: {@code enabled}
 		 */
-		public BuilderT enabled(boolean value) {
+		public final BuilderT enabled(boolean value) {
 			this.enabled = value;
 			return self();
 		}

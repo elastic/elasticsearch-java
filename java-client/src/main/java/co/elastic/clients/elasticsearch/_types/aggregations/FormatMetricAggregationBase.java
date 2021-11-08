@@ -44,7 +44,7 @@ public abstract class FormatMetricAggregationBase extends MetricAggregationBase 
 
 	// ---------------------------------------------------------------------------------------------
 
-	public FormatMetricAggregationBase(AbstractBuilder<?> builder) {
+	protected FormatMetricAggregationBase(AbstractBuilder<?> builder) {
 		super(builder);
 
 		this.format = builder.format;
@@ -55,7 +55,7 @@ public abstract class FormatMetricAggregationBase extends MetricAggregationBase 
 	 * API name: {@code format}
 	 */
 	@Nullable
-	public String format() {
+	public final String format() {
 		return this.format;
 	}
 
@@ -63,7 +63,6 @@ public abstract class FormatMetricAggregationBase extends MetricAggregationBase 
 
 		super.serializeInternal(generator, mapper);
 		if (this.format != null) {
-
 			generator.writeKey("format");
 			generator.write(this.format);
 
@@ -80,7 +79,7 @@ public abstract class FormatMetricAggregationBase extends MetricAggregationBase 
 		/**
 		 * API name: {@code format}
 		 */
-		public BuilderT format(@Nullable String value) {
+		public final BuilderT format(@Nullable String value) {
 			this.format = value;
 			return self();
 		}

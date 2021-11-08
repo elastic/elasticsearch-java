@@ -31,6 +31,7 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -39,19 +40,20 @@ import javax.annotation.Nullable;
 
 // typedef: _types.analysis.WhitespaceAnalyzer
 @JsonpDeserializable
-public final class WhitespaceAnalyzer implements AnalyzerVariant, JsonpSerializable {
+public class WhitespaceAnalyzer implements AnalyzerVariant, JsonpSerializable {
+	@Nullable
 	private final String version;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public WhitespaceAnalyzer(Builder builder) {
+	private WhitespaceAnalyzer(Builder builder) {
 
-		this.version = Objects.requireNonNull(builder.version, "version");
+		this.version = builder.version;
 
 	}
 
-	public WhitespaceAnalyzer(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static WhitespaceAnalyzer of(Function<Builder, ObjectBuilder<WhitespaceAnalyzer>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -63,9 +65,10 @@ public final class WhitespaceAnalyzer implements AnalyzerVariant, JsonpSerializa
 	}
 
 	/**
-	 * Required - API name: {@code version}
+	 * API name: {@code version}
 	 */
-	public String version() {
+	@Nullable
+	public final String version() {
 		return this.version;
 	}
 
@@ -82,8 +85,11 @@ public final class WhitespaceAnalyzer implements AnalyzerVariant, JsonpSerializa
 
 		generator.write("type", "whitespace");
 
-		generator.writeKey("version");
-		generator.write(this.version);
+		if (this.version != null) {
+			generator.writeKey("version");
+			generator.write(this.version);
+
+		}
 
 	}
 
@@ -92,13 +98,14 @@ public final class WhitespaceAnalyzer implements AnalyzerVariant, JsonpSerializa
 	/**
 	 * Builder for {@link WhitespaceAnalyzer}.
 	 */
-	public static class Builder implements ObjectBuilder<WhitespaceAnalyzer> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<WhitespaceAnalyzer> {
+		@Nullable
 		private String version;
 
 		/**
-		 * Required - API name: {@code version}
+		 * API name: {@code version}
 		 */
-		public Builder version(String value) {
+		public final Builder version(@Nullable String value) {
 			this.version = value;
 			return this;
 		}
@@ -110,6 +117,7 @@ public final class WhitespaceAnalyzer implements AnalyzerVariant, JsonpSerializa
 		 *             if some of the required fields are null.
 		 */
 		public WhitespaceAnalyzer build() {
+			_checkSingleUse();
 
 			return new WhitespaceAnalyzer(this);
 		}

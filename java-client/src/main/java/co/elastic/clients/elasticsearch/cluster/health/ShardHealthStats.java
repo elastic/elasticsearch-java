@@ -31,7 +31,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Integer;
@@ -41,7 +43,7 @@ import javax.annotation.Nullable;
 
 // typedef: cluster.health.ShardHealthStats
 @JsonpDeserializable
-public final class ShardHealthStats implements JsonpSerializable {
+public class ShardHealthStats implements JsonpSerializable {
 	private final int activeShards;
 
 	private final int initializingShards;
@@ -56,60 +58,61 @@ public final class ShardHealthStats implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public ShardHealthStats(Builder builder) {
+	private ShardHealthStats(Builder builder) {
 
-		this.activeShards = Objects.requireNonNull(builder.activeShards, "active_shards");
-		this.initializingShards = Objects.requireNonNull(builder.initializingShards, "initializing_shards");
-		this.primaryActive = Objects.requireNonNull(builder.primaryActive, "primary_active");
-		this.relocatingShards = Objects.requireNonNull(builder.relocatingShards, "relocating_shards");
-		this.status = Objects.requireNonNull(builder.status, "status");
-		this.unassignedShards = Objects.requireNonNull(builder.unassignedShards, "unassigned_shards");
+		this.activeShards = ModelTypeHelper.requireNonNull(builder.activeShards, this, "activeShards");
+		this.initializingShards = ModelTypeHelper.requireNonNull(builder.initializingShards, this,
+				"initializingShards");
+		this.primaryActive = ModelTypeHelper.requireNonNull(builder.primaryActive, this, "primaryActive");
+		this.relocatingShards = ModelTypeHelper.requireNonNull(builder.relocatingShards, this, "relocatingShards");
+		this.status = ModelTypeHelper.requireNonNull(builder.status, this, "status");
+		this.unassignedShards = ModelTypeHelper.requireNonNull(builder.unassignedShards, this, "unassignedShards");
 
 	}
 
-	public ShardHealthStats(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ShardHealthStats of(Function<Builder, ObjectBuilder<ShardHealthStats>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code active_shards}
 	 */
-	public int activeShards() {
+	public final int activeShards() {
 		return this.activeShards;
 	}
 
 	/**
 	 * Required - API name: {@code initializing_shards}
 	 */
-	public int initializingShards() {
+	public final int initializingShards() {
 		return this.initializingShards;
 	}
 
 	/**
 	 * Required - API name: {@code primary_active}
 	 */
-	public boolean primaryActive() {
+	public final boolean primaryActive() {
 		return this.primaryActive;
 	}
 
 	/**
 	 * Required - API name: {@code relocating_shards}
 	 */
-	public int relocatingShards() {
+	public final int relocatingShards() {
 		return this.relocatingShards;
 	}
 
 	/**
 	 * Required - API name: {@code status}
 	 */
-	public Health status() {
+	public final Health status() {
 		return this.status;
 	}
 
 	/**
 	 * Required - API name: {@code unassigned_shards}
 	 */
-	public int unassignedShards() {
+	public final int unassignedShards() {
 		return this.unassignedShards;
 	}
 
@@ -138,7 +141,6 @@ public final class ShardHealthStats implements JsonpSerializable {
 
 		generator.writeKey("status");
 		this.status.serialize(generator, mapper);
-
 		generator.writeKey("unassigned_shards");
 		generator.write(this.unassignedShards);
 
@@ -149,7 +151,7 @@ public final class ShardHealthStats implements JsonpSerializable {
 	/**
 	 * Builder for {@link ShardHealthStats}.
 	 */
-	public static class Builder implements ObjectBuilder<ShardHealthStats> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ShardHealthStats> {
 		private Integer activeShards;
 
 		private Integer initializingShards;
@@ -165,7 +167,7 @@ public final class ShardHealthStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code active_shards}
 		 */
-		public Builder activeShards(int value) {
+		public final Builder activeShards(int value) {
 			this.activeShards = value;
 			return this;
 		}
@@ -173,7 +175,7 @@ public final class ShardHealthStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code initializing_shards}
 		 */
-		public Builder initializingShards(int value) {
+		public final Builder initializingShards(int value) {
 			this.initializingShards = value;
 			return this;
 		}
@@ -181,7 +183,7 @@ public final class ShardHealthStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code primary_active}
 		 */
-		public Builder primaryActive(boolean value) {
+		public final Builder primaryActive(boolean value) {
 			this.primaryActive = value;
 			return this;
 		}
@@ -189,7 +191,7 @@ public final class ShardHealthStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code relocating_shards}
 		 */
-		public Builder relocatingShards(int value) {
+		public final Builder relocatingShards(int value) {
 			this.relocatingShards = value;
 			return this;
 		}
@@ -197,7 +199,7 @@ public final class ShardHealthStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code status}
 		 */
-		public Builder status(Health value) {
+		public final Builder status(Health value) {
 			this.status = value;
 			return this;
 		}
@@ -205,7 +207,7 @@ public final class ShardHealthStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code unassigned_shards}
 		 */
-		public Builder unassignedShards(int value) {
+		public final Builder unassignedShards(int value) {
 			this.unassignedShards = value;
 			return this;
 		}
@@ -217,6 +219,7 @@ public final class ShardHealthStats implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public ShardHealthStats build() {
+			_checkSingleUse();
 
 			return new ShardHealthStats(this);
 		}

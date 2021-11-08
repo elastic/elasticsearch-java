@@ -34,11 +34,11 @@ import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.SimpleEndpoint;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Long;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -50,11 +50,10 @@ import javax.annotation.Nullable;
 
 // typedef: indices.forcemerge.Request
 
-public final class ForcemergeRequest extends RequestBase {
+public class ForcemergeRequest extends RequestBase {
 	@Nullable
 	private final Boolean allowNoIndices;
 
-	@Nullable
 	private final List<ExpandWildcardOptions> expandWildcards;
 
 	@Nullable
@@ -63,7 +62,6 @@ public final class ForcemergeRequest extends RequestBase {
 	@Nullable
 	private final Boolean ignoreUnavailable;
 
-	@Nullable
 	private final List<String> index;
 
 	@Nullable
@@ -74,7 +72,7 @@ public final class ForcemergeRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public ForcemergeRequest(Builder builder) {
+	private ForcemergeRequest(Builder builder) {
 
 		this.allowNoIndices = builder.allowNoIndices;
 		this.expandWildcards = ModelTypeHelper.unmodifiable(builder.expandWildcards);
@@ -86,8 +84,8 @@ public final class ForcemergeRequest extends RequestBase {
 
 	}
 
-	public ForcemergeRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ForcemergeRequest of(Function<Builder, ObjectBuilder<ForcemergeRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -98,7 +96,7 @@ public final class ForcemergeRequest extends RequestBase {
 	 * API name: {@code allow_no_indices}
 	 */
 	@Nullable
-	public Boolean allowNoIndices() {
+	public final Boolean allowNoIndices() {
 		return this.allowNoIndices;
 	}
 
@@ -108,8 +106,7 @@ public final class ForcemergeRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code expand_wildcards}
 	 */
-	@Nullable
-	public List<ExpandWildcardOptions> expandWildcards() {
+	public final List<ExpandWildcardOptions> expandWildcards() {
 		return this.expandWildcards;
 	}
 
@@ -120,7 +117,7 @@ public final class ForcemergeRequest extends RequestBase {
 	 * API name: {@code flush}
 	 */
 	@Nullable
-	public Boolean flush() {
+	public final Boolean flush() {
 		return this.flush;
 	}
 
@@ -131,7 +128,7 @@ public final class ForcemergeRequest extends RequestBase {
 	 * API name: {@code ignore_unavailable}
 	 */
 	@Nullable
-	public Boolean ignoreUnavailable() {
+	public final Boolean ignoreUnavailable() {
 		return this.ignoreUnavailable;
 	}
 
@@ -141,8 +138,7 @@ public final class ForcemergeRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code index}
 	 */
-	@Nullable
-	public List<String> index() {
+	public final List<String> index() {
 		return this.index;
 	}
 
@@ -152,7 +148,7 @@ public final class ForcemergeRequest extends RequestBase {
 	 * API name: {@code max_num_segments}
 	 */
 	@Nullable
-	public Long maxNumSegments() {
+	public final Long maxNumSegments() {
 		return this.maxNumSegments;
 	}
 
@@ -162,7 +158,7 @@ public final class ForcemergeRequest extends RequestBase {
 	 * API name: {@code only_expunge_deletes}
 	 */
 	@Nullable
-	public Boolean onlyExpungeDeletes() {
+	public final Boolean onlyExpungeDeletes() {
 		return this.onlyExpungeDeletes;
 	}
 
@@ -171,7 +167,7 @@ public final class ForcemergeRequest extends RequestBase {
 	/**
 	 * Builder for {@link ForcemergeRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<ForcemergeRequest> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ForcemergeRequest> {
 		@Nullable
 		private Boolean allowNoIndices;
 
@@ -200,7 +196,7 @@ public final class ForcemergeRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code allow_no_indices}
 		 */
-		public Builder allowNoIndices(@Nullable Boolean value) {
+		public final Builder allowNoIndices(@Nullable Boolean value) {
 			this.allowNoIndices = value;
 			return this;
 		}
@@ -211,7 +207,7 @@ public final class ForcemergeRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code expand_wildcards}
 		 */
-		public Builder expandWildcards(@Nullable List<ExpandWildcardOptions> value) {
+		public final Builder expandWildcards(@Nullable List<ExpandWildcardOptions> value) {
 			this.expandWildcards = value;
 			return this;
 		}
@@ -222,19 +218,8 @@ public final class ForcemergeRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code expand_wildcards}
 		 */
-		public Builder expandWildcards(ExpandWildcardOptions... value) {
+		public final Builder expandWildcards(ExpandWildcardOptions... value) {
 			this.expandWildcards = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #expandWildcards(List)}, creating the list if needed.
-		 */
-		public Builder addExpandWildcards(ExpandWildcardOptions value) {
-			if (this.expandWildcards == null) {
-				this.expandWildcards = new ArrayList<>();
-			}
-			this.expandWildcards.add(value);
 			return this;
 		}
 
@@ -244,7 +229,7 @@ public final class ForcemergeRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code flush}
 		 */
-		public Builder flush(@Nullable Boolean value) {
+		public final Builder flush(@Nullable Boolean value) {
 			this.flush = value;
 			return this;
 		}
@@ -255,7 +240,7 @@ public final class ForcemergeRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code ignore_unavailable}
 		 */
-		public Builder ignoreUnavailable(@Nullable Boolean value) {
+		public final Builder ignoreUnavailable(@Nullable Boolean value) {
 			this.ignoreUnavailable = value;
 			return this;
 		}
@@ -266,7 +251,7 @@ public final class ForcemergeRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code index}
 		 */
-		public Builder index(@Nullable List<String> value) {
+		public final Builder index(@Nullable List<String> value) {
 			this.index = value;
 			return this;
 		}
@@ -277,19 +262,8 @@ public final class ForcemergeRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code index}
 		 */
-		public Builder index(String... value) {
+		public final Builder index(String... value) {
 			this.index = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #index(List)}, creating the list if needed.
-		 */
-		public Builder addIndex(String value) {
-			if (this.index == null) {
-				this.index = new ArrayList<>();
-			}
-			this.index.add(value);
 			return this;
 		}
 
@@ -298,7 +272,7 @@ public final class ForcemergeRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code max_num_segments}
 		 */
-		public Builder maxNumSegments(@Nullable Long value) {
+		public final Builder maxNumSegments(@Nullable Long value) {
 			this.maxNumSegments = value;
 			return this;
 		}
@@ -308,7 +282,7 @@ public final class ForcemergeRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code only_expunge_deletes}
 		 */
-		public Builder onlyExpungeDeletes(@Nullable Boolean value) {
+		public final Builder onlyExpungeDeletes(@Nullable Boolean value) {
 			this.onlyExpungeDeletes = value;
 			return this;
 		}
@@ -320,6 +294,7 @@ public final class ForcemergeRequest extends RequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public ForcemergeRequest build() {
+			_checkSingleUse();
 
 			return new ForcemergeRequest(this);
 		}
@@ -343,7 +318,7 @@ public final class ForcemergeRequest extends RequestBase {
 
 				int propsSet = 0;
 
-				if (request.index() != null)
+				if (ModelTypeHelper.isDefined(request.index()))
 					propsSet |= _index;
 
 				if (propsSet == 0) {
@@ -371,9 +346,9 @@ public final class ForcemergeRequest extends RequestBase {
 				if (request.onlyExpungeDeletes != null) {
 					params.put("only_expunge_deletes", String.valueOf(request.onlyExpungeDeletes));
 				}
-				if (request.expandWildcards != null) {
+				if (ModelTypeHelper.isDefined(request.expandWildcards)) {
 					params.put("expand_wildcards",
-							request.expandWildcards.stream().map(v -> v.toString()).collect(Collectors.joining(",")));
+							request.expandWildcards.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")));
 				}
 				if (request.ignoreUnavailable != null) {
 					params.put("ignore_unavailable", String.valueOf(request.ignoreUnavailable));

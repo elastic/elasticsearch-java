@@ -33,10 +33,10 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
@@ -45,11 +45,10 @@ import javax.annotation.Nullable;
 
 // typedef: indices.update_aliases.AddAction
 @JsonpDeserializable
-public final class AddAction implements ActionVariant, JsonpSerializable {
+public class AddAction implements ActionVariant, JsonpSerializable {
 	@Nullable
 	private final String alias;
 
-	@Nullable
 	private final List<String> aliases;
 
 	@Nullable
@@ -58,7 +57,6 @@ public final class AddAction implements ActionVariant, JsonpSerializable {
 	@Nullable
 	private final String index;
 
-	@Nullable
 	private final List<String> indices;
 
 	@Nullable
@@ -78,7 +76,7 @@ public final class AddAction implements ActionVariant, JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public AddAction(Builder builder) {
+	private AddAction(Builder builder) {
 
 		this.alias = builder.alias;
 		this.aliases = ModelTypeHelper.unmodifiable(builder.aliases);
@@ -93,8 +91,8 @@ public final class AddAction implements ActionVariant, JsonpSerializable {
 
 	}
 
-	public AddAction(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static AddAction of(Function<Builder, ObjectBuilder<AddAction>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -109,15 +107,14 @@ public final class AddAction implements ActionVariant, JsonpSerializable {
 	 * API name: {@code alias}
 	 */
 	@Nullable
-	public String alias() {
+	public final String alias() {
 		return this.alias;
 	}
 
 	/**
 	 * API name: {@code aliases}
 	 */
-	@Nullable
-	public List<String> aliases() {
+	public final List<String> aliases() {
 		return this.aliases;
 	}
 
@@ -125,7 +122,7 @@ public final class AddAction implements ActionVariant, JsonpSerializable {
 	 * API name: {@code filter}
 	 */
 	@Nullable
-	public Query filter() {
+	public final Query filter() {
 		return this.filter;
 	}
 
@@ -133,15 +130,14 @@ public final class AddAction implements ActionVariant, JsonpSerializable {
 	 * API name: {@code index}
 	 */
 	@Nullable
-	public String index() {
+	public final String index() {
 		return this.index;
 	}
 
 	/**
 	 * API name: {@code indices}
 	 */
-	@Nullable
-	public List<String> indices() {
+	public final List<String> indices() {
 		return this.indices;
 	}
 
@@ -149,7 +145,7 @@ public final class AddAction implements ActionVariant, JsonpSerializable {
 	 * API name: {@code index_routing}
 	 */
 	@Nullable
-	public String indexRouting() {
+	public final String indexRouting() {
 		return this.indexRouting;
 	}
 
@@ -157,7 +153,7 @@ public final class AddAction implements ActionVariant, JsonpSerializable {
 	 * API name: {@code is_hidden}
 	 */
 	@Nullable
-	public Boolean isHidden() {
+	public final Boolean isHidden() {
 		return this.isHidden;
 	}
 
@@ -165,7 +161,7 @@ public final class AddAction implements ActionVariant, JsonpSerializable {
 	 * API name: {@code is_write_index}
 	 */
 	@Nullable
-	public Boolean isWriteIndex() {
+	public final Boolean isWriteIndex() {
 		return this.isWriteIndex;
 	}
 
@@ -173,7 +169,7 @@ public final class AddAction implements ActionVariant, JsonpSerializable {
 	 * API name: {@code routing}
 	 */
 	@Nullable
-	public String routing() {
+	public final String routing() {
 		return this.routing;
 	}
 
@@ -181,7 +177,7 @@ public final class AddAction implements ActionVariant, JsonpSerializable {
 	 * API name: {@code search_routing}
 	 */
 	@Nullable
-	public String searchRouting() {
+	public final String searchRouting() {
 		return this.searchRouting;
 	}
 
@@ -197,13 +193,11 @@ public final class AddAction implements ActionVariant, JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.alias != null) {
-
 			generator.writeKey("alias");
 			generator.write(this.alias);
 
 		}
-		if (this.aliases != null) {
-
+		if (ModelTypeHelper.isDefined(this.aliases)) {
 			generator.writeKey("aliases");
 			generator.writeStartArray();
 			for (String item0 : this.aliases) {
@@ -214,19 +208,16 @@ public final class AddAction implements ActionVariant, JsonpSerializable {
 
 		}
 		if (this.filter != null) {
-
 			generator.writeKey("filter");
 			this.filter.serialize(generator, mapper);
 
 		}
 		if (this.index != null) {
-
 			generator.writeKey("index");
 			generator.write(this.index);
 
 		}
-		if (this.indices != null) {
-
+		if (ModelTypeHelper.isDefined(this.indices)) {
 			generator.writeKey("indices");
 			generator.writeStartArray();
 			for (String item0 : this.indices) {
@@ -237,31 +228,26 @@ public final class AddAction implements ActionVariant, JsonpSerializable {
 
 		}
 		if (this.indexRouting != null) {
-
 			generator.writeKey("index_routing");
 			generator.write(this.indexRouting);
 
 		}
 		if (this.isHidden != null) {
-
 			generator.writeKey("is_hidden");
 			generator.write(this.isHidden);
 
 		}
 		if (this.isWriteIndex != null) {
-
 			generator.writeKey("is_write_index");
 			generator.write(this.isWriteIndex);
 
 		}
 		if (this.routing != null) {
-
 			generator.writeKey("routing");
 			generator.write(this.routing);
 
 		}
 		if (this.searchRouting != null) {
-
 			generator.writeKey("search_routing");
 			generator.write(this.searchRouting);
 
@@ -274,7 +260,7 @@ public final class AddAction implements ActionVariant, JsonpSerializable {
 	/**
 	 * Builder for {@link AddAction}.
 	 */
-	public static class Builder implements ObjectBuilder<AddAction> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<AddAction> {
 		@Nullable
 		private String alias;
 
@@ -308,7 +294,7 @@ public final class AddAction implements ActionVariant, JsonpSerializable {
 		/**
 		 * API name: {@code alias}
 		 */
-		public Builder alias(@Nullable String value) {
+		public final Builder alias(@Nullable String value) {
 			this.alias = value;
 			return this;
 		}
@@ -316,7 +302,7 @@ public final class AddAction implements ActionVariant, JsonpSerializable {
 		/**
 		 * API name: {@code aliases}
 		 */
-		public Builder aliases(@Nullable List<String> value) {
+		public final Builder aliases(@Nullable List<String> value) {
 			this.aliases = value;
 			return this;
 		}
@@ -324,26 +310,15 @@ public final class AddAction implements ActionVariant, JsonpSerializable {
 		/**
 		 * API name: {@code aliases}
 		 */
-		public Builder aliases(String... value) {
+		public final Builder aliases(String... value) {
 			this.aliases = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #aliases(List)}, creating the list if needed.
-		 */
-		public Builder addAliases(String value) {
-			if (this.aliases == null) {
-				this.aliases = new ArrayList<>();
-			}
-			this.aliases.add(value);
 			return this;
 		}
 
 		/**
 		 * API name: {@code filter}
 		 */
-		public Builder filter(@Nullable Query value) {
+		public final Builder filter(@Nullable Query value) {
 			this.filter = value;
 			return this;
 		}
@@ -351,14 +326,14 @@ public final class AddAction implements ActionVariant, JsonpSerializable {
 		/**
 		 * API name: {@code filter}
 		 */
-		public Builder filter(Function<Query.Builder, ObjectBuilder<Query>> fn) {
+		public final Builder filter(Function<Query.Builder, ObjectBuilder<Query>> fn) {
 			return this.filter(fn.apply(new Query.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code index}
 		 */
-		public Builder index(@Nullable String value) {
+		public final Builder index(@Nullable String value) {
 			this.index = value;
 			return this;
 		}
@@ -366,7 +341,7 @@ public final class AddAction implements ActionVariant, JsonpSerializable {
 		/**
 		 * API name: {@code indices}
 		 */
-		public Builder indices(@Nullable List<String> value) {
+		public final Builder indices(@Nullable List<String> value) {
 			this.indices = value;
 			return this;
 		}
@@ -374,26 +349,15 @@ public final class AddAction implements ActionVariant, JsonpSerializable {
 		/**
 		 * API name: {@code indices}
 		 */
-		public Builder indices(String... value) {
+		public final Builder indices(String... value) {
 			this.indices = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #indices(List)}, creating the list if needed.
-		 */
-		public Builder addIndices(String value) {
-			if (this.indices == null) {
-				this.indices = new ArrayList<>();
-			}
-			this.indices.add(value);
 			return this;
 		}
 
 		/**
 		 * API name: {@code index_routing}
 		 */
-		public Builder indexRouting(@Nullable String value) {
+		public final Builder indexRouting(@Nullable String value) {
 			this.indexRouting = value;
 			return this;
 		}
@@ -401,7 +365,7 @@ public final class AddAction implements ActionVariant, JsonpSerializable {
 		/**
 		 * API name: {@code is_hidden}
 		 */
-		public Builder isHidden(@Nullable Boolean value) {
+		public final Builder isHidden(@Nullable Boolean value) {
 			this.isHidden = value;
 			return this;
 		}
@@ -409,7 +373,7 @@ public final class AddAction implements ActionVariant, JsonpSerializable {
 		/**
 		 * API name: {@code is_write_index}
 		 */
-		public Builder isWriteIndex(@Nullable Boolean value) {
+		public final Builder isWriteIndex(@Nullable Boolean value) {
 			this.isWriteIndex = value;
 			return this;
 		}
@@ -417,7 +381,7 @@ public final class AddAction implements ActionVariant, JsonpSerializable {
 		/**
 		 * API name: {@code routing}
 		 */
-		public Builder routing(@Nullable String value) {
+		public final Builder routing(@Nullable String value) {
 			this.routing = value;
 			return this;
 		}
@@ -425,7 +389,7 @@ public final class AddAction implements ActionVariant, JsonpSerializable {
 		/**
 		 * API name: {@code search_routing}
 		 */
-		public Builder searchRouting(@Nullable String value) {
+		public final Builder searchRouting(@Nullable String value) {
 			this.searchRouting = value;
 			return this;
 		}
@@ -437,6 +401,7 @@ public final class AddAction implements ActionVariant, JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public AddAction build() {
+			_checkSingleUse();
 
 			return new AddAction(this);
 		}

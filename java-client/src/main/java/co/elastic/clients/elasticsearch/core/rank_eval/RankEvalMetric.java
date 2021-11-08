@@ -31,6 +31,7 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;
@@ -38,7 +39,7 @@ import javax.annotation.Nullable;
 
 // typedef: _global.rank_eval.RankEvalMetric
 @JsonpDeserializable
-public final class RankEvalMetric implements JsonpSerializable {
+public class RankEvalMetric implements JsonpSerializable {
 	@Nullable
 	private final RankEvalMetricPrecision precision;
 
@@ -56,7 +57,7 @@ public final class RankEvalMetric implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public RankEvalMetric(Builder builder) {
+	private RankEvalMetric(Builder builder) {
 
 		this.precision = builder.precision;
 		this.recall = builder.recall;
@@ -66,15 +67,15 @@ public final class RankEvalMetric implements JsonpSerializable {
 
 	}
 
-	public RankEvalMetric(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static RankEvalMetric of(Function<Builder, ObjectBuilder<RankEvalMetric>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * API name: {@code precision}
 	 */
 	@Nullable
-	public RankEvalMetricPrecision precision() {
+	public final RankEvalMetricPrecision precision() {
 		return this.precision;
 	}
 
@@ -82,7 +83,7 @@ public final class RankEvalMetric implements JsonpSerializable {
 	 * API name: {@code recall}
 	 */
 	@Nullable
-	public RankEvalMetricRecall recall() {
+	public final RankEvalMetricRecall recall() {
 		return this.recall;
 	}
 
@@ -90,7 +91,7 @@ public final class RankEvalMetric implements JsonpSerializable {
 	 * API name: {@code mean_reciprocal_rank}
 	 */
 	@Nullable
-	public RankEvalMetricMeanReciprocalRank meanReciprocalRank() {
+	public final RankEvalMetricMeanReciprocalRank meanReciprocalRank() {
 		return this.meanReciprocalRank;
 	}
 
@@ -98,7 +99,7 @@ public final class RankEvalMetric implements JsonpSerializable {
 	 * API name: {@code dcg}
 	 */
 	@Nullable
-	public RankEvalMetricDiscountedCumulativeGain dcg() {
+	public final RankEvalMetricDiscountedCumulativeGain dcg() {
 		return this.dcg;
 	}
 
@@ -106,7 +107,7 @@ public final class RankEvalMetric implements JsonpSerializable {
 	 * API name: {@code expected_reciprocal_rank}
 	 */
 	@Nullable
-	public RankEvalMetricExpectedReciprocalRank expectedReciprocalRank() {
+	public final RankEvalMetricExpectedReciprocalRank expectedReciprocalRank() {
 		return this.expectedReciprocalRank;
 	}
 
@@ -122,31 +123,26 @@ public final class RankEvalMetric implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.precision != null) {
-
 			generator.writeKey("precision");
 			this.precision.serialize(generator, mapper);
 
 		}
 		if (this.recall != null) {
-
 			generator.writeKey("recall");
 			this.recall.serialize(generator, mapper);
 
 		}
 		if (this.meanReciprocalRank != null) {
-
 			generator.writeKey("mean_reciprocal_rank");
 			this.meanReciprocalRank.serialize(generator, mapper);
 
 		}
 		if (this.dcg != null) {
-
 			generator.writeKey("dcg");
 			this.dcg.serialize(generator, mapper);
 
 		}
 		if (this.expectedReciprocalRank != null) {
-
 			generator.writeKey("expected_reciprocal_rank");
 			this.expectedReciprocalRank.serialize(generator, mapper);
 
@@ -159,7 +155,7 @@ public final class RankEvalMetric implements JsonpSerializable {
 	/**
 	 * Builder for {@link RankEvalMetric}.
 	 */
-	public static class Builder implements ObjectBuilder<RankEvalMetric> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RankEvalMetric> {
 		@Nullable
 		private RankEvalMetricPrecision precision;
 
@@ -178,7 +174,7 @@ public final class RankEvalMetric implements JsonpSerializable {
 		/**
 		 * API name: {@code precision}
 		 */
-		public Builder precision(@Nullable RankEvalMetricPrecision value) {
+		public final Builder precision(@Nullable RankEvalMetricPrecision value) {
 			this.precision = value;
 			return this;
 		}
@@ -186,14 +182,15 @@ public final class RankEvalMetric implements JsonpSerializable {
 		/**
 		 * API name: {@code precision}
 		 */
-		public Builder precision(Function<RankEvalMetricPrecision.Builder, ObjectBuilder<RankEvalMetricPrecision>> fn) {
+		public final Builder precision(
+				Function<RankEvalMetricPrecision.Builder, ObjectBuilder<RankEvalMetricPrecision>> fn) {
 			return this.precision(fn.apply(new RankEvalMetricPrecision.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code recall}
 		 */
-		public Builder recall(@Nullable RankEvalMetricRecall value) {
+		public final Builder recall(@Nullable RankEvalMetricRecall value) {
 			this.recall = value;
 			return this;
 		}
@@ -201,14 +198,14 @@ public final class RankEvalMetric implements JsonpSerializable {
 		/**
 		 * API name: {@code recall}
 		 */
-		public Builder recall(Function<RankEvalMetricRecall.Builder, ObjectBuilder<RankEvalMetricRecall>> fn) {
+		public final Builder recall(Function<RankEvalMetricRecall.Builder, ObjectBuilder<RankEvalMetricRecall>> fn) {
 			return this.recall(fn.apply(new RankEvalMetricRecall.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code mean_reciprocal_rank}
 		 */
-		public Builder meanReciprocalRank(@Nullable RankEvalMetricMeanReciprocalRank value) {
+		public final Builder meanReciprocalRank(@Nullable RankEvalMetricMeanReciprocalRank value) {
 			this.meanReciprocalRank = value;
 			return this;
 		}
@@ -216,7 +213,7 @@ public final class RankEvalMetric implements JsonpSerializable {
 		/**
 		 * API name: {@code mean_reciprocal_rank}
 		 */
-		public Builder meanReciprocalRank(
+		public final Builder meanReciprocalRank(
 				Function<RankEvalMetricMeanReciprocalRank.Builder, ObjectBuilder<RankEvalMetricMeanReciprocalRank>> fn) {
 			return this.meanReciprocalRank(fn.apply(new RankEvalMetricMeanReciprocalRank.Builder()).build());
 		}
@@ -224,7 +221,7 @@ public final class RankEvalMetric implements JsonpSerializable {
 		/**
 		 * API name: {@code dcg}
 		 */
-		public Builder dcg(@Nullable RankEvalMetricDiscountedCumulativeGain value) {
+		public final Builder dcg(@Nullable RankEvalMetricDiscountedCumulativeGain value) {
 			this.dcg = value;
 			return this;
 		}
@@ -232,7 +229,7 @@ public final class RankEvalMetric implements JsonpSerializable {
 		/**
 		 * API name: {@code dcg}
 		 */
-		public Builder dcg(
+		public final Builder dcg(
 				Function<RankEvalMetricDiscountedCumulativeGain.Builder, ObjectBuilder<RankEvalMetricDiscountedCumulativeGain>> fn) {
 			return this.dcg(fn.apply(new RankEvalMetricDiscountedCumulativeGain.Builder()).build());
 		}
@@ -240,7 +237,7 @@ public final class RankEvalMetric implements JsonpSerializable {
 		/**
 		 * API name: {@code expected_reciprocal_rank}
 		 */
-		public Builder expectedReciprocalRank(@Nullable RankEvalMetricExpectedReciprocalRank value) {
+		public final Builder expectedReciprocalRank(@Nullable RankEvalMetricExpectedReciprocalRank value) {
 			this.expectedReciprocalRank = value;
 			return this;
 		}
@@ -248,7 +245,7 @@ public final class RankEvalMetric implements JsonpSerializable {
 		/**
 		 * API name: {@code expected_reciprocal_rank}
 		 */
-		public Builder expectedReciprocalRank(
+		public final Builder expectedReciprocalRank(
 				Function<RankEvalMetricExpectedReciprocalRank.Builder, ObjectBuilder<RankEvalMetricExpectedReciprocalRank>> fn) {
 			return this.expectedReciprocalRank(fn.apply(new RankEvalMetricExpectedReciprocalRank.Builder()).build());
 		}
@@ -260,6 +257,7 @@ public final class RankEvalMetric implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public RankEvalMetric build() {
+			_checkSingleUse();
 
 			return new RankEvalMetric(this);
 		}

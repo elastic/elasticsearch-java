@@ -33,9 +33,9 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
@@ -47,15 +47,13 @@ public abstract class DataframeEvaluationMetrics implements JsonpSerializable {
 	@Nullable
 	private final DataframeEvaluationClassificationMetricsAucRoc aucRoc;
 
-	@Nullable
 	private final Map<String, JsonData> precision;
 
-	@Nullable
 	private final Map<String, JsonData> recall;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public DataframeEvaluationMetrics(AbstractBuilder<?> builder) {
+	protected DataframeEvaluationMetrics(AbstractBuilder<?> builder) {
 
 		this.aucRoc = builder.aucRoc;
 		this.precision = ModelTypeHelper.unmodifiable(builder.precision);
@@ -71,7 +69,7 @@ public abstract class DataframeEvaluationMetrics implements JsonpSerializable {
 	 * API name: {@code auc_roc}
 	 */
 	@Nullable
-	public DataframeEvaluationClassificationMetricsAucRoc aucRoc() {
+	public final DataframeEvaluationClassificationMetricsAucRoc aucRoc() {
 		return this.aucRoc;
 	}
 
@@ -80,8 +78,7 @@ public abstract class DataframeEvaluationMetrics implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code precision}
 	 */
-	@Nullable
-	public Map<String, JsonData> precision() {
+	public final Map<String, JsonData> precision() {
 		return this.precision;
 	}
 
@@ -90,8 +87,7 @@ public abstract class DataframeEvaluationMetrics implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code recall}
 	 */
-	@Nullable
-	public Map<String, JsonData> recall() {
+	public final Map<String, JsonData> recall() {
 		return this.recall;
 	}
 
@@ -107,13 +103,11 @@ public abstract class DataframeEvaluationMetrics implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.aucRoc != null) {
-
 			generator.writeKey("auc_roc");
 			this.aucRoc.serialize(generator, mapper);
 
 		}
-		if (this.precision != null) {
-
+		if (ModelTypeHelper.isDefined(this.precision)) {
 			generator.writeKey("precision");
 			generator.writeStartObject();
 			for (Map.Entry<String, JsonData> item0 : this.precision.entrySet()) {
@@ -124,8 +118,7 @@ public abstract class DataframeEvaluationMetrics implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (this.recall != null) {
-
+		if (ModelTypeHelper.isDefined(this.recall)) {
 			generator.writeKey("recall");
 			generator.writeStartObject();
 			for (Map.Entry<String, JsonData> item0 : this.recall.entrySet()) {
@@ -139,7 +132,9 @@ public abstract class DataframeEvaluationMetrics implements JsonpSerializable {
 
 	}
 
-	protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>> {
+	protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>>
+			extends
+				ObjectBuilderBase {
 		@Nullable
 		private DataframeEvaluationClassificationMetricsAucRoc aucRoc;
 
@@ -156,7 +151,7 @@ public abstract class DataframeEvaluationMetrics implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code auc_roc}
 		 */
-		public BuilderT aucRoc(@Nullable DataframeEvaluationClassificationMetricsAucRoc value) {
+		public final BuilderT aucRoc(@Nullable DataframeEvaluationClassificationMetricsAucRoc value) {
 			this.aucRoc = value;
 			return self();
 		}
@@ -168,7 +163,7 @@ public abstract class DataframeEvaluationMetrics implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code auc_roc}
 		 */
-		public BuilderT aucRoc(
+		public final BuilderT aucRoc(
 				Function<DataframeEvaluationClassificationMetricsAucRoc.Builder, ObjectBuilder<DataframeEvaluationClassificationMetricsAucRoc>> fn) {
 			return this.aucRoc(fn.apply(new DataframeEvaluationClassificationMetricsAucRoc.Builder()).build());
 		}
@@ -178,19 +173,8 @@ public abstract class DataframeEvaluationMetrics implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code precision}
 		 */
-		public BuilderT precision(@Nullable Map<String, JsonData> value) {
+		public final BuilderT precision(@Nullable Map<String, JsonData> value) {
 			this.precision = value;
-			return self();
-		}
-
-		/**
-		 * Add a key/value to {@link #precision(Map)}, creating the map if needed.
-		 */
-		public BuilderT putPrecision(String key, JsonData value) {
-			if (this.precision == null) {
-				this.precision = new HashMap<>();
-			}
-			this.precision.put(key, value);
 			return self();
 		}
 
@@ -199,19 +183,8 @@ public abstract class DataframeEvaluationMetrics implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code recall}
 		 */
-		public BuilderT recall(@Nullable Map<String, JsonData> value) {
+		public final BuilderT recall(@Nullable Map<String, JsonData> value) {
 			this.recall = value;
-			return self();
-		}
-
-		/**
-		 * Add a key/value to {@link #recall(Map)}, creating the map if needed.
-		 */
-		public BuilderT putRecall(String key, JsonData value) {
-			if (this.recall == null) {
-				this.recall = new HashMap<>();
-			}
-			this.recall.put(key, value);
 			return self();
 		}
 

@@ -29,6 +29,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -38,20 +39,20 @@ import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.TypeQuery
 @JsonpDeserializable
-public final class TypeQuery extends QueryBase implements QueryVariant {
+public class TypeQuery extends QueryBase implements QueryVariant {
 	private final String value;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public TypeQuery(Builder builder) {
+	private TypeQuery(Builder builder) {
 		super(builder);
 
-		this.value = Objects.requireNonNull(builder.value, "value");
+		this.value = ModelTypeHelper.requireNonNull(builder.value, this, "value");
 
 	}
 
-	public TypeQuery(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static TypeQuery of(Function<Builder, ObjectBuilder<TypeQuery>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -65,14 +66,13 @@ public final class TypeQuery extends QueryBase implements QueryVariant {
 	/**
 	 * Required - API name: {@code value}
 	 */
-	public String value() {
+	public final String value() {
 		return this.value;
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
-
 		generator.writeKey("value");
 		generator.write(this.value);
 
@@ -89,7 +89,7 @@ public final class TypeQuery extends QueryBase implements QueryVariant {
 		/**
 		 * Required - API name: {@code value}
 		 */
-		public Builder value(String value) {
+		public final Builder value(String value) {
 			this.value = value;
 			return this;
 		}
@@ -106,6 +106,7 @@ public final class TypeQuery extends QueryBase implements QueryVariant {
 		 *             if some of the required fields are null.
 		 */
 		public TypeQuery build() {
+			_checkSingleUse();
 
 			return new TypeQuery(this);
 		}

@@ -36,16 +36,16 @@ import java.util.function.Function;
 
 // typedef: indices.put_index_template.Response
 @JsonpDeserializable
-public final class PutIndexTemplateResponse extends AcknowledgedResponseBase {
+public class PutIndexTemplateResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
-	public PutIndexTemplateResponse(Builder builder) {
+	private PutIndexTemplateResponse(Builder builder) {
 		super(builder);
 
 	}
 
-	public PutIndexTemplateResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static PutIndexTemplateResponse of(Function<Builder, ObjectBuilder<PutIndexTemplateResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -68,6 +68,7 @@ public final class PutIndexTemplateResponse extends AcknowledgedResponseBase {
 		 *             if some of the required fields are null.
 		 */
 		public PutIndexTemplateResponse build() {
+			_checkSingleUse();
 
 			return new PutIndexTemplateResponse(this);
 		}

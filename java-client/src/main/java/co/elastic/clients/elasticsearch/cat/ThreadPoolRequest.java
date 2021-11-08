@@ -33,10 +33,10 @@ import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.SimpleEndpoint;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -48,24 +48,23 @@ import javax.annotation.Nullable;
 
 // typedef: cat.thread_pool.Request
 
-public final class ThreadPoolRequest extends CatRequestBase {
+public class ThreadPoolRequest extends CatRequestBase {
 	@Nullable
 	private final JsonValue /* Union(_types.Size | internal.boolean) */ size;
 
-	@Nullable
 	private final List<String> threadPoolPatterns;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public ThreadPoolRequest(Builder builder) {
+	private ThreadPoolRequest(Builder builder) {
 
 		this.size = builder.size;
 		this.threadPoolPatterns = ModelTypeHelper.unmodifiable(builder.threadPoolPatterns);
 
 	}
 
-	public ThreadPoolRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ThreadPoolRequest of(Function<Builder, ObjectBuilder<ThreadPoolRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -74,7 +73,7 @@ public final class ThreadPoolRequest extends CatRequestBase {
 	 * API name: {@code size}
 	 */
 	@Nullable
-	public JsonValue /* Union(_types.Size | internal.boolean) */ size() {
+	public final JsonValue /* Union(_types.Size | internal.boolean) */ size() {
 		return this.size;
 	}
 
@@ -84,8 +83,7 @@ public final class ThreadPoolRequest extends CatRequestBase {
 	 * <p>
 	 * API name: {@code thread_pool_patterns}
 	 */
-	@Nullable
-	public List<String> threadPoolPatterns() {
+	public final List<String> threadPoolPatterns() {
 		return this.threadPoolPatterns;
 	}
 
@@ -94,7 +92,7 @@ public final class ThreadPoolRequest extends CatRequestBase {
 	/**
 	 * Builder for {@link ThreadPoolRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<ThreadPoolRequest> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ThreadPoolRequest> {
 		@Nullable
 		private JsonValue /* Union(_types.Size | internal.boolean) */ size;
 
@@ -106,7 +104,7 @@ public final class ThreadPoolRequest extends CatRequestBase {
 		 * <p>
 		 * API name: {@code size}
 		 */
-		public Builder size(@Nullable JsonValue /* Union(_types.Size | internal.boolean) */ value) {
+		public final Builder size(@Nullable JsonValue /* Union(_types.Size | internal.boolean) */ value) {
 			this.size = value;
 			return this;
 		}
@@ -117,7 +115,7 @@ public final class ThreadPoolRequest extends CatRequestBase {
 		 * <p>
 		 * API name: {@code thread_pool_patterns}
 		 */
-		public Builder threadPoolPatterns(@Nullable List<String> value) {
+		public final Builder threadPoolPatterns(@Nullable List<String> value) {
 			this.threadPoolPatterns = value;
 			return this;
 		}
@@ -128,20 +126,8 @@ public final class ThreadPoolRequest extends CatRequestBase {
 		 * <p>
 		 * API name: {@code thread_pool_patterns}
 		 */
-		public Builder threadPoolPatterns(String... value) {
+		public final Builder threadPoolPatterns(String... value) {
 			this.threadPoolPatterns = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #threadPoolPatterns(List)}, creating the list if
-		 * needed.
-		 */
-		public Builder addThreadPoolPatterns(String value) {
-			if (this.threadPoolPatterns == null) {
-				this.threadPoolPatterns = new ArrayList<>();
-			}
-			this.threadPoolPatterns.add(value);
 			return this;
 		}
 
@@ -152,6 +138,7 @@ public final class ThreadPoolRequest extends CatRequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public ThreadPoolRequest build() {
+			_checkSingleUse();
 
 			return new ThreadPoolRequest(this);
 		}
@@ -175,7 +162,7 @@ public final class ThreadPoolRequest extends CatRequestBase {
 
 				int propsSet = 0;
 
-				if (request.threadPoolPatterns() != null)
+				if (ModelTypeHelper.isDefined(request.threadPoolPatterns()))
 					propsSet |= _threadPoolPatterns;
 
 				if (propsSet == 0) {

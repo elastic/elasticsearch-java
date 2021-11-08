@@ -35,16 +35,16 @@ import java.util.function.Function;
 
 // typedef: _types.aggregations.MinBucketAggregation
 @JsonpDeserializable
-public final class MinBucketAggregation extends PipelineAggregationBase implements AggregationVariant {
+public class MinBucketAggregation extends PipelineAggregationBase implements AggregationVariant {
 	// ---------------------------------------------------------------------------------------------
 
-	public MinBucketAggregation(Builder builder) {
+	private MinBucketAggregation(Builder builder) {
 		super(builder);
 
 	}
 
-	public MinBucketAggregation(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static MinBucketAggregation of(Function<Builder, ObjectBuilder<MinBucketAggregation>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -75,6 +75,7 @@ public final class MinBucketAggregation extends PipelineAggregationBase implemen
 		 *             if some of the required fields are null.
 		 */
 		public MinBucketAggregation build() {
+			_checkSingleUse();
 
 			return new MinBucketAggregation(this);
 		}

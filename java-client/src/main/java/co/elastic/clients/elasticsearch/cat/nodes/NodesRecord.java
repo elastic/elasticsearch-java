@@ -31,6 +31,7 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -39,7 +40,7 @@ import javax.annotation.Nullable;
 
 // typedef: cat.nodes.NodesRecord
 @JsonpDeserializable
-public final class NodesRecord implements JsonpSerializable {
+public class NodesRecord implements JsonpSerializable {
 	@Nullable
 	private final String id;
 
@@ -330,7 +331,7 @@ public final class NodesRecord implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public NodesRecord(Builder builder) {
+	private NodesRecord(Builder builder) {
 
 		this.id = builder.id;
 		this.pid = builder.pid;
@@ -431,8 +432,8 @@ public final class NodesRecord implements JsonpSerializable {
 
 	}
 
-	public NodesRecord(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static NodesRecord of(Function<Builder, ObjectBuilder<NodesRecord>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -441,7 +442,7 @@ public final class NodesRecord implements JsonpSerializable {
 	 * API name: {@code id}
 	 */
 	@Nullable
-	public String id() {
+	public final String id() {
 		return this.id;
 	}
 
@@ -451,7 +452,7 @@ public final class NodesRecord implements JsonpSerializable {
 	 * API name: {@code pid}
 	 */
 	@Nullable
-	public String pid() {
+	public final String pid() {
 		return this.pid;
 	}
 
@@ -461,7 +462,7 @@ public final class NodesRecord implements JsonpSerializable {
 	 * API name: {@code ip}
 	 */
 	@Nullable
-	public String ip() {
+	public final String ip() {
 		return this.ip;
 	}
 
@@ -471,7 +472,7 @@ public final class NodesRecord implements JsonpSerializable {
 	 * API name: {@code port}
 	 */
 	@Nullable
-	public String port() {
+	public final String port() {
 		return this.port;
 	}
 
@@ -481,7 +482,7 @@ public final class NodesRecord implements JsonpSerializable {
 	 * API name: {@code http_address}
 	 */
 	@Nullable
-	public String httpAddress() {
+	public final String httpAddress() {
 		return this.httpAddress;
 	}
 
@@ -491,7 +492,7 @@ public final class NodesRecord implements JsonpSerializable {
 	 * API name: {@code version}
 	 */
 	@Nullable
-	public String version() {
+	public final String version() {
 		return this.version;
 	}
 
@@ -501,7 +502,7 @@ public final class NodesRecord implements JsonpSerializable {
 	 * API name: {@code flavor}
 	 */
 	@Nullable
-	public String flavor() {
+	public final String flavor() {
 		return this.flavor;
 	}
 
@@ -511,7 +512,7 @@ public final class NodesRecord implements JsonpSerializable {
 	 * API name: {@code type}
 	 */
 	@Nullable
-	public String type() {
+	public final String type() {
 		return this.type;
 	}
 
@@ -521,7 +522,7 @@ public final class NodesRecord implements JsonpSerializable {
 	 * API name: {@code build}
 	 */
 	@Nullable
-	public String build() {
+	public final String build() {
 		return this.build;
 	}
 
@@ -531,7 +532,7 @@ public final class NodesRecord implements JsonpSerializable {
 	 * API name: {@code jdk}
 	 */
 	@Nullable
-	public String jdk() {
+	public final String jdk() {
 		return this.jdk;
 	}
 
@@ -541,7 +542,7 @@ public final class NodesRecord implements JsonpSerializable {
 	 * API name: {@code disk.total}
 	 */
 	@Nullable
-	public String diskTotal() {
+	public final String diskTotal() {
 		return this.diskTotal;
 	}
 
@@ -551,7 +552,7 @@ public final class NodesRecord implements JsonpSerializable {
 	 * API name: {@code disk.used}
 	 */
 	@Nullable
-	public String diskUsed() {
+	public final String diskUsed() {
 		return this.diskUsed;
 	}
 
@@ -561,7 +562,7 @@ public final class NodesRecord implements JsonpSerializable {
 	 * API name: {@code disk.avail}
 	 */
 	@Nullable
-	public String diskAvail() {
+	public final String diskAvail() {
 		return this.diskAvail;
 	}
 
@@ -571,7 +572,7 @@ public final class NodesRecord implements JsonpSerializable {
 	 * API name: {@code disk.used_percent}
 	 */
 	@Nullable
-	public String diskUsedPercent() {
+	public final String diskUsedPercent() {
 		return this.diskUsedPercent;
 	}
 
@@ -581,7 +582,7 @@ public final class NodesRecord implements JsonpSerializable {
 	 * API name: {@code heap.current}
 	 */
 	@Nullable
-	public String heapCurrent() {
+	public final String heapCurrent() {
 		return this.heapCurrent;
 	}
 
@@ -591,7 +592,7 @@ public final class NodesRecord implements JsonpSerializable {
 	 * API name: {@code heap.percent}
 	 */
 	@Nullable
-	public String heapPercent() {
+	public final String heapPercent() {
 		return this.heapPercent;
 	}
 
@@ -601,7 +602,7 @@ public final class NodesRecord implements JsonpSerializable {
 	 * API name: {@code heap.max}
 	 */
 	@Nullable
-	public String heapMax() {
+	public final String heapMax() {
 		return this.heapMax;
 	}
 
@@ -611,7 +612,7 @@ public final class NodesRecord implements JsonpSerializable {
 	 * API name: {@code ram.current}
 	 */
 	@Nullable
-	public String ramCurrent() {
+	public final String ramCurrent() {
 		return this.ramCurrent;
 	}
 
@@ -621,7 +622,7 @@ public final class NodesRecord implements JsonpSerializable {
 	 * API name: {@code ram.percent}
 	 */
 	@Nullable
-	public String ramPercent() {
+	public final String ramPercent() {
 		return this.ramPercent;
 	}
 
@@ -631,7 +632,7 @@ public final class NodesRecord implements JsonpSerializable {
 	 * API name: {@code ram.max}
 	 */
 	@Nullable
-	public String ramMax() {
+	public final String ramMax() {
 		return this.ramMax;
 	}
 
@@ -641,7 +642,7 @@ public final class NodesRecord implements JsonpSerializable {
 	 * API name: {@code file_desc.current}
 	 */
 	@Nullable
-	public String fileDescCurrent() {
+	public final String fileDescCurrent() {
 		return this.fileDescCurrent;
 	}
 
@@ -651,7 +652,7 @@ public final class NodesRecord implements JsonpSerializable {
 	 * API name: {@code file_desc.percent}
 	 */
 	@Nullable
-	public String fileDescPercent() {
+	public final String fileDescPercent() {
 		return this.fileDescPercent;
 	}
 
@@ -661,7 +662,7 @@ public final class NodesRecord implements JsonpSerializable {
 	 * API name: {@code file_desc.max}
 	 */
 	@Nullable
-	public String fileDescMax() {
+	public final String fileDescMax() {
 		return this.fileDescMax;
 	}
 
@@ -671,7 +672,7 @@ public final class NodesRecord implements JsonpSerializable {
 	 * API name: {@code cpu}
 	 */
 	@Nullable
-	public String cpu() {
+	public final String cpu() {
 		return this.cpu;
 	}
 
@@ -681,7 +682,7 @@ public final class NodesRecord implements JsonpSerializable {
 	 * API name: {@code load_1m}
 	 */
 	@Nullable
-	public String load1m() {
+	public final String load1m() {
 		return this.load1m;
 	}
 
@@ -691,7 +692,7 @@ public final class NodesRecord implements JsonpSerializable {
 	 * API name: {@code load_5m}
 	 */
 	@Nullable
-	public String load5m() {
+	public final String load5m() {
 		return this.load5m;
 	}
 
@@ -701,7 +702,7 @@ public final class NodesRecord implements JsonpSerializable {
 	 * API name: {@code load_15m}
 	 */
 	@Nullable
-	public String load15m() {
+	public final String load15m() {
 		return this.load15m;
 	}
 
@@ -711,7 +712,7 @@ public final class NodesRecord implements JsonpSerializable {
 	 * API name: {@code uptime}
 	 */
 	@Nullable
-	public String uptime() {
+	public final String uptime() {
 		return this.uptime;
 	}
 
@@ -721,7 +722,7 @@ public final class NodesRecord implements JsonpSerializable {
 	 * API name: {@code node.role}
 	 */
 	@Nullable
-	public String nodeRole() {
+	public final String nodeRole() {
 		return this.nodeRole;
 	}
 
@@ -731,7 +732,7 @@ public final class NodesRecord implements JsonpSerializable {
 	 * API name: {@code master}
 	 */
 	@Nullable
-	public String master() {
+	public final String master() {
 		return this.master;
 	}
 
@@ -741,7 +742,7 @@ public final class NodesRecord implements JsonpSerializable {
 	 * API name: {@code name}
 	 */
 	@Nullable
-	public String name() {
+	public final String name() {
 		return this.name;
 	}
 
@@ -751,7 +752,7 @@ public final class NodesRecord implements JsonpSerializable {
 	 * API name: {@code completion.size}
 	 */
 	@Nullable
-	public String completionSize() {
+	public final String completionSize() {
 		return this.completionSize;
 	}
 
@@ -761,7 +762,7 @@ public final class NodesRecord implements JsonpSerializable {
 	 * API name: {@code fielddata.memory_size}
 	 */
 	@Nullable
-	public String fielddataMemorySize() {
+	public final String fielddataMemorySize() {
 		return this.fielddataMemorySize;
 	}
 
@@ -771,7 +772,7 @@ public final class NodesRecord implements JsonpSerializable {
 	 * API name: {@code fielddata.evictions}
 	 */
 	@Nullable
-	public String fielddataEvictions() {
+	public final String fielddataEvictions() {
 		return this.fielddataEvictions;
 	}
 
@@ -781,7 +782,7 @@ public final class NodesRecord implements JsonpSerializable {
 	 * API name: {@code query_cache.memory_size}
 	 */
 	@Nullable
-	public String queryCacheMemorySize() {
+	public final String queryCacheMemorySize() {
 		return this.queryCacheMemorySize;
 	}
 
@@ -791,7 +792,7 @@ public final class NodesRecord implements JsonpSerializable {
 	 * API name: {@code query_cache.evictions}
 	 */
 	@Nullable
-	public String queryCacheEvictions() {
+	public final String queryCacheEvictions() {
 		return this.queryCacheEvictions;
 	}
 
@@ -801,7 +802,7 @@ public final class NodesRecord implements JsonpSerializable {
 	 * API name: {@code query_cache.hit_count}
 	 */
 	@Nullable
-	public String queryCacheHitCount() {
+	public final String queryCacheHitCount() {
 		return this.queryCacheHitCount;
 	}
 
@@ -811,7 +812,7 @@ public final class NodesRecord implements JsonpSerializable {
 	 * API name: {@code query_cache.miss_count}
 	 */
 	@Nullable
-	public String queryCacheMissCount() {
+	public final String queryCacheMissCount() {
 		return this.queryCacheMissCount;
 	}
 
@@ -821,7 +822,7 @@ public final class NodesRecord implements JsonpSerializable {
 	 * API name: {@code request_cache.memory_size}
 	 */
 	@Nullable
-	public String requestCacheMemorySize() {
+	public final String requestCacheMemorySize() {
 		return this.requestCacheMemorySize;
 	}
 
@@ -831,7 +832,7 @@ public final class NodesRecord implements JsonpSerializable {
 	 * API name: {@code request_cache.evictions}
 	 */
 	@Nullable
-	public String requestCacheEvictions() {
+	public final String requestCacheEvictions() {
 		return this.requestCacheEvictions;
 	}
 
@@ -841,7 +842,7 @@ public final class NodesRecord implements JsonpSerializable {
 	 * API name: {@code request_cache.hit_count}
 	 */
 	@Nullable
-	public String requestCacheHitCount() {
+	public final String requestCacheHitCount() {
 		return this.requestCacheHitCount;
 	}
 
@@ -851,7 +852,7 @@ public final class NodesRecord implements JsonpSerializable {
 	 * API name: {@code request_cache.miss_count}
 	 */
 	@Nullable
-	public String requestCacheMissCount() {
+	public final String requestCacheMissCount() {
 		return this.requestCacheMissCount;
 	}
 
@@ -861,7 +862,7 @@ public final class NodesRecord implements JsonpSerializable {
 	 * API name: {@code flush.total}
 	 */
 	@Nullable
-	public String flushTotal() {
+	public final String flushTotal() {
 		return this.flushTotal;
 	}
 
@@ -871,7 +872,7 @@ public final class NodesRecord implements JsonpSerializable {
 	 * API name: {@code flush.total_time}
 	 */
 	@Nullable
-	public String flushTotalTime() {
+	public final String flushTotalTime() {
 		return this.flushTotalTime;
 	}
 
@@ -881,7 +882,7 @@ public final class NodesRecord implements JsonpSerializable {
 	 * API name: {@code get.current}
 	 */
 	@Nullable
-	public String getCurrent() {
+	public final String getCurrent() {
 		return this.getCurrent;
 	}
 
@@ -891,7 +892,7 @@ public final class NodesRecord implements JsonpSerializable {
 	 * API name: {@code get.time}
 	 */
 	@Nullable
-	public String getTime() {
+	public final String getTime() {
 		return this.getTime;
 	}
 
@@ -901,7 +902,7 @@ public final class NodesRecord implements JsonpSerializable {
 	 * API name: {@code get.total}
 	 */
 	@Nullable
-	public String getTotal() {
+	public final String getTotal() {
 		return this.getTotal;
 	}
 
@@ -911,7 +912,7 @@ public final class NodesRecord implements JsonpSerializable {
 	 * API name: {@code get.exists_time}
 	 */
 	@Nullable
-	public String getExistsTime() {
+	public final String getExistsTime() {
 		return this.getExistsTime;
 	}
 
@@ -921,7 +922,7 @@ public final class NodesRecord implements JsonpSerializable {
 	 * API name: {@code get.exists_total}
 	 */
 	@Nullable
-	public String getExistsTotal() {
+	public final String getExistsTotal() {
 		return this.getExistsTotal;
 	}
 
@@ -931,7 +932,7 @@ public final class NodesRecord implements JsonpSerializable {
 	 * API name: {@code get.missing_time}
 	 */
 	@Nullable
-	public String getMissingTime() {
+	public final String getMissingTime() {
 		return this.getMissingTime;
 	}
 
@@ -941,7 +942,7 @@ public final class NodesRecord implements JsonpSerializable {
 	 * API name: {@code get.missing_total}
 	 */
 	@Nullable
-	public String getMissingTotal() {
+	public final String getMissingTotal() {
 		return this.getMissingTotal;
 	}
 
@@ -951,7 +952,7 @@ public final class NodesRecord implements JsonpSerializable {
 	 * API name: {@code indexing.delete_current}
 	 */
 	@Nullable
-	public String indexingDeleteCurrent() {
+	public final String indexingDeleteCurrent() {
 		return this.indexingDeleteCurrent;
 	}
 
@@ -961,7 +962,7 @@ public final class NodesRecord implements JsonpSerializable {
 	 * API name: {@code indexing.delete_time}
 	 */
 	@Nullable
-	public String indexingDeleteTime() {
+	public final String indexingDeleteTime() {
 		return this.indexingDeleteTime;
 	}
 
@@ -971,7 +972,7 @@ public final class NodesRecord implements JsonpSerializable {
 	 * API name: {@code indexing.delete_total}
 	 */
 	@Nullable
-	public String indexingDeleteTotal() {
+	public final String indexingDeleteTotal() {
 		return this.indexingDeleteTotal;
 	}
 
@@ -981,7 +982,7 @@ public final class NodesRecord implements JsonpSerializable {
 	 * API name: {@code indexing.index_current}
 	 */
 	@Nullable
-	public String indexingIndexCurrent() {
+	public final String indexingIndexCurrent() {
 		return this.indexingIndexCurrent;
 	}
 
@@ -991,7 +992,7 @@ public final class NodesRecord implements JsonpSerializable {
 	 * API name: {@code indexing.index_time}
 	 */
 	@Nullable
-	public String indexingIndexTime() {
+	public final String indexingIndexTime() {
 		return this.indexingIndexTime;
 	}
 
@@ -1001,7 +1002,7 @@ public final class NodesRecord implements JsonpSerializable {
 	 * API name: {@code indexing.index_total}
 	 */
 	@Nullable
-	public String indexingIndexTotal() {
+	public final String indexingIndexTotal() {
 		return this.indexingIndexTotal;
 	}
 
@@ -1011,7 +1012,7 @@ public final class NodesRecord implements JsonpSerializable {
 	 * API name: {@code indexing.index_failed}
 	 */
 	@Nullable
-	public String indexingIndexFailed() {
+	public final String indexingIndexFailed() {
 		return this.indexingIndexFailed;
 	}
 
@@ -1021,7 +1022,7 @@ public final class NodesRecord implements JsonpSerializable {
 	 * API name: {@code merges.current}
 	 */
 	@Nullable
-	public String mergesCurrent() {
+	public final String mergesCurrent() {
 		return this.mergesCurrent;
 	}
 
@@ -1031,7 +1032,7 @@ public final class NodesRecord implements JsonpSerializable {
 	 * API name: {@code merges.current_docs}
 	 */
 	@Nullable
-	public String mergesCurrentDocs() {
+	public final String mergesCurrentDocs() {
 		return this.mergesCurrentDocs;
 	}
 
@@ -1041,7 +1042,7 @@ public final class NodesRecord implements JsonpSerializable {
 	 * API name: {@code merges.current_size}
 	 */
 	@Nullable
-	public String mergesCurrentSize() {
+	public final String mergesCurrentSize() {
 		return this.mergesCurrentSize;
 	}
 
@@ -1051,7 +1052,7 @@ public final class NodesRecord implements JsonpSerializable {
 	 * API name: {@code merges.total}
 	 */
 	@Nullable
-	public String mergesTotal() {
+	public final String mergesTotal() {
 		return this.mergesTotal;
 	}
 
@@ -1061,7 +1062,7 @@ public final class NodesRecord implements JsonpSerializable {
 	 * API name: {@code merges.total_docs}
 	 */
 	@Nullable
-	public String mergesTotalDocs() {
+	public final String mergesTotalDocs() {
 		return this.mergesTotalDocs;
 	}
 
@@ -1071,7 +1072,7 @@ public final class NodesRecord implements JsonpSerializable {
 	 * API name: {@code merges.total_size}
 	 */
 	@Nullable
-	public String mergesTotalSize() {
+	public final String mergesTotalSize() {
 		return this.mergesTotalSize;
 	}
 
@@ -1081,7 +1082,7 @@ public final class NodesRecord implements JsonpSerializable {
 	 * API name: {@code merges.total_time}
 	 */
 	@Nullable
-	public String mergesTotalTime() {
+	public final String mergesTotalTime() {
 		return this.mergesTotalTime;
 	}
 
@@ -1091,7 +1092,7 @@ public final class NodesRecord implements JsonpSerializable {
 	 * API name: {@code refresh.total}
 	 */
 	@Nullable
-	public String refreshTotal() {
+	public final String refreshTotal() {
 		return this.refreshTotal;
 	}
 
@@ -1101,7 +1102,7 @@ public final class NodesRecord implements JsonpSerializable {
 	 * API name: {@code refresh.time}
 	 */
 	@Nullable
-	public String refreshTime() {
+	public final String refreshTime() {
 		return this.refreshTime;
 	}
 
@@ -1111,7 +1112,7 @@ public final class NodesRecord implements JsonpSerializable {
 	 * API name: {@code refresh.external_total}
 	 */
 	@Nullable
-	public String refreshExternalTotal() {
+	public final String refreshExternalTotal() {
 		return this.refreshExternalTotal;
 	}
 
@@ -1121,7 +1122,7 @@ public final class NodesRecord implements JsonpSerializable {
 	 * API name: {@code refresh.external_time}
 	 */
 	@Nullable
-	public String refreshExternalTime() {
+	public final String refreshExternalTime() {
 		return this.refreshExternalTime;
 	}
 
@@ -1131,7 +1132,7 @@ public final class NodesRecord implements JsonpSerializable {
 	 * API name: {@code refresh.listeners}
 	 */
 	@Nullable
-	public String refreshListeners() {
+	public final String refreshListeners() {
 		return this.refreshListeners;
 	}
 
@@ -1141,7 +1142,7 @@ public final class NodesRecord implements JsonpSerializable {
 	 * API name: {@code script.compilations}
 	 */
 	@Nullable
-	public String scriptCompilations() {
+	public final String scriptCompilations() {
 		return this.scriptCompilations;
 	}
 
@@ -1151,7 +1152,7 @@ public final class NodesRecord implements JsonpSerializable {
 	 * API name: {@code script.cache_evictions}
 	 */
 	@Nullable
-	public String scriptCacheEvictions() {
+	public final String scriptCacheEvictions() {
 		return this.scriptCacheEvictions;
 	}
 
@@ -1161,7 +1162,7 @@ public final class NodesRecord implements JsonpSerializable {
 	 * API name: {@code script.compilation_limit_triggered}
 	 */
 	@Nullable
-	public String scriptCompilationLimitTriggered() {
+	public final String scriptCompilationLimitTriggered() {
 		return this.scriptCompilationLimitTriggered;
 	}
 
@@ -1171,7 +1172,7 @@ public final class NodesRecord implements JsonpSerializable {
 	 * API name: {@code search.fetch_current}
 	 */
 	@Nullable
-	public String searchFetchCurrent() {
+	public final String searchFetchCurrent() {
 		return this.searchFetchCurrent;
 	}
 
@@ -1181,7 +1182,7 @@ public final class NodesRecord implements JsonpSerializable {
 	 * API name: {@code search.fetch_time}
 	 */
 	@Nullable
-	public String searchFetchTime() {
+	public final String searchFetchTime() {
 		return this.searchFetchTime;
 	}
 
@@ -1191,7 +1192,7 @@ public final class NodesRecord implements JsonpSerializable {
 	 * API name: {@code search.fetch_total}
 	 */
 	@Nullable
-	public String searchFetchTotal() {
+	public final String searchFetchTotal() {
 		return this.searchFetchTotal;
 	}
 
@@ -1201,7 +1202,7 @@ public final class NodesRecord implements JsonpSerializable {
 	 * API name: {@code search.open_contexts}
 	 */
 	@Nullable
-	public String searchOpenContexts() {
+	public final String searchOpenContexts() {
 		return this.searchOpenContexts;
 	}
 
@@ -1211,7 +1212,7 @@ public final class NodesRecord implements JsonpSerializable {
 	 * API name: {@code search.query_current}
 	 */
 	@Nullable
-	public String searchQueryCurrent() {
+	public final String searchQueryCurrent() {
 		return this.searchQueryCurrent;
 	}
 
@@ -1221,7 +1222,7 @@ public final class NodesRecord implements JsonpSerializable {
 	 * API name: {@code search.query_time}
 	 */
 	@Nullable
-	public String searchQueryTime() {
+	public final String searchQueryTime() {
 		return this.searchQueryTime;
 	}
 
@@ -1231,7 +1232,7 @@ public final class NodesRecord implements JsonpSerializable {
 	 * API name: {@code search.query_total}
 	 */
 	@Nullable
-	public String searchQueryTotal() {
+	public final String searchQueryTotal() {
 		return this.searchQueryTotal;
 	}
 
@@ -1241,7 +1242,7 @@ public final class NodesRecord implements JsonpSerializable {
 	 * API name: {@code search.scroll_current}
 	 */
 	@Nullable
-	public String searchScrollCurrent() {
+	public final String searchScrollCurrent() {
 		return this.searchScrollCurrent;
 	}
 
@@ -1251,7 +1252,7 @@ public final class NodesRecord implements JsonpSerializable {
 	 * API name: {@code search.scroll_time}
 	 */
 	@Nullable
-	public String searchScrollTime() {
+	public final String searchScrollTime() {
 		return this.searchScrollTime;
 	}
 
@@ -1261,7 +1262,7 @@ public final class NodesRecord implements JsonpSerializable {
 	 * API name: {@code search.scroll_total}
 	 */
 	@Nullable
-	public String searchScrollTotal() {
+	public final String searchScrollTotal() {
 		return this.searchScrollTotal;
 	}
 
@@ -1271,7 +1272,7 @@ public final class NodesRecord implements JsonpSerializable {
 	 * API name: {@code segments.count}
 	 */
 	@Nullable
-	public String segmentsCount() {
+	public final String segmentsCount() {
 		return this.segmentsCount;
 	}
 
@@ -1281,7 +1282,7 @@ public final class NodesRecord implements JsonpSerializable {
 	 * API name: {@code segments.memory}
 	 */
 	@Nullable
-	public String segmentsMemory() {
+	public final String segmentsMemory() {
 		return this.segmentsMemory;
 	}
 
@@ -1291,7 +1292,7 @@ public final class NodesRecord implements JsonpSerializable {
 	 * API name: {@code segments.index_writer_memory}
 	 */
 	@Nullable
-	public String segmentsIndexWriterMemory() {
+	public final String segmentsIndexWriterMemory() {
 		return this.segmentsIndexWriterMemory;
 	}
 
@@ -1301,7 +1302,7 @@ public final class NodesRecord implements JsonpSerializable {
 	 * API name: {@code segments.version_map_memory}
 	 */
 	@Nullable
-	public String segmentsVersionMapMemory() {
+	public final String segmentsVersionMapMemory() {
 		return this.segmentsVersionMapMemory;
 	}
 
@@ -1312,7 +1313,7 @@ public final class NodesRecord implements JsonpSerializable {
 	 * API name: {@code segments.fixed_bitset_memory}
 	 */
 	@Nullable
-	public String segmentsFixedBitsetMemory() {
+	public final String segmentsFixedBitsetMemory() {
 		return this.segmentsFixedBitsetMemory;
 	}
 
@@ -1322,7 +1323,7 @@ public final class NodesRecord implements JsonpSerializable {
 	 * API name: {@code suggest.current}
 	 */
 	@Nullable
-	public String suggestCurrent() {
+	public final String suggestCurrent() {
 		return this.suggestCurrent;
 	}
 
@@ -1332,7 +1333,7 @@ public final class NodesRecord implements JsonpSerializable {
 	 * API name: {@code suggest.time}
 	 */
 	@Nullable
-	public String suggestTime() {
+	public final String suggestTime() {
 		return this.suggestTime;
 	}
 
@@ -1342,7 +1343,7 @@ public final class NodesRecord implements JsonpSerializable {
 	 * API name: {@code suggest.total}
 	 */
 	@Nullable
-	public String suggestTotal() {
+	public final String suggestTotal() {
 		return this.suggestTotal;
 	}
 
@@ -1352,7 +1353,7 @@ public final class NodesRecord implements JsonpSerializable {
 	 * API name: {@code bulk.total_operations}
 	 */
 	@Nullable
-	public String bulkTotalOperations() {
+	public final String bulkTotalOperations() {
 		return this.bulkTotalOperations;
 	}
 
@@ -1362,7 +1363,7 @@ public final class NodesRecord implements JsonpSerializable {
 	 * API name: {@code bulk.total_time}
 	 */
 	@Nullable
-	public String bulkTotalTime() {
+	public final String bulkTotalTime() {
 		return this.bulkTotalTime;
 	}
 
@@ -1372,7 +1373,7 @@ public final class NodesRecord implements JsonpSerializable {
 	 * API name: {@code bulk.total_size_in_bytes}
 	 */
 	@Nullable
-	public String bulkTotalSizeInBytes() {
+	public final String bulkTotalSizeInBytes() {
 		return this.bulkTotalSizeInBytes;
 	}
 
@@ -1382,7 +1383,7 @@ public final class NodesRecord implements JsonpSerializable {
 	 * API name: {@code bulk.avg_time}
 	 */
 	@Nullable
-	public String bulkAvgTime() {
+	public final String bulkAvgTime() {
 		return this.bulkAvgTime;
 	}
 
@@ -1392,7 +1393,7 @@ public final class NodesRecord implements JsonpSerializable {
 	 * API name: {@code bulk.avg_size_in_bytes}
 	 */
 	@Nullable
-	public String bulkAvgSizeInBytes() {
+	public final String bulkAvgSizeInBytes() {
 		return this.bulkAvgSizeInBytes;
 	}
 
@@ -1408,577 +1409,481 @@ public final class NodesRecord implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.id != null) {
-
 			generator.writeKey("id");
 			generator.write(this.id);
 
 		}
 		if (this.pid != null) {
-
 			generator.writeKey("pid");
 			generator.write(this.pid);
 
 		}
 		if (this.ip != null) {
-
 			generator.writeKey("ip");
 			generator.write(this.ip);
 
 		}
 		if (this.port != null) {
-
 			generator.writeKey("port");
 			generator.write(this.port);
 
 		}
 		if (this.httpAddress != null) {
-
 			generator.writeKey("http_address");
 			generator.write(this.httpAddress);
 
 		}
 		if (this.version != null) {
-
 			generator.writeKey("version");
 			generator.write(this.version);
 
 		}
 		if (this.flavor != null) {
-
 			generator.writeKey("flavor");
 			generator.write(this.flavor);
 
 		}
 		if (this.type != null) {
-
 			generator.writeKey("type");
 			generator.write(this.type);
 
 		}
 		if (this.build != null) {
-
 			generator.writeKey("build");
 			generator.write(this.build);
 
 		}
 		if (this.jdk != null) {
-
 			generator.writeKey("jdk");
 			generator.write(this.jdk);
 
 		}
 		if (this.diskTotal != null) {
-
 			generator.writeKey("disk.total");
 			generator.write(this.diskTotal);
 
 		}
 		if (this.diskUsed != null) {
-
 			generator.writeKey("disk.used");
 			generator.write(this.diskUsed);
 
 		}
 		if (this.diskAvail != null) {
-
 			generator.writeKey("disk.avail");
 			generator.write(this.diskAvail);
 
 		}
 		if (this.diskUsedPercent != null) {
-
 			generator.writeKey("disk.used_percent");
 			generator.write(this.diskUsedPercent);
 
 		}
 		if (this.heapCurrent != null) {
-
 			generator.writeKey("heap.current");
 			generator.write(this.heapCurrent);
 
 		}
 		if (this.heapPercent != null) {
-
 			generator.writeKey("heap.percent");
 			generator.write(this.heapPercent);
 
 		}
 		if (this.heapMax != null) {
-
 			generator.writeKey("heap.max");
 			generator.write(this.heapMax);
 
 		}
 		if (this.ramCurrent != null) {
-
 			generator.writeKey("ram.current");
 			generator.write(this.ramCurrent);
 
 		}
 		if (this.ramPercent != null) {
-
 			generator.writeKey("ram.percent");
 			generator.write(this.ramPercent);
 
 		}
 		if (this.ramMax != null) {
-
 			generator.writeKey("ram.max");
 			generator.write(this.ramMax);
 
 		}
 		if (this.fileDescCurrent != null) {
-
 			generator.writeKey("file_desc.current");
 			generator.write(this.fileDescCurrent);
 
 		}
 		if (this.fileDescPercent != null) {
-
 			generator.writeKey("file_desc.percent");
 			generator.write(this.fileDescPercent);
 
 		}
 		if (this.fileDescMax != null) {
-
 			generator.writeKey("file_desc.max");
 			generator.write(this.fileDescMax);
 
 		}
 		if (this.cpu != null) {
-
 			generator.writeKey("cpu");
 			generator.write(this.cpu);
 
 		}
 		if (this.load1m != null) {
-
 			generator.writeKey("load_1m");
 			generator.write(this.load1m);
 
 		}
 		if (this.load5m != null) {
-
 			generator.writeKey("load_5m");
 			generator.write(this.load5m);
 
 		}
 		if (this.load15m != null) {
-
 			generator.writeKey("load_15m");
 			generator.write(this.load15m);
 
 		}
 		if (this.uptime != null) {
-
 			generator.writeKey("uptime");
 			generator.write(this.uptime);
 
 		}
 		if (this.nodeRole != null) {
-
 			generator.writeKey("node.role");
 			generator.write(this.nodeRole);
 
 		}
 		if (this.master != null) {
-
 			generator.writeKey("master");
 			generator.write(this.master);
 
 		}
 		if (this.name != null) {
-
 			generator.writeKey("name");
 			generator.write(this.name);
 
 		}
 		if (this.completionSize != null) {
-
 			generator.writeKey("completion.size");
 			generator.write(this.completionSize);
 
 		}
 		if (this.fielddataMemorySize != null) {
-
 			generator.writeKey("fielddata.memory_size");
 			generator.write(this.fielddataMemorySize);
 
 		}
 		if (this.fielddataEvictions != null) {
-
 			generator.writeKey("fielddata.evictions");
 			generator.write(this.fielddataEvictions);
 
 		}
 		if (this.queryCacheMemorySize != null) {
-
 			generator.writeKey("query_cache.memory_size");
 			generator.write(this.queryCacheMemorySize);
 
 		}
 		if (this.queryCacheEvictions != null) {
-
 			generator.writeKey("query_cache.evictions");
 			generator.write(this.queryCacheEvictions);
 
 		}
 		if (this.queryCacheHitCount != null) {
-
 			generator.writeKey("query_cache.hit_count");
 			generator.write(this.queryCacheHitCount);
 
 		}
 		if (this.queryCacheMissCount != null) {
-
 			generator.writeKey("query_cache.miss_count");
 			generator.write(this.queryCacheMissCount);
 
 		}
 		if (this.requestCacheMemorySize != null) {
-
 			generator.writeKey("request_cache.memory_size");
 			generator.write(this.requestCacheMemorySize);
 
 		}
 		if (this.requestCacheEvictions != null) {
-
 			generator.writeKey("request_cache.evictions");
 			generator.write(this.requestCacheEvictions);
 
 		}
 		if (this.requestCacheHitCount != null) {
-
 			generator.writeKey("request_cache.hit_count");
 			generator.write(this.requestCacheHitCount);
 
 		}
 		if (this.requestCacheMissCount != null) {
-
 			generator.writeKey("request_cache.miss_count");
 			generator.write(this.requestCacheMissCount);
 
 		}
 		if (this.flushTotal != null) {
-
 			generator.writeKey("flush.total");
 			generator.write(this.flushTotal);
 
 		}
 		if (this.flushTotalTime != null) {
-
 			generator.writeKey("flush.total_time");
 			generator.write(this.flushTotalTime);
 
 		}
 		if (this.getCurrent != null) {
-
 			generator.writeKey("get.current");
 			generator.write(this.getCurrent);
 
 		}
 		if (this.getTime != null) {
-
 			generator.writeKey("get.time");
 			generator.write(this.getTime);
 
 		}
 		if (this.getTotal != null) {
-
 			generator.writeKey("get.total");
 			generator.write(this.getTotal);
 
 		}
 		if (this.getExistsTime != null) {
-
 			generator.writeKey("get.exists_time");
 			generator.write(this.getExistsTime);
 
 		}
 		if (this.getExistsTotal != null) {
-
 			generator.writeKey("get.exists_total");
 			generator.write(this.getExistsTotal);
 
 		}
 		if (this.getMissingTime != null) {
-
 			generator.writeKey("get.missing_time");
 			generator.write(this.getMissingTime);
 
 		}
 		if (this.getMissingTotal != null) {
-
 			generator.writeKey("get.missing_total");
 			generator.write(this.getMissingTotal);
 
 		}
 		if (this.indexingDeleteCurrent != null) {
-
 			generator.writeKey("indexing.delete_current");
 			generator.write(this.indexingDeleteCurrent);
 
 		}
 		if (this.indexingDeleteTime != null) {
-
 			generator.writeKey("indexing.delete_time");
 			generator.write(this.indexingDeleteTime);
 
 		}
 		if (this.indexingDeleteTotal != null) {
-
 			generator.writeKey("indexing.delete_total");
 			generator.write(this.indexingDeleteTotal);
 
 		}
 		if (this.indexingIndexCurrent != null) {
-
 			generator.writeKey("indexing.index_current");
 			generator.write(this.indexingIndexCurrent);
 
 		}
 		if (this.indexingIndexTime != null) {
-
 			generator.writeKey("indexing.index_time");
 			generator.write(this.indexingIndexTime);
 
 		}
 		if (this.indexingIndexTotal != null) {
-
 			generator.writeKey("indexing.index_total");
 			generator.write(this.indexingIndexTotal);
 
 		}
 		if (this.indexingIndexFailed != null) {
-
 			generator.writeKey("indexing.index_failed");
 			generator.write(this.indexingIndexFailed);
 
 		}
 		if (this.mergesCurrent != null) {
-
 			generator.writeKey("merges.current");
 			generator.write(this.mergesCurrent);
 
 		}
 		if (this.mergesCurrentDocs != null) {
-
 			generator.writeKey("merges.current_docs");
 			generator.write(this.mergesCurrentDocs);
 
 		}
 		if (this.mergesCurrentSize != null) {
-
 			generator.writeKey("merges.current_size");
 			generator.write(this.mergesCurrentSize);
 
 		}
 		if (this.mergesTotal != null) {
-
 			generator.writeKey("merges.total");
 			generator.write(this.mergesTotal);
 
 		}
 		if (this.mergesTotalDocs != null) {
-
 			generator.writeKey("merges.total_docs");
 			generator.write(this.mergesTotalDocs);
 
 		}
 		if (this.mergesTotalSize != null) {
-
 			generator.writeKey("merges.total_size");
 			generator.write(this.mergesTotalSize);
 
 		}
 		if (this.mergesTotalTime != null) {
-
 			generator.writeKey("merges.total_time");
 			generator.write(this.mergesTotalTime);
 
 		}
 		if (this.refreshTotal != null) {
-
 			generator.writeKey("refresh.total");
 			generator.write(this.refreshTotal);
 
 		}
 		if (this.refreshTime != null) {
-
 			generator.writeKey("refresh.time");
 			generator.write(this.refreshTime);
 
 		}
 		if (this.refreshExternalTotal != null) {
-
 			generator.writeKey("refresh.external_total");
 			generator.write(this.refreshExternalTotal);
 
 		}
 		if (this.refreshExternalTime != null) {
-
 			generator.writeKey("refresh.external_time");
 			generator.write(this.refreshExternalTime);
 
 		}
 		if (this.refreshListeners != null) {
-
 			generator.writeKey("refresh.listeners");
 			generator.write(this.refreshListeners);
 
 		}
 		if (this.scriptCompilations != null) {
-
 			generator.writeKey("script.compilations");
 			generator.write(this.scriptCompilations);
 
 		}
 		if (this.scriptCacheEvictions != null) {
-
 			generator.writeKey("script.cache_evictions");
 			generator.write(this.scriptCacheEvictions);
 
 		}
 		if (this.scriptCompilationLimitTriggered != null) {
-
 			generator.writeKey("script.compilation_limit_triggered");
 			generator.write(this.scriptCompilationLimitTriggered);
 
 		}
 		if (this.searchFetchCurrent != null) {
-
 			generator.writeKey("search.fetch_current");
 			generator.write(this.searchFetchCurrent);
 
 		}
 		if (this.searchFetchTime != null) {
-
 			generator.writeKey("search.fetch_time");
 			generator.write(this.searchFetchTime);
 
 		}
 		if (this.searchFetchTotal != null) {
-
 			generator.writeKey("search.fetch_total");
 			generator.write(this.searchFetchTotal);
 
 		}
 		if (this.searchOpenContexts != null) {
-
 			generator.writeKey("search.open_contexts");
 			generator.write(this.searchOpenContexts);
 
 		}
 		if (this.searchQueryCurrent != null) {
-
 			generator.writeKey("search.query_current");
 			generator.write(this.searchQueryCurrent);
 
 		}
 		if (this.searchQueryTime != null) {
-
 			generator.writeKey("search.query_time");
 			generator.write(this.searchQueryTime);
 
 		}
 		if (this.searchQueryTotal != null) {
-
 			generator.writeKey("search.query_total");
 			generator.write(this.searchQueryTotal);
 
 		}
 		if (this.searchScrollCurrent != null) {
-
 			generator.writeKey("search.scroll_current");
 			generator.write(this.searchScrollCurrent);
 
 		}
 		if (this.searchScrollTime != null) {
-
 			generator.writeKey("search.scroll_time");
 			generator.write(this.searchScrollTime);
 
 		}
 		if (this.searchScrollTotal != null) {
-
 			generator.writeKey("search.scroll_total");
 			generator.write(this.searchScrollTotal);
 
 		}
 		if (this.segmentsCount != null) {
-
 			generator.writeKey("segments.count");
 			generator.write(this.segmentsCount);
 
 		}
 		if (this.segmentsMemory != null) {
-
 			generator.writeKey("segments.memory");
 			generator.write(this.segmentsMemory);
 
 		}
 		if (this.segmentsIndexWriterMemory != null) {
-
 			generator.writeKey("segments.index_writer_memory");
 			generator.write(this.segmentsIndexWriterMemory);
 
 		}
 		if (this.segmentsVersionMapMemory != null) {
-
 			generator.writeKey("segments.version_map_memory");
 			generator.write(this.segmentsVersionMapMemory);
 
 		}
 		if (this.segmentsFixedBitsetMemory != null) {
-
 			generator.writeKey("segments.fixed_bitset_memory");
 			generator.write(this.segmentsFixedBitsetMemory);
 
 		}
 		if (this.suggestCurrent != null) {
-
 			generator.writeKey("suggest.current");
 			generator.write(this.suggestCurrent);
 
 		}
 		if (this.suggestTime != null) {
-
 			generator.writeKey("suggest.time");
 			generator.write(this.suggestTime);
 
 		}
 		if (this.suggestTotal != null) {
-
 			generator.writeKey("suggest.total");
 			generator.write(this.suggestTotal);
 
 		}
 		if (this.bulkTotalOperations != null) {
-
 			generator.writeKey("bulk.total_operations");
 			generator.write(this.bulkTotalOperations);
 
 		}
 		if (this.bulkTotalTime != null) {
-
 			generator.writeKey("bulk.total_time");
 			generator.write(this.bulkTotalTime);
 
 		}
 		if (this.bulkTotalSizeInBytes != null) {
-
 			generator.writeKey("bulk.total_size_in_bytes");
 			generator.write(this.bulkTotalSizeInBytes);
 
 		}
 		if (this.bulkAvgTime != null) {
-
 			generator.writeKey("bulk.avg_time");
 			generator.write(this.bulkAvgTime);
 
 		}
 		if (this.bulkAvgSizeInBytes != null) {
-
 			generator.writeKey("bulk.avg_size_in_bytes");
 			generator.write(this.bulkAvgSizeInBytes);
 
@@ -1991,7 +1896,7 @@ public final class NodesRecord implements JsonpSerializable {
 	/**
 	 * Builder for {@link NodesRecord}.
 	 */
-	public static class Builder implements ObjectBuilder<NodesRecord> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodesRecord> {
 		@Nullable
 		private String id;
 
@@ -2285,7 +2190,7 @@ public final class NodesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code id}
 		 */
-		public Builder id(@Nullable String value) {
+		public final Builder id(@Nullable String value) {
 			this.id = value;
 			return this;
 		}
@@ -2295,7 +2200,7 @@ public final class NodesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code pid}
 		 */
-		public Builder pid(@Nullable String value) {
+		public final Builder pid(@Nullable String value) {
 			this.pid = value;
 			return this;
 		}
@@ -2305,7 +2210,7 @@ public final class NodesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code ip}
 		 */
-		public Builder ip(@Nullable String value) {
+		public final Builder ip(@Nullable String value) {
 			this.ip = value;
 			return this;
 		}
@@ -2315,7 +2220,7 @@ public final class NodesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code port}
 		 */
-		public Builder port(@Nullable String value) {
+		public final Builder port(@Nullable String value) {
 			this.port = value;
 			return this;
 		}
@@ -2325,7 +2230,7 @@ public final class NodesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code http_address}
 		 */
-		public Builder httpAddress(@Nullable String value) {
+		public final Builder httpAddress(@Nullable String value) {
 			this.httpAddress = value;
 			return this;
 		}
@@ -2335,7 +2240,7 @@ public final class NodesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code version}
 		 */
-		public Builder version(@Nullable String value) {
+		public final Builder version(@Nullable String value) {
 			this.version = value;
 			return this;
 		}
@@ -2345,7 +2250,7 @@ public final class NodesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code flavor}
 		 */
-		public Builder flavor(@Nullable String value) {
+		public final Builder flavor(@Nullable String value) {
 			this.flavor = value;
 			return this;
 		}
@@ -2355,7 +2260,7 @@ public final class NodesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code type}
 		 */
-		public Builder type(@Nullable String value) {
+		public final Builder type(@Nullable String value) {
 			this.type = value;
 			return this;
 		}
@@ -2365,7 +2270,7 @@ public final class NodesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code build}
 		 */
-		public Builder build(@Nullable String value) {
+		public final Builder build(@Nullable String value) {
 			this.build = value;
 			return this;
 		}
@@ -2375,7 +2280,7 @@ public final class NodesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code jdk}
 		 */
-		public Builder jdk(@Nullable String value) {
+		public final Builder jdk(@Nullable String value) {
 			this.jdk = value;
 			return this;
 		}
@@ -2385,7 +2290,7 @@ public final class NodesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code disk.total}
 		 */
-		public Builder diskTotal(@Nullable String value) {
+		public final Builder diskTotal(@Nullable String value) {
 			this.diskTotal = value;
 			return this;
 		}
@@ -2395,7 +2300,7 @@ public final class NodesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code disk.used}
 		 */
-		public Builder diskUsed(@Nullable String value) {
+		public final Builder diskUsed(@Nullable String value) {
 			this.diskUsed = value;
 			return this;
 		}
@@ -2405,7 +2310,7 @@ public final class NodesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code disk.avail}
 		 */
-		public Builder diskAvail(@Nullable String value) {
+		public final Builder diskAvail(@Nullable String value) {
 			this.diskAvail = value;
 			return this;
 		}
@@ -2415,7 +2320,7 @@ public final class NodesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code disk.used_percent}
 		 */
-		public Builder diskUsedPercent(@Nullable String value) {
+		public final Builder diskUsedPercent(@Nullable String value) {
 			this.diskUsedPercent = value;
 			return this;
 		}
@@ -2425,7 +2330,7 @@ public final class NodesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code heap.current}
 		 */
-		public Builder heapCurrent(@Nullable String value) {
+		public final Builder heapCurrent(@Nullable String value) {
 			this.heapCurrent = value;
 			return this;
 		}
@@ -2435,7 +2340,7 @@ public final class NodesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code heap.percent}
 		 */
-		public Builder heapPercent(@Nullable String value) {
+		public final Builder heapPercent(@Nullable String value) {
 			this.heapPercent = value;
 			return this;
 		}
@@ -2445,7 +2350,7 @@ public final class NodesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code heap.max}
 		 */
-		public Builder heapMax(@Nullable String value) {
+		public final Builder heapMax(@Nullable String value) {
 			this.heapMax = value;
 			return this;
 		}
@@ -2455,7 +2360,7 @@ public final class NodesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code ram.current}
 		 */
-		public Builder ramCurrent(@Nullable String value) {
+		public final Builder ramCurrent(@Nullable String value) {
 			this.ramCurrent = value;
 			return this;
 		}
@@ -2465,7 +2370,7 @@ public final class NodesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code ram.percent}
 		 */
-		public Builder ramPercent(@Nullable String value) {
+		public final Builder ramPercent(@Nullable String value) {
 			this.ramPercent = value;
 			return this;
 		}
@@ -2475,7 +2380,7 @@ public final class NodesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code ram.max}
 		 */
-		public Builder ramMax(@Nullable String value) {
+		public final Builder ramMax(@Nullable String value) {
 			this.ramMax = value;
 			return this;
 		}
@@ -2485,7 +2390,7 @@ public final class NodesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code file_desc.current}
 		 */
-		public Builder fileDescCurrent(@Nullable String value) {
+		public final Builder fileDescCurrent(@Nullable String value) {
 			this.fileDescCurrent = value;
 			return this;
 		}
@@ -2495,7 +2400,7 @@ public final class NodesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code file_desc.percent}
 		 */
-		public Builder fileDescPercent(@Nullable String value) {
+		public final Builder fileDescPercent(@Nullable String value) {
 			this.fileDescPercent = value;
 			return this;
 		}
@@ -2505,7 +2410,7 @@ public final class NodesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code file_desc.max}
 		 */
-		public Builder fileDescMax(@Nullable String value) {
+		public final Builder fileDescMax(@Nullable String value) {
 			this.fileDescMax = value;
 			return this;
 		}
@@ -2515,7 +2420,7 @@ public final class NodesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code cpu}
 		 */
-		public Builder cpu(@Nullable String value) {
+		public final Builder cpu(@Nullable String value) {
 			this.cpu = value;
 			return this;
 		}
@@ -2525,7 +2430,7 @@ public final class NodesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code load_1m}
 		 */
-		public Builder load1m(@Nullable String value) {
+		public final Builder load1m(@Nullable String value) {
 			this.load1m = value;
 			return this;
 		}
@@ -2535,7 +2440,7 @@ public final class NodesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code load_5m}
 		 */
-		public Builder load5m(@Nullable String value) {
+		public final Builder load5m(@Nullable String value) {
 			this.load5m = value;
 			return this;
 		}
@@ -2545,7 +2450,7 @@ public final class NodesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code load_15m}
 		 */
-		public Builder load15m(@Nullable String value) {
+		public final Builder load15m(@Nullable String value) {
 			this.load15m = value;
 			return this;
 		}
@@ -2555,7 +2460,7 @@ public final class NodesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code uptime}
 		 */
-		public Builder uptime(@Nullable String value) {
+		public final Builder uptime(@Nullable String value) {
 			this.uptime = value;
 			return this;
 		}
@@ -2565,7 +2470,7 @@ public final class NodesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code node.role}
 		 */
-		public Builder nodeRole(@Nullable String value) {
+		public final Builder nodeRole(@Nullable String value) {
 			this.nodeRole = value;
 			return this;
 		}
@@ -2575,7 +2480,7 @@ public final class NodesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code master}
 		 */
-		public Builder master(@Nullable String value) {
+		public final Builder master(@Nullable String value) {
 			this.master = value;
 			return this;
 		}
@@ -2585,7 +2490,7 @@ public final class NodesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code name}
 		 */
-		public Builder name(@Nullable String value) {
+		public final Builder name(@Nullable String value) {
 			this.name = value;
 			return this;
 		}
@@ -2595,7 +2500,7 @@ public final class NodesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code completion.size}
 		 */
-		public Builder completionSize(@Nullable String value) {
+		public final Builder completionSize(@Nullable String value) {
 			this.completionSize = value;
 			return this;
 		}
@@ -2605,7 +2510,7 @@ public final class NodesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code fielddata.memory_size}
 		 */
-		public Builder fielddataMemorySize(@Nullable String value) {
+		public final Builder fielddataMemorySize(@Nullable String value) {
 			this.fielddataMemorySize = value;
 			return this;
 		}
@@ -2615,7 +2520,7 @@ public final class NodesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code fielddata.evictions}
 		 */
-		public Builder fielddataEvictions(@Nullable String value) {
+		public final Builder fielddataEvictions(@Nullable String value) {
 			this.fielddataEvictions = value;
 			return this;
 		}
@@ -2625,7 +2530,7 @@ public final class NodesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code query_cache.memory_size}
 		 */
-		public Builder queryCacheMemorySize(@Nullable String value) {
+		public final Builder queryCacheMemorySize(@Nullable String value) {
 			this.queryCacheMemorySize = value;
 			return this;
 		}
@@ -2635,7 +2540,7 @@ public final class NodesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code query_cache.evictions}
 		 */
-		public Builder queryCacheEvictions(@Nullable String value) {
+		public final Builder queryCacheEvictions(@Nullable String value) {
 			this.queryCacheEvictions = value;
 			return this;
 		}
@@ -2645,7 +2550,7 @@ public final class NodesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code query_cache.hit_count}
 		 */
-		public Builder queryCacheHitCount(@Nullable String value) {
+		public final Builder queryCacheHitCount(@Nullable String value) {
 			this.queryCacheHitCount = value;
 			return this;
 		}
@@ -2655,7 +2560,7 @@ public final class NodesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code query_cache.miss_count}
 		 */
-		public Builder queryCacheMissCount(@Nullable String value) {
+		public final Builder queryCacheMissCount(@Nullable String value) {
 			this.queryCacheMissCount = value;
 			return this;
 		}
@@ -2665,7 +2570,7 @@ public final class NodesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code request_cache.memory_size}
 		 */
-		public Builder requestCacheMemorySize(@Nullable String value) {
+		public final Builder requestCacheMemorySize(@Nullable String value) {
 			this.requestCacheMemorySize = value;
 			return this;
 		}
@@ -2675,7 +2580,7 @@ public final class NodesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code request_cache.evictions}
 		 */
-		public Builder requestCacheEvictions(@Nullable String value) {
+		public final Builder requestCacheEvictions(@Nullable String value) {
 			this.requestCacheEvictions = value;
 			return this;
 		}
@@ -2685,7 +2590,7 @@ public final class NodesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code request_cache.hit_count}
 		 */
-		public Builder requestCacheHitCount(@Nullable String value) {
+		public final Builder requestCacheHitCount(@Nullable String value) {
 			this.requestCacheHitCount = value;
 			return this;
 		}
@@ -2695,7 +2600,7 @@ public final class NodesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code request_cache.miss_count}
 		 */
-		public Builder requestCacheMissCount(@Nullable String value) {
+		public final Builder requestCacheMissCount(@Nullable String value) {
 			this.requestCacheMissCount = value;
 			return this;
 		}
@@ -2705,7 +2610,7 @@ public final class NodesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code flush.total}
 		 */
-		public Builder flushTotal(@Nullable String value) {
+		public final Builder flushTotal(@Nullable String value) {
 			this.flushTotal = value;
 			return this;
 		}
@@ -2715,7 +2620,7 @@ public final class NodesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code flush.total_time}
 		 */
-		public Builder flushTotalTime(@Nullable String value) {
+		public final Builder flushTotalTime(@Nullable String value) {
 			this.flushTotalTime = value;
 			return this;
 		}
@@ -2725,7 +2630,7 @@ public final class NodesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code get.current}
 		 */
-		public Builder getCurrent(@Nullable String value) {
+		public final Builder getCurrent(@Nullable String value) {
 			this.getCurrent = value;
 			return this;
 		}
@@ -2735,7 +2640,7 @@ public final class NodesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code get.time}
 		 */
-		public Builder getTime(@Nullable String value) {
+		public final Builder getTime(@Nullable String value) {
 			this.getTime = value;
 			return this;
 		}
@@ -2745,7 +2650,7 @@ public final class NodesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code get.total}
 		 */
-		public Builder getTotal(@Nullable String value) {
+		public final Builder getTotal(@Nullable String value) {
 			this.getTotal = value;
 			return this;
 		}
@@ -2755,7 +2660,7 @@ public final class NodesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code get.exists_time}
 		 */
-		public Builder getExistsTime(@Nullable String value) {
+		public final Builder getExistsTime(@Nullable String value) {
 			this.getExistsTime = value;
 			return this;
 		}
@@ -2765,7 +2670,7 @@ public final class NodesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code get.exists_total}
 		 */
-		public Builder getExistsTotal(@Nullable String value) {
+		public final Builder getExistsTotal(@Nullable String value) {
 			this.getExistsTotal = value;
 			return this;
 		}
@@ -2775,7 +2680,7 @@ public final class NodesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code get.missing_time}
 		 */
-		public Builder getMissingTime(@Nullable String value) {
+		public final Builder getMissingTime(@Nullable String value) {
 			this.getMissingTime = value;
 			return this;
 		}
@@ -2785,7 +2690,7 @@ public final class NodesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code get.missing_total}
 		 */
-		public Builder getMissingTotal(@Nullable String value) {
+		public final Builder getMissingTotal(@Nullable String value) {
 			this.getMissingTotal = value;
 			return this;
 		}
@@ -2795,7 +2700,7 @@ public final class NodesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code indexing.delete_current}
 		 */
-		public Builder indexingDeleteCurrent(@Nullable String value) {
+		public final Builder indexingDeleteCurrent(@Nullable String value) {
 			this.indexingDeleteCurrent = value;
 			return this;
 		}
@@ -2805,7 +2710,7 @@ public final class NodesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code indexing.delete_time}
 		 */
-		public Builder indexingDeleteTime(@Nullable String value) {
+		public final Builder indexingDeleteTime(@Nullable String value) {
 			this.indexingDeleteTime = value;
 			return this;
 		}
@@ -2815,7 +2720,7 @@ public final class NodesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code indexing.delete_total}
 		 */
-		public Builder indexingDeleteTotal(@Nullable String value) {
+		public final Builder indexingDeleteTotal(@Nullable String value) {
 			this.indexingDeleteTotal = value;
 			return this;
 		}
@@ -2825,7 +2730,7 @@ public final class NodesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code indexing.index_current}
 		 */
-		public Builder indexingIndexCurrent(@Nullable String value) {
+		public final Builder indexingIndexCurrent(@Nullable String value) {
 			this.indexingIndexCurrent = value;
 			return this;
 		}
@@ -2835,7 +2740,7 @@ public final class NodesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code indexing.index_time}
 		 */
-		public Builder indexingIndexTime(@Nullable String value) {
+		public final Builder indexingIndexTime(@Nullable String value) {
 			this.indexingIndexTime = value;
 			return this;
 		}
@@ -2845,7 +2750,7 @@ public final class NodesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code indexing.index_total}
 		 */
-		public Builder indexingIndexTotal(@Nullable String value) {
+		public final Builder indexingIndexTotal(@Nullable String value) {
 			this.indexingIndexTotal = value;
 			return this;
 		}
@@ -2855,7 +2760,7 @@ public final class NodesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code indexing.index_failed}
 		 */
-		public Builder indexingIndexFailed(@Nullable String value) {
+		public final Builder indexingIndexFailed(@Nullable String value) {
 			this.indexingIndexFailed = value;
 			return this;
 		}
@@ -2865,7 +2770,7 @@ public final class NodesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code merges.current}
 		 */
-		public Builder mergesCurrent(@Nullable String value) {
+		public final Builder mergesCurrent(@Nullable String value) {
 			this.mergesCurrent = value;
 			return this;
 		}
@@ -2875,7 +2780,7 @@ public final class NodesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code merges.current_docs}
 		 */
-		public Builder mergesCurrentDocs(@Nullable String value) {
+		public final Builder mergesCurrentDocs(@Nullable String value) {
 			this.mergesCurrentDocs = value;
 			return this;
 		}
@@ -2885,7 +2790,7 @@ public final class NodesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code merges.current_size}
 		 */
-		public Builder mergesCurrentSize(@Nullable String value) {
+		public final Builder mergesCurrentSize(@Nullable String value) {
 			this.mergesCurrentSize = value;
 			return this;
 		}
@@ -2895,7 +2800,7 @@ public final class NodesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code merges.total}
 		 */
-		public Builder mergesTotal(@Nullable String value) {
+		public final Builder mergesTotal(@Nullable String value) {
 			this.mergesTotal = value;
 			return this;
 		}
@@ -2905,7 +2810,7 @@ public final class NodesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code merges.total_docs}
 		 */
-		public Builder mergesTotalDocs(@Nullable String value) {
+		public final Builder mergesTotalDocs(@Nullable String value) {
 			this.mergesTotalDocs = value;
 			return this;
 		}
@@ -2915,7 +2820,7 @@ public final class NodesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code merges.total_size}
 		 */
-		public Builder mergesTotalSize(@Nullable String value) {
+		public final Builder mergesTotalSize(@Nullable String value) {
 			this.mergesTotalSize = value;
 			return this;
 		}
@@ -2925,7 +2830,7 @@ public final class NodesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code merges.total_time}
 		 */
-		public Builder mergesTotalTime(@Nullable String value) {
+		public final Builder mergesTotalTime(@Nullable String value) {
 			this.mergesTotalTime = value;
 			return this;
 		}
@@ -2935,7 +2840,7 @@ public final class NodesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code refresh.total}
 		 */
-		public Builder refreshTotal(@Nullable String value) {
+		public final Builder refreshTotal(@Nullable String value) {
 			this.refreshTotal = value;
 			return this;
 		}
@@ -2945,7 +2850,7 @@ public final class NodesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code refresh.time}
 		 */
-		public Builder refreshTime(@Nullable String value) {
+		public final Builder refreshTime(@Nullable String value) {
 			this.refreshTime = value;
 			return this;
 		}
@@ -2955,7 +2860,7 @@ public final class NodesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code refresh.external_total}
 		 */
-		public Builder refreshExternalTotal(@Nullable String value) {
+		public final Builder refreshExternalTotal(@Nullable String value) {
 			this.refreshExternalTotal = value;
 			return this;
 		}
@@ -2965,7 +2870,7 @@ public final class NodesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code refresh.external_time}
 		 */
-		public Builder refreshExternalTime(@Nullable String value) {
+		public final Builder refreshExternalTime(@Nullable String value) {
 			this.refreshExternalTime = value;
 			return this;
 		}
@@ -2975,7 +2880,7 @@ public final class NodesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code refresh.listeners}
 		 */
-		public Builder refreshListeners(@Nullable String value) {
+		public final Builder refreshListeners(@Nullable String value) {
 			this.refreshListeners = value;
 			return this;
 		}
@@ -2985,7 +2890,7 @@ public final class NodesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code script.compilations}
 		 */
-		public Builder scriptCompilations(@Nullable String value) {
+		public final Builder scriptCompilations(@Nullable String value) {
 			this.scriptCompilations = value;
 			return this;
 		}
@@ -2995,7 +2900,7 @@ public final class NodesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code script.cache_evictions}
 		 */
-		public Builder scriptCacheEvictions(@Nullable String value) {
+		public final Builder scriptCacheEvictions(@Nullable String value) {
 			this.scriptCacheEvictions = value;
 			return this;
 		}
@@ -3005,7 +2910,7 @@ public final class NodesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code script.compilation_limit_triggered}
 		 */
-		public Builder scriptCompilationLimitTriggered(@Nullable String value) {
+		public final Builder scriptCompilationLimitTriggered(@Nullable String value) {
 			this.scriptCompilationLimitTriggered = value;
 			return this;
 		}
@@ -3015,7 +2920,7 @@ public final class NodesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code search.fetch_current}
 		 */
-		public Builder searchFetchCurrent(@Nullable String value) {
+		public final Builder searchFetchCurrent(@Nullable String value) {
 			this.searchFetchCurrent = value;
 			return this;
 		}
@@ -3025,7 +2930,7 @@ public final class NodesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code search.fetch_time}
 		 */
-		public Builder searchFetchTime(@Nullable String value) {
+		public final Builder searchFetchTime(@Nullable String value) {
 			this.searchFetchTime = value;
 			return this;
 		}
@@ -3035,7 +2940,7 @@ public final class NodesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code search.fetch_total}
 		 */
-		public Builder searchFetchTotal(@Nullable String value) {
+		public final Builder searchFetchTotal(@Nullable String value) {
 			this.searchFetchTotal = value;
 			return this;
 		}
@@ -3045,7 +2950,7 @@ public final class NodesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code search.open_contexts}
 		 */
-		public Builder searchOpenContexts(@Nullable String value) {
+		public final Builder searchOpenContexts(@Nullable String value) {
 			this.searchOpenContexts = value;
 			return this;
 		}
@@ -3055,7 +2960,7 @@ public final class NodesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code search.query_current}
 		 */
-		public Builder searchQueryCurrent(@Nullable String value) {
+		public final Builder searchQueryCurrent(@Nullable String value) {
 			this.searchQueryCurrent = value;
 			return this;
 		}
@@ -3065,7 +2970,7 @@ public final class NodesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code search.query_time}
 		 */
-		public Builder searchQueryTime(@Nullable String value) {
+		public final Builder searchQueryTime(@Nullable String value) {
 			this.searchQueryTime = value;
 			return this;
 		}
@@ -3075,7 +2980,7 @@ public final class NodesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code search.query_total}
 		 */
-		public Builder searchQueryTotal(@Nullable String value) {
+		public final Builder searchQueryTotal(@Nullable String value) {
 			this.searchQueryTotal = value;
 			return this;
 		}
@@ -3085,7 +2990,7 @@ public final class NodesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code search.scroll_current}
 		 */
-		public Builder searchScrollCurrent(@Nullable String value) {
+		public final Builder searchScrollCurrent(@Nullable String value) {
 			this.searchScrollCurrent = value;
 			return this;
 		}
@@ -3095,7 +3000,7 @@ public final class NodesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code search.scroll_time}
 		 */
-		public Builder searchScrollTime(@Nullable String value) {
+		public final Builder searchScrollTime(@Nullable String value) {
 			this.searchScrollTime = value;
 			return this;
 		}
@@ -3105,7 +3010,7 @@ public final class NodesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code search.scroll_total}
 		 */
-		public Builder searchScrollTotal(@Nullable String value) {
+		public final Builder searchScrollTotal(@Nullable String value) {
 			this.searchScrollTotal = value;
 			return this;
 		}
@@ -3115,7 +3020,7 @@ public final class NodesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code segments.count}
 		 */
-		public Builder segmentsCount(@Nullable String value) {
+		public final Builder segmentsCount(@Nullable String value) {
 			this.segmentsCount = value;
 			return this;
 		}
@@ -3125,7 +3030,7 @@ public final class NodesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code segments.memory}
 		 */
-		public Builder segmentsMemory(@Nullable String value) {
+		public final Builder segmentsMemory(@Nullable String value) {
 			this.segmentsMemory = value;
 			return this;
 		}
@@ -3135,7 +3040,7 @@ public final class NodesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code segments.index_writer_memory}
 		 */
-		public Builder segmentsIndexWriterMemory(@Nullable String value) {
+		public final Builder segmentsIndexWriterMemory(@Nullable String value) {
 			this.segmentsIndexWriterMemory = value;
 			return this;
 		}
@@ -3145,7 +3050,7 @@ public final class NodesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code segments.version_map_memory}
 		 */
-		public Builder segmentsVersionMapMemory(@Nullable String value) {
+		public final Builder segmentsVersionMapMemory(@Nullable String value) {
 			this.segmentsVersionMapMemory = value;
 			return this;
 		}
@@ -3156,7 +3061,7 @@ public final class NodesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code segments.fixed_bitset_memory}
 		 */
-		public Builder segmentsFixedBitsetMemory(@Nullable String value) {
+		public final Builder segmentsFixedBitsetMemory(@Nullable String value) {
 			this.segmentsFixedBitsetMemory = value;
 			return this;
 		}
@@ -3166,7 +3071,7 @@ public final class NodesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code suggest.current}
 		 */
-		public Builder suggestCurrent(@Nullable String value) {
+		public final Builder suggestCurrent(@Nullable String value) {
 			this.suggestCurrent = value;
 			return this;
 		}
@@ -3176,7 +3081,7 @@ public final class NodesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code suggest.time}
 		 */
-		public Builder suggestTime(@Nullable String value) {
+		public final Builder suggestTime(@Nullable String value) {
 			this.suggestTime = value;
 			return this;
 		}
@@ -3186,7 +3091,7 @@ public final class NodesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code suggest.total}
 		 */
-		public Builder suggestTotal(@Nullable String value) {
+		public final Builder suggestTotal(@Nullable String value) {
 			this.suggestTotal = value;
 			return this;
 		}
@@ -3196,7 +3101,7 @@ public final class NodesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code bulk.total_operations}
 		 */
-		public Builder bulkTotalOperations(@Nullable String value) {
+		public final Builder bulkTotalOperations(@Nullable String value) {
 			this.bulkTotalOperations = value;
 			return this;
 		}
@@ -3206,7 +3111,7 @@ public final class NodesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code bulk.total_time}
 		 */
-		public Builder bulkTotalTime(@Nullable String value) {
+		public final Builder bulkTotalTime(@Nullable String value) {
 			this.bulkTotalTime = value;
 			return this;
 		}
@@ -3216,7 +3121,7 @@ public final class NodesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code bulk.total_size_in_bytes}
 		 */
-		public Builder bulkTotalSizeInBytes(@Nullable String value) {
+		public final Builder bulkTotalSizeInBytes(@Nullable String value) {
 			this.bulkTotalSizeInBytes = value;
 			return this;
 		}
@@ -3226,7 +3131,7 @@ public final class NodesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code bulk.avg_time}
 		 */
-		public Builder bulkAvgTime(@Nullable String value) {
+		public final Builder bulkAvgTime(@Nullable String value) {
 			this.bulkAvgTime = value;
 			return this;
 		}
@@ -3236,7 +3141,7 @@ public final class NodesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code bulk.avg_size_in_bytes}
 		 */
-		public Builder bulkAvgSizeInBytes(@Nullable String value) {
+		public final Builder bulkAvgSizeInBytes(@Nullable String value) {
 			this.bulkAvgSizeInBytes = value;
 			return this;
 		}
@@ -3248,6 +3153,7 @@ public final class NodesRecord implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public NodesRecord build() {
+			_checkSingleUse();
 
 			return new NodesRecord(this);
 		}

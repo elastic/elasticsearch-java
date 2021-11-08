@@ -33,9 +33,9 @@ import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.SimpleEndpoint;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -47,24 +47,23 @@ import javax.annotation.Nullable;
 
 // typedef: cat.shards.Request
 
-public final class ShardsRequest extends CatRequestBase {
+public class ShardsRequest extends CatRequestBase {
 	@Nullable
 	private final Bytes bytes;
 
-	@Nullable
 	private final List<String> index;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public ShardsRequest(Builder builder) {
+	private ShardsRequest(Builder builder) {
 
 		this.bytes = builder.bytes;
 		this.index = ModelTypeHelper.unmodifiable(builder.index);
 
 	}
 
-	public ShardsRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ShardsRequest of(Function<Builder, ObjectBuilder<ShardsRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -73,7 +72,7 @@ public final class ShardsRequest extends CatRequestBase {
 	 * API name: {@code bytes}
 	 */
 	@Nullable
-	public Bytes bytes() {
+	public final Bytes bytes() {
 		return this.bytes;
 	}
 
@@ -82,8 +81,7 @@ public final class ShardsRequest extends CatRequestBase {
 	 * <p>
 	 * API name: {@code index}
 	 */
-	@Nullable
-	public List<String> index() {
+	public final List<String> index() {
 		return this.index;
 	}
 
@@ -92,7 +90,7 @@ public final class ShardsRequest extends CatRequestBase {
 	/**
 	 * Builder for {@link ShardsRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<ShardsRequest> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ShardsRequest> {
 		@Nullable
 		private Bytes bytes;
 
@@ -104,7 +102,7 @@ public final class ShardsRequest extends CatRequestBase {
 		 * <p>
 		 * API name: {@code bytes}
 		 */
-		public Builder bytes(@Nullable Bytes value) {
+		public final Builder bytes(@Nullable Bytes value) {
 			this.bytes = value;
 			return this;
 		}
@@ -114,7 +112,7 @@ public final class ShardsRequest extends CatRequestBase {
 		 * <p>
 		 * API name: {@code index}
 		 */
-		public Builder index(@Nullable List<String> value) {
+		public final Builder index(@Nullable List<String> value) {
 			this.index = value;
 			return this;
 		}
@@ -124,19 +122,8 @@ public final class ShardsRequest extends CatRequestBase {
 		 * <p>
 		 * API name: {@code index}
 		 */
-		public Builder index(String... value) {
+		public final Builder index(String... value) {
 			this.index = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #index(List)}, creating the list if needed.
-		 */
-		public Builder addIndex(String value) {
-			if (this.index == null) {
-				this.index = new ArrayList<>();
-			}
-			this.index.add(value);
 			return this;
 		}
 
@@ -147,6 +134,7 @@ public final class ShardsRequest extends CatRequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public ShardsRequest build() {
+			_checkSingleUse();
 
 			return new ShardsRequest(this);
 		}
@@ -170,7 +158,7 @@ public final class ShardsRequest extends CatRequestBase {
 
 				int propsSet = 0;
 
-				if (request.index() != null)
+				if (ModelTypeHelper.isDefined(request.index()))
 					propsSet |= _index;
 
 				if (propsSet == 0) {
@@ -196,7 +184,7 @@ public final class ShardsRequest extends CatRequestBase {
 				Map<String, String> params = new HashMap<>();
 				params.put("format", "json");
 				if (request.bytes != null) {
-					params.put("bytes", request.bytes.toString());
+					params.put("bytes", request.bytes.jsonValue());
 				}
 				return params;
 

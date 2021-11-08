@@ -31,6 +31,7 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.util.Objects;
@@ -39,7 +40,7 @@ import javax.annotation.Nullable;
 
 // typedef: xpack.usage.Query
 @JsonpDeserializable
-public final class Query implements JsonpSerializable {
+public class Query implements JsonpSerializable {
 	@Nullable
 	private final Integer count;
 
@@ -54,7 +55,7 @@ public final class Query implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public Query(Builder builder) {
+	private Query(Builder builder) {
 
 		this.count = builder.count;
 		this.failed = builder.failed;
@@ -63,15 +64,15 @@ public final class Query implements JsonpSerializable {
 
 	}
 
-	public Query(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static Query of(Function<Builder, ObjectBuilder<Query>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * API name: {@code count}
 	 */
 	@Nullable
-	public Integer count() {
+	public final Integer count() {
 		return this.count;
 	}
 
@@ -79,7 +80,7 @@ public final class Query implements JsonpSerializable {
 	 * API name: {@code failed}
 	 */
 	@Nullable
-	public Integer failed() {
+	public final Integer failed() {
 		return this.failed;
 	}
 
@@ -87,7 +88,7 @@ public final class Query implements JsonpSerializable {
 	 * API name: {@code paging}
 	 */
 	@Nullable
-	public Integer paging() {
+	public final Integer paging() {
 		return this.paging;
 	}
 
@@ -95,7 +96,7 @@ public final class Query implements JsonpSerializable {
 	 * API name: {@code total}
 	 */
 	@Nullable
-	public Integer total() {
+	public final Integer total() {
 		return this.total;
 	}
 
@@ -111,25 +112,21 @@ public final class Query implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.count != null) {
-
 			generator.writeKey("count");
 			generator.write(this.count);
 
 		}
 		if (this.failed != null) {
-
 			generator.writeKey("failed");
 			generator.write(this.failed);
 
 		}
 		if (this.paging != null) {
-
 			generator.writeKey("paging");
 			generator.write(this.paging);
 
 		}
 		if (this.total != null) {
-
 			generator.writeKey("total");
 			generator.write(this.total);
 
@@ -142,7 +139,7 @@ public final class Query implements JsonpSerializable {
 	/**
 	 * Builder for {@link Query}.
 	 */
-	public static class Builder implements ObjectBuilder<Query> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Query> {
 		@Nullable
 		private Integer count;
 
@@ -158,7 +155,7 @@ public final class Query implements JsonpSerializable {
 		/**
 		 * API name: {@code count}
 		 */
-		public Builder count(@Nullable Integer value) {
+		public final Builder count(@Nullable Integer value) {
 			this.count = value;
 			return this;
 		}
@@ -166,7 +163,7 @@ public final class Query implements JsonpSerializable {
 		/**
 		 * API name: {@code failed}
 		 */
-		public Builder failed(@Nullable Integer value) {
+		public final Builder failed(@Nullable Integer value) {
 			this.failed = value;
 			return this;
 		}
@@ -174,7 +171,7 @@ public final class Query implements JsonpSerializable {
 		/**
 		 * API name: {@code paging}
 		 */
-		public Builder paging(@Nullable Integer value) {
+		public final Builder paging(@Nullable Integer value) {
 			this.paging = value;
 			return this;
 		}
@@ -182,7 +179,7 @@ public final class Query implements JsonpSerializable {
 		/**
 		 * API name: {@code total}
 		 */
-		public Builder total(@Nullable Integer value) {
+		public final Builder total(@Nullable Integer value) {
 			this.total = value;
 			return this;
 		}
@@ -194,6 +191,7 @@ public final class Query implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public Query build() {
+			_checkSingleUse();
 
 			return new Query(this);
 		}

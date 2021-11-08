@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
@@ -40,35 +42,35 @@ import javax.annotation.Nullable;
 
 // typedef: watcher._types.ExecutionState
 @JsonpDeserializable
-public final class ExecutionState implements JsonpSerializable {
+public class ExecutionState implements JsonpSerializable {
 	private final boolean successful;
 
 	private final String timestamp;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public ExecutionState(Builder builder) {
+	private ExecutionState(Builder builder) {
 
-		this.successful = Objects.requireNonNull(builder.successful, "successful");
-		this.timestamp = Objects.requireNonNull(builder.timestamp, "timestamp");
+		this.successful = ModelTypeHelper.requireNonNull(builder.successful, this, "successful");
+		this.timestamp = ModelTypeHelper.requireNonNull(builder.timestamp, this, "timestamp");
 
 	}
 
-	public ExecutionState(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ExecutionState of(Function<Builder, ObjectBuilder<ExecutionState>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code successful}
 	 */
-	public boolean successful() {
+	public final boolean successful() {
 		return this.successful;
 	}
 
 	/**
 	 * Required - API name: {@code timestamp}
 	 */
-	public String timestamp() {
+	public final String timestamp() {
 		return this.timestamp;
 	}
 
@@ -96,7 +98,7 @@ public final class ExecutionState implements JsonpSerializable {
 	/**
 	 * Builder for {@link ExecutionState}.
 	 */
-	public static class Builder implements ObjectBuilder<ExecutionState> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ExecutionState> {
 		private Boolean successful;
 
 		private String timestamp;
@@ -104,7 +106,7 @@ public final class ExecutionState implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code successful}
 		 */
-		public Builder successful(boolean value) {
+		public final Builder successful(boolean value) {
 			this.successful = value;
 			return this;
 		}
@@ -112,7 +114,7 @@ public final class ExecutionState implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code timestamp}
 		 */
-		public Builder timestamp(String value) {
+		public final Builder timestamp(String value) {
 			this.timestamp = value;
 			return this;
 		}
@@ -124,6 +126,7 @@ public final class ExecutionState implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public ExecutionState build() {
+			_checkSingleUse();
 
 			return new ExecutionState(this);
 		}

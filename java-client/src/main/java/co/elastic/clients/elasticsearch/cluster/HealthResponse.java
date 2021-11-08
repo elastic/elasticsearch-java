@@ -32,14 +32,15 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.MapBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
@@ -47,7 +48,7 @@ import javax.annotation.Nullable;
 
 // typedef: cluster.health.Response
 @JsonpDeserializable
-public final class HealthResponse implements JsonpSerializable {
+public class HealthResponse implements JsonpSerializable {
 	private final int activePrimaryShards;
 
 	private final int activeShards;
@@ -58,7 +59,6 @@ public final class HealthResponse implements JsonpSerializable {
 
 	private final int delayedUnassignedShards;
 
-	@Nullable
 	private final Map<String, IndexHealthStats> indices;
 
 	private final int initializingShards;
@@ -83,32 +83,36 @@ public final class HealthResponse implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public HealthResponse(Builder builder) {
+	private HealthResponse(Builder builder) {
 
-		this.activePrimaryShards = Objects.requireNonNull(builder.activePrimaryShards, "active_primary_shards");
-		this.activeShards = Objects.requireNonNull(builder.activeShards, "active_shards");
-		this.activeShardsPercentAsNumber = Objects.requireNonNull(builder.activeShardsPercentAsNumber,
-				"active_shards_percent_as_number");
-		this.clusterName = Objects.requireNonNull(builder.clusterName, "cluster_name");
-		this.delayedUnassignedShards = Objects.requireNonNull(builder.delayedUnassignedShards,
-				"delayed_unassigned_shards");
+		this.activePrimaryShards = ModelTypeHelper.requireNonNull(builder.activePrimaryShards, this,
+				"activePrimaryShards");
+		this.activeShards = ModelTypeHelper.requireNonNull(builder.activeShards, this, "activeShards");
+		this.activeShardsPercentAsNumber = ModelTypeHelper.requireNonNull(builder.activeShardsPercentAsNumber, this,
+				"activeShardsPercentAsNumber");
+		this.clusterName = ModelTypeHelper.requireNonNull(builder.clusterName, this, "clusterName");
+		this.delayedUnassignedShards = ModelTypeHelper.requireNonNull(builder.delayedUnassignedShards, this,
+				"delayedUnassignedShards");
 		this.indices = ModelTypeHelper.unmodifiable(builder.indices);
-		this.initializingShards = Objects.requireNonNull(builder.initializingShards, "initializing_shards");
-		this.numberOfDataNodes = Objects.requireNonNull(builder.numberOfDataNodes, "number_of_data_nodes");
-		this.numberOfInFlightFetch = Objects.requireNonNull(builder.numberOfInFlightFetch, "number_of_in_flight_fetch");
-		this.numberOfNodes = Objects.requireNonNull(builder.numberOfNodes, "number_of_nodes");
-		this.numberOfPendingTasks = Objects.requireNonNull(builder.numberOfPendingTasks, "number_of_pending_tasks");
-		this.relocatingShards = Objects.requireNonNull(builder.relocatingShards, "relocating_shards");
-		this.status = Objects.requireNonNull(builder.status, "status");
-		this.taskMaxWaitingInQueueMillis = Objects.requireNonNull(builder.taskMaxWaitingInQueueMillis,
-				"task_max_waiting_in_queue_millis");
-		this.timedOut = Objects.requireNonNull(builder.timedOut, "timed_out");
-		this.unassignedShards = Objects.requireNonNull(builder.unassignedShards, "unassigned_shards");
+		this.initializingShards = ModelTypeHelper.requireNonNull(builder.initializingShards, this,
+				"initializingShards");
+		this.numberOfDataNodes = ModelTypeHelper.requireNonNull(builder.numberOfDataNodes, this, "numberOfDataNodes");
+		this.numberOfInFlightFetch = ModelTypeHelper.requireNonNull(builder.numberOfInFlightFetch, this,
+				"numberOfInFlightFetch");
+		this.numberOfNodes = ModelTypeHelper.requireNonNull(builder.numberOfNodes, this, "numberOfNodes");
+		this.numberOfPendingTasks = ModelTypeHelper.requireNonNull(builder.numberOfPendingTasks, this,
+				"numberOfPendingTasks");
+		this.relocatingShards = ModelTypeHelper.requireNonNull(builder.relocatingShards, this, "relocatingShards");
+		this.status = ModelTypeHelper.requireNonNull(builder.status, this, "status");
+		this.taskMaxWaitingInQueueMillis = ModelTypeHelper.requireNonNull(builder.taskMaxWaitingInQueueMillis, this,
+				"taskMaxWaitingInQueueMillis");
+		this.timedOut = ModelTypeHelper.requireNonNull(builder.timedOut, this, "timedOut");
+		this.unassignedShards = ModelTypeHelper.requireNonNull(builder.unassignedShards, this, "unassignedShards");
 
 	}
 
-	public HealthResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static HealthResponse of(Function<Builder, ObjectBuilder<HealthResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -116,7 +120,7 @@ public final class HealthResponse implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code active_primary_shards}
 	 */
-	public int activePrimaryShards() {
+	public final int activePrimaryShards() {
 		return this.activePrimaryShards;
 	}
 
@@ -125,7 +129,7 @@ public final class HealthResponse implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code active_shards}
 	 */
-	public int activeShards() {
+	public final int activeShards() {
 		return this.activeShards;
 	}
 
@@ -135,7 +139,7 @@ public final class HealthResponse implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code active_shards_percent_as_number}
 	 */
-	public String activeShardsPercentAsNumber() {
+	public final String activeShardsPercentAsNumber() {
 		return this.activeShardsPercentAsNumber;
 	}
 
@@ -144,7 +148,7 @@ public final class HealthResponse implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code cluster_name}
 	 */
-	public String clusterName() {
+	public final String clusterName() {
 		return this.clusterName;
 	}
 
@@ -154,15 +158,14 @@ public final class HealthResponse implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code delayed_unassigned_shards}
 	 */
-	public int delayedUnassignedShards() {
+	public final int delayedUnassignedShards() {
 		return this.delayedUnassignedShards;
 	}
 
 	/**
 	 * API name: {@code indices}
 	 */
-	@Nullable
-	public Map<String, IndexHealthStats> indices() {
+	public final Map<String, IndexHealthStats> indices() {
 		return this.indices;
 	}
 
@@ -171,7 +174,7 @@ public final class HealthResponse implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code initializing_shards}
 	 */
-	public int initializingShards() {
+	public final int initializingShards() {
 		return this.initializingShards;
 	}
 
@@ -180,14 +183,14 @@ public final class HealthResponse implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code number_of_data_nodes}
 	 */
-	public int numberOfDataNodes() {
+	public final int numberOfDataNodes() {
 		return this.numberOfDataNodes;
 	}
 
 	/**
 	 * Required - API name: {@code number_of_in_flight_fetch}
 	 */
-	public int numberOfInFlightFetch() {
+	public final int numberOfInFlightFetch() {
 		return this.numberOfInFlightFetch;
 	}
 
@@ -196,7 +199,7 @@ public final class HealthResponse implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code number_of_nodes}
 	 */
-	public int numberOfNodes() {
+	public final int numberOfNodes() {
 		return this.numberOfNodes;
 	}
 
@@ -206,7 +209,7 @@ public final class HealthResponse implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code number_of_pending_tasks}
 	 */
-	public int numberOfPendingTasks() {
+	public final int numberOfPendingTasks() {
 		return this.numberOfPendingTasks;
 	}
 
@@ -215,14 +218,14 @@ public final class HealthResponse implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code relocating_shards}
 	 */
-	public int relocatingShards() {
+	public final int relocatingShards() {
 		return this.relocatingShards;
 	}
 
 	/**
 	 * Required - API name: {@code status}
 	 */
-	public Health status() {
+	public final Health status() {
 		return this.status;
 	}
 
@@ -232,7 +235,7 @@ public final class HealthResponse implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code task_max_waiting_in_queue_millis}
 	 */
-	public String taskMaxWaitingInQueueMillis() {
+	public final String taskMaxWaitingInQueueMillis() {
 		return this.taskMaxWaitingInQueueMillis;
 	}
 
@@ -242,7 +245,7 @@ public final class HealthResponse implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code timed_out}
 	 */
-	public boolean timedOut() {
+	public final boolean timedOut() {
 		return this.timedOut;
 	}
 
@@ -251,7 +254,7 @@ public final class HealthResponse implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code unassigned_shards}
 	 */
-	public int unassignedShards() {
+	public final int unassignedShards() {
 		return this.unassignedShards;
 	}
 
@@ -281,8 +284,7 @@ public final class HealthResponse implements JsonpSerializable {
 		generator.writeKey("delayed_unassigned_shards");
 		generator.write(this.delayedUnassignedShards);
 
-		if (this.indices != null) {
-
+		if (ModelTypeHelper.isDefined(this.indices)) {
 			generator.writeKey("indices");
 			generator.writeStartObject();
 			for (Map.Entry<String, IndexHealthStats> item0 : this.indices.entrySet()) {
@@ -293,7 +295,6 @@ public final class HealthResponse implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-
 		generator.writeKey("initializing_shards");
 		generator.write(this.initializingShards);
 
@@ -314,7 +315,6 @@ public final class HealthResponse implements JsonpSerializable {
 
 		generator.writeKey("status");
 		this.status.serialize(generator, mapper);
-
 		generator.writeKey("task_max_waiting_in_queue_millis");
 		generator.write(this.taskMaxWaitingInQueueMillis);
 
@@ -331,7 +331,7 @@ public final class HealthResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link HealthResponse}.
 	 */
-	public static class Builder implements ObjectBuilder<HealthResponse> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<HealthResponse> {
 		private Integer activePrimaryShards;
 
 		private Integer activeShards;
@@ -370,7 +370,7 @@ public final class HealthResponse implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code active_primary_shards}
 		 */
-		public Builder activePrimaryShards(int value) {
+		public final Builder activePrimaryShards(int value) {
 			this.activePrimaryShards = value;
 			return this;
 		}
@@ -380,7 +380,7 @@ public final class HealthResponse implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code active_shards}
 		 */
-		public Builder activeShards(int value) {
+		public final Builder activeShards(int value) {
 			this.activeShards = value;
 			return this;
 		}
@@ -391,7 +391,7 @@ public final class HealthResponse implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code active_shards_percent_as_number}
 		 */
-		public Builder activeShardsPercentAsNumber(String value) {
+		public final Builder activeShardsPercentAsNumber(String value) {
 			this.activeShardsPercentAsNumber = value;
 			return this;
 		}
@@ -401,7 +401,7 @@ public final class HealthResponse implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code cluster_name}
 		 */
-		public Builder clusterName(String value) {
+		public final Builder clusterName(String value) {
 			this.clusterName = value;
 			return this;
 		}
@@ -412,7 +412,7 @@ public final class HealthResponse implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code delayed_unassigned_shards}
 		 */
-		public Builder delayedUnassignedShards(int value) {
+		public final Builder delayedUnassignedShards(int value) {
 			this.delayedUnassignedShards = value;
 			return this;
 		}
@@ -420,19 +420,8 @@ public final class HealthResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code indices}
 		 */
-		public Builder indices(@Nullable Map<String, IndexHealthStats> value) {
+		public final Builder indices(@Nullable Map<String, IndexHealthStats> value) {
 			this.indices = value;
-			return this;
-		}
-
-		/**
-		 * Add a key/value to {@link #indices(Map)}, creating the map if needed.
-		 */
-		public Builder putIndices(String key, IndexHealthStats value) {
-			if (this.indices == null) {
-				this.indices = new HashMap<>();
-			}
-			this.indices.put(key, value);
 			return this;
 		}
 
@@ -443,11 +432,9 @@ public final class HealthResponse implements JsonpSerializable {
 			return this.indices(Collections.singletonMap(key, fn.apply(new IndexHealthStats.Builder()).build()));
 		}
 
-		/**
-		 * Add a key/value to {@link #indices(Map)}, creating the map if needed.
-		 */
-		public Builder putIndices(String key, Function<IndexHealthStats.Builder, ObjectBuilder<IndexHealthStats>> fn) {
-			return this.putIndices(key, fn.apply(new IndexHealthStats.Builder()).build());
+		public final Builder indices(
+				Function<MapBuilder<String, IndexHealthStats, IndexHealthStats.Builder>, ObjectBuilder<Map<String, IndexHealthStats>>> fn) {
+			return indices(fn.apply(new MapBuilder<>(IndexHealthStats.Builder::new)).build());
 		}
 
 		/**
@@ -455,7 +442,7 @@ public final class HealthResponse implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code initializing_shards}
 		 */
-		public Builder initializingShards(int value) {
+		public final Builder initializingShards(int value) {
 			this.initializingShards = value;
 			return this;
 		}
@@ -465,7 +452,7 @@ public final class HealthResponse implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code number_of_data_nodes}
 		 */
-		public Builder numberOfDataNodes(int value) {
+		public final Builder numberOfDataNodes(int value) {
 			this.numberOfDataNodes = value;
 			return this;
 		}
@@ -473,7 +460,7 @@ public final class HealthResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code number_of_in_flight_fetch}
 		 */
-		public Builder numberOfInFlightFetch(int value) {
+		public final Builder numberOfInFlightFetch(int value) {
 			this.numberOfInFlightFetch = value;
 			return this;
 		}
@@ -483,7 +470,7 @@ public final class HealthResponse implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code number_of_nodes}
 		 */
-		public Builder numberOfNodes(int value) {
+		public final Builder numberOfNodes(int value) {
 			this.numberOfNodes = value;
 			return this;
 		}
@@ -494,7 +481,7 @@ public final class HealthResponse implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code number_of_pending_tasks}
 		 */
-		public Builder numberOfPendingTasks(int value) {
+		public final Builder numberOfPendingTasks(int value) {
 			this.numberOfPendingTasks = value;
 			return this;
 		}
@@ -504,7 +491,7 @@ public final class HealthResponse implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code relocating_shards}
 		 */
-		public Builder relocatingShards(int value) {
+		public final Builder relocatingShards(int value) {
 			this.relocatingShards = value;
 			return this;
 		}
@@ -512,7 +499,7 @@ public final class HealthResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code status}
 		 */
-		public Builder status(Health value) {
+		public final Builder status(Health value) {
 			this.status = value;
 			return this;
 		}
@@ -523,7 +510,7 @@ public final class HealthResponse implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code task_max_waiting_in_queue_millis}
 		 */
-		public Builder taskMaxWaitingInQueueMillis(String value) {
+		public final Builder taskMaxWaitingInQueueMillis(String value) {
 			this.taskMaxWaitingInQueueMillis = value;
 			return this;
 		}
@@ -534,7 +521,7 @@ public final class HealthResponse implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code timed_out}
 		 */
-		public Builder timedOut(boolean value) {
+		public final Builder timedOut(boolean value) {
 			this.timedOut = value;
 			return this;
 		}
@@ -544,7 +531,7 @@ public final class HealthResponse implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code unassigned_shards}
 		 */
-		public Builder unassignedShards(int value) {
+		public final Builder unassignedShards(int value) {
 			this.unassignedShards = value;
 			return this;
 		}
@@ -556,6 +543,7 @@ public final class HealthResponse implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public HealthResponse build() {
+			_checkSingleUse();
 
 			return new HealthResponse(this);
 		}

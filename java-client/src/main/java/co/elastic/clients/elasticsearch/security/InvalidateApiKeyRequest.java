@@ -36,10 +36,10 @@ import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.SimpleEndpoint;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -49,11 +49,10 @@ import javax.annotation.Nullable;
 
 // typedef: security.invalidate_api_key.Request
 @JsonpDeserializable
-public final class InvalidateApiKeyRequest extends RequestBase implements JsonpSerializable {
+public class InvalidateApiKeyRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
 	private final String id;
 
-	@Nullable
 	private final List<String> ids;
 
 	@Nullable
@@ -70,7 +69,7 @@ public final class InvalidateApiKeyRequest extends RequestBase implements JsonpS
 
 	// ---------------------------------------------------------------------------------------------
 
-	public InvalidateApiKeyRequest(Builder builder) {
+	private InvalidateApiKeyRequest(Builder builder) {
 
 		this.id = builder.id;
 		this.ids = ModelTypeHelper.unmodifiable(builder.ids);
@@ -81,23 +80,22 @@ public final class InvalidateApiKeyRequest extends RequestBase implements JsonpS
 
 	}
 
-	public InvalidateApiKeyRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static InvalidateApiKeyRequest of(Function<Builder, ObjectBuilder<InvalidateApiKeyRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * API name: {@code id}
 	 */
 	@Nullable
-	public String id() {
+	public final String id() {
 		return this.id;
 	}
 
 	/**
 	 * API name: {@code ids}
 	 */
-	@Nullable
-	public List<String> ids() {
+	public final List<String> ids() {
 		return this.ids;
 	}
 
@@ -105,7 +103,7 @@ public final class InvalidateApiKeyRequest extends RequestBase implements JsonpS
 	 * API name: {@code name}
 	 */
 	@Nullable
-	public String name() {
+	public final String name() {
 		return this.name;
 	}
 
@@ -113,7 +111,7 @@ public final class InvalidateApiKeyRequest extends RequestBase implements JsonpS
 	 * API name: {@code owner}
 	 */
 	@Nullable
-	public Boolean owner() {
+	public final Boolean owner() {
 		return this.owner;
 	}
 
@@ -121,7 +119,7 @@ public final class InvalidateApiKeyRequest extends RequestBase implements JsonpS
 	 * API name: {@code realm_name}
 	 */
 	@Nullable
-	public String realmName() {
+	public final String realmName() {
 		return this.realmName;
 	}
 
@@ -129,7 +127,7 @@ public final class InvalidateApiKeyRequest extends RequestBase implements JsonpS
 	 * API name: {@code username}
 	 */
 	@Nullable
-	public String username() {
+	public final String username() {
 		return this.username;
 	}
 
@@ -145,13 +143,11 @@ public final class InvalidateApiKeyRequest extends RequestBase implements JsonpS
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.id != null) {
-
 			generator.writeKey("id");
 			generator.write(this.id);
 
 		}
-		if (this.ids != null) {
-
+		if (ModelTypeHelper.isDefined(this.ids)) {
 			generator.writeKey("ids");
 			generator.writeStartArray();
 			for (String item0 : this.ids) {
@@ -162,25 +158,21 @@ public final class InvalidateApiKeyRequest extends RequestBase implements JsonpS
 
 		}
 		if (this.name != null) {
-
 			generator.writeKey("name");
 			generator.write(this.name);
 
 		}
 		if (this.owner != null) {
-
 			generator.writeKey("owner");
 			generator.write(this.owner);
 
 		}
 		if (this.realmName != null) {
-
 			generator.writeKey("realm_name");
 			generator.write(this.realmName);
 
 		}
 		if (this.username != null) {
-
 			generator.writeKey("username");
 			generator.write(this.username);
 
@@ -193,7 +185,7 @@ public final class InvalidateApiKeyRequest extends RequestBase implements JsonpS
 	/**
 	 * Builder for {@link InvalidateApiKeyRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<InvalidateApiKeyRequest> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<InvalidateApiKeyRequest> {
 		@Nullable
 		private String id;
 
@@ -215,7 +207,7 @@ public final class InvalidateApiKeyRequest extends RequestBase implements JsonpS
 		/**
 		 * API name: {@code id}
 		 */
-		public Builder id(@Nullable String value) {
+		public final Builder id(@Nullable String value) {
 			this.id = value;
 			return this;
 		}
@@ -223,7 +215,7 @@ public final class InvalidateApiKeyRequest extends RequestBase implements JsonpS
 		/**
 		 * API name: {@code ids}
 		 */
-		public Builder ids(@Nullable List<String> value) {
+		public final Builder ids(@Nullable List<String> value) {
 			this.ids = value;
 			return this;
 		}
@@ -231,26 +223,15 @@ public final class InvalidateApiKeyRequest extends RequestBase implements JsonpS
 		/**
 		 * API name: {@code ids}
 		 */
-		public Builder ids(String... value) {
+		public final Builder ids(String... value) {
 			this.ids = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #ids(List)}, creating the list if needed.
-		 */
-		public Builder addIds(String value) {
-			if (this.ids == null) {
-				this.ids = new ArrayList<>();
-			}
-			this.ids.add(value);
 			return this;
 		}
 
 		/**
 		 * API name: {@code name}
 		 */
-		public Builder name(@Nullable String value) {
+		public final Builder name(@Nullable String value) {
 			this.name = value;
 			return this;
 		}
@@ -258,7 +239,7 @@ public final class InvalidateApiKeyRequest extends RequestBase implements JsonpS
 		/**
 		 * API name: {@code owner}
 		 */
-		public Builder owner(@Nullable Boolean value) {
+		public final Builder owner(@Nullable Boolean value) {
 			this.owner = value;
 			return this;
 		}
@@ -266,7 +247,7 @@ public final class InvalidateApiKeyRequest extends RequestBase implements JsonpS
 		/**
 		 * API name: {@code realm_name}
 		 */
-		public Builder realmName(@Nullable String value) {
+		public final Builder realmName(@Nullable String value) {
 			this.realmName = value;
 			return this;
 		}
@@ -274,7 +255,7 @@ public final class InvalidateApiKeyRequest extends RequestBase implements JsonpS
 		/**
 		 * API name: {@code username}
 		 */
-		public Builder username(@Nullable String value) {
+		public final Builder username(@Nullable String value) {
 			this.username = value;
 			return this;
 		}
@@ -286,6 +267,7 @@ public final class InvalidateApiKeyRequest extends RequestBase implements JsonpS
 		 *             if some of the required fields are null.
 		 */
 		public InvalidateApiKeyRequest build() {
+			_checkSingleUse();
 
 			return new InvalidateApiKeyRequest(this);
 		}

@@ -28,8 +28,11 @@ import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import co.elastic.clients.util.TaggedUnion;
 import co.elastic.clients.util.TaggedUnionUtils;
 import jakarta.json.JsonValue;
@@ -57,12 +60,12 @@ public class FunctionScore implements TaggedUnion<Object>, JsonpSerializable {
 	private final Object _value;
 
 	@Override
-	public String _type() {
+	public final String _type() {
 		return _type;
 	}
 
 	@Override
-	public Object _get() {
+	public final Object _get() {
 		return _value;
 	}
 
@@ -74,37 +77,33 @@ public class FunctionScore implements TaggedUnion<Object>, JsonpSerializable {
 
 	public FunctionScore(FunctionScoreVariant value) {
 
-		this._type = Objects.requireNonNull(value._variantType(), "variant type");
-		this._value = Objects.requireNonNull(value, "variant value");
+		this._type = ModelTypeHelper.requireNonNull(value._variantType(), this, "<variant type>");
+		this._value = ModelTypeHelper.requireNonNull(value, this, "<variant value>");
 
 		this.filter = null;
 		this.weight = null;
 
 	}
 
-	public <T extends FunctionScoreVariant> FunctionScore(ObjectBuilder<T> builder) {
-		this(builder.build());
-	}
-
 	private FunctionScore(Builder builder) {
 
-		this._type = Objects.requireNonNull(builder._type, "variant type");
-		this._value = Objects.requireNonNull(builder._value, "variant value");
+		this._type = ModelTypeHelper.requireNonNull(builder._type, builder, "<variant type>");
+		this._value = ModelTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
 
 		this.filter = builder.filter;
 		this.weight = builder.weight;
 
 	}
 
-	public FunctionScore(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static FunctionScore of(Function<Builder, ObjectBuilder<FunctionScore>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * API name: {@code filter}
 	 */
 	@Nullable
-	public Query filter() {
+	public final Query filter() {
 		return this.filter;
 	}
 
@@ -112,7 +111,7 @@ public class FunctionScore implements TaggedUnion<Object>, JsonpSerializable {
 	 * API name: {@code weight}
 	 */
 	@Nullable
-	public Double weight() {
+	public final Double weight() {
 		return this.weight;
 	}
 
@@ -183,13 +182,11 @@ public class FunctionScore implements TaggedUnion<Object>, JsonpSerializable {
 		generator.writeStartObject();
 
 		if (this.filter != null) {
-
 			generator.writeKey("filter");
 			this.filter.serialize(generator, mapper);
 
 		}
 		if (this.weight != null) {
-
 			generator.writeKey("weight");
 			generator.write(this.weight);
 
@@ -218,7 +215,7 @@ public class FunctionScore implements TaggedUnion<Object>, JsonpSerializable {
 		generator.writeEnd();
 	}
 
-	public static class Builder {
+	public static class Builder extends ObjectBuilderBase {
 		private String _type;
 		private Object _value;
 
@@ -231,7 +228,7 @@ public class FunctionScore implements TaggedUnion<Object>, JsonpSerializable {
 		/**
 		 * API name: {@code filter}
 		 */
-		public Builder filter(@Nullable Query value) {
+		public final Builder filter(@Nullable Query value) {
 			this.filter = value;
 			return this;
 		}
@@ -239,14 +236,14 @@ public class FunctionScore implements TaggedUnion<Object>, JsonpSerializable {
 		/**
 		 * API name: {@code filter}
 		 */
-		public Builder filter(Function<Query.Builder, ObjectBuilder<Query>> fn) {
+		public final Builder filter(Function<Query.Builder, ObjectBuilder<Query>> fn) {
 			return this.filter(fn.apply(new Query.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code weight}
 		 */
-		public Builder weight(@Nullable Double value) {
+		public final Builder weight(@Nullable Double value) {
 			this.weight = value;
 			return this;
 		}
@@ -303,6 +300,7 @@ public class FunctionScore implements TaggedUnion<Object>, JsonpSerializable {
 		}
 
 		protected FunctionScore build() {
+			_checkSingleUse();
 			return new FunctionScore(this);
 		}
 
@@ -311,7 +309,7 @@ public class FunctionScore implements TaggedUnion<Object>, JsonpSerializable {
 			/**
 			 * API name: {@code filter}
 			 */
-			public ContainerBuilder filter(@Nullable Query value) {
+			public final ContainerBuilder filter(@Nullable Query value) {
 				Builder.this.filter = value;
 				return this;
 			}
@@ -319,14 +317,14 @@ public class FunctionScore implements TaggedUnion<Object>, JsonpSerializable {
 			/**
 			 * API name: {@code filter}
 			 */
-			public ContainerBuilder filter(Function<Query.Builder, ObjectBuilder<Query>> fn) {
+			public final ContainerBuilder filter(Function<Query.Builder, ObjectBuilder<Query>> fn) {
 				return this.filter(fn.apply(new Query.Builder()).build());
 			}
 
 			/**
 			 * API name: {@code weight}
 			 */
-			public ContainerBuilder weight(@Nullable Double value) {
+			public final ContainerBuilder weight(@Nullable Double value) {
 				Builder.this.weight = value;
 				return this;
 			}
@@ -350,6 +348,6 @@ public class FunctionScore implements TaggedUnion<Object>, JsonpSerializable {
 
 	}
 
-	public static final JsonpDeserializer<FunctionScore> _DESERIALIZER = JsonpDeserializer.lazy(Builder::new,
+	public static final JsonpDeserializer<FunctionScore> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
 			FunctionScore::setupFunctionScoreDeserializer, Builder::build);
 }

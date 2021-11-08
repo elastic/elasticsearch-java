@@ -38,21 +38,21 @@ import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.BucketScriptAggregation
 @JsonpDeserializable
-public final class BucketScriptAggregation extends PipelineAggregationBase implements AggregationVariant {
+public class BucketScriptAggregation extends PipelineAggregationBase implements AggregationVariant {
 	@Nullable
 	private final JsonValue /* _types.Script */ script;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public BucketScriptAggregation(Builder builder) {
+	private BucketScriptAggregation(Builder builder) {
 		super(builder);
 
 		this.script = builder.script;
 
 	}
 
-	public BucketScriptAggregation(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static BucketScriptAggregation of(Function<Builder, ObjectBuilder<BucketScriptAggregation>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -67,7 +67,7 @@ public final class BucketScriptAggregation extends PipelineAggregationBase imple
 	 * API name: {@code script}
 	 */
 	@Nullable
-	public JsonValue /* _types.Script */ script() {
+	public final JsonValue /* _types.Script */ script() {
 		return this.script;
 	}
 
@@ -75,7 +75,6 @@ public final class BucketScriptAggregation extends PipelineAggregationBase imple
 
 		super.serializeInternal(generator, mapper);
 		if (this.script != null) {
-
 			generator.writeKey("script");
 			generator.write(this.script);
 
@@ -97,7 +96,7 @@ public final class BucketScriptAggregation extends PipelineAggregationBase imple
 		/**
 		 * API name: {@code script}
 		 */
-		public Builder script(@Nullable JsonValue /* _types.Script */ value) {
+		public final Builder script(@Nullable JsonValue /* _types.Script */ value) {
 			this.script = value;
 			return this;
 		}
@@ -114,6 +113,7 @@ public final class BucketScriptAggregation extends PipelineAggregationBase imple
 		 *             if some of the required fields are null.
 		 */
 		public BucketScriptAggregation build() {
+			_checkSingleUse();
 
 			return new BucketScriptAggregation(this);
 		}

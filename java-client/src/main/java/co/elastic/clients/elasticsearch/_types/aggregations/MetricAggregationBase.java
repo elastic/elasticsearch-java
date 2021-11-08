@@ -31,6 +31,7 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -52,7 +53,7 @@ public abstract class MetricAggregationBase implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public MetricAggregationBase(AbstractBuilder<?> builder) {
+	protected MetricAggregationBase(AbstractBuilder<?> builder) {
 
 		this.field = builder.field;
 		this.missing = builder.missing;
@@ -64,7 +65,7 @@ public abstract class MetricAggregationBase implements JsonpSerializable {
 	 * API name: {@code field}
 	 */
 	@Nullable
-	public String field() {
+	public final String field() {
 		return this.field;
 	}
 
@@ -72,7 +73,7 @@ public abstract class MetricAggregationBase implements JsonpSerializable {
 	 * API name: {@code missing}
 	 */
 	@Nullable
-	public String missing() {
+	public final String missing() {
 		return this.missing;
 	}
 
@@ -80,7 +81,7 @@ public abstract class MetricAggregationBase implements JsonpSerializable {
 	 * API name: {@code script}
 	 */
 	@Nullable
-	public JsonValue /* _types.Script */ script() {
+	public final JsonValue /* _types.Script */ script() {
 		return this.script;
 	}
 
@@ -96,19 +97,16 @@ public abstract class MetricAggregationBase implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.field != null) {
-
 			generator.writeKey("field");
 			generator.write(this.field);
 
 		}
 		if (this.missing != null) {
-
 			generator.writeKey("missing");
 			generator.write(this.missing);
 
 		}
 		if (this.script != null) {
-
 			generator.writeKey("script");
 			generator.write(this.script);
 
@@ -116,7 +114,9 @@ public abstract class MetricAggregationBase implements JsonpSerializable {
 
 	}
 
-	protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>> {
+	protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>>
+			extends
+				ObjectBuilderBase {
 		@Nullable
 		private String field;
 
@@ -129,7 +129,7 @@ public abstract class MetricAggregationBase implements JsonpSerializable {
 		/**
 		 * API name: {@code field}
 		 */
-		public BuilderT field(@Nullable String value) {
+		public final BuilderT field(@Nullable String value) {
 			this.field = value;
 			return self();
 		}
@@ -137,7 +137,7 @@ public abstract class MetricAggregationBase implements JsonpSerializable {
 		/**
 		 * API name: {@code missing}
 		 */
-		public BuilderT missing(@Nullable String value) {
+		public final BuilderT missing(@Nullable String value) {
 			this.missing = value;
 			return self();
 		}
@@ -145,7 +145,7 @@ public abstract class MetricAggregationBase implements JsonpSerializable {
 		/**
 		 * API name: {@code script}
 		 */
-		public BuilderT script(@Nullable JsonValue /* _types.Script */ value) {
+		public final BuilderT script(@Nullable JsonValue /* _types.Script */ value) {
 			this.script = value;
 			return self();
 		}

@@ -39,7 +39,7 @@ import java.util.function.Function;
 
 // typedef: autoscaling.get_autoscaling_capacity.Request
 
-public final class GetAutoscalingCapacityRequest extends RequestBase {
+public class GetAutoscalingCapacityRequest extends RequestBase {
 	public GetAutoscalingCapacityRequest() {
 	}
 

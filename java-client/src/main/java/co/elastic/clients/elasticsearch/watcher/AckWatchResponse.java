@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;
@@ -38,25 +40,25 @@ import javax.annotation.Nullable;
 
 // typedef: watcher.ack_watch.Response
 @JsonpDeserializable
-public final class AckWatchResponse implements JsonpSerializable {
+public class AckWatchResponse implements JsonpSerializable {
 	private final WatchStatus status;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public AckWatchResponse(Builder builder) {
+	private AckWatchResponse(Builder builder) {
 
-		this.status = Objects.requireNonNull(builder.status, "status");
+		this.status = ModelTypeHelper.requireNonNull(builder.status, this, "status");
 
 	}
 
-	public AckWatchResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static AckWatchResponse of(Function<Builder, ObjectBuilder<AckWatchResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code status}
 	 */
-	public WatchStatus status() {
+	public final WatchStatus status() {
 		return this.status;
 	}
 
@@ -81,13 +83,13 @@ public final class AckWatchResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link AckWatchResponse}.
 	 */
-	public static class Builder implements ObjectBuilder<AckWatchResponse> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<AckWatchResponse> {
 		private WatchStatus status;
 
 		/**
 		 * Required - API name: {@code status}
 		 */
-		public Builder status(WatchStatus value) {
+		public final Builder status(WatchStatus value) {
 			this.status = value;
 			return this;
 		}
@@ -95,7 +97,7 @@ public final class AckWatchResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code status}
 		 */
-		public Builder status(Function<WatchStatus.Builder, ObjectBuilder<WatchStatus>> fn) {
+		public final Builder status(Function<WatchStatus.Builder, ObjectBuilder<WatchStatus>> fn) {
 			return this.status(fn.apply(new WatchStatus.Builder()).build());
 		}
 
@@ -106,6 +108,7 @@ public final class AckWatchResponse implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public AckWatchResponse build() {
+			_checkSingleUse();
 
 			return new AckWatchResponse(this);
 		}

@@ -35,16 +35,17 @@ import java.util.function.Function;
 
 // typedef: _types.aggregations.CumulativeCardinalityAggregation
 @JsonpDeserializable
-public final class CumulativeCardinalityAggregation extends PipelineAggregationBase implements AggregationVariant {
+public class CumulativeCardinalityAggregation extends PipelineAggregationBase implements AggregationVariant {
 	// ---------------------------------------------------------------------------------------------
 
-	public CumulativeCardinalityAggregation(Builder builder) {
+	private CumulativeCardinalityAggregation(Builder builder) {
 		super(builder);
 
 	}
 
-	public CumulativeCardinalityAggregation(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static CumulativeCardinalityAggregation of(
+			Function<Builder, ObjectBuilder<CumulativeCardinalityAggregation>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -75,6 +76,7 @@ public final class CumulativeCardinalityAggregation extends PipelineAggregationB
 		 *             if some of the required fields are null.
 		 */
 		public CumulativeCardinalityAggregation build() {
+			_checkSingleUse();
 
 			return new CumulativeCardinalityAggregation(this);
 		}

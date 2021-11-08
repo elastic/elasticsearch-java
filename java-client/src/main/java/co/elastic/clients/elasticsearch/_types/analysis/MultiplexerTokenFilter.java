@@ -34,7 +34,6 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
@@ -43,23 +42,23 @@ import javax.annotation.Nullable;
 
 // typedef: _types.analysis.MultiplexerTokenFilter
 @JsonpDeserializable
-public final class MultiplexerTokenFilter extends TokenFilterBase implements TokenFilterVariant {
+public class MultiplexerTokenFilter extends TokenFilterBase implements TokenFilterVariant {
 	private final List<String> filters;
 
 	private final boolean preserveOriginal;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public MultiplexerTokenFilter(Builder builder) {
+	private MultiplexerTokenFilter(Builder builder) {
 		super(builder);
 
-		this.filters = ModelTypeHelper.unmodifiableNonNull(builder.filters, "filters");
-		this.preserveOriginal = Objects.requireNonNull(builder.preserveOriginal, "preserve_original");
+		this.filters = ModelTypeHelper.unmodifiableRequired(builder.filters, this, "filters");
+		this.preserveOriginal = ModelTypeHelper.requireNonNull(builder.preserveOriginal, this, "preserveOriginal");
 
 	}
 
-	public MultiplexerTokenFilter(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static MultiplexerTokenFilter of(Function<Builder, ObjectBuilder<MultiplexerTokenFilter>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -73,14 +72,14 @@ public final class MultiplexerTokenFilter extends TokenFilterBase implements Tok
 	/**
 	 * Required - API name: {@code filters}
 	 */
-	public List<String> filters() {
+	public final List<String> filters() {
 		return this.filters;
 	}
 
 	/**
 	 * Required - API name: {@code preserve_original}
 	 */
-	public boolean preserveOriginal() {
+	public final boolean preserveOriginal() {
 		return this.preserveOriginal;
 	}
 
@@ -88,15 +87,16 @@ public final class MultiplexerTokenFilter extends TokenFilterBase implements Tok
 
 		generator.write("type", "multiplexer");
 		super.serializeInternal(generator, mapper);
+		if (ModelTypeHelper.isDefined(this.filters)) {
+			generator.writeKey("filters");
+			generator.writeStartArray();
+			for (String item0 : this.filters) {
+				generator.write(item0);
 
-		generator.writeKey("filters");
-		generator.writeStartArray();
-		for (String item0 : this.filters) {
-			generator.write(item0);
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
-
 		generator.writeKey("preserve_original");
 		generator.write(this.preserveOriginal);
 
@@ -117,7 +117,7 @@ public final class MultiplexerTokenFilter extends TokenFilterBase implements Tok
 		/**
 		 * Required - API name: {@code filters}
 		 */
-		public Builder filters(List<String> value) {
+		public final Builder filters(List<String> value) {
 			this.filters = value;
 			return this;
 		}
@@ -125,26 +125,15 @@ public final class MultiplexerTokenFilter extends TokenFilterBase implements Tok
 		/**
 		 * Required - API name: {@code filters}
 		 */
-		public Builder filters(String... value) {
+		public final Builder filters(String... value) {
 			this.filters = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #filters(List)}, creating the list if needed.
-		 */
-		public Builder addFilters(String value) {
-			if (this.filters == null) {
-				this.filters = new ArrayList<>();
-			}
-			this.filters.add(value);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code preserve_original}
 		 */
-		public Builder preserveOriginal(boolean value) {
+		public final Builder preserveOriginal(boolean value) {
 			this.preserveOriginal = value;
 			return this;
 		}
@@ -161,6 +150,7 @@ public final class MultiplexerTokenFilter extends TokenFilterBase implements Tok
 		 *             if some of the required fields are null.
 		 */
 		public MultiplexerTokenFilter build() {
+			_checkSingleUse();
 
 			return new MultiplexerTokenFilter(this);
 		}

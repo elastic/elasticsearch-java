@@ -29,6 +29,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -39,7 +40,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.TermQuery
 @JsonpDeserializable
-public final class TermQuery extends QueryBase implements QueryVariant {
+public class TermQuery extends QueryBase implements QueryVariant {
 	// Single key dictionary
 	private final String field;
 
@@ -50,17 +51,17 @@ public final class TermQuery extends QueryBase implements QueryVariant {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public TermQuery(Builder builder) {
+	private TermQuery(Builder builder) {
 		super(builder);
-		this.field = Objects.requireNonNull(builder.field, "field");
+		this.field = ModelTypeHelper.requireNonNull(builder.field, this, "field");
 
-		this.value = Objects.requireNonNull(builder.value, "value");
+		this.value = ModelTypeHelper.requireNonNull(builder.value, this, "value");
 		this.caseInsensitive = builder.caseInsensitive;
 
 	}
 
-	public TermQuery(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static TermQuery of(Function<Builder, ObjectBuilder<TermQuery>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -74,14 +75,14 @@ public final class TermQuery extends QueryBase implements QueryVariant {
 	/**
 	 * Required - The target field
 	 */
-	public String field() {
+	public final String field() {
 		return this.field;
 	}
 
 	/**
 	 * Required - API name: {@code value}
 	 */
-	public String value() {
+	public final String value() {
 		return this.value;
 	}
 
@@ -89,7 +90,7 @@ public final class TermQuery extends QueryBase implements QueryVariant {
 	 * API name: {@code case_insensitive}
 	 */
 	@Nullable
-	public Boolean caseInsensitive() {
+	public final Boolean caseInsensitive() {
 		return this.caseInsensitive;
 	}
 
@@ -97,12 +98,10 @@ public final class TermQuery extends QueryBase implements QueryVariant {
 		generator.writeStartObject(this.field);
 
 		super.serializeInternal(generator, mapper);
-
 		generator.writeKey("value");
 		generator.write(this.value);
 
 		if (this.caseInsensitive != null) {
-
 			generator.writeKey("case_insensitive");
 			generator.write(this.caseInsensitive);
 
@@ -123,7 +122,7 @@ public final class TermQuery extends QueryBase implements QueryVariant {
 		/**
 		 * Required - The target field
 		 */
-		public Builder field(String value) {
+		public final Builder field(String value) {
 			this.field = value;
 			return this;
 		}
@@ -136,7 +135,7 @@ public final class TermQuery extends QueryBase implements QueryVariant {
 		/**
 		 * Required - API name: {@code value}
 		 */
-		public Builder value(String value) {
+		public final Builder value(String value) {
 			this.value = value;
 			return this;
 		}
@@ -144,7 +143,7 @@ public final class TermQuery extends QueryBase implements QueryVariant {
 		/**
 		 * API name: {@code case_insensitive}
 		 */
-		public Builder caseInsensitive(@Nullable Boolean value) {
+		public final Builder caseInsensitive(@Nullable Boolean value) {
 			this.caseInsensitive = value;
 			return this;
 		}
@@ -161,6 +160,7 @@ public final class TermQuery extends QueryBase implements QueryVariant {
 		 *             if some of the required fields are null.
 		 */
 		public TermQuery build() {
+			_checkSingleUse();
 
 			return new TermQuery(this);
 		}

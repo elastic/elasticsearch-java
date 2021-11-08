@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -39,25 +41,25 @@ import javax.annotation.Nullable;
 
 // typedef: cat.help.HelpRecord
 @JsonpDeserializable
-public final class HelpRecord implements JsonpSerializable {
+public class HelpRecord implements JsonpSerializable {
 	private final String endpoint;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public HelpRecord(Builder builder) {
+	private HelpRecord(Builder builder) {
 
-		this.endpoint = Objects.requireNonNull(builder.endpoint, "endpoint");
+		this.endpoint = ModelTypeHelper.requireNonNull(builder.endpoint, this, "endpoint");
 
 	}
 
-	public HelpRecord(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static HelpRecord of(Function<Builder, ObjectBuilder<HelpRecord>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code endpoint}
 	 */
-	public String endpoint() {
+	public final String endpoint() {
 		return this.endpoint;
 	}
 
@@ -82,13 +84,13 @@ public final class HelpRecord implements JsonpSerializable {
 	/**
 	 * Builder for {@link HelpRecord}.
 	 */
-	public static class Builder implements ObjectBuilder<HelpRecord> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<HelpRecord> {
 		private String endpoint;
 
 		/**
 		 * Required - API name: {@code endpoint}
 		 */
-		public Builder endpoint(String value) {
+		public final Builder endpoint(String value) {
 			this.endpoint = value;
 			return this;
 		}
@@ -100,6 +102,7 @@ public final class HelpRecord implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public HelpRecord build() {
+			_checkSingleUse();
 
 			return new HelpRecord(this);
 		}

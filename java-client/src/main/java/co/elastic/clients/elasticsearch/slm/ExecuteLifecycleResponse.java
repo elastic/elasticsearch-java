@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -39,25 +41,25 @@ import javax.annotation.Nullable;
 
 // typedef: slm.execute_lifecycle.Response
 @JsonpDeserializable
-public final class ExecuteLifecycleResponse implements JsonpSerializable {
+public class ExecuteLifecycleResponse implements JsonpSerializable {
 	private final String snapshotName;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public ExecuteLifecycleResponse(Builder builder) {
+	private ExecuteLifecycleResponse(Builder builder) {
 
-		this.snapshotName = Objects.requireNonNull(builder.snapshotName, "snapshot_name");
+		this.snapshotName = ModelTypeHelper.requireNonNull(builder.snapshotName, this, "snapshotName");
 
 	}
 
-	public ExecuteLifecycleResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ExecuteLifecycleResponse of(Function<Builder, ObjectBuilder<ExecuteLifecycleResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code snapshot_name}
 	 */
-	public String snapshotName() {
+	public final String snapshotName() {
 		return this.snapshotName;
 	}
 
@@ -82,13 +84,13 @@ public final class ExecuteLifecycleResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link ExecuteLifecycleResponse}.
 	 */
-	public static class Builder implements ObjectBuilder<ExecuteLifecycleResponse> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ExecuteLifecycleResponse> {
 		private String snapshotName;
 
 		/**
 		 * Required - API name: {@code snapshot_name}
 		 */
-		public Builder snapshotName(String value) {
+		public final Builder snapshotName(String value) {
 			this.snapshotName = value;
 			return this;
 		}
@@ -100,6 +102,7 @@ public final class ExecuteLifecycleResponse implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public ExecuteLifecycleResponse build() {
+			_checkSingleUse();
 
 			return new ExecuteLifecycleResponse(this);
 		}

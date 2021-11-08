@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;
@@ -38,7 +40,7 @@ import javax.annotation.Nullable;
 
 // typedef: cluster.stats.ClusterIndicesShardsIndex
 @JsonpDeserializable
-public final class ClusterIndicesShardsIndex implements JsonpSerializable {
+public class ClusterIndicesShardsIndex implements JsonpSerializable {
 	private final ClusterShardMetrics primaries;
 
 	private final ClusterShardMetrics replication;
@@ -47,16 +49,16 @@ public final class ClusterIndicesShardsIndex implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public ClusterIndicesShardsIndex(Builder builder) {
+	private ClusterIndicesShardsIndex(Builder builder) {
 
-		this.primaries = Objects.requireNonNull(builder.primaries, "primaries");
-		this.replication = Objects.requireNonNull(builder.replication, "replication");
-		this.shards = Objects.requireNonNull(builder.shards, "shards");
+		this.primaries = ModelTypeHelper.requireNonNull(builder.primaries, this, "primaries");
+		this.replication = ModelTypeHelper.requireNonNull(builder.replication, this, "replication");
+		this.shards = ModelTypeHelper.requireNonNull(builder.shards, this, "shards");
 
 	}
 
-	public ClusterIndicesShardsIndex(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ClusterIndicesShardsIndex of(Function<Builder, ObjectBuilder<ClusterIndicesShardsIndex>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -65,7 +67,7 @@ public final class ClusterIndicesShardsIndex implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code primaries}
 	 */
-	public ClusterShardMetrics primaries() {
+	public final ClusterShardMetrics primaries() {
 		return this.primaries;
 	}
 
@@ -75,7 +77,7 @@ public final class ClusterIndicesShardsIndex implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code replication}
 	 */
-	public ClusterShardMetrics replication() {
+	public final ClusterShardMetrics replication() {
 		return this.replication;
 	}
 
@@ -85,7 +87,7 @@ public final class ClusterIndicesShardsIndex implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code shards}
 	 */
-	public ClusterShardMetrics shards() {
+	public final ClusterShardMetrics shards() {
 		return this.shards;
 	}
 
@@ -116,7 +118,7 @@ public final class ClusterIndicesShardsIndex implements JsonpSerializable {
 	/**
 	 * Builder for {@link ClusterIndicesShardsIndex}.
 	 */
-	public static class Builder implements ObjectBuilder<ClusterIndicesShardsIndex> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ClusterIndicesShardsIndex> {
 		private ClusterShardMetrics primaries;
 
 		private ClusterShardMetrics replication;
@@ -129,7 +131,7 @@ public final class ClusterIndicesShardsIndex implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code primaries}
 		 */
-		public Builder primaries(ClusterShardMetrics value) {
+		public final Builder primaries(ClusterShardMetrics value) {
 			this.primaries = value;
 			return this;
 		}
@@ -140,7 +142,7 @@ public final class ClusterIndicesShardsIndex implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code primaries}
 		 */
-		public Builder primaries(Function<ClusterShardMetrics.Builder, ObjectBuilder<ClusterShardMetrics>> fn) {
+		public final Builder primaries(Function<ClusterShardMetrics.Builder, ObjectBuilder<ClusterShardMetrics>> fn) {
 			return this.primaries(fn.apply(new ClusterShardMetrics.Builder()).build());
 		}
 
@@ -150,7 +152,7 @@ public final class ClusterIndicesShardsIndex implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code replication}
 		 */
-		public Builder replication(ClusterShardMetrics value) {
+		public final Builder replication(ClusterShardMetrics value) {
 			this.replication = value;
 			return this;
 		}
@@ -161,7 +163,7 @@ public final class ClusterIndicesShardsIndex implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code replication}
 		 */
-		public Builder replication(Function<ClusterShardMetrics.Builder, ObjectBuilder<ClusterShardMetrics>> fn) {
+		public final Builder replication(Function<ClusterShardMetrics.Builder, ObjectBuilder<ClusterShardMetrics>> fn) {
 			return this.replication(fn.apply(new ClusterShardMetrics.Builder()).build());
 		}
 
@@ -171,7 +173,7 @@ public final class ClusterIndicesShardsIndex implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code shards}
 		 */
-		public Builder shards(ClusterShardMetrics value) {
+		public final Builder shards(ClusterShardMetrics value) {
 			this.shards = value;
 			return this;
 		}
@@ -182,7 +184,7 @@ public final class ClusterIndicesShardsIndex implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code shards}
 		 */
-		public Builder shards(Function<ClusterShardMetrics.Builder, ObjectBuilder<ClusterShardMetrics>> fn) {
+		public final Builder shards(Function<ClusterShardMetrics.Builder, ObjectBuilder<ClusterShardMetrics>> fn) {
 			return this.shards(fn.apply(new ClusterShardMetrics.Builder()).build());
 		}
 
@@ -193,6 +195,7 @@ public final class ClusterIndicesShardsIndex implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public ClusterIndicesShardsIndex build() {
+			_checkSingleUse();
 
 			return new ClusterIndicesShardsIndex(this);
 		}

@@ -31,7 +31,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
@@ -41,7 +43,7 @@ import javax.annotation.Nullable;
 
 // typedef: _global.get_script.Response
 @JsonpDeserializable
-public final class GetScriptResponse implements JsonpSerializable {
+public class GetScriptResponse implements JsonpSerializable {
 	private final String id;
 
 	private final boolean found;
@@ -51,29 +53,29 @@ public final class GetScriptResponse implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public GetScriptResponse(Builder builder) {
+	private GetScriptResponse(Builder builder) {
 
-		this.id = Objects.requireNonNull(builder.id, "_id");
-		this.found = Objects.requireNonNull(builder.found, "found");
+		this.id = ModelTypeHelper.requireNonNull(builder.id, this, "id");
+		this.found = ModelTypeHelper.requireNonNull(builder.found, this, "found");
 		this.script = builder.script;
 
 	}
 
-	public GetScriptResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static GetScriptResponse of(Function<Builder, ObjectBuilder<GetScriptResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code _id}
 	 */
-	public String id() {
+	public final String id() {
 		return this.id;
 	}
 
 	/**
 	 * Required - API name: {@code found}
 	 */
-	public boolean found() {
+	public final boolean found() {
 		return this.found;
 	}
 
@@ -81,7 +83,7 @@ public final class GetScriptResponse implements JsonpSerializable {
 	 * API name: {@code script}
 	 */
 	@Nullable
-	public StoredScript script() {
+	public final StoredScript script() {
 		return this.script;
 	}
 
@@ -103,7 +105,6 @@ public final class GetScriptResponse implements JsonpSerializable {
 		generator.write(this.found);
 
 		if (this.script != null) {
-
 			generator.writeKey("script");
 			this.script.serialize(generator, mapper);
 
@@ -116,7 +117,7 @@ public final class GetScriptResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link GetScriptResponse}.
 	 */
-	public static class Builder implements ObjectBuilder<GetScriptResponse> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetScriptResponse> {
 		private String id;
 
 		private Boolean found;
@@ -127,7 +128,7 @@ public final class GetScriptResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code _id}
 		 */
-		public Builder id(String value) {
+		public final Builder id(String value) {
 			this.id = value;
 			return this;
 		}
@@ -135,7 +136,7 @@ public final class GetScriptResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code found}
 		 */
-		public Builder found(boolean value) {
+		public final Builder found(boolean value) {
 			this.found = value;
 			return this;
 		}
@@ -143,7 +144,7 @@ public final class GetScriptResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code script}
 		 */
-		public Builder script(@Nullable StoredScript value) {
+		public final Builder script(@Nullable StoredScript value) {
 			this.script = value;
 			return this;
 		}
@@ -151,7 +152,7 @@ public final class GetScriptResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code script}
 		 */
-		public Builder script(Function<StoredScript.Builder, ObjectBuilder<StoredScript>> fn) {
+		public final Builder script(Function<StoredScript.Builder, ObjectBuilder<StoredScript>> fn) {
 			return this.script(fn.apply(new StoredScript.Builder()).build());
 		}
 
@@ -162,6 +163,7 @@ public final class GetScriptResponse implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public GetScriptResponse build() {
+			_checkSingleUse();
 
 			return new GetScriptResponse(this);
 		}

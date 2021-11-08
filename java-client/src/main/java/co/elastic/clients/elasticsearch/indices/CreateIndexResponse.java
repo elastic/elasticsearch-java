@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
@@ -40,7 +42,7 @@ import javax.annotation.Nullable;
 
 // typedef: indices.create.Response
 @JsonpDeserializable
-public final class CreateIndexResponse implements JsonpSerializable {
+public class CreateIndexResponse implements JsonpSerializable {
 	private final String index;
 
 	private final boolean shardsAcknowledged;
@@ -50,29 +52,30 @@ public final class CreateIndexResponse implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public CreateIndexResponse(Builder builder) {
+	private CreateIndexResponse(Builder builder) {
 
-		this.index = Objects.requireNonNull(builder.index, "index");
-		this.shardsAcknowledged = Objects.requireNonNull(builder.shardsAcknowledged, "shards_acknowledged");
+		this.index = ModelTypeHelper.requireNonNull(builder.index, this, "index");
+		this.shardsAcknowledged = ModelTypeHelper.requireNonNull(builder.shardsAcknowledged, this,
+				"shardsAcknowledged");
 		this.acknowledged = builder.acknowledged;
 
 	}
 
-	public CreateIndexResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static CreateIndexResponse of(Function<Builder, ObjectBuilder<CreateIndexResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code index}
 	 */
-	public String index() {
+	public final String index() {
 		return this.index;
 	}
 
 	/**
 	 * Required - API name: {@code shards_acknowledged}
 	 */
-	public boolean shardsAcknowledged() {
+	public final boolean shardsAcknowledged() {
 		return this.shardsAcknowledged;
 	}
 
@@ -80,7 +83,7 @@ public final class CreateIndexResponse implements JsonpSerializable {
 	 * API name: {@code acknowledged}
 	 */
 	@Nullable
-	public Boolean acknowledged() {
+	public final Boolean acknowledged() {
 		return this.acknowledged;
 	}
 
@@ -102,7 +105,6 @@ public final class CreateIndexResponse implements JsonpSerializable {
 		generator.write(this.shardsAcknowledged);
 
 		if (this.acknowledged != null) {
-
 			generator.writeKey("acknowledged");
 			generator.write(this.acknowledged);
 
@@ -115,7 +117,7 @@ public final class CreateIndexResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link CreateIndexResponse}.
 	 */
-	public static class Builder implements ObjectBuilder<CreateIndexResponse> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<CreateIndexResponse> {
 		private String index;
 
 		private Boolean shardsAcknowledged;
@@ -126,7 +128,7 @@ public final class CreateIndexResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code index}
 		 */
-		public Builder index(String value) {
+		public final Builder index(String value) {
 			this.index = value;
 			return this;
 		}
@@ -134,7 +136,7 @@ public final class CreateIndexResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code shards_acknowledged}
 		 */
-		public Builder shardsAcknowledged(boolean value) {
+		public final Builder shardsAcknowledged(boolean value) {
 			this.shardsAcknowledged = value;
 			return this;
 		}
@@ -142,7 +144,7 @@ public final class CreateIndexResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code acknowledged}
 		 */
-		public Builder acknowledged(@Nullable Boolean value) {
+		public final Builder acknowledged(@Nullable Boolean value) {
 			this.acknowledged = value;
 			return this;
 		}
@@ -154,6 +156,7 @@ public final class CreateIndexResponse implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public CreateIndexResponse build() {
+			_checkSingleUse();
 
 			return new CreateIndexResponse(this);
 		}

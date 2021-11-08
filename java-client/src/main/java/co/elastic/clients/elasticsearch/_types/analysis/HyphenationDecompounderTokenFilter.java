@@ -36,18 +36,17 @@ import java.util.function.Function;
 
 // typedef: _types.analysis.HyphenationDecompounderTokenFilter
 @JsonpDeserializable
-public final class HyphenationDecompounderTokenFilter extends CompoundWordTokenFilterBase
-		implements
-			TokenFilterVariant {
+public class HyphenationDecompounderTokenFilter extends CompoundWordTokenFilterBase implements TokenFilterVariant {
 	// ---------------------------------------------------------------------------------------------
 
-	public HyphenationDecompounderTokenFilter(Builder builder) {
+	private HyphenationDecompounderTokenFilter(Builder builder) {
 		super(builder);
 
 	}
 
-	public HyphenationDecompounderTokenFilter(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static HyphenationDecompounderTokenFilter of(
+			Function<Builder, ObjectBuilder<HyphenationDecompounderTokenFilter>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -85,6 +84,7 @@ public final class HyphenationDecompounderTokenFilter extends CompoundWordTokenF
 		 *             if some of the required fields are null.
 		 */
 		public HyphenationDecompounderTokenFilter build() {
+			_checkSingleUse();
 
 			return new HyphenationDecompounderTokenFilter(this);
 		}

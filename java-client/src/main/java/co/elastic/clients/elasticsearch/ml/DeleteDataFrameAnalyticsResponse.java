@@ -36,16 +36,17 @@ import java.util.function.Function;
 
 // typedef: ml.delete_data_frame_analytics.Response
 @JsonpDeserializable
-public final class DeleteDataFrameAnalyticsResponse extends AcknowledgedResponseBase {
+public class DeleteDataFrameAnalyticsResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
-	public DeleteDataFrameAnalyticsResponse(Builder builder) {
+	private DeleteDataFrameAnalyticsResponse(Builder builder) {
 		super(builder);
 
 	}
 
-	public DeleteDataFrameAnalyticsResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static DeleteDataFrameAnalyticsResponse of(
+			Function<Builder, ObjectBuilder<DeleteDataFrameAnalyticsResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -68,6 +69,7 @@ public final class DeleteDataFrameAnalyticsResponse extends AcknowledgedResponse
 		 *             if some of the required fields are null.
 		 */
 		public DeleteDataFrameAnalyticsResponse build() {
+			_checkSingleUse();
 
 			return new DeleteDataFrameAnalyticsResponse(this);
 		}

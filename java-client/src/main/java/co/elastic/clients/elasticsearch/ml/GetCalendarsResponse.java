@@ -33,6 +33,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.util.ArrayList;
@@ -44,35 +45,35 @@ import javax.annotation.Nullable;
 
 // typedef: ml.get_calendars.Response
 @JsonpDeserializable
-public final class GetCalendarsResponse implements JsonpSerializable {
+public class GetCalendarsResponse implements JsonpSerializable {
 	private final List<Calendar> calendars;
 
 	private final long count;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public GetCalendarsResponse(Builder builder) {
+	private GetCalendarsResponse(Builder builder) {
 
-		this.calendars = ModelTypeHelper.unmodifiableNonNull(builder.calendars, "calendars");
-		this.count = Objects.requireNonNull(builder.count, "count");
+		this.calendars = ModelTypeHelper.unmodifiableRequired(builder.calendars, this, "calendars");
+		this.count = ModelTypeHelper.requireNonNull(builder.count, this, "count");
 
 	}
 
-	public GetCalendarsResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static GetCalendarsResponse of(Function<Builder, ObjectBuilder<GetCalendarsResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code calendars}
 	 */
-	public List<Calendar> calendars() {
+	public final List<Calendar> calendars() {
 		return this.calendars;
 	}
 
 	/**
 	 * Required - API name: {@code count}
 	 */
-	public long count() {
+	public final long count() {
 		return this.count;
 	}
 
@@ -87,14 +88,16 @@ public final class GetCalendarsResponse implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("calendars");
-		generator.writeStartArray();
-		for (Calendar item0 : this.calendars) {
-			item0.serialize(generator, mapper);
+		if (ModelTypeHelper.isDefined(this.calendars)) {
+			generator.writeKey("calendars");
+			generator.writeStartArray();
+			for (Calendar item0 : this.calendars) {
+				item0.serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
-
 		generator.writeKey("count");
 		generator.write(this.count);
 
@@ -105,7 +108,7 @@ public final class GetCalendarsResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link GetCalendarsResponse}.
 	 */
-	public static class Builder implements ObjectBuilder<GetCalendarsResponse> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetCalendarsResponse> {
 		private List<Calendar> calendars;
 
 		private Long count;
@@ -113,7 +116,7 @@ public final class GetCalendarsResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code calendars}
 		 */
-		public Builder calendars(List<Calendar> value) {
+		public final Builder calendars(List<Calendar> value) {
 			this.calendars = value;
 			return this;
 		}
@@ -121,40 +124,27 @@ public final class GetCalendarsResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code calendars}
 		 */
-		public Builder calendars(Calendar... value) {
+		public final Builder calendars(Calendar... value) {
 			this.calendars = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #calendars(List)}, creating the list if needed.
+		 * Required - API name: {@code calendars}
 		 */
-		public Builder addCalendars(Calendar value) {
-			if (this.calendars == null) {
-				this.calendars = new ArrayList<>();
+		@SafeVarargs
+		public final Builder calendars(Function<Calendar.Builder, ObjectBuilder<Calendar>>... fns) {
+			this.calendars = new ArrayList<>(fns.length);
+			for (Function<Calendar.Builder, ObjectBuilder<Calendar>> fn : fns) {
+				this.calendars.add(fn.apply(new Calendar.Builder()).build());
 			}
-			this.calendars.add(value);
 			return this;
-		}
-
-		/**
-		 * Set {@link #calendars(List)} to a singleton list.
-		 */
-		public Builder calendars(Function<Calendar.Builder, ObjectBuilder<Calendar>> fn) {
-			return this.calendars(fn.apply(new Calendar.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #calendars(List)}, creating the list if needed.
-		 */
-		public Builder addCalendars(Function<Calendar.Builder, ObjectBuilder<Calendar>> fn) {
-			return this.addCalendars(fn.apply(new Calendar.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code count}
 		 */
-		public Builder count(long value) {
+		public final Builder count(long value) {
 			this.count = value;
 			return this;
 		}
@@ -166,6 +156,7 @@ public final class GetCalendarsResponse implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public GetCalendarsResponse build() {
+			_checkSingleUse();
 
 			return new GetCalendarsResponse(this);
 		}

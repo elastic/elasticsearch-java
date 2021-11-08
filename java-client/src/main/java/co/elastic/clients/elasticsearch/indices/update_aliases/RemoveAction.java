@@ -32,10 +32,10 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
@@ -44,17 +44,15 @@ import javax.annotation.Nullable;
 
 // typedef: indices.update_aliases.RemoveAction
 @JsonpDeserializable
-public final class RemoveAction implements ActionVariant, JsonpSerializable {
+public class RemoveAction implements ActionVariant, JsonpSerializable {
 	@Nullable
 	private final String alias;
 
-	@Nullable
 	private final List<String> aliases;
 
 	@Nullable
 	private final String index;
 
-	@Nullable
 	private final List<String> indices;
 
 	@Nullable
@@ -62,7 +60,7 @@ public final class RemoveAction implements ActionVariant, JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public RemoveAction(Builder builder) {
+	private RemoveAction(Builder builder) {
 
 		this.alias = builder.alias;
 		this.aliases = ModelTypeHelper.unmodifiable(builder.aliases);
@@ -72,8 +70,8 @@ public final class RemoveAction implements ActionVariant, JsonpSerializable {
 
 	}
 
-	public RemoveAction(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static RemoveAction of(Function<Builder, ObjectBuilder<RemoveAction>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -88,15 +86,14 @@ public final class RemoveAction implements ActionVariant, JsonpSerializable {
 	 * API name: {@code alias}
 	 */
 	@Nullable
-	public String alias() {
+	public final String alias() {
 		return this.alias;
 	}
 
 	/**
 	 * API name: {@code aliases}
 	 */
-	@Nullable
-	public List<String> aliases() {
+	public final List<String> aliases() {
 		return this.aliases;
 	}
 
@@ -104,15 +101,14 @@ public final class RemoveAction implements ActionVariant, JsonpSerializable {
 	 * API name: {@code index}
 	 */
 	@Nullable
-	public String index() {
+	public final String index() {
 		return this.index;
 	}
 
 	/**
 	 * API name: {@code indices}
 	 */
-	@Nullable
-	public List<String> indices() {
+	public final List<String> indices() {
 		return this.indices;
 	}
 
@@ -120,7 +116,7 @@ public final class RemoveAction implements ActionVariant, JsonpSerializable {
 	 * API name: {@code must_exist}
 	 */
 	@Nullable
-	public Boolean mustExist() {
+	public final Boolean mustExist() {
 		return this.mustExist;
 	}
 
@@ -136,13 +132,11 @@ public final class RemoveAction implements ActionVariant, JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.alias != null) {
-
 			generator.writeKey("alias");
 			generator.write(this.alias);
 
 		}
-		if (this.aliases != null) {
-
+		if (ModelTypeHelper.isDefined(this.aliases)) {
 			generator.writeKey("aliases");
 			generator.writeStartArray();
 			for (String item0 : this.aliases) {
@@ -153,13 +147,11 @@ public final class RemoveAction implements ActionVariant, JsonpSerializable {
 
 		}
 		if (this.index != null) {
-
 			generator.writeKey("index");
 			generator.write(this.index);
 
 		}
-		if (this.indices != null) {
-
+		if (ModelTypeHelper.isDefined(this.indices)) {
 			generator.writeKey("indices");
 			generator.writeStartArray();
 			for (String item0 : this.indices) {
@@ -170,7 +162,6 @@ public final class RemoveAction implements ActionVariant, JsonpSerializable {
 
 		}
 		if (this.mustExist != null) {
-
 			generator.writeKey("must_exist");
 			generator.write(this.mustExist);
 
@@ -183,7 +174,7 @@ public final class RemoveAction implements ActionVariant, JsonpSerializable {
 	/**
 	 * Builder for {@link RemoveAction}.
 	 */
-	public static class Builder implements ObjectBuilder<RemoveAction> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RemoveAction> {
 		@Nullable
 		private String alias;
 
@@ -202,7 +193,7 @@ public final class RemoveAction implements ActionVariant, JsonpSerializable {
 		/**
 		 * API name: {@code alias}
 		 */
-		public Builder alias(@Nullable String value) {
+		public final Builder alias(@Nullable String value) {
 			this.alias = value;
 			return this;
 		}
@@ -210,7 +201,7 @@ public final class RemoveAction implements ActionVariant, JsonpSerializable {
 		/**
 		 * API name: {@code aliases}
 		 */
-		public Builder aliases(@Nullable List<String> value) {
+		public final Builder aliases(@Nullable List<String> value) {
 			this.aliases = value;
 			return this;
 		}
@@ -218,26 +209,15 @@ public final class RemoveAction implements ActionVariant, JsonpSerializable {
 		/**
 		 * API name: {@code aliases}
 		 */
-		public Builder aliases(String... value) {
+		public final Builder aliases(String... value) {
 			this.aliases = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #aliases(List)}, creating the list if needed.
-		 */
-		public Builder addAliases(String value) {
-			if (this.aliases == null) {
-				this.aliases = new ArrayList<>();
-			}
-			this.aliases.add(value);
 			return this;
 		}
 
 		/**
 		 * API name: {@code index}
 		 */
-		public Builder index(@Nullable String value) {
+		public final Builder index(@Nullable String value) {
 			this.index = value;
 			return this;
 		}
@@ -245,7 +225,7 @@ public final class RemoveAction implements ActionVariant, JsonpSerializable {
 		/**
 		 * API name: {@code indices}
 		 */
-		public Builder indices(@Nullable List<String> value) {
+		public final Builder indices(@Nullable List<String> value) {
 			this.indices = value;
 			return this;
 		}
@@ -253,26 +233,15 @@ public final class RemoveAction implements ActionVariant, JsonpSerializable {
 		/**
 		 * API name: {@code indices}
 		 */
-		public Builder indices(String... value) {
+		public final Builder indices(String... value) {
 			this.indices = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #indices(List)}, creating the list if needed.
-		 */
-		public Builder addIndices(String value) {
-			if (this.indices == null) {
-				this.indices = new ArrayList<>();
-			}
-			this.indices.add(value);
 			return this;
 		}
 
 		/**
 		 * API name: {@code must_exist}
 		 */
-		public Builder mustExist(@Nullable Boolean value) {
+		public final Builder mustExist(@Nullable Boolean value) {
 			this.mustExist = value;
 			return this;
 		}
@@ -284,6 +253,7 @@ public final class RemoveAction implements ActionVariant, JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public RemoveAction build() {
+			_checkSingleUse();
 
 			return new RemoveAction(this);
 		}

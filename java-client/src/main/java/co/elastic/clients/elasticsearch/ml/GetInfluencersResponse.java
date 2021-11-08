@@ -32,6 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.util.ArrayList;
@@ -43,28 +44,28 @@ import javax.annotation.Nullable;
 
 // typedef: ml.get_influencers.Response
 @JsonpDeserializable
-public final class GetInfluencersResponse implements JsonpSerializable {
+public class GetInfluencersResponse implements JsonpSerializable {
 	private final long count;
 
 	private final List<BucketInfluencer> influencers;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public GetInfluencersResponse(Builder builder) {
+	private GetInfluencersResponse(Builder builder) {
 
-		this.count = Objects.requireNonNull(builder.count, "count");
-		this.influencers = ModelTypeHelper.unmodifiableNonNull(builder.influencers, "influencers");
+		this.count = ModelTypeHelper.requireNonNull(builder.count, this, "count");
+		this.influencers = ModelTypeHelper.unmodifiableRequired(builder.influencers, this, "influencers");
 
 	}
 
-	public GetInfluencersResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static GetInfluencersResponse of(Function<Builder, ObjectBuilder<GetInfluencersResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code count}
 	 */
-	public long count() {
+	public final long count() {
 		return this.count;
 	}
 
@@ -73,7 +74,7 @@ public final class GetInfluencersResponse implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code influencers}
 	 */
-	public List<BucketInfluencer> influencers() {
+	public final List<BucketInfluencer> influencers() {
 		return this.influencers;
 	}
 
@@ -91,13 +92,16 @@ public final class GetInfluencersResponse implements JsonpSerializable {
 		generator.writeKey("count");
 		generator.write(this.count);
 
-		generator.writeKey("influencers");
-		generator.writeStartArray();
-		for (BucketInfluencer item0 : this.influencers) {
-			item0.serialize(generator, mapper);
+		if (ModelTypeHelper.isDefined(this.influencers)) {
+			generator.writeKey("influencers");
+			generator.writeStartArray();
+			for (BucketInfluencer item0 : this.influencers) {
+				item0.serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
 
 	}
 
@@ -106,7 +110,7 @@ public final class GetInfluencersResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link GetInfluencersResponse}.
 	 */
-	public static class Builder implements ObjectBuilder<GetInfluencersResponse> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetInfluencersResponse> {
 		private Long count;
 
 		private List<BucketInfluencer> influencers;
@@ -114,7 +118,7 @@ public final class GetInfluencersResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code count}
 		 */
-		public Builder count(long value) {
+		public final Builder count(long value) {
 			this.count = value;
 			return this;
 		}
@@ -124,7 +128,7 @@ public final class GetInfluencersResponse implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code influencers}
 		 */
-		public Builder influencers(List<BucketInfluencer> value) {
+		public final Builder influencers(List<BucketInfluencer> value) {
 			this.influencers = value;
 			return this;
 		}
@@ -134,34 +138,23 @@ public final class GetInfluencersResponse implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code influencers}
 		 */
-		public Builder influencers(BucketInfluencer... value) {
+		public final Builder influencers(BucketInfluencer... value) {
 			this.influencers = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #influencers(List)}, creating the list if needed.
+		 * Required - Array of influencer objects
+		 * <p>
+		 * API name: {@code influencers}
 		 */
-		public Builder addInfluencers(BucketInfluencer value) {
-			if (this.influencers == null) {
-				this.influencers = new ArrayList<>();
+		@SafeVarargs
+		public final Builder influencers(Function<BucketInfluencer.Builder, ObjectBuilder<BucketInfluencer>>... fns) {
+			this.influencers = new ArrayList<>(fns.length);
+			for (Function<BucketInfluencer.Builder, ObjectBuilder<BucketInfluencer>> fn : fns) {
+				this.influencers.add(fn.apply(new BucketInfluencer.Builder()).build());
 			}
-			this.influencers.add(value);
 			return this;
-		}
-
-		/**
-		 * Set {@link #influencers(List)} to a singleton list.
-		 */
-		public Builder influencers(Function<BucketInfluencer.Builder, ObjectBuilder<BucketInfluencer>> fn) {
-			return this.influencers(fn.apply(new BucketInfluencer.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #influencers(List)}, creating the list if needed.
-		 */
-		public Builder addInfluencers(Function<BucketInfluencer.Builder, ObjectBuilder<BucketInfluencer>> fn) {
-			return this.addInfluencers(fn.apply(new BucketInfluencer.Builder()).build());
 		}
 
 		/**
@@ -171,6 +164,7 @@ public final class GetInfluencersResponse implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public GetInfluencersResponse build() {
+			_checkSingleUse();
 
 			return new GetInfluencersResponse(this);
 		}

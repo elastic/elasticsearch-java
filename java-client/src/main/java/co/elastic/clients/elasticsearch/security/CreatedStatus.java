@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.Objects;
@@ -38,25 +40,25 @@ import java.util.function.Function;
 
 // typedef: security._types.CreatedStatus
 @JsonpDeserializable
-public final class CreatedStatus implements JsonpSerializable {
+public class CreatedStatus implements JsonpSerializable {
 	private final boolean created;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public CreatedStatus(Builder builder) {
+	private CreatedStatus(Builder builder) {
 
-		this.created = Objects.requireNonNull(builder.created, "created");
+		this.created = ModelTypeHelper.requireNonNull(builder.created, this, "created");
 
 	}
 
-	public CreatedStatus(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static CreatedStatus of(Function<Builder, ObjectBuilder<CreatedStatus>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code created}
 	 */
-	public boolean created() {
+	public final boolean created() {
 		return this.created;
 	}
 
@@ -81,13 +83,13 @@ public final class CreatedStatus implements JsonpSerializable {
 	/**
 	 * Builder for {@link CreatedStatus}.
 	 */
-	public static class Builder implements ObjectBuilder<CreatedStatus> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<CreatedStatus> {
 		private Boolean created;
 
 		/**
 		 * Required - API name: {@code created}
 		 */
-		public Builder created(boolean value) {
+		public final Builder created(boolean value) {
 			this.created = value;
 			return this;
 		}
@@ -99,6 +101,7 @@ public final class CreatedStatus implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public CreatedStatus build() {
+			_checkSingleUse();
 
 			return new CreatedStatus(this);
 		}

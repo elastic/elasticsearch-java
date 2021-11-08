@@ -36,16 +36,16 @@ import java.util.function.Function;
 
 // typedef: _types.analysis.RemoveDuplicatesTokenFilter
 @JsonpDeserializable
-public final class RemoveDuplicatesTokenFilter extends TokenFilterBase implements TokenFilterVariant {
+public class RemoveDuplicatesTokenFilter extends TokenFilterBase implements TokenFilterVariant {
 	// ---------------------------------------------------------------------------------------------
 
-	public RemoveDuplicatesTokenFilter(Builder builder) {
+	private RemoveDuplicatesTokenFilter(Builder builder) {
 		super(builder);
 
 	}
 
-	public RemoveDuplicatesTokenFilter(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static RemoveDuplicatesTokenFilter of(Function<Builder, ObjectBuilder<RemoveDuplicatesTokenFilter>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -83,6 +83,7 @@ public final class RemoveDuplicatesTokenFilter extends TokenFilterBase implement
 		 *             if some of the required fields are null.
 		 */
 		public RemoveDuplicatesTokenFilter build() {
+			_checkSingleUse();
 
 			return new RemoveDuplicatesTokenFilter(this);
 		}

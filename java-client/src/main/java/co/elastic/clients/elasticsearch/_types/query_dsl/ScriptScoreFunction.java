@@ -29,6 +29,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
@@ -38,20 +39,20 @@ import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.ScriptScoreFunction
 @JsonpDeserializable
-public final class ScriptScoreFunction extends ScoreFunctionBase implements FunctionScoreVariant {
+public class ScriptScoreFunction extends ScoreFunctionBase implements FunctionScoreVariant {
 	private final JsonValue /* _types.Script */ script;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public ScriptScoreFunction(Builder builder) {
+	private ScriptScoreFunction(Builder builder) {
 		super(builder);
 
-		this.script = Objects.requireNonNull(builder.script, "script");
+		this.script = ModelTypeHelper.requireNonNull(builder.script, this, "script");
 
 	}
 
-	public ScriptScoreFunction(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ScriptScoreFunction of(Function<Builder, ObjectBuilder<ScriptScoreFunction>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -65,14 +66,13 @@ public final class ScriptScoreFunction extends ScoreFunctionBase implements Func
 	/**
 	 * Required - API name: {@code script}
 	 */
-	public JsonValue /* _types.Script */ script() {
+	public final JsonValue /* _types.Script */ script() {
 		return this.script;
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
-
 		generator.writeKey("script");
 		generator.write(this.script);
 
@@ -91,7 +91,7 @@ public final class ScriptScoreFunction extends ScoreFunctionBase implements Func
 		/**
 		 * Required - API name: {@code script}
 		 */
-		public Builder script(JsonValue /* _types.Script */ value) {
+		public final Builder script(JsonValue /* _types.Script */ value) {
 			this.script = value;
 			return this;
 		}
@@ -108,6 +108,7 @@ public final class ScriptScoreFunction extends ScoreFunctionBase implements Func
 		 *             if some of the required fields are null.
 		 */
 		public ScriptScoreFunction build() {
+			_checkSingleUse();
 
 			return new ScriptScoreFunction(this);
 		}

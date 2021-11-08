@@ -39,7 +39,7 @@ import java.util.function.Function;
 
 // typedef: license.get_basic_status.Request
 
-public final class GetBasicStatusRequest extends RequestBase {
+public class GetBasicStatusRequest extends RequestBase {
 	public GetBasicStatusRequest() {
 	}
 

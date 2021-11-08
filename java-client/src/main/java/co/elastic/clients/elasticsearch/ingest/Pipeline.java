@@ -32,6 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.lang.String;
@@ -44,14 +45,12 @@ import javax.annotation.Nullable;
 
 // typedef: ingest._types.Pipeline
 @JsonpDeserializable
-public final class Pipeline implements JsonpSerializable {
+public class Pipeline implements JsonpSerializable {
 	@Nullable
 	private final String description;
 
-	@Nullable
 	private final List<Processor> onFailure;
 
-	@Nullable
 	private final List<Processor> processors;
 
 	@Nullable
@@ -59,7 +58,7 @@ public final class Pipeline implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public Pipeline(Builder builder) {
+	private Pipeline(Builder builder) {
 
 		this.description = builder.description;
 		this.onFailure = ModelTypeHelper.unmodifiable(builder.onFailure);
@@ -68,31 +67,29 @@ public final class Pipeline implements JsonpSerializable {
 
 	}
 
-	public Pipeline(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static Pipeline of(Function<Builder, ObjectBuilder<Pipeline>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * API name: {@code description}
 	 */
 	@Nullable
-	public String description() {
+	public final String description() {
 		return this.description;
 	}
 
 	/**
 	 * API name: {@code on_failure}
 	 */
-	@Nullable
-	public List<Processor> onFailure() {
+	public final List<Processor> onFailure() {
 		return this.onFailure;
 	}
 
 	/**
 	 * API name: {@code processors}
 	 */
-	@Nullable
-	public List<Processor> processors() {
+	public final List<Processor> processors() {
 		return this.processors;
 	}
 
@@ -100,7 +97,7 @@ public final class Pipeline implements JsonpSerializable {
 	 * API name: {@code version}
 	 */
 	@Nullable
-	public Long version() {
+	public final Long version() {
 		return this.version;
 	}
 
@@ -116,13 +113,11 @@ public final class Pipeline implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.description != null) {
-
 			generator.writeKey("description");
 			generator.write(this.description);
 
 		}
-		if (this.onFailure != null) {
-
+		if (ModelTypeHelper.isDefined(this.onFailure)) {
 			generator.writeKey("on_failure");
 			generator.writeStartArray();
 			for (Processor item0 : this.onFailure) {
@@ -132,8 +127,7 @@ public final class Pipeline implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (this.processors != null) {
-
+		if (ModelTypeHelper.isDefined(this.processors)) {
 			generator.writeKey("processors");
 			generator.writeStartArray();
 			for (Processor item0 : this.processors) {
@@ -144,7 +138,6 @@ public final class Pipeline implements JsonpSerializable {
 
 		}
 		if (this.version != null) {
-
 			generator.writeKey("version");
 			generator.write(this.version);
 
@@ -157,7 +150,7 @@ public final class Pipeline implements JsonpSerializable {
 	/**
 	 * Builder for {@link Pipeline}.
 	 */
-	public static class Builder implements ObjectBuilder<Pipeline> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Pipeline> {
 		@Nullable
 		private String description;
 
@@ -173,7 +166,7 @@ public final class Pipeline implements JsonpSerializable {
 		/**
 		 * API name: {@code description}
 		 */
-		public Builder description(@Nullable String value) {
+		public final Builder description(@Nullable String value) {
 			this.description = value;
 			return this;
 		}
@@ -181,7 +174,7 @@ public final class Pipeline implements JsonpSerializable {
 		/**
 		 * API name: {@code on_failure}
 		 */
-		public Builder onFailure(@Nullable List<Processor> value) {
+		public final Builder onFailure(@Nullable List<Processor> value) {
 			this.onFailure = value;
 			return this;
 		}
@@ -189,40 +182,27 @@ public final class Pipeline implements JsonpSerializable {
 		/**
 		 * API name: {@code on_failure}
 		 */
-		public Builder onFailure(Processor... value) {
+		public final Builder onFailure(Processor... value) {
 			this.onFailure = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #onFailure(List)}, creating the list if needed.
+		 * API name: {@code on_failure}
 		 */
-		public Builder addOnFailure(Processor value) {
-			if (this.onFailure == null) {
-				this.onFailure = new ArrayList<>();
+		@SafeVarargs
+		public final Builder onFailure(Function<Processor.Builder, ObjectBuilder<Processor>>... fns) {
+			this.onFailure = new ArrayList<>(fns.length);
+			for (Function<Processor.Builder, ObjectBuilder<Processor>> fn : fns) {
+				this.onFailure.add(fn.apply(new Processor.Builder()).build());
 			}
-			this.onFailure.add(value);
 			return this;
-		}
-
-		/**
-		 * Set {@link #onFailure(List)} to a singleton list.
-		 */
-		public Builder onFailure(Function<Processor.Builder, ObjectBuilder<Processor>> fn) {
-			return this.onFailure(fn.apply(new Processor.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #onFailure(List)}, creating the list if needed.
-		 */
-		public Builder addOnFailure(Function<Processor.Builder, ObjectBuilder<Processor>> fn) {
-			return this.addOnFailure(fn.apply(new Processor.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code processors}
 		 */
-		public Builder processors(@Nullable List<Processor> value) {
+		public final Builder processors(@Nullable List<Processor> value) {
 			this.processors = value;
 			return this;
 		}
@@ -230,40 +210,27 @@ public final class Pipeline implements JsonpSerializable {
 		/**
 		 * API name: {@code processors}
 		 */
-		public Builder processors(Processor... value) {
+		public final Builder processors(Processor... value) {
 			this.processors = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #processors(List)}, creating the list if needed.
+		 * API name: {@code processors}
 		 */
-		public Builder addProcessors(Processor value) {
-			if (this.processors == null) {
-				this.processors = new ArrayList<>();
+		@SafeVarargs
+		public final Builder processors(Function<Processor.Builder, ObjectBuilder<Processor>>... fns) {
+			this.processors = new ArrayList<>(fns.length);
+			for (Function<Processor.Builder, ObjectBuilder<Processor>> fn : fns) {
+				this.processors.add(fn.apply(new Processor.Builder()).build());
 			}
-			this.processors.add(value);
 			return this;
-		}
-
-		/**
-		 * Set {@link #processors(List)} to a singleton list.
-		 */
-		public Builder processors(Function<Processor.Builder, ObjectBuilder<Processor>> fn) {
-			return this.processors(fn.apply(new Processor.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #processors(List)}, creating the list if needed.
-		 */
-		public Builder addProcessors(Function<Processor.Builder, ObjectBuilder<Processor>> fn) {
-			return this.addProcessors(fn.apply(new Processor.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code version}
 		 */
-		public Builder version(@Nullable Long value) {
+		public final Builder version(@Nullable Long value) {
 			this.version = value;
 			return this;
 		}
@@ -275,6 +242,7 @@ public final class Pipeline implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public Pipeline build() {
+			_checkSingleUse();
 
 			return new Pipeline(this);
 		}

@@ -33,12 +33,11 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -64,14 +63,14 @@ public class User implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public User(AbstractBuilder<?> builder) {
+	protected User(AbstractBuilder<?> builder) {
 
 		this.email = builder.email;
 		this.fullName = builder.fullName;
-		this.metadata = ModelTypeHelper.unmodifiableNonNull(builder.metadata, "metadata");
-		this.roles = ModelTypeHelper.unmodifiableNonNull(builder.roles, "roles");
-		this.username = Objects.requireNonNull(builder.username, "username");
-		this.enabled = Objects.requireNonNull(builder.enabled, "enabled");
+		this.metadata = ModelTypeHelper.unmodifiableRequired(builder.metadata, this, "metadata");
+		this.roles = ModelTypeHelper.unmodifiableRequired(builder.roles, this, "roles");
+		this.username = ModelTypeHelper.requireNonNull(builder.username, this, "username");
+		this.enabled = ModelTypeHelper.requireNonNull(builder.enabled, this, "enabled");
 
 	}
 
@@ -79,7 +78,7 @@ public class User implements JsonpSerializable {
 	 * API name: {@code email}
 	 */
 	@Nullable
-	public String email() {
+	public final String email() {
 		return this.email;
 	}
 
@@ -87,35 +86,35 @@ public class User implements JsonpSerializable {
 	 * API name: {@code full_name}
 	 */
 	@Nullable
-	public String fullName() {
+	public final String fullName() {
 		return this.fullName;
 	}
 
 	/**
 	 * Required - API name: {@code metadata}
 	 */
-	public Map<String, JsonData> metadata() {
+	public final Map<String, JsonData> metadata() {
 		return this.metadata;
 	}
 
 	/**
 	 * Required - API name: {@code roles}
 	 */
-	public List<String> roles() {
+	public final List<String> roles() {
 		return this.roles;
 	}
 
 	/**
 	 * Required - API name: {@code username}
 	 */
-	public String username() {
+	public final String username() {
 		return this.username;
 	}
 
 	/**
 	 * Required - API name: {@code enabled}
 	 */
-	public boolean enabled() {
+	public final boolean enabled() {
 		return this.enabled;
 	}
 
@@ -131,35 +130,36 @@ public class User implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.email != null) {
-
 			generator.writeKey("email");
 			generator.write(this.email);
 
 		}
 		if (this.fullName != null) {
-
 			generator.writeKey("full_name");
 			generator.write(this.fullName);
 
 		}
+		if (ModelTypeHelper.isDefined(this.metadata)) {
+			generator.writeKey("metadata");
+			generator.writeStartObject();
+			for (Map.Entry<String, JsonData> item0 : this.metadata.entrySet()) {
+				generator.writeKey(item0.getKey());
+				item0.getValue().serialize(generator, mapper);
 
-		generator.writeKey("metadata");
-		generator.writeStartObject();
-		for (Map.Entry<String, JsonData> item0 : this.metadata.entrySet()) {
-			generator.writeKey(item0.getKey());
-			item0.getValue().serialize(generator, mapper);
-
-		}
-		generator.writeEnd();
-
-		generator.writeKey("roles");
-		generator.writeStartArray();
-		for (String item0 : this.roles) {
-			generator.write(item0);
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
+		if (ModelTypeHelper.isDefined(this.roles)) {
+			generator.writeKey("roles");
+			generator.writeStartArray();
+			for (String item0 : this.roles) {
+				generator.write(item0);
 
+			}
+			generator.writeEnd();
+
+		}
 		generator.writeKey("username");
 		generator.write(this.username);
 
@@ -186,12 +186,15 @@ public class User implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public User build() {
+			_checkSingleUse();
 
 			return new User(this);
 		}
 	}
 
-	protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>> {
+	protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>>
+			extends
+				ObjectBuilderBase {
 		@Nullable
 		private String email;
 
@@ -209,7 +212,7 @@ public class User implements JsonpSerializable {
 		/**
 		 * API name: {@code email}
 		 */
-		public BuilderT email(@Nullable String value) {
+		public final BuilderT email(@Nullable String value) {
 			this.email = value;
 			return self();
 		}
@@ -217,7 +220,7 @@ public class User implements JsonpSerializable {
 		/**
 		 * API name: {@code full_name}
 		 */
-		public BuilderT fullName(@Nullable String value) {
+		public final BuilderT fullName(@Nullable String value) {
 			this.fullName = value;
 			return self();
 		}
@@ -225,26 +228,15 @@ public class User implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code metadata}
 		 */
-		public BuilderT metadata(Map<String, JsonData> value) {
+		public final BuilderT metadata(Map<String, JsonData> value) {
 			this.metadata = value;
-			return self();
-		}
-
-		/**
-		 * Add a key/value to {@link #metadata(Map)}, creating the map if needed.
-		 */
-		public BuilderT putMetadata(String key, JsonData value) {
-			if (this.metadata == null) {
-				this.metadata = new HashMap<>();
-			}
-			this.metadata.put(key, value);
 			return self();
 		}
 
 		/**
 		 * Required - API name: {@code roles}
 		 */
-		public BuilderT roles(List<String> value) {
+		public final BuilderT roles(List<String> value) {
 			this.roles = value;
 			return self();
 		}
@@ -252,26 +244,15 @@ public class User implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code roles}
 		 */
-		public BuilderT roles(String... value) {
+		public final BuilderT roles(String... value) {
 			this.roles = Arrays.asList(value);
-			return self();
-		}
-
-		/**
-		 * Add a value to {@link #roles(List)}, creating the list if needed.
-		 */
-		public BuilderT addRoles(String value) {
-			if (this.roles == null) {
-				this.roles = new ArrayList<>();
-			}
-			this.roles.add(value);
 			return self();
 		}
 
 		/**
 		 * Required - API name: {@code username}
 		 */
-		public BuilderT username(String value) {
+		public final BuilderT username(String value) {
 			this.username = value;
 			return self();
 		}
@@ -279,7 +260,7 @@ public class User implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code enabled}
 		 */
-		public BuilderT enabled(boolean value) {
+		public final BuilderT enabled(boolean value) {
 			this.enabled = value;
 			return self();
 		}

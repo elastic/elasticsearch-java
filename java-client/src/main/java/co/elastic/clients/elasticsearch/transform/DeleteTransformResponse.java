@@ -36,16 +36,16 @@ import java.util.function.Function;
 
 // typedef: transform.delete_transform.Response
 @JsonpDeserializable
-public final class DeleteTransformResponse extends AcknowledgedResponseBase {
+public class DeleteTransformResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
-	public DeleteTransformResponse(Builder builder) {
+	private DeleteTransformResponse(Builder builder) {
 		super(builder);
 
 	}
 
-	public DeleteTransformResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static DeleteTransformResponse of(Function<Builder, ObjectBuilder<DeleteTransformResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -68,6 +68,7 @@ public final class DeleteTransformResponse extends AcknowledgedResponseBase {
 		 *             if some of the required fields are null.
 		 */
 		public DeleteTransformResponse build() {
+			_checkSingleUse();
 
 			return new DeleteTransformResponse(this);
 		}

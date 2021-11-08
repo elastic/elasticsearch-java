@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.util.Objects;
@@ -38,25 +40,25 @@ import java.util.function.Function;
 
 // typedef: indices.stats.ShardsTotalStats
 @JsonpDeserializable
-public final class ShardsTotalStats implements JsonpSerializable {
+public class ShardsTotalStats implements JsonpSerializable {
 	private final long totalCount;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public ShardsTotalStats(Builder builder) {
+	private ShardsTotalStats(Builder builder) {
 
-		this.totalCount = Objects.requireNonNull(builder.totalCount, "total_count");
+		this.totalCount = ModelTypeHelper.requireNonNull(builder.totalCount, this, "totalCount");
 
 	}
 
-	public ShardsTotalStats(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ShardsTotalStats of(Function<Builder, ObjectBuilder<ShardsTotalStats>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code total_count}
 	 */
-	public long totalCount() {
+	public final long totalCount() {
 		return this.totalCount;
 	}
 
@@ -81,13 +83,13 @@ public final class ShardsTotalStats implements JsonpSerializable {
 	/**
 	 * Builder for {@link ShardsTotalStats}.
 	 */
-	public static class Builder implements ObjectBuilder<ShardsTotalStats> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ShardsTotalStats> {
 		private Long totalCount;
 
 		/**
 		 * Required - API name: {@code total_count}
 		 */
-		public Builder totalCount(long value) {
+		public final Builder totalCount(long value) {
 			this.totalCount = value;
 			return this;
 		}
@@ -99,6 +101,7 @@ public final class ShardsTotalStats implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public ShardsTotalStats build() {
+			_checkSingleUse();
 
 			return new ShardsTotalStats(this);
 		}

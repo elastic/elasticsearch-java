@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.Objects;
@@ -45,24 +47,24 @@ public class Base implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public Base(AbstractBuilder<?> builder) {
+	protected Base(AbstractBuilder<?> builder) {
 
-		this.available = Objects.requireNonNull(builder.available, "available");
-		this.enabled = Objects.requireNonNull(builder.enabled, "enabled");
+		this.available = ModelTypeHelper.requireNonNull(builder.available, this, "available");
+		this.enabled = ModelTypeHelper.requireNonNull(builder.enabled, this, "enabled");
 
 	}
 
 	/**
 	 * Required - API name: {@code available}
 	 */
-	public boolean available() {
+	public final boolean available() {
 		return this.available;
 	}
 
 	/**
 	 * Required - API name: {@code enabled}
 	 */
-	public boolean enabled() {
+	public final boolean enabled() {
 		return this.enabled;
 	}
 
@@ -103,12 +105,15 @@ public class Base implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public Base build() {
+			_checkSingleUse();
 
 			return new Base(this);
 		}
 	}
 
-	protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>> {
+	protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>>
+			extends
+				ObjectBuilderBase {
 		private Boolean available;
 
 		private Boolean enabled;
@@ -116,7 +121,7 @@ public class Base implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code available}
 		 */
-		public BuilderT available(boolean value) {
+		public final BuilderT available(boolean value) {
 			this.available = value;
 			return self();
 		}
@@ -124,7 +129,7 @@ public class Base implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code enabled}
 		 */
-		public BuilderT enabled(boolean value) {
+		public final BuilderT enabled(boolean value) {
 			this.enabled = value;
 			return self();
 		}

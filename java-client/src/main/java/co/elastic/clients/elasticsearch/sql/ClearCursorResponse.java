@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.Objects;
@@ -38,25 +40,25 @@ import java.util.function.Function;
 
 // typedef: sql.clear_cursor.Response
 @JsonpDeserializable
-public final class ClearCursorResponse implements JsonpSerializable {
+public class ClearCursorResponse implements JsonpSerializable {
 	private final boolean succeeded;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public ClearCursorResponse(Builder builder) {
+	private ClearCursorResponse(Builder builder) {
 
-		this.succeeded = Objects.requireNonNull(builder.succeeded, "succeeded");
+		this.succeeded = ModelTypeHelper.requireNonNull(builder.succeeded, this, "succeeded");
 
 	}
 
-	public ClearCursorResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ClearCursorResponse of(Function<Builder, ObjectBuilder<ClearCursorResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code succeeded}
 	 */
-	public boolean succeeded() {
+	public final boolean succeeded() {
 		return this.succeeded;
 	}
 
@@ -81,13 +83,13 @@ public final class ClearCursorResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link ClearCursorResponse}.
 	 */
-	public static class Builder implements ObjectBuilder<ClearCursorResponse> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ClearCursorResponse> {
 		private Boolean succeeded;
 
 		/**
 		 * Required - API name: {@code succeeded}
 		 */
-		public Builder succeeded(boolean value) {
+		public final Builder succeeded(boolean value) {
 			this.succeeded = value;
 			return this;
 		}
@@ -99,6 +101,7 @@ public final class ClearCursorResponse implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public ClearCursorResponse build() {
+			_checkSingleUse();
 
 			return new ClearCursorResponse(this);
 		}

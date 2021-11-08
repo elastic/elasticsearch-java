@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -39,35 +41,35 @@ import javax.annotation.Nullable;
 
 // typedef: indices.get_data_stream.IndicesGetDataStreamItemIndex
 @JsonpDeserializable
-public final class IndicesGetDataStreamItemIndex implements JsonpSerializable {
+public class IndicesGetDataStreamItemIndex implements JsonpSerializable {
 	private final String indexName;
 
 	private final String indexUuid;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public IndicesGetDataStreamItemIndex(Builder builder) {
+	private IndicesGetDataStreamItemIndex(Builder builder) {
 
-		this.indexName = Objects.requireNonNull(builder.indexName, "index_name");
-		this.indexUuid = Objects.requireNonNull(builder.indexUuid, "index_uuid");
+		this.indexName = ModelTypeHelper.requireNonNull(builder.indexName, this, "indexName");
+		this.indexUuid = ModelTypeHelper.requireNonNull(builder.indexUuid, this, "indexUuid");
 
 	}
 
-	public IndicesGetDataStreamItemIndex(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static IndicesGetDataStreamItemIndex of(Function<Builder, ObjectBuilder<IndicesGetDataStreamItemIndex>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code index_name}
 	 */
-	public String indexName() {
+	public final String indexName() {
 		return this.indexName;
 	}
 
 	/**
 	 * Required - API name: {@code index_uuid}
 	 */
-	public String indexUuid() {
+	public final String indexUuid() {
 		return this.indexUuid;
 	}
 
@@ -95,7 +97,7 @@ public final class IndicesGetDataStreamItemIndex implements JsonpSerializable {
 	/**
 	 * Builder for {@link IndicesGetDataStreamItemIndex}.
 	 */
-	public static class Builder implements ObjectBuilder<IndicesGetDataStreamItemIndex> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<IndicesGetDataStreamItemIndex> {
 		private String indexName;
 
 		private String indexUuid;
@@ -103,7 +105,7 @@ public final class IndicesGetDataStreamItemIndex implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code index_name}
 		 */
-		public Builder indexName(String value) {
+		public final Builder indexName(String value) {
 			this.indexName = value;
 			return this;
 		}
@@ -111,7 +113,7 @@ public final class IndicesGetDataStreamItemIndex implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code index_uuid}
 		 */
-		public Builder indexUuid(String value) {
+		public final Builder indexUuid(String value) {
 			this.indexUuid = value;
 			return this;
 		}
@@ -123,6 +125,7 @@ public final class IndicesGetDataStreamItemIndex implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public IndicesGetDataStreamItemIndex build() {
+			_checkSingleUse();
 
 			return new IndicesGetDataStreamItemIndex(this);
 		}

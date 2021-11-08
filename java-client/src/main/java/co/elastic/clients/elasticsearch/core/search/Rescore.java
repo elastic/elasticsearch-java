@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.util.Objects;
@@ -39,7 +41,7 @@ import javax.annotation.Nullable;
 
 // typedef: _global.search._types.Rescore
 @JsonpDeserializable
-public final class Rescore implements JsonpSerializable {
+public class Rescore implements JsonpSerializable {
 	private final RescoreQuery query;
 
 	@Nullable
@@ -47,21 +49,21 @@ public final class Rescore implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public Rescore(Builder builder) {
+	private Rescore(Builder builder) {
 
-		this.query = Objects.requireNonNull(builder.query, "query");
+		this.query = ModelTypeHelper.requireNonNull(builder.query, this, "query");
 		this.windowSize = builder.windowSize;
 
 	}
 
-	public Rescore(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static Rescore of(Function<Builder, ObjectBuilder<Rescore>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code query}
 	 */
-	public RescoreQuery query() {
+	public final RescoreQuery query() {
 		return this.query;
 	}
 
@@ -69,7 +71,7 @@ public final class Rescore implements JsonpSerializable {
 	 * API name: {@code window_size}
 	 */
 	@Nullable
-	public Integer windowSize() {
+	public final Integer windowSize() {
 		return this.windowSize;
 	}
 
@@ -88,7 +90,6 @@ public final class Rescore implements JsonpSerializable {
 		this.query.serialize(generator, mapper);
 
 		if (this.windowSize != null) {
-
 			generator.writeKey("window_size");
 			generator.write(this.windowSize);
 
@@ -101,7 +102,7 @@ public final class Rescore implements JsonpSerializable {
 	/**
 	 * Builder for {@link Rescore}.
 	 */
-	public static class Builder implements ObjectBuilder<Rescore> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Rescore> {
 		private RescoreQuery query;
 
 		@Nullable
@@ -110,7 +111,7 @@ public final class Rescore implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code query}
 		 */
-		public Builder query(RescoreQuery value) {
+		public final Builder query(RescoreQuery value) {
 			this.query = value;
 			return this;
 		}
@@ -118,14 +119,14 @@ public final class Rescore implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code query}
 		 */
-		public Builder query(Function<RescoreQuery.Builder, ObjectBuilder<RescoreQuery>> fn) {
+		public final Builder query(Function<RescoreQuery.Builder, ObjectBuilder<RescoreQuery>> fn) {
 			return this.query(fn.apply(new RescoreQuery.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code window_size}
 		 */
-		public Builder windowSize(@Nullable Integer value) {
+		public final Builder windowSize(@Nullable Integer value) {
 			this.windowSize = value;
 			return this;
 		}
@@ -137,6 +138,7 @@ public final class Rescore implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public Rescore build() {
+			_checkSingleUse();
 
 			return new Rescore(this);
 		}

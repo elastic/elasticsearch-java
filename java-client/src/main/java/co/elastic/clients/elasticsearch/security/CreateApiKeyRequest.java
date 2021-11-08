@@ -37,8 +37,10 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.SimpleEndpoint;
+import co.elastic.clients.util.MapBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -51,11 +53,10 @@ import javax.annotation.Nullable;
 
 // typedef: security.create_api_key.Request
 @JsonpDeserializable
-public final class CreateApiKeyRequest extends RequestBase implements JsonpSerializable {
+public class CreateApiKeyRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
 	private final String expiration;
 
-	@Nullable
 	private final Map<String, JsonData> metadata;
 
 	@Nullable
@@ -64,12 +65,11 @@ public final class CreateApiKeyRequest extends RequestBase implements JsonpSeria
 	@Nullable
 	private final JsonValue /* _types.Refresh */ refresh;
 
-	@Nullable
 	private final Map<String, RoleDescriptor> roleDescriptors;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public CreateApiKeyRequest(Builder builder) {
+	private CreateApiKeyRequest(Builder builder) {
 
 		this.expiration = builder.expiration;
 		this.metadata = ModelTypeHelper.unmodifiable(builder.metadata);
@@ -79,8 +79,8 @@ public final class CreateApiKeyRequest extends RequestBase implements JsonpSeria
 
 	}
 
-	public CreateApiKeyRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static CreateApiKeyRequest of(Function<Builder, ObjectBuilder<CreateApiKeyRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -89,7 +89,7 @@ public final class CreateApiKeyRequest extends RequestBase implements JsonpSeria
 	 * API name: {@code expiration}
 	 */
 	@Nullable
-	public String expiration() {
+	public final String expiration() {
 		return this.expiration;
 	}
 
@@ -100,8 +100,7 @@ public final class CreateApiKeyRequest extends RequestBase implements JsonpSeria
 	 * <p>
 	 * API name: {@code metadata}
 	 */
-	@Nullable
-	public Map<String, JsonData> metadata() {
+	public final Map<String, JsonData> metadata() {
 		return this.metadata;
 	}
 
@@ -111,7 +110,7 @@ public final class CreateApiKeyRequest extends RequestBase implements JsonpSeria
 	 * API name: {@code name}
 	 */
 	@Nullable
-	public String name() {
+	public final String name() {
 		return this.name;
 	}
 
@@ -124,7 +123,7 @@ public final class CreateApiKeyRequest extends RequestBase implements JsonpSeria
 	 * API name: {@code refresh}
 	 */
 	@Nullable
-	public JsonValue /* _types.Refresh */ refresh() {
+	public final JsonValue /* _types.Refresh */ refresh() {
 		return this.refresh;
 	}
 
@@ -140,8 +139,7 @@ public final class CreateApiKeyRequest extends RequestBase implements JsonpSeria
 	 * <p>
 	 * API name: {@code role_descriptors}
 	 */
-	@Nullable
-	public Map<String, RoleDescriptor> roleDescriptors() {
+	public final Map<String, RoleDescriptor> roleDescriptors() {
 		return this.roleDescriptors;
 	}
 
@@ -157,13 +155,11 @@ public final class CreateApiKeyRequest extends RequestBase implements JsonpSeria
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.expiration != null) {
-
 			generator.writeKey("expiration");
 			generator.write(this.expiration);
 
 		}
-		if (this.metadata != null) {
-
+		if (ModelTypeHelper.isDefined(this.metadata)) {
 			generator.writeKey("metadata");
 			generator.writeStartObject();
 			for (Map.Entry<String, JsonData> item0 : this.metadata.entrySet()) {
@@ -175,13 +171,11 @@ public final class CreateApiKeyRequest extends RequestBase implements JsonpSeria
 
 		}
 		if (this.name != null) {
-
 			generator.writeKey("name");
 			generator.write(this.name);
 
 		}
-		if (this.roleDescriptors != null) {
-
+		if (ModelTypeHelper.isDefined(this.roleDescriptors)) {
 			generator.writeKey("role_descriptors");
 			generator.writeStartObject();
 			for (Map.Entry<String, RoleDescriptor> item0 : this.roleDescriptors.entrySet()) {
@@ -200,7 +194,7 @@ public final class CreateApiKeyRequest extends RequestBase implements JsonpSeria
 	/**
 	 * Builder for {@link CreateApiKeyRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<CreateApiKeyRequest> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<CreateApiKeyRequest> {
 		@Nullable
 		private String expiration;
 
@@ -221,7 +215,7 @@ public final class CreateApiKeyRequest extends RequestBase implements JsonpSeria
 		 * <p>
 		 * API name: {@code expiration}
 		 */
-		public Builder expiration(@Nullable String value) {
+		public final Builder expiration(@Nullable String value) {
 			this.expiration = value;
 			return this;
 		}
@@ -233,19 +227,8 @@ public final class CreateApiKeyRequest extends RequestBase implements JsonpSeria
 		 * <p>
 		 * API name: {@code metadata}
 		 */
-		public Builder metadata(@Nullable Map<String, JsonData> value) {
+		public final Builder metadata(@Nullable Map<String, JsonData> value) {
 			this.metadata = value;
-			return this;
-		}
-
-		/**
-		 * Add a key/value to {@link #metadata(Map)}, creating the map if needed.
-		 */
-		public Builder putMetadata(String key, JsonData value) {
-			if (this.metadata == null) {
-				this.metadata = new HashMap<>();
-			}
-			this.metadata.put(key, value);
 			return this;
 		}
 
@@ -254,7 +237,7 @@ public final class CreateApiKeyRequest extends RequestBase implements JsonpSeria
 		 * <p>
 		 * API name: {@code name}
 		 */
-		public Builder name(@Nullable String value) {
+		public final Builder name(@Nullable String value) {
 			this.name = value;
 			return this;
 		}
@@ -267,7 +250,7 @@ public final class CreateApiKeyRequest extends RequestBase implements JsonpSeria
 		 * <p>
 		 * API name: {@code refresh}
 		 */
-		public Builder refresh(@Nullable JsonValue /* _types.Refresh */ value) {
+		public final Builder refresh(@Nullable JsonValue /* _types.Refresh */ value) {
 			this.refresh = value;
 			return this;
 		}
@@ -284,19 +267,8 @@ public final class CreateApiKeyRequest extends RequestBase implements JsonpSeria
 		 * <p>
 		 * API name: {@code role_descriptors}
 		 */
-		public Builder roleDescriptors(@Nullable Map<String, RoleDescriptor> value) {
+		public final Builder roleDescriptors(@Nullable Map<String, RoleDescriptor> value) {
 			this.roleDescriptors = value;
-			return this;
-		}
-
-		/**
-		 * Add a key/value to {@link #roleDescriptors(Map)}, creating the map if needed.
-		 */
-		public Builder putRoleDescriptors(String key, RoleDescriptor value) {
-			if (this.roleDescriptors == null) {
-				this.roleDescriptors = new HashMap<>();
-			}
-			this.roleDescriptors.put(key, value);
 			return this;
 		}
 
@@ -307,12 +279,9 @@ public final class CreateApiKeyRequest extends RequestBase implements JsonpSeria
 			return this.roleDescriptors(Collections.singletonMap(key, fn.apply(new RoleDescriptor.Builder()).build()));
 		}
 
-		/**
-		 * Add a key/value to {@link #roleDescriptors(Map)}, creating the map if needed.
-		 */
-		public Builder putRoleDescriptors(String key,
-				Function<RoleDescriptor.Builder, ObjectBuilder<RoleDescriptor>> fn) {
-			return this.putRoleDescriptors(key, fn.apply(new RoleDescriptor.Builder()).build());
+		public final Builder roleDescriptors(
+				Function<MapBuilder<String, RoleDescriptor, RoleDescriptor.Builder>, ObjectBuilder<Map<String, RoleDescriptor>>> fn) {
+			return roleDescriptors(fn.apply(new MapBuilder<>(RoleDescriptor.Builder::new)).build());
 		}
 
 		/**
@@ -322,6 +291,7 @@ public final class CreateApiKeyRequest extends RequestBase implements JsonpSeria
 		 *             if some of the required fields are null.
 		 */
 		public CreateApiKeyRequest build() {
+			_checkSingleUse();
 
 			return new CreateApiKeyRequest(this);
 		}

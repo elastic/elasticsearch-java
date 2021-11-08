@@ -31,7 +31,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;
@@ -39,7 +41,7 @@ import javax.annotation.Nullable;
 
 // typedef: xpack.usage.MlDataFrameAnalyticsJobs
 @JsonpDeserializable
-public final class MlDataFrameAnalyticsJobs implements JsonpSerializable {
+public class MlDataFrameAnalyticsJobs implements JsonpSerializable {
 	@Nullable
 	private final MlDataFrameAnalyticsJobsMemory memoryUsage;
 
@@ -50,30 +52,30 @@ public final class MlDataFrameAnalyticsJobs implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public MlDataFrameAnalyticsJobs(Builder builder) {
+	private MlDataFrameAnalyticsJobs(Builder builder) {
 
 		this.memoryUsage = builder.memoryUsage;
-		this.all = Objects.requireNonNull(builder.all, "_all");
+		this.all = ModelTypeHelper.requireNonNull(builder.all, this, "all");
 		this.analysisCounts = builder.analysisCounts;
 
 	}
 
-	public MlDataFrameAnalyticsJobs(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static MlDataFrameAnalyticsJobs of(Function<Builder, ObjectBuilder<MlDataFrameAnalyticsJobs>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * API name: {@code memory_usage}
 	 */
 	@Nullable
-	public MlDataFrameAnalyticsJobsMemory memoryUsage() {
+	public final MlDataFrameAnalyticsJobsMemory memoryUsage() {
 		return this.memoryUsage;
 	}
 
 	/**
 	 * Required - API name: {@code _all}
 	 */
-	public MlDataFrameAnalyticsJobsCount all() {
+	public final MlDataFrameAnalyticsJobsCount all() {
 		return this.all;
 	}
 
@@ -81,7 +83,7 @@ public final class MlDataFrameAnalyticsJobs implements JsonpSerializable {
 	 * API name: {@code analysis_counts}
 	 */
 	@Nullable
-	public EmptyObject analysisCounts() {
+	public final EmptyObject analysisCounts() {
 		return this.analysisCounts;
 	}
 
@@ -97,17 +99,14 @@ public final class MlDataFrameAnalyticsJobs implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.memoryUsage != null) {
-
 			generator.writeKey("memory_usage");
 			this.memoryUsage.serialize(generator, mapper);
 
 		}
-
 		generator.writeKey("_all");
 		this.all.serialize(generator, mapper);
 
 		if (this.analysisCounts != null) {
-
 			generator.writeKey("analysis_counts");
 			this.analysisCounts.serialize(generator, mapper);
 
@@ -120,7 +119,7 @@ public final class MlDataFrameAnalyticsJobs implements JsonpSerializable {
 	/**
 	 * Builder for {@link MlDataFrameAnalyticsJobs}.
 	 */
-	public static class Builder implements ObjectBuilder<MlDataFrameAnalyticsJobs> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<MlDataFrameAnalyticsJobs> {
 		@Nullable
 		private MlDataFrameAnalyticsJobsMemory memoryUsage;
 
@@ -132,7 +131,7 @@ public final class MlDataFrameAnalyticsJobs implements JsonpSerializable {
 		/**
 		 * API name: {@code memory_usage}
 		 */
-		public Builder memoryUsage(@Nullable MlDataFrameAnalyticsJobsMemory value) {
+		public final Builder memoryUsage(@Nullable MlDataFrameAnalyticsJobsMemory value) {
 			this.memoryUsage = value;
 			return this;
 		}
@@ -140,7 +139,7 @@ public final class MlDataFrameAnalyticsJobs implements JsonpSerializable {
 		/**
 		 * API name: {@code memory_usage}
 		 */
-		public Builder memoryUsage(
+		public final Builder memoryUsage(
 				Function<MlDataFrameAnalyticsJobsMemory.Builder, ObjectBuilder<MlDataFrameAnalyticsJobsMemory>> fn) {
 			return this.memoryUsage(fn.apply(new MlDataFrameAnalyticsJobsMemory.Builder()).build());
 		}
@@ -148,7 +147,7 @@ public final class MlDataFrameAnalyticsJobs implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code _all}
 		 */
-		public Builder all(MlDataFrameAnalyticsJobsCount value) {
+		public final Builder all(MlDataFrameAnalyticsJobsCount value) {
 			this.all = value;
 			return this;
 		}
@@ -156,7 +155,7 @@ public final class MlDataFrameAnalyticsJobs implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code _all}
 		 */
-		public Builder all(
+		public final Builder all(
 				Function<MlDataFrameAnalyticsJobsCount.Builder, ObjectBuilder<MlDataFrameAnalyticsJobsCount>> fn) {
 			return this.all(fn.apply(new MlDataFrameAnalyticsJobsCount.Builder()).build());
 		}
@@ -164,7 +163,7 @@ public final class MlDataFrameAnalyticsJobs implements JsonpSerializable {
 		/**
 		 * API name: {@code analysis_counts}
 		 */
-		public Builder analysisCounts(@Nullable EmptyObject value) {
+		public final Builder analysisCounts(@Nullable EmptyObject value) {
 			this.analysisCounts = value;
 			return this;
 		}
@@ -172,7 +171,7 @@ public final class MlDataFrameAnalyticsJobs implements JsonpSerializable {
 		/**
 		 * API name: {@code analysis_counts}
 		 */
-		public Builder analysisCounts(Function<EmptyObject.Builder, ObjectBuilder<EmptyObject>> fn) {
+		public final Builder analysisCounts(Function<EmptyObject.Builder, ObjectBuilder<EmptyObject>> fn) {
 			return this.analysisCounts(fn.apply(new EmptyObject.Builder()).build());
 		}
 
@@ -183,6 +182,7 @@ public final class MlDataFrameAnalyticsJobs implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public MlDataFrameAnalyticsJobs build() {
+			_checkSingleUse();
 
 			return new MlDataFrameAnalyticsJobs(this);
 		}

@@ -34,7 +34,6 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
@@ -43,7 +42,8 @@ import javax.annotation.Nullable;
 
 // typedef: _types.analysis.EdgeNGramTokenizer
 @JsonpDeserializable
-public final class EdgeNGramTokenizer extends TokenizerBase implements TokenizerVariant {
+public class EdgeNGramTokenizer extends TokenizerBase implements TokenizerVariant {
+	@Nullable
 	private final String customTokenChars;
 
 	private final int maxGram;
@@ -54,18 +54,18 @@ public final class EdgeNGramTokenizer extends TokenizerBase implements Tokenizer
 
 	// ---------------------------------------------------------------------------------------------
 
-	public EdgeNGramTokenizer(Builder builder) {
+	private EdgeNGramTokenizer(Builder builder) {
 		super(builder);
 
-		this.customTokenChars = Objects.requireNonNull(builder.customTokenChars, "custom_token_chars");
-		this.maxGram = Objects.requireNonNull(builder.maxGram, "max_gram");
-		this.minGram = Objects.requireNonNull(builder.minGram, "min_gram");
-		this.tokenChars = ModelTypeHelper.unmodifiableNonNull(builder.tokenChars, "token_chars");
+		this.customTokenChars = builder.customTokenChars;
+		this.maxGram = ModelTypeHelper.requireNonNull(builder.maxGram, this, "maxGram");
+		this.minGram = ModelTypeHelper.requireNonNull(builder.minGram, this, "minGram");
+		this.tokenChars = ModelTypeHelper.unmodifiableRequired(builder.tokenChars, this, "tokenChars");
 
 	}
 
-	public EdgeNGramTokenizer(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static EdgeNGramTokenizer of(Function<Builder, ObjectBuilder<EdgeNGramTokenizer>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -77,30 +77,31 @@ public final class EdgeNGramTokenizer extends TokenizerBase implements Tokenizer
 	}
 
 	/**
-	 * Required - API name: {@code custom_token_chars}
+	 * API name: {@code custom_token_chars}
 	 */
-	public String customTokenChars() {
+	@Nullable
+	public final String customTokenChars() {
 		return this.customTokenChars;
 	}
 
 	/**
 	 * Required - API name: {@code max_gram}
 	 */
-	public int maxGram() {
+	public final int maxGram() {
 		return this.maxGram;
 	}
 
 	/**
 	 * Required - API name: {@code min_gram}
 	 */
-	public int minGram() {
+	public final int minGram() {
 		return this.minGram;
 	}
 
 	/**
 	 * Required - API name: {@code token_chars}
 	 */
-	public List<TokenChar> tokenChars() {
+	public final List<TokenChar> tokenChars() {
 		return this.tokenChars;
 	}
 
@@ -108,22 +109,26 @@ public final class EdgeNGramTokenizer extends TokenizerBase implements Tokenizer
 
 		generator.write("type", "edge_ngram");
 		super.serializeInternal(generator, mapper);
+		if (this.customTokenChars != null) {
+			generator.writeKey("custom_token_chars");
+			generator.write(this.customTokenChars);
 
-		generator.writeKey("custom_token_chars");
-		generator.write(this.customTokenChars);
-
+		}
 		generator.writeKey("max_gram");
 		generator.write(this.maxGram);
 
 		generator.writeKey("min_gram");
 		generator.write(this.minGram);
 
-		generator.writeKey("token_chars");
-		generator.writeStartArray();
-		for (TokenChar item0 : this.tokenChars) {
-			item0.serialize(generator, mapper);
+		if (ModelTypeHelper.isDefined(this.tokenChars)) {
+			generator.writeKey("token_chars");
+			generator.writeStartArray();
+			for (TokenChar item0 : this.tokenChars) {
+				item0.serialize(generator, mapper);
+			}
+			generator.writeEnd();
+
 		}
-		generator.writeEnd();
 
 	}
 
@@ -135,6 +140,7 @@ public final class EdgeNGramTokenizer extends TokenizerBase implements Tokenizer
 	public static class Builder extends TokenizerBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<EdgeNGramTokenizer> {
+		@Nullable
 		private String customTokenChars;
 
 		private Integer maxGram;
@@ -144,9 +150,9 @@ public final class EdgeNGramTokenizer extends TokenizerBase implements Tokenizer
 		private List<TokenChar> tokenChars;
 
 		/**
-		 * Required - API name: {@code custom_token_chars}
+		 * API name: {@code custom_token_chars}
 		 */
-		public Builder customTokenChars(String value) {
+		public final Builder customTokenChars(@Nullable String value) {
 			this.customTokenChars = value;
 			return this;
 		}
@@ -154,7 +160,7 @@ public final class EdgeNGramTokenizer extends TokenizerBase implements Tokenizer
 		/**
 		 * Required - API name: {@code max_gram}
 		 */
-		public Builder maxGram(int value) {
+		public final Builder maxGram(int value) {
 			this.maxGram = value;
 			return this;
 		}
@@ -162,7 +168,7 @@ public final class EdgeNGramTokenizer extends TokenizerBase implements Tokenizer
 		/**
 		 * Required - API name: {@code min_gram}
 		 */
-		public Builder minGram(int value) {
+		public final Builder minGram(int value) {
 			this.minGram = value;
 			return this;
 		}
@@ -170,7 +176,7 @@ public final class EdgeNGramTokenizer extends TokenizerBase implements Tokenizer
 		/**
 		 * Required - API name: {@code token_chars}
 		 */
-		public Builder tokenChars(List<TokenChar> value) {
+		public final Builder tokenChars(List<TokenChar> value) {
 			this.tokenChars = value;
 			return this;
 		}
@@ -178,19 +184,8 @@ public final class EdgeNGramTokenizer extends TokenizerBase implements Tokenizer
 		/**
 		 * Required - API name: {@code token_chars}
 		 */
-		public Builder tokenChars(TokenChar... value) {
+		public final Builder tokenChars(TokenChar... value) {
 			this.tokenChars = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #tokenChars(List)}, creating the list if needed.
-		 */
-		public Builder addTokenChars(TokenChar value) {
-			if (this.tokenChars == null) {
-				this.tokenChars = new ArrayList<>();
-			}
-			this.tokenChars.add(value);
 			return this;
 		}
 
@@ -206,6 +201,7 @@ public final class EdgeNGramTokenizer extends TokenizerBase implements Tokenizer
 		 *             if some of the required fields are null.
 		 */
 		public EdgeNGramTokenizer build() {
+			_checkSingleUse();
 
 			return new EdgeNGramTokenizer(this);
 		}

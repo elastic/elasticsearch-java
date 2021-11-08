@@ -39,6 +39,14 @@ public class AnalyzerBuilders {
 	}
 
 	/**
+	 * Creates a builder for the {@link DutchAnalyzer dutch} {@code Analyzer}
+	 * variant.
+	 */
+	public static DutchAnalyzer.Builder dutch() {
+		return new DutchAnalyzer.Builder();
+	}
+
+	/**
 	 * Creates a builder for the {@link FingerprintAnalyzer fingerprint}
 	 * {@code Analyzer} variant.
 	 */
@@ -99,6 +107,14 @@ public class AnalyzerBuilders {
 	 */
 	public static SimpleAnalyzer.Builder simple() {
 		return new SimpleAnalyzer.Builder();
+	}
+
+	/**
+	 * Creates a builder for the {@link SnowballAnalyzer snowball} {@code Analyzer}
+	 * variant.
+	 */
+	public static SnowballAnalyzer.Builder snowball() {
+		return new SnowballAnalyzer.Builder();
 	}
 
 	/**

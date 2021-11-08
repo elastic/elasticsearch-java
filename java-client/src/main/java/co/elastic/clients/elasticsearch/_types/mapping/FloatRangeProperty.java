@@ -36,16 +36,16 @@ import java.util.function.Function;
 
 // typedef: _types.mapping.FloatRangeProperty
 @JsonpDeserializable
-public final class FloatRangeProperty extends RangePropertyBase implements PropertyVariant {
+public class FloatRangeProperty extends RangePropertyBase implements PropertyVariant {
 	// ---------------------------------------------------------------------------------------------
 
-	public FloatRangeProperty(Builder builder) {
+	private FloatRangeProperty(Builder builder) {
 		super(builder);
 
 	}
 
-	public FloatRangeProperty(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static FloatRangeProperty of(Function<Builder, ObjectBuilder<FloatRangeProperty>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -83,6 +83,7 @@ public final class FloatRangeProperty extends RangePropertyBase implements Prope
 		 *             if some of the required fields are null.
 		 */
 		public FloatRangeProperty build() {
+			_checkSingleUse();
 
 			return new FloatRangeProperty(this);
 		}

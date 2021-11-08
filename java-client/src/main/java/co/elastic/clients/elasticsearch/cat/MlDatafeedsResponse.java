@@ -32,6 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -42,19 +43,19 @@ import javax.annotation.Nullable;
 
 // typedef: cat.ml_datafeeds.Response
 @JsonpDeserializable
-public final class MlDatafeedsResponse implements JsonpSerializable {
+public class MlDatafeedsResponse implements JsonpSerializable {
 	private final List<DatafeedsRecord> valueBody;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public MlDatafeedsResponse(Builder builder) {
+	private MlDatafeedsResponse(Builder builder) {
 
-		this.valueBody = ModelTypeHelper.unmodifiableNonNull(builder.valueBody, "_value_body");
+		this.valueBody = ModelTypeHelper.unmodifiableRequired(builder.valueBody, this, "valueBody");
 
 	}
 
-	public MlDatafeedsResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static MlDatafeedsResponse of(Function<Builder, ObjectBuilder<MlDatafeedsResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -62,7 +63,7 @@ public final class MlDatafeedsResponse implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code _value_body}
 	 */
-	public List<DatafeedsRecord> valueBody() {
+	public final List<DatafeedsRecord> valueBody() {
 		return this.valueBody;
 	}
 
@@ -84,7 +85,7 @@ public final class MlDatafeedsResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link MlDatafeedsResponse}.
 	 */
-	public static class Builder implements ObjectBuilder<MlDatafeedsResponse> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<MlDatafeedsResponse> {
 		private List<DatafeedsRecord> valueBody;
 
 		/**
@@ -92,7 +93,7 @@ public final class MlDatafeedsResponse implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code _value_body}
 		 */
-		public Builder valueBody(List<DatafeedsRecord> value) {
+		public final Builder valueBody(List<DatafeedsRecord> value) {
 			this.valueBody = value;
 			return this;
 		}
@@ -102,34 +103,23 @@ public final class MlDatafeedsResponse implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code _value_body}
 		 */
-		public Builder valueBody(DatafeedsRecord... value) {
+		public final Builder valueBody(DatafeedsRecord... value) {
 			this.valueBody = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #valueBody(List)}, creating the list if needed.
+		 * Required - Response value.
+		 * <p>
+		 * API name: {@code _value_body}
 		 */
-		public Builder addValueBody(DatafeedsRecord value) {
-			if (this.valueBody == null) {
-				this.valueBody = new ArrayList<>();
+		@SafeVarargs
+		public final Builder valueBody(Function<DatafeedsRecord.Builder, ObjectBuilder<DatafeedsRecord>>... fns) {
+			this.valueBody = new ArrayList<>(fns.length);
+			for (Function<DatafeedsRecord.Builder, ObjectBuilder<DatafeedsRecord>> fn : fns) {
+				this.valueBody.add(fn.apply(new DatafeedsRecord.Builder()).build());
 			}
-			this.valueBody.add(value);
 			return this;
-		}
-
-		/**
-		 * Set {@link #valueBody(List)} to a singleton list.
-		 */
-		public Builder valueBody(Function<DatafeedsRecord.Builder, ObjectBuilder<DatafeedsRecord>> fn) {
-			return this.valueBody(fn.apply(new DatafeedsRecord.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #valueBody(List)}, creating the list if needed.
-		 */
-		public Builder addValueBody(Function<DatafeedsRecord.Builder, ObjectBuilder<DatafeedsRecord>> fn) {
-			return this.addValueBody(fn.apply(new DatafeedsRecord.Builder()).build());
 		}
 
 		/**
@@ -139,6 +129,7 @@ public final class MlDatafeedsResponse implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public MlDatafeedsResponse build() {
+			_checkSingleUse();
 
 			return new MlDatafeedsResponse(this);
 		}

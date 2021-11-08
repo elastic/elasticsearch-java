@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
@@ -40,7 +42,7 @@ import javax.annotation.Nullable;
 
 // typedef: logstash._types.PipelineSettings
 @JsonpDeserializable
-public final class PipelineSettings implements JsonpSerializable {
+public class PipelineSettings implements JsonpSerializable {
 	private final int pipelineWorkers;
 
 	private final int pipelineBatchSize;
@@ -57,68 +59,72 @@ public final class PipelineSettings implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public PipelineSettings(Builder builder) {
+	private PipelineSettings(Builder builder) {
 
-		this.pipelineWorkers = Objects.requireNonNull(builder.pipelineWorkers, "pipeline.workers");
-		this.pipelineBatchSize = Objects.requireNonNull(builder.pipelineBatchSize, "pipeline.batch.size");
-		this.pipelineBatchDelay = Objects.requireNonNull(builder.pipelineBatchDelay, "pipeline.batch.delay");
-		this.queueType = Objects.requireNonNull(builder.queueType, "queue.type");
-		this.queueMaxBytesNumber = Objects.requireNonNull(builder.queueMaxBytesNumber, "queue.max_bytes.number");
-		this.queueMaxBytesUnits = Objects.requireNonNull(builder.queueMaxBytesUnits, "queue.max_bytes.units");
-		this.queueCheckpointWrites = Objects.requireNonNull(builder.queueCheckpointWrites, "queue.checkpoint.writes");
+		this.pipelineWorkers = ModelTypeHelper.requireNonNull(builder.pipelineWorkers, this, "pipelineWorkers");
+		this.pipelineBatchSize = ModelTypeHelper.requireNonNull(builder.pipelineBatchSize, this, "pipelineBatchSize");
+		this.pipelineBatchDelay = ModelTypeHelper.requireNonNull(builder.pipelineBatchDelay, this,
+				"pipelineBatchDelay");
+		this.queueType = ModelTypeHelper.requireNonNull(builder.queueType, this, "queueType");
+		this.queueMaxBytesNumber = ModelTypeHelper.requireNonNull(builder.queueMaxBytesNumber, this,
+				"queueMaxBytesNumber");
+		this.queueMaxBytesUnits = ModelTypeHelper.requireNonNull(builder.queueMaxBytesUnits, this,
+				"queueMaxBytesUnits");
+		this.queueCheckpointWrites = ModelTypeHelper.requireNonNull(builder.queueCheckpointWrites, this,
+				"queueCheckpointWrites");
 
 	}
 
-	public PipelineSettings(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static PipelineSettings of(Function<Builder, ObjectBuilder<PipelineSettings>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code pipeline.workers}
 	 */
-	public int pipelineWorkers() {
+	public final int pipelineWorkers() {
 		return this.pipelineWorkers;
 	}
 
 	/**
 	 * Required - API name: {@code pipeline.batch.size}
 	 */
-	public int pipelineBatchSize() {
+	public final int pipelineBatchSize() {
 		return this.pipelineBatchSize;
 	}
 
 	/**
 	 * Required - API name: {@code pipeline.batch.delay}
 	 */
-	public int pipelineBatchDelay() {
+	public final int pipelineBatchDelay() {
 		return this.pipelineBatchDelay;
 	}
 
 	/**
 	 * Required - API name: {@code queue.type}
 	 */
-	public String queueType() {
+	public final String queueType() {
 		return this.queueType;
 	}
 
 	/**
 	 * Required - API name: {@code queue.max_bytes.number}
 	 */
-	public int queueMaxBytesNumber() {
+	public final int queueMaxBytesNumber() {
 		return this.queueMaxBytesNumber;
 	}
 
 	/**
 	 * Required - API name: {@code queue.max_bytes.units}
 	 */
-	public String queueMaxBytesUnits() {
+	public final String queueMaxBytesUnits() {
 		return this.queueMaxBytesUnits;
 	}
 
 	/**
 	 * Required - API name: {@code queue.checkpoint.writes}
 	 */
-	public int queueCheckpointWrites() {
+	public final int queueCheckpointWrites() {
 		return this.queueCheckpointWrites;
 	}
 
@@ -161,7 +167,7 @@ public final class PipelineSettings implements JsonpSerializable {
 	/**
 	 * Builder for {@link PipelineSettings}.
 	 */
-	public static class Builder implements ObjectBuilder<PipelineSettings> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PipelineSettings> {
 		private Integer pipelineWorkers;
 
 		private Integer pipelineBatchSize;
@@ -179,7 +185,7 @@ public final class PipelineSettings implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code pipeline.workers}
 		 */
-		public Builder pipelineWorkers(int value) {
+		public final Builder pipelineWorkers(int value) {
 			this.pipelineWorkers = value;
 			return this;
 		}
@@ -187,7 +193,7 @@ public final class PipelineSettings implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code pipeline.batch.size}
 		 */
-		public Builder pipelineBatchSize(int value) {
+		public final Builder pipelineBatchSize(int value) {
 			this.pipelineBatchSize = value;
 			return this;
 		}
@@ -195,7 +201,7 @@ public final class PipelineSettings implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code pipeline.batch.delay}
 		 */
-		public Builder pipelineBatchDelay(int value) {
+		public final Builder pipelineBatchDelay(int value) {
 			this.pipelineBatchDelay = value;
 			return this;
 		}
@@ -203,7 +209,7 @@ public final class PipelineSettings implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code queue.type}
 		 */
-		public Builder queueType(String value) {
+		public final Builder queueType(String value) {
 			this.queueType = value;
 			return this;
 		}
@@ -211,7 +217,7 @@ public final class PipelineSettings implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code queue.max_bytes.number}
 		 */
-		public Builder queueMaxBytesNumber(int value) {
+		public final Builder queueMaxBytesNumber(int value) {
 			this.queueMaxBytesNumber = value;
 			return this;
 		}
@@ -219,7 +225,7 @@ public final class PipelineSettings implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code queue.max_bytes.units}
 		 */
-		public Builder queueMaxBytesUnits(String value) {
+		public final Builder queueMaxBytesUnits(String value) {
 			this.queueMaxBytesUnits = value;
 			return this;
 		}
@@ -227,7 +233,7 @@ public final class PipelineSettings implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code queue.checkpoint.writes}
 		 */
-		public Builder queueCheckpointWrites(int value) {
+		public final Builder queueCheckpointWrites(int value) {
 			this.queueCheckpointWrites = value;
 			return this;
 		}
@@ -239,6 +245,7 @@ public final class PipelineSettings implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public PipelineSettings build() {
+			_checkSingleUse();
 
 			return new PipelineSettings(this);
 		}

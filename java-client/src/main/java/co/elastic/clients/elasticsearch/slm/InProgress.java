@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -39,7 +41,7 @@ import javax.annotation.Nullable;
 
 // typedef: slm._types.InProgress
 @JsonpDeserializable
-public final class InProgress implements JsonpSerializable {
+public class InProgress implements JsonpSerializable {
 	private final String name;
 
 	private final String startTimeMillis;
@@ -50,44 +52,44 @@ public final class InProgress implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public InProgress(Builder builder) {
+	private InProgress(Builder builder) {
 
-		this.name = Objects.requireNonNull(builder.name, "name");
-		this.startTimeMillis = Objects.requireNonNull(builder.startTimeMillis, "start_time_millis");
-		this.state = Objects.requireNonNull(builder.state, "state");
-		this.uuid = Objects.requireNonNull(builder.uuid, "uuid");
+		this.name = ModelTypeHelper.requireNonNull(builder.name, this, "name");
+		this.startTimeMillis = ModelTypeHelper.requireNonNull(builder.startTimeMillis, this, "startTimeMillis");
+		this.state = ModelTypeHelper.requireNonNull(builder.state, this, "state");
+		this.uuid = ModelTypeHelper.requireNonNull(builder.uuid, this, "uuid");
 
 	}
 
-	public InProgress(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static InProgress of(Function<Builder, ObjectBuilder<InProgress>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code name}
 	 */
-	public String name() {
+	public final String name() {
 		return this.name;
 	}
 
 	/**
 	 * Required - API name: {@code start_time_millis}
 	 */
-	public String startTimeMillis() {
+	public final String startTimeMillis() {
 		return this.startTimeMillis;
 	}
 
 	/**
 	 * Required - API name: {@code state}
 	 */
-	public String state() {
+	public final String state() {
 		return this.state;
 	}
 
 	/**
 	 * Required - API name: {@code uuid}
 	 */
-	public String uuid() {
+	public final String uuid() {
 		return this.uuid;
 	}
 
@@ -121,7 +123,7 @@ public final class InProgress implements JsonpSerializable {
 	/**
 	 * Builder for {@link InProgress}.
 	 */
-	public static class Builder implements ObjectBuilder<InProgress> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<InProgress> {
 		private String name;
 
 		private String startTimeMillis;
@@ -133,7 +135,7 @@ public final class InProgress implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code name}
 		 */
-		public Builder name(String value) {
+		public final Builder name(String value) {
 			this.name = value;
 			return this;
 		}
@@ -141,7 +143,7 @@ public final class InProgress implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code start_time_millis}
 		 */
-		public Builder startTimeMillis(String value) {
+		public final Builder startTimeMillis(String value) {
 			this.startTimeMillis = value;
 			return this;
 		}
@@ -149,7 +151,7 @@ public final class InProgress implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code state}
 		 */
-		public Builder state(String value) {
+		public final Builder state(String value) {
 			this.state = value;
 			return this;
 		}
@@ -157,7 +159,7 @@ public final class InProgress implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code uuid}
 		 */
-		public Builder uuid(String value) {
+		public final Builder uuid(String value) {
 			this.uuid = value;
 			return this;
 		}
@@ -169,6 +171,7 @@ public final class InProgress implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public InProgress build() {
+			_checkSingleUse();
 
 			return new InProgress(this);
 		}

@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;
@@ -38,25 +40,25 @@ import javax.annotation.Nullable;
 
 // typedef: security.put_role.Response
 @JsonpDeserializable
-public final class PutRoleResponse implements JsonpSerializable {
+public class PutRoleResponse implements JsonpSerializable {
 	private final CreatedStatus role;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public PutRoleResponse(Builder builder) {
+	private PutRoleResponse(Builder builder) {
 
-		this.role = Objects.requireNonNull(builder.role, "role");
+		this.role = ModelTypeHelper.requireNonNull(builder.role, this, "role");
 
 	}
 
-	public PutRoleResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static PutRoleResponse of(Function<Builder, ObjectBuilder<PutRoleResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code role}
 	 */
-	public CreatedStatus role() {
+	public final CreatedStatus role() {
 		return this.role;
 	}
 
@@ -81,13 +83,13 @@ public final class PutRoleResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link PutRoleResponse}.
 	 */
-	public static class Builder implements ObjectBuilder<PutRoleResponse> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PutRoleResponse> {
 		private CreatedStatus role;
 
 		/**
 		 * Required - API name: {@code role}
 		 */
-		public Builder role(CreatedStatus value) {
+		public final Builder role(CreatedStatus value) {
 			this.role = value;
 			return this;
 		}
@@ -95,7 +97,7 @@ public final class PutRoleResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code role}
 		 */
-		public Builder role(Function<CreatedStatus.Builder, ObjectBuilder<CreatedStatus>> fn) {
+		public final Builder role(Function<CreatedStatus.Builder, ObjectBuilder<CreatedStatus>> fn) {
 			return this.role(fn.apply(new CreatedStatus.Builder()).build());
 		}
 
@@ -106,6 +108,7 @@ public final class PutRoleResponse implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public PutRoleResponse build() {
+			_checkSingleUse();
 
 			return new PutRoleResponse(this);
 		}

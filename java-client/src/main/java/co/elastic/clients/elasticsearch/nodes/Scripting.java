@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.util.Objects;
@@ -38,35 +40,35 @@ import java.util.function.Function;
 
 // typedef: nodes._types.Scripting
 @JsonpDeserializable
-public final class Scripting implements JsonpSerializable {
+public class Scripting implements JsonpSerializable {
 	private final long cacheEvictions;
 
 	private final long compilations;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public Scripting(Builder builder) {
+	private Scripting(Builder builder) {
 
-		this.cacheEvictions = Objects.requireNonNull(builder.cacheEvictions, "cache_evictions");
-		this.compilations = Objects.requireNonNull(builder.compilations, "compilations");
+		this.cacheEvictions = ModelTypeHelper.requireNonNull(builder.cacheEvictions, this, "cacheEvictions");
+		this.compilations = ModelTypeHelper.requireNonNull(builder.compilations, this, "compilations");
 
 	}
 
-	public Scripting(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static Scripting of(Function<Builder, ObjectBuilder<Scripting>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code cache_evictions}
 	 */
-	public long cacheEvictions() {
+	public final long cacheEvictions() {
 		return this.cacheEvictions;
 	}
 
 	/**
 	 * Required - API name: {@code compilations}
 	 */
-	public long compilations() {
+	public final long compilations() {
 		return this.compilations;
 	}
 
@@ -94,7 +96,7 @@ public final class Scripting implements JsonpSerializable {
 	/**
 	 * Builder for {@link Scripting}.
 	 */
-	public static class Builder implements ObjectBuilder<Scripting> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Scripting> {
 		private Long cacheEvictions;
 
 		private Long compilations;
@@ -102,7 +104,7 @@ public final class Scripting implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code cache_evictions}
 		 */
-		public Builder cacheEvictions(long value) {
+		public final Builder cacheEvictions(long value) {
 			this.cacheEvictions = value;
 			return this;
 		}
@@ -110,7 +112,7 @@ public final class Scripting implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code compilations}
 		 */
-		public Builder compilations(long value) {
+		public final Builder compilations(long value) {
 			this.compilations = value;
 			return this;
 		}
@@ -122,6 +124,7 @@ public final class Scripting implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public Scripting build() {
+			_checkSingleUse();
 
 			return new Scripting(this);
 		}

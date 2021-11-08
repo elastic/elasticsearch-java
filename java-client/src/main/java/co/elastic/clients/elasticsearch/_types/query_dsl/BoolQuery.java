@@ -42,25 +42,21 @@ import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.BoolQuery
 @JsonpDeserializable
-public final class BoolQuery extends QueryBase implements QueryVariant {
-	@Nullable
+public class BoolQuery extends QueryBase implements QueryVariant {
 	private final List<Query> filter;
 
 	@Nullable
 	private final String minimumShouldMatch;
 
-	@Nullable
 	private final List<Query> must;
 
-	@Nullable
 	private final List<Query> mustNot;
 
-	@Nullable
 	private final List<Query> should;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public BoolQuery(Builder builder) {
+	private BoolQuery(Builder builder) {
 		super(builder);
 
 		this.filter = ModelTypeHelper.unmodifiable(builder.filter);
@@ -71,8 +67,8 @@ public final class BoolQuery extends QueryBase implements QueryVariant {
 
 	}
 
-	public BoolQuery(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static BoolQuery of(Function<Builder, ObjectBuilder<BoolQuery>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -86,8 +82,7 @@ public final class BoolQuery extends QueryBase implements QueryVariant {
 	/**
 	 * API name: {@code filter}
 	 */
-	@Nullable
-	public List<Query> filter() {
+	public final List<Query> filter() {
 		return this.filter;
 	}
 
@@ -95,39 +90,35 @@ public final class BoolQuery extends QueryBase implements QueryVariant {
 	 * API name: {@code minimum_should_match}
 	 */
 	@Nullable
-	public String minimumShouldMatch() {
+	public final String minimumShouldMatch() {
 		return this.minimumShouldMatch;
 	}
 
 	/**
 	 * API name: {@code must}
 	 */
-	@Nullable
-	public List<Query> must() {
+	public final List<Query> must() {
 		return this.must;
 	}
 
 	/**
 	 * API name: {@code must_not}
 	 */
-	@Nullable
-	public List<Query> mustNot() {
+	public final List<Query> mustNot() {
 		return this.mustNot;
 	}
 
 	/**
 	 * API name: {@code should}
 	 */
-	@Nullable
-	public List<Query> should() {
+	public final List<Query> should() {
 		return this.should;
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
-		if (this.filter != null) {
-
+		if (ModelTypeHelper.isDefined(this.filter)) {
 			generator.writeKey("filter");
 			generator.writeStartArray();
 			for (Query item0 : this.filter) {
@@ -138,13 +129,11 @@ public final class BoolQuery extends QueryBase implements QueryVariant {
 
 		}
 		if (this.minimumShouldMatch != null) {
-
 			generator.writeKey("minimum_should_match");
 			generator.write(this.minimumShouldMatch);
 
 		}
-		if (this.must != null) {
-
+		if (ModelTypeHelper.isDefined(this.must)) {
 			generator.writeKey("must");
 			generator.writeStartArray();
 			for (Query item0 : this.must) {
@@ -154,8 +143,7 @@ public final class BoolQuery extends QueryBase implements QueryVariant {
 			generator.writeEnd();
 
 		}
-		if (this.mustNot != null) {
-
+		if (ModelTypeHelper.isDefined(this.mustNot)) {
 			generator.writeKey("must_not");
 			generator.writeStartArray();
 			for (Query item0 : this.mustNot) {
@@ -165,8 +153,7 @@ public final class BoolQuery extends QueryBase implements QueryVariant {
 			generator.writeEnd();
 
 		}
-		if (this.should != null) {
-
+		if (ModelTypeHelper.isDefined(this.should)) {
 			generator.writeKey("should");
 			generator.writeStartArray();
 			for (Query item0 : this.should) {
@@ -203,7 +190,7 @@ public final class BoolQuery extends QueryBase implements QueryVariant {
 		/**
 		 * API name: {@code filter}
 		 */
-		public Builder filter(@Nullable List<Query> value) {
+		public final Builder filter(@Nullable List<Query> value) {
 			this.filter = value;
 			return this;
 		}
@@ -211,40 +198,27 @@ public final class BoolQuery extends QueryBase implements QueryVariant {
 		/**
 		 * API name: {@code filter}
 		 */
-		public Builder filter(Query... value) {
+		public final Builder filter(Query... value) {
 			this.filter = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #filter(List)}, creating the list if needed.
+		 * API name: {@code filter}
 		 */
-		public Builder addFilter(Query value) {
-			if (this.filter == null) {
-				this.filter = new ArrayList<>();
+		@SafeVarargs
+		public final Builder filter(Function<Query.Builder, ObjectBuilder<Query>>... fns) {
+			this.filter = new ArrayList<>(fns.length);
+			for (Function<Query.Builder, ObjectBuilder<Query>> fn : fns) {
+				this.filter.add(fn.apply(new Query.Builder()).build());
 			}
-			this.filter.add(value);
 			return this;
-		}
-
-		/**
-		 * Set {@link #filter(List)} to a singleton list.
-		 */
-		public Builder filter(Function<Query.Builder, ObjectBuilder<Query>> fn) {
-			return this.filter(fn.apply(new Query.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #filter(List)}, creating the list if needed.
-		 */
-		public Builder addFilter(Function<Query.Builder, ObjectBuilder<Query>> fn) {
-			return this.addFilter(fn.apply(new Query.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code minimum_should_match}
 		 */
-		public Builder minimumShouldMatch(@Nullable String value) {
+		public final Builder minimumShouldMatch(@Nullable String value) {
 			this.minimumShouldMatch = value;
 			return this;
 		}
@@ -252,7 +226,7 @@ public final class BoolQuery extends QueryBase implements QueryVariant {
 		/**
 		 * API name: {@code must}
 		 */
-		public Builder must(@Nullable List<Query> value) {
+		public final Builder must(@Nullable List<Query> value) {
 			this.must = value;
 			return this;
 		}
@@ -260,40 +234,27 @@ public final class BoolQuery extends QueryBase implements QueryVariant {
 		/**
 		 * API name: {@code must}
 		 */
-		public Builder must(Query... value) {
+		public final Builder must(Query... value) {
 			this.must = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #must(List)}, creating the list if needed.
+		 * API name: {@code must}
 		 */
-		public Builder addMust(Query value) {
-			if (this.must == null) {
-				this.must = new ArrayList<>();
+		@SafeVarargs
+		public final Builder must(Function<Query.Builder, ObjectBuilder<Query>>... fns) {
+			this.must = new ArrayList<>(fns.length);
+			for (Function<Query.Builder, ObjectBuilder<Query>> fn : fns) {
+				this.must.add(fn.apply(new Query.Builder()).build());
 			}
-			this.must.add(value);
 			return this;
-		}
-
-		/**
-		 * Set {@link #must(List)} to a singleton list.
-		 */
-		public Builder must(Function<Query.Builder, ObjectBuilder<Query>> fn) {
-			return this.must(fn.apply(new Query.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #must(List)}, creating the list if needed.
-		 */
-		public Builder addMust(Function<Query.Builder, ObjectBuilder<Query>> fn) {
-			return this.addMust(fn.apply(new Query.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code must_not}
 		 */
-		public Builder mustNot(@Nullable List<Query> value) {
+		public final Builder mustNot(@Nullable List<Query> value) {
 			this.mustNot = value;
 			return this;
 		}
@@ -301,40 +262,27 @@ public final class BoolQuery extends QueryBase implements QueryVariant {
 		/**
 		 * API name: {@code must_not}
 		 */
-		public Builder mustNot(Query... value) {
+		public final Builder mustNot(Query... value) {
 			this.mustNot = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #mustNot(List)}, creating the list if needed.
+		 * API name: {@code must_not}
 		 */
-		public Builder addMustNot(Query value) {
-			if (this.mustNot == null) {
-				this.mustNot = new ArrayList<>();
+		@SafeVarargs
+		public final Builder mustNot(Function<Query.Builder, ObjectBuilder<Query>>... fns) {
+			this.mustNot = new ArrayList<>(fns.length);
+			for (Function<Query.Builder, ObjectBuilder<Query>> fn : fns) {
+				this.mustNot.add(fn.apply(new Query.Builder()).build());
 			}
-			this.mustNot.add(value);
 			return this;
-		}
-
-		/**
-		 * Set {@link #mustNot(List)} to a singleton list.
-		 */
-		public Builder mustNot(Function<Query.Builder, ObjectBuilder<Query>> fn) {
-			return this.mustNot(fn.apply(new Query.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #mustNot(List)}, creating the list if needed.
-		 */
-		public Builder addMustNot(Function<Query.Builder, ObjectBuilder<Query>> fn) {
-			return this.addMustNot(fn.apply(new Query.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code should}
 		 */
-		public Builder should(@Nullable List<Query> value) {
+		public final Builder should(@Nullable List<Query> value) {
 			this.should = value;
 			return this;
 		}
@@ -342,34 +290,21 @@ public final class BoolQuery extends QueryBase implements QueryVariant {
 		/**
 		 * API name: {@code should}
 		 */
-		public Builder should(Query... value) {
+		public final Builder should(Query... value) {
 			this.should = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #should(List)}, creating the list if needed.
+		 * API name: {@code should}
 		 */
-		public Builder addShould(Query value) {
-			if (this.should == null) {
-				this.should = new ArrayList<>();
+		@SafeVarargs
+		public final Builder should(Function<Query.Builder, ObjectBuilder<Query>>... fns) {
+			this.should = new ArrayList<>(fns.length);
+			for (Function<Query.Builder, ObjectBuilder<Query>> fn : fns) {
+				this.should.add(fn.apply(new Query.Builder()).build());
 			}
-			this.should.add(value);
 			return this;
-		}
-
-		/**
-		 * Set {@link #should(List)} to a singleton list.
-		 */
-		public Builder should(Function<Query.Builder, ObjectBuilder<Query>> fn) {
-			return this.should(fn.apply(new Query.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #should(List)}, creating the list if needed.
-		 */
-		public Builder addShould(Function<Query.Builder, ObjectBuilder<Query>> fn) {
-			return this.addShould(fn.apply(new Query.Builder()).build());
 		}
 
 		@Override
@@ -384,6 +319,7 @@ public final class BoolQuery extends QueryBase implements QueryVariant {
 		 *             if some of the required fields are null.
 		 */
 		public BoolQuery build() {
+			_checkSingleUse();
 
 			return new BoolQuery(this);
 		}

@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -39,25 +41,26 @@ import javax.annotation.Nullable;
 
 // typedef: ml.estimate_model_memory.Response
 @JsonpDeserializable
-public final class EstimateModelMemoryResponse implements JsonpSerializable {
+public class EstimateModelMemoryResponse implements JsonpSerializable {
 	private final String modelMemoryEstimate;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public EstimateModelMemoryResponse(Builder builder) {
+	private EstimateModelMemoryResponse(Builder builder) {
 
-		this.modelMemoryEstimate = Objects.requireNonNull(builder.modelMemoryEstimate, "model_memory_estimate");
+		this.modelMemoryEstimate = ModelTypeHelper.requireNonNull(builder.modelMemoryEstimate, this,
+				"modelMemoryEstimate");
 
 	}
 
-	public EstimateModelMemoryResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static EstimateModelMemoryResponse of(Function<Builder, ObjectBuilder<EstimateModelMemoryResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code model_memory_estimate}
 	 */
-	public String modelMemoryEstimate() {
+	public final String modelMemoryEstimate() {
 		return this.modelMemoryEstimate;
 	}
 
@@ -82,13 +85,13 @@ public final class EstimateModelMemoryResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link EstimateModelMemoryResponse}.
 	 */
-	public static class Builder implements ObjectBuilder<EstimateModelMemoryResponse> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<EstimateModelMemoryResponse> {
 		private String modelMemoryEstimate;
 
 		/**
 		 * Required - API name: {@code model_memory_estimate}
 		 */
-		public Builder modelMemoryEstimate(String value) {
+		public final Builder modelMemoryEstimate(String value) {
 			this.modelMemoryEstimate = value;
 			return this;
 		}
@@ -100,6 +103,7 @@ public final class EstimateModelMemoryResponse implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public EstimateModelMemoryResponse build() {
+			_checkSingleUse();
 
 			return new EstimateModelMemoryResponse(this);
 		}

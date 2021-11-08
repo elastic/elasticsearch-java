@@ -31,9 +31,10 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.SimpleEndpoint;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Boolean;
 import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
@@ -43,31 +44,27 @@ import javax.annotation.Nullable;
 
 // typedef: async_search.get.Request
 
-public final class GetAsyncSearchRequest extends RequestBase {
+public class GetAsyncSearchRequest extends RequestBase {
 	private final String id;
 
 	@Nullable
 	private final String keepAlive;
 
 	@Nullable
-	private final Boolean typedKeys;
-
-	@Nullable
 	private final String waitForCompletionTimeout;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public GetAsyncSearchRequest(Builder builder) {
+	private GetAsyncSearchRequest(Builder builder) {
 
-		this.id = Objects.requireNonNull(builder.id, "id");
+		this.id = ModelTypeHelper.requireNonNull(builder.id, this, "id");
 		this.keepAlive = builder.keepAlive;
-		this.typedKeys = builder.typedKeys;
 		this.waitForCompletionTimeout = builder.waitForCompletionTimeout;
 
 	}
 
-	public GetAsyncSearchRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static GetAsyncSearchRequest of(Function<Builder, ObjectBuilder<GetAsyncSearchRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -75,7 +72,7 @@ public final class GetAsyncSearchRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code id}
 	 */
-	public String id() {
+	public final String id() {
 		return this.id;
 	}
 
@@ -86,19 +83,8 @@ public final class GetAsyncSearchRequest extends RequestBase {
 	 * API name: {@code keep_alive}
 	 */
 	@Nullable
-	public String keepAlive() {
+	public final String keepAlive() {
 		return this.keepAlive;
-	}
-
-	/**
-	 * Specify whether aggregation and suggester names should be prefixed by their
-	 * respective types in the response
-	 * <p>
-	 * API name: {@code typed_keys}
-	 */
-	@Nullable
-	public Boolean typedKeys() {
-		return this.typedKeys;
 	}
 
 	/**
@@ -107,7 +93,7 @@ public final class GetAsyncSearchRequest extends RequestBase {
 	 * API name: {@code wait_for_completion_timeout}
 	 */
 	@Nullable
-	public String waitForCompletionTimeout() {
+	public final String waitForCompletionTimeout() {
 		return this.waitForCompletionTimeout;
 	}
 
@@ -116,14 +102,11 @@ public final class GetAsyncSearchRequest extends RequestBase {
 	/**
 	 * Builder for {@link GetAsyncSearchRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<GetAsyncSearchRequest> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetAsyncSearchRequest> {
 		private String id;
 
 		@Nullable
 		private String keepAlive;
-
-		@Nullable
-		private Boolean typedKeys;
 
 		@Nullable
 		private String waitForCompletionTimeout;
@@ -133,7 +116,7 @@ public final class GetAsyncSearchRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code id}
 		 */
-		public Builder id(String value) {
+		public final Builder id(String value) {
 			this.id = value;
 			return this;
 		}
@@ -144,19 +127,8 @@ public final class GetAsyncSearchRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code keep_alive}
 		 */
-		public Builder keepAlive(@Nullable String value) {
+		public final Builder keepAlive(@Nullable String value) {
 			this.keepAlive = value;
-			return this;
-		}
-
-		/**
-		 * Specify whether aggregation and suggester names should be prefixed by their
-		 * respective types in the response
-		 * <p>
-		 * API name: {@code typed_keys}
-		 */
-		public Builder typedKeys(@Nullable Boolean value) {
-			this.typedKeys = value;
 			return this;
 		}
 
@@ -165,7 +137,7 @@ public final class GetAsyncSearchRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code wait_for_completion_timeout}
 		 */
-		public Builder waitForCompletionTimeout(@Nullable String value) {
+		public final Builder waitForCompletionTimeout(@Nullable String value) {
 			this.waitForCompletionTimeout = value;
 			return this;
 		}
@@ -177,6 +149,7 @@ public final class GetAsyncSearchRequest extends RequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public GetAsyncSearchRequest build() {
+			_checkSingleUse();
 
 			return new GetAsyncSearchRequest(this);
 		}
@@ -216,9 +189,7 @@ public final class GetAsyncSearchRequest extends RequestBase {
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
-				if (request.typedKeys != null) {
-					params.put("typed_keys", String.valueOf(request.typedKeys));
-				}
+				params.put("typed_keys", "true");
 				if (request.keepAlive != null) {
 					params.put("keep_alive", request.keepAlive);
 				}

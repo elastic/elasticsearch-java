@@ -34,10 +34,10 @@ import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.SimpleEndpoint;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -49,23 +49,20 @@ import javax.annotation.Nullable;
 
 // typedef: indices.clear_cache.Request
 
-public final class ClearCacheRequest extends RequestBase {
+public class ClearCacheRequest extends RequestBase {
 	@Nullable
 	private final Boolean allowNoIndices;
 
-	@Nullable
 	private final List<ExpandWildcardOptions> expandWildcards;
 
 	@Nullable
 	private final Boolean fielddata;
 
-	@Nullable
 	private final List<String> fields;
 
 	@Nullable
 	private final Boolean ignoreUnavailable;
 
-	@Nullable
 	private final List<String> index;
 
 	@Nullable
@@ -76,7 +73,7 @@ public final class ClearCacheRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public ClearCacheRequest(Builder builder) {
+	private ClearCacheRequest(Builder builder) {
 
 		this.allowNoIndices = builder.allowNoIndices;
 		this.expandWildcards = ModelTypeHelper.unmodifiable(builder.expandWildcards);
@@ -89,8 +86,8 @@ public final class ClearCacheRequest extends RequestBase {
 
 	}
 
-	public ClearCacheRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ClearCacheRequest of(Function<Builder, ObjectBuilder<ClearCacheRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -101,7 +98,7 @@ public final class ClearCacheRequest extends RequestBase {
 	 * API name: {@code allow_no_indices}
 	 */
 	@Nullable
-	public Boolean allowNoIndices() {
+	public final Boolean allowNoIndices() {
 		return this.allowNoIndices;
 	}
 
@@ -111,8 +108,7 @@ public final class ClearCacheRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code expand_wildcards}
 	 */
-	@Nullable
-	public List<ExpandWildcardOptions> expandWildcards() {
+	public final List<ExpandWildcardOptions> expandWildcards() {
 		return this.expandWildcards;
 	}
 
@@ -122,7 +118,7 @@ public final class ClearCacheRequest extends RequestBase {
 	 * API name: {@code fielddata}
 	 */
 	@Nullable
-	public Boolean fielddata() {
+	public final Boolean fielddata() {
 		return this.fielddata;
 	}
 
@@ -132,8 +128,7 @@ public final class ClearCacheRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code fields}
 	 */
-	@Nullable
-	public List<String> fields() {
+	public final List<String> fields() {
 		return this.fields;
 	}
 
@@ -144,7 +139,7 @@ public final class ClearCacheRequest extends RequestBase {
 	 * API name: {@code ignore_unavailable}
 	 */
 	@Nullable
-	public Boolean ignoreUnavailable() {
+	public final Boolean ignoreUnavailable() {
 		return this.ignoreUnavailable;
 	}
 
@@ -153,8 +148,7 @@ public final class ClearCacheRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code index}
 	 */
-	@Nullable
-	public List<String> index() {
+	public final List<String> index() {
 		return this.index;
 	}
 
@@ -164,7 +158,7 @@ public final class ClearCacheRequest extends RequestBase {
 	 * API name: {@code query}
 	 */
 	@Nullable
-	public Boolean query() {
+	public final Boolean query() {
 		return this.query;
 	}
 
@@ -174,7 +168,7 @@ public final class ClearCacheRequest extends RequestBase {
 	 * API name: {@code request}
 	 */
 	@Nullable
-	public Boolean request() {
+	public final Boolean request() {
 		return this.request;
 	}
 
@@ -183,7 +177,7 @@ public final class ClearCacheRequest extends RequestBase {
 	/**
 	 * Builder for {@link ClearCacheRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<ClearCacheRequest> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ClearCacheRequest> {
 		@Nullable
 		private Boolean allowNoIndices;
 
@@ -215,7 +209,7 @@ public final class ClearCacheRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code allow_no_indices}
 		 */
-		public Builder allowNoIndices(@Nullable Boolean value) {
+		public final Builder allowNoIndices(@Nullable Boolean value) {
 			this.allowNoIndices = value;
 			return this;
 		}
@@ -226,7 +220,7 @@ public final class ClearCacheRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code expand_wildcards}
 		 */
-		public Builder expandWildcards(@Nullable List<ExpandWildcardOptions> value) {
+		public final Builder expandWildcards(@Nullable List<ExpandWildcardOptions> value) {
 			this.expandWildcards = value;
 			return this;
 		}
@@ -237,19 +231,8 @@ public final class ClearCacheRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code expand_wildcards}
 		 */
-		public Builder expandWildcards(ExpandWildcardOptions... value) {
+		public final Builder expandWildcards(ExpandWildcardOptions... value) {
 			this.expandWildcards = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #expandWildcards(List)}, creating the list if needed.
-		 */
-		public Builder addExpandWildcards(ExpandWildcardOptions value) {
-			if (this.expandWildcards == null) {
-				this.expandWildcards = new ArrayList<>();
-			}
-			this.expandWildcards.add(value);
 			return this;
 		}
 
@@ -258,7 +241,7 @@ public final class ClearCacheRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code fielddata}
 		 */
-		public Builder fielddata(@Nullable Boolean value) {
+		public final Builder fielddata(@Nullable Boolean value) {
 			this.fielddata = value;
 			return this;
 		}
@@ -269,7 +252,7 @@ public final class ClearCacheRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code fields}
 		 */
-		public Builder fields(@Nullable List<String> value) {
+		public final Builder fields(@Nullable List<String> value) {
 			this.fields = value;
 			return this;
 		}
@@ -280,19 +263,8 @@ public final class ClearCacheRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code fields}
 		 */
-		public Builder fields(String... value) {
+		public final Builder fields(String... value) {
 			this.fields = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #fields(List)}, creating the list if needed.
-		 */
-		public Builder addFields(String value) {
-			if (this.fields == null) {
-				this.fields = new ArrayList<>();
-			}
-			this.fields.add(value);
 			return this;
 		}
 
@@ -302,7 +274,7 @@ public final class ClearCacheRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code ignore_unavailable}
 		 */
-		public Builder ignoreUnavailable(@Nullable Boolean value) {
+		public final Builder ignoreUnavailable(@Nullable Boolean value) {
 			this.ignoreUnavailable = value;
 			return this;
 		}
@@ -312,7 +284,7 @@ public final class ClearCacheRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code index}
 		 */
-		public Builder index(@Nullable List<String> value) {
+		public final Builder index(@Nullable List<String> value) {
 			this.index = value;
 			return this;
 		}
@@ -322,19 +294,8 @@ public final class ClearCacheRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code index}
 		 */
-		public Builder index(String... value) {
+		public final Builder index(String... value) {
 			this.index = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #index(List)}, creating the list if needed.
-		 */
-		public Builder addIndex(String value) {
-			if (this.index == null) {
-				this.index = new ArrayList<>();
-			}
-			this.index.add(value);
 			return this;
 		}
 
@@ -343,7 +304,7 @@ public final class ClearCacheRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code query}
 		 */
-		public Builder query(@Nullable Boolean value) {
+		public final Builder query(@Nullable Boolean value) {
 			this.query = value;
 			return this;
 		}
@@ -353,7 +314,7 @@ public final class ClearCacheRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code request}
 		 */
-		public Builder request(@Nullable Boolean value) {
+		public final Builder request(@Nullable Boolean value) {
 			this.request = value;
 			return this;
 		}
@@ -365,6 +326,7 @@ public final class ClearCacheRequest extends RequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public ClearCacheRequest build() {
+			_checkSingleUse();
 
 			return new ClearCacheRequest(this);
 		}
@@ -388,7 +350,7 @@ public final class ClearCacheRequest extends RequestBase {
 
 				int propsSet = 0;
 
-				if (request.index() != null)
+				if (ModelTypeHelper.isDefined(request.index()))
 					propsSet |= _index;
 
 				if (propsSet == 0) {
@@ -418,9 +380,9 @@ public final class ClearCacheRequest extends RequestBase {
 				if (request.fielddata != null) {
 					params.put("fielddata", String.valueOf(request.fielddata));
 				}
-				if (request.expandWildcards != null) {
+				if (ModelTypeHelper.isDefined(request.expandWildcards)) {
 					params.put("expand_wildcards",
-							request.expandWildcards.stream().map(v -> v.toString()).collect(Collectors.joining(",")));
+							request.expandWildcards.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")));
 				}
 				if (request.ignoreUnavailable != null) {
 					params.put("ignore_unavailable", String.valueOf(request.ignoreUnavailable));
@@ -431,7 +393,7 @@ public final class ClearCacheRequest extends RequestBase {
 				if (request.query != null) {
 					params.put("query", String.valueOf(request.query));
 				}
-				if (request.fields != null) {
+				if (ModelTypeHelper.isDefined(request.fields)) {
 					params.put("fields", request.fields.stream().map(v -> v).collect(Collectors.joining(",")));
 				}
 				return params;

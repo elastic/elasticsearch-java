@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.lang.String;
@@ -40,7 +42,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.RefreshStats
 @JsonpDeserializable
-public final class RefreshStats implements JsonpSerializable {
+public class RefreshStats implements JsonpSerializable {
 	private final long externalTotal;
 
 	private final long externalTotalTimeInMillis;
@@ -56,47 +58,47 @@ public final class RefreshStats implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public RefreshStats(Builder builder) {
+	private RefreshStats(Builder builder) {
 
-		this.externalTotal = Objects.requireNonNull(builder.externalTotal, "external_total");
-		this.externalTotalTimeInMillis = Objects.requireNonNull(builder.externalTotalTimeInMillis,
-				"external_total_time_in_millis");
-		this.listeners = Objects.requireNonNull(builder.listeners, "listeners");
-		this.total = Objects.requireNonNull(builder.total, "total");
+		this.externalTotal = ModelTypeHelper.requireNonNull(builder.externalTotal, this, "externalTotal");
+		this.externalTotalTimeInMillis = ModelTypeHelper.requireNonNull(builder.externalTotalTimeInMillis, this,
+				"externalTotalTimeInMillis");
+		this.listeners = ModelTypeHelper.requireNonNull(builder.listeners, this, "listeners");
+		this.total = ModelTypeHelper.requireNonNull(builder.total, this, "total");
 		this.totalTime = builder.totalTime;
-		this.totalTimeInMillis = Objects.requireNonNull(builder.totalTimeInMillis, "total_time_in_millis");
+		this.totalTimeInMillis = ModelTypeHelper.requireNonNull(builder.totalTimeInMillis, this, "totalTimeInMillis");
 
 	}
 
-	public RefreshStats(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static RefreshStats of(Function<Builder, ObjectBuilder<RefreshStats>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code external_total}
 	 */
-	public long externalTotal() {
+	public final long externalTotal() {
 		return this.externalTotal;
 	}
 
 	/**
 	 * Required - API name: {@code external_total_time_in_millis}
 	 */
-	public long externalTotalTimeInMillis() {
+	public final long externalTotalTimeInMillis() {
 		return this.externalTotalTimeInMillis;
 	}
 
 	/**
 	 * Required - API name: {@code listeners}
 	 */
-	public long listeners() {
+	public final long listeners() {
 		return this.listeners;
 	}
 
 	/**
 	 * Required - API name: {@code total}
 	 */
-	public long total() {
+	public final long total() {
 		return this.total;
 	}
 
@@ -104,14 +106,14 @@ public final class RefreshStats implements JsonpSerializable {
 	 * API name: {@code total_time}
 	 */
 	@Nullable
-	public String totalTime() {
+	public final String totalTime() {
 		return this.totalTime;
 	}
 
 	/**
 	 * Required - API name: {@code total_time_in_millis}
 	 */
-	public long totalTimeInMillis() {
+	public final long totalTimeInMillis() {
 		return this.totalTimeInMillis;
 	}
 
@@ -139,12 +141,10 @@ public final class RefreshStats implements JsonpSerializable {
 		generator.write(this.total);
 
 		if (this.totalTime != null) {
-
 			generator.writeKey("total_time");
 			generator.write(this.totalTime);
 
 		}
-
 		generator.writeKey("total_time_in_millis");
 		generator.write(this.totalTimeInMillis);
 
@@ -155,7 +155,7 @@ public final class RefreshStats implements JsonpSerializable {
 	/**
 	 * Builder for {@link RefreshStats}.
 	 */
-	public static class Builder implements ObjectBuilder<RefreshStats> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RefreshStats> {
 		private Long externalTotal;
 
 		private Long externalTotalTimeInMillis;
@@ -172,7 +172,7 @@ public final class RefreshStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code external_total}
 		 */
-		public Builder externalTotal(long value) {
+		public final Builder externalTotal(long value) {
 			this.externalTotal = value;
 			return this;
 		}
@@ -180,7 +180,7 @@ public final class RefreshStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code external_total_time_in_millis}
 		 */
-		public Builder externalTotalTimeInMillis(long value) {
+		public final Builder externalTotalTimeInMillis(long value) {
 			this.externalTotalTimeInMillis = value;
 			return this;
 		}
@@ -188,7 +188,7 @@ public final class RefreshStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code listeners}
 		 */
-		public Builder listeners(long value) {
+		public final Builder listeners(long value) {
 			this.listeners = value;
 			return this;
 		}
@@ -196,7 +196,7 @@ public final class RefreshStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code total}
 		 */
-		public Builder total(long value) {
+		public final Builder total(long value) {
 			this.total = value;
 			return this;
 		}
@@ -204,7 +204,7 @@ public final class RefreshStats implements JsonpSerializable {
 		/**
 		 * API name: {@code total_time}
 		 */
-		public Builder totalTime(@Nullable String value) {
+		public final Builder totalTime(@Nullable String value) {
 			this.totalTime = value;
 			return this;
 		}
@@ -212,7 +212,7 @@ public final class RefreshStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code total_time_in_millis}
 		 */
-		public Builder totalTimeInMillis(long value) {
+		public final Builder totalTimeInMillis(long value) {
 			this.totalTimeInMillis = value;
 			return this;
 		}
@@ -224,6 +224,7 @@ public final class RefreshStats implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public RefreshStats build() {
+			_checkSingleUse();
 
 			return new RefreshStats(this);
 		}

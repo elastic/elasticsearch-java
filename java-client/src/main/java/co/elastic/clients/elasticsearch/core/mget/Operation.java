@@ -33,11 +33,11 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
@@ -46,7 +46,7 @@ import javax.annotation.Nullable;
 
 // typedef: _global.mget.Operation
 @JsonpDeserializable
-public final class Operation implements JsonpSerializable {
+public class Operation implements JsonpSerializable {
 	private final String id;
 
 	@Nullable
@@ -60,7 +60,6 @@ public final class Operation implements JsonpSerializable {
 							 * Union(_global.search._types.SourceFilter | _types.Fields | internal.boolean)
 							 */ source;
 
-	@Nullable
 	private final List<String> storedFields;
 
 	@Nullable
@@ -74,9 +73,9 @@ public final class Operation implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public Operation(Builder builder) {
+	private Operation(Builder builder) {
 
-		this.id = Objects.requireNonNull(builder.id, "_id");
+		this.id = ModelTypeHelper.requireNonNull(builder.id, this, "id");
 		this.index = builder.index;
 		this.routing = builder.routing;
 		this.source = builder.source;
@@ -87,14 +86,14 @@ public final class Operation implements JsonpSerializable {
 
 	}
 
-	public Operation(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static Operation of(Function<Builder, ObjectBuilder<Operation>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code _id}
 	 */
-	public String id() {
+	public final String id() {
 		return this.id;
 	}
 
@@ -102,7 +101,7 @@ public final class Operation implements JsonpSerializable {
 	 * API name: {@code _index}
 	 */
 	@Nullable
-	public String index() {
+	public final String index() {
 		return this.index;
 	}
 
@@ -110,7 +109,7 @@ public final class Operation implements JsonpSerializable {
 	 * API name: {@code routing}
 	 */
 	@Nullable
-	public String routing() {
+	public final String routing() {
 		return this.routing;
 	}
 
@@ -118,17 +117,16 @@ public final class Operation implements JsonpSerializable {
 	 * API name: {@code _source}
 	 */
 	@Nullable
-	public JsonValue /*
-						 * Union(_global.search._types.SourceFilter | _types.Fields | internal.boolean)
-						 */ source() {
+	public final JsonValue /*
+							 * Union(_global.search._types.SourceFilter | _types.Fields | internal.boolean)
+							 */ source() {
 		return this.source;
 	}
 
 	/**
 	 * API name: {@code stored_fields}
 	 */
-	@Nullable
-	public List<String> storedFields() {
+	public final List<String> storedFields() {
 		return this.storedFields;
 	}
 
@@ -136,7 +134,7 @@ public final class Operation implements JsonpSerializable {
 	 * API name: {@code _type}
 	 */
 	@Nullable
-	public String type() {
+	public final String type() {
 		return this.type;
 	}
 
@@ -144,7 +142,7 @@ public final class Operation implements JsonpSerializable {
 	 * API name: {@code version}
 	 */
 	@Nullable
-	public Long version() {
+	public final Long version() {
 		return this.version;
 	}
 
@@ -152,7 +150,7 @@ public final class Operation implements JsonpSerializable {
 	 * API name: {@code version_type}
 	 */
 	@Nullable
-	public VersionType versionType() {
+	public final VersionType versionType() {
 		return this.versionType;
 	}
 
@@ -171,25 +169,21 @@ public final class Operation implements JsonpSerializable {
 		generator.write(this.id);
 
 		if (this.index != null) {
-
 			generator.writeKey("_index");
 			generator.write(this.index);
 
 		}
 		if (this.routing != null) {
-
 			generator.writeKey("routing");
 			generator.write(this.routing);
 
 		}
 		if (this.source != null) {
-
 			generator.writeKey("_source");
 			generator.write(this.source);
 
 		}
-		if (this.storedFields != null) {
-
+		if (ModelTypeHelper.isDefined(this.storedFields)) {
 			generator.writeKey("stored_fields");
 			generator.writeStartArray();
 			for (String item0 : this.storedFields) {
@@ -200,19 +194,16 @@ public final class Operation implements JsonpSerializable {
 
 		}
 		if (this.type != null) {
-
 			generator.writeKey("_type");
 			generator.write(this.type);
 
 		}
 		if (this.version != null) {
-
 			generator.writeKey("version");
 			generator.write(this.version);
 
 		}
 		if (this.versionType != null) {
-
 			generator.writeKey("version_type");
 			this.versionType.serialize(generator, mapper);
 		}
@@ -224,7 +215,7 @@ public final class Operation implements JsonpSerializable {
 	/**
 	 * Builder for {@link Operation}.
 	 */
-	public static class Builder implements ObjectBuilder<Operation> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Operation> {
 		private String id;
 
 		@Nullable
@@ -253,7 +244,7 @@ public final class Operation implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code _id}
 		 */
-		public Builder id(String value) {
+		public final Builder id(String value) {
 			this.id = value;
 			return this;
 		}
@@ -261,7 +252,7 @@ public final class Operation implements JsonpSerializable {
 		/**
 		 * API name: {@code _index}
 		 */
-		public Builder index(@Nullable String value) {
+		public final Builder index(@Nullable String value) {
 			this.index = value;
 			return this;
 		}
@@ -269,7 +260,7 @@ public final class Operation implements JsonpSerializable {
 		/**
 		 * API name: {@code routing}
 		 */
-		public Builder routing(@Nullable String value) {
+		public final Builder routing(@Nullable String value) {
 			this.routing = value;
 			return this;
 		}
@@ -277,7 +268,7 @@ public final class Operation implements JsonpSerializable {
 		/**
 		 * API name: {@code _source}
 		 */
-		public Builder source(
+		public final Builder source(
 				@Nullable JsonValue /*
 									 * Union(_global.search._types.SourceFilter | _types.Fields | internal.boolean)
 									 */ value) {
@@ -288,7 +279,7 @@ public final class Operation implements JsonpSerializable {
 		/**
 		 * API name: {@code stored_fields}
 		 */
-		public Builder storedFields(@Nullable List<String> value) {
+		public final Builder storedFields(@Nullable List<String> value) {
 			this.storedFields = value;
 			return this;
 		}
@@ -296,26 +287,15 @@ public final class Operation implements JsonpSerializable {
 		/**
 		 * API name: {@code stored_fields}
 		 */
-		public Builder storedFields(String... value) {
+		public final Builder storedFields(String... value) {
 			this.storedFields = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #storedFields(List)}, creating the list if needed.
-		 */
-		public Builder addStoredFields(String value) {
-			if (this.storedFields == null) {
-				this.storedFields = new ArrayList<>();
-			}
-			this.storedFields.add(value);
 			return this;
 		}
 
 		/**
 		 * API name: {@code _type}
 		 */
-		public Builder type(@Nullable String value) {
+		public final Builder type(@Nullable String value) {
 			this.type = value;
 			return this;
 		}
@@ -323,7 +303,7 @@ public final class Operation implements JsonpSerializable {
 		/**
 		 * API name: {@code version}
 		 */
-		public Builder version(@Nullable Long value) {
+		public final Builder version(@Nullable Long value) {
 			this.version = value;
 			return this;
 		}
@@ -331,7 +311,7 @@ public final class Operation implements JsonpSerializable {
 		/**
 		 * API name: {@code version_type}
 		 */
-		public Builder versionType(@Nullable VersionType value) {
+		public final Builder versionType(@Nullable VersionType value) {
 			this.versionType = value;
 			return this;
 		}
@@ -343,6 +323,7 @@ public final class Operation implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public Operation build() {
+			_checkSingleUse();
 
 			return new Operation(this);
 		}

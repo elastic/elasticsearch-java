@@ -32,6 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
@@ -44,10 +45,9 @@ import javax.annotation.Nullable;
 
 // typedef: _global.search._types.FieldCollapse
 @JsonpDeserializable
-public final class FieldCollapse implements JsonpSerializable {
+public class FieldCollapse implements JsonpSerializable {
 	private final String field;
 
-	@Nullable
 	private final List<InnerHits> innerHits;
 
 	@Nullable
@@ -55,30 +55,29 @@ public final class FieldCollapse implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public FieldCollapse(Builder builder) {
+	private FieldCollapse(Builder builder) {
 
-		this.field = Objects.requireNonNull(builder.field, "field");
+		this.field = ModelTypeHelper.requireNonNull(builder.field, this, "field");
 		this.innerHits = ModelTypeHelper.unmodifiable(builder.innerHits);
 		this.maxConcurrentGroupSearches = builder.maxConcurrentGroupSearches;
 
 	}
 
-	public FieldCollapse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static FieldCollapse of(Function<Builder, ObjectBuilder<FieldCollapse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code field}
 	 */
-	public String field() {
+	public final String field() {
 		return this.field;
 	}
 
 	/**
 	 * API name: {@code inner_hits}
 	 */
-	@Nullable
-	public List<InnerHits> innerHits() {
+	public final List<InnerHits> innerHits() {
 		return this.innerHits;
 	}
 
@@ -86,7 +85,7 @@ public final class FieldCollapse implements JsonpSerializable {
 	 * API name: {@code max_concurrent_group_searches}
 	 */
 	@Nullable
-	public Integer maxConcurrentGroupSearches() {
+	public final Integer maxConcurrentGroupSearches() {
 		return this.maxConcurrentGroupSearches;
 	}
 
@@ -104,8 +103,7 @@ public final class FieldCollapse implements JsonpSerializable {
 		generator.writeKey("field");
 		generator.write(this.field);
 
-		if (this.innerHits != null) {
-
+		if (ModelTypeHelper.isDefined(this.innerHits)) {
 			generator.writeKey("inner_hits");
 			generator.writeStartArray();
 			for (InnerHits item0 : this.innerHits) {
@@ -116,7 +114,6 @@ public final class FieldCollapse implements JsonpSerializable {
 
 		}
 		if (this.maxConcurrentGroupSearches != null) {
-
 			generator.writeKey("max_concurrent_group_searches");
 			generator.write(this.maxConcurrentGroupSearches);
 
@@ -129,7 +126,7 @@ public final class FieldCollapse implements JsonpSerializable {
 	/**
 	 * Builder for {@link FieldCollapse}.
 	 */
-	public static class Builder implements ObjectBuilder<FieldCollapse> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<FieldCollapse> {
 		private String field;
 
 		@Nullable
@@ -141,7 +138,7 @@ public final class FieldCollapse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code field}
 		 */
-		public Builder field(String value) {
+		public final Builder field(String value) {
 			this.field = value;
 			return this;
 		}
@@ -149,7 +146,7 @@ public final class FieldCollapse implements JsonpSerializable {
 		/**
 		 * API name: {@code inner_hits}
 		 */
-		public Builder innerHits(@Nullable List<InnerHits> value) {
+		public final Builder innerHits(@Nullable List<InnerHits> value) {
 			this.innerHits = value;
 			return this;
 		}
@@ -157,40 +154,27 @@ public final class FieldCollapse implements JsonpSerializable {
 		/**
 		 * API name: {@code inner_hits}
 		 */
-		public Builder innerHits(InnerHits... value) {
+		public final Builder innerHits(InnerHits... value) {
 			this.innerHits = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #innerHits(List)}, creating the list if needed.
+		 * API name: {@code inner_hits}
 		 */
-		public Builder addInnerHits(InnerHits value) {
-			if (this.innerHits == null) {
-				this.innerHits = new ArrayList<>();
+		@SafeVarargs
+		public final Builder innerHits(Function<InnerHits.Builder, ObjectBuilder<InnerHits>>... fns) {
+			this.innerHits = new ArrayList<>(fns.length);
+			for (Function<InnerHits.Builder, ObjectBuilder<InnerHits>> fn : fns) {
+				this.innerHits.add(fn.apply(new InnerHits.Builder()).build());
 			}
-			this.innerHits.add(value);
 			return this;
-		}
-
-		/**
-		 * Set {@link #innerHits(List)} to a singleton list.
-		 */
-		public Builder innerHits(Function<InnerHits.Builder, ObjectBuilder<InnerHits>> fn) {
-			return this.innerHits(fn.apply(new InnerHits.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #innerHits(List)}, creating the list if needed.
-		 */
-		public Builder addInnerHits(Function<InnerHits.Builder, ObjectBuilder<InnerHits>> fn) {
-			return this.addInnerHits(fn.apply(new InnerHits.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code max_concurrent_group_searches}
 		 */
-		public Builder maxConcurrentGroupSearches(@Nullable Integer value) {
+		public final Builder maxConcurrentGroupSearches(@Nullable Integer value) {
 			this.maxConcurrentGroupSearches = value;
 			return this;
 		}
@@ -202,6 +186,7 @@ public final class FieldCollapse implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public FieldCollapse build() {
+			_checkSingleUse();
 
 			return new FieldCollapse(this);
 		}

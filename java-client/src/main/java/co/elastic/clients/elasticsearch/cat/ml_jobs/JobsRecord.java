@@ -34,6 +34,7 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -42,7 +43,7 @@ import javax.annotation.Nullable;
 
 // typedef: cat.ml_jobs.JobsRecord
 @JsonpDeserializable
-public final class JobsRecord implements JsonpSerializable {
+public class JobsRecord implements JsonpSerializable {
 	@Nullable
 	private final String id;
 
@@ -225,7 +226,7 @@ public final class JobsRecord implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public JobsRecord(Builder builder) {
+	private JobsRecord(Builder builder) {
 
 		this.id = builder.id;
 		this.state = builder.state;
@@ -290,8 +291,8 @@ public final class JobsRecord implements JsonpSerializable {
 
 	}
 
-	public JobsRecord(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static JobsRecord of(Function<Builder, ObjectBuilder<JobsRecord>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -300,7 +301,7 @@ public final class JobsRecord implements JsonpSerializable {
 	 * API name: {@code id}
 	 */
 	@Nullable
-	public String id() {
+	public final String id() {
 		return this.id;
 	}
 
@@ -310,7 +311,7 @@ public final class JobsRecord implements JsonpSerializable {
 	 * API name: {@code state}
 	 */
 	@Nullable
-	public JobState state() {
+	public final JobState state() {
 		return this.state;
 	}
 
@@ -320,7 +321,7 @@ public final class JobsRecord implements JsonpSerializable {
 	 * API name: {@code opened_time}
 	 */
 	@Nullable
-	public String openedTime() {
+	public final String openedTime() {
 		return this.openedTime;
 	}
 
@@ -330,7 +331,7 @@ public final class JobsRecord implements JsonpSerializable {
 	 * API name: {@code assignment_explanation}
 	 */
 	@Nullable
-	public String assignmentExplanation() {
+	public final String assignmentExplanation() {
 		return this.assignmentExplanation;
 	}
 
@@ -340,7 +341,7 @@ public final class JobsRecord implements JsonpSerializable {
 	 * API name: {@code data.processed_records}
 	 */
 	@Nullable
-	public String dataProcessedRecords() {
+	public final String dataProcessedRecords() {
 		return this.dataProcessedRecords;
 	}
 
@@ -350,7 +351,7 @@ public final class JobsRecord implements JsonpSerializable {
 	 * API name: {@code data.processed_fields}
 	 */
 	@Nullable
-	public String dataProcessedFields() {
+	public final String dataProcessedFields() {
 		return this.dataProcessedFields;
 	}
 
@@ -360,7 +361,7 @@ public final class JobsRecord implements JsonpSerializable {
 	 * API name: {@code data.input_bytes}
 	 */
 	@Nullable
-	public String dataInputBytes() {
+	public final String dataInputBytes() {
 		return this.dataInputBytes;
 	}
 
@@ -370,7 +371,7 @@ public final class JobsRecord implements JsonpSerializable {
 	 * API name: {@code data.input_records}
 	 */
 	@Nullable
-	public String dataInputRecords() {
+	public final String dataInputRecords() {
 		return this.dataInputRecords;
 	}
 
@@ -380,7 +381,7 @@ public final class JobsRecord implements JsonpSerializable {
 	 * API name: {@code data.input_fields}
 	 */
 	@Nullable
-	public String dataInputFields() {
+	public final String dataInputFields() {
 		return this.dataInputFields;
 	}
 
@@ -390,7 +391,7 @@ public final class JobsRecord implements JsonpSerializable {
 	 * API name: {@code data.invalid_dates}
 	 */
 	@Nullable
-	public String dataInvalidDates() {
+	public final String dataInvalidDates() {
 		return this.dataInvalidDates;
 	}
 
@@ -400,7 +401,7 @@ public final class JobsRecord implements JsonpSerializable {
 	 * API name: {@code data.missing_fields}
 	 */
 	@Nullable
-	public String dataMissingFields() {
+	public final String dataMissingFields() {
 		return this.dataMissingFields;
 	}
 
@@ -410,7 +411,7 @@ public final class JobsRecord implements JsonpSerializable {
 	 * API name: {@code data.out_of_order_timestamps}
 	 */
 	@Nullable
-	public String dataOutOfOrderTimestamps() {
+	public final String dataOutOfOrderTimestamps() {
 		return this.dataOutOfOrderTimestamps;
 	}
 
@@ -420,7 +421,7 @@ public final class JobsRecord implements JsonpSerializable {
 	 * API name: {@code data.empty_buckets}
 	 */
 	@Nullable
-	public String dataEmptyBuckets() {
+	public final String dataEmptyBuckets() {
 		return this.dataEmptyBuckets;
 	}
 
@@ -430,7 +431,7 @@ public final class JobsRecord implements JsonpSerializable {
 	 * API name: {@code data.sparse_buckets}
 	 */
 	@Nullable
-	public String dataSparseBuckets() {
+	public final String dataSparseBuckets() {
 		return this.dataSparseBuckets;
 	}
 
@@ -440,7 +441,7 @@ public final class JobsRecord implements JsonpSerializable {
 	 * API name: {@code data.buckets}
 	 */
 	@Nullable
-	public String dataBuckets() {
+	public final String dataBuckets() {
 		return this.dataBuckets;
 	}
 
@@ -450,7 +451,7 @@ public final class JobsRecord implements JsonpSerializable {
 	 * API name: {@code data.earliest_record}
 	 */
 	@Nullable
-	public String dataEarliestRecord() {
+	public final String dataEarliestRecord() {
 		return this.dataEarliestRecord;
 	}
 
@@ -460,7 +461,7 @@ public final class JobsRecord implements JsonpSerializable {
 	 * API name: {@code data.latest_record}
 	 */
 	@Nullable
-	public String dataLatestRecord() {
+	public final String dataLatestRecord() {
 		return this.dataLatestRecord;
 	}
 
@@ -470,7 +471,7 @@ public final class JobsRecord implements JsonpSerializable {
 	 * API name: {@code data.last}
 	 */
 	@Nullable
-	public String dataLast() {
+	public final String dataLast() {
 		return this.dataLast;
 	}
 
@@ -480,7 +481,7 @@ public final class JobsRecord implements JsonpSerializable {
 	 * API name: {@code data.last_empty_bucket}
 	 */
 	@Nullable
-	public String dataLastEmptyBucket() {
+	public final String dataLastEmptyBucket() {
 		return this.dataLastEmptyBucket;
 	}
 
@@ -490,7 +491,7 @@ public final class JobsRecord implements JsonpSerializable {
 	 * API name: {@code data.last_sparse_bucket}
 	 */
 	@Nullable
-	public String dataLastSparseBucket() {
+	public final String dataLastSparseBucket() {
 		return this.dataLastSparseBucket;
 	}
 
@@ -500,7 +501,7 @@ public final class JobsRecord implements JsonpSerializable {
 	 * API name: {@code model.bytes}
 	 */
 	@Nullable
-	public String modelBytes() {
+	public final String modelBytes() {
 		return this.modelBytes;
 	}
 
@@ -510,7 +511,7 @@ public final class JobsRecord implements JsonpSerializable {
 	 * API name: {@code model.memory_status}
 	 */
 	@Nullable
-	public MemoryStatus modelMemoryStatus() {
+	public final MemoryStatus modelMemoryStatus() {
 		return this.modelMemoryStatus;
 	}
 
@@ -520,7 +521,7 @@ public final class JobsRecord implements JsonpSerializable {
 	 * API name: {@code model.bytes_exceeded}
 	 */
 	@Nullable
-	public String modelBytesExceeded() {
+	public final String modelBytesExceeded() {
 		return this.modelBytesExceeded;
 	}
 
@@ -530,7 +531,7 @@ public final class JobsRecord implements JsonpSerializable {
 	 * API name: {@code model.memory_limit}
 	 */
 	@Nullable
-	public String modelMemoryLimit() {
+	public final String modelMemoryLimit() {
 		return this.modelMemoryLimit;
 	}
 
@@ -540,7 +541,7 @@ public final class JobsRecord implements JsonpSerializable {
 	 * API name: {@code model.by_fields}
 	 */
 	@Nullable
-	public String modelByFields() {
+	public final String modelByFields() {
 		return this.modelByFields;
 	}
 
@@ -550,7 +551,7 @@ public final class JobsRecord implements JsonpSerializable {
 	 * API name: {@code model.over_fields}
 	 */
 	@Nullable
-	public String modelOverFields() {
+	public final String modelOverFields() {
 		return this.modelOverFields;
 	}
 
@@ -560,7 +561,7 @@ public final class JobsRecord implements JsonpSerializable {
 	 * API name: {@code model.partition_fields}
 	 */
 	@Nullable
-	public String modelPartitionFields() {
+	public final String modelPartitionFields() {
 		return this.modelPartitionFields;
 	}
 
@@ -570,7 +571,7 @@ public final class JobsRecord implements JsonpSerializable {
 	 * API name: {@code model.bucket_allocation_failures}
 	 */
 	@Nullable
-	public String modelBucketAllocationFailures() {
+	public final String modelBucketAllocationFailures() {
 		return this.modelBucketAllocationFailures;
 	}
 
@@ -580,7 +581,7 @@ public final class JobsRecord implements JsonpSerializable {
 	 * API name: {@code model.categorization_status}
 	 */
 	@Nullable
-	public CategorizationStatus modelCategorizationStatus() {
+	public final CategorizationStatus modelCategorizationStatus() {
 		return this.modelCategorizationStatus;
 	}
 
@@ -590,7 +591,7 @@ public final class JobsRecord implements JsonpSerializable {
 	 * API name: {@code model.categorized_doc_count}
 	 */
 	@Nullable
-	public String modelCategorizedDocCount() {
+	public final String modelCategorizedDocCount() {
 		return this.modelCategorizedDocCount;
 	}
 
@@ -600,7 +601,7 @@ public final class JobsRecord implements JsonpSerializable {
 	 * API name: {@code model.total_category_count}
 	 */
 	@Nullable
-	public String modelTotalCategoryCount() {
+	public final String modelTotalCategoryCount() {
 		return this.modelTotalCategoryCount;
 	}
 
@@ -610,7 +611,7 @@ public final class JobsRecord implements JsonpSerializable {
 	 * API name: {@code model.frequent_category_count}
 	 */
 	@Nullable
-	public String modelFrequentCategoryCount() {
+	public final String modelFrequentCategoryCount() {
 		return this.modelFrequentCategoryCount;
 	}
 
@@ -620,7 +621,7 @@ public final class JobsRecord implements JsonpSerializable {
 	 * API name: {@code model.rare_category_count}
 	 */
 	@Nullable
-	public String modelRareCategoryCount() {
+	public final String modelRareCategoryCount() {
 		return this.modelRareCategoryCount;
 	}
 
@@ -630,7 +631,7 @@ public final class JobsRecord implements JsonpSerializable {
 	 * API name: {@code model.dead_category_count}
 	 */
 	@Nullable
-	public String modelDeadCategoryCount() {
+	public final String modelDeadCategoryCount() {
 		return this.modelDeadCategoryCount;
 	}
 
@@ -640,7 +641,7 @@ public final class JobsRecord implements JsonpSerializable {
 	 * API name: {@code model.failed_category_count}
 	 */
 	@Nullable
-	public String modelFailedCategoryCount() {
+	public final String modelFailedCategoryCount() {
 		return this.modelFailedCategoryCount;
 	}
 
@@ -650,7 +651,7 @@ public final class JobsRecord implements JsonpSerializable {
 	 * API name: {@code model.log_time}
 	 */
 	@Nullable
-	public String modelLogTime() {
+	public final String modelLogTime() {
 		return this.modelLogTime;
 	}
 
@@ -660,7 +661,7 @@ public final class JobsRecord implements JsonpSerializable {
 	 * API name: {@code model.timestamp}
 	 */
 	@Nullable
-	public String modelTimestamp() {
+	public final String modelTimestamp() {
 		return this.modelTimestamp;
 	}
 
@@ -670,7 +671,7 @@ public final class JobsRecord implements JsonpSerializable {
 	 * API name: {@code forecasts.total}
 	 */
 	@Nullable
-	public String forecastsTotal() {
+	public final String forecastsTotal() {
 		return this.forecastsTotal;
 	}
 
@@ -680,7 +681,7 @@ public final class JobsRecord implements JsonpSerializable {
 	 * API name: {@code forecasts.memory.min}
 	 */
 	@Nullable
-	public String forecastsMemoryMin() {
+	public final String forecastsMemoryMin() {
 		return this.forecastsMemoryMin;
 	}
 
@@ -690,7 +691,7 @@ public final class JobsRecord implements JsonpSerializable {
 	 * API name: {@code forecasts.memory.max}
 	 */
 	@Nullable
-	public String forecastsMemoryMax() {
+	public final String forecastsMemoryMax() {
 		return this.forecastsMemoryMax;
 	}
 
@@ -700,7 +701,7 @@ public final class JobsRecord implements JsonpSerializable {
 	 * API name: {@code forecasts.memory.avg}
 	 */
 	@Nullable
-	public String forecastsMemoryAvg() {
+	public final String forecastsMemoryAvg() {
 		return this.forecastsMemoryAvg;
 	}
 
@@ -710,7 +711,7 @@ public final class JobsRecord implements JsonpSerializable {
 	 * API name: {@code forecasts.memory.total}
 	 */
 	@Nullable
-	public String forecastsMemoryTotal() {
+	public final String forecastsMemoryTotal() {
 		return this.forecastsMemoryTotal;
 	}
 
@@ -720,7 +721,7 @@ public final class JobsRecord implements JsonpSerializable {
 	 * API name: {@code forecasts.records.min}
 	 */
 	@Nullable
-	public String forecastsRecordsMin() {
+	public final String forecastsRecordsMin() {
 		return this.forecastsRecordsMin;
 	}
 
@@ -730,7 +731,7 @@ public final class JobsRecord implements JsonpSerializable {
 	 * API name: {@code forecasts.records.max}
 	 */
 	@Nullable
-	public String forecastsRecordsMax() {
+	public final String forecastsRecordsMax() {
 		return this.forecastsRecordsMax;
 	}
 
@@ -740,7 +741,7 @@ public final class JobsRecord implements JsonpSerializable {
 	 * API name: {@code forecasts.records.avg}
 	 */
 	@Nullable
-	public String forecastsRecordsAvg() {
+	public final String forecastsRecordsAvg() {
 		return this.forecastsRecordsAvg;
 	}
 
@@ -750,7 +751,7 @@ public final class JobsRecord implements JsonpSerializable {
 	 * API name: {@code forecasts.records.total}
 	 */
 	@Nullable
-	public String forecastsRecordsTotal() {
+	public final String forecastsRecordsTotal() {
 		return this.forecastsRecordsTotal;
 	}
 
@@ -760,7 +761,7 @@ public final class JobsRecord implements JsonpSerializable {
 	 * API name: {@code forecasts.time.min}
 	 */
 	@Nullable
-	public String forecastsTimeMin() {
+	public final String forecastsTimeMin() {
 		return this.forecastsTimeMin;
 	}
 
@@ -770,7 +771,7 @@ public final class JobsRecord implements JsonpSerializable {
 	 * API name: {@code forecasts.time.max}
 	 */
 	@Nullable
-	public String forecastsTimeMax() {
+	public final String forecastsTimeMax() {
 		return this.forecastsTimeMax;
 	}
 
@@ -780,7 +781,7 @@ public final class JobsRecord implements JsonpSerializable {
 	 * API name: {@code forecasts.time.avg}
 	 */
 	@Nullable
-	public String forecastsTimeAvg() {
+	public final String forecastsTimeAvg() {
 		return this.forecastsTimeAvg;
 	}
 
@@ -790,7 +791,7 @@ public final class JobsRecord implements JsonpSerializable {
 	 * API name: {@code forecasts.time.total}
 	 */
 	@Nullable
-	public String forecastsTimeTotal() {
+	public final String forecastsTimeTotal() {
 		return this.forecastsTimeTotal;
 	}
 
@@ -800,7 +801,7 @@ public final class JobsRecord implements JsonpSerializable {
 	 * API name: {@code node.id}
 	 */
 	@Nullable
-	public String nodeId() {
+	public final String nodeId() {
 		return this.nodeId;
 	}
 
@@ -810,7 +811,7 @@ public final class JobsRecord implements JsonpSerializable {
 	 * API name: {@code node.name}
 	 */
 	@Nullable
-	public String nodeName() {
+	public final String nodeName() {
 		return this.nodeName;
 	}
 
@@ -820,7 +821,7 @@ public final class JobsRecord implements JsonpSerializable {
 	 * API name: {@code node.ephemeral_id}
 	 */
 	@Nullable
-	public String nodeEphemeralId() {
+	public final String nodeEphemeralId() {
 		return this.nodeEphemeralId;
 	}
 
@@ -830,7 +831,7 @@ public final class JobsRecord implements JsonpSerializable {
 	 * API name: {@code node.address}
 	 */
 	@Nullable
-	public String nodeAddress() {
+	public final String nodeAddress() {
 		return this.nodeAddress;
 	}
 
@@ -840,7 +841,7 @@ public final class JobsRecord implements JsonpSerializable {
 	 * API name: {@code buckets.count}
 	 */
 	@Nullable
-	public String bucketsCount() {
+	public final String bucketsCount() {
 		return this.bucketsCount;
 	}
 
@@ -850,7 +851,7 @@ public final class JobsRecord implements JsonpSerializable {
 	 * API name: {@code buckets.time.total}
 	 */
 	@Nullable
-	public String bucketsTimeTotal() {
+	public final String bucketsTimeTotal() {
 		return this.bucketsTimeTotal;
 	}
 
@@ -860,7 +861,7 @@ public final class JobsRecord implements JsonpSerializable {
 	 * API name: {@code buckets.time.min}
 	 */
 	@Nullable
-	public String bucketsTimeMin() {
+	public final String bucketsTimeMin() {
 		return this.bucketsTimeMin;
 	}
 
@@ -870,7 +871,7 @@ public final class JobsRecord implements JsonpSerializable {
 	 * API name: {@code buckets.time.max}
 	 */
 	@Nullable
-	public String bucketsTimeMax() {
+	public final String bucketsTimeMax() {
 		return this.bucketsTimeMax;
 	}
 
@@ -880,7 +881,7 @@ public final class JobsRecord implements JsonpSerializable {
 	 * API name: {@code buckets.time.exp_avg}
 	 */
 	@Nullable
-	public String bucketsTimeExpAvg() {
+	public final String bucketsTimeExpAvg() {
 		return this.bucketsTimeExpAvg;
 	}
 
@@ -890,7 +891,7 @@ public final class JobsRecord implements JsonpSerializable {
 	 * API name: {@code buckets.time.exp_avg_hour}
 	 */
 	@Nullable
-	public String bucketsTimeExpAvgHour() {
+	public final String bucketsTimeExpAvgHour() {
 		return this.bucketsTimeExpAvgHour;
 	}
 
@@ -906,358 +907,298 @@ public final class JobsRecord implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.id != null) {
-
 			generator.writeKey("id");
 			generator.write(this.id);
 
 		}
 		if (this.state != null) {
-
 			generator.writeKey("state");
 			this.state.serialize(generator, mapper);
 		}
 		if (this.openedTime != null) {
-
 			generator.writeKey("opened_time");
 			generator.write(this.openedTime);
 
 		}
 		if (this.assignmentExplanation != null) {
-
 			generator.writeKey("assignment_explanation");
 			generator.write(this.assignmentExplanation);
 
 		}
 		if (this.dataProcessedRecords != null) {
-
 			generator.writeKey("data.processed_records");
 			generator.write(this.dataProcessedRecords);
 
 		}
 		if (this.dataProcessedFields != null) {
-
 			generator.writeKey("data.processed_fields");
 			generator.write(this.dataProcessedFields);
 
 		}
 		if (this.dataInputBytes != null) {
-
 			generator.writeKey("data.input_bytes");
 			generator.write(this.dataInputBytes);
 
 		}
 		if (this.dataInputRecords != null) {
-
 			generator.writeKey("data.input_records");
 			generator.write(this.dataInputRecords);
 
 		}
 		if (this.dataInputFields != null) {
-
 			generator.writeKey("data.input_fields");
 			generator.write(this.dataInputFields);
 
 		}
 		if (this.dataInvalidDates != null) {
-
 			generator.writeKey("data.invalid_dates");
 			generator.write(this.dataInvalidDates);
 
 		}
 		if (this.dataMissingFields != null) {
-
 			generator.writeKey("data.missing_fields");
 			generator.write(this.dataMissingFields);
 
 		}
 		if (this.dataOutOfOrderTimestamps != null) {
-
 			generator.writeKey("data.out_of_order_timestamps");
 			generator.write(this.dataOutOfOrderTimestamps);
 
 		}
 		if (this.dataEmptyBuckets != null) {
-
 			generator.writeKey("data.empty_buckets");
 			generator.write(this.dataEmptyBuckets);
 
 		}
 		if (this.dataSparseBuckets != null) {
-
 			generator.writeKey("data.sparse_buckets");
 			generator.write(this.dataSparseBuckets);
 
 		}
 		if (this.dataBuckets != null) {
-
 			generator.writeKey("data.buckets");
 			generator.write(this.dataBuckets);
 
 		}
 		if (this.dataEarliestRecord != null) {
-
 			generator.writeKey("data.earliest_record");
 			generator.write(this.dataEarliestRecord);
 
 		}
 		if (this.dataLatestRecord != null) {
-
 			generator.writeKey("data.latest_record");
 			generator.write(this.dataLatestRecord);
 
 		}
 		if (this.dataLast != null) {
-
 			generator.writeKey("data.last");
 			generator.write(this.dataLast);
 
 		}
 		if (this.dataLastEmptyBucket != null) {
-
 			generator.writeKey("data.last_empty_bucket");
 			generator.write(this.dataLastEmptyBucket);
 
 		}
 		if (this.dataLastSparseBucket != null) {
-
 			generator.writeKey("data.last_sparse_bucket");
 			generator.write(this.dataLastSparseBucket);
 
 		}
 		if (this.modelBytes != null) {
-
 			generator.writeKey("model.bytes");
 			generator.write(this.modelBytes);
 
 		}
 		if (this.modelMemoryStatus != null) {
-
 			generator.writeKey("model.memory_status");
 			this.modelMemoryStatus.serialize(generator, mapper);
 		}
 		if (this.modelBytesExceeded != null) {
-
 			generator.writeKey("model.bytes_exceeded");
 			generator.write(this.modelBytesExceeded);
 
 		}
 		if (this.modelMemoryLimit != null) {
-
 			generator.writeKey("model.memory_limit");
 			generator.write(this.modelMemoryLimit);
 
 		}
 		if (this.modelByFields != null) {
-
 			generator.writeKey("model.by_fields");
 			generator.write(this.modelByFields);
 
 		}
 		if (this.modelOverFields != null) {
-
 			generator.writeKey("model.over_fields");
 			generator.write(this.modelOverFields);
 
 		}
 		if (this.modelPartitionFields != null) {
-
 			generator.writeKey("model.partition_fields");
 			generator.write(this.modelPartitionFields);
 
 		}
 		if (this.modelBucketAllocationFailures != null) {
-
 			generator.writeKey("model.bucket_allocation_failures");
 			generator.write(this.modelBucketAllocationFailures);
 
 		}
 		if (this.modelCategorizationStatus != null) {
-
 			generator.writeKey("model.categorization_status");
 			this.modelCategorizationStatus.serialize(generator, mapper);
 		}
 		if (this.modelCategorizedDocCount != null) {
-
 			generator.writeKey("model.categorized_doc_count");
 			generator.write(this.modelCategorizedDocCount);
 
 		}
 		if (this.modelTotalCategoryCount != null) {
-
 			generator.writeKey("model.total_category_count");
 			generator.write(this.modelTotalCategoryCount);
 
 		}
 		if (this.modelFrequentCategoryCount != null) {
-
 			generator.writeKey("model.frequent_category_count");
 			generator.write(this.modelFrequentCategoryCount);
 
 		}
 		if (this.modelRareCategoryCount != null) {
-
 			generator.writeKey("model.rare_category_count");
 			generator.write(this.modelRareCategoryCount);
 
 		}
 		if (this.modelDeadCategoryCount != null) {
-
 			generator.writeKey("model.dead_category_count");
 			generator.write(this.modelDeadCategoryCount);
 
 		}
 		if (this.modelFailedCategoryCount != null) {
-
 			generator.writeKey("model.failed_category_count");
 			generator.write(this.modelFailedCategoryCount);
 
 		}
 		if (this.modelLogTime != null) {
-
 			generator.writeKey("model.log_time");
 			generator.write(this.modelLogTime);
 
 		}
 		if (this.modelTimestamp != null) {
-
 			generator.writeKey("model.timestamp");
 			generator.write(this.modelTimestamp);
 
 		}
 		if (this.forecastsTotal != null) {
-
 			generator.writeKey("forecasts.total");
 			generator.write(this.forecastsTotal);
 
 		}
 		if (this.forecastsMemoryMin != null) {
-
 			generator.writeKey("forecasts.memory.min");
 			generator.write(this.forecastsMemoryMin);
 
 		}
 		if (this.forecastsMemoryMax != null) {
-
 			generator.writeKey("forecasts.memory.max");
 			generator.write(this.forecastsMemoryMax);
 
 		}
 		if (this.forecastsMemoryAvg != null) {
-
 			generator.writeKey("forecasts.memory.avg");
 			generator.write(this.forecastsMemoryAvg);
 
 		}
 		if (this.forecastsMemoryTotal != null) {
-
 			generator.writeKey("forecasts.memory.total");
 			generator.write(this.forecastsMemoryTotal);
 
 		}
 		if (this.forecastsRecordsMin != null) {
-
 			generator.writeKey("forecasts.records.min");
 			generator.write(this.forecastsRecordsMin);
 
 		}
 		if (this.forecastsRecordsMax != null) {
-
 			generator.writeKey("forecasts.records.max");
 			generator.write(this.forecastsRecordsMax);
 
 		}
 		if (this.forecastsRecordsAvg != null) {
-
 			generator.writeKey("forecasts.records.avg");
 			generator.write(this.forecastsRecordsAvg);
 
 		}
 		if (this.forecastsRecordsTotal != null) {
-
 			generator.writeKey("forecasts.records.total");
 			generator.write(this.forecastsRecordsTotal);
 
 		}
 		if (this.forecastsTimeMin != null) {
-
 			generator.writeKey("forecasts.time.min");
 			generator.write(this.forecastsTimeMin);
 
 		}
 		if (this.forecastsTimeMax != null) {
-
 			generator.writeKey("forecasts.time.max");
 			generator.write(this.forecastsTimeMax);
 
 		}
 		if (this.forecastsTimeAvg != null) {
-
 			generator.writeKey("forecasts.time.avg");
 			generator.write(this.forecastsTimeAvg);
 
 		}
 		if (this.forecastsTimeTotal != null) {
-
 			generator.writeKey("forecasts.time.total");
 			generator.write(this.forecastsTimeTotal);
 
 		}
 		if (this.nodeId != null) {
-
 			generator.writeKey("node.id");
 			generator.write(this.nodeId);
 
 		}
 		if (this.nodeName != null) {
-
 			generator.writeKey("node.name");
 			generator.write(this.nodeName);
 
 		}
 		if (this.nodeEphemeralId != null) {
-
 			generator.writeKey("node.ephemeral_id");
 			generator.write(this.nodeEphemeralId);
 
 		}
 		if (this.nodeAddress != null) {
-
 			generator.writeKey("node.address");
 			generator.write(this.nodeAddress);
 
 		}
 		if (this.bucketsCount != null) {
-
 			generator.writeKey("buckets.count");
 			generator.write(this.bucketsCount);
 
 		}
 		if (this.bucketsTimeTotal != null) {
-
 			generator.writeKey("buckets.time.total");
 			generator.write(this.bucketsTimeTotal);
 
 		}
 		if (this.bucketsTimeMin != null) {
-
 			generator.writeKey("buckets.time.min");
 			generator.write(this.bucketsTimeMin);
 
 		}
 		if (this.bucketsTimeMax != null) {
-
 			generator.writeKey("buckets.time.max");
 			generator.write(this.bucketsTimeMax);
 
 		}
 		if (this.bucketsTimeExpAvg != null) {
-
 			generator.writeKey("buckets.time.exp_avg");
 			generator.write(this.bucketsTimeExpAvg);
 
 		}
 		if (this.bucketsTimeExpAvgHour != null) {
-
 			generator.writeKey("buckets.time.exp_avg_hour");
 			generator.write(this.bucketsTimeExpAvgHour);
 
@@ -1270,7 +1211,7 @@ public final class JobsRecord implements JsonpSerializable {
 	/**
 	 * Builder for {@link JobsRecord}.
 	 */
-	public static class Builder implements ObjectBuilder<JobsRecord> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<JobsRecord> {
 		@Nullable
 		private String id;
 
@@ -1456,7 +1397,7 @@ public final class JobsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code id}
 		 */
-		public Builder id(@Nullable String value) {
+		public final Builder id(@Nullable String value) {
 			this.id = value;
 			return this;
 		}
@@ -1466,7 +1407,7 @@ public final class JobsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code state}
 		 */
-		public Builder state(@Nullable JobState value) {
+		public final Builder state(@Nullable JobState value) {
 			this.state = value;
 			return this;
 		}
@@ -1476,7 +1417,7 @@ public final class JobsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code opened_time}
 		 */
-		public Builder openedTime(@Nullable String value) {
+		public final Builder openedTime(@Nullable String value) {
 			this.openedTime = value;
 			return this;
 		}
@@ -1486,7 +1427,7 @@ public final class JobsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code assignment_explanation}
 		 */
-		public Builder assignmentExplanation(@Nullable String value) {
+		public final Builder assignmentExplanation(@Nullable String value) {
 			this.assignmentExplanation = value;
 			return this;
 		}
@@ -1496,7 +1437,7 @@ public final class JobsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code data.processed_records}
 		 */
-		public Builder dataProcessedRecords(@Nullable String value) {
+		public final Builder dataProcessedRecords(@Nullable String value) {
 			this.dataProcessedRecords = value;
 			return this;
 		}
@@ -1506,7 +1447,7 @@ public final class JobsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code data.processed_fields}
 		 */
-		public Builder dataProcessedFields(@Nullable String value) {
+		public final Builder dataProcessedFields(@Nullable String value) {
 			this.dataProcessedFields = value;
 			return this;
 		}
@@ -1516,7 +1457,7 @@ public final class JobsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code data.input_bytes}
 		 */
-		public Builder dataInputBytes(@Nullable String value) {
+		public final Builder dataInputBytes(@Nullable String value) {
 			this.dataInputBytes = value;
 			return this;
 		}
@@ -1526,7 +1467,7 @@ public final class JobsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code data.input_records}
 		 */
-		public Builder dataInputRecords(@Nullable String value) {
+		public final Builder dataInputRecords(@Nullable String value) {
 			this.dataInputRecords = value;
 			return this;
 		}
@@ -1536,7 +1477,7 @@ public final class JobsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code data.input_fields}
 		 */
-		public Builder dataInputFields(@Nullable String value) {
+		public final Builder dataInputFields(@Nullable String value) {
 			this.dataInputFields = value;
 			return this;
 		}
@@ -1546,7 +1487,7 @@ public final class JobsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code data.invalid_dates}
 		 */
-		public Builder dataInvalidDates(@Nullable String value) {
+		public final Builder dataInvalidDates(@Nullable String value) {
 			this.dataInvalidDates = value;
 			return this;
 		}
@@ -1556,7 +1497,7 @@ public final class JobsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code data.missing_fields}
 		 */
-		public Builder dataMissingFields(@Nullable String value) {
+		public final Builder dataMissingFields(@Nullable String value) {
 			this.dataMissingFields = value;
 			return this;
 		}
@@ -1566,7 +1507,7 @@ public final class JobsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code data.out_of_order_timestamps}
 		 */
-		public Builder dataOutOfOrderTimestamps(@Nullable String value) {
+		public final Builder dataOutOfOrderTimestamps(@Nullable String value) {
 			this.dataOutOfOrderTimestamps = value;
 			return this;
 		}
@@ -1576,7 +1517,7 @@ public final class JobsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code data.empty_buckets}
 		 */
-		public Builder dataEmptyBuckets(@Nullable String value) {
+		public final Builder dataEmptyBuckets(@Nullable String value) {
 			this.dataEmptyBuckets = value;
 			return this;
 		}
@@ -1586,7 +1527,7 @@ public final class JobsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code data.sparse_buckets}
 		 */
-		public Builder dataSparseBuckets(@Nullable String value) {
+		public final Builder dataSparseBuckets(@Nullable String value) {
 			this.dataSparseBuckets = value;
 			return this;
 		}
@@ -1596,7 +1537,7 @@ public final class JobsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code data.buckets}
 		 */
-		public Builder dataBuckets(@Nullable String value) {
+		public final Builder dataBuckets(@Nullable String value) {
 			this.dataBuckets = value;
 			return this;
 		}
@@ -1606,7 +1547,7 @@ public final class JobsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code data.earliest_record}
 		 */
-		public Builder dataEarliestRecord(@Nullable String value) {
+		public final Builder dataEarliestRecord(@Nullable String value) {
 			this.dataEarliestRecord = value;
 			return this;
 		}
@@ -1616,7 +1557,7 @@ public final class JobsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code data.latest_record}
 		 */
-		public Builder dataLatestRecord(@Nullable String value) {
+		public final Builder dataLatestRecord(@Nullable String value) {
 			this.dataLatestRecord = value;
 			return this;
 		}
@@ -1626,7 +1567,7 @@ public final class JobsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code data.last}
 		 */
-		public Builder dataLast(@Nullable String value) {
+		public final Builder dataLast(@Nullable String value) {
 			this.dataLast = value;
 			return this;
 		}
@@ -1636,7 +1577,7 @@ public final class JobsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code data.last_empty_bucket}
 		 */
-		public Builder dataLastEmptyBucket(@Nullable String value) {
+		public final Builder dataLastEmptyBucket(@Nullable String value) {
 			this.dataLastEmptyBucket = value;
 			return this;
 		}
@@ -1646,7 +1587,7 @@ public final class JobsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code data.last_sparse_bucket}
 		 */
-		public Builder dataLastSparseBucket(@Nullable String value) {
+		public final Builder dataLastSparseBucket(@Nullable String value) {
 			this.dataLastSparseBucket = value;
 			return this;
 		}
@@ -1656,7 +1597,7 @@ public final class JobsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code model.bytes}
 		 */
-		public Builder modelBytes(@Nullable String value) {
+		public final Builder modelBytes(@Nullable String value) {
 			this.modelBytes = value;
 			return this;
 		}
@@ -1666,7 +1607,7 @@ public final class JobsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code model.memory_status}
 		 */
-		public Builder modelMemoryStatus(@Nullable MemoryStatus value) {
+		public final Builder modelMemoryStatus(@Nullable MemoryStatus value) {
 			this.modelMemoryStatus = value;
 			return this;
 		}
@@ -1676,7 +1617,7 @@ public final class JobsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code model.bytes_exceeded}
 		 */
-		public Builder modelBytesExceeded(@Nullable String value) {
+		public final Builder modelBytesExceeded(@Nullable String value) {
 			this.modelBytesExceeded = value;
 			return this;
 		}
@@ -1686,7 +1627,7 @@ public final class JobsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code model.memory_limit}
 		 */
-		public Builder modelMemoryLimit(@Nullable String value) {
+		public final Builder modelMemoryLimit(@Nullable String value) {
 			this.modelMemoryLimit = value;
 			return this;
 		}
@@ -1696,7 +1637,7 @@ public final class JobsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code model.by_fields}
 		 */
-		public Builder modelByFields(@Nullable String value) {
+		public final Builder modelByFields(@Nullable String value) {
 			this.modelByFields = value;
 			return this;
 		}
@@ -1706,7 +1647,7 @@ public final class JobsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code model.over_fields}
 		 */
-		public Builder modelOverFields(@Nullable String value) {
+		public final Builder modelOverFields(@Nullable String value) {
 			this.modelOverFields = value;
 			return this;
 		}
@@ -1716,7 +1657,7 @@ public final class JobsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code model.partition_fields}
 		 */
-		public Builder modelPartitionFields(@Nullable String value) {
+		public final Builder modelPartitionFields(@Nullable String value) {
 			this.modelPartitionFields = value;
 			return this;
 		}
@@ -1726,7 +1667,7 @@ public final class JobsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code model.bucket_allocation_failures}
 		 */
-		public Builder modelBucketAllocationFailures(@Nullable String value) {
+		public final Builder modelBucketAllocationFailures(@Nullable String value) {
 			this.modelBucketAllocationFailures = value;
 			return this;
 		}
@@ -1736,7 +1677,7 @@ public final class JobsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code model.categorization_status}
 		 */
-		public Builder modelCategorizationStatus(@Nullable CategorizationStatus value) {
+		public final Builder modelCategorizationStatus(@Nullable CategorizationStatus value) {
 			this.modelCategorizationStatus = value;
 			return this;
 		}
@@ -1746,7 +1687,7 @@ public final class JobsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code model.categorized_doc_count}
 		 */
-		public Builder modelCategorizedDocCount(@Nullable String value) {
+		public final Builder modelCategorizedDocCount(@Nullable String value) {
 			this.modelCategorizedDocCount = value;
 			return this;
 		}
@@ -1756,7 +1697,7 @@ public final class JobsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code model.total_category_count}
 		 */
-		public Builder modelTotalCategoryCount(@Nullable String value) {
+		public final Builder modelTotalCategoryCount(@Nullable String value) {
 			this.modelTotalCategoryCount = value;
 			return this;
 		}
@@ -1766,7 +1707,7 @@ public final class JobsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code model.frequent_category_count}
 		 */
-		public Builder modelFrequentCategoryCount(@Nullable String value) {
+		public final Builder modelFrequentCategoryCount(@Nullable String value) {
 			this.modelFrequentCategoryCount = value;
 			return this;
 		}
@@ -1776,7 +1717,7 @@ public final class JobsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code model.rare_category_count}
 		 */
-		public Builder modelRareCategoryCount(@Nullable String value) {
+		public final Builder modelRareCategoryCount(@Nullable String value) {
 			this.modelRareCategoryCount = value;
 			return this;
 		}
@@ -1786,7 +1727,7 @@ public final class JobsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code model.dead_category_count}
 		 */
-		public Builder modelDeadCategoryCount(@Nullable String value) {
+		public final Builder modelDeadCategoryCount(@Nullable String value) {
 			this.modelDeadCategoryCount = value;
 			return this;
 		}
@@ -1796,7 +1737,7 @@ public final class JobsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code model.failed_category_count}
 		 */
-		public Builder modelFailedCategoryCount(@Nullable String value) {
+		public final Builder modelFailedCategoryCount(@Nullable String value) {
 			this.modelFailedCategoryCount = value;
 			return this;
 		}
@@ -1806,7 +1747,7 @@ public final class JobsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code model.log_time}
 		 */
-		public Builder modelLogTime(@Nullable String value) {
+		public final Builder modelLogTime(@Nullable String value) {
 			this.modelLogTime = value;
 			return this;
 		}
@@ -1816,7 +1757,7 @@ public final class JobsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code model.timestamp}
 		 */
-		public Builder modelTimestamp(@Nullable String value) {
+		public final Builder modelTimestamp(@Nullable String value) {
 			this.modelTimestamp = value;
 			return this;
 		}
@@ -1826,7 +1767,7 @@ public final class JobsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code forecasts.total}
 		 */
-		public Builder forecastsTotal(@Nullable String value) {
+		public final Builder forecastsTotal(@Nullable String value) {
 			this.forecastsTotal = value;
 			return this;
 		}
@@ -1836,7 +1777,7 @@ public final class JobsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code forecasts.memory.min}
 		 */
-		public Builder forecastsMemoryMin(@Nullable String value) {
+		public final Builder forecastsMemoryMin(@Nullable String value) {
 			this.forecastsMemoryMin = value;
 			return this;
 		}
@@ -1846,7 +1787,7 @@ public final class JobsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code forecasts.memory.max}
 		 */
-		public Builder forecastsMemoryMax(@Nullable String value) {
+		public final Builder forecastsMemoryMax(@Nullable String value) {
 			this.forecastsMemoryMax = value;
 			return this;
 		}
@@ -1856,7 +1797,7 @@ public final class JobsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code forecasts.memory.avg}
 		 */
-		public Builder forecastsMemoryAvg(@Nullable String value) {
+		public final Builder forecastsMemoryAvg(@Nullable String value) {
 			this.forecastsMemoryAvg = value;
 			return this;
 		}
@@ -1866,7 +1807,7 @@ public final class JobsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code forecasts.memory.total}
 		 */
-		public Builder forecastsMemoryTotal(@Nullable String value) {
+		public final Builder forecastsMemoryTotal(@Nullable String value) {
 			this.forecastsMemoryTotal = value;
 			return this;
 		}
@@ -1876,7 +1817,7 @@ public final class JobsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code forecasts.records.min}
 		 */
-		public Builder forecastsRecordsMin(@Nullable String value) {
+		public final Builder forecastsRecordsMin(@Nullable String value) {
 			this.forecastsRecordsMin = value;
 			return this;
 		}
@@ -1886,7 +1827,7 @@ public final class JobsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code forecasts.records.max}
 		 */
-		public Builder forecastsRecordsMax(@Nullable String value) {
+		public final Builder forecastsRecordsMax(@Nullable String value) {
 			this.forecastsRecordsMax = value;
 			return this;
 		}
@@ -1896,7 +1837,7 @@ public final class JobsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code forecasts.records.avg}
 		 */
-		public Builder forecastsRecordsAvg(@Nullable String value) {
+		public final Builder forecastsRecordsAvg(@Nullable String value) {
 			this.forecastsRecordsAvg = value;
 			return this;
 		}
@@ -1906,7 +1847,7 @@ public final class JobsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code forecasts.records.total}
 		 */
-		public Builder forecastsRecordsTotal(@Nullable String value) {
+		public final Builder forecastsRecordsTotal(@Nullable String value) {
 			this.forecastsRecordsTotal = value;
 			return this;
 		}
@@ -1916,7 +1857,7 @@ public final class JobsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code forecasts.time.min}
 		 */
-		public Builder forecastsTimeMin(@Nullable String value) {
+		public final Builder forecastsTimeMin(@Nullable String value) {
 			this.forecastsTimeMin = value;
 			return this;
 		}
@@ -1926,7 +1867,7 @@ public final class JobsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code forecasts.time.max}
 		 */
-		public Builder forecastsTimeMax(@Nullable String value) {
+		public final Builder forecastsTimeMax(@Nullable String value) {
 			this.forecastsTimeMax = value;
 			return this;
 		}
@@ -1936,7 +1877,7 @@ public final class JobsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code forecasts.time.avg}
 		 */
-		public Builder forecastsTimeAvg(@Nullable String value) {
+		public final Builder forecastsTimeAvg(@Nullable String value) {
 			this.forecastsTimeAvg = value;
 			return this;
 		}
@@ -1946,7 +1887,7 @@ public final class JobsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code forecasts.time.total}
 		 */
-		public Builder forecastsTimeTotal(@Nullable String value) {
+		public final Builder forecastsTimeTotal(@Nullable String value) {
 			this.forecastsTimeTotal = value;
 			return this;
 		}
@@ -1956,7 +1897,7 @@ public final class JobsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code node.id}
 		 */
-		public Builder nodeId(@Nullable String value) {
+		public final Builder nodeId(@Nullable String value) {
 			this.nodeId = value;
 			return this;
 		}
@@ -1966,7 +1907,7 @@ public final class JobsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code node.name}
 		 */
-		public Builder nodeName(@Nullable String value) {
+		public final Builder nodeName(@Nullable String value) {
 			this.nodeName = value;
 			return this;
 		}
@@ -1976,7 +1917,7 @@ public final class JobsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code node.ephemeral_id}
 		 */
-		public Builder nodeEphemeralId(@Nullable String value) {
+		public final Builder nodeEphemeralId(@Nullable String value) {
 			this.nodeEphemeralId = value;
 			return this;
 		}
@@ -1986,7 +1927,7 @@ public final class JobsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code node.address}
 		 */
-		public Builder nodeAddress(@Nullable String value) {
+		public final Builder nodeAddress(@Nullable String value) {
 			this.nodeAddress = value;
 			return this;
 		}
@@ -1996,7 +1937,7 @@ public final class JobsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code buckets.count}
 		 */
-		public Builder bucketsCount(@Nullable String value) {
+		public final Builder bucketsCount(@Nullable String value) {
 			this.bucketsCount = value;
 			return this;
 		}
@@ -2006,7 +1947,7 @@ public final class JobsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code buckets.time.total}
 		 */
-		public Builder bucketsTimeTotal(@Nullable String value) {
+		public final Builder bucketsTimeTotal(@Nullable String value) {
 			this.bucketsTimeTotal = value;
 			return this;
 		}
@@ -2016,7 +1957,7 @@ public final class JobsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code buckets.time.min}
 		 */
-		public Builder bucketsTimeMin(@Nullable String value) {
+		public final Builder bucketsTimeMin(@Nullable String value) {
 			this.bucketsTimeMin = value;
 			return this;
 		}
@@ -2026,7 +1967,7 @@ public final class JobsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code buckets.time.max}
 		 */
-		public Builder bucketsTimeMax(@Nullable String value) {
+		public final Builder bucketsTimeMax(@Nullable String value) {
 			this.bucketsTimeMax = value;
 			return this;
 		}
@@ -2036,7 +1977,7 @@ public final class JobsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code buckets.time.exp_avg}
 		 */
-		public Builder bucketsTimeExpAvg(@Nullable String value) {
+		public final Builder bucketsTimeExpAvg(@Nullable String value) {
 			this.bucketsTimeExpAvg = value;
 			return this;
 		}
@@ -2046,7 +1987,7 @@ public final class JobsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code buckets.time.exp_avg_hour}
 		 */
-		public Builder bucketsTimeExpAvgHour(@Nullable String value) {
+		public final Builder bucketsTimeExpAvgHour(@Nullable String value) {
 			this.bucketsTimeExpAvgHour = value;
 			return this;
 		}
@@ -2058,6 +1999,7 @@ public final class JobsRecord implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public JobsRecord build() {
+			_checkSingleUse();
 
 			return new JobsRecord(this);
 		}

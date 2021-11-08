@@ -36,16 +36,17 @@ import java.util.function.Function;
 
 // typedef: cluster.delete_component_template.Response
 @JsonpDeserializable
-public final class DeleteComponentTemplateResponse extends AcknowledgedResponseBase {
+public class DeleteComponentTemplateResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
-	public DeleteComponentTemplateResponse(Builder builder) {
+	private DeleteComponentTemplateResponse(Builder builder) {
 		super(builder);
 
 	}
 
-	public DeleteComponentTemplateResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static DeleteComponentTemplateResponse of(
+			Function<Builder, ObjectBuilder<DeleteComponentTemplateResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -68,6 +69,7 @@ public final class DeleteComponentTemplateResponse extends AcknowledgedResponseB
 		 *             if some of the required fields are null.
 		 */
 		public DeleteComponentTemplateResponse build() {
+			_checkSingleUse();
 
 			return new DeleteComponentTemplateResponse(this);
 		}

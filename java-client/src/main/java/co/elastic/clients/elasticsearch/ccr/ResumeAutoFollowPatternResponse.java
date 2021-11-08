@@ -36,16 +36,17 @@ import java.util.function.Function;
 
 // typedef: ccr.resume_auto_follow_pattern.Response
 @JsonpDeserializable
-public final class ResumeAutoFollowPatternResponse extends AcknowledgedResponseBase {
+public class ResumeAutoFollowPatternResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
-	public ResumeAutoFollowPatternResponse(Builder builder) {
+	private ResumeAutoFollowPatternResponse(Builder builder) {
 		super(builder);
 
 	}
 
-	public ResumeAutoFollowPatternResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ResumeAutoFollowPatternResponse of(
+			Function<Builder, ObjectBuilder<ResumeAutoFollowPatternResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -68,6 +69,7 @@ public final class ResumeAutoFollowPatternResponse extends AcknowledgedResponseB
 		 *             if some of the required fields are null.
 		 */
 		public ResumeAutoFollowPatternResponse build() {
+			_checkSingleUse();
 
 			return new ResumeAutoFollowPatternResponse(this);
 		}

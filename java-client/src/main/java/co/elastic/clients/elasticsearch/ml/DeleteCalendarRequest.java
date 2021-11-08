@@ -31,7 +31,9 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.SimpleEndpoint;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
@@ -41,19 +43,19 @@ import javax.annotation.Nullable;
 
 // typedef: ml.delete_calendar.Request
 
-public final class DeleteCalendarRequest extends RequestBase {
+public class DeleteCalendarRequest extends RequestBase {
 	private final String calendarId;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public DeleteCalendarRequest(Builder builder) {
+	private DeleteCalendarRequest(Builder builder) {
 
-		this.calendarId = Objects.requireNonNull(builder.calendarId, "calendar_id");
+		this.calendarId = ModelTypeHelper.requireNonNull(builder.calendarId, this, "calendarId");
 
 	}
 
-	public DeleteCalendarRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static DeleteCalendarRequest of(Function<Builder, ObjectBuilder<DeleteCalendarRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -61,7 +63,7 @@ public final class DeleteCalendarRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code calendar_id}
 	 */
-	public String calendarId() {
+	public final String calendarId() {
 		return this.calendarId;
 	}
 
@@ -70,7 +72,7 @@ public final class DeleteCalendarRequest extends RequestBase {
 	/**
 	 * Builder for {@link DeleteCalendarRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<DeleteCalendarRequest> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DeleteCalendarRequest> {
 		private String calendarId;
 
 		/**
@@ -78,7 +80,7 @@ public final class DeleteCalendarRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code calendar_id}
 		 */
-		public Builder calendarId(String value) {
+		public final Builder calendarId(String value) {
 			this.calendarId = value;
 			return this;
 		}
@@ -90,6 +92,7 @@ public final class DeleteCalendarRequest extends RequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public DeleteCalendarRequest build() {
+			_checkSingleUse();
 
 			return new DeleteCalendarRequest(this);
 		}

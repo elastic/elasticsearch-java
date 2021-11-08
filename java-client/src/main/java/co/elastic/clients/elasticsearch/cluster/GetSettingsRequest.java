@@ -32,6 +32,7 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.SimpleEndpoint;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
@@ -43,7 +44,7 @@ import javax.annotation.Nullable;
 
 // typedef: cluster.get_settings.Request
 
-public final class GetSettingsRequest extends RequestBase {
+public class GetSettingsRequest extends RequestBase {
 	@Nullable
 	private final Boolean flatSettings;
 
@@ -58,7 +59,7 @@ public final class GetSettingsRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public GetSettingsRequest(Builder builder) {
+	private GetSettingsRequest(Builder builder) {
 
 		this.flatSettings = builder.flatSettings;
 		this.includeDefaults = builder.includeDefaults;
@@ -67,8 +68,8 @@ public final class GetSettingsRequest extends RequestBase {
 
 	}
 
-	public GetSettingsRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static GetSettingsRequest of(Function<Builder, ObjectBuilder<GetSettingsRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -77,7 +78,7 @@ public final class GetSettingsRequest extends RequestBase {
 	 * API name: {@code flat_settings}
 	 */
 	@Nullable
-	public Boolean flatSettings() {
+	public final Boolean flatSettings() {
 		return this.flatSettings;
 	}
 
@@ -87,7 +88,7 @@ public final class GetSettingsRequest extends RequestBase {
 	 * API name: {@code include_defaults}
 	 */
 	@Nullable
-	public Boolean includeDefaults() {
+	public final Boolean includeDefaults() {
 		return this.includeDefaults;
 	}
 
@@ -97,7 +98,7 @@ public final class GetSettingsRequest extends RequestBase {
 	 * API name: {@code master_timeout}
 	 */
 	@Nullable
-	public String masterTimeout() {
+	public final String masterTimeout() {
 		return this.masterTimeout;
 	}
 
@@ -107,7 +108,7 @@ public final class GetSettingsRequest extends RequestBase {
 	 * API name: {@code timeout}
 	 */
 	@Nullable
-	public String timeout() {
+	public final String timeout() {
 		return this.timeout;
 	}
 
@@ -116,7 +117,7 @@ public final class GetSettingsRequest extends RequestBase {
 	/**
 	 * Builder for {@link GetSettingsRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<GetSettingsRequest> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetSettingsRequest> {
 		@Nullable
 		private Boolean flatSettings;
 
@@ -134,7 +135,7 @@ public final class GetSettingsRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code flat_settings}
 		 */
-		public Builder flatSettings(@Nullable Boolean value) {
+		public final Builder flatSettings(@Nullable Boolean value) {
 			this.flatSettings = value;
 			return this;
 		}
@@ -144,7 +145,7 @@ public final class GetSettingsRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code include_defaults}
 		 */
-		public Builder includeDefaults(@Nullable Boolean value) {
+		public final Builder includeDefaults(@Nullable Boolean value) {
 			this.includeDefaults = value;
 			return this;
 		}
@@ -154,7 +155,7 @@ public final class GetSettingsRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
-		public Builder masterTimeout(@Nullable String value) {
+		public final Builder masterTimeout(@Nullable String value) {
 			this.masterTimeout = value;
 			return this;
 		}
@@ -164,7 +165,7 @@ public final class GetSettingsRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code timeout}
 		 */
-		public Builder timeout(@Nullable String value) {
+		public final Builder timeout(@Nullable String value) {
 			this.timeout = value;
 			return this;
 		}
@@ -176,6 +177,7 @@ public final class GetSettingsRequest extends RequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public GetSettingsRequest build() {
+			_checkSingleUse();
 
 			return new GetSettingsRequest(this);
 		}

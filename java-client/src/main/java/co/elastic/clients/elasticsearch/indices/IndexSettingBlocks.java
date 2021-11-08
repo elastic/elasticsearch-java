@@ -31,6 +31,7 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.Objects;
@@ -39,7 +40,7 @@ import javax.annotation.Nullable;
 
 // typedef: indices._types.IndexSettingBlocks
 @JsonpDeserializable
-public final class IndexSettingBlocks implements JsonpSerializable {
+public class IndexSettingBlocks implements JsonpSerializable {
 	@Nullable
 	private final Boolean readOnly;
 
@@ -57,7 +58,7 @@ public final class IndexSettingBlocks implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public IndexSettingBlocks(Builder builder) {
+	private IndexSettingBlocks(Builder builder) {
 
 		this.readOnly = builder.readOnly;
 		this.readOnlyAllowDelete = builder.readOnlyAllowDelete;
@@ -67,15 +68,15 @@ public final class IndexSettingBlocks implements JsonpSerializable {
 
 	}
 
-	public IndexSettingBlocks(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static IndexSettingBlocks of(Function<Builder, ObjectBuilder<IndexSettingBlocks>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * API name: {@code read_only}
 	 */
 	@Nullable
-	public Boolean readOnly() {
+	public final Boolean readOnly() {
 		return this.readOnly;
 	}
 
@@ -83,7 +84,7 @@ public final class IndexSettingBlocks implements JsonpSerializable {
 	 * API name: {@code read_only_allow_delete}
 	 */
 	@Nullable
-	public Boolean readOnlyAllowDelete() {
+	public final Boolean readOnlyAllowDelete() {
 		return this.readOnlyAllowDelete;
 	}
 
@@ -91,7 +92,7 @@ public final class IndexSettingBlocks implements JsonpSerializable {
 	 * API name: {@code read}
 	 */
 	@Nullable
-	public Boolean read() {
+	public final Boolean read() {
 		return this.read;
 	}
 
@@ -99,7 +100,7 @@ public final class IndexSettingBlocks implements JsonpSerializable {
 	 * API name: {@code write}
 	 */
 	@Nullable
-	public Boolean write() {
+	public final Boolean write() {
 		return this.write;
 	}
 
@@ -107,7 +108,7 @@ public final class IndexSettingBlocks implements JsonpSerializable {
 	 * API name: {@code metadata}
 	 */
 	@Nullable
-	public Boolean metadata() {
+	public final Boolean metadata() {
 		return this.metadata;
 	}
 
@@ -123,31 +124,26 @@ public final class IndexSettingBlocks implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.readOnly != null) {
-
 			generator.writeKey("read_only");
 			generator.write(this.readOnly);
 
 		}
 		if (this.readOnlyAllowDelete != null) {
-
 			generator.writeKey("read_only_allow_delete");
 			generator.write(this.readOnlyAllowDelete);
 
 		}
 		if (this.read != null) {
-
 			generator.writeKey("read");
 			generator.write(this.read);
 
 		}
 		if (this.write != null) {
-
 			generator.writeKey("write");
 			generator.write(this.write);
 
 		}
 		if (this.metadata != null) {
-
 			generator.writeKey("metadata");
 			generator.write(this.metadata);
 
@@ -160,7 +156,7 @@ public final class IndexSettingBlocks implements JsonpSerializable {
 	/**
 	 * Builder for {@link IndexSettingBlocks}.
 	 */
-	public static class Builder implements ObjectBuilder<IndexSettingBlocks> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<IndexSettingBlocks> {
 		@Nullable
 		private Boolean readOnly;
 
@@ -179,7 +175,7 @@ public final class IndexSettingBlocks implements JsonpSerializable {
 		/**
 		 * API name: {@code read_only}
 		 */
-		public Builder readOnly(@Nullable Boolean value) {
+		public final Builder readOnly(@Nullable Boolean value) {
 			this.readOnly = value;
 			return this;
 		}
@@ -187,7 +183,7 @@ public final class IndexSettingBlocks implements JsonpSerializable {
 		/**
 		 * API name: {@code read_only_allow_delete}
 		 */
-		public Builder readOnlyAllowDelete(@Nullable Boolean value) {
+		public final Builder readOnlyAllowDelete(@Nullable Boolean value) {
 			this.readOnlyAllowDelete = value;
 			return this;
 		}
@@ -195,7 +191,7 @@ public final class IndexSettingBlocks implements JsonpSerializable {
 		/**
 		 * API name: {@code read}
 		 */
-		public Builder read(@Nullable Boolean value) {
+		public final Builder read(@Nullable Boolean value) {
 			this.read = value;
 			return this;
 		}
@@ -203,7 +199,7 @@ public final class IndexSettingBlocks implements JsonpSerializable {
 		/**
 		 * API name: {@code write}
 		 */
-		public Builder write(@Nullable Boolean value) {
+		public final Builder write(@Nullable Boolean value) {
 			this.write = value;
 			return this;
 		}
@@ -211,7 +207,7 @@ public final class IndexSettingBlocks implements JsonpSerializable {
 		/**
 		 * API name: {@code metadata}
 		 */
-		public Builder metadata(@Nullable Boolean value) {
+		public final Builder metadata(@Nullable Boolean value) {
 			this.metadata = value;
 			return this;
 		}
@@ -223,6 +219,7 @@ public final class IndexSettingBlocks implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public IndexSettingBlocks build() {
+			_checkSingleUse();
 
 			return new IndexSettingBlocks(this);
 		}

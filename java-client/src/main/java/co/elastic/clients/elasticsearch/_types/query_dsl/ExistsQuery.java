@@ -29,6 +29,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -38,20 +39,20 @@ import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.ExistsQuery
 @JsonpDeserializable
-public final class ExistsQuery extends QueryBase implements QueryVariant {
+public class ExistsQuery extends QueryBase implements QueryVariant {
 	private final String field;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public ExistsQuery(Builder builder) {
+	private ExistsQuery(Builder builder) {
 		super(builder);
 
-		this.field = Objects.requireNonNull(builder.field, "field");
+		this.field = ModelTypeHelper.requireNonNull(builder.field, this, "field");
 
 	}
 
-	public ExistsQuery(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ExistsQuery of(Function<Builder, ObjectBuilder<ExistsQuery>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -65,14 +66,13 @@ public final class ExistsQuery extends QueryBase implements QueryVariant {
 	/**
 	 * Required - API name: {@code field}
 	 */
-	public String field() {
+	public final String field() {
 		return this.field;
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
-
 		generator.writeKey("field");
 		generator.write(this.field);
 
@@ -89,7 +89,7 @@ public final class ExistsQuery extends QueryBase implements QueryVariant {
 		/**
 		 * Required - API name: {@code field}
 		 */
-		public Builder field(String value) {
+		public final Builder field(String value) {
 			this.field = value;
 			return this;
 		}
@@ -106,6 +106,7 @@ public final class ExistsQuery extends QueryBase implements QueryVariant {
 		 *             if some of the required fields are null.
 		 */
 		public ExistsQuery build() {
+			_checkSingleUse();
 
 			return new ExistsQuery(this);
 		}

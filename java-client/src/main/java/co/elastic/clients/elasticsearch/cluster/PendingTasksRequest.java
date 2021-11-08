@@ -32,6 +32,7 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.SimpleEndpoint;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
@@ -43,7 +44,7 @@ import javax.annotation.Nullable;
 
 // typedef: cluster.pending_tasks.Request
 
-public final class PendingTasksRequest extends RequestBase {
+public class PendingTasksRequest extends RequestBase {
 	@Nullable
 	private final Boolean local;
 
@@ -52,15 +53,15 @@ public final class PendingTasksRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public PendingTasksRequest(Builder builder) {
+	private PendingTasksRequest(Builder builder) {
 
 		this.local = builder.local;
 		this.masterTimeout = builder.masterTimeout;
 
 	}
 
-	public PendingTasksRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static PendingTasksRequest of(Function<Builder, ObjectBuilder<PendingTasksRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -70,7 +71,7 @@ public final class PendingTasksRequest extends RequestBase {
 	 * API name: {@code local}
 	 */
 	@Nullable
-	public Boolean local() {
+	public final Boolean local() {
 		return this.local;
 	}
 
@@ -80,7 +81,7 @@ public final class PendingTasksRequest extends RequestBase {
 	 * API name: {@code master_timeout}
 	 */
 	@Nullable
-	public String masterTimeout() {
+	public final String masterTimeout() {
 		return this.masterTimeout;
 	}
 
@@ -89,7 +90,7 @@ public final class PendingTasksRequest extends RequestBase {
 	/**
 	 * Builder for {@link PendingTasksRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<PendingTasksRequest> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PendingTasksRequest> {
 		@Nullable
 		private Boolean local;
 
@@ -102,7 +103,7 @@ public final class PendingTasksRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code local}
 		 */
-		public Builder local(@Nullable Boolean value) {
+		public final Builder local(@Nullable Boolean value) {
 			this.local = value;
 			return this;
 		}
@@ -112,7 +113,7 @@ public final class PendingTasksRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
-		public Builder masterTimeout(@Nullable String value) {
+		public final Builder masterTimeout(@Nullable String value) {
 			this.masterTimeout = value;
 			return this;
 		}
@@ -124,6 +125,7 @@ public final class PendingTasksRequest extends RequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public PendingTasksRequest build() {
+			_checkSingleUse();
 
 			return new PendingTasksRequest(this);
 		}

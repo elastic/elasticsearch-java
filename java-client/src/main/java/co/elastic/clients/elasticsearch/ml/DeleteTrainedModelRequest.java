@@ -31,7 +31,9 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.SimpleEndpoint;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
@@ -41,19 +43,19 @@ import javax.annotation.Nullable;
 
 // typedef: ml.delete_trained_model.Request
 
-public final class DeleteTrainedModelRequest extends RequestBase {
+public class DeleteTrainedModelRequest extends RequestBase {
 	private final String modelId;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public DeleteTrainedModelRequest(Builder builder) {
+	private DeleteTrainedModelRequest(Builder builder) {
 
-		this.modelId = Objects.requireNonNull(builder.modelId, "model_id");
+		this.modelId = ModelTypeHelper.requireNonNull(builder.modelId, this, "modelId");
 
 	}
 
-	public DeleteTrainedModelRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static DeleteTrainedModelRequest of(Function<Builder, ObjectBuilder<DeleteTrainedModelRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -61,7 +63,7 @@ public final class DeleteTrainedModelRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code model_id}
 	 */
-	public String modelId() {
+	public final String modelId() {
 		return this.modelId;
 	}
 
@@ -70,7 +72,7 @@ public final class DeleteTrainedModelRequest extends RequestBase {
 	/**
 	 * Builder for {@link DeleteTrainedModelRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<DeleteTrainedModelRequest> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DeleteTrainedModelRequest> {
 		private String modelId;
 
 		/**
@@ -78,7 +80,7 @@ public final class DeleteTrainedModelRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code model_id}
 		 */
-		public Builder modelId(String value) {
+		public final Builder modelId(String value) {
 			this.modelId = value;
 			return this;
 		}
@@ -90,6 +92,7 @@ public final class DeleteTrainedModelRequest extends RequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public DeleteTrainedModelRequest build() {
+			_checkSingleUse();
 
 			return new DeleteTrainedModelRequest(this);
 		}

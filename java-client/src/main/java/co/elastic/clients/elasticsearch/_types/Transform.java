@@ -28,8 +28,11 @@ import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import co.elastic.clients.util.TaggedUnion;
 import co.elastic.clients.util.TaggedUnionUtils;
 import jakarta.json.stream.JsonGenerator;
@@ -52,35 +55,31 @@ public class Transform implements TaggedUnion<Object>, JsonpSerializable {
 	private final Object _value;
 
 	@Override
-	public String _type() {
+	public final String _type() {
 		return _type;
 	}
 
 	@Override
-	public Object _get() {
+	public final Object _get() {
 		return _value;
 	}
 
 	public Transform(TransformVariant value) {
 
-		this._type = Objects.requireNonNull(value._variantType(), "variant type");
-		this._value = Objects.requireNonNull(value, "variant value");
+		this._type = ModelTypeHelper.requireNonNull(value._variantType(), this, "<variant type>");
+		this._value = ModelTypeHelper.requireNonNull(value, this, "<variant value>");
 
-	}
-
-	public <T extends TransformVariant> Transform(ObjectBuilder<T> builder) {
-		this(builder.build());
 	}
 
 	private Transform(Builder builder) {
 
-		this._type = Objects.requireNonNull(builder._type, "variant type");
-		this._value = Objects.requireNonNull(builder._value, "variant value");
+		this._type = ModelTypeHelper.requireNonNull(builder._type, builder, "<variant type>");
+		this._value = ModelTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
 
 	}
 
-	public Transform(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static Transform of(Function<Builder, ObjectBuilder<Transform>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -126,7 +125,7 @@ public class Transform implements TaggedUnion<Object>, JsonpSerializable {
 		generator.writeEnd();
 	}
 
-	public static class Builder implements ObjectBuilder<Transform> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Transform> {
 		private String _type;
 		private Object _value;
 
@@ -161,6 +160,7 @@ public class Transform implements TaggedUnion<Object>, JsonpSerializable {
 		}
 
 		public Transform build() {
+			_checkSingleUse();
 			return new Transform(this);
 		}
 
@@ -174,6 +174,6 @@ public class Transform implements TaggedUnion<Object>, JsonpSerializable {
 
 	}
 
-	public static final JsonpDeserializer<Transform> _DESERIALIZER = JsonpDeserializer.lazy(Builder::new,
+	public static final JsonpDeserializer<Transform> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
 			Transform::setupTransformDeserializer, Builder::build);
 }

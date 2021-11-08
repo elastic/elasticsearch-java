@@ -34,10 +34,10 @@ import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.SimpleEndpoint;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -49,11 +49,10 @@ import javax.annotation.Nullable;
 
 // typedef: indices.upgrade.Request
 
-public final class UpgradeRequest extends RequestBase {
+public class UpgradeRequest extends RequestBase {
 	@Nullable
 	private final Boolean allowNoIndices;
 
-	@Nullable
 	private final List<ExpandWildcardOptions> expandWildcards;
 
 	@Nullable
@@ -70,7 +69,7 @@ public final class UpgradeRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public UpgradeRequest(Builder builder) {
+	private UpgradeRequest(Builder builder) {
 
 		this.allowNoIndices = builder.allowNoIndices;
 		this.expandWildcards = ModelTypeHelper.unmodifiable(builder.expandWildcards);
@@ -81,8 +80,8 @@ public final class UpgradeRequest extends RequestBase {
 
 	}
 
-	public UpgradeRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static UpgradeRequest of(Function<Builder, ObjectBuilder<UpgradeRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -93,7 +92,7 @@ public final class UpgradeRequest extends RequestBase {
 	 * API name: {@code allow_no_indices}
 	 */
 	@Nullable
-	public Boolean allowNoIndices() {
+	public final Boolean allowNoIndices() {
 		return this.allowNoIndices;
 	}
 
@@ -103,8 +102,7 @@ public final class UpgradeRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code expand_wildcards}
 	 */
-	@Nullable
-	public List<ExpandWildcardOptions> expandWildcards() {
+	public final List<ExpandWildcardOptions> expandWildcards() {
 		return this.expandWildcards;
 	}
 
@@ -115,7 +113,7 @@ public final class UpgradeRequest extends RequestBase {
 	 * API name: {@code ignore_unavailable}
 	 */
 	@Nullable
-	public Boolean ignoreUnavailable() {
+	public final Boolean ignoreUnavailable() {
 		return this.ignoreUnavailable;
 	}
 
@@ -126,7 +124,7 @@ public final class UpgradeRequest extends RequestBase {
 	 * API name: {@code index}
 	 */
 	@Nullable
-	public String index() {
+	public final String index() {
 		return this.index;
 	}
 
@@ -137,7 +135,7 @@ public final class UpgradeRequest extends RequestBase {
 	 * API name: {@code only_ancient_segments}
 	 */
 	@Nullable
-	public Boolean onlyAncientSegments() {
+	public final Boolean onlyAncientSegments() {
 		return this.onlyAncientSegments;
 	}
 
@@ -148,7 +146,7 @@ public final class UpgradeRequest extends RequestBase {
 	 * API name: {@code wait_for_completion}
 	 */
 	@Nullable
-	public Boolean waitForCompletion() {
+	public final Boolean waitForCompletion() {
 		return this.waitForCompletion;
 	}
 
@@ -157,7 +155,7 @@ public final class UpgradeRequest extends RequestBase {
 	/**
 	 * Builder for {@link UpgradeRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<UpgradeRequest> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<UpgradeRequest> {
 		@Nullable
 		private Boolean allowNoIndices;
 
@@ -183,7 +181,7 @@ public final class UpgradeRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code allow_no_indices}
 		 */
-		public Builder allowNoIndices(@Nullable Boolean value) {
+		public final Builder allowNoIndices(@Nullable Boolean value) {
 			this.allowNoIndices = value;
 			return this;
 		}
@@ -194,7 +192,7 @@ public final class UpgradeRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code expand_wildcards}
 		 */
-		public Builder expandWildcards(@Nullable List<ExpandWildcardOptions> value) {
+		public final Builder expandWildcards(@Nullable List<ExpandWildcardOptions> value) {
 			this.expandWildcards = value;
 			return this;
 		}
@@ -205,19 +203,8 @@ public final class UpgradeRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code expand_wildcards}
 		 */
-		public Builder expandWildcards(ExpandWildcardOptions... value) {
+		public final Builder expandWildcards(ExpandWildcardOptions... value) {
 			this.expandWildcards = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #expandWildcards(List)}, creating the list if needed.
-		 */
-		public Builder addExpandWildcards(ExpandWildcardOptions value) {
-			if (this.expandWildcards == null) {
-				this.expandWildcards = new ArrayList<>();
-			}
-			this.expandWildcards.add(value);
 			return this;
 		}
 
@@ -227,7 +214,7 @@ public final class UpgradeRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code ignore_unavailable}
 		 */
-		public Builder ignoreUnavailable(@Nullable Boolean value) {
+		public final Builder ignoreUnavailable(@Nullable Boolean value) {
 			this.ignoreUnavailable = value;
 			return this;
 		}
@@ -238,7 +225,7 @@ public final class UpgradeRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code index}
 		 */
-		public Builder index(@Nullable String value) {
+		public final Builder index(@Nullable String value) {
 			this.index = value;
 			return this;
 		}
@@ -249,7 +236,7 @@ public final class UpgradeRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code only_ancient_segments}
 		 */
-		public Builder onlyAncientSegments(@Nullable Boolean value) {
+		public final Builder onlyAncientSegments(@Nullable Boolean value) {
 			this.onlyAncientSegments = value;
 			return this;
 		}
@@ -260,7 +247,7 @@ public final class UpgradeRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code wait_for_completion}
 		 */
-		public Builder waitForCompletion(@Nullable Boolean value) {
+		public final Builder waitForCompletion(@Nullable Boolean value) {
 			this.waitForCompletion = value;
 			return this;
 		}
@@ -272,6 +259,7 @@ public final class UpgradeRequest extends RequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public UpgradeRequest build() {
+			_checkSingleUse();
 
 			return new UpgradeRequest(this);
 		}
@@ -317,9 +305,9 @@ public final class UpgradeRequest extends RequestBase {
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
-				if (request.expandWildcards != null) {
+				if (ModelTypeHelper.isDefined(request.expandWildcards)) {
 					params.put("expand_wildcards",
-							request.expandWildcards.stream().map(v -> v.toString()).collect(Collectors.joining(",")));
+							request.expandWildcards.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")));
 				}
 				if (request.ignoreUnavailable != null) {
 					params.put("ignore_unavailable", String.valueOf(request.ignoreUnavailable));

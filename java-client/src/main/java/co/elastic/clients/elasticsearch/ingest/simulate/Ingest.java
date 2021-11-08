@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -39,7 +41,7 @@ import javax.annotation.Nullable;
 
 // typedef: ingest.simulate.Ingest
 @JsonpDeserializable
-public final class Ingest implements JsonpSerializable {
+public class Ingest implements JsonpSerializable {
 	private final String timestamp;
 
 	@Nullable
@@ -47,21 +49,21 @@ public final class Ingest implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public Ingest(Builder builder) {
+	private Ingest(Builder builder) {
 
-		this.timestamp = Objects.requireNonNull(builder.timestamp, "timestamp");
+		this.timestamp = ModelTypeHelper.requireNonNull(builder.timestamp, this, "timestamp");
 		this.pipeline = builder.pipeline;
 
 	}
 
-	public Ingest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static Ingest of(Function<Builder, ObjectBuilder<Ingest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code timestamp}
 	 */
-	public String timestamp() {
+	public final String timestamp() {
 		return this.timestamp;
 	}
 
@@ -69,7 +71,7 @@ public final class Ingest implements JsonpSerializable {
 	 * API name: {@code pipeline}
 	 */
 	@Nullable
-	public String pipeline() {
+	public final String pipeline() {
 		return this.pipeline;
 	}
 
@@ -88,7 +90,6 @@ public final class Ingest implements JsonpSerializable {
 		generator.write(this.timestamp);
 
 		if (this.pipeline != null) {
-
 			generator.writeKey("pipeline");
 			generator.write(this.pipeline);
 
@@ -101,7 +102,7 @@ public final class Ingest implements JsonpSerializable {
 	/**
 	 * Builder for {@link Ingest}.
 	 */
-	public static class Builder implements ObjectBuilder<Ingest> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Ingest> {
 		private String timestamp;
 
 		@Nullable
@@ -110,7 +111,7 @@ public final class Ingest implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code timestamp}
 		 */
-		public Builder timestamp(String value) {
+		public final Builder timestamp(String value) {
 			this.timestamp = value;
 			return this;
 		}
@@ -118,7 +119,7 @@ public final class Ingest implements JsonpSerializable {
 		/**
 		 * API name: {@code pipeline}
 		 */
-		public Builder pipeline(@Nullable String value) {
+		public final Builder pipeline(@Nullable String value) {
 			this.pipeline = value;
 			return this;
 		}
@@ -130,6 +131,7 @@ public final class Ingest implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public Ingest build() {
+			_checkSingleUse();
 
 			return new Ingest(this);
 		}

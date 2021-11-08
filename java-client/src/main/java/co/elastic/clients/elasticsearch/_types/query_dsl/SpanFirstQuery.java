@@ -29,6 +29,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
@@ -38,23 +39,23 @@ import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.SpanFirstQuery
 @JsonpDeserializable
-public final class SpanFirstQuery extends QueryBase implements SpanQueryVariant, QueryVariant {
+public class SpanFirstQuery extends QueryBase implements SpanQueryVariant, QueryVariant {
 	private final int end;
 
 	private final SpanQuery match;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public SpanFirstQuery(Builder builder) {
+	private SpanFirstQuery(Builder builder) {
 		super(builder);
 
-		this.end = Objects.requireNonNull(builder.end, "end");
-		this.match = Objects.requireNonNull(builder.match, "match");
+		this.end = ModelTypeHelper.requireNonNull(builder.end, this, "end");
+		this.match = ModelTypeHelper.requireNonNull(builder.match, this, "match");
 
 	}
 
-	public SpanFirstQuery(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static SpanFirstQuery of(Function<Builder, ObjectBuilder<SpanFirstQuery>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -68,21 +69,20 @@ public final class SpanFirstQuery extends QueryBase implements SpanQueryVariant,
 	/**
 	 * Required - API name: {@code end}
 	 */
-	public int end() {
+	public final int end() {
 		return this.end;
 	}
 
 	/**
 	 * Required - API name: {@code match}
 	 */
-	public SpanQuery match() {
+	public final SpanQuery match() {
 		return this.match;
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
-
 		generator.writeKey("end");
 		generator.write(this.end);
 
@@ -104,7 +104,7 @@ public final class SpanFirstQuery extends QueryBase implements SpanQueryVariant,
 		/**
 		 * Required - API name: {@code end}
 		 */
-		public Builder end(int value) {
+		public final Builder end(int value) {
 			this.end = value;
 			return this;
 		}
@@ -112,7 +112,7 @@ public final class SpanFirstQuery extends QueryBase implements SpanQueryVariant,
 		/**
 		 * Required - API name: {@code match}
 		 */
-		public Builder match(SpanQuery value) {
+		public final Builder match(SpanQuery value) {
 			this.match = value;
 			return this;
 		}
@@ -120,7 +120,7 @@ public final class SpanFirstQuery extends QueryBase implements SpanQueryVariant,
 		/**
 		 * Required - API name: {@code match}
 		 */
-		public Builder match(Function<SpanQuery.Builder, ObjectBuilder<SpanQuery>> fn) {
+		public final Builder match(Function<SpanQuery.Builder, ObjectBuilder<SpanQuery>> fn) {
 			return this.match(fn.apply(new SpanQuery.Builder()).build());
 		}
 
@@ -136,6 +136,7 @@ public final class SpanFirstQuery extends QueryBase implements SpanQueryVariant,
 		 *             if some of the required fields are null.
 		 */
 		public SpanFirstQuery build() {
+			_checkSingleUse();
 
 			return new SpanFirstQuery(this);
 		}

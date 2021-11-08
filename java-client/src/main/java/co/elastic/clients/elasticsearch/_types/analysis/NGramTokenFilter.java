@@ -31,29 +31,37 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
+import java.lang.Boolean;
 import java.lang.Integer;
 import java.util.Objects;
 import java.util.function.Function;
+import javax.annotation.Nullable;
 
 // typedef: _types.analysis.NGramTokenFilter
 @JsonpDeserializable
-public final class NGramTokenFilter extends TokenFilterBase implements TokenFilterVariant {
-	private final int maxGram;
+public class NGramTokenFilter extends TokenFilterBase implements TokenFilterVariant {
+	@Nullable
+	private final Integer maxGram;
 
-	private final int minGram;
+	@Nullable
+	private final Integer minGram;
+
+	@Nullable
+	private final Boolean preserveOriginal;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public NGramTokenFilter(Builder builder) {
+	private NGramTokenFilter(Builder builder) {
 		super(builder);
 
-		this.maxGram = Objects.requireNonNull(builder.maxGram, "max_gram");
-		this.minGram = Objects.requireNonNull(builder.minGram, "min_gram");
+		this.maxGram = builder.maxGram;
+		this.minGram = builder.minGram;
+		this.preserveOriginal = builder.preserveOriginal;
 
 	}
 
-	public NGramTokenFilter(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static NGramTokenFilter of(Function<Builder, ObjectBuilder<NGramTokenFilter>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -65,29 +73,48 @@ public final class NGramTokenFilter extends TokenFilterBase implements TokenFilt
 	}
 
 	/**
-	 * Required - API name: {@code max_gram}
+	 * API name: {@code max_gram}
 	 */
-	public int maxGram() {
+	@Nullable
+	public final Integer maxGram() {
 		return this.maxGram;
 	}
 
 	/**
-	 * Required - API name: {@code min_gram}
+	 * API name: {@code min_gram}
 	 */
-	public int minGram() {
+	@Nullable
+	public final Integer minGram() {
 		return this.minGram;
+	}
+
+	/**
+	 * API name: {@code preserve_original}
+	 */
+	@Nullable
+	public final Boolean preserveOriginal() {
+		return this.preserveOriginal;
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.write("type", "ngram");
 		super.serializeInternal(generator, mapper);
+		if (this.maxGram != null) {
+			generator.writeKey("max_gram");
+			generator.write(this.maxGram);
 
-		generator.writeKey("max_gram");
-		generator.write(this.maxGram);
+		}
+		if (this.minGram != null) {
+			generator.writeKey("min_gram");
+			generator.write(this.minGram);
 
-		generator.writeKey("min_gram");
-		generator.write(this.minGram);
+		}
+		if (this.preserveOriginal != null) {
+			generator.writeKey("preserve_original");
+			generator.write(this.preserveOriginal);
+
+		}
 
 	}
 
@@ -99,23 +126,36 @@ public final class NGramTokenFilter extends TokenFilterBase implements TokenFilt
 	public static class Builder extends TokenFilterBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<NGramTokenFilter> {
+		@Nullable
 		private Integer maxGram;
 
+		@Nullable
 		private Integer minGram;
 
+		@Nullable
+		private Boolean preserveOriginal;
+
 		/**
-		 * Required - API name: {@code max_gram}
+		 * API name: {@code max_gram}
 		 */
-		public Builder maxGram(int value) {
+		public final Builder maxGram(@Nullable Integer value) {
 			this.maxGram = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code min_gram}
+		 * API name: {@code min_gram}
 		 */
-		public Builder minGram(int value) {
+		public final Builder minGram(@Nullable Integer value) {
 			this.minGram = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code preserve_original}
+		 */
+		public final Builder preserveOriginal(@Nullable Boolean value) {
+			this.preserveOriginal = value;
 			return this;
 		}
 
@@ -131,6 +171,7 @@ public final class NGramTokenFilter extends TokenFilterBase implements TokenFilt
 		 *             if some of the required fields are null.
 		 */
 		public NGramTokenFilter build() {
+			_checkSingleUse();
 
 			return new NGramTokenFilter(this);
 		}
@@ -148,6 +189,7 @@ public final class NGramTokenFilter extends TokenFilterBase implements TokenFilt
 		TokenFilterBase.setupTokenFilterBaseDeserializer(op);
 		op.add(Builder::maxGram, JsonpDeserializer.integerDeserializer(), "max_gram");
 		op.add(Builder::minGram, JsonpDeserializer.integerDeserializer(), "min_gram");
+		op.add(Builder::preserveOriginal, JsonpDeserializer.booleanDeserializer(), "preserve_original");
 
 		op.ignore("type");
 	}

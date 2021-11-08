@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -39,7 +41,7 @@ import javax.annotation.Nullable;
 
 // typedef: rollup.get_rollup_index_caps.RollupJobSummaryField
 @JsonpDeserializable
-public final class RollupJobSummaryField implements JsonpSerializable {
+public class RollupJobSummaryField implements JsonpSerializable {
 	private final String agg;
 
 	@Nullable
@@ -50,22 +52,22 @@ public final class RollupJobSummaryField implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public RollupJobSummaryField(Builder builder) {
+	private RollupJobSummaryField(Builder builder) {
 
-		this.agg = Objects.requireNonNull(builder.agg, "agg");
+		this.agg = ModelTypeHelper.requireNonNull(builder.agg, this, "agg");
 		this.timeZone = builder.timeZone;
 		this.calendarInterval = builder.calendarInterval;
 
 	}
 
-	public RollupJobSummaryField(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static RollupJobSummaryField of(Function<Builder, ObjectBuilder<RollupJobSummaryField>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code agg}
 	 */
-	public String agg() {
+	public final String agg() {
 		return this.agg;
 	}
 
@@ -73,7 +75,7 @@ public final class RollupJobSummaryField implements JsonpSerializable {
 	 * API name: {@code time_zone}
 	 */
 	@Nullable
-	public String timeZone() {
+	public final String timeZone() {
 		return this.timeZone;
 	}
 
@@ -81,7 +83,7 @@ public final class RollupJobSummaryField implements JsonpSerializable {
 	 * API name: {@code calendar_interval}
 	 */
 	@Nullable
-	public String calendarInterval() {
+	public final String calendarInterval() {
 		return this.calendarInterval;
 	}
 
@@ -100,13 +102,11 @@ public final class RollupJobSummaryField implements JsonpSerializable {
 		generator.write(this.agg);
 
 		if (this.timeZone != null) {
-
 			generator.writeKey("time_zone");
 			generator.write(this.timeZone);
 
 		}
 		if (this.calendarInterval != null) {
-
 			generator.writeKey("calendar_interval");
 			generator.write(this.calendarInterval);
 
@@ -119,7 +119,7 @@ public final class RollupJobSummaryField implements JsonpSerializable {
 	/**
 	 * Builder for {@link RollupJobSummaryField}.
 	 */
-	public static class Builder implements ObjectBuilder<RollupJobSummaryField> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RollupJobSummaryField> {
 		private String agg;
 
 		@Nullable
@@ -131,7 +131,7 @@ public final class RollupJobSummaryField implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code agg}
 		 */
-		public Builder agg(String value) {
+		public final Builder agg(String value) {
 			this.agg = value;
 			return this;
 		}
@@ -139,7 +139,7 @@ public final class RollupJobSummaryField implements JsonpSerializable {
 		/**
 		 * API name: {@code time_zone}
 		 */
-		public Builder timeZone(@Nullable String value) {
+		public final Builder timeZone(@Nullable String value) {
 			this.timeZone = value;
 			return this;
 		}
@@ -147,7 +147,7 @@ public final class RollupJobSummaryField implements JsonpSerializable {
 		/**
 		 * API name: {@code calendar_interval}
 		 */
-		public Builder calendarInterval(@Nullable String value) {
+		public final Builder calendarInterval(@Nullable String value) {
 			this.calendarInterval = value;
 			return this;
 		}
@@ -159,6 +159,7 @@ public final class RollupJobSummaryField implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public RollupJobSummaryField build() {
+			_checkSingleUse();
 
 			return new RollupJobSummaryField(this);
 		}

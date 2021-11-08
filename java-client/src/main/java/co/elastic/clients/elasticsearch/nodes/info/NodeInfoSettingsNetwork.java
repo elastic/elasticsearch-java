@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -39,25 +41,25 @@ import javax.annotation.Nullable;
 
 // typedef: nodes.info.NodeInfoSettingsNetwork
 @JsonpDeserializable
-public final class NodeInfoSettingsNetwork implements JsonpSerializable {
+public class NodeInfoSettingsNetwork implements JsonpSerializable {
 	private final String host;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public NodeInfoSettingsNetwork(Builder builder) {
+	private NodeInfoSettingsNetwork(Builder builder) {
 
-		this.host = Objects.requireNonNull(builder.host, "host");
+		this.host = ModelTypeHelper.requireNonNull(builder.host, this, "host");
 
 	}
 
-	public NodeInfoSettingsNetwork(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static NodeInfoSettingsNetwork of(Function<Builder, ObjectBuilder<NodeInfoSettingsNetwork>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code host}
 	 */
-	public String host() {
+	public final String host() {
 		return this.host;
 	}
 
@@ -82,13 +84,13 @@ public final class NodeInfoSettingsNetwork implements JsonpSerializable {
 	/**
 	 * Builder for {@link NodeInfoSettingsNetwork}.
 	 */
-	public static class Builder implements ObjectBuilder<NodeInfoSettingsNetwork> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodeInfoSettingsNetwork> {
 		private String host;
 
 		/**
 		 * Required - API name: {@code host}
 		 */
-		public Builder host(String value) {
+		public final Builder host(String value) {
 			this.host = value;
 			return this;
 		}
@@ -100,6 +102,7 @@ public final class NodeInfoSettingsNetwork implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public NodeInfoSettingsNetwork build() {
+			_checkSingleUse();
 
 			return new NodeInfoSettingsNetwork(this);
 		}

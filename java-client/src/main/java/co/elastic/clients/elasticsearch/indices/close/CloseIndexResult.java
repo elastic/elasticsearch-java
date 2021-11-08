@@ -30,13 +30,14 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.MapBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
@@ -44,37 +45,35 @@ import javax.annotation.Nullable;
 
 // typedef: indices.close.CloseIndexResult
 @JsonpDeserializable
-public final class CloseIndexResult implements JsonpSerializable {
+public class CloseIndexResult implements JsonpSerializable {
 	private final boolean closed;
 
-	@Nullable
 	private final Map<String, CloseShardResult> shards;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public CloseIndexResult(Builder builder) {
+	private CloseIndexResult(Builder builder) {
 
-		this.closed = Objects.requireNonNull(builder.closed, "closed");
+		this.closed = ModelTypeHelper.requireNonNull(builder.closed, this, "closed");
 		this.shards = ModelTypeHelper.unmodifiable(builder.shards);
 
 	}
 
-	public CloseIndexResult(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static CloseIndexResult of(Function<Builder, ObjectBuilder<CloseIndexResult>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code closed}
 	 */
-	public boolean closed() {
+	public final boolean closed() {
 		return this.closed;
 	}
 
 	/**
 	 * API name: {@code shards}
 	 */
-	@Nullable
-	public Map<String, CloseShardResult> shards() {
+	public final Map<String, CloseShardResult> shards() {
 		return this.shards;
 	}
 
@@ -92,8 +91,7 @@ public final class CloseIndexResult implements JsonpSerializable {
 		generator.writeKey("closed");
 		generator.write(this.closed);
 
-		if (this.shards != null) {
-
+		if (ModelTypeHelper.isDefined(this.shards)) {
 			generator.writeKey("shards");
 			generator.writeStartObject();
 			for (Map.Entry<String, CloseShardResult> item0 : this.shards.entrySet()) {
@@ -112,7 +110,7 @@ public final class CloseIndexResult implements JsonpSerializable {
 	/**
 	 * Builder for {@link CloseIndexResult}.
 	 */
-	public static class Builder implements ObjectBuilder<CloseIndexResult> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<CloseIndexResult> {
 		private Boolean closed;
 
 		@Nullable
@@ -121,7 +119,7 @@ public final class CloseIndexResult implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code closed}
 		 */
-		public Builder closed(boolean value) {
+		public final Builder closed(boolean value) {
 			this.closed = value;
 			return this;
 		}
@@ -129,19 +127,8 @@ public final class CloseIndexResult implements JsonpSerializable {
 		/**
 		 * API name: {@code shards}
 		 */
-		public Builder shards(@Nullable Map<String, CloseShardResult> value) {
+		public final Builder shards(@Nullable Map<String, CloseShardResult> value) {
 			this.shards = value;
-			return this;
-		}
-
-		/**
-		 * Add a key/value to {@link #shards(Map)}, creating the map if needed.
-		 */
-		public Builder putShards(String key, CloseShardResult value) {
-			if (this.shards == null) {
-				this.shards = new HashMap<>();
-			}
-			this.shards.put(key, value);
 			return this;
 		}
 
@@ -152,11 +139,9 @@ public final class CloseIndexResult implements JsonpSerializable {
 			return this.shards(Collections.singletonMap(key, fn.apply(new CloseShardResult.Builder()).build()));
 		}
 
-		/**
-		 * Add a key/value to {@link #shards(Map)}, creating the map if needed.
-		 */
-		public Builder putShards(String key, Function<CloseShardResult.Builder, ObjectBuilder<CloseShardResult>> fn) {
-			return this.putShards(key, fn.apply(new CloseShardResult.Builder()).build());
+		public final Builder shards(
+				Function<MapBuilder<String, CloseShardResult, CloseShardResult.Builder>, ObjectBuilder<Map<String, CloseShardResult>>> fn) {
+			return shards(fn.apply(new MapBuilder<>(CloseShardResult.Builder::new)).build());
 		}
 
 		/**
@@ -166,6 +151,7 @@ public final class CloseIndexResult implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public CloseIndexResult build() {
+			_checkSingleUse();
 
 			return new CloseIndexResult(this);
 		}

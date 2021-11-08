@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -39,35 +41,35 @@ import javax.annotation.Nullable;
 
 // typedef: indices.shard_stores.ShardStoreException
 @JsonpDeserializable
-public final class ShardStoreException implements JsonpSerializable {
+public class ShardStoreException implements JsonpSerializable {
 	private final String reason;
 
 	private final String type;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public ShardStoreException(Builder builder) {
+	private ShardStoreException(Builder builder) {
 
-		this.reason = Objects.requireNonNull(builder.reason, "reason");
-		this.type = Objects.requireNonNull(builder.type, "type");
+		this.reason = ModelTypeHelper.requireNonNull(builder.reason, this, "reason");
+		this.type = ModelTypeHelper.requireNonNull(builder.type, this, "type");
 
 	}
 
-	public ShardStoreException(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ShardStoreException of(Function<Builder, ObjectBuilder<ShardStoreException>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code reason}
 	 */
-	public String reason() {
+	public final String reason() {
 		return this.reason;
 	}
 
 	/**
 	 * Required - API name: {@code type}
 	 */
-	public String type() {
+	public final String type() {
 		return this.type;
 	}
 
@@ -95,7 +97,7 @@ public final class ShardStoreException implements JsonpSerializable {
 	/**
 	 * Builder for {@link ShardStoreException}.
 	 */
-	public static class Builder implements ObjectBuilder<ShardStoreException> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ShardStoreException> {
 		private String reason;
 
 		private String type;
@@ -103,7 +105,7 @@ public final class ShardStoreException implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code reason}
 		 */
-		public Builder reason(String value) {
+		public final Builder reason(String value) {
 			this.reason = value;
 			return this;
 		}
@@ -111,7 +113,7 @@ public final class ShardStoreException implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code type}
 		 */
-		public Builder type(String value) {
+		public final Builder type(String value) {
 			this.type = value;
 			return this;
 		}
@@ -123,6 +125,7 @@ public final class ShardStoreException implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public ShardStoreException build() {
+			_checkSingleUse();
 
 			return new ShardStoreException(this);
 		}

@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.lang.String;
@@ -40,7 +42,7 @@ import javax.annotation.Nullable;
 
 // typedef: transform.get_transform_stats.CheckpointStats
 @JsonpDeserializable
-public final class CheckpointStats implements JsonpSerializable {
+public class CheckpointStats implements JsonpSerializable {
 	private final long checkpoint;
 
 	@Nullable
@@ -59,25 +61,25 @@ public final class CheckpointStats implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public CheckpointStats(Builder builder) {
+	private CheckpointStats(Builder builder) {
 
-		this.checkpoint = Objects.requireNonNull(builder.checkpoint, "checkpoint");
+		this.checkpoint = ModelTypeHelper.requireNonNull(builder.checkpoint, this, "checkpoint");
 		this.checkpointProgress = builder.checkpointProgress;
 		this.timestamp = builder.timestamp;
-		this.timestampMillis = Objects.requireNonNull(builder.timestampMillis, "timestamp_millis");
+		this.timestampMillis = ModelTypeHelper.requireNonNull(builder.timestampMillis, this, "timestampMillis");
 		this.timeUpperBound = builder.timeUpperBound;
 		this.timeUpperBoundMillis = builder.timeUpperBoundMillis;
 
 	}
 
-	public CheckpointStats(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static CheckpointStats of(Function<Builder, ObjectBuilder<CheckpointStats>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code checkpoint}
 	 */
-	public long checkpoint() {
+	public final long checkpoint() {
 		return this.checkpoint;
 	}
 
@@ -85,7 +87,7 @@ public final class CheckpointStats implements JsonpSerializable {
 	 * API name: {@code checkpoint_progress}
 	 */
 	@Nullable
-	public TransformProgress checkpointProgress() {
+	public final TransformProgress checkpointProgress() {
 		return this.checkpointProgress;
 	}
 
@@ -93,14 +95,14 @@ public final class CheckpointStats implements JsonpSerializable {
 	 * API name: {@code timestamp}
 	 */
 	@Nullable
-	public String timestamp() {
+	public final String timestamp() {
 		return this.timestamp;
 	}
 
 	/**
 	 * Required - API name: {@code timestamp_millis}
 	 */
-	public String timestampMillis() {
+	public final String timestampMillis() {
 		return this.timestampMillis;
 	}
 
@@ -108,7 +110,7 @@ public final class CheckpointStats implements JsonpSerializable {
 	 * API name: {@code time_upper_bound}
 	 */
 	@Nullable
-	public String timeUpperBound() {
+	public final String timeUpperBound() {
 		return this.timeUpperBound;
 	}
 
@@ -116,7 +118,7 @@ public final class CheckpointStats implements JsonpSerializable {
 	 * API name: {@code time_upper_bound_millis}
 	 */
 	@Nullable
-	public String timeUpperBoundMillis() {
+	public final String timeUpperBoundMillis() {
 		return this.timeUpperBoundMillis;
 	}
 
@@ -135,29 +137,24 @@ public final class CheckpointStats implements JsonpSerializable {
 		generator.write(this.checkpoint);
 
 		if (this.checkpointProgress != null) {
-
 			generator.writeKey("checkpoint_progress");
 			this.checkpointProgress.serialize(generator, mapper);
 
 		}
 		if (this.timestamp != null) {
-
 			generator.writeKey("timestamp");
 			generator.write(this.timestamp);
 
 		}
-
 		generator.writeKey("timestamp_millis");
 		generator.write(this.timestampMillis);
 
 		if (this.timeUpperBound != null) {
-
 			generator.writeKey("time_upper_bound");
 			generator.write(this.timeUpperBound);
 
 		}
 		if (this.timeUpperBoundMillis != null) {
-
 			generator.writeKey("time_upper_bound_millis");
 			generator.write(this.timeUpperBoundMillis);
 
@@ -170,7 +167,7 @@ public final class CheckpointStats implements JsonpSerializable {
 	/**
 	 * Builder for {@link CheckpointStats}.
 	 */
-	public static class Builder implements ObjectBuilder<CheckpointStats> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<CheckpointStats> {
 		private Long checkpoint;
 
 		@Nullable
@@ -190,7 +187,7 @@ public final class CheckpointStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code checkpoint}
 		 */
-		public Builder checkpoint(long value) {
+		public final Builder checkpoint(long value) {
 			this.checkpoint = value;
 			return this;
 		}
@@ -198,7 +195,7 @@ public final class CheckpointStats implements JsonpSerializable {
 		/**
 		 * API name: {@code checkpoint_progress}
 		 */
-		public Builder checkpointProgress(@Nullable TransformProgress value) {
+		public final Builder checkpointProgress(@Nullable TransformProgress value) {
 			this.checkpointProgress = value;
 			return this;
 		}
@@ -206,14 +203,15 @@ public final class CheckpointStats implements JsonpSerializable {
 		/**
 		 * API name: {@code checkpoint_progress}
 		 */
-		public Builder checkpointProgress(Function<TransformProgress.Builder, ObjectBuilder<TransformProgress>> fn) {
+		public final Builder checkpointProgress(
+				Function<TransformProgress.Builder, ObjectBuilder<TransformProgress>> fn) {
 			return this.checkpointProgress(fn.apply(new TransformProgress.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code timestamp}
 		 */
-		public Builder timestamp(@Nullable String value) {
+		public final Builder timestamp(@Nullable String value) {
 			this.timestamp = value;
 			return this;
 		}
@@ -221,7 +219,7 @@ public final class CheckpointStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code timestamp_millis}
 		 */
-		public Builder timestampMillis(String value) {
+		public final Builder timestampMillis(String value) {
 			this.timestampMillis = value;
 			return this;
 		}
@@ -229,7 +227,7 @@ public final class CheckpointStats implements JsonpSerializable {
 		/**
 		 * API name: {@code time_upper_bound}
 		 */
-		public Builder timeUpperBound(@Nullable String value) {
+		public final Builder timeUpperBound(@Nullable String value) {
 			this.timeUpperBound = value;
 			return this;
 		}
@@ -237,7 +235,7 @@ public final class CheckpointStats implements JsonpSerializable {
 		/**
 		 * API name: {@code time_upper_bound_millis}
 		 */
-		public Builder timeUpperBoundMillis(@Nullable String value) {
+		public final Builder timeUpperBoundMillis(@Nullable String value) {
 			this.timeUpperBoundMillis = value;
 			return this;
 		}
@@ -249,6 +247,7 @@ public final class CheckpointStats implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public CheckpointStats build() {
+			_checkSingleUse();
 
 			return new CheckpointStats(this);
 		}

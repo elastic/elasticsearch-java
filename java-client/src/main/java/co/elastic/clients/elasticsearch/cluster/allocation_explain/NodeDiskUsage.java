@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -39,7 +41,7 @@ import javax.annotation.Nullable;
 
 // typedef: cluster.allocation_explain.NodeDiskUsage
 @JsonpDeserializable
-public final class NodeDiskUsage implements JsonpSerializable {
+public class NodeDiskUsage implements JsonpSerializable {
 	private final String nodeName;
 
 	private final DiskUsage leastAvailable;
@@ -48,36 +50,36 @@ public final class NodeDiskUsage implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public NodeDiskUsage(Builder builder) {
+	private NodeDiskUsage(Builder builder) {
 
-		this.nodeName = Objects.requireNonNull(builder.nodeName, "node_name");
-		this.leastAvailable = Objects.requireNonNull(builder.leastAvailable, "least_available");
-		this.mostAvailable = Objects.requireNonNull(builder.mostAvailable, "most_available");
+		this.nodeName = ModelTypeHelper.requireNonNull(builder.nodeName, this, "nodeName");
+		this.leastAvailable = ModelTypeHelper.requireNonNull(builder.leastAvailable, this, "leastAvailable");
+		this.mostAvailable = ModelTypeHelper.requireNonNull(builder.mostAvailable, this, "mostAvailable");
 
 	}
 
-	public NodeDiskUsage(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static NodeDiskUsage of(Function<Builder, ObjectBuilder<NodeDiskUsage>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code node_name}
 	 */
-	public String nodeName() {
+	public final String nodeName() {
 		return this.nodeName;
 	}
 
 	/**
 	 * Required - API name: {@code least_available}
 	 */
-	public DiskUsage leastAvailable() {
+	public final DiskUsage leastAvailable() {
 		return this.leastAvailable;
 	}
 
 	/**
 	 * Required - API name: {@code most_available}
 	 */
-	public DiskUsage mostAvailable() {
+	public final DiskUsage mostAvailable() {
 		return this.mostAvailable;
 	}
 
@@ -108,7 +110,7 @@ public final class NodeDiskUsage implements JsonpSerializable {
 	/**
 	 * Builder for {@link NodeDiskUsage}.
 	 */
-	public static class Builder implements ObjectBuilder<NodeDiskUsage> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodeDiskUsage> {
 		private String nodeName;
 
 		private DiskUsage leastAvailable;
@@ -118,7 +120,7 @@ public final class NodeDiskUsage implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code node_name}
 		 */
-		public Builder nodeName(String value) {
+		public final Builder nodeName(String value) {
 			this.nodeName = value;
 			return this;
 		}
@@ -126,7 +128,7 @@ public final class NodeDiskUsage implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code least_available}
 		 */
-		public Builder leastAvailable(DiskUsage value) {
+		public final Builder leastAvailable(DiskUsage value) {
 			this.leastAvailable = value;
 			return this;
 		}
@@ -134,14 +136,14 @@ public final class NodeDiskUsage implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code least_available}
 		 */
-		public Builder leastAvailable(Function<DiskUsage.Builder, ObjectBuilder<DiskUsage>> fn) {
+		public final Builder leastAvailable(Function<DiskUsage.Builder, ObjectBuilder<DiskUsage>> fn) {
 			return this.leastAvailable(fn.apply(new DiskUsage.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code most_available}
 		 */
-		public Builder mostAvailable(DiskUsage value) {
+		public final Builder mostAvailable(DiskUsage value) {
 			this.mostAvailable = value;
 			return this;
 		}
@@ -149,7 +151,7 @@ public final class NodeDiskUsage implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code most_available}
 		 */
-		public Builder mostAvailable(Function<DiskUsage.Builder, ObjectBuilder<DiskUsage>> fn) {
+		public final Builder mostAvailable(Function<DiskUsage.Builder, ObjectBuilder<DiskUsage>> fn) {
 			return this.mostAvailable(fn.apply(new DiskUsage.Builder()).build());
 		}
 
@@ -160,6 +162,7 @@ public final class NodeDiskUsage implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public NodeDiskUsage build() {
+			_checkSingleUse();
 
 			return new NodeDiskUsage(this);
 		}

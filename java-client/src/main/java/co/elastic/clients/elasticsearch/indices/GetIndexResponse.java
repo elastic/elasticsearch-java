@@ -37,16 +37,16 @@ import java.util.function.Function;
 
 // typedef: indices.get.Response
 @JsonpDeserializable
-public final class GetIndexResponse extends DictionaryResponse<String, IndexState> {
+public class GetIndexResponse extends DictionaryResponse<String, IndexState> {
 	// ---------------------------------------------------------------------------------------------
 
-	public GetIndexResponse(Builder builder) {
+	private GetIndexResponse(Builder builder) {
 		super(builder);
 
 	}
 
-	public GetIndexResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static GetIndexResponse of(Function<Builder, ObjectBuilder<GetIndexResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -69,6 +69,7 @@ public final class GetIndexResponse extends DictionaryResponse<String, IndexStat
 		 *             if some of the required fields are null.
 		 */
 		public GetIndexResponse build() {
+			_checkSingleUse();
 			super.tKeySerializer(null);
 			super.tValueSerializer(null);
 

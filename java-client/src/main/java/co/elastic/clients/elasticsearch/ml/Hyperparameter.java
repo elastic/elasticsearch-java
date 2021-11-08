@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Double;
@@ -41,7 +43,7 @@ import javax.annotation.Nullable;
 
 // typedef: ml._types.Hyperparameter
 @JsonpDeserializable
-public final class Hyperparameter implements JsonpSerializable {
+public class Hyperparameter implements JsonpSerializable {
 	@Nullable
 	private final Double absoluteImportance;
 
@@ -56,18 +58,18 @@ public final class Hyperparameter implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public Hyperparameter(Builder builder) {
+	private Hyperparameter(Builder builder) {
 
 		this.absoluteImportance = builder.absoluteImportance;
-		this.name = Objects.requireNonNull(builder.name, "name");
+		this.name = ModelTypeHelper.requireNonNull(builder.name, this, "name");
 		this.relativeImportance = builder.relativeImportance;
-		this.supplied = Objects.requireNonNull(builder.supplied, "supplied");
-		this.value = Objects.requireNonNull(builder.value, "value");
+		this.supplied = ModelTypeHelper.requireNonNull(builder.supplied, this, "supplied");
+		this.value = ModelTypeHelper.requireNonNull(builder.value, this, "value");
 
 	}
 
-	public Hyperparameter(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static Hyperparameter of(Function<Builder, ObjectBuilder<Hyperparameter>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -78,7 +80,7 @@ public final class Hyperparameter implements JsonpSerializable {
 	 * API name: {@code absolute_importance}
 	 */
 	@Nullable
-	public Double absoluteImportance() {
+	public final Double absoluteImportance() {
 		return this.absoluteImportance;
 	}
 
@@ -87,7 +89,7 @@ public final class Hyperparameter implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code name}
 	 */
-	public String name() {
+	public final String name() {
 		return this.name;
 	}
 
@@ -100,7 +102,7 @@ public final class Hyperparameter implements JsonpSerializable {
 	 * API name: {@code relative_importance}
 	 */
 	@Nullable
-	public Double relativeImportance() {
+	public final Double relativeImportance() {
 		return this.relativeImportance;
 	}
 
@@ -110,7 +112,7 @@ public final class Hyperparameter implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code supplied}
 	 */
-	public boolean supplied() {
+	public final boolean supplied() {
 		return this.supplied;
 	}
 
@@ -120,7 +122,7 @@ public final class Hyperparameter implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code value}
 	 */
-	public double value() {
+	public final double value() {
 		return this.value;
 	}
 
@@ -136,22 +138,18 @@ public final class Hyperparameter implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.absoluteImportance != null) {
-
 			generator.writeKey("absolute_importance");
 			generator.write(this.absoluteImportance);
 
 		}
-
 		generator.writeKey("name");
 		generator.write(this.name);
 
 		if (this.relativeImportance != null) {
-
 			generator.writeKey("relative_importance");
 			generator.write(this.relativeImportance);
 
 		}
-
 		generator.writeKey("supplied");
 		generator.write(this.supplied);
 
@@ -165,7 +163,7 @@ public final class Hyperparameter implements JsonpSerializable {
 	/**
 	 * Builder for {@link Hyperparameter}.
 	 */
-	public static class Builder implements ObjectBuilder<Hyperparameter> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Hyperparameter> {
 		@Nullable
 		private Double absoluteImportance;
 
@@ -185,7 +183,7 @@ public final class Hyperparameter implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code absolute_importance}
 		 */
-		public Builder absoluteImportance(@Nullable Double value) {
+		public final Builder absoluteImportance(@Nullable Double value) {
 			this.absoluteImportance = value;
 			return this;
 		}
@@ -195,7 +193,7 @@ public final class Hyperparameter implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code name}
 		 */
-		public Builder name(String value) {
+		public final Builder name(String value) {
 			this.name = value;
 			return this;
 		}
@@ -208,7 +206,7 @@ public final class Hyperparameter implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code relative_importance}
 		 */
-		public Builder relativeImportance(@Nullable Double value) {
+		public final Builder relativeImportance(@Nullable Double value) {
 			this.relativeImportance = value;
 			return this;
 		}
@@ -219,7 +217,7 @@ public final class Hyperparameter implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code supplied}
 		 */
-		public Builder supplied(boolean value) {
+		public final Builder supplied(boolean value) {
 			this.supplied = value;
 			return this;
 		}
@@ -230,7 +228,7 @@ public final class Hyperparameter implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code value}
 		 */
-		public Builder value(double value) {
+		public final Builder value(double value) {
 			this.value = value;
 			return this;
 		}
@@ -242,6 +240,7 @@ public final class Hyperparameter implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public Hyperparameter build() {
+			_checkSingleUse();
 
 			return new Hyperparameter(this);
 		}

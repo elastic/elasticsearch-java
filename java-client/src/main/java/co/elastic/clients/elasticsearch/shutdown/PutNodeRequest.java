@@ -31,7 +31,9 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.SimpleEndpoint;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
@@ -41,19 +43,19 @@ import javax.annotation.Nullable;
 
 // typedef: shutdown.put_node.Request
 
-public final class PutNodeRequest extends RequestBase {
+public class PutNodeRequest extends RequestBase {
 	private final String nodeId;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public PutNodeRequest(Builder builder) {
+	private PutNodeRequest(Builder builder) {
 
-		this.nodeId = Objects.requireNonNull(builder.nodeId, "node_id");
+		this.nodeId = ModelTypeHelper.requireNonNull(builder.nodeId, this, "nodeId");
 
 	}
 
-	public PutNodeRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static PutNodeRequest of(Function<Builder, ObjectBuilder<PutNodeRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -61,7 +63,7 @@ public final class PutNodeRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code node_id}
 	 */
-	public String nodeId() {
+	public final String nodeId() {
 		return this.nodeId;
 	}
 
@@ -70,7 +72,7 @@ public final class PutNodeRequest extends RequestBase {
 	/**
 	 * Builder for {@link PutNodeRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<PutNodeRequest> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PutNodeRequest> {
 		private String nodeId;
 
 		/**
@@ -78,7 +80,7 @@ public final class PutNodeRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code node_id}
 		 */
-		public Builder nodeId(String value) {
+		public final Builder nodeId(String value) {
 			this.nodeId = value;
 			return this;
 		}
@@ -90,6 +92,7 @@ public final class PutNodeRequest extends RequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public PutNodeRequest build() {
+			_checkSingleUse();
 
 			return new PutNodeRequest(this);
 		}

@@ -37,11 +37,11 @@ import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.SimpleEndpoint;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -51,25 +51,23 @@ import javax.annotation.Nullable;
 
 // typedef: watcher.query_watches.Request
 @JsonpDeserializable
-public final class QueryWatchesRequest extends RequestBase implements JsonpSerializable {
+public class QueryWatchesRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
 	private final Integer from;
 
 	@Nullable
 	private final Query query;
 
-	@Nullable
 	private final List<String> searchAfter;
 
 	@Nullable
 	private final Integer size;
 
-	@Nullable
 	private final List<JsonValue /* _global.search._types.SortCombinations */> sort;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public QueryWatchesRequest(Builder builder) {
+	private QueryWatchesRequest(Builder builder) {
 
 		this.from = builder.from;
 		this.query = builder.query;
@@ -79,8 +77,8 @@ public final class QueryWatchesRequest extends RequestBase implements JsonpSeria
 
 	}
 
-	public QueryWatchesRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static QueryWatchesRequest of(Function<Builder, ObjectBuilder<QueryWatchesRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -89,7 +87,7 @@ public final class QueryWatchesRequest extends RequestBase implements JsonpSeria
 	 * API name: {@code from}
 	 */
 	@Nullable
-	public Integer from() {
+	public final Integer from() {
 		return this.from;
 	}
 
@@ -99,7 +97,7 @@ public final class QueryWatchesRequest extends RequestBase implements JsonpSeria
 	 * API name: {@code query}
 	 */
 	@Nullable
-	public Query query() {
+	public final Query query() {
 		return this.query;
 	}
 
@@ -108,8 +106,7 @@ public final class QueryWatchesRequest extends RequestBase implements JsonpSeria
 	 * <p>
 	 * API name: {@code search_after}
 	 */
-	@Nullable
-	public List<String> searchAfter() {
+	public final List<String> searchAfter() {
 		return this.searchAfter;
 	}
 
@@ -119,7 +116,7 @@ public final class QueryWatchesRequest extends RequestBase implements JsonpSeria
 	 * API name: {@code size}
 	 */
 	@Nullable
-	public Integer size() {
+	public final Integer size() {
 		return this.size;
 	}
 
@@ -128,8 +125,7 @@ public final class QueryWatchesRequest extends RequestBase implements JsonpSeria
 	 * <p>
 	 * API name: {@code sort}
 	 */
-	@Nullable
-	public List<JsonValue /* _global.search._types.SortCombinations */> sort() {
+	public final List<JsonValue /* _global.search._types.SortCombinations */> sort() {
 		return this.sort;
 	}
 
@@ -145,19 +141,16 @@ public final class QueryWatchesRequest extends RequestBase implements JsonpSeria
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.from != null) {
-
 			generator.writeKey("from");
 			generator.write(this.from);
 
 		}
 		if (this.query != null) {
-
 			generator.writeKey("query");
 			this.query.serialize(generator, mapper);
 
 		}
-		if (this.searchAfter != null) {
-
+		if (ModelTypeHelper.isDefined(this.searchAfter)) {
 			generator.writeKey("search_after");
 			generator.writeStartArray();
 			for (String item0 : this.searchAfter) {
@@ -168,13 +161,11 @@ public final class QueryWatchesRequest extends RequestBase implements JsonpSeria
 
 		}
 		if (this.size != null) {
-
 			generator.writeKey("size");
 			generator.write(this.size);
 
 		}
-		if (this.sort != null) {
-
+		if (ModelTypeHelper.isDefined(this.sort)) {
 			generator.writeKey("sort");
 			generator.writeStartArray();
 			for (JsonValue /* _global.search._types.SortCombinations */ item0 : this.sort) {
@@ -192,7 +183,7 @@ public final class QueryWatchesRequest extends RequestBase implements JsonpSeria
 	/**
 	 * Builder for {@link QueryWatchesRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<QueryWatchesRequest> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<QueryWatchesRequest> {
 		@Nullable
 		private Integer from;
 
@@ -213,7 +204,7 @@ public final class QueryWatchesRequest extends RequestBase implements JsonpSeria
 		 * <p>
 		 * API name: {@code from}
 		 */
-		public Builder from(@Nullable Integer value) {
+		public final Builder from(@Nullable Integer value) {
 			this.from = value;
 			return this;
 		}
@@ -223,7 +214,7 @@ public final class QueryWatchesRequest extends RequestBase implements JsonpSeria
 		 * <p>
 		 * API name: {@code query}
 		 */
-		public Builder query(@Nullable Query value) {
+		public final Builder query(@Nullable Query value) {
 			this.query = value;
 			return this;
 		}
@@ -233,7 +224,7 @@ public final class QueryWatchesRequest extends RequestBase implements JsonpSeria
 		 * <p>
 		 * API name: {@code query}
 		 */
-		public Builder query(Function<Query.Builder, ObjectBuilder<Query>> fn) {
+		public final Builder query(Function<Query.Builder, ObjectBuilder<Query>> fn) {
 			return this.query(fn.apply(new Query.Builder()).build());
 		}
 
@@ -242,7 +233,7 @@ public final class QueryWatchesRequest extends RequestBase implements JsonpSeria
 		 * <p>
 		 * API name: {@code search_after}
 		 */
-		public Builder searchAfter(@Nullable List<String> value) {
+		public final Builder searchAfter(@Nullable List<String> value) {
 			this.searchAfter = value;
 			return this;
 		}
@@ -252,19 +243,8 @@ public final class QueryWatchesRequest extends RequestBase implements JsonpSeria
 		 * <p>
 		 * API name: {@code search_after}
 		 */
-		public Builder searchAfter(String... value) {
+		public final Builder searchAfter(String... value) {
 			this.searchAfter = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #searchAfter(List)}, creating the list if needed.
-		 */
-		public Builder addSearchAfter(String value) {
-			if (this.searchAfter == null) {
-				this.searchAfter = new ArrayList<>();
-			}
-			this.searchAfter.add(value);
 			return this;
 		}
 
@@ -273,7 +253,7 @@ public final class QueryWatchesRequest extends RequestBase implements JsonpSeria
 		 * <p>
 		 * API name: {@code size}
 		 */
-		public Builder size(@Nullable Integer value) {
+		public final Builder size(@Nullable Integer value) {
 			this.size = value;
 			return this;
 		}
@@ -283,7 +263,7 @@ public final class QueryWatchesRequest extends RequestBase implements JsonpSeria
 		 * <p>
 		 * API name: {@code sort}
 		 */
-		public Builder sort(@Nullable List<JsonValue /* _global.search._types.SortCombinations */> value) {
+		public final Builder sort(@Nullable List<JsonValue /* _global.search._types.SortCombinations */> value) {
 			this.sort = value;
 			return this;
 		}
@@ -293,19 +273,8 @@ public final class QueryWatchesRequest extends RequestBase implements JsonpSeria
 		 * <p>
 		 * API name: {@code sort}
 		 */
-		public Builder sort(JsonValue /* _global.search._types.SortCombinations */... value) {
+		public final Builder sort(JsonValue /* _global.search._types.SortCombinations */... value) {
 			this.sort = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #sort(List)}, creating the list if needed.
-		 */
-		public Builder addSort(JsonValue /* _global.search._types.SortCombinations */ value) {
-			if (this.sort == null) {
-				this.sort = new ArrayList<>();
-			}
-			this.sort.add(value);
 			return this;
 		}
 
@@ -316,6 +285,7 @@ public final class QueryWatchesRequest extends RequestBase implements JsonpSeria
 		 *             if some of the required fields are null.
 		 */
 		public QueryWatchesRequest build() {
+			_checkSingleUse();
 
 			return new QueryWatchesRequest(this);
 		}

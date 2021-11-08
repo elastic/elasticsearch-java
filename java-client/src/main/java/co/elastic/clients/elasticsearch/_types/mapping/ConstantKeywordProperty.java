@@ -38,21 +38,21 @@ import javax.annotation.Nullable;
 
 // typedef: _types.mapping.ConstantKeywordProperty
 @JsonpDeserializable
-public final class ConstantKeywordProperty extends PropertyBase implements PropertyVariant {
+public class ConstantKeywordProperty extends PropertyBase implements PropertyVariant {
 	@Nullable
 	private final JsonData value;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public ConstantKeywordProperty(Builder builder) {
+	private ConstantKeywordProperty(Builder builder) {
 		super(builder);
 
 		this.value = builder.value;
 
 	}
 
-	public ConstantKeywordProperty(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ConstantKeywordProperty of(Function<Builder, ObjectBuilder<ConstantKeywordProperty>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -67,7 +67,7 @@ public final class ConstantKeywordProperty extends PropertyBase implements Prope
 	 * API name: {@code value}
 	 */
 	@Nullable
-	public JsonData value() {
+	public final JsonData value() {
 		return this.value;
 	}
 
@@ -76,7 +76,6 @@ public final class ConstantKeywordProperty extends PropertyBase implements Prope
 		generator.write("type", "constant_keyword");
 		super.serializeInternal(generator, mapper);
 		if (this.value != null) {
-
 			generator.writeKey("value");
 			this.value.serialize(generator, mapper);
 
@@ -98,7 +97,7 @@ public final class ConstantKeywordProperty extends PropertyBase implements Prope
 		/**
 		 * API name: {@code value}
 		 */
-		public Builder value(@Nullable JsonData value) {
+		public final Builder value(@Nullable JsonData value) {
 			this.value = value;
 			return this;
 		}
@@ -115,6 +114,7 @@ public final class ConstantKeywordProperty extends PropertyBase implements Prope
 		 *             if some of the required fields are null.
 		 */
 		public ConstantKeywordProperty build() {
+			_checkSingleUse();
 
 			return new ConstantKeywordProperty(this);
 		}

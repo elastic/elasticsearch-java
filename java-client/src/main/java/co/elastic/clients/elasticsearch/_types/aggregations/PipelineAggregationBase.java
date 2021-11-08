@@ -42,8 +42,7 @@ import javax.annotation.Nullable;
 public abstract class PipelineAggregationBase extends AggregationBase {
 	@Nullable
 	private final JsonValue /*
-							 * Union(Array<internal.string> | Dictionary<internal.string, internal.string>
-							 * (singleKey = false))
+							 * Union(Array<internal.string> | Dictionary<internal.string, internal.string>)
 							 */ bucketsPath;
 
 	@Nullable
@@ -54,7 +53,7 @@ public abstract class PipelineAggregationBase extends AggregationBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public PipelineAggregationBase(AbstractBuilder<?> builder) {
+	protected PipelineAggregationBase(AbstractBuilder<?> builder) {
 		super(builder);
 
 		this.bucketsPath = builder.bucketsPath;
@@ -67,10 +66,9 @@ public abstract class PipelineAggregationBase extends AggregationBase {
 	 * API name: {@code buckets_path}
 	 */
 	@Nullable
-	public JsonValue /*
-						 * Union(Array<internal.string> | Dictionary<internal.string, internal.string>
-						 * (singleKey = false))
-						 */ bucketsPath() {
+	public final JsonValue /*
+							 * Union(Array<internal.string> | Dictionary<internal.string, internal.string>)
+							 */ bucketsPath() {
 		return this.bucketsPath;
 	}
 
@@ -78,7 +76,7 @@ public abstract class PipelineAggregationBase extends AggregationBase {
 	 * API name: {@code format}
 	 */
 	@Nullable
-	public String format() {
+	public final String format() {
 		return this.format;
 	}
 
@@ -86,7 +84,7 @@ public abstract class PipelineAggregationBase extends AggregationBase {
 	 * API name: {@code gap_policy}
 	 */
 	@Nullable
-	public GapPolicy gapPolicy() {
+	public final GapPolicy gapPolicy() {
 		return this.gapPolicy;
 	}
 
@@ -94,19 +92,16 @@ public abstract class PipelineAggregationBase extends AggregationBase {
 
 		super.serializeInternal(generator, mapper);
 		if (this.bucketsPath != null) {
-
 			generator.writeKey("buckets_path");
 			generator.write(this.bucketsPath);
 
 		}
 		if (this.format != null) {
-
 			generator.writeKey("format");
 			generator.write(this.format);
 
 		}
 		if (this.gapPolicy != null) {
-
 			generator.writeKey("gap_policy");
 			this.gapPolicy.serialize(generator, mapper);
 		}
@@ -118,8 +113,7 @@ public abstract class PipelineAggregationBase extends AggregationBase {
 				AggregationBase.AbstractBuilder<BuilderT> {
 		@Nullable
 		private JsonValue /*
-							 * Union(Array<internal.string> | Dictionary<internal.string, internal.string>
-							 * (singleKey = false))
+							 * Union(Array<internal.string> | Dictionary<internal.string, internal.string>)
 							 */ bucketsPath;
 
 		@Nullable
@@ -131,10 +125,10 @@ public abstract class PipelineAggregationBase extends AggregationBase {
 		/**
 		 * API name: {@code buckets_path}
 		 */
-		public BuilderT bucketsPath(@Nullable JsonValue /*
-														 * Union(Array<internal.string> | Dictionary<internal.string,
-														 * internal.string> (singleKey = false))
-														 */ value) {
+		public final BuilderT bucketsPath(
+				@Nullable JsonValue /*
+									 * Union(Array<internal.string> | Dictionary<internal.string, internal.string>)
+									 */ value) {
 			this.bucketsPath = value;
 			return self();
 		}
@@ -142,7 +136,7 @@ public abstract class PipelineAggregationBase extends AggregationBase {
 		/**
 		 * API name: {@code format}
 		 */
-		public BuilderT format(@Nullable String value) {
+		public final BuilderT format(@Nullable String value) {
 			this.format = value;
 			return self();
 		}
@@ -150,7 +144,7 @@ public abstract class PipelineAggregationBase extends AggregationBase {
 		/**
 		 * API name: {@code gap_policy}
 		 */
-		public BuilderT gapPolicy(@Nullable GapPolicy value) {
+		public final BuilderT gapPolicy(@Nullable GapPolicy value) {
 			this.gapPolicy = value;
 			return self();
 		}

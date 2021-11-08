@@ -36,16 +36,16 @@ import java.util.function.Function;
 
 // typedef: ccr.unfollow.Response
 @JsonpDeserializable
-public final class UnfollowResponse extends AcknowledgedResponseBase {
+public class UnfollowResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
-	public UnfollowResponse(Builder builder) {
+	private UnfollowResponse(Builder builder) {
 		super(builder);
 
 	}
 
-	public UnfollowResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static UnfollowResponse of(Function<Builder, ObjectBuilder<UnfollowResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -68,6 +68,7 @@ public final class UnfollowResponse extends AcknowledgedResponseBase {
 		 *             if some of the required fields are null.
 		 */
 		public UnfollowResponse build() {
+			_checkSingleUse();
 
 			return new UnfollowResponse(this);
 		}

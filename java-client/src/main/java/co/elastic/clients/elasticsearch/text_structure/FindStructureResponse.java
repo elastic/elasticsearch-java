@@ -33,16 +33,16 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.MapBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -51,7 +51,7 @@ import javax.annotation.Nullable;
 
 // typedef: text_structure.find_structure.Response
 @JsonpDeserializable
-public final class FindStructureResponse implements JsonpSerializable {
+public class FindStructureResponse implements JsonpSerializable {
 	private final String charset;
 
 	@Nullable
@@ -79,10 +79,8 @@ public final class FindStructureResponse implements JsonpSerializable {
 
 	private final int numLinesAnalyzed;
 
-	@Nullable
 	private final List<String> columnNames;
 
-	@Nullable
 	private final List<String> explanation;
 
 	@Nullable
@@ -94,10 +92,8 @@ public final class FindStructureResponse implements JsonpSerializable {
 	@Nullable
 	private final String excludeLinesPattern;
 
-	@Nullable
 	private final List<String> javaTimestampFormats;
 
-	@Nullable
 	private final List<String> jodaTimestampFormats;
 
 	@Nullable
@@ -110,20 +106,23 @@ public final class FindStructureResponse implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public FindStructureResponse(Builder builder) {
+	private FindStructureResponse(Builder builder) {
 
-		this.charset = Objects.requireNonNull(builder.charset, "charset");
+		this.charset = ModelTypeHelper.requireNonNull(builder.charset, this, "charset");
 		this.hasHeaderRow = builder.hasHeaderRow;
-		this.hasByteOrderMarker = Objects.requireNonNull(builder.hasByteOrderMarker, "has_byte_order_marker");
-		this.format = Objects.requireNonNull(builder.format, "format");
-		this.fieldStats = ModelTypeHelper.unmodifiableNonNull(builder.fieldStats, "field_stats");
-		this.sampleStart = Objects.requireNonNull(builder.sampleStart, "sample_start");
-		this.numMessagesAnalyzed = Objects.requireNonNull(builder.numMessagesAnalyzed, "num_messages_analyzed");
-		this.mappings = Objects.requireNonNull(builder.mappings, "mappings");
+		this.hasByteOrderMarker = ModelTypeHelper.requireNonNull(builder.hasByteOrderMarker, this,
+				"hasByteOrderMarker");
+		this.format = ModelTypeHelper.requireNonNull(builder.format, this, "format");
+		this.fieldStats = ModelTypeHelper.unmodifiableRequired(builder.fieldStats, this, "fieldStats");
+		this.sampleStart = ModelTypeHelper.requireNonNull(builder.sampleStart, this, "sampleStart");
+		this.numMessagesAnalyzed = ModelTypeHelper.requireNonNull(builder.numMessagesAnalyzed, this,
+				"numMessagesAnalyzed");
+		this.mappings = ModelTypeHelper.requireNonNull(builder.mappings, this, "mappings");
 		this.quote = builder.quote;
 		this.delimiter = builder.delimiter;
-		this.needClientTimezone = Objects.requireNonNull(builder.needClientTimezone, "need_client_timezone");
-		this.numLinesAnalyzed = Objects.requireNonNull(builder.numLinesAnalyzed, "num_lines_analyzed");
+		this.needClientTimezone = ModelTypeHelper.requireNonNull(builder.needClientTimezone, this,
+				"needClientTimezone");
+		this.numLinesAnalyzed = ModelTypeHelper.requireNonNull(builder.numLinesAnalyzed, this, "numLinesAnalyzed");
 		this.columnNames = ModelTypeHelper.unmodifiable(builder.columnNames);
 		this.explanation = ModelTypeHelper.unmodifiable(builder.explanation);
 		this.grokPattern = builder.grokPattern;
@@ -133,18 +132,18 @@ public final class FindStructureResponse implements JsonpSerializable {
 		this.jodaTimestampFormats = ModelTypeHelper.unmodifiable(builder.jodaTimestampFormats);
 		this.timestampField = builder.timestampField;
 		this.shouldTrimFields = builder.shouldTrimFields;
-		this.ingestPipeline = Objects.requireNonNull(builder.ingestPipeline, "ingest_pipeline");
+		this.ingestPipeline = ModelTypeHelper.requireNonNull(builder.ingestPipeline, this, "ingestPipeline");
 
 	}
 
-	public FindStructureResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static FindStructureResponse of(Function<Builder, ObjectBuilder<FindStructureResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code charset}
 	 */
-	public String charset() {
+	public final String charset() {
 		return this.charset;
 	}
 
@@ -152,49 +151,49 @@ public final class FindStructureResponse implements JsonpSerializable {
 	 * API name: {@code has_header_row}
 	 */
 	@Nullable
-	public Boolean hasHeaderRow() {
+	public final Boolean hasHeaderRow() {
 		return this.hasHeaderRow;
 	}
 
 	/**
 	 * Required - API name: {@code has_byte_order_marker}
 	 */
-	public boolean hasByteOrderMarker() {
+	public final boolean hasByteOrderMarker() {
 		return this.hasByteOrderMarker;
 	}
 
 	/**
 	 * Required - API name: {@code format}
 	 */
-	public String format() {
+	public final String format() {
 		return this.format;
 	}
 
 	/**
 	 * Required - API name: {@code field_stats}
 	 */
-	public Map<String, FieldStat> fieldStats() {
+	public final Map<String, FieldStat> fieldStats() {
 		return this.fieldStats;
 	}
 
 	/**
 	 * Required - API name: {@code sample_start}
 	 */
-	public String sampleStart() {
+	public final String sampleStart() {
 		return this.sampleStart;
 	}
 
 	/**
 	 * Required - API name: {@code num_messages_analyzed}
 	 */
-	public int numMessagesAnalyzed() {
+	public final int numMessagesAnalyzed() {
 		return this.numMessagesAnalyzed;
 	}
 
 	/**
 	 * Required - API name: {@code mappings}
 	 */
-	public TypeMapping mappings() {
+	public final TypeMapping mappings() {
 		return this.mappings;
 	}
 
@@ -202,7 +201,7 @@ public final class FindStructureResponse implements JsonpSerializable {
 	 * API name: {@code quote}
 	 */
 	@Nullable
-	public String quote() {
+	public final String quote() {
 		return this.quote;
 	}
 
@@ -210,37 +209,35 @@ public final class FindStructureResponse implements JsonpSerializable {
 	 * API name: {@code delimiter}
 	 */
 	@Nullable
-	public String delimiter() {
+	public final String delimiter() {
 		return this.delimiter;
 	}
 
 	/**
 	 * Required - API name: {@code need_client_timezone}
 	 */
-	public boolean needClientTimezone() {
+	public final boolean needClientTimezone() {
 		return this.needClientTimezone;
 	}
 
 	/**
 	 * Required - API name: {@code num_lines_analyzed}
 	 */
-	public int numLinesAnalyzed() {
+	public final int numLinesAnalyzed() {
 		return this.numLinesAnalyzed;
 	}
 
 	/**
 	 * API name: {@code column_names}
 	 */
-	@Nullable
-	public List<String> columnNames() {
+	public final List<String> columnNames() {
 		return this.columnNames;
 	}
 
 	/**
 	 * API name: {@code explanation}
 	 */
-	@Nullable
-	public List<String> explanation() {
+	public final List<String> explanation() {
 		return this.explanation;
 	}
 
@@ -248,7 +245,7 @@ public final class FindStructureResponse implements JsonpSerializable {
 	 * API name: {@code grok_pattern}
 	 */
 	@Nullable
-	public String grokPattern() {
+	public final String grokPattern() {
 		return this.grokPattern;
 	}
 
@@ -256,7 +253,7 @@ public final class FindStructureResponse implements JsonpSerializable {
 	 * API name: {@code multiline_start_pattern}
 	 */
 	@Nullable
-	public String multilineStartPattern() {
+	public final String multilineStartPattern() {
 		return this.multilineStartPattern;
 	}
 
@@ -264,23 +261,21 @@ public final class FindStructureResponse implements JsonpSerializable {
 	 * API name: {@code exclude_lines_pattern}
 	 */
 	@Nullable
-	public String excludeLinesPattern() {
+	public final String excludeLinesPattern() {
 		return this.excludeLinesPattern;
 	}
 
 	/**
 	 * API name: {@code java_timestamp_formats}
 	 */
-	@Nullable
-	public List<String> javaTimestampFormats() {
+	public final List<String> javaTimestampFormats() {
 		return this.javaTimestampFormats;
 	}
 
 	/**
 	 * API name: {@code joda_timestamp_formats}
 	 */
-	@Nullable
-	public List<String> jodaTimestampFormats() {
+	public final List<String> jodaTimestampFormats() {
 		return this.jodaTimestampFormats;
 	}
 
@@ -288,7 +283,7 @@ public final class FindStructureResponse implements JsonpSerializable {
 	 * API name: {@code timestamp_field}
 	 */
 	@Nullable
-	public String timestampField() {
+	public final String timestampField() {
 		return this.timestampField;
 	}
 
@@ -296,14 +291,14 @@ public final class FindStructureResponse implements JsonpSerializable {
 	 * API name: {@code should_trim_fields}
 	 */
 	@Nullable
-	public Boolean shouldTrimFields() {
+	public final Boolean shouldTrimFields() {
 		return this.shouldTrimFields;
 	}
 
 	/**
 	 * Required - API name: {@code ingest_pipeline}
 	 */
-	public PipelineConfig ingestPipeline() {
+	public final PipelineConfig ingestPipeline() {
 		return this.ingestPipeline;
 	}
 
@@ -322,27 +317,27 @@ public final class FindStructureResponse implements JsonpSerializable {
 		generator.write(this.charset);
 
 		if (this.hasHeaderRow != null) {
-
 			generator.writeKey("has_header_row");
 			generator.write(this.hasHeaderRow);
 
 		}
-
 		generator.writeKey("has_byte_order_marker");
 		generator.write(this.hasByteOrderMarker);
 
 		generator.writeKey("format");
 		generator.write(this.format);
 
-		generator.writeKey("field_stats");
-		generator.writeStartObject();
-		for (Map.Entry<String, FieldStat> item0 : this.fieldStats.entrySet()) {
-			generator.writeKey(item0.getKey());
-			item0.getValue().serialize(generator, mapper);
+		if (ModelTypeHelper.isDefined(this.fieldStats)) {
+			generator.writeKey("field_stats");
+			generator.writeStartObject();
+			for (Map.Entry<String, FieldStat> item0 : this.fieldStats.entrySet()) {
+				generator.writeKey(item0.getKey());
+				item0.getValue().serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
-
 		generator.writeKey("sample_start");
 		generator.write(this.sampleStart);
 
@@ -353,26 +348,22 @@ public final class FindStructureResponse implements JsonpSerializable {
 		this.mappings.serialize(generator, mapper);
 
 		if (this.quote != null) {
-
 			generator.writeKey("quote");
 			generator.write(this.quote);
 
 		}
 		if (this.delimiter != null) {
-
 			generator.writeKey("delimiter");
 			generator.write(this.delimiter);
 
 		}
-
 		generator.writeKey("need_client_timezone");
 		generator.write(this.needClientTimezone);
 
 		generator.writeKey("num_lines_analyzed");
 		generator.write(this.numLinesAnalyzed);
 
-		if (this.columnNames != null) {
-
+		if (ModelTypeHelper.isDefined(this.columnNames)) {
 			generator.writeKey("column_names");
 			generator.writeStartArray();
 			for (String item0 : this.columnNames) {
@@ -382,8 +373,7 @@ public final class FindStructureResponse implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (this.explanation != null) {
-
+		if (ModelTypeHelper.isDefined(this.explanation)) {
 			generator.writeKey("explanation");
 			generator.writeStartArray();
 			for (String item0 : this.explanation) {
@@ -394,25 +384,21 @@ public final class FindStructureResponse implements JsonpSerializable {
 
 		}
 		if (this.grokPattern != null) {
-
 			generator.writeKey("grok_pattern");
 			generator.write(this.grokPattern);
 
 		}
 		if (this.multilineStartPattern != null) {
-
 			generator.writeKey("multiline_start_pattern");
 			generator.write(this.multilineStartPattern);
 
 		}
 		if (this.excludeLinesPattern != null) {
-
 			generator.writeKey("exclude_lines_pattern");
 			generator.write(this.excludeLinesPattern);
 
 		}
-		if (this.javaTimestampFormats != null) {
-
+		if (ModelTypeHelper.isDefined(this.javaTimestampFormats)) {
 			generator.writeKey("java_timestamp_formats");
 			generator.writeStartArray();
 			for (String item0 : this.javaTimestampFormats) {
@@ -422,8 +408,7 @@ public final class FindStructureResponse implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (this.jodaTimestampFormats != null) {
-
+		if (ModelTypeHelper.isDefined(this.jodaTimestampFormats)) {
 			generator.writeKey("joda_timestamp_formats");
 			generator.writeStartArray();
 			for (String item0 : this.jodaTimestampFormats) {
@@ -434,18 +419,15 @@ public final class FindStructureResponse implements JsonpSerializable {
 
 		}
 		if (this.timestampField != null) {
-
 			generator.writeKey("timestamp_field");
 			generator.write(this.timestampField);
 
 		}
 		if (this.shouldTrimFields != null) {
-
 			generator.writeKey("should_trim_fields");
 			generator.write(this.shouldTrimFields);
 
 		}
-
 		generator.writeKey("ingest_pipeline");
 		this.ingestPipeline.serialize(generator, mapper);
 
@@ -456,7 +438,7 @@ public final class FindStructureResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link FindStructureResponse}.
 	 */
-	public static class Builder implements ObjectBuilder<FindStructureResponse> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<FindStructureResponse> {
 		private String charset;
 
 		@Nullable
@@ -516,7 +498,7 @@ public final class FindStructureResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code charset}
 		 */
-		public Builder charset(String value) {
+		public final Builder charset(String value) {
 			this.charset = value;
 			return this;
 		}
@@ -524,7 +506,7 @@ public final class FindStructureResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code has_header_row}
 		 */
-		public Builder hasHeaderRow(@Nullable Boolean value) {
+		public final Builder hasHeaderRow(@Nullable Boolean value) {
 			this.hasHeaderRow = value;
 			return this;
 		}
@@ -532,7 +514,7 @@ public final class FindStructureResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code has_byte_order_marker}
 		 */
-		public Builder hasByteOrderMarker(boolean value) {
+		public final Builder hasByteOrderMarker(boolean value) {
 			this.hasByteOrderMarker = value;
 			return this;
 		}
@@ -540,7 +522,7 @@ public final class FindStructureResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code format}
 		 */
-		public Builder format(String value) {
+		public final Builder format(String value) {
 			this.format = value;
 			return this;
 		}
@@ -548,19 +530,8 @@ public final class FindStructureResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code field_stats}
 		 */
-		public Builder fieldStats(Map<String, FieldStat> value) {
+		public final Builder fieldStats(Map<String, FieldStat> value) {
 			this.fieldStats = value;
-			return this;
-		}
-
-		/**
-		 * Add a key/value to {@link #fieldStats(Map)}, creating the map if needed.
-		 */
-		public Builder putFieldStats(String key, FieldStat value) {
-			if (this.fieldStats == null) {
-				this.fieldStats = new HashMap<>();
-			}
-			this.fieldStats.put(key, value);
 			return this;
 		}
 
@@ -571,17 +542,15 @@ public final class FindStructureResponse implements JsonpSerializable {
 			return this.fieldStats(Collections.singletonMap(key, fn.apply(new FieldStat.Builder()).build()));
 		}
 
-		/**
-		 * Add a key/value to {@link #fieldStats(Map)}, creating the map if needed.
-		 */
-		public Builder putFieldStats(String key, Function<FieldStat.Builder, ObjectBuilder<FieldStat>> fn) {
-			return this.putFieldStats(key, fn.apply(new FieldStat.Builder()).build());
+		public final Builder fieldStats(
+				Function<MapBuilder<String, FieldStat, FieldStat.Builder>, ObjectBuilder<Map<String, FieldStat>>> fn) {
+			return fieldStats(fn.apply(new MapBuilder<>(FieldStat.Builder::new)).build());
 		}
 
 		/**
 		 * Required - API name: {@code sample_start}
 		 */
-		public Builder sampleStart(String value) {
+		public final Builder sampleStart(String value) {
 			this.sampleStart = value;
 			return this;
 		}
@@ -589,7 +558,7 @@ public final class FindStructureResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code num_messages_analyzed}
 		 */
-		public Builder numMessagesAnalyzed(int value) {
+		public final Builder numMessagesAnalyzed(int value) {
 			this.numMessagesAnalyzed = value;
 			return this;
 		}
@@ -597,7 +566,7 @@ public final class FindStructureResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code mappings}
 		 */
-		public Builder mappings(TypeMapping value) {
+		public final Builder mappings(TypeMapping value) {
 			this.mappings = value;
 			return this;
 		}
@@ -605,14 +574,14 @@ public final class FindStructureResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code mappings}
 		 */
-		public Builder mappings(Function<TypeMapping.Builder, ObjectBuilder<TypeMapping>> fn) {
+		public final Builder mappings(Function<TypeMapping.Builder, ObjectBuilder<TypeMapping>> fn) {
 			return this.mappings(fn.apply(new TypeMapping.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code quote}
 		 */
-		public Builder quote(@Nullable String value) {
+		public final Builder quote(@Nullable String value) {
 			this.quote = value;
 			return this;
 		}
@@ -620,7 +589,7 @@ public final class FindStructureResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code delimiter}
 		 */
-		public Builder delimiter(@Nullable String value) {
+		public final Builder delimiter(@Nullable String value) {
 			this.delimiter = value;
 			return this;
 		}
@@ -628,7 +597,7 @@ public final class FindStructureResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code need_client_timezone}
 		 */
-		public Builder needClientTimezone(boolean value) {
+		public final Builder needClientTimezone(boolean value) {
 			this.needClientTimezone = value;
 			return this;
 		}
@@ -636,7 +605,7 @@ public final class FindStructureResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code num_lines_analyzed}
 		 */
-		public Builder numLinesAnalyzed(int value) {
+		public final Builder numLinesAnalyzed(int value) {
 			this.numLinesAnalyzed = value;
 			return this;
 		}
@@ -644,7 +613,7 @@ public final class FindStructureResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code column_names}
 		 */
-		public Builder columnNames(@Nullable List<String> value) {
+		public final Builder columnNames(@Nullable List<String> value) {
 			this.columnNames = value;
 			return this;
 		}
@@ -652,26 +621,15 @@ public final class FindStructureResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code column_names}
 		 */
-		public Builder columnNames(String... value) {
+		public final Builder columnNames(String... value) {
 			this.columnNames = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #columnNames(List)}, creating the list if needed.
-		 */
-		public Builder addColumnNames(String value) {
-			if (this.columnNames == null) {
-				this.columnNames = new ArrayList<>();
-			}
-			this.columnNames.add(value);
 			return this;
 		}
 
 		/**
 		 * API name: {@code explanation}
 		 */
-		public Builder explanation(@Nullable List<String> value) {
+		public final Builder explanation(@Nullable List<String> value) {
 			this.explanation = value;
 			return this;
 		}
@@ -679,26 +637,15 @@ public final class FindStructureResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code explanation}
 		 */
-		public Builder explanation(String... value) {
+		public final Builder explanation(String... value) {
 			this.explanation = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #explanation(List)}, creating the list if needed.
-		 */
-		public Builder addExplanation(String value) {
-			if (this.explanation == null) {
-				this.explanation = new ArrayList<>();
-			}
-			this.explanation.add(value);
 			return this;
 		}
 
 		/**
 		 * API name: {@code grok_pattern}
 		 */
-		public Builder grokPattern(@Nullable String value) {
+		public final Builder grokPattern(@Nullable String value) {
 			this.grokPattern = value;
 			return this;
 		}
@@ -706,7 +653,7 @@ public final class FindStructureResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code multiline_start_pattern}
 		 */
-		public Builder multilineStartPattern(@Nullable String value) {
+		public final Builder multilineStartPattern(@Nullable String value) {
 			this.multilineStartPattern = value;
 			return this;
 		}
@@ -714,7 +661,7 @@ public final class FindStructureResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code exclude_lines_pattern}
 		 */
-		public Builder excludeLinesPattern(@Nullable String value) {
+		public final Builder excludeLinesPattern(@Nullable String value) {
 			this.excludeLinesPattern = value;
 			return this;
 		}
@@ -722,7 +669,7 @@ public final class FindStructureResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code java_timestamp_formats}
 		 */
-		public Builder javaTimestampFormats(@Nullable List<String> value) {
+		public final Builder javaTimestampFormats(@Nullable List<String> value) {
 			this.javaTimestampFormats = value;
 			return this;
 		}
@@ -730,27 +677,15 @@ public final class FindStructureResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code java_timestamp_formats}
 		 */
-		public Builder javaTimestampFormats(String... value) {
+		public final Builder javaTimestampFormats(String... value) {
 			this.javaTimestampFormats = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #javaTimestampFormats(List)}, creating the list if
-		 * needed.
-		 */
-		public Builder addJavaTimestampFormats(String value) {
-			if (this.javaTimestampFormats == null) {
-				this.javaTimestampFormats = new ArrayList<>();
-			}
-			this.javaTimestampFormats.add(value);
 			return this;
 		}
 
 		/**
 		 * API name: {@code joda_timestamp_formats}
 		 */
-		public Builder jodaTimestampFormats(@Nullable List<String> value) {
+		public final Builder jodaTimestampFormats(@Nullable List<String> value) {
 			this.jodaTimestampFormats = value;
 			return this;
 		}
@@ -758,27 +693,15 @@ public final class FindStructureResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code joda_timestamp_formats}
 		 */
-		public Builder jodaTimestampFormats(String... value) {
+		public final Builder jodaTimestampFormats(String... value) {
 			this.jodaTimestampFormats = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #jodaTimestampFormats(List)}, creating the list if
-		 * needed.
-		 */
-		public Builder addJodaTimestampFormats(String value) {
-			if (this.jodaTimestampFormats == null) {
-				this.jodaTimestampFormats = new ArrayList<>();
-			}
-			this.jodaTimestampFormats.add(value);
 			return this;
 		}
 
 		/**
 		 * API name: {@code timestamp_field}
 		 */
-		public Builder timestampField(@Nullable String value) {
+		public final Builder timestampField(@Nullable String value) {
 			this.timestampField = value;
 			return this;
 		}
@@ -786,7 +709,7 @@ public final class FindStructureResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code should_trim_fields}
 		 */
-		public Builder shouldTrimFields(@Nullable Boolean value) {
+		public final Builder shouldTrimFields(@Nullable Boolean value) {
 			this.shouldTrimFields = value;
 			return this;
 		}
@@ -794,7 +717,7 @@ public final class FindStructureResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code ingest_pipeline}
 		 */
-		public Builder ingestPipeline(PipelineConfig value) {
+		public final Builder ingestPipeline(PipelineConfig value) {
 			this.ingestPipeline = value;
 			return this;
 		}
@@ -802,7 +725,7 @@ public final class FindStructureResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code ingest_pipeline}
 		 */
-		public Builder ingestPipeline(Function<PipelineConfig.Builder, ObjectBuilder<PipelineConfig>> fn) {
+		public final Builder ingestPipeline(Function<PipelineConfig.Builder, ObjectBuilder<PipelineConfig>> fn) {
 			return this.ingestPipeline(fn.apply(new PipelineConfig.Builder()).build());
 		}
 
@@ -813,6 +736,7 @@ public final class FindStructureResponse implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public FindStructureResponse build() {
+			_checkSingleUse();
 
 			return new FindStructureResponse(this);
 		}

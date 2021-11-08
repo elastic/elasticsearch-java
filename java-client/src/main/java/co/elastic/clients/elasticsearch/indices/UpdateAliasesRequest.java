@@ -37,6 +37,7 @@ import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.SimpleEndpoint;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.ArrayList;
@@ -50,8 +51,7 @@ import javax.annotation.Nullable;
 
 // typedef: indices.update_aliases.Request
 @JsonpDeserializable
-public final class UpdateAliasesRequest extends RequestBase implements JsonpSerializable {
-	@Nullable
+public class UpdateAliasesRequest extends RequestBase implements JsonpSerializable {
 	private final List<Action> actions;
 
 	@Nullable
@@ -62,7 +62,7 @@ public final class UpdateAliasesRequest extends RequestBase implements JsonpSeri
 
 	// ---------------------------------------------------------------------------------------------
 
-	public UpdateAliasesRequest(Builder builder) {
+	private UpdateAliasesRequest(Builder builder) {
 
 		this.actions = ModelTypeHelper.unmodifiable(builder.actions);
 		this.masterTimeout = builder.masterTimeout;
@@ -70,15 +70,14 @@ public final class UpdateAliasesRequest extends RequestBase implements JsonpSeri
 
 	}
 
-	public UpdateAliasesRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static UpdateAliasesRequest of(Function<Builder, ObjectBuilder<UpdateAliasesRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * API name: {@code actions}
 	 */
-	@Nullable
-	public List<Action> actions() {
+	public final List<Action> actions() {
 		return this.actions;
 	}
 
@@ -88,7 +87,7 @@ public final class UpdateAliasesRequest extends RequestBase implements JsonpSeri
 	 * API name: {@code master_timeout}
 	 */
 	@Nullable
-	public String masterTimeout() {
+	public final String masterTimeout() {
 		return this.masterTimeout;
 	}
 
@@ -98,7 +97,7 @@ public final class UpdateAliasesRequest extends RequestBase implements JsonpSeri
 	 * API name: {@code timeout}
 	 */
 	@Nullable
-	public String timeout() {
+	public final String timeout() {
 		return this.timeout;
 	}
 
@@ -113,8 +112,7 @@ public final class UpdateAliasesRequest extends RequestBase implements JsonpSeri
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (this.actions != null) {
-
+		if (ModelTypeHelper.isDefined(this.actions)) {
 			generator.writeKey("actions");
 			generator.writeStartArray();
 			for (Action item0 : this.actions) {
@@ -132,7 +130,7 @@ public final class UpdateAliasesRequest extends RequestBase implements JsonpSeri
 	/**
 	 * Builder for {@link UpdateAliasesRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<UpdateAliasesRequest> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<UpdateAliasesRequest> {
 		@Nullable
 		private List<Action> actions;
 
@@ -145,7 +143,7 @@ public final class UpdateAliasesRequest extends RequestBase implements JsonpSeri
 		/**
 		 * API name: {@code actions}
 		 */
-		public Builder actions(@Nullable List<Action> value) {
+		public final Builder actions(@Nullable List<Action> value) {
 			this.actions = value;
 			return this;
 		}
@@ -153,34 +151,21 @@ public final class UpdateAliasesRequest extends RequestBase implements JsonpSeri
 		/**
 		 * API name: {@code actions}
 		 */
-		public Builder actions(Action... value) {
+		public final Builder actions(Action... value) {
 			this.actions = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #actions(List)}, creating the list if needed.
+		 * API name: {@code actions}
 		 */
-		public Builder addActions(Action value) {
-			if (this.actions == null) {
-				this.actions = new ArrayList<>();
+		@SafeVarargs
+		public final Builder actions(Function<Action.Builder, ObjectBuilder<Action>>... fns) {
+			this.actions = new ArrayList<>(fns.length);
+			for (Function<Action.Builder, ObjectBuilder<Action>> fn : fns) {
+				this.actions.add(fn.apply(new Action.Builder()).build());
 			}
-			this.actions.add(value);
 			return this;
-		}
-
-		/**
-		 * Set {@link #actions(List)} to a singleton list.
-		 */
-		public Builder actions(Function<Action.Builder, ObjectBuilder<Action>> fn) {
-			return this.actions(fn.apply(new Action.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #actions(List)}, creating the list if needed.
-		 */
-		public Builder addActions(Function<Action.Builder, ObjectBuilder<Action>> fn) {
-			return this.addActions(fn.apply(new Action.Builder()).build());
 		}
 
 		/**
@@ -188,7 +173,7 @@ public final class UpdateAliasesRequest extends RequestBase implements JsonpSeri
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
-		public Builder masterTimeout(@Nullable String value) {
+		public final Builder masterTimeout(@Nullable String value) {
 			this.masterTimeout = value;
 			return this;
 		}
@@ -198,7 +183,7 @@ public final class UpdateAliasesRequest extends RequestBase implements JsonpSeri
 		 * <p>
 		 * API name: {@code timeout}
 		 */
-		public Builder timeout(@Nullable String value) {
+		public final Builder timeout(@Nullable String value) {
 			this.timeout = value;
 			return this;
 		}
@@ -210,6 +195,7 @@ public final class UpdateAliasesRequest extends RequestBase implements JsonpSeri
 		 *             if some of the required fields are null.
 		 */
 		public UpdateAliasesRequest build() {
+			_checkSingleUse();
 
 			return new UpdateAliasesRequest(this);
 		}

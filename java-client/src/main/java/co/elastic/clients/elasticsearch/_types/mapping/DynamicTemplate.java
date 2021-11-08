@@ -31,6 +31,7 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -39,7 +40,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.mapping.DynamicTemplate
 @JsonpDeserializable
-public final class DynamicTemplate implements JsonpSerializable {
+public class DynamicTemplate implements JsonpSerializable {
 	@Nullable
 	private final Property mapping;
 
@@ -63,7 +64,7 @@ public final class DynamicTemplate implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public DynamicTemplate(Builder builder) {
+	private DynamicTemplate(Builder builder) {
 
 		this.mapping = builder.mapping;
 		this.match = builder.match;
@@ -75,15 +76,15 @@ public final class DynamicTemplate implements JsonpSerializable {
 
 	}
 
-	public DynamicTemplate(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static DynamicTemplate of(Function<Builder, ObjectBuilder<DynamicTemplate>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * API name: {@code mapping}
 	 */
 	@Nullable
-	public Property mapping() {
+	public final Property mapping() {
 		return this.mapping;
 	}
 
@@ -91,7 +92,7 @@ public final class DynamicTemplate implements JsonpSerializable {
 	 * API name: {@code match}
 	 */
 	@Nullable
-	public String match() {
+	public final String match() {
 		return this.match;
 	}
 
@@ -99,7 +100,7 @@ public final class DynamicTemplate implements JsonpSerializable {
 	 * API name: {@code match_mapping_type}
 	 */
 	@Nullable
-	public String matchMappingType() {
+	public final String matchMappingType() {
 		return this.matchMappingType;
 	}
 
@@ -107,7 +108,7 @@ public final class DynamicTemplate implements JsonpSerializable {
 	 * API name: {@code match_pattern}
 	 */
 	@Nullable
-	public MatchType matchPattern() {
+	public final MatchType matchPattern() {
 		return this.matchPattern;
 	}
 
@@ -115,7 +116,7 @@ public final class DynamicTemplate implements JsonpSerializable {
 	 * API name: {@code path_match}
 	 */
 	@Nullable
-	public String pathMatch() {
+	public final String pathMatch() {
 		return this.pathMatch;
 	}
 
@@ -123,7 +124,7 @@ public final class DynamicTemplate implements JsonpSerializable {
 	 * API name: {@code path_unmatch}
 	 */
 	@Nullable
-	public String pathUnmatch() {
+	public final String pathUnmatch() {
 		return this.pathUnmatch;
 	}
 
@@ -131,7 +132,7 @@ public final class DynamicTemplate implements JsonpSerializable {
 	 * API name: {@code unmatch}
 	 */
 	@Nullable
-	public String unmatch() {
+	public final String unmatch() {
 		return this.unmatch;
 	}
 
@@ -147,42 +148,35 @@ public final class DynamicTemplate implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.mapping != null) {
-
 			generator.writeKey("mapping");
 			this.mapping.serialize(generator, mapper);
 
 		}
 		if (this.match != null) {
-
 			generator.writeKey("match");
 			generator.write(this.match);
 
 		}
 		if (this.matchMappingType != null) {
-
 			generator.writeKey("match_mapping_type");
 			generator.write(this.matchMappingType);
 
 		}
 		if (this.matchPattern != null) {
-
 			generator.writeKey("match_pattern");
 			this.matchPattern.serialize(generator, mapper);
 		}
 		if (this.pathMatch != null) {
-
 			generator.writeKey("path_match");
 			generator.write(this.pathMatch);
 
 		}
 		if (this.pathUnmatch != null) {
-
 			generator.writeKey("path_unmatch");
 			generator.write(this.pathUnmatch);
 
 		}
 		if (this.unmatch != null) {
-
 			generator.writeKey("unmatch");
 			generator.write(this.unmatch);
 
@@ -195,7 +189,7 @@ public final class DynamicTemplate implements JsonpSerializable {
 	/**
 	 * Builder for {@link DynamicTemplate}.
 	 */
-	public static class Builder implements ObjectBuilder<DynamicTemplate> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DynamicTemplate> {
 		@Nullable
 		private Property mapping;
 
@@ -220,7 +214,7 @@ public final class DynamicTemplate implements JsonpSerializable {
 		/**
 		 * API name: {@code mapping}
 		 */
-		public Builder mapping(@Nullable Property value) {
+		public final Builder mapping(@Nullable Property value) {
 			this.mapping = value;
 			return this;
 		}
@@ -228,14 +222,14 @@ public final class DynamicTemplate implements JsonpSerializable {
 		/**
 		 * API name: {@code mapping}
 		 */
-		public Builder mapping(Function<Property.Builder, ObjectBuilder<Property>> fn) {
+		public final Builder mapping(Function<Property.Builder, ObjectBuilder<Property>> fn) {
 			return this.mapping(fn.apply(new Property.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code match}
 		 */
-		public Builder match(@Nullable String value) {
+		public final Builder match(@Nullable String value) {
 			this.match = value;
 			return this;
 		}
@@ -243,7 +237,7 @@ public final class DynamicTemplate implements JsonpSerializable {
 		/**
 		 * API name: {@code match_mapping_type}
 		 */
-		public Builder matchMappingType(@Nullable String value) {
+		public final Builder matchMappingType(@Nullable String value) {
 			this.matchMappingType = value;
 			return this;
 		}
@@ -251,7 +245,7 @@ public final class DynamicTemplate implements JsonpSerializable {
 		/**
 		 * API name: {@code match_pattern}
 		 */
-		public Builder matchPattern(@Nullable MatchType value) {
+		public final Builder matchPattern(@Nullable MatchType value) {
 			this.matchPattern = value;
 			return this;
 		}
@@ -259,7 +253,7 @@ public final class DynamicTemplate implements JsonpSerializable {
 		/**
 		 * API name: {@code path_match}
 		 */
-		public Builder pathMatch(@Nullable String value) {
+		public final Builder pathMatch(@Nullable String value) {
 			this.pathMatch = value;
 			return this;
 		}
@@ -267,7 +261,7 @@ public final class DynamicTemplate implements JsonpSerializable {
 		/**
 		 * API name: {@code path_unmatch}
 		 */
-		public Builder pathUnmatch(@Nullable String value) {
+		public final Builder pathUnmatch(@Nullable String value) {
 			this.pathUnmatch = value;
 			return this;
 		}
@@ -275,7 +269,7 @@ public final class DynamicTemplate implements JsonpSerializable {
 		/**
 		 * API name: {@code unmatch}
 		 */
-		public Builder unmatch(@Nullable String value) {
+		public final Builder unmatch(@Nullable String value) {
 			this.unmatch = value;
 			return this;
 		}
@@ -287,6 +281,7 @@ public final class DynamicTemplate implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public DynamicTemplate build() {
+			_checkSingleUse();
 
 			return new DynamicTemplate(this);
 		}

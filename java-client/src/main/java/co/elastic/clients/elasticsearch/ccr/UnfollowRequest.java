@@ -31,7 +31,9 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.SimpleEndpoint;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
@@ -41,19 +43,19 @@ import javax.annotation.Nullable;
 
 // typedef: ccr.unfollow.Request
 
-public final class UnfollowRequest extends RequestBase {
+public class UnfollowRequest extends RequestBase {
 	private final String index;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public UnfollowRequest(Builder builder) {
+	private UnfollowRequest(Builder builder) {
 
-		this.index = Objects.requireNonNull(builder.index, "index");
+		this.index = ModelTypeHelper.requireNonNull(builder.index, this, "index");
 
 	}
 
-	public UnfollowRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static UnfollowRequest of(Function<Builder, ObjectBuilder<UnfollowRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -62,7 +64,7 @@ public final class UnfollowRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code index}
 	 */
-	public String index() {
+	public final String index() {
 		return this.index;
 	}
 
@@ -71,7 +73,7 @@ public final class UnfollowRequest extends RequestBase {
 	/**
 	 * Builder for {@link UnfollowRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<UnfollowRequest> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<UnfollowRequest> {
 		private String index;
 
 		/**
@@ -80,7 +82,7 @@ public final class UnfollowRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code index}
 		 */
-		public Builder index(String value) {
+		public final Builder index(String value) {
 			this.index = value;
 			return this;
 		}
@@ -92,6 +94,7 @@ public final class UnfollowRequest extends RequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public UnfollowRequest build() {
+			_checkSingleUse();
 
 			return new UnfollowRequest(this);
 		}

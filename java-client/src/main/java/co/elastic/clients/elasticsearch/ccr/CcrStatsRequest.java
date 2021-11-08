@@ -39,7 +39,7 @@ import java.util.function.Function;
 
 // typedef: ccr.stats.Request
 
-public final class CcrStatsRequest extends RequestBase {
+public class CcrStatsRequest extends RequestBase {
 	public CcrStatsRequest() {
 	}
 

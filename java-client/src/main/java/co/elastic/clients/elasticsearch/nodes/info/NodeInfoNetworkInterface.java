@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -39,7 +41,7 @@ import javax.annotation.Nullable;
 
 // typedef: nodes.info.NodeInfoNetworkInterface
 @JsonpDeserializable
-public final class NodeInfoNetworkInterface implements JsonpSerializable {
+public class NodeInfoNetworkInterface implements JsonpSerializable {
 	private final String address;
 
 	private final String macAddress;
@@ -48,36 +50,36 @@ public final class NodeInfoNetworkInterface implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public NodeInfoNetworkInterface(Builder builder) {
+	private NodeInfoNetworkInterface(Builder builder) {
 
-		this.address = Objects.requireNonNull(builder.address, "address");
-		this.macAddress = Objects.requireNonNull(builder.macAddress, "mac_address");
-		this.name = Objects.requireNonNull(builder.name, "name");
+		this.address = ModelTypeHelper.requireNonNull(builder.address, this, "address");
+		this.macAddress = ModelTypeHelper.requireNonNull(builder.macAddress, this, "macAddress");
+		this.name = ModelTypeHelper.requireNonNull(builder.name, this, "name");
 
 	}
 
-	public NodeInfoNetworkInterface(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static NodeInfoNetworkInterface of(Function<Builder, ObjectBuilder<NodeInfoNetworkInterface>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code address}
 	 */
-	public String address() {
+	public final String address() {
 		return this.address;
 	}
 
 	/**
 	 * Required - API name: {@code mac_address}
 	 */
-	public String macAddress() {
+	public final String macAddress() {
 		return this.macAddress;
 	}
 
 	/**
 	 * Required - API name: {@code name}
 	 */
-	public String name() {
+	public final String name() {
 		return this.name;
 	}
 
@@ -108,7 +110,7 @@ public final class NodeInfoNetworkInterface implements JsonpSerializable {
 	/**
 	 * Builder for {@link NodeInfoNetworkInterface}.
 	 */
-	public static class Builder implements ObjectBuilder<NodeInfoNetworkInterface> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodeInfoNetworkInterface> {
 		private String address;
 
 		private String macAddress;
@@ -118,7 +120,7 @@ public final class NodeInfoNetworkInterface implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code address}
 		 */
-		public Builder address(String value) {
+		public final Builder address(String value) {
 			this.address = value;
 			return this;
 		}
@@ -126,7 +128,7 @@ public final class NodeInfoNetworkInterface implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code mac_address}
 		 */
-		public Builder macAddress(String value) {
+		public final Builder macAddress(String value) {
 			this.macAddress = value;
 			return this;
 		}
@@ -134,7 +136,7 @@ public final class NodeInfoNetworkInterface implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code name}
 		 */
-		public Builder name(String value) {
+		public final Builder name(String value) {
 			this.name = value;
 			return this;
 		}
@@ -146,6 +148,7 @@ public final class NodeInfoNetworkInterface implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public NodeInfoNetworkInterface build() {
+			_checkSingleUse();
 
 			return new NodeInfoNetworkInterface(this);
 		}

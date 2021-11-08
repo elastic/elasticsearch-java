@@ -36,16 +36,16 @@ import java.util.function.Function;
 
 // typedef: cluster.put_component_template.Response
 @JsonpDeserializable
-public final class PutComponentTemplateResponse extends AcknowledgedResponseBase {
+public class PutComponentTemplateResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
-	public PutComponentTemplateResponse(Builder builder) {
+	private PutComponentTemplateResponse(Builder builder) {
 		super(builder);
 
 	}
 
-	public PutComponentTemplateResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static PutComponentTemplateResponse of(Function<Builder, ObjectBuilder<PutComponentTemplateResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -68,6 +68,7 @@ public final class PutComponentTemplateResponse extends AcknowledgedResponseBase
 		 *             if some of the required fields are null.
 		 */
 		public PutComponentTemplateResponse build() {
+			_checkSingleUse();
 
 			return new PutComponentTemplateResponse(this);
 		}

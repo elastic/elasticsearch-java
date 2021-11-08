@@ -38,21 +38,21 @@ import javax.annotation.Nullable;
 
 // typedef: _types.mapping.WildcardProperty
 @JsonpDeserializable
-public final class WildcardProperty extends DocValuesPropertyBase implements PropertyVariant {
+public class WildcardProperty extends DocValuesPropertyBase implements PropertyVariant {
 	@Nullable
 	private final String nullValue;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public WildcardProperty(Builder builder) {
+	private WildcardProperty(Builder builder) {
 		super(builder);
 
 		this.nullValue = builder.nullValue;
 
 	}
 
-	public WildcardProperty(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static WildcardProperty of(Function<Builder, ObjectBuilder<WildcardProperty>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -67,7 +67,7 @@ public final class WildcardProperty extends DocValuesPropertyBase implements Pro
 	 * API name: {@code null_value}
 	 */
 	@Nullable
-	public String nullValue() {
+	public final String nullValue() {
 		return this.nullValue;
 	}
 
@@ -76,7 +76,6 @@ public final class WildcardProperty extends DocValuesPropertyBase implements Pro
 		generator.write("type", "wildcard");
 		super.serializeInternal(generator, mapper);
 		if (this.nullValue != null) {
-
 			generator.writeKey("null_value");
 			generator.write(this.nullValue);
 
@@ -98,7 +97,7 @@ public final class WildcardProperty extends DocValuesPropertyBase implements Pro
 		/**
 		 * API name: {@code null_value}
 		 */
-		public Builder nullValue(@Nullable String value) {
+		public final Builder nullValue(@Nullable String value) {
 			this.nullValue = value;
 			return this;
 		}
@@ -115,6 +114,7 @@ public final class WildcardProperty extends DocValuesPropertyBase implements Pro
 		 *             if some of the required fields are null.
 		 */
 		public WildcardProperty build() {
+			_checkSingleUse();
 
 			return new WildcardProperty(this);
 		}

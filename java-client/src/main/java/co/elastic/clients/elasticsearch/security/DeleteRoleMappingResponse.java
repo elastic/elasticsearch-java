@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.Objects;
@@ -38,25 +40,25 @@ import java.util.function.Function;
 
 // typedef: security.delete_role_mapping.Response
 @JsonpDeserializable
-public final class DeleteRoleMappingResponse implements JsonpSerializable {
+public class DeleteRoleMappingResponse implements JsonpSerializable {
 	private final boolean found;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public DeleteRoleMappingResponse(Builder builder) {
+	private DeleteRoleMappingResponse(Builder builder) {
 
-		this.found = Objects.requireNonNull(builder.found, "found");
+		this.found = ModelTypeHelper.requireNonNull(builder.found, this, "found");
 
 	}
 
-	public DeleteRoleMappingResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static DeleteRoleMappingResponse of(Function<Builder, ObjectBuilder<DeleteRoleMappingResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code found}
 	 */
-	public boolean found() {
+	public final boolean found() {
 		return this.found;
 	}
 
@@ -81,13 +83,13 @@ public final class DeleteRoleMappingResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link DeleteRoleMappingResponse}.
 	 */
-	public static class Builder implements ObjectBuilder<DeleteRoleMappingResponse> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DeleteRoleMappingResponse> {
 		private Boolean found;
 
 		/**
 		 * Required - API name: {@code found}
 		 */
-		public Builder found(boolean value) {
+		public final Builder found(boolean value) {
 			this.found = value;
 			return this;
 		}
@@ -99,6 +101,7 @@ public final class DeleteRoleMappingResponse implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public DeleteRoleMappingResponse build() {
+			_checkSingleUse();
 
 			return new DeleteRoleMappingResponse(this);
 		}

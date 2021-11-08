@@ -37,10 +37,10 @@ import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.SimpleEndpoint;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -52,7 +52,7 @@ import javax.annotation.Nullable;
 
 // typedef: indices.put_alias.Request
 @JsonpDeserializable
-public final class PutAliasRequest extends RequestBase implements JsonpSerializable {
+public class PutAliasRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
 	private final Query filter;
 
@@ -80,29 +80,29 @@ public final class PutAliasRequest extends RequestBase implements JsonpSerializa
 
 	// ---------------------------------------------------------------------------------------------
 
-	public PutAliasRequest(Builder builder) {
+	private PutAliasRequest(Builder builder) {
 
 		this.filter = builder.filter;
-		this.index = ModelTypeHelper.unmodifiableNonNull(builder.index, "index");
+		this.index = ModelTypeHelper.unmodifiableRequired(builder.index, this, "index");
 		this.indexRouting = builder.indexRouting;
 		this.isWriteIndex = builder.isWriteIndex;
 		this.masterTimeout = builder.masterTimeout;
-		this.name = Objects.requireNonNull(builder.name, "name");
+		this.name = ModelTypeHelper.requireNonNull(builder.name, this, "name");
 		this.routing = builder.routing;
 		this.searchRouting = builder.searchRouting;
 		this.timeout = builder.timeout;
 
 	}
 
-	public PutAliasRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static PutAliasRequest of(Function<Builder, ObjectBuilder<PutAliasRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * API name: {@code filter}
 	 */
 	@Nullable
-	public Query filter() {
+	public final Query filter() {
 		return this.filter;
 	}
 
@@ -113,7 +113,7 @@ public final class PutAliasRequest extends RequestBase implements JsonpSerializa
 	 * <p>
 	 * API name: {@code index}
 	 */
-	public List<String> index() {
+	public final List<String> index() {
 		return this.index;
 	}
 
@@ -121,7 +121,7 @@ public final class PutAliasRequest extends RequestBase implements JsonpSerializa
 	 * API name: {@code index_routing}
 	 */
 	@Nullable
-	public String indexRouting() {
+	public final String indexRouting() {
 		return this.indexRouting;
 	}
 
@@ -129,7 +129,7 @@ public final class PutAliasRequest extends RequestBase implements JsonpSerializa
 	 * API name: {@code is_write_index}
 	 */
 	@Nullable
-	public Boolean isWriteIndex() {
+	public final Boolean isWriteIndex() {
 		return this.isWriteIndex;
 	}
 
@@ -139,7 +139,7 @@ public final class PutAliasRequest extends RequestBase implements JsonpSerializa
 	 * API name: {@code master_timeout}
 	 */
 	@Nullable
-	public String masterTimeout() {
+	public final String masterTimeout() {
 		return this.masterTimeout;
 	}
 
@@ -148,7 +148,7 @@ public final class PutAliasRequest extends RequestBase implements JsonpSerializa
 	 * <p>
 	 * API name: {@code name}
 	 */
-	public String name() {
+	public final String name() {
 		return this.name;
 	}
 
@@ -156,7 +156,7 @@ public final class PutAliasRequest extends RequestBase implements JsonpSerializa
 	 * API name: {@code routing}
 	 */
 	@Nullable
-	public String routing() {
+	public final String routing() {
 		return this.routing;
 	}
 
@@ -164,7 +164,7 @@ public final class PutAliasRequest extends RequestBase implements JsonpSerializa
 	 * API name: {@code search_routing}
 	 */
 	@Nullable
-	public String searchRouting() {
+	public final String searchRouting() {
 		return this.searchRouting;
 	}
 
@@ -174,7 +174,7 @@ public final class PutAliasRequest extends RequestBase implements JsonpSerializa
 	 * API name: {@code timeout}
 	 */
 	@Nullable
-	public String timeout() {
+	public final String timeout() {
 		return this.timeout;
 	}
 
@@ -190,31 +190,26 @@ public final class PutAliasRequest extends RequestBase implements JsonpSerializa
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.filter != null) {
-
 			generator.writeKey("filter");
 			this.filter.serialize(generator, mapper);
 
 		}
 		if (this.indexRouting != null) {
-
 			generator.writeKey("index_routing");
 			generator.write(this.indexRouting);
 
 		}
 		if (this.isWriteIndex != null) {
-
 			generator.writeKey("is_write_index");
 			generator.write(this.isWriteIndex);
 
 		}
 		if (this.routing != null) {
-
 			generator.writeKey("routing");
 			generator.write(this.routing);
 
 		}
 		if (this.searchRouting != null) {
-
 			generator.writeKey("search_routing");
 			generator.write(this.searchRouting);
 
@@ -227,7 +222,7 @@ public final class PutAliasRequest extends RequestBase implements JsonpSerializa
 	/**
 	 * Builder for {@link PutAliasRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<PutAliasRequest> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PutAliasRequest> {
 		@Nullable
 		private Query filter;
 
@@ -256,7 +251,7 @@ public final class PutAliasRequest extends RequestBase implements JsonpSerializa
 		/**
 		 * API name: {@code filter}
 		 */
-		public Builder filter(@Nullable Query value) {
+		public final Builder filter(@Nullable Query value) {
 			this.filter = value;
 			return this;
 		}
@@ -264,7 +259,7 @@ public final class PutAliasRequest extends RequestBase implements JsonpSerializa
 		/**
 		 * API name: {@code filter}
 		 */
-		public Builder filter(Function<Query.Builder, ObjectBuilder<Query>> fn) {
+		public final Builder filter(Function<Query.Builder, ObjectBuilder<Query>> fn) {
 			return this.filter(fn.apply(new Query.Builder()).build());
 		}
 
@@ -275,7 +270,7 @@ public final class PutAliasRequest extends RequestBase implements JsonpSerializa
 		 * <p>
 		 * API name: {@code index}
 		 */
-		public Builder index(List<String> value) {
+		public final Builder index(List<String> value) {
 			this.index = value;
 			return this;
 		}
@@ -287,26 +282,15 @@ public final class PutAliasRequest extends RequestBase implements JsonpSerializa
 		 * <p>
 		 * API name: {@code index}
 		 */
-		public Builder index(String... value) {
+		public final Builder index(String... value) {
 			this.index = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #index(List)}, creating the list if needed.
-		 */
-		public Builder addIndex(String value) {
-			if (this.index == null) {
-				this.index = new ArrayList<>();
-			}
-			this.index.add(value);
 			return this;
 		}
 
 		/**
 		 * API name: {@code index_routing}
 		 */
-		public Builder indexRouting(@Nullable String value) {
+		public final Builder indexRouting(@Nullable String value) {
 			this.indexRouting = value;
 			return this;
 		}
@@ -314,7 +298,7 @@ public final class PutAliasRequest extends RequestBase implements JsonpSerializa
 		/**
 		 * API name: {@code is_write_index}
 		 */
-		public Builder isWriteIndex(@Nullable Boolean value) {
+		public final Builder isWriteIndex(@Nullable Boolean value) {
 			this.isWriteIndex = value;
 			return this;
 		}
@@ -324,7 +308,7 @@ public final class PutAliasRequest extends RequestBase implements JsonpSerializa
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
-		public Builder masterTimeout(@Nullable String value) {
+		public final Builder masterTimeout(@Nullable String value) {
 			this.masterTimeout = value;
 			return this;
 		}
@@ -334,7 +318,7 @@ public final class PutAliasRequest extends RequestBase implements JsonpSerializa
 		 * <p>
 		 * API name: {@code name}
 		 */
-		public Builder name(String value) {
+		public final Builder name(String value) {
 			this.name = value;
 			return this;
 		}
@@ -342,7 +326,7 @@ public final class PutAliasRequest extends RequestBase implements JsonpSerializa
 		/**
 		 * API name: {@code routing}
 		 */
-		public Builder routing(@Nullable String value) {
+		public final Builder routing(@Nullable String value) {
 			this.routing = value;
 			return this;
 		}
@@ -350,7 +334,7 @@ public final class PutAliasRequest extends RequestBase implements JsonpSerializa
 		/**
 		 * API name: {@code search_routing}
 		 */
-		public Builder searchRouting(@Nullable String value) {
+		public final Builder searchRouting(@Nullable String value) {
 			this.searchRouting = value;
 			return this;
 		}
@@ -360,7 +344,7 @@ public final class PutAliasRequest extends RequestBase implements JsonpSerializa
 		 * <p>
 		 * API name: {@code timeout}
 		 */
-		public Builder timeout(@Nullable String value) {
+		public final Builder timeout(@Nullable String value) {
 			this.timeout = value;
 			return this;
 		}
@@ -372,6 +356,7 @@ public final class PutAliasRequest extends RequestBase implements JsonpSerializa
 		 *             if some of the required fields are null.
 		 */
 		public PutAliasRequest build() {
+			_checkSingleUse();
 
 			return new PutAliasRequest(this);
 		}

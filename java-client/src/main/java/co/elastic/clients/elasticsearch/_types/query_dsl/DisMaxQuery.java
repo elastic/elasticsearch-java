@@ -42,7 +42,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.DisMaxQuery
 @JsonpDeserializable
-public final class DisMaxQuery extends QueryBase implements QueryVariant {
+public class DisMaxQuery extends QueryBase implements QueryVariant {
 	private final List<Query> queries;
 
 	@Nullable
@@ -50,16 +50,16 @@ public final class DisMaxQuery extends QueryBase implements QueryVariant {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public DisMaxQuery(Builder builder) {
+	private DisMaxQuery(Builder builder) {
 		super(builder);
 
-		this.queries = ModelTypeHelper.unmodifiableNonNull(builder.queries, "queries");
+		this.queries = ModelTypeHelper.unmodifiableRequired(builder.queries, this, "queries");
 		this.tieBreaker = builder.tieBreaker;
 
 	}
 
-	public DisMaxQuery(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static DisMaxQuery of(Function<Builder, ObjectBuilder<DisMaxQuery>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -73,7 +73,7 @@ public final class DisMaxQuery extends QueryBase implements QueryVariant {
 	/**
 	 * Required - API name: {@code queries}
 	 */
-	public List<Query> queries() {
+	public final List<Query> queries() {
 		return this.queries;
 	}
 
@@ -81,24 +81,24 @@ public final class DisMaxQuery extends QueryBase implements QueryVariant {
 	 * API name: {@code tie_breaker}
 	 */
 	@Nullable
-	public Double tieBreaker() {
+	public final Double tieBreaker() {
 		return this.tieBreaker;
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
+		if (ModelTypeHelper.isDefined(this.queries)) {
+			generator.writeKey("queries");
+			generator.writeStartArray();
+			for (Query item0 : this.queries) {
+				item0.serialize(generator, mapper);
 
-		generator.writeKey("queries");
-		generator.writeStartArray();
-		for (Query item0 : this.queries) {
-			item0.serialize(generator, mapper);
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
-
 		if (this.tieBreaker != null) {
-
 			generator.writeKey("tie_breaker");
 			generator.write(this.tieBreaker);
 
@@ -120,7 +120,7 @@ public final class DisMaxQuery extends QueryBase implements QueryVariant {
 		/**
 		 * Required - API name: {@code queries}
 		 */
-		public Builder queries(List<Query> value) {
+		public final Builder queries(List<Query> value) {
 			this.queries = value;
 			return this;
 		}
@@ -128,40 +128,27 @@ public final class DisMaxQuery extends QueryBase implements QueryVariant {
 		/**
 		 * Required - API name: {@code queries}
 		 */
-		public Builder queries(Query... value) {
+		public final Builder queries(Query... value) {
 			this.queries = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #queries(List)}, creating the list if needed.
+		 * Required - API name: {@code queries}
 		 */
-		public Builder addQueries(Query value) {
-			if (this.queries == null) {
-				this.queries = new ArrayList<>();
+		@SafeVarargs
+		public final Builder queries(Function<Query.Builder, ObjectBuilder<Query>>... fns) {
+			this.queries = new ArrayList<>(fns.length);
+			for (Function<Query.Builder, ObjectBuilder<Query>> fn : fns) {
+				this.queries.add(fn.apply(new Query.Builder()).build());
 			}
-			this.queries.add(value);
 			return this;
-		}
-
-		/**
-		 * Set {@link #queries(List)} to a singleton list.
-		 */
-		public Builder queries(Function<Query.Builder, ObjectBuilder<Query>> fn) {
-			return this.queries(fn.apply(new Query.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #queries(List)}, creating the list if needed.
-		 */
-		public Builder addQueries(Function<Query.Builder, ObjectBuilder<Query>> fn) {
-			return this.addQueries(fn.apply(new Query.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code tie_breaker}
 		 */
-		public Builder tieBreaker(@Nullable Double value) {
+		public final Builder tieBreaker(@Nullable Double value) {
 			this.tieBreaker = value;
 			return this;
 		}
@@ -178,6 +165,7 @@ public final class DisMaxQuery extends QueryBase implements QueryVariant {
 		 *             if some of the required fields are null.
 		 */
 		public DisMaxQuery build() {
+			_checkSingleUse();
 
 			return new DisMaxQuery(this);
 		}

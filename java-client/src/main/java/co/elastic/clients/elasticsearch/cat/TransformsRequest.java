@@ -31,6 +31,7 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.SimpleEndpoint;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Integer;
@@ -43,7 +44,7 @@ import javax.annotation.Nullable;
 
 // typedef: cat.transforms.Request
 
-public final class TransformsRequest extends CatRequestBase {
+public class TransformsRequest extends CatRequestBase {
 	@Nullable
 	private final Boolean allowNoMatch;
 
@@ -58,7 +59,7 @@ public final class TransformsRequest extends CatRequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public TransformsRequest(Builder builder) {
+	private TransformsRequest(Builder builder) {
 
 		this.allowNoMatch = builder.allowNoMatch;
 		this.from = builder.from;
@@ -67,8 +68,8 @@ public final class TransformsRequest extends CatRequestBase {
 
 	}
 
-	public TransformsRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static TransformsRequest of(Function<Builder, ObjectBuilder<TransformsRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -78,7 +79,7 @@ public final class TransformsRequest extends CatRequestBase {
 	 * API name: {@code allow_no_match}
 	 */
 	@Nullable
-	public Boolean allowNoMatch() {
+	public final Boolean allowNoMatch() {
 		return this.allowNoMatch;
 	}
 
@@ -88,7 +89,7 @@ public final class TransformsRequest extends CatRequestBase {
 	 * API name: {@code from}
 	 */
 	@Nullable
-	public Integer from() {
+	public final Integer from() {
 		return this.from;
 	}
 
@@ -98,7 +99,7 @@ public final class TransformsRequest extends CatRequestBase {
 	 * API name: {@code size}
 	 */
 	@Nullable
-	public Integer size() {
+	public final Integer size() {
 		return this.size;
 	}
 
@@ -109,7 +110,7 @@ public final class TransformsRequest extends CatRequestBase {
 	 * API name: {@code transform_id}
 	 */
 	@Nullable
-	public String transformId() {
+	public final String transformId() {
 		return this.transformId;
 	}
 
@@ -118,7 +119,7 @@ public final class TransformsRequest extends CatRequestBase {
 	/**
 	 * Builder for {@link TransformsRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<TransformsRequest> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TransformsRequest> {
 		@Nullable
 		private Boolean allowNoMatch;
 
@@ -137,7 +138,7 @@ public final class TransformsRequest extends CatRequestBase {
 		 * <p>
 		 * API name: {@code allow_no_match}
 		 */
-		public Builder allowNoMatch(@Nullable Boolean value) {
+		public final Builder allowNoMatch(@Nullable Boolean value) {
 			this.allowNoMatch = value;
 			return this;
 		}
@@ -147,7 +148,7 @@ public final class TransformsRequest extends CatRequestBase {
 		 * <p>
 		 * API name: {@code from}
 		 */
-		public Builder from(@Nullable Integer value) {
+		public final Builder from(@Nullable Integer value) {
 			this.from = value;
 			return this;
 		}
@@ -157,7 +158,7 @@ public final class TransformsRequest extends CatRequestBase {
 		 * <p>
 		 * API name: {@code size}
 		 */
-		public Builder size(@Nullable Integer value) {
+		public final Builder size(@Nullable Integer value) {
 			this.size = value;
 			return this;
 		}
@@ -168,7 +169,7 @@ public final class TransformsRequest extends CatRequestBase {
 		 * <p>
 		 * API name: {@code transform_id}
 		 */
-		public Builder transformId(@Nullable String value) {
+		public final Builder transformId(@Nullable String value) {
 			this.transformId = value;
 			return this;
 		}
@@ -180,6 +181,7 @@ public final class TransformsRequest extends CatRequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public TransformsRequest build() {
+			_checkSingleUse();
 
 			return new TransformsRequest(this);
 		}

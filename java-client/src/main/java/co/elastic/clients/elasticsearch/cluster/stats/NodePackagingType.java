@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
@@ -40,7 +42,7 @@ import javax.annotation.Nullable;
 
 // typedef: cluster.stats.NodePackagingType
 @JsonpDeserializable
-public final class NodePackagingType implements JsonpSerializable {
+public class NodePackagingType implements JsonpSerializable {
 	private final int count;
 
 	private final String flavor;
@@ -49,36 +51,36 @@ public final class NodePackagingType implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public NodePackagingType(Builder builder) {
+	private NodePackagingType(Builder builder) {
 
-		this.count = Objects.requireNonNull(builder.count, "count");
-		this.flavor = Objects.requireNonNull(builder.flavor, "flavor");
-		this.type = Objects.requireNonNull(builder.type, "type");
+		this.count = ModelTypeHelper.requireNonNull(builder.count, this, "count");
+		this.flavor = ModelTypeHelper.requireNonNull(builder.flavor, this, "flavor");
+		this.type = ModelTypeHelper.requireNonNull(builder.type, this, "type");
 
 	}
 
-	public NodePackagingType(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static NodePackagingType of(Function<Builder, ObjectBuilder<NodePackagingType>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code count}
 	 */
-	public int count() {
+	public final int count() {
 		return this.count;
 	}
 
 	/**
 	 * Required - API name: {@code flavor}
 	 */
-	public String flavor() {
+	public final String flavor() {
 		return this.flavor;
 	}
 
 	/**
 	 * Required - API name: {@code type}
 	 */
-	public String type() {
+	public final String type() {
 		return this.type;
 	}
 
@@ -109,7 +111,7 @@ public final class NodePackagingType implements JsonpSerializable {
 	/**
 	 * Builder for {@link NodePackagingType}.
 	 */
-	public static class Builder implements ObjectBuilder<NodePackagingType> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodePackagingType> {
 		private Integer count;
 
 		private String flavor;
@@ -119,7 +121,7 @@ public final class NodePackagingType implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code count}
 		 */
-		public Builder count(int value) {
+		public final Builder count(int value) {
 			this.count = value;
 			return this;
 		}
@@ -127,7 +129,7 @@ public final class NodePackagingType implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code flavor}
 		 */
-		public Builder flavor(String value) {
+		public final Builder flavor(String value) {
 			this.flavor = value;
 			return this;
 		}
@@ -135,7 +137,7 @@ public final class NodePackagingType implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code type}
 		 */
-		public Builder type(String value) {
+		public final Builder type(String value) {
 			this.type = value;
 			return this;
 		}
@@ -147,6 +149,7 @@ public final class NodePackagingType implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public NodePackagingType build() {
+			_checkSingleUse();
 
 			return new NodePackagingType(this);
 		}

@@ -30,12 +30,12 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.MapBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
@@ -43,21 +43,20 @@ import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.AdjacencyMatrixAggregation
 @JsonpDeserializable
-public final class AdjacencyMatrixAggregation extends BucketAggregationBase implements AggregationVariant {
-	@Nullable
+public class AdjacencyMatrixAggregation extends BucketAggregationBase implements AggregationVariant {
 	private final Map<String, Query> filters;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public AdjacencyMatrixAggregation(Builder builder) {
+	private AdjacencyMatrixAggregation(Builder builder) {
 		super(builder);
 
 		this.filters = ModelTypeHelper.unmodifiable(builder.filters);
 
 	}
 
-	public AdjacencyMatrixAggregation(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static AdjacencyMatrixAggregation of(Function<Builder, ObjectBuilder<AdjacencyMatrixAggregation>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -71,16 +70,14 @@ public final class AdjacencyMatrixAggregation extends BucketAggregationBase impl
 	/**
 	 * API name: {@code filters}
 	 */
-	@Nullable
-	public Map<String, Query> filters() {
+	public final Map<String, Query> filters() {
 		return this.filters;
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
-		if (this.filters != null) {
-
+		if (ModelTypeHelper.isDefined(this.filters)) {
 			generator.writeKey("filters");
 			generator.writeStartObject();
 			for (Map.Entry<String, Query> item0 : this.filters.entrySet()) {
@@ -108,19 +105,8 @@ public final class AdjacencyMatrixAggregation extends BucketAggregationBase impl
 		/**
 		 * API name: {@code filters}
 		 */
-		public Builder filters(@Nullable Map<String, Query> value) {
+		public final Builder filters(@Nullable Map<String, Query> value) {
 			this.filters = value;
-			return this;
-		}
-
-		/**
-		 * Add a key/value to {@link #filters(Map)}, creating the map if needed.
-		 */
-		public Builder putFilters(String key, Query value) {
-			if (this.filters == null) {
-				this.filters = new HashMap<>();
-			}
-			this.filters.put(key, value);
 			return this;
 		}
 
@@ -131,11 +117,9 @@ public final class AdjacencyMatrixAggregation extends BucketAggregationBase impl
 			return this.filters(Collections.singletonMap(key, fn.apply(new Query.Builder()).build()));
 		}
 
-		/**
-		 * Add a key/value to {@link #filters(Map)}, creating the map if needed.
-		 */
-		public Builder putFilters(String key, Function<Query.Builder, ObjectBuilder<Query>> fn) {
-			return this.putFilters(key, fn.apply(new Query.Builder()).build());
+		public final Builder filters(
+				Function<MapBuilder<String, Query, Query.Builder>, ObjectBuilder<Map<String, Query>>> fn) {
+			return filters(fn.apply(new MapBuilder<>(Query.Builder::new)).build());
 		}
 
 		@Override
@@ -150,6 +134,7 @@ public final class AdjacencyMatrixAggregation extends BucketAggregationBase impl
 		 *             if some of the required fields are null.
 		 */
 		public AdjacencyMatrixAggregation build() {
+			_checkSingleUse();
 
 			return new AdjacencyMatrixAggregation(this);
 		}

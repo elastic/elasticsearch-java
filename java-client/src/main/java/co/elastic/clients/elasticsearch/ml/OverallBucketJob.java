@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
 import java.lang.String;
@@ -40,35 +42,35 @@ import javax.annotation.Nullable;
 
 // typedef: ml._types.OverallBucketJob
 @JsonpDeserializable
-public final class OverallBucketJob implements JsonpSerializable {
+public class OverallBucketJob implements JsonpSerializable {
 	private final String jobId;
 
 	private final double maxAnomalyScore;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public OverallBucketJob(Builder builder) {
+	private OverallBucketJob(Builder builder) {
 
-		this.jobId = Objects.requireNonNull(builder.jobId, "job_id");
-		this.maxAnomalyScore = Objects.requireNonNull(builder.maxAnomalyScore, "max_anomaly_score");
+		this.jobId = ModelTypeHelper.requireNonNull(builder.jobId, this, "jobId");
+		this.maxAnomalyScore = ModelTypeHelper.requireNonNull(builder.maxAnomalyScore, this, "maxAnomalyScore");
 
 	}
 
-	public OverallBucketJob(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static OverallBucketJob of(Function<Builder, ObjectBuilder<OverallBucketJob>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code job_id}
 	 */
-	public String jobId() {
+	public final String jobId() {
 		return this.jobId;
 	}
 
 	/**
 	 * Required - API name: {@code max_anomaly_score}
 	 */
-	public double maxAnomalyScore() {
+	public final double maxAnomalyScore() {
 		return this.maxAnomalyScore;
 	}
 
@@ -96,7 +98,7 @@ public final class OverallBucketJob implements JsonpSerializable {
 	/**
 	 * Builder for {@link OverallBucketJob}.
 	 */
-	public static class Builder implements ObjectBuilder<OverallBucketJob> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<OverallBucketJob> {
 		private String jobId;
 
 		private Double maxAnomalyScore;
@@ -104,7 +106,7 @@ public final class OverallBucketJob implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code job_id}
 		 */
-		public Builder jobId(String value) {
+		public final Builder jobId(String value) {
 			this.jobId = value;
 			return this;
 		}
@@ -112,7 +114,7 @@ public final class OverallBucketJob implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code max_anomaly_score}
 		 */
-		public Builder maxAnomalyScore(double value) {
+		public final Builder maxAnomalyScore(double value) {
 			this.maxAnomalyScore = value;
 			return this;
 		}
@@ -124,6 +126,7 @@ public final class OverallBucketJob implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public OverallBucketJob build() {
+			_checkSingleUse();
 
 			return new OverallBucketJob(this);
 		}

@@ -32,10 +32,10 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
@@ -43,22 +43,21 @@ import javax.annotation.Nullable;
 
 // typedef: ilm._types.Phase
 @JsonpDeserializable
-public final class Phase implements JsonpSerializable {
+public class Phase implements JsonpSerializable {
 	@Nullable
 	private final JsonValue /*
-							 * Union(Array<internal.string> | Dictionary<internal.string, ilm._types.Action>
-							 * (singleKey = false))
+							 * Union(Array<internal.string> | Dictionary<internal.string,
+							 * ilm._types.Action>)
 							 */ actions;
 
 	@Nullable
 	private final String minAge;
 
-	@Nullable
 	private final Map<String, Map<String, String>> configurations;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public Phase(Builder builder) {
+	private Phase(Builder builder) {
 
 		this.actions = builder.actions;
 		this.minAge = builder.minAge;
@@ -66,18 +65,18 @@ public final class Phase implements JsonpSerializable {
 
 	}
 
-	public Phase(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static Phase of(Function<Builder, ObjectBuilder<Phase>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * API name: {@code actions}
 	 */
 	@Nullable
-	public JsonValue /*
-						 * Union(Array<internal.string> | Dictionary<internal.string, ilm._types.Action>
-						 * (singleKey = false))
-						 */ actions() {
+	public final JsonValue /*
+							 * Union(Array<internal.string> | Dictionary<internal.string,
+							 * ilm._types.Action>)
+							 */ actions() {
 		return this.actions;
 	}
 
@@ -85,15 +84,14 @@ public final class Phase implements JsonpSerializable {
 	 * API name: {@code min_age}
 	 */
 	@Nullable
-	public String minAge() {
+	public final String minAge() {
 		return this.minAge;
 	}
 
 	/**
 	 * API name: {@code configurations}
 	 */
-	@Nullable
-	public Map<String, Map<String, String>> configurations() {
+	public final Map<String, Map<String, String>> configurations() {
 		return this.configurations;
 	}
 
@@ -109,28 +107,27 @@ public final class Phase implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.actions != null) {
-
 			generator.writeKey("actions");
 			generator.write(this.actions);
 
 		}
 		if (this.minAge != null) {
-
 			generator.writeKey("min_age");
 			generator.write(this.minAge);
 
 		}
-		if (this.configurations != null) {
-
+		if (ModelTypeHelper.isDefined(this.configurations)) {
 			generator.writeKey("configurations");
 			generator.writeStartObject();
 			for (Map.Entry<String, Map<String, String>> item0 : this.configurations.entrySet()) {
 				generator.writeKey(item0.getKey());
 				generator.writeStartObject();
-				for (Map.Entry<String, String> item1 : item0.getValue().entrySet()) {
-					generator.writeKey(item1.getKey());
-					generator.write(item1.getValue());
+				if (item0.getValue() != null) {
+					for (Map.Entry<String, String> item1 : item0.getValue().entrySet()) {
+						generator.writeKey(item1.getKey());
+						generator.write(item1.getValue());
 
+					}
 				}
 				generator.writeEnd();
 
@@ -146,11 +143,11 @@ public final class Phase implements JsonpSerializable {
 	/**
 	 * Builder for {@link Phase}.
 	 */
-	public static class Builder implements ObjectBuilder<Phase> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Phase> {
 		@Nullable
 		private JsonValue /*
-							 * Union(Array<internal.string> | Dictionary<internal.string, ilm._types.Action>
-							 * (singleKey = false))
+							 * Union(Array<internal.string> | Dictionary<internal.string,
+							 * ilm._types.Action>)
 							 */ actions;
 
 		@Nullable
@@ -162,10 +159,10 @@ public final class Phase implements JsonpSerializable {
 		/**
 		 * API name: {@code actions}
 		 */
-		public Builder actions(@Nullable JsonValue /*
-													 * Union(Array<internal.string> | Dictionary<internal.string,
-													 * ilm._types.Action> (singleKey = false))
-													 */ value) {
+		public final Builder actions(@Nullable JsonValue /*
+															 * Union(Array<internal.string> |
+															 * Dictionary<internal.string, ilm._types.Action>)
+															 */ value) {
 			this.actions = value;
 			return this;
 		}
@@ -173,7 +170,7 @@ public final class Phase implements JsonpSerializable {
 		/**
 		 * API name: {@code min_age}
 		 */
-		public Builder minAge(@Nullable String value) {
+		public final Builder minAge(@Nullable String value) {
 			this.minAge = value;
 			return this;
 		}
@@ -181,19 +178,8 @@ public final class Phase implements JsonpSerializable {
 		/**
 		 * API name: {@code configurations}
 		 */
-		public Builder configurations(@Nullable Map<String, Map<String, String>> value) {
+		public final Builder configurations(@Nullable Map<String, Map<String, String>> value) {
 			this.configurations = value;
-			return this;
-		}
-
-		/**
-		 * Add a key/value to {@link #configurations(Map)}, creating the map if needed.
-		 */
-		public Builder putConfigurations(String key, Map<String, String> value) {
-			if (this.configurations == null) {
-				this.configurations = new HashMap<>();
-			}
-			this.configurations.put(key, value);
 			return this;
 		}
 
@@ -204,6 +190,7 @@ public final class Phase implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public Phase build() {
+			_checkSingleUse();
 
 			return new Phase(this);
 		}

@@ -43,7 +43,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.DateRangeAggregation
 @JsonpDeserializable
-public final class DateRangeAggregation extends BucketAggregationBase implements AggregationVariant {
+public class DateRangeAggregation extends BucketAggregationBase implements AggregationVariant {
 	@Nullable
 	private final String field;
 
@@ -53,7 +53,6 @@ public final class DateRangeAggregation extends BucketAggregationBase implements
 	@Nullable
 	private final String missing;
 
-	@Nullable
 	private final List<DateRangeExpression> ranges;
 
 	@Nullable
@@ -64,7 +63,7 @@ public final class DateRangeAggregation extends BucketAggregationBase implements
 
 	// ---------------------------------------------------------------------------------------------
 
-	public DateRangeAggregation(Builder builder) {
+	private DateRangeAggregation(Builder builder) {
 		super(builder);
 
 		this.field = builder.field;
@@ -76,8 +75,8 @@ public final class DateRangeAggregation extends BucketAggregationBase implements
 
 	}
 
-	public DateRangeAggregation(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static DateRangeAggregation of(Function<Builder, ObjectBuilder<DateRangeAggregation>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -92,7 +91,7 @@ public final class DateRangeAggregation extends BucketAggregationBase implements
 	 * API name: {@code field}
 	 */
 	@Nullable
-	public String field() {
+	public final String field() {
 		return this.field;
 	}
 
@@ -100,7 +99,7 @@ public final class DateRangeAggregation extends BucketAggregationBase implements
 	 * API name: {@code format}
 	 */
 	@Nullable
-	public String format() {
+	public final String format() {
 		return this.format;
 	}
 
@@ -108,15 +107,14 @@ public final class DateRangeAggregation extends BucketAggregationBase implements
 	 * API name: {@code missing}
 	 */
 	@Nullable
-	public String missing() {
+	public final String missing() {
 		return this.missing;
 	}
 
 	/**
 	 * API name: {@code ranges}
 	 */
-	@Nullable
-	public List<DateRangeExpression> ranges() {
+	public final List<DateRangeExpression> ranges() {
 		return this.ranges;
 	}
 
@@ -124,7 +122,7 @@ public final class DateRangeAggregation extends BucketAggregationBase implements
 	 * API name: {@code time_zone}
 	 */
 	@Nullable
-	public String timeZone() {
+	public final String timeZone() {
 		return this.timeZone;
 	}
 
@@ -132,7 +130,7 @@ public final class DateRangeAggregation extends BucketAggregationBase implements
 	 * API name: {@code keyed}
 	 */
 	@Nullable
-	public Boolean keyed() {
+	public final Boolean keyed() {
 		return this.keyed;
 	}
 
@@ -140,25 +138,21 @@ public final class DateRangeAggregation extends BucketAggregationBase implements
 
 		super.serializeInternal(generator, mapper);
 		if (this.field != null) {
-
 			generator.writeKey("field");
 			generator.write(this.field);
 
 		}
 		if (this.format != null) {
-
 			generator.writeKey("format");
 			generator.write(this.format);
 
 		}
 		if (this.missing != null) {
-
 			generator.writeKey("missing");
 			generator.write(this.missing);
 
 		}
-		if (this.ranges != null) {
-
+		if (ModelTypeHelper.isDefined(this.ranges)) {
 			generator.writeKey("ranges");
 			generator.writeStartArray();
 			for (DateRangeExpression item0 : this.ranges) {
@@ -169,13 +163,11 @@ public final class DateRangeAggregation extends BucketAggregationBase implements
 
 		}
 		if (this.timeZone != null) {
-
 			generator.writeKey("time_zone");
 			generator.write(this.timeZone);
 
 		}
 		if (this.keyed != null) {
-
 			generator.writeKey("keyed");
 			generator.write(this.keyed);
 
@@ -212,7 +204,7 @@ public final class DateRangeAggregation extends BucketAggregationBase implements
 		/**
 		 * API name: {@code field}
 		 */
-		public Builder field(@Nullable String value) {
+		public final Builder field(@Nullable String value) {
 			this.field = value;
 			return this;
 		}
@@ -220,7 +212,7 @@ public final class DateRangeAggregation extends BucketAggregationBase implements
 		/**
 		 * API name: {@code format}
 		 */
-		public Builder format(@Nullable String value) {
+		public final Builder format(@Nullable String value) {
 			this.format = value;
 			return this;
 		}
@@ -228,7 +220,7 @@ public final class DateRangeAggregation extends BucketAggregationBase implements
 		/**
 		 * API name: {@code missing}
 		 */
-		public Builder missing(@Nullable String value) {
+		public final Builder missing(@Nullable String value) {
 			this.missing = value;
 			return this;
 		}
@@ -236,7 +228,7 @@ public final class DateRangeAggregation extends BucketAggregationBase implements
 		/**
 		 * API name: {@code ranges}
 		 */
-		public Builder ranges(@Nullable List<DateRangeExpression> value) {
+		public final Builder ranges(@Nullable List<DateRangeExpression> value) {
 			this.ranges = value;
 			return this;
 		}
@@ -244,40 +236,27 @@ public final class DateRangeAggregation extends BucketAggregationBase implements
 		/**
 		 * API name: {@code ranges}
 		 */
-		public Builder ranges(DateRangeExpression... value) {
+		public final Builder ranges(DateRangeExpression... value) {
 			this.ranges = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #ranges(List)}, creating the list if needed.
+		 * API name: {@code ranges}
 		 */
-		public Builder addRanges(DateRangeExpression value) {
-			if (this.ranges == null) {
-				this.ranges = new ArrayList<>();
+		@SafeVarargs
+		public final Builder ranges(Function<DateRangeExpression.Builder, ObjectBuilder<DateRangeExpression>>... fns) {
+			this.ranges = new ArrayList<>(fns.length);
+			for (Function<DateRangeExpression.Builder, ObjectBuilder<DateRangeExpression>> fn : fns) {
+				this.ranges.add(fn.apply(new DateRangeExpression.Builder()).build());
 			}
-			this.ranges.add(value);
 			return this;
-		}
-
-		/**
-		 * Set {@link #ranges(List)} to a singleton list.
-		 */
-		public Builder ranges(Function<DateRangeExpression.Builder, ObjectBuilder<DateRangeExpression>> fn) {
-			return this.ranges(fn.apply(new DateRangeExpression.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #ranges(List)}, creating the list if needed.
-		 */
-		public Builder addRanges(Function<DateRangeExpression.Builder, ObjectBuilder<DateRangeExpression>> fn) {
-			return this.addRanges(fn.apply(new DateRangeExpression.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code time_zone}
 		 */
-		public Builder timeZone(@Nullable String value) {
+		public final Builder timeZone(@Nullable String value) {
 			this.timeZone = value;
 			return this;
 		}
@@ -285,7 +264,7 @@ public final class DateRangeAggregation extends BucketAggregationBase implements
 		/**
 		 * API name: {@code keyed}
 		 */
-		public Builder keyed(@Nullable Boolean value) {
+		public final Builder keyed(@Nullable Boolean value) {
 			this.keyed = value;
 			return this;
 		}
@@ -302,6 +281,7 @@ public final class DateRangeAggregation extends BucketAggregationBase implements
 		 *             if some of the required fields are null.
 		 */
 		public DateRangeAggregation build() {
+			_checkSingleUse();
 
 			return new DateRangeAggregation(this);
 		}

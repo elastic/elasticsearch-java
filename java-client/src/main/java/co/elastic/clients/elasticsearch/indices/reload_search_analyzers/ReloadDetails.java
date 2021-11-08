@@ -32,9 +32,9 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
@@ -43,7 +43,7 @@ import javax.annotation.Nullable;
 
 // typedef: indices.reload_search_analyzers.ReloadDetails
 @JsonpDeserializable
-public final class ReloadDetails implements JsonpSerializable {
+public class ReloadDetails implements JsonpSerializable {
 	private final String index;
 
 	private final List<String> reloadedAnalyzers;
@@ -52,36 +52,37 @@ public final class ReloadDetails implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public ReloadDetails(Builder builder) {
+	private ReloadDetails(Builder builder) {
 
-		this.index = Objects.requireNonNull(builder.index, "index");
-		this.reloadedAnalyzers = ModelTypeHelper.unmodifiableNonNull(builder.reloadedAnalyzers, "reloaded_analyzers");
-		this.reloadedNodeIds = ModelTypeHelper.unmodifiableNonNull(builder.reloadedNodeIds, "reloaded_node_ids");
+		this.index = ModelTypeHelper.requireNonNull(builder.index, this, "index");
+		this.reloadedAnalyzers = ModelTypeHelper.unmodifiableRequired(builder.reloadedAnalyzers, this,
+				"reloadedAnalyzers");
+		this.reloadedNodeIds = ModelTypeHelper.unmodifiableRequired(builder.reloadedNodeIds, this, "reloadedNodeIds");
 
 	}
 
-	public ReloadDetails(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ReloadDetails of(Function<Builder, ObjectBuilder<ReloadDetails>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code index}
 	 */
-	public String index() {
+	public final String index() {
 		return this.index;
 	}
 
 	/**
 	 * Required - API name: {@code reloaded_analyzers}
 	 */
-	public List<String> reloadedAnalyzers() {
+	public final List<String> reloadedAnalyzers() {
 		return this.reloadedAnalyzers;
 	}
 
 	/**
 	 * Required - API name: {@code reloaded_node_ids}
 	 */
-	public List<String> reloadedNodeIds() {
+	public final List<String> reloadedNodeIds() {
 		return this.reloadedNodeIds;
 	}
 
@@ -99,21 +100,26 @@ public final class ReloadDetails implements JsonpSerializable {
 		generator.writeKey("index");
 		generator.write(this.index);
 
-		generator.writeKey("reloaded_analyzers");
-		generator.writeStartArray();
-		for (String item0 : this.reloadedAnalyzers) {
-			generator.write(item0);
+		if (ModelTypeHelper.isDefined(this.reloadedAnalyzers)) {
+			generator.writeKey("reloaded_analyzers");
+			generator.writeStartArray();
+			for (String item0 : this.reloadedAnalyzers) {
+				generator.write(item0);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
+		if (ModelTypeHelper.isDefined(this.reloadedNodeIds)) {
+			generator.writeKey("reloaded_node_ids");
+			generator.writeStartArray();
+			for (String item0 : this.reloadedNodeIds) {
+				generator.write(item0);
 
-		generator.writeKey("reloaded_node_ids");
-		generator.writeStartArray();
-		for (String item0 : this.reloadedNodeIds) {
-			generator.write(item0);
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
 
 	}
 
@@ -122,7 +128,7 @@ public final class ReloadDetails implements JsonpSerializable {
 	/**
 	 * Builder for {@link ReloadDetails}.
 	 */
-	public static class Builder implements ObjectBuilder<ReloadDetails> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ReloadDetails> {
 		private String index;
 
 		private List<String> reloadedAnalyzers;
@@ -132,7 +138,7 @@ public final class ReloadDetails implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code index}
 		 */
-		public Builder index(String value) {
+		public final Builder index(String value) {
 			this.index = value;
 			return this;
 		}
@@ -140,7 +146,7 @@ public final class ReloadDetails implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code reloaded_analyzers}
 		 */
-		public Builder reloadedAnalyzers(List<String> value) {
+		public final Builder reloadedAnalyzers(List<String> value) {
 			this.reloadedAnalyzers = value;
 			return this;
 		}
@@ -148,26 +154,15 @@ public final class ReloadDetails implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code reloaded_analyzers}
 		 */
-		public Builder reloadedAnalyzers(String... value) {
+		public final Builder reloadedAnalyzers(String... value) {
 			this.reloadedAnalyzers = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #reloadedAnalyzers(List)}, creating the list if needed.
-		 */
-		public Builder addReloadedAnalyzers(String value) {
-			if (this.reloadedAnalyzers == null) {
-				this.reloadedAnalyzers = new ArrayList<>();
-			}
-			this.reloadedAnalyzers.add(value);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code reloaded_node_ids}
 		 */
-		public Builder reloadedNodeIds(List<String> value) {
+		public final Builder reloadedNodeIds(List<String> value) {
 			this.reloadedNodeIds = value;
 			return this;
 		}
@@ -175,19 +170,8 @@ public final class ReloadDetails implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code reloaded_node_ids}
 		 */
-		public Builder reloadedNodeIds(String... value) {
+		public final Builder reloadedNodeIds(String... value) {
 			this.reloadedNodeIds = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #reloadedNodeIds(List)}, creating the list if needed.
-		 */
-		public Builder addReloadedNodeIds(String value) {
-			if (this.reloadedNodeIds == null) {
-				this.reloadedNodeIds = new ArrayList<>();
-			}
-			this.reloadedNodeIds.add(value);
 			return this;
 		}
 
@@ -198,6 +182,7 @@ public final class ReloadDetails implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public ReloadDetails build() {
+			_checkSingleUse();
 
 			return new ReloadDetails(this);
 		}

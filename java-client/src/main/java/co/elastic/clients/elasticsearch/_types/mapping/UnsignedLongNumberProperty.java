@@ -38,21 +38,21 @@ import javax.annotation.Nullable;
 
 // typedef: _types.mapping.UnsignedLongNumberProperty
 @JsonpDeserializable
-public final class UnsignedLongNumberProperty extends NumberPropertyBase implements PropertyVariant {
+public class UnsignedLongNumberProperty extends NumberPropertyBase implements PropertyVariant {
 	@Nullable
 	private final Number nullValue;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public UnsignedLongNumberProperty(Builder builder) {
+	private UnsignedLongNumberProperty(Builder builder) {
 		super(builder);
 
 		this.nullValue = builder.nullValue;
 
 	}
 
-	public UnsignedLongNumberProperty(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static UnsignedLongNumberProperty of(Function<Builder, ObjectBuilder<UnsignedLongNumberProperty>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -67,7 +67,7 @@ public final class UnsignedLongNumberProperty extends NumberPropertyBase impleme
 	 * API name: {@code null_value}
 	 */
 	@Nullable
-	public Number nullValue() {
+	public final Number nullValue() {
 		return this.nullValue;
 	}
 
@@ -76,7 +76,6 @@ public final class UnsignedLongNumberProperty extends NumberPropertyBase impleme
 		generator.write("type", "unsigned_long");
 		super.serializeInternal(generator, mapper);
 		if (this.nullValue != null) {
-
 			generator.writeKey("null_value");
 			generator.write(this.nullValue.doubleValue());
 
@@ -98,7 +97,7 @@ public final class UnsignedLongNumberProperty extends NumberPropertyBase impleme
 		/**
 		 * API name: {@code null_value}
 		 */
-		public Builder nullValue(@Nullable Number value) {
+		public final Builder nullValue(@Nullable Number value) {
 			this.nullValue = value;
 			return this;
 		}
@@ -115,6 +114,7 @@ public final class UnsignedLongNumberProperty extends NumberPropertyBase impleme
 		 *             if some of the required fields are null.
 		 */
 		public UnsignedLongNumberProperty build() {
+			_checkSingleUse();
 
 			return new UnsignedLongNumberProperty(this);
 		}

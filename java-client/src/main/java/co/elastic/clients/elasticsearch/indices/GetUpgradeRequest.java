@@ -32,6 +32,7 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.SimpleEndpoint;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
@@ -41,20 +42,20 @@ import javax.annotation.Nullable;
 
 // typedef: indices.get_upgrade.Request
 
-public final class GetUpgradeRequest extends RequestBase {
+public class GetUpgradeRequest extends RequestBase {
 	@Nullable
 	private final String index;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public GetUpgradeRequest(Builder builder) {
+	private GetUpgradeRequest(Builder builder) {
 
 		this.index = builder.index;
 
 	}
 
-	public GetUpgradeRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static GetUpgradeRequest of(Function<Builder, ObjectBuilder<GetUpgradeRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -64,7 +65,7 @@ public final class GetUpgradeRequest extends RequestBase {
 	 * API name: {@code index}
 	 */
 	@Nullable
-	public String index() {
+	public final String index() {
 		return this.index;
 	}
 
@@ -73,7 +74,7 @@ public final class GetUpgradeRequest extends RequestBase {
 	/**
 	 * Builder for {@link GetUpgradeRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<GetUpgradeRequest> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetUpgradeRequest> {
 		@Nullable
 		private String index;
 
@@ -83,7 +84,7 @@ public final class GetUpgradeRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code index}
 		 */
-		public Builder index(@Nullable String value) {
+		public final Builder index(@Nullable String value) {
 			this.index = value;
 			return this;
 		}
@@ -95,6 +96,7 @@ public final class GetUpgradeRequest extends RequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public GetUpgradeRequest build() {
+			_checkSingleUse();
 
 			return new GetUpgradeRequest(this);
 		}

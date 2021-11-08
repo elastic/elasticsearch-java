@@ -43,19 +43,17 @@ import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.TopMetricsAggregation
 @JsonpDeserializable
-public final class TopMetricsAggregation extends MetricAggregationBase implements AggregationVariant {
-	@Nullable
+public class TopMetricsAggregation extends MetricAggregationBase implements AggregationVariant {
 	private final List<TopMetricsValue> metrics;
 
 	@Nullable
 	private final Integer size;
 
-	@Nullable
 	private final List<JsonValue /* _global.search._types.SortCombinations */> sort;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public TopMetricsAggregation(Builder builder) {
+	private TopMetricsAggregation(Builder builder) {
 		super(builder);
 
 		this.metrics = ModelTypeHelper.unmodifiable(builder.metrics);
@@ -64,8 +62,8 @@ public final class TopMetricsAggregation extends MetricAggregationBase implement
 
 	}
 
-	public TopMetricsAggregation(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static TopMetricsAggregation of(Function<Builder, ObjectBuilder<TopMetricsAggregation>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -79,8 +77,7 @@ public final class TopMetricsAggregation extends MetricAggregationBase implement
 	/**
 	 * API name: {@code metrics}
 	 */
-	@Nullable
-	public List<TopMetricsValue> metrics() {
+	public final List<TopMetricsValue> metrics() {
 		return this.metrics;
 	}
 
@@ -88,23 +85,21 @@ public final class TopMetricsAggregation extends MetricAggregationBase implement
 	 * API name: {@code size}
 	 */
 	@Nullable
-	public Integer size() {
+	public final Integer size() {
 		return this.size;
 	}
 
 	/**
 	 * API name: {@code sort}
 	 */
-	@Nullable
-	public List<JsonValue /* _global.search._types.SortCombinations */> sort() {
+	public final List<JsonValue /* _global.search._types.SortCombinations */> sort() {
 		return this.sort;
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
-		if (this.metrics != null) {
-
+		if (ModelTypeHelper.isDefined(this.metrics)) {
 			generator.writeKey("metrics");
 			generator.writeStartArray();
 			for (TopMetricsValue item0 : this.metrics) {
@@ -115,13 +110,11 @@ public final class TopMetricsAggregation extends MetricAggregationBase implement
 
 		}
 		if (this.size != null) {
-
 			generator.writeKey("size");
 			generator.write(this.size);
 
 		}
-		if (this.sort != null) {
-
+		if (ModelTypeHelper.isDefined(this.sort)) {
 			generator.writeKey("sort");
 			generator.writeStartArray();
 			for (JsonValue /* _global.search._types.SortCombinations */ item0 : this.sort) {
@@ -154,7 +147,7 @@ public final class TopMetricsAggregation extends MetricAggregationBase implement
 		/**
 		 * API name: {@code metrics}
 		 */
-		public Builder metrics(@Nullable List<TopMetricsValue> value) {
+		public final Builder metrics(@Nullable List<TopMetricsValue> value) {
 			this.metrics = value;
 			return this;
 		}
@@ -162,40 +155,27 @@ public final class TopMetricsAggregation extends MetricAggregationBase implement
 		/**
 		 * API name: {@code metrics}
 		 */
-		public Builder metrics(TopMetricsValue... value) {
+		public final Builder metrics(TopMetricsValue... value) {
 			this.metrics = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #metrics(List)}, creating the list if needed.
+		 * API name: {@code metrics}
 		 */
-		public Builder addMetrics(TopMetricsValue value) {
-			if (this.metrics == null) {
-				this.metrics = new ArrayList<>();
+		@SafeVarargs
+		public final Builder metrics(Function<TopMetricsValue.Builder, ObjectBuilder<TopMetricsValue>>... fns) {
+			this.metrics = new ArrayList<>(fns.length);
+			for (Function<TopMetricsValue.Builder, ObjectBuilder<TopMetricsValue>> fn : fns) {
+				this.metrics.add(fn.apply(new TopMetricsValue.Builder()).build());
 			}
-			this.metrics.add(value);
 			return this;
-		}
-
-		/**
-		 * Set {@link #metrics(List)} to a singleton list.
-		 */
-		public Builder metrics(Function<TopMetricsValue.Builder, ObjectBuilder<TopMetricsValue>> fn) {
-			return this.metrics(fn.apply(new TopMetricsValue.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #metrics(List)}, creating the list if needed.
-		 */
-		public Builder addMetrics(Function<TopMetricsValue.Builder, ObjectBuilder<TopMetricsValue>> fn) {
-			return this.addMetrics(fn.apply(new TopMetricsValue.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code size}
 		 */
-		public Builder size(@Nullable Integer value) {
+		public final Builder size(@Nullable Integer value) {
 			this.size = value;
 			return this;
 		}
@@ -203,7 +183,7 @@ public final class TopMetricsAggregation extends MetricAggregationBase implement
 		/**
 		 * API name: {@code sort}
 		 */
-		public Builder sort(@Nullable List<JsonValue /* _global.search._types.SortCombinations */> value) {
+		public final Builder sort(@Nullable List<JsonValue /* _global.search._types.SortCombinations */> value) {
 			this.sort = value;
 			return this;
 		}
@@ -211,19 +191,8 @@ public final class TopMetricsAggregation extends MetricAggregationBase implement
 		/**
 		 * API name: {@code sort}
 		 */
-		public Builder sort(JsonValue /* _global.search._types.SortCombinations */... value) {
+		public final Builder sort(JsonValue /* _global.search._types.SortCombinations */... value) {
 			this.sort = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #sort(List)}, creating the list if needed.
-		 */
-		public Builder addSort(JsonValue /* _global.search._types.SortCombinations */ value) {
-			if (this.sort == null) {
-				this.sort = new ArrayList<>();
-			}
-			this.sort.add(value);
 			return this;
 		}
 
@@ -239,6 +208,7 @@ public final class TopMetricsAggregation extends MetricAggregationBase implement
 		 *             if some of the required fields are null.
 		 */
 		public TopMetricsAggregation build() {
+			_checkSingleUse();
 
 			return new TopMetricsAggregation(this);
 		}

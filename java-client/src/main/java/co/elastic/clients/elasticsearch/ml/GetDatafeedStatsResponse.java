@@ -32,6 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.util.ArrayList;
@@ -43,35 +44,35 @@ import javax.annotation.Nullable;
 
 // typedef: ml.get_datafeed_stats.Response
 @JsonpDeserializable
-public final class GetDatafeedStatsResponse implements JsonpSerializable {
+public class GetDatafeedStatsResponse implements JsonpSerializable {
 	private final long count;
 
 	private final List<DatafeedStats> datafeeds;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public GetDatafeedStatsResponse(Builder builder) {
+	private GetDatafeedStatsResponse(Builder builder) {
 
-		this.count = Objects.requireNonNull(builder.count, "count");
-		this.datafeeds = ModelTypeHelper.unmodifiableNonNull(builder.datafeeds, "datafeeds");
+		this.count = ModelTypeHelper.requireNonNull(builder.count, this, "count");
+		this.datafeeds = ModelTypeHelper.unmodifiableRequired(builder.datafeeds, this, "datafeeds");
 
 	}
 
-	public GetDatafeedStatsResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static GetDatafeedStatsResponse of(Function<Builder, ObjectBuilder<GetDatafeedStatsResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code count}
 	 */
-	public long count() {
+	public final long count() {
 		return this.count;
 	}
 
 	/**
 	 * Required - API name: {@code datafeeds}
 	 */
-	public List<DatafeedStats> datafeeds() {
+	public final List<DatafeedStats> datafeeds() {
 		return this.datafeeds;
 	}
 
@@ -89,13 +90,16 @@ public final class GetDatafeedStatsResponse implements JsonpSerializable {
 		generator.writeKey("count");
 		generator.write(this.count);
 
-		generator.writeKey("datafeeds");
-		generator.writeStartArray();
-		for (DatafeedStats item0 : this.datafeeds) {
-			item0.serialize(generator, mapper);
+		if (ModelTypeHelper.isDefined(this.datafeeds)) {
+			generator.writeKey("datafeeds");
+			generator.writeStartArray();
+			for (DatafeedStats item0 : this.datafeeds) {
+				item0.serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
 
 	}
 
@@ -104,7 +108,7 @@ public final class GetDatafeedStatsResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link GetDatafeedStatsResponse}.
 	 */
-	public static class Builder implements ObjectBuilder<GetDatafeedStatsResponse> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetDatafeedStatsResponse> {
 		private Long count;
 
 		private List<DatafeedStats> datafeeds;
@@ -112,7 +116,7 @@ public final class GetDatafeedStatsResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code count}
 		 */
-		public Builder count(long value) {
+		public final Builder count(long value) {
 			this.count = value;
 			return this;
 		}
@@ -120,7 +124,7 @@ public final class GetDatafeedStatsResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code datafeeds}
 		 */
-		public Builder datafeeds(List<DatafeedStats> value) {
+		public final Builder datafeeds(List<DatafeedStats> value) {
 			this.datafeeds = value;
 			return this;
 		}
@@ -128,34 +132,21 @@ public final class GetDatafeedStatsResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code datafeeds}
 		 */
-		public Builder datafeeds(DatafeedStats... value) {
+		public final Builder datafeeds(DatafeedStats... value) {
 			this.datafeeds = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #datafeeds(List)}, creating the list if needed.
+		 * Required - API name: {@code datafeeds}
 		 */
-		public Builder addDatafeeds(DatafeedStats value) {
-			if (this.datafeeds == null) {
-				this.datafeeds = new ArrayList<>();
+		@SafeVarargs
+		public final Builder datafeeds(Function<DatafeedStats.Builder, ObjectBuilder<DatafeedStats>>... fns) {
+			this.datafeeds = new ArrayList<>(fns.length);
+			for (Function<DatafeedStats.Builder, ObjectBuilder<DatafeedStats>> fn : fns) {
+				this.datafeeds.add(fn.apply(new DatafeedStats.Builder()).build());
 			}
-			this.datafeeds.add(value);
 			return this;
-		}
-
-		/**
-		 * Set {@link #datafeeds(List)} to a singleton list.
-		 */
-		public Builder datafeeds(Function<DatafeedStats.Builder, ObjectBuilder<DatafeedStats>> fn) {
-			return this.datafeeds(fn.apply(new DatafeedStats.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #datafeeds(List)}, creating the list if needed.
-		 */
-		public Builder addDatafeeds(Function<DatafeedStats.Builder, ObjectBuilder<DatafeedStats>> fn) {
-			return this.addDatafeeds(fn.apply(new DatafeedStats.Builder()).build());
 		}
 
 		/**
@@ -165,6 +156,7 @@ public final class GetDatafeedStatsResponse implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public GetDatafeedStatsResponse build() {
+			_checkSingleUse();
 
 			return new GetDatafeedStatsResponse(this);
 		}

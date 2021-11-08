@@ -31,6 +31,7 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.SimpleEndpoint;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.HashMap;
@@ -41,7 +42,7 @@ import javax.annotation.Nullable;
 
 // typedef: cat.health.Request
 
-public final class HealthRequest extends CatRequestBase {
+public class HealthRequest extends CatRequestBase {
 	@Nullable
 	private final Boolean includeTimestamp;
 
@@ -50,22 +51,22 @@ public final class HealthRequest extends CatRequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public HealthRequest(Builder builder) {
+	private HealthRequest(Builder builder) {
 
 		this.includeTimestamp = builder.includeTimestamp;
 		this.ts = builder.ts;
 
 	}
 
-	public HealthRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static HealthRequest of(Function<Builder, ObjectBuilder<HealthRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * API name: {@code include_timestamp}
 	 */
 	@Nullable
-	public Boolean includeTimestamp() {
+	public final Boolean includeTimestamp() {
 		return this.includeTimestamp;
 	}
 
@@ -75,7 +76,7 @@ public final class HealthRequest extends CatRequestBase {
 	 * API name: {@code ts}
 	 */
 	@Nullable
-	public Boolean ts() {
+	public final Boolean ts() {
 		return this.ts;
 	}
 
@@ -84,7 +85,7 @@ public final class HealthRequest extends CatRequestBase {
 	/**
 	 * Builder for {@link HealthRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<HealthRequest> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<HealthRequest> {
 		@Nullable
 		private Boolean includeTimestamp;
 
@@ -94,7 +95,7 @@ public final class HealthRequest extends CatRequestBase {
 		/**
 		 * API name: {@code include_timestamp}
 		 */
-		public Builder includeTimestamp(@Nullable Boolean value) {
+		public final Builder includeTimestamp(@Nullable Boolean value) {
 			this.includeTimestamp = value;
 			return this;
 		}
@@ -104,7 +105,7 @@ public final class HealthRequest extends CatRequestBase {
 		 * <p>
 		 * API name: {@code ts}
 		 */
-		public Builder ts(@Nullable Boolean value) {
+		public final Builder ts(@Nullable Boolean value) {
 			this.ts = value;
 			return this;
 		}
@@ -116,6 +117,7 @@ public final class HealthRequest extends CatRequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public HealthRequest build() {
+			_checkSingleUse();
 
 			return new HealthRequest(this);
 		}

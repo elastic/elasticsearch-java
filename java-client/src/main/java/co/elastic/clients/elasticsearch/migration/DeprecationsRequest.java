@@ -32,6 +32,7 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.SimpleEndpoint;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
@@ -41,20 +42,20 @@ import javax.annotation.Nullable;
 
 // typedef: migration.deprecations.Request
 
-public final class DeprecationsRequest extends RequestBase {
+public class DeprecationsRequest extends RequestBase {
 	@Nullable
 	private final String index;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public DeprecationsRequest(Builder builder) {
+	private DeprecationsRequest(Builder builder) {
 
 		this.index = builder.index;
 
 	}
 
-	public DeprecationsRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static DeprecationsRequest of(Function<Builder, ObjectBuilder<DeprecationsRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -64,7 +65,7 @@ public final class DeprecationsRequest extends RequestBase {
 	 * API name: {@code index}
 	 */
 	@Nullable
-	public String index() {
+	public final String index() {
 		return this.index;
 	}
 
@@ -73,7 +74,7 @@ public final class DeprecationsRequest extends RequestBase {
 	/**
 	 * Builder for {@link DeprecationsRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<DeprecationsRequest> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DeprecationsRequest> {
 		@Nullable
 		private String index;
 
@@ -83,7 +84,7 @@ public final class DeprecationsRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code index}
 		 */
-		public Builder index(@Nullable String value) {
+		public final Builder index(@Nullable String value) {
 			this.index = value;
 			return this;
 		}
@@ -95,6 +96,7 @@ public final class DeprecationsRequest extends RequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public DeprecationsRequest build() {
+			_checkSingleUse();
 
 			return new DeprecationsRequest(this);
 		}

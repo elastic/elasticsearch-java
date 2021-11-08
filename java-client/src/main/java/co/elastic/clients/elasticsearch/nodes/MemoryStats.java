@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.lang.String;
@@ -67,7 +69,7 @@ public class MemoryStats implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public MemoryStats(AbstractBuilder<?> builder) {
+	protected MemoryStats(AbstractBuilder<?> builder) {
 
 		this.resident = builder.resident;
 		this.residentInBytes = builder.residentInBytes;
@@ -75,9 +77,9 @@ public class MemoryStats implements JsonpSerializable {
 		this.shareInBytes = builder.shareInBytes;
 		this.totalVirtual = builder.totalVirtual;
 		this.totalVirtualInBytes = builder.totalVirtualInBytes;
-		this.totalInBytes = Objects.requireNonNull(builder.totalInBytes, "total_in_bytes");
-		this.freeInBytes = Objects.requireNonNull(builder.freeInBytes, "free_in_bytes");
-		this.usedInBytes = Objects.requireNonNull(builder.usedInBytes, "used_in_bytes");
+		this.totalInBytes = ModelTypeHelper.requireNonNull(builder.totalInBytes, this, "totalInBytes");
+		this.freeInBytes = ModelTypeHelper.requireNonNull(builder.freeInBytes, this, "freeInBytes");
+		this.usedInBytes = ModelTypeHelper.requireNonNull(builder.usedInBytes, this, "usedInBytes");
 
 	}
 
@@ -85,7 +87,7 @@ public class MemoryStats implements JsonpSerializable {
 	 * API name: {@code resident}
 	 */
 	@Nullable
-	public String resident() {
+	public final String resident() {
 		return this.resident;
 	}
 
@@ -93,7 +95,7 @@ public class MemoryStats implements JsonpSerializable {
 	 * API name: {@code resident_in_bytes}
 	 */
 	@Nullable
-	public Long residentInBytes() {
+	public final Long residentInBytes() {
 		return this.residentInBytes;
 	}
 
@@ -101,7 +103,7 @@ public class MemoryStats implements JsonpSerializable {
 	 * API name: {@code share}
 	 */
 	@Nullable
-	public String share() {
+	public final String share() {
 		return this.share;
 	}
 
@@ -109,7 +111,7 @@ public class MemoryStats implements JsonpSerializable {
 	 * API name: {@code share_in_bytes}
 	 */
 	@Nullable
-	public Long shareInBytes() {
+	public final Long shareInBytes() {
 		return this.shareInBytes;
 	}
 
@@ -117,7 +119,7 @@ public class MemoryStats implements JsonpSerializable {
 	 * API name: {@code total_virtual}
 	 */
 	@Nullable
-	public String totalVirtual() {
+	public final String totalVirtual() {
 		return this.totalVirtual;
 	}
 
@@ -125,28 +127,28 @@ public class MemoryStats implements JsonpSerializable {
 	 * API name: {@code total_virtual_in_bytes}
 	 */
 	@Nullable
-	public Long totalVirtualInBytes() {
+	public final Long totalVirtualInBytes() {
 		return this.totalVirtualInBytes;
 	}
 
 	/**
 	 * Required - API name: {@code total_in_bytes}
 	 */
-	public long totalInBytes() {
+	public final long totalInBytes() {
 		return this.totalInBytes;
 	}
 
 	/**
 	 * Required - API name: {@code free_in_bytes}
 	 */
-	public long freeInBytes() {
+	public final long freeInBytes() {
 		return this.freeInBytes;
 	}
 
 	/**
 	 * Required - API name: {@code used_in_bytes}
 	 */
-	public long usedInBytes() {
+	public final long usedInBytes() {
 		return this.usedInBytes;
 	}
 
@@ -162,42 +164,35 @@ public class MemoryStats implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.resident != null) {
-
 			generator.writeKey("resident");
 			generator.write(this.resident);
 
 		}
 		if (this.residentInBytes != null) {
-
 			generator.writeKey("resident_in_bytes");
 			generator.write(this.residentInBytes);
 
 		}
 		if (this.share != null) {
-
 			generator.writeKey("share");
 			generator.write(this.share);
 
 		}
 		if (this.shareInBytes != null) {
-
 			generator.writeKey("share_in_bytes");
 			generator.write(this.shareInBytes);
 
 		}
 		if (this.totalVirtual != null) {
-
 			generator.writeKey("total_virtual");
 			generator.write(this.totalVirtual);
 
 		}
 		if (this.totalVirtualInBytes != null) {
-
 			generator.writeKey("total_virtual_in_bytes");
 			generator.write(this.totalVirtualInBytes);
 
 		}
-
 		generator.writeKey("total_in_bytes");
 		generator.write(this.totalInBytes);
 
@@ -227,12 +222,15 @@ public class MemoryStats implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public MemoryStats build() {
+			_checkSingleUse();
 
 			return new MemoryStats(this);
 		}
 	}
 
-	protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>> {
+	protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>>
+			extends
+				ObjectBuilderBase {
 		@Nullable
 		private String resident;
 
@@ -260,7 +258,7 @@ public class MemoryStats implements JsonpSerializable {
 		/**
 		 * API name: {@code resident}
 		 */
-		public BuilderT resident(@Nullable String value) {
+		public final BuilderT resident(@Nullable String value) {
 			this.resident = value;
 			return self();
 		}
@@ -268,7 +266,7 @@ public class MemoryStats implements JsonpSerializable {
 		/**
 		 * API name: {@code resident_in_bytes}
 		 */
-		public BuilderT residentInBytes(@Nullable Long value) {
+		public final BuilderT residentInBytes(@Nullable Long value) {
 			this.residentInBytes = value;
 			return self();
 		}
@@ -276,7 +274,7 @@ public class MemoryStats implements JsonpSerializable {
 		/**
 		 * API name: {@code share}
 		 */
-		public BuilderT share(@Nullable String value) {
+		public final BuilderT share(@Nullable String value) {
 			this.share = value;
 			return self();
 		}
@@ -284,7 +282,7 @@ public class MemoryStats implements JsonpSerializable {
 		/**
 		 * API name: {@code share_in_bytes}
 		 */
-		public BuilderT shareInBytes(@Nullable Long value) {
+		public final BuilderT shareInBytes(@Nullable Long value) {
 			this.shareInBytes = value;
 			return self();
 		}
@@ -292,7 +290,7 @@ public class MemoryStats implements JsonpSerializable {
 		/**
 		 * API name: {@code total_virtual}
 		 */
-		public BuilderT totalVirtual(@Nullable String value) {
+		public final BuilderT totalVirtual(@Nullable String value) {
 			this.totalVirtual = value;
 			return self();
 		}
@@ -300,7 +298,7 @@ public class MemoryStats implements JsonpSerializable {
 		/**
 		 * API name: {@code total_virtual_in_bytes}
 		 */
-		public BuilderT totalVirtualInBytes(@Nullable Long value) {
+		public final BuilderT totalVirtualInBytes(@Nullable Long value) {
 			this.totalVirtualInBytes = value;
 			return self();
 		}
@@ -308,7 +306,7 @@ public class MemoryStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code total_in_bytes}
 		 */
-		public BuilderT totalInBytes(long value) {
+		public final BuilderT totalInBytes(long value) {
 			this.totalInBytes = value;
 			return self();
 		}
@@ -316,7 +314,7 @@ public class MemoryStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code free_in_bytes}
 		 */
-		public BuilderT freeInBytes(long value) {
+		public final BuilderT freeInBytes(long value) {
 			this.freeInBytes = value;
 			return self();
 		}
@@ -324,7 +322,7 @@ public class MemoryStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code used_in_bytes}
 		 */
-		public BuilderT usedInBytes(long value) {
+		public final BuilderT usedInBytes(long value) {
 			this.usedInBytes = value;
 			return self();
 		}

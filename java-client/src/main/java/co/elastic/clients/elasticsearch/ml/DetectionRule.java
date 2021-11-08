@@ -30,14 +30,15 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.MapBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -46,19 +47,16 @@ import javax.annotation.Nullable;
 
 // typedef: ml._types.DetectionRule
 @JsonpDeserializable
-public final class DetectionRule implements JsonpSerializable {
-	@Nullable
+public class DetectionRule implements JsonpSerializable {
 	private final List<RuleAction> actions;
 
-	@Nullable
 	private final List<RuleCondition> conditions;
 
-	@Nullable
 	private final Map<String, FilterRef> scope;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public DetectionRule(Builder builder) {
+	private DetectionRule(Builder builder) {
 
 		this.actions = ModelTypeHelper.unmodifiable(builder.actions);
 		this.conditions = ModelTypeHelper.unmodifiable(builder.conditions);
@@ -66,8 +64,8 @@ public final class DetectionRule implements JsonpSerializable {
 
 	}
 
-	public DetectionRule(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static DetectionRule of(Function<Builder, ObjectBuilder<DetectionRule>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -76,8 +74,7 @@ public final class DetectionRule implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code actions}
 	 */
-	@Nullable
-	public List<RuleAction> actions() {
+	public final List<RuleAction> actions() {
 		return this.actions;
 	}
 
@@ -88,8 +85,7 @@ public final class DetectionRule implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code conditions}
 	 */
-	@Nullable
-	public List<RuleCondition> conditions() {
+	public final List<RuleCondition> conditions() {
 		return this.conditions;
 	}
 
@@ -102,8 +98,7 @@ public final class DetectionRule implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code scope}
 	 */
-	@Nullable
-	public Map<String, FilterRef> scope() {
+	public final Map<String, FilterRef> scope() {
 		return this.scope;
 	}
 
@@ -118,8 +113,7 @@ public final class DetectionRule implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (this.actions != null) {
-
+		if (ModelTypeHelper.isDefined(this.actions)) {
 			generator.writeKey("actions");
 			generator.writeStartArray();
 			for (RuleAction item0 : this.actions) {
@@ -128,8 +122,7 @@ public final class DetectionRule implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (this.conditions != null) {
-
+		if (ModelTypeHelper.isDefined(this.conditions)) {
 			generator.writeKey("conditions");
 			generator.writeStartArray();
 			for (RuleCondition item0 : this.conditions) {
@@ -139,8 +132,7 @@ public final class DetectionRule implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (this.scope != null) {
-
+		if (ModelTypeHelper.isDefined(this.scope)) {
 			generator.writeKey("scope");
 			generator.writeStartObject();
 			for (Map.Entry<String, FilterRef> item0 : this.scope.entrySet()) {
@@ -159,7 +151,7 @@ public final class DetectionRule implements JsonpSerializable {
 	/**
 	 * Builder for {@link DetectionRule}.
 	 */
-	public static class Builder implements ObjectBuilder<DetectionRule> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DetectionRule> {
 		@Nullable
 		private List<RuleAction> actions;
 
@@ -175,7 +167,7 @@ public final class DetectionRule implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code actions}
 		 */
-		public Builder actions(@Nullable List<RuleAction> value) {
+		public final Builder actions(@Nullable List<RuleAction> value) {
 			this.actions = value;
 			return this;
 		}
@@ -186,19 +178,8 @@ public final class DetectionRule implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code actions}
 		 */
-		public Builder actions(RuleAction... value) {
+		public final Builder actions(RuleAction... value) {
 			this.actions = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #actions(List)}, creating the list if needed.
-		 */
-		public Builder addActions(RuleAction value) {
-			if (this.actions == null) {
-				this.actions = new ArrayList<>();
-			}
-			this.actions.add(value);
 			return this;
 		}
 
@@ -209,7 +190,7 @@ public final class DetectionRule implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code conditions}
 		 */
-		public Builder conditions(@Nullable List<RuleCondition> value) {
+		public final Builder conditions(@Nullable List<RuleCondition> value) {
 			this.conditions = value;
 			return this;
 		}
@@ -221,34 +202,25 @@ public final class DetectionRule implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code conditions}
 		 */
-		public Builder conditions(RuleCondition... value) {
+		public final Builder conditions(RuleCondition... value) {
 			this.conditions = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #conditions(List)}, creating the list if needed.
+		 * An array of numeric conditions when the rule applies. A rule must either have
+		 * a non-empty scope or at least one condition. Multiple conditions are combined
+		 * together with a logical AND.
+		 * <p>
+		 * API name: {@code conditions}
 		 */
-		public Builder addConditions(RuleCondition value) {
-			if (this.conditions == null) {
-				this.conditions = new ArrayList<>();
+		@SafeVarargs
+		public final Builder conditions(Function<RuleCondition.Builder, ObjectBuilder<RuleCondition>>... fns) {
+			this.conditions = new ArrayList<>(fns.length);
+			for (Function<RuleCondition.Builder, ObjectBuilder<RuleCondition>> fn : fns) {
+				this.conditions.add(fn.apply(new RuleCondition.Builder()).build());
 			}
-			this.conditions.add(value);
 			return this;
-		}
-
-		/**
-		 * Set {@link #conditions(List)} to a singleton list.
-		 */
-		public Builder conditions(Function<RuleCondition.Builder, ObjectBuilder<RuleCondition>> fn) {
-			return this.conditions(fn.apply(new RuleCondition.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #conditions(List)}, creating the list if needed.
-		 */
-		public Builder addConditions(Function<RuleCondition.Builder, ObjectBuilder<RuleCondition>> fn) {
-			return this.addConditions(fn.apply(new RuleCondition.Builder()).build());
 		}
 
 		/**
@@ -260,19 +232,8 @@ public final class DetectionRule implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code scope}
 		 */
-		public Builder scope(@Nullable Map<String, FilterRef> value) {
+		public final Builder scope(@Nullable Map<String, FilterRef> value) {
 			this.scope = value;
-			return this;
-		}
-
-		/**
-		 * Add a key/value to {@link #scope(Map)}, creating the map if needed.
-		 */
-		public Builder putScope(String key, FilterRef value) {
-			if (this.scope == null) {
-				this.scope = new HashMap<>();
-			}
-			this.scope.put(key, value);
 			return this;
 		}
 
@@ -283,11 +244,9 @@ public final class DetectionRule implements JsonpSerializable {
 			return this.scope(Collections.singletonMap(key, fn.apply(new FilterRef.Builder()).build()));
 		}
 
-		/**
-		 * Add a key/value to {@link #scope(Map)}, creating the map if needed.
-		 */
-		public Builder putScope(String key, Function<FilterRef.Builder, ObjectBuilder<FilterRef>> fn) {
-			return this.putScope(key, fn.apply(new FilterRef.Builder()).build());
+		public final Builder scope(
+				Function<MapBuilder<String, FilterRef, FilterRef.Builder>, ObjectBuilder<Map<String, FilterRef>>> fn) {
+			return scope(fn.apply(new MapBuilder<>(FilterRef.Builder::new)).build());
 		}
 
 		/**
@@ -297,6 +256,7 @@ public final class DetectionRule implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public DetectionRule build() {
+			_checkSingleUse();
 
 			return new DetectionRule(this);
 		}

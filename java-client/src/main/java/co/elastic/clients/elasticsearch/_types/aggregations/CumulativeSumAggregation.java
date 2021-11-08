@@ -35,16 +35,16 @@ import java.util.function.Function;
 
 // typedef: _types.aggregations.CumulativeSumAggregation
 @JsonpDeserializable
-public final class CumulativeSumAggregation extends PipelineAggregationBase implements AggregationVariant {
+public class CumulativeSumAggregation extends PipelineAggregationBase implements AggregationVariant {
 	// ---------------------------------------------------------------------------------------------
 
-	public CumulativeSumAggregation(Builder builder) {
+	private CumulativeSumAggregation(Builder builder) {
 		super(builder);
 
 	}
 
-	public CumulativeSumAggregation(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static CumulativeSumAggregation of(Function<Builder, ObjectBuilder<CumulativeSumAggregation>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -75,6 +75,7 @@ public final class CumulativeSumAggregation extends PipelineAggregationBase impl
 		 *             if some of the required fields are null.
 		 */
 		public CumulativeSumAggregation build() {
+			_checkSingleUse();
 
 			return new CumulativeSumAggregation(this);
 		}

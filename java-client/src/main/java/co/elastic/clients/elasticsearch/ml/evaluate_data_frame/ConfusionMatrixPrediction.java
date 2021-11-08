@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
@@ -40,35 +42,35 @@ import javax.annotation.Nullable;
 
 // typedef: ml.evaluate_data_frame.ConfusionMatrixPrediction
 @JsonpDeserializable
-public final class ConfusionMatrixPrediction implements JsonpSerializable {
+public class ConfusionMatrixPrediction implements JsonpSerializable {
 	private final String predictedClass;
 
 	private final int count;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public ConfusionMatrixPrediction(Builder builder) {
+	private ConfusionMatrixPrediction(Builder builder) {
 
-		this.predictedClass = Objects.requireNonNull(builder.predictedClass, "predicted_class");
-		this.count = Objects.requireNonNull(builder.count, "count");
+		this.predictedClass = ModelTypeHelper.requireNonNull(builder.predictedClass, this, "predictedClass");
+		this.count = ModelTypeHelper.requireNonNull(builder.count, this, "count");
 
 	}
 
-	public ConfusionMatrixPrediction(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ConfusionMatrixPrediction of(Function<Builder, ObjectBuilder<ConfusionMatrixPrediction>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code predicted_class}
 	 */
-	public String predictedClass() {
+	public final String predictedClass() {
 		return this.predictedClass;
 	}
 
 	/**
 	 * Required - API name: {@code count}
 	 */
-	public int count() {
+	public final int count() {
 		return this.count;
 	}
 
@@ -96,7 +98,7 @@ public final class ConfusionMatrixPrediction implements JsonpSerializable {
 	/**
 	 * Builder for {@link ConfusionMatrixPrediction}.
 	 */
-	public static class Builder implements ObjectBuilder<ConfusionMatrixPrediction> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ConfusionMatrixPrediction> {
 		private String predictedClass;
 
 		private Integer count;
@@ -104,7 +106,7 @@ public final class ConfusionMatrixPrediction implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code predicted_class}
 		 */
-		public Builder predictedClass(String value) {
+		public final Builder predictedClass(String value) {
 			this.predictedClass = value;
 			return this;
 		}
@@ -112,7 +114,7 @@ public final class ConfusionMatrixPrediction implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code count}
 		 */
-		public Builder count(int value) {
+		public final Builder count(int value) {
 			this.count = value;
 			return this;
 		}
@@ -124,6 +126,7 @@ public final class ConfusionMatrixPrediction implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public ConfusionMatrixPrediction build() {
+			_checkSingleUse();
 
 			return new ConfusionMatrixPrediction(this);
 		}

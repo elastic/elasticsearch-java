@@ -32,10 +32,10 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
@@ -44,11 +44,9 @@ import javax.annotation.Nullable;
 
 // typedef: _types.analysis.CustomAnalyzer
 @JsonpDeserializable
-public final class CustomAnalyzer implements AnalyzerVariant, JsonpSerializable {
-	@Nullable
+public class CustomAnalyzer implements AnalyzerVariant, JsonpSerializable {
 	private final List<String> charFilter;
 
-	@Nullable
 	private final List<String> filter;
 
 	@Nullable
@@ -61,18 +59,18 @@ public final class CustomAnalyzer implements AnalyzerVariant, JsonpSerializable 
 
 	// ---------------------------------------------------------------------------------------------
 
-	public CustomAnalyzer(Builder builder) {
+	private CustomAnalyzer(Builder builder) {
 
 		this.charFilter = ModelTypeHelper.unmodifiable(builder.charFilter);
 		this.filter = ModelTypeHelper.unmodifiable(builder.filter);
 		this.positionIncrementGap = builder.positionIncrementGap;
 		this.positionOffsetGap = builder.positionOffsetGap;
-		this.tokenizer = Objects.requireNonNull(builder.tokenizer, "tokenizer");
+		this.tokenizer = ModelTypeHelper.requireNonNull(builder.tokenizer, this, "tokenizer");
 
 	}
 
-	public CustomAnalyzer(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static CustomAnalyzer of(Function<Builder, ObjectBuilder<CustomAnalyzer>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -86,16 +84,14 @@ public final class CustomAnalyzer implements AnalyzerVariant, JsonpSerializable 
 	/**
 	 * API name: {@code char_filter}
 	 */
-	@Nullable
-	public List<String> charFilter() {
+	public final List<String> charFilter() {
 		return this.charFilter;
 	}
 
 	/**
 	 * API name: {@code filter}
 	 */
-	@Nullable
-	public List<String> filter() {
+	public final List<String> filter() {
 		return this.filter;
 	}
 
@@ -103,7 +99,7 @@ public final class CustomAnalyzer implements AnalyzerVariant, JsonpSerializable 
 	 * API name: {@code position_increment_gap}
 	 */
 	@Nullable
-	public Integer positionIncrementGap() {
+	public final Integer positionIncrementGap() {
 		return this.positionIncrementGap;
 	}
 
@@ -111,14 +107,14 @@ public final class CustomAnalyzer implements AnalyzerVariant, JsonpSerializable 
 	 * API name: {@code position_offset_gap}
 	 */
 	@Nullable
-	public Integer positionOffsetGap() {
+	public final Integer positionOffsetGap() {
 		return this.positionOffsetGap;
 	}
 
 	/**
 	 * Required - API name: {@code tokenizer}
 	 */
-	public String tokenizer() {
+	public final String tokenizer() {
 		return this.tokenizer;
 	}
 
@@ -135,8 +131,7 @@ public final class CustomAnalyzer implements AnalyzerVariant, JsonpSerializable 
 
 		generator.write("type", "custom");
 
-		if (this.charFilter != null) {
-
+		if (ModelTypeHelper.isDefined(this.charFilter)) {
 			generator.writeKey("char_filter");
 			generator.writeStartArray();
 			for (String item0 : this.charFilter) {
@@ -146,8 +141,7 @@ public final class CustomAnalyzer implements AnalyzerVariant, JsonpSerializable 
 			generator.writeEnd();
 
 		}
-		if (this.filter != null) {
-
+		if (ModelTypeHelper.isDefined(this.filter)) {
 			generator.writeKey("filter");
 			generator.writeStartArray();
 			for (String item0 : this.filter) {
@@ -158,18 +152,15 @@ public final class CustomAnalyzer implements AnalyzerVariant, JsonpSerializable 
 
 		}
 		if (this.positionIncrementGap != null) {
-
 			generator.writeKey("position_increment_gap");
 			generator.write(this.positionIncrementGap);
 
 		}
 		if (this.positionOffsetGap != null) {
-
 			generator.writeKey("position_offset_gap");
 			generator.write(this.positionOffsetGap);
 
 		}
-
 		generator.writeKey("tokenizer");
 		generator.write(this.tokenizer);
 
@@ -180,7 +171,7 @@ public final class CustomAnalyzer implements AnalyzerVariant, JsonpSerializable 
 	/**
 	 * Builder for {@link CustomAnalyzer}.
 	 */
-	public static class Builder implements ObjectBuilder<CustomAnalyzer> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<CustomAnalyzer> {
 		@Nullable
 		private List<String> charFilter;
 
@@ -198,7 +189,7 @@ public final class CustomAnalyzer implements AnalyzerVariant, JsonpSerializable 
 		/**
 		 * API name: {@code char_filter}
 		 */
-		public Builder charFilter(@Nullable List<String> value) {
+		public final Builder charFilter(@Nullable List<String> value) {
 			this.charFilter = value;
 			return this;
 		}
@@ -206,26 +197,15 @@ public final class CustomAnalyzer implements AnalyzerVariant, JsonpSerializable 
 		/**
 		 * API name: {@code char_filter}
 		 */
-		public Builder charFilter(String... value) {
+		public final Builder charFilter(String... value) {
 			this.charFilter = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #charFilter(List)}, creating the list if needed.
-		 */
-		public Builder addCharFilter(String value) {
-			if (this.charFilter == null) {
-				this.charFilter = new ArrayList<>();
-			}
-			this.charFilter.add(value);
 			return this;
 		}
 
 		/**
 		 * API name: {@code filter}
 		 */
-		public Builder filter(@Nullable List<String> value) {
+		public final Builder filter(@Nullable List<String> value) {
 			this.filter = value;
 			return this;
 		}
@@ -233,26 +213,15 @@ public final class CustomAnalyzer implements AnalyzerVariant, JsonpSerializable 
 		/**
 		 * API name: {@code filter}
 		 */
-		public Builder filter(String... value) {
+		public final Builder filter(String... value) {
 			this.filter = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #filter(List)}, creating the list if needed.
-		 */
-		public Builder addFilter(String value) {
-			if (this.filter == null) {
-				this.filter = new ArrayList<>();
-			}
-			this.filter.add(value);
 			return this;
 		}
 
 		/**
 		 * API name: {@code position_increment_gap}
 		 */
-		public Builder positionIncrementGap(@Nullable Integer value) {
+		public final Builder positionIncrementGap(@Nullable Integer value) {
 			this.positionIncrementGap = value;
 			return this;
 		}
@@ -260,7 +229,7 @@ public final class CustomAnalyzer implements AnalyzerVariant, JsonpSerializable 
 		/**
 		 * API name: {@code position_offset_gap}
 		 */
-		public Builder positionOffsetGap(@Nullable Integer value) {
+		public final Builder positionOffsetGap(@Nullable Integer value) {
 			this.positionOffsetGap = value;
 			return this;
 		}
@@ -268,7 +237,7 @@ public final class CustomAnalyzer implements AnalyzerVariant, JsonpSerializable 
 		/**
 		 * Required - API name: {@code tokenizer}
 		 */
-		public Builder tokenizer(String value) {
+		public final Builder tokenizer(String value) {
 			this.tokenizer = value;
 			return this;
 		}
@@ -280,6 +249,7 @@ public final class CustomAnalyzer implements AnalyzerVariant, JsonpSerializable 
 		 *             if some of the required fields are null.
 		 */
 		public CustomAnalyzer build() {
+			_checkSingleUse();
 
 			return new CustomAnalyzer(this);
 		}

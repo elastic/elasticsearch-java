@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.util.Objects;
@@ -39,7 +41,7 @@ import javax.annotation.Nullable;
 
 // typedef: snapshot._types.SnapshotStats
 @JsonpDeserializable
-public final class SnapshotStats implements JsonpSerializable {
+public class SnapshotStats implements JsonpSerializable {
 	private final FileCountSnapshotStats incremental;
 
 	private final long startTimeInMillis;
@@ -50,44 +52,44 @@ public final class SnapshotStats implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public SnapshotStats(Builder builder) {
+	private SnapshotStats(Builder builder) {
 
-		this.incremental = Objects.requireNonNull(builder.incremental, "incremental");
-		this.startTimeInMillis = Objects.requireNonNull(builder.startTimeInMillis, "start_time_in_millis");
-		this.timeInMillis = Objects.requireNonNull(builder.timeInMillis, "time_in_millis");
-		this.total = Objects.requireNonNull(builder.total, "total");
+		this.incremental = ModelTypeHelper.requireNonNull(builder.incremental, this, "incremental");
+		this.startTimeInMillis = ModelTypeHelper.requireNonNull(builder.startTimeInMillis, this, "startTimeInMillis");
+		this.timeInMillis = ModelTypeHelper.requireNonNull(builder.timeInMillis, this, "timeInMillis");
+		this.total = ModelTypeHelper.requireNonNull(builder.total, this, "total");
 
 	}
 
-	public SnapshotStats(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static SnapshotStats of(Function<Builder, ObjectBuilder<SnapshotStats>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code incremental}
 	 */
-	public FileCountSnapshotStats incremental() {
+	public final FileCountSnapshotStats incremental() {
 		return this.incremental;
 	}
 
 	/**
 	 * Required - API name: {@code start_time_in_millis}
 	 */
-	public long startTimeInMillis() {
+	public final long startTimeInMillis() {
 		return this.startTimeInMillis;
 	}
 
 	/**
 	 * Required - API name: {@code time_in_millis}
 	 */
-	public long timeInMillis() {
+	public final long timeInMillis() {
 		return this.timeInMillis;
 	}
 
 	/**
 	 * Required - API name: {@code total}
 	 */
-	public FileCountSnapshotStats total() {
+	public final FileCountSnapshotStats total() {
 		return this.total;
 	}
 
@@ -121,7 +123,7 @@ public final class SnapshotStats implements JsonpSerializable {
 	/**
 	 * Builder for {@link SnapshotStats}.
 	 */
-	public static class Builder implements ObjectBuilder<SnapshotStats> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<SnapshotStats> {
 		private FileCountSnapshotStats incremental;
 
 		private Long startTimeInMillis;
@@ -133,7 +135,7 @@ public final class SnapshotStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code incremental}
 		 */
-		public Builder incremental(FileCountSnapshotStats value) {
+		public final Builder incremental(FileCountSnapshotStats value) {
 			this.incremental = value;
 			return this;
 		}
@@ -141,14 +143,15 @@ public final class SnapshotStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code incremental}
 		 */
-		public Builder incremental(Function<FileCountSnapshotStats.Builder, ObjectBuilder<FileCountSnapshotStats>> fn) {
+		public final Builder incremental(
+				Function<FileCountSnapshotStats.Builder, ObjectBuilder<FileCountSnapshotStats>> fn) {
 			return this.incremental(fn.apply(new FileCountSnapshotStats.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code start_time_in_millis}
 		 */
-		public Builder startTimeInMillis(long value) {
+		public final Builder startTimeInMillis(long value) {
 			this.startTimeInMillis = value;
 			return this;
 		}
@@ -156,7 +159,7 @@ public final class SnapshotStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code time_in_millis}
 		 */
-		public Builder timeInMillis(long value) {
+		public final Builder timeInMillis(long value) {
 			this.timeInMillis = value;
 			return this;
 		}
@@ -164,7 +167,7 @@ public final class SnapshotStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code total}
 		 */
-		public Builder total(FileCountSnapshotStats value) {
+		public final Builder total(FileCountSnapshotStats value) {
 			this.total = value;
 			return this;
 		}
@@ -172,7 +175,7 @@ public final class SnapshotStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code total}
 		 */
-		public Builder total(Function<FileCountSnapshotStats.Builder, ObjectBuilder<FileCountSnapshotStats>> fn) {
+		public final Builder total(Function<FileCountSnapshotStats.Builder, ObjectBuilder<FileCountSnapshotStats>> fn) {
 			return this.total(fn.apply(new FileCountSnapshotStats.Builder()).build());
 		}
 
@@ -183,6 +186,7 @@ public final class SnapshotStats implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public SnapshotStats build() {
+			_checkSingleUse();
 
 			return new SnapshotStats(this);
 		}

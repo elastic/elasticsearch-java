@@ -36,16 +36,16 @@ import java.util.function.Function;
 
 // typedef: ccr.put_auto_follow_pattern.Response
 @JsonpDeserializable
-public final class PutAutoFollowPatternResponse extends AcknowledgedResponseBase {
+public class PutAutoFollowPatternResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
-	public PutAutoFollowPatternResponse(Builder builder) {
+	private PutAutoFollowPatternResponse(Builder builder) {
 		super(builder);
 
 	}
 
-	public PutAutoFollowPatternResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static PutAutoFollowPatternResponse of(Function<Builder, ObjectBuilder<PutAutoFollowPatternResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -68,6 +68,7 @@ public final class PutAutoFollowPatternResponse extends AcknowledgedResponseBase
 		 *             if some of the required fields are null.
 		 */
 		public PutAutoFollowPatternResponse build() {
+			_checkSingleUse();
 
 			return new PutAutoFollowPatternResponse(this);
 		}

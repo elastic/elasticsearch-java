@@ -32,6 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.lang.String;
@@ -44,7 +45,7 @@ import javax.annotation.Nullable;
 
 // typedef: _global.search._types.FetchProfile
 @JsonpDeserializable
-public final class FetchProfile implements JsonpSerializable {
+public class FetchProfile implements JsonpSerializable {
 	private final String type;
 
 	private final String description;
@@ -56,51 +57,50 @@ public final class FetchProfile implements JsonpSerializable {
 	@Nullable
 	private final FetchProfileDebug debug;
 
-	@Nullable
 	private final List<FetchProfile> children;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public FetchProfile(Builder builder) {
+	private FetchProfile(Builder builder) {
 
-		this.type = Objects.requireNonNull(builder.type, "type");
-		this.description = Objects.requireNonNull(builder.description, "description");
-		this.timeInNanos = Objects.requireNonNull(builder.timeInNanos, "time_in_nanos");
-		this.breakdown = Objects.requireNonNull(builder.breakdown, "breakdown");
+		this.type = ModelTypeHelper.requireNonNull(builder.type, this, "type");
+		this.description = ModelTypeHelper.requireNonNull(builder.description, this, "description");
+		this.timeInNanos = ModelTypeHelper.requireNonNull(builder.timeInNanos, this, "timeInNanos");
+		this.breakdown = ModelTypeHelper.requireNonNull(builder.breakdown, this, "breakdown");
 		this.debug = builder.debug;
 		this.children = ModelTypeHelper.unmodifiable(builder.children);
 
 	}
 
-	public FetchProfile(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static FetchProfile of(Function<Builder, ObjectBuilder<FetchProfile>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code type}
 	 */
-	public String type() {
+	public final String type() {
 		return this.type;
 	}
 
 	/**
 	 * Required - API name: {@code description}
 	 */
-	public String description() {
+	public final String description() {
 		return this.description;
 	}
 
 	/**
 	 * Required - API name: {@code time_in_nanos}
 	 */
-	public long timeInNanos() {
+	public final long timeInNanos() {
 		return this.timeInNanos;
 	}
 
 	/**
 	 * Required - API name: {@code breakdown}
 	 */
-	public FetchProfileBreakdown breakdown() {
+	public final FetchProfileBreakdown breakdown() {
 		return this.breakdown;
 	}
 
@@ -108,15 +108,14 @@ public final class FetchProfile implements JsonpSerializable {
 	 * API name: {@code debug}
 	 */
 	@Nullable
-	public FetchProfileDebug debug() {
+	public final FetchProfileDebug debug() {
 		return this.debug;
 	}
 
 	/**
 	 * API name: {@code children}
 	 */
-	@Nullable
-	public List<FetchProfile> children() {
+	public final List<FetchProfile> children() {
 		return this.children;
 	}
 
@@ -144,13 +143,11 @@ public final class FetchProfile implements JsonpSerializable {
 		this.breakdown.serialize(generator, mapper);
 
 		if (this.debug != null) {
-
 			generator.writeKey("debug");
 			this.debug.serialize(generator, mapper);
 
 		}
-		if (this.children != null) {
-
+		if (ModelTypeHelper.isDefined(this.children)) {
 			generator.writeKey("children");
 			generator.writeStartArray();
 			for (FetchProfile item0 : this.children) {
@@ -168,7 +165,7 @@ public final class FetchProfile implements JsonpSerializable {
 	/**
 	 * Builder for {@link FetchProfile}.
 	 */
-	public static class Builder implements ObjectBuilder<FetchProfile> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<FetchProfile> {
 		private String type;
 
 		private String description;
@@ -186,7 +183,7 @@ public final class FetchProfile implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code type}
 		 */
-		public Builder type(String value) {
+		public final Builder type(String value) {
 			this.type = value;
 			return this;
 		}
@@ -194,7 +191,7 @@ public final class FetchProfile implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code description}
 		 */
-		public Builder description(String value) {
+		public final Builder description(String value) {
 			this.description = value;
 			return this;
 		}
@@ -202,7 +199,7 @@ public final class FetchProfile implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code time_in_nanos}
 		 */
-		public Builder timeInNanos(long value) {
+		public final Builder timeInNanos(long value) {
 			this.timeInNanos = value;
 			return this;
 		}
@@ -210,7 +207,7 @@ public final class FetchProfile implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code breakdown}
 		 */
-		public Builder breakdown(FetchProfileBreakdown value) {
+		public final Builder breakdown(FetchProfileBreakdown value) {
 			this.breakdown = value;
 			return this;
 		}
@@ -218,14 +215,15 @@ public final class FetchProfile implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code breakdown}
 		 */
-		public Builder breakdown(Function<FetchProfileBreakdown.Builder, ObjectBuilder<FetchProfileBreakdown>> fn) {
+		public final Builder breakdown(
+				Function<FetchProfileBreakdown.Builder, ObjectBuilder<FetchProfileBreakdown>> fn) {
 			return this.breakdown(fn.apply(new FetchProfileBreakdown.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code debug}
 		 */
-		public Builder debug(@Nullable FetchProfileDebug value) {
+		public final Builder debug(@Nullable FetchProfileDebug value) {
 			this.debug = value;
 			return this;
 		}
@@ -233,14 +231,14 @@ public final class FetchProfile implements JsonpSerializable {
 		/**
 		 * API name: {@code debug}
 		 */
-		public Builder debug(Function<FetchProfileDebug.Builder, ObjectBuilder<FetchProfileDebug>> fn) {
+		public final Builder debug(Function<FetchProfileDebug.Builder, ObjectBuilder<FetchProfileDebug>> fn) {
 			return this.debug(fn.apply(new FetchProfileDebug.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code children}
 		 */
-		public Builder children(@Nullable List<FetchProfile> value) {
+		public final Builder children(@Nullable List<FetchProfile> value) {
 			this.children = value;
 			return this;
 		}
@@ -248,34 +246,21 @@ public final class FetchProfile implements JsonpSerializable {
 		/**
 		 * API name: {@code children}
 		 */
-		public Builder children(FetchProfile... value) {
+		public final Builder children(FetchProfile... value) {
 			this.children = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #children(List)}, creating the list if needed.
+		 * API name: {@code children}
 		 */
-		public Builder addChildren(FetchProfile value) {
-			if (this.children == null) {
-				this.children = new ArrayList<>();
+		@SafeVarargs
+		public final Builder children(Function<FetchProfile.Builder, ObjectBuilder<FetchProfile>>... fns) {
+			this.children = new ArrayList<>(fns.length);
+			for (Function<FetchProfile.Builder, ObjectBuilder<FetchProfile>> fn : fns) {
+				this.children.add(fn.apply(new FetchProfile.Builder()).build());
 			}
-			this.children.add(value);
 			return this;
-		}
-
-		/**
-		 * Set {@link #children(List)} to a singleton list.
-		 */
-		public Builder children(Function<FetchProfile.Builder, ObjectBuilder<FetchProfile>> fn) {
-			return this.children(fn.apply(new FetchProfile.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #children(List)}, creating the list if needed.
-		 */
-		public Builder addChildren(Function<FetchProfile.Builder, ObjectBuilder<FetchProfile>> fn) {
-			return this.addChildren(fn.apply(new FetchProfile.Builder()).build());
 		}
 
 		/**
@@ -285,6 +270,7 @@ public final class FetchProfile implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public FetchProfile build() {
+			_checkSingleUse();
 
 			return new FetchProfile(this);
 		}

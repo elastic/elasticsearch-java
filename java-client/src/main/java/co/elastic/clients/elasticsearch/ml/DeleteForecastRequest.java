@@ -31,7 +31,9 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.SimpleEndpoint;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
@@ -43,7 +45,7 @@ import javax.annotation.Nullable;
 
 // typedef: ml.delete_forecast.Request
 
-public final class DeleteForecastRequest extends RequestBase {
+public class DeleteForecastRequest extends RequestBase {
 	@Nullable
 	private final Boolean allowNoForecasts;
 
@@ -57,17 +59,17 @@ public final class DeleteForecastRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public DeleteForecastRequest(Builder builder) {
+	private DeleteForecastRequest(Builder builder) {
 
 		this.allowNoForecasts = builder.allowNoForecasts;
 		this.forecastId = builder.forecastId;
-		this.jobId = Objects.requireNonNull(builder.jobId, "job_id");
+		this.jobId = ModelTypeHelper.requireNonNull(builder.jobId, this, "jobId");
 		this.timeout = builder.timeout;
 
 	}
 
-	public DeleteForecastRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static DeleteForecastRequest of(Function<Builder, ObjectBuilder<DeleteForecastRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -78,7 +80,7 @@ public final class DeleteForecastRequest extends RequestBase {
 	 * API name: {@code allow_no_forecasts}
 	 */
 	@Nullable
-	public Boolean allowNoForecasts() {
+	public final Boolean allowNoForecasts() {
 		return this.allowNoForecasts;
 	}
 
@@ -90,7 +92,7 @@ public final class DeleteForecastRequest extends RequestBase {
 	 * API name: {@code forecast_id}
 	 */
 	@Nullable
-	public String forecastId() {
+	public final String forecastId() {
 		return this.forecastId;
 	}
 
@@ -99,7 +101,7 @@ public final class DeleteForecastRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code job_id}
 	 */
-	public String jobId() {
+	public final String jobId() {
 		return this.jobId;
 	}
 
@@ -111,7 +113,7 @@ public final class DeleteForecastRequest extends RequestBase {
 	 * API name: {@code timeout}
 	 */
 	@Nullable
-	public String timeout() {
+	public final String timeout() {
 		return this.timeout;
 	}
 
@@ -120,7 +122,7 @@ public final class DeleteForecastRequest extends RequestBase {
 	/**
 	 * Builder for {@link DeleteForecastRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<DeleteForecastRequest> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DeleteForecastRequest> {
 		@Nullable
 		private Boolean allowNoForecasts;
 
@@ -139,7 +141,7 @@ public final class DeleteForecastRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code allow_no_forecasts}
 		 */
-		public Builder allowNoForecasts(@Nullable Boolean value) {
+		public final Builder allowNoForecasts(@Nullable Boolean value) {
 			this.allowNoForecasts = value;
 			return this;
 		}
@@ -151,7 +153,7 @@ public final class DeleteForecastRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code forecast_id}
 		 */
-		public Builder forecastId(@Nullable String value) {
+		public final Builder forecastId(@Nullable String value) {
 			this.forecastId = value;
 			return this;
 		}
@@ -161,7 +163,7 @@ public final class DeleteForecastRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code job_id}
 		 */
-		public Builder jobId(String value) {
+		public final Builder jobId(String value) {
 			this.jobId = value;
 			return this;
 		}
@@ -173,7 +175,7 @@ public final class DeleteForecastRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code timeout}
 		 */
-		public Builder timeout(@Nullable String value) {
+		public final Builder timeout(@Nullable String value) {
 			this.timeout = value;
 			return this;
 		}
@@ -185,6 +187,7 @@ public final class DeleteForecastRequest extends RequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public DeleteForecastRequest build() {
+			_checkSingleUse();
 
 			return new DeleteForecastRequest(this);
 		}

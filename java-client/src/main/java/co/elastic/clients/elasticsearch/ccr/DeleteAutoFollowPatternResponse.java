@@ -36,16 +36,17 @@ import java.util.function.Function;
 
 // typedef: ccr.delete_auto_follow_pattern.Response
 @JsonpDeserializable
-public final class DeleteAutoFollowPatternResponse extends AcknowledgedResponseBase {
+public class DeleteAutoFollowPatternResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
-	public DeleteAutoFollowPatternResponse(Builder builder) {
+	private DeleteAutoFollowPatternResponse(Builder builder) {
 		super(builder);
 
 	}
 
-	public DeleteAutoFollowPatternResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static DeleteAutoFollowPatternResponse of(
+			Function<Builder, ObjectBuilder<DeleteAutoFollowPatternResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -68,6 +69,7 @@ public final class DeleteAutoFollowPatternResponse extends AcknowledgedResponseB
 		 *             if some of the required fields are null.
 		 */
 		public DeleteAutoFollowPatternResponse build() {
+			_checkSingleUse();
 
 			return new DeleteAutoFollowPatternResponse(this);
 		}

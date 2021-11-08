@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.Objects;
@@ -38,25 +40,25 @@ import java.util.function.Function;
 
 // typedef: ml.open_job.Response
 @JsonpDeserializable
-public final class OpenJobResponse implements JsonpSerializable {
+public class OpenJobResponse implements JsonpSerializable {
 	private final boolean opened;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public OpenJobResponse(Builder builder) {
+	private OpenJobResponse(Builder builder) {
 
-		this.opened = Objects.requireNonNull(builder.opened, "opened");
+		this.opened = ModelTypeHelper.requireNonNull(builder.opened, this, "opened");
 
 	}
 
-	public OpenJobResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static OpenJobResponse of(Function<Builder, ObjectBuilder<OpenJobResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code opened}
 	 */
-	public boolean opened() {
+	public final boolean opened() {
 		return this.opened;
 	}
 
@@ -81,13 +83,13 @@ public final class OpenJobResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link OpenJobResponse}.
 	 */
-	public static class Builder implements ObjectBuilder<OpenJobResponse> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<OpenJobResponse> {
 		private Boolean opened;
 
 		/**
 		 * Required - API name: {@code opened}
 		 */
-		public Builder opened(boolean value) {
+		public final Builder opened(boolean value) {
 			this.opened = value;
 			return this;
 		}
@@ -99,6 +101,7 @@ public final class OpenJobResponse implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public OpenJobResponse build() {
+			_checkSingleUse();
 
 			return new OpenJobResponse(this);
 		}

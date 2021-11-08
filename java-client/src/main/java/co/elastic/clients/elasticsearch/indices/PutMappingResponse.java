@@ -36,16 +36,16 @@ import java.util.function.Function;
 
 // typedef: indices.put_mapping.Response
 @JsonpDeserializable
-public final class PutMappingResponse extends IndicesResponseBase {
+public class PutMappingResponse extends IndicesResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
-	public PutMappingResponse(Builder builder) {
+	private PutMappingResponse(Builder builder) {
 		super(builder);
 
 	}
 
-	public PutMappingResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static PutMappingResponse of(Function<Builder, ObjectBuilder<PutMappingResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -68,6 +68,7 @@ public final class PutMappingResponse extends IndicesResponseBase {
 		 *             if some of the required fields are null.
 		 */
 		public PutMappingResponse build() {
+			_checkSingleUse();
 
 			return new PutMappingResponse(this);
 		}

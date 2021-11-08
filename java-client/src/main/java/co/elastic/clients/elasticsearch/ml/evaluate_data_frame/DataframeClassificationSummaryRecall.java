@@ -32,6 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
 import java.util.ArrayList;
@@ -43,35 +44,36 @@ import javax.annotation.Nullable;
 
 // typedef: ml.evaluate_data_frame.DataframeClassificationSummaryRecall
 @JsonpDeserializable
-public final class DataframeClassificationSummaryRecall implements JsonpSerializable {
+public class DataframeClassificationSummaryRecall implements JsonpSerializable {
 	private final List<DataframeEvaluationClass> classes;
 
 	private final double avgRecall;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public DataframeClassificationSummaryRecall(Builder builder) {
+	private DataframeClassificationSummaryRecall(Builder builder) {
 
-		this.classes = ModelTypeHelper.unmodifiableNonNull(builder.classes, "classes");
-		this.avgRecall = Objects.requireNonNull(builder.avgRecall, "avg_recall");
+		this.classes = ModelTypeHelper.unmodifiableRequired(builder.classes, this, "classes");
+		this.avgRecall = ModelTypeHelper.requireNonNull(builder.avgRecall, this, "avgRecall");
 
 	}
 
-	public DataframeClassificationSummaryRecall(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static DataframeClassificationSummaryRecall of(
+			Function<Builder, ObjectBuilder<DataframeClassificationSummaryRecall>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code classes}
 	 */
-	public List<DataframeEvaluationClass> classes() {
+	public final List<DataframeEvaluationClass> classes() {
 		return this.classes;
 	}
 
 	/**
 	 * Required - API name: {@code avg_recall}
 	 */
-	public double avgRecall() {
+	public final double avgRecall() {
 		return this.avgRecall;
 	}
 
@@ -86,14 +88,16 @@ public final class DataframeClassificationSummaryRecall implements JsonpSerializ
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("classes");
-		generator.writeStartArray();
-		for (DataframeEvaluationClass item0 : this.classes) {
-			item0.serialize(generator, mapper);
+		if (ModelTypeHelper.isDefined(this.classes)) {
+			generator.writeKey("classes");
+			generator.writeStartArray();
+			for (DataframeEvaluationClass item0 : this.classes) {
+				item0.serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
-
 		generator.writeKey("avg_recall");
 		generator.write(this.avgRecall);
 
@@ -104,7 +108,9 @@ public final class DataframeClassificationSummaryRecall implements JsonpSerializ
 	/**
 	 * Builder for {@link DataframeClassificationSummaryRecall}.
 	 */
-	public static class Builder implements ObjectBuilder<DataframeClassificationSummaryRecall> {
+	public static class Builder extends ObjectBuilderBase
+			implements
+				ObjectBuilder<DataframeClassificationSummaryRecall> {
 		private List<DataframeEvaluationClass> classes;
 
 		private Double avgRecall;
@@ -112,7 +118,7 @@ public final class DataframeClassificationSummaryRecall implements JsonpSerializ
 		/**
 		 * Required - API name: {@code classes}
 		 */
-		public Builder classes(List<DataframeEvaluationClass> value) {
+		public final Builder classes(List<DataframeEvaluationClass> value) {
 			this.classes = value;
 			return this;
 		}
@@ -120,41 +126,28 @@ public final class DataframeClassificationSummaryRecall implements JsonpSerializ
 		/**
 		 * Required - API name: {@code classes}
 		 */
-		public Builder classes(DataframeEvaluationClass... value) {
+		public final Builder classes(DataframeEvaluationClass... value) {
 			this.classes = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #classes(List)}, creating the list if needed.
+		 * Required - API name: {@code classes}
 		 */
-		public Builder addClasses(DataframeEvaluationClass value) {
-			if (this.classes == null) {
-				this.classes = new ArrayList<>();
+		@SafeVarargs
+		public final Builder classes(
+				Function<DataframeEvaluationClass.Builder, ObjectBuilder<DataframeEvaluationClass>>... fns) {
+			this.classes = new ArrayList<>(fns.length);
+			for (Function<DataframeEvaluationClass.Builder, ObjectBuilder<DataframeEvaluationClass>> fn : fns) {
+				this.classes.add(fn.apply(new DataframeEvaluationClass.Builder()).build());
 			}
-			this.classes.add(value);
 			return this;
-		}
-
-		/**
-		 * Set {@link #classes(List)} to a singleton list.
-		 */
-		public Builder classes(Function<DataframeEvaluationClass.Builder, ObjectBuilder<DataframeEvaluationClass>> fn) {
-			return this.classes(fn.apply(new DataframeEvaluationClass.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #classes(List)}, creating the list if needed.
-		 */
-		public Builder addClasses(
-				Function<DataframeEvaluationClass.Builder, ObjectBuilder<DataframeEvaluationClass>> fn) {
-			return this.addClasses(fn.apply(new DataframeEvaluationClass.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code avg_recall}
 		 */
-		public Builder avgRecall(double value) {
+		public final Builder avgRecall(double value) {
 			this.avgRecall = value;
 			return this;
 		}
@@ -166,6 +159,7 @@ public final class DataframeClassificationSummaryRecall implements JsonpSerializ
 		 *             if some of the required fields are null.
 		 */
 		public DataframeClassificationSummaryRecall build() {
+			_checkSingleUse();
 
 			return new DataframeClassificationSummaryRecall(this);
 		}

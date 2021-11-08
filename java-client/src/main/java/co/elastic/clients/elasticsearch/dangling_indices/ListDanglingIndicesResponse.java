@@ -33,6 +33,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -43,25 +44,25 @@ import javax.annotation.Nullable;
 
 // typedef: dangling_indices.list_dangling_indices.Response
 @JsonpDeserializable
-public final class ListDanglingIndicesResponse implements JsonpSerializable {
+public class ListDanglingIndicesResponse implements JsonpSerializable {
 	private final List<DanglingIndex> danglingIndices;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public ListDanglingIndicesResponse(Builder builder) {
+	private ListDanglingIndicesResponse(Builder builder) {
 
-		this.danglingIndices = ModelTypeHelper.unmodifiableNonNull(builder.danglingIndices, "dangling_indices");
+		this.danglingIndices = ModelTypeHelper.unmodifiableRequired(builder.danglingIndices, this, "danglingIndices");
 
 	}
 
-	public ListDanglingIndicesResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ListDanglingIndicesResponse of(Function<Builder, ObjectBuilder<ListDanglingIndicesResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code dangling_indices}
 	 */
-	public List<DanglingIndex> danglingIndices() {
+	public final List<DanglingIndex> danglingIndices() {
 		return this.danglingIndices;
 	}
 
@@ -76,13 +77,16 @@ public final class ListDanglingIndicesResponse implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("dangling_indices");
-		generator.writeStartArray();
-		for (DanglingIndex item0 : this.danglingIndices) {
-			item0.serialize(generator, mapper);
+		if (ModelTypeHelper.isDefined(this.danglingIndices)) {
+			generator.writeKey("dangling_indices");
+			generator.writeStartArray();
+			for (DanglingIndex item0 : this.danglingIndices) {
+				item0.serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
 
 	}
 
@@ -91,13 +95,13 @@ public final class ListDanglingIndicesResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link ListDanglingIndicesResponse}.
 	 */
-	public static class Builder implements ObjectBuilder<ListDanglingIndicesResponse> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ListDanglingIndicesResponse> {
 		private List<DanglingIndex> danglingIndices;
 
 		/**
 		 * Required - API name: {@code dangling_indices}
 		 */
-		public Builder danglingIndices(List<DanglingIndex> value) {
+		public final Builder danglingIndices(List<DanglingIndex> value) {
 			this.danglingIndices = value;
 			return this;
 		}
@@ -105,34 +109,21 @@ public final class ListDanglingIndicesResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code dangling_indices}
 		 */
-		public Builder danglingIndices(DanglingIndex... value) {
+		public final Builder danglingIndices(DanglingIndex... value) {
 			this.danglingIndices = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #danglingIndices(List)}, creating the list if needed.
+		 * Required - API name: {@code dangling_indices}
 		 */
-		public Builder addDanglingIndices(DanglingIndex value) {
-			if (this.danglingIndices == null) {
-				this.danglingIndices = new ArrayList<>();
+		@SafeVarargs
+		public final Builder danglingIndices(Function<DanglingIndex.Builder, ObjectBuilder<DanglingIndex>>... fns) {
+			this.danglingIndices = new ArrayList<>(fns.length);
+			for (Function<DanglingIndex.Builder, ObjectBuilder<DanglingIndex>> fn : fns) {
+				this.danglingIndices.add(fn.apply(new DanglingIndex.Builder()).build());
 			}
-			this.danglingIndices.add(value);
 			return this;
-		}
-
-		/**
-		 * Set {@link #danglingIndices(List)} to a singleton list.
-		 */
-		public Builder danglingIndices(Function<DanglingIndex.Builder, ObjectBuilder<DanglingIndex>> fn) {
-			return this.danglingIndices(fn.apply(new DanglingIndex.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #danglingIndices(List)}, creating the list if needed.
-		 */
-		public Builder addDanglingIndices(Function<DanglingIndex.Builder, ObjectBuilder<DanglingIndex>> fn) {
-			return this.addDanglingIndices(fn.apply(new DanglingIndex.Builder()).build());
 		}
 
 		/**
@@ -142,6 +133,7 @@ public final class ListDanglingIndicesResponse implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public ListDanglingIndicesResponse build() {
+			_checkSingleUse();
 
 			return new ListDanglingIndicesResponse(this);
 		}

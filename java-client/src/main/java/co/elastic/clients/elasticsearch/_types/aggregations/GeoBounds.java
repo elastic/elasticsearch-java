@@ -31,7 +31,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;
@@ -39,35 +41,35 @@ import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.GeoBounds
 @JsonpDeserializable
-public final class GeoBounds implements JsonpSerializable {
+public class GeoBounds implements JsonpSerializable {
 	private final LatLon bottomRight;
 
 	private final LatLon topLeft;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public GeoBounds(Builder builder) {
+	private GeoBounds(Builder builder) {
 
-		this.bottomRight = Objects.requireNonNull(builder.bottomRight, "bottom_right");
-		this.topLeft = Objects.requireNonNull(builder.topLeft, "top_left");
+		this.bottomRight = ModelTypeHelper.requireNonNull(builder.bottomRight, this, "bottomRight");
+		this.topLeft = ModelTypeHelper.requireNonNull(builder.topLeft, this, "topLeft");
 
 	}
 
-	public GeoBounds(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static GeoBounds of(Function<Builder, ObjectBuilder<GeoBounds>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code bottom_right}
 	 */
-	public LatLon bottomRight() {
+	public final LatLon bottomRight() {
 		return this.bottomRight;
 	}
 
 	/**
 	 * Required - API name: {@code top_left}
 	 */
-	public LatLon topLeft() {
+	public final LatLon topLeft() {
 		return this.topLeft;
 	}
 
@@ -95,7 +97,7 @@ public final class GeoBounds implements JsonpSerializable {
 	/**
 	 * Builder for {@link GeoBounds}.
 	 */
-	public static class Builder implements ObjectBuilder<GeoBounds> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GeoBounds> {
 		private LatLon bottomRight;
 
 		private LatLon topLeft;
@@ -103,7 +105,7 @@ public final class GeoBounds implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code bottom_right}
 		 */
-		public Builder bottomRight(LatLon value) {
+		public final Builder bottomRight(LatLon value) {
 			this.bottomRight = value;
 			return this;
 		}
@@ -111,14 +113,14 @@ public final class GeoBounds implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code bottom_right}
 		 */
-		public Builder bottomRight(Function<LatLon.Builder, ObjectBuilder<LatLon>> fn) {
+		public final Builder bottomRight(Function<LatLon.Builder, ObjectBuilder<LatLon>> fn) {
 			return this.bottomRight(fn.apply(new LatLon.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code top_left}
 		 */
-		public Builder topLeft(LatLon value) {
+		public final Builder topLeft(LatLon value) {
 			this.topLeft = value;
 			return this;
 		}
@@ -126,7 +128,7 @@ public final class GeoBounds implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code top_left}
 		 */
-		public Builder topLeft(Function<LatLon.Builder, ObjectBuilder<LatLon>> fn) {
+		public final Builder topLeft(Function<LatLon.Builder, ObjectBuilder<LatLon>> fn) {
 			return this.topLeft(fn.apply(new LatLon.Builder()).build());
 		}
 
@@ -137,6 +139,7 @@ public final class GeoBounds implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public GeoBounds build() {
+			_checkSingleUse();
 
 			return new GeoBounds(this);
 		}

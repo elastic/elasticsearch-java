@@ -38,21 +38,21 @@ import javax.annotation.Nullable;
 
 // typedef: _types.mapping.HistogramProperty
 @JsonpDeserializable
-public final class HistogramProperty extends PropertyBase implements PropertyVariant {
+public class HistogramProperty extends PropertyBase implements PropertyVariant {
 	@Nullable
 	private final Boolean ignoreMalformed;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public HistogramProperty(Builder builder) {
+	private HistogramProperty(Builder builder) {
 		super(builder);
 
 		this.ignoreMalformed = builder.ignoreMalformed;
 
 	}
 
-	public HistogramProperty(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static HistogramProperty of(Function<Builder, ObjectBuilder<HistogramProperty>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -67,7 +67,7 @@ public final class HistogramProperty extends PropertyBase implements PropertyVar
 	 * API name: {@code ignore_malformed}
 	 */
 	@Nullable
-	public Boolean ignoreMalformed() {
+	public final Boolean ignoreMalformed() {
 		return this.ignoreMalformed;
 	}
 
@@ -76,7 +76,6 @@ public final class HistogramProperty extends PropertyBase implements PropertyVar
 		generator.write("type", "histogram");
 		super.serializeInternal(generator, mapper);
 		if (this.ignoreMalformed != null) {
-
 			generator.writeKey("ignore_malformed");
 			generator.write(this.ignoreMalformed);
 
@@ -98,7 +97,7 @@ public final class HistogramProperty extends PropertyBase implements PropertyVar
 		/**
 		 * API name: {@code ignore_malformed}
 		 */
-		public Builder ignoreMalformed(@Nullable Boolean value) {
+		public final Builder ignoreMalformed(@Nullable Boolean value) {
 			this.ignoreMalformed = value;
 			return this;
 		}
@@ -115,6 +114,7 @@ public final class HistogramProperty extends PropertyBase implements PropertyVar
 		 *             if some of the required fields are null.
 		 */
 		public HistogramProperty build() {
+			_checkSingleUse();
 
 			return new HistogramProperty(this);
 		}

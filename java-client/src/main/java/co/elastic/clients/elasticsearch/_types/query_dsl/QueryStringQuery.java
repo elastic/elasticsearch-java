@@ -36,7 +36,6 @@ import java.lang.Boolean;
 import java.lang.Double;
 import java.lang.Integer;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
@@ -45,7 +44,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.QueryStringQuery
 @JsonpDeserializable
-public final class QueryStringQuery extends QueryBase implements QueryVariant {
+public class QueryStringQuery extends QueryBase implements QueryVariant {
 	@Nullable
 	private final Boolean allowLeadingWildcard;
 
@@ -70,7 +69,6 @@ public final class QueryStringQuery extends QueryBase implements QueryVariant {
 	@Nullable
 	private final Boolean escape;
 
-	@Nullable
 	private final List<String> fields;
 
 	@Nullable
@@ -122,7 +120,7 @@ public final class QueryStringQuery extends QueryBase implements QueryVariant {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public QueryStringQuery(Builder builder) {
+	private QueryStringQuery(Builder builder) {
 		super(builder);
 
 		this.allowLeadingWildcard = builder.allowLeadingWildcard;
@@ -143,7 +141,7 @@ public final class QueryStringQuery extends QueryBase implements QueryVariant {
 		this.maxDeterminizedStates = builder.maxDeterminizedStates;
 		this.minimumShouldMatch = builder.minimumShouldMatch;
 		this.phraseSlop = builder.phraseSlop;
-		this.query = Objects.requireNonNull(builder.query, "query");
+		this.query = ModelTypeHelper.requireNonNull(builder.query, this, "query");
 		this.quoteAnalyzer = builder.quoteAnalyzer;
 		this.quoteFieldSuffix = builder.quoteFieldSuffix;
 		this.rewrite = builder.rewrite;
@@ -153,8 +151,8 @@ public final class QueryStringQuery extends QueryBase implements QueryVariant {
 
 	}
 
-	public QueryStringQuery(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static QueryStringQuery of(Function<Builder, ObjectBuilder<QueryStringQuery>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -169,7 +167,7 @@ public final class QueryStringQuery extends QueryBase implements QueryVariant {
 	 * API name: {@code allow_leading_wildcard}
 	 */
 	@Nullable
-	public Boolean allowLeadingWildcard() {
+	public final Boolean allowLeadingWildcard() {
 		return this.allowLeadingWildcard;
 	}
 
@@ -177,7 +175,7 @@ public final class QueryStringQuery extends QueryBase implements QueryVariant {
 	 * API name: {@code analyzer}
 	 */
 	@Nullable
-	public String analyzer() {
+	public final String analyzer() {
 		return this.analyzer;
 	}
 
@@ -185,7 +183,7 @@ public final class QueryStringQuery extends QueryBase implements QueryVariant {
 	 * API name: {@code analyze_wildcard}
 	 */
 	@Nullable
-	public Boolean analyzeWildcard() {
+	public final Boolean analyzeWildcard() {
 		return this.analyzeWildcard;
 	}
 
@@ -193,7 +191,7 @@ public final class QueryStringQuery extends QueryBase implements QueryVariant {
 	 * API name: {@code auto_generate_synonyms_phrase_query}
 	 */
 	@Nullable
-	public Boolean autoGenerateSynonymsPhraseQuery() {
+	public final Boolean autoGenerateSynonymsPhraseQuery() {
 		return this.autoGenerateSynonymsPhraseQuery;
 	}
 
@@ -201,7 +199,7 @@ public final class QueryStringQuery extends QueryBase implements QueryVariant {
 	 * API name: {@code default_field}
 	 */
 	@Nullable
-	public String defaultField() {
+	public final String defaultField() {
 		return this.defaultField;
 	}
 
@@ -209,7 +207,7 @@ public final class QueryStringQuery extends QueryBase implements QueryVariant {
 	 * API name: {@code default_operator}
 	 */
 	@Nullable
-	public Operator defaultOperator() {
+	public final Operator defaultOperator() {
 		return this.defaultOperator;
 	}
 
@@ -217,7 +215,7 @@ public final class QueryStringQuery extends QueryBase implements QueryVariant {
 	 * API name: {@code enable_position_increments}
 	 */
 	@Nullable
-	public Boolean enablePositionIncrements() {
+	public final Boolean enablePositionIncrements() {
 		return this.enablePositionIncrements;
 	}
 
@@ -225,15 +223,14 @@ public final class QueryStringQuery extends QueryBase implements QueryVariant {
 	 * API name: {@code escape}
 	 */
 	@Nullable
-	public Boolean escape() {
+	public final Boolean escape() {
 		return this.escape;
 	}
 
 	/**
 	 * API name: {@code fields}
 	 */
-	@Nullable
-	public List<String> fields() {
+	public final List<String> fields() {
 		return this.fields;
 	}
 
@@ -241,7 +238,7 @@ public final class QueryStringQuery extends QueryBase implements QueryVariant {
 	 * API name: {@code fuzziness}
 	 */
 	@Nullable
-	public String fuzziness() {
+	public final String fuzziness() {
 		return this.fuzziness;
 	}
 
@@ -249,7 +246,7 @@ public final class QueryStringQuery extends QueryBase implements QueryVariant {
 	 * API name: {@code fuzzy_max_expansions}
 	 */
 	@Nullable
-	public Integer fuzzyMaxExpansions() {
+	public final Integer fuzzyMaxExpansions() {
 		return this.fuzzyMaxExpansions;
 	}
 
@@ -257,7 +254,7 @@ public final class QueryStringQuery extends QueryBase implements QueryVariant {
 	 * API name: {@code fuzzy_prefix_length}
 	 */
 	@Nullable
-	public Integer fuzzyPrefixLength() {
+	public final Integer fuzzyPrefixLength() {
 		return this.fuzzyPrefixLength;
 	}
 
@@ -265,7 +262,7 @@ public final class QueryStringQuery extends QueryBase implements QueryVariant {
 	 * API name: {@code fuzzy_rewrite}
 	 */
 	@Nullable
-	public String fuzzyRewrite() {
+	public final String fuzzyRewrite() {
 		return this.fuzzyRewrite;
 	}
 
@@ -273,7 +270,7 @@ public final class QueryStringQuery extends QueryBase implements QueryVariant {
 	 * API name: {@code fuzzy_transpositions}
 	 */
 	@Nullable
-	public Boolean fuzzyTranspositions() {
+	public final Boolean fuzzyTranspositions() {
 		return this.fuzzyTranspositions;
 	}
 
@@ -281,7 +278,7 @@ public final class QueryStringQuery extends QueryBase implements QueryVariant {
 	 * API name: {@code lenient}
 	 */
 	@Nullable
-	public Boolean lenient() {
+	public final Boolean lenient() {
 		return this.lenient;
 	}
 
@@ -289,7 +286,7 @@ public final class QueryStringQuery extends QueryBase implements QueryVariant {
 	 * API name: {@code max_determinized_states}
 	 */
 	@Nullable
-	public Integer maxDeterminizedStates() {
+	public final Integer maxDeterminizedStates() {
 		return this.maxDeterminizedStates;
 	}
 
@@ -297,7 +294,7 @@ public final class QueryStringQuery extends QueryBase implements QueryVariant {
 	 * API name: {@code minimum_should_match}
 	 */
 	@Nullable
-	public String minimumShouldMatch() {
+	public final String minimumShouldMatch() {
 		return this.minimumShouldMatch;
 	}
 
@@ -305,14 +302,14 @@ public final class QueryStringQuery extends QueryBase implements QueryVariant {
 	 * API name: {@code phrase_slop}
 	 */
 	@Nullable
-	public Double phraseSlop() {
+	public final Double phraseSlop() {
 		return this.phraseSlop;
 	}
 
 	/**
 	 * Required - API name: {@code query}
 	 */
-	public String query() {
+	public final String query() {
 		return this.query;
 	}
 
@@ -320,7 +317,7 @@ public final class QueryStringQuery extends QueryBase implements QueryVariant {
 	 * API name: {@code quote_analyzer}
 	 */
 	@Nullable
-	public String quoteAnalyzer() {
+	public final String quoteAnalyzer() {
 		return this.quoteAnalyzer;
 	}
 
@@ -328,7 +325,7 @@ public final class QueryStringQuery extends QueryBase implements QueryVariant {
 	 * API name: {@code quote_field_suffix}
 	 */
 	@Nullable
-	public String quoteFieldSuffix() {
+	public final String quoteFieldSuffix() {
 		return this.quoteFieldSuffix;
 	}
 
@@ -336,7 +333,7 @@ public final class QueryStringQuery extends QueryBase implements QueryVariant {
 	 * API name: {@code rewrite}
 	 */
 	@Nullable
-	public String rewrite() {
+	public final String rewrite() {
 		return this.rewrite;
 	}
 
@@ -344,7 +341,7 @@ public final class QueryStringQuery extends QueryBase implements QueryVariant {
 	 * API name: {@code tie_breaker}
 	 */
 	@Nullable
-	public Double tieBreaker() {
+	public final Double tieBreaker() {
 		return this.tieBreaker;
 	}
 
@@ -352,7 +349,7 @@ public final class QueryStringQuery extends QueryBase implements QueryVariant {
 	 * API name: {@code time_zone}
 	 */
 	@Nullable
-	public String timeZone() {
+	public final String timeZone() {
 		return this.timeZone;
 	}
 
@@ -360,7 +357,7 @@ public final class QueryStringQuery extends QueryBase implements QueryVariant {
 	 * API name: {@code type}
 	 */
 	@Nullable
-	public TextQueryType type() {
+	public final TextQueryType type() {
 		return this.type;
 	}
 
@@ -368,54 +365,45 @@ public final class QueryStringQuery extends QueryBase implements QueryVariant {
 
 		super.serializeInternal(generator, mapper);
 		if (this.allowLeadingWildcard != null) {
-
 			generator.writeKey("allow_leading_wildcard");
 			generator.write(this.allowLeadingWildcard);
 
 		}
 		if (this.analyzer != null) {
-
 			generator.writeKey("analyzer");
 			generator.write(this.analyzer);
 
 		}
 		if (this.analyzeWildcard != null) {
-
 			generator.writeKey("analyze_wildcard");
 			generator.write(this.analyzeWildcard);
 
 		}
 		if (this.autoGenerateSynonymsPhraseQuery != null) {
-
 			generator.writeKey("auto_generate_synonyms_phrase_query");
 			generator.write(this.autoGenerateSynonymsPhraseQuery);
 
 		}
 		if (this.defaultField != null) {
-
 			generator.writeKey("default_field");
 			generator.write(this.defaultField);
 
 		}
 		if (this.defaultOperator != null) {
-
 			generator.writeKey("default_operator");
 			this.defaultOperator.serialize(generator, mapper);
 		}
 		if (this.enablePositionIncrements != null) {
-
 			generator.writeKey("enable_position_increments");
 			generator.write(this.enablePositionIncrements);
 
 		}
 		if (this.escape != null) {
-
 			generator.writeKey("escape");
 			generator.write(this.escape);
 
 		}
-		if (this.fields != null) {
-
+		if (ModelTypeHelper.isDefined(this.fields)) {
 			generator.writeKey("fields");
 			generator.writeStartArray();
 			for (String item0 : this.fields) {
@@ -426,95 +414,79 @@ public final class QueryStringQuery extends QueryBase implements QueryVariant {
 
 		}
 		if (this.fuzziness != null) {
-
 			generator.writeKey("fuzziness");
 			generator.write(this.fuzziness);
 
 		}
 		if (this.fuzzyMaxExpansions != null) {
-
 			generator.writeKey("fuzzy_max_expansions");
 			generator.write(this.fuzzyMaxExpansions);
 
 		}
 		if (this.fuzzyPrefixLength != null) {
-
 			generator.writeKey("fuzzy_prefix_length");
 			generator.write(this.fuzzyPrefixLength);
 
 		}
 		if (this.fuzzyRewrite != null) {
-
 			generator.writeKey("fuzzy_rewrite");
 			generator.write(this.fuzzyRewrite);
 
 		}
 		if (this.fuzzyTranspositions != null) {
-
 			generator.writeKey("fuzzy_transpositions");
 			generator.write(this.fuzzyTranspositions);
 
 		}
 		if (this.lenient != null) {
-
 			generator.writeKey("lenient");
 			generator.write(this.lenient);
 
 		}
 		if (this.maxDeterminizedStates != null) {
-
 			generator.writeKey("max_determinized_states");
 			generator.write(this.maxDeterminizedStates);
 
 		}
 		if (this.minimumShouldMatch != null) {
-
 			generator.writeKey("minimum_should_match");
 			generator.write(this.minimumShouldMatch);
 
 		}
 		if (this.phraseSlop != null) {
-
 			generator.writeKey("phrase_slop");
 			generator.write(this.phraseSlop);
 
 		}
-
 		generator.writeKey("query");
 		generator.write(this.query);
 
 		if (this.quoteAnalyzer != null) {
-
 			generator.writeKey("quote_analyzer");
 			generator.write(this.quoteAnalyzer);
 
 		}
 		if (this.quoteFieldSuffix != null) {
-
 			generator.writeKey("quote_field_suffix");
 			generator.write(this.quoteFieldSuffix);
 
 		}
 		if (this.rewrite != null) {
-
 			generator.writeKey("rewrite");
 			generator.write(this.rewrite);
 
 		}
 		if (this.tieBreaker != null) {
-
 			generator.writeKey("tie_breaker");
 			generator.write(this.tieBreaker);
 
 		}
 		if (this.timeZone != null) {
-
 			generator.writeKey("time_zone");
 			generator.write(this.timeZone);
 
 		}
 		if (this.type != null) {
-
 			generator.writeKey("type");
 			this.type.serialize(generator, mapper);
 		}
@@ -604,7 +576,7 @@ public final class QueryStringQuery extends QueryBase implements QueryVariant {
 		/**
 		 * API name: {@code allow_leading_wildcard}
 		 */
-		public Builder allowLeadingWildcard(@Nullable Boolean value) {
+		public final Builder allowLeadingWildcard(@Nullable Boolean value) {
 			this.allowLeadingWildcard = value;
 			return this;
 		}
@@ -612,7 +584,7 @@ public final class QueryStringQuery extends QueryBase implements QueryVariant {
 		/**
 		 * API name: {@code analyzer}
 		 */
-		public Builder analyzer(@Nullable String value) {
+		public final Builder analyzer(@Nullable String value) {
 			this.analyzer = value;
 			return this;
 		}
@@ -620,7 +592,7 @@ public final class QueryStringQuery extends QueryBase implements QueryVariant {
 		/**
 		 * API name: {@code analyze_wildcard}
 		 */
-		public Builder analyzeWildcard(@Nullable Boolean value) {
+		public final Builder analyzeWildcard(@Nullable Boolean value) {
 			this.analyzeWildcard = value;
 			return this;
 		}
@@ -628,7 +600,7 @@ public final class QueryStringQuery extends QueryBase implements QueryVariant {
 		/**
 		 * API name: {@code auto_generate_synonyms_phrase_query}
 		 */
-		public Builder autoGenerateSynonymsPhraseQuery(@Nullable Boolean value) {
+		public final Builder autoGenerateSynonymsPhraseQuery(@Nullable Boolean value) {
 			this.autoGenerateSynonymsPhraseQuery = value;
 			return this;
 		}
@@ -636,7 +608,7 @@ public final class QueryStringQuery extends QueryBase implements QueryVariant {
 		/**
 		 * API name: {@code default_field}
 		 */
-		public Builder defaultField(@Nullable String value) {
+		public final Builder defaultField(@Nullable String value) {
 			this.defaultField = value;
 			return this;
 		}
@@ -644,7 +616,7 @@ public final class QueryStringQuery extends QueryBase implements QueryVariant {
 		/**
 		 * API name: {@code default_operator}
 		 */
-		public Builder defaultOperator(@Nullable Operator value) {
+		public final Builder defaultOperator(@Nullable Operator value) {
 			this.defaultOperator = value;
 			return this;
 		}
@@ -652,7 +624,7 @@ public final class QueryStringQuery extends QueryBase implements QueryVariant {
 		/**
 		 * API name: {@code enable_position_increments}
 		 */
-		public Builder enablePositionIncrements(@Nullable Boolean value) {
+		public final Builder enablePositionIncrements(@Nullable Boolean value) {
 			this.enablePositionIncrements = value;
 			return this;
 		}
@@ -660,7 +632,7 @@ public final class QueryStringQuery extends QueryBase implements QueryVariant {
 		/**
 		 * API name: {@code escape}
 		 */
-		public Builder escape(@Nullable Boolean value) {
+		public final Builder escape(@Nullable Boolean value) {
 			this.escape = value;
 			return this;
 		}
@@ -668,7 +640,7 @@ public final class QueryStringQuery extends QueryBase implements QueryVariant {
 		/**
 		 * API name: {@code fields}
 		 */
-		public Builder fields(@Nullable List<String> value) {
+		public final Builder fields(@Nullable List<String> value) {
 			this.fields = value;
 			return this;
 		}
@@ -676,26 +648,15 @@ public final class QueryStringQuery extends QueryBase implements QueryVariant {
 		/**
 		 * API name: {@code fields}
 		 */
-		public Builder fields(String... value) {
+		public final Builder fields(String... value) {
 			this.fields = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #fields(List)}, creating the list if needed.
-		 */
-		public Builder addFields(String value) {
-			if (this.fields == null) {
-				this.fields = new ArrayList<>();
-			}
-			this.fields.add(value);
 			return this;
 		}
 
 		/**
 		 * API name: {@code fuzziness}
 		 */
-		public Builder fuzziness(@Nullable String value) {
+		public final Builder fuzziness(@Nullable String value) {
 			this.fuzziness = value;
 			return this;
 		}
@@ -703,7 +664,7 @@ public final class QueryStringQuery extends QueryBase implements QueryVariant {
 		/**
 		 * API name: {@code fuzzy_max_expansions}
 		 */
-		public Builder fuzzyMaxExpansions(@Nullable Integer value) {
+		public final Builder fuzzyMaxExpansions(@Nullable Integer value) {
 			this.fuzzyMaxExpansions = value;
 			return this;
 		}
@@ -711,7 +672,7 @@ public final class QueryStringQuery extends QueryBase implements QueryVariant {
 		/**
 		 * API name: {@code fuzzy_prefix_length}
 		 */
-		public Builder fuzzyPrefixLength(@Nullable Integer value) {
+		public final Builder fuzzyPrefixLength(@Nullable Integer value) {
 			this.fuzzyPrefixLength = value;
 			return this;
 		}
@@ -719,7 +680,7 @@ public final class QueryStringQuery extends QueryBase implements QueryVariant {
 		/**
 		 * API name: {@code fuzzy_rewrite}
 		 */
-		public Builder fuzzyRewrite(@Nullable String value) {
+		public final Builder fuzzyRewrite(@Nullable String value) {
 			this.fuzzyRewrite = value;
 			return this;
 		}
@@ -727,7 +688,7 @@ public final class QueryStringQuery extends QueryBase implements QueryVariant {
 		/**
 		 * API name: {@code fuzzy_transpositions}
 		 */
-		public Builder fuzzyTranspositions(@Nullable Boolean value) {
+		public final Builder fuzzyTranspositions(@Nullable Boolean value) {
 			this.fuzzyTranspositions = value;
 			return this;
 		}
@@ -735,7 +696,7 @@ public final class QueryStringQuery extends QueryBase implements QueryVariant {
 		/**
 		 * API name: {@code lenient}
 		 */
-		public Builder lenient(@Nullable Boolean value) {
+		public final Builder lenient(@Nullable Boolean value) {
 			this.lenient = value;
 			return this;
 		}
@@ -743,7 +704,7 @@ public final class QueryStringQuery extends QueryBase implements QueryVariant {
 		/**
 		 * API name: {@code max_determinized_states}
 		 */
-		public Builder maxDeterminizedStates(@Nullable Integer value) {
+		public final Builder maxDeterminizedStates(@Nullable Integer value) {
 			this.maxDeterminizedStates = value;
 			return this;
 		}
@@ -751,7 +712,7 @@ public final class QueryStringQuery extends QueryBase implements QueryVariant {
 		/**
 		 * API name: {@code minimum_should_match}
 		 */
-		public Builder minimumShouldMatch(@Nullable String value) {
+		public final Builder minimumShouldMatch(@Nullable String value) {
 			this.minimumShouldMatch = value;
 			return this;
 		}
@@ -759,7 +720,7 @@ public final class QueryStringQuery extends QueryBase implements QueryVariant {
 		/**
 		 * API name: {@code phrase_slop}
 		 */
-		public Builder phraseSlop(@Nullable Double value) {
+		public final Builder phraseSlop(@Nullable Double value) {
 			this.phraseSlop = value;
 			return this;
 		}
@@ -767,7 +728,7 @@ public final class QueryStringQuery extends QueryBase implements QueryVariant {
 		/**
 		 * Required - API name: {@code query}
 		 */
-		public Builder query(String value) {
+		public final Builder query(String value) {
 			this.query = value;
 			return this;
 		}
@@ -775,7 +736,7 @@ public final class QueryStringQuery extends QueryBase implements QueryVariant {
 		/**
 		 * API name: {@code quote_analyzer}
 		 */
-		public Builder quoteAnalyzer(@Nullable String value) {
+		public final Builder quoteAnalyzer(@Nullable String value) {
 			this.quoteAnalyzer = value;
 			return this;
 		}
@@ -783,7 +744,7 @@ public final class QueryStringQuery extends QueryBase implements QueryVariant {
 		/**
 		 * API name: {@code quote_field_suffix}
 		 */
-		public Builder quoteFieldSuffix(@Nullable String value) {
+		public final Builder quoteFieldSuffix(@Nullable String value) {
 			this.quoteFieldSuffix = value;
 			return this;
 		}
@@ -791,7 +752,7 @@ public final class QueryStringQuery extends QueryBase implements QueryVariant {
 		/**
 		 * API name: {@code rewrite}
 		 */
-		public Builder rewrite(@Nullable String value) {
+		public final Builder rewrite(@Nullable String value) {
 			this.rewrite = value;
 			return this;
 		}
@@ -799,7 +760,7 @@ public final class QueryStringQuery extends QueryBase implements QueryVariant {
 		/**
 		 * API name: {@code tie_breaker}
 		 */
-		public Builder tieBreaker(@Nullable Double value) {
+		public final Builder tieBreaker(@Nullable Double value) {
 			this.tieBreaker = value;
 			return this;
 		}
@@ -807,7 +768,7 @@ public final class QueryStringQuery extends QueryBase implements QueryVariant {
 		/**
 		 * API name: {@code time_zone}
 		 */
-		public Builder timeZone(@Nullable String value) {
+		public final Builder timeZone(@Nullable String value) {
 			this.timeZone = value;
 			return this;
 		}
@@ -815,7 +776,7 @@ public final class QueryStringQuery extends QueryBase implements QueryVariant {
 		/**
 		 * API name: {@code type}
 		 */
-		public Builder type(@Nullable TextQueryType value) {
+		public final Builder type(@Nullable TextQueryType value) {
 			this.type = value;
 			return this;
 		}
@@ -832,6 +793,7 @@ public final class QueryStringQuery extends QueryBase implements QueryVariant {
 		 *             if some of the required fields are null.
 		 */
 		public QueryStringQuery build() {
+			_checkSingleUse();
 
 			return new QueryStringQuery(this);
 		}

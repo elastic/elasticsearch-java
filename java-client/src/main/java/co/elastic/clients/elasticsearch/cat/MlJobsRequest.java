@@ -32,6 +32,7 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.SimpleEndpoint;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
@@ -43,7 +44,7 @@ import javax.annotation.Nullable;
 
 // typedef: cat.ml_jobs.Request
 
-public final class MlJobsRequest extends CatRequestBase {
+public class MlJobsRequest extends CatRequestBase {
 	@Nullable
 	private final Boolean allowNoJobs;
 
@@ -55,7 +56,7 @@ public final class MlJobsRequest extends CatRequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public MlJobsRequest(Builder builder) {
+	private MlJobsRequest(Builder builder) {
 
 		this.allowNoJobs = builder.allowNoJobs;
 		this.bytes = builder.bytes;
@@ -63,8 +64,8 @@ public final class MlJobsRequest extends CatRequestBase {
 
 	}
 
-	public MlJobsRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static MlJobsRequest of(Function<Builder, ObjectBuilder<MlJobsRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -74,7 +75,7 @@ public final class MlJobsRequest extends CatRequestBase {
 	 * API name: {@code allow_no_jobs}
 	 */
 	@Nullable
-	public Boolean allowNoJobs() {
+	public final Boolean allowNoJobs() {
 		return this.allowNoJobs;
 	}
 
@@ -84,7 +85,7 @@ public final class MlJobsRequest extends CatRequestBase {
 	 * API name: {@code bytes}
 	 */
 	@Nullable
-	public Bytes bytes() {
+	public final Bytes bytes() {
 		return this.bytes;
 	}
 
@@ -94,7 +95,7 @@ public final class MlJobsRequest extends CatRequestBase {
 	 * API name: {@code job_id}
 	 */
 	@Nullable
-	public String jobId() {
+	public final String jobId() {
 		return this.jobId;
 	}
 
@@ -103,7 +104,7 @@ public final class MlJobsRequest extends CatRequestBase {
 	/**
 	 * Builder for {@link MlJobsRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<MlJobsRequest> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<MlJobsRequest> {
 		@Nullable
 		private Boolean allowNoJobs;
 
@@ -119,7 +120,7 @@ public final class MlJobsRequest extends CatRequestBase {
 		 * <p>
 		 * API name: {@code allow_no_jobs}
 		 */
-		public Builder allowNoJobs(@Nullable Boolean value) {
+		public final Builder allowNoJobs(@Nullable Boolean value) {
 			this.allowNoJobs = value;
 			return this;
 		}
@@ -129,7 +130,7 @@ public final class MlJobsRequest extends CatRequestBase {
 		 * <p>
 		 * API name: {@code bytes}
 		 */
-		public Builder bytes(@Nullable Bytes value) {
+		public final Builder bytes(@Nullable Bytes value) {
 			this.bytes = value;
 			return this;
 		}
@@ -139,7 +140,7 @@ public final class MlJobsRequest extends CatRequestBase {
 		 * <p>
 		 * API name: {@code job_id}
 		 */
-		public Builder jobId(@Nullable String value) {
+		public final Builder jobId(@Nullable String value) {
 			this.jobId = value;
 			return this;
 		}
@@ -151,6 +152,7 @@ public final class MlJobsRequest extends CatRequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public MlJobsRequest build() {
+			_checkSingleUse();
 
 			return new MlJobsRequest(this);
 		}
@@ -205,7 +207,7 @@ public final class MlJobsRequest extends CatRequestBase {
 					params.put("allow_no_jobs", String.valueOf(request.allowNoJobs));
 				}
 				if (request.bytes != null) {
-					params.put("bytes", request.bytes.toString());
+					params.put("bytes", request.bytes.jsonValue());
 				}
 				return params;
 

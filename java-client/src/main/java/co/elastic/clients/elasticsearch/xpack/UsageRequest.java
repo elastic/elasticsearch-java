@@ -32,6 +32,7 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.SimpleEndpoint;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.HashMap;
@@ -42,20 +43,20 @@ import javax.annotation.Nullable;
 
 // typedef: xpack.usage.Request
 
-public final class UsageRequest extends RequestBase {
+public class UsageRequest extends RequestBase {
 	@Nullable
 	private final String masterTimeout;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public UsageRequest(Builder builder) {
+	private UsageRequest(Builder builder) {
 
 		this.masterTimeout = builder.masterTimeout;
 
 	}
 
-	public UsageRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static UsageRequest of(Function<Builder, ObjectBuilder<UsageRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -64,7 +65,7 @@ public final class UsageRequest extends RequestBase {
 	 * API name: {@code master_timeout}
 	 */
 	@Nullable
-	public String masterTimeout() {
+	public final String masterTimeout() {
 		return this.masterTimeout;
 	}
 
@@ -73,7 +74,7 @@ public final class UsageRequest extends RequestBase {
 	/**
 	 * Builder for {@link UsageRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<UsageRequest> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<UsageRequest> {
 		@Nullable
 		private String masterTimeout;
 
@@ -82,7 +83,7 @@ public final class UsageRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
-		public Builder masterTimeout(@Nullable String value) {
+		public final Builder masterTimeout(@Nullable String value) {
 			this.masterTimeout = value;
 			return this;
 		}
@@ -94,6 +95,7 @@ public final class UsageRequest extends RequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public UsageRequest build() {
+			_checkSingleUse();
 
 			return new UsageRequest(this);
 		}

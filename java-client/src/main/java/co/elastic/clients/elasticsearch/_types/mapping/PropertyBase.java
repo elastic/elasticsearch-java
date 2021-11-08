@@ -31,14 +31,15 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.MapBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
@@ -47,16 +48,13 @@ import javax.annotation.Nullable;
 // typedef: _types.mapping.PropertyBase
 
 public abstract class PropertyBase implements JsonpSerializable {
-	@Nullable
 	private final Map<String, JsonData> localMetadata;
 
-	@Nullable
 	private final Map<String, String> meta;
 
 	@Nullable
 	private final String name;
 
-	@Nullable
 	private final Map<String, Property> properties;
 
 	@Nullable
@@ -65,12 +63,11 @@ public abstract class PropertyBase implements JsonpSerializable {
 	@Nullable
 	private final JsonValue /* Union(_types.mapping.DynamicMapping | internal.boolean) */ dynamic;
 
-	@Nullable
 	private final Map<String, Property> fields;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public PropertyBase(AbstractBuilder<?> builder) {
+	protected PropertyBase(AbstractBuilder<?> builder) {
 
 		this.localMetadata = ModelTypeHelper.unmodifiable(builder.localMetadata);
 		this.meta = ModelTypeHelper.unmodifiable(builder.meta);
@@ -85,16 +82,14 @@ public abstract class PropertyBase implements JsonpSerializable {
 	/**
 	 * API name: {@code local_metadata}
 	 */
-	@Nullable
-	public Map<String, JsonData> localMetadata() {
+	public final Map<String, JsonData> localMetadata() {
 		return this.localMetadata;
 	}
 
 	/**
 	 * API name: {@code meta}
 	 */
-	@Nullable
-	public Map<String, String> meta() {
+	public final Map<String, String> meta() {
 		return this.meta;
 	}
 
@@ -102,15 +97,14 @@ public abstract class PropertyBase implements JsonpSerializable {
 	 * API name: {@code name}
 	 */
 	@Nullable
-	public String name() {
+	public final String name() {
 		return this.name;
 	}
 
 	/**
 	 * API name: {@code properties}
 	 */
-	@Nullable
-	public Map<String, Property> properties() {
+	public final Map<String, Property> properties() {
 		return this.properties;
 	}
 
@@ -118,7 +112,7 @@ public abstract class PropertyBase implements JsonpSerializable {
 	 * API name: {@code ignore_above}
 	 */
 	@Nullable
-	public Integer ignoreAbove() {
+	public final Integer ignoreAbove() {
 		return this.ignoreAbove;
 	}
 
@@ -126,15 +120,14 @@ public abstract class PropertyBase implements JsonpSerializable {
 	 * API name: {@code dynamic}
 	 */
 	@Nullable
-	public JsonValue /* Union(_types.mapping.DynamicMapping | internal.boolean) */ dynamic() {
+	public final JsonValue /* Union(_types.mapping.DynamicMapping | internal.boolean) */ dynamic() {
 		return this.dynamic;
 	}
 
 	/**
 	 * API name: {@code fields}
 	 */
-	@Nullable
-	public Map<String, Property> fields() {
+	public final Map<String, Property> fields() {
 		return this.fields;
 	}
 
@@ -149,8 +142,7 @@ public abstract class PropertyBase implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (this.localMetadata != null) {
-
+		if (ModelTypeHelper.isDefined(this.localMetadata)) {
 			generator.writeKey("local_metadata");
 			generator.writeStartObject();
 			for (Map.Entry<String, JsonData> item0 : this.localMetadata.entrySet()) {
@@ -161,8 +153,7 @@ public abstract class PropertyBase implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (this.meta != null) {
-
+		if (ModelTypeHelper.isDefined(this.meta)) {
 			generator.writeKey("meta");
 			generator.writeStartObject();
 			for (Map.Entry<String, String> item0 : this.meta.entrySet()) {
@@ -174,13 +165,11 @@ public abstract class PropertyBase implements JsonpSerializable {
 
 		}
 		if (this.name != null) {
-
 			generator.writeKey("name");
 			generator.write(this.name);
 
 		}
-		if (this.properties != null) {
-
+		if (ModelTypeHelper.isDefined(this.properties)) {
 			generator.writeKey("properties");
 			generator.writeStartObject();
 			for (Map.Entry<String, Property> item0 : this.properties.entrySet()) {
@@ -192,19 +181,16 @@ public abstract class PropertyBase implements JsonpSerializable {
 
 		}
 		if (this.ignoreAbove != null) {
-
 			generator.writeKey("ignore_above");
 			generator.write(this.ignoreAbove);
 
 		}
 		if (this.dynamic != null) {
-
 			generator.writeKey("dynamic");
 			generator.write(this.dynamic);
 
 		}
-		if (this.fields != null) {
-
+		if (ModelTypeHelper.isDefined(this.fields)) {
 			generator.writeKey("fields");
 			generator.writeStartObject();
 			for (Map.Entry<String, Property> item0 : this.fields.entrySet()) {
@@ -218,7 +204,9 @@ public abstract class PropertyBase implements JsonpSerializable {
 
 	}
 
-	protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>> {
+	protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>>
+			extends
+				ObjectBuilderBase {
 		@Nullable
 		private Map<String, JsonData> localMetadata;
 
@@ -243,45 +231,23 @@ public abstract class PropertyBase implements JsonpSerializable {
 		/**
 		 * API name: {@code local_metadata}
 		 */
-		public BuilderT localMetadata(@Nullable Map<String, JsonData> value) {
+		public final BuilderT localMetadata(@Nullable Map<String, JsonData> value) {
 			this.localMetadata = value;
-			return self();
-		}
-
-		/**
-		 * Add a key/value to {@link #localMetadata(Map)}, creating the map if needed.
-		 */
-		public BuilderT putLocalMetadata(String key, JsonData value) {
-			if (this.localMetadata == null) {
-				this.localMetadata = new HashMap<>();
-			}
-			this.localMetadata.put(key, value);
 			return self();
 		}
 
 		/**
 		 * API name: {@code meta}
 		 */
-		public BuilderT meta(@Nullable Map<String, String> value) {
+		public final BuilderT meta(@Nullable Map<String, String> value) {
 			this.meta = value;
-			return self();
-		}
-
-		/**
-		 * Add a key/value to {@link #meta(Map)}, creating the map if needed.
-		 */
-		public BuilderT putMeta(String key, String value) {
-			if (this.meta == null) {
-				this.meta = new HashMap<>();
-			}
-			this.meta.put(key, value);
 			return self();
 		}
 
 		/**
 		 * API name: {@code name}
 		 */
-		public BuilderT name(@Nullable String value) {
+		public final BuilderT name(@Nullable String value) {
 			this.name = value;
 			return self();
 		}
@@ -289,19 +255,8 @@ public abstract class PropertyBase implements JsonpSerializable {
 		/**
 		 * API name: {@code properties}
 		 */
-		public BuilderT properties(@Nullable Map<String, Property> value) {
+		public final BuilderT properties(@Nullable Map<String, Property> value) {
 			this.properties = value;
-			return self();
-		}
-
-		/**
-		 * Add a key/value to {@link #properties(Map)}, creating the map if needed.
-		 */
-		public BuilderT putProperties(String key, Property value) {
-			if (this.properties == null) {
-				this.properties = new HashMap<>();
-			}
-			this.properties.put(key, value);
 			return self();
 		}
 
@@ -312,17 +267,15 @@ public abstract class PropertyBase implements JsonpSerializable {
 			return this.properties(Collections.singletonMap(key, fn.apply(new Property.Builder()).build()));
 		}
 
-		/**
-		 * Add a key/value to {@link #properties(Map)}, creating the map if needed.
-		 */
-		public BuilderT putProperties(String key, Function<Property.Builder, ObjectBuilder<Property>> fn) {
-			return this.putProperties(key, fn.apply(new Property.Builder()).build());
+		public final BuilderT properties(
+				Function<MapBuilder<String, Property, Property.Builder>, ObjectBuilder<Map<String, Property>>> fn) {
+			return properties(fn.apply(new MapBuilder<>(Property.Builder::new)).build());
 		}
 
 		/**
 		 * API name: {@code ignore_above}
 		 */
-		public BuilderT ignoreAbove(@Nullable Integer value) {
+		public final BuilderT ignoreAbove(@Nullable Integer value) {
 			this.ignoreAbove = value;
 			return self();
 		}
@@ -330,7 +283,7 @@ public abstract class PropertyBase implements JsonpSerializable {
 		/**
 		 * API name: {@code dynamic}
 		 */
-		public BuilderT dynamic(
+		public final BuilderT dynamic(
 				@Nullable JsonValue /* Union(_types.mapping.DynamicMapping | internal.boolean) */ value) {
 			this.dynamic = value;
 			return self();
@@ -339,19 +292,8 @@ public abstract class PropertyBase implements JsonpSerializable {
 		/**
 		 * API name: {@code fields}
 		 */
-		public BuilderT fields(@Nullable Map<String, Property> value) {
+		public final BuilderT fields(@Nullable Map<String, Property> value) {
 			this.fields = value;
-			return self();
-		}
-
-		/**
-		 * Add a key/value to {@link #fields(Map)}, creating the map if needed.
-		 */
-		public BuilderT putFields(String key, Property value) {
-			if (this.fields == null) {
-				this.fields = new HashMap<>();
-			}
-			this.fields.put(key, value);
 			return self();
 		}
 
@@ -362,11 +304,9 @@ public abstract class PropertyBase implements JsonpSerializable {
 			return this.fields(Collections.singletonMap(key, fn.apply(new Property.Builder()).build()));
 		}
 
-		/**
-		 * Add a key/value to {@link #fields(Map)}, creating the map if needed.
-		 */
-		public BuilderT putFields(String key, Function<Property.Builder, ObjectBuilder<Property>> fn) {
-			return this.putFields(key, fn.apply(new Property.Builder()).build());
+		public final BuilderT fields(
+				Function<MapBuilder<String, Property, Property.Builder>, ObjectBuilder<Map<String, Property>>> fn) {
+			return fields(fn.apply(new MapBuilder<>(Property.Builder::new)).build());
 		}
 
 		protected abstract BuilderT self();

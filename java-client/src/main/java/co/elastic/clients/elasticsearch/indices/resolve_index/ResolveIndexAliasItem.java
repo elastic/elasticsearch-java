@@ -32,9 +32,9 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
@@ -43,35 +43,35 @@ import javax.annotation.Nullable;
 
 // typedef: indices.resolve_index.ResolveIndexAliasItem
 @JsonpDeserializable
-public final class ResolveIndexAliasItem implements JsonpSerializable {
+public class ResolveIndexAliasItem implements JsonpSerializable {
 	private final String name;
 
 	private final List<String> indices;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public ResolveIndexAliasItem(Builder builder) {
+	private ResolveIndexAliasItem(Builder builder) {
 
-		this.name = Objects.requireNonNull(builder.name, "name");
-		this.indices = ModelTypeHelper.unmodifiableNonNull(builder.indices, "indices");
+		this.name = ModelTypeHelper.requireNonNull(builder.name, this, "name");
+		this.indices = ModelTypeHelper.unmodifiableRequired(builder.indices, this, "indices");
 
 	}
 
-	public ResolveIndexAliasItem(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ResolveIndexAliasItem of(Function<Builder, ObjectBuilder<ResolveIndexAliasItem>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code name}
 	 */
-	public String name() {
+	public final String name() {
 		return this.name;
 	}
 
 	/**
 	 * Required - API name: {@code indices}
 	 */
-	public List<String> indices() {
+	public final List<String> indices() {
 		return this.indices;
 	}
 
@@ -89,13 +89,16 @@ public final class ResolveIndexAliasItem implements JsonpSerializable {
 		generator.writeKey("name");
 		generator.write(this.name);
 
-		generator.writeKey("indices");
-		generator.writeStartArray();
-		for (String item0 : this.indices) {
-			generator.write(item0);
+		if (ModelTypeHelper.isDefined(this.indices)) {
+			generator.writeKey("indices");
+			generator.writeStartArray();
+			for (String item0 : this.indices) {
+				generator.write(item0);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
 
 	}
 
@@ -104,7 +107,7 @@ public final class ResolveIndexAliasItem implements JsonpSerializable {
 	/**
 	 * Builder for {@link ResolveIndexAliasItem}.
 	 */
-	public static class Builder implements ObjectBuilder<ResolveIndexAliasItem> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ResolveIndexAliasItem> {
 		private String name;
 
 		private List<String> indices;
@@ -112,7 +115,7 @@ public final class ResolveIndexAliasItem implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code name}
 		 */
-		public Builder name(String value) {
+		public final Builder name(String value) {
 			this.name = value;
 			return this;
 		}
@@ -120,7 +123,7 @@ public final class ResolveIndexAliasItem implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code indices}
 		 */
-		public Builder indices(List<String> value) {
+		public final Builder indices(List<String> value) {
 			this.indices = value;
 			return this;
 		}
@@ -128,19 +131,8 @@ public final class ResolveIndexAliasItem implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code indices}
 		 */
-		public Builder indices(String... value) {
+		public final Builder indices(String... value) {
 			this.indices = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #indices(List)}, creating the list if needed.
-		 */
-		public Builder addIndices(String value) {
-			if (this.indices == null) {
-				this.indices = new ArrayList<>();
-			}
-			this.indices.add(value);
 			return this;
 		}
 
@@ -151,6 +143,7 @@ public final class ResolveIndexAliasItem implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public ResolveIndexAliasItem build() {
+			_checkSingleUse();
 
 			return new ResolveIndexAliasItem(this);
 		}

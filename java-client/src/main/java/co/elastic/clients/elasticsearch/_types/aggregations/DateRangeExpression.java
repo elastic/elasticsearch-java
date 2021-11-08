@@ -31,6 +31,7 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
@@ -41,7 +42,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.DateRangeExpression
 @JsonpDeserializable
-public final class DateRangeExpression implements JsonpSerializable {
+public class DateRangeExpression implements JsonpSerializable {
 	@Nullable
 	private final JsonValue /* Union(_types.DateMath | _types.float) */ from;
 
@@ -62,7 +63,7 @@ public final class DateRangeExpression implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public DateRangeExpression(Builder builder) {
+	private DateRangeExpression(Builder builder) {
 
 		this.from = builder.from;
 		this.fromAsString = builder.fromAsString;
@@ -73,15 +74,15 @@ public final class DateRangeExpression implements JsonpSerializable {
 
 	}
 
-	public DateRangeExpression(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static DateRangeExpression of(Function<Builder, ObjectBuilder<DateRangeExpression>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * API name: {@code from}
 	 */
 	@Nullable
-	public JsonValue /* Union(_types.DateMath | _types.float) */ from() {
+	public final JsonValue /* Union(_types.DateMath | _types.float) */ from() {
 		return this.from;
 	}
 
@@ -89,7 +90,7 @@ public final class DateRangeExpression implements JsonpSerializable {
 	 * API name: {@code from_as_string}
 	 */
 	@Nullable
-	public String fromAsString() {
+	public final String fromAsString() {
 		return this.fromAsString;
 	}
 
@@ -97,7 +98,7 @@ public final class DateRangeExpression implements JsonpSerializable {
 	 * API name: {@code to_as_string}
 	 */
 	@Nullable
-	public String toAsString() {
+	public final String toAsString() {
 		return this.toAsString;
 	}
 
@@ -105,7 +106,7 @@ public final class DateRangeExpression implements JsonpSerializable {
 	 * API name: {@code key}
 	 */
 	@Nullable
-	public String key() {
+	public final String key() {
 		return this.key;
 	}
 
@@ -113,7 +114,7 @@ public final class DateRangeExpression implements JsonpSerializable {
 	 * API name: {@code to}
 	 */
 	@Nullable
-	public JsonValue /* Union(_types.DateMath | _types.float) */ to() {
+	public final JsonValue /* Union(_types.DateMath | _types.float) */ to() {
 		return this.to;
 	}
 
@@ -121,7 +122,7 @@ public final class DateRangeExpression implements JsonpSerializable {
 	 * API name: {@code doc_count}
 	 */
 	@Nullable
-	public Long docCount() {
+	public final Long docCount() {
 		return this.docCount;
 	}
 
@@ -137,37 +138,31 @@ public final class DateRangeExpression implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.from != null) {
-
 			generator.writeKey("from");
 			generator.write(this.from);
 
 		}
 		if (this.fromAsString != null) {
-
 			generator.writeKey("from_as_string");
 			generator.write(this.fromAsString);
 
 		}
 		if (this.toAsString != null) {
-
 			generator.writeKey("to_as_string");
 			generator.write(this.toAsString);
 
 		}
 		if (this.key != null) {
-
 			generator.writeKey("key");
 			generator.write(this.key);
 
 		}
 		if (this.to != null) {
-
 			generator.writeKey("to");
 			generator.write(this.to);
 
 		}
 		if (this.docCount != null) {
-
 			generator.writeKey("doc_count");
 			generator.write(this.docCount);
 
@@ -180,7 +175,7 @@ public final class DateRangeExpression implements JsonpSerializable {
 	/**
 	 * Builder for {@link DateRangeExpression}.
 	 */
-	public static class Builder implements ObjectBuilder<DateRangeExpression> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DateRangeExpression> {
 		@Nullable
 		private JsonValue /* Union(_types.DateMath | _types.float) */ from;
 
@@ -202,7 +197,7 @@ public final class DateRangeExpression implements JsonpSerializable {
 		/**
 		 * API name: {@code from}
 		 */
-		public Builder from(@Nullable JsonValue /* Union(_types.DateMath | _types.float) */ value) {
+		public final Builder from(@Nullable JsonValue /* Union(_types.DateMath | _types.float) */ value) {
 			this.from = value;
 			return this;
 		}
@@ -210,7 +205,7 @@ public final class DateRangeExpression implements JsonpSerializable {
 		/**
 		 * API name: {@code from_as_string}
 		 */
-		public Builder fromAsString(@Nullable String value) {
+		public final Builder fromAsString(@Nullable String value) {
 			this.fromAsString = value;
 			return this;
 		}
@@ -218,7 +213,7 @@ public final class DateRangeExpression implements JsonpSerializable {
 		/**
 		 * API name: {@code to_as_string}
 		 */
-		public Builder toAsString(@Nullable String value) {
+		public final Builder toAsString(@Nullable String value) {
 			this.toAsString = value;
 			return this;
 		}
@@ -226,7 +221,7 @@ public final class DateRangeExpression implements JsonpSerializable {
 		/**
 		 * API name: {@code key}
 		 */
-		public Builder key(@Nullable String value) {
+		public final Builder key(@Nullable String value) {
 			this.key = value;
 			return this;
 		}
@@ -234,7 +229,7 @@ public final class DateRangeExpression implements JsonpSerializable {
 		/**
 		 * API name: {@code to}
 		 */
-		public Builder to(@Nullable JsonValue /* Union(_types.DateMath | _types.float) */ value) {
+		public final Builder to(@Nullable JsonValue /* Union(_types.DateMath | _types.float) */ value) {
 			this.to = value;
 			return this;
 		}
@@ -242,7 +237,7 @@ public final class DateRangeExpression implements JsonpSerializable {
 		/**
 		 * API name: {@code doc_count}
 		 */
-		public Builder docCount(@Nullable Long value) {
+		public final Builder docCount(@Nullable Long value) {
 			this.docCount = value;
 			return this;
 		}
@@ -254,6 +249,7 @@ public final class DateRangeExpression implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public DateRangeExpression build() {
+			_checkSingleUse();
 
 			return new DateRangeExpression(this);
 		}

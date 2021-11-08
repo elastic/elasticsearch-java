@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -39,25 +41,25 @@ import javax.annotation.Nullable;
 
 // typedef: nodes.info.NodeInfoSettingsHttpType
 @JsonpDeserializable
-public final class NodeInfoSettingsHttpType implements JsonpSerializable {
+public class NodeInfoSettingsHttpType implements JsonpSerializable {
 	private final String default_;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public NodeInfoSettingsHttpType(Builder builder) {
+	private NodeInfoSettingsHttpType(Builder builder) {
 
-		this.default_ = Objects.requireNonNull(builder.default_, "default");
+		this.default_ = ModelTypeHelper.requireNonNull(builder.default_, this, "default_");
 
 	}
 
-	public NodeInfoSettingsHttpType(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static NodeInfoSettingsHttpType of(Function<Builder, ObjectBuilder<NodeInfoSettingsHttpType>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code default}
 	 */
-	public String default_() {
+	public final String default_() {
 		return this.default_;
 	}
 
@@ -82,13 +84,13 @@ public final class NodeInfoSettingsHttpType implements JsonpSerializable {
 	/**
 	 * Builder for {@link NodeInfoSettingsHttpType}.
 	 */
-	public static class Builder implements ObjectBuilder<NodeInfoSettingsHttpType> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodeInfoSettingsHttpType> {
 		private String default_;
 
 		/**
 		 * Required - API name: {@code default}
 		 */
-		public Builder default_(String value) {
+		public final Builder default_(String value) {
 			this.default_ = value;
 			return this;
 		}
@@ -100,6 +102,7 @@ public final class NodeInfoSettingsHttpType implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public NodeInfoSettingsHttpType build() {
+			_checkSingleUse();
 
 			return new NodeInfoSettingsHttpType(this);
 		}

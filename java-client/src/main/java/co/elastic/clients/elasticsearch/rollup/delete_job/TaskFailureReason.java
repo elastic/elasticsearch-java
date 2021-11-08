@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -39,35 +41,35 @@ import javax.annotation.Nullable;
 
 // typedef: rollup.delete_job.TaskFailureReason
 @JsonpDeserializable
-public final class TaskFailureReason implements JsonpSerializable {
+public class TaskFailureReason implements JsonpSerializable {
 	private final String type;
 
 	private final String reason;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public TaskFailureReason(Builder builder) {
+	private TaskFailureReason(Builder builder) {
 
-		this.type = Objects.requireNonNull(builder.type, "type");
-		this.reason = Objects.requireNonNull(builder.reason, "reason");
+		this.type = ModelTypeHelper.requireNonNull(builder.type, this, "type");
+		this.reason = ModelTypeHelper.requireNonNull(builder.reason, this, "reason");
 
 	}
 
-	public TaskFailureReason(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static TaskFailureReason of(Function<Builder, ObjectBuilder<TaskFailureReason>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code type}
 	 */
-	public String type() {
+	public final String type() {
 		return this.type;
 	}
 
 	/**
 	 * Required - API name: {@code reason}
 	 */
-	public String reason() {
+	public final String reason() {
 		return this.reason;
 	}
 
@@ -95,7 +97,7 @@ public final class TaskFailureReason implements JsonpSerializable {
 	/**
 	 * Builder for {@link TaskFailureReason}.
 	 */
-	public static class Builder implements ObjectBuilder<TaskFailureReason> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TaskFailureReason> {
 		private String type;
 
 		private String reason;
@@ -103,7 +105,7 @@ public final class TaskFailureReason implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code type}
 		 */
-		public Builder type(String value) {
+		public final Builder type(String value) {
 			this.type = value;
 			return this;
 		}
@@ -111,7 +113,7 @@ public final class TaskFailureReason implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code reason}
 		 */
-		public Builder reason(String value) {
+		public final Builder reason(String value) {
 			this.reason = value;
 			return this;
 		}
@@ -123,6 +125,7 @@ public final class TaskFailureReason implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public TaskFailureReason build() {
+			_checkSingleUse();
 
 			return new TaskFailureReason(this);
 		}

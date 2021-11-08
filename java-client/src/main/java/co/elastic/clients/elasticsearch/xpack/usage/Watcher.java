@@ -29,6 +29,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
@@ -37,7 +38,7 @@ import javax.annotation.Nullable;
 
 // typedef: xpack.usage.Watcher
 @JsonpDeserializable
-public final class Watcher extends Base {
+public class Watcher extends Base {
 	private final WatcherActions execution;
 
 	private final WatcherWatch watch;
@@ -46,44 +47,43 @@ public final class Watcher extends Base {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public Watcher(Builder builder) {
+	private Watcher(Builder builder) {
 		super(builder);
 
-		this.execution = Objects.requireNonNull(builder.execution, "execution");
-		this.watch = Objects.requireNonNull(builder.watch, "watch");
-		this.count = Objects.requireNonNull(builder.count, "count");
+		this.execution = ModelTypeHelper.requireNonNull(builder.execution, this, "execution");
+		this.watch = ModelTypeHelper.requireNonNull(builder.watch, this, "watch");
+		this.count = ModelTypeHelper.requireNonNull(builder.count, this, "count");
 
 	}
 
-	public Watcher(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static Watcher of(Function<Builder, ObjectBuilder<Watcher>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code execution}
 	 */
-	public WatcherActions execution() {
+	public final WatcherActions execution() {
 		return this.execution;
 	}
 
 	/**
 	 * Required - API name: {@code watch}
 	 */
-	public WatcherWatch watch() {
+	public final WatcherWatch watch() {
 		return this.watch;
 	}
 
 	/**
 	 * Required - API name: {@code count}
 	 */
-	public Counter count() {
+	public final Counter count() {
 		return this.count;
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
-
 		generator.writeKey("execution");
 		this.execution.serialize(generator, mapper);
 
@@ -110,7 +110,7 @@ public final class Watcher extends Base {
 		/**
 		 * Required - API name: {@code execution}
 		 */
-		public Builder execution(WatcherActions value) {
+		public final Builder execution(WatcherActions value) {
 			this.execution = value;
 			return this;
 		}
@@ -118,14 +118,14 @@ public final class Watcher extends Base {
 		/**
 		 * Required - API name: {@code execution}
 		 */
-		public Builder execution(Function<WatcherActions.Builder, ObjectBuilder<WatcherActions>> fn) {
+		public final Builder execution(Function<WatcherActions.Builder, ObjectBuilder<WatcherActions>> fn) {
 			return this.execution(fn.apply(new WatcherActions.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code watch}
 		 */
-		public Builder watch(WatcherWatch value) {
+		public final Builder watch(WatcherWatch value) {
 			this.watch = value;
 			return this;
 		}
@@ -133,14 +133,14 @@ public final class Watcher extends Base {
 		/**
 		 * Required - API name: {@code watch}
 		 */
-		public Builder watch(Function<WatcherWatch.Builder, ObjectBuilder<WatcherWatch>> fn) {
+		public final Builder watch(Function<WatcherWatch.Builder, ObjectBuilder<WatcherWatch>> fn) {
 			return this.watch(fn.apply(new WatcherWatch.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code count}
 		 */
-		public Builder count(Counter value) {
+		public final Builder count(Counter value) {
 			this.count = value;
 			return this;
 		}
@@ -148,7 +148,7 @@ public final class Watcher extends Base {
 		/**
 		 * Required - API name: {@code count}
 		 */
-		public Builder count(Function<Counter.Builder, ObjectBuilder<Counter>> fn) {
+		public final Builder count(Function<Counter.Builder, ObjectBuilder<Counter>> fn) {
 			return this.count(fn.apply(new Counter.Builder()).build());
 		}
 
@@ -164,6 +164,7 @@ public final class Watcher extends Base {
 		 *             if some of the required fields are null.
 		 */
 		public Watcher build() {
+			_checkSingleUse();
 
 			return new Watcher(this);
 		}

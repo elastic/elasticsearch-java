@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;
@@ -38,25 +40,25 @@ import javax.annotation.Nullable;
 
 // typedef: ml.revert_model_snapshot.Response
 @JsonpDeserializable
-public final class RevertModelSnapshotResponse implements JsonpSerializable {
+public class RevertModelSnapshotResponse implements JsonpSerializable {
 	private final ModelSnapshot model;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public RevertModelSnapshotResponse(Builder builder) {
+	private RevertModelSnapshotResponse(Builder builder) {
 
-		this.model = Objects.requireNonNull(builder.model, "model");
+		this.model = ModelTypeHelper.requireNonNull(builder.model, this, "model");
 
 	}
 
-	public RevertModelSnapshotResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static RevertModelSnapshotResponse of(Function<Builder, ObjectBuilder<RevertModelSnapshotResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code model}
 	 */
-	public ModelSnapshot model() {
+	public final ModelSnapshot model() {
 		return this.model;
 	}
 
@@ -81,13 +83,13 @@ public final class RevertModelSnapshotResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link RevertModelSnapshotResponse}.
 	 */
-	public static class Builder implements ObjectBuilder<RevertModelSnapshotResponse> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RevertModelSnapshotResponse> {
 		private ModelSnapshot model;
 
 		/**
 		 * Required - API name: {@code model}
 		 */
-		public Builder model(ModelSnapshot value) {
+		public final Builder model(ModelSnapshot value) {
 			this.model = value;
 			return this;
 		}
@@ -95,7 +97,7 @@ public final class RevertModelSnapshotResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code model}
 		 */
-		public Builder model(Function<ModelSnapshot.Builder, ObjectBuilder<ModelSnapshot>> fn) {
+		public final Builder model(Function<ModelSnapshot.Builder, ObjectBuilder<ModelSnapshot>> fn) {
 			return this.model(fn.apply(new ModelSnapshot.Builder()).build());
 		}
 
@@ -106,6 +108,7 @@ public final class RevertModelSnapshotResponse implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public RevertModelSnapshotResponse build() {
+			_checkSingleUse();
 
 			return new RevertModelSnapshotResponse(this);
 		}

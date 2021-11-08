@@ -32,15 +32,15 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.MapBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -49,13 +49,12 @@ import javax.annotation.Nullable;
 
 // typedef: ml._types.DataframeAnalyticsSource
 @JsonpDeserializable
-public final class DataframeAnalyticsSource implements JsonpSerializable {
+public class DataframeAnalyticsSource implements JsonpSerializable {
 	private final List<String> index;
 
 	@Nullable
 	private final Query query;
 
-	@Nullable
 	private final Map<String, RuntimeField> runtimeMappings;
 
 	@Nullable
@@ -63,17 +62,17 @@ public final class DataframeAnalyticsSource implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public DataframeAnalyticsSource(Builder builder) {
+	private DataframeAnalyticsSource(Builder builder) {
 
-		this.index = ModelTypeHelper.unmodifiableNonNull(builder.index, "index");
+		this.index = ModelTypeHelper.unmodifiableRequired(builder.index, this, "index");
 		this.query = builder.query;
 		this.runtimeMappings = ModelTypeHelper.unmodifiable(builder.runtimeMappings);
 		this.source = builder.source;
 
 	}
 
-	public DataframeAnalyticsSource(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static DataframeAnalyticsSource of(Function<Builder, ObjectBuilder<DataframeAnalyticsSource>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -84,7 +83,7 @@ public final class DataframeAnalyticsSource implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code index}
 	 */
-	public List<String> index() {
+	public final List<String> index() {
 		return this.index;
 	}
 
@@ -98,7 +97,7 @@ public final class DataframeAnalyticsSource implements JsonpSerializable {
 	 * API name: {@code query}
 	 */
 	@Nullable
-	public Query query() {
+	public final Query query() {
 		return this.query;
 	}
 
@@ -108,8 +107,7 @@ public final class DataframeAnalyticsSource implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code runtime_mappings}
 	 */
-	@Nullable
-	public Map<String, RuntimeField> runtimeMappings() {
+	public final Map<String, RuntimeField> runtimeMappings() {
 		return this.runtimeMappings;
 	}
 
@@ -121,7 +119,7 @@ public final class DataframeAnalyticsSource implements JsonpSerializable {
 	 * API name: {@code _source}
 	 */
 	@Nullable
-	public JsonValue /* ml._types.DataframeAnalysisAnalyzedFields */ source() {
+	public final JsonValue /* ml._types.DataframeAnalysisAnalyzedFields */ source() {
 		return this.source;
 	}
 
@@ -136,22 +134,22 @@ public final class DataframeAnalyticsSource implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("index");
-		generator.writeStartArray();
-		for (String item0 : this.index) {
-			generator.write(item0);
+		if (ModelTypeHelper.isDefined(this.index)) {
+			generator.writeKey("index");
+			generator.writeStartArray();
+			for (String item0 : this.index) {
+				generator.write(item0);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
-
 		if (this.query != null) {
-
 			generator.writeKey("query");
 			this.query.serialize(generator, mapper);
 
 		}
-		if (this.runtimeMappings != null) {
-
+		if (ModelTypeHelper.isDefined(this.runtimeMappings)) {
 			generator.writeKey("runtime_mappings");
 			generator.writeStartObject();
 			for (Map.Entry<String, RuntimeField> item0 : this.runtimeMappings.entrySet()) {
@@ -163,7 +161,6 @@ public final class DataframeAnalyticsSource implements JsonpSerializable {
 
 		}
 		if (this.source != null) {
-
 			generator.writeKey("_source");
 			generator.write(this.source);
 
@@ -176,7 +173,7 @@ public final class DataframeAnalyticsSource implements JsonpSerializable {
 	/**
 	 * Builder for {@link DataframeAnalyticsSource}.
 	 */
-	public static class Builder implements ObjectBuilder<DataframeAnalyticsSource> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DataframeAnalyticsSource> {
 		private List<String> index;
 
 		@Nullable
@@ -196,7 +193,7 @@ public final class DataframeAnalyticsSource implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code index}
 		 */
-		public Builder index(List<String> value) {
+		public final Builder index(List<String> value) {
 			this.index = value;
 			return this;
 		}
@@ -209,19 +206,8 @@ public final class DataframeAnalyticsSource implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code index}
 		 */
-		public Builder index(String... value) {
+		public final Builder index(String... value) {
 			this.index = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #index(List)}, creating the list if needed.
-		 */
-		public Builder addIndex(String value) {
-			if (this.index == null) {
-				this.index = new ArrayList<>();
-			}
-			this.index.add(value);
 			return this;
 		}
 
@@ -234,7 +220,7 @@ public final class DataframeAnalyticsSource implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code query}
 		 */
-		public Builder query(@Nullable Query value) {
+		public final Builder query(@Nullable Query value) {
 			this.query = value;
 			return this;
 		}
@@ -248,7 +234,7 @@ public final class DataframeAnalyticsSource implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code query}
 		 */
-		public Builder query(Function<Query.Builder, ObjectBuilder<Query>> fn) {
+		public final Builder query(Function<Query.Builder, ObjectBuilder<Query>> fn) {
 			return this.query(fn.apply(new Query.Builder()).build());
 		}
 
@@ -258,19 +244,8 @@ public final class DataframeAnalyticsSource implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code runtime_mappings}
 		 */
-		public Builder runtimeMappings(@Nullable Map<String, RuntimeField> value) {
+		public final Builder runtimeMappings(@Nullable Map<String, RuntimeField> value) {
 			this.runtimeMappings = value;
-			return this;
-		}
-
-		/**
-		 * Add a key/value to {@link #runtimeMappings(Map)}, creating the map if needed.
-		 */
-		public Builder putRuntimeMappings(String key, RuntimeField value) {
-			if (this.runtimeMappings == null) {
-				this.runtimeMappings = new HashMap<>();
-			}
-			this.runtimeMappings.put(key, value);
 			return this;
 		}
 
@@ -281,11 +256,9 @@ public final class DataframeAnalyticsSource implements JsonpSerializable {
 			return this.runtimeMappings(Collections.singletonMap(key, fn.apply(new RuntimeField.Builder()).build()));
 		}
 
-		/**
-		 * Add a key/value to {@link #runtimeMappings(Map)}, creating the map if needed.
-		 */
-		public Builder putRuntimeMappings(String key, Function<RuntimeField.Builder, ObjectBuilder<RuntimeField>> fn) {
-			return this.putRuntimeMappings(key, fn.apply(new RuntimeField.Builder()).build());
+		public final Builder runtimeMappings(
+				Function<MapBuilder<String, RuntimeField, RuntimeField.Builder>, ObjectBuilder<Map<String, RuntimeField>>> fn) {
+			return runtimeMappings(fn.apply(new MapBuilder<>(RuntimeField.Builder::new)).build());
 		}
 
 		/**
@@ -295,7 +268,7 @@ public final class DataframeAnalyticsSource implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code _source}
 		 */
-		public Builder source(@Nullable JsonValue /* ml._types.DataframeAnalysisAnalyzedFields */ value) {
+		public final Builder source(@Nullable JsonValue /* ml._types.DataframeAnalysisAnalyzedFields */ value) {
 			this.source = value;
 			return this;
 		}
@@ -307,6 +280,7 @@ public final class DataframeAnalyticsSource implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public DataframeAnalyticsSource build() {
+			_checkSingleUse();
 
 			return new DataframeAnalyticsSource(this);
 		}

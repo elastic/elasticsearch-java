@@ -41,20 +41,20 @@ import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.MultiTermsAggregation
 @JsonpDeserializable
-public final class MultiTermsAggregation extends BucketAggregationBase implements AggregationVariant {
+public class MultiTermsAggregation extends BucketAggregationBase implements AggregationVariant {
 	private final List<MultiTermLookup> terms;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public MultiTermsAggregation(Builder builder) {
+	private MultiTermsAggregation(Builder builder) {
 		super(builder);
 
-		this.terms = ModelTypeHelper.unmodifiableNonNull(builder.terms, "terms");
+		this.terms = ModelTypeHelper.unmodifiableRequired(builder.terms, this, "terms");
 
 	}
 
-	public MultiTermsAggregation(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static MultiTermsAggregation of(Function<Builder, ObjectBuilder<MultiTermsAggregation>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -68,21 +68,23 @@ public final class MultiTermsAggregation extends BucketAggregationBase implement
 	/**
 	 * Required - API name: {@code terms}
 	 */
-	public List<MultiTermLookup> terms() {
+	public final List<MultiTermLookup> terms() {
 		return this.terms;
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
+		if (ModelTypeHelper.isDefined(this.terms)) {
+			generator.writeKey("terms");
+			generator.writeStartArray();
+			for (MultiTermLookup item0 : this.terms) {
+				item0.serialize(generator, mapper);
 
-		generator.writeKey("terms");
-		generator.writeStartArray();
-		for (MultiTermLookup item0 : this.terms) {
-			item0.serialize(generator, mapper);
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
 
 	}
 
@@ -99,7 +101,7 @@ public final class MultiTermsAggregation extends BucketAggregationBase implement
 		/**
 		 * Required - API name: {@code terms}
 		 */
-		public Builder terms(List<MultiTermLookup> value) {
+		public final Builder terms(List<MultiTermLookup> value) {
 			this.terms = value;
 			return this;
 		}
@@ -107,34 +109,21 @@ public final class MultiTermsAggregation extends BucketAggregationBase implement
 		/**
 		 * Required - API name: {@code terms}
 		 */
-		public Builder terms(MultiTermLookup... value) {
+		public final Builder terms(MultiTermLookup... value) {
 			this.terms = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #terms(List)}, creating the list if needed.
+		 * Required - API name: {@code terms}
 		 */
-		public Builder addTerms(MultiTermLookup value) {
-			if (this.terms == null) {
-				this.terms = new ArrayList<>();
+		@SafeVarargs
+		public final Builder terms(Function<MultiTermLookup.Builder, ObjectBuilder<MultiTermLookup>>... fns) {
+			this.terms = new ArrayList<>(fns.length);
+			for (Function<MultiTermLookup.Builder, ObjectBuilder<MultiTermLookup>> fn : fns) {
+				this.terms.add(fn.apply(new MultiTermLookup.Builder()).build());
 			}
-			this.terms.add(value);
 			return this;
-		}
-
-		/**
-		 * Set {@link #terms(List)} to a singleton list.
-		 */
-		public Builder terms(Function<MultiTermLookup.Builder, ObjectBuilder<MultiTermLookup>> fn) {
-			return this.terms(fn.apply(new MultiTermLookup.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #terms(List)}, creating the list if needed.
-		 */
-		public Builder addTerms(Function<MultiTermLookup.Builder, ObjectBuilder<MultiTermLookup>> fn) {
-			return this.addTerms(fn.apply(new MultiTermLookup.Builder()).build());
 		}
 
 		@Override
@@ -149,6 +138,7 @@ public final class MultiTermsAggregation extends BucketAggregationBase implement
 		 *             if some of the required fields are null.
 		 */
 		public MultiTermsAggregation build() {
+			_checkSingleUse();
 
 			return new MultiTermsAggregation(this);
 		}

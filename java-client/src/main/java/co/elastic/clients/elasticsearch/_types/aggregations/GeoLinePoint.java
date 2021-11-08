@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -39,25 +41,25 @@ import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.GeoLinePoint
 @JsonpDeserializable
-public final class GeoLinePoint implements JsonpSerializable {
+public class GeoLinePoint implements JsonpSerializable {
 	private final String field;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public GeoLinePoint(Builder builder) {
+	private GeoLinePoint(Builder builder) {
 
-		this.field = Objects.requireNonNull(builder.field, "field");
+		this.field = ModelTypeHelper.requireNonNull(builder.field, this, "field");
 
 	}
 
-	public GeoLinePoint(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static GeoLinePoint of(Function<Builder, ObjectBuilder<GeoLinePoint>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code field}
 	 */
-	public String field() {
+	public final String field() {
 		return this.field;
 	}
 
@@ -82,13 +84,13 @@ public final class GeoLinePoint implements JsonpSerializable {
 	/**
 	 * Builder for {@link GeoLinePoint}.
 	 */
-	public static class Builder implements ObjectBuilder<GeoLinePoint> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GeoLinePoint> {
 		private String field;
 
 		/**
 		 * Required - API name: {@code field}
 		 */
-		public Builder field(String value) {
+		public final Builder field(String value) {
 			this.field = value;
 			return this;
 		}
@@ -100,6 +102,7 @@ public final class GeoLinePoint implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public GeoLinePoint build() {
+			_checkSingleUse();
 
 			return new GeoLinePoint(this);
 		}

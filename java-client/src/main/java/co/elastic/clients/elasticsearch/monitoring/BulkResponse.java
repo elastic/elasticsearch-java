@@ -31,7 +31,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Long;
@@ -41,7 +43,7 @@ import javax.annotation.Nullable;
 
 // typedef: monitoring.bulk.Response
 @JsonpDeserializable
-public final class BulkResponse implements JsonpSerializable {
+public class BulkResponse implements JsonpSerializable {
 	@Nullable
 	private final ErrorCause error;
 
@@ -53,24 +55,24 @@ public final class BulkResponse implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public BulkResponse(Builder builder) {
+	private BulkResponse(Builder builder) {
 
 		this.error = builder.error;
-		this.errors = Objects.requireNonNull(builder.errors, "errors");
-		this.ignored = Objects.requireNonNull(builder.ignored, "ignored");
-		this.took = Objects.requireNonNull(builder.took, "took");
+		this.errors = ModelTypeHelper.requireNonNull(builder.errors, this, "errors");
+		this.ignored = ModelTypeHelper.requireNonNull(builder.ignored, this, "ignored");
+		this.took = ModelTypeHelper.requireNonNull(builder.took, this, "took");
 
 	}
 
-	public BulkResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static BulkResponse of(Function<Builder, ObjectBuilder<BulkResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * API name: {@code error}
 	 */
 	@Nullable
-	public ErrorCause error() {
+	public final ErrorCause error() {
 		return this.error;
 	}
 
@@ -79,7 +81,7 @@ public final class BulkResponse implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code errors}
 	 */
-	public boolean errors() {
+	public final boolean errors() {
 		return this.errors;
 	}
 
@@ -88,14 +90,14 @@ public final class BulkResponse implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code ignored}
 	 */
-	public boolean ignored() {
+	public final boolean ignored() {
 		return this.ignored;
 	}
 
 	/**
 	 * Required - API name: {@code took}
 	 */
-	public long took() {
+	public final long took() {
 		return this.took;
 	}
 
@@ -111,12 +113,10 @@ public final class BulkResponse implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.error != null) {
-
 			generator.writeKey("error");
 			this.error.serialize(generator, mapper);
 
 		}
-
 		generator.writeKey("errors");
 		generator.write(this.errors);
 
@@ -133,7 +133,7 @@ public final class BulkResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link BulkResponse}.
 	 */
-	public static class Builder implements ObjectBuilder<BulkResponse> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<BulkResponse> {
 		@Nullable
 		private ErrorCause error;
 
@@ -146,7 +146,7 @@ public final class BulkResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code error}
 		 */
-		public Builder error(@Nullable ErrorCause value) {
+		public final Builder error(@Nullable ErrorCause value) {
 			this.error = value;
 			return this;
 		}
@@ -154,7 +154,7 @@ public final class BulkResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code error}
 		 */
-		public Builder error(Function<ErrorCause.Builder, ObjectBuilder<ErrorCause>> fn) {
+		public final Builder error(Function<ErrorCause.Builder, ObjectBuilder<ErrorCause>> fn) {
 			return this.error(fn.apply(new ErrorCause.Builder()).build());
 		}
 
@@ -163,7 +163,7 @@ public final class BulkResponse implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code errors}
 		 */
-		public Builder errors(boolean value) {
+		public final Builder errors(boolean value) {
 			this.errors = value;
 			return this;
 		}
@@ -173,7 +173,7 @@ public final class BulkResponse implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code ignored}
 		 */
-		public Builder ignored(boolean value) {
+		public final Builder ignored(boolean value) {
 			this.ignored = value;
 			return this;
 		}
@@ -181,7 +181,7 @@ public final class BulkResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code took}
 		 */
-		public Builder took(long value) {
+		public final Builder took(long value) {
 			this.took = value;
 			return this;
 		}
@@ -193,6 +193,7 @@ public final class BulkResponse implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public BulkResponse build() {
+			_checkSingleUse();
 
 			return new BulkResponse(this);
 		}

@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;
@@ -38,35 +40,36 @@ import javax.annotation.Nullable;
 
 // typedef: cluster.stats.ClusterProcess
 @JsonpDeserializable
-public final class ClusterProcess implements JsonpSerializable {
+public class ClusterProcess implements JsonpSerializable {
 	private final ClusterProcessCpu cpu;
 
 	private final ClusterProcessOpenFileDescriptors openFileDescriptors;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public ClusterProcess(Builder builder) {
+	private ClusterProcess(Builder builder) {
 
-		this.cpu = Objects.requireNonNull(builder.cpu, "cpu");
-		this.openFileDescriptors = Objects.requireNonNull(builder.openFileDescriptors, "open_file_descriptors");
+		this.cpu = ModelTypeHelper.requireNonNull(builder.cpu, this, "cpu");
+		this.openFileDescriptors = ModelTypeHelper.requireNonNull(builder.openFileDescriptors, this,
+				"openFileDescriptors");
 
 	}
 
-	public ClusterProcess(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ClusterProcess of(Function<Builder, ObjectBuilder<ClusterProcess>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code cpu}
 	 */
-	public ClusterProcessCpu cpu() {
+	public final ClusterProcessCpu cpu() {
 		return this.cpu;
 	}
 
 	/**
 	 * Required - API name: {@code open_file_descriptors}
 	 */
-	public ClusterProcessOpenFileDescriptors openFileDescriptors() {
+	public final ClusterProcessOpenFileDescriptors openFileDescriptors() {
 		return this.openFileDescriptors;
 	}
 
@@ -94,7 +97,7 @@ public final class ClusterProcess implements JsonpSerializable {
 	/**
 	 * Builder for {@link ClusterProcess}.
 	 */
-	public static class Builder implements ObjectBuilder<ClusterProcess> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ClusterProcess> {
 		private ClusterProcessCpu cpu;
 
 		private ClusterProcessOpenFileDescriptors openFileDescriptors;
@@ -102,7 +105,7 @@ public final class ClusterProcess implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code cpu}
 		 */
-		public Builder cpu(ClusterProcessCpu value) {
+		public final Builder cpu(ClusterProcessCpu value) {
 			this.cpu = value;
 			return this;
 		}
@@ -110,14 +113,14 @@ public final class ClusterProcess implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code cpu}
 		 */
-		public Builder cpu(Function<ClusterProcessCpu.Builder, ObjectBuilder<ClusterProcessCpu>> fn) {
+		public final Builder cpu(Function<ClusterProcessCpu.Builder, ObjectBuilder<ClusterProcessCpu>> fn) {
 			return this.cpu(fn.apply(new ClusterProcessCpu.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code open_file_descriptors}
 		 */
-		public Builder openFileDescriptors(ClusterProcessOpenFileDescriptors value) {
+		public final Builder openFileDescriptors(ClusterProcessOpenFileDescriptors value) {
 			this.openFileDescriptors = value;
 			return this;
 		}
@@ -125,7 +128,7 @@ public final class ClusterProcess implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code open_file_descriptors}
 		 */
-		public Builder openFileDescriptors(
+		public final Builder openFileDescriptors(
 				Function<ClusterProcessOpenFileDescriptors.Builder, ObjectBuilder<ClusterProcessOpenFileDescriptors>> fn) {
 			return this.openFileDescriptors(fn.apply(new ClusterProcessOpenFileDescriptors.Builder()).build());
 		}
@@ -137,6 +140,7 @@ public final class ClusterProcess implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public ClusterProcess build() {
+			_checkSingleUse();
 
 			return new ClusterProcess(this);
 		}

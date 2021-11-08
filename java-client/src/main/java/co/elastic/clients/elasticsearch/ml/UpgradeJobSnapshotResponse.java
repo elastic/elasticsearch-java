@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
@@ -40,22 +42,22 @@ import javax.annotation.Nullable;
 
 // typedef: ml.upgrade_job_snapshot.Response
 @JsonpDeserializable
-public final class UpgradeJobSnapshotResponse implements JsonpSerializable {
+public class UpgradeJobSnapshotResponse implements JsonpSerializable {
 	private final String node;
 
 	private final boolean completed;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public UpgradeJobSnapshotResponse(Builder builder) {
+	private UpgradeJobSnapshotResponse(Builder builder) {
 
-		this.node = Objects.requireNonNull(builder.node, "node");
-		this.completed = Objects.requireNonNull(builder.completed, "completed");
+		this.node = ModelTypeHelper.requireNonNull(builder.node, this, "node");
+		this.completed = ModelTypeHelper.requireNonNull(builder.completed, this, "completed");
 
 	}
 
-	public UpgradeJobSnapshotResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static UpgradeJobSnapshotResponse of(Function<Builder, ObjectBuilder<UpgradeJobSnapshotResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -64,7 +66,7 @@ public final class UpgradeJobSnapshotResponse implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code node}
 	 */
-	public String node() {
+	public final String node() {
 		return this.node;
 	}
 
@@ -74,7 +76,7 @@ public final class UpgradeJobSnapshotResponse implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code completed}
 	 */
-	public boolean completed() {
+	public final boolean completed() {
 		return this.completed;
 	}
 
@@ -102,7 +104,7 @@ public final class UpgradeJobSnapshotResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link UpgradeJobSnapshotResponse}.
 	 */
-	public static class Builder implements ObjectBuilder<UpgradeJobSnapshotResponse> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<UpgradeJobSnapshotResponse> {
 		private String node;
 
 		private Boolean completed;
@@ -113,7 +115,7 @@ public final class UpgradeJobSnapshotResponse implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code node}
 		 */
-		public Builder node(String value) {
+		public final Builder node(String value) {
 			this.node = value;
 			return this;
 		}
@@ -124,7 +126,7 @@ public final class UpgradeJobSnapshotResponse implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code completed}
 		 */
-		public Builder completed(boolean value) {
+		public final Builder completed(boolean value) {
 			this.completed = value;
 			return this;
 		}
@@ -136,6 +138,7 @@ public final class UpgradeJobSnapshotResponse implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public UpgradeJobSnapshotResponse build() {
+			_checkSingleUse();
 
 			return new UpgradeJobSnapshotResponse(this);
 		}

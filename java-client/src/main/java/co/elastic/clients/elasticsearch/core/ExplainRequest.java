@@ -39,11 +39,11 @@ import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.SimpleEndpoint;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -55,14 +55,12 @@ import javax.annotation.Nullable;
 
 // typedef: _global.explain.Request
 @JsonpDeserializable
-public final class ExplainRequest extends RequestBase implements JsonpSerializable {
+public class ExplainRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
 	private final JsonValue /* Union(_types.Fields | internal.boolean) */ source;
 
-	@Nullable
 	private final List<String> sourceExcludes;
 
-	@Nullable
 	private final List<String> sourceIncludes;
 
 	@Nullable
@@ -96,7 +94,6 @@ public final class ExplainRequest extends RequestBase implements JsonpSerializab
 	@Nullable
 	private final String routing;
 
-	@Nullable
 	private final List<String> storedFields;
 
 	@Nullable
@@ -104,7 +101,7 @@ public final class ExplainRequest extends RequestBase implements JsonpSerializab
 
 	// ---------------------------------------------------------------------------------------------
 
-	public ExplainRequest(Builder builder) {
+	private ExplainRequest(Builder builder) {
 
 		this.source = builder.source;
 		this.sourceExcludes = ModelTypeHelper.unmodifiable(builder.sourceExcludes);
@@ -113,8 +110,8 @@ public final class ExplainRequest extends RequestBase implements JsonpSerializab
 		this.analyzer = builder.analyzer;
 		this.defaultOperator = builder.defaultOperator;
 		this.df = builder.df;
-		this.id = Objects.requireNonNull(builder.id, "id");
-		this.index = Objects.requireNonNull(builder.index, "index");
+		this.id = ModelTypeHelper.requireNonNull(builder.id, this, "id");
+		this.index = ModelTypeHelper.requireNonNull(builder.index, this, "index");
 		this.lenient = builder.lenient;
 		this.preference = builder.preference;
 		this.q = builder.q;
@@ -125,8 +122,8 @@ public final class ExplainRequest extends RequestBase implements JsonpSerializab
 
 	}
 
-	public ExplainRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ExplainRequest of(Function<Builder, ObjectBuilder<ExplainRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -136,7 +133,7 @@ public final class ExplainRequest extends RequestBase implements JsonpSerializab
 	 * API name: {@code _source}
 	 */
 	@Nullable
-	public JsonValue /* Union(_types.Fields | internal.boolean) */ source() {
+	public final JsonValue /* Union(_types.Fields | internal.boolean) */ source() {
 		return this.source;
 	}
 
@@ -145,8 +142,7 @@ public final class ExplainRequest extends RequestBase implements JsonpSerializab
 	 * <p>
 	 * API name: {@code _source_excludes}
 	 */
-	@Nullable
-	public List<String> sourceExcludes() {
+	public final List<String> sourceExcludes() {
 		return this.sourceExcludes;
 	}
 
@@ -155,8 +151,7 @@ public final class ExplainRequest extends RequestBase implements JsonpSerializab
 	 * <p>
 	 * API name: {@code _source_includes}
 	 */
-	@Nullable
-	public List<String> sourceIncludes() {
+	public final List<String> sourceIncludes() {
 		return this.sourceIncludes;
 	}
 
@@ -167,7 +162,7 @@ public final class ExplainRequest extends RequestBase implements JsonpSerializab
 	 * API name: {@code analyze_wildcard}
 	 */
 	@Nullable
-	public Boolean analyzeWildcard() {
+	public final Boolean analyzeWildcard() {
 		return this.analyzeWildcard;
 	}
 
@@ -177,7 +172,7 @@ public final class ExplainRequest extends RequestBase implements JsonpSerializab
 	 * API name: {@code analyzer}
 	 */
 	@Nullable
-	public String analyzer() {
+	public final String analyzer() {
 		return this.analyzer;
 	}
 
@@ -187,7 +182,7 @@ public final class ExplainRequest extends RequestBase implements JsonpSerializab
 	 * API name: {@code default_operator}
 	 */
 	@Nullable
-	public DefaultOperator defaultOperator() {
+	public final DefaultOperator defaultOperator() {
 		return this.defaultOperator;
 	}
 
@@ -197,7 +192,7 @@ public final class ExplainRequest extends RequestBase implements JsonpSerializab
 	 * API name: {@code df}
 	 */
 	@Nullable
-	public String df() {
+	public final String df() {
 		return this.df;
 	}
 
@@ -206,7 +201,7 @@ public final class ExplainRequest extends RequestBase implements JsonpSerializab
 	 * <p>
 	 * API name: {@code id}
 	 */
-	public String id() {
+	public final String id() {
 		return this.id;
 	}
 
@@ -215,7 +210,7 @@ public final class ExplainRequest extends RequestBase implements JsonpSerializab
 	 * <p>
 	 * API name: {@code index}
 	 */
-	public String index() {
+	public final String index() {
 		return this.index;
 	}
 
@@ -226,7 +221,7 @@ public final class ExplainRequest extends RequestBase implements JsonpSerializab
 	 * API name: {@code lenient}
 	 */
 	@Nullable
-	public Boolean lenient() {
+	public final Boolean lenient() {
 		return this.lenient;
 	}
 
@@ -237,7 +232,7 @@ public final class ExplainRequest extends RequestBase implements JsonpSerializab
 	 * API name: {@code preference}
 	 */
 	@Nullable
-	public String preference() {
+	public final String preference() {
 		return this.preference;
 	}
 
@@ -247,7 +242,7 @@ public final class ExplainRequest extends RequestBase implements JsonpSerializab
 	 * API name: {@code q}
 	 */
 	@Nullable
-	public String q() {
+	public final String q() {
 		return this.q;
 	}
 
@@ -255,7 +250,7 @@ public final class ExplainRequest extends RequestBase implements JsonpSerializab
 	 * API name: {@code query}
 	 */
 	@Nullable
-	public Query query() {
+	public final Query query() {
 		return this.query;
 	}
 
@@ -265,7 +260,7 @@ public final class ExplainRequest extends RequestBase implements JsonpSerializab
 	 * API name: {@code routing}
 	 */
 	@Nullable
-	public String routing() {
+	public final String routing() {
 		return this.routing;
 	}
 
@@ -274,8 +269,7 @@ public final class ExplainRequest extends RequestBase implements JsonpSerializab
 	 * <p>
 	 * API name: {@code stored_fields}
 	 */
-	@Nullable
-	public List<String> storedFields() {
+	public final List<String> storedFields() {
 		return this.storedFields;
 	}
 
@@ -285,7 +279,7 @@ public final class ExplainRequest extends RequestBase implements JsonpSerializab
 	 * API name: {@code type}
 	 */
 	@Nullable
-	public String type() {
+	public final String type() {
 		return this.type;
 	}
 
@@ -301,7 +295,6 @@ public final class ExplainRequest extends RequestBase implements JsonpSerializab
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.query != null) {
-
 			generator.writeKey("query");
 			this.query.serialize(generator, mapper);
 
@@ -314,7 +307,7 @@ public final class ExplainRequest extends RequestBase implements JsonpSerializab
 	/**
 	 * Builder for {@link ExplainRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<ExplainRequest> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ExplainRequest> {
 		@Nullable
 		private JsonValue /* Union(_types.Fields | internal.boolean) */ source;
 
@@ -367,7 +360,7 @@ public final class ExplainRequest extends RequestBase implements JsonpSerializab
 		 * <p>
 		 * API name: {@code _source}
 		 */
-		public Builder source(@Nullable JsonValue /* Union(_types.Fields | internal.boolean) */ value) {
+		public final Builder source(@Nullable JsonValue /* Union(_types.Fields | internal.boolean) */ value) {
 			this.source = value;
 			return this;
 		}
@@ -377,7 +370,7 @@ public final class ExplainRequest extends RequestBase implements JsonpSerializab
 		 * <p>
 		 * API name: {@code _source_excludes}
 		 */
-		public Builder sourceExcludes(@Nullable List<String> value) {
+		public final Builder sourceExcludes(@Nullable List<String> value) {
 			this.sourceExcludes = value;
 			return this;
 		}
@@ -387,19 +380,8 @@ public final class ExplainRequest extends RequestBase implements JsonpSerializab
 		 * <p>
 		 * API name: {@code _source_excludes}
 		 */
-		public Builder sourceExcludes(String... value) {
+		public final Builder sourceExcludes(String... value) {
 			this.sourceExcludes = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #sourceExcludes(List)}, creating the list if needed.
-		 */
-		public Builder addSourceExcludes(String value) {
-			if (this.sourceExcludes == null) {
-				this.sourceExcludes = new ArrayList<>();
-			}
-			this.sourceExcludes.add(value);
 			return this;
 		}
 
@@ -408,7 +390,7 @@ public final class ExplainRequest extends RequestBase implements JsonpSerializab
 		 * <p>
 		 * API name: {@code _source_includes}
 		 */
-		public Builder sourceIncludes(@Nullable List<String> value) {
+		public final Builder sourceIncludes(@Nullable List<String> value) {
 			this.sourceIncludes = value;
 			return this;
 		}
@@ -418,19 +400,8 @@ public final class ExplainRequest extends RequestBase implements JsonpSerializab
 		 * <p>
 		 * API name: {@code _source_includes}
 		 */
-		public Builder sourceIncludes(String... value) {
+		public final Builder sourceIncludes(String... value) {
 			this.sourceIncludes = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #sourceIncludes(List)}, creating the list if needed.
-		 */
-		public Builder addSourceIncludes(String value) {
-			if (this.sourceIncludes == null) {
-				this.sourceIncludes = new ArrayList<>();
-			}
-			this.sourceIncludes.add(value);
 			return this;
 		}
 
@@ -440,7 +411,7 @@ public final class ExplainRequest extends RequestBase implements JsonpSerializab
 		 * <p>
 		 * API name: {@code analyze_wildcard}
 		 */
-		public Builder analyzeWildcard(@Nullable Boolean value) {
+		public final Builder analyzeWildcard(@Nullable Boolean value) {
 			this.analyzeWildcard = value;
 			return this;
 		}
@@ -450,7 +421,7 @@ public final class ExplainRequest extends RequestBase implements JsonpSerializab
 		 * <p>
 		 * API name: {@code analyzer}
 		 */
-		public Builder analyzer(@Nullable String value) {
+		public final Builder analyzer(@Nullable String value) {
 			this.analyzer = value;
 			return this;
 		}
@@ -460,7 +431,7 @@ public final class ExplainRequest extends RequestBase implements JsonpSerializab
 		 * <p>
 		 * API name: {@code default_operator}
 		 */
-		public Builder defaultOperator(@Nullable DefaultOperator value) {
+		public final Builder defaultOperator(@Nullable DefaultOperator value) {
 			this.defaultOperator = value;
 			return this;
 		}
@@ -470,7 +441,7 @@ public final class ExplainRequest extends RequestBase implements JsonpSerializab
 		 * <p>
 		 * API name: {@code df}
 		 */
-		public Builder df(@Nullable String value) {
+		public final Builder df(@Nullable String value) {
 			this.df = value;
 			return this;
 		}
@@ -480,7 +451,7 @@ public final class ExplainRequest extends RequestBase implements JsonpSerializab
 		 * <p>
 		 * API name: {@code id}
 		 */
-		public Builder id(String value) {
+		public final Builder id(String value) {
 			this.id = value;
 			return this;
 		}
@@ -490,7 +461,7 @@ public final class ExplainRequest extends RequestBase implements JsonpSerializab
 		 * <p>
 		 * API name: {@code index}
 		 */
-		public Builder index(String value) {
+		public final Builder index(String value) {
 			this.index = value;
 			return this;
 		}
@@ -501,7 +472,7 @@ public final class ExplainRequest extends RequestBase implements JsonpSerializab
 		 * <p>
 		 * API name: {@code lenient}
 		 */
-		public Builder lenient(@Nullable Boolean value) {
+		public final Builder lenient(@Nullable Boolean value) {
 			this.lenient = value;
 			return this;
 		}
@@ -512,7 +483,7 @@ public final class ExplainRequest extends RequestBase implements JsonpSerializab
 		 * <p>
 		 * API name: {@code preference}
 		 */
-		public Builder preference(@Nullable String value) {
+		public final Builder preference(@Nullable String value) {
 			this.preference = value;
 			return this;
 		}
@@ -522,7 +493,7 @@ public final class ExplainRequest extends RequestBase implements JsonpSerializab
 		 * <p>
 		 * API name: {@code q}
 		 */
-		public Builder q(@Nullable String value) {
+		public final Builder q(@Nullable String value) {
 			this.q = value;
 			return this;
 		}
@@ -530,7 +501,7 @@ public final class ExplainRequest extends RequestBase implements JsonpSerializab
 		/**
 		 * API name: {@code query}
 		 */
-		public Builder query(@Nullable Query value) {
+		public final Builder query(@Nullable Query value) {
 			this.query = value;
 			return this;
 		}
@@ -538,7 +509,7 @@ public final class ExplainRequest extends RequestBase implements JsonpSerializab
 		/**
 		 * API name: {@code query}
 		 */
-		public Builder query(Function<Query.Builder, ObjectBuilder<Query>> fn) {
+		public final Builder query(Function<Query.Builder, ObjectBuilder<Query>> fn) {
 			return this.query(fn.apply(new Query.Builder()).build());
 		}
 
@@ -547,7 +518,7 @@ public final class ExplainRequest extends RequestBase implements JsonpSerializab
 		 * <p>
 		 * API name: {@code routing}
 		 */
-		public Builder routing(@Nullable String value) {
+		public final Builder routing(@Nullable String value) {
 			this.routing = value;
 			return this;
 		}
@@ -557,7 +528,7 @@ public final class ExplainRequest extends RequestBase implements JsonpSerializab
 		 * <p>
 		 * API name: {@code stored_fields}
 		 */
-		public Builder storedFields(@Nullable List<String> value) {
+		public final Builder storedFields(@Nullable List<String> value) {
 			this.storedFields = value;
 			return this;
 		}
@@ -567,19 +538,8 @@ public final class ExplainRequest extends RequestBase implements JsonpSerializab
 		 * <p>
 		 * API name: {@code stored_fields}
 		 */
-		public Builder storedFields(String... value) {
+		public final Builder storedFields(String... value) {
 			this.storedFields = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #storedFields(List)}, creating the list if needed.
-		 */
-		public Builder addStoredFields(String value) {
-			if (this.storedFields == null) {
-				this.storedFields = new ArrayList<>();
-			}
-			this.storedFields.add(value);
 			return this;
 		}
 
@@ -588,7 +548,7 @@ public final class ExplainRequest extends RequestBase implements JsonpSerializab
 		 * <p>
 		 * API name: {@code type}
 		 */
-		public Builder type(@Nullable String value) {
+		public final Builder type(@Nullable String value) {
 			this.type = value;
 			return this;
 		}
@@ -600,6 +560,7 @@ public final class ExplainRequest extends RequestBase implements JsonpSerializab
 		 *             if some of the required fields are null.
 		 */
 		public ExplainRequest build() {
+			_checkSingleUse();
 
 			return new ExplainRequest(this);
 		}
@@ -681,12 +642,12 @@ public final class ExplainRequest extends RequestBase implements JsonpSerializab
 					params.put("df", request.df);
 				}
 				if (request.defaultOperator != null) {
-					params.put("default_operator", request.defaultOperator.toString());
+					params.put("default_operator", request.defaultOperator.jsonValue());
 				}
 				if (request.analyzer != null) {
 					params.put("analyzer", request.analyzer);
 				}
-				if (request.storedFields != null) {
+				if (ModelTypeHelper.isDefined(request.storedFields)) {
 					params.put("stored_fields",
 							request.storedFields.stream().map(v -> v).collect(Collectors.joining(",")));
 				}
@@ -699,11 +660,11 @@ public final class ExplainRequest extends RequestBase implements JsonpSerializab
 				if (request.source != null) {
 					params.put("_source", JsonpUtils.toString(request.source));
 				}
-				if (request.sourceExcludes != null) {
+				if (ModelTypeHelper.isDefined(request.sourceExcludes)) {
 					params.put("_source_excludes",
 							request.sourceExcludes.stream().map(v -> v).collect(Collectors.joining(",")));
 				}
-				if (request.sourceIncludes != null) {
+				if (ModelTypeHelper.isDefined(request.sourceIncludes)) {
 					params.put("_source_includes",
 							request.sourceIncludes.stream().map(v -> v).collect(Collectors.joining(",")));
 				}

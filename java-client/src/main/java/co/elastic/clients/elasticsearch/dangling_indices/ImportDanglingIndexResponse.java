@@ -36,16 +36,16 @@ import java.util.function.Function;
 
 // typedef: dangling_indices.import_dangling_index.Response
 @JsonpDeserializable
-public final class ImportDanglingIndexResponse extends AcknowledgedResponseBase {
+public class ImportDanglingIndexResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
-	public ImportDanglingIndexResponse(Builder builder) {
+	private ImportDanglingIndexResponse(Builder builder) {
 		super(builder);
 
 	}
 
-	public ImportDanglingIndexResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ImportDanglingIndexResponse of(Function<Builder, ObjectBuilder<ImportDanglingIndexResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -68,6 +68,7 @@ public final class ImportDanglingIndexResponse extends AcknowledgedResponseBase 
 		 *             if some of the required fields are null.
 		 */
 		public ImportDanglingIndexResponse build() {
+			_checkSingleUse();
 
 			return new ImportDanglingIndexResponse(this);
 		}

@@ -34,7 +34,7 @@ import java.util.function.Function;
 
 // typedef: _global.exists.Response
 
-public final class ExistsResponse {
+public class ExistsResponse {
 	public ExistsResponse() {
 	}
 

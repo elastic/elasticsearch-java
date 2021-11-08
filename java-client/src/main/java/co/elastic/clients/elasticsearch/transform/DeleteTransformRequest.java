@@ -31,7 +31,9 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.SimpleEndpoint;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
@@ -43,7 +45,7 @@ import javax.annotation.Nullable;
 
 // typedef: transform.delete_transform.Request
 
-public final class DeleteTransformRequest extends RequestBase {
+public class DeleteTransformRequest extends RequestBase {
 	@Nullable
 	private final Boolean force;
 
@@ -51,15 +53,15 @@ public final class DeleteTransformRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public DeleteTransformRequest(Builder builder) {
+	private DeleteTransformRequest(Builder builder) {
 
 		this.force = builder.force;
-		this.transformId = Objects.requireNonNull(builder.transformId, "transform_id");
+		this.transformId = ModelTypeHelper.requireNonNull(builder.transformId, this, "transformId");
 
 	}
 
-	public DeleteTransformRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static DeleteTransformRequest of(Function<Builder, ObjectBuilder<DeleteTransformRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -70,7 +72,7 @@ public final class DeleteTransformRequest extends RequestBase {
 	 * API name: {@code force}
 	 */
 	@Nullable
-	public Boolean force() {
+	public final Boolean force() {
 		return this.force;
 	}
 
@@ -79,7 +81,7 @@ public final class DeleteTransformRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code transform_id}
 	 */
-	public String transformId() {
+	public final String transformId() {
 		return this.transformId;
 	}
 
@@ -88,7 +90,7 @@ public final class DeleteTransformRequest extends RequestBase {
 	/**
 	 * Builder for {@link DeleteTransformRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<DeleteTransformRequest> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DeleteTransformRequest> {
 		@Nullable
 		private Boolean force;
 
@@ -101,7 +103,7 @@ public final class DeleteTransformRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code force}
 		 */
-		public Builder force(@Nullable Boolean value) {
+		public final Builder force(@Nullable Boolean value) {
 			this.force = value;
 			return this;
 		}
@@ -111,7 +113,7 @@ public final class DeleteTransformRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code transform_id}
 		 */
-		public Builder transformId(String value) {
+		public final Builder transformId(String value) {
 			this.transformId = value;
 			return this;
 		}
@@ -123,6 +125,7 @@ public final class DeleteTransformRequest extends RequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public DeleteTransformRequest build() {
+			_checkSingleUse();
 
 			return new DeleteTransformRequest(this);
 		}

@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -39,7 +41,7 @@ import javax.annotation.Nullable;
 
 // typedef: watcher._types.Logging
 @JsonpDeserializable
-public final class Logging implements JsonpSerializable {
+public class Logging implements JsonpSerializable {
 	@Nullable
 	private final String level;
 
@@ -50,30 +52,30 @@ public final class Logging implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public Logging(Builder builder) {
+	private Logging(Builder builder) {
 
 		this.level = builder.level;
-		this.text = Objects.requireNonNull(builder.text, "text");
+		this.text = ModelTypeHelper.requireNonNull(builder.text, this, "text");
 		this.category = builder.category;
 
 	}
 
-	public Logging(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static Logging of(Function<Builder, ObjectBuilder<Logging>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * API name: {@code level}
 	 */
 	@Nullable
-	public String level() {
+	public final String level() {
 		return this.level;
 	}
 
 	/**
 	 * Required - API name: {@code text}
 	 */
-	public String text() {
+	public final String text() {
 		return this.text;
 	}
 
@@ -81,7 +83,7 @@ public final class Logging implements JsonpSerializable {
 	 * API name: {@code category}
 	 */
 	@Nullable
-	public String category() {
+	public final String category() {
 		return this.category;
 	}
 
@@ -97,17 +99,14 @@ public final class Logging implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.level != null) {
-
 			generator.writeKey("level");
 			generator.write(this.level);
 
 		}
-
 		generator.writeKey("text");
 		generator.write(this.text);
 
 		if (this.category != null) {
-
 			generator.writeKey("category");
 			generator.write(this.category);
 
@@ -120,7 +119,7 @@ public final class Logging implements JsonpSerializable {
 	/**
 	 * Builder for {@link Logging}.
 	 */
-	public static class Builder implements ObjectBuilder<Logging> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Logging> {
 		@Nullable
 		private String level;
 
@@ -132,7 +131,7 @@ public final class Logging implements JsonpSerializable {
 		/**
 		 * API name: {@code level}
 		 */
-		public Builder level(@Nullable String value) {
+		public final Builder level(@Nullable String value) {
 			this.level = value;
 			return this;
 		}
@@ -140,7 +139,7 @@ public final class Logging implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code text}
 		 */
-		public Builder text(String value) {
+		public final Builder text(String value) {
 			this.text = value;
 			return this;
 		}
@@ -148,7 +147,7 @@ public final class Logging implements JsonpSerializable {
 		/**
 		 * API name: {@code category}
 		 */
-		public Builder category(@Nullable String value) {
+		public final Builder category(@Nullable String value) {
 			this.category = value;
 			return this;
 		}
@@ -160,6 +159,7 @@ public final class Logging implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public Logging build() {
+			_checkSingleUse();
 
 			return new Logging(this);
 		}

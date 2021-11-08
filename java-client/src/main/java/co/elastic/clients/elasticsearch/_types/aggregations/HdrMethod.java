@@ -31,6 +31,7 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.util.Objects;
@@ -39,27 +40,27 @@ import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.HdrMethod
 @JsonpDeserializable
-public final class HdrMethod implements JsonpSerializable {
+public class HdrMethod implements JsonpSerializable {
 	@Nullable
 	private final Integer numberOfSignificantValueDigits;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public HdrMethod(Builder builder) {
+	private HdrMethod(Builder builder) {
 
 		this.numberOfSignificantValueDigits = builder.numberOfSignificantValueDigits;
 
 	}
 
-	public HdrMethod(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static HdrMethod of(Function<Builder, ObjectBuilder<HdrMethod>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * API name: {@code number_of_significant_value_digits}
 	 */
 	@Nullable
-	public Integer numberOfSignificantValueDigits() {
+	public final Integer numberOfSignificantValueDigits() {
 		return this.numberOfSignificantValueDigits;
 	}
 
@@ -75,7 +76,6 @@ public final class HdrMethod implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.numberOfSignificantValueDigits != null) {
-
 			generator.writeKey("number_of_significant_value_digits");
 			generator.write(this.numberOfSignificantValueDigits);
 
@@ -88,14 +88,14 @@ public final class HdrMethod implements JsonpSerializable {
 	/**
 	 * Builder for {@link HdrMethod}.
 	 */
-	public static class Builder implements ObjectBuilder<HdrMethod> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<HdrMethod> {
 		@Nullable
 		private Integer numberOfSignificantValueDigits;
 
 		/**
 		 * API name: {@code number_of_significant_value_digits}
 		 */
-		public Builder numberOfSignificantValueDigits(@Nullable Integer value) {
+		public final Builder numberOfSignificantValueDigits(@Nullable Integer value) {
 			this.numberOfSignificantValueDigits = value;
 			return this;
 		}
@@ -107,6 +107,7 @@ public final class HdrMethod implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public HdrMethod build() {
+			_checkSingleUse();
 
 			return new HdrMethod(this);
 		}

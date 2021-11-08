@@ -31,6 +31,7 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;
@@ -38,7 +39,7 @@ import javax.annotation.Nullable;
 
 // typedef: rollup._types.Groupings
 @JsonpDeserializable
-public final class Groupings implements JsonpSerializable {
+public class Groupings implements JsonpSerializable {
 	@Nullable
 	private final DateHistogramGrouping dateHistogram;
 
@@ -50,7 +51,7 @@ public final class Groupings implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public Groupings(Builder builder) {
+	private Groupings(Builder builder) {
 
 		this.dateHistogram = builder.dateHistogram;
 		this.histogram = builder.histogram;
@@ -58,15 +59,15 @@ public final class Groupings implements JsonpSerializable {
 
 	}
 
-	public Groupings(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static Groupings of(Function<Builder, ObjectBuilder<Groupings>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * API name: {@code date_histogram}
 	 */
 	@Nullable
-	public DateHistogramGrouping dateHistogram() {
+	public final DateHistogramGrouping dateHistogram() {
 		return this.dateHistogram;
 	}
 
@@ -74,7 +75,7 @@ public final class Groupings implements JsonpSerializable {
 	 * API name: {@code histogram}
 	 */
 	@Nullable
-	public HistogramGrouping histogram() {
+	public final HistogramGrouping histogram() {
 		return this.histogram;
 	}
 
@@ -82,7 +83,7 @@ public final class Groupings implements JsonpSerializable {
 	 * API name: {@code terms}
 	 */
 	@Nullable
-	public TermsGrouping terms() {
+	public final TermsGrouping terms() {
 		return this.terms;
 	}
 
@@ -98,19 +99,16 @@ public final class Groupings implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.dateHistogram != null) {
-
 			generator.writeKey("date_histogram");
 			this.dateHistogram.serialize(generator, mapper);
 
 		}
 		if (this.histogram != null) {
-
 			generator.writeKey("histogram");
 			this.histogram.serialize(generator, mapper);
 
 		}
 		if (this.terms != null) {
-
 			generator.writeKey("terms");
 			this.terms.serialize(generator, mapper);
 
@@ -123,7 +121,7 @@ public final class Groupings implements JsonpSerializable {
 	/**
 	 * Builder for {@link Groupings}.
 	 */
-	public static class Builder implements ObjectBuilder<Groupings> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Groupings> {
 		@Nullable
 		private DateHistogramGrouping dateHistogram;
 
@@ -136,7 +134,7 @@ public final class Groupings implements JsonpSerializable {
 		/**
 		 * API name: {@code date_histogram}
 		 */
-		public Builder dateHistogram(@Nullable DateHistogramGrouping value) {
+		public final Builder dateHistogram(@Nullable DateHistogramGrouping value) {
 			this.dateHistogram = value;
 			return this;
 		}
@@ -144,14 +142,15 @@ public final class Groupings implements JsonpSerializable {
 		/**
 		 * API name: {@code date_histogram}
 		 */
-		public Builder dateHistogram(Function<DateHistogramGrouping.Builder, ObjectBuilder<DateHistogramGrouping>> fn) {
+		public final Builder dateHistogram(
+				Function<DateHistogramGrouping.Builder, ObjectBuilder<DateHistogramGrouping>> fn) {
 			return this.dateHistogram(fn.apply(new DateHistogramGrouping.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code histogram}
 		 */
-		public Builder histogram(@Nullable HistogramGrouping value) {
+		public final Builder histogram(@Nullable HistogramGrouping value) {
 			this.histogram = value;
 			return this;
 		}
@@ -159,14 +158,14 @@ public final class Groupings implements JsonpSerializable {
 		/**
 		 * API name: {@code histogram}
 		 */
-		public Builder histogram(Function<HistogramGrouping.Builder, ObjectBuilder<HistogramGrouping>> fn) {
+		public final Builder histogram(Function<HistogramGrouping.Builder, ObjectBuilder<HistogramGrouping>> fn) {
 			return this.histogram(fn.apply(new HistogramGrouping.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code terms}
 		 */
-		public Builder terms(@Nullable TermsGrouping value) {
+		public final Builder terms(@Nullable TermsGrouping value) {
 			this.terms = value;
 			return this;
 		}
@@ -174,7 +173,7 @@ public final class Groupings implements JsonpSerializable {
 		/**
 		 * API name: {@code terms}
 		 */
-		public Builder terms(Function<TermsGrouping.Builder, ObjectBuilder<TermsGrouping>> fn) {
+		public final Builder terms(Function<TermsGrouping.Builder, ObjectBuilder<TermsGrouping>> fn) {
 			return this.terms(fn.apply(new TermsGrouping.Builder()).build());
 		}
 
@@ -185,6 +184,7 @@ public final class Groupings implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public Groupings build() {
+			_checkSingleUse();
 
 			return new Groupings(this);
 		}

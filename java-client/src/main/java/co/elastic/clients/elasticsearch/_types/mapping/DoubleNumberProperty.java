@@ -38,21 +38,21 @@ import javax.annotation.Nullable;
 
 // typedef: _types.mapping.DoubleNumberProperty
 @JsonpDeserializable
-public final class DoubleNumberProperty extends StandardNumberProperty implements PropertyVariant {
+public class DoubleNumberProperty extends StandardNumberProperty implements PropertyVariant {
 	@Nullable
 	private final Double nullValue;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public DoubleNumberProperty(Builder builder) {
+	private DoubleNumberProperty(Builder builder) {
 		super(builder);
 
 		this.nullValue = builder.nullValue;
 
 	}
 
-	public DoubleNumberProperty(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static DoubleNumberProperty of(Function<Builder, ObjectBuilder<DoubleNumberProperty>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -67,7 +67,7 @@ public final class DoubleNumberProperty extends StandardNumberProperty implement
 	 * API name: {@code null_value}
 	 */
 	@Nullable
-	public Double nullValue() {
+	public final Double nullValue() {
 		return this.nullValue;
 	}
 
@@ -76,7 +76,6 @@ public final class DoubleNumberProperty extends StandardNumberProperty implement
 		generator.write("type", "double");
 		super.serializeInternal(generator, mapper);
 		if (this.nullValue != null) {
-
 			generator.writeKey("null_value");
 			generator.write(this.nullValue);
 
@@ -98,7 +97,7 @@ public final class DoubleNumberProperty extends StandardNumberProperty implement
 		/**
 		 * API name: {@code null_value}
 		 */
-		public Builder nullValue(@Nullable Double value) {
+		public final Builder nullValue(@Nullable Double value) {
 			this.nullValue = value;
 			return this;
 		}
@@ -115,6 +114,7 @@ public final class DoubleNumberProperty extends StandardNumberProperty implement
 		 *             if some of the required fields are null.
 		 */
 		public DoubleNumberProperty build() {
+			_checkSingleUse();
 
 			return new DoubleNumberProperty(this);
 		}

@@ -39,7 +39,7 @@ import java.util.function.Function;
 
 // typedef: cat.plugins.Request
 
-public final class PluginsRequest extends CatRequestBase {
+public class PluginsRequest extends CatRequestBase {
 	public PluginsRequest() {
 	}
 

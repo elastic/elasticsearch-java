@@ -35,11 +35,11 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Long;
 import java.lang.String;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
@@ -48,10 +48,9 @@ import javax.annotation.Nullable;
 
 // typedef: _global.get.Response
 
-public final class GetResponse<TDocument> implements JsonpSerializable {
+public class GetResponse<TDocument> implements JsonpSerializable {
 	private final String index;
 
-	@Nullable
 	private final Map<String, JsonData> fields;
 
 	private final boolean found;
@@ -81,12 +80,12 @@ public final class GetResponse<TDocument> implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public GetResponse(Builder<TDocument> builder) {
+	private GetResponse(Builder<TDocument> builder) {
 
-		this.index = Objects.requireNonNull(builder.index, "_index");
+		this.index = ModelTypeHelper.requireNonNull(builder.index, this, "index");
 		this.fields = ModelTypeHelper.unmodifiable(builder.fields);
-		this.found = Objects.requireNonNull(builder.found, "found");
-		this.id = Objects.requireNonNull(builder.id, "_id");
+		this.found = ModelTypeHelper.requireNonNull(builder.found, this, "found");
+		this.id = ModelTypeHelper.requireNonNull(builder.id, this, "id");
 		this.primaryTerm = builder.primaryTerm;
 		this.routing = builder.routing;
 		this.seqNo = builder.seqNo;
@@ -97,36 +96,36 @@ public final class GetResponse<TDocument> implements JsonpSerializable {
 
 	}
 
-	public GetResponse(Function<Builder<TDocument>, Builder<TDocument>> fn) {
-		this(fn.apply(new Builder<>()));
+	public static <TDocument> GetResponse<TDocument> of(
+			Function<Builder<TDocument>, ObjectBuilder<GetResponse<TDocument>>> fn) {
+		return fn.apply(new Builder<>()).build();
 	}
 
 	/**
 	 * Required - API name: {@code _index}
 	 */
-	public String index() {
+	public final String index() {
 		return this.index;
 	}
 
 	/**
 	 * API name: {@code fields}
 	 */
-	@Nullable
-	public Map<String, JsonData> fields() {
+	public final Map<String, JsonData> fields() {
 		return this.fields;
 	}
 
 	/**
 	 * Required - API name: {@code found}
 	 */
-	public boolean found() {
+	public final boolean found() {
 		return this.found;
 	}
 
 	/**
 	 * Required - API name: {@code _id}
 	 */
-	public String id() {
+	public final String id() {
 		return this.id;
 	}
 
@@ -134,7 +133,7 @@ public final class GetResponse<TDocument> implements JsonpSerializable {
 	 * API name: {@code _primary_term}
 	 */
 	@Nullable
-	public Long primaryTerm() {
+	public final Long primaryTerm() {
 		return this.primaryTerm;
 	}
 
@@ -142,7 +141,7 @@ public final class GetResponse<TDocument> implements JsonpSerializable {
 	 * API name: {@code _routing}
 	 */
 	@Nullable
-	public String routing() {
+	public final String routing() {
 		return this.routing;
 	}
 
@@ -150,7 +149,7 @@ public final class GetResponse<TDocument> implements JsonpSerializable {
 	 * API name: {@code _seq_no}
 	 */
 	@Nullable
-	public Long seqNo() {
+	public final Long seqNo() {
 		return this.seqNo;
 	}
 
@@ -158,7 +157,7 @@ public final class GetResponse<TDocument> implements JsonpSerializable {
 	 * API name: {@code _source}
 	 */
 	@Nullable
-	public TDocument source() {
+	public final TDocument source() {
 		return this.source;
 	}
 
@@ -166,7 +165,7 @@ public final class GetResponse<TDocument> implements JsonpSerializable {
 	 * API name: {@code _type}
 	 */
 	@Nullable
-	public String type() {
+	public final String type() {
 		return this.type;
 	}
 
@@ -174,7 +173,7 @@ public final class GetResponse<TDocument> implements JsonpSerializable {
 	 * API name: {@code _version}
 	 */
 	@Nullable
-	public Long version() {
+	public final Long version() {
 		return this.version;
 	}
 
@@ -192,8 +191,7 @@ public final class GetResponse<TDocument> implements JsonpSerializable {
 		generator.writeKey("_index");
 		generator.write(this.index);
 
-		if (this.fields != null) {
-
+		if (ModelTypeHelper.isDefined(this.fields)) {
 			generator.writeKey("fields");
 			generator.writeStartObject();
 			for (Map.Entry<String, JsonData> item0 : this.fields.entrySet()) {
@@ -204,7 +202,6 @@ public final class GetResponse<TDocument> implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-
 		generator.writeKey("found");
 		generator.write(this.found);
 
@@ -212,37 +209,31 @@ public final class GetResponse<TDocument> implements JsonpSerializable {
 		generator.write(this.id);
 
 		if (this.primaryTerm != null) {
-
 			generator.writeKey("_primary_term");
 			generator.write(this.primaryTerm);
 
 		}
 		if (this.routing != null) {
-
 			generator.writeKey("_routing");
 			generator.write(this.routing);
 
 		}
 		if (this.seqNo != null) {
-
 			generator.writeKey("_seq_no");
 			generator.write(this.seqNo);
 
 		}
 		if (this.source != null) {
-
 			generator.writeKey("_source");
 			JsonpUtils.serialize(this.source, generator, tDocumentSerializer, mapper);
 
 		}
 		if (this.type != null) {
-
 			generator.writeKey("_type");
 			generator.write(this.type);
 
 		}
 		if (this.version != null) {
-
 			generator.writeKey("_version");
 			generator.write(this.version);
 
@@ -255,7 +246,7 @@ public final class GetResponse<TDocument> implements JsonpSerializable {
 	/**
 	 * Builder for {@link GetResponse}.
 	 */
-	public static class Builder<TDocument> implements ObjectBuilder<GetResponse<TDocument>> {
+	public static class Builder<TDocument> extends ObjectBuilderBase implements ObjectBuilder<GetResponse<TDocument>> {
 		private String index;
 
 		@Nullable
@@ -289,7 +280,7 @@ public final class GetResponse<TDocument> implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code _index}
 		 */
-		public Builder<TDocument> index(String value) {
+		public final Builder<TDocument> index(String value) {
 			this.index = value;
 			return this;
 		}
@@ -297,26 +288,15 @@ public final class GetResponse<TDocument> implements JsonpSerializable {
 		/**
 		 * API name: {@code fields}
 		 */
-		public Builder<TDocument> fields(@Nullable Map<String, JsonData> value) {
+		public final Builder<TDocument> fields(@Nullable Map<String, JsonData> value) {
 			this.fields = value;
-			return this;
-		}
-
-		/**
-		 * Add a key/value to {@link #fields(Map)}, creating the map if needed.
-		 */
-		public Builder<TDocument> putFields(String key, JsonData value) {
-			if (this.fields == null) {
-				this.fields = new HashMap<>();
-			}
-			this.fields.put(key, value);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code found}
 		 */
-		public Builder<TDocument> found(boolean value) {
+		public final Builder<TDocument> found(boolean value) {
 			this.found = value;
 			return this;
 		}
@@ -324,7 +304,7 @@ public final class GetResponse<TDocument> implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code _id}
 		 */
-		public Builder<TDocument> id(String value) {
+		public final Builder<TDocument> id(String value) {
 			this.id = value;
 			return this;
 		}
@@ -332,7 +312,7 @@ public final class GetResponse<TDocument> implements JsonpSerializable {
 		/**
 		 * API name: {@code _primary_term}
 		 */
-		public Builder<TDocument> primaryTerm(@Nullable Long value) {
+		public final Builder<TDocument> primaryTerm(@Nullable Long value) {
 			this.primaryTerm = value;
 			return this;
 		}
@@ -340,7 +320,7 @@ public final class GetResponse<TDocument> implements JsonpSerializable {
 		/**
 		 * API name: {@code _routing}
 		 */
-		public Builder<TDocument> routing(@Nullable String value) {
+		public final Builder<TDocument> routing(@Nullable String value) {
 			this.routing = value;
 			return this;
 		}
@@ -348,7 +328,7 @@ public final class GetResponse<TDocument> implements JsonpSerializable {
 		/**
 		 * API name: {@code _seq_no}
 		 */
-		public Builder<TDocument> seqNo(@Nullable Long value) {
+		public final Builder<TDocument> seqNo(@Nullable Long value) {
 			this.seqNo = value;
 			return this;
 		}
@@ -356,7 +336,7 @@ public final class GetResponse<TDocument> implements JsonpSerializable {
 		/**
 		 * API name: {@code _source}
 		 */
-		public Builder<TDocument> source(@Nullable TDocument value) {
+		public final Builder<TDocument> source(@Nullable TDocument value) {
 			this.source = value;
 			return this;
 		}
@@ -364,7 +344,7 @@ public final class GetResponse<TDocument> implements JsonpSerializable {
 		/**
 		 * API name: {@code _type}
 		 */
-		public Builder<TDocument> type(@Nullable String value) {
+		public final Builder<TDocument> type(@Nullable String value) {
 			this.type = value;
 			return this;
 		}
@@ -372,7 +352,7 @@ public final class GetResponse<TDocument> implements JsonpSerializable {
 		/**
 		 * API name: {@code _version}
 		 */
-		public Builder<TDocument> version(@Nullable Long value) {
+		public final Builder<TDocument> version(@Nullable Long value) {
 			this.version = value;
 			return this;
 		}
@@ -381,7 +361,7 @@ public final class GetResponse<TDocument> implements JsonpSerializable {
 		 * Serializer for TDocument. If not set, an attempt will be made to find a
 		 * serializer from the JSON context.
 		 */
-		public Builder<TDocument> tDocumentSerializer(@Nullable JsonpSerializer<TDocument> value) {
+		public final Builder<TDocument> tDocumentSerializer(@Nullable JsonpSerializer<TDocument> value) {
 			this.tDocumentSerializer = value;
 			return this;
 		}
@@ -393,6 +373,7 @@ public final class GetResponse<TDocument> implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public GetResponse<TDocument> build() {
+			_checkSingleUse();
 
 			return new GetResponse<TDocument>(this);
 		}

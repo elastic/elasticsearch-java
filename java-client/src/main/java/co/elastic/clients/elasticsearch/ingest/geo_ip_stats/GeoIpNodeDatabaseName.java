@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -39,19 +41,19 @@ import javax.annotation.Nullable;
 
 // typedef: ingest.geo_ip_stats.GeoIpNodeDatabaseName
 @JsonpDeserializable
-public final class GeoIpNodeDatabaseName implements JsonpSerializable {
+public class GeoIpNodeDatabaseName implements JsonpSerializable {
 	private final String name;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public GeoIpNodeDatabaseName(Builder builder) {
+	private GeoIpNodeDatabaseName(Builder builder) {
 
-		this.name = Objects.requireNonNull(builder.name, "name");
+		this.name = ModelTypeHelper.requireNonNull(builder.name, this, "name");
 
 	}
 
-	public GeoIpNodeDatabaseName(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static GeoIpNodeDatabaseName of(Function<Builder, ObjectBuilder<GeoIpNodeDatabaseName>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -59,7 +61,7 @@ public final class GeoIpNodeDatabaseName implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code name}
 	 */
-	public String name() {
+	public final String name() {
 		return this.name;
 	}
 
@@ -84,7 +86,7 @@ public final class GeoIpNodeDatabaseName implements JsonpSerializable {
 	/**
 	 * Builder for {@link GeoIpNodeDatabaseName}.
 	 */
-	public static class Builder implements ObjectBuilder<GeoIpNodeDatabaseName> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GeoIpNodeDatabaseName> {
 		private String name;
 
 		/**
@@ -92,7 +94,7 @@ public final class GeoIpNodeDatabaseName implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code name}
 		 */
-		public Builder name(String value) {
+		public final Builder name(String value) {
 			this.name = value;
 			return this;
 		}
@@ -104,6 +106,7 @@ public final class GeoIpNodeDatabaseName implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public GeoIpNodeDatabaseName build() {
+			_checkSingleUse();
 
 			return new GeoIpNodeDatabaseName(this);
 		}

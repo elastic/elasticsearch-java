@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.util.Objects;
@@ -38,35 +40,35 @@ import java.util.function.Function;
 
 // typedef: autoscaling.get_autoscaling_capacity.AutoscalingResources
 @JsonpDeserializable
-public final class AutoscalingResources implements JsonpSerializable {
+public class AutoscalingResources implements JsonpSerializable {
 	private final int storage;
 
 	private final int memory;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public AutoscalingResources(Builder builder) {
+	private AutoscalingResources(Builder builder) {
 
-		this.storage = Objects.requireNonNull(builder.storage, "storage");
-		this.memory = Objects.requireNonNull(builder.memory, "memory");
+		this.storage = ModelTypeHelper.requireNonNull(builder.storage, this, "storage");
+		this.memory = ModelTypeHelper.requireNonNull(builder.memory, this, "memory");
 
 	}
 
-	public AutoscalingResources(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static AutoscalingResources of(Function<Builder, ObjectBuilder<AutoscalingResources>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code storage}
 	 */
-	public int storage() {
+	public final int storage() {
 		return this.storage;
 	}
 
 	/**
 	 * Required - API name: {@code memory}
 	 */
-	public int memory() {
+	public final int memory() {
 		return this.memory;
 	}
 
@@ -94,7 +96,7 @@ public final class AutoscalingResources implements JsonpSerializable {
 	/**
 	 * Builder for {@link AutoscalingResources}.
 	 */
-	public static class Builder implements ObjectBuilder<AutoscalingResources> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<AutoscalingResources> {
 		private Integer storage;
 
 		private Integer memory;
@@ -102,7 +104,7 @@ public final class AutoscalingResources implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code storage}
 		 */
-		public Builder storage(int value) {
+		public final Builder storage(int value) {
 			this.storage = value;
 			return this;
 		}
@@ -110,7 +112,7 @@ public final class AutoscalingResources implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code memory}
 		 */
-		public Builder memory(int value) {
+		public final Builder memory(int value) {
 			this.memory = value;
 			return this;
 		}
@@ -122,6 +124,7 @@ public final class AutoscalingResources implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public AutoscalingResources build() {
+			_checkSingleUse();
 
 			return new AutoscalingResources(this);
 		}

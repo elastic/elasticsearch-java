@@ -29,6 +29,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
@@ -40,7 +41,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.MovingAverageAggregation
 @JsonpDeserializable
-public final class MovingAverageAggregation extends PipelineAggregationBase implements AggregationVariant {
+public class MovingAverageAggregation extends PipelineAggregationBase implements AggregationVariant {
 	@Nullable
 	private final Boolean minimize;
 
@@ -57,19 +58,19 @@ public final class MovingAverageAggregation extends PipelineAggregationBase impl
 
 	// ---------------------------------------------------------------------------------------------
 
-	public MovingAverageAggregation(Builder builder) {
+	private MovingAverageAggregation(Builder builder) {
 		super(builder);
 
 		this.minimize = builder.minimize;
 		this.model = builder.model;
-		this.settings = Objects.requireNonNull(builder.settings, "settings");
+		this.settings = ModelTypeHelper.requireNonNull(builder.settings, this, "settings");
 		this.predict = builder.predict;
 		this.window = builder.window;
 
 	}
 
-	public MovingAverageAggregation(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static MovingAverageAggregation of(Function<Builder, ObjectBuilder<MovingAverageAggregation>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -84,7 +85,7 @@ public final class MovingAverageAggregation extends PipelineAggregationBase impl
 	 * API name: {@code minimize}
 	 */
 	@Nullable
-	public Boolean minimize() {
+	public final Boolean minimize() {
 		return this.minimize;
 	}
 
@@ -92,14 +93,14 @@ public final class MovingAverageAggregation extends PipelineAggregationBase impl
 	 * API name: {@code model}
 	 */
 	@Nullable
-	public MovingAverageModel model() {
+	public final MovingAverageModel model() {
 		return this.model;
 	}
 
 	/**
 	 * Required - API name: {@code settings}
 	 */
-	public JsonValue /* _types.aggregations.MovingAverageSettings */ settings() {
+	public final JsonValue /* _types.aggregations.MovingAverageSettings */ settings() {
 		return this.settings;
 	}
 
@@ -107,7 +108,7 @@ public final class MovingAverageAggregation extends PipelineAggregationBase impl
 	 * API name: {@code predict}
 	 */
 	@Nullable
-	public Integer predict() {
+	public final Integer predict() {
 		return this.predict;
 	}
 
@@ -115,7 +116,7 @@ public final class MovingAverageAggregation extends PipelineAggregationBase impl
 	 * API name: {@code window}
 	 */
 	@Nullable
-	public Integer window() {
+	public final Integer window() {
 		return this.window;
 	}
 
@@ -123,28 +124,23 @@ public final class MovingAverageAggregation extends PipelineAggregationBase impl
 
 		super.serializeInternal(generator, mapper);
 		if (this.minimize != null) {
-
 			generator.writeKey("minimize");
 			generator.write(this.minimize);
 
 		}
 		if (this.model != null) {
-
 			generator.writeKey("model");
 			this.model.serialize(generator, mapper);
 		}
-
 		generator.writeKey("settings");
 		generator.write(this.settings);
 
 		if (this.predict != null) {
-
 			generator.writeKey("predict");
 			generator.write(this.predict);
 
 		}
 		if (this.window != null) {
-
 			generator.writeKey("window");
 			generator.write(this.window);
 
@@ -177,7 +173,7 @@ public final class MovingAverageAggregation extends PipelineAggregationBase impl
 		/**
 		 * API name: {@code minimize}
 		 */
-		public Builder minimize(@Nullable Boolean value) {
+		public final Builder minimize(@Nullable Boolean value) {
 			this.minimize = value;
 			return this;
 		}
@@ -185,7 +181,7 @@ public final class MovingAverageAggregation extends PipelineAggregationBase impl
 		/**
 		 * API name: {@code model}
 		 */
-		public Builder model(@Nullable MovingAverageModel value) {
+		public final Builder model(@Nullable MovingAverageModel value) {
 			this.model = value;
 			return this;
 		}
@@ -193,7 +189,7 @@ public final class MovingAverageAggregation extends PipelineAggregationBase impl
 		/**
 		 * Required - API name: {@code settings}
 		 */
-		public Builder settings(JsonValue /* _types.aggregations.MovingAverageSettings */ value) {
+		public final Builder settings(JsonValue /* _types.aggregations.MovingAverageSettings */ value) {
 			this.settings = value;
 			return this;
 		}
@@ -201,7 +197,7 @@ public final class MovingAverageAggregation extends PipelineAggregationBase impl
 		/**
 		 * API name: {@code predict}
 		 */
-		public Builder predict(@Nullable Integer value) {
+		public final Builder predict(@Nullable Integer value) {
 			this.predict = value;
 			return this;
 		}
@@ -209,7 +205,7 @@ public final class MovingAverageAggregation extends PipelineAggregationBase impl
 		/**
 		 * API name: {@code window}
 		 */
-		public Builder window(@Nullable Integer value) {
+		public final Builder window(@Nullable Integer value) {
 			this.window = value;
 			return this;
 		}
@@ -226,6 +222,7 @@ public final class MovingAverageAggregation extends PipelineAggregationBase impl
 		 *             if some of the required fields are null.
 		 */
 		public MovingAverageAggregation build() {
+			_checkSingleUse();
 
 			return new MovingAverageAggregation(this);
 		}

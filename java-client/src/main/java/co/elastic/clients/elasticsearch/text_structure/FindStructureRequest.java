@@ -36,11 +36,11 @@ import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.SimpleEndpoint;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Number;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -51,7 +51,7 @@ import javax.annotation.Nullable;
 
 // typedef: text_structure.find_structure.Request
 
-public final class FindStructureRequest<TJsonDocument> implements JsonpSerializable {
+public class FindStructureRequest<TJsonDocument> implements JsonpSerializable {
 	@Nullable
 	private final String charset;
 
@@ -101,7 +101,7 @@ public final class FindStructureRequest<TJsonDocument> implements JsonpSerializa
 
 	// ---------------------------------------------------------------------------------------------
 
-	public FindStructureRequest(Builder<TJsonDocument> builder) {
+	private FindStructureRequest(Builder<TJsonDocument> builder) {
 
 		this.charset = builder.charset;
 		this.columnNames = builder.columnNames;
@@ -117,13 +117,14 @@ public final class FindStructureRequest<TJsonDocument> implements JsonpSerializa
 		this.timeout = builder.timeout;
 		this.timestampField = builder.timestampField;
 		this.timestampFormat = builder.timestampFormat;
-		this.textFiles = ModelTypeHelper.unmodifiableNonNull(builder.textFiles, "_value_body");
+		this.textFiles = ModelTypeHelper.unmodifiableRequired(builder.textFiles, this, "textFiles");
 		this.tJsonDocumentSerializer = builder.tJsonDocumentSerializer;
 
 	}
 
-	public FindStructureRequest(Function<Builder<TJsonDocument>, Builder<TJsonDocument>> fn) {
-		this(fn.apply(new Builder<>()));
+	public static <TJsonDocument> FindStructureRequest<TJsonDocument> of(
+			Function<Builder<TJsonDocument>, ObjectBuilder<FindStructureRequest<TJsonDocument>>> fn) {
+		return fn.apply(new Builder<>()).build();
 	}
 
 	/**
@@ -135,7 +136,7 @@ public final class FindStructureRequest<TJsonDocument> implements JsonpSerializa
 	 * API name: {@code charset}
 	 */
 	@Nullable
-	public String charset() {
+	public final String charset() {
 		return this.charset;
 	}
 
@@ -149,7 +150,7 @@ public final class FindStructureRequest<TJsonDocument> implements JsonpSerializa
 	 * API name: {@code column_names}
 	 */
 	@Nullable
-	public String columnNames() {
+	public final String columnNames() {
 		return this.columnNames;
 	}
 
@@ -165,7 +166,7 @@ public final class FindStructureRequest<TJsonDocument> implements JsonpSerializa
 	 * API name: {@code delimiter}
 	 */
 	@Nullable
-	public String delimiter() {
+	public final String delimiter() {
 		return this.delimiter;
 	}
 
@@ -177,7 +178,7 @@ public final class FindStructureRequest<TJsonDocument> implements JsonpSerializa
 	 * API name: {@code explain}
 	 */
 	@Nullable
-	public Boolean explain() {
+	public final Boolean explain() {
 		return this.explain;
 	}
 
@@ -192,7 +193,7 @@ public final class FindStructureRequest<TJsonDocument> implements JsonpSerializa
 	 * API name: {@code format}
 	 */
 	@Nullable
-	public String format() {
+	public final String format() {
 		return this.format;
 	}
 
@@ -208,7 +209,7 @@ public final class FindStructureRequest<TJsonDocument> implements JsonpSerializa
 	 * API name: {@code grok_pattern}
 	 */
 	@Nullable
-	public String grokPattern() {
+	public final String grokPattern() {
 		return this.grokPattern;
 	}
 
@@ -221,7 +222,7 @@ public final class FindStructureRequest<TJsonDocument> implements JsonpSerializa
 	 * API name: {@code has_header_row}
 	 */
 	@Nullable
-	public Boolean hasHeaderRow() {
+	public final Boolean hasHeaderRow() {
 		return this.hasHeaderRow;
 	}
 
@@ -235,7 +236,7 @@ public final class FindStructureRequest<TJsonDocument> implements JsonpSerializa
 	 * API name: {@code line_merge_size_limit}
 	 */
 	@Nullable
-	public Number lineMergeSizeLimit() {
+	public final Number lineMergeSizeLimit() {
 		return this.lineMergeSizeLimit;
 	}
 
@@ -248,7 +249,7 @@ public final class FindStructureRequest<TJsonDocument> implements JsonpSerializa
 	 * API name: {@code lines_to_sample}
 	 */
 	@Nullable
-	public Number linesToSample() {
+	public final Number linesToSample() {
 		return this.linesToSample;
 	}
 
@@ -263,7 +264,7 @@ public final class FindStructureRequest<TJsonDocument> implements JsonpSerializa
 	 * API name: {@code quote}
 	 */
 	@Nullable
-	public String quote() {
+	public final String quote() {
 		return this.quote;
 	}
 
@@ -276,7 +277,7 @@ public final class FindStructureRequest<TJsonDocument> implements JsonpSerializa
 	 * API name: {@code should_trim_fields}
 	 */
 	@Nullable
-	public Boolean shouldTrimFields() {
+	public final Boolean shouldTrimFields() {
 		return this.shouldTrimFields;
 	}
 
@@ -287,7 +288,7 @@ public final class FindStructureRequest<TJsonDocument> implements JsonpSerializa
 	 * API name: {@code timeout}
 	 */
 	@Nullable
-	public String timeout() {
+	public final String timeout() {
 		return this.timeout;
 	}
 
@@ -297,7 +298,7 @@ public final class FindStructureRequest<TJsonDocument> implements JsonpSerializa
 	 * API name: {@code timestamp_field}
 	 */
 	@Nullable
-	public String timestampField() {
+	public final String timestampField() {
 		return this.timestampField;
 	}
 
@@ -307,7 +308,7 @@ public final class FindStructureRequest<TJsonDocument> implements JsonpSerializa
 	 * API name: {@code timestamp_format}
 	 */
 	@Nullable
-	public String timestampFormat() {
+	public final String timestampFormat() {
 		return this.timestampFormat;
 	}
 
@@ -316,7 +317,7 @@ public final class FindStructureRequest<TJsonDocument> implements JsonpSerializa
 	 * <p>
 	 * API name: {@code _value_body}
 	 */
-	public List<TJsonDocument> textFiles() {
+	public final List<TJsonDocument> textFiles() {
 		return this.textFiles;
 	}
 
@@ -338,7 +339,9 @@ public final class FindStructureRequest<TJsonDocument> implements JsonpSerializa
 	/**
 	 * Builder for {@link FindStructureRequest}.
 	 */
-	public static class Builder<TJsonDocument> implements ObjectBuilder<FindStructureRequest<TJsonDocument>> {
+	public static class Builder<TJsonDocument> extends ObjectBuilderBase
+			implements
+				ObjectBuilder<FindStructureRequest<TJsonDocument>> {
 		@Nullable
 		private String charset;
 
@@ -394,7 +397,7 @@ public final class FindStructureRequest<TJsonDocument> implements JsonpSerializa
 		 * <p>
 		 * API name: {@code charset}
 		 */
-		public Builder<TJsonDocument> charset(@Nullable String value) {
+		public final Builder<TJsonDocument> charset(@Nullable String value) {
 			this.charset = value;
 			return this;
 		}
@@ -408,7 +411,7 @@ public final class FindStructureRequest<TJsonDocument> implements JsonpSerializa
 		 * <p>
 		 * API name: {@code column_names}
 		 */
-		public Builder<TJsonDocument> columnNames(@Nullable String value) {
+		public final Builder<TJsonDocument> columnNames(@Nullable String value) {
 			this.columnNames = value;
 			return this;
 		}
@@ -424,7 +427,7 @@ public final class FindStructureRequest<TJsonDocument> implements JsonpSerializa
 		 * <p>
 		 * API name: {@code delimiter}
 		 */
-		public Builder<TJsonDocument> delimiter(@Nullable String value) {
+		public final Builder<TJsonDocument> delimiter(@Nullable String value) {
 			this.delimiter = value;
 			return this;
 		}
@@ -436,7 +439,7 @@ public final class FindStructureRequest<TJsonDocument> implements JsonpSerializa
 		 * <p>
 		 * API name: {@code explain}
 		 */
-		public Builder<TJsonDocument> explain(@Nullable Boolean value) {
+		public final Builder<TJsonDocument> explain(@Nullable Boolean value) {
 			this.explain = value;
 			return this;
 		}
@@ -451,7 +454,7 @@ public final class FindStructureRequest<TJsonDocument> implements JsonpSerializa
 		 * <p>
 		 * API name: {@code format}
 		 */
-		public Builder<TJsonDocument> format(@Nullable String value) {
+		public final Builder<TJsonDocument> format(@Nullable String value) {
 			this.format = value;
 			return this;
 		}
@@ -467,7 +470,7 @@ public final class FindStructureRequest<TJsonDocument> implements JsonpSerializa
 		 * <p>
 		 * API name: {@code grok_pattern}
 		 */
-		public Builder<TJsonDocument> grokPattern(@Nullable String value) {
+		public final Builder<TJsonDocument> grokPattern(@Nullable String value) {
 			this.grokPattern = value;
 			return this;
 		}
@@ -480,7 +483,7 @@ public final class FindStructureRequest<TJsonDocument> implements JsonpSerializa
 		 * <p>
 		 * API name: {@code has_header_row}
 		 */
-		public Builder<TJsonDocument> hasHeaderRow(@Nullable Boolean value) {
+		public final Builder<TJsonDocument> hasHeaderRow(@Nullable Boolean value) {
 			this.hasHeaderRow = value;
 			return this;
 		}
@@ -494,7 +497,7 @@ public final class FindStructureRequest<TJsonDocument> implements JsonpSerializa
 		 * <p>
 		 * API name: {@code line_merge_size_limit}
 		 */
-		public Builder<TJsonDocument> lineMergeSizeLimit(@Nullable Number value) {
+		public final Builder<TJsonDocument> lineMergeSizeLimit(@Nullable Number value) {
 			this.lineMergeSizeLimit = value;
 			return this;
 		}
@@ -507,7 +510,7 @@ public final class FindStructureRequest<TJsonDocument> implements JsonpSerializa
 		 * <p>
 		 * API name: {@code lines_to_sample}
 		 */
-		public Builder<TJsonDocument> linesToSample(@Nullable Number value) {
+		public final Builder<TJsonDocument> linesToSample(@Nullable Number value) {
 			this.linesToSample = value;
 			return this;
 		}
@@ -522,7 +525,7 @@ public final class FindStructureRequest<TJsonDocument> implements JsonpSerializa
 		 * <p>
 		 * API name: {@code quote}
 		 */
-		public Builder<TJsonDocument> quote(@Nullable String value) {
+		public final Builder<TJsonDocument> quote(@Nullable String value) {
 			this.quote = value;
 			return this;
 		}
@@ -535,7 +538,7 @@ public final class FindStructureRequest<TJsonDocument> implements JsonpSerializa
 		 * <p>
 		 * API name: {@code should_trim_fields}
 		 */
-		public Builder<TJsonDocument> shouldTrimFields(@Nullable Boolean value) {
+		public final Builder<TJsonDocument> shouldTrimFields(@Nullable Boolean value) {
 			this.shouldTrimFields = value;
 			return this;
 		}
@@ -546,7 +549,7 @@ public final class FindStructureRequest<TJsonDocument> implements JsonpSerializa
 		 * <p>
 		 * API name: {@code timeout}
 		 */
-		public Builder<TJsonDocument> timeout(@Nullable String value) {
+		public final Builder<TJsonDocument> timeout(@Nullable String value) {
 			this.timeout = value;
 			return this;
 		}
@@ -556,7 +559,7 @@ public final class FindStructureRequest<TJsonDocument> implements JsonpSerializa
 		 * <p>
 		 * API name: {@code timestamp_field}
 		 */
-		public Builder<TJsonDocument> timestampField(@Nullable String value) {
+		public final Builder<TJsonDocument> timestampField(@Nullable String value) {
 			this.timestampField = value;
 			return this;
 		}
@@ -566,7 +569,7 @@ public final class FindStructureRequest<TJsonDocument> implements JsonpSerializa
 		 * <p>
 		 * API name: {@code timestamp_format}
 		 */
-		public Builder<TJsonDocument> timestampFormat(@Nullable String value) {
+		public final Builder<TJsonDocument> timestampFormat(@Nullable String value) {
 			this.timestampFormat = value;
 			return this;
 		}
@@ -576,7 +579,7 @@ public final class FindStructureRequest<TJsonDocument> implements JsonpSerializa
 		 * <p>
 		 * API name: {@code _value_body}
 		 */
-		public Builder<TJsonDocument> textFiles(List<TJsonDocument> value) {
+		public final Builder<TJsonDocument> textFiles(List<TJsonDocument> value) {
 			this.textFiles = value;
 			return this;
 		}
@@ -586,19 +589,8 @@ public final class FindStructureRequest<TJsonDocument> implements JsonpSerializa
 		 * <p>
 		 * API name: {@code _value_body}
 		 */
-		public Builder<TJsonDocument> textFiles(TJsonDocument... value) {
+		public final Builder<TJsonDocument> textFiles(TJsonDocument... value) {
 			this.textFiles = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #textFiles(List)}, creating the list if needed.
-		 */
-		public Builder<TJsonDocument> addTextFiles(TJsonDocument value) {
-			if (this.textFiles == null) {
-				this.textFiles = new ArrayList<>();
-			}
-			this.textFiles.add(value);
 			return this;
 		}
 
@@ -606,7 +598,7 @@ public final class FindStructureRequest<TJsonDocument> implements JsonpSerializa
 		 * Serializer for TJsonDocument. If not set, an attempt will be made to find a
 		 * serializer from the JSON context.
 		 */
-		public Builder<TJsonDocument> tJsonDocumentSerializer(@Nullable JsonpSerializer<TJsonDocument> value) {
+		public final Builder<TJsonDocument> tJsonDocumentSerializer(@Nullable JsonpSerializer<TJsonDocument> value) {
 			this.tJsonDocumentSerializer = value;
 			return this;
 		}
@@ -618,6 +610,7 @@ public final class FindStructureRequest<TJsonDocument> implements JsonpSerializa
 		 *             if some of the required fields are null.
 		 */
 		public FindStructureRequest<TJsonDocument> build() {
+			_checkSingleUse();
 
 			return new FindStructureRequest<TJsonDocument>(this);
 		}

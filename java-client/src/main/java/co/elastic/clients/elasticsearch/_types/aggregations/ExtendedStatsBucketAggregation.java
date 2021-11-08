@@ -38,21 +38,22 @@ import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.ExtendedStatsBucketAggregation
 @JsonpDeserializable
-public final class ExtendedStatsBucketAggregation extends PipelineAggregationBase implements AggregationVariant {
+public class ExtendedStatsBucketAggregation extends PipelineAggregationBase implements AggregationVariant {
 	@Nullable
 	private final Double sigma;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public ExtendedStatsBucketAggregation(Builder builder) {
+	private ExtendedStatsBucketAggregation(Builder builder) {
 		super(builder);
 
 		this.sigma = builder.sigma;
 
 	}
 
-	public ExtendedStatsBucketAggregation(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ExtendedStatsBucketAggregation of(
+			Function<Builder, ObjectBuilder<ExtendedStatsBucketAggregation>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -67,7 +68,7 @@ public final class ExtendedStatsBucketAggregation extends PipelineAggregationBas
 	 * API name: {@code sigma}
 	 */
 	@Nullable
-	public Double sigma() {
+	public final Double sigma() {
 		return this.sigma;
 	}
 
@@ -75,7 +76,6 @@ public final class ExtendedStatsBucketAggregation extends PipelineAggregationBas
 
 		super.serializeInternal(generator, mapper);
 		if (this.sigma != null) {
-
 			generator.writeKey("sigma");
 			generator.write(this.sigma);
 
@@ -97,7 +97,7 @@ public final class ExtendedStatsBucketAggregation extends PipelineAggregationBas
 		/**
 		 * API name: {@code sigma}
 		 */
-		public Builder sigma(@Nullable Double value) {
+		public final Builder sigma(@Nullable Double value) {
 			this.sigma = value;
 			return this;
 		}
@@ -114,6 +114,7 @@ public final class ExtendedStatsBucketAggregation extends PipelineAggregationBas
 		 *             if some of the required fields are null.
 		 */
 		public ExtendedStatsBucketAggregation build() {
+			_checkSingleUse();
 
 			return new ExtendedStatsBucketAggregation(this);
 		}

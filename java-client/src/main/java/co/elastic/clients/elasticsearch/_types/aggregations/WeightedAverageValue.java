@@ -31,6 +31,7 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
@@ -41,7 +42,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.WeightedAverageValue
 @JsonpDeserializable
-public final class WeightedAverageValue implements JsonpSerializable {
+public class WeightedAverageValue implements JsonpSerializable {
 	@Nullable
 	private final String field;
 
@@ -53,7 +54,7 @@ public final class WeightedAverageValue implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public WeightedAverageValue(Builder builder) {
+	private WeightedAverageValue(Builder builder) {
 
 		this.field = builder.field;
 		this.missing = builder.missing;
@@ -61,15 +62,15 @@ public final class WeightedAverageValue implements JsonpSerializable {
 
 	}
 
-	public WeightedAverageValue(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static WeightedAverageValue of(Function<Builder, ObjectBuilder<WeightedAverageValue>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * API name: {@code field}
 	 */
 	@Nullable
-	public String field() {
+	public final String field() {
 		return this.field;
 	}
 
@@ -77,7 +78,7 @@ public final class WeightedAverageValue implements JsonpSerializable {
 	 * API name: {@code missing}
 	 */
 	@Nullable
-	public Double missing() {
+	public final Double missing() {
 		return this.missing;
 	}
 
@@ -85,7 +86,7 @@ public final class WeightedAverageValue implements JsonpSerializable {
 	 * API name: {@code script}
 	 */
 	@Nullable
-	public JsonValue /* _types.Script */ script() {
+	public final JsonValue /* _types.Script */ script() {
 		return this.script;
 	}
 
@@ -101,19 +102,16 @@ public final class WeightedAverageValue implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.field != null) {
-
 			generator.writeKey("field");
 			generator.write(this.field);
 
 		}
 		if (this.missing != null) {
-
 			generator.writeKey("missing");
 			generator.write(this.missing);
 
 		}
 		if (this.script != null) {
-
 			generator.writeKey("script");
 			generator.write(this.script);
 
@@ -126,7 +124,7 @@ public final class WeightedAverageValue implements JsonpSerializable {
 	/**
 	 * Builder for {@link WeightedAverageValue}.
 	 */
-	public static class Builder implements ObjectBuilder<WeightedAverageValue> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<WeightedAverageValue> {
 		@Nullable
 		private String field;
 
@@ -139,7 +137,7 @@ public final class WeightedAverageValue implements JsonpSerializable {
 		/**
 		 * API name: {@code field}
 		 */
-		public Builder field(@Nullable String value) {
+		public final Builder field(@Nullable String value) {
 			this.field = value;
 			return this;
 		}
@@ -147,7 +145,7 @@ public final class WeightedAverageValue implements JsonpSerializable {
 		/**
 		 * API name: {@code missing}
 		 */
-		public Builder missing(@Nullable Double value) {
+		public final Builder missing(@Nullable Double value) {
 			this.missing = value;
 			return this;
 		}
@@ -155,7 +153,7 @@ public final class WeightedAverageValue implements JsonpSerializable {
 		/**
 		 * API name: {@code script}
 		 */
-		public Builder script(@Nullable JsonValue /* _types.Script */ value) {
+		public final Builder script(@Nullable JsonValue /* _types.Script */ value) {
 			this.script = value;
 			return this;
 		}
@@ -167,6 +165,7 @@ public final class WeightedAverageValue implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public WeightedAverageValue build() {
+			_checkSingleUse();
 
 			return new WeightedAverageValue(this);
 		}

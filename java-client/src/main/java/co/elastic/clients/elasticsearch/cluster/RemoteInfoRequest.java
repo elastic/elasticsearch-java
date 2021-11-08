@@ -39,7 +39,7 @@ import java.util.function.Function;
 
 // typedef: cluster.remote_info.Request
 
-public final class RemoteInfoRequest extends RequestBase {
+public class RemoteInfoRequest extends RequestBase {
 	public RemoteInfoRequest() {
 	}
 

@@ -34,7 +34,6 @@ import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
@@ -42,21 +41,21 @@ import javax.annotation.Nullable;
 
 // typedef: ml._types.DataframeEvaluationOutlierDetectionMetrics
 @JsonpDeserializable
-public final class DataframeEvaluationOutlierDetectionMetrics extends DataframeEvaluationMetrics {
-	@Nullable
+public class DataframeEvaluationOutlierDetectionMetrics extends DataframeEvaluationMetrics {
 	private final Map<String, JsonData> confusionMatrix;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public DataframeEvaluationOutlierDetectionMetrics(Builder builder) {
+	private DataframeEvaluationOutlierDetectionMetrics(Builder builder) {
 		super(builder);
 
 		this.confusionMatrix = ModelTypeHelper.unmodifiable(builder.confusionMatrix);
 
 	}
 
-	public DataframeEvaluationOutlierDetectionMetrics(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static DataframeEvaluationOutlierDetectionMetrics of(
+			Function<Builder, ObjectBuilder<DataframeEvaluationOutlierDetectionMetrics>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -64,16 +63,14 @@ public final class DataframeEvaluationOutlierDetectionMetrics extends DataframeE
 	 * <p>
 	 * API name: {@code confusion_matrix}
 	 */
-	@Nullable
-	public Map<String, JsonData> confusionMatrix() {
+	public final Map<String, JsonData> confusionMatrix() {
 		return this.confusionMatrix;
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
-		if (this.confusionMatrix != null) {
-
+		if (ModelTypeHelper.isDefined(this.confusionMatrix)) {
 			generator.writeKey("confusion_matrix");
 			generator.writeStartObject();
 			for (Map.Entry<String, JsonData> item0 : this.confusionMatrix.entrySet()) {
@@ -103,19 +100,8 @@ public final class DataframeEvaluationOutlierDetectionMetrics extends DataframeE
 		 * <p>
 		 * API name: {@code confusion_matrix}
 		 */
-		public Builder confusionMatrix(@Nullable Map<String, JsonData> value) {
+		public final Builder confusionMatrix(@Nullable Map<String, JsonData> value) {
 			this.confusionMatrix = value;
-			return this;
-		}
-
-		/**
-		 * Add a key/value to {@link #confusionMatrix(Map)}, creating the map if needed.
-		 */
-		public Builder putConfusionMatrix(String key, JsonData value) {
-			if (this.confusionMatrix == null) {
-				this.confusionMatrix = new HashMap<>();
-			}
-			this.confusionMatrix.put(key, value);
 			return this;
 		}
 
@@ -131,6 +117,7 @@ public final class DataframeEvaluationOutlierDetectionMetrics extends DataframeE
 		 *             if some of the required fields are null.
 		 */
 		public DataframeEvaluationOutlierDetectionMetrics build() {
+			_checkSingleUse();
 
 			return new DataframeEvaluationOutlierDetectionMetrics(this);
 		}

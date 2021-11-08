@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.lang.String;
@@ -40,7 +42,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.GetStats
 @JsonpDeserializable
-public final class GetStats implements JsonpSerializable {
+public class GetStats implements JsonpSerializable {
 	private final long current;
 
 	@Nullable
@@ -66,29 +68,31 @@ public final class GetStats implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public GetStats(Builder builder) {
+	private GetStats(Builder builder) {
 
-		this.current = Objects.requireNonNull(builder.current, "current");
+		this.current = ModelTypeHelper.requireNonNull(builder.current, this, "current");
 		this.existsTime = builder.existsTime;
-		this.existsTimeInMillis = Objects.requireNonNull(builder.existsTimeInMillis, "exists_time_in_millis");
-		this.existsTotal = Objects.requireNonNull(builder.existsTotal, "exists_total");
+		this.existsTimeInMillis = ModelTypeHelper.requireNonNull(builder.existsTimeInMillis, this,
+				"existsTimeInMillis");
+		this.existsTotal = ModelTypeHelper.requireNonNull(builder.existsTotal, this, "existsTotal");
 		this.missingTime = builder.missingTime;
-		this.missingTimeInMillis = Objects.requireNonNull(builder.missingTimeInMillis, "missing_time_in_millis");
-		this.missingTotal = Objects.requireNonNull(builder.missingTotal, "missing_total");
+		this.missingTimeInMillis = ModelTypeHelper.requireNonNull(builder.missingTimeInMillis, this,
+				"missingTimeInMillis");
+		this.missingTotal = ModelTypeHelper.requireNonNull(builder.missingTotal, this, "missingTotal");
 		this.time = builder.time;
-		this.timeInMillis = Objects.requireNonNull(builder.timeInMillis, "time_in_millis");
-		this.total = Objects.requireNonNull(builder.total, "total");
+		this.timeInMillis = ModelTypeHelper.requireNonNull(builder.timeInMillis, this, "timeInMillis");
+		this.total = ModelTypeHelper.requireNonNull(builder.total, this, "total");
 
 	}
 
-	public GetStats(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static GetStats of(Function<Builder, ObjectBuilder<GetStats>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code current}
 	 */
-	public long current() {
+	public final long current() {
 		return this.current;
 	}
 
@@ -96,21 +100,21 @@ public final class GetStats implements JsonpSerializable {
 	 * API name: {@code exists_time}
 	 */
 	@Nullable
-	public String existsTime() {
+	public final String existsTime() {
 		return this.existsTime;
 	}
 
 	/**
 	 * Required - API name: {@code exists_time_in_millis}
 	 */
-	public long existsTimeInMillis() {
+	public final long existsTimeInMillis() {
 		return this.existsTimeInMillis;
 	}
 
 	/**
 	 * Required - API name: {@code exists_total}
 	 */
-	public long existsTotal() {
+	public final long existsTotal() {
 		return this.existsTotal;
 	}
 
@@ -118,21 +122,21 @@ public final class GetStats implements JsonpSerializable {
 	 * API name: {@code missing_time}
 	 */
 	@Nullable
-	public String missingTime() {
+	public final String missingTime() {
 		return this.missingTime;
 	}
 
 	/**
 	 * Required - API name: {@code missing_time_in_millis}
 	 */
-	public long missingTimeInMillis() {
+	public final long missingTimeInMillis() {
 		return this.missingTimeInMillis;
 	}
 
 	/**
 	 * Required - API name: {@code missing_total}
 	 */
-	public long missingTotal() {
+	public final long missingTotal() {
 		return this.missingTotal;
 	}
 
@@ -140,21 +144,21 @@ public final class GetStats implements JsonpSerializable {
 	 * API name: {@code time}
 	 */
 	@Nullable
-	public String time() {
+	public final String time() {
 		return this.time;
 	}
 
 	/**
 	 * Required - API name: {@code time_in_millis}
 	 */
-	public long timeInMillis() {
+	public final long timeInMillis() {
 		return this.timeInMillis;
 	}
 
 	/**
 	 * Required - API name: {@code total}
 	 */
-	public long total() {
+	public final long total() {
 		return this.total;
 	}
 
@@ -173,12 +177,10 @@ public final class GetStats implements JsonpSerializable {
 		generator.write(this.current);
 
 		if (this.existsTime != null) {
-
 			generator.writeKey("exists_time");
 			generator.write(this.existsTime);
 
 		}
-
 		generator.writeKey("exists_time_in_millis");
 		generator.write(this.existsTimeInMillis);
 
@@ -186,12 +188,10 @@ public final class GetStats implements JsonpSerializable {
 		generator.write(this.existsTotal);
 
 		if (this.missingTime != null) {
-
 			generator.writeKey("missing_time");
 			generator.write(this.missingTime);
 
 		}
-
 		generator.writeKey("missing_time_in_millis");
 		generator.write(this.missingTimeInMillis);
 
@@ -199,12 +199,10 @@ public final class GetStats implements JsonpSerializable {
 		generator.write(this.missingTotal);
 
 		if (this.time != null) {
-
 			generator.writeKey("time");
 			generator.write(this.time);
 
 		}
-
 		generator.writeKey("time_in_millis");
 		generator.write(this.timeInMillis);
 
@@ -218,7 +216,7 @@ public final class GetStats implements JsonpSerializable {
 	/**
 	 * Builder for {@link GetStats}.
 	 */
-	public static class Builder implements ObjectBuilder<GetStats> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetStats> {
 		private Long current;
 
 		@Nullable
@@ -245,7 +243,7 @@ public final class GetStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code current}
 		 */
-		public Builder current(long value) {
+		public final Builder current(long value) {
 			this.current = value;
 			return this;
 		}
@@ -253,7 +251,7 @@ public final class GetStats implements JsonpSerializable {
 		/**
 		 * API name: {@code exists_time}
 		 */
-		public Builder existsTime(@Nullable String value) {
+		public final Builder existsTime(@Nullable String value) {
 			this.existsTime = value;
 			return this;
 		}
@@ -261,7 +259,7 @@ public final class GetStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code exists_time_in_millis}
 		 */
-		public Builder existsTimeInMillis(long value) {
+		public final Builder existsTimeInMillis(long value) {
 			this.existsTimeInMillis = value;
 			return this;
 		}
@@ -269,7 +267,7 @@ public final class GetStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code exists_total}
 		 */
-		public Builder existsTotal(long value) {
+		public final Builder existsTotal(long value) {
 			this.existsTotal = value;
 			return this;
 		}
@@ -277,7 +275,7 @@ public final class GetStats implements JsonpSerializable {
 		/**
 		 * API name: {@code missing_time}
 		 */
-		public Builder missingTime(@Nullable String value) {
+		public final Builder missingTime(@Nullable String value) {
 			this.missingTime = value;
 			return this;
 		}
@@ -285,7 +283,7 @@ public final class GetStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code missing_time_in_millis}
 		 */
-		public Builder missingTimeInMillis(long value) {
+		public final Builder missingTimeInMillis(long value) {
 			this.missingTimeInMillis = value;
 			return this;
 		}
@@ -293,7 +291,7 @@ public final class GetStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code missing_total}
 		 */
-		public Builder missingTotal(long value) {
+		public final Builder missingTotal(long value) {
 			this.missingTotal = value;
 			return this;
 		}
@@ -301,7 +299,7 @@ public final class GetStats implements JsonpSerializable {
 		/**
 		 * API name: {@code time}
 		 */
-		public Builder time(@Nullable String value) {
+		public final Builder time(@Nullable String value) {
 			this.time = value;
 			return this;
 		}
@@ -309,7 +307,7 @@ public final class GetStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code time_in_millis}
 		 */
-		public Builder timeInMillis(long value) {
+		public final Builder timeInMillis(long value) {
 			this.timeInMillis = value;
 			return this;
 		}
@@ -317,7 +315,7 @@ public final class GetStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code total}
 		 */
-		public Builder total(long value) {
+		public final Builder total(long value) {
 			this.total = value;
 			return this;
 		}
@@ -329,6 +327,7 @@ public final class GetStats implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public GetStats build() {
+			_checkSingleUse();
 
 			return new GetStats(this);
 		}

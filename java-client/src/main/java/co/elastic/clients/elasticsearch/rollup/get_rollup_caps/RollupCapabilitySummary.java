@@ -33,9 +33,9 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
@@ -43,7 +43,7 @@ import javax.annotation.Nullable;
 
 // typedef: rollup.get_rollup_caps.RollupCapabilitySummary
 @JsonpDeserializable
-public final class RollupCapabilitySummary implements JsonpSerializable {
+public class RollupCapabilitySummary implements JsonpSerializable {
 	private final Map<String, Map<String, JsonData>> fields;
 
 	private final String indexPattern;
@@ -54,44 +54,44 @@ public final class RollupCapabilitySummary implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public RollupCapabilitySummary(Builder builder) {
+	private RollupCapabilitySummary(Builder builder) {
 
-		this.fields = ModelTypeHelper.unmodifiableNonNull(builder.fields, "fields");
-		this.indexPattern = Objects.requireNonNull(builder.indexPattern, "index_pattern");
-		this.jobId = Objects.requireNonNull(builder.jobId, "job_id");
-		this.rollupIndex = Objects.requireNonNull(builder.rollupIndex, "rollup_index");
+		this.fields = ModelTypeHelper.unmodifiableRequired(builder.fields, this, "fields");
+		this.indexPattern = ModelTypeHelper.requireNonNull(builder.indexPattern, this, "indexPattern");
+		this.jobId = ModelTypeHelper.requireNonNull(builder.jobId, this, "jobId");
+		this.rollupIndex = ModelTypeHelper.requireNonNull(builder.rollupIndex, this, "rollupIndex");
 
 	}
 
-	public RollupCapabilitySummary(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static RollupCapabilitySummary of(Function<Builder, ObjectBuilder<RollupCapabilitySummary>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code fields}
 	 */
-	public Map<String, Map<String, JsonData>> fields() {
+	public final Map<String, Map<String, JsonData>> fields() {
 		return this.fields;
 	}
 
 	/**
 	 * Required - API name: {@code index_pattern}
 	 */
-	public String indexPattern() {
+	public final String indexPattern() {
 		return this.indexPattern;
 	}
 
 	/**
 	 * Required - API name: {@code job_id}
 	 */
-	public String jobId() {
+	public final String jobId() {
 		return this.jobId;
 	}
 
 	/**
 	 * Required - API name: {@code rollup_index}
 	 */
-	public String rollupIndex() {
+	public final String rollupIndex() {
 		return this.rollupIndex;
 	}
 
@@ -106,21 +106,25 @@ public final class RollupCapabilitySummary implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("fields");
-		generator.writeStartObject();
-		for (Map.Entry<String, Map<String, JsonData>> item0 : this.fields.entrySet()) {
-			generator.writeKey(item0.getKey());
+		if (ModelTypeHelper.isDefined(this.fields)) {
+			generator.writeKey("fields");
 			generator.writeStartObject();
-			for (Map.Entry<String, JsonData> item1 : item0.getValue().entrySet()) {
-				generator.writeKey(item1.getKey());
-				item1.getValue().serialize(generator, mapper);
+			for (Map.Entry<String, Map<String, JsonData>> item0 : this.fields.entrySet()) {
+				generator.writeKey(item0.getKey());
+				generator.writeStartObject();
+				if (item0.getValue() != null) {
+					for (Map.Entry<String, JsonData> item1 : item0.getValue().entrySet()) {
+						generator.writeKey(item1.getKey());
+						item1.getValue().serialize(generator, mapper);
+
+					}
+				}
+				generator.writeEnd();
 
 			}
 			generator.writeEnd();
 
 		}
-		generator.writeEnd();
-
 		generator.writeKey("index_pattern");
 		generator.write(this.indexPattern);
 
@@ -137,7 +141,7 @@ public final class RollupCapabilitySummary implements JsonpSerializable {
 	/**
 	 * Builder for {@link RollupCapabilitySummary}.
 	 */
-	public static class Builder implements ObjectBuilder<RollupCapabilitySummary> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RollupCapabilitySummary> {
 		private Map<String, Map<String, JsonData>> fields;
 
 		private String indexPattern;
@@ -149,26 +153,15 @@ public final class RollupCapabilitySummary implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code fields}
 		 */
-		public Builder fields(Map<String, Map<String, JsonData>> value) {
+		public final Builder fields(Map<String, Map<String, JsonData>> value) {
 			this.fields = value;
-			return this;
-		}
-
-		/**
-		 * Add a key/value to {@link #fields(Map)}, creating the map if needed.
-		 */
-		public Builder putFields(String key, Map<String, JsonData> value) {
-			if (this.fields == null) {
-				this.fields = new HashMap<>();
-			}
-			this.fields.put(key, value);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code index_pattern}
 		 */
-		public Builder indexPattern(String value) {
+		public final Builder indexPattern(String value) {
 			this.indexPattern = value;
 			return this;
 		}
@@ -176,7 +169,7 @@ public final class RollupCapabilitySummary implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code job_id}
 		 */
-		public Builder jobId(String value) {
+		public final Builder jobId(String value) {
 			this.jobId = value;
 			return this;
 		}
@@ -184,7 +177,7 @@ public final class RollupCapabilitySummary implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code rollup_index}
 		 */
-		public Builder rollupIndex(String value) {
+		public final Builder rollupIndex(String value) {
 			this.rollupIndex = value;
 			return this;
 		}
@@ -196,6 +189,7 @@ public final class RollupCapabilitySummary implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public RollupCapabilitySummary build() {
+			_checkSingleUse();
 
 			return new RollupCapabilitySummary(this);
 		}

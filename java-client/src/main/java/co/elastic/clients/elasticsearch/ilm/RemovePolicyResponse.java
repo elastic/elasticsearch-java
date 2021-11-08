@@ -32,10 +32,10 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
@@ -44,35 +44,35 @@ import javax.annotation.Nullable;
 
 // typedef: ilm.remove_policy.Response
 @JsonpDeserializable
-public final class RemovePolicyResponse implements JsonpSerializable {
+public class RemovePolicyResponse implements JsonpSerializable {
 	private final List<String> failedIndexes;
 
 	private final boolean hasFailures;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public RemovePolicyResponse(Builder builder) {
+	private RemovePolicyResponse(Builder builder) {
 
-		this.failedIndexes = ModelTypeHelper.unmodifiableNonNull(builder.failedIndexes, "failed_indexes");
-		this.hasFailures = Objects.requireNonNull(builder.hasFailures, "has_failures");
+		this.failedIndexes = ModelTypeHelper.unmodifiableRequired(builder.failedIndexes, this, "failedIndexes");
+		this.hasFailures = ModelTypeHelper.requireNonNull(builder.hasFailures, this, "hasFailures");
 
 	}
 
-	public RemovePolicyResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static RemovePolicyResponse of(Function<Builder, ObjectBuilder<RemovePolicyResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code failed_indexes}
 	 */
-	public List<String> failedIndexes() {
+	public final List<String> failedIndexes() {
 		return this.failedIndexes;
 	}
 
 	/**
 	 * Required - API name: {@code has_failures}
 	 */
-	public boolean hasFailures() {
+	public final boolean hasFailures() {
 		return this.hasFailures;
 	}
 
@@ -87,14 +87,16 @@ public final class RemovePolicyResponse implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("failed_indexes");
-		generator.writeStartArray();
-		for (String item0 : this.failedIndexes) {
-			generator.write(item0);
+		if (ModelTypeHelper.isDefined(this.failedIndexes)) {
+			generator.writeKey("failed_indexes");
+			generator.writeStartArray();
+			for (String item0 : this.failedIndexes) {
+				generator.write(item0);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
-
 		generator.writeKey("has_failures");
 		generator.write(this.hasFailures);
 
@@ -105,7 +107,7 @@ public final class RemovePolicyResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link RemovePolicyResponse}.
 	 */
-	public static class Builder implements ObjectBuilder<RemovePolicyResponse> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RemovePolicyResponse> {
 		private List<String> failedIndexes;
 
 		private Boolean hasFailures;
@@ -113,7 +115,7 @@ public final class RemovePolicyResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code failed_indexes}
 		 */
-		public Builder failedIndexes(List<String> value) {
+		public final Builder failedIndexes(List<String> value) {
 			this.failedIndexes = value;
 			return this;
 		}
@@ -121,26 +123,15 @@ public final class RemovePolicyResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code failed_indexes}
 		 */
-		public Builder failedIndexes(String... value) {
+		public final Builder failedIndexes(String... value) {
 			this.failedIndexes = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #failedIndexes(List)}, creating the list if needed.
-		 */
-		public Builder addFailedIndexes(String value) {
-			if (this.failedIndexes == null) {
-				this.failedIndexes = new ArrayList<>();
-			}
-			this.failedIndexes.add(value);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code has_failures}
 		 */
-		public Builder hasFailures(boolean value) {
+		public final Builder hasFailures(boolean value) {
 			this.hasFailures = value;
 			return this;
 		}
@@ -152,6 +143,7 @@ public final class RemovePolicyResponse implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public RemovePolicyResponse build() {
+			_checkSingleUse();
 
 			return new RemovePolicyResponse(this);
 		}

@@ -51,7 +51,7 @@ public abstract class StandardNumberProperty extends NumberPropertyBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public StandardNumberProperty(AbstractBuilder<?> builder) {
+	protected StandardNumberProperty(AbstractBuilder<?> builder) {
 		super(builder);
 
 		this.coerce = builder.coerce;
@@ -64,7 +64,7 @@ public abstract class StandardNumberProperty extends NumberPropertyBase {
 	 * API name: {@code coerce}
 	 */
 	@Nullable
-	public Boolean coerce() {
+	public final Boolean coerce() {
 		return this.coerce;
 	}
 
@@ -72,7 +72,7 @@ public abstract class StandardNumberProperty extends NumberPropertyBase {
 	 * API name: {@code script}
 	 */
 	@Nullable
-	public JsonValue /* _types.Script */ script() {
+	public final JsonValue /* _types.Script */ script() {
 		return this.script;
 	}
 
@@ -80,7 +80,7 @@ public abstract class StandardNumberProperty extends NumberPropertyBase {
 	 * API name: {@code on_script_error}
 	 */
 	@Nullable
-	public OnScriptError onScriptError() {
+	public final OnScriptError onScriptError() {
 		return this.onScriptError;
 	}
 
@@ -88,19 +88,16 @@ public abstract class StandardNumberProperty extends NumberPropertyBase {
 
 		super.serializeInternal(generator, mapper);
 		if (this.coerce != null) {
-
 			generator.writeKey("coerce");
 			generator.write(this.coerce);
 
 		}
 		if (this.script != null) {
-
 			generator.writeKey("script");
 			generator.write(this.script);
 
 		}
 		if (this.onScriptError != null) {
-
 			generator.writeKey("on_script_error");
 			this.onScriptError.serialize(generator, mapper);
 		}
@@ -122,7 +119,7 @@ public abstract class StandardNumberProperty extends NumberPropertyBase {
 		/**
 		 * API name: {@code coerce}
 		 */
-		public BuilderT coerce(@Nullable Boolean value) {
+		public final BuilderT coerce(@Nullable Boolean value) {
 			this.coerce = value;
 			return self();
 		}
@@ -130,7 +127,7 @@ public abstract class StandardNumberProperty extends NumberPropertyBase {
 		/**
 		 * API name: {@code script}
 		 */
-		public BuilderT script(@Nullable JsonValue /* _types.Script */ value) {
+		public final BuilderT script(@Nullable JsonValue /* _types.Script */ value) {
 			this.script = value;
 			return self();
 		}
@@ -138,7 +135,7 @@ public abstract class StandardNumberProperty extends NumberPropertyBase {
 		/**
 		 * API name: {@code on_script_error}
 		 */
-		public BuilderT onScriptError(@Nullable OnScriptError value) {
+		public final BuilderT onScriptError(@Nullable OnScriptError value) {
 			this.onScriptError = value;
 			return self();
 		}

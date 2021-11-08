@@ -34,7 +34,9 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.SimpleEndpoint;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Integer;
@@ -47,7 +49,7 @@ import javax.annotation.Nullable;
 
 // typedef: ml.get_model_snapshots.Request
 @JsonpDeserializable
-public final class GetModelSnapshotsRequest extends RequestBase implements JsonpSerializable {
+public class GetModelSnapshotsRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
 	private final Boolean desc;
 
@@ -73,12 +75,12 @@ public final class GetModelSnapshotsRequest extends RequestBase implements Jsonp
 
 	// ---------------------------------------------------------------------------------------------
 
-	public GetModelSnapshotsRequest(Builder builder) {
+	private GetModelSnapshotsRequest(Builder builder) {
 
 		this.desc = builder.desc;
 		this.end = builder.end;
 		this.from = builder.from;
-		this.jobId = Objects.requireNonNull(builder.jobId, "job_id");
+		this.jobId = ModelTypeHelper.requireNonNull(builder.jobId, this, "jobId");
 		this.size = builder.size;
 		this.snapshotId = builder.snapshotId;
 		this.sort = builder.sort;
@@ -86,8 +88,8 @@ public final class GetModelSnapshotsRequest extends RequestBase implements Jsonp
 
 	}
 
-	public GetModelSnapshotsRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static GetModelSnapshotsRequest of(Function<Builder, ObjectBuilder<GetModelSnapshotsRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -96,15 +98,18 @@ public final class GetModelSnapshotsRequest extends RequestBase implements Jsonp
 	 * API name: {@code desc}
 	 */
 	@Nullable
-	public Boolean desc() {
+	public final Boolean desc() {
 		return this.desc;
 	}
 
 	/**
+	 * Returns snapshots with timestamps earlier than this time. Defaults to unset,
+	 * which means results are not limited to specific timestamps.
+	 * <p>
 	 * API name: {@code end}
 	 */
 	@Nullable
-	public String end() {
+	public final String end() {
 		return this.end;
 	}
 
@@ -114,7 +119,7 @@ public final class GetModelSnapshotsRequest extends RequestBase implements Jsonp
 	 * API name: {@code from}
 	 */
 	@Nullable
-	public Integer from() {
+	public final Integer from() {
 		return this.from;
 	}
 
@@ -123,7 +128,7 @@ public final class GetModelSnapshotsRequest extends RequestBase implements Jsonp
 	 * <p>
 	 * API name: {@code job_id}
 	 */
-	public String jobId() {
+	public final String jobId() {
 		return this.jobId;
 	}
 
@@ -133,7 +138,7 @@ public final class GetModelSnapshotsRequest extends RequestBase implements Jsonp
 	 * API name: {@code size}
 	 */
 	@Nullable
-	public Integer size() {
+	public final Integer size() {
 		return this.size;
 	}
 
@@ -143,7 +148,7 @@ public final class GetModelSnapshotsRequest extends RequestBase implements Jsonp
 	 * API name: {@code snapshot_id}
 	 */
 	@Nullable
-	public String snapshotId() {
+	public final String snapshotId() {
 		return this.snapshotId;
 	}
 
@@ -154,15 +159,18 @@ public final class GetModelSnapshotsRequest extends RequestBase implements Jsonp
 	 * API name: {@code sort}
 	 */
 	@Nullable
-	public String sort() {
+	public final String sort() {
 		return this.sort;
 	}
 
 	/**
+	 * Returns snapshots with timestamps after this time. Defaults to unset, which
+	 * means results are not limited to specific timestamps.
+	 * <p>
 	 * API name: {@code start}
 	 */
 	@Nullable
-	public String start() {
+	public final String start() {
 		return this.start;
 	}
 
@@ -178,13 +186,11 @@ public final class GetModelSnapshotsRequest extends RequestBase implements Jsonp
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.end != null) {
-
 			generator.writeKey("end");
 			generator.write(this.end);
 
 		}
 		if (this.start != null) {
-
 			generator.writeKey("start");
 			generator.write(this.start);
 
@@ -197,7 +203,7 @@ public final class GetModelSnapshotsRequest extends RequestBase implements Jsonp
 	/**
 	 * Builder for {@link GetModelSnapshotsRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<GetModelSnapshotsRequest> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetModelSnapshotsRequest> {
 		@Nullable
 		private Boolean desc;
 
@@ -226,15 +232,18 @@ public final class GetModelSnapshotsRequest extends RequestBase implements Jsonp
 		 * <p>
 		 * API name: {@code desc}
 		 */
-		public Builder desc(@Nullable Boolean value) {
+		public final Builder desc(@Nullable Boolean value) {
 			this.desc = value;
 			return this;
 		}
 
 		/**
+		 * Returns snapshots with timestamps earlier than this time. Defaults to unset,
+		 * which means results are not limited to specific timestamps.
+		 * <p>
 		 * API name: {@code end}
 		 */
-		public Builder end(@Nullable String value) {
+		public final Builder end(@Nullable String value) {
 			this.end = value;
 			return this;
 		}
@@ -244,7 +253,7 @@ public final class GetModelSnapshotsRequest extends RequestBase implements Jsonp
 		 * <p>
 		 * API name: {@code from}
 		 */
-		public Builder from(@Nullable Integer value) {
+		public final Builder from(@Nullable Integer value) {
 			this.from = value;
 			return this;
 		}
@@ -254,7 +263,7 @@ public final class GetModelSnapshotsRequest extends RequestBase implements Jsonp
 		 * <p>
 		 * API name: {@code job_id}
 		 */
-		public Builder jobId(String value) {
+		public final Builder jobId(String value) {
 			this.jobId = value;
 			return this;
 		}
@@ -264,7 +273,7 @@ public final class GetModelSnapshotsRequest extends RequestBase implements Jsonp
 		 * <p>
 		 * API name: {@code size}
 		 */
-		public Builder size(@Nullable Integer value) {
+		public final Builder size(@Nullable Integer value) {
 			this.size = value;
 			return this;
 		}
@@ -274,7 +283,7 @@ public final class GetModelSnapshotsRequest extends RequestBase implements Jsonp
 		 * <p>
 		 * API name: {@code snapshot_id}
 		 */
-		public Builder snapshotId(@Nullable String value) {
+		public final Builder snapshotId(@Nullable String value) {
 			this.snapshotId = value;
 			return this;
 		}
@@ -285,15 +294,18 @@ public final class GetModelSnapshotsRequest extends RequestBase implements Jsonp
 		 * <p>
 		 * API name: {@code sort}
 		 */
-		public Builder sort(@Nullable String value) {
+		public final Builder sort(@Nullable String value) {
 			this.sort = value;
 			return this;
 		}
 
 		/**
+		 * Returns snapshots with timestamps after this time. Defaults to unset, which
+		 * means results are not limited to specific timestamps.
+		 * <p>
 		 * API name: {@code start}
 		 */
-		public Builder start(@Nullable String value) {
+		public final Builder start(@Nullable String value) {
 			this.start = value;
 			return this;
 		}
@@ -305,6 +317,7 @@ public final class GetModelSnapshotsRequest extends RequestBase implements Jsonp
 		 *             if some of the required fields are null.
 		 */
 		public GetModelSnapshotsRequest build() {
+			_checkSingleUse();
 
 			return new GetModelSnapshotsRequest(this);
 		}

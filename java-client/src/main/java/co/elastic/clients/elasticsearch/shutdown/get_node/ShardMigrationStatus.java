@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;
@@ -38,25 +40,25 @@ import javax.annotation.Nullable;
 
 // typedef: shutdown.get_node.ShardMigrationStatus
 @JsonpDeserializable
-public final class ShardMigrationStatus implements JsonpSerializable {
+public class ShardMigrationStatus implements JsonpSerializable {
 	private final ShutdownStatus status;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public ShardMigrationStatus(Builder builder) {
+	private ShardMigrationStatus(Builder builder) {
 
-		this.status = Objects.requireNonNull(builder.status, "status");
+		this.status = ModelTypeHelper.requireNonNull(builder.status, this, "status");
 
 	}
 
-	public ShardMigrationStatus(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ShardMigrationStatus of(Function<Builder, ObjectBuilder<ShardMigrationStatus>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code status}
 	 */
-	public ShutdownStatus status() {
+	public final ShutdownStatus status() {
 		return this.status;
 	}
 
@@ -81,13 +83,13 @@ public final class ShardMigrationStatus implements JsonpSerializable {
 	/**
 	 * Builder for {@link ShardMigrationStatus}.
 	 */
-	public static class Builder implements ObjectBuilder<ShardMigrationStatus> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ShardMigrationStatus> {
 		private ShutdownStatus status;
 
 		/**
 		 * Required - API name: {@code status}
 		 */
-		public Builder status(ShutdownStatus value) {
+		public final Builder status(ShutdownStatus value) {
 			this.status = value;
 			return this;
 		}
@@ -99,6 +101,7 @@ public final class ShardMigrationStatus implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public ShardMigrationStatus build() {
+			_checkSingleUse();
 
 			return new ShardMigrationStatus(this);
 		}

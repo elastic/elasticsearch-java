@@ -32,10 +32,10 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
@@ -44,12 +44,15 @@ import javax.annotation.Nullable;
 
 // typedef: _types.analysis.PatternAnalyzer
 @JsonpDeserializable
-public final class PatternAnalyzer implements AnalyzerVariant, JsonpSerializable {
+public class PatternAnalyzer implements AnalyzerVariant, JsonpSerializable {
+	@Nullable
 	private final String version;
 
+	@Nullable
 	private final String flags;
 
-	private final boolean lowercase;
+	@Nullable
+	private final Boolean lowercase;
 
 	private final String pattern;
 
@@ -57,18 +60,18 @@ public final class PatternAnalyzer implements AnalyzerVariant, JsonpSerializable
 
 	// ---------------------------------------------------------------------------------------------
 
-	public PatternAnalyzer(Builder builder) {
+	private PatternAnalyzer(Builder builder) {
 
-		this.version = Objects.requireNonNull(builder.version, "version");
-		this.flags = Objects.requireNonNull(builder.flags, "flags");
-		this.lowercase = Objects.requireNonNull(builder.lowercase, "lowercase");
-		this.pattern = Objects.requireNonNull(builder.pattern, "pattern");
-		this.stopwords = ModelTypeHelper.unmodifiableNonNull(builder.stopwords, "stopwords");
+		this.version = builder.version;
+		this.flags = builder.flags;
+		this.lowercase = builder.lowercase;
+		this.pattern = ModelTypeHelper.requireNonNull(builder.pattern, this, "pattern");
+		this.stopwords = ModelTypeHelper.unmodifiable(builder.stopwords);
 
 	}
 
-	public PatternAnalyzer(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static PatternAnalyzer of(Function<Builder, ObjectBuilder<PatternAnalyzer>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -80,37 +83,40 @@ public final class PatternAnalyzer implements AnalyzerVariant, JsonpSerializable
 	}
 
 	/**
-	 * Required - API name: {@code version}
+	 * API name: {@code version}
 	 */
-	public String version() {
+	@Nullable
+	public final String version() {
 		return this.version;
 	}
 
 	/**
-	 * Required - API name: {@code flags}
+	 * API name: {@code flags}
 	 */
-	public String flags() {
+	@Nullable
+	public final String flags() {
 		return this.flags;
 	}
 
 	/**
-	 * Required - API name: {@code lowercase}
+	 * API name: {@code lowercase}
 	 */
-	public boolean lowercase() {
+	@Nullable
+	public final Boolean lowercase() {
 		return this.lowercase;
 	}
 
 	/**
 	 * Required - API name: {@code pattern}
 	 */
-	public String pattern() {
+	public final String pattern() {
 		return this.pattern;
 	}
 
 	/**
-	 * Required - API name: {@code stopwords}
+	 * API name: {@code stopwords}
 	 */
-	public List<String> stopwords() {
+	public final List<String> stopwords() {
 		return this.stopwords;
 	}
 
@@ -127,25 +133,34 @@ public final class PatternAnalyzer implements AnalyzerVariant, JsonpSerializable
 
 		generator.write("type", "pattern");
 
-		generator.writeKey("version");
-		generator.write(this.version);
+		if (this.version != null) {
+			generator.writeKey("version");
+			generator.write(this.version);
 
-		generator.writeKey("flags");
-		generator.write(this.flags);
+		}
+		if (this.flags != null) {
+			generator.writeKey("flags");
+			generator.write(this.flags);
 
-		generator.writeKey("lowercase");
-		generator.write(this.lowercase);
+		}
+		if (this.lowercase != null) {
+			generator.writeKey("lowercase");
+			generator.write(this.lowercase);
 
+		}
 		generator.writeKey("pattern");
 		generator.write(this.pattern);
 
-		generator.writeKey("stopwords");
-		generator.writeStartArray();
-		for (String item0 : this.stopwords) {
-			generator.write(item0);
+		if (ModelTypeHelper.isDefined(this.stopwords)) {
+			generator.writeKey("stopwords");
+			generator.writeStartArray();
+			for (String item0 : this.stopwords) {
+				generator.write(item0);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
 
 	}
 
@@ -154,37 +169,41 @@ public final class PatternAnalyzer implements AnalyzerVariant, JsonpSerializable
 	/**
 	 * Builder for {@link PatternAnalyzer}.
 	 */
-	public static class Builder implements ObjectBuilder<PatternAnalyzer> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PatternAnalyzer> {
+		@Nullable
 		private String version;
 
+		@Nullable
 		private String flags;
 
+		@Nullable
 		private Boolean lowercase;
 
 		private String pattern;
 
+		@Nullable
 		private List<String> stopwords;
 
 		/**
-		 * Required - API name: {@code version}
+		 * API name: {@code version}
 		 */
-		public Builder version(String value) {
+		public final Builder version(@Nullable String value) {
 			this.version = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code flags}
+		 * API name: {@code flags}
 		 */
-		public Builder flags(String value) {
+		public final Builder flags(@Nullable String value) {
 			this.flags = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code lowercase}
+		 * API name: {@code lowercase}
 		 */
-		public Builder lowercase(boolean value) {
+		public final Builder lowercase(@Nullable Boolean value) {
 			this.lowercase = value;
 			return this;
 		}
@@ -192,35 +211,24 @@ public final class PatternAnalyzer implements AnalyzerVariant, JsonpSerializable
 		/**
 		 * Required - API name: {@code pattern}
 		 */
-		public Builder pattern(String value) {
+		public final Builder pattern(String value) {
 			this.pattern = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code stopwords}
+		 * API name: {@code stopwords}
 		 */
-		public Builder stopwords(List<String> value) {
+		public final Builder stopwords(@Nullable List<String> value) {
 			this.stopwords = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code stopwords}
+		 * API name: {@code stopwords}
 		 */
-		public Builder stopwords(String... value) {
+		public final Builder stopwords(String... value) {
 			this.stopwords = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #stopwords(List)}, creating the list if needed.
-		 */
-		public Builder addStopwords(String value) {
-			if (this.stopwords == null) {
-				this.stopwords = new ArrayList<>();
-			}
-			this.stopwords.add(value);
 			return this;
 		}
 
@@ -231,6 +239,7 @@ public final class PatternAnalyzer implements AnalyzerVariant, JsonpSerializable
 		 *             if some of the required fields are null.
 		 */
 		public PatternAnalyzer build() {
+			_checkSingleUse();
 
 			return new PatternAnalyzer(this);
 		}

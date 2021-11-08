@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -39,25 +41,26 @@ import javax.annotation.Nullable;
 
 // typedef: nodes.info.NodeInfoXpackSecurityAuthcToken
 @JsonpDeserializable
-public final class NodeInfoXpackSecurityAuthcToken implements JsonpSerializable {
+public class NodeInfoXpackSecurityAuthcToken implements JsonpSerializable {
 	private final String enabled;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public NodeInfoXpackSecurityAuthcToken(Builder builder) {
+	private NodeInfoXpackSecurityAuthcToken(Builder builder) {
 
-		this.enabled = Objects.requireNonNull(builder.enabled, "enabled");
+		this.enabled = ModelTypeHelper.requireNonNull(builder.enabled, this, "enabled");
 
 	}
 
-	public NodeInfoXpackSecurityAuthcToken(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static NodeInfoXpackSecurityAuthcToken of(
+			Function<Builder, ObjectBuilder<NodeInfoXpackSecurityAuthcToken>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code enabled}
 	 */
-	public String enabled() {
+	public final String enabled() {
 		return this.enabled;
 	}
 
@@ -82,13 +85,13 @@ public final class NodeInfoXpackSecurityAuthcToken implements JsonpSerializable 
 	/**
 	 * Builder for {@link NodeInfoXpackSecurityAuthcToken}.
 	 */
-	public static class Builder implements ObjectBuilder<NodeInfoXpackSecurityAuthcToken> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodeInfoXpackSecurityAuthcToken> {
 		private String enabled;
 
 		/**
 		 * Required - API name: {@code enabled}
 		 */
-		public Builder enabled(String value) {
+		public final Builder enabled(String value) {
 			this.enabled = value;
 			return this;
 		}
@@ -100,6 +103,7 @@ public final class NodeInfoXpackSecurityAuthcToken implements JsonpSerializable 
 		 *             if some of the required fields are null.
 		 */
 		public NodeInfoXpackSecurityAuthcToken build() {
+			_checkSingleUse();
 
 			return new NodeInfoXpackSecurityAuthcToken(this);
 		}

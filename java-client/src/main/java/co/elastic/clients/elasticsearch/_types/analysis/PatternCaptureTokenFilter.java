@@ -34,7 +34,6 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
@@ -43,23 +42,23 @@ import javax.annotation.Nullable;
 
 // typedef: _types.analysis.PatternCaptureTokenFilter
 @JsonpDeserializable
-public final class PatternCaptureTokenFilter extends TokenFilterBase implements TokenFilterVariant {
+public class PatternCaptureTokenFilter extends TokenFilterBase implements TokenFilterVariant {
 	private final List<String> patterns;
 
 	private final boolean preserveOriginal;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public PatternCaptureTokenFilter(Builder builder) {
+	private PatternCaptureTokenFilter(Builder builder) {
 		super(builder);
 
-		this.patterns = ModelTypeHelper.unmodifiableNonNull(builder.patterns, "patterns");
-		this.preserveOriginal = Objects.requireNonNull(builder.preserveOriginal, "preserve_original");
+		this.patterns = ModelTypeHelper.unmodifiableRequired(builder.patterns, this, "patterns");
+		this.preserveOriginal = ModelTypeHelper.requireNonNull(builder.preserveOriginal, this, "preserveOriginal");
 
 	}
 
-	public PatternCaptureTokenFilter(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static PatternCaptureTokenFilter of(Function<Builder, ObjectBuilder<PatternCaptureTokenFilter>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -73,14 +72,14 @@ public final class PatternCaptureTokenFilter extends TokenFilterBase implements 
 	/**
 	 * Required - API name: {@code patterns}
 	 */
-	public List<String> patterns() {
+	public final List<String> patterns() {
 		return this.patterns;
 	}
 
 	/**
 	 * Required - API name: {@code preserve_original}
 	 */
-	public boolean preserveOriginal() {
+	public final boolean preserveOriginal() {
 		return this.preserveOriginal;
 	}
 
@@ -88,15 +87,16 @@ public final class PatternCaptureTokenFilter extends TokenFilterBase implements 
 
 		generator.write("type", "pattern_capture");
 		super.serializeInternal(generator, mapper);
+		if (ModelTypeHelper.isDefined(this.patterns)) {
+			generator.writeKey("patterns");
+			generator.writeStartArray();
+			for (String item0 : this.patterns) {
+				generator.write(item0);
 
-		generator.writeKey("patterns");
-		generator.writeStartArray();
-		for (String item0 : this.patterns) {
-			generator.write(item0);
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
-
 		generator.writeKey("preserve_original");
 		generator.write(this.preserveOriginal);
 
@@ -117,7 +117,7 @@ public final class PatternCaptureTokenFilter extends TokenFilterBase implements 
 		/**
 		 * Required - API name: {@code patterns}
 		 */
-		public Builder patterns(List<String> value) {
+		public final Builder patterns(List<String> value) {
 			this.patterns = value;
 			return this;
 		}
@@ -125,26 +125,15 @@ public final class PatternCaptureTokenFilter extends TokenFilterBase implements 
 		/**
 		 * Required - API name: {@code patterns}
 		 */
-		public Builder patterns(String... value) {
+		public final Builder patterns(String... value) {
 			this.patterns = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #patterns(List)}, creating the list if needed.
-		 */
-		public Builder addPatterns(String value) {
-			if (this.patterns == null) {
-				this.patterns = new ArrayList<>();
-			}
-			this.patterns.add(value);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code preserve_original}
 		 */
-		public Builder preserveOriginal(boolean value) {
+		public final Builder preserveOriginal(boolean value) {
 			this.preserveOriginal = value;
 			return this;
 		}
@@ -161,6 +150,7 @@ public final class PatternCaptureTokenFilter extends TokenFilterBase implements 
 		 *             if some of the required fields are null.
 		 */
 		public PatternCaptureTokenFilter build() {
+			_checkSingleUse();
 
 			return new PatternCaptureTokenFilter(this);
 		}

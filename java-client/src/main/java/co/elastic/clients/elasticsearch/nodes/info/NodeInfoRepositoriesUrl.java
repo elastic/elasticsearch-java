@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -39,25 +41,25 @@ import javax.annotation.Nullable;
 
 // typedef: nodes.info.NodeInfoRepositoriesUrl
 @JsonpDeserializable
-public final class NodeInfoRepositoriesUrl implements JsonpSerializable {
+public class NodeInfoRepositoriesUrl implements JsonpSerializable {
 	private final String allowedUrls;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public NodeInfoRepositoriesUrl(Builder builder) {
+	private NodeInfoRepositoriesUrl(Builder builder) {
 
-		this.allowedUrls = Objects.requireNonNull(builder.allowedUrls, "allowed_urls");
+		this.allowedUrls = ModelTypeHelper.requireNonNull(builder.allowedUrls, this, "allowedUrls");
 
 	}
 
-	public NodeInfoRepositoriesUrl(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static NodeInfoRepositoriesUrl of(Function<Builder, ObjectBuilder<NodeInfoRepositoriesUrl>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code allowed_urls}
 	 */
-	public String allowedUrls() {
+	public final String allowedUrls() {
 		return this.allowedUrls;
 	}
 
@@ -82,13 +84,13 @@ public final class NodeInfoRepositoriesUrl implements JsonpSerializable {
 	/**
 	 * Builder for {@link NodeInfoRepositoriesUrl}.
 	 */
-	public static class Builder implements ObjectBuilder<NodeInfoRepositoriesUrl> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodeInfoRepositoriesUrl> {
 		private String allowedUrls;
 
 		/**
 		 * Required - API name: {@code allowed_urls}
 		 */
-		public Builder allowedUrls(String value) {
+		public final Builder allowedUrls(String value) {
 			this.allowedUrls = value;
 			return this;
 		}
@@ -100,6 +102,7 @@ public final class NodeInfoRepositoriesUrl implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public NodeInfoRepositoriesUrl build() {
+			_checkSingleUse();
 
 			return new NodeInfoRepositoriesUrl(this);
 		}

@@ -36,16 +36,16 @@ import java.util.function.Function;
 
 // typedef: ml.delete_model_snapshot.Response
 @JsonpDeserializable
-public final class DeleteModelSnapshotResponse extends AcknowledgedResponseBase {
+public class DeleteModelSnapshotResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
-	public DeleteModelSnapshotResponse(Builder builder) {
+	private DeleteModelSnapshotResponse(Builder builder) {
 		super(builder);
 
 	}
 
-	public DeleteModelSnapshotResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static DeleteModelSnapshotResponse of(Function<Builder, ObjectBuilder<DeleteModelSnapshotResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -68,6 +68,7 @@ public final class DeleteModelSnapshotResponse extends AcknowledgedResponseBase 
 		 *             if some of the required fields are null.
 		 */
 		public DeleteModelSnapshotResponse build() {
+			_checkSingleUse();
 
 			return new DeleteModelSnapshotResponse(this);
 		}

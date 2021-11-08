@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.Long;
@@ -41,7 +43,7 @@ import javax.annotation.Nullable;
 
 // typedef: cluster.stats.IndicesVersions
 @JsonpDeserializable
-public final class IndicesVersions implements JsonpSerializable {
+public class IndicesVersions implements JsonpSerializable {
 	private final int indexCount;
 
 	private final int primaryShardCount;
@@ -52,44 +54,44 @@ public final class IndicesVersions implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public IndicesVersions(Builder builder) {
+	private IndicesVersions(Builder builder) {
 
-		this.indexCount = Objects.requireNonNull(builder.indexCount, "index_count");
-		this.primaryShardCount = Objects.requireNonNull(builder.primaryShardCount, "primary_shard_count");
-		this.totalPrimaryBytes = Objects.requireNonNull(builder.totalPrimaryBytes, "total_primary_bytes");
-		this.version = Objects.requireNonNull(builder.version, "version");
+		this.indexCount = ModelTypeHelper.requireNonNull(builder.indexCount, this, "indexCount");
+		this.primaryShardCount = ModelTypeHelper.requireNonNull(builder.primaryShardCount, this, "primaryShardCount");
+		this.totalPrimaryBytes = ModelTypeHelper.requireNonNull(builder.totalPrimaryBytes, this, "totalPrimaryBytes");
+		this.version = ModelTypeHelper.requireNonNull(builder.version, this, "version");
 
 	}
 
-	public IndicesVersions(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static IndicesVersions of(Function<Builder, ObjectBuilder<IndicesVersions>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code index_count}
 	 */
-	public int indexCount() {
+	public final int indexCount() {
 		return this.indexCount;
 	}
 
 	/**
 	 * Required - API name: {@code primary_shard_count}
 	 */
-	public int primaryShardCount() {
+	public final int primaryShardCount() {
 		return this.primaryShardCount;
 	}
 
 	/**
 	 * Required - API name: {@code total_primary_bytes}
 	 */
-	public long totalPrimaryBytes() {
+	public final long totalPrimaryBytes() {
 		return this.totalPrimaryBytes;
 	}
 
 	/**
 	 * Required - API name: {@code version}
 	 */
-	public String version() {
+	public final String version() {
 		return this.version;
 	}
 
@@ -123,7 +125,7 @@ public final class IndicesVersions implements JsonpSerializable {
 	/**
 	 * Builder for {@link IndicesVersions}.
 	 */
-	public static class Builder implements ObjectBuilder<IndicesVersions> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<IndicesVersions> {
 		private Integer indexCount;
 
 		private Integer primaryShardCount;
@@ -135,7 +137,7 @@ public final class IndicesVersions implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code index_count}
 		 */
-		public Builder indexCount(int value) {
+		public final Builder indexCount(int value) {
 			this.indexCount = value;
 			return this;
 		}
@@ -143,7 +145,7 @@ public final class IndicesVersions implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code primary_shard_count}
 		 */
-		public Builder primaryShardCount(int value) {
+		public final Builder primaryShardCount(int value) {
 			this.primaryShardCount = value;
 			return this;
 		}
@@ -151,7 +153,7 @@ public final class IndicesVersions implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code total_primary_bytes}
 		 */
-		public Builder totalPrimaryBytes(long value) {
+		public final Builder totalPrimaryBytes(long value) {
 			this.totalPrimaryBytes = value;
 			return this;
 		}
@@ -159,7 +161,7 @@ public final class IndicesVersions implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code version}
 		 */
-		public Builder version(String value) {
+		public final Builder version(String value) {
 			this.version = value;
 			return this;
 		}
@@ -171,6 +173,7 @@ public final class IndicesVersions implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public IndicesVersions build() {
+			_checkSingleUse();
 
 			return new IndicesVersions(this);
 		}

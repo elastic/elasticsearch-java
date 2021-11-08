@@ -33,10 +33,10 @@ import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.SimpleEndpoint;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -48,17 +48,15 @@ import javax.annotation.Nullable;
 
 // typedef: nodes.info.Request
 
-public final class NodesInfoRequest extends RequestBase {
+public class NodesInfoRequest extends RequestBase {
 	@Nullable
 	private final Boolean flatSettings;
 
 	@Nullable
 	private final String masterTimeout;
 
-	@Nullable
 	private final List<String> metric;
 
-	@Nullable
 	private final List<String> nodeId;
 
 	@Nullable
@@ -66,7 +64,7 @@ public final class NodesInfoRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public NodesInfoRequest(Builder builder) {
+	private NodesInfoRequest(Builder builder) {
 
 		this.flatSettings = builder.flatSettings;
 		this.masterTimeout = builder.masterTimeout;
@@ -76,8 +74,8 @@ public final class NodesInfoRequest extends RequestBase {
 
 	}
 
-	public NodesInfoRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static NodesInfoRequest of(Function<Builder, ObjectBuilder<NodesInfoRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -86,7 +84,7 @@ public final class NodesInfoRequest extends RequestBase {
 	 * API name: {@code flat_settings}
 	 */
 	@Nullable
-	public Boolean flatSettings() {
+	public final Boolean flatSettings() {
 		return this.flatSettings;
 	}
 
@@ -97,7 +95,7 @@ public final class NodesInfoRequest extends RequestBase {
 	 * API name: {@code master_timeout}
 	 */
 	@Nullable
-	public String masterTimeout() {
+	public final String masterTimeout() {
 		return this.masterTimeout;
 	}
 
@@ -107,8 +105,7 @@ public final class NodesInfoRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code metric}
 	 */
-	@Nullable
-	public List<String> metric() {
+	public final List<String> metric() {
 		return this.metric;
 	}
 
@@ -117,8 +114,7 @@ public final class NodesInfoRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code node_id}
 	 */
-	@Nullable
-	public List<String> nodeId() {
+	public final List<String> nodeId() {
 		return this.nodeId;
 	}
 
@@ -129,7 +125,7 @@ public final class NodesInfoRequest extends RequestBase {
 	 * API name: {@code timeout}
 	 */
 	@Nullable
-	public String timeout() {
+	public final String timeout() {
 		return this.timeout;
 	}
 
@@ -138,7 +134,7 @@ public final class NodesInfoRequest extends RequestBase {
 	/**
 	 * Builder for {@link NodesInfoRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<NodesInfoRequest> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodesInfoRequest> {
 		@Nullable
 		private Boolean flatSettings;
 
@@ -159,7 +155,7 @@ public final class NodesInfoRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code flat_settings}
 		 */
-		public Builder flatSettings(@Nullable Boolean value) {
+		public final Builder flatSettings(@Nullable Boolean value) {
 			this.flatSettings = value;
 			return this;
 		}
@@ -170,7 +166,7 @@ public final class NodesInfoRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
-		public Builder masterTimeout(@Nullable String value) {
+		public final Builder masterTimeout(@Nullable String value) {
 			this.masterTimeout = value;
 			return this;
 		}
@@ -181,7 +177,7 @@ public final class NodesInfoRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code metric}
 		 */
-		public Builder metric(@Nullable List<String> value) {
+		public final Builder metric(@Nullable List<String> value) {
 			this.metric = value;
 			return this;
 		}
@@ -192,19 +188,8 @@ public final class NodesInfoRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code metric}
 		 */
-		public Builder metric(String... value) {
+		public final Builder metric(String... value) {
 			this.metric = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #metric(List)}, creating the list if needed.
-		 */
-		public Builder addMetric(String value) {
-			if (this.metric == null) {
-				this.metric = new ArrayList<>();
-			}
-			this.metric.add(value);
 			return this;
 		}
 
@@ -213,7 +198,7 @@ public final class NodesInfoRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code node_id}
 		 */
-		public Builder nodeId(@Nullable List<String> value) {
+		public final Builder nodeId(@Nullable List<String> value) {
 			this.nodeId = value;
 			return this;
 		}
@@ -223,19 +208,8 @@ public final class NodesInfoRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code node_id}
 		 */
-		public Builder nodeId(String... value) {
+		public final Builder nodeId(String... value) {
 			this.nodeId = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #nodeId(List)}, creating the list if needed.
-		 */
-		public Builder addNodeId(String value) {
-			if (this.nodeId == null) {
-				this.nodeId = new ArrayList<>();
-			}
-			this.nodeId.add(value);
 			return this;
 		}
 
@@ -245,7 +219,7 @@ public final class NodesInfoRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code timeout}
 		 */
-		public Builder timeout(@Nullable String value) {
+		public final Builder timeout(@Nullable String value) {
 			this.timeout = value;
 			return this;
 		}
@@ -257,6 +231,7 @@ public final class NodesInfoRequest extends RequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public NodesInfoRequest build() {
+			_checkSingleUse();
 
 			return new NodesInfoRequest(this);
 		}
@@ -281,9 +256,9 @@ public final class NodesInfoRequest extends RequestBase {
 
 				int propsSet = 0;
 
-				if (request.metric() != null)
+				if (ModelTypeHelper.isDefined(request.metric()))
 					propsSet |= _metric;
-				if (request.nodeId() != null)
+				if (ModelTypeHelper.isDefined(request.nodeId()))
 					propsSet |= _nodeId;
 
 				if (propsSet == 0) {

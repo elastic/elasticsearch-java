@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -39,35 +41,35 @@ import javax.annotation.Nullable;
 
 // typedef: watcher._types.AcknowledgeState
 @JsonpDeserializable
-public final class AcknowledgeState implements JsonpSerializable {
+public class AcknowledgeState implements JsonpSerializable {
 	private final AcknowledgementOptions state;
 
 	private final String timestamp;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public AcknowledgeState(Builder builder) {
+	private AcknowledgeState(Builder builder) {
 
-		this.state = Objects.requireNonNull(builder.state, "state");
-		this.timestamp = Objects.requireNonNull(builder.timestamp, "timestamp");
+		this.state = ModelTypeHelper.requireNonNull(builder.state, this, "state");
+		this.timestamp = ModelTypeHelper.requireNonNull(builder.timestamp, this, "timestamp");
 
 	}
 
-	public AcknowledgeState(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static AcknowledgeState of(Function<Builder, ObjectBuilder<AcknowledgeState>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code state}
 	 */
-	public AcknowledgementOptions state() {
+	public final AcknowledgementOptions state() {
 		return this.state;
 	}
 
 	/**
 	 * Required - API name: {@code timestamp}
 	 */
-	public String timestamp() {
+	public final String timestamp() {
 		return this.timestamp;
 	}
 
@@ -84,7 +86,6 @@ public final class AcknowledgeState implements JsonpSerializable {
 
 		generator.writeKey("state");
 		this.state.serialize(generator, mapper);
-
 		generator.writeKey("timestamp");
 		generator.write(this.timestamp);
 
@@ -95,7 +96,7 @@ public final class AcknowledgeState implements JsonpSerializable {
 	/**
 	 * Builder for {@link AcknowledgeState}.
 	 */
-	public static class Builder implements ObjectBuilder<AcknowledgeState> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<AcknowledgeState> {
 		private AcknowledgementOptions state;
 
 		private String timestamp;
@@ -103,7 +104,7 @@ public final class AcknowledgeState implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code state}
 		 */
-		public Builder state(AcknowledgementOptions value) {
+		public final Builder state(AcknowledgementOptions value) {
 			this.state = value;
 			return this;
 		}
@@ -111,7 +112,7 @@ public final class AcknowledgeState implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code timestamp}
 		 */
-		public Builder timestamp(String value) {
+		public final Builder timestamp(String value) {
 			this.timestamp = value;
 			return this;
 		}
@@ -123,6 +124,7 @@ public final class AcknowledgeState implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public AcknowledgeState build() {
+			_checkSingleUse();
 
 			return new AcknowledgeState(this);
 		}

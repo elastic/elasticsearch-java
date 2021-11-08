@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
@@ -40,7 +42,7 @@ import javax.annotation.Nullable;
 
 // typedef: _global.search._types.NestedIdentity
 @JsonpDeserializable
-public final class NestedIdentity implements JsonpSerializable {
+public class NestedIdentity implements JsonpSerializable {
 	private final String field;
 
 	private final int offset;
@@ -50,29 +52,29 @@ public final class NestedIdentity implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public NestedIdentity(Builder builder) {
+	private NestedIdentity(Builder builder) {
 
-		this.field = Objects.requireNonNull(builder.field, "field");
-		this.offset = Objects.requireNonNull(builder.offset, "offset");
+		this.field = ModelTypeHelper.requireNonNull(builder.field, this, "field");
+		this.offset = ModelTypeHelper.requireNonNull(builder.offset, this, "offset");
 		this.nested = builder.nested;
 
 	}
 
-	public NestedIdentity(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static NestedIdentity of(Function<Builder, ObjectBuilder<NestedIdentity>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code field}
 	 */
-	public String field() {
+	public final String field() {
 		return this.field;
 	}
 
 	/**
 	 * Required - API name: {@code offset}
 	 */
-	public int offset() {
+	public final int offset() {
 		return this.offset;
 	}
 
@@ -80,7 +82,7 @@ public final class NestedIdentity implements JsonpSerializable {
 	 * API name: {@code _nested}
 	 */
 	@Nullable
-	public NestedIdentity nested() {
+	public final NestedIdentity nested() {
 		return this.nested;
 	}
 
@@ -102,7 +104,6 @@ public final class NestedIdentity implements JsonpSerializable {
 		generator.write(this.offset);
 
 		if (this.nested != null) {
-
 			generator.writeKey("_nested");
 			this.nested.serialize(generator, mapper);
 
@@ -115,7 +116,7 @@ public final class NestedIdentity implements JsonpSerializable {
 	/**
 	 * Builder for {@link NestedIdentity}.
 	 */
-	public static class Builder implements ObjectBuilder<NestedIdentity> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NestedIdentity> {
 		private String field;
 
 		private Integer offset;
@@ -126,7 +127,7 @@ public final class NestedIdentity implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code field}
 		 */
-		public Builder field(String value) {
+		public final Builder field(String value) {
 			this.field = value;
 			return this;
 		}
@@ -134,7 +135,7 @@ public final class NestedIdentity implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code offset}
 		 */
-		public Builder offset(int value) {
+		public final Builder offset(int value) {
 			this.offset = value;
 			return this;
 		}
@@ -142,7 +143,7 @@ public final class NestedIdentity implements JsonpSerializable {
 		/**
 		 * API name: {@code _nested}
 		 */
-		public Builder nested(@Nullable NestedIdentity value) {
+		public final Builder nested(@Nullable NestedIdentity value) {
 			this.nested = value;
 			return this;
 		}
@@ -150,7 +151,7 @@ public final class NestedIdentity implements JsonpSerializable {
 		/**
 		 * API name: {@code _nested}
 		 */
-		public Builder nested(Function<NestedIdentity.Builder, ObjectBuilder<NestedIdentity>> fn) {
+		public final Builder nested(Function<NestedIdentity.Builder, ObjectBuilder<NestedIdentity>> fn) {
 			return this.nested(fn.apply(new NestedIdentity.Builder()).build());
 		}
 
@@ -161,6 +162,7 @@ public final class NestedIdentity implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public NestedIdentity build() {
+			_checkSingleUse();
 
 			return new NestedIdentity(this);
 		}

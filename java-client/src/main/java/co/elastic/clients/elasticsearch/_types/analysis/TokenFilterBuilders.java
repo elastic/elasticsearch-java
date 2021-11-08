@@ -63,6 +63,14 @@ public class TokenFilterBuilders {
 	}
 
 	/**
+	 * Creates a builder for the {@link DictionaryDecompounderTokenFilter
+	 * dictionary_decompounder} {@code TokenFilter} variant.
+	 */
+	public static DictionaryDecompounderTokenFilter.Builder dictionaryDecompounder() {
+		return new DictionaryDecompounderTokenFilter.Builder();
+	}
+
+	/**
 	 * Creates a builder for the {@link EdgeNGramTokenFilter edge_ngram}
 	 * {@code TokenFilter} variant.
 	 */
@@ -100,6 +108,46 @@ public class TokenFilterBuilders {
 	 */
 	public static HyphenationDecompounderTokenFilter.Builder hyphenationDecompounder() {
 		return new HyphenationDecompounderTokenFilter.Builder();
+	}
+
+	/**
+	 * Creates a builder for the {@link IcuCollationTokenFilter icu_collation}
+	 * {@code TokenFilter} variant.
+	 */
+	public static IcuCollationTokenFilter.Builder icuCollation() {
+		return new IcuCollationTokenFilter.Builder();
+	}
+
+	/**
+	 * Creates a builder for the {@link IcuFoldingTokenFilter icu_folding}
+	 * {@code TokenFilter} variant.
+	 */
+	public static IcuFoldingTokenFilter.Builder icuFolding() {
+		return new IcuFoldingTokenFilter.Builder();
+	}
+
+	/**
+	 * Creates a builder for the {@link IcuNormalizationTokenFilter icu_normalizer}
+	 * {@code TokenFilter} variant.
+	 */
+	public static IcuNormalizationTokenFilter.Builder icuNormalizer() {
+		return new IcuNormalizationTokenFilter.Builder();
+	}
+
+	/**
+	 * Creates a builder for the {@link IcuTokenizer icu_tokenizer}
+	 * {@code TokenFilter} variant.
+	 */
+	public static IcuTokenizer.Builder icuTokenizer() {
+		return new IcuTokenizer.Builder();
+	}
+
+	/**
+	 * Creates a builder for the {@link IcuTransformTokenFilter icu_transform}
+	 * {@code TokenFilter} variant.
+	 */
+	public static IcuTransformTokenFilter.Builder icuTransform() {
+		return new IcuTransformTokenFilter.Builder();
 	}
 
 	/**
@@ -220,6 +268,14 @@ public class TokenFilterBuilders {
 	 */
 	public static PatternReplaceTokenFilter.Builder patternReplace() {
 		return new PatternReplaceTokenFilter.Builder();
+	}
+
+	/**
+	 * Creates a builder for the {@link PhoneticTokenFilter phonetic}
+	 * {@code TokenFilter} variant.
+	 */
+	public static PhoneticTokenFilter.Builder phonetic() {
+		return new PhoneticTokenFilter.Builder();
 	}
 
 	/**

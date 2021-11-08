@@ -36,16 +36,16 @@ import java.util.function.Function;
 
 // typedef: ilm.stop.Response
 @JsonpDeserializable
-public final class StopIlmResponse extends AcknowledgedResponseBase {
+public class StopIlmResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
-	public StopIlmResponse(Builder builder) {
+	private StopIlmResponse(Builder builder) {
 		super(builder);
 
 	}
 
-	public StopIlmResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static StopIlmResponse of(Function<Builder, ObjectBuilder<StopIlmResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -68,6 +68,7 @@ public final class StopIlmResponse extends AcknowledgedResponseBase {
 		 *             if some of the required fields are null.
 		 */
 		public StopIlmResponse build() {
+			_checkSingleUse();
 
 			return new StopIlmResponse(this);
 		}

@@ -32,8 +32,8 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
+import java.lang.Integer;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
@@ -42,20 +42,24 @@ import javax.annotation.Nullable;
 
 // typedef: _types.analysis.CharGroupTokenizer
 @JsonpDeserializable
-public final class CharGroupTokenizer extends TokenizerBase implements TokenizerVariant {
+public class CharGroupTokenizer extends TokenizerBase implements TokenizerVariant {
 	private final List<String> tokenizeOnChars;
+
+	@Nullable
+	private final Integer maxTokenLength;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public CharGroupTokenizer(Builder builder) {
+	private CharGroupTokenizer(Builder builder) {
 		super(builder);
 
-		this.tokenizeOnChars = ModelTypeHelper.unmodifiableNonNull(builder.tokenizeOnChars, "tokenize_on_chars");
+		this.tokenizeOnChars = ModelTypeHelper.unmodifiableRequired(builder.tokenizeOnChars, this, "tokenizeOnChars");
+		this.maxTokenLength = builder.maxTokenLength;
 
 	}
 
-	public CharGroupTokenizer(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static CharGroupTokenizer of(Function<Builder, ObjectBuilder<CharGroupTokenizer>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -69,22 +73,37 @@ public final class CharGroupTokenizer extends TokenizerBase implements Tokenizer
 	/**
 	 * Required - API name: {@code tokenize_on_chars}
 	 */
-	public List<String> tokenizeOnChars() {
+	public final List<String> tokenizeOnChars() {
 		return this.tokenizeOnChars;
+	}
+
+	/**
+	 * API name: {@code max_token_length}
+	 */
+	@Nullable
+	public final Integer maxTokenLength() {
+		return this.maxTokenLength;
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.write("type", "char_group");
 		super.serializeInternal(generator, mapper);
+		if (ModelTypeHelper.isDefined(this.tokenizeOnChars)) {
+			generator.writeKey("tokenize_on_chars");
+			generator.writeStartArray();
+			for (String item0 : this.tokenizeOnChars) {
+				generator.write(item0);
 
-		generator.writeKey("tokenize_on_chars");
-		generator.writeStartArray();
-		for (String item0 : this.tokenizeOnChars) {
-			generator.write(item0);
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
+		if (this.maxTokenLength != null) {
+			generator.writeKey("max_token_length");
+			generator.write(this.maxTokenLength);
+
+		}
 
 	}
 
@@ -98,10 +117,13 @@ public final class CharGroupTokenizer extends TokenizerBase implements Tokenizer
 				ObjectBuilder<CharGroupTokenizer> {
 		private List<String> tokenizeOnChars;
 
+		@Nullable
+		private Integer maxTokenLength;
+
 		/**
 		 * Required - API name: {@code tokenize_on_chars}
 		 */
-		public Builder tokenizeOnChars(List<String> value) {
+		public final Builder tokenizeOnChars(List<String> value) {
 			this.tokenizeOnChars = value;
 			return this;
 		}
@@ -109,19 +131,16 @@ public final class CharGroupTokenizer extends TokenizerBase implements Tokenizer
 		/**
 		 * Required - API name: {@code tokenize_on_chars}
 		 */
-		public Builder tokenizeOnChars(String... value) {
+		public final Builder tokenizeOnChars(String... value) {
 			this.tokenizeOnChars = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #tokenizeOnChars(List)}, creating the list if needed.
+		 * API name: {@code max_token_length}
 		 */
-		public Builder addTokenizeOnChars(String value) {
-			if (this.tokenizeOnChars == null) {
-				this.tokenizeOnChars = new ArrayList<>();
-			}
-			this.tokenizeOnChars.add(value);
+		public final Builder maxTokenLength(@Nullable Integer value) {
+			this.maxTokenLength = value;
 			return this;
 		}
 
@@ -137,6 +156,7 @@ public final class CharGroupTokenizer extends TokenizerBase implements Tokenizer
 		 *             if some of the required fields are null.
 		 */
 		public CharGroupTokenizer build() {
+			_checkSingleUse();
 
 			return new CharGroupTokenizer(this);
 		}
@@ -154,6 +174,7 @@ public final class CharGroupTokenizer extends TokenizerBase implements Tokenizer
 		TokenizerBase.setupTokenizerBaseDeserializer(op);
 		op.add(Builder::tokenizeOnChars, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"tokenize_on_chars");
+		op.add(Builder::maxTokenLength, JsonpDeserializer.integerDeserializer(), "max_token_length");
 
 		op.ignore("type");
 	}

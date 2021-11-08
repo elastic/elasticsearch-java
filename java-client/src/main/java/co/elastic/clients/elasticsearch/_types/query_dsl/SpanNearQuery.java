@@ -43,7 +43,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.SpanNearQuery
 @JsonpDeserializable
-public final class SpanNearQuery extends QueryBase implements SpanQueryVariant, QueryVariant {
+public class SpanNearQuery extends QueryBase implements SpanQueryVariant, QueryVariant {
 	private final List<SpanQuery> clauses;
 
 	@Nullable
@@ -54,17 +54,17 @@ public final class SpanNearQuery extends QueryBase implements SpanQueryVariant, 
 
 	// ---------------------------------------------------------------------------------------------
 
-	public SpanNearQuery(Builder builder) {
+	private SpanNearQuery(Builder builder) {
 		super(builder);
 
-		this.clauses = ModelTypeHelper.unmodifiableNonNull(builder.clauses, "clauses");
+		this.clauses = ModelTypeHelper.unmodifiableRequired(builder.clauses, this, "clauses");
 		this.inOrder = builder.inOrder;
 		this.slop = builder.slop;
 
 	}
 
-	public SpanNearQuery(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static SpanNearQuery of(Function<Builder, ObjectBuilder<SpanNearQuery>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -78,7 +78,7 @@ public final class SpanNearQuery extends QueryBase implements SpanQueryVariant, 
 	/**
 	 * Required - API name: {@code clauses}
 	 */
-	public List<SpanQuery> clauses() {
+	public final List<SpanQuery> clauses() {
 		return this.clauses;
 	}
 
@@ -86,7 +86,7 @@ public final class SpanNearQuery extends QueryBase implements SpanQueryVariant, 
 	 * API name: {@code in_order}
 	 */
 	@Nullable
-	public Boolean inOrder() {
+	public final Boolean inOrder() {
 		return this.inOrder;
 	}
 
@@ -94,30 +94,29 @@ public final class SpanNearQuery extends QueryBase implements SpanQueryVariant, 
 	 * API name: {@code slop}
 	 */
 	@Nullable
-	public Integer slop() {
+	public final Integer slop() {
 		return this.slop;
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
+		if (ModelTypeHelper.isDefined(this.clauses)) {
+			generator.writeKey("clauses");
+			generator.writeStartArray();
+			for (SpanQuery item0 : this.clauses) {
+				item0.serialize(generator, mapper);
 
-		generator.writeKey("clauses");
-		generator.writeStartArray();
-		for (SpanQuery item0 : this.clauses) {
-			item0.serialize(generator, mapper);
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
-
 		if (this.inOrder != null) {
-
 			generator.writeKey("in_order");
 			generator.write(this.inOrder);
 
 		}
 		if (this.slop != null) {
-
 			generator.writeKey("slop");
 			generator.write(this.slop);
 
@@ -142,7 +141,7 @@ public final class SpanNearQuery extends QueryBase implements SpanQueryVariant, 
 		/**
 		 * Required - API name: {@code clauses}
 		 */
-		public Builder clauses(List<SpanQuery> value) {
+		public final Builder clauses(List<SpanQuery> value) {
 			this.clauses = value;
 			return this;
 		}
@@ -150,40 +149,27 @@ public final class SpanNearQuery extends QueryBase implements SpanQueryVariant, 
 		/**
 		 * Required - API name: {@code clauses}
 		 */
-		public Builder clauses(SpanQuery... value) {
+		public final Builder clauses(SpanQuery... value) {
 			this.clauses = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #clauses(List)}, creating the list if needed.
+		 * Required - API name: {@code clauses}
 		 */
-		public Builder addClauses(SpanQuery value) {
-			if (this.clauses == null) {
-				this.clauses = new ArrayList<>();
+		@SafeVarargs
+		public final Builder clauses(Function<SpanQuery.Builder, ObjectBuilder<SpanQuery>>... fns) {
+			this.clauses = new ArrayList<>(fns.length);
+			for (Function<SpanQuery.Builder, ObjectBuilder<SpanQuery>> fn : fns) {
+				this.clauses.add(fn.apply(new SpanQuery.Builder()).build());
 			}
-			this.clauses.add(value);
 			return this;
-		}
-
-		/**
-		 * Set {@link #clauses(List)} to a singleton list.
-		 */
-		public Builder clauses(Function<SpanQuery.Builder, ObjectBuilder<SpanQuery>> fn) {
-			return this.clauses(fn.apply(new SpanQuery.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #clauses(List)}, creating the list if needed.
-		 */
-		public Builder addClauses(Function<SpanQuery.Builder, ObjectBuilder<SpanQuery>> fn) {
-			return this.addClauses(fn.apply(new SpanQuery.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code in_order}
 		 */
-		public Builder inOrder(@Nullable Boolean value) {
+		public final Builder inOrder(@Nullable Boolean value) {
 			this.inOrder = value;
 			return this;
 		}
@@ -191,7 +177,7 @@ public final class SpanNearQuery extends QueryBase implements SpanQueryVariant, 
 		/**
 		 * API name: {@code slop}
 		 */
-		public Builder slop(@Nullable Integer value) {
+		public final Builder slop(@Nullable Integer value) {
 			this.slop = value;
 			return this;
 		}
@@ -208,6 +194,7 @@ public final class SpanNearQuery extends QueryBase implements SpanQueryVariant, 
 		 *             if some of the required fields are null.
 		 */
 		public SpanNearQuery build() {
+			_checkSingleUse();
 
 			return new SpanNearQuery(this);
 		}

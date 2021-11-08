@@ -33,6 +33,7 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.Objects;
@@ -41,7 +42,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.ShapeFieldQuery
 @JsonpDeserializable
-public final class ShapeFieldQuery implements JsonpSerializable {
+public class ShapeFieldQuery implements JsonpSerializable {
 	@Nullable
 	private final Boolean ignoreUnmapped;
 
@@ -56,7 +57,7 @@ public final class ShapeFieldQuery implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public ShapeFieldQuery(Builder builder) {
+	private ShapeFieldQuery(Builder builder) {
 
 		this.ignoreUnmapped = builder.ignoreUnmapped;
 		this.indexedShape = builder.indexedShape;
@@ -65,15 +66,15 @@ public final class ShapeFieldQuery implements JsonpSerializable {
 
 	}
 
-	public ShapeFieldQuery(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ShapeFieldQuery of(Function<Builder, ObjectBuilder<ShapeFieldQuery>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * API name: {@code ignore_unmapped}
 	 */
 	@Nullable
-	public Boolean ignoreUnmapped() {
+	public final Boolean ignoreUnmapped() {
 		return this.ignoreUnmapped;
 	}
 
@@ -81,7 +82,7 @@ public final class ShapeFieldQuery implements JsonpSerializable {
 	 * API name: {@code indexed_shape}
 	 */
 	@Nullable
-	public FieldLookup indexedShape() {
+	public final FieldLookup indexedShape() {
 		return this.indexedShape;
 	}
 
@@ -89,7 +90,7 @@ public final class ShapeFieldQuery implements JsonpSerializable {
 	 * API name: {@code relation}
 	 */
 	@Nullable
-	public ShapeRelation relation() {
+	public final ShapeRelation relation() {
 		return this.relation;
 	}
 
@@ -97,7 +98,7 @@ public final class ShapeFieldQuery implements JsonpSerializable {
 	 * API name: {@code shape}
 	 */
 	@Nullable
-	public JsonData shape() {
+	public final JsonData shape() {
 		return this.shape;
 	}
 
@@ -113,24 +114,20 @@ public final class ShapeFieldQuery implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.ignoreUnmapped != null) {
-
 			generator.writeKey("ignore_unmapped");
 			generator.write(this.ignoreUnmapped);
 
 		}
 		if (this.indexedShape != null) {
-
 			generator.writeKey("indexed_shape");
 			this.indexedShape.serialize(generator, mapper);
 
 		}
 		if (this.relation != null) {
-
 			generator.writeKey("relation");
 			this.relation.serialize(generator, mapper);
 		}
 		if (this.shape != null) {
-
 			generator.writeKey("shape");
 			this.shape.serialize(generator, mapper);
 
@@ -143,7 +140,7 @@ public final class ShapeFieldQuery implements JsonpSerializable {
 	/**
 	 * Builder for {@link ShapeFieldQuery}.
 	 */
-	public static class Builder implements ObjectBuilder<ShapeFieldQuery> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ShapeFieldQuery> {
 		@Nullable
 		private Boolean ignoreUnmapped;
 
@@ -159,7 +156,7 @@ public final class ShapeFieldQuery implements JsonpSerializable {
 		/**
 		 * API name: {@code ignore_unmapped}
 		 */
-		public Builder ignoreUnmapped(@Nullable Boolean value) {
+		public final Builder ignoreUnmapped(@Nullable Boolean value) {
 			this.ignoreUnmapped = value;
 			return this;
 		}
@@ -167,7 +164,7 @@ public final class ShapeFieldQuery implements JsonpSerializable {
 		/**
 		 * API name: {@code indexed_shape}
 		 */
-		public Builder indexedShape(@Nullable FieldLookup value) {
+		public final Builder indexedShape(@Nullable FieldLookup value) {
 			this.indexedShape = value;
 			return this;
 		}
@@ -175,14 +172,14 @@ public final class ShapeFieldQuery implements JsonpSerializable {
 		/**
 		 * API name: {@code indexed_shape}
 		 */
-		public Builder indexedShape(Function<FieldLookup.Builder, ObjectBuilder<FieldLookup>> fn) {
+		public final Builder indexedShape(Function<FieldLookup.Builder, ObjectBuilder<FieldLookup>> fn) {
 			return this.indexedShape(fn.apply(new FieldLookup.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code relation}
 		 */
-		public Builder relation(@Nullable ShapeRelation value) {
+		public final Builder relation(@Nullable ShapeRelation value) {
 			this.relation = value;
 			return this;
 		}
@@ -190,7 +187,7 @@ public final class ShapeFieldQuery implements JsonpSerializable {
 		/**
 		 * API name: {@code shape}
 		 */
-		public Builder shape(@Nullable JsonData value) {
+		public final Builder shape(@Nullable JsonData value) {
 			this.shape = value;
 			return this;
 		}
@@ -202,6 +199,7 @@ public final class ShapeFieldQuery implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public ShapeFieldQuery build() {
+			_checkSingleUse();
 
 			return new ShapeFieldQuery(this);
 		}

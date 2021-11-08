@@ -37,6 +37,7 @@ import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.SimpleEndpoint;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.lang.String;
@@ -51,8 +52,7 @@ import javax.annotation.Nullable;
 
 // typedef: ingest.put_pipeline.Request
 @JsonpDeserializable
-public final class PutPipelineRequest extends RequestBase implements JsonpSerializable {
-	@Nullable
+public class PutPipelineRequest extends RequestBase implements JsonpSerializable {
 	private final Map<String, JsonData> meta;
 
 	@Nullable
@@ -63,10 +63,8 @@ public final class PutPipelineRequest extends RequestBase implements JsonpSerial
 	@Nullable
 	private final String masterTimeout;
 
-	@Nullable
 	private final List<Processor> onFailure;
 
-	@Nullable
 	private final List<Processor> processors;
 
 	@Nullable
@@ -77,11 +75,11 @@ public final class PutPipelineRequest extends RequestBase implements JsonpSerial
 
 	// ---------------------------------------------------------------------------------------------
 
-	public PutPipelineRequest(Builder builder) {
+	private PutPipelineRequest(Builder builder) {
 
 		this.meta = ModelTypeHelper.unmodifiable(builder.meta);
 		this.description = builder.description;
-		this.id = Objects.requireNonNull(builder.id, "id");
+		this.id = ModelTypeHelper.requireNonNull(builder.id, this, "id");
 		this.masterTimeout = builder.masterTimeout;
 		this.onFailure = ModelTypeHelper.unmodifiable(builder.onFailure);
 		this.processors = ModelTypeHelper.unmodifiable(builder.processors);
@@ -90,8 +88,8 @@ public final class PutPipelineRequest extends RequestBase implements JsonpSerial
 
 	}
 
-	public PutPipelineRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static PutPipelineRequest of(Function<Builder, ObjectBuilder<PutPipelineRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -100,8 +98,7 @@ public final class PutPipelineRequest extends RequestBase implements JsonpSerial
 	 * <p>
 	 * API name: {@code _meta}
 	 */
-	@Nullable
-	public Map<String, JsonData> meta() {
+	public final Map<String, JsonData> meta() {
 		return this.meta;
 	}
 
@@ -111,7 +108,7 @@ public final class PutPipelineRequest extends RequestBase implements JsonpSerial
 	 * API name: {@code description}
 	 */
 	@Nullable
-	public String description() {
+	public final String description() {
 		return this.description;
 	}
 
@@ -120,7 +117,7 @@ public final class PutPipelineRequest extends RequestBase implements JsonpSerial
 	 * <p>
 	 * API name: {@code id}
 	 */
-	public String id() {
+	public final String id() {
 		return this.id;
 	}
 
@@ -131,23 +128,21 @@ public final class PutPipelineRequest extends RequestBase implements JsonpSerial
 	 * API name: {@code master_timeout}
 	 */
 	@Nullable
-	public String masterTimeout() {
+	public final String masterTimeout() {
 		return this.masterTimeout;
 	}
 
 	/**
 	 * API name: {@code on_failure}
 	 */
-	@Nullable
-	public List<Processor> onFailure() {
+	public final List<Processor> onFailure() {
 		return this.onFailure;
 	}
 
 	/**
 	 * API name: {@code processors}
 	 */
-	@Nullable
-	public List<Processor> processors() {
+	public final List<Processor> processors() {
 		return this.processors;
 	}
 
@@ -157,7 +152,7 @@ public final class PutPipelineRequest extends RequestBase implements JsonpSerial
 	 * API name: {@code timeout}
 	 */
 	@Nullable
-	public String timeout() {
+	public final String timeout() {
 		return this.timeout;
 	}
 
@@ -165,7 +160,7 @@ public final class PutPipelineRequest extends RequestBase implements JsonpSerial
 	 * API name: {@code version}
 	 */
 	@Nullable
-	public Long version() {
+	public final Long version() {
 		return this.version;
 	}
 
@@ -180,8 +175,7 @@ public final class PutPipelineRequest extends RequestBase implements JsonpSerial
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (this.meta != null) {
-
+		if (ModelTypeHelper.isDefined(this.meta)) {
 			generator.writeKey("_meta");
 			generator.writeStartObject();
 			for (Map.Entry<String, JsonData> item0 : this.meta.entrySet()) {
@@ -193,13 +187,11 @@ public final class PutPipelineRequest extends RequestBase implements JsonpSerial
 
 		}
 		if (this.description != null) {
-
 			generator.writeKey("description");
 			generator.write(this.description);
 
 		}
-		if (this.onFailure != null) {
-
+		if (ModelTypeHelper.isDefined(this.onFailure)) {
 			generator.writeKey("on_failure");
 			generator.writeStartArray();
 			for (Processor item0 : this.onFailure) {
@@ -209,8 +201,7 @@ public final class PutPipelineRequest extends RequestBase implements JsonpSerial
 			generator.writeEnd();
 
 		}
-		if (this.processors != null) {
-
+		if (ModelTypeHelper.isDefined(this.processors)) {
 			generator.writeKey("processors");
 			generator.writeStartArray();
 			for (Processor item0 : this.processors) {
@@ -221,7 +212,6 @@ public final class PutPipelineRequest extends RequestBase implements JsonpSerial
 
 		}
 		if (this.version != null) {
-
 			generator.writeKey("version");
 			generator.write(this.version);
 
@@ -234,7 +224,7 @@ public final class PutPipelineRequest extends RequestBase implements JsonpSerial
 	/**
 	 * Builder for {@link PutPipelineRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<PutPipelineRequest> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PutPipelineRequest> {
 		@Nullable
 		private Map<String, JsonData> meta;
 
@@ -264,19 +254,8 @@ public final class PutPipelineRequest extends RequestBase implements JsonpSerial
 		 * <p>
 		 * API name: {@code _meta}
 		 */
-		public Builder meta(@Nullable Map<String, JsonData> value) {
+		public final Builder meta(@Nullable Map<String, JsonData> value) {
 			this.meta = value;
-			return this;
-		}
-
-		/**
-		 * Add a key/value to {@link #meta(Map)}, creating the map if needed.
-		 */
-		public Builder putMeta(String key, JsonData value) {
-			if (this.meta == null) {
-				this.meta = new HashMap<>();
-			}
-			this.meta.put(key, value);
 			return this;
 		}
 
@@ -285,7 +264,7 @@ public final class PutPipelineRequest extends RequestBase implements JsonpSerial
 		 * <p>
 		 * API name: {@code description}
 		 */
-		public Builder description(@Nullable String value) {
+		public final Builder description(@Nullable String value) {
 			this.description = value;
 			return this;
 		}
@@ -295,7 +274,7 @@ public final class PutPipelineRequest extends RequestBase implements JsonpSerial
 		 * <p>
 		 * API name: {@code id}
 		 */
-		public Builder id(String value) {
+		public final Builder id(String value) {
 			this.id = value;
 			return this;
 		}
@@ -306,7 +285,7 @@ public final class PutPipelineRequest extends RequestBase implements JsonpSerial
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
-		public Builder masterTimeout(@Nullable String value) {
+		public final Builder masterTimeout(@Nullable String value) {
 			this.masterTimeout = value;
 			return this;
 		}
@@ -314,7 +293,7 @@ public final class PutPipelineRequest extends RequestBase implements JsonpSerial
 		/**
 		 * API name: {@code on_failure}
 		 */
-		public Builder onFailure(@Nullable List<Processor> value) {
+		public final Builder onFailure(@Nullable List<Processor> value) {
 			this.onFailure = value;
 			return this;
 		}
@@ -322,40 +301,27 @@ public final class PutPipelineRequest extends RequestBase implements JsonpSerial
 		/**
 		 * API name: {@code on_failure}
 		 */
-		public Builder onFailure(Processor... value) {
+		public final Builder onFailure(Processor... value) {
 			this.onFailure = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #onFailure(List)}, creating the list if needed.
+		 * API name: {@code on_failure}
 		 */
-		public Builder addOnFailure(Processor value) {
-			if (this.onFailure == null) {
-				this.onFailure = new ArrayList<>();
+		@SafeVarargs
+		public final Builder onFailure(Function<Processor.Builder, ObjectBuilder<Processor>>... fns) {
+			this.onFailure = new ArrayList<>(fns.length);
+			for (Function<Processor.Builder, ObjectBuilder<Processor>> fn : fns) {
+				this.onFailure.add(fn.apply(new Processor.Builder()).build());
 			}
-			this.onFailure.add(value);
 			return this;
-		}
-
-		/**
-		 * Set {@link #onFailure(List)} to a singleton list.
-		 */
-		public Builder onFailure(Function<Processor.Builder, ObjectBuilder<Processor>> fn) {
-			return this.onFailure(fn.apply(new Processor.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #onFailure(List)}, creating the list if needed.
-		 */
-		public Builder addOnFailure(Function<Processor.Builder, ObjectBuilder<Processor>> fn) {
-			return this.addOnFailure(fn.apply(new Processor.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code processors}
 		 */
-		public Builder processors(@Nullable List<Processor> value) {
+		public final Builder processors(@Nullable List<Processor> value) {
 			this.processors = value;
 			return this;
 		}
@@ -363,34 +329,21 @@ public final class PutPipelineRequest extends RequestBase implements JsonpSerial
 		/**
 		 * API name: {@code processors}
 		 */
-		public Builder processors(Processor... value) {
+		public final Builder processors(Processor... value) {
 			this.processors = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #processors(List)}, creating the list if needed.
+		 * API name: {@code processors}
 		 */
-		public Builder addProcessors(Processor value) {
-			if (this.processors == null) {
-				this.processors = new ArrayList<>();
+		@SafeVarargs
+		public final Builder processors(Function<Processor.Builder, ObjectBuilder<Processor>>... fns) {
+			this.processors = new ArrayList<>(fns.length);
+			for (Function<Processor.Builder, ObjectBuilder<Processor>> fn : fns) {
+				this.processors.add(fn.apply(new Processor.Builder()).build());
 			}
-			this.processors.add(value);
 			return this;
-		}
-
-		/**
-		 * Set {@link #processors(List)} to a singleton list.
-		 */
-		public Builder processors(Function<Processor.Builder, ObjectBuilder<Processor>> fn) {
-			return this.processors(fn.apply(new Processor.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #processors(List)}, creating the list if needed.
-		 */
-		public Builder addProcessors(Function<Processor.Builder, ObjectBuilder<Processor>> fn) {
-			return this.addProcessors(fn.apply(new Processor.Builder()).build());
 		}
 
 		/**
@@ -398,7 +351,7 @@ public final class PutPipelineRequest extends RequestBase implements JsonpSerial
 		 * <p>
 		 * API name: {@code timeout}
 		 */
-		public Builder timeout(@Nullable String value) {
+		public final Builder timeout(@Nullable String value) {
 			this.timeout = value;
 			return this;
 		}
@@ -406,7 +359,7 @@ public final class PutPipelineRequest extends RequestBase implements JsonpSerial
 		/**
 		 * API name: {@code version}
 		 */
-		public Builder version(@Nullable Long value) {
+		public final Builder version(@Nullable Long value) {
 			this.version = value;
 			return this;
 		}
@@ -418,6 +371,7 @@ public final class PutPipelineRequest extends RequestBase implements JsonpSerial
 		 *             if some of the required fields are null.
 		 */
 		public PutPipelineRequest build() {
+			_checkSingleUse();
 
 			return new PutPipelineRequest(this);
 		}

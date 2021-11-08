@@ -35,6 +35,7 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.SimpleEndpoint;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Integer;
@@ -47,7 +48,7 @@ import javax.annotation.Nullable;
 
 // typedef: cluster.allocation_explain.Request
 @JsonpDeserializable
-public final class AllocationExplainRequest extends RequestBase implements JsonpSerializable {
+public class AllocationExplainRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
 	private final String currentNode;
 
@@ -68,7 +69,7 @@ public final class AllocationExplainRequest extends RequestBase implements Jsonp
 
 	// ---------------------------------------------------------------------------------------------
 
-	public AllocationExplainRequest(Builder builder) {
+	private AllocationExplainRequest(Builder builder) {
 
 		this.currentNode = builder.currentNode;
 		this.includeDiskInfo = builder.includeDiskInfo;
@@ -79,8 +80,8 @@ public final class AllocationExplainRequest extends RequestBase implements Jsonp
 
 	}
 
-	public AllocationExplainRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static AllocationExplainRequest of(Function<Builder, ObjectBuilder<AllocationExplainRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -90,7 +91,7 @@ public final class AllocationExplainRequest extends RequestBase implements Jsonp
 	 * API name: {@code current_node}
 	 */
 	@Nullable
-	public String currentNode() {
+	public final String currentNode() {
 		return this.currentNode;
 	}
 
@@ -100,7 +101,7 @@ public final class AllocationExplainRequest extends RequestBase implements Jsonp
 	 * API name: {@code include_disk_info}
 	 */
 	@Nullable
-	public Boolean includeDiskInfo() {
+	public final Boolean includeDiskInfo() {
 		return this.includeDiskInfo;
 	}
 
@@ -110,7 +111,7 @@ public final class AllocationExplainRequest extends RequestBase implements Jsonp
 	 * API name: {@code include_yes_decisions}
 	 */
 	@Nullable
-	public Boolean includeYesDecisions() {
+	public final Boolean includeYesDecisions() {
 		return this.includeYesDecisions;
 	}
 
@@ -120,7 +121,7 @@ public final class AllocationExplainRequest extends RequestBase implements Jsonp
 	 * API name: {@code index}
 	 */
 	@Nullable
-	public String index() {
+	public final String index() {
 		return this.index;
 	}
 
@@ -130,7 +131,7 @@ public final class AllocationExplainRequest extends RequestBase implements Jsonp
 	 * API name: {@code primary}
 	 */
 	@Nullable
-	public Boolean primary() {
+	public final Boolean primary() {
 		return this.primary;
 	}
 
@@ -140,7 +141,7 @@ public final class AllocationExplainRequest extends RequestBase implements Jsonp
 	 * API name: {@code shard}
 	 */
 	@Nullable
-	public Integer shard() {
+	public final Integer shard() {
 		return this.shard;
 	}
 
@@ -156,25 +157,21 @@ public final class AllocationExplainRequest extends RequestBase implements Jsonp
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.currentNode != null) {
-
 			generator.writeKey("current_node");
 			generator.write(this.currentNode);
 
 		}
 		if (this.index != null) {
-
 			generator.writeKey("index");
 			generator.write(this.index);
 
 		}
 		if (this.primary != null) {
-
 			generator.writeKey("primary");
 			generator.write(this.primary);
 
 		}
 		if (this.shard != null) {
-
 			generator.writeKey("shard");
 			generator.write(this.shard);
 
@@ -187,7 +184,7 @@ public final class AllocationExplainRequest extends RequestBase implements Jsonp
 	/**
 	 * Builder for {@link AllocationExplainRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<AllocationExplainRequest> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<AllocationExplainRequest> {
 		@Nullable
 		private String currentNode;
 
@@ -212,7 +209,7 @@ public final class AllocationExplainRequest extends RequestBase implements Jsonp
 		 * <p>
 		 * API name: {@code current_node}
 		 */
-		public Builder currentNode(@Nullable String value) {
+		public final Builder currentNode(@Nullable String value) {
 			this.currentNode = value;
 			return this;
 		}
@@ -222,7 +219,7 @@ public final class AllocationExplainRequest extends RequestBase implements Jsonp
 		 * <p>
 		 * API name: {@code include_disk_info}
 		 */
-		public Builder includeDiskInfo(@Nullable Boolean value) {
+		public final Builder includeDiskInfo(@Nullable Boolean value) {
 			this.includeDiskInfo = value;
 			return this;
 		}
@@ -232,7 +229,7 @@ public final class AllocationExplainRequest extends RequestBase implements Jsonp
 		 * <p>
 		 * API name: {@code include_yes_decisions}
 		 */
-		public Builder includeYesDecisions(@Nullable Boolean value) {
+		public final Builder includeYesDecisions(@Nullable Boolean value) {
 			this.includeYesDecisions = value;
 			return this;
 		}
@@ -242,7 +239,7 @@ public final class AllocationExplainRequest extends RequestBase implements Jsonp
 		 * <p>
 		 * API name: {@code index}
 		 */
-		public Builder index(@Nullable String value) {
+		public final Builder index(@Nullable String value) {
 			this.index = value;
 			return this;
 		}
@@ -252,7 +249,7 @@ public final class AllocationExplainRequest extends RequestBase implements Jsonp
 		 * <p>
 		 * API name: {@code primary}
 		 */
-		public Builder primary(@Nullable Boolean value) {
+		public final Builder primary(@Nullable Boolean value) {
 			this.primary = value;
 			return this;
 		}
@@ -262,7 +259,7 @@ public final class AllocationExplainRequest extends RequestBase implements Jsonp
 		 * <p>
 		 * API name: {@code shard}
 		 */
-		public Builder shard(@Nullable Integer value) {
+		public final Builder shard(@Nullable Integer value) {
 			this.shard = value;
 			return this;
 		}
@@ -274,6 +271,7 @@ public final class AllocationExplainRequest extends RequestBase implements Jsonp
 		 *             if some of the required fields are null.
 		 */
 		public AllocationExplainRequest build() {
+			_checkSingleUse();
 
 			return new AllocationExplainRequest(this);
 		}

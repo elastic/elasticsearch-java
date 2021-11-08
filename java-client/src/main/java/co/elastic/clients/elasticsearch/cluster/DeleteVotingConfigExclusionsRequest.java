@@ -34,6 +34,7 @@ import co.elastic.clients.transport.BooleanResponse;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.SimpleEndpoint;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.HashMap;
@@ -44,20 +45,21 @@ import javax.annotation.Nullable;
 
 // typedef: cluster.delete_voting_config_exclusions.Request
 
-public final class DeleteVotingConfigExclusionsRequest extends RequestBase {
+public class DeleteVotingConfigExclusionsRequest extends RequestBase {
 	@Nullable
 	private final Boolean waitForRemoval;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public DeleteVotingConfigExclusionsRequest(Builder builder) {
+	private DeleteVotingConfigExclusionsRequest(Builder builder) {
 
 		this.waitForRemoval = builder.waitForRemoval;
 
 	}
 
-	public DeleteVotingConfigExclusionsRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static DeleteVotingConfigExclusionsRequest of(
+			Function<Builder, ObjectBuilder<DeleteVotingConfigExclusionsRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -71,7 +73,7 @@ public final class DeleteVotingConfigExclusionsRequest extends RequestBase {
 	 * API name: {@code wait_for_removal}
 	 */
 	@Nullable
-	public Boolean waitForRemoval() {
+	public final Boolean waitForRemoval() {
 		return this.waitForRemoval;
 	}
 
@@ -80,7 +82,9 @@ public final class DeleteVotingConfigExclusionsRequest extends RequestBase {
 	/**
 	 * Builder for {@link DeleteVotingConfigExclusionsRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<DeleteVotingConfigExclusionsRequest> {
+	public static class Builder extends ObjectBuilderBase
+			implements
+				ObjectBuilder<DeleteVotingConfigExclusionsRequest> {
 		@Nullable
 		private Boolean waitForRemoval;
 
@@ -94,7 +98,7 @@ public final class DeleteVotingConfigExclusionsRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code wait_for_removal}
 		 */
-		public Builder waitForRemoval(@Nullable Boolean value) {
+		public final Builder waitForRemoval(@Nullable Boolean value) {
 			this.waitForRemoval = value;
 			return this;
 		}
@@ -106,6 +110,7 @@ public final class DeleteVotingConfigExclusionsRequest extends RequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public DeleteVotingConfigExclusionsRequest build() {
+			_checkSingleUse();
 
 			return new DeleteVotingConfigExclusionsRequest(this);
 		}

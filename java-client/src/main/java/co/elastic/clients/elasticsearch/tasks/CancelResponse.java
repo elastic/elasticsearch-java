@@ -31,14 +31,15 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.MapBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -47,37 +48,35 @@ import javax.annotation.Nullable;
 
 // typedef: tasks.cancel.Response
 @JsonpDeserializable
-public final class CancelResponse implements JsonpSerializable {
-	@Nullable
+public class CancelResponse implements JsonpSerializable {
 	private final List<ErrorCause> nodeFailures;
 
 	private final Map<String, TaskExecutingNode> nodes;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public CancelResponse(Builder builder) {
+	private CancelResponse(Builder builder) {
 
 		this.nodeFailures = ModelTypeHelper.unmodifiable(builder.nodeFailures);
-		this.nodes = ModelTypeHelper.unmodifiableNonNull(builder.nodes, "nodes");
+		this.nodes = ModelTypeHelper.unmodifiableRequired(builder.nodes, this, "nodes");
 
 	}
 
-	public CancelResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static CancelResponse of(Function<Builder, ObjectBuilder<CancelResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * API name: {@code node_failures}
 	 */
-	@Nullable
-	public List<ErrorCause> nodeFailures() {
+	public final List<ErrorCause> nodeFailures() {
 		return this.nodeFailures;
 	}
 
 	/**
 	 * Required - API name: {@code nodes}
 	 */
-	public Map<String, TaskExecutingNode> nodes() {
+	public final Map<String, TaskExecutingNode> nodes() {
 		return this.nodes;
 	}
 
@@ -92,8 +91,7 @@ public final class CancelResponse implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (this.nodeFailures != null) {
-
+		if (ModelTypeHelper.isDefined(this.nodeFailures)) {
 			generator.writeKey("node_failures");
 			generator.writeStartArray();
 			for (ErrorCause item0 : this.nodeFailures) {
@@ -103,15 +101,17 @@ public final class CancelResponse implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
+		if (ModelTypeHelper.isDefined(this.nodes)) {
+			generator.writeKey("nodes");
+			generator.writeStartObject();
+			for (Map.Entry<String, TaskExecutingNode> item0 : this.nodes.entrySet()) {
+				generator.writeKey(item0.getKey());
+				item0.getValue().serialize(generator, mapper);
 
-		generator.writeKey("nodes");
-		generator.writeStartObject();
-		for (Map.Entry<String, TaskExecutingNode> item0 : this.nodes.entrySet()) {
-			generator.writeKey(item0.getKey());
-			item0.getValue().serialize(generator, mapper);
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
 
 	}
 
@@ -120,7 +120,7 @@ public final class CancelResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link CancelResponse}.
 	 */
-	public static class Builder implements ObjectBuilder<CancelResponse> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<CancelResponse> {
 		@Nullable
 		private List<ErrorCause> nodeFailures;
 
@@ -129,7 +129,7 @@ public final class CancelResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code node_failures}
 		 */
-		public Builder nodeFailures(@Nullable List<ErrorCause> value) {
+		public final Builder nodeFailures(@Nullable List<ErrorCause> value) {
 			this.nodeFailures = value;
 			return this;
 		}
@@ -137,52 +137,28 @@ public final class CancelResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code node_failures}
 		 */
-		public Builder nodeFailures(ErrorCause... value) {
+		public final Builder nodeFailures(ErrorCause... value) {
 			this.nodeFailures = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #nodeFailures(List)}, creating the list if needed.
+		 * API name: {@code node_failures}
 		 */
-		public Builder addNodeFailures(ErrorCause value) {
-			if (this.nodeFailures == null) {
-				this.nodeFailures = new ArrayList<>();
+		@SafeVarargs
+		public final Builder nodeFailures(Function<ErrorCause.Builder, ObjectBuilder<ErrorCause>>... fns) {
+			this.nodeFailures = new ArrayList<>(fns.length);
+			for (Function<ErrorCause.Builder, ObjectBuilder<ErrorCause>> fn : fns) {
+				this.nodeFailures.add(fn.apply(new ErrorCause.Builder()).build());
 			}
-			this.nodeFailures.add(value);
 			return this;
-		}
-
-		/**
-		 * Set {@link #nodeFailures(List)} to a singleton list.
-		 */
-		public Builder nodeFailures(Function<ErrorCause.Builder, ObjectBuilder<ErrorCause>> fn) {
-			return this.nodeFailures(fn.apply(new ErrorCause.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #nodeFailures(List)}, creating the list if needed.
-		 */
-		public Builder addNodeFailures(Function<ErrorCause.Builder, ObjectBuilder<ErrorCause>> fn) {
-			return this.addNodeFailures(fn.apply(new ErrorCause.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code nodes}
 		 */
-		public Builder nodes(Map<String, TaskExecutingNode> value) {
+		public final Builder nodes(Map<String, TaskExecutingNode> value) {
 			this.nodes = value;
-			return this;
-		}
-
-		/**
-		 * Add a key/value to {@link #nodes(Map)}, creating the map if needed.
-		 */
-		public Builder putNodes(String key, TaskExecutingNode value) {
-			if (this.nodes == null) {
-				this.nodes = new HashMap<>();
-			}
-			this.nodes.put(key, value);
 			return this;
 		}
 
@@ -193,11 +169,9 @@ public final class CancelResponse implements JsonpSerializable {
 			return this.nodes(Collections.singletonMap(key, fn.apply(new TaskExecutingNode.Builder()).build()));
 		}
 
-		/**
-		 * Add a key/value to {@link #nodes(Map)}, creating the map if needed.
-		 */
-		public Builder putNodes(String key, Function<TaskExecutingNode.Builder, ObjectBuilder<TaskExecutingNode>> fn) {
-			return this.putNodes(key, fn.apply(new TaskExecutingNode.Builder()).build());
+		public final Builder nodes(
+				Function<MapBuilder<String, TaskExecutingNode, TaskExecutingNode.Builder>, ObjectBuilder<Map<String, TaskExecutingNode>>> fn) {
+			return nodes(fn.apply(new MapBuilder<>(TaskExecutingNode.Builder::new)).build());
 		}
 
 		/**
@@ -207,6 +181,7 @@ public final class CancelResponse implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public CancelResponse build() {
+			_checkSingleUse();
 
 			return new CancelResponse(this);
 		}

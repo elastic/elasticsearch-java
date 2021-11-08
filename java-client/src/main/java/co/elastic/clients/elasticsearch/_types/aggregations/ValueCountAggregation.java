@@ -35,16 +35,16 @@ import java.util.function.Function;
 
 // typedef: _types.aggregations.ValueCountAggregation
 @JsonpDeserializable
-public final class ValueCountAggregation extends FormattableMetricAggregation implements AggregationVariant {
+public class ValueCountAggregation extends FormattableMetricAggregation implements AggregationVariant {
 	// ---------------------------------------------------------------------------------------------
 
-	public ValueCountAggregation(Builder builder) {
+	private ValueCountAggregation(Builder builder) {
 		super(builder);
 
 	}
 
-	public ValueCountAggregation(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ValueCountAggregation of(Function<Builder, ObjectBuilder<ValueCountAggregation>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -75,6 +75,7 @@ public final class ValueCountAggregation extends FormattableMetricAggregation im
 		 *             if some of the required fields are null.
 		 */
 		public ValueCountAggregation build() {
+			_checkSingleUse();
 
 			return new ValueCountAggregation(this);
 		}

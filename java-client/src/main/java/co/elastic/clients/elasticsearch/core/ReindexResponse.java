@@ -34,6 +34,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Integer;
@@ -48,7 +49,7 @@ import javax.annotation.Nullable;
 
 // typedef: _global.reindex.Response
 @JsonpDeserializable
-public final class ReindexResponse implements JsonpSerializable {
+public class ReindexResponse implements JsonpSerializable {
 	@Nullable
 	private final Long batches;
 
@@ -58,7 +59,6 @@ public final class ReindexResponse implements JsonpSerializable {
 	@Nullable
 	private final Long deleted;
 
-	@Nullable
 	private final List<BulkIndexByScrollFailure> failures;
 
 	@Nullable
@@ -99,7 +99,7 @@ public final class ReindexResponse implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public ReindexResponse(Builder builder) {
+	private ReindexResponse(Builder builder) {
 
 		this.batches = builder.batches;
 		this.created = builder.created;
@@ -120,15 +120,15 @@ public final class ReindexResponse implements JsonpSerializable {
 
 	}
 
-	public ReindexResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ReindexResponse of(Function<Builder, ObjectBuilder<ReindexResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * API name: {@code batches}
 	 */
 	@Nullable
-	public Long batches() {
+	public final Long batches() {
 		return this.batches;
 	}
 
@@ -136,7 +136,7 @@ public final class ReindexResponse implements JsonpSerializable {
 	 * API name: {@code created}
 	 */
 	@Nullable
-	public Long created() {
+	public final Long created() {
 		return this.created;
 	}
 
@@ -144,15 +144,14 @@ public final class ReindexResponse implements JsonpSerializable {
 	 * API name: {@code deleted}
 	 */
 	@Nullable
-	public Long deleted() {
+	public final Long deleted() {
 		return this.deleted;
 	}
 
 	/**
 	 * API name: {@code failures}
 	 */
-	@Nullable
-	public List<BulkIndexByScrollFailure> failures() {
+	public final List<BulkIndexByScrollFailure> failures() {
 		return this.failures;
 	}
 
@@ -160,7 +159,7 @@ public final class ReindexResponse implements JsonpSerializable {
 	 * API name: {@code noops}
 	 */
 	@Nullable
-	public Long noops() {
+	public final Long noops() {
 		return this.noops;
 	}
 
@@ -168,7 +167,7 @@ public final class ReindexResponse implements JsonpSerializable {
 	 * API name: {@code retries}
 	 */
 	@Nullable
-	public Retries retries() {
+	public final Retries retries() {
 		return this.retries;
 	}
 
@@ -176,7 +175,7 @@ public final class ReindexResponse implements JsonpSerializable {
 	 * API name: {@code requests_per_second}
 	 */
 	@Nullable
-	public Long requestsPerSecond() {
+	public final Long requestsPerSecond() {
 		return this.requestsPerSecond;
 	}
 
@@ -184,7 +183,7 @@ public final class ReindexResponse implements JsonpSerializable {
 	 * API name: {@code slice_id}
 	 */
 	@Nullable
-	public Integer sliceId() {
+	public final Integer sliceId() {
 		return this.sliceId;
 	}
 
@@ -192,7 +191,7 @@ public final class ReindexResponse implements JsonpSerializable {
 	 * API name: {@code task}
 	 */
 	@Nullable
-	public String task() {
+	public final String task() {
 		return this.task;
 	}
 
@@ -200,7 +199,7 @@ public final class ReindexResponse implements JsonpSerializable {
 	 * API name: {@code throttled_millis}
 	 */
 	@Nullable
-	public String throttledMillis() {
+	public final String throttledMillis() {
 		return this.throttledMillis;
 	}
 
@@ -208,7 +207,7 @@ public final class ReindexResponse implements JsonpSerializable {
 	 * API name: {@code throttled_until_millis}
 	 */
 	@Nullable
-	public String throttledUntilMillis() {
+	public final String throttledUntilMillis() {
 		return this.throttledUntilMillis;
 	}
 
@@ -216,7 +215,7 @@ public final class ReindexResponse implements JsonpSerializable {
 	 * API name: {@code timed_out}
 	 */
 	@Nullable
-	public Boolean timedOut() {
+	public final Boolean timedOut() {
 		return this.timedOut;
 	}
 
@@ -224,7 +223,7 @@ public final class ReindexResponse implements JsonpSerializable {
 	 * API name: {@code took}
 	 */
 	@Nullable
-	public String took() {
+	public final String took() {
 		return this.took;
 	}
 
@@ -232,7 +231,7 @@ public final class ReindexResponse implements JsonpSerializable {
 	 * API name: {@code total}
 	 */
 	@Nullable
-	public Long total() {
+	public final Long total() {
 		return this.total;
 	}
 
@@ -240,7 +239,7 @@ public final class ReindexResponse implements JsonpSerializable {
 	 * API name: {@code updated}
 	 */
 	@Nullable
-	public Long updated() {
+	public final Long updated() {
 		return this.updated;
 	}
 
@@ -248,7 +247,7 @@ public final class ReindexResponse implements JsonpSerializable {
 	 * API name: {@code version_conflicts}
 	 */
 	@Nullable
-	public Long versionConflicts() {
+	public final Long versionConflicts() {
 		return this.versionConflicts;
 	}
 
@@ -264,25 +263,21 @@ public final class ReindexResponse implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.batches != null) {
-
 			generator.writeKey("batches");
 			generator.write(this.batches);
 
 		}
 		if (this.created != null) {
-
 			generator.writeKey("created");
 			generator.write(this.created);
 
 		}
 		if (this.deleted != null) {
-
 			generator.writeKey("deleted");
 			generator.write(this.deleted);
 
 		}
-		if (this.failures != null) {
-
+		if (ModelTypeHelper.isDefined(this.failures)) {
 			generator.writeKey("failures");
 			generator.writeStartArray();
 			for (BulkIndexByScrollFailure item0 : this.failures) {
@@ -293,73 +288,61 @@ public final class ReindexResponse implements JsonpSerializable {
 
 		}
 		if (this.noops != null) {
-
 			generator.writeKey("noops");
 			generator.write(this.noops);
 
 		}
 		if (this.retries != null) {
-
 			generator.writeKey("retries");
 			this.retries.serialize(generator, mapper);
 
 		}
 		if (this.requestsPerSecond != null) {
-
 			generator.writeKey("requests_per_second");
 			generator.write(this.requestsPerSecond);
 
 		}
 		if (this.sliceId != null) {
-
 			generator.writeKey("slice_id");
 			generator.write(this.sliceId);
 
 		}
 		if (this.task != null) {
-
 			generator.writeKey("task");
 			generator.write(this.task);
 
 		}
 		if (this.throttledMillis != null) {
-
 			generator.writeKey("throttled_millis");
 			generator.write(this.throttledMillis);
 
 		}
 		if (this.throttledUntilMillis != null) {
-
 			generator.writeKey("throttled_until_millis");
 			generator.write(this.throttledUntilMillis);
 
 		}
 		if (this.timedOut != null) {
-
 			generator.writeKey("timed_out");
 			generator.write(this.timedOut);
 
 		}
 		if (this.took != null) {
-
 			generator.writeKey("took");
 			generator.write(this.took);
 
 		}
 		if (this.total != null) {
-
 			generator.writeKey("total");
 			generator.write(this.total);
 
 		}
 		if (this.updated != null) {
-
 			generator.writeKey("updated");
 			generator.write(this.updated);
 
 		}
 		if (this.versionConflicts != null) {
-
 			generator.writeKey("version_conflicts");
 			generator.write(this.versionConflicts);
 
@@ -372,7 +355,7 @@ public final class ReindexResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link ReindexResponse}.
 	 */
-	public static class Builder implements ObjectBuilder<ReindexResponse> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ReindexResponse> {
 		@Nullable
 		private Long batches;
 
@@ -424,7 +407,7 @@ public final class ReindexResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code batches}
 		 */
-		public Builder batches(@Nullable Long value) {
+		public final Builder batches(@Nullable Long value) {
 			this.batches = value;
 			return this;
 		}
@@ -432,7 +415,7 @@ public final class ReindexResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code created}
 		 */
-		public Builder created(@Nullable Long value) {
+		public final Builder created(@Nullable Long value) {
 			this.created = value;
 			return this;
 		}
@@ -440,7 +423,7 @@ public final class ReindexResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code deleted}
 		 */
-		public Builder deleted(@Nullable Long value) {
+		public final Builder deleted(@Nullable Long value) {
 			this.deleted = value;
 			return this;
 		}
@@ -448,7 +431,7 @@ public final class ReindexResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code failures}
 		 */
-		public Builder failures(@Nullable List<BulkIndexByScrollFailure> value) {
+		public final Builder failures(@Nullable List<BulkIndexByScrollFailure> value) {
 			this.failures = value;
 			return this;
 		}
@@ -456,42 +439,28 @@ public final class ReindexResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code failures}
 		 */
-		public Builder failures(BulkIndexByScrollFailure... value) {
+		public final Builder failures(BulkIndexByScrollFailure... value) {
 			this.failures = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #failures(List)}, creating the list if needed.
+		 * API name: {@code failures}
 		 */
-		public Builder addFailures(BulkIndexByScrollFailure value) {
-			if (this.failures == null) {
-				this.failures = new ArrayList<>();
+		@SafeVarargs
+		public final Builder failures(
+				Function<BulkIndexByScrollFailure.Builder, ObjectBuilder<BulkIndexByScrollFailure>>... fns) {
+			this.failures = new ArrayList<>(fns.length);
+			for (Function<BulkIndexByScrollFailure.Builder, ObjectBuilder<BulkIndexByScrollFailure>> fn : fns) {
+				this.failures.add(fn.apply(new BulkIndexByScrollFailure.Builder()).build());
 			}
-			this.failures.add(value);
 			return this;
-		}
-
-		/**
-		 * Set {@link #failures(List)} to a singleton list.
-		 */
-		public Builder failures(
-				Function<BulkIndexByScrollFailure.Builder, ObjectBuilder<BulkIndexByScrollFailure>> fn) {
-			return this.failures(fn.apply(new BulkIndexByScrollFailure.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #failures(List)}, creating the list if needed.
-		 */
-		public Builder addFailures(
-				Function<BulkIndexByScrollFailure.Builder, ObjectBuilder<BulkIndexByScrollFailure>> fn) {
-			return this.addFailures(fn.apply(new BulkIndexByScrollFailure.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code noops}
 		 */
-		public Builder noops(@Nullable Long value) {
+		public final Builder noops(@Nullable Long value) {
 			this.noops = value;
 			return this;
 		}
@@ -499,7 +468,7 @@ public final class ReindexResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code retries}
 		 */
-		public Builder retries(@Nullable Retries value) {
+		public final Builder retries(@Nullable Retries value) {
 			this.retries = value;
 			return this;
 		}
@@ -507,14 +476,14 @@ public final class ReindexResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code retries}
 		 */
-		public Builder retries(Function<Retries.Builder, ObjectBuilder<Retries>> fn) {
+		public final Builder retries(Function<Retries.Builder, ObjectBuilder<Retries>> fn) {
 			return this.retries(fn.apply(new Retries.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code requests_per_second}
 		 */
-		public Builder requestsPerSecond(@Nullable Long value) {
+		public final Builder requestsPerSecond(@Nullable Long value) {
 			this.requestsPerSecond = value;
 			return this;
 		}
@@ -522,7 +491,7 @@ public final class ReindexResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code slice_id}
 		 */
-		public Builder sliceId(@Nullable Integer value) {
+		public final Builder sliceId(@Nullable Integer value) {
 			this.sliceId = value;
 			return this;
 		}
@@ -530,7 +499,7 @@ public final class ReindexResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code task}
 		 */
-		public Builder task(@Nullable String value) {
+		public final Builder task(@Nullable String value) {
 			this.task = value;
 			return this;
 		}
@@ -538,7 +507,7 @@ public final class ReindexResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code throttled_millis}
 		 */
-		public Builder throttledMillis(@Nullable String value) {
+		public final Builder throttledMillis(@Nullable String value) {
 			this.throttledMillis = value;
 			return this;
 		}
@@ -546,7 +515,7 @@ public final class ReindexResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code throttled_until_millis}
 		 */
-		public Builder throttledUntilMillis(@Nullable String value) {
+		public final Builder throttledUntilMillis(@Nullable String value) {
 			this.throttledUntilMillis = value;
 			return this;
 		}
@@ -554,7 +523,7 @@ public final class ReindexResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code timed_out}
 		 */
-		public Builder timedOut(@Nullable Boolean value) {
+		public final Builder timedOut(@Nullable Boolean value) {
 			this.timedOut = value;
 			return this;
 		}
@@ -562,7 +531,7 @@ public final class ReindexResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code took}
 		 */
-		public Builder took(@Nullable String value) {
+		public final Builder took(@Nullable String value) {
 			this.took = value;
 			return this;
 		}
@@ -570,7 +539,7 @@ public final class ReindexResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code total}
 		 */
-		public Builder total(@Nullable Long value) {
+		public final Builder total(@Nullable Long value) {
 			this.total = value;
 			return this;
 		}
@@ -578,7 +547,7 @@ public final class ReindexResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code updated}
 		 */
-		public Builder updated(@Nullable Long value) {
+		public final Builder updated(@Nullable Long value) {
 			this.updated = value;
 			return this;
 		}
@@ -586,7 +555,7 @@ public final class ReindexResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code version_conflicts}
 		 */
-		public Builder versionConflicts(@Nullable Long value) {
+		public final Builder versionConflicts(@Nullable Long value) {
 			this.versionConflicts = value;
 			return this;
 		}
@@ -598,6 +567,7 @@ public final class ReindexResponse implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public ReindexResponse build() {
+			_checkSingleUse();
 
 			return new ReindexResponse(this);
 		}

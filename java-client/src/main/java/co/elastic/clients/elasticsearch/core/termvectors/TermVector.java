@@ -30,12 +30,13 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.MapBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
@@ -43,35 +44,35 @@ import javax.annotation.Nullable;
 
 // typedef: _global.termvectors.TermVector
 @JsonpDeserializable
-public final class TermVector implements JsonpSerializable {
+public class TermVector implements JsonpSerializable {
 	private final FieldStatistics fieldStatistics;
 
 	private final Map<String, Term> terms;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public TermVector(Builder builder) {
+	private TermVector(Builder builder) {
 
-		this.fieldStatistics = Objects.requireNonNull(builder.fieldStatistics, "field_statistics");
-		this.terms = ModelTypeHelper.unmodifiableNonNull(builder.terms, "terms");
+		this.fieldStatistics = ModelTypeHelper.requireNonNull(builder.fieldStatistics, this, "fieldStatistics");
+		this.terms = ModelTypeHelper.unmodifiableRequired(builder.terms, this, "terms");
 
 	}
 
-	public TermVector(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static TermVector of(Function<Builder, ObjectBuilder<TermVector>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code field_statistics}
 	 */
-	public FieldStatistics fieldStatistics() {
+	public final FieldStatistics fieldStatistics() {
 		return this.fieldStatistics;
 	}
 
 	/**
 	 * Required - API name: {@code terms}
 	 */
-	public Map<String, Term> terms() {
+	public final Map<String, Term> terms() {
 		return this.terms;
 	}
 
@@ -89,14 +90,17 @@ public final class TermVector implements JsonpSerializable {
 		generator.writeKey("field_statistics");
 		this.fieldStatistics.serialize(generator, mapper);
 
-		generator.writeKey("terms");
-		generator.writeStartObject();
-		for (Map.Entry<String, Term> item0 : this.terms.entrySet()) {
-			generator.writeKey(item0.getKey());
-			item0.getValue().serialize(generator, mapper);
+		if (ModelTypeHelper.isDefined(this.terms)) {
+			generator.writeKey("terms");
+			generator.writeStartObject();
+			for (Map.Entry<String, Term> item0 : this.terms.entrySet()) {
+				generator.writeKey(item0.getKey());
+				item0.getValue().serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
 
 	}
 
@@ -105,7 +109,7 @@ public final class TermVector implements JsonpSerializable {
 	/**
 	 * Builder for {@link TermVector}.
 	 */
-	public static class Builder implements ObjectBuilder<TermVector> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TermVector> {
 		private FieldStatistics fieldStatistics;
 
 		private Map<String, Term> terms;
@@ -113,7 +117,7 @@ public final class TermVector implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code field_statistics}
 		 */
-		public Builder fieldStatistics(FieldStatistics value) {
+		public final Builder fieldStatistics(FieldStatistics value) {
 			this.fieldStatistics = value;
 			return this;
 		}
@@ -121,26 +125,15 @@ public final class TermVector implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code field_statistics}
 		 */
-		public Builder fieldStatistics(Function<FieldStatistics.Builder, ObjectBuilder<FieldStatistics>> fn) {
+		public final Builder fieldStatistics(Function<FieldStatistics.Builder, ObjectBuilder<FieldStatistics>> fn) {
 			return this.fieldStatistics(fn.apply(new FieldStatistics.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code terms}
 		 */
-		public Builder terms(Map<String, Term> value) {
+		public final Builder terms(Map<String, Term> value) {
 			this.terms = value;
-			return this;
-		}
-
-		/**
-		 * Add a key/value to {@link #terms(Map)}, creating the map if needed.
-		 */
-		public Builder putTerms(String key, Term value) {
-			if (this.terms == null) {
-				this.terms = new HashMap<>();
-			}
-			this.terms.put(key, value);
 			return this;
 		}
 
@@ -151,11 +144,9 @@ public final class TermVector implements JsonpSerializable {
 			return this.terms(Collections.singletonMap(key, fn.apply(new Term.Builder()).build()));
 		}
 
-		/**
-		 * Add a key/value to {@link #terms(Map)}, creating the map if needed.
-		 */
-		public Builder putTerms(String key, Function<Term.Builder, ObjectBuilder<Term>> fn) {
-			return this.putTerms(key, fn.apply(new Term.Builder()).build());
+		public final Builder terms(
+				Function<MapBuilder<String, Term, Term.Builder>, ObjectBuilder<Map<String, Term>>> fn) {
+			return terms(fn.apply(new MapBuilder<>(Term.Builder::new)).build());
 		}
 
 		/**
@@ -165,6 +156,7 @@ public final class TermVector implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public TermVector build() {
+			_checkSingleUse();
 
 			return new TermVector(this);
 		}

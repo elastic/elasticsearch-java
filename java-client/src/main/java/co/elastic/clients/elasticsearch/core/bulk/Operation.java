@@ -29,7 +29,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.NdJsonpSerializable;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import co.elastic.clients.util.TaggedUnion;
 import co.elastic.clients.util.TaggedUnionUtils;
 import jakarta.json.stream.JsonGenerator;
@@ -54,35 +56,31 @@ public class Operation implements TaggedUnion<Object>, NdJsonpSerializable, Json
 	private final Object _value;
 
 	@Override
-	public String _type() {
+	public final String _type() {
 		return _type;
 	}
 
 	@Override
-	public Object _get() {
+	public final Object _get() {
 		return _value;
 	}
 
 	public Operation(OperationVariant value) {
 
-		this._type = Objects.requireNonNull(value._variantType(), "variant type");
-		this._value = Objects.requireNonNull(value, "variant value");
+		this._type = ModelTypeHelper.requireNonNull(value._variantType(), this, "<variant type>");
+		this._value = ModelTypeHelper.requireNonNull(value, this, "<variant value>");
 
-	}
-
-	public <T extends OperationVariant> Operation(ObjectBuilder<T> builder) {
-		this(builder.build());
 	}
 
 	private Operation(Builder builder) {
 
-		this._type = Objects.requireNonNull(builder._type, "variant type");
-		this._value = Objects.requireNonNull(builder._value, "variant value");
+		this._type = ModelTypeHelper.requireNonNull(builder._type, builder, "<variant type>");
+		this._value = ModelTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
 
 	}
 
-	public Operation(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static Operation of(Function<Builder, ObjectBuilder<Operation>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	@Override
@@ -142,7 +140,7 @@ public class Operation implements TaggedUnion<Object>, NdJsonpSerializable, Json
 		generator.writeEnd();
 	}
 
-	public static class Builder implements ObjectBuilder<Operation> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Operation> {
 		private String _type;
 		private Object _value;
 
@@ -190,6 +188,7 @@ public class Operation implements TaggedUnion<Object>, NdJsonpSerializable, Json
 		}
 
 		public Operation build() {
+			_checkSingleUse();
 			return new Operation(this);
 		}
 

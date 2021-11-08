@@ -37,13 +37,12 @@ import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.SimpleEndpoint;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -52,14 +51,12 @@ import javax.annotation.Nullable;
 
 // typedef: ccr.put_auto_follow_pattern.Request
 @JsonpDeserializable
-public final class PutAutoFollowPatternRequest extends RequestBase implements JsonpSerializable {
+public class PutAutoFollowPatternRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
 	private final String followIndexPattern;
 
-	@Nullable
 	private final List<String> leaderIndexExclusionPatterns;
 
-	@Nullable
 	private final List<String> leaderIndexPatterns;
 
 	@Nullable
@@ -96,12 +93,11 @@ public final class PutAutoFollowPatternRequest extends RequestBase implements Js
 
 	private final String remoteCluster;
 
-	@Nullable
 	private final Map<String, JsonData> settings;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public PutAutoFollowPatternRequest(Builder builder) {
+	private PutAutoFollowPatternRequest(Builder builder) {
 
 		this.followIndexPattern = builder.followIndexPattern;
 		this.leaderIndexExclusionPatterns = ModelTypeHelper.unmodifiable(builder.leaderIndexExclusionPatterns);
@@ -115,15 +111,15 @@ public final class PutAutoFollowPatternRequest extends RequestBase implements Js
 		this.maxWriteBufferSize = builder.maxWriteBufferSize;
 		this.maxWriteRequestOperationCount = builder.maxWriteRequestOperationCount;
 		this.maxWriteRequestSize = builder.maxWriteRequestSize;
-		this.name = Objects.requireNonNull(builder.name, "name");
+		this.name = ModelTypeHelper.requireNonNull(builder.name, this, "name");
 		this.readPollTimeout = builder.readPollTimeout;
-		this.remoteCluster = Objects.requireNonNull(builder.remoteCluster, "remote_cluster");
+		this.remoteCluster = ModelTypeHelper.requireNonNull(builder.remoteCluster, this, "remoteCluster");
 		this.settings = ModelTypeHelper.unmodifiable(builder.settings);
 
 	}
 
-	public PutAutoFollowPatternRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static PutAutoFollowPatternRequest of(Function<Builder, ObjectBuilder<PutAutoFollowPatternRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -135,7 +131,7 @@ public final class PutAutoFollowPatternRequest extends RequestBase implements Js
 	 * API name: {@code follow_index_pattern}
 	 */
 	@Nullable
-	public String followIndexPattern() {
+	public final String followIndexPattern() {
 		return this.followIndexPattern;
 	}
 
@@ -147,8 +143,7 @@ public final class PutAutoFollowPatternRequest extends RequestBase implements Js
 	 * <p>
 	 * API name: {@code leader_index_exclusion_patterns}
 	 */
-	@Nullable
-	public List<String> leaderIndexExclusionPatterns() {
+	public final List<String> leaderIndexExclusionPatterns() {
 		return this.leaderIndexExclusionPatterns;
 	}
 
@@ -158,8 +153,7 @@ public final class PutAutoFollowPatternRequest extends RequestBase implements Js
 	 * <p>
 	 * API name: {@code leader_index_patterns}
 	 */
-	@Nullable
-	public List<String> leaderIndexPatterns() {
+	public final List<String> leaderIndexPatterns() {
 		return this.leaderIndexPatterns;
 	}
 
@@ -169,7 +163,7 @@ public final class PutAutoFollowPatternRequest extends RequestBase implements Js
 	 * API name: {@code max_outstanding_read_requests}
 	 */
 	@Nullable
-	public Integer maxOutstandingReadRequests() {
+	public final Integer maxOutstandingReadRequests() {
 		return this.maxOutstandingReadRequests;
 	}
 
@@ -179,7 +173,7 @@ public final class PutAutoFollowPatternRequest extends RequestBase implements Js
 	 * API name: {@code max_outstanding_write_requests}
 	 */
 	@Nullable
-	public Integer maxOutstandingWriteRequests() {
+	public final Integer maxOutstandingWriteRequests() {
 		return this.maxOutstandingWriteRequests;
 	}
 
@@ -189,7 +183,7 @@ public final class PutAutoFollowPatternRequest extends RequestBase implements Js
 	 * API name: {@code max_read_request_operation_count}
 	 */
 	@Nullable
-	public Integer maxReadRequestOperationCount() {
+	public final Integer maxReadRequestOperationCount() {
 		return this.maxReadRequestOperationCount;
 	}
 
@@ -200,7 +194,7 @@ public final class PutAutoFollowPatternRequest extends RequestBase implements Js
 	 * API name: {@code max_read_request_size}
 	 */
 	@Nullable
-	public String maxReadRequestSize() {
+	public final String maxReadRequestSize() {
 		return this.maxReadRequestSize;
 	}
 
@@ -211,7 +205,7 @@ public final class PutAutoFollowPatternRequest extends RequestBase implements Js
 	 * API name: {@code max_retry_delay}
 	 */
 	@Nullable
-	public String maxRetryDelay() {
+	public final String maxRetryDelay() {
 		return this.maxRetryDelay;
 	}
 
@@ -223,7 +217,7 @@ public final class PutAutoFollowPatternRequest extends RequestBase implements Js
 	 * API name: {@code max_write_buffer_count}
 	 */
 	@Nullable
-	public Integer maxWriteBufferCount() {
+	public final Integer maxWriteBufferCount() {
 		return this.maxWriteBufferCount;
 	}
 
@@ -235,7 +229,7 @@ public final class PutAutoFollowPatternRequest extends RequestBase implements Js
 	 * API name: {@code max_write_buffer_size}
 	 */
 	@Nullable
-	public String maxWriteBufferSize() {
+	public final String maxWriteBufferSize() {
 		return this.maxWriteBufferSize;
 	}
 
@@ -246,7 +240,7 @@ public final class PutAutoFollowPatternRequest extends RequestBase implements Js
 	 * API name: {@code max_write_request_operation_count}
 	 */
 	@Nullable
-	public Integer maxWriteRequestOperationCount() {
+	public final Integer maxWriteRequestOperationCount() {
 		return this.maxWriteRequestOperationCount;
 	}
 
@@ -257,7 +251,7 @@ public final class PutAutoFollowPatternRequest extends RequestBase implements Js
 	 * API name: {@code max_write_request_size}
 	 */
 	@Nullable
-	public String maxWriteRequestSize() {
+	public final String maxWriteRequestSize() {
 		return this.maxWriteRequestSize;
 	}
 
@@ -266,7 +260,7 @@ public final class PutAutoFollowPatternRequest extends RequestBase implements Js
 	 * <p>
 	 * API name: {@code name}
 	 */
-	public String name() {
+	public final String name() {
 		return this.name;
 	}
 
@@ -280,7 +274,7 @@ public final class PutAutoFollowPatternRequest extends RequestBase implements Js
 	 * API name: {@code read_poll_timeout}
 	 */
 	@Nullable
-	public String readPollTimeout() {
+	public final String readPollTimeout() {
 		return this.readPollTimeout;
 	}
 
@@ -289,7 +283,7 @@ public final class PutAutoFollowPatternRequest extends RequestBase implements Js
 	 * <p>
 	 * API name: {@code remote_cluster}
 	 */
-	public String remoteCluster() {
+	public final String remoteCluster() {
 		return this.remoteCluster;
 	}
 
@@ -299,8 +293,7 @@ public final class PutAutoFollowPatternRequest extends RequestBase implements Js
 	 * <p>
 	 * API name: {@code settings}
 	 */
-	@Nullable
-	public Map<String, JsonData> settings() {
+	public final Map<String, JsonData> settings() {
 		return this.settings;
 	}
 
@@ -316,13 +309,11 @@ public final class PutAutoFollowPatternRequest extends RequestBase implements Js
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.followIndexPattern != null) {
-
 			generator.writeKey("follow_index_pattern");
 			generator.write(this.followIndexPattern);
 
 		}
-		if (this.leaderIndexExclusionPatterns != null) {
-
+		if (ModelTypeHelper.isDefined(this.leaderIndexExclusionPatterns)) {
 			generator.writeKey("leader_index_exclusion_patterns");
 			generator.writeStartArray();
 			for (String item0 : this.leaderIndexExclusionPatterns) {
@@ -332,8 +323,7 @@ public final class PutAutoFollowPatternRequest extends RequestBase implements Js
 			generator.writeEnd();
 
 		}
-		if (this.leaderIndexPatterns != null) {
-
+		if (ModelTypeHelper.isDefined(this.leaderIndexPatterns)) {
 			generator.writeKey("leader_index_patterns");
 			generator.writeStartArray();
 			for (String item0 : this.leaderIndexPatterns) {
@@ -344,71 +334,59 @@ public final class PutAutoFollowPatternRequest extends RequestBase implements Js
 
 		}
 		if (this.maxOutstandingReadRequests != null) {
-
 			generator.writeKey("max_outstanding_read_requests");
 			generator.write(this.maxOutstandingReadRequests);
 
 		}
 		if (this.maxOutstandingWriteRequests != null) {
-
 			generator.writeKey("max_outstanding_write_requests");
 			generator.write(this.maxOutstandingWriteRequests);
 
 		}
 		if (this.maxReadRequestOperationCount != null) {
-
 			generator.writeKey("max_read_request_operation_count");
 			generator.write(this.maxReadRequestOperationCount);
 
 		}
 		if (this.maxReadRequestSize != null) {
-
 			generator.writeKey("max_read_request_size");
 			generator.write(this.maxReadRequestSize);
 
 		}
 		if (this.maxRetryDelay != null) {
-
 			generator.writeKey("max_retry_delay");
 			generator.write(this.maxRetryDelay);
 
 		}
 		if (this.maxWriteBufferCount != null) {
-
 			generator.writeKey("max_write_buffer_count");
 			generator.write(this.maxWriteBufferCount);
 
 		}
 		if (this.maxWriteBufferSize != null) {
-
 			generator.writeKey("max_write_buffer_size");
 			generator.write(this.maxWriteBufferSize);
 
 		}
 		if (this.maxWriteRequestOperationCount != null) {
-
 			generator.writeKey("max_write_request_operation_count");
 			generator.write(this.maxWriteRequestOperationCount);
 
 		}
 		if (this.maxWriteRequestSize != null) {
-
 			generator.writeKey("max_write_request_size");
 			generator.write(this.maxWriteRequestSize);
 
 		}
 		if (this.readPollTimeout != null) {
-
 			generator.writeKey("read_poll_timeout");
 			generator.write(this.readPollTimeout);
 
 		}
-
 		generator.writeKey("remote_cluster");
 		generator.write(this.remoteCluster);
 
-		if (this.settings != null) {
-
+		if (ModelTypeHelper.isDefined(this.settings)) {
 			generator.writeKey("settings");
 			generator.writeStartObject();
 			for (Map.Entry<String, JsonData> item0 : this.settings.entrySet()) {
@@ -427,7 +405,7 @@ public final class PutAutoFollowPatternRequest extends RequestBase implements Js
 	/**
 	 * Builder for {@link PutAutoFollowPatternRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<PutAutoFollowPatternRequest> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PutAutoFollowPatternRequest> {
 		@Nullable
 		private String followIndexPattern;
 
@@ -482,7 +460,7 @@ public final class PutAutoFollowPatternRequest extends RequestBase implements Js
 		 * <p>
 		 * API name: {@code follow_index_pattern}
 		 */
-		public Builder followIndexPattern(@Nullable String value) {
+		public final Builder followIndexPattern(@Nullable String value) {
 			this.followIndexPattern = value;
 			return this;
 		}
@@ -495,7 +473,7 @@ public final class PutAutoFollowPatternRequest extends RequestBase implements Js
 		 * <p>
 		 * API name: {@code leader_index_exclusion_patterns}
 		 */
-		public Builder leaderIndexExclusionPatterns(@Nullable List<String> value) {
+		public final Builder leaderIndexExclusionPatterns(@Nullable List<String> value) {
 			this.leaderIndexExclusionPatterns = value;
 			return this;
 		}
@@ -508,20 +486,8 @@ public final class PutAutoFollowPatternRequest extends RequestBase implements Js
 		 * <p>
 		 * API name: {@code leader_index_exclusion_patterns}
 		 */
-		public Builder leaderIndexExclusionPatterns(String... value) {
+		public final Builder leaderIndexExclusionPatterns(String... value) {
 			this.leaderIndexExclusionPatterns = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #leaderIndexExclusionPatterns(List)}, creating the list
-		 * if needed.
-		 */
-		public Builder addLeaderIndexExclusionPatterns(String value) {
-			if (this.leaderIndexExclusionPatterns == null) {
-				this.leaderIndexExclusionPatterns = new ArrayList<>();
-			}
-			this.leaderIndexExclusionPatterns.add(value);
 			return this;
 		}
 
@@ -531,7 +497,7 @@ public final class PutAutoFollowPatternRequest extends RequestBase implements Js
 		 * <p>
 		 * API name: {@code leader_index_patterns}
 		 */
-		public Builder leaderIndexPatterns(@Nullable List<String> value) {
+		public final Builder leaderIndexPatterns(@Nullable List<String> value) {
 			this.leaderIndexPatterns = value;
 			return this;
 		}
@@ -542,20 +508,8 @@ public final class PutAutoFollowPatternRequest extends RequestBase implements Js
 		 * <p>
 		 * API name: {@code leader_index_patterns}
 		 */
-		public Builder leaderIndexPatterns(String... value) {
+		public final Builder leaderIndexPatterns(String... value) {
 			this.leaderIndexPatterns = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #leaderIndexPatterns(List)}, creating the list if
-		 * needed.
-		 */
-		public Builder addLeaderIndexPatterns(String value) {
-			if (this.leaderIndexPatterns == null) {
-				this.leaderIndexPatterns = new ArrayList<>();
-			}
-			this.leaderIndexPatterns.add(value);
 			return this;
 		}
 
@@ -564,7 +518,7 @@ public final class PutAutoFollowPatternRequest extends RequestBase implements Js
 		 * <p>
 		 * API name: {@code max_outstanding_read_requests}
 		 */
-		public Builder maxOutstandingReadRequests(@Nullable Integer value) {
+		public final Builder maxOutstandingReadRequests(@Nullable Integer value) {
 			this.maxOutstandingReadRequests = value;
 			return this;
 		}
@@ -574,7 +528,7 @@ public final class PutAutoFollowPatternRequest extends RequestBase implements Js
 		 * <p>
 		 * API name: {@code max_outstanding_write_requests}
 		 */
-		public Builder maxOutstandingWriteRequests(@Nullable Integer value) {
+		public final Builder maxOutstandingWriteRequests(@Nullable Integer value) {
 			this.maxOutstandingWriteRequests = value;
 			return this;
 		}
@@ -584,7 +538,7 @@ public final class PutAutoFollowPatternRequest extends RequestBase implements Js
 		 * <p>
 		 * API name: {@code max_read_request_operation_count}
 		 */
-		public Builder maxReadRequestOperationCount(@Nullable Integer value) {
+		public final Builder maxReadRequestOperationCount(@Nullable Integer value) {
 			this.maxReadRequestOperationCount = value;
 			return this;
 		}
@@ -595,7 +549,7 @@ public final class PutAutoFollowPatternRequest extends RequestBase implements Js
 		 * <p>
 		 * API name: {@code max_read_request_size}
 		 */
-		public Builder maxReadRequestSize(@Nullable String value) {
+		public final Builder maxReadRequestSize(@Nullable String value) {
 			this.maxReadRequestSize = value;
 			return this;
 		}
@@ -606,7 +560,7 @@ public final class PutAutoFollowPatternRequest extends RequestBase implements Js
 		 * <p>
 		 * API name: {@code max_retry_delay}
 		 */
-		public Builder maxRetryDelay(@Nullable String value) {
+		public final Builder maxRetryDelay(@Nullable String value) {
 			this.maxRetryDelay = value;
 			return this;
 		}
@@ -618,7 +572,7 @@ public final class PutAutoFollowPatternRequest extends RequestBase implements Js
 		 * <p>
 		 * API name: {@code max_write_buffer_count}
 		 */
-		public Builder maxWriteBufferCount(@Nullable Integer value) {
+		public final Builder maxWriteBufferCount(@Nullable Integer value) {
 			this.maxWriteBufferCount = value;
 			return this;
 		}
@@ -630,7 +584,7 @@ public final class PutAutoFollowPatternRequest extends RequestBase implements Js
 		 * <p>
 		 * API name: {@code max_write_buffer_size}
 		 */
-		public Builder maxWriteBufferSize(@Nullable String value) {
+		public final Builder maxWriteBufferSize(@Nullable String value) {
 			this.maxWriteBufferSize = value;
 			return this;
 		}
@@ -641,7 +595,7 @@ public final class PutAutoFollowPatternRequest extends RequestBase implements Js
 		 * <p>
 		 * API name: {@code max_write_request_operation_count}
 		 */
-		public Builder maxWriteRequestOperationCount(@Nullable Integer value) {
+		public final Builder maxWriteRequestOperationCount(@Nullable Integer value) {
 			this.maxWriteRequestOperationCount = value;
 			return this;
 		}
@@ -652,7 +606,7 @@ public final class PutAutoFollowPatternRequest extends RequestBase implements Js
 		 * <p>
 		 * API name: {@code max_write_request_size}
 		 */
-		public Builder maxWriteRequestSize(@Nullable String value) {
+		public final Builder maxWriteRequestSize(@Nullable String value) {
 			this.maxWriteRequestSize = value;
 			return this;
 		}
@@ -662,7 +616,7 @@ public final class PutAutoFollowPatternRequest extends RequestBase implements Js
 		 * <p>
 		 * API name: {@code name}
 		 */
-		public Builder name(String value) {
+		public final Builder name(String value) {
 			this.name = value;
 			return this;
 		}
@@ -676,7 +630,7 @@ public final class PutAutoFollowPatternRequest extends RequestBase implements Js
 		 * <p>
 		 * API name: {@code read_poll_timeout}
 		 */
-		public Builder readPollTimeout(@Nullable String value) {
+		public final Builder readPollTimeout(@Nullable String value) {
 			this.readPollTimeout = value;
 			return this;
 		}
@@ -686,7 +640,7 @@ public final class PutAutoFollowPatternRequest extends RequestBase implements Js
 		 * <p>
 		 * API name: {@code remote_cluster}
 		 */
-		public Builder remoteCluster(String value) {
+		public final Builder remoteCluster(String value) {
 			this.remoteCluster = value;
 			return this;
 		}
@@ -697,19 +651,8 @@ public final class PutAutoFollowPatternRequest extends RequestBase implements Js
 		 * <p>
 		 * API name: {@code settings}
 		 */
-		public Builder settings(@Nullable Map<String, JsonData> value) {
+		public final Builder settings(@Nullable Map<String, JsonData> value) {
 			this.settings = value;
-			return this;
-		}
-
-		/**
-		 * Add a key/value to {@link #settings(Map)}, creating the map if needed.
-		 */
-		public Builder putSettings(String key, JsonData value) {
-			if (this.settings == null) {
-				this.settings = new HashMap<>();
-			}
-			this.settings.put(key, value);
 			return this;
 		}
 
@@ -720,6 +663,7 @@ public final class PutAutoFollowPatternRequest extends RequestBase implements Js
 		 *             if some of the required fields are null.
 		 */
 		public PutAutoFollowPatternRequest build() {
+			_checkSingleUse();
 
 			return new PutAutoFollowPatternRequest(this);
 		}

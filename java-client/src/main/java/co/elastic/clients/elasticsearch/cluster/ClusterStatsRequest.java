@@ -33,10 +33,10 @@ import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.SimpleEndpoint;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -48,11 +48,10 @@ import javax.annotation.Nullable;
 
 // typedef: cluster.stats.Request
 
-public final class ClusterStatsRequest extends RequestBase {
+public class ClusterStatsRequest extends RequestBase {
 	@Nullable
 	private final Boolean flatSettings;
 
-	@Nullable
 	private final List<String> nodeId;
 
 	@Nullable
@@ -60,7 +59,7 @@ public final class ClusterStatsRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public ClusterStatsRequest(Builder builder) {
+	private ClusterStatsRequest(Builder builder) {
 
 		this.flatSettings = builder.flatSettings;
 		this.nodeId = ModelTypeHelper.unmodifiable(builder.nodeId);
@@ -68,8 +67,8 @@ public final class ClusterStatsRequest extends RequestBase {
 
 	}
 
-	public ClusterStatsRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ClusterStatsRequest of(Function<Builder, ObjectBuilder<ClusterStatsRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -78,7 +77,7 @@ public final class ClusterStatsRequest extends RequestBase {
 	 * API name: {@code flat_settings}
 	 */
 	@Nullable
-	public Boolean flatSettings() {
+	public final Boolean flatSettings() {
 		return this.flatSettings;
 	}
 
@@ -88,8 +87,7 @@ public final class ClusterStatsRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code node_id}
 	 */
-	@Nullable
-	public List<String> nodeId() {
+	public final List<String> nodeId() {
 		return this.nodeId;
 	}
 
@@ -102,7 +100,7 @@ public final class ClusterStatsRequest extends RequestBase {
 	 * API name: {@code timeout}
 	 */
 	@Nullable
-	public String timeout() {
+	public final String timeout() {
 		return this.timeout;
 	}
 
@@ -111,7 +109,7 @@ public final class ClusterStatsRequest extends RequestBase {
 	/**
 	 * Builder for {@link ClusterStatsRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<ClusterStatsRequest> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ClusterStatsRequest> {
 		@Nullable
 		private Boolean flatSettings;
 
@@ -126,7 +124,7 @@ public final class ClusterStatsRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code flat_settings}
 		 */
-		public Builder flatSettings(@Nullable Boolean value) {
+		public final Builder flatSettings(@Nullable Boolean value) {
 			this.flatSettings = value;
 			return this;
 		}
@@ -137,7 +135,7 @@ public final class ClusterStatsRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code node_id}
 		 */
-		public Builder nodeId(@Nullable List<String> value) {
+		public final Builder nodeId(@Nullable List<String> value) {
 			this.nodeId = value;
 			return this;
 		}
@@ -148,19 +146,8 @@ public final class ClusterStatsRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code node_id}
 		 */
-		public Builder nodeId(String... value) {
+		public final Builder nodeId(String... value) {
 			this.nodeId = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #nodeId(List)}, creating the list if needed.
-		 */
-		public Builder addNodeId(String value) {
-			if (this.nodeId == null) {
-				this.nodeId = new ArrayList<>();
-			}
-			this.nodeId.add(value);
 			return this;
 		}
 
@@ -172,7 +159,7 @@ public final class ClusterStatsRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code timeout}
 		 */
-		public Builder timeout(@Nullable String value) {
+		public final Builder timeout(@Nullable String value) {
 			this.timeout = value;
 			return this;
 		}
@@ -184,6 +171,7 @@ public final class ClusterStatsRequest extends RequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public ClusterStatsRequest build() {
+			_checkSingleUse();
 
 			return new ClusterStatsRequest(this);
 		}
@@ -207,7 +195,7 @@ public final class ClusterStatsRequest extends RequestBase {
 
 				int propsSet = 0;
 
-				if (request.nodeId() != null)
+				if (ModelTypeHelper.isDefined(request.nodeId()))
 					propsSet |= _nodeId;
 
 				if (propsSet == 0) {

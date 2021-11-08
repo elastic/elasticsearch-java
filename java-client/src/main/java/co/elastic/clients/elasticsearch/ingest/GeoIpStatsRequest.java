@@ -39,7 +39,7 @@ import java.util.function.Function;
 
 // typedef: ingest.geo_ip_stats.Request
 
-public final class GeoIpStatsRequest extends RequestBase {
+public class GeoIpStatsRequest extends RequestBase {
 	public GeoIpStatsRequest() {
 	}
 

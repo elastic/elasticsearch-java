@@ -30,13 +30,14 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.MapBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
@@ -44,7 +45,7 @@ import javax.annotation.Nullable;
 
 // typedef: indices.segments.ShardsSegment
 @JsonpDeserializable
-public final class ShardsSegment implements JsonpSerializable {
+public class ShardsSegment implements JsonpSerializable {
 	private final int numCommittedSegments;
 
 	private final ShardSegmentRouting routing;
@@ -55,44 +56,45 @@ public final class ShardsSegment implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public ShardsSegment(Builder builder) {
+	private ShardsSegment(Builder builder) {
 
-		this.numCommittedSegments = Objects.requireNonNull(builder.numCommittedSegments, "num_committed_segments");
-		this.routing = Objects.requireNonNull(builder.routing, "routing");
-		this.numSearchSegments = Objects.requireNonNull(builder.numSearchSegments, "num_search_segments");
-		this.segments = ModelTypeHelper.unmodifiableNonNull(builder.segments, "segments");
+		this.numCommittedSegments = ModelTypeHelper.requireNonNull(builder.numCommittedSegments, this,
+				"numCommittedSegments");
+		this.routing = ModelTypeHelper.requireNonNull(builder.routing, this, "routing");
+		this.numSearchSegments = ModelTypeHelper.requireNonNull(builder.numSearchSegments, this, "numSearchSegments");
+		this.segments = ModelTypeHelper.unmodifiableRequired(builder.segments, this, "segments");
 
 	}
 
-	public ShardsSegment(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ShardsSegment of(Function<Builder, ObjectBuilder<ShardsSegment>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code num_committed_segments}
 	 */
-	public int numCommittedSegments() {
+	public final int numCommittedSegments() {
 		return this.numCommittedSegments;
 	}
 
 	/**
 	 * Required - API name: {@code routing}
 	 */
-	public ShardSegmentRouting routing() {
+	public final ShardSegmentRouting routing() {
 		return this.routing;
 	}
 
 	/**
 	 * Required - API name: {@code num_search_segments}
 	 */
-	public int numSearchSegments() {
+	public final int numSearchSegments() {
 		return this.numSearchSegments;
 	}
 
 	/**
 	 * Required - API name: {@code segments}
 	 */
-	public Map<String, Segment> segments() {
+	public final Map<String, Segment> segments() {
 		return this.segments;
 	}
 
@@ -116,14 +118,17 @@ public final class ShardsSegment implements JsonpSerializable {
 		generator.writeKey("num_search_segments");
 		generator.write(this.numSearchSegments);
 
-		generator.writeKey("segments");
-		generator.writeStartObject();
-		for (Map.Entry<String, Segment> item0 : this.segments.entrySet()) {
-			generator.writeKey(item0.getKey());
-			item0.getValue().serialize(generator, mapper);
+		if (ModelTypeHelper.isDefined(this.segments)) {
+			generator.writeKey("segments");
+			generator.writeStartObject();
+			for (Map.Entry<String, Segment> item0 : this.segments.entrySet()) {
+				generator.writeKey(item0.getKey());
+				item0.getValue().serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
 
 	}
 
@@ -132,7 +137,7 @@ public final class ShardsSegment implements JsonpSerializable {
 	/**
 	 * Builder for {@link ShardsSegment}.
 	 */
-	public static class Builder implements ObjectBuilder<ShardsSegment> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ShardsSegment> {
 		private Integer numCommittedSegments;
 
 		private ShardSegmentRouting routing;
@@ -144,7 +149,7 @@ public final class ShardsSegment implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code num_committed_segments}
 		 */
-		public Builder numCommittedSegments(int value) {
+		public final Builder numCommittedSegments(int value) {
 			this.numCommittedSegments = value;
 			return this;
 		}
@@ -152,7 +157,7 @@ public final class ShardsSegment implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code routing}
 		 */
-		public Builder routing(ShardSegmentRouting value) {
+		public final Builder routing(ShardSegmentRouting value) {
 			this.routing = value;
 			return this;
 		}
@@ -160,14 +165,14 @@ public final class ShardsSegment implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code routing}
 		 */
-		public Builder routing(Function<ShardSegmentRouting.Builder, ObjectBuilder<ShardSegmentRouting>> fn) {
+		public final Builder routing(Function<ShardSegmentRouting.Builder, ObjectBuilder<ShardSegmentRouting>> fn) {
 			return this.routing(fn.apply(new ShardSegmentRouting.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code num_search_segments}
 		 */
-		public Builder numSearchSegments(int value) {
+		public final Builder numSearchSegments(int value) {
 			this.numSearchSegments = value;
 			return this;
 		}
@@ -175,19 +180,8 @@ public final class ShardsSegment implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code segments}
 		 */
-		public Builder segments(Map<String, Segment> value) {
+		public final Builder segments(Map<String, Segment> value) {
 			this.segments = value;
-			return this;
-		}
-
-		/**
-		 * Add a key/value to {@link #segments(Map)}, creating the map if needed.
-		 */
-		public Builder putSegments(String key, Segment value) {
-			if (this.segments == null) {
-				this.segments = new HashMap<>();
-			}
-			this.segments.put(key, value);
 			return this;
 		}
 
@@ -198,11 +192,9 @@ public final class ShardsSegment implements JsonpSerializable {
 			return this.segments(Collections.singletonMap(key, fn.apply(new Segment.Builder()).build()));
 		}
 
-		/**
-		 * Add a key/value to {@link #segments(Map)}, creating the map if needed.
-		 */
-		public Builder putSegments(String key, Function<Segment.Builder, ObjectBuilder<Segment>> fn) {
-			return this.putSegments(key, fn.apply(new Segment.Builder()).build());
+		public final Builder segments(
+				Function<MapBuilder<String, Segment, Segment.Builder>, ObjectBuilder<Map<String, Segment>>> fn) {
+			return segments(fn.apply(new MapBuilder<>(Segment.Builder::new)).build());
 		}
 
 		/**
@@ -212,6 +204,7 @@ public final class ShardsSegment implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public ShardsSegment build() {
+			_checkSingleUse();
 
 			return new ShardsSegment(this);
 		}

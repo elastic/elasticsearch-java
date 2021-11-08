@@ -35,6 +35,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -45,47 +46,47 @@ import javax.annotation.Nullable;
 
 // typedef: enrich.stats.Response
 @JsonpDeserializable
-public final class EnrichStatsResponse implements JsonpSerializable {
+public class EnrichStatsResponse implements JsonpSerializable {
 	private final List<CoordinatorStats> coordinatorStats;
 
 	private final List<ExecutingPolicy> executingPolicies;
 
-	@Nullable
 	private final List<CacheStats> cacheStats;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public EnrichStatsResponse(Builder builder) {
+	private EnrichStatsResponse(Builder builder) {
 
-		this.coordinatorStats = ModelTypeHelper.unmodifiableNonNull(builder.coordinatorStats, "coordinator_stats");
-		this.executingPolicies = ModelTypeHelper.unmodifiableNonNull(builder.executingPolicies, "executing_policies");
+		this.coordinatorStats = ModelTypeHelper.unmodifiableRequired(builder.coordinatorStats, this,
+				"coordinatorStats");
+		this.executingPolicies = ModelTypeHelper.unmodifiableRequired(builder.executingPolicies, this,
+				"executingPolicies");
 		this.cacheStats = ModelTypeHelper.unmodifiable(builder.cacheStats);
 
 	}
 
-	public EnrichStatsResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static EnrichStatsResponse of(Function<Builder, ObjectBuilder<EnrichStatsResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code coordinator_stats}
 	 */
-	public List<CoordinatorStats> coordinatorStats() {
+	public final List<CoordinatorStats> coordinatorStats() {
 		return this.coordinatorStats;
 	}
 
 	/**
 	 * Required - API name: {@code executing_policies}
 	 */
-	public List<ExecutingPolicy> executingPolicies() {
+	public final List<ExecutingPolicy> executingPolicies() {
 		return this.executingPolicies;
 	}
 
 	/**
 	 * API name: {@code cache_stats}
 	 */
-	@Nullable
-	public List<CacheStats> cacheStats() {
+	public final List<CacheStats> cacheStats() {
 		return this.cacheStats;
 	}
 
@@ -100,24 +101,27 @@ public final class EnrichStatsResponse implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("coordinator_stats");
-		generator.writeStartArray();
-		for (CoordinatorStats item0 : this.coordinatorStats) {
-			item0.serialize(generator, mapper);
+		if (ModelTypeHelper.isDefined(this.coordinatorStats)) {
+			generator.writeKey("coordinator_stats");
+			generator.writeStartArray();
+			for (CoordinatorStats item0 : this.coordinatorStats) {
+				item0.serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
+		if (ModelTypeHelper.isDefined(this.executingPolicies)) {
+			generator.writeKey("executing_policies");
+			generator.writeStartArray();
+			for (ExecutingPolicy item0 : this.executingPolicies) {
+				item0.serialize(generator, mapper);
 
-		generator.writeKey("executing_policies");
-		generator.writeStartArray();
-		for (ExecutingPolicy item0 : this.executingPolicies) {
-			item0.serialize(generator, mapper);
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
-
-		if (this.cacheStats != null) {
-
+		if (ModelTypeHelper.isDefined(this.cacheStats)) {
 			generator.writeKey("cache_stats");
 			generator.writeStartArray();
 			for (CacheStats item0 : this.cacheStats) {
@@ -135,7 +139,7 @@ public final class EnrichStatsResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link EnrichStatsResponse}.
 	 */
-	public static class Builder implements ObjectBuilder<EnrichStatsResponse> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<EnrichStatsResponse> {
 		private List<CoordinatorStats> coordinatorStats;
 
 		private List<ExecutingPolicy> executingPolicies;
@@ -146,7 +150,7 @@ public final class EnrichStatsResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code coordinator_stats}
 		 */
-		public Builder coordinatorStats(List<CoordinatorStats> value) {
+		public final Builder coordinatorStats(List<CoordinatorStats> value) {
 			this.coordinatorStats = value;
 			return this;
 		}
@@ -154,40 +158,28 @@ public final class EnrichStatsResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code coordinator_stats}
 		 */
-		public Builder coordinatorStats(CoordinatorStats... value) {
+		public final Builder coordinatorStats(CoordinatorStats... value) {
 			this.coordinatorStats = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #coordinatorStats(List)}, creating the list if needed.
+		 * Required - API name: {@code coordinator_stats}
 		 */
-		public Builder addCoordinatorStats(CoordinatorStats value) {
-			if (this.coordinatorStats == null) {
-				this.coordinatorStats = new ArrayList<>();
+		@SafeVarargs
+		public final Builder coordinatorStats(
+				Function<CoordinatorStats.Builder, ObjectBuilder<CoordinatorStats>>... fns) {
+			this.coordinatorStats = new ArrayList<>(fns.length);
+			for (Function<CoordinatorStats.Builder, ObjectBuilder<CoordinatorStats>> fn : fns) {
+				this.coordinatorStats.add(fn.apply(new CoordinatorStats.Builder()).build());
 			}
-			this.coordinatorStats.add(value);
 			return this;
-		}
-
-		/**
-		 * Set {@link #coordinatorStats(List)} to a singleton list.
-		 */
-		public Builder coordinatorStats(Function<CoordinatorStats.Builder, ObjectBuilder<CoordinatorStats>> fn) {
-			return this.coordinatorStats(fn.apply(new CoordinatorStats.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #coordinatorStats(List)}, creating the list if needed.
-		 */
-		public Builder addCoordinatorStats(Function<CoordinatorStats.Builder, ObjectBuilder<CoordinatorStats>> fn) {
-			return this.addCoordinatorStats(fn.apply(new CoordinatorStats.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code executing_policies}
 		 */
-		public Builder executingPolicies(List<ExecutingPolicy> value) {
+		public final Builder executingPolicies(List<ExecutingPolicy> value) {
 			this.executingPolicies = value;
 			return this;
 		}
@@ -195,40 +187,28 @@ public final class EnrichStatsResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code executing_policies}
 		 */
-		public Builder executingPolicies(ExecutingPolicy... value) {
+		public final Builder executingPolicies(ExecutingPolicy... value) {
 			this.executingPolicies = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #executingPolicies(List)}, creating the list if needed.
+		 * Required - API name: {@code executing_policies}
 		 */
-		public Builder addExecutingPolicies(ExecutingPolicy value) {
-			if (this.executingPolicies == null) {
-				this.executingPolicies = new ArrayList<>();
+		@SafeVarargs
+		public final Builder executingPolicies(
+				Function<ExecutingPolicy.Builder, ObjectBuilder<ExecutingPolicy>>... fns) {
+			this.executingPolicies = new ArrayList<>(fns.length);
+			for (Function<ExecutingPolicy.Builder, ObjectBuilder<ExecutingPolicy>> fn : fns) {
+				this.executingPolicies.add(fn.apply(new ExecutingPolicy.Builder()).build());
 			}
-			this.executingPolicies.add(value);
 			return this;
-		}
-
-		/**
-		 * Set {@link #executingPolicies(List)} to a singleton list.
-		 */
-		public Builder executingPolicies(Function<ExecutingPolicy.Builder, ObjectBuilder<ExecutingPolicy>> fn) {
-			return this.executingPolicies(fn.apply(new ExecutingPolicy.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #executingPolicies(List)}, creating the list if needed.
-		 */
-		public Builder addExecutingPolicies(Function<ExecutingPolicy.Builder, ObjectBuilder<ExecutingPolicy>> fn) {
-			return this.addExecutingPolicies(fn.apply(new ExecutingPolicy.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code cache_stats}
 		 */
-		public Builder cacheStats(@Nullable List<CacheStats> value) {
+		public final Builder cacheStats(@Nullable List<CacheStats> value) {
 			this.cacheStats = value;
 			return this;
 		}
@@ -236,34 +216,21 @@ public final class EnrichStatsResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code cache_stats}
 		 */
-		public Builder cacheStats(CacheStats... value) {
+		public final Builder cacheStats(CacheStats... value) {
 			this.cacheStats = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #cacheStats(List)}, creating the list if needed.
+		 * API name: {@code cache_stats}
 		 */
-		public Builder addCacheStats(CacheStats value) {
-			if (this.cacheStats == null) {
-				this.cacheStats = new ArrayList<>();
+		@SafeVarargs
+		public final Builder cacheStats(Function<CacheStats.Builder, ObjectBuilder<CacheStats>>... fns) {
+			this.cacheStats = new ArrayList<>(fns.length);
+			for (Function<CacheStats.Builder, ObjectBuilder<CacheStats>> fn : fns) {
+				this.cacheStats.add(fn.apply(new CacheStats.Builder()).build());
 			}
-			this.cacheStats.add(value);
 			return this;
-		}
-
-		/**
-		 * Set {@link #cacheStats(List)} to a singleton list.
-		 */
-		public Builder cacheStats(Function<CacheStats.Builder, ObjectBuilder<CacheStats>> fn) {
-			return this.cacheStats(fn.apply(new CacheStats.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #cacheStats(List)}, creating the list if needed.
-		 */
-		public Builder addCacheStats(Function<CacheStats.Builder, ObjectBuilder<CacheStats>> fn) {
-			return this.addCacheStats(fn.apply(new CacheStats.Builder()).build());
 		}
 
 		/**
@@ -273,6 +240,7 @@ public final class EnrichStatsResponse implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public EnrichStatsResponse build() {
+			_checkSingleUse();
 
 			return new EnrichStatsResponse(this);
 		}

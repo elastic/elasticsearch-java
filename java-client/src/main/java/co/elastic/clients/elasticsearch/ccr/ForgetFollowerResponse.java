@@ -31,7 +31,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;
@@ -39,25 +41,25 @@ import javax.annotation.Nullable;
 
 // typedef: ccr.forget_follower.Response
 @JsonpDeserializable
-public final class ForgetFollowerResponse implements JsonpSerializable {
+public class ForgetFollowerResponse implements JsonpSerializable {
 	private final ShardStatistics shards;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public ForgetFollowerResponse(Builder builder) {
+	private ForgetFollowerResponse(Builder builder) {
 
-		this.shards = Objects.requireNonNull(builder.shards, "_shards");
+		this.shards = ModelTypeHelper.requireNonNull(builder.shards, this, "shards");
 
 	}
 
-	public ForgetFollowerResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ForgetFollowerResponse of(Function<Builder, ObjectBuilder<ForgetFollowerResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code _shards}
 	 */
-	public ShardStatistics shards() {
+	public final ShardStatistics shards() {
 		return this.shards;
 	}
 
@@ -82,13 +84,13 @@ public final class ForgetFollowerResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link ForgetFollowerResponse}.
 	 */
-	public static class Builder implements ObjectBuilder<ForgetFollowerResponse> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ForgetFollowerResponse> {
 		private ShardStatistics shards;
 
 		/**
 		 * Required - API name: {@code _shards}
 		 */
-		public Builder shards(ShardStatistics value) {
+		public final Builder shards(ShardStatistics value) {
 			this.shards = value;
 			return this;
 		}
@@ -96,7 +98,7 @@ public final class ForgetFollowerResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code _shards}
 		 */
-		public Builder shards(Function<ShardStatistics.Builder, ObjectBuilder<ShardStatistics>> fn) {
+		public final Builder shards(Function<ShardStatistics.Builder, ObjectBuilder<ShardStatistics>> fn) {
 			return this.shards(fn.apply(new ShardStatistics.Builder()).build());
 		}
 
@@ -107,6 +109,7 @@ public final class ForgetFollowerResponse implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public ForgetFollowerResponse build() {
+			_checkSingleUse();
 
 			return new ForgetFollowerResponse(this);
 		}

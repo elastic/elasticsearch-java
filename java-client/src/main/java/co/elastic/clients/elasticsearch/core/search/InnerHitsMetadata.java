@@ -33,6 +33,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
@@ -47,7 +48,7 @@ import javax.annotation.Nullable;
 
 // typedef: _global.search._types.InnerHitsMetadata
 @JsonpDeserializable
-public final class InnerHitsMetadata implements JsonpSerializable {
+public class InnerHitsMetadata implements JsonpSerializable {
 	private final JsonValue /* Union(_global.search._types.TotalHits | _types.long) */ total;
 
 	private final List<Hit<Map<String, JsonData>>> hits;
@@ -57,29 +58,29 @@ public final class InnerHitsMetadata implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public InnerHitsMetadata(Builder builder) {
+	private InnerHitsMetadata(Builder builder) {
 
-		this.total = Objects.requireNonNull(builder.total, "total");
-		this.hits = ModelTypeHelper.unmodifiableNonNull(builder.hits, "hits");
+		this.total = ModelTypeHelper.requireNonNull(builder.total, this, "total");
+		this.hits = ModelTypeHelper.unmodifiableRequired(builder.hits, this, "hits");
 		this.maxScore = builder.maxScore;
 
 	}
 
-	public InnerHitsMetadata(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static InnerHitsMetadata of(Function<Builder, ObjectBuilder<InnerHitsMetadata>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code total}
 	 */
-	public JsonValue /* Union(_global.search._types.TotalHits | _types.long) */ total() {
+	public final JsonValue /* Union(_global.search._types.TotalHits | _types.long) */ total() {
 		return this.total;
 	}
 
 	/**
 	 * Required - API name: {@code hits}
 	 */
-	public List<Hit<Map<String, JsonData>>> hits() {
+	public final List<Hit<Map<String, JsonData>>> hits() {
 		return this.hits;
 	}
 
@@ -87,7 +88,7 @@ public final class InnerHitsMetadata implements JsonpSerializable {
 	 * API name: {@code max_score}
 	 */
 	@Nullable
-	public Double maxScore() {
+	public final Double maxScore() {
 		return this.maxScore;
 	}
 
@@ -105,16 +106,17 @@ public final class InnerHitsMetadata implements JsonpSerializable {
 		generator.writeKey("total");
 		generator.write(this.total);
 
-		generator.writeKey("hits");
-		generator.writeStartArray();
-		for (Hit<Map<String, JsonData>> item0 : this.hits) {
-			item0.serialize(generator, mapper);
+		if (ModelTypeHelper.isDefined(this.hits)) {
+			generator.writeKey("hits");
+			generator.writeStartArray();
+			for (Hit<Map<String, JsonData>> item0 : this.hits) {
+				item0.serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
-
 		if (this.maxScore != null) {
-
 			generator.writeKey("max_score");
 			generator.write(this.maxScore);
 
@@ -127,7 +129,7 @@ public final class InnerHitsMetadata implements JsonpSerializable {
 	/**
 	 * Builder for {@link InnerHitsMetadata}.
 	 */
-	public static class Builder implements ObjectBuilder<InnerHitsMetadata> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<InnerHitsMetadata> {
 		private JsonValue /* Union(_global.search._types.TotalHits | _types.long) */ total;
 
 		private List<Hit<Map<String, JsonData>>> hits;
@@ -138,7 +140,7 @@ public final class InnerHitsMetadata implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code total}
 		 */
-		public Builder total(JsonValue /* Union(_global.search._types.TotalHits | _types.long) */ value) {
+		public final Builder total(JsonValue /* Union(_global.search._types.TotalHits | _types.long) */ value) {
 			this.total = value;
 			return this;
 		}
@@ -146,7 +148,7 @@ public final class InnerHitsMetadata implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code hits}
 		 */
-		public Builder hits(List<Hit<Map<String, JsonData>>> value) {
+		public final Builder hits(List<Hit<Map<String, JsonData>>> value) {
 			this.hits = value;
 			return this;
 		}
@@ -154,42 +156,28 @@ public final class InnerHitsMetadata implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code hits}
 		 */
-		public Builder hits(Hit<Map<String, JsonData>>... value) {
+		public final Builder hits(Hit<Map<String, JsonData>>... value) {
 			this.hits = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #hits(List)}, creating the list if needed.
+		 * Required - API name: {@code hits}
 		 */
-		public Builder addHits(Hit<Map<String, JsonData>> value) {
-			if (this.hits == null) {
-				this.hits = new ArrayList<>();
+		@SafeVarargs
+		public final Builder hits(
+				Function<Hit.Builder<Map<String, JsonData>>, ObjectBuilder<Hit<Map<String, JsonData>>>>... fns) {
+			this.hits = new ArrayList<>(fns.length);
+			for (Function<Hit.Builder<Map<String, JsonData>>, ObjectBuilder<Hit<Map<String, JsonData>>>> fn : fns) {
+				this.hits.add(fn.apply(new Hit.Builder<Map<String, JsonData>>()).build());
 			}
-			this.hits.add(value);
 			return this;
-		}
-
-		/**
-		 * Set {@link #hits(List)} to a singleton list.
-		 */
-		public Builder hits(
-				Function<Hit.Builder<Map<String, JsonData>>, ObjectBuilder<Hit<Map<String, JsonData>>>> fn) {
-			return this.hits(fn.apply(new Hit.Builder<Map<String, JsonData>>()).build());
-		}
-
-		/**
-		 * Add a value to {@link #hits(List)}, creating the list if needed.
-		 */
-		public Builder addHits(
-				Function<Hit.Builder<Map<String, JsonData>>, ObjectBuilder<Hit<Map<String, JsonData>>>> fn) {
-			return this.addHits(fn.apply(new Hit.Builder<Map<String, JsonData>>()).build());
 		}
 
 		/**
 		 * API name: {@code max_score}
 		 */
-		public Builder maxScore(@Nullable Double value) {
+		public final Builder maxScore(@Nullable Double value) {
 			this.maxScore = value;
 			return this;
 		}
@@ -201,6 +189,7 @@ public final class InnerHitsMetadata implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public InnerHitsMetadata build() {
+			_checkSingleUse();
 
 			return new InnerHitsMetadata(this);
 		}

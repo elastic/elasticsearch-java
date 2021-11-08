@@ -34,8 +34,8 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
@@ -45,7 +45,7 @@ import javax.annotation.Nullable;
 
 // typedef: ml.preview_datafeed.Response
 
-public final class PreviewDatafeedResponse<TDocument> implements JsonpSerializable {
+public class PreviewDatafeedResponse<TDocument> implements JsonpSerializable {
 	private final List<TDocument> data;
 
 	@Nullable
@@ -53,21 +53,22 @@ public final class PreviewDatafeedResponse<TDocument> implements JsonpSerializab
 
 	// ---------------------------------------------------------------------------------------------
 
-	public PreviewDatafeedResponse(Builder<TDocument> builder) {
+	private PreviewDatafeedResponse(Builder<TDocument> builder) {
 
-		this.data = ModelTypeHelper.unmodifiableNonNull(builder.data, "data");
+		this.data = ModelTypeHelper.unmodifiableRequired(builder.data, this, "data");
 		this.tDocumentSerializer = builder.tDocumentSerializer;
 
 	}
 
-	public PreviewDatafeedResponse(Function<Builder<TDocument>, Builder<TDocument>> fn) {
-		this(fn.apply(new Builder<>()));
+	public static <TDocument> PreviewDatafeedResponse<TDocument> of(
+			Function<Builder<TDocument>, ObjectBuilder<PreviewDatafeedResponse<TDocument>>> fn) {
+		return fn.apply(new Builder<>()).build();
 	}
 
 	/**
 	 * Required - API name: {@code data}
 	 */
-	public List<TDocument> data() {
+	public final List<TDocument> data() {
 		return this.data;
 	}
 
@@ -82,13 +83,16 @@ public final class PreviewDatafeedResponse<TDocument> implements JsonpSerializab
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("data");
-		generator.writeStartArray();
-		for (TDocument item0 : this.data) {
-			JsonpUtils.serialize(item0, generator, tDocumentSerializer, mapper);
+		if (ModelTypeHelper.isDefined(this.data)) {
+			generator.writeKey("data");
+			generator.writeStartArray();
+			for (TDocument item0 : this.data) {
+				JsonpUtils.serialize(item0, generator, tDocumentSerializer, mapper);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
 
 	}
 
@@ -97,7 +101,9 @@ public final class PreviewDatafeedResponse<TDocument> implements JsonpSerializab
 	/**
 	 * Builder for {@link PreviewDatafeedResponse}.
 	 */
-	public static class Builder<TDocument> implements ObjectBuilder<PreviewDatafeedResponse<TDocument>> {
+	public static class Builder<TDocument> extends ObjectBuilderBase
+			implements
+				ObjectBuilder<PreviewDatafeedResponse<TDocument>> {
 		private List<TDocument> data;
 
 		@Nullable
@@ -106,7 +112,7 @@ public final class PreviewDatafeedResponse<TDocument> implements JsonpSerializab
 		/**
 		 * Required - API name: {@code data}
 		 */
-		public Builder<TDocument> data(List<TDocument> value) {
+		public final Builder<TDocument> data(List<TDocument> value) {
 			this.data = value;
 			return this;
 		}
@@ -114,19 +120,8 @@ public final class PreviewDatafeedResponse<TDocument> implements JsonpSerializab
 		/**
 		 * Required - API name: {@code data}
 		 */
-		public Builder<TDocument> data(TDocument... value) {
+		public final Builder<TDocument> data(TDocument... value) {
 			this.data = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #data(List)}, creating the list if needed.
-		 */
-		public Builder<TDocument> addData(TDocument value) {
-			if (this.data == null) {
-				this.data = new ArrayList<>();
-			}
-			this.data.add(value);
 			return this;
 		}
 
@@ -134,7 +129,7 @@ public final class PreviewDatafeedResponse<TDocument> implements JsonpSerializab
 		 * Serializer for TDocument. If not set, an attempt will be made to find a
 		 * serializer from the JSON context.
 		 */
-		public Builder<TDocument> tDocumentSerializer(@Nullable JsonpSerializer<TDocument> value) {
+		public final Builder<TDocument> tDocumentSerializer(@Nullable JsonpSerializer<TDocument> value) {
 			this.tDocumentSerializer = value;
 			return this;
 		}
@@ -146,6 +141,7 @@ public final class PreviewDatafeedResponse<TDocument> implements JsonpSerializab
 		 *             if some of the required fields are null.
 		 */
 		public PreviewDatafeedResponse<TDocument> build() {
+			_checkSingleUse();
 
 			return new PreviewDatafeedResponse<TDocument>(this);
 		}

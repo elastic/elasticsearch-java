@@ -32,6 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Float;
 import java.lang.String;
@@ -44,47 +45,45 @@ import javax.annotation.Nullable;
 
 // typedef: _global.explain.ExplanationDetail
 @JsonpDeserializable
-public final class ExplanationDetail implements JsonpSerializable {
+public class ExplanationDetail implements JsonpSerializable {
 	private final String description;
 
-	@Nullable
 	private final List<ExplanationDetail> details;
 
 	private final float value;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public ExplanationDetail(Builder builder) {
+	private ExplanationDetail(Builder builder) {
 
-		this.description = Objects.requireNonNull(builder.description, "description");
+		this.description = ModelTypeHelper.requireNonNull(builder.description, this, "description");
 		this.details = ModelTypeHelper.unmodifiable(builder.details);
-		this.value = Objects.requireNonNull(builder.value, "value");
+		this.value = ModelTypeHelper.requireNonNull(builder.value, this, "value");
 
 	}
 
-	public ExplanationDetail(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ExplanationDetail of(Function<Builder, ObjectBuilder<ExplanationDetail>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code description}
 	 */
-	public String description() {
+	public final String description() {
 		return this.description;
 	}
 
 	/**
 	 * API name: {@code details}
 	 */
-	@Nullable
-	public List<ExplanationDetail> details() {
+	public final List<ExplanationDetail> details() {
 		return this.details;
 	}
 
 	/**
 	 * Required - API name: {@code value}
 	 */
-	public float value() {
+	public final float value() {
 		return this.value;
 	}
 
@@ -102,8 +101,7 @@ public final class ExplanationDetail implements JsonpSerializable {
 		generator.writeKey("description");
 		generator.write(this.description);
 
-		if (this.details != null) {
-
+		if (ModelTypeHelper.isDefined(this.details)) {
 			generator.writeKey("details");
 			generator.writeStartArray();
 			for (ExplanationDetail item0 : this.details) {
@@ -113,7 +111,6 @@ public final class ExplanationDetail implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-
 		generator.writeKey("value");
 		generator.write(this.value);
 
@@ -124,7 +121,7 @@ public final class ExplanationDetail implements JsonpSerializable {
 	/**
 	 * Builder for {@link ExplanationDetail}.
 	 */
-	public static class Builder implements ObjectBuilder<ExplanationDetail> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ExplanationDetail> {
 		private String description;
 
 		@Nullable
@@ -135,7 +132,7 @@ public final class ExplanationDetail implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code description}
 		 */
-		public Builder description(String value) {
+		public final Builder description(String value) {
 			this.description = value;
 			return this;
 		}
@@ -143,7 +140,7 @@ public final class ExplanationDetail implements JsonpSerializable {
 		/**
 		 * API name: {@code details}
 		 */
-		public Builder details(@Nullable List<ExplanationDetail> value) {
+		public final Builder details(@Nullable List<ExplanationDetail> value) {
 			this.details = value;
 			return this;
 		}
@@ -151,40 +148,27 @@ public final class ExplanationDetail implements JsonpSerializable {
 		/**
 		 * API name: {@code details}
 		 */
-		public Builder details(ExplanationDetail... value) {
+		public final Builder details(ExplanationDetail... value) {
 			this.details = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #details(List)}, creating the list if needed.
+		 * API name: {@code details}
 		 */
-		public Builder addDetails(ExplanationDetail value) {
-			if (this.details == null) {
-				this.details = new ArrayList<>();
+		@SafeVarargs
+		public final Builder details(Function<ExplanationDetail.Builder, ObjectBuilder<ExplanationDetail>>... fns) {
+			this.details = new ArrayList<>(fns.length);
+			for (Function<ExplanationDetail.Builder, ObjectBuilder<ExplanationDetail>> fn : fns) {
+				this.details.add(fn.apply(new ExplanationDetail.Builder()).build());
 			}
-			this.details.add(value);
 			return this;
-		}
-
-		/**
-		 * Set {@link #details(List)} to a singleton list.
-		 */
-		public Builder details(Function<ExplanationDetail.Builder, ObjectBuilder<ExplanationDetail>> fn) {
-			return this.details(fn.apply(new ExplanationDetail.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #details(List)}, creating the list if needed.
-		 */
-		public Builder addDetails(Function<ExplanationDetail.Builder, ObjectBuilder<ExplanationDetail>> fn) {
-			return this.addDetails(fn.apply(new ExplanationDetail.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code value}
 		 */
-		public Builder value(float value) {
+		public final Builder value(float value) {
 			this.value = value;
 			return this;
 		}
@@ -196,6 +180,7 @@ public final class ExplanationDetail implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public ExplanationDetail build() {
+			_checkSingleUse();
 
 			return new ExplanationDetail(this);
 		}

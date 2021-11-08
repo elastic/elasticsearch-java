@@ -31,6 +31,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
@@ -41,7 +42,7 @@ import javax.annotation.Nullable;
 
 // typedef: async_search.status.Response
 
-public final class StatusResponse<TDocument> extends AsyncSearchResponseBase {
+public class StatusResponse<TDocument> extends AsyncSearchResponseBase {
 	private final ShardStatistics shards;
 
 	private final int completionStatus;
@@ -51,37 +52,37 @@ public final class StatusResponse<TDocument> extends AsyncSearchResponseBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public StatusResponse(Builder<TDocument> builder) {
+	private StatusResponse(Builder<TDocument> builder) {
 		super(builder);
 
-		this.shards = Objects.requireNonNull(builder.shards, "_shards");
-		this.completionStatus = Objects.requireNonNull(builder.completionStatus, "completion_status");
+		this.shards = ModelTypeHelper.requireNonNull(builder.shards, this, "shards");
+		this.completionStatus = ModelTypeHelper.requireNonNull(builder.completionStatus, this, "completionStatus");
 		this.tDocumentSerializer = builder.tDocumentSerializer;
 
 	}
 
-	public StatusResponse(Function<Builder<TDocument>, Builder<TDocument>> fn) {
-		this(fn.apply(new Builder<>()));
+	public static <TDocument> StatusResponse<TDocument> of(
+			Function<Builder<TDocument>, ObjectBuilder<StatusResponse<TDocument>>> fn) {
+		return fn.apply(new Builder<>()).build();
 	}
 
 	/**
 	 * Required - API name: {@code _shards}
 	 */
-	public ShardStatistics shards() {
+	public final ShardStatistics shards() {
 		return this.shards;
 	}
 
 	/**
 	 * Required - API name: {@code completion_status}
 	 */
-	public int completionStatus() {
+	public final int completionStatus() {
 		return this.completionStatus;
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
-
 		generator.writeKey("_shards");
 		this.shards.serialize(generator, mapper);
 
@@ -108,7 +109,7 @@ public final class StatusResponse<TDocument> extends AsyncSearchResponseBase {
 		/**
 		 * Required - API name: {@code _shards}
 		 */
-		public Builder<TDocument> shards(ShardStatistics value) {
+		public final Builder<TDocument> shards(ShardStatistics value) {
 			this.shards = value;
 			return this;
 		}
@@ -116,14 +117,14 @@ public final class StatusResponse<TDocument> extends AsyncSearchResponseBase {
 		/**
 		 * Required - API name: {@code _shards}
 		 */
-		public Builder<TDocument> shards(Function<ShardStatistics.Builder, ObjectBuilder<ShardStatistics>> fn) {
+		public final Builder<TDocument> shards(Function<ShardStatistics.Builder, ObjectBuilder<ShardStatistics>> fn) {
 			return this.shards(fn.apply(new ShardStatistics.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code completion_status}
 		 */
-		public Builder<TDocument> completionStatus(int value) {
+		public final Builder<TDocument> completionStatus(int value) {
 			this.completionStatus = value;
 			return this;
 		}
@@ -132,7 +133,7 @@ public final class StatusResponse<TDocument> extends AsyncSearchResponseBase {
 		 * Serializer for TDocument. If not set, an attempt will be made to find a
 		 * serializer from the JSON context.
 		 */
-		public Builder<TDocument> tDocumentSerializer(@Nullable JsonpSerializer<TDocument> value) {
+		public final Builder<TDocument> tDocumentSerializer(@Nullable JsonpSerializer<TDocument> value) {
 			this.tDocumentSerializer = value;
 			return this;
 		}
@@ -149,6 +150,7 @@ public final class StatusResponse<TDocument> extends AsyncSearchResponseBase {
 		 *             if some of the required fields are null.
 		 */
 		public StatusResponse<TDocument> build() {
+			_checkSingleUse();
 
 			return new StatusResponse<TDocument>(this);
 		}

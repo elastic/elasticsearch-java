@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
@@ -40,7 +42,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.mapping.AllField
 @JsonpDeserializable
-public final class AllField implements JsonpSerializable {
+public class AllField implements JsonpSerializable {
 	private final String analyzer;
 
 	private final boolean enabled;
@@ -63,95 +65,95 @@ public final class AllField implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public AllField(Builder builder) {
+	private AllField(Builder builder) {
 
-		this.analyzer = Objects.requireNonNull(builder.analyzer, "analyzer");
-		this.enabled = Objects.requireNonNull(builder.enabled, "enabled");
-		this.omitNorms = Objects.requireNonNull(builder.omitNorms, "omit_norms");
-		this.searchAnalyzer = Objects.requireNonNull(builder.searchAnalyzer, "search_analyzer");
-		this.similarity = Objects.requireNonNull(builder.similarity, "similarity");
-		this.store = Objects.requireNonNull(builder.store, "store");
-		this.storeTermVectorOffsets = Objects.requireNonNull(builder.storeTermVectorOffsets,
-				"store_term_vector_offsets");
-		this.storeTermVectorPayloads = Objects.requireNonNull(builder.storeTermVectorPayloads,
-				"store_term_vector_payloads");
-		this.storeTermVectorPositions = Objects.requireNonNull(builder.storeTermVectorPositions,
-				"store_term_vector_positions");
-		this.storeTermVectors = Objects.requireNonNull(builder.storeTermVectors, "store_term_vectors");
+		this.analyzer = ModelTypeHelper.requireNonNull(builder.analyzer, this, "analyzer");
+		this.enabled = ModelTypeHelper.requireNonNull(builder.enabled, this, "enabled");
+		this.omitNorms = ModelTypeHelper.requireNonNull(builder.omitNorms, this, "omitNorms");
+		this.searchAnalyzer = ModelTypeHelper.requireNonNull(builder.searchAnalyzer, this, "searchAnalyzer");
+		this.similarity = ModelTypeHelper.requireNonNull(builder.similarity, this, "similarity");
+		this.store = ModelTypeHelper.requireNonNull(builder.store, this, "store");
+		this.storeTermVectorOffsets = ModelTypeHelper.requireNonNull(builder.storeTermVectorOffsets, this,
+				"storeTermVectorOffsets");
+		this.storeTermVectorPayloads = ModelTypeHelper.requireNonNull(builder.storeTermVectorPayloads, this,
+				"storeTermVectorPayloads");
+		this.storeTermVectorPositions = ModelTypeHelper.requireNonNull(builder.storeTermVectorPositions, this,
+				"storeTermVectorPositions");
+		this.storeTermVectors = ModelTypeHelper.requireNonNull(builder.storeTermVectors, this, "storeTermVectors");
 
 	}
 
-	public AllField(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static AllField of(Function<Builder, ObjectBuilder<AllField>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code analyzer}
 	 */
-	public String analyzer() {
+	public final String analyzer() {
 		return this.analyzer;
 	}
 
 	/**
 	 * Required - API name: {@code enabled}
 	 */
-	public boolean enabled() {
+	public final boolean enabled() {
 		return this.enabled;
 	}
 
 	/**
 	 * Required - API name: {@code omit_norms}
 	 */
-	public boolean omitNorms() {
+	public final boolean omitNorms() {
 		return this.omitNorms;
 	}
 
 	/**
 	 * Required - API name: {@code search_analyzer}
 	 */
-	public String searchAnalyzer() {
+	public final String searchAnalyzer() {
 		return this.searchAnalyzer;
 	}
 
 	/**
 	 * Required - API name: {@code similarity}
 	 */
-	public String similarity() {
+	public final String similarity() {
 		return this.similarity;
 	}
 
 	/**
 	 * Required - API name: {@code store}
 	 */
-	public boolean store() {
+	public final boolean store() {
 		return this.store;
 	}
 
 	/**
 	 * Required - API name: {@code store_term_vector_offsets}
 	 */
-	public boolean storeTermVectorOffsets() {
+	public final boolean storeTermVectorOffsets() {
 		return this.storeTermVectorOffsets;
 	}
 
 	/**
 	 * Required - API name: {@code store_term_vector_payloads}
 	 */
-	public boolean storeTermVectorPayloads() {
+	public final boolean storeTermVectorPayloads() {
 		return this.storeTermVectorPayloads;
 	}
 
 	/**
 	 * Required - API name: {@code store_term_vector_positions}
 	 */
-	public boolean storeTermVectorPositions() {
+	public final boolean storeTermVectorPositions() {
 		return this.storeTermVectorPositions;
 	}
 
 	/**
 	 * Required - API name: {@code store_term_vectors}
 	 */
-	public boolean storeTermVectors() {
+	public final boolean storeTermVectors() {
 		return this.storeTermVectors;
 	}
 
@@ -203,7 +205,7 @@ public final class AllField implements JsonpSerializable {
 	/**
 	 * Builder for {@link AllField}.
 	 */
-	public static class Builder implements ObjectBuilder<AllField> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<AllField> {
 		private String analyzer;
 
 		private Boolean enabled;
@@ -227,7 +229,7 @@ public final class AllField implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code analyzer}
 		 */
-		public Builder analyzer(String value) {
+		public final Builder analyzer(String value) {
 			this.analyzer = value;
 			return this;
 		}
@@ -235,7 +237,7 @@ public final class AllField implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code enabled}
 		 */
-		public Builder enabled(boolean value) {
+		public final Builder enabled(boolean value) {
 			this.enabled = value;
 			return this;
 		}
@@ -243,7 +245,7 @@ public final class AllField implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code omit_norms}
 		 */
-		public Builder omitNorms(boolean value) {
+		public final Builder omitNorms(boolean value) {
 			this.omitNorms = value;
 			return this;
 		}
@@ -251,7 +253,7 @@ public final class AllField implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code search_analyzer}
 		 */
-		public Builder searchAnalyzer(String value) {
+		public final Builder searchAnalyzer(String value) {
 			this.searchAnalyzer = value;
 			return this;
 		}
@@ -259,7 +261,7 @@ public final class AllField implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code similarity}
 		 */
-		public Builder similarity(String value) {
+		public final Builder similarity(String value) {
 			this.similarity = value;
 			return this;
 		}
@@ -267,7 +269,7 @@ public final class AllField implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code store}
 		 */
-		public Builder store(boolean value) {
+		public final Builder store(boolean value) {
 			this.store = value;
 			return this;
 		}
@@ -275,7 +277,7 @@ public final class AllField implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code store_term_vector_offsets}
 		 */
-		public Builder storeTermVectorOffsets(boolean value) {
+		public final Builder storeTermVectorOffsets(boolean value) {
 			this.storeTermVectorOffsets = value;
 			return this;
 		}
@@ -283,7 +285,7 @@ public final class AllField implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code store_term_vector_payloads}
 		 */
-		public Builder storeTermVectorPayloads(boolean value) {
+		public final Builder storeTermVectorPayloads(boolean value) {
 			this.storeTermVectorPayloads = value;
 			return this;
 		}
@@ -291,7 +293,7 @@ public final class AllField implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code store_term_vector_positions}
 		 */
-		public Builder storeTermVectorPositions(boolean value) {
+		public final Builder storeTermVectorPositions(boolean value) {
 			this.storeTermVectorPositions = value;
 			return this;
 		}
@@ -299,7 +301,7 @@ public final class AllField implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code store_term_vectors}
 		 */
-		public Builder storeTermVectors(boolean value) {
+		public final Builder storeTermVectors(boolean value) {
 			this.storeTermVectors = value;
 			return this;
 		}
@@ -311,6 +313,7 @@ public final class AllField implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public AllField build() {
+			_checkSingleUse();
 
 			return new AllField(this);
 		}

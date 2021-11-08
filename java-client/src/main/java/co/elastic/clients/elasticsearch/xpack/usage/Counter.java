@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.util.Objects;
@@ -45,24 +47,24 @@ public class Counter implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public Counter(AbstractBuilder<?> builder) {
+	protected Counter(AbstractBuilder<?> builder) {
 
-		this.active = Objects.requireNonNull(builder.active, "active");
-		this.total = Objects.requireNonNull(builder.total, "total");
+		this.active = ModelTypeHelper.requireNonNull(builder.active, this, "active");
+		this.total = ModelTypeHelper.requireNonNull(builder.total, this, "total");
 
 	}
 
 	/**
 	 * Required - API name: {@code active}
 	 */
-	public long active() {
+	public final long active() {
 		return this.active;
 	}
 
 	/**
 	 * Required - API name: {@code total}
 	 */
-	public long total() {
+	public final long total() {
 		return this.total;
 	}
 
@@ -103,12 +105,15 @@ public class Counter implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public Counter build() {
+			_checkSingleUse();
 
 			return new Counter(this);
 		}
 	}
 
-	protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>> {
+	protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>>
+			extends
+				ObjectBuilderBase {
 		private Long active;
 
 		private Long total;
@@ -116,7 +121,7 @@ public class Counter implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code active}
 		 */
-		public BuilderT active(long value) {
+		public final BuilderT active(long value) {
 			this.active = value;
 			return self();
 		}
@@ -124,7 +129,7 @@ public class Counter implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code total}
 		 */
-		public BuilderT total(long value) {
+		public final BuilderT total(long value) {
 			this.total = value;
 			return self();
 		}

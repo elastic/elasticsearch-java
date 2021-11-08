@@ -31,6 +31,7 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -39,7 +40,7 @@ import javax.annotation.Nullable;
 
 // typedef: cat.tasks.TasksRecord
 @JsonpDeserializable
-public final class TasksRecord implements JsonpSerializable {
+public class TasksRecord implements JsonpSerializable {
 	@Nullable
 	private final String id;
 
@@ -90,7 +91,7 @@ public final class TasksRecord implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public TasksRecord(Builder builder) {
+	private TasksRecord(Builder builder) {
 
 		this.id = builder.id;
 		this.action = builder.action;
@@ -111,8 +112,8 @@ public final class TasksRecord implements JsonpSerializable {
 
 	}
 
-	public TasksRecord(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static TasksRecord of(Function<Builder, ObjectBuilder<TasksRecord>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -121,7 +122,7 @@ public final class TasksRecord implements JsonpSerializable {
 	 * API name: {@code id}
 	 */
 	@Nullable
-	public String id() {
+	public final String id() {
 		return this.id;
 	}
 
@@ -131,7 +132,7 @@ public final class TasksRecord implements JsonpSerializable {
 	 * API name: {@code action}
 	 */
 	@Nullable
-	public String action() {
+	public final String action() {
 		return this.action;
 	}
 
@@ -141,7 +142,7 @@ public final class TasksRecord implements JsonpSerializable {
 	 * API name: {@code task_id}
 	 */
 	@Nullable
-	public String taskId() {
+	public final String taskId() {
 		return this.taskId;
 	}
 
@@ -151,7 +152,7 @@ public final class TasksRecord implements JsonpSerializable {
 	 * API name: {@code parent_task_id}
 	 */
 	@Nullable
-	public String parentTaskId() {
+	public final String parentTaskId() {
 		return this.parentTaskId;
 	}
 
@@ -161,7 +162,7 @@ public final class TasksRecord implements JsonpSerializable {
 	 * API name: {@code type}
 	 */
 	@Nullable
-	public String type() {
+	public final String type() {
 		return this.type;
 	}
 
@@ -171,7 +172,7 @@ public final class TasksRecord implements JsonpSerializable {
 	 * API name: {@code start_time}
 	 */
 	@Nullable
-	public String startTime() {
+	public final String startTime() {
 		return this.startTime;
 	}
 
@@ -181,7 +182,7 @@ public final class TasksRecord implements JsonpSerializable {
 	 * API name: {@code timestamp}
 	 */
 	@Nullable
-	public String timestamp() {
+	public final String timestamp() {
 		return this.timestamp;
 	}
 
@@ -191,7 +192,7 @@ public final class TasksRecord implements JsonpSerializable {
 	 * API name: {@code running_time_ns}
 	 */
 	@Nullable
-	public String runningTimeNs() {
+	public final String runningTimeNs() {
 		return this.runningTimeNs;
 	}
 
@@ -201,7 +202,7 @@ public final class TasksRecord implements JsonpSerializable {
 	 * API name: {@code running_time}
 	 */
 	@Nullable
-	public String runningTime() {
+	public final String runningTime() {
 		return this.runningTime;
 	}
 
@@ -211,7 +212,7 @@ public final class TasksRecord implements JsonpSerializable {
 	 * API name: {@code node_id}
 	 */
 	@Nullable
-	public String nodeId() {
+	public final String nodeId() {
 		return this.nodeId;
 	}
 
@@ -221,7 +222,7 @@ public final class TasksRecord implements JsonpSerializable {
 	 * API name: {@code ip}
 	 */
 	@Nullable
-	public String ip() {
+	public final String ip() {
 		return this.ip;
 	}
 
@@ -231,7 +232,7 @@ public final class TasksRecord implements JsonpSerializable {
 	 * API name: {@code port}
 	 */
 	@Nullable
-	public String port() {
+	public final String port() {
 		return this.port;
 	}
 
@@ -241,7 +242,7 @@ public final class TasksRecord implements JsonpSerializable {
 	 * API name: {@code node}
 	 */
 	@Nullable
-	public String node() {
+	public final String node() {
 		return this.node;
 	}
 
@@ -251,7 +252,7 @@ public final class TasksRecord implements JsonpSerializable {
 	 * API name: {@code version}
 	 */
 	@Nullable
-	public String version() {
+	public final String version() {
 		return this.version;
 	}
 
@@ -261,7 +262,7 @@ public final class TasksRecord implements JsonpSerializable {
 	 * API name: {@code x_opaque_id}
 	 */
 	@Nullable
-	public String xOpaqueId() {
+	public final String xOpaqueId() {
 		return this.xOpaqueId;
 	}
 
@@ -271,7 +272,7 @@ public final class TasksRecord implements JsonpSerializable {
 	 * API name: {@code description}
 	 */
 	@Nullable
-	public String description() {
+	public final String description() {
 		return this.description;
 	}
 
@@ -287,97 +288,81 @@ public final class TasksRecord implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.id != null) {
-
 			generator.writeKey("id");
 			generator.write(this.id);
 
 		}
 		if (this.action != null) {
-
 			generator.writeKey("action");
 			generator.write(this.action);
 
 		}
 		if (this.taskId != null) {
-
 			generator.writeKey("task_id");
 			generator.write(this.taskId);
 
 		}
 		if (this.parentTaskId != null) {
-
 			generator.writeKey("parent_task_id");
 			generator.write(this.parentTaskId);
 
 		}
 		if (this.type != null) {
-
 			generator.writeKey("type");
 			generator.write(this.type);
 
 		}
 		if (this.startTime != null) {
-
 			generator.writeKey("start_time");
 			generator.write(this.startTime);
 
 		}
 		if (this.timestamp != null) {
-
 			generator.writeKey("timestamp");
 			generator.write(this.timestamp);
 
 		}
 		if (this.runningTimeNs != null) {
-
 			generator.writeKey("running_time_ns");
 			generator.write(this.runningTimeNs);
 
 		}
 		if (this.runningTime != null) {
-
 			generator.writeKey("running_time");
 			generator.write(this.runningTime);
 
 		}
 		if (this.nodeId != null) {
-
 			generator.writeKey("node_id");
 			generator.write(this.nodeId);
 
 		}
 		if (this.ip != null) {
-
 			generator.writeKey("ip");
 			generator.write(this.ip);
 
 		}
 		if (this.port != null) {
-
 			generator.writeKey("port");
 			generator.write(this.port);
 
 		}
 		if (this.node != null) {
-
 			generator.writeKey("node");
 			generator.write(this.node);
 
 		}
 		if (this.version != null) {
-
 			generator.writeKey("version");
 			generator.write(this.version);
 
 		}
 		if (this.xOpaqueId != null) {
-
 			generator.writeKey("x_opaque_id");
 			generator.write(this.xOpaqueId);
 
 		}
 		if (this.description != null) {
-
 			generator.writeKey("description");
 			generator.write(this.description);
 
@@ -390,7 +375,7 @@ public final class TasksRecord implements JsonpSerializable {
 	/**
 	 * Builder for {@link TasksRecord}.
 	 */
-	public static class Builder implements ObjectBuilder<TasksRecord> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TasksRecord> {
 		@Nullable
 		private String id;
 
@@ -444,7 +429,7 @@ public final class TasksRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code id}
 		 */
-		public Builder id(@Nullable String value) {
+		public final Builder id(@Nullable String value) {
 			this.id = value;
 			return this;
 		}
@@ -454,7 +439,7 @@ public final class TasksRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code action}
 		 */
-		public Builder action(@Nullable String value) {
+		public final Builder action(@Nullable String value) {
 			this.action = value;
 			return this;
 		}
@@ -464,7 +449,7 @@ public final class TasksRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code task_id}
 		 */
-		public Builder taskId(@Nullable String value) {
+		public final Builder taskId(@Nullable String value) {
 			this.taskId = value;
 			return this;
 		}
@@ -474,7 +459,7 @@ public final class TasksRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code parent_task_id}
 		 */
-		public Builder parentTaskId(@Nullable String value) {
+		public final Builder parentTaskId(@Nullable String value) {
 			this.parentTaskId = value;
 			return this;
 		}
@@ -484,7 +469,7 @@ public final class TasksRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code type}
 		 */
-		public Builder type(@Nullable String value) {
+		public final Builder type(@Nullable String value) {
 			this.type = value;
 			return this;
 		}
@@ -494,7 +479,7 @@ public final class TasksRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code start_time}
 		 */
-		public Builder startTime(@Nullable String value) {
+		public final Builder startTime(@Nullable String value) {
 			this.startTime = value;
 			return this;
 		}
@@ -504,7 +489,7 @@ public final class TasksRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code timestamp}
 		 */
-		public Builder timestamp(@Nullable String value) {
+		public final Builder timestamp(@Nullable String value) {
 			this.timestamp = value;
 			return this;
 		}
@@ -514,7 +499,7 @@ public final class TasksRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code running_time_ns}
 		 */
-		public Builder runningTimeNs(@Nullable String value) {
+		public final Builder runningTimeNs(@Nullable String value) {
 			this.runningTimeNs = value;
 			return this;
 		}
@@ -524,7 +509,7 @@ public final class TasksRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code running_time}
 		 */
-		public Builder runningTime(@Nullable String value) {
+		public final Builder runningTime(@Nullable String value) {
 			this.runningTime = value;
 			return this;
 		}
@@ -534,7 +519,7 @@ public final class TasksRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code node_id}
 		 */
-		public Builder nodeId(@Nullable String value) {
+		public final Builder nodeId(@Nullable String value) {
 			this.nodeId = value;
 			return this;
 		}
@@ -544,7 +529,7 @@ public final class TasksRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code ip}
 		 */
-		public Builder ip(@Nullable String value) {
+		public final Builder ip(@Nullable String value) {
 			this.ip = value;
 			return this;
 		}
@@ -554,7 +539,7 @@ public final class TasksRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code port}
 		 */
-		public Builder port(@Nullable String value) {
+		public final Builder port(@Nullable String value) {
 			this.port = value;
 			return this;
 		}
@@ -564,7 +549,7 @@ public final class TasksRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code node}
 		 */
-		public Builder node(@Nullable String value) {
+		public final Builder node(@Nullable String value) {
 			this.node = value;
 			return this;
 		}
@@ -574,7 +559,7 @@ public final class TasksRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code version}
 		 */
-		public Builder version(@Nullable String value) {
+		public final Builder version(@Nullable String value) {
 			this.version = value;
 			return this;
 		}
@@ -584,7 +569,7 @@ public final class TasksRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code x_opaque_id}
 		 */
-		public Builder xOpaqueId(@Nullable String value) {
+		public final Builder xOpaqueId(@Nullable String value) {
 			this.xOpaqueId = value;
 			return this;
 		}
@@ -594,7 +579,7 @@ public final class TasksRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code description}
 		 */
-		public Builder description(@Nullable String value) {
+		public final Builder description(@Nullable String value) {
 			this.description = value;
 			return this;
 		}
@@ -606,6 +591,7 @@ public final class TasksRecord implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public TasksRecord build() {
+			_checkSingleUse();
 
 			return new TasksRecord(this);
 		}

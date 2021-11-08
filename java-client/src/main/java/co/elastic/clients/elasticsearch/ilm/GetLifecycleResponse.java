@@ -38,16 +38,16 @@ import java.util.function.Function;
 
 // typedef: ilm.get_lifecycle.Response
 @JsonpDeserializable
-public final class GetLifecycleResponse extends DictionaryResponse<String, Lifecycle> {
+public class GetLifecycleResponse extends DictionaryResponse<String, Lifecycle> {
 	// ---------------------------------------------------------------------------------------------
 
-	public GetLifecycleResponse(Builder builder) {
+	private GetLifecycleResponse(Builder builder) {
 		super(builder);
 
 	}
 
-	public GetLifecycleResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static GetLifecycleResponse of(Function<Builder, ObjectBuilder<GetLifecycleResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -70,6 +70,7 @@ public final class GetLifecycleResponse extends DictionaryResponse<String, Lifec
 		 *             if some of the required fields are null.
 		 */
 		public GetLifecycleResponse build() {
+			_checkSingleUse();
 			super.tKeySerializer(null);
 			super.tValueSerializer(null);
 

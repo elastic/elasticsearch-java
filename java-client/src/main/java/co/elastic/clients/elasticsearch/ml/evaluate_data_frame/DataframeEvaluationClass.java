@@ -29,6 +29,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -38,33 +39,32 @@ import javax.annotation.Nullable;
 
 // typedef: ml.evaluate_data_frame.DataframeEvaluationClass
 @JsonpDeserializable
-public final class DataframeEvaluationClass extends DataframeEvaluationValue {
+public class DataframeEvaluationClass extends DataframeEvaluationValue {
 	private final String className;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public DataframeEvaluationClass(Builder builder) {
+	private DataframeEvaluationClass(Builder builder) {
 		super(builder);
 
-		this.className = Objects.requireNonNull(builder.className, "class_name");
+		this.className = ModelTypeHelper.requireNonNull(builder.className, this, "className");
 
 	}
 
-	public DataframeEvaluationClass(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static DataframeEvaluationClass of(Function<Builder, ObjectBuilder<DataframeEvaluationClass>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code class_name}
 	 */
-	public String className() {
+	public final String className() {
 		return this.className;
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
-
 		generator.writeKey("class_name");
 		generator.write(this.className);
 
@@ -83,7 +83,7 @@ public final class DataframeEvaluationClass extends DataframeEvaluationValue {
 		/**
 		 * Required - API name: {@code class_name}
 		 */
-		public Builder className(String value) {
+		public final Builder className(String value) {
 			this.className = value;
 			return this;
 		}
@@ -100,6 +100,7 @@ public final class DataframeEvaluationClass extends DataframeEvaluationValue {
 		 *             if some of the required fields are null.
 		 */
 		public DataframeEvaluationClass build() {
+			_checkSingleUse();
 
 			return new DataframeEvaluationClass(this);
 		}

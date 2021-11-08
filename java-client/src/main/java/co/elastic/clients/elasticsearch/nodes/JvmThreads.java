@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.util.Objects;
@@ -38,35 +40,35 @@ import java.util.function.Function;
 
 // typedef: nodes._types.JvmThreads
 @JsonpDeserializable
-public final class JvmThreads implements JsonpSerializable {
+public class JvmThreads implements JsonpSerializable {
 	private final long count;
 
 	private final long peakCount;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public JvmThreads(Builder builder) {
+	private JvmThreads(Builder builder) {
 
-		this.count = Objects.requireNonNull(builder.count, "count");
-		this.peakCount = Objects.requireNonNull(builder.peakCount, "peak_count");
+		this.count = ModelTypeHelper.requireNonNull(builder.count, this, "count");
+		this.peakCount = ModelTypeHelper.requireNonNull(builder.peakCount, this, "peakCount");
 
 	}
 
-	public JvmThreads(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static JvmThreads of(Function<Builder, ObjectBuilder<JvmThreads>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code count}
 	 */
-	public long count() {
+	public final long count() {
 		return this.count;
 	}
 
 	/**
 	 * Required - API name: {@code peak_count}
 	 */
-	public long peakCount() {
+	public final long peakCount() {
 		return this.peakCount;
 	}
 
@@ -94,7 +96,7 @@ public final class JvmThreads implements JsonpSerializable {
 	/**
 	 * Builder for {@link JvmThreads}.
 	 */
-	public static class Builder implements ObjectBuilder<JvmThreads> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<JvmThreads> {
 		private Long count;
 
 		private Long peakCount;
@@ -102,7 +104,7 @@ public final class JvmThreads implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code count}
 		 */
-		public Builder count(long value) {
+		public final Builder count(long value) {
 			this.count = value;
 			return this;
 		}
@@ -110,7 +112,7 @@ public final class JvmThreads implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code peak_count}
 		 */
-		public Builder peakCount(long value) {
+		public final Builder peakCount(long value) {
 			this.peakCount = value;
 			return this;
 		}
@@ -122,6 +124,7 @@ public final class JvmThreads implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public JvmThreads build() {
+			_checkSingleUse();
 
 			return new JvmThreads(this);
 		}

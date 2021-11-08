@@ -30,6 +30,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -39,33 +40,32 @@ import javax.annotation.Nullable;
 
 // typedef: ml.forecast.Response
 @JsonpDeserializable
-public final class ForecastResponse extends AcknowledgedResponseBase {
+public class ForecastResponse extends AcknowledgedResponseBase {
 	private final String forecastId;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public ForecastResponse(Builder builder) {
+	private ForecastResponse(Builder builder) {
 		super(builder);
 
-		this.forecastId = Objects.requireNonNull(builder.forecastId, "forecast_id");
+		this.forecastId = ModelTypeHelper.requireNonNull(builder.forecastId, this, "forecastId");
 
 	}
 
-	public ForecastResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ForecastResponse of(Function<Builder, ObjectBuilder<ForecastResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code forecast_id}
 	 */
-	public String forecastId() {
+	public final String forecastId() {
 		return this.forecastId;
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
-
 		generator.writeKey("forecast_id");
 		generator.write(this.forecastId);
 
@@ -84,7 +84,7 @@ public final class ForecastResponse extends AcknowledgedResponseBase {
 		/**
 		 * Required - API name: {@code forecast_id}
 		 */
-		public Builder forecastId(String value) {
+		public final Builder forecastId(String value) {
 			this.forecastId = value;
 			return this;
 		}
@@ -101,6 +101,7 @@ public final class ForecastResponse extends AcknowledgedResponseBase {
 		 *             if some of the required fields are null.
 		 */
 		public ForecastResponse build() {
+			_checkSingleUse();
 
 			return new ForecastResponse(this);
 		}

@@ -32,6 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.ArrayList;
@@ -43,16 +44,14 @@ import javax.annotation.Nullable;
 
 // typedef: indices.analyze.AnalyzeDetail
 @JsonpDeserializable
-public final class AnalyzeDetail implements JsonpSerializable {
+public class AnalyzeDetail implements JsonpSerializable {
 	@Nullable
 	private final AnalyzerDetail analyzer;
 
-	@Nullable
 	private final List<CharFilterDetail> charfilters;
 
 	private final boolean customAnalyzer;
 
-	@Nullable
 	private final List<TokenDetail> tokenfilters;
 
 	@Nullable
@@ -60,48 +59,46 @@ public final class AnalyzeDetail implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public AnalyzeDetail(Builder builder) {
+	private AnalyzeDetail(Builder builder) {
 
 		this.analyzer = builder.analyzer;
 		this.charfilters = ModelTypeHelper.unmodifiable(builder.charfilters);
-		this.customAnalyzer = Objects.requireNonNull(builder.customAnalyzer, "custom_analyzer");
+		this.customAnalyzer = ModelTypeHelper.requireNonNull(builder.customAnalyzer, this, "customAnalyzer");
 		this.tokenfilters = ModelTypeHelper.unmodifiable(builder.tokenfilters);
 		this.tokenizer = builder.tokenizer;
 
 	}
 
-	public AnalyzeDetail(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static AnalyzeDetail of(Function<Builder, ObjectBuilder<AnalyzeDetail>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * API name: {@code analyzer}
 	 */
 	@Nullable
-	public AnalyzerDetail analyzer() {
+	public final AnalyzerDetail analyzer() {
 		return this.analyzer;
 	}
 
 	/**
 	 * API name: {@code charfilters}
 	 */
-	@Nullable
-	public List<CharFilterDetail> charfilters() {
+	public final List<CharFilterDetail> charfilters() {
 		return this.charfilters;
 	}
 
 	/**
 	 * Required - API name: {@code custom_analyzer}
 	 */
-	public boolean customAnalyzer() {
+	public final boolean customAnalyzer() {
 		return this.customAnalyzer;
 	}
 
 	/**
 	 * API name: {@code tokenfilters}
 	 */
-	@Nullable
-	public List<TokenDetail> tokenfilters() {
+	public final List<TokenDetail> tokenfilters() {
 		return this.tokenfilters;
 	}
 
@@ -109,7 +106,7 @@ public final class AnalyzeDetail implements JsonpSerializable {
 	 * API name: {@code tokenizer}
 	 */
 	@Nullable
-	public TokenDetail tokenizer() {
+	public final TokenDetail tokenizer() {
 		return this.tokenizer;
 	}
 
@@ -125,13 +122,11 @@ public final class AnalyzeDetail implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.analyzer != null) {
-
 			generator.writeKey("analyzer");
 			this.analyzer.serialize(generator, mapper);
 
 		}
-		if (this.charfilters != null) {
-
+		if (ModelTypeHelper.isDefined(this.charfilters)) {
 			generator.writeKey("charfilters");
 			generator.writeStartArray();
 			for (CharFilterDetail item0 : this.charfilters) {
@@ -141,12 +136,10 @@ public final class AnalyzeDetail implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-
 		generator.writeKey("custom_analyzer");
 		generator.write(this.customAnalyzer);
 
-		if (this.tokenfilters != null) {
-
+		if (ModelTypeHelper.isDefined(this.tokenfilters)) {
 			generator.writeKey("tokenfilters");
 			generator.writeStartArray();
 			for (TokenDetail item0 : this.tokenfilters) {
@@ -157,7 +150,6 @@ public final class AnalyzeDetail implements JsonpSerializable {
 
 		}
 		if (this.tokenizer != null) {
-
 			generator.writeKey("tokenizer");
 			this.tokenizer.serialize(generator, mapper);
 
@@ -170,7 +162,7 @@ public final class AnalyzeDetail implements JsonpSerializable {
 	/**
 	 * Builder for {@link AnalyzeDetail}.
 	 */
-	public static class Builder implements ObjectBuilder<AnalyzeDetail> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<AnalyzeDetail> {
 		@Nullable
 		private AnalyzerDetail analyzer;
 
@@ -188,7 +180,7 @@ public final class AnalyzeDetail implements JsonpSerializable {
 		/**
 		 * API name: {@code analyzer}
 		 */
-		public Builder analyzer(@Nullable AnalyzerDetail value) {
+		public final Builder analyzer(@Nullable AnalyzerDetail value) {
 			this.analyzer = value;
 			return this;
 		}
@@ -196,14 +188,14 @@ public final class AnalyzeDetail implements JsonpSerializable {
 		/**
 		 * API name: {@code analyzer}
 		 */
-		public Builder analyzer(Function<AnalyzerDetail.Builder, ObjectBuilder<AnalyzerDetail>> fn) {
+		public final Builder analyzer(Function<AnalyzerDetail.Builder, ObjectBuilder<AnalyzerDetail>> fn) {
 			return this.analyzer(fn.apply(new AnalyzerDetail.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code charfilters}
 		 */
-		public Builder charfilters(@Nullable List<CharFilterDetail> value) {
+		public final Builder charfilters(@Nullable List<CharFilterDetail> value) {
 			this.charfilters = value;
 			return this;
 		}
@@ -211,40 +203,27 @@ public final class AnalyzeDetail implements JsonpSerializable {
 		/**
 		 * API name: {@code charfilters}
 		 */
-		public Builder charfilters(CharFilterDetail... value) {
+		public final Builder charfilters(CharFilterDetail... value) {
 			this.charfilters = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #charfilters(List)}, creating the list if needed.
+		 * API name: {@code charfilters}
 		 */
-		public Builder addCharfilters(CharFilterDetail value) {
-			if (this.charfilters == null) {
-				this.charfilters = new ArrayList<>();
+		@SafeVarargs
+		public final Builder charfilters(Function<CharFilterDetail.Builder, ObjectBuilder<CharFilterDetail>>... fns) {
+			this.charfilters = new ArrayList<>(fns.length);
+			for (Function<CharFilterDetail.Builder, ObjectBuilder<CharFilterDetail>> fn : fns) {
+				this.charfilters.add(fn.apply(new CharFilterDetail.Builder()).build());
 			}
-			this.charfilters.add(value);
 			return this;
-		}
-
-		/**
-		 * Set {@link #charfilters(List)} to a singleton list.
-		 */
-		public Builder charfilters(Function<CharFilterDetail.Builder, ObjectBuilder<CharFilterDetail>> fn) {
-			return this.charfilters(fn.apply(new CharFilterDetail.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #charfilters(List)}, creating the list if needed.
-		 */
-		public Builder addCharfilters(Function<CharFilterDetail.Builder, ObjectBuilder<CharFilterDetail>> fn) {
-			return this.addCharfilters(fn.apply(new CharFilterDetail.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code custom_analyzer}
 		 */
-		public Builder customAnalyzer(boolean value) {
+		public final Builder customAnalyzer(boolean value) {
 			this.customAnalyzer = value;
 			return this;
 		}
@@ -252,7 +231,7 @@ public final class AnalyzeDetail implements JsonpSerializable {
 		/**
 		 * API name: {@code tokenfilters}
 		 */
-		public Builder tokenfilters(@Nullable List<TokenDetail> value) {
+		public final Builder tokenfilters(@Nullable List<TokenDetail> value) {
 			this.tokenfilters = value;
 			return this;
 		}
@@ -260,40 +239,27 @@ public final class AnalyzeDetail implements JsonpSerializable {
 		/**
 		 * API name: {@code tokenfilters}
 		 */
-		public Builder tokenfilters(TokenDetail... value) {
+		public final Builder tokenfilters(TokenDetail... value) {
 			this.tokenfilters = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #tokenfilters(List)}, creating the list if needed.
+		 * API name: {@code tokenfilters}
 		 */
-		public Builder addTokenfilters(TokenDetail value) {
-			if (this.tokenfilters == null) {
-				this.tokenfilters = new ArrayList<>();
+		@SafeVarargs
+		public final Builder tokenfilters(Function<TokenDetail.Builder, ObjectBuilder<TokenDetail>>... fns) {
+			this.tokenfilters = new ArrayList<>(fns.length);
+			for (Function<TokenDetail.Builder, ObjectBuilder<TokenDetail>> fn : fns) {
+				this.tokenfilters.add(fn.apply(new TokenDetail.Builder()).build());
 			}
-			this.tokenfilters.add(value);
 			return this;
-		}
-
-		/**
-		 * Set {@link #tokenfilters(List)} to a singleton list.
-		 */
-		public Builder tokenfilters(Function<TokenDetail.Builder, ObjectBuilder<TokenDetail>> fn) {
-			return this.tokenfilters(fn.apply(new TokenDetail.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #tokenfilters(List)}, creating the list if needed.
-		 */
-		public Builder addTokenfilters(Function<TokenDetail.Builder, ObjectBuilder<TokenDetail>> fn) {
-			return this.addTokenfilters(fn.apply(new TokenDetail.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code tokenizer}
 		 */
-		public Builder tokenizer(@Nullable TokenDetail value) {
+		public final Builder tokenizer(@Nullable TokenDetail value) {
 			this.tokenizer = value;
 			return this;
 		}
@@ -301,7 +267,7 @@ public final class AnalyzeDetail implements JsonpSerializable {
 		/**
 		 * API name: {@code tokenizer}
 		 */
-		public Builder tokenizer(Function<TokenDetail.Builder, ObjectBuilder<TokenDetail>> fn) {
+		public final Builder tokenizer(Function<TokenDetail.Builder, ObjectBuilder<TokenDetail>> fn) {
 			return this.tokenizer(fn.apply(new TokenDetail.Builder()).build());
 		}
 
@@ -312,6 +278,7 @@ public final class AnalyzeDetail implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public AnalyzeDetail build() {
+			_checkSingleUse();
 
 			return new AnalyzeDetail(this);
 		}

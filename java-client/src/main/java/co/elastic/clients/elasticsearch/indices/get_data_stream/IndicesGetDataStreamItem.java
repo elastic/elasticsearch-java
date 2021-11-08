@@ -34,13 +34,13 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -49,7 +49,7 @@ import javax.annotation.Nullable;
 
 // typedef: indices.get_data_stream.IndicesGetDataStreamItem
 @JsonpDeserializable
-public final class IndicesGetDataStreamItem implements JsonpSerializable {
+public class IndicesGetDataStreamItem implements JsonpSerializable {
 	private final String name;
 
 	private final IndicesGetDataStreamItemTimestampField timestampField;
@@ -70,69 +70,68 @@ public final class IndicesGetDataStreamItem implements JsonpSerializable {
 	@Nullable
 	private final String ilmPolicy;
 
-	@Nullable
 	private final Map<String, JsonData> meta;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public IndicesGetDataStreamItem(Builder builder) {
+	private IndicesGetDataStreamItem(Builder builder) {
 
-		this.name = Objects.requireNonNull(builder.name, "name");
-		this.timestampField = Objects.requireNonNull(builder.timestampField, "timestamp_field");
-		this.indices = ModelTypeHelper.unmodifiableNonNull(builder.indices, "indices");
-		this.generation = Objects.requireNonNull(builder.generation, "generation");
-		this.template = Objects.requireNonNull(builder.template, "template");
-		this.hidden = Objects.requireNonNull(builder.hidden, "hidden");
+		this.name = ModelTypeHelper.requireNonNull(builder.name, this, "name");
+		this.timestampField = ModelTypeHelper.requireNonNull(builder.timestampField, this, "timestampField");
+		this.indices = ModelTypeHelper.unmodifiableRequired(builder.indices, this, "indices");
+		this.generation = ModelTypeHelper.requireNonNull(builder.generation, this, "generation");
+		this.template = ModelTypeHelper.requireNonNull(builder.template, this, "template");
+		this.hidden = ModelTypeHelper.requireNonNull(builder.hidden, this, "hidden");
 		this.system = builder.system;
-		this.status = Objects.requireNonNull(builder.status, "status");
+		this.status = ModelTypeHelper.requireNonNull(builder.status, this, "status");
 		this.ilmPolicy = builder.ilmPolicy;
 		this.meta = ModelTypeHelper.unmodifiable(builder.meta);
 
 	}
 
-	public IndicesGetDataStreamItem(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static IndicesGetDataStreamItem of(Function<Builder, ObjectBuilder<IndicesGetDataStreamItem>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code name}
 	 */
-	public String name() {
+	public final String name() {
 		return this.name;
 	}
 
 	/**
 	 * Required - API name: {@code timestamp_field}
 	 */
-	public IndicesGetDataStreamItemTimestampField timestampField() {
+	public final IndicesGetDataStreamItemTimestampField timestampField() {
 		return this.timestampField;
 	}
 
 	/**
 	 * Required - API name: {@code indices}
 	 */
-	public List<IndicesGetDataStreamItemIndex> indices() {
+	public final List<IndicesGetDataStreamItemIndex> indices() {
 		return this.indices;
 	}
 
 	/**
 	 * Required - API name: {@code generation}
 	 */
-	public int generation() {
+	public final int generation() {
 		return this.generation;
 	}
 
 	/**
 	 * Required - API name: {@code template}
 	 */
-	public String template() {
+	public final String template() {
 		return this.template;
 	}
 
 	/**
 	 * Required - API name: {@code hidden}
 	 */
-	public boolean hidden() {
+	public final boolean hidden() {
 		return this.hidden;
 	}
 
@@ -140,14 +139,14 @@ public final class IndicesGetDataStreamItem implements JsonpSerializable {
 	 * API name: {@code system}
 	 */
 	@Nullable
-	public Boolean system() {
+	public final Boolean system() {
 		return this.system;
 	}
 
 	/**
 	 * Required - API name: {@code status}
 	 */
-	public DataStreamHealthStatus status() {
+	public final DataStreamHealthStatus status() {
 		return this.status;
 	}
 
@@ -155,15 +154,14 @@ public final class IndicesGetDataStreamItem implements JsonpSerializable {
 	 * API name: {@code ilm_policy}
 	 */
 	@Nullable
-	public String ilmPolicy() {
+	public final String ilmPolicy() {
 		return this.ilmPolicy;
 	}
 
 	/**
 	 * API name: {@code _meta}
 	 */
-	@Nullable
-	public Map<String, JsonData> meta() {
+	public final Map<String, JsonData> meta() {
 		return this.meta;
 	}
 
@@ -184,14 +182,16 @@ public final class IndicesGetDataStreamItem implements JsonpSerializable {
 		generator.writeKey("timestamp_field");
 		this.timestampField.serialize(generator, mapper);
 
-		generator.writeKey("indices");
-		generator.writeStartArray();
-		for (IndicesGetDataStreamItemIndex item0 : this.indices) {
-			item0.serialize(generator, mapper);
+		if (ModelTypeHelper.isDefined(this.indices)) {
+			generator.writeKey("indices");
+			generator.writeStartArray();
+			for (IndicesGetDataStreamItemIndex item0 : this.indices) {
+				item0.serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
-
 		generator.writeKey("generation");
 		generator.write(this.generation);
 
@@ -202,22 +202,18 @@ public final class IndicesGetDataStreamItem implements JsonpSerializable {
 		generator.write(this.hidden);
 
 		if (this.system != null) {
-
 			generator.writeKey("system");
 			generator.write(this.system);
 
 		}
-
 		generator.writeKey("status");
 		this.status.serialize(generator, mapper);
 		if (this.ilmPolicy != null) {
-
 			generator.writeKey("ilm_policy");
 			generator.write(this.ilmPolicy);
 
 		}
-		if (this.meta != null) {
-
+		if (ModelTypeHelper.isDefined(this.meta)) {
 			generator.writeKey("_meta");
 			generator.writeStartObject();
 			for (Map.Entry<String, JsonData> item0 : this.meta.entrySet()) {
@@ -236,7 +232,7 @@ public final class IndicesGetDataStreamItem implements JsonpSerializable {
 	/**
 	 * Builder for {@link IndicesGetDataStreamItem}.
 	 */
-	public static class Builder implements ObjectBuilder<IndicesGetDataStreamItem> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<IndicesGetDataStreamItem> {
 		private String name;
 
 		private IndicesGetDataStreamItemTimestampField timestampField;
@@ -263,7 +259,7 @@ public final class IndicesGetDataStreamItem implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code name}
 		 */
-		public Builder name(String value) {
+		public final Builder name(String value) {
 			this.name = value;
 			return this;
 		}
@@ -271,7 +267,7 @@ public final class IndicesGetDataStreamItem implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code timestamp_field}
 		 */
-		public Builder timestampField(IndicesGetDataStreamItemTimestampField value) {
+		public final Builder timestampField(IndicesGetDataStreamItemTimestampField value) {
 			this.timestampField = value;
 			return this;
 		}
@@ -279,7 +275,7 @@ public final class IndicesGetDataStreamItem implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code timestamp_field}
 		 */
-		public Builder timestampField(
+		public final Builder timestampField(
 				Function<IndicesGetDataStreamItemTimestampField.Builder, ObjectBuilder<IndicesGetDataStreamItemTimestampField>> fn) {
 			return this.timestampField(fn.apply(new IndicesGetDataStreamItemTimestampField.Builder()).build());
 		}
@@ -287,7 +283,7 @@ public final class IndicesGetDataStreamItem implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code indices}
 		 */
-		public Builder indices(List<IndicesGetDataStreamItemIndex> value) {
+		public final Builder indices(List<IndicesGetDataStreamItemIndex> value) {
 			this.indices = value;
 			return this;
 		}
@@ -295,42 +291,28 @@ public final class IndicesGetDataStreamItem implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code indices}
 		 */
-		public Builder indices(IndicesGetDataStreamItemIndex... value) {
+		public final Builder indices(IndicesGetDataStreamItemIndex... value) {
 			this.indices = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #indices(List)}, creating the list if needed.
+		 * Required - API name: {@code indices}
 		 */
-		public Builder addIndices(IndicesGetDataStreamItemIndex value) {
-			if (this.indices == null) {
-				this.indices = new ArrayList<>();
+		@SafeVarargs
+		public final Builder indices(
+				Function<IndicesGetDataStreamItemIndex.Builder, ObjectBuilder<IndicesGetDataStreamItemIndex>>... fns) {
+			this.indices = new ArrayList<>(fns.length);
+			for (Function<IndicesGetDataStreamItemIndex.Builder, ObjectBuilder<IndicesGetDataStreamItemIndex>> fn : fns) {
+				this.indices.add(fn.apply(new IndicesGetDataStreamItemIndex.Builder()).build());
 			}
-			this.indices.add(value);
 			return this;
-		}
-
-		/**
-		 * Set {@link #indices(List)} to a singleton list.
-		 */
-		public Builder indices(
-				Function<IndicesGetDataStreamItemIndex.Builder, ObjectBuilder<IndicesGetDataStreamItemIndex>> fn) {
-			return this.indices(fn.apply(new IndicesGetDataStreamItemIndex.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #indices(List)}, creating the list if needed.
-		 */
-		public Builder addIndices(
-				Function<IndicesGetDataStreamItemIndex.Builder, ObjectBuilder<IndicesGetDataStreamItemIndex>> fn) {
-			return this.addIndices(fn.apply(new IndicesGetDataStreamItemIndex.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code generation}
 		 */
-		public Builder generation(int value) {
+		public final Builder generation(int value) {
 			this.generation = value;
 			return this;
 		}
@@ -338,7 +320,7 @@ public final class IndicesGetDataStreamItem implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code template}
 		 */
-		public Builder template(String value) {
+		public final Builder template(String value) {
 			this.template = value;
 			return this;
 		}
@@ -346,7 +328,7 @@ public final class IndicesGetDataStreamItem implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code hidden}
 		 */
-		public Builder hidden(boolean value) {
+		public final Builder hidden(boolean value) {
 			this.hidden = value;
 			return this;
 		}
@@ -354,7 +336,7 @@ public final class IndicesGetDataStreamItem implements JsonpSerializable {
 		/**
 		 * API name: {@code system}
 		 */
-		public Builder system(@Nullable Boolean value) {
+		public final Builder system(@Nullable Boolean value) {
 			this.system = value;
 			return this;
 		}
@@ -362,7 +344,7 @@ public final class IndicesGetDataStreamItem implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code status}
 		 */
-		public Builder status(DataStreamHealthStatus value) {
+		public final Builder status(DataStreamHealthStatus value) {
 			this.status = value;
 			return this;
 		}
@@ -370,7 +352,7 @@ public final class IndicesGetDataStreamItem implements JsonpSerializable {
 		/**
 		 * API name: {@code ilm_policy}
 		 */
-		public Builder ilmPolicy(@Nullable String value) {
+		public final Builder ilmPolicy(@Nullable String value) {
 			this.ilmPolicy = value;
 			return this;
 		}
@@ -378,19 +360,8 @@ public final class IndicesGetDataStreamItem implements JsonpSerializable {
 		/**
 		 * API name: {@code _meta}
 		 */
-		public Builder meta(@Nullable Map<String, JsonData> value) {
+		public final Builder meta(@Nullable Map<String, JsonData> value) {
 			this.meta = value;
-			return this;
-		}
-
-		/**
-		 * Add a key/value to {@link #meta(Map)}, creating the map if needed.
-		 */
-		public Builder putMeta(String key, JsonData value) {
-			if (this.meta == null) {
-				this.meta = new HashMap<>();
-			}
-			this.meta.put(key, value);
 			return this;
 		}
 
@@ -401,6 +372,7 @@ public final class IndicesGetDataStreamItem implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public IndicesGetDataStreamItem build() {
+			_checkSingleUse();
 
 			return new IndicesGetDataStreamItem(this);
 		}

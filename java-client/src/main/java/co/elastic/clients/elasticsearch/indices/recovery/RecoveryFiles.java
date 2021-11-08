@@ -32,6 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.lang.String;
@@ -44,8 +45,7 @@ import javax.annotation.Nullable;
 
 // typedef: indices.recovery.RecoveryFiles
 @JsonpDeserializable
-public final class RecoveryFiles implements JsonpSerializable {
-	@Nullable
+public class RecoveryFiles implements JsonpSerializable {
 	private final List<FileDetails> details;
 
 	private final String percent;
@@ -58,53 +58,52 @@ public final class RecoveryFiles implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public RecoveryFiles(Builder builder) {
+	private RecoveryFiles(Builder builder) {
 
 		this.details = ModelTypeHelper.unmodifiable(builder.details);
-		this.percent = Objects.requireNonNull(builder.percent, "percent");
-		this.recovered = Objects.requireNonNull(builder.recovered, "recovered");
-		this.reused = Objects.requireNonNull(builder.reused, "reused");
-		this.total = Objects.requireNonNull(builder.total, "total");
+		this.percent = ModelTypeHelper.requireNonNull(builder.percent, this, "percent");
+		this.recovered = ModelTypeHelper.requireNonNull(builder.recovered, this, "recovered");
+		this.reused = ModelTypeHelper.requireNonNull(builder.reused, this, "reused");
+		this.total = ModelTypeHelper.requireNonNull(builder.total, this, "total");
 
 	}
 
-	public RecoveryFiles(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static RecoveryFiles of(Function<Builder, ObjectBuilder<RecoveryFiles>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * API name: {@code details}
 	 */
-	@Nullable
-	public List<FileDetails> details() {
+	public final List<FileDetails> details() {
 		return this.details;
 	}
 
 	/**
 	 * Required - API name: {@code percent}
 	 */
-	public String percent() {
+	public final String percent() {
 		return this.percent;
 	}
 
 	/**
 	 * Required - API name: {@code recovered}
 	 */
-	public long recovered() {
+	public final long recovered() {
 		return this.recovered;
 	}
 
 	/**
 	 * Required - API name: {@code reused}
 	 */
-	public long reused() {
+	public final long reused() {
 		return this.reused;
 	}
 
 	/**
 	 * Required - API name: {@code total}
 	 */
-	public long total() {
+	public final long total() {
 		return this.total;
 	}
 
@@ -119,8 +118,7 @@ public final class RecoveryFiles implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (this.details != null) {
-
+		if (ModelTypeHelper.isDefined(this.details)) {
 			generator.writeKey("details");
 			generator.writeStartArray();
 			for (FileDetails item0 : this.details) {
@@ -130,7 +128,6 @@ public final class RecoveryFiles implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-
 		generator.writeKey("percent");
 		generator.write(this.percent);
 
@@ -150,7 +147,7 @@ public final class RecoveryFiles implements JsonpSerializable {
 	/**
 	 * Builder for {@link RecoveryFiles}.
 	 */
-	public static class Builder implements ObjectBuilder<RecoveryFiles> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RecoveryFiles> {
 		@Nullable
 		private List<FileDetails> details;
 
@@ -165,7 +162,7 @@ public final class RecoveryFiles implements JsonpSerializable {
 		/**
 		 * API name: {@code details}
 		 */
-		public Builder details(@Nullable List<FileDetails> value) {
+		public final Builder details(@Nullable List<FileDetails> value) {
 			this.details = value;
 			return this;
 		}
@@ -173,40 +170,27 @@ public final class RecoveryFiles implements JsonpSerializable {
 		/**
 		 * API name: {@code details}
 		 */
-		public Builder details(FileDetails... value) {
+		public final Builder details(FileDetails... value) {
 			this.details = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #details(List)}, creating the list if needed.
+		 * API name: {@code details}
 		 */
-		public Builder addDetails(FileDetails value) {
-			if (this.details == null) {
-				this.details = new ArrayList<>();
+		@SafeVarargs
+		public final Builder details(Function<FileDetails.Builder, ObjectBuilder<FileDetails>>... fns) {
+			this.details = new ArrayList<>(fns.length);
+			for (Function<FileDetails.Builder, ObjectBuilder<FileDetails>> fn : fns) {
+				this.details.add(fn.apply(new FileDetails.Builder()).build());
 			}
-			this.details.add(value);
 			return this;
-		}
-
-		/**
-		 * Set {@link #details(List)} to a singleton list.
-		 */
-		public Builder details(Function<FileDetails.Builder, ObjectBuilder<FileDetails>> fn) {
-			return this.details(fn.apply(new FileDetails.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #details(List)}, creating the list if needed.
-		 */
-		public Builder addDetails(Function<FileDetails.Builder, ObjectBuilder<FileDetails>> fn) {
-			return this.addDetails(fn.apply(new FileDetails.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code percent}
 		 */
-		public Builder percent(String value) {
+		public final Builder percent(String value) {
 			this.percent = value;
 			return this;
 		}
@@ -214,7 +198,7 @@ public final class RecoveryFiles implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code recovered}
 		 */
-		public Builder recovered(long value) {
+		public final Builder recovered(long value) {
 			this.recovered = value;
 			return this;
 		}
@@ -222,7 +206,7 @@ public final class RecoveryFiles implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code reused}
 		 */
-		public Builder reused(long value) {
+		public final Builder reused(long value) {
 			this.reused = value;
 			return this;
 		}
@@ -230,7 +214,7 @@ public final class RecoveryFiles implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code total}
 		 */
-		public Builder total(long value) {
+		public final Builder total(long value) {
 			this.total = value;
 			return this;
 		}
@@ -242,6 +226,7 @@ public final class RecoveryFiles implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public RecoveryFiles build() {
+			_checkSingleUse();
 
 			return new RecoveryFiles(this);
 		}

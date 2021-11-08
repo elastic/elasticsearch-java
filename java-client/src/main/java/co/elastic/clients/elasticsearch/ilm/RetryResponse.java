@@ -36,16 +36,16 @@ import java.util.function.Function;
 
 // typedef: ilm.retry.Response
 @JsonpDeserializable
-public final class RetryResponse extends AcknowledgedResponseBase {
+public class RetryResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
-	public RetryResponse(Builder builder) {
+	private RetryResponse(Builder builder) {
 		super(builder);
 
 	}
 
-	public RetryResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static RetryResponse of(Function<Builder, ObjectBuilder<RetryResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -68,6 +68,7 @@ public final class RetryResponse extends AcknowledgedResponseBase {
 		 *             if some of the required fields are null.
 		 */
 		public RetryResponse build() {
+			_checkSingleUse();
 
 			return new RetryResponse(this);
 		}

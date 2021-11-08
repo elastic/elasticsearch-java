@@ -32,6 +32,7 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -40,7 +41,7 @@ import javax.annotation.Nullable;
 
 // typedef: cat.ml_datafeeds.DatafeedsRecord
 @JsonpDeserializable
-public final class DatafeedsRecord implements JsonpSerializable {
+public class DatafeedsRecord implements JsonpSerializable {
 	@Nullable
 	private final String id;
 
@@ -79,7 +80,7 @@ public final class DatafeedsRecord implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public DatafeedsRecord(Builder builder) {
+	private DatafeedsRecord(Builder builder) {
 
 		this.id = builder.id;
 		this.state = builder.state;
@@ -96,8 +97,8 @@ public final class DatafeedsRecord implements JsonpSerializable {
 
 	}
 
-	public DatafeedsRecord(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static DatafeedsRecord of(Function<Builder, ObjectBuilder<DatafeedsRecord>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -106,7 +107,7 @@ public final class DatafeedsRecord implements JsonpSerializable {
 	 * API name: {@code id}
 	 */
 	@Nullable
-	public String id() {
+	public final String id() {
 		return this.id;
 	}
 
@@ -116,7 +117,7 @@ public final class DatafeedsRecord implements JsonpSerializable {
 	 * API name: {@code state}
 	 */
 	@Nullable
-	public DatafeedState state() {
+	public final DatafeedState state() {
 		return this.state;
 	}
 
@@ -126,7 +127,7 @@ public final class DatafeedsRecord implements JsonpSerializable {
 	 * API name: {@code assignment_explanation}
 	 */
 	@Nullable
-	public String assignmentExplanation() {
+	public final String assignmentExplanation() {
 		return this.assignmentExplanation;
 	}
 
@@ -136,7 +137,7 @@ public final class DatafeedsRecord implements JsonpSerializable {
 	 * API name: {@code buckets.count}
 	 */
 	@Nullable
-	public String bucketsCount() {
+	public final String bucketsCount() {
 		return this.bucketsCount;
 	}
 
@@ -146,7 +147,7 @@ public final class DatafeedsRecord implements JsonpSerializable {
 	 * API name: {@code search.count}
 	 */
 	@Nullable
-	public String searchCount() {
+	public final String searchCount() {
 		return this.searchCount;
 	}
 
@@ -156,7 +157,7 @@ public final class DatafeedsRecord implements JsonpSerializable {
 	 * API name: {@code search.time}
 	 */
 	@Nullable
-	public String searchTime() {
+	public final String searchTime() {
 		return this.searchTime;
 	}
 
@@ -166,7 +167,7 @@ public final class DatafeedsRecord implements JsonpSerializable {
 	 * API name: {@code search.bucket_avg}
 	 */
 	@Nullable
-	public String searchBucketAvg() {
+	public final String searchBucketAvg() {
 		return this.searchBucketAvg;
 	}
 
@@ -176,7 +177,7 @@ public final class DatafeedsRecord implements JsonpSerializable {
 	 * API name: {@code search.exp_avg_hour}
 	 */
 	@Nullable
-	public String searchExpAvgHour() {
+	public final String searchExpAvgHour() {
 		return this.searchExpAvgHour;
 	}
 
@@ -186,7 +187,7 @@ public final class DatafeedsRecord implements JsonpSerializable {
 	 * API name: {@code node.id}
 	 */
 	@Nullable
-	public String nodeId() {
+	public final String nodeId() {
 		return this.nodeId;
 	}
 
@@ -196,7 +197,7 @@ public final class DatafeedsRecord implements JsonpSerializable {
 	 * API name: {@code node.name}
 	 */
 	@Nullable
-	public String nodeName() {
+	public final String nodeName() {
 		return this.nodeName;
 	}
 
@@ -206,7 +207,7 @@ public final class DatafeedsRecord implements JsonpSerializable {
 	 * API name: {@code node.ephemeral_id}
 	 */
 	@Nullable
-	public String nodeEphemeralId() {
+	public final String nodeEphemeralId() {
 		return this.nodeEphemeralId;
 	}
 
@@ -216,7 +217,7 @@ public final class DatafeedsRecord implements JsonpSerializable {
 	 * API name: {@code node.address}
 	 */
 	@Nullable
-	public String nodeAddress() {
+	public final String nodeAddress() {
 		return this.nodeAddress;
 	}
 
@@ -232,72 +233,60 @@ public final class DatafeedsRecord implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.id != null) {
-
 			generator.writeKey("id");
 			generator.write(this.id);
 
 		}
 		if (this.state != null) {
-
 			generator.writeKey("state");
 			this.state.serialize(generator, mapper);
 		}
 		if (this.assignmentExplanation != null) {
-
 			generator.writeKey("assignment_explanation");
 			generator.write(this.assignmentExplanation);
 
 		}
 		if (this.bucketsCount != null) {
-
 			generator.writeKey("buckets.count");
 			generator.write(this.bucketsCount);
 
 		}
 		if (this.searchCount != null) {
-
 			generator.writeKey("search.count");
 			generator.write(this.searchCount);
 
 		}
 		if (this.searchTime != null) {
-
 			generator.writeKey("search.time");
 			generator.write(this.searchTime);
 
 		}
 		if (this.searchBucketAvg != null) {
-
 			generator.writeKey("search.bucket_avg");
 			generator.write(this.searchBucketAvg);
 
 		}
 		if (this.searchExpAvgHour != null) {
-
 			generator.writeKey("search.exp_avg_hour");
 			generator.write(this.searchExpAvgHour);
 
 		}
 		if (this.nodeId != null) {
-
 			generator.writeKey("node.id");
 			generator.write(this.nodeId);
 
 		}
 		if (this.nodeName != null) {
-
 			generator.writeKey("node.name");
 			generator.write(this.nodeName);
 
 		}
 		if (this.nodeEphemeralId != null) {
-
 			generator.writeKey("node.ephemeral_id");
 			generator.write(this.nodeEphemeralId);
 
 		}
 		if (this.nodeAddress != null) {
-
 			generator.writeKey("node.address");
 			generator.write(this.nodeAddress);
 
@@ -310,7 +299,7 @@ public final class DatafeedsRecord implements JsonpSerializable {
 	/**
 	 * Builder for {@link DatafeedsRecord}.
 	 */
-	public static class Builder implements ObjectBuilder<DatafeedsRecord> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DatafeedsRecord> {
 		@Nullable
 		private String id;
 
@@ -352,7 +341,7 @@ public final class DatafeedsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code id}
 		 */
-		public Builder id(@Nullable String value) {
+		public final Builder id(@Nullable String value) {
 			this.id = value;
 			return this;
 		}
@@ -362,7 +351,7 @@ public final class DatafeedsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code state}
 		 */
-		public Builder state(@Nullable DatafeedState value) {
+		public final Builder state(@Nullable DatafeedState value) {
 			this.state = value;
 			return this;
 		}
@@ -372,7 +361,7 @@ public final class DatafeedsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code assignment_explanation}
 		 */
-		public Builder assignmentExplanation(@Nullable String value) {
+		public final Builder assignmentExplanation(@Nullable String value) {
 			this.assignmentExplanation = value;
 			return this;
 		}
@@ -382,7 +371,7 @@ public final class DatafeedsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code buckets.count}
 		 */
-		public Builder bucketsCount(@Nullable String value) {
+		public final Builder bucketsCount(@Nullable String value) {
 			this.bucketsCount = value;
 			return this;
 		}
@@ -392,7 +381,7 @@ public final class DatafeedsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code search.count}
 		 */
-		public Builder searchCount(@Nullable String value) {
+		public final Builder searchCount(@Nullable String value) {
 			this.searchCount = value;
 			return this;
 		}
@@ -402,7 +391,7 @@ public final class DatafeedsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code search.time}
 		 */
-		public Builder searchTime(@Nullable String value) {
+		public final Builder searchTime(@Nullable String value) {
 			this.searchTime = value;
 			return this;
 		}
@@ -412,7 +401,7 @@ public final class DatafeedsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code search.bucket_avg}
 		 */
-		public Builder searchBucketAvg(@Nullable String value) {
+		public final Builder searchBucketAvg(@Nullable String value) {
 			this.searchBucketAvg = value;
 			return this;
 		}
@@ -422,7 +411,7 @@ public final class DatafeedsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code search.exp_avg_hour}
 		 */
-		public Builder searchExpAvgHour(@Nullable String value) {
+		public final Builder searchExpAvgHour(@Nullable String value) {
 			this.searchExpAvgHour = value;
 			return this;
 		}
@@ -432,7 +421,7 @@ public final class DatafeedsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code node.id}
 		 */
-		public Builder nodeId(@Nullable String value) {
+		public final Builder nodeId(@Nullable String value) {
 			this.nodeId = value;
 			return this;
 		}
@@ -442,7 +431,7 @@ public final class DatafeedsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code node.name}
 		 */
-		public Builder nodeName(@Nullable String value) {
+		public final Builder nodeName(@Nullable String value) {
 			this.nodeName = value;
 			return this;
 		}
@@ -452,7 +441,7 @@ public final class DatafeedsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code node.ephemeral_id}
 		 */
-		public Builder nodeEphemeralId(@Nullable String value) {
+		public final Builder nodeEphemeralId(@Nullable String value) {
 			this.nodeEphemeralId = value;
 			return this;
 		}
@@ -462,7 +451,7 @@ public final class DatafeedsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code node.address}
 		 */
-		public Builder nodeAddress(@Nullable String value) {
+		public final Builder nodeAddress(@Nullable String value) {
 			this.nodeAddress = value;
 			return this;
 		}
@@ -474,6 +463,7 @@ public final class DatafeedsRecord implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public DatafeedsRecord build() {
+			_checkSingleUse();
 
 			return new DatafeedsRecord(this);
 		}

@@ -32,6 +32,7 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
@@ -41,7 +42,7 @@ import javax.annotation.Nullable;
 
 // typedef: watcher._types.Action
 @JsonpDeserializable
-public final class Action implements JsonpSerializable {
+public class Action implements JsonpSerializable {
 	@Nullable
 	private final ActionType actionType;
 
@@ -77,7 +78,7 @@ public final class Action implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public Action(Builder builder) {
+	private Action(Builder builder) {
 
 		this.actionType = builder.actionType;
 		this.condition = builder.condition;
@@ -93,15 +94,15 @@ public final class Action implements JsonpSerializable {
 
 	}
 
-	public Action(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static Action of(Function<Builder, ObjectBuilder<Action>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * API name: {@code action_type}
 	 */
 	@Nullable
-	public ActionType actionType() {
+	public final ActionType actionType() {
 		return this.actionType;
 	}
 
@@ -109,7 +110,7 @@ public final class Action implements JsonpSerializable {
 	 * API name: {@code condition}
 	 */
 	@Nullable
-	public Condition condition() {
+	public final Condition condition() {
 		return this.condition;
 	}
 
@@ -117,7 +118,7 @@ public final class Action implements JsonpSerializable {
 	 * API name: {@code foreach}
 	 */
 	@Nullable
-	public String foreach() {
+	public final String foreach() {
 		return this.foreach;
 	}
 
@@ -125,7 +126,7 @@ public final class Action implements JsonpSerializable {
 	 * API name: {@code max_iterations}
 	 */
 	@Nullable
-	public Integer maxIterations() {
+	public final Integer maxIterations() {
 		return this.maxIterations;
 	}
 
@@ -133,7 +134,7 @@ public final class Action implements JsonpSerializable {
 	 * API name: {@code name}
 	 */
 	@Nullable
-	public String name() {
+	public final String name() {
 		return this.name;
 	}
 
@@ -141,7 +142,7 @@ public final class Action implements JsonpSerializable {
 	 * API name: {@code throttle_period}
 	 */
 	@Nullable
-	public String throttlePeriod() {
+	public final String throttlePeriod() {
 		return this.throttlePeriod;
 	}
 
@@ -149,7 +150,7 @@ public final class Action implements JsonpSerializable {
 	 * API name: {@code throttle_period_in_millis}
 	 */
 	@Nullable
-	public String throttlePeriodInMillis() {
+	public final String throttlePeriodInMillis() {
 		return this.throttlePeriodInMillis;
 	}
 
@@ -157,7 +158,7 @@ public final class Action implements JsonpSerializable {
 	 * API name: {@code transform}
 	 */
 	@Nullable
-	public Transform transform() {
+	public final Transform transform() {
 		return this.transform;
 	}
 
@@ -165,7 +166,7 @@ public final class Action implements JsonpSerializable {
 	 * API name: {@code index}
 	 */
 	@Nullable
-	public Index index() {
+	public final Index index() {
 		return this.index;
 	}
 
@@ -173,7 +174,7 @@ public final class Action implements JsonpSerializable {
 	 * API name: {@code logging}
 	 */
 	@Nullable
-	public Logging logging() {
+	public final Logging logging() {
 		return this.logging;
 	}
 
@@ -181,7 +182,7 @@ public final class Action implements JsonpSerializable {
 	 * API name: {@code webhook}
 	 */
 	@Nullable
-	public ActionWebhook webhook() {
+	public final ActionWebhook webhook() {
 		return this.webhook;
 	}
 
@@ -197,66 +198,55 @@ public final class Action implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.actionType != null) {
-
 			generator.writeKey("action_type");
 			this.actionType.serialize(generator, mapper);
 		}
 		if (this.condition != null) {
-
 			generator.writeKey("condition");
 			this.condition.serialize(generator, mapper);
 
 		}
 		if (this.foreach != null) {
-
 			generator.writeKey("foreach");
 			generator.write(this.foreach);
 
 		}
 		if (this.maxIterations != null) {
-
 			generator.writeKey("max_iterations");
 			generator.write(this.maxIterations);
 
 		}
 		if (this.name != null) {
-
 			generator.writeKey("name");
 			generator.write(this.name);
 
 		}
 		if (this.throttlePeriod != null) {
-
 			generator.writeKey("throttle_period");
 			generator.write(this.throttlePeriod);
 
 		}
 		if (this.throttlePeriodInMillis != null) {
-
 			generator.writeKey("throttle_period_in_millis");
 			generator.write(this.throttlePeriodInMillis);
 
 		}
 		if (this.transform != null) {
-
 			generator.writeKey("transform");
 			this.transform.serialize(generator, mapper);
 
 		}
 		if (this.index != null) {
-
 			generator.writeKey("index");
 			this.index.serialize(generator, mapper);
 
 		}
 		if (this.logging != null) {
-
 			generator.writeKey("logging");
 			this.logging.serialize(generator, mapper);
 
 		}
 		if (this.webhook != null) {
-
 			generator.writeKey("webhook");
 			this.webhook.serialize(generator, mapper);
 
@@ -269,7 +259,7 @@ public final class Action implements JsonpSerializable {
 	/**
 	 * Builder for {@link Action}.
 	 */
-	public static class Builder implements ObjectBuilder<Action> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Action> {
 		@Nullable
 		private ActionType actionType;
 
@@ -306,7 +296,7 @@ public final class Action implements JsonpSerializable {
 		/**
 		 * API name: {@code action_type}
 		 */
-		public Builder actionType(@Nullable ActionType value) {
+		public final Builder actionType(@Nullable ActionType value) {
 			this.actionType = value;
 			return this;
 		}
@@ -314,7 +304,7 @@ public final class Action implements JsonpSerializable {
 		/**
 		 * API name: {@code condition}
 		 */
-		public Builder condition(@Nullable Condition value) {
+		public final Builder condition(@Nullable Condition value) {
 			this.condition = value;
 			return this;
 		}
@@ -322,14 +312,14 @@ public final class Action implements JsonpSerializable {
 		/**
 		 * API name: {@code condition}
 		 */
-		public Builder condition(Function<Condition.Builder, ObjectBuilder<Condition>> fn) {
+		public final Builder condition(Function<Condition.Builder, ObjectBuilder<Condition>> fn) {
 			return this.condition(fn.apply(new Condition.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code foreach}
 		 */
-		public Builder foreach(@Nullable String value) {
+		public final Builder foreach(@Nullable String value) {
 			this.foreach = value;
 			return this;
 		}
@@ -337,7 +327,7 @@ public final class Action implements JsonpSerializable {
 		/**
 		 * API name: {@code max_iterations}
 		 */
-		public Builder maxIterations(@Nullable Integer value) {
+		public final Builder maxIterations(@Nullable Integer value) {
 			this.maxIterations = value;
 			return this;
 		}
@@ -345,7 +335,7 @@ public final class Action implements JsonpSerializable {
 		/**
 		 * API name: {@code name}
 		 */
-		public Builder name(@Nullable String value) {
+		public final Builder name(@Nullable String value) {
 			this.name = value;
 			return this;
 		}
@@ -353,7 +343,7 @@ public final class Action implements JsonpSerializable {
 		/**
 		 * API name: {@code throttle_period}
 		 */
-		public Builder throttlePeriod(@Nullable String value) {
+		public final Builder throttlePeriod(@Nullable String value) {
 			this.throttlePeriod = value;
 			return this;
 		}
@@ -361,7 +351,7 @@ public final class Action implements JsonpSerializable {
 		/**
 		 * API name: {@code throttle_period_in_millis}
 		 */
-		public Builder throttlePeriodInMillis(@Nullable String value) {
+		public final Builder throttlePeriodInMillis(@Nullable String value) {
 			this.throttlePeriodInMillis = value;
 			return this;
 		}
@@ -369,7 +359,7 @@ public final class Action implements JsonpSerializable {
 		/**
 		 * API name: {@code transform}
 		 */
-		public Builder transform(@Nullable Transform value) {
+		public final Builder transform(@Nullable Transform value) {
 			this.transform = value;
 			return this;
 		}
@@ -377,14 +367,14 @@ public final class Action implements JsonpSerializable {
 		/**
 		 * API name: {@code transform}
 		 */
-		public Builder transform(Function<Transform.Builder, ObjectBuilder<Transform>> fn) {
+		public final Builder transform(Function<Transform.Builder, ObjectBuilder<Transform>> fn) {
 			return this.transform(fn.apply(new Transform.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code index}
 		 */
-		public Builder index(@Nullable Index value) {
+		public final Builder index(@Nullable Index value) {
 			this.index = value;
 			return this;
 		}
@@ -392,14 +382,14 @@ public final class Action implements JsonpSerializable {
 		/**
 		 * API name: {@code index}
 		 */
-		public Builder index(Function<Index.Builder, ObjectBuilder<Index>> fn) {
+		public final Builder index(Function<Index.Builder, ObjectBuilder<Index>> fn) {
 			return this.index(fn.apply(new Index.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code logging}
 		 */
-		public Builder logging(@Nullable Logging value) {
+		public final Builder logging(@Nullable Logging value) {
 			this.logging = value;
 			return this;
 		}
@@ -407,14 +397,14 @@ public final class Action implements JsonpSerializable {
 		/**
 		 * API name: {@code logging}
 		 */
-		public Builder logging(Function<Logging.Builder, ObjectBuilder<Logging>> fn) {
+		public final Builder logging(Function<Logging.Builder, ObjectBuilder<Logging>> fn) {
 			return this.logging(fn.apply(new Logging.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code webhook}
 		 */
-		public Builder webhook(@Nullable ActionWebhook value) {
+		public final Builder webhook(@Nullable ActionWebhook value) {
 			this.webhook = value;
 			return this;
 		}
@@ -422,7 +412,7 @@ public final class Action implements JsonpSerializable {
 		/**
 		 * API name: {@code webhook}
 		 */
-		public Builder webhook(Function<ActionWebhook.Builder, ObjectBuilder<ActionWebhook>> fn) {
+		public final Builder webhook(Function<ActionWebhook.Builder, ObjectBuilder<ActionWebhook>> fn) {
 			return this.webhook(fn.apply(new ActionWebhook.Builder()).build());
 		}
 
@@ -433,6 +423,7 @@ public final class Action implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public Action build() {
+			_checkSingleUse();
 
 			return new Action(this);
 		}

@@ -32,12 +32,12 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.Long;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
@@ -46,7 +46,7 @@ import javax.annotation.Nullable;
 
 // typedef: cluster.remote_info.ClusterRemoteSniffInfo
 @JsonpDeserializable
-public final class ClusterRemoteSniffInfo implements ClusterRemoteInfoVariant, JsonpSerializable {
+public class ClusterRemoteSniffInfo implements ClusterRemoteInfoVariant, JsonpSerializable {
 	private final boolean connected;
 
 	private final int maxConnectionsPerCluster;
@@ -61,20 +61,21 @@ public final class ClusterRemoteSniffInfo implements ClusterRemoteInfoVariant, J
 
 	// ---------------------------------------------------------------------------------------------
 
-	public ClusterRemoteSniffInfo(Builder builder) {
+	private ClusterRemoteSniffInfo(Builder builder) {
 
-		this.connected = Objects.requireNonNull(builder.connected, "connected");
-		this.maxConnectionsPerCluster = Objects.requireNonNull(builder.maxConnectionsPerCluster,
-				"max_connections_per_cluster");
-		this.numNodesConnected = Objects.requireNonNull(builder.numNodesConnected, "num_nodes_connected");
-		this.initialConnectTimeout = Objects.requireNonNull(builder.initialConnectTimeout, "initial_connect_timeout");
-		this.skipUnavailable = Objects.requireNonNull(builder.skipUnavailable, "skip_unavailable");
-		this.seeds = ModelTypeHelper.unmodifiableNonNull(builder.seeds, "seeds");
+		this.connected = ModelTypeHelper.requireNonNull(builder.connected, this, "connected");
+		this.maxConnectionsPerCluster = ModelTypeHelper.requireNonNull(builder.maxConnectionsPerCluster, this,
+				"maxConnectionsPerCluster");
+		this.numNodesConnected = ModelTypeHelper.requireNonNull(builder.numNodesConnected, this, "numNodesConnected");
+		this.initialConnectTimeout = ModelTypeHelper.requireNonNull(builder.initialConnectTimeout, this,
+				"initialConnectTimeout");
+		this.skipUnavailable = ModelTypeHelper.requireNonNull(builder.skipUnavailable, this, "skipUnavailable");
+		this.seeds = ModelTypeHelper.unmodifiableRequired(builder.seeds, this, "seeds");
 
 	}
 
-	public ClusterRemoteSniffInfo(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ClusterRemoteSniffInfo of(Function<Builder, ObjectBuilder<ClusterRemoteSniffInfo>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -88,42 +89,42 @@ public final class ClusterRemoteSniffInfo implements ClusterRemoteInfoVariant, J
 	/**
 	 * Required - API name: {@code connected}
 	 */
-	public boolean connected() {
+	public final boolean connected() {
 		return this.connected;
 	}
 
 	/**
 	 * Required - API name: {@code max_connections_per_cluster}
 	 */
-	public int maxConnectionsPerCluster() {
+	public final int maxConnectionsPerCluster() {
 		return this.maxConnectionsPerCluster;
 	}
 
 	/**
 	 * Required - API name: {@code num_nodes_connected}
 	 */
-	public long numNodesConnected() {
+	public final long numNodesConnected() {
 		return this.numNodesConnected;
 	}
 
 	/**
 	 * Required - API name: {@code initial_connect_timeout}
 	 */
-	public String initialConnectTimeout() {
+	public final String initialConnectTimeout() {
 		return this.initialConnectTimeout;
 	}
 
 	/**
 	 * Required - API name: {@code skip_unavailable}
 	 */
-	public boolean skipUnavailable() {
+	public final boolean skipUnavailable() {
 		return this.skipUnavailable;
 	}
 
 	/**
 	 * Required - API name: {@code seeds}
 	 */
-	public List<String> seeds() {
+	public final List<String> seeds() {
 		return this.seeds;
 	}
 
@@ -155,13 +156,16 @@ public final class ClusterRemoteSniffInfo implements ClusterRemoteInfoVariant, J
 		generator.writeKey("skip_unavailable");
 		generator.write(this.skipUnavailable);
 
-		generator.writeKey("seeds");
-		generator.writeStartArray();
-		for (String item0 : this.seeds) {
-			generator.write(item0);
+		if (ModelTypeHelper.isDefined(this.seeds)) {
+			generator.writeKey("seeds");
+			generator.writeStartArray();
+			for (String item0 : this.seeds) {
+				generator.write(item0);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
 
 	}
 
@@ -170,7 +174,7 @@ public final class ClusterRemoteSniffInfo implements ClusterRemoteInfoVariant, J
 	/**
 	 * Builder for {@link ClusterRemoteSniffInfo}.
 	 */
-	public static class Builder implements ObjectBuilder<ClusterRemoteSniffInfo> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ClusterRemoteSniffInfo> {
 		private Boolean connected;
 
 		private Integer maxConnectionsPerCluster;
@@ -186,7 +190,7 @@ public final class ClusterRemoteSniffInfo implements ClusterRemoteInfoVariant, J
 		/**
 		 * Required - API name: {@code connected}
 		 */
-		public Builder connected(boolean value) {
+		public final Builder connected(boolean value) {
 			this.connected = value;
 			return this;
 		}
@@ -194,7 +198,7 @@ public final class ClusterRemoteSniffInfo implements ClusterRemoteInfoVariant, J
 		/**
 		 * Required - API name: {@code max_connections_per_cluster}
 		 */
-		public Builder maxConnectionsPerCluster(int value) {
+		public final Builder maxConnectionsPerCluster(int value) {
 			this.maxConnectionsPerCluster = value;
 			return this;
 		}
@@ -202,7 +206,7 @@ public final class ClusterRemoteSniffInfo implements ClusterRemoteInfoVariant, J
 		/**
 		 * Required - API name: {@code num_nodes_connected}
 		 */
-		public Builder numNodesConnected(long value) {
+		public final Builder numNodesConnected(long value) {
 			this.numNodesConnected = value;
 			return this;
 		}
@@ -210,7 +214,7 @@ public final class ClusterRemoteSniffInfo implements ClusterRemoteInfoVariant, J
 		/**
 		 * Required - API name: {@code initial_connect_timeout}
 		 */
-		public Builder initialConnectTimeout(String value) {
+		public final Builder initialConnectTimeout(String value) {
 			this.initialConnectTimeout = value;
 			return this;
 		}
@@ -218,7 +222,7 @@ public final class ClusterRemoteSniffInfo implements ClusterRemoteInfoVariant, J
 		/**
 		 * Required - API name: {@code skip_unavailable}
 		 */
-		public Builder skipUnavailable(boolean value) {
+		public final Builder skipUnavailable(boolean value) {
 			this.skipUnavailable = value;
 			return this;
 		}
@@ -226,7 +230,7 @@ public final class ClusterRemoteSniffInfo implements ClusterRemoteInfoVariant, J
 		/**
 		 * Required - API name: {@code seeds}
 		 */
-		public Builder seeds(List<String> value) {
+		public final Builder seeds(List<String> value) {
 			this.seeds = value;
 			return this;
 		}
@@ -234,19 +238,8 @@ public final class ClusterRemoteSniffInfo implements ClusterRemoteInfoVariant, J
 		/**
 		 * Required - API name: {@code seeds}
 		 */
-		public Builder seeds(String... value) {
+		public final Builder seeds(String... value) {
 			this.seeds = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #seeds(List)}, creating the list if needed.
-		 */
-		public Builder addSeeds(String value) {
-			if (this.seeds == null) {
-				this.seeds = new ArrayList<>();
-			}
-			this.seeds.add(value);
 			return this;
 		}
 
@@ -257,6 +250,7 @@ public final class ClusterRemoteSniffInfo implements ClusterRemoteInfoVariant, J
 		 *             if some of the required fields are null.
 		 */
 		public ClusterRemoteSniffInfo build() {
+			_checkSingleUse();
 
 			return new ClusterRemoteSniffInfo(this);
 		}

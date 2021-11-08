@@ -36,16 +36,16 @@ import java.util.function.Function;
 
 // typedef: _global.index.Response
 @JsonpDeserializable
-public final class IndexResponse extends WriteResponseBase {
+public class IndexResponse extends WriteResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
-	public IndexResponse(Builder builder) {
+	private IndexResponse(Builder builder) {
 		super(builder);
 
 	}
 
-	public IndexResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static IndexResponse of(Function<Builder, ObjectBuilder<IndexResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -68,6 +68,7 @@ public final class IndexResponse extends WriteResponseBase {
 		 *             if some of the required fields are null.
 		 */
 		public IndexResponse build() {
+			_checkSingleUse();
 
 			return new IndexResponse(this);
 		}

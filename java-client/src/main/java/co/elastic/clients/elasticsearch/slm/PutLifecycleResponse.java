@@ -36,16 +36,16 @@ import java.util.function.Function;
 
 // typedef: slm.put_lifecycle.Response
 @JsonpDeserializable
-public final class PutLifecycleResponse extends AcknowledgedResponseBase {
+public class PutLifecycleResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
-	public PutLifecycleResponse(Builder builder) {
+	private PutLifecycleResponse(Builder builder) {
 		super(builder);
 
 	}
 
-	public PutLifecycleResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static PutLifecycleResponse of(Function<Builder, ObjectBuilder<PutLifecycleResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -68,6 +68,7 @@ public final class PutLifecycleResponse extends AcknowledgedResponseBase {
 		 *             if some of the required fields are null.
 		 */
 		public PutLifecycleResponse build() {
+			_checkSingleUse();
 
 			return new PutLifecycleResponse(this);
 		}

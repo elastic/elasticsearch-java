@@ -35,16 +35,17 @@ import java.util.function.Function;
 
 // typedef: _global.rank_eval.RankEvalMetricMeanReciprocalRank
 @JsonpDeserializable
-public final class RankEvalMetricMeanReciprocalRank extends RankEvalMetricRatingTreshold {
+public class RankEvalMetricMeanReciprocalRank extends RankEvalMetricRatingTreshold {
 	// ---------------------------------------------------------------------------------------------
 
-	public RankEvalMetricMeanReciprocalRank(Builder builder) {
+	private RankEvalMetricMeanReciprocalRank(Builder builder) {
 		super(builder);
 
 	}
 
-	public RankEvalMetricMeanReciprocalRank(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static RankEvalMetricMeanReciprocalRank of(
+			Function<Builder, ObjectBuilder<RankEvalMetricMeanReciprocalRank>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -67,6 +68,7 @@ public final class RankEvalMetricMeanReciprocalRank extends RankEvalMetricRating
 		 *             if some of the required fields are null.
 		 */
 		public RankEvalMetricMeanReciprocalRank build() {
+			_checkSingleUse();
 
 			return new RankEvalMetricMeanReciprocalRank(this);
 		}

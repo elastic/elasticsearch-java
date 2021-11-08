@@ -29,6 +29,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -39,7 +40,7 @@ import javax.annotation.Nullable;
 
 // typedef: ingest._types.SplitProcessor
 @JsonpDeserializable
-public final class SplitProcessor extends ProcessorBase implements ProcessorVariant {
+public class SplitProcessor extends ProcessorBase implements ProcessorVariant {
 	private final String field;
 
 	@Nullable
@@ -55,19 +56,19 @@ public final class SplitProcessor extends ProcessorBase implements ProcessorVari
 
 	// ---------------------------------------------------------------------------------------------
 
-	public SplitProcessor(Builder builder) {
+	private SplitProcessor(Builder builder) {
 		super(builder);
 
-		this.field = Objects.requireNonNull(builder.field, "field");
+		this.field = ModelTypeHelper.requireNonNull(builder.field, this, "field");
 		this.ignoreMissing = builder.ignoreMissing;
 		this.preserveTrailing = builder.preserveTrailing;
-		this.separator = Objects.requireNonNull(builder.separator, "separator");
+		this.separator = ModelTypeHelper.requireNonNull(builder.separator, this, "separator");
 		this.targetField = builder.targetField;
 
 	}
 
-	public SplitProcessor(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static SplitProcessor of(Function<Builder, ObjectBuilder<SplitProcessor>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -81,7 +82,7 @@ public final class SplitProcessor extends ProcessorBase implements ProcessorVari
 	/**
 	 * Required - API name: {@code field}
 	 */
-	public String field() {
+	public final String field() {
 		return this.field;
 	}
 
@@ -89,7 +90,7 @@ public final class SplitProcessor extends ProcessorBase implements ProcessorVari
 	 * API name: {@code ignore_missing}
 	 */
 	@Nullable
-	public Boolean ignoreMissing() {
+	public final Boolean ignoreMissing() {
 		return this.ignoreMissing;
 	}
 
@@ -97,14 +98,14 @@ public final class SplitProcessor extends ProcessorBase implements ProcessorVari
 	 * API name: {@code preserve_trailing}
 	 */
 	@Nullable
-	public Boolean preserveTrailing() {
+	public final Boolean preserveTrailing() {
 		return this.preserveTrailing;
 	}
 
 	/**
 	 * Required - API name: {@code separator}
 	 */
-	public String separator() {
+	public final String separator() {
 		return this.separator;
 	}
 
@@ -112,35 +113,30 @@ public final class SplitProcessor extends ProcessorBase implements ProcessorVari
 	 * API name: {@code target_field}
 	 */
 	@Nullable
-	public String targetField() {
+	public final String targetField() {
 		return this.targetField;
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
-
 		generator.writeKey("field");
 		generator.write(this.field);
 
 		if (this.ignoreMissing != null) {
-
 			generator.writeKey("ignore_missing");
 			generator.write(this.ignoreMissing);
 
 		}
 		if (this.preserveTrailing != null) {
-
 			generator.writeKey("preserve_trailing");
 			generator.write(this.preserveTrailing);
 
 		}
-
 		generator.writeKey("separator");
 		generator.write(this.separator);
 
 		if (this.targetField != null) {
-
 			generator.writeKey("target_field");
 			generator.write(this.targetField);
 
@@ -172,7 +168,7 @@ public final class SplitProcessor extends ProcessorBase implements ProcessorVari
 		/**
 		 * Required - API name: {@code field}
 		 */
-		public Builder field(String value) {
+		public final Builder field(String value) {
 			this.field = value;
 			return this;
 		}
@@ -180,7 +176,7 @@ public final class SplitProcessor extends ProcessorBase implements ProcessorVari
 		/**
 		 * API name: {@code ignore_missing}
 		 */
-		public Builder ignoreMissing(@Nullable Boolean value) {
+		public final Builder ignoreMissing(@Nullable Boolean value) {
 			this.ignoreMissing = value;
 			return this;
 		}
@@ -188,7 +184,7 @@ public final class SplitProcessor extends ProcessorBase implements ProcessorVari
 		/**
 		 * API name: {@code preserve_trailing}
 		 */
-		public Builder preserveTrailing(@Nullable Boolean value) {
+		public final Builder preserveTrailing(@Nullable Boolean value) {
 			this.preserveTrailing = value;
 			return this;
 		}
@@ -196,7 +192,7 @@ public final class SplitProcessor extends ProcessorBase implements ProcessorVari
 		/**
 		 * Required - API name: {@code separator}
 		 */
-		public Builder separator(String value) {
+		public final Builder separator(String value) {
 			this.separator = value;
 			return this;
 		}
@@ -204,7 +200,7 @@ public final class SplitProcessor extends ProcessorBase implements ProcessorVari
 		/**
 		 * API name: {@code target_field}
 		 */
-		public Builder targetField(@Nullable String value) {
+		public final Builder targetField(@Nullable String value) {
 			this.targetField = value;
 			return this;
 		}
@@ -221,6 +217,7 @@ public final class SplitProcessor extends ProcessorBase implements ProcessorVari
 		 *             if some of the required fields are null.
 		 */
 		public SplitProcessor build() {
+			_checkSingleUse();
 
 			return new SplitProcessor(this);
 		}

@@ -37,6 +37,7 @@ import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.SimpleEndpoint;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
@@ -48,25 +49,23 @@ import javax.annotation.Nullable;
 
 // typedef: cluster.put_settings.Request
 @JsonpDeserializable
-public final class PutSettingsRequest extends RequestBase implements JsonpSerializable {
+public class PutSettingsRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
 	private final Boolean flatSettings;
 
 	@Nullable
 	private final String masterTimeout;
 
-	@Nullable
 	private final Map<String, JsonData> persistent;
 
 	@Nullable
 	private final String timeout;
 
-	@Nullable
 	private final Map<String, JsonData> transient_;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public PutSettingsRequest(Builder builder) {
+	private PutSettingsRequest(Builder builder) {
 
 		this.flatSettings = builder.flatSettings;
 		this.masterTimeout = builder.masterTimeout;
@@ -76,8 +75,8 @@ public final class PutSettingsRequest extends RequestBase implements JsonpSerial
 
 	}
 
-	public PutSettingsRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static PutSettingsRequest of(Function<Builder, ObjectBuilder<PutSettingsRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -86,7 +85,7 @@ public final class PutSettingsRequest extends RequestBase implements JsonpSerial
 	 * API name: {@code flat_settings}
 	 */
 	@Nullable
-	public Boolean flatSettings() {
+	public final Boolean flatSettings() {
 		return this.flatSettings;
 	}
 
@@ -96,15 +95,14 @@ public final class PutSettingsRequest extends RequestBase implements JsonpSerial
 	 * API name: {@code master_timeout}
 	 */
 	@Nullable
-	public String masterTimeout() {
+	public final String masterTimeout() {
 		return this.masterTimeout;
 	}
 
 	/**
 	 * API name: {@code persistent}
 	 */
-	@Nullable
-	public Map<String, JsonData> persistent() {
+	public final Map<String, JsonData> persistent() {
 		return this.persistent;
 	}
 
@@ -114,15 +112,14 @@ public final class PutSettingsRequest extends RequestBase implements JsonpSerial
 	 * API name: {@code timeout}
 	 */
 	@Nullable
-	public String timeout() {
+	public final String timeout() {
 		return this.timeout;
 	}
 
 	/**
 	 * API name: {@code transient}
 	 */
-	@Nullable
-	public Map<String, JsonData> transient_() {
+	public final Map<String, JsonData> transient_() {
 		return this.transient_;
 	}
 
@@ -137,8 +134,7 @@ public final class PutSettingsRequest extends RequestBase implements JsonpSerial
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (this.persistent != null) {
-
+		if (ModelTypeHelper.isDefined(this.persistent)) {
 			generator.writeKey("persistent");
 			generator.writeStartObject();
 			for (Map.Entry<String, JsonData> item0 : this.persistent.entrySet()) {
@@ -149,8 +145,7 @@ public final class PutSettingsRequest extends RequestBase implements JsonpSerial
 			generator.writeEnd();
 
 		}
-		if (this.transient_ != null) {
-
+		if (ModelTypeHelper.isDefined(this.transient_)) {
 			generator.writeKey("transient");
 			generator.writeStartObject();
 			for (Map.Entry<String, JsonData> item0 : this.transient_.entrySet()) {
@@ -169,7 +164,7 @@ public final class PutSettingsRequest extends RequestBase implements JsonpSerial
 	/**
 	 * Builder for {@link PutSettingsRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<PutSettingsRequest> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PutSettingsRequest> {
 		@Nullable
 		private Boolean flatSettings;
 
@@ -190,7 +185,7 @@ public final class PutSettingsRequest extends RequestBase implements JsonpSerial
 		 * <p>
 		 * API name: {@code flat_settings}
 		 */
-		public Builder flatSettings(@Nullable Boolean value) {
+		public final Builder flatSettings(@Nullable Boolean value) {
 			this.flatSettings = value;
 			return this;
 		}
@@ -200,7 +195,7 @@ public final class PutSettingsRequest extends RequestBase implements JsonpSerial
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
-		public Builder masterTimeout(@Nullable String value) {
+		public final Builder masterTimeout(@Nullable String value) {
 			this.masterTimeout = value;
 			return this;
 		}
@@ -208,19 +203,8 @@ public final class PutSettingsRequest extends RequestBase implements JsonpSerial
 		/**
 		 * API name: {@code persistent}
 		 */
-		public Builder persistent(@Nullable Map<String, JsonData> value) {
+		public final Builder persistent(@Nullable Map<String, JsonData> value) {
 			this.persistent = value;
-			return this;
-		}
-
-		/**
-		 * Add a key/value to {@link #persistent(Map)}, creating the map if needed.
-		 */
-		public Builder putPersistent(String key, JsonData value) {
-			if (this.persistent == null) {
-				this.persistent = new HashMap<>();
-			}
-			this.persistent.put(key, value);
 			return this;
 		}
 
@@ -229,7 +213,7 @@ public final class PutSettingsRequest extends RequestBase implements JsonpSerial
 		 * <p>
 		 * API name: {@code timeout}
 		 */
-		public Builder timeout(@Nullable String value) {
+		public final Builder timeout(@Nullable String value) {
 			this.timeout = value;
 			return this;
 		}
@@ -237,19 +221,8 @@ public final class PutSettingsRequest extends RequestBase implements JsonpSerial
 		/**
 		 * API name: {@code transient}
 		 */
-		public Builder transient_(@Nullable Map<String, JsonData> value) {
+		public final Builder transient_(@Nullable Map<String, JsonData> value) {
 			this.transient_ = value;
-			return this;
-		}
-
-		/**
-		 * Add a key/value to {@link #transient_(Map)}, creating the map if needed.
-		 */
-		public Builder putTransient(String key, JsonData value) {
-			if (this.transient_ == null) {
-				this.transient_ = new HashMap<>();
-			}
-			this.transient_.put(key, value);
 			return this;
 		}
 
@@ -260,6 +233,7 @@ public final class PutSettingsRequest extends RequestBase implements JsonpSerial
 		 *             if some of the required fields are null.
 		 */
 		public PutSettingsRequest build() {
+			_checkSingleUse();
 
 			return new PutSettingsRequest(this);
 		}

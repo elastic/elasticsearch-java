@@ -39,7 +39,7 @@ import java.util.function.Function;
 
 // typedef: license.delete.Request
 
-public final class DeleteLicenseRequest extends RequestBase {
+public class DeleteLicenseRequest extends RequestBase {
 	public DeleteLicenseRequest() {
 	}
 

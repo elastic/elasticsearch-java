@@ -34,7 +34,9 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.SimpleEndpoint;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
@@ -44,25 +46,25 @@ import javax.annotation.Nullable;
 
 // typedef: sql.clear_cursor.Request
 @JsonpDeserializable
-public final class ClearCursorRequest extends RequestBase implements JsonpSerializable {
+public class ClearCursorRequest extends RequestBase implements JsonpSerializable {
 	private final String cursor;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public ClearCursorRequest(Builder builder) {
+	private ClearCursorRequest(Builder builder) {
 
-		this.cursor = Objects.requireNonNull(builder.cursor, "cursor");
+		this.cursor = ModelTypeHelper.requireNonNull(builder.cursor, this, "cursor");
 
 	}
 
-	public ClearCursorRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ClearCursorRequest of(Function<Builder, ObjectBuilder<ClearCursorRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code cursor}
 	 */
-	public String cursor() {
+	public final String cursor() {
 		return this.cursor;
 	}
 
@@ -87,13 +89,13 @@ public final class ClearCursorRequest extends RequestBase implements JsonpSerial
 	/**
 	 * Builder for {@link ClearCursorRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<ClearCursorRequest> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ClearCursorRequest> {
 		private String cursor;
 
 		/**
 		 * Required - API name: {@code cursor}
 		 */
-		public Builder cursor(String value) {
+		public final Builder cursor(String value) {
 			this.cursor = value;
 			return this;
 		}
@@ -105,6 +107,7 @@ public final class ClearCursorRequest extends RequestBase implements JsonpSerial
 		 *             if some of the required fields are null.
 		 */
 		public ClearCursorRequest build() {
+			_checkSingleUse();
 
 			return new ClearCursorRequest(this);
 		}

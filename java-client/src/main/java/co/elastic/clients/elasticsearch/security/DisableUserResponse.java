@@ -34,7 +34,7 @@ import java.util.function.Function;
 
 // typedef: security.disable_user.Response
 
-public final class DisableUserResponse {
+public class DisableUserResponse {
 	public DisableUserResponse() {
 	}
 

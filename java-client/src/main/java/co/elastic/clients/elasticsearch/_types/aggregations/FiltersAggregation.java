@@ -40,11 +40,11 @@ import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.FiltersAggregation
 @JsonpDeserializable
-public final class FiltersAggregation extends BucketAggregationBase implements AggregationVariant {
+public class FiltersAggregation extends BucketAggregationBase implements AggregationVariant {
 	@Nullable
 	private final JsonValue /*
 							 * Union(Array<_types.query_dsl.QueryContainer> | Dictionary<internal.string,
-							 * _types.query_dsl.QueryContainer> (singleKey = false))
+							 * _types.query_dsl.QueryContainer>)
 							 */ filters;
 
 	@Nullable
@@ -58,7 +58,7 @@ public final class FiltersAggregation extends BucketAggregationBase implements A
 
 	// ---------------------------------------------------------------------------------------------
 
-	public FiltersAggregation(Builder builder) {
+	private FiltersAggregation(Builder builder) {
 		super(builder);
 
 		this.filters = builder.filters;
@@ -68,8 +68,8 @@ public final class FiltersAggregation extends BucketAggregationBase implements A
 
 	}
 
-	public FiltersAggregation(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static FiltersAggregation of(Function<Builder, ObjectBuilder<FiltersAggregation>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -84,10 +84,10 @@ public final class FiltersAggregation extends BucketAggregationBase implements A
 	 * API name: {@code filters}
 	 */
 	@Nullable
-	public JsonValue /*
-						 * Union(Array<_types.query_dsl.QueryContainer> | Dictionary<internal.string,
-						 * _types.query_dsl.QueryContainer> (singleKey = false))
-						 */ filters() {
+	public final JsonValue /*
+							 * Union(Array<_types.query_dsl.QueryContainer> | Dictionary<internal.string,
+							 * _types.query_dsl.QueryContainer>)
+							 */ filters() {
 		return this.filters;
 	}
 
@@ -95,7 +95,7 @@ public final class FiltersAggregation extends BucketAggregationBase implements A
 	 * API name: {@code other_bucket}
 	 */
 	@Nullable
-	public Boolean otherBucket() {
+	public final Boolean otherBucket() {
 		return this.otherBucket;
 	}
 
@@ -103,7 +103,7 @@ public final class FiltersAggregation extends BucketAggregationBase implements A
 	 * API name: {@code other_bucket_key}
 	 */
 	@Nullable
-	public String otherBucketKey() {
+	public final String otherBucketKey() {
 		return this.otherBucketKey;
 	}
 
@@ -111,7 +111,7 @@ public final class FiltersAggregation extends BucketAggregationBase implements A
 	 * API name: {@code keyed}
 	 */
 	@Nullable
-	public Boolean keyed() {
+	public final Boolean keyed() {
 		return this.keyed;
 	}
 
@@ -119,25 +119,21 @@ public final class FiltersAggregation extends BucketAggregationBase implements A
 
 		super.serializeInternal(generator, mapper);
 		if (this.filters != null) {
-
 			generator.writeKey("filters");
 			generator.write(this.filters);
 
 		}
 		if (this.otherBucket != null) {
-
 			generator.writeKey("other_bucket");
 			generator.write(this.otherBucket);
 
 		}
 		if (this.otherBucketKey != null) {
-
 			generator.writeKey("other_bucket_key");
 			generator.write(this.otherBucketKey);
 
 		}
 		if (this.keyed != null) {
-
 			generator.writeKey("keyed");
 			generator.write(this.keyed);
 
@@ -156,7 +152,7 @@ public final class FiltersAggregation extends BucketAggregationBase implements A
 		@Nullable
 		private JsonValue /*
 							 * Union(Array<_types.query_dsl.QueryContainer> | Dictionary<internal.string,
-							 * _types.query_dsl.QueryContainer> (singleKey = false))
+							 * _types.query_dsl.QueryContainer>)
 							 */ filters;
 
 		@Nullable
@@ -171,10 +167,10 @@ public final class FiltersAggregation extends BucketAggregationBase implements A
 		/**
 		 * API name: {@code filters}
 		 */
-		public Builder filters(
+		public final Builder filters(
 				@Nullable JsonValue /*
 									 * Union(Array<_types.query_dsl.QueryContainer> | Dictionary<internal.string,
-									 * _types.query_dsl.QueryContainer> (singleKey = false))
+									 * _types.query_dsl.QueryContainer>)
 									 */ value) {
 			this.filters = value;
 			return this;
@@ -183,7 +179,7 @@ public final class FiltersAggregation extends BucketAggregationBase implements A
 		/**
 		 * API name: {@code other_bucket}
 		 */
-		public Builder otherBucket(@Nullable Boolean value) {
+		public final Builder otherBucket(@Nullable Boolean value) {
 			this.otherBucket = value;
 			return this;
 		}
@@ -191,7 +187,7 @@ public final class FiltersAggregation extends BucketAggregationBase implements A
 		/**
 		 * API name: {@code other_bucket_key}
 		 */
-		public Builder otherBucketKey(@Nullable String value) {
+		public final Builder otherBucketKey(@Nullable String value) {
 			this.otherBucketKey = value;
 			return this;
 		}
@@ -199,7 +195,7 @@ public final class FiltersAggregation extends BucketAggregationBase implements A
 		/**
 		 * API name: {@code keyed}
 		 */
-		public Builder keyed(@Nullable Boolean value) {
+		public final Builder keyed(@Nullable Boolean value) {
 			this.keyed = value;
 			return this;
 		}
@@ -216,6 +212,7 @@ public final class FiltersAggregation extends BucketAggregationBase implements A
 		 *             if some of the required fields are null.
 		 */
 		public FiltersAggregation build() {
+			_checkSingleUse();
 
 			return new FiltersAggregation(this);
 		}

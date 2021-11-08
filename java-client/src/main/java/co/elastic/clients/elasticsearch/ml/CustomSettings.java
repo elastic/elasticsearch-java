@@ -32,12 +32,11 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -46,19 +45,17 @@ import javax.annotation.Nullable;
 
 // typedef: ml._types.CustomSettings
 @JsonpDeserializable
-public final class CustomSettings implements JsonpSerializable {
-	@Nullable
+public class CustomSettings implements JsonpSerializable {
 	private final List<JsonValue /* xpack.usage.UrlConfig */> customUrls;
 
 	@Nullable
 	private final String createdBy;
 
-	@Nullable
 	private final Map<String, String> jobTags;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public CustomSettings(Builder builder) {
+	private CustomSettings(Builder builder) {
 
 		this.customUrls = ModelTypeHelper.unmodifiable(builder.customUrls);
 		this.createdBy = builder.createdBy;
@@ -66,15 +63,14 @@ public final class CustomSettings implements JsonpSerializable {
 
 	}
 
-	public CustomSettings(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static CustomSettings of(Function<Builder, ObjectBuilder<CustomSettings>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * API name: {@code custom_urls}
 	 */
-	@Nullable
-	public List<JsonValue /* xpack.usage.UrlConfig */> customUrls() {
+	public final List<JsonValue /* xpack.usage.UrlConfig */> customUrls() {
 		return this.customUrls;
 	}
 
@@ -82,15 +78,14 @@ public final class CustomSettings implements JsonpSerializable {
 	 * API name: {@code created_by}
 	 */
 	@Nullable
-	public String createdBy() {
+	public final String createdBy() {
 		return this.createdBy;
 	}
 
 	/**
 	 * API name: {@code job_tags}
 	 */
-	@Nullable
-	public Map<String, String> jobTags() {
+	public final Map<String, String> jobTags() {
 		return this.jobTags;
 	}
 
@@ -105,8 +100,7 @@ public final class CustomSettings implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (this.customUrls != null) {
-
+		if (ModelTypeHelper.isDefined(this.customUrls)) {
 			generator.writeKey("custom_urls");
 			generator.writeStartArray();
 			for (JsonValue /* xpack.usage.UrlConfig */ item0 : this.customUrls) {
@@ -117,13 +111,11 @@ public final class CustomSettings implements JsonpSerializable {
 
 		}
 		if (this.createdBy != null) {
-
 			generator.writeKey("created_by");
 			generator.write(this.createdBy);
 
 		}
-		if (this.jobTags != null) {
-
+		if (ModelTypeHelper.isDefined(this.jobTags)) {
 			generator.writeKey("job_tags");
 			generator.writeStartObject();
 			for (Map.Entry<String, String> item0 : this.jobTags.entrySet()) {
@@ -142,7 +134,7 @@ public final class CustomSettings implements JsonpSerializable {
 	/**
 	 * Builder for {@link CustomSettings}.
 	 */
-	public static class Builder implements ObjectBuilder<CustomSettings> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<CustomSettings> {
 		@Nullable
 		private List<JsonValue /* xpack.usage.UrlConfig */> customUrls;
 
@@ -155,7 +147,7 @@ public final class CustomSettings implements JsonpSerializable {
 		/**
 		 * API name: {@code custom_urls}
 		 */
-		public Builder customUrls(@Nullable List<JsonValue /* xpack.usage.UrlConfig */> value) {
+		public final Builder customUrls(@Nullable List<JsonValue /* xpack.usage.UrlConfig */> value) {
 			this.customUrls = value;
 			return this;
 		}
@@ -163,26 +155,15 @@ public final class CustomSettings implements JsonpSerializable {
 		/**
 		 * API name: {@code custom_urls}
 		 */
-		public Builder customUrls(JsonValue /* xpack.usage.UrlConfig */... value) {
+		public final Builder customUrls(JsonValue /* xpack.usage.UrlConfig */... value) {
 			this.customUrls = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #customUrls(List)}, creating the list if needed.
-		 */
-		public Builder addCustomUrls(JsonValue /* xpack.usage.UrlConfig */ value) {
-			if (this.customUrls == null) {
-				this.customUrls = new ArrayList<>();
-			}
-			this.customUrls.add(value);
 			return this;
 		}
 
 		/**
 		 * API name: {@code created_by}
 		 */
-		public Builder createdBy(@Nullable String value) {
+		public final Builder createdBy(@Nullable String value) {
 			this.createdBy = value;
 			return this;
 		}
@@ -190,19 +171,8 @@ public final class CustomSettings implements JsonpSerializable {
 		/**
 		 * API name: {@code job_tags}
 		 */
-		public Builder jobTags(@Nullable Map<String, String> value) {
+		public final Builder jobTags(@Nullable Map<String, String> value) {
 			this.jobTags = value;
-			return this;
-		}
-
-		/**
-		 * Add a key/value to {@link #jobTags(Map)}, creating the map if needed.
-		 */
-		public Builder putJobTags(String key, String value) {
-			if (this.jobTags == null) {
-				this.jobTags = new HashMap<>();
-			}
-			this.jobTags.put(key, value);
 			return this;
 		}
 
@@ -213,6 +183,7 @@ public final class CustomSettings implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public CustomSettings build() {
+			_checkSingleUse();
 
 			return new CustomSettings(this);
 		}

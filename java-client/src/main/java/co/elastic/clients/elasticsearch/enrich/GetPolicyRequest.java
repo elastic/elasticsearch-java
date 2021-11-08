@@ -33,9 +33,9 @@ import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.SimpleEndpoint;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -46,20 +46,19 @@ import javax.annotation.Nullable;
 
 // typedef: enrich.get_policy.Request
 
-public final class GetPolicyRequest extends RequestBase {
-	@Nullable
+public class GetPolicyRequest extends RequestBase {
 	private final List<String> name;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public GetPolicyRequest(Builder builder) {
+	private GetPolicyRequest(Builder builder) {
 
 		this.name = ModelTypeHelper.unmodifiable(builder.name);
 
 	}
 
-	public GetPolicyRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static GetPolicyRequest of(Function<Builder, ObjectBuilder<GetPolicyRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -67,8 +66,7 @@ public final class GetPolicyRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code name}
 	 */
-	@Nullable
-	public List<String> name() {
+	public final List<String> name() {
 		return this.name;
 	}
 
@@ -77,7 +75,7 @@ public final class GetPolicyRequest extends RequestBase {
 	/**
 	 * Builder for {@link GetPolicyRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<GetPolicyRequest> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetPolicyRequest> {
 		@Nullable
 		private List<String> name;
 
@@ -86,7 +84,7 @@ public final class GetPolicyRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code name}
 		 */
-		public Builder name(@Nullable List<String> value) {
+		public final Builder name(@Nullable List<String> value) {
 			this.name = value;
 			return this;
 		}
@@ -96,19 +94,8 @@ public final class GetPolicyRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code name}
 		 */
-		public Builder name(String... value) {
+		public final Builder name(String... value) {
 			this.name = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #name(List)}, creating the list if needed.
-		 */
-		public Builder addName(String value) {
-			if (this.name == null) {
-				this.name = new ArrayList<>();
-			}
-			this.name.add(value);
 			return this;
 		}
 
@@ -119,6 +106,7 @@ public final class GetPolicyRequest extends RequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public GetPolicyRequest build() {
+			_checkSingleUse();
 
 			return new GetPolicyRequest(this);
 		}
@@ -142,7 +130,7 @@ public final class GetPolicyRequest extends RequestBase {
 
 				int propsSet = 0;
 
-				if (request.name() != null)
+				if (ModelTypeHelper.isDefined(request.name()))
 					propsSet |= _name;
 
 				if (propsSet == (_name)) {

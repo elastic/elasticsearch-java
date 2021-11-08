@@ -32,9 +32,9 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
@@ -43,7 +43,7 @@ import javax.annotation.Nullable;
 
 // typedef: ml.put_calendar_job.Response
 @JsonpDeserializable
-public final class PutCalendarJobResponse implements JsonpSerializable {
+public class PutCalendarJobResponse implements JsonpSerializable {
 	private final String calendarId;
 
 	@Nullable
@@ -53,16 +53,16 @@ public final class PutCalendarJobResponse implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public PutCalendarJobResponse(Builder builder) {
+	private PutCalendarJobResponse(Builder builder) {
 
-		this.calendarId = Objects.requireNonNull(builder.calendarId, "calendar_id");
+		this.calendarId = ModelTypeHelper.requireNonNull(builder.calendarId, this, "calendarId");
 		this.description = builder.description;
-		this.jobIds = ModelTypeHelper.unmodifiableNonNull(builder.jobIds, "job_ids");
+		this.jobIds = ModelTypeHelper.unmodifiableRequired(builder.jobIds, this, "jobIds");
 
 	}
 
-	public PutCalendarJobResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static PutCalendarJobResponse of(Function<Builder, ObjectBuilder<PutCalendarJobResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -70,7 +70,7 @@ public final class PutCalendarJobResponse implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code calendar_id}
 	 */
-	public String calendarId() {
+	public final String calendarId() {
 		return this.calendarId;
 	}
 
@@ -80,7 +80,7 @@ public final class PutCalendarJobResponse implements JsonpSerializable {
 	 * API name: {@code description}
 	 */
 	@Nullable
-	public String description() {
+	public final String description() {
 		return this.description;
 	}
 
@@ -89,7 +89,7 @@ public final class PutCalendarJobResponse implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code job_ids}
 	 */
-	public List<String> jobIds() {
+	public final List<String> jobIds() {
 		return this.jobIds;
 	}
 
@@ -108,19 +108,20 @@ public final class PutCalendarJobResponse implements JsonpSerializable {
 		generator.write(this.calendarId);
 
 		if (this.description != null) {
-
 			generator.writeKey("description");
 			generator.write(this.description);
 
 		}
+		if (ModelTypeHelper.isDefined(this.jobIds)) {
+			generator.writeKey("job_ids");
+			generator.writeStartArray();
+			for (String item0 : this.jobIds) {
+				generator.write(item0);
 
-		generator.writeKey("job_ids");
-		generator.writeStartArray();
-		for (String item0 : this.jobIds) {
-			generator.write(item0);
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
 
 	}
 
@@ -129,7 +130,7 @@ public final class PutCalendarJobResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link PutCalendarJobResponse}.
 	 */
-	public static class Builder implements ObjectBuilder<PutCalendarJobResponse> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PutCalendarJobResponse> {
 		private String calendarId;
 
 		@Nullable
@@ -142,7 +143,7 @@ public final class PutCalendarJobResponse implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code calendar_id}
 		 */
-		public Builder calendarId(String value) {
+		public final Builder calendarId(String value) {
 			this.calendarId = value;
 			return this;
 		}
@@ -152,7 +153,7 @@ public final class PutCalendarJobResponse implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code description}
 		 */
-		public Builder description(@Nullable String value) {
+		public final Builder description(@Nullable String value) {
 			this.description = value;
 			return this;
 		}
@@ -162,7 +163,7 @@ public final class PutCalendarJobResponse implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code job_ids}
 		 */
-		public Builder jobIds(List<String> value) {
+		public final Builder jobIds(List<String> value) {
 			this.jobIds = value;
 			return this;
 		}
@@ -172,19 +173,8 @@ public final class PutCalendarJobResponse implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code job_ids}
 		 */
-		public Builder jobIds(String... value) {
+		public final Builder jobIds(String... value) {
 			this.jobIds = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #jobIds(List)}, creating the list if needed.
-		 */
-		public Builder addJobIds(String value) {
-			if (this.jobIds == null) {
-				this.jobIds = new ArrayList<>();
-			}
-			this.jobIds.add(value);
 			return this;
 		}
 
@@ -195,6 +185,7 @@ public final class PutCalendarJobResponse implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public PutCalendarJobResponse build() {
+			_checkSingleUse();
 
 			return new PutCalendarJobResponse(this);
 		}

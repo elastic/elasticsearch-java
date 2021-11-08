@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -39,7 +41,7 @@ import javax.annotation.Nullable;
 
 // typedef: watcher._types.PagerDutyContext
 @JsonpDeserializable
-public final class PagerDutyContext implements JsonpSerializable {
+public class PagerDutyContext implements JsonpSerializable {
 	private final String href;
 
 	private final String src;
@@ -48,36 +50,36 @@ public final class PagerDutyContext implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public PagerDutyContext(Builder builder) {
+	private PagerDutyContext(Builder builder) {
 
-		this.href = Objects.requireNonNull(builder.href, "href");
-		this.src = Objects.requireNonNull(builder.src, "src");
-		this.type = Objects.requireNonNull(builder.type, "type");
+		this.href = ModelTypeHelper.requireNonNull(builder.href, this, "href");
+		this.src = ModelTypeHelper.requireNonNull(builder.src, this, "src");
+		this.type = ModelTypeHelper.requireNonNull(builder.type, this, "type");
 
 	}
 
-	public PagerDutyContext(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static PagerDutyContext of(Function<Builder, ObjectBuilder<PagerDutyContext>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code href}
 	 */
-	public String href() {
+	public final String href() {
 		return this.href;
 	}
 
 	/**
 	 * Required - API name: {@code src}
 	 */
-	public String src() {
+	public final String src() {
 		return this.src;
 	}
 
 	/**
 	 * Required - API name: {@code type}
 	 */
-	public PagerDutyContextType type() {
+	public final PagerDutyContextType type() {
 		return this.type;
 	}
 
@@ -108,7 +110,7 @@ public final class PagerDutyContext implements JsonpSerializable {
 	/**
 	 * Builder for {@link PagerDutyContext}.
 	 */
-	public static class Builder implements ObjectBuilder<PagerDutyContext> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PagerDutyContext> {
 		private String href;
 
 		private String src;
@@ -118,7 +120,7 @@ public final class PagerDutyContext implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code href}
 		 */
-		public Builder href(String value) {
+		public final Builder href(String value) {
 			this.href = value;
 			return this;
 		}
@@ -126,7 +128,7 @@ public final class PagerDutyContext implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code src}
 		 */
-		public Builder src(String value) {
+		public final Builder src(String value) {
 			this.src = value;
 			return this;
 		}
@@ -134,7 +136,7 @@ public final class PagerDutyContext implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code type}
 		 */
-		public Builder type(PagerDutyContextType value) {
+		public final Builder type(PagerDutyContextType value) {
 			this.type = value;
 			return this;
 		}
@@ -146,6 +148,7 @@ public final class PagerDutyContext implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public PagerDutyContext build() {
+			_checkSingleUse();
 
 			return new PagerDutyContext(this);
 		}

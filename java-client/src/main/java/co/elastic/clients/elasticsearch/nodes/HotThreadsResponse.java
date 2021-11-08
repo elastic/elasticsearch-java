@@ -33,6 +33,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -43,25 +44,25 @@ import javax.annotation.Nullable;
 
 // typedef: nodes.hot_threads.Response
 @JsonpDeserializable
-public final class HotThreadsResponse implements JsonpSerializable {
+public class HotThreadsResponse implements JsonpSerializable {
 	private final List<HotThread> hotThreads;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public HotThreadsResponse(Builder builder) {
+	private HotThreadsResponse(Builder builder) {
 
-		this.hotThreads = ModelTypeHelper.unmodifiableNonNull(builder.hotThreads, "hot_threads");
+		this.hotThreads = ModelTypeHelper.unmodifiableRequired(builder.hotThreads, this, "hotThreads");
 
 	}
 
-	public HotThreadsResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static HotThreadsResponse of(Function<Builder, ObjectBuilder<HotThreadsResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code hot_threads}
 	 */
-	public List<HotThread> hotThreads() {
+	public final List<HotThread> hotThreads() {
 		return this.hotThreads;
 	}
 
@@ -76,13 +77,16 @@ public final class HotThreadsResponse implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("hot_threads");
-		generator.writeStartArray();
-		for (HotThread item0 : this.hotThreads) {
-			item0.serialize(generator, mapper);
+		if (ModelTypeHelper.isDefined(this.hotThreads)) {
+			generator.writeKey("hot_threads");
+			generator.writeStartArray();
+			for (HotThread item0 : this.hotThreads) {
+				item0.serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
 
 	}
 
@@ -91,13 +95,13 @@ public final class HotThreadsResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link HotThreadsResponse}.
 	 */
-	public static class Builder implements ObjectBuilder<HotThreadsResponse> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<HotThreadsResponse> {
 		private List<HotThread> hotThreads;
 
 		/**
 		 * Required - API name: {@code hot_threads}
 		 */
-		public Builder hotThreads(List<HotThread> value) {
+		public final Builder hotThreads(List<HotThread> value) {
 			this.hotThreads = value;
 			return this;
 		}
@@ -105,34 +109,21 @@ public final class HotThreadsResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code hot_threads}
 		 */
-		public Builder hotThreads(HotThread... value) {
+		public final Builder hotThreads(HotThread... value) {
 			this.hotThreads = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #hotThreads(List)}, creating the list if needed.
+		 * Required - API name: {@code hot_threads}
 		 */
-		public Builder addHotThreads(HotThread value) {
-			if (this.hotThreads == null) {
-				this.hotThreads = new ArrayList<>();
+		@SafeVarargs
+		public final Builder hotThreads(Function<HotThread.Builder, ObjectBuilder<HotThread>>... fns) {
+			this.hotThreads = new ArrayList<>(fns.length);
+			for (Function<HotThread.Builder, ObjectBuilder<HotThread>> fn : fns) {
+				this.hotThreads.add(fn.apply(new HotThread.Builder()).build());
 			}
-			this.hotThreads.add(value);
 			return this;
-		}
-
-		/**
-		 * Set {@link #hotThreads(List)} to a singleton list.
-		 */
-		public Builder hotThreads(Function<HotThread.Builder, ObjectBuilder<HotThread>> fn) {
-			return this.hotThreads(fn.apply(new HotThread.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #hotThreads(List)}, creating the list if needed.
-		 */
-		public Builder addHotThreads(Function<HotThread.Builder, ObjectBuilder<HotThread>> fn) {
-			return this.addHotThreads(fn.apply(new HotThread.Builder()).build());
 		}
 
 		/**
@@ -142,6 +133,7 @@ public final class HotThreadsResponse implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public HotThreadsResponse build() {
+			_checkSingleUse();
 
 			return new HotThreadsResponse(this);
 		}

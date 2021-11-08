@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
@@ -40,35 +42,35 @@ import javax.annotation.Nullable;
 
 // typedef: graph._types.SampleDiversity
 @JsonpDeserializable
-public final class SampleDiversity implements JsonpSerializable {
+public class SampleDiversity implements JsonpSerializable {
 	private final String field;
 
 	private final int maxDocsPerValue;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public SampleDiversity(Builder builder) {
+	private SampleDiversity(Builder builder) {
 
-		this.field = Objects.requireNonNull(builder.field, "field");
-		this.maxDocsPerValue = Objects.requireNonNull(builder.maxDocsPerValue, "max_docs_per_value");
+		this.field = ModelTypeHelper.requireNonNull(builder.field, this, "field");
+		this.maxDocsPerValue = ModelTypeHelper.requireNonNull(builder.maxDocsPerValue, this, "maxDocsPerValue");
 
 	}
 
-	public SampleDiversity(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static SampleDiversity of(Function<Builder, ObjectBuilder<SampleDiversity>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code field}
 	 */
-	public String field() {
+	public final String field() {
 		return this.field;
 	}
 
 	/**
 	 * Required - API name: {@code max_docs_per_value}
 	 */
-	public int maxDocsPerValue() {
+	public final int maxDocsPerValue() {
 		return this.maxDocsPerValue;
 	}
 
@@ -96,7 +98,7 @@ public final class SampleDiversity implements JsonpSerializable {
 	/**
 	 * Builder for {@link SampleDiversity}.
 	 */
-	public static class Builder implements ObjectBuilder<SampleDiversity> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<SampleDiversity> {
 		private String field;
 
 		private Integer maxDocsPerValue;
@@ -104,7 +106,7 @@ public final class SampleDiversity implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code field}
 		 */
-		public Builder field(String value) {
+		public final Builder field(String value) {
 			this.field = value;
 			return this;
 		}
@@ -112,7 +114,7 @@ public final class SampleDiversity implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code max_docs_per_value}
 		 */
-		public Builder maxDocsPerValue(int value) {
+		public final Builder maxDocsPerValue(int value) {
 			this.maxDocsPerValue = value;
 			return this;
 		}
@@ -124,6 +126,7 @@ public final class SampleDiversity implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public SampleDiversity build() {
+			_checkSingleUse();
 
 			return new SampleDiversity(this);
 		}

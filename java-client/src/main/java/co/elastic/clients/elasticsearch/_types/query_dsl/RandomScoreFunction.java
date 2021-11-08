@@ -38,7 +38,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.RandomScoreFunction
 @JsonpDeserializable
-public final class RandomScoreFunction extends ScoreFunctionBase implements FunctionScoreVariant {
+public class RandomScoreFunction extends ScoreFunctionBase implements FunctionScoreVariant {
 	@Nullable
 	private final String field;
 
@@ -47,7 +47,7 @@ public final class RandomScoreFunction extends ScoreFunctionBase implements Func
 
 	// ---------------------------------------------------------------------------------------------
 
-	public RandomScoreFunction(Builder builder) {
+	private RandomScoreFunction(Builder builder) {
 		super(builder);
 
 		this.field = builder.field;
@@ -55,8 +55,8 @@ public final class RandomScoreFunction extends ScoreFunctionBase implements Func
 
 	}
 
-	public RandomScoreFunction(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static RandomScoreFunction of(Function<Builder, ObjectBuilder<RandomScoreFunction>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -71,7 +71,7 @@ public final class RandomScoreFunction extends ScoreFunctionBase implements Func
 	 * API name: {@code field}
 	 */
 	@Nullable
-	public String field() {
+	public final String field() {
 		return this.field;
 	}
 
@@ -79,7 +79,7 @@ public final class RandomScoreFunction extends ScoreFunctionBase implements Func
 	 * API name: {@code seed}
 	 */
 	@Nullable
-	public String seed() {
+	public final String seed() {
 		return this.seed;
 	}
 
@@ -87,13 +87,11 @@ public final class RandomScoreFunction extends ScoreFunctionBase implements Func
 
 		super.serializeInternal(generator, mapper);
 		if (this.field != null) {
-
 			generator.writeKey("field");
 			generator.write(this.field);
 
 		}
 		if (this.seed != null) {
-
 			generator.writeKey("seed");
 			generator.write(this.seed);
 
@@ -118,7 +116,7 @@ public final class RandomScoreFunction extends ScoreFunctionBase implements Func
 		/**
 		 * API name: {@code field}
 		 */
-		public Builder field(@Nullable String value) {
+		public final Builder field(@Nullable String value) {
 			this.field = value;
 			return this;
 		}
@@ -126,7 +124,7 @@ public final class RandomScoreFunction extends ScoreFunctionBase implements Func
 		/**
 		 * API name: {@code seed}
 		 */
-		public Builder seed(@Nullable String value) {
+		public final Builder seed(@Nullable String value) {
 			this.seed = value;
 			return this;
 		}
@@ -143,6 +141,7 @@ public final class RandomScoreFunction extends ScoreFunctionBase implements Func
 		 *             if some of the required fields are null.
 		 */
 		public RandomScoreFunction build() {
+			_checkSingleUse();
 
 			return new RandomScoreFunction(this);
 		}

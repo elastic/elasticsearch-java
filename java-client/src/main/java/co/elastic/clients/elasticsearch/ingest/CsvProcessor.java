@@ -35,7 +35,6 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
@@ -44,7 +43,7 @@ import javax.annotation.Nullable;
 
 // typedef: ingest._types.CsvProcessor
 @JsonpDeserializable
-public final class CsvProcessor extends ProcessorBase implements ProcessorVariant {
+public class CsvProcessor extends ProcessorBase implements ProcessorVariant {
 	private final JsonData emptyValue;
 
 	@Nullable
@@ -67,22 +66,22 @@ public final class CsvProcessor extends ProcessorBase implements ProcessorVarian
 
 	// ---------------------------------------------------------------------------------------------
 
-	public CsvProcessor(Builder builder) {
+	private CsvProcessor(Builder builder) {
 		super(builder);
 
-		this.emptyValue = Objects.requireNonNull(builder.emptyValue, "empty_value");
+		this.emptyValue = ModelTypeHelper.requireNonNull(builder.emptyValue, this, "emptyValue");
 		this.description = builder.description;
-		this.field = Objects.requireNonNull(builder.field, "field");
+		this.field = ModelTypeHelper.requireNonNull(builder.field, this, "field");
 		this.ignoreMissing = builder.ignoreMissing;
 		this.quote = builder.quote;
 		this.separator = builder.separator;
-		this.targetFields = ModelTypeHelper.unmodifiableNonNull(builder.targetFields, "target_fields");
-		this.trim = Objects.requireNonNull(builder.trim, "trim");
+		this.targetFields = ModelTypeHelper.unmodifiableRequired(builder.targetFields, this, "targetFields");
+		this.trim = ModelTypeHelper.requireNonNull(builder.trim, this, "trim");
 
 	}
 
-	public CsvProcessor(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static CsvProcessor of(Function<Builder, ObjectBuilder<CsvProcessor>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -96,7 +95,7 @@ public final class CsvProcessor extends ProcessorBase implements ProcessorVarian
 	/**
 	 * Required - API name: {@code empty_value}
 	 */
-	public JsonData emptyValue() {
+	public final JsonData emptyValue() {
 		return this.emptyValue;
 	}
 
@@ -104,14 +103,14 @@ public final class CsvProcessor extends ProcessorBase implements ProcessorVarian
 	 * API name: {@code description}
 	 */
 	@Nullable
-	public String description() {
+	public final String description() {
 		return this.description;
 	}
 
 	/**
 	 * Required - API name: {@code field}
 	 */
-	public String field() {
+	public final String field() {
 		return this.field;
 	}
 
@@ -119,7 +118,7 @@ public final class CsvProcessor extends ProcessorBase implements ProcessorVarian
 	 * API name: {@code ignore_missing}
 	 */
 	@Nullable
-	public Boolean ignoreMissing() {
+	public final Boolean ignoreMissing() {
 		return this.ignoreMissing;
 	}
 
@@ -127,7 +126,7 @@ public final class CsvProcessor extends ProcessorBase implements ProcessorVarian
 	 * API name: {@code quote}
 	 */
 	@Nullable
-	public String quote() {
+	public final String quote() {
 		return this.quote;
 	}
 
@@ -135,68 +134,63 @@ public final class CsvProcessor extends ProcessorBase implements ProcessorVarian
 	 * API name: {@code separator}
 	 */
 	@Nullable
-	public String separator() {
+	public final String separator() {
 		return this.separator;
 	}
 
 	/**
 	 * Required - API name: {@code target_fields}
 	 */
-	public List<String> targetFields() {
+	public final List<String> targetFields() {
 		return this.targetFields;
 	}
 
 	/**
 	 * Required - API name: {@code trim}
 	 */
-	public boolean trim() {
+	public final boolean trim() {
 		return this.trim;
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
-
 		generator.writeKey("empty_value");
 		this.emptyValue.serialize(generator, mapper);
 
 		if (this.description != null) {
-
 			generator.writeKey("description");
 			generator.write(this.description);
 
 		}
-
 		generator.writeKey("field");
 		generator.write(this.field);
 
 		if (this.ignoreMissing != null) {
-
 			generator.writeKey("ignore_missing");
 			generator.write(this.ignoreMissing);
 
 		}
 		if (this.quote != null) {
-
 			generator.writeKey("quote");
 			generator.write(this.quote);
 
 		}
 		if (this.separator != null) {
-
 			generator.writeKey("separator");
 			generator.write(this.separator);
 
 		}
+		if (ModelTypeHelper.isDefined(this.targetFields)) {
+			generator.writeKey("target_fields");
+			generator.writeStartArray();
+			for (String item0 : this.targetFields) {
+				generator.write(item0);
 
-		generator.writeKey("target_fields");
-		generator.writeStartArray();
-		for (String item0 : this.targetFields) {
-			generator.write(item0);
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
-
 		generator.writeKey("trim");
 		generator.write(this.trim);
 
@@ -231,7 +225,7 @@ public final class CsvProcessor extends ProcessorBase implements ProcessorVarian
 		/**
 		 * Required - API name: {@code empty_value}
 		 */
-		public Builder emptyValue(JsonData value) {
+		public final Builder emptyValue(JsonData value) {
 			this.emptyValue = value;
 			return this;
 		}
@@ -239,7 +233,7 @@ public final class CsvProcessor extends ProcessorBase implements ProcessorVarian
 		/**
 		 * API name: {@code description}
 		 */
-		public Builder description(@Nullable String value) {
+		public final Builder description(@Nullable String value) {
 			this.description = value;
 			return this;
 		}
@@ -247,7 +241,7 @@ public final class CsvProcessor extends ProcessorBase implements ProcessorVarian
 		/**
 		 * Required - API name: {@code field}
 		 */
-		public Builder field(String value) {
+		public final Builder field(String value) {
 			this.field = value;
 			return this;
 		}
@@ -255,7 +249,7 @@ public final class CsvProcessor extends ProcessorBase implements ProcessorVarian
 		/**
 		 * API name: {@code ignore_missing}
 		 */
-		public Builder ignoreMissing(@Nullable Boolean value) {
+		public final Builder ignoreMissing(@Nullable Boolean value) {
 			this.ignoreMissing = value;
 			return this;
 		}
@@ -263,7 +257,7 @@ public final class CsvProcessor extends ProcessorBase implements ProcessorVarian
 		/**
 		 * API name: {@code quote}
 		 */
-		public Builder quote(@Nullable String value) {
+		public final Builder quote(@Nullable String value) {
 			this.quote = value;
 			return this;
 		}
@@ -271,7 +265,7 @@ public final class CsvProcessor extends ProcessorBase implements ProcessorVarian
 		/**
 		 * API name: {@code separator}
 		 */
-		public Builder separator(@Nullable String value) {
+		public final Builder separator(@Nullable String value) {
 			this.separator = value;
 			return this;
 		}
@@ -279,7 +273,7 @@ public final class CsvProcessor extends ProcessorBase implements ProcessorVarian
 		/**
 		 * Required - API name: {@code target_fields}
 		 */
-		public Builder targetFields(List<String> value) {
+		public final Builder targetFields(List<String> value) {
 			this.targetFields = value;
 			return this;
 		}
@@ -287,26 +281,15 @@ public final class CsvProcessor extends ProcessorBase implements ProcessorVarian
 		/**
 		 * Required - API name: {@code target_fields}
 		 */
-		public Builder targetFields(String... value) {
+		public final Builder targetFields(String... value) {
 			this.targetFields = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #targetFields(List)}, creating the list if needed.
-		 */
-		public Builder addTargetFields(String value) {
-			if (this.targetFields == null) {
-				this.targetFields = new ArrayList<>();
-			}
-			this.targetFields.add(value);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code trim}
 		 */
-		public Builder trim(boolean value) {
+		public final Builder trim(boolean value) {
 			this.trim = value;
 			return this;
 		}
@@ -323,6 +306,7 @@ public final class CsvProcessor extends ProcessorBase implements ProcessorVarian
 		 *             if some of the required fields are null.
 		 */
 		public CsvProcessor build() {
+			_checkSingleUse();
 
 			return new CsvProcessor(this);
 		}

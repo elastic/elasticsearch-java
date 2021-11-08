@@ -29,6 +29,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -39,7 +40,7 @@ import javax.annotation.Nullable;
 
 // typedef: ingest._types.DissectProcessor
 @JsonpDeserializable
-public final class DissectProcessor extends ProcessorBase implements ProcessorVariant {
+public class DissectProcessor extends ProcessorBase implements ProcessorVariant {
 	private final String appendSeparator;
 
 	private final String field;
@@ -50,18 +51,18 @@ public final class DissectProcessor extends ProcessorBase implements ProcessorVa
 
 	// ---------------------------------------------------------------------------------------------
 
-	public DissectProcessor(Builder builder) {
+	private DissectProcessor(Builder builder) {
 		super(builder);
 
-		this.appendSeparator = Objects.requireNonNull(builder.appendSeparator, "append_separator");
-		this.field = Objects.requireNonNull(builder.field, "field");
-		this.ignoreMissing = Objects.requireNonNull(builder.ignoreMissing, "ignore_missing");
-		this.pattern = Objects.requireNonNull(builder.pattern, "pattern");
+		this.appendSeparator = ModelTypeHelper.requireNonNull(builder.appendSeparator, this, "appendSeparator");
+		this.field = ModelTypeHelper.requireNonNull(builder.field, this, "field");
+		this.ignoreMissing = ModelTypeHelper.requireNonNull(builder.ignoreMissing, this, "ignoreMissing");
+		this.pattern = ModelTypeHelper.requireNonNull(builder.pattern, this, "pattern");
 
 	}
 
-	public DissectProcessor(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static DissectProcessor of(Function<Builder, ObjectBuilder<DissectProcessor>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -75,35 +76,34 @@ public final class DissectProcessor extends ProcessorBase implements ProcessorVa
 	/**
 	 * Required - API name: {@code append_separator}
 	 */
-	public String appendSeparator() {
+	public final String appendSeparator() {
 		return this.appendSeparator;
 	}
 
 	/**
 	 * Required - API name: {@code field}
 	 */
-	public String field() {
+	public final String field() {
 		return this.field;
 	}
 
 	/**
 	 * Required - API name: {@code ignore_missing}
 	 */
-	public boolean ignoreMissing() {
+	public final boolean ignoreMissing() {
 		return this.ignoreMissing;
 	}
 
 	/**
 	 * Required - API name: {@code pattern}
 	 */
-	public String pattern() {
+	public final String pattern() {
 		return this.pattern;
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
-
 		generator.writeKey("append_separator");
 		generator.write(this.appendSeparator);
 
@@ -137,7 +137,7 @@ public final class DissectProcessor extends ProcessorBase implements ProcessorVa
 		/**
 		 * Required - API name: {@code append_separator}
 		 */
-		public Builder appendSeparator(String value) {
+		public final Builder appendSeparator(String value) {
 			this.appendSeparator = value;
 			return this;
 		}
@@ -145,7 +145,7 @@ public final class DissectProcessor extends ProcessorBase implements ProcessorVa
 		/**
 		 * Required - API name: {@code field}
 		 */
-		public Builder field(String value) {
+		public final Builder field(String value) {
 			this.field = value;
 			return this;
 		}
@@ -153,7 +153,7 @@ public final class DissectProcessor extends ProcessorBase implements ProcessorVa
 		/**
 		 * Required - API name: {@code ignore_missing}
 		 */
-		public Builder ignoreMissing(boolean value) {
+		public final Builder ignoreMissing(boolean value) {
 			this.ignoreMissing = value;
 			return this;
 		}
@@ -161,7 +161,7 @@ public final class DissectProcessor extends ProcessorBase implements ProcessorVa
 		/**
 		 * Required - API name: {@code pattern}
 		 */
-		public Builder pattern(String value) {
+		public final Builder pattern(String value) {
 			this.pattern = value;
 			return this;
 		}
@@ -178,6 +178,7 @@ public final class DissectProcessor extends ProcessorBase implements ProcessorVa
 		 *             if some of the required fields are null.
 		 */
 		public DissectProcessor build() {
+			_checkSingleUse();
 
 			return new DissectProcessor(this);
 		}

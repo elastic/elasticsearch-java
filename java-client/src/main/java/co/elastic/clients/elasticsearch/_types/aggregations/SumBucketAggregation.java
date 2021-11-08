@@ -35,16 +35,16 @@ import java.util.function.Function;
 
 // typedef: _types.aggregations.SumBucketAggregation
 @JsonpDeserializable
-public final class SumBucketAggregation extends PipelineAggregationBase implements AggregationVariant {
+public class SumBucketAggregation extends PipelineAggregationBase implements AggregationVariant {
 	// ---------------------------------------------------------------------------------------------
 
-	public SumBucketAggregation(Builder builder) {
+	private SumBucketAggregation(Builder builder) {
 		super(builder);
 
 	}
 
-	public SumBucketAggregation(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static SumBucketAggregation of(Function<Builder, ObjectBuilder<SumBucketAggregation>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -75,6 +75,7 @@ public final class SumBucketAggregation extends PipelineAggregationBase implemen
 		 *             if some of the required fields are null.
 		 */
 		public SumBucketAggregation build() {
+			_checkSingleUse();
 
 			return new SumBucketAggregation(this);
 		}

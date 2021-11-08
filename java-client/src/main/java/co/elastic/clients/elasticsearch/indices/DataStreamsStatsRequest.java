@@ -34,9 +34,9 @@ import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.SimpleEndpoint;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -48,8 +48,7 @@ import javax.annotation.Nullable;
 
 // typedef: indices.data_streams_stats.Request
 
-public final class DataStreamsStatsRequest extends RequestBase {
-	@Nullable
+public class DataStreamsStatsRequest extends RequestBase {
 	private final List<ExpandWildcardOptions> expandWildcards;
 
 	@Nullable
@@ -57,22 +56,21 @@ public final class DataStreamsStatsRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public DataStreamsStatsRequest(Builder builder) {
+	private DataStreamsStatsRequest(Builder builder) {
 
 		this.expandWildcards = ModelTypeHelper.unmodifiable(builder.expandWildcards);
 		this.name = builder.name;
 
 	}
 
-	public DataStreamsStatsRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static DataStreamsStatsRequest of(Function<Builder, ObjectBuilder<DataStreamsStatsRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * API name: {@code expand_wildcards}
 	 */
-	@Nullable
-	public List<ExpandWildcardOptions> expandWildcards() {
+	public final List<ExpandWildcardOptions> expandWildcards() {
 		return this.expandWildcards;
 	}
 
@@ -83,7 +81,7 @@ public final class DataStreamsStatsRequest extends RequestBase {
 	 * API name: {@code name}
 	 */
 	@Nullable
-	public String name() {
+	public final String name() {
 		return this.name;
 	}
 
@@ -92,7 +90,7 @@ public final class DataStreamsStatsRequest extends RequestBase {
 	/**
 	 * Builder for {@link DataStreamsStatsRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<DataStreamsStatsRequest> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DataStreamsStatsRequest> {
 		@Nullable
 		private List<ExpandWildcardOptions> expandWildcards;
 
@@ -102,7 +100,7 @@ public final class DataStreamsStatsRequest extends RequestBase {
 		/**
 		 * API name: {@code expand_wildcards}
 		 */
-		public Builder expandWildcards(@Nullable List<ExpandWildcardOptions> value) {
+		public final Builder expandWildcards(@Nullable List<ExpandWildcardOptions> value) {
 			this.expandWildcards = value;
 			return this;
 		}
@@ -110,19 +108,8 @@ public final class DataStreamsStatsRequest extends RequestBase {
 		/**
 		 * API name: {@code expand_wildcards}
 		 */
-		public Builder expandWildcards(ExpandWildcardOptions... value) {
+		public final Builder expandWildcards(ExpandWildcardOptions... value) {
 			this.expandWildcards = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #expandWildcards(List)}, creating the list if needed.
-		 */
-		public Builder addExpandWildcards(ExpandWildcardOptions value) {
-			if (this.expandWildcards == null) {
-				this.expandWildcards = new ArrayList<>();
-			}
-			this.expandWildcards.add(value);
 			return this;
 		}
 
@@ -132,7 +119,7 @@ public final class DataStreamsStatsRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code name}
 		 */
-		public Builder name(@Nullable String value) {
+		public final Builder name(@Nullable String value) {
 			this.name = value;
 			return this;
 		}
@@ -144,6 +131,7 @@ public final class DataStreamsStatsRequest extends RequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public DataStreamsStatsRequest build() {
+			_checkSingleUse();
 
 			return new DataStreamsStatsRequest(this);
 		}
@@ -191,9 +179,9 @@ public final class DataStreamsStatsRequest extends RequestBase {
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
-				if (request.expandWildcards != null) {
+				if (ModelTypeHelper.isDefined(request.expandWildcards)) {
 					params.put("expand_wildcards",
-							request.expandWildcards.stream().map(v -> v.toString()).collect(Collectors.joining(",")));
+							request.expandWildcards.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")));
 				}
 				return params;
 

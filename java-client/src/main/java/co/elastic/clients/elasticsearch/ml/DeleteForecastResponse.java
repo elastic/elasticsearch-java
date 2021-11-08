@@ -36,16 +36,16 @@ import java.util.function.Function;
 
 // typedef: ml.delete_forecast.Response
 @JsonpDeserializable
-public final class DeleteForecastResponse extends AcknowledgedResponseBase {
+public class DeleteForecastResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
-	public DeleteForecastResponse(Builder builder) {
+	private DeleteForecastResponse(Builder builder) {
 		super(builder);
 
 	}
 
-	public DeleteForecastResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static DeleteForecastResponse of(Function<Builder, ObjectBuilder<DeleteForecastResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -68,6 +68,7 @@ public final class DeleteForecastResponse extends AcknowledgedResponseBase {
 		 *             if some of the required fields are null.
 		 */
 		public DeleteForecastResponse build() {
+			_checkSingleUse();
 
 			return new DeleteForecastResponse(this);
 		}

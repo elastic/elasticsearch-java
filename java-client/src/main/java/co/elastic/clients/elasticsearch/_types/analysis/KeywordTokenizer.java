@@ -29,6 +29,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
@@ -37,20 +38,20 @@ import java.util.function.Function;
 
 // typedef: _types.analysis.KeywordTokenizer
 @JsonpDeserializable
-public final class KeywordTokenizer extends TokenizerBase implements TokenizerVariant {
+public class KeywordTokenizer extends TokenizerBase implements TokenizerVariant {
 	private final int bufferSize;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public KeywordTokenizer(Builder builder) {
+	private KeywordTokenizer(Builder builder) {
 		super(builder);
 
-		this.bufferSize = Objects.requireNonNull(builder.bufferSize, "buffer_size");
+		this.bufferSize = ModelTypeHelper.requireNonNull(builder.bufferSize, this, "bufferSize");
 
 	}
 
-	public KeywordTokenizer(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static KeywordTokenizer of(Function<Builder, ObjectBuilder<KeywordTokenizer>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -64,7 +65,7 @@ public final class KeywordTokenizer extends TokenizerBase implements TokenizerVa
 	/**
 	 * Required - API name: {@code buffer_size}
 	 */
-	public int bufferSize() {
+	public final int bufferSize() {
 		return this.bufferSize;
 	}
 
@@ -72,7 +73,6 @@ public final class KeywordTokenizer extends TokenizerBase implements TokenizerVa
 
 		generator.write("type", "keyword");
 		super.serializeInternal(generator, mapper);
-
 		generator.writeKey("buffer_size");
 		generator.write(this.bufferSize);
 
@@ -91,7 +91,7 @@ public final class KeywordTokenizer extends TokenizerBase implements TokenizerVa
 		/**
 		 * Required - API name: {@code buffer_size}
 		 */
-		public Builder bufferSize(int value) {
+		public final Builder bufferSize(int value) {
 			this.bufferSize = value;
 			return this;
 		}
@@ -108,6 +108,7 @@ public final class KeywordTokenizer extends TokenizerBase implements TokenizerVa
 		 *             if some of the required fields are null.
 		 */
 		public KeywordTokenizer build() {
+			_checkSingleUse();
 
 			return new KeywordTokenizer(this);
 		}

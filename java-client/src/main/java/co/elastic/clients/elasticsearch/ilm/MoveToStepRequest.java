@@ -35,7 +35,9 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.SimpleEndpoint;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
@@ -45,7 +47,7 @@ import javax.annotation.Nullable;
 
 // typedef: ilm.move_to_step.Request
 @JsonpDeserializable
-public final class MoveToStepRequest extends RequestBase implements JsonpSerializable {
+public class MoveToStepRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
 	private final StepKey currentStep;
 
@@ -56,23 +58,23 @@ public final class MoveToStepRequest extends RequestBase implements JsonpSeriali
 
 	// ---------------------------------------------------------------------------------------------
 
-	public MoveToStepRequest(Builder builder) {
+	private MoveToStepRequest(Builder builder) {
 
 		this.currentStep = builder.currentStep;
-		this.index = Objects.requireNonNull(builder.index, "index");
+		this.index = ModelTypeHelper.requireNonNull(builder.index, this, "index");
 		this.nextStep = builder.nextStep;
 
 	}
 
-	public MoveToStepRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static MoveToStepRequest of(Function<Builder, ObjectBuilder<MoveToStepRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * API name: {@code current_step}
 	 */
 	@Nullable
-	public StepKey currentStep() {
+	public final StepKey currentStep() {
 		return this.currentStep;
 	}
 
@@ -81,7 +83,7 @@ public final class MoveToStepRequest extends RequestBase implements JsonpSeriali
 	 * <p>
 	 * API name: {@code index}
 	 */
-	public String index() {
+	public final String index() {
 		return this.index;
 	}
 
@@ -89,7 +91,7 @@ public final class MoveToStepRequest extends RequestBase implements JsonpSeriali
 	 * API name: {@code next_step}
 	 */
 	@Nullable
-	public StepKey nextStep() {
+	public final StepKey nextStep() {
 		return this.nextStep;
 	}
 
@@ -105,13 +107,11 @@ public final class MoveToStepRequest extends RequestBase implements JsonpSeriali
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.currentStep != null) {
-
 			generator.writeKey("current_step");
 			this.currentStep.serialize(generator, mapper);
 
 		}
 		if (this.nextStep != null) {
-
 			generator.writeKey("next_step");
 			this.nextStep.serialize(generator, mapper);
 
@@ -124,7 +124,7 @@ public final class MoveToStepRequest extends RequestBase implements JsonpSeriali
 	/**
 	 * Builder for {@link MoveToStepRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<MoveToStepRequest> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<MoveToStepRequest> {
 		@Nullable
 		private StepKey currentStep;
 
@@ -136,7 +136,7 @@ public final class MoveToStepRequest extends RequestBase implements JsonpSeriali
 		/**
 		 * API name: {@code current_step}
 		 */
-		public Builder currentStep(@Nullable StepKey value) {
+		public final Builder currentStep(@Nullable StepKey value) {
 			this.currentStep = value;
 			return this;
 		}
@@ -144,7 +144,7 @@ public final class MoveToStepRequest extends RequestBase implements JsonpSeriali
 		/**
 		 * API name: {@code current_step}
 		 */
-		public Builder currentStep(Function<StepKey.Builder, ObjectBuilder<StepKey>> fn) {
+		public final Builder currentStep(Function<StepKey.Builder, ObjectBuilder<StepKey>> fn) {
 			return this.currentStep(fn.apply(new StepKey.Builder()).build());
 		}
 
@@ -153,7 +153,7 @@ public final class MoveToStepRequest extends RequestBase implements JsonpSeriali
 		 * <p>
 		 * API name: {@code index}
 		 */
-		public Builder index(String value) {
+		public final Builder index(String value) {
 			this.index = value;
 			return this;
 		}
@@ -161,7 +161,7 @@ public final class MoveToStepRequest extends RequestBase implements JsonpSeriali
 		/**
 		 * API name: {@code next_step}
 		 */
-		public Builder nextStep(@Nullable StepKey value) {
+		public final Builder nextStep(@Nullable StepKey value) {
 			this.nextStep = value;
 			return this;
 		}
@@ -169,7 +169,7 @@ public final class MoveToStepRequest extends RequestBase implements JsonpSeriali
 		/**
 		 * API name: {@code next_step}
 		 */
-		public Builder nextStep(Function<StepKey.Builder, ObjectBuilder<StepKey>> fn) {
+		public final Builder nextStep(Function<StepKey.Builder, ObjectBuilder<StepKey>> fn) {
 			return this.nextStep(fn.apply(new StepKey.Builder()).build());
 		}
 
@@ -180,6 +180,7 @@ public final class MoveToStepRequest extends RequestBase implements JsonpSeriali
 		 *             if some of the required fields are null.
 		 */
 		public MoveToStepRequest build() {
+			_checkSingleUse();
 
 			return new MoveToStepRequest(this);
 		}

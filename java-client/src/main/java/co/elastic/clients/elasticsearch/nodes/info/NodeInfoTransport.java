@@ -32,11 +32,10 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -45,7 +44,7 @@ import javax.annotation.Nullable;
 
 // typedef: nodes.info.NodeInfoTransport
 @JsonpDeserializable
-public final class NodeInfoTransport implements JsonpSerializable {
+public class NodeInfoTransport implements JsonpSerializable {
 	private final List<String> boundAddress;
 
 	private final String publishAddress;
@@ -54,36 +53,36 @@ public final class NodeInfoTransport implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public NodeInfoTransport(Builder builder) {
+	private NodeInfoTransport(Builder builder) {
 
-		this.boundAddress = ModelTypeHelper.unmodifiableNonNull(builder.boundAddress, "bound_address");
-		this.publishAddress = Objects.requireNonNull(builder.publishAddress, "publish_address");
-		this.profiles = ModelTypeHelper.unmodifiableNonNull(builder.profiles, "profiles");
+		this.boundAddress = ModelTypeHelper.unmodifiableRequired(builder.boundAddress, this, "boundAddress");
+		this.publishAddress = ModelTypeHelper.requireNonNull(builder.publishAddress, this, "publishAddress");
+		this.profiles = ModelTypeHelper.unmodifiableRequired(builder.profiles, this, "profiles");
 
 	}
 
-	public NodeInfoTransport(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static NodeInfoTransport of(Function<Builder, ObjectBuilder<NodeInfoTransport>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code bound_address}
 	 */
-	public List<String> boundAddress() {
+	public final List<String> boundAddress() {
 		return this.boundAddress;
 	}
 
 	/**
 	 * Required - API name: {@code publish_address}
 	 */
-	public String publishAddress() {
+	public final String publishAddress() {
 		return this.publishAddress;
 	}
 
 	/**
 	 * Required - API name: {@code profiles}
 	 */
-	public Map<String, String> profiles() {
+	public final Map<String, String> profiles() {
 		return this.profiles;
 	}
 
@@ -98,25 +97,30 @@ public final class NodeInfoTransport implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("bound_address");
-		generator.writeStartArray();
-		for (String item0 : this.boundAddress) {
-			generator.write(item0);
+		if (ModelTypeHelper.isDefined(this.boundAddress)) {
+			generator.writeKey("bound_address");
+			generator.writeStartArray();
+			for (String item0 : this.boundAddress) {
+				generator.write(item0);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
-
 		generator.writeKey("publish_address");
 		generator.write(this.publishAddress);
 
-		generator.writeKey("profiles");
-		generator.writeStartObject();
-		for (Map.Entry<String, String> item0 : this.profiles.entrySet()) {
-			generator.writeKey(item0.getKey());
-			generator.write(item0.getValue());
+		if (ModelTypeHelper.isDefined(this.profiles)) {
+			generator.writeKey("profiles");
+			generator.writeStartObject();
+			for (Map.Entry<String, String> item0 : this.profiles.entrySet()) {
+				generator.writeKey(item0.getKey());
+				generator.write(item0.getValue());
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
 
 	}
 
@@ -125,7 +129,7 @@ public final class NodeInfoTransport implements JsonpSerializable {
 	/**
 	 * Builder for {@link NodeInfoTransport}.
 	 */
-	public static class Builder implements ObjectBuilder<NodeInfoTransport> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodeInfoTransport> {
 		private List<String> boundAddress;
 
 		private String publishAddress;
@@ -135,7 +139,7 @@ public final class NodeInfoTransport implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code bound_address}
 		 */
-		public Builder boundAddress(List<String> value) {
+		public final Builder boundAddress(List<String> value) {
 			this.boundAddress = value;
 			return this;
 		}
@@ -143,26 +147,15 @@ public final class NodeInfoTransport implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code bound_address}
 		 */
-		public Builder boundAddress(String... value) {
+		public final Builder boundAddress(String... value) {
 			this.boundAddress = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #boundAddress(List)}, creating the list if needed.
-		 */
-		public Builder addBoundAddress(String value) {
-			if (this.boundAddress == null) {
-				this.boundAddress = new ArrayList<>();
-			}
-			this.boundAddress.add(value);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code publish_address}
 		 */
-		public Builder publishAddress(String value) {
+		public final Builder publishAddress(String value) {
 			this.publishAddress = value;
 			return this;
 		}
@@ -170,19 +163,8 @@ public final class NodeInfoTransport implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code profiles}
 		 */
-		public Builder profiles(Map<String, String> value) {
+		public final Builder profiles(Map<String, String> value) {
 			this.profiles = value;
-			return this;
-		}
-
-		/**
-		 * Add a key/value to {@link #profiles(Map)}, creating the map if needed.
-		 */
-		public Builder putProfiles(String key, String value) {
-			if (this.profiles == null) {
-				this.profiles = new HashMap<>();
-			}
-			this.profiles.put(key, value);
 			return this;
 		}
 
@@ -193,6 +175,7 @@ public final class NodeInfoTransport implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public NodeInfoTransport build() {
+			_checkSingleUse();
 
 			return new NodeInfoTransport(this);
 		}

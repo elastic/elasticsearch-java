@@ -31,7 +31,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.util.Objects;
@@ -40,35 +42,35 @@ import javax.annotation.Nullable;
 
 // typedef: text_structure.find_structure.TopHit
 @JsonpDeserializable
-public final class TopHit implements JsonpSerializable {
+public class TopHit implements JsonpSerializable {
 	private final long count;
 
 	private final JsonData value;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public TopHit(Builder builder) {
+	private TopHit(Builder builder) {
 
-		this.count = Objects.requireNonNull(builder.count, "count");
-		this.value = Objects.requireNonNull(builder.value, "value");
+		this.count = ModelTypeHelper.requireNonNull(builder.count, this, "count");
+		this.value = ModelTypeHelper.requireNonNull(builder.value, this, "value");
 
 	}
 
-	public TopHit(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static TopHit of(Function<Builder, ObjectBuilder<TopHit>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code count}
 	 */
-	public long count() {
+	public final long count() {
 		return this.count;
 	}
 
 	/**
 	 * Required - API name: {@code value}
 	 */
-	public JsonData value() {
+	public final JsonData value() {
 		return this.value;
 	}
 
@@ -96,7 +98,7 @@ public final class TopHit implements JsonpSerializable {
 	/**
 	 * Builder for {@link TopHit}.
 	 */
-	public static class Builder implements ObjectBuilder<TopHit> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TopHit> {
 		private Long count;
 
 		private JsonData value;
@@ -104,7 +106,7 @@ public final class TopHit implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code count}
 		 */
-		public Builder count(long value) {
+		public final Builder count(long value) {
 			this.count = value;
 			return this;
 		}
@@ -112,7 +114,7 @@ public final class TopHit implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code value}
 		 */
-		public Builder value(JsonData value) {
+		public final Builder value(JsonData value) {
 			this.value = value;
 			return this;
 		}
@@ -124,6 +126,7 @@ public final class TopHit implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public TopHit build() {
+			_checkSingleUse();
 
 			return new TopHit(this);
 		}

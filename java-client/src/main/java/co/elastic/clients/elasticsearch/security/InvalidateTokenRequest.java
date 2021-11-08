@@ -35,6 +35,7 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.SimpleEndpoint;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
@@ -44,7 +45,7 @@ import javax.annotation.Nullable;
 
 // typedef: security.invalidate_token.Request
 @JsonpDeserializable
-public final class InvalidateTokenRequest extends RequestBase implements JsonpSerializable {
+public class InvalidateTokenRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
 	private final String realmName;
 
@@ -59,7 +60,7 @@ public final class InvalidateTokenRequest extends RequestBase implements JsonpSe
 
 	// ---------------------------------------------------------------------------------------------
 
-	public InvalidateTokenRequest(Builder builder) {
+	private InvalidateTokenRequest(Builder builder) {
 
 		this.realmName = builder.realmName;
 		this.refreshToken = builder.refreshToken;
@@ -68,15 +69,15 @@ public final class InvalidateTokenRequest extends RequestBase implements JsonpSe
 
 	}
 
-	public InvalidateTokenRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static InvalidateTokenRequest of(Function<Builder, ObjectBuilder<InvalidateTokenRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * API name: {@code realm_name}
 	 */
 	@Nullable
-	public String realmName() {
+	public final String realmName() {
 		return this.realmName;
 	}
 
@@ -84,7 +85,7 @@ public final class InvalidateTokenRequest extends RequestBase implements JsonpSe
 	 * API name: {@code refresh_token}
 	 */
 	@Nullable
-	public String refreshToken() {
+	public final String refreshToken() {
 		return this.refreshToken;
 	}
 
@@ -92,7 +93,7 @@ public final class InvalidateTokenRequest extends RequestBase implements JsonpSe
 	 * API name: {@code token}
 	 */
 	@Nullable
-	public String token() {
+	public final String token() {
 		return this.token;
 	}
 
@@ -100,7 +101,7 @@ public final class InvalidateTokenRequest extends RequestBase implements JsonpSe
 	 * API name: {@code username}
 	 */
 	@Nullable
-	public String username() {
+	public final String username() {
 		return this.username;
 	}
 
@@ -116,25 +117,21 @@ public final class InvalidateTokenRequest extends RequestBase implements JsonpSe
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.realmName != null) {
-
 			generator.writeKey("realm_name");
 			generator.write(this.realmName);
 
 		}
 		if (this.refreshToken != null) {
-
 			generator.writeKey("refresh_token");
 			generator.write(this.refreshToken);
 
 		}
 		if (this.token != null) {
-
 			generator.writeKey("token");
 			generator.write(this.token);
 
 		}
 		if (this.username != null) {
-
 			generator.writeKey("username");
 			generator.write(this.username);
 
@@ -147,7 +144,7 @@ public final class InvalidateTokenRequest extends RequestBase implements JsonpSe
 	/**
 	 * Builder for {@link InvalidateTokenRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<InvalidateTokenRequest> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<InvalidateTokenRequest> {
 		@Nullable
 		private String realmName;
 
@@ -163,7 +160,7 @@ public final class InvalidateTokenRequest extends RequestBase implements JsonpSe
 		/**
 		 * API name: {@code realm_name}
 		 */
-		public Builder realmName(@Nullable String value) {
+		public final Builder realmName(@Nullable String value) {
 			this.realmName = value;
 			return this;
 		}
@@ -171,7 +168,7 @@ public final class InvalidateTokenRequest extends RequestBase implements JsonpSe
 		/**
 		 * API name: {@code refresh_token}
 		 */
-		public Builder refreshToken(@Nullable String value) {
+		public final Builder refreshToken(@Nullable String value) {
 			this.refreshToken = value;
 			return this;
 		}
@@ -179,7 +176,7 @@ public final class InvalidateTokenRequest extends RequestBase implements JsonpSe
 		/**
 		 * API name: {@code token}
 		 */
-		public Builder token(@Nullable String value) {
+		public final Builder token(@Nullable String value) {
 			this.token = value;
 			return this;
 		}
@@ -187,7 +184,7 @@ public final class InvalidateTokenRequest extends RequestBase implements JsonpSe
 		/**
 		 * API name: {@code username}
 		 */
-		public Builder username(@Nullable String value) {
+		public final Builder username(@Nullable String value) {
 			this.username = value;
 			return this;
 		}
@@ -199,6 +196,7 @@ public final class InvalidateTokenRequest extends RequestBase implements JsonpSe
 		 *             if some of the required fields are null.
 		 */
 		public InvalidateTokenRequest build() {
+			_checkSingleUse();
 
 			return new InvalidateTokenRequest(this);
 		}

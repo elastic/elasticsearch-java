@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.Objects;
@@ -39,7 +41,7 @@ import javax.annotation.Nullable;
 
 // typedef: watcher._types.ExecutionResultCondition
 @JsonpDeserializable
-public final class ExecutionResultCondition implements JsonpSerializable {
+public class ExecutionResultCondition implements JsonpSerializable {
 	private final boolean met;
 
 	private final ActionStatusOptions status;
@@ -48,36 +50,36 @@ public final class ExecutionResultCondition implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public ExecutionResultCondition(Builder builder) {
+	private ExecutionResultCondition(Builder builder) {
 
-		this.met = Objects.requireNonNull(builder.met, "met");
-		this.status = Objects.requireNonNull(builder.status, "status");
-		this.type = Objects.requireNonNull(builder.type, "type");
+		this.met = ModelTypeHelper.requireNonNull(builder.met, this, "met");
+		this.status = ModelTypeHelper.requireNonNull(builder.status, this, "status");
+		this.type = ModelTypeHelper.requireNonNull(builder.type, this, "type");
 
 	}
 
-	public ExecutionResultCondition(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ExecutionResultCondition of(Function<Builder, ObjectBuilder<ExecutionResultCondition>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code met}
 	 */
-	public boolean met() {
+	public final boolean met() {
 		return this.met;
 	}
 
 	/**
 	 * Required - API name: {@code status}
 	 */
-	public ActionStatusOptions status() {
+	public final ActionStatusOptions status() {
 		return this.status;
 	}
 
 	/**
 	 * Required - API name: {@code type}
 	 */
-	public ConditionType type() {
+	public final ConditionType type() {
 		return this.type;
 	}
 
@@ -97,7 +99,6 @@ public final class ExecutionResultCondition implements JsonpSerializable {
 
 		generator.writeKey("status");
 		this.status.serialize(generator, mapper);
-
 		generator.writeKey("type");
 		this.type.serialize(generator, mapper);
 
@@ -108,7 +109,7 @@ public final class ExecutionResultCondition implements JsonpSerializable {
 	/**
 	 * Builder for {@link ExecutionResultCondition}.
 	 */
-	public static class Builder implements ObjectBuilder<ExecutionResultCondition> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ExecutionResultCondition> {
 		private Boolean met;
 
 		private ActionStatusOptions status;
@@ -118,7 +119,7 @@ public final class ExecutionResultCondition implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code met}
 		 */
-		public Builder met(boolean value) {
+		public final Builder met(boolean value) {
 			this.met = value;
 			return this;
 		}
@@ -126,7 +127,7 @@ public final class ExecutionResultCondition implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code status}
 		 */
-		public Builder status(ActionStatusOptions value) {
+		public final Builder status(ActionStatusOptions value) {
 			this.status = value;
 			return this;
 		}
@@ -134,7 +135,7 @@ public final class ExecutionResultCondition implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code type}
 		 */
-		public Builder type(ConditionType value) {
+		public final Builder type(ConditionType value) {
 			this.type = value;
 			return this;
 		}
@@ -146,6 +147,7 @@ public final class ExecutionResultCondition implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public ExecutionResultCondition build() {
+			_checkSingleUse();
 
 			return new ExecutionResultCondition(this);
 		}

@@ -36,6 +36,7 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.SimpleEndpoint;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -47,7 +48,7 @@ import javax.annotation.Nullable;
 
 // typedef: security.change_password.Request
 @JsonpDeserializable
-public final class ChangePasswordRequest extends RequestBase implements JsonpSerializable {
+public class ChangePasswordRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
 	private final String password;
 
@@ -59,7 +60,7 @@ public final class ChangePasswordRequest extends RequestBase implements JsonpSer
 
 	// ---------------------------------------------------------------------------------------------
 
-	public ChangePasswordRequest(Builder builder) {
+	private ChangePasswordRequest(Builder builder) {
 
 		this.password = builder.password;
 		this.refresh = builder.refresh;
@@ -67,15 +68,15 @@ public final class ChangePasswordRequest extends RequestBase implements JsonpSer
 
 	}
 
-	public ChangePasswordRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ChangePasswordRequest of(Function<Builder, ObjectBuilder<ChangePasswordRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * API name: {@code password}
 	 */
 	@Nullable
-	public String password() {
+	public final String password() {
 		return this.password;
 	}
 
@@ -88,7 +89,7 @@ public final class ChangePasswordRequest extends RequestBase implements JsonpSer
 	 * API name: {@code refresh}
 	 */
 	@Nullable
-	public JsonValue /* _types.Refresh */ refresh() {
+	public final JsonValue /* _types.Refresh */ refresh() {
 		return this.refresh;
 	}
 
@@ -98,7 +99,7 @@ public final class ChangePasswordRequest extends RequestBase implements JsonpSer
 	 * API name: {@code username}
 	 */
 	@Nullable
-	public String username() {
+	public final String username() {
 		return this.username;
 	}
 
@@ -114,7 +115,6 @@ public final class ChangePasswordRequest extends RequestBase implements JsonpSer
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.password != null) {
-
 			generator.writeKey("password");
 			generator.write(this.password);
 
@@ -127,7 +127,7 @@ public final class ChangePasswordRequest extends RequestBase implements JsonpSer
 	/**
 	 * Builder for {@link ChangePasswordRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<ChangePasswordRequest> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ChangePasswordRequest> {
 		@Nullable
 		private String password;
 
@@ -140,7 +140,7 @@ public final class ChangePasswordRequest extends RequestBase implements JsonpSer
 		/**
 		 * API name: {@code password}
 		 */
-		public Builder password(@Nullable String value) {
+		public final Builder password(@Nullable String value) {
 			this.password = value;
 			return this;
 		}
@@ -153,7 +153,7 @@ public final class ChangePasswordRequest extends RequestBase implements JsonpSer
 		 * <p>
 		 * API name: {@code refresh}
 		 */
-		public Builder refresh(@Nullable JsonValue /* _types.Refresh */ value) {
+		public final Builder refresh(@Nullable JsonValue /* _types.Refresh */ value) {
 			this.refresh = value;
 			return this;
 		}
@@ -163,7 +163,7 @@ public final class ChangePasswordRequest extends RequestBase implements JsonpSer
 		 * <p>
 		 * API name: {@code username}
 		 */
-		public Builder username(@Nullable String value) {
+		public final Builder username(@Nullable String value) {
 			this.username = value;
 			return this;
 		}
@@ -175,6 +175,7 @@ public final class ChangePasswordRequest extends RequestBase implements JsonpSer
 		 *             if some of the required fields are null.
 		 */
 		public ChangePasswordRequest build() {
+			_checkSingleUse();
 
 			return new ChangePasswordRequest(this);
 		}

@@ -34,7 +34,6 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
@@ -43,7 +42,7 @@ import javax.annotation.Nullable;
 
 // typedef: ingest._types.RemoveProcessor
 @JsonpDeserializable
-public final class RemoveProcessor extends ProcessorBase implements ProcessorVariant {
+public class RemoveProcessor extends ProcessorBase implements ProcessorVariant {
 	private final List<String> field;
 
 	@Nullable
@@ -51,16 +50,16 @@ public final class RemoveProcessor extends ProcessorBase implements ProcessorVar
 
 	// ---------------------------------------------------------------------------------------------
 
-	public RemoveProcessor(Builder builder) {
+	private RemoveProcessor(Builder builder) {
 		super(builder);
 
-		this.field = ModelTypeHelper.unmodifiableNonNull(builder.field, "field");
+		this.field = ModelTypeHelper.unmodifiableRequired(builder.field, this, "field");
 		this.ignoreMissing = builder.ignoreMissing;
 
 	}
 
-	public RemoveProcessor(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static RemoveProcessor of(Function<Builder, ObjectBuilder<RemoveProcessor>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -74,7 +73,7 @@ public final class RemoveProcessor extends ProcessorBase implements ProcessorVar
 	/**
 	 * Required - API name: {@code field}
 	 */
-	public List<String> field() {
+	public final List<String> field() {
 		return this.field;
 	}
 
@@ -82,24 +81,24 @@ public final class RemoveProcessor extends ProcessorBase implements ProcessorVar
 	 * API name: {@code ignore_missing}
 	 */
 	@Nullable
-	public Boolean ignoreMissing() {
+	public final Boolean ignoreMissing() {
 		return this.ignoreMissing;
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
+		if (ModelTypeHelper.isDefined(this.field)) {
+			generator.writeKey("field");
+			generator.writeStartArray();
+			for (String item0 : this.field) {
+				generator.write(item0);
 
-		generator.writeKey("field");
-		generator.writeStartArray();
-		for (String item0 : this.field) {
-			generator.write(item0);
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
-
 		if (this.ignoreMissing != null) {
-
 			generator.writeKey("ignore_missing");
 			generator.write(this.ignoreMissing);
 
@@ -123,7 +122,7 @@ public final class RemoveProcessor extends ProcessorBase implements ProcessorVar
 		/**
 		 * Required - API name: {@code field}
 		 */
-		public Builder field(List<String> value) {
+		public final Builder field(List<String> value) {
 			this.field = value;
 			return this;
 		}
@@ -131,26 +130,15 @@ public final class RemoveProcessor extends ProcessorBase implements ProcessorVar
 		/**
 		 * Required - API name: {@code field}
 		 */
-		public Builder field(String... value) {
+		public final Builder field(String... value) {
 			this.field = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #field(List)}, creating the list if needed.
-		 */
-		public Builder addField(String value) {
-			if (this.field == null) {
-				this.field = new ArrayList<>();
-			}
-			this.field.add(value);
 			return this;
 		}
 
 		/**
 		 * API name: {@code ignore_missing}
 		 */
-		public Builder ignoreMissing(@Nullable Boolean value) {
+		public final Builder ignoreMissing(@Nullable Boolean value) {
 			this.ignoreMissing = value;
 			return this;
 		}
@@ -167,6 +155,7 @@ public final class RemoveProcessor extends ProcessorBase implements ProcessorVar
 		 *             if some of the required fields are null.
 		 */
 		public RemoveProcessor build() {
+			_checkSingleUse();
 
 			return new RemoveProcessor(this);
 		}

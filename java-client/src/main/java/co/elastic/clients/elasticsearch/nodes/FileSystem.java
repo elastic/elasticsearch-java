@@ -32,6 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.util.ArrayList;
@@ -43,7 +44,7 @@ import javax.annotation.Nullable;
 
 // typedef: nodes._types.FileSystem
 @JsonpDeserializable
-public final class FileSystem implements JsonpSerializable {
+public class FileSystem implements JsonpSerializable {
 	private final List<DataPathStats> data;
 
 	private final long timestamp;
@@ -52,36 +53,36 @@ public final class FileSystem implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public FileSystem(Builder builder) {
+	private FileSystem(Builder builder) {
 
-		this.data = ModelTypeHelper.unmodifiableNonNull(builder.data, "data");
-		this.timestamp = Objects.requireNonNull(builder.timestamp, "timestamp");
-		this.total = Objects.requireNonNull(builder.total, "total");
+		this.data = ModelTypeHelper.unmodifiableRequired(builder.data, this, "data");
+		this.timestamp = ModelTypeHelper.requireNonNull(builder.timestamp, this, "timestamp");
+		this.total = ModelTypeHelper.requireNonNull(builder.total, this, "total");
 
 	}
 
-	public FileSystem(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static FileSystem of(Function<Builder, ObjectBuilder<FileSystem>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code data}
 	 */
-	public List<DataPathStats> data() {
+	public final List<DataPathStats> data() {
 		return this.data;
 	}
 
 	/**
 	 * Required - API name: {@code timestamp}
 	 */
-	public long timestamp() {
+	public final long timestamp() {
 		return this.timestamp;
 	}
 
 	/**
 	 * Required - API name: {@code total}
 	 */
-	public FileSystemTotal total() {
+	public final FileSystemTotal total() {
 		return this.total;
 	}
 
@@ -96,14 +97,16 @@ public final class FileSystem implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("data");
-		generator.writeStartArray();
-		for (DataPathStats item0 : this.data) {
-			item0.serialize(generator, mapper);
+		if (ModelTypeHelper.isDefined(this.data)) {
+			generator.writeKey("data");
+			generator.writeStartArray();
+			for (DataPathStats item0 : this.data) {
+				item0.serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
-
 		generator.writeKey("timestamp");
 		generator.write(this.timestamp);
 
@@ -117,7 +120,7 @@ public final class FileSystem implements JsonpSerializable {
 	/**
 	 * Builder for {@link FileSystem}.
 	 */
-	public static class Builder implements ObjectBuilder<FileSystem> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<FileSystem> {
 		private List<DataPathStats> data;
 
 		private Long timestamp;
@@ -127,7 +130,7 @@ public final class FileSystem implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code data}
 		 */
-		public Builder data(List<DataPathStats> value) {
+		public final Builder data(List<DataPathStats> value) {
 			this.data = value;
 			return this;
 		}
@@ -135,40 +138,27 @@ public final class FileSystem implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code data}
 		 */
-		public Builder data(DataPathStats... value) {
+		public final Builder data(DataPathStats... value) {
 			this.data = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #data(List)}, creating the list if needed.
+		 * Required - API name: {@code data}
 		 */
-		public Builder addData(DataPathStats value) {
-			if (this.data == null) {
-				this.data = new ArrayList<>();
+		@SafeVarargs
+		public final Builder data(Function<DataPathStats.Builder, ObjectBuilder<DataPathStats>>... fns) {
+			this.data = new ArrayList<>(fns.length);
+			for (Function<DataPathStats.Builder, ObjectBuilder<DataPathStats>> fn : fns) {
+				this.data.add(fn.apply(new DataPathStats.Builder()).build());
 			}
-			this.data.add(value);
 			return this;
-		}
-
-		/**
-		 * Set {@link #data(List)} to a singleton list.
-		 */
-		public Builder data(Function<DataPathStats.Builder, ObjectBuilder<DataPathStats>> fn) {
-			return this.data(fn.apply(new DataPathStats.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #data(List)}, creating the list if needed.
-		 */
-		public Builder addData(Function<DataPathStats.Builder, ObjectBuilder<DataPathStats>> fn) {
-			return this.addData(fn.apply(new DataPathStats.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code timestamp}
 		 */
-		public Builder timestamp(long value) {
+		public final Builder timestamp(long value) {
 			this.timestamp = value;
 			return this;
 		}
@@ -176,7 +166,7 @@ public final class FileSystem implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code total}
 		 */
-		public Builder total(FileSystemTotal value) {
+		public final Builder total(FileSystemTotal value) {
 			this.total = value;
 			return this;
 		}
@@ -184,7 +174,7 @@ public final class FileSystem implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code total}
 		 */
-		public Builder total(Function<FileSystemTotal.Builder, ObjectBuilder<FileSystemTotal>> fn) {
+		public final Builder total(Function<FileSystemTotal.Builder, ObjectBuilder<FileSystemTotal>> fn) {
 			return this.total(fn.apply(new FileSystemTotal.Builder()).build());
 		}
 
@@ -195,6 +185,7 @@ public final class FileSystem implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public FileSystem build() {
+			_checkSingleUse();
 
 			return new FileSystem(this);
 		}

@@ -33,9 +33,9 @@ import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.SimpleEndpoint;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -46,20 +46,19 @@ import javax.annotation.Nullable;
 
 // typedef: slm.get_lifecycle.Request
 
-public final class GetLifecycleRequest extends RequestBase {
-	@Nullable
+public class GetLifecycleRequest extends RequestBase {
 	private final List<String> policyId;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public GetLifecycleRequest(Builder builder) {
+	private GetLifecycleRequest(Builder builder) {
 
 		this.policyId = ModelTypeHelper.unmodifiable(builder.policyId);
 
 	}
 
-	public GetLifecycleRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static GetLifecycleRequest of(Function<Builder, ObjectBuilder<GetLifecycleRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -67,8 +66,7 @@ public final class GetLifecycleRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code policy_id}
 	 */
-	@Nullable
-	public List<String> policyId() {
+	public final List<String> policyId() {
 		return this.policyId;
 	}
 
@@ -77,7 +75,7 @@ public final class GetLifecycleRequest extends RequestBase {
 	/**
 	 * Builder for {@link GetLifecycleRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<GetLifecycleRequest> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetLifecycleRequest> {
 		@Nullable
 		private List<String> policyId;
 
@@ -86,7 +84,7 @@ public final class GetLifecycleRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code policy_id}
 		 */
-		public Builder policyId(@Nullable List<String> value) {
+		public final Builder policyId(@Nullable List<String> value) {
 			this.policyId = value;
 			return this;
 		}
@@ -96,19 +94,8 @@ public final class GetLifecycleRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code policy_id}
 		 */
-		public Builder policyId(String... value) {
+		public final Builder policyId(String... value) {
 			this.policyId = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #policyId(List)}, creating the list if needed.
-		 */
-		public Builder addPolicyId(String value) {
-			if (this.policyId == null) {
-				this.policyId = new ArrayList<>();
-			}
-			this.policyId.add(value);
 			return this;
 		}
 
@@ -119,6 +106,7 @@ public final class GetLifecycleRequest extends RequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public GetLifecycleRequest build() {
+			_checkSingleUse();
 
 			return new GetLifecycleRequest(this);
 		}
@@ -142,7 +130,7 @@ public final class GetLifecycleRequest extends RequestBase {
 
 				int propsSet = 0;
 
-				if (request.policyId() != null)
+				if (ModelTypeHelper.isDefined(request.policyId()))
 					propsSet |= _policyId;
 
 				if (propsSet == (_policyId)) {

@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.Objects;
@@ -38,25 +40,26 @@ import java.util.function.Function;
 
 // typedef: license.get_trial_status.Response
 @JsonpDeserializable
-public final class GetTrialStatusResponse implements JsonpSerializable {
+public class GetTrialStatusResponse implements JsonpSerializable {
 	private final boolean eligibleToStartTrial;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public GetTrialStatusResponse(Builder builder) {
+	private GetTrialStatusResponse(Builder builder) {
 
-		this.eligibleToStartTrial = Objects.requireNonNull(builder.eligibleToStartTrial, "eligible_to_start_trial");
+		this.eligibleToStartTrial = ModelTypeHelper.requireNonNull(builder.eligibleToStartTrial, this,
+				"eligibleToStartTrial");
 
 	}
 
-	public GetTrialStatusResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static GetTrialStatusResponse of(Function<Builder, ObjectBuilder<GetTrialStatusResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code eligible_to_start_trial}
 	 */
-	public boolean eligibleToStartTrial() {
+	public final boolean eligibleToStartTrial() {
 		return this.eligibleToStartTrial;
 	}
 
@@ -81,13 +84,13 @@ public final class GetTrialStatusResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link GetTrialStatusResponse}.
 	 */
-	public static class Builder implements ObjectBuilder<GetTrialStatusResponse> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetTrialStatusResponse> {
 		private Boolean eligibleToStartTrial;
 
 		/**
 		 * Required - API name: {@code eligible_to_start_trial}
 		 */
-		public Builder eligibleToStartTrial(boolean value) {
+		public final Builder eligibleToStartTrial(boolean value) {
 			this.eligibleToStartTrial = value;
 			return this;
 		}
@@ -99,6 +102,7 @@ public final class GetTrialStatusResponse implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public GetTrialStatusResponse build() {
+			_checkSingleUse();
 
 			return new GetTrialStatusResponse(this);
 		}

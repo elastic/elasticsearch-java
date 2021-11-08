@@ -36,16 +36,16 @@ import java.util.function.Function;
 
 // typedef: _types.analysis.UppercaseTokenFilter
 @JsonpDeserializable
-public final class UppercaseTokenFilter extends TokenFilterBase implements TokenFilterVariant {
+public class UppercaseTokenFilter extends TokenFilterBase implements TokenFilterVariant {
 	// ---------------------------------------------------------------------------------------------
 
-	public UppercaseTokenFilter(Builder builder) {
+	private UppercaseTokenFilter(Builder builder) {
 		super(builder);
 
 	}
 
-	public UppercaseTokenFilter(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static UppercaseTokenFilter of(Function<Builder, ObjectBuilder<UppercaseTokenFilter>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -83,6 +83,7 @@ public final class UppercaseTokenFilter extends TokenFilterBase implements Token
 		 *             if some of the required fields are null.
 		 */
 		public UppercaseTokenFilter build() {
+			_checkSingleUse();
 
 			return new UppercaseTokenFilter(this);
 		}

@@ -32,10 +32,10 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
@@ -44,7 +44,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.mapping.SourceField
 @JsonpDeserializable
-public final class SourceField implements JsonpSerializable {
+public class SourceField implements JsonpSerializable {
 	@Nullable
 	private final Boolean compress;
 
@@ -54,15 +54,13 @@ public final class SourceField implements JsonpSerializable {
 	@Nullable
 	private final Boolean enabled;
 
-	@Nullable
 	private final List<String> excludes;
 
-	@Nullable
 	private final List<String> includes;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public SourceField(Builder builder) {
+	private SourceField(Builder builder) {
 
 		this.compress = builder.compress;
 		this.compressThreshold = builder.compressThreshold;
@@ -72,15 +70,15 @@ public final class SourceField implements JsonpSerializable {
 
 	}
 
-	public SourceField(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static SourceField of(Function<Builder, ObjectBuilder<SourceField>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * API name: {@code compress}
 	 */
 	@Nullable
-	public Boolean compress() {
+	public final Boolean compress() {
 		return this.compress;
 	}
 
@@ -88,7 +86,7 @@ public final class SourceField implements JsonpSerializable {
 	 * API name: {@code compress_threshold}
 	 */
 	@Nullable
-	public String compressThreshold() {
+	public final String compressThreshold() {
 		return this.compressThreshold;
 	}
 
@@ -96,23 +94,21 @@ public final class SourceField implements JsonpSerializable {
 	 * API name: {@code enabled}
 	 */
 	@Nullable
-	public Boolean enabled() {
+	public final Boolean enabled() {
 		return this.enabled;
 	}
 
 	/**
 	 * API name: {@code excludes}
 	 */
-	@Nullable
-	public List<String> excludes() {
+	public final List<String> excludes() {
 		return this.excludes;
 	}
 
 	/**
 	 * API name: {@code includes}
 	 */
-	@Nullable
-	public List<String> includes() {
+	public final List<String> includes() {
 		return this.includes;
 	}
 
@@ -128,25 +124,21 @@ public final class SourceField implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.compress != null) {
-
 			generator.writeKey("compress");
 			generator.write(this.compress);
 
 		}
 		if (this.compressThreshold != null) {
-
 			generator.writeKey("compress_threshold");
 			generator.write(this.compressThreshold);
 
 		}
 		if (this.enabled != null) {
-
 			generator.writeKey("enabled");
 			generator.write(this.enabled);
 
 		}
-		if (this.excludes != null) {
-
+		if (ModelTypeHelper.isDefined(this.excludes)) {
 			generator.writeKey("excludes");
 			generator.writeStartArray();
 			for (String item0 : this.excludes) {
@@ -156,8 +148,7 @@ public final class SourceField implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (this.includes != null) {
-
+		if (ModelTypeHelper.isDefined(this.includes)) {
 			generator.writeKey("includes");
 			generator.writeStartArray();
 			for (String item0 : this.includes) {
@@ -175,7 +166,7 @@ public final class SourceField implements JsonpSerializable {
 	/**
 	 * Builder for {@link SourceField}.
 	 */
-	public static class Builder implements ObjectBuilder<SourceField> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<SourceField> {
 		@Nullable
 		private Boolean compress;
 
@@ -194,7 +185,7 @@ public final class SourceField implements JsonpSerializable {
 		/**
 		 * API name: {@code compress}
 		 */
-		public Builder compress(@Nullable Boolean value) {
+		public final Builder compress(@Nullable Boolean value) {
 			this.compress = value;
 			return this;
 		}
@@ -202,7 +193,7 @@ public final class SourceField implements JsonpSerializable {
 		/**
 		 * API name: {@code compress_threshold}
 		 */
-		public Builder compressThreshold(@Nullable String value) {
+		public final Builder compressThreshold(@Nullable String value) {
 			this.compressThreshold = value;
 			return this;
 		}
@@ -210,7 +201,7 @@ public final class SourceField implements JsonpSerializable {
 		/**
 		 * API name: {@code enabled}
 		 */
-		public Builder enabled(@Nullable Boolean value) {
+		public final Builder enabled(@Nullable Boolean value) {
 			this.enabled = value;
 			return this;
 		}
@@ -218,7 +209,7 @@ public final class SourceField implements JsonpSerializable {
 		/**
 		 * API name: {@code excludes}
 		 */
-		public Builder excludes(@Nullable List<String> value) {
+		public final Builder excludes(@Nullable List<String> value) {
 			this.excludes = value;
 			return this;
 		}
@@ -226,26 +217,15 @@ public final class SourceField implements JsonpSerializable {
 		/**
 		 * API name: {@code excludes}
 		 */
-		public Builder excludes(String... value) {
+		public final Builder excludes(String... value) {
 			this.excludes = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #excludes(List)}, creating the list if needed.
-		 */
-		public Builder addExcludes(String value) {
-			if (this.excludes == null) {
-				this.excludes = new ArrayList<>();
-			}
-			this.excludes.add(value);
 			return this;
 		}
 
 		/**
 		 * API name: {@code includes}
 		 */
-		public Builder includes(@Nullable List<String> value) {
+		public final Builder includes(@Nullable List<String> value) {
 			this.includes = value;
 			return this;
 		}
@@ -253,19 +233,8 @@ public final class SourceField implements JsonpSerializable {
 		/**
 		 * API name: {@code includes}
 		 */
-		public Builder includes(String... value) {
+		public final Builder includes(String... value) {
 			this.includes = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #includes(List)}, creating the list if needed.
-		 */
-		public Builder addIncludes(String value) {
-			if (this.includes == null) {
-				this.includes = new ArrayList<>();
-			}
-			this.includes.add(value);
 			return this;
 		}
 
@@ -276,6 +245,7 @@ public final class SourceField implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public SourceField build() {
+			_checkSingleUse();
 
 			return new SourceField(this);
 		}

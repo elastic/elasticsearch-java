@@ -35,10 +35,10 @@ import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.SimpleEndpoint;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -50,23 +50,18 @@ import javax.annotation.Nullable;
 
 // typedef: indices.stats.Request
 
-public final class IndicesStatsRequest extends RequestBase {
-	@Nullable
+public class IndicesStatsRequest extends RequestBase {
 	private final List<String> completionFields;
 
-	@Nullable
 	private final List<ExpandWildcardOptions> expandWildcards;
 
-	@Nullable
 	private final List<String> fielddataFields;
 
-	@Nullable
 	private final List<String> fields;
 
 	@Nullable
 	private final Boolean forbidClosedIndices;
 
-	@Nullable
 	private final List<String> groups;
 
 	@Nullable
@@ -75,21 +70,18 @@ public final class IndicesStatsRequest extends RequestBase {
 	@Nullable
 	private final Boolean includeUnloadedSegments;
 
-	@Nullable
 	private final List<String> index;
 
 	@Nullable
 	private final Level level;
 
-	@Nullable
 	private final List<String> metric;
 
-	@Nullable
 	private final List<String> types;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public IndicesStatsRequest(Builder builder) {
+	private IndicesStatsRequest(Builder builder) {
 
 		this.completionFields = ModelTypeHelper.unmodifiable(builder.completionFields);
 		this.expandWildcards = ModelTypeHelper.unmodifiable(builder.expandWildcards);
@@ -106,8 +98,8 @@ public final class IndicesStatsRequest extends RequestBase {
 
 	}
 
-	public IndicesStatsRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static IndicesStatsRequest of(Function<Builder, ObjectBuilder<IndicesStatsRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -116,8 +108,7 @@ public final class IndicesStatsRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code completion_fields}
 	 */
-	@Nullable
-	public List<String> completionFields() {
+	public final List<String> completionFields() {
 		return this.completionFields;
 	}
 
@@ -127,8 +118,7 @@ public final class IndicesStatsRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code expand_wildcards}
 	 */
-	@Nullable
-	public List<ExpandWildcardOptions> expandWildcards() {
+	public final List<ExpandWildcardOptions> expandWildcards() {
 		return this.expandWildcards;
 	}
 
@@ -138,8 +128,7 @@ public final class IndicesStatsRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code fielddata_fields}
 	 */
-	@Nullable
-	public List<String> fielddataFields() {
+	public final List<String> fielddataFields() {
 		return this.fielddataFields;
 	}
 
@@ -149,8 +138,7 @@ public final class IndicesStatsRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code fields}
 	 */
-	@Nullable
-	public List<String> fields() {
+	public final List<String> fields() {
 		return this.fields;
 	}
 
@@ -161,7 +149,7 @@ public final class IndicesStatsRequest extends RequestBase {
 	 * API name: {@code forbid_closed_indices}
 	 */
 	@Nullable
-	public Boolean forbidClosedIndices() {
+	public final Boolean forbidClosedIndices() {
 		return this.forbidClosedIndices;
 	}
 
@@ -170,8 +158,7 @@ public final class IndicesStatsRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code groups}
 	 */
-	@Nullable
-	public List<String> groups() {
+	public final List<String> groups() {
 		return this.groups;
 	}
 
@@ -182,7 +169,7 @@ public final class IndicesStatsRequest extends RequestBase {
 	 * API name: {@code include_segment_file_sizes}
 	 */
 	@Nullable
-	public Boolean includeSegmentFileSizes() {
+	public final Boolean includeSegmentFileSizes() {
 		return this.includeSegmentFileSizes;
 	}
 
@@ -193,7 +180,7 @@ public final class IndicesStatsRequest extends RequestBase {
 	 * API name: {@code include_unloaded_segments}
 	 */
 	@Nullable
-	public Boolean includeUnloadedSegments() {
+	public final Boolean includeUnloadedSegments() {
 		return this.includeUnloadedSegments;
 	}
 
@@ -203,8 +190,7 @@ public final class IndicesStatsRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code index}
 	 */
-	@Nullable
-	public List<String> index() {
+	public final List<String> index() {
 		return this.index;
 	}
 
@@ -214,7 +200,7 @@ public final class IndicesStatsRequest extends RequestBase {
 	 * API name: {@code level}
 	 */
 	@Nullable
-	public Level level() {
+	public final Level level() {
 		return this.level;
 	}
 
@@ -223,8 +209,7 @@ public final class IndicesStatsRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code metric}
 	 */
-	@Nullable
-	public List<String> metric() {
+	public final List<String> metric() {
 		return this.metric;
 	}
 
@@ -234,8 +219,7 @@ public final class IndicesStatsRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code types}
 	 */
-	@Nullable
-	public List<String> types() {
+	public final List<String> types() {
 		return this.types;
 	}
 
@@ -244,7 +228,7 @@ public final class IndicesStatsRequest extends RequestBase {
 	/**
 	 * Builder for {@link IndicesStatsRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<IndicesStatsRequest> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<IndicesStatsRequest> {
 		@Nullable
 		private List<String> completionFields;
 
@@ -287,7 +271,7 @@ public final class IndicesStatsRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code completion_fields}
 		 */
-		public Builder completionFields(@Nullable List<String> value) {
+		public final Builder completionFields(@Nullable List<String> value) {
 			this.completionFields = value;
 			return this;
 		}
@@ -298,19 +282,8 @@ public final class IndicesStatsRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code completion_fields}
 		 */
-		public Builder completionFields(String... value) {
+		public final Builder completionFields(String... value) {
 			this.completionFields = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #completionFields(List)}, creating the list if needed.
-		 */
-		public Builder addCompletionFields(String value) {
-			if (this.completionFields == null) {
-				this.completionFields = new ArrayList<>();
-			}
-			this.completionFields.add(value);
 			return this;
 		}
 
@@ -320,7 +293,7 @@ public final class IndicesStatsRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code expand_wildcards}
 		 */
-		public Builder expandWildcards(@Nullable List<ExpandWildcardOptions> value) {
+		public final Builder expandWildcards(@Nullable List<ExpandWildcardOptions> value) {
 			this.expandWildcards = value;
 			return this;
 		}
@@ -331,19 +304,8 @@ public final class IndicesStatsRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code expand_wildcards}
 		 */
-		public Builder expandWildcards(ExpandWildcardOptions... value) {
+		public final Builder expandWildcards(ExpandWildcardOptions... value) {
 			this.expandWildcards = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #expandWildcards(List)}, creating the list if needed.
-		 */
-		public Builder addExpandWildcards(ExpandWildcardOptions value) {
-			if (this.expandWildcards == null) {
-				this.expandWildcards = new ArrayList<>();
-			}
-			this.expandWildcards.add(value);
 			return this;
 		}
 
@@ -353,7 +315,7 @@ public final class IndicesStatsRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code fielddata_fields}
 		 */
-		public Builder fielddataFields(@Nullable List<String> value) {
+		public final Builder fielddataFields(@Nullable List<String> value) {
 			this.fielddataFields = value;
 			return this;
 		}
@@ -364,19 +326,8 @@ public final class IndicesStatsRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code fielddata_fields}
 		 */
-		public Builder fielddataFields(String... value) {
+		public final Builder fielddataFields(String... value) {
 			this.fielddataFields = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #fielddataFields(List)}, creating the list if needed.
-		 */
-		public Builder addFielddataFields(String value) {
-			if (this.fielddataFields == null) {
-				this.fielddataFields = new ArrayList<>();
-			}
-			this.fielddataFields.add(value);
 			return this;
 		}
 
@@ -386,7 +337,7 @@ public final class IndicesStatsRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code fields}
 		 */
-		public Builder fields(@Nullable List<String> value) {
+		public final Builder fields(@Nullable List<String> value) {
 			this.fields = value;
 			return this;
 		}
@@ -397,19 +348,8 @@ public final class IndicesStatsRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code fields}
 		 */
-		public Builder fields(String... value) {
+		public final Builder fields(String... value) {
 			this.fields = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #fields(List)}, creating the list if needed.
-		 */
-		public Builder addFields(String value) {
-			if (this.fields == null) {
-				this.fields = new ArrayList<>();
-			}
-			this.fields.add(value);
 			return this;
 		}
 
@@ -419,7 +359,7 @@ public final class IndicesStatsRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code forbid_closed_indices}
 		 */
-		public Builder forbidClosedIndices(@Nullable Boolean value) {
+		public final Builder forbidClosedIndices(@Nullable Boolean value) {
 			this.forbidClosedIndices = value;
 			return this;
 		}
@@ -429,7 +369,7 @@ public final class IndicesStatsRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code groups}
 		 */
-		public Builder groups(@Nullable List<String> value) {
+		public final Builder groups(@Nullable List<String> value) {
 			this.groups = value;
 			return this;
 		}
@@ -439,19 +379,8 @@ public final class IndicesStatsRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code groups}
 		 */
-		public Builder groups(String... value) {
+		public final Builder groups(String... value) {
 			this.groups = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #groups(List)}, creating the list if needed.
-		 */
-		public Builder addGroups(String value) {
-			if (this.groups == null) {
-				this.groups = new ArrayList<>();
-			}
-			this.groups.add(value);
 			return this;
 		}
 
@@ -461,7 +390,7 @@ public final class IndicesStatsRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code include_segment_file_sizes}
 		 */
-		public Builder includeSegmentFileSizes(@Nullable Boolean value) {
+		public final Builder includeSegmentFileSizes(@Nullable Boolean value) {
 			this.includeSegmentFileSizes = value;
 			return this;
 		}
@@ -472,7 +401,7 @@ public final class IndicesStatsRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code include_unloaded_segments}
 		 */
-		public Builder includeUnloadedSegments(@Nullable Boolean value) {
+		public final Builder includeUnloadedSegments(@Nullable Boolean value) {
 			this.includeUnloadedSegments = value;
 			return this;
 		}
@@ -483,7 +412,7 @@ public final class IndicesStatsRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code index}
 		 */
-		public Builder index(@Nullable List<String> value) {
+		public final Builder index(@Nullable List<String> value) {
 			this.index = value;
 			return this;
 		}
@@ -494,19 +423,8 @@ public final class IndicesStatsRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code index}
 		 */
-		public Builder index(String... value) {
+		public final Builder index(String... value) {
 			this.index = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #index(List)}, creating the list if needed.
-		 */
-		public Builder addIndex(String value) {
-			if (this.index == null) {
-				this.index = new ArrayList<>();
-			}
-			this.index.add(value);
 			return this;
 		}
 
@@ -515,7 +433,7 @@ public final class IndicesStatsRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code level}
 		 */
-		public Builder level(@Nullable Level value) {
+		public final Builder level(@Nullable Level value) {
 			this.level = value;
 			return this;
 		}
@@ -525,7 +443,7 @@ public final class IndicesStatsRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code metric}
 		 */
-		public Builder metric(@Nullable List<String> value) {
+		public final Builder metric(@Nullable List<String> value) {
 			this.metric = value;
 			return this;
 		}
@@ -535,19 +453,8 @@ public final class IndicesStatsRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code metric}
 		 */
-		public Builder metric(String... value) {
+		public final Builder metric(String... value) {
 			this.metric = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #metric(List)}, creating the list if needed.
-		 */
-		public Builder addMetric(String value) {
-			if (this.metric == null) {
-				this.metric = new ArrayList<>();
-			}
-			this.metric.add(value);
 			return this;
 		}
 
@@ -557,7 +464,7 @@ public final class IndicesStatsRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code types}
 		 */
-		public Builder types(@Nullable List<String> value) {
+		public final Builder types(@Nullable List<String> value) {
 			this.types = value;
 			return this;
 		}
@@ -568,19 +475,8 @@ public final class IndicesStatsRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code types}
 		 */
-		public Builder types(String... value) {
+		public final Builder types(String... value) {
 			this.types = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #types(List)}, creating the list if needed.
-		 */
-		public Builder addTypes(String value) {
-			if (this.types == null) {
-				this.types = new ArrayList<>();
-			}
-			this.types.add(value);
 			return this;
 		}
 
@@ -591,6 +487,7 @@ public final class IndicesStatsRequest extends RequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public IndicesStatsRequest build() {
+			_checkSingleUse();
 
 			return new IndicesStatsRequest(this);
 		}
@@ -615,9 +512,9 @@ public final class IndicesStatsRequest extends RequestBase {
 
 				int propsSet = 0;
 
-				if (request.metric() != null)
+				if (ModelTypeHelper.isDefined(request.metric()))
 					propsSet |= _metric;
-				if (request.index() != null)
+				if (ModelTypeHelper.isDefined(request.index()))
 					propsSet |= _index;
 
 				if (propsSet == 0) {
@@ -657,31 +554,31 @@ public final class IndicesStatsRequest extends RequestBase {
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
-				if (request.types != null) {
+				if (ModelTypeHelper.isDefined(request.types)) {
 					params.put("types", request.types.stream().map(v -> v).collect(Collectors.joining(",")));
 				}
-				if (request.expandWildcards != null) {
+				if (ModelTypeHelper.isDefined(request.expandWildcards)) {
 					params.put("expand_wildcards",
-							request.expandWildcards.stream().map(v -> v.toString()).collect(Collectors.joining(",")));
+							request.expandWildcards.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")));
 				}
 				if (request.level != null) {
-					params.put("level", request.level.toString());
+					params.put("level", request.level.jsonValue());
 				}
-				if (request.completionFields != null) {
+				if (ModelTypeHelper.isDefined(request.completionFields)) {
 					params.put("completion_fields",
 							request.completionFields.stream().map(v -> v).collect(Collectors.joining(",")));
 				}
-				if (request.fielddataFields != null) {
+				if (ModelTypeHelper.isDefined(request.fielddataFields)) {
 					params.put("fielddata_fields",
 							request.fielddataFields.stream().map(v -> v).collect(Collectors.joining(",")));
 				}
-				if (request.groups != null) {
+				if (ModelTypeHelper.isDefined(request.groups)) {
 					params.put("groups", request.groups.stream().map(v -> v).collect(Collectors.joining(",")));
 				}
 				if (request.includeUnloadedSegments != null) {
 					params.put("include_unloaded_segments", String.valueOf(request.includeUnloadedSegments));
 				}
-				if (request.fields != null) {
+				if (ModelTypeHelper.isDefined(request.fields)) {
 					params.put("fields", request.fields.stream().map(v -> v).collect(Collectors.joining(",")));
 				}
 				if (request.forbidClosedIndices != null) {

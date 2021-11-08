@@ -34,7 +34,9 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.SimpleEndpoint;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -47,7 +49,7 @@ import javax.annotation.Nullable;
 
 // typedef: ml.put_data_frame_analytics.Request
 @JsonpDeserializable
-public final class PutDataFrameAnalyticsRequest extends RequestBase implements JsonpSerializable {
+public class PutDataFrameAnalyticsRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
 	private final Boolean allowLazyStart;
 
@@ -73,22 +75,22 @@ public final class PutDataFrameAnalyticsRequest extends RequestBase implements J
 
 	// ---------------------------------------------------------------------------------------------
 
-	public PutDataFrameAnalyticsRequest(Builder builder) {
+	private PutDataFrameAnalyticsRequest(Builder builder) {
 
 		this.allowLazyStart = builder.allowLazyStart;
-		this.analysis = Objects.requireNonNull(builder.analysis, "analysis");
+		this.analysis = ModelTypeHelper.requireNonNull(builder.analysis, this, "analysis");
 		this.analyzedFields = builder.analyzedFields;
 		this.description = builder.description;
-		this.dest = Objects.requireNonNull(builder.dest, "dest");
-		this.id = Objects.requireNonNull(builder.id, "id");
+		this.dest = ModelTypeHelper.requireNonNull(builder.dest, this, "dest");
+		this.id = ModelTypeHelper.requireNonNull(builder.id, this, "id");
 		this.maxNumThreads = builder.maxNumThreads;
 		this.modelMemoryLimit = builder.modelMemoryLimit;
-		this.source = Objects.requireNonNull(builder.source, "source");
+		this.source = ModelTypeHelper.requireNonNull(builder.source, this, "source");
 
 	}
 
-	public PutDataFrameAnalyticsRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static PutDataFrameAnalyticsRequest of(Function<Builder, ObjectBuilder<PutDataFrameAnalyticsRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -103,7 +105,7 @@ public final class PutDataFrameAnalyticsRequest extends RequestBase implements J
 	 * API name: {@code allow_lazy_start}
 	 */
 	@Nullable
-	public Boolean allowLazyStart() {
+	public final Boolean allowLazyStart() {
 		return this.allowLazyStart;
 	}
 
@@ -114,7 +116,7 @@ public final class PutDataFrameAnalyticsRequest extends RequestBase implements J
 	 * <p>
 	 * API name: {@code analysis}
 	 */
-	public DataframeAnalysis analysis() {
+	public final DataframeAnalysis analysis() {
 		return this.analysis;
 	}
 
@@ -153,7 +155,7 @@ public final class PutDataFrameAnalyticsRequest extends RequestBase implements J
 	 * API name: {@code analyzed_fields}
 	 */
 	@Nullable
-	public JsonValue /* ml._types.DataframeAnalysisAnalyzedFields */ analyzedFields() {
+	public final JsonValue /* ml._types.DataframeAnalysisAnalyzedFields */ analyzedFields() {
 		return this.analyzedFields;
 	}
 
@@ -163,7 +165,7 @@ public final class PutDataFrameAnalyticsRequest extends RequestBase implements J
 	 * API name: {@code description}
 	 */
 	@Nullable
-	public String description() {
+	public final String description() {
 		return this.description;
 	}
 
@@ -172,7 +174,7 @@ public final class PutDataFrameAnalyticsRequest extends RequestBase implements J
 	 * <p>
 	 * API name: {@code dest}
 	 */
-	public DataframeAnalyticsDestination dest() {
+	public final DataframeAnalyticsDestination dest() {
 		return this.dest;
 	}
 
@@ -183,7 +185,7 @@ public final class PutDataFrameAnalyticsRequest extends RequestBase implements J
 	 * <p>
 	 * API name: {@code id}
 	 */
-	public String id() {
+	public final String id() {
 		return this.id;
 	}
 
@@ -196,7 +198,7 @@ public final class PutDataFrameAnalyticsRequest extends RequestBase implements J
 	 * API name: {@code max_num_threads}
 	 */
 	@Nullable
-	public Integer maxNumThreads() {
+	public final Integer maxNumThreads() {
 		return this.maxNumThreads;
 	}
 
@@ -210,7 +212,7 @@ public final class PutDataFrameAnalyticsRequest extends RequestBase implements J
 	 * API name: {@code model_memory_limit}
 	 */
 	@Nullable
-	public String modelMemoryLimit() {
+	public final String modelMemoryLimit() {
 		return this.modelMemoryLimit;
 	}
 
@@ -219,7 +221,7 @@ public final class PutDataFrameAnalyticsRequest extends RequestBase implements J
 	 * <p>
 	 * API name: {@code source}
 	 */
-	public DataframeAnalyticsSource source() {
+	public final DataframeAnalyticsSource source() {
 		return this.source;
 	}
 
@@ -235,44 +237,36 @@ public final class PutDataFrameAnalyticsRequest extends RequestBase implements J
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.allowLazyStart != null) {
-
 			generator.writeKey("allow_lazy_start");
 			generator.write(this.allowLazyStart);
 
 		}
-
 		generator.writeKey("analysis");
 		this.analysis.serialize(generator, mapper);
 
 		if (this.analyzedFields != null) {
-
 			generator.writeKey("analyzed_fields");
 			generator.write(this.analyzedFields);
 
 		}
 		if (this.description != null) {
-
 			generator.writeKey("description");
 			generator.write(this.description);
 
 		}
-
 		generator.writeKey("dest");
 		this.dest.serialize(generator, mapper);
 
 		if (this.maxNumThreads != null) {
-
 			generator.writeKey("max_num_threads");
 			generator.write(this.maxNumThreads);
 
 		}
 		if (this.modelMemoryLimit != null) {
-
 			generator.writeKey("model_memory_limit");
 			generator.write(this.modelMemoryLimit);
 
 		}
-
 		generator.writeKey("source");
 		this.source.serialize(generator, mapper);
 
@@ -283,7 +277,7 @@ public final class PutDataFrameAnalyticsRequest extends RequestBase implements J
 	/**
 	 * Builder for {@link PutDataFrameAnalyticsRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<PutDataFrameAnalyticsRequest> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PutDataFrameAnalyticsRequest> {
 		@Nullable
 		private Boolean allowLazyStart;
 
@@ -318,7 +312,7 @@ public final class PutDataFrameAnalyticsRequest extends RequestBase implements J
 		 * <p>
 		 * API name: {@code allow_lazy_start}
 		 */
-		public Builder allowLazyStart(@Nullable Boolean value) {
+		public final Builder allowLazyStart(@Nullable Boolean value) {
 			this.allowLazyStart = value;
 			return this;
 		}
@@ -330,7 +324,7 @@ public final class PutDataFrameAnalyticsRequest extends RequestBase implements J
 		 * <p>
 		 * API name: {@code analysis}
 		 */
-		public Builder analysis(DataframeAnalysis value) {
+		public final Builder analysis(DataframeAnalysis value) {
 			this.analysis = value;
 			return this;
 		}
@@ -342,7 +336,7 @@ public final class PutDataFrameAnalyticsRequest extends RequestBase implements J
 		 * <p>
 		 * API name: {@code analysis}
 		 */
-		public Builder analysis(Function<DataframeAnalysis.Builder, ObjectBuilder<DataframeAnalysis>> fn) {
+		public final Builder analysis(Function<DataframeAnalysis.Builder, ObjectBuilder<DataframeAnalysis>> fn) {
 			return this.analysis(fn.apply(new DataframeAnalysis.Builder()).build());
 		}
 
@@ -380,7 +374,7 @@ public final class PutDataFrameAnalyticsRequest extends RequestBase implements J
 		 * <p>
 		 * API name: {@code analyzed_fields}
 		 */
-		public Builder analyzedFields(@Nullable JsonValue /* ml._types.DataframeAnalysisAnalyzedFields */ value) {
+		public final Builder analyzedFields(@Nullable JsonValue /* ml._types.DataframeAnalysisAnalyzedFields */ value) {
 			this.analyzedFields = value;
 			return this;
 		}
@@ -390,7 +384,7 @@ public final class PutDataFrameAnalyticsRequest extends RequestBase implements J
 		 * <p>
 		 * API name: {@code description}
 		 */
-		public Builder description(@Nullable String value) {
+		public final Builder description(@Nullable String value) {
 			this.description = value;
 			return this;
 		}
@@ -400,7 +394,7 @@ public final class PutDataFrameAnalyticsRequest extends RequestBase implements J
 		 * <p>
 		 * API name: {@code dest}
 		 */
-		public Builder dest(DataframeAnalyticsDestination value) {
+		public final Builder dest(DataframeAnalyticsDestination value) {
 			this.dest = value;
 			return this;
 		}
@@ -410,7 +404,7 @@ public final class PutDataFrameAnalyticsRequest extends RequestBase implements J
 		 * <p>
 		 * API name: {@code dest}
 		 */
-		public Builder dest(
+		public final Builder dest(
 				Function<DataframeAnalyticsDestination.Builder, ObjectBuilder<DataframeAnalyticsDestination>> fn) {
 			return this.dest(fn.apply(new DataframeAnalyticsDestination.Builder()).build());
 		}
@@ -422,7 +416,7 @@ public final class PutDataFrameAnalyticsRequest extends RequestBase implements J
 		 * <p>
 		 * API name: {@code id}
 		 */
-		public Builder id(String value) {
+		public final Builder id(String value) {
 			this.id = value;
 			return this;
 		}
@@ -435,7 +429,7 @@ public final class PutDataFrameAnalyticsRequest extends RequestBase implements J
 		 * <p>
 		 * API name: {@code max_num_threads}
 		 */
-		public Builder maxNumThreads(@Nullable Integer value) {
+		public final Builder maxNumThreads(@Nullable Integer value) {
 			this.maxNumThreads = value;
 			return this;
 		}
@@ -449,7 +443,7 @@ public final class PutDataFrameAnalyticsRequest extends RequestBase implements J
 		 * <p>
 		 * API name: {@code model_memory_limit}
 		 */
-		public Builder modelMemoryLimit(@Nullable String value) {
+		public final Builder modelMemoryLimit(@Nullable String value) {
 			this.modelMemoryLimit = value;
 			return this;
 		}
@@ -459,7 +453,7 @@ public final class PutDataFrameAnalyticsRequest extends RequestBase implements J
 		 * <p>
 		 * API name: {@code source}
 		 */
-		public Builder source(DataframeAnalyticsSource value) {
+		public final Builder source(DataframeAnalyticsSource value) {
 			this.source = value;
 			return this;
 		}
@@ -469,7 +463,8 @@ public final class PutDataFrameAnalyticsRequest extends RequestBase implements J
 		 * <p>
 		 * API name: {@code source}
 		 */
-		public Builder source(Function<DataframeAnalyticsSource.Builder, ObjectBuilder<DataframeAnalyticsSource>> fn) {
+		public final Builder source(
+				Function<DataframeAnalyticsSource.Builder, ObjectBuilder<DataframeAnalyticsSource>> fn) {
 			return this.source(fn.apply(new DataframeAnalyticsSource.Builder()).build());
 		}
 
@@ -480,6 +475,7 @@ public final class PutDataFrameAnalyticsRequest extends RequestBase implements J
 		 *             if some of the required fields are null.
 		 */
 		public PutDataFrameAnalyticsRequest build() {
+			_checkSingleUse();
 
 			return new PutDataFrameAnalyticsRequest(this);
 		}

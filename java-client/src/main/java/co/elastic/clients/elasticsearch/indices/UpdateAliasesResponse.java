@@ -36,16 +36,16 @@ import java.util.function.Function;
 
 // typedef: indices.update_aliases.Response
 @JsonpDeserializable
-public final class UpdateAliasesResponse extends AcknowledgedResponseBase {
+public class UpdateAliasesResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
-	public UpdateAliasesResponse(Builder builder) {
+	private UpdateAliasesResponse(Builder builder) {
 		super(builder);
 
 	}
 
-	public UpdateAliasesResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static UpdateAliasesResponse of(Function<Builder, ObjectBuilder<UpdateAliasesResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -68,6 +68,7 @@ public final class UpdateAliasesResponse extends AcknowledgedResponseBase {
 		 *             if some of the required fields are null.
 		 */
 		public UpdateAliasesResponse build() {
+			_checkSingleUse();
 
 			return new UpdateAliasesResponse(this);
 		}

@@ -34,7 +34,6 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
@@ -43,7 +42,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.CombinedFieldsQuery
 @JsonpDeserializable
-public final class CombinedFieldsQuery extends QueryBase implements QueryVariant {
+public class CombinedFieldsQuery extends QueryBase implements QueryVariant {
 	private final List<String> fields;
 
 	private final String query;
@@ -62,11 +61,11 @@ public final class CombinedFieldsQuery extends QueryBase implements QueryVariant
 
 	// ---------------------------------------------------------------------------------------------
 
-	public CombinedFieldsQuery(Builder builder) {
+	private CombinedFieldsQuery(Builder builder) {
 		super(builder);
 
-		this.fields = ModelTypeHelper.unmodifiableNonNull(builder.fields, "fields");
-		this.query = Objects.requireNonNull(builder.query, "query");
+		this.fields = ModelTypeHelper.unmodifiableRequired(builder.fields, this, "fields");
+		this.query = ModelTypeHelper.requireNonNull(builder.query, this, "query");
 		this.autoGenerateSynonymsPhraseQuery = builder.autoGenerateSynonymsPhraseQuery;
 		this.operator = builder.operator;
 		this.mimimumShouldMatch = builder.mimimumShouldMatch;
@@ -74,8 +73,8 @@ public final class CombinedFieldsQuery extends QueryBase implements QueryVariant
 
 	}
 
-	public CombinedFieldsQuery(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static CombinedFieldsQuery of(Function<Builder, ObjectBuilder<CombinedFieldsQuery>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -89,14 +88,14 @@ public final class CombinedFieldsQuery extends QueryBase implements QueryVariant
 	/**
 	 * Required - API name: {@code fields}
 	 */
-	public List<String> fields() {
+	public final List<String> fields() {
 		return this.fields;
 	}
 
 	/**
 	 * Required - API name: {@code query}
 	 */
-	public String query() {
+	public final String query() {
 		return this.query;
 	}
 
@@ -104,7 +103,7 @@ public final class CombinedFieldsQuery extends QueryBase implements QueryVariant
 	 * API name: {@code auto_generate_synonyms_phrase_query}
 	 */
 	@Nullable
-	public Boolean autoGenerateSynonymsPhraseQuery() {
+	public final Boolean autoGenerateSynonymsPhraseQuery() {
 		return this.autoGenerateSynonymsPhraseQuery;
 	}
 
@@ -112,7 +111,7 @@ public final class CombinedFieldsQuery extends QueryBase implements QueryVariant
 	 * API name: {@code operator}
 	 */
 	@Nullable
-	public CombinedFieldsOperator operator() {
+	public final CombinedFieldsOperator operator() {
 		return this.operator;
 	}
 
@@ -120,7 +119,7 @@ public final class CombinedFieldsQuery extends QueryBase implements QueryVariant
 	 * API name: {@code mimimum_should_match}
 	 */
 	@Nullable
-	public String mimimumShouldMatch() {
+	public final String mimimumShouldMatch() {
 		return this.mimimumShouldMatch;
 	}
 
@@ -128,44 +127,41 @@ public final class CombinedFieldsQuery extends QueryBase implements QueryVariant
 	 * API name: {@code zero_terms_query}
 	 */
 	@Nullable
-	public CombinedFieldsZeroTerms zeroTermsQuery() {
+	public final CombinedFieldsZeroTerms zeroTermsQuery() {
 		return this.zeroTermsQuery;
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
+		if (ModelTypeHelper.isDefined(this.fields)) {
+			generator.writeKey("fields");
+			generator.writeStartArray();
+			for (String item0 : this.fields) {
+				generator.write(item0);
 
-		generator.writeKey("fields");
-		generator.writeStartArray();
-		for (String item0 : this.fields) {
-			generator.write(item0);
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
-
 		generator.writeKey("query");
 		generator.write(this.query);
 
 		if (this.autoGenerateSynonymsPhraseQuery != null) {
-
 			generator.writeKey("auto_generate_synonyms_phrase_query");
 			generator.write(this.autoGenerateSynonymsPhraseQuery);
 
 		}
 		if (this.operator != null) {
-
 			generator.writeKey("operator");
 			this.operator.serialize(generator, mapper);
 		}
 		if (this.mimimumShouldMatch != null) {
-
 			generator.writeKey("mimimum_should_match");
 			generator.write(this.mimimumShouldMatch);
 
 		}
 		if (this.zeroTermsQuery != null) {
-
 			generator.writeKey("zero_terms_query");
 			this.zeroTermsQuery.serialize(generator, mapper);
 		}
@@ -199,7 +195,7 @@ public final class CombinedFieldsQuery extends QueryBase implements QueryVariant
 		/**
 		 * Required - API name: {@code fields}
 		 */
-		public Builder fields(List<String> value) {
+		public final Builder fields(List<String> value) {
 			this.fields = value;
 			return this;
 		}
@@ -207,26 +203,15 @@ public final class CombinedFieldsQuery extends QueryBase implements QueryVariant
 		/**
 		 * Required - API name: {@code fields}
 		 */
-		public Builder fields(String... value) {
+		public final Builder fields(String... value) {
 			this.fields = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #fields(List)}, creating the list if needed.
-		 */
-		public Builder addFields(String value) {
-			if (this.fields == null) {
-				this.fields = new ArrayList<>();
-			}
-			this.fields.add(value);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code query}
 		 */
-		public Builder query(String value) {
+		public final Builder query(String value) {
 			this.query = value;
 			return this;
 		}
@@ -234,7 +219,7 @@ public final class CombinedFieldsQuery extends QueryBase implements QueryVariant
 		/**
 		 * API name: {@code auto_generate_synonyms_phrase_query}
 		 */
-		public Builder autoGenerateSynonymsPhraseQuery(@Nullable Boolean value) {
+		public final Builder autoGenerateSynonymsPhraseQuery(@Nullable Boolean value) {
 			this.autoGenerateSynonymsPhraseQuery = value;
 			return this;
 		}
@@ -242,7 +227,7 @@ public final class CombinedFieldsQuery extends QueryBase implements QueryVariant
 		/**
 		 * API name: {@code operator}
 		 */
-		public Builder operator(@Nullable CombinedFieldsOperator value) {
+		public final Builder operator(@Nullable CombinedFieldsOperator value) {
 			this.operator = value;
 			return this;
 		}
@@ -250,7 +235,7 @@ public final class CombinedFieldsQuery extends QueryBase implements QueryVariant
 		/**
 		 * API name: {@code mimimum_should_match}
 		 */
-		public Builder mimimumShouldMatch(@Nullable String value) {
+		public final Builder mimimumShouldMatch(@Nullable String value) {
 			this.mimimumShouldMatch = value;
 			return this;
 		}
@@ -258,7 +243,7 @@ public final class CombinedFieldsQuery extends QueryBase implements QueryVariant
 		/**
 		 * API name: {@code zero_terms_query}
 		 */
-		public Builder zeroTermsQuery(@Nullable CombinedFieldsZeroTerms value) {
+		public final Builder zeroTermsQuery(@Nullable CombinedFieldsZeroTerms value) {
 			this.zeroTermsQuery = value;
 			return this;
 		}
@@ -275,6 +260,7 @@ public final class CombinedFieldsQuery extends QueryBase implements QueryVariant
 		 *             if some of the required fields are null.
 		 */
 		public CombinedFieldsQuery build() {
+			_checkSingleUse();
 
 			return new CombinedFieldsQuery(this);
 		}

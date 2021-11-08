@@ -36,11 +36,11 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -49,32 +49,27 @@ import javax.annotation.Nullable;
 
 // typedef: security.get_service_accounts.RoleDescriptor
 @JsonpDeserializable
-public final class RoleDescriptor implements JsonpSerializable {
+public class RoleDescriptor implements JsonpSerializable {
 	private final List<String> cluster;
 
 	private final List<IndicesPrivileges> indices;
 
-	@Nullable
 	private final List<GlobalPrivilege> global;
 
-	@Nullable
 	private final List<ApplicationPrivileges> applications;
 
-	@Nullable
 	private final Map<String, JsonData> metadata;
 
-	@Nullable
 	private final List<String> runAs;
 
-	@Nullable
 	private final Map<String, JsonData> transientMetadata;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public RoleDescriptor(Builder builder) {
+	private RoleDescriptor(Builder builder) {
 
-		this.cluster = ModelTypeHelper.unmodifiableNonNull(builder.cluster, "cluster");
-		this.indices = ModelTypeHelper.unmodifiableNonNull(builder.indices, "indices");
+		this.cluster = ModelTypeHelper.unmodifiableRequired(builder.cluster, this, "cluster");
+		this.indices = ModelTypeHelper.unmodifiableRequired(builder.indices, this, "indices");
 		this.global = ModelTypeHelper.unmodifiable(builder.global);
 		this.applications = ModelTypeHelper.unmodifiable(builder.applications);
 		this.metadata = ModelTypeHelper.unmodifiable(builder.metadata);
@@ -83,61 +78,56 @@ public final class RoleDescriptor implements JsonpSerializable {
 
 	}
 
-	public RoleDescriptor(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static RoleDescriptor of(Function<Builder, ObjectBuilder<RoleDescriptor>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code cluster}
 	 */
-	public List<String> cluster() {
+	public final List<String> cluster() {
 		return this.cluster;
 	}
 
 	/**
 	 * Required - API name: {@code indices}
 	 */
-	public List<IndicesPrivileges> indices() {
+	public final List<IndicesPrivileges> indices() {
 		return this.indices;
 	}
 
 	/**
 	 * API name: {@code global}
 	 */
-	@Nullable
-	public List<GlobalPrivilege> global() {
+	public final List<GlobalPrivilege> global() {
 		return this.global;
 	}
 
 	/**
 	 * API name: {@code applications}
 	 */
-	@Nullable
-	public List<ApplicationPrivileges> applications() {
+	public final List<ApplicationPrivileges> applications() {
 		return this.applications;
 	}
 
 	/**
 	 * API name: {@code metadata}
 	 */
-	@Nullable
-	public Map<String, JsonData> metadata() {
+	public final Map<String, JsonData> metadata() {
 		return this.metadata;
 	}
 
 	/**
 	 * API name: {@code run_as}
 	 */
-	@Nullable
-	public List<String> runAs() {
+	public final List<String> runAs() {
 		return this.runAs;
 	}
 
 	/**
 	 * API name: {@code transient_metadata}
 	 */
-	@Nullable
-	public Map<String, JsonData> transientMetadata() {
+	public final Map<String, JsonData> transientMetadata() {
 		return this.transientMetadata;
 	}
 
@@ -152,24 +142,27 @@ public final class RoleDescriptor implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("cluster");
-		generator.writeStartArray();
-		for (String item0 : this.cluster) {
-			generator.write(item0);
+		if (ModelTypeHelper.isDefined(this.cluster)) {
+			generator.writeKey("cluster");
+			generator.writeStartArray();
+			for (String item0 : this.cluster) {
+				generator.write(item0);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
+		if (ModelTypeHelper.isDefined(this.indices)) {
+			generator.writeKey("indices");
+			generator.writeStartArray();
+			for (IndicesPrivileges item0 : this.indices) {
+				item0.serialize(generator, mapper);
 
-		generator.writeKey("indices");
-		generator.writeStartArray();
-		for (IndicesPrivileges item0 : this.indices) {
-			item0.serialize(generator, mapper);
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
-
-		if (this.global != null) {
-
+		if (ModelTypeHelper.isDefined(this.global)) {
 			generator.writeKey("global");
 			generator.writeStartArray();
 			for (GlobalPrivilege item0 : this.global) {
@@ -179,8 +172,7 @@ public final class RoleDescriptor implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (this.applications != null) {
-
+		if (ModelTypeHelper.isDefined(this.applications)) {
 			generator.writeKey("applications");
 			generator.writeStartArray();
 			for (ApplicationPrivileges item0 : this.applications) {
@@ -190,8 +182,7 @@ public final class RoleDescriptor implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (this.metadata != null) {
-
+		if (ModelTypeHelper.isDefined(this.metadata)) {
 			generator.writeKey("metadata");
 			generator.writeStartObject();
 			for (Map.Entry<String, JsonData> item0 : this.metadata.entrySet()) {
@@ -202,8 +193,7 @@ public final class RoleDescriptor implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (this.runAs != null) {
-
+		if (ModelTypeHelper.isDefined(this.runAs)) {
 			generator.writeKey("run_as");
 			generator.writeStartArray();
 			for (String item0 : this.runAs) {
@@ -213,8 +203,7 @@ public final class RoleDescriptor implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (this.transientMetadata != null) {
-
+		if (ModelTypeHelper.isDefined(this.transientMetadata)) {
 			generator.writeKey("transient_metadata");
 			generator.writeStartObject();
 			for (Map.Entry<String, JsonData> item0 : this.transientMetadata.entrySet()) {
@@ -233,7 +222,7 @@ public final class RoleDescriptor implements JsonpSerializable {
 	/**
 	 * Builder for {@link RoleDescriptor}.
 	 */
-	public static class Builder implements ObjectBuilder<RoleDescriptor> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RoleDescriptor> {
 		private List<String> cluster;
 
 		private List<IndicesPrivileges> indices;
@@ -256,7 +245,7 @@ public final class RoleDescriptor implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code cluster}
 		 */
-		public Builder cluster(List<String> value) {
+		public final Builder cluster(List<String> value) {
 			this.cluster = value;
 			return this;
 		}
@@ -264,26 +253,15 @@ public final class RoleDescriptor implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code cluster}
 		 */
-		public Builder cluster(String... value) {
+		public final Builder cluster(String... value) {
 			this.cluster = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #cluster(List)}, creating the list if needed.
-		 */
-		public Builder addCluster(String value) {
-			if (this.cluster == null) {
-				this.cluster = new ArrayList<>();
-			}
-			this.cluster.add(value);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code indices}
 		 */
-		public Builder indices(List<IndicesPrivileges> value) {
+		public final Builder indices(List<IndicesPrivileges> value) {
 			this.indices = value;
 			return this;
 		}
@@ -291,40 +269,27 @@ public final class RoleDescriptor implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code indices}
 		 */
-		public Builder indices(IndicesPrivileges... value) {
+		public final Builder indices(IndicesPrivileges... value) {
 			this.indices = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #indices(List)}, creating the list if needed.
+		 * Required - API name: {@code indices}
 		 */
-		public Builder addIndices(IndicesPrivileges value) {
-			if (this.indices == null) {
-				this.indices = new ArrayList<>();
+		@SafeVarargs
+		public final Builder indices(Function<IndicesPrivileges.Builder, ObjectBuilder<IndicesPrivileges>>... fns) {
+			this.indices = new ArrayList<>(fns.length);
+			for (Function<IndicesPrivileges.Builder, ObjectBuilder<IndicesPrivileges>> fn : fns) {
+				this.indices.add(fn.apply(new IndicesPrivileges.Builder()).build());
 			}
-			this.indices.add(value);
 			return this;
-		}
-
-		/**
-		 * Set {@link #indices(List)} to a singleton list.
-		 */
-		public Builder indices(Function<IndicesPrivileges.Builder, ObjectBuilder<IndicesPrivileges>> fn) {
-			return this.indices(fn.apply(new IndicesPrivileges.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #indices(List)}, creating the list if needed.
-		 */
-		public Builder addIndices(Function<IndicesPrivileges.Builder, ObjectBuilder<IndicesPrivileges>> fn) {
-			return this.addIndices(fn.apply(new IndicesPrivileges.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code global}
 		 */
-		public Builder global(@Nullable List<GlobalPrivilege> value) {
+		public final Builder global(@Nullable List<GlobalPrivilege> value) {
 			this.global = value;
 			return this;
 		}
@@ -332,40 +297,27 @@ public final class RoleDescriptor implements JsonpSerializable {
 		/**
 		 * API name: {@code global}
 		 */
-		public Builder global(GlobalPrivilege... value) {
+		public final Builder global(GlobalPrivilege... value) {
 			this.global = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #global(List)}, creating the list if needed.
+		 * API name: {@code global}
 		 */
-		public Builder addGlobal(GlobalPrivilege value) {
-			if (this.global == null) {
-				this.global = new ArrayList<>();
+		@SafeVarargs
+		public final Builder global(Function<GlobalPrivilege.Builder, ObjectBuilder<GlobalPrivilege>>... fns) {
+			this.global = new ArrayList<>(fns.length);
+			for (Function<GlobalPrivilege.Builder, ObjectBuilder<GlobalPrivilege>> fn : fns) {
+				this.global.add(fn.apply(new GlobalPrivilege.Builder()).build());
 			}
-			this.global.add(value);
 			return this;
-		}
-
-		/**
-		 * Set {@link #global(List)} to a singleton list.
-		 */
-		public Builder global(Function<GlobalPrivilege.Builder, ObjectBuilder<GlobalPrivilege>> fn) {
-			return this.global(fn.apply(new GlobalPrivilege.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #global(List)}, creating the list if needed.
-		 */
-		public Builder addGlobal(Function<GlobalPrivilege.Builder, ObjectBuilder<GlobalPrivilege>> fn) {
-			return this.addGlobal(fn.apply(new GlobalPrivilege.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code applications}
 		 */
-		public Builder applications(@Nullable List<ApplicationPrivileges> value) {
+		public final Builder applications(@Nullable List<ApplicationPrivileges> value) {
 			this.applications = value;
 			return this;
 		}
@@ -373,60 +325,36 @@ public final class RoleDescriptor implements JsonpSerializable {
 		/**
 		 * API name: {@code applications}
 		 */
-		public Builder applications(ApplicationPrivileges... value) {
+		public final Builder applications(ApplicationPrivileges... value) {
 			this.applications = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #applications(List)}, creating the list if needed.
+		 * API name: {@code applications}
 		 */
-		public Builder addApplications(ApplicationPrivileges value) {
-			if (this.applications == null) {
-				this.applications = new ArrayList<>();
+		@SafeVarargs
+		public final Builder applications(
+				Function<ApplicationPrivileges.Builder, ObjectBuilder<ApplicationPrivileges>>... fns) {
+			this.applications = new ArrayList<>(fns.length);
+			for (Function<ApplicationPrivileges.Builder, ObjectBuilder<ApplicationPrivileges>> fn : fns) {
+				this.applications.add(fn.apply(new ApplicationPrivileges.Builder()).build());
 			}
-			this.applications.add(value);
 			return this;
-		}
-
-		/**
-		 * Set {@link #applications(List)} to a singleton list.
-		 */
-		public Builder applications(Function<ApplicationPrivileges.Builder, ObjectBuilder<ApplicationPrivileges>> fn) {
-			return this.applications(fn.apply(new ApplicationPrivileges.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #applications(List)}, creating the list if needed.
-		 */
-		public Builder addApplications(
-				Function<ApplicationPrivileges.Builder, ObjectBuilder<ApplicationPrivileges>> fn) {
-			return this.addApplications(fn.apply(new ApplicationPrivileges.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code metadata}
 		 */
-		public Builder metadata(@Nullable Map<String, JsonData> value) {
+		public final Builder metadata(@Nullable Map<String, JsonData> value) {
 			this.metadata = value;
-			return this;
-		}
-
-		/**
-		 * Add a key/value to {@link #metadata(Map)}, creating the map if needed.
-		 */
-		public Builder putMetadata(String key, JsonData value) {
-			if (this.metadata == null) {
-				this.metadata = new HashMap<>();
-			}
-			this.metadata.put(key, value);
 			return this;
 		}
 
 		/**
 		 * API name: {@code run_as}
 		 */
-		public Builder runAs(@Nullable List<String> value) {
+		public final Builder runAs(@Nullable List<String> value) {
 			this.runAs = value;
 			return this;
 		}
@@ -434,39 +362,16 @@ public final class RoleDescriptor implements JsonpSerializable {
 		/**
 		 * API name: {@code run_as}
 		 */
-		public Builder runAs(String... value) {
+		public final Builder runAs(String... value) {
 			this.runAs = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #runAs(List)}, creating the list if needed.
-		 */
-		public Builder addRunAs(String value) {
-			if (this.runAs == null) {
-				this.runAs = new ArrayList<>();
-			}
-			this.runAs.add(value);
 			return this;
 		}
 
 		/**
 		 * API name: {@code transient_metadata}
 		 */
-		public Builder transientMetadata(@Nullable Map<String, JsonData> value) {
+		public final Builder transientMetadata(@Nullable Map<String, JsonData> value) {
 			this.transientMetadata = value;
-			return this;
-		}
-
-		/**
-		 * Add a key/value to {@link #transientMetadata(Map)}, creating the map if
-		 * needed.
-		 */
-		public Builder putTransientMetadata(String key, JsonData value) {
-			if (this.transientMetadata == null) {
-				this.transientMetadata = new HashMap<>();
-			}
-			this.transientMetadata.put(key, value);
 			return this;
 		}
 
@@ -477,6 +382,7 @@ public final class RoleDescriptor implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public RoleDescriptor build() {
+			_checkSingleUse();
 
 			return new RoleDescriptor(this);
 		}

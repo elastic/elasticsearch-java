@@ -31,7 +31,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;
@@ -39,25 +41,25 @@ import javax.annotation.Nullable;
 
 // typedef: ilm.get_status.Response
 @JsonpDeserializable
-public final class GetStatusResponse implements JsonpSerializable {
+public class GetStatusResponse implements JsonpSerializable {
 	private final LifecycleOperationMode operationMode;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public GetStatusResponse(Builder builder) {
+	private GetStatusResponse(Builder builder) {
 
-		this.operationMode = Objects.requireNonNull(builder.operationMode, "operation_mode");
+		this.operationMode = ModelTypeHelper.requireNonNull(builder.operationMode, this, "operationMode");
 
 	}
 
-	public GetStatusResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static GetStatusResponse of(Function<Builder, ObjectBuilder<GetStatusResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code operation_mode}
 	 */
-	public LifecycleOperationMode operationMode() {
+	public final LifecycleOperationMode operationMode() {
 		return this.operationMode;
 	}
 
@@ -82,13 +84,13 @@ public final class GetStatusResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link GetStatusResponse}.
 	 */
-	public static class Builder implements ObjectBuilder<GetStatusResponse> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetStatusResponse> {
 		private LifecycleOperationMode operationMode;
 
 		/**
 		 * Required - API name: {@code operation_mode}
 		 */
-		public Builder operationMode(LifecycleOperationMode value) {
+		public final Builder operationMode(LifecycleOperationMode value) {
 			this.operationMode = value;
 			return this;
 		}
@@ -100,6 +102,7 @@ public final class GetStatusResponse implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public GetStatusResponse build() {
+			_checkSingleUse();
 
 			return new GetStatusResponse(this);
 		}

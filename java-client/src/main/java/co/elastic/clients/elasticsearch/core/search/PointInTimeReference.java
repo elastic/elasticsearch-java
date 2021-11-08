@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -39,7 +41,7 @@ import javax.annotation.Nullable;
 
 // typedef: _global.search._types.PointInTimeReference
 @JsonpDeserializable
-public final class PointInTimeReference implements JsonpSerializable {
+public class PointInTimeReference implements JsonpSerializable {
 	private final String id;
 
 	@Nullable
@@ -47,21 +49,21 @@ public final class PointInTimeReference implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public PointInTimeReference(Builder builder) {
+	private PointInTimeReference(Builder builder) {
 
-		this.id = Objects.requireNonNull(builder.id, "id");
+		this.id = ModelTypeHelper.requireNonNull(builder.id, this, "id");
 		this.keepAlive = builder.keepAlive;
 
 	}
 
-	public PointInTimeReference(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static PointInTimeReference of(Function<Builder, ObjectBuilder<PointInTimeReference>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code id}
 	 */
-	public String id() {
+	public final String id() {
 		return this.id;
 	}
 
@@ -69,7 +71,7 @@ public final class PointInTimeReference implements JsonpSerializable {
 	 * API name: {@code keep_alive}
 	 */
 	@Nullable
-	public String keepAlive() {
+	public final String keepAlive() {
 		return this.keepAlive;
 	}
 
@@ -88,7 +90,6 @@ public final class PointInTimeReference implements JsonpSerializable {
 		generator.write(this.id);
 
 		if (this.keepAlive != null) {
-
 			generator.writeKey("keep_alive");
 			generator.write(this.keepAlive);
 
@@ -101,7 +102,7 @@ public final class PointInTimeReference implements JsonpSerializable {
 	/**
 	 * Builder for {@link PointInTimeReference}.
 	 */
-	public static class Builder implements ObjectBuilder<PointInTimeReference> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PointInTimeReference> {
 		private String id;
 
 		@Nullable
@@ -110,7 +111,7 @@ public final class PointInTimeReference implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code id}
 		 */
-		public Builder id(String value) {
+		public final Builder id(String value) {
 			this.id = value;
 			return this;
 		}
@@ -118,7 +119,7 @@ public final class PointInTimeReference implements JsonpSerializable {
 		/**
 		 * API name: {@code keep_alive}
 		 */
-		public Builder keepAlive(@Nullable String value) {
+		public final Builder keepAlive(@Nullable String value) {
 			this.keepAlive = value;
 			return this;
 		}
@@ -130,6 +131,7 @@ public final class PointInTimeReference implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public PointInTimeReference build() {
+			_checkSingleUse();
 
 			return new PointInTimeReference(this);
 		}

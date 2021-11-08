@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
@@ -40,7 +42,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.QueryCacheStats
 @JsonpDeserializable
-public final class QueryCacheStats implements JsonpSerializable {
+public class QueryCacheStats implements JsonpSerializable {
 	private final int cacheCount;
 
 	private final int cacheSize;
@@ -60,48 +62,48 @@ public final class QueryCacheStats implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public QueryCacheStats(Builder builder) {
+	private QueryCacheStats(Builder builder) {
 
-		this.cacheCount = Objects.requireNonNull(builder.cacheCount, "cache_count");
-		this.cacheSize = Objects.requireNonNull(builder.cacheSize, "cache_size");
-		this.evictions = Objects.requireNonNull(builder.evictions, "evictions");
-		this.hitCount = Objects.requireNonNull(builder.hitCount, "hit_count");
+		this.cacheCount = ModelTypeHelper.requireNonNull(builder.cacheCount, this, "cacheCount");
+		this.cacheSize = ModelTypeHelper.requireNonNull(builder.cacheSize, this, "cacheSize");
+		this.evictions = ModelTypeHelper.requireNonNull(builder.evictions, this, "evictions");
+		this.hitCount = ModelTypeHelper.requireNonNull(builder.hitCount, this, "hitCount");
 		this.memorySize = builder.memorySize;
-		this.memorySizeInBytes = Objects.requireNonNull(builder.memorySizeInBytes, "memory_size_in_bytes");
-		this.missCount = Objects.requireNonNull(builder.missCount, "miss_count");
-		this.totalCount = Objects.requireNonNull(builder.totalCount, "total_count");
+		this.memorySizeInBytes = ModelTypeHelper.requireNonNull(builder.memorySizeInBytes, this, "memorySizeInBytes");
+		this.missCount = ModelTypeHelper.requireNonNull(builder.missCount, this, "missCount");
+		this.totalCount = ModelTypeHelper.requireNonNull(builder.totalCount, this, "totalCount");
 
 	}
 
-	public QueryCacheStats(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static QueryCacheStats of(Function<Builder, ObjectBuilder<QueryCacheStats>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code cache_count}
 	 */
-	public int cacheCount() {
+	public final int cacheCount() {
 		return this.cacheCount;
 	}
 
 	/**
 	 * Required - API name: {@code cache_size}
 	 */
-	public int cacheSize() {
+	public final int cacheSize() {
 		return this.cacheSize;
 	}
 
 	/**
 	 * Required - API name: {@code evictions}
 	 */
-	public int evictions() {
+	public final int evictions() {
 		return this.evictions;
 	}
 
 	/**
 	 * Required - API name: {@code hit_count}
 	 */
-	public int hitCount() {
+	public final int hitCount() {
 		return this.hitCount;
 	}
 
@@ -109,28 +111,28 @@ public final class QueryCacheStats implements JsonpSerializable {
 	 * API name: {@code memory_size}
 	 */
 	@Nullable
-	public String memorySize() {
+	public final String memorySize() {
 		return this.memorySize;
 	}
 
 	/**
 	 * Required - API name: {@code memory_size_in_bytes}
 	 */
-	public int memorySizeInBytes() {
+	public final int memorySizeInBytes() {
 		return this.memorySizeInBytes;
 	}
 
 	/**
 	 * Required - API name: {@code miss_count}
 	 */
-	public int missCount() {
+	public final int missCount() {
 		return this.missCount;
 	}
 
 	/**
 	 * Required - API name: {@code total_count}
 	 */
-	public int totalCount() {
+	public final int totalCount() {
 		return this.totalCount;
 	}
 
@@ -158,12 +160,10 @@ public final class QueryCacheStats implements JsonpSerializable {
 		generator.write(this.hitCount);
 
 		if (this.memorySize != null) {
-
 			generator.writeKey("memory_size");
 			generator.write(this.memorySize);
 
 		}
-
 		generator.writeKey("memory_size_in_bytes");
 		generator.write(this.memorySizeInBytes);
 
@@ -180,7 +180,7 @@ public final class QueryCacheStats implements JsonpSerializable {
 	/**
 	 * Builder for {@link QueryCacheStats}.
 	 */
-	public static class Builder implements ObjectBuilder<QueryCacheStats> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<QueryCacheStats> {
 		private Integer cacheCount;
 
 		private Integer cacheSize;
@@ -201,7 +201,7 @@ public final class QueryCacheStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code cache_count}
 		 */
-		public Builder cacheCount(int value) {
+		public final Builder cacheCount(int value) {
 			this.cacheCount = value;
 			return this;
 		}
@@ -209,7 +209,7 @@ public final class QueryCacheStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code cache_size}
 		 */
-		public Builder cacheSize(int value) {
+		public final Builder cacheSize(int value) {
 			this.cacheSize = value;
 			return this;
 		}
@@ -217,7 +217,7 @@ public final class QueryCacheStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code evictions}
 		 */
-		public Builder evictions(int value) {
+		public final Builder evictions(int value) {
 			this.evictions = value;
 			return this;
 		}
@@ -225,7 +225,7 @@ public final class QueryCacheStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code hit_count}
 		 */
-		public Builder hitCount(int value) {
+		public final Builder hitCount(int value) {
 			this.hitCount = value;
 			return this;
 		}
@@ -233,7 +233,7 @@ public final class QueryCacheStats implements JsonpSerializable {
 		/**
 		 * API name: {@code memory_size}
 		 */
-		public Builder memorySize(@Nullable String value) {
+		public final Builder memorySize(@Nullable String value) {
 			this.memorySize = value;
 			return this;
 		}
@@ -241,7 +241,7 @@ public final class QueryCacheStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code memory_size_in_bytes}
 		 */
-		public Builder memorySizeInBytes(int value) {
+		public final Builder memorySizeInBytes(int value) {
 			this.memorySizeInBytes = value;
 			return this;
 		}
@@ -249,7 +249,7 @@ public final class QueryCacheStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code miss_count}
 		 */
-		public Builder missCount(int value) {
+		public final Builder missCount(int value) {
 			this.missCount = value;
 			return this;
 		}
@@ -257,7 +257,7 @@ public final class QueryCacheStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code total_count}
 		 */
-		public Builder totalCount(int value) {
+		public final Builder totalCount(int value) {
 			this.totalCount = value;
 			return this;
 		}
@@ -269,6 +269,7 @@ public final class QueryCacheStats implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public QueryCacheStats build() {
+			_checkSingleUse();
 
 			return new QueryCacheStats(this);
 		}

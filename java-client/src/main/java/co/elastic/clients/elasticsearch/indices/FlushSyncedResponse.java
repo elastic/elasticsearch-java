@@ -31,6 +31,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.DictionaryResponse;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -40,33 +41,32 @@ import javax.annotation.Nullable;
 
 // typedef: indices.flush_synced.Response
 @JsonpDeserializable
-public final class FlushSyncedResponse extends DictionaryResponse<String, ShardStatistics> {
+public class FlushSyncedResponse extends DictionaryResponse<String, ShardStatistics> {
 	private final ShardStatistics shards;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public FlushSyncedResponse(Builder builder) {
+	private FlushSyncedResponse(Builder builder) {
 		super(builder);
 
-		this.shards = Objects.requireNonNull(builder.shards, "_shards");
+		this.shards = ModelTypeHelper.requireNonNull(builder.shards, this, "shards");
 
 	}
 
-	public FlushSyncedResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static FlushSyncedResponse of(Function<Builder, ObjectBuilder<FlushSyncedResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code _shards}
 	 */
-	public ShardStatistics shards() {
+	public final ShardStatistics shards() {
 		return this.shards;
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
-
 		generator.writeKey("_shards");
 		this.shards.serialize(generator, mapper);
 
@@ -85,7 +85,7 @@ public final class FlushSyncedResponse extends DictionaryResponse<String, ShardS
 		/**
 		 * Required - API name: {@code _shards}
 		 */
-		public Builder shards(ShardStatistics value) {
+		public final Builder shards(ShardStatistics value) {
 			this.shards = value;
 			return this;
 		}
@@ -93,7 +93,7 @@ public final class FlushSyncedResponse extends DictionaryResponse<String, ShardS
 		/**
 		 * Required - API name: {@code _shards}
 		 */
-		public Builder shards(Function<ShardStatistics.Builder, ObjectBuilder<ShardStatistics>> fn) {
+		public final Builder shards(Function<ShardStatistics.Builder, ObjectBuilder<ShardStatistics>> fn) {
 			return this.shards(fn.apply(new ShardStatistics.Builder()).build());
 		}
 
@@ -109,6 +109,7 @@ public final class FlushSyncedResponse extends DictionaryResponse<String, ShardS
 		 *             if some of the required fields are null.
 		 */
 		public FlushSyncedResponse build() {
+			_checkSingleUse();
 			super.tKeySerializer(null);
 			super.tValueSerializer(null);
 

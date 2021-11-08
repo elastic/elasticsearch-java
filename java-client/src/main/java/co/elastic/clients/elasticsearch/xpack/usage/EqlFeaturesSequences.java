@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Number;
 import java.util.Objects;
@@ -39,7 +41,7 @@ import javax.annotation.Nullable;
 
 // typedef: xpack.usage.EqlFeaturesSequences
 @JsonpDeserializable
-public final class EqlFeaturesSequences implements JsonpSerializable {
+public class EqlFeaturesSequences implements JsonpSerializable {
 	private final Number sequenceQueriesThree;
 
 	private final Number sequenceQueriesFour;
@@ -54,61 +56,64 @@ public final class EqlFeaturesSequences implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public EqlFeaturesSequences(Builder builder) {
+	private EqlFeaturesSequences(Builder builder) {
 
-		this.sequenceQueriesThree = Objects.requireNonNull(builder.sequenceQueriesThree, "sequence_queries_three");
-		this.sequenceQueriesFour = Objects.requireNonNull(builder.sequenceQueriesFour, "sequence_queries_four");
-		this.sequenceQueriesTwo = Objects.requireNonNull(builder.sequenceQueriesTwo, "sequence_queries_two");
-		this.sequenceUntil = Objects.requireNonNull(builder.sequenceUntil, "sequence_until");
-		this.sequenceQueriesFiveOrMore = Objects.requireNonNull(builder.sequenceQueriesFiveOrMore,
-				"sequence_queries_five_or_more");
-		this.sequenceMaxspan = Objects.requireNonNull(builder.sequenceMaxspan, "sequence_maxspan");
+		this.sequenceQueriesThree = ModelTypeHelper.requireNonNull(builder.sequenceQueriesThree, this,
+				"sequenceQueriesThree");
+		this.sequenceQueriesFour = ModelTypeHelper.requireNonNull(builder.sequenceQueriesFour, this,
+				"sequenceQueriesFour");
+		this.sequenceQueriesTwo = ModelTypeHelper.requireNonNull(builder.sequenceQueriesTwo, this,
+				"sequenceQueriesTwo");
+		this.sequenceUntil = ModelTypeHelper.requireNonNull(builder.sequenceUntil, this, "sequenceUntil");
+		this.sequenceQueriesFiveOrMore = ModelTypeHelper.requireNonNull(builder.sequenceQueriesFiveOrMore, this,
+				"sequenceQueriesFiveOrMore");
+		this.sequenceMaxspan = ModelTypeHelper.requireNonNull(builder.sequenceMaxspan, this, "sequenceMaxspan");
 
 	}
 
-	public EqlFeaturesSequences(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static EqlFeaturesSequences of(Function<Builder, ObjectBuilder<EqlFeaturesSequences>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code sequence_queries_three}
 	 */
-	public Number sequenceQueriesThree() {
+	public final Number sequenceQueriesThree() {
 		return this.sequenceQueriesThree;
 	}
 
 	/**
 	 * Required - API name: {@code sequence_queries_four}
 	 */
-	public Number sequenceQueriesFour() {
+	public final Number sequenceQueriesFour() {
 		return this.sequenceQueriesFour;
 	}
 
 	/**
 	 * Required - API name: {@code sequence_queries_two}
 	 */
-	public Number sequenceQueriesTwo() {
+	public final Number sequenceQueriesTwo() {
 		return this.sequenceQueriesTwo;
 	}
 
 	/**
 	 * Required - API name: {@code sequence_until}
 	 */
-	public Number sequenceUntil() {
+	public final Number sequenceUntil() {
 		return this.sequenceUntil;
 	}
 
 	/**
 	 * Required - API name: {@code sequence_queries_five_or_more}
 	 */
-	public Number sequenceQueriesFiveOrMore() {
+	public final Number sequenceQueriesFiveOrMore() {
 		return this.sequenceQueriesFiveOrMore;
 	}
 
 	/**
 	 * Required - API name: {@code sequence_maxspan}
 	 */
-	public Number sequenceMaxspan() {
+	public final Number sequenceMaxspan() {
 		return this.sequenceMaxspan;
 	}
 
@@ -148,7 +153,7 @@ public final class EqlFeaturesSequences implements JsonpSerializable {
 	/**
 	 * Builder for {@link EqlFeaturesSequences}.
 	 */
-	public static class Builder implements ObjectBuilder<EqlFeaturesSequences> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<EqlFeaturesSequences> {
 		private Number sequenceQueriesThree;
 
 		private Number sequenceQueriesFour;
@@ -164,7 +169,7 @@ public final class EqlFeaturesSequences implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code sequence_queries_three}
 		 */
-		public Builder sequenceQueriesThree(Number value) {
+		public final Builder sequenceQueriesThree(Number value) {
 			this.sequenceQueriesThree = value;
 			return this;
 		}
@@ -172,7 +177,7 @@ public final class EqlFeaturesSequences implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code sequence_queries_four}
 		 */
-		public Builder sequenceQueriesFour(Number value) {
+		public final Builder sequenceQueriesFour(Number value) {
 			this.sequenceQueriesFour = value;
 			return this;
 		}
@@ -180,7 +185,7 @@ public final class EqlFeaturesSequences implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code sequence_queries_two}
 		 */
-		public Builder sequenceQueriesTwo(Number value) {
+		public final Builder sequenceQueriesTwo(Number value) {
 			this.sequenceQueriesTwo = value;
 			return this;
 		}
@@ -188,7 +193,7 @@ public final class EqlFeaturesSequences implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code sequence_until}
 		 */
-		public Builder sequenceUntil(Number value) {
+		public final Builder sequenceUntil(Number value) {
 			this.sequenceUntil = value;
 			return this;
 		}
@@ -196,7 +201,7 @@ public final class EqlFeaturesSequences implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code sequence_queries_five_or_more}
 		 */
-		public Builder sequenceQueriesFiveOrMore(Number value) {
+		public final Builder sequenceQueriesFiveOrMore(Number value) {
 			this.sequenceQueriesFiveOrMore = value;
 			return this;
 		}
@@ -204,7 +209,7 @@ public final class EqlFeaturesSequences implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code sequence_maxspan}
 		 */
-		public Builder sequenceMaxspan(Number value) {
+		public final Builder sequenceMaxspan(Number value) {
 			this.sequenceMaxspan = value;
 			return this;
 		}
@@ -216,6 +221,7 @@ public final class EqlFeaturesSequences implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public EqlFeaturesSequences build() {
+			_checkSingleUse();
 
 			return new EqlFeaturesSequences(this);
 		}

@@ -32,6 +32,7 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.SimpleEndpoint;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
@@ -43,7 +44,7 @@ import javax.annotation.Nullable;
 
 // typedef: security.get_api_key.Request
 
-public final class GetApiKeyRequest extends RequestBase {
+public class GetApiKeyRequest extends RequestBase {
 	@Nullable
 	private final String id;
 
@@ -61,7 +62,7 @@ public final class GetApiKeyRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public GetApiKeyRequest(Builder builder) {
+	private GetApiKeyRequest(Builder builder) {
 
 		this.id = builder.id;
 		this.name = builder.name;
@@ -71,8 +72,8 @@ public final class GetApiKeyRequest extends RequestBase {
 
 	}
 
-	public GetApiKeyRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static GetApiKeyRequest of(Function<Builder, ObjectBuilder<GetApiKeyRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -81,7 +82,7 @@ public final class GetApiKeyRequest extends RequestBase {
 	 * API name: {@code id}
 	 */
 	@Nullable
-	public String id() {
+	public final String id() {
 		return this.id;
 	}
 
@@ -91,7 +92,7 @@ public final class GetApiKeyRequest extends RequestBase {
 	 * API name: {@code name}
 	 */
 	@Nullable
-	public String name() {
+	public final String name() {
 		return this.name;
 	}
 
@@ -101,7 +102,7 @@ public final class GetApiKeyRequest extends RequestBase {
 	 * API name: {@code owner}
 	 */
 	@Nullable
-	public Boolean owner() {
+	public final Boolean owner() {
 		return this.owner;
 	}
 
@@ -111,7 +112,7 @@ public final class GetApiKeyRequest extends RequestBase {
 	 * API name: {@code realm_name}
 	 */
 	@Nullable
-	public String realmName() {
+	public final String realmName() {
 		return this.realmName;
 	}
 
@@ -121,7 +122,7 @@ public final class GetApiKeyRequest extends RequestBase {
 	 * API name: {@code username}
 	 */
 	@Nullable
-	public String username() {
+	public final String username() {
 		return this.username;
 	}
 
@@ -130,7 +131,7 @@ public final class GetApiKeyRequest extends RequestBase {
 	/**
 	 * Builder for {@link GetApiKeyRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<GetApiKeyRequest> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetApiKeyRequest> {
 		@Nullable
 		private String id;
 
@@ -151,7 +152,7 @@ public final class GetApiKeyRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code id}
 		 */
-		public Builder id(@Nullable String value) {
+		public final Builder id(@Nullable String value) {
 			this.id = value;
 			return this;
 		}
@@ -161,7 +162,7 @@ public final class GetApiKeyRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code name}
 		 */
-		public Builder name(@Nullable String value) {
+		public final Builder name(@Nullable String value) {
 			this.name = value;
 			return this;
 		}
@@ -171,7 +172,7 @@ public final class GetApiKeyRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code owner}
 		 */
-		public Builder owner(@Nullable Boolean value) {
+		public final Builder owner(@Nullable Boolean value) {
 			this.owner = value;
 			return this;
 		}
@@ -181,7 +182,7 @@ public final class GetApiKeyRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code realm_name}
 		 */
-		public Builder realmName(@Nullable String value) {
+		public final Builder realmName(@Nullable String value) {
 			this.realmName = value;
 			return this;
 		}
@@ -191,7 +192,7 @@ public final class GetApiKeyRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code username}
 		 */
-		public Builder username(@Nullable String value) {
+		public final Builder username(@Nullable String value) {
 			this.username = value;
 			return this;
 		}
@@ -203,6 +204,7 @@ public final class GetApiKeyRequest extends RequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public GetApiKeyRequest build() {
+			_checkSingleUse();
 
 			return new GetApiKeyRequest(this);
 		}

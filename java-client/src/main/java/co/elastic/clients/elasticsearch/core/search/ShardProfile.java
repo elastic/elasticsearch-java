@@ -32,6 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.ArrayList;
@@ -43,7 +44,7 @@ import javax.annotation.Nullable;
 
 // typedef: _global.search._types.ShardProfile
 @JsonpDeserializable
-public final class ShardProfile implements JsonpSerializable {
+public class ShardProfile implements JsonpSerializable {
 	private final List<AggregationProfile> aggregations;
 
 	private final String id;
@@ -55,37 +56,37 @@ public final class ShardProfile implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public ShardProfile(Builder builder) {
+	private ShardProfile(Builder builder) {
 
-		this.aggregations = ModelTypeHelper.unmodifiableNonNull(builder.aggregations, "aggregations");
-		this.id = Objects.requireNonNull(builder.id, "id");
-		this.searches = ModelTypeHelper.unmodifiableNonNull(builder.searches, "searches");
+		this.aggregations = ModelTypeHelper.unmodifiableRequired(builder.aggregations, this, "aggregations");
+		this.id = ModelTypeHelper.requireNonNull(builder.id, this, "id");
+		this.searches = ModelTypeHelper.unmodifiableRequired(builder.searches, this, "searches");
 		this.fetch = builder.fetch;
 
 	}
 
-	public ShardProfile(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ShardProfile of(Function<Builder, ObjectBuilder<ShardProfile>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code aggregations}
 	 */
-	public List<AggregationProfile> aggregations() {
+	public final List<AggregationProfile> aggregations() {
 		return this.aggregations;
 	}
 
 	/**
 	 * Required - API name: {@code id}
 	 */
-	public String id() {
+	public final String id() {
 		return this.id;
 	}
 
 	/**
 	 * Required - API name: {@code searches}
 	 */
-	public List<SearchProfile> searches() {
+	public final List<SearchProfile> searches() {
 		return this.searches;
 	}
 
@@ -93,7 +94,7 @@ public final class ShardProfile implements JsonpSerializable {
 	 * API name: {@code fetch}
 	 */
 	@Nullable
-	public FetchProfile fetch() {
+	public final FetchProfile fetch() {
 		return this.fetch;
 	}
 
@@ -108,27 +109,30 @@ public final class ShardProfile implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("aggregations");
-		generator.writeStartArray();
-		for (AggregationProfile item0 : this.aggregations) {
-			item0.serialize(generator, mapper);
+		if (ModelTypeHelper.isDefined(this.aggregations)) {
+			generator.writeKey("aggregations");
+			generator.writeStartArray();
+			for (AggregationProfile item0 : this.aggregations) {
+				item0.serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
-
 		generator.writeKey("id");
 		generator.write(this.id);
 
-		generator.writeKey("searches");
-		generator.writeStartArray();
-		for (SearchProfile item0 : this.searches) {
-			item0.serialize(generator, mapper);
+		if (ModelTypeHelper.isDefined(this.searches)) {
+			generator.writeKey("searches");
+			generator.writeStartArray();
+			for (SearchProfile item0 : this.searches) {
+				item0.serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
-
 		if (this.fetch != null) {
-
 			generator.writeKey("fetch");
 			this.fetch.serialize(generator, mapper);
 
@@ -141,7 +145,7 @@ public final class ShardProfile implements JsonpSerializable {
 	/**
 	 * Builder for {@link ShardProfile}.
 	 */
-	public static class Builder implements ObjectBuilder<ShardProfile> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ShardProfile> {
 		private List<AggregationProfile> aggregations;
 
 		private String id;
@@ -154,7 +158,7 @@ public final class ShardProfile implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code aggregations}
 		 */
-		public Builder aggregations(List<AggregationProfile> value) {
+		public final Builder aggregations(List<AggregationProfile> value) {
 			this.aggregations = value;
 			return this;
 		}
@@ -162,40 +166,28 @@ public final class ShardProfile implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code aggregations}
 		 */
-		public Builder aggregations(AggregationProfile... value) {
+		public final Builder aggregations(AggregationProfile... value) {
 			this.aggregations = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #aggregations(List)}, creating the list if needed.
+		 * Required - API name: {@code aggregations}
 		 */
-		public Builder addAggregations(AggregationProfile value) {
-			if (this.aggregations == null) {
-				this.aggregations = new ArrayList<>();
+		@SafeVarargs
+		public final Builder aggregations(
+				Function<AggregationProfile.Builder, ObjectBuilder<AggregationProfile>>... fns) {
+			this.aggregations = new ArrayList<>(fns.length);
+			for (Function<AggregationProfile.Builder, ObjectBuilder<AggregationProfile>> fn : fns) {
+				this.aggregations.add(fn.apply(new AggregationProfile.Builder()).build());
 			}
-			this.aggregations.add(value);
 			return this;
-		}
-
-		/**
-		 * Set {@link #aggregations(List)} to a singleton list.
-		 */
-		public Builder aggregations(Function<AggregationProfile.Builder, ObjectBuilder<AggregationProfile>> fn) {
-			return this.aggregations(fn.apply(new AggregationProfile.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #aggregations(List)}, creating the list if needed.
-		 */
-		public Builder addAggregations(Function<AggregationProfile.Builder, ObjectBuilder<AggregationProfile>> fn) {
-			return this.addAggregations(fn.apply(new AggregationProfile.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code id}
 		 */
-		public Builder id(String value) {
+		public final Builder id(String value) {
 			this.id = value;
 			return this;
 		}
@@ -203,7 +195,7 @@ public final class ShardProfile implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code searches}
 		 */
-		public Builder searches(List<SearchProfile> value) {
+		public final Builder searches(List<SearchProfile> value) {
 			this.searches = value;
 			return this;
 		}
@@ -211,40 +203,27 @@ public final class ShardProfile implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code searches}
 		 */
-		public Builder searches(SearchProfile... value) {
+		public final Builder searches(SearchProfile... value) {
 			this.searches = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #searches(List)}, creating the list if needed.
+		 * Required - API name: {@code searches}
 		 */
-		public Builder addSearches(SearchProfile value) {
-			if (this.searches == null) {
-				this.searches = new ArrayList<>();
+		@SafeVarargs
+		public final Builder searches(Function<SearchProfile.Builder, ObjectBuilder<SearchProfile>>... fns) {
+			this.searches = new ArrayList<>(fns.length);
+			for (Function<SearchProfile.Builder, ObjectBuilder<SearchProfile>> fn : fns) {
+				this.searches.add(fn.apply(new SearchProfile.Builder()).build());
 			}
-			this.searches.add(value);
 			return this;
-		}
-
-		/**
-		 * Set {@link #searches(List)} to a singleton list.
-		 */
-		public Builder searches(Function<SearchProfile.Builder, ObjectBuilder<SearchProfile>> fn) {
-			return this.searches(fn.apply(new SearchProfile.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #searches(List)}, creating the list if needed.
-		 */
-		public Builder addSearches(Function<SearchProfile.Builder, ObjectBuilder<SearchProfile>> fn) {
-			return this.addSearches(fn.apply(new SearchProfile.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code fetch}
 		 */
-		public Builder fetch(@Nullable FetchProfile value) {
+		public final Builder fetch(@Nullable FetchProfile value) {
 			this.fetch = value;
 			return this;
 		}
@@ -252,7 +231,7 @@ public final class ShardProfile implements JsonpSerializable {
 		/**
 		 * API name: {@code fetch}
 		 */
-		public Builder fetch(Function<FetchProfile.Builder, ObjectBuilder<FetchProfile>> fn) {
+		public final Builder fetch(Function<FetchProfile.Builder, ObjectBuilder<FetchProfile>> fn) {
 			return this.fetch(fn.apply(new FetchProfile.Builder()).build());
 		}
 
@@ -263,6 +242,7 @@ public final class ShardProfile implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public ShardProfile build() {
+			_checkSingleUse();
 
 			return new ShardProfile(this);
 		}

@@ -29,6 +29,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
@@ -37,20 +38,20 @@ import java.util.function.Function;
 
 // typedef: _types.analysis.TruncateTokenFilter
 @JsonpDeserializable
-public final class TruncateTokenFilter extends TokenFilterBase implements TokenFilterVariant {
+public class TruncateTokenFilter extends TokenFilterBase implements TokenFilterVariant {
 	private final int length;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public TruncateTokenFilter(Builder builder) {
+	private TruncateTokenFilter(Builder builder) {
 		super(builder);
 
-		this.length = Objects.requireNonNull(builder.length, "length");
+		this.length = ModelTypeHelper.requireNonNull(builder.length, this, "length");
 
 	}
 
-	public TruncateTokenFilter(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static TruncateTokenFilter of(Function<Builder, ObjectBuilder<TruncateTokenFilter>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -64,7 +65,7 @@ public final class TruncateTokenFilter extends TokenFilterBase implements TokenF
 	/**
 	 * Required - API name: {@code length}
 	 */
-	public int length() {
+	public final int length() {
 		return this.length;
 	}
 
@@ -72,7 +73,6 @@ public final class TruncateTokenFilter extends TokenFilterBase implements TokenF
 
 		generator.write("type", "truncate");
 		super.serializeInternal(generator, mapper);
-
 		generator.writeKey("length");
 		generator.write(this.length);
 
@@ -91,7 +91,7 @@ public final class TruncateTokenFilter extends TokenFilterBase implements TokenF
 		/**
 		 * Required - API name: {@code length}
 		 */
-		public Builder length(int value) {
+		public final Builder length(int value) {
 			this.length = value;
 			return this;
 		}
@@ -108,6 +108,7 @@ public final class TruncateTokenFilter extends TokenFilterBase implements TokenF
 		 *             if some of the required fields are null.
 		 */
 		public TruncateTokenFilter build() {
+			_checkSingleUse();
 
 			return new TruncateTokenFilter(this);
 		}

@@ -32,6 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -42,19 +43,19 @@ import javax.annotation.Nullable;
 
 // typedef: cat.fielddata.Response
 @JsonpDeserializable
-public final class FielddataResponse implements JsonpSerializable {
+public class FielddataResponse implements JsonpSerializable {
 	private final List<FielddataRecord> valueBody;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public FielddataResponse(Builder builder) {
+	private FielddataResponse(Builder builder) {
 
-		this.valueBody = ModelTypeHelper.unmodifiableNonNull(builder.valueBody, "_value_body");
+		this.valueBody = ModelTypeHelper.unmodifiableRequired(builder.valueBody, this, "valueBody");
 
 	}
 
-	public FielddataResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static FielddataResponse of(Function<Builder, ObjectBuilder<FielddataResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -62,7 +63,7 @@ public final class FielddataResponse implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code _value_body}
 	 */
-	public List<FielddataRecord> valueBody() {
+	public final List<FielddataRecord> valueBody() {
 		return this.valueBody;
 	}
 
@@ -84,7 +85,7 @@ public final class FielddataResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link FielddataResponse}.
 	 */
-	public static class Builder implements ObjectBuilder<FielddataResponse> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<FielddataResponse> {
 		private List<FielddataRecord> valueBody;
 
 		/**
@@ -92,7 +93,7 @@ public final class FielddataResponse implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code _value_body}
 		 */
-		public Builder valueBody(List<FielddataRecord> value) {
+		public final Builder valueBody(List<FielddataRecord> value) {
 			this.valueBody = value;
 			return this;
 		}
@@ -102,34 +103,23 @@ public final class FielddataResponse implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code _value_body}
 		 */
-		public Builder valueBody(FielddataRecord... value) {
+		public final Builder valueBody(FielddataRecord... value) {
 			this.valueBody = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #valueBody(List)}, creating the list if needed.
+		 * Required - Response value.
+		 * <p>
+		 * API name: {@code _value_body}
 		 */
-		public Builder addValueBody(FielddataRecord value) {
-			if (this.valueBody == null) {
-				this.valueBody = new ArrayList<>();
+		@SafeVarargs
+		public final Builder valueBody(Function<FielddataRecord.Builder, ObjectBuilder<FielddataRecord>>... fns) {
+			this.valueBody = new ArrayList<>(fns.length);
+			for (Function<FielddataRecord.Builder, ObjectBuilder<FielddataRecord>> fn : fns) {
+				this.valueBody.add(fn.apply(new FielddataRecord.Builder()).build());
 			}
-			this.valueBody.add(value);
 			return this;
-		}
-
-		/**
-		 * Set {@link #valueBody(List)} to a singleton list.
-		 */
-		public Builder valueBody(Function<FielddataRecord.Builder, ObjectBuilder<FielddataRecord>> fn) {
-			return this.valueBody(fn.apply(new FielddataRecord.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #valueBody(List)}, creating the list if needed.
-		 */
-		public Builder addValueBody(Function<FielddataRecord.Builder, ObjectBuilder<FielddataRecord>> fn) {
-			return this.addValueBody(fn.apply(new FielddataRecord.Builder()).build());
 		}
 
 		/**
@@ -139,6 +129,7 @@ public final class FielddataResponse implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public FielddataResponse build() {
+			_checkSingleUse();
 
 			return new FielddataResponse(this);
 		}

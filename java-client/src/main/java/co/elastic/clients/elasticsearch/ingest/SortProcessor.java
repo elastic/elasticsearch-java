@@ -30,6 +30,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -39,7 +40,7 @@ import javax.annotation.Nullable;
 
 // typedef: ingest._types.SortProcessor
 @JsonpDeserializable
-public final class SortProcessor extends ProcessorBase implements ProcessorVariant {
+public class SortProcessor extends ProcessorBase implements ProcessorVariant {
 	private final String field;
 
 	private final SortOrder order;
@@ -48,17 +49,17 @@ public final class SortProcessor extends ProcessorBase implements ProcessorVaria
 
 	// ---------------------------------------------------------------------------------------------
 
-	public SortProcessor(Builder builder) {
+	private SortProcessor(Builder builder) {
 		super(builder);
 
-		this.field = Objects.requireNonNull(builder.field, "field");
-		this.order = Objects.requireNonNull(builder.order, "order");
-		this.targetField = Objects.requireNonNull(builder.targetField, "target_field");
+		this.field = ModelTypeHelper.requireNonNull(builder.field, this, "field");
+		this.order = ModelTypeHelper.requireNonNull(builder.order, this, "order");
+		this.targetField = ModelTypeHelper.requireNonNull(builder.targetField, this, "targetField");
 
 	}
 
-	public SortProcessor(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static SortProcessor of(Function<Builder, ObjectBuilder<SortProcessor>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -72,34 +73,32 @@ public final class SortProcessor extends ProcessorBase implements ProcessorVaria
 	/**
 	 * Required - API name: {@code field}
 	 */
-	public String field() {
+	public final String field() {
 		return this.field;
 	}
 
 	/**
 	 * Required - API name: {@code order}
 	 */
-	public SortOrder order() {
+	public final SortOrder order() {
 		return this.order;
 	}
 
 	/**
 	 * Required - API name: {@code target_field}
 	 */
-	public String targetField() {
+	public final String targetField() {
 		return this.targetField;
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
-
 		generator.writeKey("field");
 		generator.write(this.field);
 
 		generator.writeKey("order");
 		this.order.serialize(generator, mapper);
-
 		generator.writeKey("target_field");
 		generator.write(this.targetField);
 
@@ -120,7 +119,7 @@ public final class SortProcessor extends ProcessorBase implements ProcessorVaria
 		/**
 		 * Required - API name: {@code field}
 		 */
-		public Builder field(String value) {
+		public final Builder field(String value) {
 			this.field = value;
 			return this;
 		}
@@ -128,7 +127,7 @@ public final class SortProcessor extends ProcessorBase implements ProcessorVaria
 		/**
 		 * Required - API name: {@code order}
 		 */
-		public Builder order(SortOrder value) {
+		public final Builder order(SortOrder value) {
 			this.order = value;
 			return this;
 		}
@@ -136,7 +135,7 @@ public final class SortProcessor extends ProcessorBase implements ProcessorVaria
 		/**
 		 * Required - API name: {@code target_field}
 		 */
-		public Builder targetField(String value) {
+		public final Builder targetField(String value) {
 			this.targetField = value;
 			return this;
 		}
@@ -153,6 +152,7 @@ public final class SortProcessor extends ProcessorBase implements ProcessorVaria
 		 *             if some of the required fields are null.
 		 */
 		public SortProcessor build() {
+			_checkSingleUse();
 
 			return new SortProcessor(this);
 		}

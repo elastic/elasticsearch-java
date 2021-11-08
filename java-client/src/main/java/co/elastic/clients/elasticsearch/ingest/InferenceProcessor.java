@@ -34,7 +34,6 @@ import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
@@ -42,12 +41,11 @@ import javax.annotation.Nullable;
 
 // typedef: ingest._types.InferenceProcessor
 @JsonpDeserializable
-public final class InferenceProcessor extends ProcessorBase implements ProcessorVariant {
+public class InferenceProcessor extends ProcessorBase implements ProcessorVariant {
 	private final String modelId;
 
 	private final String targetField;
 
-	@Nullable
 	private final Map<String, JsonData> fieldMap;
 
 	@Nullable
@@ -55,18 +53,18 @@ public final class InferenceProcessor extends ProcessorBase implements Processor
 
 	// ---------------------------------------------------------------------------------------------
 
-	public InferenceProcessor(Builder builder) {
+	private InferenceProcessor(Builder builder) {
 		super(builder);
 
-		this.modelId = Objects.requireNonNull(builder.modelId, "model_id");
-		this.targetField = Objects.requireNonNull(builder.targetField, "target_field");
+		this.modelId = ModelTypeHelper.requireNonNull(builder.modelId, this, "modelId");
+		this.targetField = ModelTypeHelper.requireNonNull(builder.targetField, this, "targetField");
 		this.fieldMap = ModelTypeHelper.unmodifiable(builder.fieldMap);
 		this.inferenceConfig = builder.inferenceConfig;
 
 	}
 
-	public InferenceProcessor(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static InferenceProcessor of(Function<Builder, ObjectBuilder<InferenceProcessor>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -80,22 +78,21 @@ public final class InferenceProcessor extends ProcessorBase implements Processor
 	/**
 	 * Required - API name: {@code model_id}
 	 */
-	public String modelId() {
+	public final String modelId() {
 		return this.modelId;
 	}
 
 	/**
 	 * Required - API name: {@code target_field}
 	 */
-	public String targetField() {
+	public final String targetField() {
 		return this.targetField;
 	}
 
 	/**
 	 * API name: {@code field_map}
 	 */
-	@Nullable
-	public Map<String, JsonData> fieldMap() {
+	public final Map<String, JsonData> fieldMap() {
 		return this.fieldMap;
 	}
 
@@ -103,22 +100,20 @@ public final class InferenceProcessor extends ProcessorBase implements Processor
 	 * API name: {@code inference_config}
 	 */
 	@Nullable
-	public InferenceConfig inferenceConfig() {
+	public final InferenceConfig inferenceConfig() {
 		return this.inferenceConfig;
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
-
 		generator.writeKey("model_id");
 		generator.write(this.modelId);
 
 		generator.writeKey("target_field");
 		generator.write(this.targetField);
 
-		if (this.fieldMap != null) {
-
+		if (ModelTypeHelper.isDefined(this.fieldMap)) {
 			generator.writeKey("field_map");
 			generator.writeStartObject();
 			for (Map.Entry<String, JsonData> item0 : this.fieldMap.entrySet()) {
@@ -130,7 +125,6 @@ public final class InferenceProcessor extends ProcessorBase implements Processor
 
 		}
 		if (this.inferenceConfig != null) {
-
 			generator.writeKey("inference_config");
 			this.inferenceConfig.serialize(generator, mapper);
 
@@ -159,7 +153,7 @@ public final class InferenceProcessor extends ProcessorBase implements Processor
 		/**
 		 * Required - API name: {@code model_id}
 		 */
-		public Builder modelId(String value) {
+		public final Builder modelId(String value) {
 			this.modelId = value;
 			return this;
 		}
@@ -167,7 +161,7 @@ public final class InferenceProcessor extends ProcessorBase implements Processor
 		/**
 		 * Required - API name: {@code target_field}
 		 */
-		public Builder targetField(String value) {
+		public final Builder targetField(String value) {
 			this.targetField = value;
 			return this;
 		}
@@ -175,26 +169,15 @@ public final class InferenceProcessor extends ProcessorBase implements Processor
 		/**
 		 * API name: {@code field_map}
 		 */
-		public Builder fieldMap(@Nullable Map<String, JsonData> value) {
+		public final Builder fieldMap(@Nullable Map<String, JsonData> value) {
 			this.fieldMap = value;
-			return this;
-		}
-
-		/**
-		 * Add a key/value to {@link #fieldMap(Map)}, creating the map if needed.
-		 */
-		public Builder putFieldMap(String key, JsonData value) {
-			if (this.fieldMap == null) {
-				this.fieldMap = new HashMap<>();
-			}
-			this.fieldMap.put(key, value);
 			return this;
 		}
 
 		/**
 		 * API name: {@code inference_config}
 		 */
-		public Builder inferenceConfig(@Nullable InferenceConfig value) {
+		public final Builder inferenceConfig(@Nullable InferenceConfig value) {
 			this.inferenceConfig = value;
 			return this;
 		}
@@ -202,7 +185,7 @@ public final class InferenceProcessor extends ProcessorBase implements Processor
 		/**
 		 * API name: {@code inference_config}
 		 */
-		public Builder inferenceConfig(Function<InferenceConfig.Builder, ObjectBuilder<InferenceConfig>> fn) {
+		public final Builder inferenceConfig(Function<InferenceConfig.Builder, ObjectBuilder<InferenceConfig>> fn) {
 			return this.inferenceConfig(fn.apply(new InferenceConfig.Builder()).build());
 		}
 
@@ -218,6 +201,7 @@ public final class InferenceProcessor extends ProcessorBase implements Processor
 		 *             if some of the required fields are null.
 		 */
 		public InferenceProcessor build() {
+			_checkSingleUse();
 
 			return new InferenceProcessor(this);
 		}

@@ -38,6 +38,7 @@ import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.SimpleEndpoint;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Long;
@@ -54,17 +55,14 @@ import javax.annotation.Nullable;
 
 // typedef: _global.mtermvectors.Request
 @JsonpDeserializable
-public final class MtermvectorsRequest extends RequestBase implements JsonpSerializable {
-	@Nullable
+public class MtermvectorsRequest extends RequestBase implements JsonpSerializable {
 	private final List<Operation> docs;
 
 	@Nullable
 	private final Boolean fieldStatistics;
 
-	@Nullable
 	private final List<String> fields;
 
-	@Nullable
 	private final List<String> ids;
 
 	@Nullable
@@ -102,7 +100,7 @@ public final class MtermvectorsRequest extends RequestBase implements JsonpSeria
 
 	// ---------------------------------------------------------------------------------------------
 
-	public MtermvectorsRequest(Builder builder) {
+	private MtermvectorsRequest(Builder builder) {
 
 		this.docs = ModelTypeHelper.unmodifiable(builder.docs);
 		this.fieldStatistics = builder.fieldStatistics;
@@ -122,15 +120,14 @@ public final class MtermvectorsRequest extends RequestBase implements JsonpSeria
 
 	}
 
-	public MtermvectorsRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static MtermvectorsRequest of(Function<Builder, ObjectBuilder<MtermvectorsRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * API name: {@code docs}
 	 */
-	@Nullable
-	public List<Operation> docs() {
+	public final List<Operation> docs() {
 		return this.docs;
 	}
 
@@ -142,7 +139,7 @@ public final class MtermvectorsRequest extends RequestBase implements JsonpSeria
 	 * API name: {@code field_statistics}
 	 */
 	@Nullable
-	public Boolean fieldStatistics() {
+	public final Boolean fieldStatistics() {
 		return this.fieldStatistics;
 	}
 
@@ -152,16 +149,14 @@ public final class MtermvectorsRequest extends RequestBase implements JsonpSeria
 	 * <p>
 	 * API name: {@code fields}
 	 */
-	@Nullable
-	public List<String> fields() {
+	public final List<String> fields() {
 		return this.fields;
 	}
 
 	/**
 	 * API name: {@code ids}
 	 */
-	@Nullable
-	public List<String> ids() {
+	public final List<String> ids() {
 		return this.ids;
 	}
 
@@ -171,7 +166,7 @@ public final class MtermvectorsRequest extends RequestBase implements JsonpSeria
 	 * API name: {@code index}
 	 */
 	@Nullable
-	public String index() {
+	public final String index() {
 		return this.index;
 	}
 
@@ -183,7 +178,7 @@ public final class MtermvectorsRequest extends RequestBase implements JsonpSeria
 	 * API name: {@code offsets}
 	 */
 	@Nullable
-	public Boolean offsets() {
+	public final Boolean offsets() {
 		return this.offsets;
 	}
 
@@ -195,7 +190,7 @@ public final class MtermvectorsRequest extends RequestBase implements JsonpSeria
 	 * API name: {@code payloads}
 	 */
 	@Nullable
-	public Boolean payloads() {
+	public final Boolean payloads() {
 		return this.payloads;
 	}
 
@@ -207,7 +202,7 @@ public final class MtermvectorsRequest extends RequestBase implements JsonpSeria
 	 * API name: {@code positions}
 	 */
 	@Nullable
-	public Boolean positions() {
+	public final Boolean positions() {
 		return this.positions;
 	}
 
@@ -219,7 +214,7 @@ public final class MtermvectorsRequest extends RequestBase implements JsonpSeria
 	 * API name: {@code preference}
 	 */
 	@Nullable
-	public String preference() {
+	public final String preference() {
 		return this.preference;
 	}
 
@@ -230,7 +225,7 @@ public final class MtermvectorsRequest extends RequestBase implements JsonpSeria
 	 * API name: {@code realtime}
 	 */
 	@Nullable
-	public Boolean realtime() {
+	public final Boolean realtime() {
 		return this.realtime;
 	}
 
@@ -241,7 +236,7 @@ public final class MtermvectorsRequest extends RequestBase implements JsonpSeria
 	 * API name: {@code routing}
 	 */
 	@Nullable
-	public String routing() {
+	public final String routing() {
 		return this.routing;
 	}
 
@@ -253,7 +248,7 @@ public final class MtermvectorsRequest extends RequestBase implements JsonpSeria
 	 * API name: {@code term_statistics}
 	 */
 	@Nullable
-	public Boolean termStatistics() {
+	public final Boolean termStatistics() {
 		return this.termStatistics;
 	}
 
@@ -263,7 +258,7 @@ public final class MtermvectorsRequest extends RequestBase implements JsonpSeria
 	 * API name: {@code type}
 	 */
 	@Nullable
-	public String type() {
+	public final String type() {
 		return this.type;
 	}
 
@@ -273,7 +268,7 @@ public final class MtermvectorsRequest extends RequestBase implements JsonpSeria
 	 * API name: {@code version}
 	 */
 	@Nullable
-	public Long version() {
+	public final Long version() {
 		return this.version;
 	}
 
@@ -283,7 +278,7 @@ public final class MtermvectorsRequest extends RequestBase implements JsonpSeria
 	 * API name: {@code version_type}
 	 */
 	@Nullable
-	public VersionType versionType() {
+	public final VersionType versionType() {
 		return this.versionType;
 	}
 
@@ -298,8 +293,7 @@ public final class MtermvectorsRequest extends RequestBase implements JsonpSeria
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (this.docs != null) {
-
+		if (ModelTypeHelper.isDefined(this.docs)) {
 			generator.writeKey("docs");
 			generator.writeStartArray();
 			for (Operation item0 : this.docs) {
@@ -309,8 +303,7 @@ public final class MtermvectorsRequest extends RequestBase implements JsonpSeria
 			generator.writeEnd();
 
 		}
-		if (this.ids != null) {
-
+		if (ModelTypeHelper.isDefined(this.ids)) {
 			generator.writeKey("ids");
 			generator.writeStartArray();
 			for (String item0 : this.ids) {
@@ -328,7 +321,7 @@ public final class MtermvectorsRequest extends RequestBase implements JsonpSeria
 	/**
 	 * Builder for {@link MtermvectorsRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<MtermvectorsRequest> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<MtermvectorsRequest> {
 		@Nullable
 		private List<Operation> docs;
 
@@ -377,7 +370,7 @@ public final class MtermvectorsRequest extends RequestBase implements JsonpSeria
 		/**
 		 * API name: {@code docs}
 		 */
-		public Builder docs(@Nullable List<Operation> value) {
+		public final Builder docs(@Nullable List<Operation> value) {
 			this.docs = value;
 			return this;
 		}
@@ -385,34 +378,21 @@ public final class MtermvectorsRequest extends RequestBase implements JsonpSeria
 		/**
 		 * API name: {@code docs}
 		 */
-		public Builder docs(Operation... value) {
+		public final Builder docs(Operation... value) {
 			this.docs = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #docs(List)}, creating the list if needed.
+		 * API name: {@code docs}
 		 */
-		public Builder addDocs(Operation value) {
-			if (this.docs == null) {
-				this.docs = new ArrayList<>();
+		@SafeVarargs
+		public final Builder docs(Function<Operation.Builder, ObjectBuilder<Operation>>... fns) {
+			this.docs = new ArrayList<>(fns.length);
+			for (Function<Operation.Builder, ObjectBuilder<Operation>> fn : fns) {
+				this.docs.add(fn.apply(new Operation.Builder()).build());
 			}
-			this.docs.add(value);
 			return this;
-		}
-
-		/**
-		 * Set {@link #docs(List)} to a singleton list.
-		 */
-		public Builder docs(Function<Operation.Builder, ObjectBuilder<Operation>> fn) {
-			return this.docs(fn.apply(new Operation.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #docs(List)}, creating the list if needed.
-		 */
-		public Builder addDocs(Function<Operation.Builder, ObjectBuilder<Operation>> fn) {
-			return this.addDocs(fn.apply(new Operation.Builder()).build());
 		}
 
 		/**
@@ -422,7 +402,7 @@ public final class MtermvectorsRequest extends RequestBase implements JsonpSeria
 		 * <p>
 		 * API name: {@code field_statistics}
 		 */
-		public Builder fieldStatistics(@Nullable Boolean value) {
+		public final Builder fieldStatistics(@Nullable Boolean value) {
 			this.fieldStatistics = value;
 			return this;
 		}
@@ -433,7 +413,7 @@ public final class MtermvectorsRequest extends RequestBase implements JsonpSeria
 		 * <p>
 		 * API name: {@code fields}
 		 */
-		public Builder fields(@Nullable List<String> value) {
+		public final Builder fields(@Nullable List<String> value) {
 			this.fields = value;
 			return this;
 		}
@@ -444,26 +424,15 @@ public final class MtermvectorsRequest extends RequestBase implements JsonpSeria
 		 * <p>
 		 * API name: {@code fields}
 		 */
-		public Builder fields(String... value) {
+		public final Builder fields(String... value) {
 			this.fields = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #fields(List)}, creating the list if needed.
-		 */
-		public Builder addFields(String value) {
-			if (this.fields == null) {
-				this.fields = new ArrayList<>();
-			}
-			this.fields.add(value);
 			return this;
 		}
 
 		/**
 		 * API name: {@code ids}
 		 */
-		public Builder ids(@Nullable List<String> value) {
+		public final Builder ids(@Nullable List<String> value) {
 			this.ids = value;
 			return this;
 		}
@@ -471,19 +440,8 @@ public final class MtermvectorsRequest extends RequestBase implements JsonpSeria
 		/**
 		 * API name: {@code ids}
 		 */
-		public Builder ids(String... value) {
+		public final Builder ids(String... value) {
 			this.ids = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #ids(List)}, creating the list if needed.
-		 */
-		public Builder addIds(String value) {
-			if (this.ids == null) {
-				this.ids = new ArrayList<>();
-			}
-			this.ids.add(value);
 			return this;
 		}
 
@@ -492,7 +450,7 @@ public final class MtermvectorsRequest extends RequestBase implements JsonpSeria
 		 * <p>
 		 * API name: {@code index}
 		 */
-		public Builder index(@Nullable String value) {
+		public final Builder index(@Nullable String value) {
 			this.index = value;
 			return this;
 		}
@@ -504,7 +462,7 @@ public final class MtermvectorsRequest extends RequestBase implements JsonpSeria
 		 * <p>
 		 * API name: {@code offsets}
 		 */
-		public Builder offsets(@Nullable Boolean value) {
+		public final Builder offsets(@Nullable Boolean value) {
 			this.offsets = value;
 			return this;
 		}
@@ -516,7 +474,7 @@ public final class MtermvectorsRequest extends RequestBase implements JsonpSeria
 		 * <p>
 		 * API name: {@code payloads}
 		 */
-		public Builder payloads(@Nullable Boolean value) {
+		public final Builder payloads(@Nullable Boolean value) {
 			this.payloads = value;
 			return this;
 		}
@@ -528,7 +486,7 @@ public final class MtermvectorsRequest extends RequestBase implements JsonpSeria
 		 * <p>
 		 * API name: {@code positions}
 		 */
-		public Builder positions(@Nullable Boolean value) {
+		public final Builder positions(@Nullable Boolean value) {
 			this.positions = value;
 			return this;
 		}
@@ -540,7 +498,7 @@ public final class MtermvectorsRequest extends RequestBase implements JsonpSeria
 		 * <p>
 		 * API name: {@code preference}
 		 */
-		public Builder preference(@Nullable String value) {
+		public final Builder preference(@Nullable String value) {
 			this.preference = value;
 			return this;
 		}
@@ -551,7 +509,7 @@ public final class MtermvectorsRequest extends RequestBase implements JsonpSeria
 		 * <p>
 		 * API name: {@code realtime}
 		 */
-		public Builder realtime(@Nullable Boolean value) {
+		public final Builder realtime(@Nullable Boolean value) {
 			this.realtime = value;
 			return this;
 		}
@@ -562,7 +520,7 @@ public final class MtermvectorsRequest extends RequestBase implements JsonpSeria
 		 * <p>
 		 * API name: {@code routing}
 		 */
-		public Builder routing(@Nullable String value) {
+		public final Builder routing(@Nullable String value) {
 			this.routing = value;
 			return this;
 		}
@@ -574,7 +532,7 @@ public final class MtermvectorsRequest extends RequestBase implements JsonpSeria
 		 * <p>
 		 * API name: {@code term_statistics}
 		 */
-		public Builder termStatistics(@Nullable Boolean value) {
+		public final Builder termStatistics(@Nullable Boolean value) {
 			this.termStatistics = value;
 			return this;
 		}
@@ -584,7 +542,7 @@ public final class MtermvectorsRequest extends RequestBase implements JsonpSeria
 		 * <p>
 		 * API name: {@code type}
 		 */
-		public Builder type(@Nullable String value) {
+		public final Builder type(@Nullable String value) {
 			this.type = value;
 			return this;
 		}
@@ -594,7 +552,7 @@ public final class MtermvectorsRequest extends RequestBase implements JsonpSeria
 		 * <p>
 		 * API name: {@code version}
 		 */
-		public Builder version(@Nullable Long value) {
+		public final Builder version(@Nullable Long value) {
 			this.version = value;
 			return this;
 		}
@@ -604,7 +562,7 @@ public final class MtermvectorsRequest extends RequestBase implements JsonpSeria
 		 * <p>
 		 * API name: {@code version_type}
 		 */
-		public Builder versionType(@Nullable VersionType value) {
+		public final Builder versionType(@Nullable VersionType value) {
 			this.versionType = value;
 			return this;
 		}
@@ -616,6 +574,7 @@ public final class MtermvectorsRequest extends RequestBase implements JsonpSeria
 		 *             if some of the required fields are null.
 		 */
 		public MtermvectorsRequest build() {
+			_checkSingleUse();
 
 			return new MtermvectorsRequest(this);
 		}
@@ -704,7 +663,7 @@ public final class MtermvectorsRequest extends RequestBase implements JsonpSeria
 					params.put("payloads", String.valueOf(request.payloads));
 				}
 				if (request.versionType != null) {
-					params.put("version_type", request.versionType.toString());
+					params.put("version_type", request.versionType.jsonValue());
 				}
 				if (request.preference != null) {
 					params.put("preference", request.preference);
@@ -715,7 +674,7 @@ public final class MtermvectorsRequest extends RequestBase implements JsonpSeria
 				if (request.fieldStatistics != null) {
 					params.put("field_statistics", String.valueOf(request.fieldStatistics));
 				}
-				if (request.fields != null) {
+				if (ModelTypeHelper.isDefined(request.fields)) {
 					params.put("fields", request.fields.stream().map(v -> v).collect(Collectors.joining(",")));
 				}
 				if (request.version != null) {

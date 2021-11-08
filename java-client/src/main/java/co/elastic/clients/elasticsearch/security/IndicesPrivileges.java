@@ -33,10 +33,10 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
@@ -45,7 +45,7 @@ import javax.annotation.Nullable;
 
 // typedef: security._types.IndicesPrivileges
 @JsonpDeserializable
-public final class IndicesPrivileges implements JsonpSerializable {
+public class IndicesPrivileges implements JsonpSerializable {
 	@Nullable
 	private final FieldSecurity fieldSecurity;
 
@@ -61,18 +61,18 @@ public final class IndicesPrivileges implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public IndicesPrivileges(Builder builder) {
+	private IndicesPrivileges(Builder builder) {
 
 		this.fieldSecurity = builder.fieldSecurity;
-		this.names = ModelTypeHelper.unmodifiableNonNull(builder.names, "names");
-		this.privileges = ModelTypeHelper.unmodifiableNonNull(builder.privileges, "privileges");
+		this.names = ModelTypeHelper.unmodifiableRequired(builder.names, this, "names");
+		this.privileges = ModelTypeHelper.unmodifiableRequired(builder.privileges, this, "privileges");
 		this.query = builder.query;
 		this.allowRestrictedIndices = builder.allowRestrictedIndices;
 
 	}
 
-	public IndicesPrivileges(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static IndicesPrivileges of(Function<Builder, ObjectBuilder<IndicesPrivileges>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -81,7 +81,7 @@ public final class IndicesPrivileges implements JsonpSerializable {
 	 * API name: {@code field_security}
 	 */
 	@Nullable
-	public FieldSecurity fieldSecurity() {
+	public final FieldSecurity fieldSecurity() {
 		return this.fieldSecurity;
 	}
 
@@ -91,7 +91,7 @@ public final class IndicesPrivileges implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code names}
 	 */
-	public List<String> names() {
+	public final List<String> names() {
 		return this.names;
 	}
 
@@ -101,7 +101,7 @@ public final class IndicesPrivileges implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code privileges}
 	 */
-	public List<IndexPrivilege> privileges() {
+	public final List<IndexPrivilege> privileges() {
 		return this.privileges;
 	}
 
@@ -113,7 +113,7 @@ public final class IndicesPrivileges implements JsonpSerializable {
 	 * API name: {@code query}
 	 */
 	@Nullable
-	public Query query() {
+	public final Query query() {
 		return this.query;
 	}
 
@@ -128,7 +128,7 @@ public final class IndicesPrivileges implements JsonpSerializable {
 	 * API name: {@code allow_restricted_indices}
 	 */
 	@Nullable
-	public Boolean allowRestrictedIndices() {
+	public final Boolean allowRestrictedIndices() {
 		return this.allowRestrictedIndices;
 	}
 
@@ -144,35 +144,35 @@ public final class IndicesPrivileges implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.fieldSecurity != null) {
-
 			generator.writeKey("field_security");
 			this.fieldSecurity.serialize(generator, mapper);
 
 		}
+		if (ModelTypeHelper.isDefined(this.names)) {
+			generator.writeKey("names");
+			generator.writeStartArray();
+			for (String item0 : this.names) {
+				generator.write(item0);
 
-		generator.writeKey("names");
-		generator.writeStartArray();
-		for (String item0 : this.names) {
-			generator.write(item0);
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
+		if (ModelTypeHelper.isDefined(this.privileges)) {
+			generator.writeKey("privileges");
+			generator.writeStartArray();
+			for (IndexPrivilege item0 : this.privileges) {
+				item0.serialize(generator, mapper);
+			}
+			generator.writeEnd();
 
-		generator.writeKey("privileges");
-		generator.writeStartArray();
-		for (IndexPrivilege item0 : this.privileges) {
-			item0.serialize(generator, mapper);
 		}
-		generator.writeEnd();
-
 		if (this.query != null) {
-
 			generator.writeKey("query");
 			this.query.serialize(generator, mapper);
 
 		}
 		if (this.allowRestrictedIndices != null) {
-
 			generator.writeKey("allow_restricted_indices");
 			generator.write(this.allowRestrictedIndices);
 
@@ -185,7 +185,7 @@ public final class IndicesPrivileges implements JsonpSerializable {
 	/**
 	 * Builder for {@link IndicesPrivileges}.
 	 */
-	public static class Builder implements ObjectBuilder<IndicesPrivileges> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<IndicesPrivileges> {
 		@Nullable
 		private FieldSecurity fieldSecurity;
 
@@ -204,7 +204,7 @@ public final class IndicesPrivileges implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code field_security}
 		 */
-		public Builder fieldSecurity(@Nullable FieldSecurity value) {
+		public final Builder fieldSecurity(@Nullable FieldSecurity value) {
 			this.fieldSecurity = value;
 			return this;
 		}
@@ -214,7 +214,7 @@ public final class IndicesPrivileges implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code field_security}
 		 */
-		public Builder fieldSecurity(Function<FieldSecurity.Builder, ObjectBuilder<FieldSecurity>> fn) {
+		public final Builder fieldSecurity(Function<FieldSecurity.Builder, ObjectBuilder<FieldSecurity>> fn) {
 			return this.fieldSecurity(fn.apply(new FieldSecurity.Builder()).build());
 		}
 
@@ -224,7 +224,7 @@ public final class IndicesPrivileges implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code names}
 		 */
-		public Builder names(List<String> value) {
+		public final Builder names(List<String> value) {
 			this.names = value;
 			return this;
 		}
@@ -235,19 +235,8 @@ public final class IndicesPrivileges implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code names}
 		 */
-		public Builder names(String... value) {
+		public final Builder names(String... value) {
 			this.names = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #names(List)}, creating the list if needed.
-		 */
-		public Builder addNames(String value) {
-			if (this.names == null) {
-				this.names = new ArrayList<>();
-			}
-			this.names.add(value);
 			return this;
 		}
 
@@ -257,7 +246,7 @@ public final class IndicesPrivileges implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code privileges}
 		 */
-		public Builder privileges(List<IndexPrivilege> value) {
+		public final Builder privileges(List<IndexPrivilege> value) {
 			this.privileges = value;
 			return this;
 		}
@@ -268,19 +257,8 @@ public final class IndicesPrivileges implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code privileges}
 		 */
-		public Builder privileges(IndexPrivilege... value) {
+		public final Builder privileges(IndexPrivilege... value) {
 			this.privileges = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #privileges(List)}, creating the list if needed.
-		 */
-		public Builder addPrivileges(IndexPrivilege value) {
-			if (this.privileges == null) {
-				this.privileges = new ArrayList<>();
-			}
-			this.privileges.add(value);
 			return this;
 		}
 
@@ -291,7 +269,7 @@ public final class IndicesPrivileges implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code query}
 		 */
-		public Builder query(@Nullable Query value) {
+		public final Builder query(@Nullable Query value) {
 			this.query = value;
 			return this;
 		}
@@ -303,7 +281,7 @@ public final class IndicesPrivileges implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code query}
 		 */
-		public Builder query(Function<Query.Builder, ObjectBuilder<Query>> fn) {
+		public final Builder query(Function<Query.Builder, ObjectBuilder<Query>> fn) {
 			return this.query(fn.apply(new Query.Builder()).build());
 		}
 
@@ -317,7 +295,7 @@ public final class IndicesPrivileges implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code allow_restricted_indices}
 		 */
-		public Builder allowRestrictedIndices(@Nullable Boolean value) {
+		public final Builder allowRestrictedIndices(@Nullable Boolean value) {
 			this.allowRestrictedIndices = value;
 			return this;
 		}
@@ -329,6 +307,7 @@ public final class IndicesPrivileges implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public IndicesPrivileges build() {
+			_checkSingleUse();
 
 			return new IndicesPrivileges(this);
 		}

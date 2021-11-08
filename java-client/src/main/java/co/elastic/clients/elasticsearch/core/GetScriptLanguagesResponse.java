@@ -33,6 +33,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.ArrayList;
@@ -44,35 +45,36 @@ import javax.annotation.Nullable;
 
 // typedef: _global.get_script_languages.Response
 @JsonpDeserializable
-public final class GetScriptLanguagesResponse implements JsonpSerializable {
+public class GetScriptLanguagesResponse implements JsonpSerializable {
 	private final List<LanguageContext> languageContexts;
 
 	private final List<String> typesAllowed;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public GetScriptLanguagesResponse(Builder builder) {
+	private GetScriptLanguagesResponse(Builder builder) {
 
-		this.languageContexts = ModelTypeHelper.unmodifiableNonNull(builder.languageContexts, "language_contexts");
-		this.typesAllowed = ModelTypeHelper.unmodifiableNonNull(builder.typesAllowed, "types_allowed");
+		this.languageContexts = ModelTypeHelper.unmodifiableRequired(builder.languageContexts, this,
+				"languageContexts");
+		this.typesAllowed = ModelTypeHelper.unmodifiableRequired(builder.typesAllowed, this, "typesAllowed");
 
 	}
 
-	public GetScriptLanguagesResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static GetScriptLanguagesResponse of(Function<Builder, ObjectBuilder<GetScriptLanguagesResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code language_contexts}
 	 */
-	public List<LanguageContext> languageContexts() {
+	public final List<LanguageContext> languageContexts() {
 		return this.languageContexts;
 	}
 
 	/**
 	 * Required - API name: {@code types_allowed}
 	 */
-	public List<String> typesAllowed() {
+	public final List<String> typesAllowed() {
 		return this.typesAllowed;
 	}
 
@@ -87,21 +89,26 @@ public final class GetScriptLanguagesResponse implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("language_contexts");
-		generator.writeStartArray();
-		for (LanguageContext item0 : this.languageContexts) {
-			item0.serialize(generator, mapper);
+		if (ModelTypeHelper.isDefined(this.languageContexts)) {
+			generator.writeKey("language_contexts");
+			generator.writeStartArray();
+			for (LanguageContext item0 : this.languageContexts) {
+				item0.serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
+		if (ModelTypeHelper.isDefined(this.typesAllowed)) {
+			generator.writeKey("types_allowed");
+			generator.writeStartArray();
+			for (String item0 : this.typesAllowed) {
+				generator.write(item0);
 
-		generator.writeKey("types_allowed");
-		generator.writeStartArray();
-		for (String item0 : this.typesAllowed) {
-			generator.write(item0);
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
 
 	}
 
@@ -110,7 +117,7 @@ public final class GetScriptLanguagesResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link GetScriptLanguagesResponse}.
 	 */
-	public static class Builder implements ObjectBuilder<GetScriptLanguagesResponse> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetScriptLanguagesResponse> {
 		private List<LanguageContext> languageContexts;
 
 		private List<String> typesAllowed;
@@ -118,7 +125,7 @@ public final class GetScriptLanguagesResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code language_contexts}
 		 */
-		public Builder languageContexts(List<LanguageContext> value) {
+		public final Builder languageContexts(List<LanguageContext> value) {
 			this.languageContexts = value;
 			return this;
 		}
@@ -126,40 +133,28 @@ public final class GetScriptLanguagesResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code language_contexts}
 		 */
-		public Builder languageContexts(LanguageContext... value) {
+		public final Builder languageContexts(LanguageContext... value) {
 			this.languageContexts = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #languageContexts(List)}, creating the list if needed.
+		 * Required - API name: {@code language_contexts}
 		 */
-		public Builder addLanguageContexts(LanguageContext value) {
-			if (this.languageContexts == null) {
-				this.languageContexts = new ArrayList<>();
+		@SafeVarargs
+		public final Builder languageContexts(
+				Function<LanguageContext.Builder, ObjectBuilder<LanguageContext>>... fns) {
+			this.languageContexts = new ArrayList<>(fns.length);
+			for (Function<LanguageContext.Builder, ObjectBuilder<LanguageContext>> fn : fns) {
+				this.languageContexts.add(fn.apply(new LanguageContext.Builder()).build());
 			}
-			this.languageContexts.add(value);
 			return this;
-		}
-
-		/**
-		 * Set {@link #languageContexts(List)} to a singleton list.
-		 */
-		public Builder languageContexts(Function<LanguageContext.Builder, ObjectBuilder<LanguageContext>> fn) {
-			return this.languageContexts(fn.apply(new LanguageContext.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #languageContexts(List)}, creating the list if needed.
-		 */
-		public Builder addLanguageContexts(Function<LanguageContext.Builder, ObjectBuilder<LanguageContext>> fn) {
-			return this.addLanguageContexts(fn.apply(new LanguageContext.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code types_allowed}
 		 */
-		public Builder typesAllowed(List<String> value) {
+		public final Builder typesAllowed(List<String> value) {
 			this.typesAllowed = value;
 			return this;
 		}
@@ -167,19 +162,8 @@ public final class GetScriptLanguagesResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code types_allowed}
 		 */
-		public Builder typesAllowed(String... value) {
+		public final Builder typesAllowed(String... value) {
 			this.typesAllowed = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #typesAllowed(List)}, creating the list if needed.
-		 */
-		public Builder addTypesAllowed(String value) {
-			if (this.typesAllowed == null) {
-				this.typesAllowed = new ArrayList<>();
-			}
-			this.typesAllowed.add(value);
 			return this;
 		}
 
@@ -190,6 +174,7 @@ public final class GetScriptLanguagesResponse implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public GetScriptLanguagesResponse build() {
+			_checkSingleUse();
 
 			return new GetScriptLanguagesResponse(this);
 		}

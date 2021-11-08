@@ -38,23 +38,22 @@ import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.MedianAbsoluteDeviationAggregation
 @JsonpDeserializable
-public final class MedianAbsoluteDeviationAggregation extends FormatMetricAggregationBase
-		implements
-			AggregationVariant {
+public class MedianAbsoluteDeviationAggregation extends FormatMetricAggregationBase implements AggregationVariant {
 	@Nullable
 	private final Double compression;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public MedianAbsoluteDeviationAggregation(Builder builder) {
+	private MedianAbsoluteDeviationAggregation(Builder builder) {
 		super(builder);
 
 		this.compression = builder.compression;
 
 	}
 
-	public MedianAbsoluteDeviationAggregation(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static MedianAbsoluteDeviationAggregation of(
+			Function<Builder, ObjectBuilder<MedianAbsoluteDeviationAggregation>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -69,7 +68,7 @@ public final class MedianAbsoluteDeviationAggregation extends FormatMetricAggreg
 	 * API name: {@code compression}
 	 */
 	@Nullable
-	public Double compression() {
+	public final Double compression() {
 		return this.compression;
 	}
 
@@ -77,7 +76,6 @@ public final class MedianAbsoluteDeviationAggregation extends FormatMetricAggreg
 
 		super.serializeInternal(generator, mapper);
 		if (this.compression != null) {
-
 			generator.writeKey("compression");
 			generator.write(this.compression);
 
@@ -99,7 +97,7 @@ public final class MedianAbsoluteDeviationAggregation extends FormatMetricAggreg
 		/**
 		 * API name: {@code compression}
 		 */
-		public Builder compression(@Nullable Double value) {
+		public final Builder compression(@Nullable Double value) {
 			this.compression = value;
 			return this;
 		}
@@ -116,6 +114,7 @@ public final class MedianAbsoluteDeviationAggregation extends FormatMetricAggreg
 		 *             if some of the required fields are null.
 		 */
 		public MedianAbsoluteDeviationAggregation build() {
+			_checkSingleUse();
 
 			return new MedianAbsoluteDeviationAggregation(this);
 		}

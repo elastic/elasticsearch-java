@@ -36,16 +36,16 @@ import java.util.function.Function;
 
 // typedef: ml.put_trained_model_alias.Response
 @JsonpDeserializable
-public final class PutTrainedModelAliasResponse extends AcknowledgedResponseBase {
+public class PutTrainedModelAliasResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
-	public PutTrainedModelAliasResponse(Builder builder) {
+	private PutTrainedModelAliasResponse(Builder builder) {
 		super(builder);
 
 	}
 
-	public PutTrainedModelAliasResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static PutTrainedModelAliasResponse of(Function<Builder, ObjectBuilder<PutTrainedModelAliasResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -68,6 +68,7 @@ public final class PutTrainedModelAliasResponse extends AcknowledgedResponseBase
 		 *             if some of the required fields are null.
 		 */
 		public PutTrainedModelAliasResponse build() {
+			_checkSingleUse();
 
 			return new PutTrainedModelAliasResponse(this);
 		}

@@ -31,6 +31,7 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.SimpleEndpoint;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.HashMap;
@@ -41,20 +42,20 @@ import javax.annotation.Nullable;
 
 // typedef: cat.templates.Request
 
-public final class TemplatesRequest extends CatRequestBase {
+public class TemplatesRequest extends CatRequestBase {
 	@Nullable
 	private final String name;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public TemplatesRequest(Builder builder) {
+	private TemplatesRequest(Builder builder) {
 
 		this.name = builder.name;
 
 	}
 
-	public TemplatesRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static TemplatesRequest of(Function<Builder, ObjectBuilder<TemplatesRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -63,7 +64,7 @@ public final class TemplatesRequest extends CatRequestBase {
 	 * API name: {@code name}
 	 */
 	@Nullable
-	public String name() {
+	public final String name() {
 		return this.name;
 	}
 
@@ -72,7 +73,7 @@ public final class TemplatesRequest extends CatRequestBase {
 	/**
 	 * Builder for {@link TemplatesRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<TemplatesRequest> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TemplatesRequest> {
 		@Nullable
 		private String name;
 
@@ -81,7 +82,7 @@ public final class TemplatesRequest extends CatRequestBase {
 		 * <p>
 		 * API name: {@code name}
 		 */
-		public Builder name(@Nullable String value) {
+		public final Builder name(@Nullable String value) {
 			this.name = value;
 			return this;
 		}
@@ -93,6 +94,7 @@ public final class TemplatesRequest extends CatRequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public TemplatesRequest build() {
+			_checkSingleUse();
 
 			return new TemplatesRequest(this);
 		}

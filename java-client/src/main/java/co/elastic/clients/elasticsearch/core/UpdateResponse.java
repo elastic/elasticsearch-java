@@ -41,7 +41,7 @@ import javax.annotation.Nullable;
 
 // typedef: _global.update.Response
 
-public final class UpdateResponse<TDocument> extends WriteResponseBase {
+public class UpdateResponse<TDocument> extends WriteResponseBase {
 	@Nullable
 	private final InlineGet<TDocument> get;
 
@@ -50,7 +50,7 @@ public final class UpdateResponse<TDocument> extends WriteResponseBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public UpdateResponse(Builder<TDocument> builder) {
+	private UpdateResponse(Builder<TDocument> builder) {
 		super(builder);
 
 		this.get = builder.get;
@@ -58,15 +58,16 @@ public final class UpdateResponse<TDocument> extends WriteResponseBase {
 
 	}
 
-	public UpdateResponse(Function<Builder<TDocument>, Builder<TDocument>> fn) {
-		this(fn.apply(new Builder<>()));
+	public static <TDocument> UpdateResponse<TDocument> of(
+			Function<Builder<TDocument>, ObjectBuilder<UpdateResponse<TDocument>>> fn) {
+		return fn.apply(new Builder<>()).build();
 	}
 
 	/**
 	 * API name: {@code get}
 	 */
 	@Nullable
-	public InlineGet<TDocument> get() {
+	public final InlineGet<TDocument> get() {
 		return this.get;
 	}
 
@@ -74,7 +75,6 @@ public final class UpdateResponse<TDocument> extends WriteResponseBase {
 
 		super.serializeInternal(generator, mapper);
 		if (this.get != null) {
-
 			generator.writeKey("get");
 			this.get.serialize(generator, mapper);
 
@@ -99,7 +99,7 @@ public final class UpdateResponse<TDocument> extends WriteResponseBase {
 		/**
 		 * API name: {@code get}
 		 */
-		public Builder<TDocument> get(@Nullable InlineGet<TDocument> value) {
+		public final Builder<TDocument> get(@Nullable InlineGet<TDocument> value) {
 			this.get = value;
 			return this;
 		}
@@ -107,7 +107,8 @@ public final class UpdateResponse<TDocument> extends WriteResponseBase {
 		/**
 		 * API name: {@code get}
 		 */
-		public Builder<TDocument> get(Function<InlineGet.Builder<TDocument>, ObjectBuilder<InlineGet<TDocument>>> fn) {
+		public final Builder<TDocument> get(
+				Function<InlineGet.Builder<TDocument>, ObjectBuilder<InlineGet<TDocument>>> fn) {
 			return this.get(fn.apply(new InlineGet.Builder<TDocument>()).build());
 		}
 
@@ -115,7 +116,7 @@ public final class UpdateResponse<TDocument> extends WriteResponseBase {
 		 * Serializer for TDocument. If not set, an attempt will be made to find a
 		 * serializer from the JSON context.
 		 */
-		public Builder<TDocument> tDocumentSerializer(@Nullable JsonpSerializer<TDocument> value) {
+		public final Builder<TDocument> tDocumentSerializer(@Nullable JsonpSerializer<TDocument> value) {
 			this.tDocumentSerializer = value;
 			return this;
 		}
@@ -132,6 +133,7 @@ public final class UpdateResponse<TDocument> extends WriteResponseBase {
 		 *             if some of the required fields are null.
 		 */
 		public UpdateResponse<TDocument> build() {
+			_checkSingleUse();
 
 			return new UpdateResponse<TDocument>(this);
 		}

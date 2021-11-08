@@ -36,16 +36,16 @@ import java.util.function.Function;
 
 // typedef: autoscaling.put_autoscaling_policy.Response
 @JsonpDeserializable
-public final class PutAutoscalingPolicyResponse extends AcknowledgedResponseBase {
+public class PutAutoscalingPolicyResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
-	public PutAutoscalingPolicyResponse(Builder builder) {
+	private PutAutoscalingPolicyResponse(Builder builder) {
 		super(builder);
 
 	}
 
-	public PutAutoscalingPolicyResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static PutAutoscalingPolicyResponse of(Function<Builder, ObjectBuilder<PutAutoscalingPolicyResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -68,6 +68,7 @@ public final class PutAutoscalingPolicyResponse extends AcknowledgedResponseBase
 		 *             if some of the required fields are null.
 		 */
 		public PutAutoscalingPolicyResponse build() {
+			_checkSingleUse();
 
 			return new PutAutoscalingPolicyResponse(this);
 		}

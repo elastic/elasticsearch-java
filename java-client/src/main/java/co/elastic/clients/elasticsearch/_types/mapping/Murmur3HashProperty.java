@@ -36,16 +36,16 @@ import java.util.function.Function;
 
 // typedef: _types.mapping.Murmur3HashProperty
 @JsonpDeserializable
-public final class Murmur3HashProperty extends DocValuesPropertyBase implements PropertyVariant {
+public class Murmur3HashProperty extends DocValuesPropertyBase implements PropertyVariant {
 	// ---------------------------------------------------------------------------------------------
 
-	public Murmur3HashProperty(Builder builder) {
+	private Murmur3HashProperty(Builder builder) {
 		super(builder);
 
 	}
 
-	public Murmur3HashProperty(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static Murmur3HashProperty of(Function<Builder, ObjectBuilder<Murmur3HashProperty>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -83,6 +83,7 @@ public final class Murmur3HashProperty extends DocValuesPropertyBase implements 
 		 *             if some of the required fields are null.
 		 */
 		public Murmur3HashProperty build() {
+			_checkSingleUse();
 
 			return new Murmur3HashProperty(this);
 		}

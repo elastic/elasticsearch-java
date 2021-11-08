@@ -35,7 +35,6 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -44,7 +43,7 @@ import javax.annotation.Nullable;
 
 // typedef: license.post_start_basic.Response
 @JsonpDeserializable
-public final class PostStartBasicResponse extends AcknowledgedResponseBase {
+public class PostStartBasicResponse extends AcknowledgedResponseBase {
 	private final Map<String, List<String>> acknowledge;
 
 	private final boolean basicWasStarted;
@@ -53,58 +52,61 @@ public final class PostStartBasicResponse extends AcknowledgedResponseBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public PostStartBasicResponse(Builder builder) {
+	private PostStartBasicResponse(Builder builder) {
 		super(builder);
 
-		this.acknowledge = ModelTypeHelper.unmodifiableNonNull(builder.acknowledge, "acknowledge");
-		this.basicWasStarted = Objects.requireNonNull(builder.basicWasStarted, "basic_was_started");
-		this.errorMessage = Objects.requireNonNull(builder.errorMessage, "error_message");
+		this.acknowledge = ModelTypeHelper.unmodifiableRequired(builder.acknowledge, this, "acknowledge");
+		this.basicWasStarted = ModelTypeHelper.requireNonNull(builder.basicWasStarted, this, "basicWasStarted");
+		this.errorMessage = ModelTypeHelper.requireNonNull(builder.errorMessage, this, "errorMessage");
 
 	}
 
-	public PostStartBasicResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static PostStartBasicResponse of(Function<Builder, ObjectBuilder<PostStartBasicResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code acknowledge}
 	 */
-	public Map<String, List<String>> acknowledge() {
+	public final Map<String, List<String>> acknowledge() {
 		return this.acknowledge;
 	}
 
 	/**
 	 * Required - API name: {@code basic_was_started}
 	 */
-	public boolean basicWasStarted() {
+	public final boolean basicWasStarted() {
 		return this.basicWasStarted;
 	}
 
 	/**
 	 * Required - API name: {@code error_message}
 	 */
-	public String errorMessage() {
+	public final String errorMessage() {
 		return this.errorMessage;
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
+		if (ModelTypeHelper.isDefined(this.acknowledge)) {
+			generator.writeKey("acknowledge");
+			generator.writeStartObject();
+			for (Map.Entry<String, List<String>> item0 : this.acknowledge.entrySet()) {
+				generator.writeKey(item0.getKey());
+				generator.writeStartArray();
+				if (item0.getValue() != null) {
+					for (String item1 : item0.getValue()) {
+						generator.write(item1);
 
-		generator.writeKey("acknowledge");
-		generator.writeStartObject();
-		for (Map.Entry<String, List<String>> item0 : this.acknowledge.entrySet()) {
-			generator.writeKey(item0.getKey());
-			generator.writeStartArray();
-			for (String item1 : item0.getValue()) {
-				generator.write(item1);
+					}
+				}
+				generator.writeEnd();
 
 			}
 			generator.writeEnd();
 
 		}
-		generator.writeEnd();
-
 		generator.writeKey("basic_was_started");
 		generator.write(this.basicWasStarted);
 
@@ -130,26 +132,15 @@ public final class PostStartBasicResponse extends AcknowledgedResponseBase {
 		/**
 		 * Required - API name: {@code acknowledge}
 		 */
-		public Builder acknowledge(Map<String, List<String>> value) {
+		public final Builder acknowledge(Map<String, List<String>> value) {
 			this.acknowledge = value;
-			return this;
-		}
-
-		/**
-		 * Add a key/value to {@link #acknowledge(Map)}, creating the map if needed.
-		 */
-		public Builder putAcknowledge(String key, List<String> value) {
-			if (this.acknowledge == null) {
-				this.acknowledge = new HashMap<>();
-			}
-			this.acknowledge.put(key, value);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code basic_was_started}
 		 */
-		public Builder basicWasStarted(boolean value) {
+		public final Builder basicWasStarted(boolean value) {
 			this.basicWasStarted = value;
 			return this;
 		}
@@ -157,7 +148,7 @@ public final class PostStartBasicResponse extends AcknowledgedResponseBase {
 		/**
 		 * Required - API name: {@code error_message}
 		 */
-		public Builder errorMessage(String value) {
+		public final Builder errorMessage(String value) {
 			this.errorMessage = value;
 			return this;
 		}
@@ -174,6 +165,7 @@ public final class PostStartBasicResponse extends AcknowledgedResponseBase {
 		 *             if some of the required fields are null.
 		 */
 		public PostStartBasicResponse build() {
+			_checkSingleUse();
 
 			return new PostStartBasicResponse(this);
 		}

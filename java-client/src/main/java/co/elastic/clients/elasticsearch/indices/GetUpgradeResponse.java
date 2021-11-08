@@ -32,6 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -42,8 +43,7 @@ import javax.annotation.Nullable;
 
 // typedef: indices.get_upgrade.Response
 @JsonpDeserializable
-public final class GetUpgradeResponse implements JsonpSerializable {
-	@Nullable
+public class GetUpgradeResponse implements JsonpSerializable {
 	private final List<OverlappingIndexTemplate> overlapping;
 
 	@Nullable
@@ -51,15 +51,15 @@ public final class GetUpgradeResponse implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public GetUpgradeResponse(Builder builder) {
+	private GetUpgradeResponse(Builder builder) {
 
 		this.overlapping = ModelTypeHelper.unmodifiable(builder.overlapping);
 		this.template = builder.template;
 
 	}
 
-	public GetUpgradeResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static GetUpgradeResponse of(Function<Builder, ObjectBuilder<GetUpgradeResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -67,8 +67,7 @@ public final class GetUpgradeResponse implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code overlapping}
 	 */
-	@Nullable
-	public List<OverlappingIndexTemplate> overlapping() {
+	public final List<OverlappingIndexTemplate> overlapping() {
 		return this.overlapping;
 	}
 
@@ -79,7 +78,7 @@ public final class GetUpgradeResponse implements JsonpSerializable {
 	 * API name: {@code template}
 	 */
 	@Nullable
-	public TemplateMapping template() {
+	public final TemplateMapping template() {
 		return this.template;
 	}
 
@@ -94,8 +93,7 @@ public final class GetUpgradeResponse implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (this.overlapping != null) {
-
+		if (ModelTypeHelper.isDefined(this.overlapping)) {
 			generator.writeKey("overlapping");
 			generator.writeStartArray();
 			for (OverlappingIndexTemplate item0 : this.overlapping) {
@@ -106,7 +104,6 @@ public final class GetUpgradeResponse implements JsonpSerializable {
 
 		}
 		if (this.template != null) {
-
 			generator.writeKey("template");
 			this.template.serialize(generator, mapper);
 
@@ -119,7 +116,7 @@ public final class GetUpgradeResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link GetUpgradeResponse}.
 	 */
-	public static class Builder implements ObjectBuilder<GetUpgradeResponse> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetUpgradeResponse> {
 		@Nullable
 		private List<OverlappingIndexTemplate> overlapping;
 
@@ -131,7 +128,7 @@ public final class GetUpgradeResponse implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code overlapping}
 		 */
-		public Builder overlapping(@Nullable List<OverlappingIndexTemplate> value) {
+		public final Builder overlapping(@Nullable List<OverlappingIndexTemplate> value) {
 			this.overlapping = value;
 			return this;
 		}
@@ -141,36 +138,24 @@ public final class GetUpgradeResponse implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code overlapping}
 		 */
-		public Builder overlapping(OverlappingIndexTemplate... value) {
+		public final Builder overlapping(OverlappingIndexTemplate... value) {
 			this.overlapping = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #overlapping(List)}, creating the list if needed.
+		 * Any templates that were superseded by the specified template.
+		 * <p>
+		 * API name: {@code overlapping}
 		 */
-		public Builder addOverlapping(OverlappingIndexTemplate value) {
-			if (this.overlapping == null) {
-				this.overlapping = new ArrayList<>();
+		@SafeVarargs
+		public final Builder overlapping(
+				Function<OverlappingIndexTemplate.Builder, ObjectBuilder<OverlappingIndexTemplate>>... fns) {
+			this.overlapping = new ArrayList<>(fns.length);
+			for (Function<OverlappingIndexTemplate.Builder, ObjectBuilder<OverlappingIndexTemplate>> fn : fns) {
+				this.overlapping.add(fn.apply(new OverlappingIndexTemplate.Builder()).build());
 			}
-			this.overlapping.add(value);
 			return this;
-		}
-
-		/**
-		 * Set {@link #overlapping(List)} to a singleton list.
-		 */
-		public Builder overlapping(
-				Function<OverlappingIndexTemplate.Builder, ObjectBuilder<OverlappingIndexTemplate>> fn) {
-			return this.overlapping(fn.apply(new OverlappingIndexTemplate.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #overlapping(List)}, creating the list if needed.
-		 */
-		public Builder addOverlapping(
-				Function<OverlappingIndexTemplate.Builder, ObjectBuilder<OverlappingIndexTemplate>> fn) {
-			return this.addOverlapping(fn.apply(new OverlappingIndexTemplate.Builder()).build());
 		}
 
 		/**
@@ -179,7 +164,7 @@ public final class GetUpgradeResponse implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code template}
 		 */
-		public Builder template(@Nullable TemplateMapping value) {
+		public final Builder template(@Nullable TemplateMapping value) {
 			this.template = value;
 			return this;
 		}
@@ -190,7 +175,7 @@ public final class GetUpgradeResponse implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code template}
 		 */
-		public Builder template(Function<TemplateMapping.Builder, ObjectBuilder<TemplateMapping>> fn) {
+		public final Builder template(Function<TemplateMapping.Builder, ObjectBuilder<TemplateMapping>> fn) {
 			return this.template(fn.apply(new TemplateMapping.Builder()).build());
 		}
 
@@ -201,6 +186,7 @@ public final class GetUpgradeResponse implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public GetUpgradeResponse build() {
+			_checkSingleUse();
 
 			return new GetUpgradeResponse(this);
 		}

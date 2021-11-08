@@ -38,21 +38,21 @@ import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.StringStatsAggregation
 @JsonpDeserializable
-public final class StringStatsAggregation extends MetricAggregationBase implements AggregationVariant {
+public class StringStatsAggregation extends MetricAggregationBase implements AggregationVariant {
 	@Nullable
 	private final Boolean showDistribution;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public StringStatsAggregation(Builder builder) {
+	private StringStatsAggregation(Builder builder) {
 		super(builder);
 
 		this.showDistribution = builder.showDistribution;
 
 	}
 
-	public StringStatsAggregation(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static StringStatsAggregation of(Function<Builder, ObjectBuilder<StringStatsAggregation>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -67,7 +67,7 @@ public final class StringStatsAggregation extends MetricAggregationBase implemen
 	 * API name: {@code show_distribution}
 	 */
 	@Nullable
-	public Boolean showDistribution() {
+	public final Boolean showDistribution() {
 		return this.showDistribution;
 	}
 
@@ -75,7 +75,6 @@ public final class StringStatsAggregation extends MetricAggregationBase implemen
 
 		super.serializeInternal(generator, mapper);
 		if (this.showDistribution != null) {
-
 			generator.writeKey("show_distribution");
 			generator.write(this.showDistribution);
 
@@ -97,7 +96,7 @@ public final class StringStatsAggregation extends MetricAggregationBase implemen
 		/**
 		 * API name: {@code show_distribution}
 		 */
-		public Builder showDistribution(@Nullable Boolean value) {
+		public final Builder showDistribution(@Nullable Boolean value) {
 			this.showDistribution = value;
 			return this;
 		}
@@ -114,6 +113,7 @@ public final class StringStatsAggregation extends MetricAggregationBase implemen
 		 *             if some of the required fields are null.
 		 */
 		public StringStatsAggregation build() {
+			_checkSingleUse();
 
 			return new StringStatsAggregation(this);
 		}

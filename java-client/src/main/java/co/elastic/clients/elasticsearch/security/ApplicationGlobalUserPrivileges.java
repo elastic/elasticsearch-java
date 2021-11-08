@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;
@@ -38,25 +40,26 @@ import javax.annotation.Nullable;
 
 // typedef: security._types.ApplicationGlobalUserPrivileges
 @JsonpDeserializable
-public final class ApplicationGlobalUserPrivileges implements JsonpSerializable {
+public class ApplicationGlobalUserPrivileges implements JsonpSerializable {
 	private final ManageUserPrivileges manage;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public ApplicationGlobalUserPrivileges(Builder builder) {
+	private ApplicationGlobalUserPrivileges(Builder builder) {
 
-		this.manage = Objects.requireNonNull(builder.manage, "manage");
+		this.manage = ModelTypeHelper.requireNonNull(builder.manage, this, "manage");
 
 	}
 
-	public ApplicationGlobalUserPrivileges(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ApplicationGlobalUserPrivileges of(
+			Function<Builder, ObjectBuilder<ApplicationGlobalUserPrivileges>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code manage}
 	 */
-	public ManageUserPrivileges manage() {
+	public final ManageUserPrivileges manage() {
 		return this.manage;
 	}
 
@@ -81,13 +84,13 @@ public final class ApplicationGlobalUserPrivileges implements JsonpSerializable 
 	/**
 	 * Builder for {@link ApplicationGlobalUserPrivileges}.
 	 */
-	public static class Builder implements ObjectBuilder<ApplicationGlobalUserPrivileges> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ApplicationGlobalUserPrivileges> {
 		private ManageUserPrivileges manage;
 
 		/**
 		 * Required - API name: {@code manage}
 		 */
-		public Builder manage(ManageUserPrivileges value) {
+		public final Builder manage(ManageUserPrivileges value) {
 			this.manage = value;
 			return this;
 		}
@@ -95,7 +98,7 @@ public final class ApplicationGlobalUserPrivileges implements JsonpSerializable 
 		/**
 		 * Required - API name: {@code manage}
 		 */
-		public Builder manage(Function<ManageUserPrivileges.Builder, ObjectBuilder<ManageUserPrivileges>> fn) {
+		public final Builder manage(Function<ManageUserPrivileges.Builder, ObjectBuilder<ManageUserPrivileges>> fn) {
 			return this.manage(fn.apply(new ManageUserPrivileges.Builder()).build());
 		}
 
@@ -106,6 +109,7 @@ public final class ApplicationGlobalUserPrivileges implements JsonpSerializable 
 		 *             if some of the required fields are null.
 		 */
 		public ApplicationGlobalUserPrivileges build() {
+			_checkSingleUse();
 
 			return new ApplicationGlobalUserPrivileges(this);
 		}

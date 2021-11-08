@@ -33,7 +33,6 @@ import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
@@ -42,23 +41,24 @@ import javax.annotation.Nullable;
 
 // typedef: _types.analysis.KeepTypesTokenFilter
 @JsonpDeserializable
-public final class KeepTypesTokenFilter extends TokenFilterBase implements TokenFilterVariant {
+public class KeepTypesTokenFilter extends TokenFilterBase implements TokenFilterVariant {
+	@Nullable
 	private final KeepTypesMode mode;
 
 	private final List<String> types;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public KeepTypesTokenFilter(Builder builder) {
+	private KeepTypesTokenFilter(Builder builder) {
 		super(builder);
 
-		this.mode = Objects.requireNonNull(builder.mode, "mode");
-		this.types = ModelTypeHelper.unmodifiableNonNull(builder.types, "types");
+		this.mode = builder.mode;
+		this.types = ModelTypeHelper.unmodifiable(builder.types);
 
 	}
 
-	public KeepTypesTokenFilter(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static KeepTypesTokenFilter of(Function<Builder, ObjectBuilder<KeepTypesTokenFilter>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -70,16 +70,17 @@ public final class KeepTypesTokenFilter extends TokenFilterBase implements Token
 	}
 
 	/**
-	 * Required - API name: {@code mode}
+	 * API name: {@code mode}
 	 */
-	public KeepTypesMode mode() {
+	@Nullable
+	public final KeepTypesMode mode() {
 		return this.mode;
 	}
 
 	/**
-	 * Required - API name: {@code types}
+	 * API name: {@code types}
 	 */
-	public List<String> types() {
+	public final List<String> types() {
 		return this.types;
 	}
 
@@ -87,17 +88,20 @@ public final class KeepTypesTokenFilter extends TokenFilterBase implements Token
 
 		generator.write("type", "keep_types");
 		super.serializeInternal(generator, mapper);
+		if (this.mode != null) {
+			generator.writeKey("mode");
+			this.mode.serialize(generator, mapper);
+		}
+		if (ModelTypeHelper.isDefined(this.types)) {
+			generator.writeKey("types");
+			generator.writeStartArray();
+			for (String item0 : this.types) {
+				generator.write(item0);
 
-		generator.writeKey("mode");
-		this.mode.serialize(generator, mapper);
-
-		generator.writeKey("types");
-		generator.writeStartArray();
-		for (String item0 : this.types) {
-			generator.write(item0);
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
 
 	}
 
@@ -109,42 +113,33 @@ public final class KeepTypesTokenFilter extends TokenFilterBase implements Token
 	public static class Builder extends TokenFilterBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<KeepTypesTokenFilter> {
+		@Nullable
 		private KeepTypesMode mode;
 
+		@Nullable
 		private List<String> types;
 
 		/**
-		 * Required - API name: {@code mode}
+		 * API name: {@code mode}
 		 */
-		public Builder mode(KeepTypesMode value) {
+		public final Builder mode(@Nullable KeepTypesMode value) {
 			this.mode = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code types}
+		 * API name: {@code types}
 		 */
-		public Builder types(List<String> value) {
+		public final Builder types(@Nullable List<String> value) {
 			this.types = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code types}
+		 * API name: {@code types}
 		 */
-		public Builder types(String... value) {
+		public final Builder types(String... value) {
 			this.types = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #types(List)}, creating the list if needed.
-		 */
-		public Builder addTypes(String value) {
-			if (this.types == null) {
-				this.types = new ArrayList<>();
-			}
-			this.types.add(value);
 			return this;
 		}
 
@@ -160,6 +155,7 @@ public final class KeepTypesTokenFilter extends TokenFilterBase implements Token
 		 *             if some of the required fields are null.
 		 */
 		public KeepTypesTokenFilter build() {
+			_checkSingleUse();
 
 			return new KeepTypesTokenFilter(this);
 		}

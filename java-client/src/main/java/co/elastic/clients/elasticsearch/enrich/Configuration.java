@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;
@@ -38,7 +40,7 @@ import javax.annotation.Nullable;
 
 // typedef: enrich._types.Configuration
 @JsonpDeserializable
-public final class Configuration implements JsonpSerializable {
+public class Configuration implements JsonpSerializable {
 	@Nullable
 	private final Policy geoMatch;
 
@@ -46,29 +48,29 @@ public final class Configuration implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public Configuration(Builder builder) {
+	private Configuration(Builder builder) {
 
 		this.geoMatch = builder.geoMatch;
-		this.match = Objects.requireNonNull(builder.match, "match");
+		this.match = ModelTypeHelper.requireNonNull(builder.match, this, "match");
 
 	}
 
-	public Configuration(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static Configuration of(Function<Builder, ObjectBuilder<Configuration>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * API name: {@code geo_match}
 	 */
 	@Nullable
-	public Policy geoMatch() {
+	public final Policy geoMatch() {
 		return this.geoMatch;
 	}
 
 	/**
 	 * Required - API name: {@code match}
 	 */
-	public Policy match() {
+	public final Policy match() {
 		return this.match;
 	}
 
@@ -84,12 +86,10 @@ public final class Configuration implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.geoMatch != null) {
-
 			generator.writeKey("geo_match");
 			this.geoMatch.serialize(generator, mapper);
 
 		}
-
 		generator.writeKey("match");
 		this.match.serialize(generator, mapper);
 
@@ -100,7 +100,7 @@ public final class Configuration implements JsonpSerializable {
 	/**
 	 * Builder for {@link Configuration}.
 	 */
-	public static class Builder implements ObjectBuilder<Configuration> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Configuration> {
 		@Nullable
 		private Policy geoMatch;
 
@@ -109,7 +109,7 @@ public final class Configuration implements JsonpSerializable {
 		/**
 		 * API name: {@code geo_match}
 		 */
-		public Builder geoMatch(@Nullable Policy value) {
+		public final Builder geoMatch(@Nullable Policy value) {
 			this.geoMatch = value;
 			return this;
 		}
@@ -117,14 +117,14 @@ public final class Configuration implements JsonpSerializable {
 		/**
 		 * API name: {@code geo_match}
 		 */
-		public Builder geoMatch(Function<Policy.Builder, ObjectBuilder<Policy>> fn) {
+		public final Builder geoMatch(Function<Policy.Builder, ObjectBuilder<Policy>> fn) {
 			return this.geoMatch(fn.apply(new Policy.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code match}
 		 */
-		public Builder match(Policy value) {
+		public final Builder match(Policy value) {
 			this.match = value;
 			return this;
 		}
@@ -132,7 +132,7 @@ public final class Configuration implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code match}
 		 */
-		public Builder match(Function<Policy.Builder, ObjectBuilder<Policy>> fn) {
+		public final Builder match(Function<Policy.Builder, ObjectBuilder<Policy>> fn) {
 			return this.match(fn.apply(new Policy.Builder()).build());
 		}
 
@@ -143,6 +143,7 @@ public final class Configuration implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public Configuration build() {
+			_checkSingleUse();
 
 			return new Configuration(this);
 		}

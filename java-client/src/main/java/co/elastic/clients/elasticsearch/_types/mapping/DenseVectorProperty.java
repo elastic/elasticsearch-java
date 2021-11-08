@@ -29,28 +29,44 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
+import java.lang.Boolean;
 import java.lang.Integer;
+import java.lang.String;
 import java.util.Objects;
 import java.util.function.Function;
+import javax.annotation.Nullable;
 
 // typedef: _types.mapping.DenseVectorProperty
 @JsonpDeserializable
-public final class DenseVectorProperty extends PropertyBase implements PropertyVariant {
+public class DenseVectorProperty extends PropertyBase implements PropertyVariant {
 	private final int dims;
+
+	@Nullable
+	private final String similarity;
+
+	@Nullable
+	private final Boolean index;
+
+	@Nullable
+	private final DenseVectorIndexOptions indexOptions;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public DenseVectorProperty(Builder builder) {
+	private DenseVectorProperty(Builder builder) {
 		super(builder);
 
-		this.dims = Objects.requireNonNull(builder.dims, "dims");
+		this.dims = ModelTypeHelper.requireNonNull(builder.dims, this, "dims");
+		this.similarity = builder.similarity;
+		this.index = builder.index;
+		this.indexOptions = builder.indexOptions;
 
 	}
 
-	public DenseVectorProperty(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static DenseVectorProperty of(Function<Builder, ObjectBuilder<DenseVectorProperty>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -64,17 +80,56 @@ public final class DenseVectorProperty extends PropertyBase implements PropertyV
 	/**
 	 * Required - API name: {@code dims}
 	 */
-	public int dims() {
+	public final int dims() {
 		return this.dims;
+	}
+
+	/**
+	 * API name: {@code similarity}
+	 */
+	@Nullable
+	public final String similarity() {
+		return this.similarity;
+	}
+
+	/**
+	 * API name: {@code index}
+	 */
+	@Nullable
+	public final Boolean index() {
+		return this.index;
+	}
+
+	/**
+	 * API name: {@code index_options}
+	 */
+	@Nullable
+	public final DenseVectorIndexOptions indexOptions() {
+		return this.indexOptions;
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.write("type", "dense_vector");
 		super.serializeInternal(generator, mapper);
-
 		generator.writeKey("dims");
 		generator.write(this.dims);
+
+		if (this.similarity != null) {
+			generator.writeKey("similarity");
+			generator.write(this.similarity);
+
+		}
+		if (this.index != null) {
+			generator.writeKey("index");
+			generator.write(this.index);
+
+		}
+		if (this.indexOptions != null) {
+			generator.writeKey("index_options");
+			this.indexOptions.serialize(generator, mapper);
+
+		}
 
 	}
 
@@ -88,12 +143,53 @@ public final class DenseVectorProperty extends PropertyBase implements PropertyV
 				ObjectBuilder<DenseVectorProperty> {
 		private Integer dims;
 
+		@Nullable
+		private String similarity;
+
+		@Nullable
+		private Boolean index;
+
+		@Nullable
+		private DenseVectorIndexOptions indexOptions;
+
 		/**
 		 * Required - API name: {@code dims}
 		 */
-		public Builder dims(int value) {
+		public final Builder dims(int value) {
 			this.dims = value;
 			return this;
+		}
+
+		/**
+		 * API name: {@code similarity}
+		 */
+		public final Builder similarity(@Nullable String value) {
+			this.similarity = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code index}
+		 */
+		public final Builder index(@Nullable Boolean value) {
+			this.index = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code index_options}
+		 */
+		public final Builder indexOptions(@Nullable DenseVectorIndexOptions value) {
+			this.indexOptions = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code index_options}
+		 */
+		public final Builder indexOptions(
+				Function<DenseVectorIndexOptions.Builder, ObjectBuilder<DenseVectorIndexOptions>> fn) {
+			return this.indexOptions(fn.apply(new DenseVectorIndexOptions.Builder()).build());
 		}
 
 		@Override
@@ -108,6 +204,7 @@ public final class DenseVectorProperty extends PropertyBase implements PropertyV
 		 *             if some of the required fields are null.
 		 */
 		public DenseVectorProperty build() {
+			_checkSingleUse();
 
 			return new DenseVectorProperty(this);
 		}
@@ -124,6 +221,9 @@ public final class DenseVectorProperty extends PropertyBase implements PropertyV
 	protected static void setupDenseVectorPropertyDeserializer(DelegatingDeserializer<DenseVectorProperty.Builder> op) {
 		PropertyBase.setupPropertyBaseDeserializer(op);
 		op.add(Builder::dims, JsonpDeserializer.integerDeserializer(), "dims");
+		op.add(Builder::similarity, JsonpDeserializer.stringDeserializer(), "similarity");
+		op.add(Builder::index, JsonpDeserializer.booleanDeserializer(), "index");
+		op.add(Builder::indexOptions, DenseVectorIndexOptions._DESERIALIZER, "index_options");
 
 		op.ignore("type");
 	}

@@ -31,7 +31,9 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.SimpleEndpoint;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
@@ -43,7 +45,7 @@ import javax.annotation.Nullable;
 
 // typedef: dangling_indices.import_dangling_index.Request
 
-public final class ImportDanglingIndexRequest extends RequestBase {
+public class ImportDanglingIndexRequest extends RequestBase {
 	private final boolean acceptDataLoss;
 
 	private final String indexUuid;
@@ -56,17 +58,17 @@ public final class ImportDanglingIndexRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public ImportDanglingIndexRequest(Builder builder) {
+	private ImportDanglingIndexRequest(Builder builder) {
 
-		this.acceptDataLoss = Objects.requireNonNull(builder.acceptDataLoss, "accept_data_loss");
-		this.indexUuid = Objects.requireNonNull(builder.indexUuid, "index_uuid");
+		this.acceptDataLoss = ModelTypeHelper.requireNonNull(builder.acceptDataLoss, this, "acceptDataLoss");
+		this.indexUuid = ModelTypeHelper.requireNonNull(builder.indexUuid, this, "indexUuid");
 		this.masterTimeout = builder.masterTimeout;
 		this.timeout = builder.timeout;
 
 	}
 
-	public ImportDanglingIndexRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ImportDanglingIndexRequest of(Function<Builder, ObjectBuilder<ImportDanglingIndexRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -74,7 +76,7 @@ public final class ImportDanglingIndexRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code accept_data_loss}
 	 */
-	public boolean acceptDataLoss() {
+	public final boolean acceptDataLoss() {
 		return this.acceptDataLoss;
 	}
 
@@ -83,7 +85,7 @@ public final class ImportDanglingIndexRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code index_uuid}
 	 */
-	public String indexUuid() {
+	public final String indexUuid() {
 		return this.indexUuid;
 	}
 
@@ -93,7 +95,7 @@ public final class ImportDanglingIndexRequest extends RequestBase {
 	 * API name: {@code master_timeout}
 	 */
 	@Nullable
-	public String masterTimeout() {
+	public final String masterTimeout() {
 		return this.masterTimeout;
 	}
 
@@ -103,7 +105,7 @@ public final class ImportDanglingIndexRequest extends RequestBase {
 	 * API name: {@code timeout}
 	 */
 	@Nullable
-	public String timeout() {
+	public final String timeout() {
 		return this.timeout;
 	}
 
@@ -112,7 +114,7 @@ public final class ImportDanglingIndexRequest extends RequestBase {
 	/**
 	 * Builder for {@link ImportDanglingIndexRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<ImportDanglingIndexRequest> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ImportDanglingIndexRequest> {
 		private Boolean acceptDataLoss;
 
 		private String indexUuid;
@@ -128,7 +130,7 @@ public final class ImportDanglingIndexRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code accept_data_loss}
 		 */
-		public Builder acceptDataLoss(boolean value) {
+		public final Builder acceptDataLoss(boolean value) {
 			this.acceptDataLoss = value;
 			return this;
 		}
@@ -138,7 +140,7 @@ public final class ImportDanglingIndexRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code index_uuid}
 		 */
-		public Builder indexUuid(String value) {
+		public final Builder indexUuid(String value) {
 			this.indexUuid = value;
 			return this;
 		}
@@ -148,7 +150,7 @@ public final class ImportDanglingIndexRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
-		public Builder masterTimeout(@Nullable String value) {
+		public final Builder masterTimeout(@Nullable String value) {
 			this.masterTimeout = value;
 			return this;
 		}
@@ -158,7 +160,7 @@ public final class ImportDanglingIndexRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code timeout}
 		 */
-		public Builder timeout(@Nullable String value) {
+		public final Builder timeout(@Nullable String value) {
 			this.timeout = value;
 			return this;
 		}
@@ -170,6 +172,7 @@ public final class ImportDanglingIndexRequest extends RequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public ImportDanglingIndexRequest build() {
+			_checkSingleUse();
 
 			return new ImportDanglingIndexRequest(this);
 		}

@@ -36,16 +36,16 @@ import java.util.function.Function;
 
 // typedef: eql.delete.Response
 @JsonpDeserializable
-public final class EqlDeleteResponse extends AcknowledgedResponseBase {
+public class EqlDeleteResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
-	public EqlDeleteResponse(Builder builder) {
+	private EqlDeleteResponse(Builder builder) {
 		super(builder);
 
 	}
 
-	public EqlDeleteResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static EqlDeleteResponse of(Function<Builder, ObjectBuilder<EqlDeleteResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -68,6 +68,7 @@ public final class EqlDeleteResponse extends AcknowledgedResponseBase {
 		 *             if some of the required fields are null.
 		 */
 		public EqlDeleteResponse build() {
+			_checkSingleUse();
 
 			return new EqlDeleteResponse(this);
 		}

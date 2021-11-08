@@ -31,12 +31,13 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.MapBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
@@ -44,25 +45,25 @@ import javax.annotation.Nullable;
 
 // typedef: ilm.explain_lifecycle.Response
 @JsonpDeserializable
-public final class ExplainLifecycleResponse implements JsonpSerializable {
+public class ExplainLifecycleResponse implements JsonpSerializable {
 	private final Map<String, LifecycleExplain> indices;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public ExplainLifecycleResponse(Builder builder) {
+	private ExplainLifecycleResponse(Builder builder) {
 
-		this.indices = ModelTypeHelper.unmodifiableNonNull(builder.indices, "indices");
+		this.indices = ModelTypeHelper.unmodifiableRequired(builder.indices, this, "indices");
 
 	}
 
-	public ExplainLifecycleResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ExplainLifecycleResponse of(Function<Builder, ObjectBuilder<ExplainLifecycleResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code indices}
 	 */
-	public Map<String, LifecycleExplain> indices() {
+	public final Map<String, LifecycleExplain> indices() {
 		return this.indices;
 	}
 
@@ -77,14 +78,17 @@ public final class ExplainLifecycleResponse implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("indices");
-		generator.writeStartObject();
-		for (Map.Entry<String, LifecycleExplain> item0 : this.indices.entrySet()) {
-			generator.writeKey(item0.getKey());
-			item0.getValue().serialize(generator, mapper);
+		if (ModelTypeHelper.isDefined(this.indices)) {
+			generator.writeKey("indices");
+			generator.writeStartObject();
+			for (Map.Entry<String, LifecycleExplain> item0 : this.indices.entrySet()) {
+				generator.writeKey(item0.getKey());
+				item0.getValue().serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
 
 	}
 
@@ -93,25 +97,14 @@ public final class ExplainLifecycleResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link ExplainLifecycleResponse}.
 	 */
-	public static class Builder implements ObjectBuilder<ExplainLifecycleResponse> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ExplainLifecycleResponse> {
 		private Map<String, LifecycleExplain> indices;
 
 		/**
 		 * Required - API name: {@code indices}
 		 */
-		public Builder indices(Map<String, LifecycleExplain> value) {
+		public final Builder indices(Map<String, LifecycleExplain> value) {
 			this.indices = value;
-			return this;
-		}
-
-		/**
-		 * Add a key/value to {@link #indices(Map)}, creating the map if needed.
-		 */
-		public Builder putIndices(String key, LifecycleExplain value) {
-			if (this.indices == null) {
-				this.indices = new HashMap<>();
-			}
-			this.indices.put(key, value);
 			return this;
 		}
 
@@ -122,11 +115,9 @@ public final class ExplainLifecycleResponse implements JsonpSerializable {
 			return this.indices(Collections.singletonMap(key, fn.apply(new LifecycleExplain.Builder()).build()));
 		}
 
-		/**
-		 * Add a key/value to {@link #indices(Map)}, creating the map if needed.
-		 */
-		public Builder putIndices(String key, Function<LifecycleExplain.Builder, ObjectBuilder<LifecycleExplain>> fn) {
-			return this.putIndices(key, fn.apply(new LifecycleExplain.Builder()).build());
+		public final Builder indices(
+				Function<MapBuilder<String, LifecycleExplain, LifecycleExplain.Builder>, ObjectBuilder<Map<String, LifecycleExplain>>> fn) {
+			return indices(fn.apply(new MapBuilder<>(LifecycleExplain.Builder::new)).build());
 		}
 
 		/**
@@ -136,6 +127,7 @@ public final class ExplainLifecycleResponse implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public ExplainLifecycleResponse build() {
+			_checkSingleUse();
 
 			return new ExplainLifecycleResponse(this);
 		}

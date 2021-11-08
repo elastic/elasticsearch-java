@@ -33,7 +33,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -42,7 +44,7 @@ import javax.annotation.Nullable;
 
 // typedef: xpack.info.Response
 @JsonpDeserializable
-public final class XpackInfoResponse implements JsonpSerializable {
+public class XpackInfoResponse implements JsonpSerializable {
 	private final BuildInformation build;
 
 	private final Features features;
@@ -53,44 +55,44 @@ public final class XpackInfoResponse implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public XpackInfoResponse(Builder builder) {
+	private XpackInfoResponse(Builder builder) {
 
-		this.build = Objects.requireNonNull(builder.build, "build");
-		this.features = Objects.requireNonNull(builder.features, "features");
-		this.license = Objects.requireNonNull(builder.license, "license");
-		this.tagline = Objects.requireNonNull(builder.tagline, "tagline");
+		this.build = ModelTypeHelper.requireNonNull(builder.build, this, "build");
+		this.features = ModelTypeHelper.requireNonNull(builder.features, this, "features");
+		this.license = ModelTypeHelper.requireNonNull(builder.license, this, "license");
+		this.tagline = ModelTypeHelper.requireNonNull(builder.tagline, this, "tagline");
 
 	}
 
-	public XpackInfoResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static XpackInfoResponse of(Function<Builder, ObjectBuilder<XpackInfoResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code build}
 	 */
-	public BuildInformation build() {
+	public final BuildInformation build() {
 		return this.build;
 	}
 
 	/**
 	 * Required - API name: {@code features}
 	 */
-	public Features features() {
+	public final Features features() {
 		return this.features;
 	}
 
 	/**
 	 * Required - API name: {@code license}
 	 */
-	public MinimalLicenseInformation license() {
+	public final MinimalLicenseInformation license() {
 		return this.license;
 	}
 
 	/**
 	 * Required - API name: {@code tagline}
 	 */
-	public String tagline() {
+	public final String tagline() {
 		return this.tagline;
 	}
 
@@ -124,7 +126,7 @@ public final class XpackInfoResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link XpackInfoResponse}.
 	 */
-	public static class Builder implements ObjectBuilder<XpackInfoResponse> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<XpackInfoResponse> {
 		private BuildInformation build;
 
 		private Features features;
@@ -136,7 +138,7 @@ public final class XpackInfoResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code build}
 		 */
-		public Builder build(BuildInformation value) {
+		public final Builder build(BuildInformation value) {
 			this.build = value;
 			return this;
 		}
@@ -144,14 +146,14 @@ public final class XpackInfoResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code build}
 		 */
-		public Builder build(Function<BuildInformation.Builder, ObjectBuilder<BuildInformation>> fn) {
+		public final Builder build(Function<BuildInformation.Builder, ObjectBuilder<BuildInformation>> fn) {
 			return this.build(fn.apply(new BuildInformation.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code features}
 		 */
-		public Builder features(Features value) {
+		public final Builder features(Features value) {
 			this.features = value;
 			return this;
 		}
@@ -159,14 +161,14 @@ public final class XpackInfoResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code features}
 		 */
-		public Builder features(Function<Features.Builder, ObjectBuilder<Features>> fn) {
+		public final Builder features(Function<Features.Builder, ObjectBuilder<Features>> fn) {
 			return this.features(fn.apply(new Features.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code license}
 		 */
-		public Builder license(MinimalLicenseInformation value) {
+		public final Builder license(MinimalLicenseInformation value) {
 			this.license = value;
 			return this;
 		}
@@ -174,7 +176,7 @@ public final class XpackInfoResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code license}
 		 */
-		public Builder license(
+		public final Builder license(
 				Function<MinimalLicenseInformation.Builder, ObjectBuilder<MinimalLicenseInformation>> fn) {
 			return this.license(fn.apply(new MinimalLicenseInformation.Builder()).build());
 		}
@@ -182,7 +184,7 @@ public final class XpackInfoResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code tagline}
 		 */
-		public Builder tagline(String value) {
+		public final Builder tagline(String value) {
 			this.tagline = value;
 			return this;
 		}
@@ -194,6 +196,7 @@ public final class XpackInfoResponse implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public XpackInfoResponse build() {
+			_checkSingleUse();
 
 			return new XpackInfoResponse(this);
 		}

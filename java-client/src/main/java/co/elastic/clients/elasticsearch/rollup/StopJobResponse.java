@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.Objects;
@@ -38,25 +40,25 @@ import java.util.function.Function;
 
 // typedef: rollup.stop_job.Response
 @JsonpDeserializable
-public final class StopJobResponse implements JsonpSerializable {
+public class StopJobResponse implements JsonpSerializable {
 	private final boolean stopped;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public StopJobResponse(Builder builder) {
+	private StopJobResponse(Builder builder) {
 
-		this.stopped = Objects.requireNonNull(builder.stopped, "stopped");
+		this.stopped = ModelTypeHelper.requireNonNull(builder.stopped, this, "stopped");
 
 	}
 
-	public StopJobResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static StopJobResponse of(Function<Builder, ObjectBuilder<StopJobResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code stopped}
 	 */
-	public boolean stopped() {
+	public final boolean stopped() {
 		return this.stopped;
 	}
 
@@ -81,13 +83,13 @@ public final class StopJobResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link StopJobResponse}.
 	 */
-	public static class Builder implements ObjectBuilder<StopJobResponse> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<StopJobResponse> {
 		private Boolean stopped;
 
 		/**
 		 * Required - API name: {@code stopped}
 		 */
-		public Builder stopped(boolean value) {
+		public final Builder stopped(boolean value) {
 			this.stopped = value;
 			return this;
 		}
@@ -99,6 +101,7 @@ public final class StopJobResponse implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public StopJobResponse build() {
+			_checkSingleUse();
 
 			return new StopJobResponse(this);
 		}

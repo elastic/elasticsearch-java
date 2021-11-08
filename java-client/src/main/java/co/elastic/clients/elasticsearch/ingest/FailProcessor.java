@@ -29,6 +29,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -38,20 +39,20 @@ import javax.annotation.Nullable;
 
 // typedef: ingest._types.FailProcessor
 @JsonpDeserializable
-public final class FailProcessor extends ProcessorBase implements ProcessorVariant {
+public class FailProcessor extends ProcessorBase implements ProcessorVariant {
 	private final String message;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public FailProcessor(Builder builder) {
+	private FailProcessor(Builder builder) {
 		super(builder);
 
-		this.message = Objects.requireNonNull(builder.message, "message");
+		this.message = ModelTypeHelper.requireNonNull(builder.message, this, "message");
 
 	}
 
-	public FailProcessor(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static FailProcessor of(Function<Builder, ObjectBuilder<FailProcessor>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -65,14 +66,13 @@ public final class FailProcessor extends ProcessorBase implements ProcessorVaria
 	/**
 	 * Required - API name: {@code message}
 	 */
-	public String message() {
+	public final String message() {
 		return this.message;
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
-
 		generator.writeKey("message");
 		generator.write(this.message);
 
@@ -89,7 +89,7 @@ public final class FailProcessor extends ProcessorBase implements ProcessorVaria
 		/**
 		 * Required - API name: {@code message}
 		 */
-		public Builder message(String value) {
+		public final Builder message(String value) {
 			this.message = value;
 			return this;
 		}
@@ -106,6 +106,7 @@ public final class FailProcessor extends ProcessorBase implements ProcessorVaria
 		 *             if some of the required fields are null.
 		 */
 		public FailProcessor build() {
+			_checkSingleUse();
 
 			return new FailProcessor(this);
 		}

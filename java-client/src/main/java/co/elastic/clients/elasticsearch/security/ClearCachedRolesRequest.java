@@ -33,9 +33,9 @@ import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.SimpleEndpoint;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -46,19 +46,19 @@ import javax.annotation.Nullable;
 
 // typedef: security.clear_cached_roles.Request
 
-public final class ClearCachedRolesRequest extends RequestBase {
+public class ClearCachedRolesRequest extends RequestBase {
 	private final List<String> name;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public ClearCachedRolesRequest(Builder builder) {
+	private ClearCachedRolesRequest(Builder builder) {
 
-		this.name = ModelTypeHelper.unmodifiableNonNull(builder.name, "name");
+		this.name = ModelTypeHelper.unmodifiableRequired(builder.name, this, "name");
 
 	}
 
-	public ClearCachedRolesRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ClearCachedRolesRequest of(Function<Builder, ObjectBuilder<ClearCachedRolesRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -66,7 +66,7 @@ public final class ClearCachedRolesRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code name}
 	 */
-	public List<String> name() {
+	public final List<String> name() {
 		return this.name;
 	}
 
@@ -75,7 +75,7 @@ public final class ClearCachedRolesRequest extends RequestBase {
 	/**
 	 * Builder for {@link ClearCachedRolesRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<ClearCachedRolesRequest> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ClearCachedRolesRequest> {
 		private List<String> name;
 
 		/**
@@ -83,7 +83,7 @@ public final class ClearCachedRolesRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code name}
 		 */
-		public Builder name(List<String> value) {
+		public final Builder name(List<String> value) {
 			this.name = value;
 			return this;
 		}
@@ -93,19 +93,8 @@ public final class ClearCachedRolesRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code name}
 		 */
-		public Builder name(String... value) {
+		public final Builder name(String... value) {
 			this.name = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #name(List)}, creating the list if needed.
-		 */
-		public Builder addName(String value) {
-			if (this.name == null) {
-				this.name = new ArrayList<>();
-			}
-			this.name.add(value);
 			return this;
 		}
 
@@ -116,6 +105,7 @@ public final class ClearCachedRolesRequest extends RequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public ClearCachedRolesRequest build() {
+			_checkSingleUse();
 
 			return new ClearCachedRolesRequest(this);
 		}

@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
@@ -40,7 +42,7 @@ import javax.annotation.Nullable;
 
 // typedef: slm._types.Retention
 @JsonpDeserializable
-public final class Retention implements JsonpSerializable {
+public class Retention implements JsonpSerializable {
 	private final String expireAfter;
 
 	private final int maxCount;
@@ -49,16 +51,16 @@ public final class Retention implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public Retention(Builder builder) {
+	private Retention(Builder builder) {
 
-		this.expireAfter = Objects.requireNonNull(builder.expireAfter, "expire_after");
-		this.maxCount = Objects.requireNonNull(builder.maxCount, "max_count");
-		this.minCount = Objects.requireNonNull(builder.minCount, "min_count");
+		this.expireAfter = ModelTypeHelper.requireNonNull(builder.expireAfter, this, "expireAfter");
+		this.maxCount = ModelTypeHelper.requireNonNull(builder.maxCount, this, "maxCount");
+		this.minCount = ModelTypeHelper.requireNonNull(builder.minCount, this, "minCount");
 
 	}
 
-	public Retention(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static Retention of(Function<Builder, ObjectBuilder<Retention>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -68,7 +70,7 @@ public final class Retention implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code expire_after}
 	 */
-	public String expireAfter() {
+	public final String expireAfter() {
 		return this.expireAfter;
 	}
 
@@ -80,7 +82,7 @@ public final class Retention implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code max_count}
 	 */
-	public int maxCount() {
+	public final int maxCount() {
 		return this.maxCount;
 	}
 
@@ -90,7 +92,7 @@ public final class Retention implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code min_count}
 	 */
-	public int minCount() {
+	public final int minCount() {
 		return this.minCount;
 	}
 
@@ -121,7 +123,7 @@ public final class Retention implements JsonpSerializable {
 	/**
 	 * Builder for {@link Retention}.
 	 */
-	public static class Builder implements ObjectBuilder<Retention> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Retention> {
 		private String expireAfter;
 
 		private Integer maxCount;
@@ -135,7 +137,7 @@ public final class Retention implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code expire_after}
 		 */
-		public Builder expireAfter(String value) {
+		public final Builder expireAfter(String value) {
 			this.expireAfter = value;
 			return this;
 		}
@@ -148,7 +150,7 @@ public final class Retention implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code max_count}
 		 */
-		public Builder maxCount(int value) {
+		public final Builder maxCount(int value) {
 			this.maxCount = value;
 			return this;
 		}
@@ -159,7 +161,7 @@ public final class Retention implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code min_count}
 		 */
-		public Builder minCount(int value) {
+		public final Builder minCount(int value) {
 			this.minCount = value;
 			return this;
 		}
@@ -171,6 +173,7 @@ public final class Retention implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public Retention build() {
+			_checkSingleUse();
 
 			return new Retention(this);
 		}

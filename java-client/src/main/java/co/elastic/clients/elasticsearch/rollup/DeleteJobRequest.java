@@ -31,7 +31,9 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.SimpleEndpoint;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
@@ -41,19 +43,19 @@ import javax.annotation.Nullable;
 
 // typedef: rollup.delete_job.Request
 
-public final class DeleteJobRequest extends RequestBase {
+public class DeleteJobRequest extends RequestBase {
 	private final String id;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public DeleteJobRequest(Builder builder) {
+	private DeleteJobRequest(Builder builder) {
 
-		this.id = Objects.requireNonNull(builder.id, "id");
+		this.id = ModelTypeHelper.requireNonNull(builder.id, this, "id");
 
 	}
 
-	public DeleteJobRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static DeleteJobRequest of(Function<Builder, ObjectBuilder<DeleteJobRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -61,7 +63,7 @@ public final class DeleteJobRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code id}
 	 */
-	public String id() {
+	public final String id() {
 		return this.id;
 	}
 
@@ -70,7 +72,7 @@ public final class DeleteJobRequest extends RequestBase {
 	/**
 	 * Builder for {@link DeleteJobRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<DeleteJobRequest> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DeleteJobRequest> {
 		private String id;
 
 		/**
@@ -78,7 +80,7 @@ public final class DeleteJobRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code id}
 		 */
-		public Builder id(String value) {
+		public final Builder id(String value) {
 			this.id = value;
 			return this;
 		}
@@ -90,6 +92,7 @@ public final class DeleteJobRequest extends RequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public DeleteJobRequest build() {
+			_checkSingleUse();
 
 			return new DeleteJobRequest(this);
 		}

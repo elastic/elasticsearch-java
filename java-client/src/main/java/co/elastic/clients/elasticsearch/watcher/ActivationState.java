@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
@@ -40,35 +42,35 @@ import javax.annotation.Nullable;
 
 // typedef: watcher._types.ActivationState
 @JsonpDeserializable
-public final class ActivationState implements JsonpSerializable {
+public class ActivationState implements JsonpSerializable {
 	private final boolean active;
 
 	private final String timestamp;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public ActivationState(Builder builder) {
+	private ActivationState(Builder builder) {
 
-		this.active = Objects.requireNonNull(builder.active, "active");
-		this.timestamp = Objects.requireNonNull(builder.timestamp, "timestamp");
+		this.active = ModelTypeHelper.requireNonNull(builder.active, this, "active");
+		this.timestamp = ModelTypeHelper.requireNonNull(builder.timestamp, this, "timestamp");
 
 	}
 
-	public ActivationState(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ActivationState of(Function<Builder, ObjectBuilder<ActivationState>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code active}
 	 */
-	public boolean active() {
+	public final boolean active() {
 		return this.active;
 	}
 
 	/**
 	 * Required - API name: {@code timestamp}
 	 */
-	public String timestamp() {
+	public final String timestamp() {
 		return this.timestamp;
 	}
 
@@ -96,7 +98,7 @@ public final class ActivationState implements JsonpSerializable {
 	/**
 	 * Builder for {@link ActivationState}.
 	 */
-	public static class Builder implements ObjectBuilder<ActivationState> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ActivationState> {
 		private Boolean active;
 
 		private String timestamp;
@@ -104,7 +106,7 @@ public final class ActivationState implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code active}
 		 */
-		public Builder active(boolean value) {
+		public final Builder active(boolean value) {
 			this.active = value;
 			return this;
 		}
@@ -112,7 +114,7 @@ public final class ActivationState implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code timestamp}
 		 */
-		public Builder timestamp(String value) {
+		public final Builder timestamp(String value) {
 			this.timestamp = value;
 			return this;
 		}
@@ -124,6 +126,7 @@ public final class ActivationState implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public ActivationState build() {
+			_checkSingleUse();
 
 			return new ActivationState(this);
 		}

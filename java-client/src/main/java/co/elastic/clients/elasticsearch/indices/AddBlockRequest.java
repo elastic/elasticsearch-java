@@ -35,10 +35,10 @@ import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.SimpleEndpoint;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -50,13 +50,12 @@ import javax.annotation.Nullable;
 
 // typedef: indices.add_block.Request
 
-public final class AddBlockRequest extends RequestBase {
+public class AddBlockRequest extends RequestBase {
 	@Nullable
 	private final Boolean allowNoIndices;
 
 	private final IndicesBlockOptions block;
 
-	@Nullable
 	private final List<ExpandWildcardOptions> expandWildcards;
 
 	@Nullable
@@ -72,20 +71,20 @@ public final class AddBlockRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public AddBlockRequest(Builder builder) {
+	private AddBlockRequest(Builder builder) {
 
 		this.allowNoIndices = builder.allowNoIndices;
-		this.block = Objects.requireNonNull(builder.block, "block");
+		this.block = ModelTypeHelper.requireNonNull(builder.block, this, "block");
 		this.expandWildcards = ModelTypeHelper.unmodifiable(builder.expandWildcards);
 		this.ignoreUnavailable = builder.ignoreUnavailable;
-		this.index = Objects.requireNonNull(builder.index, "index");
+		this.index = ModelTypeHelper.requireNonNull(builder.index, this, "index");
 		this.masterTimeout = builder.masterTimeout;
 		this.timeout = builder.timeout;
 
 	}
 
-	public AddBlockRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static AddBlockRequest of(Function<Builder, ObjectBuilder<AddBlockRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -96,7 +95,7 @@ public final class AddBlockRequest extends RequestBase {
 	 * API name: {@code allow_no_indices}
 	 */
 	@Nullable
-	public Boolean allowNoIndices() {
+	public final Boolean allowNoIndices() {
 		return this.allowNoIndices;
 	}
 
@@ -105,7 +104,7 @@ public final class AddBlockRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code block}
 	 */
-	public IndicesBlockOptions block() {
+	public final IndicesBlockOptions block() {
 		return this.block;
 	}
 
@@ -115,8 +114,7 @@ public final class AddBlockRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code expand_wildcards}
 	 */
-	@Nullable
-	public List<ExpandWildcardOptions> expandWildcards() {
+	public final List<ExpandWildcardOptions> expandWildcards() {
 		return this.expandWildcards;
 	}
 
@@ -127,7 +125,7 @@ public final class AddBlockRequest extends RequestBase {
 	 * API name: {@code ignore_unavailable}
 	 */
 	@Nullable
-	public Boolean ignoreUnavailable() {
+	public final Boolean ignoreUnavailable() {
 		return this.ignoreUnavailable;
 	}
 
@@ -136,7 +134,7 @@ public final class AddBlockRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code index}
 	 */
-	public String index() {
+	public final String index() {
 		return this.index;
 	}
 
@@ -146,7 +144,7 @@ public final class AddBlockRequest extends RequestBase {
 	 * API name: {@code master_timeout}
 	 */
 	@Nullable
-	public String masterTimeout() {
+	public final String masterTimeout() {
 		return this.masterTimeout;
 	}
 
@@ -156,7 +154,7 @@ public final class AddBlockRequest extends RequestBase {
 	 * API name: {@code timeout}
 	 */
 	@Nullable
-	public String timeout() {
+	public final String timeout() {
 		return this.timeout;
 	}
 
@@ -165,7 +163,7 @@ public final class AddBlockRequest extends RequestBase {
 	/**
 	 * Builder for {@link AddBlockRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<AddBlockRequest> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<AddBlockRequest> {
 		@Nullable
 		private Boolean allowNoIndices;
 
@@ -192,7 +190,7 @@ public final class AddBlockRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code allow_no_indices}
 		 */
-		public Builder allowNoIndices(@Nullable Boolean value) {
+		public final Builder allowNoIndices(@Nullable Boolean value) {
 			this.allowNoIndices = value;
 			return this;
 		}
@@ -202,7 +200,7 @@ public final class AddBlockRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code block}
 		 */
-		public Builder block(IndicesBlockOptions value) {
+		public final Builder block(IndicesBlockOptions value) {
 			this.block = value;
 			return this;
 		}
@@ -213,7 +211,7 @@ public final class AddBlockRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code expand_wildcards}
 		 */
-		public Builder expandWildcards(@Nullable List<ExpandWildcardOptions> value) {
+		public final Builder expandWildcards(@Nullable List<ExpandWildcardOptions> value) {
 			this.expandWildcards = value;
 			return this;
 		}
@@ -224,19 +222,8 @@ public final class AddBlockRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code expand_wildcards}
 		 */
-		public Builder expandWildcards(ExpandWildcardOptions... value) {
+		public final Builder expandWildcards(ExpandWildcardOptions... value) {
 			this.expandWildcards = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #expandWildcards(List)}, creating the list if needed.
-		 */
-		public Builder addExpandWildcards(ExpandWildcardOptions value) {
-			if (this.expandWildcards == null) {
-				this.expandWildcards = new ArrayList<>();
-			}
-			this.expandWildcards.add(value);
 			return this;
 		}
 
@@ -246,7 +233,7 @@ public final class AddBlockRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code ignore_unavailable}
 		 */
-		public Builder ignoreUnavailable(@Nullable Boolean value) {
+		public final Builder ignoreUnavailable(@Nullable Boolean value) {
 			this.ignoreUnavailable = value;
 			return this;
 		}
@@ -256,7 +243,7 @@ public final class AddBlockRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code index}
 		 */
-		public Builder index(String value) {
+		public final Builder index(String value) {
 			this.index = value;
 			return this;
 		}
@@ -266,7 +253,7 @@ public final class AddBlockRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
-		public Builder masterTimeout(@Nullable String value) {
+		public final Builder masterTimeout(@Nullable String value) {
 			this.masterTimeout = value;
 			return this;
 		}
@@ -276,7 +263,7 @@ public final class AddBlockRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code timeout}
 		 */
-		public Builder timeout(@Nullable String value) {
+		public final Builder timeout(@Nullable String value) {
 			this.timeout = value;
 			return this;
 		}
@@ -288,6 +275,7 @@ public final class AddBlockRequest extends RequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public AddBlockRequest build() {
+			_checkSingleUse();
 
 			return new AddBlockRequest(this);
 		}
@@ -321,7 +309,7 @@ public final class AddBlockRequest extends RequestBase {
 					SimpleEndpoint.pathEncode(request.index, buf);
 					buf.append("/_block");
 					buf.append("/");
-					SimpleEndpoint.pathEncode(request.block.toString(), buf);
+					SimpleEndpoint.pathEncode(request.block.jsonValue(), buf);
 					return buf.toString();
 				}
 				throw SimpleEndpoint.noPathTemplateFound("path");
@@ -334,9 +322,9 @@ public final class AddBlockRequest extends RequestBase {
 				if (request.masterTimeout != null) {
 					params.put("master_timeout", request.masterTimeout);
 				}
-				if (request.expandWildcards != null) {
+				if (ModelTypeHelper.isDefined(request.expandWildcards)) {
 					params.put("expand_wildcards",
-							request.expandWildcards.stream().map(v -> v.toString()).collect(Collectors.joining(",")));
+							request.expandWildcards.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")));
 				}
 				if (request.ignoreUnavailable != null) {
 					params.put("ignore_unavailable", String.valueOf(request.ignoreUnavailable));

@@ -34,7 +34,7 @@ import java.util.function.Function;
 
 // typedef: _global.exists_source.Response
 
-public final class ExistsSourceResponse {
+public class ExistsSourceResponse {
 	public ExistsSourceResponse() {
 	}
 

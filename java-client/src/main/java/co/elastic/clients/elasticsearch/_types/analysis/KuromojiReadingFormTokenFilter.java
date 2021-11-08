@@ -29,6 +29,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -37,20 +38,21 @@ import java.util.function.Function;
 
 // typedef: _types.analysis.KuromojiReadingFormTokenFilter
 @JsonpDeserializable
-public final class KuromojiReadingFormTokenFilter extends TokenFilterBase implements TokenFilterVariant {
+public class KuromojiReadingFormTokenFilter extends TokenFilterBase implements TokenFilterVariant {
 	private final boolean useRomaji;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public KuromojiReadingFormTokenFilter(Builder builder) {
+	private KuromojiReadingFormTokenFilter(Builder builder) {
 		super(builder);
 
-		this.useRomaji = Objects.requireNonNull(builder.useRomaji, "use_romaji");
+		this.useRomaji = ModelTypeHelper.requireNonNull(builder.useRomaji, this, "useRomaji");
 
 	}
 
-	public KuromojiReadingFormTokenFilter(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static KuromojiReadingFormTokenFilter of(
+			Function<Builder, ObjectBuilder<KuromojiReadingFormTokenFilter>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -64,7 +66,7 @@ public final class KuromojiReadingFormTokenFilter extends TokenFilterBase implem
 	/**
 	 * Required - API name: {@code use_romaji}
 	 */
-	public boolean useRomaji() {
+	public final boolean useRomaji() {
 		return this.useRomaji;
 	}
 
@@ -72,7 +74,6 @@ public final class KuromojiReadingFormTokenFilter extends TokenFilterBase implem
 
 		generator.write("type", "kuromoji_readingform");
 		super.serializeInternal(generator, mapper);
-
 		generator.writeKey("use_romaji");
 		generator.write(this.useRomaji);
 
@@ -91,7 +92,7 @@ public final class KuromojiReadingFormTokenFilter extends TokenFilterBase implem
 		/**
 		 * Required - API name: {@code use_romaji}
 		 */
-		public Builder useRomaji(boolean value) {
+		public final Builder useRomaji(boolean value) {
 			this.useRomaji = value;
 			return this;
 		}
@@ -108,6 +109,7 @@ public final class KuromojiReadingFormTokenFilter extends TokenFilterBase implem
 		 *             if some of the required fields are null.
 		 */
 		public KuromojiReadingFormTokenFilter build() {
+			_checkSingleUse();
 
 			return new KuromojiReadingFormTokenFilter(this);
 		}

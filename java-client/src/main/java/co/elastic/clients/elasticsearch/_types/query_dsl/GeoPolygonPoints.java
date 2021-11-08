@@ -32,9 +32,9 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
@@ -43,25 +43,25 @@ import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.GeoPolygonPoints
 @JsonpDeserializable
-public final class GeoPolygonPoints implements JsonpSerializable {
+public class GeoPolygonPoints implements JsonpSerializable {
 	private final List<JsonValue /* _types.query_dsl.GeoLocation */> points;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public GeoPolygonPoints(Builder builder) {
+	private GeoPolygonPoints(Builder builder) {
 
-		this.points = ModelTypeHelper.unmodifiableNonNull(builder.points, "points");
+		this.points = ModelTypeHelper.unmodifiableRequired(builder.points, this, "points");
 
 	}
 
-	public GeoPolygonPoints(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static GeoPolygonPoints of(Function<Builder, ObjectBuilder<GeoPolygonPoints>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code points}
 	 */
-	public List<JsonValue /* _types.query_dsl.GeoLocation */> points() {
+	public final List<JsonValue /* _types.query_dsl.GeoLocation */> points() {
 		return this.points;
 	}
 
@@ -76,13 +76,16 @@ public final class GeoPolygonPoints implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("points");
-		generator.writeStartArray();
-		for (JsonValue /* _types.query_dsl.GeoLocation */ item0 : this.points) {
-			generator.write(item0);
+		if (ModelTypeHelper.isDefined(this.points)) {
+			generator.writeKey("points");
+			generator.writeStartArray();
+			for (JsonValue /* _types.query_dsl.GeoLocation */ item0 : this.points) {
+				generator.write(item0);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
 
 	}
 
@@ -91,13 +94,13 @@ public final class GeoPolygonPoints implements JsonpSerializable {
 	/**
 	 * Builder for {@link GeoPolygonPoints}.
 	 */
-	public static class Builder implements ObjectBuilder<GeoPolygonPoints> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GeoPolygonPoints> {
 		private List<JsonValue /* _types.query_dsl.GeoLocation */> points;
 
 		/**
 		 * Required - API name: {@code points}
 		 */
-		public Builder points(List<JsonValue /* _types.query_dsl.GeoLocation */> value) {
+		public final Builder points(List<JsonValue /* _types.query_dsl.GeoLocation */> value) {
 			this.points = value;
 			return this;
 		}
@@ -105,19 +108,8 @@ public final class GeoPolygonPoints implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code points}
 		 */
-		public Builder points(JsonValue /* _types.query_dsl.GeoLocation */... value) {
+		public final Builder points(JsonValue /* _types.query_dsl.GeoLocation */... value) {
 			this.points = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #points(List)}, creating the list if needed.
-		 */
-		public Builder addPoints(JsonValue /* _types.query_dsl.GeoLocation */ value) {
-			if (this.points == null) {
-				this.points = new ArrayList<>();
-			}
-			this.points.add(value);
 			return this;
 		}
 
@@ -128,6 +120,7 @@ public final class GeoPolygonPoints implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public GeoPolygonPoints build() {
+			_checkSingleUse();
 
 			return new GeoPolygonPoints(this);
 		}

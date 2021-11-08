@@ -32,11 +32,11 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
@@ -46,7 +46,7 @@ import javax.annotation.Nullable;
 
 // typedef: sql.translate.Response
 @JsonpDeserializable
-public final class TranslateResponse implements JsonpSerializable {
+public class TranslateResponse implements JsonpSerializable {
 	private final long size;
 
 	private final JsonValue /*
@@ -59,46 +59,46 @@ public final class TranslateResponse implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public TranslateResponse(Builder builder) {
+	private TranslateResponse(Builder builder) {
 
-		this.size = Objects.requireNonNull(builder.size, "size");
-		this.source = Objects.requireNonNull(builder.source, "_source");
-		this.fields = ModelTypeHelper.unmodifiableNonNull(builder.fields, "fields");
-		this.sort = ModelTypeHelper.unmodifiableNonNull(builder.sort, "sort");
+		this.size = ModelTypeHelper.requireNonNull(builder.size, this, "size");
+		this.source = ModelTypeHelper.requireNonNull(builder.source, this, "source");
+		this.fields = ModelTypeHelper.unmodifiableRequired(builder.fields, this, "fields");
+		this.sort = ModelTypeHelper.unmodifiableRequired(builder.sort, this, "sort");
 
 	}
 
-	public TranslateResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static TranslateResponse of(Function<Builder, ObjectBuilder<TranslateResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code size}
 	 */
-	public long size() {
+	public final long size() {
 		return this.size;
 	}
 
 	/**
 	 * Required - API name: {@code _source}
 	 */
-	public JsonValue /*
-						 * Union(_global.search._types.SourceFilter | _types.Fields | internal.boolean)
-						 */ source() {
+	public final JsonValue /*
+							 * Union(_global.search._types.SourceFilter | _types.Fields | internal.boolean)
+							 */ source() {
 		return this.source;
 	}
 
 	/**
 	 * Required - API name: {@code fields}
 	 */
-	public List<Map<String, String>> fields() {
+	public final List<Map<String, String>> fields() {
 		return this.fields;
 	}
 
 	/**
 	 * Required - API name: {@code sort}
 	 */
-	public List<JsonValue /* _global.search._types.SortCombinations */> sort() {
+	public final List<JsonValue /* _global.search._types.SortCombinations */> sort() {
 		return this.sort;
 	}
 
@@ -119,27 +119,34 @@ public final class TranslateResponse implements JsonpSerializable {
 		generator.writeKey("_source");
 		generator.write(this.source);
 
-		generator.writeKey("fields");
-		generator.writeStartArray();
-		for (Map<String, String> item0 : this.fields) {
-			generator.writeStartObject();
-			for (Map.Entry<String, String> item1 : item0.entrySet()) {
-				generator.writeKey(item1.getKey());
-				generator.write(item1.getValue());
+		if (ModelTypeHelper.isDefined(this.fields)) {
+			generator.writeKey("fields");
+			generator.writeStartArray();
+			for (Map<String, String> item0 : this.fields) {
+				generator.writeStartObject();
+				if (item0 != null) {
+					for (Map.Entry<String, String> item1 : item0.entrySet()) {
+						generator.writeKey(item1.getKey());
+						generator.write(item1.getValue());
+
+					}
+				}
+				generator.writeEnd();
 
 			}
 			generator.writeEnd();
 
 		}
-		generator.writeEnd();
+		if (ModelTypeHelper.isDefined(this.sort)) {
+			generator.writeKey("sort");
+			generator.writeStartArray();
+			for (JsonValue /* _global.search._types.SortCombinations */ item0 : this.sort) {
+				generator.write(item0);
 
-		generator.writeKey("sort");
-		generator.writeStartArray();
-		for (JsonValue /* _global.search._types.SortCombinations */ item0 : this.sort) {
-			generator.write(item0);
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
 
 	}
 
@@ -148,7 +155,7 @@ public final class TranslateResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link TranslateResponse}.
 	 */
-	public static class Builder implements ObjectBuilder<TranslateResponse> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TranslateResponse> {
 		private Long size;
 
 		private JsonValue /*
@@ -162,7 +169,7 @@ public final class TranslateResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code size}
 		 */
-		public Builder size(long value) {
+		public final Builder size(long value) {
 			this.size = value;
 			return this;
 		}
@@ -170,9 +177,10 @@ public final class TranslateResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code _source}
 		 */
-		public Builder source(JsonValue /*
-										 * Union(_global.search._types.SourceFilter | _types.Fields | internal.boolean)
-										 */ value) {
+		public final Builder source(
+				JsonValue /*
+							 * Union(_global.search._types.SourceFilter | _types.Fields | internal.boolean)
+							 */ value) {
 			this.source = value;
 			return this;
 		}
@@ -180,7 +188,7 @@ public final class TranslateResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code fields}
 		 */
-		public Builder fields(List<Map<String, String>> value) {
+		public final Builder fields(List<Map<String, String>> value) {
 			this.fields = value;
 			return this;
 		}
@@ -188,26 +196,15 @@ public final class TranslateResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code fields}
 		 */
-		public Builder fields(Map<String, String>... value) {
+		public final Builder fields(Map<String, String>... value) {
 			this.fields = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #fields(List)}, creating the list if needed.
-		 */
-		public Builder addFields(Map<String, String> value) {
-			if (this.fields == null) {
-				this.fields = new ArrayList<>();
-			}
-			this.fields.add(value);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code sort}
 		 */
-		public Builder sort(List<JsonValue /* _global.search._types.SortCombinations */> value) {
+		public final Builder sort(List<JsonValue /* _global.search._types.SortCombinations */> value) {
 			this.sort = value;
 			return this;
 		}
@@ -215,19 +212,8 @@ public final class TranslateResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code sort}
 		 */
-		public Builder sort(JsonValue /* _global.search._types.SortCombinations */... value) {
+		public final Builder sort(JsonValue /* _global.search._types.SortCombinations */... value) {
 			this.sort = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #sort(List)}, creating the list if needed.
-		 */
-		public Builder addSort(JsonValue /* _global.search._types.SortCombinations */ value) {
-			if (this.sort == null) {
-				this.sort = new ArrayList<>();
-			}
-			this.sort.add(value);
 			return this;
 		}
 
@@ -238,6 +224,7 @@ public final class TranslateResponse implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public TranslateResponse build() {
+			_checkSingleUse();
 
 			return new TranslateResponse(this);
 		}

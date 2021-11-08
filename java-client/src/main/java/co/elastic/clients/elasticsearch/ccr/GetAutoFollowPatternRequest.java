@@ -32,6 +32,7 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.SimpleEndpoint;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
@@ -41,20 +42,20 @@ import javax.annotation.Nullable;
 
 // typedef: ccr.get_auto_follow_pattern.Request
 
-public final class GetAutoFollowPatternRequest extends RequestBase {
+public class GetAutoFollowPatternRequest extends RequestBase {
 	@Nullable
 	private final String name;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public GetAutoFollowPatternRequest(Builder builder) {
+	private GetAutoFollowPatternRequest(Builder builder) {
 
 		this.name = builder.name;
 
 	}
 
-	public GetAutoFollowPatternRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static GetAutoFollowPatternRequest of(Function<Builder, ObjectBuilder<GetAutoFollowPatternRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -64,7 +65,7 @@ public final class GetAutoFollowPatternRequest extends RequestBase {
 	 * API name: {@code name}
 	 */
 	@Nullable
-	public String name() {
+	public final String name() {
 		return this.name;
 	}
 
@@ -73,7 +74,7 @@ public final class GetAutoFollowPatternRequest extends RequestBase {
 	/**
 	 * Builder for {@link GetAutoFollowPatternRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<GetAutoFollowPatternRequest> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetAutoFollowPatternRequest> {
 		@Nullable
 		private String name;
 
@@ -83,7 +84,7 @@ public final class GetAutoFollowPatternRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code name}
 		 */
-		public Builder name(@Nullable String value) {
+		public final Builder name(@Nullable String value) {
 			this.name = value;
 			return this;
 		}
@@ -95,6 +96,7 @@ public final class GetAutoFollowPatternRequest extends RequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public GetAutoFollowPatternRequest build() {
+			_checkSingleUse();
 
 			return new GetAutoFollowPatternRequest(this);
 		}

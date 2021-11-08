@@ -29,6 +29,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
@@ -37,20 +38,20 @@ import java.util.function.Function;
 
 // typedef: _types.analysis.KuromojiStemmerTokenFilter
 @JsonpDeserializable
-public final class KuromojiStemmerTokenFilter extends TokenFilterBase implements TokenFilterVariant {
+public class KuromojiStemmerTokenFilter extends TokenFilterBase implements TokenFilterVariant {
 	private final int minimumLength;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public KuromojiStemmerTokenFilter(Builder builder) {
+	private KuromojiStemmerTokenFilter(Builder builder) {
 		super(builder);
 
-		this.minimumLength = Objects.requireNonNull(builder.minimumLength, "minimum_length");
+		this.minimumLength = ModelTypeHelper.requireNonNull(builder.minimumLength, this, "minimumLength");
 
 	}
 
-	public KuromojiStemmerTokenFilter(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static KuromojiStemmerTokenFilter of(Function<Builder, ObjectBuilder<KuromojiStemmerTokenFilter>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -64,7 +65,7 @@ public final class KuromojiStemmerTokenFilter extends TokenFilterBase implements
 	/**
 	 * Required - API name: {@code minimum_length}
 	 */
-	public int minimumLength() {
+	public final int minimumLength() {
 		return this.minimumLength;
 	}
 
@@ -72,7 +73,6 @@ public final class KuromojiStemmerTokenFilter extends TokenFilterBase implements
 
 		generator.write("type", "kuromoji_stemmer");
 		super.serializeInternal(generator, mapper);
-
 		generator.writeKey("minimum_length");
 		generator.write(this.minimumLength);
 
@@ -91,7 +91,7 @@ public final class KuromojiStemmerTokenFilter extends TokenFilterBase implements
 		/**
 		 * Required - API name: {@code minimum_length}
 		 */
-		public Builder minimumLength(int value) {
+		public final Builder minimumLength(int value) {
 			this.minimumLength = value;
 			return this;
 		}
@@ -108,6 +108,7 @@ public final class KuromojiStemmerTokenFilter extends TokenFilterBase implements
 		 *             if some of the required fields are null.
 		 */
 		public KuromojiStemmerTokenFilter build() {
+			_checkSingleUse();
 
 			return new KuromojiStemmerTokenFilter(this);
 		}

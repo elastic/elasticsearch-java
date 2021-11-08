@@ -30,6 +30,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -41,7 +42,7 @@ import javax.annotation.Nullable;
 
 // typedef: ingest._types.EnrichProcessor
 @JsonpDeserializable
-public final class EnrichProcessor extends ProcessorBase implements ProcessorVariant {
+public class EnrichProcessor extends ProcessorBase implements ProcessorVariant {
 	private final String field;
 
 	@Nullable
@@ -62,21 +63,21 @@ public final class EnrichProcessor extends ProcessorBase implements ProcessorVar
 
 	// ---------------------------------------------------------------------------------------------
 
-	public EnrichProcessor(Builder builder) {
+	private EnrichProcessor(Builder builder) {
 		super(builder);
 
-		this.field = Objects.requireNonNull(builder.field, "field");
+		this.field = ModelTypeHelper.requireNonNull(builder.field, this, "field");
 		this.ignoreMissing = builder.ignoreMissing;
 		this.maxMatches = builder.maxMatches;
 		this.override = builder.override;
-		this.policyName = Objects.requireNonNull(builder.policyName, "policy_name");
+		this.policyName = ModelTypeHelper.requireNonNull(builder.policyName, this, "policyName");
 		this.shapeRelation = builder.shapeRelation;
-		this.targetField = Objects.requireNonNull(builder.targetField, "target_field");
+		this.targetField = ModelTypeHelper.requireNonNull(builder.targetField, this, "targetField");
 
 	}
 
-	public EnrichProcessor(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static EnrichProcessor of(Function<Builder, ObjectBuilder<EnrichProcessor>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -90,7 +91,7 @@ public final class EnrichProcessor extends ProcessorBase implements ProcessorVar
 	/**
 	 * Required - API name: {@code field}
 	 */
-	public String field() {
+	public final String field() {
 		return this.field;
 	}
 
@@ -98,7 +99,7 @@ public final class EnrichProcessor extends ProcessorBase implements ProcessorVar
 	 * API name: {@code ignore_missing}
 	 */
 	@Nullable
-	public Boolean ignoreMissing() {
+	public final Boolean ignoreMissing() {
 		return this.ignoreMissing;
 	}
 
@@ -106,7 +107,7 @@ public final class EnrichProcessor extends ProcessorBase implements ProcessorVar
 	 * API name: {@code max_matches}
 	 */
 	@Nullable
-	public Integer maxMatches() {
+	public final Integer maxMatches() {
 		return this.maxMatches;
 	}
 
@@ -114,14 +115,14 @@ public final class EnrichProcessor extends ProcessorBase implements ProcessorVar
 	 * API name: {@code override}
 	 */
 	@Nullable
-	public Boolean override() {
+	public final Boolean override() {
 		return this.override;
 	}
 
 	/**
 	 * Required - API name: {@code policy_name}
 	 */
-	public String policyName() {
+	public final String policyName() {
 		return this.policyName;
 	}
 
@@ -129,52 +130,45 @@ public final class EnrichProcessor extends ProcessorBase implements ProcessorVar
 	 * API name: {@code shape_relation}
 	 */
 	@Nullable
-	public GeoShapeRelation shapeRelation() {
+	public final GeoShapeRelation shapeRelation() {
 		return this.shapeRelation;
 	}
 
 	/**
 	 * Required - API name: {@code target_field}
 	 */
-	public String targetField() {
+	public final String targetField() {
 		return this.targetField;
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
-
 		generator.writeKey("field");
 		generator.write(this.field);
 
 		if (this.ignoreMissing != null) {
-
 			generator.writeKey("ignore_missing");
 			generator.write(this.ignoreMissing);
 
 		}
 		if (this.maxMatches != null) {
-
 			generator.writeKey("max_matches");
 			generator.write(this.maxMatches);
 
 		}
 		if (this.override != null) {
-
 			generator.writeKey("override");
 			generator.write(this.override);
 
 		}
-
 		generator.writeKey("policy_name");
 		generator.write(this.policyName);
 
 		if (this.shapeRelation != null) {
-
 			generator.writeKey("shape_relation");
 			this.shapeRelation.serialize(generator, mapper);
 		}
-
 		generator.writeKey("target_field");
 		generator.write(this.targetField);
 
@@ -209,7 +203,7 @@ public final class EnrichProcessor extends ProcessorBase implements ProcessorVar
 		/**
 		 * Required - API name: {@code field}
 		 */
-		public Builder field(String value) {
+		public final Builder field(String value) {
 			this.field = value;
 			return this;
 		}
@@ -217,7 +211,7 @@ public final class EnrichProcessor extends ProcessorBase implements ProcessorVar
 		/**
 		 * API name: {@code ignore_missing}
 		 */
-		public Builder ignoreMissing(@Nullable Boolean value) {
+		public final Builder ignoreMissing(@Nullable Boolean value) {
 			this.ignoreMissing = value;
 			return this;
 		}
@@ -225,7 +219,7 @@ public final class EnrichProcessor extends ProcessorBase implements ProcessorVar
 		/**
 		 * API name: {@code max_matches}
 		 */
-		public Builder maxMatches(@Nullable Integer value) {
+		public final Builder maxMatches(@Nullable Integer value) {
 			this.maxMatches = value;
 			return this;
 		}
@@ -233,7 +227,7 @@ public final class EnrichProcessor extends ProcessorBase implements ProcessorVar
 		/**
 		 * API name: {@code override}
 		 */
-		public Builder override(@Nullable Boolean value) {
+		public final Builder override(@Nullable Boolean value) {
 			this.override = value;
 			return this;
 		}
@@ -241,7 +235,7 @@ public final class EnrichProcessor extends ProcessorBase implements ProcessorVar
 		/**
 		 * Required - API name: {@code policy_name}
 		 */
-		public Builder policyName(String value) {
+		public final Builder policyName(String value) {
 			this.policyName = value;
 			return this;
 		}
@@ -249,7 +243,7 @@ public final class EnrichProcessor extends ProcessorBase implements ProcessorVar
 		/**
 		 * API name: {@code shape_relation}
 		 */
-		public Builder shapeRelation(@Nullable GeoShapeRelation value) {
+		public final Builder shapeRelation(@Nullable GeoShapeRelation value) {
 			this.shapeRelation = value;
 			return this;
 		}
@@ -257,7 +251,7 @@ public final class EnrichProcessor extends ProcessorBase implements ProcessorVar
 		/**
 		 * Required - API name: {@code target_field}
 		 */
-		public Builder targetField(String value) {
+		public final Builder targetField(String value) {
 			this.targetField = value;
 			return this;
 		}
@@ -274,6 +268,7 @@ public final class EnrichProcessor extends ProcessorBase implements ProcessorVar
 		 *             if some of the required fields are null.
 		 */
 		public EnrichProcessor build() {
+			_checkSingleUse();
 
 			return new EnrichProcessor(this);
 		}

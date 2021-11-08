@@ -32,6 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.util.ArrayList;
@@ -43,35 +44,37 @@ import javax.annotation.Nullable;
 
 // typedef: ml.evaluate_data_frame.DataframeClassificationSummaryMulticlassConfusionMatrix
 @JsonpDeserializable
-public final class DataframeClassificationSummaryMulticlassConfusionMatrix implements JsonpSerializable {
+public class DataframeClassificationSummaryMulticlassConfusionMatrix implements JsonpSerializable {
 	private final List<ConfusionMatrixItem> confusionMatrix;
 
 	private final int otherActualClassCount;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public DataframeClassificationSummaryMulticlassConfusionMatrix(Builder builder) {
+	private DataframeClassificationSummaryMulticlassConfusionMatrix(Builder builder) {
 
-		this.confusionMatrix = ModelTypeHelper.unmodifiableNonNull(builder.confusionMatrix, "confusion_matrix");
-		this.otherActualClassCount = Objects.requireNonNull(builder.otherActualClassCount, "other_actual_class_count");
+		this.confusionMatrix = ModelTypeHelper.unmodifiableRequired(builder.confusionMatrix, this, "confusionMatrix");
+		this.otherActualClassCount = ModelTypeHelper.requireNonNull(builder.otherActualClassCount, this,
+				"otherActualClassCount");
 
 	}
 
-	public DataframeClassificationSummaryMulticlassConfusionMatrix(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static DataframeClassificationSummaryMulticlassConfusionMatrix of(
+			Function<Builder, ObjectBuilder<DataframeClassificationSummaryMulticlassConfusionMatrix>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code confusion_matrix}
 	 */
-	public List<ConfusionMatrixItem> confusionMatrix() {
+	public final List<ConfusionMatrixItem> confusionMatrix() {
 		return this.confusionMatrix;
 	}
 
 	/**
 	 * Required - API name: {@code other_actual_class_count}
 	 */
-	public int otherActualClassCount() {
+	public final int otherActualClassCount() {
 		return this.otherActualClassCount;
 	}
 
@@ -86,14 +89,16 @@ public final class DataframeClassificationSummaryMulticlassConfusionMatrix imple
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("confusion_matrix");
-		generator.writeStartArray();
-		for (ConfusionMatrixItem item0 : this.confusionMatrix) {
-			item0.serialize(generator, mapper);
+		if (ModelTypeHelper.isDefined(this.confusionMatrix)) {
+			generator.writeKey("confusion_matrix");
+			generator.writeStartArray();
+			for (ConfusionMatrixItem item0 : this.confusionMatrix) {
+				item0.serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
-
 		generator.writeKey("other_actual_class_count");
 		generator.write(this.otherActualClassCount);
 
@@ -104,7 +109,9 @@ public final class DataframeClassificationSummaryMulticlassConfusionMatrix imple
 	/**
 	 * Builder for {@link DataframeClassificationSummaryMulticlassConfusionMatrix}.
 	 */
-	public static class Builder implements ObjectBuilder<DataframeClassificationSummaryMulticlassConfusionMatrix> {
+	public static class Builder extends ObjectBuilderBase
+			implements
+				ObjectBuilder<DataframeClassificationSummaryMulticlassConfusionMatrix> {
 		private List<ConfusionMatrixItem> confusionMatrix;
 
 		private Integer otherActualClassCount;
@@ -112,7 +119,7 @@ public final class DataframeClassificationSummaryMulticlassConfusionMatrix imple
 		/**
 		 * Required - API name: {@code confusion_matrix}
 		 */
-		public Builder confusionMatrix(List<ConfusionMatrixItem> value) {
+		public final Builder confusionMatrix(List<ConfusionMatrixItem> value) {
 			this.confusionMatrix = value;
 			return this;
 		}
@@ -120,41 +127,28 @@ public final class DataframeClassificationSummaryMulticlassConfusionMatrix imple
 		/**
 		 * Required - API name: {@code confusion_matrix}
 		 */
-		public Builder confusionMatrix(ConfusionMatrixItem... value) {
+		public final Builder confusionMatrix(ConfusionMatrixItem... value) {
 			this.confusionMatrix = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #confusionMatrix(List)}, creating the list if needed.
+		 * Required - API name: {@code confusion_matrix}
 		 */
-		public Builder addConfusionMatrix(ConfusionMatrixItem value) {
-			if (this.confusionMatrix == null) {
-				this.confusionMatrix = new ArrayList<>();
+		@SafeVarargs
+		public final Builder confusionMatrix(
+				Function<ConfusionMatrixItem.Builder, ObjectBuilder<ConfusionMatrixItem>>... fns) {
+			this.confusionMatrix = new ArrayList<>(fns.length);
+			for (Function<ConfusionMatrixItem.Builder, ObjectBuilder<ConfusionMatrixItem>> fn : fns) {
+				this.confusionMatrix.add(fn.apply(new ConfusionMatrixItem.Builder()).build());
 			}
-			this.confusionMatrix.add(value);
 			return this;
-		}
-
-		/**
-		 * Set {@link #confusionMatrix(List)} to a singleton list.
-		 */
-		public Builder confusionMatrix(Function<ConfusionMatrixItem.Builder, ObjectBuilder<ConfusionMatrixItem>> fn) {
-			return this.confusionMatrix(fn.apply(new ConfusionMatrixItem.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #confusionMatrix(List)}, creating the list if needed.
-		 */
-		public Builder addConfusionMatrix(
-				Function<ConfusionMatrixItem.Builder, ObjectBuilder<ConfusionMatrixItem>> fn) {
-			return this.addConfusionMatrix(fn.apply(new ConfusionMatrixItem.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code other_actual_class_count}
 		 */
-		public Builder otherActualClassCount(int value) {
+		public final Builder otherActualClassCount(int value) {
 			this.otherActualClassCount = value;
 			return this;
 		}
@@ -166,6 +160,7 @@ public final class DataframeClassificationSummaryMulticlassConfusionMatrix imple
 		 *             if some of the required fields are null.
 		 */
 		public DataframeClassificationSummaryMulticlassConfusionMatrix build() {
+			_checkSingleUse();
 
 			return new DataframeClassificationSummaryMulticlassConfusionMatrix(this);
 		}

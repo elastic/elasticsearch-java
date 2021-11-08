@@ -33,9 +33,9 @@ import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.SimpleEndpoint;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -47,24 +47,22 @@ import javax.annotation.Nullable;
 
 // typedef: cat.aliases.Request
 
-public final class AliasesRequest extends CatRequestBase {
-	@Nullable
+public class AliasesRequest extends CatRequestBase {
 	private final List<ExpandWildcardOptions> expandWildcards;
 
-	@Nullable
 	private final List<String> name;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public AliasesRequest(Builder builder) {
+	private AliasesRequest(Builder builder) {
 
 		this.expandWildcards = ModelTypeHelper.unmodifiable(builder.expandWildcards);
 		this.name = ModelTypeHelper.unmodifiable(builder.name);
 
 	}
 
-	public AliasesRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static AliasesRequest of(Function<Builder, ObjectBuilder<AliasesRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -73,8 +71,7 @@ public final class AliasesRequest extends CatRequestBase {
 	 * <p>
 	 * API name: {@code expand_wildcards}
 	 */
-	@Nullable
-	public List<ExpandWildcardOptions> expandWildcards() {
+	public final List<ExpandWildcardOptions> expandWildcards() {
 		return this.expandWildcards;
 	}
 
@@ -83,8 +80,7 @@ public final class AliasesRequest extends CatRequestBase {
 	 * <p>
 	 * API name: {@code name}
 	 */
-	@Nullable
-	public List<String> name() {
+	public final List<String> name() {
 		return this.name;
 	}
 
@@ -93,7 +89,7 @@ public final class AliasesRequest extends CatRequestBase {
 	/**
 	 * Builder for {@link AliasesRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<AliasesRequest> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<AliasesRequest> {
 		@Nullable
 		private List<ExpandWildcardOptions> expandWildcards;
 
@@ -106,7 +102,7 @@ public final class AliasesRequest extends CatRequestBase {
 		 * <p>
 		 * API name: {@code expand_wildcards}
 		 */
-		public Builder expandWildcards(@Nullable List<ExpandWildcardOptions> value) {
+		public final Builder expandWildcards(@Nullable List<ExpandWildcardOptions> value) {
 			this.expandWildcards = value;
 			return this;
 		}
@@ -117,19 +113,8 @@ public final class AliasesRequest extends CatRequestBase {
 		 * <p>
 		 * API name: {@code expand_wildcards}
 		 */
-		public Builder expandWildcards(ExpandWildcardOptions... value) {
+		public final Builder expandWildcards(ExpandWildcardOptions... value) {
 			this.expandWildcards = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #expandWildcards(List)}, creating the list if needed.
-		 */
-		public Builder addExpandWildcards(ExpandWildcardOptions value) {
-			if (this.expandWildcards == null) {
-				this.expandWildcards = new ArrayList<>();
-			}
-			this.expandWildcards.add(value);
 			return this;
 		}
 
@@ -138,7 +123,7 @@ public final class AliasesRequest extends CatRequestBase {
 		 * <p>
 		 * API name: {@code name}
 		 */
-		public Builder name(@Nullable List<String> value) {
+		public final Builder name(@Nullable List<String> value) {
 			this.name = value;
 			return this;
 		}
@@ -148,19 +133,8 @@ public final class AliasesRequest extends CatRequestBase {
 		 * <p>
 		 * API name: {@code name}
 		 */
-		public Builder name(String... value) {
+		public final Builder name(String... value) {
 			this.name = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #name(List)}, creating the list if needed.
-		 */
-		public Builder addName(String value) {
-			if (this.name == null) {
-				this.name = new ArrayList<>();
-			}
-			this.name.add(value);
 			return this;
 		}
 
@@ -171,6 +145,7 @@ public final class AliasesRequest extends CatRequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public AliasesRequest build() {
+			_checkSingleUse();
 
 			return new AliasesRequest(this);
 		}
@@ -194,7 +169,7 @@ public final class AliasesRequest extends CatRequestBase {
 
 				int propsSet = 0;
 
-				if (request.name() != null)
+				if (ModelTypeHelper.isDefined(request.name()))
 					propsSet |= _name;
 
 				if (propsSet == 0) {
@@ -219,9 +194,9 @@ public final class AliasesRequest extends CatRequestBase {
 			request -> {
 				Map<String, String> params = new HashMap<>();
 				params.put("format", "json");
-				if (request.expandWildcards != null) {
+				if (ModelTypeHelper.isDefined(request.expandWildcards)) {
 					params.put("expand_wildcards",
-							request.expandWildcards.stream().map(v -> v.toString()).collect(Collectors.joining(",")));
+							request.expandWildcards.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")));
 				}
 				return params;
 

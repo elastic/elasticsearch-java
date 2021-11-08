@@ -32,6 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.util.ArrayList;
@@ -43,29 +44,30 @@ import javax.annotation.Nullable;
 
 // typedef: ml.get_data_frame_analytics_stats.Response
 @JsonpDeserializable
-public final class GetDataFrameAnalyticsStatsResponse implements JsonpSerializable {
+public class GetDataFrameAnalyticsStatsResponse implements JsonpSerializable {
 	private final long count;
 
 	private final List<DataframeAnalytics> dataFrameAnalytics;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public GetDataFrameAnalyticsStatsResponse(Builder builder) {
+	private GetDataFrameAnalyticsStatsResponse(Builder builder) {
 
-		this.count = Objects.requireNonNull(builder.count, "count");
-		this.dataFrameAnalytics = ModelTypeHelper.unmodifiableNonNull(builder.dataFrameAnalytics,
-				"data_frame_analytics");
+		this.count = ModelTypeHelper.requireNonNull(builder.count, this, "count");
+		this.dataFrameAnalytics = ModelTypeHelper.unmodifiableRequired(builder.dataFrameAnalytics, this,
+				"dataFrameAnalytics");
 
 	}
 
-	public GetDataFrameAnalyticsStatsResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static GetDataFrameAnalyticsStatsResponse of(
+			Function<Builder, ObjectBuilder<GetDataFrameAnalyticsStatsResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code count}
 	 */
-	public long count() {
+	public final long count() {
 		return this.count;
 	}
 
@@ -75,7 +77,7 @@ public final class GetDataFrameAnalyticsStatsResponse implements JsonpSerializab
 	 * <p>
 	 * API name: {@code data_frame_analytics}
 	 */
-	public List<DataframeAnalytics> dataFrameAnalytics() {
+	public final List<DataframeAnalytics> dataFrameAnalytics() {
 		return this.dataFrameAnalytics;
 	}
 
@@ -93,13 +95,16 @@ public final class GetDataFrameAnalyticsStatsResponse implements JsonpSerializab
 		generator.writeKey("count");
 		generator.write(this.count);
 
-		generator.writeKey("data_frame_analytics");
-		generator.writeStartArray();
-		for (DataframeAnalytics item0 : this.dataFrameAnalytics) {
-			item0.serialize(generator, mapper);
+		if (ModelTypeHelper.isDefined(this.dataFrameAnalytics)) {
+			generator.writeKey("data_frame_analytics");
+			generator.writeStartArray();
+			for (DataframeAnalytics item0 : this.dataFrameAnalytics) {
+				item0.serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
 
 	}
 
@@ -108,7 +113,7 @@ public final class GetDataFrameAnalyticsStatsResponse implements JsonpSerializab
 	/**
 	 * Builder for {@link GetDataFrameAnalyticsStatsResponse}.
 	 */
-	public static class Builder implements ObjectBuilder<GetDataFrameAnalyticsStatsResponse> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetDataFrameAnalyticsStatsResponse> {
 		private Long count;
 
 		private List<DataframeAnalytics> dataFrameAnalytics;
@@ -116,7 +121,7 @@ public final class GetDataFrameAnalyticsStatsResponse implements JsonpSerializab
 		/**
 		 * Required - API name: {@code count}
 		 */
-		public Builder count(long value) {
+		public final Builder count(long value) {
 			this.count = value;
 			return this;
 		}
@@ -127,7 +132,7 @@ public final class GetDataFrameAnalyticsStatsResponse implements JsonpSerializab
 		 * <p>
 		 * API name: {@code data_frame_analytics}
 		 */
-		public Builder dataFrameAnalytics(List<DataframeAnalytics> value) {
+		public final Builder dataFrameAnalytics(List<DataframeAnalytics> value) {
 			this.dataFrameAnalytics = value;
 			return this;
 		}
@@ -138,37 +143,25 @@ public final class GetDataFrameAnalyticsStatsResponse implements JsonpSerializab
 		 * <p>
 		 * API name: {@code data_frame_analytics}
 		 */
-		public Builder dataFrameAnalytics(DataframeAnalytics... value) {
+		public final Builder dataFrameAnalytics(DataframeAnalytics... value) {
 			this.dataFrameAnalytics = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #dataFrameAnalytics(List)}, creating the list if
-		 * needed.
+		 * Required - An array of objects that contain usage information for data frame
+		 * analytics jobs, which are sorted by the id value in ascending order.
+		 * <p>
+		 * API name: {@code data_frame_analytics}
 		 */
-		public Builder addDataFrameAnalytics(DataframeAnalytics value) {
-			if (this.dataFrameAnalytics == null) {
-				this.dataFrameAnalytics = new ArrayList<>();
+		@SafeVarargs
+		public final Builder dataFrameAnalytics(
+				Function<DataframeAnalytics.Builder, ObjectBuilder<DataframeAnalytics>>... fns) {
+			this.dataFrameAnalytics = new ArrayList<>(fns.length);
+			for (Function<DataframeAnalytics.Builder, ObjectBuilder<DataframeAnalytics>> fn : fns) {
+				this.dataFrameAnalytics.add(fn.apply(new DataframeAnalytics.Builder()).build());
 			}
-			this.dataFrameAnalytics.add(value);
 			return this;
-		}
-
-		/**
-		 * Set {@link #dataFrameAnalytics(List)} to a singleton list.
-		 */
-		public Builder dataFrameAnalytics(Function<DataframeAnalytics.Builder, ObjectBuilder<DataframeAnalytics>> fn) {
-			return this.dataFrameAnalytics(fn.apply(new DataframeAnalytics.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #dataFrameAnalytics(List)}, creating the list if
-		 * needed.
-		 */
-		public Builder addDataFrameAnalytics(
-				Function<DataframeAnalytics.Builder, ObjectBuilder<DataframeAnalytics>> fn) {
-			return this.addDataFrameAnalytics(fn.apply(new DataframeAnalytics.Builder()).build());
 		}
 
 		/**
@@ -178,6 +171,7 @@ public final class GetDataFrameAnalyticsStatsResponse implements JsonpSerializab
 		 *             if some of the required fields are null.
 		 */
 		public GetDataFrameAnalyticsStatsResponse build() {
+			_checkSingleUse();
 
 			return new GetDataFrameAnalyticsStatsResponse(this);
 		}

@@ -39,7 +39,7 @@ import java.util.function.Function;
 
 // typedef: slm.get_stats.Request
 
-public final class GetStatsRequest extends RequestBase {
+public class GetStatsRequest extends RequestBase {
 	public GetStatsRequest() {
 	}
 

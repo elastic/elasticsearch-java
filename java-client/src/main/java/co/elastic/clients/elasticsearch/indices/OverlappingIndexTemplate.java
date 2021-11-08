@@ -32,9 +32,9 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
@@ -43,37 +43,35 @@ import javax.annotation.Nullable;
 
 // typedef: indices._types.OverlappingIndexTemplate
 @JsonpDeserializable
-public final class OverlappingIndexTemplate implements JsonpSerializable {
+public class OverlappingIndexTemplate implements JsonpSerializable {
 	private final String name;
 
-	@Nullable
 	private final List<String> indexPatterns;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public OverlappingIndexTemplate(Builder builder) {
+	private OverlappingIndexTemplate(Builder builder) {
 
-		this.name = Objects.requireNonNull(builder.name, "name");
+		this.name = ModelTypeHelper.requireNonNull(builder.name, this, "name");
 		this.indexPatterns = ModelTypeHelper.unmodifiable(builder.indexPatterns);
 
 	}
 
-	public OverlappingIndexTemplate(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static OverlappingIndexTemplate of(Function<Builder, ObjectBuilder<OverlappingIndexTemplate>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code name}
 	 */
-	public String name() {
+	public final String name() {
 		return this.name;
 	}
 
 	/**
 	 * API name: {@code index_patterns}
 	 */
-	@Nullable
-	public List<String> indexPatterns() {
+	public final List<String> indexPatterns() {
 		return this.indexPatterns;
 	}
 
@@ -91,8 +89,7 @@ public final class OverlappingIndexTemplate implements JsonpSerializable {
 		generator.writeKey("name");
 		generator.write(this.name);
 
-		if (this.indexPatterns != null) {
-
+		if (ModelTypeHelper.isDefined(this.indexPatterns)) {
 			generator.writeKey("index_patterns");
 			generator.writeStartArray();
 			for (String item0 : this.indexPatterns) {
@@ -110,7 +107,7 @@ public final class OverlappingIndexTemplate implements JsonpSerializable {
 	/**
 	 * Builder for {@link OverlappingIndexTemplate}.
 	 */
-	public static class Builder implements ObjectBuilder<OverlappingIndexTemplate> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<OverlappingIndexTemplate> {
 		private String name;
 
 		@Nullable
@@ -119,7 +116,7 @@ public final class OverlappingIndexTemplate implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code name}
 		 */
-		public Builder name(String value) {
+		public final Builder name(String value) {
 			this.name = value;
 			return this;
 		}
@@ -127,7 +124,7 @@ public final class OverlappingIndexTemplate implements JsonpSerializable {
 		/**
 		 * API name: {@code index_patterns}
 		 */
-		public Builder indexPatterns(@Nullable List<String> value) {
+		public final Builder indexPatterns(@Nullable List<String> value) {
 			this.indexPatterns = value;
 			return this;
 		}
@@ -135,19 +132,8 @@ public final class OverlappingIndexTemplate implements JsonpSerializable {
 		/**
 		 * API name: {@code index_patterns}
 		 */
-		public Builder indexPatterns(String... value) {
+		public final Builder indexPatterns(String... value) {
 			this.indexPatterns = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #indexPatterns(List)}, creating the list if needed.
-		 */
-		public Builder addIndexPatterns(String value) {
-			if (this.indexPatterns == null) {
-				this.indexPatterns = new ArrayList<>();
-			}
-			this.indexPatterns.add(value);
 			return this;
 		}
 
@@ -158,6 +144,7 @@ public final class OverlappingIndexTemplate implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public OverlappingIndexTemplate build() {
+			_checkSingleUse();
 
 			return new OverlappingIndexTemplate(this);
 		}

@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
 import java.util.Objects;
@@ -38,7 +40,7 @@ import java.util.function.Function;
 
 // typedef: ml.evaluate_data_frame.DataframeEvaluationSummaryAucRocCurveItem
 @JsonpDeserializable
-public final class DataframeEvaluationSummaryAucRocCurveItem implements JsonpSerializable {
+public class DataframeEvaluationSummaryAucRocCurveItem implements JsonpSerializable {
 	private final double tpr;
 
 	private final double fpr;
@@ -47,36 +49,37 @@ public final class DataframeEvaluationSummaryAucRocCurveItem implements JsonpSer
 
 	// ---------------------------------------------------------------------------------------------
 
-	public DataframeEvaluationSummaryAucRocCurveItem(Builder builder) {
+	private DataframeEvaluationSummaryAucRocCurveItem(Builder builder) {
 
-		this.tpr = Objects.requireNonNull(builder.tpr, "tpr");
-		this.fpr = Objects.requireNonNull(builder.fpr, "fpr");
-		this.threshold = Objects.requireNonNull(builder.threshold, "threshold");
+		this.tpr = ModelTypeHelper.requireNonNull(builder.tpr, this, "tpr");
+		this.fpr = ModelTypeHelper.requireNonNull(builder.fpr, this, "fpr");
+		this.threshold = ModelTypeHelper.requireNonNull(builder.threshold, this, "threshold");
 
 	}
 
-	public DataframeEvaluationSummaryAucRocCurveItem(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static DataframeEvaluationSummaryAucRocCurveItem of(
+			Function<Builder, ObjectBuilder<DataframeEvaluationSummaryAucRocCurveItem>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code tpr}
 	 */
-	public double tpr() {
+	public final double tpr() {
 		return this.tpr;
 	}
 
 	/**
 	 * Required - API name: {@code fpr}
 	 */
-	public double fpr() {
+	public final double fpr() {
 		return this.fpr;
 	}
 
 	/**
 	 * Required - API name: {@code threshold}
 	 */
-	public double threshold() {
+	public final double threshold() {
 		return this.threshold;
 	}
 
@@ -107,7 +110,9 @@ public final class DataframeEvaluationSummaryAucRocCurveItem implements JsonpSer
 	/**
 	 * Builder for {@link DataframeEvaluationSummaryAucRocCurveItem}.
 	 */
-	public static class Builder implements ObjectBuilder<DataframeEvaluationSummaryAucRocCurveItem> {
+	public static class Builder extends ObjectBuilderBase
+			implements
+				ObjectBuilder<DataframeEvaluationSummaryAucRocCurveItem> {
 		private Double tpr;
 
 		private Double fpr;
@@ -117,7 +122,7 @@ public final class DataframeEvaluationSummaryAucRocCurveItem implements JsonpSer
 		/**
 		 * Required - API name: {@code tpr}
 		 */
-		public Builder tpr(double value) {
+		public final Builder tpr(double value) {
 			this.tpr = value;
 			return this;
 		}
@@ -125,7 +130,7 @@ public final class DataframeEvaluationSummaryAucRocCurveItem implements JsonpSer
 		/**
 		 * Required - API name: {@code fpr}
 		 */
-		public Builder fpr(double value) {
+		public final Builder fpr(double value) {
 			this.fpr = value;
 			return this;
 		}
@@ -133,7 +138,7 @@ public final class DataframeEvaluationSummaryAucRocCurveItem implements JsonpSer
 		/**
 		 * Required - API name: {@code threshold}
 		 */
-		public Builder threshold(double value) {
+		public final Builder threshold(double value) {
 			this.threshold = value;
 			return this;
 		}
@@ -145,6 +150,7 @@ public final class DataframeEvaluationSummaryAucRocCurveItem implements JsonpSer
 		 *             if some of the required fields are null.
 		 */
 		public DataframeEvaluationSummaryAucRocCurveItem build() {
+			_checkSingleUse();
 
 			return new DataframeEvaluationSummaryAucRocCurveItem(this);
 		}

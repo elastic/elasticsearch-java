@@ -36,16 +36,16 @@ import java.util.function.Function;
 
 // typedef: ml.delete_calendar_event.Response
 @JsonpDeserializable
-public final class DeleteCalendarEventResponse extends AcknowledgedResponseBase {
+public class DeleteCalendarEventResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
-	public DeleteCalendarEventResponse(Builder builder) {
+	private DeleteCalendarEventResponse(Builder builder) {
 		super(builder);
 
 	}
 
-	public DeleteCalendarEventResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static DeleteCalendarEventResponse of(Function<Builder, ObjectBuilder<DeleteCalendarEventResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -68,6 +68,7 @@ public final class DeleteCalendarEventResponse extends AcknowledgedResponseBase 
 		 *             if some of the required fields are null.
 		 */
 		public DeleteCalendarEventResponse build() {
+			_checkSingleUse();
 
 			return new DeleteCalendarEventResponse(this);
 		}

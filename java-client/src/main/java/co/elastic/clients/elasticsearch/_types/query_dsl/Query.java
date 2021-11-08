@@ -30,8 +30,11 @@ import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import co.elastic.clients.util.TaggedUnion;
 import co.elastic.clients.util.TaggedUnionUtils;
 import jakarta.json.JsonValue;
@@ -113,35 +116,31 @@ public class Query implements TaggedUnion<Object>, AggregationVariant, JsonpSeri
 	private final Object _value;
 
 	@Override
-	public String _type() {
+	public final String _type() {
 		return _type;
 	}
 
 	@Override
-	public Object _get() {
+	public final Object _get() {
 		return _value;
 	}
 
 	public Query(QueryVariant value) {
 
-		this._type = Objects.requireNonNull(value._variantType(), "variant type");
-		this._value = Objects.requireNonNull(value, "variant value");
+		this._type = ModelTypeHelper.requireNonNull(value._variantType(), this, "<variant type>");
+		this._value = ModelTypeHelper.requireNonNull(value, this, "<variant value>");
 
-	}
-
-	public <T extends QueryVariant> Query(ObjectBuilder<T> builder) {
-		this(builder.build());
 	}
 
 	private Query(Builder builder) {
 
-		this._type = Objects.requireNonNull(builder._type, "variant type");
-		this._value = Objects.requireNonNull(builder._value, "variant value");
+		this._type = ModelTypeHelper.requireNonNull(builder._type, builder, "<variant type>");
+		this._value = ModelTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
 
 	}
 
-	public Query(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static Query of(Function<Builder, ObjectBuilder<Query>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -706,7 +705,7 @@ public class Query implements TaggedUnion<Object>, AggregationVariant, JsonpSeri
 		generator.writeEnd();
 	}
 
-	public static class Builder implements ObjectBuilder<Query> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Query> {
 		private String _type;
 		private Object _value;
 
@@ -1236,6 +1235,7 @@ public class Query implements TaggedUnion<Object>, AggregationVariant, JsonpSeri
 		}
 
 		public Query build() {
+			_checkSingleUse();
 			return new Query(this);
 		}
 
@@ -1299,6 +1299,6 @@ public class Query implements TaggedUnion<Object>, AggregationVariant, JsonpSeri
 
 	}
 
-	public static final JsonpDeserializer<Query> _DESERIALIZER = JsonpDeserializer.lazy(Builder::new,
+	public static final JsonpDeserializer<Query> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
 			Query::setupQueryDeserializer, Builder::build);
 }

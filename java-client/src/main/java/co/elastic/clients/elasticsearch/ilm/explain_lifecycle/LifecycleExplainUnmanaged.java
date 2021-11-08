@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -39,19 +41,19 @@ import javax.annotation.Nullable;
 
 // typedef: ilm.explain_lifecycle.LifecycleExplainUnmanaged
 @JsonpDeserializable
-public final class LifecycleExplainUnmanaged implements LifecycleExplainVariant, JsonpSerializable {
+public class LifecycleExplainUnmanaged implements LifecycleExplainVariant, JsonpSerializable {
 	private final String index;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public LifecycleExplainUnmanaged(Builder builder) {
+	private LifecycleExplainUnmanaged(Builder builder) {
 
-		this.index = Objects.requireNonNull(builder.index, "index");
+		this.index = ModelTypeHelper.requireNonNull(builder.index, this, "index");
 
 	}
 
-	public LifecycleExplainUnmanaged(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static LifecycleExplainUnmanaged of(Function<Builder, ObjectBuilder<LifecycleExplainUnmanaged>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -65,7 +67,7 @@ public final class LifecycleExplainUnmanaged implements LifecycleExplainVariant,
 	/**
 	 * Required - API name: {@code index}
 	 */
-	public String index() {
+	public final String index() {
 		return this.index;
 	}
 
@@ -92,13 +94,13 @@ public final class LifecycleExplainUnmanaged implements LifecycleExplainVariant,
 	/**
 	 * Builder for {@link LifecycleExplainUnmanaged}.
 	 */
-	public static class Builder implements ObjectBuilder<LifecycleExplainUnmanaged> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<LifecycleExplainUnmanaged> {
 		private String index;
 
 		/**
 		 * Required - API name: {@code index}
 		 */
-		public Builder index(String value) {
+		public final Builder index(String value) {
 			this.index = value;
 			return this;
 		}
@@ -110,6 +112,7 @@ public final class LifecycleExplainUnmanaged implements LifecycleExplainVariant,
 		 *             if some of the required fields are null.
 		 */
 		public LifecycleExplainUnmanaged build() {
+			_checkSingleUse();
 
 			return new LifecycleExplainUnmanaged(this);
 		}

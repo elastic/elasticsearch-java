@@ -31,7 +31,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;
@@ -39,25 +41,25 @@ import javax.annotation.Nullable;
 
 // typedef: indices.simulate_template.Response
 @JsonpDeserializable
-public final class SimulateTemplateResponse implements JsonpSerializable {
+public class SimulateTemplateResponse implements JsonpSerializable {
 	private final Template template;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public SimulateTemplateResponse(Builder builder) {
+	private SimulateTemplateResponse(Builder builder) {
 
-		this.template = Objects.requireNonNull(builder.template, "template");
+		this.template = ModelTypeHelper.requireNonNull(builder.template, this, "template");
 
 	}
 
-	public SimulateTemplateResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static SimulateTemplateResponse of(Function<Builder, ObjectBuilder<SimulateTemplateResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code template}
 	 */
-	public Template template() {
+	public final Template template() {
 		return this.template;
 	}
 
@@ -82,13 +84,13 @@ public final class SimulateTemplateResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link SimulateTemplateResponse}.
 	 */
-	public static class Builder implements ObjectBuilder<SimulateTemplateResponse> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<SimulateTemplateResponse> {
 		private Template template;
 
 		/**
 		 * Required - API name: {@code template}
 		 */
-		public Builder template(Template value) {
+		public final Builder template(Template value) {
 			this.template = value;
 			return this;
 		}
@@ -96,7 +98,7 @@ public final class SimulateTemplateResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code template}
 		 */
-		public Builder template(Function<Template.Builder, ObjectBuilder<Template>> fn) {
+		public final Builder template(Function<Template.Builder, ObjectBuilder<Template>> fn) {
 			return this.template(fn.apply(new Template.Builder()).build());
 		}
 
@@ -107,6 +109,7 @@ public final class SimulateTemplateResponse implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public SimulateTemplateResponse build() {
+			_checkSingleUse();
 
 			return new SimulateTemplateResponse(this);
 		}

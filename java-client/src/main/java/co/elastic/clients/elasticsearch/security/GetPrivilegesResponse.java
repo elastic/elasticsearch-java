@@ -39,16 +39,16 @@ import java.util.function.Function;
 
 // typedef: security.get_privileges.Response
 @JsonpDeserializable
-public final class GetPrivilegesResponse extends DictionaryResponse<String, Map<String, Actions>> {
+public class GetPrivilegesResponse extends DictionaryResponse<String, Map<String, Actions>> {
 	// ---------------------------------------------------------------------------------------------
 
-	public GetPrivilegesResponse(Builder builder) {
+	private GetPrivilegesResponse(Builder builder) {
 		super(builder);
 
 	}
 
-	public GetPrivilegesResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static GetPrivilegesResponse of(Function<Builder, ObjectBuilder<GetPrivilegesResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -71,6 +71,7 @@ public final class GetPrivilegesResponse extends DictionaryResponse<String, Map<
 		 *             if some of the required fields are null.
 		 */
 		public GetPrivilegesResponse build() {
+			_checkSingleUse();
 			super.tKeySerializer(null);
 			super.tValueSerializer(null);
 

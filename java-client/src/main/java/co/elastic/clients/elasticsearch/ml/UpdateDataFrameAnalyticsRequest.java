@@ -34,7 +34,9 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.SimpleEndpoint;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Integer;
@@ -46,7 +48,7 @@ import javax.annotation.Nullable;
 
 // typedef: ml.update_data_frame_analytics.Request
 @JsonpDeserializable
-public final class UpdateDataFrameAnalyticsRequest extends RequestBase implements JsonpSerializable {
+public class UpdateDataFrameAnalyticsRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
 	private final Boolean allowLazyStart;
 
@@ -63,18 +65,19 @@ public final class UpdateDataFrameAnalyticsRequest extends RequestBase implement
 
 	// ---------------------------------------------------------------------------------------------
 
-	public UpdateDataFrameAnalyticsRequest(Builder builder) {
+	private UpdateDataFrameAnalyticsRequest(Builder builder) {
 
 		this.allowLazyStart = builder.allowLazyStart;
 		this.description = builder.description;
-		this.id = Objects.requireNonNull(builder.id, "id");
+		this.id = ModelTypeHelper.requireNonNull(builder.id, this, "id");
 		this.maxNumThreads = builder.maxNumThreads;
 		this.modelMemoryLimit = builder.modelMemoryLimit;
 
 	}
 
-	public UpdateDataFrameAnalyticsRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static UpdateDataFrameAnalyticsRequest of(
+			Function<Builder, ObjectBuilder<UpdateDataFrameAnalyticsRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -84,7 +87,7 @@ public final class UpdateDataFrameAnalyticsRequest extends RequestBase implement
 	 * API name: {@code allow_lazy_start}
 	 */
 	@Nullable
-	public Boolean allowLazyStart() {
+	public final Boolean allowLazyStart() {
 		return this.allowLazyStart;
 	}
 
@@ -94,7 +97,7 @@ public final class UpdateDataFrameAnalyticsRequest extends RequestBase implement
 	 * API name: {@code description}
 	 */
 	@Nullable
-	public String description() {
+	public final String description() {
 		return this.description;
 	}
 
@@ -105,21 +108,20 @@ public final class UpdateDataFrameAnalyticsRequest extends RequestBase implement
 	 * <p>
 	 * API name: {@code id}
 	 */
-	public String id() {
+	public final String id() {
 		return this.id;
 	}
 
 	/**
-	 * The maximum number of threads to be used by the analysis. The default value
-	 * is 1. Using more threads may decrease the time necessary to complete the
-	 * analysis at the cost of using more CPU. Note that the process may use
-	 * additional threads for operational functionality other than the analysis
-	 * itself.
+	 * The maximum number of threads to be used by the analysis. Using more threads
+	 * may decrease the time necessary to complete the analysis at the cost of using
+	 * more CPU. Note that the process may use additional threads for operational
+	 * functionality other than the analysis itself.
 	 * <p>
 	 * API name: {@code max_num_threads}
 	 */
 	@Nullable
-	public Integer maxNumThreads() {
+	public final Integer maxNumThreads() {
 		return this.maxNumThreads;
 	}
 
@@ -127,14 +129,14 @@ public final class UpdateDataFrameAnalyticsRequest extends RequestBase implement
 	 * The approximate maximum amount of memory resources that are permitted for
 	 * analytical processing. The default value for data frame analytics jobs is
 	 * 1gb. If your elasticsearch.yml file contains an
-	 * xpack.ml.max_model_memory_limit setting, an error occurs when you try to
-	 * create data frame analytics jobs that have model_memory_limit values greater
-	 * than that setting.
+	 * <code>xpack.ml.max_model_memory_limit</code> setting, an error occurs when
+	 * you try to create data frame analytics jobs that have model_memory_limit
+	 * values greater than that setting.
 	 * <p>
 	 * API name: {@code model_memory_limit}
 	 */
 	@Nullable
-	public String modelMemoryLimit() {
+	public final String modelMemoryLimit() {
 		return this.modelMemoryLimit;
 	}
 
@@ -150,25 +152,21 @@ public final class UpdateDataFrameAnalyticsRequest extends RequestBase implement
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.allowLazyStart != null) {
-
 			generator.writeKey("allow_lazy_start");
 			generator.write(this.allowLazyStart);
 
 		}
 		if (this.description != null) {
-
 			generator.writeKey("description");
 			generator.write(this.description);
 
 		}
 		if (this.maxNumThreads != null) {
-
 			generator.writeKey("max_num_threads");
 			generator.write(this.maxNumThreads);
 
 		}
 		if (this.modelMemoryLimit != null) {
-
 			generator.writeKey("model_memory_limit");
 			generator.write(this.modelMemoryLimit);
 
@@ -181,7 +179,7 @@ public final class UpdateDataFrameAnalyticsRequest extends RequestBase implement
 	/**
 	 * Builder for {@link UpdateDataFrameAnalyticsRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<UpdateDataFrameAnalyticsRequest> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<UpdateDataFrameAnalyticsRequest> {
 		@Nullable
 		private Boolean allowLazyStart;
 
@@ -202,7 +200,7 @@ public final class UpdateDataFrameAnalyticsRequest extends RequestBase implement
 		 * <p>
 		 * API name: {@code allow_lazy_start}
 		 */
-		public Builder allowLazyStart(@Nullable Boolean value) {
+		public final Builder allowLazyStart(@Nullable Boolean value) {
 			this.allowLazyStart = value;
 			return this;
 		}
@@ -212,7 +210,7 @@ public final class UpdateDataFrameAnalyticsRequest extends RequestBase implement
 		 * <p>
 		 * API name: {@code description}
 		 */
-		public Builder description(@Nullable String value) {
+		public final Builder description(@Nullable String value) {
 			this.description = value;
 			return this;
 		}
@@ -224,21 +222,20 @@ public final class UpdateDataFrameAnalyticsRequest extends RequestBase implement
 		 * <p>
 		 * API name: {@code id}
 		 */
-		public Builder id(String value) {
+		public final Builder id(String value) {
 			this.id = value;
 			return this;
 		}
 
 		/**
-		 * The maximum number of threads to be used by the analysis. The default value
-		 * is 1. Using more threads may decrease the time necessary to complete the
-		 * analysis at the cost of using more CPU. Note that the process may use
-		 * additional threads for operational functionality other than the analysis
-		 * itself.
+		 * The maximum number of threads to be used by the analysis. Using more threads
+		 * may decrease the time necessary to complete the analysis at the cost of using
+		 * more CPU. Note that the process may use additional threads for operational
+		 * functionality other than the analysis itself.
 		 * <p>
 		 * API name: {@code max_num_threads}
 		 */
-		public Builder maxNumThreads(@Nullable Integer value) {
+		public final Builder maxNumThreads(@Nullable Integer value) {
 			this.maxNumThreads = value;
 			return this;
 		}
@@ -247,13 +244,13 @@ public final class UpdateDataFrameAnalyticsRequest extends RequestBase implement
 		 * The approximate maximum amount of memory resources that are permitted for
 		 * analytical processing. The default value for data frame analytics jobs is
 		 * 1gb. If your elasticsearch.yml file contains an
-		 * xpack.ml.max_model_memory_limit setting, an error occurs when you try to
-		 * create data frame analytics jobs that have model_memory_limit values greater
-		 * than that setting.
+		 * <code>xpack.ml.max_model_memory_limit</code> setting, an error occurs when
+		 * you try to create data frame analytics jobs that have model_memory_limit
+		 * values greater than that setting.
 		 * <p>
 		 * API name: {@code model_memory_limit}
 		 */
-		public Builder modelMemoryLimit(@Nullable String value) {
+		public final Builder modelMemoryLimit(@Nullable String value) {
 			this.modelMemoryLimit = value;
 			return this;
 		}
@@ -265,6 +262,7 @@ public final class UpdateDataFrameAnalyticsRequest extends RequestBase implement
 		 *             if some of the required fields are null.
 		 */
 		public UpdateDataFrameAnalyticsRequest build() {
+			_checkSingleUse();
 
 			return new UpdateDataFrameAnalyticsRequest(this);
 		}

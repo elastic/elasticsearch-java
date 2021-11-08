@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.util.Objects;
@@ -39,35 +41,35 @@ import javax.annotation.Nullable;
 
 // typedef: _types.ErrorResponseBase
 @JsonpDeserializable
-public final class ErrorResponse implements JsonpSerializable {
+public class ErrorResponse implements JsonpSerializable {
 	private final ErrorCause error;
 
 	private final int status;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public ErrorResponse(Builder builder) {
+	private ErrorResponse(Builder builder) {
 
-		this.error = Objects.requireNonNull(builder.error, "error");
-		this.status = Objects.requireNonNull(builder.status, "status");
+		this.error = ModelTypeHelper.requireNonNull(builder.error, this, "error");
+		this.status = ModelTypeHelper.requireNonNull(builder.status, this, "status");
 
 	}
 
-	public ErrorResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ErrorResponse of(Function<Builder, ObjectBuilder<ErrorResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code error}
 	 */
-	public ErrorCause error() {
+	public final ErrorCause error() {
 		return this.error;
 	}
 
 	/**
 	 * Required - API name: {@code status}
 	 */
-	public int status() {
+	public final int status() {
 		return this.status;
 	}
 
@@ -95,7 +97,7 @@ public final class ErrorResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link ErrorResponse}.
 	 */
-	public static class Builder implements ObjectBuilder<ErrorResponse> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ErrorResponse> {
 		private ErrorCause error;
 
 		private Integer status;
@@ -103,7 +105,7 @@ public final class ErrorResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code error}
 		 */
-		public Builder error(ErrorCause value) {
+		public final Builder error(ErrorCause value) {
 			this.error = value;
 			return this;
 		}
@@ -111,14 +113,14 @@ public final class ErrorResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code error}
 		 */
-		public Builder error(Function<ErrorCause.Builder, ObjectBuilder<ErrorCause>> fn) {
+		public final Builder error(Function<ErrorCause.Builder, ObjectBuilder<ErrorCause>> fn) {
 			return this.error(fn.apply(new ErrorCause.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code status}
 		 */
-		public Builder status(int value) {
+		public final Builder status(int value) {
 			this.status = value;
 			return this;
 		}
@@ -130,6 +132,7 @@ public final class ErrorResponse implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public ErrorResponse build() {
+			_checkSingleUse();
 
 			return new ErrorResponse(this);
 		}

@@ -34,7 +34,7 @@ import java.util.function.Function;
 
 // typedef: indices.simulate_index_template.Response
 
-public final class SimulateIndexTemplateResponse {
+public class SimulateIndexTemplateResponse {
 	public SimulateIndexTemplateResponse() {
 	}
 

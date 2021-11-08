@@ -32,6 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
@@ -44,7 +45,7 @@ import javax.annotation.Nullable;
 
 // typedef: ml._types.AnalysisConfig
 @JsonpDeserializable
-public final class AnalysisConfig implements JsonpSerializable {
+public class AnalysisConfig implements JsonpSerializable {
 	private final String bucketSpan;
 
 	@Nullable
@@ -53,12 +54,10 @@ public final class AnalysisConfig implements JsonpSerializable {
 	@Nullable
 	private final String categorizationFieldName;
 
-	@Nullable
 	private final List<String> categorizationFilters;
 
 	private final List<Detector> detectors;
 
-	@Nullable
 	private final List<String> influencers;
 
 	@Nullable
@@ -78,13 +77,13 @@ public final class AnalysisConfig implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public AnalysisConfig(Builder builder) {
+	private AnalysisConfig(Builder builder) {
 
-		this.bucketSpan = Objects.requireNonNull(builder.bucketSpan, "bucket_span");
+		this.bucketSpan = ModelTypeHelper.requireNonNull(builder.bucketSpan, this, "bucketSpan");
 		this.categorizationAnalyzer = builder.categorizationAnalyzer;
 		this.categorizationFieldName = builder.categorizationFieldName;
 		this.categorizationFilters = ModelTypeHelper.unmodifiable(builder.categorizationFilters);
-		this.detectors = ModelTypeHelper.unmodifiableNonNull(builder.detectors, "detectors");
+		this.detectors = ModelTypeHelper.unmodifiableRequired(builder.detectors, this, "detectors");
 		this.influencers = ModelTypeHelper.unmodifiable(builder.influencers);
 		this.modelPruneWindow = builder.modelPruneWindow;
 		this.latency = builder.latency;
@@ -94,8 +93,8 @@ public final class AnalysisConfig implements JsonpSerializable {
 
 	}
 
-	public AnalysisConfig(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static AnalysisConfig of(Function<Builder, ObjectBuilder<AnalysisConfig>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -109,7 +108,7 @@ public final class AnalysisConfig implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code bucket_span}
 	 */
-	public String bucketSpan() {
+	public final String bucketSpan() {
 		return this.bucketSpan;
 	}
 
@@ -126,7 +125,7 @@ public final class AnalysisConfig implements JsonpSerializable {
 	 * API name: {@code categorization_analyzer}
 	 */
 	@Nullable
-	public CategorizationAnalyzer categorizationAnalyzer() {
+	public final CategorizationAnalyzer categorizationAnalyzer() {
 		return this.categorizationAnalyzer;
 	}
 
@@ -139,7 +138,7 @@ public final class AnalysisConfig implements JsonpSerializable {
 	 * API name: {@code categorization_field_name}
 	 */
 	@Nullable
-	public String categorizationFieldName() {
+	public final String categorizationFieldName() {
 		return this.categorizationFieldName;
 	}
 
@@ -160,8 +159,7 @@ public final class AnalysisConfig implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code categorization_filters}
 	 */
-	@Nullable
-	public List<String> categorizationFilters() {
+	public final List<String> categorizationFilters() {
 		return this.categorizationFilters;
 	}
 
@@ -173,7 +171,7 @@ public final class AnalysisConfig implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code detectors}
 	 */
-	public List<Detector> detectors() {
+	public final List<Detector> detectors() {
 		return this.detectors;
 	}
 
@@ -187,8 +185,7 @@ public final class AnalysisConfig implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code influencers}
 	 */
-	@Nullable
-	public List<String> influencers() {
+	public final List<String> influencers() {
 		return this.influencers;
 	}
 
@@ -203,7 +200,7 @@ public final class AnalysisConfig implements JsonpSerializable {
 	 * API name: {@code model_prune_window}
 	 */
 	@Nullable
-	public String modelPruneWindow() {
+	public final String modelPruneWindow() {
 		return this.modelPruneWindow;
 	}
 
@@ -216,7 +213,7 @@ public final class AnalysisConfig implements JsonpSerializable {
 	 * API name: {@code latency}
 	 */
 	@Nullable
-	public String latency() {
+	public final String latency() {
 		return this.latency;
 	}
 
@@ -237,7 +234,7 @@ public final class AnalysisConfig implements JsonpSerializable {
 	 * API name: {@code multivariate_by_fields}
 	 */
 	@Nullable
-	public Boolean multivariateByFields() {
+	public final Boolean multivariateByFields() {
 		return this.multivariateByFields;
 	}
 
@@ -247,7 +244,7 @@ public final class AnalysisConfig implements JsonpSerializable {
 	 * API name: {@code per_partition_categorization}
 	 */
 	@Nullable
-	public PerPartitionCategorization perPartitionCategorization() {
+	public final PerPartitionCategorization perPartitionCategorization() {
 		return this.perPartitionCategorization;
 	}
 
@@ -262,7 +259,7 @@ public final class AnalysisConfig implements JsonpSerializable {
 	 * API name: {@code summary_count_field_name}
 	 */
 	@Nullable
-	public String summaryCountFieldName() {
+	public final String summaryCountFieldName() {
 		return this.summaryCountFieldName;
 	}
 
@@ -281,19 +278,16 @@ public final class AnalysisConfig implements JsonpSerializable {
 		generator.write(this.bucketSpan);
 
 		if (this.categorizationAnalyzer != null) {
-
 			generator.writeKey("categorization_analyzer");
 			this.categorizationAnalyzer.serialize(generator, mapper);
 
 		}
 		if (this.categorizationFieldName != null) {
-
 			generator.writeKey("categorization_field_name");
 			generator.write(this.categorizationFieldName);
 
 		}
-		if (this.categorizationFilters != null) {
-
+		if (ModelTypeHelper.isDefined(this.categorizationFilters)) {
 			generator.writeKey("categorization_filters");
 			generator.writeStartArray();
 			for (String item0 : this.categorizationFilters) {
@@ -303,17 +297,17 @@ public final class AnalysisConfig implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
+		if (ModelTypeHelper.isDefined(this.detectors)) {
+			generator.writeKey("detectors");
+			generator.writeStartArray();
+			for (Detector item0 : this.detectors) {
+				item0.serialize(generator, mapper);
 
-		generator.writeKey("detectors");
-		generator.writeStartArray();
-		for (Detector item0 : this.detectors) {
-			item0.serialize(generator, mapper);
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
-
-		if (this.influencers != null) {
-
+		if (ModelTypeHelper.isDefined(this.influencers)) {
 			generator.writeKey("influencers");
 			generator.writeStartArray();
 			for (String item0 : this.influencers) {
@@ -324,31 +318,26 @@ public final class AnalysisConfig implements JsonpSerializable {
 
 		}
 		if (this.modelPruneWindow != null) {
-
 			generator.writeKey("model_prune_window");
 			generator.write(this.modelPruneWindow);
 
 		}
 		if (this.latency != null) {
-
 			generator.writeKey("latency");
 			generator.write(this.latency);
 
 		}
 		if (this.multivariateByFields != null) {
-
 			generator.writeKey("multivariate_by_fields");
 			generator.write(this.multivariateByFields);
 
 		}
 		if (this.perPartitionCategorization != null) {
-
 			generator.writeKey("per_partition_categorization");
 			this.perPartitionCategorization.serialize(generator, mapper);
 
 		}
 		if (this.summaryCountFieldName != null) {
-
 			generator.writeKey("summary_count_field_name");
 			generator.write(this.summaryCountFieldName);
 
@@ -361,7 +350,7 @@ public final class AnalysisConfig implements JsonpSerializable {
 	/**
 	 * Builder for {@link AnalysisConfig}.
 	 */
-	public static class Builder implements ObjectBuilder<AnalysisConfig> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<AnalysisConfig> {
 		private String bucketSpan;
 
 		@Nullable
@@ -404,7 +393,7 @@ public final class AnalysisConfig implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code bucket_span}
 		 */
-		public Builder bucketSpan(String value) {
+		public final Builder bucketSpan(String value) {
 			this.bucketSpan = value;
 			return this;
 		}
@@ -421,7 +410,7 @@ public final class AnalysisConfig implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code categorization_analyzer}
 		 */
-		public Builder categorizationAnalyzer(@Nullable CategorizationAnalyzer value) {
+		public final Builder categorizationAnalyzer(@Nullable CategorizationAnalyzer value) {
 			this.categorizationAnalyzer = value;
 			return this;
 		}
@@ -438,7 +427,7 @@ public final class AnalysisConfig implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code categorization_analyzer}
 		 */
-		public Builder categorizationAnalyzer(
+		public final Builder categorizationAnalyzer(
 				Function<CategorizationAnalyzer.Builder, ObjectBuilder<CategorizationAnalyzer>> fn) {
 			return this.categorizationAnalyzer(fn.apply(new CategorizationAnalyzer.Builder()).build());
 		}
@@ -451,7 +440,7 @@ public final class AnalysisConfig implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code categorization_field_name}
 		 */
-		public Builder categorizationFieldName(@Nullable String value) {
+		public final Builder categorizationFieldName(@Nullable String value) {
 			this.categorizationFieldName = value;
 			return this;
 		}
@@ -473,7 +462,7 @@ public final class AnalysisConfig implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code categorization_filters}
 		 */
-		public Builder categorizationFilters(@Nullable List<String> value) {
+		public final Builder categorizationFilters(@Nullable List<String> value) {
 			this.categorizationFilters = value;
 			return this;
 		}
@@ -495,20 +484,8 @@ public final class AnalysisConfig implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code categorization_filters}
 		 */
-		public Builder categorizationFilters(String... value) {
+		public final Builder categorizationFilters(String... value) {
 			this.categorizationFilters = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #categorizationFilters(List)}, creating the list if
-		 * needed.
-		 */
-		public Builder addCategorizationFilters(String value) {
-			if (this.categorizationFilters == null) {
-				this.categorizationFilters = new ArrayList<>();
-			}
-			this.categorizationFilters.add(value);
 			return this;
 		}
 
@@ -520,7 +497,7 @@ public final class AnalysisConfig implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code detectors}
 		 */
-		public Builder detectors(List<Detector> value) {
+		public final Builder detectors(List<Detector> value) {
 			this.detectors = value;
 			return this;
 		}
@@ -533,34 +510,26 @@ public final class AnalysisConfig implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code detectors}
 		 */
-		public Builder detectors(Detector... value) {
+		public final Builder detectors(Detector... value) {
 			this.detectors = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #detectors(List)}, creating the list if needed.
+		 * Required - Detector configuration objects specify which data fields a job
+		 * analyzes. They also specify which analytical functions are used. You can
+		 * specify multiple detectors for a job. If the detectors array does not contain
+		 * at least one detector, no analysis can occur and an error is returned.
+		 * <p>
+		 * API name: {@code detectors}
 		 */
-		public Builder addDetectors(Detector value) {
-			if (this.detectors == null) {
-				this.detectors = new ArrayList<>();
+		@SafeVarargs
+		public final Builder detectors(Function<Detector.Builder, ObjectBuilder<Detector>>... fns) {
+			this.detectors = new ArrayList<>(fns.length);
+			for (Function<Detector.Builder, ObjectBuilder<Detector>> fn : fns) {
+				this.detectors.add(fn.apply(new Detector.Builder()).build());
 			}
-			this.detectors.add(value);
 			return this;
-		}
-
-		/**
-		 * Set {@link #detectors(List)} to a singleton list.
-		 */
-		public Builder detectors(Function<Detector.Builder, ObjectBuilder<Detector>> fn) {
-			return this.detectors(fn.apply(new Detector.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #detectors(List)}, creating the list if needed.
-		 */
-		public Builder addDetectors(Function<Detector.Builder, ObjectBuilder<Detector>> fn) {
-			return this.addDetectors(fn.apply(new Detector.Builder()).build());
 		}
 
 		/**
@@ -573,7 +542,7 @@ public final class AnalysisConfig implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code influencers}
 		 */
-		public Builder influencers(@Nullable List<String> value) {
+		public final Builder influencers(@Nullable List<String> value) {
 			this.influencers = value;
 			return this;
 		}
@@ -588,19 +557,8 @@ public final class AnalysisConfig implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code influencers}
 		 */
-		public Builder influencers(String... value) {
+		public final Builder influencers(String... value) {
 			this.influencers = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #influencers(List)}, creating the list if needed.
-		 */
-		public Builder addInfluencers(String value) {
-			if (this.influencers == null) {
-				this.influencers = new ArrayList<>();
-			}
-			this.influencers.add(value);
 			return this;
 		}
 
@@ -614,7 +572,7 @@ public final class AnalysisConfig implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code model_prune_window}
 		 */
-		public Builder modelPruneWindow(@Nullable String value) {
+		public final Builder modelPruneWindow(@Nullable String value) {
 			this.modelPruneWindow = value;
 			return this;
 		}
@@ -627,7 +585,7 @@ public final class AnalysisConfig implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code latency}
 		 */
-		public Builder latency(@Nullable String value) {
+		public final Builder latency(@Nullable String value) {
 			this.latency = value;
 			return this;
 		}
@@ -648,7 +606,7 @@ public final class AnalysisConfig implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code multivariate_by_fields}
 		 */
-		public Builder multivariateByFields(@Nullable Boolean value) {
+		public final Builder multivariateByFields(@Nullable Boolean value) {
 			this.multivariateByFields = value;
 			return this;
 		}
@@ -658,7 +616,7 @@ public final class AnalysisConfig implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code per_partition_categorization}
 		 */
-		public Builder perPartitionCategorization(@Nullable PerPartitionCategorization value) {
+		public final Builder perPartitionCategorization(@Nullable PerPartitionCategorization value) {
 			this.perPartitionCategorization = value;
 			return this;
 		}
@@ -668,7 +626,7 @@ public final class AnalysisConfig implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code per_partition_categorization}
 		 */
-		public Builder perPartitionCategorization(
+		public final Builder perPartitionCategorization(
 				Function<PerPartitionCategorization.Builder, ObjectBuilder<PerPartitionCategorization>> fn) {
 			return this.perPartitionCategorization(fn.apply(new PerPartitionCategorization.Builder()).build());
 		}
@@ -683,7 +641,7 @@ public final class AnalysisConfig implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code summary_count_field_name}
 		 */
-		public Builder summaryCountFieldName(@Nullable String value) {
+		public final Builder summaryCountFieldName(@Nullable String value) {
 			this.summaryCountFieldName = value;
 			return this;
 		}
@@ -695,6 +653,7 @@ public final class AnalysisConfig implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public AnalysisConfig build() {
+			_checkSingleUse();
 
 			return new AnalysisConfig(this);
 		}

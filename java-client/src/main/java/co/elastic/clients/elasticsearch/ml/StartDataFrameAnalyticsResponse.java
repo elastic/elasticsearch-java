@@ -30,6 +30,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -39,20 +40,21 @@ import javax.annotation.Nullable;
 
 // typedef: ml.start_data_frame_analytics.Response
 @JsonpDeserializable
-public final class StartDataFrameAnalyticsResponse extends AcknowledgedResponseBase {
+public class StartDataFrameAnalyticsResponse extends AcknowledgedResponseBase {
 	private final String node;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public StartDataFrameAnalyticsResponse(Builder builder) {
+	private StartDataFrameAnalyticsResponse(Builder builder) {
 		super(builder);
 
-		this.node = Objects.requireNonNull(builder.node, "node");
+		this.node = ModelTypeHelper.requireNonNull(builder.node, this, "node");
 
 	}
 
-	public StartDataFrameAnalyticsResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static StartDataFrameAnalyticsResponse of(
+			Function<Builder, ObjectBuilder<StartDataFrameAnalyticsResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -62,14 +64,13 @@ public final class StartDataFrameAnalyticsResponse extends AcknowledgedResponseB
 	 * <p>
 	 * API name: {@code node}
 	 */
-	public String node() {
+	public final String node() {
 		return this.node;
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
-
 		generator.writeKey("node");
 		generator.write(this.node);
 
@@ -92,7 +93,7 @@ public final class StartDataFrameAnalyticsResponse extends AcknowledgedResponseB
 		 * <p>
 		 * API name: {@code node}
 		 */
-		public Builder node(String value) {
+		public final Builder node(String value) {
 			this.node = value;
 			return this;
 		}
@@ -109,6 +110,7 @@ public final class StartDataFrameAnalyticsResponse extends AcknowledgedResponseB
 		 *             if some of the required fields are null.
 		 */
 		public StartDataFrameAnalyticsResponse build() {
+			_checkSingleUse();
 
 			return new StartDataFrameAnalyticsResponse(this);
 		}

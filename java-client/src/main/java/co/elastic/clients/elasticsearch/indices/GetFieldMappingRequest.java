@@ -34,10 +34,10 @@ import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.SimpleEndpoint;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -49,11 +49,10 @@ import javax.annotation.Nullable;
 
 // typedef: indices.get_field_mapping.Request
 
-public final class GetFieldMappingRequest extends RequestBase {
+public class GetFieldMappingRequest extends RequestBase {
 	@Nullable
 	private final Boolean allowNoIndices;
 
-	@Nullable
 	private final List<ExpandWildcardOptions> expandWildcards;
 
 	private final List<String> fields;
@@ -67,22 +66,20 @@ public final class GetFieldMappingRequest extends RequestBase {
 	@Nullable
 	private final Boolean includeTypeName;
 
-	@Nullable
 	private final List<String> index;
 
 	@Nullable
 	private final Boolean local;
 
-	@Nullable
 	private final List<String> type;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public GetFieldMappingRequest(Builder builder) {
+	private GetFieldMappingRequest(Builder builder) {
 
 		this.allowNoIndices = builder.allowNoIndices;
 		this.expandWildcards = ModelTypeHelper.unmodifiable(builder.expandWildcards);
-		this.fields = ModelTypeHelper.unmodifiableNonNull(builder.fields, "fields");
+		this.fields = ModelTypeHelper.unmodifiableRequired(builder.fields, this, "fields");
 		this.ignoreUnavailable = builder.ignoreUnavailable;
 		this.includeDefaults = builder.includeDefaults;
 		this.includeTypeName = builder.includeTypeName;
@@ -92,8 +89,8 @@ public final class GetFieldMappingRequest extends RequestBase {
 
 	}
 
-	public GetFieldMappingRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static GetFieldMappingRequest of(Function<Builder, ObjectBuilder<GetFieldMappingRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -104,7 +101,7 @@ public final class GetFieldMappingRequest extends RequestBase {
 	 * API name: {@code allow_no_indices}
 	 */
 	@Nullable
-	public Boolean allowNoIndices() {
+	public final Boolean allowNoIndices() {
 		return this.allowNoIndices;
 	}
 
@@ -114,8 +111,7 @@ public final class GetFieldMappingRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code expand_wildcards}
 	 */
-	@Nullable
-	public List<ExpandWildcardOptions> expandWildcards() {
+	public final List<ExpandWildcardOptions> expandWildcards() {
 		return this.expandWildcards;
 	}
 
@@ -124,7 +120,7 @@ public final class GetFieldMappingRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code fields}
 	 */
-	public List<String> fields() {
+	public final List<String> fields() {
 		return this.fields;
 	}
 
@@ -135,7 +131,7 @@ public final class GetFieldMappingRequest extends RequestBase {
 	 * API name: {@code ignore_unavailable}
 	 */
 	@Nullable
-	public Boolean ignoreUnavailable() {
+	public final Boolean ignoreUnavailable() {
 		return this.ignoreUnavailable;
 	}
 
@@ -145,7 +141,7 @@ public final class GetFieldMappingRequest extends RequestBase {
 	 * API name: {@code include_defaults}
 	 */
 	@Nullable
-	public Boolean includeDefaults() {
+	public final Boolean includeDefaults() {
 		return this.includeDefaults;
 	}
 
@@ -155,7 +151,7 @@ public final class GetFieldMappingRequest extends RequestBase {
 	 * API name: {@code include_type_name}
 	 */
 	@Nullable
-	public Boolean includeTypeName() {
+	public final Boolean includeTypeName() {
 		return this.includeTypeName;
 	}
 
@@ -164,8 +160,7 @@ public final class GetFieldMappingRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code index}
 	 */
-	@Nullable
-	public List<String> index() {
+	public final List<String> index() {
 		return this.index;
 	}
 
@@ -176,7 +171,7 @@ public final class GetFieldMappingRequest extends RequestBase {
 	 * API name: {@code local}
 	 */
 	@Nullable
-	public Boolean local() {
+	public final Boolean local() {
 		return this.local;
 	}
 
@@ -185,8 +180,7 @@ public final class GetFieldMappingRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code type}
 	 */
-	@Nullable
-	public List<String> type() {
+	public final List<String> type() {
 		return this.type;
 	}
 
@@ -195,7 +189,7 @@ public final class GetFieldMappingRequest extends RequestBase {
 	/**
 	 * Builder for {@link GetFieldMappingRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<GetFieldMappingRequest> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetFieldMappingRequest> {
 		@Nullable
 		private Boolean allowNoIndices;
 
@@ -229,7 +223,7 @@ public final class GetFieldMappingRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code allow_no_indices}
 		 */
-		public Builder allowNoIndices(@Nullable Boolean value) {
+		public final Builder allowNoIndices(@Nullable Boolean value) {
 			this.allowNoIndices = value;
 			return this;
 		}
@@ -240,7 +234,7 @@ public final class GetFieldMappingRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code expand_wildcards}
 		 */
-		public Builder expandWildcards(@Nullable List<ExpandWildcardOptions> value) {
+		public final Builder expandWildcards(@Nullable List<ExpandWildcardOptions> value) {
 			this.expandWildcards = value;
 			return this;
 		}
@@ -251,19 +245,8 @@ public final class GetFieldMappingRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code expand_wildcards}
 		 */
-		public Builder expandWildcards(ExpandWildcardOptions... value) {
+		public final Builder expandWildcards(ExpandWildcardOptions... value) {
 			this.expandWildcards = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #expandWildcards(List)}, creating the list if needed.
-		 */
-		public Builder addExpandWildcards(ExpandWildcardOptions value) {
-			if (this.expandWildcards == null) {
-				this.expandWildcards = new ArrayList<>();
-			}
-			this.expandWildcards.add(value);
 			return this;
 		}
 
@@ -272,7 +255,7 @@ public final class GetFieldMappingRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code fields}
 		 */
-		public Builder fields(List<String> value) {
+		public final Builder fields(List<String> value) {
 			this.fields = value;
 			return this;
 		}
@@ -282,19 +265,8 @@ public final class GetFieldMappingRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code fields}
 		 */
-		public Builder fields(String... value) {
+		public final Builder fields(String... value) {
 			this.fields = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #fields(List)}, creating the list if needed.
-		 */
-		public Builder addFields(String value) {
-			if (this.fields == null) {
-				this.fields = new ArrayList<>();
-			}
-			this.fields.add(value);
 			return this;
 		}
 
@@ -304,7 +276,7 @@ public final class GetFieldMappingRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code ignore_unavailable}
 		 */
-		public Builder ignoreUnavailable(@Nullable Boolean value) {
+		public final Builder ignoreUnavailable(@Nullable Boolean value) {
 			this.ignoreUnavailable = value;
 			return this;
 		}
@@ -314,7 +286,7 @@ public final class GetFieldMappingRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code include_defaults}
 		 */
-		public Builder includeDefaults(@Nullable Boolean value) {
+		public final Builder includeDefaults(@Nullable Boolean value) {
 			this.includeDefaults = value;
 			return this;
 		}
@@ -324,7 +296,7 @@ public final class GetFieldMappingRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code include_type_name}
 		 */
-		public Builder includeTypeName(@Nullable Boolean value) {
+		public final Builder includeTypeName(@Nullable Boolean value) {
 			this.includeTypeName = value;
 			return this;
 		}
@@ -334,7 +306,7 @@ public final class GetFieldMappingRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code index}
 		 */
-		public Builder index(@Nullable List<String> value) {
+		public final Builder index(@Nullable List<String> value) {
 			this.index = value;
 			return this;
 		}
@@ -344,19 +316,8 @@ public final class GetFieldMappingRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code index}
 		 */
-		public Builder index(String... value) {
+		public final Builder index(String... value) {
 			this.index = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #index(List)}, creating the list if needed.
-		 */
-		public Builder addIndex(String value) {
-			if (this.index == null) {
-				this.index = new ArrayList<>();
-			}
-			this.index.add(value);
 			return this;
 		}
 
@@ -366,7 +327,7 @@ public final class GetFieldMappingRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code local}
 		 */
-		public Builder local(@Nullable Boolean value) {
+		public final Builder local(@Nullable Boolean value) {
 			this.local = value;
 			return this;
 		}
@@ -376,7 +337,7 @@ public final class GetFieldMappingRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code type}
 		 */
-		public Builder type(@Nullable List<String> value) {
+		public final Builder type(@Nullable List<String> value) {
 			this.type = value;
 			return this;
 		}
@@ -386,19 +347,8 @@ public final class GetFieldMappingRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code type}
 		 */
-		public Builder type(String... value) {
+		public final Builder type(String... value) {
 			this.type = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #type(List)}, creating the list if needed.
-		 */
-		public Builder addType(String value) {
-			if (this.type == null) {
-				this.type = new ArrayList<>();
-			}
-			this.type.add(value);
 			return this;
 		}
 
@@ -409,6 +359,7 @@ public final class GetFieldMappingRequest extends RequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public GetFieldMappingRequest build() {
+			_checkSingleUse();
 
 			return new GetFieldMappingRequest(this);
 		}
@@ -434,10 +385,10 @@ public final class GetFieldMappingRequest extends RequestBase {
 
 				int propsSet = 0;
 
-				if (request.index() != null)
+				if (ModelTypeHelper.isDefined(request.index()))
 					propsSet |= _index;
 				propsSet |= _fields;
-				if (request.type() != null)
+				if (ModelTypeHelper.isDefined(request.type()))
 					propsSet |= _type;
 
 				if (propsSet == (_fields)) {
@@ -494,9 +445,9 @@ public final class GetFieldMappingRequest extends RequestBase {
 				if (request.includeTypeName != null) {
 					params.put("include_type_name", String.valueOf(request.includeTypeName));
 				}
-				if (request.expandWildcards != null) {
+				if (ModelTypeHelper.isDefined(request.expandWildcards)) {
 					params.put("expand_wildcards",
-							request.expandWildcards.stream().map(v -> v.toString()).collect(Collectors.joining(",")));
+							request.expandWildcards.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")));
 				}
 				if (request.ignoreUnavailable != null) {
 					params.put("ignore_unavailable", String.valueOf(request.ignoreUnavailable));

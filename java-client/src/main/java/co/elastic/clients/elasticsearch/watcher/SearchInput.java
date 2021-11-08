@@ -32,9 +32,9 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
@@ -43,8 +43,7 @@ import javax.annotation.Nullable;
 
 // typedef: watcher._types.SearchInput
 @JsonpDeserializable
-public final class SearchInput implements InputVariant, JsonpSerializable {
-	@Nullable
+public class SearchInput implements InputVariant, JsonpSerializable {
 	private final List<String> extract;
 
 	private final SearchInputRequestDefinition request;
@@ -54,16 +53,16 @@ public final class SearchInput implements InputVariant, JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public SearchInput(Builder builder) {
+	private SearchInput(Builder builder) {
 
 		this.extract = ModelTypeHelper.unmodifiable(builder.extract);
-		this.request = Objects.requireNonNull(builder.request, "request");
+		this.request = ModelTypeHelper.requireNonNull(builder.request, this, "request");
 		this.timeout = builder.timeout;
 
 	}
 
-	public SearchInput(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static SearchInput of(Function<Builder, ObjectBuilder<SearchInput>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -77,15 +76,14 @@ public final class SearchInput implements InputVariant, JsonpSerializable {
 	/**
 	 * API name: {@code extract}
 	 */
-	@Nullable
-	public List<String> extract() {
+	public final List<String> extract() {
 		return this.extract;
 	}
 
 	/**
 	 * Required - API name: {@code request}
 	 */
-	public SearchInputRequestDefinition request() {
+	public final SearchInputRequestDefinition request() {
 		return this.request;
 	}
 
@@ -93,7 +91,7 @@ public final class SearchInput implements InputVariant, JsonpSerializable {
 	 * API name: {@code timeout}
 	 */
 	@Nullable
-	public String timeout() {
+	public final String timeout() {
 		return this.timeout;
 	}
 
@@ -108,8 +106,7 @@ public final class SearchInput implements InputVariant, JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (this.extract != null) {
-
+		if (ModelTypeHelper.isDefined(this.extract)) {
 			generator.writeKey("extract");
 			generator.writeStartArray();
 			for (String item0 : this.extract) {
@@ -119,12 +116,10 @@ public final class SearchInput implements InputVariant, JsonpSerializable {
 			generator.writeEnd();
 
 		}
-
 		generator.writeKey("request");
 		this.request.serialize(generator, mapper);
 
 		if (this.timeout != null) {
-
 			generator.writeKey("timeout");
 			generator.write(this.timeout);
 
@@ -137,7 +132,7 @@ public final class SearchInput implements InputVariant, JsonpSerializable {
 	/**
 	 * Builder for {@link SearchInput}.
 	 */
-	public static class Builder implements ObjectBuilder<SearchInput> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<SearchInput> {
 		@Nullable
 		private List<String> extract;
 
@@ -149,7 +144,7 @@ public final class SearchInput implements InputVariant, JsonpSerializable {
 		/**
 		 * API name: {@code extract}
 		 */
-		public Builder extract(@Nullable List<String> value) {
+		public final Builder extract(@Nullable List<String> value) {
 			this.extract = value;
 			return this;
 		}
@@ -157,26 +152,15 @@ public final class SearchInput implements InputVariant, JsonpSerializable {
 		/**
 		 * API name: {@code extract}
 		 */
-		public Builder extract(String... value) {
+		public final Builder extract(String... value) {
 			this.extract = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #extract(List)}, creating the list if needed.
-		 */
-		public Builder addExtract(String value) {
-			if (this.extract == null) {
-				this.extract = new ArrayList<>();
-			}
-			this.extract.add(value);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code request}
 		 */
-		public Builder request(SearchInputRequestDefinition value) {
+		public final Builder request(SearchInputRequestDefinition value) {
 			this.request = value;
 			return this;
 		}
@@ -184,7 +168,7 @@ public final class SearchInput implements InputVariant, JsonpSerializable {
 		/**
 		 * Required - API name: {@code request}
 		 */
-		public Builder request(
+		public final Builder request(
 				Function<SearchInputRequestDefinition.Builder, ObjectBuilder<SearchInputRequestDefinition>> fn) {
 			return this.request(fn.apply(new SearchInputRequestDefinition.Builder()).build());
 		}
@@ -192,7 +176,7 @@ public final class SearchInput implements InputVariant, JsonpSerializable {
 		/**
 		 * API name: {@code timeout}
 		 */
-		public Builder timeout(@Nullable String value) {
+		public final Builder timeout(@Nullable String value) {
 			this.timeout = value;
 			return this;
 		}
@@ -204,6 +188,7 @@ public final class SearchInput implements InputVariant, JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public SearchInput build() {
+			_checkSingleUse();
 
 			return new SearchInput(this);
 		}

@@ -28,7 +28,9 @@ import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.TaggedUnion;
 import co.elastic.clients.util.TaggedUnionUtils;
@@ -61,12 +63,12 @@ public class PinnedQuery extends QueryBase implements TaggedUnion<Object>, Query
 	private final Object _value;
 
 	@Override
-	public String _type() {
+	public final String _type() {
 		return _type;
 	}
 
 	@Override
-	public Object _get() {
+	public final Object _get() {
 		return _value;
 	}
 
@@ -75,21 +77,21 @@ public class PinnedQuery extends QueryBase implements TaggedUnion<Object>, Query
 	private PinnedQuery(Builder builder) {
 		super(builder);
 
-		this._type = Objects.requireNonNull(builder._type, "variant type");
-		this._value = Objects.requireNonNull(builder._value, "variant value");
+		this._type = ModelTypeHelper.requireNonNull(builder._type, builder, "<variant type>");
+		this._value = ModelTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
 
-		this.organic = Objects.requireNonNull(builder.organic, "organic");
+		this.organic = ModelTypeHelper.requireNonNull(builder.organic, this, "organic");
 
 	}
 
-	public PinnedQuery(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static PinnedQuery of(Function<Builder, ObjectBuilder<PinnedQuery>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code organic}
 	 */
-	public Query organic() {
+	public final Query organic() {
 		return this.organic;
 	}
 
@@ -119,7 +121,6 @@ public class PinnedQuery extends QueryBase implements TaggedUnion<Object>, Query
 		generator.writeStartObject();
 
 		super.serializeInternal(generator, mapper);
-
 		generator.writeKey("organic");
 		this.organic.serialize(generator, mapper);
 
@@ -161,7 +162,7 @@ public class PinnedQuery extends QueryBase implements TaggedUnion<Object>, Query
 		/**
 		 * Required - API name: {@code organic}
 		 */
-		public Builder organic(Query value) {
+		public final Builder organic(Query value) {
 			this.organic = value;
 			return this;
 		}
@@ -169,7 +170,7 @@ public class PinnedQuery extends QueryBase implements TaggedUnion<Object>, Query
 		/**
 		 * Required - API name: {@code organic}
 		 */
-		public Builder organic(Function<Query.Builder, ObjectBuilder<Query>> fn) {
+		public final Builder organic(Function<Query.Builder, ObjectBuilder<Query>> fn) {
 			return this.organic(fn.apply(new Query.Builder()).build());
 		}
 
@@ -190,6 +191,7 @@ public class PinnedQuery extends QueryBase implements TaggedUnion<Object>, Query
 		}
 
 		protected PinnedQuery build() {
+			_checkSingleUse();
 			return new PinnedQuery(this);
 		}
 
@@ -198,7 +200,7 @@ public class PinnedQuery extends QueryBase implements TaggedUnion<Object>, Query
 			/**
 			 * Required - API name: {@code organic}
 			 */
-			public ContainerBuilder organic(Query value) {
+			public final ContainerBuilder organic(Query value) {
 				Builder.this.organic = value;
 				return this;
 			}
@@ -206,7 +208,7 @@ public class PinnedQuery extends QueryBase implements TaggedUnion<Object>, Query
 			/**
 			 * Required - API name: {@code organic}
 			 */
-			public ContainerBuilder organic(Function<Query.Builder, ObjectBuilder<Query>> fn) {
+			public final ContainerBuilder organic(Function<Query.Builder, ObjectBuilder<Query>> fn) {
 				return this.organic(fn.apply(new Query.Builder()).build());
 			}
 
@@ -224,6 +226,6 @@ public class PinnedQuery extends QueryBase implements TaggedUnion<Object>, Query
 
 	}
 
-	public static final JsonpDeserializer<PinnedQuery> _DESERIALIZER = JsonpDeserializer.lazy(Builder::new,
+	public static final JsonpDeserializer<PinnedQuery> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
 			PinnedQuery::setupPinnedQueryDeserializer, Builder::build);
 }

@@ -31,6 +31,7 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Float;
@@ -41,7 +42,7 @@ import javax.annotation.Nullable;
 
 // typedef: transform._types.Settings
 @JsonpDeserializable
-public final class Settings implements JsonpSerializable {
+public class Settings implements JsonpSerializable {
 	@Nullable
 	private final Boolean datesAsEpochMillis;
 
@@ -53,7 +54,7 @@ public final class Settings implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public Settings(Builder builder) {
+	private Settings(Builder builder) {
 
 		this.datesAsEpochMillis = builder.datesAsEpochMillis;
 		this.docsPerSecond = builder.docsPerSecond;
@@ -61,8 +62,8 @@ public final class Settings implements JsonpSerializable {
 
 	}
 
-	public Settings(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static Settings of(Function<Builder, ObjectBuilder<Settings>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -74,7 +75,7 @@ public final class Settings implements JsonpSerializable {
 	 * API name: {@code dates_as_epoch_millis}
 	 */
 	@Nullable
-	public Boolean datesAsEpochMillis() {
+	public final Boolean datesAsEpochMillis() {
 		return this.datesAsEpochMillis;
 	}
 
@@ -86,7 +87,7 @@ public final class Settings implements JsonpSerializable {
 	 * API name: {@code docs_per_second}
 	 */
 	@Nullable
-	public Float docsPerSecond() {
+	public final Float docsPerSecond() {
 		return this.docsPerSecond;
 	}
 
@@ -98,7 +99,7 @@ public final class Settings implements JsonpSerializable {
 	 * API name: {@code max_page_search_size}
 	 */
 	@Nullable
-	public Integer maxPageSearchSize() {
+	public final Integer maxPageSearchSize() {
 		return this.maxPageSearchSize;
 	}
 
@@ -114,19 +115,16 @@ public final class Settings implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.datesAsEpochMillis != null) {
-
 			generator.writeKey("dates_as_epoch_millis");
 			generator.write(this.datesAsEpochMillis);
 
 		}
 		if (this.docsPerSecond != null) {
-
 			generator.writeKey("docs_per_second");
 			generator.write(this.docsPerSecond);
 
 		}
 		if (this.maxPageSearchSize != null) {
-
 			generator.writeKey("max_page_search_size");
 			generator.write(this.maxPageSearchSize);
 
@@ -139,7 +137,7 @@ public final class Settings implements JsonpSerializable {
 	/**
 	 * Builder for {@link Settings}.
 	 */
-	public static class Builder implements ObjectBuilder<Settings> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Settings> {
 		@Nullable
 		private Boolean datesAsEpochMillis;
 
@@ -157,7 +155,7 @@ public final class Settings implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code dates_as_epoch_millis}
 		 */
-		public Builder datesAsEpochMillis(@Nullable Boolean value) {
+		public final Builder datesAsEpochMillis(@Nullable Boolean value) {
 			this.datesAsEpochMillis = value;
 			return this;
 		}
@@ -169,7 +167,7 @@ public final class Settings implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code docs_per_second}
 		 */
-		public Builder docsPerSecond(@Nullable Float value) {
+		public final Builder docsPerSecond(@Nullable Float value) {
 			this.docsPerSecond = value;
 			return this;
 		}
@@ -181,7 +179,7 @@ public final class Settings implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code max_page_search_size}
 		 */
-		public Builder maxPageSearchSize(@Nullable Integer value) {
+		public final Builder maxPageSearchSize(@Nullable Integer value) {
 			this.maxPageSearchSize = value;
 			return this;
 		}
@@ -193,6 +191,7 @@ public final class Settings implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public Settings build() {
+			_checkSingleUse();
 
 			return new Settings(this);
 		}

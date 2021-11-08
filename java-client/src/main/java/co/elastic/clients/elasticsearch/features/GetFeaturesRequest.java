@@ -39,7 +39,7 @@ import java.util.function.Function;
 
 // typedef: features.get_features.Request
 
-public final class GetFeaturesRequest extends RequestBase {
+public class GetFeaturesRequest extends RequestBase {
 	public GetFeaturesRequest() {
 	}
 

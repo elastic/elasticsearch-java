@@ -45,7 +45,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.GeoDistanceAggregation
 @JsonpDeserializable
-public final class GeoDistanceAggregation extends BucketAggregationBase implements AggregationVariant {
+public class GeoDistanceAggregation extends BucketAggregationBase implements AggregationVariant {
 	@Nullable
 	private final GeoDistanceType distanceType;
 
@@ -55,7 +55,6 @@ public final class GeoDistanceAggregation extends BucketAggregationBase implemen
 	@Nullable
 	private final JsonValue /* _types.query_dsl.GeoLocation */ origin;
 
-	@Nullable
 	private final List<AggregationRange> ranges;
 
 	@Nullable
@@ -63,7 +62,7 @@ public final class GeoDistanceAggregation extends BucketAggregationBase implemen
 
 	// ---------------------------------------------------------------------------------------------
 
-	public GeoDistanceAggregation(Builder builder) {
+	private GeoDistanceAggregation(Builder builder) {
 		super(builder);
 
 		this.distanceType = builder.distanceType;
@@ -74,8 +73,8 @@ public final class GeoDistanceAggregation extends BucketAggregationBase implemen
 
 	}
 
-	public GeoDistanceAggregation(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static GeoDistanceAggregation of(Function<Builder, ObjectBuilder<GeoDistanceAggregation>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -90,7 +89,7 @@ public final class GeoDistanceAggregation extends BucketAggregationBase implemen
 	 * API name: {@code distance_type}
 	 */
 	@Nullable
-	public GeoDistanceType distanceType() {
+	public final GeoDistanceType distanceType() {
 		return this.distanceType;
 	}
 
@@ -98,7 +97,7 @@ public final class GeoDistanceAggregation extends BucketAggregationBase implemen
 	 * API name: {@code field}
 	 */
 	@Nullable
-	public String field() {
+	public final String field() {
 		return this.field;
 	}
 
@@ -106,15 +105,14 @@ public final class GeoDistanceAggregation extends BucketAggregationBase implemen
 	 * API name: {@code origin}
 	 */
 	@Nullable
-	public JsonValue /* _types.query_dsl.GeoLocation */ origin() {
+	public final JsonValue /* _types.query_dsl.GeoLocation */ origin() {
 		return this.origin;
 	}
 
 	/**
 	 * API name: {@code ranges}
 	 */
-	@Nullable
-	public List<AggregationRange> ranges() {
+	public final List<AggregationRange> ranges() {
 		return this.ranges;
 	}
 
@@ -122,7 +120,7 @@ public final class GeoDistanceAggregation extends BucketAggregationBase implemen
 	 * API name: {@code unit}
 	 */
 	@Nullable
-	public DistanceUnit unit() {
+	public final DistanceUnit unit() {
 		return this.unit;
 	}
 
@@ -130,24 +128,20 @@ public final class GeoDistanceAggregation extends BucketAggregationBase implemen
 
 		super.serializeInternal(generator, mapper);
 		if (this.distanceType != null) {
-
 			generator.writeKey("distance_type");
 			this.distanceType.serialize(generator, mapper);
 		}
 		if (this.field != null) {
-
 			generator.writeKey("field");
 			generator.write(this.field);
 
 		}
 		if (this.origin != null) {
-
 			generator.writeKey("origin");
 			generator.write(this.origin);
 
 		}
-		if (this.ranges != null) {
-
+		if (ModelTypeHelper.isDefined(this.ranges)) {
 			generator.writeKey("ranges");
 			generator.writeStartArray();
 			for (AggregationRange item0 : this.ranges) {
@@ -158,7 +152,6 @@ public final class GeoDistanceAggregation extends BucketAggregationBase implemen
 
 		}
 		if (this.unit != null) {
-
 			generator.writeKey("unit");
 			this.unit.serialize(generator, mapper);
 		}
@@ -191,7 +184,7 @@ public final class GeoDistanceAggregation extends BucketAggregationBase implemen
 		/**
 		 * API name: {@code distance_type}
 		 */
-		public Builder distanceType(@Nullable GeoDistanceType value) {
+		public final Builder distanceType(@Nullable GeoDistanceType value) {
 			this.distanceType = value;
 			return this;
 		}
@@ -199,7 +192,7 @@ public final class GeoDistanceAggregation extends BucketAggregationBase implemen
 		/**
 		 * API name: {@code field}
 		 */
-		public Builder field(@Nullable String value) {
+		public final Builder field(@Nullable String value) {
 			this.field = value;
 			return this;
 		}
@@ -207,7 +200,7 @@ public final class GeoDistanceAggregation extends BucketAggregationBase implemen
 		/**
 		 * API name: {@code origin}
 		 */
-		public Builder origin(@Nullable JsonValue /* _types.query_dsl.GeoLocation */ value) {
+		public final Builder origin(@Nullable JsonValue /* _types.query_dsl.GeoLocation */ value) {
 			this.origin = value;
 			return this;
 		}
@@ -215,7 +208,7 @@ public final class GeoDistanceAggregation extends BucketAggregationBase implemen
 		/**
 		 * API name: {@code ranges}
 		 */
-		public Builder ranges(@Nullable List<AggregationRange> value) {
+		public final Builder ranges(@Nullable List<AggregationRange> value) {
 			this.ranges = value;
 			return this;
 		}
@@ -223,40 +216,27 @@ public final class GeoDistanceAggregation extends BucketAggregationBase implemen
 		/**
 		 * API name: {@code ranges}
 		 */
-		public Builder ranges(AggregationRange... value) {
+		public final Builder ranges(AggregationRange... value) {
 			this.ranges = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #ranges(List)}, creating the list if needed.
+		 * API name: {@code ranges}
 		 */
-		public Builder addRanges(AggregationRange value) {
-			if (this.ranges == null) {
-				this.ranges = new ArrayList<>();
+		@SafeVarargs
+		public final Builder ranges(Function<AggregationRange.Builder, ObjectBuilder<AggregationRange>>... fns) {
+			this.ranges = new ArrayList<>(fns.length);
+			for (Function<AggregationRange.Builder, ObjectBuilder<AggregationRange>> fn : fns) {
+				this.ranges.add(fn.apply(new AggregationRange.Builder()).build());
 			}
-			this.ranges.add(value);
 			return this;
-		}
-
-		/**
-		 * Set {@link #ranges(List)} to a singleton list.
-		 */
-		public Builder ranges(Function<AggregationRange.Builder, ObjectBuilder<AggregationRange>> fn) {
-			return this.ranges(fn.apply(new AggregationRange.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #ranges(List)}, creating the list if needed.
-		 */
-		public Builder addRanges(Function<AggregationRange.Builder, ObjectBuilder<AggregationRange>> fn) {
-			return this.addRanges(fn.apply(new AggregationRange.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code unit}
 		 */
-		public Builder unit(@Nullable DistanceUnit value) {
+		public final Builder unit(@Nullable DistanceUnit value) {
 			this.unit = value;
 			return this;
 		}
@@ -273,6 +253,7 @@ public final class GeoDistanceAggregation extends BucketAggregationBase implemen
 		 *             if some of the required fields are null.
 		 */
 		public GeoDistanceAggregation build() {
+			_checkSingleUse();
 
 			return new GeoDistanceAggregation(this);
 		}

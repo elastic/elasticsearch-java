@@ -31,6 +31,7 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;
@@ -38,7 +39,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.InferenceConfigContainer
 @JsonpDeserializable
-public final class InferenceConfig implements JsonpSerializable {
+public class InferenceConfig implements JsonpSerializable {
 	@Nullable
 	private final RegressionInferenceOptions regression;
 
@@ -47,15 +48,15 @@ public final class InferenceConfig implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public InferenceConfig(Builder builder) {
+	private InferenceConfig(Builder builder) {
 
 		this.regression = builder.regression;
 		this.classification = builder.classification;
 
 	}
 
-	public InferenceConfig(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static InferenceConfig of(Function<Builder, ObjectBuilder<InferenceConfig>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -64,7 +65,7 @@ public final class InferenceConfig implements JsonpSerializable {
 	 * API name: {@code regression}
 	 */
 	@Nullable
-	public RegressionInferenceOptions regression() {
+	public final RegressionInferenceOptions regression() {
 		return this.regression;
 	}
 
@@ -74,7 +75,7 @@ public final class InferenceConfig implements JsonpSerializable {
 	 * API name: {@code classification}
 	 */
 	@Nullable
-	public ClassificationInferenceOptions classification() {
+	public final ClassificationInferenceOptions classification() {
 		return this.classification;
 	}
 
@@ -90,13 +91,11 @@ public final class InferenceConfig implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.regression != null) {
-
 			generator.writeKey("regression");
 			this.regression.serialize(generator, mapper);
 
 		}
 		if (this.classification != null) {
-
 			generator.writeKey("classification");
 			this.classification.serialize(generator, mapper);
 
@@ -109,7 +108,7 @@ public final class InferenceConfig implements JsonpSerializable {
 	/**
 	 * Builder for {@link InferenceConfig}.
 	 */
-	public static class Builder implements ObjectBuilder<InferenceConfig> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<InferenceConfig> {
 		@Nullable
 		private RegressionInferenceOptions regression;
 
@@ -121,7 +120,7 @@ public final class InferenceConfig implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code regression}
 		 */
-		public Builder regression(@Nullable RegressionInferenceOptions value) {
+		public final Builder regression(@Nullable RegressionInferenceOptions value) {
 			this.regression = value;
 			return this;
 		}
@@ -131,7 +130,7 @@ public final class InferenceConfig implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code regression}
 		 */
-		public Builder regression(
+		public final Builder regression(
 				Function<RegressionInferenceOptions.Builder, ObjectBuilder<RegressionInferenceOptions>> fn) {
 			return this.regression(fn.apply(new RegressionInferenceOptions.Builder()).build());
 		}
@@ -141,7 +140,7 @@ public final class InferenceConfig implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code classification}
 		 */
-		public Builder classification(@Nullable ClassificationInferenceOptions value) {
+		public final Builder classification(@Nullable ClassificationInferenceOptions value) {
 			this.classification = value;
 			return this;
 		}
@@ -151,7 +150,7 @@ public final class InferenceConfig implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code classification}
 		 */
-		public Builder classification(
+		public final Builder classification(
 				Function<ClassificationInferenceOptions.Builder, ObjectBuilder<ClassificationInferenceOptions>> fn) {
 			return this.classification(fn.apply(new ClassificationInferenceOptions.Builder()).build());
 		}
@@ -163,6 +162,7 @@ public final class InferenceConfig implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public InferenceConfig build() {
+			_checkSingleUse();
 
 			return new InferenceConfig(this);
 		}

@@ -36,16 +36,16 @@ import java.util.function.Function;
 
 // typedef: _types.mapping.RankFeaturesProperty
 @JsonpDeserializable
-public final class RankFeaturesProperty extends PropertyBase implements PropertyVariant {
+public class RankFeaturesProperty extends PropertyBase implements PropertyVariant {
 	// ---------------------------------------------------------------------------------------------
 
-	public RankFeaturesProperty(Builder builder) {
+	private RankFeaturesProperty(Builder builder) {
 		super(builder);
 
 	}
 
-	public RankFeaturesProperty(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static RankFeaturesProperty of(Function<Builder, ObjectBuilder<RankFeaturesProperty>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -83,6 +83,7 @@ public final class RankFeaturesProperty extends PropertyBase implements Property
 		 *             if some of the required fields are null.
 		 */
 		public RankFeaturesProperty build() {
+			_checkSingleUse();
 
 			return new RankFeaturesProperty(this);
 		}

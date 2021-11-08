@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -39,25 +41,25 @@ import javax.annotation.Nullable;
 
 // typedef: security._types.ClusterNode
 @JsonpDeserializable
-public final class ClusterNode implements JsonpSerializable {
+public class ClusterNode implements JsonpSerializable {
 	private final String name;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public ClusterNode(Builder builder) {
+	private ClusterNode(Builder builder) {
 
-		this.name = Objects.requireNonNull(builder.name, "name");
+		this.name = ModelTypeHelper.requireNonNull(builder.name, this, "name");
 
 	}
 
-	public ClusterNode(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ClusterNode of(Function<Builder, ObjectBuilder<ClusterNode>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code name}
 	 */
-	public String name() {
+	public final String name() {
 		return this.name;
 	}
 
@@ -82,13 +84,13 @@ public final class ClusterNode implements JsonpSerializable {
 	/**
 	 * Builder for {@link ClusterNode}.
 	 */
-	public static class Builder implements ObjectBuilder<ClusterNode> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ClusterNode> {
 		private String name;
 
 		/**
 		 * Required - API name: {@code name}
 		 */
-		public Builder name(String value) {
+		public final Builder name(String value) {
 			this.name = value;
 			return this;
 		}
@@ -100,6 +102,7 @@ public final class ClusterNode implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public ClusterNode build() {
+			_checkSingleUse();
 
 			return new ClusterNode(this);
 		}

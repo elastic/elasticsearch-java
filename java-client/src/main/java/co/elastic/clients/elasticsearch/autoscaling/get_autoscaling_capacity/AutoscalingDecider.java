@@ -31,7 +31,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -40,7 +42,7 @@ import javax.annotation.Nullable;
 
 // typedef: autoscaling.get_autoscaling_capacity.AutoscalingDecider
 @JsonpDeserializable
-public final class AutoscalingDecider implements JsonpSerializable {
+public class AutoscalingDecider implements JsonpSerializable {
 	private final AutoscalingCapacity requiredCapacity;
 
 	@Nullable
@@ -51,22 +53,22 @@ public final class AutoscalingDecider implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public AutoscalingDecider(Builder builder) {
+	private AutoscalingDecider(Builder builder) {
 
-		this.requiredCapacity = Objects.requireNonNull(builder.requiredCapacity, "required_capacity");
+		this.requiredCapacity = ModelTypeHelper.requireNonNull(builder.requiredCapacity, this, "requiredCapacity");
 		this.reasonSummary = builder.reasonSummary;
 		this.reasonDetails = builder.reasonDetails;
 
 	}
 
-	public AutoscalingDecider(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static AutoscalingDecider of(Function<Builder, ObjectBuilder<AutoscalingDecider>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code required_capacity}
 	 */
-	public AutoscalingCapacity requiredCapacity() {
+	public final AutoscalingCapacity requiredCapacity() {
 		return this.requiredCapacity;
 	}
 
@@ -74,7 +76,7 @@ public final class AutoscalingDecider implements JsonpSerializable {
 	 * API name: {@code reason_summary}
 	 */
 	@Nullable
-	public String reasonSummary() {
+	public final String reasonSummary() {
 		return this.reasonSummary;
 	}
 
@@ -82,7 +84,7 @@ public final class AutoscalingDecider implements JsonpSerializable {
 	 * API name: {@code reason_details}
 	 */
 	@Nullable
-	public JsonData reasonDetails() {
+	public final JsonData reasonDetails() {
 		return this.reasonDetails;
 	}
 
@@ -101,13 +103,11 @@ public final class AutoscalingDecider implements JsonpSerializable {
 		this.requiredCapacity.serialize(generator, mapper);
 
 		if (this.reasonSummary != null) {
-
 			generator.writeKey("reason_summary");
 			generator.write(this.reasonSummary);
 
 		}
 		if (this.reasonDetails != null) {
-
 			generator.writeKey("reason_details");
 			this.reasonDetails.serialize(generator, mapper);
 
@@ -120,7 +120,7 @@ public final class AutoscalingDecider implements JsonpSerializable {
 	/**
 	 * Builder for {@link AutoscalingDecider}.
 	 */
-	public static class Builder implements ObjectBuilder<AutoscalingDecider> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<AutoscalingDecider> {
 		private AutoscalingCapacity requiredCapacity;
 
 		@Nullable
@@ -132,7 +132,7 @@ public final class AutoscalingDecider implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code required_capacity}
 		 */
-		public Builder requiredCapacity(AutoscalingCapacity value) {
+		public final Builder requiredCapacity(AutoscalingCapacity value) {
 			this.requiredCapacity = value;
 			return this;
 		}
@@ -140,14 +140,15 @@ public final class AutoscalingDecider implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code required_capacity}
 		 */
-		public Builder requiredCapacity(Function<AutoscalingCapacity.Builder, ObjectBuilder<AutoscalingCapacity>> fn) {
+		public final Builder requiredCapacity(
+				Function<AutoscalingCapacity.Builder, ObjectBuilder<AutoscalingCapacity>> fn) {
 			return this.requiredCapacity(fn.apply(new AutoscalingCapacity.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code reason_summary}
 		 */
-		public Builder reasonSummary(@Nullable String value) {
+		public final Builder reasonSummary(@Nullable String value) {
 			this.reasonSummary = value;
 			return this;
 		}
@@ -155,7 +156,7 @@ public final class AutoscalingDecider implements JsonpSerializable {
 		/**
 		 * API name: {@code reason_details}
 		 */
-		public Builder reasonDetails(@Nullable JsonData value) {
+		public final Builder reasonDetails(@Nullable JsonData value) {
 			this.reasonDetails = value;
 			return this;
 		}
@@ -167,6 +168,7 @@ public final class AutoscalingDecider implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public AutoscalingDecider build() {
+			_checkSingleUse();
 
 			return new AutoscalingDecider(this);
 		}

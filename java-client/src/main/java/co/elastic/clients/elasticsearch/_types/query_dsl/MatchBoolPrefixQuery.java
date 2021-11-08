@@ -29,6 +29,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -40,7 +41,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.MatchBoolPrefixQuery
 @JsonpDeserializable
-public final class MatchBoolPrefixQuery extends QueryBase implements QueryVariant {
+public class MatchBoolPrefixQuery extends QueryBase implements QueryVariant {
 	// Single key dictionary
 	private final String field;
 
@@ -72,9 +73,9 @@ public final class MatchBoolPrefixQuery extends QueryBase implements QueryVarian
 
 	// ---------------------------------------------------------------------------------------------
 
-	public MatchBoolPrefixQuery(Builder builder) {
+	private MatchBoolPrefixQuery(Builder builder) {
 		super(builder);
-		this.field = Objects.requireNonNull(builder.field, "field");
+		this.field = ModelTypeHelper.requireNonNull(builder.field, this, "field");
 
 		this.analyzer = builder.analyzer;
 		this.fuzziness = builder.fuzziness;
@@ -84,12 +85,12 @@ public final class MatchBoolPrefixQuery extends QueryBase implements QueryVarian
 		this.minimumShouldMatch = builder.minimumShouldMatch;
 		this.operator = builder.operator;
 		this.prefixLength = builder.prefixLength;
-		this.query = Objects.requireNonNull(builder.query, "query");
+		this.query = ModelTypeHelper.requireNonNull(builder.query, this, "query");
 
 	}
 
-	public MatchBoolPrefixQuery(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static MatchBoolPrefixQuery of(Function<Builder, ObjectBuilder<MatchBoolPrefixQuery>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -103,7 +104,7 @@ public final class MatchBoolPrefixQuery extends QueryBase implements QueryVarian
 	/**
 	 * Required - The target field
 	 */
-	public String field() {
+	public final String field() {
 		return this.field;
 	}
 
@@ -111,7 +112,7 @@ public final class MatchBoolPrefixQuery extends QueryBase implements QueryVarian
 	 * API name: {@code analyzer}
 	 */
 	@Nullable
-	public String analyzer() {
+	public final String analyzer() {
 		return this.analyzer;
 	}
 
@@ -119,7 +120,7 @@ public final class MatchBoolPrefixQuery extends QueryBase implements QueryVarian
 	 * API name: {@code fuzziness}
 	 */
 	@Nullable
-	public String fuzziness() {
+	public final String fuzziness() {
 		return this.fuzziness;
 	}
 
@@ -127,7 +128,7 @@ public final class MatchBoolPrefixQuery extends QueryBase implements QueryVarian
 	 * API name: {@code fuzzy_rewrite}
 	 */
 	@Nullable
-	public String fuzzyRewrite() {
+	public final String fuzzyRewrite() {
 		return this.fuzzyRewrite;
 	}
 
@@ -135,7 +136,7 @@ public final class MatchBoolPrefixQuery extends QueryBase implements QueryVarian
 	 * API name: {@code fuzzy_transpositions}
 	 */
 	@Nullable
-	public Boolean fuzzyTranspositions() {
+	public final Boolean fuzzyTranspositions() {
 		return this.fuzzyTranspositions;
 	}
 
@@ -143,7 +144,7 @@ public final class MatchBoolPrefixQuery extends QueryBase implements QueryVarian
 	 * API name: {@code max_expansions}
 	 */
 	@Nullable
-	public Integer maxExpansions() {
+	public final Integer maxExpansions() {
 		return this.maxExpansions;
 	}
 
@@ -151,7 +152,7 @@ public final class MatchBoolPrefixQuery extends QueryBase implements QueryVarian
 	 * API name: {@code minimum_should_match}
 	 */
 	@Nullable
-	public String minimumShouldMatch() {
+	public final String minimumShouldMatch() {
 		return this.minimumShouldMatch;
 	}
 
@@ -159,7 +160,7 @@ public final class MatchBoolPrefixQuery extends QueryBase implements QueryVarian
 	 * API name: {@code operator}
 	 */
 	@Nullable
-	public Operator operator() {
+	public final Operator operator() {
 		return this.operator;
 	}
 
@@ -167,14 +168,14 @@ public final class MatchBoolPrefixQuery extends QueryBase implements QueryVarian
 	 * API name: {@code prefix_length}
 	 */
 	@Nullable
-	public Integer prefixLength() {
+	public final Integer prefixLength() {
 		return this.prefixLength;
 	}
 
 	/**
 	 * Required - API name: {@code query}
 	 */
-	public String query() {
+	public final String query() {
 		return this.query;
 	}
 
@@ -183,53 +184,44 @@ public final class MatchBoolPrefixQuery extends QueryBase implements QueryVarian
 
 		super.serializeInternal(generator, mapper);
 		if (this.analyzer != null) {
-
 			generator.writeKey("analyzer");
 			generator.write(this.analyzer);
 
 		}
 		if (this.fuzziness != null) {
-
 			generator.writeKey("fuzziness");
 			generator.write(this.fuzziness);
 
 		}
 		if (this.fuzzyRewrite != null) {
-
 			generator.writeKey("fuzzy_rewrite");
 			generator.write(this.fuzzyRewrite);
 
 		}
 		if (this.fuzzyTranspositions != null) {
-
 			generator.writeKey("fuzzy_transpositions");
 			generator.write(this.fuzzyTranspositions);
 
 		}
 		if (this.maxExpansions != null) {
-
 			generator.writeKey("max_expansions");
 			generator.write(this.maxExpansions);
 
 		}
 		if (this.minimumShouldMatch != null) {
-
 			generator.writeKey("minimum_should_match");
 			generator.write(this.minimumShouldMatch);
 
 		}
 		if (this.operator != null) {
-
 			generator.writeKey("operator");
 			this.operator.serialize(generator, mapper);
 		}
 		if (this.prefixLength != null) {
-
 			generator.writeKey("prefix_length");
 			generator.write(this.prefixLength);
 
 		}
-
 		generator.writeKey("query");
 		generator.write(this.query);
 
@@ -250,7 +242,7 @@ public final class MatchBoolPrefixQuery extends QueryBase implements QueryVarian
 		/**
 		 * Required - The target field
 		 */
-		public Builder field(String value) {
+		public final Builder field(String value) {
 			this.field = value;
 			return this;
 		}
@@ -284,7 +276,7 @@ public final class MatchBoolPrefixQuery extends QueryBase implements QueryVarian
 		/**
 		 * API name: {@code analyzer}
 		 */
-		public Builder analyzer(@Nullable String value) {
+		public final Builder analyzer(@Nullable String value) {
 			this.analyzer = value;
 			return this;
 		}
@@ -292,7 +284,7 @@ public final class MatchBoolPrefixQuery extends QueryBase implements QueryVarian
 		/**
 		 * API name: {@code fuzziness}
 		 */
-		public Builder fuzziness(@Nullable String value) {
+		public final Builder fuzziness(@Nullable String value) {
 			this.fuzziness = value;
 			return this;
 		}
@@ -300,7 +292,7 @@ public final class MatchBoolPrefixQuery extends QueryBase implements QueryVarian
 		/**
 		 * API name: {@code fuzzy_rewrite}
 		 */
-		public Builder fuzzyRewrite(@Nullable String value) {
+		public final Builder fuzzyRewrite(@Nullable String value) {
 			this.fuzzyRewrite = value;
 			return this;
 		}
@@ -308,7 +300,7 @@ public final class MatchBoolPrefixQuery extends QueryBase implements QueryVarian
 		/**
 		 * API name: {@code fuzzy_transpositions}
 		 */
-		public Builder fuzzyTranspositions(@Nullable Boolean value) {
+		public final Builder fuzzyTranspositions(@Nullable Boolean value) {
 			this.fuzzyTranspositions = value;
 			return this;
 		}
@@ -316,7 +308,7 @@ public final class MatchBoolPrefixQuery extends QueryBase implements QueryVarian
 		/**
 		 * API name: {@code max_expansions}
 		 */
-		public Builder maxExpansions(@Nullable Integer value) {
+		public final Builder maxExpansions(@Nullable Integer value) {
 			this.maxExpansions = value;
 			return this;
 		}
@@ -324,7 +316,7 @@ public final class MatchBoolPrefixQuery extends QueryBase implements QueryVarian
 		/**
 		 * API name: {@code minimum_should_match}
 		 */
-		public Builder minimumShouldMatch(@Nullable String value) {
+		public final Builder minimumShouldMatch(@Nullable String value) {
 			this.minimumShouldMatch = value;
 			return this;
 		}
@@ -332,7 +324,7 @@ public final class MatchBoolPrefixQuery extends QueryBase implements QueryVarian
 		/**
 		 * API name: {@code operator}
 		 */
-		public Builder operator(@Nullable Operator value) {
+		public final Builder operator(@Nullable Operator value) {
 			this.operator = value;
 			return this;
 		}
@@ -340,7 +332,7 @@ public final class MatchBoolPrefixQuery extends QueryBase implements QueryVarian
 		/**
 		 * API name: {@code prefix_length}
 		 */
-		public Builder prefixLength(@Nullable Integer value) {
+		public final Builder prefixLength(@Nullable Integer value) {
 			this.prefixLength = value;
 			return this;
 		}
@@ -348,7 +340,7 @@ public final class MatchBoolPrefixQuery extends QueryBase implements QueryVarian
 		/**
 		 * Required - API name: {@code query}
 		 */
-		public Builder query(String value) {
+		public final Builder query(String value) {
 			this.query = value;
 			return this;
 		}
@@ -365,6 +357,7 @@ public final class MatchBoolPrefixQuery extends QueryBase implements QueryVarian
 		 *             if some of the required fields are null.
 		 */
 		public MatchBoolPrefixQuery build() {
+			_checkSingleUse();
 
 			return new MatchBoolPrefixQuery(this);
 		}

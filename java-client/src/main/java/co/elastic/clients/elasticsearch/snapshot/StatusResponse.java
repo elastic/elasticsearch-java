@@ -32,6 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -42,25 +43,25 @@ import javax.annotation.Nullable;
 
 // typedef: snapshot.status.Response
 @JsonpDeserializable
-public final class StatusResponse implements JsonpSerializable {
+public class StatusResponse implements JsonpSerializable {
 	private final List<Status> snapshots;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public StatusResponse(Builder builder) {
+	private StatusResponse(Builder builder) {
 
-		this.snapshots = ModelTypeHelper.unmodifiableNonNull(builder.snapshots, "snapshots");
+		this.snapshots = ModelTypeHelper.unmodifiableRequired(builder.snapshots, this, "snapshots");
 
 	}
 
-	public StatusResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static StatusResponse of(Function<Builder, ObjectBuilder<StatusResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code snapshots}
 	 */
-	public List<Status> snapshots() {
+	public final List<Status> snapshots() {
 		return this.snapshots;
 	}
 
@@ -75,13 +76,16 @@ public final class StatusResponse implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("snapshots");
-		generator.writeStartArray();
-		for (Status item0 : this.snapshots) {
-			item0.serialize(generator, mapper);
+		if (ModelTypeHelper.isDefined(this.snapshots)) {
+			generator.writeKey("snapshots");
+			generator.writeStartArray();
+			for (Status item0 : this.snapshots) {
+				item0.serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
 
 	}
 
@@ -90,13 +94,13 @@ public final class StatusResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link StatusResponse}.
 	 */
-	public static class Builder implements ObjectBuilder<StatusResponse> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<StatusResponse> {
 		private List<Status> snapshots;
 
 		/**
 		 * Required - API name: {@code snapshots}
 		 */
-		public Builder snapshots(List<Status> value) {
+		public final Builder snapshots(List<Status> value) {
 			this.snapshots = value;
 			return this;
 		}
@@ -104,34 +108,21 @@ public final class StatusResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code snapshots}
 		 */
-		public Builder snapshots(Status... value) {
+		public final Builder snapshots(Status... value) {
 			this.snapshots = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #snapshots(List)}, creating the list if needed.
+		 * Required - API name: {@code snapshots}
 		 */
-		public Builder addSnapshots(Status value) {
-			if (this.snapshots == null) {
-				this.snapshots = new ArrayList<>();
+		@SafeVarargs
+		public final Builder snapshots(Function<Status.Builder, ObjectBuilder<Status>>... fns) {
+			this.snapshots = new ArrayList<>(fns.length);
+			for (Function<Status.Builder, ObjectBuilder<Status>> fn : fns) {
+				this.snapshots.add(fn.apply(new Status.Builder()).build());
 			}
-			this.snapshots.add(value);
 			return this;
-		}
-
-		/**
-		 * Set {@link #snapshots(List)} to a singleton list.
-		 */
-		public Builder snapshots(Function<Status.Builder, ObjectBuilder<Status>> fn) {
-			return this.snapshots(fn.apply(new Status.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #snapshots(List)}, creating the list if needed.
-		 */
-		public Builder addSnapshots(Function<Status.Builder, ObjectBuilder<Status>> fn) {
-			return this.addSnapshots(fn.apply(new Status.Builder()).build());
 		}
 
 		/**
@@ -141,6 +132,7 @@ public final class StatusResponse implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public StatusResponse build() {
+			_checkSingleUse();
 
 			return new StatusResponse(this);
 		}

@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
@@ -40,7 +42,7 @@ import javax.annotation.Nullable;
 
 // typedef: xpack.info.Feature
 @JsonpDeserializable
-public final class Feature implements JsonpSerializable {
+public class Feature implements JsonpSerializable {
 	private final boolean available;
 
 	@Nullable
@@ -53,23 +55,23 @@ public final class Feature implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public Feature(Builder builder) {
+	private Feature(Builder builder) {
 
-		this.available = Objects.requireNonNull(builder.available, "available");
+		this.available = ModelTypeHelper.requireNonNull(builder.available, this, "available");
 		this.description = builder.description;
-		this.enabled = Objects.requireNonNull(builder.enabled, "enabled");
+		this.enabled = ModelTypeHelper.requireNonNull(builder.enabled, this, "enabled");
 		this.nativeCodeInfo = builder.nativeCodeInfo;
 
 	}
 
-	public Feature(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static Feature of(Function<Builder, ObjectBuilder<Feature>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code available}
 	 */
-	public boolean available() {
+	public final boolean available() {
 		return this.available;
 	}
 
@@ -77,14 +79,14 @@ public final class Feature implements JsonpSerializable {
 	 * API name: {@code description}
 	 */
 	@Nullable
-	public String description() {
+	public final String description() {
 		return this.description;
 	}
 
 	/**
 	 * Required - API name: {@code enabled}
 	 */
-	public boolean enabled() {
+	public final boolean enabled() {
 		return this.enabled;
 	}
 
@@ -92,7 +94,7 @@ public final class Feature implements JsonpSerializable {
 	 * API name: {@code native_code_info}
 	 */
 	@Nullable
-	public NativeCodeInformation nativeCodeInfo() {
+	public final NativeCodeInformation nativeCodeInfo() {
 		return this.nativeCodeInfo;
 	}
 
@@ -111,17 +113,14 @@ public final class Feature implements JsonpSerializable {
 		generator.write(this.available);
 
 		if (this.description != null) {
-
 			generator.writeKey("description");
 			generator.write(this.description);
 
 		}
-
 		generator.writeKey("enabled");
 		generator.write(this.enabled);
 
 		if (this.nativeCodeInfo != null) {
-
 			generator.writeKey("native_code_info");
 			this.nativeCodeInfo.serialize(generator, mapper);
 
@@ -134,7 +133,7 @@ public final class Feature implements JsonpSerializable {
 	/**
 	 * Builder for {@link Feature}.
 	 */
-	public static class Builder implements ObjectBuilder<Feature> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Feature> {
 		private Boolean available;
 
 		@Nullable
@@ -148,7 +147,7 @@ public final class Feature implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code available}
 		 */
-		public Builder available(boolean value) {
+		public final Builder available(boolean value) {
 			this.available = value;
 			return this;
 		}
@@ -156,7 +155,7 @@ public final class Feature implements JsonpSerializable {
 		/**
 		 * API name: {@code description}
 		 */
-		public Builder description(@Nullable String value) {
+		public final Builder description(@Nullable String value) {
 			this.description = value;
 			return this;
 		}
@@ -164,7 +163,7 @@ public final class Feature implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code enabled}
 		 */
-		public Builder enabled(boolean value) {
+		public final Builder enabled(boolean value) {
 			this.enabled = value;
 			return this;
 		}
@@ -172,7 +171,7 @@ public final class Feature implements JsonpSerializable {
 		/**
 		 * API name: {@code native_code_info}
 		 */
-		public Builder nativeCodeInfo(@Nullable NativeCodeInformation value) {
+		public final Builder nativeCodeInfo(@Nullable NativeCodeInformation value) {
 			this.nativeCodeInfo = value;
 			return this;
 		}
@@ -180,7 +179,7 @@ public final class Feature implements JsonpSerializable {
 		/**
 		 * API name: {@code native_code_info}
 		 */
-		public Builder nativeCodeInfo(
+		public final Builder nativeCodeInfo(
 				Function<NativeCodeInformation.Builder, ObjectBuilder<NativeCodeInformation>> fn) {
 			return this.nativeCodeInfo(fn.apply(new NativeCodeInformation.Builder()).build());
 		}
@@ -192,6 +191,7 @@ public final class Feature implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public Feature build() {
+			_checkSingleUse();
 
 			return new Feature(this);
 		}

@@ -31,12 +31,13 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.MapBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
@@ -44,25 +45,26 @@ import javax.annotation.Nullable;
 
 // typedef: _global.update_by_query_rethrottle.Response
 @JsonpDeserializable
-public final class UpdateByQueryRethrottleResponse implements JsonpSerializable {
+public class UpdateByQueryRethrottleResponse implements JsonpSerializable {
 	private final Map<String, UpdateByQueryRethrottleNode> nodes;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public UpdateByQueryRethrottleResponse(Builder builder) {
+	private UpdateByQueryRethrottleResponse(Builder builder) {
 
-		this.nodes = ModelTypeHelper.unmodifiableNonNull(builder.nodes, "nodes");
+		this.nodes = ModelTypeHelper.unmodifiableRequired(builder.nodes, this, "nodes");
 
 	}
 
-	public UpdateByQueryRethrottleResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static UpdateByQueryRethrottleResponse of(
+			Function<Builder, ObjectBuilder<UpdateByQueryRethrottleResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code nodes}
 	 */
-	public Map<String, UpdateByQueryRethrottleNode> nodes() {
+	public final Map<String, UpdateByQueryRethrottleNode> nodes() {
 		return this.nodes;
 	}
 
@@ -77,14 +79,17 @@ public final class UpdateByQueryRethrottleResponse implements JsonpSerializable 
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("nodes");
-		generator.writeStartObject();
-		for (Map.Entry<String, UpdateByQueryRethrottleNode> item0 : this.nodes.entrySet()) {
-			generator.writeKey(item0.getKey());
-			item0.getValue().serialize(generator, mapper);
+		if (ModelTypeHelper.isDefined(this.nodes)) {
+			generator.writeKey("nodes");
+			generator.writeStartObject();
+			for (Map.Entry<String, UpdateByQueryRethrottleNode> item0 : this.nodes.entrySet()) {
+				generator.writeKey(item0.getKey());
+				item0.getValue().serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
 
 	}
 
@@ -93,25 +98,14 @@ public final class UpdateByQueryRethrottleResponse implements JsonpSerializable 
 	/**
 	 * Builder for {@link UpdateByQueryRethrottleResponse}.
 	 */
-	public static class Builder implements ObjectBuilder<UpdateByQueryRethrottleResponse> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<UpdateByQueryRethrottleResponse> {
 		private Map<String, UpdateByQueryRethrottleNode> nodes;
 
 		/**
 		 * Required - API name: {@code nodes}
 		 */
-		public Builder nodes(Map<String, UpdateByQueryRethrottleNode> value) {
+		public final Builder nodes(Map<String, UpdateByQueryRethrottleNode> value) {
 			this.nodes = value;
-			return this;
-		}
-
-		/**
-		 * Add a key/value to {@link #nodes(Map)}, creating the map if needed.
-		 */
-		public Builder putNodes(String key, UpdateByQueryRethrottleNode value) {
-			if (this.nodes == null) {
-				this.nodes = new HashMap<>();
-			}
-			this.nodes.put(key, value);
 			return this;
 		}
 
@@ -124,12 +118,9 @@ public final class UpdateByQueryRethrottleResponse implements JsonpSerializable 
 					.nodes(Collections.singletonMap(key, fn.apply(new UpdateByQueryRethrottleNode.Builder()).build()));
 		}
 
-		/**
-		 * Add a key/value to {@link #nodes(Map)}, creating the map if needed.
-		 */
-		public Builder putNodes(String key,
-				Function<UpdateByQueryRethrottleNode.Builder, ObjectBuilder<UpdateByQueryRethrottleNode>> fn) {
-			return this.putNodes(key, fn.apply(new UpdateByQueryRethrottleNode.Builder()).build());
+		public final Builder nodes(
+				Function<MapBuilder<String, UpdateByQueryRethrottleNode, UpdateByQueryRethrottleNode.Builder>, ObjectBuilder<Map<String, UpdateByQueryRethrottleNode>>> fn) {
+			return nodes(fn.apply(new MapBuilder<>(UpdateByQueryRethrottleNode.Builder::new)).build());
 		}
 
 		/**
@@ -139,6 +130,7 @@ public final class UpdateByQueryRethrottleResponse implements JsonpSerializable 
 		 *             if some of the required fields are null.
 		 */
 		public UpdateByQueryRethrottleResponse build() {
+			_checkSingleUse();
 
 			return new UpdateByQueryRethrottleResponse(this);
 		}

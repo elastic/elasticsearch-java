@@ -34,7 +34,6 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
@@ -43,23 +42,23 @@ import javax.annotation.Nullable;
 
 // typedef: _types.analysis.ElisionTokenFilter
 @JsonpDeserializable
-public final class ElisionTokenFilter extends TokenFilterBase implements TokenFilterVariant {
+public class ElisionTokenFilter extends TokenFilterBase implements TokenFilterVariant {
 	private final List<String> articles;
 
 	private final boolean articlesCase;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public ElisionTokenFilter(Builder builder) {
+	private ElisionTokenFilter(Builder builder) {
 		super(builder);
 
-		this.articles = ModelTypeHelper.unmodifiableNonNull(builder.articles, "articles");
-		this.articlesCase = Objects.requireNonNull(builder.articlesCase, "articles_case");
+		this.articles = ModelTypeHelper.unmodifiableRequired(builder.articles, this, "articles");
+		this.articlesCase = ModelTypeHelper.requireNonNull(builder.articlesCase, this, "articlesCase");
 
 	}
 
-	public ElisionTokenFilter(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ElisionTokenFilter of(Function<Builder, ObjectBuilder<ElisionTokenFilter>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -73,14 +72,14 @@ public final class ElisionTokenFilter extends TokenFilterBase implements TokenFi
 	/**
 	 * Required - API name: {@code articles}
 	 */
-	public List<String> articles() {
+	public final List<String> articles() {
 		return this.articles;
 	}
 
 	/**
 	 * Required - API name: {@code articles_case}
 	 */
-	public boolean articlesCase() {
+	public final boolean articlesCase() {
 		return this.articlesCase;
 	}
 
@@ -88,15 +87,16 @@ public final class ElisionTokenFilter extends TokenFilterBase implements TokenFi
 
 		generator.write("type", "elision");
 		super.serializeInternal(generator, mapper);
+		if (ModelTypeHelper.isDefined(this.articles)) {
+			generator.writeKey("articles");
+			generator.writeStartArray();
+			for (String item0 : this.articles) {
+				generator.write(item0);
 
-		generator.writeKey("articles");
-		generator.writeStartArray();
-		for (String item0 : this.articles) {
-			generator.write(item0);
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
-
 		generator.writeKey("articles_case");
 		generator.write(this.articlesCase);
 
@@ -117,7 +117,7 @@ public final class ElisionTokenFilter extends TokenFilterBase implements TokenFi
 		/**
 		 * Required - API name: {@code articles}
 		 */
-		public Builder articles(List<String> value) {
+		public final Builder articles(List<String> value) {
 			this.articles = value;
 			return this;
 		}
@@ -125,26 +125,15 @@ public final class ElisionTokenFilter extends TokenFilterBase implements TokenFi
 		/**
 		 * Required - API name: {@code articles}
 		 */
-		public Builder articles(String... value) {
+		public final Builder articles(String... value) {
 			this.articles = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #articles(List)}, creating the list if needed.
-		 */
-		public Builder addArticles(String value) {
-			if (this.articles == null) {
-				this.articles = new ArrayList<>();
-			}
-			this.articles.add(value);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code articles_case}
 		 */
-		public Builder articlesCase(boolean value) {
+		public final Builder articlesCase(boolean value) {
 			this.articlesCase = value;
 			return this;
 		}
@@ -161,6 +150,7 @@ public final class ElisionTokenFilter extends TokenFilterBase implements TokenFi
 		 *             if some of the required fields are null.
 		 */
 		public ElisionTokenFilter build() {
+			_checkSingleUse();
 
 			return new ElisionTokenFilter(this);
 		}

@@ -32,6 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -42,25 +43,25 @@ import javax.annotation.Nullable;
 
 // typedef: nodes.info.NodeInfoIngest
 @JsonpDeserializable
-public final class NodeInfoIngest implements JsonpSerializable {
+public class NodeInfoIngest implements JsonpSerializable {
 	private final List<NodeInfoIngestProcessor> processors;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public NodeInfoIngest(Builder builder) {
+	private NodeInfoIngest(Builder builder) {
 
-		this.processors = ModelTypeHelper.unmodifiableNonNull(builder.processors, "processors");
+		this.processors = ModelTypeHelper.unmodifiableRequired(builder.processors, this, "processors");
 
 	}
 
-	public NodeInfoIngest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static NodeInfoIngest of(Function<Builder, ObjectBuilder<NodeInfoIngest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code processors}
 	 */
-	public List<NodeInfoIngestProcessor> processors() {
+	public final List<NodeInfoIngestProcessor> processors() {
 		return this.processors;
 	}
 
@@ -75,13 +76,16 @@ public final class NodeInfoIngest implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("processors");
-		generator.writeStartArray();
-		for (NodeInfoIngestProcessor item0 : this.processors) {
-			item0.serialize(generator, mapper);
+		if (ModelTypeHelper.isDefined(this.processors)) {
+			generator.writeKey("processors");
+			generator.writeStartArray();
+			for (NodeInfoIngestProcessor item0 : this.processors) {
+				item0.serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
 
 	}
 
@@ -90,13 +94,13 @@ public final class NodeInfoIngest implements JsonpSerializable {
 	/**
 	 * Builder for {@link NodeInfoIngest}.
 	 */
-	public static class Builder implements ObjectBuilder<NodeInfoIngest> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodeInfoIngest> {
 		private List<NodeInfoIngestProcessor> processors;
 
 		/**
 		 * Required - API name: {@code processors}
 		 */
-		public Builder processors(List<NodeInfoIngestProcessor> value) {
+		public final Builder processors(List<NodeInfoIngestProcessor> value) {
 			this.processors = value;
 			return this;
 		}
@@ -104,36 +108,22 @@ public final class NodeInfoIngest implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code processors}
 		 */
-		public Builder processors(NodeInfoIngestProcessor... value) {
+		public final Builder processors(NodeInfoIngestProcessor... value) {
 			this.processors = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #processors(List)}, creating the list if needed.
+		 * Required - API name: {@code processors}
 		 */
-		public Builder addProcessors(NodeInfoIngestProcessor value) {
-			if (this.processors == null) {
-				this.processors = new ArrayList<>();
+		@SafeVarargs
+		public final Builder processors(
+				Function<NodeInfoIngestProcessor.Builder, ObjectBuilder<NodeInfoIngestProcessor>>... fns) {
+			this.processors = new ArrayList<>(fns.length);
+			for (Function<NodeInfoIngestProcessor.Builder, ObjectBuilder<NodeInfoIngestProcessor>> fn : fns) {
+				this.processors.add(fn.apply(new NodeInfoIngestProcessor.Builder()).build());
 			}
-			this.processors.add(value);
 			return this;
-		}
-
-		/**
-		 * Set {@link #processors(List)} to a singleton list.
-		 */
-		public Builder processors(
-				Function<NodeInfoIngestProcessor.Builder, ObjectBuilder<NodeInfoIngestProcessor>> fn) {
-			return this.processors(fn.apply(new NodeInfoIngestProcessor.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #processors(List)}, creating the list if needed.
-		 */
-		public Builder addProcessors(
-				Function<NodeInfoIngestProcessor.Builder, ObjectBuilder<NodeInfoIngestProcessor>> fn) {
-			return this.addProcessors(fn.apply(new NodeInfoIngestProcessor.Builder()).build());
 		}
 
 		/**
@@ -143,6 +133,7 @@ public final class NodeInfoIngest implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public NodeInfoIngest build() {
+			_checkSingleUse();
 
 			return new NodeInfoIngest(this);
 		}

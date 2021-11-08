@@ -32,9 +32,9 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
@@ -43,35 +43,35 @@ import javax.annotation.Nullable;
 
 // typedef: rollup._types.FieldMetric
 @JsonpDeserializable
-public final class FieldMetric implements JsonpSerializable {
+public class FieldMetric implements JsonpSerializable {
 	private final String field;
 
 	private final List<Metric> metrics;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public FieldMetric(Builder builder) {
+	private FieldMetric(Builder builder) {
 
-		this.field = Objects.requireNonNull(builder.field, "field");
-		this.metrics = ModelTypeHelper.unmodifiableNonNull(builder.metrics, "metrics");
+		this.field = ModelTypeHelper.requireNonNull(builder.field, this, "field");
+		this.metrics = ModelTypeHelper.unmodifiableRequired(builder.metrics, this, "metrics");
 
 	}
 
-	public FieldMetric(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static FieldMetric of(Function<Builder, ObjectBuilder<FieldMetric>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code field}
 	 */
-	public String field() {
+	public final String field() {
 		return this.field;
 	}
 
 	/**
 	 * Required - API name: {@code metrics}
 	 */
-	public List<Metric> metrics() {
+	public final List<Metric> metrics() {
 		return this.metrics;
 	}
 
@@ -89,12 +89,15 @@ public final class FieldMetric implements JsonpSerializable {
 		generator.writeKey("field");
 		generator.write(this.field);
 
-		generator.writeKey("metrics");
-		generator.writeStartArray();
-		for (Metric item0 : this.metrics) {
-			item0.serialize(generator, mapper);
+		if (ModelTypeHelper.isDefined(this.metrics)) {
+			generator.writeKey("metrics");
+			generator.writeStartArray();
+			for (Metric item0 : this.metrics) {
+				item0.serialize(generator, mapper);
+			}
+			generator.writeEnd();
+
 		}
-		generator.writeEnd();
 
 	}
 
@@ -103,7 +106,7 @@ public final class FieldMetric implements JsonpSerializable {
 	/**
 	 * Builder for {@link FieldMetric}.
 	 */
-	public static class Builder implements ObjectBuilder<FieldMetric> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<FieldMetric> {
 		private String field;
 
 		private List<Metric> metrics;
@@ -111,7 +114,7 @@ public final class FieldMetric implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code field}
 		 */
-		public Builder field(String value) {
+		public final Builder field(String value) {
 			this.field = value;
 			return this;
 		}
@@ -119,7 +122,7 @@ public final class FieldMetric implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code metrics}
 		 */
-		public Builder metrics(List<Metric> value) {
+		public final Builder metrics(List<Metric> value) {
 			this.metrics = value;
 			return this;
 		}
@@ -127,19 +130,8 @@ public final class FieldMetric implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code metrics}
 		 */
-		public Builder metrics(Metric... value) {
+		public final Builder metrics(Metric... value) {
 			this.metrics = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #metrics(List)}, creating the list if needed.
-		 */
-		public Builder addMetrics(Metric value) {
-			if (this.metrics == null) {
-				this.metrics = new ArrayList<>();
-			}
-			this.metrics.add(value);
 			return this;
 		}
 
@@ -150,6 +142,7 @@ public final class FieldMetric implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public FieldMetric build() {
+			_checkSingleUse();
 
 			return new FieldMetric(this);
 		}

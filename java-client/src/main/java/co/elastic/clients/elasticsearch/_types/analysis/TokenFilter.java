@@ -28,8 +28,11 @@ import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import co.elastic.clients.util.TaggedUnion;
 import co.elastic.clients.util.TaggedUnionUtils;
 import jakarta.json.stream.JsonGenerator;
@@ -39,17 +42,23 @@ import javax.annotation.Nullable;
 
 // typedef: _types.analysis.TokenFilter
 @JsonpDeserializable
-public class TokenFilter implements TaggedUnion<JsonpSerializable>, JsonpSerializable {
+public class TokenFilter implements TaggedUnion<TokenFilterVariant>, JsonpSerializable {
 
 	public static final String ASCIIFOLDING = "asciifolding";
 	public static final String COMMON_GRAMS = "common_grams";
 	public static final String CONDITION = "condition";
 	public static final String DELIMITED_PAYLOAD = "delimited_payload";
+	public static final String DICTIONARY_DECOMPOUNDER = "dictionary_decompounder";
 	public static final String EDGE_NGRAM = "edge_ngram";
 	public static final String ELISION = "elision";
 	public static final String FINGERPRINT = "fingerprint";
 	public static final String HUNSPELL = "hunspell";
 	public static final String HYPHENATION_DECOMPOUNDER = "hyphenation_decompounder";
+	public static final String ICU_COLLATION = "icu_collation";
+	public static final String ICU_FOLDING = "icu_folding";
+	public static final String ICU_NORMALIZER = "icu_normalizer";
+	public static final String ICU_TOKENIZER = "icu_tokenizer";
+	public static final String ICU_TRANSFORM = "icu_transform";
 	public static final String KSTEM = "kstem";
 	public static final String KEEP_TYPES = "keep_types";
 	public static final String KEEP = "keep";
@@ -65,6 +74,7 @@ public class TokenFilter implements TaggedUnion<JsonpSerializable>, JsonpSeriali
 	public static final String NORI_PART_OF_SPEECH = "nori_part_of_speech";
 	public static final String PATTERN_CAPTURE = "pattern_capture";
 	public static final String PATTERN_REPLACE = "pattern_replace";
+	public static final String PHONETIC = "phonetic";
 	public static final String PORTER_STEM = "porter_stem";
 	public static final String PREDICATE_TOKEN_FILTER = "predicate_token_filter";
 	public static final String REMOVE_DUPLICATES = "remove_duplicates";
@@ -86,38 +96,34 @@ public class TokenFilter implements TaggedUnion<JsonpSerializable>, JsonpSeriali
 	// Tagged union implementation
 
 	private final String _type;
-	private final JsonpSerializable _value;
+	private final TokenFilterVariant _value;
 
 	@Override
-	public String _type() {
+	public final String _type() {
 		return _type;
 	}
 
 	@Override
-	public JsonpSerializable _get() {
+	public final TokenFilterVariant _get() {
 		return _value;
 	}
 
 	public TokenFilter(TokenFilterVariant value) {
 
-		this._type = Objects.requireNonNull(value._variantType(), "variant type");
-		this._value = Objects.requireNonNull(value, "variant value");
+		this._type = ModelTypeHelper.requireNonNull(value._variantType(), this, "<variant type>");
+		this._value = ModelTypeHelper.requireNonNull(value, this, "<variant value>");
 
-	}
-
-	public <T extends TokenFilterVariant> TokenFilter(ObjectBuilder<T> builder) {
-		this(builder.build());
 	}
 
 	private TokenFilter(Builder builder) {
 
-		this._type = Objects.requireNonNull(builder._type, "variant type");
-		this._value = Objects.requireNonNull(builder._value, "variant value");
+		this._type = ModelTypeHelper.requireNonNull(builder._type, builder, "<variant type>");
+		this._value = ModelTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
 
 	}
 
-	public TokenFilter(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static TokenFilter of(Function<Builder, ObjectBuilder<TokenFilter>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -159,6 +165,17 @@ public class TokenFilter implements TaggedUnion<JsonpSerializable>, JsonpSeriali
 	 */
 	public DelimitedPayloadTokenFilter delimitedPayload() {
 		return TaggedUnionUtils.get(this, DELIMITED_PAYLOAD);
+	}
+
+	/**
+	 * Get the {@code dictionary_decompounder} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the
+	 *             {@code dictionary_decompounder} kind.
+	 */
+	public DictionaryDecompounderTokenFilter dictionaryDecompounder() {
+		return TaggedUnionUtils.get(this, DICTIONARY_DECOMPOUNDER);
 	}
 
 	/**
@@ -210,6 +227,56 @@ public class TokenFilter implements TaggedUnion<JsonpSerializable>, JsonpSeriali
 	 */
 	public HyphenationDecompounderTokenFilter hyphenationDecompounder() {
 		return TaggedUnionUtils.get(this, HYPHENATION_DECOMPOUNDER);
+	}
+
+	/**
+	 * Get the {@code icu_collation} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code icu_collation} kind.
+	 */
+	public IcuCollationTokenFilter icuCollation() {
+		return TaggedUnionUtils.get(this, ICU_COLLATION);
+	}
+
+	/**
+	 * Get the {@code icu_folding} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code icu_folding} kind.
+	 */
+	public IcuFoldingTokenFilter icuFolding() {
+		return TaggedUnionUtils.get(this, ICU_FOLDING);
+	}
+
+	/**
+	 * Get the {@code icu_normalizer} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code icu_normalizer} kind.
+	 */
+	public IcuNormalizationTokenFilter icuNormalizer() {
+		return TaggedUnionUtils.get(this, ICU_NORMALIZER);
+	}
+
+	/**
+	 * Get the {@code icu_tokenizer} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code icu_tokenizer} kind.
+	 */
+	public IcuTokenizer icuTokenizer() {
+		return TaggedUnionUtils.get(this, ICU_TOKENIZER);
+	}
+
+	/**
+	 * Get the {@code icu_transform} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code icu_transform} kind.
+	 */
+	public IcuTransformTokenFilter icuTransform() {
+		return TaggedUnionUtils.get(this, ICU_TRANSFORM);
 	}
 
 	/**
@@ -366,6 +433,16 @@ public class TokenFilter implements TaggedUnion<JsonpSerializable>, JsonpSeriali
 	 */
 	public PatternReplaceTokenFilter patternReplace() {
 		return TaggedUnionUtils.get(this, PATTERN_REPLACE);
+	}
+
+	/**
+	 * Get the {@code phonetic} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code phonetic} kind.
+	 */
+	public PhoneticTokenFilter phonetic() {
+		return TaggedUnionUtils.get(this, PHONETIC);
 	}
 
 	/**
@@ -545,13 +622,13 @@ public class TokenFilter implements TaggedUnion<JsonpSerializable>, JsonpSeriali
 	@Override
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 
-		_value.serialize(generator, mapper);
+		mapper.serialize(_value, generator);
 
 	}
 
-	public static class Builder implements ObjectBuilder<TokenFilter> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TokenFilter> {
 		private String _type;
-		private JsonpSerializable _value;
+		private TokenFilterVariant _value;
 
 		public Builder asciifolding(AsciiFoldingTokenFilter v) {
 			this._type = ASCIIFOLDING;
@@ -593,6 +670,17 @@ public class TokenFilter implements TaggedUnion<JsonpSerializable>, JsonpSeriali
 		public Builder delimitedPayload(
 				Function<DelimitedPayloadTokenFilter.Builder, ObjectBuilder<DelimitedPayloadTokenFilter>> f) {
 			return this.delimitedPayload(f.apply(new DelimitedPayloadTokenFilter.Builder()).build());
+		}
+
+		public Builder dictionaryDecompounder(DictionaryDecompounderTokenFilter v) {
+			this._type = DICTIONARY_DECOMPOUNDER;
+			this._value = v;
+			return this;
+		}
+
+		public Builder dictionaryDecompounder(
+				Function<DictionaryDecompounderTokenFilter.Builder, ObjectBuilder<DictionaryDecompounderTokenFilter>> f) {
+			return this.dictionaryDecompounder(f.apply(new DictionaryDecompounderTokenFilter.Builder()).build());
 		}
 
 		public Builder edgeNgram(EdgeNGramTokenFilter v) {
@@ -644,6 +732,59 @@ public class TokenFilter implements TaggedUnion<JsonpSerializable>, JsonpSeriali
 		public Builder hyphenationDecompounder(
 				Function<HyphenationDecompounderTokenFilter.Builder, ObjectBuilder<HyphenationDecompounderTokenFilter>> f) {
 			return this.hyphenationDecompounder(f.apply(new HyphenationDecompounderTokenFilter.Builder()).build());
+		}
+
+		public Builder icuCollation(IcuCollationTokenFilter v) {
+			this._type = ICU_COLLATION;
+			this._value = v;
+			return this;
+		}
+
+		public Builder icuCollation(
+				Function<IcuCollationTokenFilter.Builder, ObjectBuilder<IcuCollationTokenFilter>> f) {
+			return this.icuCollation(f.apply(new IcuCollationTokenFilter.Builder()).build());
+		}
+
+		public Builder icuFolding(IcuFoldingTokenFilter v) {
+			this._type = ICU_FOLDING;
+			this._value = v;
+			return this;
+		}
+
+		public Builder icuFolding(Function<IcuFoldingTokenFilter.Builder, ObjectBuilder<IcuFoldingTokenFilter>> f) {
+			return this.icuFolding(f.apply(new IcuFoldingTokenFilter.Builder()).build());
+		}
+
+		public Builder icuNormalizer(IcuNormalizationTokenFilter v) {
+			this._type = ICU_NORMALIZER;
+			this._value = v;
+			return this;
+		}
+
+		public Builder icuNormalizer(
+				Function<IcuNormalizationTokenFilter.Builder, ObjectBuilder<IcuNormalizationTokenFilter>> f) {
+			return this.icuNormalizer(f.apply(new IcuNormalizationTokenFilter.Builder()).build());
+		}
+
+		public Builder icuTokenizer(IcuTokenizer v) {
+			this._type = ICU_TOKENIZER;
+			this._value = v;
+			return this;
+		}
+
+		public Builder icuTokenizer(Function<IcuTokenizer.Builder, ObjectBuilder<IcuTokenizer>> f) {
+			return this.icuTokenizer(f.apply(new IcuTokenizer.Builder()).build());
+		}
+
+		public Builder icuTransform(IcuTransformTokenFilter v) {
+			this._type = ICU_TRANSFORM;
+			this._value = v;
+			return this;
+		}
+
+		public Builder icuTransform(
+				Function<IcuTransformTokenFilter.Builder, ObjectBuilder<IcuTransformTokenFilter>> f) {
+			return this.icuTransform(f.apply(new IcuTransformTokenFilter.Builder()).build());
 		}
 
 		public Builder kstem(KStemTokenFilter v) {
@@ -802,6 +943,16 @@ public class TokenFilter implements TaggedUnion<JsonpSerializable>, JsonpSeriali
 		public Builder patternReplace(
 				Function<PatternReplaceTokenFilter.Builder, ObjectBuilder<PatternReplaceTokenFilter>> f) {
 			return this.patternReplace(f.apply(new PatternReplaceTokenFilter.Builder()).build());
+		}
+
+		public Builder phonetic(PhoneticTokenFilter v) {
+			this._type = PHONETIC;
+			this._value = v;
+			return this;
+		}
+
+		public Builder phonetic(Function<PhoneticTokenFilter.Builder, ObjectBuilder<PhoneticTokenFilter>> f) {
+			return this.phonetic(f.apply(new PhoneticTokenFilter.Builder()).build());
 		}
 
 		public Builder porterStem(PorterStemTokenFilter v) {
@@ -981,6 +1132,7 @@ public class TokenFilter implements TaggedUnion<JsonpSerializable>, JsonpSeriali
 		}
 
 		public TokenFilter build() {
+			_checkSingleUse();
 			return new TokenFilter(this);
 		}
 
@@ -992,12 +1144,19 @@ public class TokenFilter implements TaggedUnion<JsonpSerializable>, JsonpSeriali
 		op.add(Builder::commonGrams, CommonGramsTokenFilter._DESERIALIZER, "common_grams");
 		op.add(Builder::condition, ConditionTokenFilter._DESERIALIZER, "condition");
 		op.add(Builder::delimitedPayload, DelimitedPayloadTokenFilter._DESERIALIZER, "delimited_payload");
+		op.add(Builder::dictionaryDecompounder, DictionaryDecompounderTokenFilter._DESERIALIZER,
+				"dictionary_decompounder");
 		op.add(Builder::edgeNgram, EdgeNGramTokenFilter._DESERIALIZER, "edge_ngram");
 		op.add(Builder::elision, ElisionTokenFilter._DESERIALIZER, "elision");
 		op.add(Builder::fingerprint, FingerprintTokenFilter._DESERIALIZER, "fingerprint");
 		op.add(Builder::hunspell, HunspellTokenFilter._DESERIALIZER, "hunspell");
 		op.add(Builder::hyphenationDecompounder, HyphenationDecompounderTokenFilter._DESERIALIZER,
 				"hyphenation_decompounder");
+		op.add(Builder::icuCollation, IcuCollationTokenFilter._DESERIALIZER, "icu_collation");
+		op.add(Builder::icuFolding, IcuFoldingTokenFilter._DESERIALIZER, "icu_folding");
+		op.add(Builder::icuNormalizer, IcuNormalizationTokenFilter._DESERIALIZER, "icu_normalizer");
+		op.add(Builder::icuTokenizer, IcuTokenizer._DESERIALIZER, "icu_tokenizer");
+		op.add(Builder::icuTransform, IcuTransformTokenFilter._DESERIALIZER, "icu_transform");
 		op.add(Builder::kstem, KStemTokenFilter._DESERIALIZER, "kstem");
 		op.add(Builder::keepTypes, KeepTypesTokenFilter._DESERIALIZER, "keep_types");
 		op.add(Builder::keep, KeepWordsTokenFilter._DESERIALIZER, "keep");
@@ -1013,6 +1172,7 @@ public class TokenFilter implements TaggedUnion<JsonpSerializable>, JsonpSeriali
 		op.add(Builder::noriPartOfSpeech, NoriPartOfSpeechTokenFilter._DESERIALIZER, "nori_part_of_speech");
 		op.add(Builder::patternCapture, PatternCaptureTokenFilter._DESERIALIZER, "pattern_capture");
 		op.add(Builder::patternReplace, PatternReplaceTokenFilter._DESERIALIZER, "pattern_replace");
+		op.add(Builder::phonetic, PhoneticTokenFilter._DESERIALIZER, "phonetic");
 		op.add(Builder::porterStem, PorterStemTokenFilter._DESERIALIZER, "porter_stem");
 		op.add(Builder::predicateTokenFilter, PredicateTokenFilter._DESERIALIZER, "predicate_token_filter");
 		op.add(Builder::removeDuplicates, RemoveDuplicatesTokenFilter._DESERIALIZER, "remove_duplicates");
@@ -1035,6 +1195,6 @@ public class TokenFilter implements TaggedUnion<JsonpSerializable>, JsonpSeriali
 
 	}
 
-	public static final JsonpDeserializer<TokenFilter> _DESERIALIZER = JsonpDeserializer.lazy(Builder::new,
+	public static final JsonpDeserializer<TokenFilter> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
 			TokenFilter::setupTokenFilterDeserializer, Builder::build);
 }

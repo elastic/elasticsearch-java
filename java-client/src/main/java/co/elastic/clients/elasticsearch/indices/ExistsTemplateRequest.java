@@ -35,10 +35,10 @@ import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.SimpleEndpoint;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -50,7 +50,7 @@ import javax.annotation.Nullable;
 
 // typedef: indices.exists_template.Request
 
-public final class ExistsTemplateRequest extends RequestBase {
+public class ExistsTemplateRequest extends RequestBase {
 	@Nullable
 	private final Boolean flatSettings;
 
@@ -64,17 +64,17 @@ public final class ExistsTemplateRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public ExistsTemplateRequest(Builder builder) {
+	private ExistsTemplateRequest(Builder builder) {
 
 		this.flatSettings = builder.flatSettings;
 		this.local = builder.local;
 		this.masterTimeout = builder.masterTimeout;
-		this.name = ModelTypeHelper.unmodifiableNonNull(builder.name, "name");
+		this.name = ModelTypeHelper.unmodifiableRequired(builder.name, this, "name");
 
 	}
 
-	public ExistsTemplateRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ExistsTemplateRequest of(Function<Builder, ObjectBuilder<ExistsTemplateRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -83,7 +83,7 @@ public final class ExistsTemplateRequest extends RequestBase {
 	 * API name: {@code flat_settings}
 	 */
 	@Nullable
-	public Boolean flatSettings() {
+	public final Boolean flatSettings() {
 		return this.flatSettings;
 	}
 
@@ -94,7 +94,7 @@ public final class ExistsTemplateRequest extends RequestBase {
 	 * API name: {@code local}
 	 */
 	@Nullable
-	public Boolean local() {
+	public final Boolean local() {
 		return this.local;
 	}
 
@@ -104,7 +104,7 @@ public final class ExistsTemplateRequest extends RequestBase {
 	 * API name: {@code master_timeout}
 	 */
 	@Nullable
-	public String masterTimeout() {
+	public final String masterTimeout() {
 		return this.masterTimeout;
 	}
 
@@ -113,7 +113,7 @@ public final class ExistsTemplateRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code name}
 	 */
-	public List<String> name() {
+	public final List<String> name() {
 		return this.name;
 	}
 
@@ -122,7 +122,7 @@ public final class ExistsTemplateRequest extends RequestBase {
 	/**
 	 * Builder for {@link ExistsTemplateRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<ExistsTemplateRequest> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ExistsTemplateRequest> {
 		@Nullable
 		private Boolean flatSettings;
 
@@ -139,7 +139,7 @@ public final class ExistsTemplateRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code flat_settings}
 		 */
-		public Builder flatSettings(@Nullable Boolean value) {
+		public final Builder flatSettings(@Nullable Boolean value) {
 			this.flatSettings = value;
 			return this;
 		}
@@ -150,7 +150,7 @@ public final class ExistsTemplateRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code local}
 		 */
-		public Builder local(@Nullable Boolean value) {
+		public final Builder local(@Nullable Boolean value) {
 			this.local = value;
 			return this;
 		}
@@ -160,7 +160,7 @@ public final class ExistsTemplateRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
-		public Builder masterTimeout(@Nullable String value) {
+		public final Builder masterTimeout(@Nullable String value) {
 			this.masterTimeout = value;
 			return this;
 		}
@@ -170,7 +170,7 @@ public final class ExistsTemplateRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code name}
 		 */
-		public Builder name(List<String> value) {
+		public final Builder name(List<String> value) {
 			this.name = value;
 			return this;
 		}
@@ -180,19 +180,8 @@ public final class ExistsTemplateRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code name}
 		 */
-		public Builder name(String... value) {
+		public final Builder name(String... value) {
 			this.name = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #name(List)}, creating the list if needed.
-		 */
-		public Builder addName(String value) {
-			if (this.name == null) {
-				this.name = new ArrayList<>();
-			}
-			this.name.add(value);
 			return this;
 		}
 
@@ -203,6 +192,7 @@ public final class ExistsTemplateRequest extends RequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public ExistsTemplateRequest build() {
+			_checkSingleUse();
 
 			return new ExistsTemplateRequest(this);
 		}

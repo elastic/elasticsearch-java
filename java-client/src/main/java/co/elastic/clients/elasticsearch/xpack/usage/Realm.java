@@ -44,34 +44,26 @@ import javax.annotation.Nullable;
 
 // typedef: xpack.usage.Realm
 @JsonpDeserializable
-public final class Realm extends Base {
-	@Nullable
+public class Realm extends Base {
 	private final List<String> name;
 
-	@Nullable
 	private final List<Long> order;
 
-	@Nullable
 	private final List<Long> size;
 
-	@Nullable
 	private final List<RealmCache> cache;
 
-	@Nullable
 	private final List<Boolean> hasAuthorizationRealms;
 
-	@Nullable
 	private final List<Boolean> hasDefaultUsernamePattern;
 
-	@Nullable
 	private final List<Boolean> hasTruststore;
 
-	@Nullable
 	private final List<Boolean> isAuthenticationDelegated;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public Realm(Builder builder) {
+	private Realm(Builder builder) {
 		super(builder);
 
 		this.name = ModelTypeHelper.unmodifiable(builder.name);
@@ -85,79 +77,70 @@ public final class Realm extends Base {
 
 	}
 
-	public Realm(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static Realm of(Function<Builder, ObjectBuilder<Realm>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * API name: {@code name}
 	 */
-	@Nullable
-	public List<String> name() {
+	public final List<String> name() {
 		return this.name;
 	}
 
 	/**
 	 * API name: {@code order}
 	 */
-	@Nullable
-	public List<Long> order() {
+	public final List<Long> order() {
 		return this.order;
 	}
 
 	/**
 	 * API name: {@code size}
 	 */
-	@Nullable
-	public List<Long> size() {
+	public final List<Long> size() {
 		return this.size;
 	}
 
 	/**
 	 * API name: {@code cache}
 	 */
-	@Nullable
-	public List<RealmCache> cache() {
+	public final List<RealmCache> cache() {
 		return this.cache;
 	}
 
 	/**
 	 * API name: {@code has_authorization_realms}
 	 */
-	@Nullable
-	public List<Boolean> hasAuthorizationRealms() {
+	public final List<Boolean> hasAuthorizationRealms() {
 		return this.hasAuthorizationRealms;
 	}
 
 	/**
 	 * API name: {@code has_default_username_pattern}
 	 */
-	@Nullable
-	public List<Boolean> hasDefaultUsernamePattern() {
+	public final List<Boolean> hasDefaultUsernamePattern() {
 		return this.hasDefaultUsernamePattern;
 	}
 
 	/**
 	 * API name: {@code has_truststore}
 	 */
-	@Nullable
-	public List<Boolean> hasTruststore() {
+	public final List<Boolean> hasTruststore() {
 		return this.hasTruststore;
 	}
 
 	/**
 	 * API name: {@code is_authentication_delegated}
 	 */
-	@Nullable
-	public List<Boolean> isAuthenticationDelegated() {
+	public final List<Boolean> isAuthenticationDelegated() {
 		return this.isAuthenticationDelegated;
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
-		if (this.name != null) {
-
+		if (ModelTypeHelper.isDefined(this.name)) {
 			generator.writeKey("name");
 			generator.writeStartArray();
 			for (String item0 : this.name) {
@@ -167,8 +150,7 @@ public final class Realm extends Base {
 			generator.writeEnd();
 
 		}
-		if (this.order != null) {
-
+		if (ModelTypeHelper.isDefined(this.order)) {
 			generator.writeKey("order");
 			generator.writeStartArray();
 			for (Long item0 : this.order) {
@@ -178,8 +160,7 @@ public final class Realm extends Base {
 			generator.writeEnd();
 
 		}
-		if (this.size != null) {
-
+		if (ModelTypeHelper.isDefined(this.size)) {
 			generator.writeKey("size");
 			generator.writeStartArray();
 			for (Long item0 : this.size) {
@@ -189,8 +170,7 @@ public final class Realm extends Base {
 			generator.writeEnd();
 
 		}
-		if (this.cache != null) {
-
+		if (ModelTypeHelper.isDefined(this.cache)) {
 			generator.writeKey("cache");
 			generator.writeStartArray();
 			for (RealmCache item0 : this.cache) {
@@ -200,8 +180,7 @@ public final class Realm extends Base {
 			generator.writeEnd();
 
 		}
-		if (this.hasAuthorizationRealms != null) {
-
+		if (ModelTypeHelper.isDefined(this.hasAuthorizationRealms)) {
 			generator.writeKey("has_authorization_realms");
 			generator.writeStartArray();
 			for (Boolean item0 : this.hasAuthorizationRealms) {
@@ -211,8 +190,7 @@ public final class Realm extends Base {
 			generator.writeEnd();
 
 		}
-		if (this.hasDefaultUsernamePattern != null) {
-
+		if (ModelTypeHelper.isDefined(this.hasDefaultUsernamePattern)) {
 			generator.writeKey("has_default_username_pattern");
 			generator.writeStartArray();
 			for (Boolean item0 : this.hasDefaultUsernamePattern) {
@@ -222,8 +200,7 @@ public final class Realm extends Base {
 			generator.writeEnd();
 
 		}
-		if (this.hasTruststore != null) {
-
+		if (ModelTypeHelper.isDefined(this.hasTruststore)) {
 			generator.writeKey("has_truststore");
 			generator.writeStartArray();
 			for (Boolean item0 : this.hasTruststore) {
@@ -233,8 +210,7 @@ public final class Realm extends Base {
 			generator.writeEnd();
 
 		}
-		if (this.isAuthenticationDelegated != null) {
-
+		if (ModelTypeHelper.isDefined(this.isAuthenticationDelegated)) {
 			generator.writeKey("is_authentication_delegated");
 			generator.writeStartArray();
 			for (Boolean item0 : this.isAuthenticationDelegated) {
@@ -280,7 +256,7 @@ public final class Realm extends Base {
 		/**
 		 * API name: {@code name}
 		 */
-		public Builder name(@Nullable List<String> value) {
+		public final Builder name(@Nullable List<String> value) {
 			this.name = value;
 			return this;
 		}
@@ -288,26 +264,15 @@ public final class Realm extends Base {
 		/**
 		 * API name: {@code name}
 		 */
-		public Builder name(String... value) {
+		public final Builder name(String... value) {
 			this.name = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #name(List)}, creating the list if needed.
-		 */
-		public Builder addName(String value) {
-			if (this.name == null) {
-				this.name = new ArrayList<>();
-			}
-			this.name.add(value);
 			return this;
 		}
 
 		/**
 		 * API name: {@code order}
 		 */
-		public Builder order(@Nullable List<Long> value) {
+		public final Builder order(@Nullable List<Long> value) {
 			this.order = value;
 			return this;
 		}
@@ -315,26 +280,15 @@ public final class Realm extends Base {
 		/**
 		 * API name: {@code order}
 		 */
-		public Builder order(Long... value) {
+		public final Builder order(Long... value) {
 			this.order = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #order(List)}, creating the list if needed.
-		 */
-		public Builder addOrder(Long value) {
-			if (this.order == null) {
-				this.order = new ArrayList<>();
-			}
-			this.order.add(value);
 			return this;
 		}
 
 		/**
 		 * API name: {@code size}
 		 */
-		public Builder size(@Nullable List<Long> value) {
+		public final Builder size(@Nullable List<Long> value) {
 			this.size = value;
 			return this;
 		}
@@ -342,26 +296,15 @@ public final class Realm extends Base {
 		/**
 		 * API name: {@code size}
 		 */
-		public Builder size(Long... value) {
+		public final Builder size(Long... value) {
 			this.size = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #size(List)}, creating the list if needed.
-		 */
-		public Builder addSize(Long value) {
-			if (this.size == null) {
-				this.size = new ArrayList<>();
-			}
-			this.size.add(value);
 			return this;
 		}
 
 		/**
 		 * API name: {@code cache}
 		 */
-		public Builder cache(@Nullable List<RealmCache> value) {
+		public final Builder cache(@Nullable List<RealmCache> value) {
 			this.cache = value;
 			return this;
 		}
@@ -369,40 +312,27 @@ public final class Realm extends Base {
 		/**
 		 * API name: {@code cache}
 		 */
-		public Builder cache(RealmCache... value) {
+		public final Builder cache(RealmCache... value) {
 			this.cache = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #cache(List)}, creating the list if needed.
+		 * API name: {@code cache}
 		 */
-		public Builder addCache(RealmCache value) {
-			if (this.cache == null) {
-				this.cache = new ArrayList<>();
+		@SafeVarargs
+		public final Builder cache(Function<RealmCache.Builder, ObjectBuilder<RealmCache>>... fns) {
+			this.cache = new ArrayList<>(fns.length);
+			for (Function<RealmCache.Builder, ObjectBuilder<RealmCache>> fn : fns) {
+				this.cache.add(fn.apply(new RealmCache.Builder()).build());
 			}
-			this.cache.add(value);
 			return this;
-		}
-
-		/**
-		 * Set {@link #cache(List)} to a singleton list.
-		 */
-		public Builder cache(Function<RealmCache.Builder, ObjectBuilder<RealmCache>> fn) {
-			return this.cache(fn.apply(new RealmCache.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #cache(List)}, creating the list if needed.
-		 */
-		public Builder addCache(Function<RealmCache.Builder, ObjectBuilder<RealmCache>> fn) {
-			return this.addCache(fn.apply(new RealmCache.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code has_authorization_realms}
 		 */
-		public Builder hasAuthorizationRealms(@Nullable List<Boolean> value) {
+		public final Builder hasAuthorizationRealms(@Nullable List<Boolean> value) {
 			this.hasAuthorizationRealms = value;
 			return this;
 		}
@@ -410,27 +340,15 @@ public final class Realm extends Base {
 		/**
 		 * API name: {@code has_authorization_realms}
 		 */
-		public Builder hasAuthorizationRealms(Boolean... value) {
+		public final Builder hasAuthorizationRealms(Boolean... value) {
 			this.hasAuthorizationRealms = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #hasAuthorizationRealms(List)}, creating the list if
-		 * needed.
-		 */
-		public Builder addHasAuthorizationRealms(Boolean value) {
-			if (this.hasAuthorizationRealms == null) {
-				this.hasAuthorizationRealms = new ArrayList<>();
-			}
-			this.hasAuthorizationRealms.add(value);
 			return this;
 		}
 
 		/**
 		 * API name: {@code has_default_username_pattern}
 		 */
-		public Builder hasDefaultUsernamePattern(@Nullable List<Boolean> value) {
+		public final Builder hasDefaultUsernamePattern(@Nullable List<Boolean> value) {
 			this.hasDefaultUsernamePattern = value;
 			return this;
 		}
@@ -438,27 +356,15 @@ public final class Realm extends Base {
 		/**
 		 * API name: {@code has_default_username_pattern}
 		 */
-		public Builder hasDefaultUsernamePattern(Boolean... value) {
+		public final Builder hasDefaultUsernamePattern(Boolean... value) {
 			this.hasDefaultUsernamePattern = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #hasDefaultUsernamePattern(List)}, creating the list if
-		 * needed.
-		 */
-		public Builder addHasDefaultUsernamePattern(Boolean value) {
-			if (this.hasDefaultUsernamePattern == null) {
-				this.hasDefaultUsernamePattern = new ArrayList<>();
-			}
-			this.hasDefaultUsernamePattern.add(value);
 			return this;
 		}
 
 		/**
 		 * API name: {@code has_truststore}
 		 */
-		public Builder hasTruststore(@Nullable List<Boolean> value) {
+		public final Builder hasTruststore(@Nullable List<Boolean> value) {
 			this.hasTruststore = value;
 			return this;
 		}
@@ -466,26 +372,15 @@ public final class Realm extends Base {
 		/**
 		 * API name: {@code has_truststore}
 		 */
-		public Builder hasTruststore(Boolean... value) {
+		public final Builder hasTruststore(Boolean... value) {
 			this.hasTruststore = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #hasTruststore(List)}, creating the list if needed.
-		 */
-		public Builder addHasTruststore(Boolean value) {
-			if (this.hasTruststore == null) {
-				this.hasTruststore = new ArrayList<>();
-			}
-			this.hasTruststore.add(value);
 			return this;
 		}
 
 		/**
 		 * API name: {@code is_authentication_delegated}
 		 */
-		public Builder isAuthenticationDelegated(@Nullable List<Boolean> value) {
+		public final Builder isAuthenticationDelegated(@Nullable List<Boolean> value) {
 			this.isAuthenticationDelegated = value;
 			return this;
 		}
@@ -493,20 +388,8 @@ public final class Realm extends Base {
 		/**
 		 * API name: {@code is_authentication_delegated}
 		 */
-		public Builder isAuthenticationDelegated(Boolean... value) {
+		public final Builder isAuthenticationDelegated(Boolean... value) {
 			this.isAuthenticationDelegated = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #isAuthenticationDelegated(List)}, creating the list if
-		 * needed.
-		 */
-		public Builder addIsAuthenticationDelegated(Boolean value) {
-			if (this.isAuthenticationDelegated == null) {
-				this.isAuthenticationDelegated = new ArrayList<>();
-			}
-			this.isAuthenticationDelegated.add(value);
 			return this;
 		}
 
@@ -522,6 +405,7 @@ public final class Realm extends Base {
 		 *             if some of the required fields are null.
 		 */
 		public Realm build() {
+			_checkSingleUse();
 
 			return new Realm(this);
 		}

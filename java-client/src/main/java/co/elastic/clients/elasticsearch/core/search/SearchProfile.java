@@ -32,6 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.util.ArrayList;
@@ -43,7 +44,7 @@ import javax.annotation.Nullable;
 
 // typedef: _global.search._types.SearchProfile
 @JsonpDeserializable
-public final class SearchProfile implements JsonpSerializable {
+public class SearchProfile implements JsonpSerializable {
 	private final List<Collector> collector;
 
 	private final List<QueryProfile> query;
@@ -52,36 +53,36 @@ public final class SearchProfile implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public SearchProfile(Builder builder) {
+	private SearchProfile(Builder builder) {
 
-		this.collector = ModelTypeHelper.unmodifiableNonNull(builder.collector, "collector");
-		this.query = ModelTypeHelper.unmodifiableNonNull(builder.query, "query");
-		this.rewriteTime = Objects.requireNonNull(builder.rewriteTime, "rewrite_time");
+		this.collector = ModelTypeHelper.unmodifiableRequired(builder.collector, this, "collector");
+		this.query = ModelTypeHelper.unmodifiableRequired(builder.query, this, "query");
+		this.rewriteTime = ModelTypeHelper.requireNonNull(builder.rewriteTime, this, "rewriteTime");
 
 	}
 
-	public SearchProfile(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static SearchProfile of(Function<Builder, ObjectBuilder<SearchProfile>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code collector}
 	 */
-	public List<Collector> collector() {
+	public final List<Collector> collector() {
 		return this.collector;
 	}
 
 	/**
 	 * Required - API name: {@code query}
 	 */
-	public List<QueryProfile> query() {
+	public final List<QueryProfile> query() {
 		return this.query;
 	}
 
 	/**
 	 * Required - API name: {@code rewrite_time}
 	 */
-	public long rewriteTime() {
+	public final long rewriteTime() {
 		return this.rewriteTime;
 	}
 
@@ -96,22 +97,26 @@ public final class SearchProfile implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("collector");
-		generator.writeStartArray();
-		for (Collector item0 : this.collector) {
-			item0.serialize(generator, mapper);
+		if (ModelTypeHelper.isDefined(this.collector)) {
+			generator.writeKey("collector");
+			generator.writeStartArray();
+			for (Collector item0 : this.collector) {
+				item0.serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
+		if (ModelTypeHelper.isDefined(this.query)) {
+			generator.writeKey("query");
+			generator.writeStartArray();
+			for (QueryProfile item0 : this.query) {
+				item0.serialize(generator, mapper);
 
-		generator.writeKey("query");
-		generator.writeStartArray();
-		for (QueryProfile item0 : this.query) {
-			item0.serialize(generator, mapper);
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
-
 		generator.writeKey("rewrite_time");
 		generator.write(this.rewriteTime);
 
@@ -122,7 +127,7 @@ public final class SearchProfile implements JsonpSerializable {
 	/**
 	 * Builder for {@link SearchProfile}.
 	 */
-	public static class Builder implements ObjectBuilder<SearchProfile> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<SearchProfile> {
 		private List<Collector> collector;
 
 		private List<QueryProfile> query;
@@ -132,7 +137,7 @@ public final class SearchProfile implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code collector}
 		 */
-		public Builder collector(List<Collector> value) {
+		public final Builder collector(List<Collector> value) {
 			this.collector = value;
 			return this;
 		}
@@ -140,40 +145,27 @@ public final class SearchProfile implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code collector}
 		 */
-		public Builder collector(Collector... value) {
+		public final Builder collector(Collector... value) {
 			this.collector = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #collector(List)}, creating the list if needed.
+		 * Required - API name: {@code collector}
 		 */
-		public Builder addCollector(Collector value) {
-			if (this.collector == null) {
-				this.collector = new ArrayList<>();
+		@SafeVarargs
+		public final Builder collector(Function<Collector.Builder, ObjectBuilder<Collector>>... fns) {
+			this.collector = new ArrayList<>(fns.length);
+			for (Function<Collector.Builder, ObjectBuilder<Collector>> fn : fns) {
+				this.collector.add(fn.apply(new Collector.Builder()).build());
 			}
-			this.collector.add(value);
 			return this;
-		}
-
-		/**
-		 * Set {@link #collector(List)} to a singleton list.
-		 */
-		public Builder collector(Function<Collector.Builder, ObjectBuilder<Collector>> fn) {
-			return this.collector(fn.apply(new Collector.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #collector(List)}, creating the list if needed.
-		 */
-		public Builder addCollector(Function<Collector.Builder, ObjectBuilder<Collector>> fn) {
-			return this.addCollector(fn.apply(new Collector.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code query}
 		 */
-		public Builder query(List<QueryProfile> value) {
+		public final Builder query(List<QueryProfile> value) {
 			this.query = value;
 			return this;
 		}
@@ -181,40 +173,27 @@ public final class SearchProfile implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code query}
 		 */
-		public Builder query(QueryProfile... value) {
+		public final Builder query(QueryProfile... value) {
 			this.query = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #query(List)}, creating the list if needed.
+		 * Required - API name: {@code query}
 		 */
-		public Builder addQuery(QueryProfile value) {
-			if (this.query == null) {
-				this.query = new ArrayList<>();
+		@SafeVarargs
+		public final Builder query(Function<QueryProfile.Builder, ObjectBuilder<QueryProfile>>... fns) {
+			this.query = new ArrayList<>(fns.length);
+			for (Function<QueryProfile.Builder, ObjectBuilder<QueryProfile>> fn : fns) {
+				this.query.add(fn.apply(new QueryProfile.Builder()).build());
 			}
-			this.query.add(value);
 			return this;
-		}
-
-		/**
-		 * Set {@link #query(List)} to a singleton list.
-		 */
-		public Builder query(Function<QueryProfile.Builder, ObjectBuilder<QueryProfile>> fn) {
-			return this.query(fn.apply(new QueryProfile.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #query(List)}, creating the list if needed.
-		 */
-		public Builder addQuery(Function<QueryProfile.Builder, ObjectBuilder<QueryProfile>> fn) {
-			return this.addQuery(fn.apply(new QueryProfile.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code rewrite_time}
 		 */
-		public Builder rewriteTime(long value) {
+		public final Builder rewriteTime(long value) {
 			this.rewriteTime = value;
 			return this;
 		}
@@ -226,6 +205,7 @@ public final class SearchProfile implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public SearchProfile build() {
+			_checkSingleUse();
 
 			return new SearchProfile(this);
 		}

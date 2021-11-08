@@ -37,16 +37,16 @@ import java.util.function.Function;
 
 // typedef: snapshot.get_repository.Response
 @JsonpDeserializable
-public final class GetRepositoryResponse extends DictionaryResponse<String, Repository> {
+public class GetRepositoryResponse extends DictionaryResponse<String, Repository> {
 	// ---------------------------------------------------------------------------------------------
 
-	public GetRepositoryResponse(Builder builder) {
+	private GetRepositoryResponse(Builder builder) {
 		super(builder);
 
 	}
 
-	public GetRepositoryResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static GetRepositoryResponse of(Function<Builder, ObjectBuilder<GetRepositoryResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -69,6 +69,7 @@ public final class GetRepositoryResponse extends DictionaryResponse<String, Repo
 		 *             if some of the required fields are null.
 		 */
 		public GetRepositoryResponse build() {
+			_checkSingleUse();
 			super.tKeySerializer(null);
 			super.tValueSerializer(null);
 

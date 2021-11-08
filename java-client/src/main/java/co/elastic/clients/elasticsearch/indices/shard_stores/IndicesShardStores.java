@@ -30,12 +30,13 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.MapBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
@@ -43,25 +44,25 @@ import javax.annotation.Nullable;
 
 // typedef: indices.shard_stores.IndicesShardStores
 @JsonpDeserializable
-public final class IndicesShardStores implements JsonpSerializable {
+public class IndicesShardStores implements JsonpSerializable {
 	private final Map<String, ShardStoreWrapper> shards;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public IndicesShardStores(Builder builder) {
+	private IndicesShardStores(Builder builder) {
 
-		this.shards = ModelTypeHelper.unmodifiableNonNull(builder.shards, "shards");
+		this.shards = ModelTypeHelper.unmodifiableRequired(builder.shards, this, "shards");
 
 	}
 
-	public IndicesShardStores(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static IndicesShardStores of(Function<Builder, ObjectBuilder<IndicesShardStores>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code shards}
 	 */
-	public Map<String, ShardStoreWrapper> shards() {
+	public final Map<String, ShardStoreWrapper> shards() {
 		return this.shards;
 	}
 
@@ -76,14 +77,17 @@ public final class IndicesShardStores implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("shards");
-		generator.writeStartObject();
-		for (Map.Entry<String, ShardStoreWrapper> item0 : this.shards.entrySet()) {
-			generator.writeKey(item0.getKey());
-			item0.getValue().serialize(generator, mapper);
+		if (ModelTypeHelper.isDefined(this.shards)) {
+			generator.writeKey("shards");
+			generator.writeStartObject();
+			for (Map.Entry<String, ShardStoreWrapper> item0 : this.shards.entrySet()) {
+				generator.writeKey(item0.getKey());
+				item0.getValue().serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
 
 	}
 
@@ -92,25 +96,14 @@ public final class IndicesShardStores implements JsonpSerializable {
 	/**
 	 * Builder for {@link IndicesShardStores}.
 	 */
-	public static class Builder implements ObjectBuilder<IndicesShardStores> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<IndicesShardStores> {
 		private Map<String, ShardStoreWrapper> shards;
 
 		/**
 		 * Required - API name: {@code shards}
 		 */
-		public Builder shards(Map<String, ShardStoreWrapper> value) {
+		public final Builder shards(Map<String, ShardStoreWrapper> value) {
 			this.shards = value;
-			return this;
-		}
-
-		/**
-		 * Add a key/value to {@link #shards(Map)}, creating the map if needed.
-		 */
-		public Builder putShards(String key, ShardStoreWrapper value) {
-			if (this.shards == null) {
-				this.shards = new HashMap<>();
-			}
-			this.shards.put(key, value);
 			return this;
 		}
 
@@ -121,11 +114,9 @@ public final class IndicesShardStores implements JsonpSerializable {
 			return this.shards(Collections.singletonMap(key, fn.apply(new ShardStoreWrapper.Builder()).build()));
 		}
 
-		/**
-		 * Add a key/value to {@link #shards(Map)}, creating the map if needed.
-		 */
-		public Builder putShards(String key, Function<ShardStoreWrapper.Builder, ObjectBuilder<ShardStoreWrapper>> fn) {
-			return this.putShards(key, fn.apply(new ShardStoreWrapper.Builder()).build());
+		public final Builder shards(
+				Function<MapBuilder<String, ShardStoreWrapper, ShardStoreWrapper.Builder>, ObjectBuilder<Map<String, ShardStoreWrapper>>> fn) {
+			return shards(fn.apply(new MapBuilder<>(ShardStoreWrapper.Builder::new)).build());
 		}
 
 		/**
@@ -135,6 +126,7 @@ public final class IndicesShardStores implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public IndicesShardStores build() {
+			_checkSingleUse();
 
 			return new IndicesShardStores(this);
 		}

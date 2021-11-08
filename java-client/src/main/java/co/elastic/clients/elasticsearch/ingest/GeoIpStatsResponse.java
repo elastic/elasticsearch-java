@@ -32,12 +32,13 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.MapBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
@@ -45,22 +46,22 @@ import javax.annotation.Nullable;
 
 // typedef: ingest.geo_ip_stats.Response
 @JsonpDeserializable
-public final class GeoIpStatsResponse implements JsonpSerializable {
+public class GeoIpStatsResponse implements JsonpSerializable {
 	private final GeoIpDownloadStatistics stats;
 
 	private final Map<String, GeoIpNodeDatabases> nodes;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public GeoIpStatsResponse(Builder builder) {
+	private GeoIpStatsResponse(Builder builder) {
 
-		this.stats = Objects.requireNonNull(builder.stats, "stats");
-		this.nodes = ModelTypeHelper.unmodifiableNonNull(builder.nodes, "nodes");
+		this.stats = ModelTypeHelper.requireNonNull(builder.stats, this, "stats");
+		this.nodes = ModelTypeHelper.unmodifiableRequired(builder.nodes, this, "nodes");
 
 	}
 
-	public GeoIpStatsResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static GeoIpStatsResponse of(Function<Builder, ObjectBuilder<GeoIpStatsResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -68,7 +69,7 @@ public final class GeoIpStatsResponse implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code stats}
 	 */
-	public GeoIpDownloadStatistics stats() {
+	public final GeoIpDownloadStatistics stats() {
 		return this.stats;
 	}
 
@@ -77,7 +78,7 @@ public final class GeoIpStatsResponse implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code nodes}
 	 */
-	public Map<String, GeoIpNodeDatabases> nodes() {
+	public final Map<String, GeoIpNodeDatabases> nodes() {
 		return this.nodes;
 	}
 
@@ -95,14 +96,17 @@ public final class GeoIpStatsResponse implements JsonpSerializable {
 		generator.writeKey("stats");
 		this.stats.serialize(generator, mapper);
 
-		generator.writeKey("nodes");
-		generator.writeStartObject();
-		for (Map.Entry<String, GeoIpNodeDatabases> item0 : this.nodes.entrySet()) {
-			generator.writeKey(item0.getKey());
-			item0.getValue().serialize(generator, mapper);
+		if (ModelTypeHelper.isDefined(this.nodes)) {
+			generator.writeKey("nodes");
+			generator.writeStartObject();
+			for (Map.Entry<String, GeoIpNodeDatabases> item0 : this.nodes.entrySet()) {
+				generator.writeKey(item0.getKey());
+				item0.getValue().serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
 
 	}
 
@@ -111,7 +115,7 @@ public final class GeoIpStatsResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link GeoIpStatsResponse}.
 	 */
-	public static class Builder implements ObjectBuilder<GeoIpStatsResponse> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GeoIpStatsResponse> {
 		private GeoIpDownloadStatistics stats;
 
 		private Map<String, GeoIpNodeDatabases> nodes;
@@ -121,7 +125,7 @@ public final class GeoIpStatsResponse implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code stats}
 		 */
-		public Builder stats(GeoIpDownloadStatistics value) {
+		public final Builder stats(GeoIpDownloadStatistics value) {
 			this.stats = value;
 			return this;
 		}
@@ -131,7 +135,8 @@ public final class GeoIpStatsResponse implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code stats}
 		 */
-		public Builder stats(Function<GeoIpDownloadStatistics.Builder, ObjectBuilder<GeoIpDownloadStatistics>> fn) {
+		public final Builder stats(
+				Function<GeoIpDownloadStatistics.Builder, ObjectBuilder<GeoIpDownloadStatistics>> fn) {
 			return this.stats(fn.apply(new GeoIpDownloadStatistics.Builder()).build());
 		}
 
@@ -140,19 +145,8 @@ public final class GeoIpStatsResponse implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code nodes}
 		 */
-		public Builder nodes(Map<String, GeoIpNodeDatabases> value) {
+		public final Builder nodes(Map<String, GeoIpNodeDatabases> value) {
 			this.nodes = value;
-			return this;
-		}
-
-		/**
-		 * Add a key/value to {@link #nodes(Map)}, creating the map if needed.
-		 */
-		public Builder putNodes(String key, GeoIpNodeDatabases value) {
-			if (this.nodes == null) {
-				this.nodes = new HashMap<>();
-			}
-			this.nodes.put(key, value);
 			return this;
 		}
 
@@ -163,12 +157,9 @@ public final class GeoIpStatsResponse implements JsonpSerializable {
 			return this.nodes(Collections.singletonMap(key, fn.apply(new GeoIpNodeDatabases.Builder()).build()));
 		}
 
-		/**
-		 * Add a key/value to {@link #nodes(Map)}, creating the map if needed.
-		 */
-		public Builder putNodes(String key,
-				Function<GeoIpNodeDatabases.Builder, ObjectBuilder<GeoIpNodeDatabases>> fn) {
-			return this.putNodes(key, fn.apply(new GeoIpNodeDatabases.Builder()).build());
+		public final Builder nodes(
+				Function<MapBuilder<String, GeoIpNodeDatabases, GeoIpNodeDatabases.Builder>, ObjectBuilder<Map<String, GeoIpNodeDatabases>>> fn) {
+			return nodes(fn.apply(new MapBuilder<>(GeoIpNodeDatabases.Builder::new)).build());
 		}
 
 		/**
@@ -178,6 +169,7 @@ public final class GeoIpStatsResponse implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public GeoIpStatsResponse build() {
+			_checkSingleUse();
 
 			return new GeoIpStatsResponse(this);
 		}

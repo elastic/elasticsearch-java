@@ -33,6 +33,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -43,25 +44,25 @@ import javax.annotation.Nullable;
 
 // typedef: _global.get_script_context.Response
 @JsonpDeserializable
-public final class GetScriptContextResponse implements JsonpSerializable {
+public class GetScriptContextResponse implements JsonpSerializable {
 	private final List<Context> contexts;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public GetScriptContextResponse(Builder builder) {
+	private GetScriptContextResponse(Builder builder) {
 
-		this.contexts = ModelTypeHelper.unmodifiableNonNull(builder.contexts, "contexts");
+		this.contexts = ModelTypeHelper.unmodifiableRequired(builder.contexts, this, "contexts");
 
 	}
 
-	public GetScriptContextResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static GetScriptContextResponse of(Function<Builder, ObjectBuilder<GetScriptContextResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code contexts}
 	 */
-	public List<Context> contexts() {
+	public final List<Context> contexts() {
 		return this.contexts;
 	}
 
@@ -76,13 +77,16 @@ public final class GetScriptContextResponse implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("contexts");
-		generator.writeStartArray();
-		for (Context item0 : this.contexts) {
-			item0.serialize(generator, mapper);
+		if (ModelTypeHelper.isDefined(this.contexts)) {
+			generator.writeKey("contexts");
+			generator.writeStartArray();
+			for (Context item0 : this.contexts) {
+				item0.serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
 
 	}
 
@@ -91,13 +95,13 @@ public final class GetScriptContextResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link GetScriptContextResponse}.
 	 */
-	public static class Builder implements ObjectBuilder<GetScriptContextResponse> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetScriptContextResponse> {
 		private List<Context> contexts;
 
 		/**
 		 * Required - API name: {@code contexts}
 		 */
-		public Builder contexts(List<Context> value) {
+		public final Builder contexts(List<Context> value) {
 			this.contexts = value;
 			return this;
 		}
@@ -105,34 +109,21 @@ public final class GetScriptContextResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code contexts}
 		 */
-		public Builder contexts(Context... value) {
+		public final Builder contexts(Context... value) {
 			this.contexts = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #contexts(List)}, creating the list if needed.
+		 * Required - API name: {@code contexts}
 		 */
-		public Builder addContexts(Context value) {
-			if (this.contexts == null) {
-				this.contexts = new ArrayList<>();
+		@SafeVarargs
+		public final Builder contexts(Function<Context.Builder, ObjectBuilder<Context>>... fns) {
+			this.contexts = new ArrayList<>(fns.length);
+			for (Function<Context.Builder, ObjectBuilder<Context>> fn : fns) {
+				this.contexts.add(fn.apply(new Context.Builder()).build());
 			}
-			this.contexts.add(value);
 			return this;
-		}
-
-		/**
-		 * Set {@link #contexts(List)} to a singleton list.
-		 */
-		public Builder contexts(Function<Context.Builder, ObjectBuilder<Context>> fn) {
-			return this.contexts(fn.apply(new Context.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #contexts(List)}, creating the list if needed.
-		 */
-		public Builder addContexts(Function<Context.Builder, ObjectBuilder<Context>> fn) {
-			return this.addContexts(fn.apply(new Context.Builder()).build());
 		}
 
 		/**
@@ -142,6 +133,7 @@ public final class GetScriptContextResponse implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public GetScriptContextResponse build() {
+			_checkSingleUse();
 
 			return new GetScriptContextResponse(this);
 		}

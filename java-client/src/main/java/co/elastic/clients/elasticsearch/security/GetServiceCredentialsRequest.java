@@ -31,7 +31,9 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.SimpleEndpoint;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
@@ -41,22 +43,22 @@ import javax.annotation.Nullable;
 
 // typedef: security.get_service_credentials.Request
 
-public final class GetServiceCredentialsRequest extends RequestBase {
+public class GetServiceCredentialsRequest extends RequestBase {
 	private final String namespace;
 
 	private final String service;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public GetServiceCredentialsRequest(Builder builder) {
+	private GetServiceCredentialsRequest(Builder builder) {
 
-		this.namespace = Objects.requireNonNull(builder.namespace, "namespace");
-		this.service = Objects.requireNonNull(builder.service, "service");
+		this.namespace = ModelTypeHelper.requireNonNull(builder.namespace, this, "namespace");
+		this.service = ModelTypeHelper.requireNonNull(builder.service, this, "service");
 
 	}
 
-	public GetServiceCredentialsRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static GetServiceCredentialsRequest of(Function<Builder, ObjectBuilder<GetServiceCredentialsRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -64,7 +66,7 @@ public final class GetServiceCredentialsRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code namespace}
 	 */
-	public String namespace() {
+	public final String namespace() {
 		return this.namespace;
 	}
 
@@ -73,7 +75,7 @@ public final class GetServiceCredentialsRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code service}
 	 */
-	public String service() {
+	public final String service() {
 		return this.service;
 	}
 
@@ -82,7 +84,7 @@ public final class GetServiceCredentialsRequest extends RequestBase {
 	/**
 	 * Builder for {@link GetServiceCredentialsRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<GetServiceCredentialsRequest> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetServiceCredentialsRequest> {
 		private String namespace;
 
 		private String service;
@@ -92,7 +94,7 @@ public final class GetServiceCredentialsRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code namespace}
 		 */
-		public Builder namespace(String value) {
+		public final Builder namespace(String value) {
 			this.namespace = value;
 			return this;
 		}
@@ -102,7 +104,7 @@ public final class GetServiceCredentialsRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code service}
 		 */
-		public Builder service(String value) {
+		public final Builder service(String value) {
 			this.service = value;
 			return this;
 		}
@@ -114,6 +116,7 @@ public final class GetServiceCredentialsRequest extends RequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public GetServiceCredentialsRequest build() {
+			_checkSingleUse();
 
 			return new GetServiceCredentialsRequest(this);
 		}

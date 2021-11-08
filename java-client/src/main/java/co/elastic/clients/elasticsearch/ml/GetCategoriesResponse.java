@@ -32,6 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.util.ArrayList;
@@ -43,35 +44,35 @@ import javax.annotation.Nullable;
 
 // typedef: ml.get_categories.Response
 @JsonpDeserializable
-public final class GetCategoriesResponse implements JsonpSerializable {
+public class GetCategoriesResponse implements JsonpSerializable {
 	private final List<Category> categories;
 
 	private final long count;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public GetCategoriesResponse(Builder builder) {
+	private GetCategoriesResponse(Builder builder) {
 
-		this.categories = ModelTypeHelper.unmodifiableNonNull(builder.categories, "categories");
-		this.count = Objects.requireNonNull(builder.count, "count");
+		this.categories = ModelTypeHelper.unmodifiableRequired(builder.categories, this, "categories");
+		this.count = ModelTypeHelper.requireNonNull(builder.count, this, "count");
 
 	}
 
-	public GetCategoriesResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static GetCategoriesResponse of(Function<Builder, ObjectBuilder<GetCategoriesResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code categories}
 	 */
-	public List<Category> categories() {
+	public final List<Category> categories() {
 		return this.categories;
 	}
 
 	/**
 	 * Required - API name: {@code count}
 	 */
-	public long count() {
+	public final long count() {
 		return this.count;
 	}
 
@@ -86,14 +87,16 @@ public final class GetCategoriesResponse implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("categories");
-		generator.writeStartArray();
-		for (Category item0 : this.categories) {
-			item0.serialize(generator, mapper);
+		if (ModelTypeHelper.isDefined(this.categories)) {
+			generator.writeKey("categories");
+			generator.writeStartArray();
+			for (Category item0 : this.categories) {
+				item0.serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
-
 		generator.writeKey("count");
 		generator.write(this.count);
 
@@ -104,7 +107,7 @@ public final class GetCategoriesResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link GetCategoriesResponse}.
 	 */
-	public static class Builder implements ObjectBuilder<GetCategoriesResponse> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetCategoriesResponse> {
 		private List<Category> categories;
 
 		private Long count;
@@ -112,7 +115,7 @@ public final class GetCategoriesResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code categories}
 		 */
-		public Builder categories(List<Category> value) {
+		public final Builder categories(List<Category> value) {
 			this.categories = value;
 			return this;
 		}
@@ -120,40 +123,27 @@ public final class GetCategoriesResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code categories}
 		 */
-		public Builder categories(Category... value) {
+		public final Builder categories(Category... value) {
 			this.categories = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #categories(List)}, creating the list if needed.
+		 * Required - API name: {@code categories}
 		 */
-		public Builder addCategories(Category value) {
-			if (this.categories == null) {
-				this.categories = new ArrayList<>();
+		@SafeVarargs
+		public final Builder categories(Function<Category.Builder, ObjectBuilder<Category>>... fns) {
+			this.categories = new ArrayList<>(fns.length);
+			for (Function<Category.Builder, ObjectBuilder<Category>> fn : fns) {
+				this.categories.add(fn.apply(new Category.Builder()).build());
 			}
-			this.categories.add(value);
 			return this;
-		}
-
-		/**
-		 * Set {@link #categories(List)} to a singleton list.
-		 */
-		public Builder categories(Function<Category.Builder, ObjectBuilder<Category>> fn) {
-			return this.categories(fn.apply(new Category.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #categories(List)}, creating the list if needed.
-		 */
-		public Builder addCategories(Function<Category.Builder, ObjectBuilder<Category>> fn) {
-			return this.addCategories(fn.apply(new Category.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code count}
 		 */
-		public Builder count(long value) {
+		public final Builder count(long value) {
 			this.count = value;
 			return this;
 		}
@@ -165,6 +155,7 @@ public final class GetCategoriesResponse implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public GetCategoriesResponse build() {
+			_checkSingleUse();
 
 			return new GetCategoriesResponse(this);
 		}

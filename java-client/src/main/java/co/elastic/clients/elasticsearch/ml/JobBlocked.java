@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -39,7 +41,7 @@ import javax.annotation.Nullable;
 
 // typedef: ml._types.JobBlocked
 @JsonpDeserializable
-public final class JobBlocked implements JsonpSerializable {
+public class JobBlocked implements JsonpSerializable {
 	private final JobBlockedReason reason;
 
 	@Nullable
@@ -47,21 +49,21 @@ public final class JobBlocked implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public JobBlocked(Builder builder) {
+	private JobBlocked(Builder builder) {
 
-		this.reason = Objects.requireNonNull(builder.reason, "reason");
+		this.reason = ModelTypeHelper.requireNonNull(builder.reason, this, "reason");
 		this.taskId = builder.taskId;
 
 	}
 
-	public JobBlocked(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static JobBlocked of(Function<Builder, ObjectBuilder<JobBlocked>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code reason}
 	 */
-	public JobBlockedReason reason() {
+	public final JobBlockedReason reason() {
 		return this.reason;
 	}
 
@@ -69,7 +71,7 @@ public final class JobBlocked implements JsonpSerializable {
 	 * API name: {@code task_id}
 	 */
 	@Nullable
-	public String taskId() {
+	public final String taskId() {
 		return this.taskId;
 	}
 
@@ -87,7 +89,6 @@ public final class JobBlocked implements JsonpSerializable {
 		generator.writeKey("reason");
 		this.reason.serialize(generator, mapper);
 		if (this.taskId != null) {
-
 			generator.writeKey("task_id");
 			generator.write(this.taskId);
 
@@ -100,7 +101,7 @@ public final class JobBlocked implements JsonpSerializable {
 	/**
 	 * Builder for {@link JobBlocked}.
 	 */
-	public static class Builder implements ObjectBuilder<JobBlocked> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<JobBlocked> {
 		private JobBlockedReason reason;
 
 		@Nullable
@@ -109,7 +110,7 @@ public final class JobBlocked implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code reason}
 		 */
-		public Builder reason(JobBlockedReason value) {
+		public final Builder reason(JobBlockedReason value) {
 			this.reason = value;
 			return this;
 		}
@@ -117,7 +118,7 @@ public final class JobBlocked implements JsonpSerializable {
 		/**
 		 * API name: {@code task_id}
 		 */
-		public Builder taskId(@Nullable String value) {
+		public final Builder taskId(@Nullable String value) {
 			this.taskId = value;
 			return this;
 		}
@@ -129,6 +130,7 @@ public final class JobBlocked implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public JobBlocked build() {
+			_checkSingleUse();
 
 			return new JobBlocked(this);
 		}

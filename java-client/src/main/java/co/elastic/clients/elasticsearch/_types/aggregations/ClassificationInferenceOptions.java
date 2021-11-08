@@ -31,6 +31,7 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
@@ -40,7 +41,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.ClassificationInferenceOptions
 @JsonpDeserializable
-public final class ClassificationInferenceOptions implements JsonpSerializable {
+public class ClassificationInferenceOptions implements JsonpSerializable {
 	@Nullable
 	private final Integer numTopClasses;
 
@@ -58,7 +59,7 @@ public final class ClassificationInferenceOptions implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public ClassificationInferenceOptions(Builder builder) {
+	private ClassificationInferenceOptions(Builder builder) {
 
 		this.numTopClasses = builder.numTopClasses;
 		this.numTopFeatureImportanceValues = builder.numTopFeatureImportanceValues;
@@ -68,8 +69,9 @@ public final class ClassificationInferenceOptions implements JsonpSerializable {
 
 	}
 
-	public ClassificationInferenceOptions(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ClassificationInferenceOptions of(
+			Function<Builder, ObjectBuilder<ClassificationInferenceOptions>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -78,7 +80,7 @@ public final class ClassificationInferenceOptions implements JsonpSerializable {
 	 * API name: {@code num_top_classes}
 	 */
 	@Nullable
-	public Integer numTopClasses() {
+	public final Integer numTopClasses() {
 		return this.numTopClasses;
 	}
 
@@ -89,7 +91,7 @@ public final class ClassificationInferenceOptions implements JsonpSerializable {
 	 * API name: {@code num_top_feature_importance_values}
 	 */
 	@Nullable
-	public Integer numTopFeatureImportanceValues() {
+	public final Integer numTopFeatureImportanceValues() {
 		return this.numTopFeatureImportanceValues;
 	}
 
@@ -101,7 +103,7 @@ public final class ClassificationInferenceOptions implements JsonpSerializable {
 	 * API name: {@code prediction_field_type}
 	 */
 	@Nullable
-	public String predictionFieldType() {
+	public final String predictionFieldType() {
 		return this.predictionFieldType;
 	}
 
@@ -112,7 +114,7 @@ public final class ClassificationInferenceOptions implements JsonpSerializable {
 	 * API name: {@code results_field}
 	 */
 	@Nullable
-	public String resultsField() {
+	public final String resultsField() {
 		return this.resultsField;
 	}
 
@@ -123,7 +125,7 @@ public final class ClassificationInferenceOptions implements JsonpSerializable {
 	 * API name: {@code top_classes_results_field}
 	 */
 	@Nullable
-	public String topClassesResultsField() {
+	public final String topClassesResultsField() {
 		return this.topClassesResultsField;
 	}
 
@@ -139,31 +141,26 @@ public final class ClassificationInferenceOptions implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.numTopClasses != null) {
-
 			generator.writeKey("num_top_classes");
 			generator.write(this.numTopClasses);
 
 		}
 		if (this.numTopFeatureImportanceValues != null) {
-
 			generator.writeKey("num_top_feature_importance_values");
 			generator.write(this.numTopFeatureImportanceValues);
 
 		}
 		if (this.predictionFieldType != null) {
-
 			generator.writeKey("prediction_field_type");
 			generator.write(this.predictionFieldType);
 
 		}
 		if (this.resultsField != null) {
-
 			generator.writeKey("results_field");
 			generator.write(this.resultsField);
 
 		}
 		if (this.topClassesResultsField != null) {
-
 			generator.writeKey("top_classes_results_field");
 			generator.write(this.topClassesResultsField);
 
@@ -176,7 +173,7 @@ public final class ClassificationInferenceOptions implements JsonpSerializable {
 	/**
 	 * Builder for {@link ClassificationInferenceOptions}.
 	 */
-	public static class Builder implements ObjectBuilder<ClassificationInferenceOptions> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ClassificationInferenceOptions> {
 		@Nullable
 		private Integer numTopClasses;
 
@@ -197,7 +194,7 @@ public final class ClassificationInferenceOptions implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code num_top_classes}
 		 */
-		public Builder numTopClasses(@Nullable Integer value) {
+		public final Builder numTopClasses(@Nullable Integer value) {
 			this.numTopClasses = value;
 			return this;
 		}
@@ -208,7 +205,7 @@ public final class ClassificationInferenceOptions implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code num_top_feature_importance_values}
 		 */
-		public Builder numTopFeatureImportanceValues(@Nullable Integer value) {
+		public final Builder numTopFeatureImportanceValues(@Nullable Integer value) {
 			this.numTopFeatureImportanceValues = value;
 			return this;
 		}
@@ -220,7 +217,7 @@ public final class ClassificationInferenceOptions implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code prediction_field_type}
 		 */
-		public Builder predictionFieldType(@Nullable String value) {
+		public final Builder predictionFieldType(@Nullable String value) {
 			this.predictionFieldType = value;
 			return this;
 		}
@@ -231,7 +228,7 @@ public final class ClassificationInferenceOptions implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code results_field}
 		 */
-		public Builder resultsField(@Nullable String value) {
+		public final Builder resultsField(@Nullable String value) {
 			this.resultsField = value;
 			return this;
 		}
@@ -242,7 +239,7 @@ public final class ClassificationInferenceOptions implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code top_classes_results_field}
 		 */
-		public Builder topClassesResultsField(@Nullable String value) {
+		public final Builder topClassesResultsField(@Nullable String value) {
 			this.topClassesResultsField = value;
 			return this;
 		}
@@ -254,6 +251,7 @@ public final class ClassificationInferenceOptions implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public ClassificationInferenceOptions build() {
+			_checkSingleUse();
 
 			return new ClassificationInferenceOptions(this);
 		}

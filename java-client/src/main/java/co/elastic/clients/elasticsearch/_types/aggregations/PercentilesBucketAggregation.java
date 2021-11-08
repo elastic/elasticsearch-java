@@ -33,7 +33,6 @@ import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
@@ -42,21 +41,20 @@ import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.PercentilesBucketAggregation
 @JsonpDeserializable
-public final class PercentilesBucketAggregation extends PipelineAggregationBase implements AggregationVariant {
-	@Nullable
+public class PercentilesBucketAggregation extends PipelineAggregationBase implements AggregationVariant {
 	private final List<Double> percents;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public PercentilesBucketAggregation(Builder builder) {
+	private PercentilesBucketAggregation(Builder builder) {
 		super(builder);
 
 		this.percents = ModelTypeHelper.unmodifiable(builder.percents);
 
 	}
 
-	public PercentilesBucketAggregation(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static PercentilesBucketAggregation of(Function<Builder, ObjectBuilder<PercentilesBucketAggregation>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -70,16 +68,14 @@ public final class PercentilesBucketAggregation extends PipelineAggregationBase 
 	/**
 	 * API name: {@code percents}
 	 */
-	@Nullable
-	public List<Double> percents() {
+	public final List<Double> percents() {
 		return this.percents;
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
-		if (this.percents != null) {
-
+		if (ModelTypeHelper.isDefined(this.percents)) {
 			generator.writeKey("percents");
 			generator.writeStartArray();
 			for (Double item0 : this.percents) {
@@ -106,7 +102,7 @@ public final class PercentilesBucketAggregation extends PipelineAggregationBase 
 		/**
 		 * API name: {@code percents}
 		 */
-		public Builder percents(@Nullable List<Double> value) {
+		public final Builder percents(@Nullable List<Double> value) {
 			this.percents = value;
 			return this;
 		}
@@ -114,19 +110,8 @@ public final class PercentilesBucketAggregation extends PipelineAggregationBase 
 		/**
 		 * API name: {@code percents}
 		 */
-		public Builder percents(Double... value) {
+		public final Builder percents(Double... value) {
 			this.percents = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #percents(List)}, creating the list if needed.
-		 */
-		public Builder addPercents(Double value) {
-			if (this.percents == null) {
-				this.percents = new ArrayList<>();
-			}
-			this.percents.add(value);
 			return this;
 		}
 
@@ -142,6 +127,7 @@ public final class PercentilesBucketAggregation extends PipelineAggregationBase 
 		 *             if some of the required fields are null.
 		 */
 		public PercentilesBucketAggregation build() {
+			_checkSingleUse();
 
 			return new PercentilesBucketAggregation(this);
 		}

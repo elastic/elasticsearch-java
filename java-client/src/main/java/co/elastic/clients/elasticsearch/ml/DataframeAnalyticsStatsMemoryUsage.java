@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.lang.String;
@@ -40,7 +42,7 @@ import javax.annotation.Nullable;
 
 // typedef: ml._types.DataframeAnalyticsStatsMemoryUsage
 @JsonpDeserializable
-public final class DataframeAnalyticsStatsMemoryUsage implements JsonpSerializable {
+public class DataframeAnalyticsStatsMemoryUsage implements JsonpSerializable {
 	@Nullable
 	private final Long memoryReestimateBytes;
 
@@ -53,17 +55,18 @@ public final class DataframeAnalyticsStatsMemoryUsage implements JsonpSerializab
 
 	// ---------------------------------------------------------------------------------------------
 
-	public DataframeAnalyticsStatsMemoryUsage(Builder builder) {
+	private DataframeAnalyticsStatsMemoryUsage(Builder builder) {
 
 		this.memoryReestimateBytes = builder.memoryReestimateBytes;
-		this.peakUsageBytes = Objects.requireNonNull(builder.peakUsageBytes, "peak_usage_bytes");
-		this.status = Objects.requireNonNull(builder.status, "status");
+		this.peakUsageBytes = ModelTypeHelper.requireNonNull(builder.peakUsageBytes, this, "peakUsageBytes");
+		this.status = ModelTypeHelper.requireNonNull(builder.status, this, "status");
 		this.timestamp = builder.timestamp;
 
 	}
 
-	public DataframeAnalyticsStatsMemoryUsage(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static DataframeAnalyticsStatsMemoryUsage of(
+			Function<Builder, ObjectBuilder<DataframeAnalyticsStatsMemoryUsage>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -73,7 +76,7 @@ public final class DataframeAnalyticsStatsMemoryUsage implements JsonpSerializab
 	 * API name: {@code memory_reestimate_bytes}
 	 */
 	@Nullable
-	public Long memoryReestimateBytes() {
+	public final Long memoryReestimateBytes() {
 		return this.memoryReestimateBytes;
 	}
 
@@ -82,7 +85,7 @@ public final class DataframeAnalyticsStatsMemoryUsage implements JsonpSerializab
 	 * <p>
 	 * API name: {@code peak_usage_bytes}
 	 */
-	public long peakUsageBytes() {
+	public final long peakUsageBytes() {
 		return this.peakUsageBytes;
 	}
 
@@ -91,7 +94,7 @@ public final class DataframeAnalyticsStatsMemoryUsage implements JsonpSerializab
 	 * <p>
 	 * API name: {@code status}
 	 */
-	public String status() {
+	public final String status() {
 		return this.status;
 	}
 
@@ -101,7 +104,7 @@ public final class DataframeAnalyticsStatsMemoryUsage implements JsonpSerializab
 	 * API name: {@code timestamp}
 	 */
 	@Nullable
-	public String timestamp() {
+	public final String timestamp() {
 		return this.timestamp;
 	}
 
@@ -117,12 +120,10 @@ public final class DataframeAnalyticsStatsMemoryUsage implements JsonpSerializab
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.memoryReestimateBytes != null) {
-
 			generator.writeKey("memory_reestimate_bytes");
 			generator.write(this.memoryReestimateBytes);
 
 		}
-
 		generator.writeKey("peak_usage_bytes");
 		generator.write(this.peakUsageBytes);
 
@@ -130,7 +131,6 @@ public final class DataframeAnalyticsStatsMemoryUsage implements JsonpSerializab
 		generator.write(this.status);
 
 		if (this.timestamp != null) {
-
 			generator.writeKey("timestamp");
 			generator.write(this.timestamp);
 
@@ -143,7 +143,7 @@ public final class DataframeAnalyticsStatsMemoryUsage implements JsonpSerializab
 	/**
 	 * Builder for {@link DataframeAnalyticsStatsMemoryUsage}.
 	 */
-	public static class Builder implements ObjectBuilder<DataframeAnalyticsStatsMemoryUsage> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DataframeAnalyticsStatsMemoryUsage> {
 		@Nullable
 		private Long memoryReestimateBytes;
 
@@ -160,7 +160,7 @@ public final class DataframeAnalyticsStatsMemoryUsage implements JsonpSerializab
 		 * <p>
 		 * API name: {@code memory_reestimate_bytes}
 		 */
-		public Builder memoryReestimateBytes(@Nullable Long value) {
+		public final Builder memoryReestimateBytes(@Nullable Long value) {
 			this.memoryReestimateBytes = value;
 			return this;
 		}
@@ -170,7 +170,7 @@ public final class DataframeAnalyticsStatsMemoryUsage implements JsonpSerializab
 		 * <p>
 		 * API name: {@code peak_usage_bytes}
 		 */
-		public Builder peakUsageBytes(long value) {
+		public final Builder peakUsageBytes(long value) {
 			this.peakUsageBytes = value;
 			return this;
 		}
@@ -180,7 +180,7 @@ public final class DataframeAnalyticsStatsMemoryUsage implements JsonpSerializab
 		 * <p>
 		 * API name: {@code status}
 		 */
-		public Builder status(String value) {
+		public final Builder status(String value) {
 			this.status = value;
 			return this;
 		}
@@ -190,7 +190,7 @@ public final class DataframeAnalyticsStatsMemoryUsage implements JsonpSerializab
 		 * <p>
 		 * API name: {@code timestamp}
 		 */
-		public Builder timestamp(@Nullable String value) {
+		public final Builder timestamp(@Nullable String value) {
 			this.timestamp = value;
 			return this;
 		}
@@ -202,6 +202,7 @@ public final class DataframeAnalyticsStatsMemoryUsage implements JsonpSerializab
 		 *             if some of the required fields are null.
 		 */
 		public DataframeAnalyticsStatsMemoryUsage build() {
+			_checkSingleUse();
 
 			return new DataframeAnalyticsStatsMemoryUsage(this);
 		}

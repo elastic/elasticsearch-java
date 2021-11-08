@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -39,35 +41,35 @@ import javax.annotation.Nullable;
 
 // typedef: watcher._types.HttpInputBasicAuthentication
 @JsonpDeserializable
-public final class HttpInputBasicAuthentication implements JsonpSerializable {
+public class HttpInputBasicAuthentication implements JsonpSerializable {
 	private final String password;
 
 	private final String username;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public HttpInputBasicAuthentication(Builder builder) {
+	private HttpInputBasicAuthentication(Builder builder) {
 
-		this.password = Objects.requireNonNull(builder.password, "password");
-		this.username = Objects.requireNonNull(builder.username, "username");
+		this.password = ModelTypeHelper.requireNonNull(builder.password, this, "password");
+		this.username = ModelTypeHelper.requireNonNull(builder.username, this, "username");
 
 	}
 
-	public HttpInputBasicAuthentication(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static HttpInputBasicAuthentication of(Function<Builder, ObjectBuilder<HttpInputBasicAuthentication>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code password}
 	 */
-	public String password() {
+	public final String password() {
 		return this.password;
 	}
 
 	/**
 	 * Required - API name: {@code username}
 	 */
-	public String username() {
+	public final String username() {
 		return this.username;
 	}
 
@@ -95,7 +97,7 @@ public final class HttpInputBasicAuthentication implements JsonpSerializable {
 	/**
 	 * Builder for {@link HttpInputBasicAuthentication}.
 	 */
-	public static class Builder implements ObjectBuilder<HttpInputBasicAuthentication> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<HttpInputBasicAuthentication> {
 		private String password;
 
 		private String username;
@@ -103,7 +105,7 @@ public final class HttpInputBasicAuthentication implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code password}
 		 */
-		public Builder password(String value) {
+		public final Builder password(String value) {
 			this.password = value;
 			return this;
 		}
@@ -111,7 +113,7 @@ public final class HttpInputBasicAuthentication implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code username}
 		 */
-		public Builder username(String value) {
+		public final Builder username(String value) {
 			this.username = value;
 			return this;
 		}
@@ -123,6 +125,7 @@ public final class HttpInputBasicAuthentication implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public HttpInputBasicAuthentication build() {
+			_checkSingleUse();
 
 			return new HttpInputBasicAuthentication(this);
 		}

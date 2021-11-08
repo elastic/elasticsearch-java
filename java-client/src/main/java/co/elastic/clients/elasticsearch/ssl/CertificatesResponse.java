@@ -32,6 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -42,19 +43,19 @@ import javax.annotation.Nullable;
 
 // typedef: ssl.certificates.Response
 @JsonpDeserializable
-public final class CertificatesResponse implements JsonpSerializable {
+public class CertificatesResponse implements JsonpSerializable {
 	private final List<CertificateInformation> valueBody;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public CertificatesResponse(Builder builder) {
+	private CertificatesResponse(Builder builder) {
 
-		this.valueBody = ModelTypeHelper.unmodifiableNonNull(builder.valueBody, "_value_body");
+		this.valueBody = ModelTypeHelper.unmodifiableRequired(builder.valueBody, this, "valueBody");
 
 	}
 
-	public CertificatesResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static CertificatesResponse of(Function<Builder, ObjectBuilder<CertificatesResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -62,7 +63,7 @@ public final class CertificatesResponse implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code _value_body}
 	 */
-	public List<CertificateInformation> valueBody() {
+	public final List<CertificateInformation> valueBody() {
 		return this.valueBody;
 	}
 
@@ -84,7 +85,7 @@ public final class CertificatesResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link CertificatesResponse}.
 	 */
-	public static class Builder implements ObjectBuilder<CertificatesResponse> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<CertificatesResponse> {
 		private List<CertificateInformation> valueBody;
 
 		/**
@@ -92,7 +93,7 @@ public final class CertificatesResponse implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code _value_body}
 		 */
-		public Builder valueBody(List<CertificateInformation> value) {
+		public final Builder valueBody(List<CertificateInformation> value) {
 			this.valueBody = value;
 			return this;
 		}
@@ -102,35 +103,24 @@ public final class CertificatesResponse implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code _value_body}
 		 */
-		public Builder valueBody(CertificateInformation... value) {
+		public final Builder valueBody(CertificateInformation... value) {
 			this.valueBody = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #valueBody(List)}, creating the list if needed.
+		 * Required - Response value.
+		 * <p>
+		 * API name: {@code _value_body}
 		 */
-		public Builder addValueBody(CertificateInformation value) {
-			if (this.valueBody == null) {
-				this.valueBody = new ArrayList<>();
+		@SafeVarargs
+		public final Builder valueBody(
+				Function<CertificateInformation.Builder, ObjectBuilder<CertificateInformation>>... fns) {
+			this.valueBody = new ArrayList<>(fns.length);
+			for (Function<CertificateInformation.Builder, ObjectBuilder<CertificateInformation>> fn : fns) {
+				this.valueBody.add(fn.apply(new CertificateInformation.Builder()).build());
 			}
-			this.valueBody.add(value);
 			return this;
-		}
-
-		/**
-		 * Set {@link #valueBody(List)} to a singleton list.
-		 */
-		public Builder valueBody(Function<CertificateInformation.Builder, ObjectBuilder<CertificateInformation>> fn) {
-			return this.valueBody(fn.apply(new CertificateInformation.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #valueBody(List)}, creating the list if needed.
-		 */
-		public Builder addValueBody(
-				Function<CertificateInformation.Builder, ObjectBuilder<CertificateInformation>> fn) {
-			return this.addValueBody(fn.apply(new CertificateInformation.Builder()).build());
 		}
 
 		/**
@@ -140,6 +130,7 @@ public final class CertificatesResponse implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public CertificatesResponse build() {
+			_checkSingleUse();
 
 			return new CertificatesResponse(this);
 		}

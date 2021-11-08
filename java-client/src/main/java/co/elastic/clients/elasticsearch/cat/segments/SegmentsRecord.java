@@ -31,6 +31,7 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -39,7 +40,7 @@ import javax.annotation.Nullable;
 
 // typedef: cat.segments.SegmentsRecord
 @JsonpDeserializable
-public final class SegmentsRecord implements JsonpSerializable {
+public class SegmentsRecord implements JsonpSerializable {
 	@Nullable
 	private final String index;
 
@@ -87,7 +88,7 @@ public final class SegmentsRecord implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public SegmentsRecord(Builder builder) {
+	private SegmentsRecord(Builder builder) {
 
 		this.index = builder.index;
 		this.shard = builder.shard;
@@ -107,8 +108,8 @@ public final class SegmentsRecord implements JsonpSerializable {
 
 	}
 
-	public SegmentsRecord(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static SegmentsRecord of(Function<Builder, ObjectBuilder<SegmentsRecord>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -117,7 +118,7 @@ public final class SegmentsRecord implements JsonpSerializable {
 	 * API name: {@code index}
 	 */
 	@Nullable
-	public String index() {
+	public final String index() {
 		return this.index;
 	}
 
@@ -127,7 +128,7 @@ public final class SegmentsRecord implements JsonpSerializable {
 	 * API name: {@code shard}
 	 */
 	@Nullable
-	public String shard() {
+	public final String shard() {
 		return this.shard;
 	}
 
@@ -137,7 +138,7 @@ public final class SegmentsRecord implements JsonpSerializable {
 	 * API name: {@code prirep}
 	 */
 	@Nullable
-	public String prirep() {
+	public final String prirep() {
 		return this.prirep;
 	}
 
@@ -147,7 +148,7 @@ public final class SegmentsRecord implements JsonpSerializable {
 	 * API name: {@code ip}
 	 */
 	@Nullable
-	public String ip() {
+	public final String ip() {
 		return this.ip;
 	}
 
@@ -157,7 +158,7 @@ public final class SegmentsRecord implements JsonpSerializable {
 	 * API name: {@code id}
 	 */
 	@Nullable
-	public String id() {
+	public final String id() {
 		return this.id;
 	}
 
@@ -167,7 +168,7 @@ public final class SegmentsRecord implements JsonpSerializable {
 	 * API name: {@code segment}
 	 */
 	@Nullable
-	public String segment() {
+	public final String segment() {
 		return this.segment;
 	}
 
@@ -177,7 +178,7 @@ public final class SegmentsRecord implements JsonpSerializable {
 	 * API name: {@code generation}
 	 */
 	@Nullable
-	public String generation() {
+	public final String generation() {
 		return this.generation;
 	}
 
@@ -187,7 +188,7 @@ public final class SegmentsRecord implements JsonpSerializable {
 	 * API name: {@code docs.count}
 	 */
 	@Nullable
-	public String docsCount() {
+	public final String docsCount() {
 		return this.docsCount;
 	}
 
@@ -197,7 +198,7 @@ public final class SegmentsRecord implements JsonpSerializable {
 	 * API name: {@code docs.deleted}
 	 */
 	@Nullable
-	public String docsDeleted() {
+	public final String docsDeleted() {
 		return this.docsDeleted;
 	}
 
@@ -207,7 +208,7 @@ public final class SegmentsRecord implements JsonpSerializable {
 	 * API name: {@code size}
 	 */
 	@Nullable
-	public String size() {
+	public final String size() {
 		return this.size;
 	}
 
@@ -217,7 +218,7 @@ public final class SegmentsRecord implements JsonpSerializable {
 	 * API name: {@code size.memory}
 	 */
 	@Nullable
-	public String sizeMemory() {
+	public final String sizeMemory() {
 		return this.sizeMemory;
 	}
 
@@ -227,7 +228,7 @@ public final class SegmentsRecord implements JsonpSerializable {
 	 * API name: {@code committed}
 	 */
 	@Nullable
-	public String committed() {
+	public final String committed() {
 		return this.committed;
 	}
 
@@ -237,7 +238,7 @@ public final class SegmentsRecord implements JsonpSerializable {
 	 * API name: {@code searchable}
 	 */
 	@Nullable
-	public String searchable() {
+	public final String searchable() {
 		return this.searchable;
 	}
 
@@ -247,7 +248,7 @@ public final class SegmentsRecord implements JsonpSerializable {
 	 * API name: {@code version}
 	 */
 	@Nullable
-	public String version() {
+	public final String version() {
 		return this.version;
 	}
 
@@ -257,7 +258,7 @@ public final class SegmentsRecord implements JsonpSerializable {
 	 * API name: {@code compound}
 	 */
 	@Nullable
-	public String compound() {
+	public final String compound() {
 		return this.compound;
 	}
 
@@ -273,91 +274,76 @@ public final class SegmentsRecord implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.index != null) {
-
 			generator.writeKey("index");
 			generator.write(this.index);
 
 		}
 		if (this.shard != null) {
-
 			generator.writeKey("shard");
 			generator.write(this.shard);
 
 		}
 		if (this.prirep != null) {
-
 			generator.writeKey("prirep");
 			generator.write(this.prirep);
 
 		}
 		if (this.ip != null) {
-
 			generator.writeKey("ip");
 			generator.write(this.ip);
 
 		}
 		if (this.id != null) {
-
 			generator.writeKey("id");
 			generator.write(this.id);
 
 		}
 		if (this.segment != null) {
-
 			generator.writeKey("segment");
 			generator.write(this.segment);
 
 		}
 		if (this.generation != null) {
-
 			generator.writeKey("generation");
 			generator.write(this.generation);
 
 		}
 		if (this.docsCount != null) {
-
 			generator.writeKey("docs.count");
 			generator.write(this.docsCount);
 
 		}
 		if (this.docsDeleted != null) {
-
 			generator.writeKey("docs.deleted");
 			generator.write(this.docsDeleted);
 
 		}
 		if (this.size != null) {
-
 			generator.writeKey("size");
 			generator.write(this.size);
 
 		}
 		if (this.sizeMemory != null) {
-
 			generator.writeKey("size.memory");
 			generator.write(this.sizeMemory);
 
 		}
 		if (this.committed != null) {
-
 			generator.writeKey("committed");
 			generator.write(this.committed);
 
 		}
 		if (this.searchable != null) {
-
 			generator.writeKey("searchable");
 			generator.write(this.searchable);
 
 		}
 		if (this.version != null) {
-
 			generator.writeKey("version");
 			generator.write(this.version);
 
 		}
 		if (this.compound != null) {
-
 			generator.writeKey("compound");
 			generator.write(this.compound);
 
@@ -370,7 +356,7 @@ public final class SegmentsRecord implements JsonpSerializable {
 	/**
 	 * Builder for {@link SegmentsRecord}.
 	 */
-	public static class Builder implements ObjectBuilder<SegmentsRecord> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<SegmentsRecord> {
 		@Nullable
 		private String index;
 
@@ -421,7 +407,7 @@ public final class SegmentsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code index}
 		 */
-		public Builder index(@Nullable String value) {
+		public final Builder index(@Nullable String value) {
 			this.index = value;
 			return this;
 		}
@@ -431,7 +417,7 @@ public final class SegmentsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code shard}
 		 */
-		public Builder shard(@Nullable String value) {
+		public final Builder shard(@Nullable String value) {
 			this.shard = value;
 			return this;
 		}
@@ -441,7 +427,7 @@ public final class SegmentsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code prirep}
 		 */
-		public Builder prirep(@Nullable String value) {
+		public final Builder prirep(@Nullable String value) {
 			this.prirep = value;
 			return this;
 		}
@@ -451,7 +437,7 @@ public final class SegmentsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code ip}
 		 */
-		public Builder ip(@Nullable String value) {
+		public final Builder ip(@Nullable String value) {
 			this.ip = value;
 			return this;
 		}
@@ -461,7 +447,7 @@ public final class SegmentsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code id}
 		 */
-		public Builder id(@Nullable String value) {
+		public final Builder id(@Nullable String value) {
 			this.id = value;
 			return this;
 		}
@@ -471,7 +457,7 @@ public final class SegmentsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code segment}
 		 */
-		public Builder segment(@Nullable String value) {
+		public final Builder segment(@Nullable String value) {
 			this.segment = value;
 			return this;
 		}
@@ -481,7 +467,7 @@ public final class SegmentsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code generation}
 		 */
-		public Builder generation(@Nullable String value) {
+		public final Builder generation(@Nullable String value) {
 			this.generation = value;
 			return this;
 		}
@@ -491,7 +477,7 @@ public final class SegmentsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code docs.count}
 		 */
-		public Builder docsCount(@Nullable String value) {
+		public final Builder docsCount(@Nullable String value) {
 			this.docsCount = value;
 			return this;
 		}
@@ -501,7 +487,7 @@ public final class SegmentsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code docs.deleted}
 		 */
-		public Builder docsDeleted(@Nullable String value) {
+		public final Builder docsDeleted(@Nullable String value) {
 			this.docsDeleted = value;
 			return this;
 		}
@@ -511,7 +497,7 @@ public final class SegmentsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code size}
 		 */
-		public Builder size(@Nullable String value) {
+		public final Builder size(@Nullable String value) {
 			this.size = value;
 			return this;
 		}
@@ -521,7 +507,7 @@ public final class SegmentsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code size.memory}
 		 */
-		public Builder sizeMemory(@Nullable String value) {
+		public final Builder sizeMemory(@Nullable String value) {
 			this.sizeMemory = value;
 			return this;
 		}
@@ -531,7 +517,7 @@ public final class SegmentsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code committed}
 		 */
-		public Builder committed(@Nullable String value) {
+		public final Builder committed(@Nullable String value) {
 			this.committed = value;
 			return this;
 		}
@@ -541,7 +527,7 @@ public final class SegmentsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code searchable}
 		 */
-		public Builder searchable(@Nullable String value) {
+		public final Builder searchable(@Nullable String value) {
 			this.searchable = value;
 			return this;
 		}
@@ -551,7 +537,7 @@ public final class SegmentsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code version}
 		 */
-		public Builder version(@Nullable String value) {
+		public final Builder version(@Nullable String value) {
 			this.version = value;
 			return this;
 		}
@@ -561,7 +547,7 @@ public final class SegmentsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code compound}
 		 */
-		public Builder compound(@Nullable String value) {
+		public final Builder compound(@Nullable String value) {
 			this.compound = value;
 			return this;
 		}
@@ -573,6 +559,7 @@ public final class SegmentsRecord implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public SegmentsRecord build() {
+			_checkSingleUse();
 
 			return new SegmentsRecord(this);
 		}

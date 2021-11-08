@@ -36,16 +36,16 @@ import java.util.function.Function;
 
 // typedef: indices.upgrade.Response
 @JsonpDeserializable
-public final class UpgradeResponse extends AcknowledgedResponseBase {
+public class UpgradeResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
-	public UpgradeResponse(Builder builder) {
+	private UpgradeResponse(Builder builder) {
 		super(builder);
 
 	}
 
-	public UpgradeResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static UpgradeResponse of(Function<Builder, ObjectBuilder<UpgradeResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -68,6 +68,7 @@ public final class UpgradeResponse extends AcknowledgedResponseBase {
 		 *             if some of the required fields are null.
 		 */
 		public UpgradeResponse build() {
+			_checkSingleUse();
 
 			return new UpgradeResponse(this);
 		}

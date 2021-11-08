@@ -36,16 +36,16 @@ import java.util.function.Function;
 
 // typedef: enrich.put_policy.Response
 @JsonpDeserializable
-public final class PutPolicyResponse extends AcknowledgedResponseBase {
+public class PutPolicyResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
-	public PutPolicyResponse(Builder builder) {
+	private PutPolicyResponse(Builder builder) {
 		super(builder);
 
 	}
 
-	public PutPolicyResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static PutPolicyResponse of(Function<Builder, ObjectBuilder<PutPolicyResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -68,6 +68,7 @@ public final class PutPolicyResponse extends AcknowledgedResponseBase {
 		 *             if some of the required fields are null.
 		 */
 		public PutPolicyResponse build() {
+			_checkSingleUse();
 
 			return new PutPolicyResponse(this);
 		}

@@ -32,6 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -42,19 +43,19 @@ import javax.annotation.Nullable;
 
 // typedef: cat.thread_pool.Response
 @JsonpDeserializable
-public final class ThreadPoolResponse implements JsonpSerializable {
+public class ThreadPoolResponse implements JsonpSerializable {
 	private final List<ThreadPoolRecord> valueBody;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public ThreadPoolResponse(Builder builder) {
+	private ThreadPoolResponse(Builder builder) {
 
-		this.valueBody = ModelTypeHelper.unmodifiableNonNull(builder.valueBody, "_value_body");
+		this.valueBody = ModelTypeHelper.unmodifiableRequired(builder.valueBody, this, "valueBody");
 
 	}
 
-	public ThreadPoolResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ThreadPoolResponse of(Function<Builder, ObjectBuilder<ThreadPoolResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -62,7 +63,7 @@ public final class ThreadPoolResponse implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code _value_body}
 	 */
-	public List<ThreadPoolRecord> valueBody() {
+	public final List<ThreadPoolRecord> valueBody() {
 		return this.valueBody;
 	}
 
@@ -84,7 +85,7 @@ public final class ThreadPoolResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link ThreadPoolResponse}.
 	 */
-	public static class Builder implements ObjectBuilder<ThreadPoolResponse> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ThreadPoolResponse> {
 		private List<ThreadPoolRecord> valueBody;
 
 		/**
@@ -92,7 +93,7 @@ public final class ThreadPoolResponse implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code _value_body}
 		 */
-		public Builder valueBody(List<ThreadPoolRecord> value) {
+		public final Builder valueBody(List<ThreadPoolRecord> value) {
 			this.valueBody = value;
 			return this;
 		}
@@ -102,34 +103,23 @@ public final class ThreadPoolResponse implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code _value_body}
 		 */
-		public Builder valueBody(ThreadPoolRecord... value) {
+		public final Builder valueBody(ThreadPoolRecord... value) {
 			this.valueBody = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #valueBody(List)}, creating the list if needed.
+		 * Required - Response value.
+		 * <p>
+		 * API name: {@code _value_body}
 		 */
-		public Builder addValueBody(ThreadPoolRecord value) {
-			if (this.valueBody == null) {
-				this.valueBody = new ArrayList<>();
+		@SafeVarargs
+		public final Builder valueBody(Function<ThreadPoolRecord.Builder, ObjectBuilder<ThreadPoolRecord>>... fns) {
+			this.valueBody = new ArrayList<>(fns.length);
+			for (Function<ThreadPoolRecord.Builder, ObjectBuilder<ThreadPoolRecord>> fn : fns) {
+				this.valueBody.add(fn.apply(new ThreadPoolRecord.Builder()).build());
 			}
-			this.valueBody.add(value);
 			return this;
-		}
-
-		/**
-		 * Set {@link #valueBody(List)} to a singleton list.
-		 */
-		public Builder valueBody(Function<ThreadPoolRecord.Builder, ObjectBuilder<ThreadPoolRecord>> fn) {
-			return this.valueBody(fn.apply(new ThreadPoolRecord.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #valueBody(List)}, creating the list if needed.
-		 */
-		public Builder addValueBody(Function<ThreadPoolRecord.Builder, ObjectBuilder<ThreadPoolRecord>> fn) {
-			return this.addValueBody(fn.apply(new ThreadPoolRecord.Builder()).build());
 		}
 
 		/**
@@ -139,6 +129,7 @@ public final class ThreadPoolResponse implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public ThreadPoolResponse build() {
+			_checkSingleUse();
 
 			return new ThreadPoolResponse(this);
 		}

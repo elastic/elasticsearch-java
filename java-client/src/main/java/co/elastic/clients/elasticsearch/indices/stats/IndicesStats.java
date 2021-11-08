@@ -32,9 +32,9 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -43,10 +43,9 @@ import javax.annotation.Nullable;
 
 // typedef: indices.stats.IndicesStats
 @JsonpDeserializable
-public final class IndicesStats implements JsonpSerializable {
+public class IndicesStats implements JsonpSerializable {
 	private final IndexStats primaries;
 
-	@Nullable
 	private final Map<String, List<ShardStats>> shards;
 
 	private final IndexStats total;
@@ -56,38 +55,37 @@ public final class IndicesStats implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public IndicesStats(Builder builder) {
+	private IndicesStats(Builder builder) {
 
-		this.primaries = Objects.requireNonNull(builder.primaries, "primaries");
+		this.primaries = ModelTypeHelper.requireNonNull(builder.primaries, this, "primaries");
 		this.shards = ModelTypeHelper.unmodifiable(builder.shards);
-		this.total = Objects.requireNonNull(builder.total, "total");
+		this.total = ModelTypeHelper.requireNonNull(builder.total, this, "total");
 		this.uuid = builder.uuid;
 
 	}
 
-	public IndicesStats(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static IndicesStats of(Function<Builder, ObjectBuilder<IndicesStats>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code primaries}
 	 */
-	public IndexStats primaries() {
+	public final IndexStats primaries() {
 		return this.primaries;
 	}
 
 	/**
 	 * API name: {@code shards}
 	 */
-	@Nullable
-	public Map<String, List<ShardStats>> shards() {
+	public final Map<String, List<ShardStats>> shards() {
 		return this.shards;
 	}
 
 	/**
 	 * Required - API name: {@code total}
 	 */
-	public IndexStats total() {
+	public final IndexStats total() {
 		return this.total;
 	}
 
@@ -95,7 +93,7 @@ public final class IndicesStats implements JsonpSerializable {
 	 * API name: {@code uuid}
 	 */
 	@Nullable
-	public String uuid() {
+	public final String uuid() {
 		return this.uuid;
 	}
 
@@ -113,16 +111,17 @@ public final class IndicesStats implements JsonpSerializable {
 		generator.writeKey("primaries");
 		this.primaries.serialize(generator, mapper);
 
-		if (this.shards != null) {
-
+		if (ModelTypeHelper.isDefined(this.shards)) {
 			generator.writeKey("shards");
 			generator.writeStartObject();
 			for (Map.Entry<String, List<ShardStats>> item0 : this.shards.entrySet()) {
 				generator.writeKey(item0.getKey());
 				generator.writeStartArray();
-				for (ShardStats item1 : item0.getValue()) {
-					item1.serialize(generator, mapper);
+				if (item0.getValue() != null) {
+					for (ShardStats item1 : item0.getValue()) {
+						item1.serialize(generator, mapper);
 
+					}
 				}
 				generator.writeEnd();
 
@@ -130,12 +129,10 @@ public final class IndicesStats implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-
 		generator.writeKey("total");
 		this.total.serialize(generator, mapper);
 
 		if (this.uuid != null) {
-
 			generator.writeKey("uuid");
 			generator.write(this.uuid);
 
@@ -148,7 +145,7 @@ public final class IndicesStats implements JsonpSerializable {
 	/**
 	 * Builder for {@link IndicesStats}.
 	 */
-	public static class Builder implements ObjectBuilder<IndicesStats> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<IndicesStats> {
 		private IndexStats primaries;
 
 		@Nullable
@@ -162,7 +159,7 @@ public final class IndicesStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code primaries}
 		 */
-		public Builder primaries(IndexStats value) {
+		public final Builder primaries(IndexStats value) {
 			this.primaries = value;
 			return this;
 		}
@@ -170,33 +167,22 @@ public final class IndicesStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code primaries}
 		 */
-		public Builder primaries(Function<IndexStats.Builder, ObjectBuilder<IndexStats>> fn) {
+		public final Builder primaries(Function<IndexStats.Builder, ObjectBuilder<IndexStats>> fn) {
 			return this.primaries(fn.apply(new IndexStats.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code shards}
 		 */
-		public Builder shards(@Nullable Map<String, List<ShardStats>> value) {
+		public final Builder shards(@Nullable Map<String, List<ShardStats>> value) {
 			this.shards = value;
-			return this;
-		}
-
-		/**
-		 * Add a key/value to {@link #shards(Map)}, creating the map if needed.
-		 */
-		public Builder putShards(String key, List<ShardStats> value) {
-			if (this.shards == null) {
-				this.shards = new HashMap<>();
-			}
-			this.shards.put(key, value);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code total}
 		 */
-		public Builder total(IndexStats value) {
+		public final Builder total(IndexStats value) {
 			this.total = value;
 			return this;
 		}
@@ -204,14 +190,14 @@ public final class IndicesStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code total}
 		 */
-		public Builder total(Function<IndexStats.Builder, ObjectBuilder<IndexStats>> fn) {
+		public final Builder total(Function<IndexStats.Builder, ObjectBuilder<IndexStats>> fn) {
 			return this.total(fn.apply(new IndexStats.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code uuid}
 		 */
-		public Builder uuid(@Nullable String value) {
+		public final Builder uuid(@Nullable String value) {
 			this.uuid = value;
 			return this;
 		}
@@ -223,6 +209,7 @@ public final class IndicesStats implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public IndicesStats build() {
+			_checkSingleUse();
 
 			return new IndicesStats(this);
 		}

@@ -29,6 +29,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -40,7 +41,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.FuzzyQuery
 @JsonpDeserializable
-public final class FuzzyQuery extends QueryBase implements QueryVariant {
+public class FuzzyQuery extends QueryBase implements QueryVariant {
 	// Single key dictionary
 	private final String field;
 
@@ -63,21 +64,21 @@ public final class FuzzyQuery extends QueryBase implements QueryVariant {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public FuzzyQuery(Builder builder) {
+	private FuzzyQuery(Builder builder) {
 		super(builder);
-		this.field = Objects.requireNonNull(builder.field, "field");
+		this.field = ModelTypeHelper.requireNonNull(builder.field, this, "field");
 
 		this.maxExpansions = builder.maxExpansions;
 		this.prefixLength = builder.prefixLength;
 		this.rewrite = builder.rewrite;
 		this.transpositions = builder.transpositions;
 		this.fuzziness = builder.fuzziness;
-		this.value = Objects.requireNonNull(builder.value, "value");
+		this.value = ModelTypeHelper.requireNonNull(builder.value, this, "value");
 
 	}
 
-	public FuzzyQuery(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static FuzzyQuery of(Function<Builder, ObjectBuilder<FuzzyQuery>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -91,7 +92,7 @@ public final class FuzzyQuery extends QueryBase implements QueryVariant {
 	/**
 	 * Required - The target field
 	 */
-	public String field() {
+	public final String field() {
 		return this.field;
 	}
 
@@ -99,7 +100,7 @@ public final class FuzzyQuery extends QueryBase implements QueryVariant {
 	 * API name: {@code max_expansions}
 	 */
 	@Nullable
-	public Integer maxExpansions() {
+	public final Integer maxExpansions() {
 		return this.maxExpansions;
 	}
 
@@ -107,7 +108,7 @@ public final class FuzzyQuery extends QueryBase implements QueryVariant {
 	 * API name: {@code prefix_length}
 	 */
 	@Nullable
-	public Integer prefixLength() {
+	public final Integer prefixLength() {
 		return this.prefixLength;
 	}
 
@@ -115,7 +116,7 @@ public final class FuzzyQuery extends QueryBase implements QueryVariant {
 	 * API name: {@code rewrite}
 	 */
 	@Nullable
-	public String rewrite() {
+	public final String rewrite() {
 		return this.rewrite;
 	}
 
@@ -123,7 +124,7 @@ public final class FuzzyQuery extends QueryBase implements QueryVariant {
 	 * API name: {@code transpositions}
 	 */
 	@Nullable
-	public Boolean transpositions() {
+	public final Boolean transpositions() {
 		return this.transpositions;
 	}
 
@@ -131,14 +132,14 @@ public final class FuzzyQuery extends QueryBase implements QueryVariant {
 	 * API name: {@code fuzziness}
 	 */
 	@Nullable
-	public String fuzziness() {
+	public final String fuzziness() {
 		return this.fuzziness;
 	}
 
 	/**
 	 * Required - API name: {@code value}
 	 */
-	public String value() {
+	public final String value() {
 		return this.value;
 	}
 
@@ -147,36 +148,30 @@ public final class FuzzyQuery extends QueryBase implements QueryVariant {
 
 		super.serializeInternal(generator, mapper);
 		if (this.maxExpansions != null) {
-
 			generator.writeKey("max_expansions");
 			generator.write(this.maxExpansions);
 
 		}
 		if (this.prefixLength != null) {
-
 			generator.writeKey("prefix_length");
 			generator.write(this.prefixLength);
 
 		}
 		if (this.rewrite != null) {
-
 			generator.writeKey("rewrite");
 			generator.write(this.rewrite);
 
 		}
 		if (this.transpositions != null) {
-
 			generator.writeKey("transpositions");
 			generator.write(this.transpositions);
 
 		}
 		if (this.fuzziness != null) {
-
 			generator.writeKey("fuzziness");
 			generator.write(this.fuzziness);
 
 		}
-
 		generator.writeKey("value");
 		generator.write(this.value);
 
@@ -195,7 +190,7 @@ public final class FuzzyQuery extends QueryBase implements QueryVariant {
 		/**
 		 * Required - The target field
 		 */
-		public Builder field(String value) {
+		public final Builder field(String value) {
 			this.field = value;
 			return this;
 		}
@@ -220,7 +215,7 @@ public final class FuzzyQuery extends QueryBase implements QueryVariant {
 		/**
 		 * API name: {@code max_expansions}
 		 */
-		public Builder maxExpansions(@Nullable Integer value) {
+		public final Builder maxExpansions(@Nullable Integer value) {
 			this.maxExpansions = value;
 			return this;
 		}
@@ -228,7 +223,7 @@ public final class FuzzyQuery extends QueryBase implements QueryVariant {
 		/**
 		 * API name: {@code prefix_length}
 		 */
-		public Builder prefixLength(@Nullable Integer value) {
+		public final Builder prefixLength(@Nullable Integer value) {
 			this.prefixLength = value;
 			return this;
 		}
@@ -236,7 +231,7 @@ public final class FuzzyQuery extends QueryBase implements QueryVariant {
 		/**
 		 * API name: {@code rewrite}
 		 */
-		public Builder rewrite(@Nullable String value) {
+		public final Builder rewrite(@Nullable String value) {
 			this.rewrite = value;
 			return this;
 		}
@@ -244,7 +239,7 @@ public final class FuzzyQuery extends QueryBase implements QueryVariant {
 		/**
 		 * API name: {@code transpositions}
 		 */
-		public Builder transpositions(@Nullable Boolean value) {
+		public final Builder transpositions(@Nullable Boolean value) {
 			this.transpositions = value;
 			return this;
 		}
@@ -252,7 +247,7 @@ public final class FuzzyQuery extends QueryBase implements QueryVariant {
 		/**
 		 * API name: {@code fuzziness}
 		 */
-		public Builder fuzziness(@Nullable String value) {
+		public final Builder fuzziness(@Nullable String value) {
 			this.fuzziness = value;
 			return this;
 		}
@@ -260,7 +255,7 @@ public final class FuzzyQuery extends QueryBase implements QueryVariant {
 		/**
 		 * Required - API name: {@code value}
 		 */
-		public Builder value(String value) {
+		public final Builder value(String value) {
 			this.value = value;
 			return this;
 		}
@@ -277,6 +272,7 @@ public final class FuzzyQuery extends QueryBase implements QueryVariant {
 		 *             if some of the required fields are null.
 		 */
 		public FuzzyQuery build() {
+			_checkSingleUse();
 
 			return new FuzzyQuery(this);
 		}

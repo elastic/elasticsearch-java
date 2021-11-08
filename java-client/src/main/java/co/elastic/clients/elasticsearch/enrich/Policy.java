@@ -32,9 +32,9 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
@@ -43,7 +43,7 @@ import javax.annotation.Nullable;
 
 // typedef: enrich._types.Policy
 @JsonpDeserializable
-public final class Policy implements JsonpSerializable {
+public class Policy implements JsonpSerializable {
 	private final List<String> enrichFields;
 
 	private final List<String> indices;
@@ -58,38 +58,38 @@ public final class Policy implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public Policy(Builder builder) {
+	private Policy(Builder builder) {
 
-		this.enrichFields = ModelTypeHelper.unmodifiableNonNull(builder.enrichFields, "enrich_fields");
-		this.indices = ModelTypeHelper.unmodifiableNonNull(builder.indices, "indices");
-		this.matchField = Objects.requireNonNull(builder.matchField, "match_field");
+		this.enrichFields = ModelTypeHelper.unmodifiableRequired(builder.enrichFields, this, "enrichFields");
+		this.indices = ModelTypeHelper.unmodifiableRequired(builder.indices, this, "indices");
+		this.matchField = ModelTypeHelper.requireNonNull(builder.matchField, this, "matchField");
 		this.query = builder.query;
 		this.name = builder.name;
 
 	}
 
-	public Policy(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static Policy of(Function<Builder, ObjectBuilder<Policy>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code enrich_fields}
 	 */
-	public List<String> enrichFields() {
+	public final List<String> enrichFields() {
 		return this.enrichFields;
 	}
 
 	/**
 	 * Required - API name: {@code indices}
 	 */
-	public List<String> indices() {
+	public final List<String> indices() {
 		return this.indices;
 	}
 
 	/**
 	 * Required - API name: {@code match_field}
 	 */
-	public String matchField() {
+	public final String matchField() {
 		return this.matchField;
 	}
 
@@ -97,7 +97,7 @@ public final class Policy implements JsonpSerializable {
 	 * API name: {@code query}
 	 */
 	@Nullable
-	public String query() {
+	public final String query() {
 		return this.query;
 	}
 
@@ -105,7 +105,7 @@ public final class Policy implements JsonpSerializable {
 	 * API name: {@code name}
 	 */
 	@Nullable
-	public String name() {
+	public final String name() {
 		return this.name;
 	}
 
@@ -120,33 +120,35 @@ public final class Policy implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("enrich_fields");
-		generator.writeStartArray();
-		for (String item0 : this.enrichFields) {
-			generator.write(item0);
+		if (ModelTypeHelper.isDefined(this.enrichFields)) {
+			generator.writeKey("enrich_fields");
+			generator.writeStartArray();
+			for (String item0 : this.enrichFields) {
+				generator.write(item0);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
+		if (ModelTypeHelper.isDefined(this.indices)) {
+			generator.writeKey("indices");
+			generator.writeStartArray();
+			for (String item0 : this.indices) {
+				generator.write(item0);
 
-		generator.writeKey("indices");
-		generator.writeStartArray();
-		for (String item0 : this.indices) {
-			generator.write(item0);
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
-
 		generator.writeKey("match_field");
 		generator.write(this.matchField);
 
 		if (this.query != null) {
-
 			generator.writeKey("query");
 			generator.write(this.query);
 
 		}
 		if (this.name != null) {
-
 			generator.writeKey("name");
 			generator.write(this.name);
 
@@ -159,7 +161,7 @@ public final class Policy implements JsonpSerializable {
 	/**
 	 * Builder for {@link Policy}.
 	 */
-	public static class Builder implements ObjectBuilder<Policy> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Policy> {
 		private List<String> enrichFields;
 
 		private List<String> indices;
@@ -175,7 +177,7 @@ public final class Policy implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code enrich_fields}
 		 */
-		public Builder enrichFields(List<String> value) {
+		public final Builder enrichFields(List<String> value) {
 			this.enrichFields = value;
 			return this;
 		}
@@ -183,26 +185,15 @@ public final class Policy implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code enrich_fields}
 		 */
-		public Builder enrichFields(String... value) {
+		public final Builder enrichFields(String... value) {
 			this.enrichFields = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #enrichFields(List)}, creating the list if needed.
-		 */
-		public Builder addEnrichFields(String value) {
-			if (this.enrichFields == null) {
-				this.enrichFields = new ArrayList<>();
-			}
-			this.enrichFields.add(value);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code indices}
 		 */
-		public Builder indices(List<String> value) {
+		public final Builder indices(List<String> value) {
 			this.indices = value;
 			return this;
 		}
@@ -210,26 +201,15 @@ public final class Policy implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code indices}
 		 */
-		public Builder indices(String... value) {
+		public final Builder indices(String... value) {
 			this.indices = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #indices(List)}, creating the list if needed.
-		 */
-		public Builder addIndices(String value) {
-			if (this.indices == null) {
-				this.indices = new ArrayList<>();
-			}
-			this.indices.add(value);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code match_field}
 		 */
-		public Builder matchField(String value) {
+		public final Builder matchField(String value) {
 			this.matchField = value;
 			return this;
 		}
@@ -237,7 +217,7 @@ public final class Policy implements JsonpSerializable {
 		/**
 		 * API name: {@code query}
 		 */
-		public Builder query(@Nullable String value) {
+		public final Builder query(@Nullable String value) {
 			this.query = value;
 			return this;
 		}
@@ -245,7 +225,7 @@ public final class Policy implements JsonpSerializable {
 		/**
 		 * API name: {@code name}
 		 */
-		public Builder name(@Nullable String value) {
+		public final Builder name(@Nullable String value) {
 			this.name = value;
 			return this;
 		}
@@ -257,6 +237,7 @@ public final class Policy implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public Policy build() {
+			_checkSingleUse();
 
 			return new Policy(this);
 		}

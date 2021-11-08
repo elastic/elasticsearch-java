@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
 import java.lang.Long;
@@ -41,7 +43,7 @@ import javax.annotation.Nullable;
 
 // typedef: graph._types.Vertex
 @JsonpDeserializable
-public final class Vertex implements JsonpSerializable {
+public class Vertex implements JsonpSerializable {
 	private final long depth;
 
 	private final String field;
@@ -52,44 +54,44 @@ public final class Vertex implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public Vertex(Builder builder) {
+	private Vertex(Builder builder) {
 
-		this.depth = Objects.requireNonNull(builder.depth, "depth");
-		this.field = Objects.requireNonNull(builder.field, "field");
-		this.term = Objects.requireNonNull(builder.term, "term");
-		this.weight = Objects.requireNonNull(builder.weight, "weight");
+		this.depth = ModelTypeHelper.requireNonNull(builder.depth, this, "depth");
+		this.field = ModelTypeHelper.requireNonNull(builder.field, this, "field");
+		this.term = ModelTypeHelper.requireNonNull(builder.term, this, "term");
+		this.weight = ModelTypeHelper.requireNonNull(builder.weight, this, "weight");
 
 	}
 
-	public Vertex(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static Vertex of(Function<Builder, ObjectBuilder<Vertex>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code depth}
 	 */
-	public long depth() {
+	public final long depth() {
 		return this.depth;
 	}
 
 	/**
 	 * Required - API name: {@code field}
 	 */
-	public String field() {
+	public final String field() {
 		return this.field;
 	}
 
 	/**
 	 * Required - API name: {@code term}
 	 */
-	public String term() {
+	public final String term() {
 		return this.term;
 	}
 
 	/**
 	 * Required - API name: {@code weight}
 	 */
-	public double weight() {
+	public final double weight() {
 		return this.weight;
 	}
 
@@ -123,7 +125,7 @@ public final class Vertex implements JsonpSerializable {
 	/**
 	 * Builder for {@link Vertex}.
 	 */
-	public static class Builder implements ObjectBuilder<Vertex> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Vertex> {
 		private Long depth;
 
 		private String field;
@@ -135,7 +137,7 @@ public final class Vertex implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code depth}
 		 */
-		public Builder depth(long value) {
+		public final Builder depth(long value) {
 			this.depth = value;
 			return this;
 		}
@@ -143,7 +145,7 @@ public final class Vertex implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code field}
 		 */
-		public Builder field(String value) {
+		public final Builder field(String value) {
 			this.field = value;
 			return this;
 		}
@@ -151,7 +153,7 @@ public final class Vertex implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code term}
 		 */
-		public Builder term(String value) {
+		public final Builder term(String value) {
 			this.term = value;
 			return this;
 		}
@@ -159,7 +161,7 @@ public final class Vertex implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code weight}
 		 */
-		public Builder weight(double value) {
+		public final Builder weight(double value) {
 			this.weight = value;
 			return this;
 		}
@@ -171,6 +173,7 @@ public final class Vertex implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public Vertex build() {
+			_checkSingleUse();
 
 			return new Vertex(this);
 		}

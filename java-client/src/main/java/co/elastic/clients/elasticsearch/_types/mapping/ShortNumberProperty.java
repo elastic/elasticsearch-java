@@ -38,21 +38,21 @@ import javax.annotation.Nullable;
 
 // typedef: _types.mapping.ShortNumberProperty
 @JsonpDeserializable
-public final class ShortNumberProperty extends StandardNumberProperty implements PropertyVariant {
+public class ShortNumberProperty extends StandardNumberProperty implements PropertyVariant {
 	@Nullable
 	private final Number nullValue;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public ShortNumberProperty(Builder builder) {
+	private ShortNumberProperty(Builder builder) {
 		super(builder);
 
 		this.nullValue = builder.nullValue;
 
 	}
 
-	public ShortNumberProperty(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ShortNumberProperty of(Function<Builder, ObjectBuilder<ShortNumberProperty>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -67,7 +67,7 @@ public final class ShortNumberProperty extends StandardNumberProperty implements
 	 * API name: {@code null_value}
 	 */
 	@Nullable
-	public Number nullValue() {
+	public final Number nullValue() {
 		return this.nullValue;
 	}
 
@@ -76,7 +76,6 @@ public final class ShortNumberProperty extends StandardNumberProperty implements
 		generator.write("type", "short");
 		super.serializeInternal(generator, mapper);
 		if (this.nullValue != null) {
-
 			generator.writeKey("null_value");
 			generator.write(this.nullValue.doubleValue());
 
@@ -98,7 +97,7 @@ public final class ShortNumberProperty extends StandardNumberProperty implements
 		/**
 		 * API name: {@code null_value}
 		 */
-		public Builder nullValue(@Nullable Number value) {
+		public final Builder nullValue(@Nullable Number value) {
 			this.nullValue = value;
 			return this;
 		}
@@ -115,6 +114,7 @@ public final class ShortNumberProperty extends StandardNumberProperty implements
 		 *             if some of the required fields are null.
 		 */
 		public ShortNumberProperty build() {
+			_checkSingleUse();
 
 			return new ShortNumberProperty(this);
 		}

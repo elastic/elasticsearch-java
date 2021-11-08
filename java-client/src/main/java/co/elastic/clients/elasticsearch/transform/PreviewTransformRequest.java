@@ -37,6 +37,7 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.SimpleEndpoint;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
@@ -46,7 +47,7 @@ import javax.annotation.Nullable;
 
 // typedef: transform.preview_transform.Request
 @JsonpDeserializable
-public final class PreviewTransformRequest extends RequestBase implements JsonpSerializable {
+public class PreviewTransformRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
 	private final String description;
 
@@ -79,7 +80,7 @@ public final class PreviewTransformRequest extends RequestBase implements JsonpS
 
 	// ---------------------------------------------------------------------------------------------
 
-	public PreviewTransformRequest(Builder builder) {
+	private PreviewTransformRequest(Builder builder) {
 
 		this.description = builder.description;
 		this.dest = builder.dest;
@@ -94,8 +95,8 @@ public final class PreviewTransformRequest extends RequestBase implements JsonpS
 
 	}
 
-	public PreviewTransformRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static PreviewTransformRequest of(Function<Builder, ObjectBuilder<PreviewTransformRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -104,7 +105,7 @@ public final class PreviewTransformRequest extends RequestBase implements JsonpS
 	 * API name: {@code description}
 	 */
 	@Nullable
-	public String description() {
+	public final String description() {
 		return this.description;
 	}
 
@@ -114,7 +115,7 @@ public final class PreviewTransformRequest extends RequestBase implements JsonpS
 	 * API name: {@code dest}
 	 */
 	@Nullable
-	public Destination dest() {
+	public final Destination dest() {
 		return this.dest;
 	}
 
@@ -127,7 +128,7 @@ public final class PreviewTransformRequest extends RequestBase implements JsonpS
 	 * API name: {@code frequency}
 	 */
 	@Nullable
-	public String frequency() {
+	public final String frequency() {
 		return this.frequency;
 	}
 
@@ -138,7 +139,7 @@ public final class PreviewTransformRequest extends RequestBase implements JsonpS
 	 * API name: {@code latest}
 	 */
 	@Nullable
-	public Latest latest() {
+	public final Latest latest() {
 		return this.latest;
 	}
 
@@ -149,7 +150,7 @@ public final class PreviewTransformRequest extends RequestBase implements JsonpS
 	 * API name: {@code pivot}
 	 */
 	@Nullable
-	public Pivot pivot() {
+	public final Pivot pivot() {
 		return this.pivot;
 	}
 
@@ -160,7 +161,7 @@ public final class PreviewTransformRequest extends RequestBase implements JsonpS
 	 * API name: {@code retention_policy}
 	 */
 	@Nullable
-	public RetentionPolicy retentionPolicy() {
+	public final RetentionPolicy retentionPolicy() {
 		return this.retentionPolicy;
 	}
 
@@ -170,7 +171,7 @@ public final class PreviewTransformRequest extends RequestBase implements JsonpS
 	 * API name: {@code settings}
 	 */
 	@Nullable
-	public Settings settings() {
+	public final Settings settings() {
 		return this.settings;
 	}
 
@@ -180,7 +181,7 @@ public final class PreviewTransformRequest extends RequestBase implements JsonpS
 	 * API name: {@code source}
 	 */
 	@Nullable
-	public Source source() {
+	public final Source source() {
 		return this.source;
 	}
 
@@ -190,7 +191,7 @@ public final class PreviewTransformRequest extends RequestBase implements JsonpS
 	 * API name: {@code sync}
 	 */
 	@Nullable
-	public Sync sync() {
+	public final Sync sync() {
 		return this.sync;
 	}
 
@@ -200,7 +201,7 @@ public final class PreviewTransformRequest extends RequestBase implements JsonpS
 	 * API name: {@code transform_id}
 	 */
 	@Nullable
-	public String transformId() {
+	public final String transformId() {
 		return this.transformId;
 	}
 
@@ -216,55 +217,46 @@ public final class PreviewTransformRequest extends RequestBase implements JsonpS
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.description != null) {
-
 			generator.writeKey("description");
 			generator.write(this.description);
 
 		}
 		if (this.dest != null) {
-
 			generator.writeKey("dest");
 			this.dest.serialize(generator, mapper);
 
 		}
 		if (this.frequency != null) {
-
 			generator.writeKey("frequency");
 			generator.write(this.frequency);
 
 		}
 		if (this.latest != null) {
-
 			generator.writeKey("latest");
 			this.latest.serialize(generator, mapper);
 
 		}
 		if (this.pivot != null) {
-
 			generator.writeKey("pivot");
 			this.pivot.serialize(generator, mapper);
 
 		}
 		if (this.retentionPolicy != null) {
-
 			generator.writeKey("retention_policy");
 			this.retentionPolicy.serialize(generator, mapper);
 
 		}
 		if (this.settings != null) {
-
 			generator.writeKey("settings");
 			this.settings.serialize(generator, mapper);
 
 		}
 		if (this.source != null) {
-
 			generator.writeKey("source");
 			this.source.serialize(generator, mapper);
 
 		}
 		if (this.sync != null) {
-
 			generator.writeKey("sync");
 			this.sync.serialize(generator, mapper);
 
@@ -277,7 +269,7 @@ public final class PreviewTransformRequest extends RequestBase implements JsonpS
 	/**
 	 * Builder for {@link PreviewTransformRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<PreviewTransformRequest> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PreviewTransformRequest> {
 		@Nullable
 		private String description;
 
@@ -313,7 +305,7 @@ public final class PreviewTransformRequest extends RequestBase implements JsonpS
 		 * <p>
 		 * API name: {@code description}
 		 */
-		public Builder description(@Nullable String value) {
+		public final Builder description(@Nullable String value) {
 			this.description = value;
 			return this;
 		}
@@ -323,7 +315,7 @@ public final class PreviewTransformRequest extends RequestBase implements JsonpS
 		 * <p>
 		 * API name: {@code dest}
 		 */
-		public Builder dest(@Nullable Destination value) {
+		public final Builder dest(@Nullable Destination value) {
 			this.dest = value;
 			return this;
 		}
@@ -333,7 +325,7 @@ public final class PreviewTransformRequest extends RequestBase implements JsonpS
 		 * <p>
 		 * API name: {@code dest}
 		 */
-		public Builder dest(Function<Destination.Builder, ObjectBuilder<Destination>> fn) {
+		public final Builder dest(Function<Destination.Builder, ObjectBuilder<Destination>> fn) {
 			return this.dest(fn.apply(new Destination.Builder()).build());
 		}
 
@@ -345,7 +337,7 @@ public final class PreviewTransformRequest extends RequestBase implements JsonpS
 		 * <p>
 		 * API name: {@code frequency}
 		 */
-		public Builder frequency(@Nullable String value) {
+		public final Builder frequency(@Nullable String value) {
 			this.frequency = value;
 			return this;
 		}
@@ -356,7 +348,7 @@ public final class PreviewTransformRequest extends RequestBase implements JsonpS
 		 * <p>
 		 * API name: {@code latest}
 		 */
-		public Builder latest(@Nullable Latest value) {
+		public final Builder latest(@Nullable Latest value) {
 			this.latest = value;
 			return this;
 		}
@@ -367,7 +359,7 @@ public final class PreviewTransformRequest extends RequestBase implements JsonpS
 		 * <p>
 		 * API name: {@code latest}
 		 */
-		public Builder latest(Function<Latest.Builder, ObjectBuilder<Latest>> fn) {
+		public final Builder latest(Function<Latest.Builder, ObjectBuilder<Latest>> fn) {
 			return this.latest(fn.apply(new Latest.Builder()).build());
 		}
 
@@ -377,7 +369,7 @@ public final class PreviewTransformRequest extends RequestBase implements JsonpS
 		 * <p>
 		 * API name: {@code pivot}
 		 */
-		public Builder pivot(@Nullable Pivot value) {
+		public final Builder pivot(@Nullable Pivot value) {
 			this.pivot = value;
 			return this;
 		}
@@ -388,7 +380,7 @@ public final class PreviewTransformRequest extends RequestBase implements JsonpS
 		 * <p>
 		 * API name: {@code pivot}
 		 */
-		public Builder pivot(Function<Pivot.Builder, ObjectBuilder<Pivot>> fn) {
+		public final Builder pivot(Function<Pivot.Builder, ObjectBuilder<Pivot>> fn) {
 			return this.pivot(fn.apply(new Pivot.Builder()).build());
 		}
 
@@ -398,7 +390,7 @@ public final class PreviewTransformRequest extends RequestBase implements JsonpS
 		 * <p>
 		 * API name: {@code retention_policy}
 		 */
-		public Builder retentionPolicy(@Nullable RetentionPolicy value) {
+		public final Builder retentionPolicy(@Nullable RetentionPolicy value) {
 			this.retentionPolicy = value;
 			return this;
 		}
@@ -409,7 +401,7 @@ public final class PreviewTransformRequest extends RequestBase implements JsonpS
 		 * <p>
 		 * API name: {@code retention_policy}
 		 */
-		public Builder retentionPolicy(Function<RetentionPolicy.Builder, ObjectBuilder<RetentionPolicy>> fn) {
+		public final Builder retentionPolicy(Function<RetentionPolicy.Builder, ObjectBuilder<RetentionPolicy>> fn) {
 			return this.retentionPolicy(fn.apply(new RetentionPolicy.Builder()).build());
 		}
 
@@ -418,7 +410,7 @@ public final class PreviewTransformRequest extends RequestBase implements JsonpS
 		 * <p>
 		 * API name: {@code settings}
 		 */
-		public Builder settings(@Nullable Settings value) {
+		public final Builder settings(@Nullable Settings value) {
 			this.settings = value;
 			return this;
 		}
@@ -428,7 +420,7 @@ public final class PreviewTransformRequest extends RequestBase implements JsonpS
 		 * <p>
 		 * API name: {@code settings}
 		 */
-		public Builder settings(Function<Settings.Builder, ObjectBuilder<Settings>> fn) {
+		public final Builder settings(Function<Settings.Builder, ObjectBuilder<Settings>> fn) {
 			return this.settings(fn.apply(new Settings.Builder()).build());
 		}
 
@@ -437,7 +429,7 @@ public final class PreviewTransformRequest extends RequestBase implements JsonpS
 		 * <p>
 		 * API name: {@code source}
 		 */
-		public Builder source(@Nullable Source value) {
+		public final Builder source(@Nullable Source value) {
 			this.source = value;
 			return this;
 		}
@@ -447,7 +439,7 @@ public final class PreviewTransformRequest extends RequestBase implements JsonpS
 		 * <p>
 		 * API name: {@code source}
 		 */
-		public Builder source(Function<Source.Builder, ObjectBuilder<Source>> fn) {
+		public final Builder source(Function<Source.Builder, ObjectBuilder<Source>> fn) {
 			return this.source(fn.apply(new Source.Builder()).build());
 		}
 
@@ -456,7 +448,7 @@ public final class PreviewTransformRequest extends RequestBase implements JsonpS
 		 * <p>
 		 * API name: {@code sync}
 		 */
-		public Builder sync(@Nullable Sync value) {
+		public final Builder sync(@Nullable Sync value) {
 			this.sync = value;
 			return this;
 		}
@@ -466,7 +458,7 @@ public final class PreviewTransformRequest extends RequestBase implements JsonpS
 		 * <p>
 		 * API name: {@code sync}
 		 */
-		public Builder sync(Function<Sync.Builder, ObjectBuilder<Sync>> fn) {
+		public final Builder sync(Function<Sync.Builder, ObjectBuilder<Sync>> fn) {
 			return this.sync(fn.apply(new Sync.Builder()).build());
 		}
 
@@ -475,7 +467,7 @@ public final class PreviewTransformRequest extends RequestBase implements JsonpS
 		 * <p>
 		 * API name: {@code transform_id}
 		 */
-		public Builder transformId(@Nullable String value) {
+		public final Builder transformId(@Nullable String value) {
 			this.transformId = value;
 			return this;
 		}
@@ -487,6 +479,7 @@ public final class PreviewTransformRequest extends RequestBase implements JsonpS
 		 *             if some of the required fields are null.
 		 */
 		public PreviewTransformRequest build() {
+			_checkSingleUse();
 
 			return new PreviewTransformRequest(this);
 		}

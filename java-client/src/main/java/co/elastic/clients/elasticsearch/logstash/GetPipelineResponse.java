@@ -29,12 +29,13 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.MapBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
@@ -42,19 +43,19 @@ import javax.annotation.Nullable;
 
 // typedef: logstash.get_pipeline.Response
 @JsonpDeserializable
-public final class GetPipelineResponse implements JsonpSerializable {
+public class GetPipelineResponse implements JsonpSerializable {
 	private final Map<String, Pipeline> valueBody;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public GetPipelineResponse(Builder builder) {
+	private GetPipelineResponse(Builder builder) {
 
-		this.valueBody = ModelTypeHelper.unmodifiableNonNull(builder.valueBody, "_value_body");
+		this.valueBody = ModelTypeHelper.unmodifiableRequired(builder.valueBody, this, "valueBody");
 
 	}
 
-	public GetPipelineResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static GetPipelineResponse of(Function<Builder, ObjectBuilder<GetPipelineResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -62,7 +63,7 @@ public final class GetPipelineResponse implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code _value_body}
 	 */
-	public Map<String, Pipeline> valueBody() {
+	public final Map<String, Pipeline> valueBody() {
 		return this.valueBody;
 	}
 
@@ -85,7 +86,7 @@ public final class GetPipelineResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link GetPipelineResponse}.
 	 */
-	public static class Builder implements ObjectBuilder<GetPipelineResponse> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetPipelineResponse> {
 		private Map<String, Pipeline> valueBody;
 
 		/**
@@ -93,19 +94,8 @@ public final class GetPipelineResponse implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code _value_body}
 		 */
-		public Builder valueBody(Map<String, Pipeline> value) {
+		public final Builder valueBody(Map<String, Pipeline> value) {
 			this.valueBody = value;
-			return this;
-		}
-
-		/**
-		 * Add a key/value to {@link #valueBody(Map)}, creating the map if needed.
-		 */
-		public Builder putValueBody(String key, Pipeline value) {
-			if (this.valueBody == null) {
-				this.valueBody = new HashMap<>();
-			}
-			this.valueBody.put(key, value);
 			return this;
 		}
 
@@ -116,11 +106,9 @@ public final class GetPipelineResponse implements JsonpSerializable {
 			return this.valueBody(Collections.singletonMap(key, fn.apply(new Pipeline.Builder()).build()));
 		}
 
-		/**
-		 * Add a key/value to {@link #valueBody(Map)}, creating the map if needed.
-		 */
-		public Builder putValueBody(String key, Function<Pipeline.Builder, ObjectBuilder<Pipeline>> fn) {
-			return this.putValueBody(key, fn.apply(new Pipeline.Builder()).build());
+		public final Builder valueBody(
+				Function<MapBuilder<String, Pipeline, Pipeline.Builder>, ObjectBuilder<Map<String, Pipeline>>> fn) {
+			return valueBody(fn.apply(new MapBuilder<>(Pipeline.Builder::new)).build());
 		}
 
 		/**
@@ -130,6 +118,7 @@ public final class GetPipelineResponse implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public GetPipelineResponse build() {
+			_checkSingleUse();
 
 			return new GetPipelineResponse(this);
 		}

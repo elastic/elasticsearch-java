@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.lang.String;
@@ -40,7 +42,7 @@ import javax.annotation.Nullable;
 
 // typedef: transform.get_transform_stats.Checkpointing
 @JsonpDeserializable
-public final class Checkpointing implements JsonpSerializable {
+public class Checkpointing implements JsonpSerializable {
 	private final long changesLastDetectedAt;
 
 	@Nullable
@@ -56,24 +58,25 @@ public final class Checkpointing implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public Checkpointing(Builder builder) {
+	private Checkpointing(Builder builder) {
 
-		this.changesLastDetectedAt = Objects.requireNonNull(builder.changesLastDetectedAt, "changes_last_detected_at");
+		this.changesLastDetectedAt = ModelTypeHelper.requireNonNull(builder.changesLastDetectedAt, this,
+				"changesLastDetectedAt");
 		this.changesLastDetectedAtDateTime = builder.changesLastDetectedAtDateTime;
-		this.last = Objects.requireNonNull(builder.last, "last");
+		this.last = ModelTypeHelper.requireNonNull(builder.last, this, "last");
 		this.next = builder.next;
 		this.operationsBehind = builder.operationsBehind;
 
 	}
 
-	public Checkpointing(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static Checkpointing of(Function<Builder, ObjectBuilder<Checkpointing>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code changes_last_detected_at}
 	 */
-	public long changesLastDetectedAt() {
+	public final long changesLastDetectedAt() {
 		return this.changesLastDetectedAt;
 	}
 
@@ -81,14 +84,14 @@ public final class Checkpointing implements JsonpSerializable {
 	 * API name: {@code changes_last_detected_at_date_time}
 	 */
 	@Nullable
-	public String changesLastDetectedAtDateTime() {
+	public final String changesLastDetectedAtDateTime() {
 		return this.changesLastDetectedAtDateTime;
 	}
 
 	/**
 	 * Required - API name: {@code last}
 	 */
-	public CheckpointStats last() {
+	public final CheckpointStats last() {
 		return this.last;
 	}
 
@@ -96,7 +99,7 @@ public final class Checkpointing implements JsonpSerializable {
 	 * API name: {@code next}
 	 */
 	@Nullable
-	public CheckpointStats next() {
+	public final CheckpointStats next() {
 		return this.next;
 	}
 
@@ -104,7 +107,7 @@ public final class Checkpointing implements JsonpSerializable {
 	 * API name: {@code operations_behind}
 	 */
 	@Nullable
-	public Long operationsBehind() {
+	public final Long operationsBehind() {
 		return this.operationsBehind;
 	}
 
@@ -123,23 +126,19 @@ public final class Checkpointing implements JsonpSerializable {
 		generator.write(this.changesLastDetectedAt);
 
 		if (this.changesLastDetectedAtDateTime != null) {
-
 			generator.writeKey("changes_last_detected_at_date_time");
 			generator.write(this.changesLastDetectedAtDateTime);
 
 		}
-
 		generator.writeKey("last");
 		this.last.serialize(generator, mapper);
 
 		if (this.next != null) {
-
 			generator.writeKey("next");
 			this.next.serialize(generator, mapper);
 
 		}
 		if (this.operationsBehind != null) {
-
 			generator.writeKey("operations_behind");
 			generator.write(this.operationsBehind);
 
@@ -152,7 +151,7 @@ public final class Checkpointing implements JsonpSerializable {
 	/**
 	 * Builder for {@link Checkpointing}.
 	 */
-	public static class Builder implements ObjectBuilder<Checkpointing> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Checkpointing> {
 		private Long changesLastDetectedAt;
 
 		@Nullable
@@ -169,7 +168,7 @@ public final class Checkpointing implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code changes_last_detected_at}
 		 */
-		public Builder changesLastDetectedAt(long value) {
+		public final Builder changesLastDetectedAt(long value) {
 			this.changesLastDetectedAt = value;
 			return this;
 		}
@@ -177,7 +176,7 @@ public final class Checkpointing implements JsonpSerializable {
 		/**
 		 * API name: {@code changes_last_detected_at_date_time}
 		 */
-		public Builder changesLastDetectedAtDateTime(@Nullable String value) {
+		public final Builder changesLastDetectedAtDateTime(@Nullable String value) {
 			this.changesLastDetectedAtDateTime = value;
 			return this;
 		}
@@ -185,7 +184,7 @@ public final class Checkpointing implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code last}
 		 */
-		public Builder last(CheckpointStats value) {
+		public final Builder last(CheckpointStats value) {
 			this.last = value;
 			return this;
 		}
@@ -193,14 +192,14 @@ public final class Checkpointing implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code last}
 		 */
-		public Builder last(Function<CheckpointStats.Builder, ObjectBuilder<CheckpointStats>> fn) {
+		public final Builder last(Function<CheckpointStats.Builder, ObjectBuilder<CheckpointStats>> fn) {
 			return this.last(fn.apply(new CheckpointStats.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code next}
 		 */
-		public Builder next(@Nullable CheckpointStats value) {
+		public final Builder next(@Nullable CheckpointStats value) {
 			this.next = value;
 			return this;
 		}
@@ -208,14 +207,14 @@ public final class Checkpointing implements JsonpSerializable {
 		/**
 		 * API name: {@code next}
 		 */
-		public Builder next(Function<CheckpointStats.Builder, ObjectBuilder<CheckpointStats>> fn) {
+		public final Builder next(Function<CheckpointStats.Builder, ObjectBuilder<CheckpointStats>> fn) {
 			return this.next(fn.apply(new CheckpointStats.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code operations_behind}
 		 */
-		public Builder operationsBehind(@Nullable Long value) {
+		public final Builder operationsBehind(@Nullable Long value) {
 			this.operationsBehind = value;
 			return this;
 		}
@@ -227,6 +226,7 @@ public final class Checkpointing implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public Checkpointing build() {
+			_checkSingleUse();
 
 			return new Checkpointing(this);
 		}

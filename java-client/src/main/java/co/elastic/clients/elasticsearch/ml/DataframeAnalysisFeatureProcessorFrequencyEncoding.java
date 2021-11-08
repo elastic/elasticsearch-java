@@ -32,10 +32,10 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
 import java.lang.String;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
@@ -43,7 +43,7 @@ import javax.annotation.Nullable;
 
 // typedef: ml._types.DataframeAnalysisFeatureProcessorFrequencyEncoding
 @JsonpDeserializable
-public final class DataframeAnalysisFeatureProcessorFrequencyEncoding
+public class DataframeAnalysisFeatureProcessorFrequencyEncoding
 		implements
 			DataframeAnalysisFeatureProcessorVariant,
 			JsonpSerializable {
@@ -55,16 +55,17 @@ public final class DataframeAnalysisFeatureProcessorFrequencyEncoding
 
 	// ---------------------------------------------------------------------------------------------
 
-	public DataframeAnalysisFeatureProcessorFrequencyEncoding(Builder builder) {
+	private DataframeAnalysisFeatureProcessorFrequencyEncoding(Builder builder) {
 
-		this.featureName = Objects.requireNonNull(builder.featureName, "feature_name");
-		this.field = Objects.requireNonNull(builder.field, "field");
-		this.frequencyMap = ModelTypeHelper.unmodifiableNonNull(builder.frequencyMap, "frequency_map");
+		this.featureName = ModelTypeHelper.requireNonNull(builder.featureName, this, "featureName");
+		this.field = ModelTypeHelper.requireNonNull(builder.field, this, "field");
+		this.frequencyMap = ModelTypeHelper.unmodifiableRequired(builder.frequencyMap, this, "frequencyMap");
 
 	}
 
-	public DataframeAnalysisFeatureProcessorFrequencyEncoding(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static DataframeAnalysisFeatureProcessorFrequencyEncoding of(
+			Function<Builder, ObjectBuilder<DataframeAnalysisFeatureProcessorFrequencyEncoding>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -80,14 +81,14 @@ public final class DataframeAnalysisFeatureProcessorFrequencyEncoding
 	 * <p>
 	 * API name: {@code feature_name}
 	 */
-	public String featureName() {
+	public final String featureName() {
 		return this.featureName;
 	}
 
 	/**
 	 * Required - API name: {@code field}
 	 */
-	public String field() {
+	public final String field() {
 		return this.field;
 	}
 
@@ -97,7 +98,7 @@ public final class DataframeAnalysisFeatureProcessorFrequencyEncoding
 	 * <p>
 	 * API name: {@code frequency_map}
 	 */
-	public Map<String, Double> frequencyMap() {
+	public final Map<String, Double> frequencyMap() {
 		return this.frequencyMap;
 	}
 
@@ -118,14 +119,17 @@ public final class DataframeAnalysisFeatureProcessorFrequencyEncoding
 		generator.writeKey("field");
 		generator.write(this.field);
 
-		generator.writeKey("frequency_map");
-		generator.writeStartObject();
-		for (Map.Entry<String, Double> item0 : this.frequencyMap.entrySet()) {
-			generator.writeKey(item0.getKey());
-			generator.write(item0.getValue());
+		if (ModelTypeHelper.isDefined(this.frequencyMap)) {
+			generator.writeKey("frequency_map");
+			generator.writeStartObject();
+			for (Map.Entry<String, Double> item0 : this.frequencyMap.entrySet()) {
+				generator.writeKey(item0.getKey());
+				generator.write(item0.getValue());
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
 
 	}
 
@@ -134,7 +138,9 @@ public final class DataframeAnalysisFeatureProcessorFrequencyEncoding
 	/**
 	 * Builder for {@link DataframeAnalysisFeatureProcessorFrequencyEncoding}.
 	 */
-	public static class Builder implements ObjectBuilder<DataframeAnalysisFeatureProcessorFrequencyEncoding> {
+	public static class Builder extends ObjectBuilderBase
+			implements
+				ObjectBuilder<DataframeAnalysisFeatureProcessorFrequencyEncoding> {
 		private String featureName;
 
 		private String field;
@@ -146,7 +152,7 @@ public final class DataframeAnalysisFeatureProcessorFrequencyEncoding
 		 * <p>
 		 * API name: {@code feature_name}
 		 */
-		public Builder featureName(String value) {
+		public final Builder featureName(String value) {
 			this.featureName = value;
 			return this;
 		}
@@ -154,7 +160,7 @@ public final class DataframeAnalysisFeatureProcessorFrequencyEncoding
 		/**
 		 * Required - API name: {@code field}
 		 */
-		public Builder field(String value) {
+		public final Builder field(String value) {
 			this.field = value;
 			return this;
 		}
@@ -165,19 +171,8 @@ public final class DataframeAnalysisFeatureProcessorFrequencyEncoding
 		 * <p>
 		 * API name: {@code frequency_map}
 		 */
-		public Builder frequencyMap(Map<String, Double> value) {
+		public final Builder frequencyMap(Map<String, Double> value) {
 			this.frequencyMap = value;
-			return this;
-		}
-
-		/**
-		 * Add a key/value to {@link #frequencyMap(Map)}, creating the map if needed.
-		 */
-		public Builder putFrequencyMap(String key, Double value) {
-			if (this.frequencyMap == null) {
-				this.frequencyMap = new HashMap<>();
-			}
-			this.frequencyMap.put(key, value);
 			return this;
 		}
 
@@ -188,6 +183,7 @@ public final class DataframeAnalysisFeatureProcessorFrequencyEncoding
 		 *             if some of the required fields are null.
 		 */
 		public DataframeAnalysisFeatureProcessorFrequencyEncoding build() {
+			_checkSingleUse();
 
 			return new DataframeAnalysisFeatureProcessorFrequencyEncoding(this);
 		}

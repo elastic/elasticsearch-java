@@ -42,16 +42,15 @@ import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.IpRangeAggregation
 @JsonpDeserializable
-public final class IpRangeAggregation extends BucketAggregationBase implements AggregationVariant {
+public class IpRangeAggregation extends BucketAggregationBase implements AggregationVariant {
 	@Nullable
 	private final String field;
 
-	@Nullable
 	private final List<IpRangeAggregationRange> ranges;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public IpRangeAggregation(Builder builder) {
+	private IpRangeAggregation(Builder builder) {
 		super(builder);
 
 		this.field = builder.field;
@@ -59,8 +58,8 @@ public final class IpRangeAggregation extends BucketAggregationBase implements A
 
 	}
 
-	public IpRangeAggregation(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static IpRangeAggregation of(Function<Builder, ObjectBuilder<IpRangeAggregation>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -75,15 +74,14 @@ public final class IpRangeAggregation extends BucketAggregationBase implements A
 	 * API name: {@code field}
 	 */
 	@Nullable
-	public String field() {
+	public final String field() {
 		return this.field;
 	}
 
 	/**
 	 * API name: {@code ranges}
 	 */
-	@Nullable
-	public List<IpRangeAggregationRange> ranges() {
+	public final List<IpRangeAggregationRange> ranges() {
 		return this.ranges;
 	}
 
@@ -91,13 +89,11 @@ public final class IpRangeAggregation extends BucketAggregationBase implements A
 
 		super.serializeInternal(generator, mapper);
 		if (this.field != null) {
-
 			generator.writeKey("field");
 			generator.write(this.field);
 
 		}
-		if (this.ranges != null) {
-
+		if (ModelTypeHelper.isDefined(this.ranges)) {
 			generator.writeKey("ranges");
 			generator.writeStartArray();
 			for (IpRangeAggregationRange item0 : this.ranges) {
@@ -127,7 +123,7 @@ public final class IpRangeAggregation extends BucketAggregationBase implements A
 		/**
 		 * API name: {@code field}
 		 */
-		public Builder field(@Nullable String value) {
+		public final Builder field(@Nullable String value) {
 			this.field = value;
 			return this;
 		}
@@ -135,7 +131,7 @@ public final class IpRangeAggregation extends BucketAggregationBase implements A
 		/**
 		 * API name: {@code ranges}
 		 */
-		public Builder ranges(@Nullable List<IpRangeAggregationRange> value) {
+		public final Builder ranges(@Nullable List<IpRangeAggregationRange> value) {
 			this.ranges = value;
 			return this;
 		}
@@ -143,34 +139,22 @@ public final class IpRangeAggregation extends BucketAggregationBase implements A
 		/**
 		 * API name: {@code ranges}
 		 */
-		public Builder ranges(IpRangeAggregationRange... value) {
+		public final Builder ranges(IpRangeAggregationRange... value) {
 			this.ranges = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #ranges(List)}, creating the list if needed.
+		 * API name: {@code ranges}
 		 */
-		public Builder addRanges(IpRangeAggregationRange value) {
-			if (this.ranges == null) {
-				this.ranges = new ArrayList<>();
+		@SafeVarargs
+		public final Builder ranges(
+				Function<IpRangeAggregationRange.Builder, ObjectBuilder<IpRangeAggregationRange>>... fns) {
+			this.ranges = new ArrayList<>(fns.length);
+			for (Function<IpRangeAggregationRange.Builder, ObjectBuilder<IpRangeAggregationRange>> fn : fns) {
+				this.ranges.add(fn.apply(new IpRangeAggregationRange.Builder()).build());
 			}
-			this.ranges.add(value);
 			return this;
-		}
-
-		/**
-		 * Set {@link #ranges(List)} to a singleton list.
-		 */
-		public Builder ranges(Function<IpRangeAggregationRange.Builder, ObjectBuilder<IpRangeAggregationRange>> fn) {
-			return this.ranges(fn.apply(new IpRangeAggregationRange.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #ranges(List)}, creating the list if needed.
-		 */
-		public Builder addRanges(Function<IpRangeAggregationRange.Builder, ObjectBuilder<IpRangeAggregationRange>> fn) {
-			return this.addRanges(fn.apply(new IpRangeAggregationRange.Builder()).build());
 		}
 
 		@Override
@@ -185,6 +169,7 @@ public final class IpRangeAggregation extends BucketAggregationBase implements A
 		 *             if some of the required fields are null.
 		 */
 		public IpRangeAggregation build() {
+			_checkSingleUse();
 
 			return new IpRangeAggregation(this);
 		}

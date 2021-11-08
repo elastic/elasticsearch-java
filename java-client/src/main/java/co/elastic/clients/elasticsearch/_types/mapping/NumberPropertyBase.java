@@ -47,7 +47,7 @@ public abstract class NumberPropertyBase extends DocValuesPropertyBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public NumberPropertyBase(AbstractBuilder<?> builder) {
+	protected NumberPropertyBase(AbstractBuilder<?> builder) {
 		super(builder);
 
 		this.index = builder.index;
@@ -59,7 +59,7 @@ public abstract class NumberPropertyBase extends DocValuesPropertyBase {
 	 * API name: {@code index}
 	 */
 	@Nullable
-	public Boolean index() {
+	public final Boolean index() {
 		return this.index;
 	}
 
@@ -67,7 +67,7 @@ public abstract class NumberPropertyBase extends DocValuesPropertyBase {
 	 * API name: {@code ignore_malformed}
 	 */
 	@Nullable
-	public Boolean ignoreMalformed() {
+	public final Boolean ignoreMalformed() {
 		return this.ignoreMalformed;
 	}
 
@@ -75,13 +75,11 @@ public abstract class NumberPropertyBase extends DocValuesPropertyBase {
 
 		super.serializeInternal(generator, mapper);
 		if (this.index != null) {
-
 			generator.writeKey("index");
 			generator.write(this.index);
 
 		}
 		if (this.ignoreMalformed != null) {
-
 			generator.writeKey("ignore_malformed");
 			generator.write(this.ignoreMalformed);
 
@@ -101,7 +99,7 @@ public abstract class NumberPropertyBase extends DocValuesPropertyBase {
 		/**
 		 * API name: {@code index}
 		 */
-		public BuilderT index(@Nullable Boolean value) {
+		public final BuilderT index(@Nullable Boolean value) {
 			this.index = value;
 			return self();
 		}
@@ -109,7 +107,7 @@ public abstract class NumberPropertyBase extends DocValuesPropertyBase {
 		/**
 		 * API name: {@code ignore_malformed}
 		 */
-		public BuilderT ignoreMalformed(@Nullable Boolean value) {
+		public final BuilderT ignoreMalformed(@Nullable Boolean value) {
 			this.ignoreMalformed = value;
 			return self();
 		}

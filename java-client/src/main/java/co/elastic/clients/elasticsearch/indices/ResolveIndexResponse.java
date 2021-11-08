@@ -35,6 +35,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -45,7 +46,7 @@ import javax.annotation.Nullable;
 
 // typedef: indices.resolve_index.Response
 @JsonpDeserializable
-public final class ResolveIndexResponse implements JsonpSerializable {
+public class ResolveIndexResponse implements JsonpSerializable {
 	private final List<ResolveIndexItem> indices;
 
 	private final List<ResolveIndexAliasItem> aliases;
@@ -54,36 +55,36 @@ public final class ResolveIndexResponse implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public ResolveIndexResponse(Builder builder) {
+	private ResolveIndexResponse(Builder builder) {
 
-		this.indices = ModelTypeHelper.unmodifiableNonNull(builder.indices, "indices");
-		this.aliases = ModelTypeHelper.unmodifiableNonNull(builder.aliases, "aliases");
-		this.dataStreams = ModelTypeHelper.unmodifiableNonNull(builder.dataStreams, "data_streams");
+		this.indices = ModelTypeHelper.unmodifiableRequired(builder.indices, this, "indices");
+		this.aliases = ModelTypeHelper.unmodifiableRequired(builder.aliases, this, "aliases");
+		this.dataStreams = ModelTypeHelper.unmodifiableRequired(builder.dataStreams, this, "dataStreams");
 
 	}
 
-	public ResolveIndexResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ResolveIndexResponse of(Function<Builder, ObjectBuilder<ResolveIndexResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code indices}
 	 */
-	public List<ResolveIndexItem> indices() {
+	public final List<ResolveIndexItem> indices() {
 		return this.indices;
 	}
 
 	/**
 	 * Required - API name: {@code aliases}
 	 */
-	public List<ResolveIndexAliasItem> aliases() {
+	public final List<ResolveIndexAliasItem> aliases() {
 		return this.aliases;
 	}
 
 	/**
 	 * Required - API name: {@code data_streams}
 	 */
-	public List<ResolveIndexDataStreamsItem> dataStreams() {
+	public final List<ResolveIndexDataStreamsItem> dataStreams() {
 		return this.dataStreams;
 	}
 
@@ -98,29 +99,36 @@ public final class ResolveIndexResponse implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("indices");
-		generator.writeStartArray();
-		for (ResolveIndexItem item0 : this.indices) {
-			item0.serialize(generator, mapper);
+		if (ModelTypeHelper.isDefined(this.indices)) {
+			generator.writeKey("indices");
+			generator.writeStartArray();
+			for (ResolveIndexItem item0 : this.indices) {
+				item0.serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
+		if (ModelTypeHelper.isDefined(this.aliases)) {
+			generator.writeKey("aliases");
+			generator.writeStartArray();
+			for (ResolveIndexAliasItem item0 : this.aliases) {
+				item0.serialize(generator, mapper);
 
-		generator.writeKey("aliases");
-		generator.writeStartArray();
-		for (ResolveIndexAliasItem item0 : this.aliases) {
-			item0.serialize(generator, mapper);
-
-		}
-		generator.writeEnd();
-
-		generator.writeKey("data_streams");
-		generator.writeStartArray();
-		for (ResolveIndexDataStreamsItem item0 : this.dataStreams) {
-			item0.serialize(generator, mapper);
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
+		if (ModelTypeHelper.isDefined(this.dataStreams)) {
+			generator.writeKey("data_streams");
+			generator.writeStartArray();
+			for (ResolveIndexDataStreamsItem item0 : this.dataStreams) {
+				item0.serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
+
+		}
 
 	}
 
@@ -129,7 +137,7 @@ public final class ResolveIndexResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link ResolveIndexResponse}.
 	 */
-	public static class Builder implements ObjectBuilder<ResolveIndexResponse> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ResolveIndexResponse> {
 		private List<ResolveIndexItem> indices;
 
 		private List<ResolveIndexAliasItem> aliases;
@@ -139,7 +147,7 @@ public final class ResolveIndexResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code indices}
 		 */
-		public Builder indices(List<ResolveIndexItem> value) {
+		public final Builder indices(List<ResolveIndexItem> value) {
 			this.indices = value;
 			return this;
 		}
@@ -147,40 +155,27 @@ public final class ResolveIndexResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code indices}
 		 */
-		public Builder indices(ResolveIndexItem... value) {
+		public final Builder indices(ResolveIndexItem... value) {
 			this.indices = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #indices(List)}, creating the list if needed.
+		 * Required - API name: {@code indices}
 		 */
-		public Builder addIndices(ResolveIndexItem value) {
-			if (this.indices == null) {
-				this.indices = new ArrayList<>();
+		@SafeVarargs
+		public final Builder indices(Function<ResolveIndexItem.Builder, ObjectBuilder<ResolveIndexItem>>... fns) {
+			this.indices = new ArrayList<>(fns.length);
+			for (Function<ResolveIndexItem.Builder, ObjectBuilder<ResolveIndexItem>> fn : fns) {
+				this.indices.add(fn.apply(new ResolveIndexItem.Builder()).build());
 			}
-			this.indices.add(value);
 			return this;
-		}
-
-		/**
-		 * Set {@link #indices(List)} to a singleton list.
-		 */
-		public Builder indices(Function<ResolveIndexItem.Builder, ObjectBuilder<ResolveIndexItem>> fn) {
-			return this.indices(fn.apply(new ResolveIndexItem.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #indices(List)}, creating the list if needed.
-		 */
-		public Builder addIndices(Function<ResolveIndexItem.Builder, ObjectBuilder<ResolveIndexItem>> fn) {
-			return this.addIndices(fn.apply(new ResolveIndexItem.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code aliases}
 		 */
-		public Builder aliases(List<ResolveIndexAliasItem> value) {
+		public final Builder aliases(List<ResolveIndexAliasItem> value) {
 			this.aliases = value;
 			return this;
 		}
@@ -188,40 +183,28 @@ public final class ResolveIndexResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code aliases}
 		 */
-		public Builder aliases(ResolveIndexAliasItem... value) {
+		public final Builder aliases(ResolveIndexAliasItem... value) {
 			this.aliases = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #aliases(List)}, creating the list if needed.
+		 * Required - API name: {@code aliases}
 		 */
-		public Builder addAliases(ResolveIndexAliasItem value) {
-			if (this.aliases == null) {
-				this.aliases = new ArrayList<>();
+		@SafeVarargs
+		public final Builder aliases(
+				Function<ResolveIndexAliasItem.Builder, ObjectBuilder<ResolveIndexAliasItem>>... fns) {
+			this.aliases = new ArrayList<>(fns.length);
+			for (Function<ResolveIndexAliasItem.Builder, ObjectBuilder<ResolveIndexAliasItem>> fn : fns) {
+				this.aliases.add(fn.apply(new ResolveIndexAliasItem.Builder()).build());
 			}
-			this.aliases.add(value);
 			return this;
-		}
-
-		/**
-		 * Set {@link #aliases(List)} to a singleton list.
-		 */
-		public Builder aliases(Function<ResolveIndexAliasItem.Builder, ObjectBuilder<ResolveIndexAliasItem>> fn) {
-			return this.aliases(fn.apply(new ResolveIndexAliasItem.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #aliases(List)}, creating the list if needed.
-		 */
-		public Builder addAliases(Function<ResolveIndexAliasItem.Builder, ObjectBuilder<ResolveIndexAliasItem>> fn) {
-			return this.addAliases(fn.apply(new ResolveIndexAliasItem.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code data_streams}
 		 */
-		public Builder dataStreams(List<ResolveIndexDataStreamsItem> value) {
+		public final Builder dataStreams(List<ResolveIndexDataStreamsItem> value) {
 			this.dataStreams = value;
 			return this;
 		}
@@ -229,36 +212,22 @@ public final class ResolveIndexResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code data_streams}
 		 */
-		public Builder dataStreams(ResolveIndexDataStreamsItem... value) {
+		public final Builder dataStreams(ResolveIndexDataStreamsItem... value) {
 			this.dataStreams = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #dataStreams(List)}, creating the list if needed.
+		 * Required - API name: {@code data_streams}
 		 */
-		public Builder addDataStreams(ResolveIndexDataStreamsItem value) {
-			if (this.dataStreams == null) {
-				this.dataStreams = new ArrayList<>();
+		@SafeVarargs
+		public final Builder dataStreams(
+				Function<ResolveIndexDataStreamsItem.Builder, ObjectBuilder<ResolveIndexDataStreamsItem>>... fns) {
+			this.dataStreams = new ArrayList<>(fns.length);
+			for (Function<ResolveIndexDataStreamsItem.Builder, ObjectBuilder<ResolveIndexDataStreamsItem>> fn : fns) {
+				this.dataStreams.add(fn.apply(new ResolveIndexDataStreamsItem.Builder()).build());
 			}
-			this.dataStreams.add(value);
 			return this;
-		}
-
-		/**
-		 * Set {@link #dataStreams(List)} to a singleton list.
-		 */
-		public Builder dataStreams(
-				Function<ResolveIndexDataStreamsItem.Builder, ObjectBuilder<ResolveIndexDataStreamsItem>> fn) {
-			return this.dataStreams(fn.apply(new ResolveIndexDataStreamsItem.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #dataStreams(List)}, creating the list if needed.
-		 */
-		public Builder addDataStreams(
-				Function<ResolveIndexDataStreamsItem.Builder, ObjectBuilder<ResolveIndexDataStreamsItem>> fn) {
-			return this.addDataStreams(fn.apply(new ResolveIndexDataStreamsItem.Builder()).build());
 		}
 
 		/**
@@ -268,6 +237,7 @@ public final class ResolveIndexResponse implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public ResolveIndexResponse build() {
+			_checkSingleUse();
 
 			return new ResolveIndexResponse(this);
 		}

@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -39,7 +41,7 @@ import javax.annotation.Nullable;
 
 // typedef: security.authenticate.Token
 @JsonpDeserializable
-public final class Token implements JsonpSerializable {
+public class Token implements JsonpSerializable {
 	private final String name;
 
 	@Nullable
@@ -47,21 +49,21 @@ public final class Token implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public Token(Builder builder) {
+	private Token(Builder builder) {
 
-		this.name = Objects.requireNonNull(builder.name, "name");
+		this.name = ModelTypeHelper.requireNonNull(builder.name, this, "name");
 		this.type = builder.type;
 
 	}
 
-	public Token(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static Token of(Function<Builder, ObjectBuilder<Token>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code name}
 	 */
-	public String name() {
+	public final String name() {
 		return this.name;
 	}
 
@@ -69,7 +71,7 @@ public final class Token implements JsonpSerializable {
 	 * API name: {@code type}
 	 */
 	@Nullable
-	public String type() {
+	public final String type() {
 		return this.type;
 	}
 
@@ -88,7 +90,6 @@ public final class Token implements JsonpSerializable {
 		generator.write(this.name);
 
 		if (this.type != null) {
-
 			generator.writeKey("type");
 			generator.write(this.type);
 
@@ -101,7 +102,7 @@ public final class Token implements JsonpSerializable {
 	/**
 	 * Builder for {@link Token}.
 	 */
-	public static class Builder implements ObjectBuilder<Token> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Token> {
 		private String name;
 
 		@Nullable
@@ -110,7 +111,7 @@ public final class Token implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code name}
 		 */
-		public Builder name(String value) {
+		public final Builder name(String value) {
 			this.name = value;
 			return this;
 		}
@@ -118,7 +119,7 @@ public final class Token implements JsonpSerializable {
 		/**
 		 * API name: {@code type}
 		 */
-		public Builder type(@Nullable String value) {
+		public final Builder type(@Nullable String value) {
 			this.type = value;
 			return this;
 		}
@@ -130,6 +131,7 @@ public final class Token implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public Token build() {
+			_checkSingleUse();
 
 			return new Token(this);
 		}

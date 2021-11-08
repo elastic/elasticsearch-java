@@ -30,6 +30,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -38,33 +39,33 @@ import java.util.function.Function;
 
 // typedef: indices.unfreeze.Response
 @JsonpDeserializable
-public final class UnfreezeResponse extends AcknowledgedResponseBase {
+public class UnfreezeResponse extends AcknowledgedResponseBase {
 	private final boolean shardsAcknowledged;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public UnfreezeResponse(Builder builder) {
+	private UnfreezeResponse(Builder builder) {
 		super(builder);
 
-		this.shardsAcknowledged = Objects.requireNonNull(builder.shardsAcknowledged, "shards_acknowledged");
+		this.shardsAcknowledged = ModelTypeHelper.requireNonNull(builder.shardsAcknowledged, this,
+				"shardsAcknowledged");
 
 	}
 
-	public UnfreezeResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static UnfreezeResponse of(Function<Builder, ObjectBuilder<UnfreezeResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code shards_acknowledged}
 	 */
-	public boolean shardsAcknowledged() {
+	public final boolean shardsAcknowledged() {
 		return this.shardsAcknowledged;
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
-
 		generator.writeKey("shards_acknowledged");
 		generator.write(this.shardsAcknowledged);
 
@@ -83,7 +84,7 @@ public final class UnfreezeResponse extends AcknowledgedResponseBase {
 		/**
 		 * Required - API name: {@code shards_acknowledged}
 		 */
-		public Builder shardsAcknowledged(boolean value) {
+		public final Builder shardsAcknowledged(boolean value) {
 			this.shardsAcknowledged = value;
 			return this;
 		}
@@ -100,6 +101,7 @@ public final class UnfreezeResponse extends AcknowledgedResponseBase {
 		 *             if some of the required fields are null.
 		 */
 		public UnfreezeResponse build() {
+			_checkSingleUse();
 
 			return new UnfreezeResponse(this);
 		}

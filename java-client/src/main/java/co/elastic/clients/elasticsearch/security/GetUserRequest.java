@@ -33,9 +33,9 @@ import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.SimpleEndpoint;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -46,20 +46,19 @@ import javax.annotation.Nullable;
 
 // typedef: security.get_user.Request
 
-public final class GetUserRequest extends RequestBase {
-	@Nullable
+public class GetUserRequest extends RequestBase {
 	private final List<String> username;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public GetUserRequest(Builder builder) {
+	private GetUserRequest(Builder builder) {
 
 		this.username = ModelTypeHelper.unmodifiable(builder.username);
 
 	}
 
-	public GetUserRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static GetUserRequest of(Function<Builder, ObjectBuilder<GetUserRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -69,8 +68,7 @@ public final class GetUserRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code username}
 	 */
-	@Nullable
-	public List<String> username() {
+	public final List<String> username() {
 		return this.username;
 	}
 
@@ -79,7 +77,7 @@ public final class GetUserRequest extends RequestBase {
 	/**
 	 * Builder for {@link GetUserRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<GetUserRequest> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetUserRequest> {
 		@Nullable
 		private List<String> username;
 
@@ -90,7 +88,7 @@ public final class GetUserRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code username}
 		 */
-		public Builder username(@Nullable List<String> value) {
+		public final Builder username(@Nullable List<String> value) {
 			this.username = value;
 			return this;
 		}
@@ -102,19 +100,8 @@ public final class GetUserRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code username}
 		 */
-		public Builder username(String... value) {
+		public final Builder username(String... value) {
 			this.username = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #username(List)}, creating the list if needed.
-		 */
-		public Builder addUsername(String value) {
-			if (this.username == null) {
-				this.username = new ArrayList<>();
-			}
-			this.username.add(value);
 			return this;
 		}
 
@@ -125,6 +112,7 @@ public final class GetUserRequest extends RequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public GetUserRequest build() {
+			_checkSingleUse();
 
 			return new GetUserRequest(this);
 		}
@@ -148,7 +136,7 @@ public final class GetUserRequest extends RequestBase {
 
 				int propsSet = 0;
 
-				if (request.username() != null)
+				if (ModelTypeHelper.isDefined(request.username()))
 					propsSet |= _username;
 
 				if (propsSet == (_username)) {

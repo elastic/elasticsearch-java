@@ -31,7 +31,9 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.SimpleEndpoint;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
@@ -43,7 +45,7 @@ import javax.annotation.Nullable;
 
 // typedef: ml.stop_data_frame_analytics.Request
 
-public final class StopDataFrameAnalyticsRequest extends RequestBase {
+public class StopDataFrameAnalyticsRequest extends RequestBase {
 	@Nullable
 	private final Boolean allowNoMatch;
 
@@ -57,28 +59,37 @@ public final class StopDataFrameAnalyticsRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public StopDataFrameAnalyticsRequest(Builder builder) {
+	private StopDataFrameAnalyticsRequest(Builder builder) {
 
 		this.allowNoMatch = builder.allowNoMatch;
 		this.force = builder.force;
-		this.id = Objects.requireNonNull(builder.id, "id");
+		this.id = ModelTypeHelper.requireNonNull(builder.id, this, "id");
 		this.timeout = builder.timeout;
 
 	}
 
-	public StopDataFrameAnalyticsRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static StopDataFrameAnalyticsRequest of(Function<Builder, ObjectBuilder<StopDataFrameAnalyticsRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * Whether to ignore if a wildcard expression matches no data frame analytics.
-	 * (This includes <code>_all</code> string or when no data frame analytics have
-	 * been specified)
+	 * Specifies what to do when the request:
+	 * <ol>
+	 * <li>Contains wildcard expressions and there are no data frame analytics jobs
+	 * that match.</li>
+	 * <li>Contains the _all string or no identifiers and there are no matches.</li>
+	 * <li>Contains wildcard expressions and there are only partial matches.</li>
+	 * </ol>
+	 * <p>
+	 * The default value is true, which returns an empty data_frame_analytics array
+	 * when there are no matches and the subset of results when there are partial
+	 * matches. If this parameter is false, the request returns a 404 status code
+	 * when there are no matches or only partial matches.
 	 * <p>
 	 * API name: {@code allow_no_match}
 	 */
 	@Nullable
-	public Boolean allowNoMatch() {
+	public final Boolean allowNoMatch() {
 		return this.allowNoMatch;
 	}
 
@@ -88,7 +99,7 @@ public final class StopDataFrameAnalyticsRequest extends RequestBase {
 	 * API name: {@code force}
 	 */
 	@Nullable
-	public Boolean force() {
+	public final Boolean force() {
 		return this.force;
 	}
 
@@ -99,7 +110,7 @@ public final class StopDataFrameAnalyticsRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code id}
 	 */
-	public String id() {
+	public final String id() {
 		return this.id;
 	}
 
@@ -110,7 +121,7 @@ public final class StopDataFrameAnalyticsRequest extends RequestBase {
 	 * API name: {@code timeout}
 	 */
 	@Nullable
-	public String timeout() {
+	public final String timeout() {
 		return this.timeout;
 	}
 
@@ -119,7 +130,7 @@ public final class StopDataFrameAnalyticsRequest extends RequestBase {
 	/**
 	 * Builder for {@link StopDataFrameAnalyticsRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<StopDataFrameAnalyticsRequest> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<StopDataFrameAnalyticsRequest> {
 		@Nullable
 		private Boolean allowNoMatch;
 
@@ -132,13 +143,22 @@ public final class StopDataFrameAnalyticsRequest extends RequestBase {
 		private String timeout;
 
 		/**
-		 * Whether to ignore if a wildcard expression matches no data frame analytics.
-		 * (This includes <code>_all</code> string or when no data frame analytics have
-		 * been specified)
+		 * Specifies what to do when the request:
+		 * <ol>
+		 * <li>Contains wildcard expressions and there are no data frame analytics jobs
+		 * that match.</li>
+		 * <li>Contains the _all string or no identifiers and there are no matches.</li>
+		 * <li>Contains wildcard expressions and there are only partial matches.</li>
+		 * </ol>
+		 * <p>
+		 * The default value is true, which returns an empty data_frame_analytics array
+		 * when there are no matches and the subset of results when there are partial
+		 * matches. If this parameter is false, the request returns a 404 status code
+		 * when there are no matches or only partial matches.
 		 * <p>
 		 * API name: {@code allow_no_match}
 		 */
-		public Builder allowNoMatch(@Nullable Boolean value) {
+		public final Builder allowNoMatch(@Nullable Boolean value) {
 			this.allowNoMatch = value;
 			return this;
 		}
@@ -148,7 +168,7 @@ public final class StopDataFrameAnalyticsRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code force}
 		 */
-		public Builder force(@Nullable Boolean value) {
+		public final Builder force(@Nullable Boolean value) {
 			this.force = value;
 			return this;
 		}
@@ -160,7 +180,7 @@ public final class StopDataFrameAnalyticsRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code id}
 		 */
-		public Builder id(String value) {
+		public final Builder id(String value) {
 			this.id = value;
 			return this;
 		}
@@ -171,7 +191,7 @@ public final class StopDataFrameAnalyticsRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code timeout}
 		 */
-		public Builder timeout(@Nullable String value) {
+		public final Builder timeout(@Nullable String value) {
 			this.timeout = value;
 			return this;
 		}
@@ -183,6 +203,7 @@ public final class StopDataFrameAnalyticsRequest extends RequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public StopDataFrameAnalyticsRequest build() {
+			_checkSingleUse();
 
 			return new StopDataFrameAnalyticsRequest(this);
 		}

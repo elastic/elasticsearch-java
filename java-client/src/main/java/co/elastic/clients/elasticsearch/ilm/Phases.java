@@ -31,6 +31,7 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;
@@ -38,7 +39,7 @@ import javax.annotation.Nullable;
 
 // typedef: ilm._types.Phases
 @JsonpDeserializable
-public final class Phases implements JsonpSerializable {
+public class Phases implements JsonpSerializable {
 	@Nullable
 	private final Phase cold;
 
@@ -53,7 +54,7 @@ public final class Phases implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public Phases(Builder builder) {
+	private Phases(Builder builder) {
 
 		this.cold = builder.cold;
 		this.delete = builder.delete;
@@ -62,15 +63,15 @@ public final class Phases implements JsonpSerializable {
 
 	}
 
-	public Phases(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static Phases of(Function<Builder, ObjectBuilder<Phases>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * API name: {@code cold}
 	 */
 	@Nullable
-	public Phase cold() {
+	public final Phase cold() {
 		return this.cold;
 	}
 
@@ -78,7 +79,7 @@ public final class Phases implements JsonpSerializable {
 	 * API name: {@code delete}
 	 */
 	@Nullable
-	public Phase delete() {
+	public final Phase delete() {
 		return this.delete;
 	}
 
@@ -86,7 +87,7 @@ public final class Phases implements JsonpSerializable {
 	 * API name: {@code hot}
 	 */
 	@Nullable
-	public Phase hot() {
+	public final Phase hot() {
 		return this.hot;
 	}
 
@@ -94,7 +95,7 @@ public final class Phases implements JsonpSerializable {
 	 * API name: {@code warm}
 	 */
 	@Nullable
-	public Phase warm() {
+	public final Phase warm() {
 		return this.warm;
 	}
 
@@ -110,25 +111,21 @@ public final class Phases implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.cold != null) {
-
 			generator.writeKey("cold");
 			this.cold.serialize(generator, mapper);
 
 		}
 		if (this.delete != null) {
-
 			generator.writeKey("delete");
 			this.delete.serialize(generator, mapper);
 
 		}
 		if (this.hot != null) {
-
 			generator.writeKey("hot");
 			this.hot.serialize(generator, mapper);
 
 		}
 		if (this.warm != null) {
-
 			generator.writeKey("warm");
 			this.warm.serialize(generator, mapper);
 
@@ -141,7 +138,7 @@ public final class Phases implements JsonpSerializable {
 	/**
 	 * Builder for {@link Phases}.
 	 */
-	public static class Builder implements ObjectBuilder<Phases> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Phases> {
 		@Nullable
 		private Phase cold;
 
@@ -157,7 +154,7 @@ public final class Phases implements JsonpSerializable {
 		/**
 		 * API name: {@code cold}
 		 */
-		public Builder cold(@Nullable Phase value) {
+		public final Builder cold(@Nullable Phase value) {
 			this.cold = value;
 			return this;
 		}
@@ -165,14 +162,14 @@ public final class Phases implements JsonpSerializable {
 		/**
 		 * API name: {@code cold}
 		 */
-		public Builder cold(Function<Phase.Builder, ObjectBuilder<Phase>> fn) {
+		public final Builder cold(Function<Phase.Builder, ObjectBuilder<Phase>> fn) {
 			return this.cold(fn.apply(new Phase.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code delete}
 		 */
-		public Builder delete(@Nullable Phase value) {
+		public final Builder delete(@Nullable Phase value) {
 			this.delete = value;
 			return this;
 		}
@@ -180,14 +177,14 @@ public final class Phases implements JsonpSerializable {
 		/**
 		 * API name: {@code delete}
 		 */
-		public Builder delete(Function<Phase.Builder, ObjectBuilder<Phase>> fn) {
+		public final Builder delete(Function<Phase.Builder, ObjectBuilder<Phase>> fn) {
 			return this.delete(fn.apply(new Phase.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code hot}
 		 */
-		public Builder hot(@Nullable Phase value) {
+		public final Builder hot(@Nullable Phase value) {
 			this.hot = value;
 			return this;
 		}
@@ -195,14 +192,14 @@ public final class Phases implements JsonpSerializable {
 		/**
 		 * API name: {@code hot}
 		 */
-		public Builder hot(Function<Phase.Builder, ObjectBuilder<Phase>> fn) {
+		public final Builder hot(Function<Phase.Builder, ObjectBuilder<Phase>> fn) {
 			return this.hot(fn.apply(new Phase.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code warm}
 		 */
-		public Builder warm(@Nullable Phase value) {
+		public final Builder warm(@Nullable Phase value) {
 			this.warm = value;
 			return this;
 		}
@@ -210,7 +207,7 @@ public final class Phases implements JsonpSerializable {
 		/**
 		 * API name: {@code warm}
 		 */
-		public Builder warm(Function<Phase.Builder, ObjectBuilder<Phase>> fn) {
+		public final Builder warm(Function<Phase.Builder, ObjectBuilder<Phase>> fn) {
 			return this.warm(fn.apply(new Phase.Builder()).build());
 		}
 
@@ -221,6 +218,7 @@ public final class Phases implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public Phases build() {
+			_checkSingleUse();
 
 			return new Phases(this);
 		}

@@ -33,10 +33,10 @@ import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.SimpleEndpoint;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -48,19 +48,18 @@ import javax.annotation.Nullable;
 
 // typedef: snapshot.get_repository.Request
 
-public final class GetRepositoryRequest extends RequestBase {
+public class GetRepositoryRequest extends RequestBase {
 	@Nullable
 	private final Boolean local;
 
 	@Nullable
 	private final String masterTimeout;
 
-	@Nullable
 	private final List<String> name;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public GetRepositoryRequest(Builder builder) {
+	private GetRepositoryRequest(Builder builder) {
 
 		this.local = builder.local;
 		this.masterTimeout = builder.masterTimeout;
@@ -68,8 +67,8 @@ public final class GetRepositoryRequest extends RequestBase {
 
 	}
 
-	public GetRepositoryRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static GetRepositoryRequest of(Function<Builder, ObjectBuilder<GetRepositoryRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -79,7 +78,7 @@ public final class GetRepositoryRequest extends RequestBase {
 	 * API name: {@code local}
 	 */
 	@Nullable
-	public Boolean local() {
+	public final Boolean local() {
 		return this.local;
 	}
 
@@ -89,7 +88,7 @@ public final class GetRepositoryRequest extends RequestBase {
 	 * API name: {@code master_timeout}
 	 */
 	@Nullable
-	public String masterTimeout() {
+	public final String masterTimeout() {
 		return this.masterTimeout;
 	}
 
@@ -98,8 +97,7 @@ public final class GetRepositoryRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code repository}
 	 */
-	@Nullable
-	public List<String> name() {
+	public final List<String> name() {
 		return this.name;
 	}
 
@@ -108,7 +106,7 @@ public final class GetRepositoryRequest extends RequestBase {
 	/**
 	 * Builder for {@link GetRepositoryRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<GetRepositoryRequest> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetRepositoryRequest> {
 		@Nullable
 		private Boolean local;
 
@@ -124,7 +122,7 @@ public final class GetRepositoryRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code local}
 		 */
-		public Builder local(@Nullable Boolean value) {
+		public final Builder local(@Nullable Boolean value) {
 			this.local = value;
 			return this;
 		}
@@ -134,7 +132,7 @@ public final class GetRepositoryRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
-		public Builder masterTimeout(@Nullable String value) {
+		public final Builder masterTimeout(@Nullable String value) {
 			this.masterTimeout = value;
 			return this;
 		}
@@ -144,7 +142,7 @@ public final class GetRepositoryRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code repository}
 		 */
-		public Builder name(@Nullable List<String> value) {
+		public final Builder name(@Nullable List<String> value) {
 			this.name = value;
 			return this;
 		}
@@ -154,19 +152,8 @@ public final class GetRepositoryRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code repository}
 		 */
-		public Builder name(String... value) {
+		public final Builder name(String... value) {
 			this.name = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #name(List)}, creating the list if needed.
-		 */
-		public Builder addName(String value) {
-			if (this.name == null) {
-				this.name = new ArrayList<>();
-			}
-			this.name.add(value);
 			return this;
 		}
 
@@ -177,6 +164,7 @@ public final class GetRepositoryRequest extends RequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public GetRepositoryRequest build() {
+			_checkSingleUse();
 
 			return new GetRepositoryRequest(this);
 		}
@@ -200,7 +188,7 @@ public final class GetRepositoryRequest extends RequestBase {
 
 				int propsSet = 0;
 
-				if (request.name() != null)
+				if (ModelTypeHelper.isDefined(request.name()))
 					propsSet |= _name;
 
 				if (propsSet == 0) {

@@ -41,40 +41,42 @@ import javax.annotation.Nullable;
 
 // typedef: xpack.usage.RuntimeFieldTypes
 @JsonpDeserializable
-public final class RuntimeFieldTypes extends Base {
+public class RuntimeFieldTypes extends Base {
 	private final List<RuntimeFieldsType> fieldTypes;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public RuntimeFieldTypes(Builder builder) {
+	private RuntimeFieldTypes(Builder builder) {
 		super(builder);
 
-		this.fieldTypes = ModelTypeHelper.unmodifiableNonNull(builder.fieldTypes, "field_types");
+		this.fieldTypes = ModelTypeHelper.unmodifiableRequired(builder.fieldTypes, this, "fieldTypes");
 
 	}
 
-	public RuntimeFieldTypes(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static RuntimeFieldTypes of(Function<Builder, ObjectBuilder<RuntimeFieldTypes>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code field_types}
 	 */
-	public List<RuntimeFieldsType> fieldTypes() {
+	public final List<RuntimeFieldsType> fieldTypes() {
 		return this.fieldTypes;
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
+		if (ModelTypeHelper.isDefined(this.fieldTypes)) {
+			generator.writeKey("field_types");
+			generator.writeStartArray();
+			for (RuntimeFieldsType item0 : this.fieldTypes) {
+				item0.serialize(generator, mapper);
 
-		generator.writeKey("field_types");
-		generator.writeStartArray();
-		for (RuntimeFieldsType item0 : this.fieldTypes) {
-			item0.serialize(generator, mapper);
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
 
 	}
 
@@ -89,7 +91,7 @@ public final class RuntimeFieldTypes extends Base {
 		/**
 		 * Required - API name: {@code field_types}
 		 */
-		public Builder fieldTypes(List<RuntimeFieldsType> value) {
+		public final Builder fieldTypes(List<RuntimeFieldsType> value) {
 			this.fieldTypes = value;
 			return this;
 		}
@@ -97,34 +99,21 @@ public final class RuntimeFieldTypes extends Base {
 		/**
 		 * Required - API name: {@code field_types}
 		 */
-		public Builder fieldTypes(RuntimeFieldsType... value) {
+		public final Builder fieldTypes(RuntimeFieldsType... value) {
 			this.fieldTypes = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #fieldTypes(List)}, creating the list if needed.
+		 * Required - API name: {@code field_types}
 		 */
-		public Builder addFieldTypes(RuntimeFieldsType value) {
-			if (this.fieldTypes == null) {
-				this.fieldTypes = new ArrayList<>();
+		@SafeVarargs
+		public final Builder fieldTypes(Function<RuntimeFieldsType.Builder, ObjectBuilder<RuntimeFieldsType>>... fns) {
+			this.fieldTypes = new ArrayList<>(fns.length);
+			for (Function<RuntimeFieldsType.Builder, ObjectBuilder<RuntimeFieldsType>> fn : fns) {
+				this.fieldTypes.add(fn.apply(new RuntimeFieldsType.Builder()).build());
 			}
-			this.fieldTypes.add(value);
 			return this;
-		}
-
-		/**
-		 * Set {@link #fieldTypes(List)} to a singleton list.
-		 */
-		public Builder fieldTypes(Function<RuntimeFieldsType.Builder, ObjectBuilder<RuntimeFieldsType>> fn) {
-			return this.fieldTypes(fn.apply(new RuntimeFieldsType.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #fieldTypes(List)}, creating the list if needed.
-		 */
-		public Builder addFieldTypes(Function<RuntimeFieldsType.Builder, ObjectBuilder<RuntimeFieldsType>> fn) {
-			return this.addFieldTypes(fn.apply(new RuntimeFieldsType.Builder()).build());
 		}
 
 		@Override
@@ -139,6 +128,7 @@ public final class RuntimeFieldTypes extends Base {
 		 *             if some of the required fields are null.
 		 */
 		public RuntimeFieldTypes build() {
+			_checkSingleUse();
 
 			return new RuntimeFieldTypes(this);
 		}

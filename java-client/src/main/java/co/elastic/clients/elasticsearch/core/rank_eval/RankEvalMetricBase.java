@@ -31,6 +31,7 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.util.Objects;
@@ -45,7 +46,7 @@ public abstract class RankEvalMetricBase implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public RankEvalMetricBase(AbstractBuilder<?> builder) {
+	protected RankEvalMetricBase(AbstractBuilder<?> builder) {
 
 		this.k = builder.k;
 
@@ -58,7 +59,7 @@ public abstract class RankEvalMetricBase implements JsonpSerializable {
 	 * API name: {@code k}
 	 */
 	@Nullable
-	public Integer k() {
+	public final Integer k() {
 		return this.k;
 	}
 
@@ -74,7 +75,6 @@ public abstract class RankEvalMetricBase implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.k != null) {
-
 			generator.writeKey("k");
 			generator.write(this.k);
 
@@ -82,7 +82,9 @@ public abstract class RankEvalMetricBase implements JsonpSerializable {
 
 	}
 
-	protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>> {
+	protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>>
+			extends
+				ObjectBuilderBase {
 		@Nullable
 		private Integer k;
 
@@ -92,7 +94,7 @@ public abstract class RankEvalMetricBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code k}
 		 */
-		public BuilderT k(@Nullable Integer value) {
+		public final BuilderT k(@Nullable Integer value) {
 			this.k = value;
 			return self();
 		}

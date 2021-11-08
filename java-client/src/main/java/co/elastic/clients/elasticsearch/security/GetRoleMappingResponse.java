@@ -37,16 +37,16 @@ import java.util.function.Function;
 
 // typedef: security.get_role_mapping.Response
 @JsonpDeserializable
-public final class GetRoleMappingResponse extends DictionaryResponse<String, RoleMapping> {
+public class GetRoleMappingResponse extends DictionaryResponse<String, RoleMapping> {
 	// ---------------------------------------------------------------------------------------------
 
-	public GetRoleMappingResponse(Builder builder) {
+	private GetRoleMappingResponse(Builder builder) {
 		super(builder);
 
 	}
 
-	public GetRoleMappingResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static GetRoleMappingResponse of(Function<Builder, ObjectBuilder<GetRoleMappingResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -69,6 +69,7 @@ public final class GetRoleMappingResponse extends DictionaryResponse<String, Rol
 		 *             if some of the required fields are null.
 		 */
 		public GetRoleMappingResponse build() {
+			_checkSingleUse();
 			super.tKeySerializer(null);
 			super.tValueSerializer(null);
 

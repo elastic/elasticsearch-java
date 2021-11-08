@@ -35,7 +35,9 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.SimpleEndpoint;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
@@ -45,7 +47,7 @@ import javax.annotation.Nullable;
 
 // typedef: ml.evaluate_data_frame.Request
 @JsonpDeserializable
-public final class EvaluateDataFrameRequest extends RequestBase implements JsonpSerializable {
+public class EvaluateDataFrameRequest extends RequestBase implements JsonpSerializable {
 	private final DataframeEvaluation evaluation;
 
 	private final String index;
@@ -55,16 +57,16 @@ public final class EvaluateDataFrameRequest extends RequestBase implements Jsonp
 
 	// ---------------------------------------------------------------------------------------------
 
-	public EvaluateDataFrameRequest(Builder builder) {
+	private EvaluateDataFrameRequest(Builder builder) {
 
-		this.evaluation = Objects.requireNonNull(builder.evaluation, "evaluation");
-		this.index = Objects.requireNonNull(builder.index, "index");
+		this.evaluation = ModelTypeHelper.requireNonNull(builder.evaluation, this, "evaluation");
+		this.index = ModelTypeHelper.requireNonNull(builder.index, this, "index");
 		this.query = builder.query;
 
 	}
 
-	public EvaluateDataFrameRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static EvaluateDataFrameRequest of(Function<Builder, ObjectBuilder<EvaluateDataFrameRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -72,7 +74,7 @@ public final class EvaluateDataFrameRequest extends RequestBase implements Jsonp
 	 * <p>
 	 * API name: {@code evaluation}
 	 */
-	public DataframeEvaluation evaluation() {
+	public final DataframeEvaluation evaluation() {
 		return this.evaluation;
 	}
 
@@ -81,7 +83,7 @@ public final class EvaluateDataFrameRequest extends RequestBase implements Jsonp
 	 * <p>
 	 * API name: {@code index}
 	 */
-	public String index() {
+	public final String index() {
 		return this.index;
 	}
 
@@ -91,7 +93,7 @@ public final class EvaluateDataFrameRequest extends RequestBase implements Jsonp
 	 * API name: {@code query}
 	 */
 	@Nullable
-	public Query query() {
+	public final Query query() {
 		return this.query;
 	}
 
@@ -113,7 +115,6 @@ public final class EvaluateDataFrameRequest extends RequestBase implements Jsonp
 		generator.write(this.index);
 
 		if (this.query != null) {
-
 			generator.writeKey("query");
 			this.query.serialize(generator, mapper);
 
@@ -126,7 +127,7 @@ public final class EvaluateDataFrameRequest extends RequestBase implements Jsonp
 	/**
 	 * Builder for {@link EvaluateDataFrameRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<EvaluateDataFrameRequest> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<EvaluateDataFrameRequest> {
 		private DataframeEvaluation evaluation;
 
 		private String index;
@@ -139,7 +140,7 @@ public final class EvaluateDataFrameRequest extends RequestBase implements Jsonp
 		 * <p>
 		 * API name: {@code evaluation}
 		 */
-		public Builder evaluation(DataframeEvaluation value) {
+		public final Builder evaluation(DataframeEvaluation value) {
 			this.evaluation = value;
 			return this;
 		}
@@ -149,7 +150,7 @@ public final class EvaluateDataFrameRequest extends RequestBase implements Jsonp
 		 * <p>
 		 * API name: {@code evaluation}
 		 */
-		public Builder evaluation(Function<DataframeEvaluation.Builder, ObjectBuilder<DataframeEvaluation>> fn) {
+		public final Builder evaluation(Function<DataframeEvaluation.Builder, ObjectBuilder<DataframeEvaluation>> fn) {
 			return this.evaluation(fn.apply(new DataframeEvaluation.Builder()).build());
 		}
 
@@ -158,7 +159,7 @@ public final class EvaluateDataFrameRequest extends RequestBase implements Jsonp
 		 * <p>
 		 * API name: {@code index}
 		 */
-		public Builder index(String value) {
+		public final Builder index(String value) {
 			this.index = value;
 			return this;
 		}
@@ -168,7 +169,7 @@ public final class EvaluateDataFrameRequest extends RequestBase implements Jsonp
 		 * <p>
 		 * API name: {@code query}
 		 */
-		public Builder query(@Nullable Query value) {
+		public final Builder query(@Nullable Query value) {
 			this.query = value;
 			return this;
 		}
@@ -178,7 +179,7 @@ public final class EvaluateDataFrameRequest extends RequestBase implements Jsonp
 		 * <p>
 		 * API name: {@code query}
 		 */
-		public Builder query(Function<Query.Builder, ObjectBuilder<Query>> fn) {
+		public final Builder query(Function<Query.Builder, ObjectBuilder<Query>> fn) {
 			return this.query(fn.apply(new Query.Builder()).build());
 		}
 
@@ -189,6 +190,7 @@ public final class EvaluateDataFrameRequest extends RequestBase implements Jsonp
 		 *             if some of the required fields are null.
 		 */
 		public EvaluateDataFrameRequest build() {
+			_checkSingleUse();
 
 			return new EvaluateDataFrameRequest(this);
 		}

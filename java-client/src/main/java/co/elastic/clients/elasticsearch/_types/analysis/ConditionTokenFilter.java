@@ -34,7 +34,6 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
@@ -43,23 +42,23 @@ import javax.annotation.Nullable;
 
 // typedef: _types.analysis.ConditionTokenFilter
 @JsonpDeserializable
-public final class ConditionTokenFilter extends TokenFilterBase implements TokenFilterVariant {
+public class ConditionTokenFilter extends TokenFilterBase implements TokenFilterVariant {
 	private final List<String> filter;
 
 	private final JsonValue /* _types.Script */ script;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public ConditionTokenFilter(Builder builder) {
+	private ConditionTokenFilter(Builder builder) {
 		super(builder);
 
-		this.filter = ModelTypeHelper.unmodifiableNonNull(builder.filter, "filter");
-		this.script = Objects.requireNonNull(builder.script, "script");
+		this.filter = ModelTypeHelper.unmodifiableRequired(builder.filter, this, "filter");
+		this.script = ModelTypeHelper.requireNonNull(builder.script, this, "script");
 
 	}
 
-	public ConditionTokenFilter(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ConditionTokenFilter of(Function<Builder, ObjectBuilder<ConditionTokenFilter>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -73,14 +72,14 @@ public final class ConditionTokenFilter extends TokenFilterBase implements Token
 	/**
 	 * Required - API name: {@code filter}
 	 */
-	public List<String> filter() {
+	public final List<String> filter() {
 		return this.filter;
 	}
 
 	/**
 	 * Required - API name: {@code script}
 	 */
-	public JsonValue /* _types.Script */ script() {
+	public final JsonValue /* _types.Script */ script() {
 		return this.script;
 	}
 
@@ -88,15 +87,16 @@ public final class ConditionTokenFilter extends TokenFilterBase implements Token
 
 		generator.write("type", "condition");
 		super.serializeInternal(generator, mapper);
+		if (ModelTypeHelper.isDefined(this.filter)) {
+			generator.writeKey("filter");
+			generator.writeStartArray();
+			for (String item0 : this.filter) {
+				generator.write(item0);
 
-		generator.writeKey("filter");
-		generator.writeStartArray();
-		for (String item0 : this.filter) {
-			generator.write(item0);
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
-
 		generator.writeKey("script");
 		generator.write(this.script);
 
@@ -117,7 +117,7 @@ public final class ConditionTokenFilter extends TokenFilterBase implements Token
 		/**
 		 * Required - API name: {@code filter}
 		 */
-		public Builder filter(List<String> value) {
+		public final Builder filter(List<String> value) {
 			this.filter = value;
 			return this;
 		}
@@ -125,26 +125,15 @@ public final class ConditionTokenFilter extends TokenFilterBase implements Token
 		/**
 		 * Required - API name: {@code filter}
 		 */
-		public Builder filter(String... value) {
+		public final Builder filter(String... value) {
 			this.filter = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #filter(List)}, creating the list if needed.
-		 */
-		public Builder addFilter(String value) {
-			if (this.filter == null) {
-				this.filter = new ArrayList<>();
-			}
-			this.filter.add(value);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code script}
 		 */
-		public Builder script(JsonValue /* _types.Script */ value) {
+		public final Builder script(JsonValue /* _types.Script */ value) {
 			this.script = value;
 			return this;
 		}
@@ -161,6 +150,7 @@ public final class ConditionTokenFilter extends TokenFilterBase implements Token
 		 *             if some of the required fields are null.
 		 */
 		public ConditionTokenFilter build() {
+			_checkSingleUse();
 
 			return new ConditionTokenFilter(this);
 		}

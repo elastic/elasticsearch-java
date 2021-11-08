@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
 import java.util.Objects;
@@ -38,25 +40,25 @@ import java.util.function.Function;
 
 // typedef: ml.put_trained_model.Weights
 @JsonpDeserializable
-public final class Weights implements JsonpSerializable {
+public class Weights implements JsonpSerializable {
 	private final double weights;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public Weights(Builder builder) {
+	private Weights(Builder builder) {
 
-		this.weights = Objects.requireNonNull(builder.weights, "weights");
+		this.weights = ModelTypeHelper.requireNonNull(builder.weights, this, "weights");
 
 	}
 
-	public Weights(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static Weights of(Function<Builder, ObjectBuilder<Weights>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code weights}
 	 */
-	public double weights() {
+	public final double weights() {
 		return this.weights;
 	}
 
@@ -81,13 +83,13 @@ public final class Weights implements JsonpSerializable {
 	/**
 	 * Builder for {@link Weights}.
 	 */
-	public static class Builder implements ObjectBuilder<Weights> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Weights> {
 		private Double weights;
 
 		/**
 		 * Required - API name: {@code weights}
 		 */
-		public Builder weights(double value) {
+		public final Builder weights(double value) {
 			this.weights = value;
 			return this;
 		}
@@ -99,6 +101,7 @@ public final class Weights implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public Weights build() {
+			_checkSingleUse();
 
 			return new Weights(this);
 		}

@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -40,7 +42,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.ScriptField
 @JsonpDeserializable
-public final class ScriptField implements JsonpSerializable {
+public class ScriptField implements JsonpSerializable {
 	private final JsonValue /* _types.Script */ script;
 
 	@Nullable
@@ -48,21 +50,21 @@ public final class ScriptField implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public ScriptField(Builder builder) {
+	private ScriptField(Builder builder) {
 
-		this.script = Objects.requireNonNull(builder.script, "script");
+		this.script = ModelTypeHelper.requireNonNull(builder.script, this, "script");
 		this.ignoreFailure = builder.ignoreFailure;
 
 	}
 
-	public ScriptField(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ScriptField of(Function<Builder, ObjectBuilder<ScriptField>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code script}
 	 */
-	public JsonValue /* _types.Script */ script() {
+	public final JsonValue /* _types.Script */ script() {
 		return this.script;
 	}
 
@@ -70,7 +72,7 @@ public final class ScriptField implements JsonpSerializable {
 	 * API name: {@code ignore_failure}
 	 */
 	@Nullable
-	public Boolean ignoreFailure() {
+	public final Boolean ignoreFailure() {
 		return this.ignoreFailure;
 	}
 
@@ -89,7 +91,6 @@ public final class ScriptField implements JsonpSerializable {
 		generator.write(this.script);
 
 		if (this.ignoreFailure != null) {
-
 			generator.writeKey("ignore_failure");
 			generator.write(this.ignoreFailure);
 
@@ -102,7 +103,7 @@ public final class ScriptField implements JsonpSerializable {
 	/**
 	 * Builder for {@link ScriptField}.
 	 */
-	public static class Builder implements ObjectBuilder<ScriptField> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ScriptField> {
 		private JsonValue /* _types.Script */ script;
 
 		@Nullable
@@ -111,7 +112,7 @@ public final class ScriptField implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code script}
 		 */
-		public Builder script(JsonValue /* _types.Script */ value) {
+		public final Builder script(JsonValue /* _types.Script */ value) {
 			this.script = value;
 			return this;
 		}
@@ -119,7 +120,7 @@ public final class ScriptField implements JsonpSerializable {
 		/**
 		 * API name: {@code ignore_failure}
 		 */
-		public Builder ignoreFailure(@Nullable Boolean value) {
+		public final Builder ignoreFailure(@Nullable Boolean value) {
 			this.ignoreFailure = value;
 			return this;
 		}
@@ -131,6 +132,7 @@ public final class ScriptField implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public ScriptField build() {
+			_checkSingleUse();
 
 			return new ScriptField(this);
 		}

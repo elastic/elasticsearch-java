@@ -35,7 +35,6 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
@@ -44,36 +43,43 @@ import javax.annotation.Nullable;
 
 // typedef: _types.analysis.KuromojiTokenizer
 @JsonpDeserializable
-public final class KuromojiTokenizer extends TokenizerBase implements TokenizerVariant {
-	private final boolean discardPunctuation;
+public class KuromojiTokenizer extends TokenizerBase implements TokenizerVariant {
+	@Nullable
+	private final Boolean discardPunctuation;
 
 	private final KuromojiTokenizationMode mode;
 
-	private final int nbestCost;
+	@Nullable
+	private final Integer nbestCost;
 
+	@Nullable
 	private final String nbestExamples;
 
+	@Nullable
 	private final String userDictionary;
 
 	private final List<String> userDictionaryRules;
 
+	@Nullable
+	private final Boolean discardCompoundToken;
+
 	// ---------------------------------------------------------------------------------------------
 
-	public KuromojiTokenizer(Builder builder) {
+	private KuromojiTokenizer(Builder builder) {
 		super(builder);
 
-		this.discardPunctuation = Objects.requireNonNull(builder.discardPunctuation, "discard_punctuation");
-		this.mode = Objects.requireNonNull(builder.mode, "mode");
-		this.nbestCost = Objects.requireNonNull(builder.nbestCost, "nbest_cost");
-		this.nbestExamples = Objects.requireNonNull(builder.nbestExamples, "nbest_examples");
-		this.userDictionary = Objects.requireNonNull(builder.userDictionary, "user_dictionary");
-		this.userDictionaryRules = ModelTypeHelper.unmodifiableNonNull(builder.userDictionaryRules,
-				"user_dictionary_rules");
+		this.discardPunctuation = builder.discardPunctuation;
+		this.mode = ModelTypeHelper.requireNonNull(builder.mode, this, "mode");
+		this.nbestCost = builder.nbestCost;
+		this.nbestExamples = builder.nbestExamples;
+		this.userDictionary = builder.userDictionary;
+		this.userDictionaryRules = ModelTypeHelper.unmodifiable(builder.userDictionaryRules);
+		this.discardCompoundToken = builder.discardCompoundToken;
 
 	}
 
-	public KuromojiTokenizer(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static KuromojiTokenizer of(Function<Builder, ObjectBuilder<KuromojiTokenizer>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -85,74 +91,100 @@ public final class KuromojiTokenizer extends TokenizerBase implements TokenizerV
 	}
 
 	/**
-	 * Required - API name: {@code discard_punctuation}
+	 * API name: {@code discard_punctuation}
 	 */
-	public boolean discardPunctuation() {
+	@Nullable
+	public final Boolean discardPunctuation() {
 		return this.discardPunctuation;
 	}
 
 	/**
 	 * Required - API name: {@code mode}
 	 */
-	public KuromojiTokenizationMode mode() {
+	public final KuromojiTokenizationMode mode() {
 		return this.mode;
 	}
 
 	/**
-	 * Required - API name: {@code nbest_cost}
+	 * API name: {@code nbest_cost}
 	 */
-	public int nbestCost() {
+	@Nullable
+	public final Integer nbestCost() {
 		return this.nbestCost;
 	}
 
 	/**
-	 * Required - API name: {@code nbest_examples}
+	 * API name: {@code nbest_examples}
 	 */
-	public String nbestExamples() {
+	@Nullable
+	public final String nbestExamples() {
 		return this.nbestExamples;
 	}
 
 	/**
-	 * Required - API name: {@code user_dictionary}
+	 * API name: {@code user_dictionary}
 	 */
-	public String userDictionary() {
+	@Nullable
+	public final String userDictionary() {
 		return this.userDictionary;
 	}
 
 	/**
-	 * Required - API name: {@code user_dictionary_rules}
+	 * API name: {@code user_dictionary_rules}
 	 */
-	public List<String> userDictionaryRules() {
+	public final List<String> userDictionaryRules() {
 		return this.userDictionaryRules;
+	}
+
+	/**
+	 * API name: {@code discard_compound_token}
+	 */
+	@Nullable
+	public final Boolean discardCompoundToken() {
+		return this.discardCompoundToken;
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.write("type", "kuromoji_tokenizer");
 		super.serializeInternal(generator, mapper);
-
-		generator.writeKey("discard_punctuation");
-		generator.write(this.discardPunctuation);
-
-		generator.writeKey("mode");
-		this.mode.serialize(generator, mapper);
-
-		generator.writeKey("nbest_cost");
-		generator.write(this.nbestCost);
-
-		generator.writeKey("nbest_examples");
-		generator.write(this.nbestExamples);
-
-		generator.writeKey("user_dictionary");
-		generator.write(this.userDictionary);
-
-		generator.writeKey("user_dictionary_rules");
-		generator.writeStartArray();
-		for (String item0 : this.userDictionaryRules) {
-			generator.write(item0);
+		if (this.discardPunctuation != null) {
+			generator.writeKey("discard_punctuation");
+			generator.write(this.discardPunctuation);
 
 		}
-		generator.writeEnd();
+		generator.writeKey("mode");
+		this.mode.serialize(generator, mapper);
+		if (this.nbestCost != null) {
+			generator.writeKey("nbest_cost");
+			generator.write(this.nbestCost);
+
+		}
+		if (this.nbestExamples != null) {
+			generator.writeKey("nbest_examples");
+			generator.write(this.nbestExamples);
+
+		}
+		if (this.userDictionary != null) {
+			generator.writeKey("user_dictionary");
+			generator.write(this.userDictionary);
+
+		}
+		if (ModelTypeHelper.isDefined(this.userDictionaryRules)) {
+			generator.writeKey("user_dictionary_rules");
+			generator.writeStartArray();
+			for (String item0 : this.userDictionaryRules) {
+				generator.write(item0);
+
+			}
+			generator.writeEnd();
+
+		}
+		if (this.discardCompoundToken != null) {
+			generator.writeKey("discard_compound_token");
+			generator.write(this.discardCompoundToken);
+
+		}
 
 	}
 
@@ -164,22 +196,30 @@ public final class KuromojiTokenizer extends TokenizerBase implements TokenizerV
 	public static class Builder extends TokenizerBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<KuromojiTokenizer> {
+		@Nullable
 		private Boolean discardPunctuation;
 
 		private KuromojiTokenizationMode mode;
 
+		@Nullable
 		private Integer nbestCost;
 
+		@Nullable
 		private String nbestExamples;
 
+		@Nullable
 		private String userDictionary;
 
+		@Nullable
 		private List<String> userDictionaryRules;
 
+		@Nullable
+		private Boolean discardCompoundToken;
+
 		/**
-		 * Required - API name: {@code discard_punctuation}
+		 * API name: {@code discard_punctuation}
 		 */
-		public Builder discardPunctuation(boolean value) {
+		public final Builder discardPunctuation(@Nullable Boolean value) {
 			this.discardPunctuation = value;
 			return this;
 		}
@@ -187,60 +227,56 @@ public final class KuromojiTokenizer extends TokenizerBase implements TokenizerV
 		/**
 		 * Required - API name: {@code mode}
 		 */
-		public Builder mode(KuromojiTokenizationMode value) {
+		public final Builder mode(KuromojiTokenizationMode value) {
 			this.mode = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code nbest_cost}
+		 * API name: {@code nbest_cost}
 		 */
-		public Builder nbestCost(int value) {
+		public final Builder nbestCost(@Nullable Integer value) {
 			this.nbestCost = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code nbest_examples}
+		 * API name: {@code nbest_examples}
 		 */
-		public Builder nbestExamples(String value) {
+		public final Builder nbestExamples(@Nullable String value) {
 			this.nbestExamples = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code user_dictionary}
+		 * API name: {@code user_dictionary}
 		 */
-		public Builder userDictionary(String value) {
+		public final Builder userDictionary(@Nullable String value) {
 			this.userDictionary = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code user_dictionary_rules}
+		 * API name: {@code user_dictionary_rules}
 		 */
-		public Builder userDictionaryRules(List<String> value) {
+		public final Builder userDictionaryRules(@Nullable List<String> value) {
 			this.userDictionaryRules = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code user_dictionary_rules}
+		 * API name: {@code user_dictionary_rules}
 		 */
-		public Builder userDictionaryRules(String... value) {
+		public final Builder userDictionaryRules(String... value) {
 			this.userDictionaryRules = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #userDictionaryRules(List)}, creating the list if
-		 * needed.
+		 * API name: {@code discard_compound_token}
 		 */
-		public Builder addUserDictionaryRules(String value) {
-			if (this.userDictionaryRules == null) {
-				this.userDictionaryRules = new ArrayList<>();
-			}
-			this.userDictionaryRules.add(value);
+		public final Builder discardCompoundToken(@Nullable Boolean value) {
+			this.discardCompoundToken = value;
 			return this;
 		}
 
@@ -256,6 +292,7 @@ public final class KuromojiTokenizer extends TokenizerBase implements TokenizerV
 		 *             if some of the required fields are null.
 		 */
 		public KuromojiTokenizer build() {
+			_checkSingleUse();
 
 			return new KuromojiTokenizer(this);
 		}
@@ -278,6 +315,7 @@ public final class KuromojiTokenizer extends TokenizerBase implements TokenizerV
 		op.add(Builder::userDictionary, JsonpDeserializer.stringDeserializer(), "user_dictionary");
 		op.add(Builder::userDictionaryRules,
 				JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "user_dictionary_rules");
+		op.add(Builder::discardCompoundToken, JsonpDeserializer.booleanDeserializer(), "discard_compound_token");
 
 		op.ignore("type");
 	}

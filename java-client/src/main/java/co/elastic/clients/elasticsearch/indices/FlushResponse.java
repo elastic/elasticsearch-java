@@ -36,16 +36,16 @@ import java.util.function.Function;
 
 // typedef: indices.flush.Response
 @JsonpDeserializable
-public final class FlushResponse extends ShardsOperationResponseBase {
+public class FlushResponse extends ShardsOperationResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
-	public FlushResponse(Builder builder) {
+	private FlushResponse(Builder builder) {
 		super(builder);
 
 	}
 
-	public FlushResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static FlushResponse of(Function<Builder, ObjectBuilder<FlushResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -68,6 +68,7 @@ public final class FlushResponse extends ShardsOperationResponseBase {
 		 *             if some of the required fields are null.
 		 */
 		public FlushResponse build() {
+			_checkSingleUse();
 
 			return new FlushResponse(this);
 		}

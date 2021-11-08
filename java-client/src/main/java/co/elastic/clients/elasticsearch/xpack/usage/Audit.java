@@ -33,7 +33,6 @@ import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
@@ -42,36 +41,33 @@ import javax.annotation.Nullable;
 
 // typedef: xpack.usage.Audit
 @JsonpDeserializable
-public final class Audit extends FeatureToggle {
-	@Nullable
+public class Audit extends FeatureToggle {
 	private final List<String> outputs;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public Audit(Builder builder) {
+	private Audit(Builder builder) {
 		super(builder);
 
 		this.outputs = ModelTypeHelper.unmodifiable(builder.outputs);
 
 	}
 
-	public Audit(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static Audit of(Function<Builder, ObjectBuilder<Audit>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * API name: {@code outputs}
 	 */
-	@Nullable
-	public List<String> outputs() {
+	public final List<String> outputs() {
 		return this.outputs;
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
-		if (this.outputs != null) {
-
+		if (ModelTypeHelper.isDefined(this.outputs)) {
 			generator.writeKey("outputs");
 			generator.writeStartArray();
 			for (String item0 : this.outputs) {
@@ -96,7 +92,7 @@ public final class Audit extends FeatureToggle {
 		/**
 		 * API name: {@code outputs}
 		 */
-		public Builder outputs(@Nullable List<String> value) {
+		public final Builder outputs(@Nullable List<String> value) {
 			this.outputs = value;
 			return this;
 		}
@@ -104,19 +100,8 @@ public final class Audit extends FeatureToggle {
 		/**
 		 * API name: {@code outputs}
 		 */
-		public Builder outputs(String... value) {
+		public final Builder outputs(String... value) {
 			this.outputs = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #outputs(List)}, creating the list if needed.
-		 */
-		public Builder addOutputs(String value) {
-			if (this.outputs == null) {
-				this.outputs = new ArrayList<>();
-			}
-			this.outputs.add(value);
 			return this;
 		}
 
@@ -132,6 +117,7 @@ public final class Audit extends FeatureToggle {
 		 *             if some of the required fields are null.
 		 */
 		public Audit build() {
+			_checkSingleUse();
 
 			return new Audit(this);
 		}

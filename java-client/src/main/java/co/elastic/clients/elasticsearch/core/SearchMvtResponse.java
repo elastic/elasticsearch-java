@@ -29,7 +29,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
@@ -38,19 +40,19 @@ import javax.annotation.Nullable;
 
 // typedef: _global.search_mvt.Response
 @JsonpDeserializable
-public final class SearchMvtResponse implements JsonpSerializable {
+public class SearchMvtResponse implements JsonpSerializable {
 	private final JsonValue valueBody;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public SearchMvtResponse(Builder builder) {
+	private SearchMvtResponse(Builder builder) {
 
-		this.valueBody = Objects.requireNonNull(builder.valueBody, "_value_body");
+		this.valueBody = ModelTypeHelper.requireNonNull(builder.valueBody, this, "valueBody");
 
 	}
 
-	public SearchMvtResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static SearchMvtResponse of(Function<Builder, ObjectBuilder<SearchMvtResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -58,7 +60,7 @@ public final class SearchMvtResponse implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code _value_body}
 	 */
-	public JsonValue valueBody() {
+	public final JsonValue valueBody() {
 		return this.valueBody;
 	}
 
@@ -75,7 +77,7 @@ public final class SearchMvtResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link SearchMvtResponse}.
 	 */
-	public static class Builder implements ObjectBuilder<SearchMvtResponse> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<SearchMvtResponse> {
 		private JsonValue valueBody;
 
 		/**
@@ -83,7 +85,7 @@ public final class SearchMvtResponse implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code _value_body}
 		 */
-		public Builder valueBody(JsonValue value) {
+		public final Builder valueBody(JsonValue value) {
 			this.valueBody = value;
 			return this;
 		}
@@ -95,6 +97,7 @@ public final class SearchMvtResponse implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public SearchMvtResponse build() {
+			_checkSingleUse();
 
 			return new SearchMvtResponse(this);
 		}

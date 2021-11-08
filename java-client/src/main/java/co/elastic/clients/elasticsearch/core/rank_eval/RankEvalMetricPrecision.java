@@ -38,21 +38,21 @@ import javax.annotation.Nullable;
 
 // typedef: _global.rank_eval.RankEvalMetricPrecision
 @JsonpDeserializable
-public final class RankEvalMetricPrecision extends RankEvalMetricRatingTreshold {
+public class RankEvalMetricPrecision extends RankEvalMetricRatingTreshold {
 	@Nullable
 	private final Boolean ignoreUnlabeled;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public RankEvalMetricPrecision(Builder builder) {
+	private RankEvalMetricPrecision(Builder builder) {
 		super(builder);
 
 		this.ignoreUnlabeled = builder.ignoreUnlabeled;
 
 	}
 
-	public RankEvalMetricPrecision(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static RankEvalMetricPrecision of(Function<Builder, ObjectBuilder<RankEvalMetricPrecision>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -63,7 +63,7 @@ public final class RankEvalMetricPrecision extends RankEvalMetricRatingTreshold 
 	 * API name: {@code ignore_unlabeled}
 	 */
 	@Nullable
-	public Boolean ignoreUnlabeled() {
+	public final Boolean ignoreUnlabeled() {
 		return this.ignoreUnlabeled;
 	}
 
@@ -71,7 +71,6 @@ public final class RankEvalMetricPrecision extends RankEvalMetricRatingTreshold 
 
 		super.serializeInternal(generator, mapper);
 		if (this.ignoreUnlabeled != null) {
-
 			generator.writeKey("ignore_unlabeled");
 			generator.write(this.ignoreUnlabeled);
 
@@ -97,7 +96,7 @@ public final class RankEvalMetricPrecision extends RankEvalMetricRatingTreshold 
 		 * <p>
 		 * API name: {@code ignore_unlabeled}
 		 */
-		public Builder ignoreUnlabeled(@Nullable Boolean value) {
+		public final Builder ignoreUnlabeled(@Nullable Boolean value) {
 			this.ignoreUnlabeled = value;
 			return this;
 		}
@@ -114,6 +113,7 @@ public final class RankEvalMetricPrecision extends RankEvalMetricRatingTreshold 
 		 *             if some of the required fields are null.
 		 */
 		public RankEvalMetricPrecision build() {
+			_checkSingleUse();
 
 			return new RankEvalMetricPrecision(this);
 		}

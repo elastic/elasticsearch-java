@@ -29,6 +29,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
@@ -37,7 +38,7 @@ import javax.annotation.Nullable;
 
 // typedef: xpack.usage.DataTiers
 @JsonpDeserializable
-public final class DataTiers extends Base {
+public class DataTiers extends Base {
 	private final DataTierPhaseStatistics dataWarm;
 
 	@Nullable
@@ -51,25 +52,25 @@ public final class DataTiers extends Base {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public DataTiers(Builder builder) {
+	private DataTiers(Builder builder) {
 		super(builder);
 
-		this.dataWarm = Objects.requireNonNull(builder.dataWarm, "data_warm");
+		this.dataWarm = ModelTypeHelper.requireNonNull(builder.dataWarm, this, "dataWarm");
 		this.dataFrozen = builder.dataFrozen;
-		this.dataCold = Objects.requireNonNull(builder.dataCold, "data_cold");
-		this.dataContent = Objects.requireNonNull(builder.dataContent, "data_content");
-		this.dataHot = Objects.requireNonNull(builder.dataHot, "data_hot");
+		this.dataCold = ModelTypeHelper.requireNonNull(builder.dataCold, this, "dataCold");
+		this.dataContent = ModelTypeHelper.requireNonNull(builder.dataContent, this, "dataContent");
+		this.dataHot = ModelTypeHelper.requireNonNull(builder.dataHot, this, "dataHot");
 
 	}
 
-	public DataTiers(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static DataTiers of(Function<Builder, ObjectBuilder<DataTiers>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code data_warm}
 	 */
-	public DataTierPhaseStatistics dataWarm() {
+	public final DataTierPhaseStatistics dataWarm() {
 		return this.dataWarm;
 	}
 
@@ -77,45 +78,42 @@ public final class DataTiers extends Base {
 	 * API name: {@code data_frozen}
 	 */
 	@Nullable
-	public DataTierPhaseStatistics dataFrozen() {
+	public final DataTierPhaseStatistics dataFrozen() {
 		return this.dataFrozen;
 	}
 
 	/**
 	 * Required - API name: {@code data_cold}
 	 */
-	public DataTierPhaseStatistics dataCold() {
+	public final DataTierPhaseStatistics dataCold() {
 		return this.dataCold;
 	}
 
 	/**
 	 * Required - API name: {@code data_content}
 	 */
-	public DataTierPhaseStatistics dataContent() {
+	public final DataTierPhaseStatistics dataContent() {
 		return this.dataContent;
 	}
 
 	/**
 	 * Required - API name: {@code data_hot}
 	 */
-	public DataTierPhaseStatistics dataHot() {
+	public final DataTierPhaseStatistics dataHot() {
 		return this.dataHot;
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
-
 		generator.writeKey("data_warm");
 		this.dataWarm.serialize(generator, mapper);
 
 		if (this.dataFrozen != null) {
-
 			generator.writeKey("data_frozen");
 			this.dataFrozen.serialize(generator, mapper);
 
 		}
-
 		generator.writeKey("data_cold");
 		this.dataCold.serialize(generator, mapper);
 
@@ -147,7 +145,7 @@ public final class DataTiers extends Base {
 		/**
 		 * Required - API name: {@code data_warm}
 		 */
-		public Builder dataWarm(DataTierPhaseStatistics value) {
+		public final Builder dataWarm(DataTierPhaseStatistics value) {
 			this.dataWarm = value;
 			return this;
 		}
@@ -155,14 +153,15 @@ public final class DataTiers extends Base {
 		/**
 		 * Required - API name: {@code data_warm}
 		 */
-		public Builder dataWarm(Function<DataTierPhaseStatistics.Builder, ObjectBuilder<DataTierPhaseStatistics>> fn) {
+		public final Builder dataWarm(
+				Function<DataTierPhaseStatistics.Builder, ObjectBuilder<DataTierPhaseStatistics>> fn) {
 			return this.dataWarm(fn.apply(new DataTierPhaseStatistics.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code data_frozen}
 		 */
-		public Builder dataFrozen(@Nullable DataTierPhaseStatistics value) {
+		public final Builder dataFrozen(@Nullable DataTierPhaseStatistics value) {
 			this.dataFrozen = value;
 			return this;
 		}
@@ -170,7 +169,7 @@ public final class DataTiers extends Base {
 		/**
 		 * API name: {@code data_frozen}
 		 */
-		public Builder dataFrozen(
+		public final Builder dataFrozen(
 				Function<DataTierPhaseStatistics.Builder, ObjectBuilder<DataTierPhaseStatistics>> fn) {
 			return this.dataFrozen(fn.apply(new DataTierPhaseStatistics.Builder()).build());
 		}
@@ -178,7 +177,7 @@ public final class DataTiers extends Base {
 		/**
 		 * Required - API name: {@code data_cold}
 		 */
-		public Builder dataCold(DataTierPhaseStatistics value) {
+		public final Builder dataCold(DataTierPhaseStatistics value) {
 			this.dataCold = value;
 			return this;
 		}
@@ -186,14 +185,15 @@ public final class DataTiers extends Base {
 		/**
 		 * Required - API name: {@code data_cold}
 		 */
-		public Builder dataCold(Function<DataTierPhaseStatistics.Builder, ObjectBuilder<DataTierPhaseStatistics>> fn) {
+		public final Builder dataCold(
+				Function<DataTierPhaseStatistics.Builder, ObjectBuilder<DataTierPhaseStatistics>> fn) {
 			return this.dataCold(fn.apply(new DataTierPhaseStatistics.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code data_content}
 		 */
-		public Builder dataContent(DataTierPhaseStatistics value) {
+		public final Builder dataContent(DataTierPhaseStatistics value) {
 			this.dataContent = value;
 			return this;
 		}
@@ -201,7 +201,7 @@ public final class DataTiers extends Base {
 		/**
 		 * Required - API name: {@code data_content}
 		 */
-		public Builder dataContent(
+		public final Builder dataContent(
 				Function<DataTierPhaseStatistics.Builder, ObjectBuilder<DataTierPhaseStatistics>> fn) {
 			return this.dataContent(fn.apply(new DataTierPhaseStatistics.Builder()).build());
 		}
@@ -209,7 +209,7 @@ public final class DataTiers extends Base {
 		/**
 		 * Required - API name: {@code data_hot}
 		 */
-		public Builder dataHot(DataTierPhaseStatistics value) {
+		public final Builder dataHot(DataTierPhaseStatistics value) {
 			this.dataHot = value;
 			return this;
 		}
@@ -217,7 +217,8 @@ public final class DataTiers extends Base {
 		/**
 		 * Required - API name: {@code data_hot}
 		 */
-		public Builder dataHot(Function<DataTierPhaseStatistics.Builder, ObjectBuilder<DataTierPhaseStatistics>> fn) {
+		public final Builder dataHot(
+				Function<DataTierPhaseStatistics.Builder, ObjectBuilder<DataTierPhaseStatistics>> fn) {
 			return this.dataHot(fn.apply(new DataTierPhaseStatistics.Builder()).build());
 		}
 
@@ -233,6 +234,7 @@ public final class DataTiers extends Base {
 		 *             if some of the required fields are null.
 		 */
 		public DataTiers build() {
+			_checkSingleUse();
 
 			return new DataTiers(this);
 		}

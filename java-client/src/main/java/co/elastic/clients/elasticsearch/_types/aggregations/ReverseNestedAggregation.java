@@ -38,21 +38,21 @@ import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.ReverseNestedAggregation
 @JsonpDeserializable
-public final class ReverseNestedAggregation extends BucketAggregationBase implements AggregationVariant {
+public class ReverseNestedAggregation extends BucketAggregationBase implements AggregationVariant {
 	@Nullable
 	private final String path;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public ReverseNestedAggregation(Builder builder) {
+	private ReverseNestedAggregation(Builder builder) {
 		super(builder);
 
 		this.path = builder.path;
 
 	}
 
-	public ReverseNestedAggregation(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ReverseNestedAggregation of(Function<Builder, ObjectBuilder<ReverseNestedAggregation>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -67,7 +67,7 @@ public final class ReverseNestedAggregation extends BucketAggregationBase implem
 	 * API name: {@code path}
 	 */
 	@Nullable
-	public String path() {
+	public final String path() {
 		return this.path;
 	}
 
@@ -75,7 +75,6 @@ public final class ReverseNestedAggregation extends BucketAggregationBase implem
 
 		super.serializeInternal(generator, mapper);
 		if (this.path != null) {
-
 			generator.writeKey("path");
 			generator.write(this.path);
 
@@ -97,7 +96,7 @@ public final class ReverseNestedAggregation extends BucketAggregationBase implem
 		/**
 		 * API name: {@code path}
 		 */
-		public Builder path(@Nullable String value) {
+		public final Builder path(@Nullable String value) {
 			this.path = value;
 			return this;
 		}
@@ -114,6 +113,7 @@ public final class ReverseNestedAggregation extends BucketAggregationBase implem
 		 *             if some of the required fields are null.
 		 */
 		public ReverseNestedAggregation build() {
+			_checkSingleUse();
 
 			return new ReverseNestedAggregation(this);
 		}

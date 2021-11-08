@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -39,35 +41,35 @@ import javax.annotation.Nullable;
 
 // typedef: ccr.get_auto_follow_pattern.AutoFollowPattern
 @JsonpDeserializable
-public final class AutoFollowPattern implements JsonpSerializable {
+public class AutoFollowPattern implements JsonpSerializable {
 	private final String name;
 
 	private final AutoFollowPatternSummary pattern;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public AutoFollowPattern(Builder builder) {
+	private AutoFollowPattern(Builder builder) {
 
-		this.name = Objects.requireNonNull(builder.name, "name");
-		this.pattern = Objects.requireNonNull(builder.pattern, "pattern");
+		this.name = ModelTypeHelper.requireNonNull(builder.name, this, "name");
+		this.pattern = ModelTypeHelper.requireNonNull(builder.pattern, this, "pattern");
 
 	}
 
-	public AutoFollowPattern(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static AutoFollowPattern of(Function<Builder, ObjectBuilder<AutoFollowPattern>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code name}
 	 */
-	public String name() {
+	public final String name() {
 		return this.name;
 	}
 
 	/**
 	 * Required - API name: {@code pattern}
 	 */
-	public AutoFollowPatternSummary pattern() {
+	public final AutoFollowPatternSummary pattern() {
 		return this.pattern;
 	}
 
@@ -95,7 +97,7 @@ public final class AutoFollowPattern implements JsonpSerializable {
 	/**
 	 * Builder for {@link AutoFollowPattern}.
 	 */
-	public static class Builder implements ObjectBuilder<AutoFollowPattern> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<AutoFollowPattern> {
 		private String name;
 
 		private AutoFollowPatternSummary pattern;
@@ -103,7 +105,7 @@ public final class AutoFollowPattern implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code name}
 		 */
-		public Builder name(String value) {
+		public final Builder name(String value) {
 			this.name = value;
 			return this;
 		}
@@ -111,7 +113,7 @@ public final class AutoFollowPattern implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code pattern}
 		 */
-		public Builder pattern(AutoFollowPatternSummary value) {
+		public final Builder pattern(AutoFollowPatternSummary value) {
 			this.pattern = value;
 			return this;
 		}
@@ -119,7 +121,8 @@ public final class AutoFollowPattern implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code pattern}
 		 */
-		public Builder pattern(Function<AutoFollowPatternSummary.Builder, ObjectBuilder<AutoFollowPatternSummary>> fn) {
+		public final Builder pattern(
+				Function<AutoFollowPatternSummary.Builder, ObjectBuilder<AutoFollowPatternSummary>> fn) {
 			return this.pattern(fn.apply(new AutoFollowPatternSummary.Builder()).build());
 		}
 
@@ -130,6 +133,7 @@ public final class AutoFollowPattern implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public AutoFollowPattern build() {
+			_checkSingleUse();
 
 			return new AutoFollowPattern(this);
 		}

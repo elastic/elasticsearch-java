@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
 import java.lang.Integer;
@@ -39,7 +41,7 @@ import java.util.function.Function;
 
 // typedef: ml._types.TotalFeatureImportanceStatistics
 @JsonpDeserializable
-public final class TotalFeatureImportanceStatistics implements JsonpSerializable {
+public class TotalFeatureImportanceStatistics implements JsonpSerializable {
 	private final double meanMagnitude;
 
 	private final int max;
@@ -48,16 +50,17 @@ public final class TotalFeatureImportanceStatistics implements JsonpSerializable
 
 	// ---------------------------------------------------------------------------------------------
 
-	public TotalFeatureImportanceStatistics(Builder builder) {
+	private TotalFeatureImportanceStatistics(Builder builder) {
 
-		this.meanMagnitude = Objects.requireNonNull(builder.meanMagnitude, "mean_magnitude");
-		this.max = Objects.requireNonNull(builder.max, "max");
-		this.min = Objects.requireNonNull(builder.min, "min");
+		this.meanMagnitude = ModelTypeHelper.requireNonNull(builder.meanMagnitude, this, "meanMagnitude");
+		this.max = ModelTypeHelper.requireNonNull(builder.max, this, "max");
+		this.min = ModelTypeHelper.requireNonNull(builder.min, this, "min");
 
 	}
 
-	public TotalFeatureImportanceStatistics(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static TotalFeatureImportanceStatistics of(
+			Function<Builder, ObjectBuilder<TotalFeatureImportanceStatistics>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -67,7 +70,7 @@ public final class TotalFeatureImportanceStatistics implements JsonpSerializable
 	 * <p>
 	 * API name: {@code mean_magnitude}
 	 */
-	public double meanMagnitude() {
+	public final double meanMagnitude() {
 		return this.meanMagnitude;
 	}
 
@@ -77,7 +80,7 @@ public final class TotalFeatureImportanceStatistics implements JsonpSerializable
 	 * <p>
 	 * API name: {@code max}
 	 */
-	public int max() {
+	public final int max() {
 		return this.max;
 	}
 
@@ -87,7 +90,7 @@ public final class TotalFeatureImportanceStatistics implements JsonpSerializable
 	 * <p>
 	 * API name: {@code min}
 	 */
-	public int min() {
+	public final int min() {
 		return this.min;
 	}
 
@@ -118,7 +121,7 @@ public final class TotalFeatureImportanceStatistics implements JsonpSerializable
 	/**
 	 * Builder for {@link TotalFeatureImportanceStatistics}.
 	 */
-	public static class Builder implements ObjectBuilder<TotalFeatureImportanceStatistics> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TotalFeatureImportanceStatistics> {
 		private Double meanMagnitude;
 
 		private Integer max;
@@ -132,7 +135,7 @@ public final class TotalFeatureImportanceStatistics implements JsonpSerializable
 		 * <p>
 		 * API name: {@code mean_magnitude}
 		 */
-		public Builder meanMagnitude(double value) {
+		public final Builder meanMagnitude(double value) {
 			this.meanMagnitude = value;
 			return this;
 		}
@@ -143,7 +146,7 @@ public final class TotalFeatureImportanceStatistics implements JsonpSerializable
 		 * <p>
 		 * API name: {@code max}
 		 */
-		public Builder max(int value) {
+		public final Builder max(int value) {
 			this.max = value;
 			return this;
 		}
@@ -154,7 +157,7 @@ public final class TotalFeatureImportanceStatistics implements JsonpSerializable
 		 * <p>
 		 * API name: {@code min}
 		 */
-		public Builder min(int value) {
+		public final Builder min(int value) {
 			this.min = value;
 			return this;
 		}
@@ -166,6 +169,7 @@ public final class TotalFeatureImportanceStatistics implements JsonpSerializable
 		 *             if some of the required fields are null.
 		 */
 		public TotalFeatureImportanceStatistics build() {
+			_checkSingleUse();
 
 			return new TotalFeatureImportanceStatistics(this);
 		}

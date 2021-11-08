@@ -32,9 +32,9 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
@@ -43,7 +43,7 @@ import javax.annotation.Nullable;
 
 // typedef: nodes.hot_threads.HotThread
 @JsonpDeserializable
-public final class HotThread implements JsonpSerializable {
+public class HotThread implements JsonpSerializable {
 	private final List<String> hosts;
 
 	private final String nodeId;
@@ -54,44 +54,44 @@ public final class HotThread implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public HotThread(Builder builder) {
+	private HotThread(Builder builder) {
 
-		this.hosts = ModelTypeHelper.unmodifiableNonNull(builder.hosts, "hosts");
-		this.nodeId = Objects.requireNonNull(builder.nodeId, "node_id");
-		this.nodeName = Objects.requireNonNull(builder.nodeName, "node_name");
-		this.threads = ModelTypeHelper.unmodifiableNonNull(builder.threads, "threads");
+		this.hosts = ModelTypeHelper.unmodifiableRequired(builder.hosts, this, "hosts");
+		this.nodeId = ModelTypeHelper.requireNonNull(builder.nodeId, this, "nodeId");
+		this.nodeName = ModelTypeHelper.requireNonNull(builder.nodeName, this, "nodeName");
+		this.threads = ModelTypeHelper.unmodifiableRequired(builder.threads, this, "threads");
 
 	}
 
-	public HotThread(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static HotThread of(Function<Builder, ObjectBuilder<HotThread>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code hosts}
 	 */
-	public List<String> hosts() {
+	public final List<String> hosts() {
 		return this.hosts;
 	}
 
 	/**
 	 * Required - API name: {@code node_id}
 	 */
-	public String nodeId() {
+	public final String nodeId() {
 		return this.nodeId;
 	}
 
 	/**
 	 * Required - API name: {@code node_name}
 	 */
-	public String nodeName() {
+	public final String nodeName() {
 		return this.nodeName;
 	}
 
 	/**
 	 * Required - API name: {@code threads}
 	 */
-	public List<String> threads() {
+	public final List<String> threads() {
 		return this.threads;
 	}
 
@@ -106,27 +106,32 @@ public final class HotThread implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("hosts");
-		generator.writeStartArray();
-		for (String item0 : this.hosts) {
-			generator.write(item0);
+		if (ModelTypeHelper.isDefined(this.hosts)) {
+			generator.writeKey("hosts");
+			generator.writeStartArray();
+			for (String item0 : this.hosts) {
+				generator.write(item0);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
-
 		generator.writeKey("node_id");
 		generator.write(this.nodeId);
 
 		generator.writeKey("node_name");
 		generator.write(this.nodeName);
 
-		generator.writeKey("threads");
-		generator.writeStartArray();
-		for (String item0 : this.threads) {
-			generator.write(item0);
+		if (ModelTypeHelper.isDefined(this.threads)) {
+			generator.writeKey("threads");
+			generator.writeStartArray();
+			for (String item0 : this.threads) {
+				generator.write(item0);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
 
 	}
 
@@ -135,7 +140,7 @@ public final class HotThread implements JsonpSerializable {
 	/**
 	 * Builder for {@link HotThread}.
 	 */
-	public static class Builder implements ObjectBuilder<HotThread> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<HotThread> {
 		private List<String> hosts;
 
 		private String nodeId;
@@ -147,7 +152,7 @@ public final class HotThread implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code hosts}
 		 */
-		public Builder hosts(List<String> value) {
+		public final Builder hosts(List<String> value) {
 			this.hosts = value;
 			return this;
 		}
@@ -155,26 +160,15 @@ public final class HotThread implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code hosts}
 		 */
-		public Builder hosts(String... value) {
+		public final Builder hosts(String... value) {
 			this.hosts = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #hosts(List)}, creating the list if needed.
-		 */
-		public Builder addHosts(String value) {
-			if (this.hosts == null) {
-				this.hosts = new ArrayList<>();
-			}
-			this.hosts.add(value);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code node_id}
 		 */
-		public Builder nodeId(String value) {
+		public final Builder nodeId(String value) {
 			this.nodeId = value;
 			return this;
 		}
@@ -182,7 +176,7 @@ public final class HotThread implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code node_name}
 		 */
-		public Builder nodeName(String value) {
+		public final Builder nodeName(String value) {
 			this.nodeName = value;
 			return this;
 		}
@@ -190,7 +184,7 @@ public final class HotThread implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code threads}
 		 */
-		public Builder threads(List<String> value) {
+		public final Builder threads(List<String> value) {
 			this.threads = value;
 			return this;
 		}
@@ -198,19 +192,8 @@ public final class HotThread implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code threads}
 		 */
-		public Builder threads(String... value) {
+		public final Builder threads(String... value) {
 			this.threads = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #threads(List)}, creating the list if needed.
-		 */
-		public Builder addThreads(String value) {
-			if (this.threads == null) {
-				this.threads = new ArrayList<>();
-			}
-			this.threads.add(value);
 			return this;
 		}
 
@@ -221,6 +204,7 @@ public final class HotThread implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public HotThread build() {
+			_checkSingleUse();
 
 			return new HotThread(this);
 		}

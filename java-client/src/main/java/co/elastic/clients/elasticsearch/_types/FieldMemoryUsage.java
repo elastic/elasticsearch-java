@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.lang.String;
@@ -40,7 +42,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.FieldMemoryUsage
 @JsonpDeserializable
-public final class FieldMemoryUsage implements JsonpSerializable {
+public class FieldMemoryUsage implements JsonpSerializable {
 	@Nullable
 	private final String memorySize;
 
@@ -48,29 +50,29 @@ public final class FieldMemoryUsage implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public FieldMemoryUsage(Builder builder) {
+	private FieldMemoryUsage(Builder builder) {
 
 		this.memorySize = builder.memorySize;
-		this.memorySizeInBytes = Objects.requireNonNull(builder.memorySizeInBytes, "memory_size_in_bytes");
+		this.memorySizeInBytes = ModelTypeHelper.requireNonNull(builder.memorySizeInBytes, this, "memorySizeInBytes");
 
 	}
 
-	public FieldMemoryUsage(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static FieldMemoryUsage of(Function<Builder, ObjectBuilder<FieldMemoryUsage>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * API name: {@code memory_size}
 	 */
 	@Nullable
-	public String memorySize() {
+	public final String memorySize() {
 		return this.memorySize;
 	}
 
 	/**
 	 * Required - API name: {@code memory_size_in_bytes}
 	 */
-	public long memorySizeInBytes() {
+	public final long memorySizeInBytes() {
 		return this.memorySizeInBytes;
 	}
 
@@ -86,12 +88,10 @@ public final class FieldMemoryUsage implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.memorySize != null) {
-
 			generator.writeKey("memory_size");
 			generator.write(this.memorySize);
 
 		}
-
 		generator.writeKey("memory_size_in_bytes");
 		generator.write(this.memorySizeInBytes);
 
@@ -102,7 +102,7 @@ public final class FieldMemoryUsage implements JsonpSerializable {
 	/**
 	 * Builder for {@link FieldMemoryUsage}.
 	 */
-	public static class Builder implements ObjectBuilder<FieldMemoryUsage> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<FieldMemoryUsage> {
 		@Nullable
 		private String memorySize;
 
@@ -111,7 +111,7 @@ public final class FieldMemoryUsage implements JsonpSerializable {
 		/**
 		 * API name: {@code memory_size}
 		 */
-		public Builder memorySize(@Nullable String value) {
+		public final Builder memorySize(@Nullable String value) {
 			this.memorySize = value;
 			return this;
 		}
@@ -119,7 +119,7 @@ public final class FieldMemoryUsage implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code memory_size_in_bytes}
 		 */
-		public Builder memorySizeInBytes(long value) {
+		public final Builder memorySizeInBytes(long value) {
 			this.memorySizeInBytes = value;
 			return this;
 		}
@@ -131,6 +131,7 @@ public final class FieldMemoryUsage implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public FieldMemoryUsage build() {
+			_checkSingleUse();
 
 			return new FieldMemoryUsage(this);
 		}

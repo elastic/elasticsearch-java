@@ -31,7 +31,9 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.SimpleEndpoint;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.HashMap;
@@ -42,7 +44,7 @@ import javax.annotation.Nullable;
 
 // typedef: ml.start_data_frame_analytics.Request
 
-public final class StartDataFrameAnalyticsRequest extends RequestBase {
+public class StartDataFrameAnalyticsRequest extends RequestBase {
 	private final String id;
 
 	@Nullable
@@ -50,23 +52,26 @@ public final class StartDataFrameAnalyticsRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public StartDataFrameAnalyticsRequest(Builder builder) {
+	private StartDataFrameAnalyticsRequest(Builder builder) {
 
-		this.id = Objects.requireNonNull(builder.id, "id");
+		this.id = ModelTypeHelper.requireNonNull(builder.id, this, "id");
 		this.timeout = builder.timeout;
 
 	}
 
-	public StartDataFrameAnalyticsRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static StartDataFrameAnalyticsRequest of(
+			Function<Builder, ObjectBuilder<StartDataFrameAnalyticsRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * Required - The ID of the data frame analytics to start
+	 * Required - Identifier for the data frame analytics job. This identifier can
+	 * contain lowercase alphanumeric characters (a-z and 0-9), hyphens, and
+	 * underscores. It must start and end with alphanumeric characters.
 	 * <p>
 	 * API name: {@code id}
 	 */
-	public String id() {
+	public final String id() {
 		return this.id;
 	}
 
@@ -77,7 +82,7 @@ public final class StartDataFrameAnalyticsRequest extends RequestBase {
 	 * API name: {@code timeout}
 	 */
 	@Nullable
-	public String timeout() {
+	public final String timeout() {
 		return this.timeout;
 	}
 
@@ -86,18 +91,20 @@ public final class StartDataFrameAnalyticsRequest extends RequestBase {
 	/**
 	 * Builder for {@link StartDataFrameAnalyticsRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<StartDataFrameAnalyticsRequest> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<StartDataFrameAnalyticsRequest> {
 		private String id;
 
 		@Nullable
 		private String timeout;
 
 		/**
-		 * Required - The ID of the data frame analytics to start
+		 * Required - Identifier for the data frame analytics job. This identifier can
+		 * contain lowercase alphanumeric characters (a-z and 0-9), hyphens, and
+		 * underscores. It must start and end with alphanumeric characters.
 		 * <p>
 		 * API name: {@code id}
 		 */
-		public Builder id(String value) {
+		public final Builder id(String value) {
 			this.id = value;
 			return this;
 		}
@@ -108,7 +115,7 @@ public final class StartDataFrameAnalyticsRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code timeout}
 		 */
-		public Builder timeout(@Nullable String value) {
+		public final Builder timeout(@Nullable String value) {
 			this.timeout = value;
 			return this;
 		}
@@ -120,6 +127,7 @@ public final class StartDataFrameAnalyticsRequest extends RequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public StartDataFrameAnalyticsRequest build() {
+			_checkSingleUse();
 
 			return new StartDataFrameAnalyticsRequest(this);
 		}

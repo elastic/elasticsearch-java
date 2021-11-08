@@ -39,7 +39,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.mapping.PointProperty
 @JsonpDeserializable
-public final class PointProperty extends DocValuesPropertyBase implements PropertyVariant {
+public class PointProperty extends DocValuesPropertyBase implements PropertyVariant {
 	@Nullable
 	private final Boolean ignoreMalformed;
 
@@ -51,7 +51,7 @@ public final class PointProperty extends DocValuesPropertyBase implements Proper
 
 	// ---------------------------------------------------------------------------------------------
 
-	public PointProperty(Builder builder) {
+	private PointProperty(Builder builder) {
 		super(builder);
 
 		this.ignoreMalformed = builder.ignoreMalformed;
@@ -60,8 +60,8 @@ public final class PointProperty extends DocValuesPropertyBase implements Proper
 
 	}
 
-	public PointProperty(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static PointProperty of(Function<Builder, ObjectBuilder<PointProperty>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -76,7 +76,7 @@ public final class PointProperty extends DocValuesPropertyBase implements Proper
 	 * API name: {@code ignore_malformed}
 	 */
 	@Nullable
-	public Boolean ignoreMalformed() {
+	public final Boolean ignoreMalformed() {
 		return this.ignoreMalformed;
 	}
 
@@ -84,7 +84,7 @@ public final class PointProperty extends DocValuesPropertyBase implements Proper
 	 * API name: {@code ignore_z_value}
 	 */
 	@Nullable
-	public Boolean ignoreZValue() {
+	public final Boolean ignoreZValue() {
 		return this.ignoreZValue;
 	}
 
@@ -92,7 +92,7 @@ public final class PointProperty extends DocValuesPropertyBase implements Proper
 	 * API name: {@code null_value}
 	 */
 	@Nullable
-	public String nullValue() {
+	public final String nullValue() {
 		return this.nullValue;
 	}
 
@@ -101,19 +101,16 @@ public final class PointProperty extends DocValuesPropertyBase implements Proper
 		generator.write("type", "point");
 		super.serializeInternal(generator, mapper);
 		if (this.ignoreMalformed != null) {
-
 			generator.writeKey("ignore_malformed");
 			generator.write(this.ignoreMalformed);
 
 		}
 		if (this.ignoreZValue != null) {
-
 			generator.writeKey("ignore_z_value");
 			generator.write(this.ignoreZValue);
 
 		}
 		if (this.nullValue != null) {
-
 			generator.writeKey("null_value");
 			generator.write(this.nullValue);
 
@@ -141,7 +138,7 @@ public final class PointProperty extends DocValuesPropertyBase implements Proper
 		/**
 		 * API name: {@code ignore_malformed}
 		 */
-		public Builder ignoreMalformed(@Nullable Boolean value) {
+		public final Builder ignoreMalformed(@Nullable Boolean value) {
 			this.ignoreMalformed = value;
 			return this;
 		}
@@ -149,7 +146,7 @@ public final class PointProperty extends DocValuesPropertyBase implements Proper
 		/**
 		 * API name: {@code ignore_z_value}
 		 */
-		public Builder ignoreZValue(@Nullable Boolean value) {
+		public final Builder ignoreZValue(@Nullable Boolean value) {
 			this.ignoreZValue = value;
 			return this;
 		}
@@ -157,7 +154,7 @@ public final class PointProperty extends DocValuesPropertyBase implements Proper
 		/**
 		 * API name: {@code null_value}
 		 */
-		public Builder nullValue(@Nullable String value) {
+		public final Builder nullValue(@Nullable String value) {
 			this.nullValue = value;
 			return this;
 		}
@@ -174,6 +171,7 @@ public final class PointProperty extends DocValuesPropertyBase implements Proper
 		 *             if some of the required fields are null.
 		 */
 		public PointProperty build() {
+			_checkSingleUse();
 
 			return new PointProperty(this);
 		}

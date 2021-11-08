@@ -33,7 +33,9 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.SimpleEndpoint;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
@@ -46,7 +48,7 @@ import javax.annotation.Nullable;
 
 // typedef: _global.delete.Request
 
-public final class DeleteRequest extends RequestBase {
+public class DeleteRequest extends RequestBase {
 	private final String id;
 
 	@Nullable
@@ -80,12 +82,12 @@ public final class DeleteRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public DeleteRequest(Builder builder) {
+	private DeleteRequest(Builder builder) {
 
-		this.id = Objects.requireNonNull(builder.id, "id");
+		this.id = ModelTypeHelper.requireNonNull(builder.id, this, "id");
 		this.ifPrimaryTerm = builder.ifPrimaryTerm;
 		this.ifSeqNo = builder.ifSeqNo;
-		this.index = Objects.requireNonNull(builder.index, "index");
+		this.index = ModelTypeHelper.requireNonNull(builder.index, this, "index");
 		this.refresh = builder.refresh;
 		this.routing = builder.routing;
 		this.timeout = builder.timeout;
@@ -96,8 +98,8 @@ public final class DeleteRequest extends RequestBase {
 
 	}
 
-	public DeleteRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static DeleteRequest of(Function<Builder, ObjectBuilder<DeleteRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -105,7 +107,7 @@ public final class DeleteRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code id}
 	 */
-	public String id() {
+	public final String id() {
 		return this.id;
 	}
 
@@ -116,7 +118,7 @@ public final class DeleteRequest extends RequestBase {
 	 * API name: {@code if_primary_term}
 	 */
 	@Nullable
-	public Long ifPrimaryTerm() {
+	public final Long ifPrimaryTerm() {
 		return this.ifPrimaryTerm;
 	}
 
@@ -127,7 +129,7 @@ public final class DeleteRequest extends RequestBase {
 	 * API name: {@code if_seq_no}
 	 */
 	@Nullable
-	public Long ifSeqNo() {
+	public final Long ifSeqNo() {
 		return this.ifSeqNo;
 	}
 
@@ -136,7 +138,7 @@ public final class DeleteRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code index}
 	 */
-	public String index() {
+	public final String index() {
 		return this.index;
 	}
 
@@ -149,7 +151,7 @@ public final class DeleteRequest extends RequestBase {
 	 * API name: {@code refresh}
 	 */
 	@Nullable
-	public JsonValue /* _types.Refresh */ refresh() {
+	public final JsonValue /* _types.Refresh */ refresh() {
 		return this.refresh;
 	}
 
@@ -159,7 +161,7 @@ public final class DeleteRequest extends RequestBase {
 	 * API name: {@code routing}
 	 */
 	@Nullable
-	public String routing() {
+	public final String routing() {
 		return this.routing;
 	}
 
@@ -169,7 +171,7 @@ public final class DeleteRequest extends RequestBase {
 	 * API name: {@code timeout}
 	 */
 	@Nullable
-	public String timeout() {
+	public final String timeout() {
 		return this.timeout;
 	}
 
@@ -179,7 +181,7 @@ public final class DeleteRequest extends RequestBase {
 	 * API name: {@code type}
 	 */
 	@Nullable
-	public String type() {
+	public final String type() {
 		return this.type;
 	}
 
@@ -189,7 +191,7 @@ public final class DeleteRequest extends RequestBase {
 	 * API name: {@code version}
 	 */
 	@Nullable
-	public Long version() {
+	public final Long version() {
 		return this.version;
 	}
 
@@ -199,7 +201,7 @@ public final class DeleteRequest extends RequestBase {
 	 * API name: {@code version_type}
 	 */
 	@Nullable
-	public VersionType versionType() {
+	public final VersionType versionType() {
 		return this.versionType;
 	}
 
@@ -213,7 +215,7 @@ public final class DeleteRequest extends RequestBase {
 	 * API name: {@code wait_for_active_shards}
 	 */
 	@Nullable
-	public JsonValue /* _types.WaitForActiveShards */ waitForActiveShards() {
+	public final JsonValue /* _types.WaitForActiveShards */ waitForActiveShards() {
 		return this.waitForActiveShards;
 	}
 
@@ -222,7 +224,7 @@ public final class DeleteRequest extends RequestBase {
 	/**
 	 * Builder for {@link DeleteRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<DeleteRequest> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DeleteRequest> {
 		private String id;
 
 		@Nullable
@@ -259,7 +261,7 @@ public final class DeleteRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code id}
 		 */
-		public Builder id(String value) {
+		public final Builder id(String value) {
 			this.id = value;
 			return this;
 		}
@@ -270,7 +272,7 @@ public final class DeleteRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code if_primary_term}
 		 */
-		public Builder ifPrimaryTerm(@Nullable Long value) {
+		public final Builder ifPrimaryTerm(@Nullable Long value) {
 			this.ifPrimaryTerm = value;
 			return this;
 		}
@@ -281,7 +283,7 @@ public final class DeleteRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code if_seq_no}
 		 */
-		public Builder ifSeqNo(@Nullable Long value) {
+		public final Builder ifSeqNo(@Nullable Long value) {
 			this.ifSeqNo = value;
 			return this;
 		}
@@ -291,7 +293,7 @@ public final class DeleteRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code index}
 		 */
-		public Builder index(String value) {
+		public final Builder index(String value) {
 			this.index = value;
 			return this;
 		}
@@ -304,7 +306,7 @@ public final class DeleteRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code refresh}
 		 */
-		public Builder refresh(@Nullable JsonValue /* _types.Refresh */ value) {
+		public final Builder refresh(@Nullable JsonValue /* _types.Refresh */ value) {
 			this.refresh = value;
 			return this;
 		}
@@ -314,7 +316,7 @@ public final class DeleteRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code routing}
 		 */
-		public Builder routing(@Nullable String value) {
+		public final Builder routing(@Nullable String value) {
 			this.routing = value;
 			return this;
 		}
@@ -324,7 +326,7 @@ public final class DeleteRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code timeout}
 		 */
-		public Builder timeout(@Nullable String value) {
+		public final Builder timeout(@Nullable String value) {
 			this.timeout = value;
 			return this;
 		}
@@ -334,7 +336,7 @@ public final class DeleteRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code type}
 		 */
-		public Builder type(@Nullable String value) {
+		public final Builder type(@Nullable String value) {
 			this.type = value;
 			return this;
 		}
@@ -344,7 +346,7 @@ public final class DeleteRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code version}
 		 */
-		public Builder version(@Nullable Long value) {
+		public final Builder version(@Nullable Long value) {
 			this.version = value;
 			return this;
 		}
@@ -354,7 +356,7 @@ public final class DeleteRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code version_type}
 		 */
-		public Builder versionType(@Nullable VersionType value) {
+		public final Builder versionType(@Nullable VersionType value) {
 			this.versionType = value;
 			return this;
 		}
@@ -368,7 +370,7 @@ public final class DeleteRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code wait_for_active_shards}
 		 */
-		public Builder waitForActiveShards(@Nullable JsonValue /* _types.WaitForActiveShards */ value) {
+		public final Builder waitForActiveShards(@Nullable JsonValue /* _types.WaitForActiveShards */ value) {
 			this.waitForActiveShards = value;
 			return this;
 		}
@@ -380,6 +382,7 @@ public final class DeleteRequest extends RequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public DeleteRequest build() {
+			_checkSingleUse();
 
 			return new DeleteRequest(this);
 		}
@@ -440,7 +443,7 @@ public final class DeleteRequest extends RequestBase {
 					params.put("routing", request.routing);
 				}
 				if (request.versionType != null) {
-					params.put("version_type", request.versionType.toString());
+					params.put("version_type", request.versionType.jsonValue());
 				}
 				if (request.ifPrimaryTerm != null) {
 					params.put("if_primary_term", String.valueOf(request.ifPrimaryTerm));

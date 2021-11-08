@@ -32,6 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -42,19 +43,19 @@ import javax.annotation.Nullable;
 
 // typedef: cat.plugins.Response
 @JsonpDeserializable
-public final class PluginsResponse implements JsonpSerializable {
+public class PluginsResponse implements JsonpSerializable {
 	private final List<PluginsRecord> valueBody;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public PluginsResponse(Builder builder) {
+	private PluginsResponse(Builder builder) {
 
-		this.valueBody = ModelTypeHelper.unmodifiableNonNull(builder.valueBody, "_value_body");
+		this.valueBody = ModelTypeHelper.unmodifiableRequired(builder.valueBody, this, "valueBody");
 
 	}
 
-	public PluginsResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static PluginsResponse of(Function<Builder, ObjectBuilder<PluginsResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -62,7 +63,7 @@ public final class PluginsResponse implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code _value_body}
 	 */
-	public List<PluginsRecord> valueBody() {
+	public final List<PluginsRecord> valueBody() {
 		return this.valueBody;
 	}
 
@@ -84,7 +85,7 @@ public final class PluginsResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link PluginsResponse}.
 	 */
-	public static class Builder implements ObjectBuilder<PluginsResponse> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PluginsResponse> {
 		private List<PluginsRecord> valueBody;
 
 		/**
@@ -92,7 +93,7 @@ public final class PluginsResponse implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code _value_body}
 		 */
-		public Builder valueBody(List<PluginsRecord> value) {
+		public final Builder valueBody(List<PluginsRecord> value) {
 			this.valueBody = value;
 			return this;
 		}
@@ -102,34 +103,23 @@ public final class PluginsResponse implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code _value_body}
 		 */
-		public Builder valueBody(PluginsRecord... value) {
+		public final Builder valueBody(PluginsRecord... value) {
 			this.valueBody = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #valueBody(List)}, creating the list if needed.
+		 * Required - Response value.
+		 * <p>
+		 * API name: {@code _value_body}
 		 */
-		public Builder addValueBody(PluginsRecord value) {
-			if (this.valueBody == null) {
-				this.valueBody = new ArrayList<>();
+		@SafeVarargs
+		public final Builder valueBody(Function<PluginsRecord.Builder, ObjectBuilder<PluginsRecord>>... fns) {
+			this.valueBody = new ArrayList<>(fns.length);
+			for (Function<PluginsRecord.Builder, ObjectBuilder<PluginsRecord>> fn : fns) {
+				this.valueBody.add(fn.apply(new PluginsRecord.Builder()).build());
 			}
-			this.valueBody.add(value);
 			return this;
-		}
-
-		/**
-		 * Set {@link #valueBody(List)} to a singleton list.
-		 */
-		public Builder valueBody(Function<PluginsRecord.Builder, ObjectBuilder<PluginsRecord>> fn) {
-			return this.valueBody(fn.apply(new PluginsRecord.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #valueBody(List)}, creating the list if needed.
-		 */
-		public Builder addValueBody(Function<PluginsRecord.Builder, ObjectBuilder<PluginsRecord>> fn) {
-			return this.addValueBody(fn.apply(new PluginsRecord.Builder()).build());
 		}
 
 		/**
@@ -139,6 +129,7 @@ public final class PluginsResponse implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public PluginsResponse build() {
+			_checkSingleUse();
 
 			return new PluginsResponse(this);
 		}

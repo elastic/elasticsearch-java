@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Number;
 import java.util.Objects;
@@ -39,7 +41,7 @@ import javax.annotation.Nullable;
 
 // typedef: xpack.usage.EqlFeatures
 @JsonpDeserializable
-public final class EqlFeatures implements JsonpSerializable {
+public class EqlFeatures implements JsonpSerializable {
 	private final Number join;
 
 	private final EqlFeaturesJoin joins;
@@ -56,68 +58,68 @@ public final class EqlFeatures implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public EqlFeatures(Builder builder) {
+	private EqlFeatures(Builder builder) {
 
-		this.join = Objects.requireNonNull(builder.join, "join");
-		this.joins = Objects.requireNonNull(builder.joins, "joins");
-		this.keys = Objects.requireNonNull(builder.keys, "keys");
-		this.event = Objects.requireNonNull(builder.event, "event");
-		this.pipes = Objects.requireNonNull(builder.pipes, "pipes");
-		this.sequence = Objects.requireNonNull(builder.sequence, "sequence");
-		this.sequences = Objects.requireNonNull(builder.sequences, "sequences");
+		this.join = ModelTypeHelper.requireNonNull(builder.join, this, "join");
+		this.joins = ModelTypeHelper.requireNonNull(builder.joins, this, "joins");
+		this.keys = ModelTypeHelper.requireNonNull(builder.keys, this, "keys");
+		this.event = ModelTypeHelper.requireNonNull(builder.event, this, "event");
+		this.pipes = ModelTypeHelper.requireNonNull(builder.pipes, this, "pipes");
+		this.sequence = ModelTypeHelper.requireNonNull(builder.sequence, this, "sequence");
+		this.sequences = ModelTypeHelper.requireNonNull(builder.sequences, this, "sequences");
 
 	}
 
-	public EqlFeatures(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static EqlFeatures of(Function<Builder, ObjectBuilder<EqlFeatures>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code join}
 	 */
-	public Number join() {
+	public final Number join() {
 		return this.join;
 	}
 
 	/**
 	 * Required - API name: {@code joins}
 	 */
-	public EqlFeaturesJoin joins() {
+	public final EqlFeaturesJoin joins() {
 		return this.joins;
 	}
 
 	/**
 	 * Required - API name: {@code keys}
 	 */
-	public EqlFeaturesKeys keys() {
+	public final EqlFeaturesKeys keys() {
 		return this.keys;
 	}
 
 	/**
 	 * Required - API name: {@code event}
 	 */
-	public Number event() {
+	public final Number event() {
 		return this.event;
 	}
 
 	/**
 	 * Required - API name: {@code pipes}
 	 */
-	public EqlFeaturesPipes pipes() {
+	public final EqlFeaturesPipes pipes() {
 		return this.pipes;
 	}
 
 	/**
 	 * Required - API name: {@code sequence}
 	 */
-	public Number sequence() {
+	public final Number sequence() {
 		return this.sequence;
 	}
 
 	/**
 	 * Required - API name: {@code sequences}
 	 */
-	public EqlFeaturesSequences sequences() {
+	public final EqlFeaturesSequences sequences() {
 		return this.sequences;
 	}
 
@@ -160,7 +162,7 @@ public final class EqlFeatures implements JsonpSerializable {
 	/**
 	 * Builder for {@link EqlFeatures}.
 	 */
-	public static class Builder implements ObjectBuilder<EqlFeatures> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<EqlFeatures> {
 		private Number join;
 
 		private EqlFeaturesJoin joins;
@@ -178,7 +180,7 @@ public final class EqlFeatures implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code join}
 		 */
-		public Builder join(Number value) {
+		public final Builder join(Number value) {
 			this.join = value;
 			return this;
 		}
@@ -186,7 +188,7 @@ public final class EqlFeatures implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code joins}
 		 */
-		public Builder joins(EqlFeaturesJoin value) {
+		public final Builder joins(EqlFeaturesJoin value) {
 			this.joins = value;
 			return this;
 		}
@@ -194,14 +196,14 @@ public final class EqlFeatures implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code joins}
 		 */
-		public Builder joins(Function<EqlFeaturesJoin.Builder, ObjectBuilder<EqlFeaturesJoin>> fn) {
+		public final Builder joins(Function<EqlFeaturesJoin.Builder, ObjectBuilder<EqlFeaturesJoin>> fn) {
 			return this.joins(fn.apply(new EqlFeaturesJoin.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code keys}
 		 */
-		public Builder keys(EqlFeaturesKeys value) {
+		public final Builder keys(EqlFeaturesKeys value) {
 			this.keys = value;
 			return this;
 		}
@@ -209,14 +211,14 @@ public final class EqlFeatures implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code keys}
 		 */
-		public Builder keys(Function<EqlFeaturesKeys.Builder, ObjectBuilder<EqlFeaturesKeys>> fn) {
+		public final Builder keys(Function<EqlFeaturesKeys.Builder, ObjectBuilder<EqlFeaturesKeys>> fn) {
 			return this.keys(fn.apply(new EqlFeaturesKeys.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code event}
 		 */
-		public Builder event(Number value) {
+		public final Builder event(Number value) {
 			this.event = value;
 			return this;
 		}
@@ -224,7 +226,7 @@ public final class EqlFeatures implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code pipes}
 		 */
-		public Builder pipes(EqlFeaturesPipes value) {
+		public final Builder pipes(EqlFeaturesPipes value) {
 			this.pipes = value;
 			return this;
 		}
@@ -232,14 +234,14 @@ public final class EqlFeatures implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code pipes}
 		 */
-		public Builder pipes(Function<EqlFeaturesPipes.Builder, ObjectBuilder<EqlFeaturesPipes>> fn) {
+		public final Builder pipes(Function<EqlFeaturesPipes.Builder, ObjectBuilder<EqlFeaturesPipes>> fn) {
 			return this.pipes(fn.apply(new EqlFeaturesPipes.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code sequence}
 		 */
-		public Builder sequence(Number value) {
+		public final Builder sequence(Number value) {
 			this.sequence = value;
 			return this;
 		}
@@ -247,7 +249,7 @@ public final class EqlFeatures implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code sequences}
 		 */
-		public Builder sequences(EqlFeaturesSequences value) {
+		public final Builder sequences(EqlFeaturesSequences value) {
 			this.sequences = value;
 			return this;
 		}
@@ -255,7 +257,7 @@ public final class EqlFeatures implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code sequences}
 		 */
-		public Builder sequences(Function<EqlFeaturesSequences.Builder, ObjectBuilder<EqlFeaturesSequences>> fn) {
+		public final Builder sequences(Function<EqlFeaturesSequences.Builder, ObjectBuilder<EqlFeaturesSequences>> fn) {
 			return this.sequences(fn.apply(new EqlFeaturesSequences.Builder()).build());
 		}
 
@@ -266,6 +268,7 @@ public final class EqlFeatures implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public EqlFeatures build() {
+			_checkSingleUse();
 
 			return new EqlFeatures(this);
 		}

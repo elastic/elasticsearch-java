@@ -31,6 +31,7 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
 import java.util.Objects;
@@ -39,20 +40,21 @@ import javax.annotation.Nullable;
 
 // typedef: ml._types.DataframeEvaluationRegressionMetricsMsle
 @JsonpDeserializable
-public final class DataframeEvaluationRegressionMetricsMsle implements JsonpSerializable {
+public class DataframeEvaluationRegressionMetricsMsle implements JsonpSerializable {
 	@Nullable
 	private final Double offset;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public DataframeEvaluationRegressionMetricsMsle(Builder builder) {
+	private DataframeEvaluationRegressionMetricsMsle(Builder builder) {
 
 		this.offset = builder.offset;
 
 	}
 
-	public DataframeEvaluationRegressionMetricsMsle(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static DataframeEvaluationRegressionMetricsMsle of(
+			Function<Builder, ObjectBuilder<DataframeEvaluationRegressionMetricsMsle>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -62,7 +64,7 @@ public final class DataframeEvaluationRegressionMetricsMsle implements JsonpSeri
 	 * API name: {@code offset}
 	 */
 	@Nullable
-	public Double offset() {
+	public final Double offset() {
 		return this.offset;
 	}
 
@@ -78,7 +80,6 @@ public final class DataframeEvaluationRegressionMetricsMsle implements JsonpSeri
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.offset != null) {
-
 			generator.writeKey("offset");
 			generator.write(this.offset);
 
@@ -91,7 +92,9 @@ public final class DataframeEvaluationRegressionMetricsMsle implements JsonpSeri
 	/**
 	 * Builder for {@link DataframeEvaluationRegressionMetricsMsle}.
 	 */
-	public static class Builder implements ObjectBuilder<DataframeEvaluationRegressionMetricsMsle> {
+	public static class Builder extends ObjectBuilderBase
+			implements
+				ObjectBuilder<DataframeEvaluationRegressionMetricsMsle> {
 		@Nullable
 		private Double offset;
 
@@ -101,7 +104,7 @@ public final class DataframeEvaluationRegressionMetricsMsle implements JsonpSeri
 		 * <p>
 		 * API name: {@code offset}
 		 */
-		public Builder offset(@Nullable Double value) {
+		public final Builder offset(@Nullable Double value) {
 			this.offset = value;
 			return this;
 		}
@@ -113,6 +116,7 @@ public final class DataframeEvaluationRegressionMetricsMsle implements JsonpSeri
 		 *             if some of the required fields are null.
 		 */
 		public DataframeEvaluationRegressionMetricsMsle build() {
+			_checkSingleUse();
 
 			return new DataframeEvaluationRegressionMetricsMsle(this);
 		}

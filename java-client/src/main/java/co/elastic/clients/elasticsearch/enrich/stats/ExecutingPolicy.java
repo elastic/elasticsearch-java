@@ -31,7 +31,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -40,35 +42,35 @@ import javax.annotation.Nullable;
 
 // typedef: enrich.stats.ExecutingPolicy
 @JsonpDeserializable
-public final class ExecutingPolicy implements JsonpSerializable {
+public class ExecutingPolicy implements JsonpSerializable {
 	private final String name;
 
 	private final Info task;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public ExecutingPolicy(Builder builder) {
+	private ExecutingPolicy(Builder builder) {
 
-		this.name = Objects.requireNonNull(builder.name, "name");
-		this.task = Objects.requireNonNull(builder.task, "task");
+		this.name = ModelTypeHelper.requireNonNull(builder.name, this, "name");
+		this.task = ModelTypeHelper.requireNonNull(builder.task, this, "task");
 
 	}
 
-	public ExecutingPolicy(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ExecutingPolicy of(Function<Builder, ObjectBuilder<ExecutingPolicy>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code name}
 	 */
-	public String name() {
+	public final String name() {
 		return this.name;
 	}
 
 	/**
 	 * Required - API name: {@code task}
 	 */
-	public Info task() {
+	public final Info task() {
 		return this.task;
 	}
 
@@ -96,7 +98,7 @@ public final class ExecutingPolicy implements JsonpSerializable {
 	/**
 	 * Builder for {@link ExecutingPolicy}.
 	 */
-	public static class Builder implements ObjectBuilder<ExecutingPolicy> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ExecutingPolicy> {
 		private String name;
 
 		private Info task;
@@ -104,7 +106,7 @@ public final class ExecutingPolicy implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code name}
 		 */
-		public Builder name(String value) {
+		public final Builder name(String value) {
 			this.name = value;
 			return this;
 		}
@@ -112,7 +114,7 @@ public final class ExecutingPolicy implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code task}
 		 */
-		public Builder task(Info value) {
+		public final Builder task(Info value) {
 			this.task = value;
 			return this;
 		}
@@ -120,7 +122,7 @@ public final class ExecutingPolicy implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code task}
 		 */
-		public Builder task(Function<Info.Builder, ObjectBuilder<Info>> fn) {
+		public final Builder task(Function<Info.Builder, ObjectBuilder<Info>> fn) {
 			return this.task(fn.apply(new Info.Builder()).build());
 		}
 
@@ -131,6 +133,7 @@ public final class ExecutingPolicy implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public ExecutingPolicy build() {
+			_checkSingleUse();
 
 			return new ExecutingPolicy(this);
 		}

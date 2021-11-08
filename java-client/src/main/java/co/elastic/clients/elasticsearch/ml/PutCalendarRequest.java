@@ -34,7 +34,9 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.SimpleEndpoint;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
@@ -44,7 +46,7 @@ import javax.annotation.Nullable;
 
 // typedef: ml.put_calendar.Request
 @JsonpDeserializable
-public final class PutCalendarRequest extends RequestBase implements JsonpSerializable {
+public class PutCalendarRequest extends RequestBase implements JsonpSerializable {
 	private final String calendarId;
 
 	@Nullable
@@ -52,15 +54,15 @@ public final class PutCalendarRequest extends RequestBase implements JsonpSerial
 
 	// ---------------------------------------------------------------------------------------------
 
-	public PutCalendarRequest(Builder builder) {
+	private PutCalendarRequest(Builder builder) {
 
-		this.calendarId = Objects.requireNonNull(builder.calendarId, "calendar_id");
+		this.calendarId = ModelTypeHelper.requireNonNull(builder.calendarId, this, "calendarId");
 		this.description = builder.description;
 
 	}
 
-	public PutCalendarRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static PutCalendarRequest of(Function<Builder, ObjectBuilder<PutCalendarRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -68,7 +70,7 @@ public final class PutCalendarRequest extends RequestBase implements JsonpSerial
 	 * <p>
 	 * API name: {@code calendar_id}
 	 */
-	public String calendarId() {
+	public final String calendarId() {
 		return this.calendarId;
 	}
 
@@ -78,7 +80,7 @@ public final class PutCalendarRequest extends RequestBase implements JsonpSerial
 	 * API name: {@code description}
 	 */
 	@Nullable
-	public String description() {
+	public final String description() {
 		return this.description;
 	}
 
@@ -94,7 +96,6 @@ public final class PutCalendarRequest extends RequestBase implements JsonpSerial
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.description != null) {
-
 			generator.writeKey("description");
 			generator.write(this.description);
 
@@ -107,7 +108,7 @@ public final class PutCalendarRequest extends RequestBase implements JsonpSerial
 	/**
 	 * Builder for {@link PutCalendarRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<PutCalendarRequest> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PutCalendarRequest> {
 		private String calendarId;
 
 		@Nullable
@@ -118,7 +119,7 @@ public final class PutCalendarRequest extends RequestBase implements JsonpSerial
 		 * <p>
 		 * API name: {@code calendar_id}
 		 */
-		public Builder calendarId(String value) {
+		public final Builder calendarId(String value) {
 			this.calendarId = value;
 			return this;
 		}
@@ -128,7 +129,7 @@ public final class PutCalendarRequest extends RequestBase implements JsonpSerial
 		 * <p>
 		 * API name: {@code description}
 		 */
-		public Builder description(@Nullable String value) {
+		public final Builder description(@Nullable String value) {
 			this.description = value;
 			return this;
 		}
@@ -140,6 +141,7 @@ public final class PutCalendarRequest extends RequestBase implements JsonpSerial
 		 *             if some of the required fields are null.
 		 */
 		public PutCalendarRequest build() {
+			_checkSingleUse();
 
 			return new PutCalendarRequest(this);
 		}

@@ -30,6 +30,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -40,43 +41,43 @@ import javax.annotation.Nullable;
 
 // typedef: indices.clone.Response
 @JsonpDeserializable
-public final class CloneIndexResponse extends AcknowledgedResponseBase {
+public class CloneIndexResponse extends AcknowledgedResponseBase {
 	private final String index;
 
 	private final boolean shardsAcknowledged;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public CloneIndexResponse(Builder builder) {
+	private CloneIndexResponse(Builder builder) {
 		super(builder);
 
-		this.index = Objects.requireNonNull(builder.index, "index");
-		this.shardsAcknowledged = Objects.requireNonNull(builder.shardsAcknowledged, "shards_acknowledged");
+		this.index = ModelTypeHelper.requireNonNull(builder.index, this, "index");
+		this.shardsAcknowledged = ModelTypeHelper.requireNonNull(builder.shardsAcknowledged, this,
+				"shardsAcknowledged");
 
 	}
 
-	public CloneIndexResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static CloneIndexResponse of(Function<Builder, ObjectBuilder<CloneIndexResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code index}
 	 */
-	public String index() {
+	public final String index() {
 		return this.index;
 	}
 
 	/**
 	 * Required - API name: {@code shards_acknowledged}
 	 */
-	public boolean shardsAcknowledged() {
+	public final boolean shardsAcknowledged() {
 		return this.shardsAcknowledged;
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
-
 		generator.writeKey("index");
 		generator.write(this.index);
 
@@ -100,7 +101,7 @@ public final class CloneIndexResponse extends AcknowledgedResponseBase {
 		/**
 		 * Required - API name: {@code index}
 		 */
-		public Builder index(String value) {
+		public final Builder index(String value) {
 			this.index = value;
 			return this;
 		}
@@ -108,7 +109,7 @@ public final class CloneIndexResponse extends AcknowledgedResponseBase {
 		/**
 		 * Required - API name: {@code shards_acknowledged}
 		 */
-		public Builder shardsAcknowledged(boolean value) {
+		public final Builder shardsAcknowledged(boolean value) {
 			this.shardsAcknowledged = value;
 			return this;
 		}
@@ -125,6 +126,7 @@ public final class CloneIndexResponse extends AcknowledgedResponseBase {
 		 *             if some of the required fields are null.
 		 */
 		public CloneIndexResponse build() {
+			_checkSingleUse();
 
 			return new CloneIndexResponse(this);
 		}

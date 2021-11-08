@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.Objects;
@@ -39,7 +41,7 @@ import javax.annotation.Nullable;
 
 // typedef: snapshot.create.Response
 @JsonpDeserializable
-public final class CreateSnapshotResponse implements JsonpSerializable {
+public class CreateSnapshotResponse implements JsonpSerializable {
 	@Nullable
 	private final Boolean accepted;
 
@@ -47,29 +49,29 @@ public final class CreateSnapshotResponse implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public CreateSnapshotResponse(Builder builder) {
+	private CreateSnapshotResponse(Builder builder) {
 
 		this.accepted = builder.accepted;
-		this.snapshot = Objects.requireNonNull(builder.snapshot, "snapshot");
+		this.snapshot = ModelTypeHelper.requireNonNull(builder.snapshot, this, "snapshot");
 
 	}
 
-	public CreateSnapshotResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static CreateSnapshotResponse of(Function<Builder, ObjectBuilder<CreateSnapshotResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * API name: {@code accepted}
 	 */
 	@Nullable
-	public Boolean accepted() {
+	public final Boolean accepted() {
 		return this.accepted;
 	}
 
 	/**
 	 * Required - API name: {@code snapshot}
 	 */
-	public SnapshotInfo snapshot() {
+	public final SnapshotInfo snapshot() {
 		return this.snapshot;
 	}
 
@@ -85,12 +87,10 @@ public final class CreateSnapshotResponse implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.accepted != null) {
-
 			generator.writeKey("accepted");
 			generator.write(this.accepted);
 
 		}
-
 		generator.writeKey("snapshot");
 		this.snapshot.serialize(generator, mapper);
 
@@ -101,7 +101,7 @@ public final class CreateSnapshotResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link CreateSnapshotResponse}.
 	 */
-	public static class Builder implements ObjectBuilder<CreateSnapshotResponse> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<CreateSnapshotResponse> {
 		@Nullable
 		private Boolean accepted;
 
@@ -110,7 +110,7 @@ public final class CreateSnapshotResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code accepted}
 		 */
-		public Builder accepted(@Nullable Boolean value) {
+		public final Builder accepted(@Nullable Boolean value) {
 			this.accepted = value;
 			return this;
 		}
@@ -118,7 +118,7 @@ public final class CreateSnapshotResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code snapshot}
 		 */
-		public Builder snapshot(SnapshotInfo value) {
+		public final Builder snapshot(SnapshotInfo value) {
 			this.snapshot = value;
 			return this;
 		}
@@ -126,7 +126,7 @@ public final class CreateSnapshotResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code snapshot}
 		 */
-		public Builder snapshot(Function<SnapshotInfo.Builder, ObjectBuilder<SnapshotInfo>> fn) {
+		public final Builder snapshot(Function<SnapshotInfo.Builder, ObjectBuilder<SnapshotInfo>> fn) {
 			return this.snapshot(fn.apply(new SnapshotInfo.Builder()).build());
 		}
 
@@ -137,6 +137,7 @@ public final class CreateSnapshotResponse implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public CreateSnapshotResponse build() {
+			_checkSingleUse();
 
 			return new CreateSnapshotResponse(this);
 		}

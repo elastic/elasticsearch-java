@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Double;
@@ -42,7 +44,7 @@ import javax.annotation.Nullable;
 
 // typedef: ml._types.BucketInfluencer
 @JsonpDeserializable
-public final class BucketInfluencer implements JsonpSerializable {
+public class BucketInfluencer implements JsonpSerializable {
 	private final long bucketSpan;
 
 	private final double influencerScore;
@@ -68,25 +70,27 @@ public final class BucketInfluencer implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public BucketInfluencer(Builder builder) {
+	private BucketInfluencer(Builder builder) {
 
-		this.bucketSpan = Objects.requireNonNull(builder.bucketSpan, "bucket_span");
-		this.influencerScore = Objects.requireNonNull(builder.influencerScore, "influencer_score");
-		this.influencerFieldName = Objects.requireNonNull(builder.influencerFieldName, "influencer_field_name");
-		this.influencerFieldValue = Objects.requireNonNull(builder.influencerFieldValue, "influencer_field_value");
-		this.initialInfluencerScore = Objects.requireNonNull(builder.initialInfluencerScore,
-				"initial_influencer_score");
-		this.isInterim = Objects.requireNonNull(builder.isInterim, "is_interim");
-		this.jobId = Objects.requireNonNull(builder.jobId, "job_id");
-		this.probability = Objects.requireNonNull(builder.probability, "probability");
-		this.resultType = Objects.requireNonNull(builder.resultType, "result_type");
-		this.timestamp = Objects.requireNonNull(builder.timestamp, "timestamp");
+		this.bucketSpan = ModelTypeHelper.requireNonNull(builder.bucketSpan, this, "bucketSpan");
+		this.influencerScore = ModelTypeHelper.requireNonNull(builder.influencerScore, this, "influencerScore");
+		this.influencerFieldName = ModelTypeHelper.requireNonNull(builder.influencerFieldName, this,
+				"influencerFieldName");
+		this.influencerFieldValue = ModelTypeHelper.requireNonNull(builder.influencerFieldValue, this,
+				"influencerFieldValue");
+		this.initialInfluencerScore = ModelTypeHelper.requireNonNull(builder.initialInfluencerScore, this,
+				"initialInfluencerScore");
+		this.isInterim = ModelTypeHelper.requireNonNull(builder.isInterim, this, "isInterim");
+		this.jobId = ModelTypeHelper.requireNonNull(builder.jobId, this, "jobId");
+		this.probability = ModelTypeHelper.requireNonNull(builder.probability, this, "probability");
+		this.resultType = ModelTypeHelper.requireNonNull(builder.resultType, this, "resultType");
+		this.timestamp = ModelTypeHelper.requireNonNull(builder.timestamp, this, "timestamp");
 		this.foo = builder.foo;
 
 	}
 
-	public BucketInfluencer(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static BucketInfluencer of(Function<Builder, ObjectBuilder<BucketInfluencer>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -95,7 +99,7 @@ public final class BucketInfluencer implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code bucket_span}
 	 */
-	public long bucketSpan() {
+	public final long bucketSpan() {
 		return this.bucketSpan;
 	}
 
@@ -107,7 +111,7 @@ public final class BucketInfluencer implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code influencer_score}
 	 */
-	public double influencerScore() {
+	public final double influencerScore() {
 		return this.influencerScore;
 	}
 
@@ -116,7 +120,7 @@ public final class BucketInfluencer implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code influencer_field_name}
 	 */
-	public String influencerFieldName() {
+	public final String influencerFieldName() {
 		return this.influencerFieldName;
 	}
 
@@ -126,7 +130,7 @@ public final class BucketInfluencer implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code influencer_field_value}
 	 */
-	public String influencerFieldValue() {
+	public final String influencerFieldValue() {
 		return this.influencerFieldValue;
 	}
 
@@ -137,7 +141,7 @@ public final class BucketInfluencer implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code initial_influencer_score}
 	 */
-	public double initialInfluencerScore() {
+	public final double initialInfluencerScore() {
 		return this.initialInfluencerScore;
 	}
 
@@ -147,7 +151,7 @@ public final class BucketInfluencer implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code is_interim}
 	 */
-	public boolean isInterim() {
+	public final boolean isInterim() {
 		return this.isInterim;
 	}
 
@@ -156,7 +160,7 @@ public final class BucketInfluencer implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code job_id}
 	 */
-	public String jobId() {
+	public final String jobId() {
 		return this.jobId;
 	}
 
@@ -168,7 +172,7 @@ public final class BucketInfluencer implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code probability}
 	 */
-	public double probability() {
+	public final double probability() {
 		return this.probability;
 	}
 
@@ -177,7 +181,7 @@ public final class BucketInfluencer implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code result_type}
 	 */
-	public String resultType() {
+	public final String resultType() {
 		return this.resultType;
 	}
 
@@ -187,7 +191,7 @@ public final class BucketInfluencer implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code timestamp}
 	 */
-	public String timestamp() {
+	public final String timestamp() {
 		return this.timestamp;
 	}
 
@@ -195,7 +199,7 @@ public final class BucketInfluencer implements JsonpSerializable {
 	 * API name: {@code foo}
 	 */
 	@Nullable
-	public String foo() {
+	public final String foo() {
 		return this.foo;
 	}
 
@@ -241,7 +245,6 @@ public final class BucketInfluencer implements JsonpSerializable {
 		generator.write(this.timestamp);
 
 		if (this.foo != null) {
-
 			generator.writeKey("foo");
 			generator.write(this.foo);
 
@@ -254,7 +257,7 @@ public final class BucketInfluencer implements JsonpSerializable {
 	/**
 	 * Builder for {@link BucketInfluencer}.
 	 */
-	public static class Builder implements ObjectBuilder<BucketInfluencer> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<BucketInfluencer> {
 		private Long bucketSpan;
 
 		private Double influencerScore;
@@ -284,7 +287,7 @@ public final class BucketInfluencer implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code bucket_span}
 		 */
-		public Builder bucketSpan(long value) {
+		public final Builder bucketSpan(long value) {
 			this.bucketSpan = value;
 			return this;
 		}
@@ -297,7 +300,7 @@ public final class BucketInfluencer implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code influencer_score}
 		 */
-		public Builder influencerScore(double value) {
+		public final Builder influencerScore(double value) {
 			this.influencerScore = value;
 			return this;
 		}
@@ -307,7 +310,7 @@ public final class BucketInfluencer implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code influencer_field_name}
 		 */
-		public Builder influencerFieldName(String value) {
+		public final Builder influencerFieldName(String value) {
 			this.influencerFieldName = value;
 			return this;
 		}
@@ -318,7 +321,7 @@ public final class BucketInfluencer implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code influencer_field_value}
 		 */
-		public Builder influencerFieldValue(String value) {
+		public final Builder influencerFieldValue(String value) {
 			this.influencerFieldValue = value;
 			return this;
 		}
@@ -330,7 +333,7 @@ public final class BucketInfluencer implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code initial_influencer_score}
 		 */
-		public Builder initialInfluencerScore(double value) {
+		public final Builder initialInfluencerScore(double value) {
 			this.initialInfluencerScore = value;
 			return this;
 		}
@@ -341,7 +344,7 @@ public final class BucketInfluencer implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code is_interim}
 		 */
-		public Builder isInterim(boolean value) {
+		public final Builder isInterim(boolean value) {
 			this.isInterim = value;
 			return this;
 		}
@@ -351,7 +354,7 @@ public final class BucketInfluencer implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code job_id}
 		 */
-		public Builder jobId(String value) {
+		public final Builder jobId(String value) {
 			this.jobId = value;
 			return this;
 		}
@@ -364,7 +367,7 @@ public final class BucketInfluencer implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code probability}
 		 */
-		public Builder probability(double value) {
+		public final Builder probability(double value) {
 			this.probability = value;
 			return this;
 		}
@@ -374,7 +377,7 @@ public final class BucketInfluencer implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code result_type}
 		 */
-		public Builder resultType(String value) {
+		public final Builder resultType(String value) {
 			this.resultType = value;
 			return this;
 		}
@@ -385,7 +388,7 @@ public final class BucketInfluencer implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code timestamp}
 		 */
-		public Builder timestamp(String value) {
+		public final Builder timestamp(String value) {
 			this.timestamp = value;
 			return this;
 		}
@@ -393,7 +396,7 @@ public final class BucketInfluencer implements JsonpSerializable {
 		/**
 		 * API name: {@code foo}
 		 */
-		public Builder foo(@Nullable String value) {
+		public final Builder foo(@Nullable String value) {
 			this.foo = value;
 			return this;
 		}
@@ -405,6 +408,7 @@ public final class BucketInfluencer implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public BucketInfluencer build() {
+			_checkSingleUse();
 
 			return new BucketInfluencer(this);
 		}

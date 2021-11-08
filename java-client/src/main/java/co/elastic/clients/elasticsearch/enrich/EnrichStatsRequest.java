@@ -39,7 +39,7 @@ import java.util.function.Function;
 
 // typedef: enrich.stats.Request
 
-public final class EnrichStatsRequest extends RequestBase {
+public class EnrichStatsRequest extends RequestBase {
 	public EnrichStatsRequest() {
 	}
 

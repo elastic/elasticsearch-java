@@ -39,7 +39,7 @@ import java.util.function.Function;
 
 // typedef: ingest.processor_grok.Request
 
-public final class ProcessorGrokRequest extends RequestBase {
+public class ProcessorGrokRequest extends RequestBase {
 	public ProcessorGrokRequest() {
 	}
 

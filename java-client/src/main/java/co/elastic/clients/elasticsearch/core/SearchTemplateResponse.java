@@ -33,7 +33,9 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.JsonpSerializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Integer;
@@ -44,7 +46,7 @@ import javax.annotation.Nullable;
 
 // typedef: _global.search_template.Response
 
-public final class SearchTemplateResponse<TDocument> implements JsonpSerializable {
+public class SearchTemplateResponse<TDocument> implements JsonpSerializable {
 	private final ShardStatistics shards;
 
 	private final boolean timedOut;
@@ -58,45 +60,46 @@ public final class SearchTemplateResponse<TDocument> implements JsonpSerializabl
 
 	// ---------------------------------------------------------------------------------------------
 
-	public SearchTemplateResponse(Builder<TDocument> builder) {
+	private SearchTemplateResponse(Builder<TDocument> builder) {
 
-		this.shards = Objects.requireNonNull(builder.shards, "_shards");
-		this.timedOut = Objects.requireNonNull(builder.timedOut, "timed_out");
-		this.took = Objects.requireNonNull(builder.took, "took");
-		this.hits = Objects.requireNonNull(builder.hits, "hits");
+		this.shards = ModelTypeHelper.requireNonNull(builder.shards, this, "shards");
+		this.timedOut = ModelTypeHelper.requireNonNull(builder.timedOut, this, "timedOut");
+		this.took = ModelTypeHelper.requireNonNull(builder.took, this, "took");
+		this.hits = ModelTypeHelper.requireNonNull(builder.hits, this, "hits");
 		this.tDocumentSerializer = builder.tDocumentSerializer;
 
 	}
 
-	public SearchTemplateResponse(Function<Builder<TDocument>, Builder<TDocument>> fn) {
-		this(fn.apply(new Builder<>()));
+	public static <TDocument> SearchTemplateResponse<TDocument> of(
+			Function<Builder<TDocument>, ObjectBuilder<SearchTemplateResponse<TDocument>>> fn) {
+		return fn.apply(new Builder<>()).build();
 	}
 
 	/**
 	 * Required - API name: {@code _shards}
 	 */
-	public ShardStatistics shards() {
+	public final ShardStatistics shards() {
 		return this.shards;
 	}
 
 	/**
 	 * Required - API name: {@code timed_out}
 	 */
-	public boolean timedOut() {
+	public final boolean timedOut() {
 		return this.timedOut;
 	}
 
 	/**
 	 * Required - API name: {@code took}
 	 */
-	public int took() {
+	public final int took() {
 		return this.took;
 	}
 
 	/**
 	 * Required - API name: {@code hits}
 	 */
-	public HitsMetadata<TDocument> hits() {
+	public final HitsMetadata<TDocument> hits() {
 		return this.hits;
 	}
 
@@ -130,7 +133,9 @@ public final class SearchTemplateResponse<TDocument> implements JsonpSerializabl
 	/**
 	 * Builder for {@link SearchTemplateResponse}.
 	 */
-	public static class Builder<TDocument> implements ObjectBuilder<SearchTemplateResponse<TDocument>> {
+	public static class Builder<TDocument> extends ObjectBuilderBase
+			implements
+				ObjectBuilder<SearchTemplateResponse<TDocument>> {
 		private ShardStatistics shards;
 
 		private Boolean timedOut;
@@ -145,7 +150,7 @@ public final class SearchTemplateResponse<TDocument> implements JsonpSerializabl
 		/**
 		 * Required - API name: {@code _shards}
 		 */
-		public Builder<TDocument> shards(ShardStatistics value) {
+		public final Builder<TDocument> shards(ShardStatistics value) {
 			this.shards = value;
 			return this;
 		}
@@ -153,14 +158,14 @@ public final class SearchTemplateResponse<TDocument> implements JsonpSerializabl
 		/**
 		 * Required - API name: {@code _shards}
 		 */
-		public Builder<TDocument> shards(Function<ShardStatistics.Builder, ObjectBuilder<ShardStatistics>> fn) {
+		public final Builder<TDocument> shards(Function<ShardStatistics.Builder, ObjectBuilder<ShardStatistics>> fn) {
 			return this.shards(fn.apply(new ShardStatistics.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code timed_out}
 		 */
-		public Builder<TDocument> timedOut(boolean value) {
+		public final Builder<TDocument> timedOut(boolean value) {
 			this.timedOut = value;
 			return this;
 		}
@@ -168,7 +173,7 @@ public final class SearchTemplateResponse<TDocument> implements JsonpSerializabl
 		/**
 		 * Required - API name: {@code took}
 		 */
-		public Builder<TDocument> took(int value) {
+		public final Builder<TDocument> took(int value) {
 			this.took = value;
 			return this;
 		}
@@ -176,7 +181,7 @@ public final class SearchTemplateResponse<TDocument> implements JsonpSerializabl
 		/**
 		 * Required - API name: {@code hits}
 		 */
-		public Builder<TDocument> hits(HitsMetadata<TDocument> value) {
+		public final Builder<TDocument> hits(HitsMetadata<TDocument> value) {
 			this.hits = value;
 			return this;
 		}
@@ -184,7 +189,7 @@ public final class SearchTemplateResponse<TDocument> implements JsonpSerializabl
 		/**
 		 * Required - API name: {@code hits}
 		 */
-		public Builder<TDocument> hits(
+		public final Builder<TDocument> hits(
 				Function<HitsMetadata.Builder<TDocument>, ObjectBuilder<HitsMetadata<TDocument>>> fn) {
 			return this.hits(fn.apply(new HitsMetadata.Builder<TDocument>()).build());
 		}
@@ -193,7 +198,7 @@ public final class SearchTemplateResponse<TDocument> implements JsonpSerializabl
 		 * Serializer for TDocument. If not set, an attempt will be made to find a
 		 * serializer from the JSON context.
 		 */
-		public Builder<TDocument> tDocumentSerializer(@Nullable JsonpSerializer<TDocument> value) {
+		public final Builder<TDocument> tDocumentSerializer(@Nullable JsonpSerializer<TDocument> value) {
 			this.tDocumentSerializer = value;
 			return this;
 		}
@@ -205,6 +210,7 @@ public final class SearchTemplateResponse<TDocument> implements JsonpSerializabl
 		 *             if some of the required fields are null.
 		 */
 		public SearchTemplateResponse<TDocument> build() {
+			_checkSingleUse();
 
 			return new SearchTemplateResponse<TDocument>(this);
 		}

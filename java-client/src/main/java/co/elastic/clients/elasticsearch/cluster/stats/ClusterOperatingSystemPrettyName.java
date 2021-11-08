@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
@@ -40,35 +42,36 @@ import javax.annotation.Nullable;
 
 // typedef: cluster.stats.ClusterOperatingSystemPrettyName
 @JsonpDeserializable
-public final class ClusterOperatingSystemPrettyName implements JsonpSerializable {
+public class ClusterOperatingSystemPrettyName implements JsonpSerializable {
 	private final int count;
 
 	private final String prettyName;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public ClusterOperatingSystemPrettyName(Builder builder) {
+	private ClusterOperatingSystemPrettyName(Builder builder) {
 
-		this.count = Objects.requireNonNull(builder.count, "count");
-		this.prettyName = Objects.requireNonNull(builder.prettyName, "pretty_name");
+		this.count = ModelTypeHelper.requireNonNull(builder.count, this, "count");
+		this.prettyName = ModelTypeHelper.requireNonNull(builder.prettyName, this, "prettyName");
 
 	}
 
-	public ClusterOperatingSystemPrettyName(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ClusterOperatingSystemPrettyName of(
+			Function<Builder, ObjectBuilder<ClusterOperatingSystemPrettyName>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code count}
 	 */
-	public int count() {
+	public final int count() {
 		return this.count;
 	}
 
 	/**
 	 * Required - API name: {@code pretty_name}
 	 */
-	public String prettyName() {
+	public final String prettyName() {
 		return this.prettyName;
 	}
 
@@ -96,7 +99,7 @@ public final class ClusterOperatingSystemPrettyName implements JsonpSerializable
 	/**
 	 * Builder for {@link ClusterOperatingSystemPrettyName}.
 	 */
-	public static class Builder implements ObjectBuilder<ClusterOperatingSystemPrettyName> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ClusterOperatingSystemPrettyName> {
 		private Integer count;
 
 		private String prettyName;
@@ -104,7 +107,7 @@ public final class ClusterOperatingSystemPrettyName implements JsonpSerializable
 		/**
 		 * Required - API name: {@code count}
 		 */
-		public Builder count(int value) {
+		public final Builder count(int value) {
 			this.count = value;
 			return this;
 		}
@@ -112,7 +115,7 @@ public final class ClusterOperatingSystemPrettyName implements JsonpSerializable
 		/**
 		 * Required - API name: {@code pretty_name}
 		 */
-		public Builder prettyName(String value) {
+		public final Builder prettyName(String value) {
 			this.prettyName = value;
 			return this;
 		}
@@ -124,6 +127,7 @@ public final class ClusterOperatingSystemPrettyName implements JsonpSerializable
 		 *             if some of the required fields are null.
 		 */
 		public ClusterOperatingSystemPrettyName build() {
+			_checkSingleUse();
 
 			return new ClusterOperatingSystemPrettyName(this);
 		}

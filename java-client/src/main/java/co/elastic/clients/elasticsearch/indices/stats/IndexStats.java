@@ -48,6 +48,7 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;
@@ -55,7 +56,7 @@ import javax.annotation.Nullable;
 
 // typedef: indices.stats.IndexStats
 @JsonpDeserializable
-public final class IndexStats implements JsonpSerializable {
+public class IndexStats implements JsonpSerializable {
 	@Nullable
 	private final CompletionStats completion;
 
@@ -112,7 +113,7 @@ public final class IndexStats implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public IndexStats(Builder builder) {
+	private IndexStats(Builder builder) {
 
 		this.completion = builder.completion;
 		this.docs = builder.docs;
@@ -135,8 +136,8 @@ public final class IndexStats implements JsonpSerializable {
 
 	}
 
-	public IndexStats(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static IndexStats of(Function<Builder, ObjectBuilder<IndexStats>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -145,7 +146,7 @@ public final class IndexStats implements JsonpSerializable {
 	 * API name: {@code completion}
 	 */
 	@Nullable
-	public CompletionStats completion() {
+	public final CompletionStats completion() {
 		return this.completion;
 	}
 
@@ -156,7 +157,7 @@ public final class IndexStats implements JsonpSerializable {
 	 * API name: {@code docs}
 	 */
 	@Nullable
-	public DocStats docs() {
+	public final DocStats docs() {
 		return this.docs;
 	}
 
@@ -167,7 +168,7 @@ public final class IndexStats implements JsonpSerializable {
 	 * API name: {@code fielddata}
 	 */
 	@Nullable
-	public FielddataStats fielddata() {
+	public final FielddataStats fielddata() {
 		return this.fielddata;
 	}
 
@@ -177,7 +178,7 @@ public final class IndexStats implements JsonpSerializable {
 	 * API name: {@code flush}
 	 */
 	@Nullable
-	public FlushStats flush() {
+	public final FlushStats flush() {
 		return this.flush;
 	}
 
@@ -187,7 +188,7 @@ public final class IndexStats implements JsonpSerializable {
 	 * API name: {@code get}
 	 */
 	@Nullable
-	public GetStats get() {
+	public final GetStats get() {
 		return this.get;
 	}
 
@@ -197,7 +198,7 @@ public final class IndexStats implements JsonpSerializable {
 	 * API name: {@code indexing}
 	 */
 	@Nullable
-	public IndexingStats indexing() {
+	public final IndexingStats indexing() {
 		return this.indexing;
 	}
 
@@ -207,7 +208,7 @@ public final class IndexStats implements JsonpSerializable {
 	 * API name: {@code merges}
 	 */
 	@Nullable
-	public MergesStats merges() {
+	public final MergesStats merges() {
 		return this.merges;
 	}
 
@@ -218,7 +219,7 @@ public final class IndexStats implements JsonpSerializable {
 	 * API name: {@code query_cache}
 	 */
 	@Nullable
-	public QueryCacheStats queryCache() {
+	public final QueryCacheStats queryCache() {
 		return this.queryCache;
 	}
 
@@ -228,7 +229,7 @@ public final class IndexStats implements JsonpSerializable {
 	 * API name: {@code recovery}
 	 */
 	@Nullable
-	public RecoveryStats recovery() {
+	public final RecoveryStats recovery() {
 		return this.recovery;
 	}
 
@@ -238,7 +239,7 @@ public final class IndexStats implements JsonpSerializable {
 	 * API name: {@code refresh}
 	 */
 	@Nullable
-	public RefreshStats refresh() {
+	public final RefreshStats refresh() {
 		return this.refresh;
 	}
 
@@ -249,7 +250,7 @@ public final class IndexStats implements JsonpSerializable {
 	 * API name: {@code request_cache}
 	 */
 	@Nullable
-	public RequestCacheStats requestCache() {
+	public final RequestCacheStats requestCache() {
 		return this.requestCache;
 	}
 
@@ -259,7 +260,7 @@ public final class IndexStats implements JsonpSerializable {
 	 * API name: {@code search}
 	 */
 	@Nullable
-	public SearchStats search() {
+	public final SearchStats search() {
 		return this.search;
 	}
 
@@ -269,7 +270,7 @@ public final class IndexStats implements JsonpSerializable {
 	 * API name: {@code segments}
 	 */
 	@Nullable
-	public SegmentsStats segments() {
+	public final SegmentsStats segments() {
 		return this.segments;
 	}
 
@@ -279,7 +280,7 @@ public final class IndexStats implements JsonpSerializable {
 	 * API name: {@code store}
 	 */
 	@Nullable
-	public StoreStats store() {
+	public final StoreStats store() {
 		return this.store;
 	}
 
@@ -289,7 +290,7 @@ public final class IndexStats implements JsonpSerializable {
 	 * API name: {@code translog}
 	 */
 	@Nullable
-	public TranslogStats translog() {
+	public final TranslogStats translog() {
 		return this.translog;
 	}
 
@@ -299,7 +300,7 @@ public final class IndexStats implements JsonpSerializable {
 	 * API name: {@code warmer}
 	 */
 	@Nullable
-	public WarmerStats warmer() {
+	public final WarmerStats warmer() {
 		return this.warmer;
 	}
 
@@ -307,7 +308,7 @@ public final class IndexStats implements JsonpSerializable {
 	 * API name: {@code bulk}
 	 */
 	@Nullable
-	public BulkStats bulk() {
+	public final BulkStats bulk() {
 		return this.bulk;
 	}
 
@@ -315,7 +316,7 @@ public final class IndexStats implements JsonpSerializable {
 	 * API name: {@code shards}
 	 */
 	@Nullable
-	public ShardsTotalStats shards() {
+	public final ShardsTotalStats shards() {
 		return this.shards;
 	}
 
@@ -331,109 +332,91 @@ public final class IndexStats implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.completion != null) {
-
 			generator.writeKey("completion");
 			this.completion.serialize(generator, mapper);
 
 		}
 		if (this.docs != null) {
-
 			generator.writeKey("docs");
 			this.docs.serialize(generator, mapper);
 
 		}
 		if (this.fielddata != null) {
-
 			generator.writeKey("fielddata");
 			this.fielddata.serialize(generator, mapper);
 
 		}
 		if (this.flush != null) {
-
 			generator.writeKey("flush");
 			this.flush.serialize(generator, mapper);
 
 		}
 		if (this.get != null) {
-
 			generator.writeKey("get");
 			this.get.serialize(generator, mapper);
 
 		}
 		if (this.indexing != null) {
-
 			generator.writeKey("indexing");
 			this.indexing.serialize(generator, mapper);
 
 		}
 		if (this.merges != null) {
-
 			generator.writeKey("merges");
 			this.merges.serialize(generator, mapper);
 
 		}
 		if (this.queryCache != null) {
-
 			generator.writeKey("query_cache");
 			this.queryCache.serialize(generator, mapper);
 
 		}
 		if (this.recovery != null) {
-
 			generator.writeKey("recovery");
 			this.recovery.serialize(generator, mapper);
 
 		}
 		if (this.refresh != null) {
-
 			generator.writeKey("refresh");
 			this.refresh.serialize(generator, mapper);
 
 		}
 		if (this.requestCache != null) {
-
 			generator.writeKey("request_cache");
 			this.requestCache.serialize(generator, mapper);
 
 		}
 		if (this.search != null) {
-
 			generator.writeKey("search");
 			this.search.serialize(generator, mapper);
 
 		}
 		if (this.segments != null) {
-
 			generator.writeKey("segments");
 			this.segments.serialize(generator, mapper);
 
 		}
 		if (this.store != null) {
-
 			generator.writeKey("store");
 			this.store.serialize(generator, mapper);
 
 		}
 		if (this.translog != null) {
-
 			generator.writeKey("translog");
 			this.translog.serialize(generator, mapper);
 
 		}
 		if (this.warmer != null) {
-
 			generator.writeKey("warmer");
 			this.warmer.serialize(generator, mapper);
 
 		}
 		if (this.bulk != null) {
-
 			generator.writeKey("bulk");
 			this.bulk.serialize(generator, mapper);
 
 		}
 		if (this.shards != null) {
-
 			generator.writeKey("shards");
 			this.shards.serialize(generator, mapper);
 
@@ -446,7 +429,7 @@ public final class IndexStats implements JsonpSerializable {
 	/**
 	 * Builder for {@link IndexStats}.
 	 */
-	public static class Builder implements ObjectBuilder<IndexStats> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<IndexStats> {
 		@Nullable
 		private CompletionStats completion;
 
@@ -506,7 +489,7 @@ public final class IndexStats implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code completion}
 		 */
-		public Builder completion(@Nullable CompletionStats value) {
+		public final Builder completion(@Nullable CompletionStats value) {
 			this.completion = value;
 			return this;
 		}
@@ -516,7 +499,7 @@ public final class IndexStats implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code completion}
 		 */
-		public Builder completion(Function<CompletionStats.Builder, ObjectBuilder<CompletionStats>> fn) {
+		public final Builder completion(Function<CompletionStats.Builder, ObjectBuilder<CompletionStats>> fn) {
 			return this.completion(fn.apply(new CompletionStats.Builder()).build());
 		}
 
@@ -526,7 +509,7 @@ public final class IndexStats implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code docs}
 		 */
-		public Builder docs(@Nullable DocStats value) {
+		public final Builder docs(@Nullable DocStats value) {
 			this.docs = value;
 			return this;
 		}
@@ -537,7 +520,7 @@ public final class IndexStats implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code docs}
 		 */
-		public Builder docs(Function<DocStats.Builder, ObjectBuilder<DocStats>> fn) {
+		public final Builder docs(Function<DocStats.Builder, ObjectBuilder<DocStats>> fn) {
 			return this.docs(fn.apply(new DocStats.Builder()).build());
 		}
 
@@ -547,7 +530,7 @@ public final class IndexStats implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code fielddata}
 		 */
-		public Builder fielddata(@Nullable FielddataStats value) {
+		public final Builder fielddata(@Nullable FielddataStats value) {
 			this.fielddata = value;
 			return this;
 		}
@@ -558,7 +541,7 @@ public final class IndexStats implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code fielddata}
 		 */
-		public Builder fielddata(Function<FielddataStats.Builder, ObjectBuilder<FielddataStats>> fn) {
+		public final Builder fielddata(Function<FielddataStats.Builder, ObjectBuilder<FielddataStats>> fn) {
 			return this.fielddata(fn.apply(new FielddataStats.Builder()).build());
 		}
 
@@ -567,7 +550,7 @@ public final class IndexStats implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code flush}
 		 */
-		public Builder flush(@Nullable FlushStats value) {
+		public final Builder flush(@Nullable FlushStats value) {
 			this.flush = value;
 			return this;
 		}
@@ -577,7 +560,7 @@ public final class IndexStats implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code flush}
 		 */
-		public Builder flush(Function<FlushStats.Builder, ObjectBuilder<FlushStats>> fn) {
+		public final Builder flush(Function<FlushStats.Builder, ObjectBuilder<FlushStats>> fn) {
 			return this.flush(fn.apply(new FlushStats.Builder()).build());
 		}
 
@@ -586,7 +569,7 @@ public final class IndexStats implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code get}
 		 */
-		public Builder get(@Nullable GetStats value) {
+		public final Builder get(@Nullable GetStats value) {
 			this.get = value;
 			return this;
 		}
@@ -596,7 +579,7 @@ public final class IndexStats implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code get}
 		 */
-		public Builder get(Function<GetStats.Builder, ObjectBuilder<GetStats>> fn) {
+		public final Builder get(Function<GetStats.Builder, ObjectBuilder<GetStats>> fn) {
 			return this.get(fn.apply(new GetStats.Builder()).build());
 		}
 
@@ -605,7 +588,7 @@ public final class IndexStats implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code indexing}
 		 */
-		public Builder indexing(@Nullable IndexingStats value) {
+		public final Builder indexing(@Nullable IndexingStats value) {
 			this.indexing = value;
 			return this;
 		}
@@ -615,7 +598,7 @@ public final class IndexStats implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code indexing}
 		 */
-		public Builder indexing(Function<IndexingStats.Builder, ObjectBuilder<IndexingStats>> fn) {
+		public final Builder indexing(Function<IndexingStats.Builder, ObjectBuilder<IndexingStats>> fn) {
 			return this.indexing(fn.apply(new IndexingStats.Builder()).build());
 		}
 
@@ -624,7 +607,7 @@ public final class IndexStats implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code merges}
 		 */
-		public Builder merges(@Nullable MergesStats value) {
+		public final Builder merges(@Nullable MergesStats value) {
 			this.merges = value;
 			return this;
 		}
@@ -634,7 +617,7 @@ public final class IndexStats implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code merges}
 		 */
-		public Builder merges(Function<MergesStats.Builder, ObjectBuilder<MergesStats>> fn) {
+		public final Builder merges(Function<MergesStats.Builder, ObjectBuilder<MergesStats>> fn) {
 			return this.merges(fn.apply(new MergesStats.Builder()).build());
 		}
 
@@ -644,7 +627,7 @@ public final class IndexStats implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code query_cache}
 		 */
-		public Builder queryCache(@Nullable QueryCacheStats value) {
+		public final Builder queryCache(@Nullable QueryCacheStats value) {
 			this.queryCache = value;
 			return this;
 		}
@@ -655,7 +638,7 @@ public final class IndexStats implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code query_cache}
 		 */
-		public Builder queryCache(Function<QueryCacheStats.Builder, ObjectBuilder<QueryCacheStats>> fn) {
+		public final Builder queryCache(Function<QueryCacheStats.Builder, ObjectBuilder<QueryCacheStats>> fn) {
 			return this.queryCache(fn.apply(new QueryCacheStats.Builder()).build());
 		}
 
@@ -664,7 +647,7 @@ public final class IndexStats implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code recovery}
 		 */
-		public Builder recovery(@Nullable RecoveryStats value) {
+		public final Builder recovery(@Nullable RecoveryStats value) {
 			this.recovery = value;
 			return this;
 		}
@@ -674,7 +657,7 @@ public final class IndexStats implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code recovery}
 		 */
-		public Builder recovery(Function<RecoveryStats.Builder, ObjectBuilder<RecoveryStats>> fn) {
+		public final Builder recovery(Function<RecoveryStats.Builder, ObjectBuilder<RecoveryStats>> fn) {
 			return this.recovery(fn.apply(new RecoveryStats.Builder()).build());
 		}
 
@@ -683,7 +666,7 @@ public final class IndexStats implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code refresh}
 		 */
-		public Builder refresh(@Nullable RefreshStats value) {
+		public final Builder refresh(@Nullable RefreshStats value) {
 			this.refresh = value;
 			return this;
 		}
@@ -693,7 +676,7 @@ public final class IndexStats implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code refresh}
 		 */
-		public Builder refresh(Function<RefreshStats.Builder, ObjectBuilder<RefreshStats>> fn) {
+		public final Builder refresh(Function<RefreshStats.Builder, ObjectBuilder<RefreshStats>> fn) {
 			return this.refresh(fn.apply(new RefreshStats.Builder()).build());
 		}
 
@@ -703,7 +686,7 @@ public final class IndexStats implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code request_cache}
 		 */
-		public Builder requestCache(@Nullable RequestCacheStats value) {
+		public final Builder requestCache(@Nullable RequestCacheStats value) {
 			this.requestCache = value;
 			return this;
 		}
@@ -714,7 +697,7 @@ public final class IndexStats implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code request_cache}
 		 */
-		public Builder requestCache(Function<RequestCacheStats.Builder, ObjectBuilder<RequestCacheStats>> fn) {
+		public final Builder requestCache(Function<RequestCacheStats.Builder, ObjectBuilder<RequestCacheStats>> fn) {
 			return this.requestCache(fn.apply(new RequestCacheStats.Builder()).build());
 		}
 
@@ -723,7 +706,7 @@ public final class IndexStats implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code search}
 		 */
-		public Builder search(@Nullable SearchStats value) {
+		public final Builder search(@Nullable SearchStats value) {
 			this.search = value;
 			return this;
 		}
@@ -733,7 +716,7 @@ public final class IndexStats implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code search}
 		 */
-		public Builder search(Function<SearchStats.Builder, ObjectBuilder<SearchStats>> fn) {
+		public final Builder search(Function<SearchStats.Builder, ObjectBuilder<SearchStats>> fn) {
 			return this.search(fn.apply(new SearchStats.Builder()).build());
 		}
 
@@ -742,7 +725,7 @@ public final class IndexStats implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code segments}
 		 */
-		public Builder segments(@Nullable SegmentsStats value) {
+		public final Builder segments(@Nullable SegmentsStats value) {
 			this.segments = value;
 			return this;
 		}
@@ -752,7 +735,7 @@ public final class IndexStats implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code segments}
 		 */
-		public Builder segments(Function<SegmentsStats.Builder, ObjectBuilder<SegmentsStats>> fn) {
+		public final Builder segments(Function<SegmentsStats.Builder, ObjectBuilder<SegmentsStats>> fn) {
 			return this.segments(fn.apply(new SegmentsStats.Builder()).build());
 		}
 
@@ -761,7 +744,7 @@ public final class IndexStats implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code store}
 		 */
-		public Builder store(@Nullable StoreStats value) {
+		public final Builder store(@Nullable StoreStats value) {
 			this.store = value;
 			return this;
 		}
@@ -771,7 +754,7 @@ public final class IndexStats implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code store}
 		 */
-		public Builder store(Function<StoreStats.Builder, ObjectBuilder<StoreStats>> fn) {
+		public final Builder store(Function<StoreStats.Builder, ObjectBuilder<StoreStats>> fn) {
 			return this.store(fn.apply(new StoreStats.Builder()).build());
 		}
 
@@ -780,7 +763,7 @@ public final class IndexStats implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code translog}
 		 */
-		public Builder translog(@Nullable TranslogStats value) {
+		public final Builder translog(@Nullable TranslogStats value) {
 			this.translog = value;
 			return this;
 		}
@@ -790,7 +773,7 @@ public final class IndexStats implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code translog}
 		 */
-		public Builder translog(Function<TranslogStats.Builder, ObjectBuilder<TranslogStats>> fn) {
+		public final Builder translog(Function<TranslogStats.Builder, ObjectBuilder<TranslogStats>> fn) {
 			return this.translog(fn.apply(new TranslogStats.Builder()).build());
 		}
 
@@ -799,7 +782,7 @@ public final class IndexStats implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code warmer}
 		 */
-		public Builder warmer(@Nullable WarmerStats value) {
+		public final Builder warmer(@Nullable WarmerStats value) {
 			this.warmer = value;
 			return this;
 		}
@@ -809,14 +792,14 @@ public final class IndexStats implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code warmer}
 		 */
-		public Builder warmer(Function<WarmerStats.Builder, ObjectBuilder<WarmerStats>> fn) {
+		public final Builder warmer(Function<WarmerStats.Builder, ObjectBuilder<WarmerStats>> fn) {
 			return this.warmer(fn.apply(new WarmerStats.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code bulk}
 		 */
-		public Builder bulk(@Nullable BulkStats value) {
+		public final Builder bulk(@Nullable BulkStats value) {
 			this.bulk = value;
 			return this;
 		}
@@ -824,14 +807,14 @@ public final class IndexStats implements JsonpSerializable {
 		/**
 		 * API name: {@code bulk}
 		 */
-		public Builder bulk(Function<BulkStats.Builder, ObjectBuilder<BulkStats>> fn) {
+		public final Builder bulk(Function<BulkStats.Builder, ObjectBuilder<BulkStats>> fn) {
 			return this.bulk(fn.apply(new BulkStats.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code shards}
 		 */
-		public Builder shards(@Nullable ShardsTotalStats value) {
+		public final Builder shards(@Nullable ShardsTotalStats value) {
 			this.shards = value;
 			return this;
 		}
@@ -839,7 +822,7 @@ public final class IndexStats implements JsonpSerializable {
 		/**
 		 * API name: {@code shards}
 		 */
-		public Builder shards(Function<ShardsTotalStats.Builder, ObjectBuilder<ShardsTotalStats>> fn) {
+		public final Builder shards(Function<ShardsTotalStats.Builder, ObjectBuilder<ShardsTotalStats>> fn) {
 			return this.shards(fn.apply(new ShardsTotalStats.Builder()).build());
 		}
 
@@ -850,6 +833,7 @@ public final class IndexStats implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public IndexStats build() {
+			_checkSingleUse();
 
 			return new IndexStats(this);
 		}

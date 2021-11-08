@@ -36,16 +36,16 @@ import java.util.function.Function;
 
 // typedef: _types.analysis.KStemTokenFilter
 @JsonpDeserializable
-public final class KStemTokenFilter extends TokenFilterBase implements TokenFilterVariant {
+public class KStemTokenFilter extends TokenFilterBase implements TokenFilterVariant {
 	// ---------------------------------------------------------------------------------------------
 
-	public KStemTokenFilter(Builder builder) {
+	private KStemTokenFilter(Builder builder) {
 		super(builder);
 
 	}
 
-	public KStemTokenFilter(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static KStemTokenFilter of(Function<Builder, ObjectBuilder<KStemTokenFilter>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -83,6 +83,7 @@ public final class KStemTokenFilter extends TokenFilterBase implements TokenFilt
 		 *             if some of the required fields are null.
 		 */
 		public KStemTokenFilter build() {
+			_checkSingleUse();
 
 			return new KStemTokenFilter(this);
 		}

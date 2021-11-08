@@ -32,6 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.lang.String;
@@ -44,7 +45,7 @@ import javax.annotation.Nullable;
 
 // typedef: _global.search._types.QueryProfile
 @JsonpDeserializable
-public final class QueryProfile implements JsonpSerializable {
+public class QueryProfile implements JsonpSerializable {
 	private final QueryBreakdown breakdown;
 
 	private final String description;
@@ -53,58 +54,56 @@ public final class QueryProfile implements JsonpSerializable {
 
 	private final String type;
 
-	@Nullable
 	private final List<QueryProfile> children;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public QueryProfile(Builder builder) {
+	private QueryProfile(Builder builder) {
 
-		this.breakdown = Objects.requireNonNull(builder.breakdown, "breakdown");
-		this.description = Objects.requireNonNull(builder.description, "description");
-		this.timeInNanos = Objects.requireNonNull(builder.timeInNanos, "time_in_nanos");
-		this.type = Objects.requireNonNull(builder.type, "type");
+		this.breakdown = ModelTypeHelper.requireNonNull(builder.breakdown, this, "breakdown");
+		this.description = ModelTypeHelper.requireNonNull(builder.description, this, "description");
+		this.timeInNanos = ModelTypeHelper.requireNonNull(builder.timeInNanos, this, "timeInNanos");
+		this.type = ModelTypeHelper.requireNonNull(builder.type, this, "type");
 		this.children = ModelTypeHelper.unmodifiable(builder.children);
 
 	}
 
-	public QueryProfile(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static QueryProfile of(Function<Builder, ObjectBuilder<QueryProfile>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code breakdown}
 	 */
-	public QueryBreakdown breakdown() {
+	public final QueryBreakdown breakdown() {
 		return this.breakdown;
 	}
 
 	/**
 	 * Required - API name: {@code description}
 	 */
-	public String description() {
+	public final String description() {
 		return this.description;
 	}
 
 	/**
 	 * Required - API name: {@code time_in_nanos}
 	 */
-	public long timeInNanos() {
+	public final long timeInNanos() {
 		return this.timeInNanos;
 	}
 
 	/**
 	 * Required - API name: {@code type}
 	 */
-	public String type() {
+	public final String type() {
 		return this.type;
 	}
 
 	/**
 	 * API name: {@code children}
 	 */
-	@Nullable
-	public List<QueryProfile> children() {
+	public final List<QueryProfile> children() {
 		return this.children;
 	}
 
@@ -131,8 +130,7 @@ public final class QueryProfile implements JsonpSerializable {
 		generator.writeKey("type");
 		generator.write(this.type);
 
-		if (this.children != null) {
-
+		if (ModelTypeHelper.isDefined(this.children)) {
 			generator.writeKey("children");
 			generator.writeStartArray();
 			for (QueryProfile item0 : this.children) {
@@ -150,7 +148,7 @@ public final class QueryProfile implements JsonpSerializable {
 	/**
 	 * Builder for {@link QueryProfile}.
 	 */
-	public static class Builder implements ObjectBuilder<QueryProfile> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<QueryProfile> {
 		private QueryBreakdown breakdown;
 
 		private String description;
@@ -165,7 +163,7 @@ public final class QueryProfile implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code breakdown}
 		 */
-		public Builder breakdown(QueryBreakdown value) {
+		public final Builder breakdown(QueryBreakdown value) {
 			this.breakdown = value;
 			return this;
 		}
@@ -173,14 +171,14 @@ public final class QueryProfile implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code breakdown}
 		 */
-		public Builder breakdown(Function<QueryBreakdown.Builder, ObjectBuilder<QueryBreakdown>> fn) {
+		public final Builder breakdown(Function<QueryBreakdown.Builder, ObjectBuilder<QueryBreakdown>> fn) {
 			return this.breakdown(fn.apply(new QueryBreakdown.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code description}
 		 */
-		public Builder description(String value) {
+		public final Builder description(String value) {
 			this.description = value;
 			return this;
 		}
@@ -188,7 +186,7 @@ public final class QueryProfile implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code time_in_nanos}
 		 */
-		public Builder timeInNanos(long value) {
+		public final Builder timeInNanos(long value) {
 			this.timeInNanos = value;
 			return this;
 		}
@@ -196,7 +194,7 @@ public final class QueryProfile implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code type}
 		 */
-		public Builder type(String value) {
+		public final Builder type(String value) {
 			this.type = value;
 			return this;
 		}
@@ -204,7 +202,7 @@ public final class QueryProfile implements JsonpSerializable {
 		/**
 		 * API name: {@code children}
 		 */
-		public Builder children(@Nullable List<QueryProfile> value) {
+		public final Builder children(@Nullable List<QueryProfile> value) {
 			this.children = value;
 			return this;
 		}
@@ -212,34 +210,21 @@ public final class QueryProfile implements JsonpSerializable {
 		/**
 		 * API name: {@code children}
 		 */
-		public Builder children(QueryProfile... value) {
+		public final Builder children(QueryProfile... value) {
 			this.children = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #children(List)}, creating the list if needed.
+		 * API name: {@code children}
 		 */
-		public Builder addChildren(QueryProfile value) {
-			if (this.children == null) {
-				this.children = new ArrayList<>();
+		@SafeVarargs
+		public final Builder children(Function<QueryProfile.Builder, ObjectBuilder<QueryProfile>>... fns) {
+			this.children = new ArrayList<>(fns.length);
+			for (Function<QueryProfile.Builder, ObjectBuilder<QueryProfile>> fn : fns) {
+				this.children.add(fn.apply(new QueryProfile.Builder()).build());
 			}
-			this.children.add(value);
 			return this;
-		}
-
-		/**
-		 * Set {@link #children(List)} to a singleton list.
-		 */
-		public Builder children(Function<QueryProfile.Builder, ObjectBuilder<QueryProfile>> fn) {
-			return this.children(fn.apply(new QueryProfile.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #children(List)}, creating the list if needed.
-		 */
-		public Builder addChildren(Function<QueryProfile.Builder, ObjectBuilder<QueryProfile>> fn) {
-			return this.addChildren(fn.apply(new QueryProfile.Builder()).build());
 		}
 
 		/**
@@ -249,6 +234,7 @@ public final class QueryProfile implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public QueryProfile build() {
+			_checkSingleUse();
 
 			return new QueryProfile(this);
 		}

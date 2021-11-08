@@ -35,16 +35,16 @@ import java.util.function.Function;
 
 // typedef: _types.aggregations.MaxAggregation
 @JsonpDeserializable
-public final class MaxAggregation extends FormatMetricAggregationBase implements AggregationVariant {
+public class MaxAggregation extends FormatMetricAggregationBase implements AggregationVariant {
 	// ---------------------------------------------------------------------------------------------
 
-	public MaxAggregation(Builder builder) {
+	private MaxAggregation(Builder builder) {
 		super(builder);
 
 	}
 
-	public MaxAggregation(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static MaxAggregation of(Function<Builder, ObjectBuilder<MaxAggregation>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -75,6 +75,7 @@ public final class MaxAggregation extends FormatMetricAggregationBase implements
 		 *             if some of the required fields are null.
 		 */
 		public MaxAggregation build() {
+			_checkSingleUse();
 
 			return new MaxAggregation(this);
 		}

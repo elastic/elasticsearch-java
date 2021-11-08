@@ -38,7 +38,6 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
@@ -47,11 +46,10 @@ import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.TermsAggregation
 @JsonpDeserializable
-public final class TermsAggregation extends BucketAggregationBase implements AggregationVariant, PivotGroupByVariant {
+public class TermsAggregation extends BucketAggregationBase implements AggregationVariant, PivotGroupByVariant {
 	@Nullable
 	private final TermsAggregationCollectMode collectMode;
 
-	@Nullable
 	private final List<String> exclude;
 
 	@Nullable
@@ -95,7 +93,7 @@ public final class TermsAggregation extends BucketAggregationBase implements Agg
 
 	// ---------------------------------------------------------------------------------------------
 
-	public TermsAggregation(Builder builder) {
+	private TermsAggregation(Builder builder) {
 		super(builder);
 
 		this.collectMode = builder.collectMode;
@@ -116,8 +114,8 @@ public final class TermsAggregation extends BucketAggregationBase implements Agg
 
 	}
 
-	public TermsAggregation(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static TermsAggregation of(Function<Builder, ObjectBuilder<TermsAggregation>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -132,15 +130,14 @@ public final class TermsAggregation extends BucketAggregationBase implements Agg
 	 * API name: {@code collect_mode}
 	 */
 	@Nullable
-	public TermsAggregationCollectMode collectMode() {
+	public final TermsAggregationCollectMode collectMode() {
 		return this.collectMode;
 	}
 
 	/**
 	 * API name: {@code exclude}
 	 */
-	@Nullable
-	public List<String> exclude() {
+	public final List<String> exclude() {
 		return this.exclude;
 	}
 
@@ -148,7 +145,7 @@ public final class TermsAggregation extends BucketAggregationBase implements Agg
 	 * API name: {@code execution_hint}
 	 */
 	@Nullable
-	public TermsAggregationExecutionHint executionHint() {
+	public final TermsAggregationExecutionHint executionHint() {
 		return this.executionHint;
 	}
 
@@ -156,7 +153,7 @@ public final class TermsAggregation extends BucketAggregationBase implements Agg
 	 * API name: {@code field}
 	 */
 	@Nullable
-	public String field() {
+	public final String field() {
 		return this.field;
 	}
 
@@ -164,7 +161,7 @@ public final class TermsAggregation extends BucketAggregationBase implements Agg
 	 * API name: {@code include}
 	 */
 	@Nullable
-	public JsonValue /* Union(Array<internal.string> | _types.aggregations.TermsInclude) */ include() {
+	public final JsonValue /* Union(Array<internal.string> | _types.aggregations.TermsInclude) */ include() {
 		return this.include;
 	}
 
@@ -172,7 +169,7 @@ public final class TermsAggregation extends BucketAggregationBase implements Agg
 	 * API name: {@code min_doc_count}
 	 */
 	@Nullable
-	public Integer minDocCount() {
+	public final Integer minDocCount() {
 		return this.minDocCount;
 	}
 
@@ -180,7 +177,7 @@ public final class TermsAggregation extends BucketAggregationBase implements Agg
 	 * API name: {@code missing}
 	 */
 	@Nullable
-	public String missing() {
+	public final String missing() {
 		return this.missing;
 	}
 
@@ -188,7 +185,7 @@ public final class TermsAggregation extends BucketAggregationBase implements Agg
 	 * API name: {@code missing_order}
 	 */
 	@Nullable
-	public MissingOrder missingOrder() {
+	public final MissingOrder missingOrder() {
 		return this.missingOrder;
 	}
 
@@ -196,7 +193,7 @@ public final class TermsAggregation extends BucketAggregationBase implements Agg
 	 * API name: {@code missing_bucket}
 	 */
 	@Nullable
-	public Boolean missingBucket() {
+	public final Boolean missingBucket() {
 		return this.missingBucket;
 	}
 
@@ -204,7 +201,7 @@ public final class TermsAggregation extends BucketAggregationBase implements Agg
 	 * API name: {@code value_type}
 	 */
 	@Nullable
-	public String valueType() {
+	public final String valueType() {
 		return this.valueType;
 	}
 
@@ -212,7 +209,7 @@ public final class TermsAggregation extends BucketAggregationBase implements Agg
 	 * API name: {@code order}
 	 */
 	@Nullable
-	public JsonValue /* _types.aggregations.TermsAggregationOrder */ order() {
+	public final JsonValue /* _types.aggregations.TermsAggregationOrder */ order() {
 		return this.order;
 	}
 
@@ -220,7 +217,7 @@ public final class TermsAggregation extends BucketAggregationBase implements Agg
 	 * API name: {@code script}
 	 */
 	@Nullable
-	public JsonValue /* _types.Script */ script() {
+	public final JsonValue /* _types.Script */ script() {
 		return this.script;
 	}
 
@@ -228,7 +225,7 @@ public final class TermsAggregation extends BucketAggregationBase implements Agg
 	 * API name: {@code shard_size}
 	 */
 	@Nullable
-	public Integer shardSize() {
+	public final Integer shardSize() {
 		return this.shardSize;
 	}
 
@@ -236,7 +233,7 @@ public final class TermsAggregation extends BucketAggregationBase implements Agg
 	 * API name: {@code show_term_doc_count_error}
 	 */
 	@Nullable
-	public Boolean showTermDocCountError() {
+	public final Boolean showTermDocCountError() {
 		return this.showTermDocCountError;
 	}
 
@@ -244,7 +241,7 @@ public final class TermsAggregation extends BucketAggregationBase implements Agg
 	 * API name: {@code size}
 	 */
 	@Nullable
-	public Integer size() {
+	public final Integer size() {
 		return this.size;
 	}
 
@@ -252,12 +249,10 @@ public final class TermsAggregation extends BucketAggregationBase implements Agg
 
 		super.serializeInternal(generator, mapper);
 		if (this.collectMode != null) {
-
 			generator.writeKey("collect_mode");
 			this.collectMode.serialize(generator, mapper);
 		}
-		if (this.exclude != null) {
-
+		if (ModelTypeHelper.isDefined(this.exclude)) {
 			generator.writeKey("exclude");
 			generator.writeStartArray();
 			for (String item0 : this.exclude) {
@@ -268,77 +263,64 @@ public final class TermsAggregation extends BucketAggregationBase implements Agg
 
 		}
 		if (this.executionHint != null) {
-
 			generator.writeKey("execution_hint");
 			this.executionHint.serialize(generator, mapper);
 		}
 		if (this.field != null) {
-
 			generator.writeKey("field");
 			generator.write(this.field);
 
 		}
 		if (this.include != null) {
-
 			generator.writeKey("include");
 			generator.write(this.include);
 
 		}
 		if (this.minDocCount != null) {
-
 			generator.writeKey("min_doc_count");
 			generator.write(this.minDocCount);
 
 		}
 		if (this.missing != null) {
-
 			generator.writeKey("missing");
 			generator.write(this.missing);
 
 		}
 		if (this.missingOrder != null) {
-
 			generator.writeKey("missing_order");
 			this.missingOrder.serialize(generator, mapper);
 		}
 		if (this.missingBucket != null) {
-
 			generator.writeKey("missing_bucket");
 			generator.write(this.missingBucket);
 
 		}
 		if (this.valueType != null) {
-
 			generator.writeKey("value_type");
 			generator.write(this.valueType);
 
 		}
 		if (this.order != null) {
-
 			generator.writeKey("order");
 			generator.write(this.order);
 
 		}
 		if (this.script != null) {
-
 			generator.writeKey("script");
 			generator.write(this.script);
 
 		}
 		if (this.shardSize != null) {
-
 			generator.writeKey("shard_size");
 			generator.write(this.shardSize);
 
 		}
 		if (this.showTermDocCountError != null) {
-
 			generator.writeKey("show_term_doc_count_error");
 			generator.write(this.showTermDocCountError);
 
 		}
 		if (this.size != null) {
-
 			generator.writeKey("size");
 			generator.write(this.size);
 
@@ -402,7 +384,7 @@ public final class TermsAggregation extends BucketAggregationBase implements Agg
 		/**
 		 * API name: {@code collect_mode}
 		 */
-		public Builder collectMode(@Nullable TermsAggregationCollectMode value) {
+		public final Builder collectMode(@Nullable TermsAggregationCollectMode value) {
 			this.collectMode = value;
 			return this;
 		}
@@ -410,7 +392,7 @@ public final class TermsAggregation extends BucketAggregationBase implements Agg
 		/**
 		 * API name: {@code exclude}
 		 */
-		public Builder exclude(@Nullable List<String> value) {
+		public final Builder exclude(@Nullable List<String> value) {
 			this.exclude = value;
 			return this;
 		}
@@ -418,26 +400,15 @@ public final class TermsAggregation extends BucketAggregationBase implements Agg
 		/**
 		 * API name: {@code exclude}
 		 */
-		public Builder exclude(String... value) {
+		public final Builder exclude(String... value) {
 			this.exclude = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #exclude(List)}, creating the list if needed.
-		 */
-		public Builder addExclude(String value) {
-			if (this.exclude == null) {
-				this.exclude = new ArrayList<>();
-			}
-			this.exclude.add(value);
 			return this;
 		}
 
 		/**
 		 * API name: {@code execution_hint}
 		 */
-		public Builder executionHint(@Nullable TermsAggregationExecutionHint value) {
+		public final Builder executionHint(@Nullable TermsAggregationExecutionHint value) {
 			this.executionHint = value;
 			return this;
 		}
@@ -445,7 +416,7 @@ public final class TermsAggregation extends BucketAggregationBase implements Agg
 		/**
 		 * API name: {@code field}
 		 */
-		public Builder field(@Nullable String value) {
+		public final Builder field(@Nullable String value) {
 			this.field = value;
 			return this;
 		}
@@ -453,7 +424,7 @@ public final class TermsAggregation extends BucketAggregationBase implements Agg
 		/**
 		 * API name: {@code include}
 		 */
-		public Builder include(
+		public final Builder include(
 				@Nullable JsonValue /* Union(Array<internal.string> | _types.aggregations.TermsInclude) */ value) {
 			this.include = value;
 			return this;
@@ -462,7 +433,7 @@ public final class TermsAggregation extends BucketAggregationBase implements Agg
 		/**
 		 * API name: {@code min_doc_count}
 		 */
-		public Builder minDocCount(@Nullable Integer value) {
+		public final Builder minDocCount(@Nullable Integer value) {
 			this.minDocCount = value;
 			return this;
 		}
@@ -470,7 +441,7 @@ public final class TermsAggregation extends BucketAggregationBase implements Agg
 		/**
 		 * API name: {@code missing}
 		 */
-		public Builder missing(@Nullable String value) {
+		public final Builder missing(@Nullable String value) {
 			this.missing = value;
 			return this;
 		}
@@ -478,7 +449,7 @@ public final class TermsAggregation extends BucketAggregationBase implements Agg
 		/**
 		 * API name: {@code missing_order}
 		 */
-		public Builder missingOrder(@Nullable MissingOrder value) {
+		public final Builder missingOrder(@Nullable MissingOrder value) {
 			this.missingOrder = value;
 			return this;
 		}
@@ -486,7 +457,7 @@ public final class TermsAggregation extends BucketAggregationBase implements Agg
 		/**
 		 * API name: {@code missing_bucket}
 		 */
-		public Builder missingBucket(@Nullable Boolean value) {
+		public final Builder missingBucket(@Nullable Boolean value) {
 			this.missingBucket = value;
 			return this;
 		}
@@ -494,7 +465,7 @@ public final class TermsAggregation extends BucketAggregationBase implements Agg
 		/**
 		 * API name: {@code value_type}
 		 */
-		public Builder valueType(@Nullable String value) {
+		public final Builder valueType(@Nullable String value) {
 			this.valueType = value;
 			return this;
 		}
@@ -502,7 +473,7 @@ public final class TermsAggregation extends BucketAggregationBase implements Agg
 		/**
 		 * API name: {@code order}
 		 */
-		public Builder order(@Nullable JsonValue /* _types.aggregations.TermsAggregationOrder */ value) {
+		public final Builder order(@Nullable JsonValue /* _types.aggregations.TermsAggregationOrder */ value) {
 			this.order = value;
 			return this;
 		}
@@ -510,7 +481,7 @@ public final class TermsAggregation extends BucketAggregationBase implements Agg
 		/**
 		 * API name: {@code script}
 		 */
-		public Builder script(@Nullable JsonValue /* _types.Script */ value) {
+		public final Builder script(@Nullable JsonValue /* _types.Script */ value) {
 			this.script = value;
 			return this;
 		}
@@ -518,7 +489,7 @@ public final class TermsAggregation extends BucketAggregationBase implements Agg
 		/**
 		 * API name: {@code shard_size}
 		 */
-		public Builder shardSize(@Nullable Integer value) {
+		public final Builder shardSize(@Nullable Integer value) {
 			this.shardSize = value;
 			return this;
 		}
@@ -526,7 +497,7 @@ public final class TermsAggregation extends BucketAggregationBase implements Agg
 		/**
 		 * API name: {@code show_term_doc_count_error}
 		 */
-		public Builder showTermDocCountError(@Nullable Boolean value) {
+		public final Builder showTermDocCountError(@Nullable Boolean value) {
 			this.showTermDocCountError = value;
 			return this;
 		}
@@ -534,7 +505,7 @@ public final class TermsAggregation extends BucketAggregationBase implements Agg
 		/**
 		 * API name: {@code size}
 		 */
-		public Builder size(@Nullable Integer value) {
+		public final Builder size(@Nullable Integer value) {
 			this.size = value;
 			return this;
 		}
@@ -551,6 +522,7 @@ public final class TermsAggregation extends BucketAggregationBase implements Agg
 		 *             if some of the required fields are null.
 		 */
 		public TermsAggregation build() {
+			_checkSingleUse();
 
 			return new TermsAggregation(this);
 		}

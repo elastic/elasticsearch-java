@@ -38,16 +38,16 @@ import java.util.function.Function;
 
 // typedef: indices.get_alias.Response
 @JsonpDeserializable
-public final class GetAliasResponse extends DictionaryResponse<String, IndexAliases> {
+public class GetAliasResponse extends DictionaryResponse<String, IndexAliases> {
 	// ---------------------------------------------------------------------------------------------
 
-	public GetAliasResponse(Builder builder) {
+	private GetAliasResponse(Builder builder) {
 		super(builder);
 
 	}
 
-	public GetAliasResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static GetAliasResponse of(Function<Builder, ObjectBuilder<GetAliasResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -70,6 +70,7 @@ public final class GetAliasResponse extends DictionaryResponse<String, IndexAlia
 		 *             if some of the required fields are null.
 		 */
 		public GetAliasResponse build() {
+			_checkSingleUse();
 			super.tKeySerializer(null);
 			super.tValueSerializer(null);
 

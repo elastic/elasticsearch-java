@@ -30,6 +30,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -40,11 +41,9 @@ import javax.annotation.Nullable;
 
 // typedef: license.post_start_trial.Response
 @JsonpDeserializable
-public final class PostStartTrialResponse extends AcknowledgedResponseBase {
+public class PostStartTrialResponse extends AcknowledgedResponseBase {
 	@Nullable
 	private final String errorMessage;
-
-	private final boolean acknowledged;
 
 	private final boolean trialWasStarted;
 
@@ -52,46 +51,38 @@ public final class PostStartTrialResponse extends AcknowledgedResponseBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public PostStartTrialResponse(Builder builder) {
+	private PostStartTrialResponse(Builder builder) {
 		super(builder);
 
 		this.errorMessage = builder.errorMessage;
-		this.acknowledged = Objects.requireNonNull(builder.acknowledged, "acknowledged");
-		this.trialWasStarted = Objects.requireNonNull(builder.trialWasStarted, "trial_was_started");
-		this.type = Objects.requireNonNull(builder.type, "type");
+		this.trialWasStarted = ModelTypeHelper.requireNonNull(builder.trialWasStarted, this, "trialWasStarted");
+		this.type = ModelTypeHelper.requireNonNull(builder.type, this, "type");
 
 	}
 
-	public PostStartTrialResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static PostStartTrialResponse of(Function<Builder, ObjectBuilder<PostStartTrialResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * API name: {@code error_message}
 	 */
 	@Nullable
-	public String errorMessage() {
+	public final String errorMessage() {
 		return this.errorMessage;
-	}
-
-	/**
-	 * Required - API name: {@code acknowledged}
-	 */
-	public boolean acknowledged() {
-		return this.acknowledged;
 	}
 
 	/**
 	 * Required - API name: {@code trial_was_started}
 	 */
-	public boolean trialWasStarted() {
+	public final boolean trialWasStarted() {
 		return this.trialWasStarted;
 	}
 
 	/**
 	 * Required - API name: {@code type}
 	 */
-	public LicenseType type() {
+	public final LicenseType type() {
 		return this.type;
 	}
 
@@ -99,15 +90,10 @@ public final class PostStartTrialResponse extends AcknowledgedResponseBase {
 
 		super.serializeInternal(generator, mapper);
 		if (this.errorMessage != null) {
-
 			generator.writeKey("error_message");
 			generator.write(this.errorMessage);
 
 		}
-
-		generator.writeKey("acknowledged");
-		generator.write(this.acknowledged);
-
 		generator.writeKey("trial_was_started");
 		generator.write(this.trialWasStarted);
 
@@ -127,8 +113,6 @@ public final class PostStartTrialResponse extends AcknowledgedResponseBase {
 		@Nullable
 		private String errorMessage;
 
-		private Boolean acknowledged;
-
 		private Boolean trialWasStarted;
 
 		private LicenseType type;
@@ -136,23 +120,15 @@ public final class PostStartTrialResponse extends AcknowledgedResponseBase {
 		/**
 		 * API name: {@code error_message}
 		 */
-		public Builder errorMessage(@Nullable String value) {
+		public final Builder errorMessage(@Nullable String value) {
 			this.errorMessage = value;
-			return this;
-		}
-
-		/**
-		 * Required - API name: {@code acknowledged}
-		 */
-		public Builder acknowledged(boolean value) {
-			this.acknowledged = value;
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code trial_was_started}
 		 */
-		public Builder trialWasStarted(boolean value) {
+		public final Builder trialWasStarted(boolean value) {
 			this.trialWasStarted = value;
 			return this;
 		}
@@ -160,7 +136,7 @@ public final class PostStartTrialResponse extends AcknowledgedResponseBase {
 		/**
 		 * Required - API name: {@code type}
 		 */
-		public Builder type(LicenseType value) {
+		public final Builder type(LicenseType value) {
 			this.type = value;
 			return this;
 		}
@@ -177,6 +153,7 @@ public final class PostStartTrialResponse extends AcknowledgedResponseBase {
 		 *             if some of the required fields are null.
 		 */
 		public PostStartTrialResponse build() {
+			_checkSingleUse();
 
 			return new PostStartTrialResponse(this);
 		}
@@ -194,7 +171,6 @@ public final class PostStartTrialResponse extends AcknowledgedResponseBase {
 			DelegatingDeserializer<PostStartTrialResponse.Builder> op) {
 		AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);
 		op.add(Builder::errorMessage, JsonpDeserializer.stringDeserializer(), "error_message");
-		op.add(Builder::acknowledged, JsonpDeserializer.booleanDeserializer(), "acknowledged");
 		op.add(Builder::trialWasStarted, JsonpDeserializer.booleanDeserializer(), "trial_was_started");
 		op.add(Builder::type, LicenseType._DESERIALIZER, "type");
 

@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
 import java.util.Objects;
@@ -38,35 +40,35 @@ import java.util.function.Function;
 
 // typedef: _types.LatLon
 @JsonpDeserializable
-public final class LatLon implements JsonpSerializable {
+public class LatLon implements JsonpSerializable {
 	private final double lat;
 
 	private final double lon;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public LatLon(Builder builder) {
+	private LatLon(Builder builder) {
 
-		this.lat = Objects.requireNonNull(builder.lat, "lat");
-		this.lon = Objects.requireNonNull(builder.lon, "lon");
+		this.lat = ModelTypeHelper.requireNonNull(builder.lat, this, "lat");
+		this.lon = ModelTypeHelper.requireNonNull(builder.lon, this, "lon");
 
 	}
 
-	public LatLon(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static LatLon of(Function<Builder, ObjectBuilder<LatLon>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code lat}
 	 */
-	public double lat() {
+	public final double lat() {
 		return this.lat;
 	}
 
 	/**
 	 * Required - API name: {@code lon}
 	 */
-	public double lon() {
+	public final double lon() {
 		return this.lon;
 	}
 
@@ -94,7 +96,7 @@ public final class LatLon implements JsonpSerializable {
 	/**
 	 * Builder for {@link LatLon}.
 	 */
-	public static class Builder implements ObjectBuilder<LatLon> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<LatLon> {
 		private Double lat;
 
 		private Double lon;
@@ -102,7 +104,7 @@ public final class LatLon implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code lat}
 		 */
-		public Builder lat(double value) {
+		public final Builder lat(double value) {
 			this.lat = value;
 			return this;
 		}
@@ -110,7 +112,7 @@ public final class LatLon implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code lon}
 		 */
-		public Builder lon(double value) {
+		public final Builder lon(double value) {
 			this.lon = value;
 			return this;
 		}
@@ -122,6 +124,7 @@ public final class LatLon implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public LatLon build() {
+			_checkSingleUse();
 
 			return new LatLon(this);
 		}

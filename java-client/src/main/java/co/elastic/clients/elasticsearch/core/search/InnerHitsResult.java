@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;
@@ -38,25 +40,25 @@ import javax.annotation.Nullable;
 
 // typedef: _global.search._types.InnerHitsResult
 @JsonpDeserializable
-public final class InnerHitsResult implements JsonpSerializable {
+public class InnerHitsResult implements JsonpSerializable {
 	private final InnerHitsMetadata hits;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public InnerHitsResult(Builder builder) {
+	private InnerHitsResult(Builder builder) {
 
-		this.hits = Objects.requireNonNull(builder.hits, "hits");
+		this.hits = ModelTypeHelper.requireNonNull(builder.hits, this, "hits");
 
 	}
 
-	public InnerHitsResult(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static InnerHitsResult of(Function<Builder, ObjectBuilder<InnerHitsResult>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code hits}
 	 */
-	public InnerHitsMetadata hits() {
+	public final InnerHitsMetadata hits() {
 		return this.hits;
 	}
 
@@ -81,13 +83,13 @@ public final class InnerHitsResult implements JsonpSerializable {
 	/**
 	 * Builder for {@link InnerHitsResult}.
 	 */
-	public static class Builder implements ObjectBuilder<InnerHitsResult> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<InnerHitsResult> {
 		private InnerHitsMetadata hits;
 
 		/**
 		 * Required - API name: {@code hits}
 		 */
-		public Builder hits(InnerHitsMetadata value) {
+		public final Builder hits(InnerHitsMetadata value) {
 			this.hits = value;
 			return this;
 		}
@@ -95,7 +97,7 @@ public final class InnerHitsResult implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code hits}
 		 */
-		public Builder hits(Function<InnerHitsMetadata.Builder, ObjectBuilder<InnerHitsMetadata>> fn) {
+		public final Builder hits(Function<InnerHitsMetadata.Builder, ObjectBuilder<InnerHitsMetadata>> fn) {
 			return this.hits(fn.apply(new InnerHitsMetadata.Builder()).build());
 		}
 
@@ -106,6 +108,7 @@ public final class InnerHitsResult implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public InnerHitsResult build() {
+			_checkSingleUse();
 
 			return new InnerHitsResult(this);
 		}

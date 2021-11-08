@@ -31,6 +31,7 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -39,19 +40,20 @@ import javax.annotation.Nullable;
 
 // typedef: _types.analysis.SimpleAnalyzer
 @JsonpDeserializable
-public final class SimpleAnalyzer implements AnalyzerVariant, JsonpSerializable {
+public class SimpleAnalyzer implements AnalyzerVariant, JsonpSerializable {
+	@Nullable
 	private final String version;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public SimpleAnalyzer(Builder builder) {
+	private SimpleAnalyzer(Builder builder) {
 
-		this.version = Objects.requireNonNull(builder.version, "version");
+		this.version = builder.version;
 
 	}
 
-	public SimpleAnalyzer(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static SimpleAnalyzer of(Function<Builder, ObjectBuilder<SimpleAnalyzer>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -63,9 +65,10 @@ public final class SimpleAnalyzer implements AnalyzerVariant, JsonpSerializable 
 	}
 
 	/**
-	 * Required - API name: {@code version}
+	 * API name: {@code version}
 	 */
-	public String version() {
+	@Nullable
+	public final String version() {
 		return this.version;
 	}
 
@@ -82,8 +85,11 @@ public final class SimpleAnalyzer implements AnalyzerVariant, JsonpSerializable 
 
 		generator.write("type", "simple");
 
-		generator.writeKey("version");
-		generator.write(this.version);
+		if (this.version != null) {
+			generator.writeKey("version");
+			generator.write(this.version);
+
+		}
 
 	}
 
@@ -92,13 +98,14 @@ public final class SimpleAnalyzer implements AnalyzerVariant, JsonpSerializable 
 	/**
 	 * Builder for {@link SimpleAnalyzer}.
 	 */
-	public static class Builder implements ObjectBuilder<SimpleAnalyzer> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<SimpleAnalyzer> {
+		@Nullable
 		private String version;
 
 		/**
-		 * Required - API name: {@code version}
+		 * API name: {@code version}
 		 */
-		public Builder version(String value) {
+		public final Builder version(@Nullable String value) {
 			this.version = value;
 			return this;
 		}
@@ -110,6 +117,7 @@ public final class SimpleAnalyzer implements AnalyzerVariant, JsonpSerializable 
 		 *             if some of the required fields are null.
 		 */
 		public SimpleAnalyzer build() {
+			_checkSingleUse();
 
 			return new SimpleAnalyzer(this);
 		}

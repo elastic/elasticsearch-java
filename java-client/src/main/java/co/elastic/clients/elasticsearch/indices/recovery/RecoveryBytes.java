@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -39,7 +41,7 @@ import javax.annotation.Nullable;
 
 // typedef: indices.recovery.RecoveryBytes
 @JsonpDeserializable
-public final class RecoveryBytes implements JsonpSerializable {
+public class RecoveryBytes implements JsonpSerializable {
 	private final String percent;
 
 	@Nullable
@@ -65,28 +67,28 @@ public final class RecoveryBytes implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public RecoveryBytes(Builder builder) {
+	private RecoveryBytes(Builder builder) {
 
-		this.percent = Objects.requireNonNull(builder.percent, "percent");
+		this.percent = ModelTypeHelper.requireNonNull(builder.percent, this, "percent");
 		this.recovered = builder.recovered;
-		this.recoveredInBytes = Objects.requireNonNull(builder.recoveredInBytes, "recovered_in_bytes");
+		this.recoveredInBytes = ModelTypeHelper.requireNonNull(builder.recoveredInBytes, this, "recoveredInBytes");
 		this.recoveredFromSnapshot = builder.recoveredFromSnapshot;
 		this.recoveredFromSnapshotInBytes = builder.recoveredFromSnapshotInBytes;
 		this.reused = builder.reused;
-		this.reusedInBytes = Objects.requireNonNull(builder.reusedInBytes, "reused_in_bytes");
+		this.reusedInBytes = ModelTypeHelper.requireNonNull(builder.reusedInBytes, this, "reusedInBytes");
 		this.total = builder.total;
-		this.totalInBytes = Objects.requireNonNull(builder.totalInBytes, "total_in_bytes");
+		this.totalInBytes = ModelTypeHelper.requireNonNull(builder.totalInBytes, this, "totalInBytes");
 
 	}
 
-	public RecoveryBytes(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static RecoveryBytes of(Function<Builder, ObjectBuilder<RecoveryBytes>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code percent}
 	 */
-	public String percent() {
+	public final String percent() {
 		return this.percent;
 	}
 
@@ -94,14 +96,14 @@ public final class RecoveryBytes implements JsonpSerializable {
 	 * API name: {@code recovered}
 	 */
 	@Nullable
-	public String recovered() {
+	public final String recovered() {
 		return this.recovered;
 	}
 
 	/**
 	 * Required - API name: {@code recovered_in_bytes}
 	 */
-	public String recoveredInBytes() {
+	public final String recoveredInBytes() {
 		return this.recoveredInBytes;
 	}
 
@@ -109,7 +111,7 @@ public final class RecoveryBytes implements JsonpSerializable {
 	 * API name: {@code recovered_from_snapshot}
 	 */
 	@Nullable
-	public String recoveredFromSnapshot() {
+	public final String recoveredFromSnapshot() {
 		return this.recoveredFromSnapshot;
 	}
 
@@ -117,7 +119,7 @@ public final class RecoveryBytes implements JsonpSerializable {
 	 * API name: {@code recovered_from_snapshot_in_bytes}
 	 */
 	@Nullable
-	public String recoveredFromSnapshotInBytes() {
+	public final String recoveredFromSnapshotInBytes() {
 		return this.recoveredFromSnapshotInBytes;
 	}
 
@@ -125,14 +127,14 @@ public final class RecoveryBytes implements JsonpSerializable {
 	 * API name: {@code reused}
 	 */
 	@Nullable
-	public String reused() {
+	public final String reused() {
 		return this.reused;
 	}
 
 	/**
 	 * Required - API name: {@code reused_in_bytes}
 	 */
-	public String reusedInBytes() {
+	public final String reusedInBytes() {
 		return this.reusedInBytes;
 	}
 
@@ -140,14 +142,14 @@ public final class RecoveryBytes implements JsonpSerializable {
 	 * API name: {@code total}
 	 */
 	@Nullable
-	public String total() {
+	public final String total() {
 		return this.total;
 	}
 
 	/**
 	 * Required - API name: {@code total_in_bytes}
 	 */
-	public String totalInBytes() {
+	public final String totalInBytes() {
 		return this.totalInBytes;
 	}
 
@@ -166,44 +168,36 @@ public final class RecoveryBytes implements JsonpSerializable {
 		generator.write(this.percent);
 
 		if (this.recovered != null) {
-
 			generator.writeKey("recovered");
 			generator.write(this.recovered);
 
 		}
-
 		generator.writeKey("recovered_in_bytes");
 		generator.write(this.recoveredInBytes);
 
 		if (this.recoveredFromSnapshot != null) {
-
 			generator.writeKey("recovered_from_snapshot");
 			generator.write(this.recoveredFromSnapshot);
 
 		}
 		if (this.recoveredFromSnapshotInBytes != null) {
-
 			generator.writeKey("recovered_from_snapshot_in_bytes");
 			generator.write(this.recoveredFromSnapshotInBytes);
 
 		}
 		if (this.reused != null) {
-
 			generator.writeKey("reused");
 			generator.write(this.reused);
 
 		}
-
 		generator.writeKey("reused_in_bytes");
 		generator.write(this.reusedInBytes);
 
 		if (this.total != null) {
-
 			generator.writeKey("total");
 			generator.write(this.total);
 
 		}
-
 		generator.writeKey("total_in_bytes");
 		generator.write(this.totalInBytes);
 
@@ -214,7 +208,7 @@ public final class RecoveryBytes implements JsonpSerializable {
 	/**
 	 * Builder for {@link RecoveryBytes}.
 	 */
-	public static class Builder implements ObjectBuilder<RecoveryBytes> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RecoveryBytes> {
 		private String percent;
 
 		@Nullable
@@ -241,7 +235,7 @@ public final class RecoveryBytes implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code percent}
 		 */
-		public Builder percent(String value) {
+		public final Builder percent(String value) {
 			this.percent = value;
 			return this;
 		}
@@ -249,7 +243,7 @@ public final class RecoveryBytes implements JsonpSerializable {
 		/**
 		 * API name: {@code recovered}
 		 */
-		public Builder recovered(@Nullable String value) {
+		public final Builder recovered(@Nullable String value) {
 			this.recovered = value;
 			return this;
 		}
@@ -257,7 +251,7 @@ public final class RecoveryBytes implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code recovered_in_bytes}
 		 */
-		public Builder recoveredInBytes(String value) {
+		public final Builder recoveredInBytes(String value) {
 			this.recoveredInBytes = value;
 			return this;
 		}
@@ -265,7 +259,7 @@ public final class RecoveryBytes implements JsonpSerializable {
 		/**
 		 * API name: {@code recovered_from_snapshot}
 		 */
-		public Builder recoveredFromSnapshot(@Nullable String value) {
+		public final Builder recoveredFromSnapshot(@Nullable String value) {
 			this.recoveredFromSnapshot = value;
 			return this;
 		}
@@ -273,7 +267,7 @@ public final class RecoveryBytes implements JsonpSerializable {
 		/**
 		 * API name: {@code recovered_from_snapshot_in_bytes}
 		 */
-		public Builder recoveredFromSnapshotInBytes(@Nullable String value) {
+		public final Builder recoveredFromSnapshotInBytes(@Nullable String value) {
 			this.recoveredFromSnapshotInBytes = value;
 			return this;
 		}
@@ -281,7 +275,7 @@ public final class RecoveryBytes implements JsonpSerializable {
 		/**
 		 * API name: {@code reused}
 		 */
-		public Builder reused(@Nullable String value) {
+		public final Builder reused(@Nullable String value) {
 			this.reused = value;
 			return this;
 		}
@@ -289,7 +283,7 @@ public final class RecoveryBytes implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code reused_in_bytes}
 		 */
-		public Builder reusedInBytes(String value) {
+		public final Builder reusedInBytes(String value) {
 			this.reusedInBytes = value;
 			return this;
 		}
@@ -297,7 +291,7 @@ public final class RecoveryBytes implements JsonpSerializable {
 		/**
 		 * API name: {@code total}
 		 */
-		public Builder total(@Nullable String value) {
+		public final Builder total(@Nullable String value) {
 			this.total = value;
 			return this;
 		}
@@ -305,7 +299,7 @@ public final class RecoveryBytes implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code total_in_bytes}
 		 */
-		public Builder totalInBytes(String value) {
+		public final Builder totalInBytes(String value) {
 			this.totalInBytes = value;
 			return this;
 		}
@@ -317,6 +311,7 @@ public final class RecoveryBytes implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public RecoveryBytes build() {
+			_checkSingleUse();
 
 			return new RecoveryBytes(this);
 		}

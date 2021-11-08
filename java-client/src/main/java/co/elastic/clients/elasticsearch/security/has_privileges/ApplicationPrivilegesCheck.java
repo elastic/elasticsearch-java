@@ -32,9 +32,9 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
@@ -43,7 +43,7 @@ import javax.annotation.Nullable;
 
 // typedef: security.has_privileges.ApplicationPrivilegesCheck
 @JsonpDeserializable
-public final class ApplicationPrivilegesCheck implements JsonpSerializable {
+public class ApplicationPrivilegesCheck implements JsonpSerializable {
 	private final String application;
 
 	private final List<String> privileges;
@@ -52,36 +52,36 @@ public final class ApplicationPrivilegesCheck implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public ApplicationPrivilegesCheck(Builder builder) {
+	private ApplicationPrivilegesCheck(Builder builder) {
 
-		this.application = Objects.requireNonNull(builder.application, "application");
-		this.privileges = ModelTypeHelper.unmodifiableNonNull(builder.privileges, "privileges");
-		this.resources = ModelTypeHelper.unmodifiableNonNull(builder.resources, "resources");
+		this.application = ModelTypeHelper.requireNonNull(builder.application, this, "application");
+		this.privileges = ModelTypeHelper.unmodifiableRequired(builder.privileges, this, "privileges");
+		this.resources = ModelTypeHelper.unmodifiableRequired(builder.resources, this, "resources");
 
 	}
 
-	public ApplicationPrivilegesCheck(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ApplicationPrivilegesCheck of(Function<Builder, ObjectBuilder<ApplicationPrivilegesCheck>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code application}
 	 */
-	public String application() {
+	public final String application() {
 		return this.application;
 	}
 
 	/**
 	 * Required - API name: {@code privileges}
 	 */
-	public List<String> privileges() {
+	public final List<String> privileges() {
 		return this.privileges;
 	}
 
 	/**
 	 * Required - API name: {@code resources}
 	 */
-	public List<String> resources() {
+	public final List<String> resources() {
 		return this.resources;
 	}
 
@@ -99,21 +99,26 @@ public final class ApplicationPrivilegesCheck implements JsonpSerializable {
 		generator.writeKey("application");
 		generator.write(this.application);
 
-		generator.writeKey("privileges");
-		generator.writeStartArray();
-		for (String item0 : this.privileges) {
-			generator.write(item0);
+		if (ModelTypeHelper.isDefined(this.privileges)) {
+			generator.writeKey("privileges");
+			generator.writeStartArray();
+			for (String item0 : this.privileges) {
+				generator.write(item0);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
+		if (ModelTypeHelper.isDefined(this.resources)) {
+			generator.writeKey("resources");
+			generator.writeStartArray();
+			for (String item0 : this.resources) {
+				generator.write(item0);
 
-		generator.writeKey("resources");
-		generator.writeStartArray();
-		for (String item0 : this.resources) {
-			generator.write(item0);
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
 
 	}
 
@@ -122,7 +127,7 @@ public final class ApplicationPrivilegesCheck implements JsonpSerializable {
 	/**
 	 * Builder for {@link ApplicationPrivilegesCheck}.
 	 */
-	public static class Builder implements ObjectBuilder<ApplicationPrivilegesCheck> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ApplicationPrivilegesCheck> {
 		private String application;
 
 		private List<String> privileges;
@@ -132,7 +137,7 @@ public final class ApplicationPrivilegesCheck implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code application}
 		 */
-		public Builder application(String value) {
+		public final Builder application(String value) {
 			this.application = value;
 			return this;
 		}
@@ -140,7 +145,7 @@ public final class ApplicationPrivilegesCheck implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code privileges}
 		 */
-		public Builder privileges(List<String> value) {
+		public final Builder privileges(List<String> value) {
 			this.privileges = value;
 			return this;
 		}
@@ -148,26 +153,15 @@ public final class ApplicationPrivilegesCheck implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code privileges}
 		 */
-		public Builder privileges(String... value) {
+		public final Builder privileges(String... value) {
 			this.privileges = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #privileges(List)}, creating the list if needed.
-		 */
-		public Builder addPrivileges(String value) {
-			if (this.privileges == null) {
-				this.privileges = new ArrayList<>();
-			}
-			this.privileges.add(value);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code resources}
 		 */
-		public Builder resources(List<String> value) {
+		public final Builder resources(List<String> value) {
 			this.resources = value;
 			return this;
 		}
@@ -175,19 +169,8 @@ public final class ApplicationPrivilegesCheck implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code resources}
 		 */
-		public Builder resources(String... value) {
+		public final Builder resources(String... value) {
 			this.resources = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #resources(List)}, creating the list if needed.
-		 */
-		public Builder addResources(String value) {
-			if (this.resources == null) {
-				this.resources = new ArrayList<>();
-			}
-			this.resources.add(value);
 			return this;
 		}
 
@@ -198,6 +181,7 @@ public final class ApplicationPrivilegesCheck implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public ApplicationPrivilegesCheck build() {
+			_checkSingleUse();
 
 			return new ApplicationPrivilegesCheck(this);
 		}

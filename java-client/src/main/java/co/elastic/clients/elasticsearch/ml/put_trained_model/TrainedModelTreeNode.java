@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Double;
@@ -42,7 +44,7 @@ import javax.annotation.Nullable;
 
 // typedef: ml.put_trained_model.TrainedModelTreeNode
 @JsonpDeserializable
-public final class TrainedModelTreeNode implements JsonpSerializable {
+public class TrainedModelTreeNode implements JsonpSerializable {
 	@Nullable
 	private final String decisionType;
 
@@ -71,13 +73,13 @@ public final class TrainedModelTreeNode implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public TrainedModelTreeNode(Builder builder) {
+	private TrainedModelTreeNode(Builder builder) {
 
 		this.decisionType = builder.decisionType;
 		this.defaultLeft = builder.defaultLeft;
 		this.leafValue = builder.leafValue;
 		this.leftChild = builder.leftChild;
-		this.nodeIndex = Objects.requireNonNull(builder.nodeIndex, "node_index");
+		this.nodeIndex = ModelTypeHelper.requireNonNull(builder.nodeIndex, this, "nodeIndex");
 		this.rightChild = builder.rightChild;
 		this.splitFeature = builder.splitFeature;
 		this.splitGain = builder.splitGain;
@@ -85,15 +87,15 @@ public final class TrainedModelTreeNode implements JsonpSerializable {
 
 	}
 
-	public TrainedModelTreeNode(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static TrainedModelTreeNode of(Function<Builder, ObjectBuilder<TrainedModelTreeNode>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * API name: {@code decision_type}
 	 */
 	@Nullable
-	public String decisionType() {
+	public final String decisionType() {
 		return this.decisionType;
 	}
 
@@ -101,7 +103,7 @@ public final class TrainedModelTreeNode implements JsonpSerializable {
 	 * API name: {@code default_left}
 	 */
 	@Nullable
-	public Boolean defaultLeft() {
+	public final Boolean defaultLeft() {
 		return this.defaultLeft;
 	}
 
@@ -109,7 +111,7 @@ public final class TrainedModelTreeNode implements JsonpSerializable {
 	 * API name: {@code leaf_value}
 	 */
 	@Nullable
-	public Double leafValue() {
+	public final Double leafValue() {
 		return this.leafValue;
 	}
 
@@ -117,14 +119,14 @@ public final class TrainedModelTreeNode implements JsonpSerializable {
 	 * API name: {@code left_child}
 	 */
 	@Nullable
-	public Integer leftChild() {
+	public final Integer leftChild() {
 		return this.leftChild;
 	}
 
 	/**
 	 * Required - API name: {@code node_index}
 	 */
-	public int nodeIndex() {
+	public final int nodeIndex() {
 		return this.nodeIndex;
 	}
 
@@ -132,7 +134,7 @@ public final class TrainedModelTreeNode implements JsonpSerializable {
 	 * API name: {@code right_child}
 	 */
 	@Nullable
-	public Integer rightChild() {
+	public final Integer rightChild() {
 		return this.rightChild;
 	}
 
@@ -140,7 +142,7 @@ public final class TrainedModelTreeNode implements JsonpSerializable {
 	 * API name: {@code split_feature}
 	 */
 	@Nullable
-	public Integer splitFeature() {
+	public final Integer splitFeature() {
 		return this.splitFeature;
 	}
 
@@ -148,7 +150,7 @@ public final class TrainedModelTreeNode implements JsonpSerializable {
 	 * API name: {@code split_gain}
 	 */
 	@Nullable
-	public Integer splitGain() {
+	public final Integer splitGain() {
 		return this.splitGain;
 	}
 
@@ -156,7 +158,7 @@ public final class TrainedModelTreeNode implements JsonpSerializable {
 	 * API name: {@code threshold}
 	 */
 	@Nullable
-	public Double threshold() {
+	public final Double threshold() {
 		return this.threshold;
 	}
 
@@ -172,53 +174,44 @@ public final class TrainedModelTreeNode implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.decisionType != null) {
-
 			generator.writeKey("decision_type");
 			generator.write(this.decisionType);
 
 		}
 		if (this.defaultLeft != null) {
-
 			generator.writeKey("default_left");
 			generator.write(this.defaultLeft);
 
 		}
 		if (this.leafValue != null) {
-
 			generator.writeKey("leaf_value");
 			generator.write(this.leafValue);
 
 		}
 		if (this.leftChild != null) {
-
 			generator.writeKey("left_child");
 			generator.write(this.leftChild);
 
 		}
-
 		generator.writeKey("node_index");
 		generator.write(this.nodeIndex);
 
 		if (this.rightChild != null) {
-
 			generator.writeKey("right_child");
 			generator.write(this.rightChild);
 
 		}
 		if (this.splitFeature != null) {
-
 			generator.writeKey("split_feature");
 			generator.write(this.splitFeature);
 
 		}
 		if (this.splitGain != null) {
-
 			generator.writeKey("split_gain");
 			generator.write(this.splitGain);
 
 		}
 		if (this.threshold != null) {
-
 			generator.writeKey("threshold");
 			generator.write(this.threshold);
 
@@ -231,7 +224,7 @@ public final class TrainedModelTreeNode implements JsonpSerializable {
 	/**
 	 * Builder for {@link TrainedModelTreeNode}.
 	 */
-	public static class Builder implements ObjectBuilder<TrainedModelTreeNode> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TrainedModelTreeNode> {
 		@Nullable
 		private String decisionType;
 
@@ -261,7 +254,7 @@ public final class TrainedModelTreeNode implements JsonpSerializable {
 		/**
 		 * API name: {@code decision_type}
 		 */
-		public Builder decisionType(@Nullable String value) {
+		public final Builder decisionType(@Nullable String value) {
 			this.decisionType = value;
 			return this;
 		}
@@ -269,7 +262,7 @@ public final class TrainedModelTreeNode implements JsonpSerializable {
 		/**
 		 * API name: {@code default_left}
 		 */
-		public Builder defaultLeft(@Nullable Boolean value) {
+		public final Builder defaultLeft(@Nullable Boolean value) {
 			this.defaultLeft = value;
 			return this;
 		}
@@ -277,7 +270,7 @@ public final class TrainedModelTreeNode implements JsonpSerializable {
 		/**
 		 * API name: {@code leaf_value}
 		 */
-		public Builder leafValue(@Nullable Double value) {
+		public final Builder leafValue(@Nullable Double value) {
 			this.leafValue = value;
 			return this;
 		}
@@ -285,7 +278,7 @@ public final class TrainedModelTreeNode implements JsonpSerializable {
 		/**
 		 * API name: {@code left_child}
 		 */
-		public Builder leftChild(@Nullable Integer value) {
+		public final Builder leftChild(@Nullable Integer value) {
 			this.leftChild = value;
 			return this;
 		}
@@ -293,7 +286,7 @@ public final class TrainedModelTreeNode implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code node_index}
 		 */
-		public Builder nodeIndex(int value) {
+		public final Builder nodeIndex(int value) {
 			this.nodeIndex = value;
 			return this;
 		}
@@ -301,7 +294,7 @@ public final class TrainedModelTreeNode implements JsonpSerializable {
 		/**
 		 * API name: {@code right_child}
 		 */
-		public Builder rightChild(@Nullable Integer value) {
+		public final Builder rightChild(@Nullable Integer value) {
 			this.rightChild = value;
 			return this;
 		}
@@ -309,7 +302,7 @@ public final class TrainedModelTreeNode implements JsonpSerializable {
 		/**
 		 * API name: {@code split_feature}
 		 */
-		public Builder splitFeature(@Nullable Integer value) {
+		public final Builder splitFeature(@Nullable Integer value) {
 			this.splitFeature = value;
 			return this;
 		}
@@ -317,7 +310,7 @@ public final class TrainedModelTreeNode implements JsonpSerializable {
 		/**
 		 * API name: {@code split_gain}
 		 */
-		public Builder splitGain(@Nullable Integer value) {
+		public final Builder splitGain(@Nullable Integer value) {
 			this.splitGain = value;
 			return this;
 		}
@@ -325,7 +318,7 @@ public final class TrainedModelTreeNode implements JsonpSerializable {
 		/**
 		 * API name: {@code threshold}
 		 */
-		public Builder threshold(@Nullable Double value) {
+		public final Builder threshold(@Nullable Double value) {
 			this.threshold = value;
 			return this;
 		}
@@ -337,6 +330,7 @@ public final class TrainedModelTreeNode implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public TrainedModelTreeNode build() {
+			_checkSingleUse();
 
 			return new TrainedModelTreeNode(this);
 		}

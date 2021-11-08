@@ -38,6 +38,7 @@ import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.SimpleEndpoint;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.ArrayList;
@@ -50,14 +51,11 @@ import javax.annotation.Nullable;
 
 // typedef: security.has_privileges.Request
 @JsonpDeserializable
-public final class HasPrivilegesRequest extends RequestBase implements JsonpSerializable {
-	@Nullable
+public class HasPrivilegesRequest extends RequestBase implements JsonpSerializable {
 	private final List<ApplicationPrivilegesCheck> application;
 
-	@Nullable
 	private final List<ClusterPrivilege> cluster;
 
-	@Nullable
 	private final List<IndexPrivilegesCheck> index;
 
 	@Nullable
@@ -65,7 +63,7 @@ public final class HasPrivilegesRequest extends RequestBase implements JsonpSeri
 
 	// ---------------------------------------------------------------------------------------------
 
-	public HasPrivilegesRequest(Builder builder) {
+	private HasPrivilegesRequest(Builder builder) {
 
 		this.application = ModelTypeHelper.unmodifiable(builder.application);
 		this.cluster = ModelTypeHelper.unmodifiable(builder.cluster);
@@ -74,31 +72,28 @@ public final class HasPrivilegesRequest extends RequestBase implements JsonpSeri
 
 	}
 
-	public HasPrivilegesRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static HasPrivilegesRequest of(Function<Builder, ObjectBuilder<HasPrivilegesRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * API name: {@code application}
 	 */
-	@Nullable
-	public List<ApplicationPrivilegesCheck> application() {
+	public final List<ApplicationPrivilegesCheck> application() {
 		return this.application;
 	}
 
 	/**
 	 * API name: {@code cluster}
 	 */
-	@Nullable
-	public List<ClusterPrivilege> cluster() {
+	public final List<ClusterPrivilege> cluster() {
 		return this.cluster;
 	}
 
 	/**
 	 * API name: {@code index}
 	 */
-	@Nullable
-	public List<IndexPrivilegesCheck> index() {
+	public final List<IndexPrivilegesCheck> index() {
 		return this.index;
 	}
 
@@ -108,7 +103,7 @@ public final class HasPrivilegesRequest extends RequestBase implements JsonpSeri
 	 * API name: {@code user}
 	 */
 	@Nullable
-	public String user() {
+	public final String user() {
 		return this.user;
 	}
 
@@ -123,8 +118,7 @@ public final class HasPrivilegesRequest extends RequestBase implements JsonpSeri
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (this.application != null) {
-
+		if (ModelTypeHelper.isDefined(this.application)) {
 			generator.writeKey("application");
 			generator.writeStartArray();
 			for (ApplicationPrivilegesCheck item0 : this.application) {
@@ -134,8 +128,7 @@ public final class HasPrivilegesRequest extends RequestBase implements JsonpSeri
 			generator.writeEnd();
 
 		}
-		if (this.cluster != null) {
-
+		if (ModelTypeHelper.isDefined(this.cluster)) {
 			generator.writeKey("cluster");
 			generator.writeStartArray();
 			for (ClusterPrivilege item0 : this.cluster) {
@@ -144,8 +137,7 @@ public final class HasPrivilegesRequest extends RequestBase implements JsonpSeri
 			generator.writeEnd();
 
 		}
-		if (this.index != null) {
-
+		if (ModelTypeHelper.isDefined(this.index)) {
 			generator.writeKey("index");
 			generator.writeStartArray();
 			for (IndexPrivilegesCheck item0 : this.index) {
@@ -163,7 +155,7 @@ public final class HasPrivilegesRequest extends RequestBase implements JsonpSeri
 	/**
 	 * Builder for {@link HasPrivilegesRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<HasPrivilegesRequest> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<HasPrivilegesRequest> {
 		@Nullable
 		private List<ApplicationPrivilegesCheck> application;
 
@@ -179,7 +171,7 @@ public final class HasPrivilegesRequest extends RequestBase implements JsonpSeri
 		/**
 		 * API name: {@code application}
 		 */
-		public Builder application(@Nullable List<ApplicationPrivilegesCheck> value) {
+		public final Builder application(@Nullable List<ApplicationPrivilegesCheck> value) {
 			this.application = value;
 			return this;
 		}
@@ -187,42 +179,28 @@ public final class HasPrivilegesRequest extends RequestBase implements JsonpSeri
 		/**
 		 * API name: {@code application}
 		 */
-		public Builder application(ApplicationPrivilegesCheck... value) {
+		public final Builder application(ApplicationPrivilegesCheck... value) {
 			this.application = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #application(List)}, creating the list if needed.
+		 * API name: {@code application}
 		 */
-		public Builder addApplication(ApplicationPrivilegesCheck value) {
-			if (this.application == null) {
-				this.application = new ArrayList<>();
+		@SafeVarargs
+		public final Builder application(
+				Function<ApplicationPrivilegesCheck.Builder, ObjectBuilder<ApplicationPrivilegesCheck>>... fns) {
+			this.application = new ArrayList<>(fns.length);
+			for (Function<ApplicationPrivilegesCheck.Builder, ObjectBuilder<ApplicationPrivilegesCheck>> fn : fns) {
+				this.application.add(fn.apply(new ApplicationPrivilegesCheck.Builder()).build());
 			}
-			this.application.add(value);
 			return this;
-		}
-
-		/**
-		 * Set {@link #application(List)} to a singleton list.
-		 */
-		public Builder application(
-				Function<ApplicationPrivilegesCheck.Builder, ObjectBuilder<ApplicationPrivilegesCheck>> fn) {
-			return this.application(fn.apply(new ApplicationPrivilegesCheck.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #application(List)}, creating the list if needed.
-		 */
-		public Builder addApplication(
-				Function<ApplicationPrivilegesCheck.Builder, ObjectBuilder<ApplicationPrivilegesCheck>> fn) {
-			return this.addApplication(fn.apply(new ApplicationPrivilegesCheck.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code cluster}
 		 */
-		public Builder cluster(@Nullable List<ClusterPrivilege> value) {
+		public final Builder cluster(@Nullable List<ClusterPrivilege> value) {
 			this.cluster = value;
 			return this;
 		}
@@ -230,26 +208,15 @@ public final class HasPrivilegesRequest extends RequestBase implements JsonpSeri
 		/**
 		 * API name: {@code cluster}
 		 */
-		public Builder cluster(ClusterPrivilege... value) {
+		public final Builder cluster(ClusterPrivilege... value) {
 			this.cluster = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #cluster(List)}, creating the list if needed.
-		 */
-		public Builder addCluster(ClusterPrivilege value) {
-			if (this.cluster == null) {
-				this.cluster = new ArrayList<>();
-			}
-			this.cluster.add(value);
 			return this;
 		}
 
 		/**
 		 * API name: {@code index}
 		 */
-		public Builder index(@Nullable List<IndexPrivilegesCheck> value) {
+		public final Builder index(@Nullable List<IndexPrivilegesCheck> value) {
 			this.index = value;
 			return this;
 		}
@@ -257,34 +224,21 @@ public final class HasPrivilegesRequest extends RequestBase implements JsonpSeri
 		/**
 		 * API name: {@code index}
 		 */
-		public Builder index(IndexPrivilegesCheck... value) {
+		public final Builder index(IndexPrivilegesCheck... value) {
 			this.index = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #index(List)}, creating the list if needed.
+		 * API name: {@code index}
 		 */
-		public Builder addIndex(IndexPrivilegesCheck value) {
-			if (this.index == null) {
-				this.index = new ArrayList<>();
+		@SafeVarargs
+		public final Builder index(Function<IndexPrivilegesCheck.Builder, ObjectBuilder<IndexPrivilegesCheck>>... fns) {
+			this.index = new ArrayList<>(fns.length);
+			for (Function<IndexPrivilegesCheck.Builder, ObjectBuilder<IndexPrivilegesCheck>> fn : fns) {
+				this.index.add(fn.apply(new IndexPrivilegesCheck.Builder()).build());
 			}
-			this.index.add(value);
 			return this;
-		}
-
-		/**
-		 * Set {@link #index(List)} to a singleton list.
-		 */
-		public Builder index(Function<IndexPrivilegesCheck.Builder, ObjectBuilder<IndexPrivilegesCheck>> fn) {
-			return this.index(fn.apply(new IndexPrivilegesCheck.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #index(List)}, creating the list if needed.
-		 */
-		public Builder addIndex(Function<IndexPrivilegesCheck.Builder, ObjectBuilder<IndexPrivilegesCheck>> fn) {
-			return this.addIndex(fn.apply(new IndexPrivilegesCheck.Builder()).build());
 		}
 
 		/**
@@ -292,7 +246,7 @@ public final class HasPrivilegesRequest extends RequestBase implements JsonpSeri
 		 * <p>
 		 * API name: {@code user}
 		 */
-		public Builder user(@Nullable String value) {
+		public final Builder user(@Nullable String value) {
 			this.user = value;
 			return this;
 		}
@@ -304,6 +258,7 @@ public final class HasPrivilegesRequest extends RequestBase implements JsonpSeri
 		 *             if some of the required fields are null.
 		 */
 		public HasPrivilegesRequest build() {
+			_checkSingleUse();
 
 			return new HasPrivilegesRequest(this);
 		}

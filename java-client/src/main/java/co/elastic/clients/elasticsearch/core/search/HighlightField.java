@@ -33,11 +33,11 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
@@ -46,7 +46,7 @@ import javax.annotation.Nullable;
 
 // typedef: _global.search._types.HighlightField
 @JsonpDeserializable
-public final class HighlightField implements JsonpSerializable {
+public class HighlightField implements JsonpSerializable {
 	@Nullable
 	private final String boundaryChars;
 
@@ -77,7 +77,6 @@ public final class HighlightField implements JsonpSerializable {
 	@Nullable
 	private final Query highlightQuery;
 
-	@Nullable
 	private final List<String> matchedFields;
 
 	@Nullable
@@ -95,10 +94,8 @@ public final class HighlightField implements JsonpSerializable {
 	@Nullable
 	private final Integer phraseLimit;
 
-	@Nullable
 	private final List<String> postTags;
 
-	@Nullable
 	private final List<String> preTags;
 
 	@Nullable
@@ -112,7 +109,7 @@ public final class HighlightField implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public HighlightField(Builder builder) {
+	private HighlightField(Builder builder) {
 
 		this.boundaryChars = builder.boundaryChars;
 		this.boundaryMaxScan = builder.boundaryMaxScan;
@@ -138,15 +135,15 @@ public final class HighlightField implements JsonpSerializable {
 
 	}
 
-	public HighlightField(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static HighlightField of(Function<Builder, ObjectBuilder<HighlightField>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * API name: {@code boundary_chars}
 	 */
 	@Nullable
-	public String boundaryChars() {
+	public final String boundaryChars() {
 		return this.boundaryChars;
 	}
 
@@ -154,7 +151,7 @@ public final class HighlightField implements JsonpSerializable {
 	 * API name: {@code boundary_max_scan}
 	 */
 	@Nullable
-	public Integer boundaryMaxScan() {
+	public final Integer boundaryMaxScan() {
 		return this.boundaryMaxScan;
 	}
 
@@ -162,7 +159,7 @@ public final class HighlightField implements JsonpSerializable {
 	 * API name: {@code boundary_scanner}
 	 */
 	@Nullable
-	public BoundaryScanner boundaryScanner() {
+	public final BoundaryScanner boundaryScanner() {
 		return this.boundaryScanner;
 	}
 
@@ -170,7 +167,7 @@ public final class HighlightField implements JsonpSerializable {
 	 * API name: {@code boundary_scanner_locale}
 	 */
 	@Nullable
-	public String boundaryScannerLocale() {
+	public final String boundaryScannerLocale() {
 		return this.boundaryScannerLocale;
 	}
 
@@ -178,7 +175,7 @@ public final class HighlightField implements JsonpSerializable {
 	 * API name: {@code field}
 	 */
 	@Nullable
-	public String field() {
+	public final String field() {
 		return this.field;
 	}
 
@@ -186,7 +183,7 @@ public final class HighlightField implements JsonpSerializable {
 	 * API name: {@code force_source}
 	 */
 	@Nullable
-	public Boolean forceSource() {
+	public final Boolean forceSource() {
 		return this.forceSource;
 	}
 
@@ -194,7 +191,7 @@ public final class HighlightField implements JsonpSerializable {
 	 * API name: {@code fragmenter}
 	 */
 	@Nullable
-	public HighlighterFragmenter fragmenter() {
+	public final HighlighterFragmenter fragmenter() {
 		return this.fragmenter;
 	}
 
@@ -202,7 +199,7 @@ public final class HighlightField implements JsonpSerializable {
 	 * API name: {@code fragment_offset}
 	 */
 	@Nullable
-	public Integer fragmentOffset() {
+	public final Integer fragmentOffset() {
 		return this.fragmentOffset;
 	}
 
@@ -210,7 +207,7 @@ public final class HighlightField implements JsonpSerializable {
 	 * API name: {@code fragment_size}
 	 */
 	@Nullable
-	public Integer fragmentSize() {
+	public final Integer fragmentSize() {
 		return this.fragmentSize;
 	}
 
@@ -218,15 +215,14 @@ public final class HighlightField implements JsonpSerializable {
 	 * API name: {@code highlight_query}
 	 */
 	@Nullable
-	public Query highlightQuery() {
+	public final Query highlightQuery() {
 		return this.highlightQuery;
 	}
 
 	/**
 	 * API name: {@code matched_fields}
 	 */
-	@Nullable
-	public List<String> matchedFields() {
+	public final List<String> matchedFields() {
 		return this.matchedFields;
 	}
 
@@ -234,7 +230,7 @@ public final class HighlightField implements JsonpSerializable {
 	 * API name: {@code max_fragment_length}
 	 */
 	@Nullable
-	public Integer maxFragmentLength() {
+	public final Integer maxFragmentLength() {
 		return this.maxFragmentLength;
 	}
 
@@ -242,7 +238,7 @@ public final class HighlightField implements JsonpSerializable {
 	 * API name: {@code no_match_size}
 	 */
 	@Nullable
-	public Integer noMatchSize() {
+	public final Integer noMatchSize() {
 		return this.noMatchSize;
 	}
 
@@ -250,7 +246,7 @@ public final class HighlightField implements JsonpSerializable {
 	 * API name: {@code number_of_fragments}
 	 */
 	@Nullable
-	public Integer numberOfFragments() {
+	public final Integer numberOfFragments() {
 		return this.numberOfFragments;
 	}
 
@@ -258,7 +254,7 @@ public final class HighlightField implements JsonpSerializable {
 	 * API name: {@code order}
 	 */
 	@Nullable
-	public HighlighterOrder order() {
+	public final HighlighterOrder order() {
 		return this.order;
 	}
 
@@ -266,23 +262,21 @@ public final class HighlightField implements JsonpSerializable {
 	 * API name: {@code phrase_limit}
 	 */
 	@Nullable
-	public Integer phraseLimit() {
+	public final Integer phraseLimit() {
 		return this.phraseLimit;
 	}
 
 	/**
 	 * API name: {@code post_tags}
 	 */
-	@Nullable
-	public List<String> postTags() {
+	public final List<String> postTags() {
 		return this.postTags;
 	}
 
 	/**
 	 * API name: {@code pre_tags}
 	 */
-	@Nullable
-	public List<String> preTags() {
+	public final List<String> preTags() {
 		return this.preTags;
 	}
 
@@ -290,7 +284,7 @@ public final class HighlightField implements JsonpSerializable {
 	 * API name: {@code require_field_match}
 	 */
 	@Nullable
-	public Boolean requireFieldMatch() {
+	public final Boolean requireFieldMatch() {
 		return this.requireFieldMatch;
 	}
 
@@ -298,7 +292,7 @@ public final class HighlightField implements JsonpSerializable {
 	 * API name: {@code tags_schema}
 	 */
 	@Nullable
-	public HighlighterTagsSchema tagsSchema() {
+	public final HighlighterTagsSchema tagsSchema() {
 		return this.tagsSchema;
 	}
 
@@ -306,7 +300,7 @@ public final class HighlightField implements JsonpSerializable {
 	 * API name: {@code type}
 	 */
 	@Nullable
-	public HighlighterType type() {
+	public final HighlighterType type() {
 		return this.type;
 	}
 
@@ -322,65 +316,54 @@ public final class HighlightField implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.boundaryChars != null) {
-
 			generator.writeKey("boundary_chars");
 			generator.write(this.boundaryChars);
 
 		}
 		if (this.boundaryMaxScan != null) {
-
 			generator.writeKey("boundary_max_scan");
 			generator.write(this.boundaryMaxScan);
 
 		}
 		if (this.boundaryScanner != null) {
-
 			generator.writeKey("boundary_scanner");
 			this.boundaryScanner.serialize(generator, mapper);
 		}
 		if (this.boundaryScannerLocale != null) {
-
 			generator.writeKey("boundary_scanner_locale");
 			generator.write(this.boundaryScannerLocale);
 
 		}
 		if (this.field != null) {
-
 			generator.writeKey("field");
 			generator.write(this.field);
 
 		}
 		if (this.forceSource != null) {
-
 			generator.writeKey("force_source");
 			generator.write(this.forceSource);
 
 		}
 		if (this.fragmenter != null) {
-
 			generator.writeKey("fragmenter");
 			this.fragmenter.serialize(generator, mapper);
 		}
 		if (this.fragmentOffset != null) {
-
 			generator.writeKey("fragment_offset");
 			generator.write(this.fragmentOffset);
 
 		}
 		if (this.fragmentSize != null) {
-
 			generator.writeKey("fragment_size");
 			generator.write(this.fragmentSize);
 
 		}
 		if (this.highlightQuery != null) {
-
 			generator.writeKey("highlight_query");
 			this.highlightQuery.serialize(generator, mapper);
 
 		}
-		if (this.matchedFields != null) {
-
+		if (ModelTypeHelper.isDefined(this.matchedFields)) {
 			generator.writeKey("matched_fields");
 			generator.writeStartArray();
 			for (String item0 : this.matchedFields) {
@@ -391,36 +374,30 @@ public final class HighlightField implements JsonpSerializable {
 
 		}
 		if (this.maxFragmentLength != null) {
-
 			generator.writeKey("max_fragment_length");
 			generator.write(this.maxFragmentLength);
 
 		}
 		if (this.noMatchSize != null) {
-
 			generator.writeKey("no_match_size");
 			generator.write(this.noMatchSize);
 
 		}
 		if (this.numberOfFragments != null) {
-
 			generator.writeKey("number_of_fragments");
 			generator.write(this.numberOfFragments);
 
 		}
 		if (this.order != null) {
-
 			generator.writeKey("order");
 			this.order.serialize(generator, mapper);
 		}
 		if (this.phraseLimit != null) {
-
 			generator.writeKey("phrase_limit");
 			generator.write(this.phraseLimit);
 
 		}
-		if (this.postTags != null) {
-
+		if (ModelTypeHelper.isDefined(this.postTags)) {
 			generator.writeKey("post_tags");
 			generator.writeStartArray();
 			for (String item0 : this.postTags) {
@@ -430,8 +407,7 @@ public final class HighlightField implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (this.preTags != null) {
-
+		if (ModelTypeHelper.isDefined(this.preTags)) {
 			generator.writeKey("pre_tags");
 			generator.writeStartArray();
 			for (String item0 : this.preTags) {
@@ -442,18 +418,15 @@ public final class HighlightField implements JsonpSerializable {
 
 		}
 		if (this.requireFieldMatch != null) {
-
 			generator.writeKey("require_field_match");
 			generator.write(this.requireFieldMatch);
 
 		}
 		if (this.tagsSchema != null) {
-
 			generator.writeKey("tags_schema");
 			this.tagsSchema.serialize(generator, mapper);
 		}
 		if (this.type != null) {
-
 			generator.writeKey("type");
 			this.type.serialize(generator, mapper);
 		}
@@ -465,7 +438,7 @@ public final class HighlightField implements JsonpSerializable {
 	/**
 	 * Builder for {@link HighlightField}.
 	 */
-	public static class Builder implements ObjectBuilder<HighlightField> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<HighlightField> {
 		@Nullable
 		private String boundaryChars;
 
@@ -532,7 +505,7 @@ public final class HighlightField implements JsonpSerializable {
 		/**
 		 * API name: {@code boundary_chars}
 		 */
-		public Builder boundaryChars(@Nullable String value) {
+		public final Builder boundaryChars(@Nullable String value) {
 			this.boundaryChars = value;
 			return this;
 		}
@@ -540,7 +513,7 @@ public final class HighlightField implements JsonpSerializable {
 		/**
 		 * API name: {@code boundary_max_scan}
 		 */
-		public Builder boundaryMaxScan(@Nullable Integer value) {
+		public final Builder boundaryMaxScan(@Nullable Integer value) {
 			this.boundaryMaxScan = value;
 			return this;
 		}
@@ -548,7 +521,7 @@ public final class HighlightField implements JsonpSerializable {
 		/**
 		 * API name: {@code boundary_scanner}
 		 */
-		public Builder boundaryScanner(@Nullable BoundaryScanner value) {
+		public final Builder boundaryScanner(@Nullable BoundaryScanner value) {
 			this.boundaryScanner = value;
 			return this;
 		}
@@ -556,7 +529,7 @@ public final class HighlightField implements JsonpSerializable {
 		/**
 		 * API name: {@code boundary_scanner_locale}
 		 */
-		public Builder boundaryScannerLocale(@Nullable String value) {
+		public final Builder boundaryScannerLocale(@Nullable String value) {
 			this.boundaryScannerLocale = value;
 			return this;
 		}
@@ -564,7 +537,7 @@ public final class HighlightField implements JsonpSerializable {
 		/**
 		 * API name: {@code field}
 		 */
-		public Builder field(@Nullable String value) {
+		public final Builder field(@Nullable String value) {
 			this.field = value;
 			return this;
 		}
@@ -572,7 +545,7 @@ public final class HighlightField implements JsonpSerializable {
 		/**
 		 * API name: {@code force_source}
 		 */
-		public Builder forceSource(@Nullable Boolean value) {
+		public final Builder forceSource(@Nullable Boolean value) {
 			this.forceSource = value;
 			return this;
 		}
@@ -580,7 +553,7 @@ public final class HighlightField implements JsonpSerializable {
 		/**
 		 * API name: {@code fragmenter}
 		 */
-		public Builder fragmenter(@Nullable HighlighterFragmenter value) {
+		public final Builder fragmenter(@Nullable HighlighterFragmenter value) {
 			this.fragmenter = value;
 			return this;
 		}
@@ -588,7 +561,7 @@ public final class HighlightField implements JsonpSerializable {
 		/**
 		 * API name: {@code fragment_offset}
 		 */
-		public Builder fragmentOffset(@Nullable Integer value) {
+		public final Builder fragmentOffset(@Nullable Integer value) {
 			this.fragmentOffset = value;
 			return this;
 		}
@@ -596,7 +569,7 @@ public final class HighlightField implements JsonpSerializable {
 		/**
 		 * API name: {@code fragment_size}
 		 */
-		public Builder fragmentSize(@Nullable Integer value) {
+		public final Builder fragmentSize(@Nullable Integer value) {
 			this.fragmentSize = value;
 			return this;
 		}
@@ -604,7 +577,7 @@ public final class HighlightField implements JsonpSerializable {
 		/**
 		 * API name: {@code highlight_query}
 		 */
-		public Builder highlightQuery(@Nullable Query value) {
+		public final Builder highlightQuery(@Nullable Query value) {
 			this.highlightQuery = value;
 			return this;
 		}
@@ -612,14 +585,14 @@ public final class HighlightField implements JsonpSerializable {
 		/**
 		 * API name: {@code highlight_query}
 		 */
-		public Builder highlightQuery(Function<Query.Builder, ObjectBuilder<Query>> fn) {
+		public final Builder highlightQuery(Function<Query.Builder, ObjectBuilder<Query>> fn) {
 			return this.highlightQuery(fn.apply(new Query.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code matched_fields}
 		 */
-		public Builder matchedFields(@Nullable List<String> value) {
+		public final Builder matchedFields(@Nullable List<String> value) {
 			this.matchedFields = value;
 			return this;
 		}
@@ -627,26 +600,15 @@ public final class HighlightField implements JsonpSerializable {
 		/**
 		 * API name: {@code matched_fields}
 		 */
-		public Builder matchedFields(String... value) {
+		public final Builder matchedFields(String... value) {
 			this.matchedFields = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #matchedFields(List)}, creating the list if needed.
-		 */
-		public Builder addMatchedFields(String value) {
-			if (this.matchedFields == null) {
-				this.matchedFields = new ArrayList<>();
-			}
-			this.matchedFields.add(value);
 			return this;
 		}
 
 		/**
 		 * API name: {@code max_fragment_length}
 		 */
-		public Builder maxFragmentLength(@Nullable Integer value) {
+		public final Builder maxFragmentLength(@Nullable Integer value) {
 			this.maxFragmentLength = value;
 			return this;
 		}
@@ -654,7 +616,7 @@ public final class HighlightField implements JsonpSerializable {
 		/**
 		 * API name: {@code no_match_size}
 		 */
-		public Builder noMatchSize(@Nullable Integer value) {
+		public final Builder noMatchSize(@Nullable Integer value) {
 			this.noMatchSize = value;
 			return this;
 		}
@@ -662,7 +624,7 @@ public final class HighlightField implements JsonpSerializable {
 		/**
 		 * API name: {@code number_of_fragments}
 		 */
-		public Builder numberOfFragments(@Nullable Integer value) {
+		public final Builder numberOfFragments(@Nullable Integer value) {
 			this.numberOfFragments = value;
 			return this;
 		}
@@ -670,7 +632,7 @@ public final class HighlightField implements JsonpSerializable {
 		/**
 		 * API name: {@code order}
 		 */
-		public Builder order(@Nullable HighlighterOrder value) {
+		public final Builder order(@Nullable HighlighterOrder value) {
 			this.order = value;
 			return this;
 		}
@@ -678,7 +640,7 @@ public final class HighlightField implements JsonpSerializable {
 		/**
 		 * API name: {@code phrase_limit}
 		 */
-		public Builder phraseLimit(@Nullable Integer value) {
+		public final Builder phraseLimit(@Nullable Integer value) {
 			this.phraseLimit = value;
 			return this;
 		}
@@ -686,7 +648,7 @@ public final class HighlightField implements JsonpSerializable {
 		/**
 		 * API name: {@code post_tags}
 		 */
-		public Builder postTags(@Nullable List<String> value) {
+		public final Builder postTags(@Nullable List<String> value) {
 			this.postTags = value;
 			return this;
 		}
@@ -694,26 +656,15 @@ public final class HighlightField implements JsonpSerializable {
 		/**
 		 * API name: {@code post_tags}
 		 */
-		public Builder postTags(String... value) {
+		public final Builder postTags(String... value) {
 			this.postTags = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #postTags(List)}, creating the list if needed.
-		 */
-		public Builder addPostTags(String value) {
-			if (this.postTags == null) {
-				this.postTags = new ArrayList<>();
-			}
-			this.postTags.add(value);
 			return this;
 		}
 
 		/**
 		 * API name: {@code pre_tags}
 		 */
-		public Builder preTags(@Nullable List<String> value) {
+		public final Builder preTags(@Nullable List<String> value) {
 			this.preTags = value;
 			return this;
 		}
@@ -721,26 +672,15 @@ public final class HighlightField implements JsonpSerializable {
 		/**
 		 * API name: {@code pre_tags}
 		 */
-		public Builder preTags(String... value) {
+		public final Builder preTags(String... value) {
 			this.preTags = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #preTags(List)}, creating the list if needed.
-		 */
-		public Builder addPreTags(String value) {
-			if (this.preTags == null) {
-				this.preTags = new ArrayList<>();
-			}
-			this.preTags.add(value);
 			return this;
 		}
 
 		/**
 		 * API name: {@code require_field_match}
 		 */
-		public Builder requireFieldMatch(@Nullable Boolean value) {
+		public final Builder requireFieldMatch(@Nullable Boolean value) {
 			this.requireFieldMatch = value;
 			return this;
 		}
@@ -748,7 +688,7 @@ public final class HighlightField implements JsonpSerializable {
 		/**
 		 * API name: {@code tags_schema}
 		 */
-		public Builder tagsSchema(@Nullable HighlighterTagsSchema value) {
+		public final Builder tagsSchema(@Nullable HighlighterTagsSchema value) {
 			this.tagsSchema = value;
 			return this;
 		}
@@ -756,7 +696,7 @@ public final class HighlightField implements JsonpSerializable {
 		/**
 		 * API name: {@code type}
 		 */
-		public Builder type(@Nullable HighlighterType value) {
+		public final Builder type(@Nullable HighlighterType value) {
 			this.type = value;
 			return this;
 		}
@@ -768,6 +708,7 @@ public final class HighlightField implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public HighlightField build() {
+			_checkSingleUse();
 
 			return new HighlightField(this);
 		}

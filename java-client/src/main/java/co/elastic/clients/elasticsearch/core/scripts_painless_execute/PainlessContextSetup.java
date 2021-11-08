@@ -32,7 +32,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -41,7 +43,7 @@ import javax.annotation.Nullable;
 
 // typedef: _global.scripts_painless_execute.PainlessContextSetup
 @JsonpDeserializable
-public final class PainlessContextSetup implements JsonpSerializable {
+public class PainlessContextSetup implements JsonpSerializable {
 	private final JsonData document;
 
 	private final String index;
@@ -50,36 +52,36 @@ public final class PainlessContextSetup implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public PainlessContextSetup(Builder builder) {
+	private PainlessContextSetup(Builder builder) {
 
-		this.document = Objects.requireNonNull(builder.document, "document");
-		this.index = Objects.requireNonNull(builder.index, "index");
-		this.query = Objects.requireNonNull(builder.query, "query");
+		this.document = ModelTypeHelper.requireNonNull(builder.document, this, "document");
+		this.index = ModelTypeHelper.requireNonNull(builder.index, this, "index");
+		this.query = ModelTypeHelper.requireNonNull(builder.query, this, "query");
 
 	}
 
-	public PainlessContextSetup(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static PainlessContextSetup of(Function<Builder, ObjectBuilder<PainlessContextSetup>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code document}
 	 */
-	public JsonData document() {
+	public final JsonData document() {
 		return this.document;
 	}
 
 	/**
 	 * Required - API name: {@code index}
 	 */
-	public String index() {
+	public final String index() {
 		return this.index;
 	}
 
 	/**
 	 * Required - API name: {@code query}
 	 */
-	public Query query() {
+	public final Query query() {
 		return this.query;
 	}
 
@@ -110,7 +112,7 @@ public final class PainlessContextSetup implements JsonpSerializable {
 	/**
 	 * Builder for {@link PainlessContextSetup}.
 	 */
-	public static class Builder implements ObjectBuilder<PainlessContextSetup> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PainlessContextSetup> {
 		private JsonData document;
 
 		private String index;
@@ -120,7 +122,7 @@ public final class PainlessContextSetup implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code document}
 		 */
-		public Builder document(JsonData value) {
+		public final Builder document(JsonData value) {
 			this.document = value;
 			return this;
 		}
@@ -128,7 +130,7 @@ public final class PainlessContextSetup implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code index}
 		 */
-		public Builder index(String value) {
+		public final Builder index(String value) {
 			this.index = value;
 			return this;
 		}
@@ -136,7 +138,7 @@ public final class PainlessContextSetup implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code query}
 		 */
-		public Builder query(Query value) {
+		public final Builder query(Query value) {
 			this.query = value;
 			return this;
 		}
@@ -144,7 +146,7 @@ public final class PainlessContextSetup implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code query}
 		 */
-		public Builder query(Function<Query.Builder, ObjectBuilder<Query>> fn) {
+		public final Builder query(Function<Query.Builder, ObjectBuilder<Query>> fn) {
 			return this.query(fn.apply(new Query.Builder()).build());
 		}
 
@@ -155,6 +157,7 @@ public final class PainlessContextSetup implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public PainlessContextSetup build() {
+			_checkSingleUse();
 
 			return new PainlessContextSetup(this);
 		}

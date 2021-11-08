@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.lang.String;
@@ -40,7 +42,7 @@ import javax.annotation.Nullable;
 
 // typedef: security.create_api_key.Response
 @JsonpDeserializable
-public final class CreateApiKeyResponse implements JsonpSerializable {
+public class CreateApiKeyResponse implements JsonpSerializable {
 	private final String apiKey;
 
 	@Nullable
@@ -52,23 +54,23 @@ public final class CreateApiKeyResponse implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public CreateApiKeyResponse(Builder builder) {
+	private CreateApiKeyResponse(Builder builder) {
 
-		this.apiKey = Objects.requireNonNull(builder.apiKey, "api_key");
+		this.apiKey = ModelTypeHelper.requireNonNull(builder.apiKey, this, "apiKey");
 		this.expiration = builder.expiration;
-		this.id = Objects.requireNonNull(builder.id, "id");
-		this.name = Objects.requireNonNull(builder.name, "name");
+		this.id = ModelTypeHelper.requireNonNull(builder.id, this, "id");
+		this.name = ModelTypeHelper.requireNonNull(builder.name, this, "name");
 
 	}
 
-	public CreateApiKeyResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static CreateApiKeyResponse of(Function<Builder, ObjectBuilder<CreateApiKeyResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code api_key}
 	 */
-	public String apiKey() {
+	public final String apiKey() {
 		return this.apiKey;
 	}
 
@@ -76,21 +78,21 @@ public final class CreateApiKeyResponse implements JsonpSerializable {
 	 * API name: {@code expiration}
 	 */
 	@Nullable
-	public Long expiration() {
+	public final Long expiration() {
 		return this.expiration;
 	}
 
 	/**
 	 * Required - API name: {@code id}
 	 */
-	public String id() {
+	public final String id() {
 		return this.id;
 	}
 
 	/**
 	 * Required - API name: {@code name}
 	 */
-	public String name() {
+	public final String name() {
 		return this.name;
 	}
 
@@ -109,12 +111,10 @@ public final class CreateApiKeyResponse implements JsonpSerializable {
 		generator.write(this.apiKey);
 
 		if (this.expiration != null) {
-
 			generator.writeKey("expiration");
 			generator.write(this.expiration);
 
 		}
-
 		generator.writeKey("id");
 		generator.write(this.id);
 
@@ -128,7 +128,7 @@ public final class CreateApiKeyResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link CreateApiKeyResponse}.
 	 */
-	public static class Builder implements ObjectBuilder<CreateApiKeyResponse> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<CreateApiKeyResponse> {
 		private String apiKey;
 
 		@Nullable
@@ -141,7 +141,7 @@ public final class CreateApiKeyResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code api_key}
 		 */
-		public Builder apiKey(String value) {
+		public final Builder apiKey(String value) {
 			this.apiKey = value;
 			return this;
 		}
@@ -149,7 +149,7 @@ public final class CreateApiKeyResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code expiration}
 		 */
-		public Builder expiration(@Nullable Long value) {
+		public final Builder expiration(@Nullable Long value) {
 			this.expiration = value;
 			return this;
 		}
@@ -157,7 +157,7 @@ public final class CreateApiKeyResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code id}
 		 */
-		public Builder id(String value) {
+		public final Builder id(String value) {
 			this.id = value;
 			return this;
 		}
@@ -165,7 +165,7 @@ public final class CreateApiKeyResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code name}
 		 */
-		public Builder name(String value) {
+		public final Builder name(String value) {
 			this.name = value;
 			return this;
 		}
@@ -177,6 +177,7 @@ public final class CreateApiKeyResponse implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public CreateApiKeyResponse build() {
+			_checkSingleUse();
 
 			return new CreateApiKeyResponse(this);
 		}

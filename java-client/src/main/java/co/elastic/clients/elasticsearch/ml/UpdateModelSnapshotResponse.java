@@ -30,6 +30,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
@@ -38,33 +39,32 @@ import javax.annotation.Nullable;
 
 // typedef: ml.update_model_snapshot.Response
 @JsonpDeserializable
-public final class UpdateModelSnapshotResponse extends AcknowledgedResponseBase {
+public class UpdateModelSnapshotResponse extends AcknowledgedResponseBase {
 	private final ModelSnapshot model;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public UpdateModelSnapshotResponse(Builder builder) {
+	private UpdateModelSnapshotResponse(Builder builder) {
 		super(builder);
 
-		this.model = Objects.requireNonNull(builder.model, "model");
+		this.model = ModelTypeHelper.requireNonNull(builder.model, this, "model");
 
 	}
 
-	public UpdateModelSnapshotResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static UpdateModelSnapshotResponse of(Function<Builder, ObjectBuilder<UpdateModelSnapshotResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code model}
 	 */
-	public ModelSnapshot model() {
+	public final ModelSnapshot model() {
 		return this.model;
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
-
 		generator.writeKey("model");
 		this.model.serialize(generator, mapper);
 
@@ -83,7 +83,7 @@ public final class UpdateModelSnapshotResponse extends AcknowledgedResponseBase 
 		/**
 		 * Required - API name: {@code model}
 		 */
-		public Builder model(ModelSnapshot value) {
+		public final Builder model(ModelSnapshot value) {
 			this.model = value;
 			return this;
 		}
@@ -91,7 +91,7 @@ public final class UpdateModelSnapshotResponse extends AcknowledgedResponseBase 
 		/**
 		 * Required - API name: {@code model}
 		 */
-		public Builder model(Function<ModelSnapshot.Builder, ObjectBuilder<ModelSnapshot>> fn) {
+		public final Builder model(Function<ModelSnapshot.Builder, ObjectBuilder<ModelSnapshot>> fn) {
 			return this.model(fn.apply(new ModelSnapshot.Builder()).build());
 		}
 
@@ -107,6 +107,7 @@ public final class UpdateModelSnapshotResponse extends AcknowledgedResponseBase 
 		 *             if some of the required fields are null.
 		 */
 		public UpdateModelSnapshotResponse build() {
+			_checkSingleUse();
 
 			return new UpdateModelSnapshotResponse(this);
 		}

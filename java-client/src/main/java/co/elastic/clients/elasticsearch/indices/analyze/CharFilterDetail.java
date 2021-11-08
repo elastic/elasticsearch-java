@@ -32,9 +32,9 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
@@ -43,35 +43,35 @@ import javax.annotation.Nullable;
 
 // typedef: indices.analyze.CharFilterDetail
 @JsonpDeserializable
-public final class CharFilterDetail implements JsonpSerializable {
+public class CharFilterDetail implements JsonpSerializable {
 	private final List<String> filteredText;
 
 	private final String name;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public CharFilterDetail(Builder builder) {
+	private CharFilterDetail(Builder builder) {
 
-		this.filteredText = ModelTypeHelper.unmodifiableNonNull(builder.filteredText, "filtered_text");
-		this.name = Objects.requireNonNull(builder.name, "name");
+		this.filteredText = ModelTypeHelper.unmodifiableRequired(builder.filteredText, this, "filteredText");
+		this.name = ModelTypeHelper.requireNonNull(builder.name, this, "name");
 
 	}
 
-	public CharFilterDetail(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static CharFilterDetail of(Function<Builder, ObjectBuilder<CharFilterDetail>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code filtered_text}
 	 */
-	public List<String> filteredText() {
+	public final List<String> filteredText() {
 		return this.filteredText;
 	}
 
 	/**
 	 * Required - API name: {@code name}
 	 */
-	public String name() {
+	public final String name() {
 		return this.name;
 	}
 
@@ -86,14 +86,16 @@ public final class CharFilterDetail implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("filtered_text");
-		generator.writeStartArray();
-		for (String item0 : this.filteredText) {
-			generator.write(item0);
+		if (ModelTypeHelper.isDefined(this.filteredText)) {
+			generator.writeKey("filtered_text");
+			generator.writeStartArray();
+			for (String item0 : this.filteredText) {
+				generator.write(item0);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
-
 		generator.writeKey("name");
 		generator.write(this.name);
 
@@ -104,7 +106,7 @@ public final class CharFilterDetail implements JsonpSerializable {
 	/**
 	 * Builder for {@link CharFilterDetail}.
 	 */
-	public static class Builder implements ObjectBuilder<CharFilterDetail> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<CharFilterDetail> {
 		private List<String> filteredText;
 
 		private String name;
@@ -112,7 +114,7 @@ public final class CharFilterDetail implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code filtered_text}
 		 */
-		public Builder filteredText(List<String> value) {
+		public final Builder filteredText(List<String> value) {
 			this.filteredText = value;
 			return this;
 		}
@@ -120,26 +122,15 @@ public final class CharFilterDetail implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code filtered_text}
 		 */
-		public Builder filteredText(String... value) {
+		public final Builder filteredText(String... value) {
 			this.filteredText = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #filteredText(List)}, creating the list if needed.
-		 */
-		public Builder addFilteredText(String value) {
-			if (this.filteredText == null) {
-				this.filteredText = new ArrayList<>();
-			}
-			this.filteredText.add(value);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code name}
 		 */
-		public Builder name(String value) {
+		public final Builder name(String value) {
 			this.name = value;
 			return this;
 		}
@@ -151,6 +142,7 @@ public final class CharFilterDetail implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public CharFilterDetail build() {
+			_checkSingleUse();
 
 			return new CharFilterDetail(this);
 		}

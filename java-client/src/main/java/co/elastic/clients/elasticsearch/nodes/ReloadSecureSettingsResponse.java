@@ -34,7 +34,6 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
@@ -42,7 +41,7 @@ import javax.annotation.Nullable;
 
 // typedef: nodes.reload_secure_settings.Response
 @JsonpDeserializable
-public final class ReloadSecureSettingsResponse extends NodesResponseBase {
+public class ReloadSecureSettingsResponse extends NodesResponseBase {
 	private final String clusterName;
 
 	private final Map<String, JsonValue /*
@@ -51,52 +50,54 @@ public final class ReloadSecureSettingsResponse extends NodesResponseBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public ReloadSecureSettingsResponse(Builder builder) {
+	private ReloadSecureSettingsResponse(Builder builder) {
 		super(builder);
 
-		this.clusterName = Objects.requireNonNull(builder.clusterName, "cluster_name");
-		this.nodes = ModelTypeHelper.unmodifiableNonNull(builder.nodes, "nodes");
+		this.clusterName = ModelTypeHelper.requireNonNull(builder.clusterName, this, "clusterName");
+		this.nodes = ModelTypeHelper.unmodifiableRequired(builder.nodes, this, "nodes");
 
 	}
 
-	public ReloadSecureSettingsResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ReloadSecureSettingsResponse of(Function<Builder, ObjectBuilder<ReloadSecureSettingsResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code cluster_name}
 	 */
-	public String clusterName() {
+	public final String clusterName() {
 		return this.clusterName;
 	}
 
 	/**
 	 * Required - API name: {@code nodes}
 	 */
-	public Map<String, JsonValue /*
-									 * Union(nodes._types.Stats | nodes.reload_secure_settings.NodeReloadException)
-									 */> nodes() {
+	public final Map<String, JsonValue /*
+										 * Union(nodes._types.Stats | nodes.reload_secure_settings.NodeReloadException)
+										 */> nodes() {
 		return this.nodes;
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
-
 		generator.writeKey("cluster_name");
 		generator.write(this.clusterName);
 
-		generator.writeKey("nodes");
-		generator.writeStartObject();
-		for (Map.Entry<String, JsonValue /*
-											 * Union(nodes._types.Stats |
-											 * nodes.reload_secure_settings.NodeReloadException)
-											 */> item0 : this.nodes.entrySet()) {
-			generator.writeKey(item0.getKey());
-			generator.write(item0.getValue());
+		if (ModelTypeHelper.isDefined(this.nodes)) {
+			generator.writeKey("nodes");
+			generator.writeStartObject();
+			for (Map.Entry<String, JsonValue /*
+												 * Union(nodes._types.Stats |
+												 * nodes.reload_secure_settings.NodeReloadException)
+												 */> item0 : this.nodes.entrySet()) {
+				generator.writeKey(item0.getKey());
+				generator.write(item0.getValue());
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
 
 	}
 
@@ -117,7 +118,7 @@ public final class ReloadSecureSettingsResponse extends NodesResponseBase {
 		/**
 		 * Required - API name: {@code cluster_name}
 		 */
-		public Builder clusterName(String value) {
+		public final Builder clusterName(String value) {
 			this.clusterName = value;
 			return this;
 		}
@@ -125,25 +126,11 @@ public final class ReloadSecureSettingsResponse extends NodesResponseBase {
 		/**
 		 * Required - API name: {@code nodes}
 		 */
-		public Builder nodes(
+		public final Builder nodes(
 				Map<String, JsonValue /*
 										 * Union(nodes._types.Stats | nodes.reload_secure_settings.NodeReloadException)
 										 */> value) {
 			this.nodes = value;
-			return this;
-		}
-
-		/**
-		 * Add a key/value to {@link #nodes(Map)}, creating the map if needed.
-		 */
-		public Builder putNodes(String key,
-				JsonValue /*
-							 * Union(nodes._types.Stats | nodes.reload_secure_settings.NodeReloadException)
-							 */ value) {
-			if (this.nodes == null) {
-				this.nodes = new HashMap<>();
-			}
-			this.nodes.put(key, value);
 			return this;
 		}
 
@@ -159,6 +146,7 @@ public final class ReloadSecureSettingsResponse extends NodesResponseBase {
 		 *             if some of the required fields are null.
 		 */
 		public ReloadSecureSettingsResponse build() {
+			_checkSingleUse();
 
 			return new ReloadSecureSettingsResponse(this);
 		}

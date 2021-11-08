@@ -36,7 +36,9 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.SimpleEndpoint;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
@@ -48,7 +50,7 @@ import javax.annotation.Nullable;
 
 // typedef: transform.update_transform.Request
 @JsonpDeserializable
-public final class UpdateTransformRequest extends RequestBase implements JsonpSerializable {
+public class UpdateTransformRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
 	private final Boolean deferValidation;
 
@@ -77,7 +79,7 @@ public final class UpdateTransformRequest extends RequestBase implements JsonpSe
 
 	// ---------------------------------------------------------------------------------------------
 
-	public UpdateTransformRequest(Builder builder) {
+	private UpdateTransformRequest(Builder builder) {
 
 		this.deferValidation = builder.deferValidation;
 		this.description = builder.description;
@@ -87,12 +89,12 @@ public final class UpdateTransformRequest extends RequestBase implements JsonpSe
 		this.settings = builder.settings;
 		this.source = builder.source;
 		this.sync = builder.sync;
-		this.transformId = Objects.requireNonNull(builder.transformId, "transform_id");
+		this.transformId = ModelTypeHelper.requireNonNull(builder.transformId, this, "transformId");
 
 	}
 
-	public UpdateTransformRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static UpdateTransformRequest of(Function<Builder, ObjectBuilder<UpdateTransformRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -102,7 +104,7 @@ public final class UpdateTransformRequest extends RequestBase implements JsonpSe
 	 * API name: {@code defer_validation}
 	 */
 	@Nullable
-	public Boolean deferValidation() {
+	public final Boolean deferValidation() {
 		return this.deferValidation;
 	}
 
@@ -112,7 +114,7 @@ public final class UpdateTransformRequest extends RequestBase implements JsonpSe
 	 * API name: {@code description}
 	 */
 	@Nullable
-	public String description() {
+	public final String description() {
 		return this.description;
 	}
 
@@ -122,7 +124,7 @@ public final class UpdateTransformRequest extends RequestBase implements JsonpSe
 	 * API name: {@code dest}
 	 */
 	@Nullable
-	public Destination dest() {
+	public final Destination dest() {
 		return this.dest;
 	}
 
@@ -135,7 +137,7 @@ public final class UpdateTransformRequest extends RequestBase implements JsonpSe
 	 * API name: {@code frequency}
 	 */
 	@Nullable
-	public String frequency() {
+	public final String frequency() {
 		return this.frequency;
 	}
 
@@ -146,7 +148,7 @@ public final class UpdateTransformRequest extends RequestBase implements JsonpSe
 	 * API name: {@code retention_policy}
 	 */
 	@Nullable
-	public RetentionPolicy retentionPolicy() {
+	public final RetentionPolicy retentionPolicy() {
 		return this.retentionPolicy;
 	}
 
@@ -156,7 +158,7 @@ public final class UpdateTransformRequest extends RequestBase implements JsonpSe
 	 * API name: {@code settings}
 	 */
 	@Nullable
-	public Settings settings() {
+	public final Settings settings() {
 		return this.settings;
 	}
 
@@ -166,7 +168,7 @@ public final class UpdateTransformRequest extends RequestBase implements JsonpSe
 	 * API name: {@code source}
 	 */
 	@Nullable
-	public Source source() {
+	public final Source source() {
 		return this.source;
 	}
 
@@ -176,7 +178,7 @@ public final class UpdateTransformRequest extends RequestBase implements JsonpSe
 	 * API name: {@code sync}
 	 */
 	@Nullable
-	public Sync sync() {
+	public final Sync sync() {
 		return this.sync;
 	}
 
@@ -187,7 +189,7 @@ public final class UpdateTransformRequest extends RequestBase implements JsonpSe
 	 * <p>
 	 * API name: {@code transform_id}
 	 */
-	public String transformId() {
+	public final String transformId() {
 		return this.transformId;
 	}
 
@@ -203,43 +205,36 @@ public final class UpdateTransformRequest extends RequestBase implements JsonpSe
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.description != null) {
-
 			generator.writeKey("description");
 			generator.write(this.description);
 
 		}
 		if (this.dest != null) {
-
 			generator.writeKey("dest");
 			this.dest.serialize(generator, mapper);
 
 		}
 		if (this.frequency != null) {
-
 			generator.writeKey("frequency");
 			generator.write(this.frequency);
 
 		}
 		if (this.retentionPolicy != null) {
-
 			generator.writeKey("retention_policy");
 			this.retentionPolicy.serialize(generator, mapper);
 
 		}
 		if (this.settings != null) {
-
 			generator.writeKey("settings");
 			this.settings.serialize(generator, mapper);
 
 		}
 		if (this.source != null) {
-
 			generator.writeKey("source");
 			this.source.serialize(generator, mapper);
 
 		}
 		if (this.sync != null) {
-
 			generator.writeKey("sync");
 			this.sync.serialize(generator, mapper);
 
@@ -252,7 +247,7 @@ public final class UpdateTransformRequest extends RequestBase implements JsonpSe
 	/**
 	 * Builder for {@link UpdateTransformRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<UpdateTransformRequest> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<UpdateTransformRequest> {
 		@Nullable
 		private Boolean deferValidation;
 
@@ -285,7 +280,7 @@ public final class UpdateTransformRequest extends RequestBase implements JsonpSe
 		 * <p>
 		 * API name: {@code defer_validation}
 		 */
-		public Builder deferValidation(@Nullable Boolean value) {
+		public final Builder deferValidation(@Nullable Boolean value) {
 			this.deferValidation = value;
 			return this;
 		}
@@ -295,7 +290,7 @@ public final class UpdateTransformRequest extends RequestBase implements JsonpSe
 		 * <p>
 		 * API name: {@code description}
 		 */
-		public Builder description(@Nullable String value) {
+		public final Builder description(@Nullable String value) {
 			this.description = value;
 			return this;
 		}
@@ -305,7 +300,7 @@ public final class UpdateTransformRequest extends RequestBase implements JsonpSe
 		 * <p>
 		 * API name: {@code dest}
 		 */
-		public Builder dest(@Nullable Destination value) {
+		public final Builder dest(@Nullable Destination value) {
 			this.dest = value;
 			return this;
 		}
@@ -315,7 +310,7 @@ public final class UpdateTransformRequest extends RequestBase implements JsonpSe
 		 * <p>
 		 * API name: {@code dest}
 		 */
-		public Builder dest(Function<Destination.Builder, ObjectBuilder<Destination>> fn) {
+		public final Builder dest(Function<Destination.Builder, ObjectBuilder<Destination>> fn) {
 			return this.dest(fn.apply(new Destination.Builder()).build());
 		}
 
@@ -327,7 +322,7 @@ public final class UpdateTransformRequest extends RequestBase implements JsonpSe
 		 * <p>
 		 * API name: {@code frequency}
 		 */
-		public Builder frequency(@Nullable String value) {
+		public final Builder frequency(@Nullable String value) {
 			this.frequency = value;
 			return this;
 		}
@@ -338,7 +333,7 @@ public final class UpdateTransformRequest extends RequestBase implements JsonpSe
 		 * <p>
 		 * API name: {@code retention_policy}
 		 */
-		public Builder retentionPolicy(@Nullable RetentionPolicy value) {
+		public final Builder retentionPolicy(@Nullable RetentionPolicy value) {
 			this.retentionPolicy = value;
 			return this;
 		}
@@ -349,7 +344,7 @@ public final class UpdateTransformRequest extends RequestBase implements JsonpSe
 		 * <p>
 		 * API name: {@code retention_policy}
 		 */
-		public Builder retentionPolicy(Function<RetentionPolicy.Builder, ObjectBuilder<RetentionPolicy>> fn) {
+		public final Builder retentionPolicy(Function<RetentionPolicy.Builder, ObjectBuilder<RetentionPolicy>> fn) {
 			return this.retentionPolicy(fn.apply(new RetentionPolicy.Builder()).build());
 		}
 
@@ -358,7 +353,7 @@ public final class UpdateTransformRequest extends RequestBase implements JsonpSe
 		 * <p>
 		 * API name: {@code settings}
 		 */
-		public Builder settings(@Nullable Settings value) {
+		public final Builder settings(@Nullable Settings value) {
 			this.settings = value;
 			return this;
 		}
@@ -368,7 +363,7 @@ public final class UpdateTransformRequest extends RequestBase implements JsonpSe
 		 * <p>
 		 * API name: {@code settings}
 		 */
-		public Builder settings(Function<Settings.Builder, ObjectBuilder<Settings>> fn) {
+		public final Builder settings(Function<Settings.Builder, ObjectBuilder<Settings>> fn) {
 			return this.settings(fn.apply(new Settings.Builder()).build());
 		}
 
@@ -377,7 +372,7 @@ public final class UpdateTransformRequest extends RequestBase implements JsonpSe
 		 * <p>
 		 * API name: {@code source}
 		 */
-		public Builder source(@Nullable Source value) {
+		public final Builder source(@Nullable Source value) {
 			this.source = value;
 			return this;
 		}
@@ -387,7 +382,7 @@ public final class UpdateTransformRequest extends RequestBase implements JsonpSe
 		 * <p>
 		 * API name: {@code source}
 		 */
-		public Builder source(Function<Source.Builder, ObjectBuilder<Source>> fn) {
+		public final Builder source(Function<Source.Builder, ObjectBuilder<Source>> fn) {
 			return this.source(fn.apply(new Source.Builder()).build());
 		}
 
@@ -396,7 +391,7 @@ public final class UpdateTransformRequest extends RequestBase implements JsonpSe
 		 * <p>
 		 * API name: {@code sync}
 		 */
-		public Builder sync(@Nullable Sync value) {
+		public final Builder sync(@Nullable Sync value) {
 			this.sync = value;
 			return this;
 		}
@@ -406,7 +401,7 @@ public final class UpdateTransformRequest extends RequestBase implements JsonpSe
 		 * <p>
 		 * API name: {@code sync}
 		 */
-		public Builder sync(Function<Sync.Builder, ObjectBuilder<Sync>> fn) {
+		public final Builder sync(Function<Sync.Builder, ObjectBuilder<Sync>> fn) {
 			return this.sync(fn.apply(new Sync.Builder()).build());
 		}
 
@@ -417,7 +412,7 @@ public final class UpdateTransformRequest extends RequestBase implements JsonpSe
 		 * <p>
 		 * API name: {@code transform_id}
 		 */
-		public Builder transformId(String value) {
+		public final Builder transformId(String value) {
 			this.transformId = value;
 			return this;
 		}
@@ -429,6 +424,7 @@ public final class UpdateTransformRequest extends RequestBase implements JsonpSe
 		 *             if some of the required fields are null.
 		 */
 		public UpdateTransformRequest build() {
+			_checkSingleUse();
 
 			return new UpdateTransformRequest(this);
 		}

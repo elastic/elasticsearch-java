@@ -33,7 +33,6 @@ import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
@@ -42,21 +41,20 @@ import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.IdsQuery
 @JsonpDeserializable
-public final class IdsQuery extends QueryBase implements QueryVariant {
-	@Nullable
+public class IdsQuery extends QueryBase implements QueryVariant {
 	private final List<String> values;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public IdsQuery(Builder builder) {
+	private IdsQuery(Builder builder) {
 		super(builder);
 
 		this.values = ModelTypeHelper.unmodifiable(builder.values);
 
 	}
 
-	public IdsQuery(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static IdsQuery of(Function<Builder, ObjectBuilder<IdsQuery>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -70,16 +68,14 @@ public final class IdsQuery extends QueryBase implements QueryVariant {
 	/**
 	 * API name: {@code values}
 	 */
-	@Nullable
-	public List<String> values() {
+	public final List<String> values() {
 		return this.values;
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
-		if (this.values != null) {
-
+		if (ModelTypeHelper.isDefined(this.values)) {
 			generator.writeKey("values");
 			generator.writeStartArray();
 			for (String item0 : this.values) {
@@ -104,7 +100,7 @@ public final class IdsQuery extends QueryBase implements QueryVariant {
 		/**
 		 * API name: {@code values}
 		 */
-		public Builder values(@Nullable List<String> value) {
+		public final Builder values(@Nullable List<String> value) {
 			this.values = value;
 			return this;
 		}
@@ -112,19 +108,8 @@ public final class IdsQuery extends QueryBase implements QueryVariant {
 		/**
 		 * API name: {@code values}
 		 */
-		public Builder values(String... value) {
+		public final Builder values(String... value) {
 			this.values = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #values(List)}, creating the list if needed.
-		 */
-		public Builder addValues(String value) {
-			if (this.values == null) {
-				this.values = new ArrayList<>();
-			}
-			this.values.add(value);
 			return this;
 		}
 
@@ -140,6 +125,7 @@ public final class IdsQuery extends QueryBase implements QueryVariant {
 		 *             if some of the required fields are null.
 		 */
 		public IdsQuery build() {
+			_checkSingleUse();
 
 			return new IdsQuery(this);
 		}

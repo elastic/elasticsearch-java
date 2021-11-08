@@ -35,16 +35,16 @@ import java.util.function.Function;
 
 // typedef: _types.query_dsl.MatchAllQuery
 @JsonpDeserializable
-public final class MatchAllQuery extends QueryBase implements QueryVariant {
+public class MatchAllQuery extends QueryBase implements QueryVariant {
 	// ---------------------------------------------------------------------------------------------
 
-	public MatchAllQuery(Builder builder) {
+	private MatchAllQuery(Builder builder) {
 		super(builder);
 
 	}
 
-	public MatchAllQuery(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static MatchAllQuery of(Function<Builder, ObjectBuilder<MatchAllQuery>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -73,6 +73,7 @@ public final class MatchAllQuery extends QueryBase implements QueryVariant {
 		 *             if some of the required fields are null.
 		 */
 		public MatchAllQuery build() {
+			_checkSingleUse();
 
 			return new MatchAllQuery(this);
 		}

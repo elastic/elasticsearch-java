@@ -36,11 +36,11 @@ import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.SimpleEndpoint;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Long;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -50,7 +50,7 @@ import javax.annotation.Nullable;
 
 // typedef: ml.put_job.Request
 @JsonpDeserializable
-public final class PutJobRequest extends RequestBase implements JsonpSerializable {
+public class PutJobRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
 	private final Boolean allowLazyOpen;
 
@@ -75,7 +75,6 @@ public final class PutJobRequest extends RequestBase implements JsonpSerializabl
 	@Nullable
 	private final String description;
 
-	@Nullable
 	private final List<String> groups;
 
 	private final String jobId;
@@ -97,20 +96,20 @@ public final class PutJobRequest extends RequestBase implements JsonpSerializabl
 
 	// ---------------------------------------------------------------------------------------------
 
-	public PutJobRequest(Builder builder) {
+	private PutJobRequest(Builder builder) {
 
 		this.allowLazyOpen = builder.allowLazyOpen;
-		this.analysisConfig = Objects.requireNonNull(builder.analysisConfig, "analysis_config");
+		this.analysisConfig = ModelTypeHelper.requireNonNull(builder.analysisConfig, this, "analysisConfig");
 		this.analysisLimits = builder.analysisLimits;
-		this.backgroundPersistInterval = Objects.requireNonNull(builder.backgroundPersistInterval,
-				"background_persist_interval");
+		this.backgroundPersistInterval = ModelTypeHelper.requireNonNull(builder.backgroundPersistInterval, this,
+				"backgroundPersistInterval");
 		this.customSettings = builder.customSettings;
 		this.dailyModelSnapshotRetentionAfterDays = builder.dailyModelSnapshotRetentionAfterDays;
-		this.dataDescription = Objects.requireNonNull(builder.dataDescription, "data_description");
+		this.dataDescription = ModelTypeHelper.requireNonNull(builder.dataDescription, this, "dataDescription");
 		this.datafeedConfig = builder.datafeedConfig;
 		this.description = builder.description;
 		this.groups = ModelTypeHelper.unmodifiable(builder.groups);
-		this.jobId = Objects.requireNonNull(builder.jobId, "job_id");
+		this.jobId = ModelTypeHelper.requireNonNull(builder.jobId, this, "jobId");
 		this.modelPlotConfig = builder.modelPlotConfig;
 		this.modelSnapshotRetentionDays = builder.modelSnapshotRetentionDays;
 		this.renormalizationWindowDays = builder.renormalizationWindowDays;
@@ -119,8 +118,8 @@ public final class PutJobRequest extends RequestBase implements JsonpSerializabl
 
 	}
 
-	public PutJobRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static PutJobRequest of(Function<Builder, ObjectBuilder<PutJobRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -137,7 +136,7 @@ public final class PutJobRequest extends RequestBase implements JsonpSerializabl
 	 * API name: {@code allow_lazy_open}
 	 */
 	@Nullable
-	public Boolean allowLazyOpen() {
+	public final Boolean allowLazyOpen() {
 		return this.allowLazyOpen;
 	}
 
@@ -148,7 +147,7 @@ public final class PutJobRequest extends RequestBase implements JsonpSerializabl
 	 * <p>
 	 * API name: {@code analysis_config}
 	 */
-	public AnalysisConfig analysisConfig() {
+	public final AnalysisConfig analysisConfig() {
 		return this.analysisConfig;
 	}
 
@@ -161,7 +160,7 @@ public final class PutJobRequest extends RequestBase implements JsonpSerializabl
 	 * API name: {@code analysis_limits}
 	 */
 	@Nullable
-	public AnalysisLimits analysisLimits() {
+	public final AnalysisLimits analysisLimits() {
 		return this.analysisLimits;
 	}
 
@@ -175,7 +174,7 @@ public final class PutJobRequest extends RequestBase implements JsonpSerializabl
 	 * <p>
 	 * API name: {@code background_persist_interval}
 	 */
-	public String backgroundPersistInterval() {
+	public final String backgroundPersistInterval() {
 		return this.backgroundPersistInterval;
 	}
 
@@ -185,7 +184,7 @@ public final class PutJobRequest extends RequestBase implements JsonpSerializabl
 	 * API name: {@code custom_settings}
 	 */
 	@Nullable
-	public CustomSettings customSettings() {
+	public final CustomSettings customSettings() {
 		return this.customSettings;
 	}
 
@@ -199,7 +198,7 @@ public final class PutJobRequest extends RequestBase implements JsonpSerializabl
 	 * API name: {@code daily_model_snapshot_retention_after_days}
 	 */
 	@Nullable
-	public Long dailyModelSnapshotRetentionAfterDays() {
+	public final Long dailyModelSnapshotRetentionAfterDays() {
 		return this.dailyModelSnapshotRetentionAfterDays;
 	}
 
@@ -212,7 +211,7 @@ public final class PutJobRequest extends RequestBase implements JsonpSerializabl
 	 * <p>
 	 * API name: {@code data_description}
 	 */
-	public DataDescription dataDescription() {
+	public final DataDescription dataDescription() {
 		return this.dataDescription;
 	}
 
@@ -222,7 +221,7 @@ public final class PutJobRequest extends RequestBase implements JsonpSerializabl
 	 * API name: {@code datafeed_config}
 	 */
 	@Nullable
-	public DatafeedConfig datafeedConfig() {
+	public final DatafeedConfig datafeedConfig() {
 		return this.datafeedConfig;
 	}
 
@@ -232,7 +231,7 @@ public final class PutJobRequest extends RequestBase implements JsonpSerializabl
 	 * API name: {@code description}
 	 */
 	@Nullable
-	public String description() {
+	public final String description() {
 		return this.description;
 	}
 
@@ -241,8 +240,7 @@ public final class PutJobRequest extends RequestBase implements JsonpSerializabl
 	 * <p>
 	 * API name: {@code groups}
 	 */
-	@Nullable
-	public List<String> groups() {
+	public final List<String> groups() {
 		return this.groups;
 	}
 
@@ -253,7 +251,7 @@ public final class PutJobRequest extends RequestBase implements JsonpSerializabl
 	 * <p>
 	 * API name: {@code job_id}
 	 */
-	public String jobId() {
+	public final String jobId() {
 		return this.jobId;
 	}
 
@@ -271,7 +269,7 @@ public final class PutJobRequest extends RequestBase implements JsonpSerializabl
 	 * API name: {@code model_plot_config}
 	 */
 	@Nullable
-	public ModelPlotConfig modelPlotConfig() {
+	public final ModelPlotConfig modelPlotConfig() {
 		return this.modelPlotConfig;
 	}
 
@@ -285,7 +283,7 @@ public final class PutJobRequest extends RequestBase implements JsonpSerializabl
 	 * API name: {@code model_snapshot_retention_days}
 	 */
 	@Nullable
-	public Long modelSnapshotRetentionDays() {
+	public final Long modelSnapshotRetentionDays() {
 		return this.modelSnapshotRetentionDays;
 	}
 
@@ -297,7 +295,7 @@ public final class PutJobRequest extends RequestBase implements JsonpSerializabl
 	 * API name: {@code renormalization_window_days}
 	 */
 	@Nullable
-	public Long renormalizationWindowDays() {
+	public final Long renormalizationWindowDays() {
 		return this.renormalizationWindowDays;
 	}
 
@@ -308,7 +306,7 @@ public final class PutJobRequest extends RequestBase implements JsonpSerializabl
 	 * API name: {@code results_index_name}
 	 */
 	@Nullable
-	public String resultsIndexName() {
+	public final String resultsIndexName() {
 		return this.resultsIndexName;
 	}
 
@@ -323,7 +321,7 @@ public final class PutJobRequest extends RequestBase implements JsonpSerializabl
 	 * API name: {@code results_retention_days}
 	 */
 	@Nullable
-	public Long resultsRetentionDays() {
+	public final Long resultsRetentionDays() {
 		return this.resultsRetentionDays;
 	}
 
@@ -339,55 +337,45 @@ public final class PutJobRequest extends RequestBase implements JsonpSerializabl
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.allowLazyOpen != null) {
-
 			generator.writeKey("allow_lazy_open");
 			generator.write(this.allowLazyOpen);
 
 		}
-
 		generator.writeKey("analysis_config");
 		this.analysisConfig.serialize(generator, mapper);
 
 		if (this.analysisLimits != null) {
-
 			generator.writeKey("analysis_limits");
 			this.analysisLimits.serialize(generator, mapper);
 
 		}
-
 		generator.writeKey("background_persist_interval");
 		generator.write(this.backgroundPersistInterval);
 
 		if (this.customSettings != null) {
-
 			generator.writeKey("custom_settings");
 			this.customSettings.serialize(generator, mapper);
 
 		}
 		if (this.dailyModelSnapshotRetentionAfterDays != null) {
-
 			generator.writeKey("daily_model_snapshot_retention_after_days");
 			generator.write(this.dailyModelSnapshotRetentionAfterDays);
 
 		}
-
 		generator.writeKey("data_description");
 		this.dataDescription.serialize(generator, mapper);
 
 		if (this.datafeedConfig != null) {
-
 			generator.writeKey("datafeed_config");
 			this.datafeedConfig.serialize(generator, mapper);
 
 		}
 		if (this.description != null) {
-
 			generator.writeKey("description");
 			generator.write(this.description);
 
 		}
-		if (this.groups != null) {
-
+		if (ModelTypeHelper.isDefined(this.groups)) {
 			generator.writeKey("groups");
 			generator.writeStartArray();
 			for (String item0 : this.groups) {
@@ -398,31 +386,26 @@ public final class PutJobRequest extends RequestBase implements JsonpSerializabl
 
 		}
 		if (this.modelPlotConfig != null) {
-
 			generator.writeKey("model_plot_config");
 			this.modelPlotConfig.serialize(generator, mapper);
 
 		}
 		if (this.modelSnapshotRetentionDays != null) {
-
 			generator.writeKey("model_snapshot_retention_days");
 			generator.write(this.modelSnapshotRetentionDays);
 
 		}
 		if (this.renormalizationWindowDays != null) {
-
 			generator.writeKey("renormalization_window_days");
 			generator.write(this.renormalizationWindowDays);
 
 		}
 		if (this.resultsIndexName != null) {
-
 			generator.writeKey("results_index_name");
 			generator.write(this.resultsIndexName);
 
 		}
 		if (this.resultsRetentionDays != null) {
-
 			generator.writeKey("results_retention_days");
 			generator.write(this.resultsRetentionDays);
 
@@ -435,7 +418,7 @@ public final class PutJobRequest extends RequestBase implements JsonpSerializabl
 	/**
 	 * Builder for {@link PutJobRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<PutJobRequest> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PutJobRequest> {
 		@Nullable
 		private Boolean allowLazyOpen;
 
@@ -493,7 +476,7 @@ public final class PutJobRequest extends RequestBase implements JsonpSerializabl
 		 * <p>
 		 * API name: {@code allow_lazy_open}
 		 */
-		public Builder allowLazyOpen(@Nullable Boolean value) {
+		public final Builder allowLazyOpen(@Nullable Boolean value) {
 			this.allowLazyOpen = value;
 			return this;
 		}
@@ -505,7 +488,7 @@ public final class PutJobRequest extends RequestBase implements JsonpSerializabl
 		 * <p>
 		 * API name: {@code analysis_config}
 		 */
-		public Builder analysisConfig(AnalysisConfig value) {
+		public final Builder analysisConfig(AnalysisConfig value) {
 			this.analysisConfig = value;
 			return this;
 		}
@@ -517,7 +500,7 @@ public final class PutJobRequest extends RequestBase implements JsonpSerializabl
 		 * <p>
 		 * API name: {@code analysis_config}
 		 */
-		public Builder analysisConfig(Function<AnalysisConfig.Builder, ObjectBuilder<AnalysisConfig>> fn) {
+		public final Builder analysisConfig(Function<AnalysisConfig.Builder, ObjectBuilder<AnalysisConfig>> fn) {
 			return this.analysisConfig(fn.apply(new AnalysisConfig.Builder()).build());
 		}
 
@@ -529,7 +512,7 @@ public final class PutJobRequest extends RequestBase implements JsonpSerializabl
 		 * <p>
 		 * API name: {@code analysis_limits}
 		 */
-		public Builder analysisLimits(@Nullable AnalysisLimits value) {
+		public final Builder analysisLimits(@Nullable AnalysisLimits value) {
 			this.analysisLimits = value;
 			return this;
 		}
@@ -542,7 +525,7 @@ public final class PutJobRequest extends RequestBase implements JsonpSerializabl
 		 * <p>
 		 * API name: {@code analysis_limits}
 		 */
-		public Builder analysisLimits(Function<AnalysisLimits.Builder, ObjectBuilder<AnalysisLimits>> fn) {
+		public final Builder analysisLimits(Function<AnalysisLimits.Builder, ObjectBuilder<AnalysisLimits>> fn) {
 			return this.analysisLimits(fn.apply(new AnalysisLimits.Builder()).build());
 		}
 
@@ -556,7 +539,7 @@ public final class PutJobRequest extends RequestBase implements JsonpSerializabl
 		 * <p>
 		 * API name: {@code background_persist_interval}
 		 */
-		public Builder backgroundPersistInterval(String value) {
+		public final Builder backgroundPersistInterval(String value) {
 			this.backgroundPersistInterval = value;
 			return this;
 		}
@@ -566,7 +549,7 @@ public final class PutJobRequest extends RequestBase implements JsonpSerializabl
 		 * <p>
 		 * API name: {@code custom_settings}
 		 */
-		public Builder customSettings(@Nullable CustomSettings value) {
+		public final Builder customSettings(@Nullable CustomSettings value) {
 			this.customSettings = value;
 			return this;
 		}
@@ -576,7 +559,7 @@ public final class PutJobRequest extends RequestBase implements JsonpSerializabl
 		 * <p>
 		 * API name: {@code custom_settings}
 		 */
-		public Builder customSettings(Function<CustomSettings.Builder, ObjectBuilder<CustomSettings>> fn) {
+		public final Builder customSettings(Function<CustomSettings.Builder, ObjectBuilder<CustomSettings>> fn) {
 			return this.customSettings(fn.apply(new CustomSettings.Builder()).build());
 		}
 
@@ -589,7 +572,7 @@ public final class PutJobRequest extends RequestBase implements JsonpSerializabl
 		 * <p>
 		 * API name: {@code daily_model_snapshot_retention_after_days}
 		 */
-		public Builder dailyModelSnapshotRetentionAfterDays(@Nullable Long value) {
+		public final Builder dailyModelSnapshotRetentionAfterDays(@Nullable Long value) {
 			this.dailyModelSnapshotRetentionAfterDays = value;
 			return this;
 		}
@@ -603,7 +586,7 @@ public final class PutJobRequest extends RequestBase implements JsonpSerializabl
 		 * <p>
 		 * API name: {@code data_description}
 		 */
-		public Builder dataDescription(DataDescription value) {
+		public final Builder dataDescription(DataDescription value) {
 			this.dataDescription = value;
 			return this;
 		}
@@ -617,7 +600,7 @@ public final class PutJobRequest extends RequestBase implements JsonpSerializabl
 		 * <p>
 		 * API name: {@code data_description}
 		 */
-		public Builder dataDescription(Function<DataDescription.Builder, ObjectBuilder<DataDescription>> fn) {
+		public final Builder dataDescription(Function<DataDescription.Builder, ObjectBuilder<DataDescription>> fn) {
 			return this.dataDescription(fn.apply(new DataDescription.Builder()).build());
 		}
 
@@ -626,7 +609,7 @@ public final class PutJobRequest extends RequestBase implements JsonpSerializabl
 		 * <p>
 		 * API name: {@code datafeed_config}
 		 */
-		public Builder datafeedConfig(@Nullable DatafeedConfig value) {
+		public final Builder datafeedConfig(@Nullable DatafeedConfig value) {
 			this.datafeedConfig = value;
 			return this;
 		}
@@ -636,7 +619,7 @@ public final class PutJobRequest extends RequestBase implements JsonpSerializabl
 		 * <p>
 		 * API name: {@code datafeed_config}
 		 */
-		public Builder datafeedConfig(Function<DatafeedConfig.Builder, ObjectBuilder<DatafeedConfig>> fn) {
+		public final Builder datafeedConfig(Function<DatafeedConfig.Builder, ObjectBuilder<DatafeedConfig>> fn) {
 			return this.datafeedConfig(fn.apply(new DatafeedConfig.Builder()).build());
 		}
 
@@ -645,7 +628,7 @@ public final class PutJobRequest extends RequestBase implements JsonpSerializabl
 		 * <p>
 		 * API name: {@code description}
 		 */
-		public Builder description(@Nullable String value) {
+		public final Builder description(@Nullable String value) {
 			this.description = value;
 			return this;
 		}
@@ -655,7 +638,7 @@ public final class PutJobRequest extends RequestBase implements JsonpSerializabl
 		 * <p>
 		 * API name: {@code groups}
 		 */
-		public Builder groups(@Nullable List<String> value) {
+		public final Builder groups(@Nullable List<String> value) {
 			this.groups = value;
 			return this;
 		}
@@ -665,19 +648,8 @@ public final class PutJobRequest extends RequestBase implements JsonpSerializabl
 		 * <p>
 		 * API name: {@code groups}
 		 */
-		public Builder groups(String... value) {
+		public final Builder groups(String... value) {
 			this.groups = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #groups(List)}, creating the list if needed.
-		 */
-		public Builder addGroups(String value) {
-			if (this.groups == null) {
-				this.groups = new ArrayList<>();
-			}
-			this.groups.add(value);
 			return this;
 		}
 
@@ -688,7 +660,7 @@ public final class PutJobRequest extends RequestBase implements JsonpSerializabl
 		 * <p>
 		 * API name: {@code job_id}
 		 */
-		public Builder jobId(String value) {
+		public final Builder jobId(String value) {
 			this.jobId = value;
 			return this;
 		}
@@ -706,7 +678,7 @@ public final class PutJobRequest extends RequestBase implements JsonpSerializabl
 		 * <p>
 		 * API name: {@code model_plot_config}
 		 */
-		public Builder modelPlotConfig(@Nullable ModelPlotConfig value) {
+		public final Builder modelPlotConfig(@Nullable ModelPlotConfig value) {
 			this.modelPlotConfig = value;
 			return this;
 		}
@@ -724,7 +696,7 @@ public final class PutJobRequest extends RequestBase implements JsonpSerializabl
 		 * <p>
 		 * API name: {@code model_plot_config}
 		 */
-		public Builder modelPlotConfig(Function<ModelPlotConfig.Builder, ObjectBuilder<ModelPlotConfig>> fn) {
+		public final Builder modelPlotConfig(Function<ModelPlotConfig.Builder, ObjectBuilder<ModelPlotConfig>> fn) {
 			return this.modelPlotConfig(fn.apply(new ModelPlotConfig.Builder()).build());
 		}
 
@@ -737,7 +709,7 @@ public final class PutJobRequest extends RequestBase implements JsonpSerializabl
 		 * <p>
 		 * API name: {@code model_snapshot_retention_days}
 		 */
-		public Builder modelSnapshotRetentionDays(@Nullable Long value) {
+		public final Builder modelSnapshotRetentionDays(@Nullable Long value) {
 			this.modelSnapshotRetentionDays = value;
 			return this;
 		}
@@ -749,7 +721,7 @@ public final class PutJobRequest extends RequestBase implements JsonpSerializabl
 		 * <p>
 		 * API name: {@code renormalization_window_days}
 		 */
-		public Builder renormalizationWindowDays(@Nullable Long value) {
+		public final Builder renormalizationWindowDays(@Nullable Long value) {
 			this.renormalizationWindowDays = value;
 			return this;
 		}
@@ -760,7 +732,7 @@ public final class PutJobRequest extends RequestBase implements JsonpSerializabl
 		 * <p>
 		 * API name: {@code results_index_name}
 		 */
-		public Builder resultsIndexName(@Nullable String value) {
+		public final Builder resultsIndexName(@Nullable String value) {
 			this.resultsIndexName = value;
 			return this;
 		}
@@ -775,7 +747,7 @@ public final class PutJobRequest extends RequestBase implements JsonpSerializabl
 		 * <p>
 		 * API name: {@code results_retention_days}
 		 */
-		public Builder resultsRetentionDays(@Nullable Long value) {
+		public final Builder resultsRetentionDays(@Nullable Long value) {
 			this.resultsRetentionDays = value;
 			return this;
 		}
@@ -787,6 +759,7 @@ public final class PutJobRequest extends RequestBase implements JsonpSerializabl
 		 *             if some of the required fields are null.
 		 */
 		public PutJobRequest build() {
+			_checkSingleUse();
 
 			return new PutJobRequest(this);
 		}

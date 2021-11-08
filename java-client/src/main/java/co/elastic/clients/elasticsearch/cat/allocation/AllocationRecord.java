@@ -31,6 +31,7 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -39,7 +40,7 @@ import javax.annotation.Nullable;
 
 // typedef: cat.allocation.AllocationRecord
 @JsonpDeserializable
-public final class AllocationRecord implements JsonpSerializable {
+public class AllocationRecord implements JsonpSerializable {
 	@Nullable
 	private final String shards;
 
@@ -69,7 +70,7 @@ public final class AllocationRecord implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public AllocationRecord(Builder builder) {
+	private AllocationRecord(Builder builder) {
 
 		this.shards = builder.shards;
 		this.diskIndices = builder.diskIndices;
@@ -83,8 +84,8 @@ public final class AllocationRecord implements JsonpSerializable {
 
 	}
 
-	public AllocationRecord(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static AllocationRecord of(Function<Builder, ObjectBuilder<AllocationRecord>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -93,7 +94,7 @@ public final class AllocationRecord implements JsonpSerializable {
 	 * API name: {@code shards}
 	 */
 	@Nullable
-	public String shards() {
+	public final String shards() {
 		return this.shards;
 	}
 
@@ -103,7 +104,7 @@ public final class AllocationRecord implements JsonpSerializable {
 	 * API name: {@code disk.indices}
 	 */
 	@Nullable
-	public String diskIndices() {
+	public final String diskIndices() {
 		return this.diskIndices;
 	}
 
@@ -113,7 +114,7 @@ public final class AllocationRecord implements JsonpSerializable {
 	 * API name: {@code disk.used}
 	 */
 	@Nullable
-	public String diskUsed() {
+	public final String diskUsed() {
 		return this.diskUsed;
 	}
 
@@ -123,7 +124,7 @@ public final class AllocationRecord implements JsonpSerializable {
 	 * API name: {@code disk.avail}
 	 */
 	@Nullable
-	public String diskAvail() {
+	public final String diskAvail() {
 		return this.diskAvail;
 	}
 
@@ -133,7 +134,7 @@ public final class AllocationRecord implements JsonpSerializable {
 	 * API name: {@code disk.total}
 	 */
 	@Nullable
-	public String diskTotal() {
+	public final String diskTotal() {
 		return this.diskTotal;
 	}
 
@@ -143,7 +144,7 @@ public final class AllocationRecord implements JsonpSerializable {
 	 * API name: {@code disk.percent}
 	 */
 	@Nullable
-	public String diskPercent() {
+	public final String diskPercent() {
 		return this.diskPercent;
 	}
 
@@ -153,7 +154,7 @@ public final class AllocationRecord implements JsonpSerializable {
 	 * API name: {@code host}
 	 */
 	@Nullable
-	public String host() {
+	public final String host() {
 		return this.host;
 	}
 
@@ -163,7 +164,7 @@ public final class AllocationRecord implements JsonpSerializable {
 	 * API name: {@code ip}
 	 */
 	@Nullable
-	public String ip() {
+	public final String ip() {
 		return this.ip;
 	}
 
@@ -173,7 +174,7 @@ public final class AllocationRecord implements JsonpSerializable {
 	 * API name: {@code node}
 	 */
 	@Nullable
-	public String node() {
+	public final String node() {
 		return this.node;
 	}
 
@@ -189,55 +190,46 @@ public final class AllocationRecord implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.shards != null) {
-
 			generator.writeKey("shards");
 			generator.write(this.shards);
 
 		}
 		if (this.diskIndices != null) {
-
 			generator.writeKey("disk.indices");
 			generator.write(this.diskIndices);
 
 		}
 		if (this.diskUsed != null) {
-
 			generator.writeKey("disk.used");
 			generator.write(this.diskUsed);
 
 		}
 		if (this.diskAvail != null) {
-
 			generator.writeKey("disk.avail");
 			generator.write(this.diskAvail);
 
 		}
 		if (this.diskTotal != null) {
-
 			generator.writeKey("disk.total");
 			generator.write(this.diskTotal);
 
 		}
 		if (this.diskPercent != null) {
-
 			generator.writeKey("disk.percent");
 			generator.write(this.diskPercent);
 
 		}
 		if (this.host != null) {
-
 			generator.writeKey("host");
 			generator.write(this.host);
 
 		}
 		if (this.ip != null) {
-
 			generator.writeKey("ip");
 			generator.write(this.ip);
 
 		}
 		if (this.node != null) {
-
 			generator.writeKey("node");
 			generator.write(this.node);
 
@@ -250,7 +242,7 @@ public final class AllocationRecord implements JsonpSerializable {
 	/**
 	 * Builder for {@link AllocationRecord}.
 	 */
-	public static class Builder implements ObjectBuilder<AllocationRecord> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<AllocationRecord> {
 		@Nullable
 		private String shards;
 
@@ -283,7 +275,7 @@ public final class AllocationRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code shards}
 		 */
-		public Builder shards(@Nullable String value) {
+		public final Builder shards(@Nullable String value) {
 			this.shards = value;
 			return this;
 		}
@@ -293,7 +285,7 @@ public final class AllocationRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code disk.indices}
 		 */
-		public Builder diskIndices(@Nullable String value) {
+		public final Builder diskIndices(@Nullable String value) {
 			this.diskIndices = value;
 			return this;
 		}
@@ -303,7 +295,7 @@ public final class AllocationRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code disk.used}
 		 */
-		public Builder diskUsed(@Nullable String value) {
+		public final Builder diskUsed(@Nullable String value) {
 			this.diskUsed = value;
 			return this;
 		}
@@ -313,7 +305,7 @@ public final class AllocationRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code disk.avail}
 		 */
-		public Builder diskAvail(@Nullable String value) {
+		public final Builder diskAvail(@Nullable String value) {
 			this.diskAvail = value;
 			return this;
 		}
@@ -323,7 +315,7 @@ public final class AllocationRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code disk.total}
 		 */
-		public Builder diskTotal(@Nullable String value) {
+		public final Builder diskTotal(@Nullable String value) {
 			this.diskTotal = value;
 			return this;
 		}
@@ -333,7 +325,7 @@ public final class AllocationRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code disk.percent}
 		 */
-		public Builder diskPercent(@Nullable String value) {
+		public final Builder diskPercent(@Nullable String value) {
 			this.diskPercent = value;
 			return this;
 		}
@@ -343,7 +335,7 @@ public final class AllocationRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code host}
 		 */
-		public Builder host(@Nullable String value) {
+		public final Builder host(@Nullable String value) {
 			this.host = value;
 			return this;
 		}
@@ -353,7 +345,7 @@ public final class AllocationRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code ip}
 		 */
-		public Builder ip(@Nullable String value) {
+		public final Builder ip(@Nullable String value) {
 			this.ip = value;
 			return this;
 		}
@@ -363,7 +355,7 @@ public final class AllocationRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code node}
 		 */
-		public Builder node(@Nullable String value) {
+		public final Builder node(@Nullable String value) {
 			this.node = value;
 			return this;
 		}
@@ -375,6 +367,7 @@ public final class AllocationRecord implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public AllocationRecord build() {
+			_checkSingleUse();
 
 			return new AllocationRecord(this);
 		}

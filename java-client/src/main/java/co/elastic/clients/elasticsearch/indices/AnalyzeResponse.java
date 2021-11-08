@@ -34,6 +34,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -44,39 +45,37 @@ import javax.annotation.Nullable;
 
 // typedef: indices.analyze.Response
 @JsonpDeserializable
-public final class AnalyzeResponse implements JsonpSerializable {
+public class AnalyzeResponse implements JsonpSerializable {
 	@Nullable
 	private final AnalyzeDetail detail;
 
-	@Nullable
 	private final List<AnalyzeToken> tokens;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public AnalyzeResponse(Builder builder) {
+	private AnalyzeResponse(Builder builder) {
 
 		this.detail = builder.detail;
 		this.tokens = ModelTypeHelper.unmodifiable(builder.tokens);
 
 	}
 
-	public AnalyzeResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static AnalyzeResponse of(Function<Builder, ObjectBuilder<AnalyzeResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * API name: {@code detail}
 	 */
 	@Nullable
-	public AnalyzeDetail detail() {
+	public final AnalyzeDetail detail() {
 		return this.detail;
 	}
 
 	/**
 	 * API name: {@code tokens}
 	 */
-	@Nullable
-	public List<AnalyzeToken> tokens() {
+	public final List<AnalyzeToken> tokens() {
 		return this.tokens;
 	}
 
@@ -92,13 +91,11 @@ public final class AnalyzeResponse implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.detail != null) {
-
 			generator.writeKey("detail");
 			this.detail.serialize(generator, mapper);
 
 		}
-		if (this.tokens != null) {
-
+		if (ModelTypeHelper.isDefined(this.tokens)) {
 			generator.writeKey("tokens");
 			generator.writeStartArray();
 			for (AnalyzeToken item0 : this.tokens) {
@@ -116,7 +113,7 @@ public final class AnalyzeResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link AnalyzeResponse}.
 	 */
-	public static class Builder implements ObjectBuilder<AnalyzeResponse> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<AnalyzeResponse> {
 		@Nullable
 		private AnalyzeDetail detail;
 
@@ -126,7 +123,7 @@ public final class AnalyzeResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code detail}
 		 */
-		public Builder detail(@Nullable AnalyzeDetail value) {
+		public final Builder detail(@Nullable AnalyzeDetail value) {
 			this.detail = value;
 			return this;
 		}
@@ -134,14 +131,14 @@ public final class AnalyzeResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code detail}
 		 */
-		public Builder detail(Function<AnalyzeDetail.Builder, ObjectBuilder<AnalyzeDetail>> fn) {
+		public final Builder detail(Function<AnalyzeDetail.Builder, ObjectBuilder<AnalyzeDetail>> fn) {
 			return this.detail(fn.apply(new AnalyzeDetail.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code tokens}
 		 */
-		public Builder tokens(@Nullable List<AnalyzeToken> value) {
+		public final Builder tokens(@Nullable List<AnalyzeToken> value) {
 			this.tokens = value;
 			return this;
 		}
@@ -149,34 +146,21 @@ public final class AnalyzeResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code tokens}
 		 */
-		public Builder tokens(AnalyzeToken... value) {
+		public final Builder tokens(AnalyzeToken... value) {
 			this.tokens = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #tokens(List)}, creating the list if needed.
+		 * API name: {@code tokens}
 		 */
-		public Builder addTokens(AnalyzeToken value) {
-			if (this.tokens == null) {
-				this.tokens = new ArrayList<>();
+		@SafeVarargs
+		public final Builder tokens(Function<AnalyzeToken.Builder, ObjectBuilder<AnalyzeToken>>... fns) {
+			this.tokens = new ArrayList<>(fns.length);
+			for (Function<AnalyzeToken.Builder, ObjectBuilder<AnalyzeToken>> fn : fns) {
+				this.tokens.add(fn.apply(new AnalyzeToken.Builder()).build());
 			}
-			this.tokens.add(value);
 			return this;
-		}
-
-		/**
-		 * Set {@link #tokens(List)} to a singleton list.
-		 */
-		public Builder tokens(Function<AnalyzeToken.Builder, ObjectBuilder<AnalyzeToken>> fn) {
-			return this.tokens(fn.apply(new AnalyzeToken.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #tokens(List)}, creating the list if needed.
-		 */
-		public Builder addTokens(Function<AnalyzeToken.Builder, ObjectBuilder<AnalyzeToken>> fn) {
-			return this.addTokens(fn.apply(new AnalyzeToken.Builder()).build());
 		}
 
 		/**
@@ -186,6 +170,7 @@ public final class AnalyzeResponse implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public AnalyzeResponse build() {
+			_checkSingleUse();
 
 			return new AnalyzeResponse(this);
 		}

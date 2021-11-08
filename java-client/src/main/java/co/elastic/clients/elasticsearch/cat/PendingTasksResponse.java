@@ -32,6 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -42,19 +43,19 @@ import javax.annotation.Nullable;
 
 // typedef: cat.pending_tasks.Response
 @JsonpDeserializable
-public final class PendingTasksResponse implements JsonpSerializable {
+public class PendingTasksResponse implements JsonpSerializable {
 	private final List<PendingTasksRecord> valueBody;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public PendingTasksResponse(Builder builder) {
+	private PendingTasksResponse(Builder builder) {
 
-		this.valueBody = ModelTypeHelper.unmodifiableNonNull(builder.valueBody, "_value_body");
+		this.valueBody = ModelTypeHelper.unmodifiableRequired(builder.valueBody, this, "valueBody");
 
 	}
 
-	public PendingTasksResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static PendingTasksResponse of(Function<Builder, ObjectBuilder<PendingTasksResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -62,7 +63,7 @@ public final class PendingTasksResponse implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code _value_body}
 	 */
-	public List<PendingTasksRecord> valueBody() {
+	public final List<PendingTasksRecord> valueBody() {
 		return this.valueBody;
 	}
 
@@ -84,7 +85,7 @@ public final class PendingTasksResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link PendingTasksResponse}.
 	 */
-	public static class Builder implements ObjectBuilder<PendingTasksResponse> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PendingTasksResponse> {
 		private List<PendingTasksRecord> valueBody;
 
 		/**
@@ -92,7 +93,7 @@ public final class PendingTasksResponse implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code _value_body}
 		 */
-		public Builder valueBody(List<PendingTasksRecord> value) {
+		public final Builder valueBody(List<PendingTasksRecord> value) {
 			this.valueBody = value;
 			return this;
 		}
@@ -102,34 +103,23 @@ public final class PendingTasksResponse implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code _value_body}
 		 */
-		public Builder valueBody(PendingTasksRecord... value) {
+		public final Builder valueBody(PendingTasksRecord... value) {
 			this.valueBody = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #valueBody(List)}, creating the list if needed.
+		 * Required - Response value.
+		 * <p>
+		 * API name: {@code _value_body}
 		 */
-		public Builder addValueBody(PendingTasksRecord value) {
-			if (this.valueBody == null) {
-				this.valueBody = new ArrayList<>();
+		@SafeVarargs
+		public final Builder valueBody(Function<PendingTasksRecord.Builder, ObjectBuilder<PendingTasksRecord>>... fns) {
+			this.valueBody = new ArrayList<>(fns.length);
+			for (Function<PendingTasksRecord.Builder, ObjectBuilder<PendingTasksRecord>> fn : fns) {
+				this.valueBody.add(fn.apply(new PendingTasksRecord.Builder()).build());
 			}
-			this.valueBody.add(value);
 			return this;
-		}
-
-		/**
-		 * Set {@link #valueBody(List)} to a singleton list.
-		 */
-		public Builder valueBody(Function<PendingTasksRecord.Builder, ObjectBuilder<PendingTasksRecord>> fn) {
-			return this.valueBody(fn.apply(new PendingTasksRecord.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #valueBody(List)}, creating the list if needed.
-		 */
-		public Builder addValueBody(Function<PendingTasksRecord.Builder, ObjectBuilder<PendingTasksRecord>> fn) {
-			return this.addValueBody(fn.apply(new PendingTasksRecord.Builder()).build());
 		}
 
 		/**
@@ -139,6 +129,7 @@ public final class PendingTasksResponse implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public PendingTasksResponse build() {
+			_checkSingleUse();
 
 			return new PendingTasksResponse(this);
 		}

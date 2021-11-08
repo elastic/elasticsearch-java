@@ -32,10 +32,10 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
@@ -43,7 +43,7 @@ import javax.annotation.Nullable;
 
 // typedef: security.has_privileges.Response
 @JsonpDeserializable
-public final class HasPrivilegesResponse implements JsonpSerializable {
+public class HasPrivilegesResponse implements JsonpSerializable {
 	private final Map<String, Map<String, Map<String, Boolean>>> application;
 
 	private final Map<String, Boolean> cluster;
@@ -56,52 +56,52 @@ public final class HasPrivilegesResponse implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public HasPrivilegesResponse(Builder builder) {
+	private HasPrivilegesResponse(Builder builder) {
 
-		this.application = ModelTypeHelper.unmodifiableNonNull(builder.application, "application");
-		this.cluster = ModelTypeHelper.unmodifiableNonNull(builder.cluster, "cluster");
-		this.hasAllRequested = Objects.requireNonNull(builder.hasAllRequested, "has_all_requested");
-		this.index = ModelTypeHelper.unmodifiableNonNull(builder.index, "index");
-		this.username = Objects.requireNonNull(builder.username, "username");
+		this.application = ModelTypeHelper.unmodifiableRequired(builder.application, this, "application");
+		this.cluster = ModelTypeHelper.unmodifiableRequired(builder.cluster, this, "cluster");
+		this.hasAllRequested = ModelTypeHelper.requireNonNull(builder.hasAllRequested, this, "hasAllRequested");
+		this.index = ModelTypeHelper.unmodifiableRequired(builder.index, this, "index");
+		this.username = ModelTypeHelper.requireNonNull(builder.username, this, "username");
 
 	}
 
-	public HasPrivilegesResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static HasPrivilegesResponse of(Function<Builder, ObjectBuilder<HasPrivilegesResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code application}
 	 */
-	public Map<String, Map<String, Map<String, Boolean>>> application() {
+	public final Map<String, Map<String, Map<String, Boolean>>> application() {
 		return this.application;
 	}
 
 	/**
 	 * Required - API name: {@code cluster}
 	 */
-	public Map<String, Boolean> cluster() {
+	public final Map<String, Boolean> cluster() {
 		return this.cluster;
 	}
 
 	/**
 	 * Required - API name: {@code has_all_requested}
 	 */
-	public boolean hasAllRequested() {
+	public final boolean hasAllRequested() {
 		return this.hasAllRequested;
 	}
 
 	/**
 	 * Required - API name: {@code index}
 	 */
-	public Map<String, Map<String, Boolean>> index() {
+	public final Map<String, Map<String, Boolean>> index() {
 		return this.index;
 	}
 
 	/**
 	 * Required - API name: {@code username}
 	 */
-	public String username() {
+	public final String username() {
 		return this.username;
 	}
 
@@ -116,18 +116,26 @@ public final class HasPrivilegesResponse implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("application");
-		generator.writeStartObject();
-		for (Map.Entry<String, Map<String, Map<String, Boolean>>> item0 : this.application.entrySet()) {
-			generator.writeKey(item0.getKey());
+		if (ModelTypeHelper.isDefined(this.application)) {
+			generator.writeKey("application");
 			generator.writeStartObject();
-			for (Map.Entry<String, Map<String, Boolean>> item1 : item0.getValue().entrySet()) {
-				generator.writeKey(item1.getKey());
+			for (Map.Entry<String, Map<String, Map<String, Boolean>>> item0 : this.application.entrySet()) {
+				generator.writeKey(item0.getKey());
 				generator.writeStartObject();
-				for (Map.Entry<String, Boolean> item2 : item1.getValue().entrySet()) {
-					generator.writeKey(item2.getKey());
-					generator.write(item2.getValue());
+				if (item0.getValue() != null) {
+					for (Map.Entry<String, Map<String, Boolean>> item1 : item0.getValue().entrySet()) {
+						generator.writeKey(item1.getKey());
+						generator.writeStartObject();
+						if (item1.getValue() != null) {
+							for (Map.Entry<String, Boolean> item2 : item1.getValue().entrySet()) {
+								generator.writeKey(item2.getKey());
+								generator.write(item2.getValue());
 
+							}
+						}
+						generator.writeEnd();
+
+					}
 				}
 				generator.writeEnd();
 
@@ -135,35 +143,39 @@ public final class HasPrivilegesResponse implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		generator.writeEnd();
-
-		generator.writeKey("cluster");
-		generator.writeStartObject();
-		for (Map.Entry<String, Boolean> item0 : this.cluster.entrySet()) {
-			generator.writeKey(item0.getKey());
-			generator.write(item0.getValue());
-
-		}
-		generator.writeEnd();
-
-		generator.writeKey("has_all_requested");
-		generator.write(this.hasAllRequested);
-
-		generator.writeKey("index");
-		generator.writeStartObject();
-		for (Map.Entry<String, Map<String, Boolean>> item0 : this.index.entrySet()) {
-			generator.writeKey(item0.getKey());
+		if (ModelTypeHelper.isDefined(this.cluster)) {
+			generator.writeKey("cluster");
 			generator.writeStartObject();
-			for (Map.Entry<String, Boolean> item1 : item0.getValue().entrySet()) {
-				generator.writeKey(item1.getKey());
-				generator.write(item1.getValue());
+			for (Map.Entry<String, Boolean> item0 : this.cluster.entrySet()) {
+				generator.writeKey(item0.getKey());
+				generator.write(item0.getValue());
 
 			}
 			generator.writeEnd();
 
 		}
-		generator.writeEnd();
+		generator.writeKey("has_all_requested");
+		generator.write(this.hasAllRequested);
 
+		if (ModelTypeHelper.isDefined(this.index)) {
+			generator.writeKey("index");
+			generator.writeStartObject();
+			for (Map.Entry<String, Map<String, Boolean>> item0 : this.index.entrySet()) {
+				generator.writeKey(item0.getKey());
+				generator.writeStartObject();
+				if (item0.getValue() != null) {
+					for (Map.Entry<String, Boolean> item1 : item0.getValue().entrySet()) {
+						generator.writeKey(item1.getKey());
+						generator.write(item1.getValue());
+
+					}
+				}
+				generator.writeEnd();
+
+			}
+			generator.writeEnd();
+
+		}
 		generator.writeKey("username");
 		generator.write(this.username);
 
@@ -174,7 +186,7 @@ public final class HasPrivilegesResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link HasPrivilegesResponse}.
 	 */
-	public static class Builder implements ObjectBuilder<HasPrivilegesResponse> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<HasPrivilegesResponse> {
 		private Map<String, Map<String, Map<String, Boolean>>> application;
 
 		private Map<String, Boolean> cluster;
@@ -188,45 +200,23 @@ public final class HasPrivilegesResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code application}
 		 */
-		public Builder application(Map<String, Map<String, Map<String, Boolean>>> value) {
+		public final Builder application(Map<String, Map<String, Map<String, Boolean>>> value) {
 			this.application = value;
-			return this;
-		}
-
-		/**
-		 * Add a key/value to {@link #application(Map)}, creating the map if needed.
-		 */
-		public Builder putApplication(String key, Map<String, Map<String, Boolean>> value) {
-			if (this.application == null) {
-				this.application = new HashMap<>();
-			}
-			this.application.put(key, value);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code cluster}
 		 */
-		public Builder cluster(Map<String, Boolean> value) {
+		public final Builder cluster(Map<String, Boolean> value) {
 			this.cluster = value;
-			return this;
-		}
-
-		/**
-		 * Add a key/value to {@link #cluster(Map)}, creating the map if needed.
-		 */
-		public Builder putCluster(String key, Boolean value) {
-			if (this.cluster == null) {
-				this.cluster = new HashMap<>();
-			}
-			this.cluster.put(key, value);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code has_all_requested}
 		 */
-		public Builder hasAllRequested(boolean value) {
+		public final Builder hasAllRequested(boolean value) {
 			this.hasAllRequested = value;
 			return this;
 		}
@@ -234,26 +224,15 @@ public final class HasPrivilegesResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code index}
 		 */
-		public Builder index(Map<String, Map<String, Boolean>> value) {
+		public final Builder index(Map<String, Map<String, Boolean>> value) {
 			this.index = value;
-			return this;
-		}
-
-		/**
-		 * Add a key/value to {@link #index(Map)}, creating the map if needed.
-		 */
-		public Builder putIndex(String key, Map<String, Boolean> value) {
-			if (this.index == null) {
-				this.index = new HashMap<>();
-			}
-			this.index.put(key, value);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code username}
 		 */
-		public Builder username(String value) {
+		public final Builder username(String value) {
 			this.username = value;
 			return this;
 		}
@@ -265,6 +244,7 @@ public final class HasPrivilegesResponse implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public HasPrivilegesResponse build() {
+			_checkSingleUse();
 
 			return new HasPrivilegesResponse(this);
 		}

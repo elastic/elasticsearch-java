@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -39,7 +41,7 @@ import javax.annotation.Nullable;
 
 // typedef: ml._types.DatafeedStats
 @JsonpDeserializable
-public final class DatafeedStats implements JsonpSerializable {
+public class DatafeedStats implements JsonpSerializable {
 	private final String assignmentExplanation;
 
 	private final String datafeedId;
@@ -52,52 +54,53 @@ public final class DatafeedStats implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public DatafeedStats(Builder builder) {
+	private DatafeedStats(Builder builder) {
 
-		this.assignmentExplanation = Objects.requireNonNull(builder.assignmentExplanation, "assignment_explanation");
-		this.datafeedId = Objects.requireNonNull(builder.datafeedId, "datafeed_id");
-		this.node = Objects.requireNonNull(builder.node, "node");
-		this.state = Objects.requireNonNull(builder.state, "state");
-		this.timingStats = Objects.requireNonNull(builder.timingStats, "timing_stats");
+		this.assignmentExplanation = ModelTypeHelper.requireNonNull(builder.assignmentExplanation, this,
+				"assignmentExplanation");
+		this.datafeedId = ModelTypeHelper.requireNonNull(builder.datafeedId, this, "datafeedId");
+		this.node = ModelTypeHelper.requireNonNull(builder.node, this, "node");
+		this.state = ModelTypeHelper.requireNonNull(builder.state, this, "state");
+		this.timingStats = ModelTypeHelper.requireNonNull(builder.timingStats, this, "timingStats");
 
 	}
 
-	public DatafeedStats(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static DatafeedStats of(Function<Builder, ObjectBuilder<DatafeedStats>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code assignment_explanation}
 	 */
-	public String assignmentExplanation() {
+	public final String assignmentExplanation() {
 		return this.assignmentExplanation;
 	}
 
 	/**
 	 * Required - API name: {@code datafeed_id}
 	 */
-	public String datafeedId() {
+	public final String datafeedId() {
 		return this.datafeedId;
 	}
 
 	/**
 	 * Required - API name: {@code node}
 	 */
-	public DiscoveryNode node() {
+	public final DiscoveryNode node() {
 		return this.node;
 	}
 
 	/**
 	 * Required - API name: {@code state}
 	 */
-	public DatafeedState state() {
+	public final DatafeedState state() {
 		return this.state;
 	}
 
 	/**
 	 * Required - API name: {@code timing_stats}
 	 */
-	public DatafeedTimingStats timingStats() {
+	public final DatafeedTimingStats timingStats() {
 		return this.timingStats;
 	}
 
@@ -123,7 +126,6 @@ public final class DatafeedStats implements JsonpSerializable {
 
 		generator.writeKey("state");
 		this.state.serialize(generator, mapper);
-
 		generator.writeKey("timing_stats");
 		this.timingStats.serialize(generator, mapper);
 
@@ -134,7 +136,7 @@ public final class DatafeedStats implements JsonpSerializable {
 	/**
 	 * Builder for {@link DatafeedStats}.
 	 */
-	public static class Builder implements ObjectBuilder<DatafeedStats> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DatafeedStats> {
 		private String assignmentExplanation;
 
 		private String datafeedId;
@@ -148,7 +150,7 @@ public final class DatafeedStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code assignment_explanation}
 		 */
-		public Builder assignmentExplanation(String value) {
+		public final Builder assignmentExplanation(String value) {
 			this.assignmentExplanation = value;
 			return this;
 		}
@@ -156,7 +158,7 @@ public final class DatafeedStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code datafeed_id}
 		 */
-		public Builder datafeedId(String value) {
+		public final Builder datafeedId(String value) {
 			this.datafeedId = value;
 			return this;
 		}
@@ -164,7 +166,7 @@ public final class DatafeedStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code node}
 		 */
-		public Builder node(DiscoveryNode value) {
+		public final Builder node(DiscoveryNode value) {
 			this.node = value;
 			return this;
 		}
@@ -172,14 +174,14 @@ public final class DatafeedStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code node}
 		 */
-		public Builder node(Function<DiscoveryNode.Builder, ObjectBuilder<DiscoveryNode>> fn) {
+		public final Builder node(Function<DiscoveryNode.Builder, ObjectBuilder<DiscoveryNode>> fn) {
 			return this.node(fn.apply(new DiscoveryNode.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code state}
 		 */
-		public Builder state(DatafeedState value) {
+		public final Builder state(DatafeedState value) {
 			this.state = value;
 			return this;
 		}
@@ -187,7 +189,7 @@ public final class DatafeedStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code timing_stats}
 		 */
-		public Builder timingStats(DatafeedTimingStats value) {
+		public final Builder timingStats(DatafeedTimingStats value) {
 			this.timingStats = value;
 			return this;
 		}
@@ -195,7 +197,7 @@ public final class DatafeedStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code timing_stats}
 		 */
-		public Builder timingStats(Function<DatafeedTimingStats.Builder, ObjectBuilder<DatafeedTimingStats>> fn) {
+		public final Builder timingStats(Function<DatafeedTimingStats.Builder, ObjectBuilder<DatafeedTimingStats>> fn) {
 			return this.timingStats(fn.apply(new DatafeedTimingStats.Builder()).build());
 		}
 
@@ -206,6 +208,7 @@ public final class DatafeedStats implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public DatafeedStats build() {
+			_checkSingleUse();
 
 			return new DatafeedStats(this);
 		}

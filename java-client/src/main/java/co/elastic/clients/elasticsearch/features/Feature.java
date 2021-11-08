@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -39,35 +41,35 @@ import javax.annotation.Nullable;
 
 // typedef: features._types.Feature
 @JsonpDeserializable
-public final class Feature implements JsonpSerializable {
+public class Feature implements JsonpSerializable {
 	private final String name;
 
 	private final String description;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public Feature(Builder builder) {
+	private Feature(Builder builder) {
 
-		this.name = Objects.requireNonNull(builder.name, "name");
-		this.description = Objects.requireNonNull(builder.description, "description");
+		this.name = ModelTypeHelper.requireNonNull(builder.name, this, "name");
+		this.description = ModelTypeHelper.requireNonNull(builder.description, this, "description");
 
 	}
 
-	public Feature(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static Feature of(Function<Builder, ObjectBuilder<Feature>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code name}
 	 */
-	public String name() {
+	public final String name() {
 		return this.name;
 	}
 
 	/**
 	 * Required - API name: {@code description}
 	 */
-	public String description() {
+	public final String description() {
 		return this.description;
 	}
 
@@ -95,7 +97,7 @@ public final class Feature implements JsonpSerializable {
 	/**
 	 * Builder for {@link Feature}.
 	 */
-	public static class Builder implements ObjectBuilder<Feature> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Feature> {
 		private String name;
 
 		private String description;
@@ -103,7 +105,7 @@ public final class Feature implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code name}
 		 */
-		public Builder name(String value) {
+		public final Builder name(String value) {
 			this.name = value;
 			return this;
 		}
@@ -111,7 +113,7 @@ public final class Feature implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code description}
 		 */
-		public Builder description(String value) {
+		public final Builder description(String value) {
 			this.description = value;
 			return this;
 		}
@@ -123,6 +125,7 @@ public final class Feature implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public Feature build() {
+			_checkSingleUse();
 
 			return new Feature(this);
 		}

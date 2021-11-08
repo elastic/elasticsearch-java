@@ -34,15 +34,15 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.MapBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -51,7 +51,7 @@ import javax.annotation.Nullable;
 
 // typedef: ml.put_datafeed.Response
 @JsonpDeserializable
-public final class PutDatafeedResponse implements JsonpSerializable {
+public class PutDatafeedResponse implements JsonpSerializable {
 	private final Map<String, Aggregation> aggregations;
 
 	private final ChunkingConfig chunkingConfig;
@@ -76,50 +76,48 @@ public final class PutDatafeedResponse implements JsonpSerializable {
 
 	private final String queryDelay;
 
-	@Nullable
 	private final Map<String, RuntimeField> runtimeMappings;
 
-	@Nullable
 	private final Map<String, ScriptField> scriptFields;
 
 	private final int scrollSize;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public PutDatafeedResponse(Builder builder) {
+	private PutDatafeedResponse(Builder builder) {
 
-		this.aggregations = ModelTypeHelper.unmodifiableNonNull(builder.aggregations, "aggregations");
-		this.chunkingConfig = Objects.requireNonNull(builder.chunkingConfig, "chunking_config");
+		this.aggregations = ModelTypeHelper.unmodifiableRequired(builder.aggregations, this, "aggregations");
+		this.chunkingConfig = ModelTypeHelper.requireNonNull(builder.chunkingConfig, this, "chunkingConfig");
 		this.delayedDataCheckConfig = builder.delayedDataCheckConfig;
-		this.datafeedId = Objects.requireNonNull(builder.datafeedId, "datafeed_id");
-		this.frequency = Objects.requireNonNull(builder.frequency, "frequency");
-		this.indices = ModelTypeHelper.unmodifiableNonNull(builder.indices, "indices");
-		this.jobId = Objects.requireNonNull(builder.jobId, "job_id");
+		this.datafeedId = ModelTypeHelper.requireNonNull(builder.datafeedId, this, "datafeedId");
+		this.frequency = ModelTypeHelper.requireNonNull(builder.frequency, this, "frequency");
+		this.indices = ModelTypeHelper.unmodifiableRequired(builder.indices, this, "indices");
+		this.jobId = ModelTypeHelper.requireNonNull(builder.jobId, this, "jobId");
 		this.indicesOptions = builder.indicesOptions;
-		this.maxEmptySearches = Objects.requireNonNull(builder.maxEmptySearches, "max_empty_searches");
-		this.query = Objects.requireNonNull(builder.query, "query");
-		this.queryDelay = Objects.requireNonNull(builder.queryDelay, "query_delay");
+		this.maxEmptySearches = ModelTypeHelper.requireNonNull(builder.maxEmptySearches, this, "maxEmptySearches");
+		this.query = ModelTypeHelper.requireNonNull(builder.query, this, "query");
+		this.queryDelay = ModelTypeHelper.requireNonNull(builder.queryDelay, this, "queryDelay");
 		this.runtimeMappings = ModelTypeHelper.unmodifiable(builder.runtimeMappings);
 		this.scriptFields = ModelTypeHelper.unmodifiable(builder.scriptFields);
-		this.scrollSize = Objects.requireNonNull(builder.scrollSize, "scroll_size");
+		this.scrollSize = ModelTypeHelper.requireNonNull(builder.scrollSize, this, "scrollSize");
 
 	}
 
-	public PutDatafeedResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static PutDatafeedResponse of(Function<Builder, ObjectBuilder<PutDatafeedResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code aggregations}
 	 */
-	public Map<String, Aggregation> aggregations() {
+	public final Map<String, Aggregation> aggregations() {
 		return this.aggregations;
 	}
 
 	/**
 	 * Required - API name: {@code chunking_config}
 	 */
-	public ChunkingConfig chunkingConfig() {
+	public final ChunkingConfig chunkingConfig() {
 		return this.chunkingConfig;
 	}
 
@@ -127,35 +125,35 @@ public final class PutDatafeedResponse implements JsonpSerializable {
 	 * API name: {@code delayed_data_check_config}
 	 */
 	@Nullable
-	public DelayedDataCheckConfig delayedDataCheckConfig() {
+	public final DelayedDataCheckConfig delayedDataCheckConfig() {
 		return this.delayedDataCheckConfig;
 	}
 
 	/**
 	 * Required - API name: {@code datafeed_id}
 	 */
-	public String datafeedId() {
+	public final String datafeedId() {
 		return this.datafeedId;
 	}
 
 	/**
 	 * Required - API name: {@code frequency}
 	 */
-	public String frequency() {
+	public final String frequency() {
 		return this.frequency;
 	}
 
 	/**
 	 * Required - API name: {@code indices}
 	 */
-	public List<String> indices() {
+	public final List<String> indices() {
 		return this.indices;
 	}
 
 	/**
 	 * Required - API name: {@code job_id}
 	 */
-	public String jobId() {
+	public final String jobId() {
 		return this.jobId;
 	}
 
@@ -163,51 +161,49 @@ public final class PutDatafeedResponse implements JsonpSerializable {
 	 * API name: {@code indices_options}
 	 */
 	@Nullable
-	public DatafeedIndicesOptions indicesOptions() {
+	public final DatafeedIndicesOptions indicesOptions() {
 		return this.indicesOptions;
 	}
 
 	/**
 	 * Required - API name: {@code max_empty_searches}
 	 */
-	public int maxEmptySearches() {
+	public final int maxEmptySearches() {
 		return this.maxEmptySearches;
 	}
 
 	/**
 	 * Required - API name: {@code query}
 	 */
-	public Query query() {
+	public final Query query() {
 		return this.query;
 	}
 
 	/**
 	 * Required - API name: {@code query_delay}
 	 */
-	public String queryDelay() {
+	public final String queryDelay() {
 		return this.queryDelay;
 	}
 
 	/**
 	 * API name: {@code runtime_mappings}
 	 */
-	@Nullable
-	public Map<String, RuntimeField> runtimeMappings() {
+	public final Map<String, RuntimeField> runtimeMappings() {
 		return this.runtimeMappings;
 	}
 
 	/**
 	 * API name: {@code script_fields}
 	 */
-	@Nullable
-	public Map<String, ScriptField> scriptFields() {
+	public final Map<String, ScriptField> scriptFields() {
 		return this.scriptFields;
 	}
 
 	/**
 	 * Required - API name: {@code scroll_size}
 	 */
-	public int scrollSize() {
+	public final int scrollSize() {
 		return this.scrollSize;
 	}
 
@@ -222,49 +218,49 @@ public final class PutDatafeedResponse implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("aggregations");
-		generator.writeStartObject();
-		for (Map.Entry<String, Aggregation> item0 : this.aggregations.entrySet()) {
-			generator.writeKey(item0.getKey());
-			item0.getValue().serialize(generator, mapper);
+		if (ModelTypeHelper.isDefined(this.aggregations)) {
+			generator.writeKey("aggregations");
+			generator.writeStartObject();
+			for (Map.Entry<String, Aggregation> item0 : this.aggregations.entrySet()) {
+				generator.writeKey(item0.getKey());
+				item0.getValue().serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
-
 		generator.writeKey("chunking_config");
 		this.chunkingConfig.serialize(generator, mapper);
 
 		if (this.delayedDataCheckConfig != null) {
-
 			generator.writeKey("delayed_data_check_config");
 			this.delayedDataCheckConfig.serialize(generator, mapper);
 
 		}
-
 		generator.writeKey("datafeed_id");
 		generator.write(this.datafeedId);
 
 		generator.writeKey("frequency");
 		generator.write(this.frequency);
 
-		generator.writeKey("indices");
-		generator.writeStartArray();
-		for (String item0 : this.indices) {
-			generator.write(item0);
+		if (ModelTypeHelper.isDefined(this.indices)) {
+			generator.writeKey("indices");
+			generator.writeStartArray();
+			for (String item0 : this.indices) {
+				generator.write(item0);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
-
 		generator.writeKey("job_id");
 		generator.write(this.jobId);
 
 		if (this.indicesOptions != null) {
-
 			generator.writeKey("indices_options");
 			this.indicesOptions.serialize(generator, mapper);
 
 		}
-
 		generator.writeKey("max_empty_searches");
 		generator.write(this.maxEmptySearches);
 
@@ -274,8 +270,7 @@ public final class PutDatafeedResponse implements JsonpSerializable {
 		generator.writeKey("query_delay");
 		generator.write(this.queryDelay);
 
-		if (this.runtimeMappings != null) {
-
+		if (ModelTypeHelper.isDefined(this.runtimeMappings)) {
 			generator.writeKey("runtime_mappings");
 			generator.writeStartObject();
 			for (Map.Entry<String, RuntimeField> item0 : this.runtimeMappings.entrySet()) {
@@ -286,8 +281,7 @@ public final class PutDatafeedResponse implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (this.scriptFields != null) {
-
+		if (ModelTypeHelper.isDefined(this.scriptFields)) {
 			generator.writeKey("script_fields");
 			generator.writeStartObject();
 			for (Map.Entry<String, ScriptField> item0 : this.scriptFields.entrySet()) {
@@ -298,7 +292,6 @@ public final class PutDatafeedResponse implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-
 		generator.writeKey("scroll_size");
 		generator.write(this.scrollSize);
 
@@ -309,7 +302,7 @@ public final class PutDatafeedResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link PutDatafeedResponse}.
 	 */
-	public static class Builder implements ObjectBuilder<PutDatafeedResponse> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PutDatafeedResponse> {
 		private Map<String, Aggregation> aggregations;
 
 		private ChunkingConfig chunkingConfig;
@@ -345,19 +338,8 @@ public final class PutDatafeedResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code aggregations}
 		 */
-		public Builder aggregations(Map<String, Aggregation> value) {
+		public final Builder aggregations(Map<String, Aggregation> value) {
 			this.aggregations = value;
-			return this;
-		}
-
-		/**
-		 * Add a key/value to {@link #aggregations(Map)}, creating the map if needed.
-		 */
-		public Builder putAggregations(String key, Aggregation value) {
-			if (this.aggregations == null) {
-				this.aggregations = new HashMap<>();
-			}
-			this.aggregations.put(key, value);
 			return this;
 		}
 
@@ -368,17 +350,15 @@ public final class PutDatafeedResponse implements JsonpSerializable {
 			return this.aggregations(Collections.singletonMap(key, fn.apply(new Aggregation.Builder()).build()));
 		}
 
-		/**
-		 * Add a key/value to {@link #aggregations(Map)}, creating the map if needed.
-		 */
-		public Builder putAggregations(String key, Function<Aggregation.Builder, ObjectBuilder<Aggregation>> fn) {
-			return this.putAggregations(key, fn.apply(new Aggregation.Builder()).build());
+		public final Builder aggregations(
+				Function<MapBuilder<String, Aggregation, Aggregation.Builder>, ObjectBuilder<Map<String, Aggregation>>> fn) {
+			return aggregations(fn.apply(new MapBuilder<>(Aggregation.Builder::new)).build());
 		}
 
 		/**
 		 * Required - API name: {@code chunking_config}
 		 */
-		public Builder chunkingConfig(ChunkingConfig value) {
+		public final Builder chunkingConfig(ChunkingConfig value) {
 			this.chunkingConfig = value;
 			return this;
 		}
@@ -386,14 +366,14 @@ public final class PutDatafeedResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code chunking_config}
 		 */
-		public Builder chunkingConfig(Function<ChunkingConfig.Builder, ObjectBuilder<ChunkingConfig>> fn) {
+		public final Builder chunkingConfig(Function<ChunkingConfig.Builder, ObjectBuilder<ChunkingConfig>> fn) {
 			return this.chunkingConfig(fn.apply(new ChunkingConfig.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code delayed_data_check_config}
 		 */
-		public Builder delayedDataCheckConfig(@Nullable DelayedDataCheckConfig value) {
+		public final Builder delayedDataCheckConfig(@Nullable DelayedDataCheckConfig value) {
 			this.delayedDataCheckConfig = value;
 			return this;
 		}
@@ -401,7 +381,7 @@ public final class PutDatafeedResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code delayed_data_check_config}
 		 */
-		public Builder delayedDataCheckConfig(
+		public final Builder delayedDataCheckConfig(
 				Function<DelayedDataCheckConfig.Builder, ObjectBuilder<DelayedDataCheckConfig>> fn) {
 			return this.delayedDataCheckConfig(fn.apply(new DelayedDataCheckConfig.Builder()).build());
 		}
@@ -409,7 +389,7 @@ public final class PutDatafeedResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code datafeed_id}
 		 */
-		public Builder datafeedId(String value) {
+		public final Builder datafeedId(String value) {
 			this.datafeedId = value;
 			return this;
 		}
@@ -417,7 +397,7 @@ public final class PutDatafeedResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code frequency}
 		 */
-		public Builder frequency(String value) {
+		public final Builder frequency(String value) {
 			this.frequency = value;
 			return this;
 		}
@@ -425,7 +405,7 @@ public final class PutDatafeedResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code indices}
 		 */
-		public Builder indices(List<String> value) {
+		public final Builder indices(List<String> value) {
 			this.indices = value;
 			return this;
 		}
@@ -433,26 +413,15 @@ public final class PutDatafeedResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code indices}
 		 */
-		public Builder indices(String... value) {
+		public final Builder indices(String... value) {
 			this.indices = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #indices(List)}, creating the list if needed.
-		 */
-		public Builder addIndices(String value) {
-			if (this.indices == null) {
-				this.indices = new ArrayList<>();
-			}
-			this.indices.add(value);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code job_id}
 		 */
-		public Builder jobId(String value) {
+		public final Builder jobId(String value) {
 			this.jobId = value;
 			return this;
 		}
@@ -460,7 +429,7 @@ public final class PutDatafeedResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code indices_options}
 		 */
-		public Builder indicesOptions(@Nullable DatafeedIndicesOptions value) {
+		public final Builder indicesOptions(@Nullable DatafeedIndicesOptions value) {
 			this.indicesOptions = value;
 			return this;
 		}
@@ -468,7 +437,7 @@ public final class PutDatafeedResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code indices_options}
 		 */
-		public Builder indicesOptions(
+		public final Builder indicesOptions(
 				Function<DatafeedIndicesOptions.Builder, ObjectBuilder<DatafeedIndicesOptions>> fn) {
 			return this.indicesOptions(fn.apply(new DatafeedIndicesOptions.Builder()).build());
 		}
@@ -476,7 +445,7 @@ public final class PutDatafeedResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code max_empty_searches}
 		 */
-		public Builder maxEmptySearches(int value) {
+		public final Builder maxEmptySearches(int value) {
 			this.maxEmptySearches = value;
 			return this;
 		}
@@ -484,7 +453,7 @@ public final class PutDatafeedResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code query}
 		 */
-		public Builder query(Query value) {
+		public final Builder query(Query value) {
 			this.query = value;
 			return this;
 		}
@@ -492,14 +461,14 @@ public final class PutDatafeedResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code query}
 		 */
-		public Builder query(Function<Query.Builder, ObjectBuilder<Query>> fn) {
+		public final Builder query(Function<Query.Builder, ObjectBuilder<Query>> fn) {
 			return this.query(fn.apply(new Query.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code query_delay}
 		 */
-		public Builder queryDelay(String value) {
+		public final Builder queryDelay(String value) {
 			this.queryDelay = value;
 			return this;
 		}
@@ -507,19 +476,8 @@ public final class PutDatafeedResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code runtime_mappings}
 		 */
-		public Builder runtimeMappings(@Nullable Map<String, RuntimeField> value) {
+		public final Builder runtimeMappings(@Nullable Map<String, RuntimeField> value) {
 			this.runtimeMappings = value;
-			return this;
-		}
-
-		/**
-		 * Add a key/value to {@link #runtimeMappings(Map)}, creating the map if needed.
-		 */
-		public Builder putRuntimeMappings(String key, RuntimeField value) {
-			if (this.runtimeMappings == null) {
-				this.runtimeMappings = new HashMap<>();
-			}
-			this.runtimeMappings.put(key, value);
 			return this;
 		}
 
@@ -530,29 +488,16 @@ public final class PutDatafeedResponse implements JsonpSerializable {
 			return this.runtimeMappings(Collections.singletonMap(key, fn.apply(new RuntimeField.Builder()).build()));
 		}
 
-		/**
-		 * Add a key/value to {@link #runtimeMappings(Map)}, creating the map if needed.
-		 */
-		public Builder putRuntimeMappings(String key, Function<RuntimeField.Builder, ObjectBuilder<RuntimeField>> fn) {
-			return this.putRuntimeMappings(key, fn.apply(new RuntimeField.Builder()).build());
+		public final Builder runtimeMappings(
+				Function<MapBuilder<String, RuntimeField, RuntimeField.Builder>, ObjectBuilder<Map<String, RuntimeField>>> fn) {
+			return runtimeMappings(fn.apply(new MapBuilder<>(RuntimeField.Builder::new)).build());
 		}
 
 		/**
 		 * API name: {@code script_fields}
 		 */
-		public Builder scriptFields(@Nullable Map<String, ScriptField> value) {
+		public final Builder scriptFields(@Nullable Map<String, ScriptField> value) {
 			this.scriptFields = value;
-			return this;
-		}
-
-		/**
-		 * Add a key/value to {@link #scriptFields(Map)}, creating the map if needed.
-		 */
-		public Builder putScriptFields(String key, ScriptField value) {
-			if (this.scriptFields == null) {
-				this.scriptFields = new HashMap<>();
-			}
-			this.scriptFields.put(key, value);
 			return this;
 		}
 
@@ -563,17 +508,15 @@ public final class PutDatafeedResponse implements JsonpSerializable {
 			return this.scriptFields(Collections.singletonMap(key, fn.apply(new ScriptField.Builder()).build()));
 		}
 
-		/**
-		 * Add a key/value to {@link #scriptFields(Map)}, creating the map if needed.
-		 */
-		public Builder putScriptFields(String key, Function<ScriptField.Builder, ObjectBuilder<ScriptField>> fn) {
-			return this.putScriptFields(key, fn.apply(new ScriptField.Builder()).build());
+		public final Builder scriptFields(
+				Function<MapBuilder<String, ScriptField, ScriptField.Builder>, ObjectBuilder<Map<String, ScriptField>>> fn) {
+			return scriptFields(fn.apply(new MapBuilder<>(ScriptField.Builder::new)).build());
 		}
 
 		/**
 		 * Required - API name: {@code scroll_size}
 		 */
-		public Builder scrollSize(int value) {
+		public final Builder scrollSize(int value) {
 			this.scrollSize = value;
 			return this;
 		}
@@ -585,6 +528,7 @@ public final class PutDatafeedResponse implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public PutDatafeedResponse build() {
+			_checkSingleUse();
 
 			return new PutDatafeedResponse(this);
 		}

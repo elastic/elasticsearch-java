@@ -31,6 +31,7 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.Objects;
@@ -39,27 +40,28 @@ import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.GoogleNormalizedDistanceHeuristic
 @JsonpDeserializable
-public final class GoogleNormalizedDistanceHeuristic implements JsonpSerializable {
+public class GoogleNormalizedDistanceHeuristic implements JsonpSerializable {
 	@Nullable
 	private final Boolean backgroundIsSuperset;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public GoogleNormalizedDistanceHeuristic(Builder builder) {
+	private GoogleNormalizedDistanceHeuristic(Builder builder) {
 
 		this.backgroundIsSuperset = builder.backgroundIsSuperset;
 
 	}
 
-	public GoogleNormalizedDistanceHeuristic(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static GoogleNormalizedDistanceHeuristic of(
+			Function<Builder, ObjectBuilder<GoogleNormalizedDistanceHeuristic>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * API name: {@code background_is_superset}
 	 */
 	@Nullable
-	public Boolean backgroundIsSuperset() {
+	public final Boolean backgroundIsSuperset() {
 		return this.backgroundIsSuperset;
 	}
 
@@ -75,7 +77,6 @@ public final class GoogleNormalizedDistanceHeuristic implements JsonpSerializabl
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.backgroundIsSuperset != null) {
-
 			generator.writeKey("background_is_superset");
 			generator.write(this.backgroundIsSuperset);
 
@@ -88,14 +89,14 @@ public final class GoogleNormalizedDistanceHeuristic implements JsonpSerializabl
 	/**
 	 * Builder for {@link GoogleNormalizedDistanceHeuristic}.
 	 */
-	public static class Builder implements ObjectBuilder<GoogleNormalizedDistanceHeuristic> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GoogleNormalizedDistanceHeuristic> {
 		@Nullable
 		private Boolean backgroundIsSuperset;
 
 		/**
 		 * API name: {@code background_is_superset}
 		 */
-		public Builder backgroundIsSuperset(@Nullable Boolean value) {
+		public final Builder backgroundIsSuperset(@Nullable Boolean value) {
 			this.backgroundIsSuperset = value;
 			return this;
 		}
@@ -107,6 +108,7 @@ public final class GoogleNormalizedDistanceHeuristic implements JsonpSerializabl
 		 *             if some of the required fields are null.
 		 */
 		public GoogleNormalizedDistanceHeuristic build() {
+			_checkSingleUse();
 
 			return new GoogleNormalizedDistanceHeuristic(this);
 		}

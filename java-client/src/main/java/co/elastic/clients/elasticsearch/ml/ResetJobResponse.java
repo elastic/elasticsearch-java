@@ -36,16 +36,16 @@ import java.util.function.Function;
 
 // typedef: ml.reset_job.Response
 @JsonpDeserializable
-public final class ResetJobResponse extends AcknowledgedResponseBase {
+public class ResetJobResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
-	public ResetJobResponse(Builder builder) {
+	private ResetJobResponse(Builder builder) {
 		super(builder);
 
 	}
 
-	public ResetJobResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ResetJobResponse of(Function<Builder, ObjectBuilder<ResetJobResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -68,6 +68,7 @@ public final class ResetJobResponse extends AcknowledgedResponseBase {
 		 *             if some of the required fields are null.
 		 */
 		public ResetJobResponse build() {
+			_checkSingleUse();
 
 			return new ResetJobResponse(this);
 		}

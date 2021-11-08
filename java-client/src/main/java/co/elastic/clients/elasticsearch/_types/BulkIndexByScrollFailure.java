@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
@@ -40,7 +42,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.BulkIndexByScrollFailure
 @JsonpDeserializable
-public final class BulkIndexByScrollFailure implements JsonpSerializable {
+public class BulkIndexByScrollFailure implements JsonpSerializable {
 	private final ErrorCause cause;
 
 	private final String id;
@@ -53,52 +55,52 @@ public final class BulkIndexByScrollFailure implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public BulkIndexByScrollFailure(Builder builder) {
+	private BulkIndexByScrollFailure(Builder builder) {
 
-		this.cause = Objects.requireNonNull(builder.cause, "cause");
-		this.id = Objects.requireNonNull(builder.id, "id");
-		this.index = Objects.requireNonNull(builder.index, "index");
-		this.status = Objects.requireNonNull(builder.status, "status");
-		this.type = Objects.requireNonNull(builder.type, "type");
+		this.cause = ModelTypeHelper.requireNonNull(builder.cause, this, "cause");
+		this.id = ModelTypeHelper.requireNonNull(builder.id, this, "id");
+		this.index = ModelTypeHelper.requireNonNull(builder.index, this, "index");
+		this.status = ModelTypeHelper.requireNonNull(builder.status, this, "status");
+		this.type = ModelTypeHelper.requireNonNull(builder.type, this, "type");
 
 	}
 
-	public BulkIndexByScrollFailure(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static BulkIndexByScrollFailure of(Function<Builder, ObjectBuilder<BulkIndexByScrollFailure>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code cause}
 	 */
-	public ErrorCause cause() {
+	public final ErrorCause cause() {
 		return this.cause;
 	}
 
 	/**
 	 * Required - API name: {@code id}
 	 */
-	public String id() {
+	public final String id() {
 		return this.id;
 	}
 
 	/**
 	 * Required - API name: {@code index}
 	 */
-	public String index() {
+	public final String index() {
 		return this.index;
 	}
 
 	/**
 	 * Required - API name: {@code status}
 	 */
-	public int status() {
+	public final int status() {
 		return this.status;
 	}
 
 	/**
 	 * Required - API name: {@code type}
 	 */
-	public String type() {
+	public final String type() {
 		return this.type;
 	}
 
@@ -135,7 +137,7 @@ public final class BulkIndexByScrollFailure implements JsonpSerializable {
 	/**
 	 * Builder for {@link BulkIndexByScrollFailure}.
 	 */
-	public static class Builder implements ObjectBuilder<BulkIndexByScrollFailure> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<BulkIndexByScrollFailure> {
 		private ErrorCause cause;
 
 		private String id;
@@ -149,7 +151,7 @@ public final class BulkIndexByScrollFailure implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code cause}
 		 */
-		public Builder cause(ErrorCause value) {
+		public final Builder cause(ErrorCause value) {
 			this.cause = value;
 			return this;
 		}
@@ -157,14 +159,14 @@ public final class BulkIndexByScrollFailure implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code cause}
 		 */
-		public Builder cause(Function<ErrorCause.Builder, ObjectBuilder<ErrorCause>> fn) {
+		public final Builder cause(Function<ErrorCause.Builder, ObjectBuilder<ErrorCause>> fn) {
 			return this.cause(fn.apply(new ErrorCause.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code id}
 		 */
-		public Builder id(String value) {
+		public final Builder id(String value) {
 			this.id = value;
 			return this;
 		}
@@ -172,7 +174,7 @@ public final class BulkIndexByScrollFailure implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code index}
 		 */
-		public Builder index(String value) {
+		public final Builder index(String value) {
 			this.index = value;
 			return this;
 		}
@@ -180,7 +182,7 @@ public final class BulkIndexByScrollFailure implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code status}
 		 */
-		public Builder status(int value) {
+		public final Builder status(int value) {
 			this.status = value;
 			return this;
 		}
@@ -188,7 +190,7 @@ public final class BulkIndexByScrollFailure implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code type}
 		 */
-		public Builder type(String value) {
+		public final Builder type(String value) {
 			this.type = value;
 			return this;
 		}
@@ -200,6 +202,7 @@ public final class BulkIndexByScrollFailure implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public BulkIndexByScrollFailure build() {
+			_checkSingleUse();
 
 			return new BulkIndexByScrollFailure(this);
 		}

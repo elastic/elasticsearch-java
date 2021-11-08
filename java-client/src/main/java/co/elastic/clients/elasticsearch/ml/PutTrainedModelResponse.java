@@ -29,7 +29,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;
@@ -37,19 +39,19 @@ import javax.annotation.Nullable;
 
 // typedef: ml.put_trained_model.Response
 @JsonpDeserializable
-public final class PutTrainedModelResponse implements JsonpSerializable {
+public class PutTrainedModelResponse implements JsonpSerializable {
 	private final TrainedModelConfig valueBody;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public PutTrainedModelResponse(Builder builder) {
+	private PutTrainedModelResponse(Builder builder) {
 
-		this.valueBody = Objects.requireNonNull(builder.valueBody, "_value_body");
+		this.valueBody = ModelTypeHelper.requireNonNull(builder.valueBody, this, "valueBody");
 
 	}
 
-	public PutTrainedModelResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static PutTrainedModelResponse of(Function<Builder, ObjectBuilder<PutTrainedModelResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -57,7 +59,7 @@ public final class PutTrainedModelResponse implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code _value_body}
 	 */
-	public TrainedModelConfig valueBody() {
+	public final TrainedModelConfig valueBody() {
 		return this.valueBody;
 	}
 
@@ -74,7 +76,7 @@ public final class PutTrainedModelResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link PutTrainedModelResponse}.
 	 */
-	public static class Builder implements ObjectBuilder<PutTrainedModelResponse> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PutTrainedModelResponse> {
 		private TrainedModelConfig valueBody;
 
 		/**
@@ -82,7 +84,7 @@ public final class PutTrainedModelResponse implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code _value_body}
 		 */
-		public Builder valueBody(TrainedModelConfig value) {
+		public final Builder valueBody(TrainedModelConfig value) {
 			this.valueBody = value;
 			return this;
 		}
@@ -92,7 +94,7 @@ public final class PutTrainedModelResponse implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code _value_body}
 		 */
-		public Builder valueBody(Function<TrainedModelConfig.Builder, ObjectBuilder<TrainedModelConfig>> fn) {
+		public final Builder valueBody(Function<TrainedModelConfig.Builder, ObjectBuilder<TrainedModelConfig>> fn) {
 			return this.valueBody(fn.apply(new TrainedModelConfig.Builder()).build());
 		}
 
@@ -103,6 +105,7 @@ public final class PutTrainedModelResponse implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public PutTrainedModelResponse build() {
+			_checkSingleUse();
 
 			return new PutTrainedModelResponse(this);
 		}

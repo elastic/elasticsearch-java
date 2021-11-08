@@ -32,6 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.lang.String;
@@ -44,7 +45,7 @@ import javax.annotation.Nullable;
 
 // typedef: _global.search._types.AggregationProfile
 @JsonpDeserializable
-public final class AggregationProfile implements JsonpSerializable {
+public class AggregationProfile implements JsonpSerializable {
 	private final AggregationBreakdown breakdown;
 
 	private final String description;
@@ -56,51 +57,50 @@ public final class AggregationProfile implements JsonpSerializable {
 	@Nullable
 	private final AggregationProfileDebug debug;
 
-	@Nullable
 	private final List<AggregationProfile> children;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public AggregationProfile(Builder builder) {
+	private AggregationProfile(Builder builder) {
 
-		this.breakdown = Objects.requireNonNull(builder.breakdown, "breakdown");
-		this.description = Objects.requireNonNull(builder.description, "description");
-		this.timeInNanos = Objects.requireNonNull(builder.timeInNanos, "time_in_nanos");
-		this.type = Objects.requireNonNull(builder.type, "type");
+		this.breakdown = ModelTypeHelper.requireNonNull(builder.breakdown, this, "breakdown");
+		this.description = ModelTypeHelper.requireNonNull(builder.description, this, "description");
+		this.timeInNanos = ModelTypeHelper.requireNonNull(builder.timeInNanos, this, "timeInNanos");
+		this.type = ModelTypeHelper.requireNonNull(builder.type, this, "type");
 		this.debug = builder.debug;
 		this.children = ModelTypeHelper.unmodifiable(builder.children);
 
 	}
 
-	public AggregationProfile(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static AggregationProfile of(Function<Builder, ObjectBuilder<AggregationProfile>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code breakdown}
 	 */
-	public AggregationBreakdown breakdown() {
+	public final AggregationBreakdown breakdown() {
 		return this.breakdown;
 	}
 
 	/**
 	 * Required - API name: {@code description}
 	 */
-	public String description() {
+	public final String description() {
 		return this.description;
 	}
 
 	/**
 	 * Required - API name: {@code time_in_nanos}
 	 */
-	public long timeInNanos() {
+	public final long timeInNanos() {
 		return this.timeInNanos;
 	}
 
 	/**
 	 * Required - API name: {@code type}
 	 */
-	public String type() {
+	public final String type() {
 		return this.type;
 	}
 
@@ -108,15 +108,14 @@ public final class AggregationProfile implements JsonpSerializable {
 	 * API name: {@code debug}
 	 */
 	@Nullable
-	public AggregationProfileDebug debug() {
+	public final AggregationProfileDebug debug() {
 		return this.debug;
 	}
 
 	/**
 	 * API name: {@code children}
 	 */
-	@Nullable
-	public List<AggregationProfile> children() {
+	public final List<AggregationProfile> children() {
 		return this.children;
 	}
 
@@ -144,13 +143,11 @@ public final class AggregationProfile implements JsonpSerializable {
 		generator.write(this.type);
 
 		if (this.debug != null) {
-
 			generator.writeKey("debug");
 			this.debug.serialize(generator, mapper);
 
 		}
-		if (this.children != null) {
-
+		if (ModelTypeHelper.isDefined(this.children)) {
 			generator.writeKey("children");
 			generator.writeStartArray();
 			for (AggregationProfile item0 : this.children) {
@@ -168,7 +165,7 @@ public final class AggregationProfile implements JsonpSerializable {
 	/**
 	 * Builder for {@link AggregationProfile}.
 	 */
-	public static class Builder implements ObjectBuilder<AggregationProfile> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<AggregationProfile> {
 		private AggregationBreakdown breakdown;
 
 		private String description;
@@ -186,7 +183,7 @@ public final class AggregationProfile implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code breakdown}
 		 */
-		public Builder breakdown(AggregationBreakdown value) {
+		public final Builder breakdown(AggregationBreakdown value) {
 			this.breakdown = value;
 			return this;
 		}
@@ -194,14 +191,14 @@ public final class AggregationProfile implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code breakdown}
 		 */
-		public Builder breakdown(Function<AggregationBreakdown.Builder, ObjectBuilder<AggregationBreakdown>> fn) {
+		public final Builder breakdown(Function<AggregationBreakdown.Builder, ObjectBuilder<AggregationBreakdown>> fn) {
 			return this.breakdown(fn.apply(new AggregationBreakdown.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code description}
 		 */
-		public Builder description(String value) {
+		public final Builder description(String value) {
 			this.description = value;
 			return this;
 		}
@@ -209,7 +206,7 @@ public final class AggregationProfile implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code time_in_nanos}
 		 */
-		public Builder timeInNanos(long value) {
+		public final Builder timeInNanos(long value) {
 			this.timeInNanos = value;
 			return this;
 		}
@@ -217,7 +214,7 @@ public final class AggregationProfile implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code type}
 		 */
-		public Builder type(String value) {
+		public final Builder type(String value) {
 			this.type = value;
 			return this;
 		}
@@ -225,7 +222,7 @@ public final class AggregationProfile implements JsonpSerializable {
 		/**
 		 * API name: {@code debug}
 		 */
-		public Builder debug(@Nullable AggregationProfileDebug value) {
+		public final Builder debug(@Nullable AggregationProfileDebug value) {
 			this.debug = value;
 			return this;
 		}
@@ -233,14 +230,15 @@ public final class AggregationProfile implements JsonpSerializable {
 		/**
 		 * API name: {@code debug}
 		 */
-		public Builder debug(Function<AggregationProfileDebug.Builder, ObjectBuilder<AggregationProfileDebug>> fn) {
+		public final Builder debug(
+				Function<AggregationProfileDebug.Builder, ObjectBuilder<AggregationProfileDebug>> fn) {
 			return this.debug(fn.apply(new AggregationProfileDebug.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code children}
 		 */
-		public Builder children(@Nullable List<AggregationProfile> value) {
+		public final Builder children(@Nullable List<AggregationProfile> value) {
 			this.children = value;
 			return this;
 		}
@@ -248,34 +246,21 @@ public final class AggregationProfile implements JsonpSerializable {
 		/**
 		 * API name: {@code children}
 		 */
-		public Builder children(AggregationProfile... value) {
+		public final Builder children(AggregationProfile... value) {
 			this.children = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #children(List)}, creating the list if needed.
+		 * API name: {@code children}
 		 */
-		public Builder addChildren(AggregationProfile value) {
-			if (this.children == null) {
-				this.children = new ArrayList<>();
+		@SafeVarargs
+		public final Builder children(Function<AggregationProfile.Builder, ObjectBuilder<AggregationProfile>>... fns) {
+			this.children = new ArrayList<>(fns.length);
+			for (Function<AggregationProfile.Builder, ObjectBuilder<AggregationProfile>> fn : fns) {
+				this.children.add(fn.apply(new AggregationProfile.Builder()).build());
 			}
-			this.children.add(value);
 			return this;
-		}
-
-		/**
-		 * Set {@link #children(List)} to a singleton list.
-		 */
-		public Builder children(Function<AggregationProfile.Builder, ObjectBuilder<AggregationProfile>> fn) {
-			return this.children(fn.apply(new AggregationProfile.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #children(List)}, creating the list if needed.
-		 */
-		public Builder addChildren(Function<AggregationProfile.Builder, ObjectBuilder<AggregationProfile>> fn) {
-			return this.addChildren(fn.apply(new AggregationProfile.Builder()).build());
 		}
 
 		/**
@@ -285,6 +270,7 @@ public final class AggregationProfile implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public AggregationProfile build() {
+			_checkSingleUse();
 
 			return new AggregationProfile(this);
 		}

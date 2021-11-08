@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.Objects;
@@ -38,25 +40,25 @@ import java.util.function.Function;
 
 // typedef: rollup.start_job.Response
 @JsonpDeserializable
-public final class StartJobResponse implements JsonpSerializable {
+public class StartJobResponse implements JsonpSerializable {
 	private final boolean started;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public StartJobResponse(Builder builder) {
+	private StartJobResponse(Builder builder) {
 
-		this.started = Objects.requireNonNull(builder.started, "started");
+		this.started = ModelTypeHelper.requireNonNull(builder.started, this, "started");
 
 	}
 
-	public StartJobResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static StartJobResponse of(Function<Builder, ObjectBuilder<StartJobResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code started}
 	 */
-	public boolean started() {
+	public final boolean started() {
 		return this.started;
 	}
 
@@ -81,13 +83,13 @@ public final class StartJobResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link StartJobResponse}.
 	 */
-	public static class Builder implements ObjectBuilder<StartJobResponse> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<StartJobResponse> {
 		private Boolean started;
 
 		/**
 		 * Required - API name: {@code started}
 		 */
-		public Builder started(boolean value) {
+		public final Builder started(boolean value) {
 			this.started = value;
 			return this;
 		}
@@ -99,6 +101,7 @@ public final class StartJobResponse implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public StartJobResponse build() {
+			_checkSingleUse();
 
 			return new StartJobResponse(this);
 		}

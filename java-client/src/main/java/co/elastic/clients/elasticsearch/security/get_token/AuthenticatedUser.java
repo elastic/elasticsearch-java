@@ -30,6 +30,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -39,7 +40,7 @@ import javax.annotation.Nullable;
 
 // typedef: security.get_token.AuthenticatedUser
 @JsonpDeserializable
-public final class AuthenticatedUser extends User {
+public class AuthenticatedUser extends User {
 	private final UserRealm authenticationRealm;
 
 	private final UserRealm lookupRealm;
@@ -51,31 +52,33 @@ public final class AuthenticatedUser extends User {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public AuthenticatedUser(Builder builder) {
+	private AuthenticatedUser(Builder builder) {
 		super(builder);
 
-		this.authenticationRealm = Objects.requireNonNull(builder.authenticationRealm, "authentication_realm");
-		this.lookupRealm = Objects.requireNonNull(builder.lookupRealm, "lookup_realm");
+		this.authenticationRealm = ModelTypeHelper.requireNonNull(builder.authenticationRealm, this,
+				"authenticationRealm");
+		this.lookupRealm = ModelTypeHelper.requireNonNull(builder.lookupRealm, this, "lookupRealm");
 		this.authenticationProvider = builder.authenticationProvider;
-		this.authenticationType = Objects.requireNonNull(builder.authenticationType, "authentication_type");
+		this.authenticationType = ModelTypeHelper.requireNonNull(builder.authenticationType, this,
+				"authenticationType");
 
 	}
 
-	public AuthenticatedUser(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static AuthenticatedUser of(Function<Builder, ObjectBuilder<AuthenticatedUser>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code authentication_realm}
 	 */
-	public UserRealm authenticationRealm() {
+	public final UserRealm authenticationRealm() {
 		return this.authenticationRealm;
 	}
 
 	/**
 	 * Required - API name: {@code lookup_realm}
 	 */
-	public UserRealm lookupRealm() {
+	public final UserRealm lookupRealm() {
 		return this.lookupRealm;
 	}
 
@@ -83,21 +86,20 @@ public final class AuthenticatedUser extends User {
 	 * API name: {@code authentication_provider}
 	 */
 	@Nullable
-	public AuthenticationProvider authenticationProvider() {
+	public final AuthenticationProvider authenticationProvider() {
 		return this.authenticationProvider;
 	}
 
 	/**
 	 * Required - API name: {@code authentication_type}
 	 */
-	public String authenticationType() {
+	public final String authenticationType() {
 		return this.authenticationType;
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
-
 		generator.writeKey("authentication_realm");
 		this.authenticationRealm.serialize(generator, mapper);
 
@@ -105,12 +107,10 @@ public final class AuthenticatedUser extends User {
 		this.lookupRealm.serialize(generator, mapper);
 
 		if (this.authenticationProvider != null) {
-
 			generator.writeKey("authentication_provider");
 			this.authenticationProvider.serialize(generator, mapper);
 
 		}
-
 		generator.writeKey("authentication_type");
 		generator.write(this.authenticationType);
 
@@ -134,7 +134,7 @@ public final class AuthenticatedUser extends User {
 		/**
 		 * Required - API name: {@code authentication_realm}
 		 */
-		public Builder authenticationRealm(UserRealm value) {
+		public final Builder authenticationRealm(UserRealm value) {
 			this.authenticationRealm = value;
 			return this;
 		}
@@ -142,14 +142,14 @@ public final class AuthenticatedUser extends User {
 		/**
 		 * Required - API name: {@code authentication_realm}
 		 */
-		public Builder authenticationRealm(Function<UserRealm.Builder, ObjectBuilder<UserRealm>> fn) {
+		public final Builder authenticationRealm(Function<UserRealm.Builder, ObjectBuilder<UserRealm>> fn) {
 			return this.authenticationRealm(fn.apply(new UserRealm.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code lookup_realm}
 		 */
-		public Builder lookupRealm(UserRealm value) {
+		public final Builder lookupRealm(UserRealm value) {
 			this.lookupRealm = value;
 			return this;
 		}
@@ -157,14 +157,14 @@ public final class AuthenticatedUser extends User {
 		/**
 		 * Required - API name: {@code lookup_realm}
 		 */
-		public Builder lookupRealm(Function<UserRealm.Builder, ObjectBuilder<UserRealm>> fn) {
+		public final Builder lookupRealm(Function<UserRealm.Builder, ObjectBuilder<UserRealm>> fn) {
 			return this.lookupRealm(fn.apply(new UserRealm.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code authentication_provider}
 		 */
-		public Builder authenticationProvider(@Nullable AuthenticationProvider value) {
+		public final Builder authenticationProvider(@Nullable AuthenticationProvider value) {
 			this.authenticationProvider = value;
 			return this;
 		}
@@ -172,7 +172,7 @@ public final class AuthenticatedUser extends User {
 		/**
 		 * API name: {@code authentication_provider}
 		 */
-		public Builder authenticationProvider(
+		public final Builder authenticationProvider(
 				Function<AuthenticationProvider.Builder, ObjectBuilder<AuthenticationProvider>> fn) {
 			return this.authenticationProvider(fn.apply(new AuthenticationProvider.Builder()).build());
 		}
@@ -180,7 +180,7 @@ public final class AuthenticatedUser extends User {
 		/**
 		 * Required - API name: {@code authentication_type}
 		 */
-		public Builder authenticationType(String value) {
+		public final Builder authenticationType(String value) {
 			this.authenticationType = value;
 			return this;
 		}
@@ -197,6 +197,7 @@ public final class AuthenticatedUser extends User {
 		 *             if some of the required fields are null.
 		 */
 		public AuthenticatedUser build() {
+			_checkSingleUse();
 
 			return new AuthenticatedUser(this);
 		}

@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.util.Objects;
@@ -38,25 +40,25 @@ import java.util.function.Function;
 
 // typedef: xpack.usage.RealmCache
 @JsonpDeserializable
-public final class RealmCache implements JsonpSerializable {
+public class RealmCache implements JsonpSerializable {
 	private final long size;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public RealmCache(Builder builder) {
+	private RealmCache(Builder builder) {
 
-		this.size = Objects.requireNonNull(builder.size, "size");
+		this.size = ModelTypeHelper.requireNonNull(builder.size, this, "size");
 
 	}
 
-	public RealmCache(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static RealmCache of(Function<Builder, ObjectBuilder<RealmCache>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code size}
 	 */
-	public long size() {
+	public final long size() {
 		return this.size;
 	}
 
@@ -81,13 +83,13 @@ public final class RealmCache implements JsonpSerializable {
 	/**
 	 * Builder for {@link RealmCache}.
 	 */
-	public static class Builder implements ObjectBuilder<RealmCache> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RealmCache> {
 		private Long size;
 
 		/**
 		 * Required - API name: {@code size}
 		 */
-		public Builder size(long value) {
+		public final Builder size(long value) {
 			this.size = value;
 			return this;
 		}
@@ -99,6 +101,7 @@ public final class RealmCache implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public RealmCache build() {
+			_checkSingleUse();
 
 			return new RealmCache(this);
 		}

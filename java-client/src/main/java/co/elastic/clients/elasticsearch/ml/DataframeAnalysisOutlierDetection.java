@@ -31,6 +31,7 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Double;
@@ -42,7 +43,7 @@ import javax.annotation.Nullable;
 
 // typedef: ml._types.DataframeAnalysisOutlierDetection
 @JsonpDeserializable
-public final class DataframeAnalysisOutlierDetection implements DataframeAnalysisVariant, JsonpSerializable {
+public class DataframeAnalysisOutlierDetection implements DataframeAnalysisVariant, JsonpSerializable {
 	@Nullable
 	private final Boolean computeFeatureInfluence;
 
@@ -63,7 +64,7 @@ public final class DataframeAnalysisOutlierDetection implements DataframeAnalysi
 
 	// ---------------------------------------------------------------------------------------------
 
-	public DataframeAnalysisOutlierDetection(Builder builder) {
+	private DataframeAnalysisOutlierDetection(Builder builder) {
 
 		this.computeFeatureInfluence = builder.computeFeatureInfluence;
 		this.featureInfluenceThreshold = builder.featureInfluenceThreshold;
@@ -74,8 +75,9 @@ public final class DataframeAnalysisOutlierDetection implements DataframeAnalysi
 
 	}
 
-	public DataframeAnalysisOutlierDetection(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static DataframeAnalysisOutlierDetection of(
+			Function<Builder, ObjectBuilder<DataframeAnalysisOutlierDetection>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -92,7 +94,7 @@ public final class DataframeAnalysisOutlierDetection implements DataframeAnalysi
 	 * API name: {@code compute_feature_influence}
 	 */
 	@Nullable
-	public Boolean computeFeatureInfluence() {
+	public final Boolean computeFeatureInfluence() {
 		return this.computeFeatureInfluence;
 	}
 
@@ -103,7 +105,7 @@ public final class DataframeAnalysisOutlierDetection implements DataframeAnalysi
 	 * API name: {@code feature_influence_threshold}
 	 */
 	@Nullable
-	public Double featureInfluenceThreshold() {
+	public final Double featureInfluenceThreshold() {
 		return this.featureInfluenceThreshold;
 	}
 
@@ -118,7 +120,7 @@ public final class DataframeAnalysisOutlierDetection implements DataframeAnalysi
 	 * API name: {@code method}
 	 */
 	@Nullable
-	public String method() {
+	public final String method() {
 		return this.method;
 	}
 
@@ -132,7 +134,7 @@ public final class DataframeAnalysisOutlierDetection implements DataframeAnalysi
 	 * API name: {@code n_neighbors}
 	 */
 	@Nullable
-	public Integer nNeighbors() {
+	public final Integer nNeighbors() {
 		return this.nNeighbors;
 	}
 
@@ -144,7 +146,7 @@ public final class DataframeAnalysisOutlierDetection implements DataframeAnalysi
 	 * API name: {@code outlier_fraction}
 	 */
 	@Nullable
-	public Double outlierFraction() {
+	public final Double outlierFraction() {
 		return this.outlierFraction;
 	}
 
@@ -155,7 +157,7 @@ public final class DataframeAnalysisOutlierDetection implements DataframeAnalysi
 	 * API name: {@code standardization_enabled}
 	 */
 	@Nullable
-	public Boolean standardizationEnabled() {
+	public final Boolean standardizationEnabled() {
 		return this.standardizationEnabled;
 	}
 
@@ -171,37 +173,31 @@ public final class DataframeAnalysisOutlierDetection implements DataframeAnalysi
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.computeFeatureInfluence != null) {
-
 			generator.writeKey("compute_feature_influence");
 			generator.write(this.computeFeatureInfluence);
 
 		}
 		if (this.featureInfluenceThreshold != null) {
-
 			generator.writeKey("feature_influence_threshold");
 			generator.write(this.featureInfluenceThreshold);
 
 		}
 		if (this.method != null) {
-
 			generator.writeKey("method");
 			generator.write(this.method);
 
 		}
 		if (this.nNeighbors != null) {
-
 			generator.writeKey("n_neighbors");
 			generator.write(this.nNeighbors);
 
 		}
 		if (this.outlierFraction != null) {
-
 			generator.writeKey("outlier_fraction");
 			generator.write(this.outlierFraction);
 
 		}
 		if (this.standardizationEnabled != null) {
-
 			generator.writeKey("standardization_enabled");
 			generator.write(this.standardizationEnabled);
 
@@ -214,7 +210,7 @@ public final class DataframeAnalysisOutlierDetection implements DataframeAnalysi
 	/**
 	 * Builder for {@link DataframeAnalysisOutlierDetection}.
 	 */
-	public static class Builder implements ObjectBuilder<DataframeAnalysisOutlierDetection> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DataframeAnalysisOutlierDetection> {
 		@Nullable
 		private Boolean computeFeatureInfluence;
 
@@ -238,7 +234,7 @@ public final class DataframeAnalysisOutlierDetection implements DataframeAnalysi
 		 * <p>
 		 * API name: {@code compute_feature_influence}
 		 */
-		public Builder computeFeatureInfluence(@Nullable Boolean value) {
+		public final Builder computeFeatureInfluence(@Nullable Boolean value) {
 			this.computeFeatureInfluence = value;
 			return this;
 		}
@@ -249,7 +245,7 @@ public final class DataframeAnalysisOutlierDetection implements DataframeAnalysi
 		 * <p>
 		 * API name: {@code feature_influence_threshold}
 		 */
-		public Builder featureInfluenceThreshold(@Nullable Double value) {
+		public final Builder featureInfluenceThreshold(@Nullable Double value) {
 			this.featureInfluenceThreshold = value;
 			return this;
 		}
@@ -264,7 +260,7 @@ public final class DataframeAnalysisOutlierDetection implements DataframeAnalysi
 		 * <p>
 		 * API name: {@code method}
 		 */
-		public Builder method(@Nullable String value) {
+		public final Builder method(@Nullable String value) {
 			this.method = value;
 			return this;
 		}
@@ -278,7 +274,7 @@ public final class DataframeAnalysisOutlierDetection implements DataframeAnalysi
 		 * <p>
 		 * API name: {@code n_neighbors}
 		 */
-		public Builder nNeighbors(@Nullable Integer value) {
+		public final Builder nNeighbors(@Nullable Integer value) {
 			this.nNeighbors = value;
 			return this;
 		}
@@ -290,7 +286,7 @@ public final class DataframeAnalysisOutlierDetection implements DataframeAnalysi
 		 * <p>
 		 * API name: {@code outlier_fraction}
 		 */
-		public Builder outlierFraction(@Nullable Double value) {
+		public final Builder outlierFraction(@Nullable Double value) {
 			this.outlierFraction = value;
 			return this;
 		}
@@ -301,7 +297,7 @@ public final class DataframeAnalysisOutlierDetection implements DataframeAnalysi
 		 * <p>
 		 * API name: {@code standardization_enabled}
 		 */
-		public Builder standardizationEnabled(@Nullable Boolean value) {
+		public final Builder standardizationEnabled(@Nullable Boolean value) {
 			this.standardizationEnabled = value;
 			return this;
 		}
@@ -313,6 +309,7 @@ public final class DataframeAnalysisOutlierDetection implements DataframeAnalysi
 		 *             if some of the required fields are null.
 		 */
 		public DataframeAnalysisOutlierDetection build() {
+			_checkSingleUse();
 
 			return new DataframeAnalysisOutlierDetection(this);
 		}

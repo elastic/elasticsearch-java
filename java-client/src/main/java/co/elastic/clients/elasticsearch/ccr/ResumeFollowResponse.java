@@ -36,16 +36,16 @@ import java.util.function.Function;
 
 // typedef: ccr.resume_follow.Response
 @JsonpDeserializable
-public final class ResumeFollowResponse extends AcknowledgedResponseBase {
+public class ResumeFollowResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
-	public ResumeFollowResponse(Builder builder) {
+	private ResumeFollowResponse(Builder builder) {
 		super(builder);
 
 	}
 
-	public ResumeFollowResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ResumeFollowResponse of(Function<Builder, ObjectBuilder<ResumeFollowResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -68,6 +68,7 @@ public final class ResumeFollowResponse extends AcknowledgedResponseBase {
 		 *             if some of the required fields are null.
 		 */
 		public ResumeFollowResponse build() {
+			_checkSingleUse();
 
 			return new ResumeFollowResponse(this);
 		}

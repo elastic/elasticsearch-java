@@ -31,6 +31,7 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;
@@ -38,7 +39,7 @@ import javax.annotation.Nullable;
 
 // typedef: indices._types.IndexRouting
 @JsonpDeserializable
-public final class IndexRouting implements JsonpSerializable {
+public class IndexRouting implements JsonpSerializable {
 	@Nullable
 	private final IndexRoutingAllocation allocation;
 
@@ -47,22 +48,22 @@ public final class IndexRouting implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public IndexRouting(Builder builder) {
+	private IndexRouting(Builder builder) {
 
 		this.allocation = builder.allocation;
 		this.rebalance = builder.rebalance;
 
 	}
 
-	public IndexRouting(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static IndexRouting of(Function<Builder, ObjectBuilder<IndexRouting>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * API name: {@code allocation}
 	 */
 	@Nullable
-	public IndexRoutingAllocation allocation() {
+	public final IndexRoutingAllocation allocation() {
 		return this.allocation;
 	}
 
@@ -70,7 +71,7 @@ public final class IndexRouting implements JsonpSerializable {
 	 * API name: {@code rebalance}
 	 */
 	@Nullable
-	public IndexRoutingRebalance rebalance() {
+	public final IndexRoutingRebalance rebalance() {
 		return this.rebalance;
 	}
 
@@ -86,13 +87,11 @@ public final class IndexRouting implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.allocation != null) {
-
 			generator.writeKey("allocation");
 			this.allocation.serialize(generator, mapper);
 
 		}
 		if (this.rebalance != null) {
-
 			generator.writeKey("rebalance");
 			this.rebalance.serialize(generator, mapper);
 
@@ -105,7 +104,7 @@ public final class IndexRouting implements JsonpSerializable {
 	/**
 	 * Builder for {@link IndexRouting}.
 	 */
-	public static class Builder implements ObjectBuilder<IndexRouting> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<IndexRouting> {
 		@Nullable
 		private IndexRoutingAllocation allocation;
 
@@ -115,7 +114,7 @@ public final class IndexRouting implements JsonpSerializable {
 		/**
 		 * API name: {@code allocation}
 		 */
-		public Builder allocation(@Nullable IndexRoutingAllocation value) {
+		public final Builder allocation(@Nullable IndexRoutingAllocation value) {
 			this.allocation = value;
 			return this;
 		}
@@ -123,14 +122,15 @@ public final class IndexRouting implements JsonpSerializable {
 		/**
 		 * API name: {@code allocation}
 		 */
-		public Builder allocation(Function<IndexRoutingAllocation.Builder, ObjectBuilder<IndexRoutingAllocation>> fn) {
+		public final Builder allocation(
+				Function<IndexRoutingAllocation.Builder, ObjectBuilder<IndexRoutingAllocation>> fn) {
 			return this.allocation(fn.apply(new IndexRoutingAllocation.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code rebalance}
 		 */
-		public Builder rebalance(@Nullable IndexRoutingRebalance value) {
+		public final Builder rebalance(@Nullable IndexRoutingRebalance value) {
 			this.rebalance = value;
 			return this;
 		}
@@ -138,7 +138,8 @@ public final class IndexRouting implements JsonpSerializable {
 		/**
 		 * API name: {@code rebalance}
 		 */
-		public Builder rebalance(Function<IndexRoutingRebalance.Builder, ObjectBuilder<IndexRoutingRebalance>> fn) {
+		public final Builder rebalance(
+				Function<IndexRoutingRebalance.Builder, ObjectBuilder<IndexRoutingRebalance>> fn) {
 			return this.rebalance(fn.apply(new IndexRoutingRebalance.Builder()).build());
 		}
 
@@ -149,6 +150,7 @@ public final class IndexRouting implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public IndexRouting build() {
+			_checkSingleUse();
 
 			return new IndexRouting(this);
 		}

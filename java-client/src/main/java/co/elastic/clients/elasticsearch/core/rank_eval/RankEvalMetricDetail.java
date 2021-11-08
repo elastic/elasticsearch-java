@@ -33,12 +33,12 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
 import java.lang.String;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -47,7 +47,7 @@ import javax.annotation.Nullable;
 
 // typedef: _global.rank_eval.RankEvalMetricDetail
 @JsonpDeserializable
-public final class RankEvalMetricDetail implements JsonpSerializable {
+public class RankEvalMetricDetail implements JsonpSerializable {
 	private final double metricScore;
 
 	private final List<UnratedDocument> unratedDocs;
@@ -58,17 +58,17 @@ public final class RankEvalMetricDetail implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public RankEvalMetricDetail(Builder builder) {
+	private RankEvalMetricDetail(Builder builder) {
 
-		this.metricScore = Objects.requireNonNull(builder.metricScore, "metric_score");
-		this.unratedDocs = ModelTypeHelper.unmodifiableNonNull(builder.unratedDocs, "unrated_docs");
-		this.hits = ModelTypeHelper.unmodifiableNonNull(builder.hits, "hits");
-		this.metricDetails = ModelTypeHelper.unmodifiableNonNull(builder.metricDetails, "metric_details");
+		this.metricScore = ModelTypeHelper.requireNonNull(builder.metricScore, this, "metricScore");
+		this.unratedDocs = ModelTypeHelper.unmodifiableRequired(builder.unratedDocs, this, "unratedDocs");
+		this.hits = ModelTypeHelper.unmodifiableRequired(builder.hits, this, "hits");
+		this.metricDetails = ModelTypeHelper.unmodifiableRequired(builder.metricDetails, this, "metricDetails");
 
 	}
 
-	public RankEvalMetricDetail(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static RankEvalMetricDetail of(Function<Builder, ObjectBuilder<RankEvalMetricDetail>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -77,7 +77,7 @@ public final class RankEvalMetricDetail implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code metric_score}
 	 */
-	public double metricScore() {
+	public final double metricScore() {
 		return this.metricScore;
 	}
 
@@ -88,7 +88,7 @@ public final class RankEvalMetricDetail implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code unrated_docs}
 	 */
-	public List<UnratedDocument> unratedDocs() {
+	public final List<UnratedDocument> unratedDocs() {
 		return this.unratedDocs;
 	}
 
@@ -98,7 +98,7 @@ public final class RankEvalMetricDetail implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code hits}
 	 */
-	public List<RankEvalHitItem> hits() {
+	public final List<RankEvalHitItem> hits() {
 		return this.hits;
 	}
 
@@ -110,7 +110,7 @@ public final class RankEvalMetricDetail implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code metric_details}
 	 */
-	public Map<String, Map<String, JsonData>> metricDetails() {
+	public final Map<String, Map<String, JsonData>> metricDetails() {
 		return this.metricDetails;
 	}
 
@@ -128,36 +128,45 @@ public final class RankEvalMetricDetail implements JsonpSerializable {
 		generator.writeKey("metric_score");
 		generator.write(this.metricScore);
 
-		generator.writeKey("unrated_docs");
-		generator.writeStartArray();
-		for (UnratedDocument item0 : this.unratedDocs) {
-			item0.serialize(generator, mapper);
-
-		}
-		generator.writeEnd();
-
-		generator.writeKey("hits");
-		generator.writeStartArray();
-		for (RankEvalHitItem item0 : this.hits) {
-			item0.serialize(generator, mapper);
-
-		}
-		generator.writeEnd();
-
-		generator.writeKey("metric_details");
-		generator.writeStartObject();
-		for (Map.Entry<String, Map<String, JsonData>> item0 : this.metricDetails.entrySet()) {
-			generator.writeKey(item0.getKey());
-			generator.writeStartObject();
-			for (Map.Entry<String, JsonData> item1 : item0.getValue().entrySet()) {
-				generator.writeKey(item1.getKey());
-				item1.getValue().serialize(generator, mapper);
+		if (ModelTypeHelper.isDefined(this.unratedDocs)) {
+			generator.writeKey("unrated_docs");
+			generator.writeStartArray();
+			for (UnratedDocument item0 : this.unratedDocs) {
+				item0.serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
 
 		}
-		generator.writeEnd();
+		if (ModelTypeHelper.isDefined(this.hits)) {
+			generator.writeKey("hits");
+			generator.writeStartArray();
+			for (RankEvalHitItem item0 : this.hits) {
+				item0.serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
+
+		}
+		if (ModelTypeHelper.isDefined(this.metricDetails)) {
+			generator.writeKey("metric_details");
+			generator.writeStartObject();
+			for (Map.Entry<String, Map<String, JsonData>> item0 : this.metricDetails.entrySet()) {
+				generator.writeKey(item0.getKey());
+				generator.writeStartObject();
+				if (item0.getValue() != null) {
+					for (Map.Entry<String, JsonData> item1 : item0.getValue().entrySet()) {
+						generator.writeKey(item1.getKey());
+						item1.getValue().serialize(generator, mapper);
+
+					}
+				}
+				generator.writeEnd();
+
+			}
+			generator.writeEnd();
+
+		}
 
 	}
 
@@ -166,7 +175,7 @@ public final class RankEvalMetricDetail implements JsonpSerializable {
 	/**
 	 * Builder for {@link RankEvalMetricDetail}.
 	 */
-	public static class Builder implements ObjectBuilder<RankEvalMetricDetail> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RankEvalMetricDetail> {
 		private Double metricScore;
 
 		private List<UnratedDocument> unratedDocs;
@@ -181,7 +190,7 @@ public final class RankEvalMetricDetail implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code metric_score}
 		 */
-		public Builder metricScore(double value) {
+		public final Builder metricScore(double value) {
 			this.metricScore = value;
 			return this;
 		}
@@ -193,7 +202,7 @@ public final class RankEvalMetricDetail implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code unrated_docs}
 		 */
-		public Builder unratedDocs(List<UnratedDocument> value) {
+		public final Builder unratedDocs(List<UnratedDocument> value) {
 			this.unratedDocs = value;
 			return this;
 		}
@@ -205,34 +214,25 @@ public final class RankEvalMetricDetail implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code unrated_docs}
 		 */
-		public Builder unratedDocs(UnratedDocument... value) {
+		public final Builder unratedDocs(UnratedDocument... value) {
 			this.unratedDocs = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #unratedDocs(List)}, creating the list if needed.
+		 * Required - The unrated_docs section contains an _index and _id entry for each
+		 * document in the search result for this query that didn’t have a ratings
+		 * value. This can be used to ask the user to supply ratings for these documents
+		 * <p>
+		 * API name: {@code unrated_docs}
 		 */
-		public Builder addUnratedDocs(UnratedDocument value) {
-			if (this.unratedDocs == null) {
-				this.unratedDocs = new ArrayList<>();
+		@SafeVarargs
+		public final Builder unratedDocs(Function<UnratedDocument.Builder, ObjectBuilder<UnratedDocument>>... fns) {
+			this.unratedDocs = new ArrayList<>(fns.length);
+			for (Function<UnratedDocument.Builder, ObjectBuilder<UnratedDocument>> fn : fns) {
+				this.unratedDocs.add(fn.apply(new UnratedDocument.Builder()).build());
 			}
-			this.unratedDocs.add(value);
 			return this;
-		}
-
-		/**
-		 * Set {@link #unratedDocs(List)} to a singleton list.
-		 */
-		public Builder unratedDocs(Function<UnratedDocument.Builder, ObjectBuilder<UnratedDocument>> fn) {
-			return this.unratedDocs(fn.apply(new UnratedDocument.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #unratedDocs(List)}, creating the list if needed.
-		 */
-		public Builder addUnratedDocs(Function<UnratedDocument.Builder, ObjectBuilder<UnratedDocument>> fn) {
-			return this.addUnratedDocs(fn.apply(new UnratedDocument.Builder()).build());
 		}
 
 		/**
@@ -241,7 +241,7 @@ public final class RankEvalMetricDetail implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code hits}
 		 */
-		public Builder hits(List<RankEvalHitItem> value) {
+		public final Builder hits(List<RankEvalHitItem> value) {
 			this.hits = value;
 			return this;
 		}
@@ -252,34 +252,24 @@ public final class RankEvalMetricDetail implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code hits}
 		 */
-		public Builder hits(RankEvalHitItem... value) {
+		public final Builder hits(RankEvalHitItem... value) {
 			this.hits = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #hits(List)}, creating the list if needed.
+		 * Required - The hits section shows a grouping of the search results with their
+		 * supplied ratings
+		 * <p>
+		 * API name: {@code hits}
 		 */
-		public Builder addHits(RankEvalHitItem value) {
-			if (this.hits == null) {
-				this.hits = new ArrayList<>();
+		@SafeVarargs
+		public final Builder hits(Function<RankEvalHitItem.Builder, ObjectBuilder<RankEvalHitItem>>... fns) {
+			this.hits = new ArrayList<>(fns.length);
+			for (Function<RankEvalHitItem.Builder, ObjectBuilder<RankEvalHitItem>> fn : fns) {
+				this.hits.add(fn.apply(new RankEvalHitItem.Builder()).build());
 			}
-			this.hits.add(value);
 			return this;
-		}
-
-		/**
-		 * Set {@link #hits(List)} to a singleton list.
-		 */
-		public Builder hits(Function<RankEvalHitItem.Builder, ObjectBuilder<RankEvalHitItem>> fn) {
-			return this.hits(fn.apply(new RankEvalHitItem.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #hits(List)}, creating the list if needed.
-		 */
-		public Builder addHits(Function<RankEvalHitItem.Builder, ObjectBuilder<RankEvalHitItem>> fn) {
-			return this.addHits(fn.apply(new RankEvalHitItem.Builder()).build());
 		}
 
 		/**
@@ -290,19 +280,8 @@ public final class RankEvalMetricDetail implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code metric_details}
 		 */
-		public Builder metricDetails(Map<String, Map<String, JsonData>> value) {
+		public final Builder metricDetails(Map<String, Map<String, JsonData>> value) {
 			this.metricDetails = value;
-			return this;
-		}
-
-		/**
-		 * Add a key/value to {@link #metricDetails(Map)}, creating the map if needed.
-		 */
-		public Builder putMetricDetails(String key, Map<String, JsonData> value) {
-			if (this.metricDetails == null) {
-				this.metricDetails = new HashMap<>();
-			}
-			this.metricDetails.put(key, value);
 			return this;
 		}
 
@@ -313,6 +292,7 @@ public final class RankEvalMetricDetail implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public RankEvalMetricDetail build() {
+			_checkSingleUse();
 
 			return new RankEvalMetricDetail(this);
 		}

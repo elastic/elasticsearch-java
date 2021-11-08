@@ -31,6 +31,7 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.Objects;
@@ -39,27 +40,27 @@ import javax.annotation.Nullable;
 
 // typedef: indices._types.DataStream
 @JsonpDeserializable
-public final class DataStream implements JsonpSerializable {
+public class DataStream implements JsonpSerializable {
 	@Nullable
 	private final Boolean hidden;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public DataStream(Builder builder) {
+	private DataStream(Builder builder) {
 
 		this.hidden = builder.hidden;
 
 	}
 
-	public DataStream(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static DataStream of(Function<Builder, ObjectBuilder<DataStream>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * API name: {@code hidden}
 	 */
 	@Nullable
-	public Boolean hidden() {
+	public final Boolean hidden() {
 		return this.hidden;
 	}
 
@@ -75,7 +76,6 @@ public final class DataStream implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.hidden != null) {
-
 			generator.writeKey("hidden");
 			generator.write(this.hidden);
 
@@ -88,14 +88,14 @@ public final class DataStream implements JsonpSerializable {
 	/**
 	 * Builder for {@link DataStream}.
 	 */
-	public static class Builder implements ObjectBuilder<DataStream> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DataStream> {
 		@Nullable
 		private Boolean hidden;
 
 		/**
 		 * API name: {@code hidden}
 		 */
-		public Builder hidden(@Nullable Boolean value) {
+		public final Builder hidden(@Nullable Boolean value) {
 			this.hidden = value;
 			return this;
 		}
@@ -107,6 +107,7 @@ public final class DataStream implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public DataStream build() {
+			_checkSingleUse();
 
 			return new DataStream(this);
 		}

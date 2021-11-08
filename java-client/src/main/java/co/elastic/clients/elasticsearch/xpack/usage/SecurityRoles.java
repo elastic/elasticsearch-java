@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;
@@ -38,7 +40,7 @@ import javax.annotation.Nullable;
 
 // typedef: xpack.usage.SecurityRoles
 @JsonpDeserializable
-public final class SecurityRoles implements JsonpSerializable {
+public class SecurityRoles implements JsonpSerializable {
 	private final SecurityRolesNative native_;
 
 	private final SecurityRolesDls dls;
@@ -47,36 +49,36 @@ public final class SecurityRoles implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public SecurityRoles(Builder builder) {
+	private SecurityRoles(Builder builder) {
 
-		this.native_ = Objects.requireNonNull(builder.native_, "native");
-		this.dls = Objects.requireNonNull(builder.dls, "dls");
-		this.file = Objects.requireNonNull(builder.file, "file");
+		this.native_ = ModelTypeHelper.requireNonNull(builder.native_, this, "native_");
+		this.dls = ModelTypeHelper.requireNonNull(builder.dls, this, "dls");
+		this.file = ModelTypeHelper.requireNonNull(builder.file, this, "file");
 
 	}
 
-	public SecurityRoles(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static SecurityRoles of(Function<Builder, ObjectBuilder<SecurityRoles>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code native}
 	 */
-	public SecurityRolesNative native_() {
+	public final SecurityRolesNative native_() {
 		return this.native_;
 	}
 
 	/**
 	 * Required - API name: {@code dls}
 	 */
-	public SecurityRolesDls dls() {
+	public final SecurityRolesDls dls() {
 		return this.dls;
 	}
 
 	/**
 	 * Required - API name: {@code file}
 	 */
-	public SecurityRolesFile file() {
+	public final SecurityRolesFile file() {
 		return this.file;
 	}
 
@@ -107,7 +109,7 @@ public final class SecurityRoles implements JsonpSerializable {
 	/**
 	 * Builder for {@link SecurityRoles}.
 	 */
-	public static class Builder implements ObjectBuilder<SecurityRoles> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<SecurityRoles> {
 		private SecurityRolesNative native_;
 
 		private SecurityRolesDls dls;
@@ -117,7 +119,7 @@ public final class SecurityRoles implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code native}
 		 */
-		public Builder native_(SecurityRolesNative value) {
+		public final Builder native_(SecurityRolesNative value) {
 			this.native_ = value;
 			return this;
 		}
@@ -125,14 +127,14 @@ public final class SecurityRoles implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code native}
 		 */
-		public Builder native_(Function<SecurityRolesNative.Builder, ObjectBuilder<SecurityRolesNative>> fn) {
+		public final Builder native_(Function<SecurityRolesNative.Builder, ObjectBuilder<SecurityRolesNative>> fn) {
 			return this.native_(fn.apply(new SecurityRolesNative.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code dls}
 		 */
-		public Builder dls(SecurityRolesDls value) {
+		public final Builder dls(SecurityRolesDls value) {
 			this.dls = value;
 			return this;
 		}
@@ -140,14 +142,14 @@ public final class SecurityRoles implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code dls}
 		 */
-		public Builder dls(Function<SecurityRolesDls.Builder, ObjectBuilder<SecurityRolesDls>> fn) {
+		public final Builder dls(Function<SecurityRolesDls.Builder, ObjectBuilder<SecurityRolesDls>> fn) {
 			return this.dls(fn.apply(new SecurityRolesDls.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code file}
 		 */
-		public Builder file(SecurityRolesFile value) {
+		public final Builder file(SecurityRolesFile value) {
 			this.file = value;
 			return this;
 		}
@@ -155,7 +157,7 @@ public final class SecurityRoles implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code file}
 		 */
-		public Builder file(Function<SecurityRolesFile.Builder, ObjectBuilder<SecurityRolesFile>> fn) {
+		public final Builder file(Function<SecurityRolesFile.Builder, ObjectBuilder<SecurityRolesFile>> fn) {
 			return this.file(fn.apply(new SecurityRolesFile.Builder()).build());
 		}
 
@@ -166,6 +168,7 @@ public final class SecurityRoles implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public SecurityRoles build() {
+			_checkSingleUse();
 
 			return new SecurityRoles(this);
 		}

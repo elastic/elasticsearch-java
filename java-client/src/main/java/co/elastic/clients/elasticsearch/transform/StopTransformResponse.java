@@ -36,16 +36,16 @@ import java.util.function.Function;
 
 // typedef: transform.stop_transform.Response
 @JsonpDeserializable
-public final class StopTransformResponse extends AcknowledgedResponseBase {
+public class StopTransformResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
-	public StopTransformResponse(Builder builder) {
+	private StopTransformResponse(Builder builder) {
 		super(builder);
 
 	}
 
-	public StopTransformResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static StopTransformResponse of(Function<Builder, ObjectBuilder<StopTransformResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -68,6 +68,7 @@ public final class StopTransformResponse extends AcknowledgedResponseBase {
 		 *             if some of the required fields are null.
 		 */
 		public StopTransformResponse build() {
+			_checkSingleUse();
 
 			return new StopTransformResponse(this);
 		}

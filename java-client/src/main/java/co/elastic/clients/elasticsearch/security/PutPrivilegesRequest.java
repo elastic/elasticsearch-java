@@ -37,6 +37,7 @@ import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.SimpleEndpoint;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -48,7 +49,7 @@ import javax.annotation.Nullable;
 
 // typedef: security.put_privileges.Request
 @JsonpDeserializable
-public final class PutPrivilegesRequest extends RequestBase implements JsonpSerializable {
+public class PutPrivilegesRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
 	private final JsonValue /* _types.Refresh */ refresh;
 
@@ -56,15 +57,15 @@ public final class PutPrivilegesRequest extends RequestBase implements JsonpSeri
 
 	// ---------------------------------------------------------------------------------------------
 
-	public PutPrivilegesRequest(Builder builder) {
+	private PutPrivilegesRequest(Builder builder) {
 
 		this.refresh = builder.refresh;
-		this.privileges = ModelTypeHelper.unmodifiableNonNull(builder.privileges, "_value_body");
+		this.privileges = ModelTypeHelper.unmodifiableRequired(builder.privileges, this, "privileges");
 
 	}
 
-	public PutPrivilegesRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static PutPrivilegesRequest of(Function<Builder, ObjectBuilder<PutPrivilegesRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -76,7 +77,7 @@ public final class PutPrivilegesRequest extends RequestBase implements JsonpSeri
 	 * API name: {@code refresh}
 	 */
 	@Nullable
-	public JsonValue /* _types.Refresh */ refresh() {
+	public final JsonValue /* _types.Refresh */ refresh() {
 		return this.refresh;
 	}
 
@@ -85,7 +86,7 @@ public final class PutPrivilegesRequest extends RequestBase implements JsonpSeri
 	 * <p>
 	 * API name: {@code _value_body}
 	 */
-	public Map<String, Map<String, Actions>> privileges() {
+	public final Map<String, Map<String, Actions>> privileges() {
 		return this.privileges;
 	}
 
@@ -97,10 +98,12 @@ public final class PutPrivilegesRequest extends RequestBase implements JsonpSeri
 		for (Map.Entry<String, Map<String, Actions>> item0 : this.privileges.entrySet()) {
 			generator.writeKey(item0.getKey());
 			generator.writeStartObject();
-			for (Map.Entry<String, Actions> item1 : item0.getValue().entrySet()) {
-				generator.writeKey(item1.getKey());
-				item1.getValue().serialize(generator, mapper);
+			if (item0.getValue() != null) {
+				for (Map.Entry<String, Actions> item1 : item0.getValue().entrySet()) {
+					generator.writeKey(item1.getKey());
+					item1.getValue().serialize(generator, mapper);
 
+				}
 			}
 			generator.writeEnd();
 
@@ -114,7 +117,7 @@ public final class PutPrivilegesRequest extends RequestBase implements JsonpSeri
 	/**
 	 * Builder for {@link PutPrivilegesRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<PutPrivilegesRequest> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PutPrivilegesRequest> {
 		@Nullable
 		private JsonValue /* _types.Refresh */ refresh;
 
@@ -128,7 +131,7 @@ public final class PutPrivilegesRequest extends RequestBase implements JsonpSeri
 		 * <p>
 		 * API name: {@code refresh}
 		 */
-		public Builder refresh(@Nullable JsonValue /* _types.Refresh */ value) {
+		public final Builder refresh(@Nullable JsonValue /* _types.Refresh */ value) {
 			this.refresh = value;
 			return this;
 		}
@@ -138,19 +141,8 @@ public final class PutPrivilegesRequest extends RequestBase implements JsonpSeri
 		 * <p>
 		 * API name: {@code _value_body}
 		 */
-		public Builder privileges(Map<String, Map<String, Actions>> value) {
+		public final Builder privileges(Map<String, Map<String, Actions>> value) {
 			this.privileges = value;
-			return this;
-		}
-
-		/**
-		 * Add a key/value to {@link #privileges(Map)}, creating the map if needed.
-		 */
-		public Builder putPrivileges(String key, Map<String, Actions> value) {
-			if (this.privileges == null) {
-				this.privileges = new HashMap<>();
-			}
-			this.privileges.put(key, value);
 			return this;
 		}
 
@@ -161,6 +153,7 @@ public final class PutPrivilegesRequest extends RequestBase implements JsonpSeri
 		 *             if some of the required fields are null.
 		 */
 		public PutPrivilegesRequest build() {
+			_checkSingleUse();
 
 			return new PutPrivilegesRequest(this);
 		}

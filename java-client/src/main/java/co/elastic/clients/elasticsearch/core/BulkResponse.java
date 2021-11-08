@@ -33,6 +33,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Long;
@@ -45,7 +46,7 @@ import javax.annotation.Nullable;
 
 // typedef: _global.bulk.Response
 @JsonpDeserializable
-public final class BulkResponse implements JsonpSerializable {
+public class BulkResponse implements JsonpSerializable {
 	private final boolean errors;
 
 	private final List<ResponseItem> items;
@@ -57,37 +58,37 @@ public final class BulkResponse implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public BulkResponse(Builder builder) {
+	private BulkResponse(Builder builder) {
 
-		this.errors = Objects.requireNonNull(builder.errors, "errors");
-		this.items = ModelTypeHelper.unmodifiableNonNull(builder.items, "items");
-		this.took = Objects.requireNonNull(builder.took, "took");
+		this.errors = ModelTypeHelper.requireNonNull(builder.errors, this, "errors");
+		this.items = ModelTypeHelper.unmodifiableRequired(builder.items, this, "items");
+		this.took = ModelTypeHelper.requireNonNull(builder.took, this, "took");
 		this.ingestTook = builder.ingestTook;
 
 	}
 
-	public BulkResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static BulkResponse of(Function<Builder, ObjectBuilder<BulkResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code errors}
 	 */
-	public boolean errors() {
+	public final boolean errors() {
 		return this.errors;
 	}
 
 	/**
 	 * Required - API name: {@code items}
 	 */
-	public List<ResponseItem> items() {
+	public final List<ResponseItem> items() {
 		return this.items;
 	}
 
 	/**
 	 * Required - API name: {@code took}
 	 */
-	public long took() {
+	public final long took() {
 		return this.took;
 	}
 
@@ -95,7 +96,7 @@ public final class BulkResponse implements JsonpSerializable {
 	 * API name: {@code ingest_took}
 	 */
 	@Nullable
-	public Long ingestTook() {
+	public final Long ingestTook() {
 		return this.ingestTook;
 	}
 
@@ -113,19 +114,20 @@ public final class BulkResponse implements JsonpSerializable {
 		generator.writeKey("errors");
 		generator.write(this.errors);
 
-		generator.writeKey("items");
-		generator.writeStartArray();
-		for (ResponseItem item0 : this.items) {
-			item0.serialize(generator, mapper);
+		if (ModelTypeHelper.isDefined(this.items)) {
+			generator.writeKey("items");
+			generator.writeStartArray();
+			for (ResponseItem item0 : this.items) {
+				item0.serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
-
 		generator.writeKey("took");
 		generator.write(this.took);
 
 		if (this.ingestTook != null) {
-
 			generator.writeKey("ingest_took");
 			generator.write(this.ingestTook);
 
@@ -138,7 +140,7 @@ public final class BulkResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link BulkResponse}.
 	 */
-	public static class Builder implements ObjectBuilder<BulkResponse> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<BulkResponse> {
 		private Boolean errors;
 
 		private List<ResponseItem> items;
@@ -151,7 +153,7 @@ public final class BulkResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code errors}
 		 */
-		public Builder errors(boolean value) {
+		public final Builder errors(boolean value) {
 			this.errors = value;
 			return this;
 		}
@@ -159,7 +161,7 @@ public final class BulkResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code items}
 		 */
-		public Builder items(List<ResponseItem> value) {
+		public final Builder items(List<ResponseItem> value) {
 			this.items = value;
 			return this;
 		}
@@ -167,40 +169,27 @@ public final class BulkResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code items}
 		 */
-		public Builder items(ResponseItem... value) {
+		public final Builder items(ResponseItem... value) {
 			this.items = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #items(List)}, creating the list if needed.
+		 * Required - API name: {@code items}
 		 */
-		public Builder addItems(ResponseItem value) {
-			if (this.items == null) {
-				this.items = new ArrayList<>();
+		@SafeVarargs
+		public final Builder items(Function<ResponseItem.Builder, ObjectBuilder<ResponseItem>>... fns) {
+			this.items = new ArrayList<>(fns.length);
+			for (Function<ResponseItem.Builder, ObjectBuilder<ResponseItem>> fn : fns) {
+				this.items.add(fn.apply(new ResponseItem.Builder()).build());
 			}
-			this.items.add(value);
 			return this;
-		}
-
-		/**
-		 * Set {@link #items(List)} to a singleton list.
-		 */
-		public Builder items(Function<ResponseItem.Builder, ObjectBuilder<ResponseItem>> fn) {
-			return this.items(fn.apply(new ResponseItem.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #items(List)}, creating the list if needed.
-		 */
-		public Builder addItems(Function<ResponseItem.Builder, ObjectBuilder<ResponseItem>> fn) {
-			return this.addItems(fn.apply(new ResponseItem.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code took}
 		 */
-		public Builder took(long value) {
+		public final Builder took(long value) {
 			this.took = value;
 			return this;
 		}
@@ -208,7 +197,7 @@ public final class BulkResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code ingest_took}
 		 */
-		public Builder ingestTook(@Nullable Long value) {
+		public final Builder ingestTook(@Nullable Long value) {
 			this.ingestTook = value;
 			return this;
 		}
@@ -220,6 +209,7 @@ public final class BulkResponse implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public BulkResponse build() {
+			_checkSingleUse();
 
 			return new BulkResponse(this);
 		}

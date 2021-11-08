@@ -32,6 +32,7 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.SimpleEndpoint;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
@@ -43,7 +44,7 @@ import javax.annotation.Nullable;
 
 // typedef: ingest.get_pipeline.Request
 
-public final class GetPipelineRequest extends RequestBase {
+public class GetPipelineRequest extends RequestBase {
 	@Nullable
 	private final String id;
 
@@ -55,7 +56,7 @@ public final class GetPipelineRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public GetPipelineRequest(Builder builder) {
+	private GetPipelineRequest(Builder builder) {
 
 		this.id = builder.id;
 		this.masterTimeout = builder.masterTimeout;
@@ -63,8 +64,8 @@ public final class GetPipelineRequest extends RequestBase {
 
 	}
 
-	public GetPipelineRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static GetPipelineRequest of(Function<Builder, ObjectBuilder<GetPipelineRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -73,7 +74,7 @@ public final class GetPipelineRequest extends RequestBase {
 	 * API name: {@code id}
 	 */
 	@Nullable
-	public String id() {
+	public final String id() {
 		return this.id;
 	}
 
@@ -83,7 +84,7 @@ public final class GetPipelineRequest extends RequestBase {
 	 * API name: {@code master_timeout}
 	 */
 	@Nullable
-	public String masterTimeout() {
+	public final String masterTimeout() {
 		return this.masterTimeout;
 	}
 
@@ -93,7 +94,7 @@ public final class GetPipelineRequest extends RequestBase {
 	 * API name: {@code summary}
 	 */
 	@Nullable
-	public Boolean summary() {
+	public final Boolean summary() {
 		return this.summary;
 	}
 
@@ -102,7 +103,7 @@ public final class GetPipelineRequest extends RequestBase {
 	/**
 	 * Builder for {@link GetPipelineRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<GetPipelineRequest> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetPipelineRequest> {
 		@Nullable
 		private String id;
 
@@ -117,7 +118,7 @@ public final class GetPipelineRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code id}
 		 */
-		public Builder id(@Nullable String value) {
+		public final Builder id(@Nullable String value) {
 			this.id = value;
 			return this;
 		}
@@ -127,7 +128,7 @@ public final class GetPipelineRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
-		public Builder masterTimeout(@Nullable String value) {
+		public final Builder masterTimeout(@Nullable String value) {
 			this.masterTimeout = value;
 			return this;
 		}
@@ -137,7 +138,7 @@ public final class GetPipelineRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code summary}
 		 */
-		public Builder summary(@Nullable Boolean value) {
+		public final Builder summary(@Nullable Boolean value) {
 			this.summary = value;
 			return this;
 		}
@@ -149,6 +150,7 @@ public final class GetPipelineRequest extends RequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public GetPipelineRequest build() {
+			_checkSingleUse();
 
 			return new GetPipelineRequest(this);
 		}

@@ -34,7 +34,7 @@ import java.util.function.Function;
 
 // typedef: security.change_password.Response
 
-public final class ChangePasswordResponse {
+public class ChangePasswordResponse {
 	public ChangePasswordResponse() {
 	}
 

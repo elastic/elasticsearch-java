@@ -30,14 +30,15 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.MapBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Long;
 import java.lang.String;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
@@ -45,7 +46,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.IndexingStats
 @JsonpDeserializable
-public final class IndexingStats implements JsonpSerializable {
+public class IndexingStats implements JsonpSerializable {
 	private final long indexCurrent;
 
 	private final long deleteCurrent;
@@ -75,45 +76,46 @@ public final class IndexingStats implements JsonpSerializable {
 
 	private final long indexFailed;
 
-	@Nullable
 	private final Map<String, IndexingStats> types;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public IndexingStats(Builder builder) {
+	private IndexingStats(Builder builder) {
 
-		this.indexCurrent = Objects.requireNonNull(builder.indexCurrent, "index_current");
-		this.deleteCurrent = Objects.requireNonNull(builder.deleteCurrent, "delete_current");
+		this.indexCurrent = ModelTypeHelper.requireNonNull(builder.indexCurrent, this, "indexCurrent");
+		this.deleteCurrent = ModelTypeHelper.requireNonNull(builder.deleteCurrent, this, "deleteCurrent");
 		this.deleteTime = builder.deleteTime;
-		this.deleteTimeInMillis = Objects.requireNonNull(builder.deleteTimeInMillis, "delete_time_in_millis");
-		this.deleteTotal = Objects.requireNonNull(builder.deleteTotal, "delete_total");
-		this.isThrottled = Objects.requireNonNull(builder.isThrottled, "is_throttled");
-		this.noopUpdateTotal = Objects.requireNonNull(builder.noopUpdateTotal, "noop_update_total");
+		this.deleteTimeInMillis = ModelTypeHelper.requireNonNull(builder.deleteTimeInMillis, this,
+				"deleteTimeInMillis");
+		this.deleteTotal = ModelTypeHelper.requireNonNull(builder.deleteTotal, this, "deleteTotal");
+		this.isThrottled = ModelTypeHelper.requireNonNull(builder.isThrottled, this, "isThrottled");
+		this.noopUpdateTotal = ModelTypeHelper.requireNonNull(builder.noopUpdateTotal, this, "noopUpdateTotal");
 		this.throttleTime = builder.throttleTime;
-		this.throttleTimeInMillis = Objects.requireNonNull(builder.throttleTimeInMillis, "throttle_time_in_millis");
+		this.throttleTimeInMillis = ModelTypeHelper.requireNonNull(builder.throttleTimeInMillis, this,
+				"throttleTimeInMillis");
 		this.indexTime = builder.indexTime;
-		this.indexTimeInMillis = Objects.requireNonNull(builder.indexTimeInMillis, "index_time_in_millis");
-		this.indexTotal = Objects.requireNonNull(builder.indexTotal, "index_total");
-		this.indexFailed = Objects.requireNonNull(builder.indexFailed, "index_failed");
+		this.indexTimeInMillis = ModelTypeHelper.requireNonNull(builder.indexTimeInMillis, this, "indexTimeInMillis");
+		this.indexTotal = ModelTypeHelper.requireNonNull(builder.indexTotal, this, "indexTotal");
+		this.indexFailed = ModelTypeHelper.requireNonNull(builder.indexFailed, this, "indexFailed");
 		this.types = ModelTypeHelper.unmodifiable(builder.types);
 
 	}
 
-	public IndexingStats(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static IndexingStats of(Function<Builder, ObjectBuilder<IndexingStats>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code index_current}
 	 */
-	public long indexCurrent() {
+	public final long indexCurrent() {
 		return this.indexCurrent;
 	}
 
 	/**
 	 * Required - API name: {@code delete_current}
 	 */
-	public long deleteCurrent() {
+	public final long deleteCurrent() {
 		return this.deleteCurrent;
 	}
 
@@ -121,35 +123,35 @@ public final class IndexingStats implements JsonpSerializable {
 	 * API name: {@code delete_time}
 	 */
 	@Nullable
-	public String deleteTime() {
+	public final String deleteTime() {
 		return this.deleteTime;
 	}
 
 	/**
 	 * Required - API name: {@code delete_time_in_millis}
 	 */
-	public long deleteTimeInMillis() {
+	public final long deleteTimeInMillis() {
 		return this.deleteTimeInMillis;
 	}
 
 	/**
 	 * Required - API name: {@code delete_total}
 	 */
-	public long deleteTotal() {
+	public final long deleteTotal() {
 		return this.deleteTotal;
 	}
 
 	/**
 	 * Required - API name: {@code is_throttled}
 	 */
-	public boolean isThrottled() {
+	public final boolean isThrottled() {
 		return this.isThrottled;
 	}
 
 	/**
 	 * Required - API name: {@code noop_update_total}
 	 */
-	public long noopUpdateTotal() {
+	public final long noopUpdateTotal() {
 		return this.noopUpdateTotal;
 	}
 
@@ -157,14 +159,14 @@ public final class IndexingStats implements JsonpSerializable {
 	 * API name: {@code throttle_time}
 	 */
 	@Nullable
-	public String throttleTime() {
+	public final String throttleTime() {
 		return this.throttleTime;
 	}
 
 	/**
 	 * Required - API name: {@code throttle_time_in_millis}
 	 */
-	public long throttleTimeInMillis() {
+	public final long throttleTimeInMillis() {
 		return this.throttleTimeInMillis;
 	}
 
@@ -172,36 +174,35 @@ public final class IndexingStats implements JsonpSerializable {
 	 * API name: {@code index_time}
 	 */
 	@Nullable
-	public String indexTime() {
+	public final String indexTime() {
 		return this.indexTime;
 	}
 
 	/**
 	 * Required - API name: {@code index_time_in_millis}
 	 */
-	public long indexTimeInMillis() {
+	public final long indexTimeInMillis() {
 		return this.indexTimeInMillis;
 	}
 
 	/**
 	 * Required - API name: {@code index_total}
 	 */
-	public long indexTotal() {
+	public final long indexTotal() {
 		return this.indexTotal;
 	}
 
 	/**
 	 * Required - API name: {@code index_failed}
 	 */
-	public long indexFailed() {
+	public final long indexFailed() {
 		return this.indexFailed;
 	}
 
 	/**
 	 * API name: {@code types}
 	 */
-	@Nullable
-	public Map<String, IndexingStats> types() {
+	public final Map<String, IndexingStats> types() {
 		return this.types;
 	}
 
@@ -223,12 +224,10 @@ public final class IndexingStats implements JsonpSerializable {
 		generator.write(this.deleteCurrent);
 
 		if (this.deleteTime != null) {
-
 			generator.writeKey("delete_time");
 			generator.write(this.deleteTime);
 
 		}
-
 		generator.writeKey("delete_time_in_millis");
 		generator.write(this.deleteTimeInMillis);
 
@@ -242,22 +241,18 @@ public final class IndexingStats implements JsonpSerializable {
 		generator.write(this.noopUpdateTotal);
 
 		if (this.throttleTime != null) {
-
 			generator.writeKey("throttle_time");
 			generator.write(this.throttleTime);
 
 		}
-
 		generator.writeKey("throttle_time_in_millis");
 		generator.write(this.throttleTimeInMillis);
 
 		if (this.indexTime != null) {
-
 			generator.writeKey("index_time");
 			generator.write(this.indexTime);
 
 		}
-
 		generator.writeKey("index_time_in_millis");
 		generator.write(this.indexTimeInMillis);
 
@@ -267,8 +262,7 @@ public final class IndexingStats implements JsonpSerializable {
 		generator.writeKey("index_failed");
 		generator.write(this.indexFailed);
 
-		if (this.types != null) {
-
+		if (ModelTypeHelper.isDefined(this.types)) {
 			generator.writeKey("types");
 			generator.writeStartObject();
 			for (Map.Entry<String, IndexingStats> item0 : this.types.entrySet()) {
@@ -287,7 +281,7 @@ public final class IndexingStats implements JsonpSerializable {
 	/**
 	 * Builder for {@link IndexingStats}.
 	 */
-	public static class Builder implements ObjectBuilder<IndexingStats> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<IndexingStats> {
 		private Long indexCurrent;
 
 		private Long deleteCurrent;
@@ -323,7 +317,7 @@ public final class IndexingStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code index_current}
 		 */
-		public Builder indexCurrent(long value) {
+		public final Builder indexCurrent(long value) {
 			this.indexCurrent = value;
 			return this;
 		}
@@ -331,7 +325,7 @@ public final class IndexingStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code delete_current}
 		 */
-		public Builder deleteCurrent(long value) {
+		public final Builder deleteCurrent(long value) {
 			this.deleteCurrent = value;
 			return this;
 		}
@@ -339,7 +333,7 @@ public final class IndexingStats implements JsonpSerializable {
 		/**
 		 * API name: {@code delete_time}
 		 */
-		public Builder deleteTime(@Nullable String value) {
+		public final Builder deleteTime(@Nullable String value) {
 			this.deleteTime = value;
 			return this;
 		}
@@ -347,7 +341,7 @@ public final class IndexingStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code delete_time_in_millis}
 		 */
-		public Builder deleteTimeInMillis(long value) {
+		public final Builder deleteTimeInMillis(long value) {
 			this.deleteTimeInMillis = value;
 			return this;
 		}
@@ -355,7 +349,7 @@ public final class IndexingStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code delete_total}
 		 */
-		public Builder deleteTotal(long value) {
+		public final Builder deleteTotal(long value) {
 			this.deleteTotal = value;
 			return this;
 		}
@@ -363,7 +357,7 @@ public final class IndexingStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code is_throttled}
 		 */
-		public Builder isThrottled(boolean value) {
+		public final Builder isThrottled(boolean value) {
 			this.isThrottled = value;
 			return this;
 		}
@@ -371,7 +365,7 @@ public final class IndexingStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code noop_update_total}
 		 */
-		public Builder noopUpdateTotal(long value) {
+		public final Builder noopUpdateTotal(long value) {
 			this.noopUpdateTotal = value;
 			return this;
 		}
@@ -379,7 +373,7 @@ public final class IndexingStats implements JsonpSerializable {
 		/**
 		 * API name: {@code throttle_time}
 		 */
-		public Builder throttleTime(@Nullable String value) {
+		public final Builder throttleTime(@Nullable String value) {
 			this.throttleTime = value;
 			return this;
 		}
@@ -387,7 +381,7 @@ public final class IndexingStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code throttle_time_in_millis}
 		 */
-		public Builder throttleTimeInMillis(long value) {
+		public final Builder throttleTimeInMillis(long value) {
 			this.throttleTimeInMillis = value;
 			return this;
 		}
@@ -395,7 +389,7 @@ public final class IndexingStats implements JsonpSerializable {
 		/**
 		 * API name: {@code index_time}
 		 */
-		public Builder indexTime(@Nullable String value) {
+		public final Builder indexTime(@Nullable String value) {
 			this.indexTime = value;
 			return this;
 		}
@@ -403,7 +397,7 @@ public final class IndexingStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code index_time_in_millis}
 		 */
-		public Builder indexTimeInMillis(long value) {
+		public final Builder indexTimeInMillis(long value) {
 			this.indexTimeInMillis = value;
 			return this;
 		}
@@ -411,7 +405,7 @@ public final class IndexingStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code index_total}
 		 */
-		public Builder indexTotal(long value) {
+		public final Builder indexTotal(long value) {
 			this.indexTotal = value;
 			return this;
 		}
@@ -419,7 +413,7 @@ public final class IndexingStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code index_failed}
 		 */
-		public Builder indexFailed(long value) {
+		public final Builder indexFailed(long value) {
 			this.indexFailed = value;
 			return this;
 		}
@@ -427,19 +421,8 @@ public final class IndexingStats implements JsonpSerializable {
 		/**
 		 * API name: {@code types}
 		 */
-		public Builder types(@Nullable Map<String, IndexingStats> value) {
+		public final Builder types(@Nullable Map<String, IndexingStats> value) {
 			this.types = value;
-			return this;
-		}
-
-		/**
-		 * Add a key/value to {@link #types(Map)}, creating the map if needed.
-		 */
-		public Builder putTypes(String key, IndexingStats value) {
-			if (this.types == null) {
-				this.types = new HashMap<>();
-			}
-			this.types.put(key, value);
 			return this;
 		}
 
@@ -450,11 +433,9 @@ public final class IndexingStats implements JsonpSerializable {
 			return this.types(Collections.singletonMap(key, fn.apply(new IndexingStats.Builder()).build()));
 		}
 
-		/**
-		 * Add a key/value to {@link #types(Map)}, creating the map if needed.
-		 */
-		public Builder putTypes(String key, Function<IndexingStats.Builder, ObjectBuilder<IndexingStats>> fn) {
-			return this.putTypes(key, fn.apply(new IndexingStats.Builder()).build());
+		public final Builder types(
+				Function<MapBuilder<String, IndexingStats, IndexingStats.Builder>, ObjectBuilder<Map<String, IndexingStats>>> fn) {
+			return types(fn.apply(new MapBuilder<>(IndexingStats.Builder::new)).build());
 		}
 
 		/**
@@ -464,6 +445,7 @@ public final class IndexingStats implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public IndexingStats build() {
+			_checkSingleUse();
 
 			return new IndexingStats(this);
 		}

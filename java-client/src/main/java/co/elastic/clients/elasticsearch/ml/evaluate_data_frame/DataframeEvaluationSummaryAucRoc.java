@@ -41,36 +41,34 @@ import javax.annotation.Nullable;
 
 // typedef: ml.evaluate_data_frame.DataframeEvaluationSummaryAucRoc
 @JsonpDeserializable
-public final class DataframeEvaluationSummaryAucRoc extends DataframeEvaluationValue {
-	@Nullable
+public class DataframeEvaluationSummaryAucRoc extends DataframeEvaluationValue {
 	private final List<DataframeEvaluationSummaryAucRocCurveItem> curve;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public DataframeEvaluationSummaryAucRoc(Builder builder) {
+	private DataframeEvaluationSummaryAucRoc(Builder builder) {
 		super(builder);
 
 		this.curve = ModelTypeHelper.unmodifiable(builder.curve);
 
 	}
 
-	public DataframeEvaluationSummaryAucRoc(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static DataframeEvaluationSummaryAucRoc of(
+			Function<Builder, ObjectBuilder<DataframeEvaluationSummaryAucRoc>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * API name: {@code curve}
 	 */
-	@Nullable
-	public List<DataframeEvaluationSummaryAucRocCurveItem> curve() {
+	public final List<DataframeEvaluationSummaryAucRocCurveItem> curve() {
 		return this.curve;
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
-		if (this.curve != null) {
-
+		if (ModelTypeHelper.isDefined(this.curve)) {
 			generator.writeKey("curve");
 			generator.writeStartArray();
 			for (DataframeEvaluationSummaryAucRocCurveItem item0 : this.curve) {
@@ -97,7 +95,7 @@ public final class DataframeEvaluationSummaryAucRoc extends DataframeEvaluationV
 		/**
 		 * API name: {@code curve}
 		 */
-		public Builder curve(@Nullable List<DataframeEvaluationSummaryAucRocCurveItem> value) {
+		public final Builder curve(@Nullable List<DataframeEvaluationSummaryAucRocCurveItem> value) {
 			this.curve = value;
 			return this;
 		}
@@ -105,36 +103,22 @@ public final class DataframeEvaluationSummaryAucRoc extends DataframeEvaluationV
 		/**
 		 * API name: {@code curve}
 		 */
-		public Builder curve(DataframeEvaluationSummaryAucRocCurveItem... value) {
+		public final Builder curve(DataframeEvaluationSummaryAucRocCurveItem... value) {
 			this.curve = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #curve(List)}, creating the list if needed.
+		 * API name: {@code curve}
 		 */
-		public Builder addCurve(DataframeEvaluationSummaryAucRocCurveItem value) {
-			if (this.curve == null) {
-				this.curve = new ArrayList<>();
+		@SafeVarargs
+		public final Builder curve(
+				Function<DataframeEvaluationSummaryAucRocCurveItem.Builder, ObjectBuilder<DataframeEvaluationSummaryAucRocCurveItem>>... fns) {
+			this.curve = new ArrayList<>(fns.length);
+			for (Function<DataframeEvaluationSummaryAucRocCurveItem.Builder, ObjectBuilder<DataframeEvaluationSummaryAucRocCurveItem>> fn : fns) {
+				this.curve.add(fn.apply(new DataframeEvaluationSummaryAucRocCurveItem.Builder()).build());
 			}
-			this.curve.add(value);
 			return this;
-		}
-
-		/**
-		 * Set {@link #curve(List)} to a singleton list.
-		 */
-		public Builder curve(
-				Function<DataframeEvaluationSummaryAucRocCurveItem.Builder, ObjectBuilder<DataframeEvaluationSummaryAucRocCurveItem>> fn) {
-			return this.curve(fn.apply(new DataframeEvaluationSummaryAucRocCurveItem.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #curve(List)}, creating the list if needed.
-		 */
-		public Builder addCurve(
-				Function<DataframeEvaluationSummaryAucRocCurveItem.Builder, ObjectBuilder<DataframeEvaluationSummaryAucRocCurveItem>> fn) {
-			return this.addCurve(fn.apply(new DataframeEvaluationSummaryAucRocCurveItem.Builder()).build());
 		}
 
 		@Override
@@ -149,6 +133,7 @@ public final class DataframeEvaluationSummaryAucRoc extends DataframeEvaluationV
 		 *             if some of the required fields are null.
 		 */
 		public DataframeEvaluationSummaryAucRoc build() {
+			_checkSingleUse();
 
 			return new DataframeEvaluationSummaryAucRoc(this);
 		}

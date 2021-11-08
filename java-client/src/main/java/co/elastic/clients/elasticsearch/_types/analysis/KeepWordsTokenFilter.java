@@ -34,7 +34,6 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
@@ -43,26 +42,28 @@ import javax.annotation.Nullable;
 
 // typedef: _types.analysis.KeepWordsTokenFilter
 @JsonpDeserializable
-public final class KeepWordsTokenFilter extends TokenFilterBase implements TokenFilterVariant {
+public class KeepWordsTokenFilter extends TokenFilterBase implements TokenFilterVariant {
 	private final List<String> keepWords;
 
-	private final boolean keepWordsCase;
+	@Nullable
+	private final Boolean keepWordsCase;
 
+	@Nullable
 	private final String keepWordsPath;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public KeepWordsTokenFilter(Builder builder) {
+	private KeepWordsTokenFilter(Builder builder) {
 		super(builder);
 
-		this.keepWords = ModelTypeHelper.unmodifiableNonNull(builder.keepWords, "keep_words");
-		this.keepWordsCase = Objects.requireNonNull(builder.keepWordsCase, "keep_words_case");
-		this.keepWordsPath = Objects.requireNonNull(builder.keepWordsPath, "keep_words_path");
+		this.keepWords = ModelTypeHelper.unmodifiable(builder.keepWords);
+		this.keepWordsCase = builder.keepWordsCase;
+		this.keepWordsPath = builder.keepWordsPath;
 
 	}
 
-	public KeepWordsTokenFilter(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static KeepWordsTokenFilter of(Function<Builder, ObjectBuilder<KeepWordsTokenFilter>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -74,23 +75,25 @@ public final class KeepWordsTokenFilter extends TokenFilterBase implements Token
 	}
 
 	/**
-	 * Required - API name: {@code keep_words}
+	 * API name: {@code keep_words}
 	 */
-	public List<String> keepWords() {
+	public final List<String> keepWords() {
 		return this.keepWords;
 	}
 
 	/**
-	 * Required - API name: {@code keep_words_case}
+	 * API name: {@code keep_words_case}
 	 */
-	public boolean keepWordsCase() {
+	@Nullable
+	public final Boolean keepWordsCase() {
 		return this.keepWordsCase;
 	}
 
 	/**
-	 * Required - API name: {@code keep_words_path}
+	 * API name: {@code keep_words_path}
 	 */
-	public String keepWordsPath() {
+	@Nullable
+	public final String keepWordsPath() {
 		return this.keepWordsPath;
 	}
 
@@ -98,20 +101,26 @@ public final class KeepWordsTokenFilter extends TokenFilterBase implements Token
 
 		generator.write("type", "keep");
 		super.serializeInternal(generator, mapper);
+		if (ModelTypeHelper.isDefined(this.keepWords)) {
+			generator.writeKey("keep_words");
+			generator.writeStartArray();
+			for (String item0 : this.keepWords) {
+				generator.write(item0);
 
-		generator.writeKey("keep_words");
-		generator.writeStartArray();
-		for (String item0 : this.keepWords) {
-			generator.write(item0);
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
+		if (this.keepWordsCase != null) {
+			generator.writeKey("keep_words_case");
+			generator.write(this.keepWordsCase);
 
-		generator.writeKey("keep_words_case");
-		generator.write(this.keepWordsCase);
+		}
+		if (this.keepWordsPath != null) {
+			generator.writeKey("keep_words_path");
+			generator.write(this.keepWordsPath);
 
-		generator.writeKey("keep_words_path");
-		generator.write(this.keepWordsPath);
+		}
 
 	}
 
@@ -123,51 +132,43 @@ public final class KeepWordsTokenFilter extends TokenFilterBase implements Token
 	public static class Builder extends TokenFilterBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<KeepWordsTokenFilter> {
+		@Nullable
 		private List<String> keepWords;
 
+		@Nullable
 		private Boolean keepWordsCase;
 
+		@Nullable
 		private String keepWordsPath;
 
 		/**
-		 * Required - API name: {@code keep_words}
+		 * API name: {@code keep_words}
 		 */
-		public Builder keepWords(List<String> value) {
+		public final Builder keepWords(@Nullable List<String> value) {
 			this.keepWords = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code keep_words}
+		 * API name: {@code keep_words}
 		 */
-		public Builder keepWords(String... value) {
+		public final Builder keepWords(String... value) {
 			this.keepWords = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #keepWords(List)}, creating the list if needed.
+		 * API name: {@code keep_words_case}
 		 */
-		public Builder addKeepWords(String value) {
-			if (this.keepWords == null) {
-				this.keepWords = new ArrayList<>();
-			}
-			this.keepWords.add(value);
-			return this;
-		}
-
-		/**
-		 * Required - API name: {@code keep_words_case}
-		 */
-		public Builder keepWordsCase(boolean value) {
+		public final Builder keepWordsCase(@Nullable Boolean value) {
 			this.keepWordsCase = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code keep_words_path}
+		 * API name: {@code keep_words_path}
 		 */
-		public Builder keepWordsPath(String value) {
+		public final Builder keepWordsPath(@Nullable String value) {
 			this.keepWordsPath = value;
 			return this;
 		}
@@ -184,6 +185,7 @@ public final class KeepWordsTokenFilter extends TokenFilterBase implements Token
 		 *             if some of the required fields are null.
 		 */
 		public KeepWordsTokenFilter build() {
+			_checkSingleUse();
 
 			return new KeepWordsTokenFilter(this);
 		}

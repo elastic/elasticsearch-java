@@ -42,7 +42,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.mapping.TextProperty
 @JsonpDeserializable
-public final class TextProperty extends CorePropertyBase implements PropertyVariant {
+public class TextProperty extends CorePropertyBase implements PropertyVariant {
 	@Nullable
 	private final String analyzer;
 
@@ -87,7 +87,7 @@ public final class TextProperty extends CorePropertyBase implements PropertyVari
 
 	// ---------------------------------------------------------------------------------------------
 
-	public TextProperty(Builder builder) {
+	private TextProperty(Builder builder) {
 		super(builder);
 
 		this.analyzer = builder.analyzer;
@@ -107,8 +107,8 @@ public final class TextProperty extends CorePropertyBase implements PropertyVari
 
 	}
 
-	public TextProperty(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static TextProperty of(Function<Builder, ObjectBuilder<TextProperty>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -123,7 +123,7 @@ public final class TextProperty extends CorePropertyBase implements PropertyVari
 	 * API name: {@code analyzer}
 	 */
 	@Nullable
-	public String analyzer() {
+	public final String analyzer() {
 		return this.analyzer;
 	}
 
@@ -131,7 +131,7 @@ public final class TextProperty extends CorePropertyBase implements PropertyVari
 	 * API name: {@code boost}
 	 */
 	@Nullable
-	public Double boost() {
+	public final Double boost() {
 		return this.boost;
 	}
 
@@ -139,7 +139,7 @@ public final class TextProperty extends CorePropertyBase implements PropertyVari
 	 * API name: {@code eager_global_ordinals}
 	 */
 	@Nullable
-	public Boolean eagerGlobalOrdinals() {
+	public final Boolean eagerGlobalOrdinals() {
 		return this.eagerGlobalOrdinals;
 	}
 
@@ -147,7 +147,7 @@ public final class TextProperty extends CorePropertyBase implements PropertyVari
 	 * API name: {@code fielddata}
 	 */
 	@Nullable
-	public Boolean fielddata() {
+	public final Boolean fielddata() {
 		return this.fielddata;
 	}
 
@@ -155,7 +155,7 @@ public final class TextProperty extends CorePropertyBase implements PropertyVari
 	 * API name: {@code fielddata_frequency_filter}
 	 */
 	@Nullable
-	public FielddataFrequencyFilter fielddataFrequencyFilter() {
+	public final FielddataFrequencyFilter fielddataFrequencyFilter() {
 		return this.fielddataFrequencyFilter;
 	}
 
@@ -163,7 +163,7 @@ public final class TextProperty extends CorePropertyBase implements PropertyVari
 	 * API name: {@code index}
 	 */
 	@Nullable
-	public Boolean index() {
+	public final Boolean index() {
 		return this.index;
 	}
 
@@ -171,7 +171,7 @@ public final class TextProperty extends CorePropertyBase implements PropertyVari
 	 * API name: {@code index_options}
 	 */
 	@Nullable
-	public IndexOptions indexOptions() {
+	public final IndexOptions indexOptions() {
 		return this.indexOptions;
 	}
 
@@ -179,7 +179,7 @@ public final class TextProperty extends CorePropertyBase implements PropertyVari
 	 * API name: {@code index_phrases}
 	 */
 	@Nullable
-	public Boolean indexPhrases() {
+	public final Boolean indexPhrases() {
 		return this.indexPhrases;
 	}
 
@@ -187,7 +187,7 @@ public final class TextProperty extends CorePropertyBase implements PropertyVari
 	 * API name: {@code index_prefixes}
 	 */
 	@Nullable
-	public TextIndexPrefixes indexPrefixes() {
+	public final TextIndexPrefixes indexPrefixes() {
 		return this.indexPrefixes;
 	}
 
@@ -195,7 +195,7 @@ public final class TextProperty extends CorePropertyBase implements PropertyVari
 	 * API name: {@code norms}
 	 */
 	@Nullable
-	public Boolean norms() {
+	public final Boolean norms() {
 		return this.norms;
 	}
 
@@ -203,7 +203,7 @@ public final class TextProperty extends CorePropertyBase implements PropertyVari
 	 * API name: {@code position_increment_gap}
 	 */
 	@Nullable
-	public Integer positionIncrementGap() {
+	public final Integer positionIncrementGap() {
 		return this.positionIncrementGap;
 	}
 
@@ -211,7 +211,7 @@ public final class TextProperty extends CorePropertyBase implements PropertyVari
 	 * API name: {@code search_analyzer}
 	 */
 	@Nullable
-	public String searchAnalyzer() {
+	public final String searchAnalyzer() {
 		return this.searchAnalyzer;
 	}
 
@@ -219,7 +219,7 @@ public final class TextProperty extends CorePropertyBase implements PropertyVari
 	 * API name: {@code search_quote_analyzer}
 	 */
 	@Nullable
-	public String searchQuoteAnalyzer() {
+	public final String searchQuoteAnalyzer() {
 		return this.searchQuoteAnalyzer;
 	}
 
@@ -227,7 +227,7 @@ public final class TextProperty extends CorePropertyBase implements PropertyVari
 	 * API name: {@code term_vector}
 	 */
 	@Nullable
-	public TermVectorOption termVector() {
+	public final TermVectorOption termVector() {
 		return this.termVector;
 	}
 
@@ -236,84 +236,70 @@ public final class TextProperty extends CorePropertyBase implements PropertyVari
 		generator.write("type", "text");
 		super.serializeInternal(generator, mapper);
 		if (this.analyzer != null) {
-
 			generator.writeKey("analyzer");
 			generator.write(this.analyzer);
 
 		}
 		if (this.boost != null) {
-
 			generator.writeKey("boost");
 			generator.write(this.boost);
 
 		}
 		if (this.eagerGlobalOrdinals != null) {
-
 			generator.writeKey("eager_global_ordinals");
 			generator.write(this.eagerGlobalOrdinals);
 
 		}
 		if (this.fielddata != null) {
-
 			generator.writeKey("fielddata");
 			generator.write(this.fielddata);
 
 		}
 		if (this.fielddataFrequencyFilter != null) {
-
 			generator.writeKey("fielddata_frequency_filter");
 			this.fielddataFrequencyFilter.serialize(generator, mapper);
 
 		}
 		if (this.index != null) {
-
 			generator.writeKey("index");
 			generator.write(this.index);
 
 		}
 		if (this.indexOptions != null) {
-
 			generator.writeKey("index_options");
 			this.indexOptions.serialize(generator, mapper);
 		}
 		if (this.indexPhrases != null) {
-
 			generator.writeKey("index_phrases");
 			generator.write(this.indexPhrases);
 
 		}
 		if (this.indexPrefixes != null) {
-
 			generator.writeKey("index_prefixes");
 			this.indexPrefixes.serialize(generator, mapper);
 
 		}
 		if (this.norms != null) {
-
 			generator.writeKey("norms");
 			generator.write(this.norms);
 
 		}
 		if (this.positionIncrementGap != null) {
-
 			generator.writeKey("position_increment_gap");
 			generator.write(this.positionIncrementGap);
 
 		}
 		if (this.searchAnalyzer != null) {
-
 			generator.writeKey("search_analyzer");
 			generator.write(this.searchAnalyzer);
 
 		}
 		if (this.searchQuoteAnalyzer != null) {
-
 			generator.writeKey("search_quote_analyzer");
 			generator.write(this.searchQuoteAnalyzer);
 
 		}
 		if (this.termVector != null) {
-
 			generator.writeKey("term_vector");
 			this.termVector.serialize(generator, mapper);
 		}
@@ -373,7 +359,7 @@ public final class TextProperty extends CorePropertyBase implements PropertyVari
 		/**
 		 * API name: {@code analyzer}
 		 */
-		public Builder analyzer(@Nullable String value) {
+		public final Builder analyzer(@Nullable String value) {
 			this.analyzer = value;
 			return this;
 		}
@@ -381,7 +367,7 @@ public final class TextProperty extends CorePropertyBase implements PropertyVari
 		/**
 		 * API name: {@code boost}
 		 */
-		public Builder boost(@Nullable Double value) {
+		public final Builder boost(@Nullable Double value) {
 			this.boost = value;
 			return this;
 		}
@@ -389,7 +375,7 @@ public final class TextProperty extends CorePropertyBase implements PropertyVari
 		/**
 		 * API name: {@code eager_global_ordinals}
 		 */
-		public Builder eagerGlobalOrdinals(@Nullable Boolean value) {
+		public final Builder eagerGlobalOrdinals(@Nullable Boolean value) {
 			this.eagerGlobalOrdinals = value;
 			return this;
 		}
@@ -397,7 +383,7 @@ public final class TextProperty extends CorePropertyBase implements PropertyVari
 		/**
 		 * API name: {@code fielddata}
 		 */
-		public Builder fielddata(@Nullable Boolean value) {
+		public final Builder fielddata(@Nullable Boolean value) {
 			this.fielddata = value;
 			return this;
 		}
@@ -405,7 +391,7 @@ public final class TextProperty extends CorePropertyBase implements PropertyVari
 		/**
 		 * API name: {@code fielddata_frequency_filter}
 		 */
-		public Builder fielddataFrequencyFilter(@Nullable FielddataFrequencyFilter value) {
+		public final Builder fielddataFrequencyFilter(@Nullable FielddataFrequencyFilter value) {
 			this.fielddataFrequencyFilter = value;
 			return this;
 		}
@@ -413,7 +399,7 @@ public final class TextProperty extends CorePropertyBase implements PropertyVari
 		/**
 		 * API name: {@code fielddata_frequency_filter}
 		 */
-		public Builder fielddataFrequencyFilter(
+		public final Builder fielddataFrequencyFilter(
 				Function<FielddataFrequencyFilter.Builder, ObjectBuilder<FielddataFrequencyFilter>> fn) {
 			return this.fielddataFrequencyFilter(fn.apply(new FielddataFrequencyFilter.Builder()).build());
 		}
@@ -421,7 +407,7 @@ public final class TextProperty extends CorePropertyBase implements PropertyVari
 		/**
 		 * API name: {@code index}
 		 */
-		public Builder index(@Nullable Boolean value) {
+		public final Builder index(@Nullable Boolean value) {
 			this.index = value;
 			return this;
 		}
@@ -429,7 +415,7 @@ public final class TextProperty extends CorePropertyBase implements PropertyVari
 		/**
 		 * API name: {@code index_options}
 		 */
-		public Builder indexOptions(@Nullable IndexOptions value) {
+		public final Builder indexOptions(@Nullable IndexOptions value) {
 			this.indexOptions = value;
 			return this;
 		}
@@ -437,7 +423,7 @@ public final class TextProperty extends CorePropertyBase implements PropertyVari
 		/**
 		 * API name: {@code index_phrases}
 		 */
-		public Builder indexPhrases(@Nullable Boolean value) {
+		public final Builder indexPhrases(@Nullable Boolean value) {
 			this.indexPhrases = value;
 			return this;
 		}
@@ -445,7 +431,7 @@ public final class TextProperty extends CorePropertyBase implements PropertyVari
 		/**
 		 * API name: {@code index_prefixes}
 		 */
-		public Builder indexPrefixes(@Nullable TextIndexPrefixes value) {
+		public final Builder indexPrefixes(@Nullable TextIndexPrefixes value) {
 			this.indexPrefixes = value;
 			return this;
 		}
@@ -453,14 +439,14 @@ public final class TextProperty extends CorePropertyBase implements PropertyVari
 		/**
 		 * API name: {@code index_prefixes}
 		 */
-		public Builder indexPrefixes(Function<TextIndexPrefixes.Builder, ObjectBuilder<TextIndexPrefixes>> fn) {
+		public final Builder indexPrefixes(Function<TextIndexPrefixes.Builder, ObjectBuilder<TextIndexPrefixes>> fn) {
 			return this.indexPrefixes(fn.apply(new TextIndexPrefixes.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code norms}
 		 */
-		public Builder norms(@Nullable Boolean value) {
+		public final Builder norms(@Nullable Boolean value) {
 			this.norms = value;
 			return this;
 		}
@@ -468,7 +454,7 @@ public final class TextProperty extends CorePropertyBase implements PropertyVari
 		/**
 		 * API name: {@code position_increment_gap}
 		 */
-		public Builder positionIncrementGap(@Nullable Integer value) {
+		public final Builder positionIncrementGap(@Nullable Integer value) {
 			this.positionIncrementGap = value;
 			return this;
 		}
@@ -476,7 +462,7 @@ public final class TextProperty extends CorePropertyBase implements PropertyVari
 		/**
 		 * API name: {@code search_analyzer}
 		 */
-		public Builder searchAnalyzer(@Nullable String value) {
+		public final Builder searchAnalyzer(@Nullable String value) {
 			this.searchAnalyzer = value;
 			return this;
 		}
@@ -484,7 +470,7 @@ public final class TextProperty extends CorePropertyBase implements PropertyVari
 		/**
 		 * API name: {@code search_quote_analyzer}
 		 */
-		public Builder searchQuoteAnalyzer(@Nullable String value) {
+		public final Builder searchQuoteAnalyzer(@Nullable String value) {
 			this.searchQuoteAnalyzer = value;
 			return this;
 		}
@@ -492,7 +478,7 @@ public final class TextProperty extends CorePropertyBase implements PropertyVari
 		/**
 		 * API name: {@code term_vector}
 		 */
-		public Builder termVector(@Nullable TermVectorOption value) {
+		public final Builder termVector(@Nullable TermVectorOption value) {
 			this.termVector = value;
 			return this;
 		}
@@ -509,6 +495,7 @@ public final class TextProperty extends CorePropertyBase implements PropertyVari
 		 *             if some of the required fields are null.
 		 */
 		public TextProperty build() {
+			_checkSingleUse();
 
 			return new TextProperty(this);
 		}

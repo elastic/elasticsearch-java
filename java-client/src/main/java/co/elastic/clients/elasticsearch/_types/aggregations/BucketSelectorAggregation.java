@@ -38,21 +38,21 @@ import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.BucketSelectorAggregation
 @JsonpDeserializable
-public final class BucketSelectorAggregation extends PipelineAggregationBase implements AggregationVariant {
+public class BucketSelectorAggregation extends PipelineAggregationBase implements AggregationVariant {
 	@Nullable
 	private final JsonValue /* _types.Script */ script;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public BucketSelectorAggregation(Builder builder) {
+	private BucketSelectorAggregation(Builder builder) {
 		super(builder);
 
 		this.script = builder.script;
 
 	}
 
-	public BucketSelectorAggregation(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static BucketSelectorAggregation of(Function<Builder, ObjectBuilder<BucketSelectorAggregation>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -67,7 +67,7 @@ public final class BucketSelectorAggregation extends PipelineAggregationBase imp
 	 * API name: {@code script}
 	 */
 	@Nullable
-	public JsonValue /* _types.Script */ script() {
+	public final JsonValue /* _types.Script */ script() {
 		return this.script;
 	}
 
@@ -75,7 +75,6 @@ public final class BucketSelectorAggregation extends PipelineAggregationBase imp
 
 		super.serializeInternal(generator, mapper);
 		if (this.script != null) {
-
 			generator.writeKey("script");
 			generator.write(this.script);
 
@@ -97,7 +96,7 @@ public final class BucketSelectorAggregation extends PipelineAggregationBase imp
 		/**
 		 * API name: {@code script}
 		 */
-		public Builder script(@Nullable JsonValue /* _types.Script */ value) {
+		public final Builder script(@Nullable JsonValue /* _types.Script */ value) {
 			this.script = value;
 			return this;
 		}
@@ -114,6 +113,7 @@ public final class BucketSelectorAggregation extends PipelineAggregationBase imp
 		 *             if some of the required fields are null.
 		 */
 		public BucketSelectorAggregation build() {
+			_checkSingleUse();
 
 			return new BucketSelectorAggregation(this);
 		}

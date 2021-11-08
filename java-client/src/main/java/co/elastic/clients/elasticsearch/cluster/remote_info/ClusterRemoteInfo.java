@@ -28,8 +28,11 @@ import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import co.elastic.clients.util.TaggedUnion;
 import co.elastic.clients.util.TaggedUnionUtils;
 import jakarta.json.stream.JsonGenerator;
@@ -39,7 +42,7 @@ import javax.annotation.Nullable;
 
 // typedef: cluster.remote_info.ClusterRemoteInfo
 @JsonpDeserializable
-public class ClusterRemoteInfo implements TaggedUnion<JsonpSerializable>, JsonpSerializable {
+public class ClusterRemoteInfo implements TaggedUnion<ClusterRemoteInfoVariant>, JsonpSerializable {
 
 	public static final String PROXY = "proxy";
 	public static final String SNIFF = "sniff";
@@ -47,38 +50,34 @@ public class ClusterRemoteInfo implements TaggedUnion<JsonpSerializable>, JsonpS
 	// Tagged union implementation
 
 	private final String _type;
-	private final JsonpSerializable _value;
+	private final ClusterRemoteInfoVariant _value;
 
 	@Override
-	public String _type() {
+	public final String _type() {
 		return _type;
 	}
 
 	@Override
-	public JsonpSerializable _get() {
+	public final ClusterRemoteInfoVariant _get() {
 		return _value;
 	}
 
 	public ClusterRemoteInfo(ClusterRemoteInfoVariant value) {
 
-		this._type = Objects.requireNonNull(value._variantType(), "variant type");
-		this._value = Objects.requireNonNull(value, "variant value");
+		this._type = ModelTypeHelper.requireNonNull(value._variantType(), this, "<variant type>");
+		this._value = ModelTypeHelper.requireNonNull(value, this, "<variant value>");
 
-	}
-
-	public <T extends ClusterRemoteInfoVariant> ClusterRemoteInfo(ObjectBuilder<T> builder) {
-		this(builder.build());
 	}
 
 	private ClusterRemoteInfo(Builder builder) {
 
-		this._type = Objects.requireNonNull(builder._type, "variant type");
-		this._value = Objects.requireNonNull(builder._value, "variant value");
+		this._type = ModelTypeHelper.requireNonNull(builder._type, builder, "<variant type>");
+		this._value = ModelTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
 
 	}
 
-	public ClusterRemoteInfo(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ClusterRemoteInfo of(Function<Builder, ObjectBuilder<ClusterRemoteInfo>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -104,13 +103,13 @@ public class ClusterRemoteInfo implements TaggedUnion<JsonpSerializable>, JsonpS
 	@Override
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 
-		_value.serialize(generator, mapper);
+		mapper.serialize(_value, generator);
 
 	}
 
-	public static class Builder implements ObjectBuilder<ClusterRemoteInfo> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ClusterRemoteInfo> {
 		private String _type;
-		private JsonpSerializable _value;
+		private ClusterRemoteInfoVariant _value;
 
 		public Builder proxy(ClusterRemoteProxyInfo v) {
 			this._type = PROXY;
@@ -133,6 +132,7 @@ public class ClusterRemoteInfo implements TaggedUnion<JsonpSerializable>, JsonpS
 		}
 
 		public ClusterRemoteInfo build() {
+			_checkSingleUse();
 			return new ClusterRemoteInfo(this);
 		}
 
@@ -147,6 +147,6 @@ public class ClusterRemoteInfo implements TaggedUnion<JsonpSerializable>, JsonpS
 
 	}
 
-	public static final JsonpDeserializer<ClusterRemoteInfo> _DESERIALIZER = JsonpDeserializer.lazy(Builder::new,
-			ClusterRemoteInfo::setupClusterRemoteInfoDeserializer, Builder::build);
+	public static final JsonpDeserializer<ClusterRemoteInfo> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, ClusterRemoteInfo::setupClusterRemoteInfoDeserializer, Builder::build);
 }

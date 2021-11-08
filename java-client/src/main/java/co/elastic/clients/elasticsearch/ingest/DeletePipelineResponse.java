@@ -36,16 +36,16 @@ import java.util.function.Function;
 
 // typedef: ingest.delete_pipeline.Response
 @JsonpDeserializable
-public final class DeletePipelineResponse extends AcknowledgedResponseBase {
+public class DeletePipelineResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
-	public DeletePipelineResponse(Builder builder) {
+	private DeletePipelineResponse(Builder builder) {
 		super(builder);
 
 	}
 
-	public DeletePipelineResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static DeletePipelineResponse of(Function<Builder, ObjectBuilder<DeletePipelineResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -68,6 +68,7 @@ public final class DeletePipelineResponse extends AcknowledgedResponseBase {
 		 *             if some of the required fields are null.
 		 */
 		public DeletePipelineResponse build() {
+			_checkSingleUse();
 
 			return new DeletePipelineResponse(this);
 		}

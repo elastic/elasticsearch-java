@@ -32,10 +32,10 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
@@ -44,7 +44,7 @@ import javax.annotation.Nullable;
 
 // typedef: slm.get_stats.Response
 @JsonpDeserializable
-public final class GetStatsResponse implements JsonpSerializable {
+public class GetStatsResponse implements JsonpSerializable {
 	private final String retentionDeletionTime;
 
 	private final String retentionDeletionTimeMillis;
@@ -67,94 +67,98 @@ public final class GetStatsResponse implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public GetStatsResponse(Builder builder) {
+	private GetStatsResponse(Builder builder) {
 
-		this.retentionDeletionTime = Objects.requireNonNull(builder.retentionDeletionTime, "retention_deletion_time");
-		this.retentionDeletionTimeMillis = Objects.requireNonNull(builder.retentionDeletionTimeMillis,
-				"retention_deletion_time_millis");
-		this.retentionFailed = Objects.requireNonNull(builder.retentionFailed, "retention_failed");
-		this.retentionRuns = Objects.requireNonNull(builder.retentionRuns, "retention_runs");
-		this.retentionTimedOut = Objects.requireNonNull(builder.retentionTimedOut, "retention_timed_out");
-		this.totalSnapshotsDeleted = Objects.requireNonNull(builder.totalSnapshotsDeleted, "total_snapshots_deleted");
-		this.totalSnapshotDeletionFailures = Objects.requireNonNull(builder.totalSnapshotDeletionFailures,
-				"total_snapshot_deletion_failures");
-		this.totalSnapshotsFailed = Objects.requireNonNull(builder.totalSnapshotsFailed, "total_snapshots_failed");
-		this.totalSnapshotsTaken = Objects.requireNonNull(builder.totalSnapshotsTaken, "total_snapshots_taken");
-		this.policyStats = ModelTypeHelper.unmodifiableNonNull(builder.policyStats, "policy_stats");
+		this.retentionDeletionTime = ModelTypeHelper.requireNonNull(builder.retentionDeletionTime, this,
+				"retentionDeletionTime");
+		this.retentionDeletionTimeMillis = ModelTypeHelper.requireNonNull(builder.retentionDeletionTimeMillis, this,
+				"retentionDeletionTimeMillis");
+		this.retentionFailed = ModelTypeHelper.requireNonNull(builder.retentionFailed, this, "retentionFailed");
+		this.retentionRuns = ModelTypeHelper.requireNonNull(builder.retentionRuns, this, "retentionRuns");
+		this.retentionTimedOut = ModelTypeHelper.requireNonNull(builder.retentionTimedOut, this, "retentionTimedOut");
+		this.totalSnapshotsDeleted = ModelTypeHelper.requireNonNull(builder.totalSnapshotsDeleted, this,
+				"totalSnapshotsDeleted");
+		this.totalSnapshotDeletionFailures = ModelTypeHelper.requireNonNull(builder.totalSnapshotDeletionFailures, this,
+				"totalSnapshotDeletionFailures");
+		this.totalSnapshotsFailed = ModelTypeHelper.requireNonNull(builder.totalSnapshotsFailed, this,
+				"totalSnapshotsFailed");
+		this.totalSnapshotsTaken = ModelTypeHelper.requireNonNull(builder.totalSnapshotsTaken, this,
+				"totalSnapshotsTaken");
+		this.policyStats = ModelTypeHelper.unmodifiableRequired(builder.policyStats, this, "policyStats");
 
 	}
 
-	public GetStatsResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static GetStatsResponse of(Function<Builder, ObjectBuilder<GetStatsResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code retention_deletion_time}
 	 */
-	public String retentionDeletionTime() {
+	public final String retentionDeletionTime() {
 		return this.retentionDeletionTime;
 	}
 
 	/**
 	 * Required - API name: {@code retention_deletion_time_millis}
 	 */
-	public String retentionDeletionTimeMillis() {
+	public final String retentionDeletionTimeMillis() {
 		return this.retentionDeletionTimeMillis;
 	}
 
 	/**
 	 * Required - API name: {@code retention_failed}
 	 */
-	public long retentionFailed() {
+	public final long retentionFailed() {
 		return this.retentionFailed;
 	}
 
 	/**
 	 * Required - API name: {@code retention_runs}
 	 */
-	public long retentionRuns() {
+	public final long retentionRuns() {
 		return this.retentionRuns;
 	}
 
 	/**
 	 * Required - API name: {@code retention_timed_out}
 	 */
-	public long retentionTimedOut() {
+	public final long retentionTimedOut() {
 		return this.retentionTimedOut;
 	}
 
 	/**
 	 * Required - API name: {@code total_snapshots_deleted}
 	 */
-	public long totalSnapshotsDeleted() {
+	public final long totalSnapshotsDeleted() {
 		return this.totalSnapshotsDeleted;
 	}
 
 	/**
 	 * Required - API name: {@code total_snapshot_deletion_failures}
 	 */
-	public long totalSnapshotDeletionFailures() {
+	public final long totalSnapshotDeletionFailures() {
 		return this.totalSnapshotDeletionFailures;
 	}
 
 	/**
 	 * Required - API name: {@code total_snapshots_failed}
 	 */
-	public long totalSnapshotsFailed() {
+	public final long totalSnapshotsFailed() {
 		return this.totalSnapshotsFailed;
 	}
 
 	/**
 	 * Required - API name: {@code total_snapshots_taken}
 	 */
-	public long totalSnapshotsTaken() {
+	public final long totalSnapshotsTaken() {
 		return this.totalSnapshotsTaken;
 	}
 
 	/**
 	 * Required - API name: {@code policy_stats}
 	 */
-	public List<String> policyStats() {
+	public final List<String> policyStats() {
 		return this.policyStats;
 	}
 
@@ -196,13 +200,16 @@ public final class GetStatsResponse implements JsonpSerializable {
 		generator.writeKey("total_snapshots_taken");
 		generator.write(this.totalSnapshotsTaken);
 
-		generator.writeKey("policy_stats");
-		generator.writeStartArray();
-		for (String item0 : this.policyStats) {
-			generator.write(item0);
+		if (ModelTypeHelper.isDefined(this.policyStats)) {
+			generator.writeKey("policy_stats");
+			generator.writeStartArray();
+			for (String item0 : this.policyStats) {
+				generator.write(item0);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
 
 	}
 
@@ -211,7 +218,7 @@ public final class GetStatsResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link GetStatsResponse}.
 	 */
-	public static class Builder implements ObjectBuilder<GetStatsResponse> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetStatsResponse> {
 		private String retentionDeletionTime;
 
 		private String retentionDeletionTimeMillis;
@@ -235,7 +242,7 @@ public final class GetStatsResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code retention_deletion_time}
 		 */
-		public Builder retentionDeletionTime(String value) {
+		public final Builder retentionDeletionTime(String value) {
 			this.retentionDeletionTime = value;
 			return this;
 		}
@@ -243,7 +250,7 @@ public final class GetStatsResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code retention_deletion_time_millis}
 		 */
-		public Builder retentionDeletionTimeMillis(String value) {
+		public final Builder retentionDeletionTimeMillis(String value) {
 			this.retentionDeletionTimeMillis = value;
 			return this;
 		}
@@ -251,7 +258,7 @@ public final class GetStatsResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code retention_failed}
 		 */
-		public Builder retentionFailed(long value) {
+		public final Builder retentionFailed(long value) {
 			this.retentionFailed = value;
 			return this;
 		}
@@ -259,7 +266,7 @@ public final class GetStatsResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code retention_runs}
 		 */
-		public Builder retentionRuns(long value) {
+		public final Builder retentionRuns(long value) {
 			this.retentionRuns = value;
 			return this;
 		}
@@ -267,7 +274,7 @@ public final class GetStatsResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code retention_timed_out}
 		 */
-		public Builder retentionTimedOut(long value) {
+		public final Builder retentionTimedOut(long value) {
 			this.retentionTimedOut = value;
 			return this;
 		}
@@ -275,7 +282,7 @@ public final class GetStatsResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code total_snapshots_deleted}
 		 */
-		public Builder totalSnapshotsDeleted(long value) {
+		public final Builder totalSnapshotsDeleted(long value) {
 			this.totalSnapshotsDeleted = value;
 			return this;
 		}
@@ -283,7 +290,7 @@ public final class GetStatsResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code total_snapshot_deletion_failures}
 		 */
-		public Builder totalSnapshotDeletionFailures(long value) {
+		public final Builder totalSnapshotDeletionFailures(long value) {
 			this.totalSnapshotDeletionFailures = value;
 			return this;
 		}
@@ -291,7 +298,7 @@ public final class GetStatsResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code total_snapshots_failed}
 		 */
-		public Builder totalSnapshotsFailed(long value) {
+		public final Builder totalSnapshotsFailed(long value) {
 			this.totalSnapshotsFailed = value;
 			return this;
 		}
@@ -299,7 +306,7 @@ public final class GetStatsResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code total_snapshots_taken}
 		 */
-		public Builder totalSnapshotsTaken(long value) {
+		public final Builder totalSnapshotsTaken(long value) {
 			this.totalSnapshotsTaken = value;
 			return this;
 		}
@@ -307,7 +314,7 @@ public final class GetStatsResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code policy_stats}
 		 */
-		public Builder policyStats(List<String> value) {
+		public final Builder policyStats(List<String> value) {
 			this.policyStats = value;
 			return this;
 		}
@@ -315,19 +322,8 @@ public final class GetStatsResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code policy_stats}
 		 */
-		public Builder policyStats(String... value) {
+		public final Builder policyStats(String... value) {
 			this.policyStats = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #policyStats(List)}, creating the list if needed.
-		 */
-		public Builder addPolicyStats(String value) {
-			if (this.policyStats == null) {
-				this.policyStats = new ArrayList<>();
-			}
-			this.policyStats.add(value);
 			return this;
 		}
 
@@ -338,6 +334,7 @@ public final class GetStatsResponse implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public GetStatsResponse build() {
+			_checkSingleUse();
 
 			return new GetStatsResponse(this);
 		}

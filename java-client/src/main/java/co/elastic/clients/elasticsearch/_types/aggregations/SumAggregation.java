@@ -35,16 +35,16 @@ import java.util.function.Function;
 
 // typedef: _types.aggregations.SumAggregation
 @JsonpDeserializable
-public final class SumAggregation extends FormatMetricAggregationBase implements AggregationVariant {
+public class SumAggregation extends FormatMetricAggregationBase implements AggregationVariant {
 	// ---------------------------------------------------------------------------------------------
 
-	public SumAggregation(Builder builder) {
+	private SumAggregation(Builder builder) {
 		super(builder);
 
 	}
 
-	public SumAggregation(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static SumAggregation of(Function<Builder, ObjectBuilder<SumAggregation>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -75,6 +75,7 @@ public final class SumAggregation extends FormatMetricAggregationBase implements
 		 *             if some of the required fields are null.
 		 */
 		public SumAggregation build() {
+			_checkSingleUse();
 
 			return new SumAggregation(this);
 		}

@@ -33,12 +33,12 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Float;
 import java.lang.Long;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
@@ -47,7 +47,7 @@ import javax.annotation.Nullable;
 
 // typedef: tasks._types.Status
 @JsonpDeserializable
-public final class Status implements JsonpSerializable {
+public class Status implements JsonpSerializable {
 	private final long batches;
 
 	@Nullable
@@ -59,7 +59,6 @@ public final class Status implements JsonpSerializable {
 
 	private final long noops;
 
-	@Nullable
 	private final List<String> failures;
 
 	private final float requestsPerSecond;
@@ -90,36 +89,37 @@ public final class Status implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public Status(Builder builder) {
+	private Status(Builder builder) {
 
-		this.batches = Objects.requireNonNull(builder.batches, "batches");
+		this.batches = ModelTypeHelper.requireNonNull(builder.batches, this, "batches");
 		this.canceled = builder.canceled;
-		this.created = Objects.requireNonNull(builder.created, "created");
-		this.deleted = Objects.requireNonNull(builder.deleted, "deleted");
-		this.noops = Objects.requireNonNull(builder.noops, "noops");
+		this.created = ModelTypeHelper.requireNonNull(builder.created, this, "created");
+		this.deleted = ModelTypeHelper.requireNonNull(builder.deleted, this, "deleted");
+		this.noops = ModelTypeHelper.requireNonNull(builder.noops, this, "noops");
 		this.failures = ModelTypeHelper.unmodifiable(builder.failures);
-		this.requestsPerSecond = Objects.requireNonNull(builder.requestsPerSecond, "requests_per_second");
-		this.retries = Objects.requireNonNull(builder.retries, "retries");
+		this.requestsPerSecond = ModelTypeHelper.requireNonNull(builder.requestsPerSecond, this, "requestsPerSecond");
+		this.retries = ModelTypeHelper.requireNonNull(builder.retries, this, "retries");
 		this.throttled = builder.throttled;
-		this.throttledMillis = Objects.requireNonNull(builder.throttledMillis, "throttled_millis");
+		this.throttledMillis = ModelTypeHelper.requireNonNull(builder.throttledMillis, this, "throttledMillis");
 		this.throttledUntil = builder.throttledUntil;
-		this.throttledUntilMillis = Objects.requireNonNull(builder.throttledUntilMillis, "throttled_until_millis");
+		this.throttledUntilMillis = ModelTypeHelper.requireNonNull(builder.throttledUntilMillis, this,
+				"throttledUntilMillis");
 		this.timedOut = builder.timedOut;
 		this.took = builder.took;
-		this.total = Objects.requireNonNull(builder.total, "total");
-		this.updated = Objects.requireNonNull(builder.updated, "updated");
-		this.versionConflicts = Objects.requireNonNull(builder.versionConflicts, "version_conflicts");
+		this.total = ModelTypeHelper.requireNonNull(builder.total, this, "total");
+		this.updated = ModelTypeHelper.requireNonNull(builder.updated, this, "updated");
+		this.versionConflicts = ModelTypeHelper.requireNonNull(builder.versionConflicts, this, "versionConflicts");
 
 	}
 
-	public Status(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static Status of(Function<Builder, ObjectBuilder<Status>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code batches}
 	 */
-	public long batches() {
+	public final long batches() {
 		return this.batches;
 	}
 
@@ -127,50 +127,49 @@ public final class Status implements JsonpSerializable {
 	 * API name: {@code canceled}
 	 */
 	@Nullable
-	public String canceled() {
+	public final String canceled() {
 		return this.canceled;
 	}
 
 	/**
 	 * Required - API name: {@code created}
 	 */
-	public long created() {
+	public final long created() {
 		return this.created;
 	}
 
 	/**
 	 * Required - API name: {@code deleted}
 	 */
-	public long deleted() {
+	public final long deleted() {
 		return this.deleted;
 	}
 
 	/**
 	 * Required - API name: {@code noops}
 	 */
-	public long noops() {
+	public final long noops() {
 		return this.noops;
 	}
 
 	/**
 	 * API name: {@code failures}
 	 */
-	@Nullable
-	public List<String> failures() {
+	public final List<String> failures() {
 		return this.failures;
 	}
 
 	/**
 	 * Required - API name: {@code requests_per_second}
 	 */
-	public float requestsPerSecond() {
+	public final float requestsPerSecond() {
 		return this.requestsPerSecond;
 	}
 
 	/**
 	 * Required - API name: {@code retries}
 	 */
-	public Retries retries() {
+	public final Retries retries() {
 		return this.retries;
 	}
 
@@ -178,14 +177,14 @@ public final class Status implements JsonpSerializable {
 	 * API name: {@code throttled}
 	 */
 	@Nullable
-	public String throttled() {
+	public final String throttled() {
 		return this.throttled;
 	}
 
 	/**
 	 * Required - API name: {@code throttled_millis}
 	 */
-	public long throttledMillis() {
+	public final long throttledMillis() {
 		return this.throttledMillis;
 	}
 
@@ -193,14 +192,14 @@ public final class Status implements JsonpSerializable {
 	 * API name: {@code throttled_until}
 	 */
 	@Nullable
-	public String throttledUntil() {
+	public final String throttledUntil() {
 		return this.throttledUntil;
 	}
 
 	/**
 	 * Required - API name: {@code throttled_until_millis}
 	 */
-	public long throttledUntilMillis() {
+	public final long throttledUntilMillis() {
 		return this.throttledUntilMillis;
 	}
 
@@ -208,7 +207,7 @@ public final class Status implements JsonpSerializable {
 	 * API name: {@code timed_out}
 	 */
 	@Nullable
-	public Boolean timedOut() {
+	public final Boolean timedOut() {
 		return this.timedOut;
 	}
 
@@ -216,28 +215,28 @@ public final class Status implements JsonpSerializable {
 	 * API name: {@code took}
 	 */
 	@Nullable
-	public Long took() {
+	public final Long took() {
 		return this.took;
 	}
 
 	/**
 	 * Required - API name: {@code total}
 	 */
-	public long total() {
+	public final long total() {
 		return this.total;
 	}
 
 	/**
 	 * Required - API name: {@code updated}
 	 */
-	public long updated() {
+	public final long updated() {
 		return this.updated;
 	}
 
 	/**
 	 * Required - API name: {@code version_conflicts}
 	 */
-	public long versionConflicts() {
+	public final long versionConflicts() {
 		return this.versionConflicts;
 	}
 
@@ -256,12 +255,10 @@ public final class Status implements JsonpSerializable {
 		generator.write(this.batches);
 
 		if (this.canceled != null) {
-
 			generator.writeKey("canceled");
 			generator.write(this.canceled);
 
 		}
-
 		generator.writeKey("created");
 		generator.write(this.created);
 
@@ -271,8 +268,7 @@ public final class Status implements JsonpSerializable {
 		generator.writeKey("noops");
 		generator.write(this.noops);
 
-		if (this.failures != null) {
-
+		if (ModelTypeHelper.isDefined(this.failures)) {
 			generator.writeKey("failures");
 			generator.writeStartArray();
 			for (String item0 : this.failures) {
@@ -282,7 +278,6 @@ public final class Status implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-
 		generator.writeKey("requests_per_second");
 		generator.write(this.requestsPerSecond);
 
@@ -290,38 +285,31 @@ public final class Status implements JsonpSerializable {
 		this.retries.serialize(generator, mapper);
 
 		if (this.throttled != null) {
-
 			generator.writeKey("throttled");
 			generator.write(this.throttled);
 
 		}
-
 		generator.writeKey("throttled_millis");
 		generator.write(this.throttledMillis);
 
 		if (this.throttledUntil != null) {
-
 			generator.writeKey("throttled_until");
 			generator.write(this.throttledUntil);
 
 		}
-
 		generator.writeKey("throttled_until_millis");
 		generator.write(this.throttledUntilMillis);
 
 		if (this.timedOut != null) {
-
 			generator.writeKey("timed_out");
 			generator.write(this.timedOut);
 
 		}
 		if (this.took != null) {
-
 			generator.writeKey("took");
 			generator.write(this.took);
 
 		}
-
 		generator.writeKey("total");
 		generator.write(this.total);
 
@@ -338,7 +326,7 @@ public final class Status implements JsonpSerializable {
 	/**
 	 * Builder for {@link Status}.
 	 */
-	public static class Builder implements ObjectBuilder<Status> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Status> {
 		private Long batches;
 
 		@Nullable
@@ -382,7 +370,7 @@ public final class Status implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code batches}
 		 */
-		public Builder batches(long value) {
+		public final Builder batches(long value) {
 			this.batches = value;
 			return this;
 		}
@@ -390,7 +378,7 @@ public final class Status implements JsonpSerializable {
 		/**
 		 * API name: {@code canceled}
 		 */
-		public Builder canceled(@Nullable String value) {
+		public final Builder canceled(@Nullable String value) {
 			this.canceled = value;
 			return this;
 		}
@@ -398,7 +386,7 @@ public final class Status implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code created}
 		 */
-		public Builder created(long value) {
+		public final Builder created(long value) {
 			this.created = value;
 			return this;
 		}
@@ -406,7 +394,7 @@ public final class Status implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code deleted}
 		 */
-		public Builder deleted(long value) {
+		public final Builder deleted(long value) {
 			this.deleted = value;
 			return this;
 		}
@@ -414,7 +402,7 @@ public final class Status implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code noops}
 		 */
-		public Builder noops(long value) {
+		public final Builder noops(long value) {
 			this.noops = value;
 			return this;
 		}
@@ -422,7 +410,7 @@ public final class Status implements JsonpSerializable {
 		/**
 		 * API name: {@code failures}
 		 */
-		public Builder failures(@Nullable List<String> value) {
+		public final Builder failures(@Nullable List<String> value) {
 			this.failures = value;
 			return this;
 		}
@@ -430,26 +418,15 @@ public final class Status implements JsonpSerializable {
 		/**
 		 * API name: {@code failures}
 		 */
-		public Builder failures(String... value) {
+		public final Builder failures(String... value) {
 			this.failures = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #failures(List)}, creating the list if needed.
-		 */
-		public Builder addFailures(String value) {
-			if (this.failures == null) {
-				this.failures = new ArrayList<>();
-			}
-			this.failures.add(value);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code requests_per_second}
 		 */
-		public Builder requestsPerSecond(float value) {
+		public final Builder requestsPerSecond(float value) {
 			this.requestsPerSecond = value;
 			return this;
 		}
@@ -457,7 +434,7 @@ public final class Status implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code retries}
 		 */
-		public Builder retries(Retries value) {
+		public final Builder retries(Retries value) {
 			this.retries = value;
 			return this;
 		}
@@ -465,14 +442,14 @@ public final class Status implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code retries}
 		 */
-		public Builder retries(Function<Retries.Builder, ObjectBuilder<Retries>> fn) {
+		public final Builder retries(Function<Retries.Builder, ObjectBuilder<Retries>> fn) {
 			return this.retries(fn.apply(new Retries.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code throttled}
 		 */
-		public Builder throttled(@Nullable String value) {
+		public final Builder throttled(@Nullable String value) {
 			this.throttled = value;
 			return this;
 		}
@@ -480,7 +457,7 @@ public final class Status implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code throttled_millis}
 		 */
-		public Builder throttledMillis(long value) {
+		public final Builder throttledMillis(long value) {
 			this.throttledMillis = value;
 			return this;
 		}
@@ -488,7 +465,7 @@ public final class Status implements JsonpSerializable {
 		/**
 		 * API name: {@code throttled_until}
 		 */
-		public Builder throttledUntil(@Nullable String value) {
+		public final Builder throttledUntil(@Nullable String value) {
 			this.throttledUntil = value;
 			return this;
 		}
@@ -496,7 +473,7 @@ public final class Status implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code throttled_until_millis}
 		 */
-		public Builder throttledUntilMillis(long value) {
+		public final Builder throttledUntilMillis(long value) {
 			this.throttledUntilMillis = value;
 			return this;
 		}
@@ -504,7 +481,7 @@ public final class Status implements JsonpSerializable {
 		/**
 		 * API name: {@code timed_out}
 		 */
-		public Builder timedOut(@Nullable Boolean value) {
+		public final Builder timedOut(@Nullable Boolean value) {
 			this.timedOut = value;
 			return this;
 		}
@@ -512,7 +489,7 @@ public final class Status implements JsonpSerializable {
 		/**
 		 * API name: {@code took}
 		 */
-		public Builder took(@Nullable Long value) {
+		public final Builder took(@Nullable Long value) {
 			this.took = value;
 			return this;
 		}
@@ -520,7 +497,7 @@ public final class Status implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code total}
 		 */
-		public Builder total(long value) {
+		public final Builder total(long value) {
 			this.total = value;
 			return this;
 		}
@@ -528,7 +505,7 @@ public final class Status implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code updated}
 		 */
-		public Builder updated(long value) {
+		public final Builder updated(long value) {
 			this.updated = value;
 			return this;
 		}
@@ -536,7 +513,7 @@ public final class Status implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code version_conflicts}
 		 */
-		public Builder versionConflicts(long value) {
+		public final Builder versionConflicts(long value) {
 			this.versionConflicts = value;
 			return this;
 		}
@@ -548,6 +525,7 @@ public final class Status implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public Status build() {
+			_checkSingleUse();
 
 			return new Status(this);
 		}

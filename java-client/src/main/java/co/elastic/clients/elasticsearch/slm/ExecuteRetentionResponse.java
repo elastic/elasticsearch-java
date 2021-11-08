@@ -36,16 +36,16 @@ import java.util.function.Function;
 
 // typedef: slm.execute_retention.Response
 @JsonpDeserializable
-public final class ExecuteRetentionResponse extends AcknowledgedResponseBase {
+public class ExecuteRetentionResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
-	public ExecuteRetentionResponse(Builder builder) {
+	private ExecuteRetentionResponse(Builder builder) {
 		super(builder);
 
 	}
 
-	public ExecuteRetentionResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ExecuteRetentionResponse of(Function<Builder, ObjectBuilder<ExecuteRetentionResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -68,6 +68,7 @@ public final class ExecuteRetentionResponse extends AcknowledgedResponseBase {
 		 *             if some of the required fields are null.
 		 */
 		public ExecuteRetentionResponse build() {
+			_checkSingleUse();
 
 			return new ExecuteRetentionResponse(this);
 		}

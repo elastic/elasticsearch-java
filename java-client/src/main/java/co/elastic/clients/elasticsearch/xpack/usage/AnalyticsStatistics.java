@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.util.Objects;
@@ -39,7 +41,7 @@ import javax.annotation.Nullable;
 
 // typedef: xpack.usage.AnalyticsStatistics
 @JsonpDeserializable
-public final class AnalyticsStatistics implements JsonpSerializable {
+public class AnalyticsStatistics implements JsonpSerializable {
 	private final long boxplotUsage;
 
 	private final long cumulativeCardinalityUsage;
@@ -61,79 +63,79 @@ public final class AnalyticsStatistics implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public AnalyticsStatistics(Builder builder) {
+	private AnalyticsStatistics(Builder builder) {
 
-		this.boxplotUsage = Objects.requireNonNull(builder.boxplotUsage, "boxplot_usage");
-		this.cumulativeCardinalityUsage = Objects.requireNonNull(builder.cumulativeCardinalityUsage,
-				"cumulative_cardinality_usage");
-		this.stringStatsUsage = Objects.requireNonNull(builder.stringStatsUsage, "string_stats_usage");
-		this.topMetricsUsage = Objects.requireNonNull(builder.topMetricsUsage, "top_metrics_usage");
-		this.tTestUsage = Objects.requireNonNull(builder.tTestUsage, "t_test_usage");
-		this.movingPercentilesUsage = Objects.requireNonNull(builder.movingPercentilesUsage,
-				"moving_percentiles_usage");
-		this.normalizeUsage = Objects.requireNonNull(builder.normalizeUsage, "normalize_usage");
-		this.rateUsage = Objects.requireNonNull(builder.rateUsage, "rate_usage");
+		this.boxplotUsage = ModelTypeHelper.requireNonNull(builder.boxplotUsage, this, "boxplotUsage");
+		this.cumulativeCardinalityUsage = ModelTypeHelper.requireNonNull(builder.cumulativeCardinalityUsage, this,
+				"cumulativeCardinalityUsage");
+		this.stringStatsUsage = ModelTypeHelper.requireNonNull(builder.stringStatsUsage, this, "stringStatsUsage");
+		this.topMetricsUsage = ModelTypeHelper.requireNonNull(builder.topMetricsUsage, this, "topMetricsUsage");
+		this.tTestUsage = ModelTypeHelper.requireNonNull(builder.tTestUsage, this, "tTestUsage");
+		this.movingPercentilesUsage = ModelTypeHelper.requireNonNull(builder.movingPercentilesUsage, this,
+				"movingPercentilesUsage");
+		this.normalizeUsage = ModelTypeHelper.requireNonNull(builder.normalizeUsage, this, "normalizeUsage");
+		this.rateUsage = ModelTypeHelper.requireNonNull(builder.rateUsage, this, "rateUsage");
 		this.multiTermsUsage = builder.multiTermsUsage;
 
 	}
 
-	public AnalyticsStatistics(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static AnalyticsStatistics of(Function<Builder, ObjectBuilder<AnalyticsStatistics>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code boxplot_usage}
 	 */
-	public long boxplotUsage() {
+	public final long boxplotUsage() {
 		return this.boxplotUsage;
 	}
 
 	/**
 	 * Required - API name: {@code cumulative_cardinality_usage}
 	 */
-	public long cumulativeCardinalityUsage() {
+	public final long cumulativeCardinalityUsage() {
 		return this.cumulativeCardinalityUsage;
 	}
 
 	/**
 	 * Required - API name: {@code string_stats_usage}
 	 */
-	public long stringStatsUsage() {
+	public final long stringStatsUsage() {
 		return this.stringStatsUsage;
 	}
 
 	/**
 	 * Required - API name: {@code top_metrics_usage}
 	 */
-	public long topMetricsUsage() {
+	public final long topMetricsUsage() {
 		return this.topMetricsUsage;
 	}
 
 	/**
 	 * Required - API name: {@code t_test_usage}
 	 */
-	public long tTestUsage() {
+	public final long tTestUsage() {
 		return this.tTestUsage;
 	}
 
 	/**
 	 * Required - API name: {@code moving_percentiles_usage}
 	 */
-	public long movingPercentilesUsage() {
+	public final long movingPercentilesUsage() {
 		return this.movingPercentilesUsage;
 	}
 
 	/**
 	 * Required - API name: {@code normalize_usage}
 	 */
-	public long normalizeUsage() {
+	public final long normalizeUsage() {
 		return this.normalizeUsage;
 	}
 
 	/**
 	 * Required - API name: {@code rate_usage}
 	 */
-	public long rateUsage() {
+	public final long rateUsage() {
 		return this.rateUsage;
 	}
 
@@ -141,7 +143,7 @@ public final class AnalyticsStatistics implements JsonpSerializable {
 	 * API name: {@code multi_terms_usage}
 	 */
 	@Nullable
-	public Long multiTermsUsage() {
+	public final Long multiTermsUsage() {
 		return this.multiTermsUsage;
 	}
 
@@ -181,7 +183,6 @@ public final class AnalyticsStatistics implements JsonpSerializable {
 		generator.write(this.rateUsage);
 
 		if (this.multiTermsUsage != null) {
-
 			generator.writeKey("multi_terms_usage");
 			generator.write(this.multiTermsUsage);
 
@@ -194,7 +195,7 @@ public final class AnalyticsStatistics implements JsonpSerializable {
 	/**
 	 * Builder for {@link AnalyticsStatistics}.
 	 */
-	public static class Builder implements ObjectBuilder<AnalyticsStatistics> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<AnalyticsStatistics> {
 		private Long boxplotUsage;
 
 		private Long cumulativeCardinalityUsage;
@@ -217,7 +218,7 @@ public final class AnalyticsStatistics implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code boxplot_usage}
 		 */
-		public Builder boxplotUsage(long value) {
+		public final Builder boxplotUsage(long value) {
 			this.boxplotUsage = value;
 			return this;
 		}
@@ -225,7 +226,7 @@ public final class AnalyticsStatistics implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code cumulative_cardinality_usage}
 		 */
-		public Builder cumulativeCardinalityUsage(long value) {
+		public final Builder cumulativeCardinalityUsage(long value) {
 			this.cumulativeCardinalityUsage = value;
 			return this;
 		}
@@ -233,7 +234,7 @@ public final class AnalyticsStatistics implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code string_stats_usage}
 		 */
-		public Builder stringStatsUsage(long value) {
+		public final Builder stringStatsUsage(long value) {
 			this.stringStatsUsage = value;
 			return this;
 		}
@@ -241,7 +242,7 @@ public final class AnalyticsStatistics implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code top_metrics_usage}
 		 */
-		public Builder topMetricsUsage(long value) {
+		public final Builder topMetricsUsage(long value) {
 			this.topMetricsUsage = value;
 			return this;
 		}
@@ -249,7 +250,7 @@ public final class AnalyticsStatistics implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code t_test_usage}
 		 */
-		public Builder tTestUsage(long value) {
+		public final Builder tTestUsage(long value) {
 			this.tTestUsage = value;
 			return this;
 		}
@@ -257,7 +258,7 @@ public final class AnalyticsStatistics implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code moving_percentiles_usage}
 		 */
-		public Builder movingPercentilesUsage(long value) {
+		public final Builder movingPercentilesUsage(long value) {
 			this.movingPercentilesUsage = value;
 			return this;
 		}
@@ -265,7 +266,7 @@ public final class AnalyticsStatistics implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code normalize_usage}
 		 */
-		public Builder normalizeUsage(long value) {
+		public final Builder normalizeUsage(long value) {
 			this.normalizeUsage = value;
 			return this;
 		}
@@ -273,7 +274,7 @@ public final class AnalyticsStatistics implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code rate_usage}
 		 */
-		public Builder rateUsage(long value) {
+		public final Builder rateUsage(long value) {
 			this.rateUsage = value;
 			return this;
 		}
@@ -281,7 +282,7 @@ public final class AnalyticsStatistics implements JsonpSerializable {
 		/**
 		 * API name: {@code multi_terms_usage}
 		 */
-		public Builder multiTermsUsage(@Nullable Long value) {
+		public final Builder multiTermsUsage(@Nullable Long value) {
 			this.multiTermsUsage = value;
 			return this;
 		}
@@ -293,6 +294,7 @@ public final class AnalyticsStatistics implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public AnalyticsStatistics build() {
+			_checkSingleUse();
 
 			return new AnalyticsStatistics(this);
 		}

@@ -33,9 +33,9 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
@@ -43,49 +43,47 @@ import javax.annotation.Nullable;
 
 // typedef: nodes.info.NodeInfoXpack
 @JsonpDeserializable
-public final class NodeInfoXpack implements JsonpSerializable {
+public class NodeInfoXpack implements JsonpSerializable {
 	@Nullable
 	private final NodeInfoXpackLicense license;
 
 	private final NodeInfoXpackSecurity security;
 
-	@Nullable
 	private final Map<String, JsonData> notification;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public NodeInfoXpack(Builder builder) {
+	private NodeInfoXpack(Builder builder) {
 
 		this.license = builder.license;
-		this.security = Objects.requireNonNull(builder.security, "security");
+		this.security = ModelTypeHelper.requireNonNull(builder.security, this, "security");
 		this.notification = ModelTypeHelper.unmodifiable(builder.notification);
 
 	}
 
-	public NodeInfoXpack(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static NodeInfoXpack of(Function<Builder, ObjectBuilder<NodeInfoXpack>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * API name: {@code license}
 	 */
 	@Nullable
-	public NodeInfoXpackLicense license() {
+	public final NodeInfoXpackLicense license() {
 		return this.license;
 	}
 
 	/**
 	 * Required - API name: {@code security}
 	 */
-	public NodeInfoXpackSecurity security() {
+	public final NodeInfoXpackSecurity security() {
 		return this.security;
 	}
 
 	/**
 	 * API name: {@code notification}
 	 */
-	@Nullable
-	public Map<String, JsonData> notification() {
+	public final Map<String, JsonData> notification() {
 		return this.notification;
 	}
 
@@ -101,17 +99,14 @@ public final class NodeInfoXpack implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.license != null) {
-
 			generator.writeKey("license");
 			this.license.serialize(generator, mapper);
 
 		}
-
 		generator.writeKey("security");
 		this.security.serialize(generator, mapper);
 
-		if (this.notification != null) {
-
+		if (ModelTypeHelper.isDefined(this.notification)) {
 			generator.writeKey("notification");
 			generator.writeStartObject();
 			for (Map.Entry<String, JsonData> item0 : this.notification.entrySet()) {
@@ -130,7 +125,7 @@ public final class NodeInfoXpack implements JsonpSerializable {
 	/**
 	 * Builder for {@link NodeInfoXpack}.
 	 */
-	public static class Builder implements ObjectBuilder<NodeInfoXpack> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodeInfoXpack> {
 		@Nullable
 		private NodeInfoXpackLicense license;
 
@@ -142,7 +137,7 @@ public final class NodeInfoXpack implements JsonpSerializable {
 		/**
 		 * API name: {@code license}
 		 */
-		public Builder license(@Nullable NodeInfoXpackLicense value) {
+		public final Builder license(@Nullable NodeInfoXpackLicense value) {
 			this.license = value;
 			return this;
 		}
@@ -150,14 +145,14 @@ public final class NodeInfoXpack implements JsonpSerializable {
 		/**
 		 * API name: {@code license}
 		 */
-		public Builder license(Function<NodeInfoXpackLicense.Builder, ObjectBuilder<NodeInfoXpackLicense>> fn) {
+		public final Builder license(Function<NodeInfoXpackLicense.Builder, ObjectBuilder<NodeInfoXpackLicense>> fn) {
 			return this.license(fn.apply(new NodeInfoXpackLicense.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code security}
 		 */
-		public Builder security(NodeInfoXpackSecurity value) {
+		public final Builder security(NodeInfoXpackSecurity value) {
 			this.security = value;
 			return this;
 		}
@@ -165,26 +160,16 @@ public final class NodeInfoXpack implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code security}
 		 */
-		public Builder security(Function<NodeInfoXpackSecurity.Builder, ObjectBuilder<NodeInfoXpackSecurity>> fn) {
+		public final Builder security(
+				Function<NodeInfoXpackSecurity.Builder, ObjectBuilder<NodeInfoXpackSecurity>> fn) {
 			return this.security(fn.apply(new NodeInfoXpackSecurity.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code notification}
 		 */
-		public Builder notification(@Nullable Map<String, JsonData> value) {
+		public final Builder notification(@Nullable Map<String, JsonData> value) {
 			this.notification = value;
-			return this;
-		}
-
-		/**
-		 * Add a key/value to {@link #notification(Map)}, creating the map if needed.
-		 */
-		public Builder putNotification(String key, JsonData value) {
-			if (this.notification == null) {
-				this.notification = new HashMap<>();
-			}
-			this.notification.put(key, value);
 			return this;
 		}
 
@@ -195,6 +180,7 @@ public final class NodeInfoXpack implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public NodeInfoXpack build() {
+			_checkSingleUse();
 
 			return new NodeInfoXpack(this);
 		}

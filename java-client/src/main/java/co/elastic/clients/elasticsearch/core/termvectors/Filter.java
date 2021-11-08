@@ -31,6 +31,7 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.util.Objects;
@@ -39,7 +40,7 @@ import javax.annotation.Nullable;
 
 // typedef: _global.termvectors.Filter
 @JsonpDeserializable
-public final class Filter implements JsonpSerializable {
+public class Filter implements JsonpSerializable {
 	@Nullable
 	private final Integer maxDocFreq;
 
@@ -63,7 +64,7 @@ public final class Filter implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public Filter(Builder builder) {
+	private Filter(Builder builder) {
 
 		this.maxDocFreq = builder.maxDocFreq;
 		this.maxNumTerms = builder.maxNumTerms;
@@ -75,15 +76,15 @@ public final class Filter implements JsonpSerializable {
 
 	}
 
-	public Filter(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static Filter of(Function<Builder, ObjectBuilder<Filter>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * API name: {@code max_doc_freq}
 	 */
 	@Nullable
-	public Integer maxDocFreq() {
+	public final Integer maxDocFreq() {
 		return this.maxDocFreq;
 	}
 
@@ -91,7 +92,7 @@ public final class Filter implements JsonpSerializable {
 	 * API name: {@code max_num_terms}
 	 */
 	@Nullable
-	public Integer maxNumTerms() {
+	public final Integer maxNumTerms() {
 		return this.maxNumTerms;
 	}
 
@@ -99,7 +100,7 @@ public final class Filter implements JsonpSerializable {
 	 * API name: {@code max_term_freq}
 	 */
 	@Nullable
-	public Integer maxTermFreq() {
+	public final Integer maxTermFreq() {
 		return this.maxTermFreq;
 	}
 
@@ -107,7 +108,7 @@ public final class Filter implements JsonpSerializable {
 	 * API name: {@code max_word_length}
 	 */
 	@Nullable
-	public Integer maxWordLength() {
+	public final Integer maxWordLength() {
 		return this.maxWordLength;
 	}
 
@@ -115,7 +116,7 @@ public final class Filter implements JsonpSerializable {
 	 * API name: {@code min_doc_freq}
 	 */
 	@Nullable
-	public Integer minDocFreq() {
+	public final Integer minDocFreq() {
 		return this.minDocFreq;
 	}
 
@@ -123,7 +124,7 @@ public final class Filter implements JsonpSerializable {
 	 * API name: {@code min_term_freq}
 	 */
 	@Nullable
-	public Integer minTermFreq() {
+	public final Integer minTermFreq() {
 		return this.minTermFreq;
 	}
 
@@ -131,7 +132,7 @@ public final class Filter implements JsonpSerializable {
 	 * API name: {@code min_word_length}
 	 */
 	@Nullable
-	public Integer minWordLength() {
+	public final Integer minWordLength() {
 		return this.minWordLength;
 	}
 
@@ -147,43 +148,36 @@ public final class Filter implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.maxDocFreq != null) {
-
 			generator.writeKey("max_doc_freq");
 			generator.write(this.maxDocFreq);
 
 		}
 		if (this.maxNumTerms != null) {
-
 			generator.writeKey("max_num_terms");
 			generator.write(this.maxNumTerms);
 
 		}
 		if (this.maxTermFreq != null) {
-
 			generator.writeKey("max_term_freq");
 			generator.write(this.maxTermFreq);
 
 		}
 		if (this.maxWordLength != null) {
-
 			generator.writeKey("max_word_length");
 			generator.write(this.maxWordLength);
 
 		}
 		if (this.minDocFreq != null) {
-
 			generator.writeKey("min_doc_freq");
 			generator.write(this.minDocFreq);
 
 		}
 		if (this.minTermFreq != null) {
-
 			generator.writeKey("min_term_freq");
 			generator.write(this.minTermFreq);
 
 		}
 		if (this.minWordLength != null) {
-
 			generator.writeKey("min_word_length");
 			generator.write(this.minWordLength);
 
@@ -196,7 +190,7 @@ public final class Filter implements JsonpSerializable {
 	/**
 	 * Builder for {@link Filter}.
 	 */
-	public static class Builder implements ObjectBuilder<Filter> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Filter> {
 		@Nullable
 		private Integer maxDocFreq;
 
@@ -221,7 +215,7 @@ public final class Filter implements JsonpSerializable {
 		/**
 		 * API name: {@code max_doc_freq}
 		 */
-		public Builder maxDocFreq(@Nullable Integer value) {
+		public final Builder maxDocFreq(@Nullable Integer value) {
 			this.maxDocFreq = value;
 			return this;
 		}
@@ -229,7 +223,7 @@ public final class Filter implements JsonpSerializable {
 		/**
 		 * API name: {@code max_num_terms}
 		 */
-		public Builder maxNumTerms(@Nullable Integer value) {
+		public final Builder maxNumTerms(@Nullable Integer value) {
 			this.maxNumTerms = value;
 			return this;
 		}
@@ -237,7 +231,7 @@ public final class Filter implements JsonpSerializable {
 		/**
 		 * API name: {@code max_term_freq}
 		 */
-		public Builder maxTermFreq(@Nullable Integer value) {
+		public final Builder maxTermFreq(@Nullable Integer value) {
 			this.maxTermFreq = value;
 			return this;
 		}
@@ -245,7 +239,7 @@ public final class Filter implements JsonpSerializable {
 		/**
 		 * API name: {@code max_word_length}
 		 */
-		public Builder maxWordLength(@Nullable Integer value) {
+		public final Builder maxWordLength(@Nullable Integer value) {
 			this.maxWordLength = value;
 			return this;
 		}
@@ -253,7 +247,7 @@ public final class Filter implements JsonpSerializable {
 		/**
 		 * API name: {@code min_doc_freq}
 		 */
-		public Builder minDocFreq(@Nullable Integer value) {
+		public final Builder minDocFreq(@Nullable Integer value) {
 			this.minDocFreq = value;
 			return this;
 		}
@@ -261,7 +255,7 @@ public final class Filter implements JsonpSerializable {
 		/**
 		 * API name: {@code min_term_freq}
 		 */
-		public Builder minTermFreq(@Nullable Integer value) {
+		public final Builder minTermFreq(@Nullable Integer value) {
 			this.minTermFreq = value;
 			return this;
 		}
@@ -269,7 +263,7 @@ public final class Filter implements JsonpSerializable {
 		/**
 		 * API name: {@code min_word_length}
 		 */
-		public Builder minWordLength(@Nullable Integer value) {
+		public final Builder minWordLength(@Nullable Integer value) {
 			this.minWordLength = value;
 			return this;
 		}
@@ -281,6 +275,7 @@ public final class Filter implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public Filter build() {
+			_checkSingleUse();
 
 			return new Filter(this);
 		}

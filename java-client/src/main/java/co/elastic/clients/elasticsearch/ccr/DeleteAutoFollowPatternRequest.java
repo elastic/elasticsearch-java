@@ -31,7 +31,9 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.SimpleEndpoint;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
@@ -41,19 +43,20 @@ import javax.annotation.Nullable;
 
 // typedef: ccr.delete_auto_follow_pattern.Request
 
-public final class DeleteAutoFollowPatternRequest extends RequestBase {
+public class DeleteAutoFollowPatternRequest extends RequestBase {
 	private final String name;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public DeleteAutoFollowPatternRequest(Builder builder) {
+	private DeleteAutoFollowPatternRequest(Builder builder) {
 
-		this.name = Objects.requireNonNull(builder.name, "name");
+		this.name = ModelTypeHelper.requireNonNull(builder.name, this, "name");
 
 	}
 
-	public DeleteAutoFollowPatternRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static DeleteAutoFollowPatternRequest of(
+			Function<Builder, ObjectBuilder<DeleteAutoFollowPatternRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -61,7 +64,7 @@ public final class DeleteAutoFollowPatternRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code name}
 	 */
-	public String name() {
+	public final String name() {
 		return this.name;
 	}
 
@@ -70,7 +73,7 @@ public final class DeleteAutoFollowPatternRequest extends RequestBase {
 	/**
 	 * Builder for {@link DeleteAutoFollowPatternRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<DeleteAutoFollowPatternRequest> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DeleteAutoFollowPatternRequest> {
 		private String name;
 
 		/**
@@ -78,7 +81,7 @@ public final class DeleteAutoFollowPatternRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code name}
 		 */
-		public Builder name(String value) {
+		public final Builder name(String value) {
 			this.name = value;
 			return this;
 		}
@@ -90,6 +93,7 @@ public final class DeleteAutoFollowPatternRequest extends RequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public DeleteAutoFollowPatternRequest build() {
+			_checkSingleUse();
 
 			return new DeleteAutoFollowPatternRequest(this);
 		}

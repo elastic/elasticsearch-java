@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;
@@ -38,7 +40,7 @@ import javax.annotation.Nullable;
 
 // typedef: nodes.info.NodeInfoSettings
 @JsonpDeserializable
-public final class NodeInfoSettings implements JsonpSerializable {
+public class NodeInfoSettings implements JsonpSerializable {
 	private final NodeInfoSettingsCluster cluster;
 
 	private final NodeInfoSettingsNode node;
@@ -80,18 +82,18 @@ public final class NodeInfoSettings implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public NodeInfoSettings(Builder builder) {
+	private NodeInfoSettings(Builder builder) {
 
-		this.cluster = Objects.requireNonNull(builder.cluster, "cluster");
-		this.node = Objects.requireNonNull(builder.node, "node");
-		this.path = Objects.requireNonNull(builder.path, "path");
+		this.cluster = ModelTypeHelper.requireNonNull(builder.cluster, this, "cluster");
+		this.node = ModelTypeHelper.requireNonNull(builder.node, this, "node");
+		this.path = ModelTypeHelper.requireNonNull(builder.path, this, "path");
 		this.repositories = builder.repositories;
 		this.discovery = builder.discovery;
 		this.action = builder.action;
-		this.client = Objects.requireNonNull(builder.client, "client");
-		this.http = Objects.requireNonNull(builder.http, "http");
+		this.client = ModelTypeHelper.requireNonNull(builder.client, this, "client");
+		this.http = ModelTypeHelper.requireNonNull(builder.http, this, "http");
 		this.bootstrap = builder.bootstrap;
-		this.transport = Objects.requireNonNull(builder.transport, "transport");
+		this.transport = ModelTypeHelper.requireNonNull(builder.transport, this, "transport");
 		this.network = builder.network;
 		this.xpack = builder.xpack;
 		this.script = builder.script;
@@ -100,28 +102,28 @@ public final class NodeInfoSettings implements JsonpSerializable {
 
 	}
 
-	public NodeInfoSettings(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static NodeInfoSettings of(Function<Builder, ObjectBuilder<NodeInfoSettings>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code cluster}
 	 */
-	public NodeInfoSettingsCluster cluster() {
+	public final NodeInfoSettingsCluster cluster() {
 		return this.cluster;
 	}
 
 	/**
 	 * Required - API name: {@code node}
 	 */
-	public NodeInfoSettingsNode node() {
+	public final NodeInfoSettingsNode node() {
 		return this.node;
 	}
 
 	/**
 	 * Required - API name: {@code path}
 	 */
-	public NodeInfoPath path() {
+	public final NodeInfoPath path() {
 		return this.path;
 	}
 
@@ -129,7 +131,7 @@ public final class NodeInfoSettings implements JsonpSerializable {
 	 * API name: {@code repositories}
 	 */
 	@Nullable
-	public NodeInfoRepositories repositories() {
+	public final NodeInfoRepositories repositories() {
 		return this.repositories;
 	}
 
@@ -137,7 +139,7 @@ public final class NodeInfoSettings implements JsonpSerializable {
 	 * API name: {@code discovery}
 	 */
 	@Nullable
-	public NodeInfoDiscover discovery() {
+	public final NodeInfoDiscover discovery() {
 		return this.discovery;
 	}
 
@@ -145,21 +147,21 @@ public final class NodeInfoSettings implements JsonpSerializable {
 	 * API name: {@code action}
 	 */
 	@Nullable
-	public NodeInfoAction action() {
+	public final NodeInfoAction action() {
 		return this.action;
 	}
 
 	/**
 	 * Required - API name: {@code client}
 	 */
-	public NodeInfoClient client() {
+	public final NodeInfoClient client() {
 		return this.client;
 	}
 
 	/**
 	 * Required - API name: {@code http}
 	 */
-	public NodeInfoSettingsHttp http() {
+	public final NodeInfoSettingsHttp http() {
 		return this.http;
 	}
 
@@ -167,14 +169,14 @@ public final class NodeInfoSettings implements JsonpSerializable {
 	 * API name: {@code bootstrap}
 	 */
 	@Nullable
-	public NodeInfoBootstrap bootstrap() {
+	public final NodeInfoBootstrap bootstrap() {
 		return this.bootstrap;
 	}
 
 	/**
 	 * Required - API name: {@code transport}
 	 */
-	public NodeInfoSettingsTransport transport() {
+	public final NodeInfoSettingsTransport transport() {
 		return this.transport;
 	}
 
@@ -182,7 +184,7 @@ public final class NodeInfoSettings implements JsonpSerializable {
 	 * API name: {@code network}
 	 */
 	@Nullable
-	public NodeInfoSettingsNetwork network() {
+	public final NodeInfoSettingsNetwork network() {
 		return this.network;
 	}
 
@@ -190,7 +192,7 @@ public final class NodeInfoSettings implements JsonpSerializable {
 	 * API name: {@code xpack}
 	 */
 	@Nullable
-	public NodeInfoXpack xpack() {
+	public final NodeInfoXpack xpack() {
 		return this.xpack;
 	}
 
@@ -198,7 +200,7 @@ public final class NodeInfoSettings implements JsonpSerializable {
 	 * API name: {@code script}
 	 */
 	@Nullable
-	public NodeInfoScript script() {
+	public final NodeInfoScript script() {
 		return this.script;
 	}
 
@@ -206,7 +208,7 @@ public final class NodeInfoSettings implements JsonpSerializable {
 	 * API name: {@code search}
 	 */
 	@Nullable
-	public NodeInfoSearch search() {
+	public final NodeInfoSearch search() {
 		return this.search;
 	}
 
@@ -214,7 +216,7 @@ public final class NodeInfoSettings implements JsonpSerializable {
 	 * API name: {@code ingest}
 	 */
 	@Nullable
-	public NodeInfoSettingsIngest ingest() {
+	public final NodeInfoSettingsIngest ingest() {
 		return this.ingest;
 	}
 
@@ -239,24 +241,20 @@ public final class NodeInfoSettings implements JsonpSerializable {
 		this.path.serialize(generator, mapper);
 
 		if (this.repositories != null) {
-
 			generator.writeKey("repositories");
 			this.repositories.serialize(generator, mapper);
 
 		}
 		if (this.discovery != null) {
-
 			generator.writeKey("discovery");
 			this.discovery.serialize(generator, mapper);
 
 		}
 		if (this.action != null) {
-
 			generator.writeKey("action");
 			this.action.serialize(generator, mapper);
 
 		}
-
 		generator.writeKey("client");
 		this.client.serialize(generator, mapper);
 
@@ -264,41 +262,34 @@ public final class NodeInfoSettings implements JsonpSerializable {
 		this.http.serialize(generator, mapper);
 
 		if (this.bootstrap != null) {
-
 			generator.writeKey("bootstrap");
 			this.bootstrap.serialize(generator, mapper);
 
 		}
-
 		generator.writeKey("transport");
 		this.transport.serialize(generator, mapper);
 
 		if (this.network != null) {
-
 			generator.writeKey("network");
 			this.network.serialize(generator, mapper);
 
 		}
 		if (this.xpack != null) {
-
 			generator.writeKey("xpack");
 			this.xpack.serialize(generator, mapper);
 
 		}
 		if (this.script != null) {
-
 			generator.writeKey("script");
 			this.script.serialize(generator, mapper);
 
 		}
 		if (this.search != null) {
-
 			generator.writeKey("search");
 			this.search.serialize(generator, mapper);
 
 		}
 		if (this.ingest != null) {
-
 			generator.writeKey("ingest");
 			this.ingest.serialize(generator, mapper);
 
@@ -311,7 +302,7 @@ public final class NodeInfoSettings implements JsonpSerializable {
 	/**
 	 * Builder for {@link NodeInfoSettings}.
 	 */
-	public static class Builder implements ObjectBuilder<NodeInfoSettings> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodeInfoSettings> {
 		private NodeInfoSettingsCluster cluster;
 
 		private NodeInfoSettingsNode node;
@@ -354,7 +345,7 @@ public final class NodeInfoSettings implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code cluster}
 		 */
-		public Builder cluster(NodeInfoSettingsCluster value) {
+		public final Builder cluster(NodeInfoSettingsCluster value) {
 			this.cluster = value;
 			return this;
 		}
@@ -362,14 +353,15 @@ public final class NodeInfoSettings implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code cluster}
 		 */
-		public Builder cluster(Function<NodeInfoSettingsCluster.Builder, ObjectBuilder<NodeInfoSettingsCluster>> fn) {
+		public final Builder cluster(
+				Function<NodeInfoSettingsCluster.Builder, ObjectBuilder<NodeInfoSettingsCluster>> fn) {
 			return this.cluster(fn.apply(new NodeInfoSettingsCluster.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code node}
 		 */
-		public Builder node(NodeInfoSettingsNode value) {
+		public final Builder node(NodeInfoSettingsNode value) {
 			this.node = value;
 			return this;
 		}
@@ -377,14 +369,14 @@ public final class NodeInfoSettings implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code node}
 		 */
-		public Builder node(Function<NodeInfoSettingsNode.Builder, ObjectBuilder<NodeInfoSettingsNode>> fn) {
+		public final Builder node(Function<NodeInfoSettingsNode.Builder, ObjectBuilder<NodeInfoSettingsNode>> fn) {
 			return this.node(fn.apply(new NodeInfoSettingsNode.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code path}
 		 */
-		public Builder path(NodeInfoPath value) {
+		public final Builder path(NodeInfoPath value) {
 			this.path = value;
 			return this;
 		}
@@ -392,14 +384,14 @@ public final class NodeInfoSettings implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code path}
 		 */
-		public Builder path(Function<NodeInfoPath.Builder, ObjectBuilder<NodeInfoPath>> fn) {
+		public final Builder path(Function<NodeInfoPath.Builder, ObjectBuilder<NodeInfoPath>> fn) {
 			return this.path(fn.apply(new NodeInfoPath.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code repositories}
 		 */
-		public Builder repositories(@Nullable NodeInfoRepositories value) {
+		public final Builder repositories(@Nullable NodeInfoRepositories value) {
 			this.repositories = value;
 			return this;
 		}
@@ -407,14 +399,15 @@ public final class NodeInfoSettings implements JsonpSerializable {
 		/**
 		 * API name: {@code repositories}
 		 */
-		public Builder repositories(Function<NodeInfoRepositories.Builder, ObjectBuilder<NodeInfoRepositories>> fn) {
+		public final Builder repositories(
+				Function<NodeInfoRepositories.Builder, ObjectBuilder<NodeInfoRepositories>> fn) {
 			return this.repositories(fn.apply(new NodeInfoRepositories.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code discovery}
 		 */
-		public Builder discovery(@Nullable NodeInfoDiscover value) {
+		public final Builder discovery(@Nullable NodeInfoDiscover value) {
 			this.discovery = value;
 			return this;
 		}
@@ -422,14 +415,14 @@ public final class NodeInfoSettings implements JsonpSerializable {
 		/**
 		 * API name: {@code discovery}
 		 */
-		public Builder discovery(Function<NodeInfoDiscover.Builder, ObjectBuilder<NodeInfoDiscover>> fn) {
+		public final Builder discovery(Function<NodeInfoDiscover.Builder, ObjectBuilder<NodeInfoDiscover>> fn) {
 			return this.discovery(fn.apply(new NodeInfoDiscover.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code action}
 		 */
-		public Builder action(@Nullable NodeInfoAction value) {
+		public final Builder action(@Nullable NodeInfoAction value) {
 			this.action = value;
 			return this;
 		}
@@ -437,14 +430,14 @@ public final class NodeInfoSettings implements JsonpSerializable {
 		/**
 		 * API name: {@code action}
 		 */
-		public Builder action(Function<NodeInfoAction.Builder, ObjectBuilder<NodeInfoAction>> fn) {
+		public final Builder action(Function<NodeInfoAction.Builder, ObjectBuilder<NodeInfoAction>> fn) {
 			return this.action(fn.apply(new NodeInfoAction.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code client}
 		 */
-		public Builder client(NodeInfoClient value) {
+		public final Builder client(NodeInfoClient value) {
 			this.client = value;
 			return this;
 		}
@@ -452,14 +445,14 @@ public final class NodeInfoSettings implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code client}
 		 */
-		public Builder client(Function<NodeInfoClient.Builder, ObjectBuilder<NodeInfoClient>> fn) {
+		public final Builder client(Function<NodeInfoClient.Builder, ObjectBuilder<NodeInfoClient>> fn) {
 			return this.client(fn.apply(new NodeInfoClient.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code http}
 		 */
-		public Builder http(NodeInfoSettingsHttp value) {
+		public final Builder http(NodeInfoSettingsHttp value) {
 			this.http = value;
 			return this;
 		}
@@ -467,14 +460,14 @@ public final class NodeInfoSettings implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code http}
 		 */
-		public Builder http(Function<NodeInfoSettingsHttp.Builder, ObjectBuilder<NodeInfoSettingsHttp>> fn) {
+		public final Builder http(Function<NodeInfoSettingsHttp.Builder, ObjectBuilder<NodeInfoSettingsHttp>> fn) {
 			return this.http(fn.apply(new NodeInfoSettingsHttp.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code bootstrap}
 		 */
-		public Builder bootstrap(@Nullable NodeInfoBootstrap value) {
+		public final Builder bootstrap(@Nullable NodeInfoBootstrap value) {
 			this.bootstrap = value;
 			return this;
 		}
@@ -482,14 +475,14 @@ public final class NodeInfoSettings implements JsonpSerializable {
 		/**
 		 * API name: {@code bootstrap}
 		 */
-		public Builder bootstrap(Function<NodeInfoBootstrap.Builder, ObjectBuilder<NodeInfoBootstrap>> fn) {
+		public final Builder bootstrap(Function<NodeInfoBootstrap.Builder, ObjectBuilder<NodeInfoBootstrap>> fn) {
 			return this.bootstrap(fn.apply(new NodeInfoBootstrap.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code transport}
 		 */
-		public Builder transport(NodeInfoSettingsTransport value) {
+		public final Builder transport(NodeInfoSettingsTransport value) {
 			this.transport = value;
 			return this;
 		}
@@ -497,7 +490,7 @@ public final class NodeInfoSettings implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code transport}
 		 */
-		public Builder transport(
+		public final Builder transport(
 				Function<NodeInfoSettingsTransport.Builder, ObjectBuilder<NodeInfoSettingsTransport>> fn) {
 			return this.transport(fn.apply(new NodeInfoSettingsTransport.Builder()).build());
 		}
@@ -505,7 +498,7 @@ public final class NodeInfoSettings implements JsonpSerializable {
 		/**
 		 * API name: {@code network}
 		 */
-		public Builder network(@Nullable NodeInfoSettingsNetwork value) {
+		public final Builder network(@Nullable NodeInfoSettingsNetwork value) {
 			this.network = value;
 			return this;
 		}
@@ -513,14 +506,15 @@ public final class NodeInfoSettings implements JsonpSerializable {
 		/**
 		 * API name: {@code network}
 		 */
-		public Builder network(Function<NodeInfoSettingsNetwork.Builder, ObjectBuilder<NodeInfoSettingsNetwork>> fn) {
+		public final Builder network(
+				Function<NodeInfoSettingsNetwork.Builder, ObjectBuilder<NodeInfoSettingsNetwork>> fn) {
 			return this.network(fn.apply(new NodeInfoSettingsNetwork.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code xpack}
 		 */
-		public Builder xpack(@Nullable NodeInfoXpack value) {
+		public final Builder xpack(@Nullable NodeInfoXpack value) {
 			this.xpack = value;
 			return this;
 		}
@@ -528,14 +522,14 @@ public final class NodeInfoSettings implements JsonpSerializable {
 		/**
 		 * API name: {@code xpack}
 		 */
-		public Builder xpack(Function<NodeInfoXpack.Builder, ObjectBuilder<NodeInfoXpack>> fn) {
+		public final Builder xpack(Function<NodeInfoXpack.Builder, ObjectBuilder<NodeInfoXpack>> fn) {
 			return this.xpack(fn.apply(new NodeInfoXpack.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code script}
 		 */
-		public Builder script(@Nullable NodeInfoScript value) {
+		public final Builder script(@Nullable NodeInfoScript value) {
 			this.script = value;
 			return this;
 		}
@@ -543,14 +537,14 @@ public final class NodeInfoSettings implements JsonpSerializable {
 		/**
 		 * API name: {@code script}
 		 */
-		public Builder script(Function<NodeInfoScript.Builder, ObjectBuilder<NodeInfoScript>> fn) {
+		public final Builder script(Function<NodeInfoScript.Builder, ObjectBuilder<NodeInfoScript>> fn) {
 			return this.script(fn.apply(new NodeInfoScript.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code search}
 		 */
-		public Builder search(@Nullable NodeInfoSearch value) {
+		public final Builder search(@Nullable NodeInfoSearch value) {
 			this.search = value;
 			return this;
 		}
@@ -558,14 +552,14 @@ public final class NodeInfoSettings implements JsonpSerializable {
 		/**
 		 * API name: {@code search}
 		 */
-		public Builder search(Function<NodeInfoSearch.Builder, ObjectBuilder<NodeInfoSearch>> fn) {
+		public final Builder search(Function<NodeInfoSearch.Builder, ObjectBuilder<NodeInfoSearch>> fn) {
 			return this.search(fn.apply(new NodeInfoSearch.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code ingest}
 		 */
-		public Builder ingest(@Nullable NodeInfoSettingsIngest value) {
+		public final Builder ingest(@Nullable NodeInfoSettingsIngest value) {
 			this.ingest = value;
 			return this;
 		}
@@ -573,7 +567,8 @@ public final class NodeInfoSettings implements JsonpSerializable {
 		/**
 		 * API name: {@code ingest}
 		 */
-		public Builder ingest(Function<NodeInfoSettingsIngest.Builder, ObjectBuilder<NodeInfoSettingsIngest>> fn) {
+		public final Builder ingest(
+				Function<NodeInfoSettingsIngest.Builder, ObjectBuilder<NodeInfoSettingsIngest>> fn) {
 			return this.ingest(fn.apply(new NodeInfoSettingsIngest.Builder()).build());
 		}
 
@@ -584,6 +579,7 @@ public final class NodeInfoSettings implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public NodeInfoSettings build() {
+			_checkSingleUse();
 
 			return new NodeInfoSettings(this);
 		}

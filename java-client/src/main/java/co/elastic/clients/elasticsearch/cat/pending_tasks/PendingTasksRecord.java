@@ -31,6 +31,7 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -39,7 +40,7 @@ import javax.annotation.Nullable;
 
 // typedef: cat.pending_tasks.PendingTasksRecord
 @JsonpDeserializable
-public final class PendingTasksRecord implements JsonpSerializable {
+public class PendingTasksRecord implements JsonpSerializable {
 	@Nullable
 	private final String insertorder;
 
@@ -54,7 +55,7 @@ public final class PendingTasksRecord implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public PendingTasksRecord(Builder builder) {
+	private PendingTasksRecord(Builder builder) {
 
 		this.insertorder = builder.insertorder;
 		this.timeinqueue = builder.timeinqueue;
@@ -63,8 +64,8 @@ public final class PendingTasksRecord implements JsonpSerializable {
 
 	}
 
-	public PendingTasksRecord(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static PendingTasksRecord of(Function<Builder, ObjectBuilder<PendingTasksRecord>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -73,7 +74,7 @@ public final class PendingTasksRecord implements JsonpSerializable {
 	 * API name: {@code insertOrder}
 	 */
 	@Nullable
-	public String insertorder() {
+	public final String insertorder() {
 		return this.insertorder;
 	}
 
@@ -83,7 +84,7 @@ public final class PendingTasksRecord implements JsonpSerializable {
 	 * API name: {@code timeInQueue}
 	 */
 	@Nullable
-	public String timeinqueue() {
+	public final String timeinqueue() {
 		return this.timeinqueue;
 	}
 
@@ -93,7 +94,7 @@ public final class PendingTasksRecord implements JsonpSerializable {
 	 * API name: {@code priority}
 	 */
 	@Nullable
-	public String priority() {
+	public final String priority() {
 		return this.priority;
 	}
 
@@ -103,7 +104,7 @@ public final class PendingTasksRecord implements JsonpSerializable {
 	 * API name: {@code source}
 	 */
 	@Nullable
-	public String source() {
+	public final String source() {
 		return this.source;
 	}
 
@@ -119,25 +120,21 @@ public final class PendingTasksRecord implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.insertorder != null) {
-
 			generator.writeKey("insertOrder");
 			generator.write(this.insertorder);
 
 		}
 		if (this.timeinqueue != null) {
-
 			generator.writeKey("timeInQueue");
 			generator.write(this.timeinqueue);
 
 		}
 		if (this.priority != null) {
-
 			generator.writeKey("priority");
 			generator.write(this.priority);
 
 		}
 		if (this.source != null) {
-
 			generator.writeKey("source");
 			generator.write(this.source);
 
@@ -150,7 +147,7 @@ public final class PendingTasksRecord implements JsonpSerializable {
 	/**
 	 * Builder for {@link PendingTasksRecord}.
 	 */
-	public static class Builder implements ObjectBuilder<PendingTasksRecord> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PendingTasksRecord> {
 		@Nullable
 		private String insertorder;
 
@@ -168,7 +165,7 @@ public final class PendingTasksRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code insertOrder}
 		 */
-		public Builder insertorder(@Nullable String value) {
+		public final Builder insertorder(@Nullable String value) {
 			this.insertorder = value;
 			return this;
 		}
@@ -178,7 +175,7 @@ public final class PendingTasksRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code timeInQueue}
 		 */
-		public Builder timeinqueue(@Nullable String value) {
+		public final Builder timeinqueue(@Nullable String value) {
 			this.timeinqueue = value;
 			return this;
 		}
@@ -188,7 +185,7 @@ public final class PendingTasksRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code priority}
 		 */
-		public Builder priority(@Nullable String value) {
+		public final Builder priority(@Nullable String value) {
 			this.priority = value;
 			return this;
 		}
@@ -198,7 +195,7 @@ public final class PendingTasksRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code source}
 		 */
-		public Builder source(@Nullable String value) {
+		public final Builder source(@Nullable String value) {
 			this.source = value;
 			return this;
 		}
@@ -210,6 +207,7 @@ public final class PendingTasksRecord implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public PendingTasksRecord build() {
+			_checkSingleUse();
 
 			return new PendingTasksRecord(this);
 		}

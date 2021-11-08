@@ -39,7 +39,7 @@ import java.util.function.Function;
 
 // typedef: cat.pending_tasks.Request
 
-public final class PendingTasksRequest extends CatRequestBase {
+public class PendingTasksRequest extends CatRequestBase {
 	public PendingTasksRequest() {
 	}
 

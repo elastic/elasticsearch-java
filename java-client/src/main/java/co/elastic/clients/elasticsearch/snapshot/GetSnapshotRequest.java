@@ -33,10 +33,10 @@ import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.SimpleEndpoint;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -48,7 +48,7 @@ import javax.annotation.Nullable;
 
 // typedef: snapshot.get.Request
 
-public final class GetSnapshotRequest extends RequestBase {
+public class GetSnapshotRequest extends RequestBase {
 	@Nullable
 	private final Boolean human;
 
@@ -73,28 +73,28 @@ public final class GetSnapshotRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public GetSnapshotRequest(Builder builder) {
+	private GetSnapshotRequest(Builder builder) {
 
 		this.human = builder.human;
 		this.ignoreUnavailable = builder.ignoreUnavailable;
 		this.includeRepository = builder.includeRepository;
 		this.indexDetails = builder.indexDetails;
 		this.masterTimeout = builder.masterTimeout;
-		this.repository = Objects.requireNonNull(builder.repository, "repository");
-		this.snapshot = ModelTypeHelper.unmodifiableNonNull(builder.snapshot, "snapshot");
+		this.repository = ModelTypeHelper.requireNonNull(builder.repository, this, "repository");
+		this.snapshot = ModelTypeHelper.unmodifiableRequired(builder.snapshot, this, "snapshot");
 		this.verbose = builder.verbose;
 
 	}
 
-	public GetSnapshotRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static GetSnapshotRequest of(Function<Builder, ObjectBuilder<GetSnapshotRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * API name: {@code human}
 	 */
 	@Nullable
-	public Boolean human() {
+	public final Boolean human() {
 		return this.human;
 	}
 
@@ -105,7 +105,7 @@ public final class GetSnapshotRequest extends RequestBase {
 	 * API name: {@code ignore_unavailable}
 	 */
 	@Nullable
-	public Boolean ignoreUnavailable() {
+	public final Boolean ignoreUnavailable() {
 		return this.ignoreUnavailable;
 	}
 
@@ -116,7 +116,7 @@ public final class GetSnapshotRequest extends RequestBase {
 	 * API name: {@code include_repository}
 	 */
 	@Nullable
-	public Boolean includeRepository() {
+	public final Boolean includeRepository() {
 		return this.includeRepository;
 	}
 
@@ -129,7 +129,7 @@ public final class GetSnapshotRequest extends RequestBase {
 	 * API name: {@code index_details}
 	 */
 	@Nullable
-	public Boolean indexDetails() {
+	public final Boolean indexDetails() {
 		return this.indexDetails;
 	}
 
@@ -140,7 +140,7 @@ public final class GetSnapshotRequest extends RequestBase {
 	 * API name: {@code master_timeout}
 	 */
 	@Nullable
-	public String masterTimeout() {
+	public final String masterTimeout() {
 		return this.masterTimeout;
 	}
 
@@ -150,7 +150,7 @@ public final class GetSnapshotRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code repository}
 	 */
-	public String repository() {
+	public final String repository() {
 		return this.repository;
 	}
 
@@ -166,7 +166,7 @@ public final class GetSnapshotRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code snapshot}
 	 */
-	public List<String> snapshot() {
+	public final List<String> snapshot() {
 		return this.snapshot;
 	}
 
@@ -178,7 +178,7 @@ public final class GetSnapshotRequest extends RequestBase {
 	 * API name: {@code verbose}
 	 */
 	@Nullable
-	public Boolean verbose() {
+	public final Boolean verbose() {
 		return this.verbose;
 	}
 
@@ -187,7 +187,7 @@ public final class GetSnapshotRequest extends RequestBase {
 	/**
 	 * Builder for {@link GetSnapshotRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<GetSnapshotRequest> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetSnapshotRequest> {
 		@Nullable
 		private Boolean human;
 
@@ -213,7 +213,7 @@ public final class GetSnapshotRequest extends RequestBase {
 		/**
 		 * API name: {@code human}
 		 */
-		public Builder human(@Nullable Boolean value) {
+		public final Builder human(@Nullable Boolean value) {
 			this.human = value;
 			return this;
 		}
@@ -224,7 +224,7 @@ public final class GetSnapshotRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code ignore_unavailable}
 		 */
-		public Builder ignoreUnavailable(@Nullable Boolean value) {
+		public final Builder ignoreUnavailable(@Nullable Boolean value) {
 			this.ignoreUnavailable = value;
 			return this;
 		}
@@ -235,7 +235,7 @@ public final class GetSnapshotRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code include_repository}
 		 */
-		public Builder includeRepository(@Nullable Boolean value) {
+		public final Builder includeRepository(@Nullable Boolean value) {
 			this.includeRepository = value;
 			return this;
 		}
@@ -248,7 +248,7 @@ public final class GetSnapshotRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code index_details}
 		 */
-		public Builder indexDetails(@Nullable Boolean value) {
+		public final Builder indexDetails(@Nullable Boolean value) {
 			this.indexDetails = value;
 			return this;
 		}
@@ -259,7 +259,7 @@ public final class GetSnapshotRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
-		public Builder masterTimeout(@Nullable String value) {
+		public final Builder masterTimeout(@Nullable String value) {
 			this.masterTimeout = value;
 			return this;
 		}
@@ -270,7 +270,7 @@ public final class GetSnapshotRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code repository}
 		 */
-		public Builder repository(String value) {
+		public final Builder repository(String value) {
 			this.repository = value;
 			return this;
 		}
@@ -287,7 +287,7 @@ public final class GetSnapshotRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code snapshot}
 		 */
-		public Builder snapshot(List<String> value) {
+		public final Builder snapshot(List<String> value) {
 			this.snapshot = value;
 			return this;
 		}
@@ -304,19 +304,8 @@ public final class GetSnapshotRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code snapshot}
 		 */
-		public Builder snapshot(String... value) {
+		public final Builder snapshot(String... value) {
 			this.snapshot = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #snapshot(List)}, creating the list if needed.
-		 */
-		public Builder addSnapshot(String value) {
-			if (this.snapshot == null) {
-				this.snapshot = new ArrayList<>();
-			}
-			this.snapshot.add(value);
 			return this;
 		}
 
@@ -327,7 +316,7 @@ public final class GetSnapshotRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code verbose}
 		 */
-		public Builder verbose(@Nullable Boolean value) {
+		public final Builder verbose(@Nullable Boolean value) {
 			this.verbose = value;
 			return this;
 		}
@@ -339,6 +328,7 @@ public final class GetSnapshotRequest extends RequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public GetSnapshotRequest build() {
+			_checkSingleUse();
 
 			return new GetSnapshotRequest(this);
 		}

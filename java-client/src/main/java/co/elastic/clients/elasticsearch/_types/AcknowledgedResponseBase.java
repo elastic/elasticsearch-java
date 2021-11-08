@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.Objects;
@@ -43,9 +45,9 @@ public abstract class AcknowledgedResponseBase implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public AcknowledgedResponseBase(AbstractBuilder<?> builder) {
+	protected AcknowledgedResponseBase(AbstractBuilder<?> builder) {
 
-		this.acknowledged = Objects.requireNonNull(builder.acknowledged, "acknowledged");
+		this.acknowledged = ModelTypeHelper.requireNonNull(builder.acknowledged, this, "acknowledged");
 
 	}
 
@@ -55,7 +57,7 @@ public abstract class AcknowledgedResponseBase implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code acknowledged}
 	 */
-	public boolean acknowledged() {
+	public final boolean acknowledged() {
 		return this.acknowledged;
 	}
 
@@ -75,7 +77,9 @@ public abstract class AcknowledgedResponseBase implements JsonpSerializable {
 
 	}
 
-	protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>> {
+	protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>>
+			extends
+				ObjectBuilderBase {
 		private Boolean acknowledged;
 
 		/**
@@ -84,7 +88,7 @@ public abstract class AcknowledgedResponseBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code acknowledged}
 		 */
-		public BuilderT acknowledged(boolean value) {
+		public final BuilderT acknowledged(boolean value) {
 			this.acknowledged = value;
 			return self();
 		}

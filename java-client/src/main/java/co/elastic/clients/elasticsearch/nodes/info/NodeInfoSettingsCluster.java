@@ -31,7 +31,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -40,7 +42,7 @@ import javax.annotation.Nullable;
 
 // typedef: nodes.info.NodeInfoSettingsCluster
 @JsonpDeserializable
-public final class NodeInfoSettingsCluster implements JsonpSerializable {
+public class NodeInfoSettingsCluster implements JsonpSerializable {
 	private final String name;
 
 	@Nullable
@@ -53,23 +55,23 @@ public final class NodeInfoSettingsCluster implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public NodeInfoSettingsCluster(Builder builder) {
+	private NodeInfoSettingsCluster(Builder builder) {
 
-		this.name = Objects.requireNonNull(builder.name, "name");
+		this.name = ModelTypeHelper.requireNonNull(builder.name, this, "name");
 		this.routing = builder.routing;
-		this.election = Objects.requireNonNull(builder.election, "election");
+		this.election = ModelTypeHelper.requireNonNull(builder.election, this, "election");
 		this.initialMasterNodes = builder.initialMasterNodes;
 
 	}
 
-	public NodeInfoSettingsCluster(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static NodeInfoSettingsCluster of(Function<Builder, ObjectBuilder<NodeInfoSettingsCluster>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code name}
 	 */
-	public String name() {
+	public final String name() {
 		return this.name;
 	}
 
@@ -77,14 +79,14 @@ public final class NodeInfoSettingsCluster implements JsonpSerializable {
 	 * API name: {@code routing}
 	 */
 	@Nullable
-	public IndexRouting routing() {
+	public final IndexRouting routing() {
 		return this.routing;
 	}
 
 	/**
 	 * Required - API name: {@code election}
 	 */
-	public NodeInfoSettingsClusterElection election() {
+	public final NodeInfoSettingsClusterElection election() {
 		return this.election;
 	}
 
@@ -92,7 +94,7 @@ public final class NodeInfoSettingsCluster implements JsonpSerializable {
 	 * API name: {@code initial_master_nodes}
 	 */
 	@Nullable
-	public String initialMasterNodes() {
+	public final String initialMasterNodes() {
 		return this.initialMasterNodes;
 	}
 
@@ -111,17 +113,14 @@ public final class NodeInfoSettingsCluster implements JsonpSerializable {
 		generator.write(this.name);
 
 		if (this.routing != null) {
-
 			generator.writeKey("routing");
 			this.routing.serialize(generator, mapper);
 
 		}
-
 		generator.writeKey("election");
 		this.election.serialize(generator, mapper);
 
 		if (this.initialMasterNodes != null) {
-
 			generator.writeKey("initial_master_nodes");
 			generator.write(this.initialMasterNodes);
 
@@ -134,7 +133,7 @@ public final class NodeInfoSettingsCluster implements JsonpSerializable {
 	/**
 	 * Builder for {@link NodeInfoSettingsCluster}.
 	 */
-	public static class Builder implements ObjectBuilder<NodeInfoSettingsCluster> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodeInfoSettingsCluster> {
 		private String name;
 
 		@Nullable
@@ -148,7 +147,7 @@ public final class NodeInfoSettingsCluster implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code name}
 		 */
-		public Builder name(String value) {
+		public final Builder name(String value) {
 			this.name = value;
 			return this;
 		}
@@ -156,7 +155,7 @@ public final class NodeInfoSettingsCluster implements JsonpSerializable {
 		/**
 		 * API name: {@code routing}
 		 */
-		public Builder routing(@Nullable IndexRouting value) {
+		public final Builder routing(@Nullable IndexRouting value) {
 			this.routing = value;
 			return this;
 		}
@@ -164,14 +163,14 @@ public final class NodeInfoSettingsCluster implements JsonpSerializable {
 		/**
 		 * API name: {@code routing}
 		 */
-		public Builder routing(Function<IndexRouting.Builder, ObjectBuilder<IndexRouting>> fn) {
+		public final Builder routing(Function<IndexRouting.Builder, ObjectBuilder<IndexRouting>> fn) {
 			return this.routing(fn.apply(new IndexRouting.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code election}
 		 */
-		public Builder election(NodeInfoSettingsClusterElection value) {
+		public final Builder election(NodeInfoSettingsClusterElection value) {
 			this.election = value;
 			return this;
 		}
@@ -179,7 +178,7 @@ public final class NodeInfoSettingsCluster implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code election}
 		 */
-		public Builder election(
+		public final Builder election(
 				Function<NodeInfoSettingsClusterElection.Builder, ObjectBuilder<NodeInfoSettingsClusterElection>> fn) {
 			return this.election(fn.apply(new NodeInfoSettingsClusterElection.Builder()).build());
 		}
@@ -187,7 +186,7 @@ public final class NodeInfoSettingsCluster implements JsonpSerializable {
 		/**
 		 * API name: {@code initial_master_nodes}
 		 */
-		public Builder initialMasterNodes(@Nullable String value) {
+		public final Builder initialMasterNodes(@Nullable String value) {
 			this.initialMasterNodes = value;
 			return this;
 		}
@@ -199,6 +198,7 @@ public final class NodeInfoSettingsCluster implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public NodeInfoSettingsCluster build() {
+			_checkSingleUse();
 
 			return new NodeInfoSettingsCluster(this);
 		}

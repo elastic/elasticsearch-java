@@ -35,16 +35,16 @@ import java.util.function.Function;
 
 // typedef: watcher._types.HttpInputRequestResult
 @JsonpDeserializable
-public final class HttpInputRequestResult extends HttpInputRequestDefinition {
+public class HttpInputRequestResult extends HttpInputRequestDefinition {
 	// ---------------------------------------------------------------------------------------------
 
-	public HttpInputRequestResult(Builder builder) {
+	private HttpInputRequestResult(Builder builder) {
 		super(builder);
 
 	}
 
-	public HttpInputRequestResult(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static HttpInputRequestResult of(Function<Builder, ObjectBuilder<HttpInputRequestResult>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -67,6 +67,7 @@ public final class HttpInputRequestResult extends HttpInputRequestDefinition {
 		 *             if some of the required fields are null.
 		 */
 		public HttpInputRequestResult build() {
+			_checkSingleUse();
 
 			return new HttpInputRequestResult(this);
 		}

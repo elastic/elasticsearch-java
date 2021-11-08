@@ -29,6 +29,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
@@ -37,43 +38,42 @@ import java.util.function.Function;
 
 // typedef: nodes._types.ExtendedMemoryStats
 @JsonpDeserializable
-public final class ExtendedMemoryStats extends MemoryStats {
+public class ExtendedMemoryStats extends MemoryStats {
 	private final int freePercent;
 
 	private final int usedPercent;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public ExtendedMemoryStats(Builder builder) {
+	private ExtendedMemoryStats(Builder builder) {
 		super(builder);
 
-		this.freePercent = Objects.requireNonNull(builder.freePercent, "free_percent");
-		this.usedPercent = Objects.requireNonNull(builder.usedPercent, "used_percent");
+		this.freePercent = ModelTypeHelper.requireNonNull(builder.freePercent, this, "freePercent");
+		this.usedPercent = ModelTypeHelper.requireNonNull(builder.usedPercent, this, "usedPercent");
 
 	}
 
-	public ExtendedMemoryStats(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ExtendedMemoryStats of(Function<Builder, ObjectBuilder<ExtendedMemoryStats>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code free_percent}
 	 */
-	public int freePercent() {
+	public final int freePercent() {
 		return this.freePercent;
 	}
 
 	/**
 	 * Required - API name: {@code used_percent}
 	 */
-	public int usedPercent() {
+	public final int usedPercent() {
 		return this.usedPercent;
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
-
 		generator.writeKey("free_percent");
 		generator.write(this.freePercent);
 
@@ -97,7 +97,7 @@ public final class ExtendedMemoryStats extends MemoryStats {
 		/**
 		 * Required - API name: {@code free_percent}
 		 */
-		public Builder freePercent(int value) {
+		public final Builder freePercent(int value) {
 			this.freePercent = value;
 			return this;
 		}
@@ -105,7 +105,7 @@ public final class ExtendedMemoryStats extends MemoryStats {
 		/**
 		 * Required - API name: {@code used_percent}
 		 */
-		public Builder usedPercent(int value) {
+		public final Builder usedPercent(int value) {
 			this.usedPercent = value;
 			return this;
 		}
@@ -122,6 +122,7 @@ public final class ExtendedMemoryStats extends MemoryStats {
 		 *             if some of the required fields are null.
 		 */
 		public ExtendedMemoryStats build() {
+			_checkSingleUse();
 
 			return new ExtendedMemoryStats(this);
 		}

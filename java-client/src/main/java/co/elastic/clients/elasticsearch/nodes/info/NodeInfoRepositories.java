@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;
@@ -38,25 +40,25 @@ import javax.annotation.Nullable;
 
 // typedef: nodes.info.NodeInfoRepositories
 @JsonpDeserializable
-public final class NodeInfoRepositories implements JsonpSerializable {
+public class NodeInfoRepositories implements JsonpSerializable {
 	private final NodeInfoRepositoriesUrl url;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public NodeInfoRepositories(Builder builder) {
+	private NodeInfoRepositories(Builder builder) {
 
-		this.url = Objects.requireNonNull(builder.url, "url");
+		this.url = ModelTypeHelper.requireNonNull(builder.url, this, "url");
 
 	}
 
-	public NodeInfoRepositories(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static NodeInfoRepositories of(Function<Builder, ObjectBuilder<NodeInfoRepositories>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code url}
 	 */
-	public NodeInfoRepositoriesUrl url() {
+	public final NodeInfoRepositoriesUrl url() {
 		return this.url;
 	}
 
@@ -81,13 +83,13 @@ public final class NodeInfoRepositories implements JsonpSerializable {
 	/**
 	 * Builder for {@link NodeInfoRepositories}.
 	 */
-	public static class Builder implements ObjectBuilder<NodeInfoRepositories> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodeInfoRepositories> {
 		private NodeInfoRepositoriesUrl url;
 
 		/**
 		 * Required - API name: {@code url}
 		 */
-		public Builder url(NodeInfoRepositoriesUrl value) {
+		public final Builder url(NodeInfoRepositoriesUrl value) {
 			this.url = value;
 			return this;
 		}
@@ -95,7 +97,7 @@ public final class NodeInfoRepositories implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code url}
 		 */
-		public Builder url(Function<NodeInfoRepositoriesUrl.Builder, ObjectBuilder<NodeInfoRepositoriesUrl>> fn) {
+		public final Builder url(Function<NodeInfoRepositoriesUrl.Builder, ObjectBuilder<NodeInfoRepositoriesUrl>> fn) {
 			return this.url(fn.apply(new NodeInfoRepositoriesUrl.Builder()).build());
 		}
 
@@ -106,6 +108,7 @@ public final class NodeInfoRepositories implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public NodeInfoRepositories build() {
+			_checkSingleUse();
 
 			return new NodeInfoRepositories(this);
 		}

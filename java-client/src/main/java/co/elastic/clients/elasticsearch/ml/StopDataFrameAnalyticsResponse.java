@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.Objects;
@@ -38,25 +40,26 @@ import java.util.function.Function;
 
 // typedef: ml.stop_data_frame_analytics.Response
 @JsonpDeserializable
-public final class StopDataFrameAnalyticsResponse implements JsonpSerializable {
+public class StopDataFrameAnalyticsResponse implements JsonpSerializable {
 	private final boolean stopped;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public StopDataFrameAnalyticsResponse(Builder builder) {
+	private StopDataFrameAnalyticsResponse(Builder builder) {
 
-		this.stopped = Objects.requireNonNull(builder.stopped, "stopped");
+		this.stopped = ModelTypeHelper.requireNonNull(builder.stopped, this, "stopped");
 
 	}
 
-	public StopDataFrameAnalyticsResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static StopDataFrameAnalyticsResponse of(
+			Function<Builder, ObjectBuilder<StopDataFrameAnalyticsResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code stopped}
 	 */
-	public boolean stopped() {
+	public final boolean stopped() {
 		return this.stopped;
 	}
 
@@ -81,13 +84,13 @@ public final class StopDataFrameAnalyticsResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link StopDataFrameAnalyticsResponse}.
 	 */
-	public static class Builder implements ObjectBuilder<StopDataFrameAnalyticsResponse> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<StopDataFrameAnalyticsResponse> {
 		private Boolean stopped;
 
 		/**
 		 * Required - API name: {@code stopped}
 		 */
-		public Builder stopped(boolean value) {
+		public final Builder stopped(boolean value) {
 			this.stopped = value;
 			return this;
 		}
@@ -99,6 +102,7 @@ public final class StopDataFrameAnalyticsResponse implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public StopDataFrameAnalyticsResponse build() {
+			_checkSingleUse();
 
 			return new StopDataFrameAnalyticsResponse(this);
 		}

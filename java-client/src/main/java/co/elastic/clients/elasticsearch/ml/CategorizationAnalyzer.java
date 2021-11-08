@@ -35,6 +35,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -45,11 +46,9 @@ import javax.annotation.Nullable;
 
 // typedef: ml._types.CategorizationAnalyzer
 @JsonpDeserializable
-public final class CategorizationAnalyzer implements JsonpSerializable {
-	@Nullable
+public class CategorizationAnalyzer implements JsonpSerializable {
 	private final List<CharFilter> charFilter;
 
-	@Nullable
 	private final List<TokenFilter> filter;
 
 	@Nullable
@@ -57,7 +56,7 @@ public final class CategorizationAnalyzer implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public CategorizationAnalyzer(Builder builder) {
+	private CategorizationAnalyzer(Builder builder) {
 
 		this.charFilter = ModelTypeHelper.unmodifiable(builder.charFilter);
 		this.filter = ModelTypeHelper.unmodifiable(builder.filter);
@@ -65,15 +64,14 @@ public final class CategorizationAnalyzer implements JsonpSerializable {
 
 	}
 
-	public CategorizationAnalyzer(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static CategorizationAnalyzer of(Function<Builder, ObjectBuilder<CategorizationAnalyzer>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * API name: {@code char_filter}
 	 */
-	@Nullable
-	public List<CharFilter> charFilter() {
+	public final List<CharFilter> charFilter() {
 		return this.charFilter;
 	}
 
@@ -88,8 +86,7 @@ public final class CategorizationAnalyzer implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code filter}
 	 */
-	@Nullable
-	public List<TokenFilter> filter() {
+	public final List<TokenFilter> filter() {
 		return this.filter;
 	}
 
@@ -101,7 +98,7 @@ public final class CategorizationAnalyzer implements JsonpSerializable {
 	 * API name: {@code tokenizer}
 	 */
 	@Nullable
-	public Tokenizer tokenizer() {
+	public final Tokenizer tokenizer() {
 		return this.tokenizer;
 	}
 
@@ -116,8 +113,7 @@ public final class CategorizationAnalyzer implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (this.charFilter != null) {
-
+		if (ModelTypeHelper.isDefined(this.charFilter)) {
 			generator.writeKey("char_filter");
 			generator.writeStartArray();
 			for (CharFilter item0 : this.charFilter) {
@@ -127,8 +123,7 @@ public final class CategorizationAnalyzer implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (this.filter != null) {
-
+		if (ModelTypeHelper.isDefined(this.filter)) {
 			generator.writeKey("filter");
 			generator.writeStartArray();
 			for (TokenFilter item0 : this.filter) {
@@ -139,7 +134,6 @@ public final class CategorizationAnalyzer implements JsonpSerializable {
 
 		}
 		if (this.tokenizer != null) {
-
 			generator.writeKey("tokenizer");
 			this.tokenizer.serialize(generator, mapper);
 
@@ -152,7 +146,7 @@ public final class CategorizationAnalyzer implements JsonpSerializable {
 	/**
 	 * Builder for {@link CategorizationAnalyzer}.
 	 */
-	public static class Builder implements ObjectBuilder<CategorizationAnalyzer> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<CategorizationAnalyzer> {
 		@Nullable
 		private List<CharFilter> charFilter;
 
@@ -165,7 +159,7 @@ public final class CategorizationAnalyzer implements JsonpSerializable {
 		/**
 		 * API name: {@code char_filter}
 		 */
-		public Builder charFilter(@Nullable List<CharFilter> value) {
+		public final Builder charFilter(@Nullable List<CharFilter> value) {
 			this.charFilter = value;
 			return this;
 		}
@@ -173,34 +167,21 @@ public final class CategorizationAnalyzer implements JsonpSerializable {
 		/**
 		 * API name: {@code char_filter}
 		 */
-		public Builder charFilter(CharFilter... value) {
+		public final Builder charFilter(CharFilter... value) {
 			this.charFilter = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #charFilter(List)}, creating the list if needed.
+		 * API name: {@code char_filter}
 		 */
-		public Builder addCharFilter(CharFilter value) {
-			if (this.charFilter == null) {
-				this.charFilter = new ArrayList<>();
+		@SafeVarargs
+		public final Builder charFilter(Function<CharFilter.Builder, ObjectBuilder<CharFilter>>... fns) {
+			this.charFilter = new ArrayList<>(fns.length);
+			for (Function<CharFilter.Builder, ObjectBuilder<CharFilter>> fn : fns) {
+				this.charFilter.add(fn.apply(new CharFilter.Builder()).build());
 			}
-			this.charFilter.add(value);
 			return this;
-		}
-
-		/**
-		 * Set {@link #charFilter(List)} to a singleton list.
-		 */
-		public Builder charFilter(Function<CharFilter.Builder, ObjectBuilder<CharFilter>> fn) {
-			return this.charFilter(fn.apply(new CharFilter.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #charFilter(List)}, creating the list if needed.
-		 */
-		public Builder addCharFilter(Function<CharFilter.Builder, ObjectBuilder<CharFilter>> fn) {
-			return this.addCharFilter(fn.apply(new CharFilter.Builder()).build());
 		}
 
 		/**
@@ -214,7 +195,7 @@ public final class CategorizationAnalyzer implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code filter}
 		 */
-		public Builder filter(@Nullable List<TokenFilter> value) {
+		public final Builder filter(@Nullable List<TokenFilter> value) {
 			this.filter = value;
 			return this;
 		}
@@ -230,34 +211,29 @@ public final class CategorizationAnalyzer implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code filter}
 		 */
-		public Builder filter(TokenFilter... value) {
+		public final Builder filter(TokenFilter... value) {
 			this.filter = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #filter(List)}, creating the list if needed.
+		 * One or more character filters. In addition to the built-in character filters,
+		 * other plugins can provide more character filters. If this property is not
+		 * specified, no character filters are applied prior to categorization. If you
+		 * are customizing some other aspect of the analyzer and you need to achieve the
+		 * equivalent of <code>categorization_filters</code> (which are not permitted
+		 * when some other aspect of the analyzer is customized), add them here as
+		 * pattern replace character filters.
+		 * <p>
+		 * API name: {@code filter}
 		 */
-		public Builder addFilter(TokenFilter value) {
-			if (this.filter == null) {
-				this.filter = new ArrayList<>();
+		@SafeVarargs
+		public final Builder filter(Function<TokenFilter.Builder, ObjectBuilder<TokenFilter>>... fns) {
+			this.filter = new ArrayList<>(fns.length);
+			for (Function<TokenFilter.Builder, ObjectBuilder<TokenFilter>> fn : fns) {
+				this.filter.add(fn.apply(new TokenFilter.Builder()).build());
 			}
-			this.filter.add(value);
 			return this;
-		}
-
-		/**
-		 * Set {@link #filter(List)} to a singleton list.
-		 */
-		public Builder filter(Function<TokenFilter.Builder, ObjectBuilder<TokenFilter>> fn) {
-			return this.filter(fn.apply(new TokenFilter.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #filter(List)}, creating the list if needed.
-		 */
-		public Builder addFilter(Function<TokenFilter.Builder, ObjectBuilder<TokenFilter>> fn) {
-			return this.addFilter(fn.apply(new TokenFilter.Builder()).build());
 		}
 
 		/**
@@ -267,7 +243,7 @@ public final class CategorizationAnalyzer implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code tokenizer}
 		 */
-		public Builder tokenizer(@Nullable Tokenizer value) {
+		public final Builder tokenizer(@Nullable Tokenizer value) {
 			this.tokenizer = value;
 			return this;
 		}
@@ -279,7 +255,7 @@ public final class CategorizationAnalyzer implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code tokenizer}
 		 */
-		public Builder tokenizer(Function<Tokenizer.Builder, ObjectBuilder<Tokenizer>> fn) {
+		public final Builder tokenizer(Function<Tokenizer.Builder, ObjectBuilder<Tokenizer>> fn) {
 			return this.tokenizer(fn.apply(new Tokenizer.Builder()).build());
 		}
 
@@ -290,6 +266,7 @@ public final class CategorizationAnalyzer implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public CategorizationAnalyzer build() {
+			_checkSingleUse();
 
 			return new CategorizationAnalyzer(this);
 		}

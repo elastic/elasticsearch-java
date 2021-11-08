@@ -34,7 +34,6 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
@@ -43,7 +42,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.BucketSortAggregation
 @JsonpDeserializable
-public final class BucketSortAggregation extends AggregationBase implements AggregationVariant {
+public class BucketSortAggregation extends AggregationBase implements AggregationVariant {
 	@Nullable
 	private final Integer from;
 
@@ -53,12 +52,11 @@ public final class BucketSortAggregation extends AggregationBase implements Aggr
 	@Nullable
 	private final Integer size;
 
-	@Nullable
 	private final List<JsonValue /* _global.search._types.SortCombinations */> sort;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public BucketSortAggregation(Builder builder) {
+	private BucketSortAggregation(Builder builder) {
 		super(builder);
 
 		this.from = builder.from;
@@ -68,8 +66,8 @@ public final class BucketSortAggregation extends AggregationBase implements Aggr
 
 	}
 
-	public BucketSortAggregation(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static BucketSortAggregation of(Function<Builder, ObjectBuilder<BucketSortAggregation>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -84,7 +82,7 @@ public final class BucketSortAggregation extends AggregationBase implements Aggr
 	 * API name: {@code from}
 	 */
 	@Nullable
-	public Integer from() {
+	public final Integer from() {
 		return this.from;
 	}
 
@@ -92,7 +90,7 @@ public final class BucketSortAggregation extends AggregationBase implements Aggr
 	 * API name: {@code gap_policy}
 	 */
 	@Nullable
-	public GapPolicy gapPolicy() {
+	public final GapPolicy gapPolicy() {
 		return this.gapPolicy;
 	}
 
@@ -100,15 +98,14 @@ public final class BucketSortAggregation extends AggregationBase implements Aggr
 	 * API name: {@code size}
 	 */
 	@Nullable
-	public Integer size() {
+	public final Integer size() {
 		return this.size;
 	}
 
 	/**
 	 * API name: {@code sort}
 	 */
-	@Nullable
-	public List<JsonValue /* _global.search._types.SortCombinations */> sort() {
+	public final List<JsonValue /* _global.search._types.SortCombinations */> sort() {
 		return this.sort;
 	}
 
@@ -116,24 +113,20 @@ public final class BucketSortAggregation extends AggregationBase implements Aggr
 
 		super.serializeInternal(generator, mapper);
 		if (this.from != null) {
-
 			generator.writeKey("from");
 			generator.write(this.from);
 
 		}
 		if (this.gapPolicy != null) {
-
 			generator.writeKey("gap_policy");
 			this.gapPolicy.serialize(generator, mapper);
 		}
 		if (this.size != null) {
-
 			generator.writeKey("size");
 			generator.write(this.size);
 
 		}
-		if (this.sort != null) {
-
+		if (ModelTypeHelper.isDefined(this.sort)) {
 			generator.writeKey("sort");
 			generator.writeStartArray();
 			for (JsonValue /* _global.search._types.SortCombinations */ item0 : this.sort) {
@@ -169,7 +162,7 @@ public final class BucketSortAggregation extends AggregationBase implements Aggr
 		/**
 		 * API name: {@code from}
 		 */
-		public Builder from(@Nullable Integer value) {
+		public final Builder from(@Nullable Integer value) {
 			this.from = value;
 			return this;
 		}
@@ -177,7 +170,7 @@ public final class BucketSortAggregation extends AggregationBase implements Aggr
 		/**
 		 * API name: {@code gap_policy}
 		 */
-		public Builder gapPolicy(@Nullable GapPolicy value) {
+		public final Builder gapPolicy(@Nullable GapPolicy value) {
 			this.gapPolicy = value;
 			return this;
 		}
@@ -185,7 +178,7 @@ public final class BucketSortAggregation extends AggregationBase implements Aggr
 		/**
 		 * API name: {@code size}
 		 */
-		public Builder size(@Nullable Integer value) {
+		public final Builder size(@Nullable Integer value) {
 			this.size = value;
 			return this;
 		}
@@ -193,7 +186,7 @@ public final class BucketSortAggregation extends AggregationBase implements Aggr
 		/**
 		 * API name: {@code sort}
 		 */
-		public Builder sort(@Nullable List<JsonValue /* _global.search._types.SortCombinations */> value) {
+		public final Builder sort(@Nullable List<JsonValue /* _global.search._types.SortCombinations */> value) {
 			this.sort = value;
 			return this;
 		}
@@ -201,19 +194,8 @@ public final class BucketSortAggregation extends AggregationBase implements Aggr
 		/**
 		 * API name: {@code sort}
 		 */
-		public Builder sort(JsonValue /* _global.search._types.SortCombinations */... value) {
+		public final Builder sort(JsonValue /* _global.search._types.SortCombinations */... value) {
 			this.sort = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #sort(List)}, creating the list if needed.
-		 */
-		public Builder addSort(JsonValue /* _global.search._types.SortCombinations */ value) {
-			if (this.sort == null) {
-				this.sort = new ArrayList<>();
-			}
-			this.sort.add(value);
 			return this;
 		}
 
@@ -229,6 +211,7 @@ public final class BucketSortAggregation extends AggregationBase implements Aggr
 		 *             if some of the required fields are null.
 		 */
 		public BucketSortAggregation build() {
+			_checkSingleUse();
 
 			return new BucketSortAggregation(this);
 		}

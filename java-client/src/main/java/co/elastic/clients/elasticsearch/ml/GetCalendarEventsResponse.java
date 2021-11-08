@@ -32,6 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.util.ArrayList;
@@ -43,35 +44,35 @@ import javax.annotation.Nullable;
 
 // typedef: ml.get_calendar_events.Response
 @JsonpDeserializable
-public final class GetCalendarEventsResponse implements JsonpSerializable {
+public class GetCalendarEventsResponse implements JsonpSerializable {
 	private final long count;
 
 	private final List<CalendarEvent> events;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public GetCalendarEventsResponse(Builder builder) {
+	private GetCalendarEventsResponse(Builder builder) {
 
-		this.count = Objects.requireNonNull(builder.count, "count");
-		this.events = ModelTypeHelper.unmodifiableNonNull(builder.events, "events");
+		this.count = ModelTypeHelper.requireNonNull(builder.count, this, "count");
+		this.events = ModelTypeHelper.unmodifiableRequired(builder.events, this, "events");
 
 	}
 
-	public GetCalendarEventsResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static GetCalendarEventsResponse of(Function<Builder, ObjectBuilder<GetCalendarEventsResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code count}
 	 */
-	public long count() {
+	public final long count() {
 		return this.count;
 	}
 
 	/**
 	 * Required - API name: {@code events}
 	 */
-	public List<CalendarEvent> events() {
+	public final List<CalendarEvent> events() {
 		return this.events;
 	}
 
@@ -89,13 +90,16 @@ public final class GetCalendarEventsResponse implements JsonpSerializable {
 		generator.writeKey("count");
 		generator.write(this.count);
 
-		generator.writeKey("events");
-		generator.writeStartArray();
-		for (CalendarEvent item0 : this.events) {
-			item0.serialize(generator, mapper);
+		if (ModelTypeHelper.isDefined(this.events)) {
+			generator.writeKey("events");
+			generator.writeStartArray();
+			for (CalendarEvent item0 : this.events) {
+				item0.serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
 
 	}
 
@@ -104,7 +108,7 @@ public final class GetCalendarEventsResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link GetCalendarEventsResponse}.
 	 */
-	public static class Builder implements ObjectBuilder<GetCalendarEventsResponse> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetCalendarEventsResponse> {
 		private Long count;
 
 		private List<CalendarEvent> events;
@@ -112,7 +116,7 @@ public final class GetCalendarEventsResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code count}
 		 */
-		public Builder count(long value) {
+		public final Builder count(long value) {
 			this.count = value;
 			return this;
 		}
@@ -120,7 +124,7 @@ public final class GetCalendarEventsResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code events}
 		 */
-		public Builder events(List<CalendarEvent> value) {
+		public final Builder events(List<CalendarEvent> value) {
 			this.events = value;
 			return this;
 		}
@@ -128,34 +132,21 @@ public final class GetCalendarEventsResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code events}
 		 */
-		public Builder events(CalendarEvent... value) {
+		public final Builder events(CalendarEvent... value) {
 			this.events = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #events(List)}, creating the list if needed.
+		 * Required - API name: {@code events}
 		 */
-		public Builder addEvents(CalendarEvent value) {
-			if (this.events == null) {
-				this.events = new ArrayList<>();
+		@SafeVarargs
+		public final Builder events(Function<CalendarEvent.Builder, ObjectBuilder<CalendarEvent>>... fns) {
+			this.events = new ArrayList<>(fns.length);
+			for (Function<CalendarEvent.Builder, ObjectBuilder<CalendarEvent>> fn : fns) {
+				this.events.add(fn.apply(new CalendarEvent.Builder()).build());
 			}
-			this.events.add(value);
 			return this;
-		}
-
-		/**
-		 * Set {@link #events(List)} to a singleton list.
-		 */
-		public Builder events(Function<CalendarEvent.Builder, ObjectBuilder<CalendarEvent>> fn) {
-			return this.events(fn.apply(new CalendarEvent.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #events(List)}, creating the list if needed.
-		 */
-		public Builder addEvents(Function<CalendarEvent.Builder, ObjectBuilder<CalendarEvent>> fn) {
-			return this.addEvents(fn.apply(new CalendarEvent.Builder()).build());
 		}
 
 		/**
@@ -165,6 +156,7 @@ public final class GetCalendarEventsResponse implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public GetCalendarEventsResponse build() {
+			_checkSingleUse();
 
 			return new GetCalendarEventsResponse(this);
 		}

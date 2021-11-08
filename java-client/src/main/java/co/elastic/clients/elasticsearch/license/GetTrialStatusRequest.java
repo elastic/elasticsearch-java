@@ -39,7 +39,7 @@ import java.util.function.Function;
 
 // typedef: license.get_trial_status.Request
 
-public final class GetTrialStatusRequest extends RequestBase {
+public class GetTrialStatusRequest extends RequestBase {
 	public GetTrialStatusRequest() {
 	}
 

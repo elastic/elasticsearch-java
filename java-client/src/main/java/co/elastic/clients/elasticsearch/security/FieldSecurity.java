@@ -32,9 +32,9 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
@@ -43,37 +43,35 @@ import javax.annotation.Nullable;
 
 // typedef: security._types.FieldSecurity
 @JsonpDeserializable
-public final class FieldSecurity implements JsonpSerializable {
-	@Nullable
+public class FieldSecurity implements JsonpSerializable {
 	private final List<String> except;
 
 	private final List<String> grant;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public FieldSecurity(Builder builder) {
+	private FieldSecurity(Builder builder) {
 
 		this.except = ModelTypeHelper.unmodifiable(builder.except);
-		this.grant = ModelTypeHelper.unmodifiableNonNull(builder.grant, "grant");
+		this.grant = ModelTypeHelper.unmodifiableRequired(builder.grant, this, "grant");
 
 	}
 
-	public FieldSecurity(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static FieldSecurity of(Function<Builder, ObjectBuilder<FieldSecurity>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * API name: {@code except}
 	 */
-	@Nullable
-	public List<String> except() {
+	public final List<String> except() {
 		return this.except;
 	}
 
 	/**
 	 * Required - API name: {@code grant}
 	 */
-	public List<String> grant() {
+	public final List<String> grant() {
 		return this.grant;
 	}
 
@@ -88,8 +86,7 @@ public final class FieldSecurity implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (this.except != null) {
-
+		if (ModelTypeHelper.isDefined(this.except)) {
 			generator.writeKey("except");
 			generator.writeStartArray();
 			for (String item0 : this.except) {
@@ -99,14 +96,16 @@ public final class FieldSecurity implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
+		if (ModelTypeHelper.isDefined(this.grant)) {
+			generator.writeKey("grant");
+			generator.writeStartArray();
+			for (String item0 : this.grant) {
+				generator.write(item0);
 
-		generator.writeKey("grant");
-		generator.writeStartArray();
-		for (String item0 : this.grant) {
-			generator.write(item0);
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
 
 	}
 
@@ -115,7 +114,7 @@ public final class FieldSecurity implements JsonpSerializable {
 	/**
 	 * Builder for {@link FieldSecurity}.
 	 */
-	public static class Builder implements ObjectBuilder<FieldSecurity> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<FieldSecurity> {
 		@Nullable
 		private List<String> except;
 
@@ -124,7 +123,7 @@ public final class FieldSecurity implements JsonpSerializable {
 		/**
 		 * API name: {@code except}
 		 */
-		public Builder except(@Nullable List<String> value) {
+		public final Builder except(@Nullable List<String> value) {
 			this.except = value;
 			return this;
 		}
@@ -132,26 +131,15 @@ public final class FieldSecurity implements JsonpSerializable {
 		/**
 		 * API name: {@code except}
 		 */
-		public Builder except(String... value) {
+		public final Builder except(String... value) {
 			this.except = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #except(List)}, creating the list if needed.
-		 */
-		public Builder addExcept(String value) {
-			if (this.except == null) {
-				this.except = new ArrayList<>();
-			}
-			this.except.add(value);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code grant}
 		 */
-		public Builder grant(List<String> value) {
+		public final Builder grant(List<String> value) {
 			this.grant = value;
 			return this;
 		}
@@ -159,19 +147,8 @@ public final class FieldSecurity implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code grant}
 		 */
-		public Builder grant(String... value) {
+		public final Builder grant(String... value) {
 			this.grant = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #grant(List)}, creating the list if needed.
-		 */
-		public Builder addGrant(String value) {
-			if (this.grant == null) {
-				this.grant = new ArrayList<>();
-			}
-			this.grant.add(value);
 			return this;
 		}
 
@@ -182,6 +159,7 @@ public final class FieldSecurity implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public FieldSecurity build() {
+			_checkSingleUse();
 
 			return new FieldSecurity(this);
 		}

@@ -33,11 +33,10 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -46,7 +45,7 @@ import javax.annotation.Nullable;
 
 // typedef: security.put_privileges.Actions
 @JsonpDeserializable
-public final class Actions implements JsonpSerializable {
+public class Actions implements JsonpSerializable {
 	private final List<String> actions;
 
 	@Nullable
@@ -55,28 +54,27 @@ public final class Actions implements JsonpSerializable {
 	@Nullable
 	private final String name;
 
-	@Nullable
 	private final Map<String, JsonData> metadata;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public Actions(Builder builder) {
+	private Actions(Builder builder) {
 
-		this.actions = ModelTypeHelper.unmodifiableNonNull(builder.actions, "actions");
+		this.actions = ModelTypeHelper.unmodifiableRequired(builder.actions, this, "actions");
 		this.application = builder.application;
 		this.name = builder.name;
 		this.metadata = ModelTypeHelper.unmodifiable(builder.metadata);
 
 	}
 
-	public Actions(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static Actions of(Function<Builder, ObjectBuilder<Actions>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code actions}
 	 */
-	public List<String> actions() {
+	public final List<String> actions() {
 		return this.actions;
 	}
 
@@ -84,7 +82,7 @@ public final class Actions implements JsonpSerializable {
 	 * API name: {@code application}
 	 */
 	@Nullable
-	public String application() {
+	public final String application() {
 		return this.application;
 	}
 
@@ -92,15 +90,14 @@ public final class Actions implements JsonpSerializable {
 	 * API name: {@code name}
 	 */
 	@Nullable
-	public String name() {
+	public final String name() {
 		return this.name;
 	}
 
 	/**
 	 * API name: {@code metadata}
 	 */
-	@Nullable
-	public Map<String, JsonData> metadata() {
+	public final Map<String, JsonData> metadata() {
 		return this.metadata;
 	}
 
@@ -115,28 +112,27 @@ public final class Actions implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("actions");
-		generator.writeStartArray();
-		for (String item0 : this.actions) {
-			generator.write(item0);
+		if (ModelTypeHelper.isDefined(this.actions)) {
+			generator.writeKey("actions");
+			generator.writeStartArray();
+			for (String item0 : this.actions) {
+				generator.write(item0);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
-
 		if (this.application != null) {
-
 			generator.writeKey("application");
 			generator.write(this.application);
 
 		}
 		if (this.name != null) {
-
 			generator.writeKey("name");
 			generator.write(this.name);
 
 		}
-		if (this.metadata != null) {
-
+		if (ModelTypeHelper.isDefined(this.metadata)) {
 			generator.writeKey("metadata");
 			generator.writeStartObject();
 			for (Map.Entry<String, JsonData> item0 : this.metadata.entrySet()) {
@@ -155,7 +151,7 @@ public final class Actions implements JsonpSerializable {
 	/**
 	 * Builder for {@link Actions}.
 	 */
-	public static class Builder implements ObjectBuilder<Actions> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Actions> {
 		private List<String> actions;
 
 		@Nullable
@@ -170,7 +166,7 @@ public final class Actions implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code actions}
 		 */
-		public Builder actions(List<String> value) {
+		public final Builder actions(List<String> value) {
 			this.actions = value;
 			return this;
 		}
@@ -178,26 +174,15 @@ public final class Actions implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code actions}
 		 */
-		public Builder actions(String... value) {
+		public final Builder actions(String... value) {
 			this.actions = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #actions(List)}, creating the list if needed.
-		 */
-		public Builder addActions(String value) {
-			if (this.actions == null) {
-				this.actions = new ArrayList<>();
-			}
-			this.actions.add(value);
 			return this;
 		}
 
 		/**
 		 * API name: {@code application}
 		 */
-		public Builder application(@Nullable String value) {
+		public final Builder application(@Nullable String value) {
 			this.application = value;
 			return this;
 		}
@@ -205,7 +190,7 @@ public final class Actions implements JsonpSerializable {
 		/**
 		 * API name: {@code name}
 		 */
-		public Builder name(@Nullable String value) {
+		public final Builder name(@Nullable String value) {
 			this.name = value;
 			return this;
 		}
@@ -213,19 +198,8 @@ public final class Actions implements JsonpSerializable {
 		/**
 		 * API name: {@code metadata}
 		 */
-		public Builder metadata(@Nullable Map<String, JsonData> value) {
+		public final Builder metadata(@Nullable Map<String, JsonData> value) {
 			this.metadata = value;
-			return this;
-		}
-
-		/**
-		 * Add a key/value to {@link #metadata(Map)}, creating the map if needed.
-		 */
-		public Builder putMetadata(String key, JsonData value) {
-			if (this.metadata == null) {
-				this.metadata = new HashMap<>();
-			}
-			this.metadata.put(key, value);
 			return this;
 		}
 
@@ -236,6 +210,7 @@ public final class Actions implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public Actions build() {
+			_checkSingleUse();
 
 			return new Actions(this);
 		}

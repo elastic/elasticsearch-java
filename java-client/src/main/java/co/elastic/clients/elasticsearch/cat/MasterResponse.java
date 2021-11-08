@@ -32,6 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -42,19 +43,19 @@ import javax.annotation.Nullable;
 
 // typedef: cat.master.Response
 @JsonpDeserializable
-public final class MasterResponse implements JsonpSerializable {
+public class MasterResponse implements JsonpSerializable {
 	private final List<MasterRecord> valueBody;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public MasterResponse(Builder builder) {
+	private MasterResponse(Builder builder) {
 
-		this.valueBody = ModelTypeHelper.unmodifiableNonNull(builder.valueBody, "_value_body");
+		this.valueBody = ModelTypeHelper.unmodifiableRequired(builder.valueBody, this, "valueBody");
 
 	}
 
-	public MasterResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static MasterResponse of(Function<Builder, ObjectBuilder<MasterResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -62,7 +63,7 @@ public final class MasterResponse implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code _value_body}
 	 */
-	public List<MasterRecord> valueBody() {
+	public final List<MasterRecord> valueBody() {
 		return this.valueBody;
 	}
 
@@ -84,7 +85,7 @@ public final class MasterResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link MasterResponse}.
 	 */
-	public static class Builder implements ObjectBuilder<MasterResponse> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<MasterResponse> {
 		private List<MasterRecord> valueBody;
 
 		/**
@@ -92,7 +93,7 @@ public final class MasterResponse implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code _value_body}
 		 */
-		public Builder valueBody(List<MasterRecord> value) {
+		public final Builder valueBody(List<MasterRecord> value) {
 			this.valueBody = value;
 			return this;
 		}
@@ -102,34 +103,23 @@ public final class MasterResponse implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code _value_body}
 		 */
-		public Builder valueBody(MasterRecord... value) {
+		public final Builder valueBody(MasterRecord... value) {
 			this.valueBody = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #valueBody(List)}, creating the list if needed.
+		 * Required - Response value.
+		 * <p>
+		 * API name: {@code _value_body}
 		 */
-		public Builder addValueBody(MasterRecord value) {
-			if (this.valueBody == null) {
-				this.valueBody = new ArrayList<>();
+		@SafeVarargs
+		public final Builder valueBody(Function<MasterRecord.Builder, ObjectBuilder<MasterRecord>>... fns) {
+			this.valueBody = new ArrayList<>(fns.length);
+			for (Function<MasterRecord.Builder, ObjectBuilder<MasterRecord>> fn : fns) {
+				this.valueBody.add(fn.apply(new MasterRecord.Builder()).build());
 			}
-			this.valueBody.add(value);
 			return this;
-		}
-
-		/**
-		 * Set {@link #valueBody(List)} to a singleton list.
-		 */
-		public Builder valueBody(Function<MasterRecord.Builder, ObjectBuilder<MasterRecord>> fn) {
-			return this.valueBody(fn.apply(new MasterRecord.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #valueBody(List)}, creating the list if needed.
-		 */
-		public Builder addValueBody(Function<MasterRecord.Builder, ObjectBuilder<MasterRecord>> fn) {
-			return this.addValueBody(fn.apply(new MasterRecord.Builder()).build());
 		}
 
 		/**
@@ -139,6 +129,7 @@ public final class MasterResponse implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public MasterResponse build() {
+			_checkSingleUse();
 
 			return new MasterResponse(this);
 		}

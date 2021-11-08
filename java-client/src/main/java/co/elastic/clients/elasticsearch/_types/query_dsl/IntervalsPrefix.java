@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -39,7 +41,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.IntervalsPrefix
 @JsonpDeserializable
-public final class IntervalsPrefix implements IntervalsQueryVariant, IntervalsVariant, JsonpSerializable {
+public class IntervalsPrefix implements IntervalsQueryVariant, IntervalsVariant, JsonpSerializable {
 	@Nullable
 	private final String analyzer;
 
@@ -50,16 +52,16 @@ public final class IntervalsPrefix implements IntervalsQueryVariant, IntervalsVa
 
 	// ---------------------------------------------------------------------------------------------
 
-	public IntervalsPrefix(Builder builder) {
+	private IntervalsPrefix(Builder builder) {
 
 		this.analyzer = builder.analyzer;
-		this.prefix = Objects.requireNonNull(builder.prefix, "prefix");
+		this.prefix = ModelTypeHelper.requireNonNull(builder.prefix, this, "prefix");
 		this.useField = builder.useField;
 
 	}
 
-	public IntervalsPrefix(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static IntervalsPrefix of(Function<Builder, ObjectBuilder<IntervalsPrefix>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -74,14 +76,14 @@ public final class IntervalsPrefix implements IntervalsQueryVariant, IntervalsVa
 	 * API name: {@code analyzer}
 	 */
 	@Nullable
-	public String analyzer() {
+	public final String analyzer() {
 		return this.analyzer;
 	}
 
 	/**
 	 * Required - API name: {@code prefix}
 	 */
-	public String prefix() {
+	public final String prefix() {
 		return this.prefix;
 	}
 
@@ -89,7 +91,7 @@ public final class IntervalsPrefix implements IntervalsQueryVariant, IntervalsVa
 	 * API name: {@code use_field}
 	 */
 	@Nullable
-	public String useField() {
+	public final String useField() {
 		return this.useField;
 	}
 
@@ -105,17 +107,14 @@ public final class IntervalsPrefix implements IntervalsQueryVariant, IntervalsVa
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.analyzer != null) {
-
 			generator.writeKey("analyzer");
 			generator.write(this.analyzer);
 
 		}
-
 		generator.writeKey("prefix");
 		generator.write(this.prefix);
 
 		if (this.useField != null) {
-
 			generator.writeKey("use_field");
 			generator.write(this.useField);
 
@@ -128,7 +127,7 @@ public final class IntervalsPrefix implements IntervalsQueryVariant, IntervalsVa
 	/**
 	 * Builder for {@link IntervalsPrefix}.
 	 */
-	public static class Builder implements ObjectBuilder<IntervalsPrefix> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<IntervalsPrefix> {
 		@Nullable
 		private String analyzer;
 
@@ -140,7 +139,7 @@ public final class IntervalsPrefix implements IntervalsQueryVariant, IntervalsVa
 		/**
 		 * API name: {@code analyzer}
 		 */
-		public Builder analyzer(@Nullable String value) {
+		public final Builder analyzer(@Nullable String value) {
 			this.analyzer = value;
 			return this;
 		}
@@ -148,7 +147,7 @@ public final class IntervalsPrefix implements IntervalsQueryVariant, IntervalsVa
 		/**
 		 * Required - API name: {@code prefix}
 		 */
-		public Builder prefix(String value) {
+		public final Builder prefix(String value) {
 			this.prefix = value;
 			return this;
 		}
@@ -156,7 +155,7 @@ public final class IntervalsPrefix implements IntervalsQueryVariant, IntervalsVa
 		/**
 		 * API name: {@code use_field}
 		 */
-		public Builder useField(@Nullable String value) {
+		public final Builder useField(@Nullable String value) {
 			this.useField = value;
 			return this;
 		}
@@ -168,6 +167,7 @@ public final class IntervalsPrefix implements IntervalsQueryVariant, IntervalsVa
 		 *             if some of the required fields are null.
 		 */
 		public IntervalsPrefix build() {
+			_checkSingleUse();
 
 			return new IntervalsPrefix(this);
 		}

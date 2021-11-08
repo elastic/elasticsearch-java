@@ -41,7 +41,7 @@ import java.util.function.Function;
 
 // typedef: _global.ping.Request
 
-public final class PingRequest extends RequestBase {
+public class PingRequest extends RequestBase {
 	public PingRequest() {
 	}
 

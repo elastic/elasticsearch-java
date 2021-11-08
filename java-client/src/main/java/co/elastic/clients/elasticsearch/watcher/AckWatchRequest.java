@@ -33,9 +33,9 @@ import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.SimpleEndpoint;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -46,23 +46,22 @@ import javax.annotation.Nullable;
 
 // typedef: watcher.ack_watch.Request
 
-public final class AckWatchRequest extends RequestBase {
-	@Nullable
+public class AckWatchRequest extends RequestBase {
 	private final List<String> actionId;
 
 	private final String watchId;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public AckWatchRequest(Builder builder) {
+	private AckWatchRequest(Builder builder) {
 
 		this.actionId = ModelTypeHelper.unmodifiable(builder.actionId);
-		this.watchId = Objects.requireNonNull(builder.watchId, "watch_id");
+		this.watchId = ModelTypeHelper.requireNonNull(builder.watchId, this, "watchId");
 
 	}
 
-	public AckWatchRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static AckWatchRequest of(Function<Builder, ObjectBuilder<AckWatchRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -70,8 +69,7 @@ public final class AckWatchRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code action_id}
 	 */
-	@Nullable
-	public List<String> actionId() {
+	public final List<String> actionId() {
 		return this.actionId;
 	}
 
@@ -80,7 +78,7 @@ public final class AckWatchRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code watch_id}
 	 */
-	public String watchId() {
+	public final String watchId() {
 		return this.watchId;
 	}
 
@@ -89,7 +87,7 @@ public final class AckWatchRequest extends RequestBase {
 	/**
 	 * Builder for {@link AckWatchRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<AckWatchRequest> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<AckWatchRequest> {
 		@Nullable
 		private List<String> actionId;
 
@@ -100,7 +98,7 @@ public final class AckWatchRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code action_id}
 		 */
-		public Builder actionId(@Nullable List<String> value) {
+		public final Builder actionId(@Nullable List<String> value) {
 			this.actionId = value;
 			return this;
 		}
@@ -110,19 +108,8 @@ public final class AckWatchRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code action_id}
 		 */
-		public Builder actionId(String... value) {
+		public final Builder actionId(String... value) {
 			this.actionId = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #actionId(List)}, creating the list if needed.
-		 */
-		public Builder addActionId(String value) {
-			if (this.actionId == null) {
-				this.actionId = new ArrayList<>();
-			}
-			this.actionId.add(value);
 			return this;
 		}
 
@@ -131,7 +118,7 @@ public final class AckWatchRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code watch_id}
 		 */
-		public Builder watchId(String value) {
+		public final Builder watchId(String value) {
 			this.watchId = value;
 			return this;
 		}
@@ -143,6 +130,7 @@ public final class AckWatchRequest extends RequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public AckWatchRequest build() {
+			_checkSingleUse();
 
 			return new AckWatchRequest(this);
 		}
@@ -168,7 +156,7 @@ public final class AckWatchRequest extends RequestBase {
 				int propsSet = 0;
 
 				propsSet |= _watchId;
-				if (request.actionId() != null)
+				if (ModelTypeHelper.isDefined(request.actionId()))
 					propsSet |= _actionId;
 
 				if (propsSet == (_watchId)) {

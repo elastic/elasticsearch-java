@@ -31,6 +31,7 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;
@@ -38,7 +39,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.CompositeAggregationSource
 @JsonpDeserializable
-public final class CompositeAggregationSource implements JsonpSerializable {
+public class CompositeAggregationSource implements JsonpSerializable {
 	@Nullable
 	private final TermsAggregation terms;
 
@@ -53,7 +54,7 @@ public final class CompositeAggregationSource implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public CompositeAggregationSource(Builder builder) {
+	private CompositeAggregationSource(Builder builder) {
 
 		this.terms = builder.terms;
 		this.histogram = builder.histogram;
@@ -62,15 +63,15 @@ public final class CompositeAggregationSource implements JsonpSerializable {
 
 	}
 
-	public CompositeAggregationSource(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static CompositeAggregationSource of(Function<Builder, ObjectBuilder<CompositeAggregationSource>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * API name: {@code terms}
 	 */
 	@Nullable
-	public TermsAggregation terms() {
+	public final TermsAggregation terms() {
 		return this.terms;
 	}
 
@@ -78,7 +79,7 @@ public final class CompositeAggregationSource implements JsonpSerializable {
 	 * API name: {@code histogram}
 	 */
 	@Nullable
-	public HistogramAggregation histogram() {
+	public final HistogramAggregation histogram() {
 		return this.histogram;
 	}
 
@@ -86,7 +87,7 @@ public final class CompositeAggregationSource implements JsonpSerializable {
 	 * API name: {@code date_histogram}
 	 */
 	@Nullable
-	public DateHistogramAggregation dateHistogram() {
+	public final DateHistogramAggregation dateHistogram() {
 		return this.dateHistogram;
 	}
 
@@ -94,7 +95,7 @@ public final class CompositeAggregationSource implements JsonpSerializable {
 	 * API name: {@code geotile_grid}
 	 */
 	@Nullable
-	public GeoTileGridAggregation geotileGrid() {
+	public final GeoTileGridAggregation geotileGrid() {
 		return this.geotileGrid;
 	}
 
@@ -110,25 +111,21 @@ public final class CompositeAggregationSource implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.terms != null) {
-
 			generator.writeKey("terms");
 			this.terms.serialize(generator, mapper);
 
 		}
 		if (this.histogram != null) {
-
 			generator.writeKey("histogram");
 			this.histogram.serialize(generator, mapper);
 
 		}
 		if (this.dateHistogram != null) {
-
 			generator.writeKey("date_histogram");
 			this.dateHistogram.serialize(generator, mapper);
 
 		}
 		if (this.geotileGrid != null) {
-
 			generator.writeKey("geotile_grid");
 			this.geotileGrid.serialize(generator, mapper);
 
@@ -141,7 +138,7 @@ public final class CompositeAggregationSource implements JsonpSerializable {
 	/**
 	 * Builder for {@link CompositeAggregationSource}.
 	 */
-	public static class Builder implements ObjectBuilder<CompositeAggregationSource> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<CompositeAggregationSource> {
 		@Nullable
 		private TermsAggregation terms;
 
@@ -157,7 +154,7 @@ public final class CompositeAggregationSource implements JsonpSerializable {
 		/**
 		 * API name: {@code terms}
 		 */
-		public Builder terms(@Nullable TermsAggregation value) {
+		public final Builder terms(@Nullable TermsAggregation value) {
 			this.terms = value;
 			return this;
 		}
@@ -165,14 +162,14 @@ public final class CompositeAggregationSource implements JsonpSerializable {
 		/**
 		 * API name: {@code terms}
 		 */
-		public Builder terms(Function<TermsAggregation.Builder, ObjectBuilder<TermsAggregation>> fn) {
+		public final Builder terms(Function<TermsAggregation.Builder, ObjectBuilder<TermsAggregation>> fn) {
 			return this.terms(fn.apply(new TermsAggregation.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code histogram}
 		 */
-		public Builder histogram(@Nullable HistogramAggregation value) {
+		public final Builder histogram(@Nullable HistogramAggregation value) {
 			this.histogram = value;
 			return this;
 		}
@@ -180,14 +177,14 @@ public final class CompositeAggregationSource implements JsonpSerializable {
 		/**
 		 * API name: {@code histogram}
 		 */
-		public Builder histogram(Function<HistogramAggregation.Builder, ObjectBuilder<HistogramAggregation>> fn) {
+		public final Builder histogram(Function<HistogramAggregation.Builder, ObjectBuilder<HistogramAggregation>> fn) {
 			return this.histogram(fn.apply(new HistogramAggregation.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code date_histogram}
 		 */
-		public Builder dateHistogram(@Nullable DateHistogramAggregation value) {
+		public final Builder dateHistogram(@Nullable DateHistogramAggregation value) {
 			this.dateHistogram = value;
 			return this;
 		}
@@ -195,7 +192,7 @@ public final class CompositeAggregationSource implements JsonpSerializable {
 		/**
 		 * API name: {@code date_histogram}
 		 */
-		public Builder dateHistogram(
+		public final Builder dateHistogram(
 				Function<DateHistogramAggregation.Builder, ObjectBuilder<DateHistogramAggregation>> fn) {
 			return this.dateHistogram(fn.apply(new DateHistogramAggregation.Builder()).build());
 		}
@@ -203,7 +200,7 @@ public final class CompositeAggregationSource implements JsonpSerializable {
 		/**
 		 * API name: {@code geotile_grid}
 		 */
-		public Builder geotileGrid(@Nullable GeoTileGridAggregation value) {
+		public final Builder geotileGrid(@Nullable GeoTileGridAggregation value) {
 			this.geotileGrid = value;
 			return this;
 		}
@@ -211,7 +208,8 @@ public final class CompositeAggregationSource implements JsonpSerializable {
 		/**
 		 * API name: {@code geotile_grid}
 		 */
-		public Builder geotileGrid(Function<GeoTileGridAggregation.Builder, ObjectBuilder<GeoTileGridAggregation>> fn) {
+		public final Builder geotileGrid(
+				Function<GeoTileGridAggregation.Builder, ObjectBuilder<GeoTileGridAggregation>> fn) {
 			return this.geotileGrid(fn.apply(new GeoTileGridAggregation.Builder()).build());
 		}
 
@@ -222,6 +220,7 @@ public final class CompositeAggregationSource implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public CompositeAggregationSource build() {
+			_checkSingleUse();
 
 			return new CompositeAggregationSource(this);
 		}

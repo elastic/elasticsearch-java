@@ -38,21 +38,22 @@ import javax.annotation.Nullable;
 
 // typedef: _global.rank_eval.RankEvalMetricDiscountedCumulativeGain
 @JsonpDeserializable
-public final class RankEvalMetricDiscountedCumulativeGain extends RankEvalMetricBase {
+public class RankEvalMetricDiscountedCumulativeGain extends RankEvalMetricBase {
 	@Nullable
 	private final Boolean normalize;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public RankEvalMetricDiscountedCumulativeGain(Builder builder) {
+	private RankEvalMetricDiscountedCumulativeGain(Builder builder) {
 		super(builder);
 
 		this.normalize = builder.normalize;
 
 	}
 
-	public RankEvalMetricDiscountedCumulativeGain(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static RankEvalMetricDiscountedCumulativeGain of(
+			Function<Builder, ObjectBuilder<RankEvalMetricDiscountedCumulativeGain>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -61,7 +62,7 @@ public final class RankEvalMetricDiscountedCumulativeGain extends RankEvalMetric
 	 * API name: {@code normalize}
 	 */
 	@Nullable
-	public Boolean normalize() {
+	public final Boolean normalize() {
 		return this.normalize;
 	}
 
@@ -69,7 +70,6 @@ public final class RankEvalMetricDiscountedCumulativeGain extends RankEvalMetric
 
 		super.serializeInternal(generator, mapper);
 		if (this.normalize != null) {
-
 			generator.writeKey("normalize");
 			generator.write(this.normalize);
 
@@ -93,7 +93,7 @@ public final class RankEvalMetricDiscountedCumulativeGain extends RankEvalMetric
 		 * <p>
 		 * API name: {@code normalize}
 		 */
-		public Builder normalize(@Nullable Boolean value) {
+		public final Builder normalize(@Nullable Boolean value) {
 			this.normalize = value;
 			return this;
 		}
@@ -110,6 +110,7 @@ public final class RankEvalMetricDiscountedCumulativeGain extends RankEvalMetric
 		 *             if some of the required fields are null.
 		 */
 		public RankEvalMetricDiscountedCumulativeGain build() {
+			_checkSingleUse();
 
 			return new RankEvalMetricDiscountedCumulativeGain(this);
 		}

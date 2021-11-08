@@ -39,7 +39,7 @@ import java.util.function.Function;
 
 // typedef: features.reset_features.Request
 
-public final class ResetFeaturesRequest extends RequestBase {
+public class ResetFeaturesRequest extends RequestBase {
 	public ResetFeaturesRequest() {
 	}
 

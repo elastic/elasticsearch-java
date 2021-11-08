@@ -29,6 +29,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
@@ -37,33 +38,32 @@ import java.util.function.Function;
 
 // typedef: xpack.usage.Flattened
 @JsonpDeserializable
-public final class Flattened extends Base {
+public class Flattened extends Base {
 	private final int fieldCount;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public Flattened(Builder builder) {
+	private Flattened(Builder builder) {
 		super(builder);
 
-		this.fieldCount = Objects.requireNonNull(builder.fieldCount, "field_count");
+		this.fieldCount = ModelTypeHelper.requireNonNull(builder.fieldCount, this, "fieldCount");
 
 	}
 
-	public Flattened(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static Flattened of(Function<Builder, ObjectBuilder<Flattened>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code field_count}
 	 */
-	public int fieldCount() {
+	public final int fieldCount() {
 		return this.fieldCount;
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
-
 		generator.writeKey("field_count");
 		generator.write(this.fieldCount);
 
@@ -80,7 +80,7 @@ public final class Flattened extends Base {
 		/**
 		 * Required - API name: {@code field_count}
 		 */
-		public Builder fieldCount(int value) {
+		public final Builder fieldCount(int value) {
 			this.fieldCount = value;
 			return this;
 		}
@@ -97,6 +97,7 @@ public final class Flattened extends Base {
 		 *             if some of the required fields are null.
 		 */
 		public Flattened build() {
+			_checkSingleUse();
 
 			return new Flattened(this);
 		}

@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.lang.String;
@@ -40,35 +42,35 @@ import javax.annotation.Nullable;
 
 // typedef: indices.recovery.RecoveryStartStatus
 @JsonpDeserializable
-public final class RecoveryStartStatus implements JsonpSerializable {
+public class RecoveryStartStatus implements JsonpSerializable {
 	private final long checkIndexTime;
 
 	private final String totalTimeInMillis;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public RecoveryStartStatus(Builder builder) {
+	private RecoveryStartStatus(Builder builder) {
 
-		this.checkIndexTime = Objects.requireNonNull(builder.checkIndexTime, "check_index_time");
-		this.totalTimeInMillis = Objects.requireNonNull(builder.totalTimeInMillis, "total_time_in_millis");
+		this.checkIndexTime = ModelTypeHelper.requireNonNull(builder.checkIndexTime, this, "checkIndexTime");
+		this.totalTimeInMillis = ModelTypeHelper.requireNonNull(builder.totalTimeInMillis, this, "totalTimeInMillis");
 
 	}
 
-	public RecoveryStartStatus(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static RecoveryStartStatus of(Function<Builder, ObjectBuilder<RecoveryStartStatus>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code check_index_time}
 	 */
-	public long checkIndexTime() {
+	public final long checkIndexTime() {
 		return this.checkIndexTime;
 	}
 
 	/**
 	 * Required - API name: {@code total_time_in_millis}
 	 */
-	public String totalTimeInMillis() {
+	public final String totalTimeInMillis() {
 		return this.totalTimeInMillis;
 	}
 
@@ -96,7 +98,7 @@ public final class RecoveryStartStatus implements JsonpSerializable {
 	/**
 	 * Builder for {@link RecoveryStartStatus}.
 	 */
-	public static class Builder implements ObjectBuilder<RecoveryStartStatus> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RecoveryStartStatus> {
 		private Long checkIndexTime;
 
 		private String totalTimeInMillis;
@@ -104,7 +106,7 @@ public final class RecoveryStartStatus implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code check_index_time}
 		 */
-		public Builder checkIndexTime(long value) {
+		public final Builder checkIndexTime(long value) {
 			this.checkIndexTime = value;
 			return this;
 		}
@@ -112,7 +114,7 @@ public final class RecoveryStartStatus implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code total_time_in_millis}
 		 */
-		public Builder totalTimeInMillis(String value) {
+		public final Builder totalTimeInMillis(String value) {
 			this.totalTimeInMillis = value;
 			return this;
 		}
@@ -124,6 +126,7 @@ public final class RecoveryStartStatus implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public RecoveryStartStatus build() {
+			_checkSingleUse();
 
 			return new RecoveryStartStatus(this);
 		}

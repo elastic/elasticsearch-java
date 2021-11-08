@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.util.Objects;
@@ -38,25 +40,25 @@ import java.util.function.Function;
 
 // typedef: cluster.stats.ClusterProcessCpu
 @JsonpDeserializable
-public final class ClusterProcessCpu implements JsonpSerializable {
+public class ClusterProcessCpu implements JsonpSerializable {
 	private final int percent;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public ClusterProcessCpu(Builder builder) {
+	private ClusterProcessCpu(Builder builder) {
 
-		this.percent = Objects.requireNonNull(builder.percent, "percent");
+		this.percent = ModelTypeHelper.requireNonNull(builder.percent, this, "percent");
 
 	}
 
-	public ClusterProcessCpu(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ClusterProcessCpu of(Function<Builder, ObjectBuilder<ClusterProcessCpu>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code percent}
 	 */
-	public int percent() {
+	public final int percent() {
 		return this.percent;
 	}
 
@@ -81,13 +83,13 @@ public final class ClusterProcessCpu implements JsonpSerializable {
 	/**
 	 * Builder for {@link ClusterProcessCpu}.
 	 */
-	public static class Builder implements ObjectBuilder<ClusterProcessCpu> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ClusterProcessCpu> {
 		private Integer percent;
 
 		/**
 		 * Required - API name: {@code percent}
 		 */
-		public Builder percent(int value) {
+		public final Builder percent(int value) {
 			this.percent = value;
 			return this;
 		}
@@ -99,6 +101,7 @@ public final class ClusterProcessCpu implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public ClusterProcessCpu build() {
+			_checkSingleUse();
 
 			return new ClusterProcessCpu(this);
 		}

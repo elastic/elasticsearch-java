@@ -32,6 +32,7 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.SimpleEndpoint;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
@@ -43,7 +44,7 @@ import javax.annotation.Nullable;
 
 // typedef: cat.ml_data_frame_analytics.Request
 
-public final class MlDataFrameAnalyticsRequest extends CatRequestBase {
+public class MlDataFrameAnalyticsRequest extends CatRequestBase {
 	@Nullable
 	private final Boolean allowNoMatch;
 
@@ -55,7 +56,7 @@ public final class MlDataFrameAnalyticsRequest extends CatRequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public MlDataFrameAnalyticsRequest(Builder builder) {
+	private MlDataFrameAnalyticsRequest(Builder builder) {
 
 		this.allowNoMatch = builder.allowNoMatch;
 		this.bytes = builder.bytes;
@@ -63,8 +64,8 @@ public final class MlDataFrameAnalyticsRequest extends CatRequestBase {
 
 	}
 
-	public MlDataFrameAnalyticsRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static MlDataFrameAnalyticsRequest of(Function<Builder, ObjectBuilder<MlDataFrameAnalyticsRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -74,7 +75,7 @@ public final class MlDataFrameAnalyticsRequest extends CatRequestBase {
 	 * API name: {@code allow_no_match}
 	 */
 	@Nullable
-	public Boolean allowNoMatch() {
+	public final Boolean allowNoMatch() {
 		return this.allowNoMatch;
 	}
 
@@ -84,7 +85,7 @@ public final class MlDataFrameAnalyticsRequest extends CatRequestBase {
 	 * API name: {@code bytes}
 	 */
 	@Nullable
-	public Bytes bytes() {
+	public final Bytes bytes() {
 		return this.bytes;
 	}
 
@@ -94,7 +95,7 @@ public final class MlDataFrameAnalyticsRequest extends CatRequestBase {
 	 * API name: {@code id}
 	 */
 	@Nullable
-	public String id() {
+	public final String id() {
 		return this.id;
 	}
 
@@ -103,7 +104,7 @@ public final class MlDataFrameAnalyticsRequest extends CatRequestBase {
 	/**
 	 * Builder for {@link MlDataFrameAnalyticsRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<MlDataFrameAnalyticsRequest> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<MlDataFrameAnalyticsRequest> {
 		@Nullable
 		private Boolean allowNoMatch;
 
@@ -119,7 +120,7 @@ public final class MlDataFrameAnalyticsRequest extends CatRequestBase {
 		 * <p>
 		 * API name: {@code allow_no_match}
 		 */
-		public Builder allowNoMatch(@Nullable Boolean value) {
+		public final Builder allowNoMatch(@Nullable Boolean value) {
 			this.allowNoMatch = value;
 			return this;
 		}
@@ -129,7 +130,7 @@ public final class MlDataFrameAnalyticsRequest extends CatRequestBase {
 		 * <p>
 		 * API name: {@code bytes}
 		 */
-		public Builder bytes(@Nullable Bytes value) {
+		public final Builder bytes(@Nullable Bytes value) {
 			this.bytes = value;
 			return this;
 		}
@@ -139,7 +140,7 @@ public final class MlDataFrameAnalyticsRequest extends CatRequestBase {
 		 * <p>
 		 * API name: {@code id}
 		 */
-		public Builder id(@Nullable String value) {
+		public final Builder id(@Nullable String value) {
 			this.id = value;
 			return this;
 		}
@@ -151,6 +152,7 @@ public final class MlDataFrameAnalyticsRequest extends CatRequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public MlDataFrameAnalyticsRequest build() {
+			_checkSingleUse();
 
 			return new MlDataFrameAnalyticsRequest(this);
 		}
@@ -204,7 +206,7 @@ public final class MlDataFrameAnalyticsRequest extends CatRequestBase {
 				Map<String, String> params = new HashMap<>();
 				params.put("format", "json");
 				if (request.bytes != null) {
-					params.put("bytes", request.bytes.toString());
+					params.put("bytes", request.bytes.jsonValue());
 				}
 				if (request.allowNoMatch != null) {
 					params.put("allow_no_match", String.valueOf(request.allowNoMatch));

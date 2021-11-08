@@ -37,12 +37,12 @@ import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.SimpleEndpoint;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Long;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -54,14 +54,12 @@ import javax.annotation.Nullable;
 
 // typedef: _global.exists_source.Request
 
-public final class ExistsSourceRequest extends RequestBase {
+public class ExistsSourceRequest extends RequestBase {
 	@Nullable
 	private final JsonValue /* Union(_types.Fields | internal.boolean) */ source;
 
-	@Nullable
 	private final List<String> sourceExcludes;
 
-	@Nullable
 	private final List<String> sourceIncludes;
 
 	private final String id;
@@ -91,13 +89,13 @@ public final class ExistsSourceRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public ExistsSourceRequest(Builder builder) {
+	private ExistsSourceRequest(Builder builder) {
 
 		this.source = builder.source;
 		this.sourceExcludes = ModelTypeHelper.unmodifiable(builder.sourceExcludes);
 		this.sourceIncludes = ModelTypeHelper.unmodifiable(builder.sourceIncludes);
-		this.id = Objects.requireNonNull(builder.id, "id");
-		this.index = Objects.requireNonNull(builder.index, "index");
+		this.id = ModelTypeHelper.requireNonNull(builder.id, this, "id");
+		this.index = ModelTypeHelper.requireNonNull(builder.index, this, "index");
 		this.preference = builder.preference;
 		this.realtime = builder.realtime;
 		this.refresh = builder.refresh;
@@ -108,8 +106,8 @@ public final class ExistsSourceRequest extends RequestBase {
 
 	}
 
-	public ExistsSourceRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ExistsSourceRequest of(Function<Builder, ObjectBuilder<ExistsSourceRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -119,7 +117,7 @@ public final class ExistsSourceRequest extends RequestBase {
 	 * API name: {@code _source}
 	 */
 	@Nullable
-	public JsonValue /* Union(_types.Fields | internal.boolean) */ source() {
+	public final JsonValue /* Union(_types.Fields | internal.boolean) */ source() {
 		return this.source;
 	}
 
@@ -128,8 +126,7 @@ public final class ExistsSourceRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code _source_excludes}
 	 */
-	@Nullable
-	public List<String> sourceExcludes() {
+	public final List<String> sourceExcludes() {
 		return this.sourceExcludes;
 	}
 
@@ -138,8 +135,7 @@ public final class ExistsSourceRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code _source_includes}
 	 */
-	@Nullable
-	public List<String> sourceIncludes() {
+	public final List<String> sourceIncludes() {
 		return this.sourceIncludes;
 	}
 
@@ -148,7 +144,7 @@ public final class ExistsSourceRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code id}
 	 */
-	public String id() {
+	public final String id() {
 		return this.id;
 	}
 
@@ -157,7 +153,7 @@ public final class ExistsSourceRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code index}
 	 */
-	public String index() {
+	public final String index() {
 		return this.index;
 	}
 
@@ -168,7 +164,7 @@ public final class ExistsSourceRequest extends RequestBase {
 	 * API name: {@code preference}
 	 */
 	@Nullable
-	public String preference() {
+	public final String preference() {
 		return this.preference;
 	}
 
@@ -178,7 +174,7 @@ public final class ExistsSourceRequest extends RequestBase {
 	 * API name: {@code realtime}
 	 */
 	@Nullable
-	public Boolean realtime() {
+	public final Boolean realtime() {
 		return this.realtime;
 	}
 
@@ -188,7 +184,7 @@ public final class ExistsSourceRequest extends RequestBase {
 	 * API name: {@code refresh}
 	 */
 	@Nullable
-	public Boolean refresh() {
+	public final Boolean refresh() {
 		return this.refresh;
 	}
 
@@ -198,7 +194,7 @@ public final class ExistsSourceRequest extends RequestBase {
 	 * API name: {@code routing}
 	 */
 	@Nullable
-	public String routing() {
+	public final String routing() {
 		return this.routing;
 	}
 
@@ -208,7 +204,7 @@ public final class ExistsSourceRequest extends RequestBase {
 	 * API name: {@code type}
 	 */
 	@Nullable
-	public String type() {
+	public final String type() {
 		return this.type;
 	}
 
@@ -218,7 +214,7 @@ public final class ExistsSourceRequest extends RequestBase {
 	 * API name: {@code version}
 	 */
 	@Nullable
-	public Long version() {
+	public final Long version() {
 		return this.version;
 	}
 
@@ -228,7 +224,7 @@ public final class ExistsSourceRequest extends RequestBase {
 	 * API name: {@code version_type}
 	 */
 	@Nullable
-	public VersionType versionType() {
+	public final VersionType versionType() {
 		return this.versionType;
 	}
 
@@ -237,7 +233,7 @@ public final class ExistsSourceRequest extends RequestBase {
 	/**
 	 * Builder for {@link ExistsSourceRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<ExistsSourceRequest> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ExistsSourceRequest> {
 		@Nullable
 		private JsonValue /* Union(_types.Fields | internal.boolean) */ source;
 
@@ -278,7 +274,7 @@ public final class ExistsSourceRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code _source}
 		 */
-		public Builder source(@Nullable JsonValue /* Union(_types.Fields | internal.boolean) */ value) {
+		public final Builder source(@Nullable JsonValue /* Union(_types.Fields | internal.boolean) */ value) {
 			this.source = value;
 			return this;
 		}
@@ -288,7 +284,7 @@ public final class ExistsSourceRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code _source_excludes}
 		 */
-		public Builder sourceExcludes(@Nullable List<String> value) {
+		public final Builder sourceExcludes(@Nullable List<String> value) {
 			this.sourceExcludes = value;
 			return this;
 		}
@@ -298,19 +294,8 @@ public final class ExistsSourceRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code _source_excludes}
 		 */
-		public Builder sourceExcludes(String... value) {
+		public final Builder sourceExcludes(String... value) {
 			this.sourceExcludes = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #sourceExcludes(List)}, creating the list if needed.
-		 */
-		public Builder addSourceExcludes(String value) {
-			if (this.sourceExcludes == null) {
-				this.sourceExcludes = new ArrayList<>();
-			}
-			this.sourceExcludes.add(value);
 			return this;
 		}
 
@@ -319,7 +304,7 @@ public final class ExistsSourceRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code _source_includes}
 		 */
-		public Builder sourceIncludes(@Nullable List<String> value) {
+		public final Builder sourceIncludes(@Nullable List<String> value) {
 			this.sourceIncludes = value;
 			return this;
 		}
@@ -329,19 +314,8 @@ public final class ExistsSourceRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code _source_includes}
 		 */
-		public Builder sourceIncludes(String... value) {
+		public final Builder sourceIncludes(String... value) {
 			this.sourceIncludes = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #sourceIncludes(List)}, creating the list if needed.
-		 */
-		public Builder addSourceIncludes(String value) {
-			if (this.sourceIncludes == null) {
-				this.sourceIncludes = new ArrayList<>();
-			}
-			this.sourceIncludes.add(value);
 			return this;
 		}
 
@@ -350,7 +324,7 @@ public final class ExistsSourceRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code id}
 		 */
-		public Builder id(String value) {
+		public final Builder id(String value) {
 			this.id = value;
 			return this;
 		}
@@ -360,7 +334,7 @@ public final class ExistsSourceRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code index}
 		 */
-		public Builder index(String value) {
+		public final Builder index(String value) {
 			this.index = value;
 			return this;
 		}
@@ -371,7 +345,7 @@ public final class ExistsSourceRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code preference}
 		 */
-		public Builder preference(@Nullable String value) {
+		public final Builder preference(@Nullable String value) {
 			this.preference = value;
 			return this;
 		}
@@ -381,7 +355,7 @@ public final class ExistsSourceRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code realtime}
 		 */
-		public Builder realtime(@Nullable Boolean value) {
+		public final Builder realtime(@Nullable Boolean value) {
 			this.realtime = value;
 			return this;
 		}
@@ -391,7 +365,7 @@ public final class ExistsSourceRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code refresh}
 		 */
-		public Builder refresh(@Nullable Boolean value) {
+		public final Builder refresh(@Nullable Boolean value) {
 			this.refresh = value;
 			return this;
 		}
@@ -401,7 +375,7 @@ public final class ExistsSourceRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code routing}
 		 */
-		public Builder routing(@Nullable String value) {
+		public final Builder routing(@Nullable String value) {
 			this.routing = value;
 			return this;
 		}
@@ -411,7 +385,7 @@ public final class ExistsSourceRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code type}
 		 */
-		public Builder type(@Nullable String value) {
+		public final Builder type(@Nullable String value) {
 			this.type = value;
 			return this;
 		}
@@ -421,7 +395,7 @@ public final class ExistsSourceRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code version}
 		 */
-		public Builder version(@Nullable Long value) {
+		public final Builder version(@Nullable Long value) {
 			this.version = value;
 			return this;
 		}
@@ -431,7 +405,7 @@ public final class ExistsSourceRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code version_type}
 		 */
-		public Builder versionType(@Nullable VersionType value) {
+		public final Builder versionType(@Nullable VersionType value) {
 			this.versionType = value;
 			return this;
 		}
@@ -443,6 +417,7 @@ public final class ExistsSourceRequest extends RequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public ExistsSourceRequest build() {
+			_checkSingleUse();
 
 			return new ExistsSourceRequest(this);
 		}
@@ -507,7 +482,7 @@ public final class ExistsSourceRequest extends RequestBase {
 					params.put("realtime", String.valueOf(request.realtime));
 				}
 				if (request.versionType != null) {
-					params.put("version_type", request.versionType.toString());
+					params.put("version_type", request.versionType.jsonValue());
 				}
 				if (request.preference != null) {
 					params.put("preference", request.preference);
@@ -518,11 +493,11 @@ public final class ExistsSourceRequest extends RequestBase {
 				if (request.source != null) {
 					params.put("_source", JsonpUtils.toString(request.source));
 				}
-				if (request.sourceExcludes != null) {
+				if (ModelTypeHelper.isDefined(request.sourceExcludes)) {
 					params.put("_source_excludes",
 							request.sourceExcludes.stream().map(v -> v).collect(Collectors.joining(",")));
 				}
-				if (request.sourceIncludes != null) {
+				if (ModelTypeHelper.isDefined(request.sourceIncludes)) {
 					params.put("_source_includes",
 							request.sourceIncludes.stream().map(v -> v).collect(Collectors.joining(",")));
 				}

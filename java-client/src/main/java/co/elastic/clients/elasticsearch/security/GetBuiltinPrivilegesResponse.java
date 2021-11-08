@@ -32,9 +32,9 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
@@ -43,35 +43,35 @@ import javax.annotation.Nullable;
 
 // typedef: security.get_builtin_privileges.Response
 @JsonpDeserializable
-public final class GetBuiltinPrivilegesResponse implements JsonpSerializable {
+public class GetBuiltinPrivilegesResponse implements JsonpSerializable {
 	private final List<String> cluster;
 
 	private final List<String> index;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public GetBuiltinPrivilegesResponse(Builder builder) {
+	private GetBuiltinPrivilegesResponse(Builder builder) {
 
-		this.cluster = ModelTypeHelper.unmodifiableNonNull(builder.cluster, "cluster");
-		this.index = ModelTypeHelper.unmodifiableNonNull(builder.index, "index");
+		this.cluster = ModelTypeHelper.unmodifiableRequired(builder.cluster, this, "cluster");
+		this.index = ModelTypeHelper.unmodifiableRequired(builder.index, this, "index");
 
 	}
 
-	public GetBuiltinPrivilegesResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static GetBuiltinPrivilegesResponse of(Function<Builder, ObjectBuilder<GetBuiltinPrivilegesResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code cluster}
 	 */
-	public List<String> cluster() {
+	public final List<String> cluster() {
 		return this.cluster;
 	}
 
 	/**
 	 * Required - API name: {@code index}
 	 */
-	public List<String> index() {
+	public final List<String> index() {
 		return this.index;
 	}
 
@@ -86,21 +86,26 @@ public final class GetBuiltinPrivilegesResponse implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("cluster");
-		generator.writeStartArray();
-		for (String item0 : this.cluster) {
-			generator.write(item0);
+		if (ModelTypeHelper.isDefined(this.cluster)) {
+			generator.writeKey("cluster");
+			generator.writeStartArray();
+			for (String item0 : this.cluster) {
+				generator.write(item0);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
+		if (ModelTypeHelper.isDefined(this.index)) {
+			generator.writeKey("index");
+			generator.writeStartArray();
+			for (String item0 : this.index) {
+				generator.write(item0);
 
-		generator.writeKey("index");
-		generator.writeStartArray();
-		for (String item0 : this.index) {
-			generator.write(item0);
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
 
 	}
 
@@ -109,7 +114,7 @@ public final class GetBuiltinPrivilegesResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link GetBuiltinPrivilegesResponse}.
 	 */
-	public static class Builder implements ObjectBuilder<GetBuiltinPrivilegesResponse> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetBuiltinPrivilegesResponse> {
 		private List<String> cluster;
 
 		private List<String> index;
@@ -117,7 +122,7 @@ public final class GetBuiltinPrivilegesResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code cluster}
 		 */
-		public Builder cluster(List<String> value) {
+		public final Builder cluster(List<String> value) {
 			this.cluster = value;
 			return this;
 		}
@@ -125,26 +130,15 @@ public final class GetBuiltinPrivilegesResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code cluster}
 		 */
-		public Builder cluster(String... value) {
+		public final Builder cluster(String... value) {
 			this.cluster = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #cluster(List)}, creating the list if needed.
-		 */
-		public Builder addCluster(String value) {
-			if (this.cluster == null) {
-				this.cluster = new ArrayList<>();
-			}
-			this.cluster.add(value);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code index}
 		 */
-		public Builder index(List<String> value) {
+		public final Builder index(List<String> value) {
 			this.index = value;
 			return this;
 		}
@@ -152,19 +146,8 @@ public final class GetBuiltinPrivilegesResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code index}
 		 */
-		public Builder index(String... value) {
+		public final Builder index(String... value) {
 			this.index = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #index(List)}, creating the list if needed.
-		 */
-		public Builder addIndex(String value) {
-			if (this.index == null) {
-				this.index = new ArrayList<>();
-			}
-			this.index.add(value);
 			return this;
 		}
 
@@ -175,6 +158,7 @@ public final class GetBuiltinPrivilegesResponse implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public GetBuiltinPrivilegesResponse build() {
+			_checkSingleUse();
 
 			return new GetBuiltinPrivilegesResponse(this);
 		}

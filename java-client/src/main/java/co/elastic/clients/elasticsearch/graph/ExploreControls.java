@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Integer;
@@ -41,7 +43,7 @@ import javax.annotation.Nullable;
 
 // typedef: graph._types.ExploreControls
 @JsonpDeserializable
-public final class ExploreControls implements JsonpSerializable {
+public class ExploreControls implements JsonpSerializable {
 	@Nullable
 	private final SampleDiversity sampleDiversity;
 
@@ -55,24 +57,24 @@ public final class ExploreControls implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public ExploreControls(Builder builder) {
+	private ExploreControls(Builder builder) {
 
 		this.sampleDiversity = builder.sampleDiversity;
 		this.sampleSize = builder.sampleSize;
 		this.timeout = builder.timeout;
-		this.useSignificance = Objects.requireNonNull(builder.useSignificance, "use_significance");
+		this.useSignificance = ModelTypeHelper.requireNonNull(builder.useSignificance, this, "useSignificance");
 
 	}
 
-	public ExploreControls(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ExploreControls of(Function<Builder, ObjectBuilder<ExploreControls>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * API name: {@code sample_diversity}
 	 */
 	@Nullable
-	public SampleDiversity sampleDiversity() {
+	public final SampleDiversity sampleDiversity() {
 		return this.sampleDiversity;
 	}
 
@@ -80,7 +82,7 @@ public final class ExploreControls implements JsonpSerializable {
 	 * API name: {@code sample_size}
 	 */
 	@Nullable
-	public Integer sampleSize() {
+	public final Integer sampleSize() {
 		return this.sampleSize;
 	}
 
@@ -88,14 +90,14 @@ public final class ExploreControls implements JsonpSerializable {
 	 * API name: {@code timeout}
 	 */
 	@Nullable
-	public String timeout() {
+	public final String timeout() {
 		return this.timeout;
 	}
 
 	/**
 	 * Required - API name: {@code use_significance}
 	 */
-	public boolean useSignificance() {
+	public final boolean useSignificance() {
 		return this.useSignificance;
 	}
 
@@ -111,24 +113,20 @@ public final class ExploreControls implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.sampleDiversity != null) {
-
 			generator.writeKey("sample_diversity");
 			this.sampleDiversity.serialize(generator, mapper);
 
 		}
 		if (this.sampleSize != null) {
-
 			generator.writeKey("sample_size");
 			generator.write(this.sampleSize);
 
 		}
 		if (this.timeout != null) {
-
 			generator.writeKey("timeout");
 			generator.write(this.timeout);
 
 		}
-
 		generator.writeKey("use_significance");
 		generator.write(this.useSignificance);
 
@@ -139,7 +137,7 @@ public final class ExploreControls implements JsonpSerializable {
 	/**
 	 * Builder for {@link ExploreControls}.
 	 */
-	public static class Builder implements ObjectBuilder<ExploreControls> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ExploreControls> {
 		@Nullable
 		private SampleDiversity sampleDiversity;
 
@@ -154,7 +152,7 @@ public final class ExploreControls implements JsonpSerializable {
 		/**
 		 * API name: {@code sample_diversity}
 		 */
-		public Builder sampleDiversity(@Nullable SampleDiversity value) {
+		public final Builder sampleDiversity(@Nullable SampleDiversity value) {
 			this.sampleDiversity = value;
 			return this;
 		}
@@ -162,14 +160,14 @@ public final class ExploreControls implements JsonpSerializable {
 		/**
 		 * API name: {@code sample_diversity}
 		 */
-		public Builder sampleDiversity(Function<SampleDiversity.Builder, ObjectBuilder<SampleDiversity>> fn) {
+		public final Builder sampleDiversity(Function<SampleDiversity.Builder, ObjectBuilder<SampleDiversity>> fn) {
 			return this.sampleDiversity(fn.apply(new SampleDiversity.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code sample_size}
 		 */
-		public Builder sampleSize(@Nullable Integer value) {
+		public final Builder sampleSize(@Nullable Integer value) {
 			this.sampleSize = value;
 			return this;
 		}
@@ -177,7 +175,7 @@ public final class ExploreControls implements JsonpSerializable {
 		/**
 		 * API name: {@code timeout}
 		 */
-		public Builder timeout(@Nullable String value) {
+		public final Builder timeout(@Nullable String value) {
 			this.timeout = value;
 			return this;
 		}
@@ -185,7 +183,7 @@ public final class ExploreControls implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code use_significance}
 		 */
-		public Builder useSignificance(boolean value) {
+		public final Builder useSignificance(boolean value) {
 			this.useSignificance = value;
 			return this;
 		}
@@ -197,6 +195,7 @@ public final class ExploreControls implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public ExploreControls build() {
+			_checkSingleUse();
 
 			return new ExploreControls(this);
 		}

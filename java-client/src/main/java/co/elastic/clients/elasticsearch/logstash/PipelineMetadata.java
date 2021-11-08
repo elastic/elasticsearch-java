@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -39,35 +41,35 @@ import javax.annotation.Nullable;
 
 // typedef: logstash._types.PipelineMetadata
 @JsonpDeserializable
-public final class PipelineMetadata implements JsonpSerializable {
+public class PipelineMetadata implements JsonpSerializable {
 	private final String type;
 
 	private final String version;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public PipelineMetadata(Builder builder) {
+	private PipelineMetadata(Builder builder) {
 
-		this.type = Objects.requireNonNull(builder.type, "type");
-		this.version = Objects.requireNonNull(builder.version, "version");
+		this.type = ModelTypeHelper.requireNonNull(builder.type, this, "type");
+		this.version = ModelTypeHelper.requireNonNull(builder.version, this, "version");
 
 	}
 
-	public PipelineMetadata(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static PipelineMetadata of(Function<Builder, ObjectBuilder<PipelineMetadata>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code type}
 	 */
-	public String type() {
+	public final String type() {
 		return this.type;
 	}
 
 	/**
 	 * Required - API name: {@code version}
 	 */
-	public String version() {
+	public final String version() {
 		return this.version;
 	}
 
@@ -95,7 +97,7 @@ public final class PipelineMetadata implements JsonpSerializable {
 	/**
 	 * Builder for {@link PipelineMetadata}.
 	 */
-	public static class Builder implements ObjectBuilder<PipelineMetadata> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PipelineMetadata> {
 		private String type;
 
 		private String version;
@@ -103,7 +105,7 @@ public final class PipelineMetadata implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code type}
 		 */
-		public Builder type(String value) {
+		public final Builder type(String value) {
 			this.type = value;
 			return this;
 		}
@@ -111,7 +113,7 @@ public final class PipelineMetadata implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code version}
 		 */
-		public Builder version(String value) {
+		public final Builder version(String value) {
 			this.version = value;
 			return this;
 		}
@@ -123,6 +125,7 @@ public final class PipelineMetadata implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public PipelineMetadata build() {
+			_checkSingleUse();
 
 			return new PipelineMetadata(this);
 		}

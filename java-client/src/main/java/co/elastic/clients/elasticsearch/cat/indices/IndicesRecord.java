@@ -31,6 +31,7 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -39,7 +40,7 @@ import javax.annotation.Nullable;
 
 // typedef: cat.indices.IndicesRecord
 @JsonpDeserializable
-public final class IndicesRecord implements JsonpSerializable {
+public class IndicesRecord implements JsonpSerializable {
 	@Nullable
 	private final String health;
 
@@ -465,7 +466,7 @@ public final class IndicesRecord implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public IndicesRecord(Builder builder) {
+	private IndicesRecord(Builder builder) {
 
 		this.health = builder.health;
 		this.status = builder.status;
@@ -611,8 +612,8 @@ public final class IndicesRecord implements JsonpSerializable {
 
 	}
 
-	public IndicesRecord(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static IndicesRecord of(Function<Builder, ObjectBuilder<IndicesRecord>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -621,7 +622,7 @@ public final class IndicesRecord implements JsonpSerializable {
 	 * API name: {@code health}
 	 */
 	@Nullable
-	public String health() {
+	public final String health() {
 		return this.health;
 	}
 
@@ -631,7 +632,7 @@ public final class IndicesRecord implements JsonpSerializable {
 	 * API name: {@code status}
 	 */
 	@Nullable
-	public String status() {
+	public final String status() {
 		return this.status;
 	}
 
@@ -641,7 +642,7 @@ public final class IndicesRecord implements JsonpSerializable {
 	 * API name: {@code index}
 	 */
 	@Nullable
-	public String index() {
+	public final String index() {
 		return this.index;
 	}
 
@@ -651,7 +652,7 @@ public final class IndicesRecord implements JsonpSerializable {
 	 * API name: {@code uuid}
 	 */
 	@Nullable
-	public String uuid() {
+	public final String uuid() {
 		return this.uuid;
 	}
 
@@ -661,7 +662,7 @@ public final class IndicesRecord implements JsonpSerializable {
 	 * API name: {@code pri}
 	 */
 	@Nullable
-	public String pri() {
+	public final String pri() {
 		return this.pri;
 	}
 
@@ -671,7 +672,7 @@ public final class IndicesRecord implements JsonpSerializable {
 	 * API name: {@code rep}
 	 */
 	@Nullable
-	public String rep() {
+	public final String rep() {
 		return this.rep;
 	}
 
@@ -681,7 +682,7 @@ public final class IndicesRecord implements JsonpSerializable {
 	 * API name: {@code docs.count}
 	 */
 	@Nullable
-	public String docsCount() {
+	public final String docsCount() {
 		return this.docsCount;
 	}
 
@@ -691,7 +692,7 @@ public final class IndicesRecord implements JsonpSerializable {
 	 * API name: {@code docs.deleted}
 	 */
 	@Nullable
-	public String docsDeleted() {
+	public final String docsDeleted() {
 		return this.docsDeleted;
 	}
 
@@ -701,7 +702,7 @@ public final class IndicesRecord implements JsonpSerializable {
 	 * API name: {@code creation.date}
 	 */
 	@Nullable
-	public String creationDate() {
+	public final String creationDate() {
 		return this.creationDate;
 	}
 
@@ -711,7 +712,7 @@ public final class IndicesRecord implements JsonpSerializable {
 	 * API name: {@code creation.date.string}
 	 */
 	@Nullable
-	public String creationDateString() {
+	public final String creationDateString() {
 		return this.creationDateString;
 	}
 
@@ -721,7 +722,7 @@ public final class IndicesRecord implements JsonpSerializable {
 	 * API name: {@code store.size}
 	 */
 	@Nullable
-	public String storeSize() {
+	public final String storeSize() {
 		return this.storeSize;
 	}
 
@@ -731,7 +732,7 @@ public final class IndicesRecord implements JsonpSerializable {
 	 * API name: {@code pri.store.size}
 	 */
 	@Nullable
-	public String priStoreSize() {
+	public final String priStoreSize() {
 		return this.priStoreSize;
 	}
 
@@ -741,7 +742,7 @@ public final class IndicesRecord implements JsonpSerializable {
 	 * API name: {@code completion.size}
 	 */
 	@Nullable
-	public String completionSize() {
+	public final String completionSize() {
 		return this.completionSize;
 	}
 
@@ -751,7 +752,7 @@ public final class IndicesRecord implements JsonpSerializable {
 	 * API name: {@code pri.completion.size}
 	 */
 	@Nullable
-	public String priCompletionSize() {
+	public final String priCompletionSize() {
 		return this.priCompletionSize;
 	}
 
@@ -761,7 +762,7 @@ public final class IndicesRecord implements JsonpSerializable {
 	 * API name: {@code fielddata.memory_size}
 	 */
 	@Nullable
-	public String fielddataMemorySize() {
+	public final String fielddataMemorySize() {
 		return this.fielddataMemorySize;
 	}
 
@@ -771,7 +772,7 @@ public final class IndicesRecord implements JsonpSerializable {
 	 * API name: {@code pri.fielddata.memory_size}
 	 */
 	@Nullable
-	public String priFielddataMemorySize() {
+	public final String priFielddataMemorySize() {
 		return this.priFielddataMemorySize;
 	}
 
@@ -781,7 +782,7 @@ public final class IndicesRecord implements JsonpSerializable {
 	 * API name: {@code fielddata.evictions}
 	 */
 	@Nullable
-	public String fielddataEvictions() {
+	public final String fielddataEvictions() {
 		return this.fielddataEvictions;
 	}
 
@@ -791,7 +792,7 @@ public final class IndicesRecord implements JsonpSerializable {
 	 * API name: {@code pri.fielddata.evictions}
 	 */
 	@Nullable
-	public String priFielddataEvictions() {
+	public final String priFielddataEvictions() {
 		return this.priFielddataEvictions;
 	}
 
@@ -801,7 +802,7 @@ public final class IndicesRecord implements JsonpSerializable {
 	 * API name: {@code query_cache.memory_size}
 	 */
 	@Nullable
-	public String queryCacheMemorySize() {
+	public final String queryCacheMemorySize() {
 		return this.queryCacheMemorySize;
 	}
 
@@ -811,7 +812,7 @@ public final class IndicesRecord implements JsonpSerializable {
 	 * API name: {@code pri.query_cache.memory_size}
 	 */
 	@Nullable
-	public String priQueryCacheMemorySize() {
+	public final String priQueryCacheMemorySize() {
 		return this.priQueryCacheMemorySize;
 	}
 
@@ -821,7 +822,7 @@ public final class IndicesRecord implements JsonpSerializable {
 	 * API name: {@code query_cache.evictions}
 	 */
 	@Nullable
-	public String queryCacheEvictions() {
+	public final String queryCacheEvictions() {
 		return this.queryCacheEvictions;
 	}
 
@@ -831,7 +832,7 @@ public final class IndicesRecord implements JsonpSerializable {
 	 * API name: {@code pri.query_cache.evictions}
 	 */
 	@Nullable
-	public String priQueryCacheEvictions() {
+	public final String priQueryCacheEvictions() {
 		return this.priQueryCacheEvictions;
 	}
 
@@ -841,7 +842,7 @@ public final class IndicesRecord implements JsonpSerializable {
 	 * API name: {@code request_cache.memory_size}
 	 */
 	@Nullable
-	public String requestCacheMemorySize() {
+	public final String requestCacheMemorySize() {
 		return this.requestCacheMemorySize;
 	}
 
@@ -851,7 +852,7 @@ public final class IndicesRecord implements JsonpSerializable {
 	 * API name: {@code pri.request_cache.memory_size}
 	 */
 	@Nullable
-	public String priRequestCacheMemorySize() {
+	public final String priRequestCacheMemorySize() {
 		return this.priRequestCacheMemorySize;
 	}
 
@@ -861,7 +862,7 @@ public final class IndicesRecord implements JsonpSerializable {
 	 * API name: {@code request_cache.evictions}
 	 */
 	@Nullable
-	public String requestCacheEvictions() {
+	public final String requestCacheEvictions() {
 		return this.requestCacheEvictions;
 	}
 
@@ -871,7 +872,7 @@ public final class IndicesRecord implements JsonpSerializable {
 	 * API name: {@code pri.request_cache.evictions}
 	 */
 	@Nullable
-	public String priRequestCacheEvictions() {
+	public final String priRequestCacheEvictions() {
 		return this.priRequestCacheEvictions;
 	}
 
@@ -881,7 +882,7 @@ public final class IndicesRecord implements JsonpSerializable {
 	 * API name: {@code request_cache.hit_count}
 	 */
 	@Nullable
-	public String requestCacheHitCount() {
+	public final String requestCacheHitCount() {
 		return this.requestCacheHitCount;
 	}
 
@@ -891,7 +892,7 @@ public final class IndicesRecord implements JsonpSerializable {
 	 * API name: {@code pri.request_cache.hit_count}
 	 */
 	@Nullable
-	public String priRequestCacheHitCount() {
+	public final String priRequestCacheHitCount() {
 		return this.priRequestCacheHitCount;
 	}
 
@@ -901,7 +902,7 @@ public final class IndicesRecord implements JsonpSerializable {
 	 * API name: {@code request_cache.miss_count}
 	 */
 	@Nullable
-	public String requestCacheMissCount() {
+	public final String requestCacheMissCount() {
 		return this.requestCacheMissCount;
 	}
 
@@ -911,7 +912,7 @@ public final class IndicesRecord implements JsonpSerializable {
 	 * API name: {@code pri.request_cache.miss_count}
 	 */
 	@Nullable
-	public String priRequestCacheMissCount() {
+	public final String priRequestCacheMissCount() {
 		return this.priRequestCacheMissCount;
 	}
 
@@ -921,7 +922,7 @@ public final class IndicesRecord implements JsonpSerializable {
 	 * API name: {@code flush.total}
 	 */
 	@Nullable
-	public String flushTotal() {
+	public final String flushTotal() {
 		return this.flushTotal;
 	}
 
@@ -931,7 +932,7 @@ public final class IndicesRecord implements JsonpSerializable {
 	 * API name: {@code pri.flush.total}
 	 */
 	@Nullable
-	public String priFlushTotal() {
+	public final String priFlushTotal() {
 		return this.priFlushTotal;
 	}
 
@@ -941,7 +942,7 @@ public final class IndicesRecord implements JsonpSerializable {
 	 * API name: {@code flush.total_time}
 	 */
 	@Nullable
-	public String flushTotalTime() {
+	public final String flushTotalTime() {
 		return this.flushTotalTime;
 	}
 
@@ -951,7 +952,7 @@ public final class IndicesRecord implements JsonpSerializable {
 	 * API name: {@code pri.flush.total_time}
 	 */
 	@Nullable
-	public String priFlushTotalTime() {
+	public final String priFlushTotalTime() {
 		return this.priFlushTotalTime;
 	}
 
@@ -961,7 +962,7 @@ public final class IndicesRecord implements JsonpSerializable {
 	 * API name: {@code get.current}
 	 */
 	@Nullable
-	public String getCurrent() {
+	public final String getCurrent() {
 		return this.getCurrent;
 	}
 
@@ -971,7 +972,7 @@ public final class IndicesRecord implements JsonpSerializable {
 	 * API name: {@code pri.get.current}
 	 */
 	@Nullable
-	public String priGetCurrent() {
+	public final String priGetCurrent() {
 		return this.priGetCurrent;
 	}
 
@@ -981,7 +982,7 @@ public final class IndicesRecord implements JsonpSerializable {
 	 * API name: {@code get.time}
 	 */
 	@Nullable
-	public String getTime() {
+	public final String getTime() {
 		return this.getTime;
 	}
 
@@ -991,7 +992,7 @@ public final class IndicesRecord implements JsonpSerializable {
 	 * API name: {@code pri.get.time}
 	 */
 	@Nullable
-	public String priGetTime() {
+	public final String priGetTime() {
 		return this.priGetTime;
 	}
 
@@ -1001,7 +1002,7 @@ public final class IndicesRecord implements JsonpSerializable {
 	 * API name: {@code get.total}
 	 */
 	@Nullable
-	public String getTotal() {
+	public final String getTotal() {
 		return this.getTotal;
 	}
 
@@ -1011,7 +1012,7 @@ public final class IndicesRecord implements JsonpSerializable {
 	 * API name: {@code pri.get.total}
 	 */
 	@Nullable
-	public String priGetTotal() {
+	public final String priGetTotal() {
 		return this.priGetTotal;
 	}
 
@@ -1021,7 +1022,7 @@ public final class IndicesRecord implements JsonpSerializable {
 	 * API name: {@code get.exists_time}
 	 */
 	@Nullable
-	public String getExistsTime() {
+	public final String getExistsTime() {
 		return this.getExistsTime;
 	}
 
@@ -1031,7 +1032,7 @@ public final class IndicesRecord implements JsonpSerializable {
 	 * API name: {@code pri.get.exists_time}
 	 */
 	@Nullable
-	public String priGetExistsTime() {
+	public final String priGetExistsTime() {
 		return this.priGetExistsTime;
 	}
 
@@ -1041,7 +1042,7 @@ public final class IndicesRecord implements JsonpSerializable {
 	 * API name: {@code get.exists_total}
 	 */
 	@Nullable
-	public String getExistsTotal() {
+	public final String getExistsTotal() {
 		return this.getExistsTotal;
 	}
 
@@ -1051,7 +1052,7 @@ public final class IndicesRecord implements JsonpSerializable {
 	 * API name: {@code pri.get.exists_total}
 	 */
 	@Nullable
-	public String priGetExistsTotal() {
+	public final String priGetExistsTotal() {
 		return this.priGetExistsTotal;
 	}
 
@@ -1061,7 +1062,7 @@ public final class IndicesRecord implements JsonpSerializable {
 	 * API name: {@code get.missing_time}
 	 */
 	@Nullable
-	public String getMissingTime() {
+	public final String getMissingTime() {
 		return this.getMissingTime;
 	}
 
@@ -1071,7 +1072,7 @@ public final class IndicesRecord implements JsonpSerializable {
 	 * API name: {@code pri.get.missing_time}
 	 */
 	@Nullable
-	public String priGetMissingTime() {
+	public final String priGetMissingTime() {
 		return this.priGetMissingTime;
 	}
 
@@ -1081,7 +1082,7 @@ public final class IndicesRecord implements JsonpSerializable {
 	 * API name: {@code get.missing_total}
 	 */
 	@Nullable
-	public String getMissingTotal() {
+	public final String getMissingTotal() {
 		return this.getMissingTotal;
 	}
 
@@ -1091,7 +1092,7 @@ public final class IndicesRecord implements JsonpSerializable {
 	 * API name: {@code pri.get.missing_total}
 	 */
 	@Nullable
-	public String priGetMissingTotal() {
+	public final String priGetMissingTotal() {
 		return this.priGetMissingTotal;
 	}
 
@@ -1101,7 +1102,7 @@ public final class IndicesRecord implements JsonpSerializable {
 	 * API name: {@code indexing.delete_current}
 	 */
 	@Nullable
-	public String indexingDeleteCurrent() {
+	public final String indexingDeleteCurrent() {
 		return this.indexingDeleteCurrent;
 	}
 
@@ -1111,7 +1112,7 @@ public final class IndicesRecord implements JsonpSerializable {
 	 * API name: {@code pri.indexing.delete_current}
 	 */
 	@Nullable
-	public String priIndexingDeleteCurrent() {
+	public final String priIndexingDeleteCurrent() {
 		return this.priIndexingDeleteCurrent;
 	}
 
@@ -1121,7 +1122,7 @@ public final class IndicesRecord implements JsonpSerializable {
 	 * API name: {@code indexing.delete_time}
 	 */
 	@Nullable
-	public String indexingDeleteTime() {
+	public final String indexingDeleteTime() {
 		return this.indexingDeleteTime;
 	}
 
@@ -1131,7 +1132,7 @@ public final class IndicesRecord implements JsonpSerializable {
 	 * API name: {@code pri.indexing.delete_time}
 	 */
 	@Nullable
-	public String priIndexingDeleteTime() {
+	public final String priIndexingDeleteTime() {
 		return this.priIndexingDeleteTime;
 	}
 
@@ -1141,7 +1142,7 @@ public final class IndicesRecord implements JsonpSerializable {
 	 * API name: {@code indexing.delete_total}
 	 */
 	@Nullable
-	public String indexingDeleteTotal() {
+	public final String indexingDeleteTotal() {
 		return this.indexingDeleteTotal;
 	}
 
@@ -1151,7 +1152,7 @@ public final class IndicesRecord implements JsonpSerializable {
 	 * API name: {@code pri.indexing.delete_total}
 	 */
 	@Nullable
-	public String priIndexingDeleteTotal() {
+	public final String priIndexingDeleteTotal() {
 		return this.priIndexingDeleteTotal;
 	}
 
@@ -1161,7 +1162,7 @@ public final class IndicesRecord implements JsonpSerializable {
 	 * API name: {@code indexing.index_current}
 	 */
 	@Nullable
-	public String indexingIndexCurrent() {
+	public final String indexingIndexCurrent() {
 		return this.indexingIndexCurrent;
 	}
 
@@ -1171,7 +1172,7 @@ public final class IndicesRecord implements JsonpSerializable {
 	 * API name: {@code pri.indexing.index_current}
 	 */
 	@Nullable
-	public String priIndexingIndexCurrent() {
+	public final String priIndexingIndexCurrent() {
 		return this.priIndexingIndexCurrent;
 	}
 
@@ -1181,7 +1182,7 @@ public final class IndicesRecord implements JsonpSerializable {
 	 * API name: {@code indexing.index_time}
 	 */
 	@Nullable
-	public String indexingIndexTime() {
+	public final String indexingIndexTime() {
 		return this.indexingIndexTime;
 	}
 
@@ -1191,7 +1192,7 @@ public final class IndicesRecord implements JsonpSerializable {
 	 * API name: {@code pri.indexing.index_time}
 	 */
 	@Nullable
-	public String priIndexingIndexTime() {
+	public final String priIndexingIndexTime() {
 		return this.priIndexingIndexTime;
 	}
 
@@ -1201,7 +1202,7 @@ public final class IndicesRecord implements JsonpSerializable {
 	 * API name: {@code indexing.index_total}
 	 */
 	@Nullable
-	public String indexingIndexTotal() {
+	public final String indexingIndexTotal() {
 		return this.indexingIndexTotal;
 	}
 
@@ -1211,7 +1212,7 @@ public final class IndicesRecord implements JsonpSerializable {
 	 * API name: {@code pri.indexing.index_total}
 	 */
 	@Nullable
-	public String priIndexingIndexTotal() {
+	public final String priIndexingIndexTotal() {
 		return this.priIndexingIndexTotal;
 	}
 
@@ -1221,7 +1222,7 @@ public final class IndicesRecord implements JsonpSerializable {
 	 * API name: {@code indexing.index_failed}
 	 */
 	@Nullable
-	public String indexingIndexFailed() {
+	public final String indexingIndexFailed() {
 		return this.indexingIndexFailed;
 	}
 
@@ -1231,7 +1232,7 @@ public final class IndicesRecord implements JsonpSerializable {
 	 * API name: {@code pri.indexing.index_failed}
 	 */
 	@Nullable
-	public String priIndexingIndexFailed() {
+	public final String priIndexingIndexFailed() {
 		return this.priIndexingIndexFailed;
 	}
 
@@ -1241,7 +1242,7 @@ public final class IndicesRecord implements JsonpSerializable {
 	 * API name: {@code merges.current}
 	 */
 	@Nullable
-	public String mergesCurrent() {
+	public final String mergesCurrent() {
 		return this.mergesCurrent;
 	}
 
@@ -1251,7 +1252,7 @@ public final class IndicesRecord implements JsonpSerializable {
 	 * API name: {@code pri.merges.current}
 	 */
 	@Nullable
-	public String priMergesCurrent() {
+	public final String priMergesCurrent() {
 		return this.priMergesCurrent;
 	}
 
@@ -1261,7 +1262,7 @@ public final class IndicesRecord implements JsonpSerializable {
 	 * API name: {@code merges.current_docs}
 	 */
 	@Nullable
-	public String mergesCurrentDocs() {
+	public final String mergesCurrentDocs() {
 		return this.mergesCurrentDocs;
 	}
 
@@ -1271,7 +1272,7 @@ public final class IndicesRecord implements JsonpSerializable {
 	 * API name: {@code pri.merges.current_docs}
 	 */
 	@Nullable
-	public String priMergesCurrentDocs() {
+	public final String priMergesCurrentDocs() {
 		return this.priMergesCurrentDocs;
 	}
 
@@ -1281,7 +1282,7 @@ public final class IndicesRecord implements JsonpSerializable {
 	 * API name: {@code merges.current_size}
 	 */
 	@Nullable
-	public String mergesCurrentSize() {
+	public final String mergesCurrentSize() {
 		return this.mergesCurrentSize;
 	}
 
@@ -1291,7 +1292,7 @@ public final class IndicesRecord implements JsonpSerializable {
 	 * API name: {@code pri.merges.current_size}
 	 */
 	@Nullable
-	public String priMergesCurrentSize() {
+	public final String priMergesCurrentSize() {
 		return this.priMergesCurrentSize;
 	}
 
@@ -1301,7 +1302,7 @@ public final class IndicesRecord implements JsonpSerializable {
 	 * API name: {@code merges.total}
 	 */
 	@Nullable
-	public String mergesTotal() {
+	public final String mergesTotal() {
 		return this.mergesTotal;
 	}
 
@@ -1311,7 +1312,7 @@ public final class IndicesRecord implements JsonpSerializable {
 	 * API name: {@code pri.merges.total}
 	 */
 	@Nullable
-	public String priMergesTotal() {
+	public final String priMergesTotal() {
 		return this.priMergesTotal;
 	}
 
@@ -1321,7 +1322,7 @@ public final class IndicesRecord implements JsonpSerializable {
 	 * API name: {@code merges.total_docs}
 	 */
 	@Nullable
-	public String mergesTotalDocs() {
+	public final String mergesTotalDocs() {
 		return this.mergesTotalDocs;
 	}
 
@@ -1331,7 +1332,7 @@ public final class IndicesRecord implements JsonpSerializable {
 	 * API name: {@code pri.merges.total_docs}
 	 */
 	@Nullable
-	public String priMergesTotalDocs() {
+	public final String priMergesTotalDocs() {
 		return this.priMergesTotalDocs;
 	}
 
@@ -1341,7 +1342,7 @@ public final class IndicesRecord implements JsonpSerializable {
 	 * API name: {@code merges.total_size}
 	 */
 	@Nullable
-	public String mergesTotalSize() {
+	public final String mergesTotalSize() {
 		return this.mergesTotalSize;
 	}
 
@@ -1351,7 +1352,7 @@ public final class IndicesRecord implements JsonpSerializable {
 	 * API name: {@code pri.merges.total_size}
 	 */
 	@Nullable
-	public String priMergesTotalSize() {
+	public final String priMergesTotalSize() {
 		return this.priMergesTotalSize;
 	}
 
@@ -1361,7 +1362,7 @@ public final class IndicesRecord implements JsonpSerializable {
 	 * API name: {@code merges.total_time}
 	 */
 	@Nullable
-	public String mergesTotalTime() {
+	public final String mergesTotalTime() {
 		return this.mergesTotalTime;
 	}
 
@@ -1371,7 +1372,7 @@ public final class IndicesRecord implements JsonpSerializable {
 	 * API name: {@code pri.merges.total_time}
 	 */
 	@Nullable
-	public String priMergesTotalTime() {
+	public final String priMergesTotalTime() {
 		return this.priMergesTotalTime;
 	}
 
@@ -1381,7 +1382,7 @@ public final class IndicesRecord implements JsonpSerializable {
 	 * API name: {@code refresh.total}
 	 */
 	@Nullable
-	public String refreshTotal() {
+	public final String refreshTotal() {
 		return this.refreshTotal;
 	}
 
@@ -1391,7 +1392,7 @@ public final class IndicesRecord implements JsonpSerializable {
 	 * API name: {@code pri.refresh.total}
 	 */
 	@Nullable
-	public String priRefreshTotal() {
+	public final String priRefreshTotal() {
 		return this.priRefreshTotal;
 	}
 
@@ -1401,7 +1402,7 @@ public final class IndicesRecord implements JsonpSerializable {
 	 * API name: {@code refresh.time}
 	 */
 	@Nullable
-	public String refreshTime() {
+	public final String refreshTime() {
 		return this.refreshTime;
 	}
 
@@ -1411,7 +1412,7 @@ public final class IndicesRecord implements JsonpSerializable {
 	 * API name: {@code pri.refresh.time}
 	 */
 	@Nullable
-	public String priRefreshTime() {
+	public final String priRefreshTime() {
 		return this.priRefreshTime;
 	}
 
@@ -1421,7 +1422,7 @@ public final class IndicesRecord implements JsonpSerializable {
 	 * API name: {@code refresh.external_total}
 	 */
 	@Nullable
-	public String refreshExternalTotal() {
+	public final String refreshExternalTotal() {
 		return this.refreshExternalTotal;
 	}
 
@@ -1431,7 +1432,7 @@ public final class IndicesRecord implements JsonpSerializable {
 	 * API name: {@code pri.refresh.external_total}
 	 */
 	@Nullable
-	public String priRefreshExternalTotal() {
+	public final String priRefreshExternalTotal() {
 		return this.priRefreshExternalTotal;
 	}
 
@@ -1441,7 +1442,7 @@ public final class IndicesRecord implements JsonpSerializable {
 	 * API name: {@code refresh.external_time}
 	 */
 	@Nullable
-	public String refreshExternalTime() {
+	public final String refreshExternalTime() {
 		return this.refreshExternalTime;
 	}
 
@@ -1451,7 +1452,7 @@ public final class IndicesRecord implements JsonpSerializable {
 	 * API name: {@code pri.refresh.external_time}
 	 */
 	@Nullable
-	public String priRefreshExternalTime() {
+	public final String priRefreshExternalTime() {
 		return this.priRefreshExternalTime;
 	}
 
@@ -1461,7 +1462,7 @@ public final class IndicesRecord implements JsonpSerializable {
 	 * API name: {@code refresh.listeners}
 	 */
 	@Nullable
-	public String refreshListeners() {
+	public final String refreshListeners() {
 		return this.refreshListeners;
 	}
 
@@ -1471,7 +1472,7 @@ public final class IndicesRecord implements JsonpSerializable {
 	 * API name: {@code pri.refresh.listeners}
 	 */
 	@Nullable
-	public String priRefreshListeners() {
+	public final String priRefreshListeners() {
 		return this.priRefreshListeners;
 	}
 
@@ -1481,7 +1482,7 @@ public final class IndicesRecord implements JsonpSerializable {
 	 * API name: {@code search.fetch_current}
 	 */
 	@Nullable
-	public String searchFetchCurrent() {
+	public final String searchFetchCurrent() {
 		return this.searchFetchCurrent;
 	}
 
@@ -1491,7 +1492,7 @@ public final class IndicesRecord implements JsonpSerializable {
 	 * API name: {@code pri.search.fetch_current}
 	 */
 	@Nullable
-	public String priSearchFetchCurrent() {
+	public final String priSearchFetchCurrent() {
 		return this.priSearchFetchCurrent;
 	}
 
@@ -1501,7 +1502,7 @@ public final class IndicesRecord implements JsonpSerializable {
 	 * API name: {@code search.fetch_time}
 	 */
 	@Nullable
-	public String searchFetchTime() {
+	public final String searchFetchTime() {
 		return this.searchFetchTime;
 	}
 
@@ -1511,7 +1512,7 @@ public final class IndicesRecord implements JsonpSerializable {
 	 * API name: {@code pri.search.fetch_time}
 	 */
 	@Nullable
-	public String priSearchFetchTime() {
+	public final String priSearchFetchTime() {
 		return this.priSearchFetchTime;
 	}
 
@@ -1521,7 +1522,7 @@ public final class IndicesRecord implements JsonpSerializable {
 	 * API name: {@code search.fetch_total}
 	 */
 	@Nullable
-	public String searchFetchTotal() {
+	public final String searchFetchTotal() {
 		return this.searchFetchTotal;
 	}
 
@@ -1531,7 +1532,7 @@ public final class IndicesRecord implements JsonpSerializable {
 	 * API name: {@code pri.search.fetch_total}
 	 */
 	@Nullable
-	public String priSearchFetchTotal() {
+	public final String priSearchFetchTotal() {
 		return this.priSearchFetchTotal;
 	}
 
@@ -1541,7 +1542,7 @@ public final class IndicesRecord implements JsonpSerializable {
 	 * API name: {@code search.open_contexts}
 	 */
 	@Nullable
-	public String searchOpenContexts() {
+	public final String searchOpenContexts() {
 		return this.searchOpenContexts;
 	}
 
@@ -1551,7 +1552,7 @@ public final class IndicesRecord implements JsonpSerializable {
 	 * API name: {@code pri.search.open_contexts}
 	 */
 	@Nullable
-	public String priSearchOpenContexts() {
+	public final String priSearchOpenContexts() {
 		return this.priSearchOpenContexts;
 	}
 
@@ -1561,7 +1562,7 @@ public final class IndicesRecord implements JsonpSerializable {
 	 * API name: {@code search.query_current}
 	 */
 	@Nullable
-	public String searchQueryCurrent() {
+	public final String searchQueryCurrent() {
 		return this.searchQueryCurrent;
 	}
 
@@ -1571,7 +1572,7 @@ public final class IndicesRecord implements JsonpSerializable {
 	 * API name: {@code pri.search.query_current}
 	 */
 	@Nullable
-	public String priSearchQueryCurrent() {
+	public final String priSearchQueryCurrent() {
 		return this.priSearchQueryCurrent;
 	}
 
@@ -1581,7 +1582,7 @@ public final class IndicesRecord implements JsonpSerializable {
 	 * API name: {@code search.query_time}
 	 */
 	@Nullable
-	public String searchQueryTime() {
+	public final String searchQueryTime() {
 		return this.searchQueryTime;
 	}
 
@@ -1591,7 +1592,7 @@ public final class IndicesRecord implements JsonpSerializable {
 	 * API name: {@code pri.search.query_time}
 	 */
 	@Nullable
-	public String priSearchQueryTime() {
+	public final String priSearchQueryTime() {
 		return this.priSearchQueryTime;
 	}
 
@@ -1601,7 +1602,7 @@ public final class IndicesRecord implements JsonpSerializable {
 	 * API name: {@code search.query_total}
 	 */
 	@Nullable
-	public String searchQueryTotal() {
+	public final String searchQueryTotal() {
 		return this.searchQueryTotal;
 	}
 
@@ -1611,7 +1612,7 @@ public final class IndicesRecord implements JsonpSerializable {
 	 * API name: {@code pri.search.query_total}
 	 */
 	@Nullable
-	public String priSearchQueryTotal() {
+	public final String priSearchQueryTotal() {
 		return this.priSearchQueryTotal;
 	}
 
@@ -1621,7 +1622,7 @@ public final class IndicesRecord implements JsonpSerializable {
 	 * API name: {@code search.scroll_current}
 	 */
 	@Nullable
-	public String searchScrollCurrent() {
+	public final String searchScrollCurrent() {
 		return this.searchScrollCurrent;
 	}
 
@@ -1631,7 +1632,7 @@ public final class IndicesRecord implements JsonpSerializable {
 	 * API name: {@code pri.search.scroll_current}
 	 */
 	@Nullable
-	public String priSearchScrollCurrent() {
+	public final String priSearchScrollCurrent() {
 		return this.priSearchScrollCurrent;
 	}
 
@@ -1641,7 +1642,7 @@ public final class IndicesRecord implements JsonpSerializable {
 	 * API name: {@code search.scroll_time}
 	 */
 	@Nullable
-	public String searchScrollTime() {
+	public final String searchScrollTime() {
 		return this.searchScrollTime;
 	}
 
@@ -1651,7 +1652,7 @@ public final class IndicesRecord implements JsonpSerializable {
 	 * API name: {@code pri.search.scroll_time}
 	 */
 	@Nullable
-	public String priSearchScrollTime() {
+	public final String priSearchScrollTime() {
 		return this.priSearchScrollTime;
 	}
 
@@ -1661,7 +1662,7 @@ public final class IndicesRecord implements JsonpSerializable {
 	 * API name: {@code search.scroll_total}
 	 */
 	@Nullable
-	public String searchScrollTotal() {
+	public final String searchScrollTotal() {
 		return this.searchScrollTotal;
 	}
 
@@ -1671,7 +1672,7 @@ public final class IndicesRecord implements JsonpSerializable {
 	 * API name: {@code pri.search.scroll_total}
 	 */
 	@Nullable
-	public String priSearchScrollTotal() {
+	public final String priSearchScrollTotal() {
 		return this.priSearchScrollTotal;
 	}
 
@@ -1681,7 +1682,7 @@ public final class IndicesRecord implements JsonpSerializable {
 	 * API name: {@code segments.count}
 	 */
 	@Nullable
-	public String segmentsCount() {
+	public final String segmentsCount() {
 		return this.segmentsCount;
 	}
 
@@ -1691,7 +1692,7 @@ public final class IndicesRecord implements JsonpSerializable {
 	 * API name: {@code pri.segments.count}
 	 */
 	@Nullable
-	public String priSegmentsCount() {
+	public final String priSegmentsCount() {
 		return this.priSegmentsCount;
 	}
 
@@ -1701,7 +1702,7 @@ public final class IndicesRecord implements JsonpSerializable {
 	 * API name: {@code segments.memory}
 	 */
 	@Nullable
-	public String segmentsMemory() {
+	public final String segmentsMemory() {
 		return this.segmentsMemory;
 	}
 
@@ -1711,7 +1712,7 @@ public final class IndicesRecord implements JsonpSerializable {
 	 * API name: {@code pri.segments.memory}
 	 */
 	@Nullable
-	public String priSegmentsMemory() {
+	public final String priSegmentsMemory() {
 		return this.priSegmentsMemory;
 	}
 
@@ -1721,7 +1722,7 @@ public final class IndicesRecord implements JsonpSerializable {
 	 * API name: {@code segments.index_writer_memory}
 	 */
 	@Nullable
-	public String segmentsIndexWriterMemory() {
+	public final String segmentsIndexWriterMemory() {
 		return this.segmentsIndexWriterMemory;
 	}
 
@@ -1731,7 +1732,7 @@ public final class IndicesRecord implements JsonpSerializable {
 	 * API name: {@code pri.segments.index_writer_memory}
 	 */
 	@Nullable
-	public String priSegmentsIndexWriterMemory() {
+	public final String priSegmentsIndexWriterMemory() {
 		return this.priSegmentsIndexWriterMemory;
 	}
 
@@ -1741,7 +1742,7 @@ public final class IndicesRecord implements JsonpSerializable {
 	 * API name: {@code segments.version_map_memory}
 	 */
 	@Nullable
-	public String segmentsVersionMapMemory() {
+	public final String segmentsVersionMapMemory() {
 		return this.segmentsVersionMapMemory;
 	}
 
@@ -1751,7 +1752,7 @@ public final class IndicesRecord implements JsonpSerializable {
 	 * API name: {@code pri.segments.version_map_memory}
 	 */
 	@Nullable
-	public String priSegmentsVersionMapMemory() {
+	public final String priSegmentsVersionMapMemory() {
 		return this.priSegmentsVersionMapMemory;
 	}
 
@@ -1762,7 +1763,7 @@ public final class IndicesRecord implements JsonpSerializable {
 	 * API name: {@code segments.fixed_bitset_memory}
 	 */
 	@Nullable
-	public String segmentsFixedBitsetMemory() {
+	public final String segmentsFixedBitsetMemory() {
 		return this.segmentsFixedBitsetMemory;
 	}
 
@@ -1773,7 +1774,7 @@ public final class IndicesRecord implements JsonpSerializable {
 	 * API name: {@code pri.segments.fixed_bitset_memory}
 	 */
 	@Nullable
-	public String priSegmentsFixedBitsetMemory() {
+	public final String priSegmentsFixedBitsetMemory() {
 		return this.priSegmentsFixedBitsetMemory;
 	}
 
@@ -1783,7 +1784,7 @@ public final class IndicesRecord implements JsonpSerializable {
 	 * API name: {@code warmer.current}
 	 */
 	@Nullable
-	public String warmerCurrent() {
+	public final String warmerCurrent() {
 		return this.warmerCurrent;
 	}
 
@@ -1793,7 +1794,7 @@ public final class IndicesRecord implements JsonpSerializable {
 	 * API name: {@code pri.warmer.current}
 	 */
 	@Nullable
-	public String priWarmerCurrent() {
+	public final String priWarmerCurrent() {
 		return this.priWarmerCurrent;
 	}
 
@@ -1803,7 +1804,7 @@ public final class IndicesRecord implements JsonpSerializable {
 	 * API name: {@code warmer.total}
 	 */
 	@Nullable
-	public String warmerTotal() {
+	public final String warmerTotal() {
 		return this.warmerTotal;
 	}
 
@@ -1813,7 +1814,7 @@ public final class IndicesRecord implements JsonpSerializable {
 	 * API name: {@code pri.warmer.total}
 	 */
 	@Nullable
-	public String priWarmerTotal() {
+	public final String priWarmerTotal() {
 		return this.priWarmerTotal;
 	}
 
@@ -1823,7 +1824,7 @@ public final class IndicesRecord implements JsonpSerializable {
 	 * API name: {@code warmer.total_time}
 	 */
 	@Nullable
-	public String warmerTotalTime() {
+	public final String warmerTotalTime() {
 		return this.warmerTotalTime;
 	}
 
@@ -1833,7 +1834,7 @@ public final class IndicesRecord implements JsonpSerializable {
 	 * API name: {@code pri.warmer.total_time}
 	 */
 	@Nullable
-	public String priWarmerTotalTime() {
+	public final String priWarmerTotalTime() {
 		return this.priWarmerTotalTime;
 	}
 
@@ -1843,7 +1844,7 @@ public final class IndicesRecord implements JsonpSerializable {
 	 * API name: {@code suggest.current}
 	 */
 	@Nullable
-	public String suggestCurrent() {
+	public final String suggestCurrent() {
 		return this.suggestCurrent;
 	}
 
@@ -1853,7 +1854,7 @@ public final class IndicesRecord implements JsonpSerializable {
 	 * API name: {@code pri.suggest.current}
 	 */
 	@Nullable
-	public String priSuggestCurrent() {
+	public final String priSuggestCurrent() {
 		return this.priSuggestCurrent;
 	}
 
@@ -1863,7 +1864,7 @@ public final class IndicesRecord implements JsonpSerializable {
 	 * API name: {@code suggest.time}
 	 */
 	@Nullable
-	public String suggestTime() {
+	public final String suggestTime() {
 		return this.suggestTime;
 	}
 
@@ -1873,7 +1874,7 @@ public final class IndicesRecord implements JsonpSerializable {
 	 * API name: {@code pri.suggest.time}
 	 */
 	@Nullable
-	public String priSuggestTime() {
+	public final String priSuggestTime() {
 		return this.priSuggestTime;
 	}
 
@@ -1883,7 +1884,7 @@ public final class IndicesRecord implements JsonpSerializable {
 	 * API name: {@code suggest.total}
 	 */
 	@Nullable
-	public String suggestTotal() {
+	public final String suggestTotal() {
 		return this.suggestTotal;
 	}
 
@@ -1893,7 +1894,7 @@ public final class IndicesRecord implements JsonpSerializable {
 	 * API name: {@code pri.suggest.total}
 	 */
 	@Nullable
-	public String priSuggestTotal() {
+	public final String priSuggestTotal() {
 		return this.priSuggestTotal;
 	}
 
@@ -1903,7 +1904,7 @@ public final class IndicesRecord implements JsonpSerializable {
 	 * API name: {@code memory.total}
 	 */
 	@Nullable
-	public String memoryTotal() {
+	public final String memoryTotal() {
 		return this.memoryTotal;
 	}
 
@@ -1913,7 +1914,7 @@ public final class IndicesRecord implements JsonpSerializable {
 	 * API name: {@code pri.memory.total}
 	 */
 	@Nullable
-	public String priMemoryTotal() {
+	public final String priMemoryTotal() {
 		return this.priMemoryTotal;
 	}
 
@@ -1923,7 +1924,7 @@ public final class IndicesRecord implements JsonpSerializable {
 	 * API name: {@code search.throttled}
 	 */
 	@Nullable
-	public String searchThrottled() {
+	public final String searchThrottled() {
 		return this.searchThrottled;
 	}
 
@@ -1933,7 +1934,7 @@ public final class IndicesRecord implements JsonpSerializable {
 	 * API name: {@code bulk.total_operations}
 	 */
 	@Nullable
-	public String bulkTotalOperations() {
+	public final String bulkTotalOperations() {
 		return this.bulkTotalOperations;
 	}
 
@@ -1943,7 +1944,7 @@ public final class IndicesRecord implements JsonpSerializable {
 	 * API name: {@code pri.bulk.total_operations}
 	 */
 	@Nullable
-	public String priBulkTotalOperations() {
+	public final String priBulkTotalOperations() {
 		return this.priBulkTotalOperations;
 	}
 
@@ -1953,7 +1954,7 @@ public final class IndicesRecord implements JsonpSerializable {
 	 * API name: {@code bulk.total_time}
 	 */
 	@Nullable
-	public String bulkTotalTime() {
+	public final String bulkTotalTime() {
 		return this.bulkTotalTime;
 	}
 
@@ -1963,7 +1964,7 @@ public final class IndicesRecord implements JsonpSerializable {
 	 * API name: {@code pri.bulk.total_time}
 	 */
 	@Nullable
-	public String priBulkTotalTime() {
+	public final String priBulkTotalTime() {
 		return this.priBulkTotalTime;
 	}
 
@@ -1973,7 +1974,7 @@ public final class IndicesRecord implements JsonpSerializable {
 	 * API name: {@code bulk.total_size_in_bytes}
 	 */
 	@Nullable
-	public String bulkTotalSizeInBytes() {
+	public final String bulkTotalSizeInBytes() {
 		return this.bulkTotalSizeInBytes;
 	}
 
@@ -1983,7 +1984,7 @@ public final class IndicesRecord implements JsonpSerializable {
 	 * API name: {@code pri.bulk.total_size_in_bytes}
 	 */
 	@Nullable
-	public String priBulkTotalSizeInBytes() {
+	public final String priBulkTotalSizeInBytes() {
 		return this.priBulkTotalSizeInBytes;
 	}
 
@@ -1993,7 +1994,7 @@ public final class IndicesRecord implements JsonpSerializable {
 	 * API name: {@code bulk.avg_time}
 	 */
 	@Nullable
-	public String bulkAvgTime() {
+	public final String bulkAvgTime() {
 		return this.bulkAvgTime;
 	}
 
@@ -2003,7 +2004,7 @@ public final class IndicesRecord implements JsonpSerializable {
 	 * API name: {@code pri.bulk.avg_time}
 	 */
 	@Nullable
-	public String priBulkAvgTime() {
+	public final String priBulkAvgTime() {
 		return this.priBulkAvgTime;
 	}
 
@@ -2013,7 +2014,7 @@ public final class IndicesRecord implements JsonpSerializable {
 	 * API name: {@code bulk.avg_size_in_bytes}
 	 */
 	@Nullable
-	public String bulkAvgSizeInBytes() {
+	public final String bulkAvgSizeInBytes() {
 		return this.bulkAvgSizeInBytes;
 	}
 
@@ -2023,7 +2024,7 @@ public final class IndicesRecord implements JsonpSerializable {
 	 * API name: {@code pri.bulk.avg_size_in_bytes}
 	 */
 	@Nullable
-	public String priBulkAvgSizeInBytes() {
+	public final String priBulkAvgSizeInBytes() {
 		return this.priBulkAvgSizeInBytes;
 	}
 
@@ -2039,847 +2040,706 @@ public final class IndicesRecord implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.health != null) {
-
 			generator.writeKey("health");
 			generator.write(this.health);
 
 		}
 		if (this.status != null) {
-
 			generator.writeKey("status");
 			generator.write(this.status);
 
 		}
 		if (this.index != null) {
-
 			generator.writeKey("index");
 			generator.write(this.index);
 
 		}
 		if (this.uuid != null) {
-
 			generator.writeKey("uuid");
 			generator.write(this.uuid);
 
 		}
 		if (this.pri != null) {
-
 			generator.writeKey("pri");
 			generator.write(this.pri);
 
 		}
 		if (this.rep != null) {
-
 			generator.writeKey("rep");
 			generator.write(this.rep);
 
 		}
 		if (this.docsCount != null) {
-
 			generator.writeKey("docs.count");
 			generator.write(this.docsCount);
 
 		}
 		if (this.docsDeleted != null) {
-
 			generator.writeKey("docs.deleted");
 			generator.write(this.docsDeleted);
 
 		}
 		if (this.creationDate != null) {
-
 			generator.writeKey("creation.date");
 			generator.write(this.creationDate);
 
 		}
 		if (this.creationDateString != null) {
-
 			generator.writeKey("creation.date.string");
 			generator.write(this.creationDateString);
 
 		}
 		if (this.storeSize != null) {
-
 			generator.writeKey("store.size");
 			generator.write(this.storeSize);
 
 		}
 		if (this.priStoreSize != null) {
-
 			generator.writeKey("pri.store.size");
 			generator.write(this.priStoreSize);
 
 		}
 		if (this.completionSize != null) {
-
 			generator.writeKey("completion.size");
 			generator.write(this.completionSize);
 
 		}
 		if (this.priCompletionSize != null) {
-
 			generator.writeKey("pri.completion.size");
 			generator.write(this.priCompletionSize);
 
 		}
 		if (this.fielddataMemorySize != null) {
-
 			generator.writeKey("fielddata.memory_size");
 			generator.write(this.fielddataMemorySize);
 
 		}
 		if (this.priFielddataMemorySize != null) {
-
 			generator.writeKey("pri.fielddata.memory_size");
 			generator.write(this.priFielddataMemorySize);
 
 		}
 		if (this.fielddataEvictions != null) {
-
 			generator.writeKey("fielddata.evictions");
 			generator.write(this.fielddataEvictions);
 
 		}
 		if (this.priFielddataEvictions != null) {
-
 			generator.writeKey("pri.fielddata.evictions");
 			generator.write(this.priFielddataEvictions);
 
 		}
 		if (this.queryCacheMemorySize != null) {
-
 			generator.writeKey("query_cache.memory_size");
 			generator.write(this.queryCacheMemorySize);
 
 		}
 		if (this.priQueryCacheMemorySize != null) {
-
 			generator.writeKey("pri.query_cache.memory_size");
 			generator.write(this.priQueryCacheMemorySize);
 
 		}
 		if (this.queryCacheEvictions != null) {
-
 			generator.writeKey("query_cache.evictions");
 			generator.write(this.queryCacheEvictions);
 
 		}
 		if (this.priQueryCacheEvictions != null) {
-
 			generator.writeKey("pri.query_cache.evictions");
 			generator.write(this.priQueryCacheEvictions);
 
 		}
 		if (this.requestCacheMemorySize != null) {
-
 			generator.writeKey("request_cache.memory_size");
 			generator.write(this.requestCacheMemorySize);
 
 		}
 		if (this.priRequestCacheMemorySize != null) {
-
 			generator.writeKey("pri.request_cache.memory_size");
 			generator.write(this.priRequestCacheMemorySize);
 
 		}
 		if (this.requestCacheEvictions != null) {
-
 			generator.writeKey("request_cache.evictions");
 			generator.write(this.requestCacheEvictions);
 
 		}
 		if (this.priRequestCacheEvictions != null) {
-
 			generator.writeKey("pri.request_cache.evictions");
 			generator.write(this.priRequestCacheEvictions);
 
 		}
 		if (this.requestCacheHitCount != null) {
-
 			generator.writeKey("request_cache.hit_count");
 			generator.write(this.requestCacheHitCount);
 
 		}
 		if (this.priRequestCacheHitCount != null) {
-
 			generator.writeKey("pri.request_cache.hit_count");
 			generator.write(this.priRequestCacheHitCount);
 
 		}
 		if (this.requestCacheMissCount != null) {
-
 			generator.writeKey("request_cache.miss_count");
 			generator.write(this.requestCacheMissCount);
 
 		}
 		if (this.priRequestCacheMissCount != null) {
-
 			generator.writeKey("pri.request_cache.miss_count");
 			generator.write(this.priRequestCacheMissCount);
 
 		}
 		if (this.flushTotal != null) {
-
 			generator.writeKey("flush.total");
 			generator.write(this.flushTotal);
 
 		}
 		if (this.priFlushTotal != null) {
-
 			generator.writeKey("pri.flush.total");
 			generator.write(this.priFlushTotal);
 
 		}
 		if (this.flushTotalTime != null) {
-
 			generator.writeKey("flush.total_time");
 			generator.write(this.flushTotalTime);
 
 		}
 		if (this.priFlushTotalTime != null) {
-
 			generator.writeKey("pri.flush.total_time");
 			generator.write(this.priFlushTotalTime);
 
 		}
 		if (this.getCurrent != null) {
-
 			generator.writeKey("get.current");
 			generator.write(this.getCurrent);
 
 		}
 		if (this.priGetCurrent != null) {
-
 			generator.writeKey("pri.get.current");
 			generator.write(this.priGetCurrent);
 
 		}
 		if (this.getTime != null) {
-
 			generator.writeKey("get.time");
 			generator.write(this.getTime);
 
 		}
 		if (this.priGetTime != null) {
-
 			generator.writeKey("pri.get.time");
 			generator.write(this.priGetTime);
 
 		}
 		if (this.getTotal != null) {
-
 			generator.writeKey("get.total");
 			generator.write(this.getTotal);
 
 		}
 		if (this.priGetTotal != null) {
-
 			generator.writeKey("pri.get.total");
 			generator.write(this.priGetTotal);
 
 		}
 		if (this.getExistsTime != null) {
-
 			generator.writeKey("get.exists_time");
 			generator.write(this.getExistsTime);
 
 		}
 		if (this.priGetExistsTime != null) {
-
 			generator.writeKey("pri.get.exists_time");
 			generator.write(this.priGetExistsTime);
 
 		}
 		if (this.getExistsTotal != null) {
-
 			generator.writeKey("get.exists_total");
 			generator.write(this.getExistsTotal);
 
 		}
 		if (this.priGetExistsTotal != null) {
-
 			generator.writeKey("pri.get.exists_total");
 			generator.write(this.priGetExistsTotal);
 
 		}
 		if (this.getMissingTime != null) {
-
 			generator.writeKey("get.missing_time");
 			generator.write(this.getMissingTime);
 
 		}
 		if (this.priGetMissingTime != null) {
-
 			generator.writeKey("pri.get.missing_time");
 			generator.write(this.priGetMissingTime);
 
 		}
 		if (this.getMissingTotal != null) {
-
 			generator.writeKey("get.missing_total");
 			generator.write(this.getMissingTotal);
 
 		}
 		if (this.priGetMissingTotal != null) {
-
 			generator.writeKey("pri.get.missing_total");
 			generator.write(this.priGetMissingTotal);
 
 		}
 		if (this.indexingDeleteCurrent != null) {
-
 			generator.writeKey("indexing.delete_current");
 			generator.write(this.indexingDeleteCurrent);
 
 		}
 		if (this.priIndexingDeleteCurrent != null) {
-
 			generator.writeKey("pri.indexing.delete_current");
 			generator.write(this.priIndexingDeleteCurrent);
 
 		}
 		if (this.indexingDeleteTime != null) {
-
 			generator.writeKey("indexing.delete_time");
 			generator.write(this.indexingDeleteTime);
 
 		}
 		if (this.priIndexingDeleteTime != null) {
-
 			generator.writeKey("pri.indexing.delete_time");
 			generator.write(this.priIndexingDeleteTime);
 
 		}
 		if (this.indexingDeleteTotal != null) {
-
 			generator.writeKey("indexing.delete_total");
 			generator.write(this.indexingDeleteTotal);
 
 		}
 		if (this.priIndexingDeleteTotal != null) {
-
 			generator.writeKey("pri.indexing.delete_total");
 			generator.write(this.priIndexingDeleteTotal);
 
 		}
 		if (this.indexingIndexCurrent != null) {
-
 			generator.writeKey("indexing.index_current");
 			generator.write(this.indexingIndexCurrent);
 
 		}
 		if (this.priIndexingIndexCurrent != null) {
-
 			generator.writeKey("pri.indexing.index_current");
 			generator.write(this.priIndexingIndexCurrent);
 
 		}
 		if (this.indexingIndexTime != null) {
-
 			generator.writeKey("indexing.index_time");
 			generator.write(this.indexingIndexTime);
 
 		}
 		if (this.priIndexingIndexTime != null) {
-
 			generator.writeKey("pri.indexing.index_time");
 			generator.write(this.priIndexingIndexTime);
 
 		}
 		if (this.indexingIndexTotal != null) {
-
 			generator.writeKey("indexing.index_total");
 			generator.write(this.indexingIndexTotal);
 
 		}
 		if (this.priIndexingIndexTotal != null) {
-
 			generator.writeKey("pri.indexing.index_total");
 			generator.write(this.priIndexingIndexTotal);
 
 		}
 		if (this.indexingIndexFailed != null) {
-
 			generator.writeKey("indexing.index_failed");
 			generator.write(this.indexingIndexFailed);
 
 		}
 		if (this.priIndexingIndexFailed != null) {
-
 			generator.writeKey("pri.indexing.index_failed");
 			generator.write(this.priIndexingIndexFailed);
 
 		}
 		if (this.mergesCurrent != null) {
-
 			generator.writeKey("merges.current");
 			generator.write(this.mergesCurrent);
 
 		}
 		if (this.priMergesCurrent != null) {
-
 			generator.writeKey("pri.merges.current");
 			generator.write(this.priMergesCurrent);
 
 		}
 		if (this.mergesCurrentDocs != null) {
-
 			generator.writeKey("merges.current_docs");
 			generator.write(this.mergesCurrentDocs);
 
 		}
 		if (this.priMergesCurrentDocs != null) {
-
 			generator.writeKey("pri.merges.current_docs");
 			generator.write(this.priMergesCurrentDocs);
 
 		}
 		if (this.mergesCurrentSize != null) {
-
 			generator.writeKey("merges.current_size");
 			generator.write(this.mergesCurrentSize);
 
 		}
 		if (this.priMergesCurrentSize != null) {
-
 			generator.writeKey("pri.merges.current_size");
 			generator.write(this.priMergesCurrentSize);
 
 		}
 		if (this.mergesTotal != null) {
-
 			generator.writeKey("merges.total");
 			generator.write(this.mergesTotal);
 
 		}
 		if (this.priMergesTotal != null) {
-
 			generator.writeKey("pri.merges.total");
 			generator.write(this.priMergesTotal);
 
 		}
 		if (this.mergesTotalDocs != null) {
-
 			generator.writeKey("merges.total_docs");
 			generator.write(this.mergesTotalDocs);
 
 		}
 		if (this.priMergesTotalDocs != null) {
-
 			generator.writeKey("pri.merges.total_docs");
 			generator.write(this.priMergesTotalDocs);
 
 		}
 		if (this.mergesTotalSize != null) {
-
 			generator.writeKey("merges.total_size");
 			generator.write(this.mergesTotalSize);
 
 		}
 		if (this.priMergesTotalSize != null) {
-
 			generator.writeKey("pri.merges.total_size");
 			generator.write(this.priMergesTotalSize);
 
 		}
 		if (this.mergesTotalTime != null) {
-
 			generator.writeKey("merges.total_time");
 			generator.write(this.mergesTotalTime);
 
 		}
 		if (this.priMergesTotalTime != null) {
-
 			generator.writeKey("pri.merges.total_time");
 			generator.write(this.priMergesTotalTime);
 
 		}
 		if (this.refreshTotal != null) {
-
 			generator.writeKey("refresh.total");
 			generator.write(this.refreshTotal);
 
 		}
 		if (this.priRefreshTotal != null) {
-
 			generator.writeKey("pri.refresh.total");
 			generator.write(this.priRefreshTotal);
 
 		}
 		if (this.refreshTime != null) {
-
 			generator.writeKey("refresh.time");
 			generator.write(this.refreshTime);
 
 		}
 		if (this.priRefreshTime != null) {
-
 			generator.writeKey("pri.refresh.time");
 			generator.write(this.priRefreshTime);
 
 		}
 		if (this.refreshExternalTotal != null) {
-
 			generator.writeKey("refresh.external_total");
 			generator.write(this.refreshExternalTotal);
 
 		}
 		if (this.priRefreshExternalTotal != null) {
-
 			generator.writeKey("pri.refresh.external_total");
 			generator.write(this.priRefreshExternalTotal);
 
 		}
 		if (this.refreshExternalTime != null) {
-
 			generator.writeKey("refresh.external_time");
 			generator.write(this.refreshExternalTime);
 
 		}
 		if (this.priRefreshExternalTime != null) {
-
 			generator.writeKey("pri.refresh.external_time");
 			generator.write(this.priRefreshExternalTime);
 
 		}
 		if (this.refreshListeners != null) {
-
 			generator.writeKey("refresh.listeners");
 			generator.write(this.refreshListeners);
 
 		}
 		if (this.priRefreshListeners != null) {
-
 			generator.writeKey("pri.refresh.listeners");
 			generator.write(this.priRefreshListeners);
 
 		}
 		if (this.searchFetchCurrent != null) {
-
 			generator.writeKey("search.fetch_current");
 			generator.write(this.searchFetchCurrent);
 
 		}
 		if (this.priSearchFetchCurrent != null) {
-
 			generator.writeKey("pri.search.fetch_current");
 			generator.write(this.priSearchFetchCurrent);
 
 		}
 		if (this.searchFetchTime != null) {
-
 			generator.writeKey("search.fetch_time");
 			generator.write(this.searchFetchTime);
 
 		}
 		if (this.priSearchFetchTime != null) {
-
 			generator.writeKey("pri.search.fetch_time");
 			generator.write(this.priSearchFetchTime);
 
 		}
 		if (this.searchFetchTotal != null) {
-
 			generator.writeKey("search.fetch_total");
 			generator.write(this.searchFetchTotal);
 
 		}
 		if (this.priSearchFetchTotal != null) {
-
 			generator.writeKey("pri.search.fetch_total");
 			generator.write(this.priSearchFetchTotal);
 
 		}
 		if (this.searchOpenContexts != null) {
-
 			generator.writeKey("search.open_contexts");
 			generator.write(this.searchOpenContexts);
 
 		}
 		if (this.priSearchOpenContexts != null) {
-
 			generator.writeKey("pri.search.open_contexts");
 			generator.write(this.priSearchOpenContexts);
 
 		}
 		if (this.searchQueryCurrent != null) {
-
 			generator.writeKey("search.query_current");
 			generator.write(this.searchQueryCurrent);
 
 		}
 		if (this.priSearchQueryCurrent != null) {
-
 			generator.writeKey("pri.search.query_current");
 			generator.write(this.priSearchQueryCurrent);
 
 		}
 		if (this.searchQueryTime != null) {
-
 			generator.writeKey("search.query_time");
 			generator.write(this.searchQueryTime);
 
 		}
 		if (this.priSearchQueryTime != null) {
-
 			generator.writeKey("pri.search.query_time");
 			generator.write(this.priSearchQueryTime);
 
 		}
 		if (this.searchQueryTotal != null) {
-
 			generator.writeKey("search.query_total");
 			generator.write(this.searchQueryTotal);
 
 		}
 		if (this.priSearchQueryTotal != null) {
-
 			generator.writeKey("pri.search.query_total");
 			generator.write(this.priSearchQueryTotal);
 
 		}
 		if (this.searchScrollCurrent != null) {
-
 			generator.writeKey("search.scroll_current");
 			generator.write(this.searchScrollCurrent);
 
 		}
 		if (this.priSearchScrollCurrent != null) {
-
 			generator.writeKey("pri.search.scroll_current");
 			generator.write(this.priSearchScrollCurrent);
 
 		}
 		if (this.searchScrollTime != null) {
-
 			generator.writeKey("search.scroll_time");
 			generator.write(this.searchScrollTime);
 
 		}
 		if (this.priSearchScrollTime != null) {
-
 			generator.writeKey("pri.search.scroll_time");
 			generator.write(this.priSearchScrollTime);
 
 		}
 		if (this.searchScrollTotal != null) {
-
 			generator.writeKey("search.scroll_total");
 			generator.write(this.searchScrollTotal);
 
 		}
 		if (this.priSearchScrollTotal != null) {
-
 			generator.writeKey("pri.search.scroll_total");
 			generator.write(this.priSearchScrollTotal);
 
 		}
 		if (this.segmentsCount != null) {
-
 			generator.writeKey("segments.count");
 			generator.write(this.segmentsCount);
 
 		}
 		if (this.priSegmentsCount != null) {
-
 			generator.writeKey("pri.segments.count");
 			generator.write(this.priSegmentsCount);
 
 		}
 		if (this.segmentsMemory != null) {
-
 			generator.writeKey("segments.memory");
 			generator.write(this.segmentsMemory);
 
 		}
 		if (this.priSegmentsMemory != null) {
-
 			generator.writeKey("pri.segments.memory");
 			generator.write(this.priSegmentsMemory);
 
 		}
 		if (this.segmentsIndexWriterMemory != null) {
-
 			generator.writeKey("segments.index_writer_memory");
 			generator.write(this.segmentsIndexWriterMemory);
 
 		}
 		if (this.priSegmentsIndexWriterMemory != null) {
-
 			generator.writeKey("pri.segments.index_writer_memory");
 			generator.write(this.priSegmentsIndexWriterMemory);
 
 		}
 		if (this.segmentsVersionMapMemory != null) {
-
 			generator.writeKey("segments.version_map_memory");
 			generator.write(this.segmentsVersionMapMemory);
 
 		}
 		if (this.priSegmentsVersionMapMemory != null) {
-
 			generator.writeKey("pri.segments.version_map_memory");
 			generator.write(this.priSegmentsVersionMapMemory);
 
 		}
 		if (this.segmentsFixedBitsetMemory != null) {
-
 			generator.writeKey("segments.fixed_bitset_memory");
 			generator.write(this.segmentsFixedBitsetMemory);
 
 		}
 		if (this.priSegmentsFixedBitsetMemory != null) {
-
 			generator.writeKey("pri.segments.fixed_bitset_memory");
 			generator.write(this.priSegmentsFixedBitsetMemory);
 
 		}
 		if (this.warmerCurrent != null) {
-
 			generator.writeKey("warmer.current");
 			generator.write(this.warmerCurrent);
 
 		}
 		if (this.priWarmerCurrent != null) {
-
 			generator.writeKey("pri.warmer.current");
 			generator.write(this.priWarmerCurrent);
 
 		}
 		if (this.warmerTotal != null) {
-
 			generator.writeKey("warmer.total");
 			generator.write(this.warmerTotal);
 
 		}
 		if (this.priWarmerTotal != null) {
-
 			generator.writeKey("pri.warmer.total");
 			generator.write(this.priWarmerTotal);
 
 		}
 		if (this.warmerTotalTime != null) {
-
 			generator.writeKey("warmer.total_time");
 			generator.write(this.warmerTotalTime);
 
 		}
 		if (this.priWarmerTotalTime != null) {
-
 			generator.writeKey("pri.warmer.total_time");
 			generator.write(this.priWarmerTotalTime);
 
 		}
 		if (this.suggestCurrent != null) {
-
 			generator.writeKey("suggest.current");
 			generator.write(this.suggestCurrent);
 
 		}
 		if (this.priSuggestCurrent != null) {
-
 			generator.writeKey("pri.suggest.current");
 			generator.write(this.priSuggestCurrent);
 
 		}
 		if (this.suggestTime != null) {
-
 			generator.writeKey("suggest.time");
 			generator.write(this.suggestTime);
 
 		}
 		if (this.priSuggestTime != null) {
-
 			generator.writeKey("pri.suggest.time");
 			generator.write(this.priSuggestTime);
 
 		}
 		if (this.suggestTotal != null) {
-
 			generator.writeKey("suggest.total");
 			generator.write(this.suggestTotal);
 
 		}
 		if (this.priSuggestTotal != null) {
-
 			generator.writeKey("pri.suggest.total");
 			generator.write(this.priSuggestTotal);
 
 		}
 		if (this.memoryTotal != null) {
-
 			generator.writeKey("memory.total");
 			generator.write(this.memoryTotal);
 
 		}
 		if (this.priMemoryTotal != null) {
-
 			generator.writeKey("pri.memory.total");
 			generator.write(this.priMemoryTotal);
 
 		}
 		if (this.searchThrottled != null) {
-
 			generator.writeKey("search.throttled");
 			generator.write(this.searchThrottled);
 
 		}
 		if (this.bulkTotalOperations != null) {
-
 			generator.writeKey("bulk.total_operations");
 			generator.write(this.bulkTotalOperations);
 
 		}
 		if (this.priBulkTotalOperations != null) {
-
 			generator.writeKey("pri.bulk.total_operations");
 			generator.write(this.priBulkTotalOperations);
 
 		}
 		if (this.bulkTotalTime != null) {
-
 			generator.writeKey("bulk.total_time");
 			generator.write(this.bulkTotalTime);
 
 		}
 		if (this.priBulkTotalTime != null) {
-
 			generator.writeKey("pri.bulk.total_time");
 			generator.write(this.priBulkTotalTime);
 
 		}
 		if (this.bulkTotalSizeInBytes != null) {
-
 			generator.writeKey("bulk.total_size_in_bytes");
 			generator.write(this.bulkTotalSizeInBytes);
 
 		}
 		if (this.priBulkTotalSizeInBytes != null) {
-
 			generator.writeKey("pri.bulk.total_size_in_bytes");
 			generator.write(this.priBulkTotalSizeInBytes);
 
 		}
 		if (this.bulkAvgTime != null) {
-
 			generator.writeKey("bulk.avg_time");
 			generator.write(this.bulkAvgTime);
 
 		}
 		if (this.priBulkAvgTime != null) {
-
 			generator.writeKey("pri.bulk.avg_time");
 			generator.write(this.priBulkAvgTime);
 
 		}
 		if (this.bulkAvgSizeInBytes != null) {
-
 			generator.writeKey("bulk.avg_size_in_bytes");
 			generator.write(this.bulkAvgSizeInBytes);
 
 		}
 		if (this.priBulkAvgSizeInBytes != null) {
-
 			generator.writeKey("pri.bulk.avg_size_in_bytes");
 			generator.write(this.priBulkAvgSizeInBytes);
 
@@ -2892,7 +2752,7 @@ public final class IndicesRecord implements JsonpSerializable {
 	/**
 	 * Builder for {@link IndicesRecord}.
 	 */
-	public static class Builder implements ObjectBuilder<IndicesRecord> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<IndicesRecord> {
 		@Nullable
 		private String health;
 
@@ -3321,7 +3181,7 @@ public final class IndicesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code health}
 		 */
-		public Builder health(@Nullable String value) {
+		public final Builder health(@Nullable String value) {
 			this.health = value;
 			return this;
 		}
@@ -3331,7 +3191,7 @@ public final class IndicesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code status}
 		 */
-		public Builder status(@Nullable String value) {
+		public final Builder status(@Nullable String value) {
 			this.status = value;
 			return this;
 		}
@@ -3341,7 +3201,7 @@ public final class IndicesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code index}
 		 */
-		public Builder index(@Nullable String value) {
+		public final Builder index(@Nullable String value) {
 			this.index = value;
 			return this;
 		}
@@ -3351,7 +3211,7 @@ public final class IndicesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code uuid}
 		 */
-		public Builder uuid(@Nullable String value) {
+		public final Builder uuid(@Nullable String value) {
 			this.uuid = value;
 			return this;
 		}
@@ -3361,7 +3221,7 @@ public final class IndicesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code pri}
 		 */
-		public Builder pri(@Nullable String value) {
+		public final Builder pri(@Nullable String value) {
 			this.pri = value;
 			return this;
 		}
@@ -3371,7 +3231,7 @@ public final class IndicesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code rep}
 		 */
-		public Builder rep(@Nullable String value) {
+		public final Builder rep(@Nullable String value) {
 			this.rep = value;
 			return this;
 		}
@@ -3381,7 +3241,7 @@ public final class IndicesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code docs.count}
 		 */
-		public Builder docsCount(@Nullable String value) {
+		public final Builder docsCount(@Nullable String value) {
 			this.docsCount = value;
 			return this;
 		}
@@ -3391,7 +3251,7 @@ public final class IndicesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code docs.deleted}
 		 */
-		public Builder docsDeleted(@Nullable String value) {
+		public final Builder docsDeleted(@Nullable String value) {
 			this.docsDeleted = value;
 			return this;
 		}
@@ -3401,7 +3261,7 @@ public final class IndicesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code creation.date}
 		 */
-		public Builder creationDate(@Nullable String value) {
+		public final Builder creationDate(@Nullable String value) {
 			this.creationDate = value;
 			return this;
 		}
@@ -3411,7 +3271,7 @@ public final class IndicesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code creation.date.string}
 		 */
-		public Builder creationDateString(@Nullable String value) {
+		public final Builder creationDateString(@Nullable String value) {
 			this.creationDateString = value;
 			return this;
 		}
@@ -3421,7 +3281,7 @@ public final class IndicesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code store.size}
 		 */
-		public Builder storeSize(@Nullable String value) {
+		public final Builder storeSize(@Nullable String value) {
 			this.storeSize = value;
 			return this;
 		}
@@ -3431,7 +3291,7 @@ public final class IndicesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code pri.store.size}
 		 */
-		public Builder priStoreSize(@Nullable String value) {
+		public final Builder priStoreSize(@Nullable String value) {
 			this.priStoreSize = value;
 			return this;
 		}
@@ -3441,7 +3301,7 @@ public final class IndicesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code completion.size}
 		 */
-		public Builder completionSize(@Nullable String value) {
+		public final Builder completionSize(@Nullable String value) {
 			this.completionSize = value;
 			return this;
 		}
@@ -3451,7 +3311,7 @@ public final class IndicesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code pri.completion.size}
 		 */
-		public Builder priCompletionSize(@Nullable String value) {
+		public final Builder priCompletionSize(@Nullable String value) {
 			this.priCompletionSize = value;
 			return this;
 		}
@@ -3461,7 +3321,7 @@ public final class IndicesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code fielddata.memory_size}
 		 */
-		public Builder fielddataMemorySize(@Nullable String value) {
+		public final Builder fielddataMemorySize(@Nullable String value) {
 			this.fielddataMemorySize = value;
 			return this;
 		}
@@ -3471,7 +3331,7 @@ public final class IndicesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code pri.fielddata.memory_size}
 		 */
-		public Builder priFielddataMemorySize(@Nullable String value) {
+		public final Builder priFielddataMemorySize(@Nullable String value) {
 			this.priFielddataMemorySize = value;
 			return this;
 		}
@@ -3481,7 +3341,7 @@ public final class IndicesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code fielddata.evictions}
 		 */
-		public Builder fielddataEvictions(@Nullable String value) {
+		public final Builder fielddataEvictions(@Nullable String value) {
 			this.fielddataEvictions = value;
 			return this;
 		}
@@ -3491,7 +3351,7 @@ public final class IndicesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code pri.fielddata.evictions}
 		 */
-		public Builder priFielddataEvictions(@Nullable String value) {
+		public final Builder priFielddataEvictions(@Nullable String value) {
 			this.priFielddataEvictions = value;
 			return this;
 		}
@@ -3501,7 +3361,7 @@ public final class IndicesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code query_cache.memory_size}
 		 */
-		public Builder queryCacheMemorySize(@Nullable String value) {
+		public final Builder queryCacheMemorySize(@Nullable String value) {
 			this.queryCacheMemorySize = value;
 			return this;
 		}
@@ -3511,7 +3371,7 @@ public final class IndicesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code pri.query_cache.memory_size}
 		 */
-		public Builder priQueryCacheMemorySize(@Nullable String value) {
+		public final Builder priQueryCacheMemorySize(@Nullable String value) {
 			this.priQueryCacheMemorySize = value;
 			return this;
 		}
@@ -3521,7 +3381,7 @@ public final class IndicesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code query_cache.evictions}
 		 */
-		public Builder queryCacheEvictions(@Nullable String value) {
+		public final Builder queryCacheEvictions(@Nullable String value) {
 			this.queryCacheEvictions = value;
 			return this;
 		}
@@ -3531,7 +3391,7 @@ public final class IndicesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code pri.query_cache.evictions}
 		 */
-		public Builder priQueryCacheEvictions(@Nullable String value) {
+		public final Builder priQueryCacheEvictions(@Nullable String value) {
 			this.priQueryCacheEvictions = value;
 			return this;
 		}
@@ -3541,7 +3401,7 @@ public final class IndicesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code request_cache.memory_size}
 		 */
-		public Builder requestCacheMemorySize(@Nullable String value) {
+		public final Builder requestCacheMemorySize(@Nullable String value) {
 			this.requestCacheMemorySize = value;
 			return this;
 		}
@@ -3551,7 +3411,7 @@ public final class IndicesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code pri.request_cache.memory_size}
 		 */
-		public Builder priRequestCacheMemorySize(@Nullable String value) {
+		public final Builder priRequestCacheMemorySize(@Nullable String value) {
 			this.priRequestCacheMemorySize = value;
 			return this;
 		}
@@ -3561,7 +3421,7 @@ public final class IndicesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code request_cache.evictions}
 		 */
-		public Builder requestCacheEvictions(@Nullable String value) {
+		public final Builder requestCacheEvictions(@Nullable String value) {
 			this.requestCacheEvictions = value;
 			return this;
 		}
@@ -3571,7 +3431,7 @@ public final class IndicesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code pri.request_cache.evictions}
 		 */
-		public Builder priRequestCacheEvictions(@Nullable String value) {
+		public final Builder priRequestCacheEvictions(@Nullable String value) {
 			this.priRequestCacheEvictions = value;
 			return this;
 		}
@@ -3581,7 +3441,7 @@ public final class IndicesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code request_cache.hit_count}
 		 */
-		public Builder requestCacheHitCount(@Nullable String value) {
+		public final Builder requestCacheHitCount(@Nullable String value) {
 			this.requestCacheHitCount = value;
 			return this;
 		}
@@ -3591,7 +3451,7 @@ public final class IndicesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code pri.request_cache.hit_count}
 		 */
-		public Builder priRequestCacheHitCount(@Nullable String value) {
+		public final Builder priRequestCacheHitCount(@Nullable String value) {
 			this.priRequestCacheHitCount = value;
 			return this;
 		}
@@ -3601,7 +3461,7 @@ public final class IndicesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code request_cache.miss_count}
 		 */
-		public Builder requestCacheMissCount(@Nullable String value) {
+		public final Builder requestCacheMissCount(@Nullable String value) {
 			this.requestCacheMissCount = value;
 			return this;
 		}
@@ -3611,7 +3471,7 @@ public final class IndicesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code pri.request_cache.miss_count}
 		 */
-		public Builder priRequestCacheMissCount(@Nullable String value) {
+		public final Builder priRequestCacheMissCount(@Nullable String value) {
 			this.priRequestCacheMissCount = value;
 			return this;
 		}
@@ -3621,7 +3481,7 @@ public final class IndicesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code flush.total}
 		 */
-		public Builder flushTotal(@Nullable String value) {
+		public final Builder flushTotal(@Nullable String value) {
 			this.flushTotal = value;
 			return this;
 		}
@@ -3631,7 +3491,7 @@ public final class IndicesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code pri.flush.total}
 		 */
-		public Builder priFlushTotal(@Nullable String value) {
+		public final Builder priFlushTotal(@Nullable String value) {
 			this.priFlushTotal = value;
 			return this;
 		}
@@ -3641,7 +3501,7 @@ public final class IndicesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code flush.total_time}
 		 */
-		public Builder flushTotalTime(@Nullable String value) {
+		public final Builder flushTotalTime(@Nullable String value) {
 			this.flushTotalTime = value;
 			return this;
 		}
@@ -3651,7 +3511,7 @@ public final class IndicesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code pri.flush.total_time}
 		 */
-		public Builder priFlushTotalTime(@Nullable String value) {
+		public final Builder priFlushTotalTime(@Nullable String value) {
 			this.priFlushTotalTime = value;
 			return this;
 		}
@@ -3661,7 +3521,7 @@ public final class IndicesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code get.current}
 		 */
-		public Builder getCurrent(@Nullable String value) {
+		public final Builder getCurrent(@Nullable String value) {
 			this.getCurrent = value;
 			return this;
 		}
@@ -3671,7 +3531,7 @@ public final class IndicesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code pri.get.current}
 		 */
-		public Builder priGetCurrent(@Nullable String value) {
+		public final Builder priGetCurrent(@Nullable String value) {
 			this.priGetCurrent = value;
 			return this;
 		}
@@ -3681,7 +3541,7 @@ public final class IndicesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code get.time}
 		 */
-		public Builder getTime(@Nullable String value) {
+		public final Builder getTime(@Nullable String value) {
 			this.getTime = value;
 			return this;
 		}
@@ -3691,7 +3551,7 @@ public final class IndicesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code pri.get.time}
 		 */
-		public Builder priGetTime(@Nullable String value) {
+		public final Builder priGetTime(@Nullable String value) {
 			this.priGetTime = value;
 			return this;
 		}
@@ -3701,7 +3561,7 @@ public final class IndicesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code get.total}
 		 */
-		public Builder getTotal(@Nullable String value) {
+		public final Builder getTotal(@Nullable String value) {
 			this.getTotal = value;
 			return this;
 		}
@@ -3711,7 +3571,7 @@ public final class IndicesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code pri.get.total}
 		 */
-		public Builder priGetTotal(@Nullable String value) {
+		public final Builder priGetTotal(@Nullable String value) {
 			this.priGetTotal = value;
 			return this;
 		}
@@ -3721,7 +3581,7 @@ public final class IndicesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code get.exists_time}
 		 */
-		public Builder getExistsTime(@Nullable String value) {
+		public final Builder getExistsTime(@Nullable String value) {
 			this.getExistsTime = value;
 			return this;
 		}
@@ -3731,7 +3591,7 @@ public final class IndicesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code pri.get.exists_time}
 		 */
-		public Builder priGetExistsTime(@Nullable String value) {
+		public final Builder priGetExistsTime(@Nullable String value) {
 			this.priGetExistsTime = value;
 			return this;
 		}
@@ -3741,7 +3601,7 @@ public final class IndicesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code get.exists_total}
 		 */
-		public Builder getExistsTotal(@Nullable String value) {
+		public final Builder getExistsTotal(@Nullable String value) {
 			this.getExistsTotal = value;
 			return this;
 		}
@@ -3751,7 +3611,7 @@ public final class IndicesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code pri.get.exists_total}
 		 */
-		public Builder priGetExistsTotal(@Nullable String value) {
+		public final Builder priGetExistsTotal(@Nullable String value) {
 			this.priGetExistsTotal = value;
 			return this;
 		}
@@ -3761,7 +3621,7 @@ public final class IndicesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code get.missing_time}
 		 */
-		public Builder getMissingTime(@Nullable String value) {
+		public final Builder getMissingTime(@Nullable String value) {
 			this.getMissingTime = value;
 			return this;
 		}
@@ -3771,7 +3631,7 @@ public final class IndicesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code pri.get.missing_time}
 		 */
-		public Builder priGetMissingTime(@Nullable String value) {
+		public final Builder priGetMissingTime(@Nullable String value) {
 			this.priGetMissingTime = value;
 			return this;
 		}
@@ -3781,7 +3641,7 @@ public final class IndicesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code get.missing_total}
 		 */
-		public Builder getMissingTotal(@Nullable String value) {
+		public final Builder getMissingTotal(@Nullable String value) {
 			this.getMissingTotal = value;
 			return this;
 		}
@@ -3791,7 +3651,7 @@ public final class IndicesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code pri.get.missing_total}
 		 */
-		public Builder priGetMissingTotal(@Nullable String value) {
+		public final Builder priGetMissingTotal(@Nullable String value) {
 			this.priGetMissingTotal = value;
 			return this;
 		}
@@ -3801,7 +3661,7 @@ public final class IndicesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code indexing.delete_current}
 		 */
-		public Builder indexingDeleteCurrent(@Nullable String value) {
+		public final Builder indexingDeleteCurrent(@Nullable String value) {
 			this.indexingDeleteCurrent = value;
 			return this;
 		}
@@ -3811,7 +3671,7 @@ public final class IndicesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code pri.indexing.delete_current}
 		 */
-		public Builder priIndexingDeleteCurrent(@Nullable String value) {
+		public final Builder priIndexingDeleteCurrent(@Nullable String value) {
 			this.priIndexingDeleteCurrent = value;
 			return this;
 		}
@@ -3821,7 +3681,7 @@ public final class IndicesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code indexing.delete_time}
 		 */
-		public Builder indexingDeleteTime(@Nullable String value) {
+		public final Builder indexingDeleteTime(@Nullable String value) {
 			this.indexingDeleteTime = value;
 			return this;
 		}
@@ -3831,7 +3691,7 @@ public final class IndicesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code pri.indexing.delete_time}
 		 */
-		public Builder priIndexingDeleteTime(@Nullable String value) {
+		public final Builder priIndexingDeleteTime(@Nullable String value) {
 			this.priIndexingDeleteTime = value;
 			return this;
 		}
@@ -3841,7 +3701,7 @@ public final class IndicesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code indexing.delete_total}
 		 */
-		public Builder indexingDeleteTotal(@Nullable String value) {
+		public final Builder indexingDeleteTotal(@Nullable String value) {
 			this.indexingDeleteTotal = value;
 			return this;
 		}
@@ -3851,7 +3711,7 @@ public final class IndicesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code pri.indexing.delete_total}
 		 */
-		public Builder priIndexingDeleteTotal(@Nullable String value) {
+		public final Builder priIndexingDeleteTotal(@Nullable String value) {
 			this.priIndexingDeleteTotal = value;
 			return this;
 		}
@@ -3861,7 +3721,7 @@ public final class IndicesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code indexing.index_current}
 		 */
-		public Builder indexingIndexCurrent(@Nullable String value) {
+		public final Builder indexingIndexCurrent(@Nullable String value) {
 			this.indexingIndexCurrent = value;
 			return this;
 		}
@@ -3871,7 +3731,7 @@ public final class IndicesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code pri.indexing.index_current}
 		 */
-		public Builder priIndexingIndexCurrent(@Nullable String value) {
+		public final Builder priIndexingIndexCurrent(@Nullable String value) {
 			this.priIndexingIndexCurrent = value;
 			return this;
 		}
@@ -3881,7 +3741,7 @@ public final class IndicesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code indexing.index_time}
 		 */
-		public Builder indexingIndexTime(@Nullable String value) {
+		public final Builder indexingIndexTime(@Nullable String value) {
 			this.indexingIndexTime = value;
 			return this;
 		}
@@ -3891,7 +3751,7 @@ public final class IndicesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code pri.indexing.index_time}
 		 */
-		public Builder priIndexingIndexTime(@Nullable String value) {
+		public final Builder priIndexingIndexTime(@Nullable String value) {
 			this.priIndexingIndexTime = value;
 			return this;
 		}
@@ -3901,7 +3761,7 @@ public final class IndicesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code indexing.index_total}
 		 */
-		public Builder indexingIndexTotal(@Nullable String value) {
+		public final Builder indexingIndexTotal(@Nullable String value) {
 			this.indexingIndexTotal = value;
 			return this;
 		}
@@ -3911,7 +3771,7 @@ public final class IndicesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code pri.indexing.index_total}
 		 */
-		public Builder priIndexingIndexTotal(@Nullable String value) {
+		public final Builder priIndexingIndexTotal(@Nullable String value) {
 			this.priIndexingIndexTotal = value;
 			return this;
 		}
@@ -3921,7 +3781,7 @@ public final class IndicesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code indexing.index_failed}
 		 */
-		public Builder indexingIndexFailed(@Nullable String value) {
+		public final Builder indexingIndexFailed(@Nullable String value) {
 			this.indexingIndexFailed = value;
 			return this;
 		}
@@ -3931,7 +3791,7 @@ public final class IndicesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code pri.indexing.index_failed}
 		 */
-		public Builder priIndexingIndexFailed(@Nullable String value) {
+		public final Builder priIndexingIndexFailed(@Nullable String value) {
 			this.priIndexingIndexFailed = value;
 			return this;
 		}
@@ -3941,7 +3801,7 @@ public final class IndicesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code merges.current}
 		 */
-		public Builder mergesCurrent(@Nullable String value) {
+		public final Builder mergesCurrent(@Nullable String value) {
 			this.mergesCurrent = value;
 			return this;
 		}
@@ -3951,7 +3811,7 @@ public final class IndicesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code pri.merges.current}
 		 */
-		public Builder priMergesCurrent(@Nullable String value) {
+		public final Builder priMergesCurrent(@Nullable String value) {
 			this.priMergesCurrent = value;
 			return this;
 		}
@@ -3961,7 +3821,7 @@ public final class IndicesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code merges.current_docs}
 		 */
-		public Builder mergesCurrentDocs(@Nullable String value) {
+		public final Builder mergesCurrentDocs(@Nullable String value) {
 			this.mergesCurrentDocs = value;
 			return this;
 		}
@@ -3971,7 +3831,7 @@ public final class IndicesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code pri.merges.current_docs}
 		 */
-		public Builder priMergesCurrentDocs(@Nullable String value) {
+		public final Builder priMergesCurrentDocs(@Nullable String value) {
 			this.priMergesCurrentDocs = value;
 			return this;
 		}
@@ -3981,7 +3841,7 @@ public final class IndicesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code merges.current_size}
 		 */
-		public Builder mergesCurrentSize(@Nullable String value) {
+		public final Builder mergesCurrentSize(@Nullable String value) {
 			this.mergesCurrentSize = value;
 			return this;
 		}
@@ -3991,7 +3851,7 @@ public final class IndicesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code pri.merges.current_size}
 		 */
-		public Builder priMergesCurrentSize(@Nullable String value) {
+		public final Builder priMergesCurrentSize(@Nullable String value) {
 			this.priMergesCurrentSize = value;
 			return this;
 		}
@@ -4001,7 +3861,7 @@ public final class IndicesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code merges.total}
 		 */
-		public Builder mergesTotal(@Nullable String value) {
+		public final Builder mergesTotal(@Nullable String value) {
 			this.mergesTotal = value;
 			return this;
 		}
@@ -4011,7 +3871,7 @@ public final class IndicesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code pri.merges.total}
 		 */
-		public Builder priMergesTotal(@Nullable String value) {
+		public final Builder priMergesTotal(@Nullable String value) {
 			this.priMergesTotal = value;
 			return this;
 		}
@@ -4021,7 +3881,7 @@ public final class IndicesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code merges.total_docs}
 		 */
-		public Builder mergesTotalDocs(@Nullable String value) {
+		public final Builder mergesTotalDocs(@Nullable String value) {
 			this.mergesTotalDocs = value;
 			return this;
 		}
@@ -4031,7 +3891,7 @@ public final class IndicesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code pri.merges.total_docs}
 		 */
-		public Builder priMergesTotalDocs(@Nullable String value) {
+		public final Builder priMergesTotalDocs(@Nullable String value) {
 			this.priMergesTotalDocs = value;
 			return this;
 		}
@@ -4041,7 +3901,7 @@ public final class IndicesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code merges.total_size}
 		 */
-		public Builder mergesTotalSize(@Nullable String value) {
+		public final Builder mergesTotalSize(@Nullable String value) {
 			this.mergesTotalSize = value;
 			return this;
 		}
@@ -4051,7 +3911,7 @@ public final class IndicesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code pri.merges.total_size}
 		 */
-		public Builder priMergesTotalSize(@Nullable String value) {
+		public final Builder priMergesTotalSize(@Nullable String value) {
 			this.priMergesTotalSize = value;
 			return this;
 		}
@@ -4061,7 +3921,7 @@ public final class IndicesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code merges.total_time}
 		 */
-		public Builder mergesTotalTime(@Nullable String value) {
+		public final Builder mergesTotalTime(@Nullable String value) {
 			this.mergesTotalTime = value;
 			return this;
 		}
@@ -4071,7 +3931,7 @@ public final class IndicesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code pri.merges.total_time}
 		 */
-		public Builder priMergesTotalTime(@Nullable String value) {
+		public final Builder priMergesTotalTime(@Nullable String value) {
 			this.priMergesTotalTime = value;
 			return this;
 		}
@@ -4081,7 +3941,7 @@ public final class IndicesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code refresh.total}
 		 */
-		public Builder refreshTotal(@Nullable String value) {
+		public final Builder refreshTotal(@Nullable String value) {
 			this.refreshTotal = value;
 			return this;
 		}
@@ -4091,7 +3951,7 @@ public final class IndicesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code pri.refresh.total}
 		 */
-		public Builder priRefreshTotal(@Nullable String value) {
+		public final Builder priRefreshTotal(@Nullable String value) {
 			this.priRefreshTotal = value;
 			return this;
 		}
@@ -4101,7 +3961,7 @@ public final class IndicesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code refresh.time}
 		 */
-		public Builder refreshTime(@Nullable String value) {
+		public final Builder refreshTime(@Nullable String value) {
 			this.refreshTime = value;
 			return this;
 		}
@@ -4111,7 +3971,7 @@ public final class IndicesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code pri.refresh.time}
 		 */
-		public Builder priRefreshTime(@Nullable String value) {
+		public final Builder priRefreshTime(@Nullable String value) {
 			this.priRefreshTime = value;
 			return this;
 		}
@@ -4121,7 +3981,7 @@ public final class IndicesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code refresh.external_total}
 		 */
-		public Builder refreshExternalTotal(@Nullable String value) {
+		public final Builder refreshExternalTotal(@Nullable String value) {
 			this.refreshExternalTotal = value;
 			return this;
 		}
@@ -4131,7 +3991,7 @@ public final class IndicesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code pri.refresh.external_total}
 		 */
-		public Builder priRefreshExternalTotal(@Nullable String value) {
+		public final Builder priRefreshExternalTotal(@Nullable String value) {
 			this.priRefreshExternalTotal = value;
 			return this;
 		}
@@ -4141,7 +4001,7 @@ public final class IndicesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code refresh.external_time}
 		 */
-		public Builder refreshExternalTime(@Nullable String value) {
+		public final Builder refreshExternalTime(@Nullable String value) {
 			this.refreshExternalTime = value;
 			return this;
 		}
@@ -4151,7 +4011,7 @@ public final class IndicesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code pri.refresh.external_time}
 		 */
-		public Builder priRefreshExternalTime(@Nullable String value) {
+		public final Builder priRefreshExternalTime(@Nullable String value) {
 			this.priRefreshExternalTime = value;
 			return this;
 		}
@@ -4161,7 +4021,7 @@ public final class IndicesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code refresh.listeners}
 		 */
-		public Builder refreshListeners(@Nullable String value) {
+		public final Builder refreshListeners(@Nullable String value) {
 			this.refreshListeners = value;
 			return this;
 		}
@@ -4171,7 +4031,7 @@ public final class IndicesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code pri.refresh.listeners}
 		 */
-		public Builder priRefreshListeners(@Nullable String value) {
+		public final Builder priRefreshListeners(@Nullable String value) {
 			this.priRefreshListeners = value;
 			return this;
 		}
@@ -4181,7 +4041,7 @@ public final class IndicesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code search.fetch_current}
 		 */
-		public Builder searchFetchCurrent(@Nullable String value) {
+		public final Builder searchFetchCurrent(@Nullable String value) {
 			this.searchFetchCurrent = value;
 			return this;
 		}
@@ -4191,7 +4051,7 @@ public final class IndicesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code pri.search.fetch_current}
 		 */
-		public Builder priSearchFetchCurrent(@Nullable String value) {
+		public final Builder priSearchFetchCurrent(@Nullable String value) {
 			this.priSearchFetchCurrent = value;
 			return this;
 		}
@@ -4201,7 +4061,7 @@ public final class IndicesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code search.fetch_time}
 		 */
-		public Builder searchFetchTime(@Nullable String value) {
+		public final Builder searchFetchTime(@Nullable String value) {
 			this.searchFetchTime = value;
 			return this;
 		}
@@ -4211,7 +4071,7 @@ public final class IndicesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code pri.search.fetch_time}
 		 */
-		public Builder priSearchFetchTime(@Nullable String value) {
+		public final Builder priSearchFetchTime(@Nullable String value) {
 			this.priSearchFetchTime = value;
 			return this;
 		}
@@ -4221,7 +4081,7 @@ public final class IndicesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code search.fetch_total}
 		 */
-		public Builder searchFetchTotal(@Nullable String value) {
+		public final Builder searchFetchTotal(@Nullable String value) {
 			this.searchFetchTotal = value;
 			return this;
 		}
@@ -4231,7 +4091,7 @@ public final class IndicesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code pri.search.fetch_total}
 		 */
-		public Builder priSearchFetchTotal(@Nullable String value) {
+		public final Builder priSearchFetchTotal(@Nullable String value) {
 			this.priSearchFetchTotal = value;
 			return this;
 		}
@@ -4241,7 +4101,7 @@ public final class IndicesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code search.open_contexts}
 		 */
-		public Builder searchOpenContexts(@Nullable String value) {
+		public final Builder searchOpenContexts(@Nullable String value) {
 			this.searchOpenContexts = value;
 			return this;
 		}
@@ -4251,7 +4111,7 @@ public final class IndicesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code pri.search.open_contexts}
 		 */
-		public Builder priSearchOpenContexts(@Nullable String value) {
+		public final Builder priSearchOpenContexts(@Nullable String value) {
 			this.priSearchOpenContexts = value;
 			return this;
 		}
@@ -4261,7 +4121,7 @@ public final class IndicesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code search.query_current}
 		 */
-		public Builder searchQueryCurrent(@Nullable String value) {
+		public final Builder searchQueryCurrent(@Nullable String value) {
 			this.searchQueryCurrent = value;
 			return this;
 		}
@@ -4271,7 +4131,7 @@ public final class IndicesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code pri.search.query_current}
 		 */
-		public Builder priSearchQueryCurrent(@Nullable String value) {
+		public final Builder priSearchQueryCurrent(@Nullable String value) {
 			this.priSearchQueryCurrent = value;
 			return this;
 		}
@@ -4281,7 +4141,7 @@ public final class IndicesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code search.query_time}
 		 */
-		public Builder searchQueryTime(@Nullable String value) {
+		public final Builder searchQueryTime(@Nullable String value) {
 			this.searchQueryTime = value;
 			return this;
 		}
@@ -4291,7 +4151,7 @@ public final class IndicesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code pri.search.query_time}
 		 */
-		public Builder priSearchQueryTime(@Nullable String value) {
+		public final Builder priSearchQueryTime(@Nullable String value) {
 			this.priSearchQueryTime = value;
 			return this;
 		}
@@ -4301,7 +4161,7 @@ public final class IndicesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code search.query_total}
 		 */
-		public Builder searchQueryTotal(@Nullable String value) {
+		public final Builder searchQueryTotal(@Nullable String value) {
 			this.searchQueryTotal = value;
 			return this;
 		}
@@ -4311,7 +4171,7 @@ public final class IndicesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code pri.search.query_total}
 		 */
-		public Builder priSearchQueryTotal(@Nullable String value) {
+		public final Builder priSearchQueryTotal(@Nullable String value) {
 			this.priSearchQueryTotal = value;
 			return this;
 		}
@@ -4321,7 +4181,7 @@ public final class IndicesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code search.scroll_current}
 		 */
-		public Builder searchScrollCurrent(@Nullable String value) {
+		public final Builder searchScrollCurrent(@Nullable String value) {
 			this.searchScrollCurrent = value;
 			return this;
 		}
@@ -4331,7 +4191,7 @@ public final class IndicesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code pri.search.scroll_current}
 		 */
-		public Builder priSearchScrollCurrent(@Nullable String value) {
+		public final Builder priSearchScrollCurrent(@Nullable String value) {
 			this.priSearchScrollCurrent = value;
 			return this;
 		}
@@ -4341,7 +4201,7 @@ public final class IndicesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code search.scroll_time}
 		 */
-		public Builder searchScrollTime(@Nullable String value) {
+		public final Builder searchScrollTime(@Nullable String value) {
 			this.searchScrollTime = value;
 			return this;
 		}
@@ -4351,7 +4211,7 @@ public final class IndicesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code pri.search.scroll_time}
 		 */
-		public Builder priSearchScrollTime(@Nullable String value) {
+		public final Builder priSearchScrollTime(@Nullable String value) {
 			this.priSearchScrollTime = value;
 			return this;
 		}
@@ -4361,7 +4221,7 @@ public final class IndicesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code search.scroll_total}
 		 */
-		public Builder searchScrollTotal(@Nullable String value) {
+		public final Builder searchScrollTotal(@Nullable String value) {
 			this.searchScrollTotal = value;
 			return this;
 		}
@@ -4371,7 +4231,7 @@ public final class IndicesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code pri.search.scroll_total}
 		 */
-		public Builder priSearchScrollTotal(@Nullable String value) {
+		public final Builder priSearchScrollTotal(@Nullable String value) {
 			this.priSearchScrollTotal = value;
 			return this;
 		}
@@ -4381,7 +4241,7 @@ public final class IndicesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code segments.count}
 		 */
-		public Builder segmentsCount(@Nullable String value) {
+		public final Builder segmentsCount(@Nullable String value) {
 			this.segmentsCount = value;
 			return this;
 		}
@@ -4391,7 +4251,7 @@ public final class IndicesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code pri.segments.count}
 		 */
-		public Builder priSegmentsCount(@Nullable String value) {
+		public final Builder priSegmentsCount(@Nullable String value) {
 			this.priSegmentsCount = value;
 			return this;
 		}
@@ -4401,7 +4261,7 @@ public final class IndicesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code segments.memory}
 		 */
-		public Builder segmentsMemory(@Nullable String value) {
+		public final Builder segmentsMemory(@Nullable String value) {
 			this.segmentsMemory = value;
 			return this;
 		}
@@ -4411,7 +4271,7 @@ public final class IndicesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code pri.segments.memory}
 		 */
-		public Builder priSegmentsMemory(@Nullable String value) {
+		public final Builder priSegmentsMemory(@Nullable String value) {
 			this.priSegmentsMemory = value;
 			return this;
 		}
@@ -4421,7 +4281,7 @@ public final class IndicesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code segments.index_writer_memory}
 		 */
-		public Builder segmentsIndexWriterMemory(@Nullable String value) {
+		public final Builder segmentsIndexWriterMemory(@Nullable String value) {
 			this.segmentsIndexWriterMemory = value;
 			return this;
 		}
@@ -4431,7 +4291,7 @@ public final class IndicesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code pri.segments.index_writer_memory}
 		 */
-		public Builder priSegmentsIndexWriterMemory(@Nullable String value) {
+		public final Builder priSegmentsIndexWriterMemory(@Nullable String value) {
 			this.priSegmentsIndexWriterMemory = value;
 			return this;
 		}
@@ -4441,7 +4301,7 @@ public final class IndicesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code segments.version_map_memory}
 		 */
-		public Builder segmentsVersionMapMemory(@Nullable String value) {
+		public final Builder segmentsVersionMapMemory(@Nullable String value) {
 			this.segmentsVersionMapMemory = value;
 			return this;
 		}
@@ -4451,7 +4311,7 @@ public final class IndicesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code pri.segments.version_map_memory}
 		 */
-		public Builder priSegmentsVersionMapMemory(@Nullable String value) {
+		public final Builder priSegmentsVersionMapMemory(@Nullable String value) {
 			this.priSegmentsVersionMapMemory = value;
 			return this;
 		}
@@ -4462,7 +4322,7 @@ public final class IndicesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code segments.fixed_bitset_memory}
 		 */
-		public Builder segmentsFixedBitsetMemory(@Nullable String value) {
+		public final Builder segmentsFixedBitsetMemory(@Nullable String value) {
 			this.segmentsFixedBitsetMemory = value;
 			return this;
 		}
@@ -4473,7 +4333,7 @@ public final class IndicesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code pri.segments.fixed_bitset_memory}
 		 */
-		public Builder priSegmentsFixedBitsetMemory(@Nullable String value) {
+		public final Builder priSegmentsFixedBitsetMemory(@Nullable String value) {
 			this.priSegmentsFixedBitsetMemory = value;
 			return this;
 		}
@@ -4483,7 +4343,7 @@ public final class IndicesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code warmer.current}
 		 */
-		public Builder warmerCurrent(@Nullable String value) {
+		public final Builder warmerCurrent(@Nullable String value) {
 			this.warmerCurrent = value;
 			return this;
 		}
@@ -4493,7 +4353,7 @@ public final class IndicesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code pri.warmer.current}
 		 */
-		public Builder priWarmerCurrent(@Nullable String value) {
+		public final Builder priWarmerCurrent(@Nullable String value) {
 			this.priWarmerCurrent = value;
 			return this;
 		}
@@ -4503,7 +4363,7 @@ public final class IndicesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code warmer.total}
 		 */
-		public Builder warmerTotal(@Nullable String value) {
+		public final Builder warmerTotal(@Nullable String value) {
 			this.warmerTotal = value;
 			return this;
 		}
@@ -4513,7 +4373,7 @@ public final class IndicesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code pri.warmer.total}
 		 */
-		public Builder priWarmerTotal(@Nullable String value) {
+		public final Builder priWarmerTotal(@Nullable String value) {
 			this.priWarmerTotal = value;
 			return this;
 		}
@@ -4523,7 +4383,7 @@ public final class IndicesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code warmer.total_time}
 		 */
-		public Builder warmerTotalTime(@Nullable String value) {
+		public final Builder warmerTotalTime(@Nullable String value) {
 			this.warmerTotalTime = value;
 			return this;
 		}
@@ -4533,7 +4393,7 @@ public final class IndicesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code pri.warmer.total_time}
 		 */
-		public Builder priWarmerTotalTime(@Nullable String value) {
+		public final Builder priWarmerTotalTime(@Nullable String value) {
 			this.priWarmerTotalTime = value;
 			return this;
 		}
@@ -4543,7 +4403,7 @@ public final class IndicesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code suggest.current}
 		 */
-		public Builder suggestCurrent(@Nullable String value) {
+		public final Builder suggestCurrent(@Nullable String value) {
 			this.suggestCurrent = value;
 			return this;
 		}
@@ -4553,7 +4413,7 @@ public final class IndicesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code pri.suggest.current}
 		 */
-		public Builder priSuggestCurrent(@Nullable String value) {
+		public final Builder priSuggestCurrent(@Nullable String value) {
 			this.priSuggestCurrent = value;
 			return this;
 		}
@@ -4563,7 +4423,7 @@ public final class IndicesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code suggest.time}
 		 */
-		public Builder suggestTime(@Nullable String value) {
+		public final Builder suggestTime(@Nullable String value) {
 			this.suggestTime = value;
 			return this;
 		}
@@ -4573,7 +4433,7 @@ public final class IndicesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code pri.suggest.time}
 		 */
-		public Builder priSuggestTime(@Nullable String value) {
+		public final Builder priSuggestTime(@Nullable String value) {
 			this.priSuggestTime = value;
 			return this;
 		}
@@ -4583,7 +4443,7 @@ public final class IndicesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code suggest.total}
 		 */
-		public Builder suggestTotal(@Nullable String value) {
+		public final Builder suggestTotal(@Nullable String value) {
 			this.suggestTotal = value;
 			return this;
 		}
@@ -4593,7 +4453,7 @@ public final class IndicesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code pri.suggest.total}
 		 */
-		public Builder priSuggestTotal(@Nullable String value) {
+		public final Builder priSuggestTotal(@Nullable String value) {
 			this.priSuggestTotal = value;
 			return this;
 		}
@@ -4603,7 +4463,7 @@ public final class IndicesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code memory.total}
 		 */
-		public Builder memoryTotal(@Nullable String value) {
+		public final Builder memoryTotal(@Nullable String value) {
 			this.memoryTotal = value;
 			return this;
 		}
@@ -4613,7 +4473,7 @@ public final class IndicesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code pri.memory.total}
 		 */
-		public Builder priMemoryTotal(@Nullable String value) {
+		public final Builder priMemoryTotal(@Nullable String value) {
 			this.priMemoryTotal = value;
 			return this;
 		}
@@ -4623,7 +4483,7 @@ public final class IndicesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code search.throttled}
 		 */
-		public Builder searchThrottled(@Nullable String value) {
+		public final Builder searchThrottled(@Nullable String value) {
 			this.searchThrottled = value;
 			return this;
 		}
@@ -4633,7 +4493,7 @@ public final class IndicesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code bulk.total_operations}
 		 */
-		public Builder bulkTotalOperations(@Nullable String value) {
+		public final Builder bulkTotalOperations(@Nullable String value) {
 			this.bulkTotalOperations = value;
 			return this;
 		}
@@ -4643,7 +4503,7 @@ public final class IndicesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code pri.bulk.total_operations}
 		 */
-		public Builder priBulkTotalOperations(@Nullable String value) {
+		public final Builder priBulkTotalOperations(@Nullable String value) {
 			this.priBulkTotalOperations = value;
 			return this;
 		}
@@ -4653,7 +4513,7 @@ public final class IndicesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code bulk.total_time}
 		 */
-		public Builder bulkTotalTime(@Nullable String value) {
+		public final Builder bulkTotalTime(@Nullable String value) {
 			this.bulkTotalTime = value;
 			return this;
 		}
@@ -4663,7 +4523,7 @@ public final class IndicesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code pri.bulk.total_time}
 		 */
-		public Builder priBulkTotalTime(@Nullable String value) {
+		public final Builder priBulkTotalTime(@Nullable String value) {
 			this.priBulkTotalTime = value;
 			return this;
 		}
@@ -4673,7 +4533,7 @@ public final class IndicesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code bulk.total_size_in_bytes}
 		 */
-		public Builder bulkTotalSizeInBytes(@Nullable String value) {
+		public final Builder bulkTotalSizeInBytes(@Nullable String value) {
 			this.bulkTotalSizeInBytes = value;
 			return this;
 		}
@@ -4683,7 +4543,7 @@ public final class IndicesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code pri.bulk.total_size_in_bytes}
 		 */
-		public Builder priBulkTotalSizeInBytes(@Nullable String value) {
+		public final Builder priBulkTotalSizeInBytes(@Nullable String value) {
 			this.priBulkTotalSizeInBytes = value;
 			return this;
 		}
@@ -4693,7 +4553,7 @@ public final class IndicesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code bulk.avg_time}
 		 */
-		public Builder bulkAvgTime(@Nullable String value) {
+		public final Builder bulkAvgTime(@Nullable String value) {
 			this.bulkAvgTime = value;
 			return this;
 		}
@@ -4703,7 +4563,7 @@ public final class IndicesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code pri.bulk.avg_time}
 		 */
-		public Builder priBulkAvgTime(@Nullable String value) {
+		public final Builder priBulkAvgTime(@Nullable String value) {
 			this.priBulkAvgTime = value;
 			return this;
 		}
@@ -4713,7 +4573,7 @@ public final class IndicesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code bulk.avg_size_in_bytes}
 		 */
-		public Builder bulkAvgSizeInBytes(@Nullable String value) {
+		public final Builder bulkAvgSizeInBytes(@Nullable String value) {
 			this.bulkAvgSizeInBytes = value;
 			return this;
 		}
@@ -4723,7 +4583,7 @@ public final class IndicesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code pri.bulk.avg_size_in_bytes}
 		 */
-		public Builder priBulkAvgSizeInBytes(@Nullable String value) {
+		public final Builder priBulkAvgSizeInBytes(@Nullable String value) {
 			this.priBulkAvgSizeInBytes = value;
 			return this;
 		}
@@ -4735,6 +4595,7 @@ public final class IndicesRecord implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public IndicesRecord build() {
+			_checkSingleUse();
 
 			return new IndicesRecord(this);
 		}

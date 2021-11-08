@@ -33,9 +33,9 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
@@ -43,7 +43,7 @@ import javax.annotation.Nullable;
 
 // typedef: nodes.info.NodeInfoSettingsNode
 @JsonpDeserializable
-public final class NodeInfoSettingsNode implements JsonpSerializable {
+public class NodeInfoSettingsNode implements JsonpSerializable {
 	private final String name;
 
 	private final Map<String, JsonData> attr;
@@ -53,29 +53,29 @@ public final class NodeInfoSettingsNode implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public NodeInfoSettingsNode(Builder builder) {
+	private NodeInfoSettingsNode(Builder builder) {
 
-		this.name = Objects.requireNonNull(builder.name, "name");
-		this.attr = ModelTypeHelper.unmodifiableNonNull(builder.attr, "attr");
+		this.name = ModelTypeHelper.requireNonNull(builder.name, this, "name");
+		this.attr = ModelTypeHelper.unmodifiableRequired(builder.attr, this, "attr");
 		this.maxLocalStorageNodes = builder.maxLocalStorageNodes;
 
 	}
 
-	public NodeInfoSettingsNode(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static NodeInfoSettingsNode of(Function<Builder, ObjectBuilder<NodeInfoSettingsNode>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code name}
 	 */
-	public String name() {
+	public final String name() {
 		return this.name;
 	}
 
 	/**
 	 * Required - API name: {@code attr}
 	 */
-	public Map<String, JsonData> attr() {
+	public final Map<String, JsonData> attr() {
 		return this.attr;
 	}
 
@@ -83,7 +83,7 @@ public final class NodeInfoSettingsNode implements JsonpSerializable {
 	 * API name: {@code max_local_storage_nodes}
 	 */
 	@Nullable
-	public String maxLocalStorageNodes() {
+	public final String maxLocalStorageNodes() {
 		return this.maxLocalStorageNodes;
 	}
 
@@ -101,17 +101,18 @@ public final class NodeInfoSettingsNode implements JsonpSerializable {
 		generator.writeKey("name");
 		generator.write(this.name);
 
-		generator.writeKey("attr");
-		generator.writeStartObject();
-		for (Map.Entry<String, JsonData> item0 : this.attr.entrySet()) {
-			generator.writeKey(item0.getKey());
-			item0.getValue().serialize(generator, mapper);
+		if (ModelTypeHelper.isDefined(this.attr)) {
+			generator.writeKey("attr");
+			generator.writeStartObject();
+			for (Map.Entry<String, JsonData> item0 : this.attr.entrySet()) {
+				generator.writeKey(item0.getKey());
+				item0.getValue().serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
-
 		if (this.maxLocalStorageNodes != null) {
-
 			generator.writeKey("max_local_storage_nodes");
 			generator.write(this.maxLocalStorageNodes);
 
@@ -124,7 +125,7 @@ public final class NodeInfoSettingsNode implements JsonpSerializable {
 	/**
 	 * Builder for {@link NodeInfoSettingsNode}.
 	 */
-	public static class Builder implements ObjectBuilder<NodeInfoSettingsNode> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodeInfoSettingsNode> {
 		private String name;
 
 		private Map<String, JsonData> attr;
@@ -135,7 +136,7 @@ public final class NodeInfoSettingsNode implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code name}
 		 */
-		public Builder name(String value) {
+		public final Builder name(String value) {
 			this.name = value;
 			return this;
 		}
@@ -143,26 +144,15 @@ public final class NodeInfoSettingsNode implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code attr}
 		 */
-		public Builder attr(Map<String, JsonData> value) {
+		public final Builder attr(Map<String, JsonData> value) {
 			this.attr = value;
-			return this;
-		}
-
-		/**
-		 * Add a key/value to {@link #attr(Map)}, creating the map if needed.
-		 */
-		public Builder putAttr(String key, JsonData value) {
-			if (this.attr == null) {
-				this.attr = new HashMap<>();
-			}
-			this.attr.put(key, value);
 			return this;
 		}
 
 		/**
 		 * API name: {@code max_local_storage_nodes}
 		 */
-		public Builder maxLocalStorageNodes(@Nullable String value) {
+		public final Builder maxLocalStorageNodes(@Nullable String value) {
 			this.maxLocalStorageNodes = value;
 			return this;
 		}
@@ -174,6 +164,7 @@ public final class NodeInfoSettingsNode implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public NodeInfoSettingsNode build() {
+			_checkSingleUse();
 
 			return new NodeInfoSettingsNode(this);
 		}

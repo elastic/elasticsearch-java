@@ -39,7 +39,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.GeoCentroidAggregation
 @JsonpDeserializable
-public final class GeoCentroidAggregation extends MetricAggregationBase implements AggregationVariant {
+public class GeoCentroidAggregation extends MetricAggregationBase implements AggregationVariant {
 	@Nullable
 	private final Long count;
 
@@ -48,7 +48,7 @@ public final class GeoCentroidAggregation extends MetricAggregationBase implemen
 
 	// ---------------------------------------------------------------------------------------------
 
-	public GeoCentroidAggregation(Builder builder) {
+	private GeoCentroidAggregation(Builder builder) {
 		super(builder);
 
 		this.count = builder.count;
@@ -56,8 +56,8 @@ public final class GeoCentroidAggregation extends MetricAggregationBase implemen
 
 	}
 
-	public GeoCentroidAggregation(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static GeoCentroidAggregation of(Function<Builder, ObjectBuilder<GeoCentroidAggregation>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -72,7 +72,7 @@ public final class GeoCentroidAggregation extends MetricAggregationBase implemen
 	 * API name: {@code count}
 	 */
 	@Nullable
-	public Long count() {
+	public final Long count() {
 		return this.count;
 	}
 
@@ -80,7 +80,7 @@ public final class GeoCentroidAggregation extends MetricAggregationBase implemen
 	 * API name: {@code location}
 	 */
 	@Nullable
-	public JsonValue /* _types.query_dsl.GeoLocation */ location() {
+	public final JsonValue /* _types.query_dsl.GeoLocation */ location() {
 		return this.location;
 	}
 
@@ -88,13 +88,11 @@ public final class GeoCentroidAggregation extends MetricAggregationBase implemen
 
 		super.serializeInternal(generator, mapper);
 		if (this.count != null) {
-
 			generator.writeKey("count");
 			generator.write(this.count);
 
 		}
 		if (this.location != null) {
-
 			generator.writeKey("location");
 			generator.write(this.location);
 
@@ -119,7 +117,7 @@ public final class GeoCentroidAggregation extends MetricAggregationBase implemen
 		/**
 		 * API name: {@code count}
 		 */
-		public Builder count(@Nullable Long value) {
+		public final Builder count(@Nullable Long value) {
 			this.count = value;
 			return this;
 		}
@@ -127,7 +125,7 @@ public final class GeoCentroidAggregation extends MetricAggregationBase implemen
 		/**
 		 * API name: {@code location}
 		 */
-		public Builder location(@Nullable JsonValue /* _types.query_dsl.GeoLocation */ value) {
+		public final Builder location(@Nullable JsonValue /* _types.query_dsl.GeoLocation */ value) {
 			this.location = value;
 			return this;
 		}
@@ -144,6 +142,7 @@ public final class GeoCentroidAggregation extends MetricAggregationBase implemen
 		 *             if some of the required fields are null.
 		 */
 		public GeoCentroidAggregation build() {
+			_checkSingleUse();
 
 			return new GeoCentroidAggregation(this);
 		}

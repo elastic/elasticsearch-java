@@ -31,6 +31,7 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.SimpleEndpoint;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
@@ -42,7 +43,7 @@ import javax.annotation.Nullable;
 
 // typedef: cat.ml_datafeeds.Request
 
-public final class MlDatafeedsRequest extends CatRequestBase {
+public class MlDatafeedsRequest extends CatRequestBase {
 	@Nullable
 	private final Boolean allowNoDatafeeds;
 
@@ -51,15 +52,15 @@ public final class MlDatafeedsRequest extends CatRequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public MlDatafeedsRequest(Builder builder) {
+	private MlDatafeedsRequest(Builder builder) {
 
 		this.allowNoDatafeeds = builder.allowNoDatafeeds;
 		this.datafeedId = builder.datafeedId;
 
 	}
 
-	public MlDatafeedsRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static MlDatafeedsRequest of(Function<Builder, ObjectBuilder<MlDatafeedsRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -69,7 +70,7 @@ public final class MlDatafeedsRequest extends CatRequestBase {
 	 * API name: {@code allow_no_datafeeds}
 	 */
 	@Nullable
-	public Boolean allowNoDatafeeds() {
+	public final Boolean allowNoDatafeeds() {
 		return this.allowNoDatafeeds;
 	}
 
@@ -79,7 +80,7 @@ public final class MlDatafeedsRequest extends CatRequestBase {
 	 * API name: {@code datafeed_id}
 	 */
 	@Nullable
-	public String datafeedId() {
+	public final String datafeedId() {
 		return this.datafeedId;
 	}
 
@@ -88,7 +89,7 @@ public final class MlDatafeedsRequest extends CatRequestBase {
 	/**
 	 * Builder for {@link MlDatafeedsRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<MlDatafeedsRequest> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<MlDatafeedsRequest> {
 		@Nullable
 		private Boolean allowNoDatafeeds;
 
@@ -101,7 +102,7 @@ public final class MlDatafeedsRequest extends CatRequestBase {
 		 * <p>
 		 * API name: {@code allow_no_datafeeds}
 		 */
-		public Builder allowNoDatafeeds(@Nullable Boolean value) {
+		public final Builder allowNoDatafeeds(@Nullable Boolean value) {
 			this.allowNoDatafeeds = value;
 			return this;
 		}
@@ -111,7 +112,7 @@ public final class MlDatafeedsRequest extends CatRequestBase {
 		 * <p>
 		 * API name: {@code datafeed_id}
 		 */
-		public Builder datafeedId(@Nullable String value) {
+		public final Builder datafeedId(@Nullable String value) {
 			this.datafeedId = value;
 			return this;
 		}
@@ -123,6 +124,7 @@ public final class MlDatafeedsRequest extends CatRequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public MlDatafeedsRequest build() {
+			_checkSingleUse();
 
 			return new MlDatafeedsRequest(this);
 		}

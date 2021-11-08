@@ -29,6 +29,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
@@ -37,23 +38,23 @@ import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.SpanContainingQuery
 @JsonpDeserializable
-public final class SpanContainingQuery extends QueryBase implements SpanQueryVariant, QueryVariant {
+public class SpanContainingQuery extends QueryBase implements SpanQueryVariant, QueryVariant {
 	private final SpanQuery big;
 
 	private final SpanQuery little;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public SpanContainingQuery(Builder builder) {
+	private SpanContainingQuery(Builder builder) {
 		super(builder);
 
-		this.big = Objects.requireNonNull(builder.big, "big");
-		this.little = Objects.requireNonNull(builder.little, "little");
+		this.big = ModelTypeHelper.requireNonNull(builder.big, this, "big");
+		this.little = ModelTypeHelper.requireNonNull(builder.little, this, "little");
 
 	}
 
-	public SpanContainingQuery(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static SpanContainingQuery of(Function<Builder, ObjectBuilder<SpanContainingQuery>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -67,21 +68,20 @@ public final class SpanContainingQuery extends QueryBase implements SpanQueryVar
 	/**
 	 * Required - API name: {@code big}
 	 */
-	public SpanQuery big() {
+	public final SpanQuery big() {
 		return this.big;
 	}
 
 	/**
 	 * Required - API name: {@code little}
 	 */
-	public SpanQuery little() {
+	public final SpanQuery little() {
 		return this.little;
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
-
 		generator.writeKey("big");
 		this.big.serialize(generator, mapper);
 
@@ -105,7 +105,7 @@ public final class SpanContainingQuery extends QueryBase implements SpanQueryVar
 		/**
 		 * Required - API name: {@code big}
 		 */
-		public Builder big(SpanQuery value) {
+		public final Builder big(SpanQuery value) {
 			this.big = value;
 			return this;
 		}
@@ -113,14 +113,14 @@ public final class SpanContainingQuery extends QueryBase implements SpanQueryVar
 		/**
 		 * Required - API name: {@code big}
 		 */
-		public Builder big(Function<SpanQuery.Builder, ObjectBuilder<SpanQuery>> fn) {
+		public final Builder big(Function<SpanQuery.Builder, ObjectBuilder<SpanQuery>> fn) {
 			return this.big(fn.apply(new SpanQuery.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code little}
 		 */
-		public Builder little(SpanQuery value) {
+		public final Builder little(SpanQuery value) {
 			this.little = value;
 			return this;
 		}
@@ -128,7 +128,7 @@ public final class SpanContainingQuery extends QueryBase implements SpanQueryVar
 		/**
 		 * Required - API name: {@code little}
 		 */
-		public Builder little(Function<SpanQuery.Builder, ObjectBuilder<SpanQuery>> fn) {
+		public final Builder little(Function<SpanQuery.Builder, ObjectBuilder<SpanQuery>> fn) {
 			return this.little(fn.apply(new SpanQuery.Builder()).build());
 		}
 
@@ -144,6 +144,7 @@ public final class SpanContainingQuery extends QueryBase implements SpanQueryVar
 		 *             if some of the required fields are null.
 		 */
 		public SpanContainingQuery build() {
+			_checkSingleUse();
 
 			return new SpanContainingQuery(this);
 		}

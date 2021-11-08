@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -39,19 +41,19 @@ import javax.annotation.Nullable;
 
 // typedef: ml._types.AnalysisMemoryLimit
 @JsonpDeserializable
-public final class AnalysisMemoryLimit implements JsonpSerializable {
+public class AnalysisMemoryLimit implements JsonpSerializable {
 	private final String modelMemoryLimit;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public AnalysisMemoryLimit(Builder builder) {
+	private AnalysisMemoryLimit(Builder builder) {
 
-		this.modelMemoryLimit = Objects.requireNonNull(builder.modelMemoryLimit, "model_memory_limit");
+		this.modelMemoryLimit = ModelTypeHelper.requireNonNull(builder.modelMemoryLimit, this, "modelMemoryLimit");
 
 	}
 
-	public AnalysisMemoryLimit(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static AnalysisMemoryLimit of(Function<Builder, ObjectBuilder<AnalysisMemoryLimit>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -62,7 +64,7 @@ public final class AnalysisMemoryLimit implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code model_memory_limit}
 	 */
-	public String modelMemoryLimit() {
+	public final String modelMemoryLimit() {
 		return this.modelMemoryLimit;
 	}
 
@@ -87,7 +89,7 @@ public final class AnalysisMemoryLimit implements JsonpSerializable {
 	/**
 	 * Builder for {@link AnalysisMemoryLimit}.
 	 */
-	public static class Builder implements ObjectBuilder<AnalysisMemoryLimit> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<AnalysisMemoryLimit> {
 		private String modelMemoryLimit;
 
 		/**
@@ -98,7 +100,7 @@ public final class AnalysisMemoryLimit implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code model_memory_limit}
 		 */
-		public Builder modelMemoryLimit(String value) {
+		public final Builder modelMemoryLimit(String value) {
 			this.modelMemoryLimit = value;
 			return this;
 		}
@@ -110,6 +112,7 @@ public final class AnalysisMemoryLimit implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public AnalysisMemoryLimit build() {
+			_checkSingleUse();
 
 			return new AnalysisMemoryLimit(this);
 		}

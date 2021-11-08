@@ -34,6 +34,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -44,30 +45,28 @@ import javax.annotation.Nullable;
 
 // typedef: cluster.reroute.Response
 @JsonpDeserializable
-public final class RerouteResponse implements JsonpSerializable {
-	@Nullable
+public class RerouteResponse implements JsonpSerializable {
 	private final List<RerouteExplanation> explanations;
 
 	private final JsonData state;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public RerouteResponse(Builder builder) {
+	private RerouteResponse(Builder builder) {
 
 		this.explanations = ModelTypeHelper.unmodifiable(builder.explanations);
-		this.state = Objects.requireNonNull(builder.state, "state");
+		this.state = ModelTypeHelper.requireNonNull(builder.state, this, "state");
 
 	}
 
-	public RerouteResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static RerouteResponse of(Function<Builder, ObjectBuilder<RerouteResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * API name: {@code explanations}
 	 */
-	@Nullable
-	public List<RerouteExplanation> explanations() {
+	public final List<RerouteExplanation> explanations() {
 		return this.explanations;
 	}
 
@@ -78,7 +77,7 @@ public final class RerouteResponse implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code state}
 	 */
-	public JsonData state() {
+	public final JsonData state() {
 		return this.state;
 	}
 
@@ -93,8 +92,7 @@ public final class RerouteResponse implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (this.explanations != null) {
-
+		if (ModelTypeHelper.isDefined(this.explanations)) {
 			generator.writeKey("explanations");
 			generator.writeStartArray();
 			for (RerouteExplanation item0 : this.explanations) {
@@ -104,7 +102,6 @@ public final class RerouteResponse implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-
 		generator.writeKey("state");
 		this.state.serialize(generator, mapper);
 
@@ -115,7 +112,7 @@ public final class RerouteResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link RerouteResponse}.
 	 */
-	public static class Builder implements ObjectBuilder<RerouteResponse> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RerouteResponse> {
 		@Nullable
 		private List<RerouteExplanation> explanations;
 
@@ -124,7 +121,7 @@ public final class RerouteResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code explanations}
 		 */
-		public Builder explanations(@Nullable List<RerouteExplanation> value) {
+		public final Builder explanations(@Nullable List<RerouteExplanation> value) {
 			this.explanations = value;
 			return this;
 		}
@@ -132,34 +129,22 @@ public final class RerouteResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code explanations}
 		 */
-		public Builder explanations(RerouteExplanation... value) {
+		public final Builder explanations(RerouteExplanation... value) {
 			this.explanations = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #explanations(List)}, creating the list if needed.
+		 * API name: {@code explanations}
 		 */
-		public Builder addExplanations(RerouteExplanation value) {
-			if (this.explanations == null) {
-				this.explanations = new ArrayList<>();
+		@SafeVarargs
+		public final Builder explanations(
+				Function<RerouteExplanation.Builder, ObjectBuilder<RerouteExplanation>>... fns) {
+			this.explanations = new ArrayList<>(fns.length);
+			for (Function<RerouteExplanation.Builder, ObjectBuilder<RerouteExplanation>> fn : fns) {
+				this.explanations.add(fn.apply(new RerouteExplanation.Builder()).build());
 			}
-			this.explanations.add(value);
 			return this;
-		}
-
-		/**
-		 * Set {@link #explanations(List)} to a singleton list.
-		 */
-		public Builder explanations(Function<RerouteExplanation.Builder, ObjectBuilder<RerouteExplanation>> fn) {
-			return this.explanations(fn.apply(new RerouteExplanation.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #explanations(List)}, creating the list if needed.
-		 */
-		public Builder addExplanations(Function<RerouteExplanation.Builder, ObjectBuilder<RerouteExplanation>> fn) {
-			return this.addExplanations(fn.apply(new RerouteExplanation.Builder()).build());
 		}
 
 		/**
@@ -169,7 +154,7 @@ public final class RerouteResponse implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code state}
 		 */
-		public Builder state(JsonData value) {
+		public final Builder state(JsonData value) {
 			this.state = value;
 			return this;
 		}
@@ -181,6 +166,7 @@ public final class RerouteResponse implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public RerouteResponse build() {
+			_checkSingleUse();
 
 			return new RerouteResponse(this);
 		}

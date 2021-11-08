@@ -35,16 +35,16 @@ import java.util.function.Function;
 
 // typedef: _types.aggregations.StatsBucketAggregation
 @JsonpDeserializable
-public final class StatsBucketAggregation extends PipelineAggregationBase implements AggregationVariant {
+public class StatsBucketAggregation extends PipelineAggregationBase implements AggregationVariant {
 	// ---------------------------------------------------------------------------------------------
 
-	public StatsBucketAggregation(Builder builder) {
+	private StatsBucketAggregation(Builder builder) {
 		super(builder);
 
 	}
 
-	public StatsBucketAggregation(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static StatsBucketAggregation of(Function<Builder, ObjectBuilder<StatsBucketAggregation>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -75,6 +75,7 @@ public final class StatsBucketAggregation extends PipelineAggregationBase implem
 		 *             if some of the required fields are null.
 		 */
 		public StatsBucketAggregation build() {
+			_checkSingleUse();
 
 			return new StatsBucketAggregation(this);
 		}

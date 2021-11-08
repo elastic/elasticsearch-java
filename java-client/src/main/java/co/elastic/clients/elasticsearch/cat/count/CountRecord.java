@@ -31,6 +31,7 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -39,7 +40,7 @@ import javax.annotation.Nullable;
 
 // typedef: cat.count.CountRecord
 @JsonpDeserializable
-public final class CountRecord implements JsonpSerializable {
+public class CountRecord implements JsonpSerializable {
 	@Nullable
 	private final String epoch;
 
@@ -51,7 +52,7 @@ public final class CountRecord implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public CountRecord(Builder builder) {
+	private CountRecord(Builder builder) {
 
 		this.epoch = builder.epoch;
 		this.timestamp = builder.timestamp;
@@ -59,8 +60,8 @@ public final class CountRecord implements JsonpSerializable {
 
 	}
 
-	public CountRecord(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static CountRecord of(Function<Builder, ObjectBuilder<CountRecord>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -69,7 +70,7 @@ public final class CountRecord implements JsonpSerializable {
 	 * API name: {@code epoch}
 	 */
 	@Nullable
-	public String epoch() {
+	public final String epoch() {
 		return this.epoch;
 	}
 
@@ -79,7 +80,7 @@ public final class CountRecord implements JsonpSerializable {
 	 * API name: {@code timestamp}
 	 */
 	@Nullable
-	public String timestamp() {
+	public final String timestamp() {
 		return this.timestamp;
 	}
 
@@ -89,7 +90,7 @@ public final class CountRecord implements JsonpSerializable {
 	 * API name: {@code count}
 	 */
 	@Nullable
-	public String count() {
+	public final String count() {
 		return this.count;
 	}
 
@@ -105,19 +106,16 @@ public final class CountRecord implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.epoch != null) {
-
 			generator.writeKey("epoch");
 			generator.write(this.epoch);
 
 		}
 		if (this.timestamp != null) {
-
 			generator.writeKey("timestamp");
 			generator.write(this.timestamp);
 
 		}
 		if (this.count != null) {
-
 			generator.writeKey("count");
 			generator.write(this.count);
 
@@ -130,7 +128,7 @@ public final class CountRecord implements JsonpSerializable {
 	/**
 	 * Builder for {@link CountRecord}.
 	 */
-	public static class Builder implements ObjectBuilder<CountRecord> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<CountRecord> {
 		@Nullable
 		private String epoch;
 
@@ -145,7 +143,7 @@ public final class CountRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code epoch}
 		 */
-		public Builder epoch(@Nullable String value) {
+		public final Builder epoch(@Nullable String value) {
 			this.epoch = value;
 			return this;
 		}
@@ -155,7 +153,7 @@ public final class CountRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code timestamp}
 		 */
-		public Builder timestamp(@Nullable String value) {
+		public final Builder timestamp(@Nullable String value) {
 			this.timestamp = value;
 			return this;
 		}
@@ -165,7 +163,7 @@ public final class CountRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code count}
 		 */
-		public Builder count(@Nullable String value) {
+		public final Builder count(@Nullable String value) {
 			this.count = value;
 			return this;
 		}
@@ -177,6 +175,7 @@ public final class CountRecord implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public CountRecord build() {
+			_checkSingleUse();
 
 			return new CountRecord(this);
 		}

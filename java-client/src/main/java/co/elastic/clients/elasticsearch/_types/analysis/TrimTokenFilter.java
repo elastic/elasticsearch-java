@@ -36,16 +36,16 @@ import java.util.function.Function;
 
 // typedef: _types.analysis.TrimTokenFilter
 @JsonpDeserializable
-public final class TrimTokenFilter extends TokenFilterBase implements TokenFilterVariant {
+public class TrimTokenFilter extends TokenFilterBase implements TokenFilterVariant {
 	// ---------------------------------------------------------------------------------------------
 
-	public TrimTokenFilter(Builder builder) {
+	private TrimTokenFilter(Builder builder) {
 		super(builder);
 
 	}
 
-	public TrimTokenFilter(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static TrimTokenFilter of(Function<Builder, ObjectBuilder<TrimTokenFilter>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -83,6 +83,7 @@ public final class TrimTokenFilter extends TokenFilterBase implements TokenFilte
 		 *             if some of the required fields are null.
 		 */
 		public TrimTokenFilter build() {
+			_checkSingleUse();
 
 			return new TrimTokenFilter(this);
 		}

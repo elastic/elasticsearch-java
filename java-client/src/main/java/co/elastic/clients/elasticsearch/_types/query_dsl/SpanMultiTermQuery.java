@@ -29,6 +29,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
@@ -37,20 +38,20 @@ import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.SpanMultiTermQuery
 @JsonpDeserializable
-public final class SpanMultiTermQuery extends QueryBase implements SpanQueryVariant, QueryVariant {
+public class SpanMultiTermQuery extends QueryBase implements SpanQueryVariant, QueryVariant {
 	private final Query match;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public SpanMultiTermQuery(Builder builder) {
+	private SpanMultiTermQuery(Builder builder) {
 		super(builder);
 
-		this.match = Objects.requireNonNull(builder.match, "match");
+		this.match = ModelTypeHelper.requireNonNull(builder.match, this, "match");
 
 	}
 
-	public SpanMultiTermQuery(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static SpanMultiTermQuery of(Function<Builder, ObjectBuilder<SpanMultiTermQuery>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -67,14 +68,13 @@ public final class SpanMultiTermQuery extends QueryBase implements SpanQueryVari
 	 * <p>
 	 * API name: {@code match}
 	 */
-	public Query match() {
+	public final Query match() {
 		return this.match;
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
-
 		generator.writeKey("match");
 		this.match.serialize(generator, mapper);
 
@@ -96,7 +96,7 @@ public final class SpanMultiTermQuery extends QueryBase implements SpanQueryVari
 		 * <p>
 		 * API name: {@code match}
 		 */
-		public Builder match(Query value) {
+		public final Builder match(Query value) {
 			this.match = value;
 			return this;
 		}
@@ -107,7 +107,7 @@ public final class SpanMultiTermQuery extends QueryBase implements SpanQueryVari
 		 * <p>
 		 * API name: {@code match}
 		 */
-		public Builder match(Function<Query.Builder, ObjectBuilder<Query>> fn) {
+		public final Builder match(Function<Query.Builder, ObjectBuilder<Query>> fn) {
 			return this.match(fn.apply(new Query.Builder()).build());
 		}
 
@@ -123,6 +123,7 @@ public final class SpanMultiTermQuery extends QueryBase implements SpanQueryVari
 		 *             if some of the required fields are null.
 		 */
 		public SpanMultiTermQuery build() {
+			_checkSingleUse();
 
 			return new SpanMultiTermQuery(this);
 		}

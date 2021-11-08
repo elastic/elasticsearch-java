@@ -33,10 +33,10 @@ import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.SimpleEndpoint;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -48,7 +48,7 @@ import javax.annotation.Nullable;
 
 // typedef: ml.get_jobs.Request
 
-public final class GetJobsRequest extends RequestBase {
+public class GetJobsRequest extends RequestBase {
 	@Nullable
 	private final Boolean allowNoJobs;
 
@@ -58,12 +58,11 @@ public final class GetJobsRequest extends RequestBase {
 	@Nullable
 	private final Boolean excludeGenerated;
 
-	@Nullable
 	private final List<String> jobId;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public GetJobsRequest(Builder builder) {
+	private GetJobsRequest(Builder builder) {
 
 		this.allowNoJobs = builder.allowNoJobs;
 		this.allowNoMatch = builder.allowNoMatch;
@@ -72,8 +71,8 @@ public final class GetJobsRequest extends RequestBase {
 
 	}
 
-	public GetJobsRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static GetJobsRequest of(Function<Builder, ObjectBuilder<GetJobsRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -83,38 +82,51 @@ public final class GetJobsRequest extends RequestBase {
 	 * API name: {@code allow_no_jobs}
 	 */
 	@Nullable
-	public Boolean allowNoJobs() {
+	public final Boolean allowNoJobs() {
 		return this.allowNoJobs;
 	}
 
 	/**
-	 * Whether to ignore if a wildcard expression matches no jobs. (This includes
-	 * <code>_all</code> string or when no jobs have been specified)
+	 * Specifies what to do when the request:
+	 * <ol>
+	 * <li>Contains wildcard expressions and there are no jobs that match.</li>
+	 * <li>Contains the _all string or no identifiers and there are no matches.</li>
+	 * <li>Contains wildcard expressions and there are only partial matches.</li>
+	 * </ol>
+	 * <p>
+	 * The default value is <code>true</code>, which returns an empty
+	 * <code>jobs</code> array when there are no matches and the subset of results
+	 * when there are partial matches. If this parameter is <code>false</code>, the
+	 * request returns a <code>404</code> status code when there are no matches or
+	 * only partial matches.
 	 * <p>
 	 * API name: {@code allow_no_match}
 	 */
 	@Nullable
-	public Boolean allowNoMatch() {
+	public final Boolean allowNoMatch() {
 		return this.allowNoMatch;
 	}
 
 	/**
-	 * Omits fields that are illegal to set on job PUT
+	 * Indicates if certain fields should be removed from the configuration on
+	 * retrieval. This allows the configuration to be in an acceptable format to be
+	 * retrieved and then added to another cluster.
 	 * <p>
 	 * API name: {@code exclude_generated}
 	 */
 	@Nullable
-	public Boolean excludeGenerated() {
+	public final Boolean excludeGenerated() {
 		return this.excludeGenerated;
 	}
 
 	/**
-	 * The ID of the jobs to fetch
+	 * Identifier for the anomaly detection job. It can be a job identifier, a group
+	 * name, or a wildcard expression. If you do not specify one of these options,
+	 * the API returns information for all anomaly detection jobs.
 	 * <p>
 	 * API name: {@code job_id}
 	 */
-	@Nullable
-	public List<String> jobId() {
+	public final List<String> jobId() {
 		return this.jobId;
 	}
 
@@ -123,7 +135,7 @@ public final class GetJobsRequest extends RequestBase {
 	/**
 	 * Builder for {@link GetJobsRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<GetJobsRequest> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetJobsRequest> {
 		@Nullable
 		private Boolean allowNoJobs;
 
@@ -142,60 +154,65 @@ public final class GetJobsRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code allow_no_jobs}
 		 */
-		public Builder allowNoJobs(@Nullable Boolean value) {
+		public final Builder allowNoJobs(@Nullable Boolean value) {
 			this.allowNoJobs = value;
 			return this;
 		}
 
 		/**
-		 * Whether to ignore if a wildcard expression matches no jobs. (This includes
-		 * <code>_all</code> string or when no jobs have been specified)
+		 * Specifies what to do when the request:
+		 * <ol>
+		 * <li>Contains wildcard expressions and there are no jobs that match.</li>
+		 * <li>Contains the _all string or no identifiers and there are no matches.</li>
+		 * <li>Contains wildcard expressions and there are only partial matches.</li>
+		 * </ol>
+		 * <p>
+		 * The default value is <code>true</code>, which returns an empty
+		 * <code>jobs</code> array when there are no matches and the subset of results
+		 * when there are partial matches. If this parameter is <code>false</code>, the
+		 * request returns a <code>404</code> status code when there are no matches or
+		 * only partial matches.
 		 * <p>
 		 * API name: {@code allow_no_match}
 		 */
-		public Builder allowNoMatch(@Nullable Boolean value) {
+		public final Builder allowNoMatch(@Nullable Boolean value) {
 			this.allowNoMatch = value;
 			return this;
 		}
 
 		/**
-		 * Omits fields that are illegal to set on job PUT
+		 * Indicates if certain fields should be removed from the configuration on
+		 * retrieval. This allows the configuration to be in an acceptable format to be
+		 * retrieved and then added to another cluster.
 		 * <p>
 		 * API name: {@code exclude_generated}
 		 */
-		public Builder excludeGenerated(@Nullable Boolean value) {
+		public final Builder excludeGenerated(@Nullable Boolean value) {
 			this.excludeGenerated = value;
 			return this;
 		}
 
 		/**
-		 * The ID of the jobs to fetch
+		 * Identifier for the anomaly detection job. It can be a job identifier, a group
+		 * name, or a wildcard expression. If you do not specify one of these options,
+		 * the API returns information for all anomaly detection jobs.
 		 * <p>
 		 * API name: {@code job_id}
 		 */
-		public Builder jobId(@Nullable List<String> value) {
+		public final Builder jobId(@Nullable List<String> value) {
 			this.jobId = value;
 			return this;
 		}
 
 		/**
-		 * The ID of the jobs to fetch
+		 * Identifier for the anomaly detection job. It can be a job identifier, a group
+		 * name, or a wildcard expression. If you do not specify one of these options,
+		 * the API returns information for all anomaly detection jobs.
 		 * <p>
 		 * API name: {@code job_id}
 		 */
-		public Builder jobId(String... value) {
+		public final Builder jobId(String... value) {
 			this.jobId = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #jobId(List)}, creating the list if needed.
-		 */
-		public Builder addJobId(String value) {
-			if (this.jobId == null) {
-				this.jobId = new ArrayList<>();
-			}
-			this.jobId.add(value);
 			return this;
 		}
 
@@ -206,6 +223,7 @@ public final class GetJobsRequest extends RequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public GetJobsRequest build() {
+			_checkSingleUse();
 
 			return new GetJobsRequest(this);
 		}
@@ -229,7 +247,7 @@ public final class GetJobsRequest extends RequestBase {
 
 				int propsSet = 0;
 
-				if (request.jobId() != null)
+				if (ModelTypeHelper.isDefined(request.jobId()))
 					propsSet |= _jobId;
 
 				if (propsSet == (_jobId)) {

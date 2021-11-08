@@ -36,16 +36,16 @@ import java.util.function.Function;
 
 // typedef: transform.put_transform.Response
 @JsonpDeserializable
-public final class PutTransformResponse extends AcknowledgedResponseBase {
+public class PutTransformResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
-	public PutTransformResponse(Builder builder) {
+	private PutTransformResponse(Builder builder) {
 		super(builder);
 
 	}
 
-	public PutTransformResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static PutTransformResponse of(Function<Builder, ObjectBuilder<PutTransformResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -68,6 +68,7 @@ public final class PutTransformResponse extends AcknowledgedResponseBase {
 		 *             if some of the required fields are null.
 		 */
 		public PutTransformResponse build() {
+			_checkSingleUse();
 
 			return new PutTransformResponse(this);
 		}

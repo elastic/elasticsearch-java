@@ -30,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
@@ -40,7 +42,7 @@ import javax.annotation.Nullable;
 
 // typedef: nodes.info.NodeInfoSettingsHttp
 @JsonpDeserializable
-public final class NodeInfoSettingsHttp implements JsonpSerializable {
+public class NodeInfoSettingsHttp implements JsonpSerializable {
 	private final NodeInfoSettingsHttpType type;
 
 	@Nullable
@@ -54,23 +56,23 @@ public final class NodeInfoSettingsHttp implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public NodeInfoSettingsHttp(Builder builder) {
+	private NodeInfoSettingsHttp(Builder builder) {
 
-		this.type = Objects.requireNonNull(builder.type, "type");
+		this.type = ModelTypeHelper.requireNonNull(builder.type, this, "type");
 		this.typeDefault = builder.typeDefault;
 		this.compression = builder.compression;
 		this.port = builder.port;
 
 	}
 
-	public NodeInfoSettingsHttp(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static NodeInfoSettingsHttp of(Function<Builder, ObjectBuilder<NodeInfoSettingsHttp>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code type}
 	 */
-	public NodeInfoSettingsHttpType type() {
+	public final NodeInfoSettingsHttpType type() {
 		return this.type;
 	}
 
@@ -78,7 +80,7 @@ public final class NodeInfoSettingsHttp implements JsonpSerializable {
 	 * API name: {@code type.default}
 	 */
 	@Nullable
-	public String typeDefault() {
+	public final String typeDefault() {
 		return this.typeDefault;
 	}
 
@@ -86,7 +88,7 @@ public final class NodeInfoSettingsHttp implements JsonpSerializable {
 	 * API name: {@code compression}
 	 */
 	@Nullable
-	public Boolean compression() {
+	public final Boolean compression() {
 		return this.compression;
 	}
 
@@ -94,7 +96,7 @@ public final class NodeInfoSettingsHttp implements JsonpSerializable {
 	 * API name: {@code port}
 	 */
 	@Nullable
-	public String port() {
+	public final String port() {
 		return this.port;
 	}
 
@@ -113,19 +115,16 @@ public final class NodeInfoSettingsHttp implements JsonpSerializable {
 		this.type.serialize(generator, mapper);
 
 		if (this.typeDefault != null) {
-
 			generator.writeKey("type.default");
 			generator.write(this.typeDefault);
 
 		}
 		if (this.compression != null) {
-
 			generator.writeKey("compression");
 			generator.write(this.compression);
 
 		}
 		if (this.port != null) {
-
 			generator.writeKey("port");
 			generator.write(this.port);
 
@@ -138,7 +137,7 @@ public final class NodeInfoSettingsHttp implements JsonpSerializable {
 	/**
 	 * Builder for {@link NodeInfoSettingsHttp}.
 	 */
-	public static class Builder implements ObjectBuilder<NodeInfoSettingsHttp> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodeInfoSettingsHttp> {
 		private NodeInfoSettingsHttpType type;
 
 		@Nullable
@@ -153,7 +152,7 @@ public final class NodeInfoSettingsHttp implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code type}
 		 */
-		public Builder type(NodeInfoSettingsHttpType value) {
+		public final Builder type(NodeInfoSettingsHttpType value) {
 			this.type = value;
 			return this;
 		}
@@ -161,14 +160,15 @@ public final class NodeInfoSettingsHttp implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code type}
 		 */
-		public Builder type(Function<NodeInfoSettingsHttpType.Builder, ObjectBuilder<NodeInfoSettingsHttpType>> fn) {
+		public final Builder type(
+				Function<NodeInfoSettingsHttpType.Builder, ObjectBuilder<NodeInfoSettingsHttpType>> fn) {
 			return this.type(fn.apply(new NodeInfoSettingsHttpType.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code type.default}
 		 */
-		public Builder typeDefault(@Nullable String value) {
+		public final Builder typeDefault(@Nullable String value) {
 			this.typeDefault = value;
 			return this;
 		}
@@ -176,7 +176,7 @@ public final class NodeInfoSettingsHttp implements JsonpSerializable {
 		/**
 		 * API name: {@code compression}
 		 */
-		public Builder compression(@Nullable Boolean value) {
+		public final Builder compression(@Nullable Boolean value) {
 			this.compression = value;
 			return this;
 		}
@@ -184,7 +184,7 @@ public final class NodeInfoSettingsHttp implements JsonpSerializable {
 		/**
 		 * API name: {@code port}
 		 */
-		public Builder port(@Nullable String value) {
+		public final Builder port(@Nullable String value) {
 			this.port = value;
 			return this;
 		}
@@ -196,6 +196,7 @@ public final class NodeInfoSettingsHttp implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public NodeInfoSettingsHttp build() {
+			_checkSingleUse();
 
 			return new NodeInfoSettingsHttp(this);
 		}

@@ -32,6 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -42,19 +43,19 @@ import javax.annotation.Nullable;
 
 // typedef: cat.ml_data_frame_analytics.Response
 @JsonpDeserializable
-public final class MlDataFrameAnalyticsResponse implements JsonpSerializable {
+public class MlDataFrameAnalyticsResponse implements JsonpSerializable {
 	private final List<DataFrameAnalyticsRecord> valueBody;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public MlDataFrameAnalyticsResponse(Builder builder) {
+	private MlDataFrameAnalyticsResponse(Builder builder) {
 
-		this.valueBody = ModelTypeHelper.unmodifiableNonNull(builder.valueBody, "_value_body");
+		this.valueBody = ModelTypeHelper.unmodifiableRequired(builder.valueBody, this, "valueBody");
 
 	}
 
-	public MlDataFrameAnalyticsResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static MlDataFrameAnalyticsResponse of(Function<Builder, ObjectBuilder<MlDataFrameAnalyticsResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -62,7 +63,7 @@ public final class MlDataFrameAnalyticsResponse implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code _value_body}
 	 */
-	public List<DataFrameAnalyticsRecord> valueBody() {
+	public final List<DataFrameAnalyticsRecord> valueBody() {
 		return this.valueBody;
 	}
 
@@ -84,7 +85,7 @@ public final class MlDataFrameAnalyticsResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link MlDataFrameAnalyticsResponse}.
 	 */
-	public static class Builder implements ObjectBuilder<MlDataFrameAnalyticsResponse> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<MlDataFrameAnalyticsResponse> {
 		private List<DataFrameAnalyticsRecord> valueBody;
 
 		/**
@@ -92,7 +93,7 @@ public final class MlDataFrameAnalyticsResponse implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code _value_body}
 		 */
-		public Builder valueBody(List<DataFrameAnalyticsRecord> value) {
+		public final Builder valueBody(List<DataFrameAnalyticsRecord> value) {
 			this.valueBody = value;
 			return this;
 		}
@@ -102,36 +103,24 @@ public final class MlDataFrameAnalyticsResponse implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code _value_body}
 		 */
-		public Builder valueBody(DataFrameAnalyticsRecord... value) {
+		public final Builder valueBody(DataFrameAnalyticsRecord... value) {
 			this.valueBody = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #valueBody(List)}, creating the list if needed.
+		 * Required - Response value.
+		 * <p>
+		 * API name: {@code _value_body}
 		 */
-		public Builder addValueBody(DataFrameAnalyticsRecord value) {
-			if (this.valueBody == null) {
-				this.valueBody = new ArrayList<>();
+		@SafeVarargs
+		public final Builder valueBody(
+				Function<DataFrameAnalyticsRecord.Builder, ObjectBuilder<DataFrameAnalyticsRecord>>... fns) {
+			this.valueBody = new ArrayList<>(fns.length);
+			for (Function<DataFrameAnalyticsRecord.Builder, ObjectBuilder<DataFrameAnalyticsRecord>> fn : fns) {
+				this.valueBody.add(fn.apply(new DataFrameAnalyticsRecord.Builder()).build());
 			}
-			this.valueBody.add(value);
 			return this;
-		}
-
-		/**
-		 * Set {@link #valueBody(List)} to a singleton list.
-		 */
-		public Builder valueBody(
-				Function<DataFrameAnalyticsRecord.Builder, ObjectBuilder<DataFrameAnalyticsRecord>> fn) {
-			return this.valueBody(fn.apply(new DataFrameAnalyticsRecord.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #valueBody(List)}, creating the list if needed.
-		 */
-		public Builder addValueBody(
-				Function<DataFrameAnalyticsRecord.Builder, ObjectBuilder<DataFrameAnalyticsRecord>> fn) {
-			return this.addValueBody(fn.apply(new DataFrameAnalyticsRecord.Builder()).build());
 		}
 
 		/**
@@ -141,6 +130,7 @@ public final class MlDataFrameAnalyticsResponse implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public MlDataFrameAnalyticsResponse build() {
+			_checkSingleUse();
 
 			return new MlDataFrameAnalyticsResponse(this);
 		}

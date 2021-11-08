@@ -36,16 +36,16 @@ import java.util.function.Function;
 
 // typedef: _types.mapping.DoubleRangeProperty
 @JsonpDeserializable
-public final class DoubleRangeProperty extends RangePropertyBase implements PropertyVariant {
+public class DoubleRangeProperty extends RangePropertyBase implements PropertyVariant {
 	// ---------------------------------------------------------------------------------------------
 
-	public DoubleRangeProperty(Builder builder) {
+	private DoubleRangeProperty(Builder builder) {
 		super(builder);
 
 	}
 
-	public DoubleRangeProperty(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static DoubleRangeProperty of(Function<Builder, ObjectBuilder<DoubleRangeProperty>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -83,6 +83,7 @@ public final class DoubleRangeProperty extends RangePropertyBase implements Prop
 		 *             if some of the required fields are null.
 		 */
 		public DoubleRangeProperty build() {
+			_checkSingleUse();
 
 			return new DoubleRangeProperty(this);
 		}

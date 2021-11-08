@@ -32,10 +32,10 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
 import java.lang.String;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
@@ -43,7 +43,7 @@ import javax.annotation.Nullable;
 
 // typedef: ml.put_trained_model.TargetMeanEncodingPreprocessor
 @JsonpDeserializable
-public final class TargetMeanEncodingPreprocessor implements PreprocessorVariant, JsonpSerializable {
+public class TargetMeanEncodingPreprocessor implements PreprocessorVariant, JsonpSerializable {
 	private final String field;
 
 	private final String featureName;
@@ -54,17 +54,18 @@ public final class TargetMeanEncodingPreprocessor implements PreprocessorVariant
 
 	// ---------------------------------------------------------------------------------------------
 
-	public TargetMeanEncodingPreprocessor(Builder builder) {
+	private TargetMeanEncodingPreprocessor(Builder builder) {
 
-		this.field = Objects.requireNonNull(builder.field, "field");
-		this.featureName = Objects.requireNonNull(builder.featureName, "feature_name");
-		this.targetMap = ModelTypeHelper.unmodifiableNonNull(builder.targetMap, "target_map");
-		this.defaultValue = Objects.requireNonNull(builder.defaultValue, "default_value");
+		this.field = ModelTypeHelper.requireNonNull(builder.field, this, "field");
+		this.featureName = ModelTypeHelper.requireNonNull(builder.featureName, this, "featureName");
+		this.targetMap = ModelTypeHelper.unmodifiableRequired(builder.targetMap, this, "targetMap");
+		this.defaultValue = ModelTypeHelper.requireNonNull(builder.defaultValue, this, "defaultValue");
 
 	}
 
-	public TargetMeanEncodingPreprocessor(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static TargetMeanEncodingPreprocessor of(
+			Function<Builder, ObjectBuilder<TargetMeanEncodingPreprocessor>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -78,28 +79,28 @@ public final class TargetMeanEncodingPreprocessor implements PreprocessorVariant
 	/**
 	 * Required - API name: {@code field}
 	 */
-	public String field() {
+	public final String field() {
 		return this.field;
 	}
 
 	/**
 	 * Required - API name: {@code feature_name}
 	 */
-	public String featureName() {
+	public final String featureName() {
 		return this.featureName;
 	}
 
 	/**
 	 * Required - API name: {@code target_map}
 	 */
-	public Map<String, Double> targetMap() {
+	public final Map<String, Double> targetMap() {
 		return this.targetMap;
 	}
 
 	/**
 	 * Required - API name: {@code default_value}
 	 */
-	public double defaultValue() {
+	public final double defaultValue() {
 		return this.defaultValue;
 	}
 
@@ -120,15 +121,17 @@ public final class TargetMeanEncodingPreprocessor implements PreprocessorVariant
 		generator.writeKey("feature_name");
 		generator.write(this.featureName);
 
-		generator.writeKey("target_map");
-		generator.writeStartObject();
-		for (Map.Entry<String, Double> item0 : this.targetMap.entrySet()) {
-			generator.writeKey(item0.getKey());
-			generator.write(item0.getValue());
+		if (ModelTypeHelper.isDefined(this.targetMap)) {
+			generator.writeKey("target_map");
+			generator.writeStartObject();
+			for (Map.Entry<String, Double> item0 : this.targetMap.entrySet()) {
+				generator.writeKey(item0.getKey());
+				generator.write(item0.getValue());
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
-
 		generator.writeKey("default_value");
 		generator.write(this.defaultValue);
 
@@ -139,7 +142,7 @@ public final class TargetMeanEncodingPreprocessor implements PreprocessorVariant
 	/**
 	 * Builder for {@link TargetMeanEncodingPreprocessor}.
 	 */
-	public static class Builder implements ObjectBuilder<TargetMeanEncodingPreprocessor> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TargetMeanEncodingPreprocessor> {
 		private String field;
 
 		private String featureName;
@@ -151,7 +154,7 @@ public final class TargetMeanEncodingPreprocessor implements PreprocessorVariant
 		/**
 		 * Required - API name: {@code field}
 		 */
-		public Builder field(String value) {
+		public final Builder field(String value) {
 			this.field = value;
 			return this;
 		}
@@ -159,7 +162,7 @@ public final class TargetMeanEncodingPreprocessor implements PreprocessorVariant
 		/**
 		 * Required - API name: {@code feature_name}
 		 */
-		public Builder featureName(String value) {
+		public final Builder featureName(String value) {
 			this.featureName = value;
 			return this;
 		}
@@ -167,26 +170,15 @@ public final class TargetMeanEncodingPreprocessor implements PreprocessorVariant
 		/**
 		 * Required - API name: {@code target_map}
 		 */
-		public Builder targetMap(Map<String, Double> value) {
+		public final Builder targetMap(Map<String, Double> value) {
 			this.targetMap = value;
-			return this;
-		}
-
-		/**
-		 * Add a key/value to {@link #targetMap(Map)}, creating the map if needed.
-		 */
-		public Builder putTargetMap(String key, Double value) {
-			if (this.targetMap == null) {
-				this.targetMap = new HashMap<>();
-			}
-			this.targetMap.put(key, value);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code default_value}
 		 */
-		public Builder defaultValue(double value) {
+		public final Builder defaultValue(double value) {
 			this.defaultValue = value;
 			return this;
 		}
@@ -198,6 +190,7 @@ public final class TargetMeanEncodingPreprocessor implements PreprocessorVariant
 		 *             if some of the required fields are null.
 		 */
 		public TargetMeanEncodingPreprocessor build() {
+			_checkSingleUse();
 
 			return new TargetMeanEncodingPreprocessor(this);
 		}

@@ -36,16 +36,16 @@ import java.util.function.Function;
 
 // typedef: snapshot.clone.Response
 @JsonpDeserializable
-public final class CloneSnapshotResponse extends AcknowledgedResponseBase {
+public class CloneSnapshotResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
-	public CloneSnapshotResponse(Builder builder) {
+	private CloneSnapshotResponse(Builder builder) {
 		super(builder);
 
 	}
 
-	public CloneSnapshotResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static CloneSnapshotResponse of(Function<Builder, ObjectBuilder<CloneSnapshotResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -68,6 +68,7 @@ public final class CloneSnapshotResponse extends AcknowledgedResponseBase {
 		 *             if some of the required fields are null.
 		 */
 		public CloneSnapshotResponse build() {
+			_checkSingleUse();
 
 			return new CloneSnapshotResponse(this);
 		}

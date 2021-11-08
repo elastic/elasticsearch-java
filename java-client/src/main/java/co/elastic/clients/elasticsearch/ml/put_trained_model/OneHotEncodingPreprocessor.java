@@ -32,9 +32,9 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
@@ -42,22 +42,22 @@ import javax.annotation.Nullable;
 
 // typedef: ml.put_trained_model.OneHotEncodingPreprocessor
 @JsonpDeserializable
-public final class OneHotEncodingPreprocessor implements PreprocessorVariant, JsonpSerializable {
+public class OneHotEncodingPreprocessor implements PreprocessorVariant, JsonpSerializable {
 	private final String field;
 
 	private final Map<String, String> hotMap;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public OneHotEncodingPreprocessor(Builder builder) {
+	private OneHotEncodingPreprocessor(Builder builder) {
 
-		this.field = Objects.requireNonNull(builder.field, "field");
-		this.hotMap = ModelTypeHelper.unmodifiableNonNull(builder.hotMap, "hot_map");
+		this.field = ModelTypeHelper.requireNonNull(builder.field, this, "field");
+		this.hotMap = ModelTypeHelper.unmodifiableRequired(builder.hotMap, this, "hotMap");
 
 	}
 
-	public OneHotEncodingPreprocessor(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static OneHotEncodingPreprocessor of(Function<Builder, ObjectBuilder<OneHotEncodingPreprocessor>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -71,14 +71,14 @@ public final class OneHotEncodingPreprocessor implements PreprocessorVariant, Js
 	/**
 	 * Required - API name: {@code field}
 	 */
-	public String field() {
+	public final String field() {
 		return this.field;
 	}
 
 	/**
 	 * Required - API name: {@code hot_map}
 	 */
-	public Map<String, String> hotMap() {
+	public final Map<String, String> hotMap() {
 		return this.hotMap;
 	}
 
@@ -96,14 +96,17 @@ public final class OneHotEncodingPreprocessor implements PreprocessorVariant, Js
 		generator.writeKey("field");
 		generator.write(this.field);
 
-		generator.writeKey("hot_map");
-		generator.writeStartObject();
-		for (Map.Entry<String, String> item0 : this.hotMap.entrySet()) {
-			generator.writeKey(item0.getKey());
-			generator.write(item0.getValue());
+		if (ModelTypeHelper.isDefined(this.hotMap)) {
+			generator.writeKey("hot_map");
+			generator.writeStartObject();
+			for (Map.Entry<String, String> item0 : this.hotMap.entrySet()) {
+				generator.writeKey(item0.getKey());
+				generator.write(item0.getValue());
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
 
 	}
 
@@ -112,7 +115,7 @@ public final class OneHotEncodingPreprocessor implements PreprocessorVariant, Js
 	/**
 	 * Builder for {@link OneHotEncodingPreprocessor}.
 	 */
-	public static class Builder implements ObjectBuilder<OneHotEncodingPreprocessor> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<OneHotEncodingPreprocessor> {
 		private String field;
 
 		private Map<String, String> hotMap;
@@ -120,7 +123,7 @@ public final class OneHotEncodingPreprocessor implements PreprocessorVariant, Js
 		/**
 		 * Required - API name: {@code field}
 		 */
-		public Builder field(String value) {
+		public final Builder field(String value) {
 			this.field = value;
 			return this;
 		}
@@ -128,19 +131,8 @@ public final class OneHotEncodingPreprocessor implements PreprocessorVariant, Js
 		/**
 		 * Required - API name: {@code hot_map}
 		 */
-		public Builder hotMap(Map<String, String> value) {
+		public final Builder hotMap(Map<String, String> value) {
 			this.hotMap = value;
-			return this;
-		}
-
-		/**
-		 * Add a key/value to {@link #hotMap(Map)}, creating the map if needed.
-		 */
-		public Builder putHotMap(String key, String value) {
-			if (this.hotMap == null) {
-				this.hotMap = new HashMap<>();
-			}
-			this.hotMap.put(key, value);
 			return this;
 		}
 
@@ -151,6 +143,7 @@ public final class OneHotEncodingPreprocessor implements PreprocessorVariant, Js
 		 *             if some of the required fields are null.
 		 */
 		public OneHotEncodingPreprocessor build() {
+			_checkSingleUse();
 
 			return new OneHotEncodingPreprocessor(this);
 		}
