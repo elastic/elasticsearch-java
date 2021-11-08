@@ -22,15 +22,31 @@ package co.elastic.clients.json;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonParser;
 
+import java.util.EnumSet;
 import java.util.function.Consumer;
+import java.util.function.Function;
 import java.util.function.Supplier;
 
 /**
  * An object deserializer based on an {@link ObjectBuilder}.
  */
-public class ObjectBuilderDeserializer<T> extends JsonpDeserializer<T> {
+public class ObjectBuilderDeserializer<T> extends JsonpDeserializerBase<T> {
 
     private final JsonpDeserializer<? extends ObjectBuilder<T>> builderDeserializer;
+
+    public static <B, T> JsonpDeserializer<T> lazy(
+        Supplier<B> builderCtor,
+        Consumer<DelegatingDeserializer<B>> builderDeserializerSetup,
+        Function<B, T> buildFn
+    ) {
+        return new JsonpDeserializerBase.LazyDeserializer<>(() -> {
+                ObjectDeserializer<B> builderDeser = new ObjectDeserializer<B>(builderCtor);
+                builderDeserializerSetup.accept(builderDeser);
+                return new BuildFunctionDeserializer<>(builderDeser, buildFn);
+            },
+            //EnumSet.of(JsonParser.Event.START_OBJECT));
+            EnumSet.allOf(JsonParser.Event.class));
+    }
 
     public ObjectBuilderDeserializer(JsonpDeserializer<? extends ObjectBuilder<T>> builderDeserializer) {
         super(builderDeserializer.acceptedEvents());

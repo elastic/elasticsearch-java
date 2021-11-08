@@ -63,6 +63,15 @@ public class JsonpUtils {
         return parser.getString();
     }
 
+    public static void ensureAccepts(JsonpDeserializer<?> deserializer, JsonParser parser, JsonParser.Event event) {
+        if (!deserializer.acceptedEvents().contains(event)) {
+            throw new JsonParsingException(
+                String.format("Unexpected JSON event '%s', expected %s", event, deserializer.acceptedEvents().toString()),
+                parser.getLocation()
+            );
+        }
+    }
+
     /**
      * Skip the value at the next position of the parser.
      */

@@ -20,6 +20,7 @@
 package co.elastic.clients.json.jsonb;
 
 import co.elastic.clients.json.JsonpDeserializer;
+import co.elastic.clients.json.JsonpDeserializerBase;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpMapperBase;
 import co.elastic.clients.json.JsonpSerializable;
@@ -78,7 +79,7 @@ public class JsonbJsonpMapper extends JsonpMapperBase {
         return jsonProvider;
     }
 
-    private class Deserializer<T> extends JsonpDeserializer<T> {
+    private class Deserializer<T> extends JsonpDeserializerBase<T> {
         private final Class<T> clazz;
 
         Deserializer(Class<T> clazz) {

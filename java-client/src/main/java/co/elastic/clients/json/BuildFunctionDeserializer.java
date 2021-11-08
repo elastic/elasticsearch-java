@@ -26,7 +26,7 @@ import java.util.function.Function;
 /**
  * An object deserializer based on a builder object deserializer and a build function
  */
-public class BuildFunctionDeserializer<B, T> extends JsonpDeserializer<T> {
+public class BuildFunctionDeserializer<B, T> extends JsonpDeserializerBase<T> {
 
     private final JsonpDeserializer<B> builderDeserializer;
     private final Function<B, T> build;

@@ -75,7 +75,7 @@ public interface ExternallyTaggedUnion {
         }
     }
 
-    class TypedKeysDeserializer<Union extends TaggedUnion<?>> extends JsonpDeserializer<Map<String, Union>> {
+    class TypedKeysDeserializer<Union extends TaggedUnion<?>> extends JsonpDeserializerBase<Map<String, Union>> {
         Deserializer<Union, ?> deserializer;
         protected TypedKeysDeserializer(Deserializer<Union, ?> deser) {
             super(EnumSet.of(Event.START_OBJECT));

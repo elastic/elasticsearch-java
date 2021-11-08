@@ -38,6 +38,7 @@ import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.TaggedUnion;
 import co.elastic.clients.util.TaggedUnionUtils;
@@ -120,7 +121,7 @@ public class SomeUnion implements TaggedUnion<SomeUnionVariant>, JsonpSerializab
         }
     }
 
-    public static final JsonpDeserializer<SomeUnion> _DESERIALIZER = JsonpDeserializer.lazy(SomeUnion.Builder::new,
+    public static final JsonpDeserializer<SomeUnion> _DESERIALIZER = ObjectBuilderDeserializer.lazy(SomeUnion.Builder::new,
         SomeUnion::setupSomeUnionDeserializer, SomeUnion.Builder::build);
 
     protected static void setupSomeUnionDeserializer(DelegatingDeserializer<SomeUnion.Builder> op) {

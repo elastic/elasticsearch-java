@@ -20,6 +20,7 @@
 package co.elastic.clients.util;
 
 import co.elastic.clients.json.JsonpDeserializer;
+import co.elastic.clients.json.JsonpDeserializerBase;
 import co.elastic.clients.json.JsonpMapper;
 import jakarta.json.stream.JsonGenerator;
 import jakarta.json.stream.JsonParser;
@@ -122,7 +123,7 @@ public class Union2<A, B> {
     }
   }
 
-  public static class JsonpParser<A, B> extends JsonpDeserializer<Union2<A, B>> {
+  public static class JsonpParser<A, B> extends JsonpDeserializerBase<Union2<A, B>> {
 
     private final JsonpDeserializer<A> parserA;
     private final JsonpDeserializer<B> parserB;

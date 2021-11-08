@@ -22,13 +22,9 @@ package co.elastic.clients.json;
 import co.elastic.clients.util.QuadConsumer;
 import jakarta.json.stream.JsonParser;
 
-import java.util.EnumSet;
 import java.util.function.BiConsumer;
 
-public abstract class DelegatingDeserializer<ObjectType> extends JsonpDeserializer<ObjectType> {
-    public DelegatingDeserializer(EnumSet<JsonParser.Event> acceptedEvents) {
-        super(acceptedEvents);
-    }
+public abstract class DelegatingDeserializer<ObjectType> implements JsonpDeserializer<ObjectType> {
 
     public abstract <FieldType> void add(
         BiConsumer<ObjectType, FieldType> setter,
@@ -52,7 +48,9 @@ public abstract class DelegatingDeserializer<ObjectType> extends JsonpDeserializ
      * Used for internally tagged variants containers to indicate the object's property that defines the variant type
      * @param name
      */
-    public abstract void setTypeProperty(String name);
+    public void setTypeProperty(String name) {
+        throw new UnsupportedOperationException();
+    };
 
     /**
      * Used for internally tagged variants items to ignore their variant type property.

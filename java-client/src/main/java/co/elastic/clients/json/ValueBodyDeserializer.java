@@ -32,23 +32,24 @@ import java.util.function.Supplier;
  */
 public class ValueBodyDeserializer<ObjectType> extends DelegatingDeserializer<ObjectType> {
 
-    private static final EnumSet<Event> allStartEvents = EnumSet.of(
-        Event.START_OBJECT,
-        Event.START_ARRAY,
-        Event.VALUE_STRING,
-        Event.VALUE_NUMBER,
-        Event.VALUE_TRUE,
-        Event.VALUE_FALSE,
-        Event.VALUE_NULL
-    );
-
     private final Supplier<ObjectType> constructor;
     private BiConsumer<ObjectType, Object> setter;
     private JsonpDeserializer<?> valueDeserializer;
 
     public ValueBodyDeserializer(Supplier<ObjectType> constructor) {
-        super(allStartEvents);
         this.constructor = constructor;
+    }
+
+    @Override
+    public EnumSet<Event> acceptedEvents() {
+        return valueDeserializer.acceptedEvents();
+    }
+
+    @Override
+    public ObjectType deserialize(JsonParser parser, JsonpMapper mapper) {
+        Event event = parser.next();
+        JsonpUtils.ensureAccepts(valueDeserializer, parser, event);
+        return deserialize(parser, mapper, event);
     }
 
     @Override
@@ -65,12 +66,18 @@ public class ValueBodyDeserializer<ObjectType> extends DelegatingDeserializer<Ob
         JsonpDeserializer<FieldType> valueParser,
         String name, String... deprecatedNames
     ) {
+        if (this.valueDeserializer != null) {
+            throw new IllegalStateException("Value deserializer has already been set");
+        }
         @SuppressWarnings("unchecked")
         BiConsumer<ObjectType, Object> tempSetter = (BiConsumer<ObjectType, Object>) setter;
         this.setter = tempSetter;
         this.valueDeserializer = valueParser;
     }
 
+    public <FieldType> void setKey(BiConsumer<ObjectType, FieldType> setter, JsonpDeserializer<FieldType> deserializer) {
+        throw new UnsupportedOperationException();
+    }
     /**
      * Not supported in this implementation
      * @throws UnsupportedOperationException not implemented.

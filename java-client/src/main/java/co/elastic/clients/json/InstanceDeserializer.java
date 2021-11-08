@@ -19,8 +19,13 @@
 
 package co.elastic.clients.json;
 
+import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.QuadFunction;
 import jakarta.json.stream.JsonParser;
+
+import java.util.function.Consumer;
+import java.util.function.Function;
+import java.util.function.Supplier;
 
 /**
  * A deserializer that populates an existing class instance.
@@ -39,5 +44,42 @@ public interface InstanceDeserializer<InstanceType, ResultType> {
                 return fn.apply(instance, parser, mapper, event);
             }
         };
+    }
+
+    static <B, T> InstanceDeserializer<B, ObjectBuilder<T>> lazy(
+        Supplier<B> builderCtor,
+        Consumer<DelegatingDeserializer<B>> builderSetup,
+        Function<B, T> buildFn
+    ) {
+        return new LazyInstanceDeserializer<B, ObjectBuilder<T>>(() -> {
+            ObjectDeserializer<B> builderDeser = new ObjectDeserializer<B>(builderCtor);
+            builderSetup.accept(builderDeser);
+            return new BuildFunctionInstanceDeserializer<>(builderDeser, buildFn);
+        });
+    }
+
+    class LazyInstanceDeserializer<B, T> implements InstanceDeserializer<B, T> {
+        private final Supplier<InstanceDeserializer<B, T>> ctor;
+        private volatile InstanceDeserializer<B, T> deserializer = null;
+
+        LazyInstanceDeserializer(Supplier<InstanceDeserializer<B, T>> ctor) {
+            this.ctor = ctor;
+        }
+
+        @Override
+        public T deserialize(B instance, JsonParser parser, JsonpMapper mapper, JsonParser.Event event) {
+            // See SEI CERT LCK10-J https://wiki.sei.cmu.edu/confluence/x/6zdGBQ
+            InstanceDeserializer<B, T> d = deserializer;
+            if (d == null) {
+                synchronized (this) {
+                    if (deserializer == null) {
+                        d = ctor.get();
+                        deserializer = d;
+                    }
+                }
+            }
+
+            return d.deserialize(instance, parser, mapper, event);
+        }
     }
 }
