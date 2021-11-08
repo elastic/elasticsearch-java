@@ -19,7 +19,7 @@
 
 package co.elastic.clients.util;
 
-import co.elastic.clients.json.JsonpDeserializer;
+import co.elastic.clients.json.JsonpDeserializerBase;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import jakarta.json.stream.JsonGenerator;
@@ -42,7 +42,7 @@ public interface StringEnum extends JsonpSerializable {
         generator.write(jsonValue());
     }
 
-    class Deserializer<T extends Enum<T> & StringEnum> extends JsonpDeserializer<T> {
+    class Deserializer<T extends Enum<T> & StringEnum> extends JsonpDeserializerBase<T> {
         private final Map<String, T> lookupTable;
 
         public Deserializer(T[] values) {

@@ -74,7 +74,7 @@ public class ObjectDeserializer<ObjectType> extends DelegatingDeserializer<Objec
         }
 
         public void deserialize(JsonParser parser, JsonpMapper mapper, String fieldName, ObjectType object, Event event) {
-            deserializer.ensureAccepts(parser, event);
+            JsonpUtils.ensureAccepts(deserializer, parser, event);
             FieldType fieldValue = deserializer.deserialize(parser, mapper, event);
             setter.accept(object, fieldValue);
         }
@@ -94,7 +94,9 @@ public class ObjectDeserializer<ObjectType> extends DelegatingDeserializer<Objec
     };
 
     //---------------------------------------------------------------------------------------------
+    private static final EnumSet<Event> EventSetObject = EnumSet.of(Event.START_OBJECT);
 
+    private EnumSet<Event> acceptedEvents = EventSetObject; // May be changed in `shortcutProperty()`
     private final Supplier<ObjectType> constructor;
     protected final Map<String, FieldDeserializer<ObjectType>> fieldDeserializers;
     private FieldDeserializer<ObjectType> singleKey;
@@ -103,14 +105,24 @@ public class ObjectDeserializer<ObjectType> extends DelegatingDeserializer<Objec
     private QuadConsumer<ObjectType, String, JsonParser, JsonpMapper> unknownFieldHandler;
 
     public ObjectDeserializer(Supplier<ObjectType> constructor) {
-        //super(EnumSet.of(Event.START_OBJECT));
-        super(EnumSet.allOf(Event.class));
         this.constructor = constructor;
         this.fieldDeserializers = new HashMap<>();
     }
 
+    @Override
+    public EnumSet<Event> acceptedEvents() {
+        return acceptedEvents;
+    }
+
     public ObjectType deserialize(JsonParser parser, JsonpMapper mapper, Event event) {
         return deserialize(constructor.get(), parser, mapper, event);
+    }
+
+    @Override
+    public ObjectType deserialize(JsonParser parser, JsonpMapper mapper) {
+        Event event = parser.next();
+        JsonpUtils.ensureAccepts(this, parser, event);
+        return deserialize(parser, mapper, event);
     }
 
     public ObjectType deserialize(ObjectType value, JsonParser parser, JsonpMapper mapper, Event event) {
@@ -198,6 +210,8 @@ public class ObjectDeserializer<ObjectType> extends DelegatingDeserializer<Objec
         if (this.shortcutProperty == null) {
             throw new NoSuchElementException("No deserializer was setup for '" + name + "'");
         }
+
+        acceptedEvents = EnumSet.of(Event.START_OBJECT, Event.VALUE_STRING);
     }
 
     //----- Object types
@@ -230,7 +244,7 @@ public class ObjectDeserializer<ObjectType> extends DelegatingDeserializer<Objec
 
     public void add(ObjIntConsumer<ObjectType> setter, String name, String... deprecatedNames) {
         // FIXME (perf): add specialized deserializer to avoid intermediate boxing
-        add(setter::accept, integerDeserializer(), name, deprecatedNames);
+        add(setter::accept, JsonpDeserializer.integerDeserializer(), name, deprecatedNames);
     }
 
 // Experiment: avoid boxing, allow multiple primitive parsers (e.g. int as number & string)
