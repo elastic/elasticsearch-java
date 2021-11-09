@@ -65,10 +65,7 @@ public class JsonpUtils {
 
     public static void ensureAccepts(JsonpDeserializer<?> deserializer, JsonParser parser, JsonParser.Event event) {
         if (!deserializer.acceptedEvents().contains(event)) {
-            throw new JsonParsingException(
-                String.format("Unexpected JSON event '%s', expected %s", event, deserializer.acceptedEvents().toString()),
-                parser.getLocation()
-            );
+            throw new UnexpectedJsonEventException(parser, event, deserializer.acceptedEvents());
         }
     }
 
@@ -144,12 +141,25 @@ public class JsonpUtils {
         // FIXME: resulting parser should return locations that are offset with the original parser's location
         JsonObject object = parser.getObject();
         String result = object.getString(name, null);
+
         if (result == null) {
             throw new JsonParsingException("Property '" + name + "' not found", parser.getLocation());
         }
+
+        return new AbstractMap.SimpleImmutableEntry<>(result, objectParser(object, mapper));
+    }
+
+    /**
+     * Create a parser that traverses a JSON object
+     */
+    public static JsonParser objectParser(JsonObject object, JsonpMapper mapper) {
+        // FIXME: we should have used createParser(object), but this doesn't work as it creates a
+        // org.glassfish.json.JsonStructureParser that doesn't implement the JsonP 1.0.1 features, in particular
+        // parser.getObject(). So deserializing recursive internally-tagged union would fail with UnsupportedOperationException
+        // While glassfish has this issue or until we write our own, we roundtrip through a string.
+
         String strObject = object.toString();
-        JsonParser newParser = mapper.jsonProvider().createParser(new StringReader(strObject));
-        return new AbstractMap.SimpleImmutableEntry<>(result, newParser);
+        return mapper.jsonProvider().createParser(new StringReader(strObject));
     }
 
     public static String toString(JsonValue value) {

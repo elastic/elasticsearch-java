@@ -30,6 +30,7 @@ import co.elastic.clients.elasticsearch.core.IndexResponse;
 import co.elastic.clients.elasticsearch.core.SearchResponse;
 import co.elastic.clients.elasticsearch.core.bulk.OperationType;
 import co.elastic.clients.elasticsearch.indices.CreateIndexResponse;
+import co.elastic.clients.elasticsearch.indices.DiskUsageResponse;
 import co.elastic.clients.elasticsearch.indices.GetIndexResponse;
 import co.elastic.clients.elasticsearch.indices.IndexState;
 import co.elastic.clients.elasticsearch.model.ModelTestCase;
@@ -43,6 +44,9 @@ import co.elastic.clients.transport.rest_client.RestClientTransport;
 import jakarta.json.Json;
 import jakarta.json.JsonValue;
 import org.apache.http.HttpHost;
+import org.apache.http.auth.AuthScope;
+import org.apache.http.auth.UsernamePasswordCredentials;
+import org.apache.http.impl.client.BasicCredentialsProvider;
 import org.elasticsearch.client.ResponseException;
 import org.elasticsearch.client.RestClient;
 import org.junit.AfterClass;
@@ -70,10 +74,17 @@ public class RequestTest extends Assert {
     public static void setup() {
         container = new ElasticsearchContainer("docker.elastic.co/elasticsearch/elasticsearch:7.15.1")
             .withEnv("ES_JAVA_OPTS", "-Xms256m -Xmx256m")
-            .withStartupTimeout(Duration.ofSeconds(30));
+            .withStartupTimeout(Duration.ofSeconds(30))
+            .withPassword("changeme");
         container.start();
 
-        restClient = RestClient.builder(new HttpHost("localhost", container.getMappedPort(9200))).build();
+        BasicCredentialsProvider credsProv = new BasicCredentialsProvider();
+        credsProv.setCredentials(
+            AuthScope.ANY, new UsernamePasswordCredentials("elastic", "changeme")
+        );
+        restClient = RestClient.builder(new HttpHost("localhost", container.getMappedPort(9200)))
+            .setHttpClientConfigCallback(hc -> hc.setDefaultCredentialsProvider(credsProv))
+            .build();
         transport = new RestClientTransport(restClient, mapper);
         client = new ElasticsearchClient(transport);
     }
@@ -303,6 +314,17 @@ public class RequestTest extends Assert {
         // We've set "size" to zero
         assertEquals(0, searchResponse.hits().hits().size());
 
+    }
+
+    @Test
+    public void testValueBodyResponse() throws Exception {
+        DiskUsageResponse resp = client.indices().diskUsage(b -> b
+            .index("*")
+            .allowNoIndices(true)
+            .runExpensiveTasks(true)
+        );
+
+        assertNotNull(resp.valueBody().toJson().asJsonObject().get("_shards"));
     }
 
     public static class AppData {

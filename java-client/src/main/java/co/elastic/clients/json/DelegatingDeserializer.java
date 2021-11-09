@@ -19,53 +19,44 @@
 
 package co.elastic.clients.json;
 
-import co.elastic.clients.util.QuadConsumer;
 import jakarta.json.stream.JsonParser;
 
-import java.util.function.BiConsumer;
+import java.util.EnumSet;
 
-public abstract class DelegatingDeserializer<ObjectType> implements JsonpDeserializer<ObjectType> {
+public abstract class DelegatingDeserializer<T, U> implements JsonpDeserializer<T> {
 
-    public abstract <FieldType> void add(
-        BiConsumer<ObjectType, FieldType> setter,
-        JsonpDeserializer<FieldType> valueParser,
-        String name, String... deprecatedNames
-    );
+    protected abstract JsonpDeserializer<U> unwrap();
 
-    /**
-     * Used for SingleKeyDictionary properties where the JSON representation is a property name and a nested object.
-     * This structure is flattened in the corresponding Java classes, and this method should be used to register
-     * its setter.
-     *
-     * @param setter the key setter
-     * @param deserializer the key deserializer (from a KEY_NAME event)
-     */
-    public <FieldType> void setKey(BiConsumer<ObjectType, FieldType> setter, JsonpDeserializer<FieldType> deserializer) {
-        throw new UnsupportedOperationException();
+    @Override
+    public EnumSet<JsonParser.Event> nativeEvents() {
+        return unwrap().nativeEvents();
+    }
+
+    @Override
+    public EnumSet<JsonParser.Event> acceptedEvents() {
+        return unwrap().acceptedEvents();
+    }
+
+    public abstract static class SameType<T> extends DelegatingDeserializer<T, T> {
+        @Override
+        public T deserialize(JsonParser parser, JsonpMapper mapper) {
+            return unwrap().deserialize(parser, mapper);
+        }
+
+        @Override
+        public T deserialize(JsonParser parser, JsonpMapper mapper, JsonParser.Event event) {
+            return unwrap().deserialize(parser, mapper, event);
+        }
     }
 
     /**
-     * Used for internally tagged variants containers to indicate the object's property that defines the variant type
-     * @param name
+     * Unwraps a deserializer. The object type of the result may be different from that of {@code deserializer}
+     * and unwrapping can happen several times, until the result is no more a {@code DelegatingDeserializer}.
      */
-    public void setTypeProperty(String name) {
-        throw new UnsupportedOperationException();
-    };
-
-    /**
-     * Used for internally tagged variants items to ignore their variant type property.
-     * @param name
-     */
-    public void ignore(String name) {
-        throw new UnsupportedOperationException();
-    }
-
-    /** Used for structures that can also be serialized as a single string when all others properties are undefined */
-    public void shortcutProperty(String name) {
-        throw new UnsupportedOperationException();
-    }
-
-    public void setUnknownFieldHandler(QuadConsumer<ObjectType, String, JsonParser, JsonpMapper> unknownFieldHandler) {
-        throw new UnsupportedOperationException();
+    public static JsonpDeserializer<?> unwrap(JsonpDeserializer<?> deserializer) {
+        while (deserializer instanceof co.elastic.clients.json.LazyDeserializer) {
+            deserializer = ((co.elastic.clients.json.LazyDeserializer<?>) deserializer).unwrap();
+        }
+        return deserializer;
     }
 }

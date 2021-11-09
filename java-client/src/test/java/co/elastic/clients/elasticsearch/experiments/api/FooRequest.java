@@ -290,7 +290,7 @@ public class FooRequest implements JsonpSerializable {
     op.add(Builder::bar, Bar.parser(), "bar");
     op.add(Builder::query, Query.parser(), "query");
 
-    PARSER = new ObjectBuilderDeserializer<FooRequest>(op);
+    PARSER = new ObjectBuilderDeserializer<>(op);
   }
 
   //===========================================

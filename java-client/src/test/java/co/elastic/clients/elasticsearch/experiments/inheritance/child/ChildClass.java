@@ -20,11 +20,11 @@
 package co.elastic.clients.elasticsearch.experiments.inheritance.child;
 
 import co.elastic.clients.elasticsearch.experiments.inheritance.base.BaseClass;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 
@@ -81,7 +81,7 @@ public class ChildClass extends BaseClass implements JsonpSerializable {
 
     //---------------------------------------------------------------------------------------------
 
-    protected static <T extends AbstractBuilder<T>> void setupChildClassParser(DelegatingDeserializer<T> op) {
+    protected static <T extends AbstractBuilder<T>> void setupChildClassParser(ObjectDeserializer<T> op) {
         BaseClass.setupBaseClassParser(op);
         op.add(AbstractBuilder::childField, JsonpDeserializer.stringDeserializer(), "childField");
     }

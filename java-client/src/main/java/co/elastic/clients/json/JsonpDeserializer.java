@@ -20,7 +20,6 @@
 package co.elastic.clients.json;
 
 import co.elastic.clients.util.StringEnum;
-import co.elastic.clients.util.TriFunction;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonParser;
 import jakarta.json.stream.JsonParser.Event;
@@ -31,6 +30,11 @@ import java.util.Map;
 import java.util.function.BiFunction;
 
 public interface JsonpDeserializer<V> {
+
+    /**
+     * The "native" event this deserializer accepts as a starting point.
+     */
+    EnumSet<Event> nativeEvents();
 
     /**
      * The json events this deserializer accepts as a starting point
@@ -46,12 +50,24 @@ public interface JsonpDeserializer<V> {
 
     /**
      * Deserialize a value. The value starts at the next state in the json stream.
+     * <p>
+     * Default implementation delegates to {@link #deserialize(JsonParser, JsonpMapper, Event)}
+     * after having checked that the next event is part of the accepted events.
+     * <p>
+     * If the next event is {@code Event.NULL}, {@code null} is returned.
      *
      * @param parser the json parser
      * @param mapper the jsonp mapper
-     * @return the parsed value
+     * @return the parsed value or null
      */
-    V deserialize(JsonParser parser, JsonpMapper mapper);
+    default V deserialize(JsonParser parser, JsonpMapper mapper) {
+        JsonParser.Event event = parser.next();
+        if (event == JsonParser.Event.VALUE_NULL) {
+            return null;
+        }
+        JsonpUtils.ensureAccepts(this, parser, event);
+        return deserialize(parser, mapper, event);
+    }
 
     /**
      * Deserialize a value. The value starts at the current state in the json stream.
@@ -83,15 +99,6 @@ public interface JsonpDeserializer<V> {
         };
     }
 
-    static <T> JsonpDeserializer<T> of(EnumSet<Event> acceptedEvents, TriFunction<JsonParser, JsonpMapper, Event, T> fn) {
-        return new JsonpDeserializerBase<T>(acceptedEvents) {
-            @Override
-            public T deserialize(JsonParser parser, JsonpMapper mapper, Event event) {
-                return fn.apply(parser, mapper, event);
-            }
-        };
-    }
-
     static <T> JsonpDeserializer<T> of(EnumSet<Event> acceptedEvents, BiFunction<JsonParser, JsonpMapper, T> fn) {
         return new JsonpDeserializerBase<T>(acceptedEvents) {
             @Override
@@ -101,7 +108,7 @@ public interface JsonpDeserializer<V> {
 
             @Override
             public T deserialize(JsonParser parser, JsonpMapper mapper, Event event) {
-                throw new UnsupportedOperationException("Should not reach this point");
+                throw new UnsupportedOperationException();
             }
         };
     }

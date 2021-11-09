@@ -22,7 +22,6 @@ package co.elastic.clients.json;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonParser;
 
-import java.util.EnumSet;
 import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Supplier;
@@ -30,58 +29,60 @@ import java.util.function.Supplier;
 /**
  * An object deserializer based on an {@link ObjectBuilder}.
  */
-public class ObjectBuilderDeserializer<T> extends JsonpDeserializerBase<T> {
+public class ObjectBuilderDeserializer<T, B extends ObjectBuilder<T>> extends DelegatingDeserializer<T, B> {
 
-    private final JsonpDeserializer<? extends ObjectBuilder<T>> builderDeserializer;
+    private final JsonpDeserializer<B> builderDeserializer;
+
+    public static <B extends ObjectBuilder<T>, T> JsonpDeserializer<T> lazy(
+        Supplier<B> builderCtor,
+        Consumer<ObjectDeserializer<B>> builderDeserializerSetup
+    ) {
+        return new LazyDeserializer<>(() -> {
+            ObjectDeserializer<B> builderDeser = new ObjectDeserializer<B>(builderCtor);
+            builderDeserializerSetup.accept(builderDeser);
+            return new ObjectBuilderDeserializer<>(builderDeser);
+        });
+    }
 
     public static <B, T> JsonpDeserializer<T> lazy(
         Supplier<B> builderCtor,
-        Consumer<DelegatingDeserializer<B>> builderDeserializerSetup,
+        Consumer<ObjectDeserializer<B>> builderDeserializerSetup,
         Function<B, T> buildFn
     ) {
-        return new JsonpDeserializerBase.LazyDeserializer<>(() -> {
+        return new LazyDeserializer<>(() -> {
                 ObjectDeserializer<B> builderDeser = new ObjectDeserializer<B>(builderCtor);
                 builderDeserializerSetup.accept(builderDeser);
                 return new BuildFunctionDeserializer<>(builderDeser, buildFn);
-            },
-            //EnumSet.of(JsonParser.Event.START_OBJECT));
-            EnumSet.allOf(JsonParser.Event.class));
-    }
-
-    public ObjectBuilderDeserializer(JsonpDeserializer<? extends ObjectBuilder<T>> builderDeserializer) {
-        super(builderDeserializer.acceptedEvents());
-        this.builderDeserializer = builderDeserializer;
-    }
-
-    @Override
-    public T deserialize(JsonParser parser, JsonpMapper mapper, JsonParser.Event event) {
-        ObjectBuilder<T> builder = builderDeserializer.deserialize(parser, mapper, event);
-        return builder.build();
+            });
     }
 
     public static <T, B extends ObjectBuilder<T>> JsonpDeserializer<T> createForObject(
         Supplier<B> ctor,
-        Consumer<DelegatingDeserializer<B>> configurer
+        Consumer<ObjectDeserializer<B>> configurer
     ) {
         ObjectDeserializer<B> op = new ObjectDeserializer<>(ctor);
         configurer.accept(op);
         return new ObjectBuilderDeserializer<>(op);
     }
 
-    public static <T, B extends ObjectBuilder<T>> InstanceDeserializer<B, B> createForBuilder(
-        Consumer<DelegatingDeserializer<B>> configurer
-    ) {
-        ObjectDeserializer<B> op = new ObjectDeserializer<>(null);
-        configurer.accept(op);
-        return op;
+    public ObjectBuilderDeserializer(JsonpDeserializer<B> builderDeserializer) {
+        this.builderDeserializer = builderDeserializer;
     }
 
-    public static <T, B extends ObjectBuilder<T>> JsonpDeserializer<T> createForValue(
-        Supplier<B> ctor,
-        Consumer<DelegatingDeserializer<B>> configurer
-    ) {
-        ValueBodyDeserializer<B> op = new ValueBodyDeserializer<>(ctor);
-        configurer.accept(op);
-        return new ObjectBuilderDeserializer<>(op);
+    @Override
+    protected JsonpDeserializer<B> unwrap() {
+        return builderDeserializer;
+    }
+
+    @Override
+    public T deserialize(JsonParser parser, JsonpMapper mapper) {
+        ObjectBuilder<T> builder = builderDeserializer.deserialize(parser, mapper);
+        return builder.build();
+    }
+
+    @Override
+    public T deserialize(JsonParser parser, JsonpMapper mapper, JsonParser.Event event) {
+        ObjectBuilder<T> builder = builderDeserializer.deserialize(parser, mapper, event);
+        return builder.build();
     }
 }

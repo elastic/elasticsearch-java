@@ -51,10 +51,10 @@ import java.util.Map;
  */
 public class JacksonJsonProvider extends JsonProvider {
 
-    private JsonFactory jsonFactory = new JsonFactory();
+    private final JsonFactory jsonFactory;
 
     public JacksonJsonProvider(JsonFactory jsonFactory) {
-        this.jsonFactory = new JsonFactory();
+        this.jsonFactory = jsonFactory;
     }
 
     public JacksonJsonProvider() {
@@ -133,7 +133,7 @@ public class JacksonJsonProvider extends JsonProvider {
          */
         @Override
         public JsonParser createParser(JsonObject obj) {
-            throw new UnsupportedOperationException();
+            return JsonProvider.provider().createParserFactory(null).createParser(obj);
         }
 
         /**
@@ -141,7 +141,7 @@ public class JacksonJsonProvider extends JsonProvider {
          */
         @Override
         public JsonParser createParser(JsonArray array) {
-            throw new UnsupportedOperationException();
+            return JsonProvider.provider().createParserFactory(null).createParser(array);
         }
 
         /**

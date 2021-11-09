@@ -46,7 +46,10 @@ public interface StringEnum extends JsonpSerializable {
         private final Map<String, T> lookupTable;
 
         public Deserializer(T[] values) {
-            super(EnumSet.of(JsonParser.Event.VALUE_STRING, JsonParser.Event.KEY_NAME));
+            super(
+                EnumSet.of(JsonParser.Event.VALUE_STRING, JsonParser.Event.KEY_NAME),
+                EnumSet.of(JsonParser.Event.VALUE_STRING)
+            );
 
             // Use the same size calculation as in java.lang.Enum.enumConstantDirectory
             this.lookupTable = new HashMap<>((int)(values.length / 0.75f) + 1);

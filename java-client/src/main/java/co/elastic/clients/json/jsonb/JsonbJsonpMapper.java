@@ -89,7 +89,11 @@ public class JsonbJsonpMapper extends JsonpMapperBase {
 
         @Override
         public T deserialize(JsonParser parser, JsonpMapper mapper, JsonParser.Event event) {
-
+            // TODO: Add a runtime check to use Yasson's JsonB extensions
+            // JsonB doesn't provide methods to deserialize from a JsonParser or a JsonValue. We therefore have
+            // to roundtrip through a string, which is far from efficient. Yasson addresses this with an additional
+            // `YassonJsonb` that extends the base Jsonb interface with additional mapping functions. We should check
+            // here at runtime if the mapper implements this interface and use it if present.
             CharArrayWriter caw = new CharArrayWriter();
             JsonGenerator generator = jsonProvider.createGenerator(caw);
             transferAll(parser, event, generator);
