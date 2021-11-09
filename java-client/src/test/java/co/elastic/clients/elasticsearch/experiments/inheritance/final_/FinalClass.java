@@ -20,10 +20,10 @@
 package co.elastic.clients.elasticsearch.experiments.inheritance.final_;
 
 import co.elastic.clients.elasticsearch.experiments.inheritance.child.ChildClass;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 
@@ -77,7 +77,7 @@ public final class FinalClass extends ChildClass {
 
     //---------------------------------------------------------------------------------------------
 
-    private static void setupFinalClassParser(DelegatingDeserializer<Builder> op) {
+    private static void setupFinalClassParser(ObjectDeserializer<Builder> op) {
         ChildClass.setupChildClassParser(op);
         op.add(Builder::finalField, JsonpDeserializer.stringDeserializer(), "finalField");
     }

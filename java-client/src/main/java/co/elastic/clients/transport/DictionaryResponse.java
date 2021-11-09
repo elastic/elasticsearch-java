@@ -19,7 +19,6 @@
 
 package co.elastic.clients.transport;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -142,12 +141,10 @@ public abstract class DictionaryResponse<TKey, TValue> implements JsonpSerializa
 
     // ---------------------------------------------------------------------------------------------
     protected static <TKey, TValue, BuilderT extends AbstractBuilder<TKey, TValue, BuilderT>> void setupDictionaryResponseDeserializer(
-        DelegatingDeserializer<BuilderT> op, JsonpDeserializer<TKey> tKeyParser,
+        ObjectDeserializer<BuilderT> op, JsonpDeserializer<TKey> tKeyParser,
         JsonpDeserializer<TValue> tValueParser) {
 
-        @SuppressWarnings("unckecked")
-        ObjectDeserializer<BuilderT> op1 = (ObjectDeserializer<BuilderT>)op;
-        op1.setUnknownFieldHandler((builder, name, parser, params) -> {
+        op.setUnknownFieldHandler((builder, name, parser, params) -> {
             builder.putResult(name, tValueParser.deserialize(parser, params));
         });
     }

@@ -113,7 +113,8 @@ public class Variants<T> {
      * Creates a parser for externally tagged variants
      */
     public static <T> JsonpDeserializer<T> pparser(Variants<T> variants) {
-      return JsonpDeserializer.of(EnumSet.of(JsonParser.Event.START_OBJECT), (parser, params, event) -> {
+      return JsonpDeserializer.of(EnumSet.of(JsonParser.Event.START_OBJECT), (parser, params) -> {
+        JsonpUtils.expectNextEvent(parser, JsonParser.Event.START_OBJECT);
         JsonpUtils.expectNextEvent(parser, JsonParser.Event.KEY_NAME);
 
         String variant = parser.getString();

@@ -24,17 +24,28 @@ import jakarta.json.stream.JsonParser;
 import java.util.function.Function;
 
 /**
- * An object deserializer based on a builder object deserializer and a build function
+ * An object deserializer based on a builder object deserializer and a build function.
+ * Used in tagged unions that have union-level properties (aka "container properties").
  */
-public class BuildFunctionDeserializer<B, T> extends JsonpDeserializerBase<T> {
+public class BuildFunctionDeserializer<B, T> extends DelegatingDeserializer<T, B> {
 
     private final JsonpDeserializer<B> builderDeserializer;
     private final Function<B, T> build;
 
     public BuildFunctionDeserializer(JsonpDeserializer<B> builderDeserializer, Function<B, T> build) {
-        super(builderDeserializer.acceptedEvents());
         this.builderDeserializer = builderDeserializer;
         this.build = build;
+    }
+
+    @Override
+    protected JsonpDeserializer<B> unwrap() {
+        return builderDeserializer;
+    }
+
+    @Override
+    public T deserialize(JsonParser parser, JsonpMapper mapper) {
+        B builder = builderDeserializer.deserialize(parser, mapper);
+        return build.apply(builder);
     }
 
     @Override

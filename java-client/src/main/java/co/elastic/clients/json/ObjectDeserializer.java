@@ -24,16 +24,17 @@ import jakarta.json.stream.JsonParser;
 import jakarta.json.stream.JsonParser.Event;
 import jakarta.json.stream.JsonParsingException;
 
+import java.util.Collections;
 import java.util.EnumSet;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.NoSuchElementException;
+import java.util.Set;
 import java.util.function.BiConsumer;
 import java.util.function.ObjIntConsumer;
 import java.util.function.Supplier;
 
-public class ObjectDeserializer<ObjectType> extends DelegatingDeserializer<ObjectType>
-    implements InstanceDeserializer<ObjectType, ObjectType> {
+public class ObjectDeserializer<ObjectType> implements JsonpDeserializer<ObjectType> {
 
     /** A field deserializer parses a value and calls the setter on the target object. */
     public abstract static class FieldDeserializer<ObjectType> {
@@ -95,6 +96,7 @@ public class ObjectDeserializer<ObjectType> extends DelegatingDeserializer<Objec
 
     //---------------------------------------------------------------------------------------------
     private static final EnumSet<Event> EventSetObject = EnumSet.of(Event.START_OBJECT);
+    private static final EnumSet<Event> EventSetObjectAndString = EnumSet.of(Event.START_OBJECT, Event.VALUE_STRING);
 
     private EnumSet<Event> acceptedEvents = EventSetObject; // May be changed in `shortcutProperty()`
     private final Supplier<ObjectType> constructor;
@@ -109,6 +111,18 @@ public class ObjectDeserializer<ObjectType> extends DelegatingDeserializer<Objec
         this.fieldDeserializers = new HashMap<>();
     }
 
+    /**
+     * Return the top-level property names of the target type for this deserializer.
+     */
+    public Set<String> fieldNames() {
+        return Collections.unmodifiableSet(fieldDeserializers.keySet());
+    }
+
+    @Override
+    public EnumSet<Event> nativeEvents() {
+        return EventSetObject;
+    }
+
     @Override
     public EnumSet<Event> acceptedEvents() {
         return acceptedEvents;
@@ -116,13 +130,6 @@ public class ObjectDeserializer<ObjectType> extends DelegatingDeserializer<Objec
 
     public ObjectType deserialize(JsonParser parser, JsonpMapper mapper, Event event) {
         return deserialize(constructor.get(), parser, mapper, event);
-    }
-
-    @Override
-    public ObjectType deserialize(JsonParser parser, JsonpMapper mapper) {
-        Event event = parser.next();
-        JsonpUtils.ensureAccepts(this, parser, event);
-        return deserialize(parser, mapper, event);
     }
 
     public ObjectType deserialize(ObjectType value, JsonParser parser, JsonpMapper mapper, Event event) {
@@ -204,19 +211,17 @@ public class ObjectDeserializer<ObjectType> extends DelegatingDeserializer<Objec
         this.fieldDeserializers.put(name, (FieldDeserializer<ObjectType>) IGNORED_FIELD);
     }
 
-    @Override
     public void shortcutProperty(String name) {
         this.shortcutProperty = this.fieldDeserializers.get(name);
         if (this.shortcutProperty == null) {
             throw new NoSuchElementException("No deserializer was setup for '" + name + "'");
         }
 
-        acceptedEvents = EnumSet.of(Event.START_OBJECT, Event.VALUE_STRING);
+        acceptedEvents = EventSetObjectAndString;
     }
 
     //----- Object types
 
-    @Override
     public <FieldType> void add(
         BiConsumer<ObjectType, FieldType> setter,
         JsonpDeserializer<FieldType> deserializer,
@@ -230,12 +235,10 @@ public class ObjectDeserializer<ObjectType> extends DelegatingDeserializer<Objec
         }
     }
 
-    @Override
     public <FieldType> void setKey(BiConsumer<ObjectType, FieldType> setter, JsonpDeserializer<FieldType> deserializer) {
         this.singleKey = new FieldObjectDeserializer<>(setter, deserializer, null, null);
     }
 
-    @Override
     public void setTypeProperty(String name) {
         this.typeProperty = name;
     }

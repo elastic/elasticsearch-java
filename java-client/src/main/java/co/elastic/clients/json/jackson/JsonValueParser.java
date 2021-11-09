@@ -36,7 +36,7 @@ import java.io.IOException;
  * object (e.g. START_OBJECT, VALUE_NUMBER, etc).
  */
 class JsonValueParser {
-    JsonProvider provider = JsonProvider.provider();
+    private final JsonProvider provider = JsonProvider.provider();
 
     public JsonObject parseObject(JsonParser parser) throws IOException {
 
