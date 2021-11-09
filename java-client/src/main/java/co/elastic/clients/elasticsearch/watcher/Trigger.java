@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.watcher;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -124,7 +123,7 @@ public class Trigger implements TaggedUnion<Object>, JsonpSerializable {
 
 	}
 
-	protected static void setupTriggerDeserializer(DelegatingDeserializer<Builder> op) {
+	protected static void setupTriggerDeserializer(ObjectDeserializer<Builder> op) {
 
 		op.add(Builder::schedule, Schedule._DESERIALIZER, "schedule");
 

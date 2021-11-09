@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -335,7 +334,7 @@ public class FunctionScore implements TaggedUnion<Object>, JsonpSerializable {
 		}
 	}
 
-	protected static void setupFunctionScoreDeserializer(DelegatingDeserializer<Builder> op) {
+	protected static void setupFunctionScoreDeserializer(ObjectDeserializer<Builder> op) {
 
 		op.add(Builder::exp, JsonpDeserializer.jsonValueDeserializer(), "exp");
 		op.add(Builder::gauss, JsonpDeserializer.jsonValueDeserializer(), "gauss");

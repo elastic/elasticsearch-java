@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.indices.analyze;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -290,9 +289,9 @@ public class AnalyzeDetail implements JsonpSerializable {
 	 * Json deserializer for {@link AnalyzeDetail}
 	 */
 	public static final JsonpDeserializer<AnalyzeDetail> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			AnalyzeDetail::setupAnalyzeDetailDeserializer, Builder::build);
+			AnalyzeDetail::setupAnalyzeDetailDeserializer);
 
-	protected static void setupAnalyzeDetailDeserializer(DelegatingDeserializer<AnalyzeDetail.Builder> op) {
+	protected static void setupAnalyzeDetailDeserializer(ObjectDeserializer<AnalyzeDetail.Builder> op) {
 
 		op.add(Builder::analyzer, AnalyzerDetail._DESERIALIZER, "analyzer");
 		op.add(Builder::charfilters, JsonpDeserializer.arrayDeserializer(CharFilterDetail._DESERIALIZER),

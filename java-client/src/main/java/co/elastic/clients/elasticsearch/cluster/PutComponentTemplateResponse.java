@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch.cluster;
 
 import co.elastic.clients.elasticsearch._types.AcknowledgedResponseBase;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -79,11 +78,11 @@ public class PutComponentTemplateResponse extends AcknowledgedResponseBase {
 	/**
 	 * Json deserializer for {@link PutComponentTemplateResponse}
 	 */
-	public static final JsonpDeserializer<PutComponentTemplateResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
-			Builder::new, PutComponentTemplateResponse::setupPutComponentTemplateResponseDeserializer, Builder::build);
+	public static final JsonpDeserializer<PutComponentTemplateResponse> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, PutComponentTemplateResponse::setupPutComponentTemplateResponseDeserializer);
 
 	protected static void setupPutComponentTemplateResponseDeserializer(
-			DelegatingDeserializer<PutComponentTemplateResponse.Builder> op) {
+			ObjectDeserializer<PutComponentTemplateResponse.Builder> op) {
 		AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);
 
 	}

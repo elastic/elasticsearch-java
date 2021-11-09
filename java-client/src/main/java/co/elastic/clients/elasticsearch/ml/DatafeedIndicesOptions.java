@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.elasticsearch._types.ExpandWildcardOptions;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -252,10 +251,10 @@ public class DatafeedIndicesOptions implements JsonpSerializable {
 	 * Json deserializer for {@link DatafeedIndicesOptions}
 	 */
 	public static final JsonpDeserializer<DatafeedIndicesOptions> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, DatafeedIndicesOptions::setupDatafeedIndicesOptionsDeserializer, Builder::build);
+			.lazy(Builder::new, DatafeedIndicesOptions::setupDatafeedIndicesOptionsDeserializer);
 
 	protected static void setupDatafeedIndicesOptionsDeserializer(
-			DelegatingDeserializer<DatafeedIndicesOptions.Builder> op) {
+			ObjectDeserializer<DatafeedIndicesOptions.Builder> op) {
 
 		op.add(Builder::allowNoIndices, JsonpDeserializer.booleanDeserializer(), "allow_no_indices");
 		op.add(Builder::expandWildcards, JsonpDeserializer.arrayDeserializer(ExpandWildcardOptions._DESERIALIZER),

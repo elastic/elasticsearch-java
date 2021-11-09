@@ -28,7 +28,6 @@ import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.ExpandWildcardOptions;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch._types.query_dsl.Query;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -565,10 +564,9 @@ public class ValidateQueryRequest extends RequestBase implements JsonpSerializab
 	 * Json deserializer for {@link ValidateQueryRequest}
 	 */
 	public static final JsonpDeserializer<ValidateQueryRequest> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, ValidateQueryRequest::setupValidateQueryRequestDeserializer, Builder::build);
+			.lazy(Builder::new, ValidateQueryRequest::setupValidateQueryRequestDeserializer);
 
-	protected static void setupValidateQueryRequestDeserializer(
-			DelegatingDeserializer<ValidateQueryRequest.Builder> op) {
+	protected static void setupValidateQueryRequestDeserializer(ObjectDeserializer<ValidateQueryRequest.Builder> op) {
 
 		op.add(Builder::query, Query._DESERIALIZER, "query");
 

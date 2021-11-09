@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch.indices;
 
 import co.elastic.clients.elasticsearch._types.ShardsOperationResponseBase;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -80,9 +79,9 @@ public class ClearCacheResponse extends ShardsOperationResponseBase {
 	 * Json deserializer for {@link ClearCacheResponse}
 	 */
 	public static final JsonpDeserializer<ClearCacheResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, ClearCacheResponse::setupClearCacheResponseDeserializer, Builder::build);
+			.lazy(Builder::new, ClearCacheResponse::setupClearCacheResponseDeserializer);
 
-	protected static void setupClearCacheResponseDeserializer(DelegatingDeserializer<ClearCacheResponse.Builder> op) {
+	protected static void setupClearCacheResponseDeserializer(ObjectDeserializer<ClearCacheResponse.Builder> op) {
 		ShardsOperationResponseBase.setupShardsOperationResponseBaseDeserializer(op);
 
 	}

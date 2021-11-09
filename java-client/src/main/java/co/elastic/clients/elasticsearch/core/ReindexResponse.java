@@ -25,7 +25,6 @@ package co.elastic.clients.elasticsearch.core;
 
 import co.elastic.clients.elasticsearch._types.BulkIndexByScrollFailure;
 import co.elastic.clients.elasticsearch._types.Retries;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -579,9 +578,9 @@ public class ReindexResponse implements JsonpSerializable {
 	 * Json deserializer for {@link ReindexResponse}
 	 */
 	public static final JsonpDeserializer<ReindexResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			ReindexResponse::setupReindexResponseDeserializer, Builder::build);
+			ReindexResponse::setupReindexResponseDeserializer);
 
-	protected static void setupReindexResponseDeserializer(DelegatingDeserializer<ReindexResponse.Builder> op) {
+	protected static void setupReindexResponseDeserializer(ObjectDeserializer<ReindexResponse.Builder> op) {
 
 		op.add(Builder::batches, JsonpDeserializer.longDeserializer(), "batches");
 		op.add(Builder::created, JsonpDeserializer.longDeserializer(), "created");

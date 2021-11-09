@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -168,9 +167,9 @@ public class GetJobsResponse implements JsonpSerializable {
 	 * Json deserializer for {@link GetJobsResponse}
 	 */
 	public static final JsonpDeserializer<GetJobsResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			GetJobsResponse::setupGetJobsResponseDeserializer, Builder::build);
+			GetJobsResponse::setupGetJobsResponseDeserializer);
 
-	protected static void setupGetJobsResponseDeserializer(DelegatingDeserializer<GetJobsResponse.Builder> op) {
+	protected static void setupGetJobsResponseDeserializer(ObjectDeserializer<GetJobsResponse.Builder> op) {
 
 		op.add(Builder::count, JsonpDeserializer.longDeserializer(), "count");
 		op.add(Builder::jobs, JsonpDeserializer.arrayDeserializer(Job._DESERIALIZER), "jobs");

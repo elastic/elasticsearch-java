@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -87,10 +86,9 @@ public class StatsBucketAggregate extends StatsAggregate implements AggregateVar
 	 * Json deserializer for {@link StatsBucketAggregate}
 	 */
 	public static final JsonpDeserializer<StatsBucketAggregate> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, StatsBucketAggregate::setupStatsBucketAggregateDeserializer, Builder::build);
+			.lazy(Builder::new, StatsBucketAggregate::setupStatsBucketAggregateDeserializer);
 
-	protected static void setupStatsBucketAggregateDeserializer(
-			DelegatingDeserializer<StatsBucketAggregate.Builder> op) {
+	protected static void setupStatsBucketAggregateDeserializer(ObjectDeserializer<StatsBucketAggregate.Builder> op) {
 		StatsAggregate.setupStatsAggregateDeserializer(op);
 
 	}

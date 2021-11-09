@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.eql;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -87,7 +86,7 @@ public class EqlGetResponse<TEvent> extends EqlSearchResponseBase<TEvent> {
 	};
 
 	protected static <TEvent> void setupEqlGetResponseDeserializer(
-			DelegatingDeserializer<EqlGetResponse.Builder<TEvent>> op, JsonpDeserializer<TEvent> tEventDeserializer) {
+			ObjectDeserializer<EqlGetResponse.Builder<TEvent>> op, JsonpDeserializer<TEvent> tEventDeserializer) {
 		EqlSearchResponseBase.setupEqlSearchResponseBaseDeserializer(op, tEventDeserializer);
 
 	}

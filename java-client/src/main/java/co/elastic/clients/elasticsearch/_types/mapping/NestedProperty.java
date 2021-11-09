@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.mapping;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -182,9 +181,9 @@ public class NestedProperty extends CorePropertyBase implements PropertyVariant 
 	 * Json deserializer for {@link NestedProperty}
 	 */
 	public static final JsonpDeserializer<NestedProperty> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			NestedProperty::setupNestedPropertyDeserializer, Builder::build);
+			NestedProperty::setupNestedPropertyDeserializer);
 
-	protected static void setupNestedPropertyDeserializer(DelegatingDeserializer<NestedProperty.Builder> op) {
+	protected static void setupNestedPropertyDeserializer(ObjectDeserializer<NestedProperty.Builder> op) {
 		CorePropertyBase.setupCorePropertyBaseDeserializer(op);
 		op.add(Builder::enabled, JsonpDeserializer.booleanDeserializer(), "enabled");
 		op.add(Builder::includeInParent, JsonpDeserializer.booleanDeserializer(), "include_in_parent");

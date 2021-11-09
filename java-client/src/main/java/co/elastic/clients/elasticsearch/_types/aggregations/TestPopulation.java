@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch._types.aggregations;
 
 import co.elastic.clients.elasticsearch._types.query_dsl.Query;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -180,9 +179,9 @@ public class TestPopulation implements JsonpSerializable {
 	 * Json deserializer for {@link TestPopulation}
 	 */
 	public static final JsonpDeserializer<TestPopulation> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			TestPopulation::setupTestPopulationDeserializer, Builder::build);
+			TestPopulation::setupTestPopulationDeserializer);
 
-	protected static void setupTestPopulationDeserializer(DelegatingDeserializer<TestPopulation.Builder> op) {
+	protected static void setupTestPopulationDeserializer(ObjectDeserializer<TestPopulation.Builder> op) {
 
 		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
 		op.add(Builder::script, JsonpDeserializer.jsonValueDeserializer(), "script");

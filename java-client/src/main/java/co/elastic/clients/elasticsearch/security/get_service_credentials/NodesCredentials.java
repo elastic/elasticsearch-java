@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch.security.get_service_credentials;
 
 import co.elastic.clients.elasticsearch._types.NodeStatistics;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -184,9 +183,9 @@ public class NodesCredentials implements JsonpSerializable {
 	 * Json deserializer for {@link NodesCredentials}
 	 */
 	public static final JsonpDeserializer<NodesCredentials> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			NodesCredentials::setupNodesCredentialsDeserializer, Builder::build);
+			NodesCredentials::setupNodesCredentialsDeserializer);
 
-	protected static void setupNodesCredentialsDeserializer(DelegatingDeserializer<NodesCredentials.Builder> op) {
+	protected static void setupNodesCredentialsDeserializer(ObjectDeserializer<NodesCredentials.Builder> op) {
 
 		op.add(Builder::nodes, NodeStatistics._DESERIALIZER, "_nodes");
 		op.add(Builder::fileTokens, JsonpDeserializer.stringMapDeserializer(NodesCredentialsFileToken._DESERIALIZER),

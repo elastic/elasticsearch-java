@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.ingest;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -172,9 +171,9 @@ public class RenameProcessor extends ProcessorBase implements ProcessorVariant {
 	 * Json deserializer for {@link RenameProcessor}
 	 */
 	public static final JsonpDeserializer<RenameProcessor> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			RenameProcessor::setupRenameProcessorDeserializer, Builder::build);
+			RenameProcessor::setupRenameProcessorDeserializer);
 
-	protected static void setupRenameProcessorDeserializer(DelegatingDeserializer<RenameProcessor.Builder> op) {
+	protected static void setupRenameProcessorDeserializer(ObjectDeserializer<RenameProcessor.Builder> op) {
 		ProcessorBase.setupProcessorBaseDeserializer(op);
 		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
 		op.add(Builder::ignoreMissing, JsonpDeserializer.booleanDeserializer(), "ignore_missing");

@@ -218,8 +218,8 @@ public class SimulateTemplateRequest extends RequestBase implements JsonpSeriali
 
 		JsonpDeserializer<IndexTemplate> valueDeserializer = IndexTemplate._DESERIALIZER;
 
-		return JsonpDeserializer.of(valueDeserializer.acceptedEvents(), (parser, mapper, event) -> new Builder()
-				.template(valueDeserializer.deserialize(parser, mapper, event)).build());
+		return JsonpDeserializer.of(valueDeserializer.acceptedEvents(),
+				(parser, mapper) -> new Builder().template(valueDeserializer.deserialize(parser, mapper)).build());
 	}
 
 	// ---------------------------------------------------------------------------------------------

@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.watcher;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -169,9 +168,9 @@ public class TimeOfWeek implements JsonpSerializable {
 	 * Json deserializer for {@link TimeOfWeek}
 	 */
 	public static final JsonpDeserializer<TimeOfWeek> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			TimeOfWeek::setupTimeOfWeekDeserializer, Builder::build);
+			TimeOfWeek::setupTimeOfWeekDeserializer);
 
-	protected static void setupTimeOfWeekDeserializer(DelegatingDeserializer<TimeOfWeek.Builder> op) {
+	protected static void setupTimeOfWeekDeserializer(ObjectDeserializer<TimeOfWeek.Builder> op) {
 
 		op.add(Builder::at, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "at");
 		op.add(Builder::on, JsonpDeserializer.arrayDeserializer(Day._DESERIALIZER), "on");

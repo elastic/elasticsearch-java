@@ -25,7 +25,6 @@ package co.elastic.clients.elasticsearch.core;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -138,9 +137,9 @@ public class ClearScrollRequest extends RequestBase implements JsonpSerializable
 	 * Json deserializer for {@link ClearScrollRequest}
 	 */
 	public static final JsonpDeserializer<ClearScrollRequest> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, ClearScrollRequest::setupClearScrollRequestDeserializer, Builder::build);
+			.lazy(Builder::new, ClearScrollRequest::setupClearScrollRequestDeserializer);
 
-	protected static void setupClearScrollRequestDeserializer(DelegatingDeserializer<ClearScrollRequest.Builder> op) {
+	protected static void setupClearScrollRequestDeserializer(ObjectDeserializer<ClearScrollRequest.Builder> op) {
 
 		op.add(Builder::scrollId, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"scroll_id");

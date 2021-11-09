@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -90,10 +89,10 @@ public class AdjacencyMatrixAggregate extends MultiBucketAggregateBase<Adjacency
 	 * Json deserializer for {@link AdjacencyMatrixAggregate}
 	 */
 	public static final JsonpDeserializer<AdjacencyMatrixAggregate> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, AdjacencyMatrixAggregate::setupAdjacencyMatrixAggregateDeserializer, Builder::build);
+			.lazy(Builder::new, AdjacencyMatrixAggregate::setupAdjacencyMatrixAggregateDeserializer);
 
 	protected static void setupAdjacencyMatrixAggregateDeserializer(
-			DelegatingDeserializer<AdjacencyMatrixAggregate.Builder> op) {
+			ObjectDeserializer<AdjacencyMatrixAggregate.Builder> op) {
 		MultiBucketAggregateBase.setupMultiBucketAggregateBaseDeserializer(op, AdjacencyMatrixBucket._DESERIALIZER);
 
 	}

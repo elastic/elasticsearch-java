@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -313,11 +312,10 @@ public class DataframeAnalysisFeatureProcessorNGramEncoding
 	 */
 	public static final JsonpDeserializer<DataframeAnalysisFeatureProcessorNGramEncoding> _DESERIALIZER = ObjectBuilderDeserializer
 			.lazy(Builder::new,
-					DataframeAnalysisFeatureProcessorNGramEncoding::setupDataframeAnalysisFeatureProcessorNGramEncodingDeserializer,
-					Builder::build);
+					DataframeAnalysisFeatureProcessorNGramEncoding::setupDataframeAnalysisFeatureProcessorNGramEncodingDeserializer);
 
 	protected static void setupDataframeAnalysisFeatureProcessorNGramEncodingDeserializer(
-			DelegatingDeserializer<DataframeAnalysisFeatureProcessorNGramEncoding.Builder> op) {
+			ObjectDeserializer<DataframeAnalysisFeatureProcessorNGramEncoding.Builder> op) {
 
 		op.add(Builder::featurePrefix, JsonpDeserializer.stringDeserializer(), "feature_prefix");
 		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");

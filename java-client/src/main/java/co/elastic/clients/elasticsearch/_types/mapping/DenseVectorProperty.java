@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.mapping;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -216,9 +215,9 @@ public class DenseVectorProperty extends PropertyBase implements PropertyVariant
 	 * Json deserializer for {@link DenseVectorProperty}
 	 */
 	public static final JsonpDeserializer<DenseVectorProperty> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, DenseVectorProperty::setupDenseVectorPropertyDeserializer, Builder::build);
+			.lazy(Builder::new, DenseVectorProperty::setupDenseVectorPropertyDeserializer);
 
-	protected static void setupDenseVectorPropertyDeserializer(DelegatingDeserializer<DenseVectorProperty.Builder> op) {
+	protected static void setupDenseVectorPropertyDeserializer(ObjectDeserializer<DenseVectorProperty.Builder> op) {
 		PropertyBase.setupPropertyBaseDeserializer(op);
 		op.add(Builder::dims, JsonpDeserializer.integerDeserializer(), "dims");
 		op.add(Builder::similarity, JsonpDeserializer.stringDeserializer(), "similarity");

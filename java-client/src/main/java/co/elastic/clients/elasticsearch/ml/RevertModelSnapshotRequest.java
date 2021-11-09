@@ -25,7 +25,6 @@ package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -191,11 +190,11 @@ public class RevertModelSnapshotRequest extends RequestBase implements JsonpSeri
 	/**
 	 * Json deserializer for {@link RevertModelSnapshotRequest}
 	 */
-	public static final JsonpDeserializer<RevertModelSnapshotRequest> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
-			Builder::new, RevertModelSnapshotRequest::setupRevertModelSnapshotRequestDeserializer, Builder::build);
+	public static final JsonpDeserializer<RevertModelSnapshotRequest> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, RevertModelSnapshotRequest::setupRevertModelSnapshotRequestDeserializer);
 
 	protected static void setupRevertModelSnapshotRequestDeserializer(
-			DelegatingDeserializer<RevertModelSnapshotRequest.Builder> op) {
+			ObjectDeserializer<RevertModelSnapshotRequest.Builder> op) {
 
 		op.add(Builder::deleteInterveningResults, JsonpDeserializer.booleanDeserializer(),
 				"delete_intervening_results");

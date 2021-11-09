@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.indices;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -123,11 +122,10 @@ public class IndexRoutingAllocationInitialRecovery implements JsonpSerializable 
 	 */
 	public static final JsonpDeserializer<IndexRoutingAllocationInitialRecovery> _DESERIALIZER = ObjectBuilderDeserializer
 			.lazy(Builder::new,
-					IndexRoutingAllocationInitialRecovery::setupIndexRoutingAllocationInitialRecoveryDeserializer,
-					Builder::build);
+					IndexRoutingAllocationInitialRecovery::setupIndexRoutingAllocationInitialRecoveryDeserializer);
 
 	protected static void setupIndexRoutingAllocationInitialRecoveryDeserializer(
-			DelegatingDeserializer<IndexRoutingAllocationInitialRecovery.Builder> op) {
+			ObjectDeserializer<IndexRoutingAllocationInitialRecovery.Builder> op) {
 
 		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "_id");
 

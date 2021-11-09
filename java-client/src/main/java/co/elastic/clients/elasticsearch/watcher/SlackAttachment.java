@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.watcher;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -529,9 +528,9 @@ public class SlackAttachment implements JsonpSerializable {
 	 * Json deserializer for {@link SlackAttachment}
 	 */
 	public static final JsonpDeserializer<SlackAttachment> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			SlackAttachment::setupSlackAttachmentDeserializer, Builder::build);
+			SlackAttachment::setupSlackAttachmentDeserializer);
 
-	protected static void setupSlackAttachmentDeserializer(DelegatingDeserializer<SlackAttachment.Builder> op) {
+	protected static void setupSlackAttachmentDeserializer(ObjectDeserializer<SlackAttachment.Builder> op) {
 
 		op.add(Builder::authorIcon, JsonpDeserializer.stringDeserializer(), "author_icon");
 		op.add(Builder::authorLink, JsonpDeserializer.stringDeserializer(), "author_link");

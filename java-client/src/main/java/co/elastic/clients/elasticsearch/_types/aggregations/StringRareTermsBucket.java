@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -112,10 +111,9 @@ public class StringRareTermsBucket extends MultiBucketBase {
 	 * Json deserializer for {@link StringRareTermsBucket}
 	 */
 	public static final JsonpDeserializer<StringRareTermsBucket> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, StringRareTermsBucket::setupStringRareTermsBucketDeserializer, Builder::build);
+			.lazy(Builder::new, StringRareTermsBucket::setupStringRareTermsBucketDeserializer);
 
-	protected static void setupStringRareTermsBucketDeserializer(
-			DelegatingDeserializer<StringRareTermsBucket.Builder> op) {
+	protected static void setupStringRareTermsBucketDeserializer(ObjectDeserializer<StringRareTermsBucket.Builder> op) {
 		MultiBucketBase.setupMultiBucketBaseDeserializer(op);
 		op.add(Builder::key, JsonpDeserializer.stringDeserializer(), "key");
 

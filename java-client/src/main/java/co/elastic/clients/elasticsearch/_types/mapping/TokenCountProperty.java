@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.mapping;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -240,9 +239,9 @@ public class TokenCountProperty extends DocValuesPropertyBase implements Propert
 	 * Json deserializer for {@link TokenCountProperty}
 	 */
 	public static final JsonpDeserializer<TokenCountProperty> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, TokenCountProperty::setupTokenCountPropertyDeserializer, Builder::build);
+			.lazy(Builder::new, TokenCountProperty::setupTokenCountPropertyDeserializer);
 
-	protected static void setupTokenCountPropertyDeserializer(DelegatingDeserializer<TokenCountProperty.Builder> op) {
+	protected static void setupTokenCountPropertyDeserializer(ObjectDeserializer<TokenCountProperty.Builder> op) {
 		DocValuesPropertyBase.setupDocValuesPropertyBaseDeserializer(op);
 		op.add(Builder::analyzer, JsonpDeserializer.stringDeserializer(), "analyzer");
 		op.add(Builder::boost, JsonpDeserializer.doubleDeserializer(), "boost");

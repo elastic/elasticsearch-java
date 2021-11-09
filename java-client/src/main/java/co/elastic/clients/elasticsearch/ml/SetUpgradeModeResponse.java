@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.elasticsearch._types.AcknowledgedResponseBase;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -80,10 +79,10 @@ public class SetUpgradeModeResponse extends AcknowledgedResponseBase {
 	 * Json deserializer for {@link SetUpgradeModeResponse}
 	 */
 	public static final JsonpDeserializer<SetUpgradeModeResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, SetUpgradeModeResponse::setupSetUpgradeModeResponseDeserializer, Builder::build);
+			.lazy(Builder::new, SetUpgradeModeResponse::setupSetUpgradeModeResponseDeserializer);
 
 	protected static void setupSetUpgradeModeResponseDeserializer(
-			DelegatingDeserializer<SetUpgradeModeResponse.Builder> op) {
+			ObjectDeserializer<SetUpgradeModeResponse.Builder> op) {
 		AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);
 
 	}

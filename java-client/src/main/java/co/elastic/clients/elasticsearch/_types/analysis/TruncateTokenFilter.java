@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.analysis;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -120,9 +119,9 @@ public class TruncateTokenFilter extends TokenFilterBase implements TokenFilterV
 	 * Json deserializer for {@link TruncateTokenFilter}
 	 */
 	public static final JsonpDeserializer<TruncateTokenFilter> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, TruncateTokenFilter::setupTruncateTokenFilterDeserializer, Builder::build);
+			.lazy(Builder::new, TruncateTokenFilter::setupTruncateTokenFilterDeserializer);
 
-	protected static void setupTruncateTokenFilterDeserializer(DelegatingDeserializer<TruncateTokenFilter.Builder> op) {
+	protected static void setupTruncateTokenFilterDeserializer(ObjectDeserializer<TruncateTokenFilter.Builder> op) {
 		TokenFilterBase.setupTokenFilterBaseDeserializer(op);
 		op.add(Builder::length, JsonpDeserializer.integerDeserializer(), "length");
 

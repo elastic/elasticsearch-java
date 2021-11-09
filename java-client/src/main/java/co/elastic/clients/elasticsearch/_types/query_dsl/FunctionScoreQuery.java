@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -297,9 +296,9 @@ public class FunctionScoreQuery extends QueryBase implements QueryVariant {
 	 * Json deserializer for {@link FunctionScoreQuery}
 	 */
 	public static final JsonpDeserializer<FunctionScoreQuery> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, FunctionScoreQuery::setupFunctionScoreQueryDeserializer, Builder::build);
+			.lazy(Builder::new, FunctionScoreQuery::setupFunctionScoreQueryDeserializer);
 
-	protected static void setupFunctionScoreQueryDeserializer(DelegatingDeserializer<FunctionScoreQuery.Builder> op) {
+	protected static void setupFunctionScoreQueryDeserializer(ObjectDeserializer<FunctionScoreQuery.Builder> op) {
 		QueryBase.setupQueryBaseDeserializer(op);
 		op.add(Builder::boostMode, FunctionBoostMode._DESERIALIZER, "boost_mode");
 		op.add(Builder::functions, JsonpDeserializer.arrayDeserializer(FunctionScore._DESERIALIZER), "functions");

@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch.indices;
 
 import co.elastic.clients.elasticsearch._types.mapping.TypeMapping;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -244,9 +243,9 @@ public class IndexState implements JsonpSerializable {
 	 * Json deserializer for {@link IndexState}
 	 */
 	public static final JsonpDeserializer<IndexState> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			IndexState::setupIndexStateDeserializer, Builder::build);
+			IndexState::setupIndexStateDeserializer);
 
-	protected static void setupIndexStateDeserializer(DelegatingDeserializer<IndexState.Builder> op) {
+	protected static void setupIndexStateDeserializer(ObjectDeserializer<IndexState.Builder> op) {
 
 		op.add(Builder::aliases, JsonpDeserializer.stringMapDeserializer(Alias._DESERIALIZER), "aliases");
 		op.add(Builder::mappings, TypeMapping._DESERIALIZER, "mappings");

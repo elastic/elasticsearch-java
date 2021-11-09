@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.analysis;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -168,9 +167,9 @@ public class PatternTokenizer extends TokenizerBase implements TokenizerVariant 
 	 * Json deserializer for {@link PatternTokenizer}
 	 */
 	public static final JsonpDeserializer<PatternTokenizer> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			PatternTokenizer::setupPatternTokenizerDeserializer, Builder::build);
+			PatternTokenizer::setupPatternTokenizerDeserializer);
 
-	protected static void setupPatternTokenizerDeserializer(DelegatingDeserializer<PatternTokenizer.Builder> op) {
+	protected static void setupPatternTokenizerDeserializer(ObjectDeserializer<PatternTokenizer.Builder> op) {
 		TokenizerBase.setupTokenizerBaseDeserializer(op);
 		op.add(Builder::flags, JsonpDeserializer.stringDeserializer(), "flags");
 		op.add(Builder::group, JsonpDeserializer.integerDeserializer(), "group");

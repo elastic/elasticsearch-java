@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.xpack.usage;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -113,9 +112,9 @@ public class RealmCache implements JsonpSerializable {
 	 * Json deserializer for {@link RealmCache}
 	 */
 	public static final JsonpDeserializer<RealmCache> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			RealmCache::setupRealmCacheDeserializer, Builder::build);
+			RealmCache::setupRealmCacheDeserializer);
 
-	protected static void setupRealmCacheDeserializer(DelegatingDeserializer<RealmCache.Builder> op) {
+	protected static void setupRealmCacheDeserializer(ObjectDeserializer<RealmCache.Builder> op) {
 
 		op.add(Builder::size, JsonpDeserializer.longDeserializer(), "size");
 

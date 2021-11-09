@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.nodes;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -230,9 +229,9 @@ public class FileSystemTotal implements JsonpSerializable {
 	 * Json deserializer for {@link FileSystemTotal}
 	 */
 	public static final JsonpDeserializer<FileSystemTotal> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			FileSystemTotal::setupFileSystemTotalDeserializer, Builder::build);
+			FileSystemTotal::setupFileSystemTotalDeserializer);
 
-	protected static void setupFileSystemTotalDeserializer(DelegatingDeserializer<FileSystemTotal.Builder> op) {
+	protected static void setupFileSystemTotalDeserializer(ObjectDeserializer<FileSystemTotal.Builder> op) {
 
 		op.add(Builder::available, JsonpDeserializer.stringDeserializer(), "available");
 		op.add(Builder::availableInBytes, JsonpDeserializer.longDeserializer(), "available_in_bytes");

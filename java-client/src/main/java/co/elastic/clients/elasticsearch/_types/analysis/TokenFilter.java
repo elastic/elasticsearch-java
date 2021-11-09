@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.analysis;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -1138,7 +1137,7 @@ public class TokenFilter implements TaggedUnion<TokenFilterVariant>, JsonpSerial
 
 	}
 
-	protected static void setupTokenFilterDeserializer(DelegatingDeserializer<Builder> op) {
+	protected static void setupTokenFilterDeserializer(ObjectDeserializer<Builder> op) {
 
 		op.add(Builder::asciifolding, AsciiFoldingTokenFilter._DESERIALIZER, "asciifolding");
 		op.add(Builder::commonGrams, CommonGramsTokenFilter._DESERIALIZER, "common_grams");

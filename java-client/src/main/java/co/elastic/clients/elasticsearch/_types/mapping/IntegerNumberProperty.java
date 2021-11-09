@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.mapping;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -126,10 +125,9 @@ public class IntegerNumberProperty extends StandardNumberProperty implements Pro
 	 * Json deserializer for {@link IntegerNumberProperty}
 	 */
 	public static final JsonpDeserializer<IntegerNumberProperty> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, IntegerNumberProperty::setupIntegerNumberPropertyDeserializer, Builder::build);
+			.lazy(Builder::new, IntegerNumberProperty::setupIntegerNumberPropertyDeserializer);
 
-	protected static void setupIntegerNumberPropertyDeserializer(
-			DelegatingDeserializer<IntegerNumberProperty.Builder> op) {
+	protected static void setupIntegerNumberPropertyDeserializer(ObjectDeserializer<IntegerNumberProperty.Builder> op) {
 		StandardNumberProperty.setupStandardNumberPropertyDeserializer(op);
 		op.add(Builder::nullValue, JsonpDeserializer.integerDeserializer(), "null_value");
 

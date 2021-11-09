@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.analysis;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -201,10 +200,9 @@ public class EdgeNGramTokenFilter extends TokenFilterBase implements TokenFilter
 	 * Json deserializer for {@link EdgeNGramTokenFilter}
 	 */
 	public static final JsonpDeserializer<EdgeNGramTokenFilter> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, EdgeNGramTokenFilter::setupEdgeNGramTokenFilterDeserializer, Builder::build);
+			.lazy(Builder::new, EdgeNGramTokenFilter::setupEdgeNGramTokenFilterDeserializer);
 
-	protected static void setupEdgeNGramTokenFilterDeserializer(
-			DelegatingDeserializer<EdgeNGramTokenFilter.Builder> op) {
+	protected static void setupEdgeNGramTokenFilterDeserializer(ObjectDeserializer<EdgeNGramTokenFilter.Builder> op) {
 		TokenFilterBase.setupTokenFilterBaseDeserializer(op);
 		op.add(Builder::maxGram, JsonpDeserializer.integerDeserializer(), "max_gram");
 		op.add(Builder::minGram, JsonpDeserializer.integerDeserializer(), "min_gram");

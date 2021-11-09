@@ -25,7 +25,6 @@ package co.elastic.clients.elasticsearch._types.aggregations;
 
 import co.elastic.clients.elasticsearch._types.DistanceUnit;
 import co.elastic.clients.elasticsearch._types.GeoDistanceType;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -265,10 +264,10 @@ public class GeoDistanceAggregation extends BucketAggregationBase implements Agg
 	 * Json deserializer for {@link GeoDistanceAggregation}
 	 */
 	public static final JsonpDeserializer<GeoDistanceAggregation> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, GeoDistanceAggregation::setupGeoDistanceAggregationDeserializer, Builder::build);
+			.lazy(Builder::new, GeoDistanceAggregation::setupGeoDistanceAggregationDeserializer);
 
 	protected static void setupGeoDistanceAggregationDeserializer(
-			DelegatingDeserializer<GeoDistanceAggregation.Builder> op) {
+			ObjectDeserializer<GeoDistanceAggregation.Builder> op) {
 		BucketAggregationBase.setupBucketAggregationBaseDeserializer(op);
 		op.add(Builder::distanceType, GeoDistanceType._DESERIALIZER, "distance_type");
 		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");

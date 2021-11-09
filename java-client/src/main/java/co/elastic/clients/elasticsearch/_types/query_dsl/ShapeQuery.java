@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -144,9 +143,9 @@ public class ShapeQuery extends QueryBase implements QueryVariant {
 	 * Json deserializer for {@link ShapeQuery}
 	 */
 	public static final JsonpDeserializer<ShapeQuery> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			ShapeQuery::setupShapeQueryDeserializer, Builder::build);
+			ShapeQuery::setupShapeQueryDeserializer);
 
-	protected static void setupShapeQueryDeserializer(DelegatingDeserializer<ShapeQuery.Builder> op) {
+	protected static void setupShapeQueryDeserializer(ObjectDeserializer<ShapeQuery.Builder> op) {
 		QueryBase.setupQueryBaseDeserializer(op);
 
 		op.setUnknownFieldHandler((builder, name, parser, mapper) -> {

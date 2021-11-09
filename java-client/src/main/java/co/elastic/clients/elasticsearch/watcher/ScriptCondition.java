@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.watcher;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -179,9 +178,9 @@ public class ScriptCondition implements ConditionVariant, JsonpSerializable {
 	 * Json deserializer for {@link ScriptCondition}
 	 */
 	public static final JsonpDeserializer<ScriptCondition> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			ScriptCondition::setupScriptConditionDeserializer, Builder::build);
+			ScriptCondition::setupScriptConditionDeserializer);
 
-	protected static void setupScriptConditionDeserializer(DelegatingDeserializer<ScriptCondition.Builder> op) {
+	protected static void setupScriptConditionDeserializer(ObjectDeserializer<ScriptCondition.Builder> op) {
 
 		op.add(Builder::lang, JsonpDeserializer.stringDeserializer(), "lang");
 		op.add(Builder::params, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "params");

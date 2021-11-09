@@ -27,7 +27,6 @@ import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch._types.aggregations.Aggregation;
 import co.elastic.clients.elasticsearch._types.query_dsl.Query;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -280,9 +279,9 @@ public class RollupSearchRequest extends RequestBase implements JsonpSerializabl
 	 * Json deserializer for {@link RollupSearchRequest}
 	 */
 	public static final JsonpDeserializer<RollupSearchRequest> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, RollupSearchRequest::setupRollupSearchRequestDeserializer, Builder::build);
+			.lazy(Builder::new, RollupSearchRequest::setupRollupSearchRequestDeserializer);
 
-	protected static void setupRollupSearchRequestDeserializer(DelegatingDeserializer<RollupSearchRequest.Builder> op) {
+	protected static void setupRollupSearchRequestDeserializer(ObjectDeserializer<RollupSearchRequest.Builder> op) {
 
 		op.add(Builder::aggregations, JsonpDeserializer.stringMapDeserializer(Aggregation._DESERIALIZER),
 				"aggregations", "aggs");

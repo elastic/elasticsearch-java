@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -261,9 +260,9 @@ public class DateRangeExpression implements JsonpSerializable {
 	 * Json deserializer for {@link DateRangeExpression}
 	 */
 	public static final JsonpDeserializer<DateRangeExpression> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, DateRangeExpression::setupDateRangeExpressionDeserializer, Builder::build);
+			.lazy(Builder::new, DateRangeExpression::setupDateRangeExpressionDeserializer);
 
-	protected static void setupDateRangeExpressionDeserializer(DelegatingDeserializer<DateRangeExpression.Builder> op) {
+	protected static void setupDateRangeExpressionDeserializer(ObjectDeserializer<DateRangeExpression.Builder> op) {
 
 		op.add(Builder::from, JsonpDeserializer.jsonValueDeserializer(), "from");
 		op.add(Builder::fromAsString, JsonpDeserializer.stringDeserializer(), "from_as_string");

@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -198,11 +197,11 @@ public class InferenceFeatureImportance implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link InferenceFeatureImportance}
 	 */
-	public static final JsonpDeserializer<InferenceFeatureImportance> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
-			Builder::new, InferenceFeatureImportance::setupInferenceFeatureImportanceDeserializer, Builder::build);
+	public static final JsonpDeserializer<InferenceFeatureImportance> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, InferenceFeatureImportance::setupInferenceFeatureImportanceDeserializer);
 
 	protected static void setupInferenceFeatureImportanceDeserializer(
-			DelegatingDeserializer<InferenceFeatureImportance.Builder> op) {
+			ObjectDeserializer<InferenceFeatureImportance.Builder> op) {
 
 		op.add(Builder::featureName, JsonpDeserializer.stringDeserializer(), "feature_name");
 		op.add(Builder::importance, JsonpDeserializer.doubleDeserializer(), "importance");

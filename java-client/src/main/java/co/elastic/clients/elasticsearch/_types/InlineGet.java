@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -311,8 +310,7 @@ public class InlineGet<TDocument> implements JsonpSerializable {
 				op -> InlineGet.setupInlineGetDeserializer(op, tDocumentDeserializer));
 	};
 
-	protected static <TDocument> void setupInlineGetDeserializer(
-			DelegatingDeserializer<InlineGet.Builder<TDocument>> op,
+	protected static <TDocument> void setupInlineGetDeserializer(ObjectDeserializer<InlineGet.Builder<TDocument>> op,
 			JsonpDeserializer<TDocument> tDocumentDeserializer) {
 
 		op.add(Builder::fields, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "fields");

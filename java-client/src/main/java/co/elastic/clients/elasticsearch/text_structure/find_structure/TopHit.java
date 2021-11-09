@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.text_structure.find_structure;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -138,9 +137,9 @@ public class TopHit implements JsonpSerializable {
 	 * Json deserializer for {@link TopHit}
 	 */
 	public static final JsonpDeserializer<TopHit> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			TopHit::setupTopHitDeserializer, Builder::build);
+			TopHit::setupTopHitDeserializer);
 
-	protected static void setupTopHitDeserializer(DelegatingDeserializer<TopHit.Builder> op) {
+	protected static void setupTopHitDeserializer(ObjectDeserializer<TopHit.Builder> op) {
 
 		op.add(Builder::count, JsonpDeserializer.longDeserializer(), "count");
 		op.add(Builder::value, JsonData._DESERIALIZER, "value");

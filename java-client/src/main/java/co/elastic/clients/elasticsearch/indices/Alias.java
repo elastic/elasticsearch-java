@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch.indices;
 
 import co.elastic.clients.elasticsearch._types.query_dsl.Query;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -268,9 +267,9 @@ public class Alias implements JsonpSerializable {
 	 * Json deserializer for {@link Alias}
 	 */
 	public static final JsonpDeserializer<Alias> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			Alias::setupAliasDeserializer, Builder::build);
+			Alias::setupAliasDeserializer);
 
-	protected static void setupAliasDeserializer(DelegatingDeserializer<Alias.Builder> op) {
+	protected static void setupAliasDeserializer(ObjectDeserializer<Alias.Builder> op) {
 
 		op.add(Builder::filter, Query._DESERIALIZER, "filter");
 		op.add(Builder::indexRouting, JsonpDeserializer.stringDeserializer(), "index_routing");

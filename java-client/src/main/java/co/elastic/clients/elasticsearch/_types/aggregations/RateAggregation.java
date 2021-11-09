@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -150,9 +149,9 @@ public class RateAggregation extends FormatMetricAggregationBase implements Aggr
 	 * Json deserializer for {@link RateAggregation}
 	 */
 	public static final JsonpDeserializer<RateAggregation> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			RateAggregation::setupRateAggregationDeserializer, Builder::build);
+			RateAggregation::setupRateAggregationDeserializer);
 
-	protected static void setupRateAggregationDeserializer(DelegatingDeserializer<RateAggregation.Builder> op) {
+	protected static void setupRateAggregationDeserializer(ObjectDeserializer<RateAggregation.Builder> op) {
 		FormatMetricAggregationBase.setupFormatMetricAggregationBaseDeserializer(op);
 		op.add(Builder::unit, DateInterval._DESERIALIZER, "unit");
 		op.add(Builder::mode, RateMode._DESERIALIZER, "mode");

@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.watcher;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -199,7 +198,7 @@ public class Input implements TaggedUnion<Object>, JsonpSerializable {
 
 	}
 
-	protected static void setupInputDeserializer(DelegatingDeserializer<Builder> op) {
+	protected static void setupInputDeserializer(ObjectDeserializer<Builder> op) {
 
 		op.add(Builder::chain, ChainInput._DESERIALIZER, "chain");
 		op.add(Builder::http, HttpInput._DESERIALIZER, "http");

@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch._types.aggregations;
 
 import co.elastic.clients.elasticsearch._types.query_dsl.Query;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -628,11 +627,11 @@ public class SignificantTextAggregation extends BucketAggregationBase implements
 	/**
 	 * Json deserializer for {@link SignificantTextAggregation}
 	 */
-	public static final JsonpDeserializer<SignificantTextAggregation> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
-			Builder::new, SignificantTextAggregation::setupSignificantTextAggregationDeserializer, Builder::build);
+	public static final JsonpDeserializer<SignificantTextAggregation> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, SignificantTextAggregation::setupSignificantTextAggregationDeserializer);
 
 	protected static void setupSignificantTextAggregationDeserializer(
-			DelegatingDeserializer<SignificantTextAggregation.Builder> op) {
+			ObjectDeserializer<SignificantTextAggregation.Builder> op) {
 		BucketAggregationBase.setupBucketAggregationBaseDeserializer(op);
 		op.add(Builder::backgroundFilter, Query._DESERIALIZER, "background_filter");
 		op.add(Builder::chiSquare, ChiSquareHeuristic._DESERIALIZER, "chi_square");

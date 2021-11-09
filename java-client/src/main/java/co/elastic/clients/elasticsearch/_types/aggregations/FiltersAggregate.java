@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -88,9 +87,9 @@ public class FiltersAggregate extends MultiBucketAggregateBase<FiltersBucket> im
 	 * Json deserializer for {@link FiltersAggregate}
 	 */
 	public static final JsonpDeserializer<FiltersAggregate> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			FiltersAggregate::setupFiltersAggregateDeserializer, Builder::build);
+			FiltersAggregate::setupFiltersAggregateDeserializer);
 
-	protected static void setupFiltersAggregateDeserializer(DelegatingDeserializer<FiltersAggregate.Builder> op) {
+	protected static void setupFiltersAggregateDeserializer(ObjectDeserializer<FiltersAggregate.Builder> op) {
 		MultiBucketAggregateBase.setupMultiBucketAggregateBaseDeserializer(op, FiltersBucket._DESERIALIZER);
 
 	}

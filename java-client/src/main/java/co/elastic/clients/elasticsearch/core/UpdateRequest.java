@@ -25,7 +25,6 @@ package co.elastic.clients.elasticsearch.core;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -716,7 +715,7 @@ public class UpdateRequest<TDocument, TPartialDocument> extends RequestBase impl
 	};
 
 	protected static <TDocument, TPartialDocument> void setupUpdateRequestDeserializer(
-			DelegatingDeserializer<UpdateRequest.Builder<TDocument, TPartialDocument>> op,
+			ObjectDeserializer<UpdateRequest.Builder<TDocument, TPartialDocument>> op,
 			JsonpDeserializer<TDocument> tDocumentDeserializer,
 			JsonpDeserializer<TPartialDocument> tPartialDocumentDeserializer) {
 

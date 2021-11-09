@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -356,11 +355,11 @@ public class AutoDateHistogramAggregation extends BucketAggregationBase implemen
 	/**
 	 * Json deserializer for {@link AutoDateHistogramAggregation}
 	 */
-	public static final JsonpDeserializer<AutoDateHistogramAggregation> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
-			Builder::new, AutoDateHistogramAggregation::setupAutoDateHistogramAggregationDeserializer, Builder::build);
+	public static final JsonpDeserializer<AutoDateHistogramAggregation> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, AutoDateHistogramAggregation::setupAutoDateHistogramAggregationDeserializer);
 
 	protected static void setupAutoDateHistogramAggregationDeserializer(
-			DelegatingDeserializer<AutoDateHistogramAggregation.Builder> op) {
+			ObjectDeserializer<AutoDateHistogramAggregation.Builder> op) {
 		BucketAggregationBase.setupBucketAggregationBaseDeserializer(op);
 		op.add(Builder::buckets, JsonpDeserializer.integerDeserializer(), "buckets");
 		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");

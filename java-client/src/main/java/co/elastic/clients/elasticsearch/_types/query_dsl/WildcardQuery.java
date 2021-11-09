@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -257,9 +256,9 @@ public class WildcardQuery extends QueryBase implements QueryVariant {
 	 * Json deserializer for {@link WildcardQuery}
 	 */
 	public static final JsonpDeserializer<WildcardQuery> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			WildcardQuery::setupWildcardQueryDeserializer, Builder::build);
+			WildcardQuery::setupWildcardQueryDeserializer);
 
-	protected static void setupWildcardQueryDeserializer(DelegatingDeserializer<WildcardQuery.Builder> op) {
+	protected static void setupWildcardQueryDeserializer(ObjectDeserializer<WildcardQuery.Builder> op) {
 		QueryBase.setupQueryBaseDeserializer(op);
 		op.add(Builder::caseInsensitive, JsonpDeserializer.booleanDeserializer(), "case_insensitive");
 		op.add(Builder::rewrite, JsonpDeserializer.stringDeserializer(), "rewrite");

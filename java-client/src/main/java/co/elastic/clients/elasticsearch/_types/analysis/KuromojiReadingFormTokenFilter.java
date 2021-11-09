@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.analysis;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -121,11 +120,10 @@ public class KuromojiReadingFormTokenFilter extends TokenFilterBase implements T
 	 * Json deserializer for {@link KuromojiReadingFormTokenFilter}
 	 */
 	public static final JsonpDeserializer<KuromojiReadingFormTokenFilter> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, KuromojiReadingFormTokenFilter::setupKuromojiReadingFormTokenFilterDeserializer,
-					Builder::build);
+			.lazy(Builder::new, KuromojiReadingFormTokenFilter::setupKuromojiReadingFormTokenFilterDeserializer);
 
 	protected static void setupKuromojiReadingFormTokenFilterDeserializer(
-			DelegatingDeserializer<KuromojiReadingFormTokenFilter.Builder> op) {
+			ObjectDeserializer<KuromojiReadingFormTokenFilter.Builder> op) {
 		TokenFilterBase.setupTokenFilterBaseDeserializer(op);
 		op.add(Builder::useRomaji, JsonpDeserializer.booleanDeserializer(), "use_romaji");
 

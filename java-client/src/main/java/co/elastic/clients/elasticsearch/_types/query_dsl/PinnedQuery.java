@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -218,7 +217,7 @@ public class PinnedQuery extends QueryBase implements TaggedUnion<Object>, Query
 		}
 	}
 
-	protected static void setupPinnedQueryDeserializer(DelegatingDeserializer<Builder> op) {
+	protected static void setupPinnedQueryDeserializer(ObjectDeserializer<Builder> op) {
 		QueryBase.setupQueryBaseDeserializer(op);
 		op.add(Builder::organic, Query._DESERIALIZER, "organic");
 		op.add(Builder::ids, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "ids");

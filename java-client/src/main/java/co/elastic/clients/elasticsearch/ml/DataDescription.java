@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -233,9 +232,9 @@ public class DataDescription implements JsonpSerializable {
 	 * Json deserializer for {@link DataDescription}
 	 */
 	public static final JsonpDeserializer<DataDescription> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			DataDescription::setupDataDescriptionDeserializer, Builder::build);
+			DataDescription::setupDataDescriptionDeserializer);
 
-	protected static void setupDataDescriptionDeserializer(DelegatingDeserializer<DataDescription.Builder> op) {
+	protected static void setupDataDescriptionDeserializer(ObjectDeserializer<DataDescription.Builder> op) {
 
 		op.add(Builder::format, JsonpDeserializer.stringDeserializer(), "format");
 		op.add(Builder::timeField, JsonpDeserializer.stringDeserializer(), "time_field");

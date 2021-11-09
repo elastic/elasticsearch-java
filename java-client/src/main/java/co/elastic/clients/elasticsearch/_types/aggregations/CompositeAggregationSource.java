@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -231,11 +230,11 @@ public class CompositeAggregationSource implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link CompositeAggregationSource}
 	 */
-	public static final JsonpDeserializer<CompositeAggregationSource> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
-			Builder::new, CompositeAggregationSource::setupCompositeAggregationSourceDeserializer, Builder::build);
+	public static final JsonpDeserializer<CompositeAggregationSource> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, CompositeAggregationSource::setupCompositeAggregationSourceDeserializer);
 
 	protected static void setupCompositeAggregationSourceDeserializer(
-			DelegatingDeserializer<CompositeAggregationSource.Builder> op) {
+			ObjectDeserializer<CompositeAggregationSource.Builder> op) {
 
 		op.add(Builder::terms, TermsAggregation._DESERIALIZER, "terms");
 		op.add(Builder::histogram, HistogramAggregation._DESERIALIZER, "histogram");

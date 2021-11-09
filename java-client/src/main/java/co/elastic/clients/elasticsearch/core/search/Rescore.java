@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.core.search;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -150,9 +149,9 @@ public class Rescore implements JsonpSerializable {
 	 * Json deserializer for {@link Rescore}
 	 */
 	public static final JsonpDeserializer<Rescore> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			Rescore::setupRescoreDeserializer, Builder::build);
+			Rescore::setupRescoreDeserializer);
 
-	protected static void setupRescoreDeserializer(DelegatingDeserializer<Rescore.Builder> op) {
+	protected static void setupRescoreDeserializer(ObjectDeserializer<Rescore.Builder> op) {
 
 		op.add(Builder::query, RescoreQuery._DESERIALIZER, "query");
 		op.add(Builder::windowSize, JsonpDeserializer.integerDeserializer(), "window_size");

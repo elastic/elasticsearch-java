@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch.core;
 
 import co.elastic.clients.elasticsearch._types.ElasticsearchVersionInfo;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -215,9 +214,9 @@ public class InfoResponse implements JsonpSerializable {
 	 * Json deserializer for {@link InfoResponse}
 	 */
 	public static final JsonpDeserializer<InfoResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			InfoResponse::setupInfoResponseDeserializer, Builder::build);
+			InfoResponse::setupInfoResponseDeserializer);
 
-	protected static void setupInfoResponseDeserializer(DelegatingDeserializer<InfoResponse.Builder> op) {
+	protected static void setupInfoResponseDeserializer(ObjectDeserializer<InfoResponse.Builder> op) {
 
 		op.add(Builder::clusterName, JsonpDeserializer.stringDeserializer(), "cluster_name");
 		op.add(Builder::clusterUuid, JsonpDeserializer.stringDeserializer(), "cluster_uuid");

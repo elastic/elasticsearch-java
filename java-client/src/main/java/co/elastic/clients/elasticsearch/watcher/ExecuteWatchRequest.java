@@ -25,7 +25,6 @@ package co.elastic.clients.elasticsearch.watcher;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -379,9 +378,9 @@ public class ExecuteWatchRequest extends RequestBase implements JsonpSerializabl
 	 * Json deserializer for {@link ExecuteWatchRequest}
 	 */
 	public static final JsonpDeserializer<ExecuteWatchRequest> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, ExecuteWatchRequest::setupExecuteWatchRequestDeserializer, Builder::build);
+			.lazy(Builder::new, ExecuteWatchRequest::setupExecuteWatchRequestDeserializer);
 
-	protected static void setupExecuteWatchRequestDeserializer(DelegatingDeserializer<ExecuteWatchRequest.Builder> op) {
+	protected static void setupExecuteWatchRequestDeserializer(ObjectDeserializer<ExecuteWatchRequest.Builder> op) {
 
 		op.add(Builder::actionModes, JsonpDeserializer.stringMapDeserializer(ActionExecutionMode._DESERIALIZER),
 				"action_modes");

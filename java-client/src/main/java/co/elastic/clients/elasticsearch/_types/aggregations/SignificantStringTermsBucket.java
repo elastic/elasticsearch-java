@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -111,11 +110,11 @@ public class SignificantStringTermsBucket extends SignificantTermsBucketBase {
 	/**
 	 * Json deserializer for {@link SignificantStringTermsBucket}
 	 */
-	public static final JsonpDeserializer<SignificantStringTermsBucket> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
-			Builder::new, SignificantStringTermsBucket::setupSignificantStringTermsBucketDeserializer, Builder::build);
+	public static final JsonpDeserializer<SignificantStringTermsBucket> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, SignificantStringTermsBucket::setupSignificantStringTermsBucketDeserializer);
 
 	protected static void setupSignificantStringTermsBucketDeserializer(
-			DelegatingDeserializer<SignificantStringTermsBucket.Builder> op) {
+			ObjectDeserializer<SignificantStringTermsBucket.Builder> op) {
 		SignificantTermsBucketBase.setupSignificantTermsBucketBaseDeserializer(op);
 		op.add(Builder::key, JsonpDeserializer.stringDeserializer(), "key");
 

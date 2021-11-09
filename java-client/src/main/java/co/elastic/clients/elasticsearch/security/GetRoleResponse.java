@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch.security;
 
 import co.elastic.clients.elasticsearch.security.get_role.Role;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -84,9 +83,9 @@ public class GetRoleResponse extends DictionaryResponse<String, Role> {
 	 * Json deserializer for {@link GetRoleResponse}
 	 */
 	public static final JsonpDeserializer<GetRoleResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			GetRoleResponse::setupGetRoleResponseDeserializer, Builder::build);
+			GetRoleResponse::setupGetRoleResponseDeserializer);
 
-	protected static void setupGetRoleResponseDeserializer(DelegatingDeserializer<GetRoleResponse.Builder> op) {
+	protected static void setupGetRoleResponseDeserializer(ObjectDeserializer<GetRoleResponse.Builder> op) {
 		DictionaryResponse.setupDictionaryResponseDeserializer(op, JsonpDeserializer.stringDeserializer(),
 				Role._DESERIALIZER);
 

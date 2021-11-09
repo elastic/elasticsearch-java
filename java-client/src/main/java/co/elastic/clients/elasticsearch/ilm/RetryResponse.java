@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch.ilm;
 
 import co.elastic.clients.elasticsearch._types.AcknowledgedResponseBase;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -80,9 +79,9 @@ public class RetryResponse extends AcknowledgedResponseBase {
 	 * Json deserializer for {@link RetryResponse}
 	 */
 	public static final JsonpDeserializer<RetryResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			RetryResponse::setupRetryResponseDeserializer, Builder::build);
+			RetryResponse::setupRetryResponseDeserializer);
 
-	protected static void setupRetryResponseDeserializer(DelegatingDeserializer<RetryResponse.Builder> op) {
+	protected static void setupRetryResponseDeserializer(ObjectDeserializer<RetryResponse.Builder> op) {
 		AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);
 
 	}

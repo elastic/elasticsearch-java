@@ -28,7 +28,6 @@ import co.elastic.clients.elasticsearch._types.analysis.CharFilter;
 import co.elastic.clients.elasticsearch._types.analysis.Normalizer;
 import co.elastic.clients.elasticsearch._types.analysis.TokenFilter;
 import co.elastic.clients.elasticsearch._types.analysis.Tokenizer;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -320,10 +319,9 @@ public class IndexSettingsAnalysis implements JsonpSerializable {
 	 * Json deserializer for {@link IndexSettingsAnalysis}
 	 */
 	public static final JsonpDeserializer<IndexSettingsAnalysis> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, IndexSettingsAnalysis::setupIndexSettingsAnalysisDeserializer, Builder::build);
+			.lazy(Builder::new, IndexSettingsAnalysis::setupIndexSettingsAnalysisDeserializer);
 
-	protected static void setupIndexSettingsAnalysisDeserializer(
-			DelegatingDeserializer<IndexSettingsAnalysis.Builder> op) {
+	protected static void setupIndexSettingsAnalysisDeserializer(ObjectDeserializer<IndexSettingsAnalysis.Builder> op) {
 
 		op.add(Builder::analyzer, JsonpDeserializer.stringMapDeserializer(Analyzer._DESERIALIZER), "analyzer");
 		op.add(Builder::charFilter, JsonpDeserializer.stringMapDeserializer(CharFilter._DESERIALIZER), "char_filter");

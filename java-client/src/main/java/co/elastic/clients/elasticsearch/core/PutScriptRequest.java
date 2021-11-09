@@ -26,7 +26,6 @@ package co.elastic.clients.elasticsearch.core;
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch._types.StoredScript;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -239,9 +238,9 @@ public class PutScriptRequest extends RequestBase implements JsonpSerializable {
 	 * Json deserializer for {@link PutScriptRequest}
 	 */
 	public static final JsonpDeserializer<PutScriptRequest> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			PutScriptRequest::setupPutScriptRequestDeserializer, Builder::build);
+			PutScriptRequest::setupPutScriptRequestDeserializer);
 
-	protected static void setupPutScriptRequestDeserializer(DelegatingDeserializer<PutScriptRequest.Builder> op) {
+	protected static void setupPutScriptRequestDeserializer(ObjectDeserializer<PutScriptRequest.Builder> op) {
 
 		op.add(Builder::script, StoredScript._DESERIALIZER, "script");
 

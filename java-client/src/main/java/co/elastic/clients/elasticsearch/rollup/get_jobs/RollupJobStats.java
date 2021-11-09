@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.rollup.get_jobs;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -368,9 +367,9 @@ public class RollupJobStats implements JsonpSerializable {
 	 * Json deserializer for {@link RollupJobStats}
 	 */
 	public static final JsonpDeserializer<RollupJobStats> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			RollupJobStats::setupRollupJobStatsDeserializer, Builder::build);
+			RollupJobStats::setupRollupJobStatsDeserializer);
 
-	protected static void setupRollupJobStatsDeserializer(DelegatingDeserializer<RollupJobStats.Builder> op) {
+	protected static void setupRollupJobStatsDeserializer(ObjectDeserializer<RollupJobStats.Builder> op) {
 
 		op.add(Builder::documentsProcessed, JsonpDeserializer.longDeserializer(), "documents_processed");
 		op.add(Builder::indexFailures, JsonpDeserializer.longDeserializer(), "index_failures");

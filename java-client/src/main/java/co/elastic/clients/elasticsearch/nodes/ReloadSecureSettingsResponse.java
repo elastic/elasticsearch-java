@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.nodes;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -157,11 +156,11 @@ public class ReloadSecureSettingsResponse extends NodesResponseBase {
 	/**
 	 * Json deserializer for {@link ReloadSecureSettingsResponse}
 	 */
-	public static final JsonpDeserializer<ReloadSecureSettingsResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
-			Builder::new, ReloadSecureSettingsResponse::setupReloadSecureSettingsResponseDeserializer, Builder::build);
+	public static final JsonpDeserializer<ReloadSecureSettingsResponse> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, ReloadSecureSettingsResponse::setupReloadSecureSettingsResponseDeserializer);
 
 	protected static void setupReloadSecureSettingsResponseDeserializer(
-			DelegatingDeserializer<ReloadSecureSettingsResponse.Builder> op) {
+			ObjectDeserializer<ReloadSecureSettingsResponse.Builder> op) {
 		NodesResponseBase.setupNodesResponseBaseDeserializer(op);
 		op.add(Builder::clusterName, JsonpDeserializer.stringDeserializer(), "cluster_name");
 		op.add(Builder::nodes, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.jsonValueDeserializer()),

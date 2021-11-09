@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.core.rank_eval;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -123,11 +122,10 @@ public class RankEvalMetricDiscountedCumulativeGain extends RankEvalMetricBase {
 	 */
 	public static final JsonpDeserializer<RankEvalMetricDiscountedCumulativeGain> _DESERIALIZER = ObjectBuilderDeserializer
 			.lazy(Builder::new,
-					RankEvalMetricDiscountedCumulativeGain::setupRankEvalMetricDiscountedCumulativeGainDeserializer,
-					Builder::build);
+					RankEvalMetricDiscountedCumulativeGain::setupRankEvalMetricDiscountedCumulativeGainDeserializer);
 
 	protected static void setupRankEvalMetricDiscountedCumulativeGainDeserializer(
-			DelegatingDeserializer<RankEvalMetricDiscountedCumulativeGain.Builder> op) {
+			ObjectDeserializer<RankEvalMetricDiscountedCumulativeGain.Builder> op) {
 		RankEvalMetricBase.setupRankEvalMetricBaseDeserializer(op);
 		op.add(Builder::normalize, JsonpDeserializer.booleanDeserializer(), "normalize");
 

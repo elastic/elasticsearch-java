@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.xpack.usage;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -482,9 +481,9 @@ public class Security extends Base {
 	 * Json deserializer for {@link Security}
 	 */
 	public static final JsonpDeserializer<Security> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			Security::setupSecurityDeserializer, Builder::build);
+			Security::setupSecurityDeserializer);
 
-	protected static void setupSecurityDeserializer(DelegatingDeserializer<Security.Builder> op) {
+	protected static void setupSecurityDeserializer(ObjectDeserializer<Security.Builder> op) {
 		Base.setupBaseDeserializer(op);
 		op.add(Builder::apiKeyService, FeatureToggle._DESERIALIZER, "api_key_service");
 		op.add(Builder::anonymous, FeatureToggle._DESERIALIZER, "anonymous");

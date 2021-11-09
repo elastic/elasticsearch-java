@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.analysis;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -126,9 +125,9 @@ public class UniqueTokenFilter extends TokenFilterBase implements TokenFilterVar
 	 * Json deserializer for {@link UniqueTokenFilter}
 	 */
 	public static final JsonpDeserializer<UniqueTokenFilter> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, UniqueTokenFilter::setupUniqueTokenFilterDeserializer, Builder::build);
+			.lazy(Builder::new, UniqueTokenFilter::setupUniqueTokenFilterDeserializer);
 
-	protected static void setupUniqueTokenFilterDeserializer(DelegatingDeserializer<UniqueTokenFilter.Builder> op) {
+	protected static void setupUniqueTokenFilterDeserializer(ObjectDeserializer<UniqueTokenFilter.Builder> op) {
 		TokenFilterBase.setupTokenFilterBaseDeserializer(op);
 		op.add(Builder::onlyOnSamePosition, JsonpDeserializer.booleanDeserializer(), "only_on_same_position");
 

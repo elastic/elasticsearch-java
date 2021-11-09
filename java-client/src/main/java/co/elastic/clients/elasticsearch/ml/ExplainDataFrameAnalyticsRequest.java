@@ -25,7 +25,6 @@ package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -452,11 +451,10 @@ public class ExplainDataFrameAnalyticsRequest extends RequestBase implements Jso
 	 * Json deserializer for {@link ExplainDataFrameAnalyticsRequest}
 	 */
 	public static final JsonpDeserializer<ExplainDataFrameAnalyticsRequest> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, ExplainDataFrameAnalyticsRequest::setupExplainDataFrameAnalyticsRequestDeserializer,
-					Builder::build);
+			.lazy(Builder::new, ExplainDataFrameAnalyticsRequest::setupExplainDataFrameAnalyticsRequestDeserializer);
 
 	protected static void setupExplainDataFrameAnalyticsRequestDeserializer(
-			DelegatingDeserializer<ExplainDataFrameAnalyticsRequest.Builder> op) {
+			ObjectDeserializer<ExplainDataFrameAnalyticsRequest.Builder> op) {
 
 		op.add(Builder::allowLazyStart, JsonpDeserializer.booleanDeserializer(), "allow_lazy_start");
 		op.add(Builder::analysis, DataframeAnalysis._DESERIALIZER, "analysis");

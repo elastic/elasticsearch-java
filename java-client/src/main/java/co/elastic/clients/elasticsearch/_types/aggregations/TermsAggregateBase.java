@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -111,7 +110,7 @@ public abstract class TermsAggregateBase<TBucket> extends MultiBucketAggregateBa
 
 	// ---------------------------------------------------------------------------------------------
 	protected static <TBucket, BuilderT extends AbstractBuilder<TBucket, BuilderT>> void setupTermsAggregateBaseDeserializer(
-			DelegatingDeserializer<BuilderT> op, JsonpDeserializer<TBucket> tBucketDeserializer) {
+			ObjectDeserializer<BuilderT> op, JsonpDeserializer<TBucket> tBucketDeserializer) {
 		MultiBucketAggregateBase.setupMultiBucketAggregateBaseDeserializer(op, tBucketDeserializer);
 		op.add(AbstractBuilder::docCountErrorUpperBound, JsonpDeserializer.longDeserializer(),
 				"doc_count_error_upper_bound");

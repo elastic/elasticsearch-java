@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.cluster.stats;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -254,9 +253,9 @@ public class ClusterJvmVersion implements JsonpSerializable {
 	 * Json deserializer for {@link ClusterJvmVersion}
 	 */
 	public static final JsonpDeserializer<ClusterJvmVersion> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, ClusterJvmVersion::setupClusterJvmVersionDeserializer, Builder::build);
+			.lazy(Builder::new, ClusterJvmVersion::setupClusterJvmVersionDeserializer);
 
-	protected static void setupClusterJvmVersionDeserializer(DelegatingDeserializer<ClusterJvmVersion.Builder> op) {
+	protected static void setupClusterJvmVersionDeserializer(ObjectDeserializer<ClusterJvmVersion.Builder> op) {
 
 		op.add(Builder::bundledJdk, JsonpDeserializer.booleanDeserializer(), "bundled_jdk");
 		op.add(Builder::count, JsonpDeserializer.integerDeserializer(), "count");

@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.xpack.usage;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -167,9 +166,9 @@ public class SearchableSnapshots extends Base {
 	 * Json deserializer for {@link SearchableSnapshots}
 	 */
 	public static final JsonpDeserializer<SearchableSnapshots> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, SearchableSnapshots::setupSearchableSnapshotsDeserializer, Builder::build);
+			.lazy(Builder::new, SearchableSnapshots::setupSearchableSnapshotsDeserializer);
 
-	protected static void setupSearchableSnapshotsDeserializer(DelegatingDeserializer<SearchableSnapshots.Builder> op) {
+	protected static void setupSearchableSnapshotsDeserializer(ObjectDeserializer<SearchableSnapshots.Builder> op) {
 		Base.setupBaseDeserializer(op);
 		op.add(Builder::indicesCount, JsonpDeserializer.integerDeserializer(), "indices_count");
 		op.add(Builder::fullCopyIndicesCount, JsonpDeserializer.integerDeserializer(), "full_copy_indices_count");

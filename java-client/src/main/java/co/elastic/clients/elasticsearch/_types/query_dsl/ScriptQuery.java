@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -118,9 +117,9 @@ public class ScriptQuery extends QueryBase implements QueryVariant {
 	 * Json deserializer for {@link ScriptQuery}
 	 */
 	public static final JsonpDeserializer<ScriptQuery> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			ScriptQuery::setupScriptQueryDeserializer, Builder::build);
+			ScriptQuery::setupScriptQueryDeserializer);
 
-	protected static void setupScriptQueryDeserializer(DelegatingDeserializer<ScriptQuery.Builder> op) {
+	protected static void setupScriptQueryDeserializer(ObjectDeserializer<ScriptQuery.Builder> op) {
 		QueryBase.setupQueryBaseDeserializer(op);
 		op.add(Builder::script, JsonpDeserializer.jsonValueDeserializer(), "script");
 

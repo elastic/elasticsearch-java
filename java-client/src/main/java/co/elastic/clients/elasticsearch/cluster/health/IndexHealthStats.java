@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch.cluster.health;
 
 import co.elastic.clients.elasticsearch._types.Health;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -325,9 +324,9 @@ public class IndexHealthStats implements JsonpSerializable {
 	 * Json deserializer for {@link IndexHealthStats}
 	 */
 	public static final JsonpDeserializer<IndexHealthStats> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			IndexHealthStats::setupIndexHealthStatsDeserializer, Builder::build);
+			IndexHealthStats::setupIndexHealthStatsDeserializer);
 
-	protected static void setupIndexHealthStatsDeserializer(DelegatingDeserializer<IndexHealthStats.Builder> op) {
+	protected static void setupIndexHealthStatsDeserializer(ObjectDeserializer<IndexHealthStats.Builder> op) {
 
 		op.add(Builder::activePrimaryShards, JsonpDeserializer.integerDeserializer(), "active_primary_shards");
 		op.add(Builder::activeShards, JsonpDeserializer.integerDeserializer(), "active_shards");

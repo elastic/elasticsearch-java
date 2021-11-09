@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -156,10 +155,9 @@ public class InferenceAggregation extends PipelineAggregationBase implements Agg
 	 * Json deserializer for {@link InferenceAggregation}
 	 */
 	public static final JsonpDeserializer<InferenceAggregation> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, InferenceAggregation::setupInferenceAggregationDeserializer, Builder::build);
+			.lazy(Builder::new, InferenceAggregation::setupInferenceAggregationDeserializer);
 
-	protected static void setupInferenceAggregationDeserializer(
-			DelegatingDeserializer<InferenceAggregation.Builder> op) {
+	protected static void setupInferenceAggregationDeserializer(ObjectDeserializer<InferenceAggregation.Builder> op) {
 		PipelineAggregationBase.setupPipelineAggregationBaseDeserializer(op);
 		op.add(Builder::modelId, JsonpDeserializer.stringDeserializer(), "model_id");
 		op.add(Builder::inferenceConfig, InferenceConfig._DESERIALIZER, "inference_config");

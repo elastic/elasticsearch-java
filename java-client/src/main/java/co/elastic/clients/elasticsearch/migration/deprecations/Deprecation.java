@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.migration.deprecations;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -186,9 +185,9 @@ public class Deprecation implements JsonpSerializable {
 	 * Json deserializer for {@link Deprecation}
 	 */
 	public static final JsonpDeserializer<Deprecation> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			Deprecation::setupDeprecationDeserializer, Builder::build);
+			Deprecation::setupDeprecationDeserializer);
 
-	protected static void setupDeprecationDeserializer(DelegatingDeserializer<Deprecation.Builder> op) {
+	protected static void setupDeprecationDeserializer(ObjectDeserializer<Deprecation.Builder> op) {
 
 		op.add(Builder::details, JsonpDeserializer.stringDeserializer(), "details");
 		op.add(Builder::level, DeprecationLevel._DESERIALIZER, "level");

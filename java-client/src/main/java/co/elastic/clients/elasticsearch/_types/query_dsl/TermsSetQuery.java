@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -217,9 +216,9 @@ public class TermsSetQuery extends QueryBase implements QueryVariant {
 	 * Json deserializer for {@link TermsSetQuery}
 	 */
 	public static final JsonpDeserializer<TermsSetQuery> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			TermsSetQuery::setupTermsSetQueryDeserializer, Builder::build);
+			TermsSetQuery::setupTermsSetQueryDeserializer);
 
-	protected static void setupTermsSetQueryDeserializer(DelegatingDeserializer<TermsSetQuery.Builder> op) {
+	protected static void setupTermsSetQueryDeserializer(ObjectDeserializer<TermsSetQuery.Builder> op) {
 		QueryBase.setupQueryBaseDeserializer(op);
 		op.add(Builder::minimumShouldMatchField, JsonpDeserializer.stringDeserializer(), "minimum_should_match_field");
 		op.add(Builder::minimumShouldMatchScript, JsonpDeserializer.jsonValueDeserializer(),

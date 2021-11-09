@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.core.search;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -143,10 +142,9 @@ public class PointInTimeReference implements JsonpSerializable {
 	 * Json deserializer for {@link PointInTimeReference}
 	 */
 	public static final JsonpDeserializer<PointInTimeReference> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, PointInTimeReference::setupPointInTimeReferenceDeserializer, Builder::build);
+			.lazy(Builder::new, PointInTimeReference::setupPointInTimeReferenceDeserializer);
 
-	protected static void setupPointInTimeReferenceDeserializer(
-			DelegatingDeserializer<PointInTimeReference.Builder> op) {
+	protected static void setupPointInTimeReferenceDeserializer(ObjectDeserializer<PointInTimeReference.Builder> op) {
 
 		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "id");
 		op.add(Builder::keepAlive, JsonpDeserializer.stringDeserializer(), "keep_alive");

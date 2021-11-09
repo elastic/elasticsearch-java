@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch.indices.update_aliases;
 
 import co.elastic.clients.elasticsearch._types.query_dsl.Query;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -413,9 +412,9 @@ public class AddAction implements ActionVariant, JsonpSerializable {
 	 * Json deserializer for {@link AddAction}
 	 */
 	public static final JsonpDeserializer<AddAction> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			AddAction::setupAddActionDeserializer, Builder::build);
+			AddAction::setupAddActionDeserializer);
 
-	protected static void setupAddActionDeserializer(DelegatingDeserializer<AddAction.Builder> op) {
+	protected static void setupAddActionDeserializer(ObjectDeserializer<AddAction.Builder> op) {
 
 		op.add(Builder::alias, JsonpDeserializer.stringDeserializer(), "alias");
 		op.add(Builder::aliases, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),

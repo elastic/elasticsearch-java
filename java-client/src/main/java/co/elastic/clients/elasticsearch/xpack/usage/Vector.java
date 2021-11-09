@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.xpack.usage;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -164,9 +163,9 @@ public class Vector extends Base {
 	 * Json deserializer for {@link Vector}
 	 */
 	public static final JsonpDeserializer<Vector> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			Vector::setupVectorDeserializer, Builder::build);
+			Vector::setupVectorDeserializer);
 
-	protected static void setupVectorDeserializer(DelegatingDeserializer<Vector.Builder> op) {
+	protected static void setupVectorDeserializer(ObjectDeserializer<Vector.Builder> op) {
 		Base.setupBaseDeserializer(op);
 		op.add(Builder::denseVectorDimsAvgCount, JsonpDeserializer.integerDeserializer(),
 				"dense_vector_dims_avg_count");

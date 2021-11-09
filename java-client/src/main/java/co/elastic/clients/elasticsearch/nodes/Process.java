@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.nodes;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -199,9 +198,9 @@ public class Process implements JsonpSerializable {
 	 * Json deserializer for {@link Process}
 	 */
 	public static final JsonpDeserializer<Process> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			Process::setupProcessDeserializer, Builder::build);
+			Process::setupProcessDeserializer);
 
-	protected static void setupProcessDeserializer(DelegatingDeserializer<Process.Builder> op) {
+	protected static void setupProcessDeserializer(ObjectDeserializer<Process.Builder> op) {
 
 		op.add(Builder::cpu, Cpu._DESERIALIZER, "cpu");
 		op.add(Builder::mem, MemoryStats._DESERIALIZER, "mem");

@@ -39,7 +39,6 @@ import co.elastic.clients.elasticsearch._types.SegmentsStats;
 import co.elastic.clients.elasticsearch._types.StoreStats;
 import co.elastic.clients.elasticsearch._types.TranslogStats;
 import co.elastic.clients.elasticsearch._types.WarmerStats;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -802,9 +801,9 @@ public class ShardStats implements JsonpSerializable {
 	 * Json deserializer for {@link ShardStats}
 	 */
 	public static final JsonpDeserializer<ShardStats> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			ShardStats::setupShardStatsDeserializer, Builder::build);
+			ShardStats::setupShardStatsDeserializer);
 
-	protected static void setupShardStatsDeserializer(DelegatingDeserializer<ShardStats.Builder> op) {
+	protected static void setupShardStatsDeserializer(ObjectDeserializer<ShardStats.Builder> op) {
 
 		op.add(Builder::commit, ShardCommit._DESERIALIZER, "commit");
 		op.add(Builder::completion, CompletionStats._DESERIALIZER, "completion");

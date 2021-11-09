@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch.indices;
 
 import co.elastic.clients.elasticsearch.indices.get_field_mapping.TypeFieldMappings;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -84,10 +83,10 @@ public class GetFieldMappingResponse extends DictionaryResponse<String, TypeFiel
 	 * Json deserializer for {@link GetFieldMappingResponse}
 	 */
 	public static final JsonpDeserializer<GetFieldMappingResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, GetFieldMappingResponse::setupGetFieldMappingResponseDeserializer, Builder::build);
+			.lazy(Builder::new, GetFieldMappingResponse::setupGetFieldMappingResponseDeserializer);
 
 	protected static void setupGetFieldMappingResponseDeserializer(
-			DelegatingDeserializer<GetFieldMappingResponse.Builder> op) {
+			ObjectDeserializer<GetFieldMappingResponse.Builder> op) {
 		DictionaryResponse.setupDictionaryResponseDeserializer(op, JsonpDeserializer.stringDeserializer(),
 				TypeFieldMappings._DESERIALIZER);
 

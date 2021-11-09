@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.cluster.stats;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -161,9 +160,9 @@ public class NodePackagingType implements JsonpSerializable {
 	 * Json deserializer for {@link NodePackagingType}
 	 */
 	public static final JsonpDeserializer<NodePackagingType> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, NodePackagingType::setupNodePackagingTypeDeserializer, Builder::build);
+			.lazy(Builder::new, NodePackagingType::setupNodePackagingTypeDeserializer);
 
-	protected static void setupNodePackagingTypeDeserializer(DelegatingDeserializer<NodePackagingType.Builder> op) {
+	protected static void setupNodePackagingTypeDeserializer(ObjectDeserializer<NodePackagingType.Builder> op) {
 
 		op.add(Builder::count, JsonpDeserializer.integerDeserializer(), "count");
 		op.add(Builder::flavor, JsonpDeserializer.stringDeserializer(), "flavor");

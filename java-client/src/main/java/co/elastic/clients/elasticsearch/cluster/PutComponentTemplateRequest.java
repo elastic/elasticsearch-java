@@ -29,7 +29,6 @@ import co.elastic.clients.elasticsearch._types.mapping.TypeMapping;
 import co.elastic.clients.elasticsearch.indices.AliasDefinition;
 import co.elastic.clients.elasticsearch.indices.IndexSettings;
 import co.elastic.clients.elasticsearch.indices.IndexState;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -390,11 +389,11 @@ public class PutComponentTemplateRequest extends RequestBase implements JsonpSer
 	/**
 	 * Json deserializer for {@link PutComponentTemplateRequest}
 	 */
-	public static final JsonpDeserializer<PutComponentTemplateRequest> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
-			Builder::new, PutComponentTemplateRequest::setupPutComponentTemplateRequestDeserializer, Builder::build);
+	public static final JsonpDeserializer<PutComponentTemplateRequest> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, PutComponentTemplateRequest::setupPutComponentTemplateRequestDeserializer);
 
 	protected static void setupPutComponentTemplateRequestDeserializer(
-			DelegatingDeserializer<PutComponentTemplateRequest.Builder> op) {
+			ObjectDeserializer<PutComponentTemplateRequest.Builder> op) {
 
 		op.add(Builder::meta, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "_meta");
 		op.add(Builder::aliases, JsonpDeserializer.stringMapDeserializer(AliasDefinition._DESERIALIZER), "aliases");

@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.snapshot;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -155,9 +154,9 @@ public class InfoFeatureState implements JsonpSerializable {
 	 * Json deserializer for {@link InfoFeatureState}
 	 */
 	public static final JsonpDeserializer<InfoFeatureState> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			InfoFeatureState::setupInfoFeatureStateDeserializer, Builder::build);
+			InfoFeatureState::setupInfoFeatureStateDeserializer);
 
-	protected static void setupInfoFeatureStateDeserializer(DelegatingDeserializer<InfoFeatureState.Builder> op) {
+	protected static void setupInfoFeatureStateDeserializer(ObjectDeserializer<InfoFeatureState.Builder> op) {
 
 		op.add(Builder::featureName, JsonpDeserializer.stringDeserializer(), "feature_name");
 		op.add(Builder::indices, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),

@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -163,10 +162,10 @@ public class DelayedDataCheckConfig implements JsonpSerializable {
 	 * Json deserializer for {@link DelayedDataCheckConfig}
 	 */
 	public static final JsonpDeserializer<DelayedDataCheckConfig> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, DelayedDataCheckConfig::setupDelayedDataCheckConfigDeserializer, Builder::build);
+			.lazy(Builder::new, DelayedDataCheckConfig::setupDelayedDataCheckConfigDeserializer);
 
 	protected static void setupDelayedDataCheckConfigDeserializer(
-			DelegatingDeserializer<DelayedDataCheckConfig.Builder> op) {
+			ObjectDeserializer<DelayedDataCheckConfig.Builder> op) {
 
 		op.add(Builder::checkWindow, JsonpDeserializer.stringDeserializer(), "check_window");
 		op.add(Builder::enabled, JsonpDeserializer.booleanDeserializer(), "enabled");

@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -311,10 +310,9 @@ public class RareTermsAggregation extends BucketAggregationBase implements Aggre
 	 * Json deserializer for {@link RareTermsAggregation}
 	 */
 	public static final JsonpDeserializer<RareTermsAggregation> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, RareTermsAggregation::setupRareTermsAggregationDeserializer, Builder::build);
+			.lazy(Builder::new, RareTermsAggregation::setupRareTermsAggregationDeserializer);
 
-	protected static void setupRareTermsAggregationDeserializer(
-			DelegatingDeserializer<RareTermsAggregation.Builder> op) {
+	protected static void setupRareTermsAggregationDeserializer(ObjectDeserializer<RareTermsAggregation.Builder> op) {
 		BucketAggregationBase.setupBucketAggregationBaseDeserializer(op);
 		op.add(Builder::exclude, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"exclude");

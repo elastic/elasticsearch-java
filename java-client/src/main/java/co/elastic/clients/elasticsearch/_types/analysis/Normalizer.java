@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.analysis;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -138,7 +137,7 @@ public class Normalizer implements TaggedUnion<NormalizerVariant>, JsonpSerializ
 
 	}
 
-	protected static void setupNormalizerDeserializer(DelegatingDeserializer<Builder> op) {
+	protected static void setupNormalizerDeserializer(ObjectDeserializer<Builder> op) {
 
 		op.add(Builder::custom, CustomNormalizer._DESERIALIZER, "custom");
 		op.add(Builder::lowercase, LowercaseNormalizer._DESERIALIZER, "lowercase");

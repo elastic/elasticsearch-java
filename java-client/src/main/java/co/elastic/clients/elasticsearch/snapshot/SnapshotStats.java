@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.snapshot;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -198,9 +197,9 @@ public class SnapshotStats implements JsonpSerializable {
 	 * Json deserializer for {@link SnapshotStats}
 	 */
 	public static final JsonpDeserializer<SnapshotStats> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			SnapshotStats::setupSnapshotStatsDeserializer, Builder::build);
+			SnapshotStats::setupSnapshotStatsDeserializer);
 
-	protected static void setupSnapshotStatsDeserializer(DelegatingDeserializer<SnapshotStats.Builder> op) {
+	protected static void setupSnapshotStatsDeserializer(ObjectDeserializer<SnapshotStats.Builder> op) {
 
 		op.add(Builder::incremental, FileCountSnapshotStats._DESERIALIZER, "incremental");
 		op.add(Builder::startTimeInMillis, JsonpDeserializer.longDeserializer(), "start_time_in_millis");

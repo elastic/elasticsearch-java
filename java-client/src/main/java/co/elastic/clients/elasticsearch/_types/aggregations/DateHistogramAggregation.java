@@ -25,7 +25,6 @@ package co.elastic.clients.elasticsearch._types.aggregations;
 
 import co.elastic.clients.elasticsearch.transform.PivotGroupBy;
 import co.elastic.clients.elasticsearch.transform.PivotGroupByVariant;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -579,10 +578,10 @@ public class DateHistogramAggregation extends BucketAggregationBase implements A
 	 * Json deserializer for {@link DateHistogramAggregation}
 	 */
 	public static final JsonpDeserializer<DateHistogramAggregation> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, DateHistogramAggregation::setupDateHistogramAggregationDeserializer, Builder::build);
+			.lazy(Builder::new, DateHistogramAggregation::setupDateHistogramAggregationDeserializer);
 
 	protected static void setupDateHistogramAggregationDeserializer(
-			DelegatingDeserializer<DateHistogramAggregation.Builder> op) {
+			ObjectDeserializer<DateHistogramAggregation.Builder> op) {
 		BucketAggregationBase.setupBucketAggregationBaseDeserializer(op);
 		op.add(Builder::calendarInterval, JsonpDeserializer.jsonValueDeserializer(), "calendar_interval");
 		op.add(Builder::extendedBounds,

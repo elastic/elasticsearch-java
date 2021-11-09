@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
 import co.elastic.clients.elasticsearch._types.GeoDistanceType;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -222,9 +221,9 @@ public class GeoDistanceQuery extends QueryBase implements QueryVariant {
 	 * Json deserializer for {@link GeoDistanceQuery}
 	 */
 	public static final JsonpDeserializer<GeoDistanceQuery> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			GeoDistanceQuery::setupGeoDistanceQueryDeserializer, Builder::build);
+			GeoDistanceQuery::setupGeoDistanceQueryDeserializer);
 
-	protected static void setupGeoDistanceQueryDeserializer(DelegatingDeserializer<GeoDistanceQuery.Builder> op) {
+	protected static void setupGeoDistanceQueryDeserializer(ObjectDeserializer<GeoDistanceQuery.Builder> op) {
 		QueryBase.setupQueryBaseDeserializer(op);
 		op.add(Builder::distance, JsonpDeserializer.stringDeserializer(), "distance");
 		op.add(Builder::distanceType, GeoDistanceType._DESERIALIZER, "distance_type");

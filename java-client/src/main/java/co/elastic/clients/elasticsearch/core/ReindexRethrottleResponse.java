@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch.core;
 
 import co.elastic.clients.elasticsearch.core.reindex_rethrottle.ReindexNode;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -139,10 +138,10 @@ public class ReindexRethrottleResponse implements JsonpSerializable {
 	 * Json deserializer for {@link ReindexRethrottleResponse}
 	 */
 	public static final JsonpDeserializer<ReindexRethrottleResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, ReindexRethrottleResponse::setupReindexRethrottleResponseDeserializer, Builder::build);
+			.lazy(Builder::new, ReindexRethrottleResponse::setupReindexRethrottleResponseDeserializer);
 
 	protected static void setupReindexRethrottleResponseDeserializer(
-			DelegatingDeserializer<ReindexRethrottleResponse.Builder> op) {
+			ObjectDeserializer<ReindexRethrottleResponse.Builder> op) {
 
 		op.add(Builder::nodes, JsonpDeserializer.stringMapDeserializer(ReindexNode._DESERIALIZER), "nodes");
 

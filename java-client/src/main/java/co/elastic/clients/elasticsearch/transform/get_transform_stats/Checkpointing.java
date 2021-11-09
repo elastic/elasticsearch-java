@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.transform.get_transform_stats;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -238,9 +237,9 @@ public class Checkpointing implements JsonpSerializable {
 	 * Json deserializer for {@link Checkpointing}
 	 */
 	public static final JsonpDeserializer<Checkpointing> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			Checkpointing::setupCheckpointingDeserializer, Builder::build);
+			Checkpointing::setupCheckpointingDeserializer);
 
-	protected static void setupCheckpointingDeserializer(DelegatingDeserializer<Checkpointing.Builder> op) {
+	protected static void setupCheckpointingDeserializer(ObjectDeserializer<Checkpointing.Builder> op) {
 
 		op.add(Builder::changesLastDetectedAt, JsonpDeserializer.longDeserializer(), "changes_last_detected_at");
 		op.add(Builder::changesLastDetectedAtDateTime, JsonpDeserializer.stringDeserializer(),

@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch.ccr;
 
 import co.elastic.clients.elasticsearch._types.ShardStatistics;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -121,10 +120,10 @@ public class ForgetFollowerResponse implements JsonpSerializable {
 	 * Json deserializer for {@link ForgetFollowerResponse}
 	 */
 	public static final JsonpDeserializer<ForgetFollowerResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, ForgetFollowerResponse::setupForgetFollowerResponseDeserializer, Builder::build);
+			.lazy(Builder::new, ForgetFollowerResponse::setupForgetFollowerResponseDeserializer);
 
 	protected static void setupForgetFollowerResponseDeserializer(
-			DelegatingDeserializer<ForgetFollowerResponse.Builder> op) {
+			ObjectDeserializer<ForgetFollowerResponse.Builder> op) {
 
 		op.add(Builder::shards, ShardStatistics._DESERIALIZER, "_shards");
 

@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.core.search;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -227,7 +226,7 @@ public class Suggestion<T> implements JsonpSerializable {
 				op -> Suggestion.setupSuggestionDeserializer(op, tDeserializer));
 	};
 
-	protected static <T> void setupSuggestionDeserializer(DelegatingDeserializer<Suggestion.Builder<T>> op,
+	protected static <T> void setupSuggestionDeserializer(ObjectDeserializer<Suggestion.Builder<T>> op,
 			JsonpDeserializer<T> tDeserializer) {
 
 		op.add(Builder::length, JsonpDeserializer.integerDeserializer(), "length");

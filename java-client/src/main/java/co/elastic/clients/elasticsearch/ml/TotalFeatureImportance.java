@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -248,10 +247,10 @@ public class TotalFeatureImportance implements JsonpSerializable {
 	 * Json deserializer for {@link TotalFeatureImportance}
 	 */
 	public static final JsonpDeserializer<TotalFeatureImportance> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, TotalFeatureImportance::setupTotalFeatureImportanceDeserializer, Builder::build);
+			.lazy(Builder::new, TotalFeatureImportance::setupTotalFeatureImportanceDeserializer);
 
 	protected static void setupTotalFeatureImportanceDeserializer(
-			DelegatingDeserializer<TotalFeatureImportance.Builder> op) {
+			ObjectDeserializer<TotalFeatureImportance.Builder> op) {
 
 		op.add(Builder::featureName, JsonpDeserializer.stringDeserializer(), "feature_name");
 		op.add(Builder::importance, JsonpDeserializer.arrayDeserializer(TotalFeatureImportanceStatistics._DESERIALIZER),

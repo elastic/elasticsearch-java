@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.ccr.get_auto_follow_pattern;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -303,10 +302,10 @@ public class AutoFollowPatternSummary implements JsonpSerializable {
 	 * Json deserializer for {@link AutoFollowPatternSummary}
 	 */
 	public static final JsonpDeserializer<AutoFollowPatternSummary> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, AutoFollowPatternSummary::setupAutoFollowPatternSummaryDeserializer, Builder::build);
+			.lazy(Builder::new, AutoFollowPatternSummary::setupAutoFollowPatternSummaryDeserializer);
 
 	protected static void setupAutoFollowPatternSummaryDeserializer(
-			DelegatingDeserializer<AutoFollowPatternSummary.Builder> op) {
+			ObjectDeserializer<AutoFollowPatternSummary.Builder> op) {
 
 		op.add(Builder::active, JsonpDeserializer.booleanDeserializer(), "active");
 		op.add(Builder::remoteCluster, JsonpDeserializer.stringDeserializer(), "remote_cluster");

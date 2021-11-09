@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -118,12 +117,11 @@ public class RankFeatureFunctionSaturation extends RankFeatureFunction implement
 	/**
 	 * Json deserializer for {@link RankFeatureFunctionSaturation}
 	 */
-	public static final JsonpDeserializer<RankFeatureFunctionSaturation> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
-			Builder::new, RankFeatureFunctionSaturation::setupRankFeatureFunctionSaturationDeserializer,
-			Builder::build);
+	public static final JsonpDeserializer<RankFeatureFunctionSaturation> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, RankFeatureFunctionSaturation::setupRankFeatureFunctionSaturationDeserializer);
 
 	protected static void setupRankFeatureFunctionSaturationDeserializer(
-			DelegatingDeserializer<RankFeatureFunctionSaturation.Builder> op) {
+			ObjectDeserializer<RankFeatureFunctionSaturation.Builder> op) {
 
 		op.add(Builder::pivot, JsonpDeserializer.floatDeserializer(), "pivot");
 

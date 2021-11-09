@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -168,9 +167,9 @@ public class GetRecordsResponse implements JsonpSerializable {
 	 * Json deserializer for {@link GetRecordsResponse}
 	 */
 	public static final JsonpDeserializer<GetRecordsResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, GetRecordsResponse::setupGetRecordsResponseDeserializer, Builder::build);
+			.lazy(Builder::new, GetRecordsResponse::setupGetRecordsResponseDeserializer);
 
-	protected static void setupGetRecordsResponseDeserializer(DelegatingDeserializer<GetRecordsResponse.Builder> op) {
+	protected static void setupGetRecordsResponseDeserializer(ObjectDeserializer<GetRecordsResponse.Builder> op) {
 
 		op.add(Builder::count, JsonpDeserializer.longDeserializer(), "count");
 		op.add(Builder::records, JsonpDeserializer.arrayDeserializer(Anomaly._DESERIALIZER), "records");

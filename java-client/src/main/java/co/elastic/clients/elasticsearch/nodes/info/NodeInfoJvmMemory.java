@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.nodes.info;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -348,9 +347,9 @@ public class NodeInfoJvmMemory implements JsonpSerializable {
 	 * Json deserializer for {@link NodeInfoJvmMemory}
 	 */
 	public static final JsonpDeserializer<NodeInfoJvmMemory> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, NodeInfoJvmMemory::setupNodeInfoJvmMemoryDeserializer, Builder::build);
+			.lazy(Builder::new, NodeInfoJvmMemory::setupNodeInfoJvmMemoryDeserializer);
 
-	protected static void setupNodeInfoJvmMemoryDeserializer(DelegatingDeserializer<NodeInfoJvmMemory.Builder> op) {
+	protected static void setupNodeInfoJvmMemoryDeserializer(ObjectDeserializer<NodeInfoJvmMemory.Builder> op) {
 
 		op.add(Builder::directMax, JsonpDeserializer.stringDeserializer(), "direct_max");
 		op.add(Builder::directMaxInBytes, JsonpDeserializer.longDeserializer(), "direct_max_in_bytes");

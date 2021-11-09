@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.core;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -114,10 +113,10 @@ public class OpenPointInTimeResponse implements JsonpSerializable {
 	 * Json deserializer for {@link OpenPointInTimeResponse}
 	 */
 	public static final JsonpDeserializer<OpenPointInTimeResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, OpenPointInTimeResponse::setupOpenPointInTimeResponseDeserializer, Builder::build);
+			.lazy(Builder::new, OpenPointInTimeResponse::setupOpenPointInTimeResponseDeserializer);
 
 	protected static void setupOpenPointInTimeResponseDeserializer(
-			DelegatingDeserializer<OpenPointInTimeResponse.Builder> op) {
+			ObjectDeserializer<OpenPointInTimeResponse.Builder> op) {
 
 		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "id");
 

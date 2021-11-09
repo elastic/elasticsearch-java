@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.watcher;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -208,7 +207,7 @@ public class Condition implements TaggedUnion<Object>, JsonpSerializable {
 
 	}
 
-	protected static void setupConditionDeserializer(DelegatingDeserializer<Builder> op) {
+	protected static void setupConditionDeserializer(ObjectDeserializer<Builder> op) {
 
 		op.add(Builder::always, AlwaysCondition._DESERIALIZER, "always");
 		op.add(Builder::arrayCompare, ArrayCompareCondition._DESERIALIZER, "array_compare");

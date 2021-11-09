@@ -26,7 +26,6 @@ package co.elastic.clients.elasticsearch.graph;
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch._types.query_dsl.Query;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -350,9 +349,9 @@ public class ExploreRequest extends RequestBase implements JsonpSerializable {
 	 * Json deserializer for {@link ExploreRequest}
 	 */
 	public static final JsonpDeserializer<ExploreRequest> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			ExploreRequest::setupExploreRequestDeserializer, Builder::build);
+			ExploreRequest::setupExploreRequestDeserializer);
 
-	protected static void setupExploreRequestDeserializer(DelegatingDeserializer<ExploreRequest.Builder> op) {
+	protected static void setupExploreRequestDeserializer(ObjectDeserializer<ExploreRequest.Builder> op) {
 
 		op.add(Builder::connections, Hop._DESERIALIZER, "connections");
 		op.add(Builder::controls, ExploreControls._DESERIALIZER, "controls");

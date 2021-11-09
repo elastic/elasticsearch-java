@@ -28,7 +28,6 @@ import co.elastic.clients.elasticsearch._types.ExpandWildcardOptions;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch._types.mapping.RuntimeField;
 import co.elastic.clients.elasticsearch._types.query_dsl.Query;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -384,9 +383,9 @@ public class FieldCapsRequest extends RequestBase implements JsonpSerializable {
 	 * Json deserializer for {@link FieldCapsRequest}
 	 */
 	public static final JsonpDeserializer<FieldCapsRequest> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			FieldCapsRequest::setupFieldCapsRequestDeserializer, Builder::build);
+			FieldCapsRequest::setupFieldCapsRequestDeserializer);
 
-	protected static void setupFieldCapsRequestDeserializer(DelegatingDeserializer<FieldCapsRequest.Builder> op) {
+	protected static void setupFieldCapsRequestDeserializer(ObjectDeserializer<FieldCapsRequest.Builder> op) {
 
 		op.add(Builder::indexFilter, Query._DESERIALIZER, "index_filter");
 		op.add(Builder::runtimeMappings, JsonpDeserializer.stringMapDeserializer(RuntimeField._DESERIALIZER),

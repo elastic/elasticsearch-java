@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.ingest;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -274,10 +273,10 @@ public class DateIndexNameProcessor extends ProcessorBase implements ProcessorVa
 	 * Json deserializer for {@link DateIndexNameProcessor}
 	 */
 	public static final JsonpDeserializer<DateIndexNameProcessor> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, DateIndexNameProcessor::setupDateIndexNameProcessorDeserializer, Builder::build);
+			.lazy(Builder::new, DateIndexNameProcessor::setupDateIndexNameProcessorDeserializer);
 
 	protected static void setupDateIndexNameProcessorDeserializer(
-			DelegatingDeserializer<DateIndexNameProcessor.Builder> op) {
+			ObjectDeserializer<DateIndexNameProcessor.Builder> op) {
 		ProcessorBase.setupProcessorBaseDeserializer(op);
 		op.add(Builder::dateFormats, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"date_formats");

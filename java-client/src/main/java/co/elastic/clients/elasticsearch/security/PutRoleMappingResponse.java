@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.security;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -149,10 +148,10 @@ public class PutRoleMappingResponse implements JsonpSerializable {
 	 * Json deserializer for {@link PutRoleMappingResponse}
 	 */
 	public static final JsonpDeserializer<PutRoleMappingResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, PutRoleMappingResponse::setupPutRoleMappingResponseDeserializer, Builder::build);
+			.lazy(Builder::new, PutRoleMappingResponse::setupPutRoleMappingResponseDeserializer);
 
 	protected static void setupPutRoleMappingResponseDeserializer(
-			DelegatingDeserializer<PutRoleMappingResponse.Builder> op) {
+			ObjectDeserializer<PutRoleMappingResponse.Builder> op) {
 
 		op.add(Builder::created, JsonpDeserializer.booleanDeserializer(), "created");
 		op.add(Builder::roleMapping, CreatedStatus._DESERIALIZER, "role_mapping");

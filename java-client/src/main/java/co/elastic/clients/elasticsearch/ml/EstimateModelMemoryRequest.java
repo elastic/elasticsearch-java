@@ -25,7 +25,6 @@ package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -236,11 +235,11 @@ public class EstimateModelMemoryRequest extends RequestBase implements JsonpSeri
 	/**
 	 * Json deserializer for {@link EstimateModelMemoryRequest}
 	 */
-	public static final JsonpDeserializer<EstimateModelMemoryRequest> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
-			Builder::new, EstimateModelMemoryRequest::setupEstimateModelMemoryRequestDeserializer, Builder::build);
+	public static final JsonpDeserializer<EstimateModelMemoryRequest> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, EstimateModelMemoryRequest::setupEstimateModelMemoryRequestDeserializer);
 
 	protected static void setupEstimateModelMemoryRequestDeserializer(
-			DelegatingDeserializer<EstimateModelMemoryRequest.Builder> op) {
+			ObjectDeserializer<EstimateModelMemoryRequest.Builder> op) {
 
 		op.add(Builder::analysisConfig, AnalysisConfig._DESERIALIZER, "analysis_config");
 		op.add(Builder::maxBucketCardinality,

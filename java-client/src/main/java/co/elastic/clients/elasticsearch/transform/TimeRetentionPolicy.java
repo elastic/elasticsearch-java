@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.transform;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -157,9 +156,9 @@ public class TimeRetentionPolicy implements RetentionPolicyVariant, JsonpSeriali
 	 * Json deserializer for {@link TimeRetentionPolicy}
 	 */
 	public static final JsonpDeserializer<TimeRetentionPolicy> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, TimeRetentionPolicy::setupTimeRetentionPolicyDeserializer, Builder::build);
+			.lazy(Builder::new, TimeRetentionPolicy::setupTimeRetentionPolicyDeserializer);
 
-	protected static void setupTimeRetentionPolicyDeserializer(DelegatingDeserializer<TimeRetentionPolicy.Builder> op) {
+	protected static void setupTimeRetentionPolicyDeserializer(ObjectDeserializer<TimeRetentionPolicy.Builder> op) {
 
 		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
 		op.add(Builder::maxAge, JsonpDeserializer.stringDeserializer(), "max_age");

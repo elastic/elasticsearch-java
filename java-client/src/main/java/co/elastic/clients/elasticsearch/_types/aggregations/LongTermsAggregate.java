@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -88,9 +87,9 @@ public class LongTermsAggregate extends TermsAggregateBase<LongTermsBucket> impl
 	 * Json deserializer for {@link LongTermsAggregate}
 	 */
 	public static final JsonpDeserializer<LongTermsAggregate> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, LongTermsAggregate::setupLongTermsAggregateDeserializer, Builder::build);
+			.lazy(Builder::new, LongTermsAggregate::setupLongTermsAggregateDeserializer);
 
-	protected static void setupLongTermsAggregateDeserializer(DelegatingDeserializer<LongTermsAggregate.Builder> op) {
+	protected static void setupLongTermsAggregateDeserializer(ObjectDeserializer<LongTermsAggregate.Builder> op) {
 		TermsAggregateBase.setupTermsAggregateBaseDeserializer(op, LongTermsBucket._DESERIALIZER);
 
 	}

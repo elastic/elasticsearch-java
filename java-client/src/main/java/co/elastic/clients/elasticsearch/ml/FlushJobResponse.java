@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -144,9 +143,9 @@ public class FlushJobResponse implements JsonpSerializable {
 	 * Json deserializer for {@link FlushJobResponse}
 	 */
 	public static final JsonpDeserializer<FlushJobResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			FlushJobResponse::setupFlushJobResponseDeserializer, Builder::build);
+			FlushJobResponse::setupFlushJobResponseDeserializer);
 
-	protected static void setupFlushJobResponseDeserializer(DelegatingDeserializer<FlushJobResponse.Builder> op) {
+	protected static void setupFlushJobResponseDeserializer(ObjectDeserializer<FlushJobResponse.Builder> op) {
 
 		op.add(Builder::flushed, JsonpDeserializer.booleanDeserializer(), "flushed");
 		op.add(Builder::lastFinalizedBucketEnd, JsonpDeserializer.integerDeserializer(), "last_finalized_bucket_end");

@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
 import co.elastic.clients.elasticsearch.core.search.InnerHits;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -241,9 +240,9 @@ public class NestedQuery extends QueryBase implements QueryVariant {
 	 * Json deserializer for {@link NestedQuery}
 	 */
 	public static final JsonpDeserializer<NestedQuery> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			NestedQuery::setupNestedQueryDeserializer, Builder::build);
+			NestedQuery::setupNestedQueryDeserializer);
 
-	protected static void setupNestedQueryDeserializer(DelegatingDeserializer<NestedQuery.Builder> op) {
+	protected static void setupNestedQueryDeserializer(ObjectDeserializer<NestedQuery.Builder> op) {
 		QueryBase.setupQueryBaseDeserializer(op);
 		op.add(Builder::ignoreUnmapped, JsonpDeserializer.booleanDeserializer(), "ignore_unmapped");
 		op.add(Builder::innerHits, InnerHits._DESERIALIZER, "inner_hits");

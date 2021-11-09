@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.indices.reload_search_analyzers;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -194,9 +193,9 @@ public class ReloadDetails implements JsonpSerializable {
 	 * Json deserializer for {@link ReloadDetails}
 	 */
 	public static final JsonpDeserializer<ReloadDetails> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			ReloadDetails::setupReloadDetailsDeserializer, Builder::build);
+			ReloadDetails::setupReloadDetailsDeserializer);
 
-	protected static void setupReloadDetailsDeserializer(DelegatingDeserializer<ReloadDetails.Builder> op) {
+	protected static void setupReloadDetailsDeserializer(ObjectDeserializer<ReloadDetails.Builder> op) {
 
 		op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "index");
 		op.add(Builder::reloadedAnalyzers, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),

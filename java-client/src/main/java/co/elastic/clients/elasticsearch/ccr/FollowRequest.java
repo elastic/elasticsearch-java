@@ -25,7 +25,6 @@ package co.elastic.clients.elasticsearch.ccr;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -494,9 +493,9 @@ public class FollowRequest extends RequestBase implements JsonpSerializable {
 	 * Json deserializer for {@link FollowRequest}
 	 */
 	public static final JsonpDeserializer<FollowRequest> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			FollowRequest::setupFollowRequestDeserializer, Builder::build);
+			FollowRequest::setupFollowRequestDeserializer);
 
-	protected static void setupFollowRequestDeserializer(DelegatingDeserializer<FollowRequest.Builder> op) {
+	protected static void setupFollowRequestDeserializer(ObjectDeserializer<FollowRequest.Builder> op) {
 
 		op.add(Builder::leaderIndex, JsonpDeserializer.stringDeserializer(), "leader_index");
 		op.add(Builder::maxOutstandingReadRequests, JsonpDeserializer.longDeserializer(),

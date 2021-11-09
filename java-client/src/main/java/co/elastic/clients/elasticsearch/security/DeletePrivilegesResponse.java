@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch.security;
 
 import co.elastic.clients.elasticsearch.security.delete_privileges.FoundStatus;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -85,10 +84,10 @@ public class DeletePrivilegesResponse extends DictionaryResponse<String, Map<Str
 	 * Json deserializer for {@link DeletePrivilegesResponse}
 	 */
 	public static final JsonpDeserializer<DeletePrivilegesResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, DeletePrivilegesResponse::setupDeletePrivilegesResponseDeserializer, Builder::build);
+			.lazy(Builder::new, DeletePrivilegesResponse::setupDeletePrivilegesResponseDeserializer);
 
 	protected static void setupDeletePrivilegesResponseDeserializer(
-			DelegatingDeserializer<DeletePrivilegesResponse.Builder> op) {
+			ObjectDeserializer<DeletePrivilegesResponse.Builder> op) {
 		DictionaryResponse.setupDictionaryResponseDeserializer(op, JsonpDeserializer.stringDeserializer(),
 				JsonpDeserializer.stringMapDeserializer(FoundStatus._DESERIALIZER));
 

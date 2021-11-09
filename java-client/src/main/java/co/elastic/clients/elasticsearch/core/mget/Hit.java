@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch.core.mget;
 
 import co.elastic.clients.elasticsearch._types.ErrorCause;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -430,7 +429,7 @@ public class Hit<TDocument> implements JsonpSerializable {
 				op -> Hit.setupHitDeserializer(op, tDocumentDeserializer));
 	};
 
-	protected static <TDocument> void setupHitDeserializer(DelegatingDeserializer<Hit.Builder<TDocument>> op,
+	protected static <TDocument> void setupHitDeserializer(ObjectDeserializer<Hit.Builder<TDocument>> op,
 			JsonpDeserializer<TDocument> tDocumentDeserializer) {
 
 		op.add(Builder::error, ErrorCause._DESERIALIZER, "error");

@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.analysis;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -270,9 +269,9 @@ public class FingerprintAnalyzer implements AnalyzerVariant, JsonpSerializable {
 	 * Json deserializer for {@link FingerprintAnalyzer}
 	 */
 	public static final JsonpDeserializer<FingerprintAnalyzer> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, FingerprintAnalyzer::setupFingerprintAnalyzerDeserializer, Builder::build);
+			.lazy(Builder::new, FingerprintAnalyzer::setupFingerprintAnalyzerDeserializer);
 
-	protected static void setupFingerprintAnalyzerDeserializer(DelegatingDeserializer<FingerprintAnalyzer.Builder> op) {
+	protected static void setupFingerprintAnalyzerDeserializer(ObjectDeserializer<FingerprintAnalyzer.Builder> op) {
 
 		op.add(Builder::version, JsonpDeserializer.stringDeserializer(), "version");
 		op.add(Builder::maxOutputSize, JsonpDeserializer.integerDeserializer(), "max_output_size");

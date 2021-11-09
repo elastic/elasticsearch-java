@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.xpack.usage;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -129,9 +128,9 @@ public class Audit extends FeatureToggle {
 	 * Json deserializer for {@link Audit}
 	 */
 	public static final JsonpDeserializer<Audit> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			Audit::setupAuditDeserializer, Builder::build);
+			Audit::setupAuditDeserializer);
 
-	protected static void setupAuditDeserializer(DelegatingDeserializer<Audit.Builder> op) {
+	protected static void setupAuditDeserializer(ObjectDeserializer<Audit.Builder> op) {
 		FeatureToggle.setupFeatureToggleDeserializer(op);
 		op.add(Builder::outputs, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"outputs");

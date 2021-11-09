@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.core.explain;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -191,9 +190,9 @@ public class Explanation implements JsonpSerializable {
 	 * Json deserializer for {@link Explanation}
 	 */
 	public static final JsonpDeserializer<Explanation> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			Explanation::setupExplanationDeserializer, Builder::build);
+			Explanation::setupExplanationDeserializer);
 
-	protected static void setupExplanationDeserializer(DelegatingDeserializer<Explanation.Builder> op) {
+	protected static void setupExplanationDeserializer(ObjectDeserializer<Explanation.Builder> op) {
 
 		op.add(Builder::description, JsonpDeserializer.stringDeserializer(), "description");
 		op.add(Builder::details, JsonpDeserializer.arrayDeserializer(ExplanationDetail._DESERIALIZER), "details");

@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.core.search;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -174,9 +173,9 @@ public class NestedIdentity implements JsonpSerializable {
 	 * Json deserializer for {@link NestedIdentity}
 	 */
 	public static final JsonpDeserializer<NestedIdentity> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			NestedIdentity::setupNestedIdentityDeserializer, Builder::build);
+			NestedIdentity::setupNestedIdentityDeserializer);
 
-	protected static void setupNestedIdentityDeserializer(DelegatingDeserializer<NestedIdentity.Builder> op) {
+	protected static void setupNestedIdentityDeserializer(ObjectDeserializer<NestedIdentity.Builder> op) {
 
 		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
 		op.add(Builder::offset, JsonpDeserializer.integerDeserializer(), "offset");

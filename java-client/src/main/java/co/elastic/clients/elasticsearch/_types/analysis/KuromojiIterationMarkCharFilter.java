@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.analysis;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -144,11 +143,10 @@ public class KuromojiIterationMarkCharFilter extends CharFilterBase implements C
 	 * Json deserializer for {@link KuromojiIterationMarkCharFilter}
 	 */
 	public static final JsonpDeserializer<KuromojiIterationMarkCharFilter> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, KuromojiIterationMarkCharFilter::setupKuromojiIterationMarkCharFilterDeserializer,
-					Builder::build);
+			.lazy(Builder::new, KuromojiIterationMarkCharFilter::setupKuromojiIterationMarkCharFilterDeserializer);
 
 	protected static void setupKuromojiIterationMarkCharFilterDeserializer(
-			DelegatingDeserializer<KuromojiIterationMarkCharFilter.Builder> op) {
+			ObjectDeserializer<KuromojiIterationMarkCharFilter.Builder> op) {
 		CharFilterBase.setupCharFilterBaseDeserializer(op);
 		op.add(Builder::normalizeKana, JsonpDeserializer.booleanDeserializer(), "normalize_kana");
 		op.add(Builder::normalizeKanji, JsonpDeserializer.booleanDeserializer(), "normalize_kanji");

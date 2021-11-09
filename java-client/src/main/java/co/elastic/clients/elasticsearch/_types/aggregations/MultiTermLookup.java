@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -114,9 +113,9 @@ public class MultiTermLookup implements JsonpSerializable {
 	 * Json deserializer for {@link MultiTermLookup}
 	 */
 	public static final JsonpDeserializer<MultiTermLookup> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			MultiTermLookup::setupMultiTermLookupDeserializer, Builder::build);
+			MultiTermLookup::setupMultiTermLookupDeserializer);
 
-	protected static void setupMultiTermLookupDeserializer(DelegatingDeserializer<MultiTermLookup.Builder> op) {
+	protected static void setupMultiTermLookupDeserializer(ObjectDeserializer<MultiTermLookup.Builder> op) {
 
 		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
 

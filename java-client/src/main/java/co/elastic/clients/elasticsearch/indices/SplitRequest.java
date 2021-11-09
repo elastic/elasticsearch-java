@@ -25,7 +25,6 @@ package co.elastic.clients.elasticsearch.indices;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -310,9 +309,9 @@ public class SplitRequest extends RequestBase implements JsonpSerializable {
 	 * Json deserializer for {@link SplitRequest}
 	 */
 	public static final JsonpDeserializer<SplitRequest> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			SplitRequest::setupSplitRequestDeserializer, Builder::build);
+			SplitRequest::setupSplitRequestDeserializer);
 
-	protected static void setupSplitRequestDeserializer(DelegatingDeserializer<SplitRequest.Builder> op) {
+	protected static void setupSplitRequestDeserializer(ObjectDeserializer<SplitRequest.Builder> op) {
 
 		op.add(Builder::aliases, JsonpDeserializer.stringMapDeserializer(Alias._DESERIALIZER), "aliases");
 		op.add(Builder::settings, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "settings");

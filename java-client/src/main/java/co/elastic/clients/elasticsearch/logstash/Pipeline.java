@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.logstash;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -243,9 +242,9 @@ public class Pipeline implements JsonpSerializable {
 	 * Json deserializer for {@link Pipeline}
 	 */
 	public static final JsonpDeserializer<Pipeline> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			Pipeline::setupPipelineDeserializer, Builder::build);
+			Pipeline::setupPipelineDeserializer);
 
-	protected static void setupPipelineDeserializer(DelegatingDeserializer<Pipeline.Builder> op) {
+	protected static void setupPipelineDeserializer(ObjectDeserializer<Pipeline.Builder> op) {
 
 		op.add(Builder::description, JsonpDeserializer.stringDeserializer(), "description");
 		op.add(Builder::lastModified, JsonpDeserializer.stringDeserializer(), "last_modified");

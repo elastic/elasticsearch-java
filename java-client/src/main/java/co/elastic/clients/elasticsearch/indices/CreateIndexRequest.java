@@ -26,7 +26,6 @@ package co.elastic.clients.elasticsearch.indices;
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch._types.mapping.TypeMapping;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -367,9 +366,9 @@ public class CreateIndexRequest extends RequestBase implements JsonpSerializable
 	 * Json deserializer for {@link CreateIndexRequest}
 	 */
 	public static final JsonpDeserializer<CreateIndexRequest> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, CreateIndexRequest::setupCreateIndexRequestDeserializer, Builder::build);
+			.lazy(Builder::new, CreateIndexRequest::setupCreateIndexRequestDeserializer);
 
-	protected static void setupCreateIndexRequestDeserializer(DelegatingDeserializer<CreateIndexRequest.Builder> op) {
+	protected static void setupCreateIndexRequestDeserializer(ObjectDeserializer<CreateIndexRequest.Builder> op) {
 
 		op.add(Builder::aliases, JsonpDeserializer.stringMapDeserializer(Alias._DESERIALIZER), "aliases");
 		op.add(Builder::mappings, TypeMapping._DESERIALIZER, "mappings");

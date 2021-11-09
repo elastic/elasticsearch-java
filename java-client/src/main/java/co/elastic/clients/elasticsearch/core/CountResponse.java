@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch.core;
 
 import co.elastic.clients.elasticsearch._types.ShardStatistics;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -145,9 +144,9 @@ public class CountResponse implements JsonpSerializable {
 	 * Json deserializer for {@link CountResponse}
 	 */
 	public static final JsonpDeserializer<CountResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			CountResponse::setupCountResponseDeserializer, Builder::build);
+			CountResponse::setupCountResponseDeserializer);
 
-	protected static void setupCountResponseDeserializer(DelegatingDeserializer<CountResponse.Builder> op) {
+	protected static void setupCountResponseDeserializer(ObjectDeserializer<CountResponse.Builder> op) {
 
 		op.add(Builder::count, JsonpDeserializer.longDeserializer(), "count");
 		op.add(Builder::shards, ShardStatistics._DESERIALIZER, "_shards");

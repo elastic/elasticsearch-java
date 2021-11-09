@@ -25,7 +25,6 @@ package co.elastic.clients.elasticsearch.core;
 
 import co.elastic.clients.elasticsearch._types.BulkIndexByScrollFailure;
 import co.elastic.clients.elasticsearch._types.Retries;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -524,10 +523,9 @@ public class DeleteByQueryResponse implements JsonpSerializable {
 	 * Json deserializer for {@link DeleteByQueryResponse}
 	 */
 	public static final JsonpDeserializer<DeleteByQueryResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, DeleteByQueryResponse::setupDeleteByQueryResponseDeserializer, Builder::build);
+			.lazy(Builder::new, DeleteByQueryResponse::setupDeleteByQueryResponseDeserializer);
 
-	protected static void setupDeleteByQueryResponseDeserializer(
-			DelegatingDeserializer<DeleteByQueryResponse.Builder> op) {
+	protected static void setupDeleteByQueryResponseDeserializer(ObjectDeserializer<DeleteByQueryResponse.Builder> op) {
 
 		op.add(Builder::batches, JsonpDeserializer.longDeserializer(), "batches");
 		op.add(Builder::deleted, JsonpDeserializer.longDeserializer(), "deleted");

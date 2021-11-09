@@ -26,7 +26,6 @@ package co.elastic.clients.elasticsearch.sql;
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch._types.query_dsl.Query;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -213,9 +212,9 @@ public class TranslateRequest extends RequestBase implements JsonpSerializable {
 	 * Json deserializer for {@link TranslateRequest}
 	 */
 	public static final JsonpDeserializer<TranslateRequest> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			TranslateRequest::setupTranslateRequestDeserializer, Builder::build);
+			TranslateRequest::setupTranslateRequestDeserializer);
 
-	protected static void setupTranslateRequestDeserializer(DelegatingDeserializer<TranslateRequest.Builder> op) {
+	protected static void setupTranslateRequestDeserializer(ObjectDeserializer<TranslateRequest.Builder> op) {
 
 		op.add(Builder::fetchSize, JsonpDeserializer.integerDeserializer(), "fetch_size");
 		op.add(Builder::filter, Query._DESERIALIZER, "filter");

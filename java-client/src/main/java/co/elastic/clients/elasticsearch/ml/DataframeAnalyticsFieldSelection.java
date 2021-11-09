@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -287,11 +286,10 @@ public class DataframeAnalyticsFieldSelection implements JsonpSerializable {
 	 * Json deserializer for {@link DataframeAnalyticsFieldSelection}
 	 */
 	public static final JsonpDeserializer<DataframeAnalyticsFieldSelection> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, DataframeAnalyticsFieldSelection::setupDataframeAnalyticsFieldSelectionDeserializer,
-					Builder::build);
+			.lazy(Builder::new, DataframeAnalyticsFieldSelection::setupDataframeAnalyticsFieldSelectionDeserializer);
 
 	protected static void setupDataframeAnalyticsFieldSelectionDeserializer(
-			DelegatingDeserializer<DataframeAnalyticsFieldSelection.Builder> op) {
+			ObjectDeserializer<DataframeAnalyticsFieldSelection.Builder> op) {
 
 		op.add(Builder::isIncluded, JsonpDeserializer.booleanDeserializer(), "is_included");
 		op.add(Builder::isRequired, JsonpDeserializer.booleanDeserializer(), "is_required");

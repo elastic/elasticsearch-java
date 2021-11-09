@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -143,9 +142,9 @@ public class FieldMemoryUsage implements JsonpSerializable {
 	 * Json deserializer for {@link FieldMemoryUsage}
 	 */
 	public static final JsonpDeserializer<FieldMemoryUsage> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			FieldMemoryUsage::setupFieldMemoryUsageDeserializer, Builder::build);
+			FieldMemoryUsage::setupFieldMemoryUsageDeserializer);
 
-	protected static void setupFieldMemoryUsageDeserializer(DelegatingDeserializer<FieldMemoryUsage.Builder> op) {
+	protected static void setupFieldMemoryUsageDeserializer(ObjectDeserializer<FieldMemoryUsage.Builder> op) {
 
 		op.add(Builder::memorySize, JsonpDeserializer.stringDeserializer(), "memory_size");
 		op.add(Builder::memorySizeInBytes, JsonpDeserializer.longDeserializer(), "memory_size_in_bytes");

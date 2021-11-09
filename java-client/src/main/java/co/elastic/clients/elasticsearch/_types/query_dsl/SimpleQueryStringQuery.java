@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -470,10 +469,10 @@ public class SimpleQueryStringQuery extends QueryBase implements QueryVariant {
 	 * Json deserializer for {@link SimpleQueryStringQuery}
 	 */
 	public static final JsonpDeserializer<SimpleQueryStringQuery> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, SimpleQueryStringQuery::setupSimpleQueryStringQueryDeserializer, Builder::build);
+			.lazy(Builder::new, SimpleQueryStringQuery::setupSimpleQueryStringQueryDeserializer);
 
 	protected static void setupSimpleQueryStringQueryDeserializer(
-			DelegatingDeserializer<SimpleQueryStringQuery.Builder> op) {
+			ObjectDeserializer<SimpleQueryStringQuery.Builder> op) {
 		QueryBase.setupQueryBaseDeserializer(op);
 		op.add(Builder::analyzer, JsonpDeserializer.stringDeserializer(), "analyzer");
 		op.add(Builder::analyzeWildcard, JsonpDeserializer.booleanDeserializer(), "analyze_wildcard");

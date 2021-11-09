@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -88,11 +87,10 @@ public class MedianAbsoluteDeviationAggregate extends SingleMetricAggregateBase 
 	 * Json deserializer for {@link MedianAbsoluteDeviationAggregate}
 	 */
 	public static final JsonpDeserializer<MedianAbsoluteDeviationAggregate> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, MedianAbsoluteDeviationAggregate::setupMedianAbsoluteDeviationAggregateDeserializer,
-					Builder::build);
+			.lazy(Builder::new, MedianAbsoluteDeviationAggregate::setupMedianAbsoluteDeviationAggregateDeserializer);
 
 	protected static void setupMedianAbsoluteDeviationAggregateDeserializer(
-			DelegatingDeserializer<MedianAbsoluteDeviationAggregate.Builder> op) {
+			ObjectDeserializer<MedianAbsoluteDeviationAggregate.Builder> op) {
 		SingleMetricAggregateBase.setupSingleMetricAggregateBaseDeserializer(op);
 
 	}

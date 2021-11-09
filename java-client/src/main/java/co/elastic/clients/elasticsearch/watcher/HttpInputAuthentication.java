@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.watcher;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -121,10 +120,10 @@ public class HttpInputAuthentication implements JsonpSerializable {
 	 * Json deserializer for {@link HttpInputAuthentication}
 	 */
 	public static final JsonpDeserializer<HttpInputAuthentication> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, HttpInputAuthentication::setupHttpInputAuthenticationDeserializer, Builder::build);
+			.lazy(Builder::new, HttpInputAuthentication::setupHttpInputAuthenticationDeserializer);
 
 	protected static void setupHttpInputAuthenticationDeserializer(
-			DelegatingDeserializer<HttpInputAuthentication.Builder> op) {
+			ObjectDeserializer<HttpInputAuthentication.Builder> op) {
 
 		op.add(Builder::basic, HttpInputBasicAuthentication._DESERIALIZER, "basic");
 

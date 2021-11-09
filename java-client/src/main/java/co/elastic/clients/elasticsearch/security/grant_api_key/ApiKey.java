@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.security.grant_api_key;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -194,9 +193,9 @@ public class ApiKey implements JsonpSerializable {
 	 * Json deserializer for {@link ApiKey}
 	 */
 	public static final JsonpDeserializer<ApiKey> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			ApiKey::setupApiKeyDeserializer, Builder::build);
+			ApiKey::setupApiKeyDeserializer);
 
-	protected static void setupApiKeyDeserializer(DelegatingDeserializer<ApiKey.Builder> op) {
+	protected static void setupApiKeyDeserializer(ObjectDeserializer<ApiKey.Builder> op) {
 
 		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
 		op.add(Builder::expiration, JsonpDeserializer.stringDeserializer(), "expiration");

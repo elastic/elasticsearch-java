@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.cat.repositories;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -155,9 +154,9 @@ public class RepositoriesRecord implements JsonpSerializable {
 	 * Json deserializer for {@link RepositoriesRecord}
 	 */
 	public static final JsonpDeserializer<RepositoriesRecord> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, RepositoriesRecord::setupRepositoriesRecordDeserializer, Builder::build);
+			.lazy(Builder::new, RepositoriesRecord::setupRepositoriesRecordDeserializer);
 
-	protected static void setupRepositoriesRecordDeserializer(DelegatingDeserializer<RepositoriesRecord.Builder> op) {
+	protected static void setupRepositoriesRecordDeserializer(ObjectDeserializer<RepositoriesRecord.Builder> op) {
 
 		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "id", "repoId");
 		op.add(Builder::type, JsonpDeserializer.stringDeserializer(), "type", "t");

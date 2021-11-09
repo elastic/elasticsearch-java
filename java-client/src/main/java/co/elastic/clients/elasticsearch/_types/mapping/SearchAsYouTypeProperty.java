@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.mapping;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -322,10 +321,10 @@ public class SearchAsYouTypeProperty extends CorePropertyBase implements Propert
 	 * Json deserializer for {@link SearchAsYouTypeProperty}
 	 */
 	public static final JsonpDeserializer<SearchAsYouTypeProperty> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, SearchAsYouTypeProperty::setupSearchAsYouTypePropertyDeserializer, Builder::build);
+			.lazy(Builder::new, SearchAsYouTypeProperty::setupSearchAsYouTypePropertyDeserializer);
 
 	protected static void setupSearchAsYouTypePropertyDeserializer(
-			DelegatingDeserializer<SearchAsYouTypeProperty.Builder> op) {
+			ObjectDeserializer<SearchAsYouTypeProperty.Builder> op) {
 		CorePropertyBase.setupCorePropertyBaseDeserializer(op);
 		op.add(Builder::analyzer, JsonpDeserializer.stringDeserializer(), "analyzer");
 		op.add(Builder::index, JsonpDeserializer.booleanDeserializer(), "index");

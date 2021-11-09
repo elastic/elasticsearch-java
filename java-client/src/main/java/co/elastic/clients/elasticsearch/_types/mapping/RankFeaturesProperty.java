@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.mapping;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -95,10 +94,9 @@ public class RankFeaturesProperty extends PropertyBase implements PropertyVarian
 	 * Json deserializer for {@link RankFeaturesProperty}
 	 */
 	public static final JsonpDeserializer<RankFeaturesProperty> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, RankFeaturesProperty::setupRankFeaturesPropertyDeserializer, Builder::build);
+			.lazy(Builder::new, RankFeaturesProperty::setupRankFeaturesPropertyDeserializer);
 
-	protected static void setupRankFeaturesPropertyDeserializer(
-			DelegatingDeserializer<RankFeaturesProperty.Builder> op) {
+	protected static void setupRankFeaturesPropertyDeserializer(ObjectDeserializer<RankFeaturesProperty.Builder> op) {
 		PropertyBase.setupPropertyBaseDeserializer(op);
 
 		op.ignore("type");

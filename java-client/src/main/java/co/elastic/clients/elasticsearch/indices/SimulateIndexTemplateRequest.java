@@ -25,7 +25,6 @@ package co.elastic.clients.elasticsearch.indices;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -296,11 +295,11 @@ public class SimulateIndexTemplateRequest extends RequestBase implements JsonpSe
 	/**
 	 * Json deserializer for {@link SimulateIndexTemplateRequest}
 	 */
-	public static final JsonpDeserializer<SimulateIndexTemplateRequest> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
-			Builder::new, SimulateIndexTemplateRequest::setupSimulateIndexTemplateRequestDeserializer, Builder::build);
+	public static final JsonpDeserializer<SimulateIndexTemplateRequest> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, SimulateIndexTemplateRequest::setupSimulateIndexTemplateRequestDeserializer);
 
 	protected static void setupSimulateIndexTemplateRequestDeserializer(
-			DelegatingDeserializer<SimulateIndexTemplateRequest.Builder> op) {
+			ObjectDeserializer<SimulateIndexTemplateRequest.Builder> op) {
 
 		op.add(Builder::composedOf, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"composed_of");

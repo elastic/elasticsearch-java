@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.core.bulk;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -87,9 +86,9 @@ public class DeleteOperation extends OperationBase implements OperationVariant {
 	 * Json deserializer for {@link DeleteOperation}
 	 */
 	public static final JsonpDeserializer<DeleteOperation> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			DeleteOperation::setupDeleteOperationDeserializer, Builder::build);
+			DeleteOperation::setupDeleteOperationDeserializer);
 
-	protected static void setupDeleteOperationDeserializer(DelegatingDeserializer<DeleteOperation.Builder> op) {
+	protected static void setupDeleteOperationDeserializer(ObjectDeserializer<DeleteOperation.Builder> op) {
 		OperationBase.setupOperationBaseDeserializer(op);
 
 	}

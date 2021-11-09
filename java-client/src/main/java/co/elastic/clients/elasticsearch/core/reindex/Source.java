@@ -26,7 +26,6 @@ package co.elastic.clients.elasticsearch.core.reindex;
 import co.elastic.clients.elasticsearch._types.SlicedScroll;
 import co.elastic.clients.elasticsearch._types.mapping.RuntimeField;
 import co.elastic.clients.elasticsearch._types.query_dsl.Query;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -395,9 +394,9 @@ public class Source implements JsonpSerializable {
 	 * Json deserializer for {@link Source}
 	 */
 	public static final JsonpDeserializer<Source> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			Source::setupSourceDeserializer, Builder::build);
+			Source::setupSourceDeserializer);
 
-	protected static void setupSourceDeserializer(DelegatingDeserializer<Source.Builder> op) {
+	protected static void setupSourceDeserializer(ObjectDeserializer<Source.Builder> op) {
 
 		op.add(Builder::index, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "index");
 		op.add(Builder::query, Query._DESERIALIZER, "query");

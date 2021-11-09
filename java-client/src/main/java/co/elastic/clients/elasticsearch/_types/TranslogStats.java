@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -267,9 +266,9 @@ public class TranslogStats implements JsonpSerializable {
 	 * Json deserializer for {@link TranslogStats}
 	 */
 	public static final JsonpDeserializer<TranslogStats> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			TranslogStats::setupTranslogStatsDeserializer, Builder::build);
+			TranslogStats::setupTranslogStatsDeserializer);
 
-	protected static void setupTranslogStatsDeserializer(DelegatingDeserializer<TranslogStats.Builder> op) {
+	protected static void setupTranslogStatsDeserializer(ObjectDeserializer<TranslogStats.Builder> op) {
 
 		op.add(Builder::earliestLastModifiedAge, JsonpDeserializer.longDeserializer(), "earliest_last_modified_age");
 		op.add(Builder::operations, JsonpDeserializer.longDeserializer(), "operations");

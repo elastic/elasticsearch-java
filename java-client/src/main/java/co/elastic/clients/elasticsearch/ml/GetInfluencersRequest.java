@@ -25,7 +25,6 @@ package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -384,10 +383,9 @@ public class GetInfluencersRequest extends RequestBase implements JsonpSerializa
 	 * Json deserializer for {@link GetInfluencersRequest}
 	 */
 	public static final JsonpDeserializer<GetInfluencersRequest> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, GetInfluencersRequest::setupGetInfluencersRequestDeserializer, Builder::build);
+			.lazy(Builder::new, GetInfluencersRequest::setupGetInfluencersRequestDeserializer);
 
-	protected static void setupGetInfluencersRequestDeserializer(
-			DelegatingDeserializer<GetInfluencersRequest.Builder> op) {
+	protected static void setupGetInfluencersRequestDeserializer(ObjectDeserializer<GetInfluencersRequest.Builder> op) {
 
 		op.add(Builder::page, Page._DESERIALIZER, "page");
 

@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.xpack.info;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -926,9 +925,9 @@ public class Features implements JsonpSerializable {
 	 * Json deserializer for {@link Features}
 	 */
 	public static final JsonpDeserializer<Features> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			Features::setupFeaturesDeserializer, Builder::build);
+			Features::setupFeaturesDeserializer);
 
-	protected static void setupFeaturesDeserializer(DelegatingDeserializer<Features.Builder> op) {
+	protected static void setupFeaturesDeserializer(ObjectDeserializer<Features.Builder> op) {
 
 		op.add(Builder::aggregateMetric, Feature._DESERIALIZER, "aggregate_metric");
 		op.add(Builder::analytics, Feature._DESERIALIZER, "analytics");

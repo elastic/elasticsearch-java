@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.xpack.usage;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -147,11 +146,11 @@ public class WatcherWatchTriggerSchedule extends Counter {
 	/**
 	 * Json deserializer for {@link WatcherWatchTriggerSchedule}
 	 */
-	public static final JsonpDeserializer<WatcherWatchTriggerSchedule> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
-			Builder::new, WatcherWatchTriggerSchedule::setupWatcherWatchTriggerScheduleDeserializer, Builder::build);
+	public static final JsonpDeserializer<WatcherWatchTriggerSchedule> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, WatcherWatchTriggerSchedule::setupWatcherWatchTriggerScheduleDeserializer);
 
 	protected static void setupWatcherWatchTriggerScheduleDeserializer(
-			DelegatingDeserializer<WatcherWatchTriggerSchedule.Builder> op) {
+			ObjectDeserializer<WatcherWatchTriggerSchedule.Builder> op) {
 		Counter.setupCounterDeserializer(op);
 		op.add(Builder::cron, Counter._DESERIALIZER, "cron");
 		op.add(Builder::all, Counter._DESERIALIZER, "_all");

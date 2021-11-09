@@ -25,7 +25,6 @@ package co.elastic.clients.elasticsearch.core.reindex;
 
 import co.elastic.clients.elasticsearch._types.OpType;
 import co.elastic.clients.elasticsearch._types.VersionType;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -227,9 +226,9 @@ public class Destination implements JsonpSerializable {
 	 * Json deserializer for {@link Destination}
 	 */
 	public static final JsonpDeserializer<Destination> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			Destination::setupDestinationDeserializer, Builder::build);
+			Destination::setupDestinationDeserializer);
 
-	protected static void setupDestinationDeserializer(DelegatingDeserializer<Destination.Builder> op) {
+	protected static void setupDestinationDeserializer(ObjectDeserializer<Destination.Builder> op) {
 
 		op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "index");
 		op.add(Builder::opType, OpType._DESERIALIZER, "op_type");

@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -187,9 +186,9 @@ public class IntervalsAnyOf implements IntervalsQueryVariant, IntervalsVariant, 
 	 * Json deserializer for {@link IntervalsAnyOf}
 	 */
 	public static final JsonpDeserializer<IntervalsAnyOf> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			IntervalsAnyOf::setupIntervalsAnyOfDeserializer, Builder::build);
+			IntervalsAnyOf::setupIntervalsAnyOfDeserializer);
 
-	protected static void setupIntervalsAnyOfDeserializer(DelegatingDeserializer<IntervalsAnyOf.Builder> op) {
+	protected static void setupIntervalsAnyOfDeserializer(ObjectDeserializer<IntervalsAnyOf.Builder> op) {
 
 		op.add(Builder::intervals, JsonpDeserializer.arrayDeserializer(Intervals._DESERIALIZER), "intervals");
 		op.add(Builder::filter, IntervalsFilter._DESERIALIZER, "filter");

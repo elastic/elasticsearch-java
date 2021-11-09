@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.mapping;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -171,9 +170,9 @@ public class RuntimeField implements JsonpSerializable {
 	 * Json deserializer for {@link RuntimeField}
 	 */
 	public static final JsonpDeserializer<RuntimeField> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			RuntimeField::setupRuntimeFieldDeserializer, Builder::build);
+			RuntimeField::setupRuntimeFieldDeserializer);
 
-	protected static void setupRuntimeFieldDeserializer(DelegatingDeserializer<RuntimeField.Builder> op) {
+	protected static void setupRuntimeFieldDeserializer(ObjectDeserializer<RuntimeField.Builder> op) {
 
 		op.add(Builder::format, JsonpDeserializer.stringDeserializer(), "format");
 		op.add(Builder::script, JsonpDeserializer.jsonValueDeserializer(), "script");

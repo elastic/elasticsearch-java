@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.xpack.usage;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -160,9 +159,9 @@ public class SecurityRolesNative implements JsonpSerializable {
 	 * Json deserializer for {@link SecurityRolesNative}
 	 */
 	public static final JsonpDeserializer<SecurityRolesNative> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, SecurityRolesNative::setupSecurityRolesNativeDeserializer, Builder::build);
+			.lazy(Builder::new, SecurityRolesNative::setupSecurityRolesNativeDeserializer);
 
-	protected static void setupSecurityRolesNativeDeserializer(DelegatingDeserializer<SecurityRolesNative.Builder> op) {
+	protected static void setupSecurityRolesNativeDeserializer(ObjectDeserializer<SecurityRolesNative.Builder> op) {
 
 		op.add(Builder::dls, JsonpDeserializer.booleanDeserializer(), "dls");
 		op.add(Builder::fls, JsonpDeserializer.booleanDeserializer(), "fls");

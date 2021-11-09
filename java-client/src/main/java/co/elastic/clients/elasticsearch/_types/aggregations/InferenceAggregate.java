@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -291,9 +290,9 @@ public class InferenceAggregate extends AggregateBase implements AggregateVarian
 	 * Json deserializer for {@link InferenceAggregate}
 	 */
 	public static final JsonpDeserializer<InferenceAggregate> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, InferenceAggregate::setupInferenceAggregateDeserializer, Builder::build);
+			.lazy(Builder::new, InferenceAggregate::setupInferenceAggregateDeserializer);
 
-	protected static void setupInferenceAggregateDeserializer(DelegatingDeserializer<InferenceAggregate.Builder> op) {
+	protected static void setupInferenceAggregateDeserializer(ObjectDeserializer<InferenceAggregate.Builder> op) {
 		AggregateBase.setupAggregateBaseDeserializer(op);
 		op.add(Builder::value, JsonpDeserializer.stringDeserializer(), "value");
 		op.add(Builder::featureImportance,

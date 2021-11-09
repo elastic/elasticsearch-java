@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.watcher;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -278,7 +277,7 @@ public class Schedule implements TaggedUnion<Object>, TriggerVariant, JsonpSeria
 
 	}
 
-	protected static void setupScheduleDeserializer(DelegatingDeserializer<Builder> op) {
+	protected static void setupScheduleDeserializer(ObjectDeserializer<Builder> op) {
 
 		op.add(Builder::cron, JsonpDeserializer.stringDeserializer(), "cron");
 		op.add(Builder::daily, DailySchedule._DESERIALIZER, "daily");

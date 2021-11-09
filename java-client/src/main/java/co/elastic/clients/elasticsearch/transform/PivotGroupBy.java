@@ -27,7 +27,6 @@ import co.elastic.clients.elasticsearch._types.aggregations.DateHistogramAggrega
 import co.elastic.clients.elasticsearch._types.aggregations.GeoTileGridAggregation;
 import co.elastic.clients.elasticsearch._types.aggregations.HistogramAggregation;
 import co.elastic.clients.elasticsearch._types.aggregations.TermsAggregation;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -192,7 +191,7 @@ public class PivotGroupBy implements TaggedUnion<Object>, JsonpSerializable {
 
 	}
 
-	protected static void setupPivotGroupByDeserializer(DelegatingDeserializer<Builder> op) {
+	protected static void setupPivotGroupByDeserializer(ObjectDeserializer<Builder> op) {
 
 		op.add(Builder::dateHistogram, DateHistogramAggregation._DESERIALIZER, "date_histogram");
 		op.add(Builder::geotileGrid, GeoTileGridAggregation._DESERIALIZER, "geotile_grid");

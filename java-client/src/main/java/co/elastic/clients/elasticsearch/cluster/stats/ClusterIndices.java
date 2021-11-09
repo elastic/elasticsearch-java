@@ -29,7 +29,6 @@ import co.elastic.clients.elasticsearch._types.FielddataStats;
 import co.elastic.clients.elasticsearch._types.QueryCacheStats;
 import co.elastic.clients.elasticsearch._types.SegmentsStats;
 import co.elastic.clients.elasticsearch._types.StoreStats;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -515,9 +514,9 @@ public class ClusterIndices implements JsonpSerializable {
 	 * Json deserializer for {@link ClusterIndices}
 	 */
 	public static final JsonpDeserializer<ClusterIndices> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			ClusterIndices::setupClusterIndicesDeserializer, Builder::build);
+			ClusterIndices::setupClusterIndicesDeserializer);
 
-	protected static void setupClusterIndicesDeserializer(DelegatingDeserializer<ClusterIndices.Builder> op) {
+	protected static void setupClusterIndicesDeserializer(ObjectDeserializer<ClusterIndices.Builder> op) {
 
 		op.add(Builder::completion, CompletionStats._DESERIALIZER, "completion");
 		op.add(Builder::count, JsonpDeserializer.longDeserializer(), "count");

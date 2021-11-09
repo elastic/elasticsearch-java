@@ -31,7 +31,6 @@ import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch._types.SearchType;
 import co.elastic.clients.elasticsearch._types.SlicedScroll;
 import co.elastic.clients.elasticsearch._types.query_dsl.Query;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -1244,10 +1243,9 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 	 * Json deserializer for {@link UpdateByQueryRequest}
 	 */
 	public static final JsonpDeserializer<UpdateByQueryRequest> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, UpdateByQueryRequest::setupUpdateByQueryRequestDeserializer, Builder::build);
+			.lazy(Builder::new, UpdateByQueryRequest::setupUpdateByQueryRequestDeserializer);
 
-	protected static void setupUpdateByQueryRequestDeserializer(
-			DelegatingDeserializer<UpdateByQueryRequest.Builder> op) {
+	protected static void setupUpdateByQueryRequestDeserializer(ObjectDeserializer<UpdateByQueryRequest.Builder> op) {
 
 		op.add(Builder::conflicts, Conflicts._DESERIALIZER, "conflicts");
 		op.add(Builder::maxDocs, JsonpDeserializer.longDeserializer(), "max_docs");

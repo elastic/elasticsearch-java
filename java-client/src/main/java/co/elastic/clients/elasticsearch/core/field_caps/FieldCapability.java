@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.core.field_caps;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -349,9 +348,9 @@ public class FieldCapability implements JsonpSerializable {
 	 * Json deserializer for {@link FieldCapability}
 	 */
 	public static final JsonpDeserializer<FieldCapability> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			FieldCapability::setupFieldCapabilityDeserializer, Builder::build);
+			FieldCapability::setupFieldCapabilityDeserializer);
 
-	protected static void setupFieldCapabilityDeserializer(DelegatingDeserializer<FieldCapability.Builder> op) {
+	protected static void setupFieldCapabilityDeserializer(ObjectDeserializer<FieldCapability.Builder> op) {
 
 		op.add(Builder::aggregatable, JsonpDeserializer.booleanDeserializer(), "aggregatable");
 		op.add(Builder::indices, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),

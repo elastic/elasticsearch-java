@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.xpack.usage;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -109,9 +108,9 @@ public class FrozenIndices extends Base {
 	 * Json deserializer for {@link FrozenIndices}
 	 */
 	public static final JsonpDeserializer<FrozenIndices> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			FrozenIndices::setupFrozenIndicesDeserializer, Builder::build);
+			FrozenIndices::setupFrozenIndicesDeserializer);
 
-	protected static void setupFrozenIndicesDeserializer(DelegatingDeserializer<FrozenIndices.Builder> op) {
+	protected static void setupFrozenIndicesDeserializer(ObjectDeserializer<FrozenIndices.Builder> op) {
 		Base.setupBaseDeserializer(op);
 		op.add(Builder::indicesCount, JsonpDeserializer.longDeserializer(), "indices_count");
 

@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch._types;
 
 import co.elastic.clients.elasticsearch.watcher.SearchInputRequestDefinition;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -154,9 +153,9 @@ public class SearchTransform implements TransformVariant, JsonpSerializable {
 	 * Json deserializer for {@link SearchTransform}
 	 */
 	public static final JsonpDeserializer<SearchTransform> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			SearchTransform::setupSearchTransformDeserializer, Builder::build);
+			SearchTransform::setupSearchTransformDeserializer);
 
-	protected static void setupSearchTransformDeserializer(DelegatingDeserializer<SearchTransform.Builder> op) {
+	protected static void setupSearchTransformDeserializer(ObjectDeserializer<SearchTransform.Builder> op) {
 
 		op.add(Builder::request, SearchInputRequestDefinition._DESERIALIZER, "request");
 		op.add(Builder::timeout, JsonpDeserializer.stringDeserializer(), "timeout");

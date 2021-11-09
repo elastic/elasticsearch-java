@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -124,12 +123,11 @@ public class SerialDifferencingAggregation extends PipelineAggregationBase imple
 	/**
 	 * Json deserializer for {@link SerialDifferencingAggregation}
 	 */
-	public static final JsonpDeserializer<SerialDifferencingAggregation> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
-			Builder::new, SerialDifferencingAggregation::setupSerialDifferencingAggregationDeserializer,
-			Builder::build);
+	public static final JsonpDeserializer<SerialDifferencingAggregation> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, SerialDifferencingAggregation::setupSerialDifferencingAggregationDeserializer);
 
 	protected static void setupSerialDifferencingAggregationDeserializer(
-			DelegatingDeserializer<SerialDifferencingAggregation.Builder> op) {
+			ObjectDeserializer<SerialDifferencingAggregation.Builder> op) {
 		PipelineAggregationBase.setupPipelineAggregationBaseDeserializer(op);
 		op.add(Builder::lag, JsonpDeserializer.integerDeserializer(), "lag");
 

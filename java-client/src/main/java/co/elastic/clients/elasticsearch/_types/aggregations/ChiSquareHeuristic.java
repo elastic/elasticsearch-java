@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -137,9 +136,9 @@ public class ChiSquareHeuristic implements JsonpSerializable {
 	 * Json deserializer for {@link ChiSquareHeuristic}
 	 */
 	public static final JsonpDeserializer<ChiSquareHeuristic> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, ChiSquareHeuristic::setupChiSquareHeuristicDeserializer, Builder::build);
+			.lazy(Builder::new, ChiSquareHeuristic::setupChiSquareHeuristicDeserializer);
 
-	protected static void setupChiSquareHeuristicDeserializer(DelegatingDeserializer<ChiSquareHeuristic.Builder> op) {
+	protected static void setupChiSquareHeuristicDeserializer(ObjectDeserializer<ChiSquareHeuristic.Builder> op) {
 
 		op.add(Builder::backgroundIsSuperset, JsonpDeserializer.booleanDeserializer(), "background_is_superset");
 		op.add(Builder::includeNegatives, JsonpDeserializer.booleanDeserializer(), "include_negatives");

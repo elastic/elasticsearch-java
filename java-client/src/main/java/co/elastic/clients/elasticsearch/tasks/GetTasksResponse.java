@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch.tasks;
 
 import co.elastic.clients.elasticsearch._types.ErrorCause;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -216,9 +215,9 @@ public class GetTasksResponse implements JsonpSerializable {
 	 * Json deserializer for {@link GetTasksResponse}
 	 */
 	public static final JsonpDeserializer<GetTasksResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			GetTasksResponse::setupGetTasksResponseDeserializer, Builder::build);
+			GetTasksResponse::setupGetTasksResponseDeserializer);
 
-	protected static void setupGetTasksResponseDeserializer(DelegatingDeserializer<GetTasksResponse.Builder> op) {
+	protected static void setupGetTasksResponseDeserializer(ObjectDeserializer<GetTasksResponse.Builder> op) {
 
 		op.add(Builder::completed, JsonpDeserializer.booleanDeserializer(), "completed");
 		op.add(Builder::task, Info._DESERIALIZER, "task");

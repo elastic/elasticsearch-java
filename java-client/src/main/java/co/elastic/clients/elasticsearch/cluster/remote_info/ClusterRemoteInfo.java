@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.cluster.remote_info;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -138,7 +137,7 @@ public class ClusterRemoteInfo implements TaggedUnion<ClusterRemoteInfoVariant>,
 
 	}
 
-	protected static void setupClusterRemoteInfoDeserializer(DelegatingDeserializer<Builder> op) {
+	protected static void setupClusterRemoteInfoDeserializer(ObjectDeserializer<Builder> op) {
 
 		op.add(Builder::proxy, ClusterRemoteProxyInfo._DESERIALIZER, "proxy");
 		op.add(Builder::sniff, ClusterRemoteSniffInfo._DESERIALIZER, "sniff");

@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.mapping;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -95,9 +94,9 @@ public class DoubleRangeProperty extends RangePropertyBase implements PropertyVa
 	 * Json deserializer for {@link DoubleRangeProperty}
 	 */
 	public static final JsonpDeserializer<DoubleRangeProperty> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, DoubleRangeProperty::setupDoubleRangePropertyDeserializer, Builder::build);
+			.lazy(Builder::new, DoubleRangeProperty::setupDoubleRangePropertyDeserializer);
 
-	protected static void setupDoubleRangePropertyDeserializer(DelegatingDeserializer<DoubleRangeProperty.Builder> op) {
+	protected static void setupDoubleRangePropertyDeserializer(ObjectDeserializer<DoubleRangeProperty.Builder> op) {
 		RangePropertyBase.setupRangePropertyBaseDeserializer(op);
 
 		op.ignore("type");

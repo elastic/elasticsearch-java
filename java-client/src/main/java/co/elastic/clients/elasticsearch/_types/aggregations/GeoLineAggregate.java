@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch._types.aggregations;
 
 import co.elastic.clients.elasticsearch._types.GeoLine;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -151,9 +150,9 @@ public class GeoLineAggregate extends AggregateBase implements AggregateVariant 
 	 * Json deserializer for {@link GeoLineAggregate}
 	 */
 	public static final JsonpDeserializer<GeoLineAggregate> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			GeoLineAggregate::setupGeoLineAggregateDeserializer, Builder::build);
+			GeoLineAggregate::setupGeoLineAggregateDeserializer);
 
-	protected static void setupGeoLineAggregateDeserializer(DelegatingDeserializer<GeoLineAggregate.Builder> op) {
+	protected static void setupGeoLineAggregateDeserializer(ObjectDeserializer<GeoLineAggregate.Builder> op) {
 		AggregateBase.setupAggregateBaseDeserializer(op);
 		op.add(Builder::type, JsonpDeserializer.jsonValueDeserializer(), "type");
 		op.add(Builder::geometry, GeoLine._DESERIALIZER, "geometry");

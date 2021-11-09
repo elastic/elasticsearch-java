@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch.license;
 
 import co.elastic.clients.elasticsearch._types.AcknowledgedResponseBase;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -80,10 +79,9 @@ public class DeleteLicenseResponse extends AcknowledgedResponseBase {
 	 * Json deserializer for {@link DeleteLicenseResponse}
 	 */
 	public static final JsonpDeserializer<DeleteLicenseResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, DeleteLicenseResponse::setupDeleteLicenseResponseDeserializer, Builder::build);
+			.lazy(Builder::new, DeleteLicenseResponse::setupDeleteLicenseResponseDeserializer);
 
-	protected static void setupDeleteLicenseResponseDeserializer(
-			DelegatingDeserializer<DeleteLicenseResponse.Builder> op) {
+	protected static void setupDeleteLicenseResponseDeserializer(ObjectDeserializer<DeleteLicenseResponse.Builder> op) {
 		AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);
 
 	}

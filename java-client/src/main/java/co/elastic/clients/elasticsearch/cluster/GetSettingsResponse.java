@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.cluster;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -188,9 +187,9 @@ public class GetSettingsResponse implements JsonpSerializable {
 	 * Json deserializer for {@link GetSettingsResponse}
 	 */
 	public static final JsonpDeserializer<GetSettingsResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, GetSettingsResponse::setupGetSettingsResponseDeserializer, Builder::build);
+			.lazy(Builder::new, GetSettingsResponse::setupGetSettingsResponseDeserializer);
 
-	protected static void setupGetSettingsResponseDeserializer(DelegatingDeserializer<GetSettingsResponse.Builder> op) {
+	protected static void setupGetSettingsResponseDeserializer(ObjectDeserializer<GetSettingsResponse.Builder> op) {
 
 		op.add(Builder::persistent, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "persistent");
 		op.add(Builder::transient_, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "transient");

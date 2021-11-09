@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch.shutdown;
 
 import co.elastic.clients.elasticsearch.shutdown.get_node.NodeShutdownStatus;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -145,9 +144,9 @@ public class GetNodeResponse implements JsonpSerializable {
 	 * Json deserializer for {@link GetNodeResponse}
 	 */
 	public static final JsonpDeserializer<GetNodeResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			GetNodeResponse::setupGetNodeResponseDeserializer, Builder::build);
+			GetNodeResponse::setupGetNodeResponseDeserializer);
 
-	protected static void setupGetNodeResponseDeserializer(DelegatingDeserializer<GetNodeResponse.Builder> op) {
+	protected static void setupGetNodeResponseDeserializer(ObjectDeserializer<GetNodeResponse.Builder> op) {
 
 		op.add(Builder::nodes, JsonpDeserializer.arrayDeserializer(NodeShutdownStatus._DESERIALIZER), "nodes");
 

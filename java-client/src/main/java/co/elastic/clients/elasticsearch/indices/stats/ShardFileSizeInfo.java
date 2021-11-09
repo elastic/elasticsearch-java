@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.indices.stats;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -251,9 +250,9 @@ public class ShardFileSizeInfo implements JsonpSerializable {
 	 * Json deserializer for {@link ShardFileSizeInfo}
 	 */
 	public static final JsonpDeserializer<ShardFileSizeInfo> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, ShardFileSizeInfo::setupShardFileSizeInfoDeserializer, Builder::build);
+			.lazy(Builder::new, ShardFileSizeInfo::setupShardFileSizeInfoDeserializer);
 
-	protected static void setupShardFileSizeInfoDeserializer(DelegatingDeserializer<ShardFileSizeInfo.Builder> op) {
+	protected static void setupShardFileSizeInfoDeserializer(ObjectDeserializer<ShardFileSizeInfo.Builder> op) {
 
 		op.add(Builder::description, JsonpDeserializer.stringDeserializer(), "description");
 		op.add(Builder::sizeInBytes, JsonpDeserializer.longDeserializer(), "size_in_bytes");

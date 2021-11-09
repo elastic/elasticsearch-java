@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -152,9 +151,9 @@ public class ChainTransform implements TransformVariant, JsonpSerializable {
 	 * Json deserializer for {@link ChainTransform}
 	 */
 	public static final JsonpDeserializer<ChainTransform> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			ChainTransform::setupChainTransformDeserializer, Builder::build);
+			ChainTransform::setupChainTransformDeserializer);
 
-	protected static void setupChainTransformDeserializer(DelegatingDeserializer<ChainTransform.Builder> op) {
+	protected static void setupChainTransformDeserializer(ObjectDeserializer<ChainTransform.Builder> op) {
 
 		op.add(Builder::transforms, JsonpDeserializer.arrayDeserializer(Transform._DESERIALIZER), "transforms");
 

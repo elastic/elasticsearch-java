@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.ml.put_trained_model;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -113,9 +112,9 @@ public class Weights implements JsonpSerializable {
 	 * Json deserializer for {@link Weights}
 	 */
 	public static final JsonpDeserializer<Weights> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			Weights::setupWeightsDeserializer, Builder::build);
+			Weights::setupWeightsDeserializer);
 
-	protected static void setupWeightsDeserializer(DelegatingDeserializer<Weights.Builder> op) {
+	protected static void setupWeightsDeserializer(ObjectDeserializer<Weights.Builder> op) {
 
 		op.add(Builder::weights, JsonpDeserializer.doubleDeserializer(), "weights");
 

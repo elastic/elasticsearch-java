@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -230,11 +229,10 @@ public class StandardDeviationBoundsAsString implements JsonpSerializable {
 	 * Json deserializer for {@link StandardDeviationBoundsAsString}
 	 */
 	public static final JsonpDeserializer<StandardDeviationBoundsAsString> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, StandardDeviationBoundsAsString::setupStandardDeviationBoundsAsStringDeserializer,
-					Builder::build);
+			.lazy(Builder::new, StandardDeviationBoundsAsString::setupStandardDeviationBoundsAsStringDeserializer);
 
 	protected static void setupStandardDeviationBoundsAsStringDeserializer(
-			DelegatingDeserializer<StandardDeviationBoundsAsString.Builder> op) {
+			ObjectDeserializer<StandardDeviationBoundsAsString.Builder> op) {
 
 		op.add(Builder::upper, JsonpDeserializer.stringDeserializer(), "upper");
 		op.add(Builder::lower, JsonpDeserializer.stringDeserializer(), "lower");

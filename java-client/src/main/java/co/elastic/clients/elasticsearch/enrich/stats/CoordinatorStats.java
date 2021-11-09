@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.enrich.stats;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -211,9 +210,9 @@ public class CoordinatorStats implements JsonpSerializable {
 	 * Json deserializer for {@link CoordinatorStats}
 	 */
 	public static final JsonpDeserializer<CoordinatorStats> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			CoordinatorStats::setupCoordinatorStatsDeserializer, Builder::build);
+			CoordinatorStats::setupCoordinatorStatsDeserializer);
 
-	protected static void setupCoordinatorStatsDeserializer(DelegatingDeserializer<CoordinatorStats.Builder> op) {
+	protected static void setupCoordinatorStatsDeserializer(ObjectDeserializer<CoordinatorStats.Builder> op) {
 
 		op.add(Builder::executedSearchesTotal, JsonpDeserializer.longDeserializer(), "executed_searches_total");
 		op.add(Builder::nodeId, JsonpDeserializer.stringDeserializer(), "node_id");

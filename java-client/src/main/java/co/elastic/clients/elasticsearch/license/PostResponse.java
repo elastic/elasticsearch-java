@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch.license;
 
 import co.elastic.clients.elasticsearch.license.post.Acknowledgement;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -173,9 +172,9 @@ public class PostResponse implements JsonpSerializable {
 	 * Json deserializer for {@link PostResponse}
 	 */
 	public static final JsonpDeserializer<PostResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			PostResponse::setupPostResponseDeserializer, Builder::build);
+			PostResponse::setupPostResponseDeserializer);
 
-	protected static void setupPostResponseDeserializer(DelegatingDeserializer<PostResponse.Builder> op) {
+	protected static void setupPostResponseDeserializer(ObjectDeserializer<PostResponse.Builder> op) {
 
 		op.add(Builder::acknowledge, Acknowledgement._DESERIALIZER, "acknowledge");
 		op.add(Builder::acknowledged, JsonpDeserializer.booleanDeserializer(), "acknowledged");

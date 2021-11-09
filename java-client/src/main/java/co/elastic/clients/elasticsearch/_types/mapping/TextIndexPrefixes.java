@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.mapping;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -136,9 +135,9 @@ public class TextIndexPrefixes implements JsonpSerializable {
 	 * Json deserializer for {@link TextIndexPrefixes}
 	 */
 	public static final JsonpDeserializer<TextIndexPrefixes> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, TextIndexPrefixes::setupTextIndexPrefixesDeserializer, Builder::build);
+			.lazy(Builder::new, TextIndexPrefixes::setupTextIndexPrefixesDeserializer);
 
-	protected static void setupTextIndexPrefixesDeserializer(DelegatingDeserializer<TextIndexPrefixes.Builder> op) {
+	protected static void setupTextIndexPrefixesDeserializer(ObjectDeserializer<TextIndexPrefixes.Builder> op) {
 
 		op.add(Builder::maxChars, JsonpDeserializer.integerDeserializer(), "max_chars");
 		op.add(Builder::minChars, JsonpDeserializer.integerDeserializer(), "min_chars");

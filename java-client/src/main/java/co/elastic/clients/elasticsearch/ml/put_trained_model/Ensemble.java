@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.ml.put_trained_model;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -286,9 +285,9 @@ public class Ensemble implements JsonpSerializable {
 	 * Json deserializer for {@link Ensemble}
 	 */
 	public static final JsonpDeserializer<Ensemble> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			Ensemble::setupEnsembleDeserializer, Builder::build);
+			Ensemble::setupEnsembleDeserializer);
 
-	protected static void setupEnsembleDeserializer(DelegatingDeserializer<Ensemble.Builder> op) {
+	protected static void setupEnsembleDeserializer(ObjectDeserializer<Ensemble.Builder> op) {
 
 		op.add(Builder::aggregateOutput, AggregateOutput._DESERIALIZER, "aggregate_output");
 		op.add(Builder::classificationLabels,

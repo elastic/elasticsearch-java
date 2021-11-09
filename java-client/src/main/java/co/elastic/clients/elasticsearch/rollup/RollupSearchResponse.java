@@ -26,7 +26,6 @@ package co.elastic.clients.elasticsearch.rollup;
 import co.elastic.clients.elasticsearch._types.ShardStatistics;
 import co.elastic.clients.elasticsearch._types.aggregations.Aggregate;
 import co.elastic.clients.elasticsearch.core.search.HitsMetadata;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.ExternallyTaggedUnion;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -301,7 +300,7 @@ public class RollupSearchResponse<TDocument> implements JsonpSerializable {
 	};
 
 	protected static <TDocument> void setupRollupSearchResponseDeserializer(
-			DelegatingDeserializer<RollupSearchResponse.Builder<TDocument>> op,
+			ObjectDeserializer<RollupSearchResponse.Builder<TDocument>> op,
 			JsonpDeserializer<TDocument> tDocumentDeserializer) {
 
 		op.add(Builder::took, JsonpDeserializer.longDeserializer(), "took");

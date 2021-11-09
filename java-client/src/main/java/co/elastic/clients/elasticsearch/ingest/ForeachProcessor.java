@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.ingest;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -179,9 +178,9 @@ public class ForeachProcessor extends ProcessorBase implements ProcessorVariant 
 	 * Json deserializer for {@link ForeachProcessor}
 	 */
 	public static final JsonpDeserializer<ForeachProcessor> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			ForeachProcessor::setupForeachProcessorDeserializer, Builder::build);
+			ForeachProcessor::setupForeachProcessorDeserializer);
 
-	protected static void setupForeachProcessorDeserializer(DelegatingDeserializer<ForeachProcessor.Builder> op) {
+	protected static void setupForeachProcessorDeserializer(ObjectDeserializer<ForeachProcessor.Builder> op) {
 		ProcessorBase.setupProcessorBaseDeserializer(op);
 		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
 		op.add(Builder::ignoreMissing, JsonpDeserializer.booleanDeserializer(), "ignore_missing");

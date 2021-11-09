@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.async_search;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -107,7 +106,7 @@ public abstract class AsyncSearchDocumentResponseBase<TDocument> extends AsyncSe
 
 	// ---------------------------------------------------------------------------------------------
 	protected static <TDocument, BuilderT extends AbstractBuilder<TDocument, BuilderT>> void setupAsyncSearchDocumentResponseBaseDeserializer(
-			DelegatingDeserializer<BuilderT> op, JsonpDeserializer<TDocument> tDocumentDeserializer) {
+			ObjectDeserializer<BuilderT> op, JsonpDeserializer<TDocument> tDocumentDeserializer) {
 		AsyncSearchResponseBase.setupAsyncSearchResponseBaseDeserializer(op);
 		op.add(AbstractBuilder::response, AsyncSearch.createAsyncSearchDeserializer(tDocumentDeserializer), "response");
 

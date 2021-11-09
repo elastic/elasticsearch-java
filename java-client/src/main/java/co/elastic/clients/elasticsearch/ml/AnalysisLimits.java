@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -198,9 +197,9 @@ public class AnalysisLimits implements JsonpSerializable {
 	 * Json deserializer for {@link AnalysisLimits}
 	 */
 	public static final JsonpDeserializer<AnalysisLimits> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			AnalysisLimits::setupAnalysisLimitsDeserializer, Builder::build);
+			AnalysisLimits::setupAnalysisLimitsDeserializer);
 
-	protected static void setupAnalysisLimitsDeserializer(DelegatingDeserializer<AnalysisLimits.Builder> op) {
+	protected static void setupAnalysisLimitsDeserializer(ObjectDeserializer<AnalysisLimits.Builder> op) {
 
 		op.add(Builder::categorizationExamplesLimit, JsonpDeserializer.longDeserializer(),
 				"categorization_examples_limit");

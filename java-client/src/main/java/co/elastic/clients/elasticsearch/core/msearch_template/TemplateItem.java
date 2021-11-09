@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.core.msearch_template;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -223,9 +222,9 @@ public class TemplateItem implements JsonpSerializable {
 	 * Json deserializer for {@link TemplateItem}
 	 */
 	public static final JsonpDeserializer<TemplateItem> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			TemplateItem::setupTemplateItemDeserializer, Builder::build);
+			TemplateItem::setupTemplateItemDeserializer);
 
-	protected static void setupTemplateItemDeserializer(DelegatingDeserializer<TemplateItem.Builder> op) {
+	protected static void setupTemplateItemDeserializer(ObjectDeserializer<TemplateItem.Builder> op) {
 
 		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "id");
 		op.add(Builder::index, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "index");

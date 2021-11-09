@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -667,9 +666,9 @@ public class AnalysisConfig implements JsonpSerializable {
 	 * Json deserializer for {@link AnalysisConfig}
 	 */
 	public static final JsonpDeserializer<AnalysisConfig> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			AnalysisConfig::setupAnalysisConfigDeserializer, Builder::build);
+			AnalysisConfig::setupAnalysisConfigDeserializer);
 
-	protected static void setupAnalysisConfigDeserializer(DelegatingDeserializer<AnalysisConfig.Builder> op) {
+	protected static void setupAnalysisConfigDeserializer(ObjectDeserializer<AnalysisConfig.Builder> op) {
 
 		op.add(Builder::bucketSpan, JsonpDeserializer.stringDeserializer(), "bucket_span");
 		op.add(Builder::categorizationAnalyzer, CategorizationAnalyzer._DESERIALIZER, "categorization_analyzer");

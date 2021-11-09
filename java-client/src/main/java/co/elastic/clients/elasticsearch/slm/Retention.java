@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.slm;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -185,9 +184,9 @@ public class Retention implements JsonpSerializable {
 	 * Json deserializer for {@link Retention}
 	 */
 	public static final JsonpDeserializer<Retention> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			Retention::setupRetentionDeserializer, Builder::build);
+			Retention::setupRetentionDeserializer);
 
-	protected static void setupRetentionDeserializer(DelegatingDeserializer<Retention.Builder> op) {
+	protected static void setupRetentionDeserializer(ObjectDeserializer<Retention.Builder> op) {
 
 		op.add(Builder::expireAfter, JsonpDeserializer.stringDeserializer(), "expire_after");
 		op.add(Builder::maxCount, JsonpDeserializer.integerDeserializer(), "max_count");

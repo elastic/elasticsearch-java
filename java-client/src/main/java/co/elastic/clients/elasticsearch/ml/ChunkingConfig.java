@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -162,9 +161,9 @@ public class ChunkingConfig implements JsonpSerializable {
 	 * Json deserializer for {@link ChunkingConfig}
 	 */
 	public static final JsonpDeserializer<ChunkingConfig> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			ChunkingConfig::setupChunkingConfigDeserializer, Builder::build);
+			ChunkingConfig::setupChunkingConfigDeserializer);
 
-	protected static void setupChunkingConfigDeserializer(DelegatingDeserializer<ChunkingConfig.Builder> op) {
+	protected static void setupChunkingConfigDeserializer(ObjectDeserializer<ChunkingConfig.Builder> op) {
 
 		op.add(Builder::mode, ChunkingMode._DESERIALIZER, "mode");
 		op.add(Builder::timeSpan, JsonpDeserializer.stringDeserializer(), "time_span");

@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.cat.ml_data_frame_analytics;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -603,10 +602,10 @@ public class DataFrameAnalyticsRecord implements JsonpSerializable {
 	 * Json deserializer for {@link DataFrameAnalyticsRecord}
 	 */
 	public static final JsonpDeserializer<DataFrameAnalyticsRecord> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, DataFrameAnalyticsRecord::setupDataFrameAnalyticsRecordDeserializer, Builder::build);
+			.lazy(Builder::new, DataFrameAnalyticsRecord::setupDataFrameAnalyticsRecordDeserializer);
 
 	protected static void setupDataFrameAnalyticsRecordDeserializer(
-			DelegatingDeserializer<DataFrameAnalyticsRecord.Builder> op) {
+			ObjectDeserializer<DataFrameAnalyticsRecord.Builder> op) {
 
 		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "id");
 		op.add(Builder::type, JsonpDeserializer.stringDeserializer(), "type", "t");

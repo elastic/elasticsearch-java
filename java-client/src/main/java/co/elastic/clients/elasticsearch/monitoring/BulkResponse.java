@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch.monitoring;
 
 import co.elastic.clients.elasticsearch._types.ErrorCause;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -205,9 +204,9 @@ public class BulkResponse implements JsonpSerializable {
 	 * Json deserializer for {@link BulkResponse}
 	 */
 	public static final JsonpDeserializer<BulkResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			BulkResponse::setupBulkResponseDeserializer, Builder::build);
+			BulkResponse::setupBulkResponseDeserializer);
 
-	protected static void setupBulkResponseDeserializer(DelegatingDeserializer<BulkResponse.Builder> op) {
+	protected static void setupBulkResponseDeserializer(ObjectDeserializer<BulkResponse.Builder> op) {
 
 		op.add(Builder::error, ErrorCause._DESERIALIZER, "error");
 		op.add(Builder::errors, JsonpDeserializer.booleanDeserializer(), "errors");

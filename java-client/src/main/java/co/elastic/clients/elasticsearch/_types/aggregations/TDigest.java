@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -119,9 +118,9 @@ public class TDigest implements JsonpSerializable {
 	 * Json deserializer for {@link TDigest}
 	 */
 	public static final JsonpDeserializer<TDigest> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			TDigest::setupTDigestDeserializer, Builder::build);
+			TDigest::setupTDigestDeserializer);
 
-	protected static void setupTDigestDeserializer(DelegatingDeserializer<TDigest.Builder> op) {
+	protected static void setupTDigestDeserializer(ObjectDeserializer<TDigest.Builder> op) {
 
 		op.add(Builder::compression, JsonpDeserializer.integerDeserializer(), "compression");
 

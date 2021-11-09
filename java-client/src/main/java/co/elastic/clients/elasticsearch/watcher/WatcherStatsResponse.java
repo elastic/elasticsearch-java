@@ -25,7 +25,6 @@ package co.elastic.clients.elasticsearch.watcher;
 
 import co.elastic.clients.elasticsearch._types.NodeStatistics;
 import co.elastic.clients.elasticsearch.watcher.stats.WatcherNodeStats;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -224,10 +223,9 @@ public class WatcherStatsResponse implements JsonpSerializable {
 	 * Json deserializer for {@link WatcherStatsResponse}
 	 */
 	public static final JsonpDeserializer<WatcherStatsResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, WatcherStatsResponse::setupWatcherStatsResponseDeserializer, Builder::build);
+			.lazy(Builder::new, WatcherStatsResponse::setupWatcherStatsResponseDeserializer);
 
-	protected static void setupWatcherStatsResponseDeserializer(
-			DelegatingDeserializer<WatcherStatsResponse.Builder> op) {
+	protected static void setupWatcherStatsResponseDeserializer(ObjectDeserializer<WatcherStatsResponse.Builder> op) {
 
 		op.add(Builder::nodeStats, NodeStatistics._DESERIALIZER, "_nodes");
 		op.add(Builder::clusterName, JsonpDeserializer.stringDeserializer(), "cluster_name");

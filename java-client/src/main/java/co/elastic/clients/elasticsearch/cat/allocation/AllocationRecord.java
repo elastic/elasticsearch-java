@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.cat.allocation;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -379,9 +378,9 @@ public class AllocationRecord implements JsonpSerializable {
 	 * Json deserializer for {@link AllocationRecord}
 	 */
 	public static final JsonpDeserializer<AllocationRecord> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			AllocationRecord::setupAllocationRecordDeserializer, Builder::build);
+			AllocationRecord::setupAllocationRecordDeserializer);
 
-	protected static void setupAllocationRecordDeserializer(DelegatingDeserializer<AllocationRecord.Builder> op) {
+	protected static void setupAllocationRecordDeserializer(ObjectDeserializer<AllocationRecord.Builder> op) {
 
 		op.add(Builder::shards, JsonpDeserializer.stringDeserializer(), "shards", "s");
 		op.add(Builder::diskIndices, JsonpDeserializer.stringDeserializer(), "disk.indices", "di", "diskIndices");

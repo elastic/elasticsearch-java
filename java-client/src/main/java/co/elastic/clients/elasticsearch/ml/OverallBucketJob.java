@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -138,9 +137,9 @@ public class OverallBucketJob implements JsonpSerializable {
 	 * Json deserializer for {@link OverallBucketJob}
 	 */
 	public static final JsonpDeserializer<OverallBucketJob> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			OverallBucketJob::setupOverallBucketJobDeserializer, Builder::build);
+			OverallBucketJob::setupOverallBucketJobDeserializer);
 
-	protected static void setupOverallBucketJobDeserializer(DelegatingDeserializer<OverallBucketJob.Builder> op) {
+	protected static void setupOverallBucketJobDeserializer(ObjectDeserializer<OverallBucketJob.Builder> op) {
 
 		op.add(Builder::jobId, JsonpDeserializer.stringDeserializer(), "job_id");
 		op.add(Builder::maxAnomalyScore, JsonpDeserializer.doubleDeserializer(), "max_anomaly_score");

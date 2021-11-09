@@ -26,7 +26,6 @@ package co.elastic.clients.elasticsearch.cat.ml_jobs;
 import co.elastic.clients.elasticsearch.ml.CategorizationStatus;
 import co.elastic.clients.elasticsearch.ml.JobState;
 import co.elastic.clients.elasticsearch.ml.MemoryStatus;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -2011,9 +2010,9 @@ public class JobsRecord implements JsonpSerializable {
 	 * Json deserializer for {@link JobsRecord}
 	 */
 	public static final JsonpDeserializer<JobsRecord> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			JobsRecord::setupJobsRecordDeserializer, Builder::build);
+			JobsRecord::setupJobsRecordDeserializer);
 
-	protected static void setupJobsRecordDeserializer(DelegatingDeserializer<JobsRecord.Builder> op) {
+	protected static void setupJobsRecordDeserializer(ObjectDeserializer<JobsRecord.Builder> op) {
 
 		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "id");
 		op.add(Builder::state, JobState._DESERIALIZER, "state", "s");

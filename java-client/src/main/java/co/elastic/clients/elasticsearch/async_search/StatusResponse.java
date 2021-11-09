@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch.async_search;
 
 import co.elastic.clients.elasticsearch._types.ShardStatistics;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -168,7 +167,7 @@ public class StatusResponse<TDocument> extends AsyncSearchResponseBase {
 	};
 
 	protected static <TDocument> void setupStatusResponseDeserializer(
-			DelegatingDeserializer<StatusResponse.Builder<TDocument>> op,
+			ObjectDeserializer<StatusResponse.Builder<TDocument>> op,
 			JsonpDeserializer<TDocument> tDocumentDeserializer) {
 		AsyncSearchResponseBase.setupAsyncSearchResponseBaseDeserializer(op);
 		op.add(Builder::shards, ShardStatistics._DESERIALIZER, "_shards");

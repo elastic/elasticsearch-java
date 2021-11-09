@@ -25,7 +25,6 @@ package co.elastic.clients.elasticsearch.ccr;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -674,11 +673,11 @@ public class PutAutoFollowPatternRequest extends RequestBase implements JsonpSer
 	/**
 	 * Json deserializer for {@link PutAutoFollowPatternRequest}
 	 */
-	public static final JsonpDeserializer<PutAutoFollowPatternRequest> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
-			Builder::new, PutAutoFollowPatternRequest::setupPutAutoFollowPatternRequestDeserializer, Builder::build);
+	public static final JsonpDeserializer<PutAutoFollowPatternRequest> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, PutAutoFollowPatternRequest::setupPutAutoFollowPatternRequestDeserializer);
 
 	protected static void setupPutAutoFollowPatternRequestDeserializer(
-			DelegatingDeserializer<PutAutoFollowPatternRequest.Builder> op) {
+			ObjectDeserializer<PutAutoFollowPatternRequest.Builder> op) {
 
 		op.add(Builder::followIndexPattern, JsonpDeserializer.stringDeserializer(), "follow_index_pattern");
 		op.add(Builder::leaderIndexExclusionPatterns,

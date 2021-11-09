@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.indices.resolve_index;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -177,11 +176,11 @@ public class ResolveIndexDataStreamsItem implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link ResolveIndexDataStreamsItem}
 	 */
-	public static final JsonpDeserializer<ResolveIndexDataStreamsItem> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
-			Builder::new, ResolveIndexDataStreamsItem::setupResolveIndexDataStreamsItemDeserializer, Builder::build);
+	public static final JsonpDeserializer<ResolveIndexDataStreamsItem> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, ResolveIndexDataStreamsItem::setupResolveIndexDataStreamsItemDeserializer);
 
 	protected static void setupResolveIndexDataStreamsItemDeserializer(
-			DelegatingDeserializer<ResolveIndexDataStreamsItem.Builder> op) {
+			ObjectDeserializer<ResolveIndexDataStreamsItem.Builder> op) {
 
 		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
 		op.add(Builder::timestampField, JsonpDeserializer.stringDeserializer(), "timestamp_field");

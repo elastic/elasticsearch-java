@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.graph;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -183,9 +182,9 @@ public class Connection implements JsonpSerializable {
 	 * Json deserializer for {@link Connection}
 	 */
 	public static final JsonpDeserializer<Connection> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			Connection::setupConnectionDeserializer, Builder::build);
+			Connection::setupConnectionDeserializer);
 
-	protected static void setupConnectionDeserializer(DelegatingDeserializer<Connection.Builder> op) {
+	protected static void setupConnectionDeserializer(ObjectDeserializer<Connection.Builder> op) {
 
 		op.add(Builder::docCount, JsonpDeserializer.longDeserializer(), "doc_count");
 		op.add(Builder::source, JsonpDeserializer.longDeserializer(), "source");

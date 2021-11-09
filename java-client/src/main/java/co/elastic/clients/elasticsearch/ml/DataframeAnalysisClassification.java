@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -171,11 +170,10 @@ public class DataframeAnalysisClassification extends DataframeAnalysisBase imple
 	 * Json deserializer for {@link DataframeAnalysisClassification}
 	 */
 	public static final JsonpDeserializer<DataframeAnalysisClassification> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, DataframeAnalysisClassification::setupDataframeAnalysisClassificationDeserializer,
-					Builder::build);
+			.lazy(Builder::new, DataframeAnalysisClassification::setupDataframeAnalysisClassificationDeserializer);
 
 	protected static void setupDataframeAnalysisClassificationDeserializer(
-			DelegatingDeserializer<DataframeAnalysisClassification.Builder> op) {
+			ObjectDeserializer<DataframeAnalysisClassification.Builder> op) {
 		DataframeAnalysisBase.setupDataframeAnalysisBaseDeserializer(op);
 		op.add(Builder::classAssignmentObjective, JsonpDeserializer.stringDeserializer(), "class_assignment_objective");
 		op.add(Builder::numTopClasses, JsonpDeserializer.integerDeserializer(), "num_top_classes");

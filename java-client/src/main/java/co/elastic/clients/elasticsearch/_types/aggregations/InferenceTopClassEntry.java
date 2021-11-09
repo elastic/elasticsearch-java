@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -161,10 +160,10 @@ public class InferenceTopClassEntry implements JsonpSerializable {
 	 * Json deserializer for {@link InferenceTopClassEntry}
 	 */
 	public static final JsonpDeserializer<InferenceTopClassEntry> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, InferenceTopClassEntry::setupInferenceTopClassEntryDeserializer, Builder::build);
+			.lazy(Builder::new, InferenceTopClassEntry::setupInferenceTopClassEntryDeserializer);
 
 	protected static void setupInferenceTopClassEntryDeserializer(
-			DelegatingDeserializer<InferenceTopClassEntry.Builder> op) {
+			ObjectDeserializer<InferenceTopClassEntry.Builder> op) {
 
 		op.add(Builder::className, JsonpDeserializer.stringDeserializer(), "class_name");
 		op.add(Builder::classProbability, JsonpDeserializer.doubleDeserializer(), "class_probability");

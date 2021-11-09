@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -229,7 +228,7 @@ public class Intervals implements TaggedUnion<Object>, JsonpSerializable {
 
 	}
 
-	protected static void setupIntervalsDeserializer(DelegatingDeserializer<Builder> op) {
+	protected static void setupIntervalsDeserializer(ObjectDeserializer<Builder> op) {
 
 		op.add(Builder::allOf, IntervalsAllOf._DESERIALIZER, "all_of");
 		op.add(Builder::anyOf, IntervalsAnyOf._DESERIALIZER, "any_of");

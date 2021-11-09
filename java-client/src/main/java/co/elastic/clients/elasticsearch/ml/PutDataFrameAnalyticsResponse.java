@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -381,12 +380,11 @@ public class PutDataFrameAnalyticsResponse implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link PutDataFrameAnalyticsResponse}
 	 */
-	public static final JsonpDeserializer<PutDataFrameAnalyticsResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
-			Builder::new, PutDataFrameAnalyticsResponse::setupPutDataFrameAnalyticsResponseDeserializer,
-			Builder::build);
+	public static final JsonpDeserializer<PutDataFrameAnalyticsResponse> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, PutDataFrameAnalyticsResponse::setupPutDataFrameAnalyticsResponseDeserializer);
 
 	protected static void setupPutDataFrameAnalyticsResponseDeserializer(
-			DelegatingDeserializer<PutDataFrameAnalyticsResponse.Builder> op) {
+			ObjectDeserializer<PutDataFrameAnalyticsResponse.Builder> op) {
 
 		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "id");
 		op.add(Builder::createTime, JsonpDeserializer.longDeserializer(), "create_time");

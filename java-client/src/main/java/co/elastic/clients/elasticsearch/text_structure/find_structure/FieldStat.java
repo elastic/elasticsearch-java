@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.text_structure.find_structure;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -360,9 +359,9 @@ public class FieldStat implements JsonpSerializable {
 	 * Json deserializer for {@link FieldStat}
 	 */
 	public static final JsonpDeserializer<FieldStat> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			FieldStat::setupFieldStatDeserializer, Builder::build);
+			FieldStat::setupFieldStatDeserializer);
 
-	protected static void setupFieldStatDeserializer(DelegatingDeserializer<FieldStat.Builder> op) {
+	protected static void setupFieldStatDeserializer(ObjectDeserializer<FieldStat.Builder> op) {
 
 		op.add(Builder::count, JsonpDeserializer.integerDeserializer(), "count");
 		op.add(Builder::cardinality, JsonpDeserializer.integerDeserializer(), "cardinality");

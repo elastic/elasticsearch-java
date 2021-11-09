@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.xpack.usage;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -244,9 +243,9 @@ public class MachineLearning extends Base {
 	 * Json deserializer for {@link MachineLearning}
 	 */
 	public static final JsonpDeserializer<MachineLearning> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			MachineLearning::setupMachineLearningDeserializer, Builder::build);
+			MachineLearning::setupMachineLearningDeserializer);
 
-	protected static void setupMachineLearningDeserializer(DelegatingDeserializer<MachineLearning.Builder> op) {
+	protected static void setupMachineLearningDeserializer(ObjectDeserializer<MachineLearning.Builder> op) {
 		Base.setupBaseDeserializer(op);
 		op.add(Builder::datafeeds, JsonpDeserializer.stringMapDeserializer(Datafeed._DESERIALIZER), "datafeeds");
 		op.add(Builder::jobs, JsonpDeserializer.jsonValueDeserializer(), "jobs");

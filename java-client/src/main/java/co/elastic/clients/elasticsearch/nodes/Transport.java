@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.nodes;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -254,9 +253,9 @@ public class Transport implements JsonpSerializable {
 	 * Json deserializer for {@link Transport}
 	 */
 	public static final JsonpDeserializer<Transport> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			Transport::setupTransportDeserializer, Builder::build);
+			Transport::setupTransportDeserializer);
 
-	protected static void setupTransportDeserializer(DelegatingDeserializer<Transport.Builder> op) {
+	protected static void setupTransportDeserializer(ObjectDeserializer<Transport.Builder> op) {
 
 		op.add(Builder::rxCount, JsonpDeserializer.longDeserializer(), "rx_count");
 		op.add(Builder::rxSize, JsonpDeserializer.stringDeserializer(), "rx_size");

@@ -25,7 +25,6 @@ package co.elastic.clients.elasticsearch._types.aggregations;
 
 import co.elastic.clients.elasticsearch.transform.PivotGroupBy;
 import co.elastic.clients.elasticsearch.transform.PivotGroupByVariant;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -434,10 +433,9 @@ public class HistogramAggregation extends BucketAggregationBase implements Aggre
 	 * Json deserializer for {@link HistogramAggregation}
 	 */
 	public static final JsonpDeserializer<HistogramAggregation> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, HistogramAggregation::setupHistogramAggregationDeserializer, Builder::build);
+			.lazy(Builder::new, HistogramAggregation::setupHistogramAggregationDeserializer);
 
-	protected static void setupHistogramAggregationDeserializer(
-			DelegatingDeserializer<HistogramAggregation.Builder> op) {
+	protected static void setupHistogramAggregationDeserializer(ObjectDeserializer<HistogramAggregation.Builder> op) {
 		BucketAggregationBase.setupBucketAggregationBaseDeserializer(op);
 		op.add(Builder::extendedBounds,
 				ExtendedBounds.createExtendedBoundsDeserializer(JsonpDeserializer.doubleDeserializer()),

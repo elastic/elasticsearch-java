@@ -25,7 +25,6 @@ package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -231,9 +230,9 @@ public class ForecastRequest extends RequestBase implements JsonpSerializable {
 	 * Json deserializer for {@link ForecastRequest}
 	 */
 	public static final JsonpDeserializer<ForecastRequest> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			ForecastRequest::setupForecastRequestDeserializer, Builder::build);
+			ForecastRequest::setupForecastRequestDeserializer);
 
-	protected static void setupForecastRequestDeserializer(DelegatingDeserializer<ForecastRequest.Builder> op) {
+	protected static void setupForecastRequestDeserializer(ObjectDeserializer<ForecastRequest.Builder> op) {
 
 		op.add(Builder::duration, JsonpDeserializer.stringDeserializer(), "duration");
 		op.add(Builder::expiresIn, JsonpDeserializer.stringDeserializer(), "expires_in");

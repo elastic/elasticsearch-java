@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
 import co.elastic.clients.elasticsearch._types.ShapeRelation;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -211,9 +210,9 @@ public class ShapeFieldQuery implements JsonpSerializable {
 	 * Json deserializer for {@link ShapeFieldQuery}
 	 */
 	public static final JsonpDeserializer<ShapeFieldQuery> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			ShapeFieldQuery::setupShapeFieldQueryDeserializer, Builder::build);
+			ShapeFieldQuery::setupShapeFieldQueryDeserializer);
 
-	protected static void setupShapeFieldQueryDeserializer(DelegatingDeserializer<ShapeFieldQuery.Builder> op) {
+	protected static void setupShapeFieldQueryDeserializer(ObjectDeserializer<ShapeFieldQuery.Builder> op) {
 
 		op.add(Builder::ignoreUnmapped, JsonpDeserializer.booleanDeserializer(), "ignore_unmapped");
 		op.add(Builder::indexedShape, FieldLookup._DESERIALIZER, "indexed_shape");

@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.cat.fielddata;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -283,9 +282,9 @@ public class FielddataRecord implements JsonpSerializable {
 	 * Json deserializer for {@link FielddataRecord}
 	 */
 	public static final JsonpDeserializer<FielddataRecord> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			FielddataRecord::setupFielddataRecordDeserializer, Builder::build);
+			FielddataRecord::setupFielddataRecordDeserializer);
 
-	protected static void setupFielddataRecordDeserializer(DelegatingDeserializer<FielddataRecord.Builder> op) {
+	protected static void setupFielddataRecordDeserializer(ObjectDeserializer<FielddataRecord.Builder> op) {
 
 		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "id");
 		op.add(Builder::host, JsonpDeserializer.stringDeserializer(), "host", "h");

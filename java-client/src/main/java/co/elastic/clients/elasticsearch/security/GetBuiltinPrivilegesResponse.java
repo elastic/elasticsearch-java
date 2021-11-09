@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.security;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -169,11 +168,11 @@ public class GetBuiltinPrivilegesResponse implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link GetBuiltinPrivilegesResponse}
 	 */
-	public static final JsonpDeserializer<GetBuiltinPrivilegesResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
-			Builder::new, GetBuiltinPrivilegesResponse::setupGetBuiltinPrivilegesResponseDeserializer, Builder::build);
+	public static final JsonpDeserializer<GetBuiltinPrivilegesResponse> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, GetBuiltinPrivilegesResponse::setupGetBuiltinPrivilegesResponseDeserializer);
 
 	protected static void setupGetBuiltinPrivilegesResponseDeserializer(
-			DelegatingDeserializer<GetBuiltinPrivilegesResponse.Builder> op) {
+			ObjectDeserializer<GetBuiltinPrivilegesResponse.Builder> op) {
 
 		op.add(Builder::cluster, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"cluster");

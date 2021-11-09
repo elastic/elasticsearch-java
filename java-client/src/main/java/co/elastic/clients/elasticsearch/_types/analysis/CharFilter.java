@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.analysis;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -206,7 +205,7 @@ public class CharFilter implements TaggedUnion<CharFilterVariant>, JsonpSerializ
 
 	}
 
-	protected static void setupCharFilterDeserializer(DelegatingDeserializer<Builder> op) {
+	protected static void setupCharFilterDeserializer(ObjectDeserializer<Builder> op) {
 
 		op.add(Builder::htmlStrip, HtmlStripCharFilter._DESERIALIZER, "html_strip");
 		op.add(Builder::icuNormalizer, IcuNormalizationCharFilter._DESERIALIZER, "icu_normalizer");

@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.nodes.info;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -114,9 +113,9 @@ public class NodeInfoBootstrap implements JsonpSerializable {
 	 * Json deserializer for {@link NodeInfoBootstrap}
 	 */
 	public static final JsonpDeserializer<NodeInfoBootstrap> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, NodeInfoBootstrap::setupNodeInfoBootstrapDeserializer, Builder::build);
+			.lazy(Builder::new, NodeInfoBootstrap::setupNodeInfoBootstrapDeserializer);
 
-	protected static void setupNodeInfoBootstrapDeserializer(DelegatingDeserializer<NodeInfoBootstrap.Builder> op) {
+	protected static void setupNodeInfoBootstrapDeserializer(ObjectDeserializer<NodeInfoBootstrap.Builder> op) {
 
 		op.add(Builder::memoryLock, JsonpDeserializer.stringDeserializer(), "memory_lock");
 

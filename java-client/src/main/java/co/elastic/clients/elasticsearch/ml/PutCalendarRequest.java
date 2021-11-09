@@ -25,7 +25,6 @@ package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -153,9 +152,9 @@ public class PutCalendarRequest extends RequestBase implements JsonpSerializable
 	 * Json deserializer for {@link PutCalendarRequest}
 	 */
 	public static final JsonpDeserializer<PutCalendarRequest> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, PutCalendarRequest::setupPutCalendarRequestDeserializer, Builder::build);
+			.lazy(Builder::new, PutCalendarRequest::setupPutCalendarRequestDeserializer);
 
-	protected static void setupPutCalendarRequestDeserializer(DelegatingDeserializer<PutCalendarRequest.Builder> op) {
+	protected static void setupPutCalendarRequestDeserializer(ObjectDeserializer<PutCalendarRequest.Builder> op) {
 
 		op.add(Builder::description, JsonpDeserializer.stringDeserializer(), "description");
 

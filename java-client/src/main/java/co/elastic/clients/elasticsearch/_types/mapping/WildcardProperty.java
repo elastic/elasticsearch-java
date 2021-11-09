@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.mapping;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -126,9 +125,9 @@ public class WildcardProperty extends DocValuesPropertyBase implements PropertyV
 	 * Json deserializer for {@link WildcardProperty}
 	 */
 	public static final JsonpDeserializer<WildcardProperty> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			WildcardProperty::setupWildcardPropertyDeserializer, Builder::build);
+			WildcardProperty::setupWildcardPropertyDeserializer);
 
-	protected static void setupWildcardPropertyDeserializer(DelegatingDeserializer<WildcardProperty.Builder> op) {
+	protected static void setupWildcardPropertyDeserializer(ObjectDeserializer<WildcardProperty.Builder> op) {
 		DocValuesPropertyBase.setupDocValuesPropertyBaseDeserializer(op);
 		op.add(Builder::nullValue, JsonpDeserializer.stringDeserializer(), "null_value");
 

@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.mapping;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -95,9 +94,9 @@ public class PercolatorProperty extends PropertyBase implements PropertyVariant 
 	 * Json deserializer for {@link PercolatorProperty}
 	 */
 	public static final JsonpDeserializer<PercolatorProperty> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, PercolatorProperty::setupPercolatorPropertyDeserializer, Builder::build);
+			.lazy(Builder::new, PercolatorProperty::setupPercolatorPropertyDeserializer);
 
-	protected static void setupPercolatorPropertyDeserializer(DelegatingDeserializer<PercolatorProperty.Builder> op) {
+	protected static void setupPercolatorPropertyDeserializer(ObjectDeserializer<PercolatorProperty.Builder> op) {
 		PropertyBase.setupPropertyBaseDeserializer(op);
 
 		op.ignore("type");

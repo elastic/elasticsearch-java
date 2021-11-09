@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.ingest;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -202,9 +201,9 @@ public class PipelineConfig implements JsonpSerializable {
 	 * Json deserializer for {@link PipelineConfig}
 	 */
 	public static final JsonpDeserializer<PipelineConfig> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			PipelineConfig::setupPipelineConfigDeserializer, Builder::build);
+			PipelineConfig::setupPipelineConfigDeserializer);
 
-	protected static void setupPipelineConfigDeserializer(DelegatingDeserializer<PipelineConfig.Builder> op) {
+	protected static void setupPipelineConfigDeserializer(ObjectDeserializer<PipelineConfig.Builder> op) {
 
 		op.add(Builder::description, JsonpDeserializer.stringDeserializer(), "description");
 		op.add(Builder::version, JsonpDeserializer.longDeserializer(), "version");

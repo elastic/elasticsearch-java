@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.security;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -232,7 +231,7 @@ public class FieldRule implements TaggedUnion<Object>, RoleMappingRuleVariant, J
 
 	}
 
-	protected static void setupFieldRuleDeserializer(DelegatingDeserializer<Builder> op) {
+	protected static void setupFieldRuleDeserializer(ObjectDeserializer<Builder> op) {
 
 		op.add(Builder::username, JsonpDeserializer.stringDeserializer(), "username");
 		op.add(Builder::dn, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "dn");

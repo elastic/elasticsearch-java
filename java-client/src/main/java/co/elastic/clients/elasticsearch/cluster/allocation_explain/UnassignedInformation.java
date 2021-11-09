@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.cluster.allocation_explain;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -279,10 +278,9 @@ public class UnassignedInformation implements JsonpSerializable {
 	 * Json deserializer for {@link UnassignedInformation}
 	 */
 	public static final JsonpDeserializer<UnassignedInformation> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, UnassignedInformation::setupUnassignedInformationDeserializer, Builder::build);
+			.lazy(Builder::new, UnassignedInformation::setupUnassignedInformationDeserializer);
 
-	protected static void setupUnassignedInformationDeserializer(
-			DelegatingDeserializer<UnassignedInformation.Builder> op) {
+	protected static void setupUnassignedInformationDeserializer(ObjectDeserializer<UnassignedInformation.Builder> op) {
 
 		op.add(Builder::at, JsonpDeserializer.stringDeserializer(), "at");
 		op.add(Builder::lastAllocationStatus, JsonpDeserializer.stringDeserializer(), "last_allocation_status");

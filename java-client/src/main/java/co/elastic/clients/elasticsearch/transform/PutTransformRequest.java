@@ -27,7 +27,6 @@ import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch.core.reindex.Destination;
 import co.elastic.clients.elasticsearch.core.reindex.Source;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -514,9 +513,9 @@ public class PutTransformRequest extends RequestBase implements JsonpSerializabl
 	 * Json deserializer for {@link PutTransformRequest}
 	 */
 	public static final JsonpDeserializer<PutTransformRequest> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, PutTransformRequest::setupPutTransformRequestDeserializer, Builder::build);
+			.lazy(Builder::new, PutTransformRequest::setupPutTransformRequestDeserializer);
 
-	protected static void setupPutTransformRequestDeserializer(DelegatingDeserializer<PutTransformRequest.Builder> op) {
+	protected static void setupPutTransformRequestDeserializer(ObjectDeserializer<PutTransformRequest.Builder> op) {
 
 		op.add(Builder::description, JsonpDeserializer.stringDeserializer(), "description");
 		op.add(Builder::dest, Destination._DESERIALIZER, "dest");

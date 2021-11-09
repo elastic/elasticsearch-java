@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -114,9 +113,9 @@ public class GeoLineSort implements JsonpSerializable {
 	 * Json deserializer for {@link GeoLineSort}
 	 */
 	public static final JsonpDeserializer<GeoLineSort> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			GeoLineSort::setupGeoLineSortDeserializer, Builder::build);
+			GeoLineSort::setupGeoLineSortDeserializer);
 
-	protected static void setupGeoLineSortDeserializer(DelegatingDeserializer<GeoLineSort.Builder> op) {
+	protected static void setupGeoLineSortDeserializer(ObjectDeserializer<GeoLineSort.Builder> op) {
 
 		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
 

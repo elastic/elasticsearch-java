@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -268,9 +267,9 @@ public class DetectionRule implements JsonpSerializable {
 	 * Json deserializer for {@link DetectionRule}
 	 */
 	public static final JsonpDeserializer<DetectionRule> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			DetectionRule::setupDetectionRuleDeserializer, Builder::build);
+			DetectionRule::setupDetectionRuleDeserializer);
 
-	protected static void setupDetectionRuleDeserializer(DelegatingDeserializer<DetectionRule.Builder> op) {
+	protected static void setupDetectionRuleDeserializer(ObjectDeserializer<DetectionRule.Builder> op) {
 
 		op.add(Builder::actions, JsonpDeserializer.arrayDeserializer(RuleAction._DESERIALIZER), "actions");
 		op.add(Builder::conditions, JsonpDeserializer.arrayDeserializer(RuleCondition._DESERIALIZER), "conditions");

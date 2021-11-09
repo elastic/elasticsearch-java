@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.mapping;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -357,9 +356,9 @@ public class KeywordProperty extends DocValuesPropertyBase implements PropertyVa
 	 * Json deserializer for {@link KeywordProperty}
 	 */
 	public static final JsonpDeserializer<KeywordProperty> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			KeywordProperty::setupKeywordPropertyDeserializer, Builder::build);
+			KeywordProperty::setupKeywordPropertyDeserializer);
 
-	protected static void setupKeywordPropertyDeserializer(DelegatingDeserializer<KeywordProperty.Builder> op) {
+	protected static void setupKeywordPropertyDeserializer(ObjectDeserializer<KeywordProperty.Builder> op) {
 		DocValuesPropertyBase.setupDocValuesPropertyBaseDeserializer(op);
 		op.add(Builder::boost, JsonpDeserializer.doubleDeserializer(), "boost");
 		op.add(Builder::eagerGlobalOrdinals, JsonpDeserializer.booleanDeserializer(), "eager_global_ordinals");

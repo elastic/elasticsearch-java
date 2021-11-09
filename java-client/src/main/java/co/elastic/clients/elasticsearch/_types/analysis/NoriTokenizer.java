@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.analysis;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -222,9 +221,9 @@ public class NoriTokenizer extends TokenizerBase implements TokenizerVariant {
 	 * Json deserializer for {@link NoriTokenizer}
 	 */
 	public static final JsonpDeserializer<NoriTokenizer> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			NoriTokenizer::setupNoriTokenizerDeserializer, Builder::build);
+			NoriTokenizer::setupNoriTokenizerDeserializer);
 
-	protected static void setupNoriTokenizerDeserializer(DelegatingDeserializer<NoriTokenizer.Builder> op) {
+	protected static void setupNoriTokenizerDeserializer(ObjectDeserializer<NoriTokenizer.Builder> op) {
 		TokenizerBase.setupTokenizerBaseDeserializer(op);
 		op.add(Builder::decompoundMode, NoriDecompoundMode._DESERIALIZER, "decompound_mode");
 		op.add(Builder::discardPunctuation, JsonpDeserializer.booleanDeserializer(), "discard_punctuation");

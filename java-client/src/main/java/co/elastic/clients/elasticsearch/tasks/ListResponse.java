@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch.tasks;
 
 import co.elastic.clients.elasticsearch._types.ErrorCause;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -243,10 +242,10 @@ public class ListResponse implements JsonpSerializable {
 	 * Json deserializer for {@link ListResponse}
 	 */
 	public static final JsonpDeserializer<ListResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			ListResponse::setupListResponseDeserializer, Builder::build);
+			ListResponse::setupListResponseDeserializer);
 
 	protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupListResponseDeserializer(
-			DelegatingDeserializer<BuilderT> op) {
+			ObjectDeserializer<BuilderT> op) {
 
 		op.add(AbstractBuilder::nodeFailures, JsonpDeserializer.arrayDeserializer(ErrorCause._DESERIALIZER),
 				"node_failures");

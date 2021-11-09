@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.mapping;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -144,7 +143,7 @@ public abstract class StandardNumberProperty extends NumberPropertyBase {
 
 	// ---------------------------------------------------------------------------------------------
 	protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupStandardNumberPropertyDeserializer(
-			DelegatingDeserializer<BuilderT> op) {
+			ObjectDeserializer<BuilderT> op) {
 		NumberPropertyBase.setupNumberPropertyBaseDeserializer(op);
 		op.add(AbstractBuilder::coerce, JsonpDeserializer.booleanDeserializer(), "coerce");
 		op.add(AbstractBuilder::script, JsonpDeserializer.jsonValueDeserializer(), "script");

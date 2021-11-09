@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.graph;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -207,9 +206,9 @@ public class ExploreControls implements JsonpSerializable {
 	 * Json deserializer for {@link ExploreControls}
 	 */
 	public static final JsonpDeserializer<ExploreControls> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			ExploreControls::setupExploreControlsDeserializer, Builder::build);
+			ExploreControls::setupExploreControlsDeserializer);
 
-	protected static void setupExploreControlsDeserializer(DelegatingDeserializer<ExploreControls.Builder> op) {
+	protected static void setupExploreControlsDeserializer(ObjectDeserializer<ExploreControls.Builder> op) {
 
 		op.add(Builder::sampleDiversity, SampleDiversity._DESERIALIZER, "sample_diversity");
 		op.add(Builder::sampleSize, JsonpDeserializer.integerDeserializer(), "sample_size");

@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.mapping;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -295,9 +294,9 @@ public class CompletionProperty extends DocValuesPropertyBase implements Propert
 	 * Json deserializer for {@link CompletionProperty}
 	 */
 	public static final JsonpDeserializer<CompletionProperty> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, CompletionProperty::setupCompletionPropertyDeserializer, Builder::build);
+			.lazy(Builder::new, CompletionProperty::setupCompletionPropertyDeserializer);
 
-	protected static void setupCompletionPropertyDeserializer(DelegatingDeserializer<CompletionProperty.Builder> op) {
+	protected static void setupCompletionPropertyDeserializer(ObjectDeserializer<CompletionProperty.Builder> op) {
 		DocValuesPropertyBase.setupDocValuesPropertyBaseDeserializer(op);
 		op.add(Builder::analyzer, JsonpDeserializer.stringDeserializer(), "analyzer");
 		op.add(Builder::contexts, JsonpDeserializer.arrayDeserializer(SuggestContext._DESERIALIZER), "contexts");

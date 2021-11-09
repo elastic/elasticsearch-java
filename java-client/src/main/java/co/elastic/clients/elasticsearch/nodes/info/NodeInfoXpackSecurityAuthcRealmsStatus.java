@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.nodes.info;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -146,11 +145,10 @@ public class NodeInfoXpackSecurityAuthcRealmsStatus implements JsonpSerializable
 	 */
 	public static final JsonpDeserializer<NodeInfoXpackSecurityAuthcRealmsStatus> _DESERIALIZER = ObjectBuilderDeserializer
 			.lazy(Builder::new,
-					NodeInfoXpackSecurityAuthcRealmsStatus::setupNodeInfoXpackSecurityAuthcRealmsStatusDeserializer,
-					Builder::build);
+					NodeInfoXpackSecurityAuthcRealmsStatus::setupNodeInfoXpackSecurityAuthcRealmsStatusDeserializer);
 
 	protected static void setupNodeInfoXpackSecurityAuthcRealmsStatusDeserializer(
-			DelegatingDeserializer<NodeInfoXpackSecurityAuthcRealmsStatus.Builder> op) {
+			ObjectDeserializer<NodeInfoXpackSecurityAuthcRealmsStatus.Builder> op) {
 
 		op.add(Builder::enabled, JsonpDeserializer.stringDeserializer(), "enabled");
 		op.add(Builder::order, JsonpDeserializer.stringDeserializer(), "order");

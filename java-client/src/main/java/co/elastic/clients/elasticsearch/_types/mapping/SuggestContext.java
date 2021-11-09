@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.mapping;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -194,9 +193,9 @@ public class SuggestContext implements JsonpSerializable {
 	 * Json deserializer for {@link SuggestContext}
 	 */
 	public static final JsonpDeserializer<SuggestContext> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			SuggestContext::setupSuggestContextDeserializer, Builder::build);
+			SuggestContext::setupSuggestContextDeserializer);
 
-	protected static void setupSuggestContextDeserializer(DelegatingDeserializer<SuggestContext.Builder> op) {
+	protected static void setupSuggestContextDeserializer(ObjectDeserializer<SuggestContext.Builder> op) {
 
 		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
 		op.add(Builder::path, JsonpDeserializer.stringDeserializer(), "path");

@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.indices.simulate_template;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -155,9 +154,9 @@ public class Overlapping implements JsonpSerializable {
 	 * Json deserializer for {@link Overlapping}
 	 */
 	public static final JsonpDeserializer<Overlapping> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			Overlapping::setupOverlappingDeserializer, Builder::build);
+			Overlapping::setupOverlappingDeserializer);
 
-	protected static void setupOverlappingDeserializer(DelegatingDeserializer<Overlapping.Builder> op) {
+	protected static void setupOverlappingDeserializer(ObjectDeserializer<Overlapping.Builder> op) {
 
 		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
 		op.add(Builder::indexPatterns, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),

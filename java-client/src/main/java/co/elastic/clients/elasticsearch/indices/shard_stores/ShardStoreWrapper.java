@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.indices.shard_stores;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -144,9 +143,9 @@ public class ShardStoreWrapper implements JsonpSerializable {
 	 * Json deserializer for {@link ShardStoreWrapper}
 	 */
 	public static final JsonpDeserializer<ShardStoreWrapper> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, ShardStoreWrapper::setupShardStoreWrapperDeserializer, Builder::build);
+			.lazy(Builder::new, ShardStoreWrapper::setupShardStoreWrapperDeserializer);
 
-	protected static void setupShardStoreWrapperDeserializer(DelegatingDeserializer<ShardStoreWrapper.Builder> op) {
+	protected static void setupShardStoreWrapperDeserializer(ObjectDeserializer<ShardStoreWrapper.Builder> op) {
 
 		op.add(Builder::stores, JsonpDeserializer.arrayDeserializer(ShardStore._DESERIALIZER), "stores");
 

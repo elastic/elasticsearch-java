@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.nodes;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -134,9 +133,9 @@ public class ExtendedMemoryStats extends MemoryStats {
 	 * Json deserializer for {@link ExtendedMemoryStats}
 	 */
 	public static final JsonpDeserializer<ExtendedMemoryStats> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, ExtendedMemoryStats::setupExtendedMemoryStatsDeserializer, Builder::build);
+			.lazy(Builder::new, ExtendedMemoryStats::setupExtendedMemoryStatsDeserializer);
 
-	protected static void setupExtendedMemoryStatsDeserializer(DelegatingDeserializer<ExtendedMemoryStats.Builder> op) {
+	protected static void setupExtendedMemoryStatsDeserializer(ObjectDeserializer<ExtendedMemoryStats.Builder> op) {
 		MemoryStats.setupMemoryStatsDeserializer(op);
 		op.add(Builder::freePercent, JsonpDeserializer.integerDeserializer(), "free_percent");
 		op.add(Builder::usedPercent, JsonpDeserializer.integerDeserializer(), "used_percent");

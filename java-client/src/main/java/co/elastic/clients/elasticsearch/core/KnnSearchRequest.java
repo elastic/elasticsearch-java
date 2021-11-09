@@ -26,7 +26,6 @@ package co.elastic.clients.elasticsearch.core;
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch.core.knn_search.Query;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -395,9 +394,9 @@ public class KnnSearchRequest extends RequestBase implements JsonpSerializable {
 	 * Json deserializer for {@link KnnSearchRequest}
 	 */
 	public static final JsonpDeserializer<KnnSearchRequest> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			KnnSearchRequest::setupKnnSearchRequestDeserializer, Builder::build);
+			KnnSearchRequest::setupKnnSearchRequestDeserializer);
 
-	protected static void setupKnnSearchRequestDeserializer(DelegatingDeserializer<KnnSearchRequest.Builder> op) {
+	protected static void setupKnnSearchRequestDeserializer(ObjectDeserializer<KnnSearchRequest.Builder> op) {
 
 		op.add(Builder::source, JsonpDeserializer.jsonValueDeserializer(), "_source");
 		op.add(Builder::docvalueFields, JsonpDeserializer.jsonValueDeserializer(), "docvalue_fields");

@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.core.reindex;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -206,9 +205,9 @@ public class RemoteSource implements JsonpSerializable {
 	 * Json deserializer for {@link RemoteSource}
 	 */
 	public static final JsonpDeserializer<RemoteSource> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			RemoteSource::setupRemoteSourceDeserializer, Builder::build);
+			RemoteSource::setupRemoteSourceDeserializer);
 
-	protected static void setupRemoteSourceDeserializer(DelegatingDeserializer<RemoteSource.Builder> op) {
+	protected static void setupRemoteSourceDeserializer(ObjectDeserializer<RemoteSource.Builder> op) {
 
 		op.add(Builder::connectTimeout, JsonpDeserializer.stringDeserializer(), "connect_timeout");
 		op.add(Builder::host, JsonpDeserializer.stringDeserializer(), "host");

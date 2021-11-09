@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.cat.count;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -187,9 +186,9 @@ public class CountRecord implements JsonpSerializable {
 	 * Json deserializer for {@link CountRecord}
 	 */
 	public static final JsonpDeserializer<CountRecord> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			CountRecord::setupCountRecordDeserializer, Builder::build);
+			CountRecord::setupCountRecordDeserializer);
 
-	protected static void setupCountRecordDeserializer(DelegatingDeserializer<CountRecord.Builder> op) {
+	protected static void setupCountRecordDeserializer(ObjectDeserializer<CountRecord.Builder> op) {
 
 		op.add(Builder::epoch, JsonpDeserializer.stringDeserializer(), "epoch", "t", "time");
 		op.add(Builder::timestamp, JsonpDeserializer.stringDeserializer(), "timestamp", "ts", "hms", "hhmmss");

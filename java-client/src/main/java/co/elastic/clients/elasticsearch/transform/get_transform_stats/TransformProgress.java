@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.transform.get_transform_stats;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -206,9 +205,9 @@ public class TransformProgress implements JsonpSerializable {
 	 * Json deserializer for {@link TransformProgress}
 	 */
 	public static final JsonpDeserializer<TransformProgress> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, TransformProgress::setupTransformProgressDeserializer, Builder::build);
+			.lazy(Builder::new, TransformProgress::setupTransformProgressDeserializer);
 
-	protected static void setupTransformProgressDeserializer(DelegatingDeserializer<TransformProgress.Builder> op) {
+	protected static void setupTransformProgressDeserializer(ObjectDeserializer<TransformProgress.Builder> op) {
 
 		op.add(Builder::docsIndexed, JsonpDeserializer.longDeserializer(), "docs_indexed");
 		op.add(Builder::docsProcessed, JsonpDeserializer.longDeserializer(), "docs_processed");

@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.analysis;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -392,7 +391,7 @@ public class Tokenizer implements TaggedUnion<TokenizerVariant>, JsonpSerializab
 
 	}
 
-	protected static void setupTokenizerDeserializer(DelegatingDeserializer<Builder> op) {
+	protected static void setupTokenizerDeserializer(ObjectDeserializer<Builder> op) {
 
 		op.add(Builder::charGroup, CharGroupTokenizer._DESERIALIZER, "char_group");
 		op.add(Builder::edgeNgram, EdgeNGramTokenizer._DESERIALIZER, "edge_ngram");

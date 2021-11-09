@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch.security;
 
 import co.elastic.clients.elasticsearch.security.get_service_accounts.RoleDescriptorWrapper;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -83,11 +82,11 @@ public class GetServiceAccountsResponse extends DictionaryResponse<String, RoleD
 	/**
 	 * Json deserializer for {@link GetServiceAccountsResponse}
 	 */
-	public static final JsonpDeserializer<GetServiceAccountsResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
-			Builder::new, GetServiceAccountsResponse::setupGetServiceAccountsResponseDeserializer, Builder::build);
+	public static final JsonpDeserializer<GetServiceAccountsResponse> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, GetServiceAccountsResponse::setupGetServiceAccountsResponseDeserializer);
 
 	protected static void setupGetServiceAccountsResponseDeserializer(
-			DelegatingDeserializer<GetServiceAccountsResponse.Builder> op) {
+			ObjectDeserializer<GetServiceAccountsResponse.Builder> op) {
 		DictionaryResponse.setupDictionaryResponseDeserializer(op, JsonpDeserializer.stringDeserializer(),
 				RoleDescriptorWrapper._DESERIALIZER);
 

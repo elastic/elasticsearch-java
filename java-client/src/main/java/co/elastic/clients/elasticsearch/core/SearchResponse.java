@@ -29,7 +29,6 @@ import co.elastic.clients.elasticsearch._types.aggregations.Aggregate;
 import co.elastic.clients.elasticsearch.core.search.HitsMetadata;
 import co.elastic.clients.elasticsearch.core.search.Profile;
 import co.elastic.clients.elasticsearch.core.search.Suggestion;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.ExternallyTaggedUnion;
 import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
@@ -608,7 +607,7 @@ public class SearchResponse<TDocument> implements JsonpSerializable {
 	};
 
 	protected static <TDocument, BuilderT extends AbstractBuilder<TDocument, BuilderT>> void setupSearchResponseDeserializer(
-			DelegatingDeserializer<BuilderT> op, JsonpDeserializer<TDocument> tDocumentDeserializer) {
+			ObjectDeserializer<BuilderT> op, JsonpDeserializer<TDocument> tDocumentDeserializer) {
 
 		op.add(AbstractBuilder::took, JsonpDeserializer.longDeserializer(), "took");
 		op.add(AbstractBuilder::timedOut, JsonpDeserializer.booleanDeserializer(), "timed_out");

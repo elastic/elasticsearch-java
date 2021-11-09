@@ -28,7 +28,6 @@ import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch.core.reindex.Destination;
 import co.elastic.clients.elasticsearch.core.reindex.Source;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -511,9 +510,9 @@ public class ReindexRequest extends RequestBase implements JsonpSerializable {
 	 * Json deserializer for {@link ReindexRequest}
 	 */
 	public static final JsonpDeserializer<ReindexRequest> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			ReindexRequest::setupReindexRequestDeserializer, Builder::build);
+			ReindexRequest::setupReindexRequestDeserializer);
 
-	protected static void setupReindexRequestDeserializer(DelegatingDeserializer<ReindexRequest.Builder> op) {
+	protected static void setupReindexRequestDeserializer(ObjectDeserializer<ReindexRequest.Builder> op) {
 
 		op.add(Builder::conflicts, Conflicts._DESERIALIZER, "conflicts");
 		op.add(Builder::dest, Destination._DESERIALIZER, "dest");

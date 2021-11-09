@@ -26,7 +26,6 @@ package co.elastic.clients.elasticsearch.sql;
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch._types.query_dsl.Query;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -422,9 +421,9 @@ public class QueryRequest extends RequestBase implements JsonpSerializable {
 	 * Json deserializer for {@link QueryRequest}
 	 */
 	public static final JsonpDeserializer<QueryRequest> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			QueryRequest::setupQueryRequestDeserializer, Builder::build);
+			QueryRequest::setupQueryRequestDeserializer);
 
-	protected static void setupQueryRequestDeserializer(DelegatingDeserializer<QueryRequest.Builder> op) {
+	protected static void setupQueryRequestDeserializer(ObjectDeserializer<QueryRequest.Builder> op) {
 
 		op.add(Builder::columnar, JsonpDeserializer.booleanDeserializer(), "columnar");
 		op.add(Builder::cursor, JsonpDeserializer.stringDeserializer(), "cursor");

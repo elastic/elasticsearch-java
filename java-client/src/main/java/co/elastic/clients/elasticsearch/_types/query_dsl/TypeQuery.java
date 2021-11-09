@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -118,9 +117,9 @@ public class TypeQuery extends QueryBase implements QueryVariant {
 	 * Json deserializer for {@link TypeQuery}
 	 */
 	public static final JsonpDeserializer<TypeQuery> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			TypeQuery::setupTypeQueryDeserializer, Builder::build);
+			TypeQuery::setupTypeQueryDeserializer);
 
-	protected static void setupTypeQueryDeserializer(DelegatingDeserializer<TypeQuery.Builder> op) {
+	protected static void setupTypeQueryDeserializer(ObjectDeserializer<TypeQuery.Builder> op) {
 		QueryBase.setupQueryBaseDeserializer(op);
 		op.add(Builder::value, JsonpDeserializer.stringDeserializer(), "value");
 

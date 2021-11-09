@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.ml.evaluate_data_frame;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -145,11 +144,10 @@ public class DataframeEvaluationSummaryAucRoc extends DataframeEvaluationValue {
 	 * Json deserializer for {@link DataframeEvaluationSummaryAucRoc}
 	 */
 	public static final JsonpDeserializer<DataframeEvaluationSummaryAucRoc> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, DataframeEvaluationSummaryAucRoc::setupDataframeEvaluationSummaryAucRocDeserializer,
-					Builder::build);
+			.lazy(Builder::new, DataframeEvaluationSummaryAucRoc::setupDataframeEvaluationSummaryAucRocDeserializer);
 
 	protected static void setupDataframeEvaluationSummaryAucRocDeserializer(
-			DelegatingDeserializer<DataframeEvaluationSummaryAucRoc.Builder> op) {
+			ObjectDeserializer<DataframeEvaluationSummaryAucRoc.Builder> op) {
 		DataframeEvaluationValue.setupDataframeEvaluationValueDeserializer(op);
 		op.add(Builder::curve,
 				JsonpDeserializer.arrayDeserializer(DataframeEvaluationSummaryAucRocCurveItem._DESERIALIZER), "curve");

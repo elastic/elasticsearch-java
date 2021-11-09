@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.indices.recovery;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -194,9 +193,9 @@ public class VerifyIndex implements JsonpSerializable {
 	 * Json deserializer for {@link VerifyIndex}
 	 */
 	public static final JsonpDeserializer<VerifyIndex> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			VerifyIndex::setupVerifyIndexDeserializer, Builder::build);
+			VerifyIndex::setupVerifyIndexDeserializer);
 
-	protected static void setupVerifyIndexDeserializer(DelegatingDeserializer<VerifyIndex.Builder> op) {
+	protected static void setupVerifyIndexDeserializer(ObjectDeserializer<VerifyIndex.Builder> op) {
 
 		op.add(Builder::checkIndexTime, JsonpDeserializer.stringDeserializer(), "check_index_time");
 		op.add(Builder::checkIndexTimeInMillis, JsonpDeserializer.stringDeserializer(), "check_index_time_in_millis");

@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.indices.stats;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -184,9 +183,9 @@ public class ShardLease implements JsonpSerializable {
 	 * Json deserializer for {@link ShardLease}
 	 */
 	public static final JsonpDeserializer<ShardLease> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			ShardLease::setupShardLeaseDeserializer, Builder::build);
+			ShardLease::setupShardLeaseDeserializer);
 
-	protected static void setupShardLeaseDeserializer(DelegatingDeserializer<ShardLease.Builder> op) {
+	protected static void setupShardLeaseDeserializer(ObjectDeserializer<ShardLease.Builder> op) {
 
 		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "id");
 		op.add(Builder::retainingSeqNo, JsonpDeserializer.longDeserializer(), "retaining_seq_no");

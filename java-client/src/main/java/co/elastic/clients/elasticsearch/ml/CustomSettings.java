@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -195,9 +194,9 @@ public class CustomSettings implements JsonpSerializable {
 	 * Json deserializer for {@link CustomSettings}
 	 */
 	public static final JsonpDeserializer<CustomSettings> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			CustomSettings::setupCustomSettingsDeserializer, Builder::build);
+			CustomSettings::setupCustomSettingsDeserializer);
 
-	protected static void setupCustomSettingsDeserializer(DelegatingDeserializer<CustomSettings.Builder> op) {
+	protected static void setupCustomSettingsDeserializer(ObjectDeserializer<CustomSettings.Builder> op) {
 
 		op.add(Builder::customUrls, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.jsonValueDeserializer()),
 				"custom_urls");

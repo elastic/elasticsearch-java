@@ -25,7 +25,6 @@ package co.elastic.clients.elasticsearch.indices;
 
 import co.elastic.clients.elasticsearch._types.ShardStatistics;
 import co.elastic.clients.elasticsearch.indices.stats.IndicesStats;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -200,10 +199,9 @@ public class IndicesStatsResponse implements JsonpSerializable {
 	 * Json deserializer for {@link IndicesStatsResponse}
 	 */
 	public static final JsonpDeserializer<IndicesStatsResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, IndicesStatsResponse::setupIndicesStatsResponseDeserializer, Builder::build);
+			.lazy(Builder::new, IndicesStatsResponse::setupIndicesStatsResponseDeserializer);
 
-	protected static void setupIndicesStatsResponseDeserializer(
-			DelegatingDeserializer<IndicesStatsResponse.Builder> op) {
+	protected static void setupIndicesStatsResponseDeserializer(ObjectDeserializer<IndicesStatsResponse.Builder> op) {
 
 		op.add(Builder::indices, JsonpDeserializer.stringMapDeserializer(IndicesStats._DESERIALIZER), "indices");
 		op.add(Builder::shards, ShardStatistics._DESERIALIZER, "_shards");

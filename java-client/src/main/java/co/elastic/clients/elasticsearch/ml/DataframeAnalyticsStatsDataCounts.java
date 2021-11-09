@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -182,11 +181,10 @@ public class DataframeAnalyticsStatsDataCounts implements JsonpSerializable {
 	 * Json deserializer for {@link DataframeAnalyticsStatsDataCounts}
 	 */
 	public static final JsonpDeserializer<DataframeAnalyticsStatsDataCounts> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, DataframeAnalyticsStatsDataCounts::setupDataframeAnalyticsStatsDataCountsDeserializer,
-					Builder::build);
+			.lazy(Builder::new, DataframeAnalyticsStatsDataCounts::setupDataframeAnalyticsStatsDataCountsDeserializer);
 
 	protected static void setupDataframeAnalyticsStatsDataCountsDeserializer(
-			DelegatingDeserializer<DataframeAnalyticsStatsDataCounts.Builder> op) {
+			ObjectDeserializer<DataframeAnalyticsStatsDataCounts.Builder> op) {
 
 		op.add(Builder::skippedDocsCount, JsonpDeserializer.integerDeserializer(), "skipped_docs_count");
 		op.add(Builder::testDocsCount, JsonpDeserializer.integerDeserializer(), "test_docs_count");

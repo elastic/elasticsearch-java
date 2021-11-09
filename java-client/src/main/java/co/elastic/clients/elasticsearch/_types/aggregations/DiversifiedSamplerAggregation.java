@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -237,12 +236,11 @@ public class DiversifiedSamplerAggregation extends BucketAggregationBase impleme
 	/**
 	 * Json deserializer for {@link DiversifiedSamplerAggregation}
 	 */
-	public static final JsonpDeserializer<DiversifiedSamplerAggregation> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
-			Builder::new, DiversifiedSamplerAggregation::setupDiversifiedSamplerAggregationDeserializer,
-			Builder::build);
+	public static final JsonpDeserializer<DiversifiedSamplerAggregation> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, DiversifiedSamplerAggregation::setupDiversifiedSamplerAggregationDeserializer);
 
 	protected static void setupDiversifiedSamplerAggregationDeserializer(
-			DelegatingDeserializer<DiversifiedSamplerAggregation.Builder> op) {
+			ObjectDeserializer<DiversifiedSamplerAggregation.Builder> op) {
 		BucketAggregationBase.setupBucketAggregationBaseDeserializer(op);
 		op.add(Builder::executionHint, SamplerAggregationExecutionHint._DESERIALIZER, "execution_hint");
 		op.add(Builder::maxDocsPerValue, JsonpDeserializer.integerDeserializer(), "max_docs_per_value");

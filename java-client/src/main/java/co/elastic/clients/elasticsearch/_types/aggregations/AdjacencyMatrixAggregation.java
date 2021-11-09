@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch._types.aggregations;
 
 import co.elastic.clients.elasticsearch._types.query_dsl.Query;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -145,11 +144,11 @@ public class AdjacencyMatrixAggregation extends BucketAggregationBase implements
 	/**
 	 * Json deserializer for {@link AdjacencyMatrixAggregation}
 	 */
-	public static final JsonpDeserializer<AdjacencyMatrixAggregation> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
-			Builder::new, AdjacencyMatrixAggregation::setupAdjacencyMatrixAggregationDeserializer, Builder::build);
+	public static final JsonpDeserializer<AdjacencyMatrixAggregation> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, AdjacencyMatrixAggregation::setupAdjacencyMatrixAggregationDeserializer);
 
 	protected static void setupAdjacencyMatrixAggregationDeserializer(
-			DelegatingDeserializer<AdjacencyMatrixAggregation.Builder> op) {
+			ObjectDeserializer<AdjacencyMatrixAggregation.Builder> op) {
 		BucketAggregationBase.setupBucketAggregationBaseDeserializer(op);
 		op.add(Builder::filters, JsonpDeserializer.stringMapDeserializer(Query._DESERIALIZER), "filters");
 

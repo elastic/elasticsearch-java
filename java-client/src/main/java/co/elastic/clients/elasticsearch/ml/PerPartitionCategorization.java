@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -170,11 +169,11 @@ public class PerPartitionCategorization implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link PerPartitionCategorization}
 	 */
-	public static final JsonpDeserializer<PerPartitionCategorization> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
-			Builder::new, PerPartitionCategorization::setupPerPartitionCategorizationDeserializer, Builder::build);
+	public static final JsonpDeserializer<PerPartitionCategorization> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, PerPartitionCategorization::setupPerPartitionCategorizationDeserializer);
 
 	protected static void setupPerPartitionCategorizationDeserializer(
-			DelegatingDeserializer<PerPartitionCategorization.Builder> op) {
+			ObjectDeserializer<PerPartitionCategorization.Builder> op) {
 
 		op.add(Builder::enabled, JsonpDeserializer.booleanDeserializer(), "enabled");
 		op.add(Builder::stopOnWarn, JsonpDeserializer.booleanDeserializer(), "stop_on_warn");

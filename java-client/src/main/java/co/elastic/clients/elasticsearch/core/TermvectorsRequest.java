@@ -27,7 +27,6 @@ import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch._types.VersionType;
 import co.elastic.clients.elasticsearch.core.termvectors.Filter;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -590,7 +589,7 @@ public class TermvectorsRequest<TDocument> extends RequestBase implements JsonpS
 	};
 
 	protected static <TDocument> void setupTermvectorsRequestDeserializer(
-			DelegatingDeserializer<TermvectorsRequest.Builder<TDocument>> op,
+			ObjectDeserializer<TermvectorsRequest.Builder<TDocument>> op,
 			JsonpDeserializer<TDocument> tDocumentDeserializer) {
 
 		op.add(Builder::doc, tDocumentDeserializer, "doc");

@@ -26,7 +26,6 @@ package co.elastic.clients.elasticsearch.snapshot;
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch.indices.PutSettingsRequest;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -485,9 +484,9 @@ public class RestoreRequest extends RequestBase implements JsonpSerializable {
 	 * Json deserializer for {@link RestoreRequest}
 	 */
 	public static final JsonpDeserializer<RestoreRequest> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			RestoreRequest::setupRestoreRequestDeserializer, Builder::build);
+			RestoreRequest::setupRestoreRequestDeserializer);
 
-	protected static void setupRestoreRequestDeserializer(DelegatingDeserializer<RestoreRequest.Builder> op) {
+	protected static void setupRestoreRequestDeserializer(ObjectDeserializer<RestoreRequest.Builder> op) {
 
 		op.add(Builder::ignoreIndexSettings,
 				JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "ignore_index_settings");

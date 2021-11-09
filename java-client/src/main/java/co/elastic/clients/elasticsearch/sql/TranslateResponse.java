@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.sql;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -236,9 +235,9 @@ public class TranslateResponse implements JsonpSerializable {
 	 * Json deserializer for {@link TranslateResponse}
 	 */
 	public static final JsonpDeserializer<TranslateResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, TranslateResponse::setupTranslateResponseDeserializer, Builder::build);
+			.lazy(Builder::new, TranslateResponse::setupTranslateResponseDeserializer);
 
-	protected static void setupTranslateResponseDeserializer(DelegatingDeserializer<TranslateResponse.Builder> op) {
+	protected static void setupTranslateResponseDeserializer(ObjectDeserializer<TranslateResponse.Builder> op) {
 
 		op.add(Builder::size, JsonpDeserializer.longDeserializer(), "size");
 		op.add(Builder::source, JsonpDeserializer.jsonValueDeserializer(), "_source");

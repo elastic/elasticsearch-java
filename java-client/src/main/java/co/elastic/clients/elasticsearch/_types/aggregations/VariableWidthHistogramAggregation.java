@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -213,11 +212,10 @@ public class VariableWidthHistogramAggregation implements AggregationVariant, Js
 	 * Json deserializer for {@link VariableWidthHistogramAggregation}
 	 */
 	public static final JsonpDeserializer<VariableWidthHistogramAggregation> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, VariableWidthHistogramAggregation::setupVariableWidthHistogramAggregationDeserializer,
-					Builder::build);
+			.lazy(Builder::new, VariableWidthHistogramAggregation::setupVariableWidthHistogramAggregationDeserializer);
 
 	protected static void setupVariableWidthHistogramAggregationDeserializer(
-			DelegatingDeserializer<VariableWidthHistogramAggregation.Builder> op) {
+			ObjectDeserializer<VariableWidthHistogramAggregation.Builder> op) {
 
 		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
 		op.add(Builder::buckets, JsonpDeserializer.integerDeserializer(), "buckets");

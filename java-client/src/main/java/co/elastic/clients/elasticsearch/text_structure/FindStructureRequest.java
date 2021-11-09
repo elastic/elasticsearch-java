@@ -622,9 +622,8 @@ public class FindStructureRequest<TJsonDocument> implements JsonpSerializable {
 		JsonpDeserializer<List<TJsonDocument>> valueDeserializer = JsonpDeserializer
 				.arrayDeserializer(tJsonDocumentDeserializer);
 
-		return JsonpDeserializer.of(valueDeserializer.acceptedEvents(),
-				(parser, mapper, event) -> new Builder<TJsonDocument>()
-						.textFiles(valueDeserializer.deserialize(parser, mapper, event)).build());
+		return JsonpDeserializer.of(valueDeserializer.acceptedEvents(), (parser, mapper) -> new Builder<TJsonDocument>()
+				.textFiles(valueDeserializer.deserialize(parser, mapper)).build());
 	}
 
 	// ---------------------------------------------------------------------------------------------

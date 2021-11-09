@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -87,10 +86,9 @@ public class MaxBucketAggregation extends PipelineAggregationBase implements Agg
 	 * Json deserializer for {@link MaxBucketAggregation}
 	 */
 	public static final JsonpDeserializer<MaxBucketAggregation> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, MaxBucketAggregation::setupMaxBucketAggregationDeserializer, Builder::build);
+			.lazy(Builder::new, MaxBucketAggregation::setupMaxBucketAggregationDeserializer);
 
-	protected static void setupMaxBucketAggregationDeserializer(
-			DelegatingDeserializer<MaxBucketAggregation.Builder> op) {
+	protected static void setupMaxBucketAggregationDeserializer(ObjectDeserializer<MaxBucketAggregation.Builder> op) {
 		PipelineAggregationBase.setupPipelineAggregationBaseDeserializer(op);
 
 	}

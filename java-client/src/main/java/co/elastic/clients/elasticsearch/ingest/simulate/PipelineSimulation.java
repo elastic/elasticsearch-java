@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch.ingest.simulate;
 
 import co.elastic.clients.elasticsearch.watcher.ActionStatusOptions;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -266,9 +265,9 @@ public class PipelineSimulation implements JsonpSerializable {
 	 * Json deserializer for {@link PipelineSimulation}
 	 */
 	public static final JsonpDeserializer<PipelineSimulation> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, PipelineSimulation::setupPipelineSimulationDeserializer, Builder::build);
+			.lazy(Builder::new, PipelineSimulation::setupPipelineSimulationDeserializer);
 
-	protected static void setupPipelineSimulationDeserializer(DelegatingDeserializer<PipelineSimulation.Builder> op) {
+	protected static void setupPipelineSimulationDeserializer(ObjectDeserializer<PipelineSimulation.Builder> op) {
 
 		op.add(Builder::doc, DocumentSimulation._DESERIALIZER, "doc");
 		op.add(Builder::processorResults, JsonpDeserializer.arrayDeserializer(PipelineSimulation._DESERIALIZER),

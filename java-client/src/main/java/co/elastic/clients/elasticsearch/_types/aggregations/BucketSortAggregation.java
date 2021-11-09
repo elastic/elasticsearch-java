@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -223,10 +222,9 @@ public class BucketSortAggregation extends AggregationBase implements Aggregatio
 	 * Json deserializer for {@link BucketSortAggregation}
 	 */
 	public static final JsonpDeserializer<BucketSortAggregation> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, BucketSortAggregation::setupBucketSortAggregationDeserializer, Builder::build);
+			.lazy(Builder::new, BucketSortAggregation::setupBucketSortAggregationDeserializer);
 
-	protected static void setupBucketSortAggregationDeserializer(
-			DelegatingDeserializer<BucketSortAggregation.Builder> op) {
+	protected static void setupBucketSortAggregationDeserializer(ObjectDeserializer<BucketSortAggregation.Builder> op) {
 		AggregationBase.setupAggregationBaseDeserializer(op);
 		op.add(Builder::from, JsonpDeserializer.integerDeserializer(), "from");
 		op.add(Builder::gapPolicy, GapPolicy._DESERIALIZER, "gap_policy");

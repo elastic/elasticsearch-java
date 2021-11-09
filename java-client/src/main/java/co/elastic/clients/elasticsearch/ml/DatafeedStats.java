@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -220,9 +219,9 @@ public class DatafeedStats implements JsonpSerializable {
 	 * Json deserializer for {@link DatafeedStats}
 	 */
 	public static final JsonpDeserializer<DatafeedStats> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			DatafeedStats::setupDatafeedStatsDeserializer, Builder::build);
+			DatafeedStats::setupDatafeedStatsDeserializer);
 
-	protected static void setupDatafeedStatsDeserializer(DelegatingDeserializer<DatafeedStats.Builder> op) {
+	protected static void setupDatafeedStatsDeserializer(ObjectDeserializer<DatafeedStats.Builder> op) {
 
 		op.add(Builder::assignmentExplanation, JsonpDeserializer.stringDeserializer(), "assignment_explanation");
 		op.add(Builder::datafeedId, JsonpDeserializer.stringDeserializer(), "datafeed_id");

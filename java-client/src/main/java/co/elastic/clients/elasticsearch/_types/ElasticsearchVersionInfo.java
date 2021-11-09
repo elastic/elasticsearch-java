@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -301,10 +300,10 @@ public class ElasticsearchVersionInfo implements JsonpSerializable {
 	 * Json deserializer for {@link ElasticsearchVersionInfo}
 	 */
 	public static final JsonpDeserializer<ElasticsearchVersionInfo> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, ElasticsearchVersionInfo::setupElasticsearchVersionInfoDeserializer, Builder::build);
+			.lazy(Builder::new, ElasticsearchVersionInfo::setupElasticsearchVersionInfoDeserializer);
 
 	protected static void setupElasticsearchVersionInfoDeserializer(
-			DelegatingDeserializer<ElasticsearchVersionInfo.Builder> op) {
+			ObjectDeserializer<ElasticsearchVersionInfo.Builder> op) {
 
 		op.add(Builder::buildDate, JsonpDeserializer.stringDeserializer(), "build_date");
 		op.add(Builder::buildFlavor, JsonpDeserializer.stringDeserializer(), "build_flavor");

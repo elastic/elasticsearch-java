@@ -27,7 +27,6 @@ import co.elastic.clients.elasticsearch._types.DefaultOperator;
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch._types.query_dsl.Query;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -545,9 +544,9 @@ public class ExplainRequest extends RequestBase implements JsonpSerializable {
 	 * Json deserializer for {@link ExplainRequest}
 	 */
 	public static final JsonpDeserializer<ExplainRequest> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			ExplainRequest::setupExplainRequestDeserializer, Builder::build);
+			ExplainRequest::setupExplainRequestDeserializer);
 
-	protected static void setupExplainRequestDeserializer(DelegatingDeserializer<ExplainRequest.Builder> op) {
+	protected static void setupExplainRequestDeserializer(ObjectDeserializer<ExplainRequest.Builder> op) {
 
 		op.add(Builder::query, Query._DESERIALIZER, "query");
 

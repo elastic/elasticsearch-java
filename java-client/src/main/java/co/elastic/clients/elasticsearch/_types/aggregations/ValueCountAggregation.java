@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -87,10 +86,9 @@ public class ValueCountAggregation extends FormattableMetricAggregation implemen
 	 * Json deserializer for {@link ValueCountAggregation}
 	 */
 	public static final JsonpDeserializer<ValueCountAggregation> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, ValueCountAggregation::setupValueCountAggregationDeserializer, Builder::build);
+			.lazy(Builder::new, ValueCountAggregation::setupValueCountAggregationDeserializer);
 
-	protected static void setupValueCountAggregationDeserializer(
-			DelegatingDeserializer<ValueCountAggregation.Builder> op) {
+	protected static void setupValueCountAggregationDeserializer(ObjectDeserializer<ValueCountAggregation.Builder> op) {
 		FormattableMetricAggregation.setupFormattableMetricAggregationDeserializer(op);
 
 	}

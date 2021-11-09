@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.watcher;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -200,9 +199,9 @@ public class SearchInput implements InputVariant, JsonpSerializable {
 	 * Json deserializer for {@link SearchInput}
 	 */
 	public static final JsonpDeserializer<SearchInput> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			SearchInput::setupSearchInputDeserializer, Builder::build);
+			SearchInput::setupSearchInputDeserializer);
 
-	protected static void setupSearchInputDeserializer(DelegatingDeserializer<SearchInput.Builder> op) {
+	protected static void setupSearchInputDeserializer(ObjectDeserializer<SearchInput.Builder> op) {
 
 		op.add(Builder::extract, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"extract");

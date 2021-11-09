@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -214,10 +213,10 @@ public class BulkIndexByScrollFailure implements JsonpSerializable {
 	 * Json deserializer for {@link BulkIndexByScrollFailure}
 	 */
 	public static final JsonpDeserializer<BulkIndexByScrollFailure> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, BulkIndexByScrollFailure::setupBulkIndexByScrollFailureDeserializer, Builder::build);
+			.lazy(Builder::new, BulkIndexByScrollFailure::setupBulkIndexByScrollFailureDeserializer);
 
 	protected static void setupBulkIndexByScrollFailureDeserializer(
-			DelegatingDeserializer<BulkIndexByScrollFailure.Builder> op) {
+			ObjectDeserializer<BulkIndexByScrollFailure.Builder> op) {
 
 		op.add(Builder::cause, ErrorCause._DESERIALIZER, "cause");
 		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "id");

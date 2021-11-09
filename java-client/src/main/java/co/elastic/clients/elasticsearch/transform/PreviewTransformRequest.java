@@ -27,7 +27,6 @@ import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch.core.reindex.Destination;
 import co.elastic.clients.elasticsearch.core.reindex.Source;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -491,10 +490,10 @@ public class PreviewTransformRequest extends RequestBase implements JsonpSeriali
 	 * Json deserializer for {@link PreviewTransformRequest}
 	 */
 	public static final JsonpDeserializer<PreviewTransformRequest> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, PreviewTransformRequest::setupPreviewTransformRequestDeserializer, Builder::build);
+			.lazy(Builder::new, PreviewTransformRequest::setupPreviewTransformRequestDeserializer);
 
 	protected static void setupPreviewTransformRequestDeserializer(
-			DelegatingDeserializer<PreviewTransformRequest.Builder> op) {
+			ObjectDeserializer<PreviewTransformRequest.Builder> op) {
 
 		op.add(Builder::description, JsonpDeserializer.stringDeserializer(), "description");
 		op.add(Builder::dest, Destination._DESERIALIZER, "dest");

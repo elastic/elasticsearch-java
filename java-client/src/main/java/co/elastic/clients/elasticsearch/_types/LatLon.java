@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -136,9 +135,9 @@ public class LatLon implements JsonpSerializable {
 	 * Json deserializer for {@link LatLon}
 	 */
 	public static final JsonpDeserializer<LatLon> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			LatLon::setupLatLonDeserializer, Builder::build);
+			LatLon::setupLatLonDeserializer);
 
-	protected static void setupLatLonDeserializer(DelegatingDeserializer<LatLon.Builder> op) {
+	protected static void setupLatLonDeserializer(ObjectDeserializer<LatLon.Builder> op) {
 
 		op.add(Builder::lat, JsonpDeserializer.doubleDeserializer(), "lat");
 		op.add(Builder::lon, JsonpDeserializer.doubleDeserializer(), "lon");

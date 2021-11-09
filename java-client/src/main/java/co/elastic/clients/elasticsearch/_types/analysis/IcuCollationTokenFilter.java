@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.analysis;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -354,10 +353,10 @@ public class IcuCollationTokenFilter extends TokenFilterBase implements TokenFil
 	 * Json deserializer for {@link IcuCollationTokenFilter}
 	 */
 	public static final JsonpDeserializer<IcuCollationTokenFilter> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, IcuCollationTokenFilter::setupIcuCollationTokenFilterDeserializer, Builder::build);
+			.lazy(Builder::new, IcuCollationTokenFilter::setupIcuCollationTokenFilterDeserializer);
 
 	protected static void setupIcuCollationTokenFilterDeserializer(
-			DelegatingDeserializer<IcuCollationTokenFilter.Builder> op) {
+			ObjectDeserializer<IcuCollationTokenFilter.Builder> op) {
 		TokenFilterBase.setupTokenFilterBaseDeserializer(op);
 		op.add(Builder::alternate, IcuCollationAlternate._DESERIALIZER, "alternate");
 		op.add(Builder::casefirst, IcuCollationCaseFirst._DESERIALIZER, "caseFirst");

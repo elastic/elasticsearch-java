@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.analysis;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -167,11 +166,11 @@ public class StemmerOverrideTokenFilter extends TokenFilterBase implements Token
 	/**
 	 * Json deserializer for {@link StemmerOverrideTokenFilter}
 	 */
-	public static final JsonpDeserializer<StemmerOverrideTokenFilter> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
-			Builder::new, StemmerOverrideTokenFilter::setupStemmerOverrideTokenFilterDeserializer, Builder::build);
+	public static final JsonpDeserializer<StemmerOverrideTokenFilter> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, StemmerOverrideTokenFilter::setupStemmerOverrideTokenFilterDeserializer);
 
 	protected static void setupStemmerOverrideTokenFilterDeserializer(
-			DelegatingDeserializer<StemmerOverrideTokenFilter.Builder> op) {
+			ObjectDeserializer<StemmerOverrideTokenFilter.Builder> op) {
 		TokenFilterBase.setupTokenFilterBaseDeserializer(op);
 		op.add(Builder::rules, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "rules");
 		op.add(Builder::rulesPath, JsonpDeserializer.stringDeserializer(), "rules_path");

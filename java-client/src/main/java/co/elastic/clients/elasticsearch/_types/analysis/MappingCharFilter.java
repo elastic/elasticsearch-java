@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.analysis;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -167,9 +166,9 @@ public class MappingCharFilter extends CharFilterBase implements CharFilterVaria
 	 * Json deserializer for {@link MappingCharFilter}
 	 */
 	public static final JsonpDeserializer<MappingCharFilter> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, MappingCharFilter::setupMappingCharFilterDeserializer, Builder::build);
+			.lazy(Builder::new, MappingCharFilter::setupMappingCharFilterDeserializer);
 
-	protected static void setupMappingCharFilterDeserializer(DelegatingDeserializer<MappingCharFilter.Builder> op) {
+	protected static void setupMappingCharFilterDeserializer(ObjectDeserializer<MappingCharFilter.Builder> op) {
 		CharFilterBase.setupCharFilterBaseDeserializer(op);
 		op.add(Builder::mappings, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"mappings");

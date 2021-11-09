@@ -28,7 +28,6 @@ import co.elastic.clients.elasticsearch._types.ExpandWildcardOptions;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch.core.rank_eval.RankEvalMetric;
 import co.elastic.clients.elasticsearch.core.rank_eval.RankEvalRequestItem;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -384,9 +383,9 @@ public class RankEvalRequest extends RequestBase implements JsonpSerializable {
 	 * Json deserializer for {@link RankEvalRequest}
 	 */
 	public static final JsonpDeserializer<RankEvalRequest> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			RankEvalRequest::setupRankEvalRequestDeserializer, Builder::build);
+			RankEvalRequest::setupRankEvalRequestDeserializer);
 
-	protected static void setupRankEvalRequestDeserializer(DelegatingDeserializer<RankEvalRequest.Builder> op) {
+	protected static void setupRankEvalRequestDeserializer(ObjectDeserializer<RankEvalRequest.Builder> op) {
 
 		op.add(Builder::metric, RankEvalMetric._DESERIALIZER, "metric");
 		op.add(Builder::requests, JsonpDeserializer.arrayDeserializer(RankEvalRequestItem._DESERIALIZER), "requests");

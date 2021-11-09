@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.ingest;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -213,9 +212,9 @@ public class InferenceProcessor extends ProcessorBase implements ProcessorVarian
 	 * Json deserializer for {@link InferenceProcessor}
 	 */
 	public static final JsonpDeserializer<InferenceProcessor> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, InferenceProcessor::setupInferenceProcessorDeserializer, Builder::build);
+			.lazy(Builder::new, InferenceProcessor::setupInferenceProcessorDeserializer);
 
-	protected static void setupInferenceProcessorDeserializer(DelegatingDeserializer<InferenceProcessor.Builder> op) {
+	protected static void setupInferenceProcessorDeserializer(ObjectDeserializer<InferenceProcessor.Builder> op) {
 		ProcessorBase.setupProcessorBaseDeserializer(op);
 		op.add(Builder::modelId, JsonpDeserializer.stringDeserializer(), "model_id");
 		op.add(Builder::targetField, JsonpDeserializer.stringDeserializer(), "target_field");

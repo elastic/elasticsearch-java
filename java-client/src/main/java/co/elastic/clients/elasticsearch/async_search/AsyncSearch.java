@@ -29,7 +29,6 @@ import co.elastic.clients.elasticsearch._types.aggregations.Aggregate;
 import co.elastic.clients.elasticsearch.core.search.HitsMetadata;
 import co.elastic.clients.elasticsearch.core.search.Profile;
 import co.elastic.clients.elasticsearch.core.search.Suggestion;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.ExternallyTaggedUnion;
 import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
@@ -558,8 +557,7 @@ public class AsyncSearch<TDocument> implements JsonpSerializable {
 	};
 
 	protected static <TDocument> void setupAsyncSearchDeserializer(
-			DelegatingDeserializer<AsyncSearch.Builder<TDocument>> op,
-			JsonpDeserializer<TDocument> tDocumentDeserializer) {
+			ObjectDeserializer<AsyncSearch.Builder<TDocument>> op, JsonpDeserializer<TDocument> tDocumentDeserializer) {
 
 		op.add(Builder::aggregations, Aggregate._TYPED_KEYS_DESERIALIZER, "aggregations");
 		op.add(Builder::clusters, ClusterStatistics._DESERIALIZER, "_clusters");

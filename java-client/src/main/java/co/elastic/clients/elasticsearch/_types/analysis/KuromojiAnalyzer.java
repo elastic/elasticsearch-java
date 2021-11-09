@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.analysis;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -152,9 +151,9 @@ public class KuromojiAnalyzer implements AnalyzerVariant, JsonpSerializable {
 	 * Json deserializer for {@link KuromojiAnalyzer}
 	 */
 	public static final JsonpDeserializer<KuromojiAnalyzer> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			KuromojiAnalyzer::setupKuromojiAnalyzerDeserializer, Builder::build);
+			KuromojiAnalyzer::setupKuromojiAnalyzerDeserializer);
 
-	protected static void setupKuromojiAnalyzerDeserializer(DelegatingDeserializer<KuromojiAnalyzer.Builder> op) {
+	protected static void setupKuromojiAnalyzerDeserializer(ObjectDeserializer<KuromojiAnalyzer.Builder> op) {
 
 		op.add(Builder::mode, KuromojiTokenizationMode._DESERIALIZER, "mode");
 		op.add(Builder::userDictionary, JsonpDeserializer.stringDeserializer(), "user_dictionary");

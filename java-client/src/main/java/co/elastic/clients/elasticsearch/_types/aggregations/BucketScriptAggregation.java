@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -125,10 +124,10 @@ public class BucketScriptAggregation extends PipelineAggregationBase implements 
 	 * Json deserializer for {@link BucketScriptAggregation}
 	 */
 	public static final JsonpDeserializer<BucketScriptAggregation> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, BucketScriptAggregation::setupBucketScriptAggregationDeserializer, Builder::build);
+			.lazy(Builder::new, BucketScriptAggregation::setupBucketScriptAggregationDeserializer);
 
 	protected static void setupBucketScriptAggregationDeserializer(
-			DelegatingDeserializer<BucketScriptAggregation.Builder> op) {
+			ObjectDeserializer<BucketScriptAggregation.Builder> op) {
 		PipelineAggregationBase.setupPipelineAggregationBaseDeserializer(op);
 		op.add(Builder::script, JsonpDeserializer.jsonValueDeserializer(), "script");
 

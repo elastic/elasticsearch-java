@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.indices;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -160,10 +159,10 @@ public class FielddataFrequencyFilter implements JsonpSerializable {
 	 * Json deserializer for {@link FielddataFrequencyFilter}
 	 */
 	public static final JsonpDeserializer<FielddataFrequencyFilter> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, FielddataFrequencyFilter::setupFielddataFrequencyFilterDeserializer, Builder::build);
+			.lazy(Builder::new, FielddataFrequencyFilter::setupFielddataFrequencyFilterDeserializer);
 
 	protected static void setupFielddataFrequencyFilterDeserializer(
-			DelegatingDeserializer<FielddataFrequencyFilter.Builder> op) {
+			ObjectDeserializer<FielddataFrequencyFilter.Builder> op) {
 
 		op.add(Builder::max, JsonpDeserializer.doubleDeserializer(), "max");
 		op.add(Builder::min, JsonpDeserializer.doubleDeserializer(), "min");

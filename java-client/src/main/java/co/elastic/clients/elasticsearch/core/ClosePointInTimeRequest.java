@@ -25,7 +25,6 @@ package co.elastic.clients.elasticsearch.core;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -119,10 +118,10 @@ public class ClosePointInTimeRequest extends RequestBase implements JsonpSeriali
 	 * Json deserializer for {@link ClosePointInTimeRequest}
 	 */
 	public static final JsonpDeserializer<ClosePointInTimeRequest> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, ClosePointInTimeRequest::setupClosePointInTimeRequestDeserializer, Builder::build);
+			.lazy(Builder::new, ClosePointInTimeRequest::setupClosePointInTimeRequestDeserializer);
 
 	protected static void setupClosePointInTimeRequestDeserializer(
-			DelegatingDeserializer<ClosePointInTimeRequest.Builder> op) {
+			ObjectDeserializer<ClosePointInTimeRequest.Builder> op) {
 
 		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "id");
 

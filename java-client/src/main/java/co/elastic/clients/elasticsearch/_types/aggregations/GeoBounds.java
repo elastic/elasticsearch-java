@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch._types.aggregations;
 
 import co.elastic.clients.elasticsearch._types.LatLon;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -151,9 +150,9 @@ public class GeoBounds implements JsonpSerializable {
 	 * Json deserializer for {@link GeoBounds}
 	 */
 	public static final JsonpDeserializer<GeoBounds> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			GeoBounds::setupGeoBoundsDeserializer, Builder::build);
+			GeoBounds::setupGeoBoundsDeserializer);
 
-	protected static void setupGeoBoundsDeserializer(DelegatingDeserializer<GeoBounds.Builder> op) {
+	protected static void setupGeoBoundsDeserializer(ObjectDeserializer<GeoBounds.Builder> op) {
 
 		op.add(Builder::bottomRight, LatLon._DESERIALIZER, "bottom_right");
 		op.add(Builder::topLeft, LatLon._DESERIALIZER, "top_left");

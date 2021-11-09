@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.core.knn_search;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -220,9 +219,9 @@ public class Query implements JsonpSerializable {
 	 * Json deserializer for {@link Query}
 	 */
 	public static final JsonpDeserializer<Query> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			Query::setupQueryDeserializer, Builder::build);
+			Query::setupQueryDeserializer);
 
-	protected static void setupQueryDeserializer(DelegatingDeserializer<Query.Builder> op) {
+	protected static void setupQueryDeserializer(ObjectDeserializer<Query.Builder> op) {
 
 		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
 		op.add(Builder::queryVector, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.doubleDeserializer()),

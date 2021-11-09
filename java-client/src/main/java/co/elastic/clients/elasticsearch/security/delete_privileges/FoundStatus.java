@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.security.delete_privileges;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -113,9 +112,9 @@ public class FoundStatus implements JsonpSerializable {
 	 * Json deserializer for {@link FoundStatus}
 	 */
 	public static final JsonpDeserializer<FoundStatus> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			FoundStatus::setupFoundStatusDeserializer, Builder::build);
+			FoundStatus::setupFoundStatusDeserializer);
 
-	protected static void setupFoundStatusDeserializer(DelegatingDeserializer<FoundStatus.Builder> op) {
+	protected static void setupFoundStatusDeserializer(ObjectDeserializer<FoundStatus.Builder> op) {
 
 		op.add(Builder::found, JsonpDeserializer.booleanDeserializer(), "found");
 

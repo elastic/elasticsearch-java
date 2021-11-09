@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.rollup.get_rollup_index_caps;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -171,10 +170,9 @@ public class RollupJobSummaryField implements JsonpSerializable {
 	 * Json deserializer for {@link RollupJobSummaryField}
 	 */
 	public static final JsonpDeserializer<RollupJobSummaryField> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, RollupJobSummaryField::setupRollupJobSummaryFieldDeserializer, Builder::build);
+			.lazy(Builder::new, RollupJobSummaryField::setupRollupJobSummaryFieldDeserializer);
 
-	protected static void setupRollupJobSummaryFieldDeserializer(
-			DelegatingDeserializer<RollupJobSummaryField.Builder> op) {
+	protected static void setupRollupJobSummaryFieldDeserializer(ObjectDeserializer<RollupJobSummaryField.Builder> op) {
 
 		op.add(Builder::agg, JsonpDeserializer.stringDeserializer(), "agg");
 		op.add(Builder::timeZone, JsonpDeserializer.stringDeserializer(), "time_zone");

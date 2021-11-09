@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -328,10 +327,9 @@ public class StringStatsAggregate extends AggregateBase implements AggregateVari
 	 * Json deserializer for {@link StringStatsAggregate}
 	 */
 	public static final JsonpDeserializer<StringStatsAggregate> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, StringStatsAggregate::setupStringStatsAggregateDeserializer, Builder::build);
+			.lazy(Builder::new, StringStatsAggregate::setupStringStatsAggregateDeserializer);
 
-	protected static void setupStringStatsAggregateDeserializer(
-			DelegatingDeserializer<StringStatsAggregate.Builder> op) {
+	protected static void setupStringStatsAggregateDeserializer(ObjectDeserializer<StringStatsAggregate.Builder> op) {
 		AggregateBase.setupAggregateBaseDeserializer(op);
 		op.add(Builder::count, JsonpDeserializer.longDeserializer(), "count");
 		op.add(Builder::minLength, JsonpDeserializer.integerDeserializer(), "min_length");

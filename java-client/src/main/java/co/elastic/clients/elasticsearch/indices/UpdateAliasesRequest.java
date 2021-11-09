@@ -26,7 +26,6 @@ package co.elastic.clients.elasticsearch.indices;
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch.indices.update_aliases.Action;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -207,10 +206,9 @@ public class UpdateAliasesRequest extends RequestBase implements JsonpSerializab
 	 * Json deserializer for {@link UpdateAliasesRequest}
 	 */
 	public static final JsonpDeserializer<UpdateAliasesRequest> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, UpdateAliasesRequest::setupUpdateAliasesRequestDeserializer, Builder::build);
+			.lazy(Builder::new, UpdateAliasesRequest::setupUpdateAliasesRequestDeserializer);
 
-	protected static void setupUpdateAliasesRequestDeserializer(
-			DelegatingDeserializer<UpdateAliasesRequest.Builder> op) {
+	protected static void setupUpdateAliasesRequestDeserializer(ObjectDeserializer<UpdateAliasesRequest.Builder> op) {
 
 		op.add(Builder::actions, JsonpDeserializer.arrayDeserializer(Action._DESERIALIZER), "actions");
 

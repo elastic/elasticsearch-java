@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -154,10 +153,10 @@ public class GeoCentroidAggregation extends MetricAggregationBase implements Agg
 	 * Json deserializer for {@link GeoCentroidAggregation}
 	 */
 	public static final JsonpDeserializer<GeoCentroidAggregation> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, GeoCentroidAggregation::setupGeoCentroidAggregationDeserializer, Builder::build);
+			.lazy(Builder::new, GeoCentroidAggregation::setupGeoCentroidAggregationDeserializer);
 
 	protected static void setupGeoCentroidAggregationDeserializer(
-			DelegatingDeserializer<GeoCentroidAggregation.Builder> op) {
+			ObjectDeserializer<GeoCentroidAggregation.Builder> op) {
 		MetricAggregationBase.setupMetricAggregationBaseDeserializer(op);
 		op.add(Builder::count, JsonpDeserializer.longDeserializer(), "count");
 		op.add(Builder::location, JsonpDeserializer.jsonValueDeserializer(), "location");

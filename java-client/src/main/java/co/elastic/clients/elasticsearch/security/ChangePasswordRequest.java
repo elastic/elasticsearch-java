@@ -25,7 +25,6 @@ package co.elastic.clients.elasticsearch.security;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -187,10 +186,9 @@ public class ChangePasswordRequest extends RequestBase implements JsonpSerializa
 	 * Json deserializer for {@link ChangePasswordRequest}
 	 */
 	public static final JsonpDeserializer<ChangePasswordRequest> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, ChangePasswordRequest::setupChangePasswordRequestDeserializer, Builder::build);
+			.lazy(Builder::new, ChangePasswordRequest::setupChangePasswordRequestDeserializer);
 
-	protected static void setupChangePasswordRequestDeserializer(
-			DelegatingDeserializer<ChangePasswordRequest.Builder> op) {
+	protected static void setupChangePasswordRequestDeserializer(ObjectDeserializer<ChangePasswordRequest.Builder> op) {
 
 		op.add(Builder::password, JsonpDeserializer.stringDeserializer(), "password");
 

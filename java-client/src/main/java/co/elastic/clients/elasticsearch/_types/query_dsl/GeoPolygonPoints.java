@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -132,9 +131,9 @@ public class GeoPolygonPoints implements JsonpSerializable {
 	 * Json deserializer for {@link GeoPolygonPoints}
 	 */
 	public static final JsonpDeserializer<GeoPolygonPoints> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			GeoPolygonPoints::setupGeoPolygonPointsDeserializer, Builder::build);
+			GeoPolygonPoints::setupGeoPolygonPointsDeserializer);
 
-	protected static void setupGeoPolygonPointsDeserializer(DelegatingDeserializer<GeoPolygonPoints.Builder> op) {
+	protected static void setupGeoPolygonPointsDeserializer(ObjectDeserializer<GeoPolygonPoints.Builder> op) {
 
 		op.add(Builder::points, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.jsonValueDeserializer()),
 				"points");

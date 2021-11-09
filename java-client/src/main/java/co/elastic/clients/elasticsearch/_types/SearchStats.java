@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -446,9 +445,9 @@ public class SearchStats implements JsonpSerializable {
 	 * Json deserializer for {@link SearchStats}
 	 */
 	public static final JsonpDeserializer<SearchStats> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			SearchStats::setupSearchStatsDeserializer, Builder::build);
+			SearchStats::setupSearchStatsDeserializer);
 
-	protected static void setupSearchStatsDeserializer(DelegatingDeserializer<SearchStats.Builder> op) {
+	protected static void setupSearchStatsDeserializer(ObjectDeserializer<SearchStats.Builder> op) {
 
 		op.add(Builder::fetchCurrent, JsonpDeserializer.longDeserializer(), "fetch_current");
 		op.add(Builder::fetchTimeInMillis, JsonpDeserializer.longDeserializer(), "fetch_time_in_millis");

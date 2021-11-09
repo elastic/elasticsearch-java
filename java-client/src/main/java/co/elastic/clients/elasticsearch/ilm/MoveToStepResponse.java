@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch.ilm;
 
 import co.elastic.clients.elasticsearch._types.AcknowledgedResponseBase;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -80,9 +79,9 @@ public class MoveToStepResponse extends AcknowledgedResponseBase {
 	 * Json deserializer for {@link MoveToStepResponse}
 	 */
 	public static final JsonpDeserializer<MoveToStepResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, MoveToStepResponse::setupMoveToStepResponseDeserializer, Builder::build);
+			.lazy(Builder::new, MoveToStepResponse::setupMoveToStepResponseDeserializer);
 
-	protected static void setupMoveToStepResponseDeserializer(DelegatingDeserializer<MoveToStepResponse.Builder> op) {
+	protected static void setupMoveToStepResponseDeserializer(ObjectDeserializer<MoveToStepResponse.Builder> op) {
 		AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);
 
 	}

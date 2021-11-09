@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch.transform;
 
 import co.elastic.clients.elasticsearch.indices.IndexState;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -192,7 +191,7 @@ public class PreviewTransformResponse<TTransform> implements JsonpSerializable {
 	};
 
 	protected static <TTransform> void setupPreviewTransformResponseDeserializer(
-			DelegatingDeserializer<PreviewTransformResponse.Builder<TTransform>> op,
+			ObjectDeserializer<PreviewTransformResponse.Builder<TTransform>> op,
 			JsonpDeserializer<TTransform> tTransformDeserializer) {
 
 		op.add(Builder::generatedDestIndex, IndexState._DESERIALIZER, "generated_dest_index");

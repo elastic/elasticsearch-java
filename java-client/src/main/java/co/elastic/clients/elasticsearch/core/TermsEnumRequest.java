@@ -26,7 +26,6 @@ package co.elastic.clients.elasticsearch.core;
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch._types.query_dsl.Query;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -362,9 +361,9 @@ public class TermsEnumRequest extends RequestBase implements JsonpSerializable {
 	 * Json deserializer for {@link TermsEnumRequest}
 	 */
 	public static final JsonpDeserializer<TermsEnumRequest> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			TermsEnumRequest::setupTermsEnumRequestDeserializer, Builder::build);
+			TermsEnumRequest::setupTermsEnumRequestDeserializer);
 
-	protected static void setupTermsEnumRequestDeserializer(DelegatingDeserializer<TermsEnumRequest.Builder> op) {
+	protected static void setupTermsEnumRequestDeserializer(ObjectDeserializer<TermsEnumRequest.Builder> op) {
 
 		op.add(Builder::caseInsensitive, JsonpDeserializer.booleanDeserializer(), "case_insensitive");
 		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");

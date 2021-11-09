@@ -25,7 +25,6 @@ package co.elastic.clients.elasticsearch.ingest;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -433,9 +432,9 @@ public class PutPipelineRequest extends RequestBase implements JsonpSerializable
 	 * Json deserializer for {@link PutPipelineRequest}
 	 */
 	public static final JsonpDeserializer<PutPipelineRequest> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, PutPipelineRequest::setupPutPipelineRequestDeserializer, Builder::build);
+			.lazy(Builder::new, PutPipelineRequest::setupPutPipelineRequestDeserializer);
 
-	protected static void setupPutPipelineRequestDeserializer(DelegatingDeserializer<PutPipelineRequest.Builder> op) {
+	protected static void setupPutPipelineRequestDeserializer(ObjectDeserializer<PutPipelineRequest.Builder> op) {
 
 		op.add(Builder::meta, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "_meta");
 		op.add(Builder::description, JsonpDeserializer.stringDeserializer(), "description");

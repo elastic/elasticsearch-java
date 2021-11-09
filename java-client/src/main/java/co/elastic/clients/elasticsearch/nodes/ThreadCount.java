@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.nodes;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -228,9 +227,9 @@ public class ThreadCount implements JsonpSerializable {
 	 * Json deserializer for {@link ThreadCount}
 	 */
 	public static final JsonpDeserializer<ThreadCount> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			ThreadCount::setupThreadCountDeserializer, Builder::build);
+			ThreadCount::setupThreadCountDeserializer);
 
-	protected static void setupThreadCountDeserializer(DelegatingDeserializer<ThreadCount.Builder> op) {
+	protected static void setupThreadCountDeserializer(ObjectDeserializer<ThreadCount.Builder> op) {
 
 		op.add(Builder::active, JsonpDeserializer.longDeserializer(), "active");
 		op.add(Builder::completed, JsonpDeserializer.longDeserializer(), "completed");

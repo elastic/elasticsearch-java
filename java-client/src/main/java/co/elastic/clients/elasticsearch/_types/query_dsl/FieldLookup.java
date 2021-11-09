@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -199,9 +198,9 @@ public class FieldLookup implements JsonpSerializable {
 	 * Json deserializer for {@link FieldLookup}
 	 */
 	public static final JsonpDeserializer<FieldLookup> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			FieldLookup::setupFieldLookupDeserializer, Builder::build);
+			FieldLookup::setupFieldLookupDeserializer);
 
-	protected static void setupFieldLookupDeserializer(DelegatingDeserializer<FieldLookup.Builder> op) {
+	protected static void setupFieldLookupDeserializer(ObjectDeserializer<FieldLookup.Builder> op) {
 
 		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "id");
 		op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "index");

@@ -26,7 +26,6 @@ package co.elastic.clients.elasticsearch.core;
 import co.elastic.clients.elasticsearch._types.NodeAttributes;
 import co.elastic.clients.elasticsearch._types.NodeShard;
 import co.elastic.clients.elasticsearch.core.search_shards.ShardStoreIndex;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -231,10 +230,9 @@ public class SearchShardsResponse implements JsonpSerializable {
 	 * Json deserializer for {@link SearchShardsResponse}
 	 */
 	public static final JsonpDeserializer<SearchShardsResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, SearchShardsResponse::setupSearchShardsResponseDeserializer, Builder::build);
+			.lazy(Builder::new, SearchShardsResponse::setupSearchShardsResponseDeserializer);
 
-	protected static void setupSearchShardsResponseDeserializer(
-			DelegatingDeserializer<SearchShardsResponse.Builder> op) {
+	protected static void setupSearchShardsResponseDeserializer(ObjectDeserializer<SearchShardsResponse.Builder> op) {
 
 		op.add(Builder::nodes, JsonpDeserializer.stringMapDeserializer(NodeAttributes._DESERIALIZER), "nodes");
 		op.add(Builder::shards,

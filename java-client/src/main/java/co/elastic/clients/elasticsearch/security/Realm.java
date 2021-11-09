@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.security;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -122,9 +121,9 @@ public class Realm implements FieldRuleVariant, JsonpSerializable {
 	 * Json deserializer for {@link Realm}
 	 */
 	public static final JsonpDeserializer<Realm> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			Realm::setupRealmDeserializer, Builder::build);
+			Realm::setupRealmDeserializer);
 
-	protected static void setupRealmDeserializer(DelegatingDeserializer<Realm.Builder> op) {
+	protected static void setupRealmDeserializer(ObjectDeserializer<Realm.Builder> op) {
 
 		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
 

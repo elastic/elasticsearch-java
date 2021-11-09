@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -234,10 +233,10 @@ public class MovingAverageAggregation extends PipelineAggregationBase implements
 	 * Json deserializer for {@link MovingAverageAggregation}
 	 */
 	public static final JsonpDeserializer<MovingAverageAggregation> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, MovingAverageAggregation::setupMovingAverageAggregationDeserializer, Builder::build);
+			.lazy(Builder::new, MovingAverageAggregation::setupMovingAverageAggregationDeserializer);
 
 	protected static void setupMovingAverageAggregationDeserializer(
-			DelegatingDeserializer<MovingAverageAggregation.Builder> op) {
+			ObjectDeserializer<MovingAverageAggregation.Builder> op) {
 		PipelineAggregationBase.setupPipelineAggregationBaseDeserializer(op);
 		op.add(Builder::minimize, JsonpDeserializer.booleanDeserializer(), "minimize");
 		op.add(Builder::model, MovingAverageModel._DESERIALIZER, "model");

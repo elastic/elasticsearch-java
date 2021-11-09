@@ -26,7 +26,6 @@ package co.elastic.clients.elasticsearch.text_structure;
 import co.elastic.clients.elasticsearch._types.mapping.TypeMapping;
 import co.elastic.clients.elasticsearch.ingest.PipelineConfig;
 import co.elastic.clients.elasticsearch.text_structure.find_structure.FieldStat;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -748,10 +747,9 @@ public class FindStructureResponse implements JsonpSerializable {
 	 * Json deserializer for {@link FindStructureResponse}
 	 */
 	public static final JsonpDeserializer<FindStructureResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, FindStructureResponse::setupFindStructureResponseDeserializer, Builder::build);
+			.lazy(Builder::new, FindStructureResponse::setupFindStructureResponseDeserializer);
 
-	protected static void setupFindStructureResponseDeserializer(
-			DelegatingDeserializer<FindStructureResponse.Builder> op) {
+	protected static void setupFindStructureResponseDeserializer(ObjectDeserializer<FindStructureResponse.Builder> op) {
 
 		op.add(Builder::charset, JsonpDeserializer.stringDeserializer(), "charset");
 		op.add(Builder::hasHeaderRow, JsonpDeserializer.booleanDeserializer(), "has_header_row");

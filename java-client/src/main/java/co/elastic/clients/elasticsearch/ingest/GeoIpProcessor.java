@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.ingest;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -253,9 +252,9 @@ public class GeoIpProcessor extends ProcessorBase implements ProcessorVariant {
 	 * Json deserializer for {@link GeoIpProcessor}
 	 */
 	public static final JsonpDeserializer<GeoIpProcessor> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			GeoIpProcessor::setupGeoIpProcessorDeserializer, Builder::build);
+			GeoIpProcessor::setupGeoIpProcessorDeserializer);
 
-	protected static void setupGeoIpProcessorDeserializer(DelegatingDeserializer<GeoIpProcessor.Builder> op) {
+	protected static void setupGeoIpProcessorDeserializer(ObjectDeserializer<GeoIpProcessor.Builder> op) {
 		ProcessorBase.setupProcessorBaseDeserializer(op);
 		op.add(Builder::databaseFile, JsonpDeserializer.stringDeserializer(), "database_file");
 		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");

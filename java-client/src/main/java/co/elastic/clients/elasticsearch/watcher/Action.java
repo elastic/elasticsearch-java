@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch.watcher;
 
 import co.elastic.clients.elasticsearch._types.Transform;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -435,9 +434,9 @@ public class Action implements JsonpSerializable {
 	 * Json deserializer for {@link Action}
 	 */
 	public static final JsonpDeserializer<Action> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			Action::setupActionDeserializer, Builder::build);
+			Action::setupActionDeserializer);
 
-	protected static void setupActionDeserializer(DelegatingDeserializer<Action.Builder> op) {
+	protected static void setupActionDeserializer(ObjectDeserializer<Action.Builder> op) {
 
 		op.add(Builder::actionType, ActionType._DESERIALIZER, "action_type");
 		op.add(Builder::condition, Condition._DESERIALIZER, "condition");

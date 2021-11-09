@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.xpack.usage;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -171,9 +170,9 @@ public class MlInference implements JsonpSerializable {
 	 * Json deserializer for {@link MlInference}
 	 */
 	public static final JsonpDeserializer<MlInference> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			MlInference::setupMlInferenceDeserializer, Builder::build);
+			MlInference::setupMlInferenceDeserializer);
 
-	protected static void setupMlInferenceDeserializer(DelegatingDeserializer<MlInference.Builder> op) {
+	protected static void setupMlInferenceDeserializer(ObjectDeserializer<MlInference.Builder> op) {
 
 		op.add(Builder::ingestProcessors,
 				JsonpDeserializer.stringMapDeserializer(MlInferenceIngestProcessor._DESERIALIZER), "ingest_processors");

@@ -25,7 +25,6 @@ package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -224,9 +223,9 @@ public class StopDatafeedRequest extends RequestBase implements JsonpSerializabl
 	 * Json deserializer for {@link StopDatafeedRequest}
 	 */
 	public static final JsonpDeserializer<StopDatafeedRequest> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, StopDatafeedRequest::setupStopDatafeedRequestDeserializer, Builder::build);
+			.lazy(Builder::new, StopDatafeedRequest::setupStopDatafeedRequestDeserializer);
 
-	protected static void setupStopDatafeedRequestDeserializer(DelegatingDeserializer<StopDatafeedRequest.Builder> op) {
+	protected static void setupStopDatafeedRequestDeserializer(ObjectDeserializer<StopDatafeedRequest.Builder> op) {
 
 		op.add(Builder::allowNoMatch, JsonpDeserializer.booleanDeserializer(), "allow_no_match");
 		op.add(Builder::force, JsonpDeserializer.booleanDeserializer(), "force");

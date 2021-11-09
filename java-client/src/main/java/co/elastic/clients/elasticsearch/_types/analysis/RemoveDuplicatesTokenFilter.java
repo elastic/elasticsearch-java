@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.analysis;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -94,11 +93,11 @@ public class RemoveDuplicatesTokenFilter extends TokenFilterBase implements Toke
 	/**
 	 * Json deserializer for {@link RemoveDuplicatesTokenFilter}
 	 */
-	public static final JsonpDeserializer<RemoveDuplicatesTokenFilter> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
-			Builder::new, RemoveDuplicatesTokenFilter::setupRemoveDuplicatesTokenFilterDeserializer, Builder::build);
+	public static final JsonpDeserializer<RemoveDuplicatesTokenFilter> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, RemoveDuplicatesTokenFilter::setupRemoveDuplicatesTokenFilterDeserializer);
 
 	protected static void setupRemoveDuplicatesTokenFilterDeserializer(
-			DelegatingDeserializer<RemoveDuplicatesTokenFilter.Builder> op) {
+			ObjectDeserializer<RemoveDuplicatesTokenFilter.Builder> op) {
 		TokenFilterBase.setupTokenFilterBaseDeserializer(op);
 
 		op.ignore("type");

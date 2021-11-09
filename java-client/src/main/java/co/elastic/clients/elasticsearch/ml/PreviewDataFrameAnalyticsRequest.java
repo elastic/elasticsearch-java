@@ -26,7 +26,6 @@ package co.elastic.clients.elasticsearch.ml;
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch.ml.preview_data_frame_analytics.DataframePreviewConfig;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -173,11 +172,10 @@ public class PreviewDataFrameAnalyticsRequest extends RequestBase implements Jso
 	 * Json deserializer for {@link PreviewDataFrameAnalyticsRequest}
 	 */
 	public static final JsonpDeserializer<PreviewDataFrameAnalyticsRequest> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, PreviewDataFrameAnalyticsRequest::setupPreviewDataFrameAnalyticsRequestDeserializer,
-					Builder::build);
+			.lazy(Builder::new, PreviewDataFrameAnalyticsRequest::setupPreviewDataFrameAnalyticsRequestDeserializer);
 
 	protected static void setupPreviewDataFrameAnalyticsRequestDeserializer(
-			DelegatingDeserializer<PreviewDataFrameAnalyticsRequest.Builder> op) {
+			ObjectDeserializer<PreviewDataFrameAnalyticsRequest.Builder> op) {
 
 		op.add(Builder::config, DataframePreviewConfig._DESERIALIZER, "config");
 

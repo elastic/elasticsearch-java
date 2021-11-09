@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.mapping;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -293,9 +292,9 @@ public class DynamicTemplate implements JsonpSerializable {
 	 * Json deserializer for {@link DynamicTemplate}
 	 */
 	public static final JsonpDeserializer<DynamicTemplate> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			DynamicTemplate::setupDynamicTemplateDeserializer, Builder::build);
+			DynamicTemplate::setupDynamicTemplateDeserializer);
 
-	protected static void setupDynamicTemplateDeserializer(DelegatingDeserializer<DynamicTemplate.Builder> op) {
+	protected static void setupDynamicTemplateDeserializer(ObjectDeserializer<DynamicTemplate.Builder> op) {
 
 		op.add(Builder::mapping, Property._DESERIALIZER, "mapping");
 		op.add(Builder::match, JsonpDeserializer.stringDeserializer(), "match");

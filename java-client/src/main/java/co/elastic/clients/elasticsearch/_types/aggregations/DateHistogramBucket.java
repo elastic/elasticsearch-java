@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -140,9 +139,9 @@ public class DateHistogramBucket extends MultiBucketBase {
 	 * Json deserializer for {@link DateHistogramBucket}
 	 */
 	public static final JsonpDeserializer<DateHistogramBucket> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, DateHistogramBucket::setupDateHistogramBucketDeserializer, Builder::build);
+			.lazy(Builder::new, DateHistogramBucket::setupDateHistogramBucketDeserializer);
 
-	protected static void setupDateHistogramBucketDeserializer(DelegatingDeserializer<DateHistogramBucket.Builder> op) {
+	protected static void setupDateHistogramBucketDeserializer(ObjectDeserializer<DateHistogramBucket.Builder> op) {
 		MultiBucketBase.setupMultiBucketBaseDeserializer(op);
 		op.add(Builder::keyAsString, JsonpDeserializer.stringDeserializer(), "key_as_string");
 		op.add(Builder::key, JsonpDeserializer.stringDeserializer(), "key");

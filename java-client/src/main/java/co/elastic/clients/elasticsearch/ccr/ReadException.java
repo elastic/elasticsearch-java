@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch.ccr;
 
 import co.elastic.clients.elasticsearch._types.ErrorCause;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -169,9 +168,9 @@ public class ReadException implements JsonpSerializable {
 	 * Json deserializer for {@link ReadException}
 	 */
 	public static final JsonpDeserializer<ReadException> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			ReadException::setupReadExceptionDeserializer, Builder::build);
+			ReadException::setupReadExceptionDeserializer);
 
-	protected static void setupReadExceptionDeserializer(DelegatingDeserializer<ReadException.Builder> op) {
+	protected static void setupReadExceptionDeserializer(ObjectDeserializer<ReadException.Builder> op) {
 
 		op.add(Builder::exception, ErrorCause._DESERIALIZER, "exception");
 		op.add(Builder::fromSeqNo, JsonpDeserializer.longDeserializer(), "from_seq_no");

@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.analysis;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -162,10 +161,9 @@ public class ConditionTokenFilter extends TokenFilterBase implements TokenFilter
 	 * Json deserializer for {@link ConditionTokenFilter}
 	 */
 	public static final JsonpDeserializer<ConditionTokenFilter> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, ConditionTokenFilter::setupConditionTokenFilterDeserializer, Builder::build);
+			.lazy(Builder::new, ConditionTokenFilter::setupConditionTokenFilterDeserializer);
 
-	protected static void setupConditionTokenFilterDeserializer(
-			DelegatingDeserializer<ConditionTokenFilter.Builder> op) {
+	protected static void setupConditionTokenFilterDeserializer(ObjectDeserializer<ConditionTokenFilter.Builder> op) {
 		TokenFilterBase.setupTokenFilterBaseDeserializer(op);
 		op.add(Builder::filter, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "filter");
 		op.add(Builder::script, JsonpDeserializer.jsonValueDeserializer(), "script");

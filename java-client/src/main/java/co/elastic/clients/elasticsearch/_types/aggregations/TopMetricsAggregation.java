@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -220,10 +219,9 @@ public class TopMetricsAggregation extends MetricAggregationBase implements Aggr
 	 * Json deserializer for {@link TopMetricsAggregation}
 	 */
 	public static final JsonpDeserializer<TopMetricsAggregation> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, TopMetricsAggregation::setupTopMetricsAggregationDeserializer, Builder::build);
+			.lazy(Builder::new, TopMetricsAggregation::setupTopMetricsAggregationDeserializer);
 
-	protected static void setupTopMetricsAggregationDeserializer(
-			DelegatingDeserializer<TopMetricsAggregation.Builder> op) {
+	protected static void setupTopMetricsAggregationDeserializer(ObjectDeserializer<TopMetricsAggregation.Builder> op) {
 		MetricAggregationBase.setupMetricAggregationBaseDeserializer(op);
 		op.add(Builder::metrics, JsonpDeserializer.arrayDeserializer(TopMetricsValue._DESERIALIZER), "metrics");
 		op.add(Builder::size, JsonpDeserializer.integerDeserializer(), "size");

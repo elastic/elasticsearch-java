@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.mapping;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -95,9 +94,9 @@ public class LongRangeProperty extends RangePropertyBase implements PropertyVari
 	 * Json deserializer for {@link LongRangeProperty}
 	 */
 	public static final JsonpDeserializer<LongRangeProperty> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, LongRangeProperty::setupLongRangePropertyDeserializer, Builder::build);
+			.lazy(Builder::new, LongRangeProperty::setupLongRangePropertyDeserializer);
 
-	protected static void setupLongRangePropertyDeserializer(DelegatingDeserializer<LongRangeProperty.Builder> op) {
+	protected static void setupLongRangePropertyDeserializer(ObjectDeserializer<LongRangeProperty.Builder> op) {
 		RangePropertyBase.setupRangePropertyBaseDeserializer(op);
 
 		op.ignore("type");

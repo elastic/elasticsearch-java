@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.ingest;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -825,7 +824,7 @@ public class Processor implements TaggedUnion<Object>, JsonpSerializable {
 
 	}
 
-	protected static void setupProcessorDeserializer(DelegatingDeserializer<Builder> op) {
+	protected static void setupProcessorDeserializer(ObjectDeserializer<Builder> op) {
 
 		op.add(Builder::attachment, AttachmentProcessor._DESERIALIZER, "attachment");
 		op.add(Builder::append, AppendProcessor._DESERIALIZER, "append");

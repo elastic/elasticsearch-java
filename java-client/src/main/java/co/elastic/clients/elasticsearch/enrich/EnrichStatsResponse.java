@@ -26,7 +26,6 @@ package co.elastic.clients.elasticsearch.enrich;
 import co.elastic.clients.elasticsearch.enrich.stats.CacheStats;
 import co.elastic.clients.elasticsearch.enrich.stats.CoordinatorStats;
 import co.elastic.clients.elasticsearch.enrich.stats.ExecutingPolicy;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -252,9 +251,9 @@ public class EnrichStatsResponse implements JsonpSerializable {
 	 * Json deserializer for {@link EnrichStatsResponse}
 	 */
 	public static final JsonpDeserializer<EnrichStatsResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, EnrichStatsResponse::setupEnrichStatsResponseDeserializer, Builder::build);
+			.lazy(Builder::new, EnrichStatsResponse::setupEnrichStatsResponseDeserializer);
 
-	protected static void setupEnrichStatsResponseDeserializer(DelegatingDeserializer<EnrichStatsResponse.Builder> op) {
+	protected static void setupEnrichStatsResponseDeserializer(ObjectDeserializer<EnrichStatsResponse.Builder> op) {
 
 		op.add(Builder::coordinatorStats, JsonpDeserializer.arrayDeserializer(CoordinatorStats._DESERIALIZER),
 				"coordinator_stats");

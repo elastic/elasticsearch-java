@@ -509,9 +509,8 @@ public class IndexRequest<TDocument> extends RequestBase implements JsonpSeriali
 
 		JsonpDeserializer<TDocument> valueDeserializer = tDocumentDeserializer;
 
-		return JsonpDeserializer.of(valueDeserializer.acceptedEvents(),
-				(parser, mapper, event) -> new Builder<TDocument>()
-						.document(valueDeserializer.deserialize(parser, mapper, event)).build());
+		return JsonpDeserializer.of(valueDeserializer.acceptedEvents(), (parser, mapper) -> new Builder<TDocument>()
+				.document(valueDeserializer.deserialize(parser, mapper)).build());
 	}
 
 	// ---------------------------------------------------------------------------------------------

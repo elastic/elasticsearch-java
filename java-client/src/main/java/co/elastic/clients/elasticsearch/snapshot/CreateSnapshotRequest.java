@@ -25,7 +25,6 @@ package co.elastic.clients.elasticsearch.snapshot;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -474,10 +473,9 @@ public class CreateSnapshotRequest extends RequestBase implements JsonpSerializa
 	 * Json deserializer for {@link CreateSnapshotRequest}
 	 */
 	public static final JsonpDeserializer<CreateSnapshotRequest> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, CreateSnapshotRequest::setupCreateSnapshotRequestDeserializer, Builder::build);
+			.lazy(Builder::new, CreateSnapshotRequest::setupCreateSnapshotRequestDeserializer);
 
-	protected static void setupCreateSnapshotRequestDeserializer(
-			DelegatingDeserializer<CreateSnapshotRequest.Builder> op) {
+	protected static void setupCreateSnapshotRequestDeserializer(ObjectDeserializer<CreateSnapshotRequest.Builder> op) {
 
 		op.add(Builder::featureStates, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"feature_states");

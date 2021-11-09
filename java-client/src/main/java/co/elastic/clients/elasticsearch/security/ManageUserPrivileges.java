@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.security;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -132,10 +131,9 @@ public class ManageUserPrivileges implements JsonpSerializable {
 	 * Json deserializer for {@link ManageUserPrivileges}
 	 */
 	public static final JsonpDeserializer<ManageUserPrivileges> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, ManageUserPrivileges::setupManageUserPrivilegesDeserializer, Builder::build);
+			.lazy(Builder::new, ManageUserPrivileges::setupManageUserPrivilegesDeserializer);
 
-	protected static void setupManageUserPrivilegesDeserializer(
-			DelegatingDeserializer<ManageUserPrivileges.Builder> op) {
+	protected static void setupManageUserPrivilegesDeserializer(ObjectDeserializer<ManageUserPrivileges.Builder> op) {
 
 		op.add(Builder::applications, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"applications");

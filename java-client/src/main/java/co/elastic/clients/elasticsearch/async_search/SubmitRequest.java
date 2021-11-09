@@ -37,7 +37,6 @@ import co.elastic.clients.elasticsearch.core.search.FieldCollapse;
 import co.elastic.clients.elasticsearch.core.search.Highlight;
 import co.elastic.clients.elasticsearch.core.search.PointInTimeReference;
 import co.elastic.clients.elasticsearch.core.search.Rescore;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -2047,9 +2046,9 @@ public class SubmitRequest extends RequestBase implements JsonpSerializable {
 	 * Json deserializer for {@link SubmitRequest}
 	 */
 	public static final JsonpDeserializer<SubmitRequest> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			SubmitRequest::setupSubmitRequestDeserializer, Builder::build);
+			SubmitRequest::setupSubmitRequestDeserializer);
 
-	protected static void setupSubmitRequestDeserializer(DelegatingDeserializer<SubmitRequest.Builder> op) {
+	protected static void setupSubmitRequestDeserializer(ObjectDeserializer<SubmitRequest.Builder> op) {
 
 		op.add(Builder::source, JsonpDeserializer.jsonValueDeserializer(), "_source");
 		op.add(Builder::aggregations, JsonpDeserializer.stringMapDeserializer(Aggregation._DESERIALIZER),

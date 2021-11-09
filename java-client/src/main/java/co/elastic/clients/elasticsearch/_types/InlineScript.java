@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -110,9 +109,9 @@ public class InlineScript extends ScriptBase {
 	 * Json deserializer for {@link InlineScript}
 	 */
 	public static final JsonpDeserializer<InlineScript> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			InlineScript::setupInlineScriptDeserializer, Builder::build);
+			InlineScript::setupInlineScriptDeserializer);
 
-	protected static void setupInlineScriptDeserializer(DelegatingDeserializer<InlineScript.Builder> op) {
+	protected static void setupInlineScriptDeserializer(ObjectDeserializer<InlineScript.Builder> op) {
 		ScriptBase.setupScriptBaseDeserializer(op);
 		op.add(Builder::source, JsonpDeserializer.stringDeserializer(), "source");
 

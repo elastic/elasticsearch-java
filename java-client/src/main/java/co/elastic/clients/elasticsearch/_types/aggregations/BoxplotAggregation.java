@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -125,9 +124,9 @@ public class BoxplotAggregation extends MetricAggregationBase implements Aggrega
 	 * Json deserializer for {@link BoxplotAggregation}
 	 */
 	public static final JsonpDeserializer<BoxplotAggregation> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, BoxplotAggregation::setupBoxplotAggregationDeserializer, Builder::build);
+			.lazy(Builder::new, BoxplotAggregation::setupBoxplotAggregationDeserializer);
 
-	protected static void setupBoxplotAggregationDeserializer(DelegatingDeserializer<BoxplotAggregation.Builder> op) {
+	protected static void setupBoxplotAggregationDeserializer(ObjectDeserializer<BoxplotAggregation.Builder> op) {
 		MetricAggregationBase.setupMetricAggregationBaseDeserializer(op);
 		op.add(Builder::compression, JsonpDeserializer.doubleDeserializer(), "compression");
 

@@ -28,7 +28,6 @@ import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.ExpandWildcardOptions;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch._types.query_dsl.Query;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -586,9 +585,9 @@ public class CountRequest extends RequestBase implements JsonpSerializable {
 	 * Json deserializer for {@link CountRequest}
 	 */
 	public static final JsonpDeserializer<CountRequest> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			CountRequest::setupCountRequestDeserializer, Builder::build);
+			CountRequest::setupCountRequestDeserializer);
 
-	protected static void setupCountRequestDeserializer(DelegatingDeserializer<CountRequest.Builder> op) {
+	protected static void setupCountRequestDeserializer(ObjectDeserializer<CountRequest.Builder> op) {
 
 		op.add(Builder::query, Query._DESERIALIZER, "query");
 

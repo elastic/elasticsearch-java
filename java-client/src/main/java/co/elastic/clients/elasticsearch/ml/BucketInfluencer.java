@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -420,9 +419,9 @@ public class BucketInfluencer implements JsonpSerializable {
 	 * Json deserializer for {@link BucketInfluencer}
 	 */
 	public static final JsonpDeserializer<BucketInfluencer> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			BucketInfluencer::setupBucketInfluencerDeserializer, Builder::build);
+			BucketInfluencer::setupBucketInfluencerDeserializer);
 
-	protected static void setupBucketInfluencerDeserializer(DelegatingDeserializer<BucketInfluencer.Builder> op) {
+	protected static void setupBucketInfluencerDeserializer(ObjectDeserializer<BucketInfluencer.Builder> op) {
 
 		op.add(Builder::bucketSpan, JsonpDeserializer.longDeserializer(), "bucket_span");
 		op.add(Builder::influencerScore, JsonpDeserializer.doubleDeserializer(), "influencer_score");

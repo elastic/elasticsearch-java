@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.mapping;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -113,9 +112,9 @@ public class RoutingField implements JsonpSerializable {
 	 * Json deserializer for {@link RoutingField}
 	 */
 	public static final JsonpDeserializer<RoutingField> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			RoutingField::setupRoutingFieldDeserializer, Builder::build);
+			RoutingField::setupRoutingFieldDeserializer);
 
-	protected static void setupRoutingFieldDeserializer(DelegatingDeserializer<RoutingField.Builder> op) {
+	protected static void setupRoutingFieldDeserializer(ObjectDeserializer<RoutingField.Builder> op) {
 
 		op.add(Builder::required, JsonpDeserializer.booleanDeserializer(), "required");
 

@@ -25,7 +25,6 @@ package co.elastic.clients.elasticsearch.nodes;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -193,11 +192,11 @@ public class ReloadSecureSettingsRequest extends RequestBase implements JsonpSer
 	/**
 	 * Json deserializer for {@link ReloadSecureSettingsRequest}
 	 */
-	public static final JsonpDeserializer<ReloadSecureSettingsRequest> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
-			Builder::new, ReloadSecureSettingsRequest::setupReloadSecureSettingsRequestDeserializer, Builder::build);
+	public static final JsonpDeserializer<ReloadSecureSettingsRequest> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, ReloadSecureSettingsRequest::setupReloadSecureSettingsRequestDeserializer);
 
 	protected static void setupReloadSecureSettingsRequestDeserializer(
-			DelegatingDeserializer<ReloadSecureSettingsRequest.Builder> op) {
+			ObjectDeserializer<ReloadSecureSettingsRequest.Builder> op) {
 
 		op.add(Builder::secureSettingsPassword, JsonpDeserializer.stringDeserializer(), "secure_settings_password");
 

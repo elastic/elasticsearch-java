@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.xpack.usage;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -109,9 +108,9 @@ public class Flattened extends Base {
 	 * Json deserializer for {@link Flattened}
 	 */
 	public static final JsonpDeserializer<Flattened> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			Flattened::setupFlattenedDeserializer, Builder::build);
+			Flattened::setupFlattenedDeserializer);
 
-	protected static void setupFlattenedDeserializer(DelegatingDeserializer<Flattened.Builder> op) {
+	protected static void setupFlattenedDeserializer(ObjectDeserializer<Flattened.Builder> op) {
 		Base.setupBaseDeserializer(op);
 		op.add(Builder::fieldCount, JsonpDeserializer.integerDeserializer(), "field_count");
 

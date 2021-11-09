@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch.license;
 
 import co.elastic.clients.elasticsearch.license.get.LicenseInformation;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -121,9 +120,9 @@ public class GetLicenseResponse implements JsonpSerializable {
 	 * Json deserializer for {@link GetLicenseResponse}
 	 */
 	public static final JsonpDeserializer<GetLicenseResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, GetLicenseResponse::setupGetLicenseResponseDeserializer, Builder::build);
+			.lazy(Builder::new, GetLicenseResponse::setupGetLicenseResponseDeserializer);
 
-	protected static void setupGetLicenseResponseDeserializer(DelegatingDeserializer<GetLicenseResponse.Builder> op) {
+	protected static void setupGetLicenseResponseDeserializer(ObjectDeserializer<GetLicenseResponse.Builder> op) {
 
 		op.add(Builder::license, LicenseInformation._DESERIALIZER, "license");
 

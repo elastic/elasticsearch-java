@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.analysis;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -390,7 +389,7 @@ public class Analyzer implements TaggedUnion<AnalyzerVariant>, JsonpSerializable
 
 	}
 
-	protected static void setupAnalyzerDeserializer(DelegatingDeserializer<Builder> op) {
+	protected static void setupAnalyzerDeserializer(ObjectDeserializer<Builder> op) {
 
 		op.add(Builder::custom, CustomAnalyzer._DESERIALIZER, "custom");
 		op.add(Builder::dutch, DutchAnalyzer._DESERIALIZER, "dutch");

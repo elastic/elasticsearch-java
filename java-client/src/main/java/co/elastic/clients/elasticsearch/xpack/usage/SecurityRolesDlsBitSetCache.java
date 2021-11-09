@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.xpack.usage;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -166,11 +165,11 @@ public class SecurityRolesDlsBitSetCache implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link SecurityRolesDlsBitSetCache}
 	 */
-	public static final JsonpDeserializer<SecurityRolesDlsBitSetCache> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
-			Builder::new, SecurityRolesDlsBitSetCache::setupSecurityRolesDlsBitSetCacheDeserializer, Builder::build);
+	public static final JsonpDeserializer<SecurityRolesDlsBitSetCache> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, SecurityRolesDlsBitSetCache::setupSecurityRolesDlsBitSetCacheDeserializer);
 
 	protected static void setupSecurityRolesDlsBitSetCacheDeserializer(
-			DelegatingDeserializer<SecurityRolesDlsBitSetCache.Builder> op) {
+			ObjectDeserializer<SecurityRolesDlsBitSetCache.Builder> op) {
 
 		op.add(Builder::count, JsonpDeserializer.integerDeserializer(), "count");
 		op.add(Builder::memory, JsonpDeserializer.stringDeserializer(), "memory");

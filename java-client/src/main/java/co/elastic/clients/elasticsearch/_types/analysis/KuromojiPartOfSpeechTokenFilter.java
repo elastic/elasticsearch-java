@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.analysis;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -140,11 +139,10 @@ public class KuromojiPartOfSpeechTokenFilter extends TokenFilterBase implements 
 	 * Json deserializer for {@link KuromojiPartOfSpeechTokenFilter}
 	 */
 	public static final JsonpDeserializer<KuromojiPartOfSpeechTokenFilter> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, KuromojiPartOfSpeechTokenFilter::setupKuromojiPartOfSpeechTokenFilterDeserializer,
-					Builder::build);
+			.lazy(Builder::new, KuromojiPartOfSpeechTokenFilter::setupKuromojiPartOfSpeechTokenFilterDeserializer);
 
 	protected static void setupKuromojiPartOfSpeechTokenFilterDeserializer(
-			DelegatingDeserializer<KuromojiPartOfSpeechTokenFilter.Builder> op) {
+			ObjectDeserializer<KuromojiPartOfSpeechTokenFilter.Builder> op) {
 		TokenFilterBase.setupTokenFilterBaseDeserializer(op);
 		op.add(Builder::stoptags, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"stoptags");

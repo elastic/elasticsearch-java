@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.ingest.geo_ip_stats;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -204,9 +203,9 @@ public class GeoIpNodeDatabases implements JsonpSerializable {
 	 * Json deserializer for {@link GeoIpNodeDatabases}
 	 */
 	public static final JsonpDeserializer<GeoIpNodeDatabases> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, GeoIpNodeDatabases::setupGeoIpNodeDatabasesDeserializer, Builder::build);
+			.lazy(Builder::new, GeoIpNodeDatabases::setupGeoIpNodeDatabasesDeserializer);
 
-	protected static void setupGeoIpNodeDatabasesDeserializer(DelegatingDeserializer<GeoIpNodeDatabases.Builder> op) {
+	protected static void setupGeoIpNodeDatabasesDeserializer(ObjectDeserializer<GeoIpNodeDatabases.Builder> op) {
 
 		op.add(Builder::databases, JsonpDeserializer.arrayDeserializer(GeoIpNodeDatabaseName._DESERIALIZER),
 				"databases");

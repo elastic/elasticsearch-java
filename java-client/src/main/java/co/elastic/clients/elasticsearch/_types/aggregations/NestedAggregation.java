@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -125,9 +124,9 @@ public class NestedAggregation extends BucketAggregationBase implements Aggregat
 	 * Json deserializer for {@link NestedAggregation}
 	 */
 	public static final JsonpDeserializer<NestedAggregation> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, NestedAggregation::setupNestedAggregationDeserializer, Builder::build);
+			.lazy(Builder::new, NestedAggregation::setupNestedAggregationDeserializer);
 
-	protected static void setupNestedAggregationDeserializer(DelegatingDeserializer<NestedAggregation.Builder> op) {
+	protected static void setupNestedAggregationDeserializer(ObjectDeserializer<NestedAggregation.Builder> op) {
 		BucketAggregationBase.setupBucketAggregationBaseDeserializer(op);
 		op.add(Builder::path, JsonpDeserializer.stringDeserializer(), "path");
 

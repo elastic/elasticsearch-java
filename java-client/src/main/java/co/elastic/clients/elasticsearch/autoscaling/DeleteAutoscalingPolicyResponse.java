@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch.autoscaling;
 
 import co.elastic.clients.elasticsearch._types.AcknowledgedResponseBase;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -81,11 +80,10 @@ public class DeleteAutoscalingPolicyResponse extends AcknowledgedResponseBase {
 	 * Json deserializer for {@link DeleteAutoscalingPolicyResponse}
 	 */
 	public static final JsonpDeserializer<DeleteAutoscalingPolicyResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, DeleteAutoscalingPolicyResponse::setupDeleteAutoscalingPolicyResponseDeserializer,
-					Builder::build);
+			.lazy(Builder::new, DeleteAutoscalingPolicyResponse::setupDeleteAutoscalingPolicyResponseDeserializer);
 
 	protected static void setupDeleteAutoscalingPolicyResponseDeserializer(
-			DelegatingDeserializer<DeleteAutoscalingPolicyResponse.Builder> op) {
+			ObjectDeserializer<DeleteAutoscalingPolicyResponse.Builder> op) {
 		AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);
 
 	}

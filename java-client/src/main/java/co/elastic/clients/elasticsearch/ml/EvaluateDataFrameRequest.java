@@ -26,7 +26,6 @@ package co.elastic.clients.elasticsearch.ml;
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch._types.query_dsl.Query;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -202,10 +201,10 @@ public class EvaluateDataFrameRequest extends RequestBase implements JsonpSerial
 	 * Json deserializer for {@link EvaluateDataFrameRequest}
 	 */
 	public static final JsonpDeserializer<EvaluateDataFrameRequest> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, EvaluateDataFrameRequest::setupEvaluateDataFrameRequestDeserializer, Builder::build);
+			.lazy(Builder::new, EvaluateDataFrameRequest::setupEvaluateDataFrameRequestDeserializer);
 
 	protected static void setupEvaluateDataFrameRequestDeserializer(
-			DelegatingDeserializer<EvaluateDataFrameRequest.Builder> op) {
+			ObjectDeserializer<EvaluateDataFrameRequest.Builder> op) {
 
 		op.add(Builder::evaluation, DataframeEvaluation._DESERIALIZER, "evaluation");
 		op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "index");

@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -189,9 +188,9 @@ public class WarmerStats implements JsonpSerializable {
 	 * Json deserializer for {@link WarmerStats}
 	 */
 	public static final JsonpDeserializer<WarmerStats> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			WarmerStats::setupWarmerStatsDeserializer, Builder::build);
+			WarmerStats::setupWarmerStatsDeserializer);
 
-	protected static void setupWarmerStatsDeserializer(DelegatingDeserializer<WarmerStats.Builder> op) {
+	protected static void setupWarmerStatsDeserializer(ObjectDeserializer<WarmerStats.Builder> op) {
 
 		op.add(Builder::current, JsonpDeserializer.longDeserializer(), "current");
 		op.add(Builder::total, JsonpDeserializer.longDeserializer(), "total");

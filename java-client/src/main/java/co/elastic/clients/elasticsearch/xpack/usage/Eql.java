@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.xpack.usage;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -164,9 +163,9 @@ public class Eql extends Base {
 	 * Json deserializer for {@link Eql}
 	 */
 	public static final JsonpDeserializer<Eql> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			Eql::setupEqlDeserializer, Builder::build);
+			Eql::setupEqlDeserializer);
 
-	protected static void setupEqlDeserializer(DelegatingDeserializer<Eql.Builder> op) {
+	protected static void setupEqlDeserializer(ObjectDeserializer<Eql.Builder> op) {
 		Base.setupBaseDeserializer(op);
 		op.add(Builder::features, EqlFeatures._DESERIALIZER, "features");
 		op.add(Builder::queries, JsonpDeserializer.stringMapDeserializer(Query._DESERIALIZER), "queries");

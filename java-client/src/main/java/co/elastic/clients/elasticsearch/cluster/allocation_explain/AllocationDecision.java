@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.cluster.allocation_explain;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -159,9 +158,9 @@ public class AllocationDecision implements JsonpSerializable {
 	 * Json deserializer for {@link AllocationDecision}
 	 */
 	public static final JsonpDeserializer<AllocationDecision> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, AllocationDecision::setupAllocationDecisionDeserializer, Builder::build);
+			.lazy(Builder::new, AllocationDecision::setupAllocationDecisionDeserializer);
 
-	protected static void setupAllocationDecisionDeserializer(DelegatingDeserializer<AllocationDecision.Builder> op) {
+	protected static void setupAllocationDecisionDeserializer(ObjectDeserializer<AllocationDecision.Builder> op) {
 
 		op.add(Builder::decider, JsonpDeserializer.stringDeserializer(), "decider");
 		op.add(Builder::decision, AllocationExplainDecision._DESERIALIZER, "decision");

@@ -25,7 +25,6 @@ package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -349,9 +348,9 @@ public class ValidateRequest extends RequestBase implements JsonpSerializable {
 	 * Json deserializer for {@link ValidateRequest}
 	 */
 	public static final JsonpDeserializer<ValidateRequest> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			ValidateRequest::setupValidateRequestDeserializer, Builder::build);
+			ValidateRequest::setupValidateRequestDeserializer);
 
-	protected static void setupValidateRequestDeserializer(DelegatingDeserializer<ValidateRequest.Builder> op) {
+	protected static void setupValidateRequestDeserializer(ObjectDeserializer<ValidateRequest.Builder> op) {
 
 		op.add(Builder::analysisConfig, AnalysisConfig._DESERIALIZER, "analysis_config");
 		op.add(Builder::analysisLimits, AnalysisLimits._DESERIALIZER, "analysis_limits");

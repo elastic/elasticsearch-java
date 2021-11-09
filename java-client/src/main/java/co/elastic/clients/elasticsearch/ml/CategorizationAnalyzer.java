@@ -26,7 +26,6 @@ package co.elastic.clients.elasticsearch.ml;
 import co.elastic.clients.elasticsearch._types.analysis.CharFilter;
 import co.elastic.clients.elasticsearch._types.analysis.TokenFilter;
 import co.elastic.clients.elasticsearch._types.analysis.Tokenizer;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -327,10 +326,10 @@ public class CategorizationAnalyzer implements JsonpSerializable {
 	 * Json deserializer for {@link CategorizationAnalyzer}
 	 */
 	public static final JsonpDeserializer<CategorizationAnalyzer> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, CategorizationAnalyzer::setupCategorizationAnalyzerDeserializer, Builder::build);
+			.lazy(Builder::new, CategorizationAnalyzer::setupCategorizationAnalyzerDeserializer);
 
 	protected static void setupCategorizationAnalyzerDeserializer(
-			DelegatingDeserializer<CategorizationAnalyzer.Builder> op) {
+			ObjectDeserializer<CategorizationAnalyzer.Builder> op) {
 
 		op.add(Builder::charFilter, JsonpDeserializer.arrayDeserializer(CharFilter._DESERIALIZER), "char_filter");
 		op.add(Builder::filter, JsonpDeserializer.arrayDeserializer(TokenFilter._DESERIALIZER), "filter");

@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.core.search;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -508,9 +507,9 @@ public class QueryBreakdown implements JsonpSerializable {
 	 * Json deserializer for {@link QueryBreakdown}
 	 */
 	public static final JsonpDeserializer<QueryBreakdown> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			QueryBreakdown::setupQueryBreakdownDeserializer, Builder::build);
+			QueryBreakdown::setupQueryBreakdownDeserializer);
 
-	protected static void setupQueryBreakdownDeserializer(DelegatingDeserializer<QueryBreakdown.Builder> op) {
+	protected static void setupQueryBreakdownDeserializer(ObjectDeserializer<QueryBreakdown.Builder> op) {
 
 		op.add(Builder::advance, JsonpDeserializer.longDeserializer(), "advance");
 		op.add(Builder::advanceCount, JsonpDeserializer.longDeserializer(), "advance_count");

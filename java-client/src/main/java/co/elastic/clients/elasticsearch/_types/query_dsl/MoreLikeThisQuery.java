@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
 import co.elastic.clients.elasticsearch._types.VersionType;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -707,9 +706,9 @@ public class MoreLikeThisQuery extends QueryBase implements QueryVariant {
 	 * Json deserializer for {@link MoreLikeThisQuery}
 	 */
 	public static final JsonpDeserializer<MoreLikeThisQuery> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, MoreLikeThisQuery::setupMoreLikeThisQueryDeserializer, Builder::build);
+			.lazy(Builder::new, MoreLikeThisQuery::setupMoreLikeThisQueryDeserializer);
 
-	protected static void setupMoreLikeThisQueryDeserializer(DelegatingDeserializer<MoreLikeThisQuery.Builder> op) {
+	protected static void setupMoreLikeThisQueryDeserializer(ObjectDeserializer<MoreLikeThisQuery.Builder> op) {
 		QueryBase.setupQueryBaseDeserializer(op);
 		op.add(Builder::analyzer, JsonpDeserializer.stringDeserializer(), "analyzer");
 		op.add(Builder::boostTerms, JsonpDeserializer.doubleDeserializer(), "boost_terms");

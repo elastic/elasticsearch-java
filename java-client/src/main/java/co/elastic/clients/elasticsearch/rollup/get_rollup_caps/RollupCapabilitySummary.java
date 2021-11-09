@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.rollup.get_rollup_caps;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -201,10 +200,10 @@ public class RollupCapabilitySummary implements JsonpSerializable {
 	 * Json deserializer for {@link RollupCapabilitySummary}
 	 */
 	public static final JsonpDeserializer<RollupCapabilitySummary> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, RollupCapabilitySummary::setupRollupCapabilitySummaryDeserializer, Builder::build);
+			.lazy(Builder::new, RollupCapabilitySummary::setupRollupCapabilitySummaryDeserializer);
 
 	protected static void setupRollupCapabilitySummaryDeserializer(
-			DelegatingDeserializer<RollupCapabilitySummary.Builder> op) {
+			ObjectDeserializer<RollupCapabilitySummary.Builder> op) {
 
 		op.add(Builder::fields, JsonpDeserializer
 				.stringMapDeserializer(JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER)), "fields");

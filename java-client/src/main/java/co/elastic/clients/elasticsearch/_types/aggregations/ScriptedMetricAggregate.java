@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -120,10 +119,10 @@ public class ScriptedMetricAggregate extends AggregateBase implements AggregateV
 	 * Json deserializer for {@link ScriptedMetricAggregate}
 	 */
 	public static final JsonpDeserializer<ScriptedMetricAggregate> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, ScriptedMetricAggregate::setupScriptedMetricAggregateDeserializer, Builder::build);
+			.lazy(Builder::new, ScriptedMetricAggregate::setupScriptedMetricAggregateDeserializer);
 
 	protected static void setupScriptedMetricAggregateDeserializer(
-			DelegatingDeserializer<ScriptedMetricAggregate.Builder> op) {
+			ObjectDeserializer<ScriptedMetricAggregate.Builder> op) {
 		AggregateBase.setupAggregateBaseDeserializer(op);
 		op.add(Builder::value, JsonData._DESERIALIZER, "value");
 

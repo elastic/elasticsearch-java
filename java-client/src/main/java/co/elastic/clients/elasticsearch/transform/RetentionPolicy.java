@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.transform;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -124,7 +123,7 @@ public class RetentionPolicy implements TaggedUnion<Object>, JsonpSerializable {
 
 	}
 
-	protected static void setupRetentionPolicyDeserializer(DelegatingDeserializer<Builder> op) {
+	protected static void setupRetentionPolicyDeserializer(ObjectDeserializer<Builder> op) {
 
 		op.add(Builder::time, TimeRetentionPolicy._DESERIALIZER, "time");
 

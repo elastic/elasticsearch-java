@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.rollup.get_rollup_index_caps;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -144,9 +143,9 @@ public class IndexCapabilities implements JsonpSerializable {
 	 * Json deserializer for {@link IndexCapabilities}
 	 */
 	public static final JsonpDeserializer<IndexCapabilities> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, IndexCapabilities::setupIndexCapabilitiesDeserializer, Builder::build);
+			.lazy(Builder::new, IndexCapabilities::setupIndexCapabilitiesDeserializer);
 
-	protected static void setupIndexCapabilitiesDeserializer(DelegatingDeserializer<IndexCapabilities.Builder> op) {
+	protected static void setupIndexCapabilitiesDeserializer(ObjectDeserializer<IndexCapabilities.Builder> op) {
 
 		op.add(Builder::rollupJobs, JsonpDeserializer.arrayDeserializer(RollupJobSummary._DESERIALIZER), "rollup_jobs");
 

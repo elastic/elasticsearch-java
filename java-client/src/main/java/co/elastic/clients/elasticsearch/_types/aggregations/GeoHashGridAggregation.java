@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch._types.aggregations;
 
 import co.elastic.clients.elasticsearch._types.query_dsl.BoundingBox;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -247,10 +246,10 @@ public class GeoHashGridAggregation extends BucketAggregationBase implements Agg
 	 * Json deserializer for {@link GeoHashGridAggregation}
 	 */
 	public static final JsonpDeserializer<GeoHashGridAggregation> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, GeoHashGridAggregation::setupGeoHashGridAggregationDeserializer, Builder::build);
+			.lazy(Builder::new, GeoHashGridAggregation::setupGeoHashGridAggregationDeserializer);
 
 	protected static void setupGeoHashGridAggregationDeserializer(
-			DelegatingDeserializer<GeoHashGridAggregation.Builder> op) {
+			ObjectDeserializer<GeoHashGridAggregation.Builder> op) {
 		BucketAggregationBase.setupBucketAggregationBaseDeserializer(op);
 		op.add(Builder::bounds, BoundingBox._DESERIALIZER, "bounds");
 		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");

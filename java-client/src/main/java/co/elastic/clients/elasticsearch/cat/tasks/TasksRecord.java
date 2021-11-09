@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.cat.tasks;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -603,9 +602,9 @@ public class TasksRecord implements JsonpSerializable {
 	 * Json deserializer for {@link TasksRecord}
 	 */
 	public static final JsonpDeserializer<TasksRecord> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			TasksRecord::setupTasksRecordDeserializer, Builder::build);
+			TasksRecord::setupTasksRecordDeserializer);
 
-	protected static void setupTasksRecordDeserializer(DelegatingDeserializer<TasksRecord.Builder> op) {
+	protected static void setupTasksRecordDeserializer(ObjectDeserializer<TasksRecord.Builder> op) {
 
 		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "id");
 		op.add(Builder::action, JsonpDeserializer.stringDeserializer(), "action", "ac");

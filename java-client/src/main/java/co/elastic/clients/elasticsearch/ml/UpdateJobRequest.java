@@ -25,7 +25,6 @@ package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -706,9 +705,9 @@ public class UpdateJobRequest extends RequestBase implements JsonpSerializable {
 	 * Json deserializer for {@link UpdateJobRequest}
 	 */
 	public static final JsonpDeserializer<UpdateJobRequest> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			UpdateJobRequest::setupUpdateJobRequestDeserializer, Builder::build);
+			UpdateJobRequest::setupUpdateJobRequestDeserializer);
 
-	protected static void setupUpdateJobRequestDeserializer(DelegatingDeserializer<UpdateJobRequest.Builder> op) {
+	protected static void setupUpdateJobRequestDeserializer(ObjectDeserializer<UpdateJobRequest.Builder> op) {
 
 		op.add(Builder::allowLazyOpen, JsonpDeserializer.booleanDeserializer(), "allow_lazy_open");
 		op.add(Builder::analysisLimits, AnalysisMemoryLimit._DESERIALIZER, "analysis_limits");

@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.ml.put_trained_model;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -172,7 +171,7 @@ public class Preprocessor implements TaggedUnion<Object>, JsonpSerializable {
 
 	}
 
-	protected static void setupPreprocessorDeserializer(DelegatingDeserializer<Builder> op) {
+	protected static void setupPreprocessorDeserializer(ObjectDeserializer<Builder> op) {
 
 		op.add(Builder::frequencyEncoding, FrequencyEncodingPreprocessor._DESERIALIZER, "frequency_encoding");
 		op.add(Builder::oneHotEncoding, OneHotEncodingPreprocessor._DESERIALIZER, "one_hot_encoding");

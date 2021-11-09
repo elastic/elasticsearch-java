@@ -25,7 +25,6 @@ package co.elastic.clients.elasticsearch.security;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -372,9 +371,9 @@ public class PutUserRequest extends RequestBase implements JsonpSerializable {
 	 * Json deserializer for {@link PutUserRequest}
 	 */
 	public static final JsonpDeserializer<PutUserRequest> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			PutUserRequest::setupPutUserRequestDeserializer, Builder::build);
+			PutUserRequest::setupPutUserRequestDeserializer);
 
-	protected static void setupPutUserRequestDeserializer(DelegatingDeserializer<PutUserRequest.Builder> op) {
+	protected static void setupPutUserRequestDeserializer(ObjectDeserializer<PutUserRequest.Builder> op) {
 
 		op.add(Builder::email, JsonpDeserializer.stringDeserializer(), "email");
 		op.add(Builder::enabled, JsonpDeserializer.booleanDeserializer(), "enabled");

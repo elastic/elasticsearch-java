@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.ilm;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -202,9 +201,9 @@ public class Phase implements JsonpSerializable {
 	 * Json deserializer for {@link Phase}
 	 */
 	public static final JsonpDeserializer<Phase> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			Phase::setupPhaseDeserializer, Builder::build);
+			Phase::setupPhaseDeserializer);
 
-	protected static void setupPhaseDeserializer(DelegatingDeserializer<Phase.Builder> op) {
+	protected static void setupPhaseDeserializer(ObjectDeserializer<Phase.Builder> op) {
 
 		op.add(Builder::actions, JsonpDeserializer.jsonValueDeserializer(), "actions");
 		op.add(Builder::minAge, JsonpDeserializer.stringDeserializer(), "min_age");

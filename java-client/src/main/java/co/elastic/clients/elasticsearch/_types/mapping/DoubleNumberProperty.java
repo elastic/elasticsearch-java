@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.mapping;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -126,10 +125,9 @@ public class DoubleNumberProperty extends StandardNumberProperty implements Prop
 	 * Json deserializer for {@link DoubleNumberProperty}
 	 */
 	public static final JsonpDeserializer<DoubleNumberProperty> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, DoubleNumberProperty::setupDoubleNumberPropertyDeserializer, Builder::build);
+			.lazy(Builder::new, DoubleNumberProperty::setupDoubleNumberPropertyDeserializer);
 
-	protected static void setupDoubleNumberPropertyDeserializer(
-			DelegatingDeserializer<DoubleNumberProperty.Builder> op) {
+	protected static void setupDoubleNumberPropertyDeserializer(ObjectDeserializer<DoubleNumberProperty.Builder> op) {
 		StandardNumberProperty.setupStandardNumberPropertyDeserializer(op);
 		op.add(Builder::nullValue, JsonpDeserializer.doubleDeserializer(), "null_value");
 

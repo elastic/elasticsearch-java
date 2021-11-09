@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.xpack.usage;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -136,9 +135,9 @@ public class IpFilter implements JsonpSerializable {
 	 * Json deserializer for {@link IpFilter}
 	 */
 	public static final JsonpDeserializer<IpFilter> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			IpFilter::setupIpFilterDeserializer, Builder::build);
+			IpFilter::setupIpFilterDeserializer);
 
-	protected static void setupIpFilterDeserializer(DelegatingDeserializer<IpFilter.Builder> op) {
+	protected static void setupIpFilterDeserializer(ObjectDeserializer<IpFilter.Builder> op) {
 
 		op.add(Builder::http, JsonpDeserializer.booleanDeserializer(), "http");
 		op.add(Builder::transport, JsonpDeserializer.booleanDeserializer(), "transport");

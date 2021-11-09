@@ -26,7 +26,6 @@ package co.elastic.clients.elasticsearch.xpack;
 import co.elastic.clients.elasticsearch.xpack.info.BuildInformation;
 import co.elastic.clients.elasticsearch.xpack.info.Features;
 import co.elastic.clients.elasticsearch.xpack.info.MinimalLicenseInformation;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -208,9 +207,9 @@ public class XpackInfoResponse implements JsonpSerializable {
 	 * Json deserializer for {@link XpackInfoResponse}
 	 */
 	public static final JsonpDeserializer<XpackInfoResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, XpackInfoResponse::setupXpackInfoResponseDeserializer, Builder::build);
+			.lazy(Builder::new, XpackInfoResponse::setupXpackInfoResponseDeserializer);
 
-	protected static void setupXpackInfoResponseDeserializer(DelegatingDeserializer<XpackInfoResponse.Builder> op) {
+	protected static void setupXpackInfoResponseDeserializer(ObjectDeserializer<XpackInfoResponse.Builder> op) {
 
 		op.add(Builder::build, BuildInformation._DESERIALIZER, "build");
 		op.add(Builder::features, Features._DESERIALIZER, "features");

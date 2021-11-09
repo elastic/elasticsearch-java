@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch.indices;
 
 import co.elastic.clients.elasticsearch.indices.get_index_template.IndexTemplateItem;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -146,10 +145,10 @@ public class GetIndexTemplateResponse implements JsonpSerializable {
 	 * Json deserializer for {@link GetIndexTemplateResponse}
 	 */
 	public static final JsonpDeserializer<GetIndexTemplateResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, GetIndexTemplateResponse::setupGetIndexTemplateResponseDeserializer, Builder::build);
+			.lazy(Builder::new, GetIndexTemplateResponse::setupGetIndexTemplateResponseDeserializer);
 
 	protected static void setupGetIndexTemplateResponseDeserializer(
-			DelegatingDeserializer<GetIndexTemplateResponse.Builder> op) {
+			ObjectDeserializer<GetIndexTemplateResponse.Builder> op) {
 
 		op.add(Builder::indexTemplates, JsonpDeserializer.arrayDeserializer(IndexTemplateItem._DESERIALIZER),
 				"index_templates");

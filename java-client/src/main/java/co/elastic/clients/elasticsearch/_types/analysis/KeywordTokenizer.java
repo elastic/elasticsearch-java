@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.analysis;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -120,9 +119,9 @@ public class KeywordTokenizer extends TokenizerBase implements TokenizerVariant 
 	 * Json deserializer for {@link KeywordTokenizer}
 	 */
 	public static final JsonpDeserializer<KeywordTokenizer> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			KeywordTokenizer::setupKeywordTokenizerDeserializer, Builder::build);
+			KeywordTokenizer::setupKeywordTokenizerDeserializer);
 
-	protected static void setupKeywordTokenizerDeserializer(DelegatingDeserializer<KeywordTokenizer.Builder> op) {
+	protected static void setupKeywordTokenizerDeserializer(ObjectDeserializer<KeywordTokenizer.Builder> op) {
 		TokenizerBase.setupTokenizerBaseDeserializer(op);
 		op.add(Builder::bufferSize, JsonpDeserializer.integerDeserializer(), "buffer_size");
 

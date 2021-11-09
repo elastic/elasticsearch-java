@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.ilm.explain_lifecycle;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -163,11 +162,10 @@ public class LifecycleExplainPhaseExecution implements JsonpSerializable {
 	 * Json deserializer for {@link LifecycleExplainPhaseExecution}
 	 */
 	public static final JsonpDeserializer<LifecycleExplainPhaseExecution> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, LifecycleExplainPhaseExecution::setupLifecycleExplainPhaseExecutionDeserializer,
-					Builder::build);
+			.lazy(Builder::new, LifecycleExplainPhaseExecution::setupLifecycleExplainPhaseExecutionDeserializer);
 
 	protected static void setupLifecycleExplainPhaseExecutionDeserializer(
-			DelegatingDeserializer<LifecycleExplainPhaseExecution.Builder> op) {
+			ObjectDeserializer<LifecycleExplainPhaseExecution.Builder> op) {
 
 		op.add(Builder::policy, JsonpDeserializer.stringDeserializer(), "policy");
 		op.add(Builder::version, JsonpDeserializer.longDeserializer(), "version");

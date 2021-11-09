@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -114,9 +113,9 @@ public class TopMetricsValue implements JsonpSerializable {
 	 * Json deserializer for {@link TopMetricsValue}
 	 */
 	public static final JsonpDeserializer<TopMetricsValue> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			TopMetricsValue::setupTopMetricsValueDeserializer, Builder::build);
+			TopMetricsValue::setupTopMetricsValueDeserializer);
 
-	protected static void setupTopMetricsValueDeserializer(DelegatingDeserializer<TopMetricsValue.Builder> op) {
+	protected static void setupTopMetricsValueDeserializer(ObjectDeserializer<TopMetricsValue.Builder> op) {
 
 		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
 

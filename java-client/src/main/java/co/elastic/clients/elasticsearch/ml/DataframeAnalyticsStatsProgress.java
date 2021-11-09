@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -149,11 +148,10 @@ public class DataframeAnalyticsStatsProgress implements JsonpSerializable {
 	 * Json deserializer for {@link DataframeAnalyticsStatsProgress}
 	 */
 	public static final JsonpDeserializer<DataframeAnalyticsStatsProgress> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, DataframeAnalyticsStatsProgress::setupDataframeAnalyticsStatsProgressDeserializer,
-					Builder::build);
+			.lazy(Builder::new, DataframeAnalyticsStatsProgress::setupDataframeAnalyticsStatsProgressDeserializer);
 
 	protected static void setupDataframeAnalyticsStatsProgressDeserializer(
-			DelegatingDeserializer<DataframeAnalyticsStatsProgress.Builder> op) {
+			ObjectDeserializer<DataframeAnalyticsStatsProgress.Builder> op) {
 
 		op.add(Builder::phase, JsonpDeserializer.stringDeserializer(), "phase");
 		op.add(Builder::progressPercent, JsonpDeserializer.integerDeserializer(), "progress_percent");

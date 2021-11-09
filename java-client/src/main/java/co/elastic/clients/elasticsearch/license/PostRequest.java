@@ -25,7 +25,6 @@ package co.elastic.clients.elasticsearch.license;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -214,9 +213,9 @@ public class PostRequest extends RequestBase implements JsonpSerializable {
 	 * Json deserializer for {@link PostRequest}
 	 */
 	public static final JsonpDeserializer<PostRequest> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			PostRequest::setupPostRequestDeserializer, Builder::build);
+			PostRequest::setupPostRequestDeserializer);
 
-	protected static void setupPostRequestDeserializer(DelegatingDeserializer<PostRequest.Builder> op) {
+	protected static void setupPostRequestDeserializer(ObjectDeserializer<PostRequest.Builder> op) {
 
 		op.add(Builder::license, License._DESERIALIZER, "license");
 		op.add(Builder::licenses, JsonpDeserializer.arrayDeserializer(License._DESERIALIZER), "licenses");

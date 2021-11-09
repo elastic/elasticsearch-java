@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.analysis;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -95,9 +94,9 @@ public class HtmlStripCharFilter extends CharFilterBase implements CharFilterVar
 	 * Json deserializer for {@link HtmlStripCharFilter}
 	 */
 	public static final JsonpDeserializer<HtmlStripCharFilter> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, HtmlStripCharFilter::setupHtmlStripCharFilterDeserializer, Builder::build);
+			.lazy(Builder::new, HtmlStripCharFilter::setupHtmlStripCharFilterDeserializer);
 
-	protected static void setupHtmlStripCharFilterDeserializer(DelegatingDeserializer<HtmlStripCharFilter.Builder> op) {
+	protected static void setupHtmlStripCharFilterDeserializer(ObjectDeserializer<HtmlStripCharFilter.Builder> op) {
 		CharFilterBase.setupCharFilterBaseDeserializer(op);
 
 		op.ignore("type");

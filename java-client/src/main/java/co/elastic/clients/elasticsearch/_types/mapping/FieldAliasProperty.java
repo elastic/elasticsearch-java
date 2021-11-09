@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.mapping;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -126,9 +125,9 @@ public class FieldAliasProperty extends PropertyBase implements PropertyVariant 
 	 * Json deserializer for {@link FieldAliasProperty}
 	 */
 	public static final JsonpDeserializer<FieldAliasProperty> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, FieldAliasProperty::setupFieldAliasPropertyDeserializer, Builder::build);
+			.lazy(Builder::new, FieldAliasProperty::setupFieldAliasPropertyDeserializer);
 
-	protected static void setupFieldAliasPropertyDeserializer(DelegatingDeserializer<FieldAliasProperty.Builder> op) {
+	protected static void setupFieldAliasPropertyDeserializer(ObjectDeserializer<FieldAliasProperty.Builder> op) {
 		PropertyBase.setupPropertyBaseDeserializer(op);
 		op.add(Builder::path, JsonpDeserializer.stringDeserializer(), "path");
 

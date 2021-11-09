@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.security;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -259,9 +258,9 @@ public class RoleMapping implements JsonpSerializable {
 	 * Json deserializer for {@link RoleMapping}
 	 */
 	public static final JsonpDeserializer<RoleMapping> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			RoleMapping::setupRoleMappingDeserializer, Builder::build);
+			RoleMapping::setupRoleMappingDeserializer);
 
-	protected static void setupRoleMappingDeserializer(DelegatingDeserializer<RoleMapping.Builder> op) {
+	protected static void setupRoleMappingDeserializer(ObjectDeserializer<RoleMapping.Builder> op) {
 
 		op.add(Builder::enabled, JsonpDeserializer.booleanDeserializer(), "enabled");
 		op.add(Builder::metadata, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "metadata");

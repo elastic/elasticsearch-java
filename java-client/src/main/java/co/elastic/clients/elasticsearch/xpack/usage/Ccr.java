@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.xpack.usage;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -134,9 +133,9 @@ public class Ccr extends Base {
 	 * Json deserializer for {@link Ccr}
 	 */
 	public static final JsonpDeserializer<Ccr> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			Ccr::setupCcrDeserializer, Builder::build);
+			Ccr::setupCcrDeserializer);
 
-	protected static void setupCcrDeserializer(DelegatingDeserializer<Ccr.Builder> op) {
+	protected static void setupCcrDeserializer(ObjectDeserializer<Ccr.Builder> op) {
 		Base.setupBaseDeserializer(op);
 		op.add(Builder::autoFollowPatternsCount, JsonpDeserializer.integerDeserializer(), "auto_follow_patterns_count");
 		op.add(Builder::followerIndicesCount, JsonpDeserializer.integerDeserializer(), "follower_indices_count");

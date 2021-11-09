@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.analysis;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -95,9 +94,9 @@ public class LetterTokenizer extends TokenizerBase implements TokenizerVariant {
 	 * Json deserializer for {@link LetterTokenizer}
 	 */
 	public static final JsonpDeserializer<LetterTokenizer> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			LetterTokenizer::setupLetterTokenizerDeserializer, Builder::build);
+			LetterTokenizer::setupLetterTokenizerDeserializer);
 
-	protected static void setupLetterTokenizerDeserializer(DelegatingDeserializer<LetterTokenizer.Builder> op) {
+	protected static void setupLetterTokenizerDeserializer(ObjectDeserializer<LetterTokenizer.Builder> op) {
 		TokenizerBase.setupTokenizerBaseDeserializer(op);
 
 		op.ignore("type");

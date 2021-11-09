@@ -25,7 +25,6 @@ package co.elastic.clients.elasticsearch._types.query_dsl;
 
 import co.elastic.clients.elasticsearch._types.aggregations.Aggregation;
 import co.elastic.clients.elasticsearch._types.aggregations.AggregationVariant;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -1241,7 +1240,7 @@ public class Query implements TaggedUnion<Object>, AggregationVariant, JsonpSeri
 
 	}
 
-	protected static void setupQueryDeserializer(DelegatingDeserializer<Builder> op) {
+	protected static void setupQueryDeserializer(ObjectDeserializer<Builder> op) {
 
 		op.add(Builder::bool, BoolQuery._DESERIALIZER, "bool");
 		op.add(Builder::boosting, BoostingQuery._DESERIALIZER, "boosting");

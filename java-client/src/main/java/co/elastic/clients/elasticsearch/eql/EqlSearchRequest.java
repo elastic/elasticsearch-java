@@ -28,7 +28,6 @@ import co.elastic.clients.elasticsearch._types.ExpandWildcardOptions;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch._types.query_dsl.Query;
 import co.elastic.clients.elasticsearch.eql.search.ResultPosition;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -651,9 +650,9 @@ public class EqlSearchRequest extends RequestBase implements JsonpSerializable {
 	 * Json deserializer for {@link EqlSearchRequest}
 	 */
 	public static final JsonpDeserializer<EqlSearchRequest> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			EqlSearchRequest::setupEqlSearchRequestDeserializer, Builder::build);
+			EqlSearchRequest::setupEqlSearchRequestDeserializer);
 
-	protected static void setupEqlSearchRequestDeserializer(DelegatingDeserializer<EqlSearchRequest.Builder> op) {
+	protected static void setupEqlSearchRequestDeserializer(ObjectDeserializer<EqlSearchRequest.Builder> op) {
 
 		op.add(Builder::caseSensitive, JsonpDeserializer.booleanDeserializer(), "case_sensitive");
 		op.add(Builder::eventCategoryField, JsonpDeserializer.stringDeserializer(), "event_category_field");

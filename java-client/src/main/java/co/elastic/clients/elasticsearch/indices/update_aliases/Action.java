@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.indices.update_aliases;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -166,7 +165,7 @@ public class Action implements TaggedUnion<Object>, JsonpSerializable {
 
 	}
 
-	protected static void setupActionDeserializer(DelegatingDeserializer<Builder> op) {
+	protected static void setupActionDeserializer(ObjectDeserializer<Builder> op) {
 
 		op.add(Builder::add, AddAction._DESERIALIZER, "add");
 		op.add(Builder::remove, RemoveAction._DESERIALIZER, "remove");

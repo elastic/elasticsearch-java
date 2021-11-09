@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.ccr.follow_info;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -330,10 +329,10 @@ public class FollowerIndexParameters implements JsonpSerializable {
 	 * Json deserializer for {@link FollowerIndexParameters}
 	 */
 	public static final JsonpDeserializer<FollowerIndexParameters> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, FollowerIndexParameters::setupFollowerIndexParametersDeserializer, Builder::build);
+			.lazy(Builder::new, FollowerIndexParameters::setupFollowerIndexParametersDeserializer);
 
 	protected static void setupFollowerIndexParametersDeserializer(
-			DelegatingDeserializer<FollowerIndexParameters.Builder> op) {
+			ObjectDeserializer<FollowerIndexParameters.Builder> op) {
 
 		op.add(Builder::maxOutstandingReadRequests, JsonpDeserializer.integerDeserializer(),
 				"max_outstanding_read_requests");

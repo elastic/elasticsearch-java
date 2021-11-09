@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -154,9 +153,9 @@ public class DerivativeAggregate extends SingleMetricAggregateBase implements Ag
 	 * Json deserializer for {@link DerivativeAggregate}
 	 */
 	public static final JsonpDeserializer<DerivativeAggregate> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, DerivativeAggregate::setupDerivativeAggregateDeserializer, Builder::build);
+			.lazy(Builder::new, DerivativeAggregate::setupDerivativeAggregateDeserializer);
 
-	protected static void setupDerivativeAggregateDeserializer(DelegatingDeserializer<DerivativeAggregate.Builder> op) {
+	protected static void setupDerivativeAggregateDeserializer(ObjectDeserializer<DerivativeAggregate.Builder> op) {
 		SingleMetricAggregateBase.setupSingleMetricAggregateBaseDeserializer(op);
 		op.add(Builder::normalizedValue, JsonpDeserializer.doubleDeserializer(), "normalized_value");
 		op.add(Builder::normalizedValueAsString, JsonpDeserializer.stringDeserializer(), "normalized_value_as_string");

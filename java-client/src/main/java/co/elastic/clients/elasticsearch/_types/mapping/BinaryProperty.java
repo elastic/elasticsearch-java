@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.mapping;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -95,9 +94,9 @@ public class BinaryProperty extends DocValuesPropertyBase implements PropertyVar
 	 * Json deserializer for {@link BinaryProperty}
 	 */
 	public static final JsonpDeserializer<BinaryProperty> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			BinaryProperty::setupBinaryPropertyDeserializer, Builder::build);
+			BinaryProperty::setupBinaryPropertyDeserializer);
 
-	protected static void setupBinaryPropertyDeserializer(DelegatingDeserializer<BinaryProperty.Builder> op) {
+	protected static void setupBinaryPropertyDeserializer(ObjectDeserializer<BinaryProperty.Builder> op) {
 		DocValuesPropertyBase.setupDocValuesPropertyBaseDeserializer(op);
 
 		op.ignore("type");

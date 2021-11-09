@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -179,9 +178,9 @@ public class IntervalsWildcard implements IntervalsQueryVariant, IntervalsVarian
 	 * Json deserializer for {@link IntervalsWildcard}
 	 */
 	public static final JsonpDeserializer<IntervalsWildcard> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, IntervalsWildcard::setupIntervalsWildcardDeserializer, Builder::build);
+			.lazy(Builder::new, IntervalsWildcard::setupIntervalsWildcardDeserializer);
 
-	protected static void setupIntervalsWildcardDeserializer(DelegatingDeserializer<IntervalsWildcard.Builder> op) {
+	protected static void setupIntervalsWildcardDeserializer(ObjectDeserializer<IntervalsWildcard.Builder> op) {
 
 		op.add(Builder::analyzer, JsonpDeserializer.stringDeserializer(), "analyzer");
 		op.add(Builder::pattern, JsonpDeserializer.stringDeserializer(), "pattern");

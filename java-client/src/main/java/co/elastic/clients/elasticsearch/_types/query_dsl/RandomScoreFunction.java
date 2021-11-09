@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -153,9 +152,9 @@ public class RandomScoreFunction extends ScoreFunctionBase implements FunctionSc
 	 * Json deserializer for {@link RandomScoreFunction}
 	 */
 	public static final JsonpDeserializer<RandomScoreFunction> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, RandomScoreFunction::setupRandomScoreFunctionDeserializer, Builder::build);
+			.lazy(Builder::new, RandomScoreFunction::setupRandomScoreFunctionDeserializer);
 
-	protected static void setupRandomScoreFunctionDeserializer(DelegatingDeserializer<RandomScoreFunction.Builder> op) {
+	protected static void setupRandomScoreFunctionDeserializer(ObjectDeserializer<RandomScoreFunction.Builder> op) {
 		ScoreFunctionBase.setupScoreFunctionBaseDeserializer(op);
 		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
 		op.add(Builder::seed, JsonpDeserializer.stringDeserializer(), "seed");

@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.cluster.remote_info;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -267,10 +266,10 @@ public class ClusterRemoteProxyInfo implements ClusterRemoteInfoVariant, JsonpSe
 	 * Json deserializer for {@link ClusterRemoteProxyInfo}
 	 */
 	public static final JsonpDeserializer<ClusterRemoteProxyInfo> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, ClusterRemoteProxyInfo::setupClusterRemoteProxyInfoDeserializer, Builder::build);
+			.lazy(Builder::new, ClusterRemoteProxyInfo::setupClusterRemoteProxyInfoDeserializer);
 
 	protected static void setupClusterRemoteProxyInfoDeserializer(
-			DelegatingDeserializer<ClusterRemoteProxyInfo.Builder> op) {
+			ObjectDeserializer<ClusterRemoteProxyInfo.Builder> op) {
 
 		op.add(Builder::connected, JsonpDeserializer.booleanDeserializer(), "connected");
 		op.add(Builder::initialConnectTimeout, JsonpDeserializer.stringDeserializer(), "initial_connect_timeout");

@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.license.post;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -154,9 +153,9 @@ public class Acknowledgement implements JsonpSerializable {
 	 * Json deserializer for {@link Acknowledgement}
 	 */
 	public static final JsonpDeserializer<Acknowledgement> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			Acknowledgement::setupAcknowledgementDeserializer, Builder::build);
+			Acknowledgement::setupAcknowledgementDeserializer);
 
-	protected static void setupAcknowledgementDeserializer(DelegatingDeserializer<Acknowledgement.Builder> op) {
+	protected static void setupAcknowledgementDeserializer(ObjectDeserializer<Acknowledgement.Builder> op) {
 
 		op.add(Builder::license, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"license");

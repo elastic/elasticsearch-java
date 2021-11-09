@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -88,10 +87,9 @@ public class GeoHashGridAggregate extends MultiBucketAggregateBase<GeoHashGridBu
 	 * Json deserializer for {@link GeoHashGridAggregate}
 	 */
 	public static final JsonpDeserializer<GeoHashGridAggregate> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, GeoHashGridAggregate::setupGeoHashGridAggregateDeserializer, Builder::build);
+			.lazy(Builder::new, GeoHashGridAggregate::setupGeoHashGridAggregateDeserializer);
 
-	protected static void setupGeoHashGridAggregateDeserializer(
-			DelegatingDeserializer<GeoHashGridAggregate.Builder> op) {
+	protected static void setupGeoHashGridAggregateDeserializer(ObjectDeserializer<GeoHashGridAggregate.Builder> op) {
 		MultiBucketAggregateBase.setupMultiBucketAggregateBaseDeserializer(op, GeoHashGridBucket._DESERIALIZER);
 
 	}

@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.core.search;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -136,9 +135,9 @@ public class TotalHits implements JsonpSerializable {
 	 * Json deserializer for {@link TotalHits}
 	 */
 	public static final JsonpDeserializer<TotalHits> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			TotalHits::setupTotalHitsDeserializer, Builder::build);
+			TotalHits::setupTotalHitsDeserializer);
 
-	protected static void setupTotalHitsDeserializer(DelegatingDeserializer<TotalHits.Builder> op) {
+	protected static void setupTotalHitsDeserializer(ObjectDeserializer<TotalHits.Builder> op) {
 
 		op.add(Builder::relation, TotalHitsRelation._DESERIALIZER, "relation");
 		op.add(Builder::value, JsonpDeserializer.longDeserializer(), "value");

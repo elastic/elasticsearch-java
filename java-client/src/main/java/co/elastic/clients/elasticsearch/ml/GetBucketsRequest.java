@@ -25,7 +25,6 @@ package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -436,9 +435,9 @@ public class GetBucketsRequest extends RequestBase implements JsonpSerializable 
 	 * Json deserializer for {@link GetBucketsRequest}
 	 */
 	public static final JsonpDeserializer<GetBucketsRequest> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, GetBucketsRequest::setupGetBucketsRequestDeserializer, Builder::build);
+			.lazy(Builder::new, GetBucketsRequest::setupGetBucketsRequestDeserializer);
 
-	protected static void setupGetBucketsRequestDeserializer(DelegatingDeserializer<GetBucketsRequest.Builder> op) {
+	protected static void setupGetBucketsRequestDeserializer(ObjectDeserializer<GetBucketsRequest.Builder> op) {
 
 		op.add(Builder::anomalyScore, JsonpDeserializer.doubleDeserializer(), "anomaly_score");
 		op.add(Builder::desc, JsonpDeserializer.booleanDeserializer(), "desc");

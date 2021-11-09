@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -239,11 +238,11 @@ public class TrainedModelInferenceStats implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link TrainedModelInferenceStats}
 	 */
-	public static final JsonpDeserializer<TrainedModelInferenceStats> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
-			Builder::new, TrainedModelInferenceStats::setupTrainedModelInferenceStatsDeserializer, Builder::build);
+	public static final JsonpDeserializer<TrainedModelInferenceStats> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, TrainedModelInferenceStats::setupTrainedModelInferenceStatsDeserializer);
 
 	protected static void setupTrainedModelInferenceStatsDeserializer(
-			DelegatingDeserializer<TrainedModelInferenceStats.Builder> op) {
+			ObjectDeserializer<TrainedModelInferenceStats.Builder> op) {
 
 		op.add(Builder::failureCount, JsonpDeserializer.longDeserializer(), "failure_count");
 		op.add(Builder::inferenceCount, JsonpDeserializer.longDeserializer(), "inference_count");

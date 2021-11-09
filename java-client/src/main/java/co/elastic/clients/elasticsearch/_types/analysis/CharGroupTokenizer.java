@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.analysis;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -168,9 +167,9 @@ public class CharGroupTokenizer extends TokenizerBase implements TokenizerVarian
 	 * Json deserializer for {@link CharGroupTokenizer}
 	 */
 	public static final JsonpDeserializer<CharGroupTokenizer> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, CharGroupTokenizer::setupCharGroupTokenizerDeserializer, Builder::build);
+			.lazy(Builder::new, CharGroupTokenizer::setupCharGroupTokenizerDeserializer);
 
-	protected static void setupCharGroupTokenizerDeserializer(DelegatingDeserializer<CharGroupTokenizer.Builder> op) {
+	protected static void setupCharGroupTokenizerDeserializer(ObjectDeserializer<CharGroupTokenizer.Builder> op) {
 		TokenizerBase.setupTokenizerBaseDeserializer(op);
 		op.add(Builder::tokenizeOnChars, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"tokenize_on_chars");

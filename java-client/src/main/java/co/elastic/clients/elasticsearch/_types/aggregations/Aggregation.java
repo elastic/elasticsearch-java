@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch._types.aggregations;
 
 import co.elastic.clients.elasticsearch._types.query_dsl.Query;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -1742,7 +1741,7 @@ public class Aggregation implements TaggedUnion<Object>, JsonpSerializable {
 		}
 	}
 
-	protected static void setupAggregationDeserializer(DelegatingDeserializer<Builder> op) {
+	protected static void setupAggregationDeserializer(ObjectDeserializer<Builder> op) {
 
 		op.add(Builder::aggregations, JsonpDeserializer.stringMapDeserializer(Aggregation._DESERIALIZER),
 				"aggregations", "aggs");

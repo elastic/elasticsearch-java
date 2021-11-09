@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.nodes;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -253,9 +252,9 @@ public class AdaptiveSelection implements JsonpSerializable {
 	 * Json deserializer for {@link AdaptiveSelection}
 	 */
 	public static final JsonpDeserializer<AdaptiveSelection> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, AdaptiveSelection::setupAdaptiveSelectionDeserializer, Builder::build);
+			.lazy(Builder::new, AdaptiveSelection::setupAdaptiveSelectionDeserializer);
 
-	protected static void setupAdaptiveSelectionDeserializer(DelegatingDeserializer<AdaptiveSelection.Builder> op) {
+	protected static void setupAdaptiveSelectionDeserializer(ObjectDeserializer<AdaptiveSelection.Builder> op) {
 
 		op.add(Builder::avgQueueSize, JsonpDeserializer.longDeserializer(), "avg_queue_size");
 		op.add(Builder::avgResponseTime, JsonpDeserializer.longDeserializer(), "avg_response_time");

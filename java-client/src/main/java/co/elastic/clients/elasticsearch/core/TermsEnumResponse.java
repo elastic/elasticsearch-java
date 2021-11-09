@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch.core;
 
 import co.elastic.clients.elasticsearch._types.ShardStatistics;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -186,9 +185,9 @@ public class TermsEnumResponse implements JsonpSerializable {
 	 * Json deserializer for {@link TermsEnumResponse}
 	 */
 	public static final JsonpDeserializer<TermsEnumResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, TermsEnumResponse::setupTermsEnumResponseDeserializer, Builder::build);
+			.lazy(Builder::new, TermsEnumResponse::setupTermsEnumResponseDeserializer);
 
-	protected static void setupTermsEnumResponseDeserializer(DelegatingDeserializer<TermsEnumResponse.Builder> op) {
+	protected static void setupTermsEnumResponseDeserializer(ObjectDeserializer<TermsEnumResponse.Builder> op) {
 
 		op.add(Builder::shards, ShardStatistics._DESERIALIZER, "_shards");
 		op.add(Builder::terms, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "terms");

@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.analysis;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -121,9 +120,9 @@ public class StemmerTokenFilter extends TokenFilterBase implements TokenFilterVa
 	 * Json deserializer for {@link StemmerTokenFilter}
 	 */
 	public static final JsonpDeserializer<StemmerTokenFilter> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, StemmerTokenFilter::setupStemmerTokenFilterDeserializer, Builder::build);
+			.lazy(Builder::new, StemmerTokenFilter::setupStemmerTokenFilterDeserializer);
 
-	protected static void setupStemmerTokenFilterDeserializer(DelegatingDeserializer<StemmerTokenFilter.Builder> op) {
+	protected static void setupStemmerTokenFilterDeserializer(ObjectDeserializer<StemmerTokenFilter.Builder> op) {
 		TokenFilterBase.setupTokenFilterBaseDeserializer(op);
 		op.add(Builder::language, JsonpDeserializer.stringDeserializer(), "language");
 

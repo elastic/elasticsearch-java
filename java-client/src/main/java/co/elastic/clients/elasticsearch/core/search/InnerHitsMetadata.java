@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.core.search;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -201,9 +200,9 @@ public class InnerHitsMetadata implements JsonpSerializable {
 	 * Json deserializer for {@link InnerHitsMetadata}
 	 */
 	public static final JsonpDeserializer<InnerHitsMetadata> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, InnerHitsMetadata::setupInnerHitsMetadataDeserializer, Builder::build);
+			.lazy(Builder::new, InnerHitsMetadata::setupInnerHitsMetadataDeserializer);
 
-	protected static void setupInnerHitsMetadataDeserializer(DelegatingDeserializer<InnerHitsMetadata.Builder> op) {
+	protected static void setupInnerHitsMetadataDeserializer(ObjectDeserializer<InnerHitsMetadata.Builder> op) {
 
 		op.add(Builder::total, JsonpDeserializer.jsonValueDeserializer(), "total");
 		op.add(Builder::hits,

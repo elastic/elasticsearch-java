@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.analysis;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -193,9 +192,9 @@ public class SnowballAnalyzer implements AnalyzerVariant, JsonpSerializable {
 	 * Json deserializer for {@link SnowballAnalyzer}
 	 */
 	public static final JsonpDeserializer<SnowballAnalyzer> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			SnowballAnalyzer::setupSnowballAnalyzerDeserializer, Builder::build);
+			SnowballAnalyzer::setupSnowballAnalyzerDeserializer);
 
-	protected static void setupSnowballAnalyzerDeserializer(DelegatingDeserializer<SnowballAnalyzer.Builder> op) {
+	protected static void setupSnowballAnalyzerDeserializer(ObjectDeserializer<SnowballAnalyzer.Builder> op) {
 
 		op.add(Builder::version, JsonpDeserializer.stringDeserializer(), "version");
 		op.add(Builder::language, SnowballLanguage._DESERIALIZER, "language");

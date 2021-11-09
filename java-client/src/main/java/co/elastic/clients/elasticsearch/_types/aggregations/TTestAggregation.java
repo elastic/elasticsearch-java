@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -193,9 +192,9 @@ public class TTestAggregation extends AggregationBase implements AggregationVari
 	 * Json deserializer for {@link TTestAggregation}
 	 */
 	public static final JsonpDeserializer<TTestAggregation> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			TTestAggregation::setupTTestAggregationDeserializer, Builder::build);
+			TTestAggregation::setupTTestAggregationDeserializer);
 
-	protected static void setupTTestAggregationDeserializer(DelegatingDeserializer<TTestAggregation.Builder> op) {
+	protected static void setupTTestAggregationDeserializer(ObjectDeserializer<TTestAggregation.Builder> op) {
 		AggregationBase.setupAggregationBaseDeserializer(op);
 		op.add(Builder::a, TestPopulation._DESERIALIZER, "a");
 		op.add(Builder::b, TestPopulation._DESERIALIZER, "b");

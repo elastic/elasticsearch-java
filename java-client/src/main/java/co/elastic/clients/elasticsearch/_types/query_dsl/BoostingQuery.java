@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -178,9 +177,9 @@ public class BoostingQuery extends QueryBase implements QueryVariant {
 	 * Json deserializer for {@link BoostingQuery}
 	 */
 	public static final JsonpDeserializer<BoostingQuery> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			BoostingQuery::setupBoostingQueryDeserializer, Builder::build);
+			BoostingQuery::setupBoostingQueryDeserializer);
 
-	protected static void setupBoostingQueryDeserializer(DelegatingDeserializer<BoostingQuery.Builder> op) {
+	protected static void setupBoostingQueryDeserializer(ObjectDeserializer<BoostingQuery.Builder> op) {
 		QueryBase.setupQueryBaseDeserializer(op);
 		op.add(Builder::negativeBoost, JsonpDeserializer.doubleDeserializer(), "negative_boost");
 		op.add(Builder::negative, Query._DESERIALIZER, "negative");

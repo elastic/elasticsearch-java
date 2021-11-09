@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch._types.mapping;
 
 import co.elastic.clients.elasticsearch.indices.NumericFielddata;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -219,9 +218,9 @@ public class BooleanProperty extends DocValuesPropertyBase implements PropertyVa
 	 * Json deserializer for {@link BooleanProperty}
 	 */
 	public static final JsonpDeserializer<BooleanProperty> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			BooleanProperty::setupBooleanPropertyDeserializer, Builder::build);
+			BooleanProperty::setupBooleanPropertyDeserializer);
 
-	protected static void setupBooleanPropertyDeserializer(DelegatingDeserializer<BooleanProperty.Builder> op) {
+	protected static void setupBooleanPropertyDeserializer(ObjectDeserializer<BooleanProperty.Builder> op) {
 		DocValuesPropertyBase.setupDocValuesPropertyBaseDeserializer(op);
 		op.add(Builder::boost, JsonpDeserializer.doubleDeserializer(), "boost");
 		op.add(Builder::fielddata, NumericFielddata._DESERIALIZER, "fielddata");

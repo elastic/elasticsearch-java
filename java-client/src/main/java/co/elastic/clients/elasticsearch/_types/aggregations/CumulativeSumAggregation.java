@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -87,10 +86,10 @@ public class CumulativeSumAggregation extends PipelineAggregationBase implements
 	 * Json deserializer for {@link CumulativeSumAggregation}
 	 */
 	public static final JsonpDeserializer<CumulativeSumAggregation> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, CumulativeSumAggregation::setupCumulativeSumAggregationDeserializer, Builder::build);
+			.lazy(Builder::new, CumulativeSumAggregation::setupCumulativeSumAggregationDeserializer);
 
 	protected static void setupCumulativeSumAggregationDeserializer(
-			DelegatingDeserializer<CumulativeSumAggregation.Builder> op) {
+			ObjectDeserializer<CumulativeSumAggregation.Builder> op) {
 		PipelineAggregationBase.setupPipelineAggregationBaseDeserializer(op);
 
 	}

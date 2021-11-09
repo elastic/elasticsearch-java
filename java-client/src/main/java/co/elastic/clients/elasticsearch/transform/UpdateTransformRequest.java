@@ -27,7 +27,6 @@ import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch.core.reindex.Destination;
 import co.elastic.clients.elasticsearch.core.reindex.Source;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -436,10 +435,10 @@ public class UpdateTransformRequest extends RequestBase implements JsonpSerializ
 	 * Json deserializer for {@link UpdateTransformRequest}
 	 */
 	public static final JsonpDeserializer<UpdateTransformRequest> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, UpdateTransformRequest::setupUpdateTransformRequestDeserializer, Builder::build);
+			.lazy(Builder::new, UpdateTransformRequest::setupUpdateTransformRequestDeserializer);
 
 	protected static void setupUpdateTransformRequestDeserializer(
-			DelegatingDeserializer<UpdateTransformRequest.Builder> op) {
+			ObjectDeserializer<UpdateTransformRequest.Builder> op) {
 
 		op.add(Builder::description, JsonpDeserializer.stringDeserializer(), "description");
 		op.add(Builder::dest, Destination._DESERIALIZER, "dest");

@@ -26,7 +26,6 @@ package co.elastic.clients.elasticsearch.core;
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch.core.mget.Operation;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -467,9 +466,9 @@ public class MgetRequest extends RequestBase implements JsonpSerializable {
 	 * Json deserializer for {@link MgetRequest}
 	 */
 	public static final JsonpDeserializer<MgetRequest> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			MgetRequest::setupMgetRequestDeserializer, Builder::build);
+			MgetRequest::setupMgetRequestDeserializer);
 
-	protected static void setupMgetRequestDeserializer(DelegatingDeserializer<MgetRequest.Builder> op) {
+	protected static void setupMgetRequestDeserializer(ObjectDeserializer<MgetRequest.Builder> op) {
 
 		op.add(Builder::docs, JsonpDeserializer.arrayDeserializer(Operation._DESERIALIZER), "docs");
 		op.add(Builder::ids, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "ids");

@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.shutdown.get_node;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -113,9 +112,9 @@ public class PluginsStatus implements JsonpSerializable {
 	 * Json deserializer for {@link PluginsStatus}
 	 */
 	public static final JsonpDeserializer<PluginsStatus> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			PluginsStatus::setupPluginsStatusDeserializer, Builder::build);
+			PluginsStatus::setupPluginsStatusDeserializer);
 
-	protected static void setupPluginsStatusDeserializer(DelegatingDeserializer<PluginsStatus.Builder> op) {
+	protected static void setupPluginsStatusDeserializer(ObjectDeserializer<PluginsStatus.Builder> op) {
 
 		op.add(Builder::status, ShutdownStatus._DESERIALIZER, "status");
 

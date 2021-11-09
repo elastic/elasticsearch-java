@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -220,7 +219,7 @@ public class DataframeAnalysisFeatureProcessor implements TaggedUnion<Object>, J
 
 	}
 
-	protected static void setupDataframeAnalysisFeatureProcessorDeserializer(DelegatingDeserializer<Builder> op) {
+	protected static void setupDataframeAnalysisFeatureProcessorDeserializer(ObjectDeserializer<Builder> op) {
 
 		op.add(Builder::frequencyEncoding, DataframeAnalysisFeatureProcessorFrequencyEncoding._DESERIALIZER,
 				"frequency_encoding");

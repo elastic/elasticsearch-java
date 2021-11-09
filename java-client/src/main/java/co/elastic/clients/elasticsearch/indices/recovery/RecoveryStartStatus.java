@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.indices.recovery;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -138,9 +137,9 @@ public class RecoveryStartStatus implements JsonpSerializable {
 	 * Json deserializer for {@link RecoveryStartStatus}
 	 */
 	public static final JsonpDeserializer<RecoveryStartStatus> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, RecoveryStartStatus::setupRecoveryStartStatusDeserializer, Builder::build);
+			.lazy(Builder::new, RecoveryStartStatus::setupRecoveryStartStatusDeserializer);
 
-	protected static void setupRecoveryStartStatusDeserializer(DelegatingDeserializer<RecoveryStartStatus.Builder> op) {
+	protected static void setupRecoveryStartStatusDeserializer(ObjectDeserializer<RecoveryStartStatus.Builder> op) {
 
 		op.add(Builder::checkIndexTime, JsonpDeserializer.longDeserializer(), "check_index_time");
 		op.add(Builder::totalTimeInMillis, JsonpDeserializer.stringDeserializer(), "total_time_in_millis");

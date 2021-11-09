@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -114,11 +113,11 @@ public class EstimateModelMemoryResponse implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link EstimateModelMemoryResponse}
 	 */
-	public static final JsonpDeserializer<EstimateModelMemoryResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
-			Builder::new, EstimateModelMemoryResponse::setupEstimateModelMemoryResponseDeserializer, Builder::build);
+	public static final JsonpDeserializer<EstimateModelMemoryResponse> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, EstimateModelMemoryResponse::setupEstimateModelMemoryResponseDeserializer);
 
 	protected static void setupEstimateModelMemoryResponseDeserializer(
-			DelegatingDeserializer<EstimateModelMemoryResponse.Builder> op) {
+			ObjectDeserializer<EstimateModelMemoryResponse.Builder> op) {
 
 		op.add(Builder::modelMemoryEstimate, JsonpDeserializer.stringDeserializer(), "model_memory_estimate");
 

@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -118,7 +117,7 @@ public abstract class MultiBucketAggregateBase<TBucket> extends AggregateBase {
 
 	// ---------------------------------------------------------------------------------------------
 	protected static <TBucket, BuilderT extends AbstractBuilder<TBucket, BuilderT>> void setupMultiBucketAggregateBaseDeserializer(
-			DelegatingDeserializer<BuilderT> op, JsonpDeserializer<TBucket> tBucketDeserializer) {
+			ObjectDeserializer<BuilderT> op, JsonpDeserializer<TBucket> tBucketDeserializer) {
 		AggregateBase.setupAggregateBaseDeserializer(op);
 		op.add(AbstractBuilder::buckets, JsonpDeserializer.arrayDeserializer(tBucketDeserializer), "buckets");
 

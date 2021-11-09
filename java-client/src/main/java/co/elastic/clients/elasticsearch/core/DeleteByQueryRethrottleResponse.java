@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch.core;
 
 import co.elastic.clients.elasticsearch.tasks.ListResponse;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -81,11 +80,10 @@ public class DeleteByQueryRethrottleResponse extends ListResponse {
 	 * Json deserializer for {@link DeleteByQueryRethrottleResponse}
 	 */
 	public static final JsonpDeserializer<DeleteByQueryRethrottleResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, DeleteByQueryRethrottleResponse::setupDeleteByQueryRethrottleResponseDeserializer,
-					Builder::build);
+			.lazy(Builder::new, DeleteByQueryRethrottleResponse::setupDeleteByQueryRethrottleResponseDeserializer);
 
 	protected static void setupDeleteByQueryRethrottleResponseDeserializer(
-			DelegatingDeserializer<DeleteByQueryRethrottleResponse.Builder> op) {
+			ObjectDeserializer<DeleteByQueryRethrottleResponse.Builder> op) {
 		ListResponse.setupListResponseDeserializer(op);
 
 	}

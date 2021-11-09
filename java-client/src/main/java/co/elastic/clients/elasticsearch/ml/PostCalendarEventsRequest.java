@@ -25,7 +25,6 @@ package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -190,10 +189,10 @@ public class PostCalendarEventsRequest extends RequestBase implements JsonpSeria
 	 * Json deserializer for {@link PostCalendarEventsRequest}
 	 */
 	public static final JsonpDeserializer<PostCalendarEventsRequest> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, PostCalendarEventsRequest::setupPostCalendarEventsRequestDeserializer, Builder::build);
+			.lazy(Builder::new, PostCalendarEventsRequest::setupPostCalendarEventsRequestDeserializer);
 
 	protected static void setupPostCalendarEventsRequestDeserializer(
-			DelegatingDeserializer<PostCalendarEventsRequest.Builder> op) {
+			ObjectDeserializer<PostCalendarEventsRequest.Builder> op) {
 
 		op.add(Builder::events, JsonpDeserializer.arrayDeserializer(CalendarEvent._DESERIALIZER), "events");
 

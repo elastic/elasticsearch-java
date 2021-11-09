@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -87,9 +86,9 @@ public class MinAggregate extends SingleMetricAggregateBase implements Aggregate
 	 * Json deserializer for {@link MinAggregate}
 	 */
 	public static final JsonpDeserializer<MinAggregate> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			MinAggregate::setupMinAggregateDeserializer, Builder::build);
+			MinAggregate::setupMinAggregateDeserializer);
 
-	protected static void setupMinAggregateDeserializer(DelegatingDeserializer<MinAggregate.Builder> op) {
+	protected static void setupMinAggregateDeserializer(ObjectDeserializer<MinAggregate.Builder> op) {
 		SingleMetricAggregateBase.setupSingleMetricAggregateBaseDeserializer(op);
 
 	}

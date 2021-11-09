@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch.enrich;
 
 import co.elastic.clients.elasticsearch._types.AcknowledgedResponseBase;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -80,9 +79,9 @@ public class PutPolicyResponse extends AcknowledgedResponseBase {
 	 * Json deserializer for {@link PutPolicyResponse}
 	 */
 	public static final JsonpDeserializer<PutPolicyResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, PutPolicyResponse::setupPutPolicyResponseDeserializer, Builder::build);
+			.lazy(Builder::new, PutPolicyResponse::setupPutPolicyResponseDeserializer);
 
-	protected static void setupPutPolicyResponseDeserializer(DelegatingDeserializer<PutPolicyResponse.Builder> op) {
+	protected static void setupPutPolicyResponseDeserializer(ObjectDeserializer<PutPolicyResponse.Builder> op) {
 		AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);
 
 	}

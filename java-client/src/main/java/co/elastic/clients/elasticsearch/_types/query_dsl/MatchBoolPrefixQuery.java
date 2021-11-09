@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -369,10 +368,9 @@ public class MatchBoolPrefixQuery extends QueryBase implements QueryVariant {
 	 * Json deserializer for {@link MatchBoolPrefixQuery}
 	 */
 	public static final JsonpDeserializer<MatchBoolPrefixQuery> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, MatchBoolPrefixQuery::setupMatchBoolPrefixQueryDeserializer, Builder::build);
+			.lazy(Builder::new, MatchBoolPrefixQuery::setupMatchBoolPrefixQueryDeserializer);
 
-	protected static void setupMatchBoolPrefixQueryDeserializer(
-			DelegatingDeserializer<MatchBoolPrefixQuery.Builder> op) {
+	protected static void setupMatchBoolPrefixQueryDeserializer(ObjectDeserializer<MatchBoolPrefixQuery.Builder> op) {
 		QueryBase.setupQueryBaseDeserializer(op);
 		op.add(Builder::analyzer, JsonpDeserializer.stringDeserializer(), "analyzer");
 		op.add(Builder::fuzziness, JsonpDeserializer.stringDeserializer(), "fuzziness");

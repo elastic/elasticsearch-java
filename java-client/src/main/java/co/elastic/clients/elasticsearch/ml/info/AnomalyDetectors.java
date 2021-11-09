@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch.ml.info;
 
 import co.elastic.clients.elasticsearch.ml.CategorizationAnalyzer;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -220,9 +219,9 @@ public class AnomalyDetectors implements JsonpSerializable {
 	 * Json deserializer for {@link AnomalyDetectors}
 	 */
 	public static final JsonpDeserializer<AnomalyDetectors> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			AnomalyDetectors::setupAnomalyDetectorsDeserializer, Builder::build);
+			AnomalyDetectors::setupAnomalyDetectorsDeserializer);
 
-	protected static void setupAnomalyDetectorsDeserializer(DelegatingDeserializer<AnomalyDetectors.Builder> op) {
+	protected static void setupAnomalyDetectorsDeserializer(ObjectDeserializer<AnomalyDetectors.Builder> op) {
 
 		op.add(Builder::categorizationAnalyzer, CategorizationAnalyzer._DESERIALIZER, "categorization_analyzer");
 		op.add(Builder::categorizationExamplesLimit, JsonpDeserializer.integerDeserializer(),

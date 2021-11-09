@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.features;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -144,9 +143,9 @@ public class GetFeaturesResponse implements JsonpSerializable {
 	 * Json deserializer for {@link GetFeaturesResponse}
 	 */
 	public static final JsonpDeserializer<GetFeaturesResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, GetFeaturesResponse::setupGetFeaturesResponseDeserializer, Builder::build);
+			.lazy(Builder::new, GetFeaturesResponse::setupGetFeaturesResponseDeserializer);
 
-	protected static void setupGetFeaturesResponseDeserializer(DelegatingDeserializer<GetFeaturesResponse.Builder> op) {
+	protected static void setupGetFeaturesResponseDeserializer(ObjectDeserializer<GetFeaturesResponse.Builder> op) {
 
 		op.add(Builder::features, JsonpDeserializer.arrayDeserializer(Feature._DESERIALIZER), "features");
 

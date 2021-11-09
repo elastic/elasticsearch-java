@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -86,11 +85,11 @@ public class ExtendedStatsBucketAggregate extends ExtendedStatsAggregate impleme
 	/**
 	 * Json deserializer for {@link ExtendedStatsBucketAggregate}
 	 */
-	public static final JsonpDeserializer<ExtendedStatsBucketAggregate> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
-			Builder::new, ExtendedStatsBucketAggregate::setupExtendedStatsBucketAggregateDeserializer, Builder::build);
+	public static final JsonpDeserializer<ExtendedStatsBucketAggregate> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, ExtendedStatsBucketAggregate::setupExtendedStatsBucketAggregateDeserializer);
 
 	protected static void setupExtendedStatsBucketAggregateDeserializer(
-			DelegatingDeserializer<ExtendedStatsBucketAggregate.Builder> op) {
+			ObjectDeserializer<ExtendedStatsBucketAggregate.Builder> op) {
 		ExtendedStatsAggregate.setupExtendedStatsAggregateDeserializer(op);
 
 	}

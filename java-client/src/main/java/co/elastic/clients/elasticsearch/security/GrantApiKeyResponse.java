@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.security;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -189,9 +188,9 @@ public class GrantApiKeyResponse implements JsonpSerializable {
 	 * Json deserializer for {@link GrantApiKeyResponse}
 	 */
 	public static final JsonpDeserializer<GrantApiKeyResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, GrantApiKeyResponse::setupGrantApiKeyResponseDeserializer, Builder::build);
+			.lazy(Builder::new, GrantApiKeyResponse::setupGrantApiKeyResponseDeserializer);
 
-	protected static void setupGrantApiKeyResponseDeserializer(DelegatingDeserializer<GrantApiKeyResponse.Builder> op) {
+	protected static void setupGrantApiKeyResponseDeserializer(ObjectDeserializer<GrantApiKeyResponse.Builder> op) {
 
 		op.add(Builder::apiKey, JsonpDeserializer.stringDeserializer(), "api_key");
 		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "id");

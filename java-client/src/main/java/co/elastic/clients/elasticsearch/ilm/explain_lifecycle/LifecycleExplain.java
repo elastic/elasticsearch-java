@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.ilm.explain_lifecycle;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -138,7 +137,7 @@ public class LifecycleExplain implements TaggedUnion<LifecycleExplainVariant>, J
 
 	}
 
-	protected static void setupLifecycleExplainDeserializer(DelegatingDeserializer<Builder> op) {
+	protected static void setupLifecycleExplainDeserializer(ObjectDeserializer<Builder> op) {
 
 		op.add(Builder::true_, LifecycleExplainManaged._DESERIALIZER, "true");
 		op.add(Builder::false_, LifecycleExplainUnmanaged._DESERIALIZER, "false");

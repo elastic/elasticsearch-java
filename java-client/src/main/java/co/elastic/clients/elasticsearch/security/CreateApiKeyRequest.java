@@ -26,7 +26,6 @@ package co.elastic.clients.elasticsearch.security;
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch.security.create_api_key.RoleDescriptor;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -303,9 +302,9 @@ public class CreateApiKeyRequest extends RequestBase implements JsonpSerializabl
 	 * Json deserializer for {@link CreateApiKeyRequest}
 	 */
 	public static final JsonpDeserializer<CreateApiKeyRequest> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, CreateApiKeyRequest::setupCreateApiKeyRequestDeserializer, Builder::build);
+			.lazy(Builder::new, CreateApiKeyRequest::setupCreateApiKeyRequestDeserializer);
 
-	protected static void setupCreateApiKeyRequestDeserializer(DelegatingDeserializer<CreateApiKeyRequest.Builder> op) {
+	protected static void setupCreateApiKeyRequestDeserializer(ObjectDeserializer<CreateApiKeyRequest.Builder> op) {
 
 		op.add(Builder::expiration, JsonpDeserializer.stringDeserializer(), "expiration");
 		op.add(Builder::metadata, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "metadata");

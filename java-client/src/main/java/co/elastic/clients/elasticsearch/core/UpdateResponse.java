@@ -25,7 +25,6 @@ package co.elastic.clients.elasticsearch.core;
 
 import co.elastic.clients.elasticsearch._types.InlineGet;
 import co.elastic.clients.elasticsearch._types.WriteResponseBase;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -151,7 +150,7 @@ public class UpdateResponse<TDocument> extends WriteResponseBase {
 	};
 
 	protected static <TDocument> void setupUpdateResponseDeserializer(
-			DelegatingDeserializer<UpdateResponse.Builder<TDocument>> op,
+			ObjectDeserializer<UpdateResponse.Builder<TDocument>> op,
 			JsonpDeserializer<TDocument> tDocumentDeserializer) {
 		WriteResponseBase.setupWriteResponseBaseDeserializer(op);
 		op.add(Builder::get, InlineGet.createInlineGetDeserializer(tDocumentDeserializer), "get");

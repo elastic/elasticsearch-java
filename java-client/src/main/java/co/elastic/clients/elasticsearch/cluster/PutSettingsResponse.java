@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.cluster;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -180,9 +179,9 @@ public class PutSettingsResponse implements JsonpSerializable {
 	 * Json deserializer for {@link PutSettingsResponse}
 	 */
 	public static final JsonpDeserializer<PutSettingsResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, PutSettingsResponse::setupPutSettingsResponseDeserializer, Builder::build);
+			.lazy(Builder::new, PutSettingsResponse::setupPutSettingsResponseDeserializer);
 
-	protected static void setupPutSettingsResponseDeserializer(DelegatingDeserializer<PutSettingsResponse.Builder> op) {
+	protected static void setupPutSettingsResponseDeserializer(ObjectDeserializer<PutSettingsResponse.Builder> op) {
 
 		op.add(Builder::acknowledged, JsonpDeserializer.booleanDeserializer(), "acknowledged");
 		op.add(Builder::persistent, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "persistent");

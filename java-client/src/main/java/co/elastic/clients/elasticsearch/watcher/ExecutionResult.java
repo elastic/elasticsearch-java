@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.watcher;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -253,9 +252,9 @@ public class ExecutionResult implements JsonpSerializable {
 	 * Json deserializer for {@link ExecutionResult}
 	 */
 	public static final JsonpDeserializer<ExecutionResult> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			ExecutionResult::setupExecutionResultDeserializer, Builder::build);
+			ExecutionResult::setupExecutionResultDeserializer);
 
-	protected static void setupExecutionResultDeserializer(DelegatingDeserializer<ExecutionResult.Builder> op) {
+	protected static void setupExecutionResultDeserializer(ObjectDeserializer<ExecutionResult.Builder> op) {
 
 		op.add(Builder::actions, JsonpDeserializer.arrayDeserializer(ExecutionResultAction._DESERIALIZER), "actions");
 		op.add(Builder::condition, ExecutionResultCondition._DESERIALIZER, "condition");

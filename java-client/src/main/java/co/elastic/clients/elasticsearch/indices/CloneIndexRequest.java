@@ -25,7 +25,6 @@ package co.elastic.clients.elasticsearch.indices;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -310,9 +309,9 @@ public class CloneIndexRequest extends RequestBase implements JsonpSerializable 
 	 * Json deserializer for {@link CloneIndexRequest}
 	 */
 	public static final JsonpDeserializer<CloneIndexRequest> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, CloneIndexRequest::setupCloneIndexRequestDeserializer, Builder::build);
+			.lazy(Builder::new, CloneIndexRequest::setupCloneIndexRequestDeserializer);
 
-	protected static void setupCloneIndexRequestDeserializer(DelegatingDeserializer<CloneIndexRequest.Builder> op) {
+	protected static void setupCloneIndexRequestDeserializer(ObjectDeserializer<CloneIndexRequest.Builder> op) {
 
 		op.add(Builder::aliases, JsonpDeserializer.stringMapDeserializer(Alias._DESERIALIZER), "aliases");
 		op.add(Builder::settings, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "settings");

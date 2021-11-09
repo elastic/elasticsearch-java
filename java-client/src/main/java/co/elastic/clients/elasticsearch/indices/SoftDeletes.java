@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.indices;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -113,9 +112,9 @@ public class SoftDeletes implements JsonpSerializable {
 	 * Json deserializer for {@link SoftDeletes}
 	 */
 	public static final JsonpDeserializer<SoftDeletes> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			SoftDeletes::setupSoftDeletesDeserializer, Builder::build);
+			SoftDeletes::setupSoftDeletesDeserializer);
 
-	protected static void setupSoftDeletesDeserializer(DelegatingDeserializer<SoftDeletes.Builder> op) {
+	protected static void setupSoftDeletesDeserializer(ObjectDeserializer<SoftDeletes.Builder> op) {
 
 		op.add(Builder::enabled, JsonpDeserializer.booleanDeserializer(), "enabled");
 

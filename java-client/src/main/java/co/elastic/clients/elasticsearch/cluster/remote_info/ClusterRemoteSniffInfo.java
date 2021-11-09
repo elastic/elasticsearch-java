@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.cluster.remote_info;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -262,10 +261,10 @@ public class ClusterRemoteSniffInfo implements ClusterRemoteInfoVariant, JsonpSe
 	 * Json deserializer for {@link ClusterRemoteSniffInfo}
 	 */
 	public static final JsonpDeserializer<ClusterRemoteSniffInfo> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, ClusterRemoteSniffInfo::setupClusterRemoteSniffInfoDeserializer, Builder::build);
+			.lazy(Builder::new, ClusterRemoteSniffInfo::setupClusterRemoteSniffInfoDeserializer);
 
 	protected static void setupClusterRemoteSniffInfoDeserializer(
-			DelegatingDeserializer<ClusterRemoteSniffInfo.Builder> op) {
+			ObjectDeserializer<ClusterRemoteSniffInfo.Builder> op) {
 
 		op.add(Builder::connected, JsonpDeserializer.booleanDeserializer(), "connected");
 		op.add(Builder::maxConnectionsPerCluster, JsonpDeserializer.integerDeserializer(),

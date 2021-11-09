@@ -32,7 +32,6 @@ import co.elastic.clients.elasticsearch._types.mapping.Property;
 import co.elastic.clients.elasticsearch._types.mapping.RoutingField;
 import co.elastic.clients.elasticsearch._types.mapping.RuntimeField;
 import co.elastic.clients.elasticsearch._types.mapping.SourceField;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -827,9 +826,9 @@ public class PutMappingRequest extends RequestBase implements JsonpSerializable 
 	 * Json deserializer for {@link PutMappingRequest}
 	 */
 	public static final JsonpDeserializer<PutMappingRequest> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, PutMappingRequest::setupPutMappingRequestDeserializer, Builder::build);
+			.lazy(Builder::new, PutMappingRequest::setupPutMappingRequestDeserializer);
 
-	protected static void setupPutMappingRequestDeserializer(DelegatingDeserializer<PutMappingRequest.Builder> op) {
+	protected static void setupPutMappingRequestDeserializer(ObjectDeserializer<PutMappingRequest.Builder> op) {
 
 		op.add(Builder::fieldNames, FieldNamesField._DESERIALIZER, "_field_names");
 		op.add(Builder::meta, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "_meta");

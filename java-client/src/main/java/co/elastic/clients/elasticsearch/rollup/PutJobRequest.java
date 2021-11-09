@@ -25,7 +25,6 @@ package co.elastic.clients.elasticsearch.rollup;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -323,9 +322,9 @@ public class PutJobRequest extends RequestBase implements JsonpSerializable {
 	 * Json deserializer for {@link PutJobRequest}
 	 */
 	public static final JsonpDeserializer<PutJobRequest> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			PutJobRequest::setupPutJobRequestDeserializer, Builder::build);
+			PutJobRequest::setupPutJobRequestDeserializer);
 
-	protected static void setupPutJobRequestDeserializer(DelegatingDeserializer<PutJobRequest.Builder> op) {
+	protected static void setupPutJobRequestDeserializer(ObjectDeserializer<PutJobRequest.Builder> op) {
 
 		op.add(Builder::cron, JsonpDeserializer.stringDeserializer(), "cron");
 		op.add(Builder::groups, Groupings._DESERIALIZER, "groups");

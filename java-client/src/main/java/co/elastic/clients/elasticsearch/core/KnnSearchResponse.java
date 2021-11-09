@@ -25,7 +25,6 @@ package co.elastic.clients.elasticsearch.core;
 
 import co.elastic.clients.elasticsearch._types.ShardStatistics;
 import co.elastic.clients.elasticsearch.core.search.HitsMetadata;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -327,7 +326,7 @@ public class KnnSearchResponse<TDocument> implements JsonpSerializable {
 	};
 
 	protected static <TDocument> void setupKnnSearchResponseDeserializer(
-			DelegatingDeserializer<KnnSearchResponse.Builder<TDocument>> op,
+			ObjectDeserializer<KnnSearchResponse.Builder<TDocument>> op,
 			JsonpDeserializer<TDocument> tDocumentDeserializer) {
 
 		op.add(Builder::took, JsonpDeserializer.longDeserializer(), "took");

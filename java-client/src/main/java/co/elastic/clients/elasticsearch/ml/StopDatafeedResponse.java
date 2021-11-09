@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -113,10 +112,9 @@ public class StopDatafeedResponse implements JsonpSerializable {
 	 * Json deserializer for {@link StopDatafeedResponse}
 	 */
 	public static final JsonpDeserializer<StopDatafeedResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, StopDatafeedResponse::setupStopDatafeedResponseDeserializer, Builder::build);
+			.lazy(Builder::new, StopDatafeedResponse::setupStopDatafeedResponseDeserializer);
 
-	protected static void setupStopDatafeedResponseDeserializer(
-			DelegatingDeserializer<StopDatafeedResponse.Builder> op) {
+	protected static void setupStopDatafeedResponseDeserializer(ObjectDeserializer<StopDatafeedResponse.Builder> op) {
 
 		op.add(Builder::stopped, JsonpDeserializer.booleanDeserializer(), "stopped");
 

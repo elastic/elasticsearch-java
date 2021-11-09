@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.core;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -137,10 +136,10 @@ public class ClosePointInTimeResponse implements JsonpSerializable {
 	 * Json deserializer for {@link ClosePointInTimeResponse}
 	 */
 	public static final JsonpDeserializer<ClosePointInTimeResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, ClosePointInTimeResponse::setupClosePointInTimeResponseDeserializer, Builder::build);
+			.lazy(Builder::new, ClosePointInTimeResponse::setupClosePointInTimeResponseDeserializer);
 
 	protected static void setupClosePointInTimeResponseDeserializer(
-			DelegatingDeserializer<ClosePointInTimeResponse.Builder> op) {
+			ObjectDeserializer<ClosePointInTimeResponse.Builder> op) {
 
 		op.add(Builder::succeeded, JsonpDeserializer.booleanDeserializer(), "succeeded");
 		op.add(Builder::numFreed, JsonpDeserializer.integerDeserializer(), "num_freed");

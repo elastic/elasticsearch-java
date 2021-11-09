@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.elasticsearch._types.aggregations.InferenceConfig;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -583,9 +582,9 @@ public class TrainedModelConfig implements JsonpSerializable {
 	 * Json deserializer for {@link TrainedModelConfig}
 	 */
 	public static final JsonpDeserializer<TrainedModelConfig> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, TrainedModelConfig::setupTrainedModelConfigDeserializer, Builder::build);
+			.lazy(Builder::new, TrainedModelConfig::setupTrainedModelConfigDeserializer);
 
-	protected static void setupTrainedModelConfigDeserializer(DelegatingDeserializer<TrainedModelConfig.Builder> op) {
+	protected static void setupTrainedModelConfigDeserializer(ObjectDeserializer<TrainedModelConfig.Builder> op) {
 
 		op.add(Builder::modelId, JsonpDeserializer.stringDeserializer(), "model_id");
 		op.add(Builder::tags, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "tags");

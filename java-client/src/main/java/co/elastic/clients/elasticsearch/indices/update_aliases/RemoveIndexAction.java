@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.indices.update_aliases;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -169,9 +168,9 @@ public class RemoveIndexAction implements ActionVariant, JsonpSerializable {
 	 * Json deserializer for {@link RemoveIndexAction}
 	 */
 	public static final JsonpDeserializer<RemoveIndexAction> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, RemoveIndexAction::setupRemoveIndexActionDeserializer, Builder::build);
+			.lazy(Builder::new, RemoveIndexAction::setupRemoveIndexActionDeserializer);
 
-	protected static void setupRemoveIndexActionDeserializer(DelegatingDeserializer<RemoveIndexAction.Builder> op) {
+	protected static void setupRemoveIndexActionDeserializer(ObjectDeserializer<RemoveIndexAction.Builder> op) {
 
 		op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "index");
 		op.add(Builder::indices, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),

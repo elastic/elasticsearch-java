@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -194,7 +193,7 @@ public abstract class DataframeEvaluationMetrics implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 	protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupDataframeEvaluationMetricsDeserializer(
-			DelegatingDeserializer<BuilderT> op) {
+			ObjectDeserializer<BuilderT> op) {
 
 		op.add(AbstractBuilder::aucRoc, DataframeEvaluationClassificationMetricsAucRoc._DESERIALIZER, "auc_roc");
 		op.add(AbstractBuilder::precision, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER),

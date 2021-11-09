@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch.nodes.info;
 
 import co.elastic.clients.elasticsearch.indices.IndexRouting;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -210,10 +209,10 @@ public class NodeInfoSettingsCluster implements JsonpSerializable {
 	 * Json deserializer for {@link NodeInfoSettingsCluster}
 	 */
 	public static final JsonpDeserializer<NodeInfoSettingsCluster> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, NodeInfoSettingsCluster::setupNodeInfoSettingsClusterDeserializer, Builder::build);
+			.lazy(Builder::new, NodeInfoSettingsCluster::setupNodeInfoSettingsClusterDeserializer);
 
 	protected static void setupNodeInfoSettingsClusterDeserializer(
-			DelegatingDeserializer<NodeInfoSettingsCluster.Builder> op) {
+			ObjectDeserializer<NodeInfoSettingsCluster.Builder> op) {
 
 		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
 		op.add(Builder::routing, IndexRouting._DESERIALIZER, "routing");

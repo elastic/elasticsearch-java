@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -126,9 +125,9 @@ public class ConstantScoreQuery extends QueryBase implements QueryVariant {
 	 * Json deserializer for {@link ConstantScoreQuery}
 	 */
 	public static final JsonpDeserializer<ConstantScoreQuery> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, ConstantScoreQuery::setupConstantScoreQueryDeserializer, Builder::build);
+			.lazy(Builder::new, ConstantScoreQuery::setupConstantScoreQueryDeserializer);
 
-	protected static void setupConstantScoreQueryDeserializer(DelegatingDeserializer<ConstantScoreQuery.Builder> op) {
+	protected static void setupConstantScoreQueryDeserializer(ObjectDeserializer<ConstantScoreQuery.Builder> op) {
 		QueryBase.setupQueryBaseDeserializer(op);
 		op.add(Builder::filter, Query._DESERIALIZER, "filter");
 

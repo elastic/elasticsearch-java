@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.license;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -114,10 +113,10 @@ public class GetBasicStatusResponse implements JsonpSerializable {
 	 * Json deserializer for {@link GetBasicStatusResponse}
 	 */
 	public static final JsonpDeserializer<GetBasicStatusResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, GetBasicStatusResponse::setupGetBasicStatusResponseDeserializer, Builder::build);
+			.lazy(Builder::new, GetBasicStatusResponse::setupGetBasicStatusResponseDeserializer);
 
 	protected static void setupGetBasicStatusResponseDeserializer(
-			DelegatingDeserializer<GetBasicStatusResponse.Builder> op) {
+			ObjectDeserializer<GetBasicStatusResponse.Builder> op) {
 
 		op.add(Builder::eligibleToStartBasic, JsonpDeserializer.booleanDeserializer(), "eligible_to_start_basic");
 

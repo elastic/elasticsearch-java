@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.rollup;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -196,9 +195,9 @@ public class Groupings implements JsonpSerializable {
 	 * Json deserializer for {@link Groupings}
 	 */
 	public static final JsonpDeserializer<Groupings> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			Groupings::setupGroupingsDeserializer, Builder::build);
+			Groupings::setupGroupingsDeserializer);
 
-	protected static void setupGroupingsDeserializer(DelegatingDeserializer<Groupings.Builder> op) {
+	protected static void setupGroupingsDeserializer(ObjectDeserializer<Groupings.Builder> op) {
 
 		op.add(Builder::dateHistogram, DateHistogramGrouping._DESERIALIZER, "date_histogram");
 		op.add(Builder::histogram, HistogramGrouping._DESERIALIZER, "histogram");

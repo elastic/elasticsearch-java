@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.transform;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -170,9 +169,9 @@ public class Latest implements JsonpSerializable {
 	 * Json deserializer for {@link Latest}
 	 */
 	public static final JsonpDeserializer<Latest> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			Latest::setupLatestDeserializer, Builder::build);
+			Latest::setupLatestDeserializer);
 
-	protected static void setupLatestDeserializer(DelegatingDeserializer<Latest.Builder> op) {
+	protected static void setupLatestDeserializer(ObjectDeserializer<Latest.Builder> op) {
 
 		op.add(Builder::sort, JsonpDeserializer.stringDeserializer(), "sort");
 		op.add(Builder::uniqueKey, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),

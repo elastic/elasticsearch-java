@@ -27,7 +27,6 @@ import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.ExpandWildcardOptions;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch._types.SearchType;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -569,10 +568,9 @@ public class SearchTemplateRequest extends RequestBase implements JsonpSerializa
 	 * Json deserializer for {@link SearchTemplateRequest}
 	 */
 	public static final JsonpDeserializer<SearchTemplateRequest> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, SearchTemplateRequest::setupSearchTemplateRequestDeserializer, Builder::build);
+			.lazy(Builder::new, SearchTemplateRequest::setupSearchTemplateRequestDeserializer);
 
-	protected static void setupSearchTemplateRequestDeserializer(
-			DelegatingDeserializer<SearchTemplateRequest.Builder> op) {
+	protected static void setupSearchTemplateRequestDeserializer(ObjectDeserializer<SearchTemplateRequest.Builder> op) {
 
 		op.add(Builder::explain, JsonpDeserializer.booleanDeserializer(), "explain");
 		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "id");

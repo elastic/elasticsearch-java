@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.indices.recovery;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -144,9 +143,9 @@ public class RecoveryStatus implements JsonpSerializable {
 	 * Json deserializer for {@link RecoveryStatus}
 	 */
 	public static final JsonpDeserializer<RecoveryStatus> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			RecoveryStatus::setupRecoveryStatusDeserializer, Builder::build);
+			RecoveryStatus::setupRecoveryStatusDeserializer);
 
-	protected static void setupRecoveryStatusDeserializer(DelegatingDeserializer<RecoveryStatus.Builder> op) {
+	protected static void setupRecoveryStatusDeserializer(ObjectDeserializer<RecoveryStatus.Builder> op) {
 
 		op.add(Builder::shards, JsonpDeserializer.arrayDeserializer(ShardRecovery._DESERIALIZER), "shards");
 

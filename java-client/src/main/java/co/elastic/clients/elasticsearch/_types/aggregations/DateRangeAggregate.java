@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -87,9 +86,9 @@ public class DateRangeAggregate extends RangeAggregate implements AggregateVaria
 	 * Json deserializer for {@link DateRangeAggregate}
 	 */
 	public static final JsonpDeserializer<DateRangeAggregate> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, DateRangeAggregate::setupDateRangeAggregateDeserializer, Builder::build);
+			.lazy(Builder::new, DateRangeAggregate::setupDateRangeAggregateDeserializer);
 
-	protected static void setupDateRangeAggregateDeserializer(DelegatingDeserializer<DateRangeAggregate.Builder> op) {
+	protected static void setupDateRangeAggregateDeserializer(ObjectDeserializer<DateRangeAggregate.Builder> op) {
 		RangeAggregate.setupRangeAggregateDeserializer(op);
 
 	}

@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.cat.ml_trained_models;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -665,9 +664,9 @@ public class TrainedModelsRecord implements JsonpSerializable {
 	 * Json deserializer for {@link TrainedModelsRecord}
 	 */
 	public static final JsonpDeserializer<TrainedModelsRecord> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, TrainedModelsRecord::setupTrainedModelsRecordDeserializer, Builder::build);
+			.lazy(Builder::new, TrainedModelsRecord::setupTrainedModelsRecordDeserializer);
 
-	protected static void setupTrainedModelsRecordDeserializer(DelegatingDeserializer<TrainedModelsRecord.Builder> op) {
+	protected static void setupTrainedModelsRecordDeserializer(ObjectDeserializer<TrainedModelsRecord.Builder> op) {
 
 		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "id");
 		op.add(Builder::createdBy, JsonpDeserializer.stringDeserializer(), "created_by", "c", "createdBy");

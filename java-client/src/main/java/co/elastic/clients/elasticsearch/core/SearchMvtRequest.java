@@ -29,7 +29,6 @@ import co.elastic.clients.elasticsearch._types.aggregations.Aggregation;
 import co.elastic.clients.elasticsearch._types.mapping.RuntimeField;
 import co.elastic.clients.elasticsearch._types.query_dsl.Query;
 import co.elastic.clients.elasticsearch.core.search_mvt.GridType;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -682,9 +681,9 @@ public class SearchMvtRequest extends RequestBase implements JsonpSerializable {
 	 * Json deserializer for {@link SearchMvtRequest}
 	 */
 	public static final JsonpDeserializer<SearchMvtRequest> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			SearchMvtRequest::setupSearchMvtRequestDeserializer, Builder::build);
+			SearchMvtRequest::setupSearchMvtRequestDeserializer);
 
-	protected static void setupSearchMvtRequestDeserializer(DelegatingDeserializer<SearchMvtRequest.Builder> op) {
+	protected static void setupSearchMvtRequestDeserializer(ObjectDeserializer<SearchMvtRequest.Builder> op) {
 
 		op.add(Builder::aggs, JsonpDeserializer.stringMapDeserializer(Aggregation._DESERIALIZER), "aggs");
 		op.add(Builder::exactBounds, JsonpDeserializer.booleanDeserializer(), "exact_bounds");

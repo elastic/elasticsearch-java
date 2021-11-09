@@ -25,7 +25,6 @@ package co.elastic.clients.elasticsearch.rollup.get_jobs;
 
 import co.elastic.clients.elasticsearch.rollup.FieldMetric;
 import co.elastic.clients.elasticsearch.rollup.Groupings;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -315,10 +314,10 @@ public class RollupJobConfiguration implements JsonpSerializable {
 	 * Json deserializer for {@link RollupJobConfiguration}
 	 */
 	public static final JsonpDeserializer<RollupJobConfiguration> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, RollupJobConfiguration::setupRollupJobConfigurationDeserializer, Builder::build);
+			.lazy(Builder::new, RollupJobConfiguration::setupRollupJobConfigurationDeserializer);
 
 	protected static void setupRollupJobConfigurationDeserializer(
-			DelegatingDeserializer<RollupJobConfiguration.Builder> op) {
+			ObjectDeserializer<RollupJobConfiguration.Builder> op) {
 
 		op.add(Builder::cron, JsonpDeserializer.stringDeserializer(), "cron");
 		op.add(Builder::groups, Groupings._DESERIALIZER, "groups");

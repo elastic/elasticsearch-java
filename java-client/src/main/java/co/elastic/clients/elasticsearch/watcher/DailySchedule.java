@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.watcher;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -122,9 +121,9 @@ public class DailySchedule implements ScheduleVariant, JsonpSerializable {
 	 * Json deserializer for {@link DailySchedule}
 	 */
 	public static final JsonpDeserializer<DailySchedule> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			DailySchedule::setupDailyScheduleDeserializer, Builder::build);
+			DailySchedule::setupDailyScheduleDeserializer);
 
-	protected static void setupDailyScheduleDeserializer(DelegatingDeserializer<DailySchedule.Builder> op) {
+	protected static void setupDailyScheduleDeserializer(ObjectDeserializer<DailySchedule.Builder> op) {
 
 		op.add(Builder::at, JsonpDeserializer.jsonValueDeserializer(), "at");
 

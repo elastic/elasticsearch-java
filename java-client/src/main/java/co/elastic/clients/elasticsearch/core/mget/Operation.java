@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch.core.mget;
 
 import co.elastic.clients.elasticsearch._types.VersionType;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -335,9 +334,9 @@ public class Operation implements JsonpSerializable {
 	 * Json deserializer for {@link Operation}
 	 */
 	public static final JsonpDeserializer<Operation> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			Operation::setupOperationDeserializer, Builder::build);
+			Operation::setupOperationDeserializer);
 
-	protected static void setupOperationDeserializer(DelegatingDeserializer<Operation.Builder> op) {
+	protected static void setupOperationDeserializer(ObjectDeserializer<Operation.Builder> op) {
 
 		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "_id");
 		op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "_index");

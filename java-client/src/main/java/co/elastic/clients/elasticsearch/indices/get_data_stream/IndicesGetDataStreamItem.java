@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch.indices.get_data_stream;
 
 import co.elastic.clients.elasticsearch.indices.DataStreamHealthStatus;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -384,10 +383,10 @@ public class IndicesGetDataStreamItem implements JsonpSerializable {
 	 * Json deserializer for {@link IndicesGetDataStreamItem}
 	 */
 	public static final JsonpDeserializer<IndicesGetDataStreamItem> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, IndicesGetDataStreamItem::setupIndicesGetDataStreamItemDeserializer, Builder::build);
+			.lazy(Builder::new, IndicesGetDataStreamItem::setupIndicesGetDataStreamItemDeserializer);
 
 	protected static void setupIndicesGetDataStreamItemDeserializer(
-			DelegatingDeserializer<IndicesGetDataStreamItem.Builder> op) {
+			ObjectDeserializer<IndicesGetDataStreamItem.Builder> op) {
 
 		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
 		op.add(Builder::timestampField, IndicesGetDataStreamItemTimestampField._DESERIALIZER, "timestamp_field");

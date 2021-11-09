@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.ingest;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -162,10 +161,10 @@ public class SetSecurityUserProcessor extends ProcessorBase implements Processor
 	 * Json deserializer for {@link SetSecurityUserProcessor}
 	 */
 	public static final JsonpDeserializer<SetSecurityUserProcessor> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, SetSecurityUserProcessor::setupSetSecurityUserProcessorDeserializer, Builder::build);
+			.lazy(Builder::new, SetSecurityUserProcessor::setupSetSecurityUserProcessorDeserializer);
 
 	protected static void setupSetSecurityUserProcessorDeserializer(
-			DelegatingDeserializer<SetSecurityUserProcessor.Builder> op) {
+			ObjectDeserializer<SetSecurityUserProcessor.Builder> op) {
 		ProcessorBase.setupProcessorBaseDeserializer(op);
 		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
 		op.add(Builder::properties, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),

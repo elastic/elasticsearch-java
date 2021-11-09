@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.snapshot;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -314,9 +313,9 @@ public class Status implements JsonpSerializable {
 	 * Json deserializer for {@link Status}
 	 */
 	public static final JsonpDeserializer<Status> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			Status::setupStatusDeserializer, Builder::build);
+			Status::setupStatusDeserializer);
 
-	protected static void setupStatusDeserializer(DelegatingDeserializer<Status.Builder> op) {
+	protected static void setupStatusDeserializer(ObjectDeserializer<Status.Builder> op) {
 
 		op.add(Builder::includeGlobalState, JsonpDeserializer.booleanDeserializer(), "include_global_state");
 		op.add(Builder::indices, JsonpDeserializer.stringMapDeserializer(SnapshotIndexStats._DESERIALIZER), "indices");

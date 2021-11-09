@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -172,7 +171,7 @@ public class DataframeAnalyticsStats implements TaggedUnion<Object>, JsonpSerial
 
 	}
 
-	protected static void setupDataframeAnalyticsStatsDeserializer(DelegatingDeserializer<Builder> op) {
+	protected static void setupDataframeAnalyticsStatsDeserializer(ObjectDeserializer<Builder> op) {
 
 		op.add(Builder::classificationStats, DataframeAnalyticsStatsHyperparameters._DESERIALIZER,
 				"classification_stats");

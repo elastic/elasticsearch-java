@@ -26,7 +26,6 @@ package co.elastic.clients.elasticsearch.security;
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch.security.get_role.TransientMetadata;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -508,9 +507,9 @@ public class PutRoleRequest extends RequestBase implements JsonpSerializable {
 	 * Json deserializer for {@link PutRoleRequest}
 	 */
 	public static final JsonpDeserializer<PutRoleRequest> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			PutRoleRequest::setupPutRoleRequestDeserializer, Builder::build);
+			PutRoleRequest::setupPutRoleRequestDeserializer);
 
-	protected static void setupPutRoleRequestDeserializer(DelegatingDeserializer<PutRoleRequest.Builder> op) {
+	protected static void setupPutRoleRequestDeserializer(ObjectDeserializer<PutRoleRequest.Builder> op) {
 
 		op.add(Builder::applications, JsonpDeserializer.arrayDeserializer(ApplicationPrivileges._DESERIALIZER),
 				"applications");

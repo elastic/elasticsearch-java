@@ -25,7 +25,6 @@ package co.elastic.clients.elasticsearch.indices;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -310,9 +309,9 @@ public class ShrinkRequest extends RequestBase implements JsonpSerializable {
 	 * Json deserializer for {@link ShrinkRequest}
 	 */
 	public static final JsonpDeserializer<ShrinkRequest> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			ShrinkRequest::setupShrinkRequestDeserializer, Builder::build);
+			ShrinkRequest::setupShrinkRequestDeserializer);
 
-	protected static void setupShrinkRequestDeserializer(DelegatingDeserializer<ShrinkRequest.Builder> op) {
+	protected static void setupShrinkRequestDeserializer(ObjectDeserializer<ShrinkRequest.Builder> op) {
 
 		op.add(Builder::aliases, JsonpDeserializer.stringMapDeserializer(Alias._DESERIALIZER), "aliases");
 		op.add(Builder::settings, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "settings");

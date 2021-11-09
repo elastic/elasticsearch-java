@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch.cluster;
 
 import co.elastic.clients.elasticsearch.cluster.pending_tasks.PendingTask;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -145,10 +144,9 @@ public class PendingTasksResponse implements JsonpSerializable {
 	 * Json deserializer for {@link PendingTasksResponse}
 	 */
 	public static final JsonpDeserializer<PendingTasksResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, PendingTasksResponse::setupPendingTasksResponseDeserializer, Builder::build);
+			.lazy(Builder::new, PendingTasksResponse::setupPendingTasksResponseDeserializer);
 
-	protected static void setupPendingTasksResponseDeserializer(
-			DelegatingDeserializer<PendingTasksResponse.Builder> op) {
+	protected static void setupPendingTasksResponseDeserializer(ObjectDeserializer<PendingTasksResponse.Builder> op) {
 
 		op.add(Builder::tasks, JsonpDeserializer.arrayDeserializer(PendingTask._DESERIALIZER), "tasks");
 

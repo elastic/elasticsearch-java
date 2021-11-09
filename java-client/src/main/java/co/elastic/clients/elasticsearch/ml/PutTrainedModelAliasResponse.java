@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.elasticsearch._types.AcknowledgedResponseBase;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -79,11 +78,11 @@ public class PutTrainedModelAliasResponse extends AcknowledgedResponseBase {
 	/**
 	 * Json deserializer for {@link PutTrainedModelAliasResponse}
 	 */
-	public static final JsonpDeserializer<PutTrainedModelAliasResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
-			Builder::new, PutTrainedModelAliasResponse::setupPutTrainedModelAliasResponseDeserializer, Builder::build);
+	public static final JsonpDeserializer<PutTrainedModelAliasResponse> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, PutTrainedModelAliasResponse::setupPutTrainedModelAliasResponseDeserializer);
 
 	protected static void setupPutTrainedModelAliasResponseDeserializer(
-			DelegatingDeserializer<PutTrainedModelAliasResponse.Builder> op) {
+			ObjectDeserializer<PutTrainedModelAliasResponse.Builder> op) {
 		AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);
 
 	}

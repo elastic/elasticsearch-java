@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -156,9 +155,9 @@ public class ScriptTransform implements TransformVariant, JsonpSerializable {
 	 * Json deserializer for {@link ScriptTransform}
 	 */
 	public static final JsonpDeserializer<ScriptTransform> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			ScriptTransform::setupScriptTransformDeserializer, Builder::build);
+			ScriptTransform::setupScriptTransformDeserializer);
 
-	protected static void setupScriptTransformDeserializer(DelegatingDeserializer<ScriptTransform.Builder> op) {
+	protected static void setupScriptTransformDeserializer(ObjectDeserializer<ScriptTransform.Builder> op) {
 
 		op.add(Builder::lang, JsonpDeserializer.stringDeserializer(), "lang");
 		op.add(Builder::params, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "params");

@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.core;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -142,7 +141,7 @@ public class ScriptsPainlessExecuteResponse<TResult> implements JsonpSerializabl
 	};
 
 	protected static <TResult> void setupScriptsPainlessExecuteResponseDeserializer(
-			DelegatingDeserializer<ScriptsPainlessExecuteResponse.Builder<TResult>> op,
+			ObjectDeserializer<ScriptsPainlessExecuteResponse.Builder<TResult>> op,
 			JsonpDeserializer<TResult> tResultDeserializer) {
 
 		op.add(Builder::result, tResultDeserializer, "result");

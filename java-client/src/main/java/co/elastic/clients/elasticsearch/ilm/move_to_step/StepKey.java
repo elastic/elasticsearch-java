@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.ilm.move_to_step;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -160,9 +159,9 @@ public class StepKey implements JsonpSerializable {
 	 * Json deserializer for {@link StepKey}
 	 */
 	public static final JsonpDeserializer<StepKey> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			StepKey::setupStepKeyDeserializer, Builder::build);
+			StepKey::setupStepKeyDeserializer);
 
-	protected static void setupStepKeyDeserializer(DelegatingDeserializer<StepKey.Builder> op) {
+	protected static void setupStepKeyDeserializer(ObjectDeserializer<StepKey.Builder> op) {
 
 		op.add(Builder::action, JsonpDeserializer.stringDeserializer(), "action");
 		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");

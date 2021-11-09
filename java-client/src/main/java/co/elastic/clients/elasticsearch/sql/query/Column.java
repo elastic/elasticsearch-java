@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.sql.query;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -137,9 +136,9 @@ public class Column implements JsonpSerializable {
 	 * Json deserializer for {@link Column}
 	 */
 	public static final JsonpDeserializer<Column> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			Column::setupColumnDeserializer, Builder::build);
+			Column::setupColumnDeserializer);
 
-	protected static void setupColumnDeserializer(DelegatingDeserializer<Column.Builder> op) {
+	protected static void setupColumnDeserializer(ObjectDeserializer<Column.Builder> op) {
 
 		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
 		op.add(Builder::type, JsonpDeserializer.stringDeserializer(), "type");

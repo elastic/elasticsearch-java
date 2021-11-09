@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch.core.search;
 
 import co.elastic.clients.elasticsearch._types.ScriptField;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -637,9 +636,9 @@ public class InnerHits implements JsonpSerializable {
 	 * Json deserializer for {@link InnerHits}
 	 */
 	public static final JsonpDeserializer<InnerHits> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			InnerHits::setupInnerHitsDeserializer, Builder::build);
+			InnerHits::setupInnerHitsDeserializer);
 
-	protected static void setupInnerHitsDeserializer(DelegatingDeserializer<InnerHits.Builder> op) {
+	protected static void setupInnerHitsDeserializer(ObjectDeserializer<InnerHits.Builder> op) {
 
 		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
 		op.add(Builder::size, JsonpDeserializer.integerDeserializer(), "size");

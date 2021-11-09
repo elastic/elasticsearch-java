@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.indices;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -83,9 +82,9 @@ public class GetTemplateResponse extends DictionaryResponse<String, TemplateMapp
 	 * Json deserializer for {@link GetTemplateResponse}
 	 */
 	public static final JsonpDeserializer<GetTemplateResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, GetTemplateResponse::setupGetTemplateResponseDeserializer, Builder::build);
+			.lazy(Builder::new, GetTemplateResponse::setupGetTemplateResponseDeserializer);
 
-	protected static void setupGetTemplateResponseDeserializer(DelegatingDeserializer<GetTemplateResponse.Builder> op) {
+	protected static void setupGetTemplateResponseDeserializer(ObjectDeserializer<GetTemplateResponse.Builder> op) {
 		DictionaryResponse.setupDictionaryResponseDeserializer(op, JsonpDeserializer.stringDeserializer(),
 				TemplateMapping._DESERIALIZER);
 

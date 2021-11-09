@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.analysis;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -98,9 +97,9 @@ public class LowercaseNormalizer implements NormalizerVariant, JsonpSerializable
 	 * Json deserializer for {@link LowercaseNormalizer}
 	 */
 	public static final JsonpDeserializer<LowercaseNormalizer> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, LowercaseNormalizer::setupLowercaseNormalizerDeserializer, Builder::build);
+			.lazy(Builder::new, LowercaseNormalizer::setupLowercaseNormalizerDeserializer);
 
-	protected static void setupLowercaseNormalizerDeserializer(DelegatingDeserializer<LowercaseNormalizer.Builder> op) {
+	protected static void setupLowercaseNormalizerDeserializer(ObjectDeserializer<LowercaseNormalizer.Builder> op) {
 
 		op.ignore("type");
 	}

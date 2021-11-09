@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.analysis;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -95,9 +94,9 @@ public class TrimTokenFilter extends TokenFilterBase implements TokenFilterVaria
 	 * Json deserializer for {@link TrimTokenFilter}
 	 */
 	public static final JsonpDeserializer<TrimTokenFilter> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			TrimTokenFilter::setupTrimTokenFilterDeserializer, Builder::build);
+			TrimTokenFilter::setupTrimTokenFilterDeserializer);
 
-	protected static void setupTrimTokenFilterDeserializer(DelegatingDeserializer<TrimTokenFilter.Builder> op) {
+	protected static void setupTrimTokenFilterDeserializer(ObjectDeserializer<TrimTokenFilter.Builder> op) {
 		TokenFilterBase.setupTokenFilterBaseDeserializer(op);
 
 		op.ignore("type");

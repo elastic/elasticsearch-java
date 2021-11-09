@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.ml.info;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -137,9 +136,9 @@ public class NativeCode implements JsonpSerializable {
 	 * Json deserializer for {@link NativeCode}
 	 */
 	public static final JsonpDeserializer<NativeCode> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			NativeCode::setupNativeCodeDeserializer, Builder::build);
+			NativeCode::setupNativeCodeDeserializer);
 
-	protected static void setupNativeCodeDeserializer(DelegatingDeserializer<NativeCode.Builder> op) {
+	protected static void setupNativeCodeDeserializer(ObjectDeserializer<NativeCode.Builder> op) {
 
 		op.add(Builder::buildHash, JsonpDeserializer.stringDeserializer(), "build_hash");
 		op.add(Builder::version, JsonpDeserializer.stringDeserializer(), "version");

@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -150,9 +149,9 @@ public class TermsQuery extends QueryBase implements QueryVariant {
 	 * Json deserializer for {@link TermsQuery}
 	 */
 	public static final JsonpDeserializer<TermsQuery> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			TermsQuery::setupTermsQueryDeserializer, Builder::build);
+			TermsQuery::setupTermsQueryDeserializer);
 
-	protected static void setupTermsQueryDeserializer(DelegatingDeserializer<TermsQuery.Builder> op) {
+	protected static void setupTermsQueryDeserializer(ObjectDeserializer<TermsQuery.Builder> op) {
 		QueryBase.setupQueryBaseDeserializer(op);
 
 		op.setUnknownFieldHandler((builder, name, parser, mapper) -> {

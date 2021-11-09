@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.cluster.stats;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -328,10 +327,10 @@ public class ClusterOperatingSystem implements JsonpSerializable {
 	 * Json deserializer for {@link ClusterOperatingSystem}
 	 */
 	public static final JsonpDeserializer<ClusterOperatingSystem> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, ClusterOperatingSystem::setupClusterOperatingSystemDeserializer, Builder::build);
+			.lazy(Builder::new, ClusterOperatingSystem::setupClusterOperatingSystemDeserializer);
 
 	protected static void setupClusterOperatingSystemDeserializer(
-			DelegatingDeserializer<ClusterOperatingSystem.Builder> op) {
+			ObjectDeserializer<ClusterOperatingSystem.Builder> op) {
 
 		op.add(Builder::allocatedProcessors, JsonpDeserializer.integerDeserializer(), "allocated_processors");
 		op.add(Builder::availableProcessors, JsonpDeserializer.integerDeserializer(), "available_processors");

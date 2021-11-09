@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -120,9 +119,9 @@ public class ScriptScoreFunction extends ScoreFunctionBase implements FunctionSc
 	 * Json deserializer for {@link ScriptScoreFunction}
 	 */
 	public static final JsonpDeserializer<ScriptScoreFunction> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, ScriptScoreFunction::setupScriptScoreFunctionDeserializer, Builder::build);
+			.lazy(Builder::new, ScriptScoreFunction::setupScriptScoreFunctionDeserializer);
 
-	protected static void setupScriptScoreFunctionDeserializer(DelegatingDeserializer<ScriptScoreFunction.Builder> op) {
+	protected static void setupScriptScoreFunctionDeserializer(ObjectDeserializer<ScriptScoreFunction.Builder> op) {
 		ScoreFunctionBase.setupScoreFunctionBaseDeserializer(op);
 		op.add(Builder::script, JsonpDeserializer.jsonValueDeserializer(), "script");
 

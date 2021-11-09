@@ -25,7 +25,6 @@ package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -288,9 +287,9 @@ public class FlushJobRequest extends RequestBase implements JsonpSerializable {
 	 * Json deserializer for {@link FlushJobRequest}
 	 */
 	public static final JsonpDeserializer<FlushJobRequest> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			FlushJobRequest::setupFlushJobRequestDeserializer, Builder::build);
+			FlushJobRequest::setupFlushJobRequestDeserializer);
 
-	protected static void setupFlushJobRequestDeserializer(DelegatingDeserializer<FlushJobRequest.Builder> op) {
+	protected static void setupFlushJobRequestDeserializer(ObjectDeserializer<FlushJobRequest.Builder> op) {
 
 		op.add(Builder::advanceTime, JsonpDeserializer.stringDeserializer(), "advance_time");
 		op.add(Builder::calcInterim, JsonpDeserializer.booleanDeserializer(), "calc_interim");

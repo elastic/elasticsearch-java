@@ -28,7 +28,6 @@ import co.elastic.clients.elasticsearch.watcher.ExecutionResult;
 import co.elastic.clients.elasticsearch.watcher.ExecutionStatus;
 import co.elastic.clients.elasticsearch.watcher.Input;
 import co.elastic.clients.elasticsearch.watcher.TriggerEventResult;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -380,9 +379,9 @@ public class WatchRecord implements JsonpSerializable {
 	 * Json deserializer for {@link WatchRecord}
 	 */
 	public static final JsonpDeserializer<WatchRecord> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			WatchRecord::setupWatchRecordDeserializer, Builder::build);
+			WatchRecord::setupWatchRecordDeserializer);
 
-	protected static void setupWatchRecordDeserializer(DelegatingDeserializer<WatchRecord.Builder> op) {
+	protected static void setupWatchRecordDeserializer(ObjectDeserializer<WatchRecord.Builder> op) {
 
 		op.add(Builder::condition, Condition._DESERIALIZER, "condition");
 		op.add(Builder::input, Input._DESERIALIZER, "input");

@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.enrich.execute_policy;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -113,10 +112,10 @@ public class ExecuteEnrichPolicyStatus implements JsonpSerializable {
 	 * Json deserializer for {@link ExecuteEnrichPolicyStatus}
 	 */
 	public static final JsonpDeserializer<ExecuteEnrichPolicyStatus> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, ExecuteEnrichPolicyStatus::setupExecuteEnrichPolicyStatusDeserializer, Builder::build);
+			.lazy(Builder::new, ExecuteEnrichPolicyStatus::setupExecuteEnrichPolicyStatusDeserializer);
 
 	protected static void setupExecuteEnrichPolicyStatusDeserializer(
-			DelegatingDeserializer<ExecuteEnrichPolicyStatus.Builder> op) {
+			ObjectDeserializer<ExecuteEnrichPolicyStatus.Builder> op) {
 
 		op.add(Builder::phase, EnrichPolicyPhase._DESERIALIZER, "phase");
 

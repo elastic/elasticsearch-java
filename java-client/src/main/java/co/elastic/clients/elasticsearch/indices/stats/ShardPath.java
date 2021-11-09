@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.indices.stats;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -161,9 +160,9 @@ public class ShardPath implements JsonpSerializable {
 	 * Json deserializer for {@link ShardPath}
 	 */
 	public static final JsonpDeserializer<ShardPath> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			ShardPath::setupShardPathDeserializer, Builder::build);
+			ShardPath::setupShardPathDeserializer);
 
-	protected static void setupShardPathDeserializer(DelegatingDeserializer<ShardPath.Builder> op) {
+	protected static void setupShardPathDeserializer(ObjectDeserializer<ShardPath.Builder> op) {
 
 		op.add(Builder::dataPath, JsonpDeserializer.stringDeserializer(), "data_path");
 		op.add(Builder::isCustomDataPath, JsonpDeserializer.booleanDeserializer(), "is_custom_data_path");

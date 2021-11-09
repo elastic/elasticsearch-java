@@ -272,8 +272,8 @@ public class MsearchTemplateRequest extends RequestBase implements JsonpSerializ
 		JsonpDeserializer<List<TemplateItem>> valueDeserializer = JsonpDeserializer
 				.arrayDeserializer(TemplateItem._DESERIALIZER);
 
-		return JsonpDeserializer.of(valueDeserializer.acceptedEvents(), (parser, mapper, event) -> new Builder()
-				.searchTemplates(valueDeserializer.deserialize(parser, mapper, event)).build());
+		return JsonpDeserializer.of(valueDeserializer.acceptedEvents(), (parser, mapper) -> new Builder()
+				.searchTemplates(valueDeserializer.deserialize(parser, mapper)).build());
 	}
 
 	// ---------------------------------------------------------------------------------------------

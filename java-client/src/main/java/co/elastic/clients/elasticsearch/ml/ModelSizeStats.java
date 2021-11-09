@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -608,9 +607,9 @@ public class ModelSizeStats implements JsonpSerializable {
 	 * Json deserializer for {@link ModelSizeStats}
 	 */
 	public static final JsonpDeserializer<ModelSizeStats> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			ModelSizeStats::setupModelSizeStatsDeserializer, Builder::build);
+			ModelSizeStats::setupModelSizeStatsDeserializer);
 
-	protected static void setupModelSizeStatsDeserializer(DelegatingDeserializer<ModelSizeStats.Builder> op) {
+	protected static void setupModelSizeStatsDeserializer(ObjectDeserializer<ModelSizeStats.Builder> op) {
 
 		op.add(Builder::bucketAllocationFailuresCount, JsonpDeserializer.longDeserializer(),
 				"bucket_allocation_failures_count");

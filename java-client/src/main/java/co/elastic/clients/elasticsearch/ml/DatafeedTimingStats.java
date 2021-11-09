@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -234,9 +233,9 @@ public class DatafeedTimingStats implements JsonpSerializable {
 	 * Json deserializer for {@link DatafeedTimingStats}
 	 */
 	public static final JsonpDeserializer<DatafeedTimingStats> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, DatafeedTimingStats::setupDatafeedTimingStatsDeserializer, Builder::build);
+			.lazy(Builder::new, DatafeedTimingStats::setupDatafeedTimingStatsDeserializer);
 
-	protected static void setupDatafeedTimingStatsDeserializer(DelegatingDeserializer<DatafeedTimingStats.Builder> op) {
+	protected static void setupDatafeedTimingStatsDeserializer(ObjectDeserializer<DatafeedTimingStats.Builder> op) {
 
 		op.add(Builder::bucketCount, JsonpDeserializer.longDeserializer(), "bucket_count");
 		op.add(Builder::exponentialAverageSearchTimePerHourMs, JsonpDeserializer.doubleDeserializer(),

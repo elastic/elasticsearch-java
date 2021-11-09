@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch.cluster;
 
 import co.elastic.clients.elasticsearch.cluster.reroute.RerouteExplanation;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -178,9 +177,9 @@ public class RerouteResponse implements JsonpSerializable {
 	 * Json deserializer for {@link RerouteResponse}
 	 */
 	public static final JsonpDeserializer<RerouteResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			RerouteResponse::setupRerouteResponseDeserializer, Builder::build);
+			RerouteResponse::setupRerouteResponseDeserializer);
 
-	protected static void setupRerouteResponseDeserializer(DelegatingDeserializer<RerouteResponse.Builder> op) {
+	protected static void setupRerouteResponseDeserializer(ObjectDeserializer<RerouteResponse.Builder> op) {
 
 		op.add(Builder::explanations, JsonpDeserializer.arrayDeserializer(RerouteExplanation._DESERIALIZER),
 				"explanations");

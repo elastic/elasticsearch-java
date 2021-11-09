@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch.xpack.usage;
 
 import co.elastic.clients.elasticsearch.ml.JobStatistics;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -228,10 +227,10 @@ public class MlInferenceTrainedModels implements JsonpSerializable {
 	 * Json deserializer for {@link MlInferenceTrainedModels}
 	 */
 	public static final JsonpDeserializer<MlInferenceTrainedModels> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, MlInferenceTrainedModels::setupMlInferenceTrainedModelsDeserializer, Builder::build);
+			.lazy(Builder::new, MlInferenceTrainedModels::setupMlInferenceTrainedModelsDeserializer);
 
 	protected static void setupMlInferenceTrainedModelsDeserializer(
-			DelegatingDeserializer<MlInferenceTrainedModels.Builder> op) {
+			ObjectDeserializer<MlInferenceTrainedModels.Builder> op) {
 
 		op.add(Builder::estimatedOperations, JobStatistics._DESERIALIZER, "estimated_operations");
 		op.add(Builder::estimatedHeapMemoryUsageBytes, JobStatistics._DESERIALIZER,

@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -172,9 +171,9 @@ public class TermQuery extends QueryBase implements QueryVariant {
 	 * Json deserializer for {@link TermQuery}
 	 */
 	public static final JsonpDeserializer<TermQuery> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			TermQuery::setupTermQueryDeserializer, Builder::build);
+			TermQuery::setupTermQueryDeserializer);
 
-	protected static void setupTermQueryDeserializer(DelegatingDeserializer<TermQuery.Builder> op) {
+	protected static void setupTermQueryDeserializer(ObjectDeserializer<TermQuery.Builder> op) {
 		QueryBase.setupQueryBaseDeserializer(op);
 		op.add(Builder::value, JsonpDeserializer.stringDeserializer(), "value");
 		op.add(Builder::caseInsensitive, JsonpDeserializer.booleanDeserializer(), "case_insensitive");

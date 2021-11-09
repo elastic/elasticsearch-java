@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.mapping;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -352,9 +351,9 @@ public class FlattenedProperty extends PropertyBase implements PropertyVariant {
 	 * Json deserializer for {@link FlattenedProperty}
 	 */
 	public static final JsonpDeserializer<FlattenedProperty> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, FlattenedProperty::setupFlattenedPropertyDeserializer, Builder::build);
+			.lazy(Builder::new, FlattenedProperty::setupFlattenedPropertyDeserializer);
 
-	protected static void setupFlattenedPropertyDeserializer(DelegatingDeserializer<FlattenedProperty.Builder> op) {
+	protected static void setupFlattenedPropertyDeserializer(ObjectDeserializer<FlattenedProperty.Builder> op) {
 		PropertyBase.setupPropertyBaseDeserializer(op);
 		op.add(Builder::boost, JsonpDeserializer.doubleDeserializer(), "boost");
 		op.add(Builder::depthLimit, JsonpDeserializer.integerDeserializer(), "depth_limit");

@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -210,9 +209,9 @@ public class PartitionScore implements JsonpSerializable {
 	 * Json deserializer for {@link PartitionScore}
 	 */
 	public static final JsonpDeserializer<PartitionScore> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			PartitionScore::setupPartitionScoreDeserializer, Builder::build);
+			PartitionScore::setupPartitionScoreDeserializer);
 
-	protected static void setupPartitionScoreDeserializer(DelegatingDeserializer<PartitionScore.Builder> op) {
+	protected static void setupPartitionScoreDeserializer(ObjectDeserializer<PartitionScore.Builder> op) {
 
 		op.add(Builder::initialRecordScore, JsonpDeserializer.doubleDeserializer(), "initial_record_score");
 		op.add(Builder::partitionFieldName, JsonpDeserializer.stringDeserializer(), "partition_field_name");

@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.analysis;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -543,12 +542,11 @@ public class WordDelimiterGraphTokenFilter extends TokenFilterBase implements To
 	/**
 	 * Json deserializer for {@link WordDelimiterGraphTokenFilter}
 	 */
-	public static final JsonpDeserializer<WordDelimiterGraphTokenFilter> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
-			Builder::new, WordDelimiterGraphTokenFilter::setupWordDelimiterGraphTokenFilterDeserializer,
-			Builder::build);
+	public static final JsonpDeserializer<WordDelimiterGraphTokenFilter> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, WordDelimiterGraphTokenFilter::setupWordDelimiterGraphTokenFilterDeserializer);
 
 	protected static void setupWordDelimiterGraphTokenFilterDeserializer(
-			DelegatingDeserializer<WordDelimiterGraphTokenFilter.Builder> op) {
+			ObjectDeserializer<WordDelimiterGraphTokenFilter.Builder> op) {
 		TokenFilterBase.setupTokenFilterBaseDeserializer(op);
 		op.add(Builder::adjustOffsets, JsonpDeserializer.booleanDeserializer(), "adjust_offsets");
 		op.add(Builder::catenateAll, JsonpDeserializer.booleanDeserializer(), "catenate_all");

@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -408,9 +407,9 @@ public class BucketSummary implements JsonpSerializable {
 	 * Json deserializer for {@link BucketSummary}
 	 */
 	public static final JsonpDeserializer<BucketSummary> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			BucketSummary::setupBucketSummaryDeserializer, Builder::build);
+			BucketSummary::setupBucketSummaryDeserializer);
 
-	protected static void setupBucketSummaryDeserializer(DelegatingDeserializer<BucketSummary.Builder> op) {
+	protected static void setupBucketSummaryDeserializer(ObjectDeserializer<BucketSummary.Builder> op) {
 
 		op.add(Builder::anomalyScore, JsonpDeserializer.doubleDeserializer(), "anomaly_score");
 		op.add(Builder::bucketInfluencers, JsonpDeserializer.arrayDeserializer(BucketInfluencer._DESERIALIZER),

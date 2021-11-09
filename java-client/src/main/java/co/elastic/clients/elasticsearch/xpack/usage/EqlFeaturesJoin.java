@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.xpack.usage;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -207,9 +206,9 @@ public class EqlFeaturesJoin implements JsonpSerializable {
 	 * Json deserializer for {@link EqlFeaturesJoin}
 	 */
 	public static final JsonpDeserializer<EqlFeaturesJoin> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			EqlFeaturesJoin::setupEqlFeaturesJoinDeserializer, Builder::build);
+			EqlFeaturesJoin::setupEqlFeaturesJoinDeserializer);
 
-	protected static void setupEqlFeaturesJoinDeserializer(DelegatingDeserializer<EqlFeaturesJoin.Builder> op) {
+	protected static void setupEqlFeaturesJoinDeserializer(ObjectDeserializer<EqlFeaturesJoin.Builder> op) {
 
 		op.add(Builder::joinQueriesTwo, JsonpDeserializer.numberDeserializer(), "join_queries_two");
 		op.add(Builder::joinQueriesThree, JsonpDeserializer.numberDeserializer(), "join_queries_three");

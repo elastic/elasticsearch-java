@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.snapshot;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -228,9 +227,9 @@ public class RepositorySettings implements JsonpSerializable {
 	 * Json deserializer for {@link RepositorySettings}
 	 */
 	public static final JsonpDeserializer<RepositorySettings> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, RepositorySettings::setupRepositorySettingsDeserializer, Builder::build);
+			.lazy(Builder::new, RepositorySettings::setupRepositorySettingsDeserializer);
 
-	protected static void setupRepositorySettingsDeserializer(DelegatingDeserializer<RepositorySettings.Builder> op) {
+	protected static void setupRepositorySettingsDeserializer(ObjectDeserializer<RepositorySettings.Builder> op) {
 
 		op.add(Builder::chunkSize, JsonpDeserializer.stringDeserializer(), "chunk_size");
 		op.add(Builder::compress, JsonpDeserializer.booleanDeserializer(), "compress");

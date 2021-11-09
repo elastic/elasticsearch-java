@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.core.search;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -226,7 +225,7 @@ public class HitsMetadata<T> implements JsonpSerializable {
 				op -> HitsMetadata.setupHitsMetadataDeserializer(op, tDeserializer));
 	};
 
-	protected static <T> void setupHitsMetadataDeserializer(DelegatingDeserializer<HitsMetadata.Builder<T>> op,
+	protected static <T> void setupHitsMetadataDeserializer(ObjectDeserializer<HitsMetadata.Builder<T>> op,
 			JsonpDeserializer<T> tDeserializer) {
 
 		op.add(Builder::total, TotalHits._DESERIALIZER, "total");

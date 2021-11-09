@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.analysis;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -150,11 +149,11 @@ public class IcuNormalizationCharFilter extends CharFilterBase implements CharFi
 	/**
 	 * Json deserializer for {@link IcuNormalizationCharFilter}
 	 */
-	public static final JsonpDeserializer<IcuNormalizationCharFilter> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
-			Builder::new, IcuNormalizationCharFilter::setupIcuNormalizationCharFilterDeserializer, Builder::build);
+	public static final JsonpDeserializer<IcuNormalizationCharFilter> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, IcuNormalizationCharFilter::setupIcuNormalizationCharFilterDeserializer);
 
 	protected static void setupIcuNormalizationCharFilterDeserializer(
-			DelegatingDeserializer<IcuNormalizationCharFilter.Builder> op) {
+			ObjectDeserializer<IcuNormalizationCharFilter.Builder> op) {
 		CharFilterBase.setupCharFilterBaseDeserializer(op);
 		op.add(Builder::mode, IcuNormalizationMode._DESERIALIZER, "mode");
 		op.add(Builder::name, IcuNormalizationType._DESERIALIZER, "name");

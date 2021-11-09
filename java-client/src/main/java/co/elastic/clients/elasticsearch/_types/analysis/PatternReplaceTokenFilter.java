@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.analysis;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -167,10 +166,10 @@ public class PatternReplaceTokenFilter extends TokenFilterBase implements TokenF
 	 * Json deserializer for {@link PatternReplaceTokenFilter}
 	 */
 	public static final JsonpDeserializer<PatternReplaceTokenFilter> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, PatternReplaceTokenFilter::setupPatternReplaceTokenFilterDeserializer, Builder::build);
+			.lazy(Builder::new, PatternReplaceTokenFilter::setupPatternReplaceTokenFilterDeserializer);
 
 	protected static void setupPatternReplaceTokenFilterDeserializer(
-			DelegatingDeserializer<PatternReplaceTokenFilter.Builder> op) {
+			ObjectDeserializer<PatternReplaceTokenFilter.Builder> op) {
 		TokenFilterBase.setupTokenFilterBaseDeserializer(op);
 		op.add(Builder::flags, JsonpDeserializer.stringDeserializer(), "flags");
 		op.add(Builder::pattern, JsonpDeserializer.stringDeserializer(), "pattern");

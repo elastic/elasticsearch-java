@@ -25,7 +25,6 @@ package co.elastic.clients.elasticsearch.snapshot;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -291,10 +290,10 @@ public class CreateRepositoryRequest extends RequestBase implements JsonpSeriali
 	 * Json deserializer for {@link CreateRepositoryRequest}
 	 */
 	public static final JsonpDeserializer<CreateRepositoryRequest> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, CreateRepositoryRequest::setupCreateRepositoryRequestDeserializer, Builder::build);
+			.lazy(Builder::new, CreateRepositoryRequest::setupCreateRepositoryRequestDeserializer);
 
 	protected static void setupCreateRepositoryRequestDeserializer(
-			DelegatingDeserializer<CreateRepositoryRequest.Builder> op) {
+			ObjectDeserializer<CreateRepositoryRequest.Builder> op) {
 
 		op.add(Builder::repository, Repository._DESERIALIZER, "repository");
 		op.add(Builder::settings, RepositorySettings._DESERIALIZER, "settings");

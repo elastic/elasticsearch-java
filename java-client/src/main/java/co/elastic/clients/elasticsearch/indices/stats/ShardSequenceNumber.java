@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.indices.stats;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -159,9 +158,9 @@ public class ShardSequenceNumber implements JsonpSerializable {
 	 * Json deserializer for {@link ShardSequenceNumber}
 	 */
 	public static final JsonpDeserializer<ShardSequenceNumber> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, ShardSequenceNumber::setupShardSequenceNumberDeserializer, Builder::build);
+			.lazy(Builder::new, ShardSequenceNumber::setupShardSequenceNumberDeserializer);
 
-	protected static void setupShardSequenceNumberDeserializer(DelegatingDeserializer<ShardSequenceNumber.Builder> op) {
+	protected static void setupShardSequenceNumberDeserializer(ObjectDeserializer<ShardSequenceNumber.Builder> op) {
 
 		op.add(Builder::globalCheckpoint, JsonpDeserializer.longDeserializer(), "global_checkpoint");
 		op.add(Builder::localCheckpoint, JsonpDeserializer.longDeserializer(), "local_checkpoint");

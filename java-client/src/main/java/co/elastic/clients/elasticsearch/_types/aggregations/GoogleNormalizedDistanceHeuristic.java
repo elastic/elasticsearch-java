@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -120,11 +119,10 @@ public class GoogleNormalizedDistanceHeuristic implements JsonpSerializable {
 	 * Json deserializer for {@link GoogleNormalizedDistanceHeuristic}
 	 */
 	public static final JsonpDeserializer<GoogleNormalizedDistanceHeuristic> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, GoogleNormalizedDistanceHeuristic::setupGoogleNormalizedDistanceHeuristicDeserializer,
-					Builder::build);
+			.lazy(Builder::new, GoogleNormalizedDistanceHeuristic::setupGoogleNormalizedDistanceHeuristicDeserializer);
 
 	protected static void setupGoogleNormalizedDistanceHeuristicDeserializer(
-			DelegatingDeserializer<GoogleNormalizedDistanceHeuristic.Builder> op) {
+			ObjectDeserializer<GoogleNormalizedDistanceHeuristic.Builder> op) {
 
 		op.add(Builder::backgroundIsSuperset, JsonpDeserializer.booleanDeserializer(), "background_is_superset");
 

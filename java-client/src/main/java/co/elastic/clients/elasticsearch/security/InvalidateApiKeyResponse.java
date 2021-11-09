@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch.security;
 
 import co.elastic.clients.elasticsearch._types.ErrorCause;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -249,10 +248,10 @@ public class InvalidateApiKeyResponse implements JsonpSerializable {
 	 * Json deserializer for {@link InvalidateApiKeyResponse}
 	 */
 	public static final JsonpDeserializer<InvalidateApiKeyResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, InvalidateApiKeyResponse::setupInvalidateApiKeyResponseDeserializer, Builder::build);
+			.lazy(Builder::new, InvalidateApiKeyResponse::setupInvalidateApiKeyResponseDeserializer);
 
 	protected static void setupInvalidateApiKeyResponseDeserializer(
-			DelegatingDeserializer<InvalidateApiKeyResponse.Builder> op) {
+			ObjectDeserializer<InvalidateApiKeyResponse.Builder> op) {
 
 		op.add(Builder::errorCount, JsonpDeserializer.integerDeserializer(), "error_count");
 		op.add(Builder::errorDetails, JsonpDeserializer.arrayDeserializer(ErrorCause._DESERIALIZER), "error_details");

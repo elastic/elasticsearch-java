@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.mapping;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -138,9 +137,9 @@ public class JoinProperty extends PropertyBase implements PropertyVariant {
 	 * Json deserializer for {@link JoinProperty}
 	 */
 	public static final JsonpDeserializer<JoinProperty> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			JoinProperty::setupJoinPropertyDeserializer, Builder::build);
+			JoinProperty::setupJoinPropertyDeserializer);
 
-	protected static void setupJoinPropertyDeserializer(DelegatingDeserializer<JoinProperty.Builder> op) {
+	protected static void setupJoinPropertyDeserializer(ObjectDeserializer<JoinProperty.Builder> op) {
 		PropertyBase.setupPropertyBaseDeserializer(op);
 		op.add(Builder::relations, JsonpDeserializer.stringMapDeserializer(
 				JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer())), "relations");

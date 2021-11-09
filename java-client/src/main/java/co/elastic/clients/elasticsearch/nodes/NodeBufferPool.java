@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.nodes;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -208,9 +207,9 @@ public class NodeBufferPool implements JsonpSerializable {
 	 * Json deserializer for {@link NodeBufferPool}
 	 */
 	public static final JsonpDeserializer<NodeBufferPool> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			NodeBufferPool::setupNodeBufferPoolDeserializer, Builder::build);
+			NodeBufferPool::setupNodeBufferPoolDeserializer);
 
-	protected static void setupNodeBufferPoolDeserializer(DelegatingDeserializer<NodeBufferPool.Builder> op) {
+	protected static void setupNodeBufferPoolDeserializer(ObjectDeserializer<NodeBufferPool.Builder> op) {
 
 		op.add(Builder::count, JsonpDeserializer.longDeserializer(), "count");
 		op.add(Builder::totalCapacity, JsonpDeserializer.stringDeserializer(), "total_capacity");

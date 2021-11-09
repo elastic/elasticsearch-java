@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.indices.rollover;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -204,9 +203,9 @@ public class RolloverConditions implements JsonpSerializable {
 	 * Json deserializer for {@link RolloverConditions}
 	 */
 	public static final JsonpDeserializer<RolloverConditions> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, RolloverConditions::setupRolloverConditionsDeserializer, Builder::build);
+			.lazy(Builder::new, RolloverConditions::setupRolloverConditionsDeserializer);
 
-	protected static void setupRolloverConditionsDeserializer(DelegatingDeserializer<RolloverConditions.Builder> op) {
+	protected static void setupRolloverConditionsDeserializer(ObjectDeserializer<RolloverConditions.Builder> op) {
 
 		op.add(Builder::maxAge, JsonpDeserializer.stringDeserializer(), "max_age");
 		op.add(Builder::maxDocs, JsonpDeserializer.longDeserializer(), "max_docs");

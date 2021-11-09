@@ -25,7 +25,6 @@ package co.elastic.clients.elasticsearch._types.aggregations;
 
 import co.elastic.clients.elasticsearch._types.ScriptField;
 import co.elastic.clients.elasticsearch.core.search.Highlight;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -509,9 +508,9 @@ public class TopHitsAggregation extends MetricAggregationBase implements Aggrega
 	 * Json deserializer for {@link TopHitsAggregation}
 	 */
 	public static final JsonpDeserializer<TopHitsAggregation> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, TopHitsAggregation::setupTopHitsAggregationDeserializer, Builder::build);
+			.lazy(Builder::new, TopHitsAggregation::setupTopHitsAggregationDeserializer);
 
-	protected static void setupTopHitsAggregationDeserializer(DelegatingDeserializer<TopHitsAggregation.Builder> op) {
+	protected static void setupTopHitsAggregationDeserializer(ObjectDeserializer<TopHitsAggregation.Builder> op) {
 		MetricAggregationBase.setupMetricAggregationBaseDeserializer(op);
 		op.add(Builder::docvalueFields, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"docvalue_fields");

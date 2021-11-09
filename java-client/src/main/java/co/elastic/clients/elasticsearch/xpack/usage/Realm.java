@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.xpack.usage;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -417,9 +416,9 @@ public class Realm extends Base {
 	 * Json deserializer for {@link Realm}
 	 */
 	public static final JsonpDeserializer<Realm> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			Realm::setupRealmDeserializer, Builder::build);
+			Realm::setupRealmDeserializer);
 
-	protected static void setupRealmDeserializer(DelegatingDeserializer<Realm.Builder> op) {
+	protected static void setupRealmDeserializer(ObjectDeserializer<Realm.Builder> op) {
 		Base.setupBaseDeserializer(op);
 		op.add(Builder::name, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "name");
 		op.add(Builder::order, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.longDeserializer()), "order");

@@ -31,7 +31,6 @@ import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch._types.SearchType;
 import co.elastic.clients.elasticsearch._types.SlicedScroll;
 import co.elastic.clients.elasticsearch._types.query_dsl.Query;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -1185,10 +1184,9 @@ public class DeleteByQueryRequest extends RequestBase implements JsonpSerializab
 	 * Json deserializer for {@link DeleteByQueryRequest}
 	 */
 	public static final JsonpDeserializer<DeleteByQueryRequest> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, DeleteByQueryRequest::setupDeleteByQueryRequestDeserializer, Builder::build);
+			.lazy(Builder::new, DeleteByQueryRequest::setupDeleteByQueryRequestDeserializer);
 
-	protected static void setupDeleteByQueryRequestDeserializer(
-			DelegatingDeserializer<DeleteByQueryRequest.Builder> op) {
+	protected static void setupDeleteByQueryRequestDeserializer(ObjectDeserializer<DeleteByQueryRequest.Builder> op) {
 
 		op.add(Builder::maxDocs, JsonpDeserializer.longDeserializer(), "max_docs");
 		op.add(Builder::query, Query._DESERIALIZER, "query");

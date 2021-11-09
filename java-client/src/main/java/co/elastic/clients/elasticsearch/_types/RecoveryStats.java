@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -190,9 +189,9 @@ public class RecoveryStats implements JsonpSerializable {
 	 * Json deserializer for {@link RecoveryStats}
 	 */
 	public static final JsonpDeserializer<RecoveryStats> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			RecoveryStats::setupRecoveryStatsDeserializer, Builder::build);
+			RecoveryStats::setupRecoveryStatsDeserializer);
 
-	protected static void setupRecoveryStatsDeserializer(DelegatingDeserializer<RecoveryStats.Builder> op) {
+	protected static void setupRecoveryStatsDeserializer(ObjectDeserializer<RecoveryStats.Builder> op) {
 
 		op.add(Builder::currentAsSource, JsonpDeserializer.longDeserializer(), "current_as_source");
 		op.add(Builder::currentAsTarget, JsonpDeserializer.longDeserializer(), "current_as_target");

@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.elasticsearch._types.AcknowledgedResponseBase;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -79,11 +78,11 @@ public class DeleteCalendarEventResponse extends AcknowledgedResponseBase {
 	/**
 	 * Json deserializer for {@link DeleteCalendarEventResponse}
 	 */
-	public static final JsonpDeserializer<DeleteCalendarEventResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
-			Builder::new, DeleteCalendarEventResponse::setupDeleteCalendarEventResponseDeserializer, Builder::build);
+	public static final JsonpDeserializer<DeleteCalendarEventResponse> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, DeleteCalendarEventResponse::setupDeleteCalendarEventResponseDeserializer);
 
 	protected static void setupDeleteCalendarEventResponseDeserializer(
-			DelegatingDeserializer<DeleteCalendarEventResponse.Builder> op) {
+			ObjectDeserializer<DeleteCalendarEventResponse.Builder> op) {
 		AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);
 
 	}

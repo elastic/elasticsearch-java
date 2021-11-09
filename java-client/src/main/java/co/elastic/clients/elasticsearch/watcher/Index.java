@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.watcher;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -172,9 +171,9 @@ public class Index implements JsonpSerializable {
 	 * Json deserializer for {@link Index}
 	 */
 	public static final JsonpDeserializer<Index> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			Index::setupIndexDeserializer, Builder::build);
+			Index::setupIndexDeserializer);
 
-	protected static void setupIndexDeserializer(DelegatingDeserializer<Index.Builder> op) {
+	protected static void setupIndexDeserializer(ObjectDeserializer<Index.Builder> op) {
 
 		op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "index");
 		op.add(Builder::docId, JsonpDeserializer.stringDeserializer(), "doc_id");

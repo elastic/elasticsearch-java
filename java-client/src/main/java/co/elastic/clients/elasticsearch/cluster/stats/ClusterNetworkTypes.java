@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.cluster.stats;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -156,9 +155,9 @@ public class ClusterNetworkTypes implements JsonpSerializable {
 	 * Json deserializer for {@link ClusterNetworkTypes}
 	 */
 	public static final JsonpDeserializer<ClusterNetworkTypes> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, ClusterNetworkTypes::setupClusterNetworkTypesDeserializer, Builder::build);
+			.lazy(Builder::new, ClusterNetworkTypes::setupClusterNetworkTypesDeserializer);
 
-	protected static void setupClusterNetworkTypesDeserializer(DelegatingDeserializer<ClusterNetworkTypes.Builder> op) {
+	protected static void setupClusterNetworkTypesDeserializer(ObjectDeserializer<ClusterNetworkTypes.Builder> op) {
 
 		op.add(Builder::httpTypes, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.integerDeserializer()),
 				"http_types");

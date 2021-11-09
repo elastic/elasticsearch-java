@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -89,10 +88,10 @@ public class UnmappedTermsAggregate extends TermsAggregateBase<Void> implements 
 	 * Json deserializer for {@link UnmappedTermsAggregate}
 	 */
 	public static final JsonpDeserializer<UnmappedTermsAggregate> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, UnmappedTermsAggregate::setupUnmappedTermsAggregateDeserializer, Builder::build);
+			.lazy(Builder::new, UnmappedTermsAggregate::setupUnmappedTermsAggregateDeserializer);
 
 	protected static void setupUnmappedTermsAggregateDeserializer(
-			DelegatingDeserializer<UnmappedTermsAggregate.Builder> op) {
+			ObjectDeserializer<UnmappedTermsAggregate.Builder> op) {
 		TermsAggregateBase.setupTermsAggregateBaseDeserializer(op, JsonpDeserializer.voidDeserializer());
 
 	}

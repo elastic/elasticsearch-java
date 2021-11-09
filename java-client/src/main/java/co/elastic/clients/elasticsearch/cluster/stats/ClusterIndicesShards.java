@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.cluster.stats;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -229,10 +228,9 @@ public class ClusterIndicesShards implements JsonpSerializable {
 	 * Json deserializer for {@link ClusterIndicesShards}
 	 */
 	public static final JsonpDeserializer<ClusterIndicesShards> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, ClusterIndicesShards::setupClusterIndicesShardsDeserializer, Builder::build);
+			.lazy(Builder::new, ClusterIndicesShards::setupClusterIndicesShardsDeserializer);
 
-	protected static void setupClusterIndicesShardsDeserializer(
-			DelegatingDeserializer<ClusterIndicesShards.Builder> op) {
+	protected static void setupClusterIndicesShardsDeserializer(ObjectDeserializer<ClusterIndicesShards.Builder> op) {
 
 		op.add(Builder::index, ClusterIndicesShardsIndex._DESERIALIZER, "index");
 		op.add(Builder::primaries, JsonpDeserializer.doubleDeserializer(), "primaries");

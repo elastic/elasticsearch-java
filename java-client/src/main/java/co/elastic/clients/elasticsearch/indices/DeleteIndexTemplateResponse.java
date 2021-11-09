@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch.indices;
 
 import co.elastic.clients.elasticsearch._types.AcknowledgedResponseBase;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -79,11 +78,11 @@ public class DeleteIndexTemplateResponse extends AcknowledgedResponseBase {
 	/**
 	 * Json deserializer for {@link DeleteIndexTemplateResponse}
 	 */
-	public static final JsonpDeserializer<DeleteIndexTemplateResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
-			Builder::new, DeleteIndexTemplateResponse::setupDeleteIndexTemplateResponseDeserializer, Builder::build);
+	public static final JsonpDeserializer<DeleteIndexTemplateResponse> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, DeleteIndexTemplateResponse::setupDeleteIndexTemplateResponseDeserializer);
 
 	protected static void setupDeleteIndexTemplateResponseDeserializer(
-			DelegatingDeserializer<DeleteIndexTemplateResponse.Builder> op) {
+			ObjectDeserializer<DeleteIndexTemplateResponse.Builder> op) {
 		AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);
 
 	}

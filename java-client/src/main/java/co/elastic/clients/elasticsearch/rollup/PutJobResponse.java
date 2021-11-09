@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch.rollup;
 
 import co.elastic.clients.elasticsearch._types.AcknowledgedResponseBase;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -80,9 +79,9 @@ public class PutJobResponse extends AcknowledgedResponseBase {
 	 * Json deserializer for {@link PutJobResponse}
 	 */
 	public static final JsonpDeserializer<PutJobResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			PutJobResponse::setupPutJobResponseDeserializer, Builder::build);
+			PutJobResponse::setupPutJobResponseDeserializer);
 
-	protected static void setupPutJobResponseDeserializer(DelegatingDeserializer<PutJobResponse.Builder> op) {
+	protected static void setupPutJobResponseDeserializer(ObjectDeserializer<PutJobResponse.Builder> op) {
 		AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);
 
 	}

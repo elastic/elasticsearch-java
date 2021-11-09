@@ -25,7 +25,6 @@ package co.elastic.clients.elasticsearch.core.update_by_query_rethrottle;
 
 import co.elastic.clients.elasticsearch._types.BaseNode;
 import co.elastic.clients.elasticsearch.tasks.Info;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -137,11 +136,11 @@ public class UpdateByQueryRethrottleNode extends BaseNode {
 	/**
 	 * Json deserializer for {@link UpdateByQueryRethrottleNode}
 	 */
-	public static final JsonpDeserializer<UpdateByQueryRethrottleNode> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
-			Builder::new, UpdateByQueryRethrottleNode::setupUpdateByQueryRethrottleNodeDeserializer, Builder::build);
+	public static final JsonpDeserializer<UpdateByQueryRethrottleNode> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, UpdateByQueryRethrottleNode::setupUpdateByQueryRethrottleNodeDeserializer);
 
 	protected static void setupUpdateByQueryRethrottleNodeDeserializer(
-			DelegatingDeserializer<UpdateByQueryRethrottleNode.Builder> op) {
+			ObjectDeserializer<UpdateByQueryRethrottleNode.Builder> op) {
 		BaseNode.setupBaseNodeDeserializer(op);
 		op.add(Builder::tasks, JsonpDeserializer.stringMapDeserializer(Info._DESERIALIZER), "tasks");
 

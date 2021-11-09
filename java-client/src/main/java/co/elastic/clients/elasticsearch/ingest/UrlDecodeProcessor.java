@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.ingest;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -178,9 +177,9 @@ public class UrlDecodeProcessor extends ProcessorBase implements ProcessorVarian
 	 * Json deserializer for {@link UrlDecodeProcessor}
 	 */
 	public static final JsonpDeserializer<UrlDecodeProcessor> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, UrlDecodeProcessor::setupUrlDecodeProcessorDeserializer, Builder::build);
+			.lazy(Builder::new, UrlDecodeProcessor::setupUrlDecodeProcessorDeserializer);
 
-	protected static void setupUrlDecodeProcessorDeserializer(DelegatingDeserializer<UrlDecodeProcessor.Builder> op) {
+	protected static void setupUrlDecodeProcessorDeserializer(ObjectDeserializer<UrlDecodeProcessor.Builder> op) {
 		ProcessorBase.setupProcessorBaseDeserializer(op);
 		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
 		op.add(Builder::ignoreMissing, JsonpDeserializer.booleanDeserializer(), "ignore_missing");

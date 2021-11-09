@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -200,9 +199,9 @@ public class PrefixQuery extends QueryBase implements QueryVariant {
 	 * Json deserializer for {@link PrefixQuery}
 	 */
 	public static final JsonpDeserializer<PrefixQuery> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			PrefixQuery::setupPrefixQueryDeserializer, Builder::build);
+			PrefixQuery::setupPrefixQueryDeserializer);
 
-	protected static void setupPrefixQueryDeserializer(DelegatingDeserializer<PrefixQuery.Builder> op) {
+	protected static void setupPrefixQueryDeserializer(ObjectDeserializer<PrefixQuery.Builder> op) {
 		QueryBase.setupQueryBaseDeserializer(op);
 		op.add(Builder::rewrite, JsonpDeserializer.stringDeserializer(), "rewrite");
 		op.add(Builder::value, JsonpDeserializer.stringDeserializer(), "value");

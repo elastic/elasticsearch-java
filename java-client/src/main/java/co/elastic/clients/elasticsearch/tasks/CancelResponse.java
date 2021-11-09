@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch.tasks;
 
 import co.elastic.clients.elasticsearch._types.ErrorCause;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -193,9 +192,9 @@ public class CancelResponse implements JsonpSerializable {
 	 * Json deserializer for {@link CancelResponse}
 	 */
 	public static final JsonpDeserializer<CancelResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			CancelResponse::setupCancelResponseDeserializer, Builder::build);
+			CancelResponse::setupCancelResponseDeserializer);
 
-	protected static void setupCancelResponseDeserializer(DelegatingDeserializer<CancelResponse.Builder> op) {
+	protected static void setupCancelResponseDeserializer(ObjectDeserializer<CancelResponse.Builder> op) {
 
 		op.add(Builder::nodeFailures, JsonpDeserializer.arrayDeserializer(ErrorCause._DESERIALIZER), "node_failures");
 		op.add(Builder::nodes, JsonpDeserializer.stringMapDeserializer(TaskExecutingNode._DESERIALIZER), "nodes");

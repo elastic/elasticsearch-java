@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -265,9 +264,9 @@ public class IntervalsFuzzy implements IntervalsQueryVariant, IntervalsVariant, 
 	 * Json deserializer for {@link IntervalsFuzzy}
 	 */
 	public static final JsonpDeserializer<IntervalsFuzzy> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			IntervalsFuzzy::setupIntervalsFuzzyDeserializer, Builder::build);
+			IntervalsFuzzy::setupIntervalsFuzzyDeserializer);
 
-	protected static void setupIntervalsFuzzyDeserializer(DelegatingDeserializer<IntervalsFuzzy.Builder> op) {
+	protected static void setupIntervalsFuzzyDeserializer(ObjectDeserializer<IntervalsFuzzy.Builder> op) {
 
 		op.add(Builder::analyzer, JsonpDeserializer.stringDeserializer(), "analyzer");
 		op.add(Builder::fuzziness, JsonpDeserializer.stringDeserializer(), "fuzziness");

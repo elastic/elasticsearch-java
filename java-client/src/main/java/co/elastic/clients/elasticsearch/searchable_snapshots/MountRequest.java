@@ -25,7 +25,6 @@ package co.elastic.clients.elasticsearch.searchable_snapshots;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -357,9 +356,9 @@ public class MountRequest extends RequestBase implements JsonpSerializable {
 	 * Json deserializer for {@link MountRequest}
 	 */
 	public static final JsonpDeserializer<MountRequest> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			MountRequest::setupMountRequestDeserializer, Builder::build);
+			MountRequest::setupMountRequestDeserializer);
 
-	protected static void setupMountRequestDeserializer(DelegatingDeserializer<MountRequest.Builder> op) {
+	protected static void setupMountRequestDeserializer(ObjectDeserializer<MountRequest.Builder> op) {
 
 		op.add(Builder::ignoreIndexSettings,
 				JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "ignore_index_settings");

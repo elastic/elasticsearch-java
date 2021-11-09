@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch.enrich.stats;
 
 import co.elastic.clients.elasticsearch.tasks.Info;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -145,9 +144,9 @@ public class ExecutingPolicy implements JsonpSerializable {
 	 * Json deserializer for {@link ExecutingPolicy}
 	 */
 	public static final JsonpDeserializer<ExecutingPolicy> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			ExecutingPolicy::setupExecutingPolicyDeserializer, Builder::build);
+			ExecutingPolicy::setupExecutingPolicyDeserializer);
 
-	protected static void setupExecutingPolicyDeserializer(DelegatingDeserializer<ExecutingPolicy.Builder> op) {
+	protected static void setupExecutingPolicyDeserializer(ObjectDeserializer<ExecutingPolicy.Builder> op) {
 
 		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
 		op.add(Builder::task, Info._DESERIALIZER, "task");

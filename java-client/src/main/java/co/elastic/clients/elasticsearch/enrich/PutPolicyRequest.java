@@ -25,7 +25,6 @@ package co.elastic.clients.elasticsearch.enrich;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -191,9 +190,9 @@ public class PutPolicyRequest extends RequestBase implements JsonpSerializable {
 	 * Json deserializer for {@link PutPolicyRequest}
 	 */
 	public static final JsonpDeserializer<PutPolicyRequest> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			PutPolicyRequest::setupPutPolicyRequestDeserializer, Builder::build);
+			PutPolicyRequest::setupPutPolicyRequestDeserializer);
 
-	protected static void setupPutPolicyRequestDeserializer(DelegatingDeserializer<PutPolicyRequest.Builder> op) {
+	protected static void setupPutPolicyRequestDeserializer(ObjectDeserializer<PutPolicyRequest.Builder> op) {
 
 		op.add(Builder::geoMatch, Policy._DESERIALIZER, "geo_match");
 		op.add(Builder::match, Policy._DESERIALIZER, "match");

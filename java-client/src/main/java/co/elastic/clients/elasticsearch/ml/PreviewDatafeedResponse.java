@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -159,7 +158,7 @@ public class PreviewDatafeedResponse<TDocument> implements JsonpSerializable {
 	};
 
 	protected static <TDocument> void setupPreviewDatafeedResponseDeserializer(
-			DelegatingDeserializer<PreviewDatafeedResponse.Builder<TDocument>> op,
+			ObjectDeserializer<PreviewDatafeedResponse.Builder<TDocument>> op,
 			JsonpDeserializer<TDocument> tDocumentDeserializer) {
 
 		op.add(Builder::data, JsonpDeserializer.arrayDeserializer(tDocumentDeserializer), "data");

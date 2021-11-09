@@ -27,7 +27,6 @@ import co.elastic.clients.elasticsearch._types.ScriptField;
 import co.elastic.clients.elasticsearch._types.aggregations.Aggregation;
 import co.elastic.clients.elasticsearch._types.mapping.RuntimeField;
 import co.elastic.clients.elasticsearch._types.query_dsl.Query;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -602,9 +601,9 @@ public class Datafeed implements JsonpSerializable {
 	 * Json deserializer for {@link Datafeed}
 	 */
 	public static final JsonpDeserializer<Datafeed> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			Datafeed::setupDatafeedDeserializer, Builder::build);
+			Datafeed::setupDatafeedDeserializer);
 
-	protected static void setupDatafeedDeserializer(DelegatingDeserializer<Datafeed.Builder> op) {
+	protected static void setupDatafeedDeserializer(ObjectDeserializer<Datafeed.Builder> op) {
 
 		op.add(Builder::aggregations, JsonpDeserializer.stringMapDeserializer(Aggregation._DESERIALIZER),
 				"aggregations", "aggs");

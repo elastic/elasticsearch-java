@@ -25,7 +25,6 @@ package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -223,10 +222,9 @@ public class StartDatafeedRequest extends RequestBase implements JsonpSerializab
 	 * Json deserializer for {@link StartDatafeedRequest}
 	 */
 	public static final JsonpDeserializer<StartDatafeedRequest> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, StartDatafeedRequest::setupStartDatafeedRequestDeserializer, Builder::build);
+			.lazy(Builder::new, StartDatafeedRequest::setupStartDatafeedRequestDeserializer);
 
-	protected static void setupStartDatafeedRequestDeserializer(
-			DelegatingDeserializer<StartDatafeedRequest.Builder> op) {
+	protected static void setupStartDatafeedRequestDeserializer(ObjectDeserializer<StartDatafeedRequest.Builder> op) {
 
 		op.add(Builder::end, JsonpDeserializer.stringDeserializer(), "end");
 		op.add(Builder::start, JsonpDeserializer.stringDeserializer(), "start");

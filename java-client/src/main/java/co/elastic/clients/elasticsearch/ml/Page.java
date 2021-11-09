@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -155,9 +154,9 @@ public class Page implements JsonpSerializable {
 	 * Json deserializer for {@link Page}
 	 */
 	public static final JsonpDeserializer<Page> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			Page::setupPageDeserializer, Builder::build);
+			Page::setupPageDeserializer);
 
-	protected static void setupPageDeserializer(DelegatingDeserializer<Page.Builder> op) {
+	protected static void setupPageDeserializer(ObjectDeserializer<Page.Builder> op) {
 
 		op.add(Builder::from, JsonpDeserializer.integerDeserializer(), "from");
 		op.add(Builder::size, JsonpDeserializer.integerDeserializer(), "size");

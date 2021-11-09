@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.ingest;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -415,9 +414,9 @@ public class KeyValueProcessor extends ProcessorBase implements ProcessorVariant
 	 * Json deserializer for {@link KeyValueProcessor}
 	 */
 	public static final JsonpDeserializer<KeyValueProcessor> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, KeyValueProcessor::setupKeyValueProcessorDeserializer, Builder::build);
+			.lazy(Builder::new, KeyValueProcessor::setupKeyValueProcessorDeserializer);
 
-	protected static void setupKeyValueProcessorDeserializer(DelegatingDeserializer<KeyValueProcessor.Builder> op) {
+	protected static void setupKeyValueProcessorDeserializer(ObjectDeserializer<KeyValueProcessor.Builder> op) {
 		ProcessorBase.setupProcessorBaseDeserializer(op);
 		op.add(Builder::excludeKeys, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"exclude_keys");

@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.analysis;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -162,9 +161,9 @@ public class ElisionTokenFilter extends TokenFilterBase implements TokenFilterVa
 	 * Json deserializer for {@link ElisionTokenFilter}
 	 */
 	public static final JsonpDeserializer<ElisionTokenFilter> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, ElisionTokenFilter::setupElisionTokenFilterDeserializer, Builder::build);
+			.lazy(Builder::new, ElisionTokenFilter::setupElisionTokenFilterDeserializer);
 
-	protected static void setupElisionTokenFilterDeserializer(DelegatingDeserializer<ElisionTokenFilter.Builder> op) {
+	protected static void setupElisionTokenFilterDeserializer(ObjectDeserializer<ElisionTokenFilter.Builder> op) {
 		TokenFilterBase.setupTokenFilterBaseDeserializer(op);
 		op.add(Builder::articles, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"articles");

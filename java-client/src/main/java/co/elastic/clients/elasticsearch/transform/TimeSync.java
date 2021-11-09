@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.transform;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -160,9 +159,9 @@ public class TimeSync implements SyncVariant, JsonpSerializable {
 	 * Json deserializer for {@link TimeSync}
 	 */
 	public static final JsonpDeserializer<TimeSync> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			TimeSync::setupTimeSyncDeserializer, Builder::build);
+			TimeSync::setupTimeSyncDeserializer);
 
-	protected static void setupTimeSyncDeserializer(DelegatingDeserializer<TimeSync.Builder> op) {
+	protected static void setupTimeSyncDeserializer(ObjectDeserializer<TimeSync.Builder> op) {
 
 		op.add(Builder::delay, JsonpDeserializer.stringDeserializer(), "delay");
 		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");

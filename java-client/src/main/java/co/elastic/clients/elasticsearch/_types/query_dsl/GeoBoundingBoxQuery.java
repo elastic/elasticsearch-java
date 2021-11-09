@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -230,9 +229,9 @@ public class GeoBoundingBoxQuery extends QueryBase implements QueryVariant {
 	 * Json deserializer for {@link GeoBoundingBoxQuery}
 	 */
 	public static final JsonpDeserializer<GeoBoundingBoxQuery> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, GeoBoundingBoxQuery::setupGeoBoundingBoxQueryDeserializer, Builder::build);
+			.lazy(Builder::new, GeoBoundingBoxQuery::setupGeoBoundingBoxQueryDeserializer);
 
-	protected static void setupGeoBoundingBoxQueryDeserializer(DelegatingDeserializer<GeoBoundingBoxQuery.Builder> op) {
+	protected static void setupGeoBoundingBoxQueryDeserializer(ObjectDeserializer<GeoBoundingBoxQuery.Builder> op) {
 		QueryBase.setupQueryBaseDeserializer(op);
 		op.add(Builder::type, GeoExecution._DESERIALIZER, "type");
 		op.add(Builder::validationMethod, GeoValidationMethod._DESERIALIZER, "validation_method");

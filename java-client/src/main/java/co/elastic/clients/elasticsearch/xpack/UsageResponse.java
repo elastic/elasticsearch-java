@@ -41,7 +41,6 @@ import co.elastic.clients.elasticsearch.xpack.usage.Slm;
 import co.elastic.clients.elasticsearch.xpack.usage.Sql;
 import co.elastic.clients.elasticsearch.xpack.usage.Vector;
 import co.elastic.clients.elasticsearch.xpack.usage.Watcher;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -955,9 +954,9 @@ public class UsageResponse implements JsonpSerializable {
 	 * Json deserializer for {@link UsageResponse}
 	 */
 	public static final JsonpDeserializer<UsageResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			UsageResponse::setupUsageResponseDeserializer, Builder::build);
+			UsageResponse::setupUsageResponseDeserializer);
 
-	protected static void setupUsageResponseDeserializer(DelegatingDeserializer<UsageResponse.Builder> op) {
+	protected static void setupUsageResponseDeserializer(ObjectDeserializer<UsageResponse.Builder> op) {
 
 		op.add(Builder::aggregateMetric, Base._DESERIALIZER, "aggregate_metric");
 		op.add(Builder::analytics, Analytics._DESERIALIZER, "analytics");

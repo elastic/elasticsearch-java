@@ -26,7 +26,6 @@ package co.elastic.clients.elasticsearch.ml;
 import co.elastic.clients.elasticsearch.ml.info.Defaults;
 import co.elastic.clients.elasticsearch.ml.info.Limits;
 import co.elastic.clients.elasticsearch.ml.info.NativeCode;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -207,9 +206,9 @@ public class MlInfoResponse implements JsonpSerializable {
 	 * Json deserializer for {@link MlInfoResponse}
 	 */
 	public static final JsonpDeserializer<MlInfoResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			MlInfoResponse::setupMlInfoResponseDeserializer, Builder::build);
+			MlInfoResponse::setupMlInfoResponseDeserializer);
 
-	protected static void setupMlInfoResponseDeserializer(DelegatingDeserializer<MlInfoResponse.Builder> op) {
+	protected static void setupMlInfoResponseDeserializer(ObjectDeserializer<MlInfoResponse.Builder> op) {
 
 		op.add(Builder::defaults, Defaults._DESERIALIZER, "defaults");
 		op.add(Builder::limits, Limits._DESERIALIZER, "limits");

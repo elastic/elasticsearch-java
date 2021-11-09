@@ -25,7 +25,6 @@ package co.elastic.clients.elasticsearch.license.get;
 
 import co.elastic.clients.elasticsearch.license.LicenseStatus;
 import co.elastic.clients.elasticsearch.license.LicenseType;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -375,9 +374,9 @@ public class LicenseInformation implements JsonpSerializable {
 	 * Json deserializer for {@link LicenseInformation}
 	 */
 	public static final JsonpDeserializer<LicenseInformation> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, LicenseInformation::setupLicenseInformationDeserializer, Builder::build);
+			.lazy(Builder::new, LicenseInformation::setupLicenseInformationDeserializer);
 
-	protected static void setupLicenseInformationDeserializer(DelegatingDeserializer<LicenseInformation.Builder> op) {
+	protected static void setupLicenseInformationDeserializer(ObjectDeserializer<LicenseInformation.Builder> op) {
 
 		op.add(Builder::expiryDate, JsonpDeserializer.stringDeserializer(), "expiry_date");
 		op.add(Builder::expiryDateInMillis, JsonpDeserializer.stringDeserializer(), "expiry_date_in_millis");

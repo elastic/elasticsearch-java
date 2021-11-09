@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -456,9 +455,9 @@ public class BoxPlotAggregate extends AggregateBase implements AggregateVariant 
 	 * Json deserializer for {@link BoxPlotAggregate}
 	 */
 	public static final JsonpDeserializer<BoxPlotAggregate> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			BoxPlotAggregate::setupBoxPlotAggregateDeserializer, Builder::build);
+			BoxPlotAggregate::setupBoxPlotAggregateDeserializer);
 
-	protected static void setupBoxPlotAggregateDeserializer(DelegatingDeserializer<BoxPlotAggregate.Builder> op) {
+	protected static void setupBoxPlotAggregateDeserializer(ObjectDeserializer<BoxPlotAggregate.Builder> op) {
 		AggregateBase.setupAggregateBaseDeserializer(op);
 		op.add(Builder::min, JsonpDeserializer.doubleDeserializer(), "min");
 		op.add(Builder::max, JsonpDeserializer.doubleDeserializer(), "max");

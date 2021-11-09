@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.nodes;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -144,9 +143,9 @@ public class KeyedProcessor implements JsonpSerializable {
 	 * Json deserializer for {@link KeyedProcessor}
 	 */
 	public static final JsonpDeserializer<KeyedProcessor> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			KeyedProcessor::setupKeyedProcessorDeserializer, Builder::build);
+			KeyedProcessor::setupKeyedProcessorDeserializer);
 
-	protected static void setupKeyedProcessorDeserializer(DelegatingDeserializer<KeyedProcessor.Builder> op) {
+	protected static void setupKeyedProcessorDeserializer(ObjectDeserializer<KeyedProcessor.Builder> op) {
 
 		op.add(Builder::statistics, Process._DESERIALIZER, "statistics");
 		op.add(Builder::type, JsonpDeserializer.stringDeserializer(), "type");

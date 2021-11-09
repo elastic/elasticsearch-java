@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -87,9 +86,9 @@ public class MissingAggregate extends SingleBucketAggregateBase implements Aggre
 	 * Json deserializer for {@link MissingAggregate}
 	 */
 	public static final JsonpDeserializer<MissingAggregate> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			MissingAggregate::setupMissingAggregateDeserializer, Builder::build);
+			MissingAggregate::setupMissingAggregateDeserializer);
 
-	protected static void setupMissingAggregateDeserializer(DelegatingDeserializer<MissingAggregate.Builder> op) {
+	protected static void setupMissingAggregateDeserializer(ObjectDeserializer<MissingAggregate.Builder> op) {
 		SingleBucketAggregateBase.setupSingleBucketAggregateBaseDeserializer(op);
 
 	}

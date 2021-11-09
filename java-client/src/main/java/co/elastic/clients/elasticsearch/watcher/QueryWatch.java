@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.watcher;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -243,9 +242,9 @@ public class QueryWatch implements JsonpSerializable {
 	 * Json deserializer for {@link QueryWatch}
 	 */
 	public static final JsonpDeserializer<QueryWatch> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			QueryWatch::setupQueryWatchDeserializer, Builder::build);
+			QueryWatch::setupQueryWatchDeserializer);
 
-	protected static void setupQueryWatchDeserializer(DelegatingDeserializer<QueryWatch.Builder> op) {
+	protected static void setupQueryWatchDeserializer(ObjectDeserializer<QueryWatch.Builder> op) {
 
 		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "_id");
 		op.add(Builder::status, WatchStatus._DESERIALIZER, "status");

@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.nodes.info;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -394,10 +393,10 @@ public class NodeOperatingSystemInfo implements JsonpSerializable {
 	 * Json deserializer for {@link NodeOperatingSystemInfo}
 	 */
 	public static final JsonpDeserializer<NodeOperatingSystemInfo> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, NodeOperatingSystemInfo::setupNodeOperatingSystemInfoDeserializer, Builder::build);
+			.lazy(Builder::new, NodeOperatingSystemInfo::setupNodeOperatingSystemInfoDeserializer);
 
 	protected static void setupNodeOperatingSystemInfoDeserializer(
-			DelegatingDeserializer<NodeOperatingSystemInfo.Builder> op) {
+			ObjectDeserializer<NodeOperatingSystemInfo.Builder> op) {
 
 		op.add(Builder::arch, JsonpDeserializer.stringDeserializer(), "arch");
 		op.add(Builder::availableProcessors, JsonpDeserializer.integerDeserializer(), "available_processors");

@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -154,10 +153,10 @@ public class CardinalityAggregation extends MetricAggregationBase implements Agg
 	 * Json deserializer for {@link CardinalityAggregation}
 	 */
 	public static final JsonpDeserializer<CardinalityAggregation> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, CardinalityAggregation::setupCardinalityAggregationDeserializer, Builder::build);
+			.lazy(Builder::new, CardinalityAggregation::setupCardinalityAggregationDeserializer);
 
 	protected static void setupCardinalityAggregationDeserializer(
-			DelegatingDeserializer<CardinalityAggregation.Builder> op) {
+			ObjectDeserializer<CardinalityAggregation.Builder> op) {
 		MetricAggregationBase.setupMetricAggregationBaseDeserializer(op);
 		op.add(Builder::precisionThreshold, JsonpDeserializer.integerDeserializer(), "precision_threshold");
 		op.add(Builder::rehash, JsonpDeserializer.booleanDeserializer(), "rehash");

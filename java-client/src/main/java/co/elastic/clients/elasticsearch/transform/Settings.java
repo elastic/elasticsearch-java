@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.transform;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -203,9 +202,9 @@ public class Settings implements JsonpSerializable {
 	 * Json deserializer for {@link Settings}
 	 */
 	public static final JsonpDeserializer<Settings> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			Settings::setupSettingsDeserializer, Builder::build);
+			Settings::setupSettingsDeserializer);
 
-	protected static void setupSettingsDeserializer(DelegatingDeserializer<Settings.Builder> op) {
+	protected static void setupSettingsDeserializer(ObjectDeserializer<Settings.Builder> op) {
 
 		op.add(Builder::datesAsEpochMillis, JsonpDeserializer.booleanDeserializer(), "dates_as_epoch_millis");
 		op.add(Builder::docsPerSecond, JsonpDeserializer.floatDeserializer(), "docs_per_second");

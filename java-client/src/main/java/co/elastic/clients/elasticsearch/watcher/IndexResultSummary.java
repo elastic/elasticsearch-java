@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch.watcher;
 
 import co.elastic.clients.elasticsearch._types.Result;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -237,9 +236,9 @@ public class IndexResultSummary implements JsonpSerializable {
 	 * Json deserializer for {@link IndexResultSummary}
 	 */
 	public static final JsonpDeserializer<IndexResultSummary> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, IndexResultSummary::setupIndexResultSummaryDeserializer, Builder::build);
+			.lazy(Builder::new, IndexResultSummary::setupIndexResultSummaryDeserializer);
 
-	protected static void setupIndexResultSummaryDeserializer(DelegatingDeserializer<IndexResultSummary.Builder> op) {
+	protected static void setupIndexResultSummaryDeserializer(ObjectDeserializer<IndexResultSummary.Builder> op) {
 
 		op.add(Builder::created, JsonpDeserializer.booleanDeserializer(), "created");
 		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "id");

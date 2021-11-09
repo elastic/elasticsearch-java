@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch.core.scripts_painless_execute;
 
 import co.elastic.clients.elasticsearch._types.query_dsl.Query;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -169,10 +168,9 @@ public class PainlessContextSetup implements JsonpSerializable {
 	 * Json deserializer for {@link PainlessContextSetup}
 	 */
 	public static final JsonpDeserializer<PainlessContextSetup> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, PainlessContextSetup::setupPainlessContextSetupDeserializer, Builder::build);
+			.lazy(Builder::new, PainlessContextSetup::setupPainlessContextSetupDeserializer);
 
-	protected static void setupPainlessContextSetupDeserializer(
-			DelegatingDeserializer<PainlessContextSetup.Builder> op) {
+	protected static void setupPainlessContextSetupDeserializer(ObjectDeserializer<PainlessContextSetup.Builder> op) {
 
 		op.add(Builder::document, JsonData._DESERIALIZER, "document");
 		op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "index");

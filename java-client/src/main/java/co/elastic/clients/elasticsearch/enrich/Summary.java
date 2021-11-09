@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.enrich;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -120,9 +119,9 @@ public class Summary implements JsonpSerializable {
 	 * Json deserializer for {@link Summary}
 	 */
 	public static final JsonpDeserializer<Summary> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			Summary::setupSummaryDeserializer, Builder::build);
+			Summary::setupSummaryDeserializer);
 
-	protected static void setupSummaryDeserializer(DelegatingDeserializer<Summary.Builder> op) {
+	protected static void setupSummaryDeserializer(ObjectDeserializer<Summary.Builder> op) {
 
 		op.add(Builder::config, Configuration._DESERIALIZER, "config");
 

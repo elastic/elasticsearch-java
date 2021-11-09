@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.snapshot;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -83,10 +82,9 @@ public class GetRepositoryResponse extends DictionaryResponse<String, Repository
 	 * Json deserializer for {@link GetRepositoryResponse}
 	 */
 	public static final JsonpDeserializer<GetRepositoryResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, GetRepositoryResponse::setupGetRepositoryResponseDeserializer, Builder::build);
+			.lazy(Builder::new, GetRepositoryResponse::setupGetRepositoryResponseDeserializer);
 
-	protected static void setupGetRepositoryResponseDeserializer(
-			DelegatingDeserializer<GetRepositoryResponse.Builder> op) {
+	protected static void setupGetRepositoryResponseDeserializer(ObjectDeserializer<GetRepositoryResponse.Builder> op) {
 		DictionaryResponse.setupDictionaryResponseDeserializer(op, JsonpDeserializer.stringDeserializer(),
 				Repository._DESERIALIZER);
 

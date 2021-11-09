@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -144,9 +143,9 @@ public class ScriptField implements JsonpSerializable {
 	 * Json deserializer for {@link ScriptField}
 	 */
 	public static final JsonpDeserializer<ScriptField> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			ScriptField::setupScriptFieldDeserializer, Builder::build);
+			ScriptField::setupScriptFieldDeserializer);
 
-	protected static void setupScriptFieldDeserializer(DelegatingDeserializer<ScriptField.Builder> op) {
+	protected static void setupScriptFieldDeserializer(ObjectDeserializer<ScriptField.Builder> op) {
 
 		op.add(Builder::script, JsonpDeserializer.jsonValueDeserializer(), "script");
 		op.add(Builder::ignoreFailure, JsonpDeserializer.booleanDeserializer(), "ignore_failure");

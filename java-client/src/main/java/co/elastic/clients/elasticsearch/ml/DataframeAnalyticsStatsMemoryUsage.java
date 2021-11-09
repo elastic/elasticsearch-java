@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -214,11 +213,11 @@ public class DataframeAnalyticsStatsMemoryUsage implements JsonpSerializable {
 	 * Json deserializer for {@link DataframeAnalyticsStatsMemoryUsage}
 	 */
 	public static final JsonpDeserializer<DataframeAnalyticsStatsMemoryUsage> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, DataframeAnalyticsStatsMemoryUsage::setupDataframeAnalyticsStatsMemoryUsageDeserializer,
-					Builder::build);
+			.lazy(Builder::new,
+					DataframeAnalyticsStatsMemoryUsage::setupDataframeAnalyticsStatsMemoryUsageDeserializer);
 
 	protected static void setupDataframeAnalyticsStatsMemoryUsageDeserializer(
-			DelegatingDeserializer<DataframeAnalyticsStatsMemoryUsage.Builder> op) {
+			ObjectDeserializer<DataframeAnalyticsStatsMemoryUsage.Builder> op) {
 
 		op.add(Builder::memoryReestimateBytes, JsonpDeserializer.longDeserializer(), "memory_reestimate_bytes");
 		op.add(Builder::peakUsageBytes, JsonpDeserializer.longDeserializer(), "peak_usage_bytes");

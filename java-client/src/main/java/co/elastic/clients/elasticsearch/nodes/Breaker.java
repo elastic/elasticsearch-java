@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.nodes;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -232,9 +231,9 @@ public class Breaker implements JsonpSerializable {
 	 * Json deserializer for {@link Breaker}
 	 */
 	public static final JsonpDeserializer<Breaker> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			Breaker::setupBreakerDeserializer, Builder::build);
+			Breaker::setupBreakerDeserializer);
 
-	protected static void setupBreakerDeserializer(DelegatingDeserializer<Breaker.Builder> op) {
+	protected static void setupBreakerDeserializer(ObjectDeserializer<Breaker.Builder> op) {
 
 		op.add(Builder::estimatedSize, JsonpDeserializer.stringDeserializer(), "estimated_size");
 		op.add(Builder::estimatedSizeInBytes, JsonpDeserializer.longDeserializer(), "estimated_size_in_bytes");

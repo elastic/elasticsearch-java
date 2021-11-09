@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -142,9 +141,9 @@ public class JobBlocked implements JsonpSerializable {
 	 * Json deserializer for {@link JobBlocked}
 	 */
 	public static final JsonpDeserializer<JobBlocked> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			JobBlocked::setupJobBlockedDeserializer, Builder::build);
+			JobBlocked::setupJobBlockedDeserializer);
 
-	protected static void setupJobBlockedDeserializer(DelegatingDeserializer<JobBlocked.Builder> op) {
+	protected static void setupJobBlockedDeserializer(ObjectDeserializer<JobBlocked.Builder> op) {
 
 		op.add(Builder::reason, JobBlockedReason._DESERIALIZER, "reason");
 		op.add(Builder::taskId, JsonpDeserializer.stringDeserializer(), "task_id");

@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.shutdown.get_node;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -297,9 +296,9 @@ public class NodeShutdownStatus implements JsonpSerializable {
 	 * Json deserializer for {@link NodeShutdownStatus}
 	 */
 	public static final JsonpDeserializer<NodeShutdownStatus> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, NodeShutdownStatus::setupNodeShutdownStatusDeserializer, Builder::build);
+			.lazy(Builder::new, NodeShutdownStatus::setupNodeShutdownStatusDeserializer);
 
-	protected static void setupNodeShutdownStatusDeserializer(DelegatingDeserializer<NodeShutdownStatus.Builder> op) {
+	protected static void setupNodeShutdownStatusDeserializer(ObjectDeserializer<NodeShutdownStatus.Builder> op) {
 
 		op.add(Builder::nodeId, JsonpDeserializer.stringDeserializer(), "node_id");
 		op.add(Builder::type, ShutdownType._DESERIALIZER, "type");

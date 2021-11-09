@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch.xpack.usage;
 
 import co.elastic.clients.elasticsearch.ml.JobStatistics;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -122,11 +121,10 @@ public class MlDataFrameAnalyticsJobsMemory implements JsonpSerializable {
 	 * Json deserializer for {@link MlDataFrameAnalyticsJobsMemory}
 	 */
 	public static final JsonpDeserializer<MlDataFrameAnalyticsJobsMemory> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, MlDataFrameAnalyticsJobsMemory::setupMlDataFrameAnalyticsJobsMemoryDeserializer,
-					Builder::build);
+			.lazy(Builder::new, MlDataFrameAnalyticsJobsMemory::setupMlDataFrameAnalyticsJobsMemoryDeserializer);
 
 	protected static void setupMlDataFrameAnalyticsJobsMemoryDeserializer(
-			DelegatingDeserializer<MlDataFrameAnalyticsJobsMemory.Builder> op) {
+			ObjectDeserializer<MlDataFrameAnalyticsJobsMemory.Builder> op) {
 
 		op.add(Builder::peakUsageBytes, JobStatistics._DESERIALIZER, "peak_usage_bytes");
 

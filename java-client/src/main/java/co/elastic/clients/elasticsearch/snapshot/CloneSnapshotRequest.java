@@ -25,7 +25,6 @@ package co.elastic.clients.elasticsearch.snapshot;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -242,10 +241,9 @@ public class CloneSnapshotRequest extends RequestBase implements JsonpSerializab
 	 * Json deserializer for {@link CloneSnapshotRequest}
 	 */
 	public static final JsonpDeserializer<CloneSnapshotRequest> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, CloneSnapshotRequest::setupCloneSnapshotRequestDeserializer, Builder::build);
+			.lazy(Builder::new, CloneSnapshotRequest::setupCloneSnapshotRequestDeserializer);
 
-	protected static void setupCloneSnapshotRequestDeserializer(
-			DelegatingDeserializer<CloneSnapshotRequest.Builder> op) {
+	protected static void setupCloneSnapshotRequestDeserializer(ObjectDeserializer<CloneSnapshotRequest.Builder> op) {
 
 		op.add(Builder::indices, JsonpDeserializer.stringDeserializer(), "indices");
 

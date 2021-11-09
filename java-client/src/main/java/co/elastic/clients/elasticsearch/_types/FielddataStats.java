@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -219,9 +218,9 @@ public class FielddataStats implements JsonpSerializable {
 	 * Json deserializer for {@link FielddataStats}
 	 */
 	public static final JsonpDeserializer<FielddataStats> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			FielddataStats::setupFielddataStatsDeserializer, Builder::build);
+			FielddataStats::setupFielddataStatsDeserializer);
 
-	protected static void setupFielddataStatsDeserializer(DelegatingDeserializer<FielddataStats.Builder> op) {
+	protected static void setupFielddataStatsDeserializer(ObjectDeserializer<FielddataStats.Builder> op) {
 
 		op.add(Builder::evictions, JsonpDeserializer.longDeserializer(), "evictions");
 		op.add(Builder::memorySize, JsonpDeserializer.stringDeserializer(), "memory_size");

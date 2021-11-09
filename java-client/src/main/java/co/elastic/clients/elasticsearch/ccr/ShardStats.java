@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch.ccr;
 
 import co.elastic.clients.elasticsearch._types.ErrorCause;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -821,9 +820,9 @@ public class ShardStats implements JsonpSerializable {
 	 * Json deserializer for {@link ShardStats}
 	 */
 	public static final JsonpDeserializer<ShardStats> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			ShardStats::setupShardStatsDeserializer, Builder::build);
+			ShardStats::setupShardStatsDeserializer);
 
-	protected static void setupShardStatsDeserializer(DelegatingDeserializer<ShardStats.Builder> op) {
+	protected static void setupShardStatsDeserializer(ObjectDeserializer<ShardStats.Builder> op) {
 
 		op.add(Builder::bytesRead, JsonpDeserializer.longDeserializer(), "bytes_read");
 		op.add(Builder::failedReadRequests, JsonpDeserializer.longDeserializer(), "failed_read_requests");

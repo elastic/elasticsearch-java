@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.core.search;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -260,11 +259,10 @@ public class AggregationProfileDelegateDebug implements JsonpSerializable {
 	 * Json deserializer for {@link AggregationProfileDelegateDebug}
 	 */
 	public static final JsonpDeserializer<AggregationProfileDelegateDebug> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, AggregationProfileDelegateDebug::setupAggregationProfileDelegateDebugDeserializer,
-					Builder::build);
+			.lazy(Builder::new, AggregationProfileDelegateDebug::setupAggregationProfileDelegateDebugDeserializer);
 
 	protected static void setupAggregationProfileDelegateDebugDeserializer(
-			DelegatingDeserializer<AggregationProfileDelegateDebug.Builder> op) {
+			ObjectDeserializer<AggregationProfileDelegateDebug.Builder> op) {
 
 		op.add(Builder::segmentsWithDocCountField, JsonpDeserializer.integerDeserializer(),
 				"segments_with_doc_count_field");

@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.mapping;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -126,9 +125,9 @@ public class RankFeatureProperty extends PropertyBase implements PropertyVariant
 	 * Json deserializer for {@link RankFeatureProperty}
 	 */
 	public static final JsonpDeserializer<RankFeatureProperty> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, RankFeatureProperty::setupRankFeaturePropertyDeserializer, Builder::build);
+			.lazy(Builder::new, RankFeatureProperty::setupRankFeaturePropertyDeserializer);
 
-	protected static void setupRankFeaturePropertyDeserializer(DelegatingDeserializer<RankFeatureProperty.Builder> op) {
+	protected static void setupRankFeaturePropertyDeserializer(ObjectDeserializer<RankFeatureProperty.Builder> op) {
 		PropertyBase.setupPropertyBaseDeserializer(op);
 		op.add(Builder::positiveScoreImpact, JsonpDeserializer.booleanDeserializer(), "positive_score_impact");
 

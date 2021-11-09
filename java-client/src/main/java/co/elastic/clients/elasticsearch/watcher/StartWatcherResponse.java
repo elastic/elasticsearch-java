@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch.watcher;
 
 import co.elastic.clients.elasticsearch._types.AcknowledgedResponseBase;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -80,10 +79,9 @@ public class StartWatcherResponse extends AcknowledgedResponseBase {
 	 * Json deserializer for {@link StartWatcherResponse}
 	 */
 	public static final JsonpDeserializer<StartWatcherResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, StartWatcherResponse::setupStartWatcherResponseDeserializer, Builder::build);
+			.lazy(Builder::new, StartWatcherResponse::setupStartWatcherResponseDeserializer);
 
-	protected static void setupStartWatcherResponseDeserializer(
-			DelegatingDeserializer<StartWatcherResponse.Builder> op) {
+	protected static void setupStartWatcherResponseDeserializer(ObjectDeserializer<StartWatcherResponse.Builder> op) {
 		AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);
 
 	}

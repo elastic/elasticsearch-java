@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.shutdown.get_node;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -113,10 +112,9 @@ public class ShardMigrationStatus implements JsonpSerializable {
 	 * Json deserializer for {@link ShardMigrationStatus}
 	 */
 	public static final JsonpDeserializer<ShardMigrationStatus> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, ShardMigrationStatus::setupShardMigrationStatusDeserializer, Builder::build);
+			.lazy(Builder::new, ShardMigrationStatus::setupShardMigrationStatusDeserializer);
 
-	protected static void setupShardMigrationStatusDeserializer(
-			DelegatingDeserializer<ShardMigrationStatus.Builder> op) {
+	protected static void setupShardMigrationStatusDeserializer(ObjectDeserializer<ShardMigrationStatus.Builder> op) {
 
 		op.add(Builder::status, ShutdownStatus._DESERIALIZER, "status");
 

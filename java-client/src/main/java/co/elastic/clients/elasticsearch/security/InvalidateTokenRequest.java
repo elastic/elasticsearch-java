@@ -25,7 +25,6 @@ package co.elastic.clients.elasticsearch.security;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -208,10 +207,10 @@ public class InvalidateTokenRequest extends RequestBase implements JsonpSerializ
 	 * Json deserializer for {@link InvalidateTokenRequest}
 	 */
 	public static final JsonpDeserializer<InvalidateTokenRequest> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, InvalidateTokenRequest::setupInvalidateTokenRequestDeserializer, Builder::build);
+			.lazy(Builder::new, InvalidateTokenRequest::setupInvalidateTokenRequestDeserializer);
 
 	protected static void setupInvalidateTokenRequestDeserializer(
-			DelegatingDeserializer<InvalidateTokenRequest.Builder> op) {
+			ObjectDeserializer<InvalidateTokenRequest.Builder> op) {
 
 		op.add(Builder::realmName, JsonpDeserializer.stringDeserializer(), "realm_name");
 		op.add(Builder::refreshToken, JsonpDeserializer.stringDeserializer(), "refresh_token");

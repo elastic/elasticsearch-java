@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.watcher;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -136,9 +135,9 @@ public class ExecutionThreadPool implements JsonpSerializable {
 	 * Json deserializer for {@link ExecutionThreadPool}
 	 */
 	public static final JsonpDeserializer<ExecutionThreadPool> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, ExecutionThreadPool::setupExecutionThreadPoolDeserializer, Builder::build);
+			.lazy(Builder::new, ExecutionThreadPool::setupExecutionThreadPoolDeserializer);
 
-	protected static void setupExecutionThreadPoolDeserializer(DelegatingDeserializer<ExecutionThreadPool.Builder> op) {
+	protected static void setupExecutionThreadPoolDeserializer(ObjectDeserializer<ExecutionThreadPool.Builder> op) {
 
 		op.add(Builder::maxSize, JsonpDeserializer.longDeserializer(), "max_size");
 		op.add(Builder::queueSize, JsonpDeserializer.longDeserializer(), "queue_size");

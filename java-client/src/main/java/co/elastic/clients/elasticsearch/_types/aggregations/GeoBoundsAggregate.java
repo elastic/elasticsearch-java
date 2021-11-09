@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -126,9 +125,9 @@ public class GeoBoundsAggregate extends AggregateBase implements AggregateVarian
 	 * Json deserializer for {@link GeoBoundsAggregate}
 	 */
 	public static final JsonpDeserializer<GeoBoundsAggregate> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, GeoBoundsAggregate::setupGeoBoundsAggregateDeserializer, Builder::build);
+			.lazy(Builder::new, GeoBoundsAggregate::setupGeoBoundsAggregateDeserializer);
 
-	protected static void setupGeoBoundsAggregateDeserializer(DelegatingDeserializer<GeoBoundsAggregate.Builder> op) {
+	protected static void setupGeoBoundsAggregateDeserializer(ObjectDeserializer<GeoBoundsAggregate.Builder> op) {
 		AggregateBase.setupAggregateBaseDeserializer(op);
 		op.add(Builder::bounds, GeoBounds._DESERIALIZER, "bounds");
 

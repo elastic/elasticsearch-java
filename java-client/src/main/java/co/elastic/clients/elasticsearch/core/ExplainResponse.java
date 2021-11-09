@@ -25,7 +25,6 @@ package co.elastic.clients.elasticsearch.core;
 
 import co.elastic.clients.elasticsearch._types.InlineGet;
 import co.elastic.clients.elasticsearch.core.explain.ExplanationDetail;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -291,7 +290,7 @@ public class ExplainResponse<TDocument> implements JsonpSerializable {
 	};
 
 	protected static <TDocument> void setupExplainResponseDeserializer(
-			DelegatingDeserializer<ExplainResponse.Builder<TDocument>> op,
+			ObjectDeserializer<ExplainResponse.Builder<TDocument>> op,
 			JsonpDeserializer<TDocument> tDocumentDeserializer) {
 
 		op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "_index");

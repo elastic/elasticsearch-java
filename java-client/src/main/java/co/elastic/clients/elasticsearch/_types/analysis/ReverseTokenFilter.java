@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.analysis;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -95,9 +94,9 @@ public class ReverseTokenFilter extends TokenFilterBase implements TokenFilterVa
 	 * Json deserializer for {@link ReverseTokenFilter}
 	 */
 	public static final JsonpDeserializer<ReverseTokenFilter> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, ReverseTokenFilter::setupReverseTokenFilterDeserializer, Builder::build);
+			.lazy(Builder::new, ReverseTokenFilter::setupReverseTokenFilterDeserializer);
 
-	protected static void setupReverseTokenFilterDeserializer(DelegatingDeserializer<ReverseTokenFilter.Builder> op) {
+	protected static void setupReverseTokenFilterDeserializer(ObjectDeserializer<ReverseTokenFilter.Builder> op) {
 		TokenFilterBase.setupTokenFilterBaseDeserializer(op);
 
 		op.ignore("type");

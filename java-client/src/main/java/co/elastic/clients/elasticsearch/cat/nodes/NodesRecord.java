@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.cat.nodes;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -3165,9 +3164,9 @@ public class NodesRecord implements JsonpSerializable {
 	 * Json deserializer for {@link NodesRecord}
 	 */
 	public static final JsonpDeserializer<NodesRecord> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			NodesRecord::setupNodesRecordDeserializer, Builder::build);
+			NodesRecord::setupNodesRecordDeserializer);
 
-	protected static void setupNodesRecordDeserializer(DelegatingDeserializer<NodesRecord.Builder> op) {
+	protected static void setupNodesRecordDeserializer(ObjectDeserializer<NodesRecord.Builder> op) {
 
 		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "id", "nodeId");
 		op.add(Builder::pid, JsonpDeserializer.stringDeserializer(), "pid", "p");

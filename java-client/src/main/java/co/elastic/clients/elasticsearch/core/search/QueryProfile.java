@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.core.search;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -246,9 +245,9 @@ public class QueryProfile implements JsonpSerializable {
 	 * Json deserializer for {@link QueryProfile}
 	 */
 	public static final JsonpDeserializer<QueryProfile> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			QueryProfile::setupQueryProfileDeserializer, Builder::build);
+			QueryProfile::setupQueryProfileDeserializer);
 
-	protected static void setupQueryProfileDeserializer(DelegatingDeserializer<QueryProfile.Builder> op) {
+	protected static void setupQueryProfileDeserializer(ObjectDeserializer<QueryProfile.Builder> op) {
 
 		op.add(Builder::breakdown, QueryBreakdown._DESERIALIZER, "breakdown");
 		op.add(Builder::description, JsonpDeserializer.stringDeserializer(), "description");

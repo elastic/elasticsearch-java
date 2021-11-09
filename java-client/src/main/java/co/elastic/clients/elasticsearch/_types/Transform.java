@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -166,7 +165,7 @@ public class Transform implements TaggedUnion<Object>, JsonpSerializable {
 
 	}
 
-	protected static void setupTransformDeserializer(DelegatingDeserializer<Builder> op) {
+	protected static void setupTransformDeserializer(ObjectDeserializer<Builder> op) {
 
 		op.add(Builder::chain, ChainTransform._DESERIALIZER, "chain");
 		op.add(Builder::script, ScriptTransform._DESERIALIZER, "script");

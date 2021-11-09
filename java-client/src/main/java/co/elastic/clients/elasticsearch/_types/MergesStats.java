@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -494,9 +493,9 @@ public class MergesStats implements JsonpSerializable {
 	 * Json deserializer for {@link MergesStats}
 	 */
 	public static final JsonpDeserializer<MergesStats> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			MergesStats::setupMergesStatsDeserializer, Builder::build);
+			MergesStats::setupMergesStatsDeserializer);
 
-	protected static void setupMergesStatsDeserializer(DelegatingDeserializer<MergesStats.Builder> op) {
+	protected static void setupMergesStatsDeserializer(ObjectDeserializer<MergesStats.Builder> op) {
 
 		op.add(Builder::current, JsonpDeserializer.longDeserializer(), "current");
 		op.add(Builder::currentDocs, JsonpDeserializer.longDeserializer(), "current_docs");

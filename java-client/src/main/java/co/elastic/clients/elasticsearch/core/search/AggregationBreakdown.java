@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.core.search;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -380,10 +379,9 @@ public class AggregationBreakdown implements JsonpSerializable {
 	 * Json deserializer for {@link AggregationBreakdown}
 	 */
 	public static final JsonpDeserializer<AggregationBreakdown> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, AggregationBreakdown::setupAggregationBreakdownDeserializer, Builder::build);
+			.lazy(Builder::new, AggregationBreakdown::setupAggregationBreakdownDeserializer);
 
-	protected static void setupAggregationBreakdownDeserializer(
-			DelegatingDeserializer<AggregationBreakdown.Builder> op) {
+	protected static void setupAggregationBreakdownDeserializer(ObjectDeserializer<AggregationBreakdown.Builder> op) {
 
 		op.add(Builder::buildAggregation, JsonpDeserializer.longDeserializer(), "build_aggregation");
 		op.add(Builder::buildAggregationCount, JsonpDeserializer.longDeserializer(), "build_aggregation_count");

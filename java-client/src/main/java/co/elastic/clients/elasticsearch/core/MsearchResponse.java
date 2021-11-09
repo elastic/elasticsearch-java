@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.core;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -201,7 +200,7 @@ public class MsearchResponse<TDocument> implements JsonpSerializable {
 	};
 
 	protected static <TDocument> void setupMsearchResponseDeserializer(
-			DelegatingDeserializer<MsearchResponse.Builder<TDocument>> op,
+			ObjectDeserializer<MsearchResponse.Builder<TDocument>> op,
 			JsonpDeserializer<TDocument> tDocumentDeserializer) {
 
 		op.add(Builder::took, JsonpDeserializer.longDeserializer(), "took");

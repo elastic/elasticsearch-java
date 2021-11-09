@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -167,11 +166,11 @@ public class DataframeAnalysisRegression extends DataframeAnalysisBase implement
 	/**
 	 * Json deserializer for {@link DataframeAnalysisRegression}
 	 */
-	public static final JsonpDeserializer<DataframeAnalysisRegression> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
-			Builder::new, DataframeAnalysisRegression::setupDataframeAnalysisRegressionDeserializer, Builder::build);
+	public static final JsonpDeserializer<DataframeAnalysisRegression> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, DataframeAnalysisRegression::setupDataframeAnalysisRegressionDeserializer);
 
 	protected static void setupDataframeAnalysisRegressionDeserializer(
-			DelegatingDeserializer<DataframeAnalysisRegression.Builder> op) {
+			ObjectDeserializer<DataframeAnalysisRegression.Builder> op) {
 		DataframeAnalysisBase.setupDataframeAnalysisBaseDeserializer(op);
 		op.add(Builder::lossFunction, JsonpDeserializer.stringDeserializer(), "loss_function");
 		op.add(Builder::lossFunctionParameter, JsonpDeserializer.doubleDeserializer(), "loss_function_parameter");

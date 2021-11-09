@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.security.get_service_accounts;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -120,10 +119,9 @@ public class RoleDescriptorWrapper implements JsonpSerializable {
 	 * Json deserializer for {@link RoleDescriptorWrapper}
 	 */
 	public static final JsonpDeserializer<RoleDescriptorWrapper> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, RoleDescriptorWrapper::setupRoleDescriptorWrapperDeserializer, Builder::build);
+			.lazy(Builder::new, RoleDescriptorWrapper::setupRoleDescriptorWrapperDeserializer);
 
-	protected static void setupRoleDescriptorWrapperDeserializer(
-			DelegatingDeserializer<RoleDescriptorWrapper.Builder> op) {
+	protected static void setupRoleDescriptorWrapperDeserializer(ObjectDeserializer<RoleDescriptorWrapper.Builder> op) {
 
 		op.add(Builder::roleDescriptor, RoleDescriptor._DESERIALIZER, "role_descriptor");
 

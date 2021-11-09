@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.watcher;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -256,9 +255,9 @@ public class CompareCondition implements ConditionVariant, JsonpSerializable {
 	 * Json deserializer for {@link CompareCondition}
 	 */
 	public static final JsonpDeserializer<CompareCondition> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			CompareCondition::setupCompareConditionDeserializer, Builder::build);
+			CompareCondition::setupCompareConditionDeserializer);
 
-	protected static void setupCompareConditionDeserializer(DelegatingDeserializer<CompareCondition.Builder> op) {
+	protected static void setupCompareConditionDeserializer(ObjectDeserializer<CompareCondition.Builder> op) {
 
 		op.add(Builder::comparison, JsonpDeserializer.stringDeserializer(), "comparison");
 		op.add(Builder::path, JsonpDeserializer.stringDeserializer(), "path");

@@ -25,7 +25,6 @@ package co.elastic.clients.elasticsearch._types.aggregations;
 
 import co.elastic.clients.elasticsearch.transform.PivotGroupBy;
 import co.elastic.clients.elasticsearch.transform.PivotGroupByVariant;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -248,10 +247,10 @@ public class GeoTileGridAggregation extends BucketAggregationBase implements Agg
 	 * Json deserializer for {@link GeoTileGridAggregation}
 	 */
 	public static final JsonpDeserializer<GeoTileGridAggregation> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, GeoTileGridAggregation::setupGeoTileGridAggregationDeserializer, Builder::build);
+			.lazy(Builder::new, GeoTileGridAggregation::setupGeoTileGridAggregationDeserializer);
 
 	protected static void setupGeoTileGridAggregationDeserializer(
-			DelegatingDeserializer<GeoTileGridAggregation.Builder> op) {
+			ObjectDeserializer<GeoTileGridAggregation.Builder> op) {
 		BucketAggregationBase.setupBucketAggregationBaseDeserializer(op);
 		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
 		op.add(Builder::precision, JsonpDeserializer.numberDeserializer(), "precision");

@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -168,11 +167,10 @@ public class DataframeEvaluationClassificationMetricsAucRoc implements JsonpSeri
 	 */
 	public static final JsonpDeserializer<DataframeEvaluationClassificationMetricsAucRoc> _DESERIALIZER = ObjectBuilderDeserializer
 			.lazy(Builder::new,
-					DataframeEvaluationClassificationMetricsAucRoc::setupDataframeEvaluationClassificationMetricsAucRocDeserializer,
-					Builder::build);
+					DataframeEvaluationClassificationMetricsAucRoc::setupDataframeEvaluationClassificationMetricsAucRocDeserializer);
 
 	protected static void setupDataframeEvaluationClassificationMetricsAucRocDeserializer(
-			DelegatingDeserializer<DataframeEvaluationClassificationMetricsAucRoc.Builder> op) {
+			ObjectDeserializer<DataframeEvaluationClassificationMetricsAucRoc.Builder> op) {
 
 		op.add(Builder::className, JsonpDeserializer.stringDeserializer(), "class_name");
 		op.add(Builder::includeCurve, JsonpDeserializer.booleanDeserializer(), "include_curve");

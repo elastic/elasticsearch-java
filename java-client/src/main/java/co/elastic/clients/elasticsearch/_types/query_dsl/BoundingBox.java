@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -345,9 +344,9 @@ public class BoundingBox implements JsonpSerializable {
 	 * Json deserializer for {@link BoundingBox}
 	 */
 	public static final JsonpDeserializer<BoundingBox> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			BoundingBox::setupBoundingBoxDeserializer, Builder::build);
+			BoundingBox::setupBoundingBoxDeserializer);
 
-	protected static void setupBoundingBoxDeserializer(DelegatingDeserializer<BoundingBox.Builder> op) {
+	protected static void setupBoundingBoxDeserializer(ObjectDeserializer<BoundingBox.Builder> op) {
 
 		op.add(Builder::bottomRight, JsonpDeserializer.jsonValueDeserializer(), "bottom_right");
 		op.add(Builder::topLeft, JsonpDeserializer.jsonValueDeserializer(), "top_left");

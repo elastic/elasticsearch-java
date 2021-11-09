@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -245,9 +244,9 @@ public class IntervalsAllOf implements IntervalsQueryVariant, IntervalsVariant, 
 	 * Json deserializer for {@link IntervalsAllOf}
 	 */
 	public static final JsonpDeserializer<IntervalsAllOf> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			IntervalsAllOf::setupIntervalsAllOfDeserializer, Builder::build);
+			IntervalsAllOf::setupIntervalsAllOfDeserializer);
 
-	protected static void setupIntervalsAllOfDeserializer(DelegatingDeserializer<IntervalsAllOf.Builder> op) {
+	protected static void setupIntervalsAllOfDeserializer(ObjectDeserializer<IntervalsAllOf.Builder> op) {
 
 		op.add(Builder::intervals, JsonpDeserializer.arrayDeserializer(Intervals._DESERIALIZER), "intervals");
 		op.add(Builder::maxGaps, JsonpDeserializer.integerDeserializer(), "max_gaps");

@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.nodes;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -136,9 +135,9 @@ public class Scripting implements JsonpSerializable {
 	 * Json deserializer for {@link Scripting}
 	 */
 	public static final JsonpDeserializer<Scripting> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			Scripting::setupScriptingDeserializer, Builder::build);
+			Scripting::setupScriptingDeserializer);
 
-	protected static void setupScriptingDeserializer(DelegatingDeserializer<Scripting.Builder> op) {
+	protected static void setupScriptingDeserializer(ObjectDeserializer<Scripting.Builder> op) {
 
 		op.add(Builder::cacheEvictions, JsonpDeserializer.longDeserializer(), "cache_evictions");
 		op.add(Builder::compilations, JsonpDeserializer.longDeserializer(), "compilations");
