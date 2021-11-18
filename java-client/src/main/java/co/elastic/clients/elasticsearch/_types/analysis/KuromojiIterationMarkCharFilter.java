@@ -37,7 +37,7 @@ import java.util.function.Function;
 
 // typedef: _types.analysis.KuromojiIterationMarkCharFilter
 @JsonpDeserializable
-public class KuromojiIterationMarkCharFilter extends CharFilterBase implements CharFilterVariant {
+public class KuromojiIterationMarkCharFilter extends CharFilterBase implements CharFilterDefinitionVariant {
 	private final boolean normalizeKana;
 
 	private final boolean normalizeKanji;
@@ -58,7 +58,7 @@ public class KuromojiIterationMarkCharFilter extends CharFilterBase implements C
 	}
 
 	/**
-	 * {@link CharFilter} variant type
+	 * {@link CharFilterDefinition} variant type
 	 */
 	@Override
 	public String _variantType() {

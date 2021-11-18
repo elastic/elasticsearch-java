@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.indices;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.elasticsearch.indices.get_index_template.IndexTemplate;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -53,7 +54,7 @@ public class SimulateTemplateRequest extends RequestBase implements JsonpSeriali
 	private final Boolean create;
 
 	@Nullable
-	private final String masterTimeout;
+	private final Time masterTimeout;
 
 	@Nullable
 	private final String name;
@@ -95,7 +96,7 @@ public class SimulateTemplateRequest extends RequestBase implements JsonpSeriali
 	 * API name: {@code master_timeout}
 	 */
 	@Nullable
-	public final String masterTimeout() {
+	public final Time masterTimeout() {
 		return this.masterTimeout;
 	}
 
@@ -138,7 +139,7 @@ public class SimulateTemplateRequest extends RequestBase implements JsonpSeriali
 		private Boolean create;
 
 		@Nullable
-		private String masterTimeout;
+		private Time masterTimeout;
 
 		@Nullable
 		private String name;
@@ -164,9 +165,19 @@ public class SimulateTemplateRequest extends RequestBase implements JsonpSeriali
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
-		public final Builder masterTimeout(@Nullable String value) {
+		public final Builder masterTimeout(@Nullable Time value) {
 			this.masterTimeout = value;
 			return this;
+		}
+
+		/**
+		 * Period to wait for a connection to the master node. If no response is
+		 * received before the timeout expires, the request fails and returns an error.
+		 * <p>
+		 * API name: {@code master_timeout}
+		 */
+		public final Builder masterTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.masterTimeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -227,7 +238,7 @@ public class SimulateTemplateRequest extends RequestBase implements JsonpSeriali
 	/**
 	 * Endpoint "{@code indices.simulate_template}".
 	 */
-	public static final Endpoint<SimulateTemplateRequest, SimulateTemplateResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<SimulateTemplateRequest, SimulateTemplateResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";
@@ -265,7 +276,7 @@ public class SimulateTemplateRequest extends RequestBase implements JsonpSeriali
 			request -> {
 				Map<String, String> params = new HashMap<>();
 				if (request.masterTimeout != null) {
-					params.put("master_timeout", request.masterTimeout);
+					params.put("master_timeout", request.masterTimeout._toJsonString());
 				}
 				if (request.create != null) {
 					params.put("create", String.valueOf(request.create));

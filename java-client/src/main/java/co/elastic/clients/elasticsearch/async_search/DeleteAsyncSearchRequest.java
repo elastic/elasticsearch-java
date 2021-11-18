@@ -103,7 +103,7 @@ public class DeleteAsyncSearchRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code async_search.delete}".
 	 */
-	public static final Endpoint<DeleteAsyncSearchRequest, DeleteAsyncSearchResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<DeleteAsyncSearchRequest, DeleteAsyncSearchResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "DELETE";

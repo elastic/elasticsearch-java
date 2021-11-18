@@ -38,7 +38,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.analysis.NGramTokenFilter
 @JsonpDeserializable
-public class NGramTokenFilter extends TokenFilterBase implements TokenFilterVariant {
+public class NGramTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
 	@Nullable
 	private final Integer maxGram;
 
@@ -64,7 +64,7 @@ public class NGramTokenFilter extends TokenFilterBase implements TokenFilterVari
 	}
 
 	/**
-	 * {@link TokenFilter} variant type
+	 * {@link TokenFilterDefinition} variant type
 	 */
 	@Override
 	public String _variantType() {

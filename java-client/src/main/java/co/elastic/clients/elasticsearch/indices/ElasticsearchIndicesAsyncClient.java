@@ -25,7 +25,9 @@ package co.elastic.clients.elasticsearch.indices;
 
 import co.elastic.clients.ApiClient;
 import co.elastic.clients.elasticsearch._types.ElasticsearchException;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.transport.BooleanResponse;
+import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.Transport;
 import co.elastic.clients.transport.TransportOptions;
 import co.elastic.clients.util.ObjectBuilder;
@@ -64,7 +66,10 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient<ElasticsearchIndi
 
 	public CompletableFuture<AddBlockResponse> addBlock(AddBlockRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(request, AddBlockRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<AddBlockRequest, AddBlockResponse, ErrorResponse> endpoint = (Endpoint<AddBlockRequest, AddBlockResponse, ErrorResponse>) AddBlockRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -97,7 +102,10 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient<ElasticsearchIndi
 
 	public CompletableFuture<AnalyzeResponse> analyze(AnalyzeRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(request, AnalyzeRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<AnalyzeRequest, AnalyzeResponse, ErrorResponse> endpoint = (Endpoint<AnalyzeRequest, AnalyzeResponse, ErrorResponse>) AnalyzeRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -128,7 +136,7 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient<ElasticsearchIndi
 	 */
 
 	public CompletableFuture<AnalyzeResponse> analyze() throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(new AnalyzeRequest.Builder().build(), AnalyzeRequest.ENDPOINT,
+		return this.transport.performRequestAsync(new AnalyzeRequest.Builder().build(), AnalyzeRequest._ENDPOINT,
 				this.transportOptions);
 	}
 
@@ -144,7 +152,10 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient<ElasticsearchIndi
 
 	public CompletableFuture<ClearCacheResponse> clearCache(ClearCacheRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(request, ClearCacheRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<ClearCacheRequest, ClearCacheResponse, ErrorResponse> endpoint = (Endpoint<ClearCacheRequest, ClearCacheResponse, ErrorResponse>) ClearCacheRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -173,7 +184,7 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient<ElasticsearchIndi
 	 */
 
 	public CompletableFuture<ClearCacheResponse> clearCache() throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(new ClearCacheRequest.Builder().build(), ClearCacheRequest.ENDPOINT,
+		return this.transport.performRequestAsync(new ClearCacheRequest.Builder().build(), ClearCacheRequest._ENDPOINT,
 				this.transportOptions);
 	}
 
@@ -189,7 +200,10 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient<ElasticsearchIndi
 
 	public CompletableFuture<CloneIndexResponse> clone(CloneIndexRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(request, CloneIndexRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<CloneIndexRequest, CloneIndexResponse, ErrorResponse> endpoint = (Endpoint<CloneIndexRequest, CloneIndexResponse, ErrorResponse>) CloneIndexRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -221,7 +235,10 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient<ElasticsearchIndi
 
 	public CompletableFuture<CloseIndexResponse> close(CloseIndexRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(request, CloseIndexRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<CloseIndexRequest, CloseIndexResponse, ErrorResponse> endpoint = (Endpoint<CloseIndexRequest, CloseIndexResponse, ErrorResponse>) CloseIndexRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -253,7 +270,10 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient<ElasticsearchIndi
 
 	public CompletableFuture<CreateIndexResponse> create(CreateIndexRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(request, CreateIndexRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<CreateIndexRequest, CreateIndexResponse, ErrorResponse> endpoint = (Endpoint<CreateIndexRequest, CreateIndexResponse, ErrorResponse>) CreateIndexRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -285,7 +305,10 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient<ElasticsearchIndi
 
 	public CompletableFuture<CreateDataStreamResponse> createDataStream(CreateDataStreamRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(request, CreateDataStreamRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<CreateDataStreamRequest, CreateDataStreamResponse, ErrorResponse> endpoint = (Endpoint<CreateDataStreamRequest, CreateDataStreamResponse, ErrorResponse>) CreateDataStreamRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -317,7 +340,10 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient<ElasticsearchIndi
 
 	public CompletableFuture<DataStreamsStatsResponse> dataStreamsStats(DataStreamsStatsRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(request, DataStreamsStatsRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<DataStreamsStatsRequest, DataStreamsStatsResponse, ErrorResponse> endpoint = (Endpoint<DataStreamsStatsRequest, DataStreamsStatsResponse, ErrorResponse>) DataStreamsStatsRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -347,7 +373,7 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient<ElasticsearchIndi
 
 	public CompletableFuture<DataStreamsStatsResponse> dataStreamsStats() throws IOException, ElasticsearchException {
 		return this.transport.performRequestAsync(new DataStreamsStatsRequest.Builder().build(),
-				DataStreamsStatsRequest.ENDPOINT, this.transportOptions);
+				DataStreamsStatsRequest._ENDPOINT, this.transportOptions);
 	}
 
 	// ----- Endpoint: indices.delete
@@ -362,7 +388,10 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient<ElasticsearchIndi
 
 	public CompletableFuture<DeleteIndexResponse> delete(DeleteIndexRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(request, DeleteIndexRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<DeleteIndexRequest, DeleteIndexResponse, ErrorResponse> endpoint = (Endpoint<DeleteIndexRequest, DeleteIndexResponse, ErrorResponse>) DeleteIndexRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -394,7 +423,10 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient<ElasticsearchIndi
 
 	public CompletableFuture<DeleteAliasResponse> deleteAlias(DeleteAliasRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(request, DeleteAliasRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<DeleteAliasRequest, DeleteAliasResponse, ErrorResponse> endpoint = (Endpoint<DeleteAliasRequest, DeleteAliasResponse, ErrorResponse>) DeleteAliasRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -426,7 +458,10 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient<ElasticsearchIndi
 
 	public CompletableFuture<DeleteDataStreamResponse> deleteDataStream(DeleteDataStreamRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(request, DeleteDataStreamRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<DeleteDataStreamRequest, DeleteDataStreamResponse, ErrorResponse> endpoint = (Endpoint<DeleteDataStreamRequest, DeleteDataStreamResponse, ErrorResponse>) DeleteDataStreamRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -458,7 +493,10 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient<ElasticsearchIndi
 
 	public CompletableFuture<DeleteIndexTemplateResponse> deleteIndexTemplate(DeleteIndexTemplateRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(request, DeleteIndexTemplateRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<DeleteIndexTemplateRequest, DeleteIndexTemplateResponse, ErrorResponse> endpoint = (Endpoint<DeleteIndexTemplateRequest, DeleteIndexTemplateResponse, ErrorResponse>) DeleteIndexTemplateRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -490,7 +528,10 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient<ElasticsearchIndi
 
 	public CompletableFuture<DeleteTemplateResponse> deleteTemplate(DeleteTemplateRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(request, DeleteTemplateRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<DeleteTemplateRequest, DeleteTemplateResponse, ErrorResponse> endpoint = (Endpoint<DeleteTemplateRequest, DeleteTemplateResponse, ErrorResponse>) DeleteTemplateRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -522,7 +563,10 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient<ElasticsearchIndi
 
 	public CompletableFuture<DiskUsageResponse> diskUsage(DiskUsageRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(request, DiskUsageRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<DiskUsageRequest, DiskUsageResponse, ErrorResponse> endpoint = (Endpoint<DiskUsageRequest, DiskUsageResponse, ErrorResponse>) DiskUsageRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -553,7 +597,10 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient<ElasticsearchIndi
 	 */
 
 	public CompletableFuture<BooleanResponse> exists(ExistsRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(request, ExistsRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<ExistsRequest, BooleanResponse, ErrorResponse> endpoint = (Endpoint<ExistsRequest, BooleanResponse, ErrorResponse>) ExistsRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -585,7 +632,10 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient<ElasticsearchIndi
 
 	public CompletableFuture<BooleanResponse> existsAlias(ExistsAliasRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(request, ExistsAliasRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<ExistsAliasRequest, BooleanResponse, ErrorResponse> endpoint = (Endpoint<ExistsAliasRequest, BooleanResponse, ErrorResponse>) ExistsAliasRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -617,7 +667,10 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient<ElasticsearchIndi
 
 	public CompletableFuture<BooleanResponse> existsIndexTemplate(ExistsIndexTemplateRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(request, ExistsIndexTemplateRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<ExistsIndexTemplateRequest, BooleanResponse, ErrorResponse> endpoint = (Endpoint<ExistsIndexTemplateRequest, BooleanResponse, ErrorResponse>) ExistsIndexTemplateRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -649,7 +702,10 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient<ElasticsearchIndi
 
 	public CompletableFuture<BooleanResponse> existsTemplate(ExistsTemplateRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(request, ExistsTemplateRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<ExistsTemplateRequest, BooleanResponse, ErrorResponse> endpoint = (Endpoint<ExistsTemplateRequest, BooleanResponse, ErrorResponse>) ExistsTemplateRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -682,7 +738,10 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient<ElasticsearchIndi
 
 	public CompletableFuture<BooleanResponse> existsType(ExistsTypeRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(request, ExistsTypeRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<ExistsTypeRequest, BooleanResponse, ErrorResponse> endpoint = (Endpoint<ExistsTypeRequest, BooleanResponse, ErrorResponse>) ExistsTypeRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -714,7 +773,10 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient<ElasticsearchIndi
 	 */
 
 	public CompletableFuture<FlushResponse> flush(FlushRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(request, FlushRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<FlushRequest, FlushResponse, ErrorResponse> endpoint = (Endpoint<FlushRequest, FlushResponse, ErrorResponse>) FlushRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -742,7 +804,7 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient<ElasticsearchIndi
 	 */
 
 	public CompletableFuture<FlushResponse> flush() throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(new FlushRequest.Builder().build(), FlushRequest.ENDPOINT,
+		return this.transport.performRequestAsync(new FlushRequest.Builder().build(), FlushRequest._ENDPOINT,
 				this.transportOptions);
 	}
 
@@ -758,7 +820,10 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient<ElasticsearchIndi
 
 	public CompletableFuture<ForcemergeResponse> forcemerge(ForcemergeRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(request, ForcemergeRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<ForcemergeRequest, ForcemergeResponse, ErrorResponse> endpoint = (Endpoint<ForcemergeRequest, ForcemergeResponse, ErrorResponse>) ForcemergeRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -787,7 +852,7 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient<ElasticsearchIndi
 	 */
 
 	public CompletableFuture<ForcemergeResponse> forcemerge() throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(new ForcemergeRequest.Builder().build(), ForcemergeRequest.ENDPOINT,
+		return this.transport.performRequestAsync(new ForcemergeRequest.Builder().build(), ForcemergeRequest._ENDPOINT,
 				this.transportOptions);
 	}
 
@@ -802,7 +867,10 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient<ElasticsearchIndi
 	 */
 
 	public CompletableFuture<GetIndexResponse> get(GetIndexRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(request, GetIndexRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<GetIndexRequest, GetIndexResponse, ErrorResponse> endpoint = (Endpoint<GetIndexRequest, GetIndexResponse, ErrorResponse>) GetIndexRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -834,7 +902,10 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient<ElasticsearchIndi
 
 	public CompletableFuture<GetAliasResponse> getAlias(GetAliasRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(request, GetAliasRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<GetAliasRequest, GetAliasResponse, ErrorResponse> endpoint = (Endpoint<GetAliasRequest, GetAliasResponse, ErrorResponse>) GetAliasRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -863,7 +934,7 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient<ElasticsearchIndi
 	 */
 
 	public CompletableFuture<GetAliasResponse> getAlias() throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(new GetAliasRequest.Builder().build(), GetAliasRequest.ENDPOINT,
+		return this.transport.performRequestAsync(new GetAliasRequest.Builder().build(), GetAliasRequest._ENDPOINT,
 				this.transportOptions);
 	}
 
@@ -879,7 +950,10 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient<ElasticsearchIndi
 
 	public CompletableFuture<GetDataStreamResponse> getDataStream(GetDataStreamRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(request, GetDataStreamRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<GetDataStreamRequest, GetDataStreamResponse, ErrorResponse> endpoint = (Endpoint<GetDataStreamRequest, GetDataStreamResponse, ErrorResponse>) GetDataStreamRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -909,7 +983,7 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient<ElasticsearchIndi
 
 	public CompletableFuture<GetDataStreamResponse> getDataStream() throws IOException, ElasticsearchException {
 		return this.transport.performRequestAsync(new GetDataStreamRequest.Builder().build(),
-				GetDataStreamRequest.ENDPOINT, this.transportOptions);
+				GetDataStreamRequest._ENDPOINT, this.transportOptions);
 	}
 
 	// ----- Endpoint: indices.get_field_mapping
@@ -924,7 +998,10 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient<ElasticsearchIndi
 
 	public CompletableFuture<GetFieldMappingResponse> getFieldMapping(GetFieldMappingRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(request, GetFieldMappingRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<GetFieldMappingRequest, GetFieldMappingResponse, ErrorResponse> endpoint = (Endpoint<GetFieldMappingRequest, GetFieldMappingResponse, ErrorResponse>) GetFieldMappingRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -956,7 +1033,10 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient<ElasticsearchIndi
 
 	public CompletableFuture<GetIndexTemplateResponse> getIndexTemplate(GetIndexTemplateRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(request, GetIndexTemplateRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<GetIndexTemplateRequest, GetIndexTemplateResponse, ErrorResponse> endpoint = (Endpoint<GetIndexTemplateRequest, GetIndexTemplateResponse, ErrorResponse>) GetIndexTemplateRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -986,7 +1066,7 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient<ElasticsearchIndi
 
 	public CompletableFuture<GetIndexTemplateResponse> getIndexTemplate() throws IOException, ElasticsearchException {
 		return this.transport.performRequestAsync(new GetIndexTemplateRequest.Builder().build(),
-				GetIndexTemplateRequest.ENDPOINT, this.transportOptions);
+				GetIndexTemplateRequest._ENDPOINT, this.transportOptions);
 	}
 
 	// ----- Endpoint: indices.get_mapping
@@ -1001,7 +1081,10 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient<ElasticsearchIndi
 
 	public CompletableFuture<GetMappingResponse> getMapping(GetMappingRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(request, GetMappingRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<GetMappingRequest, GetMappingResponse, ErrorResponse> endpoint = (Endpoint<GetMappingRequest, GetMappingResponse, ErrorResponse>) GetMappingRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -1030,7 +1113,7 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient<ElasticsearchIndi
 	 */
 
 	public CompletableFuture<GetMappingResponse> getMapping() throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(new GetMappingRequest.Builder().build(), GetMappingRequest.ENDPOINT,
+		return this.transport.performRequestAsync(new GetMappingRequest.Builder().build(), GetMappingRequest._ENDPOINT,
 				this.transportOptions);
 	}
 
@@ -1046,7 +1129,10 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient<ElasticsearchIndi
 
 	public CompletableFuture<GetSettingsResponse> getSettings(GetSettingsRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(request, GetSettingsRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<GetSettingsRequest, GetSettingsResponse, ErrorResponse> endpoint = (Endpoint<GetSettingsRequest, GetSettingsResponse, ErrorResponse>) GetSettingsRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -1075,8 +1161,8 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient<ElasticsearchIndi
 	 */
 
 	public CompletableFuture<GetSettingsResponse> getSettings() throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(new GetSettingsRequest.Builder().build(), GetSettingsRequest.ENDPOINT,
-				this.transportOptions);
+		return this.transport.performRequestAsync(new GetSettingsRequest.Builder().build(),
+				GetSettingsRequest._ENDPOINT, this.transportOptions);
 	}
 
 	// ----- Endpoint: indices.get_template
@@ -1091,7 +1177,10 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient<ElasticsearchIndi
 
 	public CompletableFuture<GetTemplateResponse> getTemplate(GetTemplateRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(request, GetTemplateRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<GetTemplateRequest, GetTemplateResponse, ErrorResponse> endpoint = (Endpoint<GetTemplateRequest, GetTemplateResponse, ErrorResponse>) GetTemplateRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -1120,8 +1209,8 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient<ElasticsearchIndi
 	 */
 
 	public CompletableFuture<GetTemplateResponse> getTemplate() throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(new GetTemplateRequest.Builder().build(), GetTemplateRequest.ENDPOINT,
-				this.transportOptions);
+		return this.transport.performRequestAsync(new GetTemplateRequest.Builder().build(),
+				GetTemplateRequest._ENDPOINT, this.transportOptions);
 	}
 
 	// ----- Endpoint: indices.migrate_to_data_stream
@@ -1136,7 +1225,10 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient<ElasticsearchIndi
 
 	public CompletableFuture<MigrateToDataStreamResponse> migrateToDataStream(MigrateToDataStreamRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(request, MigrateToDataStreamRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<MigrateToDataStreamRequest, MigrateToDataStreamResponse, ErrorResponse> endpoint = (Endpoint<MigrateToDataStreamRequest, MigrateToDataStreamResponse, ErrorResponse>) MigrateToDataStreamRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -1167,7 +1259,10 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient<ElasticsearchIndi
 	 */
 
 	public CompletableFuture<OpenResponse> open(OpenRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(request, OpenRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<OpenRequest, OpenResponse, ErrorResponse> endpoint = (Endpoint<OpenRequest, OpenResponse, ErrorResponse>) OpenRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -1199,7 +1294,10 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient<ElasticsearchIndi
 
 	public CompletableFuture<PromoteDataStreamResponse> promoteDataStream(PromoteDataStreamRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(request, PromoteDataStreamRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<PromoteDataStreamRequest, PromoteDataStreamResponse, ErrorResponse> endpoint = (Endpoint<PromoteDataStreamRequest, PromoteDataStreamResponse, ErrorResponse>) PromoteDataStreamRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -1232,7 +1330,10 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient<ElasticsearchIndi
 
 	public CompletableFuture<PutAliasResponse> putAlias(PutAliasRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(request, PutAliasRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<PutAliasRequest, PutAliasResponse, ErrorResponse> endpoint = (Endpoint<PutAliasRequest, PutAliasResponse, ErrorResponse>) PutAliasRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -1264,7 +1365,10 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient<ElasticsearchIndi
 
 	public CompletableFuture<PutIndexTemplateResponse> putIndexTemplate(PutIndexTemplateRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(request, PutIndexTemplateRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<PutIndexTemplateRequest, PutIndexTemplateResponse, ErrorResponse> endpoint = (Endpoint<PutIndexTemplateRequest, PutIndexTemplateResponse, ErrorResponse>) PutIndexTemplateRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -1296,7 +1400,10 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient<ElasticsearchIndi
 
 	public CompletableFuture<PutMappingResponse> putMapping(PutMappingRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(request, PutMappingRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<PutMappingRequest, PutMappingResponse, ErrorResponse> endpoint = (Endpoint<PutMappingRequest, PutMappingResponse, ErrorResponse>) PutMappingRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -1328,7 +1435,10 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient<ElasticsearchIndi
 
 	public CompletableFuture<PutSettingsResponse> putSettings(PutSettingsRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(request, PutSettingsRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<PutSettingsRequest, PutSettingsResponse, ErrorResponse> endpoint = (Endpoint<PutSettingsRequest, PutSettingsResponse, ErrorResponse>) PutSettingsRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -1357,8 +1467,8 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient<ElasticsearchIndi
 	 */
 
 	public CompletableFuture<PutSettingsResponse> putSettings() throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(new PutSettingsRequest.Builder().build(), PutSettingsRequest.ENDPOINT,
-				this.transportOptions);
+		return this.transport.performRequestAsync(new PutSettingsRequest.Builder().build(),
+				PutSettingsRequest._ENDPOINT, this.transportOptions);
 	}
 
 	// ----- Endpoint: indices.put_template
@@ -1373,7 +1483,10 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient<ElasticsearchIndi
 
 	public CompletableFuture<PutTemplateResponse> putTemplate(PutTemplateRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(request, PutTemplateRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<PutTemplateRequest, PutTemplateResponse, ErrorResponse> endpoint = (Endpoint<PutTemplateRequest, PutTemplateResponse, ErrorResponse>) PutTemplateRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -1405,7 +1518,10 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient<ElasticsearchIndi
 
 	public CompletableFuture<RecoveryResponse> recovery(RecoveryRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(request, RecoveryRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<RecoveryRequest, RecoveryResponse, ErrorResponse> endpoint = (Endpoint<RecoveryRequest, RecoveryResponse, ErrorResponse>) RecoveryRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -1434,7 +1550,7 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient<ElasticsearchIndi
 	 */
 
 	public CompletableFuture<RecoveryResponse> recovery() throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(new RecoveryRequest.Builder().build(), RecoveryRequest.ENDPOINT,
+		return this.transport.performRequestAsync(new RecoveryRequest.Builder().build(), RecoveryRequest._ENDPOINT,
 				this.transportOptions);
 	}
 
@@ -1450,7 +1566,10 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient<ElasticsearchIndi
 
 	public CompletableFuture<RefreshResponse> refresh(RefreshRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(request, RefreshRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<RefreshRequest, RefreshResponse, ErrorResponse> endpoint = (Endpoint<RefreshRequest, RefreshResponse, ErrorResponse>) RefreshRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -1479,7 +1598,7 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient<ElasticsearchIndi
 	 */
 
 	public CompletableFuture<RefreshResponse> refresh() throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(new RefreshRequest.Builder().build(), RefreshRequest.ENDPOINT,
+		return this.transport.performRequestAsync(new RefreshRequest.Builder().build(), RefreshRequest._ENDPOINT,
 				this.transportOptions);
 	}
 
@@ -1495,8 +1614,10 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient<ElasticsearchIndi
 
 	public CompletableFuture<ReloadSearchAnalyzersResponse> reloadSearchAnalyzers(ReloadSearchAnalyzersRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(request, ReloadSearchAnalyzersRequest.ENDPOINT,
-				this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<ReloadSearchAnalyzersRequest, ReloadSearchAnalyzersResponse, ErrorResponse> endpoint = (Endpoint<ReloadSearchAnalyzersRequest, ReloadSearchAnalyzersResponse, ErrorResponse>) ReloadSearchAnalyzersRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -1528,7 +1649,10 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient<ElasticsearchIndi
 
 	public CompletableFuture<ResolveIndexResponse> resolveIndex(ResolveIndexRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(request, ResolveIndexRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<ResolveIndexRequest, ResolveIndexResponse, ErrorResponse> endpoint = (Endpoint<ResolveIndexRequest, ResolveIndexResponse, ErrorResponse>) ResolveIndexRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -1561,7 +1685,10 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient<ElasticsearchIndi
 
 	public CompletableFuture<RolloverResponse> rollover(RolloverRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(request, RolloverRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<RolloverRequest, RolloverResponse, ErrorResponse> endpoint = (Endpoint<RolloverRequest, RolloverResponse, ErrorResponse>) RolloverRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -1594,7 +1721,10 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient<ElasticsearchIndi
 
 	public CompletableFuture<SegmentsResponse> segments(SegmentsRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(request, SegmentsRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<SegmentsRequest, SegmentsResponse, ErrorResponse> endpoint = (Endpoint<SegmentsRequest, SegmentsResponse, ErrorResponse>) SegmentsRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -1623,7 +1753,7 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient<ElasticsearchIndi
 	 */
 
 	public CompletableFuture<SegmentsResponse> segments() throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(new SegmentsRequest.Builder().build(), SegmentsRequest.ENDPOINT,
+		return this.transport.performRequestAsync(new SegmentsRequest.Builder().build(), SegmentsRequest._ENDPOINT,
 				this.transportOptions);
 	}
 
@@ -1639,7 +1769,10 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient<ElasticsearchIndi
 
 	public CompletableFuture<ShardStoresResponse> shardStores(ShardStoresRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(request, ShardStoresRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<ShardStoresRequest, ShardStoresResponse, ErrorResponse> endpoint = (Endpoint<ShardStoresRequest, ShardStoresResponse, ErrorResponse>) ShardStoresRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -1668,8 +1801,8 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient<ElasticsearchIndi
 	 */
 
 	public CompletableFuture<ShardStoresResponse> shardStores() throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(new ShardStoresRequest.Builder().build(), ShardStoresRequest.ENDPOINT,
-				this.transportOptions);
+		return this.transport.performRequestAsync(new ShardStoresRequest.Builder().build(),
+				ShardStoresRequest._ENDPOINT, this.transportOptions);
 	}
 
 	// ----- Endpoint: indices.shrink
@@ -1683,7 +1816,10 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient<ElasticsearchIndi
 	 */
 
 	public CompletableFuture<ShrinkResponse> shrink(ShrinkRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(request, ShrinkRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<ShrinkRequest, ShrinkResponse, ErrorResponse> endpoint = (Endpoint<ShrinkRequest, ShrinkResponse, ErrorResponse>) ShrinkRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -1716,8 +1852,10 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient<ElasticsearchIndi
 
 	public CompletableFuture<SimulateIndexTemplateResponse> simulateIndexTemplate(SimulateIndexTemplateRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(request, SimulateIndexTemplateRequest.ENDPOINT,
-				this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<SimulateIndexTemplateRequest, SimulateIndexTemplateResponse, ErrorResponse> endpoint = (Endpoint<SimulateIndexTemplateRequest, SimulateIndexTemplateResponse, ErrorResponse>) SimulateIndexTemplateRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -1750,7 +1888,10 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient<ElasticsearchIndi
 
 	public CompletableFuture<SimulateTemplateResponse> simulateTemplate(SimulateTemplateRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(request, SimulateTemplateRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<SimulateTemplateRequest, SimulateTemplateResponse, ErrorResponse> endpoint = (Endpoint<SimulateTemplateRequest, SimulateTemplateResponse, ErrorResponse>) SimulateTemplateRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -1780,7 +1921,7 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient<ElasticsearchIndi
 
 	public CompletableFuture<SimulateTemplateResponse> simulateTemplate() throws IOException, ElasticsearchException {
 		return this.transport.performRequestAsync(new SimulateTemplateRequest.Builder().build(),
-				SimulateTemplateRequest.ENDPOINT, this.transportOptions);
+				SimulateTemplateRequest._ENDPOINT, this.transportOptions);
 	}
 
 	// ----- Endpoint: indices.split
@@ -1795,7 +1936,10 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient<ElasticsearchIndi
 	 */
 
 	public CompletableFuture<SplitResponse> split(SplitRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(request, SplitRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<SplitRequest, SplitResponse, ErrorResponse> endpoint = (Endpoint<SplitRequest, SplitResponse, ErrorResponse>) SplitRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -1827,7 +1971,10 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient<ElasticsearchIndi
 
 	public CompletableFuture<IndicesStatsResponse> stats(IndicesStatsRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(request, IndicesStatsRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<IndicesStatsRequest, IndicesStatsResponse, ErrorResponse> endpoint = (Endpoint<IndicesStatsRequest, IndicesStatsResponse, ErrorResponse>) IndicesStatsRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -1857,7 +2004,7 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient<ElasticsearchIndi
 
 	public CompletableFuture<IndicesStatsResponse> stats() throws IOException, ElasticsearchException {
 		return this.transport.performRequestAsync(new IndicesStatsRequest.Builder().build(),
-				IndicesStatsRequest.ENDPOINT, this.transportOptions);
+				IndicesStatsRequest._ENDPOINT, this.transportOptions);
 	}
 
 	// ----- Endpoint: indices.unfreeze
@@ -1873,7 +2020,10 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient<ElasticsearchIndi
 
 	public CompletableFuture<UnfreezeResponse> unfreeze(UnfreezeRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(request, UnfreezeRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<UnfreezeRequest, UnfreezeResponse, ErrorResponse> endpoint = (Endpoint<UnfreezeRequest, UnfreezeResponse, ErrorResponse>) UnfreezeRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -1906,7 +2056,10 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient<ElasticsearchIndi
 
 	public CompletableFuture<UpdateAliasesResponse> updateAliases(UpdateAliasesRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(request, UpdateAliasesRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<UpdateAliasesRequest, UpdateAliasesResponse, ErrorResponse> endpoint = (Endpoint<UpdateAliasesRequest, UpdateAliasesResponse, ErrorResponse>) UpdateAliasesRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -1936,7 +2089,7 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient<ElasticsearchIndi
 
 	public CompletableFuture<UpdateAliasesResponse> updateAliases() throws IOException, ElasticsearchException {
 		return this.transport.performRequestAsync(new UpdateAliasesRequest.Builder().build(),
-				UpdateAliasesRequest.ENDPOINT, this.transportOptions);
+				UpdateAliasesRequest._ENDPOINT, this.transportOptions);
 	}
 
 	// ----- Endpoint: indices.validate_query
@@ -1951,7 +2104,10 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient<ElasticsearchIndi
 
 	public CompletableFuture<ValidateQueryResponse> validateQuery(ValidateQueryRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(request, ValidateQueryRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<ValidateQueryRequest, ValidateQueryResponse, ErrorResponse> endpoint = (Endpoint<ValidateQueryRequest, ValidateQueryResponse, ErrorResponse>) ValidateQueryRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -1981,7 +2137,7 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient<ElasticsearchIndi
 
 	public CompletableFuture<ValidateQueryResponse> validateQuery() throws IOException, ElasticsearchException {
 		return this.transport.performRequestAsync(new ValidateQueryRequest.Builder().build(),
-				ValidateQueryRequest.ENDPOINT, this.transportOptions);
+				ValidateQueryRequest._ENDPOINT, this.transportOptions);
 	}
 
 }

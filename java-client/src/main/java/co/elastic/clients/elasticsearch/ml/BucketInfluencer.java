@@ -23,6 +23,7 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -44,15 +45,13 @@ import javax.annotation.Nullable;
 // typedef: ml._types.BucketInfluencer
 @JsonpDeserializable
 public class BucketInfluencer implements JsonpSerializable {
-	private final long bucketSpan;
+	private final double anomalyScore;
 
-	private final double influencerScore;
+	private final long bucketSpan;
 
 	private final String influencerFieldName;
 
-	private final String influencerFieldValue;
-
-	private final double initialInfluencerScore;
+	private final double initialAnomalyScore;
 
 	private final boolean isInterim;
 
@@ -60,31 +59,28 @@ public class BucketInfluencer implements JsonpSerializable {
 
 	private final double probability;
 
+	private final double rawAnomalyScore;
+
 	private final String resultType;
 
-	private final String timestamp;
-
-	@Nullable
-	private final String foo;
+	private final Time timestamp;
 
 	// ---------------------------------------------------------------------------------------------
 
 	private BucketInfluencer(Builder builder) {
 
+		this.anomalyScore = ModelTypeHelper.requireNonNull(builder.anomalyScore, this, "anomalyScore");
 		this.bucketSpan = ModelTypeHelper.requireNonNull(builder.bucketSpan, this, "bucketSpan");
-		this.influencerScore = ModelTypeHelper.requireNonNull(builder.influencerScore, this, "influencerScore");
 		this.influencerFieldName = ModelTypeHelper.requireNonNull(builder.influencerFieldName, this,
 				"influencerFieldName");
-		this.influencerFieldValue = ModelTypeHelper.requireNonNull(builder.influencerFieldValue, this,
-				"influencerFieldValue");
-		this.initialInfluencerScore = ModelTypeHelper.requireNonNull(builder.initialInfluencerScore, this,
-				"initialInfluencerScore");
+		this.initialAnomalyScore = ModelTypeHelper.requireNonNull(builder.initialAnomalyScore, this,
+				"initialAnomalyScore");
 		this.isInterim = ModelTypeHelper.requireNonNull(builder.isInterim, this, "isInterim");
 		this.jobId = ModelTypeHelper.requireNonNull(builder.jobId, this, "jobId");
 		this.probability = ModelTypeHelper.requireNonNull(builder.probability, this, "probability");
+		this.rawAnomalyScore = ModelTypeHelper.requireNonNull(builder.rawAnomalyScore, this, "rawAnomalyScore");
 		this.resultType = ModelTypeHelper.requireNonNull(builder.resultType, this, "resultType");
 		this.timestamp = ModelTypeHelper.requireNonNull(builder.timestamp, this, "timestamp");
-		this.foo = builder.foo;
 
 	}
 
@@ -93,25 +89,23 @@ public class BucketInfluencer implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - The length of the bucket in seconds. This value matches the
-	 * bucket_span that is specified in the job.
+	 * Required - A normalized score between 0-100, which is calculated for each
+	 * bucket influencer. This score might be updated as newer data is analyzed.
+	 * <p>
+	 * API name: {@code anomaly_score}
+	 */
+	public final double anomalyScore() {
+		return this.anomalyScore;
+	}
+
+	/**
+	 * Required - The length of the bucket in seconds. This value matches the bucket
+	 * span that is specified in the job.
 	 * <p>
 	 * API name: {@code bucket_span}
 	 */
 	public final long bucketSpan() {
 		return this.bucketSpan;
-	}
-
-	/**
-	 * Required - A normalized score between 0-100, which is based on the
-	 * probability of the influencer in this bucket aggregated across detectors.
-	 * Unlike initial_influencer_score, this value will be updated by a
-	 * re-normalization process as new data is analyzed.
-	 * <p>
-	 * API name: {@code influencer_score}
-	 */
-	public final double influencerScore() {
-		return this.influencerScore;
 	}
 
 	/**
@@ -124,24 +118,13 @@ public class BucketInfluencer implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - The entity that influenced, contributed to, or was to blame for
-	 * the anomaly.
+	 * Required - The score between 0-100 for each bucket influencer. This score is
+	 * the initial value that was calculated at the time the bucket was processed.
 	 * <p>
-	 * API name: {@code influencer_field_value}
+	 * API name: {@code initial_anomaly_score}
 	 */
-	public final String influencerFieldValue() {
-		return this.influencerFieldValue;
-	}
-
-	/**
-	 * Required - A normalized score between 0-100, which is based on the
-	 * probability of the influencer aggregated across detectors. This is the
-	 * initial value that was calculated at the time the bucket was processed.
-	 * <p>
-	 * API name: {@code initial_influencer_score}
-	 */
-	public final double initialInfluencerScore() {
-		return this.initialInfluencerScore;
+	public final double initialAnomalyScore() {
+		return this.initialAnomalyScore;
 	}
 
 	/**
@@ -164,10 +147,10 @@ public class BucketInfluencer implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - The probability that the influencer has this behavior, in the
-	 * range 0 to 1. This value can be held to a high precision of over 300 decimal
-	 * places, so the influencer_score is provided as a human-readable and friendly
-	 * interpretation of this.
+	 * Required - The probability that the bucket has this behavior, in the range 0
+	 * to 1. This value can be held to a high precision of over 300 decimal places,
+	 * so the <code>anomaly_score</code> is provided as a human-readable and
+	 * friendly interpretation of this.
 	 * <p>
 	 * API name: {@code probability}
 	 */
@@ -176,7 +159,17 @@ public class BucketInfluencer implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - Internal. This value is always set to influencer.
+	 * Required - Internal.
+	 * <p>
+	 * API name: {@code raw_anomaly_score}
+	 */
+	public final double rawAnomalyScore() {
+		return this.rawAnomalyScore;
+	}
+
+	/**
+	 * Required - Internal. This value is always set to
+	 * <code>bucket_influencer</code>.
 	 * <p>
 	 * API name: {@code result_type}
 	 */
@@ -190,16 +183,8 @@ public class BucketInfluencer implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code timestamp}
 	 */
-	public final String timestamp() {
+	public final Time timestamp() {
 		return this.timestamp;
-	}
-
-	/**
-	 * API name: {@code foo}
-	 */
-	@Nullable
-	public final String foo() {
-		return this.foo;
 	}
 
 	/**
@@ -213,20 +198,17 @@ public class BucketInfluencer implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
+		generator.writeKey("anomaly_score");
+		generator.write(this.anomalyScore);
+
 		generator.writeKey("bucket_span");
 		generator.write(this.bucketSpan);
-
-		generator.writeKey("influencer_score");
-		generator.write(this.influencerScore);
 
 		generator.writeKey("influencer_field_name");
 		generator.write(this.influencerFieldName);
 
-		generator.writeKey("influencer_field_value");
-		generator.write(this.influencerFieldValue);
-
-		generator.writeKey("initial_influencer_score");
-		generator.write(this.initialInfluencerScore);
+		generator.writeKey("initial_anomaly_score");
+		generator.write(this.initialAnomalyScore);
 
 		generator.writeKey("is_interim");
 		generator.write(this.isInterim);
@@ -237,17 +219,14 @@ public class BucketInfluencer implements JsonpSerializable {
 		generator.writeKey("probability");
 		generator.write(this.probability);
 
+		generator.writeKey("raw_anomaly_score");
+		generator.write(this.rawAnomalyScore);
+
 		generator.writeKey("result_type");
 		generator.write(this.resultType);
 
 		generator.writeKey("timestamp");
-		generator.write(this.timestamp);
-
-		if (this.foo != null) {
-			generator.writeKey("foo");
-			generator.write(this.foo);
-
-		}
+		this.timestamp.serialize(generator, mapper);
 
 	}
 
@@ -257,15 +236,13 @@ public class BucketInfluencer implements JsonpSerializable {
 	 * Builder for {@link BucketInfluencer}.
 	 */
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<BucketInfluencer> {
-		private Long bucketSpan;
+		private Double anomalyScore;
 
-		private Double influencerScore;
+		private Long bucketSpan;
 
 		private String influencerFieldName;
 
-		private String influencerFieldValue;
-
-		private Double initialInfluencerScore;
+		private Double initialAnomalyScore;
 
 		private Boolean isInterim;
 
@@ -273,34 +250,31 @@ public class BucketInfluencer implements JsonpSerializable {
 
 		private Double probability;
 
+		private Double rawAnomalyScore;
+
 		private String resultType;
 
-		private String timestamp;
-
-		@Nullable
-		private String foo;
+		private Time timestamp;
 
 		/**
-		 * Required - The length of the bucket in seconds. This value matches the
-		 * bucket_span that is specified in the job.
+		 * Required - A normalized score between 0-100, which is calculated for each
+		 * bucket influencer. This score might be updated as newer data is analyzed.
+		 * <p>
+		 * API name: {@code anomaly_score}
+		 */
+		public final Builder anomalyScore(double value) {
+			this.anomalyScore = value;
+			return this;
+		}
+
+		/**
+		 * Required - The length of the bucket in seconds. This value matches the bucket
+		 * span that is specified in the job.
 		 * <p>
 		 * API name: {@code bucket_span}
 		 */
 		public final Builder bucketSpan(long value) {
 			this.bucketSpan = value;
-			return this;
-		}
-
-		/**
-		 * Required - A normalized score between 0-100, which is based on the
-		 * probability of the influencer in this bucket aggregated across detectors.
-		 * Unlike initial_influencer_score, this value will be updated by a
-		 * re-normalization process as new data is analyzed.
-		 * <p>
-		 * API name: {@code influencer_score}
-		 */
-		public final Builder influencerScore(double value) {
-			this.influencerScore = value;
 			return this;
 		}
 
@@ -315,25 +289,13 @@ public class BucketInfluencer implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - The entity that influenced, contributed to, or was to blame for
-		 * the anomaly.
+		 * Required - The score between 0-100 for each bucket influencer. This score is
+		 * the initial value that was calculated at the time the bucket was processed.
 		 * <p>
-		 * API name: {@code influencer_field_value}
+		 * API name: {@code initial_anomaly_score}
 		 */
-		public final Builder influencerFieldValue(String value) {
-			this.influencerFieldValue = value;
-			return this;
-		}
-
-		/**
-		 * Required - A normalized score between 0-100, which is based on the
-		 * probability of the influencer aggregated across detectors. This is the
-		 * initial value that was calculated at the time the bucket was processed.
-		 * <p>
-		 * API name: {@code initial_influencer_score}
-		 */
-		public final Builder initialInfluencerScore(double value) {
-			this.initialInfluencerScore = value;
+		public final Builder initialAnomalyScore(double value) {
+			this.initialAnomalyScore = value;
 			return this;
 		}
 
@@ -359,10 +321,10 @@ public class BucketInfluencer implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - The probability that the influencer has this behavior, in the
-		 * range 0 to 1. This value can be held to a high precision of over 300 decimal
-		 * places, so the influencer_score is provided as a human-readable and friendly
-		 * interpretation of this.
+		 * Required - The probability that the bucket has this behavior, in the range 0
+		 * to 1. This value can be held to a high precision of over 300 decimal places,
+		 * so the <code>anomaly_score</code> is provided as a human-readable and
+		 * friendly interpretation of this.
 		 * <p>
 		 * API name: {@code probability}
 		 */
@@ -372,7 +334,18 @@ public class BucketInfluencer implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - Internal. This value is always set to influencer.
+		 * Required - Internal.
+		 * <p>
+		 * API name: {@code raw_anomaly_score}
+		 */
+		public final Builder rawAnomalyScore(double value) {
+			this.rawAnomalyScore = value;
+			return this;
+		}
+
+		/**
+		 * Required - Internal. This value is always set to
+		 * <code>bucket_influencer</code>.
 		 * <p>
 		 * API name: {@code result_type}
 		 */
@@ -387,17 +360,19 @@ public class BucketInfluencer implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code timestamp}
 		 */
-		public final Builder timestamp(String value) {
+		public final Builder timestamp(Time value) {
 			this.timestamp = value;
 			return this;
 		}
 
 		/**
-		 * API name: {@code foo}
+		 * Required - The start time of the bucket for which these results were
+		 * calculated.
+		 * <p>
+		 * API name: {@code timestamp}
 		 */
-		public final Builder foo(@Nullable String value) {
-			this.foo = value;
-			return this;
+		public final Builder timestamp(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.timestamp(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -423,17 +398,16 @@ public class BucketInfluencer implements JsonpSerializable {
 
 	protected static void setupBucketInfluencerDeserializer(ObjectDeserializer<BucketInfluencer.Builder> op) {
 
+		op.add(Builder::anomalyScore, JsonpDeserializer.doubleDeserializer(), "anomaly_score");
 		op.add(Builder::bucketSpan, JsonpDeserializer.longDeserializer(), "bucket_span");
-		op.add(Builder::influencerScore, JsonpDeserializer.doubleDeserializer(), "influencer_score");
 		op.add(Builder::influencerFieldName, JsonpDeserializer.stringDeserializer(), "influencer_field_name");
-		op.add(Builder::influencerFieldValue, JsonpDeserializer.stringDeserializer(), "influencer_field_value");
-		op.add(Builder::initialInfluencerScore, JsonpDeserializer.doubleDeserializer(), "initial_influencer_score");
+		op.add(Builder::initialAnomalyScore, JsonpDeserializer.doubleDeserializer(), "initial_anomaly_score");
 		op.add(Builder::isInterim, JsonpDeserializer.booleanDeserializer(), "is_interim");
 		op.add(Builder::jobId, JsonpDeserializer.stringDeserializer(), "job_id");
 		op.add(Builder::probability, JsonpDeserializer.doubleDeserializer(), "probability");
+		op.add(Builder::rawAnomalyScore, JsonpDeserializer.doubleDeserializer(), "raw_anomaly_score");
 		op.add(Builder::resultType, JsonpDeserializer.stringDeserializer(), "result_type");
-		op.add(Builder::timestamp, JsonpDeserializer.stringDeserializer(), "timestamp");
-		op.add(Builder::foo, JsonpDeserializer.stringDeserializer(), "foo");
+		op.add(Builder::timestamp, Time._DESERIALIZER, "timestamp");
 
 	}
 

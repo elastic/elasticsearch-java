@@ -35,7 +35,7 @@ import java.util.function.Function;
 
 // typedef: _types.analysis.KStemTokenFilter
 @JsonpDeserializable
-public class KStemTokenFilter extends TokenFilterBase implements TokenFilterVariant {
+public class KStemTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
 	// ---------------------------------------------------------------------------------------------
 
 	private KStemTokenFilter(Builder builder) {
@@ -48,7 +48,7 @@ public class KStemTokenFilter extends TokenFilterBase implements TokenFilterVari
 	}
 
 	/**
-	 * {@link TokenFilter} variant type
+	 * {@link TokenFilterDefinition} variant type
 	 */
 	@Override
 	public String _variantType() {

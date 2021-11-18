@@ -25,6 +25,9 @@ package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.ApiClient;
 import co.elastic.clients.elasticsearch._types.ElasticsearchException;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.EndpointWithResponseMapperAttr;
 import co.elastic.clients.transport.Transport;
 import co.elastic.clients.transport.TransportOptions;
 import co.elastic.clients.util.ObjectBuilder;
@@ -62,7 +65,10 @@ public class ElasticsearchMlClient extends ApiClient<ElasticsearchMlClient> {
 	 */
 
 	public CloseJobResponse closeJob(CloseJobRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, CloseJobRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<CloseJobRequest, CloseJobResponse, ErrorResponse> endpoint = (Endpoint<CloseJobRequest, CloseJobResponse, ErrorResponse>) CloseJobRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -94,7 +100,10 @@ public class ElasticsearchMlClient extends ApiClient<ElasticsearchMlClient> {
 
 	public DeleteCalendarResponse deleteCalendar(DeleteCalendarRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, DeleteCalendarRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<DeleteCalendarRequest, DeleteCalendarResponse, ErrorResponse> endpoint = (Endpoint<DeleteCalendarRequest, DeleteCalendarResponse, ErrorResponse>) DeleteCalendarRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -126,7 +135,10 @@ public class ElasticsearchMlClient extends ApiClient<ElasticsearchMlClient> {
 
 	public DeleteCalendarEventResponse deleteCalendarEvent(DeleteCalendarEventRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, DeleteCalendarEventRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<DeleteCalendarEventRequest, DeleteCalendarEventResponse, ErrorResponse> endpoint = (Endpoint<DeleteCalendarEventRequest, DeleteCalendarEventResponse, ErrorResponse>) DeleteCalendarEventRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -158,7 +170,10 @@ public class ElasticsearchMlClient extends ApiClient<ElasticsearchMlClient> {
 
 	public DeleteCalendarJobResponse deleteCalendarJob(DeleteCalendarJobRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, DeleteCalendarJobRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<DeleteCalendarJobRequest, DeleteCalendarJobResponse, ErrorResponse> endpoint = (Endpoint<DeleteCalendarJobRequest, DeleteCalendarJobResponse, ErrorResponse>) DeleteCalendarJobRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -190,7 +205,10 @@ public class ElasticsearchMlClient extends ApiClient<ElasticsearchMlClient> {
 
 	public DeleteDataFrameAnalyticsResponse deleteDataFrameAnalytics(DeleteDataFrameAnalyticsRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, DeleteDataFrameAnalyticsRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<DeleteDataFrameAnalyticsRequest, DeleteDataFrameAnalyticsResponse, ErrorResponse> endpoint = (Endpoint<DeleteDataFrameAnalyticsRequest, DeleteDataFrameAnalyticsResponse, ErrorResponse>) DeleteDataFrameAnalyticsRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -222,7 +240,10 @@ public class ElasticsearchMlClient extends ApiClient<ElasticsearchMlClient> {
 
 	public DeleteDatafeedResponse deleteDatafeed(DeleteDatafeedRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, DeleteDatafeedRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<DeleteDatafeedRequest, DeleteDatafeedResponse, ErrorResponse> endpoint = (Endpoint<DeleteDatafeedRequest, DeleteDatafeedResponse, ErrorResponse>) DeleteDatafeedRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -253,7 +274,10 @@ public class ElasticsearchMlClient extends ApiClient<ElasticsearchMlClient> {
 	 */
 
 	public DeleteFilterResponse deleteFilter(DeleteFilterRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, DeleteFilterRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<DeleteFilterRequest, DeleteFilterResponse, ErrorResponse> endpoint = (Endpoint<DeleteFilterRequest, DeleteFilterResponse, ErrorResponse>) DeleteFilterRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -285,7 +309,10 @@ public class ElasticsearchMlClient extends ApiClient<ElasticsearchMlClient> {
 
 	public DeleteForecastResponse deleteForecast(DeleteForecastRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, DeleteForecastRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<DeleteForecastRequest, DeleteForecastResponse, ErrorResponse> endpoint = (Endpoint<DeleteForecastRequest, DeleteForecastResponse, ErrorResponse>) DeleteForecastRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -316,7 +343,10 @@ public class ElasticsearchMlClient extends ApiClient<ElasticsearchMlClient> {
 	 */
 
 	public DeleteJobResponse deleteJob(DeleteJobRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, DeleteJobRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<DeleteJobRequest, DeleteJobResponse, ErrorResponse> endpoint = (Endpoint<DeleteJobRequest, DeleteJobResponse, ErrorResponse>) DeleteJobRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -347,7 +377,10 @@ public class ElasticsearchMlClient extends ApiClient<ElasticsearchMlClient> {
 
 	public DeleteModelSnapshotResponse deleteModelSnapshot(DeleteModelSnapshotRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, DeleteModelSnapshotRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<DeleteModelSnapshotRequest, DeleteModelSnapshotResponse, ErrorResponse> endpoint = (Endpoint<DeleteModelSnapshotRequest, DeleteModelSnapshotResponse, ErrorResponse>) DeleteModelSnapshotRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -380,7 +413,10 @@ public class ElasticsearchMlClient extends ApiClient<ElasticsearchMlClient> {
 
 	public DeleteTrainedModelResponse deleteTrainedModel(DeleteTrainedModelRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, DeleteTrainedModelRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<DeleteTrainedModelRequest, DeleteTrainedModelResponse, ErrorResponse> endpoint = (Endpoint<DeleteTrainedModelRequest, DeleteTrainedModelResponse, ErrorResponse>) DeleteTrainedModelRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -413,7 +449,10 @@ public class ElasticsearchMlClient extends ApiClient<ElasticsearchMlClient> {
 
 	public DeleteTrainedModelAliasResponse deleteTrainedModelAlias(DeleteTrainedModelAliasRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, DeleteTrainedModelAliasRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<DeleteTrainedModelAliasRequest, DeleteTrainedModelAliasResponse, ErrorResponse> endpoint = (Endpoint<DeleteTrainedModelAliasRequest, DeleteTrainedModelAliasResponse, ErrorResponse>) DeleteTrainedModelAliasRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -445,7 +484,10 @@ public class ElasticsearchMlClient extends ApiClient<ElasticsearchMlClient> {
 
 	public EstimateModelMemoryResponse estimateModelMemory(EstimateModelMemoryRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, EstimateModelMemoryRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<EstimateModelMemoryRequest, EstimateModelMemoryResponse, ErrorResponse> endpoint = (Endpoint<EstimateModelMemoryRequest, EstimateModelMemoryResponse, ErrorResponse>) EstimateModelMemoryRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -475,7 +517,7 @@ public class ElasticsearchMlClient extends ApiClient<ElasticsearchMlClient> {
 
 	public EstimateModelMemoryResponse estimateModelMemory() throws IOException, ElasticsearchException {
 		return this.transport.performRequest(new EstimateModelMemoryRequest.Builder().build(),
-				EstimateModelMemoryRequest.ENDPOINT, this.transportOptions);
+				EstimateModelMemoryRequest._ENDPOINT, this.transportOptions);
 	}
 
 	// ----- Endpoint: ml.evaluate_data_frame
@@ -490,7 +532,10 @@ public class ElasticsearchMlClient extends ApiClient<ElasticsearchMlClient> {
 
 	public EvaluateDataFrameResponse evaluateDataFrame(EvaluateDataFrameRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, EvaluateDataFrameRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<EvaluateDataFrameRequest, EvaluateDataFrameResponse, ErrorResponse> endpoint = (Endpoint<EvaluateDataFrameRequest, EvaluateDataFrameResponse, ErrorResponse>) EvaluateDataFrameRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -522,7 +567,10 @@ public class ElasticsearchMlClient extends ApiClient<ElasticsearchMlClient> {
 
 	public ExplainDataFrameAnalyticsResponse explainDataFrameAnalytics(ExplainDataFrameAnalyticsRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, ExplainDataFrameAnalyticsRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<ExplainDataFrameAnalyticsRequest, ExplainDataFrameAnalyticsResponse, ErrorResponse> endpoint = (Endpoint<ExplainDataFrameAnalyticsRequest, ExplainDataFrameAnalyticsResponse, ErrorResponse>) ExplainDataFrameAnalyticsRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -553,7 +601,10 @@ public class ElasticsearchMlClient extends ApiClient<ElasticsearchMlClient> {
 	 */
 
 	public FlushJobResponse flushJob(FlushJobRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, FlushJobRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<FlushJobRequest, FlushJobResponse, ErrorResponse> endpoint = (Endpoint<FlushJobRequest, FlushJobResponse, ErrorResponse>) FlushJobRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -584,7 +635,10 @@ public class ElasticsearchMlClient extends ApiClient<ElasticsearchMlClient> {
 	 */
 
 	public ForecastResponse forecast(ForecastRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, ForecastRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<ForecastRequest, ForecastResponse, ErrorResponse> endpoint = (Endpoint<ForecastRequest, ForecastResponse, ErrorResponse>) ForecastRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -615,7 +669,10 @@ public class ElasticsearchMlClient extends ApiClient<ElasticsearchMlClient> {
 	 */
 
 	public GetBucketsResponse getBuckets(GetBucketsRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, GetBucketsRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<GetBucketsRequest, GetBucketsResponse, ErrorResponse> endpoint = (Endpoint<GetBucketsRequest, GetBucketsResponse, ErrorResponse>) GetBucketsRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -646,7 +703,10 @@ public class ElasticsearchMlClient extends ApiClient<ElasticsearchMlClient> {
 
 	public GetCalendarEventsResponse getCalendarEvents(GetCalendarEventsRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, GetCalendarEventsRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<GetCalendarEventsRequest, GetCalendarEventsResponse, ErrorResponse> endpoint = (Endpoint<GetCalendarEventsRequest, GetCalendarEventsResponse, ErrorResponse>) GetCalendarEventsRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -677,7 +737,10 @@ public class ElasticsearchMlClient extends ApiClient<ElasticsearchMlClient> {
 	 */
 
 	public GetCalendarsResponse getCalendars(GetCalendarsRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, GetCalendarsRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<GetCalendarsRequest, GetCalendarsResponse, ErrorResponse> endpoint = (Endpoint<GetCalendarsRequest, GetCalendarsResponse, ErrorResponse>) GetCalendarsRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -706,7 +769,7 @@ public class ElasticsearchMlClient extends ApiClient<ElasticsearchMlClient> {
 	 */
 
 	public GetCalendarsResponse getCalendars() throws IOException, ElasticsearchException {
-		return this.transport.performRequest(new GetCalendarsRequest.Builder().build(), GetCalendarsRequest.ENDPOINT,
+		return this.transport.performRequest(new GetCalendarsRequest.Builder().build(), GetCalendarsRequest._ENDPOINT,
 				this.transportOptions);
 	}
 
@@ -722,7 +785,10 @@ public class ElasticsearchMlClient extends ApiClient<ElasticsearchMlClient> {
 
 	public GetCategoriesResponse getCategories(GetCategoriesRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, GetCategoriesRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<GetCategoriesRequest, GetCategoriesResponse, ErrorResponse> endpoint = (Endpoint<GetCategoriesRequest, GetCategoriesResponse, ErrorResponse>) GetCategoriesRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -754,7 +820,10 @@ public class ElasticsearchMlClient extends ApiClient<ElasticsearchMlClient> {
 
 	public GetDataFrameAnalyticsResponse getDataFrameAnalytics(GetDataFrameAnalyticsRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, GetDataFrameAnalyticsRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<GetDataFrameAnalyticsRequest, GetDataFrameAnalyticsResponse, ErrorResponse> endpoint = (Endpoint<GetDataFrameAnalyticsRequest, GetDataFrameAnalyticsResponse, ErrorResponse>) GetDataFrameAnalyticsRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -784,7 +853,7 @@ public class ElasticsearchMlClient extends ApiClient<ElasticsearchMlClient> {
 
 	public GetDataFrameAnalyticsResponse getDataFrameAnalytics() throws IOException, ElasticsearchException {
 		return this.transport.performRequest(new GetDataFrameAnalyticsRequest.Builder().build(),
-				GetDataFrameAnalyticsRequest.ENDPOINT, this.transportOptions);
+				GetDataFrameAnalyticsRequest._ENDPOINT, this.transportOptions);
 	}
 
 	// ----- Endpoint: ml.get_data_frame_analytics_stats
@@ -799,8 +868,10 @@ public class ElasticsearchMlClient extends ApiClient<ElasticsearchMlClient> {
 
 	public GetDataFrameAnalyticsStatsResponse getDataFrameAnalyticsStats(GetDataFrameAnalyticsStatsRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, GetDataFrameAnalyticsStatsRequest.ENDPOINT,
-				this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<GetDataFrameAnalyticsStatsRequest, GetDataFrameAnalyticsStatsResponse, ErrorResponse> endpoint = (Endpoint<GetDataFrameAnalyticsStatsRequest, GetDataFrameAnalyticsStatsResponse, ErrorResponse>) GetDataFrameAnalyticsStatsRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -830,7 +901,7 @@ public class ElasticsearchMlClient extends ApiClient<ElasticsearchMlClient> {
 
 	public GetDataFrameAnalyticsStatsResponse getDataFrameAnalyticsStats() throws IOException, ElasticsearchException {
 		return this.transport.performRequest(new GetDataFrameAnalyticsStatsRequest.Builder().build(),
-				GetDataFrameAnalyticsStatsRequest.ENDPOINT, this.transportOptions);
+				GetDataFrameAnalyticsStatsRequest._ENDPOINT, this.transportOptions);
 	}
 
 	// ----- Endpoint: ml.get_datafeed_stats
@@ -845,7 +916,10 @@ public class ElasticsearchMlClient extends ApiClient<ElasticsearchMlClient> {
 
 	public GetDatafeedStatsResponse getDatafeedStats(GetDatafeedStatsRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, GetDatafeedStatsRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<GetDatafeedStatsRequest, GetDatafeedStatsResponse, ErrorResponse> endpoint = (Endpoint<GetDatafeedStatsRequest, GetDatafeedStatsResponse, ErrorResponse>) GetDatafeedStatsRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -875,7 +949,7 @@ public class ElasticsearchMlClient extends ApiClient<ElasticsearchMlClient> {
 
 	public GetDatafeedStatsResponse getDatafeedStats() throws IOException, ElasticsearchException {
 		return this.transport.performRequest(new GetDatafeedStatsRequest.Builder().build(),
-				GetDatafeedStatsRequest.ENDPOINT, this.transportOptions);
+				GetDatafeedStatsRequest._ENDPOINT, this.transportOptions);
 	}
 
 	// ----- Endpoint: ml.get_datafeeds
@@ -889,7 +963,10 @@ public class ElasticsearchMlClient extends ApiClient<ElasticsearchMlClient> {
 	 */
 
 	public GetDatafeedsResponse getDatafeeds(GetDatafeedsRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, GetDatafeedsRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<GetDatafeedsRequest, GetDatafeedsResponse, ErrorResponse> endpoint = (Endpoint<GetDatafeedsRequest, GetDatafeedsResponse, ErrorResponse>) GetDatafeedsRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -918,7 +995,7 @@ public class ElasticsearchMlClient extends ApiClient<ElasticsearchMlClient> {
 	 */
 
 	public GetDatafeedsResponse getDatafeeds() throws IOException, ElasticsearchException {
-		return this.transport.performRequest(new GetDatafeedsRequest.Builder().build(), GetDatafeedsRequest.ENDPOINT,
+		return this.transport.performRequest(new GetDatafeedsRequest.Builder().build(), GetDatafeedsRequest._ENDPOINT,
 				this.transportOptions);
 	}
 
@@ -933,7 +1010,10 @@ public class ElasticsearchMlClient extends ApiClient<ElasticsearchMlClient> {
 	 */
 
 	public GetFiltersResponse getFilters(GetFiltersRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, GetFiltersRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<GetFiltersRequest, GetFiltersResponse, ErrorResponse> endpoint = (Endpoint<GetFiltersRequest, GetFiltersResponse, ErrorResponse>) GetFiltersRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -961,7 +1041,7 @@ public class ElasticsearchMlClient extends ApiClient<ElasticsearchMlClient> {
 	 */
 
 	public GetFiltersResponse getFilters() throws IOException, ElasticsearchException {
-		return this.transport.performRequest(new GetFiltersRequest.Builder().build(), GetFiltersRequest.ENDPOINT,
+		return this.transport.performRequest(new GetFiltersRequest.Builder().build(), GetFiltersRequest._ENDPOINT,
 				this.transportOptions);
 	}
 
@@ -977,7 +1057,10 @@ public class ElasticsearchMlClient extends ApiClient<ElasticsearchMlClient> {
 
 	public GetInfluencersResponse getInfluencers(GetInfluencersRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, GetInfluencersRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<GetInfluencersRequest, GetInfluencersResponse, ErrorResponse> endpoint = (Endpoint<GetInfluencersRequest, GetInfluencersResponse, ErrorResponse>) GetInfluencersRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -1008,7 +1091,10 @@ public class ElasticsearchMlClient extends ApiClient<ElasticsearchMlClient> {
 	 */
 
 	public GetJobStatsResponse getJobStats(GetJobStatsRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, GetJobStatsRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<GetJobStatsRequest, GetJobStatsResponse, ErrorResponse> endpoint = (Endpoint<GetJobStatsRequest, GetJobStatsResponse, ErrorResponse>) GetJobStatsRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -1037,7 +1123,7 @@ public class ElasticsearchMlClient extends ApiClient<ElasticsearchMlClient> {
 	 */
 
 	public GetJobStatsResponse getJobStats() throws IOException, ElasticsearchException {
-		return this.transport.performRequest(new GetJobStatsRequest.Builder().build(), GetJobStatsRequest.ENDPOINT,
+		return this.transport.performRequest(new GetJobStatsRequest.Builder().build(), GetJobStatsRequest._ENDPOINT,
 				this.transportOptions);
 	}
 
@@ -1052,7 +1138,10 @@ public class ElasticsearchMlClient extends ApiClient<ElasticsearchMlClient> {
 	 */
 
 	public GetJobsResponse getJobs(GetJobsRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, GetJobsRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<GetJobsRequest, GetJobsResponse, ErrorResponse> endpoint = (Endpoint<GetJobsRequest, GetJobsResponse, ErrorResponse>) GetJobsRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -1080,7 +1169,7 @@ public class ElasticsearchMlClient extends ApiClient<ElasticsearchMlClient> {
 	 */
 
 	public GetJobsResponse getJobs() throws IOException, ElasticsearchException {
-		return this.transport.performRequest(new GetJobsRequest.Builder().build(), GetJobsRequest.ENDPOINT,
+		return this.transport.performRequest(new GetJobsRequest.Builder().build(), GetJobsRequest._ENDPOINT,
 				this.transportOptions);
 	}
 
@@ -1096,7 +1185,10 @@ public class ElasticsearchMlClient extends ApiClient<ElasticsearchMlClient> {
 
 	public GetModelSnapshotsResponse getModelSnapshots(GetModelSnapshotsRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, GetModelSnapshotsRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<GetModelSnapshotsRequest, GetModelSnapshotsResponse, ErrorResponse> endpoint = (Endpoint<GetModelSnapshotsRequest, GetModelSnapshotsResponse, ErrorResponse>) GetModelSnapshotsRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -1129,7 +1221,10 @@ public class ElasticsearchMlClient extends ApiClient<ElasticsearchMlClient> {
 
 	public GetOverallBucketsResponse getOverallBuckets(GetOverallBucketsRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, GetOverallBucketsRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<GetOverallBucketsRequest, GetOverallBucketsResponse, ErrorResponse> endpoint = (Endpoint<GetOverallBucketsRequest, GetOverallBucketsResponse, ErrorResponse>) GetOverallBucketsRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -1161,7 +1256,10 @@ public class ElasticsearchMlClient extends ApiClient<ElasticsearchMlClient> {
 	 */
 
 	public GetRecordsResponse getRecords(GetRecordsRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, GetRecordsRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<GetRecordsRequest, GetRecordsResponse, ErrorResponse> endpoint = (Endpoint<GetRecordsRequest, GetRecordsResponse, ErrorResponse>) GetRecordsRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -1192,7 +1290,10 @@ public class ElasticsearchMlClient extends ApiClient<ElasticsearchMlClient> {
 
 	public GetTrainedModelsResponse getTrainedModels(GetTrainedModelsRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, GetTrainedModelsRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<GetTrainedModelsRequest, GetTrainedModelsResponse, ErrorResponse> endpoint = (Endpoint<GetTrainedModelsRequest, GetTrainedModelsResponse, ErrorResponse>) GetTrainedModelsRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -1222,7 +1323,7 @@ public class ElasticsearchMlClient extends ApiClient<ElasticsearchMlClient> {
 
 	public GetTrainedModelsResponse getTrainedModels() throws IOException, ElasticsearchException {
 		return this.transport.performRequest(new GetTrainedModelsRequest.Builder().build(),
-				GetTrainedModelsRequest.ENDPOINT, this.transportOptions);
+				GetTrainedModelsRequest._ENDPOINT, this.transportOptions);
 	}
 
 	// ----- Endpoint: ml.get_trained_models_stats
@@ -1237,7 +1338,10 @@ public class ElasticsearchMlClient extends ApiClient<ElasticsearchMlClient> {
 
 	public GetTrainedModelsStatsResponse getTrainedModelsStats(GetTrainedModelsStatsRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, GetTrainedModelsStatsRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<GetTrainedModelsStatsRequest, GetTrainedModelsStatsResponse, ErrorResponse> endpoint = (Endpoint<GetTrainedModelsStatsRequest, GetTrainedModelsStatsResponse, ErrorResponse>) GetTrainedModelsStatsRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -1267,7 +1371,7 @@ public class ElasticsearchMlClient extends ApiClient<ElasticsearchMlClient> {
 
 	public GetTrainedModelsStatsResponse getTrainedModelsStats() throws IOException, ElasticsearchException {
 		return this.transport.performRequest(new GetTrainedModelsStatsRequest.Builder().build(),
-				GetTrainedModelsStatsRequest.ENDPOINT, this.transportOptions);
+				GetTrainedModelsStatsRequest._ENDPOINT, this.transportOptions);
 	}
 
 	// ----- Endpoint: ml.info
@@ -1280,7 +1384,7 @@ public class ElasticsearchMlClient extends ApiClient<ElasticsearchMlClient> {
 	 *      on elastic.co</a>
 	 */
 	public MlInfoResponse info() throws IOException, ElasticsearchException {
-		return this.transport.performRequest(MlInfoRequest._INSTANCE, MlInfoRequest.ENDPOINT, this.transportOptions);
+		return this.transport.performRequest(MlInfoRequest._INSTANCE, MlInfoRequest._ENDPOINT, this.transportOptions);
 	}
 
 	// ----- Endpoint: ml.open_job
@@ -1294,7 +1398,10 @@ public class ElasticsearchMlClient extends ApiClient<ElasticsearchMlClient> {
 	 */
 
 	public OpenJobResponse openJob(OpenJobRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, OpenJobRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<OpenJobRequest, OpenJobResponse, ErrorResponse> endpoint = (Endpoint<OpenJobRequest, OpenJobResponse, ErrorResponse>) OpenJobRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -1325,7 +1432,10 @@ public class ElasticsearchMlClient extends ApiClient<ElasticsearchMlClient> {
 
 	public PostCalendarEventsResponse postCalendarEvents(PostCalendarEventsRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, PostCalendarEventsRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<PostCalendarEventsRequest, PostCalendarEventsResponse, ErrorResponse> endpoint = (Endpoint<PostCalendarEventsRequest, PostCalendarEventsResponse, ErrorResponse>) PostCalendarEventsRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -1357,7 +1467,10 @@ public class ElasticsearchMlClient extends ApiClient<ElasticsearchMlClient> {
 
 	public <TData> PostDataResponse postData(PostDataRequest<TData> request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, PostDataRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<PostDataRequest<?>, PostDataResponse, ErrorResponse> endpoint = (Endpoint<PostDataRequest<?>, PostDataResponse, ErrorResponse>) PostDataRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -1389,7 +1502,10 @@ public class ElasticsearchMlClient extends ApiClient<ElasticsearchMlClient> {
 
 	public PreviewDataFrameAnalyticsResponse previewDataFrameAnalytics(PreviewDataFrameAnalyticsRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, PreviewDataFrameAnalyticsRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<PreviewDataFrameAnalyticsRequest, PreviewDataFrameAnalyticsResponse, ErrorResponse> endpoint = (Endpoint<PreviewDataFrameAnalyticsRequest, PreviewDataFrameAnalyticsResponse, ErrorResponse>) PreviewDataFrameAnalyticsRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -1419,7 +1535,7 @@ public class ElasticsearchMlClient extends ApiClient<ElasticsearchMlClient> {
 
 	public PreviewDataFrameAnalyticsResponse previewDataFrameAnalytics() throws IOException, ElasticsearchException {
 		return this.transport.performRequest(new PreviewDataFrameAnalyticsRequest.Builder().build(),
-				PreviewDataFrameAnalyticsRequest.ENDPOINT, this.transportOptions);
+				PreviewDataFrameAnalyticsRequest._ENDPOINT, this.transportOptions);
 	}
 
 	// ----- Endpoint: ml.preview_datafeed
@@ -1434,9 +1550,12 @@ public class ElasticsearchMlClient extends ApiClient<ElasticsearchMlClient> {
 
 	public <TDocument> PreviewDatafeedResponse<TDocument> previewDatafeed(PreviewDatafeedRequest request,
 			Class<TDocument> tDocumentClass) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request,
-				PreviewDatafeedRequest.createPreviewDatafeedEndpoint(getDeserializer(tDocumentClass)),
-				this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<PreviewDatafeedRequest, PreviewDatafeedResponse<TDocument>, ErrorResponse> endpoint = (Endpoint<PreviewDatafeedRequest, PreviewDatafeedResponse<TDocument>, ErrorResponse>) PreviewDatafeedRequest._ENDPOINT;
+		endpoint = new EndpointWithResponseMapperAttr<>(endpoint,
+				"co.elastic.clients:Deserializer:ml.preview_datafeed.TDocument", getDeserializer(tDocumentClass));
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -1467,7 +1586,10 @@ public class ElasticsearchMlClient extends ApiClient<ElasticsearchMlClient> {
 	 */
 
 	public PutCalendarResponse putCalendar(PutCalendarRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, PutCalendarRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<PutCalendarRequest, PutCalendarResponse, ErrorResponse> endpoint = (Endpoint<PutCalendarRequest, PutCalendarResponse, ErrorResponse>) PutCalendarRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -1499,7 +1621,10 @@ public class ElasticsearchMlClient extends ApiClient<ElasticsearchMlClient> {
 
 	public PutCalendarJobResponse putCalendarJob(PutCalendarJobRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, PutCalendarJobRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<PutCalendarJobRequest, PutCalendarJobResponse, ErrorResponse> endpoint = (Endpoint<PutCalendarJobRequest, PutCalendarJobResponse, ErrorResponse>) PutCalendarJobRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -1531,7 +1656,10 @@ public class ElasticsearchMlClient extends ApiClient<ElasticsearchMlClient> {
 
 	public PutDataFrameAnalyticsResponse putDataFrameAnalytics(PutDataFrameAnalyticsRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, PutDataFrameAnalyticsRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<PutDataFrameAnalyticsRequest, PutDataFrameAnalyticsResponse, ErrorResponse> endpoint = (Endpoint<PutDataFrameAnalyticsRequest, PutDataFrameAnalyticsResponse, ErrorResponse>) PutDataFrameAnalyticsRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -1562,7 +1690,10 @@ public class ElasticsearchMlClient extends ApiClient<ElasticsearchMlClient> {
 	 */
 
 	public PutDatafeedResponse putDatafeed(PutDatafeedRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, PutDatafeedRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<PutDatafeedRequest, PutDatafeedResponse, ErrorResponse> endpoint = (Endpoint<PutDatafeedRequest, PutDatafeedResponse, ErrorResponse>) PutDatafeedRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -1593,7 +1724,10 @@ public class ElasticsearchMlClient extends ApiClient<ElasticsearchMlClient> {
 	 */
 
 	public PutFilterResponse putFilter(PutFilterRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, PutFilterRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<PutFilterRequest, PutFilterResponse, ErrorResponse> endpoint = (Endpoint<PutFilterRequest, PutFilterResponse, ErrorResponse>) PutFilterRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -1623,7 +1757,10 @@ public class ElasticsearchMlClient extends ApiClient<ElasticsearchMlClient> {
 	 */
 
 	public PutJobResponse putJob(PutJobRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, PutJobRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<PutJobRequest, PutJobResponse, ErrorResponse> endpoint = (Endpoint<PutJobRequest, PutJobResponse, ErrorResponse>) PutJobRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -1654,7 +1791,10 @@ public class ElasticsearchMlClient extends ApiClient<ElasticsearchMlClient> {
 
 	public PutTrainedModelResponse putTrainedModel(PutTrainedModelRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, PutTrainedModelRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<PutTrainedModelRequest, PutTrainedModelResponse, ErrorResponse> endpoint = (Endpoint<PutTrainedModelRequest, PutTrainedModelResponse, ErrorResponse>) PutTrainedModelRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -1687,7 +1827,10 @@ public class ElasticsearchMlClient extends ApiClient<ElasticsearchMlClient> {
 
 	public PutTrainedModelAliasResponse putTrainedModelAlias(PutTrainedModelAliasRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, PutTrainedModelAliasRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<PutTrainedModelAliasRequest, PutTrainedModelAliasResponse, ErrorResponse> endpoint = (Endpoint<PutTrainedModelAliasRequest, PutTrainedModelAliasResponse, ErrorResponse>) PutTrainedModelAliasRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -1719,7 +1862,10 @@ public class ElasticsearchMlClient extends ApiClient<ElasticsearchMlClient> {
 	 */
 
 	public ResetJobResponse resetJob(ResetJobRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, ResetJobRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<ResetJobRequest, ResetJobResponse, ErrorResponse> endpoint = (Endpoint<ResetJobRequest, ResetJobResponse, ErrorResponse>) ResetJobRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -1750,7 +1896,10 @@ public class ElasticsearchMlClient extends ApiClient<ElasticsearchMlClient> {
 
 	public RevertModelSnapshotResponse revertModelSnapshot(RevertModelSnapshotRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, RevertModelSnapshotRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<RevertModelSnapshotRequest, RevertModelSnapshotResponse, ErrorResponse> endpoint = (Endpoint<RevertModelSnapshotRequest, RevertModelSnapshotResponse, ErrorResponse>) RevertModelSnapshotRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -1783,7 +1932,10 @@ public class ElasticsearchMlClient extends ApiClient<ElasticsearchMlClient> {
 
 	public SetUpgradeModeResponse setUpgradeMode(SetUpgradeModeRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, SetUpgradeModeRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<SetUpgradeModeRequest, SetUpgradeModeResponse, ErrorResponse> endpoint = (Endpoint<SetUpgradeModeRequest, SetUpgradeModeResponse, ErrorResponse>) SetUpgradeModeRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -1815,7 +1967,7 @@ public class ElasticsearchMlClient extends ApiClient<ElasticsearchMlClient> {
 
 	public SetUpgradeModeResponse setUpgradeMode() throws IOException, ElasticsearchException {
 		return this.transport.performRequest(new SetUpgradeModeRequest.Builder().build(),
-				SetUpgradeModeRequest.ENDPOINT, this.transportOptions);
+				SetUpgradeModeRequest._ENDPOINT, this.transportOptions);
 	}
 
 	// ----- Endpoint: ml.start_data_frame_analytics
@@ -1830,7 +1982,10 @@ public class ElasticsearchMlClient extends ApiClient<ElasticsearchMlClient> {
 
 	public StartDataFrameAnalyticsResponse startDataFrameAnalytics(StartDataFrameAnalyticsRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, StartDataFrameAnalyticsRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<StartDataFrameAnalyticsRequest, StartDataFrameAnalyticsResponse, ErrorResponse> endpoint = (Endpoint<StartDataFrameAnalyticsRequest, StartDataFrameAnalyticsResponse, ErrorResponse>) StartDataFrameAnalyticsRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -1862,7 +2017,10 @@ public class ElasticsearchMlClient extends ApiClient<ElasticsearchMlClient> {
 
 	public StartDatafeedResponse startDatafeed(StartDatafeedRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, StartDatafeedRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<StartDatafeedRequest, StartDatafeedResponse, ErrorResponse> endpoint = (Endpoint<StartDatafeedRequest, StartDatafeedResponse, ErrorResponse>) StartDatafeedRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -1894,7 +2052,10 @@ public class ElasticsearchMlClient extends ApiClient<ElasticsearchMlClient> {
 
 	public StopDataFrameAnalyticsResponse stopDataFrameAnalytics(StopDataFrameAnalyticsRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, StopDataFrameAnalyticsRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<StopDataFrameAnalyticsRequest, StopDataFrameAnalyticsResponse, ErrorResponse> endpoint = (Endpoint<StopDataFrameAnalyticsRequest, StopDataFrameAnalyticsResponse, ErrorResponse>) StopDataFrameAnalyticsRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -1925,7 +2086,10 @@ public class ElasticsearchMlClient extends ApiClient<ElasticsearchMlClient> {
 	 */
 
 	public StopDatafeedResponse stopDatafeed(StopDatafeedRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, StopDatafeedRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<StopDatafeedRequest, StopDatafeedResponse, ErrorResponse> endpoint = (Endpoint<StopDatafeedRequest, StopDatafeedResponse, ErrorResponse>) StopDatafeedRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -1957,7 +2121,10 @@ public class ElasticsearchMlClient extends ApiClient<ElasticsearchMlClient> {
 
 	public UpdateDataFrameAnalyticsResponse updateDataFrameAnalytics(UpdateDataFrameAnalyticsRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, UpdateDataFrameAnalyticsRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<UpdateDataFrameAnalyticsRequest, UpdateDataFrameAnalyticsResponse, ErrorResponse> endpoint = (Endpoint<UpdateDataFrameAnalyticsRequest, UpdateDataFrameAnalyticsResponse, ErrorResponse>) UpdateDataFrameAnalyticsRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -1977,6 +2144,41 @@ public class ElasticsearchMlClient extends ApiClient<ElasticsearchMlClient> {
 		return updateDataFrameAnalytics(fn.apply(new UpdateDataFrameAnalyticsRequest.Builder()).build());
 	}
 
+	// ----- Endpoint: ml.update_datafeed
+
+	/**
+	 * Updates certain properties of a datafeed.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-update-datafeed.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public UpdateDatafeedResponse updateDatafeed(UpdateDatafeedRequest request)
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		Endpoint<UpdateDatafeedRequest, UpdateDatafeedResponse, ErrorResponse> endpoint = (Endpoint<UpdateDatafeedRequest, UpdateDatafeedResponse, ErrorResponse>) UpdateDatafeedRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Updates certain properties of a datafeed.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link UpdateDatafeedRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-update-datafeed.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final UpdateDatafeedResponse updateDatafeed(
+			Function<UpdateDatafeedRequest.Builder, ObjectBuilder<UpdateDatafeedRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return updateDatafeed(fn.apply(new UpdateDatafeedRequest.Builder()).build());
+	}
+
 	// ----- Endpoint: ml.update_filter
 
 	/**
@@ -1988,7 +2190,10 @@ public class ElasticsearchMlClient extends ApiClient<ElasticsearchMlClient> {
 	 */
 
 	public UpdateFilterResponse updateFilter(UpdateFilterRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, UpdateFilterRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<UpdateFilterRequest, UpdateFilterResponse, ErrorResponse> endpoint = (Endpoint<UpdateFilterRequest, UpdateFilterResponse, ErrorResponse>) UpdateFilterRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -2019,7 +2224,10 @@ public class ElasticsearchMlClient extends ApiClient<ElasticsearchMlClient> {
 	 */
 
 	public UpdateJobResponse updateJob(UpdateJobRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, UpdateJobRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<UpdateJobRequest, UpdateJobResponse, ErrorResponse> endpoint = (Endpoint<UpdateJobRequest, UpdateJobResponse, ErrorResponse>) UpdateJobRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -2050,7 +2258,10 @@ public class ElasticsearchMlClient extends ApiClient<ElasticsearchMlClient> {
 
 	public UpdateModelSnapshotResponse updateModelSnapshot(UpdateModelSnapshotRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, UpdateModelSnapshotRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<UpdateModelSnapshotRequest, UpdateModelSnapshotResponse, ErrorResponse> endpoint = (Endpoint<UpdateModelSnapshotRequest, UpdateModelSnapshotResponse, ErrorResponse>) UpdateModelSnapshotRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -2082,7 +2293,10 @@ public class ElasticsearchMlClient extends ApiClient<ElasticsearchMlClient> {
 
 	public UpgradeJobSnapshotResponse upgradeJobSnapshot(UpgradeJobSnapshotRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, UpgradeJobSnapshotRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<UpgradeJobSnapshotRequest, UpgradeJobSnapshotResponse, ErrorResponse> endpoint = (Endpoint<UpgradeJobSnapshotRequest, UpgradeJobSnapshotResponse, ErrorResponse>) UpgradeJobSnapshotRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -2113,7 +2327,10 @@ public class ElasticsearchMlClient extends ApiClient<ElasticsearchMlClient> {
 	 */
 
 	public ValidateResponse validate(ValidateRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, ValidateRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<ValidateRequest, ValidateResponse, ErrorResponse> endpoint = (Endpoint<ValidateRequest, ValidateResponse, ErrorResponse>) ValidateRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -2141,7 +2358,7 @@ public class ElasticsearchMlClient extends ApiClient<ElasticsearchMlClient> {
 	 */
 
 	public ValidateResponse validate() throws IOException, ElasticsearchException {
-		return this.transport.performRequest(new ValidateRequest.Builder().build(), ValidateRequest.ENDPOINT,
+		return this.transport.performRequest(new ValidateRequest.Builder().build(), ValidateRequest._ENDPOINT,
 				this.transportOptions);
 	}
 
@@ -2157,7 +2374,10 @@ public class ElasticsearchMlClient extends ApiClient<ElasticsearchMlClient> {
 
 	public ValidateDetectorResponse validateDetector(ValidateDetectorRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, ValidateDetectorRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<ValidateDetectorRequest, ValidateDetectorResponse, ErrorResponse> endpoint = (Endpoint<ValidateDetectorRequest, ValidateDetectorResponse, ErrorResponse>) ValidateDetectorRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -2187,7 +2407,7 @@ public class ElasticsearchMlClient extends ApiClient<ElasticsearchMlClient> {
 
 	public ValidateDetectorResponse validateDetector() throws IOException, ElasticsearchException {
 		return this.transport.performRequest(new ValidateDetectorRequest.Builder().build(),
-				ValidateDetectorRequest.ENDPOINT, this.transportOptions);
+				ValidateDetectorRequest._ENDPOINT, this.transportOptions);
 	}
 
 }

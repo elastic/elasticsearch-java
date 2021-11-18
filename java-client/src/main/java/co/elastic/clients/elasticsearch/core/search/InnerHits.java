@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.core.search;
 
 import co.elastic.clients.elasticsearch._types.ScriptField;
+import co.elastic.clients.elasticsearch._types.query_dsl.FieldAndFormat;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -34,7 +35,6 @@ import co.elastic.clients.util.MapBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Integer;
@@ -81,10 +81,10 @@ public class InnerHits implements JsonpSerializable {
 
 	private final List<String> fields;
 
-	private final List<JsonValue /* _global.search._types.SortCombinations */> sort;
+	private final List<SortOptions> sort;
 
 	@Nullable
-	private final JsonValue /* Union(_global.search._types.SourceFilter | internal.boolean) */ source;
+	private final SourceConfig source;
 
 	private final List<String> storedField;
 
@@ -209,7 +209,7 @@ public class InnerHits implements JsonpSerializable {
 	/**
 	 * API name: {@code sort}
 	 */
-	public final List<JsonValue /* _global.search._types.SortCombinations */> sort() {
+	public final List<SortOptions> sort() {
 		return this.sort;
 	}
 
@@ -217,7 +217,7 @@ public class InnerHits implements JsonpSerializable {
 	 * API name: {@code _source}
 	 */
 	@Nullable
-	public final JsonValue /* Union(_global.search._types.SourceFilter | internal.boolean) */ source() {
+	public final SourceConfig source() {
 		return this.source;
 	}
 
@@ -329,8 +329,8 @@ public class InnerHits implements JsonpSerializable {
 		if (ModelTypeHelper.isDefined(this.sort)) {
 			generator.writeKey("sort");
 			generator.writeStartArray();
-			for (JsonValue /* _global.search._types.SortCombinations */ item0 : this.sort) {
-				generator.write(item0);
+			for (SortOptions item0 : this.sort) {
+				item0.serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -338,7 +338,7 @@ public class InnerHits implements JsonpSerializable {
 		}
 		if (this.source != null) {
 			generator.writeKey("_source");
-			generator.write(this.source);
+			this.source.serialize(generator, mapper);
 
 		}
 		if (ModelTypeHelper.isDefined(this.storedField)) {
@@ -404,10 +404,10 @@ public class InnerHits implements JsonpSerializable {
 		private List<String> fields;
 
 		@Nullable
-		private List<JsonValue /* _global.search._types.SortCombinations */> sort;
+		private List<SortOptions> sort;
 
 		@Nullable
-		private JsonValue /* Union(_global.search._types.SourceFilter | internal.boolean) */ source;
+		private SourceConfig source;
 
 		@Nullable
 		private List<String> storedField;
@@ -563,7 +563,7 @@ public class InnerHits implements JsonpSerializable {
 		/**
 		 * API name: {@code sort}
 		 */
-		public final Builder sort(@Nullable List<JsonValue /* _global.search._types.SortCombinations */> value) {
+		public final Builder sort(@Nullable List<SortOptions> value) {
 			this.sort = value;
 			return this;
 		}
@@ -571,18 +571,36 @@ public class InnerHits implements JsonpSerializable {
 		/**
 		 * API name: {@code sort}
 		 */
-		public final Builder sort(JsonValue /* _global.search._types.SortCombinations */... value) {
+		public final Builder sort(SortOptions... value) {
 			this.sort = Arrays.asList(value);
+			return this;
+		}
+
+		/**
+		 * API name: {@code sort}
+		 */
+		@SafeVarargs
+		public final Builder sort(Function<SortOptions.Builder, ObjectBuilder<SortOptions>>... fns) {
+			this.sort = new ArrayList<>(fns.length);
+			for (Function<SortOptions.Builder, ObjectBuilder<SortOptions>> fn : fns) {
+				this.sort.add(fn.apply(new SortOptions.Builder()).build());
+			}
 			return this;
 		}
 
 		/**
 		 * API name: {@code _source}
 		 */
-		public final Builder source(
-				@Nullable JsonValue /* Union(_global.search._types.SourceFilter | internal.boolean) */ value) {
+		public final Builder source(@Nullable SourceConfig value) {
 			this.source = value;
 			return this;
+		}
+
+		/**
+		 * API name: {@code _source}
+		 */
+		public final Builder source(Function<SourceConfig.Builder, ObjectBuilder<SourceConfig>> fn) {
+			return this.source(fn.apply(new SourceConfig.Builder()).build());
 		}
 
 		/**
@@ -653,8 +671,8 @@ public class InnerHits implements JsonpSerializable {
 				"script_fields");
 		op.add(Builder::seqNoPrimaryTerm, JsonpDeserializer.booleanDeserializer(), "seq_no_primary_term");
 		op.add(Builder::fields, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "fields");
-		op.add(Builder::sort, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.jsonValueDeserializer()), "sort");
-		op.add(Builder::source, JsonpDeserializer.jsonValueDeserializer(), "_source");
+		op.add(Builder::sort, JsonpDeserializer.arrayDeserializer(SortOptions._DESERIALIZER), "sort");
+		op.add(Builder::source, SourceConfig._DESERIALIZER, "_source");
 		op.add(Builder::storedField, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"stored_field");
 		op.add(Builder::trackScores, JsonpDeserializer.booleanDeserializer(), "track_scores");

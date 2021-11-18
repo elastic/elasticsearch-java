@@ -25,6 +25,8 @@ package co.elastic.clients.elasticsearch.nodes;
 
 import co.elastic.clients.ApiClient;
 import co.elastic.clients.elasticsearch._types.ElasticsearchException;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
+import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.Transport;
 import co.elastic.clients.transport.TransportOptions;
 import co.elastic.clients.util.ObjectBuilder;
@@ -63,7 +65,10 @@ public class ElasticsearchNodesAsyncClient extends ApiClient<ElasticsearchNodesA
 
 	public CompletableFuture<HotThreadsResponse> hotThreads(HotThreadsRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(request, HotThreadsRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<HotThreadsRequest, HotThreadsResponse, ErrorResponse> endpoint = (Endpoint<HotThreadsRequest, HotThreadsResponse, ErrorResponse>) HotThreadsRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -92,7 +97,7 @@ public class ElasticsearchNodesAsyncClient extends ApiClient<ElasticsearchNodesA
 	 */
 
 	public CompletableFuture<HotThreadsResponse> hotThreads() throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(new HotThreadsRequest.Builder().build(), HotThreadsRequest.ENDPOINT,
+		return this.transport.performRequestAsync(new HotThreadsRequest.Builder().build(), HotThreadsRequest._ENDPOINT,
 				this.transportOptions);
 	}
 
@@ -108,7 +113,10 @@ public class ElasticsearchNodesAsyncClient extends ApiClient<ElasticsearchNodesA
 
 	public CompletableFuture<NodesInfoResponse> info(NodesInfoRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(request, NodesInfoRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<NodesInfoRequest, NodesInfoResponse, ErrorResponse> endpoint = (Endpoint<NodesInfoRequest, NodesInfoResponse, ErrorResponse>) NodesInfoRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -137,7 +145,7 @@ public class ElasticsearchNodesAsyncClient extends ApiClient<ElasticsearchNodesA
 	 */
 
 	public CompletableFuture<NodesInfoResponse> info() throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(new NodesInfoRequest.Builder().build(), NodesInfoRequest.ENDPOINT,
+		return this.transport.performRequestAsync(new NodesInfoRequest.Builder().build(), NodesInfoRequest._ENDPOINT,
 				this.transportOptions);
 	}
 
@@ -153,7 +161,10 @@ public class ElasticsearchNodesAsyncClient extends ApiClient<ElasticsearchNodesA
 
 	public CompletableFuture<ReloadSecureSettingsResponse> reloadSecureSettings(ReloadSecureSettingsRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(request, ReloadSecureSettingsRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<ReloadSecureSettingsRequest, ReloadSecureSettingsResponse, ErrorResponse> endpoint = (Endpoint<ReloadSecureSettingsRequest, ReloadSecureSettingsResponse, ErrorResponse>) ReloadSecureSettingsRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -184,7 +195,7 @@ public class ElasticsearchNodesAsyncClient extends ApiClient<ElasticsearchNodesA
 	public CompletableFuture<ReloadSecureSettingsResponse> reloadSecureSettings()
 			throws IOException, ElasticsearchException {
 		return this.transport.performRequestAsync(new ReloadSecureSettingsRequest.Builder().build(),
-				ReloadSecureSettingsRequest.ENDPOINT, this.transportOptions);
+				ReloadSecureSettingsRequest._ENDPOINT, this.transportOptions);
 	}
 
 	// ----- Endpoint: nodes.stats
@@ -199,7 +210,10 @@ public class ElasticsearchNodesAsyncClient extends ApiClient<ElasticsearchNodesA
 
 	public CompletableFuture<NodesStatsResponse> stats(NodesStatsRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(request, NodesStatsRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<NodesStatsRequest, NodesStatsResponse, ErrorResponse> endpoint = (Endpoint<NodesStatsRequest, NodesStatsResponse, ErrorResponse>) NodesStatsRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -228,7 +242,7 @@ public class ElasticsearchNodesAsyncClient extends ApiClient<ElasticsearchNodesA
 	 */
 
 	public CompletableFuture<NodesStatsResponse> stats() throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(new NodesStatsRequest.Builder().build(), NodesStatsRequest.ENDPOINT,
+		return this.transport.performRequestAsync(new NodesStatsRequest.Builder().build(), NodesStatsRequest._ENDPOINT,
 				this.transportOptions);
 	}
 
@@ -243,7 +257,10 @@ public class ElasticsearchNodesAsyncClient extends ApiClient<ElasticsearchNodesA
 	 */
 
 	public CompletableFuture<UsageResponse> usage(UsageRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(request, UsageRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<UsageRequest, UsageResponse, ErrorResponse> endpoint = (Endpoint<UsageRequest, UsageResponse, ErrorResponse>) UsageRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -271,7 +288,7 @@ public class ElasticsearchNodesAsyncClient extends ApiClient<ElasticsearchNodesA
 	 */
 
 	public CompletableFuture<UsageResponse> usage() throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(new UsageRequest.Builder().build(), UsageRequest.ENDPOINT,
+		return this.transport.performRequestAsync(new UsageRequest.Builder().build(), UsageRequest._ENDPOINT,
 				this.transportOptions);
 	}
 

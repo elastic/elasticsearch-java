@@ -44,6 +44,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.InputContainer
+// union type: Container[]
 @JsonpDeserializable
 public class Input implements TaggedUnion<Object>, JsonpSerializable {
 
@@ -51,8 +52,6 @@ public class Input implements TaggedUnion<Object>, JsonpSerializable {
 	public static final String HTTP = "http";
 	public static final String SEARCH = "search";
 	public static final String SIMPLE = "simple";
-
-	// Tagged union implementation
 
 	private final String _type;
 	private final Object _value;
@@ -128,6 +127,7 @@ public class Input implements TaggedUnion<Object>, JsonpSerializable {
 	@Override
 	@SuppressWarnings("unchecked")
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+
 		generator.writeStartObject();
 
 		generator.writeKey(_type);
@@ -149,6 +149,7 @@ public class Input implements TaggedUnion<Object>, JsonpSerializable {
 		}
 
 		generator.writeEnd();
+
 	}
 
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Input> {

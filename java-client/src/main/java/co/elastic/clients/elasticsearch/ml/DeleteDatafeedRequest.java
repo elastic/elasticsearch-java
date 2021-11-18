@@ -140,7 +140,7 @@ public class DeleteDatafeedRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code ml.delete_datafeed}".
 	 */
-	public static final Endpoint<DeleteDatafeedRequest, DeleteDatafeedResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<DeleteDatafeedRequest, DeleteDatafeedResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "DELETE";

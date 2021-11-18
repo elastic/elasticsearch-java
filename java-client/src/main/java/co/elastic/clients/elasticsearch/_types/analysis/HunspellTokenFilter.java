@@ -39,7 +39,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.analysis.HunspellTokenFilter
 @JsonpDeserializable
-public class HunspellTokenFilter extends TokenFilterBase implements TokenFilterVariant {
+public class HunspellTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
 	private final boolean dedup;
 
 	private final String dictionary;
@@ -65,7 +65,7 @@ public class HunspellTokenFilter extends TokenFilterBase implements TokenFilterV
 	}
 
 	/**
-	 * {@link TokenFilter} variant type
+	 * {@link TokenFilterDefinition} variant type
 	 */
 	@Override
 	public String _variantType() {

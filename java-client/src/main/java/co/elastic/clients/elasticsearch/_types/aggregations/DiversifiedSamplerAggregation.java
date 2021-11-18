@@ -23,13 +23,13 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
+import co.elastic.clients.elasticsearch._types.Script;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
@@ -47,7 +47,7 @@ public class DiversifiedSamplerAggregation extends BucketAggregationBase impleme
 	private final Integer maxDocsPerValue;
 
 	@Nullable
-	private final JsonValue /* _types.Script */ script;
+	private final Script script;
 
 	@Nullable
 	private final Integer shardSize;
@@ -100,7 +100,7 @@ public class DiversifiedSamplerAggregation extends BucketAggregationBase impleme
 	 * API name: {@code script}
 	 */
 	@Nullable
-	public final JsonValue /* _types.Script */ script() {
+	public final Script script() {
 		return this.script;
 	}
 
@@ -134,7 +134,7 @@ public class DiversifiedSamplerAggregation extends BucketAggregationBase impleme
 		}
 		if (this.script != null) {
 			generator.writeKey("script");
-			generator.write(this.script);
+			this.script.serialize(generator, mapper);
 
 		}
 		if (this.shardSize != null) {
@@ -165,7 +165,7 @@ public class DiversifiedSamplerAggregation extends BucketAggregationBase impleme
 		private Integer maxDocsPerValue;
 
 		@Nullable
-		private JsonValue /* _types.Script */ script;
+		private Script script;
 
 		@Nullable
 		private Integer shardSize;
@@ -192,9 +192,16 @@ public class DiversifiedSamplerAggregation extends BucketAggregationBase impleme
 		/**
 		 * API name: {@code script}
 		 */
-		public final Builder script(@Nullable JsonValue /* _types.Script */ value) {
+		public final Builder script(@Nullable Script value) {
 			this.script = value;
 			return this;
+		}
+
+		/**
+		 * API name: {@code script}
+		 */
+		public final Builder script(Function<Script.Builder, ObjectBuilder<Script>> fn) {
+			return this.script(fn.apply(new Script.Builder()).build());
 		}
 
 		/**
@@ -244,7 +251,7 @@ public class DiversifiedSamplerAggregation extends BucketAggregationBase impleme
 		BucketAggregationBase.setupBucketAggregationBaseDeserializer(op);
 		op.add(Builder::executionHint, SamplerAggregationExecutionHint._DESERIALIZER, "execution_hint");
 		op.add(Builder::maxDocsPerValue, JsonpDeserializer.integerDeserializer(), "max_docs_per_value");
-		op.add(Builder::script, JsonpDeserializer.jsonValueDeserializer(), "script");
+		op.add(Builder::script, Script._DESERIALIZER, "script");
 		op.add(Builder::shardSize, JsonpDeserializer.integerDeserializer(), "shard_size");
 		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
 

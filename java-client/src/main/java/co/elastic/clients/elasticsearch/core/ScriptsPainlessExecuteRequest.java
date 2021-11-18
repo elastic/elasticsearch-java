@@ -212,7 +212,7 @@ public class ScriptsPainlessExecuteRequest extends RequestBase implements JsonpS
 	/**
 	 * Endpoint "{@code scripts_painless_execute}".
 	 */
-	private static final SimpleEndpoint<ScriptsPainlessExecuteRequest, Void> ENDPOINT = new SimpleEndpoint<>(
+	public static final SimpleEndpoint<ScriptsPainlessExecuteRequest, ?> _ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";
@@ -229,14 +229,14 @@ public class ScriptsPainlessExecuteRequest extends RequestBase implements JsonpS
 			request -> {
 				return Collections.emptyMap();
 
-			}, SimpleEndpoint.emptyMap(), true, null);
+			}, SimpleEndpoint.emptyMap(), true, ScriptsPainlessExecuteResponse._DESERIALIZER);
 
 	/**
 	 * Create an "{@code scripts_painless_execute}" endpoint.
 	 */
 	public static <TResult> Endpoint<ScriptsPainlessExecuteRequest, ScriptsPainlessExecuteResponse<TResult>, ErrorResponse> createScriptsPainlessExecuteEndpoint(
 			JsonpDeserializer<TResult> tResultDeserializer) {
-		return ENDPOINT.withResponseDeserializer(
+		return _ENDPOINT.withResponseDeserializer(
 				ScriptsPainlessExecuteResponse.createScriptsPainlessExecuteResponseDeserializer(tResultDeserializer));
 	}
 }

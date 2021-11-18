@@ -41,6 +41,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.DataframeAnalysisFeatureProcessor
+// union type: Container[]
 @JsonpDeserializable
 public class DataframeAnalysisFeatureProcessor implements TaggedUnion<Object>, JsonpSerializable {
 
@@ -49,8 +50,6 @@ public class DataframeAnalysisFeatureProcessor implements TaggedUnion<Object>, J
 	public static final String N_GRAM_ENCODING = "n_gram_encoding";
 	public static final String ONE_HOT_ENCODING = "one_hot_encoding";
 	public static final String TARGET_MEAN_ENCODING = "target_mean_encoding";
-
-	// Tagged union implementation
 
 	private final String _type;
 	private final Object _value;
@@ -141,6 +140,7 @@ public class DataframeAnalysisFeatureProcessor implements TaggedUnion<Object>, J
 	@Override
 	@SuppressWarnings("unchecked")
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+
 		generator.writeStartObject();
 
 		generator.writeKey(_type);
@@ -149,6 +149,7 @@ public class DataframeAnalysisFeatureProcessor implements TaggedUnion<Object>, J
 		}
 
 		generator.writeEnd();
+
 	}
 
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DataframeAnalysisFeatureProcessor> {

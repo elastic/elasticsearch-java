@@ -37,7 +37,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.analysis.UaxEmailUrlTokenizer
 @JsonpDeserializable
-public class UaxEmailUrlTokenizer extends TokenizerBase implements TokenizerVariant {
+public class UaxEmailUrlTokenizer extends TokenizerBase implements TokenizerDefinitionVariant {
 	@Nullable
 	private final Integer maxTokenLength;
 
@@ -55,7 +55,7 @@ public class UaxEmailUrlTokenizer extends TokenizerBase implements TokenizerVari
 	}
 
 	/**
-	 * {@link Tokenizer} variant type
+	 * {@link TokenizerDefinition} variant type
 	 */
 	@Override
 	public String _variantType() {

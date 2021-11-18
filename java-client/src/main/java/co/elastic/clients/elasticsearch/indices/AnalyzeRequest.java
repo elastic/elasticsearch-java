@@ -479,7 +479,7 @@ public class AnalyzeRequest extends RequestBase implements JsonpSerializable {
 	/**
 	 * Endpoint "{@code indices.analyze}".
 	 */
-	public static final Endpoint<AnalyzeRequest, AnalyzeResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<AnalyzeRequest, AnalyzeResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";

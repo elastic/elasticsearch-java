@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.indices;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -48,7 +49,7 @@ import javax.annotation.Nullable;
 
 public class ExistsIndexTemplateRequest extends RequestBase {
 	@Nullable
-	private final String masterTimeout;
+	private final Time masterTimeout;
 
 	private final String name;
 
@@ -72,7 +73,7 @@ public class ExistsIndexTemplateRequest extends RequestBase {
 	 * API name: {@code master_timeout}
 	 */
 	@Nullable
-	public final String masterTimeout() {
+	public final Time masterTimeout() {
 		return this.masterTimeout;
 	}
 
@@ -93,7 +94,7 @@ public class ExistsIndexTemplateRequest extends RequestBase {
 	 */
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ExistsIndexTemplateRequest> {
 		@Nullable
-		private String masterTimeout;
+		private Time masterTimeout;
 
 		private String name;
 
@@ -103,9 +104,19 @@ public class ExistsIndexTemplateRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
-		public final Builder masterTimeout(@Nullable String value) {
+		public final Builder masterTimeout(@Nullable Time value) {
 			this.masterTimeout = value;
 			return this;
+		}
+
+		/**
+		 * Period to wait for a connection to the master node. If no response is
+		 * received before the timeout expires, the request fails and returns an error.
+		 * <p>
+		 * API name: {@code master_timeout}
+		 */
+		public final Builder masterTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.masterTimeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -137,7 +148,7 @@ public class ExistsIndexTemplateRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code indices.exists_index_template}".
 	 */
-	public static final Endpoint<ExistsIndexTemplateRequest, BooleanResponse, ErrorResponse> ENDPOINT = new BooleanEndpoint<>(
+	public static final Endpoint<ExistsIndexTemplateRequest, BooleanResponse, ErrorResponse> _ENDPOINT = new BooleanEndpoint<>(
 			// Request method
 			request -> {
 				return "HEAD";
@@ -167,7 +178,7 @@ public class ExistsIndexTemplateRequest extends RequestBase {
 			request -> {
 				Map<String, String> params = new HashMap<>();
 				if (request.masterTimeout != null) {
-					params.put("master_timeout", request.masterTimeout);
+					params.put("master_timeout", request.masterTimeout._toJsonString());
 				}
 				return params;
 

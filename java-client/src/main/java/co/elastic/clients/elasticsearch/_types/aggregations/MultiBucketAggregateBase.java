@@ -27,14 +27,11 @@ import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializer;
-import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.util.Arrays;
-import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -42,7 +39,7 @@ import javax.annotation.Nullable;
 // typedef: _types.aggregations.MultiBucketAggregateBase
 
 public abstract class MultiBucketAggregateBase<TBucket> extends AggregateBase {
-	private final List<TBucket> buckets;
+	private final Buckets<TBucket> buckets;
 
 	@Nullable
 	private final JsonpSerializer<TBucket> tBucketSerializer;
@@ -52,7 +49,7 @@ public abstract class MultiBucketAggregateBase<TBucket> extends AggregateBase {
 	protected MultiBucketAggregateBase(AbstractBuilder<TBucket, ?> builder) {
 		super(builder);
 
-		this.buckets = ModelTypeHelper.unmodifiableRequired(builder.buckets, this, "buckets");
+		this.buckets = ModelTypeHelper.requireNonNull(builder.buckets, this, "buckets");
 		this.tBucketSerializer = builder.tBucketSerializer;
 
 	}
@@ -60,30 +57,22 @@ public abstract class MultiBucketAggregateBase<TBucket> extends AggregateBase {
 	/**
 	 * Required - API name: {@code buckets}
 	 */
-	public final List<TBucket> buckets() {
+	public final Buckets<TBucket> buckets() {
 		return this.buckets;
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
-		if (ModelTypeHelper.isDefined(this.buckets)) {
-			generator.writeKey("buckets");
-			generator.writeStartArray();
-			for (TBucket item0 : this.buckets) {
-				JsonpUtils.serialize(item0, generator, tBucketSerializer, mapper);
-
-			}
-			generator.writeEnd();
-
-		}
+		generator.writeKey("buckets");
+		this.buckets.serialize(generator, mapper);
 
 	}
 
 	protected abstract static class AbstractBuilder<TBucket, BuilderT extends AbstractBuilder<TBucket, BuilderT>>
 			extends
 				AggregateBase.AbstractBuilder<BuilderT> {
-		private List<TBucket> buckets;
+		private Buckets<TBucket> buckets;
 
 		@Nullable
 		private JsonpSerializer<TBucket> tBucketSerializer;
@@ -91,7 +80,7 @@ public abstract class MultiBucketAggregateBase<TBucket> extends AggregateBase {
 		/**
 		 * Required - API name: {@code buckets}
 		 */
-		public final BuilderT buckets(List<TBucket> value) {
+		public final BuilderT buckets(Buckets<TBucket> value) {
 			this.buckets = value;
 			return self();
 		}
@@ -99,9 +88,8 @@ public abstract class MultiBucketAggregateBase<TBucket> extends AggregateBase {
 		/**
 		 * Required - API name: {@code buckets}
 		 */
-		public final BuilderT buckets(TBucket... value) {
-			this.buckets = Arrays.asList(value);
-			return self();
+		public final BuilderT buckets(Function<Buckets.Builder<TBucket>, ObjectBuilder<Buckets<TBucket>>> fn) {
+			return this.buckets(fn.apply(new Buckets.Builder<TBucket>()).build());
 		}
 
 		/**
@@ -119,7 +107,7 @@ public abstract class MultiBucketAggregateBase<TBucket> extends AggregateBase {
 	protected static <TBucket, BuilderT extends AbstractBuilder<TBucket, BuilderT>> void setupMultiBucketAggregateBaseDeserializer(
 			ObjectDeserializer<BuilderT> op, JsonpDeserializer<TBucket> tBucketDeserializer) {
 		AggregateBase.setupAggregateBaseDeserializer(op);
-		op.add(AbstractBuilder::buckets, JsonpDeserializer.arrayDeserializer(tBucketDeserializer), "buckets");
+		op.add(AbstractBuilder::buckets, Buckets.createBucketsDeserializer(tBucketDeserializer), "buckets");
 
 	}
 

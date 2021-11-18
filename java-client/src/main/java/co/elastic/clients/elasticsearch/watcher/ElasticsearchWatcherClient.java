@@ -25,6 +25,8 @@ package co.elastic.clients.elasticsearch.watcher;
 
 import co.elastic.clients.ApiClient;
 import co.elastic.clients.elasticsearch._types.ElasticsearchException;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
+import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.Transport;
 import co.elastic.clients.transport.TransportOptions;
 import co.elastic.clients.util.ObjectBuilder;
@@ -62,7 +64,10 @@ public class ElasticsearchWatcherClient extends ApiClient<ElasticsearchWatcherCl
 	 */
 
 	public AckWatchResponse ackWatch(AckWatchRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, AckWatchRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<AckWatchRequest, AckWatchResponse, ErrorResponse> endpoint = (Endpoint<AckWatchRequest, AckWatchResponse, ErrorResponse>) AckWatchRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -94,7 +99,10 @@ public class ElasticsearchWatcherClient extends ApiClient<ElasticsearchWatcherCl
 
 	public ActivateWatchResponse activateWatch(ActivateWatchRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, ActivateWatchRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<ActivateWatchRequest, ActivateWatchResponse, ErrorResponse> endpoint = (Endpoint<ActivateWatchRequest, ActivateWatchResponse, ErrorResponse>) ActivateWatchRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -126,7 +134,10 @@ public class ElasticsearchWatcherClient extends ApiClient<ElasticsearchWatcherCl
 
 	public DeactivateWatchResponse deactivateWatch(DeactivateWatchRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, DeactivateWatchRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<DeactivateWatchRequest, DeactivateWatchResponse, ErrorResponse> endpoint = (Endpoint<DeactivateWatchRequest, DeactivateWatchResponse, ErrorResponse>) DeactivateWatchRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -157,7 +168,10 @@ public class ElasticsearchWatcherClient extends ApiClient<ElasticsearchWatcherCl
 	 */
 
 	public DeleteWatchResponse deleteWatch(DeleteWatchRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, DeleteWatchRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<DeleteWatchRequest, DeleteWatchResponse, ErrorResponse> endpoint = (Endpoint<DeleteWatchRequest, DeleteWatchResponse, ErrorResponse>) DeleteWatchRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -188,7 +202,10 @@ public class ElasticsearchWatcherClient extends ApiClient<ElasticsearchWatcherCl
 	 */
 
 	public ExecuteWatchResponse executeWatch(ExecuteWatchRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, ExecuteWatchRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<ExecuteWatchRequest, ExecuteWatchResponse, ErrorResponse> endpoint = (Endpoint<ExecuteWatchRequest, ExecuteWatchResponse, ErrorResponse>) ExecuteWatchRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -217,7 +234,7 @@ public class ElasticsearchWatcherClient extends ApiClient<ElasticsearchWatcherCl
 	 */
 
 	public ExecuteWatchResponse executeWatch() throws IOException, ElasticsearchException {
-		return this.transport.performRequest(new ExecuteWatchRequest.Builder().build(), ExecuteWatchRequest.ENDPOINT,
+		return this.transport.performRequest(new ExecuteWatchRequest.Builder().build(), ExecuteWatchRequest._ENDPOINT,
 				this.transportOptions);
 	}
 
@@ -232,7 +249,10 @@ public class ElasticsearchWatcherClient extends ApiClient<ElasticsearchWatcherCl
 	 */
 
 	public GetWatchResponse getWatch(GetWatchRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, GetWatchRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<GetWatchRequest, GetWatchResponse, ErrorResponse> endpoint = (Endpoint<GetWatchRequest, GetWatchResponse, ErrorResponse>) GetWatchRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -262,7 +282,10 @@ public class ElasticsearchWatcherClient extends ApiClient<ElasticsearchWatcherCl
 	 */
 
 	public PutWatchResponse putWatch(PutWatchRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, PutWatchRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<PutWatchRequest, PutWatchResponse, ErrorResponse> endpoint = (Endpoint<PutWatchRequest, PutWatchResponse, ErrorResponse>) PutWatchRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -292,7 +315,10 @@ public class ElasticsearchWatcherClient extends ApiClient<ElasticsearchWatcherCl
 	 */
 
 	public QueryWatchesResponse queryWatches(QueryWatchesRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, QueryWatchesRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<QueryWatchesRequest, QueryWatchesResponse, ErrorResponse> endpoint = (Endpoint<QueryWatchesRequest, QueryWatchesResponse, ErrorResponse>) QueryWatchesRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -321,7 +347,7 @@ public class ElasticsearchWatcherClient extends ApiClient<ElasticsearchWatcherCl
 	 */
 
 	public QueryWatchesResponse queryWatches() throws IOException, ElasticsearchException {
-		return this.transport.performRequest(new QueryWatchesRequest.Builder().build(), QueryWatchesRequest.ENDPOINT,
+		return this.transport.performRequest(new QueryWatchesRequest.Builder().build(), QueryWatchesRequest._ENDPOINT,
 				this.transportOptions);
 	}
 
@@ -335,7 +361,7 @@ public class ElasticsearchWatcherClient extends ApiClient<ElasticsearchWatcherCl
 	 *      on elastic.co</a>
 	 */
 	public StartWatcherResponse start() throws IOException, ElasticsearchException {
-		return this.transport.performRequest(StartWatcherRequest._INSTANCE, StartWatcherRequest.ENDPOINT,
+		return this.transport.performRequest(StartWatcherRequest._INSTANCE, StartWatcherRequest._ENDPOINT,
 				this.transportOptions);
 	}
 
@@ -350,7 +376,10 @@ public class ElasticsearchWatcherClient extends ApiClient<ElasticsearchWatcherCl
 	 */
 
 	public WatcherStatsResponse stats(WatcherStatsRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, WatcherStatsRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<WatcherStatsRequest, WatcherStatsResponse, ErrorResponse> endpoint = (Endpoint<WatcherStatsRequest, WatcherStatsResponse, ErrorResponse>) WatcherStatsRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -379,7 +408,7 @@ public class ElasticsearchWatcherClient extends ApiClient<ElasticsearchWatcherCl
 	 */
 
 	public WatcherStatsResponse stats() throws IOException, ElasticsearchException {
-		return this.transport.performRequest(new WatcherStatsRequest.Builder().build(), WatcherStatsRequest.ENDPOINT,
+		return this.transport.performRequest(new WatcherStatsRequest.Builder().build(), WatcherStatsRequest._ENDPOINT,
 				this.transportOptions);
 	}
 
@@ -393,7 +422,7 @@ public class ElasticsearchWatcherClient extends ApiClient<ElasticsearchWatcherCl
 	 *      on elastic.co</a>
 	 */
 	public StopWatcherResponse stop() throws IOException, ElasticsearchException {
-		return this.transport.performRequest(StopWatcherRequest._INSTANCE, StopWatcherRequest.ENDPOINT,
+		return this.transport.performRequest(StopWatcherRequest._INSTANCE, StopWatcherRequest._ENDPOINT,
 				this.transportOptions);
 	}
 

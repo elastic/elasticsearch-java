@@ -23,6 +23,7 @@
 
 package co.elastic.clients.elasticsearch.indices.rollover;
 
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -42,7 +43,7 @@ import javax.annotation.Nullable;
 @JsonpDeserializable
 public class RolloverConditions implements JsonpSerializable {
 	@Nullable
-	private final String maxAge;
+	private final Time maxAge;
 
 	@Nullable
 	private final Long maxDocs;
@@ -72,7 +73,7 @@ public class RolloverConditions implements JsonpSerializable {
 	 * API name: {@code max_age}
 	 */
 	@Nullable
-	public final String maxAge() {
+	public final Time maxAge() {
 		return this.maxAge;
 	}
 
@@ -113,7 +114,7 @@ public class RolloverConditions implements JsonpSerializable {
 
 		if (this.maxAge != null) {
 			generator.writeKey("max_age");
-			generator.write(this.maxAge);
+			this.maxAge.serialize(generator, mapper);
 
 		}
 		if (this.maxDocs != null) {
@@ -141,7 +142,7 @@ public class RolloverConditions implements JsonpSerializable {
 	 */
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RolloverConditions> {
 		@Nullable
-		private String maxAge;
+		private Time maxAge;
 
 		@Nullable
 		private Long maxDocs;
@@ -155,9 +156,16 @@ public class RolloverConditions implements JsonpSerializable {
 		/**
 		 * API name: {@code max_age}
 		 */
-		public final Builder maxAge(@Nullable String value) {
+		public final Builder maxAge(@Nullable Time value) {
 			this.maxAge = value;
 			return this;
+		}
+
+		/**
+		 * API name: {@code max_age}
+		 */
+		public final Builder maxAge(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.maxAge(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -207,7 +215,7 @@ public class RolloverConditions implements JsonpSerializable {
 
 	protected static void setupRolloverConditionsDeserializer(ObjectDeserializer<RolloverConditions.Builder> op) {
 
-		op.add(Builder::maxAge, JsonpDeserializer.stringDeserializer(), "max_age");
+		op.add(Builder::maxAge, Time._DESERIALIZER, "max_age");
 		op.add(Builder::maxDocs, JsonpDeserializer.longDeserializer(), "max_docs");
 		op.add(Builder::maxSize, JsonpDeserializer.stringDeserializer(), "max_size");
 		op.add(Builder::maxPrimaryShardSize, JsonpDeserializer.stringDeserializer(), "max_primary_shard_size");

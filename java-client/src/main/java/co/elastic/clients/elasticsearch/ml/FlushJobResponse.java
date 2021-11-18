@@ -68,6 +68,9 @@ public class FlushJobResponse implements JsonpSerializable {
 	}
 
 	/**
+	 * Provides the timestamp (in milliseconds since the epoch) of the end of the
+	 * last bucket that was processed.
+	 * <p>
 	 * API name: {@code last_finalized_bucket_end}
 	 */
 	@Nullable
@@ -117,6 +120,9 @@ public class FlushJobResponse implements JsonpSerializable {
 		}
 
 		/**
+		 * Provides the timestamp (in milliseconds since the epoch) of the end of the
+		 * last bucket that was processed.
+		 * <p>
 		 * API name: {@code last_finalized_bucket_end}
 		 */
 		public final Builder lastFinalizedBucketEnd(@Nullable Integer value) {

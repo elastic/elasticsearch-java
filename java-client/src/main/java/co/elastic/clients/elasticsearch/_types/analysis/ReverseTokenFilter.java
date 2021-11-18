@@ -35,7 +35,7 @@ import java.util.function.Function;
 
 // typedef: _types.analysis.ReverseTokenFilter
 @JsonpDeserializable
-public class ReverseTokenFilter extends TokenFilterBase implements TokenFilterVariant {
+public class ReverseTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
 	// ---------------------------------------------------------------------------------------------
 
 	private ReverseTokenFilter(Builder builder) {
@@ -48,7 +48,7 @@ public class ReverseTokenFilter extends TokenFilterBase implements TokenFilterVa
 	}
 
 	/**
-	 * {@link TokenFilter} variant type
+	 * {@link TokenFilterDefinition} variant type
 	 */
 	@Override
 	public String _variantType() {

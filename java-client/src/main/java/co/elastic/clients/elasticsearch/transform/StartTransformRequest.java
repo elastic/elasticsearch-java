@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.transform;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -46,7 +47,7 @@ import javax.annotation.Nullable;
 
 public class StartTransformRequest extends RequestBase {
 	@Nullable
-	private final String timeout;
+	private final Time timeout;
 
 	private final String transformId;
 
@@ -69,7 +70,7 @@ public class StartTransformRequest extends RequestBase {
 	 * API name: {@code timeout}
 	 */
 	@Nullable
-	public final String timeout() {
+	public final Time timeout() {
 		return this.timeout;
 	}
 
@@ -89,7 +90,7 @@ public class StartTransformRequest extends RequestBase {
 	 */
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<StartTransformRequest> {
 		@Nullable
-		private String timeout;
+		private Time timeout;
 
 		private String transformId;
 
@@ -98,9 +99,18 @@ public class StartTransformRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code timeout}
 		 */
-		public final Builder timeout(@Nullable String value) {
+		public final Builder timeout(@Nullable Time value) {
 			this.timeout = value;
 			return this;
+		}
+
+		/**
+		 * Controls the time to wait for the transform to start
+		 * <p>
+		 * API name: {@code timeout}
+		 */
+		public final Builder timeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.timeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -131,7 +141,7 @@ public class StartTransformRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code transform.start_transform}".
 	 */
-	public static final Endpoint<StartTransformRequest, StartTransformResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<StartTransformRequest, StartTransformResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";
@@ -162,7 +172,7 @@ public class StartTransformRequest extends RequestBase {
 			request -> {
 				Map<String, String> params = new HashMap<>();
 				if (request.timeout != null) {
-					params.put("timeout", request.timeout);
+					params.put("timeout", request.timeout._toJsonString());
 				}
 				return params;
 

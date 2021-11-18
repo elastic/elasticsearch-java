@@ -220,7 +220,7 @@ public class MlTrainedModelsRequest extends CatRequestBase {
 	/**
 	 * Endpoint "{@code cat.ml_trained_models}".
 	 */
-	public static final Endpoint<MlTrainedModelsRequest, MlTrainedModelsResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<MlTrainedModelsRequest, MlTrainedModelsResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "GET";

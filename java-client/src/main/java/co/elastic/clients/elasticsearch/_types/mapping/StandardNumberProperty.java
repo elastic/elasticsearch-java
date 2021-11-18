@@ -23,13 +23,13 @@
 
 package co.elastic.clients.elasticsearch._types.mapping;
 
+import co.elastic.clients.elasticsearch._types.Script;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.Objects;
@@ -43,7 +43,7 @@ public abstract class StandardNumberProperty extends NumberPropertyBase {
 	private final Boolean coerce;
 
 	@Nullable
-	private final JsonValue /* _types.Script */ script;
+	private final Script script;
 
 	@Nullable
 	private final OnScriptError onScriptError;
@@ -71,7 +71,7 @@ public abstract class StandardNumberProperty extends NumberPropertyBase {
 	 * API name: {@code script}
 	 */
 	@Nullable
-	public final JsonValue /* _types.Script */ script() {
+	public final Script script() {
 		return this.script;
 	}
 
@@ -93,7 +93,7 @@ public abstract class StandardNumberProperty extends NumberPropertyBase {
 		}
 		if (this.script != null) {
 			generator.writeKey("script");
-			generator.write(this.script);
+			this.script.serialize(generator, mapper);
 
 		}
 		if (this.onScriptError != null) {
@@ -110,7 +110,7 @@ public abstract class StandardNumberProperty extends NumberPropertyBase {
 		private Boolean coerce;
 
 		@Nullable
-		private JsonValue /* _types.Script */ script;
+		private Script script;
 
 		@Nullable
 		private OnScriptError onScriptError;
@@ -126,9 +126,16 @@ public abstract class StandardNumberProperty extends NumberPropertyBase {
 		/**
 		 * API name: {@code script}
 		 */
-		public final BuilderT script(@Nullable JsonValue /* _types.Script */ value) {
+		public final BuilderT script(@Nullable Script value) {
 			this.script = value;
 			return self();
+		}
+
+		/**
+		 * API name: {@code script}
+		 */
+		public final BuilderT script(Function<Script.Builder, ObjectBuilder<Script>> fn) {
+			return this.script(fn.apply(new Script.Builder()).build());
 		}
 
 		/**
@@ -146,7 +153,7 @@ public abstract class StandardNumberProperty extends NumberPropertyBase {
 			ObjectDeserializer<BuilderT> op) {
 		NumberPropertyBase.setupNumberPropertyBaseDeserializer(op);
 		op.add(AbstractBuilder::coerce, JsonpDeserializer.booleanDeserializer(), "coerce");
-		op.add(AbstractBuilder::script, JsonpDeserializer.jsonValueDeserializer(), "script");
+		op.add(AbstractBuilder::script, Script._DESERIALIZER, "script");
 		op.add(AbstractBuilder::onScriptError, OnScriptError._DESERIALIZER, "on_script_error");
 
 	}

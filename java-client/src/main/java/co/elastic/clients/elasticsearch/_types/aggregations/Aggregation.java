@@ -47,6 +47,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.AggregationContainer
+// union type: Container[]
 @JsonpDeserializable
 public class Aggregation implements TaggedUnion<Object>, JsonpSerializable {
 
@@ -119,8 +120,6 @@ public class Aggregation implements TaggedUnion<Object>, JsonpSerializable {
 	public static final String VALUE_COUNT = "value_count";
 	public static final String WEIGHTED_AVG = "weighted_avg";
 	public static final String VARIABLE_WIDTH_HISTOGRAM = "variable_width_histogram";
-
-	// Tagged union implementation
 
 	private final String _type;
 	private final Object _value;
@@ -886,6 +885,7 @@ public class Aggregation implements TaggedUnion<Object>, JsonpSerializable {
 	@Override
 	@SuppressWarnings("unchecked")
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+
 		generator.writeStartObject();
 
 		if (ModelTypeHelper.isDefined(this.aggregations)) {
@@ -917,6 +917,7 @@ public class Aggregation implements TaggedUnion<Object>, JsonpSerializable {
 		}
 
 		generator.writeEnd();
+
 	}
 
 	public static class Builder extends ObjectBuilderBase {

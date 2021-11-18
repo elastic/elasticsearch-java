@@ -41,12 +41,11 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.TriggerEventContainer
+// union type: Container[]
 @JsonpDeserializable
 public class TriggerEvent implements TaggedUnion<Object>, JsonpSerializable {
 
 	public static final String SCHEDULE = "schedule";
-
-	// Tagged union implementation
 
 	private final String _type;
 	private final Object _value;
@@ -92,6 +91,7 @@ public class TriggerEvent implements TaggedUnion<Object>, JsonpSerializable {
 	@Override
 	@SuppressWarnings("unchecked")
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+
 		generator.writeStartObject();
 
 		generator.writeKey(_type);
@@ -100,6 +100,7 @@ public class TriggerEvent implements TaggedUnion<Object>, JsonpSerializable {
 		}
 
 		generator.writeEnd();
+
 	}
 
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TriggerEvent> {

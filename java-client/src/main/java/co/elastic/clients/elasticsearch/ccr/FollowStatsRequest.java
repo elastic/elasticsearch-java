@@ -119,7 +119,7 @@ public class FollowStatsRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code ccr.follow_stats}".
 	 */
-	public static final Endpoint<FollowStatsRequest, FollowStatsResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<FollowStatsRequest, FollowStatsResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "GET";

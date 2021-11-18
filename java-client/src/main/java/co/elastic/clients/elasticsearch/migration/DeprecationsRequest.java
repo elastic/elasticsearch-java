@@ -107,7 +107,7 @@ public class DeprecationsRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code migration.deprecations}".
 	 */
-	public static final Endpoint<DeprecationsRequest, DeprecationsResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<DeprecationsRequest, DeprecationsResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "GET";

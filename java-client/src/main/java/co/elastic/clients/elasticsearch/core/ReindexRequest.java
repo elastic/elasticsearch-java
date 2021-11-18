@@ -26,24 +26,24 @@ package co.elastic.clients.elasticsearch.core;
 import co.elastic.clients.elasticsearch._types.Conflicts;
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.elasticsearch._types.Script;
+import co.elastic.clients.elasticsearch._types.Time;
+import co.elastic.clients.elasticsearch._types.WaitForActiveShards;
 import co.elastic.clients.elasticsearch.core.reindex.Destination;
 import co.elastic.clients.elasticsearch.core.reindex.Source;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
-import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.SimpleEndpoint;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Long;
-import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -72,10 +72,10 @@ public class ReindexRequest extends RequestBase implements JsonpSerializable {
 	private final Boolean requireAlias;
 
 	@Nullable
-	private final JsonValue /* _types.Script */ script;
+	private final Script script;
 
 	@Nullable
-	private final String scroll;
+	private final Time scroll;
 
 	@Nullable
 	private final Long size;
@@ -87,10 +87,10 @@ public class ReindexRequest extends RequestBase implements JsonpSerializable {
 	private final Source source;
 
 	@Nullable
-	private final String timeout;
+	private final Time timeout;
 
 	@Nullable
-	private final JsonValue /* _types.WaitForActiveShards */ waitForActiveShards;
+	private final WaitForActiveShards waitForActiveShards;
 
 	@Nullable
 	private final Boolean waitForCompletion;
@@ -177,7 +177,7 @@ public class ReindexRequest extends RequestBase implements JsonpSerializable {
 	 * API name: {@code script}
 	 */
 	@Nullable
-	public final JsonValue /* _types.Script */ script() {
+	public final Script script() {
 		return this.script;
 	}
 
@@ -187,7 +187,7 @@ public class ReindexRequest extends RequestBase implements JsonpSerializable {
 	 * API name: {@code scroll}
 	 */
 	@Nullable
-	public final String scroll() {
+	public final Time scroll() {
 		return this.scroll;
 	}
 
@@ -225,7 +225,7 @@ public class ReindexRequest extends RequestBase implements JsonpSerializable {
 	 * API name: {@code timeout}
 	 */
 	@Nullable
-	public final String timeout() {
+	public final Time timeout() {
 		return this.timeout;
 	}
 
@@ -239,7 +239,7 @@ public class ReindexRequest extends RequestBase implements JsonpSerializable {
 	 * API name: {@code wait_for_active_shards}
 	 */
 	@Nullable
-	public final JsonValue /* _types.WaitForActiveShards */ waitForActiveShards() {
+	public final WaitForActiveShards waitForActiveShards() {
 		return this.waitForActiveShards;
 	}
 
@@ -280,7 +280,7 @@ public class ReindexRequest extends RequestBase implements JsonpSerializable {
 		}
 		if (this.script != null) {
 			generator.writeKey("script");
-			generator.write(this.script);
+			this.script.serialize(generator, mapper);
 
 		}
 		if (this.size != null) {
@@ -321,10 +321,10 @@ public class ReindexRequest extends RequestBase implements JsonpSerializable {
 		private Boolean requireAlias;
 
 		@Nullable
-		private JsonValue /* _types.Script */ script;
+		private Script script;
 
 		@Nullable
-		private String scroll;
+		private Time scroll;
 
 		@Nullable
 		private Long size;
@@ -336,10 +336,10 @@ public class ReindexRequest extends RequestBase implements JsonpSerializable {
 		private Source source;
 
 		@Nullable
-		private String timeout;
+		private Time timeout;
 
 		@Nullable
-		private JsonValue /* _types.WaitForActiveShards */ waitForActiveShards;
+		private WaitForActiveShards waitForActiveShards;
 
 		@Nullable
 		private Boolean waitForCompletion;
@@ -407,8 +407,25 @@ public class ReindexRequest extends RequestBase implements JsonpSerializable {
 		/**
 		 * API name: {@code script}
 		 */
-		public final Builder script(@Nullable JsonValue /* _types.Script */ value) {
+		public final Builder script(@Nullable Script value) {
 			this.script = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code script}
+		 */
+		public final Builder script(Function<Script.Builder, ObjectBuilder<Script>> fn) {
+			return this.script(fn.apply(new Script.Builder()).build());
+		}
+
+		/**
+		 * Control how long to keep the search context alive
+		 * <p>
+		 * API name: {@code scroll}
+		 */
+		public final Builder scroll(@Nullable Time value) {
+			this.scroll = value;
 			return this;
 		}
 
@@ -417,9 +434,8 @@ public class ReindexRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code scroll}
 		 */
-		public final Builder scroll(@Nullable String value) {
-			this.scroll = value;
-			return this;
+		public final Builder scroll(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.scroll(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -462,8 +478,32 @@ public class ReindexRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code timeout}
 		 */
-		public final Builder timeout(@Nullable String value) {
+		public final Builder timeout(@Nullable Time value) {
 			this.timeout = value;
+			return this;
+		}
+
+		/**
+		 * Time each individual bulk request should wait for shards that are
+		 * unavailable.
+		 * <p>
+		 * API name: {@code timeout}
+		 */
+		public final Builder timeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.timeout(fn.apply(new Time.Builder()).build());
+		}
+
+		/**
+		 * Sets the number of shard copies that must be active before proceeding with
+		 * the reindex operation. Defaults to 1, meaning the primary shard only. Set to
+		 * <code>all</code> for all shard copies, otherwise set to any non-negative
+		 * value less than or equal to the total number of copies for the shard (number
+		 * of replicas + 1)
+		 * <p>
+		 * API name: {@code wait_for_active_shards}
+		 */
+		public final Builder waitForActiveShards(@Nullable WaitForActiveShards value) {
+			this.waitForActiveShards = value;
 			return this;
 		}
 
@@ -476,9 +516,9 @@ public class ReindexRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code wait_for_active_shards}
 		 */
-		public final Builder waitForActiveShards(@Nullable JsonValue /* _types.WaitForActiveShards */ value) {
-			this.waitForActiveShards = value;
-			return this;
+		public final Builder waitForActiveShards(
+				Function<WaitForActiveShards.Builder, ObjectBuilder<WaitForActiveShards>> fn) {
+			return this.waitForActiveShards(fn.apply(new WaitForActiveShards.Builder()).build());
 		}
 
 		/**
@@ -517,7 +557,7 @@ public class ReindexRequest extends RequestBase implements JsonpSerializable {
 		op.add(Builder::conflicts, Conflicts._DESERIALIZER, "conflicts");
 		op.add(Builder::dest, Destination._DESERIALIZER, "dest");
 		op.add(Builder::maxDocs, JsonpDeserializer.longDeserializer(), "max_docs");
-		op.add(Builder::script, JsonpDeserializer.jsonValueDeserializer(), "script");
+		op.add(Builder::script, Script._DESERIALIZER, "script");
 		op.add(Builder::size, JsonpDeserializer.longDeserializer(), "size");
 		op.add(Builder::source, Source._DESERIALIZER, "source");
 
@@ -528,7 +568,7 @@ public class ReindexRequest extends RequestBase implements JsonpSerializable {
 	/**
 	 * Endpoint "{@code reindex}".
 	 */
-	public static final Endpoint<ReindexRequest, ReindexResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<ReindexRequest, ReindexResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";
@@ -554,19 +594,19 @@ public class ReindexRequest extends RequestBase implements JsonpSerializable {
 					params.put("require_alias", String.valueOf(request.requireAlias));
 				}
 				if (request.scroll != null) {
-					params.put("scroll", request.scroll);
+					params.put("scroll", request.scroll._toJsonString());
 				}
 				if (request.refresh != null) {
 					params.put("refresh", String.valueOf(request.refresh));
 				}
 				if (request.waitForActiveShards != null) {
-					params.put("wait_for_active_shards", JsonpUtils.toString(request.waitForActiveShards));
+					params.put("wait_for_active_shards", request.waitForActiveShards._toJsonString());
 				}
 				if (request.waitForCompletion != null) {
 					params.put("wait_for_completion", String.valueOf(request.waitForCompletion));
 				}
 				if (request.timeout != null) {
-					params.put("timeout", request.timeout);
+					params.put("timeout", request.timeout._toJsonString());
 				}
 				return params;
 

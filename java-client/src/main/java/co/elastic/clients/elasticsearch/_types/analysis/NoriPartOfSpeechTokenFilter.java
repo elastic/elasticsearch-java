@@ -40,7 +40,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.analysis.NoriPartOfSpeechTokenFilter
 @JsonpDeserializable
-public class NoriPartOfSpeechTokenFilter extends TokenFilterBase implements TokenFilterVariant {
+public class NoriPartOfSpeechTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
 	private final List<String> stoptags;
 
 	// ---------------------------------------------------------------------------------------------
@@ -57,7 +57,7 @@ public class NoriPartOfSpeechTokenFilter extends TokenFilterBase implements Toke
 	}
 
 	/**
-	 * {@link TokenFilter} variant type
+	 * {@link TokenFilterDefinition} variant type
 	 */
 	@Override
 	public String _variantType() {

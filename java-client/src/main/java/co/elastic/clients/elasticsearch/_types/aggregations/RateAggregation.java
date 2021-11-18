@@ -38,7 +38,7 @@ import javax.annotation.Nullable;
 @JsonpDeserializable
 public class RateAggregation extends FormatMetricAggregationBase implements AggregationVariant {
 	@Nullable
-	private final DateInterval unit;
+	private final CalendarInterval unit;
 
 	@Nullable
 	private final RateMode mode;
@@ -69,7 +69,7 @@ public class RateAggregation extends FormatMetricAggregationBase implements Aggr
 	 * API name: {@code unit}
 	 */
 	@Nullable
-	public final DateInterval unit() {
+	public final CalendarInterval unit() {
 		return this.unit;
 	}
 
@@ -104,7 +104,7 @@ public class RateAggregation extends FormatMetricAggregationBase implements Aggr
 			implements
 				ObjectBuilder<RateAggregation> {
 		@Nullable
-		private DateInterval unit;
+		private CalendarInterval unit;
 
 		@Nullable
 		private RateMode mode;
@@ -112,7 +112,7 @@ public class RateAggregation extends FormatMetricAggregationBase implements Aggr
 		/**
 		 * API name: {@code unit}
 		 */
-		public final Builder unit(@Nullable DateInterval value) {
+		public final Builder unit(@Nullable CalendarInterval value) {
 			this.unit = value;
 			return this;
 		}
@@ -153,7 +153,7 @@ public class RateAggregation extends FormatMetricAggregationBase implements Aggr
 
 	protected static void setupRateAggregationDeserializer(ObjectDeserializer<RateAggregation.Builder> op) {
 		FormatMetricAggregationBase.setupFormatMetricAggregationBaseDeserializer(op);
-		op.add(Builder::unit, DateInterval._DESERIALIZER, "unit");
+		op.add(Builder::unit, CalendarInterval._DESERIALIZER, "unit");
 		op.add(Builder::mode, RateMode._DESERIALIZER, "mode");
 
 	}

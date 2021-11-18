@@ -42,6 +42,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.Aggregate
+// union type: ExternalTag[]
 
 public class Aggregate implements TaggedUnion<AggregateVariant>, JsonpSerializable {
 
@@ -109,8 +110,6 @@ public class Aggregate implements TaggedUnion<AggregateVariant>, JsonpSerializab
 	public static final String VALUE_COUNT = "value_count";
 	public static final String VARIABLE_WIDTH_HISTOGRAM = "variable_width_histogram";
 	public static final String WEIGHTED_AVG = "weighted_avg";
-
-	// Tagged union implementation
 
 	private final String _type;
 	private final AggregateVariant _value;

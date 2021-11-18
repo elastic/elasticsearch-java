@@ -290,7 +290,7 @@ public class UpdateDataFrameAnalyticsRequest extends RequestBase implements Json
 	/**
 	 * Endpoint "{@code ml.update_data_frame_analytics}".
 	 */
-	public static final Endpoint<UpdateDataFrameAnalyticsRequest, UpdateDataFrameAnalyticsResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<UpdateDataFrameAnalyticsRequest, UpdateDataFrameAnalyticsResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";

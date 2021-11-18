@@ -32,7 +32,6 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Integer;
@@ -63,7 +62,7 @@ public class DataframeAnalyticsSummary implements JsonpSerializable {
 	private final Integer maxNumThreads;
 
 	@Nullable
-	private final JsonValue /* ml._types.DataframeAnalysisAnalyzedFields */ analyzedFields;
+	private final DataframeAnalysisAnalyzedFields analyzedFields;
 
 	@Nullable
 	private final Boolean allowLazyStart;
@@ -152,7 +151,7 @@ public class DataframeAnalyticsSummary implements JsonpSerializable {
 	 * API name: {@code analyzed_fields}
 	 */
 	@Nullable
-	public final JsonValue /* ml._types.DataframeAnalysisAnalyzedFields */ analyzedFields() {
+	public final DataframeAnalysisAnalyzedFields analyzedFields() {
 		return this.analyzedFields;
 	}
 
@@ -220,7 +219,7 @@ public class DataframeAnalyticsSummary implements JsonpSerializable {
 		}
 		if (this.analyzedFields != null) {
 			generator.writeKey("analyzed_fields");
-			generator.write(this.analyzedFields);
+			this.analyzedFields.serialize(generator, mapper);
 
 		}
 		if (this.allowLazyStart != null) {
@@ -265,7 +264,7 @@ public class DataframeAnalyticsSummary implements JsonpSerializable {
 		private Integer maxNumThreads;
 
 		@Nullable
-		private JsonValue /* ml._types.DataframeAnalysisAnalyzedFields */ analyzedFields;
+		private DataframeAnalysisAnalyzedFields analyzedFields;
 
 		@Nullable
 		private Boolean allowLazyStart;
@@ -358,9 +357,17 @@ public class DataframeAnalyticsSummary implements JsonpSerializable {
 		/**
 		 * API name: {@code analyzed_fields}
 		 */
-		public final Builder analyzedFields(@Nullable JsonValue /* ml._types.DataframeAnalysisAnalyzedFields */ value) {
+		public final Builder analyzedFields(@Nullable DataframeAnalysisAnalyzedFields value) {
 			this.analyzedFields = value;
 			return this;
+		}
+
+		/**
+		 * API name: {@code analyzed_fields}
+		 */
+		public final Builder analyzedFields(
+				Function<DataframeAnalysisAnalyzedFields.Builder, ObjectBuilder<DataframeAnalysisAnalyzedFields>> fn) {
+			return this.analyzedFields(fn.apply(new DataframeAnalysisAnalyzedFields.Builder()).build());
 		}
 
 		/**
@@ -418,7 +425,7 @@ public class DataframeAnalyticsSummary implements JsonpSerializable {
 		op.add(Builder::description, JsonpDeserializer.stringDeserializer(), "description");
 		op.add(Builder::modelMemoryLimit, JsonpDeserializer.stringDeserializer(), "model_memory_limit");
 		op.add(Builder::maxNumThreads, JsonpDeserializer.integerDeserializer(), "max_num_threads");
-		op.add(Builder::analyzedFields, JsonpDeserializer.jsonValueDeserializer(), "analyzed_fields");
+		op.add(Builder::analyzedFields, DataframeAnalysisAnalyzedFields._DESERIALIZER, "analyzed_fields");
 		op.add(Builder::allowLazyStart, JsonpDeserializer.booleanDeserializer(), "allow_lazy_start");
 		op.add(Builder::createTime, JsonpDeserializer.longDeserializer(), "create_time");
 		op.add(Builder::version, JsonpDeserializer.stringDeserializer(), "version");

@@ -319,6 +319,7 @@ public class Highlight implements JsonpSerializable {
 		if (this.type != null) {
 			generator.writeKey("type");
 			this.type.serialize(generator, mapper);
+
 		}
 		if (this.boundaryChars != null) {
 			generator.writeKey("boundary_chars");
@@ -509,6 +510,13 @@ public class Highlight implements JsonpSerializable {
 		public final Builder type(@Nullable HighlighterType value) {
 			this.type = value;
 			return this;
+		}
+
+		/**
+		 * API name: {@code type}
+		 */
+		public final Builder type(Function<HighlighterType.Builder, ObjectBuilder<HighlighterType>> fn) {
+			return this.type(fn.apply(new HighlighterType.Builder()).build());
 		}
 
 		/**

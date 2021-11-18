@@ -23,16 +23,18 @@
 
 package co.elastic.clients.elasticsearch.nodes;
 
+import co.elastic.clients.elasticsearch.nodes.reload_secure_settings.NodeReloadResult;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.MapBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
+import java.util.Collections;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
@@ -43,9 +45,7 @@ import javax.annotation.Nullable;
 public class ReloadSecureSettingsResponse extends NodesResponseBase {
 	private final String clusterName;
 
-	private final Map<String, JsonValue /*
-										 * Union(nodes._types.Stats | nodes.reload_secure_settings.NodeReloadException)
-										 */> nodes;
+	private final Map<String, NodeReloadResult> nodes;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -71,9 +71,7 @@ public class ReloadSecureSettingsResponse extends NodesResponseBase {
 	/**
 	 * Required - API name: {@code nodes}
 	 */
-	public final Map<String, JsonValue /*
-										 * Union(nodes._types.Stats | nodes.reload_secure_settings.NodeReloadException)
-										 */> nodes() {
+	public final Map<String, NodeReloadResult> nodes() {
 		return this.nodes;
 	}
 
@@ -86,12 +84,9 @@ public class ReloadSecureSettingsResponse extends NodesResponseBase {
 		if (ModelTypeHelper.isDefined(this.nodes)) {
 			generator.writeKey("nodes");
 			generator.writeStartObject();
-			for (Map.Entry<String, JsonValue /*
-												 * Union(nodes._types.Stats |
-												 * nodes.reload_secure_settings.NodeReloadException)
-												 */> item0 : this.nodes.entrySet()) {
+			for (Map.Entry<String, NodeReloadResult> item0 : this.nodes.entrySet()) {
 				generator.writeKey(item0.getKey());
-				generator.write(item0.getValue());
+				item0.getValue().serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -110,9 +105,7 @@ public class ReloadSecureSettingsResponse extends NodesResponseBase {
 				ObjectBuilder<ReloadSecureSettingsResponse> {
 		private String clusterName;
 
-		private Map<String, JsonValue /*
-										 * Union(nodes._types.Stats | nodes.reload_secure_settings.NodeReloadException)
-										 */> nodes;
+		private Map<String, NodeReloadResult> nodes;
 
 		/**
 		 * Required - API name: {@code cluster_name}
@@ -125,12 +118,21 @@ public class ReloadSecureSettingsResponse extends NodesResponseBase {
 		/**
 		 * Required - API name: {@code nodes}
 		 */
-		public final Builder nodes(
-				Map<String, JsonValue /*
-										 * Union(nodes._types.Stats | nodes.reload_secure_settings.NodeReloadException)
-										 */> value) {
+		public final Builder nodes(Map<String, NodeReloadResult> value) {
 			this.nodes = value;
 			return this;
+		}
+
+		/**
+		 * Set {@link #nodes(Map)} to a singleton map.
+		 */
+		public Builder nodes(String key, Function<NodeReloadResult.Builder, ObjectBuilder<NodeReloadResult>> fn) {
+			return this.nodes(Collections.singletonMap(key, fn.apply(new NodeReloadResult.Builder()).build()));
+		}
+
+		public final Builder nodes(
+				Function<MapBuilder<String, NodeReloadResult, NodeReloadResult.Builder>, ObjectBuilder<Map<String, NodeReloadResult>>> fn) {
+			return nodes(fn.apply(new MapBuilder<>(NodeReloadResult.Builder::new)).build());
 		}
 
 		@Override
@@ -163,8 +165,7 @@ public class ReloadSecureSettingsResponse extends NodesResponseBase {
 			ObjectDeserializer<ReloadSecureSettingsResponse.Builder> op) {
 		NodesResponseBase.setupNodesResponseBaseDeserializer(op);
 		op.add(Builder::clusterName, JsonpDeserializer.stringDeserializer(), "cluster_name");
-		op.add(Builder::nodes, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.jsonValueDeserializer()),
-				"nodes");
+		op.add(Builder::nodes, JsonpDeserializer.stringMapDeserializer(NodeReloadResult._DESERIALIZER), "nodes");
 
 	}
 

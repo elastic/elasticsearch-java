@@ -28,6 +28,7 @@ import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch._types.aggregations.Aggregation;
 import co.elastic.clients.elasticsearch._types.mapping.RuntimeField;
 import co.elastic.clients.elasticsearch._types.query_dsl.Query;
+import co.elastic.clients.elasticsearch.core.search.SortOptions;
 import co.elastic.clients.elasticsearch.core.search_mvt.GridType;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -41,11 +42,11 @@ import co.elastic.clients.util.MapBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -86,7 +87,7 @@ public class SearchMvtRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
 	private final Integer size;
 
-	private final List<JsonValue /* _global.search._types.SortCombinations */> sort;
+	private final List<SortOptions> sort;
 
 	private final int x;
 
@@ -256,7 +257,7 @@ public class SearchMvtRequest extends RequestBase implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code sort}
 	 */
-	public final List<JsonValue /* _global.search._types.SortCombinations */> sort() {
+	public final List<SortOptions> sort() {
 		return this.sort;
 	}
 
@@ -362,8 +363,8 @@ public class SearchMvtRequest extends RequestBase implements JsonpSerializable {
 		if (ModelTypeHelper.isDefined(this.sort)) {
 			generator.writeKey("sort");
 			generator.writeStartArray();
-			for (JsonValue /* _global.search._types.SortCombinations */ item0 : this.sort) {
-				generator.write(item0);
+			for (SortOptions item0 : this.sort) {
+				item0.serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -410,7 +411,7 @@ public class SearchMvtRequest extends RequestBase implements JsonpSerializable {
 		private Integer size;
 
 		@Nullable
-		private List<JsonValue /* _global.search._types.SortCombinations */> sort;
+		private List<SortOptions> sort;
 
 		private Integer x;
 
@@ -615,7 +616,7 @@ public class SearchMvtRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code sort}
 		 */
-		public final Builder sort(@Nullable List<JsonValue /* _global.search._types.SortCombinations */> value) {
+		public final Builder sort(@Nullable List<SortOptions> value) {
 			this.sort = value;
 			return this;
 		}
@@ -627,8 +628,24 @@ public class SearchMvtRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code sort}
 		 */
-		public final Builder sort(JsonValue /* _global.search._types.SortCombinations */... value) {
+		public final Builder sort(SortOptions... value) {
 			this.sort = Arrays.asList(value);
+			return this;
+		}
+
+		/**
+		 * Sorts features in the hits layer. By default, the API calculates a bounding
+		 * box for each feature. It sorts features based on this box’s diagonal length,
+		 * from longest to shortest.
+		 * <p>
+		 * API name: {@code sort}
+		 */
+		@SafeVarargs
+		public final Builder sort(Function<SortOptions.Builder, ObjectBuilder<SortOptions>>... fns) {
+			this.sort = new ArrayList<>(fns.length);
+			for (Function<SortOptions.Builder, ObjectBuilder<SortOptions>> fn : fns) {
+				this.sort.add(fn.apply(new SortOptions.Builder()).build());
+			}
 			return this;
 		}
 
@@ -695,7 +712,7 @@ public class SearchMvtRequest extends RequestBase implements JsonpSerializable {
 		op.add(Builder::runtimeMappings, JsonpDeserializer.stringMapDeserializer(RuntimeField._DESERIALIZER),
 				"runtime_mappings");
 		op.add(Builder::size, JsonpDeserializer.integerDeserializer(), "size");
-		op.add(Builder::sort, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.jsonValueDeserializer()), "sort");
+		op.add(Builder::sort, JsonpDeserializer.arrayDeserializer(SortOptions._DESERIALIZER), "sort");
 
 	}
 
@@ -704,7 +721,7 @@ public class SearchMvtRequest extends RequestBase implements JsonpSerializable {
 	/**
 	 * Endpoint "{@code search_mvt}".
 	 */
-	public static final Endpoint<SearchMvtRequest, SearchMvtResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<SearchMvtRequest, SearchMvtResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";

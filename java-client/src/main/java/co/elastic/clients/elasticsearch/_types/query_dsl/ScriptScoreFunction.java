@@ -23,6 +23,7 @@
 
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
+import co.elastic.clients.elasticsearch._types.Script;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -30,7 +31,6 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;
@@ -39,7 +39,7 @@ import javax.annotation.Nullable;
 // typedef: _types.query_dsl.ScriptScoreFunction
 @JsonpDeserializable
 public class ScriptScoreFunction extends ScoreFunctionBase implements FunctionScoreVariant {
-	private final JsonValue /* _types.Script */ script;
+	private final Script script;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -65,7 +65,7 @@ public class ScriptScoreFunction extends ScoreFunctionBase implements FunctionSc
 	/**
 	 * Required - API name: {@code script}
 	 */
-	public final JsonValue /* _types.Script */ script() {
+	public final Script script() {
 		return this.script;
 	}
 
@@ -73,7 +73,7 @@ public class ScriptScoreFunction extends ScoreFunctionBase implements FunctionSc
 
 		super.serializeInternal(generator, mapper);
 		generator.writeKey("script");
-		generator.write(this.script);
+		this.script.serialize(generator, mapper);
 
 	}
 
@@ -85,14 +85,21 @@ public class ScriptScoreFunction extends ScoreFunctionBase implements FunctionSc
 	public static class Builder extends ScoreFunctionBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<ScriptScoreFunction> {
-		private JsonValue /* _types.Script */ script;
+		private Script script;
 
 		/**
 		 * Required - API name: {@code script}
 		 */
-		public final Builder script(JsonValue /* _types.Script */ value) {
+		public final Builder script(Script value) {
 			this.script = value;
 			return this;
+		}
+
+		/**
+		 * Required - API name: {@code script}
+		 */
+		public final Builder script(Function<Script.Builder, ObjectBuilder<Script>> fn) {
+			return this.script(fn.apply(new Script.Builder()).build());
 		}
 
 		@Override
@@ -123,7 +130,7 @@ public class ScriptScoreFunction extends ScoreFunctionBase implements FunctionSc
 
 	protected static void setupScriptScoreFunctionDeserializer(ObjectDeserializer<ScriptScoreFunction.Builder> op) {
 		ScoreFunctionBase.setupScoreFunctionBaseDeserializer(op);
-		op.add(Builder::script, JsonpDeserializer.jsonValueDeserializer(), "script");
+		op.add(Builder::script, Script._DESERIALIZER, "script");
 
 	}
 

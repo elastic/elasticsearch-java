@@ -53,7 +53,7 @@ public class EnrichStatsRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code enrich.stats}".
 	 */
-	public static final Endpoint<EnrichStatsRequest, EnrichStatsResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<EnrichStatsRequest, EnrichStatsResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "GET";

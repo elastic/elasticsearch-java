@@ -23,6 +23,7 @@
 
 package co.elastic.clients.elasticsearch.security;
 
+import co.elastic.clients.elasticsearch.security.get_role.RoleTemplate;
 import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -33,10 +34,10 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
@@ -55,7 +56,7 @@ public class RoleMapping implements JsonpSerializable {
 
 	private final RoleMappingRule rules;
 
-	private final List<JsonValue /* security.get_role.RoleTemplate */> roleTemplates;
+	private final List<RoleTemplate> roleTemplates;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -104,7 +105,7 @@ public class RoleMapping implements JsonpSerializable {
 	/**
 	 * API name: {@code role_templates}
 	 */
-	public final List<JsonValue /* security.get_role.RoleTemplate */> roleTemplates() {
+	public final List<RoleTemplate> roleTemplates() {
 		return this.roleTemplates;
 	}
 
@@ -149,8 +150,8 @@ public class RoleMapping implements JsonpSerializable {
 		if (ModelTypeHelper.isDefined(this.roleTemplates)) {
 			generator.writeKey("role_templates");
 			generator.writeStartArray();
-			for (JsonValue /* security.get_role.RoleTemplate */ item0 : this.roleTemplates) {
-				generator.write(item0);
+			for (RoleTemplate item0 : this.roleTemplates) {
+				item0.serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -174,7 +175,7 @@ public class RoleMapping implements JsonpSerializable {
 		private RoleMappingRule rules;
 
 		@Nullable
-		private List<JsonValue /* security.get_role.RoleTemplate */> roleTemplates;
+		private List<RoleTemplate> roleTemplates;
 
 		/**
 		 * Required - API name: {@code enabled}
@@ -226,7 +227,7 @@ public class RoleMapping implements JsonpSerializable {
 		/**
 		 * API name: {@code role_templates}
 		 */
-		public final Builder roleTemplates(@Nullable List<JsonValue /* security.get_role.RoleTemplate */> value) {
+		public final Builder roleTemplates(@Nullable List<RoleTemplate> value) {
 			this.roleTemplates = value;
 			return this;
 		}
@@ -234,8 +235,20 @@ public class RoleMapping implements JsonpSerializable {
 		/**
 		 * API name: {@code role_templates}
 		 */
-		public final Builder roleTemplates(JsonValue /* security.get_role.RoleTemplate */... value) {
+		public final Builder roleTemplates(RoleTemplate... value) {
 			this.roleTemplates = Arrays.asList(value);
+			return this;
+		}
+
+		/**
+		 * API name: {@code role_templates}
+		 */
+		@SafeVarargs
+		public final Builder roleTemplates(Function<RoleTemplate.Builder, ObjectBuilder<RoleTemplate>>... fns) {
+			this.roleTemplates = new ArrayList<>(fns.length);
+			for (Function<RoleTemplate.Builder, ObjectBuilder<RoleTemplate>> fn : fns) {
+				this.roleTemplates.add(fn.apply(new RoleTemplate.Builder()).build());
+			}
 			return this;
 		}
 
@@ -266,7 +279,7 @@ public class RoleMapping implements JsonpSerializable {
 		op.add(Builder::metadata, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "metadata");
 		op.add(Builder::roles, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "roles");
 		op.add(Builder::rules, RoleMappingRule._DESERIALIZER, "rules");
-		op.add(Builder::roleTemplates, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.jsonValueDeserializer()),
+		op.add(Builder::roleTemplates, JsonpDeserializer.arrayDeserializer(RoleTemplate._DESERIALIZER),
 				"role_templates");
 
 	}

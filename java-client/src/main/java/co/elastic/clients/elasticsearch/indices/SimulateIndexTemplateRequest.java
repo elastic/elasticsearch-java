@@ -316,7 +316,7 @@ public class SimulateIndexTemplateRequest extends RequestBase implements JsonpSe
 	/**
 	 * Endpoint "{@code indices.simulate_index_template}".
 	 */
-	public static final Endpoint<SimulateIndexTemplateRequest, SimulateIndexTemplateResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<SimulateIndexTemplateRequest, SimulateIndexTemplateResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";

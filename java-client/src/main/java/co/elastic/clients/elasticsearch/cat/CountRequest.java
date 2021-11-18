@@ -117,7 +117,7 @@ public class CountRequest extends CatRequestBase {
 	/**
 	 * Endpoint "{@code cat.count}".
 	 */
-	public static final Endpoint<CountRequest, CountResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<CountRequest, CountResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "GET";

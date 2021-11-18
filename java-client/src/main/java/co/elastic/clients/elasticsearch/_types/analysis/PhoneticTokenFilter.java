@@ -41,7 +41,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.analysis.PhoneticTokenFilter
 @JsonpDeserializable
-public class PhoneticTokenFilter extends TokenFilterBase implements TokenFilterVariant {
+public class PhoneticTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
 	private final PhoneticEncoder encoder;
 
 	private final List<PhoneticLanguage> languageset;
@@ -75,7 +75,7 @@ public class PhoneticTokenFilter extends TokenFilterBase implements TokenFilterV
 	}
 
 	/**
-	 * {@link TokenFilter} variant type
+	 * {@link TokenFilterDefinition} variant type
 	 */
 	@Override
 	public String _variantType() {

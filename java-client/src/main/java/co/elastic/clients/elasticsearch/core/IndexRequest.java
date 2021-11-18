@@ -25,8 +25,11 @@ package co.elastic.clients.elasticsearch.core;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.OpType;
+import co.elastic.clients.elasticsearch._types.Refresh;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.elasticsearch._types.VersionType;
+import co.elastic.clients.elasticsearch._types.WaitForActiveShards;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -40,7 +43,6 @@ import co.elastic.clients.transport.SimpleEndpoint;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Long;
@@ -72,7 +74,7 @@ public class IndexRequest<TDocument> extends RequestBase implements JsonpSeriali
 	private final String pipeline;
 
 	@Nullable
-	private final JsonValue /* _types.Refresh */ refresh;
+	private final Refresh refresh;
 
 	@Nullable
 	private final Boolean requireAlias;
@@ -81,7 +83,7 @@ public class IndexRequest<TDocument> extends RequestBase implements JsonpSeriali
 	private final String routing;
 
 	@Nullable
-	private final String timeout;
+	private final Time timeout;
 
 	@Nullable
 	private final Long version;
@@ -90,7 +92,7 @@ public class IndexRequest<TDocument> extends RequestBase implements JsonpSeriali
 	private final VersionType versionType;
 
 	@Nullable
-	private final JsonValue /* _types.WaitForActiveShards */ waitForActiveShards;
+	private final WaitForActiveShards waitForActiveShards;
 
 	private final TDocument document;
 
@@ -196,7 +198,7 @@ public class IndexRequest<TDocument> extends RequestBase implements JsonpSeriali
 	 * API name: {@code refresh}
 	 */
 	@Nullable
-	public final JsonValue /* _types.Refresh */ refresh() {
+	public final Refresh refresh() {
 		return this.refresh;
 	}
 
@@ -226,7 +228,7 @@ public class IndexRequest<TDocument> extends RequestBase implements JsonpSeriali
 	 * API name: {@code timeout}
 	 */
 	@Nullable
-	public final String timeout() {
+	public final Time timeout() {
 		return this.timeout;
 	}
 
@@ -260,7 +262,7 @@ public class IndexRequest<TDocument> extends RequestBase implements JsonpSeriali
 	 * API name: {@code wait_for_active_shards}
 	 */
 	@Nullable
-	public final JsonValue /* _types.WaitForActiveShards */ waitForActiveShards() {
+	public final WaitForActiveShards waitForActiveShards() {
 		return this.waitForActiveShards;
 	}
 
@@ -305,7 +307,7 @@ public class IndexRequest<TDocument> extends RequestBase implements JsonpSeriali
 		private String pipeline;
 
 		@Nullable
-		private JsonValue /* _types.Refresh */ refresh;
+		private Refresh refresh;
 
 		@Nullable
 		private Boolean requireAlias;
@@ -314,7 +316,7 @@ public class IndexRequest<TDocument> extends RequestBase implements JsonpSeriali
 		private String routing;
 
 		@Nullable
-		private String timeout;
+		private Time timeout;
 
 		@Nullable
 		private Long version;
@@ -323,7 +325,7 @@ public class IndexRequest<TDocument> extends RequestBase implements JsonpSeriali
 		private VersionType versionType;
 
 		@Nullable
-		private JsonValue /* _types.WaitForActiveShards */ waitForActiveShards;
+		private WaitForActiveShards waitForActiveShards;
 
 		private TDocument document;
 
@@ -402,7 +404,7 @@ public class IndexRequest<TDocument> extends RequestBase implements JsonpSeriali
 		 * <p>
 		 * API name: {@code refresh}
 		 */
-		public final Builder<TDocument> refresh(@Nullable JsonValue /* _types.Refresh */ value) {
+		public final Builder<TDocument> refresh(@Nullable Refresh value) {
 			this.refresh = value;
 			return this;
 		}
@@ -432,9 +434,18 @@ public class IndexRequest<TDocument> extends RequestBase implements JsonpSeriali
 		 * <p>
 		 * API name: {@code timeout}
 		 */
-		public final Builder<TDocument> timeout(@Nullable String value) {
+		public final Builder<TDocument> timeout(@Nullable Time value) {
 			this.timeout = value;
 			return this;
+		}
+
+		/**
+		 * Explicit operation timeout
+		 * <p>
+		 * API name: {@code timeout}
+		 */
+		public final Builder<TDocument> timeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.timeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -466,10 +477,23 @@ public class IndexRequest<TDocument> extends RequestBase implements JsonpSeriali
 		 * <p>
 		 * API name: {@code wait_for_active_shards}
 		 */
-		public final Builder<TDocument> waitForActiveShards(
-				@Nullable JsonValue /* _types.WaitForActiveShards */ value) {
+		public final Builder<TDocument> waitForActiveShards(@Nullable WaitForActiveShards value) {
 			this.waitForActiveShards = value;
 			return this;
+		}
+
+		/**
+		 * Sets the number of shard copies that must be active before proceeding with
+		 * the index operation. Defaults to 1, meaning the primary shard only. Set to
+		 * <code>all</code> for all shard copies, otherwise set to any non-negative
+		 * value less than or equal to the total number of copies for the shard (number
+		 * of replicas + 1)
+		 * <p>
+		 * API name: {@code wait_for_active_shards}
+		 */
+		public final Builder<TDocument> waitForActiveShards(
+				Function<WaitForActiveShards.Builder, ObjectBuilder<WaitForActiveShards>> fn) {
+			return this.waitForActiveShards(fn.apply(new WaitForActiveShards.Builder()).build());
 		}
 
 		/**
@@ -518,7 +542,7 @@ public class IndexRequest<TDocument> extends RequestBase implements JsonpSeriali
 	/**
 	 * Endpoint "{@code index}".
 	 */
-	public static final Endpoint<IndexRequest<?>, IndexResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<IndexRequest<?>, IndexResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				final int _index = 1 << 0;
@@ -591,10 +615,10 @@ public class IndexRequest<TDocument> extends RequestBase implements JsonpSeriali
 					params.put("if_seq_no", String.valueOf(request.ifSeqNo));
 				}
 				if (request.refresh != null) {
-					params.put("refresh", JsonpUtils.toString(request.refresh));
+					params.put("refresh", request.refresh.jsonValue());
 				}
 				if (request.waitForActiveShards != null) {
-					params.put("wait_for_active_shards", JsonpUtils.toString(request.waitForActiveShards));
+					params.put("wait_for_active_shards", request.waitForActiveShards._toJsonString());
 				}
 				if (request.opType != null) {
 					params.put("op_type", request.opType.jsonValue());
@@ -603,7 +627,7 @@ public class IndexRequest<TDocument> extends RequestBase implements JsonpSeriali
 					params.put("version", String.valueOf(request.version));
 				}
 				if (request.timeout != null) {
-					params.put("timeout", request.timeout);
+					params.put("timeout", request.timeout._toJsonString());
 				}
 				return params;
 

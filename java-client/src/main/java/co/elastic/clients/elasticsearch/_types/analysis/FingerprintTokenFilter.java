@@ -39,7 +39,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.analysis.FingerprintTokenFilter
 @JsonpDeserializable
-public class FingerprintTokenFilter extends TokenFilterBase implements TokenFilterVariant {
+public class FingerprintTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
 	private final int maxOutputSize;
 
 	private final String separator;
@@ -59,7 +59,7 @@ public class FingerprintTokenFilter extends TokenFilterBase implements TokenFilt
 	}
 
 	/**
-	 * {@link TokenFilter} variant type
+	 * {@link TokenFilterDefinition} variant type
 	 */
 	@Override
 	public String _variantType() {

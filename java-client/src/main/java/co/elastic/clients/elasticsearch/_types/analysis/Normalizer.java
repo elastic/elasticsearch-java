@@ -40,13 +40,12 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.analysis.Normalizer
+// union type: InternalTag[tag=type]
 @JsonpDeserializable
 public class Normalizer implements TaggedUnion<NormalizerVariant>, JsonpSerializable {
 
 	public static final String CUSTOM = "custom";
 	public static final String LOWERCASE = "lowercase";
-
-	// Tagged union implementation
 
 	private final String _type;
 	private final NormalizerVariant _value;

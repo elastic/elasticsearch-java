@@ -139,7 +139,7 @@ public class GetUserPrivilegesRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code security.get_user_privileges}".
 	 */
-	public static final Endpoint<GetUserPrivilegesRequest, GetUserPrivilegesResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<GetUserPrivilegesRequest, GetUserPrivilegesResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "GET";

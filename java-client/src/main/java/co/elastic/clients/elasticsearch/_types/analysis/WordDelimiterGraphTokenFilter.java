@@ -41,7 +41,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.analysis.WordDelimiterGraphTokenFilter
 @JsonpDeserializable
-public class WordDelimiterGraphTokenFilter extends TokenFilterBase implements TokenFilterVariant {
+public class WordDelimiterGraphTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
 	@Nullable
 	private final Boolean adjustOffsets;
 
@@ -113,7 +113,7 @@ public class WordDelimiterGraphTokenFilter extends TokenFilterBase implements To
 	}
 
 	/**
-	 * {@link TokenFilter} variant type
+	 * {@link TokenFilterDefinition} variant type
 	 */
 	@Override
 	public String _variantType() {

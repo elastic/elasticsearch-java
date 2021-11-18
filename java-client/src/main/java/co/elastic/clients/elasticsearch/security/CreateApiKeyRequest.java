@@ -24,14 +24,15 @@
 package co.elastic.clients.elasticsearch.security;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
+import co.elastic.clients.elasticsearch._types.Refresh;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.elasticsearch.security.create_api_key.RoleDescriptor;
 import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
-import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
@@ -40,7 +41,6 @@ import co.elastic.clients.util.MapBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
@@ -54,7 +54,7 @@ import javax.annotation.Nullable;
 @JsonpDeserializable
 public class CreateApiKeyRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
-	private final String expiration;
+	private final Time expiration;
 
 	private final Map<String, JsonData> metadata;
 
@@ -62,7 +62,7 @@ public class CreateApiKeyRequest extends RequestBase implements JsonpSerializabl
 	private final String name;
 
 	@Nullable
-	private final JsonValue /* _types.Refresh */ refresh;
+	private final Refresh refresh;
 
 	private final Map<String, RoleDescriptor> roleDescriptors;
 
@@ -88,7 +88,7 @@ public class CreateApiKeyRequest extends RequestBase implements JsonpSerializabl
 	 * API name: {@code expiration}
 	 */
 	@Nullable
-	public final String expiration() {
+	public final Time expiration() {
 		return this.expiration;
 	}
 
@@ -122,7 +122,7 @@ public class CreateApiKeyRequest extends RequestBase implements JsonpSerializabl
 	 * API name: {@code refresh}
 	 */
 	@Nullable
-	public final JsonValue /* _types.Refresh */ refresh() {
+	public final Refresh refresh() {
 		return this.refresh;
 	}
 
@@ -155,7 +155,7 @@ public class CreateApiKeyRequest extends RequestBase implements JsonpSerializabl
 
 		if (this.expiration != null) {
 			generator.writeKey("expiration");
-			generator.write(this.expiration);
+			this.expiration.serialize(generator, mapper);
 
 		}
 		if (ModelTypeHelper.isDefined(this.metadata)) {
@@ -195,7 +195,7 @@ public class CreateApiKeyRequest extends RequestBase implements JsonpSerializabl
 	 */
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<CreateApiKeyRequest> {
 		@Nullable
-		private String expiration;
+		private Time expiration;
 
 		@Nullable
 		private Map<String, JsonData> metadata;
@@ -204,7 +204,7 @@ public class CreateApiKeyRequest extends RequestBase implements JsonpSerializabl
 		private String name;
 
 		@Nullable
-		private JsonValue /* _types.Refresh */ refresh;
+		private Refresh refresh;
 
 		@Nullable
 		private Map<String, RoleDescriptor> roleDescriptors;
@@ -214,9 +214,18 @@ public class CreateApiKeyRequest extends RequestBase implements JsonpSerializabl
 		 * <p>
 		 * API name: {@code expiration}
 		 */
-		public final Builder expiration(@Nullable String value) {
+		public final Builder expiration(@Nullable Time value) {
 			this.expiration = value;
 			return this;
+		}
+
+		/**
+		 * Expiration time for the API key. By default, API keys never expire.
+		 * <p>
+		 * API name: {@code expiration}
+		 */
+		public final Builder expiration(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.expiration(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -249,7 +258,7 @@ public class CreateApiKeyRequest extends RequestBase implements JsonpSerializabl
 		 * <p>
 		 * API name: {@code refresh}
 		 */
-		public final Builder refresh(@Nullable JsonValue /* _types.Refresh */ value) {
+		public final Builder refresh(@Nullable Refresh value) {
 			this.refresh = value;
 			return this;
 		}
@@ -306,7 +315,7 @@ public class CreateApiKeyRequest extends RequestBase implements JsonpSerializabl
 
 	protected static void setupCreateApiKeyRequestDeserializer(ObjectDeserializer<CreateApiKeyRequest.Builder> op) {
 
-		op.add(Builder::expiration, JsonpDeserializer.stringDeserializer(), "expiration");
+		op.add(Builder::expiration, Time._DESERIALIZER, "expiration");
 		op.add(Builder::metadata, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "metadata");
 		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
 		op.add(Builder::roleDescriptors, JsonpDeserializer.stringMapDeserializer(RoleDescriptor._DESERIALIZER),
@@ -319,7 +328,7 @@ public class CreateApiKeyRequest extends RequestBase implements JsonpSerializabl
 	/**
 	 * Endpoint "{@code security.create_api_key}".
 	 */
-	public static final Endpoint<CreateApiKeyRequest, CreateApiKeyResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<CreateApiKeyRequest, CreateApiKeyResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "PUT";
@@ -336,7 +345,7 @@ public class CreateApiKeyRequest extends RequestBase implements JsonpSerializabl
 			request -> {
 				Map<String, String> params = new HashMap<>();
 				if (request.refresh != null) {
-					params.put("refresh", JsonpUtils.toString(request.refresh));
+					params.put("refresh", request.refresh.jsonValue());
 				}
 				return params;
 

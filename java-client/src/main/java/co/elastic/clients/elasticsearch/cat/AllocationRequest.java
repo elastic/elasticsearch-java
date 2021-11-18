@@ -145,7 +145,7 @@ public class AllocationRequest extends CatRequestBase {
 	/**
 	 * Endpoint "{@code cat.allocation}".
 	 */
-	public static final Endpoint<AllocationRequest, AllocationResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<AllocationRequest, AllocationResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "GET";

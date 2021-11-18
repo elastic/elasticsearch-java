@@ -31,8 +31,8 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
+import java.lang.String;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -40,7 +40,7 @@ import javax.annotation.Nullable;
 // typedef: _types.aggregations.GeoLineAggregate
 @JsonpDeserializable
 public class GeoLineAggregate extends AggregateBase implements AggregateVariant {
-	private final JsonValue /* LiteralValue("Feature") */ type;
+	private final String type;
 
 	private final GeoLine geometry;
 
@@ -69,7 +69,7 @@ public class GeoLineAggregate extends AggregateBase implements AggregateVariant 
 	/**
 	 * Required - API name: {@code type}
 	 */
-	public final JsonValue /* LiteralValue("Feature") */ type() {
+	public final String type() {
 		return this.type;
 	}
 
@@ -99,14 +99,14 @@ public class GeoLineAggregate extends AggregateBase implements AggregateVariant 
 	public static class Builder extends AggregateBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<GeoLineAggregate> {
-		private JsonValue /* LiteralValue("Feature") */ type;
+		private String type;
 
 		private GeoLine geometry;
 
 		/**
 		 * Required - API name: {@code type}
 		 */
-		public final Builder type(JsonValue /* LiteralValue("Feature") */ value) {
+		public final Builder type(String value) {
 			this.type = value;
 			return this;
 		}
@@ -154,7 +154,7 @@ public class GeoLineAggregate extends AggregateBase implements AggregateVariant 
 
 	protected static void setupGeoLineAggregateDeserializer(ObjectDeserializer<GeoLineAggregate.Builder> op) {
 		AggregateBase.setupAggregateBaseDeserializer(op);
-		op.add(Builder::type, JsonpDeserializer.jsonValueDeserializer(), "type");
+		op.add(Builder::type, JsonpDeserializer.stringDeserializer(), "type");
 		op.add(Builder::geometry, GeoLine._DESERIALIZER, "geometry");
 
 	}

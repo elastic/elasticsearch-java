@@ -37,7 +37,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.analysis.SnowballTokenFilter
 @JsonpDeserializable
-public class SnowballTokenFilter extends TokenFilterBase implements TokenFilterVariant {
+public class SnowballTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
 	private final SnowballLanguage language;
 
 	// ---------------------------------------------------------------------------------------------
@@ -54,7 +54,7 @@ public class SnowballTokenFilter extends TokenFilterBase implements TokenFilterV
 	}
 
 	/**
-	 * {@link TokenFilter} variant type
+	 * {@link TokenFilterDefinition} variant type
 	 */
 	@Override
 	public String _variantType() {

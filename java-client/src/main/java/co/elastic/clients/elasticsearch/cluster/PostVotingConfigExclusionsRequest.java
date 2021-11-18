@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.cluster;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -55,7 +56,7 @@ public class PostVotingConfigExclusionsRequest extends RequestBase {
 	private final List<String> nodeNames;
 
 	@Nullable
-	private final String timeout;
+	private final Time timeout;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -101,7 +102,7 @@ public class PostVotingConfigExclusionsRequest extends RequestBase {
 	 * API name: {@code timeout}
 	 */
 	@Nullable
-	public final String timeout() {
+	public final Time timeout() {
 		return this.timeout;
 	}
 
@@ -118,7 +119,7 @@ public class PostVotingConfigExclusionsRequest extends RequestBase {
 		private List<String> nodeNames;
 
 		@Nullable
-		private String timeout;
+		private Time timeout;
 
 		/**
 		 * A comma-separated list of the persistent ids of the nodes to exclude from the
@@ -172,9 +173,21 @@ public class PostVotingConfigExclusionsRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code timeout}
 		 */
-		public final Builder timeout(@Nullable String value) {
+		public final Builder timeout(@Nullable Time value) {
 			this.timeout = value;
 			return this;
+		}
+
+		/**
+		 * When adding a voting configuration exclusion, the API waits for the specified
+		 * nodes to be excluded from the voting configuration before returning. If the
+		 * timeout expires before the appropriate condition is satisfied, the request
+		 * fails and returns an error.
+		 * <p>
+		 * API name: {@code timeout}
+		 */
+		public final Builder timeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.timeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -195,7 +208,7 @@ public class PostVotingConfigExclusionsRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code cluster.post_voting_config_exclusions}".
 	 */
-	public static final Endpoint<PostVotingConfigExclusionsRequest, BooleanResponse, ErrorResponse> ENDPOINT = new BooleanEndpoint<>(
+	public static final Endpoint<PostVotingConfigExclusionsRequest, BooleanResponse, ErrorResponse> _ENDPOINT = new BooleanEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";
@@ -218,7 +231,7 @@ public class PostVotingConfigExclusionsRequest extends RequestBase {
 					params.put("node_ids", request.nodeIds.stream().map(v -> v).collect(Collectors.joining(",")));
 				}
 				if (request.timeout != null) {
-					params.put("timeout", request.timeout);
+					params.put("timeout", request.timeout._toJsonString());
 				}
 				return params;
 

@@ -428,7 +428,7 @@ public class GetRecordsRequest extends RequestBase implements JsonpSerializable 
 	/**
 	 * Endpoint "{@code ml.get_records}".
 	 */
-	public static final Endpoint<GetRecordsRequest, GetRecordsResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<GetRecordsRequest, GetRecordsResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";

@@ -40,7 +40,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.analysis.StemmerOverrideTokenFilter
 @JsonpDeserializable
-public class StemmerOverrideTokenFilter extends TokenFilterBase implements TokenFilterVariant {
+public class StemmerOverrideTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
 	private final List<String> rules;
 
 	@Nullable
@@ -61,7 +61,7 @@ public class StemmerOverrideTokenFilter extends TokenFilterBase implements Token
 	}
 
 	/**
-	 * {@link TokenFilter} variant type
+	 * {@link TokenFilterDefinition} variant type
 	 */
 	@Override
 	public String _variantType() {

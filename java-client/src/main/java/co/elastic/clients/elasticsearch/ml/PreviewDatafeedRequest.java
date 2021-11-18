@@ -245,7 +245,7 @@ public class PreviewDatafeedRequest extends RequestBase implements JsonpSerializ
 	/**
 	 * Endpoint "{@code ml.preview_datafeed}".
 	 */
-	private static final SimpleEndpoint<PreviewDatafeedRequest, Void> ENDPOINT = new SimpleEndpoint<>(
+	public static final SimpleEndpoint<PreviewDatafeedRequest, ?> _ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";
@@ -285,14 +285,14 @@ public class PreviewDatafeedRequest extends RequestBase implements JsonpSerializ
 			request -> {
 				return Collections.emptyMap();
 
-			}, SimpleEndpoint.emptyMap(), true, null);
+			}, SimpleEndpoint.emptyMap(), true, PreviewDatafeedResponse._DESERIALIZER);
 
 	/**
 	 * Create an "{@code ml.preview_datafeed}" endpoint.
 	 */
 	public static <TDocument> Endpoint<PreviewDatafeedRequest, PreviewDatafeedResponse<TDocument>, ErrorResponse> createPreviewDatafeedEndpoint(
 			JsonpDeserializer<TDocument> tDocumentDeserializer) {
-		return ENDPOINT.withResponseDeserializer(
+		return _ENDPOINT.withResponseDeserializer(
 				PreviewDatafeedResponse.createPreviewDatafeedResponseDeserializer(tDocumentDeserializer));
 	}
 }

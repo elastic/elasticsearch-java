@@ -39,7 +39,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.analysis.EdgeNGramTokenFilter
 @JsonpDeserializable
-public class EdgeNGramTokenFilter extends TokenFilterBase implements TokenFilterVariant {
+public class EdgeNGramTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
 	private final int maxGram;
 
 	private final int minGram;
@@ -67,7 +67,7 @@ public class EdgeNGramTokenFilter extends TokenFilterBase implements TokenFilter
 	}
 
 	/**
-	 * {@link TokenFilter} variant type
+	 * {@link TokenFilterDefinition} variant type
 	 */
 	@Override
 	public String _variantType() {

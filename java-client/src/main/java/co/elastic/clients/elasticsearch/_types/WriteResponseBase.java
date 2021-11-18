@@ -51,7 +51,7 @@ public abstract class WriteResponseBase implements JsonpSerializable {
 
 	private final Result result;
 
-	private final long sequenceNumber;
+	private final long seqNo;
 
 	private final ShardStatistics shards;
 
@@ -71,7 +71,7 @@ public abstract class WriteResponseBase implements JsonpSerializable {
 		this.index = ModelTypeHelper.requireNonNull(builder.index, this, "index");
 		this.primaryTerm = ModelTypeHelper.requireNonNull(builder.primaryTerm, this, "primaryTerm");
 		this.result = ModelTypeHelper.requireNonNull(builder.result, this, "result");
-		this.sequenceNumber = ModelTypeHelper.requireNonNull(builder.sequenceNumber, this, "sequenceNumber");
+		this.seqNo = ModelTypeHelper.requireNonNull(builder.seqNo, this, "seqNo");
 		this.shards = ModelTypeHelper.requireNonNull(builder.shards, this, "shards");
 		this.type = builder.type;
 		this.version = ModelTypeHelper.requireNonNull(builder.version, this, "version");
@@ -110,8 +110,8 @@ public abstract class WriteResponseBase implements JsonpSerializable {
 	/**
 	 * Required - API name: {@code _seq_no}
 	 */
-	public final long sequenceNumber() {
-		return this.sequenceNumber;
+	public final long seqNo() {
+		return this.seqNo;
 	}
 
 	/**
@@ -167,7 +167,7 @@ public abstract class WriteResponseBase implements JsonpSerializable {
 		generator.writeKey("result");
 		this.result.serialize(generator, mapper);
 		generator.writeKey("_seq_no");
-		generator.write(this.sequenceNumber);
+		generator.write(this.seqNo);
 
 		generator.writeKey("_shards");
 		this.shards.serialize(generator, mapper);
@@ -199,7 +199,7 @@ public abstract class WriteResponseBase implements JsonpSerializable {
 
 		private Result result;
 
-		private Long sequenceNumber;
+		private Long seqNo;
 
 		private ShardStatistics shards;
 
@@ -246,8 +246,8 @@ public abstract class WriteResponseBase implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code _seq_no}
 		 */
-		public final BuilderT sequenceNumber(long value) {
-			this.sequenceNumber = value;
+		public final BuilderT seqNo(long value) {
+			this.seqNo = value;
 			return self();
 		}
 
@@ -302,7 +302,7 @@ public abstract class WriteResponseBase implements JsonpSerializable {
 		op.add(AbstractBuilder::index, JsonpDeserializer.stringDeserializer(), "_index");
 		op.add(AbstractBuilder::primaryTerm, JsonpDeserializer.longDeserializer(), "_primary_term");
 		op.add(AbstractBuilder::result, Result._DESERIALIZER, "result");
-		op.add(AbstractBuilder::sequenceNumber, JsonpDeserializer.longDeserializer(), "_seq_no");
+		op.add(AbstractBuilder::seqNo, JsonpDeserializer.longDeserializer(), "_seq_no");
 		op.add(AbstractBuilder::shards, ShardStatistics._DESERIALIZER, "_shards");
 		op.add(AbstractBuilder::type, JsonpDeserializer.stringDeserializer(), "_type");
 		op.add(AbstractBuilder::version, JsonpDeserializer.longDeserializer(), "_version");

@@ -23,6 +23,7 @@
 
 package co.elastic.clients.elasticsearch._types.analysis;
 
+import co.elastic.clients.elasticsearch._types.Script;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -30,7 +31,6 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;
@@ -38,8 +38,8 @@ import javax.annotation.Nullable;
 
 // typedef: _types.analysis.PredicateTokenFilter
 @JsonpDeserializable
-public class PredicateTokenFilter extends TokenFilterBase implements TokenFilterVariant {
-	private final JsonValue /* _types.Script */ script;
+public class PredicateTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
+	private final Script script;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -55,7 +55,7 @@ public class PredicateTokenFilter extends TokenFilterBase implements TokenFilter
 	}
 
 	/**
-	 * {@link TokenFilter} variant type
+	 * {@link TokenFilterDefinition} variant type
 	 */
 	@Override
 	public String _variantType() {
@@ -65,7 +65,7 @@ public class PredicateTokenFilter extends TokenFilterBase implements TokenFilter
 	/**
 	 * Required - API name: {@code script}
 	 */
-	public final JsonValue /* _types.Script */ script() {
+	public final Script script() {
 		return this.script;
 	}
 
@@ -74,7 +74,7 @@ public class PredicateTokenFilter extends TokenFilterBase implements TokenFilter
 		generator.write("type", "predicate_token_filter");
 		super.serializeInternal(generator, mapper);
 		generator.writeKey("script");
-		generator.write(this.script);
+		this.script.serialize(generator, mapper);
 
 	}
 
@@ -86,14 +86,21 @@ public class PredicateTokenFilter extends TokenFilterBase implements TokenFilter
 	public static class Builder extends TokenFilterBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<PredicateTokenFilter> {
-		private JsonValue /* _types.Script */ script;
+		private Script script;
 
 		/**
 		 * Required - API name: {@code script}
 		 */
-		public final Builder script(JsonValue /* _types.Script */ value) {
+		public final Builder script(Script value) {
 			this.script = value;
 			return this;
+		}
+
+		/**
+		 * Required - API name: {@code script}
+		 */
+		public final Builder script(Function<Script.Builder, ObjectBuilder<Script>> fn) {
+			return this.script(fn.apply(new Script.Builder()).build());
 		}
 
 		@Override
@@ -124,7 +131,7 @@ public class PredicateTokenFilter extends TokenFilterBase implements TokenFilter
 
 	protected static void setupPredicateTokenFilterDeserializer(ObjectDeserializer<PredicateTokenFilter.Builder> op) {
 		TokenFilterBase.setupTokenFilterBaseDeserializer(op);
-		op.add(Builder::script, JsonpDeserializer.jsonValueDeserializer(), "script");
+		op.add(Builder::script, Script._DESERIALIZER, "script");
 
 		op.ignore("type");
 	}

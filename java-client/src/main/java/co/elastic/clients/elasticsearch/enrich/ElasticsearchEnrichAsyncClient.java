@@ -25,6 +25,8 @@ package co.elastic.clients.elasticsearch.enrich;
 
 import co.elastic.clients.ApiClient;
 import co.elastic.clients.elasticsearch._types.ElasticsearchException;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
+import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.Transport;
 import co.elastic.clients.transport.TransportOptions;
 import co.elastic.clients.util.ObjectBuilder;
@@ -63,7 +65,10 @@ public class ElasticsearchEnrichAsyncClient extends ApiClient<ElasticsearchEnric
 
 	public CompletableFuture<DeletePolicyResponse> deletePolicy(DeletePolicyRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(request, DeletePolicyRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<DeletePolicyRequest, DeletePolicyResponse, ErrorResponse> endpoint = (Endpoint<DeletePolicyRequest, DeletePolicyResponse, ErrorResponse>) DeletePolicyRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -95,7 +100,10 @@ public class ElasticsearchEnrichAsyncClient extends ApiClient<ElasticsearchEnric
 
 	public CompletableFuture<ExecutePolicyResponse> executePolicy(ExecutePolicyRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(request, ExecutePolicyRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<ExecutePolicyRequest, ExecutePolicyResponse, ErrorResponse> endpoint = (Endpoint<ExecutePolicyRequest, ExecutePolicyResponse, ErrorResponse>) ExecutePolicyRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -127,7 +135,10 @@ public class ElasticsearchEnrichAsyncClient extends ApiClient<ElasticsearchEnric
 
 	public CompletableFuture<GetPolicyResponse> getPolicy(GetPolicyRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(request, GetPolicyRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<GetPolicyRequest, GetPolicyResponse, ErrorResponse> endpoint = (Endpoint<GetPolicyRequest, GetPolicyResponse, ErrorResponse>) GetPolicyRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -156,7 +167,7 @@ public class ElasticsearchEnrichAsyncClient extends ApiClient<ElasticsearchEnric
 	 */
 
 	public CompletableFuture<GetPolicyResponse> getPolicy() throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(new GetPolicyRequest.Builder().build(), GetPolicyRequest.ENDPOINT,
+		return this.transport.performRequestAsync(new GetPolicyRequest.Builder().build(), GetPolicyRequest._ENDPOINT,
 				this.transportOptions);
 	}
 
@@ -172,7 +183,10 @@ public class ElasticsearchEnrichAsyncClient extends ApiClient<ElasticsearchEnric
 
 	public CompletableFuture<PutPolicyResponse> putPolicy(PutPolicyRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(request, PutPolicyRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<PutPolicyRequest, PutPolicyResponse, ErrorResponse> endpoint = (Endpoint<PutPolicyRequest, PutPolicyResponse, ErrorResponse>) PutPolicyRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -203,7 +217,7 @@ public class ElasticsearchEnrichAsyncClient extends ApiClient<ElasticsearchEnric
 	 *      on elastic.co</a>
 	 */
 	public CompletableFuture<EnrichStatsResponse> stats() throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(EnrichStatsRequest._INSTANCE, EnrichStatsRequest.ENDPOINT,
+		return this.transport.performRequestAsync(EnrichStatsRequest._INSTANCE, EnrichStatsRequest._ENDPOINT,
 				this.transportOptions);
 	}
 

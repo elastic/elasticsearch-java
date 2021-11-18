@@ -23,6 +23,7 @@
 
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
+import co.elastic.clients.elasticsearch._types.Script;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -30,7 +31,6 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Arrays;
@@ -49,7 +49,7 @@ public class TermsSetQuery extends QueryBase implements QueryVariant {
 	private final String minimumShouldMatchField;
 
 	@Nullable
-	private final JsonValue /* _types.Script */ minimumShouldMatchScript;
+	private final Script minimumShouldMatchScript;
 
 	private final List<String> terms;
 
@@ -96,7 +96,7 @@ public class TermsSetQuery extends QueryBase implements QueryVariant {
 	 * API name: {@code minimum_should_match_script}
 	 */
 	@Nullable
-	public final JsonValue /* _types.Script */ minimumShouldMatchScript() {
+	public final Script minimumShouldMatchScript() {
 		return this.minimumShouldMatchScript;
 	}
 
@@ -118,7 +118,7 @@ public class TermsSetQuery extends QueryBase implements QueryVariant {
 		}
 		if (this.minimumShouldMatchScript != null) {
 			generator.writeKey("minimum_should_match_script");
-			generator.write(this.minimumShouldMatchScript);
+			this.minimumShouldMatchScript.serialize(generator, mapper);
 
 		}
 		if (ModelTypeHelper.isDefined(this.terms)) {
@@ -156,7 +156,7 @@ public class TermsSetQuery extends QueryBase implements QueryVariant {
 		private String minimumShouldMatchField;
 
 		@Nullable
-		private JsonValue /* _types.Script */ minimumShouldMatchScript;
+		private Script minimumShouldMatchScript;
 
 		private List<String> terms;
 
@@ -171,9 +171,16 @@ public class TermsSetQuery extends QueryBase implements QueryVariant {
 		/**
 		 * API name: {@code minimum_should_match_script}
 		 */
-		public final Builder minimumShouldMatchScript(@Nullable JsonValue /* _types.Script */ value) {
+		public final Builder minimumShouldMatchScript(@Nullable Script value) {
 			this.minimumShouldMatchScript = value;
 			return this;
+		}
+
+		/**
+		 * API name: {@code minimum_should_match_script}
+		 */
+		public final Builder minimumShouldMatchScript(Function<Script.Builder, ObjectBuilder<Script>> fn) {
+			return this.minimumShouldMatchScript(fn.apply(new Script.Builder()).build());
 		}
 
 		/**
@@ -221,8 +228,7 @@ public class TermsSetQuery extends QueryBase implements QueryVariant {
 	protected static void setupTermsSetQueryDeserializer(ObjectDeserializer<TermsSetQuery.Builder> op) {
 		QueryBase.setupQueryBaseDeserializer(op);
 		op.add(Builder::minimumShouldMatchField, JsonpDeserializer.stringDeserializer(), "minimum_should_match_field");
-		op.add(Builder::minimumShouldMatchScript, JsonpDeserializer.jsonValueDeserializer(),
-				"minimum_should_match_script");
+		op.add(Builder::minimumShouldMatchScript, Script._DESERIALIZER, "minimum_should_match_script");
 		op.add(Builder::terms, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "terms");
 
 		op.setKey(Builder::field, JsonpDeserializer.stringDeserializer());

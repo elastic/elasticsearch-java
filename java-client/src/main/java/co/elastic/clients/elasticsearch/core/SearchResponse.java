@@ -37,6 +37,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.JsonpSerializer;
 import co.elastic.clients.json.JsonpUtils;
+import co.elastic.clients.json.NamedDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.MapBuilder;
@@ -58,7 +59,7 @@ import java.util.function.Supplier;
 import javax.annotation.Nullable;
 
 // typedef: _global.search.Response
-
+@JsonpDeserializable
 public class SearchResponse<TDocument> implements JsonpSerializable {
 	private final long took;
 
@@ -605,6 +606,13 @@ public class SearchResponse<TDocument> implements JsonpSerializable {
 		return ObjectBuilderDeserializer.createForObject((Supplier<Builder<TDocument>>) Builder::new,
 				op -> SearchResponse.setupSearchResponseDeserializer(op, tDocumentDeserializer));
 	};
+
+	/**
+	 * Json deserializer for {@link SearchResponse} based on named deserializers
+	 * provided by the calling {@code JsonMapper}.
+	 */
+	public static final JsonpDeserializer<SearchResponse<Object>> _DESERIALIZER = createSearchResponseDeserializer(
+			new NamedDeserializer<>("co.elastic.clients:Deserializer:_global.search.TDocument"));
 
 	protected static <TDocument, BuilderT extends AbstractBuilder<TDocument, BuilderT>> void setupSearchResponseDeserializer(
 			ObjectDeserializer<BuilderT> op, JsonpDeserializer<TDocument> tDocumentDeserializer) {

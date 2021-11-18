@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.eql;
 
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
+import co.elastic.clients.json.NamedDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
@@ -34,7 +35,7 @@ import java.util.function.Function;
 import java.util.function.Supplier;
 
 // typedef: eql.search.Response
-
+@JsonpDeserializable
 public class EqlSearchResponse<TEvent> extends EqlSearchResponseBase<TEvent> {
 	// ---------------------------------------------------------------------------------------------
 
@@ -84,6 +85,13 @@ public class EqlSearchResponse<TEvent> extends EqlSearchResponseBase<TEvent> {
 		return ObjectBuilderDeserializer.createForObject((Supplier<Builder<TEvent>>) Builder::new,
 				op -> EqlSearchResponse.setupEqlSearchResponseDeserializer(op, tEventDeserializer));
 	};
+
+	/**
+	 * Json deserializer for {@link EqlSearchResponse} based on named deserializers
+	 * provided by the calling {@code JsonMapper}.
+	 */
+	public static final JsonpDeserializer<EqlSearchResponse<Object>> _DESERIALIZER = createEqlSearchResponseDeserializer(
+			new NamedDeserializer<>("co.elastic.clients:Deserializer:eql.search.TEvent"));
 
 	protected static <TEvent> void setupEqlSearchResponseDeserializer(
 			ObjectDeserializer<EqlSearchResponse.Builder<TEvent>> op, JsonpDeserializer<TEvent> tEventDeserializer) {

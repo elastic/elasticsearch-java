@@ -41,12 +41,11 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: transform._types.SyncContainer
+// union type: Container[]
 @JsonpDeserializable
 public class Sync implements TaggedUnion<Object>, JsonpSerializable {
 
 	public static final String TIME = "time";
-
-	// Tagged union implementation
 
 	private final String _type;
 	private final Object _value;
@@ -92,6 +91,7 @@ public class Sync implements TaggedUnion<Object>, JsonpSerializable {
 	@Override
 	@SuppressWarnings("unchecked")
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+
 		generator.writeStartObject();
 
 		generator.writeKey(_type);
@@ -100,6 +100,7 @@ public class Sync implements TaggedUnion<Object>, JsonpSerializable {
 		}
 
 		generator.writeEnd();
+
 	}
 
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Sync> {

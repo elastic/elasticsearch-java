@@ -261,7 +261,7 @@ public class UpdateFilterRequest extends RequestBase implements JsonpSerializabl
 	/**
 	 * Endpoint "{@code ml.update_filter}".
 	 */
-	public static final Endpoint<UpdateFilterRequest, UpdateFilterResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<UpdateFilterRequest, UpdateFilterResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";

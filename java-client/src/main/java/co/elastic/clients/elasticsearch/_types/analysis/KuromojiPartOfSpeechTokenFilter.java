@@ -40,7 +40,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.analysis.KuromojiPartOfSpeechTokenFilter
 @JsonpDeserializable
-public class KuromojiPartOfSpeechTokenFilter extends TokenFilterBase implements TokenFilterVariant {
+public class KuromojiPartOfSpeechTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
 	private final List<String> stoptags;
 
 	// ---------------------------------------------------------------------------------------------
@@ -58,7 +58,7 @@ public class KuromojiPartOfSpeechTokenFilter extends TokenFilterBase implements 
 	}
 
 	/**
-	 * {@link TokenFilter} variant type
+	 * {@link TokenFilterDefinition} variant type
 	 */
 	@Override
 	public String _variantType() {

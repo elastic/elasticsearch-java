@@ -119,7 +119,7 @@ public class FollowInfoRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code ccr.follow_info}".
 	 */
-	public static final Endpoint<FollowInfoRequest, FollowInfoResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<FollowInfoRequest, FollowInfoResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "GET";

@@ -23,6 +23,7 @@
 
 package co.elastic.clients.elasticsearch.rollup.get_rollup_index_caps;
 
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -47,7 +48,7 @@ public class RollupJobSummaryField implements JsonpSerializable {
 	private final String timeZone;
 
 	@Nullable
-	private final String calendarInterval;
+	private final Time calendarInterval;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -82,7 +83,7 @@ public class RollupJobSummaryField implements JsonpSerializable {
 	 * API name: {@code calendar_interval}
 	 */
 	@Nullable
-	public final String calendarInterval() {
+	public final Time calendarInterval() {
 		return this.calendarInterval;
 	}
 
@@ -107,7 +108,7 @@ public class RollupJobSummaryField implements JsonpSerializable {
 		}
 		if (this.calendarInterval != null) {
 			generator.writeKey("calendar_interval");
-			generator.write(this.calendarInterval);
+			this.calendarInterval.serialize(generator, mapper);
 
 		}
 
@@ -125,7 +126,7 @@ public class RollupJobSummaryField implements JsonpSerializable {
 		private String timeZone;
 
 		@Nullable
-		private String calendarInterval;
+		private Time calendarInterval;
 
 		/**
 		 * Required - API name: {@code agg}
@@ -146,9 +147,16 @@ public class RollupJobSummaryField implements JsonpSerializable {
 		/**
 		 * API name: {@code calendar_interval}
 		 */
-		public final Builder calendarInterval(@Nullable String value) {
+		public final Builder calendarInterval(@Nullable Time value) {
 			this.calendarInterval = value;
 			return this;
+		}
+
+		/**
+		 * API name: {@code calendar_interval}
+		 */
+		public final Builder calendarInterval(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.calendarInterval(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -176,7 +184,7 @@ public class RollupJobSummaryField implements JsonpSerializable {
 
 		op.add(Builder::agg, JsonpDeserializer.stringDeserializer(), "agg");
 		op.add(Builder::timeZone, JsonpDeserializer.stringDeserializer(), "time_zone");
-		op.add(Builder::calendarInterval, JsonpDeserializer.stringDeserializer(), "calendar_interval");
+		op.add(Builder::calendarInterval, Time._DESERIALIZER, "calendar_interval");
 
 	}
 

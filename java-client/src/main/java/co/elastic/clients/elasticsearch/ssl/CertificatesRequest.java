@@ -53,7 +53,7 @@ public class CertificatesRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code ssl.certificates}".
 	 */
-	public static final Endpoint<CertificatesRequest, CertificatesResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<CertificatesRequest, CertificatesResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "GET";

@@ -41,7 +41,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.analysis.SynonymTokenFilter
 @JsonpDeserializable
-public class SynonymTokenFilter extends TokenFilterBase implements TokenFilterVariant {
+public class SynonymTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
 	@Nullable
 	private final Boolean expand;
 
@@ -82,7 +82,7 @@ public class SynonymTokenFilter extends TokenFilterBase implements TokenFilterVa
 	}
 
 	/**
-	 * {@link TokenFilter} variant type
+	 * {@link TokenFilterDefinition} variant type
 	 */
 	@Override
 	public String _variantType() {

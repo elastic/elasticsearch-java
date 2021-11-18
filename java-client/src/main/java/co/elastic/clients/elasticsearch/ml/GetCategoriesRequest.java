@@ -286,7 +286,7 @@ public class GetCategoriesRequest extends RequestBase implements JsonpSerializab
 	/**
 	 * Endpoint "{@code ml.get_categories}".
 	 */
-	public static final Endpoint<GetCategoriesRequest, GetCategoriesResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<GetCategoriesRequest, GetCategoriesResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";

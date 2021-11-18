@@ -28,15 +28,11 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
 import java.lang.Long;
 import java.lang.String;
-import java.util.Arrays;
-import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -44,13 +40,14 @@ import javax.annotation.Nullable;
 // typedef: _types.aggregations.RareTermsAggregation
 @JsonpDeserializable
 public class RareTermsAggregation extends BucketAggregationBase implements AggregationVariant {
-	private final List<String> exclude;
+	@Nullable
+	private final TermsExclude exclude;
 
 	@Nullable
 	private final String field;
 
 	@Nullable
-	private final JsonValue /* Union(Array<internal.string> | _types.aggregations.TermsInclude) */ include;
+	private final TermsInclude include;
 
 	@Nullable
 	private final Long maxDocCount;
@@ -69,7 +66,7 @@ public class RareTermsAggregation extends BucketAggregationBase implements Aggre
 	private RareTermsAggregation(Builder builder) {
 		super(builder);
 
-		this.exclude = ModelTypeHelper.unmodifiable(builder.exclude);
+		this.exclude = builder.exclude;
 		this.field = builder.field;
 		this.include = builder.include;
 		this.maxDocCount = builder.maxDocCount;
@@ -94,7 +91,8 @@ public class RareTermsAggregation extends BucketAggregationBase implements Aggre
 	/**
 	 * API name: {@code exclude}
 	 */
-	public final List<String> exclude() {
+	@Nullable
+	public final TermsExclude exclude() {
 		return this.exclude;
 	}
 
@@ -110,7 +108,7 @@ public class RareTermsAggregation extends BucketAggregationBase implements Aggre
 	 * API name: {@code include}
 	 */
 	@Nullable
-	public final JsonValue /* Union(Array<internal.string> | _types.aggregations.TermsInclude) */ include() {
+	public final TermsInclude include() {
 		return this.include;
 	}
 
@@ -149,14 +147,9 @@ public class RareTermsAggregation extends BucketAggregationBase implements Aggre
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
-		if (ModelTypeHelper.isDefined(this.exclude)) {
+		if (this.exclude != null) {
 			generator.writeKey("exclude");
-			generator.writeStartArray();
-			for (String item0 : this.exclude) {
-				generator.write(item0);
-
-			}
-			generator.writeEnd();
+			this.exclude.serialize(generator, mapper);
 
 		}
 		if (this.field != null) {
@@ -166,7 +159,7 @@ public class RareTermsAggregation extends BucketAggregationBase implements Aggre
 		}
 		if (this.include != null) {
 			generator.writeKey("include");
-			generator.write(this.include);
+			this.include.serialize(generator, mapper);
 
 		}
 		if (this.maxDocCount != null) {
@@ -201,13 +194,13 @@ public class RareTermsAggregation extends BucketAggregationBase implements Aggre
 			implements
 				ObjectBuilder<RareTermsAggregation> {
 		@Nullable
-		private List<String> exclude;
+		private TermsExclude exclude;
 
 		@Nullable
 		private String field;
 
 		@Nullable
-		private JsonValue /* Union(Array<internal.string> | _types.aggregations.TermsInclude) */ include;
+		private TermsInclude include;
 
 		@Nullable
 		private Long maxDocCount;
@@ -224,7 +217,7 @@ public class RareTermsAggregation extends BucketAggregationBase implements Aggre
 		/**
 		 * API name: {@code exclude}
 		 */
-		public final Builder exclude(@Nullable List<String> value) {
+		public final Builder exclude(@Nullable TermsExclude value) {
 			this.exclude = value;
 			return this;
 		}
@@ -232,9 +225,8 @@ public class RareTermsAggregation extends BucketAggregationBase implements Aggre
 		/**
 		 * API name: {@code exclude}
 		 */
-		public final Builder exclude(String... value) {
-			this.exclude = Arrays.asList(value);
-			return this;
+		public final Builder exclude(Function<TermsExclude.Builder, ObjectBuilder<TermsExclude>> fn) {
+			return this.exclude(fn.apply(new TermsExclude.Builder()).build());
 		}
 
 		/**
@@ -248,10 +240,16 @@ public class RareTermsAggregation extends BucketAggregationBase implements Aggre
 		/**
 		 * API name: {@code include}
 		 */
-		public final Builder include(
-				@Nullable JsonValue /* Union(Array<internal.string> | _types.aggregations.TermsInclude) */ value) {
+		public final Builder include(@Nullable TermsInclude value) {
 			this.include = value;
 			return this;
+		}
+
+		/**
+		 * API name: {@code include}
+		 */
+		public final Builder include(Function<TermsInclude.Builder, ObjectBuilder<TermsInclude>> fn) {
+			return this.include(fn.apply(new TermsInclude.Builder()).build());
 		}
 
 		/**
@@ -314,10 +312,9 @@ public class RareTermsAggregation extends BucketAggregationBase implements Aggre
 
 	protected static void setupRareTermsAggregationDeserializer(ObjectDeserializer<RareTermsAggregation.Builder> op) {
 		BucketAggregationBase.setupBucketAggregationBaseDeserializer(op);
-		op.add(Builder::exclude, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
-				"exclude");
+		op.add(Builder::exclude, TermsExclude._DESERIALIZER, "exclude");
 		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
-		op.add(Builder::include, JsonpDeserializer.jsonValueDeserializer(), "include");
+		op.add(Builder::include, TermsInclude._DESERIALIZER, "include");
 		op.add(Builder::maxDocCount, JsonpDeserializer.longDeserializer(), "max_doc_count");
 		op.add(Builder::missing, JsonpDeserializer.stringDeserializer(), "missing");
 		op.add(Builder::precision, JsonpDeserializer.doubleDeserializer(), "precision");

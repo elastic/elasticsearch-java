@@ -396,7 +396,7 @@ public class GetInfluencersRequest extends RequestBase implements JsonpSerializa
 	/**
 	 * Endpoint "{@code ml.get_influencers}".
 	 */
-	public static final Endpoint<GetInfluencersRequest, GetInfluencersResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<GetInfluencersRequest, GetInfluencersResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";

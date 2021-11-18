@@ -155,7 +155,7 @@ public class PutAutoscalingPolicyRequest extends RequestBase implements JsonpSer
 	/**
 	 * Endpoint "{@code autoscaling.put_autoscaling_policy}".
 	 */
-	public static final Endpoint<PutAutoscalingPolicyRequest, PutAutoscalingPolicyResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<PutAutoscalingPolicyRequest, PutAutoscalingPolicyResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "PUT";

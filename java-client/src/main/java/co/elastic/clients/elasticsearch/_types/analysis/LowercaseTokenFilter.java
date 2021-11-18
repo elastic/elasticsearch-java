@@ -37,7 +37,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.analysis.LowercaseTokenFilter
 @JsonpDeserializable
-public class LowercaseTokenFilter extends TokenFilterBase implements TokenFilterVariant {
+public class LowercaseTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
 	@Nullable
 	private final String language;
 
@@ -55,7 +55,7 @@ public class LowercaseTokenFilter extends TokenFilterBase implements TokenFilter
 	}
 
 	/**
-	 * {@link TokenFilter} variant type
+	 * {@link TokenFilterDefinition} variant type
 	 */
 	@Override
 	public String _variantType() {

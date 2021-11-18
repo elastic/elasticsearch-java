@@ -41,7 +41,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.analysis.CommonGramsTokenFilter
 @JsonpDeserializable
-public class CommonGramsTokenFilter extends TokenFilterBase implements TokenFilterVariant {
+public class CommonGramsTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
 	private final List<String> commonWords;
 
 	@Nullable
@@ -70,7 +70,7 @@ public class CommonGramsTokenFilter extends TokenFilterBase implements TokenFilt
 	}
 
 	/**
-	 * {@link TokenFilter} variant type
+	 * {@link TokenFilterDefinition} variant type
 	 */
 	@Override
 	public String _variantType() {

@@ -53,7 +53,7 @@ public class GetStatsRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code slm.get_stats}".
 	 */
-	public static final Endpoint<GetStatsRequest, GetStatsResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<GetStatsRequest, GetStatsResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "GET";

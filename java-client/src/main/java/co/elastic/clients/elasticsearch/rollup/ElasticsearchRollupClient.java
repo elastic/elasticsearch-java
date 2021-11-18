@@ -25,6 +25,9 @@ package co.elastic.clients.elasticsearch.rollup;
 
 import co.elastic.clients.ApiClient;
 import co.elastic.clients.elasticsearch._types.ElasticsearchException;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.EndpointWithResponseMapperAttr;
 import co.elastic.clients.transport.Transport;
 import co.elastic.clients.transport.TransportOptions;
 import co.elastic.clients.util.ObjectBuilder;
@@ -61,7 +64,10 @@ public class ElasticsearchRollupClient extends ApiClient<ElasticsearchRollupClie
 	 */
 
 	public DeleteJobResponse deleteJob(DeleteJobRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, DeleteJobRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<DeleteJobRequest, DeleteJobResponse, ErrorResponse> endpoint = (Endpoint<DeleteJobRequest, DeleteJobResponse, ErrorResponse>) DeleteJobRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -91,7 +97,10 @@ public class ElasticsearchRollupClient extends ApiClient<ElasticsearchRollupClie
 	 */
 
 	public GetJobsResponse getJobs(GetJobsRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, GetJobsRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<GetJobsRequest, GetJobsResponse, ErrorResponse> endpoint = (Endpoint<GetJobsRequest, GetJobsResponse, ErrorResponse>) GetJobsRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -119,7 +128,7 @@ public class ElasticsearchRollupClient extends ApiClient<ElasticsearchRollupClie
 	 */
 
 	public GetJobsResponse getJobs() throws IOException, ElasticsearchException {
-		return this.transport.performRequest(new GetJobsRequest.Builder().build(), GetJobsRequest.ENDPOINT,
+		return this.transport.performRequest(new GetJobsRequest.Builder().build(), GetJobsRequest._ENDPOINT,
 				this.transportOptions);
 	}
 
@@ -136,7 +145,10 @@ public class ElasticsearchRollupClient extends ApiClient<ElasticsearchRollupClie
 
 	public GetRollupCapsResponse getRollupCaps(GetRollupCapsRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, GetRollupCapsRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<GetRollupCapsRequest, GetRollupCapsResponse, ErrorResponse> endpoint = (Endpoint<GetRollupCapsRequest, GetRollupCapsResponse, ErrorResponse>) GetRollupCapsRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -167,7 +179,7 @@ public class ElasticsearchRollupClient extends ApiClient<ElasticsearchRollupClie
 	 */
 
 	public GetRollupCapsResponse getRollupCaps() throws IOException, ElasticsearchException {
-		return this.transport.performRequest(new GetRollupCapsRequest.Builder().build(), GetRollupCapsRequest.ENDPOINT,
+		return this.transport.performRequest(new GetRollupCapsRequest.Builder().build(), GetRollupCapsRequest._ENDPOINT,
 				this.transportOptions);
 	}
 
@@ -184,7 +196,10 @@ public class ElasticsearchRollupClient extends ApiClient<ElasticsearchRollupClie
 
 	public GetRollupIndexCapsResponse getRollupIndexCaps(GetRollupIndexCapsRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, GetRollupIndexCapsRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<GetRollupIndexCapsRequest, GetRollupIndexCapsResponse, ErrorResponse> endpoint = (Endpoint<GetRollupIndexCapsRequest, GetRollupIndexCapsResponse, ErrorResponse>) GetRollupIndexCapsRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -216,7 +231,10 @@ public class ElasticsearchRollupClient extends ApiClient<ElasticsearchRollupClie
 	 */
 
 	public PutJobResponse putJob(PutJobRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, PutJobRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<PutJobRequest, PutJobResponse, ErrorResponse> endpoint = (Endpoint<PutJobRequest, PutJobResponse, ErrorResponse>) PutJobRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -246,7 +264,10 @@ public class ElasticsearchRollupClient extends ApiClient<ElasticsearchRollupClie
 	 */
 
 	public RollupResponse rollup(RollupRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, RollupRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<RollupRequest, RollupResponse, ErrorResponse> endpoint = (Endpoint<RollupRequest, RollupResponse, ErrorResponse>) RollupRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -277,8 +298,12 @@ public class ElasticsearchRollupClient extends ApiClient<ElasticsearchRollupClie
 
 	public <TDocument> RollupSearchResponse<TDocument> rollupSearch(RollupSearchRequest request,
 			Class<TDocument> tDocumentClass) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request,
-				RollupSearchRequest.createRollupSearchEndpoint(getDeserializer(tDocumentClass)), this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<RollupSearchRequest, RollupSearchResponse<TDocument>, ErrorResponse> endpoint = (Endpoint<RollupSearchRequest, RollupSearchResponse<TDocument>, ErrorResponse>) RollupSearchRequest._ENDPOINT;
+		endpoint = new EndpointWithResponseMapperAttr<>(endpoint,
+				"co.elastic.clients:Deserializer:rollup.rollup_search.TDocument", getDeserializer(tDocumentClass));
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -309,7 +334,10 @@ public class ElasticsearchRollupClient extends ApiClient<ElasticsearchRollupClie
 	 */
 
 	public StartJobResponse startJob(StartJobRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, StartJobRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<StartJobRequest, StartJobResponse, ErrorResponse> endpoint = (Endpoint<StartJobRequest, StartJobResponse, ErrorResponse>) StartJobRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -339,7 +367,10 @@ public class ElasticsearchRollupClient extends ApiClient<ElasticsearchRollupClie
 	 */
 
 	public StopJobResponse stopJob(StopJobRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, StopJobRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<StopJobRequest, StopJobResponse, ErrorResponse> endpoint = (Endpoint<StopJobRequest, StopJobResponse, ErrorResponse>) StopJobRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**

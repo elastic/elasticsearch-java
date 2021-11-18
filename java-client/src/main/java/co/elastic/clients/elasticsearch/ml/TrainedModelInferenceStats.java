@@ -23,6 +23,7 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -34,7 +35,6 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
-import java.lang.String;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -50,7 +50,7 @@ public class TrainedModelInferenceStats implements JsonpSerializable {
 
 	private final long missingAllFieldsCount;
 
-	private final String timestamp;
+	private final Time timestamp;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -116,7 +116,7 @@ public class TrainedModelInferenceStats implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code timestamp}
 	 */
-	public final String timestamp() {
+	public final Time timestamp() {
 		return this.timestamp;
 	}
 
@@ -144,7 +144,7 @@ public class TrainedModelInferenceStats implements JsonpSerializable {
 		generator.write(this.missingAllFieldsCount);
 
 		generator.writeKey("timestamp");
-		generator.write(this.timestamp);
+		this.timestamp.serialize(generator, mapper);
 
 	}
 
@@ -162,7 +162,7 @@ public class TrainedModelInferenceStats implements JsonpSerializable {
 
 		private Long missingAllFieldsCount;
 
-		private String timestamp;
+		private Time timestamp;
 
 		/**
 		 * Required - The number of failures when using the model for inference.
@@ -215,9 +215,18 @@ public class TrainedModelInferenceStats implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code timestamp}
 		 */
-		public final Builder timestamp(String value) {
+		public final Builder timestamp(Time value) {
 			this.timestamp = value;
 			return this;
+		}
+
+		/**
+		 * Required - The time when the statistics were last updated.
+		 * <p>
+		 * API name: {@code timestamp}
+		 */
+		public final Builder timestamp(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.timestamp(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -248,7 +257,7 @@ public class TrainedModelInferenceStats implements JsonpSerializable {
 		op.add(Builder::inferenceCount, JsonpDeserializer.longDeserializer(), "inference_count");
 		op.add(Builder::cacheMissCount, JsonpDeserializer.longDeserializer(), "cache_miss_count");
 		op.add(Builder::missingAllFieldsCount, JsonpDeserializer.longDeserializer(), "missing_all_fields_count");
-		op.add(Builder::timestamp, JsonpDeserializer.stringDeserializer(), "timestamp");
+		op.add(Builder::timestamp, Time._DESERIALIZER, "timestamp");
 
 	}
 

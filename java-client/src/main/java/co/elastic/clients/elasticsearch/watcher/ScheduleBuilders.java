@@ -23,12 +23,14 @@
 
 package co.elastic.clients.elasticsearch.watcher;
 
+import co.elastic.clients.elasticsearch._types.Time;
+
 /**
  * Builders for {@link Schedule} variants.
  * <p>
- * Variants <code>cron</code>, <code>interval</code>, <code>monthly</code>,
- * <code>weekly</code>, <code>yearly</code> are not available here as they don't
- * have a dedicated class. Use {@link Schedule}'s builder for these.
+ * Variants <code>cron</code>, <code>monthly</code>, <code>weekly</code>,
+ * <code>yearly</code> are not available here as they don't have a dedicated
+ * class. Use {@link Schedule}'s builder for these.
  * 
  */
 public class ScheduleBuilders {
@@ -49,6 +51,13 @@ public class ScheduleBuilders {
 	 */
 	public static HourlySchedule.Builder hourly() {
 		return new HourlySchedule.Builder();
+	}
+
+	/**
+	 * Creates a builder for the {@link Time interval} {@code Schedule} variant.
+	 */
+	public static Time.Builder interval() {
+		return new Time.Builder();
 	}
 
 }

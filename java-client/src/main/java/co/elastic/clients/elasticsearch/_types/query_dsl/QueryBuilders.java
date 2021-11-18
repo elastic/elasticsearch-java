@@ -25,11 +25,6 @@ package co.elastic.clients.elasticsearch._types.query_dsl;
 
 /**
  * Builders for {@link Query} variants.
- * <p>
- * Variants <code>distance_feature</code>, <code>range</code> are not available
- * here as they don't have a dedicated class. Use {@link Query}'s builder for
- * these.
- * 
  */
 public class QueryBuilders {
 	private QueryBuilders() {
@@ -79,6 +74,14 @@ public class QueryBuilders {
 	 */
 	public static DisMaxQuery.Builder disMax() {
 		return new DisMaxQuery.Builder();
+	}
+
+	/**
+	 * Creates a builder for the {@link DistanceFeatureQuery distance_feature}
+	 * {@code Query} variant.
+	 */
+	public static DistanceFeatureQuery.Builder distanceFeature() {
+		return new DistanceFeatureQuery.Builder();
 	}
 
 	/**
@@ -272,6 +275,13 @@ public class QueryBuilders {
 	 */
 	public static QueryStringQuery.Builder queryString() {
 		return new QueryStringQuery.Builder();
+	}
+
+	/**
+	 * Creates a builder for the {@link RangeQuery range} {@code Query} variant.
+	 */
+	public static RangeQuery.Builder range() {
+		return new RangeQuery.Builder();
 	}
 
 	/**

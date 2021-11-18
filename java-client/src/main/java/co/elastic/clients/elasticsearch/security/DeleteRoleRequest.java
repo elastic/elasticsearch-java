@@ -24,10 +24,10 @@
 package co.elastic.clients.elasticsearch.security;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
+import co.elastic.clients.elasticsearch._types.Refresh;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
-import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
@@ -35,7 +35,6 @@ import co.elastic.clients.transport.SimpleEndpoint;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.HashMap;
@@ -50,7 +49,7 @@ public class DeleteRoleRequest extends RequestBase {
 	private final String name;
 
 	@Nullable
-	private final JsonValue /* _types.Refresh */ refresh;
+	private final Refresh refresh;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -83,7 +82,7 @@ public class DeleteRoleRequest extends RequestBase {
 	 * API name: {@code refresh}
 	 */
 	@Nullable
-	public final JsonValue /* _types.Refresh */ refresh() {
+	public final Refresh refresh() {
 		return this.refresh;
 	}
 
@@ -96,7 +95,7 @@ public class DeleteRoleRequest extends RequestBase {
 		private String name;
 
 		@Nullable
-		private JsonValue /* _types.Refresh */ refresh;
+		private Refresh refresh;
 
 		/**
 		 * Required - Role name
@@ -116,7 +115,7 @@ public class DeleteRoleRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code refresh}
 		 */
-		public final Builder refresh(@Nullable JsonValue /* _types.Refresh */ value) {
+		public final Builder refresh(@Nullable Refresh value) {
 			this.refresh = value;
 			return this;
 		}
@@ -139,7 +138,7 @@ public class DeleteRoleRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code security.delete_role}".
 	 */
-	public static final Endpoint<DeleteRoleRequest, DeleteRoleResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<DeleteRoleRequest, DeleteRoleResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "DELETE";
@@ -170,7 +169,7 @@ public class DeleteRoleRequest extends RequestBase {
 			request -> {
 				Map<String, String> params = new HashMap<>();
 				if (request.refresh != null) {
-					params.put("refresh", JsonpUtils.toString(request.refresh));
+					params.put("refresh", request.refresh.jsonValue());
 				}
 				return params;
 

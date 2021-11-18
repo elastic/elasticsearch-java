@@ -132,7 +132,7 @@ public class ClosePointInTimeRequest extends RequestBase implements JsonpSeriali
 	/**
 	 * Endpoint "{@code close_point_in_time}".
 	 */
-	public static final Endpoint<ClosePointInTimeRequest, ClosePointInTimeResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<ClosePointInTimeRequest, ClosePointInTimeResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "DELETE";

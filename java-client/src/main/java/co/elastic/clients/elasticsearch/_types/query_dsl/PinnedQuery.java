@@ -42,6 +42,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.PinnedQuery
+// union type: Container[]
 @JsonpDeserializable
 public class PinnedQuery extends QueryBase implements TaggedUnion<Object>, QueryVariant, JsonpSerializable {
 
@@ -55,8 +56,6 @@ public class PinnedQuery extends QueryBase implements TaggedUnion<Object>, Query
 	public String _variantType() {
 		return "pinned";
 	}
-
-	// Tagged union implementation
 
 	private final String _type;
 	private final Object _value;
@@ -117,6 +116,7 @@ public class PinnedQuery extends QueryBase implements TaggedUnion<Object>, Query
 	@Override
 	@SuppressWarnings("unchecked")
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+
 		generator.writeStartObject();
 
 		super.serializeInternal(generator, mapper);
@@ -150,6 +150,7 @@ public class PinnedQuery extends QueryBase implements TaggedUnion<Object>, Query
 		}
 
 		generator.writeEnd();
+
 	}
 
 	public static class Builder extends QueryBase.AbstractBuilder<Builder> {

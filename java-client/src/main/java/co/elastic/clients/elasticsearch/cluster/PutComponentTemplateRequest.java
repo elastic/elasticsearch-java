@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.cluster;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.elasticsearch._types.mapping.TypeMapping;
 import co.elastic.clients.elasticsearch.indices.AliasDefinition;
 import co.elastic.clients.elasticsearch.indices.IndexSettings;
@@ -67,7 +68,7 @@ public class PutComponentTemplateRequest extends RequestBase implements JsonpSer
 	private final TypeMapping mappings;
 
 	@Nullable
-	private final String masterTimeout;
+	private final Time masterTimeout;
 
 	private final String name;
 
@@ -138,7 +139,7 @@ public class PutComponentTemplateRequest extends RequestBase implements JsonpSer
 	 * API name: {@code master_timeout}
 	 */
 	@Nullable
-	public final String masterTimeout() {
+	public final Time masterTimeout() {
 		return this.masterTimeout;
 	}
 
@@ -247,7 +248,7 @@ public class PutComponentTemplateRequest extends RequestBase implements JsonpSer
 		private TypeMapping mappings;
 
 		@Nullable
-		private String masterTimeout;
+		private Time masterTimeout;
 
 		private String name;
 
@@ -318,9 +319,18 @@ public class PutComponentTemplateRequest extends RequestBase implements JsonpSer
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
-		public final Builder masterTimeout(@Nullable String value) {
+		public final Builder masterTimeout(@Nullable Time value) {
 			this.masterTimeout = value;
 			return this;
+		}
+
+		/**
+		 * Specify timeout for connection to master
+		 * <p>
+		 * API name: {@code master_timeout}
+		 */
+		public final Builder masterTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.masterTimeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -409,7 +419,7 @@ public class PutComponentTemplateRequest extends RequestBase implements JsonpSer
 	/**
 	 * Endpoint "{@code cluster.put_component_template}".
 	 */
-	public static final Endpoint<PutComponentTemplateRequest, PutComponentTemplateResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<PutComponentTemplateRequest, PutComponentTemplateResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "PUT";
@@ -439,7 +449,7 @@ public class PutComponentTemplateRequest extends RequestBase implements JsonpSer
 			request -> {
 				Map<String, String> params = new HashMap<>();
 				if (request.masterTimeout != null) {
-					params.put("master_timeout", request.masterTimeout);
+					params.put("master_timeout", request.masterTimeout._toJsonString());
 				}
 				if (request.create != null) {
 					params.put("create", String.valueOf(request.create));

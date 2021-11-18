@@ -37,7 +37,7 @@ import java.util.function.Function;
 
 // typedef: _types.analysis.KeywordTokenizer
 @JsonpDeserializable
-public class KeywordTokenizer extends TokenizerBase implements TokenizerVariant {
+public class KeywordTokenizer extends TokenizerBase implements TokenizerDefinitionVariant {
 	private final int bufferSize;
 
 	// ---------------------------------------------------------------------------------------------
@@ -54,7 +54,7 @@ public class KeywordTokenizer extends TokenizerBase implements TokenizerVariant 
 	}
 
 	/**
-	 * {@link Tokenizer} variant type
+	 * {@link TokenizerDefinition} variant type
 	 */
 	@Override
 	public String _variantType() {

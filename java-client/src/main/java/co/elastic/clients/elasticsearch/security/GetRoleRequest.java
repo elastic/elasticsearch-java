@@ -105,7 +105,7 @@ public class GetRoleRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code security.get_role}".
 	 */
-	public static final Endpoint<GetRoleRequest, GetRoleResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<GetRoleRequest, GetRoleResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "GET";

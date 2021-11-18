@@ -35,7 +35,7 @@ import java.util.function.Function;
 
 // typedef: _types.analysis.LowercaseTokenizer
 @JsonpDeserializable
-public class LowercaseTokenizer extends TokenizerBase implements TokenizerVariant {
+public class LowercaseTokenizer extends TokenizerBase implements TokenizerDefinitionVariant {
 	// ---------------------------------------------------------------------------------------------
 
 	private LowercaseTokenizer(Builder builder) {
@@ -48,7 +48,7 @@ public class LowercaseTokenizer extends TokenizerBase implements TokenizerVarian
 	}
 
 	/**
-	 * {@link Tokenizer} variant type
+	 * {@link TokenizerDefinition} variant type
 	 */
 	@Override
 	public String _variantType() {

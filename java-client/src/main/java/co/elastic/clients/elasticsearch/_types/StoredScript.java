@@ -34,6 +34,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
+import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -41,8 +42,9 @@ import javax.annotation.Nullable;
 // typedef: _types.StoredScript
 @JsonpDeserializable
 public class StoredScript implements JsonpSerializable {
-	@Nullable
-	private final ScriptLanguage lang;
+	private final String lang;
+
+	private final Map<String, String> options;
 
 	private final String source;
 
@@ -50,7 +52,8 @@ public class StoredScript implements JsonpSerializable {
 
 	private StoredScript(Builder builder) {
 
-		this.lang = builder.lang;
+		this.lang = ModelTypeHelper.requireNonNull(builder.lang, this, "lang");
+		this.options = ModelTypeHelper.unmodifiable(builder.options);
 		this.source = ModelTypeHelper.requireNonNull(builder.source, this, "source");
 
 	}
@@ -60,11 +63,17 @@ public class StoredScript implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code lang}
+	 * Required - API name: {@code lang}
 	 */
-	@Nullable
-	public final ScriptLanguage lang() {
+	public final String lang() {
 		return this.lang;
+	}
+
+	/**
+	 * API name: {@code options}
+	 */
+	public final Map<String, String> options() {
+		return this.options;
 	}
 
 	/**
@@ -85,9 +94,19 @@ public class StoredScript implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (this.lang != null) {
-			generator.writeKey("lang");
-			this.lang.serialize(generator, mapper);
+		generator.writeKey("lang");
+		generator.write(this.lang);
+
+		if (ModelTypeHelper.isDefined(this.options)) {
+			generator.writeKey("options");
+			generator.writeStartObject();
+			for (Map.Entry<String, String> item0 : this.options.entrySet()) {
+				generator.writeKey(item0.getKey());
+				generator.write(item0.getValue());
+
+			}
+			generator.writeEnd();
+
 		}
 		generator.writeKey("source");
 		generator.write(this.source);
@@ -100,16 +119,26 @@ public class StoredScript implements JsonpSerializable {
 	 * Builder for {@link StoredScript}.
 	 */
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<StoredScript> {
+		private String lang;
+
 		@Nullable
-		private ScriptLanguage lang;
+		private Map<String, String> options;
 
 		private String source;
 
 		/**
-		 * API name: {@code lang}
+		 * Required - API name: {@code lang}
 		 */
-		public final Builder lang(@Nullable ScriptLanguage value) {
+		public final Builder lang(String value) {
 			this.lang = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code options}
+		 */
+		public final Builder options(@Nullable Map<String, String> value) {
+			this.options = value;
 			return this;
 		}
 
@@ -144,7 +173,9 @@ public class StoredScript implements JsonpSerializable {
 
 	protected static void setupStoredScriptDeserializer(ObjectDeserializer<StoredScript.Builder> op) {
 
-		op.add(Builder::lang, ScriptLanguage._DESERIALIZER, "lang");
+		op.add(Builder::lang, JsonpDeserializer.stringDeserializer(), "lang");
+		op.add(Builder::options, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.stringDeserializer()),
+				"options");
 		op.add(Builder::source, JsonpDeserializer.stringDeserializer(), "source");
 
 	}

@@ -37,7 +37,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.analysis.WhitespaceTokenizer
 @JsonpDeserializable
-public class WhitespaceTokenizer extends TokenizerBase implements TokenizerVariant {
+public class WhitespaceTokenizer extends TokenizerBase implements TokenizerDefinitionVariant {
 	@Nullable
 	private final Integer maxTokenLength;
 
@@ -55,7 +55,7 @@ public class WhitespaceTokenizer extends TokenizerBase implements TokenizerVaria
 	}
 
 	/**
-	 * {@link Tokenizer} variant type
+	 * {@link TokenizerDefinition} variant type
 	 */
 	@Override
 	public String _variantType() {

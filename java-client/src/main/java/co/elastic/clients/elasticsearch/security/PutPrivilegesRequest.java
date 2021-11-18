@@ -24,13 +24,13 @@
 package co.elastic.clients.elasticsearch.security;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
+import co.elastic.clients.elasticsearch._types.Refresh;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch.security.put_privileges.Actions;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
-import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
@@ -38,7 +38,6 @@ import co.elastic.clients.transport.SimpleEndpoint;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.HashMap;
@@ -51,7 +50,7 @@ import javax.annotation.Nullable;
 @JsonpDeserializable
 public class PutPrivilegesRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
-	private final JsonValue /* _types.Refresh */ refresh;
+	private final Refresh refresh;
 
 	private final Map<String, Map<String, Actions>> privileges;
 
@@ -77,7 +76,7 @@ public class PutPrivilegesRequest extends RequestBase implements JsonpSerializab
 	 * API name: {@code refresh}
 	 */
 	@Nullable
-	public final JsonValue /* _types.Refresh */ refresh() {
+	public final Refresh refresh() {
 		return this.refresh;
 	}
 
@@ -119,7 +118,7 @@ public class PutPrivilegesRequest extends RequestBase implements JsonpSerializab
 	 */
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PutPrivilegesRequest> {
 		@Nullable
-		private JsonValue /* _types.Refresh */ refresh;
+		private Refresh refresh;
 
 		private Map<String, Map<String, Actions>> privileges;
 
@@ -131,7 +130,7 @@ public class PutPrivilegesRequest extends RequestBase implements JsonpSerializab
 		 * <p>
 		 * API name: {@code refresh}
 		 */
-		public final Builder refresh(@Nullable JsonValue /* _types.Refresh */ value) {
+		public final Builder refresh(@Nullable Refresh value) {
 			this.refresh = value;
 			return this;
 		}
@@ -174,7 +173,7 @@ public class PutPrivilegesRequest extends RequestBase implements JsonpSerializab
 	/**
 	 * Endpoint "{@code security.put_privileges}".
 	 */
-	public static final Endpoint<PutPrivilegesRequest, PutPrivilegesResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<PutPrivilegesRequest, PutPrivilegesResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "PUT";
@@ -191,7 +190,7 @@ public class PutPrivilegesRequest extends RequestBase implements JsonpSerializab
 			request -> {
 				Map<String, String> params = new HashMap<>();
 				if (request.refresh != null) {
-					params.put("refresh", JsonpUtils.toString(request.refresh));
+					params.put("refresh", request.refresh.jsonValue());
 				}
 				return params;
 

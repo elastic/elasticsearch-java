@@ -132,7 +132,7 @@ public class GetPrivilegesRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code security.get_privileges}".
 	 */
-	public static final Endpoint<GetPrivilegesRequest, GetPrivilegesResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<GetPrivilegesRequest, GetPrivilegesResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "GET";

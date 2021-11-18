@@ -37,7 +37,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.analysis.StandardTokenizer
 @JsonpDeserializable
-public class StandardTokenizer extends TokenizerBase implements TokenizerVariant {
+public class StandardTokenizer extends TokenizerBase implements TokenizerDefinitionVariant {
 	@Nullable
 	private final Integer maxTokenLength;
 
@@ -55,7 +55,7 @@ public class StandardTokenizer extends TokenizerBase implements TokenizerVariant
 	}
 
 	/**
-	 * {@link Tokenizer} variant type
+	 * {@link TokenizerDefinition} variant type
 	 */
 	@Override
 	public String _variantType() {

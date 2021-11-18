@@ -39,8 +39,7 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.Collections;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -83,8 +82,7 @@ public class FlushJobRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * Specifies to advance to a particular time value. Results are generated and
-	 * the model is updated for data from the specified time interval.
+	 * Refer to the description for the <code>advance_time</code> query parameter.
 	 * <p>
 	 * API name: {@code advance_time}
 	 */
@@ -94,8 +92,7 @@ public class FlushJobRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * If true, calculates the interim results for the most recent bucket or all
-	 * buckets within the latency period.
+	 * Refer to the description for the <code>calc_interim</code> query parameter.
 	 * <p>
 	 * API name: {@code calc_interim}
 	 */
@@ -105,8 +102,7 @@ public class FlushJobRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * When used in conjunction with <code>calc_interim</code>, specifies the range
-	 * of buckets on which to calculate interim results.
+	 * Refer to the description for the <code>end</code> query parameter.
 	 * <p>
 	 * API name: {@code end}
 	 */
@@ -125,8 +121,7 @@ public class FlushJobRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * Specifies to skip to a particular time value. Results are not generated and
-	 * the model is not updated for data from the specified time interval.
+	 * Refer to the description for the <code>skip_time</code> query parameter.
 	 * <p>
 	 * API name: {@code skip_time}
 	 */
@@ -136,8 +131,7 @@ public class FlushJobRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * When used in conjunction with calc_interim, specifies the range of buckets on
-	 * which to calculate interim results.
+	 * Refer to the description for the <code>start</code> query parameter.
 	 * <p>
 	 * API name: {@code start}
 	 */
@@ -172,6 +166,11 @@ public class FlushJobRequest extends RequestBase implements JsonpSerializable {
 			generator.write(this.end);
 
 		}
+		if (this.skipTime != null) {
+			generator.writeKey("skip_time");
+			generator.write(this.skipTime);
+
+		}
 		if (this.start != null) {
 			generator.writeKey("start");
 			generator.write(this.start);
@@ -204,8 +203,7 @@ public class FlushJobRequest extends RequestBase implements JsonpSerializable {
 		private String start;
 
 		/**
-		 * Specifies to advance to a particular time value. Results are generated and
-		 * the model is updated for data from the specified time interval.
+		 * Refer to the description for the <code>advance_time</code> query parameter.
 		 * <p>
 		 * API name: {@code advance_time}
 		 */
@@ -215,8 +213,7 @@ public class FlushJobRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * If true, calculates the interim results for the most recent bucket or all
-		 * buckets within the latency period.
+		 * Refer to the description for the <code>calc_interim</code> query parameter.
 		 * <p>
 		 * API name: {@code calc_interim}
 		 */
@@ -226,8 +223,7 @@ public class FlushJobRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * When used in conjunction with <code>calc_interim</code>, specifies the range
-		 * of buckets on which to calculate interim results.
+		 * Refer to the description for the <code>end</code> query parameter.
 		 * <p>
 		 * API name: {@code end}
 		 */
@@ -247,8 +243,7 @@ public class FlushJobRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Specifies to skip to a particular time value. Results are not generated and
-		 * the model is not updated for data from the specified time interval.
+		 * Refer to the description for the <code>skip_time</code> query parameter.
 		 * <p>
 		 * API name: {@code skip_time}
 		 */
@@ -258,8 +253,7 @@ public class FlushJobRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * When used in conjunction with calc_interim, specifies the range of buckets on
-		 * which to calculate interim results.
+		 * Refer to the description for the <code>start</code> query parameter.
 		 * <p>
 		 * API name: {@code start}
 		 */
@@ -294,6 +288,7 @@ public class FlushJobRequest extends RequestBase implements JsonpSerializable {
 		op.add(Builder::advanceTime, JsonpDeserializer.stringDeserializer(), "advance_time");
 		op.add(Builder::calcInterim, JsonpDeserializer.booleanDeserializer(), "calc_interim");
 		op.add(Builder::end, JsonpDeserializer.stringDeserializer(), "end");
+		op.add(Builder::skipTime, JsonpDeserializer.stringDeserializer(), "skip_time");
 		op.add(Builder::start, JsonpDeserializer.stringDeserializer(), "start");
 
 	}
@@ -303,7 +298,7 @@ public class FlushJobRequest extends RequestBase implements JsonpSerializable {
 	/**
 	 * Endpoint "{@code ml.flush_job}".
 	 */
-	public static final Endpoint<FlushJobRequest, FlushJobResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<FlushJobRequest, FlushJobResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";
@@ -333,11 +328,7 @@ public class FlushJobRequest extends RequestBase implements JsonpSerializable {
 
 			// Request parameters
 			request -> {
-				Map<String, String> params = new HashMap<>();
-				if (request.skipTime != null) {
-					params.put("skip_time", request.skipTime);
-				}
-				return params;
+				return Collections.emptyMap();
 
 			}, SimpleEndpoint.emptyMap(), true, FlushJobResponse._DESERIALIZER);
 }

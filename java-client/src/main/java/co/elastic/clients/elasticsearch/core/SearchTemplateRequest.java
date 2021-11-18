@@ -24,9 +24,10 @@
 package co.elastic.clients.elasticsearch.core;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
-import co.elastic.clients.elasticsearch._types.ExpandWildcardOptions;
+import co.elastic.clients.elasticsearch._types.ExpandWildcard;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch._types.SearchType;
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -60,7 +61,7 @@ public class SearchTemplateRequest extends RequestBase implements JsonpSerializa
 	@Nullable
 	private final Boolean ccsMinimizeRoundtrips;
 
-	private final List<ExpandWildcardOptions> expandWildcards;
+	private final List<ExpandWildcard> expandWildcards;
 
 	@Nullable
 	private final Boolean explain;
@@ -88,7 +89,7 @@ public class SearchTemplateRequest extends RequestBase implements JsonpSerializa
 	private final String routing;
 
 	@Nullable
-	private final String scroll;
+	private final Time scroll;
 
 	@Nullable
 	private final SearchType searchType;
@@ -151,7 +152,7 @@ public class SearchTemplateRequest extends RequestBase implements JsonpSerializa
 	 * <p>
 	 * API name: {@code expand_wildcards}
 	 */
-	public final List<ExpandWildcardOptions> expandWildcards() {
+	public final List<ExpandWildcard> expandWildcards() {
 		return this.expandWildcards;
 	}
 
@@ -249,7 +250,7 @@ public class SearchTemplateRequest extends RequestBase implements JsonpSerializa
 	 * API name: {@code scroll}
 	 */
 	@Nullable
-	public final String scroll() {
+	public final Time scroll() {
 		return this.scroll;
 	}
 
@@ -333,7 +334,7 @@ public class SearchTemplateRequest extends RequestBase implements JsonpSerializa
 		private Boolean ccsMinimizeRoundtrips;
 
 		@Nullable
-		private List<ExpandWildcardOptions> expandWildcards;
+		private List<ExpandWildcard> expandWildcards;
 
 		@Nullable
 		private Boolean explain;
@@ -363,7 +364,7 @@ public class SearchTemplateRequest extends RequestBase implements JsonpSerializa
 		private String routing;
 
 		@Nullable
-		private String scroll;
+		private Time scroll;
 
 		@Nullable
 		private SearchType searchType;
@@ -400,7 +401,7 @@ public class SearchTemplateRequest extends RequestBase implements JsonpSerializa
 		 * <p>
 		 * API name: {@code expand_wildcards}
 		 */
-		public final Builder expandWildcards(@Nullable List<ExpandWildcardOptions> value) {
+		public final Builder expandWildcards(@Nullable List<ExpandWildcard> value) {
 			this.expandWildcards = value;
 			return this;
 		}
@@ -411,7 +412,7 @@ public class SearchTemplateRequest extends RequestBase implements JsonpSerializa
 		 * <p>
 		 * API name: {@code expand_wildcards}
 		 */
-		public final Builder expandWildcards(ExpandWildcardOptions... value) {
+		public final Builder expandWildcards(ExpandWildcard... value) {
 			this.expandWildcards = Arrays.asList(value);
 			return this;
 		}
@@ -522,9 +523,19 @@ public class SearchTemplateRequest extends RequestBase implements JsonpSerializa
 		 * <p>
 		 * API name: {@code scroll}
 		 */
-		public final Builder scroll(@Nullable String value) {
+		public final Builder scroll(@Nullable Time value) {
 			this.scroll = value;
 			return this;
+		}
+
+		/**
+		 * Specifies how long a consistent view of the index should be maintained for
+		 * scrolled search.
+		 * <p>
+		 * API name: {@code scroll}
+		 */
+		public final Builder scroll(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.scroll(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -585,7 +596,7 @@ public class SearchTemplateRequest extends RequestBase implements JsonpSerializa
 	/**
 	 * Endpoint "{@code search_template}".
 	 */
-	private static final SimpleEndpoint<SearchTemplateRequest, Void> ENDPOINT = new SimpleEndpoint<>(
+	public static final SimpleEndpoint<SearchTemplateRequest, ?> _ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";
@@ -631,7 +642,7 @@ public class SearchTemplateRequest extends RequestBase implements JsonpSerializa
 					params.put("preference", request.preference);
 				}
 				if (request.scroll != null) {
-					params.put("scroll", request.scroll);
+					params.put("scroll", request.scroll._toJsonString());
 				}
 				if (request.searchType != null) {
 					params.put("search_type", request.searchType.jsonValue());
@@ -653,14 +664,14 @@ public class SearchTemplateRequest extends RequestBase implements JsonpSerializa
 				}
 				return params;
 
-			}, SimpleEndpoint.emptyMap(), true, null);
+			}, SimpleEndpoint.emptyMap(), true, SearchTemplateResponse._DESERIALIZER);
 
 	/**
 	 * Create an "{@code search_template}" endpoint.
 	 */
 	public static <TDocument> Endpoint<SearchTemplateRequest, SearchTemplateResponse<TDocument>, ErrorResponse> createSearchTemplateEndpoint(
 			JsonpDeserializer<TDocument> tDocumentDeserializer) {
-		return ENDPOINT.withResponseDeserializer(
+		return _ENDPOINT.withResponseDeserializer(
 				SearchTemplateResponse.createSearchTemplateResponseDeserializer(tDocumentDeserializer));
 	}
 }

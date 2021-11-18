@@ -228,7 +228,7 @@ public class UpdateModelSnapshotRequest extends RequestBase implements JsonpSeri
 	/**
 	 * Endpoint "{@code ml.update_model_snapshot}".
 	 */
-	public static final Endpoint<UpdateModelSnapshotRequest, UpdateModelSnapshotResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<UpdateModelSnapshotRequest, UpdateModelSnapshotResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";

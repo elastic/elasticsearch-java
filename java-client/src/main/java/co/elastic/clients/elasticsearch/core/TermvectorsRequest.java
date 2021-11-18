@@ -604,7 +604,7 @@ public class TermvectorsRequest<TDocument> extends RequestBase implements JsonpS
 	/**
 	 * Endpoint "{@code termvectors}".
 	 */
-	public static final Endpoint<TermvectorsRequest<?>, TermvectorsResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<TermvectorsRequest<?>, TermvectorsResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";

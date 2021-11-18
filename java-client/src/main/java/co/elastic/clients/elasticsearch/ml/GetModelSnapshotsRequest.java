@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -53,12 +54,15 @@ public class GetModelSnapshotsRequest extends RequestBase implements JsonpSerial
 	private final Boolean desc;
 
 	@Nullable
-	private final String end;
+	private final Time end;
 
 	@Nullable
 	private final Integer from;
 
 	private final String jobId;
+
+	@Nullable
+	private final Page page;
 
 	@Nullable
 	private final Integer size;
@@ -70,7 +74,7 @@ public class GetModelSnapshotsRequest extends RequestBase implements JsonpSerial
 	private final String sort;
 
 	@Nullable
-	private final String start;
+	private final Time start;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -80,6 +84,7 @@ public class GetModelSnapshotsRequest extends RequestBase implements JsonpSerial
 		this.end = builder.end;
 		this.from = builder.from;
 		this.jobId = ModelTypeHelper.requireNonNull(builder.jobId, this, "jobId");
+		this.page = builder.page;
 		this.size = builder.size;
 		this.snapshotId = builder.snapshotId;
 		this.sort = builder.sort;
@@ -92,7 +97,7 @@ public class GetModelSnapshotsRequest extends RequestBase implements JsonpSerial
 	}
 
 	/**
-	 * If true, the results are sorted in descending order.
+	 * Refer to the description for the <code>desc</code> query parameter.
 	 * <p>
 	 * API name: {@code desc}
 	 */
@@ -102,13 +107,12 @@ public class GetModelSnapshotsRequest extends RequestBase implements JsonpSerial
 	}
 
 	/**
-	 * Returns snapshots with timestamps earlier than this time. Defaults to unset,
-	 * which means results are not limited to specific timestamps.
+	 * Refer to the description for the <code>end</code> query parameter.
 	 * <p>
 	 * API name: {@code end}
 	 */
 	@Nullable
-	public final String end() {
+	public final Time end() {
 		return this.end;
 	}
 
@@ -132,6 +136,14 @@ public class GetModelSnapshotsRequest extends RequestBase implements JsonpSerial
 	}
 
 	/**
+	 * API name: {@code page}
+	 */
+	@Nullable
+	public final Page page() {
+		return this.page;
+	}
+
+	/**
 	 * Specifies the maximum number of snapshots to obtain.
 	 * <p>
 	 * API name: {@code size}
@@ -142,7 +154,11 @@ public class GetModelSnapshotsRequest extends RequestBase implements JsonpSerial
 	}
 
 	/**
-	 * A numerical character string that uniquely identifies the model snapshot.
+	 * A numerical character string that uniquely identifies the model snapshot. You
+	 * can get information for multiple snapshots by using a comma-separated list or
+	 * a wildcard expression. You can get all snapshots by using <code>_all</code>,
+	 * by specifying <code>*</code> as the snapshot ID, or by omitting the snapshot
+	 * ID.
 	 * <p>
 	 * API name: {@code snapshot_id}
 	 */
@@ -152,8 +168,7 @@ public class GetModelSnapshotsRequest extends RequestBase implements JsonpSerial
 	}
 
 	/**
-	 * Specifies the sort field for the requested snapshots. By default, the
-	 * snapshots are sorted by their timestamp.
+	 * Refer to the description for the <code>sort</code> query parameter.
 	 * <p>
 	 * API name: {@code sort}
 	 */
@@ -163,13 +178,12 @@ public class GetModelSnapshotsRequest extends RequestBase implements JsonpSerial
 	}
 
 	/**
-	 * Returns snapshots with timestamps after this time. Defaults to unset, which
-	 * means results are not limited to specific timestamps.
+	 * Refer to the description for the <code>start</code> query parameter.
 	 * <p>
 	 * API name: {@code start}
 	 */
 	@Nullable
-	public final String start() {
+	public final Time start() {
 		return this.start;
 	}
 
@@ -184,14 +198,29 @@ public class GetModelSnapshotsRequest extends RequestBase implements JsonpSerial
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
+		if (this.desc != null) {
+			generator.writeKey("desc");
+			generator.write(this.desc);
+
+		}
 		if (this.end != null) {
 			generator.writeKey("end");
-			generator.write(this.end);
+			this.end.serialize(generator, mapper);
+
+		}
+		if (this.page != null) {
+			generator.writeKey("page");
+			this.page.serialize(generator, mapper);
+
+		}
+		if (this.sort != null) {
+			generator.writeKey("sort");
+			generator.write(this.sort);
 
 		}
 		if (this.start != null) {
 			generator.writeKey("start");
-			generator.write(this.start);
+			this.start.serialize(generator, mapper);
 
 		}
 
@@ -207,12 +236,15 @@ public class GetModelSnapshotsRequest extends RequestBase implements JsonpSerial
 		private Boolean desc;
 
 		@Nullable
-		private String end;
+		private Time end;
 
 		@Nullable
 		private Integer from;
 
 		private String jobId;
+
+		@Nullable
+		private Page page;
 
 		@Nullable
 		private Integer size;
@@ -224,10 +256,10 @@ public class GetModelSnapshotsRequest extends RequestBase implements JsonpSerial
 		private String sort;
 
 		@Nullable
-		private String start;
+		private Time start;
 
 		/**
-		 * If true, the results are sorted in descending order.
+		 * Refer to the description for the <code>desc</code> query parameter.
 		 * <p>
 		 * API name: {@code desc}
 		 */
@@ -237,14 +269,22 @@ public class GetModelSnapshotsRequest extends RequestBase implements JsonpSerial
 		}
 
 		/**
-		 * Returns snapshots with timestamps earlier than this time. Defaults to unset,
-		 * which means results are not limited to specific timestamps.
+		 * Refer to the description for the <code>end</code> query parameter.
 		 * <p>
 		 * API name: {@code end}
 		 */
-		public final Builder end(@Nullable String value) {
+		public final Builder end(@Nullable Time value) {
 			this.end = value;
 			return this;
+		}
+
+		/**
+		 * Refer to the description for the <code>end</code> query parameter.
+		 * <p>
+		 * API name: {@code end}
+		 */
+		public final Builder end(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.end(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -268,6 +308,21 @@ public class GetModelSnapshotsRequest extends RequestBase implements JsonpSerial
 		}
 
 		/**
+		 * API name: {@code page}
+		 */
+		public final Builder page(@Nullable Page value) {
+			this.page = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code page}
+		 */
+		public final Builder page(Function<Page.Builder, ObjectBuilder<Page>> fn) {
+			return this.page(fn.apply(new Page.Builder()).build());
+		}
+
+		/**
 		 * Specifies the maximum number of snapshots to obtain.
 		 * <p>
 		 * API name: {@code size}
@@ -278,7 +333,11 @@ public class GetModelSnapshotsRequest extends RequestBase implements JsonpSerial
 		}
 
 		/**
-		 * A numerical character string that uniquely identifies the model snapshot.
+		 * A numerical character string that uniquely identifies the model snapshot. You
+		 * can get information for multiple snapshots by using a comma-separated list or
+		 * a wildcard expression. You can get all snapshots by using <code>_all</code>,
+		 * by specifying <code>*</code> as the snapshot ID, or by omitting the snapshot
+		 * ID.
 		 * <p>
 		 * API name: {@code snapshot_id}
 		 */
@@ -288,8 +347,7 @@ public class GetModelSnapshotsRequest extends RequestBase implements JsonpSerial
 		}
 
 		/**
-		 * Specifies the sort field for the requested snapshots. By default, the
-		 * snapshots are sorted by their timestamp.
+		 * Refer to the description for the <code>sort</code> query parameter.
 		 * <p>
 		 * API name: {@code sort}
 		 */
@@ -299,14 +357,22 @@ public class GetModelSnapshotsRequest extends RequestBase implements JsonpSerial
 		}
 
 		/**
-		 * Returns snapshots with timestamps after this time. Defaults to unset, which
-		 * means results are not limited to specific timestamps.
+		 * Refer to the description for the <code>start</code> query parameter.
 		 * <p>
 		 * API name: {@code start}
 		 */
-		public final Builder start(@Nullable String value) {
+		public final Builder start(@Nullable Time value) {
 			this.start = value;
 			return this;
+		}
+
+		/**
+		 * Refer to the description for the <code>start</code> query parameter.
+		 * <p>
+		 * API name: {@code start}
+		 */
+		public final Builder start(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.start(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -333,8 +399,11 @@ public class GetModelSnapshotsRequest extends RequestBase implements JsonpSerial
 	protected static void setupGetModelSnapshotsRequestDeserializer(
 			ObjectDeserializer<GetModelSnapshotsRequest.Builder> op) {
 
-		op.add(Builder::end, JsonpDeserializer.stringDeserializer(), "end");
-		op.add(Builder::start, JsonpDeserializer.stringDeserializer(), "start");
+		op.add(Builder::desc, JsonpDeserializer.booleanDeserializer(), "desc");
+		op.add(Builder::end, Time._DESERIALIZER, "end");
+		op.add(Builder::page, Page._DESERIALIZER, "page");
+		op.add(Builder::sort, JsonpDeserializer.stringDeserializer(), "sort");
+		op.add(Builder::start, Time._DESERIALIZER, "start");
 
 	}
 
@@ -343,7 +412,7 @@ public class GetModelSnapshotsRequest extends RequestBase implements JsonpSerial
 	/**
 	 * Endpoint "{@code ml.get_model_snapshots}".
 	 */
-	public static final Endpoint<GetModelSnapshotsRequest, GetModelSnapshotsResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<GetModelSnapshotsRequest, GetModelSnapshotsResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";
@@ -393,12 +462,6 @@ public class GetModelSnapshotsRequest extends RequestBase implements JsonpSerial
 				}
 				if (request.from != null) {
 					params.put("from", String.valueOf(request.from));
-				}
-				if (request.sort != null) {
-					params.put("sort", request.sort);
-				}
-				if (request.desc != null) {
-					params.put("desc", String.valueOf(request.desc));
 				}
 				return params;
 

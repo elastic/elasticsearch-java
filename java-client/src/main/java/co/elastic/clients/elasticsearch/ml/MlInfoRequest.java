@@ -53,7 +53,7 @@ public class MlInfoRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code ml.info}".
 	 */
-	public static final Endpoint<MlInfoRequest, MlInfoResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<MlInfoRequest, MlInfoResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "GET";

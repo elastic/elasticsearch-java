@@ -37,7 +37,7 @@ import java.util.function.Function;
 
 // typedef: _types.analysis.LengthTokenFilter
 @JsonpDeserializable
-public class LengthTokenFilter extends TokenFilterBase implements TokenFilterVariant {
+public class LengthTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
 	private final int max;
 
 	private final int min;
@@ -57,7 +57,7 @@ public class LengthTokenFilter extends TokenFilterBase implements TokenFilterVar
 	}
 
 	/**
-	 * {@link TokenFilter} variant type
+	 * {@link TokenFilterDefinition} variant type
 	 */
 	@Override
 	public String _variantType() {

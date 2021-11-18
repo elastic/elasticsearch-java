@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.ml.preview_data_frame_analytics;
 
 import co.elastic.clients.elasticsearch.ml.DataframeAnalysis;
+import co.elastic.clients.elasticsearch.ml.DataframeAnalysisAnalyzedFields;
 import co.elastic.clients.elasticsearch.ml.DataframeAnalyticsSource;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -34,7 +35,6 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
@@ -56,7 +56,7 @@ public class DataframePreviewConfig implements JsonpSerializable {
 	private final Integer maxNumThreads;
 
 	@Nullable
-	private final JsonValue /* ml._types.DataframeAnalysisAnalyzedFields */ analyzedFields;
+	private final DataframeAnalysisAnalyzedFields analyzedFields;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -108,7 +108,7 @@ public class DataframePreviewConfig implements JsonpSerializable {
 	 * API name: {@code analyzed_fields}
 	 */
 	@Nullable
-	public final JsonValue /* ml._types.DataframeAnalysisAnalyzedFields */ analyzedFields() {
+	public final DataframeAnalysisAnalyzedFields analyzedFields() {
 		return this.analyzedFields;
 	}
 
@@ -141,7 +141,7 @@ public class DataframePreviewConfig implements JsonpSerializable {
 		}
 		if (this.analyzedFields != null) {
 			generator.writeKey("analyzed_fields");
-			generator.write(this.analyzedFields);
+			this.analyzedFields.serialize(generator, mapper);
 
 		}
 
@@ -164,7 +164,7 @@ public class DataframePreviewConfig implements JsonpSerializable {
 		private Integer maxNumThreads;
 
 		@Nullable
-		private JsonValue /* ml._types.DataframeAnalysisAnalyzedFields */ analyzedFields;
+		private DataframeAnalysisAnalyzedFields analyzedFields;
 
 		/**
 		 * Required - API name: {@code source}
@@ -216,9 +216,17 @@ public class DataframePreviewConfig implements JsonpSerializable {
 		/**
 		 * API name: {@code analyzed_fields}
 		 */
-		public final Builder analyzedFields(@Nullable JsonValue /* ml._types.DataframeAnalysisAnalyzedFields */ value) {
+		public final Builder analyzedFields(@Nullable DataframeAnalysisAnalyzedFields value) {
 			this.analyzedFields = value;
 			return this;
+		}
+
+		/**
+		 * API name: {@code analyzed_fields}
+		 */
+		public final Builder analyzedFields(
+				Function<DataframeAnalysisAnalyzedFields.Builder, ObjectBuilder<DataframeAnalysisAnalyzedFields>> fn) {
+			return this.analyzedFields(fn.apply(new DataframeAnalysisAnalyzedFields.Builder()).build());
 		}
 
 		/**
@@ -249,7 +257,7 @@ public class DataframePreviewConfig implements JsonpSerializable {
 		op.add(Builder::analysis, DataframeAnalysis._DESERIALIZER, "analysis");
 		op.add(Builder::modelMemoryLimit, JsonpDeserializer.stringDeserializer(), "model_memory_limit");
 		op.add(Builder::maxNumThreads, JsonpDeserializer.integerDeserializer(), "max_num_threads");
-		op.add(Builder::analyzedFields, JsonpDeserializer.jsonValueDeserializer(), "analyzed_fields");
+		op.add(Builder::analyzedFields, DataframeAnalysisAnalyzedFields._DESERIALIZER, "analyzed_fields");
 
 	}
 

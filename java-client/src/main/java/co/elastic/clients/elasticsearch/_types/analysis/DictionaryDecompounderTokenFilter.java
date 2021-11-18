@@ -35,7 +35,9 @@ import java.util.function.Function;
 
 // typedef: _types.analysis.DictionaryDecompounderTokenFilter
 @JsonpDeserializable
-public class DictionaryDecompounderTokenFilter extends CompoundWordTokenFilterBase implements TokenFilterVariant {
+public class DictionaryDecompounderTokenFilter extends CompoundWordTokenFilterBase
+		implements
+			TokenFilterDefinitionVariant {
 	// ---------------------------------------------------------------------------------------------
 
 	private DictionaryDecompounderTokenFilter(Builder builder) {
@@ -49,7 +51,7 @@ public class DictionaryDecompounderTokenFilter extends CompoundWordTokenFilterBa
 	}
 
 	/**
-	 * {@link TokenFilter} variant type
+	 * {@link TokenFilterDefinition} variant type
 	 */
 	@Override
 	public String _variantType() {

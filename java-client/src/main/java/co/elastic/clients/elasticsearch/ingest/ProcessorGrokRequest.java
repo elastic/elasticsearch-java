@@ -53,7 +53,7 @@ public class ProcessorGrokRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code ingest.processor_grok}".
 	 */
-	public static final Endpoint<ProcessorGrokRequest, ProcessorGrokResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<ProcessorGrokRequest, ProcessorGrokResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "GET";

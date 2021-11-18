@@ -248,7 +248,7 @@ public class CancelRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code tasks.cancel}".
 	 */
-	public static final Endpoint<CancelRequest, CancelResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<CancelRequest, CancelResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";

@@ -23,6 +23,7 @@
 
 package co.elastic.clients.elasticsearch.ccr.follow_info;
 
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -50,7 +51,7 @@ public class FollowerIndexParameters implements JsonpSerializable {
 
 	private final String maxReadRequestSize;
 
-	private final String maxRetryDelay;
+	private final Time maxRetryDelay;
 
 	private final int maxWriteBufferCount;
 
@@ -60,7 +61,7 @@ public class FollowerIndexParameters implements JsonpSerializable {
 
 	private final String maxWriteRequestSize;
 
-	private final String readPollTimeout;
+	private final Time readPollTimeout;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -122,7 +123,7 @@ public class FollowerIndexParameters implements JsonpSerializable {
 	/**
 	 * Required - API name: {@code max_retry_delay}
 	 */
-	public final String maxRetryDelay() {
+	public final Time maxRetryDelay() {
 		return this.maxRetryDelay;
 	}
 
@@ -157,7 +158,7 @@ public class FollowerIndexParameters implements JsonpSerializable {
 	/**
 	 * Required - API name: {@code read_poll_timeout}
 	 */
-	public final String readPollTimeout() {
+	public final Time readPollTimeout() {
 		return this.readPollTimeout;
 	}
 
@@ -185,7 +186,7 @@ public class FollowerIndexParameters implements JsonpSerializable {
 		generator.write(this.maxReadRequestSize);
 
 		generator.writeKey("max_retry_delay");
-		generator.write(this.maxRetryDelay);
+		this.maxRetryDelay.serialize(generator, mapper);
 
 		generator.writeKey("max_write_buffer_count");
 		generator.write(this.maxWriteBufferCount);
@@ -200,7 +201,7 @@ public class FollowerIndexParameters implements JsonpSerializable {
 		generator.write(this.maxWriteRequestSize);
 
 		generator.writeKey("read_poll_timeout");
-		generator.write(this.readPollTimeout);
+		this.readPollTimeout.serialize(generator, mapper);
 
 	}
 
@@ -218,7 +219,7 @@ public class FollowerIndexParameters implements JsonpSerializable {
 
 		private String maxReadRequestSize;
 
-		private String maxRetryDelay;
+		private Time maxRetryDelay;
 
 		private Integer maxWriteBufferCount;
 
@@ -228,7 +229,7 @@ public class FollowerIndexParameters implements JsonpSerializable {
 
 		private String maxWriteRequestSize;
 
-		private String readPollTimeout;
+		private Time readPollTimeout;
 
 		/**
 		 * Required - API name: {@code max_outstanding_read_requests}
@@ -265,9 +266,16 @@ public class FollowerIndexParameters implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code max_retry_delay}
 		 */
-		public final Builder maxRetryDelay(String value) {
+		public final Builder maxRetryDelay(Time value) {
 			this.maxRetryDelay = value;
 			return this;
+		}
+
+		/**
+		 * Required - API name: {@code max_retry_delay}
+		 */
+		public final Builder maxRetryDelay(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.maxRetryDelay(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -305,9 +313,16 @@ public class FollowerIndexParameters implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code read_poll_timeout}
 		 */
-		public final Builder readPollTimeout(String value) {
+		public final Builder readPollTimeout(Time value) {
 			this.readPollTimeout = value;
 			return this;
+		}
+
+		/**
+		 * Required - API name: {@code read_poll_timeout}
+		 */
+		public final Builder readPollTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.readPollTimeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -341,13 +356,13 @@ public class FollowerIndexParameters implements JsonpSerializable {
 		op.add(Builder::maxReadRequestOperationCount, JsonpDeserializer.integerDeserializer(),
 				"max_read_request_operation_count");
 		op.add(Builder::maxReadRequestSize, JsonpDeserializer.stringDeserializer(), "max_read_request_size");
-		op.add(Builder::maxRetryDelay, JsonpDeserializer.stringDeserializer(), "max_retry_delay");
+		op.add(Builder::maxRetryDelay, Time._DESERIALIZER, "max_retry_delay");
 		op.add(Builder::maxWriteBufferCount, JsonpDeserializer.integerDeserializer(), "max_write_buffer_count");
 		op.add(Builder::maxWriteBufferSize, JsonpDeserializer.stringDeserializer(), "max_write_buffer_size");
 		op.add(Builder::maxWriteRequestOperationCount, JsonpDeserializer.integerDeserializer(),
 				"max_write_request_operation_count");
 		op.add(Builder::maxWriteRequestSize, JsonpDeserializer.stringDeserializer(), "max_write_request_size");
-		op.add(Builder::readPollTimeout, JsonpDeserializer.stringDeserializer(), "read_poll_timeout");
+		op.add(Builder::readPollTimeout, Time._DESERIALIZER, "read_poll_timeout");
 
 	}
 

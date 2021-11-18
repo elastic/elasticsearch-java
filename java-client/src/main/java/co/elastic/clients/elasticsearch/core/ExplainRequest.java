@@ -27,11 +27,11 @@ import co.elastic.clients.elasticsearch._types.DefaultOperator;
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch._types.query_dsl.Query;
+import co.elastic.clients.elasticsearch.core.search.SourceConfigParam;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
-import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
@@ -39,7 +39,6 @@ import co.elastic.clients.transport.SimpleEndpoint;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
@@ -56,7 +55,7 @@ import javax.annotation.Nullable;
 @JsonpDeserializable
 public class ExplainRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
-	private final JsonValue /* Union(_types.Fields | internal.boolean) */ source;
+	private final SourceConfigParam source;
 
 	private final List<String> sourceExcludes;
 
@@ -128,7 +127,7 @@ public class ExplainRequest extends RequestBase implements JsonpSerializable {
 	 * API name: {@code _source}
 	 */
 	@Nullable
-	public final JsonValue /* Union(_types.Fields | internal.boolean) */ source() {
+	public final SourceConfigParam source() {
 		return this.source;
 	}
 
@@ -294,7 +293,7 @@ public class ExplainRequest extends RequestBase implements JsonpSerializable {
 	 */
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ExplainRequest> {
 		@Nullable
-		private JsonValue /* Union(_types.Fields | internal.boolean) */ source;
+		private SourceConfigParam source;
 
 		@Nullable
 		private List<String> sourceExcludes;
@@ -342,9 +341,19 @@ public class ExplainRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code _source}
 		 */
-		public final Builder source(@Nullable JsonValue /* Union(_types.Fields | internal.boolean) */ value) {
+		public final Builder source(@Nullable SourceConfigParam value) {
 			this.source = value;
 			return this;
+		}
+
+		/**
+		 * True or false to return the _source field or not, or a list of fields to
+		 * return
+		 * <p>
+		 * API name: {@code _source}
+		 */
+		public final Builder source(Function<SourceConfigParam.Builder, ObjectBuilder<SourceConfigParam>> fn) {
+			return this.source(fn.apply(new SourceConfigParam.Builder()).build());
 		}
 
 		/**
@@ -557,7 +566,7 @@ public class ExplainRequest extends RequestBase implements JsonpSerializable {
 	/**
 	 * Endpoint "{@code explain}".
 	 */
-	private static final SimpleEndpoint<ExplainRequest, Void> ENDPOINT = new SimpleEndpoint<>(
+	public static final SimpleEndpoint<ExplainRequest, ?> _ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";
@@ -616,7 +625,7 @@ public class ExplainRequest extends RequestBase implements JsonpSerializable {
 					params.put("analyze_wildcard", String.valueOf(request.analyzeWildcard));
 				}
 				if (request.source != null) {
-					params.put("_source", JsonpUtils.toString(request.source));
+					params.put("_source", request.source._toJsonString());
 				}
 				if (ModelTypeHelper.isDefined(request.sourceExcludes)) {
 					params.put("_source_excludes",
@@ -631,14 +640,14 @@ public class ExplainRequest extends RequestBase implements JsonpSerializable {
 				}
 				return params;
 
-			}, SimpleEndpoint.emptyMap(), true, null);
+			}, SimpleEndpoint.emptyMap(), true, ExplainResponse._DESERIALIZER);
 
 	/**
 	 * Create an "{@code explain}" endpoint.
 	 */
 	public static <TDocument> Endpoint<ExplainRequest, ExplainResponse<TDocument>, ErrorResponse> createExplainEndpoint(
 			JsonpDeserializer<TDocument> tDocumentDeserializer) {
-		return ENDPOINT
+		return _ENDPOINT
 				.withResponseDeserializer(ExplainResponse.createExplainResponseDeserializer(tDocumentDeserializer));
 	}
 }

@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -47,10 +48,10 @@ import javax.annotation.Nullable;
 @JsonpDeserializable
 public class ForecastRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
-	private final String duration;
+	private final Time duration;
 
 	@Nullable
-	private final String expiresIn;
+	private final Time expiresIn;
 
 	private final String jobId;
 
@@ -73,31 +74,28 @@ public class ForecastRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * A period of time that indicates how far into the future to forecast. For
-	 * example, <code>30d</code> corresponds to 30 days. The forecast starts at the
-	 * last record that was processed.
+	 * Refer to the description for the <code>duration</code> query parameter.
 	 * <p>
 	 * API name: {@code duration}
 	 */
 	@Nullable
-	public final String duration() {
+	public final Time duration() {
 		return this.duration;
 	}
 
 	/**
-	 * The period of time that forecast results are retained. After a forecast
-	 * expires, the results are deleted. If set to a value of 0, the forecast is
-	 * never automatically deleted.
+	 * Refer to the description for the <code>expires_in</code> query parameter.
 	 * <p>
 	 * API name: {@code expires_in}
 	 */
 	@Nullable
-	public final String expiresIn() {
+	public final Time expiresIn() {
 		return this.expiresIn;
 	}
 
 	/**
-	 * Required - Identifier for the anomaly detection job.
+	 * Required - Identifier for the anomaly detection job. The job must be open
+	 * when you create a forecast; otherwise, an error occurs.
 	 * <p>
 	 * API name: {@code job_id}
 	 */
@@ -106,10 +104,8 @@ public class ForecastRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * The maximum memory the forecast can use. If the forecast needs to use more
-	 * than the provided amount, it will spool to disk. Default is 20mb, maximum is
-	 * 500mb and minimum is 1mb. If set to 40% or more of the job’s configured
-	 * memory limit, it is automatically reduced to below that amount.
+	 * Refer to the description for the <code>max_model_memory</code> query
+	 * parameter.
 	 * <p>
 	 * API name: {@code max_model_memory}
 	 */
@@ -131,12 +127,12 @@ public class ForecastRequest extends RequestBase implements JsonpSerializable {
 
 		if (this.duration != null) {
 			generator.writeKey("duration");
-			generator.write(this.duration);
+			this.duration.serialize(generator, mapper);
 
 		}
 		if (this.expiresIn != null) {
 			generator.writeKey("expires_in");
-			generator.write(this.expiresIn);
+			this.expiresIn.serialize(generator, mapper);
 
 		}
 		if (this.maxModelMemory != null) {
@@ -154,10 +150,10 @@ public class ForecastRequest extends RequestBase implements JsonpSerializable {
 	 */
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ForecastRequest> {
 		@Nullable
-		private String duration;
+		private Time duration;
 
 		@Nullable
-		private String expiresIn;
+		private Time expiresIn;
 
 		private String jobId;
 
@@ -165,31 +161,46 @@ public class ForecastRequest extends RequestBase implements JsonpSerializable {
 		private String maxModelMemory;
 
 		/**
-		 * A period of time that indicates how far into the future to forecast. For
-		 * example, <code>30d</code> corresponds to 30 days. The forecast starts at the
-		 * last record that was processed.
+		 * Refer to the description for the <code>duration</code> query parameter.
 		 * <p>
 		 * API name: {@code duration}
 		 */
-		public final Builder duration(@Nullable String value) {
+		public final Builder duration(@Nullable Time value) {
 			this.duration = value;
 			return this;
 		}
 
 		/**
-		 * The period of time that forecast results are retained. After a forecast
-		 * expires, the results are deleted. If set to a value of 0, the forecast is
-		 * never automatically deleted.
+		 * Refer to the description for the <code>duration</code> query parameter.
+		 * <p>
+		 * API name: {@code duration}
+		 */
+		public final Builder duration(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.duration(fn.apply(new Time.Builder()).build());
+		}
+
+		/**
+		 * Refer to the description for the <code>expires_in</code> query parameter.
 		 * <p>
 		 * API name: {@code expires_in}
 		 */
-		public final Builder expiresIn(@Nullable String value) {
+		public final Builder expiresIn(@Nullable Time value) {
 			this.expiresIn = value;
 			return this;
 		}
 
 		/**
-		 * Required - Identifier for the anomaly detection job.
+		 * Refer to the description for the <code>expires_in</code> query parameter.
+		 * <p>
+		 * API name: {@code expires_in}
+		 */
+		public final Builder expiresIn(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.expiresIn(fn.apply(new Time.Builder()).build());
+		}
+
+		/**
+		 * Required - Identifier for the anomaly detection job. The job must be open
+		 * when you create a forecast; otherwise, an error occurs.
 		 * <p>
 		 * API name: {@code job_id}
 		 */
@@ -199,10 +210,8 @@ public class ForecastRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * The maximum memory the forecast can use. If the forecast needs to use more
-		 * than the provided amount, it will spool to disk. Default is 20mb, maximum is
-		 * 500mb and minimum is 1mb. If set to 40% or more of the job’s configured
-		 * memory limit, it is automatically reduced to below that amount.
+		 * Refer to the description for the <code>max_model_memory</code> query
+		 * parameter.
 		 * <p>
 		 * API name: {@code max_model_memory}
 		 */
@@ -234,8 +243,8 @@ public class ForecastRequest extends RequestBase implements JsonpSerializable {
 
 	protected static void setupForecastRequestDeserializer(ObjectDeserializer<ForecastRequest.Builder> op) {
 
-		op.add(Builder::duration, JsonpDeserializer.stringDeserializer(), "duration");
-		op.add(Builder::expiresIn, JsonpDeserializer.stringDeserializer(), "expires_in");
+		op.add(Builder::duration, Time._DESERIALIZER, "duration");
+		op.add(Builder::expiresIn, Time._DESERIALIZER, "expires_in");
 		op.add(Builder::maxModelMemory, JsonpDeserializer.stringDeserializer(), "max_model_memory");
 
 	}
@@ -245,7 +254,7 @@ public class ForecastRequest extends RequestBase implements JsonpSerializable {
 	/**
 	 * Endpoint "{@code ml.forecast}".
 	 */
-	public static final Endpoint<ForecastRequest, ForecastResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<ForecastRequest, ForecastResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";

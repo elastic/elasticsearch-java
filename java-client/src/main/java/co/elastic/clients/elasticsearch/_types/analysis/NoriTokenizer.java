@@ -41,7 +41,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.analysis.NoriTokenizer
 @JsonpDeserializable
-public class NoriTokenizer extends TokenizerBase implements TokenizerVariant {
+public class NoriTokenizer extends TokenizerBase implements TokenizerDefinitionVariant {
 	@Nullable
 	private final NoriDecompoundMode decompoundMode;
 
@@ -70,7 +70,7 @@ public class NoriTokenizer extends TokenizerBase implements TokenizerVariant {
 	}
 
 	/**
-	 * {@link Tokenizer} variant type
+	 * {@link TokenizerDefinition} variant type
 	 */
 	@Override
 	public String _variantType() {

@@ -43,7 +43,7 @@ import javax.annotation.Nullable;
 public class DateIndexNameProcessor extends ProcessorBase implements ProcessorVariant {
 	private final List<String> dateFormats;
 
-	private final DateRounding dateRounding;
+	private final String dateRounding;
 
 	private final String field;
 
@@ -90,9 +90,15 @@ public class DateIndexNameProcessor extends ProcessorBase implements ProcessorVa
 	}
 
 	/**
-	 * Required - API name: {@code date_rounding}
+	 * Required - How to round the date when formatting the date into the index
+	 * name. Valid values are: <code>y</code> (year), <code>M</code> (month),
+	 * <code>w</code> (week), <code>d</code> (day), <code>h</code> (hour),
+	 * <code>m</code> (minute) and <code>s</code> (second). Supports template
+	 * snippets.
+	 * <p>
+	 * API name: {@code date_rounding}
 	 */
-	public final DateRounding dateRounding() {
+	public final String dateRounding() {
 		return this.dateRounding;
 	}
 
@@ -145,7 +151,8 @@ public class DateIndexNameProcessor extends ProcessorBase implements ProcessorVa
 
 		}
 		generator.writeKey("date_rounding");
-		this.dateRounding.serialize(generator, mapper);
+		generator.write(this.dateRounding);
+
 		generator.writeKey("field");
 		generator.write(this.field);
 
@@ -173,7 +180,7 @@ public class DateIndexNameProcessor extends ProcessorBase implements ProcessorVa
 				ObjectBuilder<DateIndexNameProcessor> {
 		private List<String> dateFormats;
 
-		private DateRounding dateRounding;
+		private String dateRounding;
 
 		private String field;
 
@@ -202,9 +209,15 @@ public class DateIndexNameProcessor extends ProcessorBase implements ProcessorVa
 		}
 
 		/**
-		 * Required - API name: {@code date_rounding}
+		 * Required - How to round the date when formatting the date into the index
+		 * name. Valid values are: <code>y</code> (year), <code>M</code> (month),
+		 * <code>w</code> (week), <code>d</code> (day), <code>h</code> (hour),
+		 * <code>m</code> (minute) and <code>s</code> (second). Supports template
+		 * snippets.
+		 * <p>
+		 * API name: {@code date_rounding}
 		 */
-		public final Builder dateRounding(DateRounding value) {
+		public final Builder dateRounding(String value) {
 			this.dateRounding = value;
 			return this;
 		}
@@ -280,7 +293,7 @@ public class DateIndexNameProcessor extends ProcessorBase implements ProcessorVa
 		ProcessorBase.setupProcessorBaseDeserializer(op);
 		op.add(Builder::dateFormats, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"date_formats");
-		op.add(Builder::dateRounding, DateRounding._DESERIALIZER, "date_rounding");
+		op.add(Builder::dateRounding, JsonpDeserializer.stringDeserializer(), "date_rounding");
 		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
 		op.add(Builder::indexNameFormat, JsonpDeserializer.stringDeserializer(), "index_name_format");
 		op.add(Builder::indexNamePrefix, JsonpDeserializer.stringDeserializer(), "index_name_prefix");

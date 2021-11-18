@@ -38,7 +38,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.analysis.PatternReplaceTokenFilter
 @JsonpDeserializable
-public class PatternReplaceTokenFilter extends TokenFilterBase implements TokenFilterVariant {
+public class PatternReplaceTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
 	private final String flags;
 
 	private final String pattern;
@@ -61,7 +61,7 @@ public class PatternReplaceTokenFilter extends TokenFilterBase implements TokenF
 	}
 
 	/**
-	 * {@link TokenFilter} variant type
+	 * {@link TokenFilterDefinition} variant type
 	 */
 	@Override
 	public String _variantType() {

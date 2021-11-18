@@ -53,7 +53,7 @@ public class StartSlmRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code slm.start}".
 	 */
-	public static final Endpoint<StartSlmRequest, StartSlmResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<StartSlmRequest, StartSlmResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";

@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.core;
 
 import co.elastic.clients.elasticsearch._types.BulkIndexByScrollFailure;
 import co.elastic.clients.elasticsearch._types.Retries;
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -85,7 +86,7 @@ public class ReindexResponse implements JsonpSerializable {
 	private final Boolean timedOut;
 
 	@Nullable
-	private final String took;
+	private final Time took;
 
 	@Nullable
 	private final Long total;
@@ -222,7 +223,7 @@ public class ReindexResponse implements JsonpSerializable {
 	 * API name: {@code took}
 	 */
 	@Nullable
-	public final String took() {
+	public final Time took() {
 		return this.took;
 	}
 
@@ -328,7 +329,7 @@ public class ReindexResponse implements JsonpSerializable {
 		}
 		if (this.took != null) {
 			generator.writeKey("took");
-			generator.write(this.took);
+			this.took.serialize(generator, mapper);
 
 		}
 		if (this.total != null) {
@@ -392,7 +393,7 @@ public class ReindexResponse implements JsonpSerializable {
 		private Boolean timedOut;
 
 		@Nullable
-		private String took;
+		private Time took;
 
 		@Nullable
 		private Long total;
@@ -530,9 +531,16 @@ public class ReindexResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code took}
 		 */
-		public final Builder took(@Nullable String value) {
+		public final Builder took(@Nullable Time value) {
 			this.took = value;
 			return this;
+		}
+
+		/**
+		 * API name: {@code took}
+		 */
+		public final Builder took(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.took(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -595,7 +603,7 @@ public class ReindexResponse implements JsonpSerializable {
 		op.add(Builder::throttledMillis, JsonpDeserializer.stringDeserializer(), "throttled_millis");
 		op.add(Builder::throttledUntilMillis, JsonpDeserializer.stringDeserializer(), "throttled_until_millis");
 		op.add(Builder::timedOut, JsonpDeserializer.booleanDeserializer(), "timed_out");
-		op.add(Builder::took, JsonpDeserializer.stringDeserializer(), "took");
+		op.add(Builder::took, Time._DESERIALIZER, "took");
 		op.add(Builder::total, JsonpDeserializer.longDeserializer(), "total");
 		op.add(Builder::updated, JsonpDeserializer.longDeserializer(), "updated");
 		op.add(Builder::versionConflicts, JsonpDeserializer.longDeserializer(), "version_conflicts");

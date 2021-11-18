@@ -23,6 +23,7 @@
 
 package co.elastic.clients.elasticsearch.cat.snapshots;
 
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -62,7 +63,7 @@ public class SnapshotsRecord implements JsonpSerializable {
 	private final String endTime;
 
 	@Nullable
-	private final String duration;
+	private final Time duration;
 
 	@Nullable
 	private final String indices;
@@ -179,7 +180,7 @@ public class SnapshotsRecord implements JsonpSerializable {
 	 * API name: {@code duration}
 	 */
 	@Nullable
-	public final String duration() {
+	public final Time duration() {
 		return this.duration;
 	}
 
@@ -281,7 +282,7 @@ public class SnapshotsRecord implements JsonpSerializable {
 		}
 		if (this.duration != null) {
 			generator.writeKey("duration");
-			generator.write(this.duration);
+			this.duration.serialize(generator, mapper);
 
 		}
 		if (this.indices != null) {
@@ -340,7 +341,7 @@ public class SnapshotsRecord implements JsonpSerializable {
 		private String endTime;
 
 		@Nullable
-		private String duration;
+		private Time duration;
 
 		@Nullable
 		private String indices;
@@ -432,9 +433,18 @@ public class SnapshotsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code duration}
 		 */
-		public final Builder duration(@Nullable String value) {
+		public final Builder duration(@Nullable Time value) {
 			this.duration = value;
 			return this;
+		}
+
+		/**
+		 * duration
+		 * <p>
+		 * API name: {@code duration}
+		 */
+		public final Builder duration(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.duration(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -517,7 +527,7 @@ public class SnapshotsRecord implements JsonpSerializable {
 		op.add(Builder::startTime, JsonpDeserializer.stringDeserializer(), "start_time", "sti", "startTime");
 		op.add(Builder::endEpoch, JsonpDeserializer.stringDeserializer(), "end_epoch", "ete", "endEpoch");
 		op.add(Builder::endTime, JsonpDeserializer.stringDeserializer(), "end_time", "eti", "endTime");
-		op.add(Builder::duration, JsonpDeserializer.stringDeserializer(), "duration", "dur");
+		op.add(Builder::duration, Time._DESERIALIZER, "duration", "dur");
 		op.add(Builder::indices, JsonpDeserializer.stringDeserializer(), "indices", "i");
 		op.add(Builder::successfulShards, JsonpDeserializer.stringDeserializer(), "successful_shards", "ss");
 		op.add(Builder::failedShards, JsonpDeserializer.stringDeserializer(), "failed_shards", "fs");

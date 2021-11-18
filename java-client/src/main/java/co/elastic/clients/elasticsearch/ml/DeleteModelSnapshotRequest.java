@@ -127,7 +127,7 @@ public class DeleteModelSnapshotRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code ml.delete_model_snapshot}".
 	 */
-	public static final Endpoint<DeleteModelSnapshotRequest, DeleteModelSnapshotResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<DeleteModelSnapshotRequest, DeleteModelSnapshotResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "DELETE";

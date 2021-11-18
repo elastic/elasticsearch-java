@@ -38,7 +38,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.analysis.IcuTokenizer
 @JsonpDeserializable
-public class IcuTokenizer extends TokenizerBase implements TokenizerVariant, TokenFilterVariant {
+public class IcuTokenizer extends TokenizerBase implements TokenizerDefinitionVariant, TokenFilterDefinitionVariant {
 	private final String ruleFiles;
 
 	// ---------------------------------------------------------------------------------------------
@@ -55,7 +55,7 @@ public class IcuTokenizer extends TokenizerBase implements TokenizerVariant, Tok
 	}
 
 	/**
-	 * {@link Tokenizer}, {@link TokenFilter} variant type
+	 * {@link TokenizerDefinition}, {@link TokenFilterDefinition} variant type
 	 */
 	@Override
 	public String _variantType() {

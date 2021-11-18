@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -55,7 +56,7 @@ public class DeleteForecastRequest extends RequestBase {
 	private final String jobId;
 
 	@Nullable
-	private final String timeout;
+	private final Time timeout;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -113,7 +114,7 @@ public class DeleteForecastRequest extends RequestBase {
 	 * API name: {@code timeout}
 	 */
 	@Nullable
-	public final String timeout() {
+	public final Time timeout() {
 		return this.timeout;
 	}
 
@@ -132,7 +133,7 @@ public class DeleteForecastRequest extends RequestBase {
 		private String jobId;
 
 		@Nullable
-		private String timeout;
+		private Time timeout;
 
 		/**
 		 * Specifies whether an error occurs when there are no forecasts. In particular,
@@ -175,9 +176,20 @@ public class DeleteForecastRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code timeout}
 		 */
-		public final Builder timeout(@Nullable String value) {
+		public final Builder timeout(@Nullable Time value) {
 			this.timeout = value;
 			return this;
+		}
+
+		/**
+		 * Specifies the period of time to wait for the completion of the delete
+		 * operation. When this period of time elapses, the API fails and returns an
+		 * error.
+		 * <p>
+		 * API name: {@code timeout}
+		 */
+		public final Builder timeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.timeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -198,7 +210,7 @@ public class DeleteForecastRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code ml.delete_forecast}".
 	 */
-	public static final Endpoint<DeleteForecastRequest, DeleteForecastResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<DeleteForecastRequest, DeleteForecastResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "DELETE";
@@ -247,7 +259,7 @@ public class DeleteForecastRequest extends RequestBase {
 					params.put("allow_no_forecasts", String.valueOf(request.allowNoForecasts));
 				}
 				if (request.timeout != null) {
-					params.put("timeout", request.timeout);
+					params.put("timeout", request.timeout._toJsonString());
 				}
 				return params;
 

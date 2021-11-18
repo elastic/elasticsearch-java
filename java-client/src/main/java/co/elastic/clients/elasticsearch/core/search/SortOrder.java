@@ -29,7 +29,7 @@ import co.elastic.clients.util.StringEnum;
 
 @JsonpDeserializable
 public enum SortOrder implements StringEnum {
-	Asc("asc"), Desc("desc"), Document("_doc");
+	Asc("asc"), Desc("desc");
 
 	private final String jsonValue;
 

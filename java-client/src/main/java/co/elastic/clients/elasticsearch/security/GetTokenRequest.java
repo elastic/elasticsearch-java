@@ -281,7 +281,7 @@ public class GetTokenRequest extends RequestBase implements JsonpSerializable {
 	/**
 	 * Endpoint "{@code security.get_token}".
 	 */
-	public static final Endpoint<GetTokenRequest, GetTokenResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<GetTokenRequest, GetTokenResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";

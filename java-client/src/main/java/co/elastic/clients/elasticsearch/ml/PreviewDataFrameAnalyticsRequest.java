@@ -186,7 +186,7 @@ public class PreviewDataFrameAnalyticsRequest extends RequestBase implements Jso
 	/**
 	 * Endpoint "{@code ml.preview_data_frame_analytics}".
 	 */
-	public static final Endpoint<PreviewDataFrameAnalyticsRequest, PreviewDataFrameAnalyticsResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<PreviewDataFrameAnalyticsRequest, PreviewDataFrameAnalyticsResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";

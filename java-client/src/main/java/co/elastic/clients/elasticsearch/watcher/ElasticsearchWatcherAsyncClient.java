@@ -25,6 +25,8 @@ package co.elastic.clients.elasticsearch.watcher;
 
 import co.elastic.clients.ApiClient;
 import co.elastic.clients.elasticsearch._types.ElasticsearchException;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
+import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.Transport;
 import co.elastic.clients.transport.TransportOptions;
 import co.elastic.clients.util.ObjectBuilder;
@@ -64,7 +66,10 @@ public class ElasticsearchWatcherAsyncClient extends ApiClient<ElasticsearchWatc
 
 	public CompletableFuture<AckWatchResponse> ackWatch(AckWatchRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(request, AckWatchRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<AckWatchRequest, AckWatchResponse, ErrorResponse> endpoint = (Endpoint<AckWatchRequest, AckWatchResponse, ErrorResponse>) AckWatchRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -97,7 +102,10 @@ public class ElasticsearchWatcherAsyncClient extends ApiClient<ElasticsearchWatc
 
 	public CompletableFuture<ActivateWatchResponse> activateWatch(ActivateWatchRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(request, ActivateWatchRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<ActivateWatchRequest, ActivateWatchResponse, ErrorResponse> endpoint = (Endpoint<ActivateWatchRequest, ActivateWatchResponse, ErrorResponse>) ActivateWatchRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -129,7 +137,10 @@ public class ElasticsearchWatcherAsyncClient extends ApiClient<ElasticsearchWatc
 
 	public CompletableFuture<DeactivateWatchResponse> deactivateWatch(DeactivateWatchRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(request, DeactivateWatchRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<DeactivateWatchRequest, DeactivateWatchResponse, ErrorResponse> endpoint = (Endpoint<DeactivateWatchRequest, DeactivateWatchResponse, ErrorResponse>) DeactivateWatchRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -161,7 +172,10 @@ public class ElasticsearchWatcherAsyncClient extends ApiClient<ElasticsearchWatc
 
 	public CompletableFuture<DeleteWatchResponse> deleteWatch(DeleteWatchRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(request, DeleteWatchRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<DeleteWatchRequest, DeleteWatchResponse, ErrorResponse> endpoint = (Endpoint<DeleteWatchRequest, DeleteWatchResponse, ErrorResponse>) DeleteWatchRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -193,7 +207,10 @@ public class ElasticsearchWatcherAsyncClient extends ApiClient<ElasticsearchWatc
 
 	public CompletableFuture<ExecuteWatchResponse> executeWatch(ExecuteWatchRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(request, ExecuteWatchRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<ExecuteWatchRequest, ExecuteWatchResponse, ErrorResponse> endpoint = (Endpoint<ExecuteWatchRequest, ExecuteWatchResponse, ErrorResponse>) ExecuteWatchRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -223,7 +240,7 @@ public class ElasticsearchWatcherAsyncClient extends ApiClient<ElasticsearchWatc
 
 	public CompletableFuture<ExecuteWatchResponse> executeWatch() throws IOException, ElasticsearchException {
 		return this.transport.performRequestAsync(new ExecuteWatchRequest.Builder().build(),
-				ExecuteWatchRequest.ENDPOINT, this.transportOptions);
+				ExecuteWatchRequest._ENDPOINT, this.transportOptions);
 	}
 
 	// ----- Endpoint: watcher.get_watch
@@ -238,7 +255,10 @@ public class ElasticsearchWatcherAsyncClient extends ApiClient<ElasticsearchWatc
 
 	public CompletableFuture<GetWatchResponse> getWatch(GetWatchRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(request, GetWatchRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<GetWatchRequest, GetWatchResponse, ErrorResponse> endpoint = (Endpoint<GetWatchRequest, GetWatchResponse, ErrorResponse>) GetWatchRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -270,7 +290,10 @@ public class ElasticsearchWatcherAsyncClient extends ApiClient<ElasticsearchWatc
 
 	public CompletableFuture<PutWatchResponse> putWatch(PutWatchRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(request, PutWatchRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<PutWatchRequest, PutWatchResponse, ErrorResponse> endpoint = (Endpoint<PutWatchRequest, PutWatchResponse, ErrorResponse>) PutWatchRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -302,7 +325,10 @@ public class ElasticsearchWatcherAsyncClient extends ApiClient<ElasticsearchWatc
 
 	public CompletableFuture<QueryWatchesResponse> queryWatches(QueryWatchesRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(request, QueryWatchesRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<QueryWatchesRequest, QueryWatchesResponse, ErrorResponse> endpoint = (Endpoint<QueryWatchesRequest, QueryWatchesResponse, ErrorResponse>) QueryWatchesRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -332,7 +358,7 @@ public class ElasticsearchWatcherAsyncClient extends ApiClient<ElasticsearchWatc
 
 	public CompletableFuture<QueryWatchesResponse> queryWatches() throws IOException, ElasticsearchException {
 		return this.transport.performRequestAsync(new QueryWatchesRequest.Builder().build(),
-				QueryWatchesRequest.ENDPOINT, this.transportOptions);
+				QueryWatchesRequest._ENDPOINT, this.transportOptions);
 	}
 
 	// ----- Endpoint: watcher.start
@@ -345,7 +371,7 @@ public class ElasticsearchWatcherAsyncClient extends ApiClient<ElasticsearchWatc
 	 *      on elastic.co</a>
 	 */
 	public CompletableFuture<StartWatcherResponse> start() throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(StartWatcherRequest._INSTANCE, StartWatcherRequest.ENDPOINT,
+		return this.transport.performRequestAsync(StartWatcherRequest._INSTANCE, StartWatcherRequest._ENDPOINT,
 				this.transportOptions);
 	}
 
@@ -361,7 +387,10 @@ public class ElasticsearchWatcherAsyncClient extends ApiClient<ElasticsearchWatc
 
 	public CompletableFuture<WatcherStatsResponse> stats(WatcherStatsRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(request, WatcherStatsRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<WatcherStatsRequest, WatcherStatsResponse, ErrorResponse> endpoint = (Endpoint<WatcherStatsRequest, WatcherStatsResponse, ErrorResponse>) WatcherStatsRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -391,7 +420,7 @@ public class ElasticsearchWatcherAsyncClient extends ApiClient<ElasticsearchWatc
 
 	public CompletableFuture<WatcherStatsResponse> stats() throws IOException, ElasticsearchException {
 		return this.transport.performRequestAsync(new WatcherStatsRequest.Builder().build(),
-				WatcherStatsRequest.ENDPOINT, this.transportOptions);
+				WatcherStatsRequest._ENDPOINT, this.transportOptions);
 	}
 
 	// ----- Endpoint: watcher.stop
@@ -404,7 +433,7 @@ public class ElasticsearchWatcherAsyncClient extends ApiClient<ElasticsearchWatc
 	 *      on elastic.co</a>
 	 */
 	public CompletableFuture<StopWatcherResponse> stop() throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(StopWatcherRequest._INSTANCE, StopWatcherRequest.ENDPOINT,
+		return this.transport.performRequestAsync(StopWatcherRequest._INSTANCE, StopWatcherRequest._ENDPOINT,
 				this.transportOptions);
 	}
 

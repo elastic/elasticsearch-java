@@ -40,7 +40,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.analysis.MappingCharFilter
 @JsonpDeserializable
-public class MappingCharFilter extends CharFilterBase implements CharFilterVariant {
+public class MappingCharFilter extends CharFilterBase implements CharFilterDefinitionVariant {
 	private final List<String> mappings;
 
 	@Nullable
@@ -61,7 +61,7 @@ public class MappingCharFilter extends CharFilterBase implements CharFilterVaria
 	}
 
 	/**
-	 * {@link CharFilter} variant type
+	 * {@link CharFilterDefinition} variant type
 	 */
 	@Override
 	public String _variantType() {

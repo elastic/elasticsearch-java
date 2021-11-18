@@ -23,6 +23,7 @@
 
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
+import co.elastic.clients.elasticsearch._types.GeoBounds;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -42,7 +43,7 @@ import javax.annotation.Nullable;
 public class GeoBoundingBoxQuery extends QueryBase implements QueryVariant {
 	private final String field;
 
-	private final BoundingBox boundingBox;
+	private final GeoBounds boundingBox;
 
 	@Nullable
 	private final GeoExecution type;
@@ -88,7 +89,7 @@ public class GeoBoundingBoxQuery extends QueryBase implements QueryVariant {
 	/**
 	 * Required -
 	 */
-	public final BoundingBox boundingBox() {
+	public final GeoBounds boundingBox() {
 		return this.boundingBox;
 	}
 
@@ -147,7 +148,7 @@ public class GeoBoundingBoxQuery extends QueryBase implements QueryVariant {
 				ObjectBuilder<GeoBoundingBoxQuery> {
 		private String field;
 
-		private BoundingBox boundingBox;
+		private GeoBounds boundingBox;
 
 		/**
 		 * Required -
@@ -160,7 +161,7 @@ public class GeoBoundingBoxQuery extends QueryBase implements QueryVariant {
 		/**
 		 * Required -
 		 */
-		public final Builder boundingBox(BoundingBox value) {
+		public final Builder boundingBox(GeoBounds value) {
 			this.boundingBox = value;
 			return this;
 		}
@@ -168,8 +169,8 @@ public class GeoBoundingBoxQuery extends QueryBase implements QueryVariant {
 		/**
 		 * Required -
 		 */
-		public final Builder boundingBox(Function<BoundingBox.Builder, ObjectBuilder<BoundingBox>> fn) {
-			return this.boundingBox(fn.apply(new BoundingBox.Builder()).build());
+		public final Builder boundingBox(Function<GeoBounds.Builder, ObjectBuilder<GeoBounds>> fn) {
+			return this.boundingBox(fn.apply(new GeoBounds.Builder()).build());
 		}
 
 		@Nullable
@@ -239,7 +240,7 @@ public class GeoBoundingBoxQuery extends QueryBase implements QueryVariant {
 
 		op.setUnknownFieldHandler((builder, name, parser, mapper) -> {
 			builder.field(name);
-			builder.boundingBox(BoundingBox._DESERIALIZER.deserialize(parser, mapper));
+			builder.boundingBox(GeoBounds._DESERIALIZER.deserialize(parser, mapper));
 		});
 
 	}

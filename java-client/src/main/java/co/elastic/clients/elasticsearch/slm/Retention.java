@@ -23,6 +23,7 @@
 
 package co.elastic.clients.elasticsearch.slm;
 
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -34,7 +35,6 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
-import java.lang.String;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -42,7 +42,7 @@ import javax.annotation.Nullable;
 // typedef: slm._types.Retention
 @JsonpDeserializable
 public class Retention implements JsonpSerializable {
-	private final String expireAfter;
+	private final Time expireAfter;
 
 	private final int maxCount;
 
@@ -69,7 +69,7 @@ public class Retention implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code expire_after}
 	 */
-	public final String expireAfter() {
+	public final Time expireAfter() {
 		return this.expireAfter;
 	}
 
@@ -107,7 +107,7 @@ public class Retention implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("expire_after");
-		generator.write(this.expireAfter);
+		this.expireAfter.serialize(generator, mapper);
 
 		generator.writeKey("max_count");
 		generator.write(this.maxCount);
@@ -123,7 +123,7 @@ public class Retention implements JsonpSerializable {
 	 * Builder for {@link Retention}.
 	 */
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Retention> {
-		private String expireAfter;
+		private Time expireAfter;
 
 		private Integer maxCount;
 
@@ -136,9 +136,20 @@ public class Retention implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code expire_after}
 		 */
-		public final Builder expireAfter(String value) {
+		public final Builder expireAfter(Time value) {
 			this.expireAfter = value;
 			return this;
+		}
+
+		/**
+		 * Required - Time period after which a snapshot is considered expired and
+		 * eligible for deletion. SLM deletes expired snapshots based on the
+		 * slm.retention_schedule.
+		 * <p>
+		 * API name: {@code expire_after}
+		 */
+		public final Builder expireAfter(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.expireAfter(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -188,7 +199,7 @@ public class Retention implements JsonpSerializable {
 
 	protected static void setupRetentionDeserializer(ObjectDeserializer<Retention.Builder> op) {
 
-		op.add(Builder::expireAfter, JsonpDeserializer.stringDeserializer(), "expire_after");
+		op.add(Builder::expireAfter, Time._DESERIALIZER, "expire_after");
 		op.add(Builder::maxCount, JsonpDeserializer.integerDeserializer(), "max_count");
 		op.add(Builder::minCount, JsonpDeserializer.integerDeserializer(), "min_count");
 

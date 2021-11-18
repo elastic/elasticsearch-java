@@ -40,6 +40,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.mapping.Property
+// union type: InternalTag[tag=type]
 @JsonpDeserializable
 public class Property implements TaggedUnion<PropertyVariant>, JsonpSerializable {
 
@@ -87,8 +88,6 @@ public class Property implements TaggedUnion<PropertyVariant>, JsonpSerializable
 	public static final String UNSIGNED_LONG = "unsigned_long";
 	public static final String VERSION = "version";
 	public static final String WILDCARD = "wildcard";
-
-	// Tagged union implementation
 
 	private final String _type;
 	private final PropertyVariant _value;

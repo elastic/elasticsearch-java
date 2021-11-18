@@ -239,7 +239,7 @@ public class PostDataRequest<TData> extends RequestBase implements JsonpSerializ
 	/**
 	 * Endpoint "{@code ml.post_data}".
 	 */
-	public static final Endpoint<PostDataRequest<?>, PostDataResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<PostDataRequest<?>, PostDataResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";

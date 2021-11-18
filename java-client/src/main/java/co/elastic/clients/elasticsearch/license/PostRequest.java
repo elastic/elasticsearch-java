@@ -227,7 +227,7 @@ public class PostRequest extends RequestBase implements JsonpSerializable {
 	/**
 	 * Endpoint "{@code license.post}".
 	 */
-	public static final Endpoint<PostRequest, PostResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<PostRequest, PostResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "PUT";

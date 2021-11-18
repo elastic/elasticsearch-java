@@ -24,8 +24,9 @@
 package co.elastic.clients.elasticsearch.cluster;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
-import co.elastic.clients.elasticsearch._types.ExpandWildcardOptions;
+import co.elastic.clients.elasticsearch._types.ExpandWildcard;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -54,7 +55,7 @@ public class StateRequest extends RequestBase {
 	@Nullable
 	private final Boolean allowNoIndices;
 
-	private final List<ExpandWildcardOptions> expandWildcards;
+	private final List<ExpandWildcard> expandWildcards;
 
 	@Nullable
 	private final Boolean flatSettings;
@@ -68,7 +69,7 @@ public class StateRequest extends RequestBase {
 	private final Boolean local;
 
 	@Nullable
-	private final String masterTimeout;
+	private final Time masterTimeout;
 
 	private final List<String> metric;
 
@@ -76,7 +77,7 @@ public class StateRequest extends RequestBase {
 	private final Long waitForMetadataVersion;
 
 	@Nullable
-	private final String waitForTimeout;
+	private final Time waitForTimeout;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -117,7 +118,7 @@ public class StateRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code expand_wildcards}
 	 */
-	public final List<ExpandWildcardOptions> expandWildcards() {
+	public final List<ExpandWildcard> expandWildcards() {
 		return this.expandWildcards;
 	}
 
@@ -169,7 +170,7 @@ public class StateRequest extends RequestBase {
 	 * API name: {@code master_timeout}
 	 */
 	@Nullable
-	public final String masterTimeout() {
+	public final Time masterTimeout() {
 		return this.masterTimeout;
 	}
 
@@ -199,7 +200,7 @@ public class StateRequest extends RequestBase {
 	 * API name: {@code wait_for_timeout}
 	 */
 	@Nullable
-	public final String waitForTimeout() {
+	public final Time waitForTimeout() {
 		return this.waitForTimeout;
 	}
 
@@ -213,7 +214,7 @@ public class StateRequest extends RequestBase {
 		private Boolean allowNoIndices;
 
 		@Nullable
-		private List<ExpandWildcardOptions> expandWildcards;
+		private List<ExpandWildcard> expandWildcards;
 
 		@Nullable
 		private Boolean flatSettings;
@@ -228,7 +229,7 @@ public class StateRequest extends RequestBase {
 		private Boolean local;
 
 		@Nullable
-		private String masterTimeout;
+		private Time masterTimeout;
 
 		@Nullable
 		private List<String> metric;
@@ -237,7 +238,7 @@ public class StateRequest extends RequestBase {
 		private Long waitForMetadataVersion;
 
 		@Nullable
-		private String waitForTimeout;
+		private Time waitForTimeout;
 
 		/**
 		 * Whether to ignore if a wildcard indices expression resolves into no concrete
@@ -257,7 +258,7 @@ public class StateRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code expand_wildcards}
 		 */
-		public final Builder expandWildcards(@Nullable List<ExpandWildcardOptions> value) {
+		public final Builder expandWildcards(@Nullable List<ExpandWildcard> value) {
 			this.expandWildcards = value;
 			return this;
 		}
@@ -268,7 +269,7 @@ public class StateRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code expand_wildcards}
 		 */
-		public final Builder expandWildcards(ExpandWildcardOptions... value) {
+		public final Builder expandWildcards(ExpandWildcard... value) {
 			this.expandWildcards = Arrays.asList(value);
 			return this;
 		}
@@ -332,9 +333,18 @@ public class StateRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
-		public final Builder masterTimeout(@Nullable String value) {
+		public final Builder masterTimeout(@Nullable Time value) {
 			this.masterTimeout = value;
 			return this;
+		}
+
+		/**
+		 * Specify timeout for connection to master
+		 * <p>
+		 * API name: {@code master_timeout}
+		 */
+		public final Builder masterTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.masterTimeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -373,9 +383,18 @@ public class StateRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code wait_for_timeout}
 		 */
-		public final Builder waitForTimeout(@Nullable String value) {
+		public final Builder waitForTimeout(@Nullable Time value) {
 			this.waitForTimeout = value;
 			return this;
+		}
+
+		/**
+		 * The maximum time to wait for wait_for_metadata_version before timing out
+		 * <p>
+		 * API name: {@code wait_for_timeout}
+		 */
+		public final Builder waitForTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.waitForTimeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -396,7 +415,7 @@ public class StateRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code cluster.state}".
 	 */
-	public static final Endpoint<StateRequest, StateResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<StateRequest, StateResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "GET";
@@ -449,7 +468,7 @@ public class StateRequest extends RequestBase {
 			request -> {
 				Map<String, String> params = new HashMap<>();
 				if (request.masterTimeout != null) {
-					params.put("master_timeout", request.masterTimeout);
+					params.put("master_timeout", request.masterTimeout._toJsonString());
 				}
 				if (request.flatSettings != null) {
 					params.put("flat_settings", String.valueOf(request.flatSettings));
@@ -462,7 +481,7 @@ public class StateRequest extends RequestBase {
 					params.put("ignore_unavailable", String.valueOf(request.ignoreUnavailable));
 				}
 				if (request.waitForTimeout != null) {
-					params.put("wait_for_timeout", request.waitForTimeout);
+					params.put("wait_for_timeout", request.waitForTimeout._toJsonString());
 				}
 				if (request.allowNoIndices != null) {
 					params.put("allow_no_indices", String.valueOf(request.allowNoIndices));

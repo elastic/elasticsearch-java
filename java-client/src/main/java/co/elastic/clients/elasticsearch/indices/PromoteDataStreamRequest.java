@@ -103,7 +103,7 @@ public class PromoteDataStreamRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code indices.promote_data_stream}".
 	 */
-	public static final Endpoint<PromoteDataStreamRequest, PromoteDataStreamResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<PromoteDataStreamRequest, PromoteDataStreamResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";

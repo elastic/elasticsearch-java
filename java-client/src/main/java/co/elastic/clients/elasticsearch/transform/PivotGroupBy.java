@@ -45,6 +45,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: transform._types.PivotGroupByContainer
+// union type: Container[]
 @JsonpDeserializable
 public class PivotGroupBy implements TaggedUnion<Object>, JsonpSerializable {
 
@@ -52,8 +53,6 @@ public class PivotGroupBy implements TaggedUnion<Object>, JsonpSerializable {
 	public static final String GEOTILE_GRID = "geotile_grid";
 	public static final String HISTOGRAM = "histogram";
 	public static final String TERMS = "terms";
-
-	// Tagged union implementation
 
 	private final String _type;
 	private final Object _value;
@@ -129,6 +128,7 @@ public class PivotGroupBy implements TaggedUnion<Object>, JsonpSerializable {
 	@Override
 	@SuppressWarnings("unchecked")
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+
 		generator.writeStartObject();
 
 		generator.writeKey(_type);
@@ -137,6 +137,7 @@ public class PivotGroupBy implements TaggedUnion<Object>, JsonpSerializable {
 		}
 
 		generator.writeEnd();
+
 	}
 
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PivotGroupBy> {

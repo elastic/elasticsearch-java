@@ -25,6 +25,8 @@ package co.elastic.clients.elasticsearch.ilm;
 
 import co.elastic.clients.ApiClient;
 import co.elastic.clients.elasticsearch._types.ElasticsearchException;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
+import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.Transport;
 import co.elastic.clients.transport.TransportOptions;
 import co.elastic.clients.util.ObjectBuilder;
@@ -63,7 +65,10 @@ public class ElasticsearchIlmClient extends ApiClient<ElasticsearchIlmClient> {
 
 	public DeleteLifecycleResponse deleteLifecycle(DeleteLifecycleRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, DeleteLifecycleRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<DeleteLifecycleRequest, DeleteLifecycleResponse, ErrorResponse> endpoint = (Endpoint<DeleteLifecycleRequest, DeleteLifecycleResponse, ErrorResponse>) DeleteLifecycleRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -97,7 +102,10 @@ public class ElasticsearchIlmClient extends ApiClient<ElasticsearchIlmClient> {
 
 	public ExplainLifecycleResponse explainLifecycle(ExplainLifecycleRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, ExplainLifecycleRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<ExplainLifecycleRequest, ExplainLifecycleResponse, ErrorResponse> endpoint = (Endpoint<ExplainLifecycleRequest, ExplainLifecycleResponse, ErrorResponse>) ExplainLifecycleRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -130,7 +138,10 @@ public class ElasticsearchIlmClient extends ApiClient<ElasticsearchIlmClient> {
 	 */
 
 	public GetLifecycleResponse getLifecycle(GetLifecycleRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, GetLifecycleRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<GetLifecycleRequest, GetLifecycleResponse, ErrorResponse> endpoint = (Endpoint<GetLifecycleRequest, GetLifecycleResponse, ErrorResponse>) GetLifecycleRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -161,7 +172,7 @@ public class ElasticsearchIlmClient extends ApiClient<ElasticsearchIlmClient> {
 	 */
 
 	public GetLifecycleResponse getLifecycle() throws IOException, ElasticsearchException {
-		return this.transport.performRequest(new GetLifecycleRequest.Builder().build(), GetLifecycleRequest.ENDPOINT,
+		return this.transport.performRequest(new GetLifecycleRequest.Builder().build(), GetLifecycleRequest._ENDPOINT,
 				this.transportOptions);
 	}
 
@@ -175,7 +186,7 @@ public class ElasticsearchIlmClient extends ApiClient<ElasticsearchIlmClient> {
 	 *      on elastic.co</a>
 	 */
 	public GetStatusResponse getStatus() throws IOException, ElasticsearchException {
-		return this.transport.performRequest(GetStatusRequest._INSTANCE, GetStatusRequest.ENDPOINT,
+		return this.transport.performRequest(GetStatusRequest._INSTANCE, GetStatusRequest._ENDPOINT,
 				this.transportOptions);
 	}
 
@@ -190,7 +201,10 @@ public class ElasticsearchIlmClient extends ApiClient<ElasticsearchIlmClient> {
 	 */
 
 	public MoveToStepResponse moveToStep(MoveToStepRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, MoveToStepRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<MoveToStepRequest, MoveToStepResponse, ErrorResponse> endpoint = (Endpoint<MoveToStepRequest, MoveToStepResponse, ErrorResponse>) MoveToStepRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -220,7 +234,10 @@ public class ElasticsearchIlmClient extends ApiClient<ElasticsearchIlmClient> {
 	 */
 
 	public PutLifecycleResponse putLifecycle(PutLifecycleRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, PutLifecycleRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<PutLifecycleRequest, PutLifecycleResponse, ErrorResponse> endpoint = (Endpoint<PutLifecycleRequest, PutLifecycleResponse, ErrorResponse>) PutLifecycleRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -251,7 +268,10 @@ public class ElasticsearchIlmClient extends ApiClient<ElasticsearchIlmClient> {
 	 */
 
 	public RemovePolicyResponse removePolicy(RemovePolicyRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, RemovePolicyRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<RemovePolicyRequest, RemovePolicyResponse, ErrorResponse> endpoint = (Endpoint<RemovePolicyRequest, RemovePolicyResponse, ErrorResponse>) RemovePolicyRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -282,7 +302,10 @@ public class ElasticsearchIlmClient extends ApiClient<ElasticsearchIlmClient> {
 	 */
 
 	public RetryResponse retry(RetryRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, RetryRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<RetryRequest, RetryResponse, ErrorResponse> endpoint = (Endpoint<RetryRequest, RetryResponse, ErrorResponse>) RetryRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -312,7 +335,10 @@ public class ElasticsearchIlmClient extends ApiClient<ElasticsearchIlmClient> {
 	 */
 
 	public StartIlmResponse start(StartIlmRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, StartIlmRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<StartIlmRequest, StartIlmResponse, ErrorResponse> endpoint = (Endpoint<StartIlmRequest, StartIlmResponse, ErrorResponse>) StartIlmRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -340,7 +366,7 @@ public class ElasticsearchIlmClient extends ApiClient<ElasticsearchIlmClient> {
 	 */
 
 	public StartIlmResponse start() throws IOException, ElasticsearchException {
-		return this.transport.performRequest(new StartIlmRequest.Builder().build(), StartIlmRequest.ENDPOINT,
+		return this.transport.performRequest(new StartIlmRequest.Builder().build(), StartIlmRequest._ENDPOINT,
 				this.transportOptions);
 	}
 
@@ -356,7 +382,10 @@ public class ElasticsearchIlmClient extends ApiClient<ElasticsearchIlmClient> {
 	 */
 
 	public StopIlmResponse stop(StopIlmRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, StopIlmRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<StopIlmRequest, StopIlmResponse, ErrorResponse> endpoint = (Endpoint<StopIlmRequest, StopIlmResponse, ErrorResponse>) StopIlmRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -386,7 +415,7 @@ public class ElasticsearchIlmClient extends ApiClient<ElasticsearchIlmClient> {
 	 */
 
 	public StopIlmResponse stop() throws IOException, ElasticsearchException {
-		return this.transport.performRequest(new StopIlmRequest.Builder().build(), StopIlmRequest.ENDPOINT,
+		return this.transport.performRequest(new StopIlmRequest.Builder().build(), StopIlmRequest._ENDPOINT,
 				this.transportOptions);
 	}
 

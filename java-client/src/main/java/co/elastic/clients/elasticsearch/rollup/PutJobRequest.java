@@ -340,7 +340,7 @@ public class PutJobRequest extends RequestBase implements JsonpSerializable {
 	/**
 	 * Endpoint "{@code rollup.put_job}".
 	 */
-	public static final Endpoint<PutJobRequest, PutJobResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<PutJobRequest, PutJobResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "PUT";

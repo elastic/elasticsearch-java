@@ -36,7 +36,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.analysis.IcuNormalizationCharFilter
 @JsonpDeserializable
-public class IcuNormalizationCharFilter extends CharFilterBase implements CharFilterVariant {
+public class IcuNormalizationCharFilter extends CharFilterBase implements CharFilterDefinitionVariant {
 	@Nullable
 	private final IcuNormalizationMode mode;
 
@@ -58,7 +58,7 @@ public class IcuNormalizationCharFilter extends CharFilterBase implements CharFi
 	}
 
 	/**
-	 * {@link CharFilter} variant type
+	 * {@link CharFilterDefinition} variant type
 	 */
 	@Override
 	public String _variantType() {

@@ -41,7 +41,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.analysis.EdgeNGramTokenizer
 @JsonpDeserializable
-public class EdgeNGramTokenizer extends TokenizerBase implements TokenizerVariant {
+public class EdgeNGramTokenizer extends TokenizerBase implements TokenizerDefinitionVariant {
 	@Nullable
 	private final String customTokenChars;
 
@@ -68,7 +68,7 @@ public class EdgeNGramTokenizer extends TokenizerBase implements TokenizerVarian
 	}
 
 	/**
-	 * {@link Tokenizer} variant type
+	 * {@link TokenizerDefinition} variant type
 	 */
 	@Override
 	public String _variantType() {

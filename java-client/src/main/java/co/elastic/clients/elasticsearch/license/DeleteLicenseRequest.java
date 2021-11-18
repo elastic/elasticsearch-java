@@ -53,7 +53,7 @@ public class DeleteLicenseRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code license.delete}".
 	 */
-	public static final Endpoint<DeleteLicenseRequest, DeleteLicenseResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<DeleteLicenseRequest, DeleteLicenseResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "DELETE";

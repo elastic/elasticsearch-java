@@ -117,7 +117,7 @@ public class GetPolicyRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code enrich.get_policy}".
 	 */
-	public static final Endpoint<GetPolicyRequest, GetPolicyResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<GetPolicyRequest, GetPolicyResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "GET";

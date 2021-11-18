@@ -120,6 +120,8 @@ public class NodeInfoSettingsHttpType implements JsonpSerializable {
 
 		op.add(Builder::default_, JsonpDeserializer.stringDeserializer(), "default");
 
+		op.shortcutProperty("default");
+
 	}
 
 }

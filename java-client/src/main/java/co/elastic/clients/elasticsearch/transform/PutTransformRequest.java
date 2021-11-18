@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.transform;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.elasticsearch.core.reindex.Destination;
 import co.elastic.clients.elasticsearch.core.reindex.Source;
 import co.elastic.clients.json.JsonpDeserializable;
@@ -59,7 +60,7 @@ public class PutTransformRequest extends RequestBase implements JsonpSerializabl
 	private final Destination dest;
 
 	@Nullable
-	private final String frequency;
+	private final Time frequency;
 
 	@Nullable
 	private final Latest latest;
@@ -141,7 +142,7 @@ public class PutTransformRequest extends RequestBase implements JsonpSerializabl
 	 * API name: {@code frequency}
 	 */
 	@Nullable
-	public final String frequency() {
+	public final Time frequency() {
 		return this.frequency;
 	}
 
@@ -239,7 +240,7 @@ public class PutTransformRequest extends RequestBase implements JsonpSerializabl
 
 		if (this.frequency != null) {
 			generator.writeKey("frequency");
-			generator.write(this.frequency);
+			this.frequency.serialize(generator, mapper);
 
 		}
 		if (this.latest != null) {
@@ -288,7 +289,7 @@ public class PutTransformRequest extends RequestBase implements JsonpSerializabl
 		private Destination dest;
 
 		@Nullable
-		private String frequency;
+		private Time frequency;
 
 		@Nullable
 		private Latest latest;
@@ -357,9 +358,21 @@ public class PutTransformRequest extends RequestBase implements JsonpSerializabl
 		 * <p>
 		 * API name: {@code frequency}
 		 */
-		public final Builder frequency(@Nullable String value) {
+		public final Builder frequency(@Nullable Time value) {
 			this.frequency = value;
 			return this;
+		}
+
+		/**
+		 * The interval between checks for changes in the source indices when the
+		 * transform is running continuously. Also determines the retry interval in the
+		 * event of transient failures while the transform is searching or indexing. The
+		 * minimum value is 1s and the maximum is 1h.
+		 * <p>
+		 * API name: {@code frequency}
+		 */
+		public final Builder frequency(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.frequency(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -519,7 +532,7 @@ public class PutTransformRequest extends RequestBase implements JsonpSerializabl
 
 		op.add(Builder::description, JsonpDeserializer.stringDeserializer(), "description");
 		op.add(Builder::dest, Destination._DESERIALIZER, "dest");
-		op.add(Builder::frequency, JsonpDeserializer.stringDeserializer(), "frequency");
+		op.add(Builder::frequency, Time._DESERIALIZER, "frequency");
 		op.add(Builder::latest, Latest._DESERIALIZER, "latest");
 		op.add(Builder::pivot, Pivot._DESERIALIZER, "pivot");
 		op.add(Builder::retentionPolicy, RetentionPolicy._DESERIALIZER, "retention_policy");
@@ -534,7 +547,7 @@ public class PutTransformRequest extends RequestBase implements JsonpSerializabl
 	/**
 	 * Endpoint "{@code transform.put_transform}".
 	 */
-	public static final Endpoint<PutTransformRequest, PutTransformResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<PutTransformRequest, PutTransformResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "PUT";

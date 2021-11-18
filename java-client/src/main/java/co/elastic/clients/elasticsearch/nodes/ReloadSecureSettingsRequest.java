@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.nodes;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -56,7 +57,7 @@ public class ReloadSecureSettingsRequest extends RequestBase implements JsonpSer
 	private final String secureSettingsPassword;
 
 	@Nullable
-	private final String timeout;
+	private final Time timeout;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -96,7 +97,7 @@ public class ReloadSecureSettingsRequest extends RequestBase implements JsonpSer
 	 * API name: {@code timeout}
 	 */
 	@Nullable
-	public final String timeout() {
+	public final Time timeout() {
 		return this.timeout;
 	}
 
@@ -132,7 +133,7 @@ public class ReloadSecureSettingsRequest extends RequestBase implements JsonpSer
 		private String secureSettingsPassword;
 
 		@Nullable
-		private String timeout;
+		private Time timeout;
 
 		/**
 		 * A comma-separated list of node IDs to span the reload/reinit call. Should
@@ -169,9 +170,18 @@ public class ReloadSecureSettingsRequest extends RequestBase implements JsonpSer
 		 * <p>
 		 * API name: {@code timeout}
 		 */
-		public final Builder timeout(@Nullable String value) {
+		public final Builder timeout(@Nullable Time value) {
 			this.timeout = value;
 			return this;
+		}
+
+		/**
+		 * Explicit operation timeout
+		 * <p>
+		 * API name: {@code timeout}
+		 */
+		public final Builder timeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.timeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -207,7 +217,7 @@ public class ReloadSecureSettingsRequest extends RequestBase implements JsonpSer
 	/**
 	 * Endpoint "{@code nodes.reload_secure_settings}".
 	 */
-	public static final Endpoint<ReloadSecureSettingsRequest, ReloadSecureSettingsResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<ReloadSecureSettingsRequest, ReloadSecureSettingsResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";
@@ -246,7 +256,7 @@ public class ReloadSecureSettingsRequest extends RequestBase implements JsonpSer
 			request -> {
 				Map<String, String> params = new HashMap<>();
 				if (request.timeout != null) {
-					params.put("timeout", request.timeout);
+					params.put("timeout", request.timeout._toJsonString());
 				}
 				return params;
 

@@ -35,7 +35,7 @@ import java.util.function.Function;
 
 // typedef: _types.analysis.RemoveDuplicatesTokenFilter
 @JsonpDeserializable
-public class RemoveDuplicatesTokenFilter extends TokenFilterBase implements TokenFilterVariant {
+public class RemoveDuplicatesTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
 	// ---------------------------------------------------------------------------------------------
 
 	private RemoveDuplicatesTokenFilter(Builder builder) {
@@ -48,7 +48,7 @@ public class RemoveDuplicatesTokenFilter extends TokenFilterBase implements Toke
 	}
 
 	/**
-	 * {@link TokenFilter} variant type
+	 * {@link TokenFilterDefinition} variant type
 	 */
 	@Override
 	public String _variantType() {

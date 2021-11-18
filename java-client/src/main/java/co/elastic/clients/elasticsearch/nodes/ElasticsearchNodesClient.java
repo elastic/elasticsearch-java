@@ -25,6 +25,8 @@ package co.elastic.clients.elasticsearch.nodes;
 
 import co.elastic.clients.ApiClient;
 import co.elastic.clients.elasticsearch._types.ElasticsearchException;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
+import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.Transport;
 import co.elastic.clients.transport.TransportOptions;
 import co.elastic.clients.util.ObjectBuilder;
@@ -61,7 +63,10 @@ public class ElasticsearchNodesClient extends ApiClient<ElasticsearchNodesClient
 	 */
 
 	public HotThreadsResponse hotThreads(HotThreadsRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, HotThreadsRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<HotThreadsRequest, HotThreadsResponse, ErrorResponse> endpoint = (Endpoint<HotThreadsRequest, HotThreadsResponse, ErrorResponse>) HotThreadsRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -89,7 +94,7 @@ public class ElasticsearchNodesClient extends ApiClient<ElasticsearchNodesClient
 	 */
 
 	public HotThreadsResponse hotThreads() throws IOException, ElasticsearchException {
-		return this.transport.performRequest(new HotThreadsRequest.Builder().build(), HotThreadsRequest.ENDPOINT,
+		return this.transport.performRequest(new HotThreadsRequest.Builder().build(), HotThreadsRequest._ENDPOINT,
 				this.transportOptions);
 	}
 
@@ -104,7 +109,10 @@ public class ElasticsearchNodesClient extends ApiClient<ElasticsearchNodesClient
 	 */
 
 	public NodesInfoResponse info(NodesInfoRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, NodesInfoRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<NodesInfoRequest, NodesInfoResponse, ErrorResponse> endpoint = (Endpoint<NodesInfoRequest, NodesInfoResponse, ErrorResponse>) NodesInfoRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -132,7 +140,7 @@ public class ElasticsearchNodesClient extends ApiClient<ElasticsearchNodesClient
 	 */
 
 	public NodesInfoResponse info() throws IOException, ElasticsearchException {
-		return this.transport.performRequest(new NodesInfoRequest.Builder().build(), NodesInfoRequest.ENDPOINT,
+		return this.transport.performRequest(new NodesInfoRequest.Builder().build(), NodesInfoRequest._ENDPOINT,
 				this.transportOptions);
 	}
 
@@ -148,7 +156,10 @@ public class ElasticsearchNodesClient extends ApiClient<ElasticsearchNodesClient
 
 	public ReloadSecureSettingsResponse reloadSecureSettings(ReloadSecureSettingsRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, ReloadSecureSettingsRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<ReloadSecureSettingsRequest, ReloadSecureSettingsResponse, ErrorResponse> endpoint = (Endpoint<ReloadSecureSettingsRequest, ReloadSecureSettingsResponse, ErrorResponse>) ReloadSecureSettingsRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -178,7 +189,7 @@ public class ElasticsearchNodesClient extends ApiClient<ElasticsearchNodesClient
 
 	public ReloadSecureSettingsResponse reloadSecureSettings() throws IOException, ElasticsearchException {
 		return this.transport.performRequest(new ReloadSecureSettingsRequest.Builder().build(),
-				ReloadSecureSettingsRequest.ENDPOINT, this.transportOptions);
+				ReloadSecureSettingsRequest._ENDPOINT, this.transportOptions);
 	}
 
 	// ----- Endpoint: nodes.stats
@@ -192,7 +203,10 @@ public class ElasticsearchNodesClient extends ApiClient<ElasticsearchNodesClient
 	 */
 
 	public NodesStatsResponse stats(NodesStatsRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, NodesStatsRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<NodesStatsRequest, NodesStatsResponse, ErrorResponse> endpoint = (Endpoint<NodesStatsRequest, NodesStatsResponse, ErrorResponse>) NodesStatsRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -220,7 +234,7 @@ public class ElasticsearchNodesClient extends ApiClient<ElasticsearchNodesClient
 	 */
 
 	public NodesStatsResponse stats() throws IOException, ElasticsearchException {
-		return this.transport.performRequest(new NodesStatsRequest.Builder().build(), NodesStatsRequest.ENDPOINT,
+		return this.transport.performRequest(new NodesStatsRequest.Builder().build(), NodesStatsRequest._ENDPOINT,
 				this.transportOptions);
 	}
 
@@ -235,7 +249,10 @@ public class ElasticsearchNodesClient extends ApiClient<ElasticsearchNodesClient
 	 */
 
 	public UsageResponse usage(UsageRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, UsageRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<UsageRequest, UsageResponse, ErrorResponse> endpoint = (Endpoint<UsageRequest, UsageResponse, ErrorResponse>) UsageRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -263,7 +280,7 @@ public class ElasticsearchNodesClient extends ApiClient<ElasticsearchNodesClient
 	 */
 
 	public UsageResponse usage() throws IOException, ElasticsearchException {
-		return this.transport.performRequest(new UsageRequest.Builder().build(), UsageRequest.ENDPOINT,
+		return this.transport.performRequest(new UsageRequest.Builder().build(), UsageRequest._ENDPOINT,
 				this.transportOptions);
 	}
 

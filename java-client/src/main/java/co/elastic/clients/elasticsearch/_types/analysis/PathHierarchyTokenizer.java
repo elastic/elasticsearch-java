@@ -40,7 +40,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.analysis.PathHierarchyTokenizer
 @JsonpDeserializable
-public class PathHierarchyTokenizer extends TokenizerBase implements TokenizerVariant {
+public class PathHierarchyTokenizer extends TokenizerBase implements TokenizerDefinitionVariant {
 	private final int bufferSize;
 
 	private final String delimiter;
@@ -69,7 +69,7 @@ public class PathHierarchyTokenizer extends TokenizerBase implements TokenizerVa
 	}
 
 	/**
-	 * {@link Tokenizer} variant type
+	 * {@link TokenizerDefinition} variant type
 	 */
 	@Override
 	public String _variantType() {

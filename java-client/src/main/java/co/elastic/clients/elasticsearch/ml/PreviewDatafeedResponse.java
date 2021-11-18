@@ -29,6 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.JsonpSerializer;
 import co.elastic.clients.json.JsonpUtils;
+import co.elastic.clients.json.NamedDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
@@ -43,7 +44,7 @@ import java.util.function.Supplier;
 import javax.annotation.Nullable;
 
 // typedef: ml.preview_datafeed.Response
-
+@JsonpDeserializable
 public class PreviewDatafeedResponse<TDocument> implements JsonpSerializable {
 	private final List<TDocument> data;
 
@@ -156,6 +157,13 @@ public class PreviewDatafeedResponse<TDocument> implements JsonpSerializable {
 		return ObjectBuilderDeserializer.createForObject((Supplier<Builder<TDocument>>) Builder::new,
 				op -> PreviewDatafeedResponse.setupPreviewDatafeedResponseDeserializer(op, tDocumentDeserializer));
 	};
+
+	/**
+	 * Json deserializer for {@link PreviewDatafeedResponse} based on named
+	 * deserializers provided by the calling {@code JsonMapper}.
+	 */
+	public static final JsonpDeserializer<PreviewDatafeedResponse<Object>> _DESERIALIZER = createPreviewDatafeedResponseDeserializer(
+			new NamedDeserializer<>("co.elastic.clients:Deserializer:ml.preview_datafeed.TDocument"));
 
 	protected static <TDocument> void setupPreviewDatafeedResponseDeserializer(
 			ObjectDeserializer<PreviewDatafeedResponse.Builder<TDocument>> op,

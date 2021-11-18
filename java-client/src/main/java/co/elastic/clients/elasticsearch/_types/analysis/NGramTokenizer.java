@@ -41,7 +41,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.analysis.NGramTokenizer
 @JsonpDeserializable
-public class NGramTokenizer extends TokenizerBase implements TokenizerVariant {
+public class NGramTokenizer extends TokenizerBase implements TokenizerDefinitionVariant {
 	@Nullable
 	private final String customTokenChars;
 
@@ -68,7 +68,7 @@ public class NGramTokenizer extends TokenizerBase implements TokenizerVariant {
 	}
 
 	/**
-	 * {@link Tokenizer} variant type
+	 * {@link TokenizerDefinition} variant type
 	 */
 	@Override
 	public String _variantType() {

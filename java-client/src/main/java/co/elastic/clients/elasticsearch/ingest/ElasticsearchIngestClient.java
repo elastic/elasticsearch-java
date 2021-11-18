@@ -25,6 +25,8 @@ package co.elastic.clients.elasticsearch.ingest;
 
 import co.elastic.clients.ApiClient;
 import co.elastic.clients.elasticsearch._types.ElasticsearchException;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
+import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.Transport;
 import co.elastic.clients.transport.TransportOptions;
 import co.elastic.clients.util.ObjectBuilder;
@@ -62,7 +64,10 @@ public class ElasticsearchIngestClient extends ApiClient<ElasticsearchIngestClie
 
 	public DeletePipelineResponse deletePipeline(DeletePipelineRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, DeletePipelineRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<DeletePipelineRequest, DeletePipelineResponse, ErrorResponse> endpoint = (Endpoint<DeletePipelineRequest, DeletePipelineResponse, ErrorResponse>) DeletePipelineRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -92,7 +97,7 @@ public class ElasticsearchIngestClient extends ApiClient<ElasticsearchIngestClie
 	 *      on elastic.co</a>
 	 */
 	public GeoIpStatsResponse geoIpStats() throws IOException, ElasticsearchException {
-		return this.transport.performRequest(GeoIpStatsRequest._INSTANCE, GeoIpStatsRequest.ENDPOINT,
+		return this.transport.performRequest(GeoIpStatsRequest._INSTANCE, GeoIpStatsRequest._ENDPOINT,
 				this.transportOptions);
 	}
 
@@ -107,7 +112,10 @@ public class ElasticsearchIngestClient extends ApiClient<ElasticsearchIngestClie
 	 */
 
 	public GetPipelineResponse getPipeline(GetPipelineRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, GetPipelineRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<GetPipelineRequest, GetPipelineResponse, ErrorResponse> endpoint = (Endpoint<GetPipelineRequest, GetPipelineResponse, ErrorResponse>) GetPipelineRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -136,7 +144,7 @@ public class ElasticsearchIngestClient extends ApiClient<ElasticsearchIngestClie
 	 */
 
 	public GetPipelineResponse getPipeline() throws IOException, ElasticsearchException {
-		return this.transport.performRequest(new GetPipelineRequest.Builder().build(), GetPipelineRequest.ENDPOINT,
+		return this.transport.performRequest(new GetPipelineRequest.Builder().build(), GetPipelineRequest._ENDPOINT,
 				this.transportOptions);
 	}
 
@@ -150,7 +158,7 @@ public class ElasticsearchIngestClient extends ApiClient<ElasticsearchIngestClie
 	 *      on elastic.co</a>
 	 */
 	public ProcessorGrokResponse processorGrok() throws IOException, ElasticsearchException {
-		return this.transport.performRequest(ProcessorGrokRequest._INSTANCE, ProcessorGrokRequest.ENDPOINT,
+		return this.transport.performRequest(ProcessorGrokRequest._INSTANCE, ProcessorGrokRequest._ENDPOINT,
 				this.transportOptions);
 	}
 
@@ -165,7 +173,10 @@ public class ElasticsearchIngestClient extends ApiClient<ElasticsearchIngestClie
 	 */
 
 	public PutPipelineResponse putPipeline(PutPipelineRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, PutPipelineRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<PutPipelineRequest, PutPipelineResponse, ErrorResponse> endpoint = (Endpoint<PutPipelineRequest, PutPipelineResponse, ErrorResponse>) PutPipelineRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -196,7 +207,10 @@ public class ElasticsearchIngestClient extends ApiClient<ElasticsearchIngestClie
 	 */
 
 	public SimulateResponse simulate(SimulateRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, SimulateRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<SimulateRequest, SimulateResponse, ErrorResponse> endpoint = (Endpoint<SimulateRequest, SimulateResponse, ErrorResponse>) SimulateRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -224,7 +238,7 @@ public class ElasticsearchIngestClient extends ApiClient<ElasticsearchIngestClie
 	 */
 
 	public SimulateResponse simulate() throws IOException, ElasticsearchException {
-		return this.transport.performRequest(new SimulateRequest.Builder().build(), SimulateRequest.ENDPOINT,
+		return this.transport.performRequest(new SimulateRequest.Builder().build(), SimulateRequest._ENDPOINT,
 				this.transportOptions);
 	}
 

@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.snapshot;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -62,7 +63,7 @@ public class CreateSnapshotRequest extends RequestBase implements JsonpSerializa
 	private final List<String> indices;
 
 	@Nullable
-	private final String masterTimeout;
+	private final Time masterTimeout;
 
 	private final Map<String, JsonData> metadata;
 
@@ -155,7 +156,7 @@ public class CreateSnapshotRequest extends RequestBase implements JsonpSerializa
 	 * API name: {@code master_timeout}
 	 */
 	@Nullable
-	public final String masterTimeout() {
+	public final Time masterTimeout() {
 		return this.masterTimeout;
 	}
 
@@ -292,7 +293,7 @@ public class CreateSnapshotRequest extends RequestBase implements JsonpSerializa
 		private List<String> indices;
 
 		@Nullable
-		private String masterTimeout;
+		private Time masterTimeout;
 
 		@Nullable
 		private Map<String, JsonData> metadata;
@@ -392,9 +393,19 @@ public class CreateSnapshotRequest extends RequestBase implements JsonpSerializa
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
-		public final Builder masterTimeout(@Nullable String value) {
+		public final Builder masterTimeout(@Nullable Time value) {
 			this.masterTimeout = value;
 			return this;
+		}
+
+		/**
+		 * Period to wait for a connection to the master node. If no response is
+		 * received before the timeout expires, the request fails and returns an error.
+		 * <p>
+		 * API name: {@code master_timeout}
+		 */
+		public final Builder masterTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.masterTimeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -493,7 +504,7 @@ public class CreateSnapshotRequest extends RequestBase implements JsonpSerializa
 	/**
 	 * Endpoint "{@code snapshot.create}".
 	 */
-	public static final Endpoint<CreateSnapshotRequest, CreateSnapshotResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<CreateSnapshotRequest, CreateSnapshotResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "PUT";
@@ -527,7 +538,7 @@ public class CreateSnapshotRequest extends RequestBase implements JsonpSerializa
 			request -> {
 				Map<String, String> params = new HashMap<>();
 				if (request.masterTimeout != null) {
-					params.put("master_timeout", request.masterTimeout);
+					params.put("master_timeout", request.masterTimeout._toJsonString());
 				}
 				if (request.waitForCompletion != null) {
 					params.put("wait_for_completion", String.valueOf(request.waitForCompletion));

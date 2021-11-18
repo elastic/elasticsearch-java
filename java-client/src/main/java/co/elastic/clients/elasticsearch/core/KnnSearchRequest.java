@@ -25,7 +25,9 @@ package co.elastic.clients.elasticsearch.core;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.elasticsearch._types.query_dsl.FieldAndFormat;
 import co.elastic.clients.elasticsearch.core.knn_search.Query;
+import co.elastic.clients.elasticsearch.core.search.SourceConfig;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -37,9 +39,9 @@ import co.elastic.clients.transport.SimpleEndpoint;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -53,15 +55,9 @@ import javax.annotation.Nullable;
 @JsonpDeserializable
 public class KnnSearchRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
-	private final JsonValue /*
-							 * Union(_global.search._types.SourceFilter | _types.Fields | internal.boolean)
-							 */ source;
+	private final SourceConfig source;
 
-	@Nullable
-	private final JsonValue /*
-							 * Union(Array<Union(_global.search._types.DocValueField | _types.Field)> |
-							 * _global.search._types.DocValueField)
-							 */ docvalueFields;
+	private final List<FieldAndFormat> docvalueFields;
 
 	private final List<String> fields;
 
@@ -79,7 +75,7 @@ public class KnnSearchRequest extends RequestBase implements JsonpSerializable {
 	private KnnSearchRequest(Builder builder) {
 
 		this.source = builder.source;
-		this.docvalueFields = builder.docvalueFields;
+		this.docvalueFields = ModelTypeHelper.unmodifiable(builder.docvalueFields);
 		this.fields = ModelTypeHelper.unmodifiable(builder.fields);
 		this.index = ModelTypeHelper.unmodifiableRequired(builder.index, this, "index");
 		this.knn = ModelTypeHelper.requireNonNull(builder.knn, this, "knn");
@@ -99,9 +95,7 @@ public class KnnSearchRequest extends RequestBase implements JsonpSerializable {
 	 * API name: {@code _source}
 	 */
 	@Nullable
-	public final JsonValue /*
-							 * Union(_global.search._types.SourceFilter | _types.Fields | internal.boolean)
-							 */ source() {
+	public final SourceConfig source() {
 		return this.source;
 	}
 
@@ -111,11 +105,7 @@ public class KnnSearchRequest extends RequestBase implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code docvalue_fields}
 	 */
-	@Nullable
-	public final JsonValue /*
-							 * Union(Array<Union(_global.search._types.DocValueField | _types.Field)> |
-							 * _global.search._types.DocValueField)
-							 */ docvalueFields() {
+	public final List<FieldAndFormat> docvalueFields() {
 		return this.docvalueFields;
 	}
 
@@ -183,12 +173,17 @@ public class KnnSearchRequest extends RequestBase implements JsonpSerializable {
 
 		if (this.source != null) {
 			generator.writeKey("_source");
-			generator.write(this.source);
+			this.source.serialize(generator, mapper);
 
 		}
-		if (this.docvalueFields != null) {
+		if (ModelTypeHelper.isDefined(this.docvalueFields)) {
 			generator.writeKey("docvalue_fields");
-			generator.write(this.docvalueFields);
+			generator.writeStartArray();
+			for (FieldAndFormat item0 : this.docvalueFields) {
+				item0.serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
 
 		}
 		if (ModelTypeHelper.isDefined(this.fields)) {
@@ -224,15 +219,10 @@ public class KnnSearchRequest extends RequestBase implements JsonpSerializable {
 	 */
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<KnnSearchRequest> {
 		@Nullable
-		private JsonValue /*
-							 * Union(_global.search._types.SourceFilter | _types.Fields | internal.boolean)
-							 */ source;
+		private SourceConfig source;
 
 		@Nullable
-		private JsonValue /*
-							 * Union(Array<Union(_global.search._types.DocValueField | _types.Field)> |
-							 * _global.search._types.DocValueField)
-							 */ docvalueFields;
+		private List<FieldAndFormat> docvalueFields;
 
 		@Nullable
 		private List<String> fields;
@@ -253,11 +243,29 @@ public class KnnSearchRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code _source}
 		 */
-		public final Builder source(
-				@Nullable JsonValue /*
-									 * Union(_global.search._types.SourceFilter | _types.Fields | internal.boolean)
-									 */ value) {
+		public final Builder source(@Nullable SourceConfig value) {
 			this.source = value;
+			return this;
+		}
+
+		/**
+		 * Indicates which source fields are returned for matching documents. These
+		 * fields are returned in the hits._source property of the search response.
+		 * <p>
+		 * API name: {@code _source}
+		 */
+		public final Builder source(Function<SourceConfig.Builder, ObjectBuilder<SourceConfig>> fn) {
+			return this.source(fn.apply(new SourceConfig.Builder()).build());
+		}
+
+		/**
+		 * The request returns doc values for field names matching these patterns in the
+		 * hits.fields property of the response. Accepts wildcard (*) patterns.
+		 * <p>
+		 * API name: {@code docvalue_fields}
+		 */
+		public final Builder docvalueFields(@Nullable List<FieldAndFormat> value) {
+			this.docvalueFields = value;
 			return this;
 		}
 
@@ -267,12 +275,23 @@ public class KnnSearchRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code docvalue_fields}
 		 */
-		public final Builder docvalueFields(
-				@Nullable JsonValue /*
-									 * Union(Array<Union(_global.search._types.DocValueField | _types.Field)> |
-									 * _global.search._types.DocValueField)
-									 */ value) {
-			this.docvalueFields = value;
+		public final Builder docvalueFields(FieldAndFormat... value) {
+			this.docvalueFields = Arrays.asList(value);
+			return this;
+		}
+
+		/**
+		 * The request returns doc values for field names matching these patterns in the
+		 * hits.fields property of the response. Accepts wildcard (*) patterns.
+		 * <p>
+		 * API name: {@code docvalue_fields}
+		 */
+		@SafeVarargs
+		public final Builder docvalueFields(Function<FieldAndFormat.Builder, ObjectBuilder<FieldAndFormat>>... fns) {
+			this.docvalueFields = new ArrayList<>(fns.length);
+			for (Function<FieldAndFormat.Builder, ObjectBuilder<FieldAndFormat>> fn : fns) {
+				this.docvalueFields.add(fn.apply(new FieldAndFormat.Builder()).build());
+			}
 			return this;
 		}
 
@@ -398,8 +417,9 @@ public class KnnSearchRequest extends RequestBase implements JsonpSerializable {
 
 	protected static void setupKnnSearchRequestDeserializer(ObjectDeserializer<KnnSearchRequest.Builder> op) {
 
-		op.add(Builder::source, JsonpDeserializer.jsonValueDeserializer(), "_source");
-		op.add(Builder::docvalueFields, JsonpDeserializer.jsonValueDeserializer(), "docvalue_fields");
+		op.add(Builder::source, SourceConfig._DESERIALIZER, "_source");
+		op.add(Builder::docvalueFields, JsonpDeserializer.arrayDeserializer(FieldAndFormat._DESERIALIZER),
+				"docvalue_fields");
 		op.add(Builder::fields, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "fields");
 		op.add(Builder::knn, Query._DESERIALIZER, "knn");
 		op.add(Builder::storedFields, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
@@ -412,7 +432,7 @@ public class KnnSearchRequest extends RequestBase implements JsonpSerializable {
 	/**
 	 * Endpoint "{@code knn_search}".
 	 */
-	private static final SimpleEndpoint<KnnSearchRequest, Void> ENDPOINT = new SimpleEndpoint<>(
+	public static final SimpleEndpoint<KnnSearchRequest, ?> _ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";
@@ -446,14 +466,14 @@ public class KnnSearchRequest extends RequestBase implements JsonpSerializable {
 				}
 				return params;
 
-			}, SimpleEndpoint.emptyMap(), true, null);
+			}, SimpleEndpoint.emptyMap(), true, KnnSearchResponse._DESERIALIZER);
 
 	/**
 	 * Create an "{@code knn_search}" endpoint.
 	 */
 	public static <TDocument> Endpoint<KnnSearchRequest, KnnSearchResponse<TDocument>, ErrorResponse> createKnnSearchEndpoint(
 			JsonpDeserializer<TDocument> tDocumentDeserializer) {
-		return ENDPOINT
+		return _ENDPOINT
 				.withResponseDeserializer(KnnSearchResponse.createKnnSearchResponseDeserializer(tDocumentDeserializer));
 	}
 }

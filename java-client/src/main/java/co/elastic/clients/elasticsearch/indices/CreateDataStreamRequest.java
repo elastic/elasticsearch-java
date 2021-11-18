@@ -103,7 +103,7 @@ public class CreateDataStreamRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code indices.create_data_stream}".
 	 */
-	public static final Endpoint<CreateDataStreamRequest, CreateDataStreamResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<CreateDataStreamRequest, CreateDataStreamResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "PUT";

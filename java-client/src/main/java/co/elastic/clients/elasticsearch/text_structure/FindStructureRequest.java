@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.text_structure;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -86,7 +87,7 @@ public class FindStructureRequest<TJsonDocument> implements JsonpSerializable {
 	private final Boolean shouldTrimFields;
 
 	@Nullable
-	private final String timeout;
+	private final Time timeout;
 
 	@Nullable
 	private final String timestampField;
@@ -288,7 +289,7 @@ public class FindStructureRequest<TJsonDocument> implements JsonpSerializable {
 	 * API name: {@code timeout}
 	 */
 	@Nullable
-	public final String timeout() {
+	public final Time timeout() {
 		return this.timeout;
 	}
 
@@ -376,7 +377,7 @@ public class FindStructureRequest<TJsonDocument> implements JsonpSerializable {
 		private Boolean shouldTrimFields;
 
 		@Nullable
-		private String timeout;
+		private Time timeout;
 
 		@Nullable
 		private String timestampField;
@@ -549,9 +550,19 @@ public class FindStructureRequest<TJsonDocument> implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code timeout}
 		 */
-		public final Builder<TJsonDocument> timeout(@Nullable String value) {
+		public final Builder<TJsonDocument> timeout(@Nullable Time value) {
 			this.timeout = value;
 			return this;
+		}
+
+		/**
+		 * Sets the maximum amount of time that the structure analysis make take. If the
+		 * analysis is still running when the timeout expires then it will be aborted.
+		 * <p>
+		 * API name: {@code timeout}
+		 */
+		public final Builder<TJsonDocument> timeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.timeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -631,7 +642,7 @@ public class FindStructureRequest<TJsonDocument> implements JsonpSerializable {
 	/**
 	 * Endpoint "{@code text_structure.find_structure}".
 	 */
-	public static final Endpoint<FindStructureRequest<?>, FindStructureResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<FindStructureRequest<?>, FindStructureResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";
@@ -669,7 +680,7 @@ public class FindStructureRequest<TJsonDocument> implements JsonpSerializable {
 					params.put("timestamp_field", request.timestampField);
 				}
 				if (request.timeout != null) {
-					params.put("timeout", request.timeout);
+					params.put("timeout", request.timeout._toJsonString());
 				}
 				if (request.timestampFormat != null) {
 					params.put("timestamp_format", request.timestampFormat);

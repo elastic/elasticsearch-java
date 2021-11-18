@@ -39,7 +39,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.analysis.IcuCollationTokenFilter
 @JsonpDeserializable
-public class IcuCollationTokenFilter extends TokenFilterBase implements TokenFilterVariant {
+public class IcuCollationTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
 	private final IcuCollationAlternate alternate;
 
 	private final IcuCollationCaseFirst casefirst;
@@ -88,7 +88,7 @@ public class IcuCollationTokenFilter extends TokenFilterBase implements TokenFil
 	}
 
 	/**
-	 * {@link TokenFilter} variant type
+	 * {@link TokenFilterDefinition} variant type
 	 */
 	@Override
 	public String _variantType() {

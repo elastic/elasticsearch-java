@@ -53,7 +53,7 @@ public class GetFeaturesRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code features.get_features}".
 	 */
-	public static final Endpoint<GetFeaturesRequest, GetFeaturesResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<GetFeaturesRequest, GetFeaturesResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "GET";

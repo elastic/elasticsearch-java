@@ -496,7 +496,7 @@ public class PutWatchRequest extends RequestBase implements JsonpSerializable {
 	/**
 	 * Endpoint "{@code watcher.put_watch}".
 	 */
-	public static final Endpoint<PutWatchRequest, PutWatchResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<PutWatchRequest, PutWatchResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "PUT";

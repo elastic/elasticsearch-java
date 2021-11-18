@@ -53,7 +53,7 @@ public class PluginsRequest extends CatRequestBase {
 	/**
 	 * Endpoint "{@code cat.plugins}".
 	 */
-	public static final Endpoint<PluginsRequest, PluginsResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<PluginsRequest, PluginsResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "GET";

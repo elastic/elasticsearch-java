@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch._types.aggregations;
 
 import co.elastic.clients.elasticsearch._types.DistanceUnit;
 import co.elastic.clients.elasticsearch._types.GeoDistanceType;
+import co.elastic.clients.elasticsearch._types.GeoLocation;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -32,7 +33,6 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.ArrayList;
@@ -52,7 +52,7 @@ public class GeoDistanceAggregation extends BucketAggregationBase implements Agg
 	private final String field;
 
 	@Nullable
-	private final JsonValue /* _types.query_dsl.GeoLocation */ origin;
+	private final GeoLocation origin;
 
 	private final List<AggregationRange> ranges;
 
@@ -104,7 +104,7 @@ public class GeoDistanceAggregation extends BucketAggregationBase implements Agg
 	 * API name: {@code origin}
 	 */
 	@Nullable
-	public final JsonValue /* _types.query_dsl.GeoLocation */ origin() {
+	public final GeoLocation origin() {
 		return this.origin;
 	}
 
@@ -137,7 +137,7 @@ public class GeoDistanceAggregation extends BucketAggregationBase implements Agg
 		}
 		if (this.origin != null) {
 			generator.writeKey("origin");
-			generator.write(this.origin);
+			this.origin.serialize(generator, mapper);
 
 		}
 		if (ModelTypeHelper.isDefined(this.ranges)) {
@@ -172,7 +172,7 @@ public class GeoDistanceAggregation extends BucketAggregationBase implements Agg
 		private String field;
 
 		@Nullable
-		private JsonValue /* _types.query_dsl.GeoLocation */ origin;
+		private GeoLocation origin;
 
 		@Nullable
 		private List<AggregationRange> ranges;
@@ -199,9 +199,16 @@ public class GeoDistanceAggregation extends BucketAggregationBase implements Agg
 		/**
 		 * API name: {@code origin}
 		 */
-		public final Builder origin(@Nullable JsonValue /* _types.query_dsl.GeoLocation */ value) {
+		public final Builder origin(@Nullable GeoLocation value) {
 			this.origin = value;
 			return this;
+		}
+
+		/**
+		 * API name: {@code origin}
+		 */
+		public final Builder origin(Function<GeoLocation.Builder, ObjectBuilder<GeoLocation>> fn) {
+			return this.origin(fn.apply(new GeoLocation.Builder()).build());
 		}
 
 		/**
@@ -271,7 +278,7 @@ public class GeoDistanceAggregation extends BucketAggregationBase implements Agg
 		BucketAggregationBase.setupBucketAggregationBaseDeserializer(op);
 		op.add(Builder::distanceType, GeoDistanceType._DESERIALIZER, "distance_type");
 		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
-		op.add(Builder::origin, JsonpDeserializer.jsonValueDeserializer(), "origin");
+		op.add(Builder::origin, GeoLocation._DESERIALIZER, "origin");
 		op.add(Builder::ranges, JsonpDeserializer.arrayDeserializer(AggregationRange._DESERIALIZER), "ranges");
 		op.add(Builder::unit, DistanceUnit._DESERIALIZER, "unit");
 

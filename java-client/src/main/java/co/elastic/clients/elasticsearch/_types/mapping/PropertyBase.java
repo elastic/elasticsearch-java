@@ -34,7 +34,6 @@ import co.elastic.clients.util.MapBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
@@ -60,7 +59,7 @@ public abstract class PropertyBase implements JsonpSerializable {
 	private final Integer ignoreAbove;
 
 	@Nullable
-	private final JsonValue /* Union(_types.mapping.DynamicMapping | internal.boolean) */ dynamic;
+	private final DynamicMapping dynamic;
 
 	private final Map<String, Property> fields;
 
@@ -119,7 +118,7 @@ public abstract class PropertyBase implements JsonpSerializable {
 	 * API name: {@code dynamic}
 	 */
 	@Nullable
-	public final JsonValue /* Union(_types.mapping.DynamicMapping | internal.boolean) */ dynamic() {
+	public final DynamicMapping dynamic() {
 		return this.dynamic;
 	}
 
@@ -186,8 +185,7 @@ public abstract class PropertyBase implements JsonpSerializable {
 		}
 		if (this.dynamic != null) {
 			generator.writeKey("dynamic");
-			generator.write(this.dynamic);
-
+			this.dynamic.serialize(generator, mapper);
 		}
 		if (ModelTypeHelper.isDefined(this.fields)) {
 			generator.writeKey("fields");
@@ -222,7 +220,7 @@ public abstract class PropertyBase implements JsonpSerializable {
 		private Integer ignoreAbove;
 
 		@Nullable
-		private JsonValue /* Union(_types.mapping.DynamicMapping | internal.boolean) */ dynamic;
+		private DynamicMapping dynamic;
 
 		@Nullable
 		private Map<String, Property> fields;
@@ -282,8 +280,7 @@ public abstract class PropertyBase implements JsonpSerializable {
 		/**
 		 * API name: {@code dynamic}
 		 */
-		public final BuilderT dynamic(
-				@Nullable JsonValue /* Union(_types.mapping.DynamicMapping | internal.boolean) */ value) {
+		public final BuilderT dynamic(@Nullable DynamicMapping value) {
 			this.dynamic = value;
 			return self();
 		}
@@ -324,7 +321,7 @@ public abstract class PropertyBase implements JsonpSerializable {
 		op.add(AbstractBuilder::properties, JsonpDeserializer.stringMapDeserializer(Property._DESERIALIZER),
 				"properties");
 		op.add(AbstractBuilder::ignoreAbove, JsonpDeserializer.integerDeserializer(), "ignore_above");
-		op.add(AbstractBuilder::dynamic, JsonpDeserializer.jsonValueDeserializer(), "dynamic");
+		op.add(AbstractBuilder::dynamic, DynamicMapping._DESERIALIZER, "dynamic");
 		op.add(AbstractBuilder::fields, JsonpDeserializer.stringMapDeserializer(Property._DESERIALIZER), "fields");
 
 	}

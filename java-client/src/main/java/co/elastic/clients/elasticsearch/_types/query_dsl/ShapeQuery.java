@@ -31,6 +31,7 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
+import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
 import java.util.function.Function;
@@ -43,12 +44,17 @@ public class ShapeQuery extends QueryBase implements QueryVariant {
 
 	private final ShapeFieldQuery shape;
 
+	@Nullable
+	private final Boolean ignoreUnmapped;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private ShapeQuery(Builder builder) {
 		super(builder);
 		this.field = ModelTypeHelper.requireNonNull(builder.field, this, "field");
 		this.shape = ModelTypeHelper.requireNonNull(builder.shape, this, "shape");
+
+		this.ignoreUnmapped = builder.ignoreUnmapped;
 
 	}
 
@@ -78,11 +84,24 @@ public class ShapeQuery extends QueryBase implements QueryVariant {
 		return this.shape;
 	}
 
+	/**
+	 * API name: {@code ignore_unmapped}
+	 */
+	@Nullable
+	public final Boolean ignoreUnmapped() {
+		return this.ignoreUnmapped;
+	}
+
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeKey(this.field);
 		this.shape.serialize(generator, mapper);
 
 		super.serializeInternal(generator, mapper);
+		if (this.ignoreUnmapped != null) {
+			generator.writeKey("ignore_unmapped");
+			generator.write(this.ignoreUnmapped);
+
+		}
 
 	}
 
@@ -119,6 +138,17 @@ public class ShapeQuery extends QueryBase implements QueryVariant {
 			return this.shape(fn.apply(new ShapeFieldQuery.Builder()).build());
 		}
 
+		@Nullable
+		private Boolean ignoreUnmapped;
+
+		/**
+		 * API name: {@code ignore_unmapped}
+		 */
+		public final Builder ignoreUnmapped(@Nullable Boolean value) {
+			this.ignoreUnmapped = value;
+			return this;
+		}
+
 		@Override
 		protected Builder self() {
 			return this;
@@ -147,6 +177,7 @@ public class ShapeQuery extends QueryBase implements QueryVariant {
 
 	protected static void setupShapeQueryDeserializer(ObjectDeserializer<ShapeQuery.Builder> op) {
 		QueryBase.setupQueryBaseDeserializer(op);
+		op.add(Builder::ignoreUnmapped, JsonpDeserializer.booleanDeserializer(), "ignore_unmapped");
 
 		op.setUnknownFieldHandler((builder, name, parser, mapper) -> {
 			builder.field(name);

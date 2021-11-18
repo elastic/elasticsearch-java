@@ -224,7 +224,7 @@ public class InvalidateTokenRequest extends RequestBase implements JsonpSerializ
 	/**
 	 * Endpoint "{@code security.invalidate_token}".
 	 */
-	public static final Endpoint<InvalidateTokenRequest, InvalidateTokenResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<InvalidateTokenRequest, InvalidateTokenResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "DELETE";

@@ -37,7 +37,7 @@ import java.util.function.Function;
 
 // typedef: _types.analysis.KuromojiStemmerTokenFilter
 @JsonpDeserializable
-public class KuromojiStemmerTokenFilter extends TokenFilterBase implements TokenFilterVariant {
+public class KuromojiStemmerTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
 	private final int minimumLength;
 
 	// ---------------------------------------------------------------------------------------------
@@ -54,7 +54,7 @@ public class KuromojiStemmerTokenFilter extends TokenFilterBase implements Token
 	}
 
 	/**
-	 * {@link TokenFilter} variant type
+	 * {@link TokenFilterDefinition} variant type
 	 */
 	@Override
 	public String _variantType() {

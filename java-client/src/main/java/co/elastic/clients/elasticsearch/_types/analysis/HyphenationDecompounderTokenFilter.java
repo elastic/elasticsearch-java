@@ -35,7 +35,9 @@ import java.util.function.Function;
 
 // typedef: _types.analysis.HyphenationDecompounderTokenFilter
 @JsonpDeserializable
-public class HyphenationDecompounderTokenFilter extends CompoundWordTokenFilterBase implements TokenFilterVariant {
+public class HyphenationDecompounderTokenFilter extends CompoundWordTokenFilterBase
+		implements
+			TokenFilterDefinitionVariant {
 	// ---------------------------------------------------------------------------------------------
 
 	private HyphenationDecompounderTokenFilter(Builder builder) {
@@ -49,7 +51,7 @@ public class HyphenationDecompounderTokenFilter extends CompoundWordTokenFilterB
 	}
 
 	/**
-	 * {@link TokenFilter} variant type
+	 * {@link TokenFilterDefinition} variant type
 	 */
 	@Override
 	public String _variantType() {

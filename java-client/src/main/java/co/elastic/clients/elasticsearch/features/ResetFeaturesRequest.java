@@ -53,7 +53,7 @@ public class ResetFeaturesRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code features.reset_features}".
 	 */
-	public static final Endpoint<ResetFeaturesRequest, ResetFeaturesResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<ResetFeaturesRequest, ResetFeaturesResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";

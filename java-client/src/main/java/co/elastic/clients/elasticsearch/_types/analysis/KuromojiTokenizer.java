@@ -42,7 +42,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.analysis.KuromojiTokenizer
 @JsonpDeserializable
-public class KuromojiTokenizer extends TokenizerBase implements TokenizerVariant {
+public class KuromojiTokenizer extends TokenizerBase implements TokenizerDefinitionVariant {
 	@Nullable
 	private final Boolean discardPunctuation;
 
@@ -82,7 +82,7 @@ public class KuromojiTokenizer extends TokenizerBase implements TokenizerVariant
 	}
 
 	/**
-	 * {@link Tokenizer} variant type
+	 * {@link TokenizerDefinition} variant type
 	 */
 	@Override
 	public String _variantType() {

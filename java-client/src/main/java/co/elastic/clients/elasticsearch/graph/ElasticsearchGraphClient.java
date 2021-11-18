@@ -25,6 +25,8 @@ package co.elastic.clients.elasticsearch.graph;
 
 import co.elastic.clients.ApiClient;
 import co.elastic.clients.elasticsearch._types.ElasticsearchException;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
+import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.Transport;
 import co.elastic.clients.transport.TransportOptions;
 import co.elastic.clients.util.ObjectBuilder;
@@ -62,7 +64,10 @@ public class ElasticsearchGraphClient extends ApiClient<ElasticsearchGraphClient
 	 */
 
 	public ExploreResponse explore(ExploreRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, ExploreRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<ExploreRequest, ExploreResponse, ErrorResponse> endpoint = (Endpoint<ExploreRequest, ExploreResponse, ErrorResponse>) ExploreRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**

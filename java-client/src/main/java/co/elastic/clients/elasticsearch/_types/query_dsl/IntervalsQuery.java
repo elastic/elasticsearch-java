@@ -41,6 +41,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.IntervalsQuery
+// union type: Container[]
 @JsonpDeserializable
 public class IntervalsQuery extends QueryBase implements TaggedUnion<Object>, QueryVariant, JsonpSerializable {
 
@@ -58,8 +59,6 @@ public class IntervalsQuery extends QueryBase implements TaggedUnion<Object>, Qu
 	public String _variantType() {
 		return "intervals";
 	}
-
-	// Tagged union implementation
 
 	private final String _type;
 	private final Object _value;
@@ -160,6 +159,7 @@ public class IntervalsQuery extends QueryBase implements TaggedUnion<Object>, Qu
 	@Override
 	@SuppressWarnings("unchecked")
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+
 		generator.writeStartObject();
 		generator.writeStartObject(this.field);
 
@@ -173,6 +173,7 @@ public class IntervalsQuery extends QueryBase implements TaggedUnion<Object>, Qu
 		generator.writeEnd();
 
 		generator.writeEnd();
+
 	}
 
 	public static class Builder extends QueryBase.AbstractBuilder<Builder> implements ObjectBuilder<IntervalsQuery> {

@@ -23,6 +23,8 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
+import co.elastic.clients.elasticsearch._types.Script;
+import co.elastic.clients.elasticsearch.core.search.SortOrder;
 import co.elastic.clients.elasticsearch.transform.PivotGroupBy;
 import co.elastic.clients.elasticsearch.transform.PivotGroupByVariant;
 import co.elastic.clients.json.JsonpDeserializable;
@@ -32,13 +34,13 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -49,7 +51,8 @@ public class TermsAggregation extends BucketAggregationBase implements Aggregati
 	@Nullable
 	private final TermsAggregationCollectMode collectMode;
 
-	private final List<String> exclude;
+	@Nullable
+	private final TermsExclude exclude;
 
 	@Nullable
 	private final TermsAggregationExecutionHint executionHint;
@@ -58,7 +61,7 @@ public class TermsAggregation extends BucketAggregationBase implements Aggregati
 	private final String field;
 
 	@Nullable
-	private final JsonValue /* Union(Array<internal.string> | _types.aggregations.TermsInclude) */ include;
+	private final TermsInclude include;
 
 	@Nullable
 	private final Integer minDocCount;
@@ -75,11 +78,10 @@ public class TermsAggregation extends BucketAggregationBase implements Aggregati
 	@Nullable
 	private final String valueType;
 
-	@Nullable
-	private final JsonValue /* _types.aggregations.TermsAggregationOrder */ order;
+	private final List<Map<String, SortOrder>> order;
 
 	@Nullable
-	private final JsonValue /* _types.Script */ script;
+	private final Script script;
 
 	@Nullable
 	private final Integer shardSize;
@@ -96,7 +98,7 @@ public class TermsAggregation extends BucketAggregationBase implements Aggregati
 		super(builder);
 
 		this.collectMode = builder.collectMode;
-		this.exclude = ModelTypeHelper.unmodifiable(builder.exclude);
+		this.exclude = builder.exclude;
 		this.executionHint = builder.executionHint;
 		this.field = builder.field;
 		this.include = builder.include;
@@ -105,7 +107,7 @@ public class TermsAggregation extends BucketAggregationBase implements Aggregati
 		this.missingOrder = builder.missingOrder;
 		this.missingBucket = builder.missingBucket;
 		this.valueType = builder.valueType;
-		this.order = builder.order;
+		this.order = ModelTypeHelper.unmodifiable(builder.order);
 		this.script = builder.script;
 		this.shardSize = builder.shardSize;
 		this.showTermDocCountError = builder.showTermDocCountError;
@@ -136,7 +138,8 @@ public class TermsAggregation extends BucketAggregationBase implements Aggregati
 	/**
 	 * API name: {@code exclude}
 	 */
-	public final List<String> exclude() {
+	@Nullable
+	public final TermsExclude exclude() {
 		return this.exclude;
 	}
 
@@ -160,7 +163,7 @@ public class TermsAggregation extends BucketAggregationBase implements Aggregati
 	 * API name: {@code include}
 	 */
 	@Nullable
-	public final JsonValue /* Union(Array<internal.string> | _types.aggregations.TermsInclude) */ include() {
+	public final TermsInclude include() {
 		return this.include;
 	}
 
@@ -207,8 +210,7 @@ public class TermsAggregation extends BucketAggregationBase implements Aggregati
 	/**
 	 * API name: {@code order}
 	 */
-	@Nullable
-	public final JsonValue /* _types.aggregations.TermsAggregationOrder */ order() {
+	public final List<Map<String, SortOrder>> order() {
 		return this.order;
 	}
 
@@ -216,7 +218,7 @@ public class TermsAggregation extends BucketAggregationBase implements Aggregati
 	 * API name: {@code script}
 	 */
 	@Nullable
-	public final JsonValue /* _types.Script */ script() {
+	public final Script script() {
 		return this.script;
 	}
 
@@ -251,14 +253,9 @@ public class TermsAggregation extends BucketAggregationBase implements Aggregati
 			generator.writeKey("collect_mode");
 			this.collectMode.serialize(generator, mapper);
 		}
-		if (ModelTypeHelper.isDefined(this.exclude)) {
+		if (this.exclude != null) {
 			generator.writeKey("exclude");
-			generator.writeStartArray();
-			for (String item0 : this.exclude) {
-				generator.write(item0);
-
-			}
-			generator.writeEnd();
+			this.exclude.serialize(generator, mapper);
 
 		}
 		if (this.executionHint != null) {
@@ -272,7 +269,7 @@ public class TermsAggregation extends BucketAggregationBase implements Aggregati
 		}
 		if (this.include != null) {
 			generator.writeKey("include");
-			generator.write(this.include);
+			this.include.serialize(generator, mapper);
 
 		}
 		if (this.minDocCount != null) {
@@ -299,14 +296,26 @@ public class TermsAggregation extends BucketAggregationBase implements Aggregati
 			generator.write(this.valueType);
 
 		}
-		if (this.order != null) {
+		if (ModelTypeHelper.isDefined(this.order)) {
 			generator.writeKey("order");
-			generator.write(this.order);
+			generator.writeStartArray();
+			for (Map<String, SortOrder> item0 : this.order) {
+				generator.writeStartObject();
+				if (item0 != null) {
+					for (Map.Entry<String, SortOrder> item1 : item0.entrySet()) {
+						generator.writeKey(item1.getKey());
+						item1.getValue().serialize(generator, mapper);
+					}
+				}
+				generator.writeEnd();
+
+			}
+			generator.writeEnd();
 
 		}
 		if (this.script != null) {
 			generator.writeKey("script");
-			generator.write(this.script);
+			this.script.serialize(generator, mapper);
 
 		}
 		if (this.shardSize != null) {
@@ -339,7 +348,7 @@ public class TermsAggregation extends BucketAggregationBase implements Aggregati
 		private TermsAggregationCollectMode collectMode;
 
 		@Nullable
-		private List<String> exclude;
+		private TermsExclude exclude;
 
 		@Nullable
 		private TermsAggregationExecutionHint executionHint;
@@ -348,7 +357,7 @@ public class TermsAggregation extends BucketAggregationBase implements Aggregati
 		private String field;
 
 		@Nullable
-		private JsonValue /* Union(Array<internal.string> | _types.aggregations.TermsInclude) */ include;
+		private TermsInclude include;
 
 		@Nullable
 		private Integer minDocCount;
@@ -366,10 +375,10 @@ public class TermsAggregation extends BucketAggregationBase implements Aggregati
 		private String valueType;
 
 		@Nullable
-		private JsonValue /* _types.aggregations.TermsAggregationOrder */ order;
+		private List<Map<String, SortOrder>> order;
 
 		@Nullable
-		private JsonValue /* _types.Script */ script;
+		private Script script;
 
 		@Nullable
 		private Integer shardSize;
@@ -391,7 +400,7 @@ public class TermsAggregation extends BucketAggregationBase implements Aggregati
 		/**
 		 * API name: {@code exclude}
 		 */
-		public final Builder exclude(@Nullable List<String> value) {
+		public final Builder exclude(@Nullable TermsExclude value) {
 			this.exclude = value;
 			return this;
 		}
@@ -399,9 +408,8 @@ public class TermsAggregation extends BucketAggregationBase implements Aggregati
 		/**
 		 * API name: {@code exclude}
 		 */
-		public final Builder exclude(String... value) {
-			this.exclude = Arrays.asList(value);
-			return this;
+		public final Builder exclude(Function<TermsExclude.Builder, ObjectBuilder<TermsExclude>> fn) {
+			return this.exclude(fn.apply(new TermsExclude.Builder()).build());
 		}
 
 		/**
@@ -423,10 +431,16 @@ public class TermsAggregation extends BucketAggregationBase implements Aggregati
 		/**
 		 * API name: {@code include}
 		 */
-		public final Builder include(
-				@Nullable JsonValue /* Union(Array<internal.string> | _types.aggregations.TermsInclude) */ value) {
+		public final Builder include(@Nullable TermsInclude value) {
 			this.include = value;
 			return this;
+		}
+
+		/**
+		 * API name: {@code include}
+		 */
+		public final Builder include(Function<TermsInclude.Builder, ObjectBuilder<TermsInclude>> fn) {
+			return this.include(fn.apply(new TermsInclude.Builder()).build());
 		}
 
 		/**
@@ -472,17 +486,32 @@ public class TermsAggregation extends BucketAggregationBase implements Aggregati
 		/**
 		 * API name: {@code order}
 		 */
-		public final Builder order(@Nullable JsonValue /* _types.aggregations.TermsAggregationOrder */ value) {
+		public final Builder order(@Nullable List<Map<String, SortOrder>> value) {
 			this.order = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code order}
+		 */
+		public final Builder order(Map<String, SortOrder>... value) {
+			this.order = Arrays.asList(value);
 			return this;
 		}
 
 		/**
 		 * API name: {@code script}
 		 */
-		public final Builder script(@Nullable JsonValue /* _types.Script */ value) {
+		public final Builder script(@Nullable Script value) {
 			this.script = value;
 			return this;
+		}
+
+		/**
+		 * API name: {@code script}
+		 */
+		public final Builder script(Function<Script.Builder, ObjectBuilder<Script>> fn) {
+			return this.script(fn.apply(new Script.Builder()).build());
 		}
 
 		/**
@@ -538,18 +567,19 @@ public class TermsAggregation extends BucketAggregationBase implements Aggregati
 	protected static void setupTermsAggregationDeserializer(ObjectDeserializer<TermsAggregation.Builder> op) {
 		BucketAggregationBase.setupBucketAggregationBaseDeserializer(op);
 		op.add(Builder::collectMode, TermsAggregationCollectMode._DESERIALIZER, "collect_mode");
-		op.add(Builder::exclude, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
-				"exclude");
+		op.add(Builder::exclude, TermsExclude._DESERIALIZER, "exclude");
 		op.add(Builder::executionHint, TermsAggregationExecutionHint._DESERIALIZER, "execution_hint");
 		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
-		op.add(Builder::include, JsonpDeserializer.jsonValueDeserializer(), "include");
+		op.add(Builder::include, TermsInclude._DESERIALIZER, "include");
 		op.add(Builder::minDocCount, JsonpDeserializer.integerDeserializer(), "min_doc_count");
 		op.add(Builder::missing, JsonpDeserializer.stringDeserializer(), "missing");
 		op.add(Builder::missingOrder, MissingOrder._DESERIALIZER, "missing_order");
 		op.add(Builder::missingBucket, JsonpDeserializer.booleanDeserializer(), "missing_bucket");
 		op.add(Builder::valueType, JsonpDeserializer.stringDeserializer(), "value_type");
-		op.add(Builder::order, JsonpDeserializer.jsonValueDeserializer(), "order");
-		op.add(Builder::script, JsonpDeserializer.jsonValueDeserializer(), "script");
+		op.add(Builder::order,
+				JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringMapDeserializer(SortOrder._DESERIALIZER)),
+				"order");
+		op.add(Builder::script, Script._DESERIALIZER, "script");
 		op.add(Builder::shardSize, JsonpDeserializer.integerDeserializer(), "shard_size");
 		op.add(Builder::showTermDocCountError, JsonpDeserializer.booleanDeserializer(), "show_term_doc_count_error");
 		op.add(Builder::size, JsonpDeserializer.integerDeserializer(), "size");

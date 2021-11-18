@@ -29,6 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.JsonpSerializer;
 import co.elastic.clients.json.JsonpUtils;
+import co.elastic.clients.json.NamedDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
@@ -40,7 +41,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.get_source.Response
-
+@JsonpDeserializable
 public class GetSourceResponse<TDocument> implements JsonpSerializable {
 	private final TDocument valueBody;
 
@@ -122,6 +123,13 @@ public class GetSourceResponse<TDocument> implements JsonpSerializable {
 			return new GetSourceResponse<TDocument>(this);
 		}
 	}
+
+	/**
+	 * Json deserializer for {@link GetSourceResponse} based on named deserializers
+	 * provided by the calling {@code JsonMapper}.
+	 */
+	public static final JsonpDeserializer<GetSourceResponse<Object>> _DESERIALIZER = createGetSourceResponseDeserializer(
+			new NamedDeserializer<>("co.elastic.clients:Deserializer:_global.get_source.TDocument"));
 
 	public static <TDocument> JsonpDeserializer<GetSourceResponse<TDocument>> createGetSourceResponseDeserializer(
 			JsonpDeserializer<TDocument> tDocumentDeserializer) {

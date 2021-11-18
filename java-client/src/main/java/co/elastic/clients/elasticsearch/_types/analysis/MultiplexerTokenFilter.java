@@ -41,7 +41,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.analysis.MultiplexerTokenFilter
 @JsonpDeserializable
-public class MultiplexerTokenFilter extends TokenFilterBase implements TokenFilterVariant {
+public class MultiplexerTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
 	private final List<String> filters;
 
 	private final boolean preserveOriginal;
@@ -61,7 +61,7 @@ public class MultiplexerTokenFilter extends TokenFilterBase implements TokenFilt
 	}
 
 	/**
-	 * {@link TokenFilter} variant type
+	 * {@link TokenFilterDefinition} variant type
 	 */
 	@Override
 	public String _variantType() {

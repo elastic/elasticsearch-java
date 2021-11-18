@@ -43,26 +43,14 @@ import javax.annotation.Nullable;
 // typedef: _types.ScriptBase
 
 public abstract class ScriptBase implements JsonpSerializable {
-	@Nullable
-	private final ScriptLanguage lang;
-
 	private final Map<String, JsonData> params;
 
 	// ---------------------------------------------------------------------------------------------
 
 	protected ScriptBase(AbstractBuilder<?> builder) {
 
-		this.lang = builder.lang;
 		this.params = ModelTypeHelper.unmodifiable(builder.params);
 
-	}
-
-	/**
-	 * API name: {@code lang}
-	 */
-	@Nullable
-	public final ScriptLanguage lang() {
-		return this.lang;
 	}
 
 	/**
@@ -83,10 +71,6 @@ public abstract class ScriptBase implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (this.lang != null) {
-			generator.writeKey("lang");
-			this.lang.serialize(generator, mapper);
-		}
 		if (ModelTypeHelper.isDefined(this.params)) {
 			generator.writeKey("params");
 			generator.writeStartObject();
@@ -105,18 +89,7 @@ public abstract class ScriptBase implements JsonpSerializable {
 			extends
 				ObjectBuilderBase {
 		@Nullable
-		private ScriptLanguage lang;
-
-		@Nullable
 		private Map<String, JsonData> params;
-
-		/**
-		 * API name: {@code lang}
-		 */
-		public final BuilderT lang(@Nullable ScriptLanguage value) {
-			this.lang = value;
-			return self();
-		}
 
 		/**
 		 * API name: {@code params}
@@ -134,7 +107,6 @@ public abstract class ScriptBase implements JsonpSerializable {
 	protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupScriptBaseDeserializer(
 			ObjectDeserializer<BuilderT> op) {
 
-		op.add(AbstractBuilder::lang, ScriptLanguage._DESERIALIZER, "lang");
 		op.add(AbstractBuilder::params, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "params");
 
 	}

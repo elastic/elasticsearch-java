@@ -29,6 +29,7 @@ import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializer;
+import co.elastic.clients.json.NamedDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
@@ -39,7 +40,7 @@ import java.util.function.Supplier;
 import javax.annotation.Nullable;
 
 // typedef: _global.update.Response
-
+@JsonpDeserializable
 public class UpdateResponse<TDocument> extends WriteResponseBase {
 	@Nullable
 	private final InlineGet<TDocument> get;
@@ -148,6 +149,13 @@ public class UpdateResponse<TDocument> extends WriteResponseBase {
 		return ObjectBuilderDeserializer.createForObject((Supplier<Builder<TDocument>>) Builder::new,
 				op -> UpdateResponse.setupUpdateResponseDeserializer(op, tDocumentDeserializer));
 	};
+
+	/**
+	 * Json deserializer for {@link UpdateResponse} based on named deserializers
+	 * provided by the calling {@code JsonMapper}.
+	 */
+	public static final JsonpDeserializer<UpdateResponse<Object>> _DESERIALIZER = createUpdateResponseDeserializer(
+			new NamedDeserializer<>("co.elastic.clients:Deserializer:_global.update.TDocument"));
 
 	protected static <TDocument> void setupUpdateResponseDeserializer(
 			ObjectDeserializer<UpdateResponse.Builder<TDocument>> op,

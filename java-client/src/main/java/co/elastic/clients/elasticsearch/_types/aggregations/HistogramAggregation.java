@@ -23,6 +23,7 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
+import co.elastic.clients.elasticsearch._types.Script;
 import co.elastic.clients.elasticsearch.transform.PivotGroupBy;
 import co.elastic.clients.elasticsearch.transform.PivotGroupByVariant;
 import co.elastic.clients.json.JsonpDeserializable;
@@ -31,7 +32,6 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Double;
@@ -69,7 +69,7 @@ public class HistogramAggregation extends BucketAggregationBase implements Aggre
 	private final HistogramOrder order;
 
 	@Nullable
-	private final JsonValue /* _types.Script */ script;
+	private final Script script;
 
 	@Nullable
 	private final String format;
@@ -176,7 +176,7 @@ public class HistogramAggregation extends BucketAggregationBase implements Aggre
 	 * API name: {@code script}
 	 */
 	@Nullable
-	public final JsonValue /* _types.Script */ script() {
+	public final Script script() {
 		return this.script;
 	}
 
@@ -241,7 +241,7 @@ public class HistogramAggregation extends BucketAggregationBase implements Aggre
 		}
 		if (this.script != null) {
 			generator.writeKey("script");
-			generator.write(this.script);
+			this.script.serialize(generator, mapper);
 
 		}
 		if (this.format != null) {
@@ -290,7 +290,7 @@ public class HistogramAggregation extends BucketAggregationBase implements Aggre
 		private HistogramOrder order;
 
 		@Nullable
-		private JsonValue /* _types.Script */ script;
+		private Script script;
 
 		@Nullable
 		private String format;
@@ -388,9 +388,16 @@ public class HistogramAggregation extends BucketAggregationBase implements Aggre
 		/**
 		 * API name: {@code script}
 		 */
-		public final Builder script(@Nullable JsonValue /* _types.Script */ value) {
+		public final Builder script(@Nullable Script value) {
 			this.script = value;
 			return this;
+		}
+
+		/**
+		 * API name: {@code script}
+		 */
+		public final Builder script(Function<Script.Builder, ObjectBuilder<Script>> fn) {
+			return this.script(fn.apply(new Script.Builder()).build());
 		}
 
 		/**
@@ -448,7 +455,7 @@ public class HistogramAggregation extends BucketAggregationBase implements Aggre
 		op.add(Builder::missing, JsonpDeserializer.doubleDeserializer(), "missing");
 		op.add(Builder::offset, JsonpDeserializer.doubleDeserializer(), "offset");
 		op.add(Builder::order, HistogramOrder._DESERIALIZER, "order");
-		op.add(Builder::script, JsonpDeserializer.jsonValueDeserializer(), "script");
+		op.add(Builder::script, Script._DESERIALIZER, "script");
 		op.add(Builder::format, JsonpDeserializer.stringDeserializer(), "format");
 		op.add(Builder::keyed, JsonpDeserializer.booleanDeserializer(), "keyed");
 

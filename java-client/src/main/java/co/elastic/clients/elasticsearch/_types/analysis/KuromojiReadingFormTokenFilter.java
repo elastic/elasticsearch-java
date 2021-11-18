@@ -37,7 +37,7 @@ import java.util.function.Function;
 
 // typedef: _types.analysis.KuromojiReadingFormTokenFilter
 @JsonpDeserializable
-public class KuromojiReadingFormTokenFilter extends TokenFilterBase implements TokenFilterVariant {
+public class KuromojiReadingFormTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
 	private final boolean useRomaji;
 
 	// ---------------------------------------------------------------------------------------------
@@ -55,7 +55,7 @@ public class KuromojiReadingFormTokenFilter extends TokenFilterBase implements T
 	}
 
 	/**
-	 * {@link TokenFilter} variant type
+	 * {@link TokenFilterDefinition} variant type
 	 */
 	@Override
 	public String _variantType() {

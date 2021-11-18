@@ -299,7 +299,7 @@ public class AllocationExplainRequest extends RequestBase implements JsonpSerial
 	/**
 	 * Endpoint "{@code cluster.allocation_explain}".
 	 */
-	public static final Endpoint<AllocationExplainRequest, AllocationExplainResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<AllocationExplainRequest, AllocationExplainResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";

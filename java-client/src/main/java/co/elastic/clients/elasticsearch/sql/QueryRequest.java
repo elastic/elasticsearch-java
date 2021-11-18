@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.sql;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.elasticsearch._types.query_dsl.Query;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -68,13 +69,13 @@ public class QueryRequest extends RequestBase implements JsonpSerializable {
 	private final String format;
 
 	@Nullable
-	private final String pageTimeout;
+	private final Time pageTimeout;
 
 	@Nullable
 	private final String query;
 
 	@Nullable
-	private final String requestTimeout;
+	private final Time requestTimeout;
 
 	@Nullable
 	private final String timeZone;
@@ -164,7 +165,7 @@ public class QueryRequest extends RequestBase implements JsonpSerializable {
 	 * API name: {@code page_timeout}
 	 */
 	@Nullable
-	public final String pageTimeout() {
+	public final Time pageTimeout() {
 		return this.pageTimeout;
 	}
 
@@ -184,7 +185,7 @@ public class QueryRequest extends RequestBase implements JsonpSerializable {
 	 * API name: {@code request_timeout}
 	 */
 	@Nullable
-	public final String requestTimeout() {
+	public final Time requestTimeout() {
 		return this.requestTimeout;
 	}
 
@@ -237,7 +238,7 @@ public class QueryRequest extends RequestBase implements JsonpSerializable {
 		}
 		if (this.pageTimeout != null) {
 			generator.writeKey("page_timeout");
-			generator.write(this.pageTimeout);
+			this.pageTimeout.serialize(generator, mapper);
 
 		}
 		if (this.query != null) {
@@ -247,7 +248,7 @@ public class QueryRequest extends RequestBase implements JsonpSerializable {
 		}
 		if (this.requestTimeout != null) {
 			generator.writeKey("request_timeout");
-			generator.write(this.requestTimeout);
+			this.requestTimeout.serialize(generator, mapper);
 
 		}
 		if (this.timeZone != null) {
@@ -283,13 +284,13 @@ public class QueryRequest extends RequestBase implements JsonpSerializable {
 		private String format;
 
 		@Nullable
-		private String pageTimeout;
+		private Time pageTimeout;
 
 		@Nullable
 		private String query;
 
 		@Nullable
-		private String requestTimeout;
+		private Time requestTimeout;
 
 		@Nullable
 		private String timeZone;
@@ -366,9 +367,18 @@ public class QueryRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code page_timeout}
 		 */
-		public final Builder pageTimeout(@Nullable String value) {
+		public final Builder pageTimeout(@Nullable Time value) {
 			this.pageTimeout = value;
 			return this;
+		}
+
+		/**
+		 * The timeout before a pagination request fails.
+		 * <p>
+		 * API name: {@code page_timeout}
+		 */
+		public final Builder pageTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.pageTimeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -386,9 +396,18 @@ public class QueryRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code request_timeout}
 		 */
-		public final Builder requestTimeout(@Nullable String value) {
+		public final Builder requestTimeout(@Nullable Time value) {
 			this.requestTimeout = value;
 			return this;
+		}
+
+		/**
+		 * The timeout before the request fails.
+		 * <p>
+		 * API name: {@code request_timeout}
+		 */
+		public final Builder requestTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.requestTimeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -430,9 +449,9 @@ public class QueryRequest extends RequestBase implements JsonpSerializable {
 		op.add(Builder::fetchSize, JsonpDeserializer.integerDeserializer(), "fetch_size");
 		op.add(Builder::fieldMultiValueLeniency, JsonpDeserializer.booleanDeserializer(), "field_multi_value_leniency");
 		op.add(Builder::filter, Query._DESERIALIZER, "filter");
-		op.add(Builder::pageTimeout, JsonpDeserializer.stringDeserializer(), "page_timeout");
+		op.add(Builder::pageTimeout, Time._DESERIALIZER, "page_timeout");
 		op.add(Builder::query, JsonpDeserializer.stringDeserializer(), "query");
-		op.add(Builder::requestTimeout, JsonpDeserializer.stringDeserializer(), "request_timeout");
+		op.add(Builder::requestTimeout, Time._DESERIALIZER, "request_timeout");
 		op.add(Builder::timeZone, JsonpDeserializer.stringDeserializer(), "time_zone");
 
 	}
@@ -442,7 +461,7 @@ public class QueryRequest extends RequestBase implements JsonpSerializable {
 	/**
 	 * Endpoint "{@code sql.query}".
 	 */
-	public static final Endpoint<QueryRequest, QueryResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<QueryRequest, QueryResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";

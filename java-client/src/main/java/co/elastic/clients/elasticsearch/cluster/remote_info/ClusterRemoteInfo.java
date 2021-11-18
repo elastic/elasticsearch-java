@@ -40,13 +40,12 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cluster.remote_info.ClusterRemoteInfo
+// union type: InternalTag[tag=mode]
 @JsonpDeserializable
 public class ClusterRemoteInfo implements TaggedUnion<ClusterRemoteInfoVariant>, JsonpSerializable {
 
 	public static final String PROXY = "proxy";
 	public static final String SNIFF = "sniff";
-
-	// Tagged union implementation
 
 	private final String _type;
 	private final ClusterRemoteInfoVariant _value;

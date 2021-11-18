@@ -25,6 +25,8 @@ package co.elastic.clients.elasticsearch.sql;
 
 import co.elastic.clients.ApiClient;
 import co.elastic.clients.elasticsearch._types.ElasticsearchException;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
+import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.Transport;
 import co.elastic.clients.transport.TransportOptions;
 import co.elastic.clients.util.ObjectBuilder;
@@ -61,7 +63,10 @@ public class ElasticsearchSqlClient extends ApiClient<ElasticsearchSqlClient> {
 	 */
 
 	public ClearCursorResponse clearCursor(ClearCursorRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, ClearCursorRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<ClearCursorRequest, ClearCursorResponse, ErrorResponse> endpoint = (Endpoint<ClearCursorRequest, ClearCursorResponse, ErrorResponse>) ClearCursorRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -92,7 +97,10 @@ public class ElasticsearchSqlClient extends ApiClient<ElasticsearchSqlClient> {
 	 */
 
 	public QueryResponse query(QueryRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, QueryRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<QueryRequest, QueryResponse, ErrorResponse> endpoint = (Endpoint<QueryRequest, QueryResponse, ErrorResponse>) QueryRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -120,7 +128,7 @@ public class ElasticsearchSqlClient extends ApiClient<ElasticsearchSqlClient> {
 	 */
 
 	public QueryResponse query() throws IOException, ElasticsearchException {
-		return this.transport.performRequest(new QueryRequest.Builder().build(), QueryRequest.ENDPOINT,
+		return this.transport.performRequest(new QueryRequest.Builder().build(), QueryRequest._ENDPOINT,
 				this.transportOptions);
 	}
 
@@ -135,7 +143,10 @@ public class ElasticsearchSqlClient extends ApiClient<ElasticsearchSqlClient> {
 	 */
 
 	public TranslateResponse translate(TranslateRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, TranslateRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<TranslateRequest, TranslateResponse, ErrorResponse> endpoint = (Endpoint<TranslateRequest, TranslateResponse, ErrorResponse>) TranslateRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**

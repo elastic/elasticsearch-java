@@ -30,6 +30,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.JsonpSerializer;
+import co.elastic.clients.json.NamedDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
@@ -44,7 +45,7 @@ import java.util.function.Supplier;
 import javax.annotation.Nullable;
 
 // typedef: _global.search_template.Response
-
+@JsonpDeserializable
 public class SearchTemplateResponse<TDocument> implements JsonpSerializable {
 	private final ShardStatistics shards;
 
@@ -225,6 +226,13 @@ public class SearchTemplateResponse<TDocument> implements JsonpSerializable {
 		return ObjectBuilderDeserializer.createForObject((Supplier<Builder<TDocument>>) Builder::new,
 				op -> SearchTemplateResponse.setupSearchTemplateResponseDeserializer(op, tDocumentDeserializer));
 	};
+
+	/**
+	 * Json deserializer for {@link SearchTemplateResponse} based on named
+	 * deserializers provided by the calling {@code JsonMapper}.
+	 */
+	public static final JsonpDeserializer<SearchTemplateResponse<Object>> _DESERIALIZER = createSearchTemplateResponseDeserializer(
+			new NamedDeserializer<>("co.elastic.clients:Deserializer:_global.search_template.TDocument"));
 
 	protected static <TDocument> void setupSearchTemplateResponseDeserializer(
 			ObjectDeserializer<SearchTemplateResponse.Builder<TDocument>> op,

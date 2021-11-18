@@ -129,7 +129,7 @@ public class DeleteCalendarJobRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code ml.delete_calendar_job}".
 	 */
-	public static final Endpoint<DeleteCalendarJobRequest, DeleteCalendarJobResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<DeleteCalendarJobRequest, DeleteCalendarJobResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "DELETE";

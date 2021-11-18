@@ -40,13 +40,12 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ilm.explain_lifecycle.LifecycleExplain
+// union type: InternalTag[tag=managed]
 @JsonpDeserializable
 public class LifecycleExplain implements TaggedUnion<LifecycleExplainVariant>, JsonpSerializable {
 
 	public static final String TRUE = "true";
 	public static final String FALSE = "false";
-
-	// Tagged union implementation
 
 	private final String _type;
 	private final LifecycleExplainVariant _value;

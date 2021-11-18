@@ -23,6 +23,7 @@
 
 package co.elastic.clients.elasticsearch.rollup;
 
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -42,7 +43,7 @@ import javax.annotation.Nullable;
 @JsonpDeserializable
 public class DateHistogramGrouping implements JsonpSerializable {
 	@Nullable
-	private final String delay;
+	private final Time delay;
 
 	private final String field;
 
@@ -50,13 +51,13 @@ public class DateHistogramGrouping implements JsonpSerializable {
 	private final String format;
 
 	@Nullable
-	private final String interval;
+	private final Time interval;
 
 	@Nullable
-	private final String calendarInterval;
+	private final Time calendarInterval;
 
 	@Nullable
-	private final String fixedInterval;
+	private final Time fixedInterval;
 
 	@Nullable
 	private final String timeZone;
@@ -83,7 +84,7 @@ public class DateHistogramGrouping implements JsonpSerializable {
 	 * API name: {@code delay}
 	 */
 	@Nullable
-	public final String delay() {
+	public final Time delay() {
 		return this.delay;
 	}
 
@@ -106,7 +107,7 @@ public class DateHistogramGrouping implements JsonpSerializable {
 	 * API name: {@code interval}
 	 */
 	@Nullable
-	public final String interval() {
+	public final Time interval() {
 		return this.interval;
 	}
 
@@ -114,7 +115,7 @@ public class DateHistogramGrouping implements JsonpSerializable {
 	 * API name: {@code calendar_interval}
 	 */
 	@Nullable
-	public final String calendarInterval() {
+	public final Time calendarInterval() {
 		return this.calendarInterval;
 	}
 
@@ -122,7 +123,7 @@ public class DateHistogramGrouping implements JsonpSerializable {
 	 * API name: {@code fixed_interval}
 	 */
 	@Nullable
-	public final String fixedInterval() {
+	public final Time fixedInterval() {
 		return this.fixedInterval;
 	}
 
@@ -147,7 +148,7 @@ public class DateHistogramGrouping implements JsonpSerializable {
 
 		if (this.delay != null) {
 			generator.writeKey("delay");
-			generator.write(this.delay);
+			this.delay.serialize(generator, mapper);
 
 		}
 		generator.writeKey("field");
@@ -160,17 +161,17 @@ public class DateHistogramGrouping implements JsonpSerializable {
 		}
 		if (this.interval != null) {
 			generator.writeKey("interval");
-			generator.write(this.interval);
+			this.interval.serialize(generator, mapper);
 
 		}
 		if (this.calendarInterval != null) {
 			generator.writeKey("calendar_interval");
-			generator.write(this.calendarInterval);
+			this.calendarInterval.serialize(generator, mapper);
 
 		}
 		if (this.fixedInterval != null) {
 			generator.writeKey("fixed_interval");
-			generator.write(this.fixedInterval);
+			this.fixedInterval.serialize(generator, mapper);
 
 		}
 		if (this.timeZone != null) {
@@ -188,7 +189,7 @@ public class DateHistogramGrouping implements JsonpSerializable {
 	 */
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DateHistogramGrouping> {
 		@Nullable
-		private String delay;
+		private Time delay;
 
 		private String field;
 
@@ -196,13 +197,13 @@ public class DateHistogramGrouping implements JsonpSerializable {
 		private String format;
 
 		@Nullable
-		private String interval;
+		private Time interval;
 
 		@Nullable
-		private String calendarInterval;
+		private Time calendarInterval;
 
 		@Nullable
-		private String fixedInterval;
+		private Time fixedInterval;
 
 		@Nullable
 		private String timeZone;
@@ -210,9 +211,16 @@ public class DateHistogramGrouping implements JsonpSerializable {
 		/**
 		 * API name: {@code delay}
 		 */
-		public final Builder delay(@Nullable String value) {
+		public final Builder delay(@Nullable Time value) {
 			this.delay = value;
 			return this;
+		}
+
+		/**
+		 * API name: {@code delay}
+		 */
+		public final Builder delay(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.delay(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -234,25 +242,46 @@ public class DateHistogramGrouping implements JsonpSerializable {
 		/**
 		 * API name: {@code interval}
 		 */
-		public final Builder interval(@Nullable String value) {
+		public final Builder interval(@Nullable Time value) {
 			this.interval = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code interval}
+		 */
+		public final Builder interval(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.interval(fn.apply(new Time.Builder()).build());
+		}
+
+		/**
+		 * API name: {@code calendar_interval}
+		 */
+		public final Builder calendarInterval(@Nullable Time value) {
+			this.calendarInterval = value;
 			return this;
 		}
 
 		/**
 		 * API name: {@code calendar_interval}
 		 */
-		public final Builder calendarInterval(@Nullable String value) {
-			this.calendarInterval = value;
+		public final Builder calendarInterval(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.calendarInterval(fn.apply(new Time.Builder()).build());
+		}
+
+		/**
+		 * API name: {@code fixed_interval}
+		 */
+		public final Builder fixedInterval(@Nullable Time value) {
+			this.fixedInterval = value;
 			return this;
 		}
 
 		/**
 		 * API name: {@code fixed_interval}
 		 */
-		public final Builder fixedInterval(@Nullable String value) {
-			this.fixedInterval = value;
-			return this;
+		public final Builder fixedInterval(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.fixedInterval(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -286,12 +315,12 @@ public class DateHistogramGrouping implements JsonpSerializable {
 
 	protected static void setupDateHistogramGroupingDeserializer(ObjectDeserializer<DateHistogramGrouping.Builder> op) {
 
-		op.add(Builder::delay, JsonpDeserializer.stringDeserializer(), "delay");
+		op.add(Builder::delay, Time._DESERIALIZER, "delay");
 		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
 		op.add(Builder::format, JsonpDeserializer.stringDeserializer(), "format");
-		op.add(Builder::interval, JsonpDeserializer.stringDeserializer(), "interval");
-		op.add(Builder::calendarInterval, JsonpDeserializer.stringDeserializer(), "calendar_interval");
-		op.add(Builder::fixedInterval, JsonpDeserializer.stringDeserializer(), "fixed_interval");
+		op.add(Builder::interval, Time._DESERIALIZER, "interval");
+		op.add(Builder::calendarInterval, Time._DESERIALIZER, "calendar_interval");
+		op.add(Builder::fixedInterval, Time._DESERIALIZER, "fixed_interval");
 		op.add(Builder::timeZone, JsonpDeserializer.stringDeserializer(), "time_zone");
 
 	}

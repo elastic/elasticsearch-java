@@ -41,14 +41,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.put_trained_model.Preprocessor
+// union type: Container[]
 @JsonpDeserializable
 public class Preprocessor implements TaggedUnion<Object>, JsonpSerializable {
 
 	public static final String FREQUENCY_ENCODING = "frequency_encoding";
 	public static final String ONE_HOT_ENCODING = "one_hot_encoding";
 	public static final String TARGET_MEAN_ENCODING = "target_mean_encoding";
-
-	// Tagged union implementation
 
 	private final String _type;
 	private final Object _value;
@@ -117,6 +116,7 @@ public class Preprocessor implements TaggedUnion<Object>, JsonpSerializable {
 	@Override
 	@SuppressWarnings("unchecked")
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+
 		generator.writeStartObject();
 
 		generator.writeKey(_type);
@@ -125,6 +125,7 @@ public class Preprocessor implements TaggedUnion<Object>, JsonpSerializable {
 		}
 
 		generator.writeEnd();
+
 	}
 
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Preprocessor> {

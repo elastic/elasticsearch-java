@@ -121,7 +121,7 @@ public class XpackInfoRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code xpack.info}".
 	 */
-	public static final Endpoint<XpackInfoRequest, XpackInfoResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<XpackInfoRequest, XpackInfoResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "GET";

@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -49,13 +50,13 @@ public class StartDatafeedRequest extends RequestBase implements JsonpSerializab
 	private final String datafeedId;
 
 	@Nullable
-	private final String end;
+	private final Time end;
 
 	@Nullable
-	private final String start;
+	private final Time start;
 
 	@Nullable
-	private final String timeout;
+	private final Time timeout;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -90,7 +91,7 @@ public class StartDatafeedRequest extends RequestBase implements JsonpSerializab
 	 * API name: {@code end}
 	 */
 	@Nullable
-	public final String end() {
+	public final Time end() {
 		return this.end;
 	}
 
@@ -100,7 +101,7 @@ public class StartDatafeedRequest extends RequestBase implements JsonpSerializab
 	 * API name: {@code start}
 	 */
 	@Nullable
-	public final String start() {
+	public final Time start() {
 		return this.start;
 	}
 
@@ -110,7 +111,7 @@ public class StartDatafeedRequest extends RequestBase implements JsonpSerializab
 	 * API name: {@code timeout}
 	 */
 	@Nullable
-	public final String timeout() {
+	public final Time timeout() {
 		return this.timeout;
 	}
 
@@ -127,17 +128,17 @@ public class StartDatafeedRequest extends RequestBase implements JsonpSerializab
 
 		if (this.end != null) {
 			generator.writeKey("end");
-			generator.write(this.end);
+			this.end.serialize(generator, mapper);
 
 		}
 		if (this.start != null) {
 			generator.writeKey("start");
-			generator.write(this.start);
+			this.start.serialize(generator, mapper);
 
 		}
 		if (this.timeout != null) {
 			generator.writeKey("timeout");
-			generator.write(this.timeout);
+			this.timeout.serialize(generator, mapper);
 
 		}
 
@@ -152,13 +153,13 @@ public class StartDatafeedRequest extends RequestBase implements JsonpSerializab
 		private String datafeedId;
 
 		@Nullable
-		private String end;
+		private Time end;
 
 		@Nullable
-		private String start;
+		private Time start;
 
 		@Nullable
-		private String timeout;
+		private Time timeout;
 
 		/**
 		 * Required - A numerical character string that uniquely identifies the
@@ -178,8 +179,27 @@ public class StartDatafeedRequest extends RequestBase implements JsonpSerializab
 		 * <p>
 		 * API name: {@code end}
 		 */
-		public final Builder end(@Nullable String value) {
+		public final Builder end(@Nullable Time value) {
 			this.end = value;
+			return this;
+		}
+
+		/**
+		 * Refer to the description for the <code>end</code> query parameter.
+		 * <p>
+		 * API name: {@code end}
+		 */
+		public final Builder end(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.end(fn.apply(new Time.Builder()).build());
+		}
+
+		/**
+		 * Refer to the description for the <code>start</code> query parameter.
+		 * <p>
+		 * API name: {@code start}
+		 */
+		public final Builder start(@Nullable Time value) {
+			this.start = value;
 			return this;
 		}
 
@@ -188,8 +208,17 @@ public class StartDatafeedRequest extends RequestBase implements JsonpSerializab
 		 * <p>
 		 * API name: {@code start}
 		 */
-		public final Builder start(@Nullable String value) {
-			this.start = value;
+		public final Builder start(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.start(fn.apply(new Time.Builder()).build());
+		}
+
+		/**
+		 * Refer to the description for the <code>timeout</code> query parameter.
+		 * <p>
+		 * API name: {@code timeout}
+		 */
+		public final Builder timeout(@Nullable Time value) {
+			this.timeout = value;
 			return this;
 		}
 
@@ -198,9 +227,8 @@ public class StartDatafeedRequest extends RequestBase implements JsonpSerializab
 		 * <p>
 		 * API name: {@code timeout}
 		 */
-		public final Builder timeout(@Nullable String value) {
-			this.timeout = value;
-			return this;
+		public final Builder timeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.timeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -226,9 +254,9 @@ public class StartDatafeedRequest extends RequestBase implements JsonpSerializab
 
 	protected static void setupStartDatafeedRequestDeserializer(ObjectDeserializer<StartDatafeedRequest.Builder> op) {
 
-		op.add(Builder::end, JsonpDeserializer.stringDeserializer(), "end");
-		op.add(Builder::start, JsonpDeserializer.stringDeserializer(), "start");
-		op.add(Builder::timeout, JsonpDeserializer.stringDeserializer(), "timeout");
+		op.add(Builder::end, Time._DESERIALIZER, "end");
+		op.add(Builder::start, Time._DESERIALIZER, "start");
+		op.add(Builder::timeout, Time._DESERIALIZER, "timeout");
 
 	}
 
@@ -237,7 +265,7 @@ public class StartDatafeedRequest extends RequestBase implements JsonpSerializab
 	/**
 	 * Endpoint "{@code ml.start_datafeed}".
 	 */
-	public static final Endpoint<StartDatafeedRequest, StartDatafeedResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<StartDatafeedRequest, StartDatafeedResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";

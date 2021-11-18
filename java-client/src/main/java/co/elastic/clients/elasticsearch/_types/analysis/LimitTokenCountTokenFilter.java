@@ -38,7 +38,7 @@ import java.util.function.Function;
 
 // typedef: _types.analysis.LimitTokenCountTokenFilter
 @JsonpDeserializable
-public class LimitTokenCountTokenFilter extends TokenFilterBase implements TokenFilterVariant {
+public class LimitTokenCountTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
 	private final boolean consumeAllTokens;
 
 	private final int maxTokenCount;
@@ -58,7 +58,7 @@ public class LimitTokenCountTokenFilter extends TokenFilterBase implements Token
 	}
 
 	/**
-	 * {@link TokenFilter} variant type
+	 * {@link TokenFilterDefinition} variant type
 	 */
 	@Override
 	public String _variantType() {

@@ -25,6 +25,8 @@ package co.elastic.clients.elasticsearch.sql;
 
 import co.elastic.clients.ApiClient;
 import co.elastic.clients.elasticsearch._types.ElasticsearchException;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
+import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.Transport;
 import co.elastic.clients.transport.TransportOptions;
 import co.elastic.clients.util.ObjectBuilder;
@@ -63,7 +65,10 @@ public class ElasticsearchSqlAsyncClient extends ApiClient<ElasticsearchSqlAsync
 
 	public CompletableFuture<ClearCursorResponse> clearCursor(ClearCursorRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(request, ClearCursorRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<ClearCursorRequest, ClearCursorResponse, ErrorResponse> endpoint = (Endpoint<ClearCursorRequest, ClearCursorResponse, ErrorResponse>) ClearCursorRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -94,7 +99,10 @@ public class ElasticsearchSqlAsyncClient extends ApiClient<ElasticsearchSqlAsync
 	 */
 
 	public CompletableFuture<QueryResponse> query(QueryRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(request, QueryRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<QueryRequest, QueryResponse, ErrorResponse> endpoint = (Endpoint<QueryRequest, QueryResponse, ErrorResponse>) QueryRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -122,7 +130,7 @@ public class ElasticsearchSqlAsyncClient extends ApiClient<ElasticsearchSqlAsync
 	 */
 
 	public CompletableFuture<QueryResponse> query() throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(new QueryRequest.Builder().build(), QueryRequest.ENDPOINT,
+		return this.transport.performRequestAsync(new QueryRequest.Builder().build(), QueryRequest._ENDPOINT,
 				this.transportOptions);
 	}
 
@@ -138,7 +146,10 @@ public class ElasticsearchSqlAsyncClient extends ApiClient<ElasticsearchSqlAsync
 
 	public CompletableFuture<TranslateResponse> translate(TranslateRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(request, TranslateRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<TranslateRequest, TranslateResponse, ErrorResponse> endpoint = (Endpoint<TranslateRequest, TranslateResponse, ErrorResponse>) TranslateRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
 
 	/**

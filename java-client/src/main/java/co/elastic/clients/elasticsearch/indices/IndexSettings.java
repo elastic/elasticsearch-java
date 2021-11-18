@@ -23,6 +23,7 @@
 
 package co.elastic.clients.elasticsearch.indices;
 
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -78,7 +79,7 @@ public class IndexSettings implements JsonpSerializable {
 	private final Integer routingPartitionSize;
 
 	@Nullable
-	private final String softDeletesRetentionLeasePeriod;
+	private final Time softDeletesRetentionLeasePeriod;
 
 	@Nullable
 	private final Boolean loadFixedBitsetFiltersEagerly;
@@ -93,10 +94,10 @@ public class IndexSettings implements JsonpSerializable {
 	private final Integer mergeSchedulerMaxThreadCount;
 
 	@Nullable
-	private final String searchIdleAfter;
+	private final Time searchIdleAfter;
 
 	@Nullable
-	private final String refreshInterval;
+	private final Time refreshInterval;
 
 	@Nullable
 	private final Integer maxResultWindow;
@@ -156,7 +157,7 @@ public class IndexSettings implements JsonpSerializable {
 	private final IndexRouting routing;
 
 	@Nullable
-	private final String gcDeletes;
+	private final Time gcDeletes;
 
 	@Nullable
 	private final String defaultPipeline;
@@ -370,7 +371,7 @@ public class IndexSettings implements JsonpSerializable {
 	 * API name: {@code soft_deletes.retention_lease.period}
 	 */
 	@Nullable
-	public final String softDeletesRetentionLeasePeriod() {
+	public final Time softDeletesRetentionLeasePeriod() {
 		return this.softDeletesRetentionLeasePeriod;
 	}
 
@@ -410,7 +411,7 @@ public class IndexSettings implements JsonpSerializable {
 	 * API name: {@code search.idle.after}
 	 */
 	@Nullable
-	public final String searchIdleAfter() {
+	public final Time searchIdleAfter() {
 		return this.searchIdleAfter;
 	}
 
@@ -418,7 +419,7 @@ public class IndexSettings implements JsonpSerializable {
 	 * API name: {@code refresh_interval}
 	 */
 	@Nullable
-	public final String refreshInterval() {
+	public final Time refreshInterval() {
 		return this.refreshInterval;
 	}
 
@@ -578,7 +579,7 @@ public class IndexSettings implements JsonpSerializable {
 	 * API name: {@code gc_deletes}
 	 */
 	@Nullable
-	public final String gcDeletes() {
+	public final Time gcDeletes() {
 		return this.gcDeletes;
 	}
 
@@ -798,7 +799,7 @@ public class IndexSettings implements JsonpSerializable {
 		}
 		if (this.softDeletesRetentionLeasePeriod != null) {
 			generator.writeKey("soft_deletes.retention_lease.period");
-			generator.write(this.softDeletesRetentionLeasePeriod);
+			this.softDeletesRetentionLeasePeriod.serialize(generator, mapper);
 
 		}
 		if (this.loadFixedBitsetFiltersEagerly != null) {
@@ -823,12 +824,12 @@ public class IndexSettings implements JsonpSerializable {
 		}
 		if (this.searchIdleAfter != null) {
 			generator.writeKey("search.idle.after");
-			generator.write(this.searchIdleAfter);
+			this.searchIdleAfter.serialize(generator, mapper);
 
 		}
 		if (this.refreshInterval != null) {
 			generator.writeKey("refresh_interval");
-			generator.write(this.refreshInterval);
+			this.refreshInterval.serialize(generator, mapper);
 
 		}
 		if (this.maxResultWindow != null) {
@@ -928,7 +929,7 @@ public class IndexSettings implements JsonpSerializable {
 		}
 		if (this.gcDeletes != null) {
 			generator.writeKey("gc_deletes");
-			generator.write(this.gcDeletes);
+			this.gcDeletes.serialize(generator, mapper);
 
 		}
 		if (this.defaultPipeline != null) {
@@ -1064,7 +1065,7 @@ public class IndexSettings implements JsonpSerializable {
 		private Integer routingPartitionSize;
 
 		@Nullable
-		private String softDeletesRetentionLeasePeriod;
+		private Time softDeletesRetentionLeasePeriod;
 
 		@Nullable
 		private Boolean loadFixedBitsetFiltersEagerly;
@@ -1079,10 +1080,10 @@ public class IndexSettings implements JsonpSerializable {
 		private Integer mergeSchedulerMaxThreadCount;
 
 		@Nullable
-		private String searchIdleAfter;
+		private Time searchIdleAfter;
 
 		@Nullable
-		private String refreshInterval;
+		private Time refreshInterval;
 
 		@Nullable
 		private Integer maxResultWindow;
@@ -1142,7 +1143,7 @@ public class IndexSettings implements JsonpSerializable {
 		private IndexRouting routing;
 
 		@Nullable
-		private String gcDeletes;
+		private Time gcDeletes;
 
 		@Nullable
 		private String defaultPipeline;
@@ -1318,9 +1319,16 @@ public class IndexSettings implements JsonpSerializable {
 		/**
 		 * API name: {@code soft_deletes.retention_lease.period}
 		 */
-		public final Builder softDeletesRetentionLeasePeriod(@Nullable String value) {
+		public final Builder softDeletesRetentionLeasePeriod(@Nullable Time value) {
 			this.softDeletesRetentionLeasePeriod = value;
 			return this;
+		}
+
+		/**
+		 * API name: {@code soft_deletes.retention_lease.period}
+		 */
+		public final Builder softDeletesRetentionLeasePeriod(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.softDeletesRetentionLeasePeriod(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -1358,17 +1366,31 @@ public class IndexSettings implements JsonpSerializable {
 		/**
 		 * API name: {@code search.idle.after}
 		 */
-		public final Builder searchIdleAfter(@Nullable String value) {
+		public final Builder searchIdleAfter(@Nullable Time value) {
 			this.searchIdleAfter = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code search.idle.after}
+		 */
+		public final Builder searchIdleAfter(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.searchIdleAfter(fn.apply(new Time.Builder()).build());
+		}
+
+		/**
+		 * API name: {@code refresh_interval}
+		 */
+		public final Builder refreshInterval(@Nullable Time value) {
+			this.refreshInterval = value;
 			return this;
 		}
 
 		/**
 		 * API name: {@code refresh_interval}
 		 */
-		public final Builder refreshInterval(@Nullable String value) {
-			this.refreshInterval = value;
-			return this;
+		public final Builder refreshInterval(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.refreshInterval(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -1540,9 +1562,16 @@ public class IndexSettings implements JsonpSerializable {
 		/**
 		 * API name: {@code gc_deletes}
 		 */
-		public final Builder gcDeletes(@Nullable String value) {
+		public final Builder gcDeletes(@Nullable Time value) {
 			this.gcDeletes = value;
 			return this;
+		}
+
+		/**
+		 * API name: {@code gc_deletes}
+		 */
+		public final Builder gcDeletes(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.gcDeletes(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -1759,8 +1788,8 @@ public class IndexSettings implements JsonpSerializable {
 		op.add(Builder::codec, JsonpDeserializer.stringDeserializer(), "codec", "index.codec");
 		op.add(Builder::routingPartitionSize, JsonpDeserializer.integerDeserializer(), "routing_partition_size",
 				"index.routing_partition_size");
-		op.add(Builder::softDeletesRetentionLeasePeriod, JsonpDeserializer.stringDeserializer(),
-				"soft_deletes.retention_lease.period", "index.soft_deletes.retention_lease.period");
+		op.add(Builder::softDeletesRetentionLeasePeriod, Time._DESERIALIZER, "soft_deletes.retention_lease.period",
+				"index.soft_deletes.retention_lease.period");
 		op.add(Builder::loadFixedBitsetFiltersEagerly, JsonpDeserializer.booleanDeserializer(),
 				"load_fixed_bitset_filters_eagerly", "index.load_fixed_bitset_filters_eagerly");
 		op.add(Builder::hidden, JsonpDeserializer.booleanDeserializer(), "hidden", "index.hidden");
@@ -1768,10 +1797,8 @@ public class IndexSettings implements JsonpSerializable {
 				"index.auto_expand_replicas");
 		op.add(Builder::mergeSchedulerMaxThreadCount, JsonpDeserializer.integerDeserializer(),
 				"merge.scheduler.max_thread_count", "index.merge.scheduler.max_thread_count");
-		op.add(Builder::searchIdleAfter, JsonpDeserializer.stringDeserializer(), "search.idle.after",
-				"index.search.idle.after");
-		op.add(Builder::refreshInterval, JsonpDeserializer.stringDeserializer(), "refresh_interval",
-				"index.refresh_interval");
+		op.add(Builder::searchIdleAfter, Time._DESERIALIZER, "search.idle.after", "index.search.idle.after");
+		op.add(Builder::refreshInterval, Time._DESERIALIZER, "refresh_interval", "index.refresh_interval");
 		op.add(Builder::maxResultWindow, JsonpDeserializer.integerDeserializer(), "max_result_window",
 				"index.max_result_window");
 		op.add(Builder::maxInnerResultWindow, JsonpDeserializer.integerDeserializer(), "max_inner_result_window",
@@ -1806,7 +1833,7 @@ public class IndexSettings implements JsonpSerializable {
 		op.add(Builder::maxRegexLength, JsonpDeserializer.integerDeserializer(), "max_regex_length",
 				"index.max_regex_length");
 		op.add(Builder::routing, IndexRouting._DESERIALIZER, "routing", "index.routing");
-		op.add(Builder::gcDeletes, JsonpDeserializer.stringDeserializer(), "gc_deletes", "index.gc_deletes");
+		op.add(Builder::gcDeletes, Time._DESERIALIZER, "gc_deletes", "index.gc_deletes");
 		op.add(Builder::defaultPipeline, JsonpDeserializer.stringDeserializer(), "default_pipeline",
 				"index.default_pipeline");
 		op.add(Builder::finalPipeline, JsonpDeserializer.stringDeserializer(), "final_pipeline",

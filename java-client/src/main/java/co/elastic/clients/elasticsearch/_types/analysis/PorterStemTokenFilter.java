@@ -35,7 +35,7 @@ import java.util.function.Function;
 
 // typedef: _types.analysis.PorterStemTokenFilter
 @JsonpDeserializable
-public class PorterStemTokenFilter extends TokenFilterBase implements TokenFilterVariant {
+public class PorterStemTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
 	// ---------------------------------------------------------------------------------------------
 
 	private PorterStemTokenFilter(Builder builder) {
@@ -48,7 +48,7 @@ public class PorterStemTokenFilter extends TokenFilterBase implements TokenFilte
 	}
 
 	/**
-	 * {@link TokenFilter} variant type
+	 * {@link TokenFilterDefinition} variant type
 	 */
 	@Override
 	public String _variantType() {

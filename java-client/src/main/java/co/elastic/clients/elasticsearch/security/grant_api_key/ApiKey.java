@@ -23,6 +23,7 @@
 
 package co.elastic.clients.elasticsearch.security.grant_api_key;
 
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -48,7 +49,7 @@ public class ApiKey implements JsonpSerializable {
 	private final String name;
 
 	@Nullable
-	private final String expiration;
+	private final Time expiration;
 
 	private final List<Map<String, JsonData>> roleDescriptors;
 
@@ -77,7 +78,7 @@ public class ApiKey implements JsonpSerializable {
 	 * API name: {@code expiration}
 	 */
 	@Nullable
-	public final String expiration() {
+	public final Time expiration() {
 		return this.expiration;
 	}
 
@@ -104,7 +105,7 @@ public class ApiKey implements JsonpSerializable {
 
 		if (this.expiration != null) {
 			generator.writeKey("expiration");
-			generator.write(this.expiration);
+			this.expiration.serialize(generator, mapper);
 
 		}
 		if (ModelTypeHelper.isDefined(this.roleDescriptors)) {
@@ -137,7 +138,7 @@ public class ApiKey implements JsonpSerializable {
 		private String name;
 
 		@Nullable
-		private String expiration;
+		private Time expiration;
 
 		@Nullable
 		private List<Map<String, JsonData>> roleDescriptors;
@@ -153,9 +154,16 @@ public class ApiKey implements JsonpSerializable {
 		/**
 		 * API name: {@code expiration}
 		 */
-		public final Builder expiration(@Nullable String value) {
+		public final Builder expiration(@Nullable Time value) {
 			this.expiration = value;
 			return this;
+		}
+
+		/**
+		 * API name: {@code expiration}
+		 */
+		public final Builder expiration(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.expiration(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -198,7 +206,7 @@ public class ApiKey implements JsonpSerializable {
 	protected static void setupApiKeyDeserializer(ObjectDeserializer<ApiKey.Builder> op) {
 
 		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
-		op.add(Builder::expiration, JsonpDeserializer.stringDeserializer(), "expiration");
+		op.add(Builder::expiration, Time._DESERIALIZER, "expiration");
 		op.add(Builder::roleDescriptors,
 				JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER)),
 				"role_descriptors");

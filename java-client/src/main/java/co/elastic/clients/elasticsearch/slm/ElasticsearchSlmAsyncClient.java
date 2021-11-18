@@ -25,6 +25,8 @@ package co.elastic.clients.elasticsearch.slm;
 
 import co.elastic.clients.ApiClient;
 import co.elastic.clients.elasticsearch._types.ElasticsearchException;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
+import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.Transport;
 import co.elastic.clients.transport.TransportOptions;
 import co.elastic.clients.util.ObjectBuilder;
@@ -63,7 +65,10 @@ public class ElasticsearchSlmAsyncClient extends ApiClient<ElasticsearchSlmAsync
 
 	public CompletableFuture<DeleteLifecycleResponse> deleteLifecycle(DeleteLifecycleRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(request, DeleteLifecycleRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<DeleteLifecycleRequest, DeleteLifecycleResponse, ErrorResponse> endpoint = (Endpoint<DeleteLifecycleRequest, DeleteLifecycleResponse, ErrorResponse>) DeleteLifecycleRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -96,7 +101,10 @@ public class ElasticsearchSlmAsyncClient extends ApiClient<ElasticsearchSlmAsync
 
 	public CompletableFuture<ExecuteLifecycleResponse> executeLifecycle(ExecuteLifecycleRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(request, ExecuteLifecycleRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<ExecuteLifecycleRequest, ExecuteLifecycleResponse, ErrorResponse> endpoint = (Endpoint<ExecuteLifecycleRequest, ExecuteLifecycleResponse, ErrorResponse>) ExecuteLifecycleRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -128,7 +136,7 @@ public class ElasticsearchSlmAsyncClient extends ApiClient<ElasticsearchSlmAsync
 	 *      on elastic.co</a>
 	 */
 	public CompletableFuture<ExecuteRetentionResponse> executeRetention() throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(ExecuteRetentionRequest._INSTANCE, ExecuteRetentionRequest.ENDPOINT,
+		return this.transport.performRequestAsync(ExecuteRetentionRequest._INSTANCE, ExecuteRetentionRequest._ENDPOINT,
 				this.transportOptions);
 	}
 
@@ -145,7 +153,10 @@ public class ElasticsearchSlmAsyncClient extends ApiClient<ElasticsearchSlmAsync
 
 	public CompletableFuture<GetLifecycleResponse> getLifecycle(GetLifecycleRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(request, GetLifecycleRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<GetLifecycleRequest, GetLifecycleResponse, ErrorResponse> endpoint = (Endpoint<GetLifecycleRequest, GetLifecycleResponse, ErrorResponse>) GetLifecycleRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -177,7 +188,7 @@ public class ElasticsearchSlmAsyncClient extends ApiClient<ElasticsearchSlmAsync
 
 	public CompletableFuture<GetLifecycleResponse> getLifecycle() throws IOException, ElasticsearchException {
 		return this.transport.performRequestAsync(new GetLifecycleRequest.Builder().build(),
-				GetLifecycleRequest.ENDPOINT, this.transportOptions);
+				GetLifecycleRequest._ENDPOINT, this.transportOptions);
 	}
 
 	// ----- Endpoint: slm.get_stats
@@ -191,7 +202,7 @@ public class ElasticsearchSlmAsyncClient extends ApiClient<ElasticsearchSlmAsync
 	 *      on elastic.co</a>
 	 */
 	public CompletableFuture<GetStatsResponse> getStats() throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(GetStatsRequest._INSTANCE, GetStatsRequest.ENDPOINT,
+		return this.transport.performRequestAsync(GetStatsRequest._INSTANCE, GetStatsRequest._ENDPOINT,
 				this.transportOptions);
 	}
 
@@ -205,7 +216,7 @@ public class ElasticsearchSlmAsyncClient extends ApiClient<ElasticsearchSlmAsync
 	 *      on elastic.co</a>
 	 */
 	public CompletableFuture<GetStatusResponse> getStatus() throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(GetStatusRequest._INSTANCE, GetStatusRequest.ENDPOINT,
+		return this.transport.performRequestAsync(GetStatusRequest._INSTANCE, GetStatusRequest._ENDPOINT,
 				this.transportOptions);
 	}
 
@@ -221,7 +232,10 @@ public class ElasticsearchSlmAsyncClient extends ApiClient<ElasticsearchSlmAsync
 
 	public CompletableFuture<PutLifecycleResponse> putLifecycle(PutLifecycleRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(request, PutLifecycleRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<PutLifecycleRequest, PutLifecycleResponse, ErrorResponse> endpoint = (Endpoint<PutLifecycleRequest, PutLifecycleResponse, ErrorResponse>) PutLifecycleRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -251,7 +265,7 @@ public class ElasticsearchSlmAsyncClient extends ApiClient<ElasticsearchSlmAsync
 	 *      on elastic.co</a>
 	 */
 	public CompletableFuture<StartSlmResponse> start() throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(StartSlmRequest._INSTANCE, StartSlmRequest.ENDPOINT,
+		return this.transport.performRequestAsync(StartSlmRequest._INSTANCE, StartSlmRequest._ENDPOINT,
 				this.transportOptions);
 	}
 
@@ -265,7 +279,7 @@ public class ElasticsearchSlmAsyncClient extends ApiClient<ElasticsearchSlmAsync
 	 *      on elastic.co</a>
 	 */
 	public CompletableFuture<StopSlmResponse> stop() throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(StopSlmRequest._INSTANCE, StopSlmRequest.ENDPOINT,
+		return this.transport.performRequestAsync(StopSlmRequest._INSTANCE, StopSlmRequest._ENDPOINT,
 				this.transportOptions);
 	}
 

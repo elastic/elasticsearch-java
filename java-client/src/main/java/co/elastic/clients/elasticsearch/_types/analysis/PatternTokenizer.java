@@ -39,7 +39,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.analysis.PatternTokenizer
 @JsonpDeserializable
-public class PatternTokenizer extends TokenizerBase implements TokenizerVariant {
+public class PatternTokenizer extends TokenizerBase implements TokenizerDefinitionVariant {
 	private final String flags;
 
 	private final int group;
@@ -62,7 +62,7 @@ public class PatternTokenizer extends TokenizerBase implements TokenizerVariant 
 	}
 
 	/**
-	 * {@link Tokenizer} variant type
+	 * {@link TokenizerDefinition} variant type
 	 */
 	@Override
 	public String _variantType() {

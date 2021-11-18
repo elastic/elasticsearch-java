@@ -103,7 +103,7 @@ public class DeleteLifecycleRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code ilm.delete_lifecycle}".
 	 */
-	public static final Endpoint<DeleteLifecycleRequest, DeleteLifecycleResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<DeleteLifecycleRequest, DeleteLifecycleResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "DELETE";

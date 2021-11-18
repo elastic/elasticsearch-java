@@ -103,7 +103,7 @@ public class StatusRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code async_search.status}".
 	 */
-	private static final SimpleEndpoint<StatusRequest, Void> ENDPOINT = new SimpleEndpoint<>(
+	public static final SimpleEndpoint<StatusRequest, ?> _ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "GET";
@@ -134,14 +134,14 @@ public class StatusRequest extends RequestBase {
 			request -> {
 				return Collections.emptyMap();
 
-			}, SimpleEndpoint.emptyMap(), false, null);
+			}, SimpleEndpoint.emptyMap(), false, StatusResponse._DESERIALIZER);
 
 	/**
 	 * Create an "{@code async_search.status}" endpoint.
 	 */
 	public static <TDocument> Endpoint<StatusRequest, StatusResponse<TDocument>, ErrorResponse> createStatusEndpoint(
 			JsonpDeserializer<TDocument> tDocumentDeserializer) {
-		return ENDPOINT
+		return _ENDPOINT
 				.withResponseDeserializer(StatusResponse.createStatusResponseDeserializer(tDocumentDeserializer));
 	}
 }

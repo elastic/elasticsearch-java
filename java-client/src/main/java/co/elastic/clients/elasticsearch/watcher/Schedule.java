@@ -23,6 +23,7 @@
 
 package co.elastic.clients.elasticsearch.watcher;
 
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -43,6 +44,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.ScheduleContainer
+// union type: Container[]
 @JsonpDeserializable
 public class Schedule implements TaggedUnion<Object>, TriggerVariant, JsonpSerializable {
 
@@ -61,8 +63,6 @@ public class Schedule implements TaggedUnion<Object>, TriggerVariant, JsonpSeria
 	public String _variantType() {
 		return "schedule";
 	}
-
-	// Tagged union implementation
 
 	private final String _type;
 	private final Object _value;
@@ -131,7 +131,7 @@ public class Schedule implements TaggedUnion<Object>, TriggerVariant, JsonpSeria
 	 * @throws IllegalStateException
 	 *             if the current variant is not of the {@code interval} kind.
 	 */
-	public String interval() {
+	public Time interval() {
 		return TaggedUnionUtils.get(this, INTERVAL);
 	}
 
@@ -168,6 +168,7 @@ public class Schedule implements TaggedUnion<Object>, TriggerVariant, JsonpSeria
 	@Override
 	@SuppressWarnings("unchecked")
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+
 		generator.writeStartObject();
 
 		generator.writeKey(_type);
@@ -176,10 +177,6 @@ public class Schedule implements TaggedUnion<Object>, TriggerVariant, JsonpSeria
 		} else {
 			switch (_type) {
 				case CRON :
-					generator.write(((String) this._value));
-
-					break;
-				case INTERVAL :
 					generator.write(((String) this._value));
 
 					break;
@@ -214,6 +211,7 @@ public class Schedule implements TaggedUnion<Object>, TriggerVariant, JsonpSeria
 		}
 
 		generator.writeEnd();
+
 	}
 
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Schedule> {
@@ -246,10 +244,14 @@ public class Schedule implements TaggedUnion<Object>, TriggerVariant, JsonpSeria
 			return this.hourly(f.apply(new HourlySchedule.Builder()).build());
 		}
 
-		public Builder interval(String v) {
+		public Builder interval(Time v) {
 			this._type = INTERVAL;
 			this._value = v;
 			return this;
+		}
+
+		public Builder interval(Function<Time.Builder, ObjectBuilder<Time>> f) {
+			return this.interval(f.apply(new Time.Builder()).build());
 		}
 
 		public Builder monthly(List<TimeOfMonth> v) {
@@ -282,7 +284,7 @@ public class Schedule implements TaggedUnion<Object>, TriggerVariant, JsonpSeria
 		op.add(Builder::cron, JsonpDeserializer.stringDeserializer(), "cron");
 		op.add(Builder::daily, DailySchedule._DESERIALIZER, "daily");
 		op.add(Builder::hourly, HourlySchedule._DESERIALIZER, "hourly");
-		op.add(Builder::interval, JsonpDeserializer.stringDeserializer(), "interval");
+		op.add(Builder::interval, Time._DESERIALIZER, "interval");
 		op.add(Builder::monthly, JsonpDeserializer.arrayDeserializer(TimeOfMonth._DESERIALIZER), "monthly");
 		op.add(Builder::weekly, JsonpDeserializer.arrayDeserializer(TimeOfWeek._DESERIALIZER), "weekly");
 		op.add(Builder::yearly, JsonpDeserializer.arrayDeserializer(TimeOfYear._DESERIALIZER), "yearly");

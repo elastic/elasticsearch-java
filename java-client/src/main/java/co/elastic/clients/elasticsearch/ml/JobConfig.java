@@ -23,6 +23,8 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
+import co.elastic.clients.elasticsearch._types.Time;
+import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -54,10 +56,10 @@ public class JobConfig implements JsonpSerializable {
 	private final AnalysisLimits analysisLimits;
 
 	@Nullable
-	private final String backgroundPersistInterval;
+	private final Time backgroundPersistInterval;
 
 	@Nullable
-	private final CustomSettings customSettings;
+	private final JsonData customSettings;
 
 	@Nullable
 	private final Long dailyModelSnapshotRetentionAfterDays;
@@ -148,7 +150,7 @@ public class JobConfig implements JsonpSerializable {
 	 * API name: {@code background_persist_interval}
 	 */
 	@Nullable
-	public final String backgroundPersistInterval() {
+	public final Time backgroundPersistInterval() {
 		return this.backgroundPersistInterval;
 	}
 
@@ -156,7 +158,7 @@ public class JobConfig implements JsonpSerializable {
 	 * API name: {@code custom_settings}
 	 */
 	@Nullable
-	public final CustomSettings customSettings() {
+	public final JsonData customSettings() {
 		return this.customSettings;
 	}
 
@@ -280,7 +282,7 @@ public class JobConfig implements JsonpSerializable {
 		}
 		if (this.backgroundPersistInterval != null) {
 			generator.writeKey("background_persist_interval");
-			generator.write(this.backgroundPersistInterval);
+			this.backgroundPersistInterval.serialize(generator, mapper);
 
 		}
 		if (this.customSettings != null) {
@@ -369,10 +371,10 @@ public class JobConfig implements JsonpSerializable {
 		private AnalysisLimits analysisLimits;
 
 		@Nullable
-		private String backgroundPersistInterval;
+		private Time backgroundPersistInterval;
 
 		@Nullable
-		private CustomSettings customSettings;
+		private JsonData customSettings;
 
 		@Nullable
 		private Long dailyModelSnapshotRetentionAfterDays;
@@ -450,24 +452,24 @@ public class JobConfig implements JsonpSerializable {
 		/**
 		 * API name: {@code background_persist_interval}
 		 */
-		public final Builder backgroundPersistInterval(@Nullable String value) {
+		public final Builder backgroundPersistInterval(@Nullable Time value) {
 			this.backgroundPersistInterval = value;
 			return this;
 		}
 
 		/**
-		 * API name: {@code custom_settings}
+		 * API name: {@code background_persist_interval}
 		 */
-		public final Builder customSettings(@Nullable CustomSettings value) {
-			this.customSettings = value;
-			return this;
+		public final Builder backgroundPersistInterval(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.backgroundPersistInterval(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code custom_settings}
 		 */
-		public final Builder customSettings(Function<CustomSettings.Builder, ObjectBuilder<CustomSettings>> fn) {
-			return this.customSettings(fn.apply(new CustomSettings.Builder()).build());
+		public final Builder customSettings(@Nullable JsonData value) {
+			this.customSettings = value;
+			return this;
 		}
 
 		/**
@@ -621,9 +623,8 @@ public class JobConfig implements JsonpSerializable {
 		op.add(Builder::allowLazyOpen, JsonpDeserializer.booleanDeserializer(), "allow_lazy_open");
 		op.add(Builder::analysisConfig, AnalysisConfig._DESERIALIZER, "analysis_config");
 		op.add(Builder::analysisLimits, AnalysisLimits._DESERIALIZER, "analysis_limits");
-		op.add(Builder::backgroundPersistInterval, JsonpDeserializer.stringDeserializer(),
-				"background_persist_interval");
-		op.add(Builder::customSettings, CustomSettings._DESERIALIZER, "custom_settings");
+		op.add(Builder::backgroundPersistInterval, Time._DESERIALIZER, "background_persist_interval");
+		op.add(Builder::customSettings, JsonData._DESERIALIZER, "custom_settings");
 		op.add(Builder::dailyModelSnapshotRetentionAfterDays, JsonpDeserializer.longDeserializer(),
 				"daily_model_snapshot_retention_after_days");
 		op.add(Builder::dataDescription, DataDescription._DESERIALIZER, "data_description");

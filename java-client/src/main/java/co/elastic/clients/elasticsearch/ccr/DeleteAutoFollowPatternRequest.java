@@ -104,7 +104,7 @@ public class DeleteAutoFollowPatternRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code ccr.delete_auto_follow_pattern}".
 	 */
-	public static final Endpoint<DeleteAutoFollowPatternRequest, DeleteAutoFollowPatternResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<DeleteAutoFollowPatternRequest, DeleteAutoFollowPatternResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "DELETE";

@@ -23,6 +23,7 @@
 
 package co.elastic.clients.elasticsearch.watcher;
 
+import co.elastic.clients.elasticsearch._types.Refresh;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -32,7 +33,6 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -48,7 +48,7 @@ public class Index implements JsonpSerializable {
 	private final String docId;
 
 	@Nullable
-	private final JsonValue /* _types.Refresh */ refresh;
+	private final Refresh refresh;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -83,7 +83,7 @@ public class Index implements JsonpSerializable {
 	 * API name: {@code refresh}
 	 */
 	@Nullable
-	public final JsonValue /* _types.Refresh */ refresh() {
+	public final Refresh refresh() {
 		return this.refresh;
 	}
 
@@ -108,8 +108,7 @@ public class Index implements JsonpSerializable {
 		}
 		if (this.refresh != null) {
 			generator.writeKey("refresh");
-			generator.write(this.refresh);
-
+			this.refresh.serialize(generator, mapper);
 		}
 
 	}
@@ -126,7 +125,7 @@ public class Index implements JsonpSerializable {
 		private String docId;
 
 		@Nullable
-		private JsonValue /* _types.Refresh */ refresh;
+		private Refresh refresh;
 
 		/**
 		 * Required - API name: {@code index}
@@ -147,7 +146,7 @@ public class Index implements JsonpSerializable {
 		/**
 		 * API name: {@code refresh}
 		 */
-		public final Builder refresh(@Nullable JsonValue /* _types.Refresh */ value) {
+		public final Builder refresh(@Nullable Refresh value) {
 			this.refresh = value;
 			return this;
 		}
@@ -177,7 +176,7 @@ public class Index implements JsonpSerializable {
 
 		op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "index");
 		op.add(Builder::docId, JsonpDeserializer.stringDeserializer(), "doc_id");
-		op.add(Builder::refresh, JsonpDeserializer.jsonValueDeserializer(), "refresh");
+		op.add(Builder::refresh, Refresh._DESERIALIZER, "refresh");
 
 	}
 

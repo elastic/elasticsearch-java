@@ -41,6 +41,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.IntervalsContainer
+// union type: Container[]
 @JsonpDeserializable
 public class Intervals implements TaggedUnion<Object>, JsonpSerializable {
 
@@ -50,8 +51,6 @@ public class Intervals implements TaggedUnion<Object>, JsonpSerializable {
 	public static final String MATCH = "match";
 	public static final String PREFIX = "prefix";
 	public static final String WILDCARD = "wildcard";
-
-	// Tagged union implementation
 
 	private final String _type;
 	private final Object _value;
@@ -147,6 +146,7 @@ public class Intervals implements TaggedUnion<Object>, JsonpSerializable {
 	@Override
 	@SuppressWarnings("unchecked")
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+
 		generator.writeStartObject();
 
 		generator.writeKey(_type);
@@ -155,6 +155,7 @@ public class Intervals implements TaggedUnion<Object>, JsonpSerializable {
 		}
 
 		generator.writeEnd();
+
 	}
 
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Intervals> {

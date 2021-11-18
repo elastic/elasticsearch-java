@@ -104,7 +104,7 @@ public class DeleteAutoscalingPolicyRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code autoscaling.delete_autoscaling_policy}".
 	 */
-	public static final Endpoint<DeleteAutoscalingPolicyRequest, DeleteAutoscalingPolicyResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<DeleteAutoscalingPolicyRequest, DeleteAutoscalingPolicyResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "DELETE";

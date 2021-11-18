@@ -23,6 +23,7 @@
 
 package co.elastic.clients.elasticsearch.watcher;
 
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -48,7 +49,7 @@ public class SearchInput implements InputVariant, JsonpSerializable {
 	private final SearchInputRequestDefinition request;
 
 	@Nullable
-	private final String timeout;
+	private final Time timeout;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -90,7 +91,7 @@ public class SearchInput implements InputVariant, JsonpSerializable {
 	 * API name: {@code timeout}
 	 */
 	@Nullable
-	public final String timeout() {
+	public final Time timeout() {
 		return this.timeout;
 	}
 
@@ -120,7 +121,7 @@ public class SearchInput implements InputVariant, JsonpSerializable {
 
 		if (this.timeout != null) {
 			generator.writeKey("timeout");
-			generator.write(this.timeout);
+			this.timeout.serialize(generator, mapper);
 
 		}
 
@@ -138,7 +139,7 @@ public class SearchInput implements InputVariant, JsonpSerializable {
 		private SearchInputRequestDefinition request;
 
 		@Nullable
-		private String timeout;
+		private Time timeout;
 
 		/**
 		 * API name: {@code extract}
@@ -175,9 +176,16 @@ public class SearchInput implements InputVariant, JsonpSerializable {
 		/**
 		 * API name: {@code timeout}
 		 */
-		public final Builder timeout(@Nullable String value) {
+		public final Builder timeout(@Nullable Time value) {
 			this.timeout = value;
 			return this;
+		}
+
+		/**
+		 * API name: {@code timeout}
+		 */
+		public final Builder timeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.timeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -206,7 +214,7 @@ public class SearchInput implements InputVariant, JsonpSerializable {
 		op.add(Builder::extract, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"extract");
 		op.add(Builder::request, SearchInputRequestDefinition._DESERIALIZER, "request");
-		op.add(Builder::timeout, JsonpDeserializer.stringDeserializer(), "timeout");
+		op.add(Builder::timeout, Time._DESERIALIZER, "timeout");
 
 	}
 

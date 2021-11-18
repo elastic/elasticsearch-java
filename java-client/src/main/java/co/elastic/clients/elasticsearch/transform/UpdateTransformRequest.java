@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.transform;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.elasticsearch.core.reindex.Destination;
 import co.elastic.clients.elasticsearch.core.reindex.Source;
 import co.elastic.clients.json.JsonpDeserializable;
@@ -60,7 +61,7 @@ public class UpdateTransformRequest extends RequestBase implements JsonpSerializ
 	private final Destination dest;
 
 	@Nullable
-	private final String frequency;
+	private final Time frequency;
 
 	@Nullable
 	private final RetentionPolicy retentionPolicy;
@@ -136,7 +137,7 @@ public class UpdateTransformRequest extends RequestBase implements JsonpSerializ
 	 * API name: {@code frequency}
 	 */
 	@Nullable
-	public final String frequency() {
+	public final Time frequency() {
 		return this.frequency;
 	}
 
@@ -215,7 +216,7 @@ public class UpdateTransformRequest extends RequestBase implements JsonpSerializ
 		}
 		if (this.frequency != null) {
 			generator.writeKey("frequency");
-			generator.write(this.frequency);
+			this.frequency.serialize(generator, mapper);
 
 		}
 		if (this.retentionPolicy != null) {
@@ -257,7 +258,7 @@ public class UpdateTransformRequest extends RequestBase implements JsonpSerializ
 		private Destination dest;
 
 		@Nullable
-		private String frequency;
+		private Time frequency;
 
 		@Nullable
 		private RetentionPolicy retentionPolicy;
@@ -321,9 +322,21 @@ public class UpdateTransformRequest extends RequestBase implements JsonpSerializ
 		 * <p>
 		 * API name: {@code frequency}
 		 */
-		public final Builder frequency(@Nullable String value) {
+		public final Builder frequency(@Nullable Time value) {
 			this.frequency = value;
 			return this;
+		}
+
+		/**
+		 * The interval between checks for changes in the source indices when the
+		 * transform is running continuously. Also determines the retry interval in the
+		 * event of transient failures while the transform is searching or indexing. The
+		 * minimum value is 1s and the maximum is 1h.
+		 * <p>
+		 * API name: {@code frequency}
+		 */
+		public final Builder frequency(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.frequency(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -442,7 +455,7 @@ public class UpdateTransformRequest extends RequestBase implements JsonpSerializ
 
 		op.add(Builder::description, JsonpDeserializer.stringDeserializer(), "description");
 		op.add(Builder::dest, Destination._DESERIALIZER, "dest");
-		op.add(Builder::frequency, JsonpDeserializer.stringDeserializer(), "frequency");
+		op.add(Builder::frequency, Time._DESERIALIZER, "frequency");
 		op.add(Builder::retentionPolicy, RetentionPolicy._DESERIALIZER, "retention_policy");
 		op.add(Builder::settings, Settings._DESERIALIZER, "settings");
 		op.add(Builder::source, Source._DESERIALIZER, "source");
@@ -455,7 +468,7 @@ public class UpdateTransformRequest extends RequestBase implements JsonpSerializ
 	/**
 	 * Endpoint "{@code transform.update_transform}".
 	 */
-	public static final Endpoint<UpdateTransformRequest, UpdateTransformResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<UpdateTransformRequest, UpdateTransformResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";

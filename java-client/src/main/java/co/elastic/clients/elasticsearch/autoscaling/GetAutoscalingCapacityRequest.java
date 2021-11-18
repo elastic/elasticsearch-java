@@ -53,7 +53,7 @@ public class GetAutoscalingCapacityRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code autoscaling.get_autoscaling_capacity}".
 	 */
-	public static final Endpoint<GetAutoscalingCapacityRequest, GetAutoscalingCapacityResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<GetAutoscalingCapacityRequest, GetAutoscalingCapacityResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "GET";

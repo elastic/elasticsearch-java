@@ -53,7 +53,7 @@ public class GetScriptContextRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code get_script_context}".
 	 */
-	public static final Endpoint<GetScriptContextRequest, GetScriptContextResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<GetScriptContextRequest, GetScriptContextResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "GET";

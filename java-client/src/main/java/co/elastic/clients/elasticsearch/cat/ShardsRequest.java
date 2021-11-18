@@ -145,7 +145,7 @@ public class ShardsRequest extends CatRequestBase {
 	/**
 	 * Endpoint "{@code cat.shards}".
 	 */
-	public static final Endpoint<ShardsRequest, ShardsResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<ShardsRequest, ShardsResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "GET";

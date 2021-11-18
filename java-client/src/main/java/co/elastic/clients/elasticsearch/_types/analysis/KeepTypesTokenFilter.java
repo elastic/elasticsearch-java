@@ -40,7 +40,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.analysis.KeepTypesTokenFilter
 @JsonpDeserializable
-public class KeepTypesTokenFilter extends TokenFilterBase implements TokenFilterVariant {
+public class KeepTypesTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
 	@Nullable
 	private final KeepTypesMode mode;
 
@@ -61,7 +61,7 @@ public class KeepTypesTokenFilter extends TokenFilterBase implements TokenFilter
 	}
 
 	/**
-	 * {@link TokenFilter} variant type
+	 * {@link TokenFilterDefinition} variant type
 	 */
 	@Override
 	public String _variantType() {

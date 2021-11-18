@@ -23,6 +23,7 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -51,7 +52,7 @@ public class BucketSummary implements JsonpSerializable {
 
 	private final List<BucketInfluencer> bucketInfluencers;
 
-	private final String bucketSpan;
+	private final Time bucketSpan;
 
 	private final long eventCount;
 
@@ -61,13 +62,11 @@ public class BucketSummary implements JsonpSerializable {
 
 	private final String jobId;
 
-	private final List<PartitionScore> partitionScores;
-
 	private final double processingTimeMs;
 
 	private final String resultType;
 
-	private final String timestamp;
+	private final Time timestamp;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -82,7 +81,6 @@ public class BucketSummary implements JsonpSerializable {
 				"initialAnomalyScore");
 		this.isInterim = ModelTypeHelper.requireNonNull(builder.isInterim, this, "isInterim");
 		this.jobId = ModelTypeHelper.requireNonNull(builder.jobId, this, "jobId");
-		this.partitionScores = ModelTypeHelper.unmodifiable(builder.partitionScores);
 		this.processingTimeMs = ModelTypeHelper.requireNonNull(builder.processingTimeMs, this, "processingTimeMs");
 		this.resultType = ModelTypeHelper.requireNonNull(builder.resultType, this, "resultType");
 		this.timestamp = ModelTypeHelper.requireNonNull(builder.timestamp, this, "timestamp");
@@ -94,7 +92,12 @@ public class BucketSummary implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code anomaly_score}
+	 * Required - The maximum anomaly score, between 0-100, for any of the bucket
+	 * influencers. This is an overall, rate-limited score for the job. All the
+	 * anomaly records in the bucket contribute to this score. This value might be
+	 * updated as new data is analyzed.
+	 * <p>
+	 * API name: {@code anomaly_score}
 	 */
 	public final double anomalyScore() {
 		return this.anomalyScore;
@@ -108,65 +111,81 @@ public class BucketSummary implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code bucket_span}
+	 * Required - The length of the bucket in seconds. This value matches the bucket
+	 * span that is specified in the job.
+	 * <p>
+	 * API name: {@code bucket_span}
 	 */
-	public final String bucketSpan() {
+	public final Time bucketSpan() {
 		return this.bucketSpan;
 	}
 
 	/**
-	 * Required - API name: {@code event_count}
+	 * Required - The number of input data records processed in this bucket.
+	 * <p>
+	 * API name: {@code event_count}
 	 */
 	public final long eventCount() {
 		return this.eventCount;
 	}
 
 	/**
-	 * Required - API name: {@code initial_anomaly_score}
+	 * Required - The maximum anomaly score for any of the bucket influencers. This
+	 * is the initial value that was calculated at the time the bucket was
+	 * processed.
+	 * <p>
+	 * API name: {@code initial_anomaly_score}
 	 */
 	public final double initialAnomalyScore() {
 		return this.initialAnomalyScore;
 	}
 
 	/**
-	 * Required - API name: {@code is_interim}
+	 * Required - If true, this is an interim result. In other words, the results
+	 * are calculated based on partial input data.
+	 * <p>
+	 * API name: {@code is_interim}
 	 */
 	public final boolean isInterim() {
 		return this.isInterim;
 	}
 
 	/**
-	 * Required - API name: {@code job_id}
+	 * Required - Identifier for the anomaly detection job.
+	 * <p>
+	 * API name: {@code job_id}
 	 */
 	public final String jobId() {
 		return this.jobId;
 	}
 
 	/**
-	 * API name: {@code partition_scores}
-	 */
-	public final List<PartitionScore> partitionScores() {
-		return this.partitionScores;
-	}
-
-	/**
-	 * Required - API name: {@code processing_time_ms}
+	 * Required - The amount of time, in milliseconds, that it took to analyze the
+	 * bucket contents and calculate results.
+	 * <p>
+	 * API name: {@code processing_time_ms}
 	 */
 	public final double processingTimeMs() {
 		return this.processingTimeMs;
 	}
 
 	/**
-	 * Required - API name: {@code result_type}
+	 * Required - Internal. This value is always set to bucket.
+	 * <p>
+	 * API name: {@code result_type}
 	 */
 	public final String resultType() {
 		return this.resultType;
 	}
 
 	/**
-	 * Required - API name: {@code timestamp}
+	 * Required - The start time of the bucket. This timestamp uniquely identifies
+	 * the bucket. Events that occur exactly at the timestamp of the bucket are
+	 * included in the results for the bucket.
+	 * <p>
+	 * API name: {@code timestamp}
 	 */
-	public final String timestamp() {
+	public final Time timestamp() {
 		return this.timestamp;
 	}
 
@@ -195,7 +214,7 @@ public class BucketSummary implements JsonpSerializable {
 
 		}
 		generator.writeKey("bucket_span");
-		generator.write(this.bucketSpan);
+		this.bucketSpan.serialize(generator, mapper);
 
 		generator.writeKey("event_count");
 		generator.write(this.eventCount);
@@ -209,16 +228,6 @@ public class BucketSummary implements JsonpSerializable {
 		generator.writeKey("job_id");
 		generator.write(this.jobId);
 
-		if (ModelTypeHelper.isDefined(this.partitionScores)) {
-			generator.writeKey("partition_scores");
-			generator.writeStartArray();
-			for (PartitionScore item0 : this.partitionScores) {
-				item0.serialize(generator, mapper);
-
-			}
-			generator.writeEnd();
-
-		}
 		generator.writeKey("processing_time_ms");
 		generator.write(this.processingTimeMs);
 
@@ -226,7 +235,7 @@ public class BucketSummary implements JsonpSerializable {
 		generator.write(this.resultType);
 
 		generator.writeKey("timestamp");
-		generator.write(this.timestamp);
+		this.timestamp.serialize(generator, mapper);
 
 	}
 
@@ -240,7 +249,7 @@ public class BucketSummary implements JsonpSerializable {
 
 		private List<BucketInfluencer> bucketInfluencers;
 
-		private String bucketSpan;
+		private Time bucketSpan;
 
 		private Long eventCount;
 
@@ -250,17 +259,19 @@ public class BucketSummary implements JsonpSerializable {
 
 		private String jobId;
 
-		@Nullable
-		private List<PartitionScore> partitionScores;
-
 		private Double processingTimeMs;
 
 		private String resultType;
 
-		private String timestamp;
+		private Time timestamp;
 
 		/**
-		 * Required - API name: {@code anomaly_score}
+		 * Required - The maximum anomaly score, between 0-100, for any of the bucket
+		 * influencers. This is an overall, rate-limited score for the job. All the
+		 * anomaly records in the bucket contribute to this score. This value might be
+		 * updated as new data is analyzed.
+		 * <p>
+		 * API name: {@code anomaly_score}
 		 */
 		public final Builder anomalyScore(double value) {
 			this.anomalyScore = value;
@@ -297,15 +308,30 @@ public class BucketSummary implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code bucket_span}
+		 * Required - The length of the bucket in seconds. This value matches the bucket
+		 * span that is specified in the job.
+		 * <p>
+		 * API name: {@code bucket_span}
 		 */
-		public final Builder bucketSpan(String value) {
+		public final Builder bucketSpan(Time value) {
 			this.bucketSpan = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code event_count}
+		 * Required - The length of the bucket in seconds. This value matches the bucket
+		 * span that is specified in the job.
+		 * <p>
+		 * API name: {@code bucket_span}
+		 */
+		public final Builder bucketSpan(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.bucketSpan(fn.apply(new Time.Builder()).build());
+		}
+
+		/**
+		 * Required - The number of input data records processed in this bucket.
+		 * <p>
+		 * API name: {@code event_count}
 		 */
 		public final Builder eventCount(long value) {
 			this.eventCount = value;
@@ -313,7 +339,11 @@ public class BucketSummary implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code initial_anomaly_score}
+		 * Required - The maximum anomaly score for any of the bucket influencers. This
+		 * is the initial value that was calculated at the time the bucket was
+		 * processed.
+		 * <p>
+		 * API name: {@code initial_anomaly_score}
 		 */
 		public final Builder initialAnomalyScore(double value) {
 			this.initialAnomalyScore = value;
@@ -321,7 +351,10 @@ public class BucketSummary implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code is_interim}
+		 * Required - If true, this is an interim result. In other words, the results
+		 * are calculated based on partial input data.
+		 * <p>
+		 * API name: {@code is_interim}
 		 */
 		public final Builder isInterim(boolean value) {
 			this.isInterim = value;
@@ -329,7 +362,9 @@ public class BucketSummary implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code job_id}
+		 * Required - Identifier for the anomaly detection job.
+		 * <p>
+		 * API name: {@code job_id}
 		 */
 		public final Builder jobId(String value) {
 			this.jobId = value;
@@ -337,35 +372,10 @@ public class BucketSummary implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code partition_scores}
-		 */
-		public final Builder partitionScores(@Nullable List<PartitionScore> value) {
-			this.partitionScores = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code partition_scores}
-		 */
-		public final Builder partitionScores(PartitionScore... value) {
-			this.partitionScores = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * API name: {@code partition_scores}
-		 */
-		@SafeVarargs
-		public final Builder partitionScores(Function<PartitionScore.Builder, ObjectBuilder<PartitionScore>>... fns) {
-			this.partitionScores = new ArrayList<>(fns.length);
-			for (Function<PartitionScore.Builder, ObjectBuilder<PartitionScore>> fn : fns) {
-				this.partitionScores.add(fn.apply(new PartitionScore.Builder()).build());
-			}
-			return this;
-		}
-
-		/**
-		 * Required - API name: {@code processing_time_ms}
+		 * Required - The amount of time, in milliseconds, that it took to analyze the
+		 * bucket contents and calculate results.
+		 * <p>
+		 * API name: {@code processing_time_ms}
 		 */
 		public final Builder processingTimeMs(double value) {
 			this.processingTimeMs = value;
@@ -373,7 +383,9 @@ public class BucketSummary implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code result_type}
+		 * Required - Internal. This value is always set to bucket.
+		 * <p>
+		 * API name: {@code result_type}
 		 */
 		public final Builder resultType(String value) {
 			this.resultType = value;
@@ -381,11 +393,26 @@ public class BucketSummary implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code timestamp}
+		 * Required - The start time of the bucket. This timestamp uniquely identifies
+		 * the bucket. Events that occur exactly at the timestamp of the bucket are
+		 * included in the results for the bucket.
+		 * <p>
+		 * API name: {@code timestamp}
 		 */
-		public final Builder timestamp(String value) {
+		public final Builder timestamp(Time value) {
 			this.timestamp = value;
 			return this;
+		}
+
+		/**
+		 * Required - The start time of the bucket. This timestamp uniquely identifies
+		 * the bucket. Events that occur exactly at the timestamp of the bucket are
+		 * included in the results for the bucket.
+		 * <p>
+		 * API name: {@code timestamp}
+		 */
+		public final Builder timestamp(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.timestamp(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -414,16 +441,14 @@ public class BucketSummary implements JsonpSerializable {
 		op.add(Builder::anomalyScore, JsonpDeserializer.doubleDeserializer(), "anomaly_score");
 		op.add(Builder::bucketInfluencers, JsonpDeserializer.arrayDeserializer(BucketInfluencer._DESERIALIZER),
 				"bucket_influencers");
-		op.add(Builder::bucketSpan, JsonpDeserializer.stringDeserializer(), "bucket_span");
+		op.add(Builder::bucketSpan, Time._DESERIALIZER, "bucket_span");
 		op.add(Builder::eventCount, JsonpDeserializer.longDeserializer(), "event_count");
 		op.add(Builder::initialAnomalyScore, JsonpDeserializer.doubleDeserializer(), "initial_anomaly_score");
 		op.add(Builder::isInterim, JsonpDeserializer.booleanDeserializer(), "is_interim");
 		op.add(Builder::jobId, JsonpDeserializer.stringDeserializer(), "job_id");
-		op.add(Builder::partitionScores, JsonpDeserializer.arrayDeserializer(PartitionScore._DESERIALIZER),
-				"partition_scores");
 		op.add(Builder::processingTimeMs, JsonpDeserializer.doubleDeserializer(), "processing_time_ms");
 		op.add(Builder::resultType, JsonpDeserializer.stringDeserializer(), "result_type");
-		op.add(Builder::timestamp, JsonpDeserializer.stringDeserializer(), "timestamp");
+		op.add(Builder::timestamp, Time._DESERIALIZER, "timestamp");
 
 	}
 

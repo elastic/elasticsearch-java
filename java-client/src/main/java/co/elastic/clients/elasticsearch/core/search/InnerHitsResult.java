@@ -23,6 +23,7 @@
 
 package co.elastic.clients.elasticsearch.core.search;
 
+import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -40,7 +41,7 @@ import javax.annotation.Nullable;
 // typedef: _global.search._types.InnerHitsResult
 @JsonpDeserializable
 public class InnerHitsResult implements JsonpSerializable {
-	private final InnerHitsMetadata hits;
+	private final HitsMetadata<JsonData> hits;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -57,7 +58,7 @@ public class InnerHitsResult implements JsonpSerializable {
 	/**
 	 * Required - API name: {@code hits}
 	 */
-	public final InnerHitsMetadata hits() {
+	public final HitsMetadata<JsonData> hits() {
 		return this.hits;
 	}
 
@@ -83,12 +84,12 @@ public class InnerHitsResult implements JsonpSerializable {
 	 * Builder for {@link InnerHitsResult}.
 	 */
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<InnerHitsResult> {
-		private InnerHitsMetadata hits;
+		private HitsMetadata<JsonData> hits;
 
 		/**
 		 * Required - API name: {@code hits}
 		 */
-		public final Builder hits(InnerHitsMetadata value) {
+		public final Builder hits(HitsMetadata<JsonData> value) {
 			this.hits = value;
 			return this;
 		}
@@ -96,8 +97,8 @@ public class InnerHitsResult implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code hits}
 		 */
-		public final Builder hits(Function<InnerHitsMetadata.Builder, ObjectBuilder<InnerHitsMetadata>> fn) {
-			return this.hits(fn.apply(new InnerHitsMetadata.Builder()).build());
+		public final Builder hits(Function<HitsMetadata.Builder<JsonData>, ObjectBuilder<HitsMetadata<JsonData>>> fn) {
+			return this.hits(fn.apply(new HitsMetadata.Builder<JsonData>()).build());
 		}
 
 		/**
@@ -123,7 +124,7 @@ public class InnerHitsResult implements JsonpSerializable {
 
 	protected static void setupInnerHitsResultDeserializer(ObjectDeserializer<InnerHitsResult.Builder> op) {
 
-		op.add(Builder::hits, InnerHitsMetadata._DESERIALIZER, "hits");
+		op.add(Builder::hits, HitsMetadata.createHitsMetadataDeserializer(JsonData._DESERIALIZER), "hits");
 
 	}
 

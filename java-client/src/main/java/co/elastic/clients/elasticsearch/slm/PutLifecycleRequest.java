@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.slm;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -51,7 +52,7 @@ public class PutLifecycleRequest extends RequestBase implements JsonpSerializabl
 	private final Configuration config;
 
 	@Nullable
-	private final String masterTimeout;
+	private final Time masterTimeout;
 
 	@Nullable
 	private final String name;
@@ -68,7 +69,7 @@ public class PutLifecycleRequest extends RequestBase implements JsonpSerializabl
 	private final String schedule;
 
 	@Nullable
-	private final String timeout;
+	private final Time timeout;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -106,7 +107,7 @@ public class PutLifecycleRequest extends RequestBase implements JsonpSerializabl
 	 * API name: {@code master_timeout}
 	 */
 	@Nullable
-	public final String masterTimeout() {
+	public final Time masterTimeout() {
 		return this.masterTimeout;
 	}
 
@@ -171,7 +172,7 @@ public class PutLifecycleRequest extends RequestBase implements JsonpSerializabl
 	 * API name: {@code timeout}
 	 */
 	@Nullable
-	public final String timeout() {
+	public final Time timeout() {
 		return this.timeout;
 	}
 
@@ -224,7 +225,7 @@ public class PutLifecycleRequest extends RequestBase implements JsonpSerializabl
 		private Configuration config;
 
 		@Nullable
-		private String masterTimeout;
+		private Time masterTimeout;
 
 		@Nullable
 		private String name;
@@ -241,7 +242,7 @@ public class PutLifecycleRequest extends RequestBase implements JsonpSerializabl
 		private String schedule;
 
 		@Nullable
-		private String timeout;
+		private Time timeout;
 
 		/**
 		 * Configuration for each snapshot created by the policy.
@@ -268,9 +269,19 @@ public class PutLifecycleRequest extends RequestBase implements JsonpSerializabl
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
-		public final Builder masterTimeout(@Nullable String value) {
+		public final Builder masterTimeout(@Nullable Time value) {
 			this.masterTimeout = value;
 			return this;
+		}
+
+		/**
+		 * Period to wait for a connection to the master node. If no response is
+		 * received before the timeout expires, the request fails and returns an error.
+		 * <p>
+		 * API name: {@code master_timeout}
+		 */
+		public final Builder masterTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.masterTimeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -343,9 +354,19 @@ public class PutLifecycleRequest extends RequestBase implements JsonpSerializabl
 		 * <p>
 		 * API name: {@code timeout}
 		 */
-		public final Builder timeout(@Nullable String value) {
+		public final Builder timeout(@Nullable Time value) {
 			this.timeout = value;
 			return this;
+		}
+
+		/**
+		 * Period to wait for a response. If no response is received before the timeout
+		 * expires, the request fails and returns an error.
+		 * <p>
+		 * API name: {@code timeout}
+		 */
+		public final Builder timeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.timeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -384,7 +405,7 @@ public class PutLifecycleRequest extends RequestBase implements JsonpSerializabl
 	/**
 	 * Endpoint "{@code slm.put_lifecycle}".
 	 */
-	public static final Endpoint<PutLifecycleRequest, PutLifecycleResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<PutLifecycleRequest, PutLifecycleResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "PUT";
@@ -415,10 +436,10 @@ public class PutLifecycleRequest extends RequestBase implements JsonpSerializabl
 			request -> {
 				Map<String, String> params = new HashMap<>();
 				if (request.masterTimeout != null) {
-					params.put("master_timeout", request.masterTimeout);
+					params.put("master_timeout", request.masterTimeout._toJsonString());
 				}
 				if (request.timeout != null) {
-					params.put("timeout", request.timeout);
+					params.put("timeout", request.timeout._toJsonString());
 				}
 				return params;
 

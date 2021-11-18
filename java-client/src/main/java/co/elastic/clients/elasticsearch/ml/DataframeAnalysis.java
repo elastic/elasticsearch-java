@@ -41,14 +41,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.DataframeAnalysisContainer
+// union type: Container[]
 @JsonpDeserializable
 public class DataframeAnalysis implements TaggedUnion<Object>, JsonpSerializable {
 
 	public static final String CLASSIFICATION = "classification";
 	public static final String OUTLIER_DETECTION = "outlier_detection";
 	public static final String REGRESSION = "regression";
-
-	// Tagged union implementation
 
 	private final String _type;
 	private final Object _value;
@@ -115,6 +114,7 @@ public class DataframeAnalysis implements TaggedUnion<Object>, JsonpSerializable
 	@Override
 	@SuppressWarnings("unchecked")
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+
 		generator.writeStartObject();
 
 		generator.writeKey(_type);
@@ -123,6 +123,7 @@ public class DataframeAnalysis implements TaggedUnion<Object>, JsonpSerializable
 		}
 
 		generator.writeEnd();
+
 	}
 
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DataframeAnalysis> {

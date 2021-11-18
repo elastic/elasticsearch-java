@@ -168,7 +168,7 @@ public class PutLifecycleRequest extends RequestBase implements JsonpSerializabl
 	/**
 	 * Endpoint "{@code ilm.put_lifecycle}".
 	 */
-	public static final Endpoint<PutLifecycleRequest, PutLifecycleResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<PutLifecycleRequest, PutLifecycleResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "PUT";

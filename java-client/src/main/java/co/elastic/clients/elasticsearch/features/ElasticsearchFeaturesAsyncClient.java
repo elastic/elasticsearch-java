@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.features;
 
 import co.elastic.clients.ApiClient;
 import co.elastic.clients.elasticsearch._types.ElasticsearchException;
+import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.Transport;
 import co.elastic.clients.transport.TransportOptions;
 import co.elastic.clients.util.ObjectBuilder;
@@ -62,7 +63,7 @@ public class ElasticsearchFeaturesAsyncClient extends ApiClient<ElasticsearchFea
 	 *      on elastic.co</a>
 	 */
 	public CompletableFuture<GetFeaturesResponse> getFeatures() throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(GetFeaturesRequest._INSTANCE, GetFeaturesRequest.ENDPOINT,
+		return this.transport.performRequestAsync(GetFeaturesRequest._INSTANCE, GetFeaturesRequest._ENDPOINT,
 				this.transportOptions);
 	}
 
@@ -76,7 +77,7 @@ public class ElasticsearchFeaturesAsyncClient extends ApiClient<ElasticsearchFea
 	 *      on elastic.co</a>
 	 */
 	public CompletableFuture<ResetFeaturesResponse> resetFeatures() throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(ResetFeaturesRequest._INSTANCE, ResetFeaturesRequest.ENDPOINT,
+		return this.transport.performRequestAsync(ResetFeaturesRequest._INSTANCE, ResetFeaturesRequest._ENDPOINT,
 				this.transportOptions);
 	}
 

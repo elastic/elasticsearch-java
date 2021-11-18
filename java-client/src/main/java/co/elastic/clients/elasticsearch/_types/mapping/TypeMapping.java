@@ -34,7 +34,6 @@ import co.elastic.clients.util.MapBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
@@ -56,7 +55,7 @@ public class TypeMapping implements JsonpSerializable {
 	private final Boolean dateDetection;
 
 	@Nullable
-	private final JsonValue /* Union(_types.mapping.DynamicMapping | internal.boolean) */ dynamic;
+	private final DynamicMapping dynamic;
 
 	private final List<String> dynamicDateFormats;
 
@@ -135,7 +134,7 @@ public class TypeMapping implements JsonpSerializable {
 	 * API name: {@code dynamic}
 	 */
 	@Nullable
-	public final JsonValue /* Union(_types.mapping.DynamicMapping | internal.boolean) */ dynamic() {
+	public final DynamicMapping dynamic() {
 		return this.dynamic;
 	}
 
@@ -253,8 +252,7 @@ public class TypeMapping implements JsonpSerializable {
 		}
 		if (this.dynamic != null) {
 			generator.writeKey("dynamic");
-			generator.write(this.dynamic);
-
+			this.dynamic.serialize(generator, mapper);
 		}
 		if (ModelTypeHelper.isDefined(this.dynamicDateFormats)) {
 			generator.writeKey("dynamic_date_formats");
@@ -368,7 +366,7 @@ public class TypeMapping implements JsonpSerializable {
 		private Boolean dateDetection;
 
 		@Nullable
-		private JsonValue /* Union(_types.mapping.DynamicMapping | internal.boolean) */ dynamic;
+		private DynamicMapping dynamic;
 
 		@Nullable
 		private List<String> dynamicDateFormats;
@@ -432,8 +430,7 @@ public class TypeMapping implements JsonpSerializable {
 		/**
 		 * API name: {@code dynamic}
 		 */
-		public final Builder dynamic(
-				@Nullable JsonValue /* Union(_types.mapping.DynamicMapping | internal.boolean) */ value) {
+		public final Builder dynamic(@Nullable DynamicMapping value) {
 			this.dynamic = value;
 			return this;
 		}
@@ -634,7 +631,7 @@ public class TypeMapping implements JsonpSerializable {
 
 		op.add(Builder::allField, AllField._DESERIALIZER, "all_field");
 		op.add(Builder::dateDetection, JsonpDeserializer.booleanDeserializer(), "date_detection");
-		op.add(Builder::dynamic, JsonpDeserializer.jsonValueDeserializer(), "dynamic");
+		op.add(Builder::dynamic, DynamicMapping._DESERIALIZER, "dynamic");
 		op.add(Builder::dynamicDateFormats, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"dynamic_date_formats");
 		op.add(Builder::dynamicTemplates, JsonpDeserializer.arrayDeserializer(

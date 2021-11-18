@@ -37,7 +37,7 @@ import java.util.function.Function;
 
 // typedef: _types.analysis.AsciiFoldingTokenFilter
 @JsonpDeserializable
-public class AsciiFoldingTokenFilter extends TokenFilterBase implements TokenFilterVariant {
+public class AsciiFoldingTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
 	private final boolean preserveOriginal;
 
 	// ---------------------------------------------------------------------------------------------
@@ -54,7 +54,7 @@ public class AsciiFoldingTokenFilter extends TokenFilterBase implements TokenFil
 	}
 
 	/**
-	 * {@link TokenFilter} variant type
+	 * {@link TokenFilterDefinition} variant type
 	 */
 	@Override
 	public String _variantType() {

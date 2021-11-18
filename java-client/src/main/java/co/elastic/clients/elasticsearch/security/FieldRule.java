@@ -44,6 +44,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: security._types.FieldRule
+// union type: Container[]
 @JsonpDeserializable
 public class FieldRule implements TaggedUnion<Object>, RoleMappingRuleVariant, JsonpSerializable {
 
@@ -60,8 +61,6 @@ public class FieldRule implements TaggedUnion<Object>, RoleMappingRuleVariant, J
 	public String _variantType() {
 		return "field";
 	}
-
-	// Tagged union implementation
 
 	private final String _type;
 	private final Object _value;
@@ -147,6 +146,7 @@ public class FieldRule implements TaggedUnion<Object>, RoleMappingRuleVariant, J
 	@Override
 	@SuppressWarnings("unchecked")
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+
 		generator.writeStartObject();
 
 		generator.writeKey(_type);
@@ -184,6 +184,7 @@ public class FieldRule implements TaggedUnion<Object>, RoleMappingRuleVariant, J
 		}
 
 		generator.writeEnd();
+
 	}
 
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<FieldRule> {

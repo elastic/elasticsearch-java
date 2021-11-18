@@ -41,7 +41,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.analysis.CharGroupTokenizer
 @JsonpDeserializable
-public class CharGroupTokenizer extends TokenizerBase implements TokenizerVariant {
+public class CharGroupTokenizer extends TokenizerBase implements TokenizerDefinitionVariant {
 	private final List<String> tokenizeOnChars;
 
 	@Nullable
@@ -62,7 +62,7 @@ public class CharGroupTokenizer extends TokenizerBase implements TokenizerVarian
 	}
 
 	/**
-	 * {@link Tokenizer} variant type
+	 * {@link TokenizerDefinition} variant type
 	 */
 	@Override
 	public String _variantType() {

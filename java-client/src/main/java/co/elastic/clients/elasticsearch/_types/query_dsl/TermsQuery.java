@@ -30,7 +30,6 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -42,17 +41,14 @@ import javax.annotation.Nullable;
 public class TermsQuery extends QueryBase implements QueryVariant {
 	private final String field;
 
-	private final JsonValue /*
-							 * Union(Array<_types.long> | Array<internal.string> |
-							 * _types.query_dsl.TermsLookup)
-							 */ value;
+	private final TermsQueryField terms;
 
 	// ---------------------------------------------------------------------------------------------
 
 	private TermsQuery(Builder builder) {
 		super(builder);
 		this.field = ModelTypeHelper.requireNonNull(builder.field, this, "field");
-		this.value = ModelTypeHelper.requireNonNull(builder.value, this, "value");
+		this.terms = ModelTypeHelper.requireNonNull(builder.terms, this, "terms");
 
 	}
 
@@ -78,16 +74,13 @@ public class TermsQuery extends QueryBase implements QueryVariant {
 	/**
 	 * Required -
 	 */
-	public final JsonValue /*
-							 * Union(Array<_types.long> | Array<internal.string> |
-							 * _types.query_dsl.TermsLookup)
-							 */ value() {
-		return this.value;
+	public final TermsQueryField terms() {
+		return this.terms;
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeKey(this.field);
-		generator.write(this.value);
+		this.terms.serialize(generator, mapper);
 
 		super.serializeInternal(generator, mapper);
 
@@ -101,10 +94,7 @@ public class TermsQuery extends QueryBase implements QueryVariant {
 	public static class Builder extends QueryBase.AbstractBuilder<Builder> implements ObjectBuilder<TermsQuery> {
 		private String field;
 
-		private JsonValue /*
-							 * Union(Array<_types.long> | Array<internal.string> |
-							 * _types.query_dsl.TermsLookup)
-							 */ value;
+		private TermsQueryField terms;
 
 		/**
 		 * Required -
@@ -117,12 +107,16 @@ public class TermsQuery extends QueryBase implements QueryVariant {
 		/**
 		 * Required -
 		 */
-		public final Builder value(JsonValue /*
-												 * Union(Array<_types.long> | Array<internal.string> |
-												 * _types.query_dsl.TermsLookup)
-												 */ value) {
-			this.value = value;
+		public final Builder terms(TermsQueryField value) {
+			this.terms = value;
 			return this;
+		}
+
+		/**
+		 * Required -
+		 */
+		public final Builder terms(Function<TermsQueryField.Builder, ObjectBuilder<TermsQueryField>> fn) {
+			return this.terms(fn.apply(new TermsQueryField.Builder()).build());
 		}
 
 		@Override
@@ -156,7 +150,7 @@ public class TermsQuery extends QueryBase implements QueryVariant {
 
 		op.setUnknownFieldHandler((builder, name, parser, mapper) -> {
 			builder.field(name);
-			builder.value(JsonpDeserializer.jsonValueDeserializer().deserialize(parser, mapper));
+			builder.terms(TermsQueryField._DESERIALIZER.deserialize(parser, mapper));
 		});
 
 	}

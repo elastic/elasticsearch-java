@@ -131,7 +131,7 @@ public class ClearCursorRequest extends RequestBase implements JsonpSerializable
 	/**
 	 * Endpoint "{@code sql.clear_cursor}".
 	 */
-	public static final Endpoint<ClearCursorRequest, ClearCursorResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<ClearCursorRequest, ClearCursorResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";

@@ -38,7 +38,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.analysis.PatternReplaceCharFilter
 @JsonpDeserializable
-public class PatternReplaceCharFilter extends CharFilterBase implements CharFilterVariant {
+public class PatternReplaceCharFilter extends CharFilterBase implements CharFilterDefinitionVariant {
 	private final String flags;
 
 	private final String pattern;
@@ -61,7 +61,7 @@ public class PatternReplaceCharFilter extends CharFilterBase implements CharFilt
 	}
 
 	/**
-	 * {@link CharFilter} variant type
+	 * {@link CharFilterDefinition} variant type
 	 */
 	@Override
 	public String _variantType() {

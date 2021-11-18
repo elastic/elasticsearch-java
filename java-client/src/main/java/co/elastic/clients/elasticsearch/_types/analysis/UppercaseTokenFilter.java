@@ -35,7 +35,7 @@ import java.util.function.Function;
 
 // typedef: _types.analysis.UppercaseTokenFilter
 @JsonpDeserializable
-public class UppercaseTokenFilter extends TokenFilterBase implements TokenFilterVariant {
+public class UppercaseTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
 	// ---------------------------------------------------------------------------------------------
 
 	private UppercaseTokenFilter(Builder builder) {
@@ -48,7 +48,7 @@ public class UppercaseTokenFilter extends TokenFilterBase implements TokenFilter
 	}
 
 	/**
-	 * {@link TokenFilter} variant type
+	 * {@link TokenFilterDefinition} variant type
 	 */
 	@Override
 	public String _variantType() {

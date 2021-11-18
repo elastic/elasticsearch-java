@@ -171,7 +171,7 @@ public class RollupRequest extends RequestBase implements JsonpSerializable {
 	/**
 	 * Endpoint "{@code rollup.rollup}".
 	 */
-	public static final Endpoint<RollupRequest, RollupResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<RollupRequest, RollupResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";

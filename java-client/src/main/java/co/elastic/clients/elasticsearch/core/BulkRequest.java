@@ -24,13 +24,16 @@
 package co.elastic.clients.elasticsearch.core;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
+import co.elastic.clients.elasticsearch._types.Refresh;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.elasticsearch._types.Time;
+import co.elastic.clients.elasticsearch._types.WaitForActiveShards;
 import co.elastic.clients.elasticsearch.core.bulk.Operation;
+import co.elastic.clients.elasticsearch.core.search.SourceConfigParam;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
-import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.NdJsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
@@ -39,7 +42,6 @@ import co.elastic.clients.transport.SimpleEndpoint;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
@@ -58,7 +60,7 @@ import javax.annotation.Nullable;
 
 public class BulkRequest extends RequestBase implements NdJsonpSerializable, JsonpSerializable {
 	@Nullable
-	private final JsonValue /* Union(_types.Fields | internal.boolean) */ source;
+	private final SourceConfigParam source;
 
 	private final List<String> sourceExcludes;
 
@@ -71,7 +73,7 @@ public class BulkRequest extends RequestBase implements NdJsonpSerializable, Jso
 	private final String pipeline;
 
 	@Nullable
-	private final JsonValue /* _types.Refresh */ refresh;
+	private final Refresh refresh;
 
 	@Nullable
 	private final Boolean requireAlias;
@@ -80,13 +82,13 @@ public class BulkRequest extends RequestBase implements NdJsonpSerializable, Jso
 	private final String routing;
 
 	@Nullable
-	private final String timeout;
+	private final Time timeout;
 
 	@Nullable
 	private final String type;
 
 	@Nullable
-	private final JsonValue /* _types.WaitForActiveShards */ waitForActiveShards;
+	private final WaitForActiveShards waitForActiveShards;
 
 	private final List<Operation> operations;
 
@@ -124,7 +126,7 @@ public class BulkRequest extends RequestBase implements NdJsonpSerializable, Jso
 	 * API name: {@code _source}
 	 */
 	@Nullable
-	public final JsonValue /* Union(_types.Fields | internal.boolean) */ source() {
+	public final SourceConfigParam source() {
 		return this.source;
 	}
 
@@ -177,7 +179,7 @@ public class BulkRequest extends RequestBase implements NdJsonpSerializable, Jso
 	 * API name: {@code refresh}
 	 */
 	@Nullable
-	public final JsonValue /* _types.Refresh */ refresh() {
+	public final Refresh refresh() {
 		return this.refresh;
 	}
 
@@ -207,7 +209,7 @@ public class BulkRequest extends RequestBase implements NdJsonpSerializable, Jso
 	 * API name: {@code timeout}
 	 */
 	@Nullable
-	public final String timeout() {
+	public final Time timeout() {
 		return this.timeout;
 	}
 
@@ -231,7 +233,7 @@ public class BulkRequest extends RequestBase implements NdJsonpSerializable, Jso
 	 * API name: {@code wait_for_active_shards}
 	 */
 	@Nullable
-	public final JsonValue /* _types.WaitForActiveShards */ waitForActiveShards() {
+	public final WaitForActiveShards waitForActiveShards() {
 		return this.waitForActiveShards;
 	}
 
@@ -264,7 +266,7 @@ public class BulkRequest extends RequestBase implements NdJsonpSerializable, Jso
 	 */
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<BulkRequest> {
 		@Nullable
-		private JsonValue /* Union(_types.Fields | internal.boolean) */ source;
+		private SourceConfigParam source;
 
 		@Nullable
 		private List<String> sourceExcludes;
@@ -279,7 +281,7 @@ public class BulkRequest extends RequestBase implements NdJsonpSerializable, Jso
 		private String pipeline;
 
 		@Nullable
-		private JsonValue /* _types.Refresh */ refresh;
+		private Refresh refresh;
 
 		@Nullable
 		private Boolean requireAlias;
@@ -288,13 +290,13 @@ public class BulkRequest extends RequestBase implements NdJsonpSerializable, Jso
 		private String routing;
 
 		@Nullable
-		private String timeout;
+		private Time timeout;
 
 		@Nullable
 		private String type;
 
 		@Nullable
-		private JsonValue /* _types.WaitForActiveShards */ waitForActiveShards;
+		private WaitForActiveShards waitForActiveShards;
 
 		private List<Operation> operations;
 
@@ -304,9 +306,19 @@ public class BulkRequest extends RequestBase implements NdJsonpSerializable, Jso
 		 * <p>
 		 * API name: {@code _source}
 		 */
-		public final Builder source(@Nullable JsonValue /* Union(_types.Fields | internal.boolean) */ value) {
+		public final Builder source(@Nullable SourceConfigParam value) {
 			this.source = value;
 			return this;
+		}
+
+		/**
+		 * True or false to return the _source field or not, or default list of fields
+		 * to return, can be overridden on each sub-request
+		 * <p>
+		 * API name: {@code _source}
+		 */
+		public final Builder source(Function<SourceConfigParam.Builder, ObjectBuilder<SourceConfigParam>> fn) {
+			return this.source(fn.apply(new SourceConfigParam.Builder()).build());
 		}
 
 		/**
@@ -381,7 +393,7 @@ public class BulkRequest extends RequestBase implements NdJsonpSerializable, Jso
 		 * <p>
 		 * API name: {@code refresh}
 		 */
-		public final Builder refresh(@Nullable JsonValue /* _types.Refresh */ value) {
+		public final Builder refresh(@Nullable Refresh value) {
 			this.refresh = value;
 			return this;
 		}
@@ -411,9 +423,18 @@ public class BulkRequest extends RequestBase implements NdJsonpSerializable, Jso
 		 * <p>
 		 * API name: {@code timeout}
 		 */
-		public final Builder timeout(@Nullable String value) {
+		public final Builder timeout(@Nullable Time value) {
 			this.timeout = value;
 			return this;
+		}
+
+		/**
+		 * Explicit operation timeout
+		 * <p>
+		 * API name: {@code timeout}
+		 */
+		public final Builder timeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.timeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -435,9 +456,23 @@ public class BulkRequest extends RequestBase implements NdJsonpSerializable, Jso
 		 * <p>
 		 * API name: {@code wait_for_active_shards}
 		 */
-		public final Builder waitForActiveShards(@Nullable JsonValue /* _types.WaitForActiveShards */ value) {
+		public final Builder waitForActiveShards(@Nullable WaitForActiveShards value) {
 			this.waitForActiveShards = value;
 			return this;
+		}
+
+		/**
+		 * Sets the number of shard copies that must be active before proceeding with
+		 * the bulk operation. Defaults to 1, meaning the primary shard only. Set to
+		 * <code>all</code> for all shard copies, otherwise set to any non-negative
+		 * value less than or equal to the total number of copies for the shard (number
+		 * of replicas + 1)
+		 * <p>
+		 * API name: {@code wait_for_active_shards}
+		 */
+		public final Builder waitForActiveShards(
+				Function<WaitForActiveShards.Builder, ObjectBuilder<WaitForActiveShards>> fn) {
+			return this.waitForActiveShards(fn.apply(new WaitForActiveShards.Builder()).build());
 		}
 
 		/**
@@ -492,7 +527,7 @@ public class BulkRequest extends RequestBase implements NdJsonpSerializable, Jso
 	/**
 	 * Endpoint "{@code bulk}".
 	 */
-	public static final Endpoint<BulkRequest, BulkResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<BulkRequest, BulkResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";
@@ -549,13 +584,13 @@ public class BulkRequest extends RequestBase implements NdJsonpSerializable, Jso
 					params.put("require_alias", String.valueOf(request.requireAlias));
 				}
 				if (request.refresh != null) {
-					params.put("refresh", JsonpUtils.toString(request.refresh));
+					params.put("refresh", request.refresh.jsonValue());
 				}
 				if (request.waitForActiveShards != null) {
-					params.put("wait_for_active_shards", JsonpUtils.toString(request.waitForActiveShards));
+					params.put("wait_for_active_shards", request.waitForActiveShards._toJsonString());
 				}
 				if (request.source != null) {
-					params.put("_source", JsonpUtils.toString(request.source));
+					params.put("_source", request.source._toJsonString());
 				}
 				if (ModelTypeHelper.isDefined(request.sourceExcludes)) {
 					params.put("_source_excludes",
@@ -566,7 +601,7 @@ public class BulkRequest extends RequestBase implements NdJsonpSerializable, Jso
 							request.sourceIncludes.stream().map(v -> v).collect(Collectors.joining(",")));
 				}
 				if (request.timeout != null) {
-					params.put("timeout", request.timeout);
+					params.put("timeout", request.timeout._toJsonString());
 				}
 				return params;
 

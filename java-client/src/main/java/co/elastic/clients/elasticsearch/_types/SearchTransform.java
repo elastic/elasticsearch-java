@@ -34,7 +34,6 @@ import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.String;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -44,7 +43,7 @@ import javax.annotation.Nullable;
 public class SearchTransform implements TransformVariant, JsonpSerializable {
 	private final SearchInputRequestDefinition request;
 
-	private final String timeout;
+	private final Time timeout;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -77,7 +76,7 @@ public class SearchTransform implements TransformVariant, JsonpSerializable {
 	/**
 	 * Required - API name: {@code timeout}
 	 */
-	public final String timeout() {
+	public final Time timeout() {
 		return this.timeout;
 	}
 
@@ -96,7 +95,7 @@ public class SearchTransform implements TransformVariant, JsonpSerializable {
 		this.request.serialize(generator, mapper);
 
 		generator.writeKey("timeout");
-		generator.write(this.timeout);
+		this.timeout.serialize(generator, mapper);
 
 	}
 
@@ -108,7 +107,7 @@ public class SearchTransform implements TransformVariant, JsonpSerializable {
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<SearchTransform> {
 		private SearchInputRequestDefinition request;
 
-		private String timeout;
+		private Time timeout;
 
 		/**
 		 * Required - API name: {@code request}
@@ -129,9 +128,16 @@ public class SearchTransform implements TransformVariant, JsonpSerializable {
 		/**
 		 * Required - API name: {@code timeout}
 		 */
-		public final Builder timeout(String value) {
+		public final Builder timeout(Time value) {
 			this.timeout = value;
 			return this;
+		}
+
+		/**
+		 * Required - API name: {@code timeout}
+		 */
+		public final Builder timeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.timeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -158,7 +164,7 @@ public class SearchTransform implements TransformVariant, JsonpSerializable {
 	protected static void setupSearchTransformDeserializer(ObjectDeserializer<SearchTransform.Builder> op) {
 
 		op.add(Builder::request, SearchInputRequestDefinition._DESERIALIZER, "request");
-		op.add(Builder::timeout, JsonpDeserializer.stringDeserializer(), "timeout");
+		op.add(Builder::timeout, Time._DESERIALIZER, "timeout");
 
 	}
 

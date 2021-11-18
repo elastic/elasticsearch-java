@@ -35,7 +35,7 @@ import java.util.function.Function;
 
 // typedef: _types.analysis.HtmlStripCharFilter
 @JsonpDeserializable
-public class HtmlStripCharFilter extends CharFilterBase implements CharFilterVariant {
+public class HtmlStripCharFilter extends CharFilterBase implements CharFilterDefinitionVariant {
 	// ---------------------------------------------------------------------------------------------
 
 	private HtmlStripCharFilter(Builder builder) {
@@ -48,7 +48,7 @@ public class HtmlStripCharFilter extends CharFilterBase implements CharFilterVar
 	}
 
 	/**
-	 * {@link CharFilter} variant type
+	 * {@link CharFilterDefinition} variant type
 	 */
 	@Override
 	public String _variantType() {

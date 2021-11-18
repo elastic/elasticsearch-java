@@ -385,7 +385,7 @@ public class PutIndexTemplateRequest extends RequestBase implements JsonpSeriali
 	/**
 	 * Endpoint "{@code indices.put_index_template}".
 	 */
-	public static final Endpoint<PutIndexTemplateRequest, PutIndexTemplateResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<PutIndexTemplateRequest, PutIndexTemplateResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "PUT";

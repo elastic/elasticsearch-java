@@ -23,6 +23,7 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
+import co.elastic.clients.elasticsearch._types.FieldValue;
 import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -48,7 +49,7 @@ public class InferenceAggregate extends AggregateBase implements AggregateVarian
 	private final Map<String, JsonData> data;
 
 	@Nullable
-	private final String value;
+	private final FieldValue value;
 
 	private final List<InferenceFeatureImportance> featureImportance;
 
@@ -93,7 +94,7 @@ public class InferenceAggregate extends AggregateBase implements AggregateVarian
 	 * API name: {@code value}
 	 */
 	@Nullable
-	public final String value() {
+	public final FieldValue value() {
 		return this.value;
 	}
 
@@ -130,7 +131,7 @@ public class InferenceAggregate extends AggregateBase implements AggregateVarian
 		super.serializeInternal(generator, mapper);
 		if (this.value != null) {
 			generator.writeKey("value");
-			generator.write(this.value);
+			this.value.serialize(generator, mapper);
 
 		}
 		if (ModelTypeHelper.isDefined(this.featureImportance)) {
@@ -181,7 +182,7 @@ public class InferenceAggregate extends AggregateBase implements AggregateVarian
 		}
 
 		@Nullable
-		private String value;
+		private FieldValue value;
 
 		@Nullable
 		private List<InferenceFeatureImportance> featureImportance;
@@ -195,9 +196,16 @@ public class InferenceAggregate extends AggregateBase implements AggregateVarian
 		/**
 		 * API name: {@code value}
 		 */
-		public final Builder value(@Nullable String value) {
+		public final Builder value(@Nullable FieldValue value) {
 			this.value = value;
 			return this;
+		}
+
+		/**
+		 * API name: {@code value}
+		 */
+		public final Builder value(Function<FieldValue.Builder, ObjectBuilder<FieldValue>> fn) {
+			return this.value(fn.apply(new FieldValue.Builder()).build());
 		}
 
 		/**
@@ -294,7 +302,7 @@ public class InferenceAggregate extends AggregateBase implements AggregateVarian
 
 	protected static void setupInferenceAggregateDeserializer(ObjectDeserializer<InferenceAggregate.Builder> op) {
 		AggregateBase.setupAggregateBaseDeserializer(op);
-		op.add(Builder::value, JsonpDeserializer.stringDeserializer(), "value");
+		op.add(Builder::value, FieldValue._DESERIALIZER, "value");
 		op.add(Builder::featureImportance,
 				JsonpDeserializer.arrayDeserializer(InferenceFeatureImportance._DESERIALIZER), "feature_importance");
 		op.add(Builder::topClasses, JsonpDeserializer.arrayDeserializer(InferenceTopClassEntry._DESERIALIZER),

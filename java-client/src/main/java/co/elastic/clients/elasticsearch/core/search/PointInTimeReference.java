@@ -23,6 +23,7 @@
 
 package co.elastic.clients.elasticsearch.core.search;
 
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -44,7 +45,7 @@ public class PointInTimeReference implements JsonpSerializable {
 	private final String id;
 
 	@Nullable
-	private final String keepAlive;
+	private final Time keepAlive;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -70,7 +71,7 @@ public class PointInTimeReference implements JsonpSerializable {
 	 * API name: {@code keep_alive}
 	 */
 	@Nullable
-	public final String keepAlive() {
+	public final Time keepAlive() {
 		return this.keepAlive;
 	}
 
@@ -90,7 +91,7 @@ public class PointInTimeReference implements JsonpSerializable {
 
 		if (this.keepAlive != null) {
 			generator.writeKey("keep_alive");
-			generator.write(this.keepAlive);
+			this.keepAlive.serialize(generator, mapper);
 
 		}
 
@@ -105,7 +106,7 @@ public class PointInTimeReference implements JsonpSerializable {
 		private String id;
 
 		@Nullable
-		private String keepAlive;
+		private Time keepAlive;
 
 		/**
 		 * Required - API name: {@code id}
@@ -118,9 +119,16 @@ public class PointInTimeReference implements JsonpSerializable {
 		/**
 		 * API name: {@code keep_alive}
 		 */
-		public final Builder keepAlive(@Nullable String value) {
+		public final Builder keepAlive(@Nullable Time value) {
 			this.keepAlive = value;
 			return this;
+		}
+
+		/**
+		 * API name: {@code keep_alive}
+		 */
+		public final Builder keepAlive(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.keepAlive(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -147,7 +155,7 @@ public class PointInTimeReference implements JsonpSerializable {
 	protected static void setupPointInTimeReferenceDeserializer(ObjectDeserializer<PointInTimeReference.Builder> op) {
 
 		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "id");
-		op.add(Builder::keepAlive, JsonpDeserializer.stringDeserializer(), "keep_alive");
+		op.add(Builder::keepAlive, Time._DESERIALIZER, "keep_alive");
 
 	}
 

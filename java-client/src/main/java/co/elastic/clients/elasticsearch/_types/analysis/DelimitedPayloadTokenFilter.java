@@ -38,7 +38,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.analysis.DelimitedPayloadTokenFilter
 @JsonpDeserializable
-public class DelimitedPayloadTokenFilter extends TokenFilterBase implements TokenFilterVariant {
+public class DelimitedPayloadTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
 	private final String delimiter;
 
 	private final DelimitedPayloadEncoding encoding;
@@ -58,7 +58,7 @@ public class DelimitedPayloadTokenFilter extends TokenFilterBase implements Toke
 	}
 
 	/**
-	 * {@link TokenFilter} variant type
+	 * {@link TokenFilterDefinition} variant type
 	 */
 	@Override
 	public String _variantType() {

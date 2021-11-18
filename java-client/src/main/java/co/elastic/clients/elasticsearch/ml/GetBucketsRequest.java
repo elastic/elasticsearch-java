@@ -71,6 +71,9 @@ public class GetBucketsRequest extends RequestBase implements JsonpSerializable 
 	private final String jobId;
 
 	@Nullable
+	private final Page page;
+
+	@Nullable
 	private final Integer size;
 
 	@Nullable
@@ -93,6 +96,7 @@ public class GetBucketsRequest extends RequestBase implements JsonpSerializable 
 		this.expand = builder.expand;
 		this.from = builder.from;
 		this.jobId = ModelTypeHelper.requireNonNull(builder.jobId, this, "jobId");
+		this.page = builder.page;
 		this.size = builder.size;
 		this.sort = builder.sort;
 		this.start = builder.start;
@@ -105,7 +109,7 @@ public class GetBucketsRequest extends RequestBase implements JsonpSerializable 
 	}
 
 	/**
-	 * Returns buckets with anomaly scores greater or equal than this value.
+	 * Refer to the description for the <code>anomaly_score</code> query parameter.
 	 * <p>
 	 * API name: {@code anomaly_score}
 	 */
@@ -115,7 +119,7 @@ public class GetBucketsRequest extends RequestBase implements JsonpSerializable 
 	}
 
 	/**
-	 * If <code>true</code>, the buckets are sorted in descending order.
+	 * Refer to the description for the <code>desc</code> query parameter.
 	 * <p>
 	 * API name: {@code desc}
 	 */
@@ -125,8 +129,7 @@ public class GetBucketsRequest extends RequestBase implements JsonpSerializable 
 	}
 
 	/**
-	 * Returns buckets with timestamps earlier than this time. <code>-1</code> means
-	 * it is unset and results are not limited to specific timestamps.
+	 * Refer to the description for the <code>end</code> query parameter.
 	 * <p>
 	 * API name: {@code end}
 	 */
@@ -136,7 +139,8 @@ public class GetBucketsRequest extends RequestBase implements JsonpSerializable 
 	}
 
 	/**
-	 * If <code>true</code>, the output excludes interim results.
+	 * Refer to the description for the <code>exclude_interim</code> query
+	 * parameter.
 	 * <p>
 	 * API name: {@code exclude_interim}
 	 */
@@ -146,7 +150,7 @@ public class GetBucketsRequest extends RequestBase implements JsonpSerializable 
 	}
 
 	/**
-	 * If true, the output includes anomaly records.
+	 * Refer to the description for the <code>expand</code> query parameter.
 	 * <p>
 	 * API name: {@code expand}
 	 */
@@ -175,6 +179,14 @@ public class GetBucketsRequest extends RequestBase implements JsonpSerializable 
 	}
 
 	/**
+	 * API name: {@code page}
+	 */
+	@Nullable
+	public final Page page() {
+		return this.page;
+	}
+
+	/**
 	 * Specifies the maximum number of buckets to obtain.
 	 * <p>
 	 * API name: {@code size}
@@ -185,7 +197,7 @@ public class GetBucketsRequest extends RequestBase implements JsonpSerializable 
 	}
 
 	/**
-	 * Specifies the sort field for the requested buckets.
+	 * Refer to the desription for the <code>sort</code> query parameter.
 	 * <p>
 	 * API name: {@code sort}
 	 */
@@ -195,8 +207,7 @@ public class GetBucketsRequest extends RequestBase implements JsonpSerializable 
 	}
 
 	/**
-	 * Returns buckets with timestamps after this time. <code>-1</code> means it is
-	 * unset and results are not limited to specific timestamps.
+	 * Refer to the description for the <code>start</code> query parameter.
 	 * <p>
 	 * API name: {@code start}
 	 */
@@ -252,6 +263,11 @@ public class GetBucketsRequest extends RequestBase implements JsonpSerializable 
 			generator.write(this.expand);
 
 		}
+		if (this.page != null) {
+			generator.writeKey("page");
+			this.page.serialize(generator, mapper);
+
+		}
 		if (this.sort != null) {
 			generator.writeKey("sort");
 			generator.write(this.sort);
@@ -292,6 +308,9 @@ public class GetBucketsRequest extends RequestBase implements JsonpSerializable 
 		private String jobId;
 
 		@Nullable
+		private Page page;
+
+		@Nullable
 		private Integer size;
 
 		@Nullable
@@ -304,7 +323,7 @@ public class GetBucketsRequest extends RequestBase implements JsonpSerializable 
 		private String timestamp;
 
 		/**
-		 * Returns buckets with anomaly scores greater or equal than this value.
+		 * Refer to the description for the <code>anomaly_score</code> query parameter.
 		 * <p>
 		 * API name: {@code anomaly_score}
 		 */
@@ -314,7 +333,7 @@ public class GetBucketsRequest extends RequestBase implements JsonpSerializable 
 		}
 
 		/**
-		 * If <code>true</code>, the buckets are sorted in descending order.
+		 * Refer to the description for the <code>desc</code> query parameter.
 		 * <p>
 		 * API name: {@code desc}
 		 */
@@ -324,8 +343,7 @@ public class GetBucketsRequest extends RequestBase implements JsonpSerializable 
 		}
 
 		/**
-		 * Returns buckets with timestamps earlier than this time. <code>-1</code> means
-		 * it is unset and results are not limited to specific timestamps.
+		 * Refer to the description for the <code>end</code> query parameter.
 		 * <p>
 		 * API name: {@code end}
 		 */
@@ -335,7 +353,8 @@ public class GetBucketsRequest extends RequestBase implements JsonpSerializable 
 		}
 
 		/**
-		 * If <code>true</code>, the output excludes interim results.
+		 * Refer to the description for the <code>exclude_interim</code> query
+		 * parameter.
 		 * <p>
 		 * API name: {@code exclude_interim}
 		 */
@@ -345,7 +364,7 @@ public class GetBucketsRequest extends RequestBase implements JsonpSerializable 
 		}
 
 		/**
-		 * If true, the output includes anomaly records.
+		 * Refer to the description for the <code>expand</code> query parameter.
 		 * <p>
 		 * API name: {@code expand}
 		 */
@@ -375,6 +394,21 @@ public class GetBucketsRequest extends RequestBase implements JsonpSerializable 
 		}
 
 		/**
+		 * API name: {@code page}
+		 */
+		public final Builder page(@Nullable Page value) {
+			this.page = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code page}
+		 */
+		public final Builder page(Function<Page.Builder, ObjectBuilder<Page>> fn) {
+			return this.page(fn.apply(new Page.Builder()).build());
+		}
+
+		/**
 		 * Specifies the maximum number of buckets to obtain.
 		 * <p>
 		 * API name: {@code size}
@@ -385,7 +419,7 @@ public class GetBucketsRequest extends RequestBase implements JsonpSerializable 
 		}
 
 		/**
-		 * Specifies the sort field for the requested buckets.
+		 * Refer to the desription for the <code>sort</code> query parameter.
 		 * <p>
 		 * API name: {@code sort}
 		 */
@@ -395,8 +429,7 @@ public class GetBucketsRequest extends RequestBase implements JsonpSerializable 
 		}
 
 		/**
-		 * Returns buckets with timestamps after this time. <code>-1</code> means it is
-		 * unset and results are not limited to specific timestamps.
+		 * Refer to the description for the <code>start</code> query parameter.
 		 * <p>
 		 * API name: {@code start}
 		 */
@@ -444,6 +477,7 @@ public class GetBucketsRequest extends RequestBase implements JsonpSerializable 
 		op.add(Builder::end, JsonpDeserializer.stringDeserializer(), "end");
 		op.add(Builder::excludeInterim, JsonpDeserializer.booleanDeserializer(), "exclude_interim");
 		op.add(Builder::expand, JsonpDeserializer.booleanDeserializer(), "expand");
+		op.add(Builder::page, Page._DESERIALIZER, "page");
 		op.add(Builder::sort, JsonpDeserializer.stringDeserializer(), "sort");
 		op.add(Builder::start, JsonpDeserializer.stringDeserializer(), "start");
 
@@ -454,7 +488,7 @@ public class GetBucketsRequest extends RequestBase implements JsonpSerializable 
 	/**
 	 * Endpoint "{@code ml.get_buckets}".
 	 */
-	public static final Endpoint<GetBucketsRequest, GetBucketsResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<GetBucketsRequest, GetBucketsResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";

@@ -23,6 +23,7 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -57,7 +58,7 @@ public class OverallBucket implements JsonpSerializable {
 
 	private final String resultType;
 
-	private final String timestamp;
+	private final Time timestamp;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -129,7 +130,7 @@ public class OverallBucket implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code timestamp}
 	 */
-	public final String timestamp() {
+	public final Time timestamp() {
 		return this.timestamp;
 	}
 
@@ -167,7 +168,7 @@ public class OverallBucket implements JsonpSerializable {
 		generator.write(this.resultType);
 
 		generator.writeKey("timestamp");
-		generator.write(this.timestamp);
+		this.timestamp.serialize(generator, mapper);
 
 	}
 
@@ -187,7 +188,7 @@ public class OverallBucket implements JsonpSerializable {
 
 		private String resultType;
 
-		private String timestamp;
+		private Time timestamp;
 
 		/**
 		 * Required - The length of the bucket in seconds. Matches the job with the
@@ -271,9 +272,19 @@ public class OverallBucket implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code timestamp}
 		 */
-		public final Builder timestamp(String value) {
+		public final Builder timestamp(Time value) {
 			this.timestamp = value;
 			return this;
+		}
+
+		/**
+		 * Required - The start time of the bucket for which these results were
+		 * calculated.
+		 * <p>
+		 * API name: {@code timestamp}
+		 */
+		public final Builder timestamp(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.timestamp(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -304,7 +315,7 @@ public class OverallBucket implements JsonpSerializable {
 		op.add(Builder::jobs, JsonpDeserializer.arrayDeserializer(OverallBucketJob._DESERIALIZER), "jobs");
 		op.add(Builder::overallScore, JsonpDeserializer.doubleDeserializer(), "overall_score");
 		op.add(Builder::resultType, JsonpDeserializer.stringDeserializer(), "result_type");
-		op.add(Builder::timestamp, JsonpDeserializer.stringDeserializer(), "timestamp");
+		op.add(Builder::timestamp, Time._DESERIALIZER, "timestamp");
 
 	}
 

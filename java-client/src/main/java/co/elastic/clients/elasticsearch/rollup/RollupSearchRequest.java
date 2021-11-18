@@ -295,7 +295,7 @@ public class RollupSearchRequest extends RequestBase implements JsonpSerializabl
 	/**
 	 * Endpoint "{@code rollup.rollup_search}".
 	 */
-	private static final SimpleEndpoint<RollupSearchRequest, Void> ENDPOINT = new SimpleEndpoint<>(
+	public static final SimpleEndpoint<RollupSearchRequest, ?> _ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";
@@ -337,14 +337,14 @@ public class RollupSearchRequest extends RequestBase implements JsonpSerializabl
 			request -> {
 				return Collections.emptyMap();
 
-			}, SimpleEndpoint.emptyMap(), true, null);
+			}, SimpleEndpoint.emptyMap(), true, RollupSearchResponse._DESERIALIZER);
 
 	/**
 	 * Create an "{@code rollup.rollup_search}" endpoint.
 	 */
 	public static <TDocument> Endpoint<RollupSearchRequest, RollupSearchResponse<TDocument>, ErrorResponse> createRollupSearchEndpoint(
 			JsonpDeserializer<TDocument> tDocumentDeserializer) {
-		return ENDPOINT.withResponseDeserializer(
+		return _ENDPOINT.withResponseDeserializer(
 				RollupSearchResponse.createRollupSearchResponseDeserializer(tDocumentDeserializer));
 	}
 }

@@ -32,7 +32,6 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.Objects;
@@ -42,7 +41,7 @@ import javax.annotation.Nullable;
 // typedef: _types.ScriptField
 @JsonpDeserializable
 public class ScriptField implements JsonpSerializable {
-	private final JsonValue /* _types.Script */ script;
+	private final Script script;
 
 	@Nullable
 	private final Boolean ignoreFailure;
@@ -63,7 +62,7 @@ public class ScriptField implements JsonpSerializable {
 	/**
 	 * Required - API name: {@code script}
 	 */
-	public final JsonValue /* _types.Script */ script() {
+	public final Script script() {
 		return this.script;
 	}
 
@@ -87,7 +86,7 @@ public class ScriptField implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("script");
-		generator.write(this.script);
+		this.script.serialize(generator, mapper);
 
 		if (this.ignoreFailure != null) {
 			generator.writeKey("ignore_failure");
@@ -103,7 +102,7 @@ public class ScriptField implements JsonpSerializable {
 	 * Builder for {@link ScriptField}.
 	 */
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ScriptField> {
-		private JsonValue /* _types.Script */ script;
+		private Script script;
 
 		@Nullable
 		private Boolean ignoreFailure;
@@ -111,9 +110,16 @@ public class ScriptField implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code script}
 		 */
-		public final Builder script(JsonValue /* _types.Script */ value) {
+		public final Builder script(Script value) {
 			this.script = value;
 			return this;
+		}
+
+		/**
+		 * Required - API name: {@code script}
+		 */
+		public final Builder script(Function<Script.Builder, ObjectBuilder<Script>> fn) {
+			return this.script(fn.apply(new Script.Builder()).build());
 		}
 
 		/**
@@ -147,7 +153,7 @@ public class ScriptField implements JsonpSerializable {
 
 	protected static void setupScriptFieldDeserializer(ObjectDeserializer<ScriptField.Builder> op) {
 
-		op.add(Builder::script, JsonpDeserializer.jsonValueDeserializer(), "script");
+		op.add(Builder::script, Script._DESERIALIZER, "script");
 		op.add(Builder::ignoreFailure, JsonpDeserializer.booleanDeserializer(), "ignore_failure");
 
 	}

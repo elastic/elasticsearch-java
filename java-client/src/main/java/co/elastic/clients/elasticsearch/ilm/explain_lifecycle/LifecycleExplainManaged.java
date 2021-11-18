@@ -23,6 +23,7 @@
 
 package co.elastic.clients.elasticsearch.ilm.explain_lifecycle;
 
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -49,7 +50,7 @@ public class LifecycleExplainManaged implements LifecycleExplainVariant, JsonpSe
 
 	private final String actionTimeMillis;
 
-	private final String age;
+	private final Time age;
 
 	@Nullable
 	private final String failedStep;
@@ -130,7 +131,7 @@ public class LifecycleExplainManaged implements LifecycleExplainVariant, JsonpSe
 	/**
 	 * Required - API name: {@code age}
 	 */
-	public final String age() {
+	public final Time age() {
 		return this.age;
 	}
 
@@ -241,7 +242,7 @@ public class LifecycleExplainManaged implements LifecycleExplainVariant, JsonpSe
 		generator.write(this.actionTimeMillis);
 
 		generator.writeKey("age");
-		generator.write(this.age);
+		this.age.serialize(generator, mapper);
 
 		if (this.failedStep != null) {
 			generator.writeKey("failed_step");
@@ -305,7 +306,7 @@ public class LifecycleExplainManaged implements LifecycleExplainVariant, JsonpSe
 
 		private String actionTimeMillis;
 
-		private String age;
+		private Time age;
 
 		@Nullable
 		private String failedStep;
@@ -354,9 +355,16 @@ public class LifecycleExplainManaged implements LifecycleExplainVariant, JsonpSe
 		/**
 		 * Required - API name: {@code age}
 		 */
-		public final Builder age(String value) {
+		public final Builder age(Time value) {
 			this.age = value;
 			return this;
+		}
+
+		/**
+		 * Required - API name: {@code age}
+		 */
+		public final Builder age(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.age(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -489,7 +497,7 @@ public class LifecycleExplainManaged implements LifecycleExplainVariant, JsonpSe
 
 		op.add(Builder::action, JsonpDeserializer.stringDeserializer(), "action");
 		op.add(Builder::actionTimeMillis, JsonpDeserializer.stringDeserializer(), "action_time_millis");
-		op.add(Builder::age, JsonpDeserializer.stringDeserializer(), "age");
+		op.add(Builder::age, Time._DESERIALIZER, "age");
 		op.add(Builder::failedStep, JsonpDeserializer.stringDeserializer(), "failed_step");
 		op.add(Builder::failedStepRetryCount, JsonpDeserializer.integerDeserializer(), "failed_step_retry_count");
 		op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "index");

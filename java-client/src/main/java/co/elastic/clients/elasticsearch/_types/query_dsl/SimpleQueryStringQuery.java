@@ -250,6 +250,7 @@ public class SimpleQueryStringQuery extends QueryBase implements QueryVariant {
 		if (this.flags != null) {
 			generator.writeKey("flags");
 			this.flags.serialize(generator, mapper);
+
 		}
 		if (this.fuzzyMaxExpansions != null) {
 			generator.writeKey("fuzzy_max_expansions");
@@ -387,6 +388,13 @@ public class SimpleQueryStringQuery extends QueryBase implements QueryVariant {
 		public final Builder flags(@Nullable SimpleQueryStringFlags value) {
 			this.flags = value;
 			return this;
+		}
+
+		/**
+		 * API name: {@code flags}
+		 */
+		public final Builder flags(Function<SimpleQueryStringFlags.Builder, ObjectBuilder<SimpleQueryStringFlags>> fn) {
+			return this.flags(fn.apply(new SimpleQueryStringFlags.Builder()).build());
 		}
 
 		/**

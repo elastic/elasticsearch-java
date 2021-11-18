@@ -250,7 +250,7 @@ public class ForgetFollowerRequest extends RequestBase implements JsonpSerializa
 	/**
 	 * Endpoint "{@code ccr.forget_follower}".
 	 */
-	public static final Endpoint<ForgetFollowerRequest, ForgetFollowerResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<ForgetFollowerRequest, ForgetFollowerResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";

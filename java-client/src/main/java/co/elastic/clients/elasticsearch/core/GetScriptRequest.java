@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.core;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -48,7 +49,7 @@ public class GetScriptRequest extends RequestBase {
 	private final String id;
 
 	@Nullable
-	private final String masterTimeout;
+	private final Time masterTimeout;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -78,7 +79,7 @@ public class GetScriptRequest extends RequestBase {
 	 * API name: {@code master_timeout}
 	 */
 	@Nullable
-	public final String masterTimeout() {
+	public final Time masterTimeout() {
 		return this.masterTimeout;
 	}
 
@@ -91,7 +92,7 @@ public class GetScriptRequest extends RequestBase {
 		private String id;
 
 		@Nullable
-		private String masterTimeout;
+		private Time masterTimeout;
 
 		/**
 		 * Required - Script ID
@@ -108,9 +109,18 @@ public class GetScriptRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
-		public final Builder masterTimeout(@Nullable String value) {
+		public final Builder masterTimeout(@Nullable Time value) {
 			this.masterTimeout = value;
 			return this;
+		}
+
+		/**
+		 * Specify timeout for connection to master
+		 * <p>
+		 * API name: {@code master_timeout}
+		 */
+		public final Builder masterTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.masterTimeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -131,7 +141,7 @@ public class GetScriptRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code get_script}".
 	 */
-	public static final Endpoint<GetScriptRequest, GetScriptResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<GetScriptRequest, GetScriptResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "GET";
@@ -161,7 +171,7 @@ public class GetScriptRequest extends RequestBase {
 			request -> {
 				Map<String, String> params = new HashMap<>();
 				if (request.masterTimeout != null) {
-					params.put("master_timeout", request.masterTimeout);
+					params.put("master_timeout", request.masterTimeout._toJsonString());
 				}
 				return params;
 

@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.async_search;
 
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
+import co.elastic.clients.json.NamedDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
@@ -34,7 +35,7 @@ import java.util.function.Function;
 import java.util.function.Supplier;
 
 // typedef: async_search.get.Response
-
+@JsonpDeserializable
 public class GetAsyncSearchResponse<TDocument> extends AsyncSearchDocumentResponseBase<TDocument> {
 	// ---------------------------------------------------------------------------------------------
 
@@ -86,6 +87,13 @@ public class GetAsyncSearchResponse<TDocument> extends AsyncSearchDocumentRespon
 		return ObjectBuilderDeserializer.createForObject((Supplier<Builder<TDocument>>) Builder::new,
 				op -> GetAsyncSearchResponse.setupGetAsyncSearchResponseDeserializer(op, tDocumentDeserializer));
 	};
+
+	/**
+	 * Json deserializer for {@link GetAsyncSearchResponse} based on named
+	 * deserializers provided by the calling {@code JsonMapper}.
+	 */
+	public static final JsonpDeserializer<GetAsyncSearchResponse<Object>> _DESERIALIZER = createGetAsyncSearchResponseDeserializer(
+			new NamedDeserializer<>("co.elastic.clients:Deserializer:async_search.get.TDocument"));
 
 	protected static <TDocument> void setupGetAsyncSearchResponseDeserializer(
 			ObjectDeserializer<GetAsyncSearchResponse.Builder<TDocument>> op,

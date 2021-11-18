@@ -37,7 +37,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.analysis.UniqueTokenFilter
 @JsonpDeserializable
-public class UniqueTokenFilter extends TokenFilterBase implements TokenFilterVariant {
+public class UniqueTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
 	@Nullable
 	private final Boolean onlyOnSamePosition;
 
@@ -55,7 +55,7 @@ public class UniqueTokenFilter extends TokenFilterBase implements TokenFilterVar
 	}
 
 	/**
-	 * {@link TokenFilter} variant type
+	 * {@link TokenFilterDefinition} variant type
 	 */
 	@Override
 	public String _variantType() {

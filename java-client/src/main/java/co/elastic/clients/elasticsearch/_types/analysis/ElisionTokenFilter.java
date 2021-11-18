@@ -41,7 +41,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.analysis.ElisionTokenFilter
 @JsonpDeserializable
-public class ElisionTokenFilter extends TokenFilterBase implements TokenFilterVariant {
+public class ElisionTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
 	private final List<String> articles;
 
 	private final boolean articlesCase;
@@ -61,7 +61,7 @@ public class ElisionTokenFilter extends TokenFilterBase implements TokenFilterVa
 	}
 
 	/**
-	 * {@link TokenFilter} variant type
+	 * {@link TokenFilterDefinition} variant type
 	 */
 	@Override
 	public String _variantType() {

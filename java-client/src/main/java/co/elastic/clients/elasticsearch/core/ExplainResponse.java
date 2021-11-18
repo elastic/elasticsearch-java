@@ -30,6 +30,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.JsonpSerializer;
+import co.elastic.clients.json.NamedDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
@@ -44,7 +45,7 @@ import java.util.function.Supplier;
 import javax.annotation.Nullable;
 
 // typedef: _global.explain.Response
-
+@JsonpDeserializable
 public class ExplainResponse<TDocument> implements JsonpSerializable {
 	private final String index;
 
@@ -288,6 +289,13 @@ public class ExplainResponse<TDocument> implements JsonpSerializable {
 		return ObjectBuilderDeserializer.createForObject((Supplier<Builder<TDocument>>) Builder::new,
 				op -> ExplainResponse.setupExplainResponseDeserializer(op, tDocumentDeserializer));
 	};
+
+	/**
+	 * Json deserializer for {@link ExplainResponse} based on named deserializers
+	 * provided by the calling {@code JsonMapper}.
+	 */
+	public static final JsonpDeserializer<ExplainResponse<Object>> _DESERIALIZER = createExplainResponseDeserializer(
+			new NamedDeserializer<>("co.elastic.clients:Deserializer:_global.explain.TDocument"));
 
 	protected static <TDocument> void setupExplainResponseDeserializer(
 			ObjectDeserializer<ExplainResponse.Builder<TDocument>> op,

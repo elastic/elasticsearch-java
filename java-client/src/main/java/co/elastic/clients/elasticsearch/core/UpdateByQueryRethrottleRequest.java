@@ -135,7 +135,7 @@ public class UpdateByQueryRethrottleRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code update_by_query_rethrottle}".
 	 */
-	public static final Endpoint<UpdateByQueryRethrottleRequest, UpdateByQueryRethrottleResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<UpdateByQueryRethrottleRequest, UpdateByQueryRethrottleResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";

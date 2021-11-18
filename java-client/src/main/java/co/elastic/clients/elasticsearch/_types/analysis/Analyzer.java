@@ -40,6 +40,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.analysis.Analyzer
+// union type: InternalTag[tag=type]
 @JsonpDeserializable
 public class Analyzer implements TaggedUnion<AnalyzerVariant>, JsonpSerializable {
 
@@ -57,8 +58,6 @@ public class Analyzer implements TaggedUnion<AnalyzerVariant>, JsonpSerializable
 	public static final String STANDARD = "standard";
 	public static final String STOP = "stop";
 	public static final String WHITESPACE = "whitespace";
-
-	// Tagged union implementation
 
 	private final String _type;
 	private final AnalyzerVariant _value;

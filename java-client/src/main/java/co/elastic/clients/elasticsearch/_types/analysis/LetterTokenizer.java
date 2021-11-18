@@ -35,7 +35,7 @@ import java.util.function.Function;
 
 // typedef: _types.analysis.LetterTokenizer
 @JsonpDeserializable
-public class LetterTokenizer extends TokenizerBase implements TokenizerVariant {
+public class LetterTokenizer extends TokenizerBase implements TokenizerDefinitionVariant {
 	// ---------------------------------------------------------------------------------------------
 
 	private LetterTokenizer(Builder builder) {
@@ -48,7 +48,7 @@ public class LetterTokenizer extends TokenizerBase implements TokenizerVariant {
 	}
 
 	/**
-	 * {@link Tokenizer} variant type
+	 * {@link TokenizerDefinition} variant type
 	 */
 	@Override
 	public String _variantType() {

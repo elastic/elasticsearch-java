@@ -206,7 +206,7 @@ public class RevertModelSnapshotRequest extends RequestBase implements JsonpSeri
 	/**
 	 * Endpoint "{@code ml.revert_model_snapshot}".
 	 */
-	public static final Endpoint<RevertModelSnapshotRequest, RevertModelSnapshotResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<RevertModelSnapshotRequest, RevertModelSnapshotResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";
