@@ -57,4 +57,26 @@ public interface JsonpMapper {
     default boolean ignoreUnknownFields() {
         return true;
     }
+
+    /**
+     * Get a named attribute associated to this mapper.
+     */
+    default <T> T attribute(String name) {
+        return null;
+    }
+
+    /**
+     * Get a named attribute associated to this mapper, with a default value.
+     */
+    default <T> T attribute(String name, T defaultValue) {
+        T v = attribute(name);
+        return v != null ? v : defaultValue;
+    }
+
+    /**
+     * Create a new mapper with a named attribute that delegates to this one.
+     */
+    default <T> JsonpMapper withAttribute(String name, T value) {
+        return new AttributedJsonpMapper(this, name, value);
+    }
 }

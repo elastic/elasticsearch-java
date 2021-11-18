@@ -21,11 +21,13 @@ package co.elastic.clients.elasticsearch.model;
 
 import co.elastic.clients.elasticsearch._types.aggregations.Aggregate;
 import co.elastic.clients.elasticsearch._types.aggregations.AvgAggregate;
+import co.elastic.clients.elasticsearch._types.aggregations.Buckets;
 import co.elastic.clients.elasticsearch._types.aggregations.StringTermsAggregate;
 import co.elastic.clients.elasticsearch._types.aggregations.StringTermsBucket;
 import co.elastic.clients.elasticsearch.core.SearchResponse;
 import co.elastic.clients.elasticsearch.core.search.TotalHitsRelation;
 import co.elastic.clients.json.JsonpDeserializer;
+import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.MapBuilder;
 import org.junit.Test;
 
@@ -38,9 +40,9 @@ public class TypedKeysTest extends ModelTestCase {
 
         SearchResponse<Void> resp = new SearchResponse.Builder<Void>()
             .aggregations(_1 -> _1
-                .entry("foo", _2 -> _2.avg(_3 -> _3
-                    .value(3.14)
-                ))
+                .entry("foo", _2 -> _2
+                    .avg(_3 -> _3.value(3.14))
+                )
             )
             // Required properties on a SearchResponse
             .took(1)
@@ -70,21 +72,24 @@ public class TypedKeysTest extends ModelTestCase {
         Aggregate avg1 = AvgAggregate.of(_1 -> _1.value(1.0))._toAggregate();
         Aggregate avg2 = AvgAggregate.of(_1 -> _1.value(2.0))._toAggregate();
 
-        Aggregate aggregate = new StringTermsAggregate.Builder()
+        Aggregate aggregate = StringTermsAggregate.of(_0 -> _0
             .sumOtherDocCount(1)
-            .buckets(
-                StringTermsBucket.of(_1 -> _1
+            .buckets(b -> b.array(
+                ListBuilder.of(StringTermsBucket.Builder::new)
+                .add(_1 -> _1
                     .key("key_1")
                     .docCount(1)
-                    .aggregations(MapBuilder.of("bar", avg1))),
-                StringTermsBucket.of(_1 -> _1
+                    .aggregations(MapBuilder.of("bar", avg1))
+                )
+                .add(_1 -> _1
                     .key("key_2")
                     .docCount(2)
-                    .aggregations(MapBuilder.of("bar", avg2)))
-
-            )
-            .build()
-            ._toAggregate();
+                    .aggregations(MapBuilder.of("bar", avg2))
+                )
+                .build()
+            ))
+        )
+        ._toAggregate();
 
         SearchResponse<Void> resp = new SearchResponse.Builder<Void>()
             .aggregations(_1 -> _1
@@ -113,10 +118,10 @@ public class TypedKeysTest extends ModelTestCase {
 
         StringTermsAggregate foo = resp.aggregations().get("foo").sterms();
         assertEquals(1, foo.sumOtherDocCount());
-        assertEquals(1, foo.buckets().get(0).docCount());
-        assertEquals("key_1", foo.buckets().get(0).key());
-        assertEquals(1.0, foo.buckets().get(0).aggregations().get("bar").avg().value(), 0.01);
-        assertEquals("key_2", foo.buckets().get(1).key());
-        assertEquals(2.0, foo.buckets().get(1).aggregations().get("bar").avg().value(), 0.01);
+        assertEquals(1, foo.buckets().array().get(0).docCount());
+        assertEquals("key_1", foo.buckets().array().get(0).key());
+        assertEquals(1.0, foo.buckets().array().get(0).aggregations().get("bar").avg().value(), 0.01);
+        assertEquals("key_2", foo.buckets().array().get(1).key());
+        assertEquals(2.0, foo.buckets().array().get(1).aggregations().get("bar").avg().value(), 0.01);
     }
 }

@@ -19,7 +19,7 @@
 
 package co.elastic.clients.elasticsearch.model;
 
-import co.elastic.clients.elasticsearch._types.ExpandWildcardOptions;
+import co.elastic.clients.elasticsearch._types.ExpandWildcard;
 import co.elastic.clients.elasticsearch.indices.RefreshRequest;
 import org.junit.Assert;
 import org.junit.Test;
@@ -32,16 +32,16 @@ public class EndpointTest extends Assert {
 
         req = RefreshRequest.of(b -> b);
         assertNotNull(req.index());
-        assertEquals("/_refresh", RefreshRequest.ENDPOINT.requestUrl(req));
+        assertEquals("/_refresh", RefreshRequest._ENDPOINT.requestUrl(req));
 
         req = RefreshRequest.of(b -> b.index("a"));
-        assertEquals("/a/_refresh", RefreshRequest.ENDPOINT.requestUrl(req));
+        assertEquals("/a/_refresh", RefreshRequest._ENDPOINT.requestUrl(req));
 
         req = RefreshRequest.of(b -> b.index("a", "b"));
-        assertEquals("/a,b/_refresh", RefreshRequest.ENDPOINT.requestUrl(req));
+        assertEquals("/a,b/_refresh", RefreshRequest._ENDPOINT.requestUrl(req));
 
         req = RefreshRequest.of(b -> b.index("a", "b", "c"));
-        assertEquals("/a,b,c/_refresh", RefreshRequest.ENDPOINT.requestUrl(req));
+        assertEquals("/a,b,c/_refresh", RefreshRequest._ENDPOINT.requestUrl(req));
     }
 
     @Test
@@ -49,10 +49,10 @@ public class EndpointTest extends Assert {
         RefreshRequest req;
 
         req = RefreshRequest.of(b -> b.index("a/b"));
-        assertEquals("/a%2Fb/_refresh", RefreshRequest.ENDPOINT.requestUrl(req));
+        assertEquals("/a%2Fb/_refresh", RefreshRequest._ENDPOINT.requestUrl(req));
 
         req = RefreshRequest.of(b -> b.index("a/b", "c/d"));
-        assertEquals("/a%2Fb,c%2Fd/_refresh", RefreshRequest.ENDPOINT.requestUrl(req));
+        assertEquals("/a%2Fb,c%2Fd/_refresh", RefreshRequest._ENDPOINT.requestUrl(req));
 
     }
 
@@ -62,13 +62,13 @@ public class EndpointTest extends Assert {
 
         req = RefreshRequest.of(b -> b);
         assertNotNull(req.expandWildcards()); // undefined list
-        assertNull(RefreshRequest.ENDPOINT.queryParameters(req).get("expand_wildcards"));
+        assertNull(RefreshRequest._ENDPOINT.queryParameters(req).get("expand_wildcards"));
 
-        req = RefreshRequest.of(b -> b.expandWildcards(ExpandWildcardOptions.All));
+        req = RefreshRequest.of(b -> b.expandWildcards(ExpandWildcard.All));
         // Also tests query encoding of enums
-        assertEquals("all", RefreshRequest.ENDPOINT.queryParameters(req).get("expand_wildcards"));
+        assertEquals("all", RefreshRequest._ENDPOINT.queryParameters(req).get("expand_wildcards"));
 
-        req = RefreshRequest.of(b -> b.expandWildcards(ExpandWildcardOptions.All, ExpandWildcardOptions.Closed));
-        assertEquals("all,closed", RefreshRequest.ENDPOINT.queryParameters(req).get("expand_wildcards"));
+        req = RefreshRequest.of(b -> b.expandWildcards(ExpandWildcard.All, ExpandWildcard.Closed));
+        assertEquals("all,closed", RefreshRequest._ENDPOINT.queryParameters(req).get("expand_wildcards"));
     }
 }

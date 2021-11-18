@@ -89,7 +89,7 @@ public class SimpleEndpoint<RequestT, ResponseT> implements Endpoint<RequestT, R
     }
 
     @Override
-    public JsonpDeserializer<ResponseT> responseParser() {
+    public JsonpDeserializer<ResponseT> responseDeserializer() {
         return this.responseParser;
     }
 
@@ -100,7 +100,7 @@ public class SimpleEndpoint<RequestT, ResponseT> implements Endpoint<RequestT, R
     }
 
     @Override
-    public JsonpDeserializer<ErrorResponse> errorParser(int statusCode) {
+    public JsonpDeserializer<ErrorResponse> errorDeserializer(int statusCode) {
         return ErrorResponse._DESERIALIZER;
     }
 

@@ -219,7 +219,7 @@ public class RestClientTransport implements Transport {
                 // API error
                 ErrorT error = null;
                 try {
-                    JsonpDeserializer<ErrorT> errorParser = endpoint.errorParser(statusCode);
+                    JsonpDeserializer<ErrorT> errorParser = endpoint.errorDeserializer(statusCode);
                     if (errorParser != null) {
                         // Expecting a body
                         InputStream content = clientResp.getEntity().getContent();
@@ -247,7 +247,7 @@ public class RestClientTransport implements Transport {
             } else {
                 // Successful response
                 ResponseT response = null;
-                JsonpDeserializer<ResponseT> responseParser = endpoint.responseParser();
+                JsonpDeserializer<ResponseT> responseParser = endpoint.responseDeserializer();
                 if (responseParser != null) {
                     // Expecting a body
                     InputStream content = clientResp.getEntity().getContent();

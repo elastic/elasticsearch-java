@@ -24,6 +24,7 @@ import jakarta.json.stream.JsonParser;
 import jakarta.json.stream.JsonParser.Event;
 import jakarta.json.stream.JsonParsingException;
 
+import javax.annotation.Nullable;
 import java.util.Collections;
 import java.util.EnumSet;
 import java.util.HashMap;
@@ -95,8 +96,8 @@ public class ObjectDeserializer<ObjectType> implements JsonpDeserializer<ObjectT
     };
 
     //---------------------------------------------------------------------------------------------
-    private static final EnumSet<Event> EventSetObject = EnumSet.of(Event.START_OBJECT);
-    private static final EnumSet<Event> EventSetObjectAndString = EnumSet.of(Event.START_OBJECT, Event.VALUE_STRING);
+    private static final EnumSet<Event> EventSetObject = EnumSet.of(Event.START_OBJECT, Event.KEY_NAME);
+    private static final EnumSet<Event> EventSetObjectAndString = EnumSet.of(Event.START_OBJECT, Event.VALUE_STRING, Event.KEY_NAME);
 
     private EnumSet<Event> acceptedEvents = EventSetObject; // May be changed in `shortcutProperty()`
     private final Supplier<ObjectType> constructor;
@@ -118,9 +119,14 @@ public class ObjectDeserializer<ObjectType> implements JsonpDeserializer<ObjectT
         return Collections.unmodifiableSet(fieldDeserializers.keySet());
     }
 
+    public @Nullable String shortcutProperty() {
+        return this.shortcutProperty == null ? null : this.shortcutProperty.name;
+    }
+
     @Override
     public EnumSet<Event> nativeEvents() {
-        return EventSetObject;
+        // May also return string if we have a shortcut property. This is needed to identify ambiguous unions.
+        return acceptedEvents;
     }
 
     @Override
@@ -139,44 +145,52 @@ public class ObjectDeserializer<ObjectType> implements JsonpDeserializer<ObjectT
 
         if (singleKey != null) {
             // There's a wrapping property whose name is the key value
-            event = JsonpUtils.expectNextEvent(parser, Event.KEY_NAME);
+            if (event == Event.START_OBJECT) {
+                event = JsonpUtils.expectNextEvent(parser, Event.KEY_NAME);
+            }
             singleKey.deserialize(parser, mapper, null, value, event);
             event = parser.next();
         }
 
-        if (shortcutProperty != null && event != Event.START_OBJECT) {
+        if (shortcutProperty != null && event != Event.START_OBJECT && event != Event.KEY_NAME) {
             // This is the shortcut property (should be a value event, this will be checked by its deserializer)
             shortcutProperty.deserialize(parser, mapper, shortcutProperty.name, value, event);
 
-        } else {
-            JsonpUtils.expectEvent(parser, Event.START_OBJECT, event);
-            if (typeProperty == null) {
-                // Regular object: read all properties until we reach the end of the object
-                while ((event = parser.next()) != Event.END_OBJECT) {
+        } else if (typeProperty == null) {
+            if (event != Event.START_OBJECT && event != Event.KEY_NAME) {
+                // Report we're waiting for a start_object, since this is the most common beginning for object parser
+                JsonpUtils.expectEvent(parser, Event.START_OBJECT, event);
+            }
 
-                    JsonpUtils.expectEvent(parser, Event.KEY_NAME, event);
-                    String fieldName = parser.getString();
+            if (event == Event.START_OBJECT) {
+                event = parser.next();
+            }
+            // Regular object: read all properties until we reach the end of the object
+            while (event != Event.END_OBJECT) {
+                JsonpUtils.expectEvent(parser, Event.KEY_NAME, event);
+                String fieldName = parser.getString();
 
-                    FieldDeserializer<ObjectType> fieldDeserializer = fieldDeserializers.get(fieldName);
-                    if (fieldDeserializer == null) {
-                        parseUnknownField(parser, mapper, fieldName, value);
-                    } else {
-                        fieldDeserializer.deserialize(parser, mapper, fieldName, value);
-                    }
-                }
-
-            } else {
-                // Union variant: find the property to find the proper deserializer
-                Map.Entry<String, JsonParser> unionInfo = JsonpUtils.lookAheadFieldValue(typeProperty, parser, mapper);
-                String variant = unionInfo.getKey();
-                JsonParser innerParser = unionInfo.getValue();
-
-                FieldDeserializer<ObjectType> fieldDeserializer = fieldDeserializers.get(variant);
+                FieldDeserializer<ObjectType> fieldDeserializer = fieldDeserializers.get(fieldName);
                 if (fieldDeserializer == null) {
-                    parseUnknownField(parser, mapper, variant, value);
+                    parseUnknownField(parser, mapper, fieldName, value);
                 } else {
-                    fieldDeserializer.deserialize(innerParser, mapper, variant, value);
+                    fieldDeserializer.deserialize(parser, mapper, fieldName, value);
                 }
+                event = parser.next();
+            }
+        } else {
+            // Union variant: find the property to find the proper deserializer
+            // We cannot start with a key name here.
+            JsonpUtils.expectEvent(parser, Event.START_OBJECT, event);
+            Map.Entry<String, JsonParser> unionInfo = JsonpUtils.lookAheadFieldValue(typeProperty, parser, mapper);
+            String variant = unionInfo.getKey();
+            JsonParser innerParser = unionInfo.getValue();
+
+            FieldDeserializer<ObjectType> fieldDeserializer = fieldDeserializers.get(variant);
+            if (fieldDeserializer == null) {
+                parseUnknownField(parser, mapper, variant, value);
+            } else {
+                fieldDeserializer.deserialize(innerParser, mapper, variant, value);
             }
         }
 

@@ -22,6 +22,7 @@ package co.elastic.clients.elasticsearch.end_to_end;
 import co.elastic.clients.elasticsearch.ElasticsearchAsyncClient;
 import co.elastic.clients.elasticsearch.ElasticsearchClient;
 import co.elastic.clients.elasticsearch._types.ElasticsearchException;
+import co.elastic.clients.elasticsearch._types.Refresh;
 import co.elastic.clients.elasticsearch._types.aggregations.HistogramAggregate;
 import co.elastic.clients.elasticsearch.cat.NodesResponse;
 import co.elastic.clients.elasticsearch.core.BulkResponse;
@@ -149,7 +150,7 @@ public class RequestTest extends Assert {
             .index(index)
             .id("my/Id") // test with url-unsafe string
             .document(appData)
-            .refresh(JsonValue.TRUE) // Make it visible for search
+            .refresh(Refresh.True) // Make it visible for search
         ).id();
 
         assertEquals("my/Id", docId);
@@ -236,7 +237,7 @@ public class RequestTest extends Assert {
             .index("test")
             .id("1")
             .document(appData)
-            .refresh(Json.createValue("wait_for"))
+            .refresh(Refresh.WaitFor)
         );
 
         assertEquals("1", ir.id());
@@ -285,9 +286,9 @@ public class RequestTest extends Assert {
     @Test
     public void testSearchAggregation() throws IOException {
 
-        client.create(_1 -> _1.index("products").id("A").document(new Product(5)).refresh(Json.createValue("true")));
-        client.create(_1 -> _1.index("products").id("B").document(new Product(15)).refresh(Json.createValue("true")));
-        client.create(_1 -> _1.index("products").id("C").document(new Product(25)).refresh(Json.createValue("true")));
+        client.create(_1 -> _1.index("products").id("A").document(new Product(5)).refresh(Refresh.True));
+        client.create(_1 -> _1.index("products").id("B").document(new Product(15)).refresh(Refresh.True));
+        client.create(_1 -> _1.index("products").id("C").document(new Product(25)).refresh(Refresh.True));
 
         SearchResponse<Product> searchResponse = client.search(_1 -> _1
             .index("products")
@@ -307,9 +308,9 @@ public class RequestTest extends Assert {
         );
 
         HistogramAggregate prices = searchResponse.aggregations().get("prices").histogram();
-        assertEquals(3, prices.buckets().size());
-        assertEquals(1, prices.buckets().get(0).docCount());
-        assertEquals(5.0, prices.buckets().get(0).aggregations().get("average").avg().value(), 0.01);
+        assertEquals(3, prices.buckets().array().size());
+        assertEquals(1, prices.buckets().array().get(0).docCount());
+        assertEquals(5.0, prices.buckets().array().get(0).aggregations().get("average").avg().value(), 0.01);
 
         // We've set "size" to zero
         assertEquals(0, searchResponse.hits().hits().size());

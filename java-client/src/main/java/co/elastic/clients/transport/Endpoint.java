@@ -63,7 +63,7 @@ public interface Endpoint<RequestT, ResponseT, ErrorT> {
    * The entity parser for the response body. Can be {@code null} to indicate that there's no response body.
    */
   @Nullable
-  JsonpDeserializer<ResponseT> responseParser();
+  JsonpDeserializer<ResponseT> responseDeserializer();
 
   // TODO: combine isError and errorParser in a single method with a tri-state result?
   boolean isError(int statusCode);
@@ -72,6 +72,6 @@ public interface Endpoint<RequestT, ResponseT, ErrorT> {
    * The entity parser for the error response body. Can be {@code null} to indicate that there's no error body.
    */
   @Nullable
-  JsonpDeserializer<ErrorT> errorParser(int statusCode);
+  JsonpDeserializer<ErrorT> errorDeserializer(int statusCode);
 
 }

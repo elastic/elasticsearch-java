@@ -21,6 +21,7 @@ package co.elastic.clients.elasticsearch.model;
 
 import co.elastic.clients.elasticsearch._types.ErrorCause;
 import co.elastic.clients.elasticsearch._types.aggregations.Aggregate;
+import co.elastic.clients.elasticsearch._types.aggregations.Buckets;
 import co.elastic.clients.elasticsearch._types.aggregations.CardinalityAggregate;
 import co.elastic.clients.elasticsearch._types.aggregations.DateRangeAggregate;
 import co.elastic.clients.elasticsearch._types.aggregations.RangeBucket;
@@ -39,6 +40,7 @@ import javax.annotation.Nullable;
 import java.lang.reflect.Method;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.List;
 
 /**
  * Tests that verify common features of generated classes.
@@ -105,7 +107,7 @@ public class ClassStructureTest extends ModelTestCase {
         {
             DateRangeAggregate date = DateRangeAggregate.of(_1 -> _1
                 .meta(Collections.singletonMap("foo", JsonData.of("bar")))
-                .buckets(RangeBucket.of(_2 -> _2.docCount(1)))
+                .buckets(Buckets.of(b -> b.array(Collections.singletonList(RangeBucket.of(_2 -> _2.docCount(1))))))
             );
 
             assertAncestorCount(3, date);
@@ -187,7 +189,7 @@ public class ClassStructureTest extends ModelTestCase {
         checkSingleBuilderUse(2, new CardinalityAggregate.Builder().value(0));
 
         // 3 ancestors + ObjectBuilderBase
-        checkSingleBuilderUse(4, new DateRangeAggregate.Builder().buckets(Collections.emptyList()));
+        checkSingleBuilderUse(4, new DateRangeAggregate.Builder().buckets(Buckets.of(b -> b.array(Collections.emptyList()))));
     }
 
     @Test
