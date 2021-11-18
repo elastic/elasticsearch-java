@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.indices;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -198,9 +197,9 @@ public class GetUpgradeResponse implements JsonpSerializable {
 	 * Json deserializer for {@link GetUpgradeResponse}
 	 */
 	public static final JsonpDeserializer<GetUpgradeResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, GetUpgradeResponse::setupGetUpgradeResponseDeserializer, Builder::build);
+			.lazy(Builder::new, GetUpgradeResponse::setupGetUpgradeResponseDeserializer);
 
-	protected static void setupGetUpgradeResponseDeserializer(DelegatingDeserializer<GetUpgradeResponse.Builder> op) {
+	protected static void setupGetUpgradeResponseDeserializer(ObjectDeserializer<GetUpgradeResponse.Builder> op) {
 
 		op.add(Builder::overlapping, JsonpDeserializer.arrayDeserializer(OverlappingIndexTemplate._DESERIALIZER),
 				"overlapping");

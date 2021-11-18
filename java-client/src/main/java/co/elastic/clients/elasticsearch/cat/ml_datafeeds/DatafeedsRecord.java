@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch.cat.ml_datafeeds;
 
 import co.elastic.clients.elasticsearch.ml.DatafeedState;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -475,9 +474,9 @@ public class DatafeedsRecord implements JsonpSerializable {
 	 * Json deserializer for {@link DatafeedsRecord}
 	 */
 	public static final JsonpDeserializer<DatafeedsRecord> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			DatafeedsRecord::setupDatafeedsRecordDeserializer, Builder::build);
+			DatafeedsRecord::setupDatafeedsRecordDeserializer);
 
-	protected static void setupDatafeedsRecordDeserializer(DelegatingDeserializer<DatafeedsRecord.Builder> op) {
+	protected static void setupDatafeedsRecordDeserializer(ObjectDeserializer<DatafeedsRecord.Builder> op) {
 
 		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "id");
 		op.add(Builder::state, DatafeedState._DESERIALIZER, "state", "s");

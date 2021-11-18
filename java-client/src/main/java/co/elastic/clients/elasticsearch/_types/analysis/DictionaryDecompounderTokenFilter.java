@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.analysis;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -36,7 +35,9 @@ import java.util.function.Function;
 
 // typedef: _types.analysis.DictionaryDecompounderTokenFilter
 @JsonpDeserializable
-public class DictionaryDecompounderTokenFilter extends CompoundWordTokenFilterBase implements TokenFilterVariant {
+public class DictionaryDecompounderTokenFilter extends CompoundWordTokenFilterBase
+		implements
+			TokenFilterDefinitionVariant {
 	// ---------------------------------------------------------------------------------------------
 
 	private DictionaryDecompounderTokenFilter(Builder builder) {
@@ -50,7 +51,7 @@ public class DictionaryDecompounderTokenFilter extends CompoundWordTokenFilterBa
 	}
 
 	/**
-	 * {@link TokenFilter} variant type
+	 * {@link TokenFilterDefinition} variant type
 	 */
 	@Override
 	public String _variantType() {
@@ -96,11 +97,10 @@ public class DictionaryDecompounderTokenFilter extends CompoundWordTokenFilterBa
 	 * Json deserializer for {@link DictionaryDecompounderTokenFilter}
 	 */
 	public static final JsonpDeserializer<DictionaryDecompounderTokenFilter> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, DictionaryDecompounderTokenFilter::setupDictionaryDecompounderTokenFilterDeserializer,
-					Builder::build);
+			.lazy(Builder::new, DictionaryDecompounderTokenFilter::setupDictionaryDecompounderTokenFilterDeserializer);
 
 	protected static void setupDictionaryDecompounderTokenFilterDeserializer(
-			DelegatingDeserializer<DictionaryDecompounderTokenFilter.Builder> op) {
+			ObjectDeserializer<DictionaryDecompounderTokenFilter.Builder> op) {
 		CompoundWordTokenFilterBase.setupCompoundWordTokenFilterBaseDeserializer(op);
 
 		op.ignore("type");

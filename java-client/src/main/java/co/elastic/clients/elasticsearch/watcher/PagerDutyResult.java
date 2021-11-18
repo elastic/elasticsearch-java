@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.watcher;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -121,9 +120,9 @@ public class PagerDutyResult implements JsonpSerializable {
 	 * Json deserializer for {@link PagerDutyResult}
 	 */
 	public static final JsonpDeserializer<PagerDutyResult> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			PagerDutyResult::setupPagerDutyResultDeserializer, Builder::build);
+			PagerDutyResult::setupPagerDutyResultDeserializer);
 
-	protected static void setupPagerDutyResultDeserializer(DelegatingDeserializer<PagerDutyResult.Builder> op) {
+	protected static void setupPagerDutyResultDeserializer(ObjectDeserializer<PagerDutyResult.Builder> op) {
 
 		op.add(Builder::sentEvent, PagerDutyActionEventResult._DESERIALIZER, "sent_event");
 

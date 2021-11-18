@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch.core.reindex_rethrottle;
 
 import co.elastic.clients.elasticsearch._types.Retries;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -354,9 +353,9 @@ public class ReindexStatus implements JsonpSerializable {
 	 * Json deserializer for {@link ReindexStatus}
 	 */
 	public static final JsonpDeserializer<ReindexStatus> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			ReindexStatus::setupReindexStatusDeserializer, Builder::build);
+			ReindexStatus::setupReindexStatusDeserializer);
 
-	protected static void setupReindexStatusDeserializer(DelegatingDeserializer<ReindexStatus.Builder> op) {
+	protected static void setupReindexStatusDeserializer(ObjectDeserializer<ReindexStatus.Builder> op) {
 
 		op.add(Builder::batches, JsonpDeserializer.longDeserializer(), "batches");
 		op.add(Builder::created, JsonpDeserializer.longDeserializer(), "created");

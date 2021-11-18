@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.nodes;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -197,9 +196,9 @@ public class FileSystem implements JsonpSerializable {
 	 * Json deserializer for {@link FileSystem}
 	 */
 	public static final JsonpDeserializer<FileSystem> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			FileSystem::setupFileSystemDeserializer, Builder::build);
+			FileSystem::setupFileSystemDeserializer);
 
-	protected static void setupFileSystemDeserializer(DelegatingDeserializer<FileSystem.Builder> op) {
+	protected static void setupFileSystemDeserializer(ObjectDeserializer<FileSystem.Builder> op) {
 
 		op.add(Builder::data, JsonpDeserializer.arrayDeserializer(DataPathStats._DESERIALIZER), "data");
 		op.add(Builder::timestamp, JsonpDeserializer.longDeserializer(), "timestamp");

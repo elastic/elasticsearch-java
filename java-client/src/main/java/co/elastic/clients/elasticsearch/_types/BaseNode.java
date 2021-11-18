@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -235,7 +234,7 @@ public abstract class BaseNode implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 	protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupBaseNodeDeserializer(
-			DelegatingDeserializer<BuilderT> op) {
+			ObjectDeserializer<BuilderT> op) {
 
 		op.add(AbstractBuilder::attributes,
 				JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.stringDeserializer()), "attributes");

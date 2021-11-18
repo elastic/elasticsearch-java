@@ -26,11 +26,12 @@ package co.elastic.clients.elasticsearch.core;
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch._types.SearchType;
-import co.elastic.clients.elasticsearch.core.msearch_template.TemplateItem;
+import co.elastic.clients.elasticsearch.core.msearch_template.RequestItem;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
+import co.elastic.clients.json.NdJsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
@@ -45,6 +46,7 @@ import java.lang.String;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -53,8 +55,8 @@ import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 // typedef: _global.msearch_template.Request
-@JsonpDeserializable
-public class MsearchTemplateRequest extends RequestBase implements JsonpSerializable {
+
+public class MsearchTemplateRequest extends RequestBase implements NdJsonpSerializable, JsonpSerializable {
 	@Nullable
 	private final Boolean ccsMinimizeRoundtrips;
 
@@ -68,7 +70,7 @@ public class MsearchTemplateRequest extends RequestBase implements JsonpSerializ
 
 	private final List<String> type;
 
-	private final List<TemplateItem> searchTemplates;
+	private final List<RequestItem> searchTemplates;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -87,6 +89,10 @@ public class MsearchTemplateRequest extends RequestBase implements JsonpSerializ
 		return fn.apply(new Builder()).build();
 	}
 
+	@Override
+	public Iterator<?> _serializables() {
+		return this.searchTemplates.iterator();
+	}
 	/**
 	 * Indicates whether network round-trips should be minimized as part of
 	 * cross-cluster search requests execution
@@ -142,7 +148,7 @@ public class MsearchTemplateRequest extends RequestBase implements JsonpSerializ
 	 * <p>
 	 * API name: {@code _value_body}
 	 */
-	public final List<TemplateItem> searchTemplates() {
+	public final List<RequestItem> searchTemplates() {
 		return this.searchTemplates;
 	}
 
@@ -151,7 +157,7 @@ public class MsearchTemplateRequest extends RequestBase implements JsonpSerializ
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartArray();
-		for (TemplateItem item0 : this.searchTemplates) {
+		for (RequestItem item0 : this.searchTemplates) {
 			item0.serialize(generator, mapper);
 
 		}
@@ -180,7 +186,7 @@ public class MsearchTemplateRequest extends RequestBase implements JsonpSerializ
 		@Nullable
 		private List<String> type;
 
-		private List<TemplateItem> searchTemplates;
+		private List<RequestItem> searchTemplates;
 
 		/**
 		 * Indicates whether network round-trips should be minimized as part of
@@ -259,7 +265,7 @@ public class MsearchTemplateRequest extends RequestBase implements JsonpSerializ
 		 * <p>
 		 * API name: {@code _value_body}
 		 */
-		public final Builder searchTemplates(List<TemplateItem> value) {
+		public final Builder searchTemplates(List<RequestItem> value) {
 			this.searchTemplates = value;
 			return this;
 		}
@@ -269,7 +275,7 @@ public class MsearchTemplateRequest extends RequestBase implements JsonpSerializ
 		 * <p>
 		 * API name: {@code _value_body}
 		 */
-		public final Builder searchTemplates(TemplateItem... value) {
+		public final Builder searchTemplates(RequestItem... value) {
 			this.searchTemplates = Arrays.asList(value);
 			return this;
 		}
@@ -280,10 +286,10 @@ public class MsearchTemplateRequest extends RequestBase implements JsonpSerializ
 		 * API name: {@code _value_body}
 		 */
 		@SafeVarargs
-		public final Builder searchTemplates(Function<TemplateItem.Builder, ObjectBuilder<TemplateItem>>... fns) {
+		public final Builder searchTemplates(Function<RequestItem.Builder, ObjectBuilder<RequestItem>>... fns) {
 			this.searchTemplates = new ArrayList<>(fns.length);
-			for (Function<TemplateItem.Builder, ObjectBuilder<TemplateItem>> fn : fns) {
-				this.searchTemplates.add(fn.apply(new TemplateItem.Builder()).build());
+			for (Function<RequestItem.Builder, ObjectBuilder<RequestItem>> fn : fns) {
+				this.searchTemplates.add(fn.apply(new RequestItem.Builder()).build());
 			}
 			return this;
 		}
@@ -301,22 +307,12 @@ public class MsearchTemplateRequest extends RequestBase implements JsonpSerializ
 		}
 	}
 
-	public static final JsonpDeserializer<MsearchTemplateRequest> _DESERIALIZER = createMsearchTemplateRequestDeserializer();
-	protected static JsonpDeserializer<MsearchTemplateRequest> createMsearchTemplateRequestDeserializer() {
-
-		JsonpDeserializer<List<TemplateItem>> valueDeserializer = JsonpDeserializer
-				.arrayDeserializer(TemplateItem._DESERIALIZER);
-
-		return JsonpDeserializer.of(valueDeserializer.acceptedEvents(), (parser, mapper, event) -> new Builder()
-				.searchTemplates(valueDeserializer.deserialize(parser, mapper, event)).build());
-	}
-
 	// ---------------------------------------------------------------------------------------------
 
 	/**
 	 * Endpoint "{@code msearch_template}".
 	 */
-	private static final SimpleEndpoint<MsearchTemplateRequest, Void> ENDPOINT = new SimpleEndpoint<>(
+	public static final SimpleEndpoint<MsearchTemplateRequest, ?> _ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";
@@ -378,14 +374,14 @@ public class MsearchTemplateRequest extends RequestBase implements JsonpSerializ
 				}
 				return params;
 
-			}, SimpleEndpoint.emptyMap(), true, null);
+			}, SimpleEndpoint.emptyMap(), true, MsearchTemplateResponse._DESERIALIZER);
 
 	/**
 	 * Create an "{@code msearch_template}" endpoint.
 	 */
 	public static <TDocument> Endpoint<MsearchTemplateRequest, MsearchTemplateResponse<TDocument>, ErrorResponse> createMsearchTemplateEndpoint(
 			JsonpDeserializer<TDocument> tDocumentDeserializer) {
-		return ENDPOINT.withResponseDeserializer(
+		return _ENDPOINT.withResponseDeserializer(
 				MsearchTemplateResponse.createMsearchTemplateResponseDeserializer(tDocumentDeserializer));
 	}
 }

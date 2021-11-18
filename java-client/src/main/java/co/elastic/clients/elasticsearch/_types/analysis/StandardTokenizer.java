@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.analysis;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -38,7 +37,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.analysis.StandardTokenizer
 @JsonpDeserializable
-public class StandardTokenizer extends TokenizerBase implements TokenizerVariant {
+public class StandardTokenizer extends TokenizerBase implements TokenizerDefinitionVariant {
 	@Nullable
 	private final Integer maxTokenLength;
 
@@ -56,7 +55,7 @@ public class StandardTokenizer extends TokenizerBase implements TokenizerVariant
 	}
 
 	/**
-	 * {@link Tokenizer} variant type
+	 * {@link TokenizerDefinition} variant type
 	 */
 	@Override
 	public String _variantType() {
@@ -126,9 +125,9 @@ public class StandardTokenizer extends TokenizerBase implements TokenizerVariant
 	 * Json deserializer for {@link StandardTokenizer}
 	 */
 	public static final JsonpDeserializer<StandardTokenizer> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, StandardTokenizer::setupStandardTokenizerDeserializer, Builder::build);
+			.lazy(Builder::new, StandardTokenizer::setupStandardTokenizerDeserializer);
 
-	protected static void setupStandardTokenizerDeserializer(DelegatingDeserializer<StandardTokenizer.Builder> op) {
+	protected static void setupStandardTokenizerDeserializer(ObjectDeserializer<StandardTokenizer.Builder> op) {
 		TokenizerBase.setupTokenizerBaseDeserializer(op);
 		op.add(Builder::maxTokenLength, JsonpDeserializer.integerDeserializer(), "max_token_length");
 

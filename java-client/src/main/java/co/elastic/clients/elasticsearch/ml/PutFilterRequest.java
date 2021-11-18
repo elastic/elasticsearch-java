@@ -25,7 +25,6 @@ package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -190,9 +189,9 @@ public class PutFilterRequest extends RequestBase implements JsonpSerializable {
 	 * Json deserializer for {@link PutFilterRequest}
 	 */
 	public static final JsonpDeserializer<PutFilterRequest> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			PutFilterRequest::setupPutFilterRequestDeserializer, Builder::build);
+			PutFilterRequest::setupPutFilterRequestDeserializer);
 
-	protected static void setupPutFilterRequestDeserializer(DelegatingDeserializer<PutFilterRequest.Builder> op) {
+	protected static void setupPutFilterRequestDeserializer(ObjectDeserializer<PutFilterRequest.Builder> op) {
 
 		op.add(Builder::description, JsonpDeserializer.stringDeserializer(), "description");
 		op.add(Builder::items, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "items");
@@ -204,7 +203,7 @@ public class PutFilterRequest extends RequestBase implements JsonpSerializable {
 	/**
 	 * Endpoint "{@code ml.put_filter}".
 	 */
-	public static final Endpoint<PutFilterRequest, PutFilterResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<PutFilterRequest, PutFilterResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "PUT";

@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.analysis;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -43,7 +42,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.analysis.KuromojiTokenizer
 @JsonpDeserializable
-public class KuromojiTokenizer extends TokenizerBase implements TokenizerVariant {
+public class KuromojiTokenizer extends TokenizerBase implements TokenizerDefinitionVariant {
 	@Nullable
 	private final Boolean discardPunctuation;
 
@@ -83,7 +82,7 @@ public class KuromojiTokenizer extends TokenizerBase implements TokenizerVariant
 	}
 
 	/**
-	 * {@link Tokenizer} variant type
+	 * {@link TokenizerDefinition} variant type
 	 */
 	@Override
 	public String _variantType() {
@@ -304,9 +303,9 @@ public class KuromojiTokenizer extends TokenizerBase implements TokenizerVariant
 	 * Json deserializer for {@link KuromojiTokenizer}
 	 */
 	public static final JsonpDeserializer<KuromojiTokenizer> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, KuromojiTokenizer::setupKuromojiTokenizerDeserializer, Builder::build);
+			.lazy(Builder::new, KuromojiTokenizer::setupKuromojiTokenizerDeserializer);
 
-	protected static void setupKuromojiTokenizerDeserializer(DelegatingDeserializer<KuromojiTokenizer.Builder> op) {
+	protected static void setupKuromojiTokenizerDeserializer(ObjectDeserializer<KuromojiTokenizer.Builder> op) {
 		TokenizerBase.setupTokenizerBaseDeserializer(op);
 		op.add(Builder::discardPunctuation, JsonpDeserializer.booleanDeserializer(), "discard_punctuation");
 		op.add(Builder::mode, KuromojiTokenizationMode._DESERIALIZER, "mode");

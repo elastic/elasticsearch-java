@@ -220,7 +220,7 @@ public class GetTransformRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code transform.get_transform}".
 	 */
-	public static final Endpoint<GetTransformRequest, GetTransformResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<GetTransformRequest, GetTransformResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "GET";

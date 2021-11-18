@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -180,9 +179,9 @@ public class ParentIdQuery extends QueryBase implements QueryVariant {
 	 * Json deserializer for {@link ParentIdQuery}
 	 */
 	public static final JsonpDeserializer<ParentIdQuery> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			ParentIdQuery::setupParentIdQueryDeserializer, Builder::build);
+			ParentIdQuery::setupParentIdQueryDeserializer);
 
-	protected static void setupParentIdQueryDeserializer(DelegatingDeserializer<ParentIdQuery.Builder> op) {
+	protected static void setupParentIdQueryDeserializer(ObjectDeserializer<ParentIdQuery.Builder> op) {
 		QueryBase.setupQueryBaseDeserializer(op);
 		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "id");
 		op.add(Builder::ignoreUnmapped, JsonpDeserializer.booleanDeserializer(), "ignore_unmapped");

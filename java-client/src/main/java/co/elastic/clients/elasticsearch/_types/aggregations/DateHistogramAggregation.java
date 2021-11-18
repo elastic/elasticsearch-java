@@ -23,9 +23,10 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
+import co.elastic.clients.elasticsearch._types.Script;
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.elasticsearch.transform.PivotGroupBy;
 import co.elastic.clients.elasticsearch.transform.PivotGroupByVariant;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -34,7 +35,6 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Integer;
@@ -48,25 +48,25 @@ import javax.annotation.Nullable;
 @JsonpDeserializable
 public class DateHistogramAggregation extends BucketAggregationBase implements AggregationVariant, PivotGroupByVariant {
 	@Nullable
-	private final JsonValue /* Union(_types.Time | _types.aggregations.DateInterval) */ calendarInterval;
+	private final CalendarInterval calendarInterval;
 
 	@Nullable
-	private final ExtendedBounds<JsonValue /* Union(_types.DateMath | _types.long) */> extendedBounds;
+	private final ExtendedBounds<FieldDateMath> extendedBounds;
 
 	@Nullable
-	private final ExtendedBounds<JsonValue /* Union(_types.DateMath | _types.long) */> hardBounds;
+	private final ExtendedBounds<FieldDateMath> hardBounds;
 
 	@Nullable
 	private final String field;
 
 	@Nullable
-	private final JsonValue /* Union(_types.Time | _types.aggregations.DateInterval) */ fixedInterval;
+	private final Time fixedInterval;
 
 	@Nullable
 	private final String format;
 
 	@Nullable
-	private final JsonValue /* Union(_types.Time | _types.aggregations.DateInterval) */ interval;
+	private final Time interval;
 
 	@Nullable
 	private final Integer minDocCount;
@@ -75,7 +75,7 @@ public class DateHistogramAggregation extends BucketAggregationBase implements A
 	private final String missing;
 
 	@Nullable
-	private final String offset;
+	private final Time offset;
 
 	@Nullable
 	private final HistogramOrder order;
@@ -83,7 +83,7 @@ public class DateHistogramAggregation extends BucketAggregationBase implements A
 	private final Map<String, JsonData> params;
 
 	@Nullable
-	private final JsonValue /* _types.Script */ script;
+	private final Script script;
 
 	@Nullable
 	private final String timeZone;
@@ -130,7 +130,7 @@ public class DateHistogramAggregation extends BucketAggregationBase implements A
 	 * API name: {@code calendar_interval}
 	 */
 	@Nullable
-	public final JsonValue /* Union(_types.Time | _types.aggregations.DateInterval) */ calendarInterval() {
+	public final CalendarInterval calendarInterval() {
 		return this.calendarInterval;
 	}
 
@@ -138,7 +138,7 @@ public class DateHistogramAggregation extends BucketAggregationBase implements A
 	 * API name: {@code extended_bounds}
 	 */
 	@Nullable
-	public final ExtendedBounds<JsonValue /* Union(_types.DateMath | _types.long) */> extendedBounds() {
+	public final ExtendedBounds<FieldDateMath> extendedBounds() {
 		return this.extendedBounds;
 	}
 
@@ -146,7 +146,7 @@ public class DateHistogramAggregation extends BucketAggregationBase implements A
 	 * API name: {@code hard_bounds}
 	 */
 	@Nullable
-	public final ExtendedBounds<JsonValue /* Union(_types.DateMath | _types.long) */> hardBounds() {
+	public final ExtendedBounds<FieldDateMath> hardBounds() {
 		return this.hardBounds;
 	}
 
@@ -162,7 +162,7 @@ public class DateHistogramAggregation extends BucketAggregationBase implements A
 	 * API name: {@code fixed_interval}
 	 */
 	@Nullable
-	public final JsonValue /* Union(_types.Time | _types.aggregations.DateInterval) */ fixedInterval() {
+	public final Time fixedInterval() {
 		return this.fixedInterval;
 	}
 
@@ -178,7 +178,7 @@ public class DateHistogramAggregation extends BucketAggregationBase implements A
 	 * API name: {@code interval}
 	 */
 	@Nullable
-	public final JsonValue /* Union(_types.Time | _types.aggregations.DateInterval) */ interval() {
+	public final Time interval() {
 		return this.interval;
 	}
 
@@ -202,7 +202,7 @@ public class DateHistogramAggregation extends BucketAggregationBase implements A
 	 * API name: {@code offset}
 	 */
 	@Nullable
-	public final String offset() {
+	public final Time offset() {
 		return this.offset;
 	}
 
@@ -225,7 +225,7 @@ public class DateHistogramAggregation extends BucketAggregationBase implements A
 	 * API name: {@code script}
 	 */
 	@Nullable
-	public final JsonValue /* _types.Script */ script() {
+	public final Script script() {
 		return this.script;
 	}
 
@@ -250,8 +250,7 @@ public class DateHistogramAggregation extends BucketAggregationBase implements A
 		super.serializeInternal(generator, mapper);
 		if (this.calendarInterval != null) {
 			generator.writeKey("calendar_interval");
-			generator.write(this.calendarInterval);
-
+			this.calendarInterval.serialize(generator, mapper);
 		}
 		if (this.extendedBounds != null) {
 			generator.writeKey("extended_bounds");
@@ -270,7 +269,7 @@ public class DateHistogramAggregation extends BucketAggregationBase implements A
 		}
 		if (this.fixedInterval != null) {
 			generator.writeKey("fixed_interval");
-			generator.write(this.fixedInterval);
+			this.fixedInterval.serialize(generator, mapper);
 
 		}
 		if (this.format != null) {
@@ -280,7 +279,7 @@ public class DateHistogramAggregation extends BucketAggregationBase implements A
 		}
 		if (this.interval != null) {
 			generator.writeKey("interval");
-			generator.write(this.interval);
+			this.interval.serialize(generator, mapper);
 
 		}
 		if (this.minDocCount != null) {
@@ -295,7 +294,7 @@ public class DateHistogramAggregation extends BucketAggregationBase implements A
 		}
 		if (this.offset != null) {
 			generator.writeKey("offset");
-			generator.write(this.offset);
+			this.offset.serialize(generator, mapper);
 
 		}
 		if (this.order != null) {
@@ -316,7 +315,7 @@ public class DateHistogramAggregation extends BucketAggregationBase implements A
 		}
 		if (this.script != null) {
 			generator.writeKey("script");
-			generator.write(this.script);
+			this.script.serialize(generator, mapper);
 
 		}
 		if (this.timeZone != null) {
@@ -341,25 +340,25 @@ public class DateHistogramAggregation extends BucketAggregationBase implements A
 			implements
 				ObjectBuilder<DateHistogramAggregation> {
 		@Nullable
-		private JsonValue /* Union(_types.Time | _types.aggregations.DateInterval) */ calendarInterval;
+		private CalendarInterval calendarInterval;
 
 		@Nullable
-		private ExtendedBounds<JsonValue /* Union(_types.DateMath | _types.long) */> extendedBounds;
+		private ExtendedBounds<FieldDateMath> extendedBounds;
 
 		@Nullable
-		private ExtendedBounds<JsonValue /* Union(_types.DateMath | _types.long) */> hardBounds;
+		private ExtendedBounds<FieldDateMath> hardBounds;
 
 		@Nullable
 		private String field;
 
 		@Nullable
-		private JsonValue /* Union(_types.Time | _types.aggregations.DateInterval) */ fixedInterval;
+		private Time fixedInterval;
 
 		@Nullable
 		private String format;
 
 		@Nullable
-		private JsonValue /* Union(_types.Time | _types.aggregations.DateInterval) */ interval;
+		private Time interval;
 
 		@Nullable
 		private Integer minDocCount;
@@ -368,7 +367,7 @@ public class DateHistogramAggregation extends BucketAggregationBase implements A
 		private String missing;
 
 		@Nullable
-		private String offset;
+		private Time offset;
 
 		@Nullable
 		private HistogramOrder order;
@@ -377,7 +376,7 @@ public class DateHistogramAggregation extends BucketAggregationBase implements A
 		private Map<String, JsonData> params;
 
 		@Nullable
-		private JsonValue /* _types.Script */ script;
+		private Script script;
 
 		@Nullable
 		private String timeZone;
@@ -388,8 +387,7 @@ public class DateHistogramAggregation extends BucketAggregationBase implements A
 		/**
 		 * API name: {@code calendar_interval}
 		 */
-		public final Builder calendarInterval(
-				@Nullable JsonValue /* Union(_types.Time | _types.aggregations.DateInterval) */ value) {
+		public final Builder calendarInterval(@Nullable CalendarInterval value) {
 			this.calendarInterval = value;
 			return this;
 		}
@@ -397,8 +395,7 @@ public class DateHistogramAggregation extends BucketAggregationBase implements A
 		/**
 		 * API name: {@code extended_bounds}
 		 */
-		public final Builder extendedBounds(
-				@Nullable ExtendedBounds<JsonValue /* Union(_types.DateMath | _types.long) */> value) {
+		public final Builder extendedBounds(@Nullable ExtendedBounds<FieldDateMath> value) {
 			this.extendedBounds = value;
 			return this;
 		}
@@ -407,26 +404,14 @@ public class DateHistogramAggregation extends BucketAggregationBase implements A
 		 * API name: {@code extended_bounds}
 		 */
 		public final Builder extendedBounds(
-				Function<ExtendedBounds.Builder<JsonValue /* Union(_types.DateMath | _types.long) */>, ObjectBuilder<ExtendedBounds<JsonValue /*
-																																				 * Union
-																																				 * (
-																																				 * _types
-																																				 * .
-																																				 * DateMath
-																																				 * |
-																																				 * _types
-																																				 * .
-																																				 * long)
-																																				 */>>> fn) {
-			return this.extendedBounds(fn
-					.apply(new ExtendedBounds.Builder<JsonValue /* Union(_types.DateMath | _types.long) */>()).build());
+				Function<ExtendedBounds.Builder<FieldDateMath>, ObjectBuilder<ExtendedBounds<FieldDateMath>>> fn) {
+			return this.extendedBounds(fn.apply(new ExtendedBounds.Builder<FieldDateMath>()).build());
 		}
 
 		/**
 		 * API name: {@code hard_bounds}
 		 */
-		public final Builder hardBounds(
-				@Nullable ExtendedBounds<JsonValue /* Union(_types.DateMath | _types.long) */> value) {
+		public final Builder hardBounds(@Nullable ExtendedBounds<FieldDateMath> value) {
 			this.hardBounds = value;
 			return this;
 		}
@@ -435,19 +420,8 @@ public class DateHistogramAggregation extends BucketAggregationBase implements A
 		 * API name: {@code hard_bounds}
 		 */
 		public final Builder hardBounds(
-				Function<ExtendedBounds.Builder<JsonValue /* Union(_types.DateMath | _types.long) */>, ObjectBuilder<ExtendedBounds<JsonValue /*
-																																				 * Union
-																																				 * (
-																																				 * _types
-																																				 * .
-																																				 * DateMath
-																																				 * |
-																																				 * _types
-																																				 * .
-																																				 * long)
-																																				 */>>> fn) {
-			return this.hardBounds(fn
-					.apply(new ExtendedBounds.Builder<JsonValue /* Union(_types.DateMath | _types.long) */>()).build());
+				Function<ExtendedBounds.Builder<FieldDateMath>, ObjectBuilder<ExtendedBounds<FieldDateMath>>> fn) {
+			return this.hardBounds(fn.apply(new ExtendedBounds.Builder<FieldDateMath>()).build());
 		}
 
 		/**
@@ -461,10 +435,16 @@ public class DateHistogramAggregation extends BucketAggregationBase implements A
 		/**
 		 * API name: {@code fixed_interval}
 		 */
-		public final Builder fixedInterval(
-				@Nullable JsonValue /* Union(_types.Time | _types.aggregations.DateInterval) */ value) {
+		public final Builder fixedInterval(@Nullable Time value) {
 			this.fixedInterval = value;
 			return this;
+		}
+
+		/**
+		 * API name: {@code fixed_interval}
+		 */
+		public final Builder fixedInterval(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.fixedInterval(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -478,10 +458,16 @@ public class DateHistogramAggregation extends BucketAggregationBase implements A
 		/**
 		 * API name: {@code interval}
 		 */
-		public final Builder interval(
-				@Nullable JsonValue /* Union(_types.Time | _types.aggregations.DateInterval) */ value) {
+		public final Builder interval(@Nullable Time value) {
 			this.interval = value;
 			return this;
+		}
+
+		/**
+		 * API name: {@code interval}
+		 */
+		public final Builder interval(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.interval(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -503,9 +489,16 @@ public class DateHistogramAggregation extends BucketAggregationBase implements A
 		/**
 		 * API name: {@code offset}
 		 */
-		public final Builder offset(@Nullable String value) {
+		public final Builder offset(@Nullable Time value) {
 			this.offset = value;
 			return this;
+		}
+
+		/**
+		 * API name: {@code offset}
+		 */
+		public final Builder offset(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.offset(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -534,9 +527,16 @@ public class DateHistogramAggregation extends BucketAggregationBase implements A
 		/**
 		 * API name: {@code script}
 		 */
-		public final Builder script(@Nullable JsonValue /* _types.Script */ value) {
+		public final Builder script(@Nullable Script value) {
 			this.script = value;
 			return this;
+		}
+
+		/**
+		 * API name: {@code script}
+		 */
+		public final Builder script(Function<Script.Builder, ObjectBuilder<Script>> fn) {
+			return this.script(fn.apply(new Script.Builder()).build());
 		}
 
 		/**
@@ -579,28 +579,26 @@ public class DateHistogramAggregation extends BucketAggregationBase implements A
 	 * Json deserializer for {@link DateHistogramAggregation}
 	 */
 	public static final JsonpDeserializer<DateHistogramAggregation> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, DateHistogramAggregation::setupDateHistogramAggregationDeserializer, Builder::build);
+			.lazy(Builder::new, DateHistogramAggregation::setupDateHistogramAggregationDeserializer);
 
 	protected static void setupDateHistogramAggregationDeserializer(
-			DelegatingDeserializer<DateHistogramAggregation.Builder> op) {
+			ObjectDeserializer<DateHistogramAggregation.Builder> op) {
 		BucketAggregationBase.setupBucketAggregationBaseDeserializer(op);
-		op.add(Builder::calendarInterval, JsonpDeserializer.jsonValueDeserializer(), "calendar_interval");
-		op.add(Builder::extendedBounds,
-				ExtendedBounds.createExtendedBoundsDeserializer(JsonpDeserializer.jsonValueDeserializer()),
+		op.add(Builder::calendarInterval, CalendarInterval._DESERIALIZER, "calendar_interval");
+		op.add(Builder::extendedBounds, ExtendedBounds.createExtendedBoundsDeserializer(FieldDateMath._DESERIALIZER),
 				"extended_bounds");
-		op.add(Builder::hardBounds,
-				ExtendedBounds.createExtendedBoundsDeserializer(JsonpDeserializer.jsonValueDeserializer()),
+		op.add(Builder::hardBounds, ExtendedBounds.createExtendedBoundsDeserializer(FieldDateMath._DESERIALIZER),
 				"hard_bounds");
 		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
-		op.add(Builder::fixedInterval, JsonpDeserializer.jsonValueDeserializer(), "fixed_interval");
+		op.add(Builder::fixedInterval, Time._DESERIALIZER, "fixed_interval");
 		op.add(Builder::format, JsonpDeserializer.stringDeserializer(), "format");
-		op.add(Builder::interval, JsonpDeserializer.jsonValueDeserializer(), "interval");
+		op.add(Builder::interval, Time._DESERIALIZER, "interval");
 		op.add(Builder::minDocCount, JsonpDeserializer.integerDeserializer(), "min_doc_count");
 		op.add(Builder::missing, JsonpDeserializer.stringDeserializer(), "missing");
-		op.add(Builder::offset, JsonpDeserializer.stringDeserializer(), "offset");
+		op.add(Builder::offset, Time._DESERIALIZER, "offset");
 		op.add(Builder::order, HistogramOrder._DESERIALIZER, "order");
 		op.add(Builder::params, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "params");
-		op.add(Builder::script, JsonpDeserializer.jsonValueDeserializer(), "script");
+		op.add(Builder::script, Script._DESERIALIZER, "script");
 		op.add(Builder::timeZone, JsonpDeserializer.stringDeserializer(), "time_zone");
 		op.add(Builder::keyed, JsonpDeserializer.booleanDeserializer(), "keyed");
 

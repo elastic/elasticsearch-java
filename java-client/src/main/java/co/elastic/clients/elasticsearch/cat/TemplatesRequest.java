@@ -105,7 +105,7 @@ public class TemplatesRequest extends CatRequestBase {
 	/**
 	 * Endpoint "{@code cat.templates}".
 	 */
-	public static final Endpoint<TemplatesRequest, TemplatesResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<TemplatesRequest, TemplatesResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "GET";

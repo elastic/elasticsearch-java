@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.eql;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -289,7 +288,7 @@ public abstract class EqlSearchResponseBase<TEvent> implements JsonpSerializable
 
 	// ---------------------------------------------------------------------------------------------
 	protected static <TEvent, BuilderT extends AbstractBuilder<TEvent, BuilderT>> void setupEqlSearchResponseBaseDeserializer(
-			DelegatingDeserializer<BuilderT> op, JsonpDeserializer<TEvent> tEventDeserializer) {
+			ObjectDeserializer<BuilderT> op, JsonpDeserializer<TEvent> tEventDeserializer) {
 
 		op.add(AbstractBuilder::id, JsonpDeserializer.stringDeserializer(), "id");
 		op.add(AbstractBuilder::isPartial, JsonpDeserializer.booleanDeserializer(), "is_partial");

@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.security;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -83,9 +82,9 @@ public class GetUserResponse extends DictionaryResponse<String, User> {
 	 * Json deserializer for {@link GetUserResponse}
 	 */
 	public static final JsonpDeserializer<GetUserResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			GetUserResponse::setupGetUserResponseDeserializer, Builder::build);
+			GetUserResponse::setupGetUserResponseDeserializer);
 
-	protected static void setupGetUserResponseDeserializer(DelegatingDeserializer<GetUserResponse.Builder> op) {
+	protected static void setupGetUserResponseDeserializer(ObjectDeserializer<GetUserResponse.Builder> op) {
 		DictionaryResponse.setupDictionaryResponseDeserializer(op, JsonpDeserializer.stringDeserializer(),
 				User._DESERIALIZER);
 

@@ -53,7 +53,7 @@ public class RepositoriesRequest extends CatRequestBase {
 	/**
 	 * Endpoint "{@code cat.repositories}".
 	 */
-	public static final Endpoint<RepositoriesRequest, RepositoriesResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<RepositoriesRequest, RepositoriesResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "GET";

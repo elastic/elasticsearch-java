@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.mapping;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -41,6 +40,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.mapping.Property
+// union type: InternalTag[tag=type]
 @JsonpDeserializable
 public class Property implements TaggedUnion<PropertyVariant>, JsonpSerializable {
 
@@ -88,8 +88,6 @@ public class Property implements TaggedUnion<PropertyVariant>, JsonpSerializable
 	public static final String UNSIGNED_LONG = "unsigned_long";
 	public static final String VERSION = "version";
 	public static final String WILDCARD = "wildcard";
-
-	// Tagged union implementation
 
 	private final String _type;
 	private final PropertyVariant _value;
@@ -1028,7 +1026,7 @@ public class Property implements TaggedUnion<PropertyVariant>, JsonpSerializable
 
 	}
 
-	protected static void setupPropertyDeserializer(DelegatingDeserializer<Builder> op) {
+	protected static void setupPropertyDeserializer(ObjectDeserializer<Builder> op) {
 
 		op.add(Builder::aggregateMetricDouble, AggregateMetricDoubleProperty._DESERIALIZER, "aggregate_metric_double");
 		op.add(Builder::binary, BinaryProperty._DESERIALIZER, "binary");

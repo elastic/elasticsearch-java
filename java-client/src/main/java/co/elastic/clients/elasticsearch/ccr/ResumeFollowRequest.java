@@ -25,7 +25,7 @@ package co.elastic.clients.elasticsearch.ccr;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -63,7 +63,7 @@ public class ResumeFollowRequest extends RequestBase implements JsonpSerializabl
 	private final String maxReadRequestSize;
 
 	@Nullable
-	private final String maxRetryDelay;
+	private final Time maxRetryDelay;
 
 	@Nullable
 	private final Long maxWriteBufferCount;
@@ -78,7 +78,7 @@ public class ResumeFollowRequest extends RequestBase implements JsonpSerializabl
 	private final String maxWriteRequestSize;
 
 	@Nullable
-	private final String readPollTimeout;
+	private final Time readPollTimeout;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -147,7 +147,7 @@ public class ResumeFollowRequest extends RequestBase implements JsonpSerializabl
 	 * API name: {@code max_retry_delay}
 	 */
 	@Nullable
-	public final String maxRetryDelay() {
+	public final Time maxRetryDelay() {
 		return this.maxRetryDelay;
 	}
 
@@ -187,7 +187,7 @@ public class ResumeFollowRequest extends RequestBase implements JsonpSerializabl
 	 * API name: {@code read_poll_timeout}
 	 */
 	@Nullable
-	public final String readPollTimeout() {
+	public final Time readPollTimeout() {
 		return this.readPollTimeout;
 	}
 
@@ -224,7 +224,7 @@ public class ResumeFollowRequest extends RequestBase implements JsonpSerializabl
 		}
 		if (this.maxRetryDelay != null) {
 			generator.writeKey("max_retry_delay");
-			generator.write(this.maxRetryDelay);
+			this.maxRetryDelay.serialize(generator, mapper);
 
 		}
 		if (this.maxWriteBufferCount != null) {
@@ -249,7 +249,7 @@ public class ResumeFollowRequest extends RequestBase implements JsonpSerializabl
 		}
 		if (this.readPollTimeout != null) {
 			generator.writeKey("read_poll_timeout");
-			generator.write(this.readPollTimeout);
+			this.readPollTimeout.serialize(generator, mapper);
 
 		}
 
@@ -276,7 +276,7 @@ public class ResumeFollowRequest extends RequestBase implements JsonpSerializabl
 		private String maxReadRequestSize;
 
 		@Nullable
-		private String maxRetryDelay;
+		private Time maxRetryDelay;
 
 		@Nullable
 		private Long maxWriteBufferCount;
@@ -291,7 +291,7 @@ public class ResumeFollowRequest extends RequestBase implements JsonpSerializabl
 		private String maxWriteRequestSize;
 
 		@Nullable
-		private String readPollTimeout;
+		private Time readPollTimeout;
 
 		/**
 		 * Required - The name of the follow index to resume following.
@@ -338,9 +338,16 @@ public class ResumeFollowRequest extends RequestBase implements JsonpSerializabl
 		/**
 		 * API name: {@code max_retry_delay}
 		 */
-		public final Builder maxRetryDelay(@Nullable String value) {
+		public final Builder maxRetryDelay(@Nullable Time value) {
 			this.maxRetryDelay = value;
 			return this;
+		}
+
+		/**
+		 * API name: {@code max_retry_delay}
+		 */
+		public final Builder maxRetryDelay(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.maxRetryDelay(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -378,9 +385,16 @@ public class ResumeFollowRequest extends RequestBase implements JsonpSerializabl
 		/**
 		 * API name: {@code read_poll_timeout}
 		 */
-		public final Builder readPollTimeout(@Nullable String value) {
+		public final Builder readPollTimeout(@Nullable Time value) {
 			this.readPollTimeout = value;
 			return this;
+		}
+
+		/**
+		 * API name: {@code read_poll_timeout}
+		 */
+		public final Builder readPollTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.readPollTimeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -402,9 +416,9 @@ public class ResumeFollowRequest extends RequestBase implements JsonpSerializabl
 	 * Json deserializer for {@link ResumeFollowRequest}
 	 */
 	public static final JsonpDeserializer<ResumeFollowRequest> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, ResumeFollowRequest::setupResumeFollowRequestDeserializer, Builder::build);
+			.lazy(Builder::new, ResumeFollowRequest::setupResumeFollowRequestDeserializer);
 
-	protected static void setupResumeFollowRequestDeserializer(DelegatingDeserializer<ResumeFollowRequest.Builder> op) {
+	protected static void setupResumeFollowRequestDeserializer(ObjectDeserializer<ResumeFollowRequest.Builder> op) {
 
 		op.add(Builder::maxOutstandingReadRequests, JsonpDeserializer.longDeserializer(),
 				"max_outstanding_read_requests");
@@ -413,13 +427,13 @@ public class ResumeFollowRequest extends RequestBase implements JsonpSerializabl
 		op.add(Builder::maxReadRequestOperationCount, JsonpDeserializer.longDeserializer(),
 				"max_read_request_operation_count");
 		op.add(Builder::maxReadRequestSize, JsonpDeserializer.stringDeserializer(), "max_read_request_size");
-		op.add(Builder::maxRetryDelay, JsonpDeserializer.stringDeserializer(), "max_retry_delay");
+		op.add(Builder::maxRetryDelay, Time._DESERIALIZER, "max_retry_delay");
 		op.add(Builder::maxWriteBufferCount, JsonpDeserializer.longDeserializer(), "max_write_buffer_count");
 		op.add(Builder::maxWriteBufferSize, JsonpDeserializer.stringDeserializer(), "max_write_buffer_size");
 		op.add(Builder::maxWriteRequestOperationCount, JsonpDeserializer.longDeserializer(),
 				"max_write_request_operation_count");
 		op.add(Builder::maxWriteRequestSize, JsonpDeserializer.stringDeserializer(), "max_write_request_size");
-		op.add(Builder::readPollTimeout, JsonpDeserializer.stringDeserializer(), "read_poll_timeout");
+		op.add(Builder::readPollTimeout, Time._DESERIALIZER, "read_poll_timeout");
 
 	}
 
@@ -428,7 +442,7 @@ public class ResumeFollowRequest extends RequestBase implements JsonpSerializabl
 	/**
 	 * Endpoint "{@code ccr.resume_follow}".
 	 */
-	public static final Endpoint<ResumeFollowRequest, ResumeFollowResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<ResumeFollowRequest, ResumeFollowResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";

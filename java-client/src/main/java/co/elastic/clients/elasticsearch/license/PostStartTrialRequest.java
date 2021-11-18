@@ -130,7 +130,7 @@ public class PostStartTrialRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code license.post_start_trial}".
 	 */
-	public static final Endpoint<PostStartTrialRequest, PostStartTrialResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<PostStartTrialRequest, PostStartTrialResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";

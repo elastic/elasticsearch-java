@@ -53,7 +53,7 @@ public class CcrStatsRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code ccr.stats}".
 	 */
-	public static final Endpoint<CcrStatsRequest, CcrStatsResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<CcrStatsRequest, CcrStatsResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "GET";

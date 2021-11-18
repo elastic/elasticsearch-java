@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.slm;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -137,9 +136,9 @@ public class Invocation implements JsonpSerializable {
 	 * Json deserializer for {@link Invocation}
 	 */
 	public static final JsonpDeserializer<Invocation> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			Invocation::setupInvocationDeserializer, Builder::build);
+			Invocation::setupInvocationDeserializer);
 
-	protected static void setupInvocationDeserializer(DelegatingDeserializer<Invocation.Builder> op) {
+	protected static void setupInvocationDeserializer(ObjectDeserializer<Invocation.Builder> op) {
 
 		op.add(Builder::snapshotName, JsonpDeserializer.stringDeserializer(), "snapshot_name");
 		op.add(Builder::time, JsonpDeserializer.stringDeserializer(), "time");

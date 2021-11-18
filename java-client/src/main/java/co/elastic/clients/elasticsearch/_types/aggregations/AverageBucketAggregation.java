@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -87,10 +86,10 @@ public class AverageBucketAggregation extends PipelineAggregationBase implements
 	 * Json deserializer for {@link AverageBucketAggregation}
 	 */
 	public static final JsonpDeserializer<AverageBucketAggregation> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, AverageBucketAggregation::setupAverageBucketAggregationDeserializer, Builder::build);
+			.lazy(Builder::new, AverageBucketAggregation::setupAverageBucketAggregationDeserializer);
 
 	protected static void setupAverageBucketAggregationDeserializer(
-			DelegatingDeserializer<AverageBucketAggregation.Builder> op) {
+			ObjectDeserializer<AverageBucketAggregation.Builder> op) {
 		PipelineAggregationBase.setupPipelineAggregationBaseDeserializer(op);
 
 	}

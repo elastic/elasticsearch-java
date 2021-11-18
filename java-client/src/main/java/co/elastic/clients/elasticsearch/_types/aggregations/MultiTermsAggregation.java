@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -150,10 +149,9 @@ public class MultiTermsAggregation extends BucketAggregationBase implements Aggr
 	 * Json deserializer for {@link MultiTermsAggregation}
 	 */
 	public static final JsonpDeserializer<MultiTermsAggregation> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, MultiTermsAggregation::setupMultiTermsAggregationDeserializer, Builder::build);
+			.lazy(Builder::new, MultiTermsAggregation::setupMultiTermsAggregationDeserializer);
 
-	protected static void setupMultiTermsAggregationDeserializer(
-			DelegatingDeserializer<MultiTermsAggregation.Builder> op) {
+	protected static void setupMultiTermsAggregationDeserializer(ObjectDeserializer<MultiTermsAggregation.Builder> op) {
 		BucketAggregationBase.setupBucketAggregationBaseDeserializer(op);
 		op.add(Builder::terms, JsonpDeserializer.arrayDeserializer(MultiTermLookup._DESERIALIZER), "terms");
 

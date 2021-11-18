@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -31,7 +30,6 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;
@@ -40,10 +38,7 @@ import javax.annotation.Nullable;
 // typedef: _types.aggregations.PercentilesAggregateBase
 
 public abstract class PercentilesAggregateBase extends AggregateBase {
-	private final JsonValue /*
-							 * Union(Array<_types.aggregations.ArrayPercentilesItem> |
-							 * _types.aggregations.KeyedPercentiles)
-							 */ values;
+	private final Percentiles values;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -57,10 +52,7 @@ public abstract class PercentilesAggregateBase extends AggregateBase {
 	/**
 	 * Required - API name: {@code values}
 	 */
-	public final JsonValue /*
-							 * Union(Array<_types.aggregations.ArrayPercentilesItem> |
-							 * _types.aggregations.KeyedPercentiles)
-							 */ values() {
+	public final Percentiles values() {
 		return this.values;
 	}
 
@@ -68,36 +60,37 @@ public abstract class PercentilesAggregateBase extends AggregateBase {
 
 		super.serializeInternal(generator, mapper);
 		generator.writeKey("values");
-		generator.write(this.values);
+		this.values.serialize(generator, mapper);
 
 	}
 
 	protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>>
 			extends
 				AggregateBase.AbstractBuilder<BuilderT> {
-		private JsonValue /*
-							 * Union(Array<_types.aggregations.ArrayPercentilesItem> |
-							 * _types.aggregations.KeyedPercentiles)
-							 */ values;
+		private Percentiles values;
 
 		/**
 		 * Required - API name: {@code values}
 		 */
-		public final BuilderT values(JsonValue /*
-												 * Union(Array<_types.aggregations.ArrayPercentilesItem> |
-												 * _types.aggregations.KeyedPercentiles)
-												 */ value) {
+		public final BuilderT values(Percentiles value) {
 			this.values = value;
 			return self();
+		}
+
+		/**
+		 * Required - API name: {@code values}
+		 */
+		public final BuilderT values(Function<Percentiles.Builder, ObjectBuilder<Percentiles>> fn) {
+			return this.values(fn.apply(new Percentiles.Builder()).build());
 		}
 
 	}
 
 	// ---------------------------------------------------------------------------------------------
 	protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupPercentilesAggregateBaseDeserializer(
-			DelegatingDeserializer<BuilderT> op) {
+			ObjectDeserializer<BuilderT> op) {
 		AggregateBase.setupAggregateBaseDeserializer(op);
-		op.add(AbstractBuilder::values, JsonpDeserializer.jsonValueDeserializer(), "values");
+		op.add(AbstractBuilder::values, Percentiles._DESERIALIZER, "values");
 
 	}
 

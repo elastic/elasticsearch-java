@@ -25,6 +25,8 @@ package co.elastic.clients.elasticsearch.searchable_snapshots;
 
 import co.elastic.clients.ApiClient;
 import co.elastic.clients.elasticsearch._types.ElasticsearchException;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
+import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.Transport;
 import co.elastic.clients.transport.TransportOptions;
 import co.elastic.clients.util.ObjectBuilder;
@@ -67,7 +69,10 @@ public class ElasticsearchSearchableSnapshotsAsyncClient
 
 	public CompletableFuture<ClearCacheResponse> clearCache(ClearCacheRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(request, ClearCacheRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<ClearCacheRequest, ClearCacheResponse, ErrorResponse> endpoint = (Endpoint<ClearCacheRequest, ClearCacheResponse, ErrorResponse>) ClearCacheRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -96,7 +101,7 @@ public class ElasticsearchSearchableSnapshotsAsyncClient
 	 */
 
 	public CompletableFuture<ClearCacheResponse> clearCache() throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(new ClearCacheRequest.Builder().build(), ClearCacheRequest.ENDPOINT,
+		return this.transport.performRequestAsync(new ClearCacheRequest.Builder().build(), ClearCacheRequest._ENDPOINT,
 				this.transportOptions);
 	}
 
@@ -111,7 +116,10 @@ public class ElasticsearchSearchableSnapshotsAsyncClient
 	 */
 
 	public CompletableFuture<MountResponse> mount(MountRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(request, MountRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<MountRequest, MountResponse, ErrorResponse> endpoint = (Endpoint<MountRequest, MountResponse, ErrorResponse>) MountRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -142,8 +150,10 @@ public class ElasticsearchSearchableSnapshotsAsyncClient
 
 	public CompletableFuture<SearchableSnapshotsStatsResponse> stats(SearchableSnapshotsStatsRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(request, SearchableSnapshotsStatsRequest.ENDPOINT,
-				this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<SearchableSnapshotsStatsRequest, SearchableSnapshotsStatsResponse, ErrorResponse> endpoint = (Endpoint<SearchableSnapshotsStatsRequest, SearchableSnapshotsStatsResponse, ErrorResponse>) SearchableSnapshotsStatsRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -173,7 +183,7 @@ public class ElasticsearchSearchableSnapshotsAsyncClient
 
 	public CompletableFuture<SearchableSnapshotsStatsResponse> stats() throws IOException, ElasticsearchException {
 		return this.transport.performRequestAsync(new SearchableSnapshotsStatsRequest.Builder().build(),
-				SearchableSnapshotsStatsRequest.ENDPOINT, this.transportOptions);
+				SearchableSnapshotsStatsRequest._ENDPOINT, this.transportOptions);
 	}
 
 }

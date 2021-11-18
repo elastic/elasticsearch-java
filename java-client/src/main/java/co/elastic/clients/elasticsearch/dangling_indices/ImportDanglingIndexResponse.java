@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch.dangling_indices;
 
 import co.elastic.clients.elasticsearch._types.AcknowledgedResponseBase;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -79,11 +78,11 @@ public class ImportDanglingIndexResponse extends AcknowledgedResponseBase {
 	/**
 	 * Json deserializer for {@link ImportDanglingIndexResponse}
 	 */
-	public static final JsonpDeserializer<ImportDanglingIndexResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
-			Builder::new, ImportDanglingIndexResponse::setupImportDanglingIndexResponseDeserializer, Builder::build);
+	public static final JsonpDeserializer<ImportDanglingIndexResponse> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, ImportDanglingIndexResponse::setupImportDanglingIndexResponseDeserializer);
 
 	protected static void setupImportDanglingIndexResponseDeserializer(
-			DelegatingDeserializer<ImportDanglingIndexResponse.Builder> op) {
+			ObjectDeserializer<ImportDanglingIndexResponse.Builder> op) {
 		AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);
 
 	}

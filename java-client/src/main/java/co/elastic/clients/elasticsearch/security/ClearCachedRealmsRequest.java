@@ -152,7 +152,7 @@ public class ClearCachedRealmsRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code security.clear_cached_realms}".
 	 */
-	public static final Endpoint<ClearCachedRealmsRequest, ClearCachedRealmsResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<ClearCachedRealmsRequest, ClearCachedRealmsResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";

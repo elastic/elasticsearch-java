@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.analysis;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -36,7 +35,7 @@ import java.util.function.Function;
 
 // typedef: _types.analysis.LowercaseTokenizer
 @JsonpDeserializable
-public class LowercaseTokenizer extends TokenizerBase implements TokenizerVariant {
+public class LowercaseTokenizer extends TokenizerBase implements TokenizerDefinitionVariant {
 	// ---------------------------------------------------------------------------------------------
 
 	private LowercaseTokenizer(Builder builder) {
@@ -49,7 +48,7 @@ public class LowercaseTokenizer extends TokenizerBase implements TokenizerVarian
 	}
 
 	/**
-	 * {@link Tokenizer} variant type
+	 * {@link TokenizerDefinition} variant type
 	 */
 	@Override
 	public String _variantType() {
@@ -95,9 +94,9 @@ public class LowercaseTokenizer extends TokenizerBase implements TokenizerVarian
 	 * Json deserializer for {@link LowercaseTokenizer}
 	 */
 	public static final JsonpDeserializer<LowercaseTokenizer> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, LowercaseTokenizer::setupLowercaseTokenizerDeserializer, Builder::build);
+			.lazy(Builder::new, LowercaseTokenizer::setupLowercaseTokenizerDeserializer);
 
-	protected static void setupLowercaseTokenizerDeserializer(DelegatingDeserializer<LowercaseTokenizer.Builder> op) {
+	protected static void setupLowercaseTokenizerDeserializer(ObjectDeserializer<LowercaseTokenizer.Builder> op) {
 		TokenizerBase.setupTokenizerBaseDeserializer(op);
 
 		op.ignore("type");

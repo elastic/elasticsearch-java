@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.core.rank_eval;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -105,7 +104,7 @@ public abstract class RankEvalMetricBase implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 	protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupRankEvalMetricBaseDeserializer(
-			DelegatingDeserializer<BuilderT> op) {
+			ObjectDeserializer<BuilderT> op) {
 
 		op.add(AbstractBuilder::k, JsonpDeserializer.integerDeserializer(), "k");
 

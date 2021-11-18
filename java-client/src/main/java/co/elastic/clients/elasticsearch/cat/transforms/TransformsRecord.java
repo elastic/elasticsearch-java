@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.cat.transforms;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -1147,9 +1146,9 @@ public class TransformsRecord implements JsonpSerializable {
 	 * Json deserializer for {@link TransformsRecord}
 	 */
 	public static final JsonpDeserializer<TransformsRecord> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			TransformsRecord::setupTransformsRecordDeserializer, Builder::build);
+			TransformsRecord::setupTransformsRecordDeserializer);
 
-	protected static void setupTransformsRecordDeserializer(DelegatingDeserializer<TransformsRecord.Builder> op) {
+	protected static void setupTransformsRecordDeserializer(ObjectDeserializer<TransformsRecord.Builder> op) {
 
 		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "id");
 		op.add(Builder::state, JsonpDeserializer.stringDeserializer(), "state", "s");

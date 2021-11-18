@@ -25,7 +25,7 @@ package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -57,10 +57,10 @@ public class GetOverallBucketsRequest extends RequestBase implements JsonpSerial
 	private final Boolean allowNoMatch;
 
 	@Nullable
-	private final String bucketSpan;
+	private final Time bucketSpan;
 
 	@Nullable
-	private final String end;
+	private final Time end;
 
 	@Nullable
 	private final Boolean excludeInterim;
@@ -71,7 +71,7 @@ public class GetOverallBucketsRequest extends RequestBase implements JsonpSerial
 	private final String overallScore;
 
 	@Nullable
-	private final String start;
+	private final Time start;
 
 	@Nullable
 	private final Integer topN;
@@ -138,7 +138,7 @@ public class GetOverallBucketsRequest extends RequestBase implements JsonpSerial
 	 * API name: {@code bucket_span}
 	 */
 	@Nullable
-	public final String bucketSpan() {
+	public final Time bucketSpan() {
 		return this.bucketSpan;
 	}
 
@@ -148,7 +148,7 @@ public class GetOverallBucketsRequest extends RequestBase implements JsonpSerial
 	 * API name: {@code end}
 	 */
 	@Nullable
-	public final String end() {
+	public final Time end() {
 		return this.end;
 	}
 
@@ -194,7 +194,7 @@ public class GetOverallBucketsRequest extends RequestBase implements JsonpSerial
 	 * API name: {@code start}
 	 */
 	@Nullable
-	public final String start() {
+	public final Time start() {
 		return this.start;
 	}
 
@@ -241,10 +241,10 @@ public class GetOverallBucketsRequest extends RequestBase implements JsonpSerial
 		private Boolean allowNoMatch;
 
 		@Nullable
-		private String bucketSpan;
+		private Time bucketSpan;
 
 		@Nullable
-		private String end;
+		private Time end;
 
 		@Nullable
 		private Boolean excludeInterim;
@@ -255,7 +255,7 @@ public class GetOverallBucketsRequest extends RequestBase implements JsonpSerial
 		private String overallScore;
 
 		@Nullable
-		private String start;
+		private Time start;
 
 		@Nullable
 		private Integer topN;
@@ -301,8 +301,33 @@ public class GetOverallBucketsRequest extends RequestBase implements JsonpSerial
 		 * <p>
 		 * API name: {@code bucket_span}
 		 */
-		public final Builder bucketSpan(@Nullable String value) {
+		public final Builder bucketSpan(@Nullable Time value) {
 			this.bucketSpan = value;
+			return this;
+		}
+
+		/**
+		 * The span of the overall buckets. Must be greater or equal to the largest
+		 * bucket span of the specified anomaly detection jobs, which is the default
+		 * value.
+		 * <p>
+		 * By default, an overall bucket has a span equal to the largest bucket span of
+		 * the specified anomaly detection jobs. To override that behavior, use the
+		 * optional <code>bucket_span</code> parameter.
+		 * <p>
+		 * API name: {@code bucket_span}
+		 */
+		public final Builder bucketSpan(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.bucketSpan(fn.apply(new Time.Builder()).build());
+		}
+
+		/**
+		 * Returns overall buckets with timestamps earlier than this time.
+		 * <p>
+		 * API name: {@code end}
+		 */
+		public final Builder end(@Nullable Time value) {
+			this.end = value;
 			return this;
 		}
 
@@ -311,9 +336,8 @@ public class GetOverallBucketsRequest extends RequestBase implements JsonpSerial
 		 * <p>
 		 * API name: {@code end}
 		 */
-		public final Builder end(@Nullable String value) {
-			this.end = value;
-			return this;
+		public final Builder end(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.end(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -358,9 +382,18 @@ public class GetOverallBucketsRequest extends RequestBase implements JsonpSerial
 		 * <p>
 		 * API name: {@code start}
 		 */
-		public final Builder start(@Nullable String value) {
+		public final Builder start(@Nullable Time value) {
 			this.start = value;
 			return this;
+		}
+
+		/**
+		 * Returns overall buckets with timestamps after this time.
+		 * <p>
+		 * API name: {@code start}
+		 */
+		public final Builder start(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.start(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -393,10 +426,10 @@ public class GetOverallBucketsRequest extends RequestBase implements JsonpSerial
 	 * Json deserializer for {@link GetOverallBucketsRequest}
 	 */
 	public static final JsonpDeserializer<GetOverallBucketsRequest> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, GetOverallBucketsRequest::setupGetOverallBucketsRequestDeserializer, Builder::build);
+			.lazy(Builder::new, GetOverallBucketsRequest::setupGetOverallBucketsRequestDeserializer);
 
 	protected static void setupGetOverallBucketsRequestDeserializer(
-			DelegatingDeserializer<GetOverallBucketsRequest.Builder> op) {
+			ObjectDeserializer<GetOverallBucketsRequest.Builder> op) {
 
 		op.add(Builder::allowNoJobs, JsonpDeserializer.booleanDeserializer(), "allow_no_jobs");
 
@@ -407,7 +440,7 @@ public class GetOverallBucketsRequest extends RequestBase implements JsonpSerial
 	/**
 	 * Endpoint "{@code ml.get_overall_buckets}".
 	 */
-	public static final Endpoint<GetOverallBucketsRequest, GetOverallBucketsResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<GetOverallBucketsRequest, GetOverallBucketsResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";
@@ -446,13 +479,13 @@ public class GetOverallBucketsRequest extends RequestBase implements JsonpSerial
 					params.put("exclude_interim", String.valueOf(request.excludeInterim));
 				}
 				if (request.bucketSpan != null) {
-					params.put("bucket_span", request.bucketSpan);
+					params.put("bucket_span", request.bucketSpan._toJsonString());
 				}
 				if (request.start != null) {
-					params.put("start", request.start);
+					params.put("start", request.start._toJsonString());
 				}
 				if (request.end != null) {
-					params.put("end", request.end);
+					params.put("end", request.end._toJsonString());
 				}
 				if (request.overallScore != null) {
 					params.put("overall_score", request.overallScore);

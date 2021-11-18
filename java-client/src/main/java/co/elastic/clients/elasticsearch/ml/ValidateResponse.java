@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.elasticsearch._types.AcknowledgedResponseBase;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -80,9 +79,9 @@ public class ValidateResponse extends AcknowledgedResponseBase {
 	 * Json deserializer for {@link ValidateResponse}
 	 */
 	public static final JsonpDeserializer<ValidateResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			ValidateResponse::setupValidateResponseDeserializer, Builder::build);
+			ValidateResponse::setupValidateResponseDeserializer);
 
-	protected static void setupValidateResponseDeserializer(DelegatingDeserializer<ValidateResponse.Builder> op) {
+	protected static void setupValidateResponseDeserializer(ObjectDeserializer<ValidateResponse.Builder> op) {
 		AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);
 
 	}

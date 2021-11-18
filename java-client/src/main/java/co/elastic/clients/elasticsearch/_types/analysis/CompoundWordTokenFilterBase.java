@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.analysis;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -272,7 +271,7 @@ public abstract class CompoundWordTokenFilterBase extends TokenFilterBase {
 
 	// ---------------------------------------------------------------------------------------------
 	protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupCompoundWordTokenFilterBaseDeserializer(
-			DelegatingDeserializer<BuilderT> op) {
+			ObjectDeserializer<BuilderT> op) {
 		TokenFilterBase.setupTokenFilterBaseDeserializer(op);
 		op.add(AbstractBuilder::hyphenationPatternsPath, JsonpDeserializer.stringDeserializer(),
 				"hyphenation_patterns_path");

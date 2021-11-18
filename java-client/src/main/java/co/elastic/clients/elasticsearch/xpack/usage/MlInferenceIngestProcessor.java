@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.xpack.usage;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -212,11 +211,11 @@ public class MlInferenceIngestProcessor implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link MlInferenceIngestProcessor}
 	 */
-	public static final JsonpDeserializer<MlInferenceIngestProcessor> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
-			Builder::new, MlInferenceIngestProcessor::setupMlInferenceIngestProcessorDeserializer, Builder::build);
+	public static final JsonpDeserializer<MlInferenceIngestProcessor> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, MlInferenceIngestProcessor::setupMlInferenceIngestProcessorDeserializer);
 
 	protected static void setupMlInferenceIngestProcessorDeserializer(
-			DelegatingDeserializer<MlInferenceIngestProcessor.Builder> op) {
+			ObjectDeserializer<MlInferenceIngestProcessor.Builder> op) {
 
 		op.add(Builder::numDocsProcessed, MlInferenceIngestProcessorCount._DESERIALIZER, "num_docs_processed");
 		op.add(Builder::pipelines, MlCounter._DESERIALIZER, "pipelines");

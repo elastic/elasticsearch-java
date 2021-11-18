@@ -26,6 +26,7 @@ package co.elastic.clients.elasticsearch.nodes;
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch._types.ThreadType;
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -55,7 +56,7 @@ public class HotThreadsRequest extends RequestBase {
 	private final Boolean ignoreIdleThreads;
 
 	@Nullable
-	private final String interval;
+	private final Time interval;
 
 	private final List<String> nodeId;
 
@@ -69,7 +70,7 @@ public class HotThreadsRequest extends RequestBase {
 	private final Long threads;
 
 	@Nullable
-	private final String timeout;
+	private final Time timeout;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -106,7 +107,7 @@ public class HotThreadsRequest extends RequestBase {
 	 * API name: {@code interval}
 	 */
 	@Nullable
-	public final String interval() {
+	public final Time interval() {
 		return this.interval;
 	}
 
@@ -155,7 +156,7 @@ public class HotThreadsRequest extends RequestBase {
 	 * API name: {@code timeout}
 	 */
 	@Nullable
-	public final String timeout() {
+	public final Time timeout() {
 		return this.timeout;
 	}
 
@@ -169,7 +170,7 @@ public class HotThreadsRequest extends RequestBase {
 		private Boolean ignoreIdleThreads;
 
 		@Nullable
-		private String interval;
+		private Time interval;
 
 		@Nullable
 		private List<String> nodeId;
@@ -184,7 +185,7 @@ public class HotThreadsRequest extends RequestBase {
 		private Long threads;
 
 		@Nullable
-		private String timeout;
+		private Time timeout;
 
 		/**
 		 * Don't show threads that are in known-idle places, such as waiting on a socket
@@ -202,9 +203,18 @@ public class HotThreadsRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code interval}
 		 */
-		public final Builder interval(@Nullable String value) {
+		public final Builder interval(@Nullable Time value) {
 			this.interval = value;
 			return this;
+		}
+
+		/**
+		 * The interval for the second sampling of threads
+		 * <p>
+		 * API name: {@code interval}
+		 */
+		public final Builder interval(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.interval(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -264,9 +274,18 @@ public class HotThreadsRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code timeout}
 		 */
-		public final Builder timeout(@Nullable String value) {
+		public final Builder timeout(@Nullable Time value) {
 			this.timeout = value;
 			return this;
+		}
+
+		/**
+		 * Explicit operation timeout
+		 * <p>
+		 * API name: {@code timeout}
+		 */
+		public final Builder timeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.timeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -287,7 +306,7 @@ public class HotThreadsRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code nodes.hot_threads}".
 	 */
-	public static final Endpoint<HotThreadsRequest, HotThreadsResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<HotThreadsRequest, HotThreadsResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "GET";
@@ -384,10 +403,10 @@ public class HotThreadsRequest extends RequestBase {
 					params.put("threads", String.valueOf(request.threads));
 				}
 				if (request.interval != null) {
-					params.put("interval", request.interval);
+					params.put("interval", request.interval._toJsonString());
 				}
 				if (request.timeout != null) {
-					params.put("timeout", request.timeout);
+					params.put("timeout", request.timeout._toJsonString());
 				}
 				if (request.ignoreIdleThreads != null) {
 					params.put("ignore_idle_threads", String.valueOf(request.ignoreIdleThreads));

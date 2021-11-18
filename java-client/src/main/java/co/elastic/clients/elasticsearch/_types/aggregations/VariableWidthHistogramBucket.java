@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -243,11 +242,11 @@ public class VariableWidthHistogramBucket extends MultiBucketBase {
 	/**
 	 * Json deserializer for {@link VariableWidthHistogramBucket}
 	 */
-	public static final JsonpDeserializer<VariableWidthHistogramBucket> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
-			Builder::new, VariableWidthHistogramBucket::setupVariableWidthHistogramBucketDeserializer, Builder::build);
+	public static final JsonpDeserializer<VariableWidthHistogramBucket> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, VariableWidthHistogramBucket::setupVariableWidthHistogramBucketDeserializer);
 
 	protected static void setupVariableWidthHistogramBucketDeserializer(
-			DelegatingDeserializer<VariableWidthHistogramBucket.Builder> op) {
+			ObjectDeserializer<VariableWidthHistogramBucket.Builder> op) {
 		MultiBucketBase.setupMultiBucketBaseDeserializer(op);
 		op.add(Builder::min, JsonpDeserializer.doubleDeserializer(), "min");
 		op.add(Builder::key, JsonpDeserializer.doubleDeserializer(), "key");

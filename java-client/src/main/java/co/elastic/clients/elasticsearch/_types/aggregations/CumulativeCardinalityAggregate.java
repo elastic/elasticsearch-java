@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -151,11 +150,10 @@ public class CumulativeCardinalityAggregate extends AggregateBase implements Agg
 	 * Json deserializer for {@link CumulativeCardinalityAggregate}
 	 */
 	public static final JsonpDeserializer<CumulativeCardinalityAggregate> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, CumulativeCardinalityAggregate::setupCumulativeCardinalityAggregateDeserializer,
-					Builder::build);
+			.lazy(Builder::new, CumulativeCardinalityAggregate::setupCumulativeCardinalityAggregateDeserializer);
 
 	protected static void setupCumulativeCardinalityAggregateDeserializer(
-			DelegatingDeserializer<CumulativeCardinalityAggregate.Builder> op) {
+			ObjectDeserializer<CumulativeCardinalityAggregate.Builder> op) {
 		AggregateBase.setupAggregateBaseDeserializer(op);
 		op.add(Builder::value, JsonpDeserializer.longDeserializer(), "value");
 		op.add(Builder::valueAsString, JsonpDeserializer.stringDeserializer(), "value_as_string");

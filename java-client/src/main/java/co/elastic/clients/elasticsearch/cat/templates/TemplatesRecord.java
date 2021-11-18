@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.cat.templates;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -251,9 +250,9 @@ public class TemplatesRecord implements JsonpSerializable {
 	 * Json deserializer for {@link TemplatesRecord}
 	 */
 	public static final JsonpDeserializer<TemplatesRecord> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			TemplatesRecord::setupTemplatesRecordDeserializer, Builder::build);
+			TemplatesRecord::setupTemplatesRecordDeserializer);
 
-	protected static void setupTemplatesRecordDeserializer(DelegatingDeserializer<TemplatesRecord.Builder> op) {
+	protected static void setupTemplatesRecordDeserializer(ObjectDeserializer<TemplatesRecord.Builder> op) {
 
 		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name", "n");
 		op.add(Builder::indexPatterns, JsonpDeserializer.stringDeserializer(), "index_patterns", "t");

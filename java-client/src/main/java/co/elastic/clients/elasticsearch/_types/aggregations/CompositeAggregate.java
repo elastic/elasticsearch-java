@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -133,9 +132,9 @@ public class CompositeAggregate extends MultiBucketAggregateBase<CompositeBucket
 	 * Json deserializer for {@link CompositeAggregate}
 	 */
 	public static final JsonpDeserializer<CompositeAggregate> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, CompositeAggregate::setupCompositeAggregateDeserializer, Builder::build);
+			.lazy(Builder::new, CompositeAggregate::setupCompositeAggregateDeserializer);
 
-	protected static void setupCompositeAggregateDeserializer(DelegatingDeserializer<CompositeAggregate.Builder> op) {
+	protected static void setupCompositeAggregateDeserializer(ObjectDeserializer<CompositeAggregate.Builder> op) {
 		MultiBucketAggregateBase.setupMultiBucketAggregateBaseDeserializer(op, CompositeBucket._DESERIALIZER);
 		op.add(Builder::afterKey, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "after_key");
 

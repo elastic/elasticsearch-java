@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.analysis;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -226,9 +225,9 @@ public class NoriAnalyzer implements AnalyzerVariant, JsonpSerializable {
 	 * Json deserializer for {@link NoriAnalyzer}
 	 */
 	public static final JsonpDeserializer<NoriAnalyzer> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			NoriAnalyzer::setupNoriAnalyzerDeserializer, Builder::build);
+			NoriAnalyzer::setupNoriAnalyzerDeserializer);
 
-	protected static void setupNoriAnalyzerDeserializer(DelegatingDeserializer<NoriAnalyzer.Builder> op) {
+	protected static void setupNoriAnalyzerDeserializer(ObjectDeserializer<NoriAnalyzer.Builder> op) {
 
 		op.add(Builder::version, JsonpDeserializer.stringDeserializer(), "version");
 		op.add(Builder::decompoundMode, NoriDecompoundMode._DESERIALIZER, "decompound_mode");

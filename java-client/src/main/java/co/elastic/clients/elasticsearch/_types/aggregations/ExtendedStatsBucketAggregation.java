@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -126,11 +125,10 @@ public class ExtendedStatsBucketAggregation extends PipelineAggregationBase impl
 	 * Json deserializer for {@link ExtendedStatsBucketAggregation}
 	 */
 	public static final JsonpDeserializer<ExtendedStatsBucketAggregation> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, ExtendedStatsBucketAggregation::setupExtendedStatsBucketAggregationDeserializer,
-					Builder::build);
+			.lazy(Builder::new, ExtendedStatsBucketAggregation::setupExtendedStatsBucketAggregationDeserializer);
 
 	protected static void setupExtendedStatsBucketAggregationDeserializer(
-			DelegatingDeserializer<ExtendedStatsBucketAggregation.Builder> op) {
+			ObjectDeserializer<ExtendedStatsBucketAggregation.Builder> op) {
 		PipelineAggregationBase.setupPipelineAggregationBaseDeserializer(op);
 		op.add(Builder::sigma, JsonpDeserializer.doubleDeserializer(), "sigma");
 

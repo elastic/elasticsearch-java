@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.mapping;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -126,9 +125,9 @@ public class DateRangeProperty extends RangePropertyBase implements PropertyVari
 	 * Json deserializer for {@link DateRangeProperty}
 	 */
 	public static final JsonpDeserializer<DateRangeProperty> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, DateRangeProperty::setupDateRangePropertyDeserializer, Builder::build);
+			.lazy(Builder::new, DateRangeProperty::setupDateRangePropertyDeserializer);
 
-	protected static void setupDateRangePropertyDeserializer(DelegatingDeserializer<DateRangeProperty.Builder> op) {
+	protected static void setupDateRangePropertyDeserializer(ObjectDeserializer<DateRangeProperty.Builder> op) {
 		RangePropertyBase.setupRangePropertyBaseDeserializer(op);
 		op.add(Builder::format, JsonpDeserializer.stringDeserializer(), "format");
 

@@ -25,9 +25,9 @@ package co.elastic.clients.elasticsearch.transform;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.elasticsearch.core.reindex.Destination;
 import co.elastic.clients.elasticsearch.core.reindex.Source;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -55,7 +55,7 @@ public class PreviewTransformRequest extends RequestBase implements JsonpSeriali
 	private final Destination dest;
 
 	@Nullable
-	private final String frequency;
+	private final Time frequency;
 
 	@Nullable
 	private final Latest latest;
@@ -128,7 +128,7 @@ public class PreviewTransformRequest extends RequestBase implements JsonpSeriali
 	 * API name: {@code frequency}
 	 */
 	@Nullable
-	public final String frequency() {
+	public final Time frequency() {
 		return this.frequency;
 	}
 
@@ -228,7 +228,7 @@ public class PreviewTransformRequest extends RequestBase implements JsonpSeriali
 		}
 		if (this.frequency != null) {
 			generator.writeKey("frequency");
-			generator.write(this.frequency);
+			this.frequency.serialize(generator, mapper);
 
 		}
 		if (this.latest != null) {
@@ -277,7 +277,7 @@ public class PreviewTransformRequest extends RequestBase implements JsonpSeriali
 		private Destination dest;
 
 		@Nullable
-		private String frequency;
+		private Time frequency;
 
 		@Nullable
 		private Latest latest;
@@ -337,9 +337,21 @@ public class PreviewTransformRequest extends RequestBase implements JsonpSeriali
 		 * <p>
 		 * API name: {@code frequency}
 		 */
-		public final Builder frequency(@Nullable String value) {
+		public final Builder frequency(@Nullable Time value) {
 			this.frequency = value;
 			return this;
+		}
+
+		/**
+		 * The interval between checks for changes in the source indices when the
+		 * transform is running continuously. Also determines the retry interval in the
+		 * event of transient failures while the transform is searching or indexing. The
+		 * minimum value is 1s and the maximum is 1h.
+		 * <p>
+		 * API name: {@code frequency}
+		 */
+		public final Builder frequency(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.frequency(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -491,14 +503,14 @@ public class PreviewTransformRequest extends RequestBase implements JsonpSeriali
 	 * Json deserializer for {@link PreviewTransformRequest}
 	 */
 	public static final JsonpDeserializer<PreviewTransformRequest> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, PreviewTransformRequest::setupPreviewTransformRequestDeserializer, Builder::build);
+			.lazy(Builder::new, PreviewTransformRequest::setupPreviewTransformRequestDeserializer);
 
 	protected static void setupPreviewTransformRequestDeserializer(
-			DelegatingDeserializer<PreviewTransformRequest.Builder> op) {
+			ObjectDeserializer<PreviewTransformRequest.Builder> op) {
 
 		op.add(Builder::description, JsonpDeserializer.stringDeserializer(), "description");
 		op.add(Builder::dest, Destination._DESERIALIZER, "dest");
-		op.add(Builder::frequency, JsonpDeserializer.stringDeserializer(), "frequency");
+		op.add(Builder::frequency, Time._DESERIALIZER, "frequency");
 		op.add(Builder::latest, Latest._DESERIALIZER, "latest");
 		op.add(Builder::pivot, Pivot._DESERIALIZER, "pivot");
 		op.add(Builder::retentionPolicy, RetentionPolicy._DESERIALIZER, "retention_policy");
@@ -513,7 +525,7 @@ public class PreviewTransformRequest extends RequestBase implements JsonpSeriali
 	/**
 	 * Endpoint "{@code transform.preview_transform}".
 	 */
-	private static final SimpleEndpoint<PreviewTransformRequest, Void> ENDPOINT = new SimpleEndpoint<>(
+	public static final SimpleEndpoint<PreviewTransformRequest, ?> _ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";
@@ -551,14 +563,14 @@ public class PreviewTransformRequest extends RequestBase implements JsonpSeriali
 			request -> {
 				return Collections.emptyMap();
 
-			}, SimpleEndpoint.emptyMap(), true, null);
+			}, SimpleEndpoint.emptyMap(), true, PreviewTransformResponse._DESERIALIZER);
 
 	/**
 	 * Create an "{@code transform.preview_transform}" endpoint.
 	 */
 	public static <TTransform> Endpoint<PreviewTransformRequest, PreviewTransformResponse<TTransform>, ErrorResponse> createPreviewTransformEndpoint(
 			JsonpDeserializer<TTransform> tTransformDeserializer) {
-		return ENDPOINT.withResponseDeserializer(
+		return _ENDPOINT.withResponseDeserializer(
 				PreviewTransformResponse.createPreviewTransformResponseDeserializer(tTransformDeserializer));
 	}
 }

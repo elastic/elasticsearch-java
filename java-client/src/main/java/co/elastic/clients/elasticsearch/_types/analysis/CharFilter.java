@@ -23,37 +23,34 @@
 
 package co.elastic.clients.elasticsearch._types.analysis;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
-import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.json.UnionDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import co.elastic.clients.util.TaggedUnion;
 import co.elastic.clients.util.TaggedUnionUtils;
 import jakarta.json.stream.JsonGenerator;
+import java.lang.Object;
+import java.lang.String;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.analysis.CharFilter
+// union type: Union[]
 @JsonpDeserializable
-public class CharFilter implements TaggedUnion<CharFilterVariant>, JsonpSerializable {
+public class CharFilter implements TaggedUnion<Object>, JsonpSerializable {
 
-	public static final String HTML_STRIP = "html_strip";
-	public static final String ICU_NORMALIZER = "icu_normalizer";
-	public static final String KUROMOJI_ITERATION_MARK = "kuromoji_iteration_mark";
-	public static final String MAPPING = "mapping";
-	public static final String PATTERN_REPLACE = "pattern_replace";
-
-	// Tagged union implementation
+	public static final String DEFINITION = "definition";
+	public static final String NAME = "name";
 
 	private final String _type;
-	private final CharFilterVariant _value;
+	private final Object _value;
 
 	@Override
 	public final String _type() {
@@ -61,15 +58,13 @@ public class CharFilter implements TaggedUnion<CharFilterVariant>, JsonpSerializ
 	}
 
 	@Override
-	public final CharFilterVariant _get() {
+	public final Object _get() {
 		return _value;
 	}
 
-	public CharFilter(CharFilterVariant value) {
-
-		this._type = ModelTypeHelper.requireNonNull(value._variantType(), this, "<variant type>");
-		this._value = ModelTypeHelper.requireNonNull(value, this, "<variant value>");
-
+	public CharFilter(String type, Object value) {
+		this._type = type;
+		this._value = value;
 	}
 
 	private CharFilter(Builder builder) {
@@ -84,119 +79,58 @@ public class CharFilter implements TaggedUnion<CharFilterVariant>, JsonpSerializ
 	}
 
 	/**
-	 * Get the {@code html_strip} variant value.
+	 * Get the {@code definition} variant value.
 	 *
 	 * @throws IllegalStateException
-	 *             if the current variant is not of the {@code html_strip} kind.
+	 *             if the current variant is not of the {@code definition} kind.
 	 */
-	public HtmlStripCharFilter htmlStrip() {
-		return TaggedUnionUtils.get(this, HTML_STRIP);
+	public CharFilterDefinition definition() {
+		return TaggedUnionUtils.get(this, DEFINITION);
 	}
 
 	/**
-	 * Get the {@code icu_normalizer} variant value.
+	 * Get the {@code name} variant value.
 	 *
 	 * @throws IllegalStateException
-	 *             if the current variant is not of the {@code icu_normalizer} kind.
+	 *             if the current variant is not of the {@code name} kind.
 	 */
-	public IcuNormalizationCharFilter icuNormalizer() {
-		return TaggedUnionUtils.get(this, ICU_NORMALIZER);
-	}
-
-	/**
-	 * Get the {@code kuromoji_iteration_mark} variant value.
-	 *
-	 * @throws IllegalStateException
-	 *             if the current variant is not of the
-	 *             {@code kuromoji_iteration_mark} kind.
-	 */
-	public KuromojiIterationMarkCharFilter kuromojiIterationMark() {
-		return TaggedUnionUtils.get(this, KUROMOJI_ITERATION_MARK);
-	}
-
-	/**
-	 * Get the {@code mapping} variant value.
-	 *
-	 * @throws IllegalStateException
-	 *             if the current variant is not of the {@code mapping} kind.
-	 */
-	public MappingCharFilter mapping() {
-		return TaggedUnionUtils.get(this, MAPPING);
-	}
-
-	/**
-	 * Get the {@code pattern_replace} variant value.
-	 *
-	 * @throws IllegalStateException
-	 *             if the current variant is not of the {@code pattern_replace}
-	 *             kind.
-	 */
-	public PatternReplaceCharFilter patternReplace() {
-		return TaggedUnionUtils.get(this, PATTERN_REPLACE);
+	public String name() {
+		return TaggedUnionUtils.get(this, NAME);
 	}
 
 	@Override
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+		if (_value instanceof JsonpSerializable) {
+			((JsonpSerializable) _value).serialize(generator, mapper);
+		} else {
+			switch (_type) {
+				case NAME :
+					generator.write(((String) this._value));
 
-		mapper.serialize(_value, generator);
+					break;
+			}
+		}
 
 	}
 
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<CharFilter> {
 		private String _type;
-		private CharFilterVariant _value;
+		private Object _value;
 
-		public Builder htmlStrip(HtmlStripCharFilter v) {
-			this._type = HTML_STRIP;
+		public Builder definition(CharFilterDefinition v) {
+			this._type = DEFINITION;
 			this._value = v;
 			return this;
 		}
 
-		public Builder htmlStrip(Function<HtmlStripCharFilter.Builder, ObjectBuilder<HtmlStripCharFilter>> f) {
-			return this.htmlStrip(f.apply(new HtmlStripCharFilter.Builder()).build());
+		public Builder definition(Function<CharFilterDefinition.Builder, ObjectBuilder<CharFilterDefinition>> f) {
+			return this.definition(f.apply(new CharFilterDefinition.Builder()).build());
 		}
 
-		public Builder icuNormalizer(IcuNormalizationCharFilter v) {
-			this._type = ICU_NORMALIZER;
+		public Builder name(String v) {
+			this._type = NAME;
 			this._value = v;
 			return this;
-		}
-
-		public Builder icuNormalizer(
-				Function<IcuNormalizationCharFilter.Builder, ObjectBuilder<IcuNormalizationCharFilter>> f) {
-			return this.icuNormalizer(f.apply(new IcuNormalizationCharFilter.Builder()).build());
-		}
-
-		public Builder kuromojiIterationMark(KuromojiIterationMarkCharFilter v) {
-			this._type = KUROMOJI_ITERATION_MARK;
-			this._value = v;
-			return this;
-		}
-
-		public Builder kuromojiIterationMark(
-				Function<KuromojiIterationMarkCharFilter.Builder, ObjectBuilder<KuromojiIterationMarkCharFilter>> f) {
-			return this.kuromojiIterationMark(f.apply(new KuromojiIterationMarkCharFilter.Builder()).build());
-		}
-
-		public Builder mapping(MappingCharFilter v) {
-			this._type = MAPPING;
-			this._value = v;
-			return this;
-		}
-
-		public Builder mapping(Function<MappingCharFilter.Builder, ObjectBuilder<MappingCharFilter>> f) {
-			return this.mapping(f.apply(new MappingCharFilter.Builder()).build());
-		}
-
-		public Builder patternReplace(PatternReplaceCharFilter v) {
-			this._type = PATTERN_REPLACE;
-			this._value = v;
-			return this;
-		}
-
-		public Builder patternReplace(
-				Function<PatternReplaceCharFilter.Builder, ObjectBuilder<PatternReplaceCharFilter>> f) {
-			return this.patternReplace(f.apply(new PatternReplaceCharFilter.Builder()).build());
 		}
 
 		public CharFilter build() {
@@ -206,19 +140,12 @@ public class CharFilter implements TaggedUnion<CharFilterVariant>, JsonpSerializ
 
 	}
 
-	protected static void setupCharFilterDeserializer(DelegatingDeserializer<Builder> op) {
-
-		op.add(Builder::htmlStrip, HtmlStripCharFilter._DESERIALIZER, "html_strip");
-		op.add(Builder::icuNormalizer, IcuNormalizationCharFilter._DESERIALIZER, "icu_normalizer");
-		op.add(Builder::kuromojiIterationMark, KuromojiIterationMarkCharFilter._DESERIALIZER,
-				"kuromoji_iteration_mark");
-		op.add(Builder::mapping, MappingCharFilter._DESERIALIZER, "mapping");
-		op.add(Builder::patternReplace, PatternReplaceCharFilter._DESERIALIZER, "pattern_replace");
-
-		op.setTypeProperty("type");
-
+	private static JsonpDeserializer<CharFilter> buildCharFilterDeserializer() {
+		return new UnionDeserializer.Builder<>(CharFilter::new, false)
+				.addMember("definition", CharFilterDefinition._DESERIALIZER)
+				.addMember("name", JsonpDeserializer.stringDeserializer()).build();
 	}
 
-	public static final JsonpDeserializer<CharFilter> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			CharFilter::setupCharFilterDeserializer, Builder::build);
+	public static final JsonpDeserializer<CharFilter> _DESERIALIZER = JsonpDeserializer
+			.lazy(CharFilter::buildCharFilterDeserializer);
 }

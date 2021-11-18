@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.mapping;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -161,10 +160,10 @@ public class DenseVectorIndexOptions implements JsonpSerializable {
 	 * Json deserializer for {@link DenseVectorIndexOptions}
 	 */
 	public static final JsonpDeserializer<DenseVectorIndexOptions> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, DenseVectorIndexOptions::setupDenseVectorIndexOptionsDeserializer, Builder::build);
+			.lazy(Builder::new, DenseVectorIndexOptions::setupDenseVectorIndexOptionsDeserializer);
 
 	protected static void setupDenseVectorIndexOptionsDeserializer(
-			DelegatingDeserializer<DenseVectorIndexOptions.Builder> op) {
+			ObjectDeserializer<DenseVectorIndexOptions.Builder> op) {
 
 		op.add(Builder::type, JsonpDeserializer.stringDeserializer(), "type");
 		op.add(Builder::m, JsonpDeserializer.integerDeserializer(), "m");

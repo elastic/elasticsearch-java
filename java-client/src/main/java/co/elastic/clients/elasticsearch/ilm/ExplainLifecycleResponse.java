@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch.ilm;
 
 import co.elastic.clients.elasticsearch.ilm.explain_lifecycle.LifecycleExplain;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -139,10 +138,10 @@ public class ExplainLifecycleResponse implements JsonpSerializable {
 	 * Json deserializer for {@link ExplainLifecycleResponse}
 	 */
 	public static final JsonpDeserializer<ExplainLifecycleResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, ExplainLifecycleResponse::setupExplainLifecycleResponseDeserializer, Builder::build);
+			.lazy(Builder::new, ExplainLifecycleResponse::setupExplainLifecycleResponseDeserializer);
 
 	protected static void setupExplainLifecycleResponseDeserializer(
-			DelegatingDeserializer<ExplainLifecycleResponse.Builder> op) {
+			ObjectDeserializer<ExplainLifecycleResponse.Builder> op) {
 
 		op.add(Builder::indices, JsonpDeserializer.stringMapDeserializer(LifecycleExplain._DESERIALIZER), "indices");
 

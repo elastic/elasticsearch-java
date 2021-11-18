@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.watcher;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -138,9 +137,9 @@ public class ActivationState implements JsonpSerializable {
 	 * Json deserializer for {@link ActivationState}
 	 */
 	public static final JsonpDeserializer<ActivationState> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			ActivationState::setupActivationStateDeserializer, Builder::build);
+			ActivationState::setupActivationStateDeserializer);
 
-	protected static void setupActivationStateDeserializer(DelegatingDeserializer<ActivationState.Builder> op) {
+	protected static void setupActivationStateDeserializer(ObjectDeserializer<ActivationState.Builder> op) {
 
 		op.add(Builder::active, JsonpDeserializer.booleanDeserializer(), "active");
 		op.add(Builder::timestamp, JsonpDeserializer.stringDeserializer(), "timestamp");

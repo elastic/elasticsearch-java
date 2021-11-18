@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -87,10 +86,9 @@ public class DerivativeAggregation extends PipelineAggregationBase implements Ag
 	 * Json deserializer for {@link DerivativeAggregation}
 	 */
 	public static final JsonpDeserializer<DerivativeAggregation> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, DerivativeAggregation::setupDerivativeAggregationDeserializer, Builder::build);
+			.lazy(Builder::new, DerivativeAggregation::setupDerivativeAggregationDeserializer);
 
-	protected static void setupDerivativeAggregationDeserializer(
-			DelegatingDeserializer<DerivativeAggregation.Builder> op) {
+	protected static void setupDerivativeAggregationDeserializer(ObjectDeserializer<DerivativeAggregation.Builder> op) {
 		PipelineAggregationBase.setupPipelineAggregationBaseDeserializer(op);
 
 	}

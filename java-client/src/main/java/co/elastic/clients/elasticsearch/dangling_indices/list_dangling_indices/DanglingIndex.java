@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.dangling_indices.list_dangling_indices;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -202,9 +201,9 @@ public class DanglingIndex implements JsonpSerializable {
 	 * Json deserializer for {@link DanglingIndex}
 	 */
 	public static final JsonpDeserializer<DanglingIndex> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			DanglingIndex::setupDanglingIndexDeserializer, Builder::build);
+			DanglingIndex::setupDanglingIndexDeserializer);
 
-	protected static void setupDanglingIndexDeserializer(DelegatingDeserializer<DanglingIndex.Builder> op) {
+	protected static void setupDanglingIndexDeserializer(ObjectDeserializer<DanglingIndex.Builder> op) {
 
 		op.add(Builder::indexName, JsonpDeserializer.stringDeserializer(), "index_name");
 		op.add(Builder::indexUuid, JsonpDeserializer.stringDeserializer(), "index_uuid");

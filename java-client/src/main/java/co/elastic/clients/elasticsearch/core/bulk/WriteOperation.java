@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.core.bulk;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -151,7 +150,7 @@ public abstract class WriteOperation extends OperationBase {
 
 	// ---------------------------------------------------------------------------------------------
 	protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupWriteOperationDeserializer(
-			DelegatingDeserializer<BuilderT> op) {
+			ObjectDeserializer<BuilderT> op) {
 		OperationBase.setupOperationBaseDeserializer(op);
 		op.add(AbstractBuilder::dynamicTemplates,
 				JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.stringDeserializer()), "dynamic_templates");

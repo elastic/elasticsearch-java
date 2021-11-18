@@ -23,7 +23,7 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -50,7 +50,7 @@ import javax.annotation.Nullable;
 public class Anomaly implements JsonpSerializable {
 	private final List<Double> actual;
 
-	private final String bucketSpan;
+	private final Time bucketSpan;
 
 	@Nullable
 	private final String byFieldName;
@@ -145,7 +145,7 @@ public class Anomaly implements JsonpSerializable {
 	/**
 	 * Required - API name: {@code bucket_span}
 	 */
-	public final String bucketSpan() {
+	public final Time bucketSpan() {
 		return this.bucketSpan;
 	}
 
@@ -320,7 +320,7 @@ public class Anomaly implements JsonpSerializable {
 
 		}
 		generator.writeKey("bucket_span");
-		generator.write(this.bucketSpan);
+		this.bucketSpan.serialize(generator, mapper);
 
 		if (this.byFieldName != null) {
 			generator.writeKey("by_field_name");
@@ -433,7 +433,7 @@ public class Anomaly implements JsonpSerializable {
 		@Nullable
 		private List<Double> actual;
 
-		private String bucketSpan;
+		private Time bucketSpan;
 
 		@Nullable
 		private String byFieldName;
@@ -506,9 +506,16 @@ public class Anomaly implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code bucket_span}
 		 */
-		public final Builder bucketSpan(String value) {
+		public final Builder bucketSpan(Time value) {
 			this.bucketSpan = value;
 			return this;
+		}
+
+		/**
+		 * Required - API name: {@code bucket_span}
+		 */
+		public final Builder bucketSpan(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.bucketSpan(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -738,12 +745,12 @@ public class Anomaly implements JsonpSerializable {
 	 * Json deserializer for {@link Anomaly}
 	 */
 	public static final JsonpDeserializer<Anomaly> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			Anomaly::setupAnomalyDeserializer, Builder::build);
+			Anomaly::setupAnomalyDeserializer);
 
-	protected static void setupAnomalyDeserializer(DelegatingDeserializer<Anomaly.Builder> op) {
+	protected static void setupAnomalyDeserializer(ObjectDeserializer<Anomaly.Builder> op) {
 
 		op.add(Builder::actual, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.doubleDeserializer()), "actual");
-		op.add(Builder::bucketSpan, JsonpDeserializer.stringDeserializer(), "bucket_span");
+		op.add(Builder::bucketSpan, Time._DESERIALIZER, "bucket_span");
 		op.add(Builder::byFieldName, JsonpDeserializer.stringDeserializer(), "by_field_name");
 		op.add(Builder::byFieldValue, JsonpDeserializer.stringDeserializer(), "by_field_value");
 		op.add(Builder::causes, JsonpDeserializer.arrayDeserializer(AnomalyCause._DESERIALIZER), "causes");

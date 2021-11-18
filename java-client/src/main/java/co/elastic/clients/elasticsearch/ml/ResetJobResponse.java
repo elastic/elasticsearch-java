@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.elasticsearch._types.AcknowledgedResponseBase;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -80,9 +79,9 @@ public class ResetJobResponse extends AcknowledgedResponseBase {
 	 * Json deserializer for {@link ResetJobResponse}
 	 */
 	public static final JsonpDeserializer<ResetJobResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			ResetJobResponse::setupResetJobResponseDeserializer, Builder::build);
+			ResetJobResponse::setupResetJobResponseDeserializer);
 
-	protected static void setupResetJobResponseDeserializer(DelegatingDeserializer<ResetJobResponse.Builder> op) {
+	protected static void setupResetJobResponseDeserializer(ObjectDeserializer<ResetJobResponse.Builder> op) {
 		AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);
 
 	}

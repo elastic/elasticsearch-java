@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.analysis;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -42,7 +41,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.analysis.MultiplexerTokenFilter
 @JsonpDeserializable
-public class MultiplexerTokenFilter extends TokenFilterBase implements TokenFilterVariant {
+public class MultiplexerTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
 	private final List<String> filters;
 
 	private final boolean preserveOriginal;
@@ -62,7 +61,7 @@ public class MultiplexerTokenFilter extends TokenFilterBase implements TokenFilt
 	}
 
 	/**
-	 * {@link TokenFilter} variant type
+	 * {@link TokenFilterDefinition} variant type
 	 */
 	@Override
 	public String _variantType() {
@@ -162,10 +161,10 @@ public class MultiplexerTokenFilter extends TokenFilterBase implements TokenFilt
 	 * Json deserializer for {@link MultiplexerTokenFilter}
 	 */
 	public static final JsonpDeserializer<MultiplexerTokenFilter> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, MultiplexerTokenFilter::setupMultiplexerTokenFilterDeserializer, Builder::build);
+			.lazy(Builder::new, MultiplexerTokenFilter::setupMultiplexerTokenFilterDeserializer);
 
 	protected static void setupMultiplexerTokenFilterDeserializer(
-			DelegatingDeserializer<MultiplexerTokenFilter.Builder> op) {
+			ObjectDeserializer<MultiplexerTokenFilter.Builder> op) {
 		TokenFilterBase.setupTokenFilterBaseDeserializer(op);
 		op.add(Builder::filters, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"filters");

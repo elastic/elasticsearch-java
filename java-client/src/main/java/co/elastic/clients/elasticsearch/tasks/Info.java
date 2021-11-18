@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.tasks;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -440,9 +439,9 @@ public class Info implements JsonpSerializable {
 	 * Json deserializer for {@link Info}
 	 */
 	public static final JsonpDeserializer<Info> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			Info::setupInfoDeserializer, Builder::build);
+			Info::setupInfoDeserializer);
 
-	protected static void setupInfoDeserializer(DelegatingDeserializer<Info.Builder> op) {
+	protected static void setupInfoDeserializer(ObjectDeserializer<Info.Builder> op) {
 
 		op.add(Builder::action, JsonpDeserializer.stringDeserializer(), "action");
 		op.add(Builder::cancellable, JsonpDeserializer.booleanDeserializer(), "cancellable");

@@ -23,7 +23,7 @@
 
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
-import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.elasticsearch._types.Script;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -31,7 +31,6 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Float;
 import java.util.Objects;
@@ -46,7 +45,7 @@ public class ScriptScoreQuery extends QueryBase implements QueryVariant {
 
 	private final Query query;
 
-	private final JsonValue /* _types.Script */ script;
+	private final Script script;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -89,7 +88,7 @@ public class ScriptScoreQuery extends QueryBase implements QueryVariant {
 	/**
 	 * Required - API name: {@code script}
 	 */
-	public final JsonValue /* _types.Script */ script() {
+	public final Script script() {
 		return this.script;
 	}
 
@@ -105,7 +104,7 @@ public class ScriptScoreQuery extends QueryBase implements QueryVariant {
 		this.query.serialize(generator, mapper);
 
 		generator.writeKey("script");
-		generator.write(this.script);
+		this.script.serialize(generator, mapper);
 
 	}
 
@@ -120,7 +119,7 @@ public class ScriptScoreQuery extends QueryBase implements QueryVariant {
 
 		private Query query;
 
-		private JsonValue /* _types.Script */ script;
+		private Script script;
 
 		/**
 		 * API name: {@code min_score}
@@ -148,9 +147,16 @@ public class ScriptScoreQuery extends QueryBase implements QueryVariant {
 		/**
 		 * Required - API name: {@code script}
 		 */
-		public final Builder script(JsonValue /* _types.Script */ value) {
+		public final Builder script(Script value) {
 			this.script = value;
 			return this;
+		}
+
+		/**
+		 * Required - API name: {@code script}
+		 */
+		public final Builder script(Function<Script.Builder, ObjectBuilder<Script>> fn) {
+			return this.script(fn.apply(new Script.Builder()).build());
 		}
 
 		@Override
@@ -177,13 +183,13 @@ public class ScriptScoreQuery extends QueryBase implements QueryVariant {
 	 * Json deserializer for {@link ScriptScoreQuery}
 	 */
 	public static final JsonpDeserializer<ScriptScoreQuery> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			ScriptScoreQuery::setupScriptScoreQueryDeserializer, Builder::build);
+			ScriptScoreQuery::setupScriptScoreQueryDeserializer);
 
-	protected static void setupScriptScoreQueryDeserializer(DelegatingDeserializer<ScriptScoreQuery.Builder> op) {
+	protected static void setupScriptScoreQueryDeserializer(ObjectDeserializer<ScriptScoreQuery.Builder> op) {
 		QueryBase.setupQueryBaseDeserializer(op);
 		op.add(Builder::minScore, JsonpDeserializer.floatDeserializer(), "min_score");
 		op.add(Builder::query, Query._DESERIALIZER, "query");
-		op.add(Builder::script, JsonpDeserializer.jsonValueDeserializer(), "script");
+		op.add(Builder::script, Script._DESERIALIZER, "script");
 
 	}
 

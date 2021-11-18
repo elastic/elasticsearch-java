@@ -23,7 +23,7 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -34,7 +34,6 @@ import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.String;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -45,7 +44,7 @@ public class ChunkingConfig implements JsonpSerializable {
 	private final ChunkingMode mode;
 
 	@Nullable
-	private final String timeSpan;
+	private final Time timeSpan;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -81,7 +80,7 @@ public class ChunkingConfig implements JsonpSerializable {
 	 * API name: {@code time_span}
 	 */
 	@Nullable
-	public final String timeSpan() {
+	public final Time timeSpan() {
 		return this.timeSpan;
 	}
 
@@ -100,7 +99,7 @@ public class ChunkingConfig implements JsonpSerializable {
 		this.mode.serialize(generator, mapper);
 		if (this.timeSpan != null) {
 			generator.writeKey("time_span");
-			generator.write(this.timeSpan);
+			this.timeSpan.serialize(generator, mapper);
 
 		}
 
@@ -115,7 +114,7 @@ public class ChunkingConfig implements JsonpSerializable {
 		private ChunkingMode mode;
 
 		@Nullable
-		private String timeSpan;
+		private Time timeSpan;
 
 		/**
 		 * Required - If the mode is <code>auto</code>, the chunk size is dynamically
@@ -138,9 +137,19 @@ public class ChunkingConfig implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code time_span}
 		 */
-		public final Builder timeSpan(@Nullable String value) {
+		public final Builder timeSpan(@Nullable Time value) {
 			this.timeSpan = value;
 			return this;
+		}
+
+		/**
+		 * The time span that each search will be querying. This setting is only
+		 * applicable when the <code>mode</code> is set to <code>manual</code>.
+		 * <p>
+		 * API name: {@code time_span}
+		 */
+		public final Builder timeSpan(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.timeSpan(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -162,12 +171,12 @@ public class ChunkingConfig implements JsonpSerializable {
 	 * Json deserializer for {@link ChunkingConfig}
 	 */
 	public static final JsonpDeserializer<ChunkingConfig> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			ChunkingConfig::setupChunkingConfigDeserializer, Builder::build);
+			ChunkingConfig::setupChunkingConfigDeserializer);
 
-	protected static void setupChunkingConfigDeserializer(DelegatingDeserializer<ChunkingConfig.Builder> op) {
+	protected static void setupChunkingConfigDeserializer(ObjectDeserializer<ChunkingConfig.Builder> op) {
 
 		op.add(Builder::mode, ChunkingMode._DESERIALIZER, "mode");
-		op.add(Builder::timeSpan, JsonpDeserializer.stringDeserializer(), "time_span");
+		op.add(Builder::timeSpan, Time._DESERIALIZER, "time_span");
 
 	}
 

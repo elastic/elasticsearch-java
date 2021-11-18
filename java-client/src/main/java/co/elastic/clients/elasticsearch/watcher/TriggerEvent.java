@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.watcher;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -42,12 +41,11 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.TriggerEventContainer
+// union type: Container[]
 @JsonpDeserializable
 public class TriggerEvent implements TaggedUnion<Object>, JsonpSerializable {
 
 	public static final String SCHEDULE = "schedule";
-
-	// Tagged union implementation
 
 	private final String _type;
 	private final Object _value;
@@ -93,6 +91,7 @@ public class TriggerEvent implements TaggedUnion<Object>, JsonpSerializable {
 	@Override
 	@SuppressWarnings("unchecked")
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+
 		generator.writeStartObject();
 
 		generator.writeKey(_type);
@@ -101,6 +100,7 @@ public class TriggerEvent implements TaggedUnion<Object>, JsonpSerializable {
 		}
 
 		generator.writeEnd();
+
 	}
 
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TriggerEvent> {
@@ -124,7 +124,7 @@ public class TriggerEvent implements TaggedUnion<Object>, JsonpSerializable {
 
 	}
 
-	protected static void setupTriggerEventDeserializer(DelegatingDeserializer<Builder> op) {
+	protected static void setupTriggerEventDeserializer(ObjectDeserializer<Builder> op) {
 
 		op.add(Builder::schedule, ScheduleTriggerEvent._DESERIALIZER, "schedule");
 

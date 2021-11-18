@@ -24,8 +24,12 @@
 package co.elastic.clients.elasticsearch.core;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
+import co.elastic.clients.elasticsearch._types.Refresh;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.elasticsearch._types.Script;
+import co.elastic.clients.elasticsearch._types.Time;
+import co.elastic.clients.elasticsearch._types.WaitForActiveShards;
+import co.elastic.clients.elasticsearch.core.search.SourceConfig;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -39,7 +43,6 @@ import co.elastic.clients.transport.SimpleEndpoint;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Integer;
@@ -56,7 +59,7 @@ import javax.annotation.Nullable;
 
 public class UpdateRequest<TDocument, TPartialDocument> extends RequestBase implements JsonpSerializable {
 	@Nullable
-	private final JsonValue /* Union(_global.search._types.SourceFilter | internal.boolean) */ source;
+	private final SourceConfig source;
 
 	@Nullable
 	private final Boolean detectNoop;
@@ -81,7 +84,7 @@ public class UpdateRequest<TDocument, TPartialDocument> extends RequestBase impl
 	private final String lang;
 
 	@Nullable
-	private final JsonValue /* _types.Refresh */ refresh;
+	private final Refresh refresh;
 
 	@Nullable
 	private final Boolean requireAlias;
@@ -93,13 +96,13 @@ public class UpdateRequest<TDocument, TPartialDocument> extends RequestBase impl
 	private final String routing;
 
 	@Nullable
-	private final JsonValue /* _types.Script */ script;
+	private final Script script;
 
 	@Nullable
 	private final Boolean scriptedUpsert;
 
 	@Nullable
-	private final String timeout;
+	private final Time timeout;
 
 	@Nullable
 	private final String type;
@@ -108,7 +111,7 @@ public class UpdateRequest<TDocument, TPartialDocument> extends RequestBase impl
 	private final TDocument upsert;
 
 	@Nullable
-	private final JsonValue /* _types.WaitForActiveShards */ waitForActiveShards;
+	private final WaitForActiveShards waitForActiveShards;
 
 	@Nullable
 	private final JsonpSerializer<TDocument> tDocumentSerializer;
@@ -156,7 +159,7 @@ public class UpdateRequest<TDocument, TPartialDocument> extends RequestBase impl
 	 * API name: {@code _source}
 	 */
 	@Nullable
-	public final JsonValue /* Union(_global.search._types.SourceFilter | internal.boolean) */ source() {
+	public final SourceConfig source() {
 		return this.source;
 	}
 
@@ -247,7 +250,7 @@ public class UpdateRequest<TDocument, TPartialDocument> extends RequestBase impl
 	 * API name: {@code refresh}
 	 */
 	@Nullable
-	public final JsonValue /* _types.Refresh */ refresh() {
+	public final Refresh refresh() {
 		return this.refresh;
 	}
 
@@ -288,7 +291,7 @@ public class UpdateRequest<TDocument, TPartialDocument> extends RequestBase impl
 	 * API name: {@code script}
 	 */
 	@Nullable
-	public final JsonValue /* _types.Script */ script() {
+	public final Script script() {
 		return this.script;
 	}
 
@@ -310,7 +313,7 @@ public class UpdateRequest<TDocument, TPartialDocument> extends RequestBase impl
 	 * API name: {@code timeout}
 	 */
 	@Nullable
-	public final String timeout() {
+	public final Time timeout() {
 		return this.timeout;
 	}
 
@@ -344,7 +347,7 @@ public class UpdateRequest<TDocument, TPartialDocument> extends RequestBase impl
 	 * API name: {@code wait_for_active_shards}
 	 */
 	@Nullable
-	public final JsonValue /* _types.WaitForActiveShards */ waitForActiveShards() {
+	public final WaitForActiveShards waitForActiveShards() {
 		return this.waitForActiveShards;
 	}
 
@@ -361,7 +364,7 @@ public class UpdateRequest<TDocument, TPartialDocument> extends RequestBase impl
 
 		if (this.source != null) {
 			generator.writeKey("_source");
-			generator.write(this.source);
+			this.source.serialize(generator, mapper);
 
 		}
 		if (this.detectNoop != null) {
@@ -381,7 +384,7 @@ public class UpdateRequest<TDocument, TPartialDocument> extends RequestBase impl
 		}
 		if (this.script != null) {
 			generator.writeKey("script");
-			generator.write(this.script);
+			this.script.serialize(generator, mapper);
 
 		}
 		if (this.scriptedUpsert != null) {
@@ -406,7 +409,7 @@ public class UpdateRequest<TDocument, TPartialDocument> extends RequestBase impl
 			implements
 				ObjectBuilder<UpdateRequest<TDocument, TPartialDocument>> {
 		@Nullable
-		private JsonValue /* Union(_global.search._types.SourceFilter | internal.boolean) */ source;
+		private SourceConfig source;
 
 		@Nullable
 		private Boolean detectNoop;
@@ -431,7 +434,7 @@ public class UpdateRequest<TDocument, TPartialDocument> extends RequestBase impl
 		private String lang;
 
 		@Nullable
-		private JsonValue /* _types.Refresh */ refresh;
+		private Refresh refresh;
 
 		@Nullable
 		private Boolean requireAlias;
@@ -443,13 +446,13 @@ public class UpdateRequest<TDocument, TPartialDocument> extends RequestBase impl
 		private String routing;
 
 		@Nullable
-		private JsonValue /* _types.Script */ script;
+		private Script script;
 
 		@Nullable
 		private Boolean scriptedUpsert;
 
 		@Nullable
-		private String timeout;
+		private Time timeout;
 
 		@Nullable
 		private String type;
@@ -458,7 +461,7 @@ public class UpdateRequest<TDocument, TPartialDocument> extends RequestBase impl
 		private TDocument upsert;
 
 		@Nullable
-		private JsonValue /* _types.WaitForActiveShards */ waitForActiveShards;
+		private WaitForActiveShards waitForActiveShards;
 
 		@Nullable
 		private JsonpSerializer<TDocument> tDocumentSerializer;
@@ -472,10 +475,20 @@ public class UpdateRequest<TDocument, TPartialDocument> extends RequestBase impl
 		 * <p>
 		 * API name: {@code _source}
 		 */
-		public final Builder<TDocument, TPartialDocument> source(
-				@Nullable JsonValue /* Union(_global.search._types.SourceFilter | internal.boolean) */ value) {
+		public final Builder<TDocument, TPartialDocument> source(@Nullable SourceConfig value) {
 			this.source = value;
 			return this;
+		}
+
+		/**
+		 * Set to false to disable source retrieval. You can also specify a
+		 * comma-separated list of the fields you want to retrieve.
+		 * <p>
+		 * API name: {@code _source}
+		 */
+		public final Builder<TDocument, TPartialDocument> source(
+				Function<SourceConfig.Builder, ObjectBuilder<SourceConfig>> fn) {
+			return this.source(fn.apply(new SourceConfig.Builder()).build());
 		}
 
 		/**
@@ -566,7 +579,7 @@ public class UpdateRequest<TDocument, TPartialDocument> extends RequestBase impl
 		 * <p>
 		 * API name: {@code refresh}
 		 */
-		public final Builder<TDocument, TPartialDocument> refresh(@Nullable JsonValue /* _types.Refresh */ value) {
+		public final Builder<TDocument, TPartialDocument> refresh(@Nullable Refresh value) {
 			this.refresh = value;
 			return this;
 		}
@@ -607,9 +620,18 @@ public class UpdateRequest<TDocument, TPartialDocument> extends RequestBase impl
 		 * <p>
 		 * API name: {@code script}
 		 */
-		public final Builder<TDocument, TPartialDocument> script(@Nullable JsonValue /* _types.Script */ value) {
+		public final Builder<TDocument, TPartialDocument> script(@Nullable Script value) {
 			this.script = value;
 			return this;
+		}
+
+		/**
+		 * Script to execute to update the document.
+		 * <p>
+		 * API name: {@code script}
+		 */
+		public final Builder<TDocument, TPartialDocument> script(Function<Script.Builder, ObjectBuilder<Script>> fn) {
+			return this.script(fn.apply(new Script.Builder()).build());
 		}
 
 		/**
@@ -629,9 +651,20 @@ public class UpdateRequest<TDocument, TPartialDocument> extends RequestBase impl
 		 * <p>
 		 * API name: {@code timeout}
 		 */
-		public final Builder<TDocument, TPartialDocument> timeout(@Nullable String value) {
+		public final Builder<TDocument, TPartialDocument> timeout(@Nullable Time value) {
 			this.timeout = value;
 			return this;
+		}
+
+		/**
+		 * Period to wait for dynamic mapping updates and active shards. This guarantees
+		 * Elasticsearch waits for at least the timeout before failing. The actual wait
+		 * time could be longer, particularly when multiple waits occur.
+		 * <p>
+		 * API name: {@code timeout}
+		 */
+		public final Builder<TDocument, TPartialDocument> timeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.timeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -663,10 +696,22 @@ public class UpdateRequest<TDocument, TPartialDocument> extends RequestBase impl
 		 * <p>
 		 * API name: {@code wait_for_active_shards}
 		 */
-		public final Builder<TDocument, TPartialDocument> waitForActiveShards(
-				@Nullable JsonValue /* _types.WaitForActiveShards */ value) {
+		public final Builder<TDocument, TPartialDocument> waitForActiveShards(@Nullable WaitForActiveShards value) {
 			this.waitForActiveShards = value;
 			return this;
+		}
+
+		/**
+		 * The number of shard copies that must be active before proceeding with the
+		 * operations. Set to 'all' or any positive integer up to the total number of
+		 * shards in the index (number_of_replicas+1). Defaults to 1 meaning the primary
+		 * shard.
+		 * <p>
+		 * API name: {@code wait_for_active_shards}
+		 */
+		public final Builder<TDocument, TPartialDocument> waitForActiveShards(
+				Function<WaitForActiveShards.Builder, ObjectBuilder<WaitForActiveShards>> fn) {
+			return this.waitForActiveShards(fn.apply(new WaitForActiveShards.Builder()).build());
 		}
 
 		/**
@@ -716,15 +761,15 @@ public class UpdateRequest<TDocument, TPartialDocument> extends RequestBase impl
 	};
 
 	protected static <TDocument, TPartialDocument> void setupUpdateRequestDeserializer(
-			DelegatingDeserializer<UpdateRequest.Builder<TDocument, TPartialDocument>> op,
+			ObjectDeserializer<UpdateRequest.Builder<TDocument, TPartialDocument>> op,
 			JsonpDeserializer<TDocument> tDocumentDeserializer,
 			JsonpDeserializer<TPartialDocument> tPartialDocumentDeserializer) {
 
-		op.add(Builder::source, JsonpDeserializer.jsonValueDeserializer(), "_source");
+		op.add(Builder::source, SourceConfig._DESERIALIZER, "_source");
 		op.add(Builder::detectNoop, JsonpDeserializer.booleanDeserializer(), "detect_noop");
 		op.add(Builder::doc, tPartialDocumentDeserializer, "doc");
 		op.add(Builder::docAsUpsert, JsonpDeserializer.booleanDeserializer(), "doc_as_upsert");
-		op.add(Builder::script, JsonpDeserializer.jsonValueDeserializer(), "script");
+		op.add(Builder::script, Script._DESERIALIZER, "script");
 		op.add(Builder::scriptedUpsert, JsonpDeserializer.booleanDeserializer(), "scripted_upsert");
 		op.add(Builder::upsert, tDocumentDeserializer, "upsert");
 
@@ -735,7 +780,7 @@ public class UpdateRequest<TDocument, TPartialDocument> extends RequestBase impl
 	/**
 	 * Endpoint "{@code update}".
 	 */
-	private static final SimpleEndpoint<UpdateRequest<?, ?>, Void> ENDPOINT = new SimpleEndpoint<>(
+	public static final SimpleEndpoint<UpdateRequest<?, ?>, ?> _ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";
@@ -795,10 +840,10 @@ public class UpdateRequest<TDocument, TPartialDocument> extends RequestBase impl
 					params.put("if_seq_no", String.valueOf(request.ifSeqNo));
 				}
 				if (request.refresh != null) {
-					params.put("refresh", JsonpUtils.toString(request.refresh));
+					params.put("refresh", request.refresh.jsonValue());
 				}
 				if (request.waitForActiveShards != null) {
-					params.put("wait_for_active_shards", JsonpUtils.toString(request.waitForActiveShards));
+					params.put("wait_for_active_shards", request.waitForActiveShards._toJsonString());
 				}
 				if (request.lang != null) {
 					params.put("lang", request.lang);
@@ -807,18 +852,18 @@ public class UpdateRequest<TDocument, TPartialDocument> extends RequestBase impl
 					params.put("retry_on_conflict", String.valueOf(request.retryOnConflict));
 				}
 				if (request.timeout != null) {
-					params.put("timeout", request.timeout);
+					params.put("timeout", request.timeout._toJsonString());
 				}
 				return params;
 
-			}, SimpleEndpoint.emptyMap(), true, null);
+			}, SimpleEndpoint.emptyMap(), true, UpdateResponse._DESERIALIZER);
 
 	/**
 	 * Create an "{@code update}" endpoint.
 	 */
 	public static <TDocument> Endpoint<UpdateRequest<?, ?>, UpdateResponse<TDocument>, ErrorResponse> createUpdateEndpoint(
 			JsonpDeserializer<TDocument> tDocumentDeserializer) {
-		return ENDPOINT
+		return _ENDPOINT
 				.withResponseDeserializer(UpdateResponse.createUpdateResponseDeserializer(tDocumentDeserializer));
 	}
 }

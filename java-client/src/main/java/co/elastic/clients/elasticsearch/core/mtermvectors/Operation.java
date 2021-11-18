@@ -25,7 +25,6 @@ package co.elastic.clients.elasticsearch.core.mtermvectors;
 
 import co.elastic.clients.elasticsearch._types.VersionType;
 import co.elastic.clients.elasticsearch.core.termvectors.Filter;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -419,9 +418,9 @@ public class Operation implements JsonpSerializable {
 	 * Json deserializer for {@link Operation}
 	 */
 	public static final JsonpDeserializer<Operation> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			Operation::setupOperationDeserializer, Builder::build);
+			Operation::setupOperationDeserializer);
 
-	protected static void setupOperationDeserializer(DelegatingDeserializer<Operation.Builder> op) {
+	protected static void setupOperationDeserializer(ObjectDeserializer<Operation.Builder> op) {
 
 		op.add(Builder::doc, JsonData._DESERIALIZER, "doc");
 		op.add(Builder::fields, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "fields");

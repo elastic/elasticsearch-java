@@ -25,7 +25,6 @@ package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -193,10 +192,10 @@ public class PreviewDatafeedRequest extends RequestBase implements JsonpSerializ
 	 * Json deserializer for {@link PreviewDatafeedRequest}
 	 */
 	public static final JsonpDeserializer<PreviewDatafeedRequest> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, PreviewDatafeedRequest::setupPreviewDatafeedRequestDeserializer, Builder::build);
+			.lazy(Builder::new, PreviewDatafeedRequest::setupPreviewDatafeedRequestDeserializer);
 
 	protected static void setupPreviewDatafeedRequestDeserializer(
-			DelegatingDeserializer<PreviewDatafeedRequest.Builder> op) {
+			ObjectDeserializer<PreviewDatafeedRequest.Builder> op) {
 
 		op.add(Builder::datafeedConfig, DatafeedConfig._DESERIALIZER, "datafeed_config");
 		op.add(Builder::jobConfig, JobConfig._DESERIALIZER, "job_config");
@@ -208,7 +207,7 @@ public class PreviewDatafeedRequest extends RequestBase implements JsonpSerializ
 	/**
 	 * Endpoint "{@code ml.preview_datafeed}".
 	 */
-	private static final SimpleEndpoint<PreviewDatafeedRequest, Void> ENDPOINT = new SimpleEndpoint<>(
+	public static final SimpleEndpoint<PreviewDatafeedRequest, ?> _ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";
@@ -248,14 +247,14 @@ public class PreviewDatafeedRequest extends RequestBase implements JsonpSerializ
 			request -> {
 				return Collections.emptyMap();
 
-			}, SimpleEndpoint.emptyMap(), true, null);
+			}, SimpleEndpoint.emptyMap(), true, PreviewDatafeedResponse._DESERIALIZER);
 
 	/**
 	 * Create an "{@code ml.preview_datafeed}" endpoint.
 	 */
 	public static <TDocument> Endpoint<PreviewDatafeedRequest, PreviewDatafeedResponse<TDocument>, ErrorResponse> createPreviewDatafeedEndpoint(
 			JsonpDeserializer<TDocument> tDocumentDeserializer) {
-		return ENDPOINT.withResponseDeserializer(
+		return _ENDPOINT.withResponseDeserializer(
 				PreviewDatafeedResponse.createPreviewDatafeedResponseDeserializer(tDocumentDeserializer));
 	}
 }

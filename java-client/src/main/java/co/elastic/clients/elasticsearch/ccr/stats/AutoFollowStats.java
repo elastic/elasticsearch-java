@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch.ccr.stats;
 
 import co.elastic.clients.elasticsearch._types.ErrorCause;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -271,9 +270,9 @@ public class AutoFollowStats implements JsonpSerializable {
 	 * Json deserializer for {@link AutoFollowStats}
 	 */
 	public static final JsonpDeserializer<AutoFollowStats> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			AutoFollowStats::setupAutoFollowStatsDeserializer, Builder::build);
+			AutoFollowStats::setupAutoFollowStatsDeserializer);
 
-	protected static void setupAutoFollowStatsDeserializer(DelegatingDeserializer<AutoFollowStats.Builder> op) {
+	protected static void setupAutoFollowStatsDeserializer(ObjectDeserializer<AutoFollowStats.Builder> op) {
 
 		op.add(Builder::autoFollowedClusters, JsonpDeserializer.arrayDeserializer(AutoFollowedCluster._DESERIALIZER),
 				"auto_followed_clusters");

@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch.license;
 
 import co.elastic.clients.elasticsearch._types.AcknowledgedResponseBase;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -165,10 +164,10 @@ public class PostStartTrialResponse extends AcknowledgedResponseBase {
 	 * Json deserializer for {@link PostStartTrialResponse}
 	 */
 	public static final JsonpDeserializer<PostStartTrialResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, PostStartTrialResponse::setupPostStartTrialResponseDeserializer, Builder::build);
+			.lazy(Builder::new, PostStartTrialResponse::setupPostStartTrialResponseDeserializer);
 
 	protected static void setupPostStartTrialResponseDeserializer(
-			DelegatingDeserializer<PostStartTrialResponse.Builder> op) {
+			ObjectDeserializer<PostStartTrialResponse.Builder> op) {
 		AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);
 		op.add(Builder::errorMessage, JsonpDeserializer.stringDeserializer(), "error_message");
 		op.add(Builder::trialWasStarted, JsonpDeserializer.booleanDeserializer(), "trial_was_started");

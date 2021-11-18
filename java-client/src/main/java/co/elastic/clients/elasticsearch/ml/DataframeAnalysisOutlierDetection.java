@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -321,11 +320,10 @@ public class DataframeAnalysisOutlierDetection implements DataframeAnalysisVaria
 	 * Json deserializer for {@link DataframeAnalysisOutlierDetection}
 	 */
 	public static final JsonpDeserializer<DataframeAnalysisOutlierDetection> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, DataframeAnalysisOutlierDetection::setupDataframeAnalysisOutlierDetectionDeserializer,
-					Builder::build);
+			.lazy(Builder::new, DataframeAnalysisOutlierDetection::setupDataframeAnalysisOutlierDetectionDeserializer);
 
 	protected static void setupDataframeAnalysisOutlierDetectionDeserializer(
-			DelegatingDeserializer<DataframeAnalysisOutlierDetection.Builder> op) {
+			ObjectDeserializer<DataframeAnalysisOutlierDetection.Builder> op) {
 
 		op.add(Builder::computeFeatureInfluence, JsonpDeserializer.booleanDeserializer(), "compute_feature_influence");
 		op.add(Builder::featureInfluenceThreshold, JsonpDeserializer.doubleDeserializer(),

@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch.core;
 
 import co.elastic.clients.elasticsearch._types.WriteResponseBase;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -80,9 +79,9 @@ public class IndexResponse extends WriteResponseBase {
 	 * Json deserializer for {@link IndexResponse}
 	 */
 	public static final JsonpDeserializer<IndexResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			IndexResponse::setupIndexResponseDeserializer, Builder::build);
+			IndexResponse::setupIndexResponseDeserializer);
 
-	protected static void setupIndexResponseDeserializer(DelegatingDeserializer<IndexResponse.Builder> op) {
+	protected static void setupIndexResponseDeserializer(ObjectDeserializer<IndexResponse.Builder> op) {
 		WriteResponseBase.setupWriteResponseBaseDeserializer(op);
 
 	}

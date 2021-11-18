@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch.core.bulk;
 
 import co.elastic.clients.elasticsearch._types.VersionType;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -268,7 +267,7 @@ public abstract class OperationBase implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 	protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupOperationBaseDeserializer(
-			DelegatingDeserializer<BuilderT> op) {
+			ObjectDeserializer<BuilderT> op) {
 
 		op.add(AbstractBuilder::id, JsonpDeserializer.stringDeserializer(), "_id");
 		op.add(AbstractBuilder::index, JsonpDeserializer.stringDeserializer(), "_index");

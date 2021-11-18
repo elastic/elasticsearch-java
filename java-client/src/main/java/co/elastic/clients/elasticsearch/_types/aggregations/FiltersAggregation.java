@@ -23,14 +23,13 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
-import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.elasticsearch._types.query_dsl.Query;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
@@ -42,10 +41,7 @@ import javax.annotation.Nullable;
 @JsonpDeserializable
 public class FiltersAggregation extends BucketAggregationBase implements AggregationVariant {
 	@Nullable
-	private final JsonValue /*
-							 * Union(Array<_types.query_dsl.QueryContainer> | Dictionary<internal.string,
-							 * _types.query_dsl.QueryContainer>)
-							 */ filters;
+	private final Buckets<Query> filters;
 
 	@Nullable
 	private final Boolean otherBucket;
@@ -84,10 +80,7 @@ public class FiltersAggregation extends BucketAggregationBase implements Aggrega
 	 * API name: {@code filters}
 	 */
 	@Nullable
-	public final JsonValue /*
-							 * Union(Array<_types.query_dsl.QueryContainer> | Dictionary<internal.string,
-							 * _types.query_dsl.QueryContainer>)
-							 */ filters() {
+	public final Buckets<Query> filters() {
 		return this.filters;
 	}
 
@@ -120,7 +113,7 @@ public class FiltersAggregation extends BucketAggregationBase implements Aggrega
 		super.serializeInternal(generator, mapper);
 		if (this.filters != null) {
 			generator.writeKey("filters");
-			generator.write(this.filters);
+			this.filters.serialize(generator, mapper);
 
 		}
 		if (this.otherBucket != null) {
@@ -150,10 +143,7 @@ public class FiltersAggregation extends BucketAggregationBase implements Aggrega
 			implements
 				ObjectBuilder<FiltersAggregation> {
 		@Nullable
-		private JsonValue /*
-							 * Union(Array<_types.query_dsl.QueryContainer> | Dictionary<internal.string,
-							 * _types.query_dsl.QueryContainer>)
-							 */ filters;
+		private Buckets<Query> filters;
 
 		@Nullable
 		private Boolean otherBucket;
@@ -167,13 +157,16 @@ public class FiltersAggregation extends BucketAggregationBase implements Aggrega
 		/**
 		 * API name: {@code filters}
 		 */
-		public final Builder filters(
-				@Nullable JsonValue /*
-									 * Union(Array<_types.query_dsl.QueryContainer> | Dictionary<internal.string,
-									 * _types.query_dsl.QueryContainer>)
-									 */ value) {
+		public final Builder filters(@Nullable Buckets<Query> value) {
 			this.filters = value;
 			return this;
+		}
+
+		/**
+		 * API name: {@code filters}
+		 */
+		public final Builder filters(Function<Buckets.Builder<Query>, ObjectBuilder<Buckets<Query>>> fn) {
+			return this.filters(fn.apply(new Buckets.Builder<Query>()).build());
 		}
 
 		/**
@@ -224,11 +217,11 @@ public class FiltersAggregation extends BucketAggregationBase implements Aggrega
 	 * Json deserializer for {@link FiltersAggregation}
 	 */
 	public static final JsonpDeserializer<FiltersAggregation> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, FiltersAggregation::setupFiltersAggregationDeserializer, Builder::build);
+			.lazy(Builder::new, FiltersAggregation::setupFiltersAggregationDeserializer);
 
-	protected static void setupFiltersAggregationDeserializer(DelegatingDeserializer<FiltersAggregation.Builder> op) {
+	protected static void setupFiltersAggregationDeserializer(ObjectDeserializer<FiltersAggregation.Builder> op) {
 		BucketAggregationBase.setupBucketAggregationBaseDeserializer(op);
-		op.add(Builder::filters, JsonpDeserializer.jsonValueDeserializer(), "filters");
+		op.add(Builder::filters, Buckets.createBucketsDeserializer(Query._DESERIALIZER), "filters");
 		op.add(Builder::otherBucket, JsonpDeserializer.booleanDeserializer(), "other_bucket");
 		op.add(Builder::otherBucketKey, JsonpDeserializer.stringDeserializer(), "other_bucket_key");
 		op.add(Builder::keyed, JsonpDeserializer.booleanDeserializer(), "keyed");

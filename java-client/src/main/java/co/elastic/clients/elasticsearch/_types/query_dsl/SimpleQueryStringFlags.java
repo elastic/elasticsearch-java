@@ -25,24 +25,134 @@ package co.elastic.clients.elasticsearch._types.query_dsl;
 
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
-import co.elastic.clients.util.StringEnum;
+import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
+import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.json.UnionDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.TaggedUnion;
+import co.elastic.clients.util.TaggedUnionUtils;
+import jakarta.json.stream.JsonGenerator;
+import java.lang.Object;
+import java.lang.String;
+import java.util.Objects;
+import java.util.function.Function;
+import javax.annotation.Nullable;
 
+// typedef: _types.query_dsl.SimpleQueryStringFlags
+// union type: Union[]
 @JsonpDeserializable
-public enum SimpleQueryStringFlags implements StringEnum {
-	None("NONE"), And("AND"), Or("OR"), Not("NOT"), Prefix("PREFIX"), Phrase("PHRASE"), Precedence(
-			"PRECEDENCE"), Escape(
-					"ESCAPE"), Whitespace("WHITESPACE"), Fuzzy("FUZZY"), Near("NEAR"), Slop("SLOP"), All("ALL");
+public class SimpleQueryStringFlags implements TaggedUnion<Object>, JsonpSerializable {
 
-	private final String jsonValue;
+	public static final String SINGLE = "single";
+	public static final String MULTIPLE = "multiple";
 
-	SimpleQueryStringFlags(String jsonValue) {
-		this.jsonValue = jsonValue;
+	private final String _type;
+	private final Object _value;
+
+	@Override
+	public final String _type() {
+		return _type;
 	}
 
-	public String jsonValue() {
-		return this.jsonValue;
+	@Override
+	public final Object _get() {
+		return _value;
 	}
 
-	public static final StringEnum.Deserializer<SimpleQueryStringFlags> _DESERIALIZER = new StringEnum.Deserializer<>(
-			SimpleQueryStringFlags.values());
+	public SimpleQueryStringFlags(String type, Object value) {
+		this._type = type;
+		this._value = value;
+	}
+
+	public String _toJsonString() {
+		switch (_type) {
+			case "single" :
+				return this.single().jsonValue();
+			case "multiple" :
+				return this.multiple();
+
+			default :
+				throw new IllegalStateException("Unknown type " + _type);
+		}
+	}
+	private SimpleQueryStringFlags(Builder builder) {
+
+		this._type = ModelTypeHelper.requireNonNull(builder._type, builder, "<variant type>");
+		this._value = ModelTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
+
+	}
+
+	public static SimpleQueryStringFlags of(Function<Builder, ObjectBuilder<SimpleQueryStringFlags>> fn) {
+		return fn.apply(new Builder()).build();
+	}
+
+	/**
+	 * Get the {@code single} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code single} kind.
+	 */
+	public SimpleQueryStringFlag single() {
+		return TaggedUnionUtils.get(this, SINGLE);
+	}
+
+	/**
+	 * Get the {@code multiple} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code multiple} kind.
+	 */
+	public String multiple() {
+		return TaggedUnionUtils.get(this, MULTIPLE);
+	}
+
+	@Override
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+		if (_value instanceof JsonpSerializable) {
+			((JsonpSerializable) _value).serialize(generator, mapper);
+		} else {
+			switch (_type) {
+				case MULTIPLE :
+					generator.write(((String) this._value));
+
+					break;
+			}
+		}
+
+	}
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<SimpleQueryStringFlags> {
+		private String _type;
+		private Object _value;
+
+		public Builder single(SimpleQueryStringFlag v) {
+			this._type = SINGLE;
+			this._value = v;
+			return this;
+		}
+
+		public Builder multiple(String v) {
+			this._type = MULTIPLE;
+			this._value = v;
+			return this;
+		}
+
+		public SimpleQueryStringFlags build() {
+			_checkSingleUse();
+			return new SimpleQueryStringFlags(this);
+		}
+
+	}
+
+	private static JsonpDeserializer<SimpleQueryStringFlags> buildSimpleQueryStringFlagsDeserializer() {
+		return new UnionDeserializer.Builder<>(SimpleQueryStringFlags::new, true)
+				.addMember("single", SimpleQueryStringFlag._DESERIALIZER)
+				.addMember("multiple", JsonpDeserializer.stringDeserializer()).build();
+	}
+
+	public static final JsonpDeserializer<SimpleQueryStringFlags> _DESERIALIZER = JsonpDeserializer
+			.lazy(SimpleQueryStringFlags::buildSimpleQueryStringFlagsDeserializer);
 }

@@ -25,7 +25,7 @@ package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -48,10 +48,10 @@ import javax.annotation.Nullable;
 @JsonpDeserializable
 public class ForecastRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
-	private final String duration;
+	private final Time duration;
 
 	@Nullable
-	private final String expiresIn;
+	private final Time expiresIn;
 
 	private final String jobId;
 
@@ -81,7 +81,7 @@ public class ForecastRequest extends RequestBase implements JsonpSerializable {
 	 * API name: {@code duration}
 	 */
 	@Nullable
-	public final String duration() {
+	public final Time duration() {
 		return this.duration;
 	}
 
@@ -93,7 +93,7 @@ public class ForecastRequest extends RequestBase implements JsonpSerializable {
 	 * API name: {@code expires_in}
 	 */
 	@Nullable
-	public final String expiresIn() {
+	public final Time expiresIn() {
 		return this.expiresIn;
 	}
 
@@ -132,12 +132,12 @@ public class ForecastRequest extends RequestBase implements JsonpSerializable {
 
 		if (this.duration != null) {
 			generator.writeKey("duration");
-			generator.write(this.duration);
+			this.duration.serialize(generator, mapper);
 
 		}
 		if (this.expiresIn != null) {
 			generator.writeKey("expires_in");
-			generator.write(this.expiresIn);
+			this.expiresIn.serialize(generator, mapper);
 
 		}
 		if (this.maxModelMemory != null) {
@@ -155,10 +155,10 @@ public class ForecastRequest extends RequestBase implements JsonpSerializable {
 	 */
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ForecastRequest> {
 		@Nullable
-		private String duration;
+		private Time duration;
 
 		@Nullable
-		private String expiresIn;
+		private Time expiresIn;
 
 		private String jobId;
 
@@ -172,8 +172,31 @@ public class ForecastRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code duration}
 		 */
-		public final Builder duration(@Nullable String value) {
+		public final Builder duration(@Nullable Time value) {
 			this.duration = value;
+			return this;
+		}
+
+		/**
+		 * A period of time that indicates how far into the future to forecast. For
+		 * example, <code>30d</code> corresponds to 30 days. The forecast starts at the
+		 * last record that was processed.
+		 * <p>
+		 * API name: {@code duration}
+		 */
+		public final Builder duration(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.duration(fn.apply(new Time.Builder()).build());
+		}
+
+		/**
+		 * The period of time that forecast results are retained. After a forecast
+		 * expires, the results are deleted. If set to a value of 0, the forecast is
+		 * never automatically deleted.
+		 * <p>
+		 * API name: {@code expires_in}
+		 */
+		public final Builder expiresIn(@Nullable Time value) {
+			this.expiresIn = value;
 			return this;
 		}
 
@@ -184,9 +207,8 @@ public class ForecastRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code expires_in}
 		 */
-		public final Builder expiresIn(@Nullable String value) {
-			this.expiresIn = value;
-			return this;
+		public final Builder expiresIn(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.expiresIn(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -231,12 +253,12 @@ public class ForecastRequest extends RequestBase implements JsonpSerializable {
 	 * Json deserializer for {@link ForecastRequest}
 	 */
 	public static final JsonpDeserializer<ForecastRequest> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			ForecastRequest::setupForecastRequestDeserializer, Builder::build);
+			ForecastRequest::setupForecastRequestDeserializer);
 
-	protected static void setupForecastRequestDeserializer(DelegatingDeserializer<ForecastRequest.Builder> op) {
+	protected static void setupForecastRequestDeserializer(ObjectDeserializer<ForecastRequest.Builder> op) {
 
-		op.add(Builder::duration, JsonpDeserializer.stringDeserializer(), "duration");
-		op.add(Builder::expiresIn, JsonpDeserializer.stringDeserializer(), "expires_in");
+		op.add(Builder::duration, Time._DESERIALIZER, "duration");
+		op.add(Builder::expiresIn, Time._DESERIALIZER, "expires_in");
 		op.add(Builder::maxModelMemory, JsonpDeserializer.stringDeserializer(), "max_model_memory");
 
 	}
@@ -246,7 +268,7 @@ public class ForecastRequest extends RequestBase implements JsonpSerializable {
 	/**
 	 * Endpoint "{@code ml.forecast}".
 	 */
-	public static final Endpoint<ForecastRequest, ForecastResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<ForecastRequest, ForecastResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";

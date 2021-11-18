@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.analysis;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -143,9 +142,9 @@ public class DutchAnalyzer implements AnalyzerVariant, JsonpSerializable {
 	 * Json deserializer for {@link DutchAnalyzer}
 	 */
 	public static final JsonpDeserializer<DutchAnalyzer> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			DutchAnalyzer::setupDutchAnalyzerDeserializer, Builder::build);
+			DutchAnalyzer::setupDutchAnalyzerDeserializer);
 
-	protected static void setupDutchAnalyzerDeserializer(DelegatingDeserializer<DutchAnalyzer.Builder> op) {
+	protected static void setupDutchAnalyzerDeserializer(ObjectDeserializer<DutchAnalyzer.Builder> op) {
 
 		op.add(Builder::stopwords, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"stopwords");

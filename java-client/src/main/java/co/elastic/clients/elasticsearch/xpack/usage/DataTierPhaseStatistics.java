@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.xpack.usage;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -323,10 +322,10 @@ public class DataTierPhaseStatistics implements JsonpSerializable {
 	 * Json deserializer for {@link DataTierPhaseStatistics}
 	 */
 	public static final JsonpDeserializer<DataTierPhaseStatistics> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, DataTierPhaseStatistics::setupDataTierPhaseStatisticsDeserializer, Builder::build);
+			.lazy(Builder::new, DataTierPhaseStatistics::setupDataTierPhaseStatisticsDeserializer);
 
 	protected static void setupDataTierPhaseStatisticsDeserializer(
-			DelegatingDeserializer<DataTierPhaseStatistics.Builder> op) {
+			ObjectDeserializer<DataTierPhaseStatistics.Builder> op) {
 
 		op.add(Builder::nodeCount, JsonpDeserializer.longDeserializer(), "node_count");
 		op.add(Builder::indexCount, JsonpDeserializer.longDeserializer(), "index_count");

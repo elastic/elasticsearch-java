@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch.core;
 
 import co.elastic.clients.elasticsearch._types.WriteResponseBase;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -80,9 +79,9 @@ public class CreateResponse extends WriteResponseBase {
 	 * Json deserializer for {@link CreateResponse}
 	 */
 	public static final JsonpDeserializer<CreateResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			CreateResponse::setupCreateResponseDeserializer, Builder::build);
+			CreateResponse::setupCreateResponseDeserializer);
 
-	protected static void setupCreateResponseDeserializer(DelegatingDeserializer<CreateResponse.Builder> op) {
+	protected static void setupCreateResponseDeserializer(ObjectDeserializer<CreateResponse.Builder> op) {
 		WriteResponseBase.setupWriteResponseBaseDeserializer(op);
 
 	}

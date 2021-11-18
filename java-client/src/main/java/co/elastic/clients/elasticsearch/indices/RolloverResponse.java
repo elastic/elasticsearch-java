@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch.indices;
 
 import co.elastic.clients.elasticsearch._types.AcknowledgedResponseBase;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -239,9 +238,9 @@ public class RolloverResponse extends AcknowledgedResponseBase {
 	 * Json deserializer for {@link RolloverResponse}
 	 */
 	public static final JsonpDeserializer<RolloverResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			RolloverResponse::setupRolloverResponseDeserializer, Builder::build);
+			RolloverResponse::setupRolloverResponseDeserializer);
 
-	protected static void setupRolloverResponseDeserializer(DelegatingDeserializer<RolloverResponse.Builder> op) {
+	protected static void setupRolloverResponseDeserializer(ObjectDeserializer<RolloverResponse.Builder> op) {
 		AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);
 		op.add(Builder::conditions, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.booleanDeserializer()),
 				"conditions");

@@ -26,9 +26,9 @@ package co.elastic.clients.elasticsearch.core;
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch._types.VersionType;
+import co.elastic.clients.elasticsearch.core.search.SourceConfigParam;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
-import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
@@ -36,7 +36,6 @@ import co.elastic.clients.transport.SimpleEndpoint;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Long;
@@ -54,7 +53,7 @@ import javax.annotation.Nullable;
 
 public class GetRequest extends RequestBase {
 	@Nullable
-	private final JsonValue /* Union(_types.Fields | internal.boolean) */ source;
+	private final SourceConfigParam source;
 
 	private final List<String> sourceExcludes;
 
@@ -118,7 +117,7 @@ public class GetRequest extends RequestBase {
 	 * API name: {@code _source}
 	 */
 	@Nullable
-	public final JsonValue /* Union(_types.Fields | internal.boolean) */ source() {
+	public final SourceConfigParam source() {
 		return this.source;
 	}
 
@@ -248,7 +247,7 @@ public class GetRequest extends RequestBase {
 	 */
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetRequest> {
 		@Nullable
-		private JsonValue /* Union(_types.Fields | internal.boolean) */ source;
+		private SourceConfigParam source;
 
 		@Nullable
 		private List<String> sourceExcludes;
@@ -290,9 +289,19 @@ public class GetRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code _source}
 		 */
-		public final Builder source(@Nullable JsonValue /* Union(_types.Fields | internal.boolean) */ value) {
+		public final Builder source(@Nullable SourceConfigParam value) {
 			this.source = value;
 			return this;
+		}
+
+		/**
+		 * True or false to return the _source field or not, or a list of fields to
+		 * return.
+		 * <p>
+		 * API name: {@code _source}
+		 */
+		public final Builder source(Function<SourceConfigParam.Builder, ObjectBuilder<SourceConfigParam>> fn) {
+			return this.source(fn.apply(new SourceConfigParam.Builder()).build());
 		}
 
 		/**
@@ -467,7 +476,7 @@ public class GetRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code get}".
 	 */
-	private static final SimpleEndpoint<GetRequest, Void> ENDPOINT = new SimpleEndpoint<>(
+	public static final SimpleEndpoint<GetRequest, ?> _ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "GET";
@@ -533,7 +542,7 @@ public class GetRequest extends RequestBase {
 					params.put("refresh", String.valueOf(request.refresh));
 				}
 				if (request.source != null) {
-					params.put("_source", JsonpUtils.toString(request.source));
+					params.put("_source", request.source._toJsonString());
 				}
 				if (ModelTypeHelper.isDefined(request.sourceExcludes)) {
 					params.put("_source_excludes",
@@ -548,13 +557,13 @@ public class GetRequest extends RequestBase {
 				}
 				return params;
 
-			}, SimpleEndpoint.emptyMap(), false, null);
+			}, SimpleEndpoint.emptyMap(), false, GetResponse._DESERIALIZER);
 
 	/**
 	 * Create an "{@code get}" endpoint.
 	 */
 	public static <TDocument> Endpoint<GetRequest, GetResponse<TDocument>, ErrorResponse> createGetEndpoint(
 			JsonpDeserializer<TDocument> tDocumentDeserializer) {
-		return ENDPOINT.withResponseDeserializer(GetResponse.createGetResponseDeserializer(tDocumentDeserializer));
+		return _ENDPOINT.withResponseDeserializer(GetResponse.createGetResponseDeserializer(tDocumentDeserializer));
 	}
 }

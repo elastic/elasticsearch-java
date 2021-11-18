@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.security;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -113,9 +112,9 @@ public class CreatedStatus implements JsonpSerializable {
 	 * Json deserializer for {@link CreatedStatus}
 	 */
 	public static final JsonpDeserializer<CreatedStatus> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			CreatedStatus::setupCreatedStatusDeserializer, Builder::build);
+			CreatedStatus::setupCreatedStatusDeserializer);
 
-	protected static void setupCreatedStatusDeserializer(DelegatingDeserializer<CreatedStatus.Builder> op) {
+	protected static void setupCreatedStatusDeserializer(ObjectDeserializer<CreatedStatus.Builder> op) {
 
 		op.add(Builder::created, JsonpDeserializer.booleanDeserializer(), "created");
 

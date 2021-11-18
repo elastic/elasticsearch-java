@@ -24,9 +24,9 @@
 package co.elastic.clients.elasticsearch.cat;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
+import co.elastic.clients.elasticsearch.cat.thread_pool.ThreadPoolSize;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
-import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
@@ -34,7 +34,6 @@ import co.elastic.clients.transport.SimpleEndpoint;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Arrays;
@@ -50,7 +49,7 @@ import javax.annotation.Nullable;
 
 public class ThreadPoolRequest extends CatRequestBase {
 	@Nullable
-	private final JsonValue /* Union(_types.Size | internal.boolean) */ size;
+	private final ThreadPoolSize size;
 
 	private final List<String> threadPoolPatterns;
 
@@ -73,7 +72,7 @@ public class ThreadPoolRequest extends CatRequestBase {
 	 * API name: {@code size}
 	 */
 	@Nullable
-	public final JsonValue /* Union(_types.Size | internal.boolean) */ size() {
+	public final ThreadPoolSize size() {
 		return this.size;
 	}
 
@@ -94,7 +93,7 @@ public class ThreadPoolRequest extends CatRequestBase {
 	 */
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ThreadPoolRequest> {
 		@Nullable
-		private JsonValue /* Union(_types.Size | internal.boolean) */ size;
+		private ThreadPoolSize size;
 
 		@Nullable
 		private List<String> threadPoolPatterns;
@@ -104,7 +103,7 @@ public class ThreadPoolRequest extends CatRequestBase {
 		 * <p>
 		 * API name: {@code size}
 		 */
-		public final Builder size(@Nullable JsonValue /* Union(_types.Size | internal.boolean) */ value) {
+		public final Builder size(@Nullable ThreadPoolSize value) {
 			this.size = value;
 			return this;
 		}
@@ -149,7 +148,7 @@ public class ThreadPoolRequest extends CatRequestBase {
 	/**
 	 * Endpoint "{@code cat.thread_pool}".
 	 */
-	public static final Endpoint<ThreadPoolRequest, ThreadPoolResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<ThreadPoolRequest, ThreadPoolResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "GET";
@@ -189,7 +188,7 @@ public class ThreadPoolRequest extends CatRequestBase {
 				Map<String, String> params = new HashMap<>();
 				params.put("format", "json");
 				if (request.size != null) {
-					params.put("size", JsonpUtils.toString(request.size));
+					params.put("size", request.size.jsonValue());
 				}
 				return params;
 

@@ -42,6 +42,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.bulk.OperationContainer
+// union type: Container[]
 
 public class Operation implements TaggedUnion<Object>, NdJsonpSerializable, JsonpSerializable {
 
@@ -49,8 +50,6 @@ public class Operation implements TaggedUnion<Object>, NdJsonpSerializable, Json
 	public static final String CREATE = "create";
 	public static final String UPDATE = "update";
 	public static final String DELETE = "delete";
-
-	// Tagged union implementation
 
 	private final String _type;
 	private final Object _value;
@@ -130,6 +129,7 @@ public class Operation implements TaggedUnion<Object>, NdJsonpSerializable, Json
 	@Override
 	@SuppressWarnings("unchecked")
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+
 		generator.writeStartObject();
 
 		generator.writeKey(_type);
@@ -138,6 +138,7 @@ public class Operation implements TaggedUnion<Object>, NdJsonpSerializable, Json
 		}
 
 		generator.writeEnd();
+
 	}
 
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Operation> {

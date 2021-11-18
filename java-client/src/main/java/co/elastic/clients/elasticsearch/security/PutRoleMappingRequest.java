@@ -24,14 +24,13 @@
 package co.elastic.clients.elasticsearch.security;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
+import co.elastic.clients.elasticsearch._types.Refresh;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
-import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
@@ -39,7 +38,6 @@ import co.elastic.clients.transport.SimpleEndpoint;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
@@ -62,7 +60,7 @@ public class PutRoleMappingRequest extends RequestBase implements JsonpSerializa
 	private final String name;
 
 	@Nullable
-	private final JsonValue /* _types.Refresh */ refresh;
+	private final Refresh refresh;
 
 	private final List<String> roles;
 
@@ -122,7 +120,7 @@ public class PutRoleMappingRequest extends RequestBase implements JsonpSerializa
 	 * API name: {@code refresh}
 	 */
 	@Nullable
-	public final JsonValue /* _types.Refresh */ refresh() {
+	public final Refresh refresh() {
 		return this.refresh;
 	}
 
@@ -218,7 +216,7 @@ public class PutRoleMappingRequest extends RequestBase implements JsonpSerializa
 		private String name;
 
 		@Nullable
-		private JsonValue /* _types.Refresh */ refresh;
+		private Refresh refresh;
 
 		@Nullable
 		private List<String> roles;
@@ -263,7 +261,7 @@ public class PutRoleMappingRequest extends RequestBase implements JsonpSerializa
 		 * <p>
 		 * API name: {@code refresh}
 		 */
-		public final Builder refresh(@Nullable JsonValue /* _types.Refresh */ value) {
+		public final Builder refresh(@Nullable Refresh value) {
 			this.refresh = value;
 			return this;
 		}
@@ -334,10 +332,9 @@ public class PutRoleMappingRequest extends RequestBase implements JsonpSerializa
 	 * Json deserializer for {@link PutRoleMappingRequest}
 	 */
 	public static final JsonpDeserializer<PutRoleMappingRequest> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, PutRoleMappingRequest::setupPutRoleMappingRequestDeserializer, Builder::build);
+			.lazy(Builder::new, PutRoleMappingRequest::setupPutRoleMappingRequestDeserializer);
 
-	protected static void setupPutRoleMappingRequestDeserializer(
-			DelegatingDeserializer<PutRoleMappingRequest.Builder> op) {
+	protected static void setupPutRoleMappingRequestDeserializer(ObjectDeserializer<PutRoleMappingRequest.Builder> op) {
 
 		op.add(Builder::enabled, JsonpDeserializer.booleanDeserializer(), "enabled");
 		op.add(Builder::metadata, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "metadata");
@@ -352,7 +349,7 @@ public class PutRoleMappingRequest extends RequestBase implements JsonpSerializa
 	/**
 	 * Endpoint "{@code security.put_role_mapping}".
 	 */
-	public static final Endpoint<PutRoleMappingRequest, PutRoleMappingResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<PutRoleMappingRequest, PutRoleMappingResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "PUT";
@@ -383,7 +380,7 @@ public class PutRoleMappingRequest extends RequestBase implements JsonpSerializa
 			request -> {
 				Map<String, String> params = new HashMap<>();
 				if (request.refresh != null) {
-					params.put("refresh", JsonpUtils.toString(request.refresh));
+					params.put("refresh", request.refresh.jsonValue());
 				}
 				return params;
 

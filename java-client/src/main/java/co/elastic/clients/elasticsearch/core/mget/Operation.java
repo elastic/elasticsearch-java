@@ -24,7 +24,7 @@
 package co.elastic.clients.elasticsearch.core.mget;
 
 import co.elastic.clients.elasticsearch._types.VersionType;
-import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.elasticsearch.core.search.SourceConfig;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -34,7 +34,6 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.lang.String;
@@ -56,9 +55,7 @@ public class Operation implements JsonpSerializable {
 	private final String routing;
 
 	@Nullable
-	private final JsonValue /*
-							 * Union(_global.search._types.SourceFilter | _types.Fields | internal.boolean)
-							 */ source;
+	private final SourceConfig source;
 
 	private final List<String> storedFields;
 
@@ -117,9 +114,7 @@ public class Operation implements JsonpSerializable {
 	 * API name: {@code _source}
 	 */
 	@Nullable
-	public final JsonValue /*
-							 * Union(_global.search._types.SourceFilter | _types.Fields | internal.boolean)
-							 */ source() {
+	public final SourceConfig source() {
 		return this.source;
 	}
 
@@ -180,7 +175,7 @@ public class Operation implements JsonpSerializable {
 		}
 		if (this.source != null) {
 			generator.writeKey("_source");
-			generator.write(this.source);
+			this.source.serialize(generator, mapper);
 
 		}
 		if (ModelTypeHelper.isDefined(this.storedFields)) {
@@ -225,9 +220,7 @@ public class Operation implements JsonpSerializable {
 		private String routing;
 
 		@Nullable
-		private JsonValue /*
-							 * Union(_global.search._types.SourceFilter | _types.Fields | internal.boolean)
-							 */ source;
+		private SourceConfig source;
 
 		@Nullable
 		private List<String> storedFields;
@@ -268,12 +261,16 @@ public class Operation implements JsonpSerializable {
 		/**
 		 * API name: {@code _source}
 		 */
-		public final Builder source(
-				@Nullable JsonValue /*
-									 * Union(_global.search._types.SourceFilter | _types.Fields | internal.boolean)
-									 */ value) {
+		public final Builder source(@Nullable SourceConfig value) {
 			this.source = value;
 			return this;
+		}
+
+		/**
+		 * API name: {@code _source}
+		 */
+		public final Builder source(Function<SourceConfig.Builder, ObjectBuilder<SourceConfig>> fn) {
+			return this.source(fn.apply(new SourceConfig.Builder()).build());
 		}
 
 		/**
@@ -335,14 +332,14 @@ public class Operation implements JsonpSerializable {
 	 * Json deserializer for {@link Operation}
 	 */
 	public static final JsonpDeserializer<Operation> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			Operation::setupOperationDeserializer, Builder::build);
+			Operation::setupOperationDeserializer);
 
-	protected static void setupOperationDeserializer(DelegatingDeserializer<Operation.Builder> op) {
+	protected static void setupOperationDeserializer(ObjectDeserializer<Operation.Builder> op) {
 
 		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "_id");
 		op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "_index");
 		op.add(Builder::routing, JsonpDeserializer.stringDeserializer(), "routing");
-		op.add(Builder::source, JsonpDeserializer.jsonValueDeserializer(), "_source");
+		op.add(Builder::source, SourceConfig._DESERIALIZER, "_source");
 		op.add(Builder::storedFields, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"stored_fields");
 		op.add(Builder::type, JsonpDeserializer.stringDeserializer(), "_type");

@@ -191,7 +191,7 @@ public class GetTransformStatsRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code transform.get_transform_stats}".
 	 */
-	public static final Endpoint<GetTransformStatsRequest, GetTransformStatsResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<GetTransformStatsRequest, GetTransformStatsResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "GET";

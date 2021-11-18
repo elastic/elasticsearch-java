@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -85,9 +84,9 @@ public class MatchNoneQuery extends QueryBase implements QueryVariant {
 	 * Json deserializer for {@link MatchNoneQuery}
 	 */
 	public static final JsonpDeserializer<MatchNoneQuery> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			MatchNoneQuery::setupMatchNoneQueryDeserializer, Builder::build);
+			MatchNoneQuery::setupMatchNoneQueryDeserializer);
 
-	protected static void setupMatchNoneQueryDeserializer(DelegatingDeserializer<MatchNoneQuery.Builder> op) {
+	protected static void setupMatchNoneQueryDeserializer(ObjectDeserializer<MatchNoneQuery.Builder> op) {
 		QueryBase.setupQueryBaseDeserializer(op);
 
 	}

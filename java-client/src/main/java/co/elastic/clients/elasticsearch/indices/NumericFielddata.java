@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.indices;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -113,9 +112,9 @@ public class NumericFielddata implements JsonpSerializable {
 	 * Json deserializer for {@link NumericFielddata}
 	 */
 	public static final JsonpDeserializer<NumericFielddata> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			NumericFielddata::setupNumericFielddataDeserializer, Builder::build);
+			NumericFielddata::setupNumericFielddataDeserializer);
 
-	protected static void setupNumericFielddataDeserializer(DelegatingDeserializer<NumericFielddata.Builder> op) {
+	protected static void setupNumericFielddataDeserializer(ObjectDeserializer<NumericFielddata.Builder> op) {
 
 		op.add(Builder::format, NumericFielddataFormat._DESERIALIZER, "format");
 

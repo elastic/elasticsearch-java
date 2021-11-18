@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.watcher;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -171,9 +170,9 @@ public class TimeOfMonth implements JsonpSerializable {
 	 * Json deserializer for {@link TimeOfMonth}
 	 */
 	public static final JsonpDeserializer<TimeOfMonth> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			TimeOfMonth::setupTimeOfMonthDeserializer, Builder::build);
+			TimeOfMonth::setupTimeOfMonthDeserializer);
 
-	protected static void setupTimeOfMonthDeserializer(DelegatingDeserializer<TimeOfMonth.Builder> op) {
+	protected static void setupTimeOfMonthDeserializer(ObjectDeserializer<TimeOfMonth.Builder> op) {
 
 		op.add(Builder::at, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "at");
 		op.add(Builder::on, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.integerDeserializer()), "on");

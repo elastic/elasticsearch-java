@@ -145,7 +145,7 @@ public class SnapshotsRequest extends CatRequestBase {
 	/**
 	 * Endpoint "{@code cat.snapshots}".
 	 */
-	public static final Endpoint<SnapshotsRequest, SnapshotsResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<SnapshotsRequest, SnapshotsResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "GET";

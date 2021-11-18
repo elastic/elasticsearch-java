@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
 import co.elastic.clients.elasticsearch._types.VersionType;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -364,9 +363,9 @@ public class LikeDocument implements JsonpSerializable {
 	 * Json deserializer for {@link LikeDocument}
 	 */
 	public static final JsonpDeserializer<LikeDocument> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			LikeDocument::setupLikeDocumentDeserializer, Builder::build);
+			LikeDocument::setupLikeDocumentDeserializer);
 
-	protected static void setupLikeDocumentDeserializer(DelegatingDeserializer<LikeDocument.Builder> op) {
+	protected static void setupLikeDocumentDeserializer(ObjectDeserializer<LikeDocument.Builder> op) {
 
 		op.add(Builder::doc, JsonData._DESERIALIZER, "doc");
 		op.add(Builder::fields, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "fields");

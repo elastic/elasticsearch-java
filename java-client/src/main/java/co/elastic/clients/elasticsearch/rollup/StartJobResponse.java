@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.rollup;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -113,9 +112,9 @@ public class StartJobResponse implements JsonpSerializable {
 	 * Json deserializer for {@link StartJobResponse}
 	 */
 	public static final JsonpDeserializer<StartJobResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			StartJobResponse::setupStartJobResponseDeserializer, Builder::build);
+			StartJobResponse::setupStartJobResponseDeserializer);
 
-	protected static void setupStartJobResponseDeserializer(DelegatingDeserializer<StartJobResponse.Builder> op) {
+	protected static void setupStartJobResponseDeserializer(ObjectDeserializer<StartJobResponse.Builder> op) {
 
 		op.add(Builder::started, JsonpDeserializer.booleanDeserializer(), "started");
 

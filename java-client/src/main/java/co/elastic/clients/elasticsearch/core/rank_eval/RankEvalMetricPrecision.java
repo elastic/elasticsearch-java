@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.core.rank_eval;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -125,10 +124,10 @@ public class RankEvalMetricPrecision extends RankEvalMetricRatingTreshold {
 	 * Json deserializer for {@link RankEvalMetricPrecision}
 	 */
 	public static final JsonpDeserializer<RankEvalMetricPrecision> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, RankEvalMetricPrecision::setupRankEvalMetricPrecisionDeserializer, Builder::build);
+			.lazy(Builder::new, RankEvalMetricPrecision::setupRankEvalMetricPrecisionDeserializer);
 
 	protected static void setupRankEvalMetricPrecisionDeserializer(
-			DelegatingDeserializer<RankEvalMetricPrecision.Builder> op) {
+			ObjectDeserializer<RankEvalMetricPrecision.Builder> op) {
 		RankEvalMetricRatingTreshold.setupRankEvalMetricRatingTresholdDeserializer(op);
 		op.add(Builder::ignoreUnlabeled, JsonpDeserializer.booleanDeserializer(), "ignore_unlabeled");
 

@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch.snapshot;
 
 import co.elastic.clients.elasticsearch._types.AcknowledgedResponseBase;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -80,10 +79,10 @@ public class CreateRepositoryResponse extends AcknowledgedResponseBase {
 	 * Json deserializer for {@link CreateRepositoryResponse}
 	 */
 	public static final JsonpDeserializer<CreateRepositoryResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, CreateRepositoryResponse::setupCreateRepositoryResponseDeserializer, Builder::build);
+			.lazy(Builder::new, CreateRepositoryResponse::setupCreateRepositoryResponseDeserializer);
 
 	protected static void setupCreateRepositoryResponseDeserializer(
-			DelegatingDeserializer<CreateRepositoryResponse.Builder> op) {
+			ObjectDeserializer<CreateRepositoryResponse.Builder> op) {
 		AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);
 
 	}

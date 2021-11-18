@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.nodes.info;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -276,9 +275,9 @@ public class NodeInfoOSCPU implements JsonpSerializable {
 	 * Json deserializer for {@link NodeInfoOSCPU}
 	 */
 	public static final JsonpDeserializer<NodeInfoOSCPU> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			NodeInfoOSCPU::setupNodeInfoOSCPUDeserializer, Builder::build);
+			NodeInfoOSCPU::setupNodeInfoOSCPUDeserializer);
 
-	protected static void setupNodeInfoOSCPUDeserializer(DelegatingDeserializer<NodeInfoOSCPU.Builder> op) {
+	protected static void setupNodeInfoOSCPUDeserializer(ObjectDeserializer<NodeInfoOSCPU.Builder> op) {
 
 		op.add(Builder::cacheSize, JsonpDeserializer.stringDeserializer(), "cache_size");
 		op.add(Builder::cacheSizeInBytes, JsonpDeserializer.integerDeserializer(), "cache_size_in_bytes");

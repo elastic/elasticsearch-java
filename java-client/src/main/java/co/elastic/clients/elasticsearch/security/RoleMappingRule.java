@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.security;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -43,6 +42,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: security._types.RoleMappingRule
+// union type: Container[]
 @JsonpDeserializable
 public class RoleMappingRule implements TaggedUnion<Object>, RoleMappingRuleVariant, JsonpSerializable {
 
@@ -58,8 +58,6 @@ public class RoleMappingRule implements TaggedUnion<Object>, RoleMappingRuleVari
 	public String _variantType() {
 		return "except";
 	}
-
-	// Tagged union implementation
 
 	private final String _type;
 	private final Object _value;
@@ -135,6 +133,7 @@ public class RoleMappingRule implements TaggedUnion<Object>, RoleMappingRuleVari
 	@Override
 	@SuppressWarnings("unchecked")
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+
 		generator.writeStartObject();
 
 		generator.writeKey(_type);
@@ -164,6 +163,7 @@ public class RoleMappingRule implements TaggedUnion<Object>, RoleMappingRuleVari
 		}
 
 		generator.writeEnd();
+
 	}
 
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RoleMappingRule> {
@@ -209,7 +209,7 @@ public class RoleMappingRule implements TaggedUnion<Object>, RoleMappingRuleVari
 
 	}
 
-	protected static void setupRoleMappingRuleDeserializer(DelegatingDeserializer<Builder> op) {
+	protected static void setupRoleMappingRuleDeserializer(ObjectDeserializer<Builder> op) {
 
 		op.add(Builder::any, JsonpDeserializer.arrayDeserializer(RoleMappingRule._DESERIALIZER), "any");
 		op.add(Builder::all, JsonpDeserializer.arrayDeserializer(RoleMappingRule._DESERIALIZER), "all");

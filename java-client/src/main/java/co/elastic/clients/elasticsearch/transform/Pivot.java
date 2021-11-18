@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch.transform;
 
 import co.elastic.clients.elasticsearch._types.aggregations.Aggregation;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -213,9 +212,9 @@ public class Pivot implements JsonpSerializable {
 	 * Json deserializer for {@link Pivot}
 	 */
 	public static final JsonpDeserializer<Pivot> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			Pivot::setupPivotDeserializer, Builder::build);
+			Pivot::setupPivotDeserializer);
 
-	protected static void setupPivotDeserializer(DelegatingDeserializer<Pivot.Builder> op) {
+	protected static void setupPivotDeserializer(ObjectDeserializer<Pivot.Builder> op) {
 
 		op.add(Builder::aggregations, JsonpDeserializer.stringMapDeserializer(Aggregation._DESERIALIZER),
 				"aggregations", "aggs");

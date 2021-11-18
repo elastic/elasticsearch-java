@@ -26,7 +26,6 @@ package co.elastic.clients.elasticsearch.indices;
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch.indices.put_index_template.IndexTemplateMapping;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -364,10 +363,10 @@ public class PutIndexTemplateRequest extends RequestBase implements JsonpSeriali
 	 * Json deserializer for {@link PutIndexTemplateRequest}
 	 */
 	public static final JsonpDeserializer<PutIndexTemplateRequest> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, PutIndexTemplateRequest::setupPutIndexTemplateRequestDeserializer, Builder::build);
+			.lazy(Builder::new, PutIndexTemplateRequest::setupPutIndexTemplateRequestDeserializer);
 
 	protected static void setupPutIndexTemplateRequestDeserializer(
-			DelegatingDeserializer<PutIndexTemplateRequest.Builder> op) {
+			ObjectDeserializer<PutIndexTemplateRequest.Builder> op) {
 
 		op.add(Builder::meta, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "_meta");
 		op.add(Builder::composedOf, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
@@ -386,7 +385,7 @@ public class PutIndexTemplateRequest extends RequestBase implements JsonpSeriali
 	/**
 	 * Endpoint "{@code indices.put_index_template}".
 	 */
-	public static final Endpoint<PutIndexTemplateRequest, PutIndexTemplateResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<PutIndexTemplateRequest, PutIndexTemplateResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "PUT";

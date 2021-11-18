@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch.indices.get_field_mapping;
 
 import co.elastic.clients.elasticsearch._types.mapping.FieldMapping;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -121,9 +120,9 @@ public class TypeFieldMappings implements JsonpSerializable {
 	 * Json deserializer for {@link TypeFieldMappings}
 	 */
 	public static final JsonpDeserializer<TypeFieldMappings> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, TypeFieldMappings::setupTypeFieldMappingsDeserializer, Builder::build);
+			.lazy(Builder::new, TypeFieldMappings::setupTypeFieldMappingsDeserializer);
 
-	protected static void setupTypeFieldMappingsDeserializer(DelegatingDeserializer<TypeFieldMappings.Builder> op) {
+	protected static void setupTypeFieldMappingsDeserializer(ObjectDeserializer<TypeFieldMappings.Builder> op) {
 
 		op.add(Builder::mappings, FieldMapping._DESERIALIZER, "mappings");
 

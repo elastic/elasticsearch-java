@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.ingest;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -83,9 +82,9 @@ public class GetPipelineResponse extends DictionaryResponse<String, Pipeline> {
 	 * Json deserializer for {@link GetPipelineResponse}
 	 */
 	public static final JsonpDeserializer<GetPipelineResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, GetPipelineResponse::setupGetPipelineResponseDeserializer, Builder::build);
+			.lazy(Builder::new, GetPipelineResponse::setupGetPipelineResponseDeserializer);
 
-	protected static void setupGetPipelineResponseDeserializer(DelegatingDeserializer<GetPipelineResponse.Builder> op) {
+	protected static void setupGetPipelineResponseDeserializer(ObjectDeserializer<GetPipelineResponse.Builder> op) {
 		DictionaryResponse.setupDictionaryResponseDeserializer(op, JsonpDeserializer.stringDeserializer(),
 				Pipeline._DESERIALIZER);
 

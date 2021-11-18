@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.indices.resolve_index;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -155,10 +154,9 @@ public class ResolveIndexAliasItem implements JsonpSerializable {
 	 * Json deserializer for {@link ResolveIndexAliasItem}
 	 */
 	public static final JsonpDeserializer<ResolveIndexAliasItem> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, ResolveIndexAliasItem::setupResolveIndexAliasItemDeserializer, Builder::build);
+			.lazy(Builder::new, ResolveIndexAliasItem::setupResolveIndexAliasItemDeserializer);
 
-	protected static void setupResolveIndexAliasItemDeserializer(
-			DelegatingDeserializer<ResolveIndexAliasItem.Builder> op) {
+	protected static void setupResolveIndexAliasItemDeserializer(ObjectDeserializer<ResolveIndexAliasItem.Builder> op) {
 
 		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
 		op.add(Builder::indices, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),

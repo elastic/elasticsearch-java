@@ -25,6 +25,8 @@ package co.elastic.clients.elasticsearch.ilm;
 
 import co.elastic.clients.ApiClient;
 import co.elastic.clients.elasticsearch._types.ElasticsearchException;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
+import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.Transport;
 import co.elastic.clients.transport.TransportOptions;
 import co.elastic.clients.util.ObjectBuilder;
@@ -64,7 +66,10 @@ public class ElasticsearchIlmAsyncClient extends ApiClient<ElasticsearchIlmAsync
 
 	public CompletableFuture<DeleteLifecycleResponse> deleteLifecycle(DeleteLifecycleRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(request, DeleteLifecycleRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<DeleteLifecycleRequest, DeleteLifecycleResponse, ErrorResponse> endpoint = (Endpoint<DeleteLifecycleRequest, DeleteLifecycleResponse, ErrorResponse>) DeleteLifecycleRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -98,7 +103,10 @@ public class ElasticsearchIlmAsyncClient extends ApiClient<ElasticsearchIlmAsync
 
 	public CompletableFuture<ExplainLifecycleResponse> explainLifecycle(ExplainLifecycleRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(request, ExplainLifecycleRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<ExplainLifecycleRequest, ExplainLifecycleResponse, ErrorResponse> endpoint = (Endpoint<ExplainLifecycleRequest, ExplainLifecycleResponse, ErrorResponse>) ExplainLifecycleRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -132,7 +140,10 @@ public class ElasticsearchIlmAsyncClient extends ApiClient<ElasticsearchIlmAsync
 
 	public CompletableFuture<GetLifecycleResponse> getLifecycle(GetLifecycleRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(request, GetLifecycleRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<GetLifecycleRequest, GetLifecycleResponse, ErrorResponse> endpoint = (Endpoint<GetLifecycleRequest, GetLifecycleResponse, ErrorResponse>) GetLifecycleRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -164,7 +175,7 @@ public class ElasticsearchIlmAsyncClient extends ApiClient<ElasticsearchIlmAsync
 
 	public CompletableFuture<GetLifecycleResponse> getLifecycle() throws IOException, ElasticsearchException {
 		return this.transport.performRequestAsync(new GetLifecycleRequest.Builder().build(),
-				GetLifecycleRequest.ENDPOINT, this.transportOptions);
+				GetLifecycleRequest._ENDPOINT, this.transportOptions);
 	}
 
 	// ----- Endpoint: ilm.get_status
@@ -177,7 +188,7 @@ public class ElasticsearchIlmAsyncClient extends ApiClient<ElasticsearchIlmAsync
 	 *      on elastic.co</a>
 	 */
 	public CompletableFuture<GetStatusResponse> getStatus() throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(GetStatusRequest._INSTANCE, GetStatusRequest.ENDPOINT,
+		return this.transport.performRequestAsync(GetStatusRequest._INSTANCE, GetStatusRequest._ENDPOINT,
 				this.transportOptions);
 	}
 
@@ -193,7 +204,10 @@ public class ElasticsearchIlmAsyncClient extends ApiClient<ElasticsearchIlmAsync
 
 	public CompletableFuture<MoveToStepResponse> moveToStep(MoveToStepRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(request, MoveToStepRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<MoveToStepRequest, MoveToStepResponse, ErrorResponse> endpoint = (Endpoint<MoveToStepRequest, MoveToStepResponse, ErrorResponse>) MoveToStepRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -225,7 +239,10 @@ public class ElasticsearchIlmAsyncClient extends ApiClient<ElasticsearchIlmAsync
 
 	public CompletableFuture<PutLifecycleResponse> putLifecycle(PutLifecycleRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(request, PutLifecycleRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<PutLifecycleRequest, PutLifecycleResponse, ErrorResponse> endpoint = (Endpoint<PutLifecycleRequest, PutLifecycleResponse, ErrorResponse>) PutLifecycleRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -257,7 +274,10 @@ public class ElasticsearchIlmAsyncClient extends ApiClient<ElasticsearchIlmAsync
 
 	public CompletableFuture<RemovePolicyResponse> removePolicy(RemovePolicyRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(request, RemovePolicyRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<RemovePolicyRequest, RemovePolicyResponse, ErrorResponse> endpoint = (Endpoint<RemovePolicyRequest, RemovePolicyResponse, ErrorResponse>) RemovePolicyRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -288,7 +308,10 @@ public class ElasticsearchIlmAsyncClient extends ApiClient<ElasticsearchIlmAsync
 	 */
 
 	public CompletableFuture<RetryResponse> retry(RetryRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(request, RetryRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<RetryRequest, RetryResponse, ErrorResponse> endpoint = (Endpoint<RetryRequest, RetryResponse, ErrorResponse>) RetryRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -319,7 +342,10 @@ public class ElasticsearchIlmAsyncClient extends ApiClient<ElasticsearchIlmAsync
 
 	public CompletableFuture<StartIlmResponse> start(StartIlmRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(request, StartIlmRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<StartIlmRequest, StartIlmResponse, ErrorResponse> endpoint = (Endpoint<StartIlmRequest, StartIlmResponse, ErrorResponse>) StartIlmRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -348,7 +374,7 @@ public class ElasticsearchIlmAsyncClient extends ApiClient<ElasticsearchIlmAsync
 	 */
 
 	public CompletableFuture<StartIlmResponse> start() throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(new StartIlmRequest.Builder().build(), StartIlmRequest.ENDPOINT,
+		return this.transport.performRequestAsync(new StartIlmRequest.Builder().build(), StartIlmRequest._ENDPOINT,
 				this.transportOptions);
 	}
 
@@ -364,7 +390,10 @@ public class ElasticsearchIlmAsyncClient extends ApiClient<ElasticsearchIlmAsync
 	 */
 
 	public CompletableFuture<StopIlmResponse> stop(StopIlmRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(request, StopIlmRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<StopIlmRequest, StopIlmResponse, ErrorResponse> endpoint = (Endpoint<StopIlmRequest, StopIlmResponse, ErrorResponse>) StopIlmRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -395,7 +424,7 @@ public class ElasticsearchIlmAsyncClient extends ApiClient<ElasticsearchIlmAsync
 	 */
 
 	public CompletableFuture<StopIlmResponse> stop() throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(new StopIlmRequest.Builder().build(), StopIlmRequest.ENDPOINT,
+		return this.transport.performRequestAsync(new StopIlmRequest.Builder().build(), StopIlmRequest._ENDPOINT,
 				this.transportOptions);
 	}
 

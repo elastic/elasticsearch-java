@@ -23,12 +23,10 @@
 
 package co.elastic.clients.elasticsearch.ingest;
 
+import co.elastic.clients.elasticsearch._types.Script;
+
 /**
  * Builders for {@link Processor} variants.
- * <p>
- * Variants <code>script</code> are not available here as they don't have a
- * dedicated class. Use {@link Processor}'s builder for these.
- * 
  */
 public class ProcessorBuilders {
 	private ProcessorBuilders() {
@@ -191,6 +189,13 @@ public class ProcessorBuilders {
 	 */
 	public static RenameProcessor.Builder rename() {
 		return new RenameProcessor.Builder();
+	}
+
+	/**
+	 * Creates a builder for the {@link Script script} {@code Processor} variant.
+	 */
+	public static Script.Builder script() {
+		return new Script.Builder();
 	}
 
 	/**

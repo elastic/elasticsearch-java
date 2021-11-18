@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch.rollup;
 
 import co.elastic.clients.elasticsearch.rollup.get_rollup_index_caps.IndexCapabilities;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -83,11 +82,11 @@ public class GetRollupIndexCapsResponse extends DictionaryResponse<String, Index
 	/**
 	 * Json deserializer for {@link GetRollupIndexCapsResponse}
 	 */
-	public static final JsonpDeserializer<GetRollupIndexCapsResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
-			Builder::new, GetRollupIndexCapsResponse::setupGetRollupIndexCapsResponseDeserializer, Builder::build);
+	public static final JsonpDeserializer<GetRollupIndexCapsResponse> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, GetRollupIndexCapsResponse::setupGetRollupIndexCapsResponseDeserializer);
 
 	protected static void setupGetRollupIndexCapsResponseDeserializer(
-			DelegatingDeserializer<GetRollupIndexCapsResponse.Builder> op) {
+			ObjectDeserializer<GetRollupIndexCapsResponse.Builder> op) {
 		DictionaryResponse.setupDictionaryResponseDeserializer(op, JsonpDeserializer.stringDeserializer(),
 				IndexCapabilities._DESERIALIZER);
 

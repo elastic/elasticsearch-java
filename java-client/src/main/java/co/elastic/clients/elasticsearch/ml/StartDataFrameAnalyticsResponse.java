@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.elasticsearch._types.AcknowledgedResponseBase;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -122,11 +121,10 @@ public class StartDataFrameAnalyticsResponse extends AcknowledgedResponseBase {
 	 * Json deserializer for {@link StartDataFrameAnalyticsResponse}
 	 */
 	public static final JsonpDeserializer<StartDataFrameAnalyticsResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, StartDataFrameAnalyticsResponse::setupStartDataFrameAnalyticsResponseDeserializer,
-					Builder::build);
+			.lazy(Builder::new, StartDataFrameAnalyticsResponse::setupStartDataFrameAnalyticsResponseDeserializer);
 
 	protected static void setupStartDataFrameAnalyticsResponseDeserializer(
-			DelegatingDeserializer<StartDataFrameAnalyticsResponse.Builder> op) {
+			ObjectDeserializer<StartDataFrameAnalyticsResponse.Builder> op) {
 		AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);
 		op.add(Builder::node, JsonpDeserializer.stringDeserializer(), "node");
 

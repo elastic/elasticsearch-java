@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.indices.data_streams_stats;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -212,10 +211,9 @@ public class DataStreamsStatsItem implements JsonpSerializable {
 	 * Json deserializer for {@link DataStreamsStatsItem}
 	 */
 	public static final JsonpDeserializer<DataStreamsStatsItem> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, DataStreamsStatsItem::setupDataStreamsStatsItemDeserializer, Builder::build);
+			.lazy(Builder::new, DataStreamsStatsItem::setupDataStreamsStatsItemDeserializer);
 
-	protected static void setupDataStreamsStatsItemDeserializer(
-			DelegatingDeserializer<DataStreamsStatsItem.Builder> op) {
+	protected static void setupDataStreamsStatsItemDeserializer(ObjectDeserializer<DataStreamsStatsItem.Builder> op) {
 
 		op.add(Builder::backingIndices, JsonpDeserializer.integerDeserializer(), "backing_indices");
 		op.add(Builder::dataStream, JsonpDeserializer.stringDeserializer(), "data_stream");

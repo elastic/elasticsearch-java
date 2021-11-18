@@ -24,8 +24,9 @@
 package co.elastic.clients.elasticsearch.indices;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
-import co.elastic.clients.elasticsearch._types.ExpandWildcardOptions;
+import co.elastic.clients.elasticsearch._types.ExpandWildcard;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -55,7 +56,7 @@ public class PutSettingsRequest extends RequestBase implements JsonpSerializable
 	@Nullable
 	private final Boolean allowNoIndices;
 
-	private final List<ExpandWildcardOptions> expandWildcards;
+	private final List<ExpandWildcard> expandWildcards;
 
 	@Nullable
 	private final Boolean flatSettings;
@@ -66,13 +67,13 @@ public class PutSettingsRequest extends RequestBase implements JsonpSerializable
 	private final List<String> index;
 
 	@Nullable
-	private final String masterTimeout;
+	private final Time masterTimeout;
 
 	@Nullable
 	private final Boolean preserveExisting;
 
 	@Nullable
-	private final String timeout;
+	private final Time timeout;
 
 	private final IndexSettings settings;
 
@@ -114,7 +115,7 @@ public class PutSettingsRequest extends RequestBase implements JsonpSerializable
 	 * <p>
 	 * API name: {@code expand_wildcards}
 	 */
-	public final List<ExpandWildcardOptions> expandWildcards() {
+	public final List<ExpandWildcard> expandWildcards() {
 		return this.expandWildcards;
 	}
 
@@ -155,7 +156,7 @@ public class PutSettingsRequest extends RequestBase implements JsonpSerializable
 	 * API name: {@code master_timeout}
 	 */
 	@Nullable
-	public final String masterTimeout() {
+	public final Time masterTimeout() {
 		return this.masterTimeout;
 	}
 
@@ -176,7 +177,7 @@ public class PutSettingsRequest extends RequestBase implements JsonpSerializable
 	 * API name: {@code timeout}
 	 */
 	@Nullable
-	public final String timeout() {
+	public final Time timeout() {
 		return this.timeout;
 	}
 
@@ -207,7 +208,7 @@ public class PutSettingsRequest extends RequestBase implements JsonpSerializable
 		private Boolean allowNoIndices;
 
 		@Nullable
-		private List<ExpandWildcardOptions> expandWildcards;
+		private List<ExpandWildcard> expandWildcards;
 
 		@Nullable
 		private Boolean flatSettings;
@@ -219,13 +220,13 @@ public class PutSettingsRequest extends RequestBase implements JsonpSerializable
 		private List<String> index;
 
 		@Nullable
-		private String masterTimeout;
+		private Time masterTimeout;
 
 		@Nullable
 		private Boolean preserveExisting;
 
 		@Nullable
-		private String timeout;
+		private Time timeout;
 
 		private IndexSettings settings;
 
@@ -247,7 +248,7 @@ public class PutSettingsRequest extends RequestBase implements JsonpSerializable
 		 * <p>
 		 * API name: {@code expand_wildcards}
 		 */
-		public final Builder expandWildcards(@Nullable List<ExpandWildcardOptions> value) {
+		public final Builder expandWildcards(@Nullable List<ExpandWildcard> value) {
 			this.expandWildcards = value;
 			return this;
 		}
@@ -258,7 +259,7 @@ public class PutSettingsRequest extends RequestBase implements JsonpSerializable
 		 * <p>
 		 * API name: {@code expand_wildcards}
 		 */
-		public final Builder expandWildcards(ExpandWildcardOptions... value) {
+		public final Builder expandWildcards(ExpandWildcard... value) {
 			this.expandWildcards = Arrays.asList(value);
 			return this;
 		}
@@ -311,9 +312,18 @@ public class PutSettingsRequest extends RequestBase implements JsonpSerializable
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
-		public final Builder masterTimeout(@Nullable String value) {
+		public final Builder masterTimeout(@Nullable Time value) {
 			this.masterTimeout = value;
 			return this;
+		}
+
+		/**
+		 * Specify timeout for connection to master
+		 * <p>
+		 * API name: {@code master_timeout}
+		 */
+		public final Builder masterTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.masterTimeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -332,9 +342,18 @@ public class PutSettingsRequest extends RequestBase implements JsonpSerializable
 		 * <p>
 		 * API name: {@code timeout}
 		 */
-		public final Builder timeout(@Nullable String value) {
+		public final Builder timeout(@Nullable Time value) {
 			this.timeout = value;
 			return this;
+		}
+
+		/**
+		 * Explicit operation timeout
+		 * <p>
+		 * API name: {@code timeout}
+		 */
+		public final Builder timeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.timeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -374,8 +393,8 @@ public class PutSettingsRequest extends RequestBase implements JsonpSerializable
 
 		JsonpDeserializer<IndexSettings> valueDeserializer = IndexSettings._DESERIALIZER;
 
-		return JsonpDeserializer.of(valueDeserializer.acceptedEvents(), (parser, mapper, event) -> new Builder()
-				.settings(valueDeserializer.deserialize(parser, mapper, event)).build());
+		return JsonpDeserializer.of(valueDeserializer.acceptedEvents(),
+				(parser, mapper) -> new Builder().settings(valueDeserializer.deserialize(parser, mapper)).build());
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -383,7 +402,7 @@ public class PutSettingsRequest extends RequestBase implements JsonpSerializable
 	/**
 	 * Endpoint "{@code indices.put_settings}".
 	 */
-	public static final Endpoint<PutSettingsRequest, PutSettingsResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<PutSettingsRequest, PutSettingsResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "PUT";
@@ -419,7 +438,7 @@ public class PutSettingsRequest extends RequestBase implements JsonpSerializable
 			request -> {
 				Map<String, String> params = new HashMap<>();
 				if (request.masterTimeout != null) {
-					params.put("master_timeout", request.masterTimeout);
+					params.put("master_timeout", request.masterTimeout._toJsonString());
 				}
 				if (request.flatSettings != null) {
 					params.put("flat_settings", String.valueOf(request.flatSettings));
@@ -438,7 +457,7 @@ public class PutSettingsRequest extends RequestBase implements JsonpSerializable
 					params.put("preserve_existing", String.valueOf(request.preserveExisting));
 				}
 				if (request.timeout != null) {
-					params.put("timeout", request.timeout);
+					params.put("timeout", request.timeout._toJsonString());
 				}
 				return params;
 

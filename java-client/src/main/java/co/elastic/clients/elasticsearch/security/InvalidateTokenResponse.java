@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch.security;
 
 import co.elastic.clients.elasticsearch._types.ErrorCause;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -216,10 +215,10 @@ public class InvalidateTokenResponse implements JsonpSerializable {
 	 * Json deserializer for {@link InvalidateTokenResponse}
 	 */
 	public static final JsonpDeserializer<InvalidateTokenResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, InvalidateTokenResponse::setupInvalidateTokenResponseDeserializer, Builder::build);
+			.lazy(Builder::new, InvalidateTokenResponse::setupInvalidateTokenResponseDeserializer);
 
 	protected static void setupInvalidateTokenResponseDeserializer(
-			DelegatingDeserializer<InvalidateTokenResponse.Builder> op) {
+			ObjectDeserializer<InvalidateTokenResponse.Builder> op) {
 
 		op.add(Builder::errorCount, JsonpDeserializer.longDeserializer(), "error_count");
 		op.add(Builder::errorDetails, JsonpDeserializer.arrayDeserializer(ErrorCause._DESERIALIZER), "error_details");

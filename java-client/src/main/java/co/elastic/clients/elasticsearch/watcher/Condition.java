@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.watcher;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -42,6 +41,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.ConditionContainer
+// union type: Container[]
 @JsonpDeserializable
 public class Condition implements TaggedUnion<Object>, JsonpSerializable {
 
@@ -50,8 +50,6 @@ public class Condition implements TaggedUnion<Object>, JsonpSerializable {
 	public static final String COMPARE = "compare";
 	public static final String NEVER = "never";
 	public static final String SCRIPT = "script";
-
-	// Tagged union implementation
 
 	private final String _type;
 	private final Object _value;
@@ -137,6 +135,7 @@ public class Condition implements TaggedUnion<Object>, JsonpSerializable {
 	@Override
 	@SuppressWarnings("unchecked")
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+
 		generator.writeStartObject();
 
 		generator.writeKey(_type);
@@ -145,6 +144,7 @@ public class Condition implements TaggedUnion<Object>, JsonpSerializable {
 		}
 
 		generator.writeEnd();
+
 	}
 
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Condition> {
@@ -208,7 +208,7 @@ public class Condition implements TaggedUnion<Object>, JsonpSerializable {
 
 	}
 
-	protected static void setupConditionDeserializer(DelegatingDeserializer<Builder> op) {
+	protected static void setupConditionDeserializer(ObjectDeserializer<Builder> op) {
 
 		op.add(Builder::always, AlwaysCondition._DESERIALIZER, "always");
 		op.add(Builder::arrayCompare, ArrayCompareCondition._DESERIALIZER, "array_compare");

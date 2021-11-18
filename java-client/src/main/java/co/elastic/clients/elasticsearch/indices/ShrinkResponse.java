@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch.indices;
 
 import co.elastic.clients.elasticsearch._types.AcknowledgedResponseBase;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -138,9 +137,9 @@ public class ShrinkResponse extends AcknowledgedResponseBase {
 	 * Json deserializer for {@link ShrinkResponse}
 	 */
 	public static final JsonpDeserializer<ShrinkResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			ShrinkResponse::setupShrinkResponseDeserializer, Builder::build);
+			ShrinkResponse::setupShrinkResponseDeserializer);
 
-	protected static void setupShrinkResponseDeserializer(DelegatingDeserializer<ShrinkResponse.Builder> op) {
+	protected static void setupShrinkResponseDeserializer(ObjectDeserializer<ShrinkResponse.Builder> op) {
 		AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);
 		op.add(Builder::shardsAcknowledged, JsonpDeserializer.booleanDeserializer(), "shards_acknowledged");
 		op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "index");

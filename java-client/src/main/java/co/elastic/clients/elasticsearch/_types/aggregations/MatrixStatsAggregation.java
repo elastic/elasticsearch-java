@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -123,10 +122,10 @@ public class MatrixStatsAggregation extends MatrixAggregation implements Aggrega
 	 * Json deserializer for {@link MatrixStatsAggregation}
 	 */
 	public static final JsonpDeserializer<MatrixStatsAggregation> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, MatrixStatsAggregation::setupMatrixStatsAggregationDeserializer, Builder::build);
+			.lazy(Builder::new, MatrixStatsAggregation::setupMatrixStatsAggregationDeserializer);
 
 	protected static void setupMatrixStatsAggregationDeserializer(
-			DelegatingDeserializer<MatrixStatsAggregation.Builder> op) {
+			ObjectDeserializer<MatrixStatsAggregation.Builder> op) {
 		MatrixAggregation.setupMatrixAggregationDeserializer(op);
 		op.add(Builder::mode, MatrixStatsMode._DESERIALIZER, "mode");
 

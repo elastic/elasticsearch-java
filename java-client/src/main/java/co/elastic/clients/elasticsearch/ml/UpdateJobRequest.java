@@ -25,7 +25,7 @@ package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -61,7 +61,7 @@ public class UpdateJobRequest extends RequestBase implements JsonpSerializable {
 	private final AnalysisMemoryLimit analysisLimits;
 
 	@Nullable
-	private final String backgroundPersistInterval;
+	private final Time backgroundPersistInterval;
 
 	private final List<String> categorizationFilters;
 
@@ -158,7 +158,7 @@ public class UpdateJobRequest extends RequestBase implements JsonpSerializable {
 	 * API name: {@code background_persist_interval}
 	 */
 	@Nullable
-	public final String backgroundPersistInterval() {
+	public final Time backgroundPersistInterval() {
 		return this.backgroundPersistInterval;
 	}
 
@@ -313,7 +313,7 @@ public class UpdateJobRequest extends RequestBase implements JsonpSerializable {
 		}
 		if (this.backgroundPersistInterval != null) {
 			generator.writeKey("background_persist_interval");
-			generator.write(this.backgroundPersistInterval);
+			this.backgroundPersistInterval.serialize(generator, mapper);
 
 		}
 		if (ModelTypeHelper.isDefined(this.categorizationFilters)) {
@@ -408,7 +408,7 @@ public class UpdateJobRequest extends RequestBase implements JsonpSerializable {
 		private AnalysisMemoryLimit analysisLimits;
 
 		@Nullable
-		private String backgroundPersistInterval;
+		private Time backgroundPersistInterval;
 
 		@Nullable
 		private List<String> categorizationFilters;
@@ -490,9 +490,24 @@ public class UpdateJobRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code background_persist_interval}
 		 */
-		public final Builder backgroundPersistInterval(@Nullable String value) {
+		public final Builder backgroundPersistInterval(@Nullable Time value) {
 			this.backgroundPersistInterval = value;
 			return this;
+		}
+
+		/**
+		 * Advanced configuration option. The time between each periodic persistence of
+		 * the model. The default value is a randomized value between 3 to 4 hours,
+		 * which avoids all jobs persisting at exactly the same time. The smallest
+		 * allowed value is 1 hour. For very large models (several GB), persistence
+		 * could take 10-20 minutes, so do not set the value too low. If the job is open
+		 * when you make the update, you must stop the datafeed, close the job, then
+		 * reopen the job and restart the datafeed for the changes to take effect.
+		 * <p>
+		 * API name: {@code background_persist_interval}
+		 */
+		public final Builder backgroundPersistInterval(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.backgroundPersistInterval(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -706,14 +721,13 @@ public class UpdateJobRequest extends RequestBase implements JsonpSerializable {
 	 * Json deserializer for {@link UpdateJobRequest}
 	 */
 	public static final JsonpDeserializer<UpdateJobRequest> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			UpdateJobRequest::setupUpdateJobRequestDeserializer, Builder::build);
+			UpdateJobRequest::setupUpdateJobRequestDeserializer);
 
-	protected static void setupUpdateJobRequestDeserializer(DelegatingDeserializer<UpdateJobRequest.Builder> op) {
+	protected static void setupUpdateJobRequestDeserializer(ObjectDeserializer<UpdateJobRequest.Builder> op) {
 
 		op.add(Builder::allowLazyOpen, JsonpDeserializer.booleanDeserializer(), "allow_lazy_open");
 		op.add(Builder::analysisLimits, AnalysisMemoryLimit._DESERIALIZER, "analysis_limits");
-		op.add(Builder::backgroundPersistInterval, JsonpDeserializer.stringDeserializer(),
-				"background_persist_interval");
+		op.add(Builder::backgroundPersistInterval, Time._DESERIALIZER, "background_persist_interval");
 		op.add(Builder::categorizationFilters,
 				JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "categorization_filters");
 		op.add(Builder::customSettings, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER),
@@ -738,7 +752,7 @@ public class UpdateJobRequest extends RequestBase implements JsonpSerializable {
 	/**
 	 * Endpoint "{@code ml.update_job}".
 	 */
-	public static final Endpoint<UpdateJobRequest, UpdateJobResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<UpdateJobRequest, UpdateJobResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";

@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.graph;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -185,9 +184,9 @@ public class Vertex implements JsonpSerializable {
 	 * Json deserializer for {@link Vertex}
 	 */
 	public static final JsonpDeserializer<Vertex> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			Vertex::setupVertexDeserializer, Builder::build);
+			Vertex::setupVertexDeserializer);
 
-	protected static void setupVertexDeserializer(DelegatingDeserializer<Vertex.Builder> op) {
+	protected static void setupVertexDeserializer(ObjectDeserializer<Vertex.Builder> op) {
 
 		op.add(Builder::depth, JsonpDeserializer.longDeserializer(), "depth");
 		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");

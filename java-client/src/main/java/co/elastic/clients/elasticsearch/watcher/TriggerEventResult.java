@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.watcher;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -167,9 +166,9 @@ public class TriggerEventResult implements JsonpSerializable {
 	 * Json deserializer for {@link TriggerEventResult}
 	 */
 	public static final JsonpDeserializer<TriggerEventResult> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, TriggerEventResult::setupTriggerEventResultDeserializer, Builder::build);
+			.lazy(Builder::new, TriggerEventResult::setupTriggerEventResultDeserializer);
 
-	protected static void setupTriggerEventResultDeserializer(DelegatingDeserializer<TriggerEventResult.Builder> op) {
+	protected static void setupTriggerEventResultDeserializer(ObjectDeserializer<TriggerEventResult.Builder> op) {
 
 		op.add(Builder::manual, TriggerEvent._DESERIALIZER, "manual");
 		op.add(Builder::triggeredTime, JsonpDeserializer.stringDeserializer(), "triggered_time");

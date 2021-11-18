@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.analysis;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -39,7 +38,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.analysis.ShingleTokenFilter
 @JsonpDeserializable
-public class ShingleTokenFilter extends TokenFilterBase implements TokenFilterVariant {
+public class ShingleTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
 	@Nullable
 	private final String fillerToken;
 
@@ -77,7 +76,7 @@ public class ShingleTokenFilter extends TokenFilterBase implements TokenFilterVa
 	}
 
 	/**
-	 * {@link TokenFilter} variant type
+	 * {@link TokenFilterDefinition} variant type
 	 */
 	@Override
 	public String _variantType() {
@@ -267,9 +266,9 @@ public class ShingleTokenFilter extends TokenFilterBase implements TokenFilterVa
 	 * Json deserializer for {@link ShingleTokenFilter}
 	 */
 	public static final JsonpDeserializer<ShingleTokenFilter> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, ShingleTokenFilter::setupShingleTokenFilterDeserializer, Builder::build);
+			.lazy(Builder::new, ShingleTokenFilter::setupShingleTokenFilterDeserializer);
 
-	protected static void setupShingleTokenFilterDeserializer(DelegatingDeserializer<ShingleTokenFilter.Builder> op) {
+	protected static void setupShingleTokenFilterDeserializer(ObjectDeserializer<ShingleTokenFilter.Builder> op) {
 		TokenFilterBase.setupTokenFilterBaseDeserializer(op);
 		op.add(Builder::fillerToken, JsonpDeserializer.stringDeserializer(), "filler_token");
 		op.add(Builder::maxShingleSize, JsonpDeserializer.stringDeserializer(), "max_shingle_size");

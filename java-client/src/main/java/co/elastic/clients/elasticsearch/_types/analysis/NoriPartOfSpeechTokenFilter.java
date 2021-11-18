@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.analysis;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -41,7 +40,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.analysis.NoriPartOfSpeechTokenFilter
 @JsonpDeserializable
-public class NoriPartOfSpeechTokenFilter extends TokenFilterBase implements TokenFilterVariant {
+public class NoriPartOfSpeechTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
 	private final List<String> stoptags;
 
 	// ---------------------------------------------------------------------------------------------
@@ -58,7 +57,7 @@ public class NoriPartOfSpeechTokenFilter extends TokenFilterBase implements Toke
 	}
 
 	/**
-	 * {@link TokenFilter} variant type
+	 * {@link TokenFilterDefinition} variant type
 	 */
 	@Override
 	public String _variantType() {
@@ -138,11 +137,11 @@ public class NoriPartOfSpeechTokenFilter extends TokenFilterBase implements Toke
 	/**
 	 * Json deserializer for {@link NoriPartOfSpeechTokenFilter}
 	 */
-	public static final JsonpDeserializer<NoriPartOfSpeechTokenFilter> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
-			Builder::new, NoriPartOfSpeechTokenFilter::setupNoriPartOfSpeechTokenFilterDeserializer, Builder::build);
+	public static final JsonpDeserializer<NoriPartOfSpeechTokenFilter> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, NoriPartOfSpeechTokenFilter::setupNoriPartOfSpeechTokenFilterDeserializer);
 
 	protected static void setupNoriPartOfSpeechTokenFilterDeserializer(
-			DelegatingDeserializer<NoriPartOfSpeechTokenFilter.Builder> op) {
+			ObjectDeserializer<NoriPartOfSpeechTokenFilter.Builder> op) {
 		TokenFilterBase.setupTokenFilterBaseDeserializer(op);
 		op.add(Builder::stoptags, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"stoptags");

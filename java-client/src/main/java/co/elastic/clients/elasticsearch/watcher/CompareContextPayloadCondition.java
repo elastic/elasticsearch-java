@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.watcher;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -232,11 +231,10 @@ public class CompareContextPayloadCondition implements JsonpSerializable {
 	 * Json deserializer for {@link CompareContextPayloadCondition}
 	 */
 	public static final JsonpDeserializer<CompareContextPayloadCondition> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, CompareContextPayloadCondition::setupCompareContextPayloadConditionDeserializer,
-					Builder::build);
+			.lazy(Builder::new, CompareContextPayloadCondition::setupCompareContextPayloadConditionDeserializer);
 
 	protected static void setupCompareContextPayloadConditionDeserializer(
-			DelegatingDeserializer<CompareContextPayloadCondition.Builder> op) {
+			ObjectDeserializer<CompareContextPayloadCondition.Builder> op) {
 
 		op.add(Builder::eq, JsonData._DESERIALIZER, "eq");
 		op.add(Builder::lt, JsonData._DESERIALIZER, "lt");

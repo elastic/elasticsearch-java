@@ -27,7 +27,6 @@ import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch.security.grant_api_key.ApiKey;
 import co.elastic.clients.elasticsearch.security.grant_api_key.ApiKeyGrantType;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -235,9 +234,9 @@ public class GrantApiKeyRequest extends RequestBase implements JsonpSerializable
 	 * Json deserializer for {@link GrantApiKeyRequest}
 	 */
 	public static final JsonpDeserializer<GrantApiKeyRequest> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, GrantApiKeyRequest::setupGrantApiKeyRequestDeserializer, Builder::build);
+			.lazy(Builder::new, GrantApiKeyRequest::setupGrantApiKeyRequestDeserializer);
 
-	protected static void setupGrantApiKeyRequestDeserializer(DelegatingDeserializer<GrantApiKeyRequest.Builder> op) {
+	protected static void setupGrantApiKeyRequestDeserializer(ObjectDeserializer<GrantApiKeyRequest.Builder> op) {
 
 		op.add(Builder::accessToken, JsonpDeserializer.stringDeserializer(), "access_token");
 		op.add(Builder::apiKey, ApiKey._DESERIALIZER, "api_key");
@@ -252,7 +251,7 @@ public class GrantApiKeyRequest extends RequestBase implements JsonpSerializable
 	/**
 	 * Endpoint "{@code security.grant_api_key}".
 	 */
-	public static final Endpoint<GrantApiKeyRequest, GrantApiKeyResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<GrantApiKeyRequest, GrantApiKeyResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";

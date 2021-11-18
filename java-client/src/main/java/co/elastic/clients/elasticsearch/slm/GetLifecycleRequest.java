@@ -117,7 +117,7 @@ public class GetLifecycleRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code slm.get_lifecycle}".
 	 */
-	public static final Endpoint<GetLifecycleRequest, GetLifecycleResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<GetLifecycleRequest, GetLifecycleResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "GET";

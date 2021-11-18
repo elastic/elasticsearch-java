@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -272,9 +271,9 @@ public class CombinedFieldsQuery extends QueryBase implements QueryVariant {
 	 * Json deserializer for {@link CombinedFieldsQuery}
 	 */
 	public static final JsonpDeserializer<CombinedFieldsQuery> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, CombinedFieldsQuery::setupCombinedFieldsQueryDeserializer, Builder::build);
+			.lazy(Builder::new, CombinedFieldsQuery::setupCombinedFieldsQueryDeserializer);
 
-	protected static void setupCombinedFieldsQueryDeserializer(DelegatingDeserializer<CombinedFieldsQuery.Builder> op) {
+	protected static void setupCombinedFieldsQueryDeserializer(ObjectDeserializer<CombinedFieldsQuery.Builder> op) {
 		QueryBase.setupQueryBaseDeserializer(op);
 		op.add(Builder::fields, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "fields");
 		op.add(Builder::query, JsonpDeserializer.stringDeserializer(), "query");

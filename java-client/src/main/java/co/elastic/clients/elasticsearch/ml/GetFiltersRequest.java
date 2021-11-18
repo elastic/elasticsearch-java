@@ -161,7 +161,7 @@ public class GetFiltersRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code ml.get_filters}".
 	 */
-	public static final Endpoint<GetFiltersRequest, GetFiltersResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<GetFiltersRequest, GetFiltersResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "GET";

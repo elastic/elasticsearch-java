@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -87,9 +86,9 @@ public class SamplerAggregate extends SingleBucketAggregateBase implements Aggre
 	 * Json deserializer for {@link SamplerAggregate}
 	 */
 	public static final JsonpDeserializer<SamplerAggregate> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			SamplerAggregate::setupSamplerAggregateDeserializer, Builder::build);
+			SamplerAggregate::setupSamplerAggregateDeserializer);
 
-	protected static void setupSamplerAggregateDeserializer(DelegatingDeserializer<SamplerAggregate.Builder> op) {
+	protected static void setupSamplerAggregateDeserializer(ObjectDeserializer<SamplerAggregate.Builder> op) {
 		SingleBucketAggregateBase.setupSingleBucketAggregateBaseDeserializer(op);
 
 	}

@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.analysis;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -129,9 +128,9 @@ public class WhitespaceAnalyzer implements AnalyzerVariant, JsonpSerializable {
 	 * Json deserializer for {@link WhitespaceAnalyzer}
 	 */
 	public static final JsonpDeserializer<WhitespaceAnalyzer> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, WhitespaceAnalyzer::setupWhitespaceAnalyzerDeserializer, Builder::build);
+			.lazy(Builder::new, WhitespaceAnalyzer::setupWhitespaceAnalyzerDeserializer);
 
-	protected static void setupWhitespaceAnalyzerDeserializer(DelegatingDeserializer<WhitespaceAnalyzer.Builder> op) {
+	protected static void setupWhitespaceAnalyzerDeserializer(ObjectDeserializer<WhitespaceAnalyzer.Builder> op) {
 
 		op.add(Builder::version, JsonpDeserializer.stringDeserializer(), "version");
 

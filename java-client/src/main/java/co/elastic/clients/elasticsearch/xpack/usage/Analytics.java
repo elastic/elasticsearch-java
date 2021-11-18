@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.xpack.usage;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -116,9 +115,9 @@ public class Analytics extends Base {
 	 * Json deserializer for {@link Analytics}
 	 */
 	public static final JsonpDeserializer<Analytics> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			Analytics::setupAnalyticsDeserializer, Builder::build);
+			Analytics::setupAnalyticsDeserializer);
 
-	protected static void setupAnalyticsDeserializer(DelegatingDeserializer<Analytics.Builder> op) {
+	protected static void setupAnalyticsDeserializer(ObjectDeserializer<Analytics.Builder> op) {
 		Base.setupBaseDeserializer(op);
 		op.add(Builder::stats, AnalyticsStatistics._DESERIALIZER, "stats");
 

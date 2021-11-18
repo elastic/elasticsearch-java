@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -256,9 +255,9 @@ public class RegexpQuery extends QueryBase implements QueryVariant {
 	 * Json deserializer for {@link RegexpQuery}
 	 */
 	public static final JsonpDeserializer<RegexpQuery> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			RegexpQuery::setupRegexpQueryDeserializer, Builder::build);
+			RegexpQuery::setupRegexpQueryDeserializer);
 
-	protected static void setupRegexpQueryDeserializer(DelegatingDeserializer<RegexpQuery.Builder> op) {
+	protected static void setupRegexpQueryDeserializer(ObjectDeserializer<RegexpQuery.Builder> op) {
 		QueryBase.setupQueryBaseDeserializer(op);
 		op.add(Builder::caseInsensitive, JsonpDeserializer.booleanDeserializer(), "case_insensitive");
 		op.add(Builder::flags, JsonpDeserializer.stringDeserializer(), "flags");

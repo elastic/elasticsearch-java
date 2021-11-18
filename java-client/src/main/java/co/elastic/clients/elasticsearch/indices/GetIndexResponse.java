@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.indices;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -83,9 +82,9 @@ public class GetIndexResponse extends DictionaryResponse<String, IndexState> {
 	 * Json deserializer for {@link GetIndexResponse}
 	 */
 	public static final JsonpDeserializer<GetIndexResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			GetIndexResponse::setupGetIndexResponseDeserializer, Builder::build);
+			GetIndexResponse::setupGetIndexResponseDeserializer);
 
-	protected static void setupGetIndexResponseDeserializer(DelegatingDeserializer<GetIndexResponse.Builder> op) {
+	protected static void setupGetIndexResponseDeserializer(ObjectDeserializer<GetIndexResponse.Builder> op) {
 		DictionaryResponse.setupDictionaryResponseDeserializer(op, JsonpDeserializer.stringDeserializer(),
 				IndexState._DESERIALIZER);
 

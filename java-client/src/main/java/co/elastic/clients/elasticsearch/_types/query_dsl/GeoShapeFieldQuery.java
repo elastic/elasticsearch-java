@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
 import co.elastic.clients.elasticsearch._types.GeoShapeRelation;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -182,9 +181,9 @@ public class GeoShapeFieldQuery implements JsonpSerializable {
 	 * Json deserializer for {@link GeoShapeFieldQuery}
 	 */
 	public static final JsonpDeserializer<GeoShapeFieldQuery> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, GeoShapeFieldQuery::setupGeoShapeFieldQueryDeserializer, Builder::build);
+			.lazy(Builder::new, GeoShapeFieldQuery::setupGeoShapeFieldQueryDeserializer);
 
-	protected static void setupGeoShapeFieldQueryDeserializer(DelegatingDeserializer<GeoShapeFieldQuery.Builder> op) {
+	protected static void setupGeoShapeFieldQueryDeserializer(ObjectDeserializer<GeoShapeFieldQuery.Builder> op) {
 
 		op.add(Builder::shape, JsonData._DESERIALIZER, "shape");
 		op.add(Builder::indexedShape, FieldLookup._DESERIALIZER, "indexed_shape");

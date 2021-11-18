@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.ingest.simulate;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -143,9 +142,9 @@ public class Ingest implements JsonpSerializable {
 	 * Json deserializer for {@link Ingest}
 	 */
 	public static final JsonpDeserializer<Ingest> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			Ingest::setupIngestDeserializer, Builder::build);
+			Ingest::setupIngestDeserializer);
 
-	protected static void setupIngestDeserializer(DelegatingDeserializer<Ingest.Builder> op) {
+	protected static void setupIngestDeserializer(ObjectDeserializer<Ingest.Builder> op) {
 
 		op.add(Builder::timestamp, JsonpDeserializer.stringDeserializer(), "timestamp");
 		op.add(Builder::pipeline, JsonpDeserializer.stringDeserializer(), "pipeline");

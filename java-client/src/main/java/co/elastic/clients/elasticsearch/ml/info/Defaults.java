@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.ml.info;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -150,9 +149,9 @@ public class Defaults implements JsonpSerializable {
 	 * Json deserializer for {@link Defaults}
 	 */
 	public static final JsonpDeserializer<Defaults> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			Defaults::setupDefaultsDeserializer, Builder::build);
+			Defaults::setupDefaultsDeserializer);
 
-	protected static void setupDefaultsDeserializer(DelegatingDeserializer<Defaults.Builder> op) {
+	protected static void setupDefaultsDeserializer(ObjectDeserializer<Defaults.Builder> op) {
 
 		op.add(Builder::anomalyDetectors, AnomalyDetectors._DESERIALIZER, "anomaly_detectors");
 		op.add(Builder::datafeeds, Datafeeds._DESERIALIZER, "datafeeds");

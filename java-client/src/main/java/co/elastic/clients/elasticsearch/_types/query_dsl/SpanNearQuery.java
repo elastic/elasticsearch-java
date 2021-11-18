@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -206,9 +205,9 @@ public class SpanNearQuery extends QueryBase implements SpanQueryVariant, QueryV
 	 * Json deserializer for {@link SpanNearQuery}
 	 */
 	public static final JsonpDeserializer<SpanNearQuery> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			SpanNearQuery::setupSpanNearQueryDeserializer, Builder::build);
+			SpanNearQuery::setupSpanNearQueryDeserializer);
 
-	protected static void setupSpanNearQueryDeserializer(DelegatingDeserializer<SpanNearQuery.Builder> op) {
+	protected static void setupSpanNearQueryDeserializer(ObjectDeserializer<SpanNearQuery.Builder> op) {
 		QueryBase.setupQueryBaseDeserializer(op);
 		op.add(Builder::clauses, JsonpDeserializer.arrayDeserializer(SpanQuery._DESERIALIZER), "clauses");
 		op.add(Builder::inOrder, JsonpDeserializer.booleanDeserializer(), "in_order");

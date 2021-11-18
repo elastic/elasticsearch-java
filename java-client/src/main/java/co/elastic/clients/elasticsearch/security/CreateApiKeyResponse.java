@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.security;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -189,10 +188,9 @@ public class CreateApiKeyResponse implements JsonpSerializable {
 	 * Json deserializer for {@link CreateApiKeyResponse}
 	 */
 	public static final JsonpDeserializer<CreateApiKeyResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, CreateApiKeyResponse::setupCreateApiKeyResponseDeserializer, Builder::build);
+			.lazy(Builder::new, CreateApiKeyResponse::setupCreateApiKeyResponseDeserializer);
 
-	protected static void setupCreateApiKeyResponseDeserializer(
-			DelegatingDeserializer<CreateApiKeyResponse.Builder> op) {
+	protected static void setupCreateApiKeyResponseDeserializer(ObjectDeserializer<CreateApiKeyResponse.Builder> op) {
 
 		op.add(Builder::apiKey, JsonpDeserializer.stringDeserializer(), "api_key");
 		op.add(Builder::expiration, JsonpDeserializer.longDeserializer(), "expiration");

@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.core.search;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -282,9 +281,9 @@ public class AggregationProfile implements JsonpSerializable {
 	 * Json deserializer for {@link AggregationProfile}
 	 */
 	public static final JsonpDeserializer<AggregationProfile> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, AggregationProfile::setupAggregationProfileDeserializer, Builder::build);
+			.lazy(Builder::new, AggregationProfile::setupAggregationProfileDeserializer);
 
-	protected static void setupAggregationProfileDeserializer(DelegatingDeserializer<AggregationProfile.Builder> op) {
+	protected static void setupAggregationProfileDeserializer(ObjectDeserializer<AggregationProfile.Builder> op) {
 
 		op.add(Builder::breakdown, AggregationBreakdown._DESERIALIZER, "breakdown");
 		op.add(Builder::description, JsonpDeserializer.stringDeserializer(), "description");

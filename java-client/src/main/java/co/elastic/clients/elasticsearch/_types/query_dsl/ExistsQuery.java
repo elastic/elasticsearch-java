@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -118,9 +117,9 @@ public class ExistsQuery extends QueryBase implements QueryVariant {
 	 * Json deserializer for {@link ExistsQuery}
 	 */
 	public static final JsonpDeserializer<ExistsQuery> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			ExistsQuery::setupExistsQueryDeserializer, Builder::build);
+			ExistsQuery::setupExistsQueryDeserializer);
 
-	protected static void setupExistsQueryDeserializer(DelegatingDeserializer<ExistsQuery.Builder> op) {
+	protected static void setupExistsQueryDeserializer(ObjectDeserializer<ExistsQuery.Builder> op) {
 		QueryBase.setupQueryBaseDeserializer(op);
 		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
 

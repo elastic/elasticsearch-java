@@ -141,8 +141,8 @@ public class SnapshotsResponse implements JsonpSerializable {
 		JsonpDeserializer<List<SnapshotsRecord>> valueDeserializer = JsonpDeserializer
 				.arrayDeserializer(SnapshotsRecord._DESERIALIZER);
 
-		return JsonpDeserializer.of(valueDeserializer.acceptedEvents(), (parser, mapper, event) -> new Builder()
-				.valueBody(valueDeserializer.deserialize(parser, mapper, event)).build());
+		return JsonpDeserializer.of(valueDeserializer.acceptedEvents(),
+				(parser, mapper) -> new Builder().valueBody(valueDeserializer.deserialize(parser, mapper)).build());
 	}
 
 }

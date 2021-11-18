@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.analysis;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -42,7 +41,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.analysis.SynonymGraphTokenFilter
 @JsonpDeserializable
-public class SynonymGraphTokenFilter extends TokenFilterBase implements TokenFilterVariant {
+public class SynonymGraphTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
 	@Nullable
 	private final Boolean expand;
 
@@ -83,7 +82,7 @@ public class SynonymGraphTokenFilter extends TokenFilterBase implements TokenFil
 	}
 
 	/**
-	 * {@link TokenFilter} variant type
+	 * {@link TokenFilterDefinition} variant type
 	 */
 	@Override
 	public String _variantType() {
@@ -308,10 +307,10 @@ public class SynonymGraphTokenFilter extends TokenFilterBase implements TokenFil
 	 * Json deserializer for {@link SynonymGraphTokenFilter}
 	 */
 	public static final JsonpDeserializer<SynonymGraphTokenFilter> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, SynonymGraphTokenFilter::setupSynonymGraphTokenFilterDeserializer, Builder::build);
+			.lazy(Builder::new, SynonymGraphTokenFilter::setupSynonymGraphTokenFilterDeserializer);
 
 	protected static void setupSynonymGraphTokenFilterDeserializer(
-			DelegatingDeserializer<SynonymGraphTokenFilter.Builder> op) {
+			ObjectDeserializer<SynonymGraphTokenFilter.Builder> op) {
 		TokenFilterBase.setupTokenFilterBaseDeserializer(op);
 		op.add(Builder::expand, JsonpDeserializer.booleanDeserializer(), "expand");
 		op.add(Builder::format, SynonymFormat._DESERIALIZER, "format");

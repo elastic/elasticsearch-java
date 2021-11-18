@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.cluster.stats;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -196,9 +195,9 @@ public class FieldTypesMappings implements JsonpSerializable {
 	 * Json deserializer for {@link FieldTypesMappings}
 	 */
 	public static final JsonpDeserializer<FieldTypesMappings> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, FieldTypesMappings::setupFieldTypesMappingsDeserializer, Builder::build);
+			.lazy(Builder::new, FieldTypesMappings::setupFieldTypesMappingsDeserializer);
 
-	protected static void setupFieldTypesMappingsDeserializer(DelegatingDeserializer<FieldTypesMappings.Builder> op) {
+	protected static void setupFieldTypesMappingsDeserializer(ObjectDeserializer<FieldTypesMappings.Builder> op) {
 
 		op.add(Builder::fieldTypes, JsonpDeserializer.arrayDeserializer(FieldTypes._DESERIALIZER), "field_types");
 		op.add(Builder::runtimeFieldTypes, JsonpDeserializer.arrayDeserializer(RuntimeFieldTypes._DESERIALIZER),

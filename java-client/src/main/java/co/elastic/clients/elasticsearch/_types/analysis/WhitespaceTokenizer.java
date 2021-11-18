@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.analysis;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -38,7 +37,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.analysis.WhitespaceTokenizer
 @JsonpDeserializable
-public class WhitespaceTokenizer extends TokenizerBase implements TokenizerVariant {
+public class WhitespaceTokenizer extends TokenizerBase implements TokenizerDefinitionVariant {
 	@Nullable
 	private final Integer maxTokenLength;
 
@@ -56,7 +55,7 @@ public class WhitespaceTokenizer extends TokenizerBase implements TokenizerVaria
 	}
 
 	/**
-	 * {@link Tokenizer} variant type
+	 * {@link TokenizerDefinition} variant type
 	 */
 	@Override
 	public String _variantType() {
@@ -126,9 +125,9 @@ public class WhitespaceTokenizer extends TokenizerBase implements TokenizerVaria
 	 * Json deserializer for {@link WhitespaceTokenizer}
 	 */
 	public static final JsonpDeserializer<WhitespaceTokenizer> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, WhitespaceTokenizer::setupWhitespaceTokenizerDeserializer, Builder::build);
+			.lazy(Builder::new, WhitespaceTokenizer::setupWhitespaceTokenizerDeserializer);
 
-	protected static void setupWhitespaceTokenizerDeserializer(DelegatingDeserializer<WhitespaceTokenizer.Builder> op) {
+	protected static void setupWhitespaceTokenizerDeserializer(ObjectDeserializer<WhitespaceTokenizer.Builder> op) {
 		TokenizerBase.setupTokenizerBaseDeserializer(op);
 		op.add(Builder::maxTokenLength, JsonpDeserializer.integerDeserializer(), "max_token_length");
 

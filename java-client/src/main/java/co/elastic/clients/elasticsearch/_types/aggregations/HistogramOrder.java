@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch._types.aggregations;
 
 import co.elastic.clients.elasticsearch.core.search.SortOrder;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -145,9 +144,9 @@ public class HistogramOrder implements JsonpSerializable {
 	 * Json deserializer for {@link HistogramOrder}
 	 */
 	public static final JsonpDeserializer<HistogramOrder> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			HistogramOrder::setupHistogramOrderDeserializer, Builder::build);
+			HistogramOrder::setupHistogramOrderDeserializer);
 
-	protected static void setupHistogramOrderDeserializer(DelegatingDeserializer<HistogramOrder.Builder> op) {
+	protected static void setupHistogramOrderDeserializer(ObjectDeserializer<HistogramOrder.Builder> op) {
 
 		op.add(Builder::count, SortOrder._DESERIALIZER, "_count");
 		op.add(Builder::key, SortOrder._DESERIALIZER, "_key");

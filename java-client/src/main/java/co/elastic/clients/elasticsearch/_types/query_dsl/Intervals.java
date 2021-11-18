@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -42,6 +41,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.IntervalsContainer
+// union type: Container[]
 @JsonpDeserializable
 public class Intervals implements TaggedUnion<Object>, JsonpSerializable {
 
@@ -51,8 +51,6 @@ public class Intervals implements TaggedUnion<Object>, JsonpSerializable {
 	public static final String MATCH = "match";
 	public static final String PREFIX = "prefix";
 	public static final String WILDCARD = "wildcard";
-
-	// Tagged union implementation
 
 	private final String _type;
 	private final Object _value;
@@ -148,6 +146,7 @@ public class Intervals implements TaggedUnion<Object>, JsonpSerializable {
 	@Override
 	@SuppressWarnings("unchecked")
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+
 		generator.writeStartObject();
 
 		generator.writeKey(_type);
@@ -156,6 +155,7 @@ public class Intervals implements TaggedUnion<Object>, JsonpSerializable {
 		}
 
 		generator.writeEnd();
+
 	}
 
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Intervals> {
@@ -229,7 +229,7 @@ public class Intervals implements TaggedUnion<Object>, JsonpSerializable {
 
 	}
 
-	protected static void setupIntervalsDeserializer(DelegatingDeserializer<Builder> op) {
+	protected static void setupIntervalsDeserializer(ObjectDeserializer<Builder> op) {
 
 		op.add(Builder::allOf, IntervalsAllOf._DESERIALIZER, "all_of");
 		op.add(Builder::anyOf, IntervalsAnyOf._DESERIALIZER, "any_of");

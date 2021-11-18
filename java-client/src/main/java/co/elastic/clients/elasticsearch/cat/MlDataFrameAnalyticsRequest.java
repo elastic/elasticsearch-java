@@ -163,7 +163,7 @@ public class MlDataFrameAnalyticsRequest extends CatRequestBase {
 	/**
 	 * Endpoint "{@code cat.ml_data_frame_analytics}".
 	 */
-	public static final Endpoint<MlDataFrameAnalyticsRequest, MlDataFrameAnalyticsResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<MlDataFrameAnalyticsRequest, MlDataFrameAnalyticsResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "GET";

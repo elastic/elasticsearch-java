@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -151,9 +150,9 @@ public class TimingStats implements JsonpSerializable {
 	 * Json deserializer for {@link TimingStats}
 	 */
 	public static final JsonpDeserializer<TimingStats> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			TimingStats::setupTimingStatsDeserializer, Builder::build);
+			TimingStats::setupTimingStatsDeserializer);
 
-	protected static void setupTimingStatsDeserializer(DelegatingDeserializer<TimingStats.Builder> op) {
+	protected static void setupTimingStatsDeserializer(ObjectDeserializer<TimingStats.Builder> op) {
 
 		op.add(Builder::elapsedTime, JsonpDeserializer.integerDeserializer(), "elapsed_time");
 		op.add(Builder::iterationTime, JsonpDeserializer.integerDeserializer(), "iteration_time");

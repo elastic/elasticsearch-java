@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -167,9 +166,9 @@ public class ValidationLoss implements JsonpSerializable {
 	 * Json deserializer for {@link ValidationLoss}
 	 */
 	public static final JsonpDeserializer<ValidationLoss> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			ValidationLoss::setupValidationLossDeserializer, Builder::build);
+			ValidationLoss::setupValidationLossDeserializer);
 
-	protected static void setupValidationLossDeserializer(DelegatingDeserializer<ValidationLoss.Builder> op) {
+	protected static void setupValidationLossDeserializer(ObjectDeserializer<ValidationLoss.Builder> op) {
 
 		op.add(Builder::foldValues, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"fold_values");

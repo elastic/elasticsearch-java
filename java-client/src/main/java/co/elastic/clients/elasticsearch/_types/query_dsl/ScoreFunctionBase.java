@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -134,7 +133,7 @@ public abstract class ScoreFunctionBase implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 	protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupScoreFunctionBaseDeserializer(
-			DelegatingDeserializer<BuilderT> op) {
+			ObjectDeserializer<BuilderT> op) {
 
 		op.add(AbstractBuilder::filter, Query._DESERIALIZER, "filter");
 		op.add(AbstractBuilder::weight, JsonpDeserializer.doubleDeserializer(), "weight");

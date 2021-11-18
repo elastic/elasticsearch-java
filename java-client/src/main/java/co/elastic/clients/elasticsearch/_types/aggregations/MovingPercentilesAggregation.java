@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -181,11 +180,11 @@ public class MovingPercentilesAggregation extends PipelineAggregationBase implem
 	/**
 	 * Json deserializer for {@link MovingPercentilesAggregation}
 	 */
-	public static final JsonpDeserializer<MovingPercentilesAggregation> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
-			Builder::new, MovingPercentilesAggregation::setupMovingPercentilesAggregationDeserializer, Builder::build);
+	public static final JsonpDeserializer<MovingPercentilesAggregation> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, MovingPercentilesAggregation::setupMovingPercentilesAggregationDeserializer);
 
 	protected static void setupMovingPercentilesAggregationDeserializer(
-			DelegatingDeserializer<MovingPercentilesAggregation.Builder> op) {
+			ObjectDeserializer<MovingPercentilesAggregation.Builder> op) {
 		PipelineAggregationBase.setupPipelineAggregationBaseDeserializer(op);
 		op.add(Builder::window, JsonpDeserializer.integerDeserializer(), "window");
 		op.add(Builder::shift, JsonpDeserializer.integerDeserializer(), "shift");

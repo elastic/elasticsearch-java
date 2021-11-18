@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.indices;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -114,9 +113,9 @@ public class IndexVersioning implements JsonpSerializable {
 	 * Json deserializer for {@link IndexVersioning}
 	 */
 	public static final JsonpDeserializer<IndexVersioning> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			IndexVersioning::setupIndexVersioningDeserializer, Builder::build);
+			IndexVersioning::setupIndexVersioningDeserializer);
 
-	protected static void setupIndexVersioningDeserializer(DelegatingDeserializer<IndexVersioning.Builder> op) {
+	protected static void setupIndexVersioningDeserializer(ObjectDeserializer<IndexVersioning.Builder> op) {
 
 		op.add(Builder::created, JsonpDeserializer.stringDeserializer(), "created");
 

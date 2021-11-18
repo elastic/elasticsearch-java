@@ -26,7 +26,6 @@ package co.elastic.clients.elasticsearch.ingest;
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch.ingest.simulate.Document;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -243,9 +242,9 @@ public class SimulateRequest extends RequestBase implements JsonpSerializable {
 	 * Json deserializer for {@link SimulateRequest}
 	 */
 	public static final JsonpDeserializer<SimulateRequest> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			SimulateRequest::setupSimulateRequestDeserializer, Builder::build);
+			SimulateRequest::setupSimulateRequestDeserializer);
 
-	protected static void setupSimulateRequestDeserializer(DelegatingDeserializer<SimulateRequest.Builder> op) {
+	protected static void setupSimulateRequestDeserializer(ObjectDeserializer<SimulateRequest.Builder> op) {
 
 		op.add(Builder::docs, JsonpDeserializer.arrayDeserializer(Document._DESERIALIZER), "docs");
 		op.add(Builder::pipeline, Pipeline._DESERIALIZER, "pipeline");
@@ -257,7 +256,7 @@ public class SimulateRequest extends RequestBase implements JsonpSerializable {
 	/**
 	 * Endpoint "{@code ingest.simulate}".
 	 */
-	public static final Endpoint<SimulateRequest, SimulateResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<SimulateRequest, SimulateResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";

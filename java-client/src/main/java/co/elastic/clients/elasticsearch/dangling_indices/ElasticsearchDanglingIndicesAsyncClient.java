@@ -25,6 +25,8 @@ package co.elastic.clients.elasticsearch.dangling_indices;
 
 import co.elastic.clients.ApiClient;
 import co.elastic.clients.elasticsearch._types.ElasticsearchException;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
+import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.Transport;
 import co.elastic.clients.transport.TransportOptions;
 import co.elastic.clients.util.ObjectBuilder;
@@ -63,7 +65,10 @@ public class ElasticsearchDanglingIndicesAsyncClient extends ApiClient<Elasticse
 
 	public CompletableFuture<DeleteDanglingIndexResponse> deleteDanglingIndex(DeleteDanglingIndexRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(request, DeleteDanglingIndexRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<DeleteDanglingIndexRequest, DeleteDanglingIndexResponse, ErrorResponse> endpoint = (Endpoint<DeleteDanglingIndexRequest, DeleteDanglingIndexResponse, ErrorResponse>) DeleteDanglingIndexRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -95,7 +100,10 @@ public class ElasticsearchDanglingIndicesAsyncClient extends ApiClient<Elasticse
 
 	public CompletableFuture<ImportDanglingIndexResponse> importDanglingIndex(ImportDanglingIndexRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(request, ImportDanglingIndexRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<ImportDanglingIndexRequest, ImportDanglingIndexResponse, ErrorResponse> endpoint = (Endpoint<ImportDanglingIndexRequest, ImportDanglingIndexResponse, ErrorResponse>) ImportDanglingIndexRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -127,7 +135,7 @@ public class ElasticsearchDanglingIndicesAsyncClient extends ApiClient<Elasticse
 	public CompletableFuture<ListDanglingIndicesResponse> listDanglingIndices()
 			throws IOException, ElasticsearchException {
 		return this.transport.performRequestAsync(ListDanglingIndicesRequest._INSTANCE,
-				ListDanglingIndicesRequest.ENDPOINT, this.transportOptions);
+				ListDanglingIndicesRequest._ENDPOINT, this.transportOptions);
 	}
 
 }

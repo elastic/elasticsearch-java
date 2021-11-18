@@ -25,7 +25,7 @@ package co.elastic.clients.elasticsearch.snapshot;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -51,7 +51,7 @@ public class CloneSnapshotRequest extends RequestBase implements JsonpSerializab
 	private final String indices;
 
 	@Nullable
-	private final String masterTimeout;
+	private final Time masterTimeout;
 
 	private final String repository;
 
@@ -60,7 +60,7 @@ public class CloneSnapshotRequest extends RequestBase implements JsonpSerializab
 	private final String targetSnapshot;
 
 	@Nullable
-	private final String timeout;
+	private final Time timeout;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -92,7 +92,7 @@ public class CloneSnapshotRequest extends RequestBase implements JsonpSerializab
 	 * API name: {@code master_timeout}
 	 */
 	@Nullable
-	public final String masterTimeout() {
+	public final Time masterTimeout() {
 		return this.masterTimeout;
 	}
 
@@ -127,7 +127,7 @@ public class CloneSnapshotRequest extends RequestBase implements JsonpSerializab
 	 * API name: {@code timeout}
 	 */
 	@Nullable
-	public final String timeout() {
+	public final Time timeout() {
 		return this.timeout;
 	}
 
@@ -156,7 +156,7 @@ public class CloneSnapshotRequest extends RequestBase implements JsonpSerializab
 		private String indices;
 
 		@Nullable
-		private String masterTimeout;
+		private Time masterTimeout;
 
 		private String repository;
 
@@ -165,7 +165,7 @@ public class CloneSnapshotRequest extends RequestBase implements JsonpSerializab
 		private String targetSnapshot;
 
 		@Nullable
-		private String timeout;
+		private Time timeout;
 
 		/**
 		 * Required - API name: {@code indices}
@@ -180,9 +180,18 @@ public class CloneSnapshotRequest extends RequestBase implements JsonpSerializab
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
-		public final Builder masterTimeout(@Nullable String value) {
+		public final Builder masterTimeout(@Nullable Time value) {
 			this.masterTimeout = value;
 			return this;
+		}
+
+		/**
+		 * Explicit operation timeout for connection to master node
+		 * <p>
+		 * API name: {@code master_timeout}
+		 */
+		public final Builder masterTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.masterTimeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -218,9 +227,16 @@ public class CloneSnapshotRequest extends RequestBase implements JsonpSerializab
 		/**
 		 * API name: {@code timeout}
 		 */
-		public final Builder timeout(@Nullable String value) {
+		public final Builder timeout(@Nullable Time value) {
 			this.timeout = value;
 			return this;
+		}
+
+		/**
+		 * API name: {@code timeout}
+		 */
+		public final Builder timeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.timeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -242,10 +258,9 @@ public class CloneSnapshotRequest extends RequestBase implements JsonpSerializab
 	 * Json deserializer for {@link CloneSnapshotRequest}
 	 */
 	public static final JsonpDeserializer<CloneSnapshotRequest> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, CloneSnapshotRequest::setupCloneSnapshotRequestDeserializer, Builder::build);
+			.lazy(Builder::new, CloneSnapshotRequest::setupCloneSnapshotRequestDeserializer);
 
-	protected static void setupCloneSnapshotRequestDeserializer(
-			DelegatingDeserializer<CloneSnapshotRequest.Builder> op) {
+	protected static void setupCloneSnapshotRequestDeserializer(ObjectDeserializer<CloneSnapshotRequest.Builder> op) {
 
 		op.add(Builder::indices, JsonpDeserializer.stringDeserializer(), "indices");
 
@@ -256,7 +271,7 @@ public class CloneSnapshotRequest extends RequestBase implements JsonpSerializab
 	/**
 	 * Endpoint "{@code snapshot.clone}".
 	 */
-	public static final Endpoint<CloneSnapshotRequest, CloneSnapshotResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<CloneSnapshotRequest, CloneSnapshotResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "PUT";
@@ -295,10 +310,10 @@ public class CloneSnapshotRequest extends RequestBase implements JsonpSerializab
 			request -> {
 				Map<String, String> params = new HashMap<>();
 				if (request.masterTimeout != null) {
-					params.put("master_timeout", request.masterTimeout);
+					params.put("master_timeout", request.masterTimeout._toJsonString());
 				}
 				if (request.timeout != null) {
-					params.put("timeout", request.timeout);
+					params.put("timeout", request.timeout._toJsonString());
 				}
 				return params;
 

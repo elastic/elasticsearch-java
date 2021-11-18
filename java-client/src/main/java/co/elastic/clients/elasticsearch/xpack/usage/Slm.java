@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch.xpack.usage;
 
 import co.elastic.clients.elasticsearch.slm.Statistics;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -151,9 +150,9 @@ public class Slm extends Base {
 	 * Json deserializer for {@link Slm}
 	 */
 	public static final JsonpDeserializer<Slm> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			Slm::setupSlmDeserializer, Builder::build);
+			Slm::setupSlmDeserializer);
 
-	protected static void setupSlmDeserializer(DelegatingDeserializer<Slm.Builder> op) {
+	protected static void setupSlmDeserializer(ObjectDeserializer<Slm.Builder> op) {
 		Base.setupBaseDeserializer(op);
 		op.add(Builder::policyCount, JsonpDeserializer.integerDeserializer(), "policy_count");
 		op.add(Builder::policyStats, Statistics._DESERIALIZER, "policy_stats");

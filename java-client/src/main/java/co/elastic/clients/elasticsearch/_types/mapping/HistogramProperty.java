@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.mapping;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -126,9 +125,9 @@ public class HistogramProperty extends PropertyBase implements PropertyVariant {
 	 * Json deserializer for {@link HistogramProperty}
 	 */
 	public static final JsonpDeserializer<HistogramProperty> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, HistogramProperty::setupHistogramPropertyDeserializer, Builder::build);
+			.lazy(Builder::new, HistogramProperty::setupHistogramPropertyDeserializer);
 
-	protected static void setupHistogramPropertyDeserializer(DelegatingDeserializer<HistogramProperty.Builder> op) {
+	protected static void setupHistogramPropertyDeserializer(ObjectDeserializer<HistogramProperty.Builder> op) {
 		PropertyBase.setupPropertyBaseDeserializer(op);
 		op.add(Builder::ignoreMalformed, JsonpDeserializer.booleanDeserializer(), "ignore_malformed");
 

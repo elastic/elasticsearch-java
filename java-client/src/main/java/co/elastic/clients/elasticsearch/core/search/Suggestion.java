@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.core.search;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -34,10 +33,10 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
@@ -52,7 +51,7 @@ public class Suggestion<T> implements JsonpSerializable {
 
 	private final int offset;
 
-	private final List<JsonValue /* _global.search._types.SuggestOption<_global.search._types.T> */> options;
+	private final List<SuggestOption<T>> options;
 
 	private final String text;
 
@@ -92,7 +91,7 @@ public class Suggestion<T> implements JsonpSerializable {
 	/**
 	 * Required - API name: {@code options}
 	 */
-	public final List<JsonValue /* _global.search._types.SuggestOption<_global.search._types.T> */> options() {
+	public final List<SuggestOption<T>> options() {
 		return this.options;
 	}
 
@@ -123,8 +122,8 @@ public class Suggestion<T> implements JsonpSerializable {
 		if (ModelTypeHelper.isDefined(this.options)) {
 			generator.writeKey("options");
 			generator.writeStartArray();
-			for (JsonValue /* _global.search._types.SuggestOption<_global.search._types.T> */ item0 : this.options) {
-				generator.write(item0);
+			for (SuggestOption<T> item0 : this.options) {
+				item0.serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -145,7 +144,7 @@ public class Suggestion<T> implements JsonpSerializable {
 
 		private Integer offset;
 
-		private List<JsonValue /* _global.search._types.SuggestOption<_global.search._types.T> */> options;
+		private List<SuggestOption<T>> options;
 
 		private String text;
 
@@ -171,8 +170,7 @@ public class Suggestion<T> implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code options}
 		 */
-		public final Builder<T> options(
-				List<JsonValue /* _global.search._types.SuggestOption<_global.search._types.T> */> value) {
+		public final Builder<T> options(List<SuggestOption<T>> value) {
 			this.options = value;
 			return this;
 		}
@@ -180,9 +178,20 @@ public class Suggestion<T> implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code options}
 		 */
-		public final Builder<T> options(
-				JsonValue /* _global.search._types.SuggestOption<_global.search._types.T> */... value) {
+		public final Builder<T> options(SuggestOption<T>... value) {
 			this.options = Arrays.asList(value);
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code options}
+		 */
+		@SafeVarargs
+		public final Builder<T> options(Function<SuggestOption.Builder<T>, ObjectBuilder<SuggestOption<T>>>... fns) {
+			this.options = new ArrayList<>(fns.length);
+			for (Function<SuggestOption.Builder<T>, ObjectBuilder<SuggestOption<T>>> fn : fns) {
+				this.options.add(fn.apply(new SuggestOption.Builder<T>()).build());
+			}
 			return this;
 		}
 
@@ -227,12 +236,13 @@ public class Suggestion<T> implements JsonpSerializable {
 				op -> Suggestion.setupSuggestionDeserializer(op, tDeserializer));
 	};
 
-	protected static <T> void setupSuggestionDeserializer(DelegatingDeserializer<Suggestion.Builder<T>> op,
+	protected static <T> void setupSuggestionDeserializer(ObjectDeserializer<Suggestion.Builder<T>> op,
 			JsonpDeserializer<T> tDeserializer) {
 
 		op.add(Builder::length, JsonpDeserializer.integerDeserializer(), "length");
 		op.add(Builder::offset, JsonpDeserializer.integerDeserializer(), "offset");
-		op.add(Builder::options, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.jsonValueDeserializer()),
+		op.add(Builder::options,
+				JsonpDeserializer.arrayDeserializer(SuggestOption.createSuggestOptionDeserializer(tDeserializer)),
 				"options");
 		op.add(Builder::text, JsonpDeserializer.stringDeserializer(), "text");
 

@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.indices.close;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -163,9 +162,9 @@ public class CloseIndexResult implements JsonpSerializable {
 	 * Json deserializer for {@link CloseIndexResult}
 	 */
 	public static final JsonpDeserializer<CloseIndexResult> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			CloseIndexResult::setupCloseIndexResultDeserializer, Builder::build);
+			CloseIndexResult::setupCloseIndexResultDeserializer);
 
-	protected static void setupCloseIndexResultDeserializer(DelegatingDeserializer<CloseIndexResult.Builder> op) {
+	protected static void setupCloseIndexResultDeserializer(ObjectDeserializer<CloseIndexResult.Builder> op) {
 
 		op.add(Builder::closed, JsonpDeserializer.booleanDeserializer(), "closed");
 		op.add(Builder::shards, JsonpDeserializer.stringMapDeserializer(CloseShardResult._DESERIALIZER), "shards");

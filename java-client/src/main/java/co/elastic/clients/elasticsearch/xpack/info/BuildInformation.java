@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.xpack.info;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -137,9 +136,9 @@ public class BuildInformation implements JsonpSerializable {
 	 * Json deserializer for {@link BuildInformation}
 	 */
 	public static final JsonpDeserializer<BuildInformation> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			BuildInformation::setupBuildInformationDeserializer, Builder::build);
+			BuildInformation::setupBuildInformationDeserializer);
 
-	protected static void setupBuildInformationDeserializer(DelegatingDeserializer<BuildInformation.Builder> op) {
+	protected static void setupBuildInformationDeserializer(ObjectDeserializer<BuildInformation.Builder> op) {
 
 		op.add(Builder::date, JsonpDeserializer.stringDeserializer(), "date");
 		op.add(Builder::hash, JsonpDeserializer.stringDeserializer(), "hash");

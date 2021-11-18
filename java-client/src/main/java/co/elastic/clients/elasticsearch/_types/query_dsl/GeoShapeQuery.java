@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -174,9 +173,9 @@ public class GeoShapeQuery extends QueryBase implements QueryVariant {
 	 * Json deserializer for {@link GeoShapeQuery}
 	 */
 	public static final JsonpDeserializer<GeoShapeQuery> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			GeoShapeQuery::setupGeoShapeQueryDeserializer, Builder::build);
+			GeoShapeQuery::setupGeoShapeQueryDeserializer);
 
-	protected static void setupGeoShapeQueryDeserializer(DelegatingDeserializer<GeoShapeQuery.Builder> op) {
+	protected static void setupGeoShapeQueryDeserializer(ObjectDeserializer<GeoShapeQuery.Builder> op) {
 		QueryBase.setupQueryBaseDeserializer(op);
 		op.add(Builder::ignoreUnmapped, JsonpDeserializer.booleanDeserializer(), "ignore_unmapped");
 

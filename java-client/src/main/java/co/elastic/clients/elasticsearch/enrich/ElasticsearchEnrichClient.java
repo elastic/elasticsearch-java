@@ -25,6 +25,8 @@ package co.elastic.clients.elasticsearch.enrich;
 
 import co.elastic.clients.ApiClient;
 import co.elastic.clients.elasticsearch._types.ElasticsearchException;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
+import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.Transport;
 import co.elastic.clients.transport.TransportOptions;
 import co.elastic.clients.util.ObjectBuilder;
@@ -61,7 +63,10 @@ public class ElasticsearchEnrichClient extends ApiClient<ElasticsearchEnrichClie
 	 */
 
 	public DeletePolicyResponse deletePolicy(DeletePolicyRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, DeletePolicyRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<DeletePolicyRequest, DeletePolicyResponse, ErrorResponse> endpoint = (Endpoint<DeletePolicyRequest, DeletePolicyResponse, ErrorResponse>) DeletePolicyRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -93,7 +98,10 @@ public class ElasticsearchEnrichClient extends ApiClient<ElasticsearchEnrichClie
 
 	public ExecutePolicyResponse executePolicy(ExecutePolicyRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, ExecutePolicyRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<ExecutePolicyRequest, ExecutePolicyResponse, ErrorResponse> endpoint = (Endpoint<ExecutePolicyRequest, ExecutePolicyResponse, ErrorResponse>) ExecutePolicyRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -124,7 +132,10 @@ public class ElasticsearchEnrichClient extends ApiClient<ElasticsearchEnrichClie
 	 */
 
 	public GetPolicyResponse getPolicy(GetPolicyRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, GetPolicyRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<GetPolicyRequest, GetPolicyResponse, ErrorResponse> endpoint = (Endpoint<GetPolicyRequest, GetPolicyResponse, ErrorResponse>) GetPolicyRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -152,7 +163,7 @@ public class ElasticsearchEnrichClient extends ApiClient<ElasticsearchEnrichClie
 	 */
 
 	public GetPolicyResponse getPolicy() throws IOException, ElasticsearchException {
-		return this.transport.performRequest(new GetPolicyRequest.Builder().build(), GetPolicyRequest.ENDPOINT,
+		return this.transport.performRequest(new GetPolicyRequest.Builder().build(), GetPolicyRequest._ENDPOINT,
 				this.transportOptions);
 	}
 
@@ -167,7 +178,10 @@ public class ElasticsearchEnrichClient extends ApiClient<ElasticsearchEnrichClie
 	 */
 
 	public PutPolicyResponse putPolicy(PutPolicyRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, PutPolicyRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<PutPolicyRequest, PutPolicyResponse, ErrorResponse> endpoint = (Endpoint<PutPolicyRequest, PutPolicyResponse, ErrorResponse>) PutPolicyRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -197,7 +211,7 @@ public class ElasticsearchEnrichClient extends ApiClient<ElasticsearchEnrichClie
 	 *      on elastic.co</a>
 	 */
 	public EnrichStatsResponse stats() throws IOException, ElasticsearchException {
-		return this.transport.performRequest(EnrichStatsRequest._INSTANCE, EnrichStatsRequest.ENDPOINT,
+		return this.transport.performRequest(EnrichStatsRequest._INSTANCE, EnrichStatsRequest._ENDPOINT,
 				this.transportOptions);
 	}
 

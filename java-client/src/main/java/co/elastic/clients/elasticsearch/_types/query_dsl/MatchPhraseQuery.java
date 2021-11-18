@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -227,9 +226,9 @@ public class MatchPhraseQuery extends QueryBase implements QueryVariant {
 	 * Json deserializer for {@link MatchPhraseQuery}
 	 */
 	public static final JsonpDeserializer<MatchPhraseQuery> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			MatchPhraseQuery::setupMatchPhraseQueryDeserializer, Builder::build);
+			MatchPhraseQuery::setupMatchPhraseQueryDeserializer);
 
-	protected static void setupMatchPhraseQueryDeserializer(DelegatingDeserializer<MatchPhraseQuery.Builder> op) {
+	protected static void setupMatchPhraseQueryDeserializer(ObjectDeserializer<MatchPhraseQuery.Builder> op) {
 		QueryBase.setupQueryBaseDeserializer(op);
 		op.add(Builder::analyzer, JsonpDeserializer.stringDeserializer(), "analyzer");
 		op.add(Builder::query, JsonpDeserializer.stringDeserializer(), "query");

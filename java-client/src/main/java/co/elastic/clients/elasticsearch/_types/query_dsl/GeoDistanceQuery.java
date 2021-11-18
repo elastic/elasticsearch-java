@@ -24,7 +24,7 @@
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
 import co.elastic.clients.elasticsearch._types.GeoDistanceType;
-import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.elasticsearch._types.GeoLocation;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -32,7 +32,6 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -44,7 +43,7 @@ import javax.annotation.Nullable;
 public class GeoDistanceQuery extends QueryBase implements QueryVariant {
 	private final String field;
 
-	private final JsonValue /* _types.query_dsl.GeoLocation */ location;
+	private final GeoLocation location;
 
 	@Nullable
 	private final String distance;
@@ -90,7 +89,7 @@ public class GeoDistanceQuery extends QueryBase implements QueryVariant {
 	/**
 	 * Required -
 	 */
-	public final JsonValue /* _types.query_dsl.GeoLocation */ location() {
+	public final GeoLocation location() {
 		return this.location;
 	}
 
@@ -120,7 +119,7 @@ public class GeoDistanceQuery extends QueryBase implements QueryVariant {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeKey(this.field);
-		generator.write(this.location);
+		this.location.serialize(generator, mapper);
 
 		super.serializeInternal(generator, mapper);
 		if (this.distance != null) {
@@ -147,7 +146,7 @@ public class GeoDistanceQuery extends QueryBase implements QueryVariant {
 	public static class Builder extends QueryBase.AbstractBuilder<Builder> implements ObjectBuilder<GeoDistanceQuery> {
 		private String field;
 
-		private JsonValue /* _types.query_dsl.GeoLocation */ location;
+		private GeoLocation location;
 
 		/**
 		 * Required -
@@ -160,9 +159,16 @@ public class GeoDistanceQuery extends QueryBase implements QueryVariant {
 		/**
 		 * Required -
 		 */
-		public final Builder location(JsonValue /* _types.query_dsl.GeoLocation */ value) {
+		public final Builder location(GeoLocation value) {
 			this.location = value;
 			return this;
+		}
+
+		/**
+		 * Required -
+		 */
+		public final Builder location(Function<GeoLocation.Builder, ObjectBuilder<GeoLocation>> fn) {
+			return this.location(fn.apply(new GeoLocation.Builder()).build());
 		}
 
 		@Nullable
@@ -222,9 +228,9 @@ public class GeoDistanceQuery extends QueryBase implements QueryVariant {
 	 * Json deserializer for {@link GeoDistanceQuery}
 	 */
 	public static final JsonpDeserializer<GeoDistanceQuery> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			GeoDistanceQuery::setupGeoDistanceQueryDeserializer, Builder::build);
+			GeoDistanceQuery::setupGeoDistanceQueryDeserializer);
 
-	protected static void setupGeoDistanceQueryDeserializer(DelegatingDeserializer<GeoDistanceQuery.Builder> op) {
+	protected static void setupGeoDistanceQueryDeserializer(ObjectDeserializer<GeoDistanceQuery.Builder> op) {
 		QueryBase.setupQueryBaseDeserializer(op);
 		op.add(Builder::distance, JsonpDeserializer.stringDeserializer(), "distance");
 		op.add(Builder::distanceType, GeoDistanceType._DESERIALIZER, "distance_type");
@@ -232,7 +238,7 @@ public class GeoDistanceQuery extends QueryBase implements QueryVariant {
 
 		op.setUnknownFieldHandler((builder, name, parser, mapper) -> {
 			builder.field(name);
-			builder.location(JsonpDeserializer.jsonValueDeserializer().deserialize(parser, mapper));
+			builder.location(GeoLocation._DESERIALIZER.deserialize(parser, mapper));
 		});
 
 	}

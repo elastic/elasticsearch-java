@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.analysis;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -40,7 +39,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.analysis.FingerprintTokenFilter
 @JsonpDeserializable
-public class FingerprintTokenFilter extends TokenFilterBase implements TokenFilterVariant {
+public class FingerprintTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
 	private final int maxOutputSize;
 
 	private final String separator;
@@ -60,7 +59,7 @@ public class FingerprintTokenFilter extends TokenFilterBase implements TokenFilt
 	}
 
 	/**
-	 * {@link TokenFilter} variant type
+	 * {@link TokenFilterDefinition} variant type
 	 */
 	@Override
 	public String _variantType() {
@@ -145,10 +144,10 @@ public class FingerprintTokenFilter extends TokenFilterBase implements TokenFilt
 	 * Json deserializer for {@link FingerprintTokenFilter}
 	 */
 	public static final JsonpDeserializer<FingerprintTokenFilter> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, FingerprintTokenFilter::setupFingerprintTokenFilterDeserializer, Builder::build);
+			.lazy(Builder::new, FingerprintTokenFilter::setupFingerprintTokenFilterDeserializer);
 
 	protected static void setupFingerprintTokenFilterDeserializer(
-			DelegatingDeserializer<FingerprintTokenFilter.Builder> op) {
+			ObjectDeserializer<FingerprintTokenFilter.Builder> op) {
 		TokenFilterBase.setupTokenFilterBaseDeserializer(op);
 		op.add(Builder::maxOutputSize, JsonpDeserializer.integerDeserializer(), "max_output_size");
 		op.add(Builder::separator, JsonpDeserializer.stringDeserializer(), "separator");

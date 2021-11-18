@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.indices;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -51,12 +52,12 @@ public class DeleteAliasRequest extends RequestBase {
 	private final List<String> index;
 
 	@Nullable
-	private final String masterTimeout;
+	private final Time masterTimeout;
 
 	private final List<String> name;
 
 	@Nullable
-	private final String timeout;
+	private final Time timeout;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -89,7 +90,7 @@ public class DeleteAliasRequest extends RequestBase {
 	 * API name: {@code master_timeout}
 	 */
 	@Nullable
-	public final String masterTimeout() {
+	public final Time masterTimeout() {
 		return this.masterTimeout;
 	}
 
@@ -109,7 +110,7 @@ public class DeleteAliasRequest extends RequestBase {
 	 * API name: {@code timeout}
 	 */
 	@Nullable
-	public final String timeout() {
+	public final Time timeout() {
 		return this.timeout;
 	}
 
@@ -122,12 +123,12 @@ public class DeleteAliasRequest extends RequestBase {
 		private List<String> index;
 
 		@Nullable
-		private String masterTimeout;
+		private Time masterTimeout;
 
 		private List<String> name;
 
 		@Nullable
-		private String timeout;
+		private Time timeout;
 
 		/**
 		 * Required - A comma-separated list of index names (supports wildcards); use
@@ -156,9 +157,18 @@ public class DeleteAliasRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
-		public final Builder masterTimeout(@Nullable String value) {
+		public final Builder masterTimeout(@Nullable Time value) {
 			this.masterTimeout = value;
 			return this;
+		}
+
+		/**
+		 * Specify timeout for connection to master
+		 * <p>
+		 * API name: {@code master_timeout}
+		 */
+		public final Builder masterTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.masterTimeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -188,9 +198,18 @@ public class DeleteAliasRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code timeout}
 		 */
-		public final Builder timeout(@Nullable String value) {
+		public final Builder timeout(@Nullable Time value) {
 			this.timeout = value;
 			return this;
+		}
+
+		/**
+		 * Explicit timestamp for the document
+		 * <p>
+		 * API name: {@code timeout}
+		 */
+		public final Builder timeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.timeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -211,7 +230,7 @@ public class DeleteAliasRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code indices.delete_alias}".
 	 */
-	public static final Endpoint<DeleteAliasRequest, DeleteAliasResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<DeleteAliasRequest, DeleteAliasResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "DELETE";
@@ -254,10 +273,10 @@ public class DeleteAliasRequest extends RequestBase {
 			request -> {
 				Map<String, String> params = new HashMap<>();
 				if (request.masterTimeout != null) {
-					params.put("master_timeout", request.masterTimeout);
+					params.put("master_timeout", request.masterTimeout._toJsonString());
 				}
 				if (request.timeout != null) {
-					params.put("timeout", request.timeout);
+					params.put("timeout", request.timeout._toJsonString());
 				}
 				return params;
 

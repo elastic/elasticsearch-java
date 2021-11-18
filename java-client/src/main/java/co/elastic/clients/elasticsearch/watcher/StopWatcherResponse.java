@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch.watcher;
 
 import co.elastic.clients.elasticsearch._types.AcknowledgedResponseBase;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -80,9 +79,9 @@ public class StopWatcherResponse extends AcknowledgedResponseBase {
 	 * Json deserializer for {@link StopWatcherResponse}
 	 */
 	public static final JsonpDeserializer<StopWatcherResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, StopWatcherResponse::setupStopWatcherResponseDeserializer, Builder::build);
+			.lazy(Builder::new, StopWatcherResponse::setupStopWatcherResponseDeserializer);
 
-	protected static void setupStopWatcherResponseDeserializer(DelegatingDeserializer<StopWatcherResponse.Builder> op) {
+	protected static void setupStopWatcherResponseDeserializer(ObjectDeserializer<StopWatcherResponse.Builder> op) {
 		AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);
 
 	}

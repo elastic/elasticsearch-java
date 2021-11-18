@@ -24,7 +24,7 @@
 package co.elastic.clients.elasticsearch.indices;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
-import co.elastic.clients.elasticsearch._types.ExpandWildcardOptions;
+import co.elastic.clients.elasticsearch._types.ExpandWildcard;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -53,7 +53,7 @@ public class UpgradeRequest extends RequestBase {
 	@Nullable
 	private final Boolean allowNoIndices;
 
-	private final List<ExpandWildcardOptions> expandWildcards;
+	private final List<ExpandWildcard> expandWildcards;
 
 	@Nullable
 	private final Boolean ignoreUnavailable;
@@ -102,7 +102,7 @@ public class UpgradeRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code expand_wildcards}
 	 */
-	public final List<ExpandWildcardOptions> expandWildcards() {
+	public final List<ExpandWildcard> expandWildcards() {
 		return this.expandWildcards;
 	}
 
@@ -160,7 +160,7 @@ public class UpgradeRequest extends RequestBase {
 		private Boolean allowNoIndices;
 
 		@Nullable
-		private List<ExpandWildcardOptions> expandWildcards;
+		private List<ExpandWildcard> expandWildcards;
 
 		@Nullable
 		private Boolean ignoreUnavailable;
@@ -192,7 +192,7 @@ public class UpgradeRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code expand_wildcards}
 		 */
-		public final Builder expandWildcards(@Nullable List<ExpandWildcardOptions> value) {
+		public final Builder expandWildcards(@Nullable List<ExpandWildcard> value) {
 			this.expandWildcards = value;
 			return this;
 		}
@@ -203,7 +203,7 @@ public class UpgradeRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code expand_wildcards}
 		 */
-		public final Builder expandWildcards(ExpandWildcardOptions... value) {
+		public final Builder expandWildcards(ExpandWildcard... value) {
 			this.expandWildcards = Arrays.asList(value);
 			return this;
 		}
@@ -270,7 +270,7 @@ public class UpgradeRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code indices.upgrade}".
 	 */
-	public static final Endpoint<UpgradeRequest, UpgradeResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<UpgradeRequest, UpgradeResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";

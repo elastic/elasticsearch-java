@@ -23,8 +23,8 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
+import co.elastic.clients.elasticsearch._types.Script;
 import co.elastic.clients.elasticsearch._types.query_dsl.Query;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -34,7 +34,6 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -47,7 +46,7 @@ public class TestPopulation implements JsonpSerializable {
 	private final String field;
 
 	@Nullable
-	private final JsonValue /* _types.Script */ script;
+	private final Script script;
 
 	@Nullable
 	private final Query filter;
@@ -77,7 +76,7 @@ public class TestPopulation implements JsonpSerializable {
 	 * API name: {@code script}
 	 */
 	@Nullable
-	public final JsonValue /* _types.Script */ script() {
+	public final Script script() {
 		return this.script;
 	}
 
@@ -105,7 +104,7 @@ public class TestPopulation implements JsonpSerializable {
 
 		if (this.script != null) {
 			generator.writeKey("script");
-			generator.write(this.script);
+			this.script.serialize(generator, mapper);
 
 		}
 		if (this.filter != null) {
@@ -125,7 +124,7 @@ public class TestPopulation implements JsonpSerializable {
 		private String field;
 
 		@Nullable
-		private JsonValue /* _types.Script */ script;
+		private Script script;
 
 		@Nullable
 		private Query filter;
@@ -141,9 +140,16 @@ public class TestPopulation implements JsonpSerializable {
 		/**
 		 * API name: {@code script}
 		 */
-		public final Builder script(@Nullable JsonValue /* _types.Script */ value) {
+		public final Builder script(@Nullable Script value) {
 			this.script = value;
 			return this;
+		}
+
+		/**
+		 * API name: {@code script}
+		 */
+		public final Builder script(Function<Script.Builder, ObjectBuilder<Script>> fn) {
+			return this.script(fn.apply(new Script.Builder()).build());
 		}
 
 		/**
@@ -180,12 +186,12 @@ public class TestPopulation implements JsonpSerializable {
 	 * Json deserializer for {@link TestPopulation}
 	 */
 	public static final JsonpDeserializer<TestPopulation> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			TestPopulation::setupTestPopulationDeserializer, Builder::build);
+			TestPopulation::setupTestPopulationDeserializer);
 
-	protected static void setupTestPopulationDeserializer(DelegatingDeserializer<TestPopulation.Builder> op) {
+	protected static void setupTestPopulationDeserializer(ObjectDeserializer<TestPopulation.Builder> op) {
 
 		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
-		op.add(Builder::script, JsonpDeserializer.jsonValueDeserializer(), "script");
+		op.add(Builder::script, Script._DESERIALIZER, "script");
 		op.add(Builder::filter, Query._DESERIALIZER, "filter");
 
 	}

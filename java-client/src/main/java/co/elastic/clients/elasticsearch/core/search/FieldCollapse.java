@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.core.search;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -198,9 +197,9 @@ public class FieldCollapse implements JsonpSerializable {
 	 * Json deserializer for {@link FieldCollapse}
 	 */
 	public static final JsonpDeserializer<FieldCollapse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			FieldCollapse::setupFieldCollapseDeserializer, Builder::build);
+			FieldCollapse::setupFieldCollapseDeserializer);
 
-	protected static void setupFieldCollapseDeserializer(DelegatingDeserializer<FieldCollapse.Builder> op) {
+	protected static void setupFieldCollapseDeserializer(ObjectDeserializer<FieldCollapse.Builder> op) {
 
 		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
 		op.add(Builder::innerHits, JsonpDeserializer.arrayDeserializer(InnerHits._DESERIALIZER), "inner_hits");

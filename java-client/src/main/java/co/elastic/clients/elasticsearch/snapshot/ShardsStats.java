@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.snapshot;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -228,9 +227,9 @@ public class ShardsStats implements JsonpSerializable {
 	 * Json deserializer for {@link ShardsStats}
 	 */
 	public static final JsonpDeserializer<ShardsStats> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			ShardsStats::setupShardsStatsDeserializer, Builder::build);
+			ShardsStats::setupShardsStatsDeserializer);
 
-	protected static void setupShardsStatsDeserializer(DelegatingDeserializer<ShardsStats.Builder> op) {
+	protected static void setupShardsStatsDeserializer(ObjectDeserializer<ShardsStats.Builder> op) {
 
 		op.add(Builder::done, JsonpDeserializer.longDeserializer(), "done");
 		op.add(Builder::failed, JsonpDeserializer.longDeserializer(), "failed");

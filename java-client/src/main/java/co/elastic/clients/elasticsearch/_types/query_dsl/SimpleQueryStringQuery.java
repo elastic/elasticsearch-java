@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -251,6 +250,7 @@ public class SimpleQueryStringQuery extends QueryBase implements QueryVariant {
 		if (this.flags != null) {
 			generator.writeKey("flags");
 			this.flags.serialize(generator, mapper);
+
 		}
 		if (this.fuzzyMaxExpansions != null) {
 			generator.writeKey("fuzzy_max_expansions");
@@ -391,6 +391,13 @@ public class SimpleQueryStringQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
+		 * API name: {@code flags}
+		 */
+		public final Builder flags(Function<SimpleQueryStringFlags.Builder, ObjectBuilder<SimpleQueryStringFlags>> fn) {
+			return this.flags(fn.apply(new SimpleQueryStringFlags.Builder()).build());
+		}
+
+		/**
 		 * API name: {@code fuzzy_max_expansions}
 		 */
 		public final Builder fuzzyMaxExpansions(@Nullable Integer value) {
@@ -470,10 +477,10 @@ public class SimpleQueryStringQuery extends QueryBase implements QueryVariant {
 	 * Json deserializer for {@link SimpleQueryStringQuery}
 	 */
 	public static final JsonpDeserializer<SimpleQueryStringQuery> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, SimpleQueryStringQuery::setupSimpleQueryStringQueryDeserializer, Builder::build);
+			.lazy(Builder::new, SimpleQueryStringQuery::setupSimpleQueryStringQueryDeserializer);
 
 	protected static void setupSimpleQueryStringQueryDeserializer(
-			DelegatingDeserializer<SimpleQueryStringQuery.Builder> op) {
+			ObjectDeserializer<SimpleQueryStringQuery.Builder> op) {
 		QueryBase.setupQueryBaseDeserializer(op);
 		op.add(Builder::analyzer, JsonpDeserializer.stringDeserializer(), "analyzer");
 		op.add(Builder::analyzeWildcard, JsonpDeserializer.booleanDeserializer(), "analyze_wildcard");

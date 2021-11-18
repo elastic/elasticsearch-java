@@ -25,6 +25,8 @@ package co.elastic.clients.elasticsearch.slm;
 
 import co.elastic.clients.ApiClient;
 import co.elastic.clients.elasticsearch._types.ElasticsearchException;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
+import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.Transport;
 import co.elastic.clients.transport.TransportOptions;
 import co.elastic.clients.util.ObjectBuilder;
@@ -62,7 +64,10 @@ public class ElasticsearchSlmClient extends ApiClient<ElasticsearchSlmClient> {
 
 	public DeleteLifecycleResponse deleteLifecycle(DeleteLifecycleRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, DeleteLifecycleRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<DeleteLifecycleRequest, DeleteLifecycleResponse, ErrorResponse> endpoint = (Endpoint<DeleteLifecycleRequest, DeleteLifecycleResponse, ErrorResponse>) DeleteLifecycleRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -95,7 +100,10 @@ public class ElasticsearchSlmClient extends ApiClient<ElasticsearchSlmClient> {
 
 	public ExecuteLifecycleResponse executeLifecycle(ExecuteLifecycleRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, ExecuteLifecycleRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<ExecuteLifecycleRequest, ExecuteLifecycleResponse, ErrorResponse> endpoint = (Endpoint<ExecuteLifecycleRequest, ExecuteLifecycleResponse, ErrorResponse>) ExecuteLifecycleRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -127,7 +135,7 @@ public class ElasticsearchSlmClient extends ApiClient<ElasticsearchSlmClient> {
 	 *      on elastic.co</a>
 	 */
 	public ExecuteRetentionResponse executeRetention() throws IOException, ElasticsearchException {
-		return this.transport.performRequest(ExecuteRetentionRequest._INSTANCE, ExecuteRetentionRequest.ENDPOINT,
+		return this.transport.performRequest(ExecuteRetentionRequest._INSTANCE, ExecuteRetentionRequest._ENDPOINT,
 				this.transportOptions);
 	}
 
@@ -143,7 +151,10 @@ public class ElasticsearchSlmClient extends ApiClient<ElasticsearchSlmClient> {
 	 */
 
 	public GetLifecycleResponse getLifecycle(GetLifecycleRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, GetLifecycleRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<GetLifecycleRequest, GetLifecycleResponse, ErrorResponse> endpoint = (Endpoint<GetLifecycleRequest, GetLifecycleResponse, ErrorResponse>) GetLifecycleRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -174,7 +185,7 @@ public class ElasticsearchSlmClient extends ApiClient<ElasticsearchSlmClient> {
 	 */
 
 	public GetLifecycleResponse getLifecycle() throws IOException, ElasticsearchException {
-		return this.transport.performRequest(new GetLifecycleRequest.Builder().build(), GetLifecycleRequest.ENDPOINT,
+		return this.transport.performRequest(new GetLifecycleRequest.Builder().build(), GetLifecycleRequest._ENDPOINT,
 				this.transportOptions);
 	}
 
@@ -189,7 +200,7 @@ public class ElasticsearchSlmClient extends ApiClient<ElasticsearchSlmClient> {
 	 *      on elastic.co</a>
 	 */
 	public GetStatsResponse getStats() throws IOException, ElasticsearchException {
-		return this.transport.performRequest(GetStatsRequest._INSTANCE, GetStatsRequest.ENDPOINT,
+		return this.transport.performRequest(GetStatsRequest._INSTANCE, GetStatsRequest._ENDPOINT,
 				this.transportOptions);
 	}
 
@@ -203,7 +214,7 @@ public class ElasticsearchSlmClient extends ApiClient<ElasticsearchSlmClient> {
 	 *      on elastic.co</a>
 	 */
 	public GetStatusResponse getStatus() throws IOException, ElasticsearchException {
-		return this.transport.performRequest(GetStatusRequest._INSTANCE, GetStatusRequest.ENDPOINT,
+		return this.transport.performRequest(GetStatusRequest._INSTANCE, GetStatusRequest._ENDPOINT,
 				this.transportOptions);
 	}
 
@@ -218,7 +229,10 @@ public class ElasticsearchSlmClient extends ApiClient<ElasticsearchSlmClient> {
 	 */
 
 	public PutLifecycleResponse putLifecycle(PutLifecycleRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, PutLifecycleRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<PutLifecycleRequest, PutLifecycleResponse, ErrorResponse> endpoint = (Endpoint<PutLifecycleRequest, PutLifecycleResponse, ErrorResponse>) PutLifecycleRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -248,7 +262,7 @@ public class ElasticsearchSlmClient extends ApiClient<ElasticsearchSlmClient> {
 	 *      on elastic.co</a>
 	 */
 	public StartSlmResponse start() throws IOException, ElasticsearchException {
-		return this.transport.performRequest(StartSlmRequest._INSTANCE, StartSlmRequest.ENDPOINT,
+		return this.transport.performRequest(StartSlmRequest._INSTANCE, StartSlmRequest._ENDPOINT,
 				this.transportOptions);
 	}
 
@@ -262,7 +276,7 @@ public class ElasticsearchSlmClient extends ApiClient<ElasticsearchSlmClient> {
 	 *      on elastic.co</a>
 	 */
 	public StopSlmResponse stop() throws IOException, ElasticsearchException {
-		return this.transport.performRequest(StopSlmRequest._INSTANCE, StopSlmRequest.ENDPOINT, this.transportOptions);
+		return this.transport.performRequest(StopSlmRequest._INSTANCE, StopSlmRequest._ENDPOINT, this.transportOptions);
 	}
 
 }

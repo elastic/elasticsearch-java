@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.sql;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -113,9 +112,9 @@ public class ClearCursorResponse implements JsonpSerializable {
 	 * Json deserializer for {@link ClearCursorResponse}
 	 */
 	public static final JsonpDeserializer<ClearCursorResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, ClearCursorResponse::setupClearCursorResponseDeserializer, Builder::build);
+			.lazy(Builder::new, ClearCursorResponse::setupClearCursorResponseDeserializer);
 
-	protected static void setupClearCursorResponseDeserializer(DelegatingDeserializer<ClearCursorResponse.Builder> op) {
+	protected static void setupClearCursorResponseDeserializer(ObjectDeserializer<ClearCursorResponse.Builder> op) {
 
 		op.add(Builder::succeeded, JsonpDeserializer.booleanDeserializer(), "succeeded");
 

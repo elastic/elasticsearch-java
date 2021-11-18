@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.analysis;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -145,9 +144,9 @@ public class IcuAnalyzer implements AnalyzerVariant, JsonpSerializable {
 	 * Json deserializer for {@link IcuAnalyzer}
 	 */
 	public static final JsonpDeserializer<IcuAnalyzer> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			IcuAnalyzer::setupIcuAnalyzerDeserializer, Builder::build);
+			IcuAnalyzer::setupIcuAnalyzerDeserializer);
 
-	protected static void setupIcuAnalyzerDeserializer(DelegatingDeserializer<IcuAnalyzer.Builder> op) {
+	protected static void setupIcuAnalyzerDeserializer(ObjectDeserializer<IcuAnalyzer.Builder> op) {
 
 		op.add(Builder::method, IcuNormalizationType._DESERIALIZER, "method");
 		op.add(Builder::mode, IcuNormalizationMode._DESERIALIZER, "mode");

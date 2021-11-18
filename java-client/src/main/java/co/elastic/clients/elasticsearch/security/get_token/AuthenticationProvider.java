@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.security.get_token;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -137,10 +136,10 @@ public class AuthenticationProvider implements JsonpSerializable {
 	 * Json deserializer for {@link AuthenticationProvider}
 	 */
 	public static final JsonpDeserializer<AuthenticationProvider> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, AuthenticationProvider::setupAuthenticationProviderDeserializer, Builder::build);
+			.lazy(Builder::new, AuthenticationProvider::setupAuthenticationProviderDeserializer);
 
 	protected static void setupAuthenticationProviderDeserializer(
-			DelegatingDeserializer<AuthenticationProvider.Builder> op) {
+			ObjectDeserializer<AuthenticationProvider.Builder> op) {
 
 		op.add(Builder::type, JsonpDeserializer.stringDeserializer(), "type");
 		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");

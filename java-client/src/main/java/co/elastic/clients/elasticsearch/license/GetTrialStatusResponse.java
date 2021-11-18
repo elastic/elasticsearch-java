@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.license;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -114,10 +113,10 @@ public class GetTrialStatusResponse implements JsonpSerializable {
 	 * Json deserializer for {@link GetTrialStatusResponse}
 	 */
 	public static final JsonpDeserializer<GetTrialStatusResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, GetTrialStatusResponse::setupGetTrialStatusResponseDeserializer, Builder::build);
+			.lazy(Builder::new, GetTrialStatusResponse::setupGetTrialStatusResponseDeserializer);
 
 	protected static void setupGetTrialStatusResponseDeserializer(
-			DelegatingDeserializer<GetTrialStatusResponse.Builder> op) {
+			ObjectDeserializer<GetTrialStatusResponse.Builder> op) {
 
 		op.add(Builder::eligibleToStartTrial, JsonpDeserializer.booleanDeserializer(), "eligible_to_start_trial");
 

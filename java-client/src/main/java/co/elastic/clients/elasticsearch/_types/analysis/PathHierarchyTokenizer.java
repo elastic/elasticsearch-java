@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.analysis;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -41,7 +40,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.analysis.PathHierarchyTokenizer
 @JsonpDeserializable
-public class PathHierarchyTokenizer extends TokenizerBase implements TokenizerVariant {
+public class PathHierarchyTokenizer extends TokenizerBase implements TokenizerDefinitionVariant {
 	private final int bufferSize;
 
 	private final String delimiter;
@@ -70,7 +69,7 @@ public class PathHierarchyTokenizer extends TokenizerBase implements TokenizerVa
 	}
 
 	/**
-	 * {@link Tokenizer} variant type
+	 * {@link TokenizerDefinition} variant type
 	 */
 	@Override
 	public String _variantType() {
@@ -215,10 +214,10 @@ public class PathHierarchyTokenizer extends TokenizerBase implements TokenizerVa
 	 * Json deserializer for {@link PathHierarchyTokenizer}
 	 */
 	public static final JsonpDeserializer<PathHierarchyTokenizer> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, PathHierarchyTokenizer::setupPathHierarchyTokenizerDeserializer, Builder::build);
+			.lazy(Builder::new, PathHierarchyTokenizer::setupPathHierarchyTokenizerDeserializer);
 
 	protected static void setupPathHierarchyTokenizerDeserializer(
-			DelegatingDeserializer<PathHierarchyTokenizer.Builder> op) {
+			ObjectDeserializer<PathHierarchyTokenizer.Builder> op) {
 		TokenizerBase.setupTokenizerBaseDeserializer(op);
 		op.add(Builder::bufferSize, JsonpDeserializer.integerDeserializer(), "buffer_size");
 		op.add(Builder::delimiter, JsonpDeserializer.stringDeserializer(), "delimiter");

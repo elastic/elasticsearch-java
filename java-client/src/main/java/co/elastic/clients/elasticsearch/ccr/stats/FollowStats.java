@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch.ccr.stats;
 
 import co.elastic.clients.elasticsearch.ccr.FollowIndexStats;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -145,9 +144,9 @@ public class FollowStats implements JsonpSerializable {
 	 * Json deserializer for {@link FollowStats}
 	 */
 	public static final JsonpDeserializer<FollowStats> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			FollowStats::setupFollowStatsDeserializer, Builder::build);
+			FollowStats::setupFollowStatsDeserializer);
 
-	protected static void setupFollowStatsDeserializer(DelegatingDeserializer<FollowStats.Builder> op) {
+	protected static void setupFollowStatsDeserializer(ObjectDeserializer<FollowStats.Builder> op) {
 
 		op.add(Builder::indices, JsonpDeserializer.arrayDeserializer(FollowIndexStats._DESERIALIZER), "indices");
 

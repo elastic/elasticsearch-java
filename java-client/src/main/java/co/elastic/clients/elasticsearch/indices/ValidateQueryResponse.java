@@ -25,7 +25,6 @@ package co.elastic.clients.elasticsearch.indices;
 
 import co.elastic.clients.elasticsearch._types.ShardStatistics;
 import co.elastic.clients.elasticsearch.indices.validate_query.IndicesValidationExplanation;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -236,10 +235,9 @@ public class ValidateQueryResponse implements JsonpSerializable {
 	 * Json deserializer for {@link ValidateQueryResponse}
 	 */
 	public static final JsonpDeserializer<ValidateQueryResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, ValidateQueryResponse::setupValidateQueryResponseDeserializer, Builder::build);
+			.lazy(Builder::new, ValidateQueryResponse::setupValidateQueryResponseDeserializer);
 
-	protected static void setupValidateQueryResponseDeserializer(
-			DelegatingDeserializer<ValidateQueryResponse.Builder> op) {
+	protected static void setupValidateQueryResponseDeserializer(ObjectDeserializer<ValidateQueryResponse.Builder> op) {
 
 		op.add(Builder::explanations, JsonpDeserializer.arrayDeserializer(IndicesValidationExplanation._DESERIALIZER),
 				"explanations");

@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.xpack.usage;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -132,9 +131,9 @@ public class DataStreams extends Base {
 	 * Json deserializer for {@link DataStreams}
 	 */
 	public static final JsonpDeserializer<DataStreams> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			DataStreams::setupDataStreamsDeserializer, Builder::build);
+			DataStreams::setupDataStreamsDeserializer);
 
-	protected static void setupDataStreamsDeserializer(DelegatingDeserializer<DataStreams.Builder> op) {
+	protected static void setupDataStreamsDeserializer(ObjectDeserializer<DataStreams.Builder> op) {
 		Base.setupBaseDeserializer(op);
 		op.add(Builder::dataStreams, JsonpDeserializer.longDeserializer(), "data_streams");
 		op.add(Builder::indicesCount, JsonpDeserializer.longDeserializer(), "indices_count");

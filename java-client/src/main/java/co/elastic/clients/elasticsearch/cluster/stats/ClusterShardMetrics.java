@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.cluster.stats;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -159,9 +158,9 @@ public class ClusterShardMetrics implements JsonpSerializable {
 	 * Json deserializer for {@link ClusterShardMetrics}
 	 */
 	public static final JsonpDeserializer<ClusterShardMetrics> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, ClusterShardMetrics::setupClusterShardMetricsDeserializer, Builder::build);
+			.lazy(Builder::new, ClusterShardMetrics::setupClusterShardMetricsDeserializer);
 
-	protected static void setupClusterShardMetricsDeserializer(DelegatingDeserializer<ClusterShardMetrics.Builder> op) {
+	protected static void setupClusterShardMetricsDeserializer(ObjectDeserializer<ClusterShardMetrics.Builder> op) {
 
 		op.add(Builder::avg, JsonpDeserializer.doubleDeserializer(), "avg");
 		op.add(Builder::max, JsonpDeserializer.doubleDeserializer(), "max");

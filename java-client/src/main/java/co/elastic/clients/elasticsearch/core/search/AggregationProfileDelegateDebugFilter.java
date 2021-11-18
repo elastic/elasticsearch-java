@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.core.search;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -180,11 +179,10 @@ public class AggregationProfileDelegateDebugFilter implements JsonpSerializable 
 	 */
 	public static final JsonpDeserializer<AggregationProfileDelegateDebugFilter> _DESERIALIZER = ObjectBuilderDeserializer
 			.lazy(Builder::new,
-					AggregationProfileDelegateDebugFilter::setupAggregationProfileDelegateDebugFilterDeserializer,
-					Builder::build);
+					AggregationProfileDelegateDebugFilter::setupAggregationProfileDelegateDebugFilterDeserializer);
 
 	protected static void setupAggregationProfileDelegateDebugFilterDeserializer(
-			DelegatingDeserializer<AggregationProfileDelegateDebugFilter.Builder> op) {
+			ObjectDeserializer<AggregationProfileDelegateDebugFilter.Builder> op) {
 
 		op.add(Builder::resultsFromMetadata, JsonpDeserializer.integerDeserializer(), "results_from_metadata");
 		op.add(Builder::query, JsonpDeserializer.stringDeserializer(), "query");

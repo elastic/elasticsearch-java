@@ -24,8 +24,9 @@
 package co.elastic.clients.elasticsearch.indices;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
-import co.elastic.clients.elasticsearch._types.ExpandWildcardOptions;
+import co.elastic.clients.elasticsearch._types.ExpandWildcard;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -53,7 +54,7 @@ public class GetMappingRequest extends RequestBase {
 	@Nullable
 	private final Boolean allowNoIndices;
 
-	private final List<ExpandWildcardOptions> expandWildcards;
+	private final List<ExpandWildcard> expandWildcards;
 
 	@Nullable
 	private final Boolean ignoreUnavailable;
@@ -67,7 +68,7 @@ public class GetMappingRequest extends RequestBase {
 	private final Boolean local;
 
 	@Nullable
-	private final String masterTimeout;
+	private final Time masterTimeout;
 
 	private final List<String> type;
 
@@ -108,7 +109,7 @@ public class GetMappingRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code expand_wildcards}
 	 */
-	public final List<ExpandWildcardOptions> expandWildcards() {
+	public final List<ExpandWildcard> expandWildcards() {
 		return this.expandWildcards;
 	}
 
@@ -159,7 +160,7 @@ public class GetMappingRequest extends RequestBase {
 	 * API name: {@code master_timeout}
 	 */
 	@Nullable
-	public final String masterTimeout() {
+	public final Time masterTimeout() {
 		return this.masterTimeout;
 	}
 
@@ -182,7 +183,7 @@ public class GetMappingRequest extends RequestBase {
 		private Boolean allowNoIndices;
 
 		@Nullable
-		private List<ExpandWildcardOptions> expandWildcards;
+		private List<ExpandWildcard> expandWildcards;
 
 		@Nullable
 		private Boolean ignoreUnavailable;
@@ -197,7 +198,7 @@ public class GetMappingRequest extends RequestBase {
 		private Boolean local;
 
 		@Nullable
-		private String masterTimeout;
+		private Time masterTimeout;
 
 		@Nullable
 		private List<String> type;
@@ -220,7 +221,7 @@ public class GetMappingRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code expand_wildcards}
 		 */
-		public final Builder expandWildcards(@Nullable List<ExpandWildcardOptions> value) {
+		public final Builder expandWildcards(@Nullable List<ExpandWildcard> value) {
 			this.expandWildcards = value;
 			return this;
 		}
@@ -231,7 +232,7 @@ public class GetMappingRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code expand_wildcards}
 		 */
-		public final Builder expandWildcards(ExpandWildcardOptions... value) {
+		public final Builder expandWildcards(ExpandWildcard... value) {
 			this.expandWildcards = Arrays.asList(value);
 			return this;
 		}
@@ -293,9 +294,18 @@ public class GetMappingRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
-		public final Builder masterTimeout(@Nullable String value) {
+		public final Builder masterTimeout(@Nullable Time value) {
 			this.masterTimeout = value;
 			return this;
+		}
+
+		/**
+		 * Specify timeout for connection to master
+		 * <p>
+		 * API name: {@code master_timeout}
+		 */
+		public final Builder masterTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.masterTimeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -336,7 +346,7 @@ public class GetMappingRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code indices.get_mapping}".
 	 */
-	public static final Endpoint<GetMappingRequest, GetMappingResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<GetMappingRequest, GetMappingResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "GET";
@@ -391,7 +401,7 @@ public class GetMappingRequest extends RequestBase {
 			request -> {
 				Map<String, String> params = new HashMap<>();
 				if (request.masterTimeout != null) {
-					params.put("master_timeout", request.masterTimeout);
+					params.put("master_timeout", request.masterTimeout._toJsonString());
 				}
 				if (request.includeTypeName != null) {
 					params.put("include_type_name", String.valueOf(request.includeTypeName));

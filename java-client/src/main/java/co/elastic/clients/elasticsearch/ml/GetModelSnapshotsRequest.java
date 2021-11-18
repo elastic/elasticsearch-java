@@ -25,7 +25,7 @@ package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -54,7 +54,7 @@ public class GetModelSnapshotsRequest extends RequestBase implements JsonpSerial
 	private final Boolean desc;
 
 	@Nullable
-	private final String end;
+	private final Time end;
 
 	@Nullable
 	private final Integer from;
@@ -71,7 +71,7 @@ public class GetModelSnapshotsRequest extends RequestBase implements JsonpSerial
 	private final String sort;
 
 	@Nullable
-	private final String start;
+	private final Time start;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -109,7 +109,7 @@ public class GetModelSnapshotsRequest extends RequestBase implements JsonpSerial
 	 * API name: {@code end}
 	 */
 	@Nullable
-	public final String end() {
+	public final Time end() {
 		return this.end;
 	}
 
@@ -170,7 +170,7 @@ public class GetModelSnapshotsRequest extends RequestBase implements JsonpSerial
 	 * API name: {@code start}
 	 */
 	@Nullable
-	public final String start() {
+	public final Time start() {
 		return this.start;
 	}
 
@@ -187,12 +187,12 @@ public class GetModelSnapshotsRequest extends RequestBase implements JsonpSerial
 
 		if (this.end != null) {
 			generator.writeKey("end");
-			generator.write(this.end);
+			this.end.serialize(generator, mapper);
 
 		}
 		if (this.start != null) {
 			generator.writeKey("start");
-			generator.write(this.start);
+			this.start.serialize(generator, mapper);
 
 		}
 
@@ -208,7 +208,7 @@ public class GetModelSnapshotsRequest extends RequestBase implements JsonpSerial
 		private Boolean desc;
 
 		@Nullable
-		private String end;
+		private Time end;
 
 		@Nullable
 		private Integer from;
@@ -225,7 +225,7 @@ public class GetModelSnapshotsRequest extends RequestBase implements JsonpSerial
 		private String sort;
 
 		@Nullable
-		private String start;
+		private Time start;
 
 		/**
 		 * If true, the results are sorted in descending order.
@@ -243,9 +243,19 @@ public class GetModelSnapshotsRequest extends RequestBase implements JsonpSerial
 		 * <p>
 		 * API name: {@code end}
 		 */
-		public final Builder end(@Nullable String value) {
+		public final Builder end(@Nullable Time value) {
 			this.end = value;
 			return this;
+		}
+
+		/**
+		 * Returns snapshots with timestamps earlier than this time. Defaults to unset,
+		 * which means results are not limited to specific timestamps.
+		 * <p>
+		 * API name: {@code end}
+		 */
+		public final Builder end(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.end(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -305,9 +315,19 @@ public class GetModelSnapshotsRequest extends RequestBase implements JsonpSerial
 		 * <p>
 		 * API name: {@code start}
 		 */
-		public final Builder start(@Nullable String value) {
+		public final Builder start(@Nullable Time value) {
 			this.start = value;
 			return this;
+		}
+
+		/**
+		 * Returns snapshots with timestamps after this time. Defaults to unset, which
+		 * means results are not limited to specific timestamps.
+		 * <p>
+		 * API name: {@code start}
+		 */
+		public final Builder start(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.start(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -329,13 +349,13 @@ public class GetModelSnapshotsRequest extends RequestBase implements JsonpSerial
 	 * Json deserializer for {@link GetModelSnapshotsRequest}
 	 */
 	public static final JsonpDeserializer<GetModelSnapshotsRequest> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, GetModelSnapshotsRequest::setupGetModelSnapshotsRequestDeserializer, Builder::build);
+			.lazy(Builder::new, GetModelSnapshotsRequest::setupGetModelSnapshotsRequestDeserializer);
 
 	protected static void setupGetModelSnapshotsRequestDeserializer(
-			DelegatingDeserializer<GetModelSnapshotsRequest.Builder> op) {
+			ObjectDeserializer<GetModelSnapshotsRequest.Builder> op) {
 
-		op.add(Builder::end, JsonpDeserializer.stringDeserializer(), "end");
-		op.add(Builder::start, JsonpDeserializer.stringDeserializer(), "start");
+		op.add(Builder::end, Time._DESERIALIZER, "end");
+		op.add(Builder::start, Time._DESERIALIZER, "start");
 
 	}
 
@@ -344,7 +364,7 @@ public class GetModelSnapshotsRequest extends RequestBase implements JsonpSerial
 	/**
 	 * Endpoint "{@code ml.get_model_snapshots}".
 	 */
-	public static final Endpoint<GetModelSnapshotsRequest, GetModelSnapshotsResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<GetModelSnapshotsRequest, GetModelSnapshotsResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";

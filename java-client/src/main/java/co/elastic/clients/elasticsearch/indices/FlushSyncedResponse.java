@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch.indices;
 
 import co.elastic.clients.elasticsearch._types.ShardStatistics;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -123,9 +122,9 @@ public class FlushSyncedResponse extends DictionaryResponse<String, ShardStatist
 	 * Json deserializer for {@link FlushSyncedResponse}
 	 */
 	public static final JsonpDeserializer<FlushSyncedResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, FlushSyncedResponse::setupFlushSyncedResponseDeserializer, Builder::build);
+			.lazy(Builder::new, FlushSyncedResponse::setupFlushSyncedResponseDeserializer);
 
-	protected static void setupFlushSyncedResponseDeserializer(DelegatingDeserializer<FlushSyncedResponse.Builder> op) {
+	protected static void setupFlushSyncedResponseDeserializer(ObjectDeserializer<FlushSyncedResponse.Builder> op) {
 		DictionaryResponse.setupDictionaryResponseDeserializer(op, JsonpDeserializer.stringDeserializer(),
 				ShardStatistics._DESERIALIZER);
 		op.add(Builder::shards, ShardStatistics._DESERIALIZER, "_shards");

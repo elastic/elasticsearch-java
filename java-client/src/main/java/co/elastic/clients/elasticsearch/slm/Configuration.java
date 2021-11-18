@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.slm;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -358,9 +357,9 @@ public class Configuration implements JsonpSerializable {
 	 * Json deserializer for {@link Configuration}
 	 */
 	public static final JsonpDeserializer<Configuration> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			Configuration::setupConfigurationDeserializer, Builder::build);
+			Configuration::setupConfigurationDeserializer);
 
-	protected static void setupConfigurationDeserializer(DelegatingDeserializer<Configuration.Builder> op) {
+	protected static void setupConfigurationDeserializer(ObjectDeserializer<Configuration.Builder> op) {
 
 		op.add(Builder::ignoreUnavailable, JsonpDeserializer.booleanDeserializer(), "ignore_unavailable");
 		op.add(Builder::indices, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),

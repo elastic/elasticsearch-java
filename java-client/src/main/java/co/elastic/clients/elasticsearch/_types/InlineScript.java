@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -33,6 +32,7 @@ import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
+import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -40,6 +40,11 @@ import javax.annotation.Nullable;
 // typedef: _types.InlineScript
 @JsonpDeserializable
 public class InlineScript extends ScriptBase {
+	@Nullable
+	private final String lang;
+
+	private final Map<String, String> options;
+
 	private final String source;
 
 	// ---------------------------------------------------------------------------------------------
@@ -47,12 +52,29 @@ public class InlineScript extends ScriptBase {
 	private InlineScript(Builder builder) {
 		super(builder);
 
+		this.lang = builder.lang;
+		this.options = ModelTypeHelper.unmodifiable(builder.options);
 		this.source = ModelTypeHelper.requireNonNull(builder.source, this, "source");
 
 	}
 
 	public static InlineScript of(Function<Builder, ObjectBuilder<InlineScript>> fn) {
 		return fn.apply(new Builder()).build();
+	}
+
+	/**
+	 * API name: {@code lang}
+	 */
+	@Nullable
+	public final String lang() {
+		return this.lang;
+	}
+
+	/**
+	 * API name: {@code options}
+	 */
+	public final Map<String, String> options() {
+		return this.options;
 	}
 
 	/**
@@ -65,6 +87,22 @@ public class InlineScript extends ScriptBase {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
+		if (this.lang != null) {
+			generator.writeKey("lang");
+			generator.write(this.lang);
+
+		}
+		if (ModelTypeHelper.isDefined(this.options)) {
+			generator.writeKey("options");
+			generator.writeStartObject();
+			for (Map.Entry<String, String> item0 : this.options.entrySet()) {
+				generator.writeKey(item0.getKey());
+				generator.write(item0.getValue());
+
+			}
+			generator.writeEnd();
+
+		}
 		generator.writeKey("source");
 		generator.write(this.source);
 
@@ -76,7 +114,29 @@ public class InlineScript extends ScriptBase {
 	 * Builder for {@link InlineScript}.
 	 */
 	public static class Builder extends ScriptBase.AbstractBuilder<Builder> implements ObjectBuilder<InlineScript> {
+		@Nullable
+		private String lang;
+
+		@Nullable
+		private Map<String, String> options;
+
 		private String source;
+
+		/**
+		 * API name: {@code lang}
+		 */
+		public final Builder lang(@Nullable String value) {
+			this.lang = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code options}
+		 */
+		public final Builder options(@Nullable Map<String, String> value) {
+			this.options = value;
+			return this;
+		}
 
 		/**
 		 * Required - API name: {@code source}
@@ -110,11 +170,16 @@ public class InlineScript extends ScriptBase {
 	 * Json deserializer for {@link InlineScript}
 	 */
 	public static final JsonpDeserializer<InlineScript> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			InlineScript::setupInlineScriptDeserializer, Builder::build);
+			InlineScript::setupInlineScriptDeserializer);
 
-	protected static void setupInlineScriptDeserializer(DelegatingDeserializer<InlineScript.Builder> op) {
+	protected static void setupInlineScriptDeserializer(ObjectDeserializer<InlineScript.Builder> op) {
 		ScriptBase.setupScriptBaseDeserializer(op);
+		op.add(Builder::lang, JsonpDeserializer.stringDeserializer(), "lang");
+		op.add(Builder::options, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.stringDeserializer()),
+				"options");
 		op.add(Builder::source, JsonpDeserializer.stringDeserializer(), "source");
+
+		op.shortcutProperty("source");
 
 	}
 

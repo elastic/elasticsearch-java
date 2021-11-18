@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.nodes;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -236,9 +235,9 @@ public class IngestTotal implements JsonpSerializable {
 	 * Json deserializer for {@link IngestTotal}
 	 */
 	public static final JsonpDeserializer<IngestTotal> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			IngestTotal::setupIngestTotalDeserializer, Builder::build);
+			IngestTotal::setupIngestTotalDeserializer);
 
-	protected static void setupIngestTotalDeserializer(DelegatingDeserializer<IngestTotal.Builder> op) {
+	protected static void setupIngestTotalDeserializer(ObjectDeserializer<IngestTotal.Builder> op) {
 
 		op.add(Builder::count, JsonpDeserializer.longDeserializer(), "count");
 		op.add(Builder::current, JsonpDeserializer.longDeserializer(), "current");

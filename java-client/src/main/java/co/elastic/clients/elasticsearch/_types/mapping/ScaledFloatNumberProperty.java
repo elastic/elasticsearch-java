@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.mapping;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -183,10 +182,10 @@ public class ScaledFloatNumberProperty extends NumberPropertyBase implements Pro
 	 * Json deserializer for {@link ScaledFloatNumberProperty}
 	 */
 	public static final JsonpDeserializer<ScaledFloatNumberProperty> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, ScaledFloatNumberProperty::setupScaledFloatNumberPropertyDeserializer, Builder::build);
+			.lazy(Builder::new, ScaledFloatNumberProperty::setupScaledFloatNumberPropertyDeserializer);
 
 	protected static void setupScaledFloatNumberPropertyDeserializer(
-			DelegatingDeserializer<ScaledFloatNumberProperty.Builder> op) {
+			ObjectDeserializer<ScaledFloatNumberProperty.Builder> op) {
 		NumberPropertyBase.setupNumberPropertyBaseDeserializer(op);
 		op.add(Builder::coerce, JsonpDeserializer.booleanDeserializer(), "coerce");
 		op.add(Builder::nullValue, JsonpDeserializer.doubleDeserializer(), "null_value");

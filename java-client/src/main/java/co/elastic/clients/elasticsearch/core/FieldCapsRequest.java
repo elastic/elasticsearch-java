@@ -24,11 +24,10 @@
 package co.elastic.clients.elasticsearch.core;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
-import co.elastic.clients.elasticsearch._types.ExpandWildcardOptions;
+import co.elastic.clients.elasticsearch._types.ExpandWildcard;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch._types.mapping.RuntimeField;
 import co.elastic.clients.elasticsearch._types.query_dsl.Query;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -60,7 +59,7 @@ public class FieldCapsRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
 	private final Boolean allowNoIndices;
 
-	private final List<ExpandWildcardOptions> expandWildcards;
+	private final List<ExpandWildcard> expandWildcards;
 
 	private final List<String> fields;
 
@@ -114,7 +113,7 @@ public class FieldCapsRequest extends RequestBase implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code expand_wildcards}
 	 */
-	public final List<ExpandWildcardOptions> expandWildcards() {
+	public final List<ExpandWildcard> expandWildcards() {
 		return this.expandWildcards;
 	}
 
@@ -213,7 +212,7 @@ public class FieldCapsRequest extends RequestBase implements JsonpSerializable {
 		private Boolean allowNoIndices;
 
 		@Nullable
-		private List<ExpandWildcardOptions> expandWildcards;
+		private List<ExpandWildcard> expandWildcards;
 
 		@Nullable
 		private List<String> fields;
@@ -251,7 +250,7 @@ public class FieldCapsRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code expand_wildcards}
 		 */
-		public final Builder expandWildcards(@Nullable List<ExpandWildcardOptions> value) {
+		public final Builder expandWildcards(@Nullable List<ExpandWildcard> value) {
 			this.expandWildcards = value;
 			return this;
 		}
@@ -262,7 +261,7 @@ public class FieldCapsRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code expand_wildcards}
 		 */
-		public final Builder expandWildcards(ExpandWildcardOptions... value) {
+		public final Builder expandWildcards(ExpandWildcard... value) {
 			this.expandWildcards = Arrays.asList(value);
 			return this;
 		}
@@ -384,9 +383,9 @@ public class FieldCapsRequest extends RequestBase implements JsonpSerializable {
 	 * Json deserializer for {@link FieldCapsRequest}
 	 */
 	public static final JsonpDeserializer<FieldCapsRequest> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			FieldCapsRequest::setupFieldCapsRequestDeserializer, Builder::build);
+			FieldCapsRequest::setupFieldCapsRequestDeserializer);
 
-	protected static void setupFieldCapsRequestDeserializer(DelegatingDeserializer<FieldCapsRequest.Builder> op) {
+	protected static void setupFieldCapsRequestDeserializer(ObjectDeserializer<FieldCapsRequest.Builder> op) {
 
 		op.add(Builder::indexFilter, Query._DESERIALIZER, "index_filter");
 		op.add(Builder::runtimeMappings, JsonpDeserializer.stringMapDeserializer(RuntimeField._DESERIALIZER),
@@ -399,7 +398,7 @@ public class FieldCapsRequest extends RequestBase implements JsonpSerializable {
 	/**
 	 * Endpoint "{@code field_caps}".
 	 */
-	public static final Endpoint<FieldCapsRequest, FieldCapsResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<FieldCapsRequest, FieldCapsResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";

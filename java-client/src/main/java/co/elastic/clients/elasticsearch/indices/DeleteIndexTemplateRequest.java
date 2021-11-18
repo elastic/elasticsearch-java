@@ -103,7 +103,7 @@ public class DeleteIndexTemplateRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code indices.delete_index_template}".
 	 */
-	public static final Endpoint<DeleteIndexTemplateRequest, DeleteIndexTemplateResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<DeleteIndexTemplateRequest, DeleteIndexTemplateResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "DELETE";

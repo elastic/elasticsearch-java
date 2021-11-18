@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch.security.create_api_key;
 
 import co.elastic.clients.elasticsearch.security.ApplicationPrivileges;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -236,9 +235,9 @@ public class RoleDescriptor implements JsonpSerializable {
 	 * Json deserializer for {@link RoleDescriptor}
 	 */
 	public static final JsonpDeserializer<RoleDescriptor> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			RoleDescriptor::setupRoleDescriptorDeserializer, Builder::build);
+			RoleDescriptor::setupRoleDescriptorDeserializer);
 
-	protected static void setupRoleDescriptorDeserializer(DelegatingDeserializer<RoleDescriptor.Builder> op) {
+	protected static void setupRoleDescriptorDeserializer(ObjectDeserializer<RoleDescriptor.Builder> op) {
 
 		op.add(Builder::cluster, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"cluster");

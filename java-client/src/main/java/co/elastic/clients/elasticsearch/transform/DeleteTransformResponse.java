@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch.transform;
 
 import co.elastic.clients.elasticsearch._types.AcknowledgedResponseBase;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -80,10 +79,10 @@ public class DeleteTransformResponse extends AcknowledgedResponseBase {
 	 * Json deserializer for {@link DeleteTransformResponse}
 	 */
 	public static final JsonpDeserializer<DeleteTransformResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, DeleteTransformResponse::setupDeleteTransformResponseDeserializer, Builder::build);
+			.lazy(Builder::new, DeleteTransformResponse::setupDeleteTransformResponseDeserializer);
 
 	protected static void setupDeleteTransformResponseDeserializer(
-			DelegatingDeserializer<DeleteTransformResponse.Builder> op) {
+			ObjectDeserializer<DeleteTransformResponse.Builder> op) {
 		AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);
 
 	}

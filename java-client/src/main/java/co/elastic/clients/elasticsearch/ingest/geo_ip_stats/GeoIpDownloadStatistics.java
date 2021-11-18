@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.ingest.geo_ip_stats;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -226,10 +225,10 @@ public class GeoIpDownloadStatistics implements JsonpSerializable {
 	 * Json deserializer for {@link GeoIpDownloadStatistics}
 	 */
 	public static final JsonpDeserializer<GeoIpDownloadStatistics> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, GeoIpDownloadStatistics::setupGeoIpDownloadStatisticsDeserializer, Builder::build);
+			.lazy(Builder::new, GeoIpDownloadStatistics::setupGeoIpDownloadStatisticsDeserializer);
 
 	protected static void setupGeoIpDownloadStatisticsDeserializer(
-			DelegatingDeserializer<GeoIpDownloadStatistics.Builder> op) {
+			ObjectDeserializer<GeoIpDownloadStatistics.Builder> op) {
 
 		op.add(Builder::successfulDownloads, JsonpDeserializer.integerDeserializer(), "successful_downloads");
 		op.add(Builder::failedDownloads, JsonpDeserializer.integerDeserializer(), "failed_downloads");

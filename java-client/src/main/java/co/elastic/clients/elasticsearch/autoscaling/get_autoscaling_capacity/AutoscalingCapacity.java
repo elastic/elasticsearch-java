@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.autoscaling.get_autoscaling_capacity;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -150,9 +149,9 @@ public class AutoscalingCapacity implements JsonpSerializable {
 	 * Json deserializer for {@link AutoscalingCapacity}
 	 */
 	public static final JsonpDeserializer<AutoscalingCapacity> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, AutoscalingCapacity::setupAutoscalingCapacityDeserializer, Builder::build);
+			.lazy(Builder::new, AutoscalingCapacity::setupAutoscalingCapacityDeserializer);
 
-	protected static void setupAutoscalingCapacityDeserializer(DelegatingDeserializer<AutoscalingCapacity.Builder> op) {
+	protected static void setupAutoscalingCapacityDeserializer(ObjectDeserializer<AutoscalingCapacity.Builder> op) {
 
 		op.add(Builder::node, AutoscalingResources._DESERIALIZER, "node");
 		op.add(Builder::total, AutoscalingResources._DESERIALIZER, "total");

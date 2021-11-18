@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.cluster.allocation_explain;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -202,9 +201,9 @@ public class ReservedSize implements JsonpSerializable {
 	 * Json deserializer for {@link ReservedSize}
 	 */
 	public static final JsonpDeserializer<ReservedSize> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			ReservedSize::setupReservedSizeDeserializer, Builder::build);
+			ReservedSize::setupReservedSizeDeserializer);
 
-	protected static void setupReservedSizeDeserializer(DelegatingDeserializer<ReservedSize.Builder> op) {
+	protected static void setupReservedSizeDeserializer(ObjectDeserializer<ReservedSize.Builder> op) {
 
 		op.add(Builder::nodeId, JsonpDeserializer.stringDeserializer(), "node_id");
 		op.add(Builder::path, JsonpDeserializer.stringDeserializer(), "path");

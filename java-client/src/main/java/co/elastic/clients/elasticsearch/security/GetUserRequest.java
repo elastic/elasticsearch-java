@@ -123,7 +123,7 @@ public class GetUserRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code security.get_user}".
 	 */
-	public static final Endpoint<GetUserRequest, GetUserResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<GetUserRequest, GetUserResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "GET";

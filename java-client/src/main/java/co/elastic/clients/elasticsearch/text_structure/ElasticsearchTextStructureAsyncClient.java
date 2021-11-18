@@ -25,6 +25,8 @@ package co.elastic.clients.elasticsearch.text_structure;
 
 import co.elastic.clients.ApiClient;
 import co.elastic.clients.elasticsearch._types.ElasticsearchException;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
+import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.Transport;
 import co.elastic.clients.transport.TransportOptions;
 import co.elastic.clients.util.ObjectBuilder;
@@ -64,7 +66,10 @@ public class ElasticsearchTextStructureAsyncClient extends ApiClient<Elasticsear
 
 	public <TJsonDocument> CompletableFuture<FindStructureResponse> findStructure(
 			FindStructureRequest<TJsonDocument> request) throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(request, FindStructureRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<FindStructureRequest<?>, FindStructureResponse, ErrorResponse> endpoint = (Endpoint<FindStructureRequest<?>, FindStructureResponse, ErrorResponse>) FindStructureRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
 
 	/**

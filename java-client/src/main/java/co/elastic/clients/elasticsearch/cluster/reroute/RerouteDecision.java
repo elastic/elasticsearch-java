@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.cluster.reroute;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -160,9 +159,9 @@ public class RerouteDecision implements JsonpSerializable {
 	 * Json deserializer for {@link RerouteDecision}
 	 */
 	public static final JsonpDeserializer<RerouteDecision> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			RerouteDecision::setupRerouteDecisionDeserializer, Builder::build);
+			RerouteDecision::setupRerouteDecisionDeserializer);
 
-	protected static void setupRerouteDecisionDeserializer(DelegatingDeserializer<RerouteDecision.Builder> op) {
+	protected static void setupRerouteDecisionDeserializer(ObjectDeserializer<RerouteDecision.Builder> op) {
 
 		op.add(Builder::decider, JsonpDeserializer.stringDeserializer(), "decider");
 		op.add(Builder::decision, JsonpDeserializer.stringDeserializer(), "decision");

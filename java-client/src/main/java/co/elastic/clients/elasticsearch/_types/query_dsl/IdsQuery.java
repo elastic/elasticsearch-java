@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -137,9 +136,9 @@ public class IdsQuery extends QueryBase implements QueryVariant {
 	 * Json deserializer for {@link IdsQuery}
 	 */
 	public static final JsonpDeserializer<IdsQuery> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			IdsQuery::setupIdsQueryDeserializer, Builder::build);
+			IdsQuery::setupIdsQueryDeserializer);
 
-	protected static void setupIdsQueryDeserializer(DelegatingDeserializer<IdsQuery.Builder> op) {
+	protected static void setupIdsQueryDeserializer(ObjectDeserializer<IdsQuery.Builder> op) {
 		QueryBase.setupQueryBaseDeserializer(op);
 		op.add(Builder::values, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "values");
 

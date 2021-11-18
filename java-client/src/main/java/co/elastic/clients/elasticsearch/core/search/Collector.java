@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.core.search;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -216,9 +215,9 @@ public class Collector implements JsonpSerializable {
 	 * Json deserializer for {@link Collector}
 	 */
 	public static final JsonpDeserializer<Collector> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			Collector::setupCollectorDeserializer, Builder::build);
+			Collector::setupCollectorDeserializer);
 
-	protected static void setupCollectorDeserializer(DelegatingDeserializer<Collector.Builder> op) {
+	protected static void setupCollectorDeserializer(ObjectDeserializer<Collector.Builder> op) {
 
 		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
 		op.add(Builder::reason, JsonpDeserializer.stringDeserializer(), "reason");

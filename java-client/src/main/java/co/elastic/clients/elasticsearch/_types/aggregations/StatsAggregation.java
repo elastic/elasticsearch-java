@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -87,9 +86,9 @@ public class StatsAggregation extends FormatMetricAggregationBase implements Agg
 	 * Json deserializer for {@link StatsAggregation}
 	 */
 	public static final JsonpDeserializer<StatsAggregation> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			StatsAggregation::setupStatsAggregationDeserializer, Builder::build);
+			StatsAggregation::setupStatsAggregationDeserializer);
 
-	protected static void setupStatsAggregationDeserializer(DelegatingDeserializer<StatsAggregation.Builder> op) {
+	protected static void setupStatsAggregationDeserializer(ObjectDeserializer<StatsAggregation.Builder> op) {
 		FormatMetricAggregationBase.setupFormatMetricAggregationBaseDeserializer(op);
 
 	}

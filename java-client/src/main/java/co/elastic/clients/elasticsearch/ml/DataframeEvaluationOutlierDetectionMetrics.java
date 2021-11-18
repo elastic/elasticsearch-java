@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -130,11 +129,10 @@ public class DataframeEvaluationOutlierDetectionMetrics extends DataframeEvaluat
 	 */
 	public static final JsonpDeserializer<DataframeEvaluationOutlierDetectionMetrics> _DESERIALIZER = ObjectBuilderDeserializer
 			.lazy(Builder::new,
-					DataframeEvaluationOutlierDetectionMetrics::setupDataframeEvaluationOutlierDetectionMetricsDeserializer,
-					Builder::build);
+					DataframeEvaluationOutlierDetectionMetrics::setupDataframeEvaluationOutlierDetectionMetricsDeserializer);
 
 	protected static void setupDataframeEvaluationOutlierDetectionMetricsDeserializer(
-			DelegatingDeserializer<DataframeEvaluationOutlierDetectionMetrics.Builder> op) {
+			ObjectDeserializer<DataframeEvaluationOutlierDetectionMetrics.Builder> op) {
 		DataframeEvaluationMetrics.setupDataframeEvaluationMetricsDeserializer(op);
 		op.add(Builder::confusionMatrix, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER),
 				"confusion_matrix");

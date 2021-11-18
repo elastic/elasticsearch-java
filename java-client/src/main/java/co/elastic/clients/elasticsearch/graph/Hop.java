@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch.graph;
 
 import co.elastic.clients.elasticsearch._types.query_dsl.Query;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -210,9 +209,9 @@ public class Hop implements JsonpSerializable {
 	 * Json deserializer for {@link Hop}
 	 */
 	public static final JsonpDeserializer<Hop> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			Hop::setupHopDeserializer, Builder::build);
+			Hop::setupHopDeserializer);
 
-	protected static void setupHopDeserializer(DelegatingDeserializer<Hop.Builder> op) {
+	protected static void setupHopDeserializer(ObjectDeserializer<Hop.Builder> op) {
 
 		op.add(Builder::connections, Hop._DESERIALIZER, "connections");
 		op.add(Builder::query, Query._DESERIALIZER, "query");

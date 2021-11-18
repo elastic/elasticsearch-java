@@ -25,7 +25,6 @@ package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -37,7 +36,6 @@ import co.elastic.clients.transport.SimpleEndpoint;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Integer;
@@ -56,7 +54,7 @@ public class ExplainDataFrameAnalyticsRequest extends RequestBase implements Jso
 	private final DataframeAnalysis analysis;
 
 	@Nullable
-	private final JsonValue /* ml._types.DataframeAnalysisAnalyzedFields */ analyzedFields;
+	private final DataframeAnalysisAnalyzedFields analyzedFields;
 
 	@Nullable
 	private final String description;
@@ -129,7 +127,7 @@ public class ExplainDataFrameAnalyticsRequest extends RequestBase implements Jso
 	 * API name: {@code analyzed_fields}
 	 */
 	@Nullable
-	public final JsonValue /* ml._types.DataframeAnalysisAnalyzedFields */ analyzedFields() {
+	public final DataframeAnalysisAnalyzedFields analyzedFields() {
 		return this.analyzedFields;
 	}
 
@@ -227,7 +225,7 @@ public class ExplainDataFrameAnalyticsRequest extends RequestBase implements Jso
 
 		if (this.analyzedFields != null) {
 			generator.writeKey("analyzed_fields");
-			generator.write(this.analyzedFields);
+			this.analyzedFields.serialize(generator, mapper);
 
 		}
 		if (this.description != null) {
@@ -270,7 +268,7 @@ public class ExplainDataFrameAnalyticsRequest extends RequestBase implements Jso
 		private DataframeAnalysis analysis;
 
 		@Nullable
-		private JsonValue /* ml._types.DataframeAnalysisAnalyzedFields */ analyzedFields;
+		private DataframeAnalysisAnalyzedFields analyzedFields;
 
 		@Nullable
 		private String description;
@@ -333,9 +331,23 @@ public class ExplainDataFrameAnalyticsRequest extends RequestBase implements Jso
 		 * <p>
 		 * API name: {@code analyzed_fields}
 		 */
-		public final Builder analyzedFields(@Nullable JsonValue /* ml._types.DataframeAnalysisAnalyzedFields */ value) {
+		public final Builder analyzedFields(@Nullable DataframeAnalysisAnalyzedFields value) {
 			this.analyzedFields = value;
 			return this;
+		}
+
+		/**
+		 * Specify includes and/or excludes patterns to select which fields will be
+		 * included in the analysis. The patterns specified in excludes are applied
+		 * last, therefore excludes takes precedence. In other words, if the same field
+		 * is specified in both includes and excludes, then the field will not be
+		 * included in the analysis.
+		 * <p>
+		 * API name: {@code analyzed_fields}
+		 */
+		public final Builder analyzedFields(
+				Function<DataframeAnalysisAnalyzedFields.Builder, ObjectBuilder<DataframeAnalysisAnalyzedFields>> fn) {
+			return this.analyzedFields(fn.apply(new DataframeAnalysisAnalyzedFields.Builder()).build());
 		}
 
 		/**
@@ -452,15 +464,14 @@ public class ExplainDataFrameAnalyticsRequest extends RequestBase implements Jso
 	 * Json deserializer for {@link ExplainDataFrameAnalyticsRequest}
 	 */
 	public static final JsonpDeserializer<ExplainDataFrameAnalyticsRequest> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, ExplainDataFrameAnalyticsRequest::setupExplainDataFrameAnalyticsRequestDeserializer,
-					Builder::build);
+			.lazy(Builder::new, ExplainDataFrameAnalyticsRequest::setupExplainDataFrameAnalyticsRequestDeserializer);
 
 	protected static void setupExplainDataFrameAnalyticsRequestDeserializer(
-			DelegatingDeserializer<ExplainDataFrameAnalyticsRequest.Builder> op) {
+			ObjectDeserializer<ExplainDataFrameAnalyticsRequest.Builder> op) {
 
 		op.add(Builder::allowLazyStart, JsonpDeserializer.booleanDeserializer(), "allow_lazy_start");
 		op.add(Builder::analysis, DataframeAnalysis._DESERIALIZER, "analysis");
-		op.add(Builder::analyzedFields, JsonpDeserializer.jsonValueDeserializer(), "analyzed_fields");
+		op.add(Builder::analyzedFields, DataframeAnalysisAnalyzedFields._DESERIALIZER, "analyzed_fields");
 		op.add(Builder::description, JsonpDeserializer.stringDeserializer(), "description");
 		op.add(Builder::dest, DataframeAnalyticsDestination._DESERIALIZER, "dest");
 		op.add(Builder::maxNumThreads, JsonpDeserializer.integerDeserializer(), "max_num_threads");
@@ -474,7 +485,7 @@ public class ExplainDataFrameAnalyticsRequest extends RequestBase implements Jso
 	/**
 	 * Endpoint "{@code ml.explain_data_frame_analytics}".
 	 */
-	public static final Endpoint<ExplainDataFrameAnalyticsRequest, ExplainDataFrameAnalyticsResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<ExplainDataFrameAnalyticsRequest, ExplainDataFrameAnalyticsResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";

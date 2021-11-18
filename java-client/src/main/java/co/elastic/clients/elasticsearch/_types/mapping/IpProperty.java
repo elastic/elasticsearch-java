@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.mapping;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -212,9 +211,9 @@ public class IpProperty extends DocValuesPropertyBase implements PropertyVariant
 	 * Json deserializer for {@link IpProperty}
 	 */
 	public static final JsonpDeserializer<IpProperty> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			IpProperty::setupIpPropertyDeserializer, Builder::build);
+			IpProperty::setupIpPropertyDeserializer);
 
-	protected static void setupIpPropertyDeserializer(DelegatingDeserializer<IpProperty.Builder> op) {
+	protected static void setupIpPropertyDeserializer(ObjectDeserializer<IpProperty.Builder> op) {
 		DocValuesPropertyBase.setupDocValuesPropertyBaseDeserializer(op);
 		op.add(Builder::boost, JsonpDeserializer.doubleDeserializer(), "boost");
 		op.add(Builder::index, JsonpDeserializer.booleanDeserializer(), "index");

@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.analysis;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -38,7 +37,7 @@ import java.util.function.Function;
 
 // typedef: _types.analysis.AsciiFoldingTokenFilter
 @JsonpDeserializable
-public class AsciiFoldingTokenFilter extends TokenFilterBase implements TokenFilterVariant {
+public class AsciiFoldingTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
 	private final boolean preserveOriginal;
 
 	// ---------------------------------------------------------------------------------------------
@@ -55,7 +54,7 @@ public class AsciiFoldingTokenFilter extends TokenFilterBase implements TokenFil
 	}
 
 	/**
-	 * {@link TokenFilter} variant type
+	 * {@link TokenFilterDefinition} variant type
 	 */
 	@Override
 	public String _variantType() {
@@ -120,10 +119,10 @@ public class AsciiFoldingTokenFilter extends TokenFilterBase implements TokenFil
 	 * Json deserializer for {@link AsciiFoldingTokenFilter}
 	 */
 	public static final JsonpDeserializer<AsciiFoldingTokenFilter> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, AsciiFoldingTokenFilter::setupAsciiFoldingTokenFilterDeserializer, Builder::build);
+			.lazy(Builder::new, AsciiFoldingTokenFilter::setupAsciiFoldingTokenFilterDeserializer);
 
 	protected static void setupAsciiFoldingTokenFilterDeserializer(
-			DelegatingDeserializer<AsciiFoldingTokenFilter.Builder> op) {
+			ObjectDeserializer<AsciiFoldingTokenFilter.Builder> op) {
 		TokenFilterBase.setupTokenFilterBaseDeserializer(op);
 		op.add(Builder::preserveOriginal, JsonpDeserializer.booleanDeserializer(), "preserve_original");
 

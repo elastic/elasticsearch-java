@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.analysis;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -42,7 +41,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.analysis.KeywordMarkerTokenFilter
 @JsonpDeserializable
-public class KeywordMarkerTokenFilter extends TokenFilterBase implements TokenFilterVariant {
+public class KeywordMarkerTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
 	@Nullable
 	private final Boolean ignoreCase;
 
@@ -71,7 +70,7 @@ public class KeywordMarkerTokenFilter extends TokenFilterBase implements TokenFi
 	}
 
 	/**
-	 * {@link TokenFilter} variant type
+	 * {@link TokenFilterDefinition} variant type
 	 */
 	@Override
 	public String _variantType() {
@@ -225,10 +224,10 @@ public class KeywordMarkerTokenFilter extends TokenFilterBase implements TokenFi
 	 * Json deserializer for {@link KeywordMarkerTokenFilter}
 	 */
 	public static final JsonpDeserializer<KeywordMarkerTokenFilter> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, KeywordMarkerTokenFilter::setupKeywordMarkerTokenFilterDeserializer, Builder::build);
+			.lazy(Builder::new, KeywordMarkerTokenFilter::setupKeywordMarkerTokenFilterDeserializer);
 
 	protected static void setupKeywordMarkerTokenFilterDeserializer(
-			DelegatingDeserializer<KeywordMarkerTokenFilter.Builder> op) {
+			ObjectDeserializer<KeywordMarkerTokenFilter.Builder> op) {
 		TokenFilterBase.setupTokenFilterBaseDeserializer(op);
 		op.add(Builder::ignoreCase, JsonpDeserializer.booleanDeserializer(), "ignore_case");
 		op.add(Builder::keywords, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),

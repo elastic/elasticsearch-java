@@ -24,13 +24,13 @@
 package co.elastic.clients.elasticsearch.transform;
 
 import co.elastic.clients.elasticsearch.indices.IndexState;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.JsonpSerializer;
 import co.elastic.clients.json.JsonpUtils;
+import co.elastic.clients.json.NamedDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
@@ -45,7 +45,7 @@ import java.util.function.Supplier;
 import javax.annotation.Nullable;
 
 // typedef: transform.preview_transform.Response
-
+@JsonpDeserializable
 public class PreviewTransformResponse<TTransform> implements JsonpSerializable {
 	private final IndexState generatedDestIndex;
 
@@ -191,8 +191,15 @@ public class PreviewTransformResponse<TTransform> implements JsonpSerializable {
 				op -> PreviewTransformResponse.setupPreviewTransformResponseDeserializer(op, tTransformDeserializer));
 	};
 
+	/**
+	 * Json deserializer for {@link PreviewTransformResponse} based on named
+	 * deserializers provided by the calling {@code JsonMapper}.
+	 */
+	public static final JsonpDeserializer<PreviewTransformResponse<Object>> _DESERIALIZER = createPreviewTransformResponseDeserializer(
+			new NamedDeserializer<>("co.elastic.clients:Deserializer:transform.preview_transform.TTransform"));
+
 	protected static <TTransform> void setupPreviewTransformResponseDeserializer(
-			DelegatingDeserializer<PreviewTransformResponse.Builder<TTransform>> op,
+			ObjectDeserializer<PreviewTransformResponse.Builder<TTransform>> op,
 			JsonpDeserializer<TTransform> tTransformDeserializer) {
 
 		op.add(Builder::generatedDestIndex, IndexState._DESERIALIZER, "generated_dest_index");

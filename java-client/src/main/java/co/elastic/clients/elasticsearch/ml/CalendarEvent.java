@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -236,9 +235,9 @@ public class CalendarEvent implements JsonpSerializable {
 	 * Json deserializer for {@link CalendarEvent}
 	 */
 	public static final JsonpDeserializer<CalendarEvent> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			CalendarEvent::setupCalendarEventDeserializer, Builder::build);
+			CalendarEvent::setupCalendarEventDeserializer);
 
-	protected static void setupCalendarEventDeserializer(DelegatingDeserializer<CalendarEvent.Builder> op) {
+	protected static void setupCalendarEventDeserializer(ObjectDeserializer<CalendarEvent.Builder> op) {
 
 		op.add(Builder::calendarId, JsonpDeserializer.stringDeserializer(), "calendar_id");
 		op.add(Builder::eventId, JsonpDeserializer.stringDeserializer(), "event_id");

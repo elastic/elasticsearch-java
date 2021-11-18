@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch.slm;
 
 import co.elastic.clients.elasticsearch._types.AcknowledgedResponseBase;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -80,10 +79,9 @@ public class PutLifecycleResponse extends AcknowledgedResponseBase {
 	 * Json deserializer for {@link PutLifecycleResponse}
 	 */
 	public static final JsonpDeserializer<PutLifecycleResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, PutLifecycleResponse::setupPutLifecycleResponseDeserializer, Builder::build);
+			.lazy(Builder::new, PutLifecycleResponse::setupPutLifecycleResponseDeserializer);
 
-	protected static void setupPutLifecycleResponseDeserializer(
-			DelegatingDeserializer<PutLifecycleResponse.Builder> op) {
+	protected static void setupPutLifecycleResponseDeserializer(ObjectDeserializer<PutLifecycleResponse.Builder> op) {
 		AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);
 
 	}

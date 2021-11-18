@@ -23,8 +23,7 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.elasticsearch._types.ExpandWildcardOptions;
-import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.elasticsearch._types.ExpandWildcard;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -48,7 +47,7 @@ public class DatafeedIndicesOptions implements JsonpSerializable {
 	@Nullable
 	private final Boolean allowNoIndices;
 
-	private final List<ExpandWildcardOptions> expandWildcards;
+	private final List<ExpandWildcard> expandWildcards;
 
 	@Nullable
 	private final Boolean ignoreUnavailable;
@@ -82,7 +81,7 @@ public class DatafeedIndicesOptions implements JsonpSerializable {
 	/**
 	 * API name: {@code expand_wildcards}
 	 */
-	public final List<ExpandWildcardOptions> expandWildcards() {
+	public final List<ExpandWildcard> expandWildcards() {
 		return this.expandWildcards;
 	}
 
@@ -121,7 +120,7 @@ public class DatafeedIndicesOptions implements JsonpSerializable {
 		if (ModelTypeHelper.isDefined(this.expandWildcards)) {
 			generator.writeKey("expand_wildcards");
 			generator.writeStartArray();
-			for (ExpandWildcardOptions item0 : this.expandWildcards) {
+			for (ExpandWildcard item0 : this.expandWildcards) {
 				item0.serialize(generator, mapper);
 			}
 			generator.writeEnd();
@@ -150,7 +149,7 @@ public class DatafeedIndicesOptions implements JsonpSerializable {
 		private Boolean allowNoIndices;
 
 		@Nullable
-		private List<ExpandWildcardOptions> expandWildcards;
+		private List<ExpandWildcard> expandWildcards;
 
 		@Nullable
 		private Boolean ignoreUnavailable;
@@ -169,7 +168,7 @@ public class DatafeedIndicesOptions implements JsonpSerializable {
 		/**
 		 * API name: {@code expand_wildcards}
 		 */
-		public final Builder expandWildcards(@Nullable List<ExpandWildcardOptions> value) {
+		public final Builder expandWildcards(@Nullable List<ExpandWildcard> value) {
 			this.expandWildcards = value;
 			return this;
 		}
@@ -177,7 +176,7 @@ public class DatafeedIndicesOptions implements JsonpSerializable {
 		/**
 		 * API name: {@code expand_wildcards}
 		 */
-		public final Builder expandWildcards(ExpandWildcardOptions... value) {
+		public final Builder expandWildcards(ExpandWildcard... value) {
 			this.expandWildcards = Arrays.asList(value);
 			return this;
 		}
@@ -217,13 +216,13 @@ public class DatafeedIndicesOptions implements JsonpSerializable {
 	 * Json deserializer for {@link DatafeedIndicesOptions}
 	 */
 	public static final JsonpDeserializer<DatafeedIndicesOptions> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, DatafeedIndicesOptions::setupDatafeedIndicesOptionsDeserializer, Builder::build);
+			.lazy(Builder::new, DatafeedIndicesOptions::setupDatafeedIndicesOptionsDeserializer);
 
 	protected static void setupDatafeedIndicesOptionsDeserializer(
-			DelegatingDeserializer<DatafeedIndicesOptions.Builder> op) {
+			ObjectDeserializer<DatafeedIndicesOptions.Builder> op) {
 
 		op.add(Builder::allowNoIndices, JsonpDeserializer.booleanDeserializer(), "allow_no_indices");
-		op.add(Builder::expandWildcards, JsonpDeserializer.arrayDeserializer(ExpandWildcardOptions._DESERIALIZER),
+		op.add(Builder::expandWildcards, JsonpDeserializer.arrayDeserializer(ExpandWildcard._DESERIALIZER),
 				"expand_wildcards");
 		op.add(Builder::ignoreUnavailable, JsonpDeserializer.booleanDeserializer(), "ignore_unavailable");
 		op.add(Builder::ignoreThrottled, JsonpDeserializer.booleanDeserializer(), "ignore_throttled");

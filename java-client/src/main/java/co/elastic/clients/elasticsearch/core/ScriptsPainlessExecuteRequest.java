@@ -27,7 +27,6 @@ import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.InlineScript;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch.core.scripts_painless_execute.PainlessContextSetup;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -196,12 +195,11 @@ public class ScriptsPainlessExecuteRequest extends RequestBase implements JsonpS
 	/**
 	 * Json deserializer for {@link ScriptsPainlessExecuteRequest}
 	 */
-	public static final JsonpDeserializer<ScriptsPainlessExecuteRequest> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
-			Builder::new, ScriptsPainlessExecuteRequest::setupScriptsPainlessExecuteRequestDeserializer,
-			Builder::build);
+	public static final JsonpDeserializer<ScriptsPainlessExecuteRequest> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, ScriptsPainlessExecuteRequest::setupScriptsPainlessExecuteRequestDeserializer);
 
 	protected static void setupScriptsPainlessExecuteRequestDeserializer(
-			DelegatingDeserializer<ScriptsPainlessExecuteRequest.Builder> op) {
+			ObjectDeserializer<ScriptsPainlessExecuteRequest.Builder> op) {
 
 		op.add(Builder::context, JsonpDeserializer.stringDeserializer(), "context");
 		op.add(Builder::contextSetup, PainlessContextSetup._DESERIALIZER, "context_setup");
@@ -214,7 +212,7 @@ public class ScriptsPainlessExecuteRequest extends RequestBase implements JsonpS
 	/**
 	 * Endpoint "{@code scripts_painless_execute}".
 	 */
-	private static final SimpleEndpoint<ScriptsPainlessExecuteRequest, Void> ENDPOINT = new SimpleEndpoint<>(
+	public static final SimpleEndpoint<ScriptsPainlessExecuteRequest, ?> _ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";
@@ -231,14 +229,14 @@ public class ScriptsPainlessExecuteRequest extends RequestBase implements JsonpS
 			request -> {
 				return Collections.emptyMap();
 
-			}, SimpleEndpoint.emptyMap(), true, null);
+			}, SimpleEndpoint.emptyMap(), true, ScriptsPainlessExecuteResponse._DESERIALIZER);
 
 	/**
 	 * Create an "{@code scripts_painless_execute}" endpoint.
 	 */
 	public static <TResult> Endpoint<ScriptsPainlessExecuteRequest, ScriptsPainlessExecuteResponse<TResult>, ErrorResponse> createScriptsPainlessExecuteEndpoint(
 			JsonpDeserializer<TResult> tResultDeserializer) {
-		return ENDPOINT.withResponseDeserializer(
+		return _ENDPOINT.withResponseDeserializer(
 				ScriptsPainlessExecuteResponse.createScriptsPainlessExecuteResponseDeserializer(tResultDeserializer));
 	}
 }

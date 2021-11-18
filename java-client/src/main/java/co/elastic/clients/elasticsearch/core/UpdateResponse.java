@@ -25,11 +25,11 @@ package co.elastic.clients.elasticsearch.core;
 
 import co.elastic.clients.elasticsearch._types.InlineGet;
 import co.elastic.clients.elasticsearch._types.WriteResponseBase;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializer;
+import co.elastic.clients.json.NamedDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
@@ -40,7 +40,7 @@ import java.util.function.Supplier;
 import javax.annotation.Nullable;
 
 // typedef: _global.update.Response
-
+@JsonpDeserializable
 public class UpdateResponse<TDocument> extends WriteResponseBase {
 	@Nullable
 	private final InlineGet<TDocument> get;
@@ -150,8 +150,15 @@ public class UpdateResponse<TDocument> extends WriteResponseBase {
 				op -> UpdateResponse.setupUpdateResponseDeserializer(op, tDocumentDeserializer));
 	};
 
+	/**
+	 * Json deserializer for {@link UpdateResponse} based on named deserializers
+	 * provided by the calling {@code JsonMapper}.
+	 */
+	public static final JsonpDeserializer<UpdateResponse<Object>> _DESERIALIZER = createUpdateResponseDeserializer(
+			new NamedDeserializer<>("co.elastic.clients:Deserializer:_global.update.TDocument"));
+
 	protected static <TDocument> void setupUpdateResponseDeserializer(
-			DelegatingDeserializer<UpdateResponse.Builder<TDocument>> op,
+			ObjectDeserializer<UpdateResponse.Builder<TDocument>> op,
 			JsonpDeserializer<TDocument> tDocumentDeserializer) {
 		WriteResponseBase.setupWriteResponseBaseDeserializer(op);
 		op.add(Builder::get, InlineGet.createInlineGetDeserializer(tDocumentDeserializer), "get");

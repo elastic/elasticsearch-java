@@ -28,7 +28,6 @@ import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch._types.analysis.CharFilter;
 import co.elastic.clients.elasticsearch._types.analysis.TokenFilter;
 import co.elastic.clients.elasticsearch._types.analysis.Tokenizer;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -458,9 +457,9 @@ public class AnalyzeRequest extends RequestBase implements JsonpSerializable {
 	 * Json deserializer for {@link AnalyzeRequest}
 	 */
 	public static final JsonpDeserializer<AnalyzeRequest> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			AnalyzeRequest::setupAnalyzeRequestDeserializer, Builder::build);
+			AnalyzeRequest::setupAnalyzeRequestDeserializer);
 
-	protected static void setupAnalyzeRequestDeserializer(DelegatingDeserializer<AnalyzeRequest.Builder> op) {
+	protected static void setupAnalyzeRequestDeserializer(ObjectDeserializer<AnalyzeRequest.Builder> op) {
 
 		op.add(Builder::analyzer, JsonpDeserializer.stringDeserializer(), "analyzer");
 		op.add(Builder::attributes, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
@@ -480,7 +479,7 @@ public class AnalyzeRequest extends RequestBase implements JsonpSerializable {
 	/**
 	 * Endpoint "{@code indices.analyze}".
 	 */
-	public static final Endpoint<AnalyzeRequest, AnalyzeResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<AnalyzeRequest, AnalyzeResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";

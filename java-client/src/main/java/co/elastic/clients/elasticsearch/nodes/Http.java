@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.nodes;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -137,9 +136,9 @@ public class Http implements JsonpSerializable {
 	 * Json deserializer for {@link Http}
 	 */
 	public static final JsonpDeserializer<Http> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			Http::setupHttpDeserializer, Builder::build);
+			Http::setupHttpDeserializer);
 
-	protected static void setupHttpDeserializer(DelegatingDeserializer<Http.Builder> op) {
+	protected static void setupHttpDeserializer(ObjectDeserializer<Http.Builder> op) {
 
 		op.add(Builder::currentOpen, JsonpDeserializer.integerDeserializer(), "current_open");
 		op.add(Builder::totalOpened, JsonpDeserializer.longDeserializer(), "total_opened");

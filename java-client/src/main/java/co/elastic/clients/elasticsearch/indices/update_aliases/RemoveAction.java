@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.indices.update_aliases;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -265,9 +264,9 @@ public class RemoveAction implements ActionVariant, JsonpSerializable {
 	 * Json deserializer for {@link RemoveAction}
 	 */
 	public static final JsonpDeserializer<RemoveAction> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			RemoveAction::setupRemoveActionDeserializer, Builder::build);
+			RemoveAction::setupRemoveActionDeserializer);
 
-	protected static void setupRemoveActionDeserializer(DelegatingDeserializer<RemoveAction.Builder> op) {
+	protected static void setupRemoveActionDeserializer(ObjectDeserializer<RemoveAction.Builder> op) {
 
 		op.add(Builder::alias, JsonpDeserializer.stringDeserializer(), "alias");
 		op.add(Builder::aliases, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),

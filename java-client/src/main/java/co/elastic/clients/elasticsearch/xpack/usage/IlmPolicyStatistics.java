@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch.xpack.usage;
 
 import co.elastic.clients.elasticsearch.ilm.Phases;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -145,9 +144,9 @@ public class IlmPolicyStatistics implements JsonpSerializable {
 	 * Json deserializer for {@link IlmPolicyStatistics}
 	 */
 	public static final JsonpDeserializer<IlmPolicyStatistics> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, IlmPolicyStatistics::setupIlmPolicyStatisticsDeserializer, Builder::build);
+			.lazy(Builder::new, IlmPolicyStatistics::setupIlmPolicyStatisticsDeserializer);
 
-	protected static void setupIlmPolicyStatisticsDeserializer(DelegatingDeserializer<IlmPolicyStatistics.Builder> op) {
+	protected static void setupIlmPolicyStatisticsDeserializer(ObjectDeserializer<IlmPolicyStatistics.Builder> op) {
 
 		op.add(Builder::indicesManaged, JsonpDeserializer.integerDeserializer(), "indices_managed");
 		op.add(Builder::phases, Phases._DESERIALIZER, "phases");

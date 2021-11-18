@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.analysis;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -38,7 +37,7 @@ import java.util.function.Function;
 
 // typedef: _types.analysis.LengthTokenFilter
 @JsonpDeserializable
-public class LengthTokenFilter extends TokenFilterBase implements TokenFilterVariant {
+public class LengthTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
 	private final int max;
 
 	private final int min;
@@ -58,7 +57,7 @@ public class LengthTokenFilter extends TokenFilterBase implements TokenFilterVar
 	}
 
 	/**
-	 * {@link TokenFilter} variant type
+	 * {@link TokenFilterDefinition} variant type
 	 */
 	@Override
 	public String _variantType() {
@@ -143,9 +142,9 @@ public class LengthTokenFilter extends TokenFilterBase implements TokenFilterVar
 	 * Json deserializer for {@link LengthTokenFilter}
 	 */
 	public static final JsonpDeserializer<LengthTokenFilter> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, LengthTokenFilter::setupLengthTokenFilterDeserializer, Builder::build);
+			.lazy(Builder::new, LengthTokenFilter::setupLengthTokenFilterDeserializer);
 
-	protected static void setupLengthTokenFilterDeserializer(DelegatingDeserializer<LengthTokenFilter.Builder> op) {
+	protected static void setupLengthTokenFilterDeserializer(ObjectDeserializer<LengthTokenFilter.Builder> op) {
 		TokenFilterBase.setupTokenFilterBaseDeserializer(op);
 		op.add(Builder::max, JsonpDeserializer.integerDeserializer(), "max");
 		op.add(Builder::min, JsonpDeserializer.integerDeserializer(), "min");

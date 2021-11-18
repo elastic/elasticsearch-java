@@ -25,8 +25,8 @@ package co.elastic.clients.elasticsearch.core;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.elasticsearch._types.query_dsl.Query;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -70,7 +70,7 @@ public class TermsEnumRequest extends RequestBase implements JsonpSerializable {
 	private final String string;
 
 	@Nullable
-	private final String timeout;
+	private final Time timeout;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -170,7 +170,7 @@ public class TermsEnumRequest extends RequestBase implements JsonpSerializable {
 	 * API name: {@code timeout}
 	 */
 	@Nullable
-	public final String timeout() {
+	public final Time timeout() {
 		return this.timeout;
 	}
 
@@ -215,7 +215,7 @@ public class TermsEnumRequest extends RequestBase implements JsonpSerializable {
 		}
 		if (this.timeout != null) {
 			generator.writeKey("timeout");
-			generator.write(this.timeout);
+			this.timeout.serialize(generator, mapper);
 
 		}
 
@@ -247,7 +247,7 @@ public class TermsEnumRequest extends RequestBase implements JsonpSerializable {
 		private String string;
 
 		@Nullable
-		private String timeout;
+		private Time timeout;
 
 		/**
 		 * When true the provided search string is matched against index terms without
@@ -338,9 +338,20 @@ public class TermsEnumRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code timeout}
 		 */
-		public final Builder timeout(@Nullable String value) {
+		public final Builder timeout(@Nullable Time value) {
 			this.timeout = value;
 			return this;
+		}
+
+		/**
+		 * The maximum length of time to spend collecting results. Defaults to
+		 * &quot;1s&quot; (one second). If the timeout is exceeded the complete flag set
+		 * to false in the response and the results may be partial or empty.
+		 * <p>
+		 * API name: {@code timeout}
+		 */
+		public final Builder timeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.timeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -362,9 +373,9 @@ public class TermsEnumRequest extends RequestBase implements JsonpSerializable {
 	 * Json deserializer for {@link TermsEnumRequest}
 	 */
 	public static final JsonpDeserializer<TermsEnumRequest> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			TermsEnumRequest::setupTermsEnumRequestDeserializer, Builder::build);
+			TermsEnumRequest::setupTermsEnumRequestDeserializer);
 
-	protected static void setupTermsEnumRequestDeserializer(DelegatingDeserializer<TermsEnumRequest.Builder> op) {
+	protected static void setupTermsEnumRequestDeserializer(ObjectDeserializer<TermsEnumRequest.Builder> op) {
 
 		op.add(Builder::caseInsensitive, JsonpDeserializer.booleanDeserializer(), "case_insensitive");
 		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
@@ -372,7 +383,7 @@ public class TermsEnumRequest extends RequestBase implements JsonpSerializable {
 		op.add(Builder::searchAfter, JsonpDeserializer.stringDeserializer(), "search_after");
 		op.add(Builder::size, JsonpDeserializer.integerDeserializer(), "size");
 		op.add(Builder::string, JsonpDeserializer.stringDeserializer(), "string");
-		op.add(Builder::timeout, JsonpDeserializer.stringDeserializer(), "timeout");
+		op.add(Builder::timeout, Time._DESERIALIZER, "timeout");
 
 	}
 
@@ -381,7 +392,7 @@ public class TermsEnumRequest extends RequestBase implements JsonpSerializable {
 	/**
 	 * Endpoint "{@code terms_enum}".
 	 */
-	public static final Endpoint<TermsEnumRequest, TermsEnumResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<TermsEnumRequest, TermsEnumResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";

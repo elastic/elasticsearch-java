@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.slm;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -372,9 +371,9 @@ public class Statistics implements JsonpSerializable {
 	 * Json deserializer for {@link Statistics}
 	 */
 	public static final JsonpDeserializer<Statistics> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			Statistics::setupStatisticsDeserializer, Builder::build);
+			Statistics::setupStatisticsDeserializer);
 
-	protected static void setupStatisticsDeserializer(DelegatingDeserializer<Statistics.Builder> op) {
+	protected static void setupStatisticsDeserializer(ObjectDeserializer<Statistics.Builder> op) {
 
 		op.add(Builder::retentionDeletionTime, JsonpDeserializer.stringDeserializer(), "retention_deletion_time");
 		op.add(Builder::retentionDeletionTimeMillis, JsonpDeserializer.stringDeserializer(),

@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch.indices;
 
 import co.elastic.clients.elasticsearch._types.ShardsOperationResponseBase;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -80,9 +79,9 @@ public class ForcemergeResponse extends ShardsOperationResponseBase {
 	 * Json deserializer for {@link ForcemergeResponse}
 	 */
 	public static final JsonpDeserializer<ForcemergeResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, ForcemergeResponse::setupForcemergeResponseDeserializer, Builder::build);
+			.lazy(Builder::new, ForcemergeResponse::setupForcemergeResponseDeserializer);
 
-	protected static void setupForcemergeResponseDeserializer(DelegatingDeserializer<ForcemergeResponse.Builder> op) {
+	protected static void setupForcemergeResponseDeserializer(ObjectDeserializer<ForcemergeResponse.Builder> op) {
 		ShardsOperationResponseBase.setupShardsOperationResponseBaseDeserializer(op);
 
 	}

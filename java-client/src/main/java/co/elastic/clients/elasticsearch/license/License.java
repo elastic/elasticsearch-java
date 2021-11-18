@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.license;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -332,9 +331,9 @@ public class License implements JsonpSerializable {
 	 * Json deserializer for {@link License}
 	 */
 	public static final JsonpDeserializer<License> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			License::setupLicenseDeserializer, Builder::build);
+			License::setupLicenseDeserializer);
 
-	protected static void setupLicenseDeserializer(DelegatingDeserializer<License.Builder> op) {
+	protected static void setupLicenseDeserializer(ObjectDeserializer<License.Builder> op) {
 
 		op.add(Builder::expiryDateInMillis, JsonpDeserializer.stringDeserializer(), "expiry_date_in_millis");
 		op.add(Builder::issueDateInMillis, JsonpDeserializer.stringDeserializer(), "issue_date_in_millis");

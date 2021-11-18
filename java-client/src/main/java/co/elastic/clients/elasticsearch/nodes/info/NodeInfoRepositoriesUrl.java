@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.nodes.info;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -114,10 +113,10 @@ public class NodeInfoRepositoriesUrl implements JsonpSerializable {
 	 * Json deserializer for {@link NodeInfoRepositoriesUrl}
 	 */
 	public static final JsonpDeserializer<NodeInfoRepositoriesUrl> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, NodeInfoRepositoriesUrl::setupNodeInfoRepositoriesUrlDeserializer, Builder::build);
+			.lazy(Builder::new, NodeInfoRepositoriesUrl::setupNodeInfoRepositoriesUrlDeserializer);
 
 	protected static void setupNodeInfoRepositoriesUrlDeserializer(
-			DelegatingDeserializer<NodeInfoRepositoriesUrl.Builder> op) {
+			ObjectDeserializer<NodeInfoRepositoriesUrl.Builder> op) {
 
 		op.add(Builder::allowedUrls, JsonpDeserializer.stringDeserializer(), "allowed_urls");
 

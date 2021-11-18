@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch.core.rank_eval;
 
 import co.elastic.clients.elasticsearch._types.query_dsl.Query;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -151,9 +150,9 @@ public class RankEvalQuery implements JsonpSerializable {
 	 * Json deserializer for {@link RankEvalQuery}
 	 */
 	public static final JsonpDeserializer<RankEvalQuery> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			RankEvalQuery::setupRankEvalQueryDeserializer, Builder::build);
+			RankEvalQuery::setupRankEvalQueryDeserializer);
 
-	protected static void setupRankEvalQueryDeserializer(DelegatingDeserializer<RankEvalQuery.Builder> op) {
+	protected static void setupRankEvalQueryDeserializer(ObjectDeserializer<RankEvalQuery.Builder> op) {
 
 		op.add(Builder::query, Query._DESERIALIZER, "query");
 		op.add(Builder::size, JsonpDeserializer.integerDeserializer(), "size");

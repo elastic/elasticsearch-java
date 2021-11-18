@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -174,10 +173,9 @@ public class MatrixStatsAggregate extends AggregateBase implements AggregateVari
 	 * Json deserializer for {@link MatrixStatsAggregate}
 	 */
 	public static final JsonpDeserializer<MatrixStatsAggregate> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, MatrixStatsAggregate::setupMatrixStatsAggregateDeserializer, Builder::build);
+			.lazy(Builder::new, MatrixStatsAggregate::setupMatrixStatsAggregateDeserializer);
 
-	protected static void setupMatrixStatsAggregateDeserializer(
-			DelegatingDeserializer<MatrixStatsAggregate.Builder> op) {
+	protected static void setupMatrixStatsAggregateDeserializer(ObjectDeserializer<MatrixStatsAggregate.Builder> op) {
 		AggregateBase.setupAggregateBaseDeserializer(op);
 		op.add(Builder::docCount, JsonpDeserializer.longDeserializer(), "doc_count");
 		op.add(Builder::fields, JsonpDeserializer.arrayDeserializer(MatrixStatsFields._DESERIALIZER), "fields");

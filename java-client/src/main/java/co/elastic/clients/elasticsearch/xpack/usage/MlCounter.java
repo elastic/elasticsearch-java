@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.xpack.usage;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -113,9 +112,9 @@ public class MlCounter implements JsonpSerializable {
 	 * Json deserializer for {@link MlCounter}
 	 */
 	public static final JsonpDeserializer<MlCounter> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			MlCounter::setupMlCounterDeserializer, Builder::build);
+			MlCounter::setupMlCounterDeserializer);
 
-	protected static void setupMlCounterDeserializer(DelegatingDeserializer<MlCounter.Builder> op) {
+	protected static void setupMlCounterDeserializer(ObjectDeserializer<MlCounter.Builder> op) {
 
 		op.add(Builder::count, JsonpDeserializer.longDeserializer(), "count");
 

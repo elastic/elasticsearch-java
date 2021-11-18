@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -33,7 +32,6 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Integer;
@@ -68,7 +66,7 @@ public class PutDataFrameAnalyticsResponse implements JsonpSerializable {
 	private final DataframeAnalysis analysis;
 
 	@Nullable
-	private final JsonValue /* ml._types.DataframeAnalysisAnalyzedFields */ analyzedFields;
+	private final DataframeAnalysisAnalyzedFields analyzedFields;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -167,7 +165,7 @@ public class PutDataFrameAnalyticsResponse implements JsonpSerializable {
 	 * API name: {@code analyzed_fields}
 	 */
 	@Nullable
-	public final JsonValue /* ml._types.DataframeAnalysisAnalyzedFields */ analyzedFields() {
+	public final DataframeAnalysisAnalyzedFields analyzedFields() {
 		return this.analyzedFields;
 	}
 
@@ -216,7 +214,7 @@ public class PutDataFrameAnalyticsResponse implements JsonpSerializable {
 
 		if (this.analyzedFields != null) {
 			generator.writeKey("analyzed_fields");
-			generator.write(this.analyzedFields);
+			this.analyzedFields.serialize(generator, mapper);
 
 		}
 
@@ -250,7 +248,7 @@ public class PutDataFrameAnalyticsResponse implements JsonpSerializable {
 		private DataframeAnalysis analysis;
 
 		@Nullable
-		private JsonValue /* ml._types.DataframeAnalysisAnalyzedFields */ analyzedFields;
+		private DataframeAnalysisAnalyzedFields analyzedFields;
 
 		/**
 		 * Required - API name: {@code id}
@@ -358,9 +356,17 @@ public class PutDataFrameAnalyticsResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code analyzed_fields}
 		 */
-		public final Builder analyzedFields(@Nullable JsonValue /* ml._types.DataframeAnalysisAnalyzedFields */ value) {
+		public final Builder analyzedFields(@Nullable DataframeAnalysisAnalyzedFields value) {
 			this.analyzedFields = value;
 			return this;
+		}
+
+		/**
+		 * API name: {@code analyzed_fields}
+		 */
+		public final Builder analyzedFields(
+				Function<DataframeAnalysisAnalyzedFields.Builder, ObjectBuilder<DataframeAnalysisAnalyzedFields>> fn) {
+			return this.analyzedFields(fn.apply(new DataframeAnalysisAnalyzedFields.Builder()).build());
 		}
 
 		/**
@@ -381,12 +387,11 @@ public class PutDataFrameAnalyticsResponse implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link PutDataFrameAnalyticsResponse}
 	 */
-	public static final JsonpDeserializer<PutDataFrameAnalyticsResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
-			Builder::new, PutDataFrameAnalyticsResponse::setupPutDataFrameAnalyticsResponseDeserializer,
-			Builder::build);
+	public static final JsonpDeserializer<PutDataFrameAnalyticsResponse> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, PutDataFrameAnalyticsResponse::setupPutDataFrameAnalyticsResponseDeserializer);
 
 	protected static void setupPutDataFrameAnalyticsResponseDeserializer(
-			DelegatingDeserializer<PutDataFrameAnalyticsResponse.Builder> op) {
+			ObjectDeserializer<PutDataFrameAnalyticsResponse.Builder> op) {
 
 		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "id");
 		op.add(Builder::createTime, JsonpDeserializer.longDeserializer(), "create_time");
@@ -398,7 +403,7 @@ public class PutDataFrameAnalyticsResponse implements JsonpSerializable {
 		op.add(Builder::allowLazyStart, JsonpDeserializer.booleanDeserializer(), "allow_lazy_start");
 		op.add(Builder::maxNumThreads, JsonpDeserializer.integerDeserializer(), "max_num_threads");
 		op.add(Builder::analysis, DataframeAnalysis._DESERIALIZER, "analysis");
-		op.add(Builder::analyzedFields, JsonpDeserializer.jsonValueDeserializer(), "analyzed_fields");
+		op.add(Builder::analyzedFields, DataframeAnalysisAnalyzedFields._DESERIALIZER, "analyzed_fields");
 
 	}
 

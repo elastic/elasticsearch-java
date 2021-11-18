@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch.security;
 
 import co.elastic.clients.elasticsearch.security.get_token.AuthenticatedUser;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -271,9 +270,9 @@ public class GetTokenResponse implements JsonpSerializable {
 	 * Json deserializer for {@link GetTokenResponse}
 	 */
 	public static final JsonpDeserializer<GetTokenResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			GetTokenResponse::setupGetTokenResponseDeserializer, Builder::build);
+			GetTokenResponse::setupGetTokenResponseDeserializer);
 
-	protected static void setupGetTokenResponseDeserializer(DelegatingDeserializer<GetTokenResponse.Builder> op) {
+	protected static void setupGetTokenResponseDeserializer(ObjectDeserializer<GetTokenResponse.Builder> op) {
 
 		op.add(Builder::accessToken, JsonpDeserializer.stringDeserializer(), "access_token");
 		op.add(Builder::expiresIn, JsonpDeserializer.longDeserializer(), "expires_in");

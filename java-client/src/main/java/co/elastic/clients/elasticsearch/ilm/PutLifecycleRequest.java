@@ -25,7 +25,6 @@ package co.elastic.clients.elasticsearch.ilm;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -156,9 +155,9 @@ public class PutLifecycleRequest extends RequestBase implements JsonpSerializabl
 	 * Json deserializer for {@link PutLifecycleRequest}
 	 */
 	public static final JsonpDeserializer<PutLifecycleRequest> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, PutLifecycleRequest::setupPutLifecycleRequestDeserializer, Builder::build);
+			.lazy(Builder::new, PutLifecycleRequest::setupPutLifecycleRequestDeserializer);
 
-	protected static void setupPutLifecycleRequestDeserializer(DelegatingDeserializer<PutLifecycleRequest.Builder> op) {
+	protected static void setupPutLifecycleRequestDeserializer(ObjectDeserializer<PutLifecycleRequest.Builder> op) {
 
 		op.add(Builder::policy, Policy._DESERIALIZER, "policy");
 
@@ -169,7 +168,7 @@ public class PutLifecycleRequest extends RequestBase implements JsonpSerializabl
 	/**
 	 * Endpoint "{@code ilm.put_lifecycle}".
 	 */
-	public static final Endpoint<PutLifecycleRequest, PutLifecycleResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<PutLifecycleRequest, PutLifecycleResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "PUT";

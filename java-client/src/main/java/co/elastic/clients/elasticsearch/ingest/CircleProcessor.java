@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.ingest;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -213,9 +212,9 @@ public class CircleProcessor extends ProcessorBase implements ProcessorVariant {
 	 * Json deserializer for {@link CircleProcessor}
 	 */
 	public static final JsonpDeserializer<CircleProcessor> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			CircleProcessor::setupCircleProcessorDeserializer, Builder::build);
+			CircleProcessor::setupCircleProcessorDeserializer);
 
-	protected static void setupCircleProcessorDeserializer(DelegatingDeserializer<CircleProcessor.Builder> op) {
+	protected static void setupCircleProcessorDeserializer(ObjectDeserializer<CircleProcessor.Builder> op) {
 		ProcessorBase.setupProcessorBaseDeserializer(op);
 		op.add(Builder::errorDistance, JsonpDeserializer.doubleDeserializer(), "error_distance");
 		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");

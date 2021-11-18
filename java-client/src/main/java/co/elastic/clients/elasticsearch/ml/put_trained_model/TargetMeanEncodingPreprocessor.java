@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.ml.put_trained_model;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -202,11 +201,10 @@ public class TargetMeanEncodingPreprocessor implements PreprocessorVariant, Json
 	 * Json deserializer for {@link TargetMeanEncodingPreprocessor}
 	 */
 	public static final JsonpDeserializer<TargetMeanEncodingPreprocessor> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, TargetMeanEncodingPreprocessor::setupTargetMeanEncodingPreprocessorDeserializer,
-					Builder::build);
+			.lazy(Builder::new, TargetMeanEncodingPreprocessor::setupTargetMeanEncodingPreprocessorDeserializer);
 
 	protected static void setupTargetMeanEncodingPreprocessorDeserializer(
-			DelegatingDeserializer<TargetMeanEncodingPreprocessor.Builder> op) {
+			ObjectDeserializer<TargetMeanEncodingPreprocessor.Builder> op) {
 
 		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
 		op.add(Builder::featureName, JsonpDeserializer.stringDeserializer(), "feature_name");

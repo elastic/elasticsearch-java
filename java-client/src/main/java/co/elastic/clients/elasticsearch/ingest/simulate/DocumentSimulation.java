@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.ingest.simulate;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -285,9 +284,9 @@ public class DocumentSimulation implements JsonpSerializable {
 	 * Json deserializer for {@link DocumentSimulation}
 	 */
 	public static final JsonpDeserializer<DocumentSimulation> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, DocumentSimulation::setupDocumentSimulationDeserializer, Builder::build);
+			.lazy(Builder::new, DocumentSimulation::setupDocumentSimulationDeserializer);
 
-	protected static void setupDocumentSimulationDeserializer(DelegatingDeserializer<DocumentSimulation.Builder> op) {
+	protected static void setupDocumentSimulationDeserializer(ObjectDeserializer<DocumentSimulation.Builder> op) {
 
 		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "_id");
 		op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "_index");

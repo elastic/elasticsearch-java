@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -135,11 +134,11 @@ public class RankFeatureFunctionSigmoid extends RankFeatureFunction implements J
 	/**
 	 * Json deserializer for {@link RankFeatureFunctionSigmoid}
 	 */
-	public static final JsonpDeserializer<RankFeatureFunctionSigmoid> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
-			Builder::new, RankFeatureFunctionSigmoid::setupRankFeatureFunctionSigmoidDeserializer, Builder::build);
+	public static final JsonpDeserializer<RankFeatureFunctionSigmoid> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, RankFeatureFunctionSigmoid::setupRankFeatureFunctionSigmoidDeserializer);
 
 	protected static void setupRankFeatureFunctionSigmoidDeserializer(
-			DelegatingDeserializer<RankFeatureFunctionSigmoid.Builder> op) {
+			ObjectDeserializer<RankFeatureFunctionSigmoid.Builder> op) {
 
 		op.add(Builder::pivot, JsonpDeserializer.floatDeserializer(), "pivot");
 		op.add(Builder::exponent, JsonpDeserializer.floatDeserializer(), "exponent");

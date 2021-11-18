@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.security;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -114,9 +113,9 @@ public class ClusterNode implements JsonpSerializable {
 	 * Json deserializer for {@link ClusterNode}
 	 */
 	public static final JsonpDeserializer<ClusterNode> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			ClusterNode::setupClusterNodeDeserializer, Builder::build);
+			ClusterNode::setupClusterNodeDeserializer);
 
-	protected static void setupClusterNodeDeserializer(DelegatingDeserializer<ClusterNode.Builder> op) {
+	protected static void setupClusterNodeDeserializer(ObjectDeserializer<ClusterNode.Builder> op) {
 
 		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
 

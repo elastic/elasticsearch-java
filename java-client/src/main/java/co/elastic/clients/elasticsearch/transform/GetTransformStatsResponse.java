@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch.transform;
 
 import co.elastic.clients.elasticsearch.transform.get_transform_stats.TransformStats;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -169,10 +168,10 @@ public class GetTransformStatsResponse implements JsonpSerializable {
 	 * Json deserializer for {@link GetTransformStatsResponse}
 	 */
 	public static final JsonpDeserializer<GetTransformStatsResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, GetTransformStatsResponse::setupGetTransformStatsResponseDeserializer, Builder::build);
+			.lazy(Builder::new, GetTransformStatsResponse::setupGetTransformStatsResponseDeserializer);
 
 	protected static void setupGetTransformStatsResponseDeserializer(
-			DelegatingDeserializer<GetTransformStatsResponse.Builder> op) {
+			ObjectDeserializer<GetTransformStatsResponse.Builder> op) {
 
 		op.add(Builder::count, JsonpDeserializer.longDeserializer(), "count");
 		op.add(Builder::transforms, JsonpDeserializer.arrayDeserializer(TransformStats._DESERIALIZER), "transforms");

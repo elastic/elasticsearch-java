@@ -25,7 +25,6 @@ package co.elastic.clients.elasticsearch.snapshot.get;
 
 import co.elastic.clients.elasticsearch._types.ErrorCause;
 import co.elastic.clients.elasticsearch.snapshot.SnapshotInfo;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -206,10 +205,9 @@ public class SnapshotResponseItem implements JsonpSerializable {
 	 * Json deserializer for {@link SnapshotResponseItem}
 	 */
 	public static final JsonpDeserializer<SnapshotResponseItem> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, SnapshotResponseItem::setupSnapshotResponseItemDeserializer, Builder::build);
+			.lazy(Builder::new, SnapshotResponseItem::setupSnapshotResponseItemDeserializer);
 
-	protected static void setupSnapshotResponseItemDeserializer(
-			DelegatingDeserializer<SnapshotResponseItem.Builder> op) {
+	protected static void setupSnapshotResponseItemDeserializer(ObjectDeserializer<SnapshotResponseItem.Builder> op) {
 
 		op.add(Builder::repository, JsonpDeserializer.stringDeserializer(), "repository");
 		op.add(Builder::snapshots, JsonpDeserializer.arrayDeserializer(SnapshotInfo._DESERIALIZER), "snapshots");

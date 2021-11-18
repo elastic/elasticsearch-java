@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -87,9 +86,9 @@ public class SumAggregate extends SingleMetricAggregateBase implements Aggregate
 	 * Json deserializer for {@link SumAggregate}
 	 */
 	public static final JsonpDeserializer<SumAggregate> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			SumAggregate::setupSumAggregateDeserializer, Builder::build);
+			SumAggregate::setupSumAggregateDeserializer);
 
-	protected static void setupSumAggregateDeserializer(DelegatingDeserializer<SumAggregate.Builder> op) {
+	protected static void setupSumAggregateDeserializer(ObjectDeserializer<SumAggregate.Builder> op) {
 		SingleMetricAggregateBase.setupSingleMetricAggregateBaseDeserializer(op);
 
 	}

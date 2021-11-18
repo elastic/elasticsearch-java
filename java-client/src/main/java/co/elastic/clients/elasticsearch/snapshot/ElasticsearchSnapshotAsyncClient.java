@@ -25,6 +25,8 @@ package co.elastic.clients.elasticsearch.snapshot;
 
 import co.elastic.clients.ApiClient;
 import co.elastic.clients.elasticsearch._types.ElasticsearchException;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
+import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.Transport;
 import co.elastic.clients.transport.TransportOptions;
 import co.elastic.clients.util.ObjectBuilder;
@@ -63,7 +65,10 @@ public class ElasticsearchSnapshotAsyncClient extends ApiClient<ElasticsearchSna
 
 	public CompletableFuture<CleanupRepositoryResponse> cleanupRepository(CleanupRepositoryRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(request, CleanupRepositoryRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<CleanupRepositoryRequest, CleanupRepositoryResponse, ErrorResponse> endpoint = (Endpoint<CleanupRepositoryRequest, CleanupRepositoryResponse, ErrorResponse>) CleanupRepositoryRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -96,7 +101,10 @@ public class ElasticsearchSnapshotAsyncClient extends ApiClient<ElasticsearchSna
 
 	public CompletableFuture<CloneSnapshotResponse> clone(CloneSnapshotRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(request, CloneSnapshotRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<CloneSnapshotRequest, CloneSnapshotResponse, ErrorResponse> endpoint = (Endpoint<CloneSnapshotRequest, CloneSnapshotResponse, ErrorResponse>) CloneSnapshotRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -129,7 +137,10 @@ public class ElasticsearchSnapshotAsyncClient extends ApiClient<ElasticsearchSna
 
 	public CompletableFuture<CreateSnapshotResponse> create(CreateSnapshotRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(request, CreateSnapshotRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<CreateSnapshotRequest, CreateSnapshotResponse, ErrorResponse> endpoint = (Endpoint<CreateSnapshotRequest, CreateSnapshotResponse, ErrorResponse>) CreateSnapshotRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -161,7 +172,10 @@ public class ElasticsearchSnapshotAsyncClient extends ApiClient<ElasticsearchSna
 
 	public CompletableFuture<CreateRepositoryResponse> createRepository(CreateRepositoryRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(request, CreateRepositoryRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<CreateRepositoryRequest, CreateRepositoryResponse, ErrorResponse> endpoint = (Endpoint<CreateRepositoryRequest, CreateRepositoryResponse, ErrorResponse>) CreateRepositoryRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -193,7 +207,10 @@ public class ElasticsearchSnapshotAsyncClient extends ApiClient<ElasticsearchSna
 
 	public CompletableFuture<DeleteSnapshotResponse> delete(DeleteSnapshotRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(request, DeleteSnapshotRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<DeleteSnapshotRequest, DeleteSnapshotResponse, ErrorResponse> endpoint = (Endpoint<DeleteSnapshotRequest, DeleteSnapshotResponse, ErrorResponse>) DeleteSnapshotRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -225,7 +242,10 @@ public class ElasticsearchSnapshotAsyncClient extends ApiClient<ElasticsearchSna
 
 	public CompletableFuture<DeleteRepositoryResponse> deleteRepository(DeleteRepositoryRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(request, DeleteRepositoryRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<DeleteRepositoryRequest, DeleteRepositoryResponse, ErrorResponse> endpoint = (Endpoint<DeleteRepositoryRequest, DeleteRepositoryResponse, ErrorResponse>) DeleteRepositoryRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -257,7 +277,10 @@ public class ElasticsearchSnapshotAsyncClient extends ApiClient<ElasticsearchSna
 
 	public CompletableFuture<GetSnapshotResponse> get(GetSnapshotRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(request, GetSnapshotRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<GetSnapshotRequest, GetSnapshotResponse, ErrorResponse> endpoint = (Endpoint<GetSnapshotRequest, GetSnapshotResponse, ErrorResponse>) GetSnapshotRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -289,7 +312,10 @@ public class ElasticsearchSnapshotAsyncClient extends ApiClient<ElasticsearchSna
 
 	public CompletableFuture<GetRepositoryResponse> getRepository(GetRepositoryRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(request, GetRepositoryRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<GetRepositoryRequest, GetRepositoryResponse, ErrorResponse> endpoint = (Endpoint<GetRepositoryRequest, GetRepositoryResponse, ErrorResponse>) GetRepositoryRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -319,7 +345,7 @@ public class ElasticsearchSnapshotAsyncClient extends ApiClient<ElasticsearchSna
 
 	public CompletableFuture<GetRepositoryResponse> getRepository() throws IOException, ElasticsearchException {
 		return this.transport.performRequestAsync(new GetRepositoryRequest.Builder().build(),
-				GetRepositoryRequest.ENDPOINT, this.transportOptions);
+				GetRepositoryRequest._ENDPOINT, this.transportOptions);
 	}
 
 	// ----- Endpoint: snapshot.restore
@@ -334,7 +360,10 @@ public class ElasticsearchSnapshotAsyncClient extends ApiClient<ElasticsearchSna
 
 	public CompletableFuture<RestoreResponse> restore(RestoreRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(request, RestoreRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<RestoreRequest, RestoreResponse, ErrorResponse> endpoint = (Endpoint<RestoreRequest, RestoreResponse, ErrorResponse>) RestoreRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -365,7 +394,10 @@ public class ElasticsearchSnapshotAsyncClient extends ApiClient<ElasticsearchSna
 	 */
 
 	public CompletableFuture<StatusResponse> status(StatusRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(request, StatusRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<StatusRequest, StatusResponse, ErrorResponse> endpoint = (Endpoint<StatusRequest, StatusResponse, ErrorResponse>) StatusRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -394,7 +426,7 @@ public class ElasticsearchSnapshotAsyncClient extends ApiClient<ElasticsearchSna
 	 */
 
 	public CompletableFuture<StatusResponse> status() throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(new StatusRequest.Builder().build(), StatusRequest.ENDPOINT,
+		return this.transport.performRequestAsync(new StatusRequest.Builder().build(), StatusRequest._ENDPOINT,
 				this.transportOptions);
 	}
 
@@ -410,7 +442,10 @@ public class ElasticsearchSnapshotAsyncClient extends ApiClient<ElasticsearchSna
 
 	public CompletableFuture<VerifyRepositoryResponse> verifyRepository(VerifyRepositoryRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(request, VerifyRepositoryRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<VerifyRepositoryRequest, VerifyRepositoryResponse, ErrorResponse> endpoint = (Endpoint<VerifyRepositoryRequest, VerifyRepositoryResponse, ErrorResponse>) VerifyRepositoryRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
 
 	/**

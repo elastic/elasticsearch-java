@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.analysis;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -39,7 +38,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.analysis.IcuTokenizer
 @JsonpDeserializable
-public class IcuTokenizer extends TokenizerBase implements TokenizerVariant, TokenFilterVariant {
+public class IcuTokenizer extends TokenizerBase implements TokenizerDefinitionVariant, TokenFilterDefinitionVariant {
 	private final String ruleFiles;
 
 	// ---------------------------------------------------------------------------------------------
@@ -56,7 +55,7 @@ public class IcuTokenizer extends TokenizerBase implements TokenizerVariant, Tok
 	}
 
 	/**
-	 * {@link Tokenizer}, {@link TokenFilter} variant type
+	 * {@link TokenizerDefinition}, {@link TokenFilterDefinition} variant type
 	 */
 	@Override
 	public String _variantType() {
@@ -119,9 +118,9 @@ public class IcuTokenizer extends TokenizerBase implements TokenizerVariant, Tok
 	 * Json deserializer for {@link IcuTokenizer}
 	 */
 	public static final JsonpDeserializer<IcuTokenizer> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			IcuTokenizer::setupIcuTokenizerDeserializer, Builder::build);
+			IcuTokenizer::setupIcuTokenizerDeserializer);
 
-	protected static void setupIcuTokenizerDeserializer(DelegatingDeserializer<IcuTokenizer.Builder> op) {
+	protected static void setupIcuTokenizerDeserializer(ObjectDeserializer<IcuTokenizer.Builder> op) {
 		TokenizerBase.setupTokenizerBaseDeserializer(op);
 		op.add(Builder::ruleFiles, JsonpDeserializer.stringDeserializer(), "rule_files");
 

@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.analysis;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -42,7 +41,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.analysis.WordDelimiterTokenFilter
 @JsonpDeserializable
-public class WordDelimiterTokenFilter extends TokenFilterBase implements TokenFilterVariant {
+public class WordDelimiterTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
 	@Nullable
 	private final Boolean catenateAll;
 
@@ -106,7 +105,7 @@ public class WordDelimiterTokenFilter extends TokenFilterBase implements TokenFi
 	}
 
 	/**
-	 * {@link TokenFilter} variant type
+	 * {@link TokenFilterDefinition} variant type
 	 */
 	@Override
 	public String _variantType() {
@@ -488,10 +487,10 @@ public class WordDelimiterTokenFilter extends TokenFilterBase implements TokenFi
 	 * Json deserializer for {@link WordDelimiterTokenFilter}
 	 */
 	public static final JsonpDeserializer<WordDelimiterTokenFilter> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, WordDelimiterTokenFilter::setupWordDelimiterTokenFilterDeserializer, Builder::build);
+			.lazy(Builder::new, WordDelimiterTokenFilter::setupWordDelimiterTokenFilterDeserializer);
 
 	protected static void setupWordDelimiterTokenFilterDeserializer(
-			DelegatingDeserializer<WordDelimiterTokenFilter.Builder> op) {
+			ObjectDeserializer<WordDelimiterTokenFilter.Builder> op) {
 		TokenFilterBase.setupTokenFilterBaseDeserializer(op);
 		op.add(Builder::catenateAll, JsonpDeserializer.booleanDeserializer(), "catenate_all");
 		op.add(Builder::catenateNumbers, JsonpDeserializer.booleanDeserializer(), "catenate_numbers");

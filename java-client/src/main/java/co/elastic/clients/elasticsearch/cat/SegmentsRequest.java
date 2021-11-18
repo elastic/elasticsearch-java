@@ -145,7 +145,7 @@ public class SegmentsRequest extends CatRequestBase {
 	/**
 	 * Endpoint "{@code cat.segments}".
 	 */
-	public static final Endpoint<SegmentsRequest, SegmentsResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<SegmentsRequest, SegmentsResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "GET";

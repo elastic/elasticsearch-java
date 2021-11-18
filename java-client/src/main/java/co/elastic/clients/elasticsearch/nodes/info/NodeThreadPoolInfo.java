@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.nodes.info;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -250,9 +249,9 @@ public class NodeThreadPoolInfo implements JsonpSerializable {
 	 * Json deserializer for {@link NodeThreadPoolInfo}
 	 */
 	public static final JsonpDeserializer<NodeThreadPoolInfo> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, NodeThreadPoolInfo::setupNodeThreadPoolInfoDeserializer, Builder::build);
+			.lazy(Builder::new, NodeThreadPoolInfo::setupNodeThreadPoolInfoDeserializer);
 
-	protected static void setupNodeThreadPoolInfoDeserializer(DelegatingDeserializer<NodeThreadPoolInfo.Builder> op) {
+	protected static void setupNodeThreadPoolInfoDeserializer(ObjectDeserializer<NodeThreadPoolInfo.Builder> op) {
 
 		op.add(Builder::core, JsonpDeserializer.integerDeserializer(), "core");
 		op.add(Builder::keepAlive, JsonpDeserializer.stringDeserializer(), "keep_alive");

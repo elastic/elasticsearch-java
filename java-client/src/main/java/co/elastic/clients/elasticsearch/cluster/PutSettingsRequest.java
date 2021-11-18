@@ -25,7 +25,7 @@ package co.elastic.clients.elasticsearch.cluster;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -54,12 +54,12 @@ public class PutSettingsRequest extends RequestBase implements JsonpSerializable
 	private final Boolean flatSettings;
 
 	@Nullable
-	private final String masterTimeout;
+	private final Time masterTimeout;
 
 	private final Map<String, JsonData> persistent;
 
 	@Nullable
-	private final String timeout;
+	private final Time timeout;
 
 	private final Map<String, JsonData> transient_;
 
@@ -95,7 +95,7 @@ public class PutSettingsRequest extends RequestBase implements JsonpSerializable
 	 * API name: {@code master_timeout}
 	 */
 	@Nullable
-	public final String masterTimeout() {
+	public final Time masterTimeout() {
 		return this.masterTimeout;
 	}
 
@@ -112,7 +112,7 @@ public class PutSettingsRequest extends RequestBase implements JsonpSerializable
 	 * API name: {@code timeout}
 	 */
 	@Nullable
-	public final String timeout() {
+	public final Time timeout() {
 		return this.timeout;
 	}
 
@@ -169,13 +169,13 @@ public class PutSettingsRequest extends RequestBase implements JsonpSerializable
 		private Boolean flatSettings;
 
 		@Nullable
-		private String masterTimeout;
+		private Time masterTimeout;
 
 		@Nullable
 		private Map<String, JsonData> persistent;
 
 		@Nullable
-		private String timeout;
+		private Time timeout;
 
 		@Nullable
 		private Map<String, JsonData> transient_;
@@ -195,9 +195,18 @@ public class PutSettingsRequest extends RequestBase implements JsonpSerializable
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
-		public final Builder masterTimeout(@Nullable String value) {
+		public final Builder masterTimeout(@Nullable Time value) {
 			this.masterTimeout = value;
 			return this;
+		}
+
+		/**
+		 * Explicit operation timeout for connection to master node
+		 * <p>
+		 * API name: {@code master_timeout}
+		 */
+		public final Builder masterTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.masterTimeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -213,9 +222,18 @@ public class PutSettingsRequest extends RequestBase implements JsonpSerializable
 		 * <p>
 		 * API name: {@code timeout}
 		 */
-		public final Builder timeout(@Nullable String value) {
+		public final Builder timeout(@Nullable Time value) {
 			this.timeout = value;
 			return this;
+		}
+
+		/**
+		 * Explicit operation timeout
+		 * <p>
+		 * API name: {@code timeout}
+		 */
+		public final Builder timeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.timeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -245,9 +263,9 @@ public class PutSettingsRequest extends RequestBase implements JsonpSerializable
 	 * Json deserializer for {@link PutSettingsRequest}
 	 */
 	public static final JsonpDeserializer<PutSettingsRequest> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, PutSettingsRequest::setupPutSettingsRequestDeserializer, Builder::build);
+			.lazy(Builder::new, PutSettingsRequest::setupPutSettingsRequestDeserializer);
 
-	protected static void setupPutSettingsRequestDeserializer(DelegatingDeserializer<PutSettingsRequest.Builder> op) {
+	protected static void setupPutSettingsRequestDeserializer(ObjectDeserializer<PutSettingsRequest.Builder> op) {
 
 		op.add(Builder::persistent, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "persistent");
 		op.add(Builder::transient_, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "transient");
@@ -259,7 +277,7 @@ public class PutSettingsRequest extends RequestBase implements JsonpSerializable
 	/**
 	 * Endpoint "{@code cluster.put_settings}".
 	 */
-	public static final Endpoint<PutSettingsRequest, PutSettingsResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<PutSettingsRequest, PutSettingsResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "PUT";
@@ -276,13 +294,13 @@ public class PutSettingsRequest extends RequestBase implements JsonpSerializable
 			request -> {
 				Map<String, String> params = new HashMap<>();
 				if (request.masterTimeout != null) {
-					params.put("master_timeout", request.masterTimeout);
+					params.put("master_timeout", request.masterTimeout._toJsonString());
 				}
 				if (request.flatSettings != null) {
 					params.put("flat_settings", String.valueOf(request.flatSettings));
 				}
 				if (request.timeout != null) {
-					params.put("timeout", request.timeout);
+					params.put("timeout", request.timeout._toJsonString());
 				}
 				return params;
 

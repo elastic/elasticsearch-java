@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -221,11 +220,11 @@ public class WeightedAverageAggregation extends AggregationBase implements Aggre
 	/**
 	 * Json deserializer for {@link WeightedAverageAggregation}
 	 */
-	public static final JsonpDeserializer<WeightedAverageAggregation> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
-			Builder::new, WeightedAverageAggregation::setupWeightedAverageAggregationDeserializer, Builder::build);
+	public static final JsonpDeserializer<WeightedAverageAggregation> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, WeightedAverageAggregation::setupWeightedAverageAggregationDeserializer);
 
 	protected static void setupWeightedAverageAggregationDeserializer(
-			DelegatingDeserializer<WeightedAverageAggregation.Builder> op) {
+			ObjectDeserializer<WeightedAverageAggregation.Builder> op) {
 		AggregationBase.setupAggregationBaseDeserializer(op);
 		op.add(Builder::format, JsonpDeserializer.stringDeserializer(), "format");
 		op.add(Builder::value, WeightedAverageValue._DESERIALIZER, "value");

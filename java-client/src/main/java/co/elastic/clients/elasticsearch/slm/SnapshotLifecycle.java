@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.slm;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -384,9 +383,9 @@ public class SnapshotLifecycle implements JsonpSerializable {
 	 * Json deserializer for {@link SnapshotLifecycle}
 	 */
 	public static final JsonpDeserializer<SnapshotLifecycle> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, SnapshotLifecycle::setupSnapshotLifecycleDeserializer, Builder::build);
+			.lazy(Builder::new, SnapshotLifecycle::setupSnapshotLifecycleDeserializer);
 
-	protected static void setupSnapshotLifecycleDeserializer(DelegatingDeserializer<SnapshotLifecycle.Builder> op) {
+	protected static void setupSnapshotLifecycleDeserializer(ObjectDeserializer<SnapshotLifecycle.Builder> op) {
 
 		op.add(Builder::inProgress, InProgress._DESERIALIZER, "in_progress");
 		op.add(Builder::lastFailure, Invocation._DESERIALIZER, "last_failure");

@@ -192,7 +192,7 @@ public class TransformsRequest extends CatRequestBase {
 	/**
 	 * Endpoint "{@code cat.transforms}".
 	 */
-	public static final Endpoint<TransformsRequest, TransformsResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<TransformsRequest, TransformsResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "GET";

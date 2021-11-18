@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -153,9 +152,9 @@ public class MissingAggregation extends BucketAggregationBase implements Aggrega
 	 * Json deserializer for {@link MissingAggregation}
 	 */
 	public static final JsonpDeserializer<MissingAggregation> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, MissingAggregation::setupMissingAggregationDeserializer, Builder::build);
+			.lazy(Builder::new, MissingAggregation::setupMissingAggregationDeserializer);
 
-	protected static void setupMissingAggregationDeserializer(DelegatingDeserializer<MissingAggregation.Builder> op) {
+	protected static void setupMissingAggregationDeserializer(ObjectDeserializer<MissingAggregation.Builder> op) {
 		BucketAggregationBase.setupBucketAggregationBaseDeserializer(op);
 		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
 		op.add(Builder::missing, JsonpDeserializer.stringDeserializer(), "missing");

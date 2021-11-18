@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch.autoscaling;
 
 import co.elastic.clients.elasticsearch.autoscaling.get_autoscaling_capacity.AutoscalingDeciders;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -141,11 +140,10 @@ public class GetAutoscalingCapacityResponse implements JsonpSerializable {
 	 * Json deserializer for {@link GetAutoscalingCapacityResponse}
 	 */
 	public static final JsonpDeserializer<GetAutoscalingCapacityResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, GetAutoscalingCapacityResponse::setupGetAutoscalingCapacityResponseDeserializer,
-					Builder::build);
+			.lazy(Builder::new, GetAutoscalingCapacityResponse::setupGetAutoscalingCapacityResponseDeserializer);
 
 	protected static void setupGetAutoscalingCapacityResponseDeserializer(
-			DelegatingDeserializer<GetAutoscalingCapacityResponse.Builder> op) {
+			ObjectDeserializer<GetAutoscalingCapacityResponse.Builder> op) {
 
 		op.add(Builder::policies, JsonpDeserializer.stringMapDeserializer(AutoscalingDeciders._DESERIALIZER),
 				"policies");

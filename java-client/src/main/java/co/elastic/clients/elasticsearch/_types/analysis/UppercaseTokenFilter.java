@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.analysis;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -36,7 +35,7 @@ import java.util.function.Function;
 
 // typedef: _types.analysis.UppercaseTokenFilter
 @JsonpDeserializable
-public class UppercaseTokenFilter extends TokenFilterBase implements TokenFilterVariant {
+public class UppercaseTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
 	// ---------------------------------------------------------------------------------------------
 
 	private UppercaseTokenFilter(Builder builder) {
@@ -49,7 +48,7 @@ public class UppercaseTokenFilter extends TokenFilterBase implements TokenFilter
 	}
 
 	/**
-	 * {@link TokenFilter} variant type
+	 * {@link TokenFilterDefinition} variant type
 	 */
 	@Override
 	public String _variantType() {
@@ -95,10 +94,9 @@ public class UppercaseTokenFilter extends TokenFilterBase implements TokenFilter
 	 * Json deserializer for {@link UppercaseTokenFilter}
 	 */
 	public static final JsonpDeserializer<UppercaseTokenFilter> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, UppercaseTokenFilter::setupUppercaseTokenFilterDeserializer, Builder::build);
+			.lazy(Builder::new, UppercaseTokenFilter::setupUppercaseTokenFilterDeserializer);
 
-	protected static void setupUppercaseTokenFilterDeserializer(
-			DelegatingDeserializer<UppercaseTokenFilter.Builder> op) {
+	protected static void setupUppercaseTokenFilterDeserializer(ObjectDeserializer<UppercaseTokenFilter.Builder> op) {
 		TokenFilterBase.setupTokenFilterBaseDeserializer(op);
 
 		op.ignore("type");

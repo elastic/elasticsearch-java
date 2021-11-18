@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.nodes.info;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -160,10 +159,10 @@ public class NodeInfoNetworkInterface implements JsonpSerializable {
 	 * Json deserializer for {@link NodeInfoNetworkInterface}
 	 */
 	public static final JsonpDeserializer<NodeInfoNetworkInterface> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, NodeInfoNetworkInterface::setupNodeInfoNetworkInterfaceDeserializer, Builder::build);
+			.lazy(Builder::new, NodeInfoNetworkInterface::setupNodeInfoNetworkInterfaceDeserializer);
 
 	protected static void setupNodeInfoNetworkInterfaceDeserializer(
-			DelegatingDeserializer<NodeInfoNetworkInterface.Builder> op) {
+			ObjectDeserializer<NodeInfoNetworkInterface.Builder> op) {
 
 		op.add(Builder::address, JsonpDeserializer.stringDeserializer(), "address");
 		op.add(Builder::macAddress, JsonpDeserializer.stringDeserializer(), "mac_address");

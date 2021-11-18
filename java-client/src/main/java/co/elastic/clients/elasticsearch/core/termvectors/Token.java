@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.core.termvectors;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -200,9 +199,9 @@ public class Token implements JsonpSerializable {
 	 * Json deserializer for {@link Token}
 	 */
 	public static final JsonpDeserializer<Token> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			Token::setupTokenDeserializer, Builder::build);
+			Token::setupTokenDeserializer);
 
-	protected static void setupTokenDeserializer(DelegatingDeserializer<Token.Builder> op) {
+	protected static void setupTokenDeserializer(ObjectDeserializer<Token.Builder> op) {
 
 		op.add(Builder::endOffset, JsonpDeserializer.integerDeserializer(), "end_offset");
 		op.add(Builder::payload, JsonpDeserializer.stringDeserializer(), "payload");

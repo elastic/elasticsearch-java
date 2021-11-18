@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -52,7 +53,7 @@ public class DeleteDataFrameAnalyticsRequest extends RequestBase {
 	private final String id;
 
 	@Nullable
-	private final String timeout;
+	private final Time timeout;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -95,7 +96,7 @@ public class DeleteDataFrameAnalyticsRequest extends RequestBase {
 	 * API name: {@code timeout}
 	 */
 	@Nullable
-	public final String timeout() {
+	public final Time timeout() {
 		return this.timeout;
 	}
 
@@ -111,7 +112,7 @@ public class DeleteDataFrameAnalyticsRequest extends RequestBase {
 		private String id;
 
 		@Nullable
-		private String timeout;
+		private Time timeout;
 
 		/**
 		 * If <code>true</code>, it deletes a job that is not stopped; this method is
@@ -139,9 +140,18 @@ public class DeleteDataFrameAnalyticsRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code timeout}
 		 */
-		public final Builder timeout(@Nullable String value) {
+		public final Builder timeout(@Nullable Time value) {
 			this.timeout = value;
 			return this;
+		}
+
+		/**
+		 * The time to wait for the job to be deleted.
+		 * <p>
+		 * API name: {@code timeout}
+		 */
+		public final Builder timeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.timeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -162,7 +172,7 @@ public class DeleteDataFrameAnalyticsRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code ml.delete_data_frame_analytics}".
 	 */
-	public static final Endpoint<DeleteDataFrameAnalyticsRequest, DeleteDataFrameAnalyticsResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<DeleteDataFrameAnalyticsRequest, DeleteDataFrameAnalyticsResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "DELETE";
@@ -197,7 +207,7 @@ public class DeleteDataFrameAnalyticsRequest extends RequestBase {
 					params.put("force", String.valueOf(request.force));
 				}
 				if (request.timeout != null) {
-					params.put("timeout", request.timeout);
+					params.put("timeout", request.timeout._toJsonString());
 				}
 				return params;
 

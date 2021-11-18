@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.security.get_role;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -113,9 +112,9 @@ public class TransientMetadata implements JsonpSerializable {
 	 * Json deserializer for {@link TransientMetadata}
 	 */
 	public static final JsonpDeserializer<TransientMetadata> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, TransientMetadata::setupTransientMetadataDeserializer, Builder::build);
+			.lazy(Builder::new, TransientMetadata::setupTransientMetadataDeserializer);
 
-	protected static void setupTransientMetadataDeserializer(DelegatingDeserializer<TransientMetadata.Builder> op) {
+	protected static void setupTransientMetadataDeserializer(ObjectDeserializer<TransientMetadata.Builder> op) {
 
 		op.add(Builder::enabled, JsonpDeserializer.booleanDeserializer(), "enabled");
 

@@ -26,9 +26,9 @@ package co.elastic.clients.elasticsearch.core;
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch._types.VersionType;
+import co.elastic.clients.elasticsearch.core.search.SourceConfigParam;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
-import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.BooleanEndpoint;
@@ -38,7 +38,6 @@ import co.elastic.clients.transport.SimpleEndpoint;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Long;
@@ -56,7 +55,7 @@ import javax.annotation.Nullable;
 
 public class ExistsRequest extends RequestBase {
 	@Nullable
-	private final JsonValue /* Union(_types.Fields | internal.boolean) */ source;
+	private final SourceConfigParam source;
 
 	private final List<String> sourceExcludes;
 
@@ -120,7 +119,7 @@ public class ExistsRequest extends RequestBase {
 	 * API name: {@code _source}
 	 */
 	@Nullable
-	public final JsonValue /* Union(_types.Fields | internal.boolean) */ source() {
+	public final SourceConfigParam source() {
 		return this.source;
 	}
 
@@ -248,7 +247,7 @@ public class ExistsRequest extends RequestBase {
 	 */
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ExistsRequest> {
 		@Nullable
-		private JsonValue /* Union(_types.Fields | internal.boolean) */ source;
+		private SourceConfigParam source;
 
 		@Nullable
 		private List<String> sourceExcludes;
@@ -290,9 +289,19 @@ public class ExistsRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code _source}
 		 */
-		public final Builder source(@Nullable JsonValue /* Union(_types.Fields | internal.boolean) */ value) {
+		public final Builder source(@Nullable SourceConfigParam value) {
 			this.source = value;
 			return this;
+		}
+
+		/**
+		 * True or false to return the _source field or not, or a list of fields to
+		 * return
+		 * <p>
+		 * API name: {@code _source}
+		 */
+		public final Builder source(Function<SourceConfigParam.Builder, ObjectBuilder<SourceConfigParam>> fn) {
+			return this.source(fn.apply(new SourceConfigParam.Builder()).build());
 		}
 
 		/**
@@ -465,7 +474,7 @@ public class ExistsRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code exists}".
 	 */
-	public static final Endpoint<ExistsRequest, BooleanResponse, ErrorResponse> ENDPOINT = new BooleanEndpoint<>(
+	public static final Endpoint<ExistsRequest, BooleanResponse, ErrorResponse> _ENDPOINT = new BooleanEndpoint<>(
 			// Request method
 			request -> {
 				return "HEAD";
@@ -531,7 +540,7 @@ public class ExistsRequest extends RequestBase {
 					params.put("refresh", String.valueOf(request.refresh));
 				}
 				if (request.source != null) {
-					params.put("_source", JsonpUtils.toString(request.source));
+					params.put("_source", request.source._toJsonString());
 				}
 				if (ModelTypeHelper.isDefined(request.sourceExcludes)) {
 					params.put("_source_excludes",

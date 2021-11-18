@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.cluster.stats;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -160,11 +159,10 @@ public class ClusterProcessOpenFileDescriptors implements JsonpSerializable {
 	 * Json deserializer for {@link ClusterProcessOpenFileDescriptors}
 	 */
 	public static final JsonpDeserializer<ClusterProcessOpenFileDescriptors> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, ClusterProcessOpenFileDescriptors::setupClusterProcessOpenFileDescriptorsDeserializer,
-					Builder::build);
+			.lazy(Builder::new, ClusterProcessOpenFileDescriptors::setupClusterProcessOpenFileDescriptorsDeserializer);
 
 	protected static void setupClusterProcessOpenFileDescriptorsDeserializer(
-			DelegatingDeserializer<ClusterProcessOpenFileDescriptors.Builder> op) {
+			ObjectDeserializer<ClusterProcessOpenFileDescriptors.Builder> op) {
 
 		op.add(Builder::avg, JsonpDeserializer.longDeserializer(), "avg");
 		op.add(Builder::max, JsonpDeserializer.longDeserializer(), "max");

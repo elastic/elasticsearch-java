@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.cluster.stats;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -206,10 +205,10 @@ public class OperatingSystemMemoryInfo implements JsonpSerializable {
 	 * Json deserializer for {@link OperatingSystemMemoryInfo}
 	 */
 	public static final JsonpDeserializer<OperatingSystemMemoryInfo> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, OperatingSystemMemoryInfo::setupOperatingSystemMemoryInfoDeserializer, Builder::build);
+			.lazy(Builder::new, OperatingSystemMemoryInfo::setupOperatingSystemMemoryInfoDeserializer);
 
 	protected static void setupOperatingSystemMemoryInfoDeserializer(
-			DelegatingDeserializer<OperatingSystemMemoryInfo.Builder> op) {
+			ObjectDeserializer<OperatingSystemMemoryInfo.Builder> op) {
 
 		op.add(Builder::freeInBytes, JsonpDeserializer.longDeserializer(), "free_in_bytes");
 		op.add(Builder::freePercent, JsonpDeserializer.integerDeserializer(), "free_percent");

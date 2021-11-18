@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.security;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -137,9 +136,9 @@ public class RealmInfo implements JsonpSerializable {
 	 * Json deserializer for {@link RealmInfo}
 	 */
 	public static final JsonpDeserializer<RealmInfo> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			RealmInfo::setupRealmInfoDeserializer, Builder::build);
+			RealmInfo::setupRealmInfoDeserializer);
 
-	protected static void setupRealmInfoDeserializer(DelegatingDeserializer<RealmInfo.Builder> op) {
+	protected static void setupRealmInfoDeserializer(ObjectDeserializer<RealmInfo.Builder> op) {
 
 		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
 		op.add(Builder::type, JsonpDeserializer.stringDeserializer(), "type");

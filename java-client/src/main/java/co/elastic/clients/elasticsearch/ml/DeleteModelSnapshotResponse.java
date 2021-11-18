@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.elasticsearch._types.AcknowledgedResponseBase;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -79,11 +78,11 @@ public class DeleteModelSnapshotResponse extends AcknowledgedResponseBase {
 	/**
 	 * Json deserializer for {@link DeleteModelSnapshotResponse}
 	 */
-	public static final JsonpDeserializer<DeleteModelSnapshotResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
-			Builder::new, DeleteModelSnapshotResponse::setupDeleteModelSnapshotResponseDeserializer, Builder::build);
+	public static final JsonpDeserializer<DeleteModelSnapshotResponse> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, DeleteModelSnapshotResponse::setupDeleteModelSnapshotResponseDeserializer);
 
 	protected static void setupDeleteModelSnapshotResponseDeserializer(
-			DelegatingDeserializer<DeleteModelSnapshotResponse.Builder> op) {
+			ObjectDeserializer<DeleteModelSnapshotResponse.Builder> op) {
 		AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);
 
 	}

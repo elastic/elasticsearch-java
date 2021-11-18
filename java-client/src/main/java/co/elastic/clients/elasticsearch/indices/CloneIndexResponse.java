@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch.indices;
 
 import co.elastic.clients.elasticsearch._types.AcknowledgedResponseBase;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -138,9 +137,9 @@ public class CloneIndexResponse extends AcknowledgedResponseBase {
 	 * Json deserializer for {@link CloneIndexResponse}
 	 */
 	public static final JsonpDeserializer<CloneIndexResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, CloneIndexResponse::setupCloneIndexResponseDeserializer, Builder::build);
+			.lazy(Builder::new, CloneIndexResponse::setupCloneIndexResponseDeserializer);
 
-	protected static void setupCloneIndexResponseDeserializer(DelegatingDeserializer<CloneIndexResponse.Builder> op) {
+	protected static void setupCloneIndexResponseDeserializer(ObjectDeserializer<CloneIndexResponse.Builder> op) {
 		AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);
 		op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "index");
 		op.add(Builder::shardsAcknowledged, JsonpDeserializer.booleanDeserializer(), "shards_acknowledged");

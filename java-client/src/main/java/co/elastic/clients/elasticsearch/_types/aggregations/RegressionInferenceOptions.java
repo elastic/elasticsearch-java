@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -159,11 +158,11 @@ public class RegressionInferenceOptions implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link RegressionInferenceOptions}
 	 */
-	public static final JsonpDeserializer<RegressionInferenceOptions> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
-			Builder::new, RegressionInferenceOptions::setupRegressionInferenceOptionsDeserializer, Builder::build);
+	public static final JsonpDeserializer<RegressionInferenceOptions> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, RegressionInferenceOptions::setupRegressionInferenceOptionsDeserializer);
 
 	protected static void setupRegressionInferenceOptionsDeserializer(
-			DelegatingDeserializer<RegressionInferenceOptions.Builder> op) {
+			ObjectDeserializer<RegressionInferenceOptions.Builder> op) {
 
 		op.add(Builder::resultsField, JsonpDeserializer.stringDeserializer(), "results_field");
 		op.add(Builder::numTopFeatureImportanceValues, JsonpDeserializer.integerDeserializer(),

@@ -27,7 +27,6 @@ import co.elastic.clients.elasticsearch._types.aggregations.DateHistogramAggrega
 import co.elastic.clients.elasticsearch._types.aggregations.GeoTileGridAggregation;
 import co.elastic.clients.elasticsearch._types.aggregations.HistogramAggregation;
 import co.elastic.clients.elasticsearch._types.aggregations.TermsAggregation;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -46,6 +45,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: transform._types.PivotGroupByContainer
+// union type: Container[]
 @JsonpDeserializable
 public class PivotGroupBy implements TaggedUnion<Object>, JsonpSerializable {
 
@@ -53,8 +53,6 @@ public class PivotGroupBy implements TaggedUnion<Object>, JsonpSerializable {
 	public static final String GEOTILE_GRID = "geotile_grid";
 	public static final String HISTOGRAM = "histogram";
 	public static final String TERMS = "terms";
-
-	// Tagged union implementation
 
 	private final String _type;
 	private final Object _value;
@@ -130,6 +128,7 @@ public class PivotGroupBy implements TaggedUnion<Object>, JsonpSerializable {
 	@Override
 	@SuppressWarnings("unchecked")
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+
 		generator.writeStartObject();
 
 		generator.writeKey(_type);
@@ -138,6 +137,7 @@ public class PivotGroupBy implements TaggedUnion<Object>, JsonpSerializable {
 		}
 
 		generator.writeEnd();
+
 	}
 
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PivotGroupBy> {
@@ -192,7 +192,7 @@ public class PivotGroupBy implements TaggedUnion<Object>, JsonpSerializable {
 
 	}
 
-	protected static void setupPivotGroupByDeserializer(DelegatingDeserializer<Builder> op) {
+	protected static void setupPivotGroupByDeserializer(ObjectDeserializer<Builder> op) {
 
 		op.add(Builder::dateHistogram, DateHistogramAggregation._DESERIALIZER, "date_histogram");
 		op.add(Builder::geotileGrid, GeoTileGridAggregation._DESERIALIZER, "geotile_grid");

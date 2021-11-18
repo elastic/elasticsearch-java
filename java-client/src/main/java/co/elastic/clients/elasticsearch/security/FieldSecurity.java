@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.security;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -171,9 +170,9 @@ public class FieldSecurity implements JsonpSerializable {
 	 * Json deserializer for {@link FieldSecurity}
 	 */
 	public static final JsonpDeserializer<FieldSecurity> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			FieldSecurity::setupFieldSecurityDeserializer, Builder::build);
+			FieldSecurity::setupFieldSecurityDeserializer);
 
-	protected static void setupFieldSecurityDeserializer(DelegatingDeserializer<FieldSecurity.Builder> op) {
+	protected static void setupFieldSecurityDeserializer(ObjectDeserializer<FieldSecurity.Builder> op) {
 
 		op.add(Builder::except, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "except");
 		op.add(Builder::grant, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "grant");

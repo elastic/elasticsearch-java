@@ -146,8 +146,8 @@ public class PutAutoscalingPolicyRequest extends RequestBase implements JsonpSer
 
 		JsonpDeserializer<AutoscalingPolicy> valueDeserializer = AutoscalingPolicy._DESERIALIZER;
 
-		return JsonpDeserializer.of(valueDeserializer.acceptedEvents(), (parser, mapper, event) -> new Builder()
-				.policy(valueDeserializer.deserialize(parser, mapper, event)).build());
+		return JsonpDeserializer.of(valueDeserializer.acceptedEvents(),
+				(parser, mapper) -> new Builder().policy(valueDeserializer.deserialize(parser, mapper)).build());
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -155,7 +155,7 @@ public class PutAutoscalingPolicyRequest extends RequestBase implements JsonpSer
 	/**
 	 * Endpoint "{@code autoscaling.put_autoscaling_policy}".
 	 */
-	public static final Endpoint<PutAutoscalingPolicyRequest, PutAutoscalingPolicyResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<PutAutoscalingPolicyRequest, PutAutoscalingPolicyResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "PUT";

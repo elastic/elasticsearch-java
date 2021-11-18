@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch.nodes;
 
 import co.elastic.clients.elasticsearch.nodes.hot_threads.HotThread;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -145,9 +144,9 @@ public class HotThreadsResponse implements JsonpSerializable {
 	 * Json deserializer for {@link HotThreadsResponse}
 	 */
 	public static final JsonpDeserializer<HotThreadsResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, HotThreadsResponse::setupHotThreadsResponseDeserializer, Builder::build);
+			.lazy(Builder::new, HotThreadsResponse::setupHotThreadsResponseDeserializer);
 
-	protected static void setupHotThreadsResponseDeserializer(DelegatingDeserializer<HotThreadsResponse.Builder> op) {
+	protected static void setupHotThreadsResponseDeserializer(ObjectDeserializer<HotThreadsResponse.Builder> op) {
 
 		op.add(Builder::hotThreads, JsonpDeserializer.arrayDeserializer(HotThread._DESERIALIZER), "hot_threads");
 

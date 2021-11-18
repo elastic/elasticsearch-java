@@ -23,7 +23,7 @@
 
 package co.elastic.clients.elasticsearch._types.mapping;
 
-import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.elasticsearch._types.Script;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -33,7 +33,6 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -47,7 +46,7 @@ public class RuntimeField implements JsonpSerializable {
 	private final String format;
 
 	@Nullable
-	private final JsonValue /* _types.Script */ script;
+	private final Script script;
 
 	private final RuntimeFieldType type;
 
@@ -77,7 +76,7 @@ public class RuntimeField implements JsonpSerializable {
 	 * API name: {@code script}
 	 */
 	@Nullable
-	public final JsonValue /* _types.Script */ script() {
+	public final Script script() {
 		return this.script;
 	}
 
@@ -106,7 +105,7 @@ public class RuntimeField implements JsonpSerializable {
 		}
 		if (this.script != null) {
 			generator.writeKey("script");
-			generator.write(this.script);
+			this.script.serialize(generator, mapper);
 
 		}
 		generator.writeKey("type");
@@ -124,7 +123,7 @@ public class RuntimeField implements JsonpSerializable {
 		private String format;
 
 		@Nullable
-		private JsonValue /* _types.Script */ script;
+		private Script script;
 
 		private RuntimeFieldType type;
 
@@ -139,9 +138,16 @@ public class RuntimeField implements JsonpSerializable {
 		/**
 		 * API name: {@code script}
 		 */
-		public final Builder script(@Nullable JsonValue /* _types.Script */ value) {
+		public final Builder script(@Nullable Script value) {
 			this.script = value;
 			return this;
+		}
+
+		/**
+		 * API name: {@code script}
+		 */
+		public final Builder script(Function<Script.Builder, ObjectBuilder<Script>> fn) {
+			return this.script(fn.apply(new Script.Builder()).build());
 		}
 
 		/**
@@ -171,12 +177,12 @@ public class RuntimeField implements JsonpSerializable {
 	 * Json deserializer for {@link RuntimeField}
 	 */
 	public static final JsonpDeserializer<RuntimeField> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			RuntimeField::setupRuntimeFieldDeserializer, Builder::build);
+			RuntimeField::setupRuntimeFieldDeserializer);
 
-	protected static void setupRuntimeFieldDeserializer(DelegatingDeserializer<RuntimeField.Builder> op) {
+	protected static void setupRuntimeFieldDeserializer(ObjectDeserializer<RuntimeField.Builder> op) {
 
 		op.add(Builder::format, JsonpDeserializer.stringDeserializer(), "format");
-		op.add(Builder::script, JsonpDeserializer.jsonValueDeserializer(), "script");
+		op.add(Builder::script, Script._DESERIALIZER, "script");
 		op.add(Builder::type, RuntimeFieldType._DESERIALIZER, "type");
 
 	}

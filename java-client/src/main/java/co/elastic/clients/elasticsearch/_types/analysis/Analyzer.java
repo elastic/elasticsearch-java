@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.analysis;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -41,6 +40,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.analysis.Analyzer
+// union type: InternalTag[tag=type]
 @JsonpDeserializable
 public class Analyzer implements TaggedUnion<AnalyzerVariant>, JsonpSerializable {
 
@@ -58,8 +58,6 @@ public class Analyzer implements TaggedUnion<AnalyzerVariant>, JsonpSerializable
 	public static final String STANDARD = "standard";
 	public static final String STOP = "stop";
 	public static final String WHITESPACE = "whitespace";
-
-	// Tagged union implementation
 
 	private final String _type;
 	private final AnalyzerVariant _value;
@@ -390,7 +388,7 @@ public class Analyzer implements TaggedUnion<AnalyzerVariant>, JsonpSerializable
 
 	}
 
-	protected static void setupAnalyzerDeserializer(DelegatingDeserializer<Builder> op) {
+	protected static void setupAnalyzerDeserializer(ObjectDeserializer<Builder> op) {
 
 		op.add(Builder::custom, CustomAnalyzer._DESERIALIZER, "custom");
 		op.add(Builder::dutch, DutchAnalyzer._DESERIALIZER, "dutch");

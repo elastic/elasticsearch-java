@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -252,9 +251,9 @@ public class Hyperparameter implements JsonpSerializable {
 	 * Json deserializer for {@link Hyperparameter}
 	 */
 	public static final JsonpDeserializer<Hyperparameter> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			Hyperparameter::setupHyperparameterDeserializer, Builder::build);
+			Hyperparameter::setupHyperparameterDeserializer);
 
-	protected static void setupHyperparameterDeserializer(DelegatingDeserializer<Hyperparameter.Builder> op) {
+	protected static void setupHyperparameterDeserializer(ObjectDeserializer<Hyperparameter.Builder> op) {
 
 		op.add(Builder::absoluteImportance, JsonpDeserializer.doubleDeserializer(), "absolute_importance");
 		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");

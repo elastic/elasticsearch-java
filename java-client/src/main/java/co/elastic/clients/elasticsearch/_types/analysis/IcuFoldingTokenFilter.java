@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.analysis;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -39,7 +38,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.analysis.IcuFoldingTokenFilter
 @JsonpDeserializable
-public class IcuFoldingTokenFilter extends TokenFilterBase implements TokenFilterVariant {
+public class IcuFoldingTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
 	private final String unicodeSetFilter;
 
 	// ---------------------------------------------------------------------------------------------
@@ -56,7 +55,7 @@ public class IcuFoldingTokenFilter extends TokenFilterBase implements TokenFilte
 	}
 
 	/**
-	 * {@link TokenFilter} variant type
+	 * {@link TokenFilterDefinition} variant type
 	 */
 	@Override
 	public String _variantType() {
@@ -121,10 +120,9 @@ public class IcuFoldingTokenFilter extends TokenFilterBase implements TokenFilte
 	 * Json deserializer for {@link IcuFoldingTokenFilter}
 	 */
 	public static final JsonpDeserializer<IcuFoldingTokenFilter> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, IcuFoldingTokenFilter::setupIcuFoldingTokenFilterDeserializer, Builder::build);
+			.lazy(Builder::new, IcuFoldingTokenFilter::setupIcuFoldingTokenFilterDeserializer);
 
-	protected static void setupIcuFoldingTokenFilterDeserializer(
-			DelegatingDeserializer<IcuFoldingTokenFilter.Builder> op) {
+	protected static void setupIcuFoldingTokenFilterDeserializer(ObjectDeserializer<IcuFoldingTokenFilter.Builder> op) {
 		TokenFilterBase.setupTokenFilterBaseDeserializer(op);
 		op.add(Builder::unicodeSetFilter, JsonpDeserializer.stringDeserializer(), "unicode_set_filter");
 

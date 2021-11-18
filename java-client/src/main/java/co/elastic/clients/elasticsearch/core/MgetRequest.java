@@ -26,12 +26,11 @@ package co.elastic.clients.elasticsearch.core;
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch.core.mget.Operation;
-import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.elasticsearch.core.search.SourceConfigParam;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
-import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
@@ -39,7 +38,6 @@ import co.elastic.clients.transport.SimpleEndpoint;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
@@ -57,7 +55,7 @@ import javax.annotation.Nullable;
 @JsonpDeserializable
 public class MgetRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
-	private final JsonValue /* Union(_types.Fields | internal.boolean) */ source;
+	private final SourceConfigParam source;
 
 	private final List<String> sourceExcludes;
 
@@ -117,7 +115,7 @@ public class MgetRequest extends RequestBase implements JsonpSerializable {
 	 * API name: {@code _source}
 	 */
 	@Nullable
-	public final JsonValue /* Union(_types.Fields | internal.boolean) */ source() {
+	public final SourceConfigParam source() {
 		return this.source;
 	}
 
@@ -264,7 +262,7 @@ public class MgetRequest extends RequestBase implements JsonpSerializable {
 	 */
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<MgetRequest> {
 		@Nullable
-		private JsonValue /* Union(_types.Fields | internal.boolean) */ source;
+		private SourceConfigParam source;
 
 		@Nullable
 		private List<String> sourceExcludes;
@@ -305,9 +303,19 @@ public class MgetRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code _source}
 		 */
-		public final Builder source(@Nullable JsonValue /* Union(_types.Fields | internal.boolean) */ value) {
+		public final Builder source(@Nullable SourceConfigParam value) {
 			this.source = value;
 			return this;
+		}
+
+		/**
+		 * True or false to return the _source field or not, or a list of fields to
+		 * return
+		 * <p>
+		 * API name: {@code _source}
+		 */
+		public final Builder source(Function<SourceConfigParam.Builder, ObjectBuilder<SourceConfigParam>> fn) {
+			return this.source(fn.apply(new SourceConfigParam.Builder()).build());
 		}
 
 		/**
@@ -494,9 +502,9 @@ public class MgetRequest extends RequestBase implements JsonpSerializable {
 	 * Json deserializer for {@link MgetRequest}
 	 */
 	public static final JsonpDeserializer<MgetRequest> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			MgetRequest::setupMgetRequestDeserializer, Builder::build);
+			MgetRequest::setupMgetRequestDeserializer);
 
-	protected static void setupMgetRequestDeserializer(DelegatingDeserializer<MgetRequest.Builder> op) {
+	protected static void setupMgetRequestDeserializer(ObjectDeserializer<MgetRequest.Builder> op) {
 
 		op.add(Builder::docs, JsonpDeserializer.arrayDeserializer(Operation._DESERIALIZER), "docs");
 		op.add(Builder::ids, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "ids");
@@ -508,7 +516,7 @@ public class MgetRequest extends RequestBase implements JsonpSerializable {
 	/**
 	 * Endpoint "{@code mget}".
 	 */
-	private static final SimpleEndpoint<MgetRequest, Void> ENDPOINT = new SimpleEndpoint<>(
+	public static final SimpleEndpoint<MgetRequest, ?> _ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";
@@ -572,7 +580,7 @@ public class MgetRequest extends RequestBase implements JsonpSerializable {
 					params.put("refresh", String.valueOf(request.refresh));
 				}
 				if (request.source != null) {
-					params.put("_source", JsonpUtils.toString(request.source));
+					params.put("_source", request.source._toJsonString());
 				}
 				if (ModelTypeHelper.isDefined(request.sourceExcludes)) {
 					params.put("_source_excludes",
@@ -584,13 +592,13 @@ public class MgetRequest extends RequestBase implements JsonpSerializable {
 				}
 				return params;
 
-			}, SimpleEndpoint.emptyMap(), true, null);
+			}, SimpleEndpoint.emptyMap(), true, MgetResponse._DESERIALIZER);
 
 	/**
 	 * Create an "{@code mget}" endpoint.
 	 */
 	public static <TDocument> Endpoint<MgetRequest, MgetResponse<TDocument>, ErrorResponse> createMgetEndpoint(
 			JsonpDeserializer<TDocument> tDocumentDeserializer) {
-		return ENDPOINT.withResponseDeserializer(MgetResponse.createMgetResponseDeserializer(tDocumentDeserializer));
+		return _ENDPOINT.withResponseDeserializer(MgetResponse.createMgetResponseDeserializer(tDocumentDeserializer));
 	}
 }

@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.indices;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -112,11 +111,11 @@ public class IndexRoutingAllocationDisk implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link IndexRoutingAllocationDisk}
 	 */
-	public static final JsonpDeserializer<IndexRoutingAllocationDisk> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
-			Builder::new, IndexRoutingAllocationDisk::setupIndexRoutingAllocationDiskDeserializer, Builder::build);
+	public static final JsonpDeserializer<IndexRoutingAllocationDisk> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, IndexRoutingAllocationDisk::setupIndexRoutingAllocationDiskDeserializer);
 
 	protected static void setupIndexRoutingAllocationDiskDeserializer(
-			DelegatingDeserializer<IndexRoutingAllocationDisk.Builder> op) {
+			ObjectDeserializer<IndexRoutingAllocationDisk.Builder> op) {
 
 		op.add(Builder::thresholdEnabled, JsonpDeserializer.booleanDeserializer(), "threshold_enabled");
 

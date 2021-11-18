@@ -25,7 +25,6 @@ package co.elastic.clients.elasticsearch.core;
 
 import co.elastic.clients.elasticsearch._types.BulkIndexByScrollFailure;
 import co.elastic.clients.elasticsearch._types.Retries;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -524,10 +523,9 @@ public class UpdateByQueryResponse implements JsonpSerializable {
 	 * Json deserializer for {@link UpdateByQueryResponse}
 	 */
 	public static final JsonpDeserializer<UpdateByQueryResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, UpdateByQueryResponse::setupUpdateByQueryResponseDeserializer, Builder::build);
+			.lazy(Builder::new, UpdateByQueryResponse::setupUpdateByQueryResponseDeserializer);
 
-	protected static void setupUpdateByQueryResponseDeserializer(
-			DelegatingDeserializer<UpdateByQueryResponse.Builder> op) {
+	protected static void setupUpdateByQueryResponseDeserializer(ObjectDeserializer<UpdateByQueryResponse.Builder> op) {
 
 		op.add(Builder::batches, JsonpDeserializer.longDeserializer(), "batches");
 		op.add(Builder::failures, JsonpDeserializer.arrayDeserializer(BulkIndexByScrollFailure._DESERIALIZER),

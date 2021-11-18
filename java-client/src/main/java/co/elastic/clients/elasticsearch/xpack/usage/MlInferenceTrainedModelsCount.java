@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.xpack.usage;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -204,12 +203,11 @@ public class MlInferenceTrainedModelsCount implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link MlInferenceTrainedModelsCount}
 	 */
-	public static final JsonpDeserializer<MlInferenceTrainedModelsCount> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
-			Builder::new, MlInferenceTrainedModelsCount::setupMlInferenceTrainedModelsCountDeserializer,
-			Builder::build);
+	public static final JsonpDeserializer<MlInferenceTrainedModelsCount> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, MlInferenceTrainedModelsCount::setupMlInferenceTrainedModelsCountDeserializer);
 
 	protected static void setupMlInferenceTrainedModelsCountDeserializer(
-			DelegatingDeserializer<MlInferenceTrainedModelsCount.Builder> op) {
+			ObjectDeserializer<MlInferenceTrainedModelsCount.Builder> op) {
 
 		op.add(Builder::total, JsonpDeserializer.longDeserializer(), "total");
 		op.add(Builder::prepackaged, JsonpDeserializer.longDeserializer(), "prepackaged");

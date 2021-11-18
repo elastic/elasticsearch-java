@@ -23,7 +23,7 @@
 
 package co.elastic.clients.elasticsearch.cluster.remote_info;
 
-import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -46,7 +46,7 @@ import javax.annotation.Nullable;
 public class ClusterRemoteProxyInfo implements ClusterRemoteInfoVariant, JsonpSerializable {
 	private final boolean connected;
 
-	private final String initialConnectTimeout;
+	private final Time initialConnectTimeout;
 
 	private final boolean skipUnavailable;
 
@@ -97,7 +97,7 @@ public class ClusterRemoteProxyInfo implements ClusterRemoteInfoVariant, JsonpSe
 	/**
 	 * Required - API name: {@code initial_connect_timeout}
 	 */
-	public final String initialConnectTimeout() {
+	public final Time initialConnectTimeout() {
 		return this.initialConnectTimeout;
 	}
 
@@ -153,7 +153,7 @@ public class ClusterRemoteProxyInfo implements ClusterRemoteInfoVariant, JsonpSe
 		generator.write(this.connected);
 
 		generator.writeKey("initial_connect_timeout");
-		generator.write(this.initialConnectTimeout);
+		this.initialConnectTimeout.serialize(generator, mapper);
 
 		generator.writeKey("skip_unavailable");
 		generator.write(this.skipUnavailable);
@@ -180,7 +180,7 @@ public class ClusterRemoteProxyInfo implements ClusterRemoteInfoVariant, JsonpSe
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ClusterRemoteProxyInfo> {
 		private Boolean connected;
 
-		private String initialConnectTimeout;
+		private Time initialConnectTimeout;
 
 		private Boolean skipUnavailable;
 
@@ -203,9 +203,16 @@ public class ClusterRemoteProxyInfo implements ClusterRemoteInfoVariant, JsonpSe
 		/**
 		 * Required - API name: {@code initial_connect_timeout}
 		 */
-		public final Builder initialConnectTimeout(String value) {
+		public final Builder initialConnectTimeout(Time value) {
 			this.initialConnectTimeout = value;
 			return this;
+		}
+
+		/**
+		 * Required - API name: {@code initial_connect_timeout}
+		 */
+		public final Builder initialConnectTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.initialConnectTimeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -267,13 +274,13 @@ public class ClusterRemoteProxyInfo implements ClusterRemoteInfoVariant, JsonpSe
 	 * Json deserializer for {@link ClusterRemoteProxyInfo}
 	 */
 	public static final JsonpDeserializer<ClusterRemoteProxyInfo> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, ClusterRemoteProxyInfo::setupClusterRemoteProxyInfoDeserializer, Builder::build);
+			.lazy(Builder::new, ClusterRemoteProxyInfo::setupClusterRemoteProxyInfoDeserializer);
 
 	protected static void setupClusterRemoteProxyInfoDeserializer(
-			DelegatingDeserializer<ClusterRemoteProxyInfo.Builder> op) {
+			ObjectDeserializer<ClusterRemoteProxyInfo.Builder> op) {
 
 		op.add(Builder::connected, JsonpDeserializer.booleanDeserializer(), "connected");
-		op.add(Builder::initialConnectTimeout, JsonpDeserializer.stringDeserializer(), "initial_connect_timeout");
+		op.add(Builder::initialConnectTimeout, Time._DESERIALIZER, "initial_connect_timeout");
 		op.add(Builder::skipUnavailable, JsonpDeserializer.booleanDeserializer(), "skip_unavailable");
 		op.add(Builder::proxyAddress, JsonpDeserializer.stringDeserializer(), "proxy_address");
 		op.add(Builder::serverName, JsonpDeserializer.stringDeserializer(), "server_name");

@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch.indices.get_alias;
 
 import co.elastic.clients.elasticsearch.indices.AliasDefinition;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -139,9 +138,9 @@ public class IndexAliases implements JsonpSerializable {
 	 * Json deserializer for {@link IndexAliases}
 	 */
 	public static final JsonpDeserializer<IndexAliases> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			IndexAliases::setupIndexAliasesDeserializer, Builder::build);
+			IndexAliases::setupIndexAliasesDeserializer);
 
-	protected static void setupIndexAliasesDeserializer(DelegatingDeserializer<IndexAliases.Builder> op) {
+	protected static void setupIndexAliasesDeserializer(ObjectDeserializer<IndexAliases.Builder> op) {
 
 		op.add(Builder::aliases, JsonpDeserializer.stringMapDeserializer(AliasDefinition._DESERIALIZER), "aliases");
 

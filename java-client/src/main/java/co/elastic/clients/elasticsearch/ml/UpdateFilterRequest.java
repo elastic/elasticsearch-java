@@ -25,7 +25,6 @@ package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -229,9 +228,9 @@ public class UpdateFilterRequest extends RequestBase implements JsonpSerializabl
 	 * Json deserializer for {@link UpdateFilterRequest}
 	 */
 	public static final JsonpDeserializer<UpdateFilterRequest> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, UpdateFilterRequest::setupUpdateFilterRequestDeserializer, Builder::build);
+			.lazy(Builder::new, UpdateFilterRequest::setupUpdateFilterRequestDeserializer);
 
-	protected static void setupUpdateFilterRequestDeserializer(DelegatingDeserializer<UpdateFilterRequest.Builder> op) {
+	protected static void setupUpdateFilterRequestDeserializer(ObjectDeserializer<UpdateFilterRequest.Builder> op) {
 
 		op.add(Builder::addItems, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"add_items");
@@ -246,7 +245,7 @@ public class UpdateFilterRequest extends RequestBase implements JsonpSerializabl
 	/**
 	 * Endpoint "{@code ml.update_filter}".
 	 */
-	public static final Endpoint<UpdateFilterRequest, UpdateFilterResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<UpdateFilterRequest, UpdateFilterResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";

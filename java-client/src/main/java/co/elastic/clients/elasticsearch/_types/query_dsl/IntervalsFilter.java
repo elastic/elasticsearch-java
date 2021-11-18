@@ -23,7 +23,7 @@
 
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
-import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.elasticsearch._types.Script;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -35,7 +35,6 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import co.elastic.clients.util.TaggedUnion;
 import co.elastic.clients.util.TaggedUnionUtils;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Object;
 import java.util.Objects;
@@ -43,6 +42,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.IntervalsFilter
+// union type: Container[]
 @JsonpDeserializable
 public class IntervalsFilter implements TaggedUnion<Object>, JsonpSerializable {
 
@@ -55,8 +55,6 @@ public class IntervalsFilter implements TaggedUnion<Object>, JsonpSerializable {
 	public static final String NOT_OVERLAPPING = "not_overlapping";
 	public static final String OVERLAPPING = "overlapping";
 	public static final String SCRIPT = "script";
-
-	// Tagged union implementation
 
 	private final String _type;
 	private final Object _value;
@@ -177,28 +175,23 @@ public class IntervalsFilter implements TaggedUnion<Object>, JsonpSerializable {
 	 * @throws IllegalStateException
 	 *             if the current variant is not of the {@code script} kind.
 	 */
-	public JsonValue /* _types.Script */ script() {
+	public Script script() {
 		return TaggedUnionUtils.get(this, SCRIPT);
 	}
 
 	@Override
 	@SuppressWarnings("unchecked")
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+
 		generator.writeStartObject();
 
 		generator.writeKey(_type);
 		if (_value instanceof JsonpSerializable) {
 			((JsonpSerializable) _value).serialize(generator, mapper);
-		} else {
-			switch (_type) {
-				case SCRIPT :
-					generator.write(((JsonValue /* _types.Script */) this._value));
-
-					break;
-			}
 		}
 
 		generator.writeEnd();
+
 	}
 
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<IntervalsFilter> {
@@ -285,10 +278,14 @@ public class IntervalsFilter implements TaggedUnion<Object>, JsonpSerializable {
 			return this.overlapping(f.apply(new Intervals.Builder()).build());
 		}
 
-		public Builder script(JsonValue /* _types.Script */ v) {
+		public Builder script(Script v) {
 			this._type = SCRIPT;
 			this._value = v;
 			return this;
+		}
+
+		public Builder script(Function<Script.Builder, ObjectBuilder<Script>> f) {
+			return this.script(f.apply(new Script.Builder()).build());
 		}
 
 		public IntervalsFilter build() {
@@ -298,7 +295,7 @@ public class IntervalsFilter implements TaggedUnion<Object>, JsonpSerializable {
 
 	}
 
-	protected static void setupIntervalsFilterDeserializer(DelegatingDeserializer<Builder> op) {
+	protected static void setupIntervalsFilterDeserializer(ObjectDeserializer<Builder> op) {
 
 		op.add(Builder::after, Intervals._DESERIALIZER, "after");
 		op.add(Builder::before, Intervals._DESERIALIZER, "before");
@@ -308,7 +305,7 @@ public class IntervalsFilter implements TaggedUnion<Object>, JsonpSerializable {
 		op.add(Builder::notContaining, Intervals._DESERIALIZER, "not_containing");
 		op.add(Builder::notOverlapping, Intervals._DESERIALIZER, "not_overlapping");
 		op.add(Builder::overlapping, Intervals._DESERIALIZER, "overlapping");
-		op.add(Builder::script, JsonpDeserializer.jsonValueDeserializer(), "script");
+		op.add(Builder::script, Script._DESERIALIZER, "script");
 
 	}
 

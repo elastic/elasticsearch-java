@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.ingest;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -178,9 +177,9 @@ public class LowercaseProcessor extends ProcessorBase implements ProcessorVarian
 	 * Json deserializer for {@link LowercaseProcessor}
 	 */
 	public static final JsonpDeserializer<LowercaseProcessor> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, LowercaseProcessor::setupLowercaseProcessorDeserializer, Builder::build);
+			.lazy(Builder::new, LowercaseProcessor::setupLowercaseProcessorDeserializer);
 
-	protected static void setupLowercaseProcessorDeserializer(DelegatingDeserializer<LowercaseProcessor.Builder> op) {
+	protected static void setupLowercaseProcessorDeserializer(ObjectDeserializer<LowercaseProcessor.Builder> op) {
 		ProcessorBase.setupProcessorBaseDeserializer(op);
 		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
 		op.add(Builder::ignoreMissing, JsonpDeserializer.booleanDeserializer(), "ignore_missing");

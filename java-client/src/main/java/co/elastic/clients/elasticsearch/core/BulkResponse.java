@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch.core;
 
 import co.elastic.clients.elasticsearch.core.bulk.ResponseItem;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -221,9 +220,9 @@ public class BulkResponse implements JsonpSerializable {
 	 * Json deserializer for {@link BulkResponse}
 	 */
 	public static final JsonpDeserializer<BulkResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			BulkResponse::setupBulkResponseDeserializer, Builder::build);
+			BulkResponse::setupBulkResponseDeserializer);
 
-	protected static void setupBulkResponseDeserializer(DelegatingDeserializer<BulkResponse.Builder> op) {
+	protected static void setupBulkResponseDeserializer(ObjectDeserializer<BulkResponse.Builder> op) {
 
 		op.add(Builder::errors, JsonpDeserializer.booleanDeserializer(), "errors");
 		op.add(Builder::items, JsonpDeserializer.arrayDeserializer(ResponseItem._DESERIALIZER), "items");

@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.indices;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -231,9 +230,9 @@ public class IndexSettingBlocks implements JsonpSerializable {
 	 * Json deserializer for {@link IndexSettingBlocks}
 	 */
 	public static final JsonpDeserializer<IndexSettingBlocks> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, IndexSettingBlocks::setupIndexSettingBlocksDeserializer, Builder::build);
+			.lazy(Builder::new, IndexSettingBlocks::setupIndexSettingBlocksDeserializer);
 
-	protected static void setupIndexSettingBlocksDeserializer(DelegatingDeserializer<IndexSettingBlocks.Builder> op) {
+	protected static void setupIndexSettingBlocksDeserializer(ObjectDeserializer<IndexSettingBlocks.Builder> op) {
 
 		op.add(Builder::readOnly, JsonpDeserializer.booleanDeserializer(), "read_only");
 		op.add(Builder::readOnlyAllowDelete, JsonpDeserializer.booleanDeserializer(), "read_only_allow_delete");

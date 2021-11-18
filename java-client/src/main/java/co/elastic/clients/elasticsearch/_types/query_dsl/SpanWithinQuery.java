@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -154,9 +153,9 @@ public class SpanWithinQuery extends QueryBase implements SpanQueryVariant, Quer
 	 * Json deserializer for {@link SpanWithinQuery}
 	 */
 	public static final JsonpDeserializer<SpanWithinQuery> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			SpanWithinQuery::setupSpanWithinQueryDeserializer, Builder::build);
+			SpanWithinQuery::setupSpanWithinQueryDeserializer);
 
-	protected static void setupSpanWithinQueryDeserializer(DelegatingDeserializer<SpanWithinQuery.Builder> op) {
+	protected static void setupSpanWithinQueryDeserializer(ObjectDeserializer<SpanWithinQuery.Builder> op) {
 		QueryBase.setupQueryBaseDeserializer(op);
 		op.add(Builder::big, SpanQuery._DESERIALIZER, "big");
 		op.add(Builder::little, SpanQuery._DESERIALIZER, "little");

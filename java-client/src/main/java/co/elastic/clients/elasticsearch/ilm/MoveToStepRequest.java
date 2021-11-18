@@ -26,7 +26,6 @@ package co.elastic.clients.elasticsearch.ilm;
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch.ilm.move_to_step.StepKey;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -192,9 +191,9 @@ public class MoveToStepRequest extends RequestBase implements JsonpSerializable 
 	 * Json deserializer for {@link MoveToStepRequest}
 	 */
 	public static final JsonpDeserializer<MoveToStepRequest> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, MoveToStepRequest::setupMoveToStepRequestDeserializer, Builder::build);
+			.lazy(Builder::new, MoveToStepRequest::setupMoveToStepRequestDeserializer);
 
-	protected static void setupMoveToStepRequestDeserializer(DelegatingDeserializer<MoveToStepRequest.Builder> op) {
+	protected static void setupMoveToStepRequestDeserializer(ObjectDeserializer<MoveToStepRequest.Builder> op) {
 
 		op.add(Builder::currentStep, StepKey._DESERIALIZER, "current_step");
 		op.add(Builder::nextStep, StepKey._DESERIALIZER, "next_step");
@@ -206,7 +205,7 @@ public class MoveToStepRequest extends RequestBase implements JsonpSerializable 
 	/**
 	 * Endpoint "{@code ilm.move_to_step}".
 	 */
-	public static final Endpoint<MoveToStepRequest, MoveToStepResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<MoveToStepRequest, MoveToStepResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";

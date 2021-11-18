@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.eql;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -285,9 +284,9 @@ public class GetStatusResponse implements JsonpSerializable {
 	 * Json deserializer for {@link GetStatusResponse}
 	 */
 	public static final JsonpDeserializer<GetStatusResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, GetStatusResponse::setupGetStatusResponseDeserializer, Builder::build);
+			.lazy(Builder::new, GetStatusResponse::setupGetStatusResponseDeserializer);
 
-	protected static void setupGetStatusResponseDeserializer(DelegatingDeserializer<GetStatusResponse.Builder> op) {
+	protected static void setupGetStatusResponseDeserializer(ObjectDeserializer<GetStatusResponse.Builder> op) {
 
 		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "id");
 		op.add(Builder::isPartial, JsonpDeserializer.booleanDeserializer(), "is_partial");

@@ -23,9 +23,9 @@
 
 package co.elastic.clients.elasticsearch.rollup.get_jobs;
 
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.elasticsearch.rollup.FieldMetric;
 import co.elastic.clients.elasticsearch.rollup.Groupings;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -62,7 +62,7 @@ public class RollupJobConfiguration implements JsonpSerializable {
 
 	private final String rollupIndex;
 
-	private final String timeout;
+	private final Time timeout;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -135,7 +135,7 @@ public class RollupJobConfiguration implements JsonpSerializable {
 	/**
 	 * Required - API name: {@code timeout}
 	 */
-	public final String timeout() {
+	public final Time timeout() {
 		return this.timeout;
 	}
 
@@ -179,7 +179,7 @@ public class RollupJobConfiguration implements JsonpSerializable {
 		generator.write(this.rollupIndex);
 
 		generator.writeKey("timeout");
-		generator.write(this.timeout);
+		this.timeout.serialize(generator, mapper);
 
 	}
 
@@ -203,7 +203,7 @@ public class RollupJobConfiguration implements JsonpSerializable {
 
 		private String rollupIndex;
 
-		private String timeout;
+		private Time timeout;
 
 		/**
 		 * Required - API name: {@code cron}
@@ -291,9 +291,16 @@ public class RollupJobConfiguration implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code timeout}
 		 */
-		public final Builder timeout(String value) {
+		public final Builder timeout(Time value) {
 			this.timeout = value;
 			return this;
+		}
+
+		/**
+		 * Required - API name: {@code timeout}
+		 */
+		public final Builder timeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.timeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -315,10 +322,10 @@ public class RollupJobConfiguration implements JsonpSerializable {
 	 * Json deserializer for {@link RollupJobConfiguration}
 	 */
 	public static final JsonpDeserializer<RollupJobConfiguration> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, RollupJobConfiguration::setupRollupJobConfigurationDeserializer, Builder::build);
+			.lazy(Builder::new, RollupJobConfiguration::setupRollupJobConfigurationDeserializer);
 
 	protected static void setupRollupJobConfigurationDeserializer(
-			DelegatingDeserializer<RollupJobConfiguration.Builder> op) {
+			ObjectDeserializer<RollupJobConfiguration.Builder> op) {
 
 		op.add(Builder::cron, JsonpDeserializer.stringDeserializer(), "cron");
 		op.add(Builder::groups, Groupings._DESERIALIZER, "groups");
@@ -327,7 +334,7 @@ public class RollupJobConfiguration implements JsonpSerializable {
 		op.add(Builder::metrics, JsonpDeserializer.arrayDeserializer(FieldMetric._DESERIALIZER), "metrics");
 		op.add(Builder::pageSize, JsonpDeserializer.longDeserializer(), "page_size");
 		op.add(Builder::rollupIndex, JsonpDeserializer.stringDeserializer(), "rollup_index");
-		op.add(Builder::timeout, JsonpDeserializer.stringDeserializer(), "timeout");
+		op.add(Builder::timeout, Time._DESERIALIZER, "timeout");
 
 	}
 

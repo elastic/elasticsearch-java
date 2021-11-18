@@ -25,6 +25,9 @@ package co.elastic.clients.elasticsearch.transform;
 
 import co.elastic.clients.ApiClient;
 import co.elastic.clients.elasticsearch._types.ElasticsearchException;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.EndpointWithResponseMapperAttr;
 import co.elastic.clients.transport.Transport;
 import co.elastic.clients.transport.TransportOptions;
 import co.elastic.clients.util.ObjectBuilder;
@@ -62,7 +65,10 @@ public class ElasticsearchTransformClient extends ApiClient<ElasticsearchTransfo
 
 	public DeleteTransformResponse deleteTransform(DeleteTransformRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, DeleteTransformRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<DeleteTransformRequest, DeleteTransformResponse, ErrorResponse> endpoint = (Endpoint<DeleteTransformRequest, DeleteTransformResponse, ErrorResponse>) DeleteTransformRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -93,7 +99,10 @@ public class ElasticsearchTransformClient extends ApiClient<ElasticsearchTransfo
 	 */
 
 	public GetTransformResponse getTransform(GetTransformRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, GetTransformRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<GetTransformRequest, GetTransformResponse, ErrorResponse> endpoint = (Endpoint<GetTransformRequest, GetTransformResponse, ErrorResponse>) GetTransformRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -122,7 +131,7 @@ public class ElasticsearchTransformClient extends ApiClient<ElasticsearchTransfo
 	 */
 
 	public GetTransformResponse getTransform() throws IOException, ElasticsearchException {
-		return this.transport.performRequest(new GetTransformRequest.Builder().build(), GetTransformRequest.ENDPOINT,
+		return this.transport.performRequest(new GetTransformRequest.Builder().build(), GetTransformRequest._ENDPOINT,
 				this.transportOptions);
 	}
 
@@ -138,7 +147,10 @@ public class ElasticsearchTransformClient extends ApiClient<ElasticsearchTransfo
 
 	public GetTransformStatsResponse getTransformStats(GetTransformStatsRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, GetTransformStatsRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<GetTransformStatsRequest, GetTransformStatsResponse, ErrorResponse> endpoint = (Endpoint<GetTransformStatsRequest, GetTransformStatsResponse, ErrorResponse>) GetTransformStatsRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -170,9 +182,13 @@ public class ElasticsearchTransformClient extends ApiClient<ElasticsearchTransfo
 
 	public <TTransform> PreviewTransformResponse<TTransform> previewTransform(PreviewTransformRequest request,
 			Class<TTransform> tTransformClass) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request,
-				PreviewTransformRequest.createPreviewTransformEndpoint(getDeserializer(tTransformClass)),
-				this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<PreviewTransformRequest, PreviewTransformResponse<TTransform>, ErrorResponse> endpoint = (Endpoint<PreviewTransformRequest, PreviewTransformResponse<TTransform>, ErrorResponse>) PreviewTransformRequest._ENDPOINT;
+		endpoint = new EndpointWithResponseMapperAttr<>(endpoint,
+				"co.elastic.clients:Deserializer:transform.preview_transform.TTransform",
+				getDeserializer(tTransformClass));
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -203,7 +219,10 @@ public class ElasticsearchTransformClient extends ApiClient<ElasticsearchTransfo
 	 */
 
 	public PutTransformResponse putTransform(PutTransformRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, PutTransformRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<PutTransformRequest, PutTransformResponse, ErrorResponse> endpoint = (Endpoint<PutTransformRequest, PutTransformResponse, ErrorResponse>) PutTransformRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -235,7 +254,10 @@ public class ElasticsearchTransformClient extends ApiClient<ElasticsearchTransfo
 
 	public StartTransformResponse startTransform(StartTransformRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, StartTransformRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<StartTransformRequest, StartTransformResponse, ErrorResponse> endpoint = (Endpoint<StartTransformRequest, StartTransformResponse, ErrorResponse>) StartTransformRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -267,7 +289,10 @@ public class ElasticsearchTransformClient extends ApiClient<ElasticsearchTransfo
 
 	public StopTransformResponse stopTransform(StopTransformRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, StopTransformRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<StopTransformRequest, StopTransformResponse, ErrorResponse> endpoint = (Endpoint<StopTransformRequest, StopTransformResponse, ErrorResponse>) StopTransformRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -299,7 +324,10 @@ public class ElasticsearchTransformClient extends ApiClient<ElasticsearchTransfo
 
 	public UpdateTransformResponse updateTransform(UpdateTransformRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, UpdateTransformRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<UpdateTransformRequest, UpdateTransformResponse, ErrorResponse> endpoint = (Endpoint<UpdateTransformRequest, UpdateTransformResponse, ErrorResponse>) UpdateTransformRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**

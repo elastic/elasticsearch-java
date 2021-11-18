@@ -24,7 +24,7 @@
 package co.elastic.clients.elasticsearch.tasks;
 
 import co.elastic.clients.elasticsearch._types.Retries;
-import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -66,12 +66,12 @@ public class Status implements JsonpSerializable {
 	private final Retries retries;
 
 	@Nullable
-	private final String throttled;
+	private final Time throttled;
 
 	private final long throttledMillis;
 
 	@Nullable
-	private final String throttledUntil;
+	private final Time throttledUntil;
 
 	private final long throttledUntilMillis;
 
@@ -177,7 +177,7 @@ public class Status implements JsonpSerializable {
 	 * API name: {@code throttled}
 	 */
 	@Nullable
-	public final String throttled() {
+	public final Time throttled() {
 		return this.throttled;
 	}
 
@@ -192,7 +192,7 @@ public class Status implements JsonpSerializable {
 	 * API name: {@code throttled_until}
 	 */
 	@Nullable
-	public final String throttledUntil() {
+	public final Time throttledUntil() {
 		return this.throttledUntil;
 	}
 
@@ -286,7 +286,7 @@ public class Status implements JsonpSerializable {
 
 		if (this.throttled != null) {
 			generator.writeKey("throttled");
-			generator.write(this.throttled);
+			this.throttled.serialize(generator, mapper);
 
 		}
 		generator.writeKey("throttled_millis");
@@ -294,7 +294,7 @@ public class Status implements JsonpSerializable {
 
 		if (this.throttledUntil != null) {
 			generator.writeKey("throttled_until");
-			generator.write(this.throttledUntil);
+			this.throttledUntil.serialize(generator, mapper);
 
 		}
 		generator.writeKey("throttled_until_millis");
@@ -346,12 +346,12 @@ public class Status implements JsonpSerializable {
 		private Retries retries;
 
 		@Nullable
-		private String throttled;
+		private Time throttled;
 
 		private Long throttledMillis;
 
 		@Nullable
-		private String throttledUntil;
+		private Time throttledUntil;
 
 		private Long throttledUntilMillis;
 
@@ -449,9 +449,16 @@ public class Status implements JsonpSerializable {
 		/**
 		 * API name: {@code throttled}
 		 */
-		public final Builder throttled(@Nullable String value) {
+		public final Builder throttled(@Nullable Time value) {
 			this.throttled = value;
 			return this;
+		}
+
+		/**
+		 * API name: {@code throttled}
+		 */
+		public final Builder throttled(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.throttled(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -465,9 +472,16 @@ public class Status implements JsonpSerializable {
 		/**
 		 * API name: {@code throttled_until}
 		 */
-		public final Builder throttledUntil(@Nullable String value) {
+		public final Builder throttledUntil(@Nullable Time value) {
 			this.throttledUntil = value;
 			return this;
+		}
+
+		/**
+		 * API name: {@code throttled_until}
+		 */
+		public final Builder throttledUntil(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.throttledUntil(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -537,9 +551,9 @@ public class Status implements JsonpSerializable {
 	 * Json deserializer for {@link Status}
 	 */
 	public static final JsonpDeserializer<Status> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			Status::setupStatusDeserializer, Builder::build);
+			Status::setupStatusDeserializer);
 
-	protected static void setupStatusDeserializer(DelegatingDeserializer<Status.Builder> op) {
+	protected static void setupStatusDeserializer(ObjectDeserializer<Status.Builder> op) {
 
 		op.add(Builder::batches, JsonpDeserializer.longDeserializer(), "batches");
 		op.add(Builder::canceled, JsonpDeserializer.stringDeserializer(), "canceled");
@@ -550,9 +564,9 @@ public class Status implements JsonpSerializable {
 				"failures");
 		op.add(Builder::requestsPerSecond, JsonpDeserializer.floatDeserializer(), "requests_per_second");
 		op.add(Builder::retries, Retries._DESERIALIZER, "retries");
-		op.add(Builder::throttled, JsonpDeserializer.stringDeserializer(), "throttled");
+		op.add(Builder::throttled, Time._DESERIALIZER, "throttled");
 		op.add(Builder::throttledMillis, JsonpDeserializer.longDeserializer(), "throttled_millis");
-		op.add(Builder::throttledUntil, JsonpDeserializer.stringDeserializer(), "throttled_until");
+		op.add(Builder::throttledUntil, Time._DESERIALIZER, "throttled_until");
 		op.add(Builder::throttledUntilMillis, JsonpDeserializer.longDeserializer(), "throttled_until_millis");
 		op.add(Builder::timedOut, JsonpDeserializer.booleanDeserializer(), "timed_out");
 		op.add(Builder::took, JsonpDeserializer.longDeserializer(), "took");

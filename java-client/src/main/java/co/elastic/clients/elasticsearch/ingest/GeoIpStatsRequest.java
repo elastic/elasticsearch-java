@@ -53,7 +53,7 @@ public class GeoIpStatsRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code ingest.geo_ip_stats}".
 	 */
-	public static final Endpoint<GeoIpStatsRequest, GeoIpStatsResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<GeoIpStatsRequest, GeoIpStatsResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "GET";

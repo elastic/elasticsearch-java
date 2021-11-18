@@ -25,7 +25,6 @@ package co.elastic.clients.elasticsearch.indices.simulate_template;
 
 import co.elastic.clients.elasticsearch._types.mapping.TypeMapping;
 import co.elastic.clients.elasticsearch.indices.Alias;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -255,9 +254,9 @@ public class Template implements JsonpSerializable {
 	 * Json deserializer for {@link Template}
 	 */
 	public static final JsonpDeserializer<Template> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			Template::setupTemplateDeserializer, Builder::build);
+			Template::setupTemplateDeserializer);
 
-	protected static void setupTemplateDeserializer(DelegatingDeserializer<Template.Builder> op) {
+	protected static void setupTemplateDeserializer(ObjectDeserializer<Template.Builder> op) {
 
 		op.add(Builder::aliases, JsonpDeserializer.stringMapDeserializer(Alias._DESERIALIZER), "aliases");
 		op.add(Builder::mappings, TypeMapping._DESERIALIZER, "mappings");

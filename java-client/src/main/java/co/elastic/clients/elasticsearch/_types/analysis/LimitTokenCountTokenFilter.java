@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.analysis;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -39,7 +38,7 @@ import java.util.function.Function;
 
 // typedef: _types.analysis.LimitTokenCountTokenFilter
 @JsonpDeserializable
-public class LimitTokenCountTokenFilter extends TokenFilterBase implements TokenFilterVariant {
+public class LimitTokenCountTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
 	private final boolean consumeAllTokens;
 
 	private final int maxTokenCount;
@@ -59,7 +58,7 @@ public class LimitTokenCountTokenFilter extends TokenFilterBase implements Token
 	}
 
 	/**
-	 * {@link TokenFilter} variant type
+	 * {@link TokenFilterDefinition} variant type
 	 */
 	@Override
 	public String _variantType() {
@@ -143,11 +142,11 @@ public class LimitTokenCountTokenFilter extends TokenFilterBase implements Token
 	/**
 	 * Json deserializer for {@link LimitTokenCountTokenFilter}
 	 */
-	public static final JsonpDeserializer<LimitTokenCountTokenFilter> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
-			Builder::new, LimitTokenCountTokenFilter::setupLimitTokenCountTokenFilterDeserializer, Builder::build);
+	public static final JsonpDeserializer<LimitTokenCountTokenFilter> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, LimitTokenCountTokenFilter::setupLimitTokenCountTokenFilterDeserializer);
 
 	protected static void setupLimitTokenCountTokenFilterDeserializer(
-			DelegatingDeserializer<LimitTokenCountTokenFilter.Builder> op) {
+			ObjectDeserializer<LimitTokenCountTokenFilter.Builder> op) {
 		TokenFilterBase.setupTokenFilterBaseDeserializer(op);
 		op.add(Builder::consumeAllTokens, JsonpDeserializer.booleanDeserializer(), "consume_all_tokens");
 		op.add(Builder::maxTokenCount, JsonpDeserializer.integerDeserializer(), "max_token_count");

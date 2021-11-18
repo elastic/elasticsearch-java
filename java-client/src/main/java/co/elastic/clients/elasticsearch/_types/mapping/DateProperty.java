@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch._types.mapping;
 
 import co.elastic.clients.elasticsearch.indices.NumericFielddata;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -333,9 +332,9 @@ public class DateProperty extends DocValuesPropertyBase implements PropertyVaria
 	 * Json deserializer for {@link DateProperty}
 	 */
 	public static final JsonpDeserializer<DateProperty> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			DateProperty::setupDatePropertyDeserializer, Builder::build);
+			DateProperty::setupDatePropertyDeserializer);
 
-	protected static void setupDatePropertyDeserializer(DelegatingDeserializer<DateProperty.Builder> op) {
+	protected static void setupDatePropertyDeserializer(ObjectDeserializer<DateProperty.Builder> op) {
 		DocValuesPropertyBase.setupDocValuesPropertyBaseDeserializer(op);
 		op.add(Builder::boost, JsonpDeserializer.doubleDeserializer(), "boost");
 		op.add(Builder::fielddata, NumericFielddata._DESERIALIZER, "fielddata");

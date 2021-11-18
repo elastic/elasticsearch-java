@@ -24,15 +24,16 @@
 package co.elastic.clients.elasticsearch.indices;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
-import co.elastic.clients.elasticsearch._types.ExpandWildcardOptions;
+import co.elastic.clients.elasticsearch._types.ExpandWildcard;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.elasticsearch._types.Time;
+import co.elastic.clients.elasticsearch._types.mapping.DynamicMapping;
 import co.elastic.clients.elasticsearch._types.mapping.DynamicTemplate;
 import co.elastic.clients.elasticsearch._types.mapping.FieldNamesField;
 import co.elastic.clients.elasticsearch._types.mapping.Property;
 import co.elastic.clients.elasticsearch._types.mapping.RoutingField;
 import co.elastic.clients.elasticsearch._types.mapping.RuntimeField;
 import co.elastic.clients.elasticsearch._types.mapping.SourceField;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -46,7 +47,6 @@ import co.elastic.clients.util.MapBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
@@ -81,13 +81,13 @@ public class PutMappingRequest extends RequestBase implements JsonpSerializable 
 	private final Boolean dateDetection;
 
 	@Nullable
-	private final JsonValue /* Union(_types.mapping.DynamicMapping | internal.boolean) */ dynamic;
+	private final DynamicMapping dynamic;
 
 	private final List<String> dynamicDateFormats;
 
 	private final List<Map<String, DynamicTemplate>> dynamicTemplates;
 
-	private final List<ExpandWildcardOptions> expandWildcards;
+	private final List<ExpandWildcard> expandWildcards;
 
 	@Nullable
 	private final Boolean ignoreUnavailable;
@@ -98,7 +98,7 @@ public class PutMappingRequest extends RequestBase implements JsonpSerializable 
 	private final List<String> index;
 
 	@Nullable
-	private final String masterTimeout;
+	private final Time masterTimeout;
 
 	@Nullable
 	private final Boolean numericDetection;
@@ -108,7 +108,7 @@ public class PutMappingRequest extends RequestBase implements JsonpSerializable 
 	private final Map<String, RuntimeField> runtime;
 
 	@Nullable
-	private final String timeout;
+	private final Time timeout;
 
 	@Nullable
 	private final String type;
@@ -216,7 +216,7 @@ public class PutMappingRequest extends RequestBase implements JsonpSerializable 
 	 * API name: {@code dynamic}
 	 */
 	@Nullable
-	public final JsonValue /* Union(_types.mapping.DynamicMapping | internal.boolean) */ dynamic() {
+	public final DynamicMapping dynamic() {
 		return this.dynamic;
 	}
 
@@ -246,7 +246,7 @@ public class PutMappingRequest extends RequestBase implements JsonpSerializable 
 	 * <p>
 	 * API name: {@code expand_wildcards}
 	 */
-	public final List<ExpandWildcardOptions> expandWildcards() {
+	public final List<ExpandWildcard> expandWildcards() {
 		return this.expandWildcards;
 	}
 
@@ -288,7 +288,7 @@ public class PutMappingRequest extends RequestBase implements JsonpSerializable 
 	 * API name: {@code master_timeout}
 	 */
 	@Nullable
-	public final String masterTimeout() {
+	public final Time masterTimeout() {
 		return this.masterTimeout;
 	}
 
@@ -331,7 +331,7 @@ public class PutMappingRequest extends RequestBase implements JsonpSerializable 
 	 * API name: {@code timeout}
 	 */
 	@Nullable
-	public final String timeout() {
+	public final Time timeout() {
 		return this.timeout;
 	}
 
@@ -400,8 +400,7 @@ public class PutMappingRequest extends RequestBase implements JsonpSerializable 
 		}
 		if (this.dynamic != null) {
 			generator.writeKey("dynamic");
-			generator.write(this.dynamic);
-
+			this.dynamic.serialize(generator, mapper);
 		}
 		if (ModelTypeHelper.isDefined(this.dynamicDateFormats)) {
 			generator.writeKey("dynamic_date_formats");
@@ -486,7 +485,7 @@ public class PutMappingRequest extends RequestBase implements JsonpSerializable 
 		private Boolean dateDetection;
 
 		@Nullable
-		private JsonValue /* Union(_types.mapping.DynamicMapping | internal.boolean) */ dynamic;
+		private DynamicMapping dynamic;
 
 		@Nullable
 		private List<String> dynamicDateFormats;
@@ -495,7 +494,7 @@ public class PutMappingRequest extends RequestBase implements JsonpSerializable 
 		private List<Map<String, DynamicTemplate>> dynamicTemplates;
 
 		@Nullable
-		private List<ExpandWildcardOptions> expandWildcards;
+		private List<ExpandWildcard> expandWildcards;
 
 		@Nullable
 		private Boolean ignoreUnavailable;
@@ -506,7 +505,7 @@ public class PutMappingRequest extends RequestBase implements JsonpSerializable 
 		private List<String> index;
 
 		@Nullable
-		private String masterTimeout;
+		private Time masterTimeout;
 
 		@Nullable
 		private Boolean numericDetection;
@@ -518,7 +517,7 @@ public class PutMappingRequest extends RequestBase implements JsonpSerializable 
 		private Map<String, RuntimeField> runtime;
 
 		@Nullable
-		private String timeout;
+		private Time timeout;
 
 		@Nullable
 		private String type;
@@ -622,8 +621,7 @@ public class PutMappingRequest extends RequestBase implements JsonpSerializable 
 		 * <p>
 		 * API name: {@code dynamic}
 		 */
-		public final Builder dynamic(
-				@Nullable JsonValue /* Union(_types.mapping.DynamicMapping | internal.boolean) */ value) {
+		public final Builder dynamic(@Nullable DynamicMapping value) {
 			this.dynamic = value;
 			return this;
 		}
@@ -678,7 +676,7 @@ public class PutMappingRequest extends RequestBase implements JsonpSerializable 
 		 * <p>
 		 * API name: {@code expand_wildcards}
 		 */
-		public final Builder expandWildcards(@Nullable List<ExpandWildcardOptions> value) {
+		public final Builder expandWildcards(@Nullable List<ExpandWildcard> value) {
 			this.expandWildcards = value;
 			return this;
 		}
@@ -689,7 +687,7 @@ public class PutMappingRequest extends RequestBase implements JsonpSerializable 
 		 * <p>
 		 * API name: {@code expand_wildcards}
 		 */
-		public final Builder expandWildcards(ExpandWildcardOptions... value) {
+		public final Builder expandWildcards(ExpandWildcard... value) {
 			this.expandWildcards = Arrays.asList(value);
 			return this;
 		}
@@ -744,9 +742,18 @@ public class PutMappingRequest extends RequestBase implements JsonpSerializable 
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
-		public final Builder masterTimeout(@Nullable String value) {
+		public final Builder masterTimeout(@Nullable Time value) {
 			this.masterTimeout = value;
 			return this;
+		}
+
+		/**
+		 * Specify timeout for connection to master
+		 * <p>
+		 * API name: {@code master_timeout}
+		 */
+		public final Builder masterTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.masterTimeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -813,9 +820,18 @@ public class PutMappingRequest extends RequestBase implements JsonpSerializable 
 		 * <p>
 		 * API name: {@code timeout}
 		 */
-		public final Builder timeout(@Nullable String value) {
+		public final Builder timeout(@Nullable Time value) {
 			this.timeout = value;
 			return this;
+		}
+
+		/**
+		 * Explicit operation timeout
+		 * <p>
+		 * API name: {@code timeout}
+		 */
+		public final Builder timeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.timeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -858,16 +874,16 @@ public class PutMappingRequest extends RequestBase implements JsonpSerializable 
 	 * Json deserializer for {@link PutMappingRequest}
 	 */
 	public static final JsonpDeserializer<PutMappingRequest> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, PutMappingRequest::setupPutMappingRequestDeserializer, Builder::build);
+			.lazy(Builder::new, PutMappingRequest::setupPutMappingRequestDeserializer);
 
-	protected static void setupPutMappingRequestDeserializer(DelegatingDeserializer<PutMappingRequest.Builder> op) {
+	protected static void setupPutMappingRequestDeserializer(ObjectDeserializer<PutMappingRequest.Builder> op) {
 
 		op.add(Builder::fieldNames, FieldNamesField._DESERIALIZER, "_field_names");
 		op.add(Builder::meta, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "_meta");
 		op.add(Builder::routing, RoutingField._DESERIALIZER, "_routing");
 		op.add(Builder::source, SourceField._DESERIALIZER, "_source");
 		op.add(Builder::dateDetection, JsonpDeserializer.booleanDeserializer(), "date_detection");
-		op.add(Builder::dynamic, JsonpDeserializer.jsonValueDeserializer(), "dynamic");
+		op.add(Builder::dynamic, DynamicMapping._DESERIALIZER, "dynamic");
 		op.add(Builder::dynamicDateFormats, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"dynamic_date_formats");
 		op.add(Builder::dynamicTemplates, JsonpDeserializer.arrayDeserializer(
@@ -883,7 +899,7 @@ public class PutMappingRequest extends RequestBase implements JsonpSerializable 
 	/**
 	 * Endpoint "{@code indices.put_mapping}".
 	 */
-	public static final Endpoint<PutMappingRequest, PutMappingResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<PutMappingRequest, PutMappingResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "PUT";
@@ -973,7 +989,7 @@ public class PutMappingRequest extends RequestBase implements JsonpSerializable 
 			request -> {
 				Map<String, String> params = new HashMap<>();
 				if (request.masterTimeout != null) {
-					params.put("master_timeout", request.masterTimeout);
+					params.put("master_timeout", request.masterTimeout._toJsonString());
 				}
 				if (request.includeTypeName != null) {
 					params.put("include_type_name", String.valueOf(request.includeTypeName));
@@ -992,7 +1008,7 @@ public class PutMappingRequest extends RequestBase implements JsonpSerializable 
 					params.put("write_index_only", String.valueOf(request.writeIndexOnly));
 				}
 				if (request.timeout != null) {
-					params.put("timeout", request.timeout);
+					params.put("timeout", request.timeout._toJsonString());
 				}
 				return params;
 

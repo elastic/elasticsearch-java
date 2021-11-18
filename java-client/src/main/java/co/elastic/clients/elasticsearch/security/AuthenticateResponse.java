@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch.security;
 
 import co.elastic.clients.elasticsearch.security.authenticate.Token;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -389,10 +388,9 @@ public class AuthenticateResponse implements JsonpSerializable {
 	 * Json deserializer for {@link AuthenticateResponse}
 	 */
 	public static final JsonpDeserializer<AuthenticateResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, AuthenticateResponse::setupAuthenticateResponseDeserializer, Builder::build);
+			.lazy(Builder::new, AuthenticateResponse::setupAuthenticateResponseDeserializer);
 
-	protected static void setupAuthenticateResponseDeserializer(
-			DelegatingDeserializer<AuthenticateResponse.Builder> op) {
+	protected static void setupAuthenticateResponseDeserializer(ObjectDeserializer<AuthenticateResponse.Builder> op) {
 
 		op.add(Builder::authenticationRealm, RealmInfo._DESERIALIZER, "authentication_realm");
 		op.add(Builder::email, JsonpDeserializer.stringDeserializer(), "email");

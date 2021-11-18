@@ -133,7 +133,7 @@ public class NodesRequest extends CatRequestBase {
 	/**
 	 * Endpoint "{@code cat.nodes}".
 	 */
-	public static final Endpoint<NodesRequest, NodesResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<NodesRequest, NodesResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "GET";

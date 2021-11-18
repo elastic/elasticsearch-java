@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.mapping;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -95,9 +94,9 @@ public class Murmur3HashProperty extends DocValuesPropertyBase implements Proper
 	 * Json deserializer for {@link Murmur3HashProperty}
 	 */
 	public static final JsonpDeserializer<Murmur3HashProperty> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, Murmur3HashProperty::setupMurmur3HashPropertyDeserializer, Builder::build);
+			.lazy(Builder::new, Murmur3HashProperty::setupMurmur3HashPropertyDeserializer);
 
-	protected static void setupMurmur3HashPropertyDeserializer(DelegatingDeserializer<Murmur3HashProperty.Builder> op) {
+	protected static void setupMurmur3HashPropertyDeserializer(ObjectDeserializer<Murmur3HashProperty.Builder> op) {
 		DocValuesPropertyBase.setupDocValuesPropertyBaseDeserializer(op);
 
 		op.ignore("type");

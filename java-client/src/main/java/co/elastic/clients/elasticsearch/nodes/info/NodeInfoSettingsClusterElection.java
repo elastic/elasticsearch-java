@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.nodes.info;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -115,11 +114,10 @@ public class NodeInfoSettingsClusterElection implements JsonpSerializable {
 	 * Json deserializer for {@link NodeInfoSettingsClusterElection}
 	 */
 	public static final JsonpDeserializer<NodeInfoSettingsClusterElection> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, NodeInfoSettingsClusterElection::setupNodeInfoSettingsClusterElectionDeserializer,
-					Builder::build);
+			.lazy(Builder::new, NodeInfoSettingsClusterElection::setupNodeInfoSettingsClusterElectionDeserializer);
 
 	protected static void setupNodeInfoSettingsClusterElectionDeserializer(
-			DelegatingDeserializer<NodeInfoSettingsClusterElection.Builder> op) {
+			ObjectDeserializer<NodeInfoSettingsClusterElection.Builder> op) {
 
 		op.add(Builder::strategy, JsonpDeserializer.stringDeserializer(), "strategy");
 

@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.mapping;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -113,9 +112,9 @@ public class IndexField implements JsonpSerializable {
 	 * Json deserializer for {@link IndexField}
 	 */
 	public static final JsonpDeserializer<IndexField> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			IndexField::setupIndexFieldDeserializer, Builder::build);
+			IndexField::setupIndexFieldDeserializer);
 
-	protected static void setupIndexFieldDeserializer(DelegatingDeserializer<IndexField.Builder> op) {
+	protected static void setupIndexFieldDeserializer(ObjectDeserializer<IndexField.Builder> op) {
 
 		op.add(Builder::enabled, JsonpDeserializer.booleanDeserializer(), "enabled");
 

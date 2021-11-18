@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.core.rank_eval;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -94,7 +93,7 @@ public abstract class RankEvalMetricRatingTreshold extends RankEvalMetricBase {
 
 	// ---------------------------------------------------------------------------------------------
 	protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupRankEvalMetricRatingTresholdDeserializer(
-			DelegatingDeserializer<BuilderT> op) {
+			ObjectDeserializer<BuilderT> op) {
 		RankEvalMetricBase.setupRankEvalMetricBaseDeserializer(op);
 		op.add(AbstractBuilder::relevantRatingThreshold, JsonpDeserializer.integerDeserializer(),
 				"relevant_rating_threshold");

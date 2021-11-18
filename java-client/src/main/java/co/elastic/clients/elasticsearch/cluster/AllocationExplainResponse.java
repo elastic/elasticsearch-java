@@ -29,7 +29,6 @@ import co.elastic.clients.elasticsearch.cluster.allocation_explain.CurrentNode;
 import co.elastic.clients.elasticsearch.cluster.allocation_explain.Decision;
 import co.elastic.clients.elasticsearch.cluster.allocation_explain.NodeAllocationExplanation;
 import co.elastic.clients.elasticsearch.cluster.allocation_explain.UnassignedInformation;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -873,10 +872,10 @@ public class AllocationExplainResponse implements JsonpSerializable {
 	 * Json deserializer for {@link AllocationExplainResponse}
 	 */
 	public static final JsonpDeserializer<AllocationExplainResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, AllocationExplainResponse::setupAllocationExplainResponseDeserializer, Builder::build);
+			.lazy(Builder::new, AllocationExplainResponse::setupAllocationExplainResponseDeserializer);
 
 	protected static void setupAllocationExplainResponseDeserializer(
-			DelegatingDeserializer<AllocationExplainResponse.Builder> op) {
+			ObjectDeserializer<AllocationExplainResponse.Builder> op) {
 
 		op.add(Builder::allocateExplanation, JsonpDeserializer.stringDeserializer(), "allocate_explanation");
 		op.add(Builder::allocationDelay, JsonpDeserializer.stringDeserializer(), "allocation_delay");

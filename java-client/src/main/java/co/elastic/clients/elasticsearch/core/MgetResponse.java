@@ -23,13 +23,13 @@
 
 package co.elastic.clients.elasticsearch.core;
 
-import co.elastic.clients.elasticsearch.core.mget.Hit;
-import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.elasticsearch.core.mget.ResponseItem;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.JsonpSerializer;
+import co.elastic.clients.json.NamedDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
@@ -45,9 +45,9 @@ import java.util.function.Supplier;
 import javax.annotation.Nullable;
 
 // typedef: _global.mget.Response
-
+@JsonpDeserializable
 public class MgetResponse<TDocument> implements JsonpSerializable {
-	private final List<Hit<TDocument>> docs;
+	private final List<ResponseItem<TDocument>> docs;
 
 	@Nullable
 	private final JsonpSerializer<TDocument> tDocumentSerializer;
@@ -69,7 +69,7 @@ public class MgetResponse<TDocument> implements JsonpSerializable {
 	/**
 	 * Required - API name: {@code docs}
 	 */
-	public final List<Hit<TDocument>> docs() {
+	public final List<ResponseItem<TDocument>> docs() {
 		return this.docs;
 	}
 
@@ -87,7 +87,7 @@ public class MgetResponse<TDocument> implements JsonpSerializable {
 		if (ModelTypeHelper.isDefined(this.docs)) {
 			generator.writeKey("docs");
 			generator.writeStartArray();
-			for (Hit<TDocument> item0 : this.docs) {
+			for (ResponseItem<TDocument> item0 : this.docs) {
 				item0.serialize(generator, mapper);
 
 			}
@@ -103,7 +103,7 @@ public class MgetResponse<TDocument> implements JsonpSerializable {
 	 * Builder for {@link MgetResponse}.
 	 */
 	public static class Builder<TDocument> extends ObjectBuilderBase implements ObjectBuilder<MgetResponse<TDocument>> {
-		private List<Hit<TDocument>> docs;
+		private List<ResponseItem<TDocument>> docs;
 
 		@Nullable
 		private JsonpSerializer<TDocument> tDocumentSerializer;
@@ -111,7 +111,7 @@ public class MgetResponse<TDocument> implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code docs}
 		 */
-		public final Builder<TDocument> docs(List<Hit<TDocument>> value) {
+		public final Builder<TDocument> docs(List<ResponseItem<TDocument>> value) {
 			this.docs = value;
 			return this;
 		}
@@ -119,7 +119,7 @@ public class MgetResponse<TDocument> implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code docs}
 		 */
-		public final Builder<TDocument> docs(Hit<TDocument>... value) {
+		public final Builder<TDocument> docs(ResponseItem<TDocument>... value) {
 			this.docs = Arrays.asList(value);
 			return this;
 		}
@@ -128,10 +128,11 @@ public class MgetResponse<TDocument> implements JsonpSerializable {
 		 * Required - API name: {@code docs}
 		 */
 		@SafeVarargs
-		public final Builder<TDocument> docs(Function<Hit.Builder<TDocument>, ObjectBuilder<Hit<TDocument>>>... fns) {
+		public final Builder<TDocument> docs(
+				Function<ResponseItem.Builder<TDocument>, ObjectBuilder<ResponseItem<TDocument>>>... fns) {
 			this.docs = new ArrayList<>(fns.length);
-			for (Function<Hit.Builder<TDocument>, ObjectBuilder<Hit<TDocument>>> fn : fns) {
-				this.docs.add(fn.apply(new Hit.Builder<TDocument>()).build());
+			for (Function<ResponseItem.Builder<TDocument>, ObjectBuilder<ResponseItem<TDocument>>> fn : fns) {
+				this.docs.add(fn.apply(new ResponseItem.Builder<TDocument>()).build());
 			}
 			return this;
 		}
@@ -169,11 +170,19 @@ public class MgetResponse<TDocument> implements JsonpSerializable {
 				op -> MgetResponse.setupMgetResponseDeserializer(op, tDocumentDeserializer));
 	};
 
+	/**
+	 * Json deserializer for {@link MgetResponse} based on named deserializers
+	 * provided by the calling {@code JsonMapper}.
+	 */
+	public static final JsonpDeserializer<MgetResponse<Object>> _DESERIALIZER = createMgetResponseDeserializer(
+			new NamedDeserializer<>("co.elastic.clients:Deserializer:_global.mget.TDocument"));
+
 	protected static <TDocument> void setupMgetResponseDeserializer(
-			DelegatingDeserializer<MgetResponse.Builder<TDocument>> op,
+			ObjectDeserializer<MgetResponse.Builder<TDocument>> op,
 			JsonpDeserializer<TDocument> tDocumentDeserializer) {
 
-		op.add(Builder::docs, JsonpDeserializer.arrayDeserializer(Hit.createHitDeserializer(tDocumentDeserializer)),
+		op.add(Builder::docs,
+				JsonpDeserializer.arrayDeserializer(ResponseItem.createResponseItemDeserializer(tDocumentDeserializer)),
 				"docs");
 
 	}

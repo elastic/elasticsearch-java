@@ -23,7 +23,7 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
-import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.elasticsearch._types.Script;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -32,7 +32,6 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -49,7 +48,7 @@ public abstract class MetricAggregationBase implements JsonpSerializable {
 	private final String missing;
 
 	@Nullable
-	private final JsonValue /* _types.Script */ script;
+	private final Script script;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -81,7 +80,7 @@ public abstract class MetricAggregationBase implements JsonpSerializable {
 	 * API name: {@code script}
 	 */
 	@Nullable
-	public final JsonValue /* _types.Script */ script() {
+	public final Script script() {
 		return this.script;
 	}
 
@@ -108,7 +107,7 @@ public abstract class MetricAggregationBase implements JsonpSerializable {
 		}
 		if (this.script != null) {
 			generator.writeKey("script");
-			generator.write(this.script);
+			this.script.serialize(generator, mapper);
 
 		}
 
@@ -124,7 +123,7 @@ public abstract class MetricAggregationBase implements JsonpSerializable {
 		private String missing;
 
 		@Nullable
-		private JsonValue /* _types.Script */ script;
+		private Script script;
 
 		/**
 		 * API name: {@code field}
@@ -145,9 +144,16 @@ public abstract class MetricAggregationBase implements JsonpSerializable {
 		/**
 		 * API name: {@code script}
 		 */
-		public final BuilderT script(@Nullable JsonValue /* _types.Script */ value) {
+		public final BuilderT script(@Nullable Script value) {
 			this.script = value;
 			return self();
+		}
+
+		/**
+		 * API name: {@code script}
+		 */
+		public final BuilderT script(Function<Script.Builder, ObjectBuilder<Script>> fn) {
+			return this.script(fn.apply(new Script.Builder()).build());
 		}
 
 		protected abstract BuilderT self();
@@ -156,11 +162,11 @@ public abstract class MetricAggregationBase implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 	protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupMetricAggregationBaseDeserializer(
-			DelegatingDeserializer<BuilderT> op) {
+			ObjectDeserializer<BuilderT> op) {
 
 		op.add(AbstractBuilder::field, JsonpDeserializer.stringDeserializer(), "field");
 		op.add(AbstractBuilder::missing, JsonpDeserializer.stringDeserializer(), "missing");
-		op.add(AbstractBuilder::script, JsonpDeserializer.jsonValueDeserializer(), "script");
+		op.add(AbstractBuilder::script, Script._DESERIALIZER, "script");
 
 	}
 

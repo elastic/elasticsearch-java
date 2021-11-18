@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.searchable_snapshots;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -138,11 +137,10 @@ public class SearchableSnapshotsStatsResponse implements JsonpSerializable {
 	 * Json deserializer for {@link SearchableSnapshotsStatsResponse}
 	 */
 	public static final JsonpDeserializer<SearchableSnapshotsStatsResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, SearchableSnapshotsStatsResponse::setupSearchableSnapshotsStatsResponseDeserializer,
-					Builder::build);
+			.lazy(Builder::new, SearchableSnapshotsStatsResponse::setupSearchableSnapshotsStatsResponseDeserializer);
 
 	protected static void setupSearchableSnapshotsStatsResponseDeserializer(
-			DelegatingDeserializer<SearchableSnapshotsStatsResponse.Builder> op) {
+			ObjectDeserializer<SearchableSnapshotsStatsResponse.Builder> op) {
 
 		op.add(Builder::stats, JsonData._DESERIALIZER, "stats");
 		op.add(Builder::total, JsonData._DESERIALIZER, "total");

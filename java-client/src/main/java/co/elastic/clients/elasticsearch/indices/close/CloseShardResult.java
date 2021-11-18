@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch.indices.close;
 
 import co.elastic.clients.elasticsearch._types.ShardFailure;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -145,9 +144,9 @@ public class CloseShardResult implements JsonpSerializable {
 	 * Json deserializer for {@link CloseShardResult}
 	 */
 	public static final JsonpDeserializer<CloseShardResult> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			CloseShardResult::setupCloseShardResultDeserializer, Builder::build);
+			CloseShardResult::setupCloseShardResultDeserializer);
 
-	protected static void setupCloseShardResultDeserializer(DelegatingDeserializer<CloseShardResult.Builder> op) {
+	protected static void setupCloseShardResultDeserializer(ObjectDeserializer<CloseShardResult.Builder> op) {
 
 		op.add(Builder::failures, JsonpDeserializer.arrayDeserializer(ShardFailure._DESERIALIZER), "failures");
 

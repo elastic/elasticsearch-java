@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch._types;
 
 import co.elastic.clients.elasticsearch.indices.stats.ShardFileSizeInfo;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -733,9 +732,9 @@ public class SegmentsStats implements JsonpSerializable {
 	 * Json deserializer for {@link SegmentsStats}
 	 */
 	public static final JsonpDeserializer<SegmentsStats> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			SegmentsStats::setupSegmentsStatsDeserializer, Builder::build);
+			SegmentsStats::setupSegmentsStatsDeserializer);
 
-	protected static void setupSegmentsStatsDeserializer(DelegatingDeserializer<SegmentsStats.Builder> op) {
+	protected static void setupSegmentsStatsDeserializer(ObjectDeserializer<SegmentsStats.Builder> op) {
 
 		op.add(Builder::count, JsonpDeserializer.integerDeserializer(), "count");
 		op.add(Builder::docValuesMemory, JsonpDeserializer.stringDeserializer(), "doc_values_memory");

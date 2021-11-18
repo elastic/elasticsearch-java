@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.analysis;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -38,7 +37,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.analysis.IcuNormalizationTokenFilter
 @JsonpDeserializable
-public class IcuNormalizationTokenFilter extends TokenFilterBase implements TokenFilterVariant {
+public class IcuNormalizationTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
 	private final IcuNormalizationType name;
 
 	// ---------------------------------------------------------------------------------------------
@@ -55,7 +54,7 @@ public class IcuNormalizationTokenFilter extends TokenFilterBase implements Toke
 	}
 
 	/**
-	 * {@link TokenFilter} variant type
+	 * {@link TokenFilterDefinition} variant type
 	 */
 	@Override
 	public String _variantType() {
@@ -119,11 +118,11 @@ public class IcuNormalizationTokenFilter extends TokenFilterBase implements Toke
 	/**
 	 * Json deserializer for {@link IcuNormalizationTokenFilter}
 	 */
-	public static final JsonpDeserializer<IcuNormalizationTokenFilter> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
-			Builder::new, IcuNormalizationTokenFilter::setupIcuNormalizationTokenFilterDeserializer, Builder::build);
+	public static final JsonpDeserializer<IcuNormalizationTokenFilter> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, IcuNormalizationTokenFilter::setupIcuNormalizationTokenFilterDeserializer);
 
 	protected static void setupIcuNormalizationTokenFilterDeserializer(
-			DelegatingDeserializer<IcuNormalizationTokenFilter.Builder> op) {
+			ObjectDeserializer<IcuNormalizationTokenFilter.Builder> op) {
 		TokenFilterBase.setupTokenFilterBaseDeserializer(op);
 		op.add(Builder::name, IcuNormalizationType._DESERIALIZER, "name");
 

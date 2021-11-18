@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.slm;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -220,9 +219,9 @@ public class Policy implements JsonpSerializable {
 	 * Json deserializer for {@link Policy}
 	 */
 	public static final JsonpDeserializer<Policy> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			Policy::setupPolicyDeserializer, Builder::build);
+			Policy::setupPolicyDeserializer);
 
-	protected static void setupPolicyDeserializer(DelegatingDeserializer<Policy.Builder> op) {
+	protected static void setupPolicyDeserializer(ObjectDeserializer<Policy.Builder> op) {
 
 		op.add(Builder::config, Configuration._DESERIALIZER, "config");
 		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");

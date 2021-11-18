@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.xpack.usage;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -144,10 +143,10 @@ public class Base implements JsonpSerializable {
 	 * Json deserializer for {@link Base}
 	 */
 	public static final JsonpDeserializer<Base> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			Base::setupBaseDeserializer, Builder::build);
+			Base::setupBaseDeserializer);
 
 	protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupBaseDeserializer(
-			DelegatingDeserializer<BuilderT> op) {
+			ObjectDeserializer<BuilderT> op) {
 
 		op.add(AbstractBuilder::available, JsonpDeserializer.booleanDeserializer(), "available");
 		op.add(AbstractBuilder::enabled, JsonpDeserializer.booleanDeserializer(), "enabled");

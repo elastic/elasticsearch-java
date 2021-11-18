@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -237,11 +236,11 @@ public class PercentileRanksAggregation extends FormatMetricAggregationBase impl
 	/**
 	 * Json deserializer for {@link PercentileRanksAggregation}
 	 */
-	public static final JsonpDeserializer<PercentileRanksAggregation> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
-			Builder::new, PercentileRanksAggregation::setupPercentileRanksAggregationDeserializer, Builder::build);
+	public static final JsonpDeserializer<PercentileRanksAggregation> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, PercentileRanksAggregation::setupPercentileRanksAggregationDeserializer);
 
 	protected static void setupPercentileRanksAggregationDeserializer(
-			DelegatingDeserializer<PercentileRanksAggregation.Builder> op) {
+			ObjectDeserializer<PercentileRanksAggregation.Builder> op) {
 		FormatMetricAggregationBase.setupFormatMetricAggregationBaseDeserializer(op);
 		op.add(Builder::keyed, JsonpDeserializer.booleanDeserializer(), "keyed");
 		op.add(Builder::values, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.doubleDeserializer()), "values");

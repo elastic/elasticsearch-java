@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.indices.recovery;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -161,9 +160,9 @@ public class FileDetails implements JsonpSerializable {
 	 * Json deserializer for {@link FileDetails}
 	 */
 	public static final JsonpDeserializer<FileDetails> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			FileDetails::setupFileDetailsDeserializer, Builder::build);
+			FileDetails::setupFileDetailsDeserializer);
 
-	protected static void setupFileDetailsDeserializer(DelegatingDeserializer<FileDetails.Builder> op) {
+	protected static void setupFileDetailsDeserializer(ObjectDeserializer<FileDetails.Builder> op) {
 
 		op.add(Builder::length, JsonpDeserializer.longDeserializer(), "length");
 		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");

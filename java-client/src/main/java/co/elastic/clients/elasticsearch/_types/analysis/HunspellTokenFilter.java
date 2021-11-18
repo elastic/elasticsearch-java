@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.analysis;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -40,7 +39,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.analysis.HunspellTokenFilter
 @JsonpDeserializable
-public class HunspellTokenFilter extends TokenFilterBase implements TokenFilterVariant {
+public class HunspellTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
 	private final boolean dedup;
 
 	private final String dictionary;
@@ -66,7 +65,7 @@ public class HunspellTokenFilter extends TokenFilterBase implements TokenFilterV
 	}
 
 	/**
-	 * {@link TokenFilter} variant type
+	 * {@link TokenFilterDefinition} variant type
 	 */
 	@Override
 	public String _variantType() {
@@ -191,9 +190,9 @@ public class HunspellTokenFilter extends TokenFilterBase implements TokenFilterV
 	 * Json deserializer for {@link HunspellTokenFilter}
 	 */
 	public static final JsonpDeserializer<HunspellTokenFilter> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, HunspellTokenFilter::setupHunspellTokenFilterDeserializer, Builder::build);
+			.lazy(Builder::new, HunspellTokenFilter::setupHunspellTokenFilterDeserializer);
 
-	protected static void setupHunspellTokenFilterDeserializer(DelegatingDeserializer<HunspellTokenFilter.Builder> op) {
+	protected static void setupHunspellTokenFilterDeserializer(ObjectDeserializer<HunspellTokenFilter.Builder> op) {
 		TokenFilterBase.setupTokenFilterBaseDeserializer(op);
 		op.add(Builder::dedup, JsonpDeserializer.booleanDeserializer(), "dedup");
 		op.add(Builder::dictionary, JsonpDeserializer.stringDeserializer(), "dictionary");

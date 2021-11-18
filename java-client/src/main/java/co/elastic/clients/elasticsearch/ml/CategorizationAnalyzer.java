@@ -23,44 +23,54 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.elasticsearch._types.analysis.CharFilter;
-import co.elastic.clients.elasticsearch._types.analysis.TokenFilter;
-import co.elastic.clients.elasticsearch._types.analysis.Tokenizer;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
-import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.json.UnionDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.TaggedUnion;
+import co.elastic.clients.util.TaggedUnionUtils;
 import jakarta.json.stream.JsonGenerator;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.lang.Object;
+import java.lang.String;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.CategorizationAnalyzer
+// union type: Union[]
 @JsonpDeserializable
-public class CategorizationAnalyzer implements JsonpSerializable {
-	private final List<CharFilter> charFilter;
+public class CategorizationAnalyzer implements TaggedUnion<Object>, JsonpSerializable {
 
-	private final List<TokenFilter> filter;
+	public static final String NAME = "name";
+	public static final String DEFINITION = "definition";
 
-	@Nullable
-	private final Tokenizer tokenizer;
+	private final String _type;
+	private final Object _value;
 
-	// ---------------------------------------------------------------------------------------------
+	@Override
+	public final String _type() {
+		return _type;
+	}
+
+	@Override
+	public final Object _get() {
+		return _value;
+	}
+
+	public CategorizationAnalyzer(String type, Object value) {
+		this._type = type;
+		this._value = value;
+	}
 
 	private CategorizationAnalyzer(Builder builder) {
 
-		this.charFilter = ModelTypeHelper.unmodifiable(builder.charFilter);
-		this.filter = ModelTypeHelper.unmodifiable(builder.filter);
-		this.tokenizer = builder.tokenizer;
+		this._type = ModelTypeHelper.requireNonNull(builder._type, builder, "<variant type>");
+		this._value = ModelTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
 
 	}
 
@@ -69,224 +79,74 @@ public class CategorizationAnalyzer implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code char_filter}
+	 * Get the {@code name} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code name} kind.
 	 */
-	public final List<CharFilter> charFilter() {
-		return this.charFilter;
+	public String name() {
+		return TaggedUnionUtils.get(this, NAME);
 	}
 
 	/**
-	 * One or more character filters. In addition to the built-in character filters,
-	 * other plugins can provide more character filters. If this property is not
-	 * specified, no character filters are applied prior to categorization. If you
-	 * are customizing some other aspect of the analyzer and you need to achieve the
-	 * equivalent of <code>categorization_filters</code> (which are not permitted
-	 * when some other aspect of the analyzer is customized), add them here as
-	 * pattern replace character filters.
-	 * <p>
-	 * API name: {@code filter}
+	 * Get the {@code definition} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code definition} kind.
 	 */
-	public final List<TokenFilter> filter() {
-		return this.filter;
+	public CategorizationAnalyzerDefinition definition() {
+		return TaggedUnionUtils.get(this, DEFINITION);
 	}
 
-	/**
-	 * One or more token filters. In addition to the built-in token filters, other
-	 * plugins can provide more token filters. If this property is not specified, no
-	 * token filters are applied prior to categorization.
-	 * <p>
-	 * API name: {@code tokenizer}
-	 */
-	@Nullable
-	public final Tokenizer tokenizer() {
-		return this.tokenizer;
-	}
-
-	/**
-	 * Serialize this object to JSON.
-	 */
+	@Override
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		serializeInternal(generator, mapper);
-		generator.writeEnd();
-	}
+		if (_value instanceof JsonpSerializable) {
+			((JsonpSerializable) _value).serialize(generator, mapper);
+		} else {
+			switch (_type) {
+				case NAME :
+					generator.write(((String) this._value));
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-
-		if (ModelTypeHelper.isDefined(this.charFilter)) {
-			generator.writeKey("char_filter");
-			generator.writeStartArray();
-			for (CharFilter item0 : this.charFilter) {
-				item0.serialize(generator, mapper);
-
+					break;
 			}
-			generator.writeEnd();
-
-		}
-		if (ModelTypeHelper.isDefined(this.filter)) {
-			generator.writeKey("filter");
-			generator.writeStartArray();
-			for (TokenFilter item0 : this.filter) {
-				item0.serialize(generator, mapper);
-
-			}
-			generator.writeEnd();
-
-		}
-		if (this.tokenizer != null) {
-			generator.writeKey("tokenizer");
-			this.tokenizer.serialize(generator, mapper);
-
 		}
 
 	}
 
-	// ---------------------------------------------------------------------------------------------
-
-	/**
-	 * Builder for {@link CategorizationAnalyzer}.
-	 */
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<CategorizationAnalyzer> {
-		@Nullable
-		private List<CharFilter> charFilter;
+		private String _type;
+		private Object _value;
 
-		@Nullable
-		private List<TokenFilter> filter;
-
-		@Nullable
-		private Tokenizer tokenizer;
-
-		/**
-		 * API name: {@code char_filter}
-		 */
-		public final Builder charFilter(@Nullable List<CharFilter> value) {
-			this.charFilter = value;
+		public Builder name(String v) {
+			this._type = NAME;
+			this._value = v;
 			return this;
 		}
 
-		/**
-		 * API name: {@code char_filter}
-		 */
-		public final Builder charFilter(CharFilter... value) {
-			this.charFilter = Arrays.asList(value);
+		public Builder definition(CategorizationAnalyzerDefinition v) {
+			this._type = DEFINITION;
+			this._value = v;
 			return this;
 		}
 
-		/**
-		 * API name: {@code char_filter}
-		 */
-		@SafeVarargs
-		public final Builder charFilter(Function<CharFilter.Builder, ObjectBuilder<CharFilter>>... fns) {
-			this.charFilter = new ArrayList<>(fns.length);
-			for (Function<CharFilter.Builder, ObjectBuilder<CharFilter>> fn : fns) {
-				this.charFilter.add(fn.apply(new CharFilter.Builder()).build());
-			}
-			return this;
+		public Builder definition(
+				Function<CategorizationAnalyzerDefinition.Builder, ObjectBuilder<CategorizationAnalyzerDefinition>> f) {
+			return this.definition(f.apply(new CategorizationAnalyzerDefinition.Builder()).build());
 		}
 
-		/**
-		 * One or more character filters. In addition to the built-in character filters,
-		 * other plugins can provide more character filters. If this property is not
-		 * specified, no character filters are applied prior to categorization. If you
-		 * are customizing some other aspect of the analyzer and you need to achieve the
-		 * equivalent of <code>categorization_filters</code> (which are not permitted
-		 * when some other aspect of the analyzer is customized), add them here as
-		 * pattern replace character filters.
-		 * <p>
-		 * API name: {@code filter}
-		 */
-		public final Builder filter(@Nullable List<TokenFilter> value) {
-			this.filter = value;
-			return this;
-		}
-
-		/**
-		 * One or more character filters. In addition to the built-in character filters,
-		 * other plugins can provide more character filters. If this property is not
-		 * specified, no character filters are applied prior to categorization. If you
-		 * are customizing some other aspect of the analyzer and you need to achieve the
-		 * equivalent of <code>categorization_filters</code> (which are not permitted
-		 * when some other aspect of the analyzer is customized), add them here as
-		 * pattern replace character filters.
-		 * <p>
-		 * API name: {@code filter}
-		 */
-		public final Builder filter(TokenFilter... value) {
-			this.filter = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * One or more character filters. In addition to the built-in character filters,
-		 * other plugins can provide more character filters. If this property is not
-		 * specified, no character filters are applied prior to categorization. If you
-		 * are customizing some other aspect of the analyzer and you need to achieve the
-		 * equivalent of <code>categorization_filters</code> (which are not permitted
-		 * when some other aspect of the analyzer is customized), add them here as
-		 * pattern replace character filters.
-		 * <p>
-		 * API name: {@code filter}
-		 */
-		@SafeVarargs
-		public final Builder filter(Function<TokenFilter.Builder, ObjectBuilder<TokenFilter>>... fns) {
-			this.filter = new ArrayList<>(fns.length);
-			for (Function<TokenFilter.Builder, ObjectBuilder<TokenFilter>> fn : fns) {
-				this.filter.add(fn.apply(new TokenFilter.Builder()).build());
-			}
-			return this;
-		}
-
-		/**
-		 * One or more token filters. In addition to the built-in token filters, other
-		 * plugins can provide more token filters. If this property is not specified, no
-		 * token filters are applied prior to categorization.
-		 * <p>
-		 * API name: {@code tokenizer}
-		 */
-		public final Builder tokenizer(@Nullable Tokenizer value) {
-			this.tokenizer = value;
-			return this;
-		}
-
-		/**
-		 * One or more token filters. In addition to the built-in token filters, other
-		 * plugins can provide more token filters. If this property is not specified, no
-		 * token filters are applied prior to categorization.
-		 * <p>
-		 * API name: {@code tokenizer}
-		 */
-		public final Builder tokenizer(Function<Tokenizer.Builder, ObjectBuilder<Tokenizer>> fn) {
-			return this.tokenizer(fn.apply(new Tokenizer.Builder()).build());
-		}
-
-		/**
-		 * Builds a {@link CategorizationAnalyzer}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
 		public CategorizationAnalyzer build() {
 			_checkSingleUse();
-
 			return new CategorizationAnalyzer(this);
 		}
-	}
-
-	// ---------------------------------------------------------------------------------------------
-
-	/**
-	 * Json deserializer for {@link CategorizationAnalyzer}
-	 */
-	public static final JsonpDeserializer<CategorizationAnalyzer> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, CategorizationAnalyzer::setupCategorizationAnalyzerDeserializer, Builder::build);
-
-	protected static void setupCategorizationAnalyzerDeserializer(
-			DelegatingDeserializer<CategorizationAnalyzer.Builder> op) {
-
-		op.add(Builder::charFilter, JsonpDeserializer.arrayDeserializer(CharFilter._DESERIALIZER), "char_filter");
-		op.add(Builder::filter, JsonpDeserializer.arrayDeserializer(TokenFilter._DESERIALIZER), "filter");
-		op.add(Builder::tokenizer, Tokenizer._DESERIALIZER, "tokenizer");
 
 	}
 
+	private static JsonpDeserializer<CategorizationAnalyzer> buildCategorizationAnalyzerDeserializer() {
+		return new UnionDeserializer.Builder<>(CategorizationAnalyzer::new, false)
+				.addMember("name", JsonpDeserializer.stringDeserializer())
+				.addMember("definition", CategorizationAnalyzerDefinition._DESERIALIZER).build();
+	}
+
+	public static final JsonpDeserializer<CategorizationAnalyzer> _DESERIALIZER = JsonpDeserializer
+			.lazy(CategorizationAnalyzer::buildCategorizationAnalyzerDeserializer);
 }

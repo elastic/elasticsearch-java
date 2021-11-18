@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -230,9 +229,9 @@ public class ShardFailure implements JsonpSerializable {
 	 * Json deserializer for {@link ShardFailure}
 	 */
 	public static final JsonpDeserializer<ShardFailure> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			ShardFailure::setupShardFailureDeserializer, Builder::build);
+			ShardFailure::setupShardFailureDeserializer);
 
-	protected static void setupShardFailureDeserializer(DelegatingDeserializer<ShardFailure.Builder> op) {
+	protected static void setupShardFailureDeserializer(ObjectDeserializer<ShardFailure.Builder> op) {
 
 		op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "index");
 		op.add(Builder::node, JsonpDeserializer.stringDeserializer(), "node");

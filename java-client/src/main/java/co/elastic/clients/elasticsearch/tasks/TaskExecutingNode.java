@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch.tasks;
 
 import co.elastic.clients.elasticsearch._types.BaseNode;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -135,9 +134,9 @@ public class TaskExecutingNode extends BaseNode {
 	 * Json deserializer for {@link TaskExecutingNode}
 	 */
 	public static final JsonpDeserializer<TaskExecutingNode> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, TaskExecutingNode::setupTaskExecutingNodeDeserializer, Builder::build);
+			.lazy(Builder::new, TaskExecutingNode::setupTaskExecutingNodeDeserializer);
 
-	protected static void setupTaskExecutingNodeDeserializer(DelegatingDeserializer<TaskExecutingNode.Builder> op) {
+	protected static void setupTaskExecutingNodeDeserializer(ObjectDeserializer<TaskExecutingNode.Builder> op) {
 		BaseNode.setupBaseNodeDeserializer(op);
 		op.add(Builder::tasks, JsonpDeserializer.stringMapDeserializer(State._DESERIALIZER), "tasks");
 

@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -328,10 +327,10 @@ public class StatsAggregate extends AggregateBase implements AggregateVariant {
 	 * Json deserializer for {@link StatsAggregate}
 	 */
 	public static final JsonpDeserializer<StatsAggregate> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			StatsAggregate::setupStatsAggregateDeserializer, Builder::build);
+			StatsAggregate::setupStatsAggregateDeserializer);
 
 	protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupStatsAggregateDeserializer(
-			DelegatingDeserializer<BuilderT> op) {
+			ObjectDeserializer<BuilderT> op) {
 		AggregateBase.setupAggregateBaseDeserializer(op);
 		op.add(AbstractBuilder::count, JsonpDeserializer.longDeserializer(), "count");
 		op.add(AbstractBuilder::min, JsonpDeserializer.doubleDeserializer(), "min");

@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -167,10 +166,9 @@ public class GetCategoriesResponse implements JsonpSerializable {
 	 * Json deserializer for {@link GetCategoriesResponse}
 	 */
 	public static final JsonpDeserializer<GetCategoriesResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, GetCategoriesResponse::setupGetCategoriesResponseDeserializer, Builder::build);
+			.lazy(Builder::new, GetCategoriesResponse::setupGetCategoriesResponseDeserializer);
 
-	protected static void setupGetCategoriesResponseDeserializer(
-			DelegatingDeserializer<GetCategoriesResponse.Builder> op) {
+	protected static void setupGetCategoriesResponseDeserializer(ObjectDeserializer<GetCategoriesResponse.Builder> op) {
 
 		op.add(Builder::categories, JsonpDeserializer.arrayDeserializer(Category._DESERIALIZER), "categories");
 		op.add(Builder::count, JsonpDeserializer.longDeserializer(), "count");

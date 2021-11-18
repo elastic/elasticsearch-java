@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -390,9 +389,9 @@ public class ModelSnapshot implements JsonpSerializable {
 	 * Json deserializer for {@link ModelSnapshot}
 	 */
 	public static final JsonpDeserializer<ModelSnapshot> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			ModelSnapshot::setupModelSnapshotDeserializer, Builder::build);
+			ModelSnapshot::setupModelSnapshotDeserializer);
 
-	protected static void setupModelSnapshotDeserializer(DelegatingDeserializer<ModelSnapshot.Builder> op) {
+	protected static void setupModelSnapshotDeserializer(ObjectDeserializer<ModelSnapshot.Builder> op) {
 
 		op.add(Builder::description, JsonpDeserializer.stringDeserializer(), "description");
 		op.add(Builder::jobId, JsonpDeserializer.stringDeserializer(), "job_id");

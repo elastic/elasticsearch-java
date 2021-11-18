@@ -25,7 +25,7 @@ package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -50,7 +50,7 @@ public class OpenJobRequest extends RequestBase implements JsonpSerializable {
 	private final String jobId;
 
 	@Nullable
-	private final String timeout;
+	private final Time timeout;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -80,7 +80,7 @@ public class OpenJobRequest extends RequestBase implements JsonpSerializable {
 	 * API name: {@code timeout}
 	 */
 	@Nullable
-	public final String timeout() {
+	public final Time timeout() {
 		return this.timeout;
 	}
 
@@ -97,7 +97,7 @@ public class OpenJobRequest extends RequestBase implements JsonpSerializable {
 
 		if (this.timeout != null) {
 			generator.writeKey("timeout");
-			generator.write(this.timeout);
+			this.timeout.serialize(generator, mapper);
 
 		}
 
@@ -112,7 +112,7 @@ public class OpenJobRequest extends RequestBase implements JsonpSerializable {
 		private String jobId;
 
 		@Nullable
-		private String timeout;
+		private Time timeout;
 
 		/**
 		 * Required - Identifier for the anomaly detection job.
@@ -129,9 +129,18 @@ public class OpenJobRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code timeout}
 		 */
-		public final Builder timeout(@Nullable String value) {
+		public final Builder timeout(@Nullable Time value) {
 			this.timeout = value;
 			return this;
+		}
+
+		/**
+		 * Controls the time to wait until a job has opened.
+		 * <p>
+		 * API name: {@code timeout}
+		 */
+		public final Builder timeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.timeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -153,11 +162,11 @@ public class OpenJobRequest extends RequestBase implements JsonpSerializable {
 	 * Json deserializer for {@link OpenJobRequest}
 	 */
 	public static final JsonpDeserializer<OpenJobRequest> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			OpenJobRequest::setupOpenJobRequestDeserializer, Builder::build);
+			OpenJobRequest::setupOpenJobRequestDeserializer);
 
-	protected static void setupOpenJobRequestDeserializer(DelegatingDeserializer<OpenJobRequest.Builder> op) {
+	protected static void setupOpenJobRequestDeserializer(ObjectDeserializer<OpenJobRequest.Builder> op) {
 
-		op.add(Builder::timeout, JsonpDeserializer.stringDeserializer(), "timeout");
+		op.add(Builder::timeout, Time._DESERIALIZER, "timeout");
 
 	}
 
@@ -166,7 +175,7 @@ public class OpenJobRequest extends RequestBase implements JsonpSerializable {
 	/**
 	 * Endpoint "{@code ml.open_job}".
 	 */
-	public static final Endpoint<OpenJobRequest, OpenJobResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<OpenJobRequest, OpenJobResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";

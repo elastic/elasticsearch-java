@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -198,9 +197,9 @@ public class ModelPlotConfig implements JsonpSerializable {
 	 * Json deserializer for {@link ModelPlotConfig}
 	 */
 	public static final JsonpDeserializer<ModelPlotConfig> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			ModelPlotConfig::setupModelPlotConfigDeserializer, Builder::build);
+			ModelPlotConfig::setupModelPlotConfigDeserializer);
 
-	protected static void setupModelPlotConfigDeserializer(DelegatingDeserializer<ModelPlotConfig.Builder> op) {
+	protected static void setupModelPlotConfigDeserializer(ObjectDeserializer<ModelPlotConfig.Builder> op) {
 
 		op.add(Builder::annotationsEnabled, JsonpDeserializer.booleanDeserializer(), "annotations_enabled");
 		op.add(Builder::enabled, JsonpDeserializer.booleanDeserializer(), "enabled");

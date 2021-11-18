@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -284,9 +283,9 @@ public class FuzzyQuery extends QueryBase implements QueryVariant {
 	 * Json deserializer for {@link FuzzyQuery}
 	 */
 	public static final JsonpDeserializer<FuzzyQuery> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			FuzzyQuery::setupFuzzyQueryDeserializer, Builder::build);
+			FuzzyQuery::setupFuzzyQueryDeserializer);
 
-	protected static void setupFuzzyQueryDeserializer(DelegatingDeserializer<FuzzyQuery.Builder> op) {
+	protected static void setupFuzzyQueryDeserializer(ObjectDeserializer<FuzzyQuery.Builder> op) {
 		QueryBase.setupQueryBaseDeserializer(op);
 		op.add(Builder::maxExpansions, JsonpDeserializer.integerDeserializer(), "max_expansions");
 		op.add(Builder::prefixLength, JsonpDeserializer.integerDeserializer(), "prefix_length");

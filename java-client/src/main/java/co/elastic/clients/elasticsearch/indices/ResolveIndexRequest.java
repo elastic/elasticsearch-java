@@ -24,7 +24,7 @@
 package co.elastic.clients.elasticsearch.indices;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
-import co.elastic.clients.elasticsearch._types.ExpandWildcardOptions;
+import co.elastic.clients.elasticsearch._types.ExpandWildcard;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -49,7 +49,7 @@ import javax.annotation.Nullable;
 // typedef: indices.resolve_index.Request
 
 public class ResolveIndexRequest extends RequestBase {
-	private final List<ExpandWildcardOptions> expandWildcards;
+	private final List<ExpandWildcard> expandWildcards;
 
 	private final List<String> name;
 
@@ -72,7 +72,7 @@ public class ResolveIndexRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code expand_wildcards}
 	 */
-	public final List<ExpandWildcardOptions> expandWildcards() {
+	public final List<ExpandWildcard> expandWildcards() {
 		return this.expandWildcards;
 	}
 
@@ -92,7 +92,7 @@ public class ResolveIndexRequest extends RequestBase {
 	 */
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ResolveIndexRequest> {
 		@Nullable
-		private List<ExpandWildcardOptions> expandWildcards;
+		private List<ExpandWildcard> expandWildcards;
 
 		private List<String> name;
 
@@ -102,7 +102,7 @@ public class ResolveIndexRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code expand_wildcards}
 		 */
-		public final Builder expandWildcards(@Nullable List<ExpandWildcardOptions> value) {
+		public final Builder expandWildcards(@Nullable List<ExpandWildcard> value) {
 			this.expandWildcards = value;
 			return this;
 		}
@@ -113,7 +113,7 @@ public class ResolveIndexRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code expand_wildcards}
 		 */
-		public final Builder expandWildcards(ExpandWildcardOptions... value) {
+		public final Builder expandWildcards(ExpandWildcard... value) {
 			this.expandWildcards = Arrays.asList(value);
 			return this;
 		}
@@ -156,7 +156,7 @@ public class ResolveIndexRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code indices.resolve_index}".
 	 */
-	public static final Endpoint<ResolveIndexRequest, ResolveIndexResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<ResolveIndexRequest, ResolveIndexResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "GET";

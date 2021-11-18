@@ -23,7 +23,7 @@
 
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
-import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.elasticsearch._types.FieldValue;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -44,7 +44,7 @@ public class TermQuery extends QueryBase implements QueryVariant {
 	// Single key dictionary
 	private final String field;
 
-	private final String value;
+	private final FieldValue value;
 
 	@Nullable
 	private final Boolean caseInsensitive;
@@ -82,7 +82,7 @@ public class TermQuery extends QueryBase implements QueryVariant {
 	/**
 	 * Required - API name: {@code value}
 	 */
-	public final String value() {
+	public final FieldValue value() {
 		return this.value;
 	}
 
@@ -99,7 +99,7 @@ public class TermQuery extends QueryBase implements QueryVariant {
 
 		super.serializeInternal(generator, mapper);
 		generator.writeKey("value");
-		generator.write(this.value);
+		this.value.serialize(generator, mapper);
 
 		if (this.caseInsensitive != null) {
 			generator.writeKey("case_insensitive");
@@ -127,7 +127,7 @@ public class TermQuery extends QueryBase implements QueryVariant {
 			return this;
 		}
 
-		private String value;
+		private FieldValue value;
 
 		@Nullable
 		private Boolean caseInsensitive;
@@ -135,9 +135,16 @@ public class TermQuery extends QueryBase implements QueryVariant {
 		/**
 		 * Required - API name: {@code value}
 		 */
-		public final Builder value(String value) {
+		public final Builder value(FieldValue value) {
 			this.value = value;
 			return this;
+		}
+
+		/**
+		 * Required - API name: {@code value}
+		 */
+		public final Builder value(Function<FieldValue.Builder, ObjectBuilder<FieldValue>> fn) {
+			return this.value(fn.apply(new FieldValue.Builder()).build());
 		}
 
 		/**
@@ -172,11 +179,11 @@ public class TermQuery extends QueryBase implements QueryVariant {
 	 * Json deserializer for {@link TermQuery}
 	 */
 	public static final JsonpDeserializer<TermQuery> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			TermQuery::setupTermQueryDeserializer, Builder::build);
+			TermQuery::setupTermQueryDeserializer);
 
-	protected static void setupTermQueryDeserializer(DelegatingDeserializer<TermQuery.Builder> op) {
+	protected static void setupTermQueryDeserializer(ObjectDeserializer<TermQuery.Builder> op) {
 		QueryBase.setupQueryBaseDeserializer(op);
-		op.add(Builder::value, JsonpDeserializer.stringDeserializer(), "value");
+		op.add(Builder::value, FieldValue._DESERIALIZER, "value");
 		op.add(Builder::caseInsensitive, JsonpDeserializer.booleanDeserializer(), "case_insensitive");
 
 		op.setKey(Builder::field, JsonpDeserializer.stringDeserializer());

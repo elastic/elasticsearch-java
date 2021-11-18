@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -137,11 +136,11 @@ public class BucketMetricValueAggregate extends SingleMetricAggregateBase implem
 	/**
 	 * Json deserializer for {@link BucketMetricValueAggregate}
 	 */
-	public static final JsonpDeserializer<BucketMetricValueAggregate> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
-			Builder::new, BucketMetricValueAggregate::setupBucketMetricValueAggregateDeserializer, Builder::build);
+	public static final JsonpDeserializer<BucketMetricValueAggregate> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, BucketMetricValueAggregate::setupBucketMetricValueAggregateDeserializer);
 
 	protected static void setupBucketMetricValueAggregateDeserializer(
-			DelegatingDeserializer<BucketMetricValueAggregate.Builder> op) {
+			ObjectDeserializer<BucketMetricValueAggregate.Builder> op) {
 		SingleMetricAggregateBase.setupSingleMetricAggregateBaseDeserializer(op);
 		op.add(Builder::keys, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "keys");
 

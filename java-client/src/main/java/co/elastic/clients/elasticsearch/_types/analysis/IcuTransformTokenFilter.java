@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.analysis;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -39,7 +38,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.analysis.IcuTransformTokenFilter
 @JsonpDeserializable
-public class IcuTransformTokenFilter extends TokenFilterBase implements TokenFilterVariant {
+public class IcuTransformTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
 	private final IcuTransformDirection dir;
 
 	private final String id;
@@ -59,7 +58,7 @@ public class IcuTransformTokenFilter extends TokenFilterBase implements TokenFil
 	}
 
 	/**
-	 * {@link TokenFilter} variant type
+	 * {@link TokenFilterDefinition} variant type
 	 */
 	@Override
 	public String _variantType() {
@@ -143,10 +142,10 @@ public class IcuTransformTokenFilter extends TokenFilterBase implements TokenFil
 	 * Json deserializer for {@link IcuTransformTokenFilter}
 	 */
 	public static final JsonpDeserializer<IcuTransformTokenFilter> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, IcuTransformTokenFilter::setupIcuTransformTokenFilterDeserializer, Builder::build);
+			.lazy(Builder::new, IcuTransformTokenFilter::setupIcuTransformTokenFilterDeserializer);
 
 	protected static void setupIcuTransformTokenFilterDeserializer(
-			DelegatingDeserializer<IcuTransformTokenFilter.Builder> op) {
+			ObjectDeserializer<IcuTransformTokenFilter.Builder> op) {
 		TokenFilterBase.setupTokenFilterBaseDeserializer(op);
 		op.add(Builder::dir, IcuTransformDirection._DESERIALIZER, "dir");
 		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "id");

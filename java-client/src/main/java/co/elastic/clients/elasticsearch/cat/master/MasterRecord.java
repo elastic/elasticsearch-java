@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.cat.master;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -219,9 +218,9 @@ public class MasterRecord implements JsonpSerializable {
 	 * Json deserializer for {@link MasterRecord}
 	 */
 	public static final JsonpDeserializer<MasterRecord> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			MasterRecord::setupMasterRecordDeserializer, Builder::build);
+			MasterRecord::setupMasterRecordDeserializer);
 
-	protected static void setupMasterRecordDeserializer(DelegatingDeserializer<MasterRecord.Builder> op) {
+	protected static void setupMasterRecordDeserializer(ObjectDeserializer<MasterRecord.Builder> op) {
 
 		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "id");
 		op.add(Builder::host, JsonpDeserializer.stringDeserializer(), "host", "h");

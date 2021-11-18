@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -166,11 +165,10 @@ public class DataframeEvaluationClassificationMetrics extends DataframeEvaluatio
 	 */
 	public static final JsonpDeserializer<DataframeEvaluationClassificationMetrics> _DESERIALIZER = ObjectBuilderDeserializer
 			.lazy(Builder::new,
-					DataframeEvaluationClassificationMetrics::setupDataframeEvaluationClassificationMetricsDeserializer,
-					Builder::build);
+					DataframeEvaluationClassificationMetrics::setupDataframeEvaluationClassificationMetricsDeserializer);
 
 	protected static void setupDataframeEvaluationClassificationMetricsDeserializer(
-			DelegatingDeserializer<DataframeEvaluationClassificationMetrics.Builder> op) {
+			ObjectDeserializer<DataframeEvaluationClassificationMetrics.Builder> op) {
 		DataframeEvaluationMetrics.setupDataframeEvaluationMetricsDeserializer(op);
 		op.add(Builder::accuracy, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "accuracy");
 		op.add(Builder::multiclassConfusionMatrix, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER),

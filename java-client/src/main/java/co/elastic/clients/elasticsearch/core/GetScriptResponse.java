@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch.core;
 
 import co.elastic.clients.elasticsearch._types.StoredScript;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -175,9 +174,9 @@ public class GetScriptResponse implements JsonpSerializable {
 	 * Json deserializer for {@link GetScriptResponse}
 	 */
 	public static final JsonpDeserializer<GetScriptResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, GetScriptResponse::setupGetScriptResponseDeserializer, Builder::build);
+			.lazy(Builder::new, GetScriptResponse::setupGetScriptResponseDeserializer);
 
-	protected static void setupGetScriptResponseDeserializer(DelegatingDeserializer<GetScriptResponse.Builder> op) {
+	protected static void setupGetScriptResponseDeserializer(ObjectDeserializer<GetScriptResponse.Builder> op) {
 
 		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "_id");
 		op.add(Builder::found, JsonpDeserializer.booleanDeserializer(), "found");

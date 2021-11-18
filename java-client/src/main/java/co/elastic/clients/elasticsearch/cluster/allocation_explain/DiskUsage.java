@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.cluster.allocation_explain;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -231,9 +230,9 @@ public class DiskUsage implements JsonpSerializable {
 	 * Json deserializer for {@link DiskUsage}
 	 */
 	public static final JsonpDeserializer<DiskUsage> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			DiskUsage::setupDiskUsageDeserializer, Builder::build);
+			DiskUsage::setupDiskUsageDeserializer);
 
-	protected static void setupDiskUsageDeserializer(DelegatingDeserializer<DiskUsage.Builder> op) {
+	protected static void setupDiskUsageDeserializer(ObjectDeserializer<DiskUsage.Builder> op) {
 
 		op.add(Builder::path, JsonpDeserializer.stringDeserializer(), "path");
 		op.add(Builder::totalBytes, JsonpDeserializer.longDeserializer(), "total_bytes");

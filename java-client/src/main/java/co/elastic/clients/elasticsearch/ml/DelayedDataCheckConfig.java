@@ -23,7 +23,7 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -35,7 +35,6 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
-import java.lang.String;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -44,7 +43,7 @@ import javax.annotation.Nullable;
 @JsonpDeserializable
 public class DelayedDataCheckConfig implements JsonpSerializable {
 	@Nullable
-	private final String checkWindow;
+	private final Time checkWindow;
 
 	private final boolean enabled;
 
@@ -71,7 +70,7 @@ public class DelayedDataCheckConfig implements JsonpSerializable {
 	 * API name: {@code check_window}
 	 */
 	@Nullable
-	public final String checkWindow() {
+	public final Time checkWindow() {
 		return this.checkWindow;
 	}
 
@@ -98,7 +97,7 @@ public class DelayedDataCheckConfig implements JsonpSerializable {
 
 		if (this.checkWindow != null) {
 			generator.writeKey("check_window");
-			generator.write(this.checkWindow);
+			this.checkWindow.serialize(generator, mapper);
 
 		}
 		generator.writeKey("enabled");
@@ -113,7 +112,7 @@ public class DelayedDataCheckConfig implements JsonpSerializable {
 	 */
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DelayedDataCheckConfig> {
 		@Nullable
-		private String checkWindow;
+		private Time checkWindow;
 
 		private Boolean enabled;
 
@@ -126,9 +125,22 @@ public class DelayedDataCheckConfig implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code check_window}
 		 */
-		public final Builder checkWindow(@Nullable String value) {
+		public final Builder checkWindow(@Nullable Time value) {
 			this.checkWindow = value;
 			return this;
+		}
+
+		/**
+		 * The window of time that is searched for late data. This window of time ends
+		 * with the latest finalized bucket. It defaults to null, which causes an
+		 * appropriate check_window to be calculated when the real-time datafeed runs.
+		 * In particular, the default <code>check_window</code> span calculation is
+		 * based on the maximum of <code>2h</code> or <code>8 * bucket_span</code>.
+		 * <p>
+		 * API name: {@code check_window}
+		 */
+		public final Builder checkWindow(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.checkWindow(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -161,12 +173,12 @@ public class DelayedDataCheckConfig implements JsonpSerializable {
 	 * Json deserializer for {@link DelayedDataCheckConfig}
 	 */
 	public static final JsonpDeserializer<DelayedDataCheckConfig> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, DelayedDataCheckConfig::setupDelayedDataCheckConfigDeserializer, Builder::build);
+			.lazy(Builder::new, DelayedDataCheckConfig::setupDelayedDataCheckConfigDeserializer);
 
 	protected static void setupDelayedDataCheckConfigDeserializer(
-			DelegatingDeserializer<DelayedDataCheckConfig.Builder> op) {
+			ObjectDeserializer<DelayedDataCheckConfig.Builder> op) {
 
-		op.add(Builder::checkWindow, JsonpDeserializer.stringDeserializer(), "check_window");
+		op.add(Builder::checkWindow, Time._DESERIALIZER, "check_window");
 		op.add(Builder::enabled, JsonpDeserializer.booleanDeserializer(), "enabled");
 
 	}

@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.ml.put_trained_model;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -230,9 +229,9 @@ public class AggregateOutput implements JsonpSerializable {
 	 * Json deserializer for {@link AggregateOutput}
 	 */
 	public static final JsonpDeserializer<AggregateOutput> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			AggregateOutput::setupAggregateOutputDeserializer, Builder::build);
+			AggregateOutput::setupAggregateOutputDeserializer);
 
-	protected static void setupAggregateOutputDeserializer(DelegatingDeserializer<AggregateOutput.Builder> op) {
+	protected static void setupAggregateOutputDeserializer(ObjectDeserializer<AggregateOutput.Builder> op) {
 
 		op.add(Builder::logisticRegression, Weights._DESERIALIZER, "logistic_regression");
 		op.add(Builder::weightedSum, Weights._DESERIALIZER, "weighted_sum");

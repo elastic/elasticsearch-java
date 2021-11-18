@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -42,6 +41,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.IntervalsQuery
+// union type: Container[]
 @JsonpDeserializable
 public class IntervalsQuery extends QueryBase implements TaggedUnion<Object>, QueryVariant, JsonpSerializable {
 
@@ -59,8 +59,6 @@ public class IntervalsQuery extends QueryBase implements TaggedUnion<Object>, Qu
 	public String _variantType() {
 		return "intervals";
 	}
-
-	// Tagged union implementation
 
 	private final String _type;
 	private final Object _value;
@@ -161,6 +159,7 @@ public class IntervalsQuery extends QueryBase implements TaggedUnion<Object>, Qu
 	@Override
 	@SuppressWarnings("unchecked")
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+
 		generator.writeStartObject();
 		generator.writeStartObject(this.field);
 
@@ -174,6 +173,7 @@ public class IntervalsQuery extends QueryBase implements TaggedUnion<Object>, Qu
 		generator.writeEnd();
 
 		generator.writeEnd();
+
 	}
 
 	public static class Builder extends QueryBase.AbstractBuilder<Builder> implements ObjectBuilder<IntervalsQuery> {
@@ -261,7 +261,7 @@ public class IntervalsQuery extends QueryBase implements TaggedUnion<Object>, Qu
 
 	}
 
-	protected static void setupIntervalsQueryDeserializer(DelegatingDeserializer<Builder> op) {
+	protected static void setupIntervalsQueryDeserializer(ObjectDeserializer<Builder> op) {
 		QueryBase.setupQueryBaseDeserializer(op);
 		op.add(Builder::allOf, IntervalsAllOf._DESERIALIZER, "all_of");
 		op.add(Builder::anyOf, IntervalsAnyOf._DESERIALIZER, "any_of");

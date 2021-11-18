@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -204,12 +203,11 @@ public class FieldValueFactorScoreFunction extends ScoreFunctionBase implements 
 	/**
 	 * Json deserializer for {@link FieldValueFactorScoreFunction}
 	 */
-	public static final JsonpDeserializer<FieldValueFactorScoreFunction> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
-			Builder::new, FieldValueFactorScoreFunction::setupFieldValueFactorScoreFunctionDeserializer,
-			Builder::build);
+	public static final JsonpDeserializer<FieldValueFactorScoreFunction> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, FieldValueFactorScoreFunction::setupFieldValueFactorScoreFunctionDeserializer);
 
 	protected static void setupFieldValueFactorScoreFunctionDeserializer(
-			DelegatingDeserializer<FieldValueFactorScoreFunction.Builder> op) {
+			ObjectDeserializer<FieldValueFactorScoreFunction.Builder> op) {
 		ScoreFunctionBase.setupScoreFunctionBaseDeserializer(op);
 		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
 		op.add(Builder::factor, JsonpDeserializer.doubleDeserializer(), "factor");

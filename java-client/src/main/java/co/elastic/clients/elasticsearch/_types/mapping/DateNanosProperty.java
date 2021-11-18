@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.mapping;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -269,9 +268,9 @@ public class DateNanosProperty extends DocValuesPropertyBase implements Property
 	 * Json deserializer for {@link DateNanosProperty}
 	 */
 	public static final JsonpDeserializer<DateNanosProperty> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, DateNanosProperty::setupDateNanosPropertyDeserializer, Builder::build);
+			.lazy(Builder::new, DateNanosProperty::setupDateNanosPropertyDeserializer);
 
-	protected static void setupDateNanosPropertyDeserializer(DelegatingDeserializer<DateNanosProperty.Builder> op) {
+	protected static void setupDateNanosPropertyDeserializer(ObjectDeserializer<DateNanosProperty.Builder> op) {
 		DocValuesPropertyBase.setupDocValuesPropertyBaseDeserializer(op);
 		op.add(Builder::boost, JsonpDeserializer.doubleDeserializer(), "boost");
 		op.add(Builder::format, JsonpDeserializer.stringDeserializer(), "format");

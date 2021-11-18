@@ -23,13 +23,13 @@
 
 package co.elastic.clients.elasticsearch.core;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.JsonpSerializer;
 import co.elastic.clients.json.JsonpUtils;
+import co.elastic.clients.json.NamedDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
@@ -42,7 +42,7 @@ import java.util.function.Supplier;
 import javax.annotation.Nullable;
 
 // typedef: _global.scripts_painless_execute.Response
-
+@JsonpDeserializable
 public class ScriptsPainlessExecuteResponse<TResult> implements JsonpSerializable {
 	private final TResult result;
 
@@ -141,8 +141,15 @@ public class ScriptsPainlessExecuteResponse<TResult> implements JsonpSerializabl
 						tResultDeserializer));
 	};
 
+	/**
+	 * Json deserializer for {@link ScriptsPainlessExecuteResponse} based on named
+	 * deserializers provided by the calling {@code JsonMapper}.
+	 */
+	public static final JsonpDeserializer<ScriptsPainlessExecuteResponse<Object>> _DESERIALIZER = createScriptsPainlessExecuteResponseDeserializer(
+			new NamedDeserializer<>("co.elastic.clients:Deserializer:_global.scripts_painless_execute.TResult"));
+
 	protected static <TResult> void setupScriptsPainlessExecuteResponseDeserializer(
-			DelegatingDeserializer<ScriptsPainlessExecuteResponse.Builder<TResult>> op,
+			ObjectDeserializer<ScriptsPainlessExecuteResponse.Builder<TResult>> op,
 			JsonpDeserializer<TResult> tResultDeserializer) {
 
 		op.add(Builder::result, tResultDeserializer, "result");

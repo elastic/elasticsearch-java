@@ -24,8 +24,8 @@
 package co.elastic.clients.elasticsearch.tasks;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
-import co.elastic.clients.elasticsearch._types.GroupBy;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -64,7 +64,7 @@ public class ListRequest extends RequestBase {
 	private final String parentTaskId;
 
 	@Nullable
-	private final String timeout;
+	private final Time timeout;
 
 	@Nullable
 	private final Boolean waitForCompletion;
@@ -145,7 +145,7 @@ public class ListRequest extends RequestBase {
 	 * API name: {@code timeout}
 	 */
 	@Nullable
-	public final String timeout() {
+	public final Time timeout() {
 		return this.timeout;
 	}
 
@@ -181,7 +181,7 @@ public class ListRequest extends RequestBase {
 		private String parentTaskId;
 
 		@Nullable
-		private String timeout;
+		private Time timeout;
 
 		@Nullable
 		private Boolean waitForCompletion;
@@ -268,9 +268,18 @@ public class ListRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code timeout}
 		 */
-		public final Builder timeout(@Nullable String value) {
+		public final Builder timeout(@Nullable Time value) {
 			this.timeout = value;
 			return this;
+		}
+
+		/**
+		 * Explicit operation timeout
+		 * <p>
+		 * API name: {@code timeout}
+		 */
+		public final Builder timeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.timeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -301,7 +310,7 @@ public class ListRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code tasks.list}".
 	 */
-	public static final Endpoint<ListRequest, ListResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<ListRequest, ListResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "GET";
@@ -336,7 +345,7 @@ public class ListRequest extends RequestBase {
 					params.put("wait_for_completion", String.valueOf(request.waitForCompletion));
 				}
 				if (request.timeout != null) {
-					params.put("timeout", request.timeout);
+					params.put("timeout", request.timeout._toJsonString());
 				}
 				return params;
 

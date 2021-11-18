@@ -26,7 +26,6 @@ package co.elastic.clients.elasticsearch.cluster;
 import co.elastic.clients.elasticsearch._types.mapping.TypeMapping;
 import co.elastic.clients.elasticsearch.indices.AliasDefinition;
 import co.elastic.clients.elasticsearch.indices.IndexSettings;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -282,10 +281,10 @@ public class ComponentTemplateSummary implements JsonpSerializable {
 	 * Json deserializer for {@link ComponentTemplateSummary}
 	 */
 	public static final JsonpDeserializer<ComponentTemplateSummary> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, ComponentTemplateSummary::setupComponentTemplateSummaryDeserializer, Builder::build);
+			.lazy(Builder::new, ComponentTemplateSummary::setupComponentTemplateSummaryDeserializer);
 
 	protected static void setupComponentTemplateSummaryDeserializer(
-			DelegatingDeserializer<ComponentTemplateSummary.Builder> op) {
+			ObjectDeserializer<ComponentTemplateSummary.Builder> op) {
 
 		op.add(Builder::meta, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "_meta");
 		op.add(Builder::version, JsonpDeserializer.longDeserializer(), "version");

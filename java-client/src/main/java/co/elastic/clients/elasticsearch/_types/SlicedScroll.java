@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -166,9 +165,9 @@ public class SlicedScroll implements JsonpSerializable {
 	 * Json deserializer for {@link SlicedScroll}
 	 */
 	public static final JsonpDeserializer<SlicedScroll> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			SlicedScroll::setupSlicedScrollDeserializer, Builder::build);
+			SlicedScroll::setupSlicedScrollDeserializer);
 
-	protected static void setupSlicedScrollDeserializer(DelegatingDeserializer<SlicedScroll.Builder> op) {
+	protected static void setupSlicedScrollDeserializer(ObjectDeserializer<SlicedScroll.Builder> op) {
 
 		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
 		op.add(Builder::id, JsonpDeserializer.integerDeserializer(), "id");

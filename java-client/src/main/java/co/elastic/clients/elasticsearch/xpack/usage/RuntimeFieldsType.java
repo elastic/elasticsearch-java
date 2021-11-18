@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.xpack.usage;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -431,9 +430,9 @@ public class RuntimeFieldsType implements JsonpSerializable {
 	 * Json deserializer for {@link RuntimeFieldsType}
 	 */
 	public static final JsonpDeserializer<RuntimeFieldsType> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, RuntimeFieldsType::setupRuntimeFieldsTypeDeserializer, Builder::build);
+			.lazy(Builder::new, RuntimeFieldsType::setupRuntimeFieldsTypeDeserializer);
 
-	protected static void setupRuntimeFieldsTypeDeserializer(DelegatingDeserializer<RuntimeFieldsType.Builder> op) {
+	protected static void setupRuntimeFieldsTypeDeserializer(ObjectDeserializer<RuntimeFieldsType.Builder> op) {
 
 		op.add(Builder::charsMax, JsonpDeserializer.longDeserializer(), "chars_max");
 		op.add(Builder::charsTotal, JsonpDeserializer.longDeserializer(), "chars_total");

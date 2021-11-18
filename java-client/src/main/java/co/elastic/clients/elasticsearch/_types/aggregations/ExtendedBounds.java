@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -160,7 +159,7 @@ public class ExtendedBounds<T> implements JsonpSerializable {
 				op -> ExtendedBounds.setupExtendedBoundsDeserializer(op, tDeserializer));
 	};
 
-	protected static <T> void setupExtendedBoundsDeserializer(DelegatingDeserializer<ExtendedBounds.Builder<T>> op,
+	protected static <T> void setupExtendedBoundsDeserializer(ObjectDeserializer<ExtendedBounds.Builder<T>> op,
 			JsonpDeserializer<T> tDeserializer) {
 
 		op.add(Builder::max, tDeserializer, "max");

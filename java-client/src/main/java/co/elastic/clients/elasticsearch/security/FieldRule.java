@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.security;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -45,6 +44,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: security._types.FieldRule
+// union type: Container[]
 @JsonpDeserializable
 public class FieldRule implements TaggedUnion<Object>, RoleMappingRuleVariant, JsonpSerializable {
 
@@ -61,8 +61,6 @@ public class FieldRule implements TaggedUnion<Object>, RoleMappingRuleVariant, J
 	public String _variantType() {
 		return "field";
 	}
-
-	// Tagged union implementation
 
 	private final String _type;
 	private final Object _value;
@@ -148,6 +146,7 @@ public class FieldRule implements TaggedUnion<Object>, RoleMappingRuleVariant, J
 	@Override
 	@SuppressWarnings("unchecked")
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+
 		generator.writeStartObject();
 
 		generator.writeKey(_type);
@@ -185,6 +184,7 @@ public class FieldRule implements TaggedUnion<Object>, RoleMappingRuleVariant, J
 		}
 
 		generator.writeEnd();
+
 	}
 
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<FieldRule> {
@@ -232,7 +232,7 @@ public class FieldRule implements TaggedUnion<Object>, RoleMappingRuleVariant, J
 
 	}
 
-	protected static void setupFieldRuleDeserializer(DelegatingDeserializer<Builder> op) {
+	protected static void setupFieldRuleDeserializer(ObjectDeserializer<Builder> op) {
 
 		op.add(Builder::username, JsonpDeserializer.stringDeserializer(), "username");
 		op.add(Builder::dn, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "dn");

@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch.indices;
 
 import co.elastic.clients.elasticsearch._types.AcknowledgedResponseBase;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -113,9 +112,9 @@ public class FreezeResponse extends AcknowledgedResponseBase {
 	 * Json deserializer for {@link FreezeResponse}
 	 */
 	public static final JsonpDeserializer<FreezeResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			FreezeResponse::setupFreezeResponseDeserializer, Builder::build);
+			FreezeResponse::setupFreezeResponseDeserializer);
 
-	protected static void setupFreezeResponseDeserializer(DelegatingDeserializer<FreezeResponse.Builder> op) {
+	protected static void setupFreezeResponseDeserializer(ObjectDeserializer<FreezeResponse.Builder> op) {
 		AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);
 		op.add(Builder::shardsAcknowledged, JsonpDeserializer.booleanDeserializer(), "shards_acknowledged");
 

@@ -23,7 +23,7 @@
 
 package co.elastic.clients.elasticsearch._types.analysis;
 
-import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.elasticsearch._types.Script;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -31,7 +31,6 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Arrays;
@@ -42,10 +41,10 @@ import javax.annotation.Nullable;
 
 // typedef: _types.analysis.ConditionTokenFilter
 @JsonpDeserializable
-public class ConditionTokenFilter extends TokenFilterBase implements TokenFilterVariant {
+public class ConditionTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
 	private final List<String> filter;
 
-	private final JsonValue /* _types.Script */ script;
+	private final Script script;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -62,7 +61,7 @@ public class ConditionTokenFilter extends TokenFilterBase implements TokenFilter
 	}
 
 	/**
-	 * {@link TokenFilter} variant type
+	 * {@link TokenFilterDefinition} variant type
 	 */
 	@Override
 	public String _variantType() {
@@ -79,7 +78,7 @@ public class ConditionTokenFilter extends TokenFilterBase implements TokenFilter
 	/**
 	 * Required - API name: {@code script}
 	 */
-	public final JsonValue /* _types.Script */ script() {
+	public final Script script() {
 		return this.script;
 	}
 
@@ -98,7 +97,7 @@ public class ConditionTokenFilter extends TokenFilterBase implements TokenFilter
 
 		}
 		generator.writeKey("script");
-		generator.write(this.script);
+		this.script.serialize(generator, mapper);
 
 	}
 
@@ -112,7 +111,7 @@ public class ConditionTokenFilter extends TokenFilterBase implements TokenFilter
 				ObjectBuilder<ConditionTokenFilter> {
 		private List<String> filter;
 
-		private JsonValue /* _types.Script */ script;
+		private Script script;
 
 		/**
 		 * Required - API name: {@code filter}
@@ -133,9 +132,16 @@ public class ConditionTokenFilter extends TokenFilterBase implements TokenFilter
 		/**
 		 * Required - API name: {@code script}
 		 */
-		public final Builder script(JsonValue /* _types.Script */ value) {
+		public final Builder script(Script value) {
 			this.script = value;
 			return this;
+		}
+
+		/**
+		 * Required - API name: {@code script}
+		 */
+		public final Builder script(Function<Script.Builder, ObjectBuilder<Script>> fn) {
+			return this.script(fn.apply(new Script.Builder()).build());
 		}
 
 		@Override
@@ -162,13 +168,12 @@ public class ConditionTokenFilter extends TokenFilterBase implements TokenFilter
 	 * Json deserializer for {@link ConditionTokenFilter}
 	 */
 	public static final JsonpDeserializer<ConditionTokenFilter> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, ConditionTokenFilter::setupConditionTokenFilterDeserializer, Builder::build);
+			.lazy(Builder::new, ConditionTokenFilter::setupConditionTokenFilterDeserializer);
 
-	protected static void setupConditionTokenFilterDeserializer(
-			DelegatingDeserializer<ConditionTokenFilter.Builder> op) {
+	protected static void setupConditionTokenFilterDeserializer(ObjectDeserializer<ConditionTokenFilter.Builder> op) {
 		TokenFilterBase.setupTokenFilterBaseDeserializer(op);
 		op.add(Builder::filter, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "filter");
-		op.add(Builder::script, JsonpDeserializer.jsonValueDeserializer(), "script");
+		op.add(Builder::script, Script._DESERIALIZER, "script");
 
 		op.ignore("type");
 	}

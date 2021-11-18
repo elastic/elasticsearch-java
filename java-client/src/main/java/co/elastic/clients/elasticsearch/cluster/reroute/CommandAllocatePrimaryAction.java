@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.cluster.reroute;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -194,11 +193,11 @@ public class CommandAllocatePrimaryAction implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link CommandAllocatePrimaryAction}
 	 */
-	public static final JsonpDeserializer<CommandAllocatePrimaryAction> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
-			Builder::new, CommandAllocatePrimaryAction::setupCommandAllocatePrimaryActionDeserializer, Builder::build);
+	public static final JsonpDeserializer<CommandAllocatePrimaryAction> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, CommandAllocatePrimaryAction::setupCommandAllocatePrimaryActionDeserializer);
 
 	protected static void setupCommandAllocatePrimaryActionDeserializer(
-			DelegatingDeserializer<CommandAllocatePrimaryAction.Builder> op) {
+			ObjectDeserializer<CommandAllocatePrimaryAction.Builder> op) {
 
 		op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "index");
 		op.add(Builder::shard, JsonpDeserializer.integerDeserializer(), "shard");

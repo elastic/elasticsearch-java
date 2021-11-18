@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.core.get_script_context;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -167,9 +166,9 @@ public class Context implements JsonpSerializable {
 	 * Json deserializer for {@link Context}
 	 */
 	public static final JsonpDeserializer<Context> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			Context::setupContextDeserializer, Builder::build);
+			Context::setupContextDeserializer);
 
-	protected static void setupContextDeserializer(DelegatingDeserializer<Context.Builder> op) {
+	protected static void setupContextDeserializer(ObjectDeserializer<Context.Builder> op) {
 
 		op.add(Builder::methods, JsonpDeserializer.arrayDeserializer(ContextMethod._DESERIALIZER), "methods");
 		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");

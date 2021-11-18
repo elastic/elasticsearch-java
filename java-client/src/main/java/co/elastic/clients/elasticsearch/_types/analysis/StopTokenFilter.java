@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.analysis;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -42,7 +41,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.analysis.StopTokenFilter
 @JsonpDeserializable
-public class StopTokenFilter extends TokenFilterBase implements TokenFilterVariant {
+public class StopTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
 	@Nullable
 	private final Boolean ignoreCase;
 
@@ -71,7 +70,7 @@ public class StopTokenFilter extends TokenFilterBase implements TokenFilterVaria
 	}
 
 	/**
-	 * {@link TokenFilter} variant type
+	 * {@link TokenFilterDefinition} variant type
 	 */
 	@Override
 	public String _variantType() {
@@ -224,9 +223,9 @@ public class StopTokenFilter extends TokenFilterBase implements TokenFilterVaria
 	 * Json deserializer for {@link StopTokenFilter}
 	 */
 	public static final JsonpDeserializer<StopTokenFilter> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			StopTokenFilter::setupStopTokenFilterDeserializer, Builder::build);
+			StopTokenFilter::setupStopTokenFilterDeserializer);
 
-	protected static void setupStopTokenFilterDeserializer(DelegatingDeserializer<StopTokenFilter.Builder> op) {
+	protected static void setupStopTokenFilterDeserializer(ObjectDeserializer<StopTokenFilter.Builder> op) {
 		TokenFilterBase.setupTokenFilterBaseDeserializer(op);
 		op.add(Builder::ignoreCase, JsonpDeserializer.booleanDeserializer(), "ignore_case");
 		op.add(Builder::removeTrailing, JsonpDeserializer.booleanDeserializer(), "remove_trailing");

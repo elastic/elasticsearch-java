@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -272,9 +271,9 @@ public class IntervalsMatch implements IntervalsQueryVariant, IntervalsVariant, 
 	 * Json deserializer for {@link IntervalsMatch}
 	 */
 	public static final JsonpDeserializer<IntervalsMatch> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			IntervalsMatch::setupIntervalsMatchDeserializer, Builder::build);
+			IntervalsMatch::setupIntervalsMatchDeserializer);
 
-	protected static void setupIntervalsMatchDeserializer(DelegatingDeserializer<IntervalsMatch.Builder> op) {
+	protected static void setupIntervalsMatchDeserializer(ObjectDeserializer<IntervalsMatch.Builder> op) {
 
 		op.add(Builder::analyzer, JsonpDeserializer.stringDeserializer(), "analyzer");
 		op.add(Builder::maxGaps, JsonpDeserializer.integerDeserializer(), "max_gaps");

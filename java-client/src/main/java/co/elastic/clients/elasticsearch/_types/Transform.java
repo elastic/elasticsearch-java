@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -42,14 +41,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.TransformContainer
+// union type: Container[]
 @JsonpDeserializable
 public class Transform implements TaggedUnion<Object>, JsonpSerializable {
 
 	public static final String CHAIN = "chain";
 	public static final String SCRIPT = "script";
 	public static final String SEARCH = "search";
-
-	// Tagged union implementation
 
 	private final String _type;
 	private final Object _value;
@@ -115,6 +113,7 @@ public class Transform implements TaggedUnion<Object>, JsonpSerializable {
 	@Override
 	@SuppressWarnings("unchecked")
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+
 		generator.writeStartObject();
 
 		generator.writeKey(_type);
@@ -123,6 +122,7 @@ public class Transform implements TaggedUnion<Object>, JsonpSerializable {
 		}
 
 		generator.writeEnd();
+
 	}
 
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Transform> {
@@ -166,7 +166,7 @@ public class Transform implements TaggedUnion<Object>, JsonpSerializable {
 
 	}
 
-	protected static void setupTransformDeserializer(DelegatingDeserializer<Builder> op) {
+	protected static void setupTransformDeserializer(ObjectDeserializer<Builder> op) {
 
 		op.add(Builder::chain, ChainTransform._DESERIALIZER, "chain");
 		op.add(Builder::script, ScriptTransform._DESERIALIZER, "script");

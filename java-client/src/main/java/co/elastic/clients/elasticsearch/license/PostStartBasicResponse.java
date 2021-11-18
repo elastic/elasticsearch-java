@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch.license;
 
 import co.elastic.clients.elasticsearch._types.AcknowledgedResponseBase;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -177,10 +176,10 @@ public class PostStartBasicResponse extends AcknowledgedResponseBase {
 	 * Json deserializer for {@link PostStartBasicResponse}
 	 */
 	public static final JsonpDeserializer<PostStartBasicResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, PostStartBasicResponse::setupPostStartBasicResponseDeserializer, Builder::build);
+			.lazy(Builder::new, PostStartBasicResponse::setupPostStartBasicResponseDeserializer);
 
 	protected static void setupPostStartBasicResponseDeserializer(
-			DelegatingDeserializer<PostStartBasicResponse.Builder> op) {
+			ObjectDeserializer<PostStartBasicResponse.Builder> op) {
 		AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);
 		op.add(Builder::acknowledge, JsonpDeserializer.stringMapDeserializer(
 				JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer())), "acknowledge");

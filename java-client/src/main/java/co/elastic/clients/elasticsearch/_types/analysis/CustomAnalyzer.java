@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.analysis;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -261,9 +260,9 @@ public class CustomAnalyzer implements AnalyzerVariant, JsonpSerializable {
 	 * Json deserializer for {@link CustomAnalyzer}
 	 */
 	public static final JsonpDeserializer<CustomAnalyzer> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			CustomAnalyzer::setupCustomAnalyzerDeserializer, Builder::build);
+			CustomAnalyzer::setupCustomAnalyzerDeserializer);
 
-	protected static void setupCustomAnalyzerDeserializer(DelegatingDeserializer<CustomAnalyzer.Builder> op) {
+	protected static void setupCustomAnalyzerDeserializer(ObjectDeserializer<CustomAnalyzer.Builder> op) {
 
 		op.add(Builder::charFilter, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"char_filter");

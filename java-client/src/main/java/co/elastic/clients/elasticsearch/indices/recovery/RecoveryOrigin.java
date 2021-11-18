@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.indices.recovery;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -428,9 +427,9 @@ public class RecoveryOrigin implements JsonpSerializable {
 	 * Json deserializer for {@link RecoveryOrigin}
 	 */
 	public static final JsonpDeserializer<RecoveryOrigin> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			RecoveryOrigin::setupRecoveryOriginDeserializer, Builder::build);
+			RecoveryOrigin::setupRecoveryOriginDeserializer);
 
-	protected static void setupRecoveryOriginDeserializer(DelegatingDeserializer<RecoveryOrigin.Builder> op) {
+	protected static void setupRecoveryOriginDeserializer(ObjectDeserializer<RecoveryOrigin.Builder> op) {
 
 		op.add(Builder::hostname, JsonpDeserializer.stringDeserializer(), "hostname");
 		op.add(Builder::host, JsonpDeserializer.stringDeserializer(), "host");

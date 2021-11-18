@@ -26,7 +26,6 @@ package co.elastic.clients.elasticsearch.watcher;
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch._types.Transform;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -478,9 +477,9 @@ public class PutWatchRequest extends RequestBase implements JsonpSerializable {
 	 * Json deserializer for {@link PutWatchRequest}
 	 */
 	public static final JsonpDeserializer<PutWatchRequest> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			PutWatchRequest::setupPutWatchRequestDeserializer, Builder::build);
+			PutWatchRequest::setupPutWatchRequestDeserializer);
 
-	protected static void setupPutWatchRequestDeserializer(DelegatingDeserializer<PutWatchRequest.Builder> op) {
+	protected static void setupPutWatchRequestDeserializer(ObjectDeserializer<PutWatchRequest.Builder> op) {
 
 		op.add(Builder::actions, JsonpDeserializer.stringMapDeserializer(Action._DESERIALIZER), "actions");
 		op.add(Builder::condition, Condition._DESERIALIZER, "condition");
@@ -497,7 +496,7 @@ public class PutWatchRequest extends RequestBase implements JsonpSerializable {
 	/**
 	 * Endpoint "{@code watcher.put_watch}".
 	 */
-	public static final Endpoint<PutWatchRequest, PutWatchResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<PutWatchRequest, PutWatchResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "PUT";

@@ -25,7 +25,6 @@ package co.elastic.clients.elasticsearch.indices.get_index_template;
 
 import co.elastic.clients.elasticsearch._types.mapping.TypeMapping;
 import co.elastic.clients.elasticsearch.indices.Alias;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -209,10 +208,9 @@ public class IndexTemplateSummary implements JsonpSerializable {
 	 * Json deserializer for {@link IndexTemplateSummary}
 	 */
 	public static final JsonpDeserializer<IndexTemplateSummary> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, IndexTemplateSummary::setupIndexTemplateSummaryDeserializer, Builder::build);
+			.lazy(Builder::new, IndexTemplateSummary::setupIndexTemplateSummaryDeserializer);
 
-	protected static void setupIndexTemplateSummaryDeserializer(
-			DelegatingDeserializer<IndexTemplateSummary.Builder> op) {
+	protected static void setupIndexTemplateSummaryDeserializer(ObjectDeserializer<IndexTemplateSummary.Builder> op) {
 
 		op.add(Builder::aliases, JsonpDeserializer.stringMapDeserializer(Alias._DESERIALIZER), "aliases");
 		op.add(Builder::mappings, TypeMapping._DESERIALIZER, "mappings");

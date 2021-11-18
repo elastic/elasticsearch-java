@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.cat.pending_tasks;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -219,9 +218,9 @@ public class PendingTasksRecord implements JsonpSerializable {
 	 * Json deserializer for {@link PendingTasksRecord}
 	 */
 	public static final JsonpDeserializer<PendingTasksRecord> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, PendingTasksRecord::setupPendingTasksRecordDeserializer, Builder::build);
+			.lazy(Builder::new, PendingTasksRecord::setupPendingTasksRecordDeserializer);
 
-	protected static void setupPendingTasksRecordDeserializer(DelegatingDeserializer<PendingTasksRecord.Builder> op) {
+	protected static void setupPendingTasksRecordDeserializer(ObjectDeserializer<PendingTasksRecord.Builder> op) {
 
 		op.add(Builder::insertorder, JsonpDeserializer.stringDeserializer(), "insertOrder", "o");
 		op.add(Builder::timeinqueue, JsonpDeserializer.stringDeserializer(), "timeInQueue", "t");

@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.eql;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -241,7 +240,7 @@ public class HitsEvent<TEvent> implements JsonpSerializable {
 				op -> HitsEvent.setupHitsEventDeserializer(op, tEventDeserializer));
 	};
 
-	protected static <TEvent> void setupHitsEventDeserializer(DelegatingDeserializer<HitsEvent.Builder<TEvent>> op,
+	protected static <TEvent> void setupHitsEventDeserializer(ObjectDeserializer<HitsEvent.Builder<TEvent>> op,
 			JsonpDeserializer<TEvent> tEventDeserializer) {
 
 		op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "_index");

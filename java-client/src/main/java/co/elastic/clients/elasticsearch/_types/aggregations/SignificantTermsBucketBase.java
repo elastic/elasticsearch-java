@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -106,7 +105,7 @@ public abstract class SignificantTermsBucketBase extends MultiBucketBase {
 
 	// ---------------------------------------------------------------------------------------------
 	protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupSignificantTermsBucketBaseDeserializer(
-			DelegatingDeserializer<BuilderT> op) {
+			ObjectDeserializer<BuilderT> op) {
 		MultiBucketBase.setupMultiBucketBaseDeserializer(op);
 		op.add(AbstractBuilder::score, JsonpDeserializer.doubleDeserializer(), "score");
 		op.add(AbstractBuilder::bgCount, JsonpDeserializer.longDeserializer(), "bg_count");

@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch.migration;
 
 import co.elastic.clients.elasticsearch.migration.deprecations.Deprecation;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -285,10 +284,9 @@ public class DeprecationsResponse implements JsonpSerializable {
 	 * Json deserializer for {@link DeprecationsResponse}
 	 */
 	public static final JsonpDeserializer<DeprecationsResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, DeprecationsResponse::setupDeprecationsResponseDeserializer, Builder::build);
+			.lazy(Builder::new, DeprecationsResponse::setupDeprecationsResponseDeserializer);
 
-	protected static void setupDeprecationsResponseDeserializer(
-			DelegatingDeserializer<DeprecationsResponse.Builder> op) {
+	protected static void setupDeprecationsResponseDeserializer(ObjectDeserializer<DeprecationsResponse.Builder> op) {
 
 		op.add(Builder::clusterSettings, JsonpDeserializer.arrayDeserializer(Deprecation._DESERIALIZER),
 				"cluster_settings");

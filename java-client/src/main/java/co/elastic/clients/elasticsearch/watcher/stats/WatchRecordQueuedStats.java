@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.watcher.stats;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -124,10 +123,10 @@ public class WatchRecordQueuedStats implements JsonpSerializable {
 	 * Json deserializer for {@link WatchRecordQueuedStats}
 	 */
 	public static final JsonpDeserializer<WatchRecordQueuedStats> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, WatchRecordQueuedStats::setupWatchRecordQueuedStatsDeserializer, Builder::build);
+			.lazy(Builder::new, WatchRecordQueuedStats::setupWatchRecordQueuedStatsDeserializer);
 
 	protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupWatchRecordQueuedStatsDeserializer(
-			DelegatingDeserializer<BuilderT> op) {
+			ObjectDeserializer<BuilderT> op) {
 
 		op.add(AbstractBuilder::executionTime, JsonpDeserializer.stringDeserializer(), "execution_time");
 

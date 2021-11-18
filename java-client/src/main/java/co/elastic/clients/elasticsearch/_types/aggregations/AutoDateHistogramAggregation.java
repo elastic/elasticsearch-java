@@ -23,7 +23,7 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
-import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.elasticsearch._types.Script;
 import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -32,7 +32,6 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
@@ -65,7 +64,7 @@ public class AutoDateHistogramAggregation extends BucketAggregationBase implemen
 	private final Map<String, JsonData> params;
 
 	@Nullable
-	private final JsonValue /* _types.Script */ script;
+	private final Script script;
 
 	@Nullable
 	private final String timeZone;
@@ -158,7 +157,7 @@ public class AutoDateHistogramAggregation extends BucketAggregationBase implemen
 	 * API name: {@code script}
 	 */
 	@Nullable
-	public final JsonValue /* _types.Script */ script() {
+	public final Script script() {
 		return this.script;
 	}
 
@@ -215,7 +214,7 @@ public class AutoDateHistogramAggregation extends BucketAggregationBase implemen
 		}
 		if (this.script != null) {
 			generator.writeKey("script");
-			generator.write(this.script);
+			this.script.serialize(generator, mapper);
 
 		}
 		if (this.timeZone != null) {
@@ -256,7 +255,7 @@ public class AutoDateHistogramAggregation extends BucketAggregationBase implemen
 		private Map<String, JsonData> params;
 
 		@Nullable
-		private JsonValue /* _types.Script */ script;
+		private Script script;
 
 		@Nullable
 		private String timeZone;
@@ -320,9 +319,16 @@ public class AutoDateHistogramAggregation extends BucketAggregationBase implemen
 		/**
 		 * API name: {@code script}
 		 */
-		public final Builder script(@Nullable JsonValue /* _types.Script */ value) {
+		public final Builder script(@Nullable Script value) {
 			this.script = value;
 			return this;
+		}
+
+		/**
+		 * API name: {@code script}
+		 */
+		public final Builder script(Function<Script.Builder, ObjectBuilder<Script>> fn) {
+			return this.script(fn.apply(new Script.Builder()).build());
 		}
 
 		/**
@@ -356,11 +362,11 @@ public class AutoDateHistogramAggregation extends BucketAggregationBase implemen
 	/**
 	 * Json deserializer for {@link AutoDateHistogramAggregation}
 	 */
-	public static final JsonpDeserializer<AutoDateHistogramAggregation> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
-			Builder::new, AutoDateHistogramAggregation::setupAutoDateHistogramAggregationDeserializer, Builder::build);
+	public static final JsonpDeserializer<AutoDateHistogramAggregation> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, AutoDateHistogramAggregation::setupAutoDateHistogramAggregationDeserializer);
 
 	protected static void setupAutoDateHistogramAggregationDeserializer(
-			DelegatingDeserializer<AutoDateHistogramAggregation.Builder> op) {
+			ObjectDeserializer<AutoDateHistogramAggregation.Builder> op) {
 		BucketAggregationBase.setupBucketAggregationBaseDeserializer(op);
 		op.add(Builder::buckets, JsonpDeserializer.integerDeserializer(), "buckets");
 		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
@@ -369,7 +375,7 @@ public class AutoDateHistogramAggregation extends BucketAggregationBase implemen
 		op.add(Builder::missing, JsonpDeserializer.stringDeserializer(), "missing");
 		op.add(Builder::offset, JsonpDeserializer.stringDeserializer(), "offset");
 		op.add(Builder::params, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "params");
-		op.add(Builder::script, JsonpDeserializer.jsonValueDeserializer(), "script");
+		op.add(Builder::script, Script._DESERIALIZER, "script");
 		op.add(Builder::timeZone, JsonpDeserializer.stringDeserializer(), "time_zone");
 
 	}

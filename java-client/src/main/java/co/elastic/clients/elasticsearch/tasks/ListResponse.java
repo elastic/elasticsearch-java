@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch.tasks;
 
 import co.elastic.clients.elasticsearch._types.ErrorCause;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -35,7 +34,6 @@ import co.elastic.clients.util.MapBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.ArrayList;
@@ -54,11 +52,7 @@ public class ListResponse implements JsonpSerializable {
 
 	private final Map<String, TaskExecutingNode> nodes;
 
-	@Nullable
-	private final JsonValue /*
-							 * Union(Array<tasks._types.Info> | Dictionary<internal.string,
-							 * tasks._types.Info>)
-							 */ tasks;
+	private final Map<String, Info> tasks;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -66,7 +60,7 @@ public class ListResponse implements JsonpSerializable {
 
 		this.nodeFailures = ModelTypeHelper.unmodifiable(builder.nodeFailures);
 		this.nodes = ModelTypeHelper.unmodifiable(builder.nodes);
-		this.tasks = builder.tasks;
+		this.tasks = ModelTypeHelper.unmodifiable(builder.tasks);
 
 	}
 
@@ -87,11 +81,7 @@ public class ListResponse implements JsonpSerializable {
 	/**
 	 * API name: {@code tasks}
 	 */
-	@Nullable
-	public final JsonValue /*
-							 * Union(Array<tasks._types.Info> | Dictionary<internal.string,
-							 * tasks._types.Info>)
-							 */ tasks() {
+	public final Map<String, Info> tasks() {
 		return this.tasks;
 	}
 
@@ -127,9 +117,15 @@ public class ListResponse implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (this.tasks != null) {
+		if (ModelTypeHelper.isDefined(this.tasks)) {
 			generator.writeKey("tasks");
-			generator.write(this.tasks);
+			generator.writeStartObject();
+			for (Map.Entry<String, Info> item0 : this.tasks.entrySet()) {
+				generator.writeKey(item0.getKey());
+				item0.getValue().serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
 
 		}
 
@@ -169,10 +165,7 @@ public class ListResponse implements JsonpSerializable {
 		private Map<String, TaskExecutingNode> nodes;
 
 		@Nullable
-		private JsonValue /*
-							 * Union(Array<tasks._types.Info> | Dictionary<internal.string,
-							 * tasks._types.Info>)
-							 */ tasks;
+		private Map<String, Info> tasks;
 
 		/**
 		 * API name: {@code node_failures}
@@ -225,12 +218,21 @@ public class ListResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code tasks}
 		 */
-		public final BuilderT tasks(@Nullable JsonValue /*
-														 * Union(Array<tasks._types.Info> | Dictionary<internal.string,
-														 * tasks._types.Info>)
-														 */ value) {
+		public final BuilderT tasks(@Nullable Map<String, Info> value) {
 			this.tasks = value;
 			return self();
+		}
+
+		/**
+		 * Set {@link #tasks(Map)} to a singleton map.
+		 */
+		public BuilderT tasks(String key, Function<Info.Builder, ObjectBuilder<Info>> fn) {
+			return this.tasks(Collections.singletonMap(key, fn.apply(new Info.Builder()).build()));
+		}
+
+		public final BuilderT tasks(
+				Function<MapBuilder<String, Info, Info.Builder>, ObjectBuilder<Map<String, Info>>> fn) {
+			return tasks(fn.apply(new MapBuilder<>(Info.Builder::new)).build());
 		}
 
 		protected abstract BuilderT self();
@@ -243,16 +245,16 @@ public class ListResponse implements JsonpSerializable {
 	 * Json deserializer for {@link ListResponse}
 	 */
 	public static final JsonpDeserializer<ListResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			ListResponse::setupListResponseDeserializer, Builder::build);
+			ListResponse::setupListResponseDeserializer);
 
 	protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupListResponseDeserializer(
-			DelegatingDeserializer<BuilderT> op) {
+			ObjectDeserializer<BuilderT> op) {
 
 		op.add(AbstractBuilder::nodeFailures, JsonpDeserializer.arrayDeserializer(ErrorCause._DESERIALIZER),
 				"node_failures");
 		op.add(AbstractBuilder::nodes, JsonpDeserializer.stringMapDeserializer(TaskExecutingNode._DESERIALIZER),
 				"nodes");
-		op.add(AbstractBuilder::tasks, JsonpDeserializer.jsonValueDeserializer(), "tasks");
+		op.add(AbstractBuilder::tasks, JsonpDeserializer.stringMapDeserializer(Info._DESERIALIZER), "tasks");
 
 	}
 

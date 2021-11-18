@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.mapping;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -125,11 +124,11 @@ public class UnsignedLongNumberProperty extends NumberPropertyBase implements Pr
 	/**
 	 * Json deserializer for {@link UnsignedLongNumberProperty}
 	 */
-	public static final JsonpDeserializer<UnsignedLongNumberProperty> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
-			Builder::new, UnsignedLongNumberProperty::setupUnsignedLongNumberPropertyDeserializer, Builder::build);
+	public static final JsonpDeserializer<UnsignedLongNumberProperty> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, UnsignedLongNumberProperty::setupUnsignedLongNumberPropertyDeserializer);
 
 	protected static void setupUnsignedLongNumberPropertyDeserializer(
-			DelegatingDeserializer<UnsignedLongNumberProperty.Builder> op) {
+			ObjectDeserializer<UnsignedLongNumberProperty.Builder> op) {
 		NumberPropertyBase.setupNumberPropertyBaseDeserializer(op);
 		op.add(Builder::nullValue, JsonpDeserializer.numberDeserializer(), "null_value");
 

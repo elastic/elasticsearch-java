@@ -23,7 +23,7 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
-import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.elasticsearch._types.Script;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -33,7 +33,6 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;
@@ -42,7 +41,7 @@ import javax.annotation.Nullable;
 // typedef: _types.aggregations.ScriptedHeuristic
 @JsonpDeserializable
 public class ScriptedHeuristic implements JsonpSerializable {
-	private final JsonValue /* _types.Script */ script;
+	private final Script script;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -59,7 +58,7 @@ public class ScriptedHeuristic implements JsonpSerializable {
 	/**
 	 * Required - API name: {@code script}
 	 */
-	public final JsonValue /* _types.Script */ script() {
+	public final Script script() {
 		return this.script;
 	}
 
@@ -75,7 +74,7 @@ public class ScriptedHeuristic implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("script");
-		generator.write(this.script);
+		this.script.serialize(generator, mapper);
 
 	}
 
@@ -85,14 +84,21 @@ public class ScriptedHeuristic implements JsonpSerializable {
 	 * Builder for {@link ScriptedHeuristic}.
 	 */
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ScriptedHeuristic> {
-		private JsonValue /* _types.Script */ script;
+		private Script script;
 
 		/**
 		 * Required - API name: {@code script}
 		 */
-		public final Builder script(JsonValue /* _types.Script */ value) {
+		public final Builder script(Script value) {
 			this.script = value;
 			return this;
+		}
+
+		/**
+		 * Required - API name: {@code script}
+		 */
+		public final Builder script(Function<Script.Builder, ObjectBuilder<Script>> fn) {
+			return this.script(fn.apply(new Script.Builder()).build());
 		}
 
 		/**
@@ -114,11 +120,11 @@ public class ScriptedHeuristic implements JsonpSerializable {
 	 * Json deserializer for {@link ScriptedHeuristic}
 	 */
 	public static final JsonpDeserializer<ScriptedHeuristic> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, ScriptedHeuristic::setupScriptedHeuristicDeserializer, Builder::build);
+			.lazy(Builder::new, ScriptedHeuristic::setupScriptedHeuristicDeserializer);
 
-	protected static void setupScriptedHeuristicDeserializer(DelegatingDeserializer<ScriptedHeuristic.Builder> op) {
+	protected static void setupScriptedHeuristicDeserializer(ObjectDeserializer<ScriptedHeuristic.Builder> op) {
 
-		op.add(Builder::script, JsonpDeserializer.jsonValueDeserializer(), "script");
+		op.add(Builder::script, Script._DESERIALIZER, "script");
 
 	}
 

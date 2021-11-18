@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.nodes;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -462,9 +461,9 @@ public class DataPathStats implements JsonpSerializable {
 	 * Json deserializer for {@link DataPathStats}
 	 */
 	public static final JsonpDeserializer<DataPathStats> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			DataPathStats::setupDataPathStatsDeserializer, Builder::build);
+			DataPathStats::setupDataPathStatsDeserializer);
 
-	protected static void setupDataPathStatsDeserializer(DelegatingDeserializer<DataPathStats.Builder> op) {
+	protected static void setupDataPathStatsDeserializer(ObjectDeserializer<DataPathStats.Builder> op) {
 
 		op.add(Builder::available, JsonpDeserializer.stringDeserializer(), "available");
 		op.add(Builder::availableInBytes, JsonpDeserializer.longDeserializer(), "available_in_bytes");

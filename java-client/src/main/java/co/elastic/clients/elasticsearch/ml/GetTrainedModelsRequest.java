@@ -323,7 +323,7 @@ public class GetTrainedModelsRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code ml.get_trained_models}".
 	 */
-	public static final Endpoint<GetTrainedModelsRequest, GetTrainedModelsResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<GetTrainedModelsRequest, GetTrainedModelsResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "GET";

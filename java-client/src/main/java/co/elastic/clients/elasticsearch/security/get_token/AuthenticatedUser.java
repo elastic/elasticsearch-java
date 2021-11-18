@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch.security.get_token;
 
 import co.elastic.clients.elasticsearch.security.User;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -209,9 +208,9 @@ public class AuthenticatedUser extends User {
 	 * Json deserializer for {@link AuthenticatedUser}
 	 */
 	public static final JsonpDeserializer<AuthenticatedUser> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, AuthenticatedUser::setupAuthenticatedUserDeserializer, Builder::build);
+			.lazy(Builder::new, AuthenticatedUser::setupAuthenticatedUserDeserializer);
 
-	protected static void setupAuthenticatedUserDeserializer(DelegatingDeserializer<AuthenticatedUser.Builder> op) {
+	protected static void setupAuthenticatedUserDeserializer(ObjectDeserializer<AuthenticatedUser.Builder> op) {
 		User.setupUserDeserializer(op);
 		op.add(Builder::authenticationRealm, UserRealm._DESERIALIZER, "authentication_realm");
 		op.add(Builder::lookupRealm, UserRealm._DESERIALIZER, "lookup_realm");

@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.nodes.info;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -124,10 +123,10 @@ public class NodeInfoXpackSecuritySsl implements JsonpSerializable {
 	 * Json deserializer for {@link NodeInfoXpackSecuritySsl}
 	 */
 	public static final JsonpDeserializer<NodeInfoXpackSecuritySsl> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, NodeInfoXpackSecuritySsl::setupNodeInfoXpackSecuritySslDeserializer, Builder::build);
+			.lazy(Builder::new, NodeInfoXpackSecuritySsl::setupNodeInfoXpackSecuritySslDeserializer);
 
 	protected static void setupNodeInfoXpackSecuritySslDeserializer(
-			DelegatingDeserializer<NodeInfoXpackSecuritySsl.Builder> op) {
+			ObjectDeserializer<NodeInfoXpackSecuritySsl.Builder> op) {
 
 		op.add(Builder::ssl, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.stringDeserializer()), "ssl");
 

@@ -117,7 +117,7 @@ public class GetNodeRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code shutdown.get_node}".
 	 */
-	public static final Endpoint<GetNodeRequest, GetNodeResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<GetNodeRequest, GetNodeResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "GET";

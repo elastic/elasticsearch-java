@@ -25,8 +25,8 @@ package co.elastic.clients.elasticsearch.indices;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.elasticsearch._types.mapping.TypeMapping;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -74,7 +74,7 @@ public class PutTemplateRequest extends RequestBase implements JsonpSerializable
 	private final TypeMapping mappings;
 
 	@Nullable
-	private final String masterTimeout;
+	private final Time masterTimeout;
 
 	private final String name;
 
@@ -84,7 +84,7 @@ public class PutTemplateRequest extends RequestBase implements JsonpSerializable
 	private final Map<String, JsonData> settings;
 
 	@Nullable
-	private final String timeout;
+	private final Time timeout;
 
 	@Nullable
 	private final Long version;
@@ -176,7 +176,7 @@ public class PutTemplateRequest extends RequestBase implements JsonpSerializable
 	 * API name: {@code master_timeout}
 	 */
 	@Nullable
-	public final String masterTimeout() {
+	public final Time masterTimeout() {
 		return this.masterTimeout;
 	}
 
@@ -216,7 +216,7 @@ public class PutTemplateRequest extends RequestBase implements JsonpSerializable
 	 * API name: {@code timeout}
 	 */
 	@Nullable
-	public final String timeout() {
+	public final Time timeout() {
 		return this.timeout;
 	}
 
@@ -317,7 +317,7 @@ public class PutTemplateRequest extends RequestBase implements JsonpSerializable
 		private TypeMapping mappings;
 
 		@Nullable
-		private String masterTimeout;
+		private Time masterTimeout;
 
 		private String name;
 
@@ -328,7 +328,7 @@ public class PutTemplateRequest extends RequestBase implements JsonpSerializable
 		private Map<String, JsonData> settings;
 
 		@Nullable
-		private String timeout;
+		private Time timeout;
 
 		@Nullable
 		private Long version;
@@ -430,9 +430,19 @@ public class PutTemplateRequest extends RequestBase implements JsonpSerializable
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
-		public final Builder masterTimeout(@Nullable String value) {
+		public final Builder masterTimeout(@Nullable Time value) {
 			this.masterTimeout = value;
 			return this;
+		}
+
+		/**
+		 * Period to wait for a connection to the master node. If no response is
+		 * received before the timeout expires, the request fails and returns an error.
+		 * <p>
+		 * API name: {@code master_timeout}
+		 */
+		public final Builder masterTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.masterTimeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -472,9 +482,16 @@ public class PutTemplateRequest extends RequestBase implements JsonpSerializable
 		/**
 		 * API name: {@code timeout}
 		 */
-		public final Builder timeout(@Nullable String value) {
+		public final Builder timeout(@Nullable Time value) {
 			this.timeout = value;
 			return this;
+		}
+
+		/**
+		 * API name: {@code timeout}
+		 */
+		public final Builder timeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.timeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -507,9 +524,9 @@ public class PutTemplateRequest extends RequestBase implements JsonpSerializable
 	 * Json deserializer for {@link PutTemplateRequest}
 	 */
 	public static final JsonpDeserializer<PutTemplateRequest> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, PutTemplateRequest::setupPutTemplateRequestDeserializer, Builder::build);
+			.lazy(Builder::new, PutTemplateRequest::setupPutTemplateRequestDeserializer);
 
-	protected static void setupPutTemplateRequestDeserializer(DelegatingDeserializer<PutTemplateRequest.Builder> op) {
+	protected static void setupPutTemplateRequestDeserializer(ObjectDeserializer<PutTemplateRequest.Builder> op) {
 
 		op.add(Builder::aliases, JsonpDeserializer.stringMapDeserializer(Alias._DESERIALIZER), "aliases");
 		op.add(Builder::indexPatterns, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
@@ -526,7 +543,7 @@ public class PutTemplateRequest extends RequestBase implements JsonpSerializable
 	/**
 	 * Endpoint "{@code indices.put_template}".
 	 */
-	public static final Endpoint<PutTemplateRequest, PutTemplateResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<PutTemplateRequest, PutTemplateResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "PUT";
@@ -556,7 +573,7 @@ public class PutTemplateRequest extends RequestBase implements JsonpSerializable
 			request -> {
 				Map<String, String> params = new HashMap<>();
 				if (request.masterTimeout != null) {
-					params.put("master_timeout", request.masterTimeout);
+					params.put("master_timeout", request.masterTimeout._toJsonString());
 				}
 				if (request.includeTypeName != null) {
 					params.put("include_type_name", String.valueOf(request.includeTypeName));
@@ -568,7 +585,7 @@ public class PutTemplateRequest extends RequestBase implements JsonpSerializable
 					params.put("create", String.valueOf(request.create));
 				}
 				if (request.timeout != null) {
-					params.put("timeout", request.timeout);
+					params.put("timeout", request.timeout._toJsonString());
 				}
 				return params;
 

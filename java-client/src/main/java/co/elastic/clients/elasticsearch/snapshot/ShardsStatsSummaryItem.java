@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.snapshot;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -136,10 +135,10 @@ public class ShardsStatsSummaryItem implements JsonpSerializable {
 	 * Json deserializer for {@link ShardsStatsSummaryItem}
 	 */
 	public static final JsonpDeserializer<ShardsStatsSummaryItem> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, ShardsStatsSummaryItem::setupShardsStatsSummaryItemDeserializer, Builder::build);
+			.lazy(Builder::new, ShardsStatsSummaryItem::setupShardsStatsSummaryItemDeserializer);
 
 	protected static void setupShardsStatsSummaryItemDeserializer(
-			DelegatingDeserializer<ShardsStatsSummaryItem.Builder> op) {
+			ObjectDeserializer<ShardsStatsSummaryItem.Builder> op) {
 
 		op.add(Builder::fileCount, JsonpDeserializer.longDeserializer(), "file_count");
 		op.add(Builder::sizeInBytes, JsonpDeserializer.longDeserializer(), "size_in_bytes");

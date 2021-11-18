@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.analysis;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -38,7 +37,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.analysis.UaxEmailUrlTokenizer
 @JsonpDeserializable
-public class UaxEmailUrlTokenizer extends TokenizerBase implements TokenizerVariant {
+public class UaxEmailUrlTokenizer extends TokenizerBase implements TokenizerDefinitionVariant {
 	@Nullable
 	private final Integer maxTokenLength;
 
@@ -56,7 +55,7 @@ public class UaxEmailUrlTokenizer extends TokenizerBase implements TokenizerVari
 	}
 
 	/**
-	 * {@link Tokenizer} variant type
+	 * {@link TokenizerDefinition} variant type
 	 */
 	@Override
 	public String _variantType() {
@@ -126,10 +125,9 @@ public class UaxEmailUrlTokenizer extends TokenizerBase implements TokenizerVari
 	 * Json deserializer for {@link UaxEmailUrlTokenizer}
 	 */
 	public static final JsonpDeserializer<UaxEmailUrlTokenizer> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, UaxEmailUrlTokenizer::setupUaxEmailUrlTokenizerDeserializer, Builder::build);
+			.lazy(Builder::new, UaxEmailUrlTokenizer::setupUaxEmailUrlTokenizerDeserializer);
 
-	protected static void setupUaxEmailUrlTokenizerDeserializer(
-			DelegatingDeserializer<UaxEmailUrlTokenizer.Builder> op) {
+	protected static void setupUaxEmailUrlTokenizerDeserializer(ObjectDeserializer<UaxEmailUrlTokenizer.Builder> op) {
 		TokenizerBase.setupTokenizerBaseDeserializer(op);
 		op.add(Builder::maxTokenLength, JsonpDeserializer.integerDeserializer(), "max_token_length");
 

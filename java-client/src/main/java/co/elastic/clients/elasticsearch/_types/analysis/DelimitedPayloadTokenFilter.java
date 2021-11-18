@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.analysis;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -39,7 +38,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.analysis.DelimitedPayloadTokenFilter
 @JsonpDeserializable
-public class DelimitedPayloadTokenFilter extends TokenFilterBase implements TokenFilterVariant {
+public class DelimitedPayloadTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
 	private final String delimiter;
 
 	private final DelimitedPayloadEncoding encoding;
@@ -59,7 +58,7 @@ public class DelimitedPayloadTokenFilter extends TokenFilterBase implements Toke
 	}
 
 	/**
-	 * {@link TokenFilter} variant type
+	 * {@link TokenFilterDefinition} variant type
 	 */
 	@Override
 	public String _variantType() {
@@ -143,11 +142,11 @@ public class DelimitedPayloadTokenFilter extends TokenFilterBase implements Toke
 	/**
 	 * Json deserializer for {@link DelimitedPayloadTokenFilter}
 	 */
-	public static final JsonpDeserializer<DelimitedPayloadTokenFilter> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
-			Builder::new, DelimitedPayloadTokenFilter::setupDelimitedPayloadTokenFilterDeserializer, Builder::build);
+	public static final JsonpDeserializer<DelimitedPayloadTokenFilter> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, DelimitedPayloadTokenFilter::setupDelimitedPayloadTokenFilterDeserializer);
 
 	protected static void setupDelimitedPayloadTokenFilterDeserializer(
-			DelegatingDeserializer<DelimitedPayloadTokenFilter.Builder> op) {
+			ObjectDeserializer<DelimitedPayloadTokenFilter.Builder> op) {
 		TokenFilterBase.setupTokenFilterBaseDeserializer(op);
 		op.add(Builder::delimiter, JsonpDeserializer.stringDeserializer(), "delimiter");
 		op.add(Builder::encoding, DelimitedPayloadEncoding._DESERIALIZER, "encoding");

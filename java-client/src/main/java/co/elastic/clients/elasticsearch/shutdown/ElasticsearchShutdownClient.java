@@ -25,6 +25,8 @@ package co.elastic.clients.elasticsearch.shutdown;
 
 import co.elastic.clients.ApiClient;
 import co.elastic.clients.elasticsearch._types.ElasticsearchException;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
+import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.Transport;
 import co.elastic.clients.transport.TransportOptions;
 import co.elastic.clients.util.ObjectBuilder;
@@ -62,7 +64,10 @@ public class ElasticsearchShutdownClient extends ApiClient<ElasticsearchShutdown
 	 */
 
 	public DeleteNodeResponse deleteNode(DeleteNodeRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, DeleteNodeRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<DeleteNodeRequest, DeleteNodeResponse, ErrorResponse> endpoint = (Endpoint<DeleteNodeRequest, DeleteNodeResponse, ErrorResponse>) DeleteNodeRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -95,7 +100,10 @@ public class ElasticsearchShutdownClient extends ApiClient<ElasticsearchShutdown
 	 */
 
 	public GetNodeResponse getNode(GetNodeRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, GetNodeRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<GetNodeRequest, GetNodeResponse, ErrorResponse> endpoint = (Endpoint<GetNodeRequest, GetNodeResponse, ErrorResponse>) GetNodeRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -127,7 +135,7 @@ public class ElasticsearchShutdownClient extends ApiClient<ElasticsearchShutdown
 	 */
 
 	public GetNodeResponse getNode() throws IOException, ElasticsearchException {
-		return this.transport.performRequest(new GetNodeRequest.Builder().build(), GetNodeRequest.ENDPOINT,
+		return this.transport.performRequest(new GetNodeRequest.Builder().build(), GetNodeRequest._ENDPOINT,
 				this.transportOptions);
 	}
 
@@ -143,7 +151,10 @@ public class ElasticsearchShutdownClient extends ApiClient<ElasticsearchShutdown
 	 */
 
 	public PutNodeResponse putNode(PutNodeRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, PutNodeRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<PutNodeRequest, PutNodeResponse, ErrorResponse> endpoint = (Endpoint<PutNodeRequest, PutNodeResponse, ErrorResponse>) PutNodeRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**

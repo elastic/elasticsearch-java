@@ -24,14 +24,13 @@
 package co.elastic.clients.elasticsearch.security;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
+import co.elastic.clients.elasticsearch._types.Refresh;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
-import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
@@ -39,7 +38,6 @@ import co.elastic.clients.transport.SimpleEndpoint;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
@@ -72,7 +70,7 @@ public class PutUserRequest extends RequestBase implements JsonpSerializable {
 	private final String passwordHash;
 
 	@Nullable
-	private final JsonValue /* _types.Refresh */ refresh;
+	private final Refresh refresh;
 
 	private final List<String> roles;
 
@@ -154,7 +152,7 @@ public class PutUserRequest extends RequestBase implements JsonpSerializable {
 	 * API name: {@code refresh}
 	 */
 	@Nullable
-	public final JsonValue /* _types.Refresh */ refresh() {
+	public final Refresh refresh() {
 		return this.refresh;
 	}
 
@@ -259,7 +257,7 @@ public class PutUserRequest extends RequestBase implements JsonpSerializable {
 		private String passwordHash;
 
 		@Nullable
-		private JsonValue /* _types.Refresh */ refresh;
+		private Refresh refresh;
 
 		@Nullable
 		private List<String> roles;
@@ -322,7 +320,7 @@ public class PutUserRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code refresh}
 		 */
-		public final Builder refresh(@Nullable JsonValue /* _types.Refresh */ value) {
+		public final Builder refresh(@Nullable Refresh value) {
 			this.refresh = value;
 			return this;
 		}
@@ -372,9 +370,9 @@ public class PutUserRequest extends RequestBase implements JsonpSerializable {
 	 * Json deserializer for {@link PutUserRequest}
 	 */
 	public static final JsonpDeserializer<PutUserRequest> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			PutUserRequest::setupPutUserRequestDeserializer, Builder::build);
+			PutUserRequest::setupPutUserRequestDeserializer);
 
-	protected static void setupPutUserRequestDeserializer(DelegatingDeserializer<PutUserRequest.Builder> op) {
+	protected static void setupPutUserRequestDeserializer(ObjectDeserializer<PutUserRequest.Builder> op) {
 
 		op.add(Builder::email, JsonpDeserializer.stringDeserializer(), "email");
 		op.add(Builder::enabled, JsonpDeserializer.booleanDeserializer(), "enabled");
@@ -391,7 +389,7 @@ public class PutUserRequest extends RequestBase implements JsonpSerializable {
 	/**
 	 * Endpoint "{@code security.put_user}".
 	 */
-	public static final Endpoint<PutUserRequest, PutUserResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<PutUserRequest, PutUserResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "PUT";
@@ -422,7 +420,7 @@ public class PutUserRequest extends RequestBase implements JsonpSerializable {
 			request -> {
 				Map<String, String> params = new HashMap<>();
 				if (request.refresh != null) {
-					params.put("refresh", JsonpUtils.toString(request.refresh));
+					params.put("refresh", request.refresh.jsonValue());
 				}
 				return params;
 

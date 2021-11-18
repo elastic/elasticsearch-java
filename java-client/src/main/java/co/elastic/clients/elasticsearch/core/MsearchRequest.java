@@ -24,13 +24,15 @@
 package co.elastic.clients.elasticsearch.core;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
-import co.elastic.clients.elasticsearch._types.ExpandWildcardOptions;
+import co.elastic.clients.elasticsearch._types.ExpandWildcard;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch._types.SearchType;
+import co.elastic.clients.elasticsearch.core.msearch.RequestItem;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
+import co.elastic.clients.json.NdJsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
@@ -38,13 +40,14 @@ import co.elastic.clients.transport.SimpleEndpoint;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Long;
 import java.lang.String;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -53,15 +56,15 @@ import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 // typedef: _global.msearch.Request
-@JsonpDeserializable
-public class MsearchRequest extends RequestBase implements JsonpSerializable {
+
+public class MsearchRequest extends RequestBase implements NdJsonpSerializable, JsonpSerializable {
 	@Nullable
 	private final Boolean allowNoIndices;
 
 	@Nullable
 	private final Boolean ccsMinimizeRoundtrips;
 
-	private final List<ExpandWildcardOptions> expandWildcards;
+	private final List<ExpandWildcard> expandWildcards;
 
 	@Nullable
 	private final Boolean ignoreThrottled;
@@ -85,7 +88,7 @@ public class MsearchRequest extends RequestBase implements JsonpSerializable {
 
 	private final List<String> type;
 
-	private final List<JsonValue /* Union(_global.msearch.Body | _global.msearch.Header) */> searches;
+	private final List<RequestItem> searches;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -110,6 +113,10 @@ public class MsearchRequest extends RequestBase implements JsonpSerializable {
 		return fn.apply(new Builder()).build();
 	}
 
+	@Override
+	public Iterator<?> _serializables() {
+		return this.searches.iterator();
+	}
 	/**
 	 * If false, the request returns an error if any wildcard expression, index
 	 * alias, or _all value targets only missing or closed indices. This behavior
@@ -142,7 +149,7 @@ public class MsearchRequest extends RequestBase implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code expand_wildcards}
 	 */
-	public final List<ExpandWildcardOptions> expandWildcards() {
+	public final List<ExpandWildcard> expandWildcards() {
 		return this.expandWildcards;
 	}
 
@@ -236,7 +243,7 @@ public class MsearchRequest extends RequestBase implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code _value_body}
 	 */
-	public final List<JsonValue /* Union(_global.msearch.Body | _global.msearch.Header) */> searches() {
+	public final List<RequestItem> searches() {
 		return this.searches;
 	}
 
@@ -245,8 +252,8 @@ public class MsearchRequest extends RequestBase implements JsonpSerializable {
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartArray();
-		for (JsonValue /* Union(_global.msearch.Body | _global.msearch.Header) */ item0 : this.searches) {
-			generator.write(item0);
+		for (RequestItem item0 : this.searches) {
+			item0.serialize(generator, mapper);
 
 		}
 		generator.writeEnd();
@@ -266,7 +273,7 @@ public class MsearchRequest extends RequestBase implements JsonpSerializable {
 		private Boolean ccsMinimizeRoundtrips;
 
 		@Nullable
-		private List<ExpandWildcardOptions> expandWildcards;
+		private List<ExpandWildcard> expandWildcards;
 
 		@Nullable
 		private Boolean ignoreThrottled;
@@ -292,7 +299,7 @@ public class MsearchRequest extends RequestBase implements JsonpSerializable {
 		@Nullable
 		private List<String> type;
 
-		private List<JsonValue /* Union(_global.msearch.Body | _global.msearch.Header) */> searches;
+		private List<RequestItem> searches;
 
 		/**
 		 * If false, the request returns an error if any wildcard expression, index
@@ -326,7 +333,7 @@ public class MsearchRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code expand_wildcards}
 		 */
-		public final Builder expandWildcards(@Nullable List<ExpandWildcardOptions> value) {
+		public final Builder expandWildcards(@Nullable List<ExpandWildcard> value) {
 			this.expandWildcards = value;
 			return this;
 		}
@@ -338,7 +345,7 @@ public class MsearchRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code expand_wildcards}
 		 */
-		public final Builder expandWildcards(ExpandWildcardOptions... value) {
+		public final Builder expandWildcards(ExpandWildcard... value) {
 			this.expandWildcards = Arrays.asList(value);
 			return this;
 		}
@@ -455,8 +462,7 @@ public class MsearchRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code _value_body}
 		 */
-		public final Builder searches(
-				List<JsonValue /* Union(_global.msearch.Body | _global.msearch.Header) */> value) {
+		public final Builder searches(List<RequestItem> value) {
 			this.searches = value;
 			return this;
 		}
@@ -466,8 +472,22 @@ public class MsearchRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code _value_body}
 		 */
-		public final Builder searches(JsonValue /* Union(_global.msearch.Body | _global.msearch.Header) */... value) {
+		public final Builder searches(RequestItem... value) {
 			this.searches = Arrays.asList(value);
+			return this;
+		}
+
+		/**
+		 * Required - Request body.
+		 * <p>
+		 * API name: {@code _value_body}
+		 */
+		@SafeVarargs
+		public final Builder searches(Function<RequestItem.Builder, ObjectBuilder<RequestItem>>... fns) {
+			this.searches = new ArrayList<>(fns.length);
+			for (Function<RequestItem.Builder, ObjectBuilder<RequestItem>> fn : fns) {
+				this.searches.add(fn.apply(new RequestItem.Builder()).build());
+			}
 			return this;
 		}
 
@@ -484,22 +504,12 @@ public class MsearchRequest extends RequestBase implements JsonpSerializable {
 		}
 	}
 
-	public static final JsonpDeserializer<MsearchRequest> _DESERIALIZER = createMsearchRequestDeserializer();
-	protected static JsonpDeserializer<MsearchRequest> createMsearchRequestDeserializer() {
-
-		JsonpDeserializer<List<JsonValue /* Union(_global.msearch.Body | _global.msearch.Header) */>> valueDeserializer = JsonpDeserializer
-				.arrayDeserializer(JsonpDeserializer.jsonValueDeserializer());
-
-		return JsonpDeserializer.of(valueDeserializer.acceptedEvents(), (parser, mapper, event) -> new Builder()
-				.searches(valueDeserializer.deserialize(parser, mapper, event)).build());
-	}
-
 	// ---------------------------------------------------------------------------------------------
 
 	/**
 	 * Endpoint "{@code msearch}".
 	 */
-	private static final SimpleEndpoint<MsearchRequest, Void> ENDPOINT = new SimpleEndpoint<>(
+	public static final SimpleEndpoint<MsearchRequest, ?> _ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";
@@ -577,14 +587,14 @@ public class MsearchRequest extends RequestBase implements JsonpSerializable {
 				}
 				return params;
 
-			}, SimpleEndpoint.emptyMap(), true, null);
+			}, SimpleEndpoint.emptyMap(), true, MsearchResponse._DESERIALIZER);
 
 	/**
 	 * Create an "{@code msearch}" endpoint.
 	 */
 	public static <TDocument> Endpoint<MsearchRequest, MsearchResponse<TDocument>, ErrorResponse> createMsearchEndpoint(
 			JsonpDeserializer<TDocument> tDocumentDeserializer) {
-		return ENDPOINT
+		return _ENDPOINT
 				.withResponseDeserializer(MsearchResponse.createMsearchResponseDeserializer(tDocumentDeserializer));
 	}
 }

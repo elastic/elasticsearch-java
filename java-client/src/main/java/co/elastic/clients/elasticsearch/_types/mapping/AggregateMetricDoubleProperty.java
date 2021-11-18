@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.mapping;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -161,12 +160,11 @@ public class AggregateMetricDoubleProperty extends PropertyBase implements Prope
 	/**
 	 * Json deserializer for {@link AggregateMetricDoubleProperty}
 	 */
-	public static final JsonpDeserializer<AggregateMetricDoubleProperty> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
-			Builder::new, AggregateMetricDoubleProperty::setupAggregateMetricDoublePropertyDeserializer,
-			Builder::build);
+	public static final JsonpDeserializer<AggregateMetricDoubleProperty> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, AggregateMetricDoubleProperty::setupAggregateMetricDoublePropertyDeserializer);
 
 	protected static void setupAggregateMetricDoublePropertyDeserializer(
-			DelegatingDeserializer<AggregateMetricDoubleProperty.Builder> op) {
+			ObjectDeserializer<AggregateMetricDoubleProperty.Builder> op) {
 		PropertyBase.setupPropertyBaseDeserializer(op);
 		op.add(Builder::defaultMetric, JsonpDeserializer.stringDeserializer(), "default_metric");
 		op.add(Builder::metrics, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),

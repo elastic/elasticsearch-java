@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.eql;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -48,10 +49,10 @@ public class EqlGetRequest extends RequestBase {
 	private final String id;
 
 	@Nullable
-	private final String keepAlive;
+	private final Time keepAlive;
 
 	@Nullable
-	private final String waitForCompletionTimeout;
+	private final Time waitForCompletionTimeout;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -83,7 +84,7 @@ public class EqlGetRequest extends RequestBase {
 	 * API name: {@code keep_alive}
 	 */
 	@Nullable
-	public final String keepAlive() {
+	public final Time keepAlive() {
 		return this.keepAlive;
 	}
 
@@ -94,7 +95,7 @@ public class EqlGetRequest extends RequestBase {
 	 * API name: {@code wait_for_completion_timeout}
 	 */
 	@Nullable
-	public final String waitForCompletionTimeout() {
+	public final Time waitForCompletionTimeout() {
 		return this.waitForCompletionTimeout;
 	}
 
@@ -107,10 +108,10 @@ public class EqlGetRequest extends RequestBase {
 		private String id;
 
 		@Nullable
-		private String keepAlive;
+		private Time keepAlive;
 
 		@Nullable
-		private String waitForCompletionTimeout;
+		private Time waitForCompletionTimeout;
 
 		/**
 		 * Required - Identifier for the search.
@@ -128,8 +129,29 @@ public class EqlGetRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code keep_alive}
 		 */
-		public final Builder keepAlive(@Nullable String value) {
+		public final Builder keepAlive(@Nullable Time value) {
 			this.keepAlive = value;
+			return this;
+		}
+
+		/**
+		 * Period for which the search and its results are stored on the cluster.
+		 * Defaults to the keep_alive value set by the search’s EQL search API request.
+		 * <p>
+		 * API name: {@code keep_alive}
+		 */
+		public final Builder keepAlive(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.keepAlive(fn.apply(new Time.Builder()).build());
+		}
+
+		/**
+		 * Timeout duration to wait for the request to finish. Defaults to no timeout,
+		 * meaning the request waits for complete search results.
+		 * <p>
+		 * API name: {@code wait_for_completion_timeout}
+		 */
+		public final Builder waitForCompletionTimeout(@Nullable Time value) {
+			this.waitForCompletionTimeout = value;
 			return this;
 		}
 
@@ -139,9 +161,8 @@ public class EqlGetRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code wait_for_completion_timeout}
 		 */
-		public final Builder waitForCompletionTimeout(@Nullable String value) {
-			this.waitForCompletionTimeout = value;
-			return this;
+		public final Builder waitForCompletionTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.waitForCompletionTimeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -162,7 +183,7 @@ public class EqlGetRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code eql.get}".
 	 */
-	private static final SimpleEndpoint<EqlGetRequest, Void> ENDPOINT = new SimpleEndpoint<>(
+	public static final SimpleEndpoint<EqlGetRequest, ?> _ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "GET";
@@ -193,20 +214,20 @@ public class EqlGetRequest extends RequestBase {
 			request -> {
 				Map<String, String> params = new HashMap<>();
 				if (request.keepAlive != null) {
-					params.put("keep_alive", request.keepAlive);
+					params.put("keep_alive", request.keepAlive._toJsonString());
 				}
 				if (request.waitForCompletionTimeout != null) {
-					params.put("wait_for_completion_timeout", request.waitForCompletionTimeout);
+					params.put("wait_for_completion_timeout", request.waitForCompletionTimeout._toJsonString());
 				}
 				return params;
 
-			}, SimpleEndpoint.emptyMap(), false, null);
+			}, SimpleEndpoint.emptyMap(), false, EqlGetResponse._DESERIALIZER);
 
 	/**
 	 * Create an "{@code eql.get}" endpoint.
 	 */
 	public static <TEvent> Endpoint<EqlGetRequest, EqlGetResponse<TEvent>, ErrorResponse> createGetEndpoint(
 			JsonpDeserializer<TEvent> tEventDeserializer) {
-		return ENDPOINT.withResponseDeserializer(EqlGetResponse.createEqlGetResponseDeserializer(tEventDeserializer));
+		return _ENDPOINT.withResponseDeserializer(EqlGetResponse.createEqlGetResponseDeserializer(tEventDeserializer));
 	}
 }

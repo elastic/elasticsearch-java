@@ -27,7 +27,6 @@ import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch._types.VersionType;
 import co.elastic.clients.elasticsearch.core.mtermvectors.Operation;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -586,9 +585,9 @@ public class MtermvectorsRequest extends RequestBase implements JsonpSerializabl
 	 * Json deserializer for {@link MtermvectorsRequest}
 	 */
 	public static final JsonpDeserializer<MtermvectorsRequest> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, MtermvectorsRequest::setupMtermvectorsRequestDeserializer, Builder::build);
+			.lazy(Builder::new, MtermvectorsRequest::setupMtermvectorsRequestDeserializer);
 
-	protected static void setupMtermvectorsRequestDeserializer(DelegatingDeserializer<MtermvectorsRequest.Builder> op) {
+	protected static void setupMtermvectorsRequestDeserializer(ObjectDeserializer<MtermvectorsRequest.Builder> op) {
 
 		op.add(Builder::docs, JsonpDeserializer.arrayDeserializer(Operation._DESERIALIZER), "docs");
 		op.add(Builder::ids, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "ids");
@@ -600,7 +599,7 @@ public class MtermvectorsRequest extends RequestBase implements JsonpSerializabl
 	/**
 	 * Endpoint "{@code mtermvectors}".
 	 */
-	public static final Endpoint<MtermvectorsRequest, MtermvectorsResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<MtermvectorsRequest, MtermvectorsResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";

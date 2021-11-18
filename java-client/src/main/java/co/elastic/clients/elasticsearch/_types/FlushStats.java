@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -189,9 +188,9 @@ public class FlushStats implements JsonpSerializable {
 	 * Json deserializer for {@link FlushStats}
 	 */
 	public static final JsonpDeserializer<FlushStats> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			FlushStats::setupFlushStatsDeserializer, Builder::build);
+			FlushStats::setupFlushStatsDeserializer);
 
-	protected static void setupFlushStatsDeserializer(DelegatingDeserializer<FlushStats.Builder> op) {
+	protected static void setupFlushStatsDeserializer(ObjectDeserializer<FlushStats.Builder> op) {
 
 		op.add(Builder::periodic, JsonpDeserializer.longDeserializer(), "periodic");
 		op.add(Builder::total, JsonpDeserializer.longDeserializer(), "total");

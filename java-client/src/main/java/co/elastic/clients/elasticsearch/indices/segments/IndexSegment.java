@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.indices.segments;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -132,9 +131,9 @@ public class IndexSegment implements JsonpSerializable {
 	 * Json deserializer for {@link IndexSegment}
 	 */
 	public static final JsonpDeserializer<IndexSegment> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			IndexSegment::setupIndexSegmentDeserializer, Builder::build);
+			IndexSegment::setupIndexSegmentDeserializer);
 
-	protected static void setupIndexSegmentDeserializer(DelegatingDeserializer<IndexSegment.Builder> op) {
+	protected static void setupIndexSegmentDeserializer(ObjectDeserializer<IndexSegment.Builder> op) {
 
 		op.add(Builder::shards, JsonpDeserializer
 				.stringMapDeserializer(JsonpDeserializer.arrayDeserializer(ShardsSegment._DESERIALIZER)), "shards");

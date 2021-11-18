@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch.security.create_api_key;
 
 import co.elastic.clients.elasticsearch.security.IndexPrivilege;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -170,9 +169,9 @@ public class IndexPrivileges implements JsonpSerializable {
 	 * Json deserializer for {@link IndexPrivileges}
 	 */
 	public static final JsonpDeserializer<IndexPrivileges> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			IndexPrivileges::setupIndexPrivilegesDeserializer, Builder::build);
+			IndexPrivileges::setupIndexPrivilegesDeserializer);
 
-	protected static void setupIndexPrivilegesDeserializer(DelegatingDeserializer<IndexPrivileges.Builder> op) {
+	protected static void setupIndexPrivilegesDeserializer(ObjectDeserializer<IndexPrivileges.Builder> op) {
 
 		op.add(Builder::names, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "names");
 		op.add(Builder::privileges, JsonpDeserializer.arrayDeserializer(IndexPrivilege._DESERIALIZER), "privileges");

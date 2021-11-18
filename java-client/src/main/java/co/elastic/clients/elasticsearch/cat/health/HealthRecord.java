@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.cat.health;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -539,9 +538,9 @@ public class HealthRecord implements JsonpSerializable {
 	 * Json deserializer for {@link HealthRecord}
 	 */
 	public static final JsonpDeserializer<HealthRecord> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			HealthRecord::setupHealthRecordDeserializer, Builder::build);
+			HealthRecord::setupHealthRecordDeserializer);
 
-	protected static void setupHealthRecordDeserializer(DelegatingDeserializer<HealthRecord.Builder> op) {
+	protected static void setupHealthRecordDeserializer(ObjectDeserializer<HealthRecord.Builder> op) {
 
 		op.add(Builder::epoch, JsonpDeserializer.stringDeserializer(), "epoch", "time");
 		op.add(Builder::timestamp, JsonpDeserializer.stringDeserializer(), "timestamp", "ts", "hms", "hhmmss");

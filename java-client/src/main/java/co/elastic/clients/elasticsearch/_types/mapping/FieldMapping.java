@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.mapping;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -186,9 +185,9 @@ public class FieldMapping implements JsonpSerializable {
 	 * Json deserializer for {@link FieldMapping}
 	 */
 	public static final JsonpDeserializer<FieldMapping> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			FieldMapping::setupFieldMappingDeserializer, Builder::build);
+			FieldMapping::setupFieldMappingDeserializer);
 
-	protected static void setupFieldMappingDeserializer(DelegatingDeserializer<FieldMapping.Builder> op) {
+	protected static void setupFieldMappingDeserializer(ObjectDeserializer<FieldMapping.Builder> op) {
 
 		op.add(Builder::fullName, JsonpDeserializer.stringDeserializer(), "full_name");
 		op.add(Builder::mapping, JsonpDeserializer.stringMapDeserializer(Property._DESERIALIZER), "mapping");

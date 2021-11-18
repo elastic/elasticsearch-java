@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch.indices;
 
 import co.elastic.clients.elasticsearch._types.IndicesResponseBase;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -80,9 +79,9 @@ public class PutMappingResponse extends IndicesResponseBase {
 	 * Json deserializer for {@link PutMappingResponse}
 	 */
 	public static final JsonpDeserializer<PutMappingResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, PutMappingResponse::setupPutMappingResponseDeserializer, Builder::build);
+			.lazy(Builder::new, PutMappingResponse::setupPutMappingResponseDeserializer);
 
-	protected static void setupPutMappingResponseDeserializer(DelegatingDeserializer<PutMappingResponse.Builder> op) {
+	protected static void setupPutMappingResponseDeserializer(ObjectDeserializer<PutMappingResponse.Builder> op) {
 		IndicesResponseBase.setupIndicesResponseBaseDeserializer(op);
 
 	}

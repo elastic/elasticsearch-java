@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.analysis;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -41,13 +40,12 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.analysis.Normalizer
+// union type: InternalTag[tag=type]
 @JsonpDeserializable
 public class Normalizer implements TaggedUnion<NormalizerVariant>, JsonpSerializable {
 
 	public static final String CUSTOM = "custom";
 	public static final String LOWERCASE = "lowercase";
-
-	// Tagged union implementation
 
 	private final String _type;
 	private final NormalizerVariant _value;
@@ -138,7 +136,7 @@ public class Normalizer implements TaggedUnion<NormalizerVariant>, JsonpSerializ
 
 	}
 
-	protected static void setupNormalizerDeserializer(DelegatingDeserializer<Builder> op) {
+	protected static void setupNormalizerDeserializer(ObjectDeserializer<Builder> op) {
 
 		op.add(Builder::custom, CustomNormalizer._DESERIALIZER, "custom");
 		op.add(Builder::lowercase, LowercaseNormalizer._DESERIALIZER, "lowercase");

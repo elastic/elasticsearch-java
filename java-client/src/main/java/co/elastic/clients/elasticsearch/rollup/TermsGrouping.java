@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.rollup;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -132,9 +131,9 @@ public class TermsGrouping implements JsonpSerializable {
 	 * Json deserializer for {@link TermsGrouping}
 	 */
 	public static final JsonpDeserializer<TermsGrouping> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			TermsGrouping::setupTermsGroupingDeserializer, Builder::build);
+			TermsGrouping::setupTermsGroupingDeserializer);
 
-	protected static void setupTermsGroupingDeserializer(DelegatingDeserializer<TermsGrouping.Builder> op) {
+	protected static void setupTermsGroupingDeserializer(ObjectDeserializer<TermsGrouping.Builder> op) {
 
 		op.add(Builder::fields, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "fields");
 

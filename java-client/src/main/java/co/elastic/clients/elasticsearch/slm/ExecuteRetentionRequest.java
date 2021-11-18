@@ -53,7 +53,7 @@ public class ExecuteRetentionRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code slm.execute_retention}".
 	 */
-	public static final Endpoint<ExecuteRetentionRequest, ExecuteRetentionResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<ExecuteRetentionRequest, ExecuteRetentionResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";

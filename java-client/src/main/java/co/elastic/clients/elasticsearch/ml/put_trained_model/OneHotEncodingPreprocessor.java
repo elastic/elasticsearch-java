@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.ml.put_trained_model;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -154,11 +153,11 @@ public class OneHotEncodingPreprocessor implements PreprocessorVariant, JsonpSer
 	/**
 	 * Json deserializer for {@link OneHotEncodingPreprocessor}
 	 */
-	public static final JsonpDeserializer<OneHotEncodingPreprocessor> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
-			Builder::new, OneHotEncodingPreprocessor::setupOneHotEncodingPreprocessorDeserializer, Builder::build);
+	public static final JsonpDeserializer<OneHotEncodingPreprocessor> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, OneHotEncodingPreprocessor::setupOneHotEncodingPreprocessorDeserializer);
 
 	protected static void setupOneHotEncodingPreprocessorDeserializer(
-			DelegatingDeserializer<OneHotEncodingPreprocessor.Builder> op) {
+			ObjectDeserializer<OneHotEncodingPreprocessor.Builder> op) {
 
 		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
 		op.add(Builder::hotMap, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.stringDeserializer()),

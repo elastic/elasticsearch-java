@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.security;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -113,9 +112,9 @@ public class DeleteUserResponse implements JsonpSerializable {
 	 * Json deserializer for {@link DeleteUserResponse}
 	 */
 	public static final JsonpDeserializer<DeleteUserResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, DeleteUserResponse::setupDeleteUserResponseDeserializer, Builder::build);
+			.lazy(Builder::new, DeleteUserResponse::setupDeleteUserResponseDeserializer);
 
-	protected static void setupDeleteUserResponseDeserializer(DelegatingDeserializer<DeleteUserResponse.Builder> op) {
+	protected static void setupDeleteUserResponseDeserializer(ObjectDeserializer<DeleteUserResponse.Builder> op) {
 
 		op.add(Builder::found, JsonpDeserializer.booleanDeserializer(), "found");
 

@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -144,9 +143,9 @@ public class ErrorResponse implements JsonpSerializable {
 	 * Json deserializer for {@link ErrorResponse}
 	 */
 	public static final JsonpDeserializer<ErrorResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			ErrorResponse::setupErrorResponseDeserializer, Builder::build);
+			ErrorResponse::setupErrorResponseDeserializer);
 
-	protected static void setupErrorResponseDeserializer(DelegatingDeserializer<ErrorResponse.Builder> op) {
+	protected static void setupErrorResponseDeserializer(ObjectDeserializer<ErrorResponse.Builder> op) {
 
 		op.add(Builder::error, ErrorCause._DESERIALIZER, "error");
 		op.add(Builder::status, JsonpDeserializer.integerDeserializer(), "status");

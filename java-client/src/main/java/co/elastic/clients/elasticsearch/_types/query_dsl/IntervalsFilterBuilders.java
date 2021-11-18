@@ -23,12 +23,10 @@
 
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
+import co.elastic.clients.elasticsearch._types.Script;
+
 /**
  * Builders for {@link IntervalsFilter} variants.
- * <p>
- * Variants <code>script</code> are not available here as they don't have a
- * dedicated class. Use {@link IntervalsFilter}'s builder for these.
- * 
  */
 public class IntervalsFilterBuilders {
 	private IntervalsFilterBuilders() {
@@ -96,6 +94,14 @@ public class IntervalsFilterBuilders {
 	 */
 	public static Intervals.Builder overlapping() {
 		return new Intervals.Builder();
+	}
+
+	/**
+	 * Creates a builder for the {@link Script script} {@code IntervalsFilter}
+	 * variant.
+	 */
+	public static Script.Builder script() {
+		return new Script.Builder();
 	}
 
 }

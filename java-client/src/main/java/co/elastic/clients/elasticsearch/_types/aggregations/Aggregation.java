@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch._types.aggregations;
 
 import co.elastic.clients.elasticsearch._types.query_dsl.Query;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -48,6 +47,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.AggregationContainer
+// union type: Container[]
 @JsonpDeserializable
 public class Aggregation implements TaggedUnion<Object>, JsonpSerializable {
 
@@ -120,8 +120,6 @@ public class Aggregation implements TaggedUnion<Object>, JsonpSerializable {
 	public static final String VALUE_COUNT = "value_count";
 	public static final String WEIGHTED_AVG = "weighted_avg";
 	public static final String VARIABLE_WIDTH_HISTOGRAM = "variable_width_histogram";
-
-	// Tagged union implementation
 
 	private final String _type;
 	private final Object _value;
@@ -887,6 +885,7 @@ public class Aggregation implements TaggedUnion<Object>, JsonpSerializable {
 	@Override
 	@SuppressWarnings("unchecked")
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+
 		generator.writeStartObject();
 
 		if (ModelTypeHelper.isDefined(this.aggregations)) {
@@ -918,6 +917,7 @@ public class Aggregation implements TaggedUnion<Object>, JsonpSerializable {
 		}
 
 		generator.writeEnd();
+
 	}
 
 	public static class Builder extends ObjectBuilderBase {
@@ -1742,7 +1742,7 @@ public class Aggregation implements TaggedUnion<Object>, JsonpSerializable {
 		}
 	}
 
-	protected static void setupAggregationDeserializer(DelegatingDeserializer<Builder> op) {
+	protected static void setupAggregationDeserializer(ObjectDeserializer<Builder> op) {
 
 		op.add(Builder::aggregations, JsonpDeserializer.stringMapDeserializer(Aggregation._DESERIALIZER),
 				"aggregations", "aggs");

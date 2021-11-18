@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -175,10 +174,10 @@ public class IpRangeAggregationRange implements JsonpSerializable {
 	 * Json deserializer for {@link IpRangeAggregationRange}
 	 */
 	public static final JsonpDeserializer<IpRangeAggregationRange> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, IpRangeAggregationRange::setupIpRangeAggregationRangeDeserializer, Builder::build);
+			.lazy(Builder::new, IpRangeAggregationRange::setupIpRangeAggregationRangeDeserializer);
 
 	protected static void setupIpRangeAggregationRangeDeserializer(
-			DelegatingDeserializer<IpRangeAggregationRange.Builder> op) {
+			ObjectDeserializer<IpRangeAggregationRange.Builder> op) {
 
 		op.add(Builder::from, JsonpDeserializer.stringDeserializer(), "from");
 		op.add(Builder::mask, JsonpDeserializer.stringDeserializer(), "mask");

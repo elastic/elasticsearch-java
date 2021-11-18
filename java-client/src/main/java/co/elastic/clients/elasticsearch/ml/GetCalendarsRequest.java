@@ -25,7 +25,6 @@ package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -230,9 +229,9 @@ public class GetCalendarsRequest extends RequestBase implements JsonpSerializabl
 	 * Json deserializer for {@link GetCalendarsRequest}
 	 */
 	public static final JsonpDeserializer<GetCalendarsRequest> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, GetCalendarsRequest::setupGetCalendarsRequestDeserializer, Builder::build);
+			.lazy(Builder::new, GetCalendarsRequest::setupGetCalendarsRequestDeserializer);
 
-	protected static void setupGetCalendarsRequestDeserializer(DelegatingDeserializer<GetCalendarsRequest.Builder> op) {
+	protected static void setupGetCalendarsRequestDeserializer(ObjectDeserializer<GetCalendarsRequest.Builder> op) {
 
 		op.add(Builder::page, Page._DESERIALIZER, "page");
 
@@ -243,7 +242,7 @@ public class GetCalendarsRequest extends RequestBase implements JsonpSerializabl
 	/**
 	 * Endpoint "{@code ml.get_calendars}".
 	 */
-	public static final Endpoint<GetCalendarsRequest, GetCalendarsResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<GetCalendarsRequest, GetCalendarsResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";

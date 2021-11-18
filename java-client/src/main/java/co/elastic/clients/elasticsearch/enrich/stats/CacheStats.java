@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.enrich.stats;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -207,9 +206,9 @@ public class CacheStats implements JsonpSerializable {
 	 * Json deserializer for {@link CacheStats}
 	 */
 	public static final JsonpDeserializer<CacheStats> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			CacheStats::setupCacheStatsDeserializer, Builder::build);
+			CacheStats::setupCacheStatsDeserializer);
 
-	protected static void setupCacheStatsDeserializer(DelegatingDeserializer<CacheStats.Builder> op) {
+	protected static void setupCacheStatsDeserializer(ObjectDeserializer<CacheStats.Builder> op) {
 
 		op.add(Builder::nodeId, JsonpDeserializer.stringDeserializer(), "node_id");
 		op.add(Builder::count, JsonpDeserializer.integerDeserializer(), "count");

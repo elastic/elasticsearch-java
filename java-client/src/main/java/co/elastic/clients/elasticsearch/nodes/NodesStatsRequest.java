@@ -26,6 +26,7 @@ package co.elastic.clients.elasticsearch.nodes;
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.Level;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -71,14 +72,14 @@ public class NodesStatsRequest extends RequestBase {
 	private final Level level;
 
 	@Nullable
-	private final String masterTimeout;
+	private final Time masterTimeout;
 
 	private final List<String> metric;
 
 	private final List<String> nodeId;
 
 	@Nullable
-	private final String timeout;
+	private final Time timeout;
 
 	private final List<String> types;
 
@@ -196,7 +197,7 @@ public class NodesStatsRequest extends RequestBase {
 	 * API name: {@code master_timeout}
 	 */
 	@Nullable
-	public final String masterTimeout() {
+	public final Time masterTimeout() {
 		return this.masterTimeout;
 	}
 
@@ -225,7 +226,7 @@ public class NodesStatsRequest extends RequestBase {
 	 * API name: {@code timeout}
 	 */
 	@Nullable
-	public final String timeout() {
+	public final Time timeout() {
 		return this.timeout;
 	}
 
@@ -269,7 +270,7 @@ public class NodesStatsRequest extends RequestBase {
 		private Level level;
 
 		@Nullable
-		private String masterTimeout;
+		private Time masterTimeout;
 
 		@Nullable
 		private List<String> metric;
@@ -278,7 +279,7 @@ public class NodesStatsRequest extends RequestBase {
 		private List<String> nodeId;
 
 		@Nullable
-		private String timeout;
+		private Time timeout;
 
 		@Nullable
 		private List<String> types;
@@ -420,9 +421,19 @@ public class NodesStatsRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
-		public final Builder masterTimeout(@Nullable String value) {
+		public final Builder masterTimeout(@Nullable Time value) {
 			this.masterTimeout = value;
 			return this;
+		}
+
+		/**
+		 * Period to wait for a connection to the master node. If no response is
+		 * received before the timeout expires, the request fails and returns an error.
+		 * <p>
+		 * API name: {@code master_timeout}
+		 */
+		public final Builder masterTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.masterTimeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -471,9 +482,19 @@ public class NodesStatsRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code timeout}
 		 */
-		public final Builder timeout(@Nullable String value) {
+		public final Builder timeout(@Nullable Time value) {
 			this.timeout = value;
 			return this;
+		}
+
+		/**
+		 * Period to wait for a response. If no response is received before the timeout
+		 * expires, the request fails and returns an error.
+		 * <p>
+		 * API name: {@code timeout}
+		 */
+		public final Builder timeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.timeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -514,7 +535,7 @@ public class NodesStatsRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code nodes.stats}".
 	 */
-	public static final Endpoint<NodesStatsRequest, NodesStatsResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<NodesStatsRequest, NodesStatsResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "GET";
@@ -607,7 +628,7 @@ public class NodesStatsRequest extends RequestBase {
 			request -> {
 				Map<String, String> params = new HashMap<>();
 				if (request.masterTimeout != null) {
-					params.put("master_timeout", request.masterTimeout);
+					params.put("master_timeout", request.masterTimeout._toJsonString());
 				}
 				if (ModelTypeHelper.isDefined(request.types)) {
 					params.put("types", request.types.stream().map(v -> v).collect(Collectors.joining(",")));
@@ -636,7 +657,7 @@ public class NodesStatsRequest extends RequestBase {
 					params.put("include_segment_file_sizes", String.valueOf(request.includeSegmentFileSizes));
 				}
 				if (request.timeout != null) {
-					params.put("timeout", request.timeout);
+					params.put("timeout", request.timeout._toJsonString());
 				}
 				return params;
 

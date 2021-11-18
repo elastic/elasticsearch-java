@@ -53,7 +53,7 @@ public class StopWatcherRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code watcher.stop}".
 	 */
-	public static final Endpoint<StopWatcherRequest, StopWatcherResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<StopWatcherRequest, StopWatcherResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";

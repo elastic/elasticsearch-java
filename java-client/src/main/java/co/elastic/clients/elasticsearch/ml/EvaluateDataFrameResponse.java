@@ -26,7 +26,6 @@ package co.elastic.clients.elasticsearch.ml;
 import co.elastic.clients.elasticsearch.ml.evaluate_data_frame.DataframeClassificationSummary;
 import co.elastic.clients.elasticsearch.ml.evaluate_data_frame.DataframeOutlierDetectionSummary;
 import co.elastic.clients.elasticsearch.ml.evaluate_data_frame.DataframeRegressionSummary;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -201,10 +200,10 @@ public class EvaluateDataFrameResponse implements JsonpSerializable {
 	 * Json deserializer for {@link EvaluateDataFrameResponse}
 	 */
 	public static final JsonpDeserializer<EvaluateDataFrameResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, EvaluateDataFrameResponse::setupEvaluateDataFrameResponseDeserializer, Builder::build);
+			.lazy(Builder::new, EvaluateDataFrameResponse::setupEvaluateDataFrameResponseDeserializer);
 
 	protected static void setupEvaluateDataFrameResponseDeserializer(
-			DelegatingDeserializer<EvaluateDataFrameResponse.Builder> op) {
+			ObjectDeserializer<EvaluateDataFrameResponse.Builder> op) {
 
 		op.add(Builder::classification, DataframeClassificationSummary._DESERIALIZER, "classification");
 		op.add(Builder::outlierDetection, DataframeOutlierDetectionSummary._DESERIALIZER, "outlier_detection");

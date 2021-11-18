@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -42,6 +41,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.SpanQuery
+// union type: Container[]
 @JsonpDeserializable
 public class SpanQuery implements TaggedUnion<Object>, JsonpSerializable {
 
@@ -55,8 +55,6 @@ public class SpanQuery implements TaggedUnion<Object>, JsonpSerializable {
 	public static final String SPAN_OR = "span_or";
 	public static final String SPAN_TERM = "span_term";
 	public static final String SPAN_WITHIN = "span_within";
-
-	// Tagged union implementation
 
 	private final String _type;
 	private final Object _value;
@@ -194,6 +192,7 @@ public class SpanQuery implements TaggedUnion<Object>, JsonpSerializable {
 	@Override
 	@SuppressWarnings("unchecked")
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+
 		generator.writeStartObject();
 
 		generator.writeKey(_type);
@@ -202,6 +201,7 @@ public class SpanQuery implements TaggedUnion<Object>, JsonpSerializable {
 		}
 
 		generator.writeEnd();
+
 	}
 
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<SpanQuery> {
@@ -316,7 +316,7 @@ public class SpanQuery implements TaggedUnion<Object>, JsonpSerializable {
 
 	}
 
-	protected static void setupSpanQueryDeserializer(DelegatingDeserializer<Builder> op) {
+	protected static void setupSpanQueryDeserializer(ObjectDeserializer<Builder> op) {
 
 		op.add(Builder::spanContaining, SpanContainingQuery._DESERIALIZER, "span_containing");
 		op.add(Builder::fieldMaskingSpan, SpanFieldMaskingQuery._DESERIALIZER, "field_masking_span");

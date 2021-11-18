@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -358,9 +357,9 @@ public class PercolateQuery extends QueryBase implements QueryVariant {
 	 * Json deserializer for {@link PercolateQuery}
 	 */
 	public static final JsonpDeserializer<PercolateQuery> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			PercolateQuery::setupPercolateQueryDeserializer, Builder::build);
+			PercolateQuery::setupPercolateQueryDeserializer);
 
-	protected static void setupPercolateQueryDeserializer(DelegatingDeserializer<PercolateQuery.Builder> op) {
+	protected static void setupPercolateQueryDeserializer(ObjectDeserializer<PercolateQuery.Builder> op) {
 		QueryBase.setupQueryBaseDeserializer(op);
 		op.add(Builder::document, JsonData._DESERIALIZER, "document");
 		op.add(Builder::documents, JsonpDeserializer.arrayDeserializer(JsonData._DESERIALIZER), "documents");

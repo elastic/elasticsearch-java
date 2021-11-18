@@ -25,8 +25,8 @@ package co.elastic.clients.elasticsearch.snapshot;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.elasticsearch.indices.PutSettingsRequest;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -69,7 +69,7 @@ public class RestoreRequest extends RequestBase implements JsonpSerializable {
 	private final List<String> indices;
 
 	@Nullable
-	private final String masterTimeout;
+	private final Time masterTimeout;
 
 	@Nullable
 	private final Boolean partial;
@@ -163,7 +163,7 @@ public class RestoreRequest extends RequestBase implements JsonpSerializable {
 	 * API name: {@code master_timeout}
 	 */
 	@Nullable
-	public final String masterTimeout() {
+	public final Time masterTimeout() {
 		return this.masterTimeout;
 	}
 
@@ -313,7 +313,7 @@ public class RestoreRequest extends RequestBase implements JsonpSerializable {
 		private List<String> indices;
 
 		@Nullable
-		private String masterTimeout;
+		private Time masterTimeout;
 
 		@Nullable
 		private Boolean partial;
@@ -407,9 +407,18 @@ public class RestoreRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
-		public final Builder masterTimeout(@Nullable String value) {
+		public final Builder masterTimeout(@Nullable Time value) {
 			this.masterTimeout = value;
 			return this;
+		}
+
+		/**
+		 * Explicit operation timeout for connection to master node
+		 * <p>
+		 * API name: {@code master_timeout}
+		 */
+		public final Builder masterTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.masterTimeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -485,9 +494,9 @@ public class RestoreRequest extends RequestBase implements JsonpSerializable {
 	 * Json deserializer for {@link RestoreRequest}
 	 */
 	public static final JsonpDeserializer<RestoreRequest> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			RestoreRequest::setupRestoreRequestDeserializer, Builder::build);
+			RestoreRequest::setupRestoreRequestDeserializer);
 
-	protected static void setupRestoreRequestDeserializer(DelegatingDeserializer<RestoreRequest.Builder> op) {
+	protected static void setupRestoreRequestDeserializer(ObjectDeserializer<RestoreRequest.Builder> op) {
 
 		op.add(Builder::ignoreIndexSettings,
 				JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "ignore_index_settings");
@@ -508,7 +517,7 @@ public class RestoreRequest extends RequestBase implements JsonpSerializable {
 	/**
 	 * Endpoint "{@code snapshot.restore}".
 	 */
-	public static final Endpoint<RestoreRequest, RestoreResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<RestoreRequest, RestoreResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";
@@ -543,7 +552,7 @@ public class RestoreRequest extends RequestBase implements JsonpSerializable {
 			request -> {
 				Map<String, String> params = new HashMap<>();
 				if (request.masterTimeout != null) {
-					params.put("master_timeout", request.masterTimeout);
+					params.put("master_timeout", request.masterTimeout._toJsonString());
 				}
 				if (request.waitForCompletion != null) {
 					params.put("wait_for_completion", String.valueOf(request.waitForCompletion));

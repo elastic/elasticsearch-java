@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -227,11 +226,10 @@ public class DataframeAnalysisFeatureProcessorTargetMeanEncoding
 	 */
 	public static final JsonpDeserializer<DataframeAnalysisFeatureProcessorTargetMeanEncoding> _DESERIALIZER = ObjectBuilderDeserializer
 			.lazy(Builder::new,
-					DataframeAnalysisFeatureProcessorTargetMeanEncoding::setupDataframeAnalysisFeatureProcessorTargetMeanEncodingDeserializer,
-					Builder::build);
+					DataframeAnalysisFeatureProcessorTargetMeanEncoding::setupDataframeAnalysisFeatureProcessorTargetMeanEncodingDeserializer);
 
 	protected static void setupDataframeAnalysisFeatureProcessorTargetMeanEncodingDeserializer(
-			DelegatingDeserializer<DataframeAnalysisFeatureProcessorTargetMeanEncoding.Builder> op) {
+			ObjectDeserializer<DataframeAnalysisFeatureProcessorTargetMeanEncoding.Builder> op) {
 
 		op.add(Builder::defaultValue, JsonpDeserializer.integerDeserializer(), "default_value");
 		op.add(Builder::featureName, JsonpDeserializer.stringDeserializer(), "feature_name");

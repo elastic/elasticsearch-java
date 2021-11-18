@@ -23,7 +23,7 @@
 
 package co.elastic.clients.elasticsearch.transform;
 
-import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -44,7 +44,7 @@ import javax.annotation.Nullable;
 public class TimeRetentionPolicy implements RetentionPolicyVariant, JsonpSerializable {
 	private final String field;
 
-	private final String maxAge;
+	private final Time maxAge;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -83,7 +83,7 @@ public class TimeRetentionPolicy implements RetentionPolicyVariant, JsonpSeriali
 	 * <p>
 	 * API name: {@code max_age}
 	 */
-	public final String maxAge() {
+	public final Time maxAge() {
 		return this.maxAge;
 	}
 
@@ -102,7 +102,7 @@ public class TimeRetentionPolicy implements RetentionPolicyVariant, JsonpSeriali
 		generator.write(this.field);
 
 		generator.writeKey("max_age");
-		generator.write(this.maxAge);
+		this.maxAge.serialize(generator, mapper);
 
 	}
 
@@ -114,7 +114,7 @@ public class TimeRetentionPolicy implements RetentionPolicyVariant, JsonpSeriali
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TimeRetentionPolicy> {
 		private String field;
 
-		private String maxAge;
+		private Time maxAge;
 
 		/**
 		 * Required - The date field that is used to calculate the age of the document.
@@ -133,9 +133,20 @@ public class TimeRetentionPolicy implements RetentionPolicyVariant, JsonpSeriali
 		 * <p>
 		 * API name: {@code max_age}
 		 */
-		public final Builder maxAge(String value) {
+		public final Builder maxAge(Time value) {
 			this.maxAge = value;
 			return this;
+		}
+
+		/**
+		 * Required - Specifies the maximum age of a document in the destination index.
+		 * Documents that are older than the configured value are removed from the
+		 * destination index.
+		 * <p>
+		 * API name: {@code max_age}
+		 */
+		public final Builder maxAge(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.maxAge(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -157,12 +168,12 @@ public class TimeRetentionPolicy implements RetentionPolicyVariant, JsonpSeriali
 	 * Json deserializer for {@link TimeRetentionPolicy}
 	 */
 	public static final JsonpDeserializer<TimeRetentionPolicy> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, TimeRetentionPolicy::setupTimeRetentionPolicyDeserializer, Builder::build);
+			.lazy(Builder::new, TimeRetentionPolicy::setupTimeRetentionPolicyDeserializer);
 
-	protected static void setupTimeRetentionPolicyDeserializer(DelegatingDeserializer<TimeRetentionPolicy.Builder> op) {
+	protected static void setupTimeRetentionPolicyDeserializer(ObjectDeserializer<TimeRetentionPolicy.Builder> op) {
 
 		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
-		op.add(Builder::maxAge, JsonpDeserializer.stringDeserializer(), "max_age");
+		op.add(Builder::maxAge, Time._DESERIALIZER, "max_age");
 
 	}
 

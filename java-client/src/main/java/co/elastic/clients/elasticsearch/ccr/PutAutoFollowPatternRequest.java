@@ -25,7 +25,7 @@ package co.elastic.clients.elasticsearch.ccr;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -72,7 +72,7 @@ public class PutAutoFollowPatternRequest extends RequestBase implements JsonpSer
 	private final String maxReadRequestSize;
 
 	@Nullable
-	private final String maxRetryDelay;
+	private final Time maxRetryDelay;
 
 	@Nullable
 	private final Integer maxWriteBufferCount;
@@ -89,7 +89,7 @@ public class PutAutoFollowPatternRequest extends RequestBase implements JsonpSer
 	private final String name;
 
 	@Nullable
-	private final String readPollTimeout;
+	private final Time readPollTimeout;
 
 	private final String remoteCluster;
 
@@ -205,7 +205,7 @@ public class PutAutoFollowPatternRequest extends RequestBase implements JsonpSer
 	 * API name: {@code max_retry_delay}
 	 */
 	@Nullable
-	public final String maxRetryDelay() {
+	public final Time maxRetryDelay() {
 		return this.maxRetryDelay;
 	}
 
@@ -274,7 +274,7 @@ public class PutAutoFollowPatternRequest extends RequestBase implements JsonpSer
 	 * API name: {@code read_poll_timeout}
 	 */
 	@Nullable
-	public final String readPollTimeout() {
+	public final Time readPollTimeout() {
 		return this.readPollTimeout;
 	}
 
@@ -355,7 +355,7 @@ public class PutAutoFollowPatternRequest extends RequestBase implements JsonpSer
 		}
 		if (this.maxRetryDelay != null) {
 			generator.writeKey("max_retry_delay");
-			generator.write(this.maxRetryDelay);
+			this.maxRetryDelay.serialize(generator, mapper);
 
 		}
 		if (this.maxWriteBufferCount != null) {
@@ -380,7 +380,7 @@ public class PutAutoFollowPatternRequest extends RequestBase implements JsonpSer
 		}
 		if (this.readPollTimeout != null) {
 			generator.writeKey("read_poll_timeout");
-			generator.write(this.readPollTimeout);
+			this.readPollTimeout.serialize(generator, mapper);
 
 		}
 		generator.writeKey("remote_cluster");
@@ -428,7 +428,7 @@ public class PutAutoFollowPatternRequest extends RequestBase implements JsonpSer
 		private String maxReadRequestSize;
 
 		@Nullable
-		private String maxRetryDelay;
+		private Time maxRetryDelay;
 
 		@Nullable
 		private Integer maxWriteBufferCount;
@@ -445,7 +445,7 @@ public class PutAutoFollowPatternRequest extends RequestBase implements JsonpSer
 		private String name;
 
 		@Nullable
-		private String readPollTimeout;
+		private Time readPollTimeout;
 
 		private String remoteCluster;
 
@@ -560,9 +560,19 @@ public class PutAutoFollowPatternRequest extends RequestBase implements JsonpSer
 		 * <p>
 		 * API name: {@code max_retry_delay}
 		 */
-		public final Builder maxRetryDelay(@Nullable String value) {
+		public final Builder maxRetryDelay(@Nullable Time value) {
 			this.maxRetryDelay = value;
 			return this;
+		}
+
+		/**
+		 * The maximum time to wait before retrying an operation that failed
+		 * exceptionally. An exponential backoff strategy is employed when retrying.
+		 * <p>
+		 * API name: {@code max_retry_delay}
+		 */
+		public final Builder maxRetryDelay(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.maxRetryDelay(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -630,9 +640,22 @@ public class PutAutoFollowPatternRequest extends RequestBase implements JsonpSer
 		 * <p>
 		 * API name: {@code read_poll_timeout}
 		 */
-		public final Builder readPollTimeout(@Nullable String value) {
+		public final Builder readPollTimeout(@Nullable Time value) {
 			this.readPollTimeout = value;
 			return this;
+		}
+
+		/**
+		 * The maximum time to wait for new operations on the remote cluster when the
+		 * follower index is synchronized with the leader index. When the timeout has
+		 * elapsed, the poll for operations will return to the follower so that it can
+		 * update some statistics. Then the follower will immediately attempt to read
+		 * from the leader again.
+		 * <p>
+		 * API name: {@code read_poll_timeout}
+		 */
+		public final Builder readPollTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.readPollTimeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -674,11 +697,11 @@ public class PutAutoFollowPatternRequest extends RequestBase implements JsonpSer
 	/**
 	 * Json deserializer for {@link PutAutoFollowPatternRequest}
 	 */
-	public static final JsonpDeserializer<PutAutoFollowPatternRequest> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
-			Builder::new, PutAutoFollowPatternRequest::setupPutAutoFollowPatternRequestDeserializer, Builder::build);
+	public static final JsonpDeserializer<PutAutoFollowPatternRequest> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, PutAutoFollowPatternRequest::setupPutAutoFollowPatternRequestDeserializer);
 
 	protected static void setupPutAutoFollowPatternRequestDeserializer(
-			DelegatingDeserializer<PutAutoFollowPatternRequest.Builder> op) {
+			ObjectDeserializer<PutAutoFollowPatternRequest.Builder> op) {
 
 		op.add(Builder::followIndexPattern, JsonpDeserializer.stringDeserializer(), "follow_index_pattern");
 		op.add(Builder::leaderIndexExclusionPatterns,
@@ -693,13 +716,13 @@ public class PutAutoFollowPatternRequest extends RequestBase implements JsonpSer
 		op.add(Builder::maxReadRequestOperationCount, JsonpDeserializer.integerDeserializer(),
 				"max_read_request_operation_count");
 		op.add(Builder::maxReadRequestSize, JsonpDeserializer.stringDeserializer(), "max_read_request_size");
-		op.add(Builder::maxRetryDelay, JsonpDeserializer.stringDeserializer(), "max_retry_delay");
+		op.add(Builder::maxRetryDelay, Time._DESERIALIZER, "max_retry_delay");
 		op.add(Builder::maxWriteBufferCount, JsonpDeserializer.integerDeserializer(), "max_write_buffer_count");
 		op.add(Builder::maxWriteBufferSize, JsonpDeserializer.stringDeserializer(), "max_write_buffer_size");
 		op.add(Builder::maxWriteRequestOperationCount, JsonpDeserializer.integerDeserializer(),
 				"max_write_request_operation_count");
 		op.add(Builder::maxWriteRequestSize, JsonpDeserializer.stringDeserializer(), "max_write_request_size");
-		op.add(Builder::readPollTimeout, JsonpDeserializer.stringDeserializer(), "read_poll_timeout");
+		op.add(Builder::readPollTimeout, Time._DESERIALIZER, "read_poll_timeout");
 		op.add(Builder::remoteCluster, JsonpDeserializer.stringDeserializer(), "remote_cluster");
 		op.add(Builder::settings, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "settings");
 
@@ -710,7 +733,7 @@ public class PutAutoFollowPatternRequest extends RequestBase implements JsonpSer
 	/**
 	 * Endpoint "{@code ccr.put_auto_follow_pattern}".
 	 */
-	public static final Endpoint<PutAutoFollowPatternRequest, PutAutoFollowPatternResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<PutAutoFollowPatternRequest, PutAutoFollowPatternResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "PUT";

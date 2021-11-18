@@ -25,7 +25,6 @@ package co.elastic.clients.elasticsearch.cluster;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -283,10 +282,10 @@ public class AllocationExplainRequest extends RequestBase implements JsonpSerial
 	 * Json deserializer for {@link AllocationExplainRequest}
 	 */
 	public static final JsonpDeserializer<AllocationExplainRequest> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, AllocationExplainRequest::setupAllocationExplainRequestDeserializer, Builder::build);
+			.lazy(Builder::new, AllocationExplainRequest::setupAllocationExplainRequestDeserializer);
 
 	protected static void setupAllocationExplainRequestDeserializer(
-			DelegatingDeserializer<AllocationExplainRequest.Builder> op) {
+			ObjectDeserializer<AllocationExplainRequest.Builder> op) {
 
 		op.add(Builder::currentNode, JsonpDeserializer.stringDeserializer(), "current_node");
 		op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "index");
@@ -300,7 +299,7 @@ public class AllocationExplainRequest extends RequestBase implements JsonpSerial
 	/**
 	 * Endpoint "{@code cluster.allocation_explain}".
 	 */
-	public static final Endpoint<AllocationExplainRequest, AllocationExplainResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<AllocationExplainRequest, AllocationExplainResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";

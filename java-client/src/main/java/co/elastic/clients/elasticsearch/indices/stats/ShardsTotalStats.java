@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.indices.stats;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -113,9 +112,9 @@ public class ShardsTotalStats implements JsonpSerializable {
 	 * Json deserializer for {@link ShardsTotalStats}
 	 */
 	public static final JsonpDeserializer<ShardsTotalStats> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			ShardsTotalStats::setupShardsTotalStatsDeserializer, Builder::build);
+			ShardsTotalStats::setupShardsTotalStatsDeserializer);
 
-	protected static void setupShardsTotalStatsDeserializer(DelegatingDeserializer<ShardsTotalStats.Builder> op) {
+	protected static void setupShardsTotalStatsDeserializer(ObjectDeserializer<ShardsTotalStats.Builder> op) {
 
 		op.add(Builder::totalCount, JsonpDeserializer.longDeserializer(), "total_count");
 

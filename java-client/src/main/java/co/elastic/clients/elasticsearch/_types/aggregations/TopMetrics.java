@@ -23,19 +23,22 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
-import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.elasticsearch._types.FieldValue;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.MapBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -45,9 +48,9 @@ import javax.annotation.Nullable;
 // typedef: _types.aggregations.TopMetrics
 @JsonpDeserializable
 public class TopMetrics implements JsonpSerializable {
-	private final List<String> sort;
+	private final List<FieldValue> sort;
 
-	private final Map<String, String> metrics;
+	private final Map<String, FieldValue> metrics;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -65,14 +68,14 @@ public class TopMetrics implements JsonpSerializable {
 	/**
 	 * Required - API name: {@code sort}
 	 */
-	public final List<String> sort() {
+	public final List<FieldValue> sort() {
 		return this.sort;
 	}
 
 	/**
 	 * Required - API name: {@code metrics}
 	 */
-	public final Map<String, String> metrics() {
+	public final Map<String, FieldValue> metrics() {
 		return this.metrics;
 	}
 
@@ -90,8 +93,8 @@ public class TopMetrics implements JsonpSerializable {
 		if (ModelTypeHelper.isDefined(this.sort)) {
 			generator.writeKey("sort");
 			generator.writeStartArray();
-			for (String item0 : this.sort) {
-				generator.write(item0);
+			for (FieldValue item0 : this.sort) {
+				item0.serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -100,9 +103,9 @@ public class TopMetrics implements JsonpSerializable {
 		if (ModelTypeHelper.isDefined(this.metrics)) {
 			generator.writeKey("metrics");
 			generator.writeStartObject();
-			for (Map.Entry<String, String> item0 : this.metrics.entrySet()) {
+			for (Map.Entry<String, FieldValue> item0 : this.metrics.entrySet()) {
 				generator.writeKey(item0.getKey());
-				generator.write(item0.getValue());
+				item0.getValue().serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -117,14 +120,14 @@ public class TopMetrics implements JsonpSerializable {
 	 * Builder for {@link TopMetrics}.
 	 */
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TopMetrics> {
-		private List<String> sort;
+		private List<FieldValue> sort;
 
-		private Map<String, String> metrics;
+		private Map<String, FieldValue> metrics;
 
 		/**
 		 * Required - API name: {@code sort}
 		 */
-		public final Builder sort(List<String> value) {
+		public final Builder sort(List<FieldValue> value) {
 			this.sort = value;
 			return this;
 		}
@@ -132,17 +135,41 @@ public class TopMetrics implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code sort}
 		 */
-		public final Builder sort(String... value) {
+		public final Builder sort(FieldValue... value) {
 			this.sort = Arrays.asList(value);
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code sort}
+		 */
+		@SafeVarargs
+		public final Builder sort(Function<FieldValue.Builder, ObjectBuilder<FieldValue>>... fns) {
+			this.sort = new ArrayList<>(fns.length);
+			for (Function<FieldValue.Builder, ObjectBuilder<FieldValue>> fn : fns) {
+				this.sort.add(fn.apply(new FieldValue.Builder()).build());
+			}
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code metrics}
 		 */
-		public final Builder metrics(Map<String, String> value) {
+		public final Builder metrics(Map<String, FieldValue> value) {
 			this.metrics = value;
 			return this;
+		}
+
+		/**
+		 * Set {@link #metrics(Map)} to a singleton map.
+		 */
+		public Builder metrics(String key, Function<FieldValue.Builder, ObjectBuilder<FieldValue>> fn) {
+			return this.metrics(Collections.singletonMap(key, fn.apply(new FieldValue.Builder()).build()));
+		}
+
+		public final Builder metrics(
+				Function<MapBuilder<String, FieldValue, FieldValue.Builder>, ObjectBuilder<Map<String, FieldValue>>> fn) {
+			return metrics(fn.apply(new MapBuilder<>(FieldValue.Builder::new)).build());
 		}
 
 		/**
@@ -164,13 +191,12 @@ public class TopMetrics implements JsonpSerializable {
 	 * Json deserializer for {@link TopMetrics}
 	 */
 	public static final JsonpDeserializer<TopMetrics> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			TopMetrics::setupTopMetricsDeserializer, Builder::build);
+			TopMetrics::setupTopMetricsDeserializer);
 
-	protected static void setupTopMetricsDeserializer(DelegatingDeserializer<TopMetrics.Builder> op) {
+	protected static void setupTopMetricsDeserializer(ObjectDeserializer<TopMetrics.Builder> op) {
 
-		op.add(Builder::sort, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "sort");
-		op.add(Builder::metrics, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.stringDeserializer()),
-				"metrics");
+		op.add(Builder::sort, JsonpDeserializer.arrayDeserializer(FieldValue._DESERIALIZER), "sort");
+		op.add(Builder::metrics, JsonpDeserializer.stringMapDeserializer(FieldValue._DESERIALIZER), "metrics");
 
 	}
 

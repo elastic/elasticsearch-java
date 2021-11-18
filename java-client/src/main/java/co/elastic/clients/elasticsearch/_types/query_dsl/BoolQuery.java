@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -331,9 +330,9 @@ public class BoolQuery extends QueryBase implements QueryVariant {
 	 * Json deserializer for {@link BoolQuery}
 	 */
 	public static final JsonpDeserializer<BoolQuery> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			BoolQuery::setupBoolQueryDeserializer, Builder::build);
+			BoolQuery::setupBoolQueryDeserializer);
 
-	protected static void setupBoolQueryDeserializer(DelegatingDeserializer<BoolQuery.Builder> op) {
+	protected static void setupBoolQueryDeserializer(ObjectDeserializer<BoolQuery.Builder> op) {
 		QueryBase.setupQueryBaseDeserializer(op);
 		op.add(Builder::filter, JsonpDeserializer.arrayDeserializer(Query._DESERIALIZER), "filter");
 		op.add(Builder::minimumShouldMatch, JsonpDeserializer.stringDeserializer(), "minimum_should_match");

@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.watcher;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -137,9 +136,9 @@ public class ThrottleState implements JsonpSerializable {
 	 * Json deserializer for {@link ThrottleState}
 	 */
 	public static final JsonpDeserializer<ThrottleState> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			ThrottleState::setupThrottleStateDeserializer, Builder::build);
+			ThrottleState::setupThrottleStateDeserializer);
 
-	protected static void setupThrottleStateDeserializer(DelegatingDeserializer<ThrottleState.Builder> op) {
+	protected static void setupThrottleStateDeserializer(ObjectDeserializer<ThrottleState.Builder> op) {
 
 		op.add(Builder::reason, JsonpDeserializer.stringDeserializer(), "reason");
 		op.add(Builder::timestamp, JsonpDeserializer.stringDeserializer(), "timestamp");

@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.async_search;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -48,10 +49,10 @@ public class GetAsyncSearchRequest extends RequestBase {
 	private final String id;
 
 	@Nullable
-	private final String keepAlive;
+	private final Time keepAlive;
 
 	@Nullable
-	private final String waitForCompletionTimeout;
+	private final Time waitForCompletionTimeout;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -83,7 +84,7 @@ public class GetAsyncSearchRequest extends RequestBase {
 	 * API name: {@code keep_alive}
 	 */
 	@Nullable
-	public final String keepAlive() {
+	public final Time keepAlive() {
 		return this.keepAlive;
 	}
 
@@ -93,7 +94,7 @@ public class GetAsyncSearchRequest extends RequestBase {
 	 * API name: {@code wait_for_completion_timeout}
 	 */
 	@Nullable
-	public final String waitForCompletionTimeout() {
+	public final Time waitForCompletionTimeout() {
 		return this.waitForCompletionTimeout;
 	}
 
@@ -106,10 +107,10 @@ public class GetAsyncSearchRequest extends RequestBase {
 		private String id;
 
 		@Nullable
-		private String keepAlive;
+		private Time keepAlive;
 
 		@Nullable
-		private String waitForCompletionTimeout;
+		private Time waitForCompletionTimeout;
 
 		/**
 		 * Required - The async search ID
@@ -127,8 +128,28 @@ public class GetAsyncSearchRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code keep_alive}
 		 */
-		public final Builder keepAlive(@Nullable String value) {
+		public final Builder keepAlive(@Nullable Time value) {
 			this.keepAlive = value;
+			return this;
+		}
+
+		/**
+		 * Specify the time interval in which the results (partial or final) for this
+		 * search will be available
+		 * <p>
+		 * API name: {@code keep_alive}
+		 */
+		public final Builder keepAlive(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.keepAlive(fn.apply(new Time.Builder()).build());
+		}
+
+		/**
+		 * Specify the time that the request should block waiting for the final response
+		 * <p>
+		 * API name: {@code wait_for_completion_timeout}
+		 */
+		public final Builder waitForCompletionTimeout(@Nullable Time value) {
+			this.waitForCompletionTimeout = value;
 			return this;
 		}
 
@@ -137,9 +158,8 @@ public class GetAsyncSearchRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code wait_for_completion_timeout}
 		 */
-		public final Builder waitForCompletionTimeout(@Nullable String value) {
-			this.waitForCompletionTimeout = value;
-			return this;
+		public final Builder waitForCompletionTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.waitForCompletionTimeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -160,7 +180,7 @@ public class GetAsyncSearchRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code async_search.get}".
 	 */
-	private static final SimpleEndpoint<GetAsyncSearchRequest, Void> ENDPOINT = new SimpleEndpoint<>(
+	public static final SimpleEndpoint<GetAsyncSearchRequest, ?> _ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "GET";
@@ -191,21 +211,21 @@ public class GetAsyncSearchRequest extends RequestBase {
 				Map<String, String> params = new HashMap<>();
 				params.put("typed_keys", "true");
 				if (request.keepAlive != null) {
-					params.put("keep_alive", request.keepAlive);
+					params.put("keep_alive", request.keepAlive._toJsonString());
 				}
 				if (request.waitForCompletionTimeout != null) {
-					params.put("wait_for_completion_timeout", request.waitForCompletionTimeout);
+					params.put("wait_for_completion_timeout", request.waitForCompletionTimeout._toJsonString());
 				}
 				return params;
 
-			}, SimpleEndpoint.emptyMap(), false, null);
+			}, SimpleEndpoint.emptyMap(), false, GetAsyncSearchResponse._DESERIALIZER);
 
 	/**
 	 * Create an "{@code async_search.get}" endpoint.
 	 */
 	public static <TDocument> Endpoint<GetAsyncSearchRequest, GetAsyncSearchResponse<TDocument>, ErrorResponse> createGetEndpoint(
 			JsonpDeserializer<TDocument> tDocumentDeserializer) {
-		return ENDPOINT.withResponseDeserializer(
+		return _ENDPOINT.withResponseDeserializer(
 				GetAsyncSearchResponse.createGetAsyncSearchResponseDeserializer(tDocumentDeserializer));
 	}
 }

@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -112,9 +111,9 @@ public class GeoHashGridBucket extends MultiBucketBase {
 	 * Json deserializer for {@link GeoHashGridBucket}
 	 */
 	public static final JsonpDeserializer<GeoHashGridBucket> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, GeoHashGridBucket::setupGeoHashGridBucketDeserializer, Builder::build);
+			.lazy(Builder::new, GeoHashGridBucket::setupGeoHashGridBucketDeserializer);
 
-	protected static void setupGeoHashGridBucketDeserializer(DelegatingDeserializer<GeoHashGridBucket.Builder> op) {
+	protected static void setupGeoHashGridBucketDeserializer(ObjectDeserializer<GeoHashGridBucket.Builder> op) {
 		MultiBucketBase.setupMultiBucketBaseDeserializer(op);
 		op.add(Builder::key, JsonpDeserializer.stringDeserializer(), "key");
 

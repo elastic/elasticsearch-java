@@ -103,7 +103,7 @@ public class DeactivateWatchRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code watcher.deactivate_watch}".
 	 */
-	public static final Endpoint<DeactivateWatchRequest, DeactivateWatchResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<DeactivateWatchRequest, DeactivateWatchResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "PUT";

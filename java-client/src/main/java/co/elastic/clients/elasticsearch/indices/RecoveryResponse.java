@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch.indices;
 
 import co.elastic.clients.elasticsearch.indices.recovery.RecoveryStatus;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -84,9 +83,9 @@ public class RecoveryResponse extends DictionaryResponse<String, RecoveryStatus>
 	 * Json deserializer for {@link RecoveryResponse}
 	 */
 	public static final JsonpDeserializer<RecoveryResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			RecoveryResponse::setupRecoveryResponseDeserializer, Builder::build);
+			RecoveryResponse::setupRecoveryResponseDeserializer);
 
-	protected static void setupRecoveryResponseDeserializer(DelegatingDeserializer<RecoveryResponse.Builder> op) {
+	protected static void setupRecoveryResponseDeserializer(ObjectDeserializer<RecoveryResponse.Builder> op) {
 		DictionaryResponse.setupDictionaryResponseDeserializer(op, JsonpDeserializer.stringDeserializer(),
 				RecoveryStatus._DESERIALIZER);
 

@@ -25,6 +25,8 @@ package co.elastic.clients.elasticsearch.monitoring;
 
 import co.elastic.clients.ApiClient;
 import co.elastic.clients.elasticsearch._types.ElasticsearchException;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
+import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.Transport;
 import co.elastic.clients.transport.TransportOptions;
 import co.elastic.clients.util.ObjectBuilder;
@@ -61,7 +63,10 @@ public class ElasticsearchMonitoringClient extends ApiClient<ElasticsearchMonito
 	 */
 
 	public BulkResponse bulk(BulkRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, BulkRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<BulkRequest, BulkResponse, ErrorResponse> endpoint = (Endpoint<BulkRequest, BulkResponse, ErrorResponse>) BulkRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**

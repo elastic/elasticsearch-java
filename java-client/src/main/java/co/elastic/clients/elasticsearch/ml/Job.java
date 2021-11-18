@@ -23,7 +23,8 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.elasticsearch._types.Time;
+import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -54,7 +55,7 @@ public class Job implements JsonpSerializable {
 	@Nullable
 	private final AnalysisLimits analysisLimits;
 
-	private final String backgroundPersistInterval;
+	private final Time backgroundPersistInterval;
 
 	@Nullable
 	private final JobBlocked blocked;
@@ -62,7 +63,7 @@ public class Job implements JsonpSerializable {
 	private final int createTime;
 
 	@Nullable
-	private final CustomSettings customSettings;
+	private final JsonData customSettings;
 
 	@Nullable
 	private final Long dailyModelSnapshotRetentionAfterDays;
@@ -166,7 +167,7 @@ public class Job implements JsonpSerializable {
 	/**
 	 * Required - API name: {@code background_persist_interval}
 	 */
-	public final String backgroundPersistInterval() {
+	public final Time backgroundPersistInterval() {
 		return this.backgroundPersistInterval;
 	}
 
@@ -189,7 +190,7 @@ public class Job implements JsonpSerializable {
 	 * API name: {@code custom_settings}
 	 */
 	@Nullable
-	public final CustomSettings customSettings() {
+	public final JsonData customSettings() {
 		return this.customSettings;
 	}
 
@@ -337,7 +338,7 @@ public class Job implements JsonpSerializable {
 
 		}
 		generator.writeKey("background_persist_interval");
-		generator.write(this.backgroundPersistInterval);
+		this.backgroundPersistInterval.serialize(generator, mapper);
 
 		if (this.blocked != null) {
 			generator.writeKey("blocked");
@@ -441,7 +442,7 @@ public class Job implements JsonpSerializable {
 		@Nullable
 		private AnalysisLimits analysisLimits;
 
-		private String backgroundPersistInterval;
+		private Time backgroundPersistInterval;
 
 		@Nullable
 		private JobBlocked blocked;
@@ -449,7 +450,7 @@ public class Job implements JsonpSerializable {
 		private Integer createTime;
 
 		@Nullable
-		private CustomSettings customSettings;
+		private JsonData customSettings;
 
 		@Nullable
 		private Long dailyModelSnapshotRetentionAfterDays;
@@ -534,9 +535,16 @@ public class Job implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code background_persist_interval}
 		 */
-		public final Builder backgroundPersistInterval(String value) {
+		public final Builder backgroundPersistInterval(Time value) {
 			this.backgroundPersistInterval = value;
 			return this;
+		}
+
+		/**
+		 * Required - API name: {@code background_persist_interval}
+		 */
+		public final Builder backgroundPersistInterval(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.backgroundPersistInterval(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -565,16 +573,9 @@ public class Job implements JsonpSerializable {
 		/**
 		 * API name: {@code custom_settings}
 		 */
-		public final Builder customSettings(@Nullable CustomSettings value) {
+		public final Builder customSettings(@Nullable JsonData value) {
 			this.customSettings = value;
 			return this;
-		}
-
-		/**
-		 * API name: {@code custom_settings}
-		 */
-		public final Builder customSettings(Function<CustomSettings.Builder, ObjectBuilder<CustomSettings>> fn) {
-			return this.customSettings(fn.apply(new CustomSettings.Builder()).build());
 		}
 
 		/**
@@ -753,18 +754,17 @@ public class Job implements JsonpSerializable {
 	 * Json deserializer for {@link Job}
 	 */
 	public static final JsonpDeserializer<Job> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			Job::setupJobDeserializer, Builder::build);
+			Job::setupJobDeserializer);
 
-	protected static void setupJobDeserializer(DelegatingDeserializer<Job.Builder> op) {
+	protected static void setupJobDeserializer(ObjectDeserializer<Job.Builder> op) {
 
 		op.add(Builder::allowLazyOpen, JsonpDeserializer.booleanDeserializer(), "allow_lazy_open");
 		op.add(Builder::analysisConfig, AnalysisConfig._DESERIALIZER, "analysis_config");
 		op.add(Builder::analysisLimits, AnalysisLimits._DESERIALIZER, "analysis_limits");
-		op.add(Builder::backgroundPersistInterval, JsonpDeserializer.stringDeserializer(),
-				"background_persist_interval");
+		op.add(Builder::backgroundPersistInterval, Time._DESERIALIZER, "background_persist_interval");
 		op.add(Builder::blocked, JobBlocked._DESERIALIZER, "blocked");
 		op.add(Builder::createTime, JsonpDeserializer.integerDeserializer(), "create_time");
-		op.add(Builder::customSettings, CustomSettings._DESERIALIZER, "custom_settings");
+		op.add(Builder::customSettings, JsonData._DESERIALIZER, "custom_settings");
 		op.add(Builder::dailyModelSnapshotRetentionAfterDays, JsonpDeserializer.longDeserializer(),
 				"daily_model_snapshot_retention_after_days");
 		op.add(Builder::dataDescription, DataDescription._DESERIALIZER, "data_description");

@@ -25,19 +25,24 @@ package co.elastic.clients.elasticsearch.core;
 
 import co.elastic.clients.elasticsearch._types.DefaultOperator;
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
-import co.elastic.clients.elasticsearch._types.ExpandWildcardOptions;
+import co.elastic.clients.elasticsearch._types.ExpandWildcard;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch._types.ScriptField;
 import co.elastic.clients.elasticsearch._types.SearchType;
 import co.elastic.clients.elasticsearch._types.SlicedScroll;
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.elasticsearch._types.aggregations.Aggregation;
 import co.elastic.clients.elasticsearch._types.mapping.RuntimeField;
+import co.elastic.clients.elasticsearch._types.query_dsl.FieldAndFormat;
 import co.elastic.clients.elasticsearch._types.query_dsl.Query;
 import co.elastic.clients.elasticsearch.core.search.FieldCollapse;
 import co.elastic.clients.elasticsearch.core.search.Highlight;
 import co.elastic.clients.elasticsearch.core.search.PointInTimeReference;
 import co.elastic.clients.elasticsearch.core.search.Rescore;
-import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.elasticsearch.core.search.SortOptions;
+import co.elastic.clients.elasticsearch.core.search.SourceConfig;
+import co.elastic.clients.elasticsearch.core.search.Suggester;
+import co.elastic.clients.elasticsearch.core.search.TrackHits;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -50,7 +55,6 @@ import co.elastic.clients.util.MapBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Double;
@@ -72,9 +76,7 @@ import javax.annotation.Nullable;
 @JsonpDeserializable
 public class SearchRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
-	private final JsonValue /*
-							 * Union(_global.search._types.SourceFilter | _types.Fields | internal.boolean)
-							 */ source;
+	private final SourceConfig source;
 
 	private final Map<String, Aggregation> aggregations;
 
@@ -105,18 +107,14 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
 	private final String df;
 
-	@Nullable
-	private final JsonValue /*
-							 * Union(Array<Union(_global.search._types.DocValueField | _types.Field)> |
-							 * _global.search._types.DocValueField)
-							 */ docvalueFields;
+	private final List<FieldAndFormat> docvalueFields;
 
-	private final List<ExpandWildcardOptions> expandWildcards;
+	private final List<ExpandWildcard> expandWildcards;
 
 	@Nullable
 	private final Boolean explain;
 
-	private final List<JsonValue /* Union(_types.DateField | _types.Field) */> fields;
+	private final List<FieldAndFormat> fields;
 
 	@Nullable
 	private final Integer from;
@@ -180,7 +178,7 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 	private final Map<String, ScriptField> scriptFields;
 
 	@Nullable
-	private final String scroll;
+	private final Time scroll;
 
 	private final List<String> searchAfter;
 
@@ -196,17 +194,14 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
 	private final SlicedScroll slice;
 
-	private final List<JsonValue /* _global.search._types.SortCombinations */> sort;
+	private final List<SortOptions> sort;
 
 	private final List<String> stats;
 
 	private final List<String> storedFields;
 
 	@Nullable
-	private final JsonValue /*
-							 * Union(Dictionary<internal.string, _global.search._types.SuggestContainer> |
-							 * _global.search._types.SuggestContainer)
-							 */ suggest;
+	private final Suggester suggest;
 
 	@Nullable
 	private final Long terminateAfter;
@@ -218,7 +213,7 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 	private final Boolean trackScores;
 
 	@Nullable
-	private final JsonValue /* Union(_types.integer | internal.boolean) */ trackTotalHits;
+	private final TrackHits trackTotalHits;
 
 	private final List<String> type;
 
@@ -240,7 +235,7 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 		this.collapse = builder.collapse;
 		this.defaultOperator = builder.defaultOperator;
 		this.df = builder.df;
-		this.docvalueFields = builder.docvalueFields;
+		this.docvalueFields = ModelTypeHelper.unmodifiable(builder.docvalueFields);
 		this.expandWildcards = ModelTypeHelper.unmodifiable(builder.expandWildcards);
 		this.explain = builder.explain;
 		this.fields = ModelTypeHelper.unmodifiable(builder.fields);
@@ -296,9 +291,7 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 	 * API name: {@code _source}
 	 */
 	@Nullable
-	public final JsonValue /*
-							 * Union(_global.search._types.SourceFilter | _types.Fields | internal.boolean)
-							 */ source() {
+	public final SourceConfig source() {
 		return this.source;
 	}
 
@@ -412,11 +405,7 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code docvalue_fields}
 	 */
-	@Nullable
-	public final JsonValue /*
-							 * Union(Array<Union(_global.search._types.DocValueField | _types.Field)> |
-							 * _global.search._types.DocValueField)
-							 */ docvalueFields() {
+	public final List<FieldAndFormat> docvalueFields() {
 		return this.docvalueFields;
 	}
 
@@ -426,7 +415,7 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code expand_wildcards}
 	 */
-	public final List<ExpandWildcardOptions> expandWildcards() {
+	public final List<ExpandWildcard> expandWildcards() {
 		return this.expandWildcards;
 	}
 
@@ -447,7 +436,7 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code fields}
 	 */
-	public final List<JsonValue /* Union(_types.DateField | _types.Field) */> fields() {
+	public final List<FieldAndFormat> fields() {
 		return this.fields;
 	}
 
@@ -684,7 +673,7 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 	 * API name: {@code scroll}
 	 */
 	@Nullable
-	public final String scroll() {
+	public final Time scroll() {
 		return this.scroll;
 	}
 
@@ -739,7 +728,7 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 	/**
 	 * API name: {@code sort}
 	 */
-	public final List<JsonValue /* _global.search._types.SortCombinations */> sort() {
+	public final List<SortOptions> sort() {
 		return this.sort;
 	}
 
@@ -770,10 +759,7 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 	 * API name: {@code suggest}
 	 */
 	@Nullable
-	public final JsonValue /*
-							 * Union(Dictionary<internal.string, _global.search._types.SuggestContainer> |
-							 * _global.search._types.SuggestContainer)
-							 */ suggest() {
+	public final Suggester suggest() {
 		return this.suggest;
 	}
 
@@ -822,7 +808,7 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 	 * API name: {@code track_total_hits}
 	 */
 	@Nullable
-	public final JsonValue /* Union(_types.integer | internal.boolean) */ trackTotalHits() {
+	public final TrackHits trackTotalHits() {
 		return this.trackTotalHits;
 	}
 
@@ -859,7 +845,7 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 
 		if (this.source != null) {
 			generator.writeKey("_source");
-			generator.write(this.source);
+			this.source.serialize(generator, mapper);
 
 		}
 		if (ModelTypeHelper.isDefined(this.aggregations)) {
@@ -878,9 +864,14 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 			this.collapse.serialize(generator, mapper);
 
 		}
-		if (this.docvalueFields != null) {
+		if (ModelTypeHelper.isDefined(this.docvalueFields)) {
 			generator.writeKey("docvalue_fields");
-			generator.write(this.docvalueFields);
+			generator.writeStartArray();
+			for (FieldAndFormat item0 : this.docvalueFields) {
+				item0.serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
 
 		}
 		if (this.explain != null) {
@@ -891,8 +882,8 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 		if (ModelTypeHelper.isDefined(this.fields)) {
 			generator.writeKey("fields");
 			generator.writeStartArray();
-			for (JsonValue /* Union(_types.DateField | _types.Field) */ item0 : this.fields) {
-				generator.write(item0);
+			for (FieldAndFormat item0 : this.fields) {
+				item0.serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -1011,8 +1002,8 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 		if (ModelTypeHelper.isDefined(this.sort)) {
 			generator.writeKey("sort");
 			generator.writeStartArray();
-			for (JsonValue /* _global.search._types.SortCombinations */ item0 : this.sort) {
-				generator.write(item0);
+			for (SortOptions item0 : this.sort) {
+				item0.serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -1040,7 +1031,7 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 		}
 		if (this.suggest != null) {
 			generator.writeKey("suggest");
-			generator.write(this.suggest);
+			this.suggest.serialize(generator, mapper);
 
 		}
 		if (this.terminateAfter != null) {
@@ -1060,7 +1051,7 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 		}
 		if (this.trackTotalHits != null) {
 			generator.writeKey("track_total_hits");
-			generator.write(this.trackTotalHits);
+			this.trackTotalHits.serialize(generator, mapper);
 
 		}
 		if (this.version != null) {
@@ -1078,9 +1069,7 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 	 */
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<SearchRequest> {
 		@Nullable
-		private JsonValue /*
-							 * Union(_global.search._types.SourceFilter | _types.Fields | internal.boolean)
-							 */ source;
+		private SourceConfig source;
 
 		@Nullable
 		private Map<String, Aggregation> aggregations;
@@ -1113,19 +1102,16 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 		private String df;
 
 		@Nullable
-		private JsonValue /*
-							 * Union(Array<Union(_global.search._types.DocValueField | _types.Field)> |
-							 * _global.search._types.DocValueField)
-							 */ docvalueFields;
+		private List<FieldAndFormat> docvalueFields;
 
 		@Nullable
-		private List<ExpandWildcardOptions> expandWildcards;
+		private List<ExpandWildcard> expandWildcards;
 
 		@Nullable
 		private Boolean explain;
 
 		@Nullable
-		private List<JsonValue /* Union(_types.DateField | _types.Field) */> fields;
+		private List<FieldAndFormat> fields;
 
 		@Nullable
 		private Integer from;
@@ -1194,7 +1180,7 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 		private Map<String, ScriptField> scriptFields;
 
 		@Nullable
-		private String scroll;
+		private Time scroll;
 
 		@Nullable
 		private List<String> searchAfter;
@@ -1212,7 +1198,7 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 		private SlicedScroll slice;
 
 		@Nullable
-		private List<JsonValue /* _global.search._types.SortCombinations */> sort;
+		private List<SortOptions> sort;
 
 		@Nullable
 		private List<String> stats;
@@ -1221,10 +1207,7 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 		private List<String> storedFields;
 
 		@Nullable
-		private JsonValue /*
-							 * Union(Dictionary<internal.string, _global.search._types.SuggestContainer> |
-							 * _global.search._types.SuggestContainer)
-							 */ suggest;
+		private Suggester suggest;
 
 		@Nullable
 		private Long terminateAfter;
@@ -1236,7 +1219,7 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 		private Boolean trackScores;
 
 		@Nullable
-		private JsonValue /* Union(_types.integer | internal.boolean) */ trackTotalHits;
+		private TrackHits trackTotalHits;
 
 		@Nullable
 		private List<String> type;
@@ -1250,12 +1233,19 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code _source}
 		 */
-		public final Builder source(
-				@Nullable JsonValue /*
-									 * Union(_global.search._types.SourceFilter | _types.Fields | internal.boolean)
-									 */ value) {
+		public final Builder source(@Nullable SourceConfig value) {
 			this.source = value;
 			return this;
+		}
+
+		/**
+		 * Indicates which source fields are returned for matching documents. These
+		 * fields are returned in the hits._source property of the search response.
+		 * <p>
+		 * API name: {@code _source}
+		 */
+		public final Builder source(Function<SourceConfig.Builder, ObjectBuilder<SourceConfig>> fn) {
+			return this.source(fn.apply(new SourceConfig.Builder()).build());
 		}
 
 		/**
@@ -1388,12 +1378,34 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code docvalue_fields}
 		 */
-		public final Builder docvalueFields(
-				@Nullable JsonValue /*
-									 * Union(Array<Union(_global.search._types.DocValueField | _types.Field)> |
-									 * _global.search._types.DocValueField)
-									 */ value) {
+		public final Builder docvalueFields(@Nullable List<FieldAndFormat> value) {
 			this.docvalueFields = value;
+			return this;
+		}
+
+		/**
+		 * Array of wildcard (*) patterns. The request returns doc values for field
+		 * names matching these patterns in the hits.fields property of the response.
+		 * <p>
+		 * API name: {@code docvalue_fields}
+		 */
+		public final Builder docvalueFields(FieldAndFormat... value) {
+			this.docvalueFields = Arrays.asList(value);
+			return this;
+		}
+
+		/**
+		 * Array of wildcard (*) patterns. The request returns doc values for field
+		 * names matching these patterns in the hits.fields property of the response.
+		 * <p>
+		 * API name: {@code docvalue_fields}
+		 */
+		@SafeVarargs
+		public final Builder docvalueFields(Function<FieldAndFormat.Builder, ObjectBuilder<FieldAndFormat>>... fns) {
+			this.docvalueFields = new ArrayList<>(fns.length);
+			for (Function<FieldAndFormat.Builder, ObjectBuilder<FieldAndFormat>> fn : fns) {
+				this.docvalueFields.add(fn.apply(new FieldAndFormat.Builder()).build());
+			}
 			return this;
 		}
 
@@ -1403,7 +1415,7 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code expand_wildcards}
 		 */
-		public final Builder expandWildcards(@Nullable List<ExpandWildcardOptions> value) {
+		public final Builder expandWildcards(@Nullable List<ExpandWildcard> value) {
 			this.expandWildcards = value;
 			return this;
 		}
@@ -1414,7 +1426,7 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code expand_wildcards}
 		 */
-		public final Builder expandWildcards(ExpandWildcardOptions... value) {
+		public final Builder expandWildcards(ExpandWildcard... value) {
 			this.expandWildcards = Arrays.asList(value);
 			return this;
 		}
@@ -1436,7 +1448,7 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code fields}
 		 */
-		public final Builder fields(@Nullable List<JsonValue /* Union(_types.DateField | _types.Field) */> value) {
+		public final Builder fields(@Nullable List<FieldAndFormat> value) {
 			this.fields = value;
 			return this;
 		}
@@ -1447,8 +1459,23 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code fields}
 		 */
-		public final Builder fields(JsonValue /* Union(_types.DateField | _types.Field) */... value) {
+		public final Builder fields(FieldAndFormat... value) {
 			this.fields = Arrays.asList(value);
+			return this;
+		}
+
+		/**
+		 * Array of wildcard (*) patterns. The request returns values for field names
+		 * matching these patterns in the hits.fields property of the response.
+		 * <p>
+		 * API name: {@code fields}
+		 */
+		@SafeVarargs
+		public final Builder fields(Function<FieldAndFormat.Builder, ObjectBuilder<FieldAndFormat>>... fns) {
+			this.fields = new ArrayList<>(fns.length);
+			for (Function<FieldAndFormat.Builder, ObjectBuilder<FieldAndFormat>> fn : fns) {
+				this.fields.add(fn.apply(new FieldAndFormat.Builder()).build());
+			}
 			return this;
 		}
 
@@ -1787,9 +1814,19 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code scroll}
 		 */
-		public final Builder scroll(@Nullable String value) {
+		public final Builder scroll(@Nullable Time value) {
 			this.scroll = value;
 			return this;
+		}
+
+		/**
+		 * Specify how long a consistent view of the index should be maintained for
+		 * scrolled search
+		 * <p>
+		 * API name: {@code scroll}
+		 */
+		public final Builder scroll(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.scroll(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -1859,7 +1896,7 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 		/**
 		 * API name: {@code sort}
 		 */
-		public final Builder sort(@Nullable List<JsonValue /* _global.search._types.SortCombinations */> value) {
+		public final Builder sort(@Nullable List<SortOptions> value) {
 			this.sort = value;
 			return this;
 		}
@@ -1867,8 +1904,20 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 		/**
 		 * API name: {@code sort}
 		 */
-		public final Builder sort(JsonValue /* _global.search._types.SortCombinations */... value) {
+		public final Builder sort(SortOptions... value) {
 			this.sort = Arrays.asList(value);
+			return this;
+		}
+
+		/**
+		 * API name: {@code sort}
+		 */
+		@SafeVarargs
+		public final Builder sort(Function<SortOptions.Builder, ObjectBuilder<SortOptions>>... fns) {
+			this.sort = new ArrayList<>(fns.length);
+			for (Function<SortOptions.Builder, ObjectBuilder<SortOptions>> fn : fns) {
+				this.sort.add(fn.apply(new SortOptions.Builder()).build());
+			}
 			return this;
 		}
 
@@ -1925,13 +1974,16 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 		/**
 		 * API name: {@code suggest}
 		 */
-		public final Builder suggest(
-				@Nullable JsonValue /*
-									 * Union(Dictionary<internal.string, _global.search._types.SuggestContainer> |
-									 * _global.search._types.SuggestContainer)
-									 */ value) {
+		public final Builder suggest(@Nullable Suggester value) {
 			this.suggest = value;
 			return this;
+		}
+
+		/**
+		 * API name: {@code suggest}
+		 */
+		public final Builder suggest(Function<Suggester.Builder, ObjectBuilder<Suggester>> fn) {
+			return this.suggest(fn.apply(new Suggester.Builder()).build());
 		}
 
 		/**
@@ -1978,9 +2030,21 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code track_total_hits}
 		 */
-		public final Builder trackTotalHits(@Nullable JsonValue /* Union(_types.integer | internal.boolean) */ value) {
+		public final Builder trackTotalHits(@Nullable TrackHits value) {
 			this.trackTotalHits = value;
 			return this;
+		}
+
+		/**
+		 * Number of hits matching the query to count accurately. If true, the exact
+		 * number of hits is returned at the cost of some performance. If false, the
+		 * response does not include the total number of hits matching the query.
+		 * Defaults to 10,000 hits.
+		 * <p>
+		 * API name: {@code track_total_hits}
+		 */
+		public final Builder trackTotalHits(Function<TrackHits.Builder, ObjectBuilder<TrackHits>> fn) {
+			return this.trackTotalHits(fn.apply(new TrackHits.Builder()).build());
 		}
 
 		/**
@@ -2034,18 +2098,18 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 	 * Json deserializer for {@link SearchRequest}
 	 */
 	public static final JsonpDeserializer<SearchRequest> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			SearchRequest::setupSearchRequestDeserializer, Builder::build);
+			SearchRequest::setupSearchRequestDeserializer);
 
-	protected static void setupSearchRequestDeserializer(DelegatingDeserializer<SearchRequest.Builder> op) {
+	protected static void setupSearchRequestDeserializer(ObjectDeserializer<SearchRequest.Builder> op) {
 
-		op.add(Builder::source, JsonpDeserializer.jsonValueDeserializer(), "_source");
+		op.add(Builder::source, SourceConfig._DESERIALIZER, "_source");
 		op.add(Builder::aggregations, JsonpDeserializer.stringMapDeserializer(Aggregation._DESERIALIZER),
 				"aggregations", "aggs");
 		op.add(Builder::collapse, FieldCollapse._DESERIALIZER, "collapse");
-		op.add(Builder::docvalueFields, JsonpDeserializer.jsonValueDeserializer(), "docvalue_fields");
+		op.add(Builder::docvalueFields, JsonpDeserializer.arrayDeserializer(FieldAndFormat._DESERIALIZER),
+				"docvalue_fields");
 		op.add(Builder::explain, JsonpDeserializer.booleanDeserializer(), "explain");
-		op.add(Builder::fields, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.jsonValueDeserializer()),
-				"fields");
+		op.add(Builder::fields, JsonpDeserializer.arrayDeserializer(FieldAndFormat._DESERIALIZER), "fields");
 		op.add(Builder::from, JsonpDeserializer.integerDeserializer(), "from");
 		op.add(Builder::highlight, Highlight._DESERIALIZER, "highlight");
 		op.add(Builder::indicesBoost,
@@ -2067,15 +2131,15 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 		op.add(Builder::seqNoPrimaryTerm, JsonpDeserializer.booleanDeserializer(), "seq_no_primary_term");
 		op.add(Builder::size, JsonpDeserializer.integerDeserializer(), "size");
 		op.add(Builder::slice, SlicedScroll._DESERIALIZER, "slice");
-		op.add(Builder::sort, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.jsonValueDeserializer()), "sort");
+		op.add(Builder::sort, JsonpDeserializer.arrayDeserializer(SortOptions._DESERIALIZER), "sort");
 		op.add(Builder::stats, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "stats");
 		op.add(Builder::storedFields, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"stored_fields");
-		op.add(Builder::suggest, JsonpDeserializer.jsonValueDeserializer(), "suggest");
+		op.add(Builder::suggest, Suggester._DESERIALIZER, "suggest");
 		op.add(Builder::terminateAfter, JsonpDeserializer.longDeserializer(), "terminate_after");
 		op.add(Builder::timeout, JsonpDeserializer.stringDeserializer(), "timeout");
 		op.add(Builder::trackScores, JsonpDeserializer.booleanDeserializer(), "track_scores");
-		op.add(Builder::trackTotalHits, JsonpDeserializer.jsonValueDeserializer(), "track_total_hits");
+		op.add(Builder::trackTotalHits, TrackHits._DESERIALIZER, "track_total_hits");
 		op.add(Builder::version, JsonpDeserializer.booleanDeserializer(), "version");
 
 	}
@@ -2085,7 +2149,7 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 	/**
 	 * Endpoint "{@code search}".
 	 */
-	private static final SimpleEndpoint<SearchRequest, Void> ENDPOINT = new SimpleEndpoint<>(
+	public static final SimpleEndpoint<SearchRequest, ?> _ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";
@@ -2177,7 +2241,7 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 					params.put("analyze_wildcard", String.valueOf(request.analyzeWildcard));
 				}
 				if (request.scroll != null) {
-					params.put("scroll", request.scroll);
+					params.put("scroll", request.scroll._toJsonString());
 				}
 				if (request.searchType != null) {
 					params.put("search_type", request.searchType.jsonValue());
@@ -2199,14 +2263,14 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 				}
 				return params;
 
-			}, SimpleEndpoint.emptyMap(), true, null);
+			}, SimpleEndpoint.emptyMap(), true, SearchResponse._DESERIALIZER);
 
 	/**
 	 * Create an "{@code search}" endpoint.
 	 */
 	public static <TDocument> Endpoint<SearchRequest, SearchResponse<TDocument>, ErrorResponse> createSearchEndpoint(
 			JsonpDeserializer<TDocument> tDocumentDeserializer) {
-		return ENDPOINT
+		return _ENDPOINT
 				.withResponseDeserializer(SearchResponse.createSearchResponseDeserializer(tDocumentDeserializer));
 	}
 }

@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch._types.aggregations;
 
 import co.elastic.clients.elasticsearch.core.search.HitsMetadata;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -128,9 +127,9 @@ public class TopHitsAggregate extends AggregateBase implements AggregateVariant 
 	 * Json deserializer for {@link TopHitsAggregate}
 	 */
 	public static final JsonpDeserializer<TopHitsAggregate> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			TopHitsAggregate::setupTopHitsAggregateDeserializer, Builder::build);
+			TopHitsAggregate::setupTopHitsAggregateDeserializer);
 
-	protected static void setupTopHitsAggregateDeserializer(DelegatingDeserializer<TopHitsAggregate.Builder> op) {
+	protected static void setupTopHitsAggregateDeserializer(ObjectDeserializer<TopHitsAggregate.Builder> op) {
 		AggregateBase.setupAggregateBaseDeserializer(op);
 		op.add(Builder::hits, HitsMetadata.createHitsMetadataDeserializer(JsonData._DESERIALIZER), "hits");
 

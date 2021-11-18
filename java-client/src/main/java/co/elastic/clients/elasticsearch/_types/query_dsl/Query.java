@@ -25,7 +25,6 @@ package co.elastic.clients.elasticsearch._types.query_dsl;
 
 import co.elastic.clients.elasticsearch._types.aggregations.Aggregation;
 import co.elastic.clients.elasticsearch._types.aggregations.AggregationVariant;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -37,7 +36,6 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import co.elastic.clients.util.TaggedUnion;
 import co.elastic.clients.util.TaggedUnionUtils;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Object;
 import java.util.Objects;
@@ -45,6 +43,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.QueryContainer
+// union type: Container[]
 @JsonpDeserializable
 public class Query implements TaggedUnion<Object>, AggregationVariant, JsonpSerializable {
 
@@ -109,8 +108,6 @@ public class Query implements TaggedUnion<Object>, AggregationVariant, JsonpSeri
 	public String _variantType() {
 		return "filter";
 	}
-
-	// Tagged union implementation
 
 	private final String _type;
 	private final Object _value;
@@ -211,7 +208,7 @@ public class Query implements TaggedUnion<Object>, AggregationVariant, JsonpSeri
 	 *             if the current variant is not of the {@code distance_feature}
 	 *             kind.
 	 */
-	public JsonValue /* _types.query_dsl.DistanceFeatureQuery */ distanceFeature() {
+	public DistanceFeatureQuery distanceFeature() {
 		return TaggedUnionUtils.get(this, DISTANCE_FEATURE);
 	}
 
@@ -474,7 +471,7 @@ public class Query implements TaggedUnion<Object>, AggregationVariant, JsonpSeri
 	 * @throws IllegalStateException
 	 *             if the current variant is not of the {@code range} kind.
 	 */
-	public JsonValue /* _types.query_dsl.RangeQuery */ range() {
+	public RangeQuery range() {
 		return TaggedUnionUtils.get(this, RANGE);
 	}
 
@@ -684,25 +681,16 @@ public class Query implements TaggedUnion<Object>, AggregationVariant, JsonpSeri
 	@Override
 	@SuppressWarnings("unchecked")
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+
 		generator.writeStartObject();
 
 		generator.writeKey(_type);
 		if (_value instanceof JsonpSerializable) {
 			((JsonpSerializable) _value).serialize(generator, mapper);
-		} else {
-			switch (_type) {
-				case DISTANCE_FEATURE :
-					generator.write(((JsonValue /* _types.query_dsl.DistanceFeatureQuery */) this._value));
-
-					break;
-				case RANGE :
-					generator.write(((JsonValue /* _types.query_dsl.RangeQuery */) this._value));
-
-					break;
-			}
 		}
 
 		generator.writeEnd();
+
 	}
 
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Query> {
@@ -769,10 +757,14 @@ public class Query implements TaggedUnion<Object>, AggregationVariant, JsonpSeri
 			return this.disMax(f.apply(new DisMaxQuery.Builder()).build());
 		}
 
-		public Builder distanceFeature(JsonValue /* _types.query_dsl.DistanceFeatureQuery */ v) {
+		public Builder distanceFeature(DistanceFeatureQuery v) {
 			this._type = DISTANCE_FEATURE;
 			this._value = v;
 			return this;
+		}
+
+		public Builder distanceFeature(Function<DistanceFeatureQuery.Builder, ObjectBuilder<DistanceFeatureQuery>> f) {
+			return this.distanceFeature(f.apply(new DistanceFeatureQuery.Builder()).build());
 		}
 
 		public Builder exists(ExistsQuery v) {
@@ -1026,10 +1018,14 @@ public class Query implements TaggedUnion<Object>, AggregationVariant, JsonpSeri
 			return this.queryString(f.apply(new QueryStringQuery.Builder()).build());
 		}
 
-		public Builder range(JsonValue /* _types.query_dsl.RangeQuery */ v) {
+		public Builder range(RangeQuery v) {
 			this._type = RANGE;
 			this._value = v;
 			return this;
+		}
+
+		public Builder range(Function<RangeQuery.Builder, ObjectBuilder<RangeQuery>> f) {
+			return this.range(f.apply(new RangeQuery.Builder()).build());
 		}
 
 		public Builder rankFeature(RankFeatureQuery v) {
@@ -1241,7 +1237,7 @@ public class Query implements TaggedUnion<Object>, AggregationVariant, JsonpSeri
 
 	}
 
-	protected static void setupQueryDeserializer(DelegatingDeserializer<Builder> op) {
+	protected static void setupQueryDeserializer(ObjectDeserializer<Builder> op) {
 
 		op.add(Builder::bool, BoolQuery._DESERIALIZER, "bool");
 		op.add(Builder::boosting, BoostingQuery._DESERIALIZER, "boosting");
@@ -1249,7 +1245,7 @@ public class Query implements TaggedUnion<Object>, AggregationVariant, JsonpSeri
 		op.add(Builder::combinedFields, CombinedFieldsQuery._DESERIALIZER, "combined_fields");
 		op.add(Builder::constantScore, ConstantScoreQuery._DESERIALIZER, "constant_score");
 		op.add(Builder::disMax, DisMaxQuery._DESERIALIZER, "dis_max");
-		op.add(Builder::distanceFeature, JsonpDeserializer.jsonValueDeserializer(), "distance_feature");
+		op.add(Builder::distanceFeature, DistanceFeatureQuery._DESERIALIZER, "distance_feature");
 		op.add(Builder::exists, ExistsQuery._DESERIALIZER, "exists");
 		op.add(Builder::functionScore, FunctionScoreQuery._DESERIALIZER, "function_score");
 		op.add(Builder::fuzzy, FuzzyQuery._DESERIALIZER, "fuzzy");
@@ -1275,7 +1271,7 @@ public class Query implements TaggedUnion<Object>, AggregationVariant, JsonpSeri
 		op.add(Builder::pinned, PinnedQuery._DESERIALIZER, "pinned");
 		op.add(Builder::prefix, PrefixQuery._DESERIALIZER, "prefix");
 		op.add(Builder::queryString, QueryStringQuery._DESERIALIZER, "query_string");
-		op.add(Builder::range, JsonpDeserializer.jsonValueDeserializer(), "range");
+		op.add(Builder::range, RangeQuery._DESERIALIZER, "range");
 		op.add(Builder::rankFeature, RankFeatureQuery._DESERIALIZER, "rank_feature");
 		op.add(Builder::regexp, RegexpQuery._DESERIALIZER, "regexp");
 		op.add(Builder::script, ScriptQuery._DESERIALIZER, "script");

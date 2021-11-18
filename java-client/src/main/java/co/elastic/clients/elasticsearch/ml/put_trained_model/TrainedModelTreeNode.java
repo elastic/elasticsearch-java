@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.ml.put_trained_model;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -342,10 +341,9 @@ public class TrainedModelTreeNode implements JsonpSerializable {
 	 * Json deserializer for {@link TrainedModelTreeNode}
 	 */
 	public static final JsonpDeserializer<TrainedModelTreeNode> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, TrainedModelTreeNode::setupTrainedModelTreeNodeDeserializer, Builder::build);
+			.lazy(Builder::new, TrainedModelTreeNode::setupTrainedModelTreeNodeDeserializer);
 
-	protected static void setupTrainedModelTreeNodeDeserializer(
-			DelegatingDeserializer<TrainedModelTreeNode.Builder> op) {
+	protected static void setupTrainedModelTreeNodeDeserializer(ObjectDeserializer<TrainedModelTreeNode.Builder> op) {
 
 		op.add(Builder::decisionType, JsonpDeserializer.stringDeserializer(), "decision_type");
 		op.add(Builder::defaultLeft, JsonpDeserializer.booleanDeserializer(), "default_left");

@@ -236,7 +236,7 @@ public class GetDatafeedsRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code ml.get_datafeeds}".
 	 */
-	public static final Endpoint<GetDatafeedsRequest, GetDatafeedsResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<GetDatafeedsRequest, GetDatafeedsResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "GET";

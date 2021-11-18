@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -137,9 +136,9 @@ public class PinnedDoc implements JsonpSerializable {
 	 * Json deserializer for {@link PinnedDoc}
 	 */
 	public static final JsonpDeserializer<PinnedDoc> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			PinnedDoc::setupPinnedDocDeserializer, Builder::build);
+			PinnedDoc::setupPinnedDocDeserializer);
 
-	protected static void setupPinnedDocDeserializer(DelegatingDeserializer<PinnedDoc.Builder> op) {
+	protected static void setupPinnedDocDeserializer(ObjectDeserializer<PinnedDoc.Builder> op) {
 
 		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "_id");
 		op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "_index");

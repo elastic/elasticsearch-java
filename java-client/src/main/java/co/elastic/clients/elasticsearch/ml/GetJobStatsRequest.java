@@ -162,7 +162,7 @@ public class GetJobStatsRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code ml.get_job_stats}".
 	 */
-	public static final Endpoint<GetJobStatsRequest, GetJobStatsResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<GetJobStatsRequest, GetJobStatsResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "GET";

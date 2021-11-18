@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.graph;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -138,9 +137,9 @@ public class SampleDiversity implements JsonpSerializable {
 	 * Json deserializer for {@link SampleDiversity}
 	 */
 	public static final JsonpDeserializer<SampleDiversity> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			SampleDiversity::setupSampleDiversityDeserializer, Builder::build);
+			SampleDiversity::setupSampleDiversityDeserializer);
 
-	protected static void setupSampleDiversityDeserializer(DelegatingDeserializer<SampleDiversity.Builder> op) {
+	protected static void setupSampleDiversityDeserializer(ObjectDeserializer<SampleDiversity.Builder> op) {
 
 		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
 		op.add(Builder::maxDocsPerValue, JsonpDeserializer.integerDeserializer(), "max_docs_per_value");

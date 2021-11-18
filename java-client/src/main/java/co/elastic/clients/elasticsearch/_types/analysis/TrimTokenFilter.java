@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.analysis;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -36,7 +35,7 @@ import java.util.function.Function;
 
 // typedef: _types.analysis.TrimTokenFilter
 @JsonpDeserializable
-public class TrimTokenFilter extends TokenFilterBase implements TokenFilterVariant {
+public class TrimTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
 	// ---------------------------------------------------------------------------------------------
 
 	private TrimTokenFilter(Builder builder) {
@@ -49,7 +48,7 @@ public class TrimTokenFilter extends TokenFilterBase implements TokenFilterVaria
 	}
 
 	/**
-	 * {@link TokenFilter} variant type
+	 * {@link TokenFilterDefinition} variant type
 	 */
 	@Override
 	public String _variantType() {
@@ -95,9 +94,9 @@ public class TrimTokenFilter extends TokenFilterBase implements TokenFilterVaria
 	 * Json deserializer for {@link TrimTokenFilter}
 	 */
 	public static final JsonpDeserializer<TrimTokenFilter> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			TrimTokenFilter::setupTrimTokenFilterDeserializer, Builder::build);
+			TrimTokenFilter::setupTrimTokenFilterDeserializer);
 
-	protected static void setupTrimTokenFilterDeserializer(DelegatingDeserializer<TrimTokenFilter.Builder> op) {
+	protected static void setupTrimTokenFilterDeserializer(ObjectDeserializer<TrimTokenFilter.Builder> op) {
 		TokenFilterBase.setupTokenFilterBaseDeserializer(op);
 
 		op.ignore("type");

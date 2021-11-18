@@ -25,12 +25,12 @@ package co.elastic.clients.elasticsearch.core;
 
 import co.elastic.clients.elasticsearch._types.InlineGet;
 import co.elastic.clients.elasticsearch.core.explain.ExplanationDetail;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.JsonpSerializer;
+import co.elastic.clients.json.NamedDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
@@ -45,7 +45,7 @@ import java.util.function.Supplier;
 import javax.annotation.Nullable;
 
 // typedef: _global.explain.Response
-
+@JsonpDeserializable
 public class ExplainResponse<TDocument> implements JsonpSerializable {
 	private final String index;
 
@@ -290,8 +290,15 @@ public class ExplainResponse<TDocument> implements JsonpSerializable {
 				op -> ExplainResponse.setupExplainResponseDeserializer(op, tDocumentDeserializer));
 	};
 
+	/**
+	 * Json deserializer for {@link ExplainResponse} based on named deserializers
+	 * provided by the calling {@code JsonMapper}.
+	 */
+	public static final JsonpDeserializer<ExplainResponse<Object>> _DESERIALIZER = createExplainResponseDeserializer(
+			new NamedDeserializer<>("co.elastic.clients:Deserializer:_global.explain.TDocument"));
+
 	protected static <TDocument> void setupExplainResponseDeserializer(
-			DelegatingDeserializer<ExplainResponse.Builder<TDocument>> op,
+			ObjectDeserializer<ExplainResponse.Builder<TDocument>> op,
 			JsonpDeserializer<TDocument> tDocumentDeserializer) {
 
 		op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "_index");

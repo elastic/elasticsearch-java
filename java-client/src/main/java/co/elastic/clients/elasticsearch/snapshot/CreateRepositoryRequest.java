@@ -25,7 +25,7 @@ package co.elastic.clients.elasticsearch.snapshot;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -50,7 +50,7 @@ import javax.annotation.Nullable;
 @JsonpDeserializable
 public class CreateRepositoryRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
-	private final String masterTimeout;
+	private final Time masterTimeout;
 
 	private final String name;
 
@@ -60,7 +60,7 @@ public class CreateRepositoryRequest extends RequestBase implements JsonpSeriali
 	private final RepositorySettings settings;
 
 	@Nullable
-	private final String timeout;
+	private final Time timeout;
 
 	private final String type;
 
@@ -91,7 +91,7 @@ public class CreateRepositoryRequest extends RequestBase implements JsonpSeriali
 	 * API name: {@code master_timeout}
 	 */
 	@Nullable
-	public final String masterTimeout() {
+	public final Time masterTimeout() {
 		return this.masterTimeout;
 	}
 
@@ -125,7 +125,7 @@ public class CreateRepositoryRequest extends RequestBase implements JsonpSeriali
 	 * API name: {@code timeout}
 	 */
 	@Nullable
-	public final String timeout() {
+	public final Time timeout() {
 		return this.timeout;
 	}
 
@@ -177,7 +177,7 @@ public class CreateRepositoryRequest extends RequestBase implements JsonpSeriali
 	 */
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<CreateRepositoryRequest> {
 		@Nullable
-		private String masterTimeout;
+		private Time masterTimeout;
 
 		private String name;
 
@@ -187,7 +187,7 @@ public class CreateRepositoryRequest extends RequestBase implements JsonpSeriali
 		private RepositorySettings settings;
 
 		@Nullable
-		private String timeout;
+		private Time timeout;
 
 		private String type;
 
@@ -199,9 +199,18 @@ public class CreateRepositoryRequest extends RequestBase implements JsonpSeriali
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
-		public final Builder masterTimeout(@Nullable String value) {
+		public final Builder masterTimeout(@Nullable Time value) {
 			this.masterTimeout = value;
 			return this;
+		}
+
+		/**
+		 * Explicit operation timeout for connection to master node
+		 * <p>
+		 * API name: {@code master_timeout}
+		 */
+		public final Builder masterTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.masterTimeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -249,9 +258,18 @@ public class CreateRepositoryRequest extends RequestBase implements JsonpSeriali
 		 * <p>
 		 * API name: {@code timeout}
 		 */
-		public final Builder timeout(@Nullable String value) {
+		public final Builder timeout(@Nullable Time value) {
 			this.timeout = value;
 			return this;
+		}
+
+		/**
+		 * Explicit operation timeout
+		 * <p>
+		 * API name: {@code timeout}
+		 */
+		public final Builder timeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.timeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -291,10 +309,10 @@ public class CreateRepositoryRequest extends RequestBase implements JsonpSeriali
 	 * Json deserializer for {@link CreateRepositoryRequest}
 	 */
 	public static final JsonpDeserializer<CreateRepositoryRequest> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, CreateRepositoryRequest::setupCreateRepositoryRequestDeserializer, Builder::build);
+			.lazy(Builder::new, CreateRepositoryRequest::setupCreateRepositoryRequestDeserializer);
 
 	protected static void setupCreateRepositoryRequestDeserializer(
-			DelegatingDeserializer<CreateRepositoryRequest.Builder> op) {
+			ObjectDeserializer<CreateRepositoryRequest.Builder> op) {
 
 		op.add(Builder::repository, Repository._DESERIALIZER, "repository");
 		op.add(Builder::settings, RepositorySettings._DESERIALIZER, "settings");
@@ -307,7 +325,7 @@ public class CreateRepositoryRequest extends RequestBase implements JsonpSeriali
 	/**
 	 * Endpoint "{@code snapshot.create_repository}".
 	 */
-	public static final Endpoint<CreateRepositoryRequest, CreateRepositoryResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<CreateRepositoryRequest, CreateRepositoryResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "PUT";
@@ -337,13 +355,13 @@ public class CreateRepositoryRequest extends RequestBase implements JsonpSeriali
 			request -> {
 				Map<String, String> params = new HashMap<>();
 				if (request.masterTimeout != null) {
-					params.put("master_timeout", request.masterTimeout);
+					params.put("master_timeout", request.masterTimeout._toJsonString());
 				}
 				if (request.verify != null) {
 					params.put("verify", String.valueOf(request.verify));
 				}
 				if (request.timeout != null) {
-					params.put("timeout", request.timeout);
+					params.put("timeout", request.timeout._toJsonString());
 				}
 				return params;
 

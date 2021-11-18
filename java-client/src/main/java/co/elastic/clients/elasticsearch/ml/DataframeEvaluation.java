@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -42,14 +41,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.DataframeEvaluationContainer
+// union type: Container[]
 @JsonpDeserializable
 public class DataframeEvaluation implements TaggedUnion<Object>, JsonpSerializable {
 
 	public static final String CLASSIFICATION = "classification";
 	public static final String OUTLIER_DETECTION = "outlier_detection";
 	public static final String REGRESSION = "regression";
-
-	// Tagged union implementation
 
 	private final String _type;
 	private final Object _value;
@@ -116,6 +114,7 @@ public class DataframeEvaluation implements TaggedUnion<Object>, JsonpSerializab
 	@Override
 	@SuppressWarnings("unchecked")
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+
 		generator.writeStartObject();
 
 		generator.writeKey(_type);
@@ -124,6 +123,7 @@ public class DataframeEvaluation implements TaggedUnion<Object>, JsonpSerializab
 		}
 
 		generator.writeEnd();
+
 	}
 
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DataframeEvaluation> {
@@ -170,7 +170,7 @@ public class DataframeEvaluation implements TaggedUnion<Object>, JsonpSerializab
 
 	}
 
-	protected static void setupDataframeEvaluationDeserializer(DelegatingDeserializer<Builder> op) {
+	protected static void setupDataframeEvaluationDeserializer(ObjectDeserializer<Builder> op) {
 
 		op.add(Builder::classification, DataframeEvaluationClassification._DESERIALIZER, "classification");
 		op.add(Builder::outlierDetection, DataframeEvaluationOutlierDetection._DESERIALIZER, "outlier_detection");

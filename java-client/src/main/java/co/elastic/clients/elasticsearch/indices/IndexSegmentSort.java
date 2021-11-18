@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.indices;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -223,9 +222,9 @@ public class IndexSegmentSort implements JsonpSerializable {
 	 * Json deserializer for {@link IndexSegmentSort}
 	 */
 	public static final JsonpDeserializer<IndexSegmentSort> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			IndexSegmentSort::setupIndexSegmentSortDeserializer, Builder::build);
+			IndexSegmentSort::setupIndexSegmentSortDeserializer);
 
-	protected static void setupIndexSegmentSortDeserializer(DelegatingDeserializer<IndexSegmentSort.Builder> op) {
+	protected static void setupIndexSegmentSortDeserializer(ObjectDeserializer<IndexSegmentSort.Builder> op) {
 
 		op.add(Builder::field, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "field");
 		op.add(Builder::order, JsonpDeserializer.arrayDeserializer(SegmentSortOrder._DESERIALIZER), "order");

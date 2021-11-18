@@ -116,7 +116,7 @@ public class ClearCachedRolesRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code security.clear_cached_roles}".
 	 */
-	public static final Endpoint<ClearCachedRolesRequest, ClearCachedRolesResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<ClearCachedRolesRequest, ClearCachedRolesResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";

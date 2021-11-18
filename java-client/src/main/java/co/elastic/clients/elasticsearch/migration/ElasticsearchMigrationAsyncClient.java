@@ -25,6 +25,8 @@ package co.elastic.clients.elasticsearch.migration;
 
 import co.elastic.clients.ApiClient;
 import co.elastic.clients.elasticsearch._types.ElasticsearchException;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
+import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.Transport;
 import co.elastic.clients.transport.TransportOptions;
 import co.elastic.clients.util.ObjectBuilder;
@@ -65,7 +67,10 @@ public class ElasticsearchMigrationAsyncClient extends ApiClient<ElasticsearchMi
 
 	public CompletableFuture<DeprecationsResponse> deprecations(DeprecationsRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(request, DeprecationsRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<DeprecationsRequest, DeprecationsResponse, ErrorResponse> endpoint = (Endpoint<DeprecationsRequest, DeprecationsResponse, ErrorResponse>) DeprecationsRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -99,7 +104,7 @@ public class ElasticsearchMigrationAsyncClient extends ApiClient<ElasticsearchMi
 
 	public CompletableFuture<DeprecationsResponse> deprecations() throws IOException, ElasticsearchException {
 		return this.transport.performRequestAsync(new DeprecationsRequest.Builder().build(),
-				DeprecationsRequest.ENDPOINT, this.transportOptions);
+				DeprecationsRequest._ENDPOINT, this.transportOptions);
 	}
 
 }

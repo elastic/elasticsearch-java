@@ -23,7 +23,7 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -54,7 +54,7 @@ public class UpdateJobResponse implements JsonpSerializable {
 	private final AnalysisLimits analysisLimits;
 
 	@Nullable
-	private final String backgroundPersistInterval;
+	private final Time backgroundPersistInterval;
 
 	private final String createTime;
 
@@ -156,7 +156,7 @@ public class UpdateJobResponse implements JsonpSerializable {
 	 * API name: {@code background_persist_interval}
 	 */
 	@Nullable
-	public final String backgroundPersistInterval() {
+	public final Time backgroundPersistInterval() {
 		return this.backgroundPersistInterval;
 	}
 
@@ -308,7 +308,7 @@ public class UpdateJobResponse implements JsonpSerializable {
 
 		if (this.backgroundPersistInterval != null) {
 			generator.writeKey("background_persist_interval");
-			generator.write(this.backgroundPersistInterval);
+			this.backgroundPersistInterval.serialize(generator, mapper);
 
 		}
 		generator.writeKey("create_time");
@@ -407,7 +407,7 @@ public class UpdateJobResponse implements JsonpSerializable {
 		private AnalysisLimits analysisLimits;
 
 		@Nullable
-		private String backgroundPersistInterval;
+		private Time backgroundPersistInterval;
 
 		private String createTime;
 
@@ -494,9 +494,16 @@ public class UpdateJobResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code background_persist_interval}
 		 */
-		public final Builder backgroundPersistInterval(@Nullable String value) {
+		public final Builder backgroundPersistInterval(@Nullable Time value) {
 			this.backgroundPersistInterval = value;
 			return this;
+		}
+
+		/**
+		 * API name: {@code background_persist_interval}
+		 */
+		public final Builder backgroundPersistInterval(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.backgroundPersistInterval(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -683,15 +690,14 @@ public class UpdateJobResponse implements JsonpSerializable {
 	 * Json deserializer for {@link UpdateJobResponse}
 	 */
 	public static final JsonpDeserializer<UpdateJobResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, UpdateJobResponse::setupUpdateJobResponseDeserializer, Builder::build);
+			.lazy(Builder::new, UpdateJobResponse::setupUpdateJobResponseDeserializer);
 
-	protected static void setupUpdateJobResponseDeserializer(DelegatingDeserializer<UpdateJobResponse.Builder> op) {
+	protected static void setupUpdateJobResponseDeserializer(ObjectDeserializer<UpdateJobResponse.Builder> op) {
 
 		op.add(Builder::allowLazyOpen, JsonpDeserializer.booleanDeserializer(), "allow_lazy_open");
 		op.add(Builder::analysisConfig, AnalysisConfigRead._DESERIALIZER, "analysis_config");
 		op.add(Builder::analysisLimits, AnalysisLimits._DESERIALIZER, "analysis_limits");
-		op.add(Builder::backgroundPersistInterval, JsonpDeserializer.stringDeserializer(),
-				"background_persist_interval");
+		op.add(Builder::backgroundPersistInterval, Time._DESERIALIZER, "background_persist_interval");
 		op.add(Builder::createTime, JsonpDeserializer.stringDeserializer(), "create_time");
 		op.add(Builder::finishedTime, JsonpDeserializer.stringDeserializer(), "finished_time");
 		op.add(Builder::customSettings, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.stringDeserializer()),

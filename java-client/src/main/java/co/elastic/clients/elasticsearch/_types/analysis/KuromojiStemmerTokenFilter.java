@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.analysis;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -38,7 +37,7 @@ import java.util.function.Function;
 
 // typedef: _types.analysis.KuromojiStemmerTokenFilter
 @JsonpDeserializable
-public class KuromojiStemmerTokenFilter extends TokenFilterBase implements TokenFilterVariant {
+public class KuromojiStemmerTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
 	private final int minimumLength;
 
 	// ---------------------------------------------------------------------------------------------
@@ -55,7 +54,7 @@ public class KuromojiStemmerTokenFilter extends TokenFilterBase implements Token
 	}
 
 	/**
-	 * {@link TokenFilter} variant type
+	 * {@link TokenFilterDefinition} variant type
 	 */
 	@Override
 	public String _variantType() {
@@ -119,11 +118,11 @@ public class KuromojiStemmerTokenFilter extends TokenFilterBase implements Token
 	/**
 	 * Json deserializer for {@link KuromojiStemmerTokenFilter}
 	 */
-	public static final JsonpDeserializer<KuromojiStemmerTokenFilter> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
-			Builder::new, KuromojiStemmerTokenFilter::setupKuromojiStemmerTokenFilterDeserializer, Builder::build);
+	public static final JsonpDeserializer<KuromojiStemmerTokenFilter> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, KuromojiStemmerTokenFilter::setupKuromojiStemmerTokenFilterDeserializer);
 
 	protected static void setupKuromojiStemmerTokenFilterDeserializer(
-			DelegatingDeserializer<KuromojiStemmerTokenFilter.Builder> op) {
+			ObjectDeserializer<KuromojiStemmerTokenFilter.Builder> op) {
 		TokenFilterBase.setupTokenFilterBaseDeserializer(op);
 		op.add(Builder::minimumLength, JsonpDeserializer.integerDeserializer(), "minimum_length");
 

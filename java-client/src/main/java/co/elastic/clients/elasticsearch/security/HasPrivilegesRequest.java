@@ -27,7 +27,6 @@ import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch.security.has_privileges.ApplicationPrivilegesCheck;
 import co.elastic.clients.elasticsearch.security.has_privileges.IndexPrivilegesCheck;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -270,10 +269,9 @@ public class HasPrivilegesRequest extends RequestBase implements JsonpSerializab
 	 * Json deserializer for {@link HasPrivilegesRequest}
 	 */
 	public static final JsonpDeserializer<HasPrivilegesRequest> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, HasPrivilegesRequest::setupHasPrivilegesRequestDeserializer, Builder::build);
+			.lazy(Builder::new, HasPrivilegesRequest::setupHasPrivilegesRequestDeserializer);
 
-	protected static void setupHasPrivilegesRequestDeserializer(
-			DelegatingDeserializer<HasPrivilegesRequest.Builder> op) {
+	protected static void setupHasPrivilegesRequestDeserializer(ObjectDeserializer<HasPrivilegesRequest.Builder> op) {
 
 		op.add(Builder::application, JsonpDeserializer.arrayDeserializer(ApplicationPrivilegesCheck._DESERIALIZER),
 				"application");
@@ -287,7 +285,7 @@ public class HasPrivilegesRequest extends RequestBase implements JsonpSerializab
 	/**
 	 * Endpoint "{@code security.has_privileges}".
 	 */
-	public static final Endpoint<HasPrivilegesRequest, HasPrivilegesResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<HasPrivilegesRequest, HasPrivilegesResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";

@@ -25,7 +25,7 @@ package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -61,7 +61,7 @@ public class StopDatafeedRequest extends RequestBase implements JsonpSerializabl
 	private final Boolean force;
 
 	@Nullable
-	private final String timeout;
+	private final Time timeout;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -122,7 +122,7 @@ public class StopDatafeedRequest extends RequestBase implements JsonpSerializabl
 	 * API name: {@code timeout}
 	 */
 	@Nullable
-	public final String timeout() {
+	public final Time timeout() {
 		return this.timeout;
 	}
 
@@ -144,7 +144,7 @@ public class StopDatafeedRequest extends RequestBase implements JsonpSerializabl
 		}
 		if (this.timeout != null) {
 			generator.writeKey("timeout");
-			generator.write(this.timeout);
+			this.timeout.serialize(generator, mapper);
 
 		}
 
@@ -168,7 +168,7 @@ public class StopDatafeedRequest extends RequestBase implements JsonpSerializabl
 		private Boolean force;
 
 		@Nullable
-		private String timeout;
+		private Time timeout;
 
 		/**
 		 * Whether to ignore if a wildcard expression matches no datafeeds. (This
@@ -213,9 +213,16 @@ public class StopDatafeedRequest extends RequestBase implements JsonpSerializabl
 		/**
 		 * API name: {@code timeout}
 		 */
-		public final Builder timeout(@Nullable String value) {
+		public final Builder timeout(@Nullable Time value) {
 			this.timeout = value;
 			return this;
+		}
+
+		/**
+		 * API name: {@code timeout}
+		 */
+		public final Builder timeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.timeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -237,12 +244,12 @@ public class StopDatafeedRequest extends RequestBase implements JsonpSerializabl
 	 * Json deserializer for {@link StopDatafeedRequest}
 	 */
 	public static final JsonpDeserializer<StopDatafeedRequest> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, StopDatafeedRequest::setupStopDatafeedRequestDeserializer, Builder::build);
+			.lazy(Builder::new, StopDatafeedRequest::setupStopDatafeedRequestDeserializer);
 
-	protected static void setupStopDatafeedRequestDeserializer(DelegatingDeserializer<StopDatafeedRequest.Builder> op) {
+	protected static void setupStopDatafeedRequestDeserializer(ObjectDeserializer<StopDatafeedRequest.Builder> op) {
 
 		op.add(Builder::force, JsonpDeserializer.booleanDeserializer(), "force");
-		op.add(Builder::timeout, JsonpDeserializer.stringDeserializer(), "timeout");
+		op.add(Builder::timeout, Time._DESERIALIZER, "timeout");
 
 	}
 
@@ -251,7 +258,7 @@ public class StopDatafeedRequest extends RequestBase implements JsonpSerializabl
 	/**
 	 * Endpoint "{@code ml.stop_datafeed}".
 	 */
-	public static final Endpoint<StopDatafeedRequest, StopDatafeedResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<StopDatafeedRequest, StopDatafeedResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";

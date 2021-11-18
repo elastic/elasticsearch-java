@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.cluster;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -145,9 +144,9 @@ public class ComponentTemplate implements JsonpSerializable {
 	 * Json deserializer for {@link ComponentTemplate}
 	 */
 	public static final JsonpDeserializer<ComponentTemplate> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, ComponentTemplate::setupComponentTemplateDeserializer, Builder::build);
+			.lazy(Builder::new, ComponentTemplate::setupComponentTemplateDeserializer);
 
-	protected static void setupComponentTemplateDeserializer(DelegatingDeserializer<ComponentTemplate.Builder> op) {
+	protected static void setupComponentTemplateDeserializer(ObjectDeserializer<ComponentTemplate.Builder> op) {
 
 		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
 		op.add(Builder::componentTemplate, ComponentTemplateNode._DESERIALIZER, "component_template");

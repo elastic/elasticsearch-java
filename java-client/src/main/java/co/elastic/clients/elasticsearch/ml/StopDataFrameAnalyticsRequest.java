@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -55,7 +56,7 @@ public class StopDataFrameAnalyticsRequest extends RequestBase {
 	private final String id;
 
 	@Nullable
-	private final String timeout;
+	private final Time timeout;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -121,7 +122,7 @@ public class StopDataFrameAnalyticsRequest extends RequestBase {
 	 * API name: {@code timeout}
 	 */
 	@Nullable
-	public final String timeout() {
+	public final Time timeout() {
 		return this.timeout;
 	}
 
@@ -140,7 +141,7 @@ public class StopDataFrameAnalyticsRequest extends RequestBase {
 		private String id;
 
 		@Nullable
-		private String timeout;
+		private Time timeout;
 
 		/**
 		 * Specifies what to do when the request:
@@ -191,9 +192,19 @@ public class StopDataFrameAnalyticsRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code timeout}
 		 */
-		public final Builder timeout(@Nullable String value) {
+		public final Builder timeout(@Nullable Time value) {
 			this.timeout = value;
 			return this;
+		}
+
+		/**
+		 * Controls the amount of time to wait until the data frame analytics job stops.
+		 * Defaults to 20 seconds.
+		 * <p>
+		 * API name: {@code timeout}
+		 */
+		public final Builder timeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.timeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -214,7 +225,7 @@ public class StopDataFrameAnalyticsRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code ml.stop_data_frame_analytics}".
 	 */
-	public static final Endpoint<StopDataFrameAnalyticsRequest, StopDataFrameAnalyticsResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<StopDataFrameAnalyticsRequest, StopDataFrameAnalyticsResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";
@@ -253,7 +264,7 @@ public class StopDataFrameAnalyticsRequest extends RequestBase {
 					params.put("allow_no_match", String.valueOf(request.allowNoMatch));
 				}
 				if (request.timeout != null) {
-					params.put("timeout", request.timeout);
+					params.put("timeout", request.timeout._toJsonString());
 				}
 				return params;
 

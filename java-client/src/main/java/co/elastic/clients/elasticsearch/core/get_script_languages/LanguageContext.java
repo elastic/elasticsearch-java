@@ -23,8 +23,6 @@
 
 package co.elastic.clients.elasticsearch.core.get_script_languages;
 
-import co.elastic.clients.elasticsearch._types.ScriptLanguage;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -47,7 +45,7 @@ import javax.annotation.Nullable;
 public class LanguageContext implements JsonpSerializable {
 	private final List<String> contexts;
 
-	private final ScriptLanguage language;
+	private final String language;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -72,7 +70,7 @@ public class LanguageContext implements JsonpSerializable {
 	/**
 	 * Required - API name: {@code language}
 	 */
-	public final ScriptLanguage language() {
+	public final String language() {
 		return this.language;
 	}
 
@@ -98,7 +96,7 @@ public class LanguageContext implements JsonpSerializable {
 
 		}
 		generator.writeKey("language");
-		this.language.serialize(generator, mapper);
+		generator.write(this.language);
 
 	}
 
@@ -110,7 +108,7 @@ public class LanguageContext implements JsonpSerializable {
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<LanguageContext> {
 		private List<String> contexts;
 
-		private ScriptLanguage language;
+		private String language;
 
 		/**
 		 * Required - API name: {@code contexts}
@@ -131,7 +129,7 @@ public class LanguageContext implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code language}
 		 */
-		public final Builder language(ScriptLanguage value) {
+		public final Builder language(String value) {
 			this.language = value;
 			return this;
 		}
@@ -155,13 +153,13 @@ public class LanguageContext implements JsonpSerializable {
 	 * Json deserializer for {@link LanguageContext}
 	 */
 	public static final JsonpDeserializer<LanguageContext> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			LanguageContext::setupLanguageContextDeserializer, Builder::build);
+			LanguageContext::setupLanguageContextDeserializer);
 
-	protected static void setupLanguageContextDeserializer(DelegatingDeserializer<LanguageContext.Builder> op) {
+	protected static void setupLanguageContextDeserializer(ObjectDeserializer<LanguageContext.Builder> op) {
 
 		op.add(Builder::contexts, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"contexts");
-		op.add(Builder::language, ScriptLanguage._DESERIALIZER, "language");
+		op.add(Builder::language, JsonpDeserializer.stringDeserializer(), "language");
 
 	}
 

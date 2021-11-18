@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -281,9 +280,9 @@ public class CommonTermsQuery extends QueryBase implements QueryVariant {
 	 * Json deserializer for {@link CommonTermsQuery}
 	 */
 	public static final JsonpDeserializer<CommonTermsQuery> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			CommonTermsQuery::setupCommonTermsQueryDeserializer, Builder::build);
+			CommonTermsQuery::setupCommonTermsQueryDeserializer);
 
-	protected static void setupCommonTermsQueryDeserializer(DelegatingDeserializer<CommonTermsQuery.Builder> op) {
+	protected static void setupCommonTermsQueryDeserializer(ObjectDeserializer<CommonTermsQuery.Builder> op) {
 		QueryBase.setupQueryBaseDeserializer(op);
 		op.add(Builder::analyzer, JsonpDeserializer.stringDeserializer(), "analyzer");
 		op.add(Builder::cutoffFrequency, JsonpDeserializer.doubleDeserializer(), "cutoff_frequency");

@@ -103,7 +103,7 @@ public class MigrateToDataStreamRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code indices.migrate_to_data_stream}".
 	 */
-	public static final Endpoint<MigrateToDataStreamRequest, MigrateToDataStreamResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<MigrateToDataStreamRequest, MigrateToDataStreamResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";

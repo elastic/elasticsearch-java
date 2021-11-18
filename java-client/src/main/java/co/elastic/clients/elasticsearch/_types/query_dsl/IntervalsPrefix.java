@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -179,9 +178,9 @@ public class IntervalsPrefix implements IntervalsQueryVariant, IntervalsVariant,
 	 * Json deserializer for {@link IntervalsPrefix}
 	 */
 	public static final JsonpDeserializer<IntervalsPrefix> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			IntervalsPrefix::setupIntervalsPrefixDeserializer, Builder::build);
+			IntervalsPrefix::setupIntervalsPrefixDeserializer);
 
-	protected static void setupIntervalsPrefixDeserializer(DelegatingDeserializer<IntervalsPrefix.Builder> op) {
+	protected static void setupIntervalsPrefixDeserializer(ObjectDeserializer<IntervalsPrefix.Builder> op) {
 
 		op.add(Builder::analyzer, JsonpDeserializer.stringDeserializer(), "analyzer");
 		op.add(Builder::prefix, JsonpDeserializer.stringDeserializer(), "prefix");

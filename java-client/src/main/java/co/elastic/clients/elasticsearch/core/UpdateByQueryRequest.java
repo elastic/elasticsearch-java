@@ -26,17 +26,19 @@ package co.elastic.clients.elasticsearch.core;
 import co.elastic.clients.elasticsearch._types.Conflicts;
 import co.elastic.clients.elasticsearch._types.DefaultOperator;
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
-import co.elastic.clients.elasticsearch._types.ExpandWildcardOptions;
+import co.elastic.clients.elasticsearch._types.ExpandWildcard;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.elasticsearch._types.Script;
 import co.elastic.clients.elasticsearch._types.SearchType;
 import co.elastic.clients.elasticsearch._types.SlicedScroll;
+import co.elastic.clients.elasticsearch._types.Time;
+import co.elastic.clients.elasticsearch._types.WaitForActiveShards;
 import co.elastic.clients.elasticsearch._types.query_dsl.Query;
-import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.elasticsearch.core.search.SourceConfigParam;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
-import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
@@ -44,7 +46,6 @@ import co.elastic.clients.transport.SimpleEndpoint;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Long;
@@ -62,7 +63,7 @@ import javax.annotation.Nullable;
 @JsonpDeserializable
 public class UpdateByQueryRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
-	private final JsonValue /* Union(_types.Fields | internal.boolean) */ source;
+	private final SourceConfigParam source;
 
 	private final List<String> sourceExcludes;
 
@@ -86,7 +87,7 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 	@Nullable
 	private final String df;
 
-	private final List<ExpandWildcardOptions> expandWildcards;
+	private final List<ExpandWildcard> expandWildcards;
 
 	@Nullable
 	private final Long from;
@@ -124,16 +125,16 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 	private final String routing;
 
 	@Nullable
-	private final JsonValue /* _types.Script */ script;
+	private final Script script;
 
 	@Nullable
-	private final String scroll;
+	private final Time scroll;
 
 	@Nullable
 	private final Long scrollSize;
 
 	@Nullable
-	private final String searchTimeout;
+	private final Time searchTimeout;
 
 	@Nullable
 	private final SearchType searchType;
@@ -155,7 +156,7 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 	private final Long terminateAfter;
 
 	@Nullable
-	private final String timeout;
+	private final Time timeout;
 
 	private final List<String> type;
 
@@ -166,7 +167,7 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 	private final Boolean versionType;
 
 	@Nullable
-	private final JsonValue /* _types.WaitForActiveShards */ waitForActiveShards;
+	private final WaitForActiveShards waitForActiveShards;
 
 	@Nullable
 	private final Boolean waitForCompletion;
@@ -228,7 +229,7 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 	 * API name: {@code _source}
 	 */
 	@Nullable
-	public final JsonValue /* Union(_types.Fields | internal.boolean) */ source() {
+	public final SourceConfigParam source() {
 		return this.source;
 	}
 
@@ -318,7 +319,7 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 	 * <p>
 	 * API name: {@code expand_wildcards}
 	 */
-	public final List<ExpandWildcardOptions> expandWildcards() {
+	public final List<ExpandWildcard> expandWildcards() {
 		return this.expandWildcards;
 	}
 
@@ -447,7 +448,7 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 	 * API name: {@code script}
 	 */
 	@Nullable
-	public final JsonValue /* _types.Script */ script() {
+	public final Script script() {
 		return this.script;
 	}
 
@@ -458,7 +459,7 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 	 * API name: {@code scroll}
 	 */
 	@Nullable
-	public final String scroll() {
+	public final Time scroll() {
 		return this.scroll;
 	}
 
@@ -478,7 +479,7 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 	 * API name: {@code search_timeout}
 	 */
 	@Nullable
-	public final String searchTimeout() {
+	public final Time searchTimeout() {
 		return this.searchTimeout;
 	}
 
@@ -557,7 +558,7 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 	 * API name: {@code timeout}
 	 */
 	@Nullable
-	public final String timeout() {
+	public final Time timeout() {
 		return this.timeout;
 	}
 
@@ -602,7 +603,7 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 	 * API name: {@code wait_for_active_shards}
 	 */
 	@Nullable
-	public final JsonValue /* _types.WaitForActiveShards */ waitForActiveShards() {
+	public final WaitForActiveShards waitForActiveShards() {
 		return this.waitForActiveShards;
 	}
 
@@ -644,7 +645,7 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 		}
 		if (this.script != null) {
 			generator.writeKey("script");
-			generator.write(this.script);
+			this.script.serialize(generator, mapper);
 
 		}
 		if (this.slice != null) {
@@ -662,7 +663,7 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 	 */
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<UpdateByQueryRequest> {
 		@Nullable
-		private JsonValue /* Union(_types.Fields | internal.boolean) */ source;
+		private SourceConfigParam source;
 
 		@Nullable
 		private List<String> sourceExcludes;
@@ -689,7 +690,7 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 		private String df;
 
 		@Nullable
-		private List<ExpandWildcardOptions> expandWildcards;
+		private List<ExpandWildcard> expandWildcards;
 
 		@Nullable
 		private Long from;
@@ -727,16 +728,16 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 		private String routing;
 
 		@Nullable
-		private JsonValue /* _types.Script */ script;
+		private Script script;
 
 		@Nullable
-		private String scroll;
+		private Time scroll;
 
 		@Nullable
 		private Long scrollSize;
 
 		@Nullable
-		private String searchTimeout;
+		private Time searchTimeout;
 
 		@Nullable
 		private SearchType searchType;
@@ -760,7 +761,7 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 		private Long terminateAfter;
 
 		@Nullable
-		private String timeout;
+		private Time timeout;
 
 		@Nullable
 		private List<String> type;
@@ -772,7 +773,7 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 		private Boolean versionType;
 
 		@Nullable
-		private JsonValue /* _types.WaitForActiveShards */ waitForActiveShards;
+		private WaitForActiveShards waitForActiveShards;
 
 		@Nullable
 		private Boolean waitForCompletion;
@@ -783,9 +784,19 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 		 * <p>
 		 * API name: {@code _source}
 		 */
-		public final Builder source(@Nullable JsonValue /* Union(_types.Fields | internal.boolean) */ value) {
+		public final Builder source(@Nullable SourceConfigParam value) {
 			this.source = value;
 			return this;
+		}
+
+		/**
+		 * True or false to return the _source field or not, or a list of fields to
+		 * return
+		 * <p>
+		 * API name: {@code _source}
+		 */
+		public final Builder source(Function<SourceConfigParam.Builder, ObjectBuilder<SourceConfigParam>> fn) {
+			return this.source(fn.apply(new SourceConfigParam.Builder()).build());
 		}
 
 		/**
@@ -896,7 +907,7 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 		 * <p>
 		 * API name: {@code expand_wildcards}
 		 */
-		public final Builder expandWildcards(@Nullable List<ExpandWildcardOptions> value) {
+		public final Builder expandWildcards(@Nullable List<ExpandWildcard> value) {
 			this.expandWildcards = value;
 			return this;
 		}
@@ -907,7 +918,7 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 		 * <p>
 		 * API name: {@code expand_wildcards}
 		 */
-		public final Builder expandWildcards(ExpandWildcardOptions... value) {
+		public final Builder expandWildcards(ExpandWildcard... value) {
 			this.expandWildcards = Arrays.asList(value);
 			return this;
 		}
@@ -1055,8 +1066,26 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 		/**
 		 * API name: {@code script}
 		 */
-		public final Builder script(@Nullable JsonValue /* _types.Script */ value) {
+		public final Builder script(@Nullable Script value) {
 			this.script = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code script}
+		 */
+		public final Builder script(Function<Script.Builder, ObjectBuilder<Script>> fn) {
+			return this.script(fn.apply(new Script.Builder()).build());
+		}
+
+		/**
+		 * Specify how long a consistent view of the index should be maintained for
+		 * scrolled search
+		 * <p>
+		 * API name: {@code scroll}
+		 */
+		public final Builder scroll(@Nullable Time value) {
+			this.scroll = value;
 			return this;
 		}
 
@@ -1066,9 +1095,8 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 		 * <p>
 		 * API name: {@code scroll}
 		 */
-		public final Builder scroll(@Nullable String value) {
-			this.scroll = value;
-			return this;
+		public final Builder scroll(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.scroll(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -1086,9 +1114,18 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 		 * <p>
 		 * API name: {@code search_timeout}
 		 */
-		public final Builder searchTimeout(@Nullable String value) {
+		public final Builder searchTimeout(@Nullable Time value) {
 			this.searchTimeout = value;
 			return this;
+		}
+
+		/**
+		 * Explicit timeout for each search request. Defaults to no timeout.
+		 * <p>
+		 * API name: {@code search_timeout}
+		 */
+		public final Builder searchTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.searchTimeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -1194,9 +1231,19 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 		 * <p>
 		 * API name: {@code timeout}
 		 */
-		public final Builder timeout(@Nullable String value) {
+		public final Builder timeout(@Nullable Time value) {
 			this.timeout = value;
 			return this;
+		}
+
+		/**
+		 * Time each individual bulk request should wait for shards that are
+		 * unavailable.
+		 * <p>
+		 * API name: {@code timeout}
+		 */
+		public final Builder timeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.timeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -1251,9 +1298,23 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 		 * <p>
 		 * API name: {@code wait_for_active_shards}
 		 */
-		public final Builder waitForActiveShards(@Nullable JsonValue /* _types.WaitForActiveShards */ value) {
+		public final Builder waitForActiveShards(@Nullable WaitForActiveShards value) {
 			this.waitForActiveShards = value;
 			return this;
+		}
+
+		/**
+		 * Sets the number of shard copies that must be active before proceeding with
+		 * the update by query operation. Defaults to 1, meaning the primary shard only.
+		 * Set to <code>all</code> for all shard copies, otherwise set to any
+		 * non-negative value less than or equal to the total number of copies for the
+		 * shard (number of replicas + 1)
+		 * <p>
+		 * API name: {@code wait_for_active_shards}
+		 */
+		public final Builder waitForActiveShards(
+				Function<WaitForActiveShards.Builder, ObjectBuilder<WaitForActiveShards>> fn) {
+			return this.waitForActiveShards(fn.apply(new WaitForActiveShards.Builder()).build());
 		}
 
 		/**
@@ -1286,15 +1347,14 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 	 * Json deserializer for {@link UpdateByQueryRequest}
 	 */
 	public static final JsonpDeserializer<UpdateByQueryRequest> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, UpdateByQueryRequest::setupUpdateByQueryRequestDeserializer, Builder::build);
+			.lazy(Builder::new, UpdateByQueryRequest::setupUpdateByQueryRequestDeserializer);
 
-	protected static void setupUpdateByQueryRequestDeserializer(
-			DelegatingDeserializer<UpdateByQueryRequest.Builder> op) {
+	protected static void setupUpdateByQueryRequestDeserializer(ObjectDeserializer<UpdateByQueryRequest.Builder> op) {
 
 		op.add(Builder::conflicts, Conflicts._DESERIALIZER, "conflicts");
 		op.add(Builder::maxDocs, JsonpDeserializer.longDeserializer(), "max_docs");
 		op.add(Builder::query, Query._DESERIALIZER, "query");
-		op.add(Builder::script, JsonpDeserializer.jsonValueDeserializer(), "script");
+		op.add(Builder::script, Script._DESERIALIZER, "script");
 		op.add(Builder::slice, SlicedScroll._DESERIALIZER, "slice");
 
 	}
@@ -1304,7 +1364,7 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 	/**
 	 * Endpoint "{@code update_by_query}".
 	 */
-	public static final Endpoint<UpdateByQueryRequest, UpdateByQueryResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<UpdateByQueryRequest, UpdateByQueryResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";
@@ -1361,7 +1421,7 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 					params.put("lenient", String.valueOf(request.lenient));
 				}
 				if (request.timeout != null) {
-					params.put("timeout", request.timeout);
+					params.put("timeout", request.timeout._toJsonString());
 				}
 				if (request.routing != null) {
 					params.put("routing", request.routing);
@@ -1395,13 +1455,13 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 					params.put("preference", request.preference);
 				}
 				if (request.searchTimeout != null) {
-					params.put("search_timeout", request.searchTimeout);
+					params.put("search_timeout", request.searchTimeout._toJsonString());
 				}
 				if (request.analyzeWildcard != null) {
 					params.put("analyze_wildcard", String.valueOf(request.analyzeWildcard));
 				}
 				if (request.scroll != null) {
-					params.put("scroll", request.scroll);
+					params.put("scroll", request.scroll._toJsonString());
 				}
 				if (request.scrollSize != null) {
 					params.put("scroll_size", String.valueOf(request.scrollSize));
@@ -1428,10 +1488,10 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 					params.put("size", String.valueOf(request.size));
 				}
 				if (request.waitForActiveShards != null) {
-					params.put("wait_for_active_shards", JsonpUtils.toString(request.waitForActiveShards));
+					params.put("wait_for_active_shards", request.waitForActiveShards._toJsonString());
 				}
 				if (request.source != null) {
-					params.put("_source", JsonpUtils.toString(request.source));
+					params.put("_source", request.source._toJsonString());
 				}
 				if (ModelTypeHelper.isDefined(request.sourceExcludes)) {
 					params.put("_source_excludes",

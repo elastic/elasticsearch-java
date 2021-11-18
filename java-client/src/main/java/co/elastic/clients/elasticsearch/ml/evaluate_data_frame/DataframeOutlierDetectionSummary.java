@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.ml.evaluate_data_frame;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -243,11 +242,10 @@ public class DataframeOutlierDetectionSummary implements JsonpSerializable {
 	 * Json deserializer for {@link DataframeOutlierDetectionSummary}
 	 */
 	public static final JsonpDeserializer<DataframeOutlierDetectionSummary> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, DataframeOutlierDetectionSummary::setupDataframeOutlierDetectionSummaryDeserializer,
-					Builder::build);
+			.lazy(Builder::new, DataframeOutlierDetectionSummary::setupDataframeOutlierDetectionSummaryDeserializer);
 
 	protected static void setupDataframeOutlierDetectionSummaryDeserializer(
-			DelegatingDeserializer<DataframeOutlierDetectionSummary.Builder> op) {
+			ObjectDeserializer<DataframeOutlierDetectionSummary.Builder> op) {
 
 		op.add(Builder::aucRoc, DataframeEvaluationSummaryAucRoc._DESERIALIZER, "auc_roc");
 		op.add(Builder::precision, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.doubleDeserializer()),

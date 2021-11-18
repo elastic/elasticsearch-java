@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.cluster;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -55,7 +56,7 @@ public class ClusterStatsRequest extends RequestBase {
 	private final List<String> nodeId;
 
 	@Nullable
-	private final String timeout;
+	private final Time timeout;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -100,7 +101,7 @@ public class ClusterStatsRequest extends RequestBase {
 	 * API name: {@code timeout}
 	 */
 	@Nullable
-	public final String timeout() {
+	public final Time timeout() {
 		return this.timeout;
 	}
 
@@ -117,7 +118,7 @@ public class ClusterStatsRequest extends RequestBase {
 		private List<String> nodeId;
 
 		@Nullable
-		private String timeout;
+		private Time timeout;
 
 		/**
 		 * Return settings in flat format (default: false)
@@ -159,9 +160,21 @@ public class ClusterStatsRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code timeout}
 		 */
-		public final Builder timeout(@Nullable String value) {
+		public final Builder timeout(@Nullable Time value) {
 			this.timeout = value;
 			return this;
+		}
+
+		/**
+		 * Period to wait for each node to respond. If a node does not respond before
+		 * its timeout expires, the response does not include its stats. However, timed
+		 * out nodes are included in the response’s _nodes.failed property. Defaults to
+		 * no timeout.
+		 * <p>
+		 * API name: {@code timeout}
+		 */
+		public final Builder timeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.timeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -182,7 +195,7 @@ public class ClusterStatsRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code cluster.stats}".
 	 */
-	public static final Endpoint<ClusterStatsRequest, ClusterStatsResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<ClusterStatsRequest, ClusterStatsResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "GET";
@@ -225,7 +238,7 @@ public class ClusterStatsRequest extends RequestBase {
 					params.put("flat_settings", String.valueOf(request.flatSettings));
 				}
 				if (request.timeout != null) {
-					params.put("timeout", request.timeout);
+					params.put("timeout", request.timeout._toJsonString());
 				}
 				return params;
 

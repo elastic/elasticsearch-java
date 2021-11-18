@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -146,11 +145,11 @@ public class MutualInformationHeuristic implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link MutualInformationHeuristic}
 	 */
-	public static final JsonpDeserializer<MutualInformationHeuristic> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
-			Builder::new, MutualInformationHeuristic::setupMutualInformationHeuristicDeserializer, Builder::build);
+	public static final JsonpDeserializer<MutualInformationHeuristic> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, MutualInformationHeuristic::setupMutualInformationHeuristicDeserializer);
 
 	protected static void setupMutualInformationHeuristicDeserializer(
-			DelegatingDeserializer<MutualInformationHeuristic.Builder> op) {
+			ObjectDeserializer<MutualInformationHeuristic.Builder> op) {
 
 		op.add(Builder::backgroundIsSuperset, JsonpDeserializer.booleanDeserializer(), "background_is_superset");
 		op.add(Builder::includeNegatives, JsonpDeserializer.booleanDeserializer(), "include_negatives");

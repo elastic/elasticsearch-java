@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.ssl.certificates;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -258,10 +257,10 @@ public class CertificateInformation implements JsonpSerializable {
 	 * Json deserializer for {@link CertificateInformation}
 	 */
 	public static final JsonpDeserializer<CertificateInformation> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, CertificateInformation::setupCertificateInformationDeserializer, Builder::build);
+			.lazy(Builder::new, CertificateInformation::setupCertificateInformationDeserializer);
 
 	protected static void setupCertificateInformationDeserializer(
-			DelegatingDeserializer<CertificateInformation.Builder> op) {
+			ObjectDeserializer<CertificateInformation.Builder> op) {
 
 		op.add(Builder::alias, JsonpDeserializer.stringDeserializer(), "alias");
 		op.add(Builder::expiry, JsonpDeserializer.stringDeserializer(), "expiry");

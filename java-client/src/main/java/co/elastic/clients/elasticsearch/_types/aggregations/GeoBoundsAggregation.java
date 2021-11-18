@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -125,10 +124,9 @@ public class GeoBoundsAggregation extends MetricAggregationBase implements Aggre
 	 * Json deserializer for {@link GeoBoundsAggregation}
 	 */
 	public static final JsonpDeserializer<GeoBoundsAggregation> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, GeoBoundsAggregation::setupGeoBoundsAggregationDeserializer, Builder::build);
+			.lazy(Builder::new, GeoBoundsAggregation::setupGeoBoundsAggregationDeserializer);
 
-	protected static void setupGeoBoundsAggregationDeserializer(
-			DelegatingDeserializer<GeoBoundsAggregation.Builder> op) {
+	protected static void setupGeoBoundsAggregationDeserializer(ObjectDeserializer<GeoBoundsAggregation.Builder> op) {
 		MetricAggregationBase.setupMetricAggregationBaseDeserializer(op);
 		op.add(Builder::wrapLongitude, JsonpDeserializer.booleanDeserializer(), "wrap_longitude");
 

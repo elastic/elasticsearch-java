@@ -135,7 +135,7 @@ public class DeleteByQueryRethrottleRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code delete_by_query_rethrottle}".
 	 */
-	public static final Endpoint<DeleteByQueryRethrottleRequest, DeleteByQueryRethrottleResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<DeleteByQueryRethrottleRequest, DeleteByQueryRethrottleResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";

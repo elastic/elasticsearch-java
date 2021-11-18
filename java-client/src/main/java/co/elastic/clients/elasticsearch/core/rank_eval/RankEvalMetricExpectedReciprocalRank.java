@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.core.rank_eval;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -119,11 +118,10 @@ public class RankEvalMetricExpectedReciprocalRank extends RankEvalMetricBase {
 	 */
 	public static final JsonpDeserializer<RankEvalMetricExpectedReciprocalRank> _DESERIALIZER = ObjectBuilderDeserializer
 			.lazy(Builder::new,
-					RankEvalMetricExpectedReciprocalRank::setupRankEvalMetricExpectedReciprocalRankDeserializer,
-					Builder::build);
+					RankEvalMetricExpectedReciprocalRank::setupRankEvalMetricExpectedReciprocalRankDeserializer);
 
 	protected static void setupRankEvalMetricExpectedReciprocalRankDeserializer(
-			DelegatingDeserializer<RankEvalMetricExpectedReciprocalRank.Builder> op) {
+			ObjectDeserializer<RankEvalMetricExpectedReciprocalRank.Builder> op) {
 		RankEvalMetricBase.setupRankEvalMetricBaseDeserializer(op);
 		op.add(Builder::maximumRelevance, JsonpDeserializer.integerDeserializer(), "maximum_relevance");
 

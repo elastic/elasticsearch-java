@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.ml.evaluate_data_frame;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -198,10 +197,10 @@ public class ConfusionMatrixThreshold implements JsonpSerializable {
 	 * Json deserializer for {@link ConfusionMatrixThreshold}
 	 */
 	public static final JsonpDeserializer<ConfusionMatrixThreshold> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, ConfusionMatrixThreshold::setupConfusionMatrixThresholdDeserializer, Builder::build);
+			.lazy(Builder::new, ConfusionMatrixThreshold::setupConfusionMatrixThresholdDeserializer);
 
 	protected static void setupConfusionMatrixThresholdDeserializer(
-			DelegatingDeserializer<ConfusionMatrixThreshold.Builder> op) {
+			ObjectDeserializer<ConfusionMatrixThreshold.Builder> op) {
 
 		op.add(Builder::truePositive, JsonpDeserializer.integerDeserializer(), "tp");
 		op.add(Builder::falsePositive, JsonpDeserializer.integerDeserializer(), "fp");

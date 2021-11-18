@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.core.rank_eval;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -175,9 +174,9 @@ public class DocumentRating implements JsonpSerializable {
 	 * Json deserializer for {@link DocumentRating}
 	 */
 	public static final JsonpDeserializer<DocumentRating> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			DocumentRating::setupDocumentRatingDeserializer, Builder::build);
+			DocumentRating::setupDocumentRatingDeserializer);
 
-	protected static void setupDocumentRatingDeserializer(DelegatingDeserializer<DocumentRating.Builder> op) {
+	protected static void setupDocumentRatingDeserializer(ObjectDeserializer<DocumentRating.Builder> op) {
 
 		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "_id");
 		op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "_index");

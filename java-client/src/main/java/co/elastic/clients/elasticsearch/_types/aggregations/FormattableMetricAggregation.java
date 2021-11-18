@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -88,7 +87,7 @@ public abstract class FormattableMetricAggregation extends MetricAggregationBase
 
 	// ---------------------------------------------------------------------------------------------
 	protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupFormattableMetricAggregationDeserializer(
-			DelegatingDeserializer<BuilderT> op) {
+			ObjectDeserializer<BuilderT> op) {
 		MetricAggregationBase.setupMetricAggregationBaseDeserializer(op);
 		op.add(AbstractBuilder::format, JsonpDeserializer.stringDeserializer(), "format");
 

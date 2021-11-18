@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch.core.search;
 
 import co.elastic.clients.elasticsearch._types.query_dsl.Query;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -429,6 +428,7 @@ public class HighlightField implements JsonpSerializable {
 		if (this.type != null) {
 			generator.writeKey("type");
 			this.type.serialize(generator, mapper);
+
 		}
 
 	}
@@ -702,6 +702,13 @@ public class HighlightField implements JsonpSerializable {
 		}
 
 		/**
+		 * API name: {@code type}
+		 */
+		public final Builder type(Function<HighlighterType.Builder, ObjectBuilder<HighlighterType>> fn) {
+			return this.type(fn.apply(new HighlighterType.Builder()).build());
+		}
+
+		/**
 		 * Builds a {@link HighlightField}.
 		 *
 		 * @throws NullPointerException
@@ -720,9 +727,9 @@ public class HighlightField implements JsonpSerializable {
 	 * Json deserializer for {@link HighlightField}
 	 */
 	public static final JsonpDeserializer<HighlightField> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			HighlightField::setupHighlightFieldDeserializer, Builder::build);
+			HighlightField::setupHighlightFieldDeserializer);
 
-	protected static void setupHighlightFieldDeserializer(DelegatingDeserializer<HighlightField.Builder> op) {
+	protected static void setupHighlightFieldDeserializer(ObjectDeserializer<HighlightField.Builder> op) {
 
 		op.add(Builder::boundaryChars, JsonpDeserializer.stringDeserializer(), "boundary_chars");
 		op.add(Builder::boundaryMaxScan, JsonpDeserializer.integerDeserializer(), "boundary_max_scan");

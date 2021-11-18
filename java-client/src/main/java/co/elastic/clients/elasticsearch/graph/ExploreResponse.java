@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch.graph;
 
 import co.elastic.clients.elasticsearch._types.ShardFailure;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -293,9 +292,9 @@ public class ExploreResponse implements JsonpSerializable {
 	 * Json deserializer for {@link ExploreResponse}
 	 */
 	public static final JsonpDeserializer<ExploreResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			ExploreResponse::setupExploreResponseDeserializer, Builder::build);
+			ExploreResponse::setupExploreResponseDeserializer);
 
-	protected static void setupExploreResponseDeserializer(DelegatingDeserializer<ExploreResponse.Builder> op) {
+	protected static void setupExploreResponseDeserializer(ObjectDeserializer<ExploreResponse.Builder> op) {
 
 		op.add(Builder::connections, JsonpDeserializer.arrayDeserializer(Connection._DESERIALIZER), "connections");
 		op.add(Builder::failures, JsonpDeserializer.arrayDeserializer(ShardFailure._DESERIALIZER), "failures");

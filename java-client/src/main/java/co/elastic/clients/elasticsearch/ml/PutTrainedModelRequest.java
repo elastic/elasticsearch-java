@@ -28,7 +28,6 @@ import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch._types.aggregations.InferenceConfig;
 import co.elastic.clients.elasticsearch.ml.put_trained_model.Definition;
 import co.elastic.clients.elasticsearch.ml.put_trained_model.Input;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -394,10 +393,10 @@ public class PutTrainedModelRequest extends RequestBase implements JsonpSerializ
 	 * Json deserializer for {@link PutTrainedModelRequest}
 	 */
 	public static final JsonpDeserializer<PutTrainedModelRequest> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, PutTrainedModelRequest::setupPutTrainedModelRequestDeserializer, Builder::build);
+			.lazy(Builder::new, PutTrainedModelRequest::setupPutTrainedModelRequestDeserializer);
 
 	protected static void setupPutTrainedModelRequestDeserializer(
-			DelegatingDeserializer<PutTrainedModelRequest.Builder> op) {
+			ObjectDeserializer<PutTrainedModelRequest.Builder> op) {
 
 		op.add(Builder::compressedDefinition, JsonpDeserializer.stringDeserializer(), "compressed_definition");
 		op.add(Builder::definition, Definition._DESERIALIZER, "definition");
@@ -414,7 +413,7 @@ public class PutTrainedModelRequest extends RequestBase implements JsonpSerializ
 	/**
 	 * Endpoint "{@code ml.put_trained_model}".
 	 */
-	public static final Endpoint<PutTrainedModelRequest, PutTrainedModelResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<PutTrainedModelRequest, PutTrainedModelResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "PUT";

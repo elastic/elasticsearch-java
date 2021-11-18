@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.xpack.usage;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -169,9 +168,9 @@ public class Ilm implements JsonpSerializable {
 	 * Json deserializer for {@link Ilm}
 	 */
 	public static final JsonpDeserializer<Ilm> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			Ilm::setupIlmDeserializer, Builder::build);
+			Ilm::setupIlmDeserializer);
 
-	protected static void setupIlmDeserializer(DelegatingDeserializer<Ilm.Builder> op) {
+	protected static void setupIlmDeserializer(ObjectDeserializer<Ilm.Builder> op) {
 
 		op.add(Builder::policyCount, JsonpDeserializer.integerDeserializer(), "policy_count");
 		op.add(Builder::policyStats, JsonpDeserializer.arrayDeserializer(IlmPolicyStatistics._DESERIALIZER),

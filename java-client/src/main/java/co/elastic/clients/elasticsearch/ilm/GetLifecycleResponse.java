@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch.ilm;
 
 import co.elastic.clients.elasticsearch.ilm.get_lifecycle.Lifecycle;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -84,10 +83,9 @@ public class GetLifecycleResponse extends DictionaryResponse<String, Lifecycle> 
 	 * Json deserializer for {@link GetLifecycleResponse}
 	 */
 	public static final JsonpDeserializer<GetLifecycleResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, GetLifecycleResponse::setupGetLifecycleResponseDeserializer, Builder::build);
+			.lazy(Builder::new, GetLifecycleResponse::setupGetLifecycleResponseDeserializer);
 
-	protected static void setupGetLifecycleResponseDeserializer(
-			DelegatingDeserializer<GetLifecycleResponse.Builder> op) {
+	protected static void setupGetLifecycleResponseDeserializer(ObjectDeserializer<GetLifecycleResponse.Builder> op) {
 		DictionaryResponse.setupDictionaryResponseDeserializer(op, JsonpDeserializer.stringDeserializer(),
 				Lifecycle._DESERIALIZER);
 

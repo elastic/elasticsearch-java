@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.analysis;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -36,7 +35,7 @@ import java.util.function.Function;
 
 // typedef: _types.analysis.HtmlStripCharFilter
 @JsonpDeserializable
-public class HtmlStripCharFilter extends CharFilterBase implements CharFilterVariant {
+public class HtmlStripCharFilter extends CharFilterBase implements CharFilterDefinitionVariant {
 	// ---------------------------------------------------------------------------------------------
 
 	private HtmlStripCharFilter(Builder builder) {
@@ -49,7 +48,7 @@ public class HtmlStripCharFilter extends CharFilterBase implements CharFilterVar
 	}
 
 	/**
-	 * {@link CharFilter} variant type
+	 * {@link CharFilterDefinition} variant type
 	 */
 	@Override
 	public String _variantType() {
@@ -95,9 +94,9 @@ public class HtmlStripCharFilter extends CharFilterBase implements CharFilterVar
 	 * Json deserializer for {@link HtmlStripCharFilter}
 	 */
 	public static final JsonpDeserializer<HtmlStripCharFilter> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, HtmlStripCharFilter::setupHtmlStripCharFilterDeserializer, Builder::build);
+			.lazy(Builder::new, HtmlStripCharFilter::setupHtmlStripCharFilterDeserializer);
 
-	protected static void setupHtmlStripCharFilterDeserializer(DelegatingDeserializer<HtmlStripCharFilter.Builder> op) {
+	protected static void setupHtmlStripCharFilterDeserializer(ObjectDeserializer<HtmlStripCharFilter.Builder> op) {
 		CharFilterBase.setupCharFilterBaseDeserializer(op);
 
 		op.ignore("type");

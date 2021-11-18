@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.analysis;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -36,7 +35,9 @@ import java.util.function.Function;
 
 // typedef: _types.analysis.HyphenationDecompounderTokenFilter
 @JsonpDeserializable
-public class HyphenationDecompounderTokenFilter extends CompoundWordTokenFilterBase implements TokenFilterVariant {
+public class HyphenationDecompounderTokenFilter extends CompoundWordTokenFilterBase
+		implements
+			TokenFilterDefinitionVariant {
 	// ---------------------------------------------------------------------------------------------
 
 	private HyphenationDecompounderTokenFilter(Builder builder) {
@@ -50,7 +51,7 @@ public class HyphenationDecompounderTokenFilter extends CompoundWordTokenFilterB
 	}
 
 	/**
-	 * {@link TokenFilter} variant type
+	 * {@link TokenFilterDefinition} variant type
 	 */
 	@Override
 	public String _variantType() {
@@ -96,11 +97,11 @@ public class HyphenationDecompounderTokenFilter extends CompoundWordTokenFilterB
 	 * Json deserializer for {@link HyphenationDecompounderTokenFilter}
 	 */
 	public static final JsonpDeserializer<HyphenationDecompounderTokenFilter> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, HyphenationDecompounderTokenFilter::setupHyphenationDecompounderTokenFilterDeserializer,
-					Builder::build);
+			.lazy(Builder::new,
+					HyphenationDecompounderTokenFilter::setupHyphenationDecompounderTokenFilterDeserializer);
 
 	protected static void setupHyphenationDecompounderTokenFilterDeserializer(
-			DelegatingDeserializer<HyphenationDecompounderTokenFilter.Builder> op) {
+			ObjectDeserializer<HyphenationDecompounderTokenFilter.Builder> op) {
 		CompoundWordTokenFilterBase.setupCompoundWordTokenFilterBaseDeserializer(op);
 
 		op.ignore("type");

@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.cluster.stats;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -185,9 +184,9 @@ public class IndicesVersions implements JsonpSerializable {
 	 * Json deserializer for {@link IndicesVersions}
 	 */
 	public static final JsonpDeserializer<IndicesVersions> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			IndicesVersions::setupIndicesVersionsDeserializer, Builder::build);
+			IndicesVersions::setupIndicesVersionsDeserializer);
 
-	protected static void setupIndicesVersionsDeserializer(DelegatingDeserializer<IndicesVersions.Builder> op) {
+	protected static void setupIndicesVersionsDeserializer(ObjectDeserializer<IndicesVersions.Builder> op) {
 
 		op.add(Builder::indexCount, JsonpDeserializer.integerDeserializer(), "index_count");
 		op.add(Builder::primaryShardCount, JsonpDeserializer.integerDeserializer(), "primary_shard_count");

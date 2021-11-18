@@ -24,11 +24,11 @@
 package co.elastic.clients.elasticsearch.async_search;
 
 import co.elastic.clients.elasticsearch._types.ShardStatistics;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializer;
+import co.elastic.clients.json.NamedDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
@@ -41,7 +41,7 @@ import java.util.function.Supplier;
 import javax.annotation.Nullable;
 
 // typedef: async_search.status.Response
-
+@JsonpDeserializable
 public class StatusResponse<TDocument> extends AsyncSearchResponseBase {
 	private final ShardStatistics shards;
 
@@ -167,8 +167,15 @@ public class StatusResponse<TDocument> extends AsyncSearchResponseBase {
 				op -> StatusResponse.setupStatusResponseDeserializer(op, tDocumentDeserializer));
 	};
 
+	/**
+	 * Json deserializer for {@link StatusResponse} based on named deserializers
+	 * provided by the calling {@code JsonMapper}.
+	 */
+	public static final JsonpDeserializer<StatusResponse<Object>> _DESERIALIZER = createStatusResponseDeserializer(
+			new NamedDeserializer<>("co.elastic.clients:Deserializer:async_search.status.TDocument"));
+
 	protected static <TDocument> void setupStatusResponseDeserializer(
-			DelegatingDeserializer<StatusResponse.Builder<TDocument>> op,
+			ObjectDeserializer<StatusResponse.Builder<TDocument>> op,
 			JsonpDeserializer<TDocument> tDocumentDeserializer) {
 		AsyncSearchResponseBase.setupAsyncSearchResponseBaseDeserializer(op);
 		op.add(Builder::shards, ShardStatistics._DESERIALIZER, "_shards");

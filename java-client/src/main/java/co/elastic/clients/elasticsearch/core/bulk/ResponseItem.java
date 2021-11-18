@@ -26,7 +26,6 @@ package co.elastic.clients.elasticsearch.core.bulk;
 import co.elastic.clients.elasticsearch._types.ErrorCause;
 import co.elastic.clients.elasticsearch._types.InlineGet;
 import co.elastic.clients.elasticsearch._types.ShardStatistics;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -473,9 +472,9 @@ public class ResponseItem implements JsonpSerializable {
 	 * Json deserializer for {@link ResponseItem}
 	 */
 	public static final JsonpDeserializer<ResponseItem> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			ResponseItem::setupResponseItemDeserializer, Builder::build);
+			ResponseItem::setupResponseItemDeserializer);
 
-	protected static void setupResponseItemDeserializer(DelegatingDeserializer<ResponseItem.Builder> op) {
+	protected static void setupResponseItemDeserializer(ObjectDeserializer<ResponseItem.Builder> op) {
 
 		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "_id");
 		op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "_index");

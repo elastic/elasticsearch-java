@@ -25,14 +25,33 @@ package co.elastic.clients.elasticsearch._types.query_dsl;
 
 /**
  * Builders for {@link FunctionScore} variants.
- * <p>
- * Variants <code>exp</code>, <code>gauss</code>, <code>linear</code> are not
- * available here as they don't have a dedicated class. Use
- * {@link FunctionScore}'s builder for these.
- * 
  */
 public class FunctionScoreBuilders {
 	private FunctionScoreBuilders() {
+	}
+
+	/**
+	 * Creates a builder for the {@link DecayFunction exp} {@code FunctionScore}
+	 * variant.
+	 */
+	public static DecayFunction.Builder exp() {
+		return new DecayFunction.Builder();
+	}
+
+	/**
+	 * Creates a builder for the {@link DecayFunction gauss} {@code FunctionScore}
+	 * variant.
+	 */
+	public static DecayFunction.Builder gauss() {
+		return new DecayFunction.Builder();
+	}
+
+	/**
+	 * Creates a builder for the {@link DecayFunction linear} {@code FunctionScore}
+	 * variant.
+	 */
+	public static DecayFunction.Builder linear() {
+		return new DecayFunction.Builder();
 	}
 
 	/**

@@ -103,7 +103,7 @@ public class DeleteNodeRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code shutdown.delete_node}".
 	 */
-	public static final Endpoint<DeleteNodeRequest, DeleteNodeResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<DeleteNodeRequest, DeleteNodeResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "DELETE";

@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.nodes.usage;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -203,9 +202,9 @@ public class NodeUsage implements JsonpSerializable {
 	 * Json deserializer for {@link NodeUsage}
 	 */
 	public static final JsonpDeserializer<NodeUsage> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			NodeUsage::setupNodeUsageDeserializer, Builder::build);
+			NodeUsage::setupNodeUsageDeserializer);
 
-	protected static void setupNodeUsageDeserializer(DelegatingDeserializer<NodeUsage.Builder> op) {
+	protected static void setupNodeUsageDeserializer(ObjectDeserializer<NodeUsage.Builder> op) {
 
 		op.add(Builder::restActions, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.integerDeserializer()),
 				"rest_actions");

@@ -25,12 +25,12 @@ package co.elastic.clients.elasticsearch.ccr;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.elasticsearch._types.Time;
+import co.elastic.clients.elasticsearch._types.WaitForActiveShards;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
-import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
@@ -38,7 +38,6 @@ import co.elastic.clients.transport.SimpleEndpoint;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.lang.String;
@@ -69,7 +68,7 @@ public class FollowRequest extends RequestBase implements JsonpSerializable {
 	private final String maxReadRequestSize;
 
 	@Nullable
-	private final String maxRetryDelay;
+	private final Time maxRetryDelay;
 
 	@Nullable
 	private final Long maxWriteBufferCount;
@@ -84,13 +83,13 @@ public class FollowRequest extends RequestBase implements JsonpSerializable {
 	private final String maxWriteRequestSize;
 
 	@Nullable
-	private final String readPollTimeout;
+	private final Time readPollTimeout;
 
 	@Nullable
 	private final String remoteCluster;
 
 	@Nullable
-	private final JsonValue /* _types.WaitForActiveShards */ waitForActiveShards;
+	private final WaitForActiveShards waitForActiveShards;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -170,7 +169,7 @@ public class FollowRequest extends RequestBase implements JsonpSerializable {
 	 * API name: {@code max_retry_delay}
 	 */
 	@Nullable
-	public final String maxRetryDelay() {
+	public final Time maxRetryDelay() {
 		return this.maxRetryDelay;
 	}
 
@@ -210,7 +209,7 @@ public class FollowRequest extends RequestBase implements JsonpSerializable {
 	 * API name: {@code read_poll_timeout}
 	 */
 	@Nullable
-	public final String readPollTimeout() {
+	public final Time readPollTimeout() {
 		return this.readPollTimeout;
 	}
 
@@ -231,7 +230,7 @@ public class FollowRequest extends RequestBase implements JsonpSerializable {
 	 * API name: {@code wait_for_active_shards}
 	 */
 	@Nullable
-	public final JsonValue /* _types.WaitForActiveShards */ waitForActiveShards() {
+	public final WaitForActiveShards waitForActiveShards() {
 		return this.waitForActiveShards;
 	}
 
@@ -273,7 +272,7 @@ public class FollowRequest extends RequestBase implements JsonpSerializable {
 		}
 		if (this.maxRetryDelay != null) {
 			generator.writeKey("max_retry_delay");
-			generator.write(this.maxRetryDelay);
+			this.maxRetryDelay.serialize(generator, mapper);
 
 		}
 		if (this.maxWriteBufferCount != null) {
@@ -298,7 +297,7 @@ public class FollowRequest extends RequestBase implements JsonpSerializable {
 		}
 		if (this.readPollTimeout != null) {
 			generator.writeKey("read_poll_timeout");
-			generator.write(this.readPollTimeout);
+			this.readPollTimeout.serialize(generator, mapper);
 
 		}
 		if (this.remoteCluster != null) {
@@ -333,7 +332,7 @@ public class FollowRequest extends RequestBase implements JsonpSerializable {
 		private String maxReadRequestSize;
 
 		@Nullable
-		private String maxRetryDelay;
+		private Time maxRetryDelay;
 
 		@Nullable
 		private Long maxWriteBufferCount;
@@ -348,13 +347,13 @@ public class FollowRequest extends RequestBase implements JsonpSerializable {
 		private String maxWriteRequestSize;
 
 		@Nullable
-		private String readPollTimeout;
+		private Time readPollTimeout;
 
 		@Nullable
 		private String remoteCluster;
 
 		@Nullable
-		private JsonValue /* _types.WaitForActiveShards */ waitForActiveShards;
+		private WaitForActiveShards waitForActiveShards;
 
 		/**
 		 * Required - The name of the follower index
@@ -409,9 +408,16 @@ public class FollowRequest extends RequestBase implements JsonpSerializable {
 		/**
 		 * API name: {@code max_retry_delay}
 		 */
-		public final Builder maxRetryDelay(@Nullable String value) {
+		public final Builder maxRetryDelay(@Nullable Time value) {
 			this.maxRetryDelay = value;
 			return this;
+		}
+
+		/**
+		 * API name: {@code max_retry_delay}
+		 */
+		public final Builder maxRetryDelay(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.maxRetryDelay(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -449,9 +455,16 @@ public class FollowRequest extends RequestBase implements JsonpSerializable {
 		/**
 		 * API name: {@code read_poll_timeout}
 		 */
-		public final Builder readPollTimeout(@Nullable String value) {
+		public final Builder readPollTimeout(@Nullable Time value) {
 			this.readPollTimeout = value;
 			return this;
+		}
+
+		/**
+		 * API name: {@code read_poll_timeout}
+		 */
+		public final Builder readPollTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.readPollTimeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -470,9 +483,22 @@ public class FollowRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code wait_for_active_shards}
 		 */
-		public final Builder waitForActiveShards(@Nullable JsonValue /* _types.WaitForActiveShards */ value) {
+		public final Builder waitForActiveShards(@Nullable WaitForActiveShards value) {
 			this.waitForActiveShards = value;
 			return this;
+		}
+
+		/**
+		 * Sets the number of shard copies that must be active before returning.
+		 * Defaults to 0. Set to <code>all</code> for all shard copies, otherwise set to
+		 * any non-negative value less than or equal to the total number of copies for
+		 * the shard (number of replicas + 1)
+		 * <p>
+		 * API name: {@code wait_for_active_shards}
+		 */
+		public final Builder waitForActiveShards(
+				Function<WaitForActiveShards.Builder, ObjectBuilder<WaitForActiveShards>> fn) {
+			return this.waitForActiveShards(fn.apply(new WaitForActiveShards.Builder()).build());
 		}
 
 		/**
@@ -494,9 +520,9 @@ public class FollowRequest extends RequestBase implements JsonpSerializable {
 	 * Json deserializer for {@link FollowRequest}
 	 */
 	public static final JsonpDeserializer<FollowRequest> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			FollowRequest::setupFollowRequestDeserializer, Builder::build);
+			FollowRequest::setupFollowRequestDeserializer);
 
-	protected static void setupFollowRequestDeserializer(DelegatingDeserializer<FollowRequest.Builder> op) {
+	protected static void setupFollowRequestDeserializer(ObjectDeserializer<FollowRequest.Builder> op) {
 
 		op.add(Builder::leaderIndex, JsonpDeserializer.stringDeserializer(), "leader_index");
 		op.add(Builder::maxOutstandingReadRequests, JsonpDeserializer.longDeserializer(),
@@ -506,13 +532,13 @@ public class FollowRequest extends RequestBase implements JsonpSerializable {
 		op.add(Builder::maxReadRequestOperationCount, JsonpDeserializer.longDeserializer(),
 				"max_read_request_operation_count");
 		op.add(Builder::maxReadRequestSize, JsonpDeserializer.stringDeserializer(), "max_read_request_size");
-		op.add(Builder::maxRetryDelay, JsonpDeserializer.stringDeserializer(), "max_retry_delay");
+		op.add(Builder::maxRetryDelay, Time._DESERIALIZER, "max_retry_delay");
 		op.add(Builder::maxWriteBufferCount, JsonpDeserializer.longDeserializer(), "max_write_buffer_count");
 		op.add(Builder::maxWriteBufferSize, JsonpDeserializer.stringDeserializer(), "max_write_buffer_size");
 		op.add(Builder::maxWriteRequestOperationCount, JsonpDeserializer.longDeserializer(),
 				"max_write_request_operation_count");
 		op.add(Builder::maxWriteRequestSize, JsonpDeserializer.stringDeserializer(), "max_write_request_size");
-		op.add(Builder::readPollTimeout, JsonpDeserializer.stringDeserializer(), "read_poll_timeout");
+		op.add(Builder::readPollTimeout, Time._DESERIALIZER, "read_poll_timeout");
 		op.add(Builder::remoteCluster, JsonpDeserializer.stringDeserializer(), "remote_cluster");
 
 	}
@@ -522,7 +548,7 @@ public class FollowRequest extends RequestBase implements JsonpSerializable {
 	/**
 	 * Endpoint "{@code ccr.follow}".
 	 */
-	public static final Endpoint<FollowRequest, FollowResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<FollowRequest, FollowResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "PUT";
@@ -553,7 +579,7 @@ public class FollowRequest extends RequestBase implements JsonpSerializable {
 			request -> {
 				Map<String, String> params = new HashMap<>();
 				if (request.waitForActiveShards != null) {
-					params.put("wait_for_active_shards", JsonpUtils.toString(request.waitForActiveShards));
+					params.put("wait_for_active_shards", request.waitForActiveShards._toJsonString());
 				}
 				return params;
 

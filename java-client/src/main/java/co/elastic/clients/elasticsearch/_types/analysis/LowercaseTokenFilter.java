@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.analysis;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -38,7 +37,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.analysis.LowercaseTokenFilter
 @JsonpDeserializable
-public class LowercaseTokenFilter extends TokenFilterBase implements TokenFilterVariant {
+public class LowercaseTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
 	@Nullable
 	private final String language;
 
@@ -56,7 +55,7 @@ public class LowercaseTokenFilter extends TokenFilterBase implements TokenFilter
 	}
 
 	/**
-	 * {@link TokenFilter} variant type
+	 * {@link TokenFilterDefinition} variant type
 	 */
 	@Override
 	public String _variantType() {
@@ -126,10 +125,9 @@ public class LowercaseTokenFilter extends TokenFilterBase implements TokenFilter
 	 * Json deserializer for {@link LowercaseTokenFilter}
 	 */
 	public static final JsonpDeserializer<LowercaseTokenFilter> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, LowercaseTokenFilter::setupLowercaseTokenFilterDeserializer, Builder::build);
+			.lazy(Builder::new, LowercaseTokenFilter::setupLowercaseTokenFilterDeserializer);
 
-	protected static void setupLowercaseTokenFilterDeserializer(
-			DelegatingDeserializer<LowercaseTokenFilter.Builder> op) {
+	protected static void setupLowercaseTokenFilterDeserializer(ObjectDeserializer<LowercaseTokenFilter.Builder> op) {
 		TokenFilterBase.setupTokenFilterBaseDeserializer(op);
 		op.add(Builder::language, JsonpDeserializer.stringDeserializer(), "language");
 

@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -150,10 +149,9 @@ public class SpanFieldMaskingQuery extends QueryBase implements SpanQueryVariant
 	 * Json deserializer for {@link SpanFieldMaskingQuery}
 	 */
 	public static final JsonpDeserializer<SpanFieldMaskingQuery> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, SpanFieldMaskingQuery::setupSpanFieldMaskingQueryDeserializer, Builder::build);
+			.lazy(Builder::new, SpanFieldMaskingQuery::setupSpanFieldMaskingQueryDeserializer);
 
-	protected static void setupSpanFieldMaskingQueryDeserializer(
-			DelegatingDeserializer<SpanFieldMaskingQuery.Builder> op) {
+	protected static void setupSpanFieldMaskingQueryDeserializer(ObjectDeserializer<SpanFieldMaskingQuery.Builder> op) {
 		QueryBase.setupQueryBaseDeserializer(op);
 		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
 		op.add(Builder::query, SpanQuery._DESERIALIZER, "query");

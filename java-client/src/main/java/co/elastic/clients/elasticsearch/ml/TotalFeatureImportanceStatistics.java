@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -181,11 +180,10 @@ public class TotalFeatureImportanceStatistics implements JsonpSerializable {
 	 * Json deserializer for {@link TotalFeatureImportanceStatistics}
 	 */
 	public static final JsonpDeserializer<TotalFeatureImportanceStatistics> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, TotalFeatureImportanceStatistics::setupTotalFeatureImportanceStatisticsDeserializer,
-					Builder::build);
+			.lazy(Builder::new, TotalFeatureImportanceStatistics::setupTotalFeatureImportanceStatisticsDeserializer);
 
 	protected static void setupTotalFeatureImportanceStatisticsDeserializer(
-			DelegatingDeserializer<TotalFeatureImportanceStatistics.Builder> op) {
+			ObjectDeserializer<TotalFeatureImportanceStatistics.Builder> op) {
 
 		op.add(Builder::meanMagnitude, JsonpDeserializer.doubleDeserializer(), "mean_magnitude");
 		op.add(Builder::max, JsonpDeserializer.integerDeserializer(), "max");

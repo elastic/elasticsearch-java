@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.analysis;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -38,7 +37,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.analysis.SnowballTokenFilter
 @JsonpDeserializable
-public class SnowballTokenFilter extends TokenFilterBase implements TokenFilterVariant {
+public class SnowballTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
 	private final SnowballLanguage language;
 
 	// ---------------------------------------------------------------------------------------------
@@ -55,7 +54,7 @@ public class SnowballTokenFilter extends TokenFilterBase implements TokenFilterV
 	}
 
 	/**
-	 * {@link TokenFilter} variant type
+	 * {@link TokenFilterDefinition} variant type
 	 */
 	@Override
 	public String _variantType() {
@@ -120,9 +119,9 @@ public class SnowballTokenFilter extends TokenFilterBase implements TokenFilterV
 	 * Json deserializer for {@link SnowballTokenFilter}
 	 */
 	public static final JsonpDeserializer<SnowballTokenFilter> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, SnowballTokenFilter::setupSnowballTokenFilterDeserializer, Builder::build);
+			.lazy(Builder::new, SnowballTokenFilter::setupSnowballTokenFilterDeserializer);
 
-	protected static void setupSnowballTokenFilterDeserializer(DelegatingDeserializer<SnowballTokenFilter.Builder> op) {
+	protected static void setupSnowballTokenFilterDeserializer(ObjectDeserializer<SnowballTokenFilter.Builder> op) {
 		TokenFilterBase.setupTokenFilterBaseDeserializer(op);
 		op.add(Builder::language, SnowballLanguage._DESERIALIZER, "language");
 

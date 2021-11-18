@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch.security;
 
 import co.elastic.clients.elasticsearch._types.NodeStatistics;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -192,10 +191,10 @@ public class ClearApiKeyCacheResponse implements JsonpSerializable {
 	 * Json deserializer for {@link ClearApiKeyCacheResponse}
 	 */
 	public static final JsonpDeserializer<ClearApiKeyCacheResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, ClearApiKeyCacheResponse::setupClearApiKeyCacheResponseDeserializer, Builder::build);
+			.lazy(Builder::new, ClearApiKeyCacheResponse::setupClearApiKeyCacheResponseDeserializer);
 
 	protected static void setupClearApiKeyCacheResponseDeserializer(
-			DelegatingDeserializer<ClearApiKeyCacheResponse.Builder> op) {
+			ObjectDeserializer<ClearApiKeyCacheResponse.Builder> op) {
 
 		op.add(Builder::nodeStats, NodeStatistics._DESERIALIZER, "_nodes");
 		op.add(Builder::clusterName, JsonpDeserializer.stringDeserializer(), "cluster_name");

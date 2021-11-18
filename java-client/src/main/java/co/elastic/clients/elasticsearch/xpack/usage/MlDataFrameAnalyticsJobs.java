@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch.xpack.usage;
 
 import co.elastic.clients.elasticsearch._types.EmptyObject;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -194,10 +193,10 @@ public class MlDataFrameAnalyticsJobs implements JsonpSerializable {
 	 * Json deserializer for {@link MlDataFrameAnalyticsJobs}
 	 */
 	public static final JsonpDeserializer<MlDataFrameAnalyticsJobs> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, MlDataFrameAnalyticsJobs::setupMlDataFrameAnalyticsJobsDeserializer, Builder::build);
+			.lazy(Builder::new, MlDataFrameAnalyticsJobs::setupMlDataFrameAnalyticsJobsDeserializer);
 
 	protected static void setupMlDataFrameAnalyticsJobsDeserializer(
-			DelegatingDeserializer<MlDataFrameAnalyticsJobs.Builder> op) {
+			ObjectDeserializer<MlDataFrameAnalyticsJobs.Builder> op) {
 
 		op.add(Builder::memoryUsage, MlDataFrameAnalyticsJobsMemory._DESERIALIZER, "memory_usage");
 		op.add(Builder::all, MlDataFrameAnalyticsJobsCount._DESERIALIZER, "_all");

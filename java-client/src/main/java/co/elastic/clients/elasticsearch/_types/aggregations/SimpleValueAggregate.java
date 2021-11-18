@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -87,10 +86,9 @@ public class SimpleValueAggregate extends SingleMetricAggregateBase implements A
 	 * Json deserializer for {@link SimpleValueAggregate}
 	 */
 	public static final JsonpDeserializer<SimpleValueAggregate> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, SimpleValueAggregate::setupSimpleValueAggregateDeserializer, Builder::build);
+			.lazy(Builder::new, SimpleValueAggregate::setupSimpleValueAggregateDeserializer);
 
-	protected static void setupSimpleValueAggregateDeserializer(
-			DelegatingDeserializer<SimpleValueAggregate.Builder> op) {
+	protected static void setupSimpleValueAggregateDeserializer(ObjectDeserializer<SimpleValueAggregate.Builder> op) {
 		SingleMetricAggregateBase.setupSingleMetricAggregateBaseDeserializer(op);
 
 	}

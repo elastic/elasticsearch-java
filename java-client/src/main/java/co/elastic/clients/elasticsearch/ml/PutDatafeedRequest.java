@@ -24,13 +24,13 @@
 package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
-import co.elastic.clients.elasticsearch._types.ExpandWildcardOptions;
+import co.elastic.clients.elasticsearch._types.ExpandWildcard;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch._types.ScriptField;
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.elasticsearch._types.aggregations.Aggregation;
 import co.elastic.clients.elasticsearch._types.mapping.RuntimeField;
 import co.elastic.clients.elasticsearch._types.query_dsl.Query;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -73,10 +73,10 @@ public class PutDatafeedRequest extends RequestBase implements JsonpSerializable
 	@Nullable
 	private final DelayedDataCheckConfig delayedDataCheckConfig;
 
-	private final List<ExpandWildcardOptions> expandWildcards;
+	private final List<ExpandWildcard> expandWildcards;
 
 	@Nullable
-	private final String frequency;
+	private final Time frequency;
 
 	@Nullable
 	private final Boolean ignoreThrottled;
@@ -99,7 +99,7 @@ public class PutDatafeedRequest extends RequestBase implements JsonpSerializable
 	private final Query query;
 
 	@Nullable
-	private final String queryDelay;
+	private final Time queryDelay;
 
 	private final Map<String, RuntimeField> runtimeMappings;
 
@@ -186,7 +186,7 @@ public class PutDatafeedRequest extends RequestBase implements JsonpSerializable
 	 * <p>
 	 * API name: {@code expand_wildcards}
 	 */
-	public final List<ExpandWildcardOptions> expandWildcards() {
+	public final List<ExpandWildcard> expandWildcards() {
 		return this.expandWildcards;
 	}
 
@@ -194,7 +194,7 @@ public class PutDatafeedRequest extends RequestBase implements JsonpSerializable
 	 * API name: {@code frequency}
 	 */
 	@Nullable
-	public final String frequency() {
+	public final Time frequency() {
 		return this.frequency;
 	}
 
@@ -261,7 +261,7 @@ public class PutDatafeedRequest extends RequestBase implements JsonpSerializable
 	 * API name: {@code query_delay}
 	 */
 	@Nullable
-	public final String queryDelay() {
+	public final Time queryDelay() {
 		return this.queryDelay;
 	}
 
@@ -321,7 +321,7 @@ public class PutDatafeedRequest extends RequestBase implements JsonpSerializable
 		}
 		if (this.frequency != null) {
 			generator.writeKey("frequency");
-			generator.write(this.frequency);
+			this.frequency.serialize(generator, mapper);
 
 		}
 		if (ModelTypeHelper.isDefined(this.indices)) {
@@ -356,7 +356,7 @@ public class PutDatafeedRequest extends RequestBase implements JsonpSerializable
 		}
 		if (this.queryDelay != null) {
 			generator.writeKey("query_delay");
-			generator.write(this.queryDelay);
+			this.queryDelay.serialize(generator, mapper);
 
 		}
 		if (ModelTypeHelper.isDefined(this.runtimeMappings)) {
@@ -410,10 +410,10 @@ public class PutDatafeedRequest extends RequestBase implements JsonpSerializable
 		private DelayedDataCheckConfig delayedDataCheckConfig;
 
 		@Nullable
-		private List<ExpandWildcardOptions> expandWildcards;
+		private List<ExpandWildcard> expandWildcards;
 
 		@Nullable
-		private String frequency;
+		private Time frequency;
 
 		@Nullable
 		private Boolean ignoreThrottled;
@@ -437,7 +437,7 @@ public class PutDatafeedRequest extends RequestBase implements JsonpSerializable
 		private Query query;
 
 		@Nullable
-		private String queryDelay;
+		private Time queryDelay;
 
 		@Nullable
 		private Map<String, RuntimeField> runtimeMappings;
@@ -526,7 +526,7 @@ public class PutDatafeedRequest extends RequestBase implements JsonpSerializable
 		 * <p>
 		 * API name: {@code expand_wildcards}
 		 */
-		public final Builder expandWildcards(@Nullable List<ExpandWildcardOptions> value) {
+		public final Builder expandWildcards(@Nullable List<ExpandWildcard> value) {
 			this.expandWildcards = value;
 			return this;
 		}
@@ -537,7 +537,7 @@ public class PutDatafeedRequest extends RequestBase implements JsonpSerializable
 		 * <p>
 		 * API name: {@code expand_wildcards}
 		 */
-		public final Builder expandWildcards(ExpandWildcardOptions... value) {
+		public final Builder expandWildcards(ExpandWildcard... value) {
 			this.expandWildcards = Arrays.asList(value);
 			return this;
 		}
@@ -545,9 +545,16 @@ public class PutDatafeedRequest extends RequestBase implements JsonpSerializable
 		/**
 		 * API name: {@code frequency}
 		 */
-		public final Builder frequency(@Nullable String value) {
+		public final Builder frequency(@Nullable Time value) {
 			this.frequency = value;
 			return this;
+		}
+
+		/**
+		 * API name: {@code frequency}
+		 */
+		public final Builder frequency(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.frequency(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -636,9 +643,16 @@ public class PutDatafeedRequest extends RequestBase implements JsonpSerializable
 		/**
 		 * API name: {@code query_delay}
 		 */
-		public final Builder queryDelay(@Nullable String value) {
+		public final Builder queryDelay(@Nullable Time value) {
 			this.queryDelay = value;
 			return this;
+		}
+
+		/**
+		 * API name: {@code query_delay}
+		 */
+		public final Builder queryDelay(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.queryDelay(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -708,22 +722,22 @@ public class PutDatafeedRequest extends RequestBase implements JsonpSerializable
 	 * Json deserializer for {@link PutDatafeedRequest}
 	 */
 	public static final JsonpDeserializer<PutDatafeedRequest> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, PutDatafeedRequest::setupPutDatafeedRequestDeserializer, Builder::build);
+			.lazy(Builder::new, PutDatafeedRequest::setupPutDatafeedRequestDeserializer);
 
-	protected static void setupPutDatafeedRequestDeserializer(DelegatingDeserializer<PutDatafeedRequest.Builder> op) {
+	protected static void setupPutDatafeedRequestDeserializer(ObjectDeserializer<PutDatafeedRequest.Builder> op) {
 
 		op.add(Builder::aggregations, JsonpDeserializer.stringMapDeserializer(Aggregation._DESERIALIZER),
 				"aggregations");
 		op.add(Builder::chunkingConfig, ChunkingConfig._DESERIALIZER, "chunking_config");
 		op.add(Builder::delayedDataCheckConfig, DelayedDataCheckConfig._DESERIALIZER, "delayed_data_check_config");
-		op.add(Builder::frequency, JsonpDeserializer.stringDeserializer(), "frequency");
+		op.add(Builder::frequency, Time._DESERIALIZER, "frequency");
 		op.add(Builder::indices, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "indices",
 				"indexes");
 		op.add(Builder::indicesOptions, DatafeedIndicesOptions._DESERIALIZER, "indices_options");
 		op.add(Builder::jobId, JsonpDeserializer.stringDeserializer(), "job_id");
 		op.add(Builder::maxEmptySearches, JsonpDeserializer.integerDeserializer(), "max_empty_searches");
 		op.add(Builder::query, Query._DESERIALIZER, "query");
-		op.add(Builder::queryDelay, JsonpDeserializer.stringDeserializer(), "query_delay");
+		op.add(Builder::queryDelay, Time._DESERIALIZER, "query_delay");
 		op.add(Builder::runtimeMappings, JsonpDeserializer.stringMapDeserializer(RuntimeField._DESERIALIZER),
 				"runtime_mappings");
 		op.add(Builder::scriptFields, JsonpDeserializer.stringMapDeserializer(ScriptField._DESERIALIZER),
@@ -737,7 +751,7 @@ public class PutDatafeedRequest extends RequestBase implements JsonpSerializable
 	/**
 	 * Endpoint "{@code ml.put_datafeed}".
 	 */
-	public static final Endpoint<PutDatafeedRequest, PutDatafeedResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<PutDatafeedRequest, PutDatafeedResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "PUT";

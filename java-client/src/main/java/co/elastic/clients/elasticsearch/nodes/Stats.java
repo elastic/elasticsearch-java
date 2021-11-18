@@ -25,7 +25,6 @@ package co.elastic.clients.elasticsearch.nodes;
 
 import co.elastic.clients.elasticsearch._types.NodeRole;
 import co.elastic.clients.elasticsearch.indices.stats.IndexStats;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -700,9 +699,9 @@ public class Stats implements JsonpSerializable {
 	 * Json deserializer for {@link Stats}
 	 */
 	public static final JsonpDeserializer<Stats> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			Stats::setupStatsDeserializer, Builder::build);
+			Stats::setupStatsDeserializer);
 
-	protected static void setupStatsDeserializer(DelegatingDeserializer<Stats.Builder> op) {
+	protected static void setupStatsDeserializer(ObjectDeserializer<Stats.Builder> op) {
 
 		op.add(Builder::adaptiveSelection, JsonpDeserializer.stringMapDeserializer(AdaptiveSelection._DESERIALIZER),
 				"adaptive_selection");

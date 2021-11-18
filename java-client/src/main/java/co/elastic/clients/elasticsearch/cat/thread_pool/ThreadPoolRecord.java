@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.cat.thread_pool;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -731,9 +730,9 @@ public class ThreadPoolRecord implements JsonpSerializable {
 	 * Json deserializer for {@link ThreadPoolRecord}
 	 */
 	public static final JsonpDeserializer<ThreadPoolRecord> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			ThreadPoolRecord::setupThreadPoolRecordDeserializer, Builder::build);
+			ThreadPoolRecord::setupThreadPoolRecordDeserializer);
 
-	protected static void setupThreadPoolRecordDeserializer(DelegatingDeserializer<ThreadPoolRecord.Builder> op) {
+	protected static void setupThreadPoolRecordDeserializer(ObjectDeserializer<ThreadPoolRecord.Builder> op) {
 
 		op.add(Builder::nodeName, JsonpDeserializer.stringDeserializer(), "node_name", "nn");
 		op.add(Builder::nodeId, JsonpDeserializer.stringDeserializer(), "node_id", "id");

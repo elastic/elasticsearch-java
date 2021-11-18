@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -43,6 +42,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.PinnedQuery
+// union type: Container[]
 @JsonpDeserializable
 public class PinnedQuery extends QueryBase implements TaggedUnion<Object>, QueryVariant, JsonpSerializable {
 
@@ -56,8 +56,6 @@ public class PinnedQuery extends QueryBase implements TaggedUnion<Object>, Query
 	public String _variantType() {
 		return "pinned";
 	}
-
-	// Tagged union implementation
 
 	private final String _type;
 	private final Object _value;
@@ -118,6 +116,7 @@ public class PinnedQuery extends QueryBase implements TaggedUnion<Object>, Query
 	@Override
 	@SuppressWarnings("unchecked")
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+
 		generator.writeStartObject();
 
 		super.serializeInternal(generator, mapper);
@@ -151,6 +150,7 @@ public class PinnedQuery extends QueryBase implements TaggedUnion<Object>, Query
 		}
 
 		generator.writeEnd();
+
 	}
 
 	public static class Builder extends QueryBase.AbstractBuilder<Builder> {
@@ -218,7 +218,7 @@ public class PinnedQuery extends QueryBase implements TaggedUnion<Object>, Query
 		}
 	}
 
-	protected static void setupPinnedQueryDeserializer(DelegatingDeserializer<Builder> op) {
+	protected static void setupPinnedQueryDeserializer(ObjectDeserializer<Builder> op) {
 		QueryBase.setupQueryBaseDeserializer(op);
 		op.add(Builder::organic, Query._DESERIALIZER, "organic");
 		op.add(Builder::ids, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "ids");

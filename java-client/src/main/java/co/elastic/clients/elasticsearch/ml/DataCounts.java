@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -514,9 +513,9 @@ public class DataCounts implements JsonpSerializable {
 	 * Json deserializer for {@link DataCounts}
 	 */
 	public static final JsonpDeserializer<DataCounts> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			DataCounts::setupDataCountsDeserializer, Builder::build);
+			DataCounts::setupDataCountsDeserializer);
 
-	protected static void setupDataCountsDeserializer(DelegatingDeserializer<DataCounts.Builder> op) {
+	protected static void setupDataCountsDeserializer(ObjectDeserializer<DataCounts.Builder> op) {
 
 		op.add(Builder::bucketCount, JsonpDeserializer.longDeserializer(), "bucket_count");
 		op.add(Builder::earliestRecordTimestamp, JsonpDeserializer.longDeserializer(), "earliest_record_timestamp");

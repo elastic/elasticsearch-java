@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.nodes;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -136,9 +135,9 @@ public class JvmThreads implements JsonpSerializable {
 	 * Json deserializer for {@link JvmThreads}
 	 */
 	public static final JsonpDeserializer<JvmThreads> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			JvmThreads::setupJvmThreadsDeserializer, Builder::build);
+			JvmThreads::setupJvmThreadsDeserializer);
 
-	protected static void setupJvmThreadsDeserializer(DelegatingDeserializer<JvmThreads.Builder> op) {
+	protected static void setupJvmThreadsDeserializer(ObjectDeserializer<JvmThreads.Builder> op) {
 
 		op.add(Builder::count, JsonpDeserializer.longDeserializer(), "count");
 		op.add(Builder::peakCount, JsonpDeserializer.longDeserializer(), "peak_count");

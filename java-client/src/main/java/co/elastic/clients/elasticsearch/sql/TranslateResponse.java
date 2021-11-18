@@ -23,7 +23,8 @@
 
 package co.elastic.clients.elasticsearch.sql;
 
-import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.elasticsearch.core.search.SortOptions;
+import co.elastic.clients.elasticsearch.core.search.SourceConfig;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -33,10 +34,10 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.lang.String;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
@@ -49,13 +50,11 @@ import javax.annotation.Nullable;
 public class TranslateResponse implements JsonpSerializable {
 	private final long size;
 
-	private final JsonValue /*
-							 * Union(_global.search._types.SourceFilter | _types.Fields | internal.boolean)
-							 */ source;
+	private final SourceConfig source;
 
 	private final List<Map<String, String>> fields;
 
-	private final List<JsonValue /* _global.search._types.SortCombinations */> sort;
+	private final List<SortOptions> sort;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -82,9 +81,7 @@ public class TranslateResponse implements JsonpSerializable {
 	/**
 	 * Required - API name: {@code _source}
 	 */
-	public final JsonValue /*
-							 * Union(_global.search._types.SourceFilter | _types.Fields | internal.boolean)
-							 */ source() {
+	public final SourceConfig source() {
 		return this.source;
 	}
 
@@ -98,7 +95,7 @@ public class TranslateResponse implements JsonpSerializable {
 	/**
 	 * Required - API name: {@code sort}
 	 */
-	public final List<JsonValue /* _global.search._types.SortCombinations */> sort() {
+	public final List<SortOptions> sort() {
 		return this.sort;
 	}
 
@@ -117,7 +114,7 @@ public class TranslateResponse implements JsonpSerializable {
 		generator.write(this.size);
 
 		generator.writeKey("_source");
-		generator.write(this.source);
+		this.source.serialize(generator, mapper);
 
 		if (ModelTypeHelper.isDefined(this.fields)) {
 			generator.writeKey("fields");
@@ -140,8 +137,8 @@ public class TranslateResponse implements JsonpSerializable {
 		if (ModelTypeHelper.isDefined(this.sort)) {
 			generator.writeKey("sort");
 			generator.writeStartArray();
-			for (JsonValue /* _global.search._types.SortCombinations */ item0 : this.sort) {
-				generator.write(item0);
+			for (SortOptions item0 : this.sort) {
+				item0.serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -158,13 +155,11 @@ public class TranslateResponse implements JsonpSerializable {
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TranslateResponse> {
 		private Long size;
 
-		private JsonValue /*
-							 * Union(_global.search._types.SourceFilter | _types.Fields | internal.boolean)
-							 */ source;
+		private SourceConfig source;
 
 		private List<Map<String, String>> fields;
 
-		private List<JsonValue /* _global.search._types.SortCombinations */> sort;
+		private List<SortOptions> sort;
 
 		/**
 		 * Required - API name: {@code size}
@@ -177,12 +172,16 @@ public class TranslateResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code _source}
 		 */
-		public final Builder source(
-				JsonValue /*
-							 * Union(_global.search._types.SourceFilter | _types.Fields | internal.boolean)
-							 */ value) {
+		public final Builder source(SourceConfig value) {
 			this.source = value;
 			return this;
+		}
+
+		/**
+		 * Required - API name: {@code _source}
+		 */
+		public final Builder source(Function<SourceConfig.Builder, ObjectBuilder<SourceConfig>> fn) {
+			return this.source(fn.apply(new SourceConfig.Builder()).build());
 		}
 
 		/**
@@ -204,7 +203,7 @@ public class TranslateResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code sort}
 		 */
-		public final Builder sort(List<JsonValue /* _global.search._types.SortCombinations */> value) {
+		public final Builder sort(List<SortOptions> value) {
 			this.sort = value;
 			return this;
 		}
@@ -212,8 +211,20 @@ public class TranslateResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code sort}
 		 */
-		public final Builder sort(JsonValue /* _global.search._types.SortCombinations */... value) {
+		public final Builder sort(SortOptions... value) {
 			this.sort = Arrays.asList(value);
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code sort}
+		 */
+		@SafeVarargs
+		public final Builder sort(Function<SortOptions.Builder, ObjectBuilder<SortOptions>>... fns) {
+			this.sort = new ArrayList<>(fns.length);
+			for (Function<SortOptions.Builder, ObjectBuilder<SortOptions>> fn : fns) {
+				this.sort.add(fn.apply(new SortOptions.Builder()).build());
+			}
 			return this;
 		}
 
@@ -236,15 +247,15 @@ public class TranslateResponse implements JsonpSerializable {
 	 * Json deserializer for {@link TranslateResponse}
 	 */
 	public static final JsonpDeserializer<TranslateResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, TranslateResponse::setupTranslateResponseDeserializer, Builder::build);
+			.lazy(Builder::new, TranslateResponse::setupTranslateResponseDeserializer);
 
-	protected static void setupTranslateResponseDeserializer(DelegatingDeserializer<TranslateResponse.Builder> op) {
+	protected static void setupTranslateResponseDeserializer(ObjectDeserializer<TranslateResponse.Builder> op) {
 
 		op.add(Builder::size, JsonpDeserializer.longDeserializer(), "size");
-		op.add(Builder::source, JsonpDeserializer.jsonValueDeserializer(), "_source");
+		op.add(Builder::source, SourceConfig._DESERIALIZER, "_source");
 		op.add(Builder::fields, JsonpDeserializer.arrayDeserializer(
 				JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.stringDeserializer())), "fields");
-		op.add(Builder::sort, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.jsonValueDeserializer()), "sort");
+		op.add(Builder::sort, JsonpDeserializer.arrayDeserializer(SortOptions._DESERIALIZER), "sort");
 
 	}
 

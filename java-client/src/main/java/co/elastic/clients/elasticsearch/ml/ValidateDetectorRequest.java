@@ -121,8 +121,8 @@ public class ValidateDetectorRequest extends RequestBase implements JsonpSeriali
 
 		JsonpDeserializer<Detector> valueDeserializer = Detector._DESERIALIZER;
 
-		return JsonpDeserializer.of(valueDeserializer.acceptedEvents(), (parser, mapper, event) -> new Builder()
-				.detector(valueDeserializer.deserialize(parser, mapper, event)).build());
+		return JsonpDeserializer.of(valueDeserializer.acceptedEvents(),
+				(parser, mapper) -> new Builder().detector(valueDeserializer.deserialize(parser, mapper)).build());
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -130,7 +130,7 @@ public class ValidateDetectorRequest extends RequestBase implements JsonpSeriali
 	/**
 	 * Endpoint "{@code ml.validate_detector}".
 	 */
-	public static final Endpoint<ValidateDetectorRequest, ValidateDetectorResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<ValidateDetectorRequest, ValidateDetectorResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";

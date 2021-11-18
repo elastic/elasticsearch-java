@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.mapping;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -95,9 +94,9 @@ public class FloatRangeProperty extends RangePropertyBase implements PropertyVar
 	 * Json deserializer for {@link FloatRangeProperty}
 	 */
 	public static final JsonpDeserializer<FloatRangeProperty> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, FloatRangeProperty::setupFloatRangePropertyDeserializer, Builder::build);
+			.lazy(Builder::new, FloatRangeProperty::setupFloatRangePropertyDeserializer);
 
-	protected static void setupFloatRangePropertyDeserializer(DelegatingDeserializer<FloatRangeProperty.Builder> op) {
+	protected static void setupFloatRangePropertyDeserializer(ObjectDeserializer<FloatRangeProperty.Builder> op) {
 		RangePropertyBase.setupRangePropertyBaseDeserializer(op);
 
 		op.ignore("type");

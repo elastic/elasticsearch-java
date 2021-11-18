@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -173,9 +172,9 @@ public class GeoLine implements JsonpSerializable {
 	 * Json deserializer for {@link GeoLine}
 	 */
 	public static final JsonpDeserializer<GeoLine> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			GeoLine::setupGeoLineDeserializer, Builder::build);
+			GeoLine::setupGeoLineDeserializer);
 
-	protected static void setupGeoLineDeserializer(DelegatingDeserializer<GeoLine.Builder> op) {
+	protected static void setupGeoLineDeserializer(ObjectDeserializer<GeoLine.Builder> op) {
 
 		op.add(Builder::type, JsonpDeserializer.stringDeserializer(), "type");
 		op.add(Builder::coordinates, JsonpDeserializer.arrayDeserializer(

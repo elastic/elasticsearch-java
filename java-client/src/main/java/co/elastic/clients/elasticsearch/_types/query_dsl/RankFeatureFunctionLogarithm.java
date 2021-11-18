@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -112,11 +111,11 @@ public class RankFeatureFunctionLogarithm extends RankFeatureFunction implements
 	/**
 	 * Json deserializer for {@link RankFeatureFunctionLogarithm}
 	 */
-	public static final JsonpDeserializer<RankFeatureFunctionLogarithm> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
-			Builder::new, RankFeatureFunctionLogarithm::setupRankFeatureFunctionLogarithmDeserializer, Builder::build);
+	public static final JsonpDeserializer<RankFeatureFunctionLogarithm> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, RankFeatureFunctionLogarithm::setupRankFeatureFunctionLogarithmDeserializer);
 
 	protected static void setupRankFeatureFunctionLogarithmDeserializer(
-			DelegatingDeserializer<RankFeatureFunctionLogarithm.Builder> op) {
+			ObjectDeserializer<RankFeatureFunctionLogarithm.Builder> op) {
 
 		op.add(Builder::scalingFactor, JsonpDeserializer.floatDeserializer(), "scaling_factor");
 

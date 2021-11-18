@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.cluster.allocation_explain;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -232,9 +231,9 @@ public class AllocationStore implements JsonpSerializable {
 	 * Json deserializer for {@link AllocationStore}
 	 */
 	public static final JsonpDeserializer<AllocationStore> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			AllocationStore::setupAllocationStoreDeserializer, Builder::build);
+			AllocationStore::setupAllocationStoreDeserializer);
 
-	protected static void setupAllocationStoreDeserializer(DelegatingDeserializer<AllocationStore.Builder> op) {
+	protected static void setupAllocationStoreDeserializer(ObjectDeserializer<AllocationStore.Builder> op) {
 
 		op.add(Builder::allocationId, JsonpDeserializer.stringDeserializer(), "allocation_id");
 		op.add(Builder::found, JsonpDeserializer.booleanDeserializer(), "found");

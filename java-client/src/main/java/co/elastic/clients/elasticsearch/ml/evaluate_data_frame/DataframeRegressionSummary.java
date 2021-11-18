@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.ml.evaluate_data_frame;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -233,11 +232,11 @@ public class DataframeRegressionSummary implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link DataframeRegressionSummary}
 	 */
-	public static final JsonpDeserializer<DataframeRegressionSummary> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
-			Builder::new, DataframeRegressionSummary::setupDataframeRegressionSummaryDeserializer, Builder::build);
+	public static final JsonpDeserializer<DataframeRegressionSummary> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, DataframeRegressionSummary::setupDataframeRegressionSummaryDeserializer);
 
 	protected static void setupDataframeRegressionSummaryDeserializer(
-			DelegatingDeserializer<DataframeRegressionSummary.Builder> op) {
+			ObjectDeserializer<DataframeRegressionSummary.Builder> op) {
 
 		op.add(Builder::huber, DataframeEvaluationValue._DESERIALIZER, "huber");
 		op.add(Builder::mse, DataframeEvaluationValue._DESERIALIZER, "mse");

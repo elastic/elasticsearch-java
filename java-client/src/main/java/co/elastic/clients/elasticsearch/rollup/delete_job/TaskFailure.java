@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.rollup.delete_job;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -190,9 +189,9 @@ public class TaskFailure implements JsonpSerializable {
 	 * Json deserializer for {@link TaskFailure}
 	 */
 	public static final JsonpDeserializer<TaskFailure> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			TaskFailure::setupTaskFailureDeserializer, Builder::build);
+			TaskFailure::setupTaskFailureDeserializer);
 
-	protected static void setupTaskFailureDeserializer(DelegatingDeserializer<TaskFailure.Builder> op) {
+	protected static void setupTaskFailureDeserializer(ObjectDeserializer<TaskFailure.Builder> op) {
 
 		op.add(Builder::taskId, JsonpDeserializer.stringDeserializer(), "task_id");
 		op.add(Builder::nodeId, JsonpDeserializer.stringDeserializer(), "node_id");

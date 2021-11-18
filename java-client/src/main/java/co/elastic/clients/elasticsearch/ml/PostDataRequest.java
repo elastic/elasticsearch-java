@@ -228,8 +228,8 @@ public class PostDataRequest<TData> extends RequestBase implements JsonpSerializ
 
 		JsonpDeserializer<List<TData>> valueDeserializer = JsonpDeserializer.arrayDeserializer(tDataDeserializer);
 
-		return JsonpDeserializer.of(valueDeserializer.acceptedEvents(), (parser, mapper, event) -> new Builder<TData>()
-				.data(valueDeserializer.deserialize(parser, mapper, event)).build());
+		return JsonpDeserializer.of(valueDeserializer.acceptedEvents(),
+				(parser, mapper) -> new Builder<TData>().data(valueDeserializer.deserialize(parser, mapper)).build());
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -237,7 +237,7 @@ public class PostDataRequest<TData> extends RequestBase implements JsonpSerializ
 	/**
 	 * Endpoint "{@code ml.post_data}".
 	 */
-	public static final Endpoint<PostDataRequest<?>, PostDataResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<PostDataRequest<?>, PostDataResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";

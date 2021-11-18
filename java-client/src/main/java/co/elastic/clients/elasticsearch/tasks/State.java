@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.tasks;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -386,9 +385,9 @@ public class State implements JsonpSerializable {
 	 * Json deserializer for {@link State}
 	 */
 	public static final JsonpDeserializer<State> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			State::setupStateDeserializer, Builder::build);
+			State::setupStateDeserializer);
 
-	protected static void setupStateDeserializer(DelegatingDeserializer<State.Builder> op) {
+	protected static void setupStateDeserializer(ObjectDeserializer<State.Builder> op) {
 
 		op.add(Builder::action, JsonpDeserializer.stringDeserializer(), "action");
 		op.add(Builder::cancellable, JsonpDeserializer.booleanDeserializer(), "cancellable");

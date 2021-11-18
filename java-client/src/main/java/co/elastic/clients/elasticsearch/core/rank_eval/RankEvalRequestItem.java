@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.core.rank_eval;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -291,9 +290,9 @@ public class RankEvalRequestItem implements JsonpSerializable {
 	 * Json deserializer for {@link RankEvalRequestItem}
 	 */
 	public static final JsonpDeserializer<RankEvalRequestItem> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, RankEvalRequestItem::setupRankEvalRequestItemDeserializer, Builder::build);
+			.lazy(Builder::new, RankEvalRequestItem::setupRankEvalRequestItemDeserializer);
 
-	protected static void setupRankEvalRequestItemDeserializer(DelegatingDeserializer<RankEvalRequestItem.Builder> op) {
+	protected static void setupRankEvalRequestItemDeserializer(ObjectDeserializer<RankEvalRequestItem.Builder> op) {
 
 		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "id");
 		op.add(Builder::request, RankEvalQuery._DESERIALIZER, "request");

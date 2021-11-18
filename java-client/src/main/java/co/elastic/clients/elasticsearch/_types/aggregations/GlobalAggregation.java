@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -87,9 +86,9 @@ public class GlobalAggregation extends BucketAggregationBase implements Aggregat
 	 * Json deserializer for {@link GlobalAggregation}
 	 */
 	public static final JsonpDeserializer<GlobalAggregation> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, GlobalAggregation::setupGlobalAggregationDeserializer, Builder::build);
+			.lazy(Builder::new, GlobalAggregation::setupGlobalAggregationDeserializer);
 
-	protected static void setupGlobalAggregationDeserializer(DelegatingDeserializer<GlobalAggregation.Builder> op) {
+	protected static void setupGlobalAggregationDeserializer(ObjectDeserializer<GlobalAggregation.Builder> op) {
 		BucketAggregationBase.setupBucketAggregationBaseDeserializer(op);
 
 	}

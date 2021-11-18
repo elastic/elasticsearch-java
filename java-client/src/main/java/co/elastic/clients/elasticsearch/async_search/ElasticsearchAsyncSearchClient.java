@@ -25,6 +25,9 @@ package co.elastic.clients.elasticsearch.async_search;
 
 import co.elastic.clients.ApiClient;
 import co.elastic.clients.elasticsearch._types.ElasticsearchException;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.EndpointWithResponseMapperAttr;
 import co.elastic.clients.transport.Transport;
 import co.elastic.clients.transport.TransportOptions;
 import co.elastic.clients.util.ObjectBuilder;
@@ -63,7 +66,10 @@ public class ElasticsearchAsyncSearchClient extends ApiClient<ElasticsearchAsync
 
 	public DeleteAsyncSearchResponse delete(DeleteAsyncSearchRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, DeleteAsyncSearchRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<DeleteAsyncSearchRequest, DeleteAsyncSearchResponse, ErrorResponse> endpoint = (Endpoint<DeleteAsyncSearchRequest, DeleteAsyncSearchResponse, ErrorResponse>) DeleteAsyncSearchRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -97,8 +103,12 @@ public class ElasticsearchAsyncSearchClient extends ApiClient<ElasticsearchAsync
 
 	public <TDocument> GetAsyncSearchResponse<TDocument> get(GetAsyncSearchRequest request,
 			Class<TDocument> tDocumentClass) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request,
-				GetAsyncSearchRequest.createGetEndpoint(getDeserializer(tDocumentClass)), this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<GetAsyncSearchRequest, GetAsyncSearchResponse<TDocument>, ErrorResponse> endpoint = (Endpoint<GetAsyncSearchRequest, GetAsyncSearchResponse<TDocument>, ErrorResponse>) GetAsyncSearchRequest._ENDPOINT;
+		endpoint = new EndpointWithResponseMapperAttr<>(endpoint,
+				"co.elastic.clients:Deserializer:async_search.get.TDocument", getDeserializer(tDocumentClass));
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -132,8 +142,12 @@ public class ElasticsearchAsyncSearchClient extends ApiClient<ElasticsearchAsync
 
 	public <TDocument> StatusResponse<TDocument> status(StatusRequest request, Class<TDocument> tDocumentClass)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request,
-				StatusRequest.createStatusEndpoint(getDeserializer(tDocumentClass)), this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<StatusRequest, StatusResponse<TDocument>, ErrorResponse> endpoint = (Endpoint<StatusRequest, StatusResponse<TDocument>, ErrorResponse>) StatusRequest._ENDPOINT;
+		endpoint = new EndpointWithResponseMapperAttr<>(endpoint,
+				"co.elastic.clients:Deserializer:async_search.status.TDocument", getDeserializer(tDocumentClass));
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -166,8 +180,12 @@ public class ElasticsearchAsyncSearchClient extends ApiClient<ElasticsearchAsync
 
 	public <TDocument> SubmitResponse<TDocument> submit(SubmitRequest request, Class<TDocument> tDocumentClass)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request,
-				SubmitRequest.createSubmitEndpoint(getDeserializer(tDocumentClass)), this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<SubmitRequest, SubmitResponse<TDocument>, ErrorResponse> endpoint = (Endpoint<SubmitRequest, SubmitResponse<TDocument>, ErrorResponse>) SubmitRequest._ENDPOINT;
+		endpoint = new EndpointWithResponseMapperAttr<>(endpoint,
+				"co.elastic.clients:Deserializer:async_search.submit.TDocument", getDeserializer(tDocumentClass));
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**

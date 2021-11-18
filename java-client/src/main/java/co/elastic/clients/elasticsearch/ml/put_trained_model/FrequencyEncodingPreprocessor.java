@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.ml.put_trained_model;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -178,12 +177,11 @@ public class FrequencyEncodingPreprocessor implements PreprocessorVariant, Jsonp
 	/**
 	 * Json deserializer for {@link FrequencyEncodingPreprocessor}
 	 */
-	public static final JsonpDeserializer<FrequencyEncodingPreprocessor> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
-			Builder::new, FrequencyEncodingPreprocessor::setupFrequencyEncodingPreprocessorDeserializer,
-			Builder::build);
+	public static final JsonpDeserializer<FrequencyEncodingPreprocessor> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, FrequencyEncodingPreprocessor::setupFrequencyEncodingPreprocessorDeserializer);
 
 	protected static void setupFrequencyEncodingPreprocessorDeserializer(
-			DelegatingDeserializer<FrequencyEncodingPreprocessor.Builder> op) {
+			ObjectDeserializer<FrequencyEncodingPreprocessor.Builder> op) {
 
 		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
 		op.add(Builder::featureName, JsonpDeserializer.stringDeserializer(), "feature_name");

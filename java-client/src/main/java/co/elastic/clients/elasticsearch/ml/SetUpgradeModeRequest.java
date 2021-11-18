@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -35,7 +36,6 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
-import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -49,7 +49,7 @@ public class SetUpgradeModeRequest extends RequestBase {
 	private final Boolean enabled;
 
 	@Nullable
-	private final String timeout;
+	private final Time timeout;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -82,7 +82,7 @@ public class SetUpgradeModeRequest extends RequestBase {
 	 * API name: {@code timeout}
 	 */
 	@Nullable
-	public final String timeout() {
+	public final Time timeout() {
 		return this.timeout;
 	}
 
@@ -96,7 +96,7 @@ public class SetUpgradeModeRequest extends RequestBase {
 		private Boolean enabled;
 
 		@Nullable
-		private String timeout;
+		private Time timeout;
 
 		/**
 		 * When <code>true</code>, it enables <code>upgrade_mode</code> which
@@ -115,9 +115,18 @@ public class SetUpgradeModeRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code timeout}
 		 */
-		public final Builder timeout(@Nullable String value) {
+		public final Builder timeout(@Nullable Time value) {
 			this.timeout = value;
 			return this;
+		}
+
+		/**
+		 * The time to wait for the request to be completed.
+		 * <p>
+		 * API name: {@code timeout}
+		 */
+		public final Builder timeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.timeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -138,7 +147,7 @@ public class SetUpgradeModeRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code ml.set_upgrade_mode}".
 	 */
-	public static final Endpoint<SetUpgradeModeRequest, SetUpgradeModeResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<SetUpgradeModeRequest, SetUpgradeModeResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";
@@ -158,7 +167,7 @@ public class SetUpgradeModeRequest extends RequestBase {
 					params.put("enabled", String.valueOf(request.enabled));
 				}
 				if (request.timeout != null) {
-					params.put("timeout", request.timeout);
+					params.put("timeout", request.timeout._toJsonString());
 				}
 				return params;
 

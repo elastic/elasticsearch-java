@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.cluster.stats;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -221,9 +220,9 @@ public class ClusterJvm implements JsonpSerializable {
 	 * Json deserializer for {@link ClusterJvm}
 	 */
 	public static final JsonpDeserializer<ClusterJvm> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			ClusterJvm::setupClusterJvmDeserializer, Builder::build);
+			ClusterJvm::setupClusterJvmDeserializer);
 
-	protected static void setupClusterJvmDeserializer(DelegatingDeserializer<ClusterJvm.Builder> op) {
+	protected static void setupClusterJvmDeserializer(ObjectDeserializer<ClusterJvm.Builder> op) {
 
 		op.add(Builder::maxUptimeInMillis, JsonpDeserializer.longDeserializer(), "max_uptime_in_millis");
 		op.add(Builder::mem, ClusterJvmMemory._DESERIALIZER, "mem");

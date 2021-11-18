@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.cluster.remote_info;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -41,13 +40,12 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cluster.remote_info.ClusterRemoteInfo
+// union type: InternalTag[tag=mode]
 @JsonpDeserializable
 public class ClusterRemoteInfo implements TaggedUnion<ClusterRemoteInfoVariant>, JsonpSerializable {
 
 	public static final String PROXY = "proxy";
 	public static final String SNIFF = "sniff";
-
-	// Tagged union implementation
 
 	private final String _type;
 	private final ClusterRemoteInfoVariant _value;
@@ -138,7 +136,7 @@ public class ClusterRemoteInfo implements TaggedUnion<ClusterRemoteInfoVariant>,
 
 	}
 
-	protected static void setupClusterRemoteInfoDeserializer(DelegatingDeserializer<Builder> op) {
+	protected static void setupClusterRemoteInfoDeserializer(ObjectDeserializer<Builder> op) {
 
 		op.add(Builder::proxy, ClusterRemoteProxyInfo._DESERIALIZER, "proxy");
 		op.add(Builder::sniff, ClusterRemoteSniffInfo._DESERIALIZER, "sniff");

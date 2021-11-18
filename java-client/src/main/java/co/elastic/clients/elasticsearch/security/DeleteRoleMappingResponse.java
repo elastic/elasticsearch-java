@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.security;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -113,10 +112,10 @@ public class DeleteRoleMappingResponse implements JsonpSerializable {
 	 * Json deserializer for {@link DeleteRoleMappingResponse}
 	 */
 	public static final JsonpDeserializer<DeleteRoleMappingResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, DeleteRoleMappingResponse::setupDeleteRoleMappingResponseDeserializer, Builder::build);
+			.lazy(Builder::new, DeleteRoleMappingResponse::setupDeleteRoleMappingResponseDeserializer);
 
 	protected static void setupDeleteRoleMappingResponseDeserializer(
-			DelegatingDeserializer<DeleteRoleMappingResponse.Builder> op) {
+			ObjectDeserializer<DeleteRoleMappingResponse.Builder> op) {
 
 		op.add(Builder::found, JsonpDeserializer.booleanDeserializer(), "found");
 

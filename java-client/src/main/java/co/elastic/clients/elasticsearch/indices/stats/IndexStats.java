@@ -40,7 +40,6 @@ import co.elastic.clients.elasticsearch._types.SegmentsStats;
 import co.elastic.clients.elasticsearch._types.StoreStats;
 import co.elastic.clients.elasticsearch._types.TranslogStats;
 import co.elastic.clients.elasticsearch._types.WarmerStats;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -845,9 +844,9 @@ public class IndexStats implements JsonpSerializable {
 	 * Json deserializer for {@link IndexStats}
 	 */
 	public static final JsonpDeserializer<IndexStats> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			IndexStats::setupIndexStatsDeserializer, Builder::build);
+			IndexStats::setupIndexStatsDeserializer);
 
-	protected static void setupIndexStatsDeserializer(DelegatingDeserializer<IndexStats.Builder> op) {
+	protected static void setupIndexStatsDeserializer(ObjectDeserializer<IndexStats.Builder> op) {
 
 		op.add(Builder::completion, CompletionStats._DESERIALIZER, "completion");
 		op.add(Builder::docs, DocStats._DESERIALIZER, "docs");

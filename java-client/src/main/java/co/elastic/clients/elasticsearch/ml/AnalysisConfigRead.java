@@ -23,7 +23,7 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -61,10 +61,10 @@ public class AnalysisConfigRead implements JsonpSerializable {
 	private final List<String> influencers;
 
 	@Nullable
-	private final String modelPruneWindow;
+	private final Time modelPruneWindow;
 
 	@Nullable
-	private final String latency;
+	private final Time latency;
 
 	@Nullable
 	private final Boolean multivariateByFields;
@@ -200,7 +200,7 @@ public class AnalysisConfigRead implements JsonpSerializable {
 	 * API name: {@code model_prune_window}
 	 */
 	@Nullable
-	public final String modelPruneWindow() {
+	public final Time modelPruneWindow() {
 		return this.modelPruneWindow;
 	}
 
@@ -213,7 +213,7 @@ public class AnalysisConfigRead implements JsonpSerializable {
 	 * API name: {@code latency}
 	 */
 	@Nullable
-	public final String latency() {
+	public final Time latency() {
 		return this.latency;
 	}
 
@@ -319,12 +319,12 @@ public class AnalysisConfigRead implements JsonpSerializable {
 		}
 		if (this.modelPruneWindow != null) {
 			generator.writeKey("model_prune_window");
-			generator.write(this.modelPruneWindow);
+			this.modelPruneWindow.serialize(generator, mapper);
 
 		}
 		if (this.latency != null) {
 			generator.writeKey("latency");
-			generator.write(this.latency);
+			this.latency.serialize(generator, mapper);
 
 		}
 		if (this.multivariateByFields != null) {
@@ -367,10 +367,10 @@ public class AnalysisConfigRead implements JsonpSerializable {
 		private List<String> influencers;
 
 		@Nullable
-		private String modelPruneWindow;
+		private Time modelPruneWindow;
 
 		@Nullable
-		private String latency;
+		private Time latency;
 
 		@Nullable
 		private Boolean multivariateByFields;
@@ -571,8 +571,35 @@ public class AnalysisConfigRead implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code model_prune_window}
 		 */
-		public final Builder modelPruneWindow(@Nullable String value) {
+		public final Builder modelPruneWindow(@Nullable Time value) {
 			this.modelPruneWindow = value;
+			return this;
+		}
+
+		/**
+		 * Advanced configuration option. Affects the pruning of models that have not
+		 * been updated for the given time duration. The value must be set to a multiple
+		 * of the <code>bucket_span</code>. If set too low, important information may be
+		 * removed from the model. Typically, set to <code>30d</code> or longer. If not
+		 * set, model pruning only occurs if the model memory status reaches the soft
+		 * limit or the hard limit.
+		 * <p>
+		 * API name: {@code model_prune_window}
+		 */
+		public final Builder modelPruneWindow(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.modelPruneWindow(fn.apply(new Time.Builder()).build());
+		}
+
+		/**
+		 * The size of the window in which to expect data that is out of time order. If
+		 * you specify a non-zero value, it must be greater than or equal to one second.
+		 * NOTE: Latency is only applicable when you send data by using the post data
+		 * API.
+		 * <p>
+		 * API name: {@code latency}
+		 */
+		public final Builder latency(@Nullable Time value) {
+			this.latency = value;
 			return this;
 		}
 
@@ -584,9 +611,8 @@ public class AnalysisConfigRead implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code latency}
 		 */
-		public final Builder latency(@Nullable String value) {
-			this.latency = value;
-			return this;
+		public final Builder latency(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.latency(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -664,9 +690,9 @@ public class AnalysisConfigRead implements JsonpSerializable {
 	 * Json deserializer for {@link AnalysisConfigRead}
 	 */
 	public static final JsonpDeserializer<AnalysisConfigRead> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, AnalysisConfigRead::setupAnalysisConfigReadDeserializer, Builder::build);
+			.lazy(Builder::new, AnalysisConfigRead::setupAnalysisConfigReadDeserializer);
 
-	protected static void setupAnalysisConfigReadDeserializer(DelegatingDeserializer<AnalysisConfigRead.Builder> op) {
+	protected static void setupAnalysisConfigReadDeserializer(ObjectDeserializer<AnalysisConfigRead.Builder> op) {
 
 		op.add(Builder::bucketSpan, JsonpDeserializer.stringDeserializer(), "bucket_span");
 		op.add(Builder::categorizationAnalyzer, CategorizationAnalyzer._DESERIALIZER, "categorization_analyzer");
@@ -676,8 +702,8 @@ public class AnalysisConfigRead implements JsonpSerializable {
 		op.add(Builder::detectors, JsonpDeserializer.arrayDeserializer(Detector._DESERIALIZER), "detectors");
 		op.add(Builder::influencers, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"influencers");
-		op.add(Builder::modelPruneWindow, JsonpDeserializer.stringDeserializer(), "model_prune_window");
-		op.add(Builder::latency, JsonpDeserializer.stringDeserializer(), "latency");
+		op.add(Builder::modelPruneWindow, Time._DESERIALIZER, "model_prune_window");
+		op.add(Builder::latency, Time._DESERIALIZER, "latency");
 		op.add(Builder::multivariateByFields, JsonpDeserializer.booleanDeserializer(), "multivariate_by_fields");
 		op.add(Builder::perPartitionCategorization, PerPartitionCategorization._DESERIALIZER,
 				"per_partition_categorization");

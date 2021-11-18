@@ -24,7 +24,7 @@
 package co.elastic.clients.elasticsearch.snapshot;
 
 import co.elastic.clients.elasticsearch._types.ShardStatistics;
-import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -55,13 +55,13 @@ public class SnapshotInfo implements JsonpSerializable {
 	private final List<String> dataStreams;
 
 	@Nullable
-	private final String duration;
+	private final Time duration;
 
 	@Nullable
 	private final String durationInMillis;
 
 	@Nullable
-	private final String endTime;
+	private final Time endTime;
 
 	@Nullable
 	private final String endTimeInMillis;
@@ -89,7 +89,7 @@ public class SnapshotInfo implements JsonpSerializable {
 	private final ShardStatistics shards;
 
 	@Nullable
-	private final String startTime;
+	private final Time startTime;
 
 	@Nullable
 	private final String startTimeInMillis;
@@ -150,7 +150,7 @@ public class SnapshotInfo implements JsonpSerializable {
 	 * API name: {@code duration}
 	 */
 	@Nullable
-	public final String duration() {
+	public final Time duration() {
 		return this.duration;
 	}
 
@@ -166,7 +166,7 @@ public class SnapshotInfo implements JsonpSerializable {
 	 * API name: {@code end_time}
 	 */
 	@Nullable
-	public final String endTime() {
+	public final Time endTime() {
 		return this.endTime;
 	}
 
@@ -249,7 +249,7 @@ public class SnapshotInfo implements JsonpSerializable {
 	 * API name: {@code start_time}
 	 */
 	@Nullable
-	public final String startTime() {
+	public final Time startTime() {
 		return this.startTime;
 	}
 
@@ -322,7 +322,7 @@ public class SnapshotInfo implements JsonpSerializable {
 		}
 		if (this.duration != null) {
 			generator.writeKey("duration");
-			generator.write(this.duration);
+			this.duration.serialize(generator, mapper);
 
 		}
 		if (this.durationInMillis != null) {
@@ -332,7 +332,7 @@ public class SnapshotInfo implements JsonpSerializable {
 		}
 		if (this.endTime != null) {
 			generator.writeKey("end_time");
-			generator.write(this.endTime);
+			this.endTime.serialize(generator, mapper);
 
 		}
 		if (this.endTimeInMillis != null) {
@@ -407,7 +407,7 @@ public class SnapshotInfo implements JsonpSerializable {
 		}
 		if (this.startTime != null) {
 			generator.writeKey("start_time");
-			generator.write(this.startTime);
+			this.startTime.serialize(generator, mapper);
 
 		}
 		if (this.startTimeInMillis != null) {
@@ -455,13 +455,13 @@ public class SnapshotInfo implements JsonpSerializable {
 		private List<String> dataStreams;
 
 		@Nullable
-		private String duration;
+		private Time duration;
 
 		@Nullable
 		private String durationInMillis;
 
 		@Nullable
-		private String endTime;
+		private Time endTime;
 
 		@Nullable
 		private String endTimeInMillis;
@@ -492,7 +492,7 @@ public class SnapshotInfo implements JsonpSerializable {
 		private ShardStatistics shards;
 
 		@Nullable
-		private String startTime;
+		private Time startTime;
 
 		@Nullable
 		private String startTimeInMillis;
@@ -530,9 +530,16 @@ public class SnapshotInfo implements JsonpSerializable {
 		/**
 		 * API name: {@code duration}
 		 */
-		public final Builder duration(@Nullable String value) {
+		public final Builder duration(@Nullable Time value) {
 			this.duration = value;
 			return this;
+		}
+
+		/**
+		 * API name: {@code duration}
+		 */
+		public final Builder duration(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.duration(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -546,9 +553,16 @@ public class SnapshotInfo implements JsonpSerializable {
 		/**
 		 * API name: {@code end_time}
 		 */
-		public final Builder endTime(@Nullable String value) {
+		public final Builder endTime(@Nullable Time value) {
 			this.endTime = value;
 			return this;
+		}
+
+		/**
+		 * API name: {@code end_time}
+		 */
+		public final Builder endTime(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.endTime(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -682,9 +696,16 @@ public class SnapshotInfo implements JsonpSerializable {
 		/**
 		 * API name: {@code start_time}
 		 */
-		public final Builder startTime(@Nullable String value) {
+		public final Builder startTime(@Nullable Time value) {
 			this.startTime = value;
 			return this;
+		}
+
+		/**
+		 * API name: {@code start_time}
+		 */
+		public final Builder startTime(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.startTime(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -774,15 +795,15 @@ public class SnapshotInfo implements JsonpSerializable {
 	 * Json deserializer for {@link SnapshotInfo}
 	 */
 	public static final JsonpDeserializer<SnapshotInfo> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			SnapshotInfo::setupSnapshotInfoDeserializer, Builder::build);
+			SnapshotInfo::setupSnapshotInfoDeserializer);
 
-	protected static void setupSnapshotInfoDeserializer(DelegatingDeserializer<SnapshotInfo.Builder> op) {
+	protected static void setupSnapshotInfoDeserializer(ObjectDeserializer<SnapshotInfo.Builder> op) {
 
 		op.add(Builder::dataStreams, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"data_streams");
-		op.add(Builder::duration, JsonpDeserializer.stringDeserializer(), "duration");
+		op.add(Builder::duration, Time._DESERIALIZER, "duration");
 		op.add(Builder::durationInMillis, JsonpDeserializer.stringDeserializer(), "duration_in_millis");
-		op.add(Builder::endTime, JsonpDeserializer.stringDeserializer(), "end_time");
+		op.add(Builder::endTime, Time._DESERIALIZER, "end_time");
 		op.add(Builder::endTimeInMillis, JsonpDeserializer.stringDeserializer(), "end_time_in_millis");
 		op.add(Builder::failures, JsonpDeserializer.arrayDeserializer(SnapshotShardFailure._DESERIALIZER), "failures");
 		op.add(Builder::includeGlobalState, JsonpDeserializer.booleanDeserializer(), "include_global_state");
@@ -795,7 +816,7 @@ public class SnapshotInfo implements JsonpSerializable {
 		op.add(Builder::repository, JsonpDeserializer.stringDeserializer(), "repository");
 		op.add(Builder::snapshot, JsonpDeserializer.stringDeserializer(), "snapshot");
 		op.add(Builder::shards, ShardStatistics._DESERIALIZER, "shards");
-		op.add(Builder::startTime, JsonpDeserializer.stringDeserializer(), "start_time");
+		op.add(Builder::startTime, Time._DESERIALIZER, "start_time");
 		op.add(Builder::startTimeInMillis, JsonpDeserializer.stringDeserializer(), "start_time_in_millis");
 		op.add(Builder::state, JsonpDeserializer.stringDeserializer(), "state");
 		op.add(Builder::uuid, JsonpDeserializer.stringDeserializer(), "uuid");

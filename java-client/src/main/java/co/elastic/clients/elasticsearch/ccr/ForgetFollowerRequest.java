@@ -25,7 +25,6 @@ package co.elastic.clients.elasticsearch.ccr;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -235,10 +234,9 @@ public class ForgetFollowerRequest extends RequestBase implements JsonpSerializa
 	 * Json deserializer for {@link ForgetFollowerRequest}
 	 */
 	public static final JsonpDeserializer<ForgetFollowerRequest> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, ForgetFollowerRequest::setupForgetFollowerRequestDeserializer, Builder::build);
+			.lazy(Builder::new, ForgetFollowerRequest::setupForgetFollowerRequestDeserializer);
 
-	protected static void setupForgetFollowerRequestDeserializer(
-			DelegatingDeserializer<ForgetFollowerRequest.Builder> op) {
+	protected static void setupForgetFollowerRequestDeserializer(ObjectDeserializer<ForgetFollowerRequest.Builder> op) {
 
 		op.add(Builder::followerCluster, JsonpDeserializer.stringDeserializer(), "follower_cluster");
 		op.add(Builder::followerIndex, JsonpDeserializer.stringDeserializer(), "follower_index");
@@ -252,7 +250,7 @@ public class ForgetFollowerRequest extends RequestBase implements JsonpSerializa
 	/**
 	 * Endpoint "{@code ccr.forget_follower}".
 	 */
-	public static final Endpoint<ForgetFollowerRequest, ForgetFollowerResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<ForgetFollowerRequest, ForgetFollowerResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";

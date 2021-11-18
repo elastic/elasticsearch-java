@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.analysis;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -41,7 +40,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.analysis.KeepTypesTokenFilter
 @JsonpDeserializable
-public class KeepTypesTokenFilter extends TokenFilterBase implements TokenFilterVariant {
+public class KeepTypesTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
 	@Nullable
 	private final KeepTypesMode mode;
 
@@ -62,7 +61,7 @@ public class KeepTypesTokenFilter extends TokenFilterBase implements TokenFilter
 	}
 
 	/**
-	 * {@link TokenFilter} variant type
+	 * {@link TokenFilterDefinition} variant type
 	 */
 	@Override
 	public String _variantType() {
@@ -167,10 +166,9 @@ public class KeepTypesTokenFilter extends TokenFilterBase implements TokenFilter
 	 * Json deserializer for {@link KeepTypesTokenFilter}
 	 */
 	public static final JsonpDeserializer<KeepTypesTokenFilter> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, KeepTypesTokenFilter::setupKeepTypesTokenFilterDeserializer, Builder::build);
+			.lazy(Builder::new, KeepTypesTokenFilter::setupKeepTypesTokenFilterDeserializer);
 
-	protected static void setupKeepTypesTokenFilterDeserializer(
-			DelegatingDeserializer<KeepTypesTokenFilter.Builder> op) {
+	protected static void setupKeepTypesTokenFilterDeserializer(ObjectDeserializer<KeepTypesTokenFilter.Builder> op) {
 		TokenFilterBase.setupTokenFilterBaseDeserializer(op);
 		op.add(Builder::mode, KeepTypesMode._DESERIALIZER, "mode");
 		op.add(Builder::types, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "types");

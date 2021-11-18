@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.analysis;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -40,7 +39,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.analysis.PatternTokenizer
 @JsonpDeserializable
-public class PatternTokenizer extends TokenizerBase implements TokenizerVariant {
+public class PatternTokenizer extends TokenizerBase implements TokenizerDefinitionVariant {
 	private final String flags;
 
 	private final int group;
@@ -63,7 +62,7 @@ public class PatternTokenizer extends TokenizerBase implements TokenizerVariant 
 	}
 
 	/**
-	 * {@link Tokenizer} variant type
+	 * {@link TokenizerDefinition} variant type
 	 */
 	@Override
 	public String _variantType() {
@@ -168,9 +167,9 @@ public class PatternTokenizer extends TokenizerBase implements TokenizerVariant 
 	 * Json deserializer for {@link PatternTokenizer}
 	 */
 	public static final JsonpDeserializer<PatternTokenizer> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			PatternTokenizer::setupPatternTokenizerDeserializer, Builder::build);
+			PatternTokenizer::setupPatternTokenizerDeserializer);
 
-	protected static void setupPatternTokenizerDeserializer(DelegatingDeserializer<PatternTokenizer.Builder> op) {
+	protected static void setupPatternTokenizerDeserializer(ObjectDeserializer<PatternTokenizer.Builder> op) {
 		TokenizerBase.setupTokenizerBaseDeserializer(op);
 		op.add(Builder::flags, JsonpDeserializer.stringDeserializer(), "flags");
 		op.add(Builder::group, JsonpDeserializer.integerDeserializer(), "group");

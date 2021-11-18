@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.mapping;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -257,9 +256,9 @@ public class SourceField implements JsonpSerializable {
 	 * Json deserializer for {@link SourceField}
 	 */
 	public static final JsonpDeserializer<SourceField> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			SourceField::setupSourceFieldDeserializer, Builder::build);
+			SourceField::setupSourceFieldDeserializer);
 
-	protected static void setupSourceFieldDeserializer(DelegatingDeserializer<SourceField.Builder> op) {
+	protected static void setupSourceFieldDeserializer(ObjectDeserializer<SourceField.Builder> op) {
 
 		op.add(Builder::compress, JsonpDeserializer.booleanDeserializer(), "compress");
 		op.add(Builder::compressThreshold, JsonpDeserializer.stringDeserializer(), "compress_threshold");

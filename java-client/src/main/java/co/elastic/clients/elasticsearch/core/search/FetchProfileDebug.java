@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.core.search;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -162,9 +161,9 @@ public class FetchProfileDebug implements JsonpSerializable {
 	 * Json deserializer for {@link FetchProfileDebug}
 	 */
 	public static final JsonpDeserializer<FetchProfileDebug> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, FetchProfileDebug::setupFetchProfileDebugDeserializer, Builder::build);
+			.lazy(Builder::new, FetchProfileDebug::setupFetchProfileDebugDeserializer);
 
-	protected static void setupFetchProfileDebugDeserializer(DelegatingDeserializer<FetchProfileDebug.Builder> op) {
+	protected static void setupFetchProfileDebugDeserializer(ObjectDeserializer<FetchProfileDebug.Builder> op) {
 
 		op.add(Builder::storedFields, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"stored_fields");

@@ -25,7 +25,6 @@ package co.elastic.clients.elasticsearch.ccr;
 
 import co.elastic.clients.elasticsearch.ccr.stats.AutoFollowStats;
 import co.elastic.clients.elasticsearch.ccr.stats.FollowStats;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -152,9 +151,9 @@ public class CcrStatsResponse implements JsonpSerializable {
 	 * Json deserializer for {@link CcrStatsResponse}
 	 */
 	public static final JsonpDeserializer<CcrStatsResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			CcrStatsResponse::setupCcrStatsResponseDeserializer, Builder::build);
+			CcrStatsResponse::setupCcrStatsResponseDeserializer);
 
-	protected static void setupCcrStatsResponseDeserializer(DelegatingDeserializer<CcrStatsResponse.Builder> op) {
+	protected static void setupCcrStatsResponseDeserializer(ObjectDeserializer<CcrStatsResponse.Builder> op) {
 
 		op.add(Builder::autoFollowStats, AutoFollowStats._DESERIALIZER, "auto_follow_stats");
 		op.add(Builder::followStats, FollowStats._DESERIALIZER, "follow_stats");

@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.indices.get_data_stream;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -118,11 +117,10 @@ public class IndicesGetDataStreamItemTimestampField implements JsonpSerializable
 	 */
 	public static final JsonpDeserializer<IndicesGetDataStreamItemTimestampField> _DESERIALIZER = ObjectBuilderDeserializer
 			.lazy(Builder::new,
-					IndicesGetDataStreamItemTimestampField::setupIndicesGetDataStreamItemTimestampFieldDeserializer,
-					Builder::build);
+					IndicesGetDataStreamItemTimestampField::setupIndicesGetDataStreamItemTimestampFieldDeserializer);
 
 	protected static void setupIndicesGetDataStreamItemTimestampFieldDeserializer(
-			DelegatingDeserializer<IndicesGetDataStreamItemTimestampField.Builder> op) {
+			ObjectDeserializer<IndicesGetDataStreamItemTimestampField.Builder> op) {
 
 		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
 

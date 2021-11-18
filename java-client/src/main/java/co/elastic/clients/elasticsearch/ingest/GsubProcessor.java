@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.ingest;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -222,9 +221,9 @@ public class GsubProcessor extends ProcessorBase implements ProcessorVariant {
 	 * Json deserializer for {@link GsubProcessor}
 	 */
 	public static final JsonpDeserializer<GsubProcessor> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			GsubProcessor::setupGsubProcessorDeserializer, Builder::build);
+			GsubProcessor::setupGsubProcessorDeserializer);
 
-	protected static void setupGsubProcessorDeserializer(DelegatingDeserializer<GsubProcessor.Builder> op) {
+	protected static void setupGsubProcessorDeserializer(ObjectDeserializer<GsubProcessor.Builder> op) {
 		ProcessorBase.setupProcessorBaseDeserializer(op);
 		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
 		op.add(Builder::ignoreMissing, JsonpDeserializer.booleanDeserializer(), "ignore_missing");

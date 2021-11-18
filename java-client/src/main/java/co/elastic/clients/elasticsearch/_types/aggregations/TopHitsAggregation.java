@@ -25,7 +25,8 @@ package co.elastic.clients.elasticsearch._types.aggregations;
 
 import co.elastic.clients.elasticsearch._types.ScriptField;
 import co.elastic.clients.elasticsearch.core.search.Highlight;
-import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.elasticsearch.core.search.SortOptions;
+import co.elastic.clients.elasticsearch.core.search.SourceConfig;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -34,11 +35,11 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.MapBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -66,12 +67,10 @@ public class TopHitsAggregation extends MetricAggregationBase implements Aggrega
 	@Nullable
 	private final Integer size;
 
-	private final List<JsonValue /* _global.search._types.SortCombinations */> sort;
+	private final List<SortOptions> sort;
 
 	@Nullable
-	private final JsonValue /*
-							 * Union(_global.search._types.SourceFilter | _types.Fields | internal.boolean)
-							 */ source;
+	private final SourceConfig source;
 
 	private final List<String> storedFields;
 
@@ -165,7 +164,7 @@ public class TopHitsAggregation extends MetricAggregationBase implements Aggrega
 	/**
 	 * API name: {@code sort}
 	 */
-	public final List<JsonValue /* _global.search._types.SortCombinations */> sort() {
+	public final List<SortOptions> sort() {
 		return this.sort;
 	}
 
@@ -173,9 +172,7 @@ public class TopHitsAggregation extends MetricAggregationBase implements Aggrega
 	 * API name: {@code _source}
 	 */
 	@Nullable
-	public final JsonValue /*
-							 * Union(_global.search._types.SourceFilter | _types.Fields | internal.boolean)
-							 */ source() {
+	public final SourceConfig source() {
 		return this.source;
 	}
 
@@ -257,8 +254,8 @@ public class TopHitsAggregation extends MetricAggregationBase implements Aggrega
 		if (ModelTypeHelper.isDefined(this.sort)) {
 			generator.writeKey("sort");
 			generator.writeStartArray();
-			for (JsonValue /* _global.search._types.SortCombinations */ item0 : this.sort) {
-				generator.write(item0);
+			for (SortOptions item0 : this.sort) {
+				item0.serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -266,7 +263,7 @@ public class TopHitsAggregation extends MetricAggregationBase implements Aggrega
 		}
 		if (this.source != null) {
 			generator.writeKey("_source");
-			generator.write(this.source);
+			this.source.serialize(generator, mapper);
 
 		}
 		if (ModelTypeHelper.isDefined(this.storedFields)) {
@@ -324,12 +321,10 @@ public class TopHitsAggregation extends MetricAggregationBase implements Aggrega
 		private Integer size;
 
 		@Nullable
-		private List<JsonValue /* _global.search._types.SortCombinations */> sort;
+		private List<SortOptions> sort;
 
 		@Nullable
-		private JsonValue /*
-							 * Union(_global.search._types.SourceFilter | _types.Fields | internal.boolean)
-							 */ source;
+		private SourceConfig source;
 
 		@Nullable
 		private List<String> storedFields;
@@ -421,7 +416,7 @@ public class TopHitsAggregation extends MetricAggregationBase implements Aggrega
 		/**
 		 * API name: {@code sort}
 		 */
-		public final Builder sort(@Nullable List<JsonValue /* _global.search._types.SortCombinations */> value) {
+		public final Builder sort(@Nullable List<SortOptions> value) {
 			this.sort = value;
 			return this;
 		}
@@ -429,20 +424,36 @@ public class TopHitsAggregation extends MetricAggregationBase implements Aggrega
 		/**
 		 * API name: {@code sort}
 		 */
-		public final Builder sort(JsonValue /* _global.search._types.SortCombinations */... value) {
+		public final Builder sort(SortOptions... value) {
 			this.sort = Arrays.asList(value);
+			return this;
+		}
+
+		/**
+		 * API name: {@code sort}
+		 */
+		@SafeVarargs
+		public final Builder sort(Function<SortOptions.Builder, ObjectBuilder<SortOptions>>... fns) {
+			this.sort = new ArrayList<>(fns.length);
+			for (Function<SortOptions.Builder, ObjectBuilder<SortOptions>> fn : fns) {
+				this.sort.add(fn.apply(new SortOptions.Builder()).build());
+			}
 			return this;
 		}
 
 		/**
 		 * API name: {@code _source}
 		 */
-		public final Builder source(
-				@Nullable JsonValue /*
-									 * Union(_global.search._types.SourceFilter | _types.Fields | internal.boolean)
-									 */ value) {
+		public final Builder source(@Nullable SourceConfig value) {
 			this.source = value;
 			return this;
+		}
+
+		/**
+		 * API name: {@code _source}
+		 */
+		public final Builder source(Function<SourceConfig.Builder, ObjectBuilder<SourceConfig>> fn) {
+			return this.source(fn.apply(new SourceConfig.Builder()).build());
 		}
 
 		/**
@@ -509,9 +520,9 @@ public class TopHitsAggregation extends MetricAggregationBase implements Aggrega
 	 * Json deserializer for {@link TopHitsAggregation}
 	 */
 	public static final JsonpDeserializer<TopHitsAggregation> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, TopHitsAggregation::setupTopHitsAggregationDeserializer, Builder::build);
+			.lazy(Builder::new, TopHitsAggregation::setupTopHitsAggregationDeserializer);
 
-	protected static void setupTopHitsAggregationDeserializer(DelegatingDeserializer<TopHitsAggregation.Builder> op) {
+	protected static void setupTopHitsAggregationDeserializer(ObjectDeserializer<TopHitsAggregation.Builder> op) {
 		MetricAggregationBase.setupMetricAggregationBaseDeserializer(op);
 		op.add(Builder::docvalueFields, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"docvalue_fields");
@@ -521,8 +532,8 @@ public class TopHitsAggregation extends MetricAggregationBase implements Aggrega
 		op.add(Builder::scriptFields, JsonpDeserializer.stringMapDeserializer(ScriptField._DESERIALIZER),
 				"script_fields");
 		op.add(Builder::size, JsonpDeserializer.integerDeserializer(), "size");
-		op.add(Builder::sort, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.jsonValueDeserializer()), "sort");
-		op.add(Builder::source, JsonpDeserializer.jsonValueDeserializer(), "_source");
+		op.add(Builder::sort, JsonpDeserializer.arrayDeserializer(SortOptions._DESERIALIZER), "sort");
+		op.add(Builder::source, SourceConfig._DESERIALIZER, "_source");
 		op.add(Builder::storedFields, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"stored_fields");
 		op.add(Builder::trackScores, JsonpDeserializer.booleanDeserializer(), "track_scores");

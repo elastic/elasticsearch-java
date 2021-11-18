@@ -25,6 +25,8 @@ package co.elastic.clients.elasticsearch.license;
 
 import co.elastic.clients.ApiClient;
 import co.elastic.clients.elasticsearch._types.ElasticsearchException;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
+import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.Transport;
 import co.elastic.clients.transport.TransportOptions;
 import co.elastic.clients.util.ObjectBuilder;
@@ -60,7 +62,7 @@ public class ElasticsearchLicenseClient extends ApiClient<ElasticsearchLicenseCl
 	 *      on elastic.co</a>
 	 */
 	public DeleteLicenseResponse delete() throws IOException, ElasticsearchException {
-		return this.transport.performRequest(DeleteLicenseRequest._INSTANCE, DeleteLicenseRequest.ENDPOINT,
+		return this.transport.performRequest(DeleteLicenseRequest._INSTANCE, DeleteLicenseRequest._ENDPOINT,
 				this.transportOptions);
 	}
 
@@ -75,7 +77,10 @@ public class ElasticsearchLicenseClient extends ApiClient<ElasticsearchLicenseCl
 	 */
 
 	public GetLicenseResponse get(GetLicenseRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, GetLicenseRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<GetLicenseRequest, GetLicenseResponse, ErrorResponse> endpoint = (Endpoint<GetLicenseRequest, GetLicenseResponse, ErrorResponse>) GetLicenseRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -103,7 +108,7 @@ public class ElasticsearchLicenseClient extends ApiClient<ElasticsearchLicenseCl
 	 */
 
 	public GetLicenseResponse get() throws IOException, ElasticsearchException {
-		return this.transport.performRequest(new GetLicenseRequest.Builder().build(), GetLicenseRequest.ENDPOINT,
+		return this.transport.performRequest(new GetLicenseRequest.Builder().build(), GetLicenseRequest._ENDPOINT,
 				this.transportOptions);
 	}
 
@@ -117,7 +122,7 @@ public class ElasticsearchLicenseClient extends ApiClient<ElasticsearchLicenseCl
 	 *      on elastic.co</a>
 	 */
 	public GetBasicStatusResponse getBasicStatus() throws IOException, ElasticsearchException {
-		return this.transport.performRequest(GetBasicStatusRequest._INSTANCE, GetBasicStatusRequest.ENDPOINT,
+		return this.transport.performRequest(GetBasicStatusRequest._INSTANCE, GetBasicStatusRequest._ENDPOINT,
 				this.transportOptions);
 	}
 
@@ -131,7 +136,7 @@ public class ElasticsearchLicenseClient extends ApiClient<ElasticsearchLicenseCl
 	 *      on elastic.co</a>
 	 */
 	public GetTrialStatusResponse getTrialStatus() throws IOException, ElasticsearchException {
-		return this.transport.performRequest(GetTrialStatusRequest._INSTANCE, GetTrialStatusRequest.ENDPOINT,
+		return this.transport.performRequest(GetTrialStatusRequest._INSTANCE, GetTrialStatusRequest._ENDPOINT,
 				this.transportOptions);
 	}
 
@@ -146,7 +151,10 @@ public class ElasticsearchLicenseClient extends ApiClient<ElasticsearchLicenseCl
 	 */
 
 	public PostResponse post(PostRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, PostRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<PostRequest, PostResponse, ErrorResponse> endpoint = (Endpoint<PostRequest, PostResponse, ErrorResponse>) PostRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -174,7 +182,7 @@ public class ElasticsearchLicenseClient extends ApiClient<ElasticsearchLicenseCl
 	 */
 
 	public PostResponse post() throws IOException, ElasticsearchException {
-		return this.transport.performRequest(new PostRequest.Builder().build(), PostRequest.ENDPOINT,
+		return this.transport.performRequest(new PostRequest.Builder().build(), PostRequest._ENDPOINT,
 				this.transportOptions);
 	}
 
@@ -190,7 +198,10 @@ public class ElasticsearchLicenseClient extends ApiClient<ElasticsearchLicenseCl
 
 	public PostStartBasicResponse postStartBasic(PostStartBasicRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, PostStartBasicRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<PostStartBasicRequest, PostStartBasicResponse, ErrorResponse> endpoint = (Endpoint<PostStartBasicRequest, PostStartBasicResponse, ErrorResponse>) PostStartBasicRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -220,7 +231,7 @@ public class ElasticsearchLicenseClient extends ApiClient<ElasticsearchLicenseCl
 
 	public PostStartBasicResponse postStartBasic() throws IOException, ElasticsearchException {
 		return this.transport.performRequest(new PostStartBasicRequest.Builder().build(),
-				PostStartBasicRequest.ENDPOINT, this.transportOptions);
+				PostStartBasicRequest._ENDPOINT, this.transportOptions);
 	}
 
 	// ----- Endpoint: license.post_start_trial
@@ -235,7 +246,10 @@ public class ElasticsearchLicenseClient extends ApiClient<ElasticsearchLicenseCl
 
 	public PostStartTrialResponse postStartTrial(PostStartTrialRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, PostStartTrialRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<PostStartTrialRequest, PostStartTrialResponse, ErrorResponse> endpoint = (Endpoint<PostStartTrialRequest, PostStartTrialResponse, ErrorResponse>) PostStartTrialRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -265,7 +279,7 @@ public class ElasticsearchLicenseClient extends ApiClient<ElasticsearchLicenseCl
 
 	public PostStartTrialResponse postStartTrial() throws IOException, ElasticsearchException {
 		return this.transport.performRequest(new PostStartTrialRequest.Builder().build(),
-				PostStartTrialRequest.ENDPOINT, this.transportOptions);
+				PostStartTrialRequest._ENDPOINT, this.transportOptions);
 	}
 
 }

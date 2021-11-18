@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.nodes.info;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -234,11 +233,10 @@ public class NodeInfoXpackSecurityAuthcRealms implements JsonpSerializable {
 	 * Json deserializer for {@link NodeInfoXpackSecurityAuthcRealms}
 	 */
 	public static final JsonpDeserializer<NodeInfoXpackSecurityAuthcRealms> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, NodeInfoXpackSecurityAuthcRealms::setupNodeInfoXpackSecurityAuthcRealmsDeserializer,
-					Builder::build);
+			.lazy(Builder::new, NodeInfoXpackSecurityAuthcRealms::setupNodeInfoXpackSecurityAuthcRealmsDeserializer);
 
 	protected static void setupNodeInfoXpackSecurityAuthcRealmsDeserializer(
-			DelegatingDeserializer<NodeInfoXpackSecurityAuthcRealms.Builder> op) {
+			ObjectDeserializer<NodeInfoXpackSecurityAuthcRealms.Builder> op) {
 
 		op.add(Builder::file,
 				JsonpDeserializer.stringMapDeserializer(NodeInfoXpackSecurityAuthcRealmsStatus._DESERIALIZER), "file");

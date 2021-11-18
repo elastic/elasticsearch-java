@@ -23,7 +23,7 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
-import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.elasticsearch._types.GeoLocation;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -31,7 +31,6 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.util.Objects;
@@ -44,7 +43,7 @@ public class GeoCentroidAggregate extends AggregateBase implements AggregateVari
 	private final long count;
 
 	@Nullable
-	private final JsonValue /* _types.query_dsl.GeoLocation */ location;
+	private final GeoLocation location;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -79,7 +78,7 @@ public class GeoCentroidAggregate extends AggregateBase implements AggregateVari
 	 * API name: {@code location}
 	 */
 	@Nullable
-	public final JsonValue /* _types.query_dsl.GeoLocation */ location() {
+	public final GeoLocation location() {
 		return this.location;
 	}
 
@@ -91,7 +90,7 @@ public class GeoCentroidAggregate extends AggregateBase implements AggregateVari
 
 		if (this.location != null) {
 			generator.writeKey("location");
-			generator.write(this.location);
+			this.location.serialize(generator, mapper);
 
 		}
 
@@ -108,7 +107,7 @@ public class GeoCentroidAggregate extends AggregateBase implements AggregateVari
 		private Long count;
 
 		@Nullable
-		private JsonValue /* _types.query_dsl.GeoLocation */ location;
+		private GeoLocation location;
 
 		/**
 		 * Required - API name: {@code count}
@@ -121,9 +120,16 @@ public class GeoCentroidAggregate extends AggregateBase implements AggregateVari
 		/**
 		 * API name: {@code location}
 		 */
-		public final Builder location(@Nullable JsonValue /* _types.query_dsl.GeoLocation */ value) {
+		public final Builder location(@Nullable GeoLocation value) {
 			this.location = value;
 			return this;
+		}
+
+		/**
+		 * API name: {@code location}
+		 */
+		public final Builder location(Function<GeoLocation.Builder, ObjectBuilder<GeoLocation>> fn) {
+			return this.location(fn.apply(new GeoLocation.Builder()).build());
 		}
 
 		@Override
@@ -150,13 +156,12 @@ public class GeoCentroidAggregate extends AggregateBase implements AggregateVari
 	 * Json deserializer for {@link GeoCentroidAggregate}
 	 */
 	public static final JsonpDeserializer<GeoCentroidAggregate> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, GeoCentroidAggregate::setupGeoCentroidAggregateDeserializer, Builder::build);
+			.lazy(Builder::new, GeoCentroidAggregate::setupGeoCentroidAggregateDeserializer);
 
-	protected static void setupGeoCentroidAggregateDeserializer(
-			DelegatingDeserializer<GeoCentroidAggregate.Builder> op) {
+	protected static void setupGeoCentroidAggregateDeserializer(ObjectDeserializer<GeoCentroidAggregate.Builder> op) {
 		AggregateBase.setupAggregateBaseDeserializer(op);
 		op.add(Builder::count, JsonpDeserializer.longDeserializer(), "count");
-		op.add(Builder::location, JsonpDeserializer.jsonValueDeserializer(), "location");
+		op.add(Builder::location, GeoLocation._DESERIALIZER, "location");
 
 	}
 

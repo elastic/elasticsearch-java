@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -87,10 +86,9 @@ public class MinBucketAggregation extends PipelineAggregationBase implements Agg
 	 * Json deserializer for {@link MinBucketAggregation}
 	 */
 	public static final JsonpDeserializer<MinBucketAggregation> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, MinBucketAggregation::setupMinBucketAggregationDeserializer, Builder::build);
+			.lazy(Builder::new, MinBucketAggregation::setupMinBucketAggregationDeserializer);
 
-	protected static void setupMinBucketAggregationDeserializer(
-			DelegatingDeserializer<MinBucketAggregation.Builder> op) {
+	protected static void setupMinBucketAggregationDeserializer(ObjectDeserializer<MinBucketAggregation.Builder> op) {
 		PipelineAggregationBase.setupPipelineAggregationBaseDeserializer(op);
 
 	}

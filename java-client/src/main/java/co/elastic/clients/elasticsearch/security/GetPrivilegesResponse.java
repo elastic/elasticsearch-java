@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch.security;
 
 import co.elastic.clients.elasticsearch.security.put_privileges.Actions;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -85,10 +84,9 @@ public class GetPrivilegesResponse extends DictionaryResponse<String, Map<String
 	 * Json deserializer for {@link GetPrivilegesResponse}
 	 */
 	public static final JsonpDeserializer<GetPrivilegesResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, GetPrivilegesResponse::setupGetPrivilegesResponseDeserializer, Builder::build);
+			.lazy(Builder::new, GetPrivilegesResponse::setupGetPrivilegesResponseDeserializer);
 
-	protected static void setupGetPrivilegesResponseDeserializer(
-			DelegatingDeserializer<GetPrivilegesResponse.Builder> op) {
+	protected static void setupGetPrivilegesResponseDeserializer(ObjectDeserializer<GetPrivilegesResponse.Builder> op) {
 		DictionaryResponse.setupDictionaryResponseDeserializer(op, JsonpDeserializer.stringDeserializer(),
 				JsonpDeserializer.stringMapDeserializer(Actions._DESERIALIZER));
 

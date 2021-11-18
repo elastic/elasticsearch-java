@@ -25,8 +25,8 @@ package co.elastic.clients.elasticsearch.cluster;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.elasticsearch.cluster.reroute.Command;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -63,7 +63,7 @@ public class RerouteRequest extends RequestBase implements JsonpSerializable {
 	private final Boolean explain;
 
 	@Nullable
-	private final String masterTimeout;
+	private final Time masterTimeout;
 
 	private final List<String> metric;
 
@@ -71,7 +71,7 @@ public class RerouteRequest extends RequestBase implements JsonpSerializable {
 	private final Boolean retryFailed;
 
 	@Nullable
-	private final String timeout;
+	private final Time timeout;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -129,7 +129,7 @@ public class RerouteRequest extends RequestBase implements JsonpSerializable {
 	 * API name: {@code master_timeout}
 	 */
 	@Nullable
-	public final String masterTimeout() {
+	public final Time masterTimeout() {
 		return this.masterTimeout;
 	}
 
@@ -160,7 +160,7 @@ public class RerouteRequest extends RequestBase implements JsonpSerializable {
 	 * API name: {@code timeout}
 	 */
 	@Nullable
-	public final String timeout() {
+	public final Time timeout() {
 		return this.timeout;
 	}
 
@@ -204,7 +204,7 @@ public class RerouteRequest extends RequestBase implements JsonpSerializable {
 		private Boolean explain;
 
 		@Nullable
-		private String masterTimeout;
+		private Time masterTimeout;
 
 		@Nullable
 		private List<String> metric;
@@ -213,7 +213,7 @@ public class RerouteRequest extends RequestBase implements JsonpSerializable {
 		private Boolean retryFailed;
 
 		@Nullable
-		private String timeout;
+		private Time timeout;
 
 		/**
 		 * Defines the commands to perform.
@@ -277,9 +277,19 @@ public class RerouteRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
-		public final Builder masterTimeout(@Nullable String value) {
+		public final Builder masterTimeout(@Nullable Time value) {
 			this.masterTimeout = value;
 			return this;
+		}
+
+		/**
+		 * Period to wait for a connection to the master node. If no response is
+		 * received before the timeout expires, the request fails and returns an error.
+		 * <p>
+		 * API name: {@code master_timeout}
+		 */
+		public final Builder masterTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.masterTimeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -319,9 +329,19 @@ public class RerouteRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code timeout}
 		 */
-		public final Builder timeout(@Nullable String value) {
+		public final Builder timeout(@Nullable Time value) {
 			this.timeout = value;
 			return this;
+		}
+
+		/**
+		 * Period to wait for a response. If no response is received before the timeout
+		 * expires, the request fails and returns an error.
+		 * <p>
+		 * API name: {@code timeout}
+		 */
+		public final Builder timeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.timeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -343,9 +363,9 @@ public class RerouteRequest extends RequestBase implements JsonpSerializable {
 	 * Json deserializer for {@link RerouteRequest}
 	 */
 	public static final JsonpDeserializer<RerouteRequest> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			RerouteRequest::setupRerouteRequestDeserializer, Builder::build);
+			RerouteRequest::setupRerouteRequestDeserializer);
 
-	protected static void setupRerouteRequestDeserializer(DelegatingDeserializer<RerouteRequest.Builder> op) {
+	protected static void setupRerouteRequestDeserializer(ObjectDeserializer<RerouteRequest.Builder> op) {
 
 		op.add(Builder::commands, JsonpDeserializer.arrayDeserializer(Command._DESERIALIZER), "commands");
 
@@ -356,7 +376,7 @@ public class RerouteRequest extends RequestBase implements JsonpSerializable {
 	/**
 	 * Endpoint "{@code cluster.reroute}".
 	 */
-	public static final Endpoint<RerouteRequest, RerouteResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<RerouteRequest, RerouteResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";
@@ -376,7 +396,7 @@ public class RerouteRequest extends RequestBase implements JsonpSerializable {
 					params.put("explain", String.valueOf(request.explain));
 				}
 				if (request.masterTimeout != null) {
-					params.put("master_timeout", request.masterTimeout);
+					params.put("master_timeout", request.masterTimeout._toJsonString());
 				}
 				if (ModelTypeHelper.isDefined(request.metric)) {
 					params.put("metric", request.metric.stream().map(v -> v).collect(Collectors.joining(",")));
@@ -385,7 +405,7 @@ public class RerouteRequest extends RequestBase implements JsonpSerializable {
 					params.put("dry_run", String.valueOf(request.dryRun));
 				}
 				if (request.timeout != null) {
-					params.put("timeout", request.timeout);
+					params.put("timeout", request.timeout._toJsonString());
 				}
 				if (request.retryFailed != null) {
 					params.put("retry_failed", String.valueOf(request.retryFailed));

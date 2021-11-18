@@ -53,7 +53,7 @@ public class PendingTasksRequest extends CatRequestBase {
 	/**
 	 * Endpoint "{@code cat.pending_tasks}".
 	 */
-	public static final Endpoint<PendingTasksRequest, PendingTasksResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<PendingTasksRequest, PendingTasksResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "GET";

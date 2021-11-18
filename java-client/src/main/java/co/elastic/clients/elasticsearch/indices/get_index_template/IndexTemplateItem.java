@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.indices.get_index_template;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -144,9 +143,9 @@ public class IndexTemplateItem implements JsonpSerializable {
 	 * Json deserializer for {@link IndexTemplateItem}
 	 */
 	public static final JsonpDeserializer<IndexTemplateItem> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, IndexTemplateItem::setupIndexTemplateItemDeserializer, Builder::build);
+			.lazy(Builder::new, IndexTemplateItem::setupIndexTemplateItemDeserializer);
 
-	protected static void setupIndexTemplateItemDeserializer(DelegatingDeserializer<IndexTemplateItem.Builder> op) {
+	protected static void setupIndexTemplateItemDeserializer(ObjectDeserializer<IndexTemplateItem.Builder> op) {
 
 		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
 		op.add(Builder::indexTemplate, IndexTemplate._DESERIALIZER, "index_template");

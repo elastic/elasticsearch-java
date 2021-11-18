@@ -25,7 +25,6 @@ package co.elastic.clients.elasticsearch._types;
 
 import co.elastic.clients.elasticsearch.cluster.allocation_explain.UnassignedInformation;
 import co.elastic.clients.elasticsearch.indices.stats.ShardRoutingState;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -316,9 +315,9 @@ public class NodeShard implements JsonpSerializable {
 	 * Json deserializer for {@link NodeShard}
 	 */
 	public static final JsonpDeserializer<NodeShard> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			NodeShard::setupNodeShardDeserializer, Builder::build);
+			NodeShard::setupNodeShardDeserializer);
 
-	protected static void setupNodeShardDeserializer(DelegatingDeserializer<NodeShard.Builder> op) {
+	protected static void setupNodeShardDeserializer(ObjectDeserializer<NodeShard.Builder> op) {
 
 		op.add(Builder::state, ShardRoutingState._DESERIALIZER, "state");
 		op.add(Builder::primary, JsonpDeserializer.booleanDeserializer(), "primary");

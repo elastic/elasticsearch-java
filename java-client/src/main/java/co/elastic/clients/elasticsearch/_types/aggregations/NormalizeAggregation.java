@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -123,10 +122,9 @@ public class NormalizeAggregation extends PipelineAggregationBase implements Agg
 	 * Json deserializer for {@link NormalizeAggregation}
 	 */
 	public static final JsonpDeserializer<NormalizeAggregation> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, NormalizeAggregation::setupNormalizeAggregationDeserializer, Builder::build);
+			.lazy(Builder::new, NormalizeAggregation::setupNormalizeAggregationDeserializer);
 
-	protected static void setupNormalizeAggregationDeserializer(
-			DelegatingDeserializer<NormalizeAggregation.Builder> op) {
+	protected static void setupNormalizeAggregationDeserializer(ObjectDeserializer<NormalizeAggregation.Builder> op) {
 		PipelineAggregationBase.setupPipelineAggregationBaseDeserializer(op);
 		op.add(Builder::method, NormalizeMethod._DESERIALIZER, "method");
 

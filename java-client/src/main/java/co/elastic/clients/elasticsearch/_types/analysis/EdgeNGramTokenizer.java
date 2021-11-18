@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.analysis;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -42,7 +41,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.analysis.EdgeNGramTokenizer
 @JsonpDeserializable
-public class EdgeNGramTokenizer extends TokenizerBase implements TokenizerVariant {
+public class EdgeNGramTokenizer extends TokenizerBase implements TokenizerDefinitionVariant {
 	@Nullable
 	private final String customTokenChars;
 
@@ -69,7 +68,7 @@ public class EdgeNGramTokenizer extends TokenizerBase implements TokenizerVarian
 	}
 
 	/**
-	 * {@link Tokenizer} variant type
+	 * {@link TokenizerDefinition} variant type
 	 */
 	@Override
 	public String _variantType() {
@@ -213,9 +212,9 @@ public class EdgeNGramTokenizer extends TokenizerBase implements TokenizerVarian
 	 * Json deserializer for {@link EdgeNGramTokenizer}
 	 */
 	public static final JsonpDeserializer<EdgeNGramTokenizer> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, EdgeNGramTokenizer::setupEdgeNGramTokenizerDeserializer, Builder::build);
+			.lazy(Builder::new, EdgeNGramTokenizer::setupEdgeNGramTokenizerDeserializer);
 
-	protected static void setupEdgeNGramTokenizerDeserializer(DelegatingDeserializer<EdgeNGramTokenizer.Builder> op) {
+	protected static void setupEdgeNGramTokenizerDeserializer(ObjectDeserializer<EdgeNGramTokenizer.Builder> op) {
 		TokenizerBase.setupTokenizerBaseDeserializer(op);
 		op.add(Builder::customTokenChars, JsonpDeserializer.stringDeserializer(), "custom_token_chars");
 		op.add(Builder::maxGram, JsonpDeserializer.integerDeserializer(), "max_gram");

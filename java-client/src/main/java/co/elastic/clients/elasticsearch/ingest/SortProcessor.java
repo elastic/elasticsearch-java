@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch.ingest;
 
 import co.elastic.clients.elasticsearch.core.search.SortOrder;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -164,9 +163,9 @@ public class SortProcessor extends ProcessorBase implements ProcessorVariant {
 	 * Json deserializer for {@link SortProcessor}
 	 */
 	public static final JsonpDeserializer<SortProcessor> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			SortProcessor::setupSortProcessorDeserializer, Builder::build);
+			SortProcessor::setupSortProcessorDeserializer);
 
-	protected static void setupSortProcessorDeserializer(DelegatingDeserializer<SortProcessor.Builder> op) {
+	protected static void setupSortProcessorDeserializer(ObjectDeserializer<SortProcessor.Builder> op) {
 		ProcessorBase.setupProcessorBaseDeserializer(op);
 		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
 		op.add(Builder::order, SortOrder._DESERIALIZER, "order");

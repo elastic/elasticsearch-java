@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.ingest;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -165,9 +164,9 @@ public class JsonProcessor extends ProcessorBase implements ProcessorVariant {
 	 * Json deserializer for {@link JsonProcessor}
 	 */
 	public static final JsonpDeserializer<JsonProcessor> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			JsonProcessor::setupJsonProcessorDeserializer, Builder::build);
+			JsonProcessor::setupJsonProcessorDeserializer);
 
-	protected static void setupJsonProcessorDeserializer(DelegatingDeserializer<JsonProcessor.Builder> op) {
+	protected static void setupJsonProcessorDeserializer(ObjectDeserializer<JsonProcessor.Builder> op) {
 		ProcessorBase.setupProcessorBaseDeserializer(op);
 		op.add(Builder::addToRoot, JsonpDeserializer.booleanDeserializer(), "add_to_root");
 		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");

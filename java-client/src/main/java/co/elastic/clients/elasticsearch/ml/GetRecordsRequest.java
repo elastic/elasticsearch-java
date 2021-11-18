@@ -25,7 +25,6 @@ package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -410,9 +409,9 @@ public class GetRecordsRequest extends RequestBase implements JsonpSerializable 
 	 * Json deserializer for {@link GetRecordsRequest}
 	 */
 	public static final JsonpDeserializer<GetRecordsRequest> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, GetRecordsRequest::setupGetRecordsRequestDeserializer, Builder::build);
+			.lazy(Builder::new, GetRecordsRequest::setupGetRecordsRequestDeserializer);
 
-	protected static void setupGetRecordsRequestDeserializer(DelegatingDeserializer<GetRecordsRequest.Builder> op) {
+	protected static void setupGetRecordsRequestDeserializer(ObjectDeserializer<GetRecordsRequest.Builder> op) {
 
 		op.add(Builder::desc, JsonpDeserializer.booleanDeserializer(), "desc");
 		op.add(Builder::end, JsonpDeserializer.stringDeserializer(), "end");
@@ -429,7 +428,7 @@ public class GetRecordsRequest extends RequestBase implements JsonpSerializable 
 	/**
 	 * Endpoint "{@code ml.get_records}".
 	 */
-	public static final Endpoint<GetRecordsRequest, GetRecordsResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<GetRecordsRequest, GetRecordsResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";

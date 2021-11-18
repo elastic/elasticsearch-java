@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.security;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -275,10 +274,10 @@ public class User implements JsonpSerializable {
 	 * Json deserializer for {@link User}
 	 */
 	public static final JsonpDeserializer<User> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			User::setupUserDeserializer, Builder::build);
+			User::setupUserDeserializer);
 
 	protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupUserDeserializer(
-			DelegatingDeserializer<BuilderT> op) {
+			ObjectDeserializer<BuilderT> op) {
 
 		op.add(AbstractBuilder::email, JsonpDeserializer.stringDeserializer(), "email");
 		op.add(AbstractBuilder::fullName, JsonpDeserializer.stringDeserializer(), "full_name");

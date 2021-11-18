@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch.core;
 
 import co.elastic.clients.elasticsearch.core.termvectors.TermVector;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -284,9 +283,9 @@ public class TermvectorsResponse implements JsonpSerializable {
 	 * Json deserializer for {@link TermvectorsResponse}
 	 */
 	public static final JsonpDeserializer<TermvectorsResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, TermvectorsResponse::setupTermvectorsResponseDeserializer, Builder::build);
+			.lazy(Builder::new, TermvectorsResponse::setupTermvectorsResponseDeserializer);
 
-	protected static void setupTermvectorsResponseDeserializer(DelegatingDeserializer<TermvectorsResponse.Builder> op) {
+	protected static void setupTermvectorsResponseDeserializer(ObjectDeserializer<TermvectorsResponse.Builder> op) {
 
 		op.add(Builder::found, JsonpDeserializer.booleanDeserializer(), "found");
 		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "_id");

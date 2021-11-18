@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch.ccr;
 
 import co.elastic.clients.elasticsearch.ccr.follow_info.FollowerIndex;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -145,9 +144,9 @@ public class FollowInfoResponse implements JsonpSerializable {
 	 * Json deserializer for {@link FollowInfoResponse}
 	 */
 	public static final JsonpDeserializer<FollowInfoResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, FollowInfoResponse::setupFollowInfoResponseDeserializer, Builder::build);
+			.lazy(Builder::new, FollowInfoResponse::setupFollowInfoResponseDeserializer);
 
-	protected static void setupFollowInfoResponseDeserializer(DelegatingDeserializer<FollowInfoResponse.Builder> op) {
+	protected static void setupFollowInfoResponseDeserializer(ObjectDeserializer<FollowInfoResponse.Builder> op) {
 
 		op.add(Builder::followerIndices, JsonpDeserializer.arrayDeserializer(FollowerIndex._DESERIALIZER),
 				"follower_indices");

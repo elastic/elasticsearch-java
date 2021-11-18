@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch.indices;
 
 import co.elastic.clients.elasticsearch._types.AcknowledgedResponseBase;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -79,11 +78,11 @@ public class MigrateToDataStreamResponse extends AcknowledgedResponseBase {
 	/**
 	 * Json deserializer for {@link MigrateToDataStreamResponse}
 	 */
-	public static final JsonpDeserializer<MigrateToDataStreamResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
-			Builder::new, MigrateToDataStreamResponse::setupMigrateToDataStreamResponseDeserializer, Builder::build);
+	public static final JsonpDeserializer<MigrateToDataStreamResponse> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, MigrateToDataStreamResponse::setupMigrateToDataStreamResponseDeserializer);
 
 	protected static void setupMigrateToDataStreamResponseDeserializer(
-			DelegatingDeserializer<MigrateToDataStreamResponse.Builder> op) {
+			ObjectDeserializer<MigrateToDataStreamResponse.Builder> op) {
 		AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);
 
 	}

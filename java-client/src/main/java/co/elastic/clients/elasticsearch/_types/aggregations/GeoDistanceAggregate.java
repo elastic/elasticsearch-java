@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -87,10 +86,9 @@ public class GeoDistanceAggregate extends RangeAggregate implements AggregateVar
 	 * Json deserializer for {@link GeoDistanceAggregate}
 	 */
 	public static final JsonpDeserializer<GeoDistanceAggregate> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, GeoDistanceAggregate::setupGeoDistanceAggregateDeserializer, Builder::build);
+			.lazy(Builder::new, GeoDistanceAggregate::setupGeoDistanceAggregateDeserializer);
 
-	protected static void setupGeoDistanceAggregateDeserializer(
-			DelegatingDeserializer<GeoDistanceAggregate.Builder> op) {
+	protected static void setupGeoDistanceAggregateDeserializer(ObjectDeserializer<GeoDistanceAggregate.Builder> op) {
 		RangeAggregate.setupRangeAggregateDeserializer(op);
 
 	}

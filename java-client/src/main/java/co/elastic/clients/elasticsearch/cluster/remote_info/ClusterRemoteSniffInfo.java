@@ -23,7 +23,7 @@
 
 package co.elastic.clients.elasticsearch.cluster.remote_info;
 
-import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -53,7 +53,7 @@ public class ClusterRemoteSniffInfo implements ClusterRemoteInfoVariant, JsonpSe
 
 	private final long numNodesConnected;
 
-	private final String initialConnectTimeout;
+	private final Time initialConnectTimeout;
 
 	private final boolean skipUnavailable;
 
@@ -110,7 +110,7 @@ public class ClusterRemoteSniffInfo implements ClusterRemoteInfoVariant, JsonpSe
 	/**
 	 * Required - API name: {@code initial_connect_timeout}
 	 */
-	public final String initialConnectTimeout() {
+	public final Time initialConnectTimeout() {
 		return this.initialConnectTimeout;
 	}
 
@@ -151,7 +151,7 @@ public class ClusterRemoteSniffInfo implements ClusterRemoteInfoVariant, JsonpSe
 		generator.write(this.numNodesConnected);
 
 		generator.writeKey("initial_connect_timeout");
-		generator.write(this.initialConnectTimeout);
+		this.initialConnectTimeout.serialize(generator, mapper);
 
 		generator.writeKey("skip_unavailable");
 		generator.write(this.skipUnavailable);
@@ -181,7 +181,7 @@ public class ClusterRemoteSniffInfo implements ClusterRemoteInfoVariant, JsonpSe
 
 		private Long numNodesConnected;
 
-		private String initialConnectTimeout;
+		private Time initialConnectTimeout;
 
 		private Boolean skipUnavailable;
 
@@ -214,9 +214,16 @@ public class ClusterRemoteSniffInfo implements ClusterRemoteInfoVariant, JsonpSe
 		/**
 		 * Required - API name: {@code initial_connect_timeout}
 		 */
-		public final Builder initialConnectTimeout(String value) {
+		public final Builder initialConnectTimeout(Time value) {
 			this.initialConnectTimeout = value;
 			return this;
+		}
+
+		/**
+		 * Required - API name: {@code initial_connect_timeout}
+		 */
+		public final Builder initialConnectTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.initialConnectTimeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -262,16 +269,16 @@ public class ClusterRemoteSniffInfo implements ClusterRemoteInfoVariant, JsonpSe
 	 * Json deserializer for {@link ClusterRemoteSniffInfo}
 	 */
 	public static final JsonpDeserializer<ClusterRemoteSniffInfo> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, ClusterRemoteSniffInfo::setupClusterRemoteSniffInfoDeserializer, Builder::build);
+			.lazy(Builder::new, ClusterRemoteSniffInfo::setupClusterRemoteSniffInfoDeserializer);
 
 	protected static void setupClusterRemoteSniffInfoDeserializer(
-			DelegatingDeserializer<ClusterRemoteSniffInfo.Builder> op) {
+			ObjectDeserializer<ClusterRemoteSniffInfo.Builder> op) {
 
 		op.add(Builder::connected, JsonpDeserializer.booleanDeserializer(), "connected");
 		op.add(Builder::maxConnectionsPerCluster, JsonpDeserializer.integerDeserializer(),
 				"max_connections_per_cluster");
 		op.add(Builder::numNodesConnected, JsonpDeserializer.longDeserializer(), "num_nodes_connected");
-		op.add(Builder::initialConnectTimeout, JsonpDeserializer.stringDeserializer(), "initial_connect_timeout");
+		op.add(Builder::initialConnectTimeout, Time._DESERIALIZER, "initial_connect_timeout");
 		op.add(Builder::skipUnavailable, JsonpDeserializer.booleanDeserializer(), "skip_unavailable");
 		op.add(Builder::seeds, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "seeds");
 

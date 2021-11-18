@@ -148,8 +148,8 @@ public class PutPipelineRequest extends RequestBase implements JsonpSerializable
 
 		JsonpDeserializer<Pipeline> valueDeserializer = Pipeline._DESERIALIZER;
 
-		return JsonpDeserializer.of(valueDeserializer.acceptedEvents(), (parser, mapper, event) -> new Builder()
-				.pipeline(valueDeserializer.deserialize(parser, mapper, event)).build());
+		return JsonpDeserializer.of(valueDeserializer.acceptedEvents(),
+				(parser, mapper) -> new Builder().pipeline(valueDeserializer.deserialize(parser, mapper)).build());
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -157,7 +157,7 @@ public class PutPipelineRequest extends RequestBase implements JsonpSerializable
 	/**
 	 * Endpoint "{@code logstash.put_pipeline}".
 	 */
-	public static final Endpoint<PutPipelineRequest, BooleanResponse, ErrorResponse> ENDPOINT = new BooleanEndpoint<>(
+	public static final Endpoint<PutPipelineRequest, BooleanResponse, ErrorResponse> _ENDPOINT = new BooleanEndpoint<>(
 			// Request method
 			request -> {
 				return "PUT";

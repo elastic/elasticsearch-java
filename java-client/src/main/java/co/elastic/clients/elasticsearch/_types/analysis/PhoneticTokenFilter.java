@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.analysis;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -42,7 +41,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.analysis.PhoneticTokenFilter
 @JsonpDeserializable
-public class PhoneticTokenFilter extends TokenFilterBase implements TokenFilterVariant {
+public class PhoneticTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
 	private final PhoneticEncoder encoder;
 
 	private final List<PhoneticLanguage> languageset;
@@ -76,7 +75,7 @@ public class PhoneticTokenFilter extends TokenFilterBase implements TokenFilterV
 	}
 
 	/**
-	 * {@link TokenFilter} variant type
+	 * {@link TokenFilterDefinition} variant type
 	 */
 	@Override
 	public String _variantType() {
@@ -261,9 +260,9 @@ public class PhoneticTokenFilter extends TokenFilterBase implements TokenFilterV
 	 * Json deserializer for {@link PhoneticTokenFilter}
 	 */
 	public static final JsonpDeserializer<PhoneticTokenFilter> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, PhoneticTokenFilter::setupPhoneticTokenFilterDeserializer, Builder::build);
+			.lazy(Builder::new, PhoneticTokenFilter::setupPhoneticTokenFilterDeserializer);
 
-	protected static void setupPhoneticTokenFilterDeserializer(DelegatingDeserializer<PhoneticTokenFilter.Builder> op) {
+	protected static void setupPhoneticTokenFilterDeserializer(ObjectDeserializer<PhoneticTokenFilter.Builder> op) {
 		TokenFilterBase.setupTokenFilterBaseDeserializer(op);
 		op.add(Builder::encoder, PhoneticEncoder._DESERIALIZER, "encoder");
 		op.add(Builder::languageset, JsonpDeserializer.arrayDeserializer(PhoneticLanguage._DESERIALIZER),

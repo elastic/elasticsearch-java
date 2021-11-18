@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch.ilm.get_lifecycle;
 
 import co.elastic.clients.elasticsearch.ilm.Policy;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -169,9 +168,9 @@ public class Lifecycle implements JsonpSerializable {
 	 * Json deserializer for {@link Lifecycle}
 	 */
 	public static final JsonpDeserializer<Lifecycle> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			Lifecycle::setupLifecycleDeserializer, Builder::build);
+			Lifecycle::setupLifecycleDeserializer);
 
-	protected static void setupLifecycleDeserializer(DelegatingDeserializer<Lifecycle.Builder> op) {
+	protected static void setupLifecycleDeserializer(ObjectDeserializer<Lifecycle.Builder> op) {
 
 		op.add(Builder::modifiedDate, JsonpDeserializer.stringDeserializer(), "modified_date");
 		op.add(Builder::policy, Policy._DESERIALIZER, "policy");

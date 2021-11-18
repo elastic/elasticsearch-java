@@ -23,9 +23,9 @@
 
 package co.elastic.clients.elasticsearch.transform;
 
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.elasticsearch.core.reindex.Destination;
 import co.elastic.clients.elasticsearch.core.reindex.Source;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -51,7 +51,7 @@ public class UpdateTransformResponse implements JsonpSerializable {
 
 	private final Destination dest;
 
-	private final String frequency;
+	private final Time frequency;
 
 	private final String id;
 
@@ -111,7 +111,7 @@ public class UpdateTransformResponse implements JsonpSerializable {
 	/**
 	 * Required - API name: {@code frequency}
 	 */
-	public final String frequency() {
+	public final Time frequency() {
 		return this.frequency;
 	}
 
@@ -179,7 +179,7 @@ public class UpdateTransformResponse implements JsonpSerializable {
 		this.dest.serialize(generator, mapper);
 
 		generator.writeKey("frequency");
-		generator.write(this.frequency);
+		this.frequency.serialize(generator, mapper);
 
 		generator.writeKey("id");
 		generator.write(this.id);
@@ -215,7 +215,7 @@ public class UpdateTransformResponse implements JsonpSerializable {
 
 		private Destination dest;
 
-		private String frequency;
+		private Time frequency;
 
 		private String id;
 
@@ -264,9 +264,16 @@ public class UpdateTransformResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code frequency}
 		 */
-		public final Builder frequency(String value) {
+		public final Builder frequency(Time value) {
 			this.frequency = value;
 			return this;
+		}
+
+		/**
+		 * Required - API name: {@code frequency}
+		 */
+		public final Builder frequency(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.frequency(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -364,15 +371,15 @@ public class UpdateTransformResponse implements JsonpSerializable {
 	 * Json deserializer for {@link UpdateTransformResponse}
 	 */
 	public static final JsonpDeserializer<UpdateTransformResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, UpdateTransformResponse::setupUpdateTransformResponseDeserializer, Builder::build);
+			.lazy(Builder::new, UpdateTransformResponse::setupUpdateTransformResponseDeserializer);
 
 	protected static void setupUpdateTransformResponseDeserializer(
-			DelegatingDeserializer<UpdateTransformResponse.Builder> op) {
+			ObjectDeserializer<UpdateTransformResponse.Builder> op) {
 
 		op.add(Builder::createTime, JsonpDeserializer.longDeserializer(), "create_time");
 		op.add(Builder::description, JsonpDeserializer.stringDeserializer(), "description");
 		op.add(Builder::dest, Destination._DESERIALIZER, "dest");
-		op.add(Builder::frequency, JsonpDeserializer.stringDeserializer(), "frequency");
+		op.add(Builder::frequency, Time._DESERIALIZER, "frequency");
 		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "id");
 		op.add(Builder::pivot, Pivot._DESERIALIZER, "pivot");
 		op.add(Builder::settings, Settings._DESERIALIZER, "settings");

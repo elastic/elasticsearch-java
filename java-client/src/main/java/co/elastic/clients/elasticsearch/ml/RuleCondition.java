@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -178,9 +177,9 @@ public class RuleCondition implements JsonpSerializable {
 	 * Json deserializer for {@link RuleCondition}
 	 */
 	public static final JsonpDeserializer<RuleCondition> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			RuleCondition::setupRuleConditionDeserializer, Builder::build);
+			RuleCondition::setupRuleConditionDeserializer);
 
-	protected static void setupRuleConditionDeserializer(DelegatingDeserializer<RuleCondition.Builder> op) {
+	protected static void setupRuleConditionDeserializer(ObjectDeserializer<RuleCondition.Builder> op) {
 
 		op.add(Builder::appliesTo, AppliesTo._DESERIALIZER, "applies_to");
 		op.add(Builder::operator, ConditionOperator._DESERIALIZER, "operator");

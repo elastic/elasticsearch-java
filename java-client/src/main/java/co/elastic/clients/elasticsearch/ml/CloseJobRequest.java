@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -58,7 +59,7 @@ public class CloseJobRequest extends RequestBase {
 	private final String jobId;
 
 	@Nullable
-	private final String timeout;
+	private final Time timeout;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -140,7 +141,7 @@ public class CloseJobRequest extends RequestBase {
 	 * API name: {@code timeout}
 	 */
 	@Nullable
-	public final String timeout() {
+	public final Time timeout() {
 		return this.timeout;
 	}
 
@@ -162,7 +163,7 @@ public class CloseJobRequest extends RequestBase {
 		private String jobId;
 
 		@Nullable
-		private String timeout;
+		private Time timeout;
 
 		/**
 		 * Whether to ignore if a wildcard expression matches no jobs. (This includes
@@ -228,9 +229,18 @@ public class CloseJobRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code timeout}
 		 */
-		public final Builder timeout(@Nullable String value) {
+		public final Builder timeout(@Nullable Time value) {
 			this.timeout = value;
 			return this;
+		}
+
+		/**
+		 * Controls the time to wait until a job has closed.
+		 * <p>
+		 * API name: {@code timeout}
+		 */
+		public final Builder timeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.timeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -251,7 +261,7 @@ public class CloseJobRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code ml.close_job}".
 	 */
-	public static final Endpoint<CloseJobRequest, CloseJobResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<CloseJobRequest, CloseJobResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";
@@ -292,7 +302,7 @@ public class CloseJobRequest extends RequestBase {
 					params.put("allow_no_match", String.valueOf(request.allowNoMatch));
 				}
 				if (request.timeout != null) {
-					params.put("timeout", request.timeout);
+					params.put("timeout", request.timeout._toJsonString());
 				}
 				return params;
 

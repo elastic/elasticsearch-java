@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -175,9 +174,9 @@ public class AggregationRange implements JsonpSerializable {
 	 * Json deserializer for {@link AggregationRange}
 	 */
 	public static final JsonpDeserializer<AggregationRange> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			AggregationRange::setupAggregationRangeDeserializer, Builder::build);
+			AggregationRange::setupAggregationRangeDeserializer);
 
-	protected static void setupAggregationRangeDeserializer(DelegatingDeserializer<AggregationRange.Builder> op) {
+	protected static void setupAggregationRangeDeserializer(ObjectDeserializer<AggregationRange.Builder> op) {
 
 		op.add(Builder::from, JsonpDeserializer.stringDeserializer(), "from");
 		op.add(Builder::key, JsonpDeserializer.stringDeserializer(), "key");

@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -136,9 +135,9 @@ public class Retries implements JsonpSerializable {
 	 * Json deserializer for {@link Retries}
 	 */
 	public static final JsonpDeserializer<Retries> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			Retries::setupRetriesDeserializer, Builder::build);
+			Retries::setupRetriesDeserializer);
 
-	protected static void setupRetriesDeserializer(DelegatingDeserializer<Retries.Builder> op) {
+	protected static void setupRetriesDeserializer(ObjectDeserializer<Retries.Builder> op) {
 
 		op.add(Builder::bulk, JsonpDeserializer.longDeserializer(), "bulk");
 		op.add(Builder::search, JsonpDeserializer.longDeserializer(), "search");

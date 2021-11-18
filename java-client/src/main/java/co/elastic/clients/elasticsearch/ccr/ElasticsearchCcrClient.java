@@ -25,6 +25,8 @@ package co.elastic.clients.elasticsearch.ccr;
 
 import co.elastic.clients.ApiClient;
 import co.elastic.clients.elasticsearch._types.ElasticsearchException;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
+import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.Transport;
 import co.elastic.clients.transport.TransportOptions;
 import co.elastic.clients.util.ObjectBuilder;
@@ -62,7 +64,10 @@ public class ElasticsearchCcrClient extends ApiClient<ElasticsearchCcrClient> {
 
 	public DeleteAutoFollowPatternResponse deleteAutoFollowPattern(DeleteAutoFollowPatternRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, DeleteAutoFollowPatternRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<DeleteAutoFollowPatternRequest, DeleteAutoFollowPatternResponse, ErrorResponse> endpoint = (Endpoint<DeleteAutoFollowPatternRequest, DeleteAutoFollowPatternResponse, ErrorResponse>) DeleteAutoFollowPatternRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -94,7 +99,10 @@ public class ElasticsearchCcrClient extends ApiClient<ElasticsearchCcrClient> {
 	 */
 
 	public FollowResponse follow(FollowRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, FollowRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<FollowRequest, FollowResponse, ErrorResponse> endpoint = (Endpoint<FollowRequest, FollowResponse, ErrorResponse>) FollowRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -126,7 +134,10 @@ public class ElasticsearchCcrClient extends ApiClient<ElasticsearchCcrClient> {
 	 */
 
 	public FollowInfoResponse followInfo(FollowInfoRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, FollowInfoRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<FollowInfoRequest, FollowInfoResponse, ErrorResponse> endpoint = (Endpoint<FollowInfoRequest, FollowInfoResponse, ErrorResponse>) FollowInfoRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -158,7 +169,10 @@ public class ElasticsearchCcrClient extends ApiClient<ElasticsearchCcrClient> {
 	 */
 
 	public FollowStatsResponse followStats(FollowStatsRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, FollowStatsRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<FollowStatsRequest, FollowStatsResponse, ErrorResponse> endpoint = (Endpoint<FollowStatsRequest, FollowStatsResponse, ErrorResponse>) FollowStatsRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -191,7 +205,10 @@ public class ElasticsearchCcrClient extends ApiClient<ElasticsearchCcrClient> {
 
 	public ForgetFollowerResponse forgetFollower(ForgetFollowerRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, ForgetFollowerRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<ForgetFollowerRequest, ForgetFollowerResponse, ErrorResponse> endpoint = (Endpoint<ForgetFollowerRequest, ForgetFollowerResponse, ErrorResponse>) ForgetFollowerRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -224,7 +241,10 @@ public class ElasticsearchCcrClient extends ApiClient<ElasticsearchCcrClient> {
 
 	public GetAutoFollowPatternResponse getAutoFollowPattern(GetAutoFollowPatternRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, GetAutoFollowPatternRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<GetAutoFollowPatternRequest, GetAutoFollowPatternResponse, ErrorResponse> endpoint = (Endpoint<GetAutoFollowPatternRequest, GetAutoFollowPatternResponse, ErrorResponse>) GetAutoFollowPatternRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -256,7 +276,7 @@ public class ElasticsearchCcrClient extends ApiClient<ElasticsearchCcrClient> {
 
 	public GetAutoFollowPatternResponse getAutoFollowPattern() throws IOException, ElasticsearchException {
 		return this.transport.performRequest(new GetAutoFollowPatternRequest.Builder().build(),
-				GetAutoFollowPatternRequest.ENDPOINT, this.transportOptions);
+				GetAutoFollowPatternRequest._ENDPOINT, this.transportOptions);
 	}
 
 	// ----- Endpoint: ccr.pause_auto_follow_pattern
@@ -271,7 +291,10 @@ public class ElasticsearchCcrClient extends ApiClient<ElasticsearchCcrClient> {
 
 	public PauseAutoFollowPatternResponse pauseAutoFollowPattern(PauseAutoFollowPatternRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, PauseAutoFollowPatternRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<PauseAutoFollowPatternRequest, PauseAutoFollowPatternResponse, ErrorResponse> endpoint = (Endpoint<PauseAutoFollowPatternRequest, PauseAutoFollowPatternResponse, ErrorResponse>) PauseAutoFollowPatternRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -303,7 +326,10 @@ public class ElasticsearchCcrClient extends ApiClient<ElasticsearchCcrClient> {
 	 */
 
 	public PauseFollowResponse pauseFollow(PauseFollowRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, PauseFollowRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<PauseFollowRequest, PauseFollowResponse, ErrorResponse> endpoint = (Endpoint<PauseFollowRequest, PauseFollowResponse, ErrorResponse>) PauseFollowRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -338,7 +364,10 @@ public class ElasticsearchCcrClient extends ApiClient<ElasticsearchCcrClient> {
 
 	public PutAutoFollowPatternResponse putAutoFollowPattern(PutAutoFollowPatternRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, PutAutoFollowPatternRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<PutAutoFollowPatternRequest, PutAutoFollowPatternResponse, ErrorResponse> endpoint = (Endpoint<PutAutoFollowPatternRequest, PutAutoFollowPatternResponse, ErrorResponse>) PutAutoFollowPatternRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -372,7 +401,10 @@ public class ElasticsearchCcrClient extends ApiClient<ElasticsearchCcrClient> {
 
 	public ResumeAutoFollowPatternResponse resumeAutoFollowPattern(ResumeAutoFollowPatternRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, ResumeAutoFollowPatternRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<ResumeAutoFollowPatternRequest, ResumeAutoFollowPatternResponse, ErrorResponse> endpoint = (Endpoint<ResumeAutoFollowPatternRequest, ResumeAutoFollowPatternResponse, ErrorResponse>) ResumeAutoFollowPatternRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -403,7 +435,10 @@ public class ElasticsearchCcrClient extends ApiClient<ElasticsearchCcrClient> {
 	 */
 
 	public ResumeFollowResponse resumeFollow(ResumeFollowRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, ResumeFollowRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<ResumeFollowRequest, ResumeFollowResponse, ErrorResponse> endpoint = (Endpoint<ResumeFollowRequest, ResumeFollowResponse, ErrorResponse>) ResumeFollowRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -433,7 +468,7 @@ public class ElasticsearchCcrClient extends ApiClient<ElasticsearchCcrClient> {
 	 *      on elastic.co</a>
 	 */
 	public CcrStatsResponse stats() throws IOException, ElasticsearchException {
-		return this.transport.performRequest(CcrStatsRequest._INSTANCE, CcrStatsRequest.ENDPOINT,
+		return this.transport.performRequest(CcrStatsRequest._INSTANCE, CcrStatsRequest._ENDPOINT,
 				this.transportOptions);
 	}
 
@@ -449,7 +484,10 @@ public class ElasticsearchCcrClient extends ApiClient<ElasticsearchCcrClient> {
 	 */
 
 	public UnfollowResponse unfollow(UnfollowRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, UnfollowRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<UnfollowRequest, UnfollowResponse, ErrorResponse> endpoint = (Endpoint<UnfollowRequest, UnfollowResponse, ErrorResponse>) UnfollowRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**

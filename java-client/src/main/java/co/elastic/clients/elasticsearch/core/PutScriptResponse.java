@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch.core;
 
 import co.elastic.clients.elasticsearch._types.AcknowledgedResponseBase;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -80,9 +79,9 @@ public class PutScriptResponse extends AcknowledgedResponseBase {
 	 * Json deserializer for {@link PutScriptResponse}
 	 */
 	public static final JsonpDeserializer<PutScriptResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, PutScriptResponse::setupPutScriptResponseDeserializer, Builder::build);
+			.lazy(Builder::new, PutScriptResponse::setupPutScriptResponseDeserializer);
 
-	protected static void setupPutScriptResponseDeserializer(DelegatingDeserializer<PutScriptResponse.Builder> op) {
+	protected static void setupPutScriptResponseDeserializer(ObjectDeserializer<PutScriptResponse.Builder> op) {
 		AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);
 
 	}

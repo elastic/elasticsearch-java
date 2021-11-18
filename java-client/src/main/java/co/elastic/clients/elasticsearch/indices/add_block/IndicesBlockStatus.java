@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.indices.add_block;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -138,9 +137,9 @@ public class IndicesBlockStatus implements JsonpSerializable {
 	 * Json deserializer for {@link IndicesBlockStatus}
 	 */
 	public static final JsonpDeserializer<IndicesBlockStatus> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, IndicesBlockStatus::setupIndicesBlockStatusDeserializer, Builder::build);
+			.lazy(Builder::new, IndicesBlockStatus::setupIndicesBlockStatusDeserializer);
 
-	protected static void setupIndicesBlockStatusDeserializer(DelegatingDeserializer<IndicesBlockStatus.Builder> op) {
+	protected static void setupIndicesBlockStatusDeserializer(ObjectDeserializer<IndicesBlockStatus.Builder> op) {
 
 		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
 		op.add(Builder::blocked, JsonpDeserializer.booleanDeserializer(), "blocked");

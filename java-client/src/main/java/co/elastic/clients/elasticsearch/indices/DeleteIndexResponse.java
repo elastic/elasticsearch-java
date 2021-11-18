@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch.indices;
 
 import co.elastic.clients.elasticsearch._types.IndicesResponseBase;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -80,9 +79,9 @@ public class DeleteIndexResponse extends IndicesResponseBase {
 	 * Json deserializer for {@link DeleteIndexResponse}
 	 */
 	public static final JsonpDeserializer<DeleteIndexResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, DeleteIndexResponse::setupDeleteIndexResponseDeserializer, Builder::build);
+			.lazy(Builder::new, DeleteIndexResponse::setupDeleteIndexResponseDeserializer);
 
-	protected static void setupDeleteIndexResponseDeserializer(DelegatingDeserializer<DeleteIndexResponse.Builder> op) {
+	protected static void setupDeleteIndexResponseDeserializer(ObjectDeserializer<DeleteIndexResponse.Builder> op) {
 		IndicesResponseBase.setupIndicesResponseBaseDeserializer(op);
 
 	}

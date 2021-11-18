@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -87,10 +86,10 @@ public class HdrPercentilesAggregate extends PercentilesAggregateBase implements
 	 * Json deserializer for {@link HdrPercentilesAggregate}
 	 */
 	public static final JsonpDeserializer<HdrPercentilesAggregate> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, HdrPercentilesAggregate::setupHdrPercentilesAggregateDeserializer, Builder::build);
+			.lazy(Builder::new, HdrPercentilesAggregate::setupHdrPercentilesAggregateDeserializer);
 
 	protected static void setupHdrPercentilesAggregateDeserializer(
-			DelegatingDeserializer<HdrPercentilesAggregate.Builder> op) {
+			ObjectDeserializer<HdrPercentilesAggregate.Builder> op) {
 		PercentilesAggregateBase.setupPercentilesAggregateBaseDeserializer(op);
 
 	}

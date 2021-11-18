@@ -162,8 +162,8 @@ public class RollupRequest extends RequestBase implements JsonpSerializable {
 
 		JsonpDeserializer<JsonData> valueDeserializer = JsonData._DESERIALIZER;
 
-		return JsonpDeserializer.of(valueDeserializer.acceptedEvents(), (parser, mapper, event) -> new Builder()
-				.config(valueDeserializer.deserialize(parser, mapper, event)).build());
+		return JsonpDeserializer.of(valueDeserializer.acceptedEvents(),
+				(parser, mapper) -> new Builder().config(valueDeserializer.deserialize(parser, mapper)).build());
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -171,7 +171,7 @@ public class RollupRequest extends RequestBase implements JsonpSerializable {
 	/**
 	 * Endpoint "{@code rollup.rollup}".
 	 */
-	public static final Endpoint<RollupRequest, RollupResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<RollupRequest, RollupResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";

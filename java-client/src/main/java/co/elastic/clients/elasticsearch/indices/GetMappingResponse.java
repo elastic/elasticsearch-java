@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch.indices;
 
 import co.elastic.clients.elasticsearch.indices.get_mapping.IndexMappingRecord;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -84,9 +83,9 @@ public class GetMappingResponse extends DictionaryResponse<String, IndexMappingR
 	 * Json deserializer for {@link GetMappingResponse}
 	 */
 	public static final JsonpDeserializer<GetMappingResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, GetMappingResponse::setupGetMappingResponseDeserializer, Builder::build);
+			.lazy(Builder::new, GetMappingResponse::setupGetMappingResponseDeserializer);
 
-	protected static void setupGetMappingResponseDeserializer(DelegatingDeserializer<GetMappingResponse.Builder> op) {
+	protected static void setupGetMappingResponseDeserializer(ObjectDeserializer<GetMappingResponse.Builder> op) {
 		DictionaryResponse.setupDictionaryResponseDeserializer(op, JsonpDeserializer.stringDeserializer(),
 				IndexMappingRecord._DESERIALIZER);
 

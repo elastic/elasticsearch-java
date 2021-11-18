@@ -25,6 +25,8 @@ package co.elastic.clients.elasticsearch.autoscaling;
 
 import co.elastic.clients.ApiClient;
 import co.elastic.clients.elasticsearch._types.ElasticsearchException;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
+import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.Transport;
 import co.elastic.clients.transport.TransportOptions;
 import co.elastic.clients.util.ObjectBuilder;
@@ -63,7 +65,10 @@ public class ElasticsearchAutoscalingClient extends ApiClient<ElasticsearchAutos
 
 	public DeleteAutoscalingPolicyResponse deleteAutoscalingPolicy(DeleteAutoscalingPolicyRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, DeleteAutoscalingPolicyRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<DeleteAutoscalingPolicyRequest, DeleteAutoscalingPolicyResponse, ErrorResponse> endpoint = (Endpoint<DeleteAutoscalingPolicyRequest, DeleteAutoscalingPolicyResponse, ErrorResponse>) DeleteAutoscalingPolicyRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -97,7 +102,7 @@ public class ElasticsearchAutoscalingClient extends ApiClient<ElasticsearchAutos
 	 */
 	public GetAutoscalingCapacityResponse getAutoscalingCapacity() throws IOException, ElasticsearchException {
 		return this.transport.performRequest(GetAutoscalingCapacityRequest._INSTANCE,
-				GetAutoscalingCapacityRequest.ENDPOINT, this.transportOptions);
+				GetAutoscalingCapacityRequest._ENDPOINT, this.transportOptions);
 	}
 
 	// ----- Endpoint: autoscaling.get_autoscaling_policy
@@ -113,7 +118,10 @@ public class ElasticsearchAutoscalingClient extends ApiClient<ElasticsearchAutos
 
 	public GetAutoscalingPolicyResponse getAutoscalingPolicy(GetAutoscalingPolicyRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, GetAutoscalingPolicyRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<GetAutoscalingPolicyRequest, GetAutoscalingPolicyResponse, ErrorResponse> endpoint = (Endpoint<GetAutoscalingPolicyRequest, GetAutoscalingPolicyResponse, ErrorResponse>) GetAutoscalingPolicyRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -147,7 +155,10 @@ public class ElasticsearchAutoscalingClient extends ApiClient<ElasticsearchAutos
 
 	public PutAutoscalingPolicyResponse putAutoscalingPolicy(PutAutoscalingPolicyRequest request)
 			throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, PutAutoscalingPolicyRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<PutAutoscalingPolicyRequest, PutAutoscalingPolicyResponse, ErrorResponse> endpoint = (Endpoint<PutAutoscalingPolicyRequest, PutAutoscalingPolicyResponse, ErrorResponse>) PutAutoscalingPolicyRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**

@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.xpack.usage;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -112,12 +111,11 @@ public class MlDataFrameAnalyticsJobsCount implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link MlDataFrameAnalyticsJobsCount}
 	 */
-	public static final JsonpDeserializer<MlDataFrameAnalyticsJobsCount> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
-			Builder::new, MlDataFrameAnalyticsJobsCount::setupMlDataFrameAnalyticsJobsCountDeserializer,
-			Builder::build);
+	public static final JsonpDeserializer<MlDataFrameAnalyticsJobsCount> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, MlDataFrameAnalyticsJobsCount::setupMlDataFrameAnalyticsJobsCountDeserializer);
 
 	protected static void setupMlDataFrameAnalyticsJobsCountDeserializer(
-			DelegatingDeserializer<MlDataFrameAnalyticsJobsCount.Builder> op) {
+			ObjectDeserializer<MlDataFrameAnalyticsJobsCount.Builder> op) {
 
 		op.add(Builder::count, JsonpDeserializer.longDeserializer(), "count");
 

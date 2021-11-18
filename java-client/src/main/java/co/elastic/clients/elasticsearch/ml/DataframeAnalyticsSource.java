@@ -25,7 +25,6 @@ package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.elasticsearch._types.mapping.RuntimeField;
 import co.elastic.clients.elasticsearch._types.query_dsl.Query;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -36,7 +35,6 @@ import co.elastic.clients.util.MapBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Arrays;
@@ -58,7 +56,7 @@ public class DataframeAnalyticsSource implements JsonpSerializable {
 	private final Map<String, RuntimeField> runtimeMappings;
 
 	@Nullable
-	private final JsonValue /* ml._types.DataframeAnalysisAnalyzedFields */ source;
+	private final DataframeAnalysisAnalyzedFields source;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -119,7 +117,7 @@ public class DataframeAnalyticsSource implements JsonpSerializable {
 	 * API name: {@code _source}
 	 */
 	@Nullable
-	public final JsonValue /* ml._types.DataframeAnalysisAnalyzedFields */ source() {
+	public final DataframeAnalysisAnalyzedFields source() {
 		return this.source;
 	}
 
@@ -162,7 +160,7 @@ public class DataframeAnalyticsSource implements JsonpSerializable {
 		}
 		if (this.source != null) {
 			generator.writeKey("_source");
-			generator.write(this.source);
+			this.source.serialize(generator, mapper);
 
 		}
 
@@ -183,7 +181,7 @@ public class DataframeAnalyticsSource implements JsonpSerializable {
 		private Map<String, RuntimeField> runtimeMappings;
 
 		@Nullable
-		private JsonValue /* ml._types.DataframeAnalysisAnalyzedFields */ source;
+		private DataframeAnalysisAnalyzedFields source;
 
 		/**
 		 * Required - Index or indices on which to perform the analysis. It can be a
@@ -268,9 +266,21 @@ public class DataframeAnalyticsSource implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code _source}
 		 */
-		public final Builder source(@Nullable JsonValue /* ml._types.DataframeAnalysisAnalyzedFields */ value) {
+		public final Builder source(@Nullable DataframeAnalysisAnalyzedFields value) {
 			this.source = value;
 			return this;
+		}
+
+		/**
+		 * Specify <code>includes</code> and/or `excludes patterns to select which
+		 * fields will be present in the destination. Fields that are excluded cannot be
+		 * included in the analysis.
+		 * <p>
+		 * API name: {@code _source}
+		 */
+		public final Builder source(
+				Function<DataframeAnalysisAnalyzedFields.Builder, ObjectBuilder<DataframeAnalysisAnalyzedFields>> fn) {
+			return this.source(fn.apply(new DataframeAnalysisAnalyzedFields.Builder()).build());
 		}
 
 		/**
@@ -292,16 +302,16 @@ public class DataframeAnalyticsSource implements JsonpSerializable {
 	 * Json deserializer for {@link DataframeAnalyticsSource}
 	 */
 	public static final JsonpDeserializer<DataframeAnalyticsSource> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, DataframeAnalyticsSource::setupDataframeAnalyticsSourceDeserializer, Builder::build);
+			.lazy(Builder::new, DataframeAnalyticsSource::setupDataframeAnalyticsSourceDeserializer);
 
 	protected static void setupDataframeAnalyticsSourceDeserializer(
-			DelegatingDeserializer<DataframeAnalyticsSource.Builder> op) {
+			ObjectDeserializer<DataframeAnalyticsSource.Builder> op) {
 
 		op.add(Builder::index, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "index");
 		op.add(Builder::query, Query._DESERIALIZER, "query");
 		op.add(Builder::runtimeMappings, JsonpDeserializer.stringMapDeserializer(RuntimeField._DESERIALIZER),
 				"runtime_mappings");
-		op.add(Builder::source, JsonpDeserializer.jsonValueDeserializer(), "_source");
+		op.add(Builder::source, DataframeAnalysisAnalyzedFields._DESERIALIZER, "_source");
 
 	}
 

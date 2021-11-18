@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch.snapshot;
 
 import co.elastic.clients.elasticsearch.snapshot.verify_repository.CompactNodeInfo;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -139,10 +138,10 @@ public class VerifyRepositoryResponse implements JsonpSerializable {
 	 * Json deserializer for {@link VerifyRepositoryResponse}
 	 */
 	public static final JsonpDeserializer<VerifyRepositoryResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, VerifyRepositoryResponse::setupVerifyRepositoryResponseDeserializer, Builder::build);
+			.lazy(Builder::new, VerifyRepositoryResponse::setupVerifyRepositoryResponseDeserializer);
 
 	protected static void setupVerifyRepositoryResponseDeserializer(
-			DelegatingDeserializer<VerifyRepositoryResponse.Builder> op) {
+			ObjectDeserializer<VerifyRepositoryResponse.Builder> op) {
 
 		op.add(Builder::nodes, JsonpDeserializer.stringMapDeserializer(CompactNodeInfo._DESERIALIZER), "nodes");
 

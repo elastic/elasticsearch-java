@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch._types.aggregations;
 
 import co.elastic.clients.elasticsearch._types.query_dsl.Query;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -51,7 +50,8 @@ public class SignificantTermsAggregation extends BucketAggregationBase implement
 	@Nullable
 	private final ChiSquareHeuristic chiSquare;
 
-	private final List<String> exclude;
+	@Nullable
+	private final TermsExclude exclude;
 
 	@Nullable
 	private final TermsAggregationExecutionHint executionHint;
@@ -92,7 +92,7 @@ public class SignificantTermsAggregation extends BucketAggregationBase implement
 
 		this.backgroundFilter = builder.backgroundFilter;
 		this.chiSquare = builder.chiSquare;
-		this.exclude = ModelTypeHelper.unmodifiable(builder.exclude);
+		this.exclude = builder.exclude;
 		this.executionHint = builder.executionHint;
 		this.field = builder.field;
 		this.gnd = builder.gnd;
@@ -138,7 +138,8 @@ public class SignificantTermsAggregation extends BucketAggregationBase implement
 	/**
 	 * API name: {@code exclude}
 	 */
-	public final List<String> exclude() {
+	@Nullable
+	public final TermsExclude exclude() {
 		return this.exclude;
 	}
 
@@ -242,14 +243,9 @@ public class SignificantTermsAggregation extends BucketAggregationBase implement
 			this.chiSquare.serialize(generator, mapper);
 
 		}
-		if (ModelTypeHelper.isDefined(this.exclude)) {
+		if (this.exclude != null) {
 			generator.writeKey("exclude");
-			generator.writeStartArray();
-			for (String item0 : this.exclude) {
-				generator.write(item0);
-
-			}
-			generator.writeEnd();
+			this.exclude.serialize(generator, mapper);
 
 		}
 		if (this.executionHint != null) {
@@ -329,7 +325,7 @@ public class SignificantTermsAggregation extends BucketAggregationBase implement
 		private ChiSquareHeuristic chiSquare;
 
 		@Nullable
-		private List<String> exclude;
+		private TermsExclude exclude;
 
 		@Nullable
 		private TermsAggregationExecutionHint executionHint;
@@ -397,7 +393,7 @@ public class SignificantTermsAggregation extends BucketAggregationBase implement
 		/**
 		 * API name: {@code exclude}
 		 */
-		public final Builder exclude(@Nullable List<String> value) {
+		public final Builder exclude(@Nullable TermsExclude value) {
 			this.exclude = value;
 			return this;
 		}
@@ -405,9 +401,8 @@ public class SignificantTermsAggregation extends BucketAggregationBase implement
 		/**
 		 * API name: {@code exclude}
 		 */
-		public final Builder exclude(String... value) {
-			this.exclude = Arrays.asList(value);
-			return this;
+		public final Builder exclude(Function<TermsExclude.Builder, ObjectBuilder<TermsExclude>> fn) {
+			return this.exclude(fn.apply(new TermsExclude.Builder()).build());
 		}
 
 		/**
@@ -560,16 +555,15 @@ public class SignificantTermsAggregation extends BucketAggregationBase implement
 	/**
 	 * Json deserializer for {@link SignificantTermsAggregation}
 	 */
-	public static final JsonpDeserializer<SignificantTermsAggregation> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
-			Builder::new, SignificantTermsAggregation::setupSignificantTermsAggregationDeserializer, Builder::build);
+	public static final JsonpDeserializer<SignificantTermsAggregation> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, SignificantTermsAggregation::setupSignificantTermsAggregationDeserializer);
 
 	protected static void setupSignificantTermsAggregationDeserializer(
-			DelegatingDeserializer<SignificantTermsAggregation.Builder> op) {
+			ObjectDeserializer<SignificantTermsAggregation.Builder> op) {
 		BucketAggregationBase.setupBucketAggregationBaseDeserializer(op);
 		op.add(Builder::backgroundFilter, Query._DESERIALIZER, "background_filter");
 		op.add(Builder::chiSquare, ChiSquareHeuristic._DESERIALIZER, "chi_square");
-		op.add(Builder::exclude, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
-				"exclude");
+		op.add(Builder::exclude, TermsExclude._DESERIALIZER, "exclude");
 		op.add(Builder::executionHint, TermsAggregationExecutionHint._DESERIALIZER, "execution_hint");
 		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
 		op.add(Builder::gnd, GoogleNormalizedDistanceHeuristic._DESERIALIZER, "gnd");

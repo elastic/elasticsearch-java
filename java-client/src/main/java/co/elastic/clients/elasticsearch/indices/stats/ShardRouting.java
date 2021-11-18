@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.indices.stats;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -189,9 +188,9 @@ public class ShardRouting implements JsonpSerializable {
 	 * Json deserializer for {@link ShardRouting}
 	 */
 	public static final JsonpDeserializer<ShardRouting> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			ShardRouting::setupShardRoutingDeserializer, Builder::build);
+			ShardRouting::setupShardRoutingDeserializer);
 
-	protected static void setupShardRoutingDeserializer(DelegatingDeserializer<ShardRouting.Builder> op) {
+	protected static void setupShardRoutingDeserializer(ObjectDeserializer<ShardRouting.Builder> op) {
 
 		op.add(Builder::node, JsonpDeserializer.stringDeserializer(), "node");
 		op.add(Builder::primary, JsonpDeserializer.booleanDeserializer(), "primary");

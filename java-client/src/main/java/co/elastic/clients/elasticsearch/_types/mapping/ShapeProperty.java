@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.mapping;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -209,9 +208,9 @@ public class ShapeProperty extends DocValuesPropertyBase implements PropertyVari
 	 * Json deserializer for {@link ShapeProperty}
 	 */
 	public static final JsonpDeserializer<ShapeProperty> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			ShapeProperty::setupShapePropertyDeserializer, Builder::build);
+			ShapeProperty::setupShapePropertyDeserializer);
 
-	protected static void setupShapePropertyDeserializer(DelegatingDeserializer<ShapeProperty.Builder> op) {
+	protected static void setupShapePropertyDeserializer(ObjectDeserializer<ShapeProperty.Builder> op) {
 		DocValuesPropertyBase.setupDocValuesPropertyBaseDeserializer(op);
 		op.add(Builder::coerce, JsonpDeserializer.booleanDeserializer(), "coerce");
 		op.add(Builder::ignoreMalformed, JsonpDeserializer.booleanDeserializer(), "ignore_malformed");

@@ -23,7 +23,7 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -48,7 +48,7 @@ public class ModelSizeStats implements JsonpSerializable {
 
 	private final String jobId;
 
-	private final String logTime;
+	private final Time logTime;
 
 	private final MemoryStatus memoryStatus;
 
@@ -148,7 +148,7 @@ public class ModelSizeStats implements JsonpSerializable {
 	/**
 	 * Required - API name: {@code log_time}
 	 */
-	public final String logTime() {
+	public final Time logTime() {
 		return this.logTime;
 	}
 
@@ -301,7 +301,7 @@ public class ModelSizeStats implements JsonpSerializable {
 		generator.write(this.jobId);
 
 		generator.writeKey("log_time");
-		generator.write(this.logTime);
+		this.logTime.serialize(generator, mapper);
 
 		generator.writeKey("memory_status");
 		this.memoryStatus.serialize(generator, mapper);
@@ -378,7 +378,7 @@ public class ModelSizeStats implements JsonpSerializable {
 
 		private String jobId;
 
-		private String logTime;
+		private Time logTime;
 
 		private MemoryStatus memoryStatus;
 
@@ -440,9 +440,16 @@ public class ModelSizeStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code log_time}
 		 */
-		public final Builder logTime(String value) {
+		public final Builder logTime(Time value) {
 			this.logTime = value;
 			return this;
+		}
+
+		/**
+		 * Required - API name: {@code log_time}
+		 */
+		public final Builder logTime(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.logTime(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -608,14 +615,14 @@ public class ModelSizeStats implements JsonpSerializable {
 	 * Json deserializer for {@link ModelSizeStats}
 	 */
 	public static final JsonpDeserializer<ModelSizeStats> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			ModelSizeStats::setupModelSizeStatsDeserializer, Builder::build);
+			ModelSizeStats::setupModelSizeStatsDeserializer);
 
-	protected static void setupModelSizeStatsDeserializer(DelegatingDeserializer<ModelSizeStats.Builder> op) {
+	protected static void setupModelSizeStatsDeserializer(ObjectDeserializer<ModelSizeStats.Builder> op) {
 
 		op.add(Builder::bucketAllocationFailuresCount, JsonpDeserializer.longDeserializer(),
 				"bucket_allocation_failures_count");
 		op.add(Builder::jobId, JsonpDeserializer.stringDeserializer(), "job_id");
-		op.add(Builder::logTime, JsonpDeserializer.stringDeserializer(), "log_time");
+		op.add(Builder::logTime, Time._DESERIALIZER, "log_time");
 		op.add(Builder::memoryStatus, MemoryStatus._DESERIALIZER, "memory_status");
 		op.add(Builder::modelBytes, JsonpDeserializer.stringDeserializer(), "model_bytes");
 		op.add(Builder::modelBytesExceeded, JsonpDeserializer.stringDeserializer(), "model_bytes_exceeded");

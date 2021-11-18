@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -87,9 +86,9 @@ public class MaxAggregate extends SingleMetricAggregateBase implements Aggregate
 	 * Json deserializer for {@link MaxAggregate}
 	 */
 	public static final JsonpDeserializer<MaxAggregate> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			MaxAggregate::setupMaxAggregateDeserializer, Builder::build);
+			MaxAggregate::setupMaxAggregateDeserializer);
 
-	protected static void setupMaxAggregateDeserializer(DelegatingDeserializer<MaxAggregate.Builder> op) {
+	protected static void setupMaxAggregateDeserializer(ObjectDeserializer<MaxAggregate.Builder> op) {
 		SingleMetricAggregateBase.setupSingleMetricAggregateBaseDeserializer(op);
 
 	}

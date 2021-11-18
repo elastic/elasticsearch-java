@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.shutdown.get_node;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -113,10 +112,9 @@ public class PersistentTaskStatus implements JsonpSerializable {
 	 * Json deserializer for {@link PersistentTaskStatus}
 	 */
 	public static final JsonpDeserializer<PersistentTaskStatus> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, PersistentTaskStatus::setupPersistentTaskStatusDeserializer, Builder::build);
+			.lazy(Builder::new, PersistentTaskStatus::setupPersistentTaskStatusDeserializer);
 
-	protected static void setupPersistentTaskStatusDeserializer(
-			DelegatingDeserializer<PersistentTaskStatus.Builder> op) {
+	protected static void setupPersistentTaskStatusDeserializer(ObjectDeserializer<PersistentTaskStatus.Builder> op) {
 
 		op.add(Builder::status, ShutdownStatus._DESERIALIZER, "status");
 

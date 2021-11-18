@@ -26,7 +26,6 @@ package co.elastic.clients.elasticsearch.security;
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch.security.get_token.AccessTokenGrantType;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -264,9 +263,9 @@ public class GetTokenRequest extends RequestBase implements JsonpSerializable {
 	 * Json deserializer for {@link GetTokenRequest}
 	 */
 	public static final JsonpDeserializer<GetTokenRequest> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			GetTokenRequest::setupGetTokenRequestDeserializer, Builder::build);
+			GetTokenRequest::setupGetTokenRequestDeserializer);
 
-	protected static void setupGetTokenRequestDeserializer(DelegatingDeserializer<GetTokenRequest.Builder> op) {
+	protected static void setupGetTokenRequestDeserializer(ObjectDeserializer<GetTokenRequest.Builder> op) {
 
 		op.add(Builder::grantType, AccessTokenGrantType._DESERIALIZER, "grant_type");
 		op.add(Builder::kerberosTicket, JsonpDeserializer.stringDeserializer(), "kerberos_ticket");
@@ -282,7 +281,7 @@ public class GetTokenRequest extends RequestBase implements JsonpSerializable {
 	/**
 	 * Endpoint "{@code security.get_token}".
 	 */
-	public static final Endpoint<GetTokenRequest, GetTokenResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<GetTokenRequest, GetTokenResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";

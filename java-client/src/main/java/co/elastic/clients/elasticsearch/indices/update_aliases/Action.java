@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.indices.update_aliases;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -42,14 +41,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.update_aliases.Action
+// union type: Container[]
 @JsonpDeserializable
 public class Action implements TaggedUnion<Object>, JsonpSerializable {
 
 	public static final String ADD = "add";
 	public static final String REMOVE = "remove";
 	public static final String REMOVE_INDEX = "remove_index";
-
-	// Tagged union implementation
 
 	private final String _type;
 	private final Object _value;
@@ -115,6 +113,7 @@ public class Action implements TaggedUnion<Object>, JsonpSerializable {
 	@Override
 	@SuppressWarnings("unchecked")
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+
 		generator.writeStartObject();
 
 		generator.writeKey(_type);
@@ -123,6 +122,7 @@ public class Action implements TaggedUnion<Object>, JsonpSerializable {
 		}
 
 		generator.writeEnd();
+
 	}
 
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Action> {
@@ -166,7 +166,7 @@ public class Action implements TaggedUnion<Object>, JsonpSerializable {
 
 	}
 
-	protected static void setupActionDeserializer(DelegatingDeserializer<Builder> op) {
+	protected static void setupActionDeserializer(ObjectDeserializer<Builder> op) {
 
 		op.add(Builder::add, AddAction._DESERIALIZER, "add");
 		op.add(Builder::remove, RemoveAction._DESERIALIZER, "remove");

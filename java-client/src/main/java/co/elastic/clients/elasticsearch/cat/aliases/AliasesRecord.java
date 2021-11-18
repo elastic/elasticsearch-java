@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.cat.aliases;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -283,9 +282,9 @@ public class AliasesRecord implements JsonpSerializable {
 	 * Json deserializer for {@link AliasesRecord}
 	 */
 	public static final JsonpDeserializer<AliasesRecord> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			AliasesRecord::setupAliasesRecordDeserializer, Builder::build);
+			AliasesRecord::setupAliasesRecordDeserializer);
 
-	protected static void setupAliasesRecordDeserializer(DelegatingDeserializer<AliasesRecord.Builder> op) {
+	protected static void setupAliasesRecordDeserializer(ObjectDeserializer<AliasesRecord.Builder> op) {
 
 		op.add(Builder::alias, JsonpDeserializer.stringDeserializer(), "alias", "a");
 		op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "index", "i", "idx");

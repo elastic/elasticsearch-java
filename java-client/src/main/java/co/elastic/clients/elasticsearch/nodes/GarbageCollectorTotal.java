@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.nodes;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -162,10 +161,9 @@ public class GarbageCollectorTotal implements JsonpSerializable {
 	 * Json deserializer for {@link GarbageCollectorTotal}
 	 */
 	public static final JsonpDeserializer<GarbageCollectorTotal> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, GarbageCollectorTotal::setupGarbageCollectorTotalDeserializer, Builder::build);
+			.lazy(Builder::new, GarbageCollectorTotal::setupGarbageCollectorTotalDeserializer);
 
-	protected static void setupGarbageCollectorTotalDeserializer(
-			DelegatingDeserializer<GarbageCollectorTotal.Builder> op) {
+	protected static void setupGarbageCollectorTotalDeserializer(ObjectDeserializer<GarbageCollectorTotal.Builder> op) {
 
 		op.add(Builder::collectionCount, JsonpDeserializer.longDeserializer(), "collection_count");
 		op.add(Builder::collectionTime, JsonpDeserializer.stringDeserializer(), "collection_time");

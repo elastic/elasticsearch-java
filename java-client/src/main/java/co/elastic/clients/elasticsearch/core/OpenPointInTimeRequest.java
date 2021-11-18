@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.core;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -50,15 +51,14 @@ import javax.annotation.Nullable;
 public class OpenPointInTimeRequest extends RequestBase {
 	private final List<String> index;
 
-	@Nullable
-	private final String keepAlive;
+	private final Time keepAlive;
 
 	// ---------------------------------------------------------------------------------------------
 
 	private OpenPointInTimeRequest(Builder builder) {
 
 		this.index = ModelTypeHelper.unmodifiableRequired(builder.index, this, "index");
-		this.keepAlive = builder.keepAlive;
+		this.keepAlive = ModelTypeHelper.requireNonNull(builder.keepAlive, this, "keepAlive");
 
 	}
 
@@ -77,12 +77,11 @@ public class OpenPointInTimeRequest extends RequestBase {
 	}
 
 	/**
-	 * Specific the time to live for the point in time
+	 * Required - Specific the time to live for the point in time
 	 * <p>
 	 * API name: {@code keep_alive}
 	 */
-	@Nullable
-	public final String keepAlive() {
+	public final Time keepAlive() {
 		return this.keepAlive;
 	}
 
@@ -94,8 +93,7 @@ public class OpenPointInTimeRequest extends RequestBase {
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<OpenPointInTimeRequest> {
 		private List<String> index;
 
-		@Nullable
-		private String keepAlive;
+		private Time keepAlive;
 
 		/**
 		 * Required - A comma-separated list of index names to open point in time; use
@@ -120,13 +118,22 @@ public class OpenPointInTimeRequest extends RequestBase {
 		}
 
 		/**
-		 * Specific the time to live for the point in time
+		 * Required - Specific the time to live for the point in time
 		 * <p>
 		 * API name: {@code keep_alive}
 		 */
-		public final Builder keepAlive(@Nullable String value) {
+		public final Builder keepAlive(Time value) {
 			this.keepAlive = value;
 			return this;
+		}
+
+		/**
+		 * Required - Specific the time to live for the point in time
+		 * <p>
+		 * API name: {@code keep_alive}
+		 */
+		public final Builder keepAlive(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.keepAlive(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -147,7 +154,7 @@ public class OpenPointInTimeRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code open_point_in_time}".
 	 */
-	public static final Endpoint<OpenPointInTimeRequest, OpenPointInTimeResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<OpenPointInTimeRequest, OpenPointInTimeResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";
@@ -176,9 +183,7 @@ public class OpenPointInTimeRequest extends RequestBase {
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
-				if (request.keepAlive != null) {
-					params.put("keep_alive", request.keepAlive);
-				}
+				params.put("keep_alive", request.keepAlive._toJsonString());
 				return params;
 
 			}, SimpleEndpoint.emptyMap(), false, OpenPointInTimeResponse._DESERIALIZER);

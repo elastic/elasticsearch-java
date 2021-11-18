@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.tasks;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -49,7 +50,7 @@ public class GetTasksRequest extends RequestBase {
 	private final String taskId;
 
 	@Nullable
-	private final String timeout;
+	private final Time timeout;
 
 	@Nullable
 	private final Boolean waitForCompletion;
@@ -83,7 +84,7 @@ public class GetTasksRequest extends RequestBase {
 	 * API name: {@code timeout}
 	 */
 	@Nullable
-	public final String timeout() {
+	public final Time timeout() {
 		return this.timeout;
 	}
 
@@ -106,7 +107,7 @@ public class GetTasksRequest extends RequestBase {
 		private String taskId;
 
 		@Nullable
-		private String timeout;
+		private Time timeout;
 
 		@Nullable
 		private Boolean waitForCompletion;
@@ -126,9 +127,18 @@ public class GetTasksRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code timeout}
 		 */
-		public final Builder timeout(@Nullable String value) {
+		public final Builder timeout(@Nullable Time value) {
 			this.timeout = value;
 			return this;
+		}
+
+		/**
+		 * Explicit operation timeout
+		 * <p>
+		 * API name: {@code timeout}
+		 */
+		public final Builder timeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.timeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -159,7 +169,7 @@ public class GetTasksRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code tasks.get}".
 	 */
-	public static final Endpoint<GetTasksRequest, GetTasksResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<GetTasksRequest, GetTasksResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "GET";
@@ -192,7 +202,7 @@ public class GetTasksRequest extends RequestBase {
 					params.put("wait_for_completion", String.valueOf(request.waitForCompletion));
 				}
 				if (request.timeout != null) {
-					params.put("timeout", request.timeout);
+					params.put("timeout", request.timeout._toJsonString());
 				}
 				return params;
 

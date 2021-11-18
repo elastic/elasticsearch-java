@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.ml.put_trained_model;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -42,14 +41,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.put_trained_model.Preprocessor
+// union type: Container[]
 @JsonpDeserializable
 public class Preprocessor implements TaggedUnion<Object>, JsonpSerializable {
 
 	public static final String FREQUENCY_ENCODING = "frequency_encoding";
 	public static final String ONE_HOT_ENCODING = "one_hot_encoding";
 	public static final String TARGET_MEAN_ENCODING = "target_mean_encoding";
-
-	// Tagged union implementation
 
 	private final String _type;
 	private final Object _value;
@@ -118,6 +116,7 @@ public class Preprocessor implements TaggedUnion<Object>, JsonpSerializable {
 	@Override
 	@SuppressWarnings("unchecked")
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+
 		generator.writeStartObject();
 
 		generator.writeKey(_type);
@@ -126,6 +125,7 @@ public class Preprocessor implements TaggedUnion<Object>, JsonpSerializable {
 		}
 
 		generator.writeEnd();
+
 	}
 
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Preprocessor> {
@@ -172,7 +172,7 @@ public class Preprocessor implements TaggedUnion<Object>, JsonpSerializable {
 
 	}
 
-	protected static void setupPreprocessorDeserializer(DelegatingDeserializer<Builder> op) {
+	protected static void setupPreprocessorDeserializer(ObjectDeserializer<Builder> op) {
 
 		op.add(Builder::frequencyEncoding, FrequencyEncodingPreprocessor._DESERIALIZER, "frequency_encoding");
 		op.add(Builder::oneHotEncoding, OneHotEncodingPreprocessor._DESERIALIZER, "one_hot_encoding");

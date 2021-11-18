@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.mapping;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -126,10 +125,10 @@ public class ConstantKeywordProperty extends PropertyBase implements PropertyVar
 	 * Json deserializer for {@link ConstantKeywordProperty}
 	 */
 	public static final JsonpDeserializer<ConstantKeywordProperty> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, ConstantKeywordProperty::setupConstantKeywordPropertyDeserializer, Builder::build);
+			.lazy(Builder::new, ConstantKeywordProperty::setupConstantKeywordPropertyDeserializer);
 
 	protected static void setupConstantKeywordPropertyDeserializer(
-			DelegatingDeserializer<ConstantKeywordProperty.Builder> op) {
+			ObjectDeserializer<ConstantKeywordProperty.Builder> op) {
 		PropertyBase.setupPropertyBaseDeserializer(op);
 		op.add(Builder::value, JsonData._DESERIALIZER, "value");
 

@@ -201,7 +201,7 @@ public class TasksRequest extends CatRequestBase {
 	/**
 	 * Endpoint "{@code cat.tasks}".
 	 */
-	public static final Endpoint<TasksRequest, TasksResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<TasksRequest, TasksResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "GET";

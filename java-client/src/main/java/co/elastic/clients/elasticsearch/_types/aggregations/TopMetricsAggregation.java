@@ -23,7 +23,7 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
-import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.elasticsearch.core.search.SortOptions;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -31,7 +31,6 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.util.ArrayList;
@@ -49,7 +48,7 @@ public class TopMetricsAggregation extends MetricAggregationBase implements Aggr
 	@Nullable
 	private final Integer size;
 
-	private final List<JsonValue /* _global.search._types.SortCombinations */> sort;
+	private final List<SortOptions> sort;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -92,7 +91,7 @@ public class TopMetricsAggregation extends MetricAggregationBase implements Aggr
 	/**
 	 * API name: {@code sort}
 	 */
-	public final List<JsonValue /* _global.search._types.SortCombinations */> sort() {
+	public final List<SortOptions> sort() {
 		return this.sort;
 	}
 
@@ -117,8 +116,8 @@ public class TopMetricsAggregation extends MetricAggregationBase implements Aggr
 		if (ModelTypeHelper.isDefined(this.sort)) {
 			generator.writeKey("sort");
 			generator.writeStartArray();
-			for (JsonValue /* _global.search._types.SortCombinations */ item0 : this.sort) {
-				generator.write(item0);
+			for (SortOptions item0 : this.sort) {
+				item0.serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -142,7 +141,7 @@ public class TopMetricsAggregation extends MetricAggregationBase implements Aggr
 		private Integer size;
 
 		@Nullable
-		private List<JsonValue /* _global.search._types.SortCombinations */> sort;
+		private List<SortOptions> sort;
 
 		/**
 		 * API name: {@code metrics}
@@ -183,7 +182,7 @@ public class TopMetricsAggregation extends MetricAggregationBase implements Aggr
 		/**
 		 * API name: {@code sort}
 		 */
-		public final Builder sort(@Nullable List<JsonValue /* _global.search._types.SortCombinations */> value) {
+		public final Builder sort(@Nullable List<SortOptions> value) {
 			this.sort = value;
 			return this;
 		}
@@ -191,8 +190,20 @@ public class TopMetricsAggregation extends MetricAggregationBase implements Aggr
 		/**
 		 * API name: {@code sort}
 		 */
-		public final Builder sort(JsonValue /* _global.search._types.SortCombinations */... value) {
+		public final Builder sort(SortOptions... value) {
 			this.sort = Arrays.asList(value);
+			return this;
+		}
+
+		/**
+		 * API name: {@code sort}
+		 */
+		@SafeVarargs
+		public final Builder sort(Function<SortOptions.Builder, ObjectBuilder<SortOptions>>... fns) {
+			this.sort = new ArrayList<>(fns.length);
+			for (Function<SortOptions.Builder, ObjectBuilder<SortOptions>> fn : fns) {
+				this.sort.add(fn.apply(new SortOptions.Builder()).build());
+			}
 			return this;
 		}
 
@@ -220,14 +231,13 @@ public class TopMetricsAggregation extends MetricAggregationBase implements Aggr
 	 * Json deserializer for {@link TopMetricsAggregation}
 	 */
 	public static final JsonpDeserializer<TopMetricsAggregation> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, TopMetricsAggregation::setupTopMetricsAggregationDeserializer, Builder::build);
+			.lazy(Builder::new, TopMetricsAggregation::setupTopMetricsAggregationDeserializer);
 
-	protected static void setupTopMetricsAggregationDeserializer(
-			DelegatingDeserializer<TopMetricsAggregation.Builder> op) {
+	protected static void setupTopMetricsAggregationDeserializer(ObjectDeserializer<TopMetricsAggregation.Builder> op) {
 		MetricAggregationBase.setupMetricAggregationBaseDeserializer(op);
 		op.add(Builder::metrics, JsonpDeserializer.arrayDeserializer(TopMetricsValue._DESERIALIZER), "metrics");
 		op.add(Builder::size, JsonpDeserializer.integerDeserializer(), "size");
-		op.add(Builder::sort, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.jsonValueDeserializer()), "sort");
+		op.add(Builder::sort, JsonpDeserializer.arrayDeserializer(SortOptions._DESERIALIZER), "sort");
 
 	}
 

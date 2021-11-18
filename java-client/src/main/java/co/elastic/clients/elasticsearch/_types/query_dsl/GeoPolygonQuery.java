@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -201,9 +200,9 @@ public class GeoPolygonQuery extends QueryBase implements QueryVariant {
 	 * Json deserializer for {@link GeoPolygonQuery}
 	 */
 	public static final JsonpDeserializer<GeoPolygonQuery> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			GeoPolygonQuery::setupGeoPolygonQueryDeserializer, Builder::build);
+			GeoPolygonQuery::setupGeoPolygonQueryDeserializer);
 
-	protected static void setupGeoPolygonQueryDeserializer(DelegatingDeserializer<GeoPolygonQuery.Builder> op) {
+	protected static void setupGeoPolygonQueryDeserializer(ObjectDeserializer<GeoPolygonQuery.Builder> op) {
 		QueryBase.setupQueryBaseDeserializer(op);
 		op.add(Builder::validationMethod, GeoValidationMethod._DESERIALIZER, "validation_method");
 		op.add(Builder::ignoreUnmapped, JsonpDeserializer.booleanDeserializer(), "ignore_unmapped");

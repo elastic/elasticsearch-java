@@ -25,6 +25,8 @@ package co.elastic.clients.elasticsearch.xpack;
 
 import co.elastic.clients.ApiClient;
 import co.elastic.clients.elasticsearch._types.ElasticsearchException;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
+import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.Transport;
 import co.elastic.clients.transport.TransportOptions;
 import co.elastic.clients.util.ObjectBuilder;
@@ -61,7 +63,10 @@ public class ElasticsearchXpackClient extends ApiClient<ElasticsearchXpackClient
 	 */
 
 	public XpackInfoResponse info(XpackInfoRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, XpackInfoRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<XpackInfoRequest, XpackInfoResponse, ErrorResponse> endpoint = (Endpoint<XpackInfoRequest, XpackInfoResponse, ErrorResponse>) XpackInfoRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -89,7 +94,7 @@ public class ElasticsearchXpackClient extends ApiClient<ElasticsearchXpackClient
 	 */
 
 	public XpackInfoResponse info() throws IOException, ElasticsearchException {
-		return this.transport.performRequest(new XpackInfoRequest.Builder().build(), XpackInfoRequest.ENDPOINT,
+		return this.transport.performRequest(new XpackInfoRequest.Builder().build(), XpackInfoRequest._ENDPOINT,
 				this.transportOptions);
 	}
 
@@ -104,7 +109,10 @@ public class ElasticsearchXpackClient extends ApiClient<ElasticsearchXpackClient
 	 */
 
 	public UsageResponse usage(UsageRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, UsageRequest.ENDPOINT, this.transportOptions);
+		@SuppressWarnings("unchecked")
+		Endpoint<UsageRequest, UsageResponse, ErrorResponse> endpoint = (Endpoint<UsageRequest, UsageResponse, ErrorResponse>) UsageRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -132,7 +140,7 @@ public class ElasticsearchXpackClient extends ApiClient<ElasticsearchXpackClient
 	 */
 
 	public UsageResponse usage() throws IOException, ElasticsearchException {
-		return this.transport.performRequest(new UsageRequest.Builder().build(), UsageRequest.ENDPOINT,
+		return this.transport.performRequest(new UsageRequest.Builder().build(), UsageRequest._ENDPOINT,
 				this.transportOptions);
 	}
 

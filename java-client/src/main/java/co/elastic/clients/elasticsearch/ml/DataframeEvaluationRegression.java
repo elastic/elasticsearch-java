@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -205,12 +204,11 @@ public class DataframeEvaluationRegression implements DataframeEvaluationVariant
 	/**
 	 * Json deserializer for {@link DataframeEvaluationRegression}
 	 */
-	public static final JsonpDeserializer<DataframeEvaluationRegression> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
-			Builder::new, DataframeEvaluationRegression::setupDataframeEvaluationRegressionDeserializer,
-			Builder::build);
+	public static final JsonpDeserializer<DataframeEvaluationRegression> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, DataframeEvaluationRegression::setupDataframeEvaluationRegressionDeserializer);
 
 	protected static void setupDataframeEvaluationRegressionDeserializer(
-			DelegatingDeserializer<DataframeEvaluationRegression.Builder> op) {
+			ObjectDeserializer<DataframeEvaluationRegression.Builder> op) {
 
 		op.add(Builder::actualField, JsonpDeserializer.stringDeserializer(), "actual_field");
 		op.add(Builder::predictedField, JsonpDeserializer.stringDeserializer(), "predicted_field");

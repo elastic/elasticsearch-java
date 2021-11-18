@@ -23,8 +23,8 @@
 
 package co.elastic.clients.elasticsearch.watcher;
 
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.elasticsearch._types.Transform;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -59,7 +59,7 @@ public class Action implements JsonpSerializable {
 	private final String name;
 
 	@Nullable
-	private final String throttlePeriod;
+	private final Time throttlePeriod;
 
 	@Nullable
 	private final String throttlePeriodInMillis;
@@ -142,7 +142,7 @@ public class Action implements JsonpSerializable {
 	 * API name: {@code throttle_period}
 	 */
 	@Nullable
-	public final String throttlePeriod() {
+	public final Time throttlePeriod() {
 		return this.throttlePeriod;
 	}
 
@@ -223,7 +223,7 @@ public class Action implements JsonpSerializable {
 		}
 		if (this.throttlePeriod != null) {
 			generator.writeKey("throttle_period");
-			generator.write(this.throttlePeriod);
+			this.throttlePeriod.serialize(generator, mapper);
 
 		}
 		if (this.throttlePeriodInMillis != null) {
@@ -276,7 +276,7 @@ public class Action implements JsonpSerializable {
 		private String name;
 
 		@Nullable
-		private String throttlePeriod;
+		private Time throttlePeriod;
 
 		@Nullable
 		private String throttlePeriodInMillis;
@@ -343,9 +343,16 @@ public class Action implements JsonpSerializable {
 		/**
 		 * API name: {@code throttle_period}
 		 */
-		public final Builder throttlePeriod(@Nullable String value) {
+		public final Builder throttlePeriod(@Nullable Time value) {
 			this.throttlePeriod = value;
 			return this;
+		}
+
+		/**
+		 * API name: {@code throttle_period}
+		 */
+		public final Builder throttlePeriod(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.throttlePeriod(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -435,16 +442,16 @@ public class Action implements JsonpSerializable {
 	 * Json deserializer for {@link Action}
 	 */
 	public static final JsonpDeserializer<Action> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			Action::setupActionDeserializer, Builder::build);
+			Action::setupActionDeserializer);
 
-	protected static void setupActionDeserializer(DelegatingDeserializer<Action.Builder> op) {
+	protected static void setupActionDeserializer(ObjectDeserializer<Action.Builder> op) {
 
 		op.add(Builder::actionType, ActionType._DESERIALIZER, "action_type");
 		op.add(Builder::condition, Condition._DESERIALIZER, "condition");
 		op.add(Builder::foreach, JsonpDeserializer.stringDeserializer(), "foreach");
 		op.add(Builder::maxIterations, JsonpDeserializer.integerDeserializer(), "max_iterations");
 		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
-		op.add(Builder::throttlePeriod, JsonpDeserializer.stringDeserializer(), "throttle_period");
+		op.add(Builder::throttlePeriod, Time._DESERIALIZER, "throttle_period");
 		op.add(Builder::throttlePeriodInMillis, JsonpDeserializer.stringDeserializer(), "throttle_period_in_millis");
 		op.add(Builder::transform, Transform._DESERIALIZER, "transform");
 		op.add(Builder::index, Index._DESERIALIZER, "index");

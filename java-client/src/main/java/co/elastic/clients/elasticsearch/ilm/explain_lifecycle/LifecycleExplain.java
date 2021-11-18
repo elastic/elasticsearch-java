@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.ilm.explain_lifecycle;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -41,13 +40,12 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ilm.explain_lifecycle.LifecycleExplain
+// union type: InternalTag[tag=managed]
 @JsonpDeserializable
 public class LifecycleExplain implements TaggedUnion<LifecycleExplainVariant>, JsonpSerializable {
 
 	public static final String TRUE = "true";
 	public static final String FALSE = "false";
-
-	// Tagged union implementation
 
 	private final String _type;
 	private final LifecycleExplainVariant _value;
@@ -138,7 +136,7 @@ public class LifecycleExplain implements TaggedUnion<LifecycleExplainVariant>, J
 
 	}
 
-	protected static void setupLifecycleExplainDeserializer(DelegatingDeserializer<Builder> op) {
+	protected static void setupLifecycleExplainDeserializer(ObjectDeserializer<Builder> op) {
 
 		op.add(Builder::true_, LifecycleExplainManaged._DESERIALIZER, "true");
 		op.add(Builder::false_, LifecycleExplainUnmanaged._DESERIALIZER, "false");

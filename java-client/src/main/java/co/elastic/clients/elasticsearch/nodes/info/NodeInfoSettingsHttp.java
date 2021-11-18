@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.nodes.info;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -208,10 +207,9 @@ public class NodeInfoSettingsHttp implements JsonpSerializable {
 	 * Json deserializer for {@link NodeInfoSettingsHttp}
 	 */
 	public static final JsonpDeserializer<NodeInfoSettingsHttp> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, NodeInfoSettingsHttp::setupNodeInfoSettingsHttpDeserializer, Builder::build);
+			.lazy(Builder::new, NodeInfoSettingsHttp::setupNodeInfoSettingsHttpDeserializer);
 
-	protected static void setupNodeInfoSettingsHttpDeserializer(
-			DelegatingDeserializer<NodeInfoSettingsHttp.Builder> op) {
+	protected static void setupNodeInfoSettingsHttpDeserializer(ObjectDeserializer<NodeInfoSettingsHttp.Builder> op) {
 
 		op.add(Builder::type, NodeInfoSettingsHttpType._DESERIALIZER, "type");
 		op.add(Builder::typeDefault, JsonpDeserializer.stringDeserializer(), "type.default");

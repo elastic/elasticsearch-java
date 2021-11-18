@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.analysis;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -36,7 +35,7 @@ import java.util.function.Function;
 
 // typedef: _types.analysis.KStemTokenFilter
 @JsonpDeserializable
-public class KStemTokenFilter extends TokenFilterBase implements TokenFilterVariant {
+public class KStemTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
 	// ---------------------------------------------------------------------------------------------
 
 	private KStemTokenFilter(Builder builder) {
@@ -49,7 +48,7 @@ public class KStemTokenFilter extends TokenFilterBase implements TokenFilterVari
 	}
 
 	/**
-	 * {@link TokenFilter} variant type
+	 * {@link TokenFilterDefinition} variant type
 	 */
 	@Override
 	public String _variantType() {
@@ -95,9 +94,9 @@ public class KStemTokenFilter extends TokenFilterBase implements TokenFilterVari
 	 * Json deserializer for {@link KStemTokenFilter}
 	 */
 	public static final JsonpDeserializer<KStemTokenFilter> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			KStemTokenFilter::setupKStemTokenFilterDeserializer, Builder::build);
+			KStemTokenFilter::setupKStemTokenFilterDeserializer);
 
-	protected static void setupKStemTokenFilterDeserializer(DelegatingDeserializer<KStemTokenFilter.Builder> op) {
+	protected static void setupKStemTokenFilterDeserializer(ObjectDeserializer<KStemTokenFilter.Builder> op) {
 		TokenFilterBase.setupTokenFilterBaseDeserializer(op);
 
 		op.ignore("type");

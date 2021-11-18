@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch._types.mapping;
 
 import co.elastic.clients.elasticsearch.indices.FielddataFrequencyFilter;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -507,9 +506,9 @@ public class TextProperty extends CorePropertyBase implements PropertyVariant {
 	 * Json deserializer for {@link TextProperty}
 	 */
 	public static final JsonpDeserializer<TextProperty> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			TextProperty::setupTextPropertyDeserializer, Builder::build);
+			TextProperty::setupTextPropertyDeserializer);
 
-	protected static void setupTextPropertyDeserializer(DelegatingDeserializer<TextProperty.Builder> op) {
+	protected static void setupTextPropertyDeserializer(ObjectDeserializer<TextProperty.Builder> op) {
 		CorePropertyBase.setupCorePropertyBaseDeserializer(op);
 		op.add(Builder::analyzer, JsonpDeserializer.stringDeserializer(), "analyzer");
 		op.add(Builder::boost, JsonpDeserializer.doubleDeserializer(), "boost");

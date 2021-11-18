@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.indices.recovery;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -235,9 +234,9 @@ public class TranslogStatus implements JsonpSerializable {
 	 * Json deserializer for {@link TranslogStatus}
 	 */
 	public static final JsonpDeserializer<TranslogStatus> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			TranslogStatus::setupTranslogStatusDeserializer, Builder::build);
+			TranslogStatus::setupTranslogStatusDeserializer);
 
-	protected static void setupTranslogStatusDeserializer(DelegatingDeserializer<TranslogStatus.Builder> op) {
+	protected static void setupTranslogStatusDeserializer(ObjectDeserializer<TranslogStatus.Builder> op) {
 
 		op.add(Builder::percent, JsonpDeserializer.stringDeserializer(), "percent");
 		op.add(Builder::recovered, JsonpDeserializer.longDeserializer(), "recovered");

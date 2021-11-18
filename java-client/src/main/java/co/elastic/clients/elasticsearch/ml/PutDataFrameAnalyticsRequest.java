@@ -25,7 +25,6 @@ package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -37,7 +36,6 @@ import co.elastic.clients.transport.SimpleEndpoint;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Integer;
@@ -56,7 +54,7 @@ public class PutDataFrameAnalyticsRequest extends RequestBase implements JsonpSe
 	private final DataframeAnalysis analysis;
 
 	@Nullable
-	private final JsonValue /* ml._types.DataframeAnalysisAnalyzedFields */ analyzedFields;
+	private final DataframeAnalysisAnalyzedFields analyzedFields;
 
 	@Nullable
 	private final String description;
@@ -155,7 +153,7 @@ public class PutDataFrameAnalyticsRequest extends RequestBase implements JsonpSe
 	 * API name: {@code analyzed_fields}
 	 */
 	@Nullable
-	public final JsonValue /* ml._types.DataframeAnalysisAnalyzedFields */ analyzedFields() {
+	public final DataframeAnalysisAnalyzedFields analyzedFields() {
 		return this.analyzedFields;
 	}
 
@@ -246,7 +244,7 @@ public class PutDataFrameAnalyticsRequest extends RequestBase implements JsonpSe
 
 		if (this.analyzedFields != null) {
 			generator.writeKey("analyzed_fields");
-			generator.write(this.analyzedFields);
+			this.analyzedFields.serialize(generator, mapper);
 
 		}
 		if (this.description != null) {
@@ -284,7 +282,7 @@ public class PutDataFrameAnalyticsRequest extends RequestBase implements JsonpSe
 		private DataframeAnalysis analysis;
 
 		@Nullable
-		private JsonValue /* ml._types.DataframeAnalysisAnalyzedFields */ analyzedFields;
+		private DataframeAnalysisAnalyzedFields analyzedFields;
 
 		@Nullable
 		private String description;
@@ -374,9 +372,48 @@ public class PutDataFrameAnalyticsRequest extends RequestBase implements JsonpSe
 		 * <p>
 		 * API name: {@code analyzed_fields}
 		 */
-		public final Builder analyzedFields(@Nullable JsonValue /* ml._types.DataframeAnalysisAnalyzedFields */ value) {
+		public final Builder analyzedFields(@Nullable DataframeAnalysisAnalyzedFields value) {
 			this.analyzedFields = value;
 			return this;
+		}
+
+		/**
+		 * Specifies <code>includes</code> and/or <code>excludes</code> patterns to
+		 * select which fields will be included in the analysis. The patterns specified
+		 * in <code>excludes</code> are applied last, therefore <code>excludes</code>
+		 * takes precedence. In other words, if the same field is specified in both
+		 * <code>includes</code> and <code>excludes</code>, then the field will not be
+		 * included in the analysis. If <code>analyzed_fields</code> is not set, only
+		 * the relevant fields will be included. For example, all the numeric fields for
+		 * outlier detection. The supported fields vary for each type of analysis.
+		 * Outlier detection requires numeric or <code>boolean</code> data to analyze.
+		 * The algorithms don’t support missing values therefore fields that have data
+		 * types other than numeric or boolean are ignored. Documents where included
+		 * fields contain missing values, null values, or an array are also ignored.
+		 * Therefore the <code>dest</code> index may contain documents that don’t have
+		 * an outlier score. Regression supports fields that are numeric,
+		 * <code>boolean</code>, <code>text</code>, <code>keyword</code>, and
+		 * <code>ip</code> data types. It is also tolerant of missing values. Fields
+		 * that are supported are included in the analysis, other fields are ignored.
+		 * Documents where included fields contain an array with two or more values are
+		 * also ignored. Documents in the <code>dest</code> index that don’t contain a
+		 * results field are not included in the regression analysis. Classification
+		 * supports fields that are numeric, <code>boolean</code>, <code>text</code>,
+		 * <code>keyword</code>, and <code>ip</code> data types. It is also tolerant of
+		 * missing values. Fields that are supported are included in the analysis, other
+		 * fields are ignored. Documents where included fields contain an array with two
+		 * or more values are also ignored. Documents in the <code>dest</code> index
+		 * that don’t contain a results field are not included in the classification
+		 * analysis. Classification analysis can be improved by mapping ordinal variable
+		 * values to a single number. For example, in case of age ranges, you can model
+		 * the values as <code>0-14 = 0</code>, <code>15-24 = 1</code>,
+		 * <code>25-34 = 2</code>, and so on.
+		 * <p>
+		 * API name: {@code analyzed_fields}
+		 */
+		public final Builder analyzedFields(
+				Function<DataframeAnalysisAnalyzedFields.Builder, ObjectBuilder<DataframeAnalysisAnalyzedFields>> fn) {
+			return this.analyzedFields(fn.apply(new DataframeAnalysisAnalyzedFields.Builder()).build());
 		}
 
 		/**
@@ -486,15 +523,15 @@ public class PutDataFrameAnalyticsRequest extends RequestBase implements JsonpSe
 	/**
 	 * Json deserializer for {@link PutDataFrameAnalyticsRequest}
 	 */
-	public static final JsonpDeserializer<PutDataFrameAnalyticsRequest> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
-			Builder::new, PutDataFrameAnalyticsRequest::setupPutDataFrameAnalyticsRequestDeserializer, Builder::build);
+	public static final JsonpDeserializer<PutDataFrameAnalyticsRequest> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, PutDataFrameAnalyticsRequest::setupPutDataFrameAnalyticsRequestDeserializer);
 
 	protected static void setupPutDataFrameAnalyticsRequestDeserializer(
-			DelegatingDeserializer<PutDataFrameAnalyticsRequest.Builder> op) {
+			ObjectDeserializer<PutDataFrameAnalyticsRequest.Builder> op) {
 
 		op.add(Builder::allowLazyStart, JsonpDeserializer.booleanDeserializer(), "allow_lazy_start");
 		op.add(Builder::analysis, DataframeAnalysis._DESERIALIZER, "analysis");
-		op.add(Builder::analyzedFields, JsonpDeserializer.jsonValueDeserializer(), "analyzed_fields");
+		op.add(Builder::analyzedFields, DataframeAnalysisAnalyzedFields._DESERIALIZER, "analyzed_fields");
 		op.add(Builder::description, JsonpDeserializer.stringDeserializer(), "description");
 		op.add(Builder::dest, DataframeAnalyticsDestination._DESERIALIZER, "dest");
 		op.add(Builder::maxNumThreads, JsonpDeserializer.integerDeserializer(), "max_num_threads");
@@ -508,7 +545,7 @@ public class PutDataFrameAnalyticsRequest extends RequestBase implements JsonpSe
 	/**
 	 * Endpoint "{@code ml.put_data_frame_analytics}".
 	 */
-	public static final Endpoint<PutDataFrameAnalyticsRequest, PutDataFrameAnalyticsResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<PutDataFrameAnalyticsRequest, PutDataFrameAnalyticsResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "PUT";

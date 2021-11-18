@@ -26,13 +26,13 @@ package co.elastic.clients.elasticsearch.rollup;
 import co.elastic.clients.elasticsearch._types.ShardStatistics;
 import co.elastic.clients.elasticsearch._types.aggregations.Aggregate;
 import co.elastic.clients.elasticsearch.core.search.HitsMetadata;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.ExternallyTaggedUnion;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.JsonpSerializer;
+import co.elastic.clients.json.NamedDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.MapBuilder;
@@ -51,7 +51,7 @@ import java.util.function.Supplier;
 import javax.annotation.Nullable;
 
 // typedef: rollup.rollup_search.Response
-
+@JsonpDeserializable
 public class RollupSearchResponse<TDocument> implements JsonpSerializable {
 	private final long took;
 
@@ -300,8 +300,15 @@ public class RollupSearchResponse<TDocument> implements JsonpSerializable {
 				op -> RollupSearchResponse.setupRollupSearchResponseDeserializer(op, tDocumentDeserializer));
 	};
 
+	/**
+	 * Json deserializer for {@link RollupSearchResponse} based on named
+	 * deserializers provided by the calling {@code JsonMapper}.
+	 */
+	public static final JsonpDeserializer<RollupSearchResponse<Object>> _DESERIALIZER = createRollupSearchResponseDeserializer(
+			new NamedDeserializer<>("co.elastic.clients:Deserializer:rollup.rollup_search.TDocument"));
+
 	protected static <TDocument> void setupRollupSearchResponseDeserializer(
-			DelegatingDeserializer<RollupSearchResponse.Builder<TDocument>> op,
+			ObjectDeserializer<RollupSearchResponse.Builder<TDocument>> op,
 			JsonpDeserializer<TDocument> tDocumentDeserializer) {
 
 		op.add(Builder::took, JsonpDeserializer.longDeserializer(), "took");

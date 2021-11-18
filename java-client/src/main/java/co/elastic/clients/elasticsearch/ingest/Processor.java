@@ -23,7 +23,7 @@
 
 package co.elastic.clients.elasticsearch.ingest;
 
-import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.elasticsearch._types.Script;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -35,7 +35,6 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import co.elastic.clients.util.TaggedUnion;
 import co.elastic.clients.util.TaggedUnionUtils;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Object;
 import java.util.Objects;
@@ -43,6 +42,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ingest._types.ProcessorContainer
+// union type: Container[]
 @JsonpDeserializable
 public class Processor implements TaggedUnion<Object>, JsonpSerializable {
 
@@ -80,8 +80,6 @@ public class Processor implements TaggedUnion<Object>, JsonpSerializable {
 	public static final String DROP = "drop";
 	public static final String CIRCLE = "circle";
 	public static final String INFERENCE = "inference";
-
-	// Tagged union implementation
 
 	private final String _type;
 	private final Object _value;
@@ -321,7 +319,7 @@ public class Processor implements TaggedUnion<Object>, JsonpSerializable {
 	 * @throws IllegalStateException
 	 *             if the current variant is not of the {@code script} kind.
 	 */
-	public JsonValue /* _types.Script */ script() {
+	public Script script() {
 		return TaggedUnionUtils.get(this, SCRIPT);
 	}
 
@@ -459,21 +457,16 @@ public class Processor implements TaggedUnion<Object>, JsonpSerializable {
 	@Override
 	@SuppressWarnings("unchecked")
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+
 		generator.writeStartObject();
 
 		generator.writeKey(_type);
 		if (_value instanceof JsonpSerializable) {
 			((JsonpSerializable) _value).serialize(generator, mapper);
-		} else {
-			switch (_type) {
-				case SCRIPT :
-					generator.write(((JsonValue /* _types.Script */) this._value));
-
-					break;
-			}
 		}
 
 		generator.writeEnd();
+
 	}
 
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Processor> {
@@ -681,10 +674,14 @@ public class Processor implements TaggedUnion<Object>, JsonpSerializable {
 			return this.rename(f.apply(new RenameProcessor.Builder()).build());
 		}
 
-		public Builder script(JsonValue /* _types.Script */ v) {
+		public Builder script(Script v) {
 			this._type = SCRIPT;
 			this._value = v;
 			return this;
+		}
+
+		public Builder script(Function<Script.Builder, ObjectBuilder<Script>> f) {
+			return this.script(f.apply(new Script.Builder()).build());
 		}
 
 		public Builder set(SetProcessor v) {
@@ -825,7 +822,7 @@ public class Processor implements TaggedUnion<Object>, JsonpSerializable {
 
 	}
 
-	protected static void setupProcessorDeserializer(DelegatingDeserializer<Builder> op) {
+	protected static void setupProcessorDeserializer(ObjectDeserializer<Builder> op) {
 
 		op.add(Builder::attachment, AttachmentProcessor._DESERIALIZER, "attachment");
 		op.add(Builder::append, AppendProcessor._DESERIALIZER, "append");
@@ -847,7 +844,7 @@ public class Processor implements TaggedUnion<Object>, JsonpSerializable {
 		op.add(Builder::lowercase, LowercaseProcessor._DESERIALIZER, "lowercase");
 		op.add(Builder::remove, RemoveProcessor._DESERIALIZER, "remove");
 		op.add(Builder::rename, RenameProcessor._DESERIALIZER, "rename");
-		op.add(Builder::script, JsonpDeserializer.jsonValueDeserializer(), "script");
+		op.add(Builder::script, Script._DESERIALIZER, "script");
 		op.add(Builder::set, SetProcessor._DESERIALIZER, "set");
 		op.add(Builder::sort, SortProcessor._DESERIALIZER, "sort");
 		op.add(Builder::split, SplitProcessor._DESERIALIZER, "split");

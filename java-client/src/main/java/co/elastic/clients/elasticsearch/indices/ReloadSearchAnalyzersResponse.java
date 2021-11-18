@@ -25,7 +25,6 @@ package co.elastic.clients.elasticsearch.indices;
 
 import co.elastic.clients.elasticsearch._types.ShardStatistics;
 import co.elastic.clients.elasticsearch.indices.reload_search_analyzers.ReloadDetails;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -174,12 +173,11 @@ public class ReloadSearchAnalyzersResponse implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link ReloadSearchAnalyzersResponse}
 	 */
-	public static final JsonpDeserializer<ReloadSearchAnalyzersResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
-			Builder::new, ReloadSearchAnalyzersResponse::setupReloadSearchAnalyzersResponseDeserializer,
-			Builder::build);
+	public static final JsonpDeserializer<ReloadSearchAnalyzersResponse> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, ReloadSearchAnalyzersResponse::setupReloadSearchAnalyzersResponseDeserializer);
 
 	protected static void setupReloadSearchAnalyzersResponseDeserializer(
-			DelegatingDeserializer<ReloadSearchAnalyzersResponse.Builder> op) {
+			ObjectDeserializer<ReloadSearchAnalyzersResponse.Builder> op) {
 
 		op.add(Builder::reloadDetails, JsonpDeserializer.arrayDeserializer(ReloadDetails._DESERIALIZER),
 				"reload_details");

@@ -25,8 +25,8 @@ package co.elastic.clients.elasticsearch.graph;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.elasticsearch._types.query_dsl.Query;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -68,7 +68,7 @@ public class ExploreRequest extends RequestBase implements JsonpSerializable {
 	private final String routing;
 
 	@Nullable
-	private final String timeout;
+	private final Time timeout;
 
 	private final List<String> type;
 
@@ -143,7 +143,7 @@ public class ExploreRequest extends RequestBase implements JsonpSerializable {
 	 * API name: {@code timeout}
 	 */
 	@Nullable
-	public final String timeout() {
+	public final Time timeout() {
 		return this.timeout;
 	}
 
@@ -224,7 +224,7 @@ public class ExploreRequest extends RequestBase implements JsonpSerializable {
 		private String routing;
 
 		@Nullable
-		private String timeout;
+		private Time timeout;
 
 		@Nullable
 		private List<String> type;
@@ -314,9 +314,18 @@ public class ExploreRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code timeout}
 		 */
-		public final Builder timeout(@Nullable String value) {
+		public final Builder timeout(@Nullable Time value) {
 			this.timeout = value;
 			return this;
+		}
+
+		/**
+		 * Explicit operation timeout
+		 * <p>
+		 * API name: {@code timeout}
+		 */
+		public final Builder timeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.timeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -388,9 +397,9 @@ public class ExploreRequest extends RequestBase implements JsonpSerializable {
 	 * Json deserializer for {@link ExploreRequest}
 	 */
 	public static final JsonpDeserializer<ExploreRequest> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			ExploreRequest::setupExploreRequestDeserializer, Builder::build);
+			ExploreRequest::setupExploreRequestDeserializer);
 
-	protected static void setupExploreRequestDeserializer(DelegatingDeserializer<ExploreRequest.Builder> op) {
+	protected static void setupExploreRequestDeserializer(ObjectDeserializer<ExploreRequest.Builder> op) {
 
 		op.add(Builder::connections, Hop._DESERIALIZER, "connections");
 		op.add(Builder::controls, ExploreControls._DESERIALIZER, "controls");
@@ -404,7 +413,7 @@ public class ExploreRequest extends RequestBase implements JsonpSerializable {
 	/**
 	 * Endpoint "{@code graph.explore}".
 	 */
-	public static final Endpoint<ExploreRequest, ExploreResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<ExploreRequest, ExploreResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";
@@ -451,7 +460,7 @@ public class ExploreRequest extends RequestBase implements JsonpSerializable {
 					params.put("routing", request.routing);
 				}
 				if (request.timeout != null) {
-					params.put("timeout", request.timeout);
+					params.put("timeout", request.timeout._toJsonString());
 				}
 				return params;
 
