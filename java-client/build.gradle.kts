@@ -23,6 +23,7 @@ import java.io.FileWriter
 
 plugins {
     java
+    `java-library`
     checkstyle
     `maven-publish`
     id("com.github.jk1.dependency-license-report") version "1.17"
@@ -119,20 +120,16 @@ dependencies {
 
     // Apache 2.0
     // https://www.elastic.co/guide/en/elasticsearch/client/java-rest/current/java-rest-low.html
-    implementation("org.elasticsearch.client", "elasticsearch-rest-client", elasticsearchVersion)
+    api("org.elasticsearch.client", "elasticsearch-rest-client", elasticsearchVersion)
 
     // Apache 2.0
     // https://search.maven.org/artifact/com.google.code.findbugs/jsr305
-    implementation("com.google.code.findbugs:jsr305:3.0.2")
-
-    // EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
-    // https://eclipse-ee4j.github.io/jsonp/
-    implementation("jakarta.json", "jakarta.json-api", "2.0.1")
+    api("com.google.code.findbugs:jsr305:3.0.2")
 
     // Needed even if using Jackson to have an implementation of the Jsonp object model
     // EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
     // https://github.com/eclipse-ee4j/jsonp
-    implementation("org.glassfish", "jakarta.json", "2.0.1")
+    api("org.glassfish", "jakarta.json", "2.0.1")
 
     // EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
     // http://json-b.net/
