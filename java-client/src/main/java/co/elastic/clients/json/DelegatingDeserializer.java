@@ -54,8 +54,8 @@ public abstract class DelegatingDeserializer<T, U> implements JsonpDeserializer<
      * and unwrapping can happen several times, until the result is no more a {@code DelegatingDeserializer}.
      */
     public static JsonpDeserializer<?> unwrap(JsonpDeserializer<?> deserializer) {
-        while (deserializer instanceof co.elastic.clients.json.LazyDeserializer) {
-            deserializer = ((co.elastic.clients.json.LazyDeserializer<?>) deserializer).unwrap();
+        while (deserializer instanceof co.elastic.clients.json.DelegatingDeserializer) {
+            deserializer = ((co.elastic.clients.json.DelegatingDeserializer<?,?>) deserializer).unwrap();
         }
         return deserializer;
     }

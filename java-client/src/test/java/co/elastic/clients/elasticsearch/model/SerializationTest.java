@@ -66,7 +66,9 @@ public class SerializationTest extends ModelTestCase {
         ClassInfoList withDeserializer = scan.getAllClasses().filter((c) -> c.hasDeclaredField("_DESERIALIZER"));
         assertFalse("No classes with a _DESERIALIZER field", withDeserializer.isEmpty());
 
-// Disabled for now, empty response classes still need a deserializer
+// Disabled for now, empty response classes still need a deserializer object
+// e.g. ExistsIndexTemplateResponse, PingResponse, ExistsResponse, ExistsAliasResponse
+//
 //        Set<String> annotationNames = withAnnotation.stream().map(c -> c.getName()).collect(Collectors.toSet());
 //        Set<String> withFieldNames = withDeserializer.stream().map(c -> c.getName()).collect(Collectors.toSet());
 //

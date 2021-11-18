@@ -158,7 +158,7 @@ public abstract class JsonpDeserializerBase<V> implements JsonpDeserializer<V> {
                 if (event == Event.VALUE_STRING) {
                     return Float.valueOf(parser.getString());
                 }
-                return ((JsonNumber)parser.getValue()).numberValue().floatValue();
+                return parser.getBigDecimal().floatValue();
             }
         };
 
@@ -172,7 +172,7 @@ public abstract class JsonpDeserializerBase<V> implements JsonpDeserializer<V> {
                 if (event == Event.VALUE_STRING) {
                     return Double.valueOf(parser.getString());
                 }
-                return ((JsonNumber)parser.getValue()).doubleValue();
+                return parser.getBigDecimal().doubleValue();
             }
         };
 

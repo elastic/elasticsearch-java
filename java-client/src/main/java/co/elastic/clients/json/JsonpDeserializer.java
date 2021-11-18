@@ -28,6 +28,7 @@ import java.util.EnumSet;
 import java.util.List;
 import java.util.Map;
 import java.util.function.BiFunction;
+import java.util.function.Supplier;
 
 public interface JsonpDeserializer<V> {
 
@@ -111,6 +112,10 @@ public interface JsonpDeserializer<V> {
                 throw new UnsupportedOperationException();
             }
         };
+    }
+
+    static <T> JsonpDeserializer<T> lazy(Supplier<JsonpDeserializer<T>> ctor) {
+        return new LazyDeserializer<>(ctor);
     }
 
     //----- Builtin types

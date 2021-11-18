@@ -20,10 +20,13 @@
 package co.elastic.clients.elasticsearch.model;
 
 import co.elastic.clients.elasticsearch._types.ErrorCause;
-import co.elastic.clients.elasticsearch._types.ShapeRelation;
+import co.elastic.clients.elasticsearch._types.GeoShapeRelation;
 import co.elastic.clients.elasticsearch._types.query_dsl.Query;
 import co.elastic.clients.elasticsearch._types.query_dsl.ShapeQuery;
 import co.elastic.clients.elasticsearch._types.query_dsl.TermQuery;
+import co.elastic.clients.elasticsearch.core.search.SortOptions;
+import co.elastic.clients.elasticsearch.core.search.SortOptionsBuilders;
+import co.elastic.clients.elasticsearch.core.search.SortOrder;
 import co.elastic.clients.json.JsonData;
 import co.elastic.clients.util.MapBuilder;
 import org.junit.Test;
@@ -35,36 +38,91 @@ public class BehaviorsTest extends ModelTestCase {
         TermQuery q = new TermQuery.Builder()
             .queryName("query-name")
             .field("field-name")
-            .value("some-value")
+            .value(_1 -> _1.string("some-value"))
             .build();
 
         q = checkJsonRoundtrip(q, "{\"field-name\":{\"_name\":\"query-name\",\"value\":\"some-value\"}}");
 
         assertEquals("query-name", q.queryName());
         assertEquals("field-name", q.field());
-        assertEquals("some-value", q.value());
+        assertEquals("some-value", q.value().string());
     }
 
     @Test
-    public void testAdditionalProperty() {
+    public void testAdditionalPropertyOnClass() {
         ShapeQuery q = new ShapeQuery.Builder()
             .queryName("query-name")
             .field("field-name")
             .shape(_0 -> _0
-                .ignoreUnmapped(true)
-                .relation(ShapeRelation.Disjoint)
+                .relation(GeoShapeRelation.Disjoint)
             )
+            .ignoreUnmapped(true)
             .build();
 
         q = checkJsonRoundtrip(q,
-            "{\"field-name\":{\"ignore_unmapped\":true,\"relation\":\"disjoint\"},\"_name\":\"query-name\"}"
+            "{\"field-name\":{\"relation\":\"disjoint\"},\"_name\":\"query-name\",\"ignore_unmapped\":true}"
         );
 
         assertEquals("query-name", q.queryName());
-        assertTrue(q.shape().ignoreUnmapped());
-        assertEquals(ShapeRelation.Disjoint, q.shape().relation());
+        assertTrue(q.ignoreUnmapped());
+        assertEquals(GeoShapeRelation.Disjoint, q.shape().relation());
         System.out.println(toJson(q));
     }
+
+    @Test
+    public void testAdditionalPropertyOnContainer() {
+        // Regular variant
+        {
+            SortOptions so = SortOptions.of(_0 -> _0
+                .doc(_1 -> _1.order(SortOrder.Asc))
+            );
+
+            so = checkJsonRoundtrip(so, "{\"_doc\":{\"order\":\"asc\"}}");
+            assertEquals(SortOptions.DOC, so._type());
+            assertEquals(SortOrder.Asc, so.doc().order());
+        }
+
+        // Regular variant
+        {
+            SortOptions so = SortOptionsBuilders.geoDistance().field("foo").value(_b -> _b.text("someWKT")).build()._toSortOptions();
+
+            so = checkJsonRoundtrip(so, "{\"_geo_distance\":{\"foo\":[\"someWKT\"]}}");
+            assertEquals(SortOptions.GEO_DISTANCE, so._type());
+            assertEquals("foo", so.geoDistance().field());
+            assertEquals("someWKT", so.geoDistance().value().get(0).text());
+        }
+
+        {
+            SortOptions so = SortOptions.of(_0 -> _0
+                .score(_1 -> _1.order(SortOrder.Asc)));
+
+            so = checkJsonRoundtrip(so, "{\"_score\":{\"order\":\"asc\"}}");
+            assertEquals(SortOptions.SCORE, so._type());
+            assertEquals(SortOrder.Asc, so.score().order());
+        }
+
+        {
+            SortOptions so = SortOptions.of(_0 -> _0
+                .script(_1 -> _1.script(_2 -> _2.inline(_3 -> _3.source("blah"))))
+            );
+            so = checkJsonRoundtrip(so, "{\"_script\":{\"script\":{\"source\":\"blah\"}}}");
+            assertEquals("blah", so.script().script().inline().source());
+
+        }
+
+        // Additional property variant
+        {
+            SortOptions so = SortOptions.of(_0 -> _0
+                .field(_1 -> _1.field("foo").order(SortOrder.Desc))
+            );
+
+            so = checkJsonRoundtrip(so, "{\"foo\":{\"order\":\"desc\"}}");
+            assertEquals(SortOptions.FIELD, so._type());
+            assertEquals("foo", so.field().field());
+            assertEquals(SortOrder.Desc, so.field().order());
+        }
+    }
+
 
     @Test
     public void testAdditionalProperties() {
@@ -99,6 +157,6 @@ public class BehaviorsTest extends ModelTestCase {
         Query q = fromJson(json, Query.class);
 
         assertEquals("some-field", q.term().field());
-        assertEquals("some-value", q.term().value());
+        assertEquals("some-value", q.term().value().string());
     }
 }
