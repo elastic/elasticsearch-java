@@ -32,12 +32,47 @@ import java.util.Set;
  * Utility functions for API model types
  */
 public class ModelTypeHelper {
+
     private ModelTypeHelper() {}
 
     //----- Required properties
 
+    private static final ThreadLocal<Boolean> disableRequiredPropertiesCheck = new ThreadLocal<>();
+
+    public static boolean requiredPropertiesCheckDisabled() {
+        return disableRequiredPropertiesCheck.get() == Boolean.TRUE;
+    }
+
+    public static class DisabledChecksHandle implements AutoCloseable {
+        private final Boolean value;
+
+        public DisabledChecksHandle(Boolean value) {
+            this.value = value;
+        }
+        @Override
+        public void close() {
+            disableRequiredPropertiesCheck.set(value);
+        }
+    }
+
+    /**
+     * DANGEROUS! Allows disabling the verification of required properties on the current thread when calling {@link ObjectBuilder#build()}.
+     * This can lead properties expected to be always present to be {@code null}, or have the default value for primitive types.
+     * <p>
+     * This can be used as a workaround for properties that are erroneously marked as required. If you have to use it, please file a
+     * bug at https://github.com/elastic/elasticsearch-java/issues to report the offending property.
+     * <p>
+     * The result of this method is an {@link AutoCloseable} handle that can be used in try-with-resource blocks to precisely
+     * limit the scope where checks are disabled.
+     */
+    public static DisabledChecksHandle DANGEROUS_disableRequiredPropertiesCheck(boolean disable) {
+        DisabledChecksHandle result = new DisabledChecksHandle(disableRequiredPropertiesCheck.get());
+        disableRequiredPropertiesCheck.set(disable);
+        return result;
+    }
+
     public static <T> T requireNonNull(T value, Object obj, String name) {
-        if (value == null) {
+        if (value == null && !requiredPropertiesCheckDisabled()) {
             throw new MissingRequiredPropertyException(obj, name);
         }
         return value;
