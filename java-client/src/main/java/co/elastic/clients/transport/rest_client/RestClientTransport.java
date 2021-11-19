@@ -29,6 +29,7 @@ import co.elastic.clients.transport.BooleanResponse;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.Transport;
 import co.elastic.clients.transport.TransportOptions;
+import co.elastic.clients.util.ModelTypeHelper;
 import jakarta.json.stream.JsonGenerator;
 import jakarta.json.stream.JsonParser;
 import org.apache.http.entity.ByteArrayEntity;
@@ -120,10 +121,13 @@ public class RestClientTransport implements Transport {
 
         RequestFuture<ResponseT> future = new RequestFuture<>();
 
+        boolean disableRequiredChecks = ModelTypeHelper.requiredPropertiesCheckDisabled();
+
         future.cancellable = restClient.performRequestAsync(clientReq, new ResponseListener() {
             @Override
             public void onSuccess(Response clientResp) {
-                try {
+                try (ModelTypeHelper.DisabledChecksHandle h =
+                         ModelTypeHelper.DANGEROUS_disableRequiredPropertiesCheck(disableRequiredChecks)) {
                     ResponseT response = getHighLevelResponse(clientResp, endpoint);
                     future.complete(response);
                 } catch (Exception e) {

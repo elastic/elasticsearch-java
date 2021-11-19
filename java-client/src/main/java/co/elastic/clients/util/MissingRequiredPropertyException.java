@@ -19,8 +19,29 @@
 
 package co.elastic.clients.util;
 
+/**
+ * Thrown by {@link ObjectBuilder#build()} when a required property is missing.
+ * <p>
+ * If you think this is an error and that the reported property is actually optional, a workaround is
+ * available in {@link ModelTypeHelper} to disable checks. Use with caution.
+ */
 public class MissingRequiredPropertyException extends RuntimeException {
+    private Class<?> clazz;
+    private String property;
     public MissingRequiredPropertyException(Object obj, String property) {
         super("Missing required property " + obj.getClass().getSimpleName() + "." + property);
+        this.clazz = obj.getClass();
+        this.property = property;
+    }
+
+    /**
+     * The class where the missing property was found
+     */
+    public Class<?> getObjectClass() {
+        return clazz;
+    }
+
+    public String getPropertyName() {
+        return property;
     }
 }

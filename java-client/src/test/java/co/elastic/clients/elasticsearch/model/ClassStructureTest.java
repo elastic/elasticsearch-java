@@ -26,6 +26,7 @@ import co.elastic.clients.elasticsearch._types.aggregations.CardinalityAggregate
 import co.elastic.clients.elasticsearch._types.aggregations.DateRangeAggregate;
 import co.elastic.clients.elasticsearch._types.aggregations.RangeBucket;
 import co.elastic.clients.elasticsearch._types.query_dsl.IntervalsQuery;
+import co.elastic.clients.elasticsearch.core.GetRequest;
 import co.elastic.clients.elasticsearch.core.SearchRequest;
 import co.elastic.clients.elasticsearch.core.search.HitsMetadata;
 import co.elastic.clients.elasticsearch.core.search.TotalHits;
@@ -40,7 +41,6 @@ import javax.annotation.Nullable;
 import java.lang.reflect.Method;
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.List;
 
 /**
  * Tests that verify common features of generated classes.
@@ -199,6 +199,30 @@ public class ClassStructureTest extends ModelTestCase {
 
         // 1 ancestor + ObjectBuilderBase
         checkSingleBuilderUse(2, new IntervalsQuery.Builder().field("foo").allOf(b -> b.intervals(Collections.emptyList())));
+    }
+
+    @Test
+    public void testRequiredProperty() {
+        // All required properties present
+        GetRequest r = GetRequest.of(b -> b.index("foo").id("bar"));
+
+        // Missing id property throws an exception
+        MissingRequiredPropertyException ex = assertThrows(MissingRequiredPropertyException.class, () -> {
+                GetRequest r1 = GetRequest.of(b -> b.index("foo"));
+        });
+        assertEquals("id", ex.getPropertyName());
+
+        // Disable checks, missing id property is accepted.
+        try (ModelTypeHelper.DisabledChecksHandle h = ModelTypeHelper.DANGEROUS_disableRequiredPropertiesCheck(true)) {
+            GetRequest r1 = GetRequest.of(b -> b.index("foo"));
+            assertNull(r1.id());
+        }
+
+        // Checks are enabled again after the try block
+        ex = assertThrows(MissingRequiredPropertyException.class, () -> {
+            GetRequest r1 = GetRequest.of(b -> b.index("foo"));
+        });
+        assertEquals("id", ex.getPropertyName());
     }
 
     private void assertAncestorCount(int count, Object obj) {
