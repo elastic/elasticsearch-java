@@ -28,8 +28,10 @@ import co.elastic.clients.elasticsearch.cat.NodesResponse;
 import co.elastic.clients.elasticsearch.core.BulkResponse;
 import co.elastic.clients.elasticsearch.core.GetResponse;
 import co.elastic.clients.elasticsearch.core.IndexResponse;
+import co.elastic.clients.elasticsearch.core.MsearchResponse;
 import co.elastic.clients.elasticsearch.core.SearchResponse;
 import co.elastic.clients.elasticsearch.core.bulk.OperationType;
+import co.elastic.clients.elasticsearch.core.msearch.RequestItem;
 import co.elastic.clients.elasticsearch.indices.CreateIndexResponse;
 import co.elastic.clients.elasticsearch.indices.DiskUsageResponse;
 import co.elastic.clients.elasticsearch.indices.GetIndexResponse;
@@ -42,8 +44,6 @@ import co.elastic.clients.transport.Header;
 import co.elastic.clients.transport.Transport;
 import co.elastic.clients.transport.TransportOptions;
 import co.elastic.clients.transport.rest_client.RestClientTransport;
-import jakarta.json.Json;
-import jakarta.json.JsonValue;
 import org.apache.http.HttpHost;
 import org.apache.http.auth.AuthScope;
 import org.apache.http.auth.UsernamePasswordCredentials;
@@ -185,6 +185,28 @@ public class RequestTest extends Assert {
         esData = search.hits().hits().get(0).source();
         assertEquals(1337, esData.getIntValue());
         assertEquals("foo", esData.getMsg());
+
+        RequestItem item = RequestItem.of(_1 -> _1
+                .header(_2 -> _2.index("test"))
+                .body(_2 -> _2.size(4))
+            );
+
+        // MSearch: 1st search on an existing index, 2nd one on a non-existing index
+        final MsearchResponse<AppData> msearch = client.msearch(_0 -> _0.searches(
+                _1 -> _1
+                    .header(_2 -> _2.index(index))
+                    .body(_2 -> _2.query(_3 -> _3.matchAll(_4 -> _4))),
+                _1 -> _1
+                    .header(_2 -> _2.index("non-existing"))
+                    .body(_2 -> _2.query(_3 -> _3.matchAll(_4 -> _4)))
+            )
+            , AppData.class);
+
+        assertEquals(2, msearch.responses().size());
+        assertTrue(msearch.responses().get(0)._isResult());
+        assertEquals(1, msearch.responses().get(0).result().hits().hits().size());
+        assertTrue(msearch.responses().get(1)._isFailure());
+        assertEquals(404, msearch.responses().get(1).failure().status());
     }
 
     @Test
