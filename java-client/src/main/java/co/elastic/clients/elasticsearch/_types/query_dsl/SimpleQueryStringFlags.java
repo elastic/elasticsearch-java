@@ -90,6 +90,13 @@ public class SimpleQueryStringFlags implements TaggedUnion<Object>, JsonpSeriali
 	}
 
 	/**
+	 * Is this variant instance of kind {@code single}?
+	 */
+	public boolean _isSingle() {
+		return SINGLE.equals(_type());
+	}
+
+	/**
 	 * Get the {@code single} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -97,6 +104,13 @@ public class SimpleQueryStringFlags implements TaggedUnion<Object>, JsonpSeriali
 	 */
 	public SimpleQueryStringFlag single() {
 		return TaggedUnionUtils.get(this, SINGLE);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code multiple}?
+	 */
+	public boolean _isMultiple() {
+		return MULTIPLE.equals(_type());
 	}
 
 	/**

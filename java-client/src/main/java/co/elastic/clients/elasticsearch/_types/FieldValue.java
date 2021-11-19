@@ -99,6 +99,13 @@ public class FieldValue implements TaggedUnion<Object>, JsonpSerializable {
 	}
 
 	/**
+	 * Is this variant instance of kind {@code double}?
+	 */
+	public boolean _isDouble() {
+		return DOUBLE.equals(_type());
+	}
+
+	/**
 	 * Get the {@code double} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -106,6 +113,13 @@ public class FieldValue implements TaggedUnion<Object>, JsonpSerializable {
 	 */
 	public Double double_() {
 		return TaggedUnionUtils.get(this, DOUBLE);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code long}?
+	 */
+	public boolean _isLong() {
+		return LONG.equals(_type());
 	}
 
 	/**
@@ -119,6 +133,13 @@ public class FieldValue implements TaggedUnion<Object>, JsonpSerializable {
 	}
 
 	/**
+	 * Is this variant instance of kind {@code boolean}?
+	 */
+	public boolean _isBoolean() {
+		return BOOLEAN.equals(_type());
+	}
+
+	/**
 	 * Get the {@code boolean} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -126,6 +147,13 @@ public class FieldValue implements TaggedUnion<Object>, JsonpSerializable {
 	 */
 	public Boolean boolean_() {
 		return TaggedUnionUtils.get(this, BOOLEAN);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code string}?
+	 */
+	public boolean _isString() {
+		return STRING.equals(_type());
 	}
 
 	/**

@@ -79,6 +79,13 @@ public class SourceConfig implements TaggedUnion<Object>, JsonpSerializable {
 	}
 
 	/**
+	 * Is this variant instance of kind {@code filter}?
+	 */
+	public boolean _isFilter() {
+		return FILTER.equals(_type());
+	}
+
+	/**
 	 * Get the {@code filter} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -86,6 +93,13 @@ public class SourceConfig implements TaggedUnion<Object>, JsonpSerializable {
 	 */
 	public SourceFilter filter() {
 		return TaggedUnionUtils.get(this, FILTER);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code fetch}?
+	 */
+	public boolean _isFetch() {
+		return FETCH.equals(_type());
 	}
 
 	/**

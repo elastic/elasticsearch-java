@@ -91,6 +91,13 @@ public class TokenizerDefinition implements TaggedUnion<TokenizerDefinitionVaria
 	}
 
 	/**
+	 * Is this variant instance of kind {@code char_group}?
+	 */
+	public boolean _isCharGroup() {
+		return CHAR_GROUP.equals(_type());
+	}
+
+	/**
 	 * Get the {@code char_group} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -98,6 +105,13 @@ public class TokenizerDefinition implements TaggedUnion<TokenizerDefinitionVaria
 	 */
 	public CharGroupTokenizer charGroup() {
 		return TaggedUnionUtils.get(this, CHAR_GROUP);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code edge_ngram}?
+	 */
+	public boolean _isEdgeNgram() {
+		return EDGE_NGRAM.equals(_type());
 	}
 
 	/**
@@ -111,6 +125,13 @@ public class TokenizerDefinition implements TaggedUnion<TokenizerDefinitionVaria
 	}
 
 	/**
+	 * Is this variant instance of kind {@code icu_tokenizer}?
+	 */
+	public boolean _isIcuTokenizer() {
+		return ICU_TOKENIZER.equals(_type());
+	}
+
+	/**
 	 * Get the {@code icu_tokenizer} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -121,6 +142,13 @@ public class TokenizerDefinition implements TaggedUnion<TokenizerDefinitionVaria
 	}
 
 	/**
+	 * Is this variant instance of kind {@code keyword}?
+	 */
+	public boolean _isKeyword() {
+		return KEYWORD.equals(_type());
+	}
+
+	/**
 	 * Get the {@code keyword} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -128,6 +156,13 @@ public class TokenizerDefinition implements TaggedUnion<TokenizerDefinitionVaria
 	 */
 	public KeywordTokenizer keyword() {
 		return TaggedUnionUtils.get(this, KEYWORD);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code kuromoji_tokenizer}?
+	 */
+	public boolean _isKuromojiTokenizer() {
+		return KUROMOJI_TOKENIZER.equals(_type());
 	}
 
 	/**
@@ -142,6 +177,13 @@ public class TokenizerDefinition implements TaggedUnion<TokenizerDefinitionVaria
 	}
 
 	/**
+	 * Is this variant instance of kind {@code letter}?
+	 */
+	public boolean _isLetter() {
+		return LETTER.equals(_type());
+	}
+
+	/**
 	 * Get the {@code letter} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -149,6 +191,13 @@ public class TokenizerDefinition implements TaggedUnion<TokenizerDefinitionVaria
 	 */
 	public LetterTokenizer letter() {
 		return TaggedUnionUtils.get(this, LETTER);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code lowercase}?
+	 */
+	public boolean _isLowercase() {
+		return LOWERCASE.equals(_type());
 	}
 
 	/**
@@ -162,6 +211,13 @@ public class TokenizerDefinition implements TaggedUnion<TokenizerDefinitionVaria
 	}
 
 	/**
+	 * Is this variant instance of kind {@code ngram}?
+	 */
+	public boolean _isNgram() {
+		return NGRAM.equals(_type());
+	}
+
+	/**
 	 * Get the {@code ngram} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -169,6 +225,13 @@ public class TokenizerDefinition implements TaggedUnion<TokenizerDefinitionVaria
 	 */
 	public NGramTokenizer ngram() {
 		return TaggedUnionUtils.get(this, NGRAM);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code nori_tokenizer}?
+	 */
+	public boolean _isNoriTokenizer() {
+		return NORI_TOKENIZER.equals(_type());
 	}
 
 	/**
@@ -182,6 +245,13 @@ public class TokenizerDefinition implements TaggedUnion<TokenizerDefinitionVaria
 	}
 
 	/**
+	 * Is this variant instance of kind {@code path_hierarchy}?
+	 */
+	public boolean _isPathHierarchy() {
+		return PATH_HIERARCHY.equals(_type());
+	}
+
+	/**
 	 * Get the {@code path_hierarchy} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -189,6 +259,13 @@ public class TokenizerDefinition implements TaggedUnion<TokenizerDefinitionVaria
 	 */
 	public PathHierarchyTokenizer pathHierarchy() {
 		return TaggedUnionUtils.get(this, PATH_HIERARCHY);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code pattern}?
+	 */
+	public boolean _isPattern() {
+		return PATTERN.equals(_type());
 	}
 
 	/**
@@ -202,6 +279,13 @@ public class TokenizerDefinition implements TaggedUnion<TokenizerDefinitionVaria
 	}
 
 	/**
+	 * Is this variant instance of kind {@code standard}?
+	 */
+	public boolean _isStandard() {
+		return STANDARD.equals(_type());
+	}
+
+	/**
 	 * Get the {@code standard} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -212,6 +296,13 @@ public class TokenizerDefinition implements TaggedUnion<TokenizerDefinitionVaria
 	}
 
 	/**
+	 * Is this variant instance of kind {@code uax_url_email}?
+	 */
+	public boolean _isUaxUrlEmail() {
+		return UAX_URL_EMAIL.equals(_type());
+	}
+
+	/**
 	 * Get the {@code uax_url_email} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -219,6 +310,13 @@ public class TokenizerDefinition implements TaggedUnion<TokenizerDefinitionVaria
 	 */
 	public UaxEmailUrlTokenizer uaxUrlEmail() {
 		return TaggedUnionUtils.get(this, UAX_URL_EMAIL);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code whitespace}?
+	 */
+	public boolean _isWhitespace() {
+		return WHITESPACE.equals(_type());
 	}
 
 	/**

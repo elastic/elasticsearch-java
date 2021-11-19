@@ -79,6 +79,13 @@ public class Sync implements TaggedUnion<Object>, JsonpSerializable {
 	}
 
 	/**
+	 * Is this variant instance of kind {@code time}?
+	 */
+	public boolean _isTime() {
+		return TIME.equals(_type());
+	}
+
+	/**
 	 * Get the {@code time} variant value.
 	 *
 	 * @throws IllegalStateException

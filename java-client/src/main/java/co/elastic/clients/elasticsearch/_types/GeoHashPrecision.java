@@ -91,6 +91,13 @@ public class GeoHashPrecision implements TaggedUnion<Object>, JsonpSerializable 
 	}
 
 	/**
+	 * Is this variant instance of kind {@code geohash_length}?
+	 */
+	public boolean _isGeohashLength() {
+		return GEOHASH_LENGTH.equals(_type());
+	}
+
+	/**
 	 * Get the {@code geohash_length} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -98,6 +105,13 @@ public class GeoHashPrecision implements TaggedUnion<Object>, JsonpSerializable 
 	 */
 	public Number geohashLength() {
 		return TaggedUnionUtils.get(this, GEOHASH_LENGTH);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code distance}?
+	 */
+	public boolean _isDistance() {
+		return DISTANCE.equals(_type());
 	}
 
 	/**

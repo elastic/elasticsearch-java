@@ -90,6 +90,13 @@ public class WaitForActiveShards implements TaggedUnion<Object>, JsonpSerializab
 	}
 
 	/**
+	 * Is this variant instance of kind {@code option}?
+	 */
+	public boolean _isOption() {
+		return OPTION.equals(_type());
+	}
+
+	/**
 	 * Get the {@code option} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -97,6 +104,13 @@ public class WaitForActiveShards implements TaggedUnion<Object>, JsonpSerializab
 	 */
 	public WaitForActiveShardOptions option() {
 		return TaggedUnionUtils.get(this, OPTION);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code count}?
+	 */
+	public boolean _isCount() {
+		return COUNT.equals(_type());
 	}
 
 	/**

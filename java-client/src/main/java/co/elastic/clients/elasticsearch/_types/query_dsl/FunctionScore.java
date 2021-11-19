@@ -113,6 +113,13 @@ public class FunctionScore implements TaggedUnion<Object>, JsonpSerializable {
 	}
 
 	/**
+	 * Is this variant instance of kind {@code exp}?
+	 */
+	public boolean _isExp() {
+		return EXP.equals(_type());
+	}
+
+	/**
 	 * Get the {@code exp} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -120,6 +127,13 @@ public class FunctionScore implements TaggedUnion<Object>, JsonpSerializable {
 	 */
 	public DecayFunction exp() {
 		return TaggedUnionUtils.get(this, EXP);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code gauss}?
+	 */
+	public boolean _isGauss() {
+		return GAUSS.equals(_type());
 	}
 
 	/**
@@ -133,6 +147,13 @@ public class FunctionScore implements TaggedUnion<Object>, JsonpSerializable {
 	}
 
 	/**
+	 * Is this variant instance of kind {@code linear}?
+	 */
+	public boolean _isLinear() {
+		return LINEAR.equals(_type());
+	}
+
+	/**
 	 * Get the {@code linear} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -140,6 +161,13 @@ public class FunctionScore implements TaggedUnion<Object>, JsonpSerializable {
 	 */
 	public DecayFunction linear() {
 		return TaggedUnionUtils.get(this, LINEAR);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code field_value_factor}?
+	 */
+	public boolean _isFieldValueFactor() {
+		return FIELD_VALUE_FACTOR.equals(_type());
 	}
 
 	/**
@@ -154,6 +182,13 @@ public class FunctionScore implements TaggedUnion<Object>, JsonpSerializable {
 	}
 
 	/**
+	 * Is this variant instance of kind {@code random_score}?
+	 */
+	public boolean _isRandomScore() {
+		return RANDOM_SCORE.equals(_type());
+	}
+
+	/**
 	 * Get the {@code random_score} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -161,6 +196,13 @@ public class FunctionScore implements TaggedUnion<Object>, JsonpSerializable {
 	 */
 	public RandomScoreFunction randomScore() {
 		return TaggedUnionUtils.get(this, RANDOM_SCORE);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code script_score}?
+	 */
+	public boolean _isScriptScore() {
+		return SCRIPT_SCORE.equals(_type());
 	}
 
 	/**

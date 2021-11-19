@@ -91,6 +91,13 @@ public class FieldDateMath implements TaggedUnion<Object>, JsonpSerializable {
 	}
 
 	/**
+	 * Is this variant instance of kind {@code expr}?
+	 */
+	public boolean _isExpr() {
+		return EXPR.equals(_type());
+	}
+
+	/**
 	 * Get the {@code expr} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -98,6 +105,13 @@ public class FieldDateMath implements TaggedUnion<Object>, JsonpSerializable {
 	 */
 	public String expr() {
 		return TaggedUnionUtils.get(this, EXPR);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code value}?
+	 */
+	public boolean _isValue() {
+		return VALUE.equals(_type());
 	}
 
 	/**

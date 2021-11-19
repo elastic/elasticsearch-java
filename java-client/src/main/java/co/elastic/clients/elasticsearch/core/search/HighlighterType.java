@@ -90,6 +90,13 @@ public class HighlighterType implements TaggedUnion<Object>, JsonpSerializable {
 	}
 
 	/**
+	 * Is this variant instance of kind {@code builtin}?
+	 */
+	public boolean _isBuiltin() {
+		return BUILTIN.equals(_type());
+	}
+
+	/**
 	 * Get the {@code builtin} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -97,6 +104,13 @@ public class HighlighterType implements TaggedUnion<Object>, JsonpSerializable {
 	 */
 	public BuiltinHighlighterType builtin() {
 		return TaggedUnionUtils.get(this, BUILTIN);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code custom}?
+	 */
+	public boolean _isCustom() {
+		return CUSTOM.equals(_type());
 	}
 
 	/**

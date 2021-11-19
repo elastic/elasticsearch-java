@@ -121,6 +121,13 @@ public class Property implements TaggedUnion<PropertyVariant>, JsonpSerializable
 	}
 
 	/**
+	 * Is this variant instance of kind {@code aggregate_metric_double}?
+	 */
+	public boolean _isAggregateMetricDouble() {
+		return AGGREGATE_METRIC_DOUBLE.equals(_type());
+	}
+
+	/**
 	 * Get the {@code aggregate_metric_double} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -129,6 +136,13 @@ public class Property implements TaggedUnion<PropertyVariant>, JsonpSerializable
 	 */
 	public AggregateMetricDoubleProperty aggregateMetricDouble() {
 		return TaggedUnionUtils.get(this, AGGREGATE_METRIC_DOUBLE);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code binary}?
+	 */
+	public boolean _isBinary() {
+		return BINARY.equals(_type());
 	}
 
 	/**
@@ -142,6 +156,13 @@ public class Property implements TaggedUnion<PropertyVariant>, JsonpSerializable
 	}
 
 	/**
+	 * Is this variant instance of kind {@code boolean}?
+	 */
+	public boolean _isBoolean() {
+		return BOOLEAN.equals(_type());
+	}
+
+	/**
 	 * Get the {@code boolean} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -149,6 +170,13 @@ public class Property implements TaggedUnion<PropertyVariant>, JsonpSerializable
 	 */
 	public BooleanProperty boolean_() {
 		return TaggedUnionUtils.get(this, BOOLEAN);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code byte}?
+	 */
+	public boolean _isByte() {
+		return BYTE.equals(_type());
 	}
 
 	/**
@@ -162,6 +190,13 @@ public class Property implements TaggedUnion<PropertyVariant>, JsonpSerializable
 	}
 
 	/**
+	 * Is this variant instance of kind {@code completion}?
+	 */
+	public boolean _isCompletion() {
+		return COMPLETION.equals(_type());
+	}
+
+	/**
 	 * Get the {@code completion} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -169,6 +204,13 @@ public class Property implements TaggedUnion<PropertyVariant>, JsonpSerializable
 	 */
 	public CompletionProperty completion() {
 		return TaggedUnionUtils.get(this, COMPLETION);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code constant_keyword}?
+	 */
+	public boolean _isConstantKeyword() {
+		return CONSTANT_KEYWORD.equals(_type());
 	}
 
 	/**
@@ -183,6 +225,13 @@ public class Property implements TaggedUnion<PropertyVariant>, JsonpSerializable
 	}
 
 	/**
+	 * Is this variant instance of kind {@code date_nanos}?
+	 */
+	public boolean _isDateNanos() {
+		return DATE_NANOS.equals(_type());
+	}
+
+	/**
 	 * Get the {@code date_nanos} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -190,6 +239,13 @@ public class Property implements TaggedUnion<PropertyVariant>, JsonpSerializable
 	 */
 	public DateNanosProperty dateNanos() {
 		return TaggedUnionUtils.get(this, DATE_NANOS);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code date}?
+	 */
+	public boolean _isDate() {
+		return DATE.equals(_type());
 	}
 
 	/**
@@ -203,6 +259,13 @@ public class Property implements TaggedUnion<PropertyVariant>, JsonpSerializable
 	}
 
 	/**
+	 * Is this variant instance of kind {@code date_range}?
+	 */
+	public boolean _isDateRange() {
+		return DATE_RANGE.equals(_type());
+	}
+
+	/**
 	 * Get the {@code date_range} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -210,6 +273,13 @@ public class Property implements TaggedUnion<PropertyVariant>, JsonpSerializable
 	 */
 	public DateRangeProperty dateRange() {
 		return TaggedUnionUtils.get(this, DATE_RANGE);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code dense_vector}?
+	 */
+	public boolean _isDenseVector() {
+		return DENSE_VECTOR.equals(_type());
 	}
 
 	/**
@@ -223,6 +293,13 @@ public class Property implements TaggedUnion<PropertyVariant>, JsonpSerializable
 	}
 
 	/**
+	 * Is this variant instance of kind {@code double}?
+	 */
+	public boolean _isDouble() {
+		return DOUBLE.equals(_type());
+	}
+
+	/**
 	 * Get the {@code double} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -230,6 +307,13 @@ public class Property implements TaggedUnion<PropertyVariant>, JsonpSerializable
 	 */
 	public DoubleNumberProperty double_() {
 		return TaggedUnionUtils.get(this, DOUBLE);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code double_range}?
+	 */
+	public boolean _isDoubleRange() {
+		return DOUBLE_RANGE.equals(_type());
 	}
 
 	/**
@@ -243,6 +327,13 @@ public class Property implements TaggedUnion<PropertyVariant>, JsonpSerializable
 	}
 
 	/**
+	 * Is this variant instance of kind {@code alias}?
+	 */
+	public boolean _isAlias() {
+		return ALIAS.equals(_type());
+	}
+
+	/**
 	 * Get the {@code alias} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -250,6 +341,13 @@ public class Property implements TaggedUnion<PropertyVariant>, JsonpSerializable
 	 */
 	public FieldAliasProperty alias() {
 		return TaggedUnionUtils.get(this, ALIAS);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code flattened}?
+	 */
+	public boolean _isFlattened() {
+		return FLATTENED.equals(_type());
 	}
 
 	/**
@@ -263,6 +361,13 @@ public class Property implements TaggedUnion<PropertyVariant>, JsonpSerializable
 	}
 
 	/**
+	 * Is this variant instance of kind {@code float}?
+	 */
+	public boolean _isFloat() {
+		return FLOAT.equals(_type());
+	}
+
+	/**
 	 * Get the {@code float} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -270,6 +375,13 @@ public class Property implements TaggedUnion<PropertyVariant>, JsonpSerializable
 	 */
 	public FloatNumberProperty float_() {
 		return TaggedUnionUtils.get(this, FLOAT);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code float_range}?
+	 */
+	public boolean _isFloatRange() {
+		return FLOAT_RANGE.equals(_type());
 	}
 
 	/**
@@ -283,6 +395,13 @@ public class Property implements TaggedUnion<PropertyVariant>, JsonpSerializable
 	}
 
 	/**
+	 * Is this variant instance of kind {@code geo_point}?
+	 */
+	public boolean _isGeoPoint() {
+		return GEO_POINT.equals(_type());
+	}
+
+	/**
 	 * Get the {@code geo_point} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -290,6 +409,13 @@ public class Property implements TaggedUnion<PropertyVariant>, JsonpSerializable
 	 */
 	public GeoPointProperty geoPoint() {
 		return TaggedUnionUtils.get(this, GEO_POINT);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code geo_shape}?
+	 */
+	public boolean _isGeoShape() {
+		return GEO_SHAPE.equals(_type());
 	}
 
 	/**
@@ -303,6 +429,13 @@ public class Property implements TaggedUnion<PropertyVariant>, JsonpSerializable
 	}
 
 	/**
+	 * Is this variant instance of kind {@code half_float}?
+	 */
+	public boolean _isHalfFloat() {
+		return HALF_FLOAT.equals(_type());
+	}
+
+	/**
 	 * Get the {@code half_float} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -310,6 +443,13 @@ public class Property implements TaggedUnion<PropertyVariant>, JsonpSerializable
 	 */
 	public HalfFloatNumberProperty halfFloat() {
 		return TaggedUnionUtils.get(this, HALF_FLOAT);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code histogram}?
+	 */
+	public boolean _isHistogram() {
+		return HISTOGRAM.equals(_type());
 	}
 
 	/**
@@ -323,6 +463,13 @@ public class Property implements TaggedUnion<PropertyVariant>, JsonpSerializable
 	}
 
 	/**
+	 * Is this variant instance of kind {@code integer}?
+	 */
+	public boolean _isInteger() {
+		return INTEGER.equals(_type());
+	}
+
+	/**
 	 * Get the {@code integer} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -330,6 +477,13 @@ public class Property implements TaggedUnion<PropertyVariant>, JsonpSerializable
 	 */
 	public IntegerNumberProperty integer() {
 		return TaggedUnionUtils.get(this, INTEGER);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code integer_range}?
+	 */
+	public boolean _isIntegerRange() {
+		return INTEGER_RANGE.equals(_type());
 	}
 
 	/**
@@ -343,6 +497,13 @@ public class Property implements TaggedUnion<PropertyVariant>, JsonpSerializable
 	}
 
 	/**
+	 * Is this variant instance of kind {@code ip}?
+	 */
+	public boolean _isIp() {
+		return IP.equals(_type());
+	}
+
+	/**
 	 * Get the {@code ip} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -350,6 +511,13 @@ public class Property implements TaggedUnion<PropertyVariant>, JsonpSerializable
 	 */
 	public IpProperty ip() {
 		return TaggedUnionUtils.get(this, IP);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code ip_range}?
+	 */
+	public boolean _isIpRange() {
+		return IP_RANGE.equals(_type());
 	}
 
 	/**
@@ -363,6 +531,13 @@ public class Property implements TaggedUnion<PropertyVariant>, JsonpSerializable
 	}
 
 	/**
+	 * Is this variant instance of kind {@code join}?
+	 */
+	public boolean _isJoin() {
+		return JOIN.equals(_type());
+	}
+
+	/**
 	 * Get the {@code join} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -370,6 +545,13 @@ public class Property implements TaggedUnion<PropertyVariant>, JsonpSerializable
 	 */
 	public JoinProperty join() {
 		return TaggedUnionUtils.get(this, JOIN);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code keyword}?
+	 */
+	public boolean _isKeyword() {
+		return KEYWORD.equals(_type());
 	}
 
 	/**
@@ -383,6 +565,13 @@ public class Property implements TaggedUnion<PropertyVariant>, JsonpSerializable
 	}
 
 	/**
+	 * Is this variant instance of kind {@code long}?
+	 */
+	public boolean _isLong() {
+		return LONG.equals(_type());
+	}
+
+	/**
 	 * Get the {@code long} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -390,6 +579,13 @@ public class Property implements TaggedUnion<PropertyVariant>, JsonpSerializable
 	 */
 	public LongNumberProperty long_() {
 		return TaggedUnionUtils.get(this, LONG);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code long_range}?
+	 */
+	public boolean _isLongRange() {
+		return LONG_RANGE.equals(_type());
 	}
 
 	/**
@@ -403,6 +599,13 @@ public class Property implements TaggedUnion<PropertyVariant>, JsonpSerializable
 	}
 
 	/**
+	 * Is this variant instance of kind {@code murmur3}?
+	 */
+	public boolean _isMurmur3() {
+		return MURMUR3.equals(_type());
+	}
+
+	/**
 	 * Get the {@code murmur3} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -410,6 +613,13 @@ public class Property implements TaggedUnion<PropertyVariant>, JsonpSerializable
 	 */
 	public Murmur3HashProperty murmur3() {
 		return TaggedUnionUtils.get(this, MURMUR3);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code nested}?
+	 */
+	public boolean _isNested() {
+		return NESTED.equals(_type());
 	}
 
 	/**
@@ -423,6 +633,13 @@ public class Property implements TaggedUnion<PropertyVariant>, JsonpSerializable
 	}
 
 	/**
+	 * Is this variant instance of kind {@code object}?
+	 */
+	public boolean _isObject() {
+		return OBJECT.equals(_type());
+	}
+
+	/**
 	 * Get the {@code object} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -430,6 +647,13 @@ public class Property implements TaggedUnion<PropertyVariant>, JsonpSerializable
 	 */
 	public ObjectProperty object() {
 		return TaggedUnionUtils.get(this, OBJECT);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code percolator}?
+	 */
+	public boolean _isPercolator() {
+		return PERCOLATOR.equals(_type());
 	}
 
 	/**
@@ -443,6 +667,13 @@ public class Property implements TaggedUnion<PropertyVariant>, JsonpSerializable
 	}
 
 	/**
+	 * Is this variant instance of kind {@code point}?
+	 */
+	public boolean _isPoint() {
+		return POINT.equals(_type());
+	}
+
+	/**
 	 * Get the {@code point} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -450,6 +681,13 @@ public class Property implements TaggedUnion<PropertyVariant>, JsonpSerializable
 	 */
 	public PointProperty point() {
 		return TaggedUnionUtils.get(this, POINT);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code rank_feature}?
+	 */
+	public boolean _isRankFeature() {
+		return RANK_FEATURE.equals(_type());
 	}
 
 	/**
@@ -463,6 +701,13 @@ public class Property implements TaggedUnion<PropertyVariant>, JsonpSerializable
 	}
 
 	/**
+	 * Is this variant instance of kind {@code rank_features}?
+	 */
+	public boolean _isRankFeatures() {
+		return RANK_FEATURES.equals(_type());
+	}
+
+	/**
 	 * Get the {@code rank_features} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -473,6 +718,13 @@ public class Property implements TaggedUnion<PropertyVariant>, JsonpSerializable
 	}
 
 	/**
+	 * Is this variant instance of kind {@code scaled_float}?
+	 */
+	public boolean _isScaledFloat() {
+		return SCALED_FLOAT.equals(_type());
+	}
+
+	/**
 	 * Get the {@code scaled_float} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -480,6 +732,13 @@ public class Property implements TaggedUnion<PropertyVariant>, JsonpSerializable
 	 */
 	public ScaledFloatNumberProperty scaledFloat() {
 		return TaggedUnionUtils.get(this, SCALED_FLOAT);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code search_as_you_type}?
+	 */
+	public boolean _isSearchAsYouType() {
+		return SEARCH_AS_YOU_TYPE.equals(_type());
 	}
 
 	/**
@@ -494,6 +753,13 @@ public class Property implements TaggedUnion<PropertyVariant>, JsonpSerializable
 	}
 
 	/**
+	 * Is this variant instance of kind {@code shape}?
+	 */
+	public boolean _isShape() {
+		return SHAPE.equals(_type());
+	}
+
+	/**
 	 * Get the {@code shape} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -501,6 +767,13 @@ public class Property implements TaggedUnion<PropertyVariant>, JsonpSerializable
 	 */
 	public ShapeProperty shape() {
 		return TaggedUnionUtils.get(this, SHAPE);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code short}?
+	 */
+	public boolean _isShort() {
+		return SHORT.equals(_type());
 	}
 
 	/**
@@ -514,6 +787,13 @@ public class Property implements TaggedUnion<PropertyVariant>, JsonpSerializable
 	}
 
 	/**
+	 * Is this variant instance of kind {@code text}?
+	 */
+	public boolean _isText() {
+		return TEXT.equals(_type());
+	}
+
+	/**
 	 * Get the {@code text} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -521,6 +801,13 @@ public class Property implements TaggedUnion<PropertyVariant>, JsonpSerializable
 	 */
 	public TextProperty text() {
 		return TaggedUnionUtils.get(this, TEXT);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code token_count}?
+	 */
+	public boolean _isTokenCount() {
+		return TOKEN_COUNT.equals(_type());
 	}
 
 	/**
@@ -534,6 +821,13 @@ public class Property implements TaggedUnion<PropertyVariant>, JsonpSerializable
 	}
 
 	/**
+	 * Is this variant instance of kind {@code unsigned_long}?
+	 */
+	public boolean _isUnsignedLong() {
+		return UNSIGNED_LONG.equals(_type());
+	}
+
+	/**
 	 * Get the {@code unsigned_long} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -544,6 +838,13 @@ public class Property implements TaggedUnion<PropertyVariant>, JsonpSerializable
 	}
 
 	/**
+	 * Is this variant instance of kind {@code version}?
+	 */
+	public boolean _isVersion() {
+		return VERSION.equals(_type());
+	}
+
+	/**
 	 * Get the {@code version} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -551,6 +852,13 @@ public class Property implements TaggedUnion<PropertyVariant>, JsonpSerializable
 	 */
 	public VersionProperty version() {
 		return TaggedUnionUtils.get(this, VERSION);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code wildcard}?
+	 */
+	public boolean _isWildcard() {
+		return WILDCARD.equals(_type());
 	}
 
 	/**

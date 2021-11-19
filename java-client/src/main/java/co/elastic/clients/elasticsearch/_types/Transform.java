@@ -81,6 +81,13 @@ public class Transform implements TaggedUnion<Object>, JsonpSerializable {
 	}
 
 	/**
+	 * Is this variant instance of kind {@code chain}?
+	 */
+	public boolean _isChain() {
+		return CHAIN.equals(_type());
+	}
+
+	/**
 	 * Get the {@code chain} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -91,6 +98,13 @@ public class Transform implements TaggedUnion<Object>, JsonpSerializable {
 	}
 
 	/**
+	 * Is this variant instance of kind {@code script}?
+	 */
+	public boolean _isScript() {
+		return SCRIPT.equals(_type());
+	}
+
+	/**
 	 * Get the {@code script} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -98,6 +112,13 @@ public class Transform implements TaggedUnion<Object>, JsonpSerializable {
 	 */
 	public ScriptTransform script() {
 		return TaggedUnionUtils.get(this, SCRIPT);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code search}?
+	 */
+	public boolean _isSearch() {
+		return SEARCH.equals(_type());
 	}
 
 	/**

@@ -88,6 +88,13 @@ public class IntervalsFilter implements TaggedUnion<Object>, JsonpSerializable {
 	}
 
 	/**
+	 * Is this variant instance of kind {@code after}?
+	 */
+	public boolean _isAfter() {
+		return AFTER.equals(_type());
+	}
+
+	/**
 	 * Get the {@code after} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -95,6 +102,13 @@ public class IntervalsFilter implements TaggedUnion<Object>, JsonpSerializable {
 	 */
 	public Intervals after() {
 		return TaggedUnionUtils.get(this, AFTER);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code before}?
+	 */
+	public boolean _isBefore() {
+		return BEFORE.equals(_type());
 	}
 
 	/**
@@ -108,6 +122,13 @@ public class IntervalsFilter implements TaggedUnion<Object>, JsonpSerializable {
 	}
 
 	/**
+	 * Is this variant instance of kind {@code contained_by}?
+	 */
+	public boolean _isContainedBy() {
+		return CONTAINED_BY.equals(_type());
+	}
+
+	/**
 	 * Get the {@code contained_by} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -118,6 +139,13 @@ public class IntervalsFilter implements TaggedUnion<Object>, JsonpSerializable {
 	}
 
 	/**
+	 * Is this variant instance of kind {@code containing}?
+	 */
+	public boolean _isContaining() {
+		return CONTAINING.equals(_type());
+	}
+
+	/**
 	 * Get the {@code containing} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -125,6 +153,13 @@ public class IntervalsFilter implements TaggedUnion<Object>, JsonpSerializable {
 	 */
 	public Intervals containing() {
 		return TaggedUnionUtils.get(this, CONTAINING);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code not_contained_by}?
+	 */
+	public boolean _isNotContainedBy() {
+		return NOT_CONTAINED_BY.equals(_type());
 	}
 
 	/**
@@ -139,6 +174,13 @@ public class IntervalsFilter implements TaggedUnion<Object>, JsonpSerializable {
 	}
 
 	/**
+	 * Is this variant instance of kind {@code not_containing}?
+	 */
+	public boolean _isNotContaining() {
+		return NOT_CONTAINING.equals(_type());
+	}
+
+	/**
 	 * Get the {@code not_containing} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -146,6 +188,13 @@ public class IntervalsFilter implements TaggedUnion<Object>, JsonpSerializable {
 	 */
 	public Intervals notContaining() {
 		return TaggedUnionUtils.get(this, NOT_CONTAINING);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code not_overlapping}?
+	 */
+	public boolean _isNotOverlapping() {
+		return NOT_OVERLAPPING.equals(_type());
 	}
 
 	/**
@@ -160,6 +209,13 @@ public class IntervalsFilter implements TaggedUnion<Object>, JsonpSerializable {
 	}
 
 	/**
+	 * Is this variant instance of kind {@code overlapping}?
+	 */
+	public boolean _isOverlapping() {
+		return OVERLAPPING.equals(_type());
+	}
+
+	/**
 	 * Get the {@code overlapping} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -167,6 +223,13 @@ public class IntervalsFilter implements TaggedUnion<Object>, JsonpSerializable {
 	 */
 	public Intervals overlapping() {
 		return TaggedUnionUtils.get(this, OVERLAPPING);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code script}?
+	 */
+	public boolean _isScript() {
+		return SCRIPT.equals(_type());
 	}
 
 	/**

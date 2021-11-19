@@ -81,6 +81,13 @@ public class SmoothingModel implements TaggedUnion<Object>, JsonpSerializable {
 	}
 
 	/**
+	 * Is this variant instance of kind {@code laplace}?
+	 */
+	public boolean _isLaplace() {
+		return LAPLACE.equals(_type());
+	}
+
+	/**
 	 * Get the {@code laplace} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -88,6 +95,13 @@ public class SmoothingModel implements TaggedUnion<Object>, JsonpSerializable {
 	 */
 	public LaplaceSmoothingModel laplace() {
 		return TaggedUnionUtils.get(this, LAPLACE);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code linear_interpolation}?
+	 */
+	public boolean _isLinearInterpolation() {
+		return LINEAR_INTERPOLATION.equals(_type());
 	}
 
 	/**
@@ -99,6 +113,13 @@ public class SmoothingModel implements TaggedUnion<Object>, JsonpSerializable {
 	 */
 	public LinearInterpolationSmoothingModel linearInterpolation() {
 		return TaggedUnionUtils.get(this, LINEAR_INTERPOLATION);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code stupid_backoff}?
+	 */
+	public boolean _isStupidBackoff() {
+		return STUPID_BACKOFF.equals(_type());
 	}
 
 	/**

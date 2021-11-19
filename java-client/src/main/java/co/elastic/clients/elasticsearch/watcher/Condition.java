@@ -83,6 +83,13 @@ public class Condition implements TaggedUnion<Object>, JsonpSerializable {
 	}
 
 	/**
+	 * Is this variant instance of kind {@code always}?
+	 */
+	public boolean _isAlways() {
+		return ALWAYS.equals(_type());
+	}
+
+	/**
 	 * Get the {@code always} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -90,6 +97,13 @@ public class Condition implements TaggedUnion<Object>, JsonpSerializable {
 	 */
 	public AlwaysCondition always() {
 		return TaggedUnionUtils.get(this, ALWAYS);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code array_compare}?
+	 */
+	public boolean _isArrayCompare() {
+		return ARRAY_COMPARE.equals(_type());
 	}
 
 	/**
@@ -103,6 +117,13 @@ public class Condition implements TaggedUnion<Object>, JsonpSerializable {
 	}
 
 	/**
+	 * Is this variant instance of kind {@code compare}?
+	 */
+	public boolean _isCompare() {
+		return COMPARE.equals(_type());
+	}
+
+	/**
 	 * Get the {@code compare} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -113,6 +134,13 @@ public class Condition implements TaggedUnion<Object>, JsonpSerializable {
 	}
 
 	/**
+	 * Is this variant instance of kind {@code never}?
+	 */
+	public boolean _isNever() {
+		return NEVER.equals(_type());
+	}
+
+	/**
 	 * Get the {@code never} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -120,6 +148,13 @@ public class Condition implements TaggedUnion<Object>, JsonpSerializable {
 	 */
 	public NeverCondition never() {
 		return TaggedUnionUtils.get(this, NEVER);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code script}?
+	 */
+	public boolean _isScript() {
+		return SCRIPT.equals(_type());
 	}
 
 	/**

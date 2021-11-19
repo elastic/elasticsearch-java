@@ -79,6 +79,13 @@ public class TimeOfDay implements TaggedUnion<Object>, JsonpSerializable {
 	}
 
 	/**
+	 * Is this variant instance of kind {@code text}?
+	 */
+	public boolean _isText() {
+		return TEXT.equals(_type());
+	}
+
+	/**
 	 * Get the {@code text} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -86,6 +93,13 @@ public class TimeOfDay implements TaggedUnion<Object>, JsonpSerializable {
 	 */
 	public String text() {
 		return TaggedUnionUtils.get(this, TEXT);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code hour_minute}?
+	 */
+	public boolean _isHourMinute() {
+		return HOUR_MINUTE.equals(_type());
 	}
 
 	/**

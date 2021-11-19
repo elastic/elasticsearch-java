@@ -94,6 +94,13 @@ public class FieldRule implements TaggedUnion<Object>, RoleMappingRuleVariant, J
 	}
 
 	/**
+	 * Is this variant instance of kind {@code username}?
+	 */
+	public boolean _isUsername() {
+		return USERNAME.equals(_type());
+	}
+
+	/**
 	 * Get the {@code username} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -101,6 +108,13 @@ public class FieldRule implements TaggedUnion<Object>, RoleMappingRuleVariant, J
 	 */
 	public String username() {
 		return TaggedUnionUtils.get(this, USERNAME);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code dn}?
+	 */
+	public boolean _isDn() {
+		return DN.equals(_type());
 	}
 
 	/**
@@ -114,6 +128,13 @@ public class FieldRule implements TaggedUnion<Object>, RoleMappingRuleVariant, J
 	}
 
 	/**
+	 * Is this variant instance of kind {@code groups}?
+	 */
+	public boolean _isGroups() {
+		return GROUPS.equals(_type());
+	}
+
+	/**
 	 * Get the {@code groups} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -124,6 +145,13 @@ public class FieldRule implements TaggedUnion<Object>, RoleMappingRuleVariant, J
 	}
 
 	/**
+	 * Is this variant instance of kind {@code metadata}?
+	 */
+	public boolean _isMetadata() {
+		return METADATA.equals(_type());
+	}
+
+	/**
 	 * Get the {@code metadata} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -131,6 +159,13 @@ public class FieldRule implements TaggedUnion<Object>, RoleMappingRuleVariant, J
 	 */
 	public JsonData metadata() {
 		return TaggedUnionUtils.get(this, METADATA);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code realm}?
+	 */
+	public boolean _isRealm() {
+		return REALM.equals(_type());
 	}
 
 	/**

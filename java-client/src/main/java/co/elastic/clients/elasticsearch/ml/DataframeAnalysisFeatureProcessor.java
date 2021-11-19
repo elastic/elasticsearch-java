@@ -84,6 +84,13 @@ public class DataframeAnalysisFeatureProcessor implements TaggedUnion<Object>, J
 	}
 
 	/**
+	 * Is this variant instance of kind {@code frequency_encoding}?
+	 */
+	public boolean _isFrequencyEncoding() {
+		return FREQUENCY_ENCODING.equals(_type());
+	}
+
+	/**
 	 * Get the {@code frequency_encoding} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -95,6 +102,13 @@ public class DataframeAnalysisFeatureProcessor implements TaggedUnion<Object>, J
 	}
 
 	/**
+	 * Is this variant instance of kind {@code multi_encoding}?
+	 */
+	public boolean _isMultiEncoding() {
+		return MULTI_ENCODING.equals(_type());
+	}
+
+	/**
 	 * Get the {@code multi_encoding} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -102,6 +116,13 @@ public class DataframeAnalysisFeatureProcessor implements TaggedUnion<Object>, J
 	 */
 	public DataframeAnalysisFeatureProcessorMultiEncoding multiEncoding() {
 		return TaggedUnionUtils.get(this, MULTI_ENCODING);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code n_gram_encoding}?
+	 */
+	public boolean _isNGramEncoding() {
+		return N_GRAM_ENCODING.equals(_type());
 	}
 
 	/**
@@ -116,6 +137,13 @@ public class DataframeAnalysisFeatureProcessor implements TaggedUnion<Object>, J
 	}
 
 	/**
+	 * Is this variant instance of kind {@code one_hot_encoding}?
+	 */
+	public boolean _isOneHotEncoding() {
+		return ONE_HOT_ENCODING.equals(_type());
+	}
+
+	/**
 	 * Get the {@code one_hot_encoding} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -124,6 +152,13 @@ public class DataframeAnalysisFeatureProcessor implements TaggedUnion<Object>, J
 	 */
 	public DataframeAnalysisFeatureProcessorOneHotEncoding oneHotEncoding() {
 		return TaggedUnionUtils.get(this, ONE_HOT_ENCODING);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code target_mean_encoding}?
+	 */
+	public boolean _isTargetMeanEncoding() {
+		return TARGET_MEAN_ENCODING.equals(_type());
 	}
 
 	/**

@@ -79,6 +79,13 @@ public class LifecycleExplain implements TaggedUnion<LifecycleExplainVariant>, J
 	}
 
 	/**
+	 * Is this variant instance of kind {@code true}?
+	 */
+	public boolean _isTrue() {
+		return TRUE.equals(_type());
+	}
+
+	/**
 	 * Get the {@code true} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -86,6 +93,13 @@ public class LifecycleExplain implements TaggedUnion<LifecycleExplainVariant>, J
 	 */
 	public LifecycleExplainManaged true_() {
 		return TaggedUnionUtils.get(this, TRUE);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code false}?
+	 */
+	public boolean _isFalse() {
+		return FALSE.equals(_type());
 	}
 
 	/**

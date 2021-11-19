@@ -85,6 +85,13 @@ public class FieldSuggester implements TaggedUnion<Object>, JsonpSerializable {
 	}
 
 	/**
+	 * Is this variant instance of kind {@code completion}?
+	 */
+	public boolean _isCompletion() {
+		return COMPLETION.equals(_type());
+	}
+
+	/**
 	 * Get the {@code completion} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -92,6 +99,13 @@ public class FieldSuggester implements TaggedUnion<Object>, JsonpSerializable {
 	 */
 	public CompletionSuggester completion() {
 		return TaggedUnionUtils.get(this, COMPLETION);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code phrase}?
+	 */
+	public boolean _isPhrase() {
+		return PHRASE.equals(_type());
 	}
 
 	/**
@@ -105,6 +119,13 @@ public class FieldSuggester implements TaggedUnion<Object>, JsonpSerializable {
 	}
 
 	/**
+	 * Is this variant instance of kind {@code prefix}?
+	 */
+	public boolean _isPrefix() {
+		return PREFIX.equals(_type());
+	}
+
+	/**
 	 * Get the {@code prefix} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -112,6 +133,13 @@ public class FieldSuggester implements TaggedUnion<Object>, JsonpSerializable {
 	 */
 	public String prefix() {
 		return TaggedUnionUtils.get(this, PREFIX);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code regex}?
+	 */
+	public boolean _isRegex() {
+		return REGEX.equals(_type());
 	}
 
 	/**
@@ -125,6 +153,13 @@ public class FieldSuggester implements TaggedUnion<Object>, JsonpSerializable {
 	}
 
 	/**
+	 * Is this variant instance of kind {@code term}?
+	 */
+	public boolean _isTerm() {
+		return TERM.equals(_type());
+	}
+
+	/**
 	 * Get the {@code term} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -132,6 +167,13 @@ public class FieldSuggester implements TaggedUnion<Object>, JsonpSerializable {
 	 */
 	public TermSuggester term() {
 		return TaggedUnionUtils.get(this, TERM);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code text}?
+	 */
+	public boolean _isText() {
+		return TEXT.equals(_type());
 	}
 
 	/**

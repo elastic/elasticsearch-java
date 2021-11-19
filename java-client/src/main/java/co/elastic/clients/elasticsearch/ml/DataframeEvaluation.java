@@ -81,6 +81,13 @@ public class DataframeEvaluation implements TaggedUnion<Object>, JsonpSerializab
 	}
 
 	/**
+	 * Is this variant instance of kind {@code classification}?
+	 */
+	public boolean _isClassification() {
+		return CLASSIFICATION.equals(_type());
+	}
+
+	/**
 	 * Get the {@code classification} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -88,6 +95,13 @@ public class DataframeEvaluation implements TaggedUnion<Object>, JsonpSerializab
 	 */
 	public DataframeEvaluationClassification classification() {
 		return TaggedUnionUtils.get(this, CLASSIFICATION);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code outlier_detection}?
+	 */
+	public boolean _isOutlierDetection() {
+		return OUTLIER_DETECTION.equals(_type());
 	}
 
 	/**
@@ -99,6 +113,13 @@ public class DataframeEvaluation implements TaggedUnion<Object>, JsonpSerializab
 	 */
 	public DataframeEvaluationOutlierDetection outlierDetection() {
 		return TaggedUnionUtils.get(this, OUTLIER_DETECTION);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code regression}?
+	 */
+	public boolean _isRegression() {
+		return REGRESSION.equals(_type());
 	}
 
 	/**

@@ -79,6 +79,13 @@ public class Like implements TaggedUnion<Object>, JsonpSerializable {
 	}
 
 	/**
+	 * Is this variant instance of kind {@code document}?
+	 */
+	public boolean _isDocument() {
+		return DOCUMENT.equals(_type());
+	}
+
+	/**
 	 * Get the {@code document} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -86,6 +93,13 @@ public class Like implements TaggedUnion<Object>, JsonpSerializable {
 	 */
 	public LikeDocument document() {
 		return TaggedUnionUtils.get(this, DOCUMENT);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code text}?
+	 */
+	public boolean _isText() {
+		return TEXT.equals(_type());
 	}
 
 	/**

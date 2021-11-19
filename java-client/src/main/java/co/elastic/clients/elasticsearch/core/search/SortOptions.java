@@ -85,6 +85,13 @@ public class SortOptions implements TaggedUnion<Object>, JsonpSerializable {
 	}
 
 	/**
+	 * Is this variant instance of kind {@code _score}?
+	 */
+	public boolean _isScore() {
+		return SCORE.equals(_type());
+	}
+
+	/**
 	 * Get the {@code _score} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -92,6 +99,13 @@ public class SortOptions implements TaggedUnion<Object>, JsonpSerializable {
 	 */
 	public ScoreSort score() {
 		return TaggedUnionUtils.get(this, SCORE);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code _doc}?
+	 */
+	public boolean _isDoc() {
+		return DOC.equals(_type());
 	}
 
 	/**
@@ -105,6 +119,13 @@ public class SortOptions implements TaggedUnion<Object>, JsonpSerializable {
 	}
 
 	/**
+	 * Is this variant instance of kind {@code _geo_distance}?
+	 */
+	public boolean _isGeoDistance() {
+		return GEO_DISTANCE.equals(_type());
+	}
+
+	/**
 	 * Get the {@code _geo_distance} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -115,6 +136,13 @@ public class SortOptions implements TaggedUnion<Object>, JsonpSerializable {
 	}
 
 	/**
+	 * Is this variant instance of kind {@code _script}?
+	 */
+	public boolean _isScript() {
+		return SCRIPT.equals(_type());
+	}
+
+	/**
 	 * Get the {@code _script} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -122,6 +150,13 @@ public class SortOptions implements TaggedUnion<Object>, JsonpSerializable {
 	 */
 	public ScriptSort script() {
 		return TaggedUnionUtils.get(this, SCRIPT);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code field}?
+	 */
+	public boolean _isField() {
+		return FIELD.equals(_type());
 	}
 
 	/**

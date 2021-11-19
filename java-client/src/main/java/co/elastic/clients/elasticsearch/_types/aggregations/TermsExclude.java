@@ -92,6 +92,13 @@ public class TermsExclude implements TaggedUnion<Object>, JsonpSerializable {
 	}
 
 	/**
+	 * Is this variant instance of kind {@code terms}?
+	 */
+	public boolean _isTerms() {
+		return TERMS.equals(_type());
+	}
+
+	/**
 	 * Get the {@code terms} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -99,6 +106,13 @@ public class TermsExclude implements TaggedUnion<Object>, JsonpSerializable {
 	 */
 	public List<String> terms() {
 		return TaggedUnionUtils.get(this, TERMS);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code regexp}?
+	 */
+	public boolean _isRegexp() {
+		return REGEXP.equals(_type());
 	}
 
 	/**

@@ -79,6 +79,13 @@ public class Trigger implements TaggedUnion<Object>, JsonpSerializable {
 	}
 
 	/**
+	 * Is this variant instance of kind {@code schedule}?
+	 */
+	public boolean _isSchedule() {
+		return SCHEDULE.equals(_type());
+	}
+
+	/**
 	 * Get the {@code schedule} variant value.
 	 *
 	 * @throws IllegalStateException

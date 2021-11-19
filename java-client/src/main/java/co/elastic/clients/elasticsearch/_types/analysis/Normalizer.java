@@ -79,6 +79,13 @@ public class Normalizer implements TaggedUnion<NormalizerVariant>, JsonpSerializ
 	}
 
 	/**
+	 * Is this variant instance of kind {@code custom}?
+	 */
+	public boolean _isCustom() {
+		return CUSTOM.equals(_type());
+	}
+
+	/**
 	 * Get the {@code custom} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -86,6 +93,13 @@ public class Normalizer implements TaggedUnion<NormalizerVariant>, JsonpSerializ
 	 */
 	public CustomNormalizer custom() {
 		return TaggedUnionUtils.get(this, CUSTOM);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code lowercase}?
+	 */
+	public boolean _isLowercase() {
+		return LOWERCASE.equals(_type());
 	}
 
 	/**

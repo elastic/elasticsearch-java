@@ -80,6 +80,13 @@ public class TermsQueryField implements TaggedUnion<Object>, JsonpSerializable {
 	}
 
 	/**
+	 * Is this variant instance of kind {@code value}?
+	 */
+	public boolean _isValue() {
+		return VALUE.equals(_type());
+	}
+
+	/**
 	 * Get the {@code value} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -87,6 +94,13 @@ public class TermsQueryField implements TaggedUnion<Object>, JsonpSerializable {
 	 */
 	public List<FieldValue> value() {
 		return TaggedUnionUtils.get(this, VALUE);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code lookup}?
+	 */
+	public boolean _isLookup() {
+		return LOOKUP.equals(_type());
 	}
 
 	/**

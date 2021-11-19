@@ -81,6 +81,13 @@ public class Context implements TaggedUnion<Object>, JsonpSerializable {
 	}
 
 	/**
+	 * Is this variant instance of kind {@code location}?
+	 */
+	public boolean _isLocation() {
+		return LOCATION.equals(_type());
+	}
+
+	/**
 	 * Get the {@code location} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -88,6 +95,13 @@ public class Context implements TaggedUnion<Object>, JsonpSerializable {
 	 */
 	public GeoLocation location() {
 		return TaggedUnionUtils.get(this, LOCATION);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code category}?
+	 */
+	public boolean _isCategory() {
+		return CATEGORY.equals(_type());
 	}
 
 	/**

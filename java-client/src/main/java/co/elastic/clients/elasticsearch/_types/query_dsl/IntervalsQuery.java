@@ -97,6 +97,13 @@ public class IntervalsQuery extends QueryBase implements TaggedUnion<Object>, Qu
 	}
 
 	/**
+	 * Is this variant instance of kind {@code all_of}?
+	 */
+	public boolean _isAllOf() {
+		return ALL_OF.equals(_type());
+	}
+
+	/**
 	 * Get the {@code all_of} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -104,6 +111,13 @@ public class IntervalsQuery extends QueryBase implements TaggedUnion<Object>, Qu
 	 */
 	public IntervalsAllOf allOf() {
 		return TaggedUnionUtils.get(this, ALL_OF);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code any_of}?
+	 */
+	public boolean _isAnyOf() {
+		return ANY_OF.equals(_type());
 	}
 
 	/**
@@ -117,6 +131,13 @@ public class IntervalsQuery extends QueryBase implements TaggedUnion<Object>, Qu
 	}
 
 	/**
+	 * Is this variant instance of kind {@code fuzzy}?
+	 */
+	public boolean _isFuzzy() {
+		return FUZZY.equals(_type());
+	}
+
+	/**
 	 * Get the {@code fuzzy} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -124,6 +145,13 @@ public class IntervalsQuery extends QueryBase implements TaggedUnion<Object>, Qu
 	 */
 	public IntervalsFuzzy fuzzy() {
 		return TaggedUnionUtils.get(this, FUZZY);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code match}?
+	 */
+	public boolean _isMatch() {
+		return MATCH.equals(_type());
 	}
 
 	/**
@@ -137,6 +165,13 @@ public class IntervalsQuery extends QueryBase implements TaggedUnion<Object>, Qu
 	}
 
 	/**
+	 * Is this variant instance of kind {@code prefix}?
+	 */
+	public boolean _isPrefix() {
+		return PREFIX.equals(_type());
+	}
+
+	/**
 	 * Get the {@code prefix} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -144,6 +179,13 @@ public class IntervalsQuery extends QueryBase implements TaggedUnion<Object>, Qu
 	 */
 	public IntervalsPrefix prefix() {
 		return TaggedUnionUtils.get(this, PREFIX);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code wildcard}?
+	 */
+	public boolean _isWildcard() {
+		return WILDCARD.equals(_type());
 	}
 
 	/**

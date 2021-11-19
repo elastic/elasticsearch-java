@@ -143,6 +143,13 @@ public class Aggregate implements TaggedUnion<AggregateVariant>, JsonpSerializab
 	}
 
 	/**
+	 * Is this variant instance of kind {@code adjacency_matrix}?
+	 */
+	public boolean _isAdjacencyMatrix() {
+		return ADJACENCY_MATRIX.equals(_type());
+	}
+
+	/**
 	 * Get the {@code adjacency_matrix} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -151,6 +158,13 @@ public class Aggregate implements TaggedUnion<AggregateVariant>, JsonpSerializab
 	 */
 	public AdjacencyMatrixAggregate adjacencyMatrix() {
 		return TaggedUnionUtils.get(this, ADJACENCY_MATRIX);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code auto_date_histogram}?
+	 */
+	public boolean _isAutoDateHistogram() {
+		return AUTO_DATE_HISTOGRAM.equals(_type());
 	}
 
 	/**
@@ -165,6 +179,13 @@ public class Aggregate implements TaggedUnion<AggregateVariant>, JsonpSerializab
 	}
 
 	/**
+	 * Is this variant instance of kind {@code avg}?
+	 */
+	public boolean _isAvg() {
+		return AVG.equals(_type());
+	}
+
+	/**
 	 * Get the {@code avg} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -175,6 +196,13 @@ public class Aggregate implements TaggedUnion<AggregateVariant>, JsonpSerializab
 	}
 
 	/**
+	 * Is this variant instance of kind {@code box_plot}?
+	 */
+	public boolean _isBoxPlot() {
+		return BOX_PLOT.equals(_type());
+	}
+
+	/**
 	 * Get the {@code box_plot} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -182,6 +210,13 @@ public class Aggregate implements TaggedUnion<AggregateVariant>, JsonpSerializab
 	 */
 	public BoxPlotAggregate boxPlot() {
 		return TaggedUnionUtils.get(this, BOX_PLOT);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code bucket_metric_value}?
+	 */
+	public boolean _isBucketMetricValue() {
+		return BUCKET_METRIC_VALUE.equals(_type());
 	}
 
 	/**
@@ -196,6 +231,13 @@ public class Aggregate implements TaggedUnion<AggregateVariant>, JsonpSerializab
 	}
 
 	/**
+	 * Is this variant instance of kind {@code cardinality}?
+	 */
+	public boolean _isCardinality() {
+		return CARDINALITY.equals(_type());
+	}
+
+	/**
 	 * Get the {@code cardinality} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -203,6 +245,13 @@ public class Aggregate implements TaggedUnion<AggregateVariant>, JsonpSerializab
 	 */
 	public CardinalityAggregate cardinality() {
 		return TaggedUnionUtils.get(this, CARDINALITY);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code children}?
+	 */
+	public boolean _isChildren() {
+		return CHILDREN.equals(_type());
 	}
 
 	/**
@@ -216,6 +265,13 @@ public class Aggregate implements TaggedUnion<AggregateVariant>, JsonpSerializab
 	}
 
 	/**
+	 * Is this variant instance of kind {@code composite}?
+	 */
+	public boolean _isComposite() {
+		return COMPOSITE.equals(_type());
+	}
+
+	/**
 	 * Get the {@code composite} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -223,6 +279,13 @@ public class Aggregate implements TaggedUnion<AggregateVariant>, JsonpSerializab
 	 */
 	public CompositeAggregate composite() {
 		return TaggedUnionUtils.get(this, COMPOSITE);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code simple_long_value}?
+	 */
+	public boolean _isSimpleLongValue() {
+		return SIMPLE_LONG_VALUE.equals(_type());
 	}
 
 	/**
@@ -237,6 +300,13 @@ public class Aggregate implements TaggedUnion<AggregateVariant>, JsonpSerializab
 	}
 
 	/**
+	 * Is this variant instance of kind {@code date_histogram}?
+	 */
+	public boolean _isDateHistogram() {
+		return DATE_HISTOGRAM.equals(_type());
+	}
+
+	/**
 	 * Get the {@code date_histogram} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -244,6 +314,13 @@ public class Aggregate implements TaggedUnion<AggregateVariant>, JsonpSerializab
 	 */
 	public DateHistogramAggregate dateHistogram() {
 		return TaggedUnionUtils.get(this, DATE_HISTOGRAM);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code date_range}?
+	 */
+	public boolean _isDateRange() {
+		return DATE_RANGE.equals(_type());
 	}
 
 	/**
@@ -257,6 +334,13 @@ public class Aggregate implements TaggedUnion<AggregateVariant>, JsonpSerializab
 	}
 
 	/**
+	 * Is this variant instance of kind {@code derivative}?
+	 */
+	public boolean _isDerivative() {
+		return DERIVATIVE.equals(_type());
+	}
+
+	/**
 	 * Get the {@code derivative} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -264,6 +348,13 @@ public class Aggregate implements TaggedUnion<AggregateVariant>, JsonpSerializab
 	 */
 	public DerivativeAggregate derivative() {
 		return TaggedUnionUtils.get(this, DERIVATIVE);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code dterms}?
+	 */
+	public boolean _isDterms() {
+		return DTERMS.equals(_type());
 	}
 
 	/**
@@ -277,6 +368,13 @@ public class Aggregate implements TaggedUnion<AggregateVariant>, JsonpSerializab
 	}
 
 	/**
+	 * Is this variant instance of kind {@code extended_stats}?
+	 */
+	public boolean _isExtendedStats() {
+		return EXTENDED_STATS.equals(_type());
+	}
+
+	/**
 	 * Get the {@code extended_stats} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -284,6 +382,13 @@ public class Aggregate implements TaggedUnion<AggregateVariant>, JsonpSerializab
 	 */
 	public ExtendedStatsAggregate extendedStats() {
 		return TaggedUnionUtils.get(this, EXTENDED_STATS);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code extended_stats_bucket}?
+	 */
+	public boolean _isExtendedStatsBucket() {
+		return EXTENDED_STATS_BUCKET.equals(_type());
 	}
 
 	/**
@@ -298,6 +403,13 @@ public class Aggregate implements TaggedUnion<AggregateVariant>, JsonpSerializab
 	}
 
 	/**
+	 * Is this variant instance of kind {@code filter}?
+	 */
+	public boolean _isFilter() {
+		return FILTER.equals(_type());
+	}
+
+	/**
 	 * Get the {@code filter} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -305,6 +417,13 @@ public class Aggregate implements TaggedUnion<AggregateVariant>, JsonpSerializab
 	 */
 	public FilterAggregate filter() {
 		return TaggedUnionUtils.get(this, FILTER);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code filters}?
+	 */
+	public boolean _isFilters() {
+		return FILTERS.equals(_type());
 	}
 
 	/**
@@ -318,6 +437,13 @@ public class Aggregate implements TaggedUnion<AggregateVariant>, JsonpSerializab
 	}
 
 	/**
+	 * Is this variant instance of kind {@code geo_bounds}?
+	 */
+	public boolean _isGeoBounds() {
+		return GEO_BOUNDS.equals(_type());
+	}
+
+	/**
 	 * Get the {@code geo_bounds} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -325,6 +451,13 @@ public class Aggregate implements TaggedUnion<AggregateVariant>, JsonpSerializab
 	 */
 	public GeoBoundsAggregate geoBounds() {
 		return TaggedUnionUtils.get(this, GEO_BOUNDS);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code geo_centroid}?
+	 */
+	public boolean _isGeoCentroid() {
+		return GEO_CENTROID.equals(_type());
 	}
 
 	/**
@@ -338,6 +471,13 @@ public class Aggregate implements TaggedUnion<AggregateVariant>, JsonpSerializab
 	}
 
 	/**
+	 * Is this variant instance of kind {@code geo_distance}?
+	 */
+	public boolean _isGeoDistance() {
+		return GEO_DISTANCE.equals(_type());
+	}
+
+	/**
 	 * Get the {@code geo_distance} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -345,6 +485,13 @@ public class Aggregate implements TaggedUnion<AggregateVariant>, JsonpSerializab
 	 */
 	public GeoDistanceAggregate geoDistance() {
 		return TaggedUnionUtils.get(this, GEO_DISTANCE);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code geohash_grid}?
+	 */
+	public boolean _isGeohashGrid() {
+		return GEOHASH_GRID.equals(_type());
 	}
 
 	/**
@@ -358,6 +505,13 @@ public class Aggregate implements TaggedUnion<AggregateVariant>, JsonpSerializab
 	}
 
 	/**
+	 * Is this variant instance of kind {@code geo_line}?
+	 */
+	public boolean _isGeoLine() {
+		return GEO_LINE.equals(_type());
+	}
+
+	/**
 	 * Get the {@code geo_line} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -365,6 +519,13 @@ public class Aggregate implements TaggedUnion<AggregateVariant>, JsonpSerializab
 	 */
 	public GeoLineAggregate geoLine() {
 		return TaggedUnionUtils.get(this, GEO_LINE);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code geotile_grid}?
+	 */
+	public boolean _isGeotileGrid() {
+		return GEOTILE_GRID.equals(_type());
 	}
 
 	/**
@@ -378,6 +539,13 @@ public class Aggregate implements TaggedUnion<AggregateVariant>, JsonpSerializab
 	}
 
 	/**
+	 * Is this variant instance of kind {@code global}?
+	 */
+	public boolean _isGlobal() {
+		return GLOBAL.equals(_type());
+	}
+
+	/**
 	 * Get the {@code global} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -385,6 +553,13 @@ public class Aggregate implements TaggedUnion<AggregateVariant>, JsonpSerializab
 	 */
 	public GlobalAggregate global() {
 		return TaggedUnionUtils.get(this, GLOBAL);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code hdr_percentile_ranks}?
+	 */
+	public boolean _isHdrPercentileRanks() {
+		return HDR_PERCENTILE_RANKS.equals(_type());
 	}
 
 	/**
@@ -399,6 +574,13 @@ public class Aggregate implements TaggedUnion<AggregateVariant>, JsonpSerializab
 	}
 
 	/**
+	 * Is this variant instance of kind {@code hdr_percentiles}?
+	 */
+	public boolean _isHdrPercentiles() {
+		return HDR_PERCENTILES.equals(_type());
+	}
+
+	/**
 	 * Get the {@code hdr_percentiles} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -407,6 +589,13 @@ public class Aggregate implements TaggedUnion<AggregateVariant>, JsonpSerializab
 	 */
 	public HdrPercentilesAggregate hdrPercentiles() {
 		return TaggedUnionUtils.get(this, HDR_PERCENTILES);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code histogram}?
+	 */
+	public boolean _isHistogram() {
+		return HISTOGRAM.equals(_type());
 	}
 
 	/**
@@ -420,6 +609,13 @@ public class Aggregate implements TaggedUnion<AggregateVariant>, JsonpSerializab
 	}
 
 	/**
+	 * Is this variant instance of kind {@code inference}?
+	 */
+	public boolean _isInference() {
+		return INFERENCE.equals(_type());
+	}
+
+	/**
 	 * Get the {@code inference} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -427,6 +623,13 @@ public class Aggregate implements TaggedUnion<AggregateVariant>, JsonpSerializab
 	 */
 	public InferenceAggregate inference() {
 		return TaggedUnionUtils.get(this, INFERENCE);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code ip_range}?
+	 */
+	public boolean _isIpRange() {
+		return IP_RANGE.equals(_type());
 	}
 
 	/**
@@ -440,6 +643,13 @@ public class Aggregate implements TaggedUnion<AggregateVariant>, JsonpSerializab
 	}
 
 	/**
+	 * Is this variant instance of kind {@code lrareterms}?
+	 */
+	public boolean _isLrareterms() {
+		return LRARETERMS.equals(_type());
+	}
+
+	/**
 	 * Get the {@code lrareterms} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -447,6 +657,13 @@ public class Aggregate implements TaggedUnion<AggregateVariant>, JsonpSerializab
 	 */
 	public LongRareTermsAggregate lrareterms() {
 		return TaggedUnionUtils.get(this, LRARETERMS);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code lterms}?
+	 */
+	public boolean _isLterms() {
+		return LTERMS.equals(_type());
 	}
 
 	/**
@@ -460,6 +677,13 @@ public class Aggregate implements TaggedUnion<AggregateVariant>, JsonpSerializab
 	}
 
 	/**
+	 * Is this variant instance of kind {@code matrix_stats}?
+	 */
+	public boolean _isMatrixStats() {
+		return MATRIX_STATS.equals(_type());
+	}
+
+	/**
 	 * Get the {@code matrix_stats} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -470,6 +694,13 @@ public class Aggregate implements TaggedUnion<AggregateVariant>, JsonpSerializab
 	}
 
 	/**
+	 * Is this variant instance of kind {@code max}?
+	 */
+	public boolean _isMax() {
+		return MAX.equals(_type());
+	}
+
+	/**
 	 * Get the {@code max} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -477,6 +708,13 @@ public class Aggregate implements TaggedUnion<AggregateVariant>, JsonpSerializab
 	 */
 	public MaxAggregate max() {
 		return TaggedUnionUtils.get(this, MAX);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code median_absolute_deviation}?
+	 */
+	public boolean _isMedianAbsoluteDeviation() {
+		return MEDIAN_ABSOLUTE_DEVIATION.equals(_type());
 	}
 
 	/**
@@ -491,6 +729,13 @@ public class Aggregate implements TaggedUnion<AggregateVariant>, JsonpSerializab
 	}
 
 	/**
+	 * Is this variant instance of kind {@code min}?
+	 */
+	public boolean _isMin() {
+		return MIN.equals(_type());
+	}
+
+	/**
 	 * Get the {@code min} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -498,6 +743,13 @@ public class Aggregate implements TaggedUnion<AggregateVariant>, JsonpSerializab
 	 */
 	public MinAggregate min() {
 		return TaggedUnionUtils.get(this, MIN);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code missing}?
+	 */
+	public boolean _isMissing() {
+		return MISSING.equals(_type());
 	}
 
 	/**
@@ -511,6 +763,13 @@ public class Aggregate implements TaggedUnion<AggregateVariant>, JsonpSerializab
 	}
 
 	/**
+	 * Is this variant instance of kind {@code multi_terms}?
+	 */
+	public boolean _isMultiTerms() {
+		return MULTI_TERMS.equals(_type());
+	}
+
+	/**
 	 * Get the {@code multi_terms} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -521,6 +780,13 @@ public class Aggregate implements TaggedUnion<AggregateVariant>, JsonpSerializab
 	}
 
 	/**
+	 * Is this variant instance of kind {@code nested}?
+	 */
+	public boolean _isNested() {
+		return NESTED.equals(_type());
+	}
+
+	/**
 	 * Get the {@code nested} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -528,6 +794,13 @@ public class Aggregate implements TaggedUnion<AggregateVariant>, JsonpSerializab
 	 */
 	public NestedAggregate nested() {
 		return TaggedUnionUtils.get(this, NESTED);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code percentiles_bucket}?
+	 */
+	public boolean _isPercentilesBucket() {
+		return PERCENTILES_BUCKET.equals(_type());
 	}
 
 	/**
@@ -542,6 +815,13 @@ public class Aggregate implements TaggedUnion<AggregateVariant>, JsonpSerializab
 	}
 
 	/**
+	 * Is this variant instance of kind {@code range}?
+	 */
+	public boolean _isRange() {
+		return RANGE.equals(_type());
+	}
+
+	/**
 	 * Get the {@code range} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -549,6 +829,13 @@ public class Aggregate implements TaggedUnion<AggregateVariant>, JsonpSerializab
 	 */
 	public RangeAggregate range() {
 		return TaggedUnionUtils.get(this, RANGE);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code rate}?
+	 */
+	public boolean _isRate() {
+		return RATE.equals(_type());
 	}
 
 	/**
@@ -562,6 +849,13 @@ public class Aggregate implements TaggedUnion<AggregateVariant>, JsonpSerializab
 	}
 
 	/**
+	 * Is this variant instance of kind {@code reverse_nested}?
+	 */
+	public boolean _isReverseNested() {
+		return REVERSE_NESTED.equals(_type());
+	}
+
+	/**
 	 * Get the {@code reverse_nested} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -572,6 +866,13 @@ public class Aggregate implements TaggedUnion<AggregateVariant>, JsonpSerializab
 	}
 
 	/**
+	 * Is this variant instance of kind {@code sampler}?
+	 */
+	public boolean _isSampler() {
+		return SAMPLER.equals(_type());
+	}
+
+	/**
 	 * Get the {@code sampler} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -579,6 +880,13 @@ public class Aggregate implements TaggedUnion<AggregateVariant>, JsonpSerializab
 	 */
 	public SamplerAggregate sampler() {
 		return TaggedUnionUtils.get(this, SAMPLER);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code scripted_metric}?
+	 */
+	public boolean _isScriptedMetric() {
+		return SCRIPTED_METRIC.equals(_type());
 	}
 
 	/**
@@ -593,6 +901,13 @@ public class Aggregate implements TaggedUnion<AggregateVariant>, JsonpSerializab
 	}
 
 	/**
+	 * Is this variant instance of kind {@code siglterms}?
+	 */
+	public boolean _isSiglterms() {
+		return SIGLTERMS.equals(_type());
+	}
+
+	/**
 	 * Get the {@code siglterms} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -600,6 +915,13 @@ public class Aggregate implements TaggedUnion<AggregateVariant>, JsonpSerializab
 	 */
 	public SignificantLongTermsAggregate siglterms() {
 		return TaggedUnionUtils.get(this, SIGLTERMS);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code sigsterms}?
+	 */
+	public boolean _isSigsterms() {
+		return SIGSTERMS.equals(_type());
 	}
 
 	/**
@@ -613,6 +935,13 @@ public class Aggregate implements TaggedUnion<AggregateVariant>, JsonpSerializab
 	}
 
 	/**
+	 * Is this variant instance of kind {@code simple_value}?
+	 */
+	public boolean _isSimpleValue() {
+		return SIMPLE_VALUE.equals(_type());
+	}
+
+	/**
 	 * Get the {@code simple_value} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -620,6 +949,13 @@ public class Aggregate implements TaggedUnion<AggregateVariant>, JsonpSerializab
 	 */
 	public SimpleValueAggregate simpleValue() {
 		return TaggedUnionUtils.get(this, SIMPLE_VALUE);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code stats}?
+	 */
+	public boolean _isStats() {
+		return STATS.equals(_type());
 	}
 
 	/**
@@ -633,6 +969,13 @@ public class Aggregate implements TaggedUnion<AggregateVariant>, JsonpSerializab
 	}
 
 	/**
+	 * Is this variant instance of kind {@code stats_bucket}?
+	 */
+	public boolean _isStatsBucket() {
+		return STATS_BUCKET.equals(_type());
+	}
+
+	/**
 	 * Get the {@code stats_bucket} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -640,6 +983,13 @@ public class Aggregate implements TaggedUnion<AggregateVariant>, JsonpSerializab
 	 */
 	public StatsBucketAggregate statsBucket() {
 		return TaggedUnionUtils.get(this, STATS_BUCKET);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code srareterms}?
+	 */
+	public boolean _isSrareterms() {
+		return SRARETERMS.equals(_type());
 	}
 
 	/**
@@ -653,6 +1003,13 @@ public class Aggregate implements TaggedUnion<AggregateVariant>, JsonpSerializab
 	}
 
 	/**
+	 * Is this variant instance of kind {@code string_stats}?
+	 */
+	public boolean _isStringStats() {
+		return STRING_STATS.equals(_type());
+	}
+
+	/**
 	 * Get the {@code string_stats} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -660,6 +1017,13 @@ public class Aggregate implements TaggedUnion<AggregateVariant>, JsonpSerializab
 	 */
 	public StringStatsAggregate stringStats() {
 		return TaggedUnionUtils.get(this, STRING_STATS);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code sterms}?
+	 */
+	public boolean _isSterms() {
+		return STERMS.equals(_type());
 	}
 
 	/**
@@ -673,6 +1037,13 @@ public class Aggregate implements TaggedUnion<AggregateVariant>, JsonpSerializab
 	}
 
 	/**
+	 * Is this variant instance of kind {@code sum}?
+	 */
+	public boolean _isSum() {
+		return SUM.equals(_type());
+	}
+
+	/**
 	 * Get the {@code sum} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -680,6 +1051,13 @@ public class Aggregate implements TaggedUnion<AggregateVariant>, JsonpSerializab
 	 */
 	public SumAggregate sum() {
 		return TaggedUnionUtils.get(this, SUM);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code tdigest_percentile_ranks}?
+	 */
+	public boolean _isTdigestPercentileRanks() {
+		return TDIGEST_PERCENTILE_RANKS.equals(_type());
 	}
 
 	/**
@@ -694,6 +1072,13 @@ public class Aggregate implements TaggedUnion<AggregateVariant>, JsonpSerializab
 	}
 
 	/**
+	 * Is this variant instance of kind {@code tdigest_percentiles}?
+	 */
+	public boolean _isTdigestPercentiles() {
+		return TDIGEST_PERCENTILES.equals(_type());
+	}
+
+	/**
 	 * Get the {@code tdigest_percentiles} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -702,6 +1087,13 @@ public class Aggregate implements TaggedUnion<AggregateVariant>, JsonpSerializab
 	 */
 	public TDigestPercentilesAggregate tdigestPercentiles() {
 		return TaggedUnionUtils.get(this, TDIGEST_PERCENTILES);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code t_test}?
+	 */
+	public boolean _isTTest() {
+		return T_TEST.equals(_type());
 	}
 
 	/**
@@ -715,6 +1107,13 @@ public class Aggregate implements TaggedUnion<AggregateVariant>, JsonpSerializab
 	}
 
 	/**
+	 * Is this variant instance of kind {@code top_hits}?
+	 */
+	public boolean _isTopHits() {
+		return TOP_HITS.equals(_type());
+	}
+
+	/**
 	 * Get the {@code top_hits} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -722,6 +1121,13 @@ public class Aggregate implements TaggedUnion<AggregateVariant>, JsonpSerializab
 	 */
 	public TopHitsAggregate topHits() {
 		return TaggedUnionUtils.get(this, TOP_HITS);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code top_metrics}?
+	 */
+	public boolean _isTopMetrics() {
+		return TOP_METRICS.equals(_type());
 	}
 
 	/**
@@ -735,6 +1141,13 @@ public class Aggregate implements TaggedUnion<AggregateVariant>, JsonpSerializab
 	}
 
 	/**
+	 * Is this variant instance of kind {@code umrareterms}?
+	 */
+	public boolean _isUmrareterms() {
+		return UMRARETERMS.equals(_type());
+	}
+
+	/**
 	 * Get the {@code umrareterms} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -742,6 +1155,13 @@ public class Aggregate implements TaggedUnion<AggregateVariant>, JsonpSerializab
 	 */
 	public UnmappedRareTermsAggregate umrareterms() {
 		return TaggedUnionUtils.get(this, UMRARETERMS);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code umsigterms}?
+	 */
+	public boolean _isUmsigterms() {
+		return UMSIGTERMS.equals(_type());
 	}
 
 	/**
@@ -755,6 +1175,13 @@ public class Aggregate implements TaggedUnion<AggregateVariant>, JsonpSerializab
 	}
 
 	/**
+	 * Is this variant instance of kind {@code umterms}?
+	 */
+	public boolean _isUmterms() {
+		return UMTERMS.equals(_type());
+	}
+
+	/**
 	 * Get the {@code umterms} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -762,6 +1189,13 @@ public class Aggregate implements TaggedUnion<AggregateVariant>, JsonpSerializab
 	 */
 	public UnmappedTermsAggregate umterms() {
 		return TaggedUnionUtils.get(this, UMTERMS);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code value_count}?
+	 */
+	public boolean _isValueCount() {
+		return VALUE_COUNT.equals(_type());
 	}
 
 	/**
@@ -775,6 +1209,13 @@ public class Aggregate implements TaggedUnion<AggregateVariant>, JsonpSerializab
 	}
 
 	/**
+	 * Is this variant instance of kind {@code variable_width_histogram}?
+	 */
+	public boolean _isVariableWidthHistogram() {
+		return VARIABLE_WIDTH_HISTOGRAM.equals(_type());
+	}
+
+	/**
 	 * Get the {@code variable_width_histogram} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -783,6 +1224,13 @@ public class Aggregate implements TaggedUnion<AggregateVariant>, JsonpSerializab
 	 */
 	public VariableWidthHistogramAggregate variableWidthHistogram() {
 		return TaggedUnionUtils.get(this, VARIABLE_WIDTH_HISTOGRAM);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code weighted_avg}?
+	 */
+	public boolean _isWeightedAvg() {
+		return WEIGHTED_AVG.equals(_type());
 	}
 
 	/**

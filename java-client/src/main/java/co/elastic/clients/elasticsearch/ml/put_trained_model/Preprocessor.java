@@ -81,6 +81,13 @@ public class Preprocessor implements TaggedUnion<Object>, JsonpSerializable {
 	}
 
 	/**
+	 * Is this variant instance of kind {@code frequency_encoding}?
+	 */
+	public boolean _isFrequencyEncoding() {
+		return FREQUENCY_ENCODING.equals(_type());
+	}
+
+	/**
 	 * Get the {@code frequency_encoding} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -92,6 +99,13 @@ public class Preprocessor implements TaggedUnion<Object>, JsonpSerializable {
 	}
 
 	/**
+	 * Is this variant instance of kind {@code one_hot_encoding}?
+	 */
+	public boolean _isOneHotEncoding() {
+		return ONE_HOT_ENCODING.equals(_type());
+	}
+
+	/**
 	 * Get the {@code one_hot_encoding} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -100,6 +114,13 @@ public class Preprocessor implements TaggedUnion<Object>, JsonpSerializable {
 	 */
 	public OneHotEncodingPreprocessor oneHotEncoding() {
 		return TaggedUnionUtils.get(this, ONE_HOT_ENCODING);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code target_mean_encoding}?
+	 */
+	public boolean _isTargetMeanEncoding() {
+		return TARGET_MEAN_ENCODING.equals(_type());
 	}
 
 	/**

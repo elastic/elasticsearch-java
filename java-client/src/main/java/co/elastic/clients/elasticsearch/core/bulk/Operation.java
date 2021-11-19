@@ -86,6 +86,14 @@ public class Operation implements TaggedUnion<Object>, NdJsonpSerializable, Json
 	public Iterator<?> _serializables() {
 		return TaggedUnionUtils.ndJsonIterator(this);
 	}
+
+	/**
+	 * Is this variant instance of kind {@code index}?
+	 */
+	public boolean _isIndex() {
+		return INDEX.equals(_type());
+	}
+
 	/**
 	 * Get the {@code index} variant value.
 	 *
@@ -94,6 +102,13 @@ public class Operation implements TaggedUnion<Object>, NdJsonpSerializable, Json
 	 */
 	public <TDocument> IndexOperation<TDocument> index() {
 		return TaggedUnionUtils.get(this, INDEX);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code create}?
+	 */
+	public boolean _isCreate() {
+		return CREATE.equals(_type());
 	}
 
 	/**
@@ -107,6 +122,13 @@ public class Operation implements TaggedUnion<Object>, NdJsonpSerializable, Json
 	}
 
 	/**
+	 * Is this variant instance of kind {@code update}?
+	 */
+	public boolean _isUpdate() {
+		return UPDATE.equals(_type());
+	}
+
+	/**
 	 * Get the {@code update} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -114,6 +136,13 @@ public class Operation implements TaggedUnion<Object>, NdJsonpSerializable, Json
 	 */
 	public <TDocument> UpdateOperation<TDocument> update() {
 		return TaggedUnionUtils.get(this, UPDATE);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code delete}?
+	 */
+	public boolean _isDelete() {
+		return DELETE.equals(_type());
 	}
 
 	/**

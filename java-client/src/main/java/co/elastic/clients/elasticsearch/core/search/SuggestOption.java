@@ -83,6 +83,13 @@ public class SuggestOption<TDocument> implements TaggedUnion<Object>, JsonpSeria
 	}
 
 	/**
+	 * Is this variant instance of kind {@code completion}?
+	 */
+	public boolean _isCompletion() {
+		return COMPLETION.equals(_type());
+	}
+
+	/**
 	 * Get the {@code completion} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -93,6 +100,13 @@ public class SuggestOption<TDocument> implements TaggedUnion<Object>, JsonpSeria
 	}
 
 	/**
+	 * Is this variant instance of kind {@code phrase}?
+	 */
+	public boolean _isPhrase() {
+		return PHRASE.equals(_type());
+	}
+
+	/**
 	 * Get the {@code phrase} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -100,6 +114,13 @@ public class SuggestOption<TDocument> implements TaggedUnion<Object>, JsonpSeria
 	 */
 	public PhraseSuggestOption phrase() {
 		return TaggedUnionUtils.get(this, PHRASE);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code term}?
+	 */
+	public boolean _isTerm() {
+		return TERM.equals(_type());
 	}
 
 	/**

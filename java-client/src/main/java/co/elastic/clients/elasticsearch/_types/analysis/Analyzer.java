@@ -91,6 +91,13 @@ public class Analyzer implements TaggedUnion<AnalyzerVariant>, JsonpSerializable
 	}
 
 	/**
+	 * Is this variant instance of kind {@code custom}?
+	 */
+	public boolean _isCustom() {
+		return CUSTOM.equals(_type());
+	}
+
+	/**
 	 * Get the {@code custom} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -98,6 +105,13 @@ public class Analyzer implements TaggedUnion<AnalyzerVariant>, JsonpSerializable
 	 */
 	public CustomAnalyzer custom() {
 		return TaggedUnionUtils.get(this, CUSTOM);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code dutch}?
+	 */
+	public boolean _isDutch() {
+		return DUTCH.equals(_type());
 	}
 
 	/**
@@ -111,6 +125,13 @@ public class Analyzer implements TaggedUnion<AnalyzerVariant>, JsonpSerializable
 	}
 
 	/**
+	 * Is this variant instance of kind {@code fingerprint}?
+	 */
+	public boolean _isFingerprint() {
+		return FINGERPRINT.equals(_type());
+	}
+
+	/**
 	 * Get the {@code fingerprint} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -118,6 +139,13 @@ public class Analyzer implements TaggedUnion<AnalyzerVariant>, JsonpSerializable
 	 */
 	public FingerprintAnalyzer fingerprint() {
 		return TaggedUnionUtils.get(this, FINGERPRINT);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code icu_analyzer}?
+	 */
+	public boolean _isIcuAnalyzer() {
+		return ICU_ANALYZER.equals(_type());
 	}
 
 	/**
@@ -131,6 +159,13 @@ public class Analyzer implements TaggedUnion<AnalyzerVariant>, JsonpSerializable
 	}
 
 	/**
+	 * Is this variant instance of kind {@code keyword}?
+	 */
+	public boolean _isKeyword() {
+		return KEYWORD.equals(_type());
+	}
+
+	/**
 	 * Get the {@code keyword} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -138,6 +173,13 @@ public class Analyzer implements TaggedUnion<AnalyzerVariant>, JsonpSerializable
 	 */
 	public KeywordAnalyzer keyword() {
 		return TaggedUnionUtils.get(this, KEYWORD);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code kuromoji}?
+	 */
+	public boolean _isKuromoji() {
+		return KUROMOJI.equals(_type());
 	}
 
 	/**
@@ -151,6 +193,13 @@ public class Analyzer implements TaggedUnion<AnalyzerVariant>, JsonpSerializable
 	}
 
 	/**
+	 * Is this variant instance of kind {@code language}?
+	 */
+	public boolean _isLanguage() {
+		return LANGUAGE.equals(_type());
+	}
+
+	/**
 	 * Get the {@code language} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -158,6 +207,13 @@ public class Analyzer implements TaggedUnion<AnalyzerVariant>, JsonpSerializable
 	 */
 	public LanguageAnalyzer language() {
 		return TaggedUnionUtils.get(this, LANGUAGE);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code nori}?
+	 */
+	public boolean _isNori() {
+		return NORI.equals(_type());
 	}
 
 	/**
@@ -171,6 +227,13 @@ public class Analyzer implements TaggedUnion<AnalyzerVariant>, JsonpSerializable
 	}
 
 	/**
+	 * Is this variant instance of kind {@code pattern}?
+	 */
+	public boolean _isPattern() {
+		return PATTERN.equals(_type());
+	}
+
+	/**
 	 * Get the {@code pattern} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -178,6 +241,13 @@ public class Analyzer implements TaggedUnion<AnalyzerVariant>, JsonpSerializable
 	 */
 	public PatternAnalyzer pattern() {
 		return TaggedUnionUtils.get(this, PATTERN);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code simple}?
+	 */
+	public boolean _isSimple() {
+		return SIMPLE.equals(_type());
 	}
 
 	/**
@@ -191,6 +261,13 @@ public class Analyzer implements TaggedUnion<AnalyzerVariant>, JsonpSerializable
 	}
 
 	/**
+	 * Is this variant instance of kind {@code snowball}?
+	 */
+	public boolean _isSnowball() {
+		return SNOWBALL.equals(_type());
+	}
+
+	/**
 	 * Get the {@code snowball} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -198,6 +275,13 @@ public class Analyzer implements TaggedUnion<AnalyzerVariant>, JsonpSerializable
 	 */
 	public SnowballAnalyzer snowball() {
 		return TaggedUnionUtils.get(this, SNOWBALL);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code standard}?
+	 */
+	public boolean _isStandard() {
+		return STANDARD.equals(_type());
 	}
 
 	/**
@@ -211,6 +295,13 @@ public class Analyzer implements TaggedUnion<AnalyzerVariant>, JsonpSerializable
 	}
 
 	/**
+	 * Is this variant instance of kind {@code stop}?
+	 */
+	public boolean _isStop() {
+		return STOP.equals(_type());
+	}
+
+	/**
 	 * Get the {@code stop} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -218,6 +309,13 @@ public class Analyzer implements TaggedUnion<AnalyzerVariant>, JsonpSerializable
 	 */
 	public StopAnalyzer stop() {
 		return TaggedUnionUtils.get(this, STOP);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code whitespace}?
+	 */
+	public boolean _isWhitespace() {
+		return WHITESPACE.equals(_type());
 	}
 
 	/**

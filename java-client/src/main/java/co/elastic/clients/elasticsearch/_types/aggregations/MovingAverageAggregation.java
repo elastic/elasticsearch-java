@@ -82,6 +82,13 @@ public class MovingAverageAggregation implements TaggedUnion<MovingAverageAggreg
 	}
 
 	/**
+	 * Is this variant instance of kind {@code ewma}?
+	 */
+	public boolean _isEwma() {
+		return EWMA.equals(_type());
+	}
+
+	/**
 	 * Get the {@code ewma} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -89,6 +96,13 @@ public class MovingAverageAggregation implements TaggedUnion<MovingAverageAggreg
 	 */
 	public EwmaMovingAverageAggregation ewma() {
 		return TaggedUnionUtils.get(this, EWMA);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code holt}?
+	 */
+	public boolean _isHolt() {
+		return HOLT.equals(_type());
 	}
 
 	/**
@@ -102,6 +116,13 @@ public class MovingAverageAggregation implements TaggedUnion<MovingAverageAggreg
 	}
 
 	/**
+	 * Is this variant instance of kind {@code holt_winters}?
+	 */
+	public boolean _isHoltWinters() {
+		return HOLT_WINTERS.equals(_type());
+	}
+
+	/**
 	 * Get the {@code holt_winters} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -112,6 +133,13 @@ public class MovingAverageAggregation implements TaggedUnion<MovingAverageAggreg
 	}
 
 	/**
+	 * Is this variant instance of kind {@code linear}?
+	 */
+	public boolean _isLinear() {
+		return LINEAR.equals(_type());
+	}
+
+	/**
 	 * Get the {@code linear} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -119,6 +147,13 @@ public class MovingAverageAggregation implements TaggedUnion<MovingAverageAggreg
 	 */
 	public LinearMovingAverageAggregation linear() {
 		return TaggedUnionUtils.get(this, LINEAR);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code simple}?
+	 */
+	public boolean _isSimple() {
+		return SIMPLE.equals(_type());
 	}
 
 	/**

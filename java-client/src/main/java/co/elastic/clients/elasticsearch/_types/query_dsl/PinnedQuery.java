@@ -94,6 +94,13 @@ public class PinnedQuery extends QueryBase implements TaggedUnion<Object>, Query
 	}
 
 	/**
+	 * Is this variant instance of kind {@code ids}?
+	 */
+	public boolean _isIds() {
+		return IDS.equals(_type());
+	}
+
+	/**
 	 * Get the {@code ids} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -101,6 +108,13 @@ public class PinnedQuery extends QueryBase implements TaggedUnion<Object>, Query
 	 */
 	public List<String> ids() {
 		return TaggedUnionUtils.get(this, IDS);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code docs}?
+	 */
+	public boolean _isDocs() {
+		return DOCS.equals(_type());
 	}
 
 	/**

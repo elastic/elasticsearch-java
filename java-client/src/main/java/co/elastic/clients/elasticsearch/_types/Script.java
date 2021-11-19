@@ -78,6 +78,13 @@ public class Script implements TaggedUnion<Object>, JsonpSerializable {
 	}
 
 	/**
+	 * Is this variant instance of kind {@code inline}?
+	 */
+	public boolean _isInline() {
+		return INLINE.equals(_type());
+	}
+
+	/**
 	 * Get the {@code inline} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -85,6 +92,13 @@ public class Script implements TaggedUnion<Object>, JsonpSerializable {
 	 */
 	public InlineScript inline() {
 		return TaggedUnionUtils.get(this, INLINE);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code stored}?
+	 */
+	public boolean _isStored() {
+		return STORED.equals(_type());
 	}
 
 	/**

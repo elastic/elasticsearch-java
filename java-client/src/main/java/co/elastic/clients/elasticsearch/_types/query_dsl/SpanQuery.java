@@ -88,6 +88,13 @@ public class SpanQuery implements TaggedUnion<Object>, JsonpSerializable {
 	}
 
 	/**
+	 * Is this variant instance of kind {@code span_containing}?
+	 */
+	public boolean _isSpanContaining() {
+		return SPAN_CONTAINING.equals(_type());
+	}
+
+	/**
 	 * Get the {@code span_containing} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -96,6 +103,13 @@ public class SpanQuery implements TaggedUnion<Object>, JsonpSerializable {
 	 */
 	public SpanContainingQuery spanContaining() {
 		return TaggedUnionUtils.get(this, SPAN_CONTAINING);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code field_masking_span}?
+	 */
+	public boolean _isFieldMaskingSpan() {
+		return FIELD_MASKING_SPAN.equals(_type());
 	}
 
 	/**
@@ -110,6 +124,13 @@ public class SpanQuery implements TaggedUnion<Object>, JsonpSerializable {
 	}
 
 	/**
+	 * Is this variant instance of kind {@code span_first}?
+	 */
+	public boolean _isSpanFirst() {
+		return SPAN_FIRST.equals(_type());
+	}
+
+	/**
 	 * Get the {@code span_first} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -117,6 +138,13 @@ public class SpanQuery implements TaggedUnion<Object>, JsonpSerializable {
 	 */
 	public SpanFirstQuery spanFirst() {
 		return TaggedUnionUtils.get(this, SPAN_FIRST);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code span_gap}?
+	 */
+	public boolean _isSpanGap() {
+		return SPAN_GAP.equals(_type());
 	}
 
 	/**
@@ -130,6 +158,13 @@ public class SpanQuery implements TaggedUnion<Object>, JsonpSerializable {
 	}
 
 	/**
+	 * Is this variant instance of kind {@code span_multi}?
+	 */
+	public boolean _isSpanMulti() {
+		return SPAN_MULTI.equals(_type());
+	}
+
+	/**
 	 * Get the {@code span_multi} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -137,6 +172,13 @@ public class SpanQuery implements TaggedUnion<Object>, JsonpSerializable {
 	 */
 	public SpanMultiTermQuery spanMulti() {
 		return TaggedUnionUtils.get(this, SPAN_MULTI);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code span_near}?
+	 */
+	public boolean _isSpanNear() {
+		return SPAN_NEAR.equals(_type());
 	}
 
 	/**
@@ -150,6 +192,13 @@ public class SpanQuery implements TaggedUnion<Object>, JsonpSerializable {
 	}
 
 	/**
+	 * Is this variant instance of kind {@code span_not}?
+	 */
+	public boolean _isSpanNot() {
+		return SPAN_NOT.equals(_type());
+	}
+
+	/**
 	 * Get the {@code span_not} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -157,6 +206,13 @@ public class SpanQuery implements TaggedUnion<Object>, JsonpSerializable {
 	 */
 	public SpanNotQuery spanNot() {
 		return TaggedUnionUtils.get(this, SPAN_NOT);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code span_or}?
+	 */
+	public boolean _isSpanOr() {
+		return SPAN_OR.equals(_type());
 	}
 
 	/**
@@ -170,6 +226,13 @@ public class SpanQuery implements TaggedUnion<Object>, JsonpSerializable {
 	}
 
 	/**
+	 * Is this variant instance of kind {@code span_term}?
+	 */
+	public boolean _isSpanTerm() {
+		return SPAN_TERM.equals(_type());
+	}
+
+	/**
 	 * Get the {@code span_term} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -177,6 +240,13 @@ public class SpanQuery implements TaggedUnion<Object>, JsonpSerializable {
 	 */
 	public SpanTermQuery spanTerm() {
 		return TaggedUnionUtils.get(this, SPAN_TERM);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code span_within}?
+	 */
+	public boolean _isSpanWithin() {
+		return SPAN_WITHIN.equals(_type());
 	}
 
 	/**

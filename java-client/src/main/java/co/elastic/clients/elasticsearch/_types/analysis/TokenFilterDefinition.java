@@ -125,6 +125,13 @@ public class TokenFilterDefinition implements TaggedUnion<TokenFilterDefinitionV
 	}
 
 	/**
+	 * Is this variant instance of kind {@code asciifolding}?
+	 */
+	public boolean _isAsciifolding() {
+		return ASCIIFOLDING.equals(_type());
+	}
+
+	/**
 	 * Get the {@code asciifolding} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -132,6 +139,13 @@ public class TokenFilterDefinition implements TaggedUnion<TokenFilterDefinitionV
 	 */
 	public AsciiFoldingTokenFilter asciifolding() {
 		return TaggedUnionUtils.get(this, ASCIIFOLDING);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code common_grams}?
+	 */
+	public boolean _isCommonGrams() {
+		return COMMON_GRAMS.equals(_type());
 	}
 
 	/**
@@ -145,6 +159,13 @@ public class TokenFilterDefinition implements TaggedUnion<TokenFilterDefinitionV
 	}
 
 	/**
+	 * Is this variant instance of kind {@code condition}?
+	 */
+	public boolean _isCondition() {
+		return CONDITION.equals(_type());
+	}
+
+	/**
 	 * Get the {@code condition} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -152,6 +173,13 @@ public class TokenFilterDefinition implements TaggedUnion<TokenFilterDefinitionV
 	 */
 	public ConditionTokenFilter condition() {
 		return TaggedUnionUtils.get(this, CONDITION);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code delimited_payload}?
+	 */
+	public boolean _isDelimitedPayload() {
+		return DELIMITED_PAYLOAD.equals(_type());
 	}
 
 	/**
@@ -166,6 +194,13 @@ public class TokenFilterDefinition implements TaggedUnion<TokenFilterDefinitionV
 	}
 
 	/**
+	 * Is this variant instance of kind {@code dictionary_decompounder}?
+	 */
+	public boolean _isDictionaryDecompounder() {
+		return DICTIONARY_DECOMPOUNDER.equals(_type());
+	}
+
+	/**
 	 * Get the {@code dictionary_decompounder} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -174,6 +209,13 @@ public class TokenFilterDefinition implements TaggedUnion<TokenFilterDefinitionV
 	 */
 	public DictionaryDecompounderTokenFilter dictionaryDecompounder() {
 		return TaggedUnionUtils.get(this, DICTIONARY_DECOMPOUNDER);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code edge_ngram}?
+	 */
+	public boolean _isEdgeNgram() {
+		return EDGE_NGRAM.equals(_type());
 	}
 
 	/**
@@ -187,6 +229,13 @@ public class TokenFilterDefinition implements TaggedUnion<TokenFilterDefinitionV
 	}
 
 	/**
+	 * Is this variant instance of kind {@code elision}?
+	 */
+	public boolean _isElision() {
+		return ELISION.equals(_type());
+	}
+
+	/**
 	 * Get the {@code elision} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -194,6 +243,13 @@ public class TokenFilterDefinition implements TaggedUnion<TokenFilterDefinitionV
 	 */
 	public ElisionTokenFilter elision() {
 		return TaggedUnionUtils.get(this, ELISION);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code fingerprint}?
+	 */
+	public boolean _isFingerprint() {
+		return FINGERPRINT.equals(_type());
 	}
 
 	/**
@@ -207,6 +263,13 @@ public class TokenFilterDefinition implements TaggedUnion<TokenFilterDefinitionV
 	}
 
 	/**
+	 * Is this variant instance of kind {@code hunspell}?
+	 */
+	public boolean _isHunspell() {
+		return HUNSPELL.equals(_type());
+	}
+
+	/**
 	 * Get the {@code hunspell} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -214,6 +277,13 @@ public class TokenFilterDefinition implements TaggedUnion<TokenFilterDefinitionV
 	 */
 	public HunspellTokenFilter hunspell() {
 		return TaggedUnionUtils.get(this, HUNSPELL);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code hyphenation_decompounder}?
+	 */
+	public boolean _isHyphenationDecompounder() {
+		return HYPHENATION_DECOMPOUNDER.equals(_type());
 	}
 
 	/**
@@ -228,6 +298,13 @@ public class TokenFilterDefinition implements TaggedUnion<TokenFilterDefinitionV
 	}
 
 	/**
+	 * Is this variant instance of kind {@code icu_collation}?
+	 */
+	public boolean _isIcuCollation() {
+		return ICU_COLLATION.equals(_type());
+	}
+
+	/**
 	 * Get the {@code icu_collation} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -235,6 +312,13 @@ public class TokenFilterDefinition implements TaggedUnion<TokenFilterDefinitionV
 	 */
 	public IcuCollationTokenFilter icuCollation() {
 		return TaggedUnionUtils.get(this, ICU_COLLATION);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code icu_folding}?
+	 */
+	public boolean _isIcuFolding() {
+		return ICU_FOLDING.equals(_type());
 	}
 
 	/**
@@ -248,6 +332,13 @@ public class TokenFilterDefinition implements TaggedUnion<TokenFilterDefinitionV
 	}
 
 	/**
+	 * Is this variant instance of kind {@code icu_normalizer}?
+	 */
+	public boolean _isIcuNormalizer() {
+		return ICU_NORMALIZER.equals(_type());
+	}
+
+	/**
 	 * Get the {@code icu_normalizer} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -255,6 +346,13 @@ public class TokenFilterDefinition implements TaggedUnion<TokenFilterDefinitionV
 	 */
 	public IcuNormalizationTokenFilter icuNormalizer() {
 		return TaggedUnionUtils.get(this, ICU_NORMALIZER);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code icu_tokenizer}?
+	 */
+	public boolean _isIcuTokenizer() {
+		return ICU_TOKENIZER.equals(_type());
 	}
 
 	/**
@@ -268,6 +366,13 @@ public class TokenFilterDefinition implements TaggedUnion<TokenFilterDefinitionV
 	}
 
 	/**
+	 * Is this variant instance of kind {@code icu_transform}?
+	 */
+	public boolean _isIcuTransform() {
+		return ICU_TRANSFORM.equals(_type());
+	}
+
+	/**
 	 * Get the {@code icu_transform} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -275,6 +380,13 @@ public class TokenFilterDefinition implements TaggedUnion<TokenFilterDefinitionV
 	 */
 	public IcuTransformTokenFilter icuTransform() {
 		return TaggedUnionUtils.get(this, ICU_TRANSFORM);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code kstem}?
+	 */
+	public boolean _isKstem() {
+		return KSTEM.equals(_type());
 	}
 
 	/**
@@ -288,6 +400,13 @@ public class TokenFilterDefinition implements TaggedUnion<TokenFilterDefinitionV
 	}
 
 	/**
+	 * Is this variant instance of kind {@code keep_types}?
+	 */
+	public boolean _isKeepTypes() {
+		return KEEP_TYPES.equals(_type());
+	}
+
+	/**
 	 * Get the {@code keep_types} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -295,6 +414,13 @@ public class TokenFilterDefinition implements TaggedUnion<TokenFilterDefinitionV
 	 */
 	public KeepTypesTokenFilter keepTypes() {
 		return TaggedUnionUtils.get(this, KEEP_TYPES);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code keep}?
+	 */
+	public boolean _isKeep() {
+		return KEEP.equals(_type());
 	}
 
 	/**
@@ -308,6 +434,13 @@ public class TokenFilterDefinition implements TaggedUnion<TokenFilterDefinitionV
 	}
 
 	/**
+	 * Is this variant instance of kind {@code keyword_marker}?
+	 */
+	public boolean _isKeywordMarker() {
+		return KEYWORD_MARKER.equals(_type());
+	}
+
+	/**
 	 * Get the {@code keyword_marker} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -315,6 +448,13 @@ public class TokenFilterDefinition implements TaggedUnion<TokenFilterDefinitionV
 	 */
 	public KeywordMarkerTokenFilter keywordMarker() {
 		return TaggedUnionUtils.get(this, KEYWORD_MARKER);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code kuromoji_part_of_speech}?
+	 */
+	public boolean _isKuromojiPartOfSpeech() {
+		return KUROMOJI_PART_OF_SPEECH.equals(_type());
 	}
 
 	/**
@@ -329,6 +469,13 @@ public class TokenFilterDefinition implements TaggedUnion<TokenFilterDefinitionV
 	}
 
 	/**
+	 * Is this variant instance of kind {@code kuromoji_readingform}?
+	 */
+	public boolean _isKuromojiReadingform() {
+		return KUROMOJI_READINGFORM.equals(_type());
+	}
+
+	/**
 	 * Get the {@code kuromoji_readingform} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -337,6 +484,13 @@ public class TokenFilterDefinition implements TaggedUnion<TokenFilterDefinitionV
 	 */
 	public KuromojiReadingFormTokenFilter kuromojiReadingform() {
 		return TaggedUnionUtils.get(this, KUROMOJI_READINGFORM);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code kuromoji_stemmer}?
+	 */
+	public boolean _isKuromojiStemmer() {
+		return KUROMOJI_STEMMER.equals(_type());
 	}
 
 	/**
@@ -351,6 +505,13 @@ public class TokenFilterDefinition implements TaggedUnion<TokenFilterDefinitionV
 	}
 
 	/**
+	 * Is this variant instance of kind {@code length}?
+	 */
+	public boolean _isLength() {
+		return LENGTH.equals(_type());
+	}
+
+	/**
 	 * Get the {@code length} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -358,6 +519,13 @@ public class TokenFilterDefinition implements TaggedUnion<TokenFilterDefinitionV
 	 */
 	public LengthTokenFilter length() {
 		return TaggedUnionUtils.get(this, LENGTH);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code limit}?
+	 */
+	public boolean _isLimit() {
+		return LIMIT.equals(_type());
 	}
 
 	/**
@@ -371,6 +539,13 @@ public class TokenFilterDefinition implements TaggedUnion<TokenFilterDefinitionV
 	}
 
 	/**
+	 * Is this variant instance of kind {@code lowercase}?
+	 */
+	public boolean _isLowercase() {
+		return LOWERCASE.equals(_type());
+	}
+
+	/**
 	 * Get the {@code lowercase} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -378,6 +553,13 @@ public class TokenFilterDefinition implements TaggedUnion<TokenFilterDefinitionV
 	 */
 	public LowercaseTokenFilter lowercase() {
 		return TaggedUnionUtils.get(this, LOWERCASE);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code multiplexer}?
+	 */
+	public boolean _isMultiplexer() {
+		return MULTIPLEXER.equals(_type());
 	}
 
 	/**
@@ -391,6 +573,13 @@ public class TokenFilterDefinition implements TaggedUnion<TokenFilterDefinitionV
 	}
 
 	/**
+	 * Is this variant instance of kind {@code ngram}?
+	 */
+	public boolean _isNgram() {
+		return NGRAM.equals(_type());
+	}
+
+	/**
 	 * Get the {@code ngram} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -398,6 +587,13 @@ public class TokenFilterDefinition implements TaggedUnion<TokenFilterDefinitionV
 	 */
 	public NGramTokenFilter ngram() {
 		return TaggedUnionUtils.get(this, NGRAM);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code nori_part_of_speech}?
+	 */
+	public boolean _isNoriPartOfSpeech() {
+		return NORI_PART_OF_SPEECH.equals(_type());
 	}
 
 	/**
@@ -412,6 +608,13 @@ public class TokenFilterDefinition implements TaggedUnion<TokenFilterDefinitionV
 	}
 
 	/**
+	 * Is this variant instance of kind {@code pattern_capture}?
+	 */
+	public boolean _isPatternCapture() {
+		return PATTERN_CAPTURE.equals(_type());
+	}
+
+	/**
 	 * Get the {@code pattern_capture} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -420,6 +623,13 @@ public class TokenFilterDefinition implements TaggedUnion<TokenFilterDefinitionV
 	 */
 	public PatternCaptureTokenFilter patternCapture() {
 		return TaggedUnionUtils.get(this, PATTERN_CAPTURE);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code pattern_replace}?
+	 */
+	public boolean _isPatternReplace() {
+		return PATTERN_REPLACE.equals(_type());
 	}
 
 	/**
@@ -434,6 +644,13 @@ public class TokenFilterDefinition implements TaggedUnion<TokenFilterDefinitionV
 	}
 
 	/**
+	 * Is this variant instance of kind {@code phonetic}?
+	 */
+	public boolean _isPhonetic() {
+		return PHONETIC.equals(_type());
+	}
+
+	/**
 	 * Get the {@code phonetic} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -444,6 +661,13 @@ public class TokenFilterDefinition implements TaggedUnion<TokenFilterDefinitionV
 	}
 
 	/**
+	 * Is this variant instance of kind {@code porter_stem}?
+	 */
+	public boolean _isPorterStem() {
+		return PORTER_STEM.equals(_type());
+	}
+
+	/**
 	 * Get the {@code porter_stem} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -451,6 +675,13 @@ public class TokenFilterDefinition implements TaggedUnion<TokenFilterDefinitionV
 	 */
 	public PorterStemTokenFilter porterStem() {
 		return TaggedUnionUtils.get(this, PORTER_STEM);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code predicate_token_filter}?
+	 */
+	public boolean _isPredicateTokenFilter() {
+		return PREDICATE_TOKEN_FILTER.equals(_type());
 	}
 
 	/**
@@ -465,6 +696,13 @@ public class TokenFilterDefinition implements TaggedUnion<TokenFilterDefinitionV
 	}
 
 	/**
+	 * Is this variant instance of kind {@code remove_duplicates}?
+	 */
+	public boolean _isRemoveDuplicates() {
+		return REMOVE_DUPLICATES.equals(_type());
+	}
+
+	/**
 	 * Get the {@code remove_duplicates} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -473,6 +711,13 @@ public class TokenFilterDefinition implements TaggedUnion<TokenFilterDefinitionV
 	 */
 	public RemoveDuplicatesTokenFilter removeDuplicates() {
 		return TaggedUnionUtils.get(this, REMOVE_DUPLICATES);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code reverse}?
+	 */
+	public boolean _isReverse() {
+		return REVERSE.equals(_type());
 	}
 
 	/**
@@ -486,6 +731,13 @@ public class TokenFilterDefinition implements TaggedUnion<TokenFilterDefinitionV
 	}
 
 	/**
+	 * Is this variant instance of kind {@code shingle}?
+	 */
+	public boolean _isShingle() {
+		return SHINGLE.equals(_type());
+	}
+
+	/**
 	 * Get the {@code shingle} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -496,6 +748,13 @@ public class TokenFilterDefinition implements TaggedUnion<TokenFilterDefinitionV
 	}
 
 	/**
+	 * Is this variant instance of kind {@code snowball}?
+	 */
+	public boolean _isSnowball() {
+		return SNOWBALL.equals(_type());
+	}
+
+	/**
 	 * Get the {@code snowball} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -503,6 +762,13 @@ public class TokenFilterDefinition implements TaggedUnion<TokenFilterDefinitionV
 	 */
 	public SnowballTokenFilter snowball() {
 		return TaggedUnionUtils.get(this, SNOWBALL);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code stemmer_override}?
+	 */
+	public boolean _isStemmerOverride() {
+		return STEMMER_OVERRIDE.equals(_type());
 	}
 
 	/**
@@ -517,6 +783,13 @@ public class TokenFilterDefinition implements TaggedUnion<TokenFilterDefinitionV
 	}
 
 	/**
+	 * Is this variant instance of kind {@code stemmer}?
+	 */
+	public boolean _isStemmer() {
+		return STEMMER.equals(_type());
+	}
+
+	/**
 	 * Get the {@code stemmer} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -524,6 +797,13 @@ public class TokenFilterDefinition implements TaggedUnion<TokenFilterDefinitionV
 	 */
 	public StemmerTokenFilter stemmer() {
 		return TaggedUnionUtils.get(this, STEMMER);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code stop}?
+	 */
+	public boolean _isStop() {
+		return STOP.equals(_type());
 	}
 
 	/**
@@ -537,6 +817,13 @@ public class TokenFilterDefinition implements TaggedUnion<TokenFilterDefinitionV
 	}
 
 	/**
+	 * Is this variant instance of kind {@code synonym_graph}?
+	 */
+	public boolean _isSynonymGraph() {
+		return SYNONYM_GRAPH.equals(_type());
+	}
+
+	/**
 	 * Get the {@code synonym_graph} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -544,6 +831,13 @@ public class TokenFilterDefinition implements TaggedUnion<TokenFilterDefinitionV
 	 */
 	public SynonymGraphTokenFilter synonymGraph() {
 		return TaggedUnionUtils.get(this, SYNONYM_GRAPH);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code synonym}?
+	 */
+	public boolean _isSynonym() {
+		return SYNONYM.equals(_type());
 	}
 
 	/**
@@ -557,6 +851,13 @@ public class TokenFilterDefinition implements TaggedUnion<TokenFilterDefinitionV
 	}
 
 	/**
+	 * Is this variant instance of kind {@code trim}?
+	 */
+	public boolean _isTrim() {
+		return TRIM.equals(_type());
+	}
+
+	/**
 	 * Get the {@code trim} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -564,6 +865,13 @@ public class TokenFilterDefinition implements TaggedUnion<TokenFilterDefinitionV
 	 */
 	public TrimTokenFilter trim() {
 		return TaggedUnionUtils.get(this, TRIM);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code truncate}?
+	 */
+	public boolean _isTruncate() {
+		return TRUNCATE.equals(_type());
 	}
 
 	/**
@@ -577,6 +885,13 @@ public class TokenFilterDefinition implements TaggedUnion<TokenFilterDefinitionV
 	}
 
 	/**
+	 * Is this variant instance of kind {@code unique}?
+	 */
+	public boolean _isUnique() {
+		return UNIQUE.equals(_type());
+	}
+
+	/**
 	 * Get the {@code unique} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -584,6 +899,13 @@ public class TokenFilterDefinition implements TaggedUnion<TokenFilterDefinitionV
 	 */
 	public UniqueTokenFilter unique() {
 		return TaggedUnionUtils.get(this, UNIQUE);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code uppercase}?
+	 */
+	public boolean _isUppercase() {
+		return UPPERCASE.equals(_type());
 	}
 
 	/**
@@ -597,6 +919,13 @@ public class TokenFilterDefinition implements TaggedUnion<TokenFilterDefinitionV
 	}
 
 	/**
+	 * Is this variant instance of kind {@code word_delimiter_graph}?
+	 */
+	public boolean _isWordDelimiterGraph() {
+		return WORD_DELIMITER_GRAPH.equals(_type());
+	}
+
+	/**
 	 * Get the {@code word_delimiter_graph} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -605,6 +934,13 @@ public class TokenFilterDefinition implements TaggedUnion<TokenFilterDefinitionV
 	 */
 	public WordDelimiterGraphTokenFilter wordDelimiterGraph() {
 		return TaggedUnionUtils.get(this, WORD_DELIMITER_GRAPH);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code word_delimiter}?
+	 */
+	public boolean _isWordDelimiter() {
+		return WORD_DELIMITER.equals(_type());
 	}
 
 	/**

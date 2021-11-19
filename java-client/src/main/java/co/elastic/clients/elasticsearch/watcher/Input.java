@@ -85,6 +85,13 @@ public class Input implements TaggedUnion<Object>, JsonpSerializable {
 	}
 
 	/**
+	 * Is this variant instance of kind {@code chain}?
+	 */
+	public boolean _isChain() {
+		return CHAIN.equals(_type());
+	}
+
+	/**
 	 * Get the {@code chain} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -92,6 +99,13 @@ public class Input implements TaggedUnion<Object>, JsonpSerializable {
 	 */
 	public ChainInput chain() {
 		return TaggedUnionUtils.get(this, CHAIN);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code http}?
+	 */
+	public boolean _isHttp() {
+		return HTTP.equals(_type());
 	}
 
 	/**
@@ -105,6 +119,13 @@ public class Input implements TaggedUnion<Object>, JsonpSerializable {
 	}
 
 	/**
+	 * Is this variant instance of kind {@code search}?
+	 */
+	public boolean _isSearch() {
+		return SEARCH.equals(_type());
+	}
+
+	/**
 	 * Get the {@code search} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -112,6 +133,13 @@ public class Input implements TaggedUnion<Object>, JsonpSerializable {
 	 */
 	public SearchInput search() {
 		return TaggedUnionUtils.get(this, SEARCH);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code simple}?
+	 */
+	public boolean _isSimple() {
+		return SIMPLE.equals(_type());
 	}
 
 	/**

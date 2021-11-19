@@ -81,6 +81,13 @@ public class IndexRolloverMapping implements TaggedUnion<Object>, JsonpSerializa
 	}
 
 	/**
+	 * Is this variant instance of kind {@code by_type}?
+	 */
+	public boolean _isByType() {
+		return BY_TYPE.equals(_type());
+	}
+
+	/**
 	 * Get the {@code by_type} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -88,6 +95,13 @@ public class IndexRolloverMapping implements TaggedUnion<Object>, JsonpSerializa
 	 */
 	public Map<String, TypeMapping> byType() {
 		return TaggedUnionUtils.get(this, BY_TYPE);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code single}?
+	 */
+	public boolean _isSingle() {
+		return SINGLE.equals(_type());
 	}
 
 	/**

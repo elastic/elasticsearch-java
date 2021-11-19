@@ -82,6 +82,13 @@ public class BucketsPath implements TaggedUnion<Object>, JsonpSerializable {
 	}
 
 	/**
+	 * Is this variant instance of kind {@code array}?
+	 */
+	public boolean _isArray() {
+		return ARRAY.equals(_type());
+	}
+
+	/**
 	 * Get the {@code array} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -92,6 +99,13 @@ public class BucketsPath implements TaggedUnion<Object>, JsonpSerializable {
 	}
 
 	/**
+	 * Is this variant instance of kind {@code dict}?
+	 */
+	public boolean _isDict() {
+		return DICT.equals(_type());
+	}
+
+	/**
 	 * Get the {@code dict} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -99,6 +113,13 @@ public class BucketsPath implements TaggedUnion<Object>, JsonpSerializable {
 	 */
 	public Map<String, String> dict() {
 		return TaggedUnionUtils.get(this, DICT);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code single}?
+	 */
+	public boolean _isSingle() {
+		return SINGLE.equals(_type());
 	}
 
 	/**

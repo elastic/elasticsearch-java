@@ -79,6 +79,13 @@ public class ClusterRemoteInfo implements TaggedUnion<ClusterRemoteInfoVariant>,
 	}
 
 	/**
+	 * Is this variant instance of kind {@code proxy}?
+	 */
+	public boolean _isProxy() {
+		return PROXY.equals(_type());
+	}
+
+	/**
 	 * Get the {@code proxy} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -86,6 +93,13 @@ public class ClusterRemoteInfo implements TaggedUnion<ClusterRemoteInfoVariant>,
 	 */
 	public ClusterRemoteProxyInfo proxy() {
 		return TaggedUnionUtils.get(this, PROXY);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code sniff}?
+	 */
+	public boolean _isSniff() {
+		return SNIFF.equals(_type());
 	}
 
 	/**

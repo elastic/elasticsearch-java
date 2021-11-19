@@ -81,6 +81,13 @@ public class DataframeAnalyticsStats implements TaggedUnion<Object>, JsonpSerial
 	}
 
 	/**
+	 * Is this variant instance of kind {@code classification_stats}?
+	 */
+	public boolean _isClassificationStats() {
+		return CLASSIFICATION_STATS.equals(_type());
+	}
+
+	/**
 	 * Get the {@code classification_stats} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -92,6 +99,13 @@ public class DataframeAnalyticsStats implements TaggedUnion<Object>, JsonpSerial
 	}
 
 	/**
+	 * Is this variant instance of kind {@code outlier_detection_stats}?
+	 */
+	public boolean _isOutlierDetectionStats() {
+		return OUTLIER_DETECTION_STATS.equals(_type());
+	}
+
+	/**
 	 * Get the {@code outlier_detection_stats} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -100,6 +114,13 @@ public class DataframeAnalyticsStats implements TaggedUnion<Object>, JsonpSerial
 	 */
 	public DataframeAnalyticsStatsOutlierDetection outlierDetectionStats() {
 		return TaggedUnionUtils.get(this, OUTLIER_DETECTION_STATS);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code regression_stats}?
+	 */
+	public boolean _isRegressionStats() {
+		return REGRESSION_STATS.equals(_type());
 	}
 
 	/**

@@ -93,6 +93,13 @@ public class SourceConfigParam implements TaggedUnion<Object>, JsonpSerializable
 	}
 
 	/**
+	 * Is this variant instance of kind {@code fields}?
+	 */
+	public boolean _isFields() {
+		return FIELDS.equals(_type());
+	}
+
+	/**
 	 * Get the {@code fields} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -100,6 +107,13 @@ public class SourceConfigParam implements TaggedUnion<Object>, JsonpSerializable
 	 */
 	public List<String> fields() {
 		return TaggedUnionUtils.get(this, FIELDS);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code fetch}?
+	 */
+	public boolean _isFetch() {
+		return FETCH.equals(_type());
 	}
 
 	/**

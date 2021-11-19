@@ -83,6 +83,13 @@ public class ResponseItem<TDocument> implements TaggedUnion<Object>, JsonpSerial
 	}
 
 	/**
+	 * Is this variant instance of kind {@code result}?
+	 */
+	public boolean _isResult() {
+		return RESULT.equals(_type());
+	}
+
+	/**
 	 * Get the {@code result} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -90,6 +97,13 @@ public class ResponseItem<TDocument> implements TaggedUnion<Object>, JsonpSerial
 	 */
 	public GetResult<TDocument> result() {
 		return TaggedUnionUtils.get(this, RESULT);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code failure}?
+	 */
+	public boolean _isFailure() {
+		return FAILURE.equals(_type());
 	}
 
 	/**

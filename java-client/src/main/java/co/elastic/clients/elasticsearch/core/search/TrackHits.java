@@ -91,6 +91,13 @@ public class TrackHits implements TaggedUnion<Object>, JsonpSerializable {
 	}
 
 	/**
+	 * Is this variant instance of kind {@code count}?
+	 */
+	public boolean _isCount() {
+		return COUNT.equals(_type());
+	}
+
+	/**
 	 * Get the {@code count} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -98,6 +105,13 @@ public class TrackHits implements TaggedUnion<Object>, JsonpSerializable {
 	 */
 	public Integer count() {
 		return TaggedUnionUtils.get(this, COUNT);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code enabled}?
+	 */
+	public boolean _isEnabled() {
+		return ENABLED.equals(_type());
 	}
 
 	/**

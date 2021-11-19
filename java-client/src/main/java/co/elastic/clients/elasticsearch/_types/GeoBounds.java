@@ -80,6 +80,13 @@ public class GeoBounds implements TaggedUnion<Object>, JsonpSerializable {
 	}
 
 	/**
+	 * Is this variant instance of kind {@code coords}?
+	 */
+	public boolean _isCoords() {
+		return COORDS.equals(_type());
+	}
+
+	/**
 	 * Get the {@code coords} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -87,6 +94,13 @@ public class GeoBounds implements TaggedUnion<Object>, JsonpSerializable {
 	 */
 	public CoordsGeoBounds coords() {
 		return TaggedUnionUtils.get(this, COORDS);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code tlbr}?
+	 */
+	public boolean _isTlbr() {
+		return TLBR.equals(_type());
 	}
 
 	/**
@@ -100,6 +114,13 @@ public class GeoBounds implements TaggedUnion<Object>, JsonpSerializable {
 	}
 
 	/**
+	 * Is this variant instance of kind {@code trbl}?
+	 */
+	public boolean _isTrbl() {
+		return TRBL.equals(_type());
+	}
+
+	/**
 	 * Get the {@code trbl} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -107,6 +128,13 @@ public class GeoBounds implements TaggedUnion<Object>, JsonpSerializable {
 	 */
 	public TopRightBottomLeftGeoBounds trbl() {
 		return TaggedUnionUtils.get(this, TRBL);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code wkt}?
+	 */
+	public boolean _isWkt() {
+		return WKT.equals(_type());
 	}
 
 	/**

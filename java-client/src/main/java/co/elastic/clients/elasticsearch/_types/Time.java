@@ -91,6 +91,13 @@ public class Time implements TaggedUnion<Object>, JsonpSerializable {
 	}
 
 	/**
+	 * Is this variant instance of kind {@code offset}?
+	 */
+	public boolean _isOffset() {
+		return OFFSET.equals(_type());
+	}
+
+	/**
 	 * Get the {@code offset} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -98,6 +105,13 @@ public class Time implements TaggedUnion<Object>, JsonpSerializable {
 	 */
 	public Integer offset() {
 		return TaggedUnionUtils.get(this, OFFSET);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code time}?
+	 */
+	public boolean _isTime() {
+		return TIME.equals(_type());
 	}
 
 	/**

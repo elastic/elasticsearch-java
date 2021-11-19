@@ -86,6 +86,13 @@ public class PivotGroupBy implements TaggedUnion<Object>, JsonpSerializable {
 	}
 
 	/**
+	 * Is this variant instance of kind {@code date_histogram}?
+	 */
+	public boolean _isDateHistogram() {
+		return DATE_HISTOGRAM.equals(_type());
+	}
+
+	/**
 	 * Get the {@code date_histogram} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -93,6 +100,13 @@ public class PivotGroupBy implements TaggedUnion<Object>, JsonpSerializable {
 	 */
 	public DateHistogramAggregation dateHistogram() {
 		return TaggedUnionUtils.get(this, DATE_HISTOGRAM);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code geotile_grid}?
+	 */
+	public boolean _isGeotileGrid() {
+		return GEOTILE_GRID.equals(_type());
 	}
 
 	/**
@@ -106,6 +120,13 @@ public class PivotGroupBy implements TaggedUnion<Object>, JsonpSerializable {
 	}
 
 	/**
+	 * Is this variant instance of kind {@code histogram}?
+	 */
+	public boolean _isHistogram() {
+		return HISTOGRAM.equals(_type());
+	}
+
+	/**
 	 * Get the {@code histogram} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -113,6 +134,13 @@ public class PivotGroupBy implements TaggedUnion<Object>, JsonpSerializable {
 	 */
 	public HistogramAggregation histogram() {
 		return TaggedUnionUtils.get(this, HISTOGRAM);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code terms}?
+	 */
+	public boolean _isTerms() {
+		return TERMS.equals(_type());
 	}
 
 	/**

@@ -82,6 +82,13 @@ public class CharFilterDefinition implements TaggedUnion<CharFilterDefinitionVar
 	}
 
 	/**
+	 * Is this variant instance of kind {@code html_strip}?
+	 */
+	public boolean _isHtmlStrip() {
+		return HTML_STRIP.equals(_type());
+	}
+
+	/**
 	 * Get the {@code html_strip} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -92,6 +99,13 @@ public class CharFilterDefinition implements TaggedUnion<CharFilterDefinitionVar
 	}
 
 	/**
+	 * Is this variant instance of kind {@code icu_normalizer}?
+	 */
+	public boolean _isIcuNormalizer() {
+		return ICU_NORMALIZER.equals(_type());
+	}
+
+	/**
 	 * Get the {@code icu_normalizer} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -99,6 +113,13 @@ public class CharFilterDefinition implements TaggedUnion<CharFilterDefinitionVar
 	 */
 	public IcuNormalizationCharFilter icuNormalizer() {
 		return TaggedUnionUtils.get(this, ICU_NORMALIZER);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code kuromoji_iteration_mark}?
+	 */
+	public boolean _isKuromojiIterationMark() {
+		return KUROMOJI_ITERATION_MARK.equals(_type());
 	}
 
 	/**
@@ -113,6 +134,13 @@ public class CharFilterDefinition implements TaggedUnion<CharFilterDefinitionVar
 	}
 
 	/**
+	 * Is this variant instance of kind {@code mapping}?
+	 */
+	public boolean _isMapping() {
+		return MAPPING.equals(_type());
+	}
+
+	/**
 	 * Get the {@code mapping} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -120,6 +148,13 @@ public class CharFilterDefinition implements TaggedUnion<CharFilterDefinitionVar
 	 */
 	public MappingCharFilter mapping() {
 		return TaggedUnionUtils.get(this, MAPPING);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code pattern_replace}?
+	 */
+	public boolean _isPatternReplace() {
+		return PATTERN_REPLACE.equals(_type());
 	}
 
 	/**

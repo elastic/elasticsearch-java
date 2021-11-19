@@ -79,6 +79,13 @@ public class Tokenizer implements TaggedUnion<Object>, JsonpSerializable {
 	}
 
 	/**
+	 * Is this variant instance of kind {@code definition}?
+	 */
+	public boolean _isDefinition() {
+		return DEFINITION.equals(_type());
+	}
+
+	/**
 	 * Get the {@code definition} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -86,6 +93,13 @@ public class Tokenizer implements TaggedUnion<Object>, JsonpSerializable {
 	 */
 	public TokenizerDefinition definition() {
 		return TaggedUnionUtils.get(this, DEFINITION);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code name}?
+	 */
+	public boolean _isName() {
+		return NAME.equals(_type());
 	}
 
 	/**

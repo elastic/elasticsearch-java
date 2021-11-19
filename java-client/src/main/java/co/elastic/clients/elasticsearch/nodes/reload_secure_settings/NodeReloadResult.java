@@ -79,6 +79,13 @@ public class NodeReloadResult implements TaggedUnion<Object>, JsonpSerializable 
 	}
 
 	/**
+	 * Is this variant instance of kind {@code stats}?
+	 */
+	public boolean _isStats() {
+		return STATS.equals(_type());
+	}
+
+	/**
 	 * Get the {@code stats} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -86,6 +93,13 @@ public class NodeReloadResult implements TaggedUnion<Object>, JsonpSerializable 
 	 */
 	public Stats stats() {
 		return TaggedUnionUtils.get(this, STATS);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code error}?
+	 */
+	public boolean _isError() {
+		return ERROR.equals(_type());
 	}
 
 	/**

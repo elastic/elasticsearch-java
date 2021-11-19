@@ -79,6 +79,13 @@ public class CategorizationAnalyzer implements TaggedUnion<Object>, JsonpSeriali
 	}
 
 	/**
+	 * Is this variant instance of kind {@code name}?
+	 */
+	public boolean _isName() {
+		return NAME.equals(_type());
+	}
+
+	/**
 	 * Get the {@code name} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -86,6 +93,13 @@ public class CategorizationAnalyzer implements TaggedUnion<Object>, JsonpSeriali
 	 */
 	public String name() {
 		return TaggedUnionUtils.get(this, NAME);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code definition}?
+	 */
+	public boolean _isDefinition() {
+		return DEFINITION.equals(_type());
 	}
 
 	/**

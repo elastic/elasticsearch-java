@@ -141,6 +141,13 @@ public class Query implements TaggedUnion<Object>, AggregationVariant, JsonpSeri
 	}
 
 	/**
+	 * Is this variant instance of kind {@code bool}?
+	 */
+	public boolean _isBool() {
+		return BOOL.equals(_type());
+	}
+
+	/**
 	 * Get the {@code bool} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -148,6 +155,13 @@ public class Query implements TaggedUnion<Object>, AggregationVariant, JsonpSeri
 	 */
 	public BoolQuery bool() {
 		return TaggedUnionUtils.get(this, BOOL);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code boosting}?
+	 */
+	public boolean _isBoosting() {
+		return BOOSTING.equals(_type());
 	}
 
 	/**
@@ -161,6 +175,13 @@ public class Query implements TaggedUnion<Object>, AggregationVariant, JsonpSeri
 	}
 
 	/**
+	 * Is this variant instance of kind {@code common}?
+	 */
+	public boolean _isCommon() {
+		return COMMON.equals(_type());
+	}
+
+	/**
 	 * Get the {@code common} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -168,6 +189,13 @@ public class Query implements TaggedUnion<Object>, AggregationVariant, JsonpSeri
 	 */
 	public CommonTermsQuery common() {
 		return TaggedUnionUtils.get(this, COMMON);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code combined_fields}?
+	 */
+	public boolean _isCombinedFields() {
+		return COMBINED_FIELDS.equals(_type());
 	}
 
 	/**
@@ -182,6 +210,13 @@ public class Query implements TaggedUnion<Object>, AggregationVariant, JsonpSeri
 	}
 
 	/**
+	 * Is this variant instance of kind {@code constant_score}?
+	 */
+	public boolean _isConstantScore() {
+		return CONSTANT_SCORE.equals(_type());
+	}
+
+	/**
 	 * Get the {@code constant_score} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -192,6 +227,13 @@ public class Query implements TaggedUnion<Object>, AggregationVariant, JsonpSeri
 	}
 
 	/**
+	 * Is this variant instance of kind {@code dis_max}?
+	 */
+	public boolean _isDisMax() {
+		return DIS_MAX.equals(_type());
+	}
+
+	/**
 	 * Get the {@code dis_max} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -199,6 +241,13 @@ public class Query implements TaggedUnion<Object>, AggregationVariant, JsonpSeri
 	 */
 	public DisMaxQuery disMax() {
 		return TaggedUnionUtils.get(this, DIS_MAX);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code distance_feature}?
+	 */
+	public boolean _isDistanceFeature() {
+		return DISTANCE_FEATURE.equals(_type());
 	}
 
 	/**
@@ -213,6 +262,13 @@ public class Query implements TaggedUnion<Object>, AggregationVariant, JsonpSeri
 	}
 
 	/**
+	 * Is this variant instance of kind {@code exists}?
+	 */
+	public boolean _isExists() {
+		return EXISTS.equals(_type());
+	}
+
+	/**
 	 * Get the {@code exists} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -220,6 +276,13 @@ public class Query implements TaggedUnion<Object>, AggregationVariant, JsonpSeri
 	 */
 	public ExistsQuery exists() {
 		return TaggedUnionUtils.get(this, EXISTS);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code function_score}?
+	 */
+	public boolean _isFunctionScore() {
+		return FUNCTION_SCORE.equals(_type());
 	}
 
 	/**
@@ -233,6 +296,13 @@ public class Query implements TaggedUnion<Object>, AggregationVariant, JsonpSeri
 	}
 
 	/**
+	 * Is this variant instance of kind {@code fuzzy}?
+	 */
+	public boolean _isFuzzy() {
+		return FUZZY.equals(_type());
+	}
+
+	/**
 	 * Get the {@code fuzzy} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -240,6 +310,13 @@ public class Query implements TaggedUnion<Object>, AggregationVariant, JsonpSeri
 	 */
 	public FuzzyQuery fuzzy() {
 		return TaggedUnionUtils.get(this, FUZZY);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code geo_bounding_box}?
+	 */
+	public boolean _isGeoBoundingBox() {
+		return GEO_BOUNDING_BOX.equals(_type());
 	}
 
 	/**
@@ -254,6 +331,13 @@ public class Query implements TaggedUnion<Object>, AggregationVariant, JsonpSeri
 	}
 
 	/**
+	 * Is this variant instance of kind {@code geo_distance}?
+	 */
+	public boolean _isGeoDistance() {
+		return GEO_DISTANCE.equals(_type());
+	}
+
+	/**
 	 * Get the {@code geo_distance} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -261,6 +345,13 @@ public class Query implements TaggedUnion<Object>, AggregationVariant, JsonpSeri
 	 */
 	public GeoDistanceQuery geoDistance() {
 		return TaggedUnionUtils.get(this, GEO_DISTANCE);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code geo_polygon}?
+	 */
+	public boolean _isGeoPolygon() {
+		return GEO_POLYGON.equals(_type());
 	}
 
 	/**
@@ -274,6 +365,13 @@ public class Query implements TaggedUnion<Object>, AggregationVariant, JsonpSeri
 	}
 
 	/**
+	 * Is this variant instance of kind {@code geo_shape}?
+	 */
+	public boolean _isGeoShape() {
+		return GEO_SHAPE.equals(_type());
+	}
+
+	/**
 	 * Get the {@code geo_shape} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -281,6 +379,13 @@ public class Query implements TaggedUnion<Object>, AggregationVariant, JsonpSeri
 	 */
 	public GeoShapeQuery geoShape() {
 		return TaggedUnionUtils.get(this, GEO_SHAPE);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code has_child}?
+	 */
+	public boolean _isHasChild() {
+		return HAS_CHILD.equals(_type());
 	}
 
 	/**
@@ -294,6 +399,13 @@ public class Query implements TaggedUnion<Object>, AggregationVariant, JsonpSeri
 	}
 
 	/**
+	 * Is this variant instance of kind {@code has_parent}?
+	 */
+	public boolean _isHasParent() {
+		return HAS_PARENT.equals(_type());
+	}
+
+	/**
 	 * Get the {@code has_parent} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -301,6 +413,13 @@ public class Query implements TaggedUnion<Object>, AggregationVariant, JsonpSeri
 	 */
 	public HasParentQuery hasParent() {
 		return TaggedUnionUtils.get(this, HAS_PARENT);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code ids}?
+	 */
+	public boolean _isIds() {
+		return IDS.equals(_type());
 	}
 
 	/**
@@ -314,6 +433,13 @@ public class Query implements TaggedUnion<Object>, AggregationVariant, JsonpSeri
 	}
 
 	/**
+	 * Is this variant instance of kind {@code intervals}?
+	 */
+	public boolean _isIntervals() {
+		return INTERVALS.equals(_type());
+	}
+
+	/**
 	 * Get the {@code intervals} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -321,6 +447,13 @@ public class Query implements TaggedUnion<Object>, AggregationVariant, JsonpSeri
 	 */
 	public IntervalsQuery intervals() {
 		return TaggedUnionUtils.get(this, INTERVALS);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code match}?
+	 */
+	public boolean _isMatch() {
+		return MATCH.equals(_type());
 	}
 
 	/**
@@ -334,6 +467,13 @@ public class Query implements TaggedUnion<Object>, AggregationVariant, JsonpSeri
 	}
 
 	/**
+	 * Is this variant instance of kind {@code match_all}?
+	 */
+	public boolean _isMatchAll() {
+		return MATCH_ALL.equals(_type());
+	}
+
+	/**
 	 * Get the {@code match_all} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -341,6 +481,13 @@ public class Query implements TaggedUnion<Object>, AggregationVariant, JsonpSeri
 	 */
 	public MatchAllQuery matchAll() {
 		return TaggedUnionUtils.get(this, MATCH_ALL);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code match_bool_prefix}?
+	 */
+	public boolean _isMatchBoolPrefix() {
+		return MATCH_BOOL_PREFIX.equals(_type());
 	}
 
 	/**
@@ -355,6 +502,13 @@ public class Query implements TaggedUnion<Object>, AggregationVariant, JsonpSeri
 	}
 
 	/**
+	 * Is this variant instance of kind {@code match_none}?
+	 */
+	public boolean _isMatchNone() {
+		return MATCH_NONE.equals(_type());
+	}
+
+	/**
 	 * Get the {@code match_none} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -365,6 +519,13 @@ public class Query implements TaggedUnion<Object>, AggregationVariant, JsonpSeri
 	}
 
 	/**
+	 * Is this variant instance of kind {@code match_phrase}?
+	 */
+	public boolean _isMatchPhrase() {
+		return MATCH_PHRASE.equals(_type());
+	}
+
+	/**
 	 * Get the {@code match_phrase} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -372,6 +533,13 @@ public class Query implements TaggedUnion<Object>, AggregationVariant, JsonpSeri
 	 */
 	public MatchPhraseQuery matchPhrase() {
 		return TaggedUnionUtils.get(this, MATCH_PHRASE);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code match_phrase_prefix}?
+	 */
+	public boolean _isMatchPhrasePrefix() {
+		return MATCH_PHRASE_PREFIX.equals(_type());
 	}
 
 	/**
@@ -386,6 +554,13 @@ public class Query implements TaggedUnion<Object>, AggregationVariant, JsonpSeri
 	}
 
 	/**
+	 * Is this variant instance of kind {@code more_like_this}?
+	 */
+	public boolean _isMoreLikeThis() {
+		return MORE_LIKE_THIS.equals(_type());
+	}
+
+	/**
 	 * Get the {@code more_like_this} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -393,6 +568,13 @@ public class Query implements TaggedUnion<Object>, AggregationVariant, JsonpSeri
 	 */
 	public MoreLikeThisQuery moreLikeThis() {
 		return TaggedUnionUtils.get(this, MORE_LIKE_THIS);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code multi_match}?
+	 */
+	public boolean _isMultiMatch() {
+		return MULTI_MATCH.equals(_type());
 	}
 
 	/**
@@ -406,6 +588,13 @@ public class Query implements TaggedUnion<Object>, AggregationVariant, JsonpSeri
 	}
 
 	/**
+	 * Is this variant instance of kind {@code nested}?
+	 */
+	public boolean _isNested() {
+		return NESTED.equals(_type());
+	}
+
+	/**
 	 * Get the {@code nested} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -413,6 +602,13 @@ public class Query implements TaggedUnion<Object>, AggregationVariant, JsonpSeri
 	 */
 	public NestedQuery nested() {
 		return TaggedUnionUtils.get(this, NESTED);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code parent_id}?
+	 */
+	public boolean _isParentId() {
+		return PARENT_ID.equals(_type());
 	}
 
 	/**
@@ -426,6 +622,13 @@ public class Query implements TaggedUnion<Object>, AggregationVariant, JsonpSeri
 	}
 
 	/**
+	 * Is this variant instance of kind {@code percolate}?
+	 */
+	public boolean _isPercolate() {
+		return PERCOLATE.equals(_type());
+	}
+
+	/**
 	 * Get the {@code percolate} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -433,6 +636,13 @@ public class Query implements TaggedUnion<Object>, AggregationVariant, JsonpSeri
 	 */
 	public PercolateQuery percolate() {
 		return TaggedUnionUtils.get(this, PERCOLATE);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code pinned}?
+	 */
+	public boolean _isPinned() {
+		return PINNED.equals(_type());
 	}
 
 	/**
@@ -446,6 +656,13 @@ public class Query implements TaggedUnion<Object>, AggregationVariant, JsonpSeri
 	}
 
 	/**
+	 * Is this variant instance of kind {@code prefix}?
+	 */
+	public boolean _isPrefix() {
+		return PREFIX.equals(_type());
+	}
+
+	/**
 	 * Get the {@code prefix} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -453,6 +670,13 @@ public class Query implements TaggedUnion<Object>, AggregationVariant, JsonpSeri
 	 */
 	public PrefixQuery prefix() {
 		return TaggedUnionUtils.get(this, PREFIX);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code query_string}?
+	 */
+	public boolean _isQueryString() {
+		return QUERY_STRING.equals(_type());
 	}
 
 	/**
@@ -466,6 +690,13 @@ public class Query implements TaggedUnion<Object>, AggregationVariant, JsonpSeri
 	}
 
 	/**
+	 * Is this variant instance of kind {@code range}?
+	 */
+	public boolean _isRange() {
+		return RANGE.equals(_type());
+	}
+
+	/**
 	 * Get the {@code range} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -473,6 +704,13 @@ public class Query implements TaggedUnion<Object>, AggregationVariant, JsonpSeri
 	 */
 	public RangeQuery range() {
 		return TaggedUnionUtils.get(this, RANGE);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code rank_feature}?
+	 */
+	public boolean _isRankFeature() {
+		return RANK_FEATURE.equals(_type());
 	}
 
 	/**
@@ -486,6 +724,13 @@ public class Query implements TaggedUnion<Object>, AggregationVariant, JsonpSeri
 	}
 
 	/**
+	 * Is this variant instance of kind {@code regexp}?
+	 */
+	public boolean _isRegexp() {
+		return REGEXP.equals(_type());
+	}
+
+	/**
 	 * Get the {@code regexp} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -493,6 +738,13 @@ public class Query implements TaggedUnion<Object>, AggregationVariant, JsonpSeri
 	 */
 	public RegexpQuery regexp() {
 		return TaggedUnionUtils.get(this, REGEXP);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code script}?
+	 */
+	public boolean _isScript() {
+		return SCRIPT.equals(_type());
 	}
 
 	/**
@@ -506,6 +758,13 @@ public class Query implements TaggedUnion<Object>, AggregationVariant, JsonpSeri
 	}
 
 	/**
+	 * Is this variant instance of kind {@code script_score}?
+	 */
+	public boolean _isScriptScore() {
+		return SCRIPT_SCORE.equals(_type());
+	}
+
+	/**
 	 * Get the {@code script_score} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -516,6 +775,13 @@ public class Query implements TaggedUnion<Object>, AggregationVariant, JsonpSeri
 	}
 
 	/**
+	 * Is this variant instance of kind {@code shape}?
+	 */
+	public boolean _isShape() {
+		return SHAPE.equals(_type());
+	}
+
+	/**
 	 * Get the {@code shape} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -523,6 +789,13 @@ public class Query implements TaggedUnion<Object>, AggregationVariant, JsonpSeri
 	 */
 	public ShapeQuery shape() {
 		return TaggedUnionUtils.get(this, SHAPE);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code simple_query_string}?
+	 */
+	public boolean _isSimpleQueryString() {
+		return SIMPLE_QUERY_STRING.equals(_type());
 	}
 
 	/**
@@ -537,6 +810,13 @@ public class Query implements TaggedUnion<Object>, AggregationVariant, JsonpSeri
 	}
 
 	/**
+	 * Is this variant instance of kind {@code span_containing}?
+	 */
+	public boolean _isSpanContaining() {
+		return SPAN_CONTAINING.equals(_type());
+	}
+
+	/**
 	 * Get the {@code span_containing} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -545,6 +825,13 @@ public class Query implements TaggedUnion<Object>, AggregationVariant, JsonpSeri
 	 */
 	public SpanContainingQuery spanContaining() {
 		return TaggedUnionUtils.get(this, SPAN_CONTAINING);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code field_masking_span}?
+	 */
+	public boolean _isFieldMaskingSpan() {
+		return FIELD_MASKING_SPAN.equals(_type());
 	}
 
 	/**
@@ -559,6 +846,13 @@ public class Query implements TaggedUnion<Object>, AggregationVariant, JsonpSeri
 	}
 
 	/**
+	 * Is this variant instance of kind {@code span_first}?
+	 */
+	public boolean _isSpanFirst() {
+		return SPAN_FIRST.equals(_type());
+	}
+
+	/**
 	 * Get the {@code span_first} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -566,6 +860,13 @@ public class Query implements TaggedUnion<Object>, AggregationVariant, JsonpSeri
 	 */
 	public SpanFirstQuery spanFirst() {
 		return TaggedUnionUtils.get(this, SPAN_FIRST);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code span_multi}?
+	 */
+	public boolean _isSpanMulti() {
+		return SPAN_MULTI.equals(_type());
 	}
 
 	/**
@@ -579,6 +880,13 @@ public class Query implements TaggedUnion<Object>, AggregationVariant, JsonpSeri
 	}
 
 	/**
+	 * Is this variant instance of kind {@code span_near}?
+	 */
+	public boolean _isSpanNear() {
+		return SPAN_NEAR.equals(_type());
+	}
+
+	/**
 	 * Get the {@code span_near} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -586,6 +894,13 @@ public class Query implements TaggedUnion<Object>, AggregationVariant, JsonpSeri
 	 */
 	public SpanNearQuery spanNear() {
 		return TaggedUnionUtils.get(this, SPAN_NEAR);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code span_not}?
+	 */
+	public boolean _isSpanNot() {
+		return SPAN_NOT.equals(_type());
 	}
 
 	/**
@@ -599,6 +914,13 @@ public class Query implements TaggedUnion<Object>, AggregationVariant, JsonpSeri
 	}
 
 	/**
+	 * Is this variant instance of kind {@code span_or}?
+	 */
+	public boolean _isSpanOr() {
+		return SPAN_OR.equals(_type());
+	}
+
+	/**
 	 * Get the {@code span_or} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -606,6 +928,13 @@ public class Query implements TaggedUnion<Object>, AggregationVariant, JsonpSeri
 	 */
 	public SpanOrQuery spanOr() {
 		return TaggedUnionUtils.get(this, SPAN_OR);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code span_term}?
+	 */
+	public boolean _isSpanTerm() {
+		return SPAN_TERM.equals(_type());
 	}
 
 	/**
@@ -619,6 +948,13 @@ public class Query implements TaggedUnion<Object>, AggregationVariant, JsonpSeri
 	}
 
 	/**
+	 * Is this variant instance of kind {@code span_within}?
+	 */
+	public boolean _isSpanWithin() {
+		return SPAN_WITHIN.equals(_type());
+	}
+
+	/**
 	 * Get the {@code span_within} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -626,6 +962,13 @@ public class Query implements TaggedUnion<Object>, AggregationVariant, JsonpSeri
 	 */
 	public SpanWithinQuery spanWithin() {
 		return TaggedUnionUtils.get(this, SPAN_WITHIN);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code term}?
+	 */
+	public boolean _isTerm() {
+		return TERM.equals(_type());
 	}
 
 	/**
@@ -639,6 +982,13 @@ public class Query implements TaggedUnion<Object>, AggregationVariant, JsonpSeri
 	}
 
 	/**
+	 * Is this variant instance of kind {@code terms}?
+	 */
+	public boolean _isTerms() {
+		return TERMS.equals(_type());
+	}
+
+	/**
 	 * Get the {@code terms} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -646,6 +996,13 @@ public class Query implements TaggedUnion<Object>, AggregationVariant, JsonpSeri
 	 */
 	public TermsQuery terms() {
 		return TaggedUnionUtils.get(this, TERMS);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code terms_set}?
+	 */
+	public boolean _isTermsSet() {
+		return TERMS_SET.equals(_type());
 	}
 
 	/**
@@ -659,6 +1016,13 @@ public class Query implements TaggedUnion<Object>, AggregationVariant, JsonpSeri
 	}
 
 	/**
+	 * Is this variant instance of kind {@code wildcard}?
+	 */
+	public boolean _isWildcard() {
+		return WILDCARD.equals(_type());
+	}
+
+	/**
 	 * Get the {@code wildcard} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -666,6 +1030,13 @@ public class Query implements TaggedUnion<Object>, AggregationVariant, JsonpSeri
 	 */
 	public WildcardQuery wildcard() {
 		return TaggedUnionUtils.get(this, WILDCARD);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code type}?
+	 */
+	public boolean _isType() {
+		return TYPE.equals(_type());
 	}
 
 	/**

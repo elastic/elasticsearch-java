@@ -83,6 +83,13 @@ public class GeoLocation implements TaggedUnion<Object>, JsonpSerializable {
 	}
 
 	/**
+	 * Is this variant instance of kind {@code coords}?
+	 */
+	public boolean _isCoords() {
+		return COORDS.equals(_type());
+	}
+
+	/**
 	 * Get the {@code coords} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -90,6 +97,13 @@ public class GeoLocation implements TaggedUnion<Object>, JsonpSerializable {
 	 */
 	public List<Double> coords() {
 		return TaggedUnionUtils.get(this, COORDS);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code geohash}?
+	 */
+	public boolean _isGeohash() {
+		return GEOHASH.equals(_type());
 	}
 
 	/**
@@ -103,6 +117,13 @@ public class GeoLocation implements TaggedUnion<Object>, JsonpSerializable {
 	}
 
 	/**
+	 * Is this variant instance of kind {@code latlon}?
+	 */
+	public boolean _isLatlon() {
+		return LATLON.equals(_type());
+	}
+
+	/**
 	 * Get the {@code latlon} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -110,6 +131,13 @@ public class GeoLocation implements TaggedUnion<Object>, JsonpSerializable {
 	 */
 	public LatLonGeoLocation latlon() {
 		return TaggedUnionUtils.get(this, LATLON);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code text}?
+	 */
+	public boolean _isText() {
+		return TEXT.equals(_type());
 	}
 
 	/**

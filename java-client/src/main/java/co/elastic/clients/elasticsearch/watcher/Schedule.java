@@ -96,6 +96,13 @@ public class Schedule implements TaggedUnion<Object>, TriggerVariant, JsonpSeria
 	}
 
 	/**
+	 * Is this variant instance of kind {@code cron}?
+	 */
+	public boolean _isCron() {
+		return CRON.equals(_type());
+	}
+
+	/**
 	 * Get the {@code cron} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -103,6 +110,13 @@ public class Schedule implements TaggedUnion<Object>, TriggerVariant, JsonpSeria
 	 */
 	public String cron() {
 		return TaggedUnionUtils.get(this, CRON);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code daily}?
+	 */
+	public boolean _isDaily() {
+		return DAILY.equals(_type());
 	}
 
 	/**
@@ -116,6 +130,13 @@ public class Schedule implements TaggedUnion<Object>, TriggerVariant, JsonpSeria
 	}
 
 	/**
+	 * Is this variant instance of kind {@code hourly}?
+	 */
+	public boolean _isHourly() {
+		return HOURLY.equals(_type());
+	}
+
+	/**
 	 * Get the {@code hourly} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -123,6 +144,13 @@ public class Schedule implements TaggedUnion<Object>, TriggerVariant, JsonpSeria
 	 */
 	public HourlySchedule hourly() {
 		return TaggedUnionUtils.get(this, HOURLY);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code interval}?
+	 */
+	public boolean _isInterval() {
+		return INTERVAL.equals(_type());
 	}
 
 	/**
@@ -136,6 +164,13 @@ public class Schedule implements TaggedUnion<Object>, TriggerVariant, JsonpSeria
 	}
 
 	/**
+	 * Is this variant instance of kind {@code monthly}?
+	 */
+	public boolean _isMonthly() {
+		return MONTHLY.equals(_type());
+	}
+
+	/**
 	 * Get the {@code monthly} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -146,6 +181,13 @@ public class Schedule implements TaggedUnion<Object>, TriggerVariant, JsonpSeria
 	}
 
 	/**
+	 * Is this variant instance of kind {@code weekly}?
+	 */
+	public boolean _isWeekly() {
+		return WEEKLY.equals(_type());
+	}
+
+	/**
 	 * Get the {@code weekly} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -153,6 +195,13 @@ public class Schedule implements TaggedUnion<Object>, TriggerVariant, JsonpSeria
 	 */
 	public List<TimeOfWeek> weekly() {
 		return TaggedUnionUtils.get(this, WEEKLY);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code yearly}?
+	 */
+	public boolean _isYearly() {
+		return YEARLY.equals(_type());
 	}
 
 	/**

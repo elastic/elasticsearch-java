@@ -81,6 +81,13 @@ public class Action implements TaggedUnion<Object>, JsonpSerializable {
 	}
 
 	/**
+	 * Is this variant instance of kind {@code add}?
+	 */
+	public boolean _isAdd() {
+		return ADD.equals(_type());
+	}
+
+	/**
 	 * Get the {@code add} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -91,6 +98,13 @@ public class Action implements TaggedUnion<Object>, JsonpSerializable {
 	}
 
 	/**
+	 * Is this variant instance of kind {@code remove}?
+	 */
+	public boolean _isRemove() {
+		return REMOVE.equals(_type());
+	}
+
+	/**
 	 * Get the {@code remove} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -98,6 +112,13 @@ public class Action implements TaggedUnion<Object>, JsonpSerializable {
 	 */
 	public RemoveAction remove() {
 		return TaggedUnionUtils.get(this, REMOVE);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code remove_index}?
+	 */
+	public boolean _isRemoveIndex() {
+		return REMOVE_INDEX.equals(_type());
 	}
 
 	/**

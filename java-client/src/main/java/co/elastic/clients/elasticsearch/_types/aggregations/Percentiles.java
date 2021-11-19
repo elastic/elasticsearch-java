@@ -81,6 +81,13 @@ public class Percentiles implements TaggedUnion<Object>, JsonpSerializable {
 	}
 
 	/**
+	 * Is this variant instance of kind {@code array}?
+	 */
+	public boolean _isArray() {
+		return ARRAY.equals(_type());
+	}
+
+	/**
 	 * Get the {@code array} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -88,6 +95,13 @@ public class Percentiles implements TaggedUnion<Object>, JsonpSerializable {
 	 */
 	public List<ArrayPercentilesItem> array() {
 		return TaggedUnionUtils.get(this, ARRAY);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code keyed}?
+	 */
+	public boolean _isKeyed() {
+		return KEYED.equals(_type());
 	}
 
 	/**

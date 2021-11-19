@@ -113,6 +113,13 @@ public class Processor implements TaggedUnion<Object>, JsonpSerializable {
 	}
 
 	/**
+	 * Is this variant instance of kind {@code attachment}?
+	 */
+	public boolean _isAttachment() {
+		return ATTACHMENT.equals(_type());
+	}
+
+	/**
 	 * Get the {@code attachment} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -120,6 +127,13 @@ public class Processor implements TaggedUnion<Object>, JsonpSerializable {
 	 */
 	public AttachmentProcessor attachment() {
 		return TaggedUnionUtils.get(this, ATTACHMENT);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code append}?
+	 */
+	public boolean _isAppend() {
+		return APPEND.equals(_type());
 	}
 
 	/**
@@ -133,6 +147,13 @@ public class Processor implements TaggedUnion<Object>, JsonpSerializable {
 	}
 
 	/**
+	 * Is this variant instance of kind {@code csv}?
+	 */
+	public boolean _isCsv() {
+		return CSV.equals(_type());
+	}
+
+	/**
 	 * Get the {@code csv} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -140,6 +161,13 @@ public class Processor implements TaggedUnion<Object>, JsonpSerializable {
 	 */
 	public CsvProcessor csv() {
 		return TaggedUnionUtils.get(this, CSV);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code convert}?
+	 */
+	public boolean _isConvert() {
+		return CONVERT.equals(_type());
 	}
 
 	/**
@@ -153,6 +181,13 @@ public class Processor implements TaggedUnion<Object>, JsonpSerializable {
 	}
 
 	/**
+	 * Is this variant instance of kind {@code date}?
+	 */
+	public boolean _isDate() {
+		return DATE.equals(_type());
+	}
+
+	/**
 	 * Get the {@code date} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -160,6 +195,13 @@ public class Processor implements TaggedUnion<Object>, JsonpSerializable {
 	 */
 	public DateProcessor date() {
 		return TaggedUnionUtils.get(this, DATE);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code date_index_name}?
+	 */
+	public boolean _isDateIndexName() {
+		return DATE_INDEX_NAME.equals(_type());
 	}
 
 	/**
@@ -174,6 +216,13 @@ public class Processor implements TaggedUnion<Object>, JsonpSerializable {
 	}
 
 	/**
+	 * Is this variant instance of kind {@code dot_expander}?
+	 */
+	public boolean _isDotExpander() {
+		return DOT_EXPANDER.equals(_type());
+	}
+
+	/**
 	 * Get the {@code dot_expander} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -181,6 +230,13 @@ public class Processor implements TaggedUnion<Object>, JsonpSerializable {
 	 */
 	public DotExpanderProcessor dotExpander() {
 		return TaggedUnionUtils.get(this, DOT_EXPANDER);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code enrich}?
+	 */
+	public boolean _isEnrich() {
+		return ENRICH.equals(_type());
 	}
 
 	/**
@@ -194,6 +250,13 @@ public class Processor implements TaggedUnion<Object>, JsonpSerializable {
 	}
 
 	/**
+	 * Is this variant instance of kind {@code fail}?
+	 */
+	public boolean _isFail() {
+		return FAIL.equals(_type());
+	}
+
+	/**
 	 * Get the {@code fail} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -201,6 +264,13 @@ public class Processor implements TaggedUnion<Object>, JsonpSerializable {
 	 */
 	public FailProcessor fail() {
 		return TaggedUnionUtils.get(this, FAIL);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code foreach}?
+	 */
+	public boolean _isForeach() {
+		return FOREACH.equals(_type());
 	}
 
 	/**
@@ -214,6 +284,13 @@ public class Processor implements TaggedUnion<Object>, JsonpSerializable {
 	}
 
 	/**
+	 * Is this variant instance of kind {@code json}?
+	 */
+	public boolean _isJson() {
+		return JSON.equals(_type());
+	}
+
+	/**
 	 * Get the {@code json} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -221,6 +298,13 @@ public class Processor implements TaggedUnion<Object>, JsonpSerializable {
 	 */
 	public JsonProcessor json() {
 		return TaggedUnionUtils.get(this, JSON);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code user_agent}?
+	 */
+	public boolean _isUserAgent() {
+		return USER_AGENT.equals(_type());
 	}
 
 	/**
@@ -234,6 +318,13 @@ public class Processor implements TaggedUnion<Object>, JsonpSerializable {
 	}
 
 	/**
+	 * Is this variant instance of kind {@code kv}?
+	 */
+	public boolean _isKv() {
+		return KV.equals(_type());
+	}
+
+	/**
 	 * Get the {@code kv} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -241,6 +332,13 @@ public class Processor implements TaggedUnion<Object>, JsonpSerializable {
 	 */
 	public KeyValueProcessor kv() {
 		return TaggedUnionUtils.get(this, KV);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code geoip}?
+	 */
+	public boolean _isGeoip() {
+		return GEOIP.equals(_type());
 	}
 
 	/**
@@ -254,6 +352,13 @@ public class Processor implements TaggedUnion<Object>, JsonpSerializable {
 	}
 
 	/**
+	 * Is this variant instance of kind {@code grok}?
+	 */
+	public boolean _isGrok() {
+		return GROK.equals(_type());
+	}
+
+	/**
 	 * Get the {@code grok} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -261,6 +366,13 @@ public class Processor implements TaggedUnion<Object>, JsonpSerializable {
 	 */
 	public GrokProcessor grok() {
 		return TaggedUnionUtils.get(this, GROK);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code gsub}?
+	 */
+	public boolean _isGsub() {
+		return GSUB.equals(_type());
 	}
 
 	/**
@@ -274,6 +386,13 @@ public class Processor implements TaggedUnion<Object>, JsonpSerializable {
 	}
 
 	/**
+	 * Is this variant instance of kind {@code join}?
+	 */
+	public boolean _isJoin() {
+		return JOIN.equals(_type());
+	}
+
+	/**
 	 * Get the {@code join} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -281,6 +400,13 @@ public class Processor implements TaggedUnion<Object>, JsonpSerializable {
 	 */
 	public JoinProcessor join() {
 		return TaggedUnionUtils.get(this, JOIN);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code lowercase}?
+	 */
+	public boolean _isLowercase() {
+		return LOWERCASE.equals(_type());
 	}
 
 	/**
@@ -294,6 +420,13 @@ public class Processor implements TaggedUnion<Object>, JsonpSerializable {
 	}
 
 	/**
+	 * Is this variant instance of kind {@code remove}?
+	 */
+	public boolean _isRemove() {
+		return REMOVE.equals(_type());
+	}
+
+	/**
 	 * Get the {@code remove} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -301,6 +434,13 @@ public class Processor implements TaggedUnion<Object>, JsonpSerializable {
 	 */
 	public RemoveProcessor remove() {
 		return TaggedUnionUtils.get(this, REMOVE);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code rename}?
+	 */
+	public boolean _isRename() {
+		return RENAME.equals(_type());
 	}
 
 	/**
@@ -314,6 +454,13 @@ public class Processor implements TaggedUnion<Object>, JsonpSerializable {
 	}
 
 	/**
+	 * Is this variant instance of kind {@code script}?
+	 */
+	public boolean _isScript() {
+		return SCRIPT.equals(_type());
+	}
+
+	/**
 	 * Get the {@code script} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -321,6 +468,13 @@ public class Processor implements TaggedUnion<Object>, JsonpSerializable {
 	 */
 	public Script script() {
 		return TaggedUnionUtils.get(this, SCRIPT);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code set}?
+	 */
+	public boolean _isSet() {
+		return SET.equals(_type());
 	}
 
 	/**
@@ -334,6 +488,13 @@ public class Processor implements TaggedUnion<Object>, JsonpSerializable {
 	}
 
 	/**
+	 * Is this variant instance of kind {@code sort}?
+	 */
+	public boolean _isSort() {
+		return SORT.equals(_type());
+	}
+
+	/**
 	 * Get the {@code sort} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -341,6 +502,13 @@ public class Processor implements TaggedUnion<Object>, JsonpSerializable {
 	 */
 	public SortProcessor sort() {
 		return TaggedUnionUtils.get(this, SORT);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code split}?
+	 */
+	public boolean _isSplit() {
+		return SPLIT.equals(_type());
 	}
 
 	/**
@@ -354,6 +522,13 @@ public class Processor implements TaggedUnion<Object>, JsonpSerializable {
 	}
 
 	/**
+	 * Is this variant instance of kind {@code trim}?
+	 */
+	public boolean _isTrim() {
+		return TRIM.equals(_type());
+	}
+
+	/**
 	 * Get the {@code trim} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -361,6 +536,13 @@ public class Processor implements TaggedUnion<Object>, JsonpSerializable {
 	 */
 	public TrimProcessor trim() {
 		return TaggedUnionUtils.get(this, TRIM);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code uppercase}?
+	 */
+	public boolean _isUppercase() {
+		return UPPERCASE.equals(_type());
 	}
 
 	/**
@@ -374,6 +556,13 @@ public class Processor implements TaggedUnion<Object>, JsonpSerializable {
 	}
 
 	/**
+	 * Is this variant instance of kind {@code urldecode}?
+	 */
+	public boolean _isUrldecode() {
+		return URLDECODE.equals(_type());
+	}
+
+	/**
 	 * Get the {@code urldecode} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -381,6 +570,13 @@ public class Processor implements TaggedUnion<Object>, JsonpSerializable {
 	 */
 	public UrlDecodeProcessor urldecode() {
 		return TaggedUnionUtils.get(this, URLDECODE);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code bytes}?
+	 */
+	public boolean _isBytes() {
+		return BYTES.equals(_type());
 	}
 
 	/**
@@ -394,6 +590,13 @@ public class Processor implements TaggedUnion<Object>, JsonpSerializable {
 	}
 
 	/**
+	 * Is this variant instance of kind {@code dissect}?
+	 */
+	public boolean _isDissect() {
+		return DISSECT.equals(_type());
+	}
+
+	/**
 	 * Get the {@code dissect} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -401,6 +604,13 @@ public class Processor implements TaggedUnion<Object>, JsonpSerializable {
 	 */
 	public DissectProcessor dissect() {
 		return TaggedUnionUtils.get(this, DISSECT);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code set_security_user}?
+	 */
+	public boolean _isSetSecurityUser() {
+		return SET_SECURITY_USER.equals(_type());
 	}
 
 	/**
@@ -415,6 +625,13 @@ public class Processor implements TaggedUnion<Object>, JsonpSerializable {
 	}
 
 	/**
+	 * Is this variant instance of kind {@code pipeline}?
+	 */
+	public boolean _isPipeline() {
+		return PIPELINE.equals(_type());
+	}
+
+	/**
 	 * Get the {@code pipeline} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -422,6 +639,13 @@ public class Processor implements TaggedUnion<Object>, JsonpSerializable {
 	 */
 	public PipelineProcessor pipeline() {
 		return TaggedUnionUtils.get(this, PIPELINE);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code drop}?
+	 */
+	public boolean _isDrop() {
+		return DROP.equals(_type());
 	}
 
 	/**
@@ -435,6 +659,13 @@ public class Processor implements TaggedUnion<Object>, JsonpSerializable {
 	}
 
 	/**
+	 * Is this variant instance of kind {@code circle}?
+	 */
+	public boolean _isCircle() {
+		return CIRCLE.equals(_type());
+	}
+
+	/**
 	 * Get the {@code circle} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -442,6 +673,13 @@ public class Processor implements TaggedUnion<Object>, JsonpSerializable {
 	 */
 	public CircleProcessor circle() {
 		return TaggedUnionUtils.get(this, CIRCLE);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code inference}?
+	 */
+	public boolean _isInference() {
+		return INFERENCE.equals(_type());
 	}
 
 	/**

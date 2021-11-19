@@ -91,6 +91,13 @@ public class RoleMappingRule implements TaggedUnion<Object>, RoleMappingRuleVari
 	}
 
 	/**
+	 * Is this variant instance of kind {@code any}?
+	 */
+	public boolean _isAny() {
+		return ANY.equals(_type());
+	}
+
+	/**
 	 * Get the {@code any} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -98,6 +105,13 @@ public class RoleMappingRule implements TaggedUnion<Object>, RoleMappingRuleVari
 	 */
 	public List<RoleMappingRule> any() {
 		return TaggedUnionUtils.get(this, ANY);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code all}?
+	 */
+	public boolean _isAll() {
+		return ALL.equals(_type());
 	}
 
 	/**
@@ -111,6 +125,13 @@ public class RoleMappingRule implements TaggedUnion<Object>, RoleMappingRuleVari
 	}
 
 	/**
+	 * Is this variant instance of kind {@code field}?
+	 */
+	public boolean _isField() {
+		return FIELD.equals(_type());
+	}
+
+	/**
 	 * Get the {@code field} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -118,6 +139,13 @@ public class RoleMappingRule implements TaggedUnion<Object>, RoleMappingRuleVari
 	 */
 	public FieldRule field() {
 		return TaggedUnionUtils.get(this, FIELD);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code except}?
+	 */
+	public boolean _isExcept() {
+		return EXCEPT.equals(_type());
 	}
 
 	/**
