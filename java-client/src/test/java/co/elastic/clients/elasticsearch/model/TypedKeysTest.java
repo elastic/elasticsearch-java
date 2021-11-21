@@ -21,7 +21,6 @@ package co.elastic.clients.elasticsearch.model;
 
 import co.elastic.clients.elasticsearch._types.aggregations.Aggregate;
 import co.elastic.clients.elasticsearch._types.aggregations.AvgAggregate;
-import co.elastic.clients.elasticsearch._types.aggregations.Buckets;
 import co.elastic.clients.elasticsearch._types.aggregations.StringTermsAggregate;
 import co.elastic.clients.elasticsearch._types.aggregations.StringTermsBucket;
 import co.elastic.clients.elasticsearch.core.SearchResponse;
@@ -40,7 +39,7 @@ public class TypedKeysTest extends ModelTestCase {
 
         SearchResponse<Void> resp = new SearchResponse.Builder<Void>()
             .aggregations(_1 -> _1
-                .entry("foo", _2 -> _2
+                .put("foo", _2 -> _2
                     .avg(_3 -> _3.value(3.14))
                 )
             )
@@ -93,7 +92,7 @@ public class TypedKeysTest extends ModelTestCase {
 
         SearchResponse<Void> resp = new SearchResponse.Builder<Void>()
             .aggregations(_1 -> _1
-                .entry("foo", aggregate)
+                .put("foo", aggregate)
             )
             // Required properties on a SearchResponse
             .took(1)

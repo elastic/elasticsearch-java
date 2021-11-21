@@ -19,7 +19,6 @@
 
 package co.elastic.clients.elasticsearch.experiments.api.query2;
 
-import co.elastic.clients.json.JsonpSerializable;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -32,13 +31,12 @@ public class QueryTest extends Assert {
 
         Query q = new Query(bq);
 
-        assertTrue(q._is("bool"));
-        assertEquals("bool", q._type());
+        assertEquals(Query.Kind.Bool, q._kind());
 
-        JsonpSerializable v = q._get();
-        assertEquals("bool", ((Query.Variant)v)._variantType());
+        Query.Variant v = q._get();
+        assertEquals(Query.Kind.Bool, v._variantType());
 
-        Query q1 = ((Query.Variant)v)._toQuery();
+        Query q1 = v._toQuery();
 
         Collection<Query> must = q.bool().must();
 

@@ -20,14 +20,12 @@
 package co.elastic.clients.elasticsearch.experiments;
 
 import co.elastic.clients.elasticsearch.experiments.api.FooRequest;
-import co.elastic.clients.elasticsearch.experiments.api.query.TermsQuery;
 import co.elastic.clients.json.jsonb.JsonbJsonpMapper;
 import jakarta.json.spi.JsonProvider;
 import jakarta.json.stream.JsonGenerator;
 import jakarta.json.stream.JsonParser;
 import jakarta.json.stream.JsonParsingException;
 import org.junit.Assert;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import java.io.ByteArrayInputStream;
@@ -70,66 +68,6 @@ public class ParsingTests extends Assert {
       assertNull(foo2.size());
       assertEquals(foo.indices(), foo2.indices());
       assertEquals("Raise the bar", foo.bar().name());
-    } catch (JsonParsingException je) {
-      throw new JsonParsingException(je.getMessage() + " at " + je.getLocation(), je, je.getLocation());
-    }
-  }
-
-  @Test
-  @Ignore("Requires lenient serializers to expose their preferred event type")
-  public void testVariants() throws Exception {
-
-    try {
-
-      TermsQuery filter = TermsQuery.builder()
-          .term("x")
-          .field("y")
-          .build();
-
-      FooRequest foo = FooRequest.builder()
-          .name("z")
-          .value(1)
-          .query(q -> q
-              .bool(b -> b
-                  .add_must(m -> m
-                      .terms(filter)
-                  )
-                  .add_must(m -> m
-                      .terms(t -> t.field("foo").term("bar"))
-                  )
-                  .add_should(s -> s
-                      .terms(t -> t.field("bar").term("baz"))
-                  )
-                  .minimumShouldMatch("60%")
-              )
-          )
-          .build();
-
-      // Serialize, parse and serialize the parse result to check we didn't lose anything
-
-      ByteArrayOutputStream baos = new ByteArrayOutputStream();
-      JsonProvider provider = JsonProvider.provider();
-      JsonGenerator generator = provider.createGenerator(baos);
-      foo.serialize(generator, new JsonbJsonpMapper());
-      generator.close();
-
-      String str = baos.toString();
-
-      System.out.println(str);
-
-      JsonParser parser = provider.createParser(new ByteArrayInputStream(str.getBytes(StandardCharsets.UTF_8)));
-
-      FooRequest foo2 = FooRequest.parser().deserialize(parser, new JsonbJsonpMapper());
-
-      baos = new ByteArrayOutputStream();
-      JsonGenerator generator2 = provider.createGenerator(baos);
-      foo2.serialize(generator2, new JsonbJsonpMapper());
-      generator2.close();
-
-      String str2 = baos.toString();
-
-      assertEquals(str, str2);
-
     } catch (JsonParsingException je) {
       throw new JsonParsingException(je.getMessage() + " at " + je.getLocation(), je, je.getLocation());
     }

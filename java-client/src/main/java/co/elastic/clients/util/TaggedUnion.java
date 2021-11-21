@@ -19,22 +19,14 @@
 
 package co.elastic.clients.util;
 
-public interface TaggedUnion<BaseType> {
+public interface TaggedUnion<Tag extends Enum<?>, BaseType> {
 
     /**
-     * Get the of the type of the variant held by this union object.
+     * Get the of the kind of variant held by this object.
      *
-     * @return the variant type
+     * @return the variant kind
      */
-    String _type();
+    Tag _kind();
 
     BaseType _get();
-
-    /**
-     * Checks if this object is of a given variant type.
-     */
-    default boolean _is(String type) {
-        return _type().equals(type);
-    }
-
 }

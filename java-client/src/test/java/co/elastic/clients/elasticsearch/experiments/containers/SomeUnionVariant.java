@@ -19,7 +19,7 @@
 
 package co.elastic.clients.elasticsearch.experiments.containers;
 
-import co.elastic.clients.util.UnionVariant;
+import co.elastic.clients.elasticsearch.experiments.UnionVariant;
 
 public interface SomeUnionVariant extends UnionVariant {
 }

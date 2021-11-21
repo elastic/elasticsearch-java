@@ -34,13 +34,13 @@ public class MapBuilder<K, V, B> implements ObjectBuilder<Map<K, V>> {
         this.builderCtor = builderCtor;
     }
 
-    public MapBuilder<K, V, B> entry(K key, V value) {
+    public MapBuilder<K, V, B> put(K key, V value) {
         map.put(key, value);
         return this;
     }
 
-    public MapBuilder<K, V, B> entry(K key, Function<B, ObjectBuilder<V>> fn) {
-        return entry(key, fn.apply(builderCtor.get()).build());
+    public MapBuilder<K, V, B> put(K key, Function<B, ObjectBuilder<V>> fn) {
+        return put(key, fn.apply(builderCtor.get()).build());
     }
 
     @Override

@@ -82,9 +82,9 @@ public class SerializationTest extends ModelTestCase {
     public void testArrayValueBody() {
 
         NodesResponse nr = NodesResponse.of(_0 -> _0
-            .valueBody(
-                _1 -> _1.bulkTotalOperations("1"),
-                _1 -> _1.bulkTotalOperations("2")
+            .valueBody(_1 -> _1
+                .add(_2 -> _2.bulkTotalOperations("1"))
+                .add(_2 -> _2.bulkTotalOperations("2"))
             )
         );
 

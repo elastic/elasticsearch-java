@@ -20,6 +20,7 @@
 package co.elastic.clients.elasticsearch.model;
 
 import co.elastic.clients.elasticsearch._types.ErrorCause;
+import co.elastic.clients.elasticsearch._types.GeoLocation;
 import co.elastic.clients.elasticsearch._types.GeoShapeRelation;
 import co.elastic.clients.elasticsearch._types.query_dsl.Query;
 import co.elastic.clients.elasticsearch._types.query_dsl.ShapeQuery;
@@ -78,16 +79,20 @@ public class BehaviorsTest extends ModelTestCase {
             );
 
             so = checkJsonRoundtrip(so, "{\"_doc\":{\"order\":\"asc\"}}");
-            assertEquals(SortOptions.DOC, so._type());
+            assertEquals(SortOptions.Kind.Doc, so._kind());
             assertEquals(SortOrder.Asc, so.doc().order());
         }
 
         // Regular variant
         {
-            SortOptions so = SortOptionsBuilders.geoDistance().field("foo").value(_b -> _b.text("someWKT")).build()._toSortOptions();
+            SortOptions so = SortOptionsBuilders.geoDistance()
+                .field("foo")
+                .value(GeoLocation.of(_b -> _b.text("someWKT")))
+                .build()
+                ._toSortOptions();
 
             so = checkJsonRoundtrip(so, "{\"_geo_distance\":{\"foo\":[\"someWKT\"]}}");
-            assertEquals(SortOptions.GEO_DISTANCE, so._type());
+            assertEquals(SortOptions.Kind.GeoDistance, so._kind());
             assertEquals("foo", so.geoDistance().field());
             assertEquals("someWKT", so.geoDistance().value().get(0).text());
         }
@@ -97,7 +102,7 @@ public class BehaviorsTest extends ModelTestCase {
                 .score(_1 -> _1.order(SortOrder.Asc)));
 
             so = checkJsonRoundtrip(so, "{\"_score\":{\"order\":\"asc\"}}");
-            assertEquals(SortOptions.SCORE, so._type());
+            assertEquals(SortOptions.Kind.Score, so._kind());
             assertEquals(SortOrder.Asc, so.score().order());
         }
 
@@ -117,7 +122,7 @@ public class BehaviorsTest extends ModelTestCase {
             );
 
             so = checkJsonRoundtrip(so, "{\"foo\":{\"order\":\"desc\"}}");
-            assertEquals(SortOptions.FIELD, so._type());
+            assertEquals(SortOptions.Kind.Field, so._kind());
             assertEquals("foo", so.field().field());
             assertEquals(SortOrder.Desc, so.field().order());
         }

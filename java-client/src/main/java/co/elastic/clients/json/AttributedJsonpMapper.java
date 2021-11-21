@@ -29,7 +29,7 @@ class AttributedJsonpMapper implements JsonpMapper {
     private final String name;
     private final Object value;
 
-    public AttributedJsonpMapper(JsonpMapper mapper, String name, Object value) {
+    AttributedJsonpMapper(JsonpMapper mapper, String name, Object value) {
         this.mapper = mapper;
         this.name = name;
         this.value = value;
