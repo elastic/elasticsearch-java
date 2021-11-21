@@ -38,16 +38,18 @@ public class VariantsTest extends ModelTestCase {
                 .field("a_field")
                 .anyOf(_2 -> _2
                     .intervals(_3 -> _3
-                        .match(_4 -> _4
-                            .query("match-query")
-                            .analyzer("lowercase")
+                        .add(_4 -> _4.match(
+                            _5 -> _5
+                                .query("match-query")
+                                .analyzer("lowercase")
+                            )
                         )
                     )
                 )
             )
         );
 
-        assertEquals(Query.INTERVALS, q._type());
+        assertEquals(Query.Kind.Intervals, q._kind());
         assertNotNull(q.intervals());
         assertEquals("a_field", q.intervals().field());
         assertEquals(1, q.intervals().anyOf().intervals().size());
@@ -61,7 +63,7 @@ public class VariantsTest extends ModelTestCase {
         Query q2 = fromJson(json, Query.class);
         assertEquals(json, toJson(q2));
 
-        assertEquals(Query.INTERVALS, q2._type());
+        assertEquals(Query.Kind.Intervals, q2._kind());
         assertNotNull(q2.intervals());
         assertEquals("a_field", q2.intervals().field());
         assertEquals(1, q2.intervals().anyOf().intervals().size());
@@ -79,7 +81,7 @@ public class VariantsTest extends ModelTestCase {
                 .index(true)
                 .boost(1.0)
                 .fields(_2 -> _2
-                    .entry("a-field", _3 -> _3
+                    .put("a-field", _3 -> _3
                         .float_(_4 -> _4
                             .coerce(true)
                         )

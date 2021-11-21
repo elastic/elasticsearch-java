@@ -45,7 +45,7 @@ public interface ExternallyTaggedUnion {
      * A deserializer for externally-tagged unions. Since the union variant discriminant is provided externally, this cannot be a
      * regular {@link JsonpDeserializer} as the caller has to provide the discriminant value.
      */
-    class Deserializer<Union extends TaggedUnion<Member>, Member> {
+    class Deserializer<Union extends TaggedUnion<?, Member>, Member> {
         private final Map<String, JsonpDeserializer<? extends Member>> deserializers;
         private final BiFunction<String, Member, Union> unionCtor;
 
@@ -75,7 +75,7 @@ public interface ExternallyTaggedUnion {
         }
     }
 
-    class TypedKeysDeserializer<Union extends TaggedUnion<?>> extends JsonpDeserializerBase<Map<String, Union>> {
+    class TypedKeysDeserializer<Union extends TaggedUnion<?, ?>> extends JsonpDeserializerBase<Map<String, Union>> {
         Deserializer<Union, ?> deserializer;
         protected TypedKeysDeserializer(Deserializer<Union, ?> deser) {
             super(EnumSet.of(Event.START_OBJECT));
@@ -111,7 +111,7 @@ public interface ExternallyTaggedUnion {
     /**
      * Serialize an externally tagged union using the typed keys encoding.
      */
-    static <T extends JsonpSerializable & TaggedUnion<?>> void serializeTypedKeys(
+    static <T extends JsonpSerializable & TaggedUnion<? extends JsonEnum, ?>> void serializeTypedKeys(
         Map<String, T> map, JsonGenerator generator, JsonpMapper mapper
     ) {
         generator.writeStartObject();
@@ -119,12 +119,12 @@ public interface ExternallyTaggedUnion {
         generator.writeEnd();
     }
 
-    static <T extends JsonpSerializable & TaggedUnion<?>> void serializeTypedKeysInner(
+    static <T extends JsonpSerializable & TaggedUnion<? extends JsonEnum, ?>> void serializeTypedKeysInner(
         Map<String, T> map, JsonGenerator generator, JsonpMapper mapper
     ) {
         for (Map.Entry<String, T> entry: map.entrySet()) {
             T value = entry.getValue();
-            generator.writeKey(value._type() + "#" + entry.getKey());
+            generator.writeKey(value._kind().jsonValue() + "#" + entry.getKey());
             value.serialize(generator, mapper);
         }
     }

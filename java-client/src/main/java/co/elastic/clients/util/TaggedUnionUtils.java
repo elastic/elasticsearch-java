@@ -25,17 +25,17 @@ import java.util.Collections;
 import java.util.Iterator;
 
 public class TaggedUnionUtils {
-    public static <V, U extends TaggedUnion<?>> V get(U union, String type) {
-        if (union._is(type)) {
+    public static <Union extends TaggedUnion<Tag, ?>, Tag extends Enum<Tag>, Value> Value get(Union union, Tag kind) {
+        if (kind == union._kind()) {
             @SuppressWarnings("unchecked")
-            V result = (V) union._get();
+            Value result = (Value) union._get();
             return result;
         } else {
-            throw new IllegalStateException("Cannot get '" + type + "' variant: current variant is '" + union._type() + "'.");
+            throw new IllegalStateException("Cannot get '" + kind + "' variant: current variant is '" + union._kind() + "'.");
         }
     }
 
-    public static <T> Iterator<?> ndJsonIterator(TaggedUnion<T> union) {
+    public static <T> Iterator<?> ndJsonIterator(TaggedUnion<?, T> union) {
 
         T value = union._get();
 

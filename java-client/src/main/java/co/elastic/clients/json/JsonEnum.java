@@ -17,11 +17,8 @@
  * under the License.
  */
 
-package co.elastic.clients.util;
+package co.elastic.clients.json;
 
-import co.elastic.clients.json.JsonpDeserializerBase;
-import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpSerializable;
 import jakarta.json.stream.JsonGenerator;
 import jakarta.json.stream.JsonParser;
 import jakarta.json.stream.JsonParsingException;
@@ -34,7 +31,7 @@ import java.util.NoSuchElementException;
 /**
  * Base interface for enumerations.
  */
-public interface StringEnum extends JsonpSerializable {
+public interface JsonEnum extends JsonpSerializable {
     String jsonValue();
 
     @Override
@@ -42,7 +39,7 @@ public interface StringEnum extends JsonpSerializable {
         generator.write(jsonValue());
     }
 
-    class Deserializer<T extends Enum<T> & StringEnum> extends JsonpDeserializerBase<T> {
+    class Deserializer<T extends JsonEnum> extends JsonpDeserializerBase<T> {
         private final Map<String, T> lookupTable;
 
         public Deserializer(T[] values) {

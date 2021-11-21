@@ -19,7 +19,6 @@
 
 package co.elastic.clients.json;
 
-import co.elastic.clients.util.StringEnum;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonParser;
 import jakarta.json.stream.JsonParser.Event;
@@ -187,7 +186,7 @@ public interface JsonpDeserializer<V> {
         return new JsonpDeserializerBase.StringMapDeserializer<T>(itemDeserializer);
     }
 
-    static <K extends StringEnum, V> JsonpDeserializer<Map<K, V>> enumMapDeserializer(
+    static <K extends JsonEnum, V> JsonpDeserializer<Map<K, V>> enumMapDeserializer(
         JsonpDeserializer<K> keyDeserializer, JsonpDeserializer<V> valueDeserializer
     ) {
         return new JsonpDeserializerBase.EnumMapDeserializer<K, V>(keyDeserializer, valueDeserializer);

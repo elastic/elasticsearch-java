@@ -19,7 +19,6 @@
 
 package co.elastic.clients.elasticsearch.model;
 
-import co.elastic.clients.elasticsearch._types.query_dsl.Query;
 import co.elastic.clients.elasticsearch.core.SearchRequest;
 import co.elastic.clients.json.jsonb.JsonbJsonpMapper;
 import org.junit.Test;
@@ -39,7 +38,7 @@ public class RequestEncodingTest extends ModelTestCase {
                     .value("foo"))
             )
             .aggregations(b1 -> b1
-                .entry("myagg", b2 -> b2
+                .put("myagg", b2 -> b2
                     .avg(b3 -> b3.field("foo"))
                 )
             )
@@ -52,7 +51,7 @@ public class RequestEncodingTest extends ModelTestCase {
 
         request = fromJson(str, SearchRequest.class, mapper);
 
-        assertTrue(request.query()._is(Query.TYPE));
+        assertTrue(request.query().isType());
         assertEquals("foo", request.query().type().value());
         assertNull(request.q());
 

@@ -22,11 +22,12 @@ package co.elastic.clients.elasticsearch.experiments;
 import co.elastic.clients.elasticsearch.experiments.api.Bar;
 import co.elastic.clients.elasticsearch.experiments.api.FooRequest;
 import co.elastic.clients.elasticsearch.experiments.api.FooResponse;
-import co.elastic.clients.elasticsearch.experiments.api.query.Query;
-import co.elastic.clients.elasticsearch.experiments.api.query.TermsQuery;
+import co.elastic.clients.elasticsearch.experiments.api.query2.Query;
+import co.elastic.clients.elasticsearch.experiments.api.query2.TermsQuery;
 import co.elastic.clients.elasticsearch.experiments.base.Client;
 import co.elastic.clients.transport.Endpoint;
 import org.junit.Test;
+
 
 import java.io.IOException;
 import java.util.Collections;
