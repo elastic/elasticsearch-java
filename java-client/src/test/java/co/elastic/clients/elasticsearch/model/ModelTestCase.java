@@ -45,7 +45,7 @@ public abstract class ModelTestCase extends Assert {
 
     private JsonpMapper setupMapper(int rand) {
         // Randomly choose json-b or jackson
-        if (rand % 2 == 0) {;
+        if (rand % 2 == 0) {
             System.out.println("Using a JsonB mapper (rand = " + rand + ").");
             return new JsonbJsonpMapper() {
                 @Override

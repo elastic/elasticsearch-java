@@ -19,154 +19,137 @@
 
 package co.elastic.clients.transport;
 
+import co.elastic.clients.elasticsearch.ElasticsearchClient;
+import co.elastic.clients.json.jsonb.JsonbJsonpMapper;
+import co.elastic.clients.transport.rest_client.RestClientTransport;
+import com.sun.net.httpserver.HttpServer;
+import org.apache.http.HttpHost;
+import org.apache.http.NameValuePair;
+import org.apache.http.client.utils.URLEncodedUtils;
+import org.elasticsearch.client.ResponseException;
+import org.elasticsearch.client.RestClient;
+import org.junit.After;
+import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 
-import java.util.Collection;
-import java.util.Collections;
+import java.io.IOException;
+import java.io.OutputStreamWriter;
+import java.net.InetAddress;
+import java.net.InetSocketAddress;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
-import java.util.stream.Collectors;
+import java.util.Locale;
+import java.util.Map;
+import java.util.Properties;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+public class RequestOptionsTest extends Assert {
 
-public class RequestOptionsTest {
+    private static HttpServer httpServer;
+    private static RestClient restClient;
 
-    @Test
-    public void testDefaultHeadersContainsClientMetadata() {
-        TransportOptions options = TransportOptions.DEFAULT;
-        List<Header> clientMetadataHeaders = options.headers().stream().filter(header ->
-                header.name().equalsIgnoreCase("X-Elastic-Client-Meta")).collect(Collectors.toList());
-        assertEquals(1, clientMetadataHeaders.size());
-        Header clientMetadataHeader = clientMetadataHeaders.get(0);
-        String clientMetadataHeaderValue = clientMetadataHeader.value();
-        assertTrue(clientMetadataHeaderValue.contains("es="));
-        assertTrue(clientMetadataHeaderValue.contains("jv="));
-        assertTrue(clientMetadataHeaderValue.contains("t="));
+
+    @Before
+    public void classSetup() throws IOException {
+
+        httpServer = HttpServer.create(new InetSocketAddress(InetAddress.getLoopbackAddress(), 0), 0);
+        httpServer.createContext("/", ex -> {
+            if (ex.getRequestMethod().equals("HEAD")) {
+                // Call to ping()
+                ex.sendResponseHeaders(200, -1);
+            }
+
+            // Call to info()
+            // Send back all request headers with a 418 that will cause an exception where we can access the LLRC response
+            ex.getResponseHeaders().putAll(ex.getRequestHeaders());
+            ex.sendResponseHeaders(418, 0);
+            OutputStreamWriter out = new OutputStreamWriter(ex.getResponseBody(), StandardCharsets.UTF_8);
+            for (Map.Entry<String, List<String>> header: ex.getRequestHeaders().entrySet()) {
+                out.write("header-");
+                out.write(header.getKey().toLowerCase(Locale.ROOT));
+                out.write("=");
+                out.write(header.getValue().get(0));
+                out.write("\n");
+            }
+            final List<NameValuePair> params = URLEncodedUtils.parse(ex.getRequestURI(), StandardCharsets.UTF_8);
+            for (NameValuePair param: params) {
+                out.write("param-");
+                out.write(param.getName());
+                out.write("=");
+                out.write(param.getValue());
+            }
+            out.close();
+        });
+
+        httpServer.start();
+        InetSocketAddress address = httpServer.getAddress();
+        restClient = RestClient.builder(new HttpHost(address.getHostString(), address.getPort(), "http"))
+            .build();
+    }
+
+    @After
+    public void classTearDown() throws IOException {
+        httpServer.stop(0);
+        restClient.close();
+    }
+
+    private Properties getProps(ElasticsearchClient client) throws IOException {
+        ResponseException ex = assertThrows(ResponseException.class, client::info);
+        assertEquals(418, ex.getResponse().getStatusLine().getStatusCode());
+        Properties result = new Properties();
+        result.load(ex.getResponse().getEntity().getContent());
+        return result;
     }
 
     @Test
-    public void testCanDisableClientMetadata() {
-        TransportOptions options = TransportOptions.DEFAULT.toBuilder()
-                .withHeader(ClientMetadata.EMPTY.toHeader())
-                .build();
-        List<Header> clientMetadataHeaders = options.headers().stream().filter(header ->
-                header.name().equalsIgnoreCase("X-Elastic-Client-Meta")).collect(Collectors.toList());
-        assertEquals(0, clientMetadataHeaders.size());
+    public void testDefaultHeaders() throws IOException {
+        final RestClientTransport trsp = new RestClientTransport(restClient, new JsonbJsonpMapper());
+        final ElasticsearchClient client = new ElasticsearchClient(trsp);
+
+        Properties props = getProps(client);
+
+        assertTrue(props.getProperty("header-user-agent").startsWith("elastic-java/" + Version.VERSION.toString()));
+        assertTrue(props.getProperty("header-x-elastic-client-meta").contains("es="));
+        assertEquals(
+            "application/vnd.elasticsearch+json; compatible-with=" + String.valueOf(Version.VERSION.major()),
+            props.getProperty("header-accept")
+        );
     }
 
     @Test
-    public void testDisabledClientMetadataIsPropagatedThroughBuilder() {
-        TransportOptions options = TransportOptions.DEFAULT.toBuilder()
-                .withHeader(ClientMetadata.EMPTY.toHeader())
-                .build();
-        List<Header> clientMetadataHeaders = options.toBuilder().headers().stream().filter(header ->
-                header.name().equalsIgnoreCase("X-Elastic-Client-Meta")).collect(Collectors.toList());
-        assertTrue(clientMetadataHeaders.contains(Header.raw("X-Elastic-Client-Meta", null)));
+    public void testClientHeader() throws IOException {
+        final RestClientTransport trsp = new RestClientTransport(restClient, new JsonbJsonpMapper());
+        final ElasticsearchClient client = new ElasticsearchClient(trsp)
+            .withTransportOptions(trsp.options().with(
+                b -> b.addHeader("X-Foo", "Bar")
+                    .addHeader("uSer-agEnt", "MegaClient/1.2.3")
+                )
+            );
+
+        Properties props = getProps(client);
+        assertEquals("Bar", props.getProperty("header-x-foo"));
+        assertEquals("MegaClient/1.2.3", props.getProperty("header-user-agent"));
     }
 
     @Test
-    public void testCanReEnableClientMetadata() {
-        TransportOptions options = TransportOptions.DEFAULT.toBuilder()
-                .withHeader(ClientMetadata.EMPTY.toHeader())
-                .withHeader(ClientMetadata.forLocalSystem().toHeader())
-                .build();
-        List<Header> clientMetadataHeaders = options.headers().stream().filter(header ->
-                header.name().equalsIgnoreCase("X-Elastic-Client-Meta")).collect(Collectors.toList());
-        assertEquals(1, clientMetadataHeaders.size());
+    public void testQueryParameter() throws IOException {
+        final RestClientTransport trsp = new RestClientTransport(restClient, new JsonbJsonpMapper());
+        final ElasticsearchClient client = new ElasticsearchClient(trsp)
+            .withTransportOptions(trsp.options().with(
+                    b -> b.setParameter("format", "pretty")
+                )
+            );
+
+        Properties props = getProps(client);
+        assertEquals("pretty", props.getProperty("param-format"));
     }
 
     @Test
-    public void testDefaultHeadersContainsUserAgent() {
-        TransportOptions options = TransportOptions.DEFAULT;
-        Collection<Header> headers = options.headers();
-        assertTrue(headers.contains(Header.raw("User-Agent", UserAgent.DEFAULT)));
-    }
+    public void testMissingProductHeader() {
+        final RestClientTransport trsp = new RestClientTransport(restClient, new JsonbJsonpMapper());
+        final ElasticsearchClient client = new ElasticsearchClient(trsp);
 
-    @Test
-    public void testCustomUserAgent() {
-        UserAgent userAgent = new UserAgent("MegaClient", "1.2.3");
-        TransportOptions options = TransportOptions.DEFAULT.toBuilder()
-                .withHeader(userAgent.toHeader())
-                .build();
-        Collection<Header> headers = options.headers();
-        assertTrue(headers.contains(Header.raw("User-Agent", "MegaClient/1.2.3")));
+        final TransportException ex = assertThrows(TransportException.class, client::ping);
+        assertTrue(ex.getMessage().contains("Missing [X-Elastic-Product] header"));
     }
-
-    @Test
-    public void testCustomUserAgentWithMetadata() {
-        UserAgent userAgent = new UserAgent("MegaClient", "1.2.3",
-                Collections.singletonMap("AmigaOS", "4.1"));
-        TransportOptions options = TransportOptions.DEFAULT.toBuilder()
-                .withHeader(userAgent.toHeader())
-                .build();
-        Collection<Header> headers = options.headers();
-        assertTrue(headers.contains(Header.raw("User-Agent", "MegaClient/1.2.3 (AmigaOS 4.1)")));
-    }
-
-    @Test
-    public void testCustomHeader() {
-        Header customHeader = Header.raw("X-Files", "Mulder, Scully");
-        TransportOptions options = TransportOptions.DEFAULT.toBuilder()
-                .withHeader(customHeader)
-                .build();
-        Collection<Header> headers = options.headers();
-        assertTrue(headers.contains(customHeader));
-    }
-
-    @Test
-    public void testOpaqueID() {
-        Header idHeader = new OpaqueID("ABC123").toHeader();
-        TransportOptions options = TransportOptions.DEFAULT.toBuilder()
-                .withHeader(idHeader)
-                .build();
-        Collection<Header> headers = options.headers();
-        assertTrue(headers.contains(idHeader));
-    }
-
-    @Test
-    public void testNullOpaqueIDShouldDisableHeader() {
-        Header idHeader = new OpaqueID(null).toHeader();
-        TransportOptions options = TransportOptions.DEFAULT.toBuilder()
-                .withHeader(idHeader)
-                .build();
-        List<Header> idHeaders = options.headers().stream().filter(header ->
-                header.name().equalsIgnoreCase("X-Opaque-ID")).collect(Collectors.toList());
-        assertEquals(0, idHeaders.size());
-    }
-
-    @Test
-    public void testQueryParameter() {
-        QueryParameter prettyPrint = QueryParameter.raw("format", "pretty");
-        TransportOptions options = TransportOptions.DEFAULT.toBuilder()
-                .withQueryParameter(prettyPrint)
-                .build();
-        List<QueryParameter> formatParameters = options.queryParameters().stream().filter(header ->
-                header.name().equals("format")).collect(Collectors.toList());
-        assertEquals(1, formatParameters.size());
-        assertTrue(formatParameters.contains(prettyPrint));
-    }
-
-    @Test
-    public void testNullQueryParameter() {
-        QueryParameter nullFormat = QueryParameter.raw("format", null);
-        TransportOptions options = TransportOptions.DEFAULT.toBuilder()
-                .withQueryParameter(nullFormat)
-                .build();
-        List<QueryParameter> formatParameters = options.queryParameters().stream().filter(header ->
-                header.name().equals("format")).collect(Collectors.toList());
-        assertEquals(0, formatParameters.size());
-    }
-
-    @Test
-    public void testBuilderContainsNullQueryParameter() {
-        QueryParameter nullFormat = QueryParameter.raw("format", null);
-        TransportOptions options = TransportOptions.DEFAULT.toBuilder()
-                .withQueryParameter(nullFormat)
-                .build();
-        List<QueryParameter> formatParameters = options.toBuilder().queryParameters().stream().filter(header ->
-                header.name().equals("format")).collect(Collectors.toList());
-        assertEquals(1, formatParameters.size());
-        assertTrue(formatParameters.contains(nullFormat));
-    }
-
 }

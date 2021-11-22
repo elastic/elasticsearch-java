@@ -40,11 +40,9 @@ public class ObjectDeserializer<ObjectType> implements JsonpDeserializer<ObjectT
     /** A field deserializer parses a value and calls the setter on the target object. */
     public abstract static class FieldDeserializer<ObjectType> {
         protected final String name;
-        protected final String[] deprecatedNames;
 
-        public FieldDeserializer(String name, String[] deprecatedNames) {
+        public FieldDeserializer(String name) {
             this.name = name;
-            this.deprecatedNames = deprecatedNames;
         }
 
         public abstract void deserialize(JsonParser parser, JsonpMapper mapper, String fieldName, ObjectType object);
@@ -59,9 +57,9 @@ public class ObjectDeserializer<ObjectType> implements JsonpDeserializer<ObjectT
 
         public FieldObjectDeserializer(
             BiConsumer<ObjectType, FieldType> setter, JsonpDeserializer<FieldType> deserializer,
-            String name, String[] deprecatedNames
+            String name
         ) {
-            super(name, deprecatedNames);
+            super(name);
             this.setter = setter;
             this.deserializer = deserializer;
         }
@@ -82,7 +80,7 @@ public class ObjectDeserializer<ObjectType> implements JsonpDeserializer<ObjectT
         }
     }
 
-    private static final FieldDeserializer<?> IGNORED_FIELD = new FieldDeserializer<Object>("-", null) {
+    private static final FieldDeserializer<?> IGNORED_FIELD = new FieldDeserializer<Object>("-") {
 
         @Override
         public void deserialize(JsonParser parser, JsonpMapper mapper, String fieldName, Object object) {
@@ -239,18 +237,28 @@ public class ObjectDeserializer<ObjectType> implements JsonpDeserializer<ObjectT
     public <FieldType> void add(
         BiConsumer<ObjectType, FieldType> setter,
         JsonpDeserializer<FieldType> deserializer,
-        String name, String... deprecatedNames
+        String name
     ) {
         FieldObjectDeserializer<ObjectType, FieldType> fieldDeserializer =
-            new FieldObjectDeserializer<>(setter, deserializer, name, deprecatedNames);
+            new FieldObjectDeserializer<>(setter, deserializer, name);
         this.fieldDeserializers.put(name, fieldDeserializer);
-        for (String alias: deprecatedNames) {
+    }
+
+    public <FieldType> void add(
+        BiConsumer<ObjectType, FieldType> setter,
+        JsonpDeserializer<FieldType> deserializer,
+        String name, String... aliases
+    ) {
+        FieldObjectDeserializer<ObjectType, FieldType> fieldDeserializer =
+            new FieldObjectDeserializer<>(setter, deserializer, name);
+        this.fieldDeserializers.put(name, fieldDeserializer);
+        for (String alias: aliases) {
             this.fieldDeserializers.put(alias, fieldDeserializer);
         }
     }
 
     public <FieldType> void setKey(BiConsumer<ObjectType, FieldType> setter, JsonpDeserializer<FieldType> deserializer) {
-        this.singleKey = new FieldObjectDeserializer<>(setter, deserializer, null, null);
+        this.singleKey = new FieldObjectDeserializer<>(setter, deserializer, null);
     }
 
     public void setTypeProperty(String name) {

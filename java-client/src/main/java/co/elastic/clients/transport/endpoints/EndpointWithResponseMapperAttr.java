@@ -17,11 +17,12 @@
  * under the License.
  */
 
-package co.elastic.clients.transport;
+package co.elastic.clients.transport.endpoints;
 
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.transport.Endpoint;
 import jakarta.json.stream.JsonParser;
 
 import javax.annotation.Nullable;

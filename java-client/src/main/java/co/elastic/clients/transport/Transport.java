@@ -25,7 +25,6 @@ import co.elastic.clients.json.JsonpMapper;
 import javax.annotation.Nullable;
 import java.io.Closeable;
 import java.io.IOException;
-import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 
 /**
@@ -48,19 +47,8 @@ public interface Transport extends Closeable {
     JsonpMapper jsonpMapper();
 
     /**
-     * Get a map of key-value pairs representing the transport headers
-     * used by all requests going via this transport.
-     *
-     * @return Map of header key-value pairs
+     * Default options used by this transport if none are provided in {@link #performRequest(Object, Endpoint, TransportOptions)} or
+     * {@link #performRequestAsync(Object, Endpoint, TransportOptions)};
      */
-    Map<String, String> headers();
-
-    /**
-     * Get a map of key-value pairs representing the transport query
-     * parameters used by all requests going via this transport.
-     *
-     * @return Map of query parameter key-value pairs
-     */
-    Map<String, String> queryParameters();
-
+    TransportOptions options();
 }

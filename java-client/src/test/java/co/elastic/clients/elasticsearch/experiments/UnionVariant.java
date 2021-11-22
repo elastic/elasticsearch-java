@@ -17,19 +17,15 @@
  * under the License.
  */
 
-package co.elastic.clients.transport;
+package co.elastic.clients.elasticsearch.experiments;
 
 /**
- * Interface implemented by any classes whose instances
- * can represent an HTTP header value, such as {@link UserAgent}.
+ * An implementation of a variant type.
  */
-public interface ConvertibleToHeader {
+public interface UnionVariant<Tag> {
 
     /**
-     * Convert this object into an HTTP header.
-     *
-     * @return {@link Header} instance
+     * Get the type of this object when used as a variant
      */
-    Header toHeader();
-
+    Tag _variantType();
 }

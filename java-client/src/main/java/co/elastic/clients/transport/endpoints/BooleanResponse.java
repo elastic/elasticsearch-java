@@ -17,31 +17,20 @@
  * under the License.
  */
 
-package co.elastic.clients.transport;
+package co.elastic.clients.transport.endpoints;
 
 /**
- * Wraps a {@link MediaType} in the context of an HTTP
- * <em>Accept</em> header.
+ * An API response that has boolean value according to the HTTP status code.
+ * Typically status codes 1xx, 2xx and 3xx are "true" and 4xx is false.
  */
-public class AcceptType implements ConvertibleToHeader {
+public class BooleanResponse {
+    private final boolean value;
 
-    public static AcceptType forMediaType(MediaType mediaType) {
-        return new AcceptType(mediaType);
+    public BooleanResponse(boolean value) {
+        this.value = value;
     }
 
-    private final MediaType mediaType;
-
-    private AcceptType(MediaType mediaType) {
-        this.mediaType = mediaType;
+    public boolean value() {
+        return value;
     }
-
-    public MediaType mediaType() {
-        return mediaType;
-    }
-
-    @Override
-    public Header toHeader() {
-        return Header.raw("Accept", mediaType);
-    }
-
 }

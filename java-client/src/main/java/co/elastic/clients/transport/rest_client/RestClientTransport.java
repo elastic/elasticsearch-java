@@ -24,18 +24,25 @@ import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.NdJsonpSerializable;
-import co.elastic.clients.transport.BooleanEndpoint;
-import co.elastic.clients.transport.BooleanResponse;
+import co.elastic.clients.transport.TransportException;
+import co.elastic.clients.transport.Version;
+import co.elastic.clients.transport.endpoints.BooleanEndpoint;
+import co.elastic.clients.transport.endpoints.BooleanResponse;
+import co.elastic.clients.transport.ElasticsearchTransport;
 import co.elastic.clients.transport.Endpoint;
-import co.elastic.clients.transport.Transport;
 import co.elastic.clients.transport.TransportOptions;
+import co.elastic.clients.util.MissingRequiredPropertyException;
 import co.elastic.clients.util.ModelTypeHelper;
 import jakarta.json.stream.JsonGenerator;
 import jakarta.json.stream.JsonParser;
+import org.apache.http.HttpEntity;
+import org.apache.http.entity.BufferedHttpEntity;
 import org.apache.http.entity.ByteArrayEntity;
 import org.apache.http.entity.ContentType;
+import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
 import org.elasticsearch.client.Cancellable;
+import org.elasticsearch.client.RequestOptions;
 import org.elasticsearch.client.Response;
 import org.elasticsearch.client.ResponseException;
 import org.elasticsearch.client.ResponseListener;
@@ -45,21 +52,51 @@ import javax.annotation.Nullable;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 
-public class RestClientTransport implements Transport {
+public class RestClientTransport implements ElasticsearchTransport {
+
+    static final ContentType JsonContentType;
+
+    static {
+
+        if (Version.VERSION == null) {
+            JsonContentType = ContentType.APPLICATION_JSON;
+        } else {
+            JsonContentType = ContentType.create(
+                "application/vnd.elasticsearch+json",
+                new BasicNameValuePair("compatible-with", String.valueOf(Version.VERSION.major()))
+            );
+        }
+    }
+
+    /**
+     * The {@code Future} implementation returned by async requests.
+     * It wraps the RestClient's cancellable and progagates cancellation.
+     */
+    private static class RequestFuture<T> extends CompletableFuture<T> {
+        private volatile Cancellable cancellable;
+
+        @Override
+        public boolean cancel(boolean mayInterruptIfRunning) {
+            boolean cancelled = super.cancel(mayInterruptIfRunning);
+            if (cancelled && cancellable != null) {
+                cancellable.cancel();
+            }
+            return cancelled;
+        }
+    }
 
     private final RestClient restClient;
     private final JsonpMapper mapper;
-    private final TransportOptions transportOptions;
+    private final RestClientOptions transportOptions;
 
     public RestClientTransport(RestClient restClient, JsonpMapper mapper, @Nullable TransportOptions options) {
         this.restClient = restClient;
         this.mapper = mapper;
-        this.transportOptions = options == null ? TransportOptions.DEFAULT : options;
+        this.transportOptions = options == null ? RestClientOptions.initialOptions() : RestClientOptions.of(options);
     }
 
     public RestClientTransport(RestClient restClient, JsonpMapper mapper) {
@@ -67,7 +104,14 @@ public class RestClientTransport implements Transport {
     }
 
     /**
-     * Creates a new {@link #RestClientTransport} with specific request options.
+     * Returns the underlying low level Rest Client used by this transport.
+     */
+    public RestClient restClient() {
+        return this.restClient;
+    }
+
+    /**
+     * Copies this {@link #RestClientTransport} with specific request options.
      */
     public RestClientTransport withRequestOptions(@Nullable TransportOptions options) {
         return new RestClientTransport(this.restClient, this.mapper, options);
@@ -79,21 +123,8 @@ public class RestClientTransport implements Transport {
     }
 
     @Override
-    public Map<String, String> headers() {
-        Map<String, String> headers = new HashMap<>();
-        transportOptions.headers().forEach(header -> {
-            headers.put(header.name(), header.value());
-        });
-        return headers;
-    }
-
-    @Override
-    public Map<String, String> queryParameters() {
-        Map<String, String> queryParameters = new HashMap<>();
-        transportOptions.queryParameters().forEach(parameter -> {
-            queryParameters.put(parameter.name(), parameter.value());
-        });
-        return queryParameters;
+    public TransportOptions options() {
+        return transportOptions;
     }
 
     @Override
@@ -121,6 +152,7 @@ public class RestClientTransport implements Transport {
 
         RequestFuture<ResponseT> future = new RequestFuture<>();
 
+        // Propagate required property checks to the thread that will decode the response
         boolean disableRequiredChecks = ModelTypeHelper.requiredPropertiesCheckDisabled();
 
         future.cancellable = restClient.performRequestAsync(clientReq, new ResponseListener() {
@@ -128,8 +160,10 @@ public class RestClientTransport implements Transport {
             public void onSuccess(Response clientResp) {
                 try (ModelTypeHelper.DisabledChecksHandle h =
                          ModelTypeHelper.DANGEROUS_disableRequiredPropertiesCheck(disableRequiredChecks)) {
+
                     ResponseT response = getHighLevelResponse(clientResp, endpoint);
                     future.complete(response);
+
                 } catch (Exception e) {
                     future.completeExceptionally(e);
                 }
@@ -144,19 +178,6 @@ public class RestClientTransport implements Transport {
         return future;
     }
 
-    private static class RequestFuture<T> extends CompletableFuture<T> {
-        private volatile Cancellable cancellable;
-
-        @Override
-        public boolean cancel(boolean mayInterruptIfRunning) {
-            boolean cancelled = super.cancel(mayInterruptIfRunning);
-            if (cancelled && cancellable != null) {
-                cancellable.cancel();
-            }
-            return cancelled;
-        }
-    }
-
     private <RequestT> org.elasticsearch.client.Request prepareLowLevelRequest(
         RequestT request,
         Endpoint<RequestT, ?, ?> endpoint,
@@ -167,11 +188,16 @@ public class RestClientTransport implements Transport {
         Map<String, String> params = endpoint.queryParameters(request);
 
         org.elasticsearch.client.Request clientReq = new org.elasticsearch.client.Request(method, path);
-        org.elasticsearch.client.RequestOptions.Builder optBuilder = org.elasticsearch.client.RequestOptions.DEFAULT.toBuilder();
-        headers().forEach(optBuilder::addHeader);
-        queryParameters().forEach(optBuilder::addParameter);
+
+        RequestOptions restOptions = options == null ?
+            transportOptions.restClientRequestOptions() :
+            RestClientOptions.of(options).restClientRequestOptions();
+
+        if (restOptions != null) {
+            clientReq.setOptions(restOptions);
+        }
+
         clientReq.addParameters(params);
-        clientReq.setOptions(optBuilder.build());
 
         if (endpoint.hasRequestBody()) {
             // Request has a body and must implement JsonpSerializable or NdJsonpSerializable
@@ -185,7 +211,7 @@ public class RestClientTransport implements Transport {
                 generator.close();
             }
 
-            clientReq.setEntity(new ByteArrayEntity(baos.toByteArray(), ContentType.APPLICATION_JSON));
+            clientReq.setEntity(new ByteArrayEntity(baos.toByteArray(), JsonContentType));
         }
         // Request parameter intercepted by LLRC
         clientReq.addParameter("ignore", "400,401,403,404,405");
@@ -219,49 +245,93 @@ public class RestClientTransport implements Transport {
         try {
             int statusCode = clientResp.getStatusLine().getStatusCode();
 
+            if (statusCode == 200) {
+                checkProductHeader(clientResp);
+            }
+
             if (endpoint.isError(statusCode)) {
-                // API error
-                ErrorT error = null;
+                JsonpDeserializer<ErrorT> errorDeserializer = endpoint.errorDeserializer(statusCode);
+                if (errorDeserializer == null) {
+                    throw new TransportException("Request failed with status code " + statusCode, new ResponseException(clientResp));
+                }
+
+                HttpEntity entity = clientResp.getEntity();
+                if (entity == null) {
+                    throw new TransportException("Expecting a response body, but none was sent", new ResponseException(clientResp));
+                }
+
+                // We may have to replay it.
+                entity = new BufferedHttpEntity(entity);
+
                 try {
-                    JsonpDeserializer<ErrorT> errorParser = endpoint.errorDeserializer(statusCode);
-                    if (errorParser != null) {
-                        // Expecting a body
-                        InputStream content = clientResp.getEntity().getContent();
-                        JsonParser parser = mapper.jsonProvider().createParser(content);
-                        error = errorParser.deserialize(parser, mapper);
+                    InputStream content = entity.getContent();
+                    try (JsonParser parser = mapper.jsonProvider().createParser(content)) {
+                        ErrorT error = errorDeserializer.deserialize(parser, mapper);
+                        // TODO: have the endpoint provide the exception constructor
+                        throw new ElasticsearchException((ErrorResponse) error);
                     }
-                } catch (Exception ex) {
-                    // Cannot decode error
-                    ResponseException respEx = new ResponseException(clientResp);
-                    respEx.initCause(ex);
-                    throw respEx;
+                } catch(MissingRequiredPropertyException errorEx) {
+                    // Could not decode exception, try the response type
+                    try {
+                        ResponseT response = decodeResponse(statusCode, entity, clientResp, endpoint);
+                        return response;
+                    } catch(Exception respEx) {
+                        // No better luck: throw the original error decoding exception
+                        throw new TransportException("Failed to decode error response", new ResponseException(clientResp));
+                    }
                 }
-
-                // TODO: have the endpoint provide the exception constructor
-                throw new ElasticsearchException((ErrorResponse) error);
-
-            } else if (endpoint instanceof BooleanEndpoint) {
-                BooleanEndpoint<?> bep = (BooleanEndpoint<?>) endpoint;
-
-                @SuppressWarnings("unchecked")
-                ResponseT response = (ResponseT) new BooleanResponse(bep.getResult(statusCode));
-
-                return response;
-
             } else {
-                // Successful response
-                ResponseT response = null;
-                JsonpDeserializer<ResponseT> responseParser = endpoint.responseDeserializer();
-                if (responseParser != null) {
-                    // Expecting a body
-                    InputStream content = clientResp.getEntity().getContent();
-                    JsonParser parser = mapper.jsonProvider().createParser(content);
-                    response = responseParser.deserialize(parser, mapper);
-                }
-                return response;
+                return decodeResponse(statusCode, clientResp.getEntity(), clientResp, endpoint);
             }
         } finally {
             EntityUtils.consume(clientResp.getEntity());
         }
+    }
+
+    private <ResponseT> ResponseT decodeResponse(
+        int statusCode, @Nullable HttpEntity entity, Response clientResp, Endpoint<?, ResponseT, ?> endpoint
+    ) throws IOException {
+
+        if (endpoint instanceof BooleanEndpoint) {
+            BooleanEndpoint<?> bep = (BooleanEndpoint<?>) endpoint;
+
+            @SuppressWarnings("unchecked")
+            ResponseT response = (ResponseT) new BooleanResponse(bep.getResult(statusCode));
+            return response;
+
+        } else {
+            // Successful response
+            ResponseT response = null;
+            JsonpDeserializer<ResponseT> responseParser = endpoint.responseDeserializer();
+            if (responseParser != null) {
+                // Expecting a body
+                if (entity == null) {
+                    throw new TransportException("Expecting a response body, but none was sent", new ResponseException(clientResp));
+                }
+                InputStream content = entity.getContent();
+                try (JsonParser parser = mapper.jsonProvider().createParser(content)) {
+                    response = responseParser.deserialize(parser, mapper);
+                };
+            }
+            return response;
+        }
+    }
+
+    private void checkProductHeader(Response clientResp) throws IOException {
+        String header = clientResp.getHeader("X-Elastic-Product");
+        if (header == null) {
+            throw new TransportException(
+                "Missing [X-Elastic-Product] header. Please check that you are connecting to an Elasticsearch "
+                    + "instance, and that any networking filters are preserving that header.",
+                new ResponseException(clientResp)
+            );
+        }
+
+        if (!"Elasticsearch".equals(header)) {
+            throw new TransportException("Invalid value [" + header + "] for [X-Elastic-Product] header.",
+                new ResponseException(clientResp)
+            );
+        }
+
     }
 }

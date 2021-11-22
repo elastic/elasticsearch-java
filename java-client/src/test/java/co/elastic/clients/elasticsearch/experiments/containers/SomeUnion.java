@@ -114,7 +114,8 @@ public class SomeUnion implements TaggedUnion<SomeUnion.Kind, SomeUnionVariant>,
         public ObjectBuilder<SomeUnion> variantA(UVariantA value) {
             this._value = value;
             this._type = Kind.VariantA;
-            return ObjectBuilder.constant(build());
+            final SomeUnion result = build();
+            return () -> result;
         }
 
         public ObjectBuilder<SomeUnion> variantA(Function<UVariantA.Builder, UVariantA.Builder> fn) {
@@ -126,7 +127,8 @@ public class SomeUnion implements TaggedUnion<SomeUnion.Kind, SomeUnionVariant>,
         public ObjectBuilder<SomeUnion> variantB(UVariantB value) {
             this._value = value;
             this._type = Kind.VariantB;
-            return ObjectBuilder.constant(build());
+            final SomeUnion result = build();
+            return () -> result;
         }
 
         public ObjectBuilder<SomeUnion> variantB(Function<UVariantB.Builder, UVariantB.Builder> fn) {
