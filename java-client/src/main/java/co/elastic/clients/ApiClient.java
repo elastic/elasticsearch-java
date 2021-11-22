@@ -26,19 +26,19 @@ import co.elastic.clients.json.JsonpMapperBase;
 
 import javax.annotation.Nullable;
 
-public abstract class ApiClient<Self extends ApiClient<Self>> {
+public abstract class ApiClient<T extends Transport, Self extends ApiClient<T, Self>> {
 
-    protected final Transport transport;
+    protected final T transport;
     protected final TransportOptions transportOptions;
 
-    protected ApiClient(Transport transport, TransportOptions transportOptions) {
+    protected ApiClient(T transport, TransportOptions transportOptions) {
         this.transport = transport;
         this.transportOptions = transportOptions;
     }
 
-    protected <T> JsonpDeserializer<T> getDeserializer(Class<T> clazz) {
+    protected <V> JsonpDeserializer<V> getDeserializer(Class<V> clazz) {
         // Try the built-in deserializers first to avoid repeated lookups in the Jsonp mapper for client-defined classes
-        JsonpDeserializer<T> result = JsonpMapperBase.findDeserializer(clazz);
+        JsonpDeserializer<V> result = JsonpMapperBase.findDeserializer(clazz);
         if (result != null) {
             return result;
         }
@@ -51,7 +51,7 @@ public abstract class ApiClient<Self extends ApiClient<Self>> {
      */
     public abstract Self withTransportOptions(@Nullable TransportOptions transportOptions);
 
-    public Transport _transport() {
+    public T _transport() {
         return this.transport;
     }
 

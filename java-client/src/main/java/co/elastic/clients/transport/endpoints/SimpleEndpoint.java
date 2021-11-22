@@ -17,10 +17,11 @@
  * under the License.
  */
 
-package co.elastic.clients.transport;
+package co.elastic.clients.transport.endpoints;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.json.JsonpDeserializer;
+import co.elastic.clients.transport.Endpoint;
 import org.apache.http.client.utils.URLEncodedUtils;
 
 import java.util.Collections;

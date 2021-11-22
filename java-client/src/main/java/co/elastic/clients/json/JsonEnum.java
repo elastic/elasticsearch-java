@@ -23,6 +23,7 @@ import jakarta.json.stream.JsonGenerator;
 import jakarta.json.stream.JsonParser;
 import jakarta.json.stream.JsonParsingException;
 
+import javax.annotation.Nullable;
 import java.util.EnumSet;
 import java.util.HashMap;
 import java.util.Map;
@@ -33,6 +34,11 @@ import java.util.NoSuchElementException;
  */
 public interface JsonEnum extends JsonpSerializable {
     String jsonValue();
+
+    @Nullable
+    default String[] aliases() {
+        return null;
+    }
 
     @Override
     default void serialize(JsonGenerator generator, JsonpMapper params) {
@@ -52,6 +58,12 @@ public interface JsonEnum extends JsonpSerializable {
             this.lookupTable = new HashMap<>((int)(values.length / 0.75f) + 1);
             for (T member : values) {
                 this.lookupTable.put(member.jsonValue(), member);
+                String[] aliases = member.aliases();
+                if (aliases != null) {
+                    for (String alias: aliases) {
+                        this.lookupTable.put(alias, member);
+                    }
+                }
             }
         }
 

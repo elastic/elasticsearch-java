@@ -17,20 +17,30 @@
  * under the License.
  */
 
-package co.elastic.clients.transport;
+package co.elastic.clients.elasticsearch.model;
 
-/**
- * An API response that has boolean value according to the HTTP status code.
- * Typically status codes 1xx, 2xx and 3xx are "true" and 4xx is false.
- */
-public class BooleanResponse {
-    private final boolean value;
+import co.elastic.clients.elasticsearch._types.Bytes;
+import co.elastic.clients.elasticsearch._types.mapping.GeoOrientation;
+import org.junit.Assert;
+import org.junit.Test;
 
-    public BooleanResponse(boolean value) {
-        this.value = value;
+import java.util.Arrays;
+
+public class EnumTest extends Assert {
+
+    @Test
+    public void testSimpleEnum() {
+        assertNull(Bytes.GigaBytes.aliases());
+        assertEquals(Bytes.GigaBytes, Bytes._DESERIALIZER.parse("gb"));
     }
 
-    public boolean value() {
-        return value;
+    @Test
+    public void testEnumWithAliases() {
+        assertEquals("left", GeoOrientation.Left.jsonValue());
+        assertNotNull(GeoOrientation.Left.aliases());
+
+        Arrays.asList("right", "RIGHT", "counterclockwise", "ccw").forEach(alias -> {
+            assertEquals(GeoOrientation.Right, GeoOrientation._DESERIALIZER.parse(alias));
+        });
     }
 }

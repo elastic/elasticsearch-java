@@ -82,7 +82,7 @@ public class ClassStructureTest extends ModelTestCase {
 
         // Not setting a required primitive should throw an exception
         {
-            assertThrows(MissingRequiredPropertyException.class, () -> TotalHits.of(b -> b));
+            assertThrows(MissingRequiredPropertyException.class, () -> TotalHits.of(b -> {}));
         }
     }
 
@@ -142,7 +142,7 @@ public class ClassStructureTest extends ModelTestCase {
 
         // Unset list should be non-null, empty but not serialized
         {
-            SearchRequest search = SearchRequest.of(b -> b);
+            SearchRequest search = SearchRequest.of(b -> {});
             assertNotNull(search.storedFields());
             assertEquals(0, search.storedFields().size());
             assertFalse(ModelTypeHelper.isDefined(search.storedFields()));

@@ -17,20 +17,17 @@
  * under the License.
  */
 
-package co.elastic.clients.util;
+package co.elastic.clients.transport;
 
-/**
- * An object builder that always returns the same value.
- */
-public class ConstantBuilder<V> implements ObjectBuilder<V> {
-    private final V value;
+import java.io.IOException;
 
-    public ConstantBuilder(V value) {
-        this.value = value;
+public class TransportException extends IOException {
+
+    public TransportException(String message) {
+        super(message);
     }
 
-    @Override
-    public V build() {
-        return value;
+    public TransportException(String message, Throwable cause) {
+        super(message, cause);
     }
 }

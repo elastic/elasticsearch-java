@@ -19,33 +19,15 @@
 
 package co.elastic.clients.transport;
 
+import co.elastic.clients.ApiClient;
+
+import javax.annotation.Nullable;
+import java.io.InputStream;
 import java.util.Objects;
+import java.util.Properties;
 
 /**
- * This class represents an immutable product version, as specified in
- * <a href="https://github.com/elastic/clients-team/blob/master/knowledgebase/specifications/client-meta-header.md#registries">
- *     Structured HTTP Header for Client Metadata</a>.
- *
- * In that specification it is stated that a version string must match
- * the following regex:
- *     <code>^[0-9]{1,2}\.[0-9]{1,2}(?:\.[0-9]{1,3})?p?$</code>.
- *
- * Therefore, the following rules are encoded within this class:
- *
- * 1. The major and minor versions are mandatory and can be any value
- *    between 0 and 99 inclusive. It is unstated in the specification,
- *    but the assumption is made that leading zeros do not affect the
- *    value of the field, i.e. "05" is equal to "5". Values outside
- *    the range 0..99 will throw an exception.
- * 2. The maintenance version is optional can be any value between
- *    0 and 999 inclusive. As above, it is assumed that leading zeros
- *    do not affect the field value, and values outside the given
- *    range will throw an exception. To model optionality, the special
- *    value -1 can be used to denote omission.
- *
- * @see <a href="https://github.com/elastic/dev/blob/main/releases/time_based_releases.md#versioning">
- *     Time-based releases - Versioning</a>
- *
+ * This class represents a SemVer version, with an optional patch revision.
  */
 public class Version {
 
@@ -57,8 +39,7 @@ public class Version {
     /**
      * Parse a version string formatted using the standard Maven version format.
      *
-     * @param version
-     * @return
+     * @return the version, or {@code null} if the version could not be parsed.
      */
     public static Version parse(String version) {
         int hyphen = version.indexOf('-');
@@ -70,6 +51,7 @@ public class Version {
         else {
             isPreRelease = false;
         }
+
         String[] bits = version.split("\\.");
         try {
             int major = (bits.length >= 1) ? Integer.parseInt(bits[0]) : 0;
@@ -78,30 +60,14 @@ public class Version {
             return new Version(major, minor, maintenance, isPreRelease);
         }
         catch(NumberFormatException ex) {
-            throw new IllegalArgumentException("Failed to parse numeric version components in " + version);
+            return null;
         }
     }
 
     public Version(int major, int minor, int maintenance, boolean isPreRelease) {
-        // Set major version
-        if (major < 0 || major > 99) {
-            throw new IllegalArgumentException("Major version must be between 0 and 99 inclusive");
-        }
         this.major = major;
-
-        // Set minor version
-        if (minor < 0 || minor > 99) {
-            throw new IllegalArgumentException("Minor version must be between 0 and 99 inclusive");
-        }
         this.minor = minor;
-
-        // Set maintenance version
-        if (maintenance < -1 || maintenance > 999) {
-            throw new IllegalArgumentException("Maintenance version must be between 0 and 999 inclusive, or -1 if omitted");
-        }
         this.maintenance = maintenance;
-
-        // Set the pre-release flag
         this.isPreRelease = isPreRelease;
     }
 
@@ -153,4 +119,27 @@ public class Version {
         return s.toString();
     }
 
+    /**
+     * This library's version, read from the classpath. Can be {@code null} if the version resource could not be read.
+     */
+    @Nullable
+    public static final Version VERSION;
+
+    static {
+        Version version = null;
+        InputStream in = ApiClient.class.getResourceAsStream("version.properties");
+        if (in != null) {
+            Properties properties = new Properties();
+            try {
+                properties.load(in);
+                String versionStr = properties.getProperty("version");
+                if (versionStr != null) {
+                    version = Version.parse(versionStr);
+                }
+            } catch (Exception e) {
+                // Failed to read version.properties file
+            }
+        }
+        VERSION = version;
+    }
 }

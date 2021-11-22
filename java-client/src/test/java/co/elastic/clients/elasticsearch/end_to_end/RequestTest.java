@@ -26,6 +26,8 @@ import co.elastic.clients.elasticsearch._types.Refresh;
 import co.elastic.clients.elasticsearch._types.aggregations.HistogramAggregate;
 import co.elastic.clients.elasticsearch.cat.NodesResponse;
 import co.elastic.clients.elasticsearch.core.BulkResponse;
+import co.elastic.clients.elasticsearch.core.ClearScrollResponse;
+import co.elastic.clients.elasticsearch.core.ClosePointInTimeResponse;
 import co.elastic.clients.elasticsearch.core.GetResponse;
 import co.elastic.clients.elasticsearch.core.IndexResponse;
 import co.elastic.clients.elasticsearch.core.MsearchResponse;
@@ -39,16 +41,13 @@ import co.elastic.clients.elasticsearch.indices.IndexState;
 import co.elastic.clients.elasticsearch.model.ModelTestCase;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.jsonb.JsonbJsonpMapper;
-import co.elastic.clients.transport.BooleanResponse;
-import co.elastic.clients.transport.Header;
-import co.elastic.clients.transport.Transport;
-import co.elastic.clients.transport.TransportOptions;
+import co.elastic.clients.transport.endpoints.BooleanResponse;
+import co.elastic.clients.transport.ElasticsearchTransport;
 import co.elastic.clients.transport.rest_client.RestClientTransport;
 import org.apache.http.HttpHost;
 import org.apache.http.auth.AuthScope;
 import org.apache.http.auth.UsernamePasswordCredentials;
 import org.apache.http.impl.client.BasicCredentialsProvider;
-import org.elasticsearch.client.ResponseException;
 import org.elasticsearch.client.RestClient;
 import org.junit.AfterClass;
 import org.junit.Assert;
@@ -68,7 +67,7 @@ public class RequestTest extends Assert {
     private static ElasticsearchContainer container;
     private static final JsonpMapper mapper = new JsonbJsonpMapper();
     private static RestClient restClient;
-    private static Transport transport;
+    private static ElasticsearchTransport transport;
     private static ElasticsearchClient client;
 
     @BeforeClass
@@ -165,16 +164,8 @@ public class RequestTest extends Assert {
         assertEquals(1337, esData.getIntValue());
         assertEquals("foo", esData.getMsg());
 
-        // Search, adding some request options
-        TransportOptions options = TransportOptions.DEFAULT.toBuilder()
-                .withHeader(
-                        Header.raw("x-super-header", "bar"))
-                .build();
-
-        SearchResponse<AppData> search = new ElasticsearchClient(
-            ((RestClientTransport) client._transport()).withRequestOptions(options)
-        )
-            .search(b -> b
+        // Search
+        SearchResponse<AppData> search = client.search(b -> b
                 .index(index)
                 , AppData.class
         );
@@ -196,11 +187,11 @@ public class RequestTest extends Assert {
             .searches(_1 -> _1
                 .add(_2 -> _2
                     .header(_3 -> _3.index(index))
-                    .body(_3 -> _3.query(_4 -> _4.matchAll(_5 -> _5)))
+                    .body(_3 -> _3.query(_4 -> _4.matchAll(_5 -> {})))
                 )
                 .add(_2 -> _2
                     .header(_3 -> _3.index("non-existing"))
-                    .body(_3 -> _3.query(_4 -> _4.matchAll(_5 -> _5)))
+                    .body(_3 -> _3.query(_4 -> _4.matchAll(_5 -> {})))
                 )
             )
             , AppData.class);
@@ -215,7 +206,7 @@ public class RequestTest extends Assert {
     @Test
     public void testCatRequest() throws IOException {
         // Cat requests should have the "format=json" added by the transport
-        NodesResponse nodes = client.cat().nodes(_0 -> _0);
+        NodesResponse nodes = client.cat().nodes(_0 -> {});
         System.out.println(ModelTestCase.toJson(nodes, mapper));
 
         assertEquals(1, nodes.valueBody().size());
@@ -298,17 +289,22 @@ public class RequestTest extends Assert {
     }
 
     @Test
-    public void testSearchScroll() {
+    public void testErrorStatusCodeWithValidResponse() throws IOException {
         // https://github.com/elastic/elasticsearch-java/issues/36
-        assertThrows(ResponseException.class, () ->
-            client.clearScroll(b -> b.scrollId("DXF1ZXJ5QW5kRmV0Y2gBAAAAAAAAAD4WYm9laVYtZndUQlNsdDcwakFMNjU1QQ=="))
-        );
 
-        assertThrows(ResponseException.class, () ->
-            client.closePointInTime(b -> b.id(
-            "46ToAwMDaWR5BXV1aWQyKwZub2RlXzMAAAAAAAAAACoBYwADaWR4BXV1aWQxAgZub2RlXzEAAAAAAAAAAAEBY" +
-                "QADaWR5BXV1aWQyKgZub2RlXzIAAAAAAAAAAAwBYgACBXV1aWQyAAAFdXVpZDEAAQltYXRjaF9hbGw_gAAAAA=="))
+        // Some endpoints return a faulty status code 404 with a valid response.
+        // Transports should first try to decode an error, and if they fail because of missing properties for
+        // the error type, then try to decode the regular request.
+
+        final ClearScrollResponse clearResponse = client.clearScroll(b -> b.scrollId(
+            "DXF1ZXJ5QW5kRmV0Y2gBAAAAAAAAAD4WYm9laVYtZndUQlNsdDcwakFMNjU1QQ==")
         );
+        assertEquals(0, clearResponse.numFreed());
+
+        final ClosePointInTimeResponse closeResponse = client.closePointInTime(b -> b.id(
+            "46ToAwMDaWR5BXV1aWQyKwZub2RlXzMAAAAAAAAAACoBYwADaWR4BXV1aWQxAgZub2RlXzEAAAAAAAAAAAEBY" +
+                "QADaWR5BXV1aWQyKgZub2RlXzIAAAAAAAAAAAwBYgACBXV1aWQyAAAFdXVpZDEAAQltYXRjaF9hbGw_gAAAAA=="));
+        assertEquals(0, closeResponse.numFreed());
     }
 
     @Test

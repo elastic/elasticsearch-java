@@ -147,7 +147,7 @@ public class Query implements TaggedUnion<Query.Kind, Query.Variant>, JsonpSeria
 
         // If we don't have container properties, the container builder is not necessary
         public ObjectBuilder<Query> foo() {
-            return ObjectBuilder.of(this, Builder::build);
+            return this::build;
         }
 
         public ContainerBuilder bool(Function<BoolQuery.Builder, ObjectBuilder<BoolQuery>> f) {

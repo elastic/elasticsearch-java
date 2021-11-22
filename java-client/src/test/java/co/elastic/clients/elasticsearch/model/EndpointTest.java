@@ -30,7 +30,7 @@ public class EndpointTest extends Assert {
     public void testArrayPathParameter() {
         RefreshRequest req;
 
-        req = RefreshRequest.of(b -> b);
+        req = RefreshRequest.of(b -> {});
         assertNotNull(req.index());
         assertEquals("/_refresh", RefreshRequest._ENDPOINT.requestUrl(req));
 
@@ -60,7 +60,7 @@ public class EndpointTest extends Assert {
     public void testArrayQueryParameter() {
         RefreshRequest req;
 
-        req = RefreshRequest.of(b -> b);
+        req = RefreshRequest.of(b -> {});
         assertNotNull(req.expandWildcards()); // undefined list
         assertNull(RefreshRequest._ENDPOINT.queryParameters(req).get("expand_wildcards"));
 
