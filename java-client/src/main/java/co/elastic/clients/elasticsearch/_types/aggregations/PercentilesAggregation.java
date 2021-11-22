@@ -36,7 +36,7 @@ import java.lang.Double;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.PercentilesAggregation
@@ -65,16 +65,18 @@ public class PercentilesAggregation extends FormatMetricAggregationBase implemen
 
 	}
 
-	public static PercentilesAggregation of(Function<Builder, ObjectBuilder<PercentilesAggregation>> fn) {
-		return fn.apply(new Builder()).build();
+	public static PercentilesAggregation of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
-	 * {@link Aggregation} variant type
+	 * Aggregation variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "percentiles";
+	public Aggregation.Kind _aggregationKind() {
+		return Aggregation.Kind.Percentiles;
 	}
 
 	/**
@@ -194,8 +196,10 @@ public class PercentilesAggregation extends FormatMetricAggregationBase implemen
 		/**
 		 * API name: {@code hdr}
 		 */
-		public final Builder hdr(Function<HdrMethod.Builder, ObjectBuilder<HdrMethod>> fn) {
-			return this.hdr(fn.apply(new HdrMethod.Builder()).build());
+		public final Builder hdr(Consumer<HdrMethod.Builder> fn) {
+			HdrMethod.Builder builder = new HdrMethod.Builder();
+			fn.accept(builder);
+			return this.hdr(builder.build());
 		}
 
 		/**
@@ -209,8 +213,10 @@ public class PercentilesAggregation extends FormatMetricAggregationBase implemen
 		/**
 		 * API name: {@code tdigest}
 		 */
-		public final Builder tdigest(Function<TDigest.Builder, ObjectBuilder<TDigest>> fn) {
-			return this.tdigest(fn.apply(new TDigest.Builder()).build());
+		public final Builder tdigest(Consumer<TDigest.Builder> fn) {
+			TDigest.Builder builder = new TDigest.Builder();
+			fn.accept(builder);
+			return this.tdigest(builder.build());
 		}
 
 		@Override

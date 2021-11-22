@@ -23,13 +23,17 @@
 
 package co.elastic.clients.elasticsearch._types.analysis;
 
+import co.elastic.clients.json.JsonEnum;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
-import co.elastic.clients.util.StringEnum;
 
 @JsonpDeserializable
-public enum EdgeNGramSide implements StringEnum {
-	Front("front"), Back("back");
+public enum EdgeNGramSide implements JsonEnum {
+	Front("front"),
+
+	Back("back"),
+
+	;
 
 	private final String jsonValue;
 
@@ -41,6 +45,6 @@ public enum EdgeNGramSide implements StringEnum {
 		return this.jsonValue;
 	}
 
-	public static final StringEnum.Deserializer<EdgeNGramSide> _DESERIALIZER = new StringEnum.Deserializer<>(
+	public static final JsonEnum.Deserializer<EdgeNGramSide> _DESERIALIZER = new JsonEnum.Deserializer<>(
 			EdgeNGramSide.values());
 }

@@ -26,25 +26,26 @@ package co.elastic.clients.elasticsearch.transform;
 import co.elastic.clients.ApiClient;
 import co.elastic.clients.elasticsearch._types.ElasticsearchException;
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
+import co.elastic.clients.transport.ElasticsearchTransport;
 import co.elastic.clients.transport.Endpoint;
-import co.elastic.clients.transport.EndpointWithResponseMapperAttr;
 import co.elastic.clients.transport.Transport;
 import co.elastic.clients.transport.TransportOptions;
+import co.elastic.clients.transport.endpoints.EndpointWithResponseMapperAttr;
 import co.elastic.clients.util.ObjectBuilder;
 import java.io.IOException;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 /**
  * Client for the transform namespace.
  */
-public class ElasticsearchTransformClient extends ApiClient<ElasticsearchTransformClient> {
+public class ElasticsearchTransformClient extends ApiClient<ElasticsearchTransport, ElasticsearchTransformClient> {
 
-	public ElasticsearchTransformClient(Transport transport) {
+	public ElasticsearchTransformClient(ElasticsearchTransport transport) {
 		super(transport, null);
 	}
 
-	public ElasticsearchTransformClient(Transport transport, @Nullable TransportOptions transportOptions) {
+	public ElasticsearchTransformClient(ElasticsearchTransport transport, @Nullable TransportOptions transportOptions) {
 		super(transport, transportOptions);
 	}
 
@@ -82,10 +83,11 @@ public class ElasticsearchTransformClient extends ApiClient<ElasticsearchTransfo
 	 *      on elastic.co</a>
 	 */
 
-	public final DeleteTransformResponse deleteTransform(
-			Function<DeleteTransformRequest.Builder, ObjectBuilder<DeleteTransformRequest>> fn)
+	public final DeleteTransformResponse deleteTransform(Consumer<DeleteTransformRequest.Builder> fn)
 			throws IOException, ElasticsearchException {
-		return deleteTransform(fn.apply(new DeleteTransformRequest.Builder()).build());
+		DeleteTransformRequest.Builder builder = new DeleteTransformRequest.Builder();
+		fn.accept(builder);
+		return deleteTransform(builder.build());
 	}
 
 	// ----- Endpoint: transform.get_transform
@@ -116,10 +118,11 @@ public class ElasticsearchTransformClient extends ApiClient<ElasticsearchTransfo
 	 *      on elastic.co</a>
 	 */
 
-	public final GetTransformResponse getTransform(
-			Function<GetTransformRequest.Builder, ObjectBuilder<GetTransformRequest>> fn)
+	public final GetTransformResponse getTransform(Consumer<GetTransformRequest.Builder> fn)
 			throws IOException, ElasticsearchException {
-		return getTransform(fn.apply(new GetTransformRequest.Builder()).build());
+		GetTransformRequest.Builder builder = new GetTransformRequest.Builder();
+		fn.accept(builder);
+		return getTransform(builder.build());
 	}
 
 	/**
@@ -164,10 +167,11 @@ public class ElasticsearchTransformClient extends ApiClient<ElasticsearchTransfo
 	 *      on elastic.co</a>
 	 */
 
-	public final GetTransformStatsResponse getTransformStats(
-			Function<GetTransformStatsRequest.Builder, ObjectBuilder<GetTransformStatsRequest>> fn)
+	public final GetTransformStatsResponse getTransformStats(Consumer<GetTransformStatsRequest.Builder> fn)
 			throws IOException, ElasticsearchException {
-		return getTransformStats(fn.apply(new GetTransformStatsRequest.Builder()).build());
+		GetTransformStatsRequest.Builder builder = new GetTransformStatsRequest.Builder();
+		fn.accept(builder);
+		return getTransformStats(builder.build());
 	}
 
 	// ----- Endpoint: transform.preview_transform
@@ -203,9 +207,11 @@ public class ElasticsearchTransformClient extends ApiClient<ElasticsearchTransfo
 	 */
 
 	public final <TTransform> PreviewTransformResponse<TTransform> previewTransform(
-			Function<PreviewTransformRequest.Builder, ObjectBuilder<PreviewTransformRequest>> fn,
-			Class<TTransform> tTransformClass) throws IOException, ElasticsearchException {
-		return previewTransform(fn.apply(new PreviewTransformRequest.Builder()).build(), tTransformClass);
+			Consumer<PreviewTransformRequest.Builder> fn, Class<TTransform> tTransformClass)
+			throws IOException, ElasticsearchException {
+		PreviewTransformRequest.Builder builder = new PreviewTransformRequest.Builder();
+		fn.accept(builder);
+		return previewTransform(builder.build(), tTransformClass);
 	}
 
 	// ----- Endpoint: transform.put_transform
@@ -236,10 +242,11 @@ public class ElasticsearchTransformClient extends ApiClient<ElasticsearchTransfo
 	 *      on elastic.co</a>
 	 */
 
-	public final PutTransformResponse putTransform(
-			Function<PutTransformRequest.Builder, ObjectBuilder<PutTransformRequest>> fn)
+	public final PutTransformResponse putTransform(Consumer<PutTransformRequest.Builder> fn)
 			throws IOException, ElasticsearchException {
-		return putTransform(fn.apply(new PutTransformRequest.Builder()).build());
+		PutTransformRequest.Builder builder = new PutTransformRequest.Builder();
+		fn.accept(builder);
+		return putTransform(builder.build());
 	}
 
 	// ----- Endpoint: transform.start_transform
@@ -271,10 +278,11 @@ public class ElasticsearchTransformClient extends ApiClient<ElasticsearchTransfo
 	 *      on elastic.co</a>
 	 */
 
-	public final StartTransformResponse startTransform(
-			Function<StartTransformRequest.Builder, ObjectBuilder<StartTransformRequest>> fn)
+	public final StartTransformResponse startTransform(Consumer<StartTransformRequest.Builder> fn)
 			throws IOException, ElasticsearchException {
-		return startTransform(fn.apply(new StartTransformRequest.Builder()).build());
+		StartTransformRequest.Builder builder = new StartTransformRequest.Builder();
+		fn.accept(builder);
+		return startTransform(builder.build());
 	}
 
 	// ----- Endpoint: transform.stop_transform
@@ -306,10 +314,11 @@ public class ElasticsearchTransformClient extends ApiClient<ElasticsearchTransfo
 	 *      on elastic.co</a>
 	 */
 
-	public final StopTransformResponse stopTransform(
-			Function<StopTransformRequest.Builder, ObjectBuilder<StopTransformRequest>> fn)
+	public final StopTransformResponse stopTransform(Consumer<StopTransformRequest.Builder> fn)
 			throws IOException, ElasticsearchException {
-		return stopTransform(fn.apply(new StopTransformRequest.Builder()).build());
+		StopTransformRequest.Builder builder = new StopTransformRequest.Builder();
+		fn.accept(builder);
+		return stopTransform(builder.build());
 	}
 
 	// ----- Endpoint: transform.update_transform
@@ -341,10 +350,11 @@ public class ElasticsearchTransformClient extends ApiClient<ElasticsearchTransfo
 	 *      on elastic.co</a>
 	 */
 
-	public final UpdateTransformResponse updateTransform(
-			Function<UpdateTransformRequest.Builder, ObjectBuilder<UpdateTransformRequest>> fn)
+	public final UpdateTransformResponse updateTransform(Consumer<UpdateTransformRequest.Builder> fn)
 			throws IOException, ElasticsearchException {
-		return updateTransform(fn.apply(new UpdateTransformRequest.Builder()).build());
+		UpdateTransformRequest.Builder builder = new UpdateTransformRequest.Builder();
+		fn.accept(builder);
+		return updateTransform(builder.build());
 	}
 
 }

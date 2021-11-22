@@ -24,12 +24,13 @@
 package co.elastic.clients.elasticsearch._types.aggregations;
 
 import co.elastic.clients.json.JsonpSerializable;
-import co.elastic.clients.util.UnionVariant;
 
 /**
  * Base interface for {@link MovingAverageAggregation} variants.
  */
-public interface MovingAverageAggregationVariant extends UnionVariant, JsonpSerializable {
+public interface MovingAverageAggregationVariant extends JsonpSerializable {
+
+	MovingAverageAggregation.Kind _movingAverageAggregationKind();
 
 	default MovingAverageAggregation _toMovingAverageAggregation() {
 		return new MovingAverageAggregation(this);

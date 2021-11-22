@@ -29,14 +29,15 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -57,16 +58,26 @@ public class IntervalsAnyOf implements IntervalsQueryVariant, IntervalsVariant, 
 
 	}
 
-	public static IntervalsAnyOf of(Function<Builder, ObjectBuilder<IntervalsAnyOf>> fn) {
-		return fn.apply(new Builder()).build();
+	public static IntervalsAnyOf of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
-	 * {@link IntervalsQuery}, {@link Intervals} variant type
+	 * IntervalsQuery variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "any_of";
+	public IntervalsQuery.Kind _intervalsQueryKind() {
+		return IntervalsQuery.Kind.AnyOf;
+	}
+
+	/**
+	 * Intervals variant kind.
+	 */
+	@Override
+	public Intervals.Kind _intervalsKind() {
+		return Intervals.Kind.AnyOf;
 	}
 
 	/**
@@ -143,13 +154,9 @@ public class IntervalsAnyOf implements IntervalsQueryVariant, IntervalsVariant, 
 		/**
 		 * Required - API name: {@code intervals}
 		 */
-		@SafeVarargs
-		public final Builder intervals(Function<Intervals.Builder, ObjectBuilder<Intervals>>... fns) {
-			this.intervals = new ArrayList<>(fns.length);
-			for (Function<Intervals.Builder, ObjectBuilder<Intervals>> fn : fns) {
-				this.intervals.add(fn.apply(new Intervals.Builder()).build());
-			}
-			return this;
+		public final Builder intervals(
+				Function<ListBuilder<Intervals, Intervals.Builder>, ObjectBuilder<List<Intervals>>> fn) {
+			return intervals(fn.apply(new ListBuilder<>(Intervals.Builder::new)).build());
 		}
 
 		/**
@@ -163,8 +170,10 @@ public class IntervalsAnyOf implements IntervalsQueryVariant, IntervalsVariant, 
 		/**
 		 * API name: {@code filter}
 		 */
-		public final Builder filter(Function<IntervalsFilter.Builder, ObjectBuilder<IntervalsFilter>> fn) {
-			return this.filter(fn.apply(new IntervalsFilter.Builder()).build());
+		public final Builder filter(Consumer<IntervalsFilter.Builder> fn) {
+			IntervalsFilter.Builder builder = new IntervalsFilter.Builder();
+			fn.accept(builder);
+			return this.filter(builder.build());
 		}
 
 		/**

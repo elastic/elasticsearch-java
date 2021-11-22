@@ -32,7 +32,7 @@ import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.SpanWithinQuery
@@ -52,16 +52,26 @@ public class SpanWithinQuery extends QueryBase implements SpanQueryVariant, Quer
 
 	}
 
-	public static SpanWithinQuery of(Function<Builder, ObjectBuilder<SpanWithinQuery>> fn) {
-		return fn.apply(new Builder()).build();
+	public static SpanWithinQuery of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
-	 * {@link SpanQuery}, {@link Query} variant type
+	 * SpanQuery variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "span_within";
+	public SpanQuery.Kind _spanQueryKind() {
+		return SpanQuery.Kind.SpanWithin;
+	}
+
+	/**
+	 * Query variant kind.
+	 */
+	@Override
+	public Query.Kind _queryKind() {
+		return Query.Kind.SpanWithin;
 	}
 
 	/**
@@ -110,8 +120,10 @@ public class SpanWithinQuery extends QueryBase implements SpanQueryVariant, Quer
 		/**
 		 * Required - API name: {@code big}
 		 */
-		public final Builder big(Function<SpanQuery.Builder, ObjectBuilder<SpanQuery>> fn) {
-			return this.big(fn.apply(new SpanQuery.Builder()).build());
+		public final Builder big(Consumer<SpanQuery.Builder> fn) {
+			SpanQuery.Builder builder = new SpanQuery.Builder();
+			fn.accept(builder);
+			return this.big(builder.build());
 		}
 
 		/**
@@ -125,8 +137,10 @@ public class SpanWithinQuery extends QueryBase implements SpanQueryVariant, Quer
 		/**
 		 * Required - API name: {@code little}
 		 */
-		public final Builder little(Function<SpanQuery.Builder, ObjectBuilder<SpanQuery>> fn) {
-			return this.little(fn.apply(new SpanQuery.Builder()).build());
+		public final Builder little(Consumer<SpanQuery.Builder> fn) {
+			SpanQuery.Builder builder = new SpanQuery.Builder();
+			fn.accept(builder);
+			return this.little(builder.build());
 		}
 
 		@Override

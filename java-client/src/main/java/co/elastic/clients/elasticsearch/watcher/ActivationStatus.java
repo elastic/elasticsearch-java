@@ -36,9 +36,9 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.lang.String;
-import java.util.Collections;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -61,8 +61,10 @@ public class ActivationStatus implements JsonpSerializable {
 
 	}
 
-	public static ActivationStatus of(Function<Builder, ObjectBuilder<ActivationStatus>> fn) {
-		return fn.apply(new Builder()).build();
+	public static ActivationStatus of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -136,13 +138,6 @@ public class ActivationStatus implements JsonpSerializable {
 			return this;
 		}
 
-		/**
-		 * Set {@link #actions(Map)} to a singleton map.
-		 */
-		public Builder actions(String key, Function<ActionStatus.Builder, ObjectBuilder<ActionStatus>> fn) {
-			return this.actions(Collections.singletonMap(key, fn.apply(new ActionStatus.Builder()).build()));
-		}
-
 		public final Builder actions(
 				Function<MapBuilder<String, ActionStatus, ActionStatus.Builder>, ObjectBuilder<Map<String, ActionStatus>>> fn) {
 			return actions(fn.apply(new MapBuilder<>(ActionStatus.Builder::new)).build());
@@ -159,8 +154,10 @@ public class ActivationStatus implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code state}
 		 */
-		public final Builder state(Function<ActivationState.Builder, ObjectBuilder<ActivationState>> fn) {
-			return this.state(fn.apply(new ActivationState.Builder()).build());
+		public final Builder state(Consumer<ActivationState.Builder> fn) {
+			ActivationState.Builder builder = new ActivationState.Builder();
+			fn.accept(builder);
+			return this.state(builder.build());
 		}
 
 		/**

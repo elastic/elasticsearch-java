@@ -29,14 +29,15 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -53,8 +54,10 @@ public class NodeInfoIngest implements JsonpSerializable {
 
 	}
 
-	public static NodeInfoIngest of(Function<Builder, ObjectBuilder<NodeInfoIngest>> fn) {
-		return fn.apply(new Builder()).build();
+	public static NodeInfoIngest of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -115,14 +118,9 @@ public class NodeInfoIngest implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code processors}
 		 */
-		@SafeVarargs
 		public final Builder processors(
-				Function<NodeInfoIngestProcessor.Builder, ObjectBuilder<NodeInfoIngestProcessor>>... fns) {
-			this.processors = new ArrayList<>(fns.length);
-			for (Function<NodeInfoIngestProcessor.Builder, ObjectBuilder<NodeInfoIngestProcessor>> fn : fns) {
-				this.processors.add(fn.apply(new NodeInfoIngestProcessor.Builder()).build());
-			}
-			return this;
+				Function<ListBuilder<NodeInfoIngestProcessor, NodeInfoIngestProcessor.Builder>, ObjectBuilder<List<NodeInfoIngestProcessor>>> fn) {
+			return processors(fn.apply(new ListBuilder<>(NodeInfoIngestProcessor.Builder::new)).build());
 		}
 
 		/**

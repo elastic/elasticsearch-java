@@ -30,15 +30,16 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -64,8 +65,10 @@ public class GetSnapshotResponse implements JsonpSerializable {
 
 	}
 
-	public static GetSnapshotResponse of(Function<Builder, ObjectBuilder<GetSnapshotResponse>> fn) {
-		return fn.apply(new Builder()).build();
+	public static GetSnapshotResponse of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -177,14 +180,9 @@ public class GetSnapshotResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code responses}
 		 */
-		@SafeVarargs
 		public final Builder responses(
-				Function<SnapshotResponseItem.Builder, ObjectBuilder<SnapshotResponseItem>>... fns) {
-			this.responses = new ArrayList<>(fns.length);
-			for (Function<SnapshotResponseItem.Builder, ObjectBuilder<SnapshotResponseItem>> fn : fns) {
-				this.responses.add(fn.apply(new SnapshotResponseItem.Builder()).build());
-			}
-			return this;
+				Function<ListBuilder<SnapshotResponseItem, SnapshotResponseItem.Builder>, ObjectBuilder<List<SnapshotResponseItem>>> fn) {
+			return responses(fn.apply(new ListBuilder<>(SnapshotResponseItem.Builder::new)).build());
 		}
 
 		/**
@@ -206,13 +204,9 @@ public class GetSnapshotResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code snapshots}
 		 */
-		@SafeVarargs
-		public final Builder snapshots(Function<SnapshotInfo.Builder, ObjectBuilder<SnapshotInfo>>... fns) {
-			this.snapshots = new ArrayList<>(fns.length);
-			for (Function<SnapshotInfo.Builder, ObjectBuilder<SnapshotInfo>> fn : fns) {
-				this.snapshots.add(fn.apply(new SnapshotInfo.Builder()).build());
-			}
-			return this;
+		public final Builder snapshots(
+				Function<ListBuilder<SnapshotInfo, SnapshotInfo.Builder>, ObjectBuilder<List<SnapshotInfo>>> fn) {
+			return snapshots(fn.apply(new ListBuilder<>(SnapshotInfo.Builder::new)).build());
 		}
 
 		/**

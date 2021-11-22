@@ -34,9 +34,9 @@ import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.Collections;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -54,16 +54,18 @@ public class AdjacencyMatrixAggregation extends BucketAggregationBase implements
 
 	}
 
-	public static AdjacencyMatrixAggregation of(Function<Builder, ObjectBuilder<AdjacencyMatrixAggregation>> fn) {
-		return fn.apply(new Builder()).build();
+	public static AdjacencyMatrixAggregation of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
-	 * {@link Aggregation} variant type
+	 * Aggregation variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "adjacency_matrix";
+	public Aggregation.Kind _aggregationKind() {
+		return Aggregation.Kind.AdjacencyMatrix;
 	}
 
 	/**
@@ -107,13 +109,6 @@ public class AdjacencyMatrixAggregation extends BucketAggregationBase implements
 		public final Builder filters(@Nullable Map<String, Query> value) {
 			this.filters = value;
 			return this;
-		}
-
-		/**
-		 * Set {@link #filters(Map)} to a singleton map.
-		 */
-		public Builder filters(String key, Function<Query.Builder, ObjectBuilder<Query>> fn) {
-			return this.filters(Collections.singletonMap(key, fn.apply(new Query.Builder()).build()));
 		}
 
 		public final Builder filters(

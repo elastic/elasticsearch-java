@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 
 // typedef: _types.mapping.Murmur3HashProperty
 @JsonpDeserializable
@@ -43,16 +43,18 @@ public class Murmur3HashProperty extends DocValuesPropertyBase implements Proper
 
 	}
 
-	public static Murmur3HashProperty of(Function<Builder, ObjectBuilder<Murmur3HashProperty>> fn) {
-		return fn.apply(new Builder()).build();
+	public static Murmur3HashProperty of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
-	 * {@link Property} variant type
+	 * Property variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "murmur3";
+	public Property.Kind _propertyKind() {
+		return Property.Kind.Murmur3;
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {

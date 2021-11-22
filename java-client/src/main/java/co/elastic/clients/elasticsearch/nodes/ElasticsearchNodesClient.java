@@ -26,24 +26,25 @@ package co.elastic.clients.elasticsearch.nodes;
 import co.elastic.clients.ApiClient;
 import co.elastic.clients.elasticsearch._types.ElasticsearchException;
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
+import co.elastic.clients.transport.ElasticsearchTransport;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.Transport;
 import co.elastic.clients.transport.TransportOptions;
 import co.elastic.clients.util.ObjectBuilder;
 import java.io.IOException;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 /**
  * Client for the nodes namespace.
  */
-public class ElasticsearchNodesClient extends ApiClient<ElasticsearchNodesClient> {
+public class ElasticsearchNodesClient extends ApiClient<ElasticsearchTransport, ElasticsearchNodesClient> {
 
-	public ElasticsearchNodesClient(Transport transport) {
+	public ElasticsearchNodesClient(ElasticsearchTransport transport) {
 		super(transport, null);
 	}
 
-	public ElasticsearchNodesClient(Transport transport, @Nullable TransportOptions transportOptions) {
+	public ElasticsearchNodesClient(ElasticsearchTransport transport, @Nullable TransportOptions transportOptions) {
 		super(transport, transportOptions);
 	}
 
@@ -80,9 +81,11 @@ public class ElasticsearchNodesClient extends ApiClient<ElasticsearchNodesClient
 	 *      on elastic.co</a>
 	 */
 
-	public final HotThreadsResponse hotThreads(Function<HotThreadsRequest.Builder, ObjectBuilder<HotThreadsRequest>> fn)
+	public final HotThreadsResponse hotThreads(Consumer<HotThreadsRequest.Builder> fn)
 			throws IOException, ElasticsearchException {
-		return hotThreads(fn.apply(new HotThreadsRequest.Builder()).build());
+		HotThreadsRequest.Builder builder = new HotThreadsRequest.Builder();
+		fn.accept(builder);
+		return hotThreads(builder.build());
 	}
 
 	/**
@@ -126,9 +129,11 @@ public class ElasticsearchNodesClient extends ApiClient<ElasticsearchNodesClient
 	 *      on elastic.co</a>
 	 */
 
-	public final NodesInfoResponse info(Function<NodesInfoRequest.Builder, ObjectBuilder<NodesInfoRequest>> fn)
+	public final NodesInfoResponse info(Consumer<NodesInfoRequest.Builder> fn)
 			throws IOException, ElasticsearchException {
-		return info(fn.apply(new NodesInfoRequest.Builder()).build());
+		NodesInfoRequest.Builder builder = new NodesInfoRequest.Builder();
+		fn.accept(builder);
+		return info(builder.build());
 	}
 
 	/**
@@ -173,10 +178,11 @@ public class ElasticsearchNodesClient extends ApiClient<ElasticsearchNodesClient
 	 *      on elastic.co</a>
 	 */
 
-	public final ReloadSecureSettingsResponse reloadSecureSettings(
-			Function<ReloadSecureSettingsRequest.Builder, ObjectBuilder<ReloadSecureSettingsRequest>> fn)
+	public final ReloadSecureSettingsResponse reloadSecureSettings(Consumer<ReloadSecureSettingsRequest.Builder> fn)
 			throws IOException, ElasticsearchException {
-		return reloadSecureSettings(fn.apply(new ReloadSecureSettingsRequest.Builder()).build());
+		ReloadSecureSettingsRequest.Builder builder = new ReloadSecureSettingsRequest.Builder();
+		fn.accept(builder);
+		return reloadSecureSettings(builder.build());
 	}
 
 	/**
@@ -220,9 +226,11 @@ public class ElasticsearchNodesClient extends ApiClient<ElasticsearchNodesClient
 	 *      on elastic.co</a>
 	 */
 
-	public final NodesStatsResponse stats(Function<NodesStatsRequest.Builder, ObjectBuilder<NodesStatsRequest>> fn)
+	public final NodesStatsResponse stats(Consumer<NodesStatsRequest.Builder> fn)
 			throws IOException, ElasticsearchException {
-		return stats(fn.apply(new NodesStatsRequest.Builder()).build());
+		NodesStatsRequest.Builder builder = new NodesStatsRequest.Builder();
+		fn.accept(builder);
+		return stats(builder.build());
 	}
 
 	/**
@@ -248,9 +256,9 @@ public class ElasticsearchNodesClient extends ApiClient<ElasticsearchNodesClient
 	 *      on elastic.co</a>
 	 */
 
-	public UsageResponse usage(UsageRequest request) throws IOException, ElasticsearchException {
+	public NodesUsageResponse usage(NodesUsageRequest request) throws IOException, ElasticsearchException {
 		@SuppressWarnings("unchecked")
-		Endpoint<UsageRequest, UsageResponse, ErrorResponse> endpoint = (Endpoint<UsageRequest, UsageResponse, ErrorResponse>) UsageRequest._ENDPOINT;
+		Endpoint<NodesUsageRequest, NodesUsageResponse, ErrorResponse> endpoint = (Endpoint<NodesUsageRequest, NodesUsageResponse, ErrorResponse>) NodesUsageRequest._ENDPOINT;
 
 		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
@@ -260,15 +268,17 @@ public class ElasticsearchNodesClient extends ApiClient<ElasticsearchNodesClient
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
-	 *            {@link UsageRequest}
+	 *            {@link NodesUsageRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cluster-nodes-usage.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
-	public final UsageResponse usage(Function<UsageRequest.Builder, ObjectBuilder<UsageRequest>> fn)
+	public final NodesUsageResponse usage(Consumer<NodesUsageRequest.Builder> fn)
 			throws IOException, ElasticsearchException {
-		return usage(fn.apply(new UsageRequest.Builder()).build());
+		NodesUsageRequest.Builder builder = new NodesUsageRequest.Builder();
+		fn.accept(builder);
+		return usage(builder.build());
 	}
 
 	/**
@@ -279,8 +289,8 @@ public class ElasticsearchNodesClient extends ApiClient<ElasticsearchNodesClient
 	 *      on elastic.co</a>
 	 */
 
-	public UsageResponse usage() throws IOException, ElasticsearchException {
-		return this.transport.performRequest(new UsageRequest.Builder().build(), UsageRequest._ENDPOINT,
+	public NodesUsageResponse usage() throws IOException, ElasticsearchException {
+		return this.transport.performRequest(new NodesUsageRequest.Builder().build(), NodesUsageRequest._ENDPOINT,
 				this.transportOptions);
 	}
 

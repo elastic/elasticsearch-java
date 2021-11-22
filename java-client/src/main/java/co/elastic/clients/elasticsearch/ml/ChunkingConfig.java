@@ -35,7 +35,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.ChunkingConfig
@@ -55,8 +55,10 @@ public class ChunkingConfig implements JsonpSerializable {
 
 	}
 
-	public static ChunkingConfig of(Function<Builder, ObjectBuilder<ChunkingConfig>> fn) {
-		return fn.apply(new Builder()).build();
+	public static ChunkingConfig of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -148,8 +150,10 @@ public class ChunkingConfig implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code time_span}
 		 */
-		public final Builder timeSpan(Function<Time.Builder, ObjectBuilder<Time>> fn) {
-			return this.timeSpan(fn.apply(new Time.Builder()).build());
+		public final Builder timeSpan(Consumer<Time.Builder> fn) {
+			Time.Builder builder = new Time.Builder();
+			fn.accept(builder);
+			return this.timeSpan(builder.build());
 		}
 
 		/**

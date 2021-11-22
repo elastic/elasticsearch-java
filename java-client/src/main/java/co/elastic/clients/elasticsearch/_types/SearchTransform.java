@@ -35,7 +35,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: _types.SearchTransform
@@ -54,16 +54,18 @@ public class SearchTransform implements TransformVariant, JsonpSerializable {
 
 	}
 
-	public static SearchTransform of(Function<Builder, ObjectBuilder<SearchTransform>> fn) {
-		return fn.apply(new Builder()).build();
+	public static SearchTransform of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
-	 * {@link Transform} variant type
+	 * Transform variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "search";
+	public Transform.Kind _transformKind() {
+		return Transform.Kind.Search;
 	}
 
 	/**
@@ -120,9 +122,10 @@ public class SearchTransform implements TransformVariant, JsonpSerializable {
 		/**
 		 * Required - API name: {@code request}
 		 */
-		public final Builder request(
-				Function<SearchInputRequestDefinition.Builder, ObjectBuilder<SearchInputRequestDefinition>> fn) {
-			return this.request(fn.apply(new SearchInputRequestDefinition.Builder()).build());
+		public final Builder request(Consumer<SearchInputRequestDefinition.Builder> fn) {
+			SearchInputRequestDefinition.Builder builder = new SearchInputRequestDefinition.Builder();
+			fn.accept(builder);
+			return this.request(builder.build());
 		}
 
 		/**
@@ -136,8 +139,10 @@ public class SearchTransform implements TransformVariant, JsonpSerializable {
 		/**
 		 * Required - API name: {@code timeout}
 		 */
-		public final Builder timeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
-			return this.timeout(fn.apply(new Time.Builder()).build());
+		public final Builder timeout(Consumer<Time.Builder> fn) {
+			Time.Builder builder = new Time.Builder();
+			fn.accept(builder);
+			return this.timeout(builder.build());
 		}
 
 		/**

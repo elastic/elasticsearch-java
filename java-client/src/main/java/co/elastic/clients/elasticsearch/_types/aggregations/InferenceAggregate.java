@@ -30,16 +30,17 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -71,16 +72,18 @@ public class InferenceAggregate extends AggregateBase implements AggregateVarian
 
 	}
 
-	public static InferenceAggregate of(Function<Builder, ObjectBuilder<InferenceAggregate>> fn) {
-		return fn.apply(new Builder()).build();
+	public static InferenceAggregate of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
-	 * {@link Aggregate} variant type
+	 * Aggregate variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "inference";
+	public Aggregate.Kind _aggregateKind() {
+		return Aggregate.Kind.Inference;
 	}
 
 	/**
@@ -204,8 +207,10 @@ public class InferenceAggregate extends AggregateBase implements AggregateVarian
 		/**
 		 * API name: {@code value}
 		 */
-		public final Builder value(Function<FieldValue.Builder, ObjectBuilder<FieldValue>> fn) {
-			return this.value(fn.apply(new FieldValue.Builder()).build());
+		public final Builder value(Consumer<FieldValue.Builder> fn) {
+			FieldValue.Builder builder = new FieldValue.Builder();
+			fn.accept(builder);
+			return this.value(builder.build());
 		}
 
 		/**
@@ -227,14 +232,9 @@ public class InferenceAggregate extends AggregateBase implements AggregateVarian
 		/**
 		 * API name: {@code feature_importance}
 		 */
-		@SafeVarargs
 		public final Builder featureImportance(
-				Function<InferenceFeatureImportance.Builder, ObjectBuilder<InferenceFeatureImportance>>... fns) {
-			this.featureImportance = new ArrayList<>(fns.length);
-			for (Function<InferenceFeatureImportance.Builder, ObjectBuilder<InferenceFeatureImportance>> fn : fns) {
-				this.featureImportance.add(fn.apply(new InferenceFeatureImportance.Builder()).build());
-			}
-			return this;
+				Function<ListBuilder<InferenceFeatureImportance, InferenceFeatureImportance.Builder>, ObjectBuilder<List<InferenceFeatureImportance>>> fn) {
+			return featureImportance(fn.apply(new ListBuilder<>(InferenceFeatureImportance.Builder::new)).build());
 		}
 
 		/**
@@ -256,14 +256,9 @@ public class InferenceAggregate extends AggregateBase implements AggregateVarian
 		/**
 		 * API name: {@code top_classes}
 		 */
-		@SafeVarargs
 		public final Builder topClasses(
-				Function<InferenceTopClassEntry.Builder, ObjectBuilder<InferenceTopClassEntry>>... fns) {
-			this.topClasses = new ArrayList<>(fns.length);
-			for (Function<InferenceTopClassEntry.Builder, ObjectBuilder<InferenceTopClassEntry>> fn : fns) {
-				this.topClasses.add(fn.apply(new InferenceTopClassEntry.Builder()).build());
-			}
-			return this;
+				Function<ListBuilder<InferenceTopClassEntry, InferenceTopClassEntry.Builder>, ObjectBuilder<List<InferenceTopClassEntry>>> fn) {
+			return topClasses(fn.apply(new ListBuilder<>(InferenceTopClassEntry.Builder::new)).build());
 		}
 
 		/**

@@ -28,14 +28,15 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -57,16 +58,18 @@ public class IpRangeAggregation extends BucketAggregationBase implements Aggrega
 
 	}
 
-	public static IpRangeAggregation of(Function<Builder, ObjectBuilder<IpRangeAggregation>> fn) {
-		return fn.apply(new Builder()).build();
+	public static IpRangeAggregation of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
-	 * {@link Aggregation} variant type
+	 * Aggregation variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "ip_range";
+	public Aggregation.Kind _aggregationKind() {
+		return Aggregation.Kind.IpRange;
 	}
 
 	/**
@@ -146,14 +149,9 @@ public class IpRangeAggregation extends BucketAggregationBase implements Aggrega
 		/**
 		 * API name: {@code ranges}
 		 */
-		@SafeVarargs
 		public final Builder ranges(
-				Function<IpRangeAggregationRange.Builder, ObjectBuilder<IpRangeAggregationRange>>... fns) {
-			this.ranges = new ArrayList<>(fns.length);
-			for (Function<IpRangeAggregationRange.Builder, ObjectBuilder<IpRangeAggregationRange>> fn : fns) {
-				this.ranges.add(fn.apply(new IpRangeAggregationRange.Builder()).build());
-			}
-			return this;
+				Function<ListBuilder<IpRangeAggregationRange, IpRangeAggregationRange.Builder>, ObjectBuilder<List<IpRangeAggregationRange>>> fn) {
+			return ranges(fn.apply(new ListBuilder<>(IpRangeAggregationRange.Builder::new)).build());
 		}
 
 		@Override

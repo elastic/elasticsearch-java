@@ -35,7 +35,7 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: snapshot._types.ShardsStatsSummary
@@ -60,8 +60,10 @@ public class ShardsStatsSummary implements JsonpSerializable {
 
 	}
 
-	public static ShardsStatsSummary of(Function<Builder, ObjectBuilder<ShardsStatsSummary>> fn) {
-		return fn.apply(new Builder()).build();
+	public static ShardsStatsSummary of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -142,9 +144,10 @@ public class ShardsStatsSummary implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code incremental}
 		 */
-		public final Builder incremental(
-				Function<ShardsStatsSummaryItem.Builder, ObjectBuilder<ShardsStatsSummaryItem>> fn) {
-			return this.incremental(fn.apply(new ShardsStatsSummaryItem.Builder()).build());
+		public final Builder incremental(Consumer<ShardsStatsSummaryItem.Builder> fn) {
+			ShardsStatsSummaryItem.Builder builder = new ShardsStatsSummaryItem.Builder();
+			fn.accept(builder);
+			return this.incremental(builder.build());
 		}
 
 		/**
@@ -158,8 +161,10 @@ public class ShardsStatsSummary implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code total}
 		 */
-		public final Builder total(Function<ShardsStatsSummaryItem.Builder, ObjectBuilder<ShardsStatsSummaryItem>> fn) {
-			return this.total(fn.apply(new ShardsStatsSummaryItem.Builder()).build());
+		public final Builder total(Consumer<ShardsStatsSummaryItem.Builder> fn) {
+			ShardsStatsSummaryItem.Builder builder = new ShardsStatsSummaryItem.Builder();
+			fn.accept(builder);
+			return this.total(builder.build());
 		}
 
 		/**

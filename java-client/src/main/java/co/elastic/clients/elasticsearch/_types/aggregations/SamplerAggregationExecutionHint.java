@@ -23,13 +23,19 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
+import co.elastic.clients.json.JsonEnum;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
-import co.elastic.clients.util.StringEnum;
 
 @JsonpDeserializable
-public enum SamplerAggregationExecutionHint implements StringEnum {
-	Map("map"), GlobalOrdinals("global_ordinals"), BytesHash("bytes_hash");
+public enum SamplerAggregationExecutionHint implements JsonEnum {
+	Map("map"),
+
+	GlobalOrdinals("global_ordinals"),
+
+	BytesHash("bytes_hash"),
+
+	;
 
 	private final String jsonValue;
 
@@ -41,6 +47,6 @@ public enum SamplerAggregationExecutionHint implements StringEnum {
 		return this.jsonValue;
 	}
 
-	public static final StringEnum.Deserializer<SamplerAggregationExecutionHint> _DESERIALIZER = new StringEnum.Deserializer<>(
+	public static final JsonEnum.Deserializer<SamplerAggregationExecutionHint> _DESERIALIZER = new JsonEnum.Deserializer<>(
 			SamplerAggregationExecutionHint.values());
 }

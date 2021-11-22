@@ -37,7 +37,7 @@ import java.lang.Integer;
 import java.lang.Number;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: xpack.usage.SecurityRolesDlsBitSetCache
@@ -60,8 +60,10 @@ public class SecurityRolesDlsBitSetCache implements JsonpSerializable {
 
 	}
 
-	public static SecurityRolesDlsBitSetCache of(Function<Builder, ObjectBuilder<SecurityRolesDlsBitSetCache>> fn) {
-		return fn.apply(new Builder()).build();
+	public static SecurityRolesDlsBitSetCache of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**

@@ -37,7 +37,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: graph._types.ExploreControls
@@ -65,8 +65,10 @@ public class ExploreControls implements JsonpSerializable {
 
 	}
 
-	public static ExploreControls of(Function<Builder, ObjectBuilder<ExploreControls>> fn) {
-		return fn.apply(new Builder()).build();
+	public static ExploreControls of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -159,8 +161,10 @@ public class ExploreControls implements JsonpSerializable {
 		/**
 		 * API name: {@code sample_diversity}
 		 */
-		public final Builder sampleDiversity(Function<SampleDiversity.Builder, ObjectBuilder<SampleDiversity>> fn) {
-			return this.sampleDiversity(fn.apply(new SampleDiversity.Builder()).build());
+		public final Builder sampleDiversity(Consumer<SampleDiversity.Builder> fn) {
+			SampleDiversity.Builder builder = new SampleDiversity.Builder();
+			fn.accept(builder);
+			return this.sampleDiversity(builder.build());
 		}
 
 		/**
@@ -182,8 +186,10 @@ public class ExploreControls implements JsonpSerializable {
 		/**
 		 * API name: {@code timeout}
 		 */
-		public final Builder timeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
-			return this.timeout(fn.apply(new Time.Builder()).build());
+		public final Builder timeout(Consumer<Time.Builder> fn) {
+			Time.Builder builder = new Time.Builder();
+			fn.accept(builder);
+			return this.timeout(builder.build());
 		}
 
 		/**

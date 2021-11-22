@@ -42,10 +42,10 @@ import java.lang.Double;
 import java.lang.Long;
 import java.lang.String;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Supplier;
 import javax.annotation.Nullable;
@@ -132,8 +132,10 @@ public class Hit<TDocument> implements JsonpSerializable {
 
 	}
 
-	public static <TDocument> Hit<TDocument> of(Function<Builder<TDocument>, ObjectBuilder<Hit<TDocument>>> fn) {
-		return fn.apply(new Builder<>()).build();
+	public static <TDocument> Hit<TDocument> of(Consumer<Builder<TDocument>> fn) {
+		Builder<TDocument> builder = new Builder<>();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -532,8 +534,10 @@ public class Hit<TDocument> implements JsonpSerializable {
 		/**
 		 * API name: {@code _explanation}
 		 */
-		public final Builder<TDocument> explanation(Function<Explanation.Builder, ObjectBuilder<Explanation>> fn) {
-			return this.explanation(fn.apply(new Explanation.Builder()).build());
+		public final Builder<TDocument> explanation(Consumer<Explanation.Builder> fn) {
+			Explanation.Builder builder = new Explanation.Builder();
+			fn.accept(builder);
+			return this.explanation(builder.build());
 		}
 
 		/**
@@ -558,14 +562,6 @@ public class Hit<TDocument> implements JsonpSerializable {
 		public final Builder<TDocument> innerHits(@Nullable Map<String, InnerHitsResult> value) {
 			this.innerHits = value;
 			return this;
-		}
-
-		/**
-		 * Set {@link #innerHits(Map)} to a singleton map.
-		 */
-		public Builder<TDocument> innerHits(String key,
-				Function<InnerHitsResult.Builder, ObjectBuilder<InnerHitsResult>> fn) {
-			return this.innerHits(Collections.singletonMap(key, fn.apply(new InnerHitsResult.Builder()).build()));
 		}
 
 		public final Builder<TDocument> innerHits(
@@ -600,8 +596,10 @@ public class Hit<TDocument> implements JsonpSerializable {
 		/**
 		 * API name: {@code _nested}
 		 */
-		public final Builder<TDocument> nested(Function<NestedIdentity.Builder, ObjectBuilder<NestedIdentity>> fn) {
-			return this.nested(fn.apply(new NestedIdentity.Builder()).build());
+		public final Builder<TDocument> nested(Consumer<NestedIdentity.Builder> fn) {
+			NestedIdentity.Builder builder = new NestedIdentity.Builder();
+			fn.accept(builder);
+			return this.nested(builder.build());
 		}
 
 		/**

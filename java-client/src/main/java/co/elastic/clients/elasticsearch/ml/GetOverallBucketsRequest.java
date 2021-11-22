@@ -28,10 +28,12 @@ import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
+import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
-import co.elastic.clients.transport.SimpleEndpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
@@ -39,15 +41,14 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.Collections;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: ml.get_overall_buckets.Request
-
-public class GetOverallBucketsRequest extends RequestBase {
+@JsonpDeserializable
+public class GetOverallBucketsRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
 	private final Boolean allowNoMatch;
 
@@ -86,24 +87,14 @@ public class GetOverallBucketsRequest extends RequestBase {
 
 	}
 
-	public static GetOverallBucketsRequest of(Function<Builder, ObjectBuilder<GetOverallBucketsRequest>> fn) {
-		return fn.apply(new Builder()).build();
+	public static GetOverallBucketsRequest of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
-	 * Specifies what to do when the request:
-	 * <ol>
-	 * <li>Contains wildcard expressions and there are no jobs that match.</li>
-	 * <li>Contains the <code>_all</code> string or no identifiers and there are no
-	 * matches.</li>
-	 * <li>Contains wildcard expressions and there are only partial matches.</li>
-	 * </ol>
-	 * <p>
-	 * If <code>true</code>, the request returns an empty <code>jobs</code> array
-	 * when there are no matches and the subset of results when there are partial
-	 * matches. If this parameter is <code>false</code>, the request returns a
-	 * <code>404</code> status code when there are no matches or only partial
-	 * matches.
+	 * Refer to the description for the <code>allow_no_match</code> query parameter.
 	 * <p>
 	 * API name: {@code allow_no_match}
 	 */
@@ -113,13 +104,7 @@ public class GetOverallBucketsRequest extends RequestBase {
 	}
 
 	/**
-	 * The span of the overall buckets. Must be greater or equal to the largest
-	 * bucket span of the specified anomaly detection jobs, which is the default
-	 * value.
-	 * <p>
-	 * By default, an overall bucket has a span equal to the largest bucket span of
-	 * the specified anomaly detection jobs. To override that behavior, use the
-	 * optional <code>bucket_span</code> parameter.
+	 * Refer to the description for the <code>bucket_span</code> query parameter.
 	 * <p>
 	 * API name: {@code bucket_span}
 	 */
@@ -129,7 +114,7 @@ public class GetOverallBucketsRequest extends RequestBase {
 	}
 
 	/**
-	 * Returns overall buckets with timestamps earlier than this time.
+	 * Refer to the description for the <code>end</code> query parameter.
 	 * <p>
 	 * API name: {@code end}
 	 */
@@ -139,7 +124,8 @@ public class GetOverallBucketsRequest extends RequestBase {
 	}
 
 	/**
-	 * If <code>true</code>, the output excludes interim results.
+	 * Refer to the description for the <code>exclude_interim</code> query
+	 * parameter.
 	 * <p>
 	 * API name: {@code exclude_interim}
 	 */
@@ -164,8 +150,7 @@ public class GetOverallBucketsRequest extends RequestBase {
 	}
 
 	/**
-	 * Returns overall buckets with overall scores greater than or equal to this
-	 * value.
+	 * Refer to the description for the <code>overall_score</code> query parameter.
 	 * <p>
 	 * API name: {@code overall_score}
 	 */
@@ -175,7 +160,7 @@ public class GetOverallBucketsRequest extends RequestBase {
 	}
 
 	/**
-	 * Returns overall buckets with timestamps after this time.
+	 * Refer to the description for the <code>start</code> query parameter.
 	 * <p>
 	 * API name: {@code start}
 	 */
@@ -185,14 +170,62 @@ public class GetOverallBucketsRequest extends RequestBase {
 	}
 
 	/**
-	 * The number of top anomaly detection job bucket scores to be used in the
-	 * <code>overall_score</code> calculation.
+	 * Refer to the description for the <code>top_n</code> query parameter.
 	 * <p>
 	 * API name: {@code top_n}
 	 */
 	@Nullable
 	public final Integer topN() {
 		return this.topN;
+	}
+
+	/**
+	 * Serialize this object to JSON.
+	 */
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+		generator.writeStartObject();
+		serializeInternal(generator, mapper);
+		generator.writeEnd();
+	}
+
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		if (this.allowNoMatch != null) {
+			generator.writeKey("allow_no_match");
+			generator.write(this.allowNoMatch);
+
+		}
+		if (this.bucketSpan != null) {
+			generator.writeKey("bucket_span");
+			this.bucketSpan.serialize(generator, mapper);
+
+		}
+		if (this.end != null) {
+			generator.writeKey("end");
+			this.end.serialize(generator, mapper);
+
+		}
+		if (this.excludeInterim != null) {
+			generator.writeKey("exclude_interim");
+			generator.write(this.excludeInterim);
+
+		}
+		if (this.overallScore != null) {
+			generator.writeKey("overall_score");
+			generator.write(this.overallScore);
+
+		}
+		if (this.start != null) {
+			generator.writeKey("start");
+			this.start.serialize(generator, mapper);
+
+		}
+		if (this.topN != null) {
+			generator.writeKey("top_n");
+			generator.write(this.topN);
+
+		}
+
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -225,19 +258,7 @@ public class GetOverallBucketsRequest extends RequestBase {
 		private Integer topN;
 
 		/**
-		 * Specifies what to do when the request:
-		 * <ol>
-		 * <li>Contains wildcard expressions and there are no jobs that match.</li>
-		 * <li>Contains the <code>_all</code> string or no identifiers and there are no
-		 * matches.</li>
-		 * <li>Contains wildcard expressions and there are only partial matches.</li>
-		 * </ol>
-		 * <p>
-		 * If <code>true</code>, the request returns an empty <code>jobs</code> array
-		 * when there are no matches and the subset of results when there are partial
-		 * matches. If this parameter is <code>false</code>, the request returns a
-		 * <code>404</code> status code when there are no matches or only partial
-		 * matches.
+		 * Refer to the description for the <code>allow_no_match</code> query parameter.
 		 * <p>
 		 * API name: {@code allow_no_match}
 		 */
@@ -247,13 +268,7 @@ public class GetOverallBucketsRequest extends RequestBase {
 		}
 
 		/**
-		 * The span of the overall buckets. Must be greater or equal to the largest
-		 * bucket span of the specified anomaly detection jobs, which is the default
-		 * value.
-		 * <p>
-		 * By default, an overall bucket has a span equal to the largest bucket span of
-		 * the specified anomaly detection jobs. To override that behavior, use the
-		 * optional <code>bucket_span</code> parameter.
+		 * Refer to the description for the <code>bucket_span</code> query parameter.
 		 * <p>
 		 * API name: {@code bucket_span}
 		 */
@@ -263,22 +278,18 @@ public class GetOverallBucketsRequest extends RequestBase {
 		}
 
 		/**
-		 * The span of the overall buckets. Must be greater or equal to the largest
-		 * bucket span of the specified anomaly detection jobs, which is the default
-		 * value.
-		 * <p>
-		 * By default, an overall bucket has a span equal to the largest bucket span of
-		 * the specified anomaly detection jobs. To override that behavior, use the
-		 * optional <code>bucket_span</code> parameter.
+		 * Refer to the description for the <code>bucket_span</code> query parameter.
 		 * <p>
 		 * API name: {@code bucket_span}
 		 */
-		public final Builder bucketSpan(Function<Time.Builder, ObjectBuilder<Time>> fn) {
-			return this.bucketSpan(fn.apply(new Time.Builder()).build());
+		public final Builder bucketSpan(Consumer<Time.Builder> fn) {
+			Time.Builder builder = new Time.Builder();
+			fn.accept(builder);
+			return this.bucketSpan(builder.build());
 		}
 
 		/**
-		 * Returns overall buckets with timestamps earlier than this time.
+		 * Refer to the description for the <code>end</code> query parameter.
 		 * <p>
 		 * API name: {@code end}
 		 */
@@ -288,16 +299,19 @@ public class GetOverallBucketsRequest extends RequestBase {
 		}
 
 		/**
-		 * Returns overall buckets with timestamps earlier than this time.
+		 * Refer to the description for the <code>end</code> query parameter.
 		 * <p>
 		 * API name: {@code end}
 		 */
-		public final Builder end(Function<Time.Builder, ObjectBuilder<Time>> fn) {
-			return this.end(fn.apply(new Time.Builder()).build());
+		public final Builder end(Consumer<Time.Builder> fn) {
+			Time.Builder builder = new Time.Builder();
+			fn.accept(builder);
+			return this.end(builder.build());
 		}
 
 		/**
-		 * If <code>true</code>, the output excludes interim results.
+		 * Refer to the description for the <code>exclude_interim</code> query
+		 * parameter.
 		 * <p>
 		 * API name: {@code exclude_interim}
 		 */
@@ -323,8 +337,7 @@ public class GetOverallBucketsRequest extends RequestBase {
 		}
 
 		/**
-		 * Returns overall buckets with overall scores greater than or equal to this
-		 * value.
+		 * Refer to the description for the <code>overall_score</code> query parameter.
 		 * <p>
 		 * API name: {@code overall_score}
 		 */
@@ -334,7 +347,7 @@ public class GetOverallBucketsRequest extends RequestBase {
 		}
 
 		/**
-		 * Returns overall buckets with timestamps after this time.
+		 * Refer to the description for the <code>start</code> query parameter.
 		 * <p>
 		 * API name: {@code start}
 		 */
@@ -344,17 +357,18 @@ public class GetOverallBucketsRequest extends RequestBase {
 		}
 
 		/**
-		 * Returns overall buckets with timestamps after this time.
+		 * Refer to the description for the <code>start</code> query parameter.
 		 * <p>
 		 * API name: {@code start}
 		 */
-		public final Builder start(Function<Time.Builder, ObjectBuilder<Time>> fn) {
-			return this.start(fn.apply(new Time.Builder()).build());
+		public final Builder start(Consumer<Time.Builder> fn) {
+			Time.Builder builder = new Time.Builder();
+			fn.accept(builder);
+			return this.start(builder.build());
 		}
 
 		/**
-		 * The number of top anomaly detection job bucket scores to be used in the
-		 * <code>overall_score</code> calculation.
+		 * Refer to the description for the <code>top_n</code> query parameter.
 		 * <p>
 		 * API name: {@code top_n}
 		 */
@@ -374,6 +388,27 @@ public class GetOverallBucketsRequest extends RequestBase {
 
 			return new GetOverallBucketsRequest(this);
 		}
+	}
+
+	// ---------------------------------------------------------------------------------------------
+
+	/**
+	 * Json deserializer for {@link GetOverallBucketsRequest}
+	 */
+	public static final JsonpDeserializer<GetOverallBucketsRequest> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, GetOverallBucketsRequest::setupGetOverallBucketsRequestDeserializer);
+
+	protected static void setupGetOverallBucketsRequestDeserializer(
+			ObjectDeserializer<GetOverallBucketsRequest.Builder> op) {
+
+		op.add(Builder::allowNoMatch, JsonpDeserializer.booleanDeserializer(), "allow_no_match");
+		op.add(Builder::bucketSpan, Time._DESERIALIZER, "bucket_span");
+		op.add(Builder::end, Time._DESERIALIZER, "end");
+		op.add(Builder::excludeInterim, JsonpDeserializer.booleanDeserializer(), "exclude_interim");
+		op.add(Builder::overallScore, JsonpDeserializer.stringDeserializer(), "overall_score");
+		op.add(Builder::start, Time._DESERIALIZER, "start");
+		op.add(Builder::topN, JsonpDeserializer.integerDeserializer(), "top_n");
+
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -412,29 +447,7 @@ public class GetOverallBucketsRequest extends RequestBase {
 
 			// Request parameters
 			request -> {
-				Map<String, String> params = new HashMap<>();
-				if (request.topN != null) {
-					params.put("top_n", String.valueOf(request.topN));
-				}
-				if (request.excludeInterim != null) {
-					params.put("exclude_interim", String.valueOf(request.excludeInterim));
-				}
-				if (request.bucketSpan != null) {
-					params.put("bucket_span", request.bucketSpan._toJsonString());
-				}
-				if (request.start != null) {
-					params.put("start", request.start._toJsonString());
-				}
-				if (request.end != null) {
-					params.put("end", request.end._toJsonString());
-				}
-				if (request.allowNoMatch != null) {
-					params.put("allow_no_match", String.valueOf(request.allowNoMatch));
-				}
-				if (request.overallScore != null) {
-					params.put("overall_score", request.overallScore);
-				}
-				return params;
+				return Collections.emptyMap();
 
-			}, SimpleEndpoint.emptyMap(), false, GetOverallBucketsResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, GetOverallBucketsResponse._DESERIALIZER);
 }

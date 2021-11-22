@@ -23,13 +23,25 @@
 
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
+import co.elastic.clients.json.JsonEnum;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
-import co.elastic.clients.util.StringEnum;
 
 @JsonpDeserializable
-public enum FunctionScoreMode implements StringEnum {
-	Multiply("multiply"), Sum("sum"), Avg("avg"), First("first"), Max("max"), Min("min");
+public enum FunctionScoreMode implements JsonEnum {
+	Multiply("multiply"),
+
+	Sum("sum"),
+
+	Avg("avg"),
+
+	First("first"),
+
+	Max("max"),
+
+	Min("min"),
+
+	;
 
 	private final String jsonValue;
 
@@ -41,6 +53,6 @@ public enum FunctionScoreMode implements StringEnum {
 		return this.jsonValue;
 	}
 
-	public static final StringEnum.Deserializer<FunctionScoreMode> _DESERIALIZER = new StringEnum.Deserializer<>(
+	public static final JsonEnum.Deserializer<FunctionScoreMode> _DESERIALIZER = new JsonEnum.Deserializer<>(
 			FunctionScoreMode.values());
 }

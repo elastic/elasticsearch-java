@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.watcher;
 
 import co.elastic.clients.elasticsearch._types.Time;
+import co.elastic.clients.json.JsonEnum;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -40,36 +41,61 @@ import java.lang.Object;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.ScheduleContainer
 // union type: Container[]
 @JsonpDeserializable
-public class Schedule implements TaggedUnion<Object>, TriggerVariant, JsonpSerializable {
-
-	public static final String CRON = "cron";
-	public static final String DAILY = "daily";
-	public static final String HOURLY = "hourly";
-	public static final String INTERVAL = "interval";
-	public static final String MONTHLY = "monthly";
-	public static final String WEEKLY = "weekly";
-	public static final String YEARLY = "yearly";
+public class Schedule implements TaggedUnion<Schedule.Kind, Object>, TriggerVariant, JsonpSerializable {
 
 	/**
-	 * {@link Trigger} variant type
+	 * {@link Schedule} variant kinds.
 	 */
-	@Override
-	public String _variantType() {
-		return "schedule";
+
+	public enum Kind implements JsonEnum {
+		Cron("cron"),
+
+		Daily("daily"),
+
+		Hourly("hourly"),
+
+		Interval("interval"),
+
+		Monthly("monthly"),
+
+		Weekly("weekly"),
+
+		Yearly("yearly"),
+
+		;
+
+		private final String jsonValue;
+
+		Kind(String jsonValue) {
+			this.jsonValue = jsonValue;
+		}
+
+		public String jsonValue() {
+			return this.jsonValue;
+		}
+
 	}
 
-	private final String _type;
+	/**
+	 * Trigger variant kind.
+	 */
+	@Override
+	public Trigger.Kind _triggerKind() {
+		return Trigger.Kind.Schedule;
+	}
+
+	private final Kind _kind;
 	private final Object _value;
 
 	@Override
-	public final String _type() {
-		return _type;
+	public final Kind _kind() {
+		return _kind;
 	}
 
 	@Override
@@ -79,27 +105,29 @@ public class Schedule implements TaggedUnion<Object>, TriggerVariant, JsonpSeria
 
 	public Schedule(ScheduleVariant value) {
 
-		this._type = ModelTypeHelper.requireNonNull(value._variantType(), this, "<variant type>");
+		this._kind = ModelTypeHelper.requireNonNull(value._scheduleKind(), this, "<variant kind>");
 		this._value = ModelTypeHelper.requireNonNull(value, this, "<variant value>");
 
 	}
 
 	private Schedule(Builder builder) {
 
-		this._type = ModelTypeHelper.requireNonNull(builder._type, builder, "<variant type>");
+		this._kind = ModelTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
 		this._value = ModelTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
 
 	}
 
-	public static Schedule of(Function<Builder, ObjectBuilder<Schedule>> fn) {
-		return fn.apply(new Builder()).build();
+	public static Schedule of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
 	 * Is this variant instance of kind {@code cron}?
 	 */
-	public boolean _isCron() {
-		return CRON.equals(_type());
+	public boolean isCron() {
+		return _kind == Kind.Cron;
 	}
 
 	/**
@@ -109,14 +137,14 @@ public class Schedule implements TaggedUnion<Object>, TriggerVariant, JsonpSeria
 	 *             if the current variant is not of the {@code cron} kind.
 	 */
 	public String cron() {
-		return TaggedUnionUtils.get(this, CRON);
+		return TaggedUnionUtils.get(this, Kind.Cron);
 	}
 
 	/**
 	 * Is this variant instance of kind {@code daily}?
 	 */
-	public boolean _isDaily() {
-		return DAILY.equals(_type());
+	public boolean isDaily() {
+		return _kind == Kind.Daily;
 	}
 
 	/**
@@ -126,14 +154,14 @@ public class Schedule implements TaggedUnion<Object>, TriggerVariant, JsonpSeria
 	 *             if the current variant is not of the {@code daily} kind.
 	 */
 	public DailySchedule daily() {
-		return TaggedUnionUtils.get(this, DAILY);
+		return TaggedUnionUtils.get(this, Kind.Daily);
 	}
 
 	/**
 	 * Is this variant instance of kind {@code hourly}?
 	 */
-	public boolean _isHourly() {
-		return HOURLY.equals(_type());
+	public boolean isHourly() {
+		return _kind == Kind.Hourly;
 	}
 
 	/**
@@ -143,14 +171,14 @@ public class Schedule implements TaggedUnion<Object>, TriggerVariant, JsonpSeria
 	 *             if the current variant is not of the {@code hourly} kind.
 	 */
 	public HourlySchedule hourly() {
-		return TaggedUnionUtils.get(this, HOURLY);
+		return TaggedUnionUtils.get(this, Kind.Hourly);
 	}
 
 	/**
 	 * Is this variant instance of kind {@code interval}?
 	 */
-	public boolean _isInterval() {
-		return INTERVAL.equals(_type());
+	public boolean isInterval() {
+		return _kind == Kind.Interval;
 	}
 
 	/**
@@ -160,14 +188,14 @@ public class Schedule implements TaggedUnion<Object>, TriggerVariant, JsonpSeria
 	 *             if the current variant is not of the {@code interval} kind.
 	 */
 	public Time interval() {
-		return TaggedUnionUtils.get(this, INTERVAL);
+		return TaggedUnionUtils.get(this, Kind.Interval);
 	}
 
 	/**
 	 * Is this variant instance of kind {@code monthly}?
 	 */
-	public boolean _isMonthly() {
-		return MONTHLY.equals(_type());
+	public boolean isMonthly() {
+		return _kind == Kind.Monthly;
 	}
 
 	/**
@@ -177,14 +205,14 @@ public class Schedule implements TaggedUnion<Object>, TriggerVariant, JsonpSeria
 	 *             if the current variant is not of the {@code monthly} kind.
 	 */
 	public List<TimeOfMonth> monthly() {
-		return TaggedUnionUtils.get(this, MONTHLY);
+		return TaggedUnionUtils.get(this, Kind.Monthly);
 	}
 
 	/**
 	 * Is this variant instance of kind {@code weekly}?
 	 */
-	public boolean _isWeekly() {
-		return WEEKLY.equals(_type());
+	public boolean isWeekly() {
+		return _kind == Kind.Weekly;
 	}
 
 	/**
@@ -194,14 +222,14 @@ public class Schedule implements TaggedUnion<Object>, TriggerVariant, JsonpSeria
 	 *             if the current variant is not of the {@code weekly} kind.
 	 */
 	public List<TimeOfWeek> weekly() {
-		return TaggedUnionUtils.get(this, WEEKLY);
+		return TaggedUnionUtils.get(this, Kind.Weekly);
 	}
 
 	/**
 	 * Is this variant instance of kind {@code yearly}?
 	 */
-	public boolean _isYearly() {
-		return YEARLY.equals(_type());
+	public boolean isYearly() {
+		return _kind == Kind.Yearly;
 	}
 
 	/**
@@ -211,7 +239,7 @@ public class Schedule implements TaggedUnion<Object>, TriggerVariant, JsonpSeria
 	 *             if the current variant is not of the {@code yearly} kind.
 	 */
 	public List<TimeOfYear> yearly() {
-		return TaggedUnionUtils.get(this, YEARLY);
+		return TaggedUnionUtils.get(this, Kind.Yearly);
 	}
 
 	@Override
@@ -220,16 +248,16 @@ public class Schedule implements TaggedUnion<Object>, TriggerVariant, JsonpSeria
 
 		generator.writeStartObject();
 
-		generator.writeKey(_type);
+		generator.writeKey(_kind.jsonValue());
 		if (_value instanceof JsonpSerializable) {
 			((JsonpSerializable) _value).serialize(generator, mapper);
 		} else {
-			switch (_type) {
-				case CRON :
+			switch (_kind) {
+				case Cron :
 					generator.write(((String) this._value));
 
 					break;
-				case MONTHLY :
+				case Monthly :
 					generator.writeStartArray();
 					for (TimeOfMonth item0 : ((List<TimeOfMonth>) this._value)) {
 						item0.serialize(generator, mapper);
@@ -238,7 +266,7 @@ public class Schedule implements TaggedUnion<Object>, TriggerVariant, JsonpSeria
 					generator.writeEnd();
 
 					break;
-				case WEEKLY :
+				case Weekly :
 					generator.writeStartArray();
 					for (TimeOfWeek item0 : ((List<TimeOfWeek>) this._value)) {
 						item0.serialize(generator, mapper);
@@ -247,7 +275,7 @@ public class Schedule implements TaggedUnion<Object>, TriggerVariant, JsonpSeria
 					generator.writeEnd();
 
 					break;
-				case YEARLY :
+				case Yearly :
 					generator.writeStartArray();
 					for (TimeOfYear item0 : ((List<TimeOfYear>) this._value)) {
 						item0.serialize(generator, mapper);
@@ -264,59 +292,65 @@ public class Schedule implements TaggedUnion<Object>, TriggerVariant, JsonpSeria
 	}
 
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Schedule> {
-		private String _type;
+		private Kind _kind;
 		private Object _value;
 
 		public Builder cron(String v) {
-			this._type = CRON;
+			this._kind = Kind.Cron;
 			this._value = v;
 			return this;
 		}
 
 		public Builder daily(DailySchedule v) {
-			this._type = DAILY;
+			this._kind = Kind.Daily;
 			this._value = v;
 			return this;
 		}
 
-		public Builder daily(Function<DailySchedule.Builder, ObjectBuilder<DailySchedule>> f) {
-			return this.daily(f.apply(new DailySchedule.Builder()).build());
+		public Builder daily(Consumer<DailySchedule.Builder> fn) {
+			DailySchedule.Builder builder = new DailySchedule.Builder();
+			fn.accept(builder);
+			return this.daily(builder.build());
 		}
 
 		public Builder hourly(HourlySchedule v) {
-			this._type = HOURLY;
+			this._kind = Kind.Hourly;
 			this._value = v;
 			return this;
 		}
 
-		public Builder hourly(Function<HourlySchedule.Builder, ObjectBuilder<HourlySchedule>> f) {
-			return this.hourly(f.apply(new HourlySchedule.Builder()).build());
+		public Builder hourly(Consumer<HourlySchedule.Builder> fn) {
+			HourlySchedule.Builder builder = new HourlySchedule.Builder();
+			fn.accept(builder);
+			return this.hourly(builder.build());
 		}
 
 		public Builder interval(Time v) {
-			this._type = INTERVAL;
+			this._kind = Kind.Interval;
 			this._value = v;
 			return this;
 		}
 
-		public Builder interval(Function<Time.Builder, ObjectBuilder<Time>> f) {
-			return this.interval(f.apply(new Time.Builder()).build());
+		public Builder interval(Consumer<Time.Builder> fn) {
+			Time.Builder builder = new Time.Builder();
+			fn.accept(builder);
+			return this.interval(builder.build());
 		}
 
 		public Builder monthly(List<TimeOfMonth> v) {
-			this._type = MONTHLY;
+			this._kind = Kind.Monthly;
 			this._value = v;
 			return this;
 		}
 
 		public Builder weekly(List<TimeOfWeek> v) {
-			this._type = WEEKLY;
+			this._kind = Kind.Weekly;
 			this._value = v;
 			return this;
 		}
 
 		public Builder yearly(List<TimeOfYear> v) {
-			this._type = YEARLY;
+			this._kind = Kind.Yearly;
 			this._value = v;
 			return this;
 		}

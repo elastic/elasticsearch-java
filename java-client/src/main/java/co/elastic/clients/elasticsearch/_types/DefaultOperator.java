@@ -23,13 +23,17 @@
 
 package co.elastic.clients.elasticsearch._types;
 
+import co.elastic.clients.json.JsonEnum;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
-import co.elastic.clients.util.StringEnum;
 
 @JsonpDeserializable
-public enum DefaultOperator implements StringEnum {
-	And("AND"), Or("OR");
+public enum DefaultOperator implements JsonEnum {
+	And("AND"),
+
+	Or("OR"),
+
+	;
 
 	private final String jsonValue;
 
@@ -41,6 +45,6 @@ public enum DefaultOperator implements StringEnum {
 		return this.jsonValue;
 	}
 
-	public static final StringEnum.Deserializer<DefaultOperator> _DESERIALIZER = new StringEnum.Deserializer<>(
+	public static final JsonEnum.Deserializer<DefaultOperator> _DESERIALIZER = new JsonEnum.Deserializer<>(
 			DefaultOperator.values());
 }

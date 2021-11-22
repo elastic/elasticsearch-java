@@ -35,7 +35,6 @@ import java.lang.Double;
 import java.lang.Long;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.StatsAggregate
@@ -81,11 +80,11 @@ public class StatsAggregate extends AggregateBase implements AggregateVariant {
 	}
 
 	/**
-	 * {@link Aggregate} variant type
+	 * Aggregate variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "stats";
+	public Aggregate.Kind _aggregateKind() {
+		return Aggregate.Kind.Stats;
 	}
 
 	/**

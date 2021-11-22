@@ -33,7 +33,7 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
-import co.elastic.clients.transport.SimpleEndpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
@@ -41,7 +41,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: ml.evaluate_data_frame.Request
@@ -64,8 +64,10 @@ public class EvaluateDataFrameRequest extends RequestBase implements JsonpSerial
 
 	}
 
-	public static EvaluateDataFrameRequest of(Function<Builder, ObjectBuilder<EvaluateDataFrameRequest>> fn) {
-		return fn.apply(new Builder()).build();
+	public static EvaluateDataFrameRequest of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -149,8 +151,10 @@ public class EvaluateDataFrameRequest extends RequestBase implements JsonpSerial
 		 * <p>
 		 * API name: {@code evaluation}
 		 */
-		public final Builder evaluation(Function<DataframeEvaluation.Builder, ObjectBuilder<DataframeEvaluation>> fn) {
-			return this.evaluation(fn.apply(new DataframeEvaluation.Builder()).build());
+		public final Builder evaluation(Consumer<DataframeEvaluation.Builder> fn) {
+			DataframeEvaluation.Builder builder = new DataframeEvaluation.Builder();
+			fn.accept(builder);
+			return this.evaluation(builder.build());
 		}
 
 		/**
@@ -178,8 +182,10 @@ public class EvaluateDataFrameRequest extends RequestBase implements JsonpSerial
 		 * <p>
 		 * API name: {@code query}
 		 */
-		public final Builder query(Function<Query.Builder, ObjectBuilder<Query>> fn) {
-			return this.query(fn.apply(new Query.Builder()).build());
+		public final Builder query(Consumer<Query.Builder> fn) {
+			Query.Builder builder = new Query.Builder();
+			fn.accept(builder);
+			return this.query(builder.build());
 		}
 
 		/**

@@ -25,25 +25,28 @@ package co.elastic.clients.elasticsearch.features;
 
 import co.elastic.clients.ApiClient;
 import co.elastic.clients.elasticsearch._types.ElasticsearchException;
+import co.elastic.clients.transport.ElasticsearchTransport;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.Transport;
 import co.elastic.clients.transport.TransportOptions;
 import co.elastic.clients.util.ObjectBuilder;
 import java.io.IOException;
 import java.util.concurrent.CompletableFuture;
-import java.util.function.Function;
 import javax.annotation.Nullable;
 
 /**
  * Client for the features namespace.
  */
-public class ElasticsearchFeaturesAsyncClient extends ApiClient<ElasticsearchFeaturesAsyncClient> {
+public class ElasticsearchFeaturesAsyncClient
+		extends
+			ApiClient<ElasticsearchTransport, ElasticsearchFeaturesAsyncClient> {
 
-	public ElasticsearchFeaturesAsyncClient(Transport transport) {
+	public ElasticsearchFeaturesAsyncClient(ElasticsearchTransport transport) {
 		super(transport, null);
 	}
 
-	public ElasticsearchFeaturesAsyncClient(Transport transport, @Nullable TransportOptions transportOptions) {
+	public ElasticsearchFeaturesAsyncClient(ElasticsearchTransport transport,
+			@Nullable TransportOptions transportOptions) {
 		super(transport, transportOptions);
 	}
 

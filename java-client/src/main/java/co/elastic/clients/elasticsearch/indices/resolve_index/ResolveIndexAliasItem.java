@@ -37,7 +37,7 @@ import java.lang.String;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: indices.resolve_index.ResolveIndexAliasItem
@@ -56,8 +56,10 @@ public class ResolveIndexAliasItem implements JsonpSerializable {
 
 	}
 
-	public static ResolveIndexAliasItem of(Function<Builder, ObjectBuilder<ResolveIndexAliasItem>> fn) {
-		return fn.apply(new Builder()).build();
+	public static ResolveIndexAliasItem of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**

@@ -35,7 +35,7 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: logstash._types.Pipeline
@@ -66,8 +66,10 @@ public class Pipeline implements JsonpSerializable {
 
 	}
 
-	public static Pipeline of(Function<Builder, ObjectBuilder<Pipeline>> fn) {
-		return fn.apply(new Builder()).build();
+	public static Pipeline of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -188,8 +190,10 @@ public class Pipeline implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code pipeline_metadata}
 		 */
-		public final Builder pipelineMetadata(Function<PipelineMetadata.Builder, ObjectBuilder<PipelineMetadata>> fn) {
-			return this.pipelineMetadata(fn.apply(new PipelineMetadata.Builder()).build());
+		public final Builder pipelineMetadata(Consumer<PipelineMetadata.Builder> fn) {
+			PipelineMetadata.Builder builder = new PipelineMetadata.Builder();
+			fn.accept(builder);
+			return this.pipelineMetadata(builder.build());
 		}
 
 		/**
@@ -219,8 +223,10 @@ public class Pipeline implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code pipeline_settings}
 		 */
-		public final Builder pipelineSettings(Function<PipelineSettings.Builder, ObjectBuilder<PipelineSettings>> fn) {
-			return this.pipelineSettings(fn.apply(new PipelineSettings.Builder()).build());
+		public final Builder pipelineSettings(Consumer<PipelineSettings.Builder> fn) {
+			PipelineSettings.Builder builder = new PipelineSettings.Builder();
+			fn.accept(builder);
+			return this.pipelineSettings(builder.build());
 		}
 
 		/**

@@ -37,7 +37,7 @@ import java.lang.String;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: _global.get_script_languages.LanguageContext
@@ -56,8 +56,10 @@ public class LanguageContext implements JsonpSerializable {
 
 	}
 
-	public static LanguageContext of(Function<Builder, ObjectBuilder<LanguageContext>> fn) {
-		return fn.apply(new Builder()).build();
+	public static LanguageContext of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**

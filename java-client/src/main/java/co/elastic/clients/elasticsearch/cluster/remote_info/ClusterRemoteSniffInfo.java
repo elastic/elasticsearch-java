@@ -41,7 +41,7 @@ import java.lang.String;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: cluster.remote_info.ClusterRemoteSniffInfo
@@ -74,16 +74,18 @@ public class ClusterRemoteSniffInfo implements ClusterRemoteInfoVariant, JsonpSe
 
 	}
 
-	public static ClusterRemoteSniffInfo of(Function<Builder, ObjectBuilder<ClusterRemoteSniffInfo>> fn) {
-		return fn.apply(new Builder()).build();
+	public static ClusterRemoteSniffInfo of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
-	 * {@link ClusterRemoteInfo} variant type
+	 * ClusterRemoteInfo variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "sniff";
+	public ClusterRemoteInfo.Kind _clusterRemoteInfoKind() {
+		return ClusterRemoteInfo.Kind.Sniff;
 	}
 
 	/**
@@ -222,8 +224,10 @@ public class ClusterRemoteSniffInfo implements ClusterRemoteInfoVariant, JsonpSe
 		/**
 		 * Required - API name: {@code initial_connect_timeout}
 		 */
-		public final Builder initialConnectTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
-			return this.initialConnectTimeout(fn.apply(new Time.Builder()).build());
+		public final Builder initialConnectTimeout(Consumer<Time.Builder> fn) {
+			Time.Builder builder = new Time.Builder();
+			fn.accept(builder);
+			return this.initialConnectTimeout(builder.build());
 		}
 
 		/**

@@ -30,7 +30,7 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 
 // typedef: _types.aggregations.ChildrenAggregate
 @JsonpDeserializable
@@ -42,16 +42,18 @@ public class ChildrenAggregate extends MultiBucketAggregateBase<ChildrenAggregat
 
 	}
 
-	public static ChildrenAggregate of(Function<Builder, ObjectBuilder<ChildrenAggregate>> fn) {
-		return fn.apply(new Builder()).build();
+	public static ChildrenAggregate of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
-	 * {@link Aggregate} variant type
+	 * Aggregate variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "children";
+	public Aggregate.Kind _aggregateKind() {
+		return Aggregate.Kind.Children;
 	}
 
 	// ---------------------------------------------------------------------------------------------

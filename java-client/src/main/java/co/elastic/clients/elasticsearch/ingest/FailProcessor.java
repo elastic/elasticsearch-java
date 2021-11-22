@@ -33,7 +33,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: ingest._types.FailProcessor
@@ -50,16 +50,18 @@ public class FailProcessor extends ProcessorBase implements ProcessorVariant {
 
 	}
 
-	public static FailProcessor of(Function<Builder, ObjectBuilder<FailProcessor>> fn) {
-		return fn.apply(new Builder()).build();
+	public static FailProcessor of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
-	 * {@link Processor} variant type
+	 * Processor variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "fail";
+	public Processor.Kind _processorKind() {
+		return Processor.Kind.Fail;
 	}
 
 	/**

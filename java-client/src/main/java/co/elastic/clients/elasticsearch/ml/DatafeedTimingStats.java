@@ -38,7 +38,7 @@ import java.lang.Long;
 import java.lang.Number;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.DatafeedTimingStats
@@ -71,8 +71,10 @@ public class DatafeedTimingStats implements JsonpSerializable {
 
 	}
 
-	public static DatafeedTimingStats of(Function<Builder, ObjectBuilder<DatafeedTimingStats>> fn) {
-		return fn.apply(new Builder()).build();
+	public static DatafeedTimingStats of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**

@@ -23,13 +23,21 @@
 
 package co.elastic.clients.elasticsearch.license;
 
+import co.elastic.clients.json.JsonEnum;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
-import co.elastic.clients.util.StringEnum;
 
 @JsonpDeserializable
-public enum LicenseStatus implements StringEnum {
-	Active("active"), Valid("valid"), Invalid("invalid"), Expired("expired");
+public enum LicenseStatus implements JsonEnum {
+	Active("active"),
+
+	Valid("valid"),
+
+	Invalid("invalid"),
+
+	Expired("expired"),
+
+	;
 
 	private final String jsonValue;
 
@@ -41,6 +49,6 @@ public enum LicenseStatus implements StringEnum {
 		return this.jsonValue;
 	}
 
-	public static final StringEnum.Deserializer<LicenseStatus> _DESERIALIZER = new StringEnum.Deserializer<>(
+	public static final JsonEnum.Deserializer<LicenseStatus> _DESERIALIZER = new JsonEnum.Deserializer<>(
 			LicenseStatus.values());
 }

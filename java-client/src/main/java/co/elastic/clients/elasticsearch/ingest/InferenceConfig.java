@@ -33,7 +33,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: ingest._types.InferenceConfig
@@ -50,8 +50,10 @@ public class InferenceConfig implements JsonpSerializable {
 
 	}
 
-	public static InferenceConfig of(Function<Builder, ObjectBuilder<InferenceConfig>> fn) {
-		return fn.apply(new Builder()).build();
+	public static InferenceConfig of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -101,9 +103,10 @@ public class InferenceConfig implements JsonpSerializable {
 		/**
 		 * API name: {@code regression}
 		 */
-		public final Builder regression(
-				Function<InferenceConfigRegression.Builder, ObjectBuilder<InferenceConfigRegression>> fn) {
-			return this.regression(fn.apply(new InferenceConfigRegression.Builder()).build());
+		public final Builder regression(Consumer<InferenceConfigRegression.Builder> fn) {
+			InferenceConfigRegression.Builder builder = new InferenceConfigRegression.Builder();
+			fn.accept(builder);
+			return this.regression(builder.build());
 		}
 
 		/**

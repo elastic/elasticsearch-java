@@ -37,7 +37,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.ScriptCondition
@@ -59,16 +59,18 @@ public class ScriptCondition implements ConditionVariant, JsonpSerializable {
 
 	}
 
-	public static ScriptCondition of(Function<Builder, ObjectBuilder<ScriptCondition>> fn) {
-		return fn.apply(new Builder()).build();
+	public static ScriptCondition of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
-	 * {@link Condition} variant type
+	 * Condition variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "script";
+	public Condition.Kind _conditionKind() {
+		return Condition.Kind.Script;
 	}
 
 	/**

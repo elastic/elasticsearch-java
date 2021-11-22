@@ -23,6 +23,7 @@
 
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
+import co.elastic.clients.json.JsonEnum;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -38,31 +39,55 @@ import java.lang.Object;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.PinnedQuery
 // union type: Container[]
 @JsonpDeserializable
-public class PinnedQuery extends QueryBase implements TaggedUnion<Object>, QueryVariant, JsonpSerializable {
-
-	public static final String IDS = "ids";
-	public static final String DOCS = "docs";
+public class PinnedQuery extends QueryBase
+		implements
+			TaggedUnion<PinnedQuery.Kind, Object>,
+			QueryVariant,
+			JsonpSerializable {
 
 	/**
-	 * {@link Query} variant type
+	 * {@link PinnedQuery} variant kinds.
 	 */
-	@Override
-	public String _variantType() {
-		return "pinned";
+
+	public enum Kind implements JsonEnum {
+		Ids("ids"),
+
+		Docs("docs"),
+
+		;
+
+		private final String jsonValue;
+
+		Kind(String jsonValue) {
+			this.jsonValue = jsonValue;
+		}
+
+		public String jsonValue() {
+			return this.jsonValue;
+		}
+
 	}
 
-	private final String _type;
+	/**
+	 * Query variant kind.
+	 */
+	@Override
+	public Query.Kind _queryKind() {
+		return Query.Kind.Pinned;
+	}
+
+	private final Kind _kind;
 	private final Object _value;
 
 	@Override
-	public final String _type() {
-		return _type;
+	public final Kind _kind() {
+		return _kind;
 	}
 
 	@Override
@@ -75,15 +100,17 @@ public class PinnedQuery extends QueryBase implements TaggedUnion<Object>, Query
 	private PinnedQuery(Builder builder) {
 		super(builder);
 
-		this._type = ModelTypeHelper.requireNonNull(builder._type, builder, "<variant type>");
+		this._kind = ModelTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
 		this._value = ModelTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
 
 		this.organic = ModelTypeHelper.requireNonNull(builder.organic, this, "organic");
 
 	}
 
-	public static PinnedQuery of(Function<Builder, ObjectBuilder<PinnedQuery>> fn) {
-		return fn.apply(new Builder()).build();
+	public static PinnedQuery of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -96,8 +123,8 @@ public class PinnedQuery extends QueryBase implements TaggedUnion<Object>, Query
 	/**
 	 * Is this variant instance of kind {@code ids}?
 	 */
-	public boolean _isIds() {
-		return IDS.equals(_type());
+	public boolean isIds() {
+		return _kind == Kind.Ids;
 	}
 
 	/**
@@ -107,14 +134,14 @@ public class PinnedQuery extends QueryBase implements TaggedUnion<Object>, Query
 	 *             if the current variant is not of the {@code ids} kind.
 	 */
 	public List<String> ids() {
-		return TaggedUnionUtils.get(this, IDS);
+		return TaggedUnionUtils.get(this, Kind.Ids);
 	}
 
 	/**
 	 * Is this variant instance of kind {@code docs}?
 	 */
-	public boolean _isDocs() {
-		return DOCS.equals(_type());
+	public boolean isDocs() {
+		return _kind == Kind.Docs;
 	}
 
 	/**
@@ -124,7 +151,7 @@ public class PinnedQuery extends QueryBase implements TaggedUnion<Object>, Query
 	 *             if the current variant is not of the {@code docs} kind.
 	 */
 	public List<PinnedDoc> docs() {
-		return TaggedUnionUtils.get(this, DOCS);
+		return TaggedUnionUtils.get(this, Kind.Docs);
 	}
 
 	@Override
@@ -137,12 +164,12 @@ public class PinnedQuery extends QueryBase implements TaggedUnion<Object>, Query
 		generator.writeKey("organic");
 		this.organic.serialize(generator, mapper);
 
-		generator.writeKey(_type);
+		generator.writeKey(_kind.jsonValue());
 		if (_value instanceof JsonpSerializable) {
 			((JsonpSerializable) _value).serialize(generator, mapper);
 		} else {
-			switch (_type) {
-				case IDS :
+			switch (_kind) {
+				case Ids :
 					generator.writeStartArray();
 					for (String item0 : ((List<String>) this._value)) {
 						generator.write(item0);
@@ -151,7 +178,7 @@ public class PinnedQuery extends QueryBase implements TaggedUnion<Object>, Query
 					generator.writeEnd();
 
 					break;
-				case DOCS :
+				case Docs :
 					generator.writeStartArray();
 					for (PinnedDoc item0 : ((List<PinnedDoc>) this._value)) {
 						item0.serialize(generator, mapper);
@@ -168,7 +195,7 @@ public class PinnedQuery extends QueryBase implements TaggedUnion<Object>, Query
 	}
 
 	public static class Builder extends QueryBase.AbstractBuilder<Builder> {
-		private String _type;
+		private Kind _kind;
 		private Object _value;
 
 		private Query organic;
@@ -184,8 +211,10 @@ public class PinnedQuery extends QueryBase implements TaggedUnion<Object>, Query
 		/**
 		 * Required - API name: {@code organic}
 		 */
-		public final Builder organic(Function<Query.Builder, ObjectBuilder<Query>> fn) {
-			return this.organic(fn.apply(new Query.Builder()).build());
+		public final Builder organic(Consumer<Query.Builder> fn) {
+			Query.Builder builder = new Query.Builder();
+			fn.accept(builder);
+			return this.organic(builder.build());
 		}
 
 		@Override
@@ -193,13 +222,13 @@ public class PinnedQuery extends QueryBase implements TaggedUnion<Object>, Query
 			return this;
 		}
 		public ContainerBuilder ids(List<String> v) {
-			this._type = IDS;
+			this._kind = Kind.Ids;
 			this._value = v;
 			return new ContainerBuilder();
 		}
 
 		public ContainerBuilder docs(List<PinnedDoc> v) {
-			this._type = DOCS;
+			this._kind = Kind.Docs;
 			this._value = v;
 			return new ContainerBuilder();
 		}
@@ -222,8 +251,10 @@ public class PinnedQuery extends QueryBase implements TaggedUnion<Object>, Query
 			/**
 			 * Required - API name: {@code organic}
 			 */
-			public final ContainerBuilder organic(Function<Query.Builder, ObjectBuilder<Query>> fn) {
-				return this.organic(fn.apply(new Query.Builder()).build());
+			public final ContainerBuilder organic(Consumer<Query.Builder> fn) {
+				Query.Builder builder = new Query.Builder();
+				fn.accept(builder);
+				return this.organic(builder.build());
 			}
 
 			public PinnedQuery build() {

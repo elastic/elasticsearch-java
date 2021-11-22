@@ -44,7 +44,7 @@ import java.lang.Long;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import java.util.function.Supplier;
 import javax.annotation.Nullable;
 
@@ -81,9 +81,10 @@ public class KnnSearchResponse<TDocument> implements JsonpSerializable {
 
 	}
 
-	public static <TDocument> KnnSearchResponse<TDocument> of(
-			Function<Builder<TDocument>, ObjectBuilder<KnnSearchResponse<TDocument>>> fn) {
-		return fn.apply(new Builder<>()).build();
+	public static <TDocument> KnnSearchResponse<TDocument> of(Consumer<Builder<TDocument>> fn) {
+		Builder<TDocument> builder = new Builder<>();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -247,8 +248,10 @@ public class KnnSearchResponse<TDocument> implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code _shards}
 		 */
-		public final Builder<TDocument> shards(Function<ShardStatistics.Builder, ObjectBuilder<ShardStatistics>> fn) {
-			return this.shards(fn.apply(new ShardStatistics.Builder()).build());
+		public final Builder<TDocument> shards(Consumer<ShardStatistics.Builder> fn) {
+			ShardStatistics.Builder builder = new ShardStatistics.Builder();
+			fn.accept(builder);
+			return this.shards(builder.build());
 		}
 
 		/**
@@ -266,9 +269,10 @@ public class KnnSearchResponse<TDocument> implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code hits}
 		 */
-		public final Builder<TDocument> hits(
-				Function<HitsMetadata.Builder<TDocument>, ObjectBuilder<HitsMetadata<TDocument>>> fn) {
-			return this.hits(fn.apply(new HitsMetadata.Builder<TDocument>()).build());
+		public final Builder<TDocument> hits(Consumer<HitsMetadata.Builder<TDocument>> fn) {
+			HitsMetadata.Builder<TDocument> builder = new HitsMetadata.Builder<TDocument>();
+			fn.accept(builder);
+			return this.hits(builder.build());
 		}
 
 		/**

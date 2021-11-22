@@ -23,12 +23,12 @@
 
 package co.elastic.clients.elasticsearch.transform;
 
-import co.elastic.clients.util.UnionVariant;
-
 /**
  * Base interface for {@link RetentionPolicy} variants.
  */
-public interface RetentionPolicyVariant extends UnionVariant {
+public interface RetentionPolicyVariant {
+
+	RetentionPolicy.Kind _retentionPolicyKind();
 
 	default RetentionPolicy _toRetentionPolicy() {
 		return new RetentionPolicy(this);

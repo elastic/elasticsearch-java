@@ -36,7 +36,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.ScriptedMetricAggregation
@@ -69,16 +69,18 @@ public class ScriptedMetricAggregation extends MetricAggregationBase implements 
 
 	}
 
-	public static ScriptedMetricAggregation of(Function<Builder, ObjectBuilder<ScriptedMetricAggregation>> fn) {
-		return fn.apply(new Builder()).build();
+	public static ScriptedMetricAggregation of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
-	 * {@link Aggregation} variant type
+	 * Aggregation variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "scripted_metric";
+	public Aggregation.Kind _aggregationKind() {
+		return Aggregation.Kind.ScriptedMetric;
 	}
 
 	/**
@@ -191,8 +193,10 @@ public class ScriptedMetricAggregation extends MetricAggregationBase implements 
 		/**
 		 * API name: {@code combine_script}
 		 */
-		public final Builder combineScript(Function<Script.Builder, ObjectBuilder<Script>> fn) {
-			return this.combineScript(fn.apply(new Script.Builder()).build());
+		public final Builder combineScript(Consumer<Script.Builder> fn) {
+			Script.Builder builder = new Script.Builder();
+			fn.accept(builder);
+			return this.combineScript(builder.build());
 		}
 
 		/**
@@ -206,8 +210,10 @@ public class ScriptedMetricAggregation extends MetricAggregationBase implements 
 		/**
 		 * API name: {@code init_script}
 		 */
-		public final Builder initScript(Function<Script.Builder, ObjectBuilder<Script>> fn) {
-			return this.initScript(fn.apply(new Script.Builder()).build());
+		public final Builder initScript(Consumer<Script.Builder> fn) {
+			Script.Builder builder = new Script.Builder();
+			fn.accept(builder);
+			return this.initScript(builder.build());
 		}
 
 		/**
@@ -221,8 +227,10 @@ public class ScriptedMetricAggregation extends MetricAggregationBase implements 
 		/**
 		 * API name: {@code map_script}
 		 */
-		public final Builder mapScript(Function<Script.Builder, ObjectBuilder<Script>> fn) {
-			return this.mapScript(fn.apply(new Script.Builder()).build());
+		public final Builder mapScript(Consumer<Script.Builder> fn) {
+			Script.Builder builder = new Script.Builder();
+			fn.accept(builder);
+			return this.mapScript(builder.build());
 		}
 
 		/**
@@ -244,8 +252,10 @@ public class ScriptedMetricAggregation extends MetricAggregationBase implements 
 		/**
 		 * API name: {@code reduce_script}
 		 */
-		public final Builder reduceScript(Function<Script.Builder, ObjectBuilder<Script>> fn) {
-			return this.reduceScript(fn.apply(new Script.Builder()).build());
+		public final Builder reduceScript(Consumer<Script.Builder> fn) {
+			Script.Builder builder = new Script.Builder();
+			fn.accept(builder);
+			return this.reduceScript(builder.build());
 		}
 
 		@Override

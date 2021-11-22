@@ -36,7 +36,7 @@ import java.lang.String;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: _types.analysis.NGramTokenizer
@@ -63,16 +63,18 @@ public class NGramTokenizer extends TokenizerBase implements TokenizerDefinition
 
 	}
 
-	public static NGramTokenizer of(Function<Builder, ObjectBuilder<NGramTokenizer>> fn) {
-		return fn.apply(new Builder()).build();
+	public static NGramTokenizer of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
-	 * {@link TokenizerDefinition} variant type
+	 * TokenizerDefinition variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "ngram";
+	public TokenizerDefinition.Kind _tokenizerDefinitionKind() {
+		return TokenizerDefinition.Kind.Ngram;
 	}
 
 	/**

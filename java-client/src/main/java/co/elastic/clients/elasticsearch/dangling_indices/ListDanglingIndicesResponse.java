@@ -30,14 +30,15 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -54,8 +55,10 @@ public class ListDanglingIndicesResponse implements JsonpSerializable {
 
 	}
 
-	public static ListDanglingIndicesResponse of(Function<Builder, ObjectBuilder<ListDanglingIndicesResponse>> fn) {
-		return fn.apply(new Builder()).build();
+	public static ListDanglingIndicesResponse of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -116,13 +119,9 @@ public class ListDanglingIndicesResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code dangling_indices}
 		 */
-		@SafeVarargs
-		public final Builder danglingIndices(Function<DanglingIndex.Builder, ObjectBuilder<DanglingIndex>>... fns) {
-			this.danglingIndices = new ArrayList<>(fns.length);
-			for (Function<DanglingIndex.Builder, ObjectBuilder<DanglingIndex>> fn : fns) {
-				this.danglingIndices.add(fn.apply(new DanglingIndex.Builder()).build());
-			}
-			return this;
+		public final Builder danglingIndices(
+				Function<ListBuilder<DanglingIndex, DanglingIndex.Builder>, ObjectBuilder<List<DanglingIndex>>> fn) {
+			return danglingIndices(fn.apply(new ListBuilder<>(DanglingIndex.Builder::new)).build());
 		}
 
 		/**

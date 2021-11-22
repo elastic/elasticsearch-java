@@ -23,18 +23,49 @@
 
 package co.elastic.clients.elasticsearch.security;
 
+import co.elastic.clients.json.JsonEnum;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
-import co.elastic.clients.util.StringEnum;
 
 @JsonpDeserializable
-public enum IndexPrivilege implements StringEnum {
-	All("all"), AutoConfigure("auto_configure"), Create("create"), CreateDoc("create_doc"), CreateIndex(
-			"create_index"), Delete("delete"), DeleteIndex("delete_index"), Index("index"), Maintenance(
-					"maintenance"), Manage("manage"), ManageFollowIndex("manage_follow_index"), ManageIlm(
-							"manage_ilm"), ManageLeaderIndex("manage_leader_index"), Monitor("monitor"), Read(
-									"read"), ReadCrossCluster("read_cross_cluster"), ViewIndexMetadata(
-											"view_index_metadata"), Write("write");
+public enum IndexPrivilege implements JsonEnum {
+	All("all"),
+
+	AutoConfigure("auto_configure"),
+
+	Create("create"),
+
+	CreateDoc("create_doc"),
+
+	CreateIndex("create_index"),
+
+	Delete("delete"),
+
+	DeleteIndex("delete_index"),
+
+	Index("index"),
+
+	Maintenance("maintenance"),
+
+	Manage("manage"),
+
+	ManageFollowIndex("manage_follow_index"),
+
+	ManageIlm("manage_ilm"),
+
+	ManageLeaderIndex("manage_leader_index"),
+
+	Monitor("monitor"),
+
+	Read("read"),
+
+	ReadCrossCluster("read_cross_cluster"),
+
+	ViewIndexMetadata("view_index_metadata"),
+
+	Write("write"),
+
+	;
 
 	private final String jsonValue;
 
@@ -46,6 +77,6 @@ public enum IndexPrivilege implements StringEnum {
 		return this.jsonValue;
 	}
 
-	public static final StringEnum.Deserializer<IndexPrivilege> _DESERIALIZER = new StringEnum.Deserializer<>(
+	public static final JsonEnum.Deserializer<IndexPrivilege> _DESERIALIZER = new JsonEnum.Deserializer<>(
 			IndexPrivilege.values());
 }

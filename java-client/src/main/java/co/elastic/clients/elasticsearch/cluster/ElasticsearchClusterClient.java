@@ -26,25 +26,26 @@ package co.elastic.clients.elasticsearch.cluster;
 import co.elastic.clients.ApiClient;
 import co.elastic.clients.elasticsearch._types.ElasticsearchException;
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
-import co.elastic.clients.transport.BooleanResponse;
+import co.elastic.clients.transport.ElasticsearchTransport;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.Transport;
 import co.elastic.clients.transport.TransportOptions;
+import co.elastic.clients.transport.endpoints.BooleanResponse;
 import co.elastic.clients.util.ObjectBuilder;
 import java.io.IOException;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 /**
  * Client for the cluster namespace.
  */
-public class ElasticsearchClusterClient extends ApiClient<ElasticsearchClusterClient> {
+public class ElasticsearchClusterClient extends ApiClient<ElasticsearchTransport, ElasticsearchClusterClient> {
 
-	public ElasticsearchClusterClient(Transport transport) {
+	public ElasticsearchClusterClient(ElasticsearchTransport transport) {
 		super(transport, null);
 	}
 
-	public ElasticsearchClusterClient(Transport transport, @Nullable TransportOptions transportOptions) {
+	public ElasticsearchClusterClient(ElasticsearchTransport transport, @Nullable TransportOptions transportOptions) {
 		super(transport, transportOptions);
 	}
 
@@ -82,10 +83,11 @@ public class ElasticsearchClusterClient extends ApiClient<ElasticsearchClusterCl
 	 *      on elastic.co</a>
 	 */
 
-	public final AllocationExplainResponse allocationExplain(
-			Function<AllocationExplainRequest.Builder, ObjectBuilder<AllocationExplainRequest>> fn)
+	public final AllocationExplainResponse allocationExplain(Consumer<AllocationExplainRequest.Builder> fn)
 			throws IOException, ElasticsearchException {
-		return allocationExplain(fn.apply(new AllocationExplainRequest.Builder()).build());
+		AllocationExplainRequest.Builder builder = new AllocationExplainRequest.Builder();
+		fn.accept(builder);
+		return allocationExplain(builder.build());
 	}
 
 	/**
@@ -131,9 +133,10 @@ public class ElasticsearchClusterClient extends ApiClient<ElasticsearchClusterCl
 	 */
 
 	public final DeleteComponentTemplateResponse deleteComponentTemplate(
-			Function<DeleteComponentTemplateRequest.Builder, ObjectBuilder<DeleteComponentTemplateRequest>> fn)
-			throws IOException, ElasticsearchException {
-		return deleteComponentTemplate(fn.apply(new DeleteComponentTemplateRequest.Builder()).build());
+			Consumer<DeleteComponentTemplateRequest.Builder> fn) throws IOException, ElasticsearchException {
+		DeleteComponentTemplateRequest.Builder builder = new DeleteComponentTemplateRequest.Builder();
+		fn.accept(builder);
+		return deleteComponentTemplate(builder.build());
 	}
 
 	// ----- Endpoint: cluster.delete_voting_config_exclusions
@@ -165,10 +168,11 @@ public class ElasticsearchClusterClient extends ApiClient<ElasticsearchClusterCl
 	 *      on elastic.co</a>
 	 */
 
-	public final BooleanResponse deleteVotingConfigExclusions(
-			Function<DeleteVotingConfigExclusionsRequest.Builder, ObjectBuilder<DeleteVotingConfigExclusionsRequest>> fn)
+	public final BooleanResponse deleteVotingConfigExclusions(Consumer<DeleteVotingConfigExclusionsRequest.Builder> fn)
 			throws IOException, ElasticsearchException {
-		return deleteVotingConfigExclusions(fn.apply(new DeleteVotingConfigExclusionsRequest.Builder()).build());
+		DeleteVotingConfigExclusionsRequest.Builder builder = new DeleteVotingConfigExclusionsRequest.Builder();
+		fn.accept(builder);
+		return deleteVotingConfigExclusions(builder.build());
 	}
 
 	/**
@@ -213,10 +217,11 @@ public class ElasticsearchClusterClient extends ApiClient<ElasticsearchClusterCl
 	 *      on elastic.co</a>
 	 */
 
-	public final BooleanResponse existsComponentTemplate(
-			Function<ExistsComponentTemplateRequest.Builder, ObjectBuilder<ExistsComponentTemplateRequest>> fn)
+	public final BooleanResponse existsComponentTemplate(Consumer<ExistsComponentTemplateRequest.Builder> fn)
 			throws IOException, ElasticsearchException {
-		return existsComponentTemplate(fn.apply(new ExistsComponentTemplateRequest.Builder()).build());
+		ExistsComponentTemplateRequest.Builder builder = new ExistsComponentTemplateRequest.Builder();
+		fn.accept(builder);
+		return existsComponentTemplate(builder.build());
 	}
 
 	// ----- Endpoint: cluster.get_component_template
@@ -248,10 +253,11 @@ public class ElasticsearchClusterClient extends ApiClient<ElasticsearchClusterCl
 	 *      on elastic.co</a>
 	 */
 
-	public final GetComponentTemplateResponse getComponentTemplate(
-			Function<GetComponentTemplateRequest.Builder, ObjectBuilder<GetComponentTemplateRequest>> fn)
+	public final GetComponentTemplateResponse getComponentTemplate(Consumer<GetComponentTemplateRequest.Builder> fn)
 			throws IOException, ElasticsearchException {
-		return getComponentTemplate(fn.apply(new GetComponentTemplateRequest.Builder()).build());
+		GetComponentTemplateRequest.Builder builder = new GetComponentTemplateRequest.Builder();
+		fn.accept(builder);
+		return getComponentTemplate(builder.build());
 	}
 
 	/**
@@ -277,9 +283,10 @@ public class ElasticsearchClusterClient extends ApiClient<ElasticsearchClusterCl
 	 *      on elastic.co</a>
 	 */
 
-	public GetSettingsResponse getSettings(GetSettingsRequest request) throws IOException, ElasticsearchException {
+	public GetClusterSettingsResponse getSettings(GetClusterSettingsRequest request)
+			throws IOException, ElasticsearchException {
 		@SuppressWarnings("unchecked")
-		Endpoint<GetSettingsRequest, GetSettingsResponse, ErrorResponse> endpoint = (Endpoint<GetSettingsRequest, GetSettingsResponse, ErrorResponse>) GetSettingsRequest._ENDPOINT;
+		Endpoint<GetClusterSettingsRequest, GetClusterSettingsResponse, ErrorResponse> endpoint = (Endpoint<GetClusterSettingsRequest, GetClusterSettingsResponse, ErrorResponse>) GetClusterSettingsRequest._ENDPOINT;
 
 		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
@@ -289,16 +296,17 @@ public class ElasticsearchClusterClient extends ApiClient<ElasticsearchClusterCl
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
-	 *            {@link GetSettingsRequest}
+	 *            {@link GetClusterSettingsRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cluster-get-settings.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
-	public final GetSettingsResponse getSettings(
-			Function<GetSettingsRequest.Builder, ObjectBuilder<GetSettingsRequest>> fn)
+	public final GetClusterSettingsResponse getSettings(Consumer<GetClusterSettingsRequest.Builder> fn)
 			throws IOException, ElasticsearchException {
-		return getSettings(fn.apply(new GetSettingsRequest.Builder()).build());
+		GetClusterSettingsRequest.Builder builder = new GetClusterSettingsRequest.Builder();
+		fn.accept(builder);
+		return getSettings(builder.build());
 	}
 
 	/**
@@ -309,9 +317,9 @@ public class ElasticsearchClusterClient extends ApiClient<ElasticsearchClusterCl
 	 *      on elastic.co</a>
 	 */
 
-	public GetSettingsResponse getSettings() throws IOException, ElasticsearchException {
-		return this.transport.performRequest(new GetSettingsRequest.Builder().build(), GetSettingsRequest._ENDPOINT,
-				this.transportOptions);
+	public GetClusterSettingsResponse getSettings() throws IOException, ElasticsearchException {
+		return this.transport.performRequest(new GetClusterSettingsRequest.Builder().build(),
+				GetClusterSettingsRequest._ENDPOINT, this.transportOptions);
 	}
 
 	// ----- Endpoint: cluster.health
@@ -342,9 +350,10 @@ public class ElasticsearchClusterClient extends ApiClient<ElasticsearchClusterCl
 	 *      on elastic.co</a>
 	 */
 
-	public final HealthResponse health(Function<HealthRequest.Builder, ObjectBuilder<HealthRequest>> fn)
-			throws IOException, ElasticsearchException {
-		return health(fn.apply(new HealthRequest.Builder()).build());
+	public final HealthResponse health(Consumer<HealthRequest.Builder> fn) throws IOException, ElasticsearchException {
+		HealthRequest.Builder builder = new HealthRequest.Builder();
+		fn.accept(builder);
+		return health(builder.build());
 	}
 
 	/**
@@ -390,10 +399,11 @@ public class ElasticsearchClusterClient extends ApiClient<ElasticsearchClusterCl
 	 *      on elastic.co</a>
 	 */
 
-	public final PendingTasksResponse pendingTasks(
-			Function<PendingTasksRequest.Builder, ObjectBuilder<PendingTasksRequest>> fn)
+	public final PendingTasksResponse pendingTasks(Consumer<PendingTasksRequest.Builder> fn)
 			throws IOException, ElasticsearchException {
-		return pendingTasks(fn.apply(new PendingTasksRequest.Builder()).build());
+		PendingTasksRequest.Builder builder = new PendingTasksRequest.Builder();
+		fn.accept(builder);
+		return pendingTasks(builder.build());
 	}
 
 	/**
@@ -439,10 +449,11 @@ public class ElasticsearchClusterClient extends ApiClient<ElasticsearchClusterCl
 	 *      on elastic.co</a>
 	 */
 
-	public final BooleanResponse postVotingConfigExclusions(
-			Function<PostVotingConfigExclusionsRequest.Builder, ObjectBuilder<PostVotingConfigExclusionsRequest>> fn)
+	public final BooleanResponse postVotingConfigExclusions(Consumer<PostVotingConfigExclusionsRequest.Builder> fn)
 			throws IOException, ElasticsearchException {
-		return postVotingConfigExclusions(fn.apply(new PostVotingConfigExclusionsRequest.Builder()).build());
+		PostVotingConfigExclusionsRequest.Builder builder = new PostVotingConfigExclusionsRequest.Builder();
+		fn.accept(builder);
+		return postVotingConfigExclusions(builder.build());
 	}
 
 	/**
@@ -487,10 +498,11 @@ public class ElasticsearchClusterClient extends ApiClient<ElasticsearchClusterCl
 	 *      on elastic.co</a>
 	 */
 
-	public final PutComponentTemplateResponse putComponentTemplate(
-			Function<PutComponentTemplateRequest.Builder, ObjectBuilder<PutComponentTemplateRequest>> fn)
+	public final PutComponentTemplateResponse putComponentTemplate(Consumer<PutComponentTemplateRequest.Builder> fn)
 			throws IOException, ElasticsearchException {
-		return putComponentTemplate(fn.apply(new PutComponentTemplateRequest.Builder()).build());
+		PutComponentTemplateRequest.Builder builder = new PutComponentTemplateRequest.Builder();
+		fn.accept(builder);
+		return putComponentTemplate(builder.build());
 	}
 
 	// ----- Endpoint: cluster.put_settings
@@ -503,9 +515,10 @@ public class ElasticsearchClusterClient extends ApiClient<ElasticsearchClusterCl
 	 *      on elastic.co</a>
 	 */
 
-	public PutSettingsResponse putSettings(PutSettingsRequest request) throws IOException, ElasticsearchException {
+	public PutClusterSettingsResponse putSettings(PutClusterSettingsRequest request)
+			throws IOException, ElasticsearchException {
 		@SuppressWarnings("unchecked")
-		Endpoint<PutSettingsRequest, PutSettingsResponse, ErrorResponse> endpoint = (Endpoint<PutSettingsRequest, PutSettingsResponse, ErrorResponse>) PutSettingsRequest._ENDPOINT;
+		Endpoint<PutClusterSettingsRequest, PutClusterSettingsResponse, ErrorResponse> endpoint = (Endpoint<PutClusterSettingsRequest, PutClusterSettingsResponse, ErrorResponse>) PutClusterSettingsRequest._ENDPOINT;
 
 		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
@@ -515,16 +528,17 @@ public class ElasticsearchClusterClient extends ApiClient<ElasticsearchClusterCl
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
-	 *            {@link PutSettingsRequest}
+	 *            {@link PutClusterSettingsRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cluster-update-settings.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
-	public final PutSettingsResponse putSettings(
-			Function<PutSettingsRequest.Builder, ObjectBuilder<PutSettingsRequest>> fn)
+	public final PutClusterSettingsResponse putSettings(Consumer<PutClusterSettingsRequest.Builder> fn)
 			throws IOException, ElasticsearchException {
-		return putSettings(fn.apply(new PutSettingsRequest.Builder()).build());
+		PutClusterSettingsRequest.Builder builder = new PutClusterSettingsRequest.Builder();
+		fn.accept(builder);
+		return putSettings(builder.build());
 	}
 
 	/**
@@ -535,9 +549,9 @@ public class ElasticsearchClusterClient extends ApiClient<ElasticsearchClusterCl
 	 *      on elastic.co</a>
 	 */
 
-	public PutSettingsResponse putSettings() throws IOException, ElasticsearchException {
-		return this.transport.performRequest(new PutSettingsRequest.Builder().build(), PutSettingsRequest._ENDPOINT,
-				this.transportOptions);
+	public PutClusterSettingsResponse putSettings() throws IOException, ElasticsearchException {
+		return this.transport.performRequest(new PutClusterSettingsRequest.Builder().build(),
+				PutClusterSettingsRequest._ENDPOINT, this.transportOptions);
 	}
 
 	// ----- Endpoint: cluster.remote_info
@@ -582,9 +596,11 @@ public class ElasticsearchClusterClient extends ApiClient<ElasticsearchClusterCl
 	 *      on elastic.co</a>
 	 */
 
-	public final RerouteResponse reroute(Function<RerouteRequest.Builder, ObjectBuilder<RerouteRequest>> fn)
+	public final RerouteResponse reroute(Consumer<RerouteRequest.Builder> fn)
 			throws IOException, ElasticsearchException {
-		return reroute(fn.apply(new RerouteRequest.Builder()).build());
+		RerouteRequest.Builder builder = new RerouteRequest.Builder();
+		fn.accept(builder);
+		return reroute(builder.build());
 	}
 
 	/**
@@ -628,9 +644,10 @@ public class ElasticsearchClusterClient extends ApiClient<ElasticsearchClusterCl
 	 *      on elastic.co</a>
 	 */
 
-	public final StateResponse state(Function<StateRequest.Builder, ObjectBuilder<StateRequest>> fn)
-			throws IOException, ElasticsearchException {
-		return state(fn.apply(new StateRequest.Builder()).build());
+	public final StateResponse state(Consumer<StateRequest.Builder> fn) throws IOException, ElasticsearchException {
+		StateRequest.Builder builder = new StateRequest.Builder();
+		fn.accept(builder);
+		return state(builder.build());
 	}
 
 	/**
@@ -674,10 +691,11 @@ public class ElasticsearchClusterClient extends ApiClient<ElasticsearchClusterCl
 	 *      on elastic.co</a>
 	 */
 
-	public final ClusterStatsResponse stats(
-			Function<ClusterStatsRequest.Builder, ObjectBuilder<ClusterStatsRequest>> fn)
+	public final ClusterStatsResponse stats(Consumer<ClusterStatsRequest.Builder> fn)
 			throws IOException, ElasticsearchException {
-		return stats(fn.apply(new ClusterStatsRequest.Builder()).build());
+		ClusterStatsRequest.Builder builder = new ClusterStatsRequest.Builder();
+		fn.accept(builder);
+		return stats(builder.build());
 	}
 
 	/**

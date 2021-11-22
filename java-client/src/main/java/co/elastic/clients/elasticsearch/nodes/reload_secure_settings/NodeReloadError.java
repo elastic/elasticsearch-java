@@ -36,7 +36,7 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: nodes.reload_secure_settings.NodeReloadError
@@ -56,8 +56,10 @@ public class NodeReloadError implements JsonpSerializable {
 
 	}
 
-	public static NodeReloadError of(Function<Builder, ObjectBuilder<NodeReloadError>> fn) {
-		return fn.apply(new Builder()).build();
+	public static NodeReloadError of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -127,8 +129,10 @@ public class NodeReloadError implements JsonpSerializable {
 		/**
 		 * API name: {@code reload_exception}
 		 */
-		public final Builder reloadException(Function<ErrorCause.Builder, ObjectBuilder<ErrorCause>> fn) {
-			return this.reloadException(fn.apply(new ErrorCause.Builder()).build());
+		public final Builder reloadException(Consumer<ErrorCause.Builder> fn) {
+			ErrorCause.Builder builder = new ErrorCause.Builder();
+			fn.accept(builder);
+			return this.reloadException(builder.build());
 		}
 
 		/**

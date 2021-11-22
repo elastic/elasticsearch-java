@@ -26,25 +26,26 @@ package co.elastic.clients.elasticsearch.sql;
 import co.elastic.clients.ApiClient;
 import co.elastic.clients.elasticsearch._types.ElasticsearchException;
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
+import co.elastic.clients.transport.ElasticsearchTransport;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.Transport;
 import co.elastic.clients.transport.TransportOptions;
 import co.elastic.clients.util.ObjectBuilder;
 import java.io.IOException;
 import java.util.concurrent.CompletableFuture;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 /**
  * Client for the sql namespace.
  */
-public class ElasticsearchSqlAsyncClient extends ApiClient<ElasticsearchSqlAsyncClient> {
+public class ElasticsearchSqlAsyncClient extends ApiClient<ElasticsearchTransport, ElasticsearchSqlAsyncClient> {
 
-	public ElasticsearchSqlAsyncClient(Transport transport) {
+	public ElasticsearchSqlAsyncClient(ElasticsearchTransport transport) {
 		super(transport, null);
 	}
 
-	public ElasticsearchSqlAsyncClient(Transport transport, @Nullable TransportOptions transportOptions) {
+	public ElasticsearchSqlAsyncClient(ElasticsearchTransport transport, @Nullable TransportOptions transportOptions) {
 		super(transport, transportOptions);
 	}
 
@@ -82,10 +83,11 @@ public class ElasticsearchSqlAsyncClient extends ApiClient<ElasticsearchSqlAsync
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<ClearCursorResponse> clearCursor(
-			Function<ClearCursorRequest.Builder, ObjectBuilder<ClearCursorRequest>> fn)
+	public final CompletableFuture<ClearCursorResponse> clearCursor(Consumer<ClearCursorRequest.Builder> fn)
 			throws IOException, ElasticsearchException {
-		return clearCursor(fn.apply(new ClearCursorRequest.Builder()).build());
+		ClearCursorRequest.Builder builder = new ClearCursorRequest.Builder();
+		fn.accept(builder);
+		return clearCursor(builder.build());
 	}
 
 	// ----- Endpoint: sql.query
@@ -116,9 +118,11 @@ public class ElasticsearchSqlAsyncClient extends ApiClient<ElasticsearchSqlAsync
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<QueryResponse> query(Function<QueryRequest.Builder, ObjectBuilder<QueryRequest>> fn)
+	public final CompletableFuture<QueryResponse> query(Consumer<QueryRequest.Builder> fn)
 			throws IOException, ElasticsearchException {
-		return query(fn.apply(new QueryRequest.Builder()).build());
+		QueryRequest.Builder builder = new QueryRequest.Builder();
+		fn.accept(builder);
+		return query(builder.build());
 	}
 
 	/**
@@ -163,10 +167,11 @@ public class ElasticsearchSqlAsyncClient extends ApiClient<ElasticsearchSqlAsync
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<TranslateResponse> translate(
-			Function<TranslateRequest.Builder, ObjectBuilder<TranslateRequest>> fn)
+	public final CompletableFuture<TranslateResponse> translate(Consumer<TranslateRequest.Builder> fn)
 			throws IOException, ElasticsearchException {
-		return translate(fn.apply(new TranslateRequest.Builder()).build());
+		TranslateRequest.Builder builder = new TranslateRequest.Builder();
+		fn.accept(builder);
+		return translate(builder.build());
 	}
 
 }

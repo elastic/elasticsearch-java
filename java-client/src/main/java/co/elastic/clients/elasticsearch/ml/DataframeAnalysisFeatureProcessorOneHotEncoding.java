@@ -35,7 +35,7 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.DataframeAnalysisFeatureProcessorOneHotEncoding
@@ -57,17 +57,18 @@ public class DataframeAnalysisFeatureProcessorOneHotEncoding
 
 	}
 
-	public static DataframeAnalysisFeatureProcessorOneHotEncoding of(
-			Function<Builder, ObjectBuilder<DataframeAnalysisFeatureProcessorOneHotEncoding>> fn) {
-		return fn.apply(new Builder()).build();
+	public static DataframeAnalysisFeatureProcessorOneHotEncoding of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
-	 * {@link DataframeAnalysisFeatureProcessor} variant type
+	 * DataframeAnalysisFeatureProcessor variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "one_hot_encoding";
+	public DataframeAnalysisFeatureProcessor.Kind _dataframeAnalysisFeatureProcessorKind() {
+		return DataframeAnalysisFeatureProcessor.Kind.OneHotEncoding;
 	}
 
 	/**

@@ -23,12 +23,12 @@
 
 package co.elastic.clients.elasticsearch.ml.put_trained_model;
 
-import co.elastic.clients.util.UnionVariant;
-
 /**
  * Base interface for {@link Preprocessor} variants.
  */
-public interface PreprocessorVariant extends UnionVariant {
+public interface PreprocessorVariant {
+
+	Preprocessor.Kind _preprocessorKind();
 
 	default Preprocessor _toPreprocessor() {
 		return new Preprocessor(this);

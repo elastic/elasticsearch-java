@@ -37,23 +37,25 @@ import co.elastic.clients.util.TaggedUnionUtils;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Object;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: _types.Script
 // union type: Union[]
 @JsonpDeserializable
-public class Script implements TaggedUnion<Object>, JsonpSerializable {
+public class Script implements TaggedUnion<Script.Kind, Object>, JsonpSerializable {
 
-	public static final String INLINE = "inline";
-	public static final String STORED = "stored";
+	public enum Kind {
+		Inline, Stored
 
-	private final String _type;
+	}
+
+	private final Kind _kind;
 	private final Object _value;
 
 	@Override
-	public final String _type() {
-		return _type;
+	public final Kind _kind() {
+		return _kind;
 	}
 
 	@Override
@@ -61,27 +63,29 @@ public class Script implements TaggedUnion<Object>, JsonpSerializable {
 		return _value;
 	}
 
-	public Script(String type, Object value) {
-		this._type = type;
+	public Script(Kind kind, Object value) {
+		this._kind = kind;
 		this._value = value;
 	}
 
 	private Script(Builder builder) {
 
-		this._type = ModelTypeHelper.requireNonNull(builder._type, builder, "<variant type>");
+		this._kind = ModelTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
 		this._value = ModelTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
 
 	}
 
-	public static Script of(Function<Builder, ObjectBuilder<Script>> fn) {
-		return fn.apply(new Builder()).build();
+	public static Script of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
 	 * Is this variant instance of kind {@code inline}?
 	 */
-	public boolean _isInline() {
-		return INLINE.equals(_type());
+	public boolean isInline() {
+		return _kind == Kind.Inline;
 	}
 
 	/**
@@ -91,14 +95,14 @@ public class Script implements TaggedUnion<Object>, JsonpSerializable {
 	 *             if the current variant is not of the {@code inline} kind.
 	 */
 	public InlineScript inline() {
-		return TaggedUnionUtils.get(this, INLINE);
+		return TaggedUnionUtils.get(this, Kind.Inline);
 	}
 
 	/**
 	 * Is this variant instance of kind {@code stored}?
 	 */
-	public boolean _isStored() {
-		return STORED.equals(_type());
+	public boolean isStored() {
+		return _kind == Kind.Stored;
 	}
 
 	/**
@@ -108,7 +112,7 @@ public class Script implements TaggedUnion<Object>, JsonpSerializable {
 	 *             if the current variant is not of the {@code stored} kind.
 	 */
 	public StoredScriptId stored() {
-		return TaggedUnionUtils.get(this, STORED);
+		return TaggedUnionUtils.get(this, Kind.Stored);
 	}
 
 	@Override
@@ -120,27 +124,31 @@ public class Script implements TaggedUnion<Object>, JsonpSerializable {
 	}
 
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Script> {
-		private String _type;
+		private Kind _kind;
 		private Object _value;
 
 		public Builder inline(InlineScript v) {
-			this._type = INLINE;
+			this._kind = Kind.Inline;
 			this._value = v;
 			return this;
 		}
 
-		public Builder inline(Function<InlineScript.Builder, ObjectBuilder<InlineScript>> f) {
-			return this.inline(f.apply(new InlineScript.Builder()).build());
+		public Builder inline(Consumer<InlineScript.Builder> fn) {
+			InlineScript.Builder builder = new InlineScript.Builder();
+			fn.accept(builder);
+			return this.inline(builder.build());
 		}
 
 		public Builder stored(StoredScriptId v) {
-			this._type = STORED;
+			this._kind = Kind.Stored;
 			this._value = v;
 			return this;
 		}
 
-		public Builder stored(Function<StoredScriptId.Builder, ObjectBuilder<StoredScriptId>> f) {
-			return this.stored(f.apply(new StoredScriptId.Builder()).build());
+		public Builder stored(Consumer<StoredScriptId.Builder> fn) {
+			StoredScriptId.Builder builder = new StoredScriptId.Builder();
+			fn.accept(builder);
+			return this.stored(builder.build());
 		}
 
 		public Script build() {
@@ -151,8 +159,9 @@ public class Script implements TaggedUnion<Object>, JsonpSerializable {
 	}
 
 	private static JsonpDeserializer<Script> buildScriptDeserializer() {
-		return new UnionDeserializer.Builder<>(Script::new, false).addMember("inline", InlineScript._DESERIALIZER)
-				.addMember("stored", StoredScriptId._DESERIALIZER).build();
+		return new UnionDeserializer.Builder<Script, Kind, Object>(Script::new, false)
+				.addMember(Kind.Inline, InlineScript._DESERIALIZER).addMember(Kind.Stored, StoredScriptId._DESERIALIZER)
+				.build();
 	}
 
 	public static final JsonpDeserializer<Script> _DESERIALIZER = JsonpDeserializer

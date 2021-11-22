@@ -35,7 +35,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: ingest._types.InferenceProcessor
@@ -62,16 +62,18 @@ public class InferenceProcessor extends ProcessorBase implements ProcessorVarian
 
 	}
 
-	public static InferenceProcessor of(Function<Builder, ObjectBuilder<InferenceProcessor>> fn) {
-		return fn.apply(new Builder()).build();
+	public static InferenceProcessor of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
-	 * {@link Processor} variant type
+	 * Processor variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "inference";
+	public Processor.Kind _processorKind() {
+		return Processor.Kind.Inference;
 	}
 
 	/**
@@ -184,8 +186,10 @@ public class InferenceProcessor extends ProcessorBase implements ProcessorVarian
 		/**
 		 * API name: {@code inference_config}
 		 */
-		public final Builder inferenceConfig(Function<InferenceConfig.Builder, ObjectBuilder<InferenceConfig>> fn) {
-			return this.inferenceConfig(fn.apply(new InferenceConfig.Builder()).build());
+		public final Builder inferenceConfig(Consumer<InferenceConfig.Builder> fn) {
+			InferenceConfig.Builder builder = new InferenceConfig.Builder();
+			fn.accept(builder);
+			return this.inferenceConfig(builder.build());
 		}
 
 		@Override

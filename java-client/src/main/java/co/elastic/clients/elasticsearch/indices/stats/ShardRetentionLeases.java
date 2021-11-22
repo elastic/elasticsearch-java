@@ -29,15 +29,16 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -60,8 +61,10 @@ public class ShardRetentionLeases implements JsonpSerializable {
 
 	}
 
-	public static ShardRetentionLeases of(Function<Builder, ObjectBuilder<ShardRetentionLeases>> fn) {
-		return fn.apply(new Builder()).build();
+	public static ShardRetentionLeases of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -162,13 +165,9 @@ public class ShardRetentionLeases implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code leases}
 		 */
-		@SafeVarargs
-		public final Builder leases(Function<ShardLease.Builder, ObjectBuilder<ShardLease>>... fns) {
-			this.leases = new ArrayList<>(fns.length);
-			for (Function<ShardLease.Builder, ObjectBuilder<ShardLease>> fn : fns) {
-				this.leases.add(fn.apply(new ShardLease.Builder()).build());
-			}
-			return this;
+		public final Builder leases(
+				Function<ListBuilder<ShardLease, ShardLease.Builder>, ObjectBuilder<List<ShardLease>>> fn) {
+			return leases(fn.apply(new ListBuilder<>(ShardLease.Builder::new)).build());
 		}
 
 		/**

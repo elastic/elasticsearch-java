@@ -35,9 +35,9 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.Collections;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -62,8 +62,10 @@ public class FieldMapping implements JsonpSerializable {
 
 	}
 
-	public static FieldMapping of(Function<Builder, ObjectBuilder<FieldMapping>> fn) {
-		return fn.apply(new Builder()).build();
+	public static FieldMapping of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -152,13 +154,6 @@ public class FieldMapping implements JsonpSerializable {
 		public final Builder mapping(Map<String, Property> value) {
 			this.mapping = value;
 			return this;
-		}
-
-		/**
-		 * Set {@link #mapping(Map)} to a singleton map.
-		 */
-		public Builder mapping(String key, Function<Property.Builder, ObjectBuilder<Property>> fn) {
-			return this.mapping(Collections.singletonMap(key, fn.apply(new Property.Builder()).build()));
 		}
 
 		public final Builder mapping(

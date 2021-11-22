@@ -38,23 +38,25 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.Object;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: _types.WaitForActiveShards
 // union type: Union[]
 @JsonpDeserializable
-public class WaitForActiveShards implements TaggedUnion<Object>, JsonpSerializable {
+public class WaitForActiveShards implements TaggedUnion<WaitForActiveShards.Kind, Object>, JsonpSerializable {
 
-	public static final String OPTION = "option";
-	public static final String COUNT = "count";
+	public enum Kind {
+		Option, Count
 
-	private final String _type;
+	}
+
+	private final Kind _kind;
 	private final Object _value;
 
 	@Override
-	public final String _type() {
-		return _type;
+	public final Kind _kind() {
+		return _kind;
 	}
 
 	@Override
@@ -62,38 +64,41 @@ public class WaitForActiveShards implements TaggedUnion<Object>, JsonpSerializab
 		return _value;
 	}
 
-	public WaitForActiveShards(String type, Object value) {
-		this._type = type;
+	public WaitForActiveShards(Kind kind, Object value) {
+		this._kind = kind;
 		this._value = value;
 	}
 
 	public String _toJsonString() {
-		switch (_type) {
-			case "option" :
+		switch (_kind) {
+			case Option :
 				return this.option().jsonValue();
-			case "count" :
+			case Count :
 				return String.valueOf(this.count());
 
 			default :
-				throw new IllegalStateException("Unknown type " + _type);
+				throw new IllegalStateException("Unknown kind " + _kind);
 		}
 	}
+
 	private WaitForActiveShards(Builder builder) {
 
-		this._type = ModelTypeHelper.requireNonNull(builder._type, builder, "<variant type>");
+		this._kind = ModelTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
 		this._value = ModelTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
 
 	}
 
-	public static WaitForActiveShards of(Function<Builder, ObjectBuilder<WaitForActiveShards>> fn) {
-		return fn.apply(new Builder()).build();
+	public static WaitForActiveShards of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
 	 * Is this variant instance of kind {@code option}?
 	 */
-	public boolean _isOption() {
-		return OPTION.equals(_type());
+	public boolean isOption() {
+		return _kind == Kind.Option;
 	}
 
 	/**
@@ -103,14 +108,14 @@ public class WaitForActiveShards implements TaggedUnion<Object>, JsonpSerializab
 	 *             if the current variant is not of the {@code option} kind.
 	 */
 	public WaitForActiveShardOptions option() {
-		return TaggedUnionUtils.get(this, OPTION);
+		return TaggedUnionUtils.get(this, Kind.Option);
 	}
 
 	/**
 	 * Is this variant instance of kind {@code count}?
 	 */
-	public boolean _isCount() {
-		return COUNT.equals(_type());
+	public boolean isCount() {
+		return _kind == Kind.Count;
 	}
 
 	/**
@@ -120,7 +125,7 @@ public class WaitForActiveShards implements TaggedUnion<Object>, JsonpSerializab
 	 *             if the current variant is not of the {@code count} kind.
 	 */
 	public Integer count() {
-		return TaggedUnionUtils.get(this, COUNT);
+		return TaggedUnionUtils.get(this, Kind.Count);
 	}
 
 	@Override
@@ -128,8 +133,8 @@ public class WaitForActiveShards implements TaggedUnion<Object>, JsonpSerializab
 		if (_value instanceof JsonpSerializable) {
 			((JsonpSerializable) _value).serialize(generator, mapper);
 		} else {
-			switch (_type) {
-				case COUNT :
+			switch (_kind) {
+				case Count :
 					generator.write(((Integer) this._value));
 
 					break;
@@ -139,17 +144,17 @@ public class WaitForActiveShards implements TaggedUnion<Object>, JsonpSerializab
 	}
 
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<WaitForActiveShards> {
-		private String _type;
+		private Kind _kind;
 		private Object _value;
 
 		public Builder option(WaitForActiveShardOptions v) {
-			this._type = OPTION;
+			this._kind = Kind.Option;
 			this._value = v;
 			return this;
 		}
 
 		public Builder count(Integer v) {
-			this._type = COUNT;
+			this._kind = Kind.Count;
 			this._value = v;
 			return this;
 		}
@@ -162,9 +167,9 @@ public class WaitForActiveShards implements TaggedUnion<Object>, JsonpSerializab
 	}
 
 	private static JsonpDeserializer<WaitForActiveShards> buildWaitForActiveShardsDeserializer() {
-		return new UnionDeserializer.Builder<>(WaitForActiveShards::new, false)
-				.addMember("option", WaitForActiveShardOptions._DESERIALIZER)
-				.addMember("count", JsonpDeserializer.integerDeserializer()).build();
+		return new UnionDeserializer.Builder<WaitForActiveShards, Kind, Object>(WaitForActiveShards::new, false)
+				.addMember(Kind.Option, WaitForActiveShardOptions._DESERIALIZER)
+				.addMember(Kind.Count, JsonpDeserializer.integerDeserializer()).build();
 	}
 
 	public static final JsonpDeserializer<WaitForActiveShards> _DESERIALIZER = JsonpDeserializer

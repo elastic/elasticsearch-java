@@ -26,7 +26,7 @@ package co.elastic.clients.elasticsearch.core;
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch._types.query_dsl.FieldAndFormat;
-import co.elastic.clients.elasticsearch.core.knn_search.Query;
+import co.elastic.clients.elasticsearch.core.knn_search.KnnSearchQuery;
 import co.elastic.clients.elasticsearch.core.search.SourceConfig;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -35,18 +35,19 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
-import co.elastic.clients.transport.SimpleEndpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
+import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
@@ -63,7 +64,7 @@ public class KnnSearchRequest extends RequestBase implements JsonpSerializable {
 
 	private final List<String> index;
 
-	private final Query knn;
+	private final KnnSearchQuery knn;
 
 	@Nullable
 	private final String routing;
@@ -84,8 +85,10 @@ public class KnnSearchRequest extends RequestBase implements JsonpSerializable {
 
 	}
 
-	public static KnnSearchRequest of(Function<Builder, ObjectBuilder<KnnSearchRequest>> fn) {
-		return fn.apply(new Builder()).build();
+	public static KnnSearchRequest of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -134,7 +137,7 @@ public class KnnSearchRequest extends RequestBase implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code knn}
 	 */
-	public final Query knn() {
+	public final KnnSearchQuery knn() {
 		return this.knn;
 	}
 
@@ -229,7 +232,7 @@ public class KnnSearchRequest extends RequestBase implements JsonpSerializable {
 
 		private List<String> index;
 
-		private Query knn;
+		private KnnSearchQuery knn;
 
 		@Nullable
 		private String routing;
@@ -254,8 +257,10 @@ public class KnnSearchRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code _source}
 		 */
-		public final Builder source(Function<SourceConfig.Builder, ObjectBuilder<SourceConfig>> fn) {
-			return this.source(fn.apply(new SourceConfig.Builder()).build());
+		public final Builder source(Consumer<SourceConfig.Builder> fn) {
+			SourceConfig.Builder builder = new SourceConfig.Builder();
+			fn.accept(builder);
+			return this.source(builder.build());
 		}
 
 		/**
@@ -286,13 +291,9 @@ public class KnnSearchRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code docvalue_fields}
 		 */
-		@SafeVarargs
-		public final Builder docvalueFields(Function<FieldAndFormat.Builder, ObjectBuilder<FieldAndFormat>>... fns) {
-			this.docvalueFields = new ArrayList<>(fns.length);
-			for (Function<FieldAndFormat.Builder, ObjectBuilder<FieldAndFormat>> fn : fns) {
-				this.docvalueFields.add(fn.apply(new FieldAndFormat.Builder()).build());
-			}
-			return this;
+		public final Builder docvalueFields(
+				Function<ListBuilder<FieldAndFormat, FieldAndFormat.Builder>, ObjectBuilder<List<FieldAndFormat>>> fn) {
+			return docvalueFields(fn.apply(new ListBuilder<>(FieldAndFormat.Builder::new)).build());
 		}
 
 		/**
@@ -344,7 +345,7 @@ public class KnnSearchRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code knn}
 		 */
-		public final Builder knn(Query value) {
+		public final Builder knn(KnnSearchQuery value) {
 			this.knn = value;
 			return this;
 		}
@@ -354,8 +355,10 @@ public class KnnSearchRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code knn}
 		 */
-		public final Builder knn(Function<Query.Builder, ObjectBuilder<Query>> fn) {
-			return this.knn(fn.apply(new Query.Builder()).build());
+		public final Builder knn(Consumer<KnnSearchQuery.Builder> fn) {
+			KnnSearchQuery.Builder builder = new KnnSearchQuery.Builder();
+			fn.accept(builder);
+			return this.knn(builder.build());
 		}
 
 		/**
@@ -421,7 +424,7 @@ public class KnnSearchRequest extends RequestBase implements JsonpSerializable {
 		op.add(Builder::docvalueFields, JsonpDeserializer.arrayDeserializer(FieldAndFormat._DESERIALIZER),
 				"docvalue_fields");
 		op.add(Builder::fields, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "fields");
-		op.add(Builder::knn, Query._DESERIALIZER, "knn");
+		op.add(Builder::knn, KnnSearchQuery._DESERIALIZER, "knn");
 		op.add(Builder::storedFields, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"stored_fields");
 

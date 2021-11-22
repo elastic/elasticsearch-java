@@ -29,16 +29,17 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -71,8 +72,10 @@ public class AggregationProfile implements JsonpSerializable {
 
 	}
 
-	public static AggregationProfile of(Function<Builder, ObjectBuilder<AggregationProfile>> fn) {
-		return fn.apply(new Builder()).build();
+	public static AggregationProfile of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -190,8 +193,10 @@ public class AggregationProfile implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code breakdown}
 		 */
-		public final Builder breakdown(Function<AggregationBreakdown.Builder, ObjectBuilder<AggregationBreakdown>> fn) {
-			return this.breakdown(fn.apply(new AggregationBreakdown.Builder()).build());
+		public final Builder breakdown(Consumer<AggregationBreakdown.Builder> fn) {
+			AggregationBreakdown.Builder builder = new AggregationBreakdown.Builder();
+			fn.accept(builder);
+			return this.breakdown(builder.build());
 		}
 
 		/**
@@ -229,9 +234,10 @@ public class AggregationProfile implements JsonpSerializable {
 		/**
 		 * API name: {@code debug}
 		 */
-		public final Builder debug(
-				Function<AggregationProfileDebug.Builder, ObjectBuilder<AggregationProfileDebug>> fn) {
-			return this.debug(fn.apply(new AggregationProfileDebug.Builder()).build());
+		public final Builder debug(Consumer<AggregationProfileDebug.Builder> fn) {
+			AggregationProfileDebug.Builder builder = new AggregationProfileDebug.Builder();
+			fn.accept(builder);
+			return this.debug(builder.build());
 		}
 
 		/**
@@ -253,13 +259,9 @@ public class AggregationProfile implements JsonpSerializable {
 		/**
 		 * API name: {@code children}
 		 */
-		@SafeVarargs
-		public final Builder children(Function<AggregationProfile.Builder, ObjectBuilder<AggregationProfile>>... fns) {
-			this.children = new ArrayList<>(fns.length);
-			for (Function<AggregationProfile.Builder, ObjectBuilder<AggregationProfile>> fn : fns) {
-				this.children.add(fn.apply(new AggregationProfile.Builder()).build());
-			}
-			return this;
+		public final Builder children(
+				Function<ListBuilder<AggregationProfile, AggregationProfile.Builder>, ObjectBuilder<List<AggregationProfile>>> fn) {
+			return children(fn.apply(new ListBuilder<>(AggregationProfile.Builder::new)).build());
 		}
 
 		/**

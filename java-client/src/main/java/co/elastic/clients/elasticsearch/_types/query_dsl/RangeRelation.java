@@ -23,13 +23,19 @@
 
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
+import co.elastic.clients.json.JsonEnum;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
-import co.elastic.clients.util.StringEnum;
 
 @JsonpDeserializable
-public enum RangeRelation implements StringEnum {
-	Within("within"), Contains("contains"), Intersects("intersects");
+public enum RangeRelation implements JsonEnum {
+	Within("within"),
+
+	Contains("contains"),
+
+	Intersects("intersects"),
+
+	;
 
 	private final String jsonValue;
 
@@ -41,6 +47,6 @@ public enum RangeRelation implements StringEnum {
 		return this.jsonValue;
 	}
 
-	public static final StringEnum.Deserializer<RangeRelation> _DESERIALIZER = new StringEnum.Deserializer<>(
+	public static final JsonEnum.Deserializer<RangeRelation> _DESERIALIZER = new JsonEnum.Deserializer<>(
 			RangeRelation.values());
 }

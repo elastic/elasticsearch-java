@@ -38,7 +38,7 @@ import java.lang.String;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.QueryStringQuery
@@ -150,16 +150,18 @@ public class QueryStringQuery extends QueryBase implements QueryVariant {
 
 	}
 
-	public static QueryStringQuery of(Function<Builder, ObjectBuilder<QueryStringQuery>> fn) {
-		return fn.apply(new Builder()).build();
+	public static QueryStringQuery of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
-	 * {@link Query} variant type
+	 * Query variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "query_string";
+	public Query.Kind _queryKind() {
+		return Query.Kind.QueryString;
 	}
 
 	/**

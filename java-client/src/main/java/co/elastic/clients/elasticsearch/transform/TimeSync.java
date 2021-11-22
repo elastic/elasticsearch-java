@@ -36,7 +36,7 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: transform._types.TimeSync
@@ -56,16 +56,18 @@ public class TimeSync implements SyncVariant, JsonpSerializable {
 
 	}
 
-	public static TimeSync of(Function<Builder, ObjectBuilder<TimeSync>> fn) {
-		return fn.apply(new Builder()).build();
+	public static TimeSync of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
-	 * {@link Sync} variant type
+	 * Sync variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "time";
+	public Sync.Kind _syncKind() {
+		return Sync.Kind.Time;
 	}
 
 	/**
@@ -135,8 +137,10 @@ public class TimeSync implements SyncVariant, JsonpSerializable {
 		 * <p>
 		 * API name: {@code delay}
 		 */
-		public final Builder delay(Function<Time.Builder, ObjectBuilder<Time>> fn) {
-			return this.delay(fn.apply(new Time.Builder()).build());
+		public final Builder delay(Consumer<Time.Builder> fn) {
+			Time.Builder builder = new Time.Builder();
+			fn.accept(builder);
+			return this.delay(builder.build());
 		}
 
 		/**

@@ -38,23 +38,25 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Object;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: _global.search._types.SourceConfig
 // union type: Union[]
 @JsonpDeserializable
-public class SourceConfig implements TaggedUnion<Object>, JsonpSerializable {
+public class SourceConfig implements TaggedUnion<SourceConfig.Kind, Object>, JsonpSerializable {
 
-	public static final String FILTER = "filter";
-	public static final String FETCH = "fetch";
+	public enum Kind {
+		Filter, Fetch
 
-	private final String _type;
+	}
+
+	private final Kind _kind;
 	private final Object _value;
 
 	@Override
-	public final String _type() {
-		return _type;
+	public final Kind _kind() {
+		return _kind;
 	}
 
 	@Override
@@ -62,27 +64,29 @@ public class SourceConfig implements TaggedUnion<Object>, JsonpSerializable {
 		return _value;
 	}
 
-	public SourceConfig(String type, Object value) {
-		this._type = type;
+	public SourceConfig(Kind kind, Object value) {
+		this._kind = kind;
 		this._value = value;
 	}
 
 	private SourceConfig(Builder builder) {
 
-		this._type = ModelTypeHelper.requireNonNull(builder._type, builder, "<variant type>");
+		this._kind = ModelTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
 		this._value = ModelTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
 
 	}
 
-	public static SourceConfig of(Function<Builder, ObjectBuilder<SourceConfig>> fn) {
-		return fn.apply(new Builder()).build();
+	public static SourceConfig of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
 	 * Is this variant instance of kind {@code filter}?
 	 */
-	public boolean _isFilter() {
-		return FILTER.equals(_type());
+	public boolean isFilter() {
+		return _kind == Kind.Filter;
 	}
 
 	/**
@@ -92,14 +96,14 @@ public class SourceConfig implements TaggedUnion<Object>, JsonpSerializable {
 	 *             if the current variant is not of the {@code filter} kind.
 	 */
 	public SourceFilter filter() {
-		return TaggedUnionUtils.get(this, FILTER);
+		return TaggedUnionUtils.get(this, Kind.Filter);
 	}
 
 	/**
 	 * Is this variant instance of kind {@code fetch}?
 	 */
-	public boolean _isFetch() {
-		return FETCH.equals(_type());
+	public boolean isFetch() {
+		return _kind == Kind.Fetch;
 	}
 
 	/**
@@ -109,7 +113,7 @@ public class SourceConfig implements TaggedUnion<Object>, JsonpSerializable {
 	 *             if the current variant is not of the {@code fetch} kind.
 	 */
 	public Boolean fetch() {
-		return TaggedUnionUtils.get(this, FETCH);
+		return TaggedUnionUtils.get(this, Kind.Fetch);
 	}
 
 	@Override
@@ -117,8 +121,8 @@ public class SourceConfig implements TaggedUnion<Object>, JsonpSerializable {
 		if (_value instanceof JsonpSerializable) {
 			((JsonpSerializable) _value).serialize(generator, mapper);
 		} else {
-			switch (_type) {
-				case FETCH :
+			switch (_kind) {
+				case Fetch :
 					generator.write(((Boolean) this._value));
 
 					break;
@@ -128,21 +132,23 @@ public class SourceConfig implements TaggedUnion<Object>, JsonpSerializable {
 	}
 
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<SourceConfig> {
-		private String _type;
+		private Kind _kind;
 		private Object _value;
 
 		public Builder filter(SourceFilter v) {
-			this._type = FILTER;
+			this._kind = Kind.Filter;
 			this._value = v;
 			return this;
 		}
 
-		public Builder filter(Function<SourceFilter.Builder, ObjectBuilder<SourceFilter>> f) {
-			return this.filter(f.apply(new SourceFilter.Builder()).build());
+		public Builder filter(Consumer<SourceFilter.Builder> fn) {
+			SourceFilter.Builder builder = new SourceFilter.Builder();
+			fn.accept(builder);
+			return this.filter(builder.build());
 		}
 
 		public Builder fetch(Boolean v) {
-			this._type = FETCH;
+			this._kind = Kind.Fetch;
 			this._value = v;
 			return this;
 		}
@@ -155,8 +161,9 @@ public class SourceConfig implements TaggedUnion<Object>, JsonpSerializable {
 	}
 
 	private static JsonpDeserializer<SourceConfig> buildSourceConfigDeserializer() {
-		return new UnionDeserializer.Builder<>(SourceConfig::new, false).addMember("filter", SourceFilter._DESERIALIZER)
-				.addMember("fetch", JsonpDeserializer.booleanDeserializer()).build();
+		return new UnionDeserializer.Builder<SourceConfig, Kind, Object>(SourceConfig::new, false)
+				.addMember(Kind.Filter, SourceFilter._DESERIALIZER)
+				.addMember(Kind.Fetch, JsonpDeserializer.booleanDeserializer()).build();
 	}
 
 	public static final JsonpDeserializer<SourceConfig> _DESERIALIZER = JsonpDeserializer

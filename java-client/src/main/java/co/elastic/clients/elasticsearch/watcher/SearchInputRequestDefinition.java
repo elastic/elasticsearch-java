@@ -40,7 +40,7 @@ import java.lang.String;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.SearchInputRequestDefinition
@@ -76,8 +76,10 @@ public class SearchInputRequestDefinition implements JsonpSerializable {
 
 	}
 
-	public static SearchInputRequestDefinition of(Function<Builder, ObjectBuilder<SearchInputRequestDefinition>> fn) {
-		return fn.apply(new Builder()).build();
+	public static SearchInputRequestDefinition of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -210,8 +212,10 @@ public class SearchInputRequestDefinition implements JsonpSerializable {
 		/**
 		 * API name: {@code body}
 		 */
-		public final Builder body(Function<SearchInputRequestBody.Builder, ObjectBuilder<SearchInputRequestBody>> fn) {
-			return this.body(fn.apply(new SearchInputRequestBody.Builder()).build());
+		public final Builder body(Consumer<SearchInputRequestBody.Builder> fn) {
+			SearchInputRequestBody.Builder builder = new SearchInputRequestBody.Builder();
+			fn.accept(builder);
+			return this.body(builder.build());
 		}
 
 		/**
@@ -241,8 +245,10 @@ public class SearchInputRequestDefinition implements JsonpSerializable {
 		/**
 		 * API name: {@code indices_options}
 		 */
-		public final Builder indicesOptions(Function<IndicesOptions.Builder, ObjectBuilder<IndicesOptions>> fn) {
-			return this.indicesOptions(fn.apply(new IndicesOptions.Builder()).build());
+		public final Builder indicesOptions(Consumer<IndicesOptions.Builder> fn) {
+			IndicesOptions.Builder builder = new IndicesOptions.Builder();
+			fn.accept(builder);
+			return this.indicesOptions(builder.build());
 		}
 
 		/**
@@ -264,9 +270,10 @@ public class SearchInputRequestDefinition implements JsonpSerializable {
 		/**
 		 * API name: {@code template}
 		 */
-		public final Builder template(
-				Function<SearchTemplateRequest.Builder, ObjectBuilder<SearchTemplateRequest>> fn) {
-			return this.template(fn.apply(new SearchTemplateRequest.Builder()).build());
+		public final Builder template(Consumer<SearchTemplateRequest.Builder> fn) {
+			SearchTemplateRequest.Builder builder = new SearchTemplateRequest.Builder();
+			fn.accept(builder);
+			return this.template(builder.build());
 		}
 
 		/**

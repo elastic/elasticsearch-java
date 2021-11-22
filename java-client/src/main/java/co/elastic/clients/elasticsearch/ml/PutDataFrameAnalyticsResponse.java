@@ -38,7 +38,7 @@ import java.lang.Integer;
 import java.lang.Long;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: ml.put_data_frame_analytics.Response
@@ -86,8 +86,10 @@ public class PutDataFrameAnalyticsResponse implements JsonpSerializable {
 
 	}
 
-	public static PutDataFrameAnalyticsResponse of(Function<Builder, ObjectBuilder<PutDataFrameAnalyticsResponse>> fn) {
-		return fn.apply(new Builder()).build();
+	public static PutDataFrameAnalyticsResponse of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -285,9 +287,10 @@ public class PutDataFrameAnalyticsResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code source}
 		 */
-		public final Builder source(
-				Function<DataframeAnalyticsSource.Builder, ObjectBuilder<DataframeAnalyticsSource>> fn) {
-			return this.source(fn.apply(new DataframeAnalyticsSource.Builder()).build());
+		public final Builder source(Consumer<DataframeAnalyticsSource.Builder> fn) {
+			DataframeAnalyticsSource.Builder builder = new DataframeAnalyticsSource.Builder();
+			fn.accept(builder);
+			return this.source(builder.build());
 		}
 
 		/**
@@ -309,9 +312,10 @@ public class PutDataFrameAnalyticsResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code dest}
 		 */
-		public final Builder dest(
-				Function<DataframeAnalyticsDestination.Builder, ObjectBuilder<DataframeAnalyticsDestination>> fn) {
-			return this.dest(fn.apply(new DataframeAnalyticsDestination.Builder()).build());
+		public final Builder dest(Consumer<DataframeAnalyticsDestination.Builder> fn) {
+			DataframeAnalyticsDestination.Builder builder = new DataframeAnalyticsDestination.Builder();
+			fn.accept(builder);
+			return this.dest(builder.build());
 		}
 
 		/**
@@ -349,8 +353,10 @@ public class PutDataFrameAnalyticsResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code analysis}
 		 */
-		public final Builder analysis(Function<DataframeAnalysis.Builder, ObjectBuilder<DataframeAnalysis>> fn) {
-			return this.analysis(fn.apply(new DataframeAnalysis.Builder()).build());
+		public final Builder analysis(Consumer<DataframeAnalysis.Builder> fn) {
+			DataframeAnalysis.Builder builder = new DataframeAnalysis.Builder();
+			fn.accept(builder);
+			return this.analysis(builder.build());
 		}
 
 		/**
@@ -364,9 +370,10 @@ public class PutDataFrameAnalyticsResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code analyzed_fields}
 		 */
-		public final Builder analyzedFields(
-				Function<DataframeAnalysisAnalyzedFields.Builder, ObjectBuilder<DataframeAnalysisAnalyzedFields>> fn) {
-			return this.analyzedFields(fn.apply(new DataframeAnalysisAnalyzedFields.Builder()).build());
+		public final Builder analyzedFields(Consumer<DataframeAnalysisAnalyzedFields.Builder> fn) {
+			DataframeAnalysisAnalyzedFields.Builder builder = new DataframeAnalysisAnalyzedFields.Builder();
+			fn.accept(builder);
+			return this.analyzedFields(builder.build());
 		}
 
 		/**

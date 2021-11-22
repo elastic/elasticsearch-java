@@ -36,9 +36,9 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.Collections;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -58,8 +58,10 @@ public class NodesCredentials implements JsonpSerializable {
 
 	}
 
-	public static NodesCredentials of(Function<Builder, ObjectBuilder<NodesCredentials>> fn) {
-		return fn.apply(new Builder()).build();
+	public static NodesCredentials of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -136,8 +138,10 @@ public class NodesCredentials implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code _nodes}
 		 */
-		public final Builder nodes(Function<NodeStatistics.Builder, ObjectBuilder<NodeStatistics>> fn) {
-			return this.nodes(fn.apply(new NodeStatistics.Builder()).build());
+		public final Builder nodes(Consumer<NodeStatistics.Builder> fn) {
+			NodeStatistics.Builder builder = new NodeStatistics.Builder();
+			fn.accept(builder);
+			return this.nodes(builder.build());
 		}
 
 		/**
@@ -148,15 +152,6 @@ public class NodesCredentials implements JsonpSerializable {
 		public final Builder fileTokens(Map<String, NodesCredentialsFileToken> value) {
 			this.fileTokens = value;
 			return this;
-		}
-
-		/**
-		 * Set {@link #fileTokens(Map)} to a singleton map.
-		 */
-		public Builder fileTokens(String key,
-				Function<NodesCredentialsFileToken.Builder, ObjectBuilder<NodesCredentialsFileToken>> fn) {
-			return this.fileTokens(
-					Collections.singletonMap(key, fn.apply(new NodesCredentialsFileToken.Builder()).build()));
 		}
 
 		public final Builder fileTokens(

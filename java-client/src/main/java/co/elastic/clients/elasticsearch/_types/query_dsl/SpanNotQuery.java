@@ -33,7 +33,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.SpanNotQuery
@@ -65,16 +65,26 @@ public class SpanNotQuery extends QueryBase implements SpanQueryVariant, QueryVa
 
 	}
 
-	public static SpanNotQuery of(Function<Builder, ObjectBuilder<SpanNotQuery>> fn) {
-		return fn.apply(new Builder()).build();
+	public static SpanNotQuery of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
-	 * {@link SpanQuery}, {@link Query} variant type
+	 * SpanQuery variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "span_not";
+	public SpanQuery.Kind _spanQueryKind() {
+		return SpanQuery.Kind.SpanNot;
+	}
+
+	/**
+	 * Query variant kind.
+	 */
+	@Override
+	public Query.Kind _queryKind() {
+		return Query.Kind.SpanNot;
 	}
 
 	/**
@@ -180,8 +190,10 @@ public class SpanNotQuery extends QueryBase implements SpanQueryVariant, QueryVa
 		/**
 		 * Required - API name: {@code exclude}
 		 */
-		public final Builder exclude(Function<SpanQuery.Builder, ObjectBuilder<SpanQuery>> fn) {
-			return this.exclude(fn.apply(new SpanQuery.Builder()).build());
+		public final Builder exclude(Consumer<SpanQuery.Builder> fn) {
+			SpanQuery.Builder builder = new SpanQuery.Builder();
+			fn.accept(builder);
+			return this.exclude(builder.build());
 		}
 
 		/**
@@ -195,8 +207,10 @@ public class SpanNotQuery extends QueryBase implements SpanQueryVariant, QueryVa
 		/**
 		 * Required - API name: {@code include}
 		 */
-		public final Builder include(Function<SpanQuery.Builder, ObjectBuilder<SpanQuery>> fn) {
-			return this.include(fn.apply(new SpanQuery.Builder()).build());
+		public final Builder include(Consumer<SpanQuery.Builder> fn) {
+			SpanQuery.Builder builder = new SpanQuery.Builder();
+			fn.accept(builder);
+			return this.include(builder.build());
 		}
 
 		/**

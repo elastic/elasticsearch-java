@@ -23,13 +23,17 @@
 
 package co.elastic.clients.elasticsearch.security.get_role;
 
+import co.elastic.clients.json.JsonEnum;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
-import co.elastic.clients.util.StringEnum;
 
 @JsonpDeserializable
-public enum TemplateFormat implements StringEnum {
-	String("string"), Json("json");
+public enum TemplateFormat implements JsonEnum {
+	String("string"),
+
+	Json("json"),
+
+	;
 
 	private final String jsonValue;
 
@@ -41,6 +45,6 @@ public enum TemplateFormat implements StringEnum {
 		return this.jsonValue;
 	}
 
-	public static final StringEnum.Deserializer<TemplateFormat> _DESERIALIZER = new StringEnum.Deserializer<>(
+	public static final JsonEnum.Deserializer<TemplateFormat> _DESERIALIZER = new JsonEnum.Deserializer<>(
 			TemplateFormat.values());
 }

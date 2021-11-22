@@ -40,7 +40,7 @@ import java.lang.Integer;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: _types.NodeShard
@@ -79,8 +79,10 @@ public class NodeShard implements JsonpSerializable {
 
 	}
 
-	public static NodeShard of(Function<Builder, ObjectBuilder<NodeShard>> fn) {
-		return fn.apply(new Builder()).build();
+	public static NodeShard of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -291,9 +293,10 @@ public class NodeShard implements JsonpSerializable {
 		/**
 		 * API name: {@code unassigned_info}
 		 */
-		public final Builder unassignedInfo(
-				Function<UnassignedInformation.Builder, ObjectBuilder<UnassignedInformation>> fn) {
-			return this.unassignedInfo(fn.apply(new UnassignedInformation.Builder()).build());
+		public final Builder unassignedInfo(Consumer<UnassignedInformation.Builder> fn) {
+			UnassignedInformation.Builder builder = new UnassignedInformation.Builder();
+			fn.accept(builder);
+			return this.unassignedInfo(builder.build());
 		}
 
 		/**

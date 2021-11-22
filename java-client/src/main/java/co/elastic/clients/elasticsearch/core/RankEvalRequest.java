@@ -35,19 +35,20 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
-import co.elastic.clients.transport.SimpleEndpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
+import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
@@ -87,8 +88,10 @@ public class RankEvalRequest extends RequestBase implements JsonpSerializable {
 
 	}
 
-	public static RankEvalRequest of(Function<Builder, ObjectBuilder<RankEvalRequest>> fn) {
-		return fn.apply(new Builder()).build();
+	public static RankEvalRequest of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -312,8 +315,10 @@ public class RankEvalRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code metric}
 		 */
-		public final Builder metric(Function<RankEvalMetric.Builder, ObjectBuilder<RankEvalMetric>> fn) {
-			return this.metric(fn.apply(new RankEvalMetric.Builder()).build());
+		public final Builder metric(Consumer<RankEvalMetric.Builder> fn) {
+			RankEvalMetric.Builder builder = new RankEvalMetric.Builder();
+			fn.accept(builder);
+			return this.metric(builder.build());
 		}
 
 		/**
@@ -344,14 +349,9 @@ public class RankEvalRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code requests}
 		 */
-		@SafeVarargs
 		public final Builder requests(
-				Function<RankEvalRequestItem.Builder, ObjectBuilder<RankEvalRequestItem>>... fns) {
-			this.requests = new ArrayList<>(fns.length);
-			for (Function<RankEvalRequestItem.Builder, ObjectBuilder<RankEvalRequestItem>> fn : fns) {
-				this.requests.add(fn.apply(new RankEvalRequestItem.Builder()).build());
-			}
-			return this;
+				Function<ListBuilder<RankEvalRequestItem, RankEvalRequestItem.Builder>, ObjectBuilder<List<RankEvalRequestItem>>> fn) {
+			return requests(fn.apply(new ListBuilder<>(RankEvalRequestItem.Builder::new)).build());
 		}
 
 		/**

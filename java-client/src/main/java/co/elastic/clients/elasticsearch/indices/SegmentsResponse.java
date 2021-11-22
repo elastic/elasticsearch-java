@@ -37,9 +37,9 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.Collections;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -59,8 +59,10 @@ public class SegmentsResponse implements JsonpSerializable {
 
 	}
 
-	public static SegmentsResponse of(Function<Builder, ObjectBuilder<SegmentsResponse>> fn) {
-		return fn.apply(new Builder()).build();
+	public static SegmentsResponse of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -122,13 +124,6 @@ public class SegmentsResponse implements JsonpSerializable {
 			return this;
 		}
 
-		/**
-		 * Set {@link #indices(Map)} to a singleton map.
-		 */
-		public Builder indices(String key, Function<IndexSegment.Builder, ObjectBuilder<IndexSegment>> fn) {
-			return this.indices(Collections.singletonMap(key, fn.apply(new IndexSegment.Builder()).build()));
-		}
-
 		public final Builder indices(
 				Function<MapBuilder<String, IndexSegment, IndexSegment.Builder>, ObjectBuilder<Map<String, IndexSegment>>> fn) {
 			return indices(fn.apply(new MapBuilder<>(IndexSegment.Builder::new)).build());
@@ -145,8 +140,10 @@ public class SegmentsResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code _shards}
 		 */
-		public final Builder shards(Function<ShardStatistics.Builder, ObjectBuilder<ShardStatistics>> fn) {
-			return this.shards(fn.apply(new ShardStatistics.Builder()).build());
+		public final Builder shards(Consumer<ShardStatistics.Builder> fn) {
+			ShardStatistics.Builder builder = new ShardStatistics.Builder();
+			fn.accept(builder);
+			return this.shards(builder.build());
 		}
 
 		/**

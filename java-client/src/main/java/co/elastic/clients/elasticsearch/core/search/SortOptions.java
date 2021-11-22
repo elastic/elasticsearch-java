@@ -23,6 +23,7 @@
 
 package co.elastic.clients.elasticsearch.core.search;
 
+import co.elastic.clients.json.JsonEnum;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -39,26 +40,49 @@ import jakarta.json.stream.JsonParser;
 import java.lang.Object;
 import java.util.EnumSet;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: _global.search._types.SortOptions
 // union type: Container[]
 @JsonpDeserializable
-public class SortOptions implements TaggedUnion<Object>, JsonpSerializable {
+public class SortOptions implements TaggedUnion<SortOptions.Kind, Object>, JsonpSerializable {
 
-	public static final String SCORE = "_score";
-	public static final String DOC = "_doc";
-	public static final String GEO_DISTANCE = "_geo_distance";
-	public static final String SCRIPT = "_script";
-	public static final String FIELD = "field";
+	/**
+	 * {@link SortOptions} variant kinds.
+	 */
 
-	private final String _type;
+	public enum Kind implements JsonEnum {
+		Score("_score"),
+
+		Doc("_doc"),
+
+		GeoDistance("_geo_distance"),
+
+		Script("_script"),
+
+		Field("field"),
+
+		;
+
+		private final String jsonValue;
+
+		Kind(String jsonValue) {
+			this.jsonValue = jsonValue;
+		}
+
+		public String jsonValue() {
+			return this.jsonValue;
+		}
+
+	}
+
+	private final Kind _kind;
 	private final Object _value;
 
 	@Override
-	public final String _type() {
-		return _type;
+	public final Kind _kind() {
+		return _kind;
 	}
 
 	@Override
@@ -68,27 +92,29 @@ public class SortOptions implements TaggedUnion<Object>, JsonpSerializable {
 
 	public SortOptions(SortOptionsVariant value) {
 
-		this._type = ModelTypeHelper.requireNonNull(value._variantType(), this, "<variant type>");
+		this._kind = ModelTypeHelper.requireNonNull(value._sortOptionsKind(), this, "<variant kind>");
 		this._value = ModelTypeHelper.requireNonNull(value, this, "<variant value>");
 
 	}
 
 	private SortOptions(Builder builder) {
 
-		this._type = ModelTypeHelper.requireNonNull(builder._type, builder, "<variant type>");
+		this._kind = ModelTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
 		this._value = ModelTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
 
 	}
 
-	public static SortOptions of(Function<Builder, ObjectBuilder<SortOptions>> fn) {
-		return fn.apply(new Builder()).build();
+	public static SortOptions of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
 	 * Is this variant instance of kind {@code _score}?
 	 */
-	public boolean _isScore() {
-		return SCORE.equals(_type());
+	public boolean isScore() {
+		return _kind == Kind.Score;
 	}
 
 	/**
@@ -98,14 +124,14 @@ public class SortOptions implements TaggedUnion<Object>, JsonpSerializable {
 	 *             if the current variant is not of the {@code _score} kind.
 	 */
 	public ScoreSort score() {
-		return TaggedUnionUtils.get(this, SCORE);
+		return TaggedUnionUtils.get(this, Kind.Score);
 	}
 
 	/**
 	 * Is this variant instance of kind {@code _doc}?
 	 */
-	public boolean _isDoc() {
-		return DOC.equals(_type());
+	public boolean isDoc() {
+		return _kind == Kind.Doc;
 	}
 
 	/**
@@ -115,14 +141,14 @@ public class SortOptions implements TaggedUnion<Object>, JsonpSerializable {
 	 *             if the current variant is not of the {@code _doc} kind.
 	 */
 	public ScoreSort doc() {
-		return TaggedUnionUtils.get(this, DOC);
+		return TaggedUnionUtils.get(this, Kind.Doc);
 	}
 
 	/**
 	 * Is this variant instance of kind {@code _geo_distance}?
 	 */
-	public boolean _isGeoDistance() {
-		return GEO_DISTANCE.equals(_type());
+	public boolean isGeoDistance() {
+		return _kind == Kind.GeoDistance;
 	}
 
 	/**
@@ -132,14 +158,14 @@ public class SortOptions implements TaggedUnion<Object>, JsonpSerializable {
 	 *             if the current variant is not of the {@code _geo_distance} kind.
 	 */
 	public GeoDistanceSort geoDistance() {
-		return TaggedUnionUtils.get(this, GEO_DISTANCE);
+		return TaggedUnionUtils.get(this, Kind.GeoDistance);
 	}
 
 	/**
 	 * Is this variant instance of kind {@code _script}?
 	 */
-	public boolean _isScript() {
-		return SCRIPT.equals(_type());
+	public boolean isScript() {
+		return _kind == Kind.Script;
 	}
 
 	/**
@@ -149,14 +175,14 @@ public class SortOptions implements TaggedUnion<Object>, JsonpSerializable {
 	 *             if the current variant is not of the {@code _script} kind.
 	 */
 	public ScriptSort script() {
-		return TaggedUnionUtils.get(this, SCRIPT);
+		return TaggedUnionUtils.get(this, Kind.Script);
 	}
 
 	/**
 	 * Is this variant instance of kind {@code field}?
 	 */
-	public boolean _isField() {
-		return FIELD.equals(_type());
+	public boolean isField() {
+		return _kind == Kind.Field;
 	}
 
 	/**
@@ -166,19 +192,19 @@ public class SortOptions implements TaggedUnion<Object>, JsonpSerializable {
 	 *             if the current variant is not of the {@code field} kind.
 	 */
 	public FieldSort field() {
-		return TaggedUnionUtils.get(this, FIELD);
+		return TaggedUnionUtils.get(this, Kind.Field);
 	}
 
 	@Override
 	@SuppressWarnings("unchecked")
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		if (_is(FIELD)) {
+		if (isField()) {
 			((JsonpSerializable) _value).serialize(generator, mapper);
 		} else {
 
 			generator.writeStartObject();
 
-			generator.writeKey(_type);
+			generator.writeKey(_kind.jsonValue());
 			if (_value instanceof JsonpSerializable) {
 				((JsonpSerializable) _value).serialize(generator, mapper);
 			}
@@ -188,57 +214,67 @@ public class SortOptions implements TaggedUnion<Object>, JsonpSerializable {
 	}
 
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<SortOptions> {
-		private String _type;
+		private Kind _kind;
 		private Object _value;
 
 		public Builder score(ScoreSort v) {
-			this._type = SCORE;
+			this._kind = Kind.Score;
 			this._value = v;
 			return this;
 		}
 
-		public Builder score(Function<ScoreSort.Builder, ObjectBuilder<ScoreSort>> f) {
-			return this.score(f.apply(new ScoreSort.Builder()).build());
+		public Builder score(Consumer<ScoreSort.Builder> fn) {
+			ScoreSort.Builder builder = new ScoreSort.Builder();
+			fn.accept(builder);
+			return this.score(builder.build());
 		}
 
 		public Builder doc(ScoreSort v) {
-			this._type = DOC;
+			this._kind = Kind.Doc;
 			this._value = v;
 			return this;
 		}
 
-		public Builder doc(Function<ScoreSort.Builder, ObjectBuilder<ScoreSort>> f) {
-			return this.doc(f.apply(new ScoreSort.Builder()).build());
+		public Builder doc(Consumer<ScoreSort.Builder> fn) {
+			ScoreSort.Builder builder = new ScoreSort.Builder();
+			fn.accept(builder);
+			return this.doc(builder.build());
 		}
 
 		public Builder geoDistance(GeoDistanceSort v) {
-			this._type = GEO_DISTANCE;
+			this._kind = Kind.GeoDistance;
 			this._value = v;
 			return this;
 		}
 
-		public Builder geoDistance(Function<GeoDistanceSort.Builder, ObjectBuilder<GeoDistanceSort>> f) {
-			return this.geoDistance(f.apply(new GeoDistanceSort.Builder()).build());
+		public Builder geoDistance(Consumer<GeoDistanceSort.Builder> fn) {
+			GeoDistanceSort.Builder builder = new GeoDistanceSort.Builder();
+			fn.accept(builder);
+			return this.geoDistance(builder.build());
 		}
 
 		public Builder script(ScriptSort v) {
-			this._type = SCRIPT;
+			this._kind = Kind.Script;
 			this._value = v;
 			return this;
 		}
 
-		public Builder script(Function<ScriptSort.Builder, ObjectBuilder<ScriptSort>> f) {
-			return this.script(f.apply(new ScriptSort.Builder()).build());
+		public Builder script(Consumer<ScriptSort.Builder> fn) {
+			ScriptSort.Builder builder = new ScriptSort.Builder();
+			fn.accept(builder);
+			return this.script(builder.build());
 		}
 
 		public Builder field(FieldSort v) {
-			this._type = FIELD;
+			this._kind = Kind.Field;
 			this._value = v;
 			return this;
 		}
 
-		public Builder field(Function<FieldSort.Builder, ObjectBuilder<FieldSort>> f) {
-			return this.field(f.apply(new FieldSort.Builder()).build());
+		public Builder field(Consumer<FieldSort.Builder> fn) {
+			FieldSort.Builder builder = new FieldSort.Builder();
+			fn.accept(builder);
+			return this.field(builder.build());
 		}
 
 		public SortOptions build() {
@@ -254,16 +290,16 @@ public class SortOptions implements TaggedUnion<Object>, JsonpSerializable {
 				JsonpUtils.expectNextEvent(parser, JsonParser.Event.START_OBJECT);
 				JsonpUtils.expectNextEvent(parser, JsonParser.Event.KEY_NAME);
 				switch (parser.getString()) {
-					case SCORE :
+					case "_score" :
 						b.score(ScoreSort._DESERIALIZER.deserialize(parser, mapper));
 						break;
-					case DOC :
+					case "_doc" :
 						b.doc(ScoreSort._DESERIALIZER.deserialize(parser, mapper));
 						break;
-					case GEO_DISTANCE :
+					case "_geo_distance" :
 						b.geoDistance(GeoDistanceSort._DESERIALIZER.deserialize(parser, mapper));
 						break;
-					case SCRIPT :
+					case "_script" :
 						b.script(ScriptSort._DESERIALIZER.deserialize(parser, mapper));
 						break;
 					default :

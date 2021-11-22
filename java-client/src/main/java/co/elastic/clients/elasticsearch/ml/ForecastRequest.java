@@ -33,7 +33,7 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
-import co.elastic.clients.transport.SimpleEndpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
@@ -41,7 +41,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: ml.forecast.Request
@@ -69,8 +69,10 @@ public class ForecastRequest extends RequestBase implements JsonpSerializable {
 
 	}
 
-	public static ForecastRequest of(Function<Builder, ObjectBuilder<ForecastRequest>> fn) {
-		return fn.apply(new Builder()).build();
+	public static ForecastRequest of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -175,8 +177,10 @@ public class ForecastRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code duration}
 		 */
-		public final Builder duration(Function<Time.Builder, ObjectBuilder<Time>> fn) {
-			return this.duration(fn.apply(new Time.Builder()).build());
+		public final Builder duration(Consumer<Time.Builder> fn) {
+			Time.Builder builder = new Time.Builder();
+			fn.accept(builder);
+			return this.duration(builder.build());
 		}
 
 		/**
@@ -194,8 +198,10 @@ public class ForecastRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code expires_in}
 		 */
-		public final Builder expiresIn(Function<Time.Builder, ObjectBuilder<Time>> fn) {
-			return this.expiresIn(fn.apply(new Time.Builder()).build());
+		public final Builder expiresIn(Consumer<Time.Builder> fn) {
+			Time.Builder builder = new Time.Builder();
+			fn.accept(builder);
+			return this.expiresIn(builder.build());
 		}
 
 		/**

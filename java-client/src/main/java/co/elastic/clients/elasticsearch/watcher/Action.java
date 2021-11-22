@@ -37,7 +37,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.Action
@@ -94,8 +94,10 @@ public class Action implements JsonpSerializable {
 
 	}
 
-	public static Action of(Function<Builder, ObjectBuilder<Action>> fn) {
-		return fn.apply(new Builder()).build();
+	public static Action of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -312,8 +314,10 @@ public class Action implements JsonpSerializable {
 		/**
 		 * API name: {@code condition}
 		 */
-		public final Builder condition(Function<Condition.Builder, ObjectBuilder<Condition>> fn) {
-			return this.condition(fn.apply(new Condition.Builder()).build());
+		public final Builder condition(Consumer<Condition.Builder> fn) {
+			Condition.Builder builder = new Condition.Builder();
+			fn.accept(builder);
+			return this.condition(builder.build());
 		}
 
 		/**
@@ -351,8 +355,10 @@ public class Action implements JsonpSerializable {
 		/**
 		 * API name: {@code throttle_period}
 		 */
-		public final Builder throttlePeriod(Function<Time.Builder, ObjectBuilder<Time>> fn) {
-			return this.throttlePeriod(fn.apply(new Time.Builder()).build());
+		public final Builder throttlePeriod(Consumer<Time.Builder> fn) {
+			Time.Builder builder = new Time.Builder();
+			fn.accept(builder);
+			return this.throttlePeriod(builder.build());
 		}
 
 		/**
@@ -374,8 +380,10 @@ public class Action implements JsonpSerializable {
 		/**
 		 * API name: {@code transform}
 		 */
-		public final Builder transform(Function<Transform.Builder, ObjectBuilder<Transform>> fn) {
-			return this.transform(fn.apply(new Transform.Builder()).build());
+		public final Builder transform(Consumer<Transform.Builder> fn) {
+			Transform.Builder builder = new Transform.Builder();
+			fn.accept(builder);
+			return this.transform(builder.build());
 		}
 
 		/**
@@ -389,8 +397,10 @@ public class Action implements JsonpSerializable {
 		/**
 		 * API name: {@code index}
 		 */
-		public final Builder index(Function<Index.Builder, ObjectBuilder<Index>> fn) {
-			return this.index(fn.apply(new Index.Builder()).build());
+		public final Builder index(Consumer<Index.Builder> fn) {
+			Index.Builder builder = new Index.Builder();
+			fn.accept(builder);
+			return this.index(builder.build());
 		}
 
 		/**
@@ -404,8 +414,10 @@ public class Action implements JsonpSerializable {
 		/**
 		 * API name: {@code logging}
 		 */
-		public final Builder logging(Function<Logging.Builder, ObjectBuilder<Logging>> fn) {
-			return this.logging(fn.apply(new Logging.Builder()).build());
+		public final Builder logging(Consumer<Logging.Builder> fn) {
+			Logging.Builder builder = new Logging.Builder();
+			fn.accept(builder);
+			return this.logging(builder.build());
 		}
 
 		/**
@@ -419,8 +431,10 @@ public class Action implements JsonpSerializable {
 		/**
 		 * API name: {@code webhook}
 		 */
-		public final Builder webhook(Function<ActionWebhook.Builder, ObjectBuilder<ActionWebhook>> fn) {
-			return this.webhook(fn.apply(new ActionWebhook.Builder()).build());
+		public final Builder webhook(Consumer<ActionWebhook.Builder> fn) {
+			ActionWebhook.Builder builder = new ActionWebhook.Builder();
+			fn.accept(builder);
+			return this.webhook(builder.build());
 		}
 
 		/**

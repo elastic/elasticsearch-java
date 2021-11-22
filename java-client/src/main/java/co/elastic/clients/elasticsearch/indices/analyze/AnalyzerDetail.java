@@ -29,15 +29,16 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -57,8 +58,10 @@ public class AnalyzerDetail implements JsonpSerializable {
 
 	}
 
-	public static AnalyzerDetail of(Function<Builder, ObjectBuilder<AnalyzerDetail>> fn) {
-		return fn.apply(new Builder()).build();
+	public static AnalyzerDetail of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -139,13 +142,9 @@ public class AnalyzerDetail implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code tokens}
 		 */
-		@SafeVarargs
-		public final Builder tokens(Function<ExplainAnalyzeToken.Builder, ObjectBuilder<ExplainAnalyzeToken>>... fns) {
-			this.tokens = new ArrayList<>(fns.length);
-			for (Function<ExplainAnalyzeToken.Builder, ObjectBuilder<ExplainAnalyzeToken>> fn : fns) {
-				this.tokens.add(fn.apply(new ExplainAnalyzeToken.Builder()).build());
-			}
-			return this;
+		public final Builder tokens(
+				Function<ListBuilder<ExplainAnalyzeToken, ExplainAnalyzeToken.Builder>, ObjectBuilder<List<ExplainAnalyzeToken>>> fn) {
+			return tokens(fn.apply(new ListBuilder<>(ExplainAnalyzeToken.Builder::new)).build());
 		}
 
 		/**

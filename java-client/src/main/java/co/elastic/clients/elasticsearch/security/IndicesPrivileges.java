@@ -29,16 +29,17 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -68,8 +69,10 @@ public class IndicesPrivileges implements JsonpSerializable {
 
 	}
 
-	public static IndicesPrivileges of(Function<Builder, ObjectBuilder<IndicesPrivileges>> fn) {
-		return fn.apply(new Builder()).build();
+	public static IndicesPrivileges of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -229,13 +232,9 @@ public class IndicesPrivileges implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code field_security}
 		 */
-		@SafeVarargs
-		public final Builder fieldSecurity(Function<FieldSecurity.Builder, ObjectBuilder<FieldSecurity>>... fns) {
-			this.fieldSecurity = new ArrayList<>(fns.length);
-			for (Function<FieldSecurity.Builder, ObjectBuilder<FieldSecurity>> fn : fns) {
-				this.fieldSecurity.add(fn.apply(new FieldSecurity.Builder()).build());
-			}
-			return this;
+		public final Builder fieldSecurity(
+				Function<ListBuilder<FieldSecurity, FieldSecurity.Builder>, ObjectBuilder<List<FieldSecurity>>> fn) {
+			return fieldSecurity(fn.apply(new ListBuilder<>(FieldSecurity.Builder::new)).build());
 		}
 
 		/**

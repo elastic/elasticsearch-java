@@ -36,7 +36,7 @@ import java.lang.Double;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: _types.mapping.TextProperty
@@ -106,16 +106,18 @@ public class TextProperty extends CorePropertyBase implements PropertyVariant {
 
 	}
 
-	public static TextProperty of(Function<Builder, ObjectBuilder<TextProperty>> fn) {
-		return fn.apply(new Builder()).build();
+	public static TextProperty of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
-	 * {@link Property} variant type
+	 * Property variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "text";
+	public Property.Kind _propertyKind() {
+		return Property.Kind.Text;
 	}
 
 	/**
@@ -398,9 +400,10 @@ public class TextProperty extends CorePropertyBase implements PropertyVariant {
 		/**
 		 * API name: {@code fielddata_frequency_filter}
 		 */
-		public final Builder fielddataFrequencyFilter(
-				Function<FielddataFrequencyFilter.Builder, ObjectBuilder<FielddataFrequencyFilter>> fn) {
-			return this.fielddataFrequencyFilter(fn.apply(new FielddataFrequencyFilter.Builder()).build());
+		public final Builder fielddataFrequencyFilter(Consumer<FielddataFrequencyFilter.Builder> fn) {
+			FielddataFrequencyFilter.Builder builder = new FielddataFrequencyFilter.Builder();
+			fn.accept(builder);
+			return this.fielddataFrequencyFilter(builder.build());
 		}
 
 		/**
@@ -438,8 +441,10 @@ public class TextProperty extends CorePropertyBase implements PropertyVariant {
 		/**
 		 * API name: {@code index_prefixes}
 		 */
-		public final Builder indexPrefixes(Function<TextIndexPrefixes.Builder, ObjectBuilder<TextIndexPrefixes>> fn) {
-			return this.indexPrefixes(fn.apply(new TextIndexPrefixes.Builder()).build());
+		public final Builder indexPrefixes(Consumer<TextIndexPrefixes.Builder> fn) {
+			TextIndexPrefixes.Builder builder = new TextIndexPrefixes.Builder();
+			fn.accept(builder);
+			return this.indexPrefixes(builder.build());
 		}
 
 		/**

@@ -34,7 +34,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.GeoLineAggregate
@@ -54,16 +54,18 @@ public class GeoLineAggregate extends AggregateBase implements AggregateVariant 
 
 	}
 
-	public static GeoLineAggregate of(Function<Builder, ObjectBuilder<GeoLineAggregate>> fn) {
-		return fn.apply(new Builder()).build();
+	public static GeoLineAggregate of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
-	 * {@link Aggregate} variant type
+	 * Aggregate variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "geo_line";
+	public Aggregate.Kind _aggregateKind() {
+		return Aggregate.Kind.GeoLine;
 	}
 
 	/**
@@ -122,8 +124,10 @@ public class GeoLineAggregate extends AggregateBase implements AggregateVariant 
 		/**
 		 * Required - API name: {@code geometry}
 		 */
-		public final Builder geometry(Function<GeoLine.Builder, ObjectBuilder<GeoLine>> fn) {
-			return this.geometry(fn.apply(new GeoLine.Builder()).build());
+		public final Builder geometry(Consumer<GeoLine.Builder> fn) {
+			GeoLine.Builder builder = new GeoLine.Builder();
+			fn.accept(builder);
+			return this.geometry(builder.build());
 		}
 
 		@Override

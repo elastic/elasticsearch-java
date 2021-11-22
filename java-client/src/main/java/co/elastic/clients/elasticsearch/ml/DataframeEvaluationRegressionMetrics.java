@@ -37,7 +37,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.DataframeEvaluationRegressionMetrics
@@ -64,9 +64,10 @@ public class DataframeEvaluationRegressionMetrics implements JsonpSerializable {
 
 	}
 
-	public static DataframeEvaluationRegressionMetrics of(
-			Function<Builder, ObjectBuilder<DataframeEvaluationRegressionMetrics>> fn) {
-		return fn.apply(new Builder()).build();
+	public static DataframeEvaluationRegressionMetrics of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -204,9 +205,10 @@ public class DataframeEvaluationRegressionMetrics implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code msle}
 		 */
-		public final Builder msle(
-				Function<DataframeEvaluationRegressionMetricsMsle.Builder, ObjectBuilder<DataframeEvaluationRegressionMetricsMsle>> fn) {
-			return this.msle(fn.apply(new DataframeEvaluationRegressionMetricsMsle.Builder()).build());
+		public final Builder msle(Consumer<DataframeEvaluationRegressionMetricsMsle.Builder> fn) {
+			DataframeEvaluationRegressionMetricsMsle.Builder builder = new DataframeEvaluationRegressionMetricsMsle.Builder();
+			fn.accept(builder);
+			return this.msle(builder.build());
 		}
 
 		/**
@@ -224,9 +226,10 @@ public class DataframeEvaluationRegressionMetrics implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code huber}
 		 */
-		public final Builder huber(
-				Function<DataframeEvaluationRegressionMetricsHuber.Builder, ObjectBuilder<DataframeEvaluationRegressionMetricsHuber>> fn) {
-			return this.huber(fn.apply(new DataframeEvaluationRegressionMetricsHuber.Builder()).build());
+		public final Builder huber(Consumer<DataframeEvaluationRegressionMetricsHuber.Builder> fn) {
+			DataframeEvaluationRegressionMetricsHuber.Builder builder = new DataframeEvaluationRegressionMetricsHuber.Builder();
+			fn.accept(builder);
+			return this.huber(builder.build());
 		}
 
 		/**

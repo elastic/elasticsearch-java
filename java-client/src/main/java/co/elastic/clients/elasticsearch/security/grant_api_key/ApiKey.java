@@ -40,7 +40,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: security.grant_api_key.ApiKey
@@ -63,8 +63,10 @@ public class ApiKey implements JsonpSerializable {
 
 	}
 
-	public static ApiKey of(Function<Builder, ObjectBuilder<ApiKey>> fn) {
-		return fn.apply(new Builder()).build();
+	public static ApiKey of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -162,8 +164,10 @@ public class ApiKey implements JsonpSerializable {
 		/**
 		 * API name: {@code expiration}
 		 */
-		public final Builder expiration(Function<Time.Builder, ObjectBuilder<Time>> fn) {
-			return this.expiration(fn.apply(new Time.Builder()).build());
+		public final Builder expiration(Consumer<Time.Builder> fn) {
+			Time.Builder builder = new Time.Builder();
+			fn.accept(builder);
+			return this.expiration(builder.build());
 		}
 
 		/**

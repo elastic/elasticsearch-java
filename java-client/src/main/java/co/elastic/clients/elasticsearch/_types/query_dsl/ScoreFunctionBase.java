@@ -34,7 +34,7 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.ScoreFunctionBase
@@ -115,8 +115,10 @@ public abstract class ScoreFunctionBase implements JsonpSerializable {
 		/**
 		 * API name: {@code filter}
 		 */
-		public final BuilderT filter(Function<Query.Builder, ObjectBuilder<Query>> fn) {
-			return this.filter(fn.apply(new Query.Builder()).build());
+		public final BuilderT filter(Consumer<Query.Builder> fn) {
+			Query.Builder builder = new Query.Builder();
+			fn.accept(builder);
+			return this.filter(builder.build());
 		}
 
 		/**

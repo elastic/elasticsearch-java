@@ -39,10 +39,10 @@ import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -133,8 +133,10 @@ public class Highlight implements JsonpSerializable {
 
 	}
 
-	public static Highlight of(Function<Builder, ObjectBuilder<Highlight>> fn) {
-		return fn.apply(new Builder()).build();
+	public static Highlight of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -492,13 +494,6 @@ public class Highlight implements JsonpSerializable {
 			return this;
 		}
 
-		/**
-		 * Set {@link #fields(Map)} to a singleton map.
-		 */
-		public Builder fields(String key, Function<HighlightField.Builder, ObjectBuilder<HighlightField>> fn) {
-			return this.fields(Collections.singletonMap(key, fn.apply(new HighlightField.Builder()).build()));
-		}
-
 		public final Builder fields(
 				Function<MapBuilder<String, HighlightField, HighlightField.Builder>, ObjectBuilder<Map<String, HighlightField>>> fn) {
 			return fields(fn.apply(new MapBuilder<>(HighlightField.Builder::new)).build());
@@ -515,8 +510,10 @@ public class Highlight implements JsonpSerializable {
 		/**
 		 * API name: {@code type}
 		 */
-		public final Builder type(Function<HighlighterType.Builder, ObjectBuilder<HighlighterType>> fn) {
-			return this.type(fn.apply(new HighlighterType.Builder()).build());
+		public final Builder type(Consumer<HighlighterType.Builder> fn) {
+			HighlighterType.Builder builder = new HighlighterType.Builder();
+			fn.accept(builder);
+			return this.type(builder.build());
 		}
 
 		/**
@@ -674,8 +671,10 @@ public class Highlight implements JsonpSerializable {
 		/**
 		 * API name: {@code highlight_query}
 		 */
-		public final Builder highlightQuery(Function<Query.Builder, ObjectBuilder<Query>> fn) {
-			return this.highlightQuery(fn.apply(new Query.Builder()).build());
+		public final Builder highlightQuery(Consumer<Query.Builder> fn) {
+			Query.Builder builder = new Query.Builder();
+			fn.accept(builder);
+			return this.highlightQuery(builder.build());
 		}
 
 		/**

@@ -23,12 +23,12 @@
 
 package co.elastic.clients.elasticsearch.core.search;
 
-import co.elastic.clients.util.UnionVariant;
-
 /**
  * Base interface for {@link SortOptions} variants.
  */
-public interface SortOptionsVariant extends UnionVariant {
+public interface SortOptionsVariant {
+
+	SortOptions.Kind _sortOptionsKind();
 
 	default SortOptions _toSortOptions() {
 		return new SortOptions(this);

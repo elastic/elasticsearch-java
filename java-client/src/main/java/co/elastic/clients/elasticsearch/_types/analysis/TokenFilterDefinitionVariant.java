@@ -24,12 +24,13 @@
 package co.elastic.clients.elasticsearch._types.analysis;
 
 import co.elastic.clients.json.JsonpSerializable;
-import co.elastic.clients.util.UnionVariant;
 
 /**
  * Base interface for {@link TokenFilterDefinition} variants.
  */
-public interface TokenFilterDefinitionVariant extends UnionVariant, JsonpSerializable {
+public interface TokenFilterDefinitionVariant extends JsonpSerializable {
+
+	TokenFilterDefinition.Kind _tokenFilterDefinitionKind();
 
 	default TokenFilterDefinition _toTokenFilterDefinition() {
 		return new TokenFilterDefinition(this);

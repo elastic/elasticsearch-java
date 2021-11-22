@@ -38,7 +38,7 @@ import java.lang.Integer;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.DataframeAnalysisFeatureProcessorTargetMeanEncoding
@@ -66,17 +66,18 @@ public class DataframeAnalysisFeatureProcessorTargetMeanEncoding
 
 	}
 
-	public static DataframeAnalysisFeatureProcessorTargetMeanEncoding of(
-			Function<Builder, ObjectBuilder<DataframeAnalysisFeatureProcessorTargetMeanEncoding>> fn) {
-		return fn.apply(new Builder()).build();
+	public static DataframeAnalysisFeatureProcessorTargetMeanEncoding of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
-	 * {@link DataframeAnalysisFeatureProcessor} variant type
+	 * DataframeAnalysisFeatureProcessor variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "target_mean_encoding";
+	public DataframeAnalysisFeatureProcessor.Kind _dataframeAnalysisFeatureProcessorKind() {
+		return DataframeAnalysisFeatureProcessor.Kind.TargetMeanEncoding;
 	}
 
 	/**

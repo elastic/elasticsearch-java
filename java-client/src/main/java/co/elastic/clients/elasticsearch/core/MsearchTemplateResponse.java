@@ -23,7 +23,7 @@
 
 package co.elastic.clients.elasticsearch.core;
 
-import co.elastic.clients.elasticsearch.core.msearch.MultisearchResponseBase;
+import co.elastic.clients.elasticsearch.core.msearch.MultiSearchResult;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.NamedDeserializer;
@@ -32,12 +32,12 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import java.util.function.Supplier;
 
 // typedef: _global.msearch_template.Response
 @JsonpDeserializable
-public class MsearchTemplateResponse<TDocument> extends MultisearchResponseBase<TDocument> {
+public class MsearchTemplateResponse<TDocument> extends MultiSearchResult<TDocument> {
 	// ---------------------------------------------------------------------------------------------
 
 	private MsearchTemplateResponse(Builder<TDocument> builder) {
@@ -45,9 +45,10 @@ public class MsearchTemplateResponse<TDocument> extends MultisearchResponseBase<
 
 	}
 
-	public static <TDocument> MsearchTemplateResponse<TDocument> of(
-			Function<Builder<TDocument>, ObjectBuilder<MsearchTemplateResponse<TDocument>>> fn) {
-		return fn.apply(new Builder<>()).build();
+	public static <TDocument> MsearchTemplateResponse<TDocument> of(Consumer<Builder<TDocument>> fn) {
+		Builder<TDocument> builder = new Builder<>();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -55,9 +56,7 @@ public class MsearchTemplateResponse<TDocument> extends MultisearchResponseBase<
 	/**
 	 * Builder for {@link MsearchTemplateResponse}.
 	 */
-	public static class Builder<TDocument>
-			extends
-				MultisearchResponseBase.AbstractBuilder<TDocument, Builder<TDocument>>
+	public static class Builder<TDocument> extends MultiSearchResult.AbstractBuilder<TDocument, Builder<TDocument>>
 			implements
 				ObjectBuilder<MsearchTemplateResponse<TDocument>> {
 		@Override
@@ -99,7 +98,7 @@ public class MsearchTemplateResponse<TDocument> extends MultisearchResponseBase<
 	protected static <TDocument> void setupMsearchTemplateResponseDeserializer(
 			ObjectDeserializer<MsearchTemplateResponse.Builder<TDocument>> op,
 			JsonpDeserializer<TDocument> tDocumentDeserializer) {
-		MultisearchResponseBase.setupMultisearchResponseBaseDeserializer(op, tDocumentDeserializer);
+		MultiSearchResult.setupMultiSearchResultDeserializer(op, tDocumentDeserializer);
 
 	}
 

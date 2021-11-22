@@ -32,7 +32,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: _global.rank_eval.RankEvalMetricDiscountedCumulativeGain
@@ -50,9 +50,10 @@ public class RankEvalMetricDiscountedCumulativeGain extends RankEvalMetricBase {
 
 	}
 
-	public static RankEvalMetricDiscountedCumulativeGain of(
-			Function<Builder, ObjectBuilder<RankEvalMetricDiscountedCumulativeGain>> fn) {
-		return fn.apply(new Builder()).build();
+	public static RankEvalMetricDiscountedCumulativeGain of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**

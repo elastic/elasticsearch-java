@@ -39,7 +39,7 @@ import java.lang.String;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: _types.analysis.FingerprintAnalyzer
@@ -72,16 +72,18 @@ public class FingerprintAnalyzer implements AnalyzerVariant, JsonpSerializable {
 
 	}
 
-	public static FingerprintAnalyzer of(Function<Builder, ObjectBuilder<FingerprintAnalyzer>> fn) {
-		return fn.apply(new Builder()).build();
+	public static FingerprintAnalyzer of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
-	 * {@link Analyzer} variant type
+	 * Analyzer variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "fingerprint";
+	public Analyzer.Kind _analyzerKind() {
+		return Analyzer.Kind.Fingerprint;
 	}
 
 	/**

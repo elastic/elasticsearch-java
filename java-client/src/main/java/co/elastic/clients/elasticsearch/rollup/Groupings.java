@@ -33,7 +33,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: rollup._types.Groupings
@@ -58,8 +58,10 @@ public class Groupings implements JsonpSerializable {
 
 	}
 
-	public static Groupings of(Function<Builder, ObjectBuilder<Groupings>> fn) {
-		return fn.apply(new Builder()).build();
+	public static Groupings of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -141,9 +143,10 @@ public class Groupings implements JsonpSerializable {
 		/**
 		 * API name: {@code date_histogram}
 		 */
-		public final Builder dateHistogram(
-				Function<DateHistogramGrouping.Builder, ObjectBuilder<DateHistogramGrouping>> fn) {
-			return this.dateHistogram(fn.apply(new DateHistogramGrouping.Builder()).build());
+		public final Builder dateHistogram(Consumer<DateHistogramGrouping.Builder> fn) {
+			DateHistogramGrouping.Builder builder = new DateHistogramGrouping.Builder();
+			fn.accept(builder);
+			return this.dateHistogram(builder.build());
 		}
 
 		/**
@@ -157,8 +160,10 @@ public class Groupings implements JsonpSerializable {
 		/**
 		 * API name: {@code histogram}
 		 */
-		public final Builder histogram(Function<HistogramGrouping.Builder, ObjectBuilder<HistogramGrouping>> fn) {
-			return this.histogram(fn.apply(new HistogramGrouping.Builder()).build());
+		public final Builder histogram(Consumer<HistogramGrouping.Builder> fn) {
+			HistogramGrouping.Builder builder = new HistogramGrouping.Builder();
+			fn.accept(builder);
+			return this.histogram(builder.build());
 		}
 
 		/**
@@ -172,8 +177,10 @@ public class Groupings implements JsonpSerializable {
 		/**
 		 * API name: {@code terms}
 		 */
-		public final Builder terms(Function<TermsGrouping.Builder, ObjectBuilder<TermsGrouping>> fn) {
-			return this.terms(fn.apply(new TermsGrouping.Builder()).build());
+		public final Builder terms(Consumer<TermsGrouping.Builder> fn) {
+			TermsGrouping.Builder builder = new TermsGrouping.Builder();
+			fn.accept(builder);
+			return this.terms(builder.build());
 		}
 
 		/**

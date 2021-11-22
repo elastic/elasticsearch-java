@@ -33,7 +33,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 
 // typedef: xpack.usage.Ccr
 @JsonpDeserializable
@@ -54,8 +54,10 @@ public class Ccr extends Base {
 
 	}
 
-	public static Ccr of(Function<Builder, ObjectBuilder<Ccr>> fn) {
-		return fn.apply(new Builder()).build();
+	public static Ccr of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**

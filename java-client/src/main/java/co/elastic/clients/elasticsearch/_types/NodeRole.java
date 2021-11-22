@@ -23,16 +23,41 @@
 
 package co.elastic.clients.elasticsearch._types;
 
+import co.elastic.clients.json.JsonEnum;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
-import co.elastic.clients.util.StringEnum;
 
 @JsonpDeserializable
-public enum NodeRole implements StringEnum {
-	Master("master"), Data("data"), DataCold("data_cold"), DataContent("data_content"), DataFrozen(
-			"data_frozen"), DataHot("data_hot"), DataWarm("data_warm"), Client("client"), Ingest("ingest"), Ml(
-					"ml"), VotingOnly("voting_only"), Transform("transform"), RemoteClusterClient(
-							"remote_cluster_client"), CoordinatingOnly("coordinating_only");
+public enum NodeRole implements JsonEnum {
+	Master("master"),
+
+	Data("data"),
+
+	DataCold("data_cold"),
+
+	DataContent("data_content"),
+
+	DataFrozen("data_frozen"),
+
+	DataHot("data_hot"),
+
+	DataWarm("data_warm"),
+
+	Client("client"),
+
+	Ingest("ingest"),
+
+	Ml("ml"),
+
+	VotingOnly("voting_only"),
+
+	Transform("transform"),
+
+	RemoteClusterClient("remote_cluster_client"),
+
+	CoordinatingOnly("coordinating_only"),
+
+	;
 
 	private final String jsonValue;
 
@@ -44,6 +69,5 @@ public enum NodeRole implements StringEnum {
 		return this.jsonValue;
 	}
 
-	public static final StringEnum.Deserializer<NodeRole> _DESERIALIZER = new StringEnum.Deserializer<>(
-			NodeRole.values());
+	public static final JsonEnum.Deserializer<NodeRole> _DESERIALIZER = new JsonEnum.Deserializer<>(NodeRole.values());
 }

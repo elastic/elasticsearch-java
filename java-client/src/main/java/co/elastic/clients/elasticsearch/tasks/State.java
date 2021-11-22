@@ -39,7 +39,7 @@ import java.lang.String;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: tasks._types.State
@@ -89,8 +89,10 @@ public class State implements JsonpSerializable {
 
 	}
 
-	public static State of(Function<Builder, ObjectBuilder<State>> fn) {
-		return fn.apply(new Builder()).build();
+	public static State of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -354,8 +356,10 @@ public class State implements JsonpSerializable {
 		/**
 		 * API name: {@code status}
 		 */
-		public final Builder status(Function<Status.Builder, ObjectBuilder<Status>> fn) {
-			return this.status(fn.apply(new Status.Builder()).build());
+		public final Builder status(Consumer<Status.Builder> fn) {
+			Status.Builder builder = new Status.Builder();
+			fn.accept(builder);
+			return this.status(builder.build());
 		}
 
 		/**

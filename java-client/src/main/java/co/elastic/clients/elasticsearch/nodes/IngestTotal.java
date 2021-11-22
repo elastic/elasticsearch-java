@@ -29,15 +29,16 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -66,8 +67,10 @@ public class IngestTotal implements JsonpSerializable {
 
 	}
 
-	public static IngestTotal of(Function<Builder, ObjectBuilder<IngestTotal>> fn) {
-		return fn.apply(new Builder()).build();
+	public static IngestTotal of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -199,13 +202,9 @@ public class IngestTotal implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code processors}
 		 */
-		@SafeVarargs
-		public final Builder processors(Function<KeyedProcessor.Builder, ObjectBuilder<KeyedProcessor>>... fns) {
-			this.processors = new ArrayList<>(fns.length);
-			for (Function<KeyedProcessor.Builder, ObjectBuilder<KeyedProcessor>> fn : fns) {
-				this.processors.add(fn.apply(new KeyedProcessor.Builder()).build());
-			}
-			return this;
+		public final Builder processors(
+				Function<ListBuilder<KeyedProcessor, KeyedProcessor.Builder>, ObjectBuilder<List<KeyedProcessor>>> fn) {
+			return processors(fn.apply(new ListBuilder<>(KeyedProcessor.Builder::new)).build());
 		}
 
 		/**

@@ -35,7 +35,7 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.EmailResult
@@ -59,8 +59,10 @@ public class EmailResult implements JsonpSerializable {
 
 	}
 
-	public static EmailResult of(Function<Builder, ObjectBuilder<EmailResult>> fn) {
-		return fn.apply(new Builder()).build();
+	public static EmailResult of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -146,8 +148,10 @@ public class EmailResult implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code message}
 		 */
-		public final Builder message(Function<EmailResult.Builder, ObjectBuilder<EmailResult>> fn) {
-			return this.message(fn.apply(new EmailResult.Builder()).build());
+		public final Builder message(Consumer<EmailResult.Builder> fn) {
+			EmailResult.Builder builder = new EmailResult.Builder();
+			fn.accept(builder);
+			return this.message(builder.build());
 		}
 
 		/**

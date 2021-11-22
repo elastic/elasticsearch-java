@@ -33,19 +33,20 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
-import co.elastic.clients.transport.SimpleEndpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
+import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -74,8 +75,10 @@ public class SimulateRequest extends RequestBase implements JsonpSerializable {
 
 	}
 
-	public static SimulateRequest of(Function<Builder, ObjectBuilder<SimulateRequest>> fn) {
-		return fn.apply(new Builder()).build();
+	public static SimulateRequest of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -179,13 +182,8 @@ public class SimulateRequest extends RequestBase implements JsonpSerializable {
 		/**
 		 * API name: {@code docs}
 		 */
-		@SafeVarargs
-		public final Builder docs(Function<Document.Builder, ObjectBuilder<Document>>... fns) {
-			this.docs = new ArrayList<>(fns.length);
-			for (Function<Document.Builder, ObjectBuilder<Document>> fn : fns) {
-				this.docs.add(fn.apply(new Document.Builder()).build());
-			}
-			return this;
+		public final Builder docs(Function<ListBuilder<Document, Document.Builder>, ObjectBuilder<List<Document>>> fn) {
+			return docs(fn.apply(new ListBuilder<>(Document.Builder::new)).build());
 		}
 
 		/**
@@ -209,8 +207,10 @@ public class SimulateRequest extends RequestBase implements JsonpSerializable {
 		/**
 		 * API name: {@code pipeline}
 		 */
-		public final Builder pipeline(Function<Pipeline.Builder, ObjectBuilder<Pipeline>> fn) {
-			return this.pipeline(fn.apply(new Pipeline.Builder()).build());
+		public final Builder pipeline(Consumer<Pipeline.Builder> fn) {
+			Pipeline.Builder builder = new Pipeline.Builder();
+			fn.accept(builder);
+			return this.pipeline(builder.build());
 		}
 
 		/**

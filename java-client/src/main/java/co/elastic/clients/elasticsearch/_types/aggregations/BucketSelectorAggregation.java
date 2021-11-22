@@ -32,7 +32,7 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.BucketSelectorAggregation
@@ -50,16 +50,18 @@ public class BucketSelectorAggregation extends PipelineAggregationBase implement
 
 	}
 
-	public static BucketSelectorAggregation of(Function<Builder, ObjectBuilder<BucketSelectorAggregation>> fn) {
-		return fn.apply(new Builder()).build();
+	public static BucketSelectorAggregation of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
-	 * {@link Aggregation} variant type
+	 * Aggregation variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "bucket_selector";
+	public Aggregation.Kind _aggregationKind() {
+		return Aggregation.Kind.BucketSelector;
 	}
 
 	/**
@@ -103,8 +105,10 @@ public class BucketSelectorAggregation extends PipelineAggregationBase implement
 		/**
 		 * API name: {@code script}
 		 */
-		public final Builder script(Function<Script.Builder, ObjectBuilder<Script>> fn) {
-			return this.script(fn.apply(new Script.Builder()).build());
+		public final Builder script(Consumer<Script.Builder> fn) {
+			Script.Builder builder = new Script.Builder();
+			fn.accept(builder);
+			return this.script(builder.build());
 		}
 
 		@Override

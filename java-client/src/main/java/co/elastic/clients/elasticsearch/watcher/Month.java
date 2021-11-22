@@ -23,15 +23,37 @@
 
 package co.elastic.clients.elasticsearch.watcher;
 
+import co.elastic.clients.json.JsonEnum;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
-import co.elastic.clients.util.StringEnum;
 
 @JsonpDeserializable
-public enum Month implements StringEnum {
-	January("january"), February("february"), March("march"), April("april"), May("may"), June("june"), July(
-			"july"), August(
-					"august"), September("september"), October("october"), November("november"), December("december");
+public enum Month implements JsonEnum {
+	January("january"),
+
+	February("february"),
+
+	March("march"),
+
+	April("april"),
+
+	May("may"),
+
+	June("june"),
+
+	July("july"),
+
+	August("august"),
+
+	September("september"),
+
+	October("october"),
+
+	November("november"),
+
+	December("december"),
+
+	;
 
 	private final String jsonValue;
 
@@ -43,5 +65,5 @@ public enum Month implements StringEnum {
 		return this.jsonValue;
 	}
 
-	public static final StringEnum.Deserializer<Month> _DESERIALIZER = new StringEnum.Deserializer<>(Month.values());
+	public static final JsonEnum.Deserializer<Month> _DESERIALIZER = new JsonEnum.Deserializer<>(Month.values());
 }

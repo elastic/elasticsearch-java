@@ -37,7 +37,7 @@ import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: cluster.reroute.CommandAllocatePrimaryAction
@@ -62,8 +62,10 @@ public class CommandAllocatePrimaryAction implements JsonpSerializable {
 
 	}
 
-	public static CommandAllocatePrimaryAction of(Function<Builder, ObjectBuilder<CommandAllocatePrimaryAction>> fn) {
-		return fn.apply(new Builder()).build();
+	public static CommandAllocatePrimaryAction of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**

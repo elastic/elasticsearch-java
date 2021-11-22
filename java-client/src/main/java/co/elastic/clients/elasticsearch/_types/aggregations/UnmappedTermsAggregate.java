@@ -31,7 +31,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Void;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 
 // typedef: _types.aggregations.UnmappedTermsAggregate
 @JsonpDeserializable
@@ -43,16 +43,18 @@ public class UnmappedTermsAggregate extends TermsAggregateBase<Void> implements 
 
 	}
 
-	public static UnmappedTermsAggregate of(Function<Builder, ObjectBuilder<UnmappedTermsAggregate>> fn) {
-		return fn.apply(new Builder()).build();
+	public static UnmappedTermsAggregate of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
-	 * {@link Aggregate} variant type
+	 * Aggregate variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "umterms";
+	public Aggregate.Kind _aggregateKind() {
+		return Aggregate.Kind.Umterms;
 	}
 
 	// ---------------------------------------------------------------------------------------------

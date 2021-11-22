@@ -30,7 +30,7 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 
 // typedef: _types.aggregations.CumulativeCardinalityAggregation
 @JsonpDeserializable
@@ -42,17 +42,18 @@ public class CumulativeCardinalityAggregation extends PipelineAggregationBase im
 
 	}
 
-	public static CumulativeCardinalityAggregation of(
-			Function<Builder, ObjectBuilder<CumulativeCardinalityAggregation>> fn) {
-		return fn.apply(new Builder()).build();
+	public static CumulativeCardinalityAggregation of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
-	 * {@link Aggregation} variant type
+	 * Aggregation variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "cumulative_cardinality";
+	public Aggregation.Kind _aggregationKind() {
+		return Aggregation.Kind.CumulativeCardinality;
 	}
 
 	// ---------------------------------------------------------------------------------------------

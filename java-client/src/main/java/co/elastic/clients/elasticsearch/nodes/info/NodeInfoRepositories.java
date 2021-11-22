@@ -34,7 +34,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: nodes.info.NodeInfoRepositories
@@ -50,8 +50,10 @@ public class NodeInfoRepositories implements JsonpSerializable {
 
 	}
 
-	public static NodeInfoRepositories of(Function<Builder, ObjectBuilder<NodeInfoRepositories>> fn) {
-		return fn.apply(new Builder()).build();
+	public static NodeInfoRepositories of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -96,8 +98,10 @@ public class NodeInfoRepositories implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code url}
 		 */
-		public final Builder url(Function<NodeInfoRepositoriesUrl.Builder, ObjectBuilder<NodeInfoRepositoriesUrl>> fn) {
-			return this.url(fn.apply(new NodeInfoRepositoriesUrl.Builder()).build());
+		public final Builder url(Consumer<NodeInfoRepositoriesUrl.Builder> fn) {
+			NodeInfoRepositoriesUrl.Builder builder = new NodeInfoRepositoriesUrl.Builder();
+			fn.accept(builder);
+			return this.url(builder.build());
 		}
 
 		/**

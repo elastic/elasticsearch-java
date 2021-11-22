@@ -37,9 +37,9 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
-import java.util.Collections;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -63,8 +63,10 @@ public class Pivot implements JsonpSerializable {
 
 	}
 
-	public static Pivot of(Function<Builder, ObjectBuilder<Pivot>> fn) {
-		return fn.apply(new Builder()).build();
+	public static Pivot of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -153,13 +155,6 @@ public class Pivot implements JsonpSerializable {
 			return this;
 		}
 
-		/**
-		 * Set {@link #aggregations(Map)} to a singleton map.
-		 */
-		public Builder aggregations(String key, Function<Aggregation.Builder, ObjectBuilder<Aggregation>> fn) {
-			return this.aggregations(Collections.singletonMap(key, fn.apply(new Aggregation.Builder()).build()));
-		}
-
 		public final Builder aggregations(
 				Function<MapBuilder<String, Aggregation, Aggregation.Builder>, ObjectBuilder<Map<String, Aggregation>>> fn) {
 			return aggregations(fn.apply(new MapBuilder<>(Aggregation.Builder::new)).build());
@@ -171,13 +166,6 @@ public class Pivot implements JsonpSerializable {
 		public final Builder groupBy(@Nullable Map<String, PivotGroupBy> value) {
 			this.groupBy = value;
 			return this;
-		}
-
-		/**
-		 * Set {@link #groupBy(Map)} to a singleton map.
-		 */
-		public Builder groupBy(String key, Function<PivotGroupBy.Builder, ObjectBuilder<PivotGroupBy>> fn) {
-			return this.groupBy(Collections.singletonMap(key, fn.apply(new PivotGroupBy.Builder()).build()));
 		}
 
 		public final Builder groupBy(

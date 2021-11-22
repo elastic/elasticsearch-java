@@ -35,7 +35,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: _global.search._types.InnerHitsResult
@@ -51,8 +51,10 @@ public class InnerHitsResult implements JsonpSerializable {
 
 	}
 
-	public static InnerHitsResult of(Function<Builder, ObjectBuilder<InnerHitsResult>> fn) {
-		return fn.apply(new Builder()).build();
+	public static InnerHitsResult of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -97,8 +99,10 @@ public class InnerHitsResult implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code hits}
 		 */
-		public final Builder hits(Function<HitsMetadata.Builder<JsonData>, ObjectBuilder<HitsMetadata<JsonData>>> fn) {
-			return this.hits(fn.apply(new HitsMetadata.Builder<JsonData>()).build());
+		public final Builder hits(Consumer<HitsMetadata.Builder<JsonData>> fn) {
+			HitsMetadata.Builder<JsonData> builder = new HitsMetadata.Builder<JsonData>();
+			fn.accept(builder);
+			return this.hits(builder.build());
 		}
 
 		/**

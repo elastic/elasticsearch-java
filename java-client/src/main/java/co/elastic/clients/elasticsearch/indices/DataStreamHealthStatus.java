@@ -23,36 +23,46 @@
 
 package co.elastic.clients.elasticsearch.indices;
 
+import co.elastic.clients.json.JsonEnum;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
-import co.elastic.clients.util.StringEnum;
 
 @JsonpDeserializable
-public enum DataStreamHealthStatus implements StringEnum {
+public enum DataStreamHealthStatus implements JsonEnum {
 	/**
 	 * All shards are assigned.
 	 */
-	Green("green"),
+	Green("green", "GREEN"),
+
 	/**
 	 * All primary shards are assigned, but one or more replica shards are
 	 * unassigned.
 	 */
-	Yellow("yellow"),
+	Yellow("yellow", "YELLOW"),
+
 	/**
 	 * One or more primary shards are unassigned, so some data is unavailable.
 	 */
-	Red("red");
+	Red("red", "RED"),
+
+	;
 
 	private final String jsonValue;
+	private final String[] aliases;
 
-	DataStreamHealthStatus(String jsonValue) {
+	DataStreamHealthStatus(String jsonValue, String... aliases) {
 		this.jsonValue = jsonValue;
+		this.aliases = aliases;
 	}
 
 	public String jsonValue() {
 		return this.jsonValue;
 	}
 
-	public static final StringEnum.Deserializer<DataStreamHealthStatus> _DESERIALIZER = new StringEnum.Deserializer<>(
+	public String[] aliases() {
+		return this.aliases;
+	}
+
+	public static final JsonEnum.Deserializer<DataStreamHealthStatus> _DESERIALIZER = new JsonEnum.Deserializer<>(
 			DataStreamHealthStatus.values());
 }

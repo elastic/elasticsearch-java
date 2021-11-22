@@ -38,7 +38,7 @@ import java.lang.String;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: _types.analysis.PatternAnalyzer
@@ -69,16 +69,18 @@ public class PatternAnalyzer implements AnalyzerVariant, JsonpSerializable {
 
 	}
 
-	public static PatternAnalyzer of(Function<Builder, ObjectBuilder<PatternAnalyzer>> fn) {
-		return fn.apply(new Builder()).build();
+	public static PatternAnalyzer of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
-	 * {@link Analyzer} variant type
+	 * Analyzer variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "pattern";
+	public Analyzer.Kind _analyzerKind() {
+		return Analyzer.Kind.Pattern;
 	}
 
 	/**

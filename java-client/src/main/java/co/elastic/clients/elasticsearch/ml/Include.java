@@ -23,20 +23,22 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
+import co.elastic.clients.json.JsonEnum;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
-import co.elastic.clients.util.StringEnum;
 
 @JsonpDeserializable
-public enum Include implements StringEnum {
+public enum Include implements JsonEnum {
 	/**
 	 * Includes the model definition.
 	 */
 	Definition("definition"),
+
 	/**
 	 * Includes the baseline for feature importance values.
 	 */
 	FeatureImportanceBaseline("feature_importance_baseline"),
+
 	/**
 	 * Includes the information about hyperparameters used to train the model. This
 	 * information consists of the value, the absolute and relative importance of
@@ -44,12 +46,15 @@ public enum Include implements StringEnum {
 	 * user or tuned during hyperparameter optimization.
 	 */
 	Hyperparameters("hyperparameters"),
+
 	/**
 	 * Includes the total feature importance for the training data set. The baseline
 	 * and total feature importance values are returned in the metadata field in the
 	 * response body.
 	 */
-	TotalFeatureImportance("total_feature_importance");
+	TotalFeatureImportance("total_feature_importance"),
+
+	;
 
 	private final String jsonValue;
 
@@ -61,6 +66,5 @@ public enum Include implements StringEnum {
 		return this.jsonValue;
 	}
 
-	public static final StringEnum.Deserializer<Include> _DESERIALIZER = new StringEnum.Deserializer<>(
-			Include.values());
+	public static final JsonEnum.Deserializer<Include> _DESERIALIZER = new JsonEnum.Deserializer<>(Include.values());
 }

@@ -34,7 +34,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.RangeQuery
@@ -84,16 +84,18 @@ public class RangeQuery extends RangeQueryBase implements QueryVariant {
 
 	}
 
-	public static RangeQuery of(Function<Builder, ObjectBuilder<RangeQuery>> fn) {
-		return fn.apply(new Builder()).build();
+	public static RangeQuery of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
-	 * {@link Query} variant type
+	 * Query variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "range";
+	public Query.Kind _queryKind() {
+		return Query.Kind.Range;
 	}
 
 	/**

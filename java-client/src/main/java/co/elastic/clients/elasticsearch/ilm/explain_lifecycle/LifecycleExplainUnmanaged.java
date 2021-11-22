@@ -35,7 +35,7 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: ilm.explain_lifecycle.LifecycleExplainUnmanaged
@@ -51,16 +51,18 @@ public class LifecycleExplainUnmanaged implements LifecycleExplainVariant, Jsonp
 
 	}
 
-	public static LifecycleExplainUnmanaged of(Function<Builder, ObjectBuilder<LifecycleExplainUnmanaged>> fn) {
-		return fn.apply(new Builder()).build();
+	public static LifecycleExplainUnmanaged of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
-	 * {@link LifecycleExplain} variant type
+	 * LifecycleExplain variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "false";
+	public LifecycleExplain.Kind _lifecycleExplainKind() {
+		return LifecycleExplain.Kind.False;
 	}
 
 	/**

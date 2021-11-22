@@ -34,7 +34,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: security.get_token.AuthenticatedUser
@@ -63,8 +63,10 @@ public class AuthenticatedUser extends User {
 
 	}
 
-	public static AuthenticatedUser of(Function<Builder, ObjectBuilder<AuthenticatedUser>> fn) {
-		return fn.apply(new Builder()).build();
+	public static AuthenticatedUser of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -141,8 +143,10 @@ public class AuthenticatedUser extends User {
 		/**
 		 * Required - API name: {@code authentication_realm}
 		 */
-		public final Builder authenticationRealm(Function<UserRealm.Builder, ObjectBuilder<UserRealm>> fn) {
-			return this.authenticationRealm(fn.apply(new UserRealm.Builder()).build());
+		public final Builder authenticationRealm(Consumer<UserRealm.Builder> fn) {
+			UserRealm.Builder builder = new UserRealm.Builder();
+			fn.accept(builder);
+			return this.authenticationRealm(builder.build());
 		}
 
 		/**
@@ -156,8 +160,10 @@ public class AuthenticatedUser extends User {
 		/**
 		 * Required - API name: {@code lookup_realm}
 		 */
-		public final Builder lookupRealm(Function<UserRealm.Builder, ObjectBuilder<UserRealm>> fn) {
-			return this.lookupRealm(fn.apply(new UserRealm.Builder()).build());
+		public final Builder lookupRealm(Consumer<UserRealm.Builder> fn) {
+			UserRealm.Builder builder = new UserRealm.Builder();
+			fn.accept(builder);
+			return this.lookupRealm(builder.build());
 		}
 
 		/**
@@ -171,9 +177,10 @@ public class AuthenticatedUser extends User {
 		/**
 		 * API name: {@code authentication_provider}
 		 */
-		public final Builder authenticationProvider(
-				Function<AuthenticationProvider.Builder, ObjectBuilder<AuthenticationProvider>> fn) {
-			return this.authenticationProvider(fn.apply(new AuthenticationProvider.Builder()).build());
+		public final Builder authenticationProvider(Consumer<AuthenticationProvider.Builder> fn) {
+			AuthenticationProvider.Builder builder = new AuthenticationProvider.Builder();
+			fn.accept(builder);
+			return this.authenticationProvider(builder.build());
 		}
 
 		/**

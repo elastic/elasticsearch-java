@@ -33,7 +33,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.DataframeAnalysisRegression
@@ -55,16 +55,18 @@ public class DataframeAnalysisRegression extends DataframeAnalysisBase implement
 
 	}
 
-	public static DataframeAnalysisRegression of(Function<Builder, ObjectBuilder<DataframeAnalysisRegression>> fn) {
-		return fn.apply(new Builder()).build();
+	public static DataframeAnalysisRegression of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
-	 * {@link DataframeAnalysis} variant type
+	 * DataframeAnalysis variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "regression";
+	public DataframeAnalysis.Kind _dataframeAnalysisKind() {
+		return DataframeAnalysis.Kind.Regression;
 	}
 
 	/**

@@ -35,7 +35,7 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: logstash._types.PipelineMetadata
@@ -54,8 +54,10 @@ public class PipelineMetadata implements JsonpSerializable {
 
 	}
 
-	public static PipelineMetadata of(Function<Builder, ObjectBuilder<PipelineMetadata>> fn) {
-		return fn.apply(new Builder()).build();
+	public static PipelineMetadata of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**

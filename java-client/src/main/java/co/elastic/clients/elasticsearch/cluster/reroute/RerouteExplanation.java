@@ -29,15 +29,16 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -60,8 +61,10 @@ public class RerouteExplanation implements JsonpSerializable {
 
 	}
 
-	public static RerouteExplanation of(Function<Builder, ObjectBuilder<RerouteExplanation>> fn) {
-		return fn.apply(new Builder()).build();
+	public static RerouteExplanation of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -153,13 +156,9 @@ public class RerouteExplanation implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code decisions}
 		 */
-		@SafeVarargs
-		public final Builder decisions(Function<RerouteDecision.Builder, ObjectBuilder<RerouteDecision>>... fns) {
-			this.decisions = new ArrayList<>(fns.length);
-			for (Function<RerouteDecision.Builder, ObjectBuilder<RerouteDecision>> fn : fns) {
-				this.decisions.add(fn.apply(new RerouteDecision.Builder()).build());
-			}
-			return this;
+		public final Builder decisions(
+				Function<ListBuilder<RerouteDecision, RerouteDecision.Builder>, ObjectBuilder<List<RerouteDecision>>> fn) {
+			return decisions(fn.apply(new ListBuilder<>(RerouteDecision.Builder::new)).build());
 		}
 
 		/**
@@ -173,8 +172,10 @@ public class RerouteExplanation implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code parameters}
 		 */
-		public final Builder parameters(Function<RerouteParameters.Builder, ObjectBuilder<RerouteParameters>> fn) {
-			return this.parameters(fn.apply(new RerouteParameters.Builder()).build());
+		public final Builder parameters(Consumer<RerouteParameters.Builder> fn) {
+			RerouteParameters.Builder builder = new RerouteParameters.Builder();
+			fn.accept(builder);
+			return this.parameters(builder.build());
 		}
 
 		/**

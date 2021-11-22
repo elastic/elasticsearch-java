@@ -37,7 +37,7 @@ import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.IntervalsMatch
@@ -73,16 +73,26 @@ public class IntervalsMatch implements IntervalsQueryVariant, IntervalsVariant, 
 
 	}
 
-	public static IntervalsMatch of(Function<Builder, ObjectBuilder<IntervalsMatch>> fn) {
-		return fn.apply(new Builder()).build();
+	public static IntervalsMatch of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
-	 * {@link IntervalsQuery}, {@link Intervals} variant type
+	 * IntervalsQuery variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "match";
+	public IntervalsQuery.Kind _intervalsQueryKind() {
+		return IntervalsQuery.Kind.Match;
+	}
+
+	/**
+	 * Intervals variant kind.
+	 */
+	@Override
+	public Intervals.Kind _intervalsKind() {
+		return Intervals.Kind.Match;
 	}
 
 	/**
@@ -248,8 +258,10 @@ public class IntervalsMatch implements IntervalsQueryVariant, IntervalsVariant, 
 		/**
 		 * API name: {@code filter}
 		 */
-		public final Builder filter(Function<IntervalsFilter.Builder, ObjectBuilder<IntervalsFilter>> fn) {
-			return this.filter(fn.apply(new IntervalsFilter.Builder()).build());
+		public final Builder filter(Consumer<IntervalsFilter.Builder> fn) {
+			IntervalsFilter.Builder builder = new IntervalsFilter.Builder();
+			fn.accept(builder);
+			return this.filter(builder.build());
 		}
 
 		/**

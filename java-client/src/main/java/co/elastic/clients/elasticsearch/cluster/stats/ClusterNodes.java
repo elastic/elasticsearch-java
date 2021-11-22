@@ -30,17 +30,18 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -87,8 +88,10 @@ public class ClusterNodes implements JsonpSerializable {
 
 	}
 
-	public static ClusterNodes of(Function<Builder, ObjectBuilder<ClusterNodes>> fn) {
-		return fn.apply(new Builder()).build();
+	public static ClusterNodes of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -313,8 +316,10 @@ public class ClusterNodes implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code count}
 		 */
-		public final Builder count(Function<ClusterNodeCount.Builder, ObjectBuilder<ClusterNodeCount>> fn) {
-			return this.count(fn.apply(new ClusterNodeCount.Builder()).build());
+		public final Builder count(Consumer<ClusterNodeCount.Builder> fn) {
+			ClusterNodeCount.Builder builder = new ClusterNodeCount.Builder();
+			fn.accept(builder);
+			return this.count(builder.build());
 		}
 
 		/**
@@ -343,8 +348,10 @@ public class ClusterNodes implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code fs}
 		 */
-		public final Builder fs(Function<ClusterFileSystem.Builder, ObjectBuilder<ClusterFileSystem>> fn) {
-			return this.fs(fn.apply(new ClusterFileSystem.Builder()).build());
+		public final Builder fs(Consumer<ClusterFileSystem.Builder> fn) {
+			ClusterFileSystem.Builder builder = new ClusterFileSystem.Builder();
+			fn.accept(builder);
+			return this.fs(builder.build());
 		}
 
 		/**
@@ -358,8 +365,10 @@ public class ClusterNodes implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code ingest}
 		 */
-		public final Builder ingest(Function<ClusterIngest.Builder, ObjectBuilder<ClusterIngest>> fn) {
-			return this.ingest(fn.apply(new ClusterIngest.Builder()).build());
+		public final Builder ingest(Consumer<ClusterIngest.Builder> fn) {
+			ClusterIngest.Builder builder = new ClusterIngest.Builder();
+			fn.accept(builder);
+			return this.ingest(builder.build());
 		}
 
 		/**
@@ -379,8 +388,10 @@ public class ClusterNodes implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code jvm}
 		 */
-		public final Builder jvm(Function<ClusterJvm.Builder, ObjectBuilder<ClusterJvm>> fn) {
-			return this.jvm(fn.apply(new ClusterJvm.Builder()).build());
+		public final Builder jvm(Consumer<ClusterJvm.Builder> fn) {
+			ClusterJvm.Builder builder = new ClusterJvm.Builder();
+			fn.accept(builder);
+			return this.jvm(builder.build());
 		}
 
 		/**
@@ -400,9 +411,10 @@ public class ClusterNodes implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code network_types}
 		 */
-		public final Builder networkTypes(
-				Function<ClusterNetworkTypes.Builder, ObjectBuilder<ClusterNetworkTypes>> fn) {
-			return this.networkTypes(fn.apply(new ClusterNetworkTypes.Builder()).build());
+		public final Builder networkTypes(Consumer<ClusterNetworkTypes.Builder> fn) {
+			ClusterNetworkTypes.Builder builder = new ClusterNetworkTypes.Builder();
+			fn.accept(builder);
+			return this.networkTypes(builder.build());
 		}
 
 		/**
@@ -422,8 +434,10 @@ public class ClusterNodes implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code os}
 		 */
-		public final Builder os(Function<ClusterOperatingSystem.Builder, ObjectBuilder<ClusterOperatingSystem>> fn) {
-			return this.os(fn.apply(new ClusterOperatingSystem.Builder()).build());
+		public final Builder os(Consumer<ClusterOperatingSystem.Builder> fn) {
+			ClusterOperatingSystem.Builder builder = new ClusterOperatingSystem.Builder();
+			fn.accept(builder);
+			return this.os(builder.build());
 		}
 
 		/**
@@ -454,14 +468,9 @@ public class ClusterNodes implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code packaging_types}
 		 */
-		@SafeVarargs
 		public final Builder packagingTypes(
-				Function<NodePackagingType.Builder, ObjectBuilder<NodePackagingType>>... fns) {
-			this.packagingTypes = new ArrayList<>(fns.length);
-			for (Function<NodePackagingType.Builder, ObjectBuilder<NodePackagingType>> fn : fns) {
-				this.packagingTypes.add(fn.apply(new NodePackagingType.Builder()).build());
-			}
-			return this;
+				Function<ListBuilder<NodePackagingType, NodePackagingType.Builder>, ObjectBuilder<List<NodePackagingType>>> fn) {
+			return packagingTypes(fn.apply(new ListBuilder<>(NodePackagingType.Builder::new)).build());
 		}
 
 		/**
@@ -492,13 +501,9 @@ public class ClusterNodes implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code plugins}
 		 */
-		@SafeVarargs
-		public final Builder plugins(Function<PluginStats.Builder, ObjectBuilder<PluginStats>>... fns) {
-			this.plugins = new ArrayList<>(fns.length);
-			for (Function<PluginStats.Builder, ObjectBuilder<PluginStats>> fn : fns) {
-				this.plugins.add(fn.apply(new PluginStats.Builder()).build());
-			}
-			return this;
+		public final Builder plugins(
+				Function<ListBuilder<PluginStats, PluginStats.Builder>, ObjectBuilder<List<PluginStats>>> fn) {
+			return plugins(fn.apply(new ListBuilder<>(PluginStats.Builder::new)).build());
 		}
 
 		/**
@@ -516,8 +521,10 @@ public class ClusterNodes implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code process}
 		 */
-		public final Builder process(Function<ClusterProcess.Builder, ObjectBuilder<ClusterProcess>> fn) {
-			return this.process(fn.apply(new ClusterProcess.Builder()).build());
+		public final Builder process(Consumer<ClusterProcess.Builder> fn) {
+			ClusterProcess.Builder builder = new ClusterProcess.Builder();
+			fn.accept(builder);
+			return this.process(builder.build());
 		}
 
 		/**

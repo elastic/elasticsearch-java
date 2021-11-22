@@ -36,7 +36,7 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: enrich.execute_policy.Response
@@ -56,8 +56,10 @@ public class ExecutePolicyResponse implements JsonpSerializable {
 
 	}
 
-	public static ExecutePolicyResponse of(Function<Builder, ObjectBuilder<ExecutePolicyResponse>> fn) {
-		return fn.apply(new Builder()).build();
+	public static ExecutePolicyResponse of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -119,9 +121,10 @@ public class ExecutePolicyResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code status}
 		 */
-		public final Builder status(
-				Function<ExecuteEnrichPolicyStatus.Builder, ObjectBuilder<ExecuteEnrichPolicyStatus>> fn) {
-			return this.status(fn.apply(new ExecuteEnrichPolicyStatus.Builder()).build());
+		public final Builder status(Consumer<ExecuteEnrichPolicyStatus.Builder> fn) {
+			ExecuteEnrichPolicyStatus.Builder builder = new ExecuteEnrichPolicyStatus.Builder();
+			fn.accept(builder);
+			return this.status(builder.build());
 		}
 
 		/**

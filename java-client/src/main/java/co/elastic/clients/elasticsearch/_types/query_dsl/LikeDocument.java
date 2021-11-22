@@ -41,7 +41,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.LikeDocument
@@ -88,8 +88,10 @@ public class LikeDocument implements JsonpSerializable {
 
 	}
 
-	public static LikeDocument of(Function<Builder, ObjectBuilder<LikeDocument>> fn) {
-		return fn.apply(new Builder()).build();
+	public static LikeDocument of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**

@@ -32,7 +32,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Float;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: _types.mapping.HalfFloatNumberProperty
@@ -50,16 +50,18 @@ public class HalfFloatNumberProperty extends StandardNumberProperty implements P
 
 	}
 
-	public static HalfFloatNumberProperty of(Function<Builder, ObjectBuilder<HalfFloatNumberProperty>> fn) {
-		return fn.apply(new Builder()).build();
+	public static HalfFloatNumberProperty of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
-	 * {@link Property} variant type
+	 * Property variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "half_float";
+	public Property.Kind _propertyKind() {
+		return Property.Kind.HalfFloat;
 	}
 
 	/**

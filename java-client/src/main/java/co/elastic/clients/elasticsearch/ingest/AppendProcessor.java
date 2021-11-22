@@ -37,7 +37,7 @@ import java.lang.String;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: ingest._types.AppendProcessor
@@ -61,16 +61,18 @@ public class AppendProcessor extends ProcessorBase implements ProcessorVariant {
 
 	}
 
-	public static AppendProcessor of(Function<Builder, ObjectBuilder<AppendProcessor>> fn) {
-		return fn.apply(new Builder()).build();
+	public static AppendProcessor of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
-	 * {@link Processor} variant type
+	 * Processor variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "append";
+	public Processor.Kind _processorKind() {
+		return Processor.Kind.Append;
 	}
 
 	/**

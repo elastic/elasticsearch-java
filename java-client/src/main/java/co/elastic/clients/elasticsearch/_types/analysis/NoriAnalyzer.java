@@ -37,7 +37,7 @@ import java.lang.String;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: _types.analysis.NoriAnalyzer
@@ -65,16 +65,18 @@ public class NoriAnalyzer implements AnalyzerVariant, JsonpSerializable {
 
 	}
 
-	public static NoriAnalyzer of(Function<Builder, ObjectBuilder<NoriAnalyzer>> fn) {
-		return fn.apply(new Builder()).build();
+	public static NoriAnalyzer of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
-	 * {@link Analyzer} variant type
+	 * Analyzer variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "nori";
+	public Analyzer.Kind _analyzerKind() {
+		return Analyzer.Kind.Nori;
 	}
 
 	/**

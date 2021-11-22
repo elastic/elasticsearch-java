@@ -37,7 +37,8 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
-import co.elastic.clients.transport.SimpleEndpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
+import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
@@ -45,12 +46,12 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Number;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
@@ -129,8 +130,10 @@ public class EqlSearchRequest extends RequestBase implements JsonpSerializable {
 
 	}
 
-	public static EqlSearchRequest of(Function<Builder, ObjectBuilder<EqlSearchRequest>> fn) {
-		return fn.apply(new Builder()).build();
+	public static EqlSearchRequest of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -493,8 +496,10 @@ public class EqlSearchRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code fields}
 		 */
-		public final Builder fields(Function<FieldAndFormat.Builder, ObjectBuilder<FieldAndFormat>> fn) {
-			return this.fields(fn.apply(new FieldAndFormat.Builder()).build());
+		public final Builder fields(Consumer<FieldAndFormat.Builder> fn) {
+			FieldAndFormat.Builder builder = new FieldAndFormat.Builder();
+			fn.accept(builder);
+			return this.fields(builder.build());
 		}
 
 		/**
@@ -525,13 +530,8 @@ public class EqlSearchRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code filter}
 		 */
-		@SafeVarargs
-		public final Builder filter(Function<Query.Builder, ObjectBuilder<Query>>... fns) {
-			this.filter = new ArrayList<>(fns.length);
-			for (Function<Query.Builder, ObjectBuilder<Query>> fn : fns) {
-				this.filter.add(fn.apply(new Query.Builder()).build());
-			}
-			return this;
+		public final Builder filter(Function<ListBuilder<Query, Query.Builder>, ObjectBuilder<List<Query>>> fn) {
+			return filter(fn.apply(new ListBuilder<>(Query.Builder::new)).build());
 		}
 
 		/**
@@ -565,8 +565,10 @@ public class EqlSearchRequest extends RequestBase implements JsonpSerializable {
 		/**
 		 * API name: {@code keep_alive}
 		 */
-		public final Builder keepAlive(Function<Time.Builder, ObjectBuilder<Time>> fn) {
-			return this.keepAlive(fn.apply(new Time.Builder()).build());
+		public final Builder keepAlive(Consumer<Time.Builder> fn) {
+			Time.Builder builder = new Time.Builder();
+			fn.accept(builder);
+			return this.keepAlive(builder.build());
 		}
 
 		/**
@@ -637,8 +639,10 @@ public class EqlSearchRequest extends RequestBase implements JsonpSerializable {
 		/**
 		 * API name: {@code wait_for_completion_timeout}
 		 */
-		public final Builder waitForCompletionTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
-			return this.waitForCompletionTimeout(fn.apply(new Time.Builder()).build());
+		public final Builder waitForCompletionTimeout(Consumer<Time.Builder> fn) {
+			Time.Builder builder = new Time.Builder();
+			fn.accept(builder);
+			return this.waitForCompletionTimeout(builder.build());
 		}
 
 		/**

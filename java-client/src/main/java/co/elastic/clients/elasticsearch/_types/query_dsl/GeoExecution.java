@@ -23,13 +23,17 @@
 
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
+import co.elastic.clients.json.JsonEnum;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
-import co.elastic.clients.util.StringEnum;
 
 @JsonpDeserializable
-public enum GeoExecution implements StringEnum {
-	Memory("memory"), Indexed("indexed");
+public enum GeoExecution implements JsonEnum {
+	Memory("memory"),
+
+	Indexed("indexed"),
+
+	;
 
 	private final String jsonValue;
 
@@ -41,6 +45,6 @@ public enum GeoExecution implements StringEnum {
 		return this.jsonValue;
 	}
 
-	public static final StringEnum.Deserializer<GeoExecution> _DESERIALIZER = new StringEnum.Deserializer<>(
+	public static final JsonEnum.Deserializer<GeoExecution> _DESERIALIZER = new JsonEnum.Deserializer<>(
 			GeoExecution.values());
 }

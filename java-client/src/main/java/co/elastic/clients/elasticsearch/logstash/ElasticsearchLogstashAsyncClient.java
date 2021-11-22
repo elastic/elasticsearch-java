@@ -26,26 +26,30 @@ package co.elastic.clients.elasticsearch.logstash;
 import co.elastic.clients.ApiClient;
 import co.elastic.clients.elasticsearch._types.ElasticsearchException;
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
-import co.elastic.clients.transport.BooleanResponse;
+import co.elastic.clients.transport.ElasticsearchTransport;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.Transport;
 import co.elastic.clients.transport.TransportOptions;
+import co.elastic.clients.transport.endpoints.BooleanResponse;
 import co.elastic.clients.util.ObjectBuilder;
 import java.io.IOException;
 import java.util.concurrent.CompletableFuture;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 /**
  * Client for the logstash namespace.
  */
-public class ElasticsearchLogstashAsyncClient extends ApiClient<ElasticsearchLogstashAsyncClient> {
+public class ElasticsearchLogstashAsyncClient
+		extends
+			ApiClient<ElasticsearchTransport, ElasticsearchLogstashAsyncClient> {
 
-	public ElasticsearchLogstashAsyncClient(Transport transport) {
+	public ElasticsearchLogstashAsyncClient(ElasticsearchTransport transport) {
 		super(transport, null);
 	}
 
-	public ElasticsearchLogstashAsyncClient(Transport transport, @Nullable TransportOptions transportOptions) {
+	public ElasticsearchLogstashAsyncClient(ElasticsearchTransport transport,
+			@Nullable TransportOptions transportOptions) {
 		super(transport, transportOptions);
 	}
 
@@ -83,10 +87,11 @@ public class ElasticsearchLogstashAsyncClient extends ApiClient<ElasticsearchLog
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<BooleanResponse> deletePipeline(
-			Function<DeletePipelineRequest.Builder, ObjectBuilder<DeletePipelineRequest>> fn)
+	public final CompletableFuture<BooleanResponse> deletePipeline(Consumer<DeletePipelineRequest.Builder> fn)
 			throws IOException, ElasticsearchException {
-		return deletePipeline(fn.apply(new DeletePipelineRequest.Builder()).build());
+		DeletePipelineRequest.Builder builder = new DeletePipelineRequest.Builder();
+		fn.accept(builder);
+		return deletePipeline(builder.build());
 	}
 
 	// ----- Endpoint: logstash.get_pipeline
@@ -118,10 +123,11 @@ public class ElasticsearchLogstashAsyncClient extends ApiClient<ElasticsearchLog
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<GetPipelineResponse> getPipeline(
-			Function<GetPipelineRequest.Builder, ObjectBuilder<GetPipelineRequest>> fn)
+	public final CompletableFuture<GetPipelineResponse> getPipeline(Consumer<GetPipelineRequest.Builder> fn)
 			throws IOException, ElasticsearchException {
-		return getPipeline(fn.apply(new GetPipelineRequest.Builder()).build());
+		GetPipelineRequest.Builder builder = new GetPipelineRequest.Builder();
+		fn.accept(builder);
+		return getPipeline(builder.build());
 	}
 
 	// ----- Endpoint: logstash.put_pipeline
@@ -153,10 +159,11 @@ public class ElasticsearchLogstashAsyncClient extends ApiClient<ElasticsearchLog
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<BooleanResponse> putPipeline(
-			Function<PutPipelineRequest.Builder, ObjectBuilder<PutPipelineRequest>> fn)
+	public final CompletableFuture<BooleanResponse> putPipeline(Consumer<PutPipelineRequest.Builder> fn)
 			throws IOException, ElasticsearchException {
-		return putPipeline(fn.apply(new PutPipelineRequest.Builder()).build());
+		PutPipelineRequest.Builder builder = new PutPipelineRequest.Builder();
+		fn.accept(builder);
+		return putPipeline(builder.build());
 	}
 
 }

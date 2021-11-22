@@ -29,15 +29,16 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -57,9 +58,10 @@ public class DataframeClassificationSummaryPrecision implements JsonpSerializabl
 
 	}
 
-	public static DataframeClassificationSummaryPrecision of(
-			Function<Builder, ObjectBuilder<DataframeClassificationSummaryPrecision>> fn) {
-		return fn.apply(new Builder()).build();
+	public static DataframeClassificationSummaryPrecision of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -133,14 +135,9 @@ public class DataframeClassificationSummaryPrecision implements JsonpSerializabl
 		/**
 		 * Required - API name: {@code classes}
 		 */
-		@SafeVarargs
 		public final Builder classes(
-				Function<DataframeEvaluationClass.Builder, ObjectBuilder<DataframeEvaluationClass>>... fns) {
-			this.classes = new ArrayList<>(fns.length);
-			for (Function<DataframeEvaluationClass.Builder, ObjectBuilder<DataframeEvaluationClass>> fn : fns) {
-				this.classes.add(fn.apply(new DataframeEvaluationClass.Builder()).build());
-			}
-			return this;
+				Function<ListBuilder<DataframeEvaluationClass, DataframeEvaluationClass.Builder>, ObjectBuilder<List<DataframeEvaluationClass>>> fn) {
+			return classes(fn.apply(new ListBuilder<>(DataframeEvaluationClass.Builder::new)).build());
 		}
 
 		/**

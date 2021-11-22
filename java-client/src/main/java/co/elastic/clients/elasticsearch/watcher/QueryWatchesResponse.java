@@ -29,15 +29,16 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -57,8 +58,10 @@ public class QueryWatchesResponse implements JsonpSerializable {
 
 	}
 
-	public static QueryWatchesResponse of(Function<Builder, ObjectBuilder<QueryWatchesResponse>> fn) {
-		return fn.apply(new Builder()).build();
+	public static QueryWatchesResponse of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -139,13 +142,9 @@ public class QueryWatchesResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code watches}
 		 */
-		@SafeVarargs
-		public final Builder watches(Function<QueryWatch.Builder, ObjectBuilder<QueryWatch>>... fns) {
-			this.watches = new ArrayList<>(fns.length);
-			for (Function<QueryWatch.Builder, ObjectBuilder<QueryWatch>> fn : fns) {
-				this.watches.add(fn.apply(new QueryWatch.Builder()).build());
-			}
-			return this;
+		public final Builder watches(
+				Function<ListBuilder<QueryWatch, QueryWatch.Builder>, ObjectBuilder<List<QueryWatch>>> fn) {
+			return watches(fn.apply(new ListBuilder<>(QueryWatch.Builder::new)).build());
 		}
 
 		/**

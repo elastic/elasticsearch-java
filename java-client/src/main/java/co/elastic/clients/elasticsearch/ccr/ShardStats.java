@@ -30,6 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
@@ -37,10 +38,10 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.Long;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -160,8 +161,10 @@ public class ShardStats implements JsonpSerializable {
 
 	}
 
-	public static ShardStats of(Function<Builder, ObjectBuilder<ShardStats>> fn) {
-		return fn.apply(new Builder()).build();
+	public static ShardStats of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -577,8 +580,10 @@ public class ShardStats implements JsonpSerializable {
 		/**
 		 * API name: {@code fatal_exception}
 		 */
-		public final Builder fatalException(Function<ErrorCause.Builder, ObjectBuilder<ErrorCause>> fn) {
-			return this.fatalException(fn.apply(new ErrorCause.Builder()).build());
+		public final Builder fatalException(Consumer<ErrorCause.Builder> fn) {
+			ErrorCause.Builder builder = new ErrorCause.Builder();
+			fn.accept(builder);
+			return this.fatalException(builder.build());
 		}
 
 		/**
@@ -712,13 +717,9 @@ public class ShardStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code read_exceptions}
 		 */
-		@SafeVarargs
-		public final Builder readExceptions(Function<ReadException.Builder, ObjectBuilder<ReadException>>... fns) {
-			this.readExceptions = new ArrayList<>(fns.length);
-			for (Function<ReadException.Builder, ObjectBuilder<ReadException>> fn : fns) {
-				this.readExceptions.add(fn.apply(new ReadException.Builder()).build());
-			}
-			return this;
+		public final Builder readExceptions(
+				Function<ListBuilder<ReadException, ReadException.Builder>, ObjectBuilder<List<ReadException>>> fn) {
+			return readExceptions(fn.apply(new ListBuilder<>(ReadException.Builder::new)).build());
 		}
 
 		/**

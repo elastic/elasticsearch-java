@@ -36,9 +36,9 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.Collections;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -55,8 +55,10 @@ public class ExplainLifecycleResponse implements JsonpSerializable {
 
 	}
 
-	public static ExplainLifecycleResponse of(Function<Builder, ObjectBuilder<ExplainLifecycleResponse>> fn) {
-		return fn.apply(new Builder()).build();
+	public static ExplainLifecycleResponse of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -105,13 +107,6 @@ public class ExplainLifecycleResponse implements JsonpSerializable {
 		public final Builder indices(Map<String, LifecycleExplain> value) {
 			this.indices = value;
 			return this;
-		}
-
-		/**
-		 * Set {@link #indices(Map)} to a singleton map.
-		 */
-		public Builder indices(String key, Function<LifecycleExplain.Builder, ObjectBuilder<LifecycleExplain>> fn) {
-			return this.indices(Collections.singletonMap(key, fn.apply(new LifecycleExplain.Builder()).build()));
 		}
 
 		public final Builder indices(

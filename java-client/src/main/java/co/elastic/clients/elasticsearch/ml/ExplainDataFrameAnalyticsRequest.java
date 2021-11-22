@@ -32,8 +32,7 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
-import co.elastic.clients.transport.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -42,7 +41,7 @@ import java.lang.Integer;
 import java.lang.String;
 import java.util.Collections;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: ml.explain_data_frame_analytics.Request
@@ -51,6 +50,7 @@ public class ExplainDataFrameAnalyticsRequest extends RequestBase implements Jso
 	@Nullable
 	private final Boolean allowLazyStart;
 
+	@Nullable
 	private final DataframeAnalysis analysis;
 
 	@Nullable
@@ -79,7 +79,7 @@ public class ExplainDataFrameAnalyticsRequest extends RequestBase implements Jso
 	private ExplainDataFrameAnalyticsRequest(Builder builder) {
 
 		this.allowLazyStart = builder.allowLazyStart;
-		this.analysis = ModelTypeHelper.requireNonNull(builder.analysis, this, "analysis");
+		this.analysis = builder.analysis;
 		this.analyzedFields = builder.analyzedFields;
 		this.description = builder.description;
 		this.dest = builder.dest;
@@ -90,9 +90,10 @@ public class ExplainDataFrameAnalyticsRequest extends RequestBase implements Jso
 
 	}
 
-	public static ExplainDataFrameAnalyticsRequest of(
-			Function<Builder, ObjectBuilder<ExplainDataFrameAnalyticsRequest>> fn) {
-		return fn.apply(new Builder()).build();
+	public static ExplainDataFrameAnalyticsRequest of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -107,12 +108,13 @@ public class ExplainDataFrameAnalyticsRequest extends RequestBase implements Jso
 	}
 
 	/**
-	 * Required - The analysis configuration, which contains the information
-	 * necessary to perform one of the following types of analysis: classification,
-	 * outlier detection, or regression.
+	 * The analysis configuration, which contains the information necessary to
+	 * perform one of the following types of analysis: classification, outlier
+	 * detection, or regression.
 	 * <p>
 	 * API name: {@code analysis}
 	 */
+	@Nullable
 	public final DataframeAnalysis analysis() {
 		return this.analysis;
 	}
@@ -220,9 +222,11 @@ public class ExplainDataFrameAnalyticsRequest extends RequestBase implements Jso
 			generator.write(this.allowLazyStart);
 
 		}
-		generator.writeKey("analysis");
-		this.analysis.serialize(generator, mapper);
+		if (this.analysis != null) {
+			generator.writeKey("analysis");
+			this.analysis.serialize(generator, mapper);
 
+		}
 		if (this.analyzedFields != null) {
 			generator.writeKey("analyzed_fields");
 			this.analyzedFields.serialize(generator, mapper);
@@ -265,6 +269,7 @@ public class ExplainDataFrameAnalyticsRequest extends RequestBase implements Jso
 		@Nullable
 		private Boolean allowLazyStart;
 
+		@Nullable
 		private DataframeAnalysis analysis;
 
 		@Nullable
@@ -300,26 +305,28 @@ public class ExplainDataFrameAnalyticsRequest extends RequestBase implements Jso
 		}
 
 		/**
-		 * Required - The analysis configuration, which contains the information
-		 * necessary to perform one of the following types of analysis: classification,
-		 * outlier detection, or regression.
+		 * The analysis configuration, which contains the information necessary to
+		 * perform one of the following types of analysis: classification, outlier
+		 * detection, or regression.
 		 * <p>
 		 * API name: {@code analysis}
 		 */
-		public final Builder analysis(DataframeAnalysis value) {
+		public final Builder analysis(@Nullable DataframeAnalysis value) {
 			this.analysis = value;
 			return this;
 		}
 
 		/**
-		 * Required - The analysis configuration, which contains the information
-		 * necessary to perform one of the following types of analysis: classification,
-		 * outlier detection, or regression.
+		 * The analysis configuration, which contains the information necessary to
+		 * perform one of the following types of analysis: classification, outlier
+		 * detection, or regression.
 		 * <p>
 		 * API name: {@code analysis}
 		 */
-		public final Builder analysis(Function<DataframeAnalysis.Builder, ObjectBuilder<DataframeAnalysis>> fn) {
-			return this.analysis(fn.apply(new DataframeAnalysis.Builder()).build());
+		public final Builder analysis(Consumer<DataframeAnalysis.Builder> fn) {
+			DataframeAnalysis.Builder builder = new DataframeAnalysis.Builder();
+			fn.accept(builder);
+			return this.analysis(builder.build());
 		}
 
 		/**
@@ -345,9 +352,10 @@ public class ExplainDataFrameAnalyticsRequest extends RequestBase implements Jso
 		 * <p>
 		 * API name: {@code analyzed_fields}
 		 */
-		public final Builder analyzedFields(
-				Function<DataframeAnalysisAnalyzedFields.Builder, ObjectBuilder<DataframeAnalysisAnalyzedFields>> fn) {
-			return this.analyzedFields(fn.apply(new DataframeAnalysisAnalyzedFields.Builder()).build());
+		public final Builder analyzedFields(Consumer<DataframeAnalysisAnalyzedFields.Builder> fn) {
+			DataframeAnalysisAnalyzedFields.Builder builder = new DataframeAnalysisAnalyzedFields.Builder();
+			fn.accept(builder);
+			return this.analyzedFields(builder.build());
 		}
 
 		/**
@@ -377,9 +385,10 @@ public class ExplainDataFrameAnalyticsRequest extends RequestBase implements Jso
 		 * <p>
 		 * API name: {@code dest}
 		 */
-		public final Builder dest(
-				Function<DataframeAnalyticsDestination.Builder, ObjectBuilder<DataframeAnalyticsDestination>> fn) {
-			return this.dest(fn.apply(new DataframeAnalyticsDestination.Builder()).build());
+		public final Builder dest(Consumer<DataframeAnalyticsDestination.Builder> fn) {
+			DataframeAnalyticsDestination.Builder builder = new DataframeAnalyticsDestination.Builder();
+			fn.accept(builder);
+			return this.dest(builder.build());
 		}
 
 		/**
@@ -440,9 +449,10 @@ public class ExplainDataFrameAnalyticsRequest extends RequestBase implements Jso
 		 * <p>
 		 * API name: {@code source}
 		 */
-		public final Builder source(
-				Function<DataframeAnalyticsSource.Builder, ObjectBuilder<DataframeAnalyticsSource>> fn) {
-			return this.source(fn.apply(new DataframeAnalyticsSource.Builder()).build());
+		public final Builder source(Consumer<DataframeAnalyticsSource.Builder> fn) {
+			DataframeAnalyticsSource.Builder builder = new DataframeAnalyticsSource.Builder();
+			fn.accept(builder);
+			return this.source(builder.build());
 		}
 
 		/**

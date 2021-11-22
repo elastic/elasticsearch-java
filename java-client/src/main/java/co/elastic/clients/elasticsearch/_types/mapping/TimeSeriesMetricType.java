@@ -23,13 +23,21 @@
 
 package co.elastic.clients.elasticsearch._types.mapping;
 
+import co.elastic.clients.json.JsonEnum;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
-import co.elastic.clients.util.StringEnum;
 
 @JsonpDeserializable
-public enum TimeSeriesMetricType implements StringEnum {
-	Gauge("gauge"), Counter("counter"), Summary("summary"), Histogram("histogram");
+public enum TimeSeriesMetricType implements JsonEnum {
+	Gauge("gauge"),
+
+	Counter("counter"),
+
+	Summary("summary"),
+
+	Histogram("histogram"),
+
+	;
 
 	private final String jsonValue;
 
@@ -41,6 +49,6 @@ public enum TimeSeriesMetricType implements StringEnum {
 		return this.jsonValue;
 	}
 
-	public static final StringEnum.Deserializer<TimeSeriesMetricType> _DESERIALIZER = new StringEnum.Deserializer<>(
+	public static final JsonEnum.Deserializer<TimeSeriesMetricType> _DESERIALIZER = new JsonEnum.Deserializer<>(
 			TimeSeriesMetricType.values());
 }

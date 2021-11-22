@@ -35,7 +35,7 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Number;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: xpack.usage.EqlFeatures
@@ -69,8 +69,10 @@ public class EqlFeatures implements JsonpSerializable {
 
 	}
 
-	public static EqlFeatures of(Function<Builder, ObjectBuilder<EqlFeatures>> fn) {
-		return fn.apply(new Builder()).build();
+	public static EqlFeatures of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -195,8 +197,10 @@ public class EqlFeatures implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code joins}
 		 */
-		public final Builder joins(Function<EqlFeaturesJoin.Builder, ObjectBuilder<EqlFeaturesJoin>> fn) {
-			return this.joins(fn.apply(new EqlFeaturesJoin.Builder()).build());
+		public final Builder joins(Consumer<EqlFeaturesJoin.Builder> fn) {
+			EqlFeaturesJoin.Builder builder = new EqlFeaturesJoin.Builder();
+			fn.accept(builder);
+			return this.joins(builder.build());
 		}
 
 		/**
@@ -210,8 +214,10 @@ public class EqlFeatures implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code keys}
 		 */
-		public final Builder keys(Function<EqlFeaturesKeys.Builder, ObjectBuilder<EqlFeaturesKeys>> fn) {
-			return this.keys(fn.apply(new EqlFeaturesKeys.Builder()).build());
+		public final Builder keys(Consumer<EqlFeaturesKeys.Builder> fn) {
+			EqlFeaturesKeys.Builder builder = new EqlFeaturesKeys.Builder();
+			fn.accept(builder);
+			return this.keys(builder.build());
 		}
 
 		/**
@@ -233,8 +239,10 @@ public class EqlFeatures implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code pipes}
 		 */
-		public final Builder pipes(Function<EqlFeaturesPipes.Builder, ObjectBuilder<EqlFeaturesPipes>> fn) {
-			return this.pipes(fn.apply(new EqlFeaturesPipes.Builder()).build());
+		public final Builder pipes(Consumer<EqlFeaturesPipes.Builder> fn) {
+			EqlFeaturesPipes.Builder builder = new EqlFeaturesPipes.Builder();
+			fn.accept(builder);
+			return this.pipes(builder.build());
 		}
 
 		/**
@@ -256,8 +264,10 @@ public class EqlFeatures implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code sequences}
 		 */
-		public final Builder sequences(Function<EqlFeaturesSequences.Builder, ObjectBuilder<EqlFeaturesSequences>> fn) {
-			return this.sequences(fn.apply(new EqlFeaturesSequences.Builder()).build());
+		public final Builder sequences(Consumer<EqlFeaturesSequences.Builder> fn) {
+			EqlFeaturesSequences.Builder builder = new EqlFeaturesSequences.Builder();
+			fn.accept(builder);
+			return this.sequences(builder.build());
 		}
 
 		/**

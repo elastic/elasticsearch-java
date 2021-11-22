@@ -32,7 +32,7 @@ import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.EwmaMovingAverageAggregation
@@ -51,16 +51,18 @@ public class EwmaMovingAverageAggregation extends MovingAverageAggregationBase
 
 	}
 
-	public static EwmaMovingAverageAggregation of(Function<Builder, ObjectBuilder<EwmaMovingAverageAggregation>> fn) {
-		return fn.apply(new Builder()).build();
+	public static EwmaMovingAverageAggregation of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
-	 * {@link MovingAverageAggregation} variant type
+	 * MovingAverageAggregation variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "ewma";
+	public MovingAverageAggregation.Kind _movingAverageAggregationKind() {
+		return MovingAverageAggregation.Kind.Ewma;
 	}
 
 	/**
@@ -100,8 +102,10 @@ public class EwmaMovingAverageAggregation extends MovingAverageAggregationBase
 		/**
 		 * Required - API name: {@code settings}
 		 */
-		public final Builder settings(Function<EwmaModelSettings.Builder, ObjectBuilder<EwmaModelSettings>> fn) {
-			return this.settings(fn.apply(new EwmaModelSettings.Builder()).build());
+		public final Builder settings(Consumer<EwmaModelSettings.Builder> fn) {
+			EwmaModelSettings.Builder builder = new EwmaModelSettings.Builder();
+			fn.accept(builder);
+			return this.settings(builder.build());
 		}
 
 		@Override

@@ -35,7 +35,7 @@ import java.lang.String;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.IdsQuery
@@ -52,16 +52,18 @@ public class IdsQuery extends QueryBase implements QueryVariant {
 
 	}
 
-	public static IdsQuery of(Function<Builder, ObjectBuilder<IdsQuery>> fn) {
-		return fn.apply(new Builder()).build();
+	public static IdsQuery of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
-	 * {@link Query} variant type
+	 * Query variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "ids";
+	public Query.Kind _queryKind() {
+		return Query.Kind.Ids;
 	}
 
 	/**

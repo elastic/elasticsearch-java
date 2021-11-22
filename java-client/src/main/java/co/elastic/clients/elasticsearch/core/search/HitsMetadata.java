@@ -30,15 +30,16 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.JsonpSerializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Supplier;
 import javax.annotation.Nullable;
@@ -67,8 +68,10 @@ public class HitsMetadata<T> implements JsonpSerializable {
 
 	}
 
-	public static <T> HitsMetadata<T> of(Function<Builder<T>, ObjectBuilder<HitsMetadata<T>>> fn) {
-		return fn.apply(new Builder<>()).build();
+	public static <T> HitsMetadata<T> of(Consumer<Builder<T>> fn) {
+		Builder<T> builder = new Builder<>();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -152,8 +155,10 @@ public class HitsMetadata<T> implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code total}
 		 */
-		public final Builder<T> total(Function<TotalHits.Builder, ObjectBuilder<TotalHits>> fn) {
-			return this.total(fn.apply(new TotalHits.Builder()).build());
+		public final Builder<T> total(Consumer<TotalHits.Builder> fn) {
+			TotalHits.Builder builder = new TotalHits.Builder();
+			fn.accept(builder);
+			return this.total(builder.build());
 		}
 
 		/**
@@ -175,13 +180,8 @@ public class HitsMetadata<T> implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code hits}
 		 */
-		@SafeVarargs
-		public final Builder<T> hits(Function<Hit.Builder<T>, ObjectBuilder<Hit<T>>>... fns) {
-			this.hits = new ArrayList<>(fns.length);
-			for (Function<Hit.Builder<T>, ObjectBuilder<Hit<T>>> fn : fns) {
-				this.hits.add(fn.apply(new Hit.Builder<T>()).build());
-			}
-			return this;
+		public final Builder<T> hits(Function<ListBuilder<Hit<T>, Hit.Builder<T>>, ObjectBuilder<List<Hit<T>>>> fn) {
+			return hits(fn.apply(new ListBuilder<>(Hit.Builder<T>::new)).build());
 		}
 
 		/**

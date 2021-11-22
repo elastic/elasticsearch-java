@@ -37,7 +37,7 @@ import java.lang.String;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.Filter
@@ -60,8 +60,10 @@ public class Filter implements JsonpSerializable {
 
 	}
 
-	public static Filter of(Function<Builder, ObjectBuilder<Filter>> fn) {
-		return fn.apply(new Builder()).build();
+	public static Filter of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**

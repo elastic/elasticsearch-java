@@ -29,6 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
@@ -36,10 +37,10 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -91,8 +92,10 @@ public class Detector implements JsonpSerializable {
 
 	}
 
-	public static Detector of(Function<Builder, ObjectBuilder<Detector>> fn) {
-		return fn.apply(new Builder()).build();
+	public static Detector of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -355,13 +358,9 @@ public class Detector implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code custom_rules}
 		 */
-		@SafeVarargs
-		public final Builder customRules(Function<DetectionRule.Builder, ObjectBuilder<DetectionRule>>... fns) {
-			this.customRules = new ArrayList<>(fns.length);
-			for (Function<DetectionRule.Builder, ObjectBuilder<DetectionRule>> fn : fns) {
-				this.customRules.add(fn.apply(new DetectionRule.Builder()).build());
-			}
-			return this;
+		public final Builder customRules(
+				Function<ListBuilder<DetectionRule, DetectionRule.Builder>, ObjectBuilder<List<DetectionRule>>> fn) {
+			return customRules(fn.apply(new ListBuilder<>(DetectionRule.Builder::new)).build());
 		}
 
 		/**

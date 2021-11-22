@@ -35,7 +35,7 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 
 // typedef: _types.mapping.IndexField
 @JsonpDeserializable
@@ -50,8 +50,10 @@ public class IndexField implements JsonpSerializable {
 
 	}
 
-	public static IndexField of(Function<Builder, ObjectBuilder<IndexField>> fn) {
-		return fn.apply(new Builder()).build();
+	public static IndexField of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**

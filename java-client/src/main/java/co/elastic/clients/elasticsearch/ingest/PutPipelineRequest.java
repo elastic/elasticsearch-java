@@ -34,19 +34,20 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
-import co.elastic.clients.transport.SimpleEndpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
+import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -88,8 +89,10 @@ public class PutPipelineRequest extends RequestBase implements JsonpSerializable
 
 	}
 
-	public static PutPipelineRequest of(Function<Builder, ObjectBuilder<PutPipelineRequest>> fn) {
-		return fn.apply(new Builder()).build();
+	public static PutPipelineRequest of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -311,8 +314,10 @@ public class PutPipelineRequest extends RequestBase implements JsonpSerializable
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
-		public final Builder masterTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
-			return this.masterTimeout(fn.apply(new Time.Builder()).build());
+		public final Builder masterTimeout(Consumer<Time.Builder> fn) {
+			Time.Builder builder = new Time.Builder();
+			fn.accept(builder);
+			return this.masterTimeout(builder.build());
 		}
 
 		/**
@@ -355,13 +360,9 @@ public class PutPipelineRequest extends RequestBase implements JsonpSerializable
 		 * <p>
 		 * API name: {@code on_failure}
 		 */
-		@SafeVarargs
-		public final Builder onFailure(Function<Processor.Builder, ObjectBuilder<Processor>>... fns) {
-			this.onFailure = new ArrayList<>(fns.length);
-			for (Function<Processor.Builder, ObjectBuilder<Processor>> fn : fns) {
-				this.onFailure.add(fn.apply(new Processor.Builder()).build());
-			}
-			return this;
+		public final Builder onFailure(
+				Function<ListBuilder<Processor, Processor.Builder>, ObjectBuilder<List<Processor>>> fn) {
+			return onFailure(fn.apply(new ListBuilder<>(Processor.Builder::new)).build());
 		}
 
 		/**
@@ -392,13 +393,9 @@ public class PutPipelineRequest extends RequestBase implements JsonpSerializable
 		 * <p>
 		 * API name: {@code processors}
 		 */
-		@SafeVarargs
-		public final Builder processors(Function<Processor.Builder, ObjectBuilder<Processor>>... fns) {
-			this.processors = new ArrayList<>(fns.length);
-			for (Function<Processor.Builder, ObjectBuilder<Processor>> fn : fns) {
-				this.processors.add(fn.apply(new Processor.Builder()).build());
-			}
-			return this;
+		public final Builder processors(
+				Function<ListBuilder<Processor, Processor.Builder>, ObjectBuilder<List<Processor>>> fn) {
+			return processors(fn.apply(new ListBuilder<>(Processor.Builder::new)).build());
 		}
 
 		/**
@@ -418,8 +415,10 @@ public class PutPipelineRequest extends RequestBase implements JsonpSerializable
 		 * <p>
 		 * API name: {@code timeout}
 		 */
-		public final Builder timeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
-			return this.timeout(fn.apply(new Time.Builder()).build());
+		public final Builder timeout(Consumer<Time.Builder> fn) {
+			Time.Builder builder = new Time.Builder();
+			fn.accept(builder);
+			return this.timeout(builder.build());
 		}
 
 		/**

@@ -28,15 +28,16 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -74,16 +75,18 @@ public class DateRangeAggregation extends BucketAggregationBase implements Aggre
 
 	}
 
-	public static DateRangeAggregation of(Function<Builder, ObjectBuilder<DateRangeAggregation>> fn) {
-		return fn.apply(new Builder()).build();
+	public static DateRangeAggregation of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
-	 * {@link Aggregation} variant type
+	 * Aggregation variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "date_range";
+	public Aggregation.Kind _aggregationKind() {
+		return Aggregation.Kind.DateRange;
 	}
 
 	/**
@@ -243,13 +246,9 @@ public class DateRangeAggregation extends BucketAggregationBase implements Aggre
 		/**
 		 * API name: {@code ranges}
 		 */
-		@SafeVarargs
-		public final Builder ranges(Function<DateRangeExpression.Builder, ObjectBuilder<DateRangeExpression>>... fns) {
-			this.ranges = new ArrayList<>(fns.length);
-			for (Function<DateRangeExpression.Builder, ObjectBuilder<DateRangeExpression>> fn : fns) {
-				this.ranges.add(fn.apply(new DateRangeExpression.Builder()).build());
-			}
-			return this;
+		public final Builder ranges(
+				Function<ListBuilder<DateRangeExpression, DateRangeExpression.Builder>, ObjectBuilder<List<DateRangeExpression>>> fn) {
+			return ranges(fn.apply(new ListBuilder<>(DateRangeExpression.Builder::new)).build());
 		}
 
 		/**

@@ -29,16 +29,17 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -64,8 +65,10 @@ public class Collector implements JsonpSerializable {
 
 	}
 
-	public static Collector of(Function<Builder, ObjectBuilder<Collector>> fn) {
-		return fn.apply(new Builder()).build();
+	public static Collector of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -187,13 +190,9 @@ public class Collector implements JsonpSerializable {
 		/**
 		 * API name: {@code children}
 		 */
-		@SafeVarargs
-		public final Builder children(Function<Collector.Builder, ObjectBuilder<Collector>>... fns) {
-			this.children = new ArrayList<>(fns.length);
-			for (Function<Collector.Builder, ObjectBuilder<Collector>> fn : fns) {
-				this.children.add(fn.apply(new Collector.Builder()).build());
-			}
-			return this;
+		public final Builder children(
+				Function<ListBuilder<Collector, Collector.Builder>, ObjectBuilder<List<Collector>>> fn) {
+			return children(fn.apply(new ListBuilder<>(Collector.Builder::new)).build());
 		}
 
 		/**

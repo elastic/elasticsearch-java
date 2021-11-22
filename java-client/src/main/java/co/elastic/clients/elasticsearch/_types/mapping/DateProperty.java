@@ -36,7 +36,7 @@ import java.lang.Double;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: _types.mapping.DateProperty
@@ -82,16 +82,18 @@ public class DateProperty extends DocValuesPropertyBase implements PropertyVaria
 
 	}
 
-	public static DateProperty of(Function<Builder, ObjectBuilder<DateProperty>> fn) {
-		return fn.apply(new Builder()).build();
+	public static DateProperty of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
-	 * {@link Property} variant type
+	 * Property variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "date";
+	public Property.Kind _propertyKind() {
+		return Property.Kind.Date;
 	}
 
 	/**
@@ -256,8 +258,10 @@ public class DateProperty extends DocValuesPropertyBase implements PropertyVaria
 		/**
 		 * API name: {@code fielddata}
 		 */
-		public final Builder fielddata(Function<NumericFielddata.Builder, ObjectBuilder<NumericFielddata>> fn) {
-			return this.fielddata(fn.apply(new NumericFielddata.Builder()).build());
+		public final Builder fielddata(Consumer<NumericFielddata.Builder> fn) {
+			NumericFielddata.Builder builder = new NumericFielddata.Builder();
+			fn.accept(builder);
+			return this.fielddata(builder.build());
 		}
 
 		/**

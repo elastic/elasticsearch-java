@@ -37,7 +37,6 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.lang.String;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -104,13 +103,6 @@ public abstract class MultiBucketBase implements JsonpSerializable {
 		public final BuilderT aggregations(@Nullable Map<String, Aggregate> value) {
 			this.aggregations = value;
 			return self();
-		}
-
-		/**
-		 * Set {@link #aggregations(Map)} to a singleton map.
-		 */
-		public BuilderT aggregations(String key, Function<Aggregate.Builder, ObjectBuilder<Aggregate>> fn) {
-			return this.aggregations(Collections.singletonMap(key, fn.apply(new Aggregate.Builder()).build()));
 		}
 
 		public final BuilderT aggregations(

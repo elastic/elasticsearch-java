@@ -36,7 +36,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: ml.flush_job.Response
@@ -56,8 +56,10 @@ public class FlushJobResponse implements JsonpSerializable {
 
 	}
 
-	public static FlushJobResponse of(Function<Builder, ObjectBuilder<FlushJobResponse>> fn) {
-		return fn.apply(new Builder()).build();
+	public static FlushJobResponse of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**

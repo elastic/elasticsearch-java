@@ -34,9 +34,9 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
-import java.util.Collections;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -67,8 +67,10 @@ public class MachineLearning extends Base {
 
 	}
 
-	public static MachineLearning of(Function<Builder, ObjectBuilder<MachineLearning>> fn) {
-		return fn.apply(new Builder()).build();
+	public static MachineLearning of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -158,13 +160,6 @@ public class MachineLearning extends Base {
 			return this;
 		}
 
-		/**
-		 * Set {@link #datafeeds(Map)} to a singleton map.
-		 */
-		public Builder datafeeds(String key, Function<Datafeed.Builder, ObjectBuilder<Datafeed>> fn) {
-			return this.datafeeds(Collections.singletonMap(key, fn.apply(new Datafeed.Builder()).build()));
-		}
-
 		public final Builder datafeeds(
 				Function<MapBuilder<String, Datafeed, Datafeed.Builder>, ObjectBuilder<Map<String, Datafeed>>> fn) {
 			return datafeeds(fn.apply(new MapBuilder<>(Datafeed.Builder::new)).build());
@@ -181,8 +176,10 @@ public class MachineLearning extends Base {
 		/**
 		 * Required - API name: {@code jobs}
 		 */
-		public final Builder jobs(Function<Jobs.Builder, ObjectBuilder<Jobs>> fn) {
-			return this.jobs(fn.apply(new Jobs.Builder()).build());
+		public final Builder jobs(Consumer<Jobs.Builder> fn) {
+			Jobs.Builder builder = new Jobs.Builder();
+			fn.accept(builder);
+			return this.jobs(builder.build());
 		}
 
 		/**
@@ -204,9 +201,10 @@ public class MachineLearning extends Base {
 		/**
 		 * Required - API name: {@code data_frame_analytics_jobs}
 		 */
-		public final Builder dataFrameAnalyticsJobs(
-				Function<MlDataFrameAnalyticsJobs.Builder, ObjectBuilder<MlDataFrameAnalyticsJobs>> fn) {
-			return this.dataFrameAnalyticsJobs(fn.apply(new MlDataFrameAnalyticsJobs.Builder()).build());
+		public final Builder dataFrameAnalyticsJobs(Consumer<MlDataFrameAnalyticsJobs.Builder> fn) {
+			MlDataFrameAnalyticsJobs.Builder builder = new MlDataFrameAnalyticsJobs.Builder();
+			fn.accept(builder);
+			return this.dataFrameAnalyticsJobs(builder.build());
 		}
 
 		/**
@@ -220,8 +218,10 @@ public class MachineLearning extends Base {
 		/**
 		 * Required - API name: {@code inference}
 		 */
-		public final Builder inference(Function<MlInference.Builder, ObjectBuilder<MlInference>> fn) {
-			return this.inference(fn.apply(new MlInference.Builder()).build());
+		public final Builder inference(Consumer<MlInference.Builder> fn) {
+			MlInference.Builder builder = new MlInference.Builder();
+			fn.accept(builder);
+			return this.inference(builder.build());
 		}
 
 		@Override

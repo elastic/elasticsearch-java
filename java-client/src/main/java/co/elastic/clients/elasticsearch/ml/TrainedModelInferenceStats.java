@@ -36,7 +36,7 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.TrainedModelInferenceStats
@@ -65,8 +65,10 @@ public class TrainedModelInferenceStats implements JsonpSerializable {
 
 	}
 
-	public static TrainedModelInferenceStats of(Function<Builder, ObjectBuilder<TrainedModelInferenceStats>> fn) {
-		return fn.apply(new Builder()).build();
+	public static TrainedModelInferenceStats of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -225,8 +227,10 @@ public class TrainedModelInferenceStats implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code timestamp}
 		 */
-		public final Builder timestamp(Function<Time.Builder, ObjectBuilder<Time>> fn) {
-			return this.timestamp(fn.apply(new Time.Builder()).build());
+		public final Builder timestamp(Consumer<Time.Builder> fn) {
+			Time.Builder builder = new Time.Builder();
+			fn.accept(builder);
+			return this.timestamp(builder.build());
 		}
 
 		/**

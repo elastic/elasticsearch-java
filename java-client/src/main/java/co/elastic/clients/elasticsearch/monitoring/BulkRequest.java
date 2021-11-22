@@ -25,7 +25,7 @@ package co.elastic.clients.elasticsearch.monitoring;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.elasticsearch.core.bulk.Operation;
+import co.elastic.clients.elasticsearch.core.bulk.BulkOperation;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -34,19 +34,20 @@ import co.elastic.clients.json.NdJsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
-import co.elastic.clients.transport.SimpleEndpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
+import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -62,7 +63,7 @@ public class BulkRequest extends RequestBase implements NdJsonpSerializable, Jso
 	@Nullable
 	private final String type;
 
-	private final List<Operation> operations;
+	private final List<BulkOperation> operations;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -76,8 +77,10 @@ public class BulkRequest extends RequestBase implements NdJsonpSerializable, Jso
 
 	}
 
-	public static BulkRequest of(Function<Builder, ObjectBuilder<BulkRequest>> fn) {
-		return fn.apply(new Builder()).build();
+	public static BulkRequest of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	@Override
@@ -126,7 +129,7 @@ public class BulkRequest extends RequestBase implements NdJsonpSerializable, Jso
 	 * <p>
 	 * API name: {@code _value_body}
 	 */
-	public final List<Operation> operations() {
+	public final List<BulkOperation> operations() {
 		return this.operations;
 	}
 
@@ -135,7 +138,7 @@ public class BulkRequest extends RequestBase implements NdJsonpSerializable, Jso
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartArray();
-		for (Operation item0 : this.operations) {
+		for (BulkOperation item0 : this.operations) {
 			item0.serialize(generator, mapper);
 
 		}
@@ -158,7 +161,7 @@ public class BulkRequest extends RequestBase implements NdJsonpSerializable, Jso
 		@Nullable
 		private String type;
 
-		private List<Operation> operations;
+		private List<BulkOperation> operations;
 
 		/**
 		 * Required - Collection interval (e.g., '10s' or '10000ms') of the payload
@@ -205,7 +208,7 @@ public class BulkRequest extends RequestBase implements NdJsonpSerializable, Jso
 		 * <p>
 		 * API name: {@code _value_body}
 		 */
-		public final Builder operations(List<Operation> value) {
+		public final Builder operations(List<BulkOperation> value) {
 			this.operations = value;
 			return this;
 		}
@@ -215,7 +218,7 @@ public class BulkRequest extends RequestBase implements NdJsonpSerializable, Jso
 		 * <p>
 		 * API name: {@code _value_body}
 		 */
-		public final Builder operations(Operation... value) {
+		public final Builder operations(BulkOperation... value) {
 			this.operations = Arrays.asList(value);
 			return this;
 		}
@@ -225,13 +228,9 @@ public class BulkRequest extends RequestBase implements NdJsonpSerializable, Jso
 		 * <p>
 		 * API name: {@code _value_body}
 		 */
-		@SafeVarargs
-		public final Builder operations(Function<Operation.Builder, ObjectBuilder<Operation>>... fns) {
-			this.operations = new ArrayList<>(fns.length);
-			for (Function<Operation.Builder, ObjectBuilder<Operation>> fn : fns) {
-				this.operations.add(fn.apply(new Operation.Builder()).build());
-			}
-			return this;
+		public final Builder operations(
+				Function<ListBuilder<BulkOperation, BulkOperation.Builder>, ObjectBuilder<List<BulkOperation>>> fn) {
+			return operations(fn.apply(new ListBuilder<>(BulkOperation.Builder::new)).build());
 		}
 
 		/**

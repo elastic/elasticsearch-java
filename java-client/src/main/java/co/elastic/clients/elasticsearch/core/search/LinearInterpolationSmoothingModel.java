@@ -35,7 +35,7 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 
 // typedef: _global.search._types.LinearInterpolationSmoothingModel
 @JsonpDeserializable
@@ -56,17 +56,18 @@ public class LinearInterpolationSmoothingModel implements SmoothingModelVariant,
 
 	}
 
-	public static LinearInterpolationSmoothingModel of(
-			Function<Builder, ObjectBuilder<LinearInterpolationSmoothingModel>> fn) {
-		return fn.apply(new Builder()).build();
+	public static LinearInterpolationSmoothingModel of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
-	 * {@link SmoothingModel} variant type
+	 * SmoothingModel variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "linear_interpolation";
+	public SmoothingModel.Kind _smoothingModelKind() {
+		return SmoothingModel.Kind.LinearInterpolation;
 	}
 
 	/**

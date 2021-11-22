@@ -23,13 +23,21 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
+import co.elastic.clients.json.JsonEnum;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
-import co.elastic.clients.util.StringEnum;
 
 @JsonpDeserializable
-public enum DatafeedState implements StringEnum {
-	Started("started"), Stopped("stopped"), Starting("starting"), Stopping("stopping");
+public enum DatafeedState implements JsonEnum {
+	Started("started"),
+
+	Stopped("stopped"),
+
+	Starting("starting"),
+
+	Stopping("stopping"),
+
+	;
 
 	private final String jsonValue;
 
@@ -41,6 +49,6 @@ public enum DatafeedState implements StringEnum {
 		return this.jsonValue;
 	}
 
-	public static final StringEnum.Deserializer<DatafeedState> _DESERIALIZER = new StringEnum.Deserializer<>(
+	public static final JsonEnum.Deserializer<DatafeedState> _DESERIALIZER = new JsonEnum.Deserializer<>(
 			DatafeedState.values());
 }

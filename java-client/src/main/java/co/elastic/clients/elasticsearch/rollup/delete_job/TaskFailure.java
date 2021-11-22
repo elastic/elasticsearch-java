@@ -35,7 +35,7 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: rollup.delete_job.TaskFailure
@@ -60,8 +60,10 @@ public class TaskFailure implements JsonpSerializable {
 
 	}
 
-	public static TaskFailure of(Function<Builder, ObjectBuilder<TaskFailure>> fn) {
-		return fn.apply(new Builder()).build();
+	public static TaskFailure of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -166,8 +168,10 @@ public class TaskFailure implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code reason}
 		 */
-		public final Builder reason(Function<TaskFailureReason.Builder, ObjectBuilder<TaskFailureReason>> fn) {
-			return this.reason(fn.apply(new TaskFailureReason.Builder()).build());
+		public final Builder reason(Consumer<TaskFailureReason.Builder> fn) {
+			TaskFailureReason.Builder builder = new TaskFailureReason.Builder();
+			fn.accept(builder);
+			return this.reason(builder.build());
 		}
 
 		/**

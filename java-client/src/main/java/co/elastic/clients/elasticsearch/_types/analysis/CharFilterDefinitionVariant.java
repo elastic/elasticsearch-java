@@ -24,12 +24,13 @@
 package co.elastic.clients.elasticsearch._types.analysis;
 
 import co.elastic.clients.json.JsonpSerializable;
-import co.elastic.clients.util.UnionVariant;
 
 /**
  * Base interface for {@link CharFilterDefinition} variants.
  */
-public interface CharFilterDefinitionVariant extends UnionVariant, JsonpSerializable {
+public interface CharFilterDefinitionVariant extends JsonpSerializable {
+
+	CharFilterDefinition.Kind _charFilterDefinitionKind();
 
 	default CharFilterDefinition _toCharFilterDefinition() {
 		return new CharFilterDefinition(this);

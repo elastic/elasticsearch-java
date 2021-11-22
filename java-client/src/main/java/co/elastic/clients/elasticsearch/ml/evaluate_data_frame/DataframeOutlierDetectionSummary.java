@@ -36,9 +36,9 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
 import java.lang.String;
-import java.util.Collections;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -65,9 +65,10 @@ public class DataframeOutlierDetectionSummary implements JsonpSerializable {
 
 	}
 
-	public static DataframeOutlierDetectionSummary of(
-			Function<Builder, ObjectBuilder<DataframeOutlierDetectionSummary>> fn) {
-		return fn.apply(new Builder()).build();
+	public static DataframeOutlierDetectionSummary of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -180,9 +181,10 @@ public class DataframeOutlierDetectionSummary implements JsonpSerializable {
 		/**
 		 * API name: {@code auc_roc}
 		 */
-		public final Builder aucRoc(
-				Function<DataframeEvaluationSummaryAucRoc.Builder, ObjectBuilder<DataframeEvaluationSummaryAucRoc>> fn) {
-			return this.aucRoc(fn.apply(new DataframeEvaluationSummaryAucRoc.Builder()).build());
+		public final Builder aucRoc(Consumer<DataframeEvaluationSummaryAucRoc.Builder> fn) {
+			DataframeEvaluationSummaryAucRoc.Builder builder = new DataframeEvaluationSummaryAucRoc.Builder();
+			fn.accept(builder);
+			return this.aucRoc(builder.build());
 		}
 
 		/**
@@ -207,15 +209,6 @@ public class DataframeOutlierDetectionSummary implements JsonpSerializable {
 		public final Builder confusionMatrix(@Nullable Map<String, ConfusionMatrixThreshold> value) {
 			this.confusionMatrix = value;
 			return this;
-		}
-
-		/**
-		 * Set {@link #confusionMatrix(Map)} to a singleton map.
-		 */
-		public Builder confusionMatrix(String key,
-				Function<ConfusionMatrixThreshold.Builder, ObjectBuilder<ConfusionMatrixThreshold>> fn) {
-			return this.confusionMatrix(
-					Collections.singletonMap(key, fn.apply(new ConfusionMatrixThreshold.Builder()).build()));
 		}
 
 		public final Builder confusionMatrix(

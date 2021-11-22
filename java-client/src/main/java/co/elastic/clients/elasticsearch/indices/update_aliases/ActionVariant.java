@@ -23,12 +23,12 @@
 
 package co.elastic.clients.elasticsearch.indices.update_aliases;
 
-import co.elastic.clients.util.UnionVariant;
-
 /**
  * Base interface for {@link Action} variants.
  */
-public interface ActionVariant extends UnionVariant {
+public interface ActionVariant {
+
+	Action.Kind _actionKind();
 
 	default Action _toAction() {
 		return new Action(this);

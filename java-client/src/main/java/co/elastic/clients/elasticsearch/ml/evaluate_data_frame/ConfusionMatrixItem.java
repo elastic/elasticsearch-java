@@ -29,16 +29,17 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -67,8 +68,10 @@ public class ConfusionMatrixItem implements JsonpSerializable {
 
 	}
 
-	public static ConfusionMatrixItem of(Function<Builder, ObjectBuilder<ConfusionMatrixItem>> fn) {
-		return fn.apply(new Builder()).build();
+	public static ConfusionMatrixItem of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -180,14 +183,9 @@ public class ConfusionMatrixItem implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code predicted_classes}
 		 */
-		@SafeVarargs
 		public final Builder predictedClasses(
-				Function<ConfusionMatrixPrediction.Builder, ObjectBuilder<ConfusionMatrixPrediction>>... fns) {
-			this.predictedClasses = new ArrayList<>(fns.length);
-			for (Function<ConfusionMatrixPrediction.Builder, ObjectBuilder<ConfusionMatrixPrediction>> fn : fns) {
-				this.predictedClasses.add(fn.apply(new ConfusionMatrixPrediction.Builder()).build());
-			}
-			return this;
+				Function<ListBuilder<ConfusionMatrixPrediction, ConfusionMatrixPrediction.Builder>, ObjectBuilder<List<ConfusionMatrixPrediction>>> fn) {
+			return predictedClasses(fn.apply(new ListBuilder<>(ConfusionMatrixPrediction.Builder::new)).build());
 		}
 
 		/**

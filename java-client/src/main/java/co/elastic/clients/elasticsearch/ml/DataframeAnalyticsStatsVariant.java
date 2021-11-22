@@ -23,12 +23,12 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.util.UnionVariant;
-
 /**
  * Base interface for {@link DataframeAnalyticsStats} variants.
  */
-public interface DataframeAnalyticsStatsVariant extends UnionVariant {
+public interface DataframeAnalyticsStatsVariant {
+
+	DataframeAnalyticsStats.Kind _dataframeAnalyticsStatsKind();
 
 	default DataframeAnalyticsStats _toDataframeAnalyticsStats() {
 		return new DataframeAnalyticsStats(this);

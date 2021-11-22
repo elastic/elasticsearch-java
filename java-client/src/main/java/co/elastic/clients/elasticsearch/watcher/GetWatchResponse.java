@@ -38,7 +38,7 @@ import java.lang.Integer;
 import java.lang.Long;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: watcher.get_watch.Response
@@ -77,8 +77,10 @@ public class GetWatchResponse implements JsonpSerializable {
 
 	}
 
-	public static GetWatchResponse of(Function<Builder, ObjectBuilder<GetWatchResponse>> fn) {
-		return fn.apply(new Builder()).build();
+	public static GetWatchResponse of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -232,8 +234,10 @@ public class GetWatchResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code status}
 		 */
-		public final Builder status(Function<WatchStatus.Builder, ObjectBuilder<WatchStatus>> fn) {
-			return this.status(fn.apply(new WatchStatus.Builder()).build());
+		public final Builder status(Consumer<WatchStatus.Builder> fn) {
+			WatchStatus.Builder builder = new WatchStatus.Builder();
+			fn.accept(builder);
+			return this.status(builder.build());
 		}
 
 		/**
@@ -247,8 +251,10 @@ public class GetWatchResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code watch}
 		 */
-		public final Builder watch(Function<Watch.Builder, ObjectBuilder<Watch>> fn) {
-			return this.watch(fn.apply(new Watch.Builder()).build());
+		public final Builder watch(Consumer<Watch.Builder> fn) {
+			Watch.Builder builder = new Watch.Builder();
+			fn.accept(builder);
+			return this.watch(builder.build());
 		}
 
 		/**

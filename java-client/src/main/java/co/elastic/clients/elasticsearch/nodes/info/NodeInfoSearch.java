@@ -34,7 +34,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: nodes.info.NodeInfoSearch
@@ -50,8 +50,10 @@ public class NodeInfoSearch implements JsonpSerializable {
 
 	}
 
-	public static NodeInfoSearch of(Function<Builder, ObjectBuilder<NodeInfoSearch>> fn) {
-		return fn.apply(new Builder()).build();
+	public static NodeInfoSearch of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -96,8 +98,10 @@ public class NodeInfoSearch implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code remote}
 		 */
-		public final Builder remote(Function<NodeInfoSearchRemote.Builder, ObjectBuilder<NodeInfoSearchRemote>> fn) {
-			return this.remote(fn.apply(new NodeInfoSearchRemote.Builder()).build());
+		public final Builder remote(Consumer<NodeInfoSearchRemote.Builder> fn) {
+			NodeInfoSearchRemote.Builder builder = new NodeInfoSearchRemote.Builder();
+			fn.accept(builder);
+			return this.remote(builder.build());
 		}
 
 		/**

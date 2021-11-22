@@ -33,7 +33,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.ParentIdQuery
@@ -59,16 +59,18 @@ public class ParentIdQuery extends QueryBase implements QueryVariant {
 
 	}
 
-	public static ParentIdQuery of(Function<Builder, ObjectBuilder<ParentIdQuery>> fn) {
-		return fn.apply(new Builder()).build();
+	public static ParentIdQuery of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
-	 * {@link Query} variant type
+	 * Query variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "parent_id";
+	public Query.Kind _queryKind() {
+		return Query.Kind.ParentId;
 	}
 
 	/**

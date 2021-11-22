@@ -29,14 +29,15 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -53,8 +54,10 @@ public class ResetFeaturesResponse implements JsonpSerializable {
 
 	}
 
-	public static ResetFeaturesResponse of(Function<Builder, ObjectBuilder<ResetFeaturesResponse>> fn) {
-		return fn.apply(new Builder()).build();
+	public static ResetFeaturesResponse of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -115,13 +118,9 @@ public class ResetFeaturesResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code features}
 		 */
-		@SafeVarargs
-		public final Builder features(Function<Feature.Builder, ObjectBuilder<Feature>>... fns) {
-			this.features = new ArrayList<>(fns.length);
-			for (Function<Feature.Builder, ObjectBuilder<Feature>> fn : fns) {
-				this.features.add(fn.apply(new Feature.Builder()).build());
-			}
-			return this;
+		public final Builder features(
+				Function<ListBuilder<Feature, Feature.Builder>, ObjectBuilder<List<Feature>>> fn) {
+			return features(fn.apply(new ListBuilder<>(Feature.Builder::new)).build());
 		}
 
 		/**

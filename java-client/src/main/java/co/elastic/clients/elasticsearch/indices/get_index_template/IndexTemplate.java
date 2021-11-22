@@ -41,7 +41,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: indices.get_index_template.IndexTemplate
@@ -82,8 +82,10 @@ public class IndexTemplate implements JsonpSerializable {
 
 	}
 
-	public static IndexTemplate of(Function<Builder, ObjectBuilder<IndexTemplate>> fn) {
-		return fn.apply(new Builder()).build();
+	public static IndexTemplate of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -293,8 +295,10 @@ public class IndexTemplate implements JsonpSerializable {
 		/**
 		 * API name: {@code template}
 		 */
-		public final Builder template(Function<IndexTemplateSummary.Builder, ObjectBuilder<IndexTemplateSummary>> fn) {
-			return this.template(fn.apply(new IndexTemplateSummary.Builder()).build());
+		public final Builder template(Consumer<IndexTemplateSummary.Builder> fn) {
+			IndexTemplateSummary.Builder builder = new IndexTemplateSummary.Builder();
+			fn.accept(builder);
+			return this.template(builder.build());
 		}
 
 		/**

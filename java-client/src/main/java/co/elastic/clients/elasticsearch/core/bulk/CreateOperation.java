@@ -35,12 +35,12 @@ import jakarta.json.stream.JsonGenerator;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: _global.bulk.CreateOperation
 
-public class CreateOperation<TDocument> extends WriteOperation implements NdJsonpSerializable, OperationVariant {
+public class CreateOperation<TDocument> extends WriteOperation implements NdJsonpSerializable, BulkOperationVariant {
 	private final TDocument document;
 
 	@Nullable
@@ -56,17 +56,18 @@ public class CreateOperation<TDocument> extends WriteOperation implements NdJson
 
 	}
 
-	public static <TDocument> CreateOperation<TDocument> of(
-			Function<Builder<TDocument>, ObjectBuilder<CreateOperation<TDocument>>> fn) {
-		return fn.apply(new Builder<>()).build();
+	public static <TDocument> CreateOperation<TDocument> of(Consumer<Builder<TDocument>> fn) {
+		Builder<TDocument> builder = new Builder<>();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
-	 * {@link Operation} variant type
+	 * BulkOperation variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "create";
+	public BulkOperation.Kind _bulkOperationKind() {
+		return BulkOperation.Kind.Create;
 	}
 
 	/**

@@ -23,13 +23,17 @@
 
 package co.elastic.clients.elasticsearch._types.analysis;
 
+import co.elastic.clients.json.JsonEnum;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
-import co.elastic.clients.util.StringEnum;
 
 @JsonpDeserializable
-public enum IcuCollationAlternate implements StringEnum {
-	Shifted("shifted"), NonIgnorable("non-ignorable");
+public enum IcuCollationAlternate implements JsonEnum {
+	Shifted("shifted"),
+
+	NonIgnorable("non-ignorable"),
+
+	;
 
 	private final String jsonValue;
 
@@ -41,6 +45,6 @@ public enum IcuCollationAlternate implements StringEnum {
 		return this.jsonValue;
 	}
 
-	public static final StringEnum.Deserializer<IcuCollationAlternate> _DESERIALIZER = new StringEnum.Deserializer<>(
+	public static final JsonEnum.Deserializer<IcuCollationAlternate> _DESERIALIZER = new JsonEnum.Deserializer<>(
 			IcuCollationAlternate.values());
 }

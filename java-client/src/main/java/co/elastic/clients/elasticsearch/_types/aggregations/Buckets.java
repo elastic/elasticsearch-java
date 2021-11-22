@@ -42,23 +42,25 @@ import java.lang.String;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.Buckets
 // union type: Union[]
 
-public class Buckets<TBucket> implements TaggedUnion<Object>, JsonpSerializable {
+public class Buckets<TBucket> implements TaggedUnion<Buckets.Kind, Object>, JsonpSerializable {
 
-	public static final String ARRAY = "array";
-	public static final String KEYED = "keyed";
+	public enum Kind {
+		Array, Keyed
 
-	private final String _type;
+	}
+
+	private final Kind _kind;
 	private final Object _value;
 
 	@Override
-	public final String _type() {
-		return _type;
+	public final Kind _kind() {
+		return _kind;
 	}
 
 	@Override
@@ -68,27 +70,29 @@ public class Buckets<TBucket> implements TaggedUnion<Object>, JsonpSerializable 
 
 	private final JsonpSerializer<TBucket> tBucketSerializer = null;
 
-	public Buckets(String type, Object value) {
-		this._type = type;
+	public Buckets(Kind kind, Object value) {
+		this._kind = kind;
 		this._value = value;
 	}
 
 	private Buckets(Builder<TBucket> builder) {
 
-		this._type = ModelTypeHelper.requireNonNull(builder._type, builder, "<variant type>");
+		this._kind = ModelTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
 		this._value = ModelTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
 
 	}
 
-	public static <TBucket> Buckets<TBucket> of(Function<Builder<TBucket>, ObjectBuilder<Buckets<TBucket>>> fn) {
-		return fn.apply(new Builder<>()).build();
+	public static <TBucket> Buckets<TBucket> of(Consumer<Builder<TBucket>> fn) {
+		Builder<TBucket> builder = new Builder<>();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
 	 * Is this variant instance of kind {@code array}?
 	 */
-	public boolean _isArray() {
-		return ARRAY.equals(_type());
+	public boolean isArray() {
+		return _kind == Kind.Array;
 	}
 
 	/**
@@ -98,14 +102,14 @@ public class Buckets<TBucket> implements TaggedUnion<Object>, JsonpSerializable 
 	 *             if the current variant is not of the {@code array} kind.
 	 */
 	public List<TBucket> array() {
-		return TaggedUnionUtils.get(this, ARRAY);
+		return TaggedUnionUtils.get(this, Kind.Array);
 	}
 
 	/**
 	 * Is this variant instance of kind {@code keyed}?
 	 */
-	public boolean _isKeyed() {
-		return KEYED.equals(_type());
+	public boolean isKeyed() {
+		return _kind == Kind.Keyed;
 	}
 
 	/**
@@ -115,7 +119,7 @@ public class Buckets<TBucket> implements TaggedUnion<Object>, JsonpSerializable 
 	 *             if the current variant is not of the {@code keyed} kind.
 	 */
 	public Map<String, TBucket> keyed() {
-		return TaggedUnionUtils.get(this, KEYED);
+		return TaggedUnionUtils.get(this, Kind.Keyed);
 	}
 
 	@Override
@@ -123,8 +127,8 @@ public class Buckets<TBucket> implements TaggedUnion<Object>, JsonpSerializable 
 		if (_value instanceof JsonpSerializable) {
 			((JsonpSerializable) _value).serialize(generator, mapper);
 		} else {
-			switch (_type) {
-				case ARRAY :
+			switch (_kind) {
+				case Array :
 					generator.writeStartArray();
 					for (TBucket item0 : ((List<TBucket>) this._value)) {
 						JsonpUtils.serialize(item0, generator, tBucketSerializer, mapper);
@@ -133,7 +137,7 @@ public class Buckets<TBucket> implements TaggedUnion<Object>, JsonpSerializable 
 					generator.writeEnd();
 
 					break;
-				case KEYED :
+				case Keyed :
 					generator.writeStartObject();
 					for (Map.Entry<String, TBucket> item0 : ((Map<String, TBucket>) this._value).entrySet()) {
 						generator.writeKey(item0.getKey());
@@ -149,17 +153,17 @@ public class Buckets<TBucket> implements TaggedUnion<Object>, JsonpSerializable 
 	}
 
 	public static class Builder<TBucket> extends ObjectBuilderBase implements ObjectBuilder<Buckets<TBucket>> {
-		private String _type;
+		private Kind _kind;
 		private Object _value;
 
 		public Builder<TBucket> array(List<TBucket> v) {
-			this._type = ARRAY;
+			this._kind = Kind.Array;
 			this._value = v;
 			return this;
 		}
 
 		public Builder<TBucket> keyed(Map<String, TBucket> v) {
-			this._type = KEYED;
+			this._kind = Kind.Keyed;
 			this._value = v;
 			return this;
 		}
@@ -173,9 +177,9 @@ public class Buckets<TBucket> implements TaggedUnion<Object>, JsonpSerializable 
 
 	public static <TBucket> JsonpDeserializer<Buckets<TBucket>> createBucketsDeserializer(
 			JsonpDeserializer<TBucket> tBucketDeserializer) {
-		return new UnionDeserializer.Builder<>(Buckets<TBucket>::new, false)
-				.addMember("array", JsonpDeserializer.arrayDeserializer(tBucketDeserializer))
-				.addMember("keyed", JsonpDeserializer.stringMapDeserializer(tBucketDeserializer)).build();
+		return new UnionDeserializer.Builder<Buckets<TBucket>, Kind, Object>(Buckets<TBucket>::new, false)
+				.addMember(Kind.Array, JsonpDeserializer.arrayDeserializer(tBucketDeserializer))
+				.addMember(Kind.Keyed, JsonpDeserializer.stringMapDeserializer(tBucketDeserializer)).build();
 	}
 
 }

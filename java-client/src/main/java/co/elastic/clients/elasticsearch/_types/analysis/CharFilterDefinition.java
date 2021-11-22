@@ -23,6 +23,7 @@
 
 package co.elastic.clients.elasticsearch._types.analysis;
 
+import co.elastic.clients.json.JsonEnum;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -36,26 +37,52 @@ import co.elastic.clients.util.TaggedUnion;
 import co.elastic.clients.util.TaggedUnionUtils;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: _types.analysis.CharFilterDefinition
 // union type: InternalTag[tag=type]
 @JsonpDeserializable
-public class CharFilterDefinition implements TaggedUnion<CharFilterDefinitionVariant>, JsonpSerializable {
+public class CharFilterDefinition
+		implements
+			TaggedUnion<CharFilterDefinition.Kind, CharFilterDefinitionVariant>,
+			JsonpSerializable {
 
-	public static final String HTML_STRIP = "html_strip";
-	public static final String ICU_NORMALIZER = "icu_normalizer";
-	public static final String KUROMOJI_ITERATION_MARK = "kuromoji_iteration_mark";
-	public static final String MAPPING = "mapping";
-	public static final String PATTERN_REPLACE = "pattern_replace";
+	/**
+	 * {@link CharFilterDefinition} variant kinds.
+	 */
 
-	private final String _type;
+	public enum Kind implements JsonEnum {
+		HtmlStrip("html_strip"),
+
+		IcuNormalizer("icu_normalizer"),
+
+		KuromojiIterationMark("kuromoji_iteration_mark"),
+
+		Mapping("mapping"),
+
+		PatternReplace("pattern_replace"),
+
+		;
+
+		private final String jsonValue;
+
+		Kind(String jsonValue) {
+			this.jsonValue = jsonValue;
+		}
+
+		public String jsonValue() {
+			return this.jsonValue;
+		}
+
+	}
+
+	private final Kind _kind;
 	private final CharFilterDefinitionVariant _value;
 
 	@Override
-	public final String _type() {
-		return _type;
+	public final Kind _kind() {
+		return _kind;
 	}
 
 	@Override
@@ -65,27 +92,29 @@ public class CharFilterDefinition implements TaggedUnion<CharFilterDefinitionVar
 
 	public CharFilterDefinition(CharFilterDefinitionVariant value) {
 
-		this._type = ModelTypeHelper.requireNonNull(value._variantType(), this, "<variant type>");
+		this._kind = ModelTypeHelper.requireNonNull(value._charFilterDefinitionKind(), this, "<variant kind>");
 		this._value = ModelTypeHelper.requireNonNull(value, this, "<variant value>");
 
 	}
 
 	private CharFilterDefinition(Builder builder) {
 
-		this._type = ModelTypeHelper.requireNonNull(builder._type, builder, "<variant type>");
+		this._kind = ModelTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
 		this._value = ModelTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
 
 	}
 
-	public static CharFilterDefinition of(Function<Builder, ObjectBuilder<CharFilterDefinition>> fn) {
-		return fn.apply(new Builder()).build();
+	public static CharFilterDefinition of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
 	 * Is this variant instance of kind {@code html_strip}?
 	 */
-	public boolean _isHtmlStrip() {
-		return HTML_STRIP.equals(_type());
+	public boolean isHtmlStrip() {
+		return _kind == Kind.HtmlStrip;
 	}
 
 	/**
@@ -95,14 +124,14 @@ public class CharFilterDefinition implements TaggedUnion<CharFilterDefinitionVar
 	 *             if the current variant is not of the {@code html_strip} kind.
 	 */
 	public HtmlStripCharFilter htmlStrip() {
-		return TaggedUnionUtils.get(this, HTML_STRIP);
+		return TaggedUnionUtils.get(this, Kind.HtmlStrip);
 	}
 
 	/**
 	 * Is this variant instance of kind {@code icu_normalizer}?
 	 */
-	public boolean _isIcuNormalizer() {
-		return ICU_NORMALIZER.equals(_type());
+	public boolean isIcuNormalizer() {
+		return _kind == Kind.IcuNormalizer;
 	}
 
 	/**
@@ -112,14 +141,14 @@ public class CharFilterDefinition implements TaggedUnion<CharFilterDefinitionVar
 	 *             if the current variant is not of the {@code icu_normalizer} kind.
 	 */
 	public IcuNormalizationCharFilter icuNormalizer() {
-		return TaggedUnionUtils.get(this, ICU_NORMALIZER);
+		return TaggedUnionUtils.get(this, Kind.IcuNormalizer);
 	}
 
 	/**
 	 * Is this variant instance of kind {@code kuromoji_iteration_mark}?
 	 */
-	public boolean _isKuromojiIterationMark() {
-		return KUROMOJI_ITERATION_MARK.equals(_type());
+	public boolean isKuromojiIterationMark() {
+		return _kind == Kind.KuromojiIterationMark;
 	}
 
 	/**
@@ -130,14 +159,14 @@ public class CharFilterDefinition implements TaggedUnion<CharFilterDefinitionVar
 	 *             {@code kuromoji_iteration_mark} kind.
 	 */
 	public KuromojiIterationMarkCharFilter kuromojiIterationMark() {
-		return TaggedUnionUtils.get(this, KUROMOJI_ITERATION_MARK);
+		return TaggedUnionUtils.get(this, Kind.KuromojiIterationMark);
 	}
 
 	/**
 	 * Is this variant instance of kind {@code mapping}?
 	 */
-	public boolean _isMapping() {
-		return MAPPING.equals(_type());
+	public boolean isMapping() {
+		return _kind == Kind.Mapping;
 	}
 
 	/**
@@ -147,14 +176,14 @@ public class CharFilterDefinition implements TaggedUnion<CharFilterDefinitionVar
 	 *             if the current variant is not of the {@code mapping} kind.
 	 */
 	public MappingCharFilter mapping() {
-		return TaggedUnionUtils.get(this, MAPPING);
+		return TaggedUnionUtils.get(this, Kind.Mapping);
 	}
 
 	/**
 	 * Is this variant instance of kind {@code pattern_replace}?
 	 */
-	public boolean _isPatternReplace() {
-		return PATTERN_REPLACE.equals(_type());
+	public boolean isPatternReplace() {
+		return _kind == Kind.PatternReplace;
 	}
 
 	/**
@@ -165,7 +194,7 @@ public class CharFilterDefinition implements TaggedUnion<CharFilterDefinitionVar
 	 *             kind.
 	 */
 	public PatternReplaceCharFilter patternReplace() {
-		return TaggedUnionUtils.get(this, PATTERN_REPLACE);
+		return TaggedUnionUtils.get(this, Kind.PatternReplace);
 	}
 
 	@Override
@@ -176,60 +205,67 @@ public class CharFilterDefinition implements TaggedUnion<CharFilterDefinitionVar
 	}
 
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<CharFilterDefinition> {
-		private String _type;
+		private Kind _kind;
 		private CharFilterDefinitionVariant _value;
 
 		public Builder htmlStrip(HtmlStripCharFilter v) {
-			this._type = HTML_STRIP;
+			this._kind = Kind.HtmlStrip;
 			this._value = v;
 			return this;
 		}
 
-		public Builder htmlStrip(Function<HtmlStripCharFilter.Builder, ObjectBuilder<HtmlStripCharFilter>> f) {
-			return this.htmlStrip(f.apply(new HtmlStripCharFilter.Builder()).build());
+		public Builder htmlStrip(Consumer<HtmlStripCharFilter.Builder> fn) {
+			HtmlStripCharFilter.Builder builder = new HtmlStripCharFilter.Builder();
+			fn.accept(builder);
+			return this.htmlStrip(builder.build());
 		}
 
 		public Builder icuNormalizer(IcuNormalizationCharFilter v) {
-			this._type = ICU_NORMALIZER;
+			this._kind = Kind.IcuNormalizer;
 			this._value = v;
 			return this;
 		}
 
-		public Builder icuNormalizer(
-				Function<IcuNormalizationCharFilter.Builder, ObjectBuilder<IcuNormalizationCharFilter>> f) {
-			return this.icuNormalizer(f.apply(new IcuNormalizationCharFilter.Builder()).build());
+		public Builder icuNormalizer(Consumer<IcuNormalizationCharFilter.Builder> fn) {
+			IcuNormalizationCharFilter.Builder builder = new IcuNormalizationCharFilter.Builder();
+			fn.accept(builder);
+			return this.icuNormalizer(builder.build());
 		}
 
 		public Builder kuromojiIterationMark(KuromojiIterationMarkCharFilter v) {
-			this._type = KUROMOJI_ITERATION_MARK;
+			this._kind = Kind.KuromojiIterationMark;
 			this._value = v;
 			return this;
 		}
 
-		public Builder kuromojiIterationMark(
-				Function<KuromojiIterationMarkCharFilter.Builder, ObjectBuilder<KuromojiIterationMarkCharFilter>> f) {
-			return this.kuromojiIterationMark(f.apply(new KuromojiIterationMarkCharFilter.Builder()).build());
+		public Builder kuromojiIterationMark(Consumer<KuromojiIterationMarkCharFilter.Builder> fn) {
+			KuromojiIterationMarkCharFilter.Builder builder = new KuromojiIterationMarkCharFilter.Builder();
+			fn.accept(builder);
+			return this.kuromojiIterationMark(builder.build());
 		}
 
 		public Builder mapping(MappingCharFilter v) {
-			this._type = MAPPING;
+			this._kind = Kind.Mapping;
 			this._value = v;
 			return this;
 		}
 
-		public Builder mapping(Function<MappingCharFilter.Builder, ObjectBuilder<MappingCharFilter>> f) {
-			return this.mapping(f.apply(new MappingCharFilter.Builder()).build());
+		public Builder mapping(Consumer<MappingCharFilter.Builder> fn) {
+			MappingCharFilter.Builder builder = new MappingCharFilter.Builder();
+			fn.accept(builder);
+			return this.mapping(builder.build());
 		}
 
 		public Builder patternReplace(PatternReplaceCharFilter v) {
-			this._type = PATTERN_REPLACE;
+			this._kind = Kind.PatternReplace;
 			this._value = v;
 			return this;
 		}
 
-		public Builder patternReplace(
-				Function<PatternReplaceCharFilter.Builder, ObjectBuilder<PatternReplaceCharFilter>> f) {
-			return this.patternReplace(f.apply(new PatternReplaceCharFilter.Builder()).build());
+		public Builder patternReplace(Consumer<PatternReplaceCharFilter.Builder> fn) {
+			PatternReplaceCharFilter.Builder builder = new PatternReplaceCharFilter.Builder();
+			fn.accept(builder);
+			return this.patternReplace(builder.build());
 		}
 
 		public CharFilterDefinition build() {

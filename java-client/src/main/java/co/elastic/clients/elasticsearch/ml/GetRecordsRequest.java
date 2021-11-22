@@ -32,7 +32,7 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
-import co.elastic.clients.transport.SimpleEndpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
@@ -44,7 +44,7 @@ import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: ml.get_records.Request
@@ -96,12 +96,14 @@ public class GetRecordsRequest extends RequestBase implements JsonpSerializable 
 
 	}
 
-	public static GetRecordsRequest of(Function<Builder, ObjectBuilder<GetRecordsRequest>> fn) {
-		return fn.apply(new Builder()).build();
+	public static GetRecordsRequest of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
-	 * If true, the results are sorted in descending order.
+	 * Refer to the description for the <code>desc</code> query parameter.
 	 * <p>
 	 * API name: {@code desc}
 	 */
@@ -111,8 +113,7 @@ public class GetRecordsRequest extends RequestBase implements JsonpSerializable 
 	}
 
 	/**
-	 * Returns records with timestamps earlier than this time. The default value
-	 * means results are not limited to specific timestamps.
+	 * Refer to the description for the <code>end</code> query parameter.
 	 * <p>
 	 * API name: {@code end}
 	 */
@@ -122,7 +123,8 @@ public class GetRecordsRequest extends RequestBase implements JsonpSerializable 
 	}
 
 	/**
-	 * If true, the output excludes interim results.
+	 * Refer to the description for the <code>exclude_interim</code> query
+	 * parameter.
 	 * <p>
 	 * API name: {@code exclude_interim}
 	 */
@@ -159,7 +161,7 @@ public class GetRecordsRequest extends RequestBase implements JsonpSerializable 
 	}
 
 	/**
-	 * Returns records with anomaly scores greater or equal than this value.
+	 * Refer to the description for the <code>record_score</code> query parameter.
 	 * <p>
 	 * API name: {@code record_score}
 	 */
@@ -179,7 +181,7 @@ public class GetRecordsRequest extends RequestBase implements JsonpSerializable 
 	}
 
 	/**
-	 * Specifies the sort field for the requested records.
+	 * Refer to the description for the <code>sort</code> query parameter.
 	 * <p>
 	 * API name: {@code sort}
 	 */
@@ -189,8 +191,7 @@ public class GetRecordsRequest extends RequestBase implements JsonpSerializable 
 	}
 
 	/**
-	 * Returns records with timestamps earlier than this time. The default value
-	 * means results are not limited to specific timestamps.
+	 * Refer to the description for the <code>start</code> query parameter.
 	 * <p>
 	 * API name: {@code start}
 	 */
@@ -284,7 +285,7 @@ public class GetRecordsRequest extends RequestBase implements JsonpSerializable 
 		private String start;
 
 		/**
-		 * If true, the results are sorted in descending order.
+		 * Refer to the description for the <code>desc</code> query parameter.
 		 * <p>
 		 * API name: {@code desc}
 		 */
@@ -294,8 +295,7 @@ public class GetRecordsRequest extends RequestBase implements JsonpSerializable 
 		}
 
 		/**
-		 * Returns records with timestamps earlier than this time. The default value
-		 * means results are not limited to specific timestamps.
+		 * Refer to the description for the <code>end</code> query parameter.
 		 * <p>
 		 * API name: {@code end}
 		 */
@@ -305,7 +305,8 @@ public class GetRecordsRequest extends RequestBase implements JsonpSerializable 
 		}
 
 		/**
-		 * If true, the output excludes interim results.
+		 * Refer to the description for the <code>exclude_interim</code> query
+		 * parameter.
 		 * <p>
 		 * API name: {@code exclude_interim}
 		 */
@@ -345,12 +346,14 @@ public class GetRecordsRequest extends RequestBase implements JsonpSerializable 
 		/**
 		 * API name: {@code page}
 		 */
-		public final Builder page(Function<Page.Builder, ObjectBuilder<Page>> fn) {
-			return this.page(fn.apply(new Page.Builder()).build());
+		public final Builder page(Consumer<Page.Builder> fn) {
+			Page.Builder builder = new Page.Builder();
+			fn.accept(builder);
+			return this.page(builder.build());
 		}
 
 		/**
-		 * Returns records with anomaly scores greater or equal than this value.
+		 * Refer to the description for the <code>record_score</code> query parameter.
 		 * <p>
 		 * API name: {@code record_score}
 		 */
@@ -370,7 +373,7 @@ public class GetRecordsRequest extends RequestBase implements JsonpSerializable 
 		}
 
 		/**
-		 * Specifies the sort field for the requested records.
+		 * Refer to the description for the <code>sort</code> query parameter.
 		 * <p>
 		 * API name: {@code sort}
 		 */
@@ -380,8 +383,7 @@ public class GetRecordsRequest extends RequestBase implements JsonpSerializable 
 		}
 
 		/**
-		 * Returns records with timestamps earlier than this time. The default value
-		 * means results are not limited to specific timestamps.
+		 * Refer to the description for the <code>start</code> query parameter.
 		 * <p>
 		 * API name: {@code start}
 		 */

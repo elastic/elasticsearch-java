@@ -23,14 +23,27 @@
 
 package co.elastic.clients.elasticsearch.ingest;
 
+import co.elastic.clients.json.JsonEnum;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
-import co.elastic.clients.util.StringEnum;
 
 @JsonpDeserializable
-public enum ConvertType implements StringEnum {
-	Integer("integer"), Long("long"), Float("float"), Double("double"), String("string"), Boolean("boolean"), Auto(
-			"auto");
+public enum ConvertType implements JsonEnum {
+	Integer("integer"),
+
+	Long("long"),
+
+	Float("float"),
+
+	Double("double"),
+
+	String("string"),
+
+	Boolean("boolean"),
+
+	Auto("auto"),
+
+	;
 
 	private final String jsonValue;
 
@@ -42,6 +55,6 @@ public enum ConvertType implements StringEnum {
 		return this.jsonValue;
 	}
 
-	public static final StringEnum.Deserializer<ConvertType> _DESERIALIZER = new StringEnum.Deserializer<>(
+	public static final JsonEnum.Deserializer<ConvertType> _DESERIALIZER = new JsonEnum.Deserializer<>(
 			ConvertType.values());
 }

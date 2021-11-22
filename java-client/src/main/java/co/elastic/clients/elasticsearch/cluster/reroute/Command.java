@@ -33,7 +33,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: cluster.reroute.Command
@@ -66,8 +66,10 @@ public class Command implements JsonpSerializable {
 
 	}
 
-	public static Command of(Function<Builder, ObjectBuilder<Command>> fn) {
-		return fn.apply(new Builder()).build();
+	public static Command of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -233,8 +235,10 @@ public class Command implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code cancel}
 		 */
-		public final Builder cancel(Function<CommandCancelAction.Builder, ObjectBuilder<CommandCancelAction>> fn) {
-			return this.cancel(fn.apply(new CommandCancelAction.Builder()).build());
+		public final Builder cancel(Consumer<CommandCancelAction.Builder> fn) {
+			CommandCancelAction.Builder builder = new CommandCancelAction.Builder();
+			fn.accept(builder);
+			return this.cancel(builder.build());
 		}
 
 		/**
@@ -256,8 +260,10 @@ public class Command implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code move}
 		 */
-		public final Builder move(Function<CommandMoveAction.Builder, ObjectBuilder<CommandMoveAction>> fn) {
-			return this.move(fn.apply(new CommandMoveAction.Builder()).build());
+		public final Builder move(Consumer<CommandMoveAction.Builder> fn) {
+			CommandMoveAction.Builder builder = new CommandMoveAction.Builder();
+			fn.accept(builder);
+			return this.move(builder.build());
 		}
 
 		/**
@@ -279,9 +285,10 @@ public class Command implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code allocate_replica}
 		 */
-		public final Builder allocateReplica(
-				Function<CommandAllocateReplicaAction.Builder, ObjectBuilder<CommandAllocateReplicaAction>> fn) {
-			return this.allocateReplica(fn.apply(new CommandAllocateReplicaAction.Builder()).build());
+		public final Builder allocateReplica(Consumer<CommandAllocateReplicaAction.Builder> fn) {
+			CommandAllocateReplicaAction.Builder builder = new CommandAllocateReplicaAction.Builder();
+			fn.accept(builder);
+			return this.allocateReplica(builder.build());
 		}
 
 		/**
@@ -313,9 +320,10 @@ public class Command implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code allocate_stale_primary}
 		 */
-		public final Builder allocateStalePrimary(
-				Function<CommandAllocatePrimaryAction.Builder, ObjectBuilder<CommandAllocatePrimaryAction>> fn) {
-			return this.allocateStalePrimary(fn.apply(new CommandAllocatePrimaryAction.Builder()).build());
+		public final Builder allocateStalePrimary(Consumer<CommandAllocatePrimaryAction.Builder> fn) {
+			CommandAllocatePrimaryAction.Builder builder = new CommandAllocatePrimaryAction.Builder();
+			fn.accept(builder);
+			return this.allocateStalePrimary(builder.build());
 		}
 
 		/**
@@ -345,9 +353,10 @@ public class Command implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code allocate_empty_primary}
 		 */
-		public final Builder allocateEmptyPrimary(
-				Function<CommandAllocatePrimaryAction.Builder, ObjectBuilder<CommandAllocatePrimaryAction>> fn) {
-			return this.allocateEmptyPrimary(fn.apply(new CommandAllocatePrimaryAction.Builder()).build());
+		public final Builder allocateEmptyPrimary(Consumer<CommandAllocatePrimaryAction.Builder> fn) {
+			CommandAllocatePrimaryAction.Builder builder = new CommandAllocatePrimaryAction.Builder();
+			fn.accept(builder);
+			return this.allocateEmptyPrimary(builder.build());
 		}
 
 		/**

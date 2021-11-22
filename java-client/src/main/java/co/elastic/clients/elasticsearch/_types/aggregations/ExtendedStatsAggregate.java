@@ -34,7 +34,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.ExtendedStatsAggregate
@@ -93,11 +93,11 @@ public class ExtendedStatsAggregate extends StatsAggregate implements AggregateV
 	}
 
 	/**
-	 * {@link Aggregate} variant type
+	 * Aggregate variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "extended_stats";
+	public Aggregate.Kind _aggregateKind() {
+		return Aggregate.Kind.ExtendedStats;
 	}
 
 	/**
@@ -358,9 +358,10 @@ public class ExtendedStatsAggregate extends StatsAggregate implements AggregateV
 		/**
 		 * API name: {@code std_deviation_bounds}
 		 */
-		public final BuilderT stdDeviationBounds(
-				Function<StandardDeviationBounds.Builder, ObjectBuilder<StandardDeviationBounds>> fn) {
-			return this.stdDeviationBounds(fn.apply(new StandardDeviationBounds.Builder()).build());
+		public final BuilderT stdDeviationBounds(Consumer<StandardDeviationBounds.Builder> fn) {
+			StandardDeviationBounds.Builder builder = new StandardDeviationBounds.Builder();
+			fn.accept(builder);
+			return this.stdDeviationBounds(builder.build());
 		}
 
 		/**
@@ -414,9 +415,10 @@ public class ExtendedStatsAggregate extends StatsAggregate implements AggregateV
 		/**
 		 * API name: {@code std_deviation_bounds_as_string}
 		 */
-		public final BuilderT stdDeviationBoundsAsString(
-				Function<StandardDeviationBoundsAsString.Builder, ObjectBuilder<StandardDeviationBoundsAsString>> fn) {
-			return this.stdDeviationBoundsAsString(fn.apply(new StandardDeviationBoundsAsString.Builder()).build());
+		public final BuilderT stdDeviationBoundsAsString(Consumer<StandardDeviationBoundsAsString.Builder> fn) {
+			StandardDeviationBoundsAsString.Builder builder = new StandardDeviationBoundsAsString.Builder();
+			fn.accept(builder);
+			return this.stdDeviationBoundsAsString(builder.build());
 		}
 
 	}

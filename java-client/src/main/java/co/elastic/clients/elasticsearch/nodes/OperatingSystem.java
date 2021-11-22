@@ -35,7 +35,7 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: nodes._types.OperatingSystem
@@ -60,8 +60,10 @@ public class OperatingSystem implements JsonpSerializable {
 
 	}
 
-	public static OperatingSystem of(Function<Builder, ObjectBuilder<OperatingSystem>> fn) {
-		return fn.apply(new Builder()).build();
+	public static OperatingSystem of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -142,8 +144,10 @@ public class OperatingSystem implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code cpu}
 		 */
-		public final Builder cpu(Function<Cpu.Builder, ObjectBuilder<Cpu>> fn) {
-			return this.cpu(fn.apply(new Cpu.Builder()).build());
+		public final Builder cpu(Consumer<Cpu.Builder> fn) {
+			Cpu.Builder builder = new Cpu.Builder();
+			fn.accept(builder);
+			return this.cpu(builder.build());
 		}
 
 		/**
@@ -157,8 +161,10 @@ public class OperatingSystem implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code mem}
 		 */
-		public final Builder mem(Function<ExtendedMemoryStats.Builder, ObjectBuilder<ExtendedMemoryStats>> fn) {
-			return this.mem(fn.apply(new ExtendedMemoryStats.Builder()).build());
+		public final Builder mem(Consumer<ExtendedMemoryStats.Builder> fn) {
+			ExtendedMemoryStats.Builder builder = new ExtendedMemoryStats.Builder();
+			fn.accept(builder);
+			return this.mem(builder.build());
 		}
 
 		/**
@@ -172,8 +178,10 @@ public class OperatingSystem implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code swap}
 		 */
-		public final Builder swap(Function<MemoryStats.Builder, ObjectBuilder<MemoryStats>> fn) {
-			return this.swap(fn.apply(new MemoryStats.Builder()).build());
+		public final Builder swap(Consumer<MemoryStats.Builder> fn) {
+			MemoryStats.Builder builder = new MemoryStats.Builder();
+			fn.accept(builder);
+			return this.swap(builder.build());
 		}
 
 		/**

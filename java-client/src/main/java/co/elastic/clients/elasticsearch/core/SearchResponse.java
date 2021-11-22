@@ -50,10 +50,10 @@ import java.lang.Double;
 import java.lang.Long;
 import java.lang.String;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Supplier;
 import javax.annotation.Nullable;
@@ -441,8 +441,10 @@ public class SearchResponse<TDocument> implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code _shards}
 		 */
-		public final BuilderT shards(Function<ShardStatistics.Builder, ObjectBuilder<ShardStatistics>> fn) {
-			return this.shards(fn.apply(new ShardStatistics.Builder()).build());
+		public final BuilderT shards(Consumer<ShardStatistics.Builder> fn) {
+			ShardStatistics.Builder builder = new ShardStatistics.Builder();
+			fn.accept(builder);
+			return this.shards(builder.build());
 		}
 
 		/**
@@ -456,9 +458,10 @@ public class SearchResponse<TDocument> implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code hits}
 		 */
-		public final BuilderT hits(
-				Function<HitsMetadata.Builder<TDocument>, ObjectBuilder<HitsMetadata<TDocument>>> fn) {
-			return this.hits(fn.apply(new HitsMetadata.Builder<TDocument>()).build());
+		public final BuilderT hits(Consumer<HitsMetadata.Builder<TDocument>> fn) {
+			HitsMetadata.Builder<TDocument> builder = new HitsMetadata.Builder<TDocument>();
+			fn.accept(builder);
+			return this.hits(builder.build());
 		}
 
 		/**
@@ -467,13 +470,6 @@ public class SearchResponse<TDocument> implements JsonpSerializable {
 		public final BuilderT aggregations(@Nullable Map<String, Aggregate> value) {
 			this.aggregations = value;
 			return self();
-		}
-
-		/**
-		 * Set {@link #aggregations(Map)} to a singleton map.
-		 */
-		public BuilderT aggregations(String key, Function<Aggregate.Builder, ObjectBuilder<Aggregate>> fn) {
-			return this.aggregations(Collections.singletonMap(key, fn.apply(new Aggregate.Builder()).build()));
 		}
 
 		public final BuilderT aggregations(
@@ -492,8 +488,10 @@ public class SearchResponse<TDocument> implements JsonpSerializable {
 		/**
 		 * API name: {@code _clusters}
 		 */
-		public final BuilderT clusters(Function<ClusterStatistics.Builder, ObjectBuilder<ClusterStatistics>> fn) {
-			return this.clusters(fn.apply(new ClusterStatistics.Builder()).build());
+		public final BuilderT clusters(Consumer<ClusterStatistics.Builder> fn) {
+			ClusterStatistics.Builder builder = new ClusterStatistics.Builder();
+			fn.accept(builder);
+			return this.clusters(builder.build());
 		}
 
 		/**
@@ -547,8 +545,10 @@ public class SearchResponse<TDocument> implements JsonpSerializable {
 		/**
 		 * API name: {@code profile}
 		 */
-		public final BuilderT profile(Function<Profile.Builder, ObjectBuilder<Profile>> fn) {
-			return this.profile(fn.apply(new Profile.Builder()).build());
+		public final BuilderT profile(Consumer<Profile.Builder> fn) {
+			Profile.Builder builder = new Profile.Builder();
+			fn.accept(builder);
+			return this.profile(builder.build());
 		}
 
 		/**

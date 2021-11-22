@@ -29,14 +29,15 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -53,16 +54,18 @@ public class ChainTransform implements TransformVariant, JsonpSerializable {
 
 	}
 
-	public static ChainTransform of(Function<Builder, ObjectBuilder<ChainTransform>> fn) {
-		return fn.apply(new Builder()).build();
+	public static ChainTransform of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
-	 * {@link Transform} variant type
+	 * Transform variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "chain";
+	public Transform.Kind _transformKind() {
+		return Transform.Kind.Chain;
 	}
 
 	/**
@@ -123,13 +126,9 @@ public class ChainTransform implements TransformVariant, JsonpSerializable {
 		/**
 		 * Required - API name: {@code transforms}
 		 */
-		@SafeVarargs
-		public final Builder transforms(Function<Transform.Builder, ObjectBuilder<Transform>>... fns) {
-			this.transforms = new ArrayList<>(fns.length);
-			for (Function<Transform.Builder, ObjectBuilder<Transform>> fn : fns) {
-				this.transforms.add(fn.apply(new Transform.Builder()).build());
-			}
-			return this;
+		public final Builder transforms(
+				Function<ListBuilder<Transform, Transform.Builder>, ObjectBuilder<List<Transform>>> fn) {
+			return transforms(fn.apply(new ListBuilder<>(Transform.Builder::new)).build());
 		}
 
 		/**

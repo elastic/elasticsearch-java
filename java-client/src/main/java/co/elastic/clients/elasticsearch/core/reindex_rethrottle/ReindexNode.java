@@ -34,9 +34,9 @@ import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.Collections;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -54,8 +54,10 @@ public class ReindexNode extends BaseNode {
 
 	}
 
-	public static ReindexNode of(Function<Builder, ObjectBuilder<ReindexNode>> fn) {
-		return fn.apply(new Builder()).build();
+	public static ReindexNode of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -96,13 +98,6 @@ public class ReindexNode extends BaseNode {
 		public final Builder tasks(Map<String, ReindexTask> value) {
 			this.tasks = value;
 			return this;
-		}
-
-		/**
-		 * Set {@link #tasks(Map)} to a singleton map.
-		 */
-		public Builder tasks(String key, Function<ReindexTask.Builder, ObjectBuilder<ReindexTask>> fn) {
-			return this.tasks(Collections.singletonMap(key, fn.apply(new ReindexTask.Builder()).build()));
 		}
 
 		public final Builder tasks(

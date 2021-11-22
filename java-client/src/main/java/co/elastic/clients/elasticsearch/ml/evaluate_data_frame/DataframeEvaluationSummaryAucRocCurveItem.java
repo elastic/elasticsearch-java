@@ -35,7 +35,7 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 
 // typedef: ml.evaluate_data_frame.DataframeEvaluationSummaryAucRocCurveItem
 @JsonpDeserializable
@@ -56,9 +56,10 @@ public class DataframeEvaluationSummaryAucRocCurveItem implements JsonpSerializa
 
 	}
 
-	public static DataframeEvaluationSummaryAucRocCurveItem of(
-			Function<Builder, ObjectBuilder<DataframeEvaluationSummaryAucRocCurveItem>> fn) {
-		return fn.apply(new Builder()).build();
+	public static DataframeEvaluationSummaryAucRocCurveItem of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**

@@ -28,12 +28,12 @@ import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.transport.DictionaryResponse;
+import co.elastic.clients.transport.endpoints.DictionaryResponse;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 
 // typedef: security.get_role.Response
 @JsonpDeserializable
@@ -45,8 +45,10 @@ public class GetRoleResponse extends DictionaryResponse<String, Role> {
 
 	}
 
-	public static GetRoleResponse of(Function<Builder, ObjectBuilder<GetRoleResponse>> fn) {
-		return fn.apply(new Builder()).build();
+	public static GetRoleResponse of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	// ---------------------------------------------------------------------------------------------

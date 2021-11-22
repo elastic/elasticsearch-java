@@ -33,7 +33,7 @@ import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: ml.update_model_snapshot.Response
@@ -50,8 +50,10 @@ public class UpdateModelSnapshotResponse extends AcknowledgedResponseBase {
 
 	}
 
-	public static UpdateModelSnapshotResponse of(Function<Builder, ObjectBuilder<UpdateModelSnapshotResponse>> fn) {
-		return fn.apply(new Builder()).build();
+	public static UpdateModelSnapshotResponse of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -90,8 +92,10 @@ public class UpdateModelSnapshotResponse extends AcknowledgedResponseBase {
 		/**
 		 * Required - API name: {@code model}
 		 */
-		public final Builder model(Function<ModelSnapshot.Builder, ObjectBuilder<ModelSnapshot>> fn) {
-			return this.model(fn.apply(new ModelSnapshot.Builder()).build());
+		public final Builder model(Consumer<ModelSnapshot.Builder> fn) {
+			ModelSnapshot.Builder builder = new ModelSnapshot.Builder();
+			fn.accept(builder);
+			return this.model(builder.build());
 		}
 
 		@Override

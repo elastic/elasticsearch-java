@@ -29,15 +29,16 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -57,8 +58,10 @@ public class GetOverallBucketsResponse implements JsonpSerializable {
 
 	}
 
-	public static GetOverallBucketsResponse of(Function<Builder, ObjectBuilder<GetOverallBucketsResponse>> fn) {
-		return fn.apply(new Builder()).build();
+	public static GetOverallBucketsResponse of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -147,13 +150,9 @@ public class GetOverallBucketsResponse implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code overall_buckets}
 		 */
-		@SafeVarargs
-		public final Builder overallBuckets(Function<OverallBucket.Builder, ObjectBuilder<OverallBucket>>... fns) {
-			this.overallBuckets = new ArrayList<>(fns.length);
-			for (Function<OverallBucket.Builder, ObjectBuilder<OverallBucket>> fn : fns) {
-				this.overallBuckets.add(fn.apply(new OverallBucket.Builder()).build());
-			}
-			return this;
+		public final Builder overallBuckets(
+				Function<ListBuilder<OverallBucket, OverallBucket.Builder>, ObjectBuilder<List<OverallBucket>>> fn) {
+			return overallBuckets(fn.apply(new ListBuilder<>(OverallBucket.Builder::new)).build());
 		}
 
 		/**

@@ -35,7 +35,7 @@ import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: _types.mapping.DenseVectorProperty
@@ -64,16 +64,18 @@ public class DenseVectorProperty extends PropertyBase implements PropertyVariant
 
 	}
 
-	public static DenseVectorProperty of(Function<Builder, ObjectBuilder<DenseVectorProperty>> fn) {
-		return fn.apply(new Builder()).build();
+	public static DenseVectorProperty of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
-	 * {@link Property} variant type
+	 * Property variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "dense_vector";
+	public Property.Kind _propertyKind() {
+		return Property.Kind.DenseVector;
 	}
 
 	/**
@@ -186,9 +188,10 @@ public class DenseVectorProperty extends PropertyBase implements PropertyVariant
 		/**
 		 * API name: {@code index_options}
 		 */
-		public final Builder indexOptions(
-				Function<DenseVectorIndexOptions.Builder, ObjectBuilder<DenseVectorIndexOptions>> fn) {
-			return this.indexOptions(fn.apply(new DenseVectorIndexOptions.Builder()).build());
+		public final Builder indexOptions(Consumer<DenseVectorIndexOptions.Builder> fn) {
+			DenseVectorIndexOptions.Builder builder = new DenseVectorIndexOptions.Builder();
+			fn.accept(builder);
+			return this.indexOptions(builder.build());
 		}
 
 		@Override

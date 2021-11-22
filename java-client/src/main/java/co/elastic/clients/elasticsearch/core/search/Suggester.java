@@ -35,10 +35,10 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -60,8 +60,10 @@ public class Suggester implements JsonpSerializable {
 
 	}
 
-	public static Suggester of(Function<Builder, ObjectBuilder<Suggester>> fn) {
-		return fn.apply(new Builder()).build();
+	public static Suggester of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -122,13 +124,6 @@ public class Suggester implements JsonpSerializable {
 		public final Builder suggesters(@Nullable Map<String, FieldSuggester> value) {
 			this.suggesters = value;
 			return this;
-		}
-
-		/**
-		 * Set {@link #suggesters(Map)} to a singleton map.
-		 */
-		public Builder suggesters(String key, Function<FieldSuggester.Builder, ObjectBuilder<FieldSuggester>> fn) {
-			return this.suggesters(Collections.singletonMap(key, fn.apply(new FieldSuggester.Builder()).build()));
 		}
 
 		public final Builder suggesters(

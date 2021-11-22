@@ -38,7 +38,7 @@ import java.lang.String;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: snapshot.restore.SnapshotRestore
@@ -60,8 +60,10 @@ public class SnapshotRestore implements JsonpSerializable {
 
 	}
 
-	public static SnapshotRestore of(Function<Builder, ObjectBuilder<SnapshotRestore>> fn) {
-		return fn.apply(new Builder()).build();
+	public static SnapshotRestore of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -161,8 +163,10 @@ public class SnapshotRestore implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code shards}
 		 */
-		public final Builder shards(Function<ShardStatistics.Builder, ObjectBuilder<ShardStatistics>> fn) {
-			return this.shards(fn.apply(new ShardStatistics.Builder()).build());
+		public final Builder shards(Consumer<ShardStatistics.Builder> fn) {
+			ShardStatistics.Builder builder = new ShardStatistics.Builder();
+			fn.accept(builder);
+			return this.shards(builder.build());
 		}
 
 		/**

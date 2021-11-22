@@ -33,7 +33,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.InferenceAggregation
@@ -54,16 +54,18 @@ public class InferenceAggregation extends PipelineAggregationBase implements Agg
 
 	}
 
-	public static InferenceAggregation of(Function<Builder, ObjectBuilder<InferenceAggregation>> fn) {
-		return fn.apply(new Builder()).build();
+	public static InferenceAggregation of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
-	 * {@link Aggregation} variant type
+	 * Aggregation variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "inference";
+	public Aggregation.Kind _aggregationKind() {
+		return Aggregation.Kind.Inference;
 	}
 
 	/**
@@ -127,8 +129,10 @@ public class InferenceAggregation extends PipelineAggregationBase implements Agg
 		/**
 		 * API name: {@code inference_config}
 		 */
-		public final Builder inferenceConfig(Function<InferenceConfig.Builder, ObjectBuilder<InferenceConfig>> fn) {
-			return this.inferenceConfig(fn.apply(new InferenceConfig.Builder()).build());
+		public final Builder inferenceConfig(Consumer<InferenceConfig.Builder> fn) {
+			InferenceConfig.Builder builder = new InferenceConfig.Builder();
+			fn.accept(builder);
+			return this.inferenceConfig(builder.build());
 		}
 
 		@Override

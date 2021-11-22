@@ -40,7 +40,7 @@ import java.lang.Integer;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: ilm.explain_lifecycle.LifecycleExplainManaged
@@ -102,16 +102,18 @@ public class LifecycleExplainManaged implements LifecycleExplainVariant, JsonpSe
 
 	}
 
-	public static LifecycleExplainManaged of(Function<Builder, ObjectBuilder<LifecycleExplainManaged>> fn) {
-		return fn.apply(new Builder()).build();
+	public static LifecycleExplainManaged of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
-	 * {@link LifecycleExplain} variant type
+	 * LifecycleExplain variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "true";
+	public LifecycleExplain.Kind _lifecycleExplainKind() {
+		return LifecycleExplain.Kind.True;
 	}
 
 	/**
@@ -363,8 +365,10 @@ public class LifecycleExplainManaged implements LifecycleExplainVariant, JsonpSe
 		/**
 		 * Required - API name: {@code age}
 		 */
-		public final Builder age(Function<Time.Builder, ObjectBuilder<Time>> fn) {
-			return this.age(fn.apply(new Time.Builder()).build());
+		public final Builder age(Consumer<Time.Builder> fn) {
+			Time.Builder builder = new Time.Builder();
+			fn.accept(builder);
+			return this.age(builder.build());
 		}
 
 		/**
@@ -466,9 +470,10 @@ public class LifecycleExplainManaged implements LifecycleExplainVariant, JsonpSe
 		/**
 		 * Required - API name: {@code phase_execution}
 		 */
-		public final Builder phaseExecution(
-				Function<LifecycleExplainPhaseExecution.Builder, ObjectBuilder<LifecycleExplainPhaseExecution>> fn) {
-			return this.phaseExecution(fn.apply(new LifecycleExplainPhaseExecution.Builder()).build());
+		public final Builder phaseExecution(Consumer<LifecycleExplainPhaseExecution.Builder> fn) {
+			LifecycleExplainPhaseExecution.Builder builder = new LifecycleExplainPhaseExecution.Builder();
+			fn.accept(builder);
+			return this.phaseExecution(builder.build());
 		}
 
 		/**

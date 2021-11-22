@@ -35,7 +35,7 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: _global.rank_eval.RankEvalHitItem
@@ -55,8 +55,10 @@ public class RankEvalHitItem implements JsonpSerializable {
 
 	}
 
-	public static RankEvalHitItem of(Function<Builder, ObjectBuilder<RankEvalHitItem>> fn) {
-		return fn.apply(new Builder()).build();
+	public static RankEvalHitItem of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -118,8 +120,10 @@ public class RankEvalHitItem implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code hit}
 		 */
-		public final Builder hit(Function<RankEvalHit.Builder, ObjectBuilder<RankEvalHit>> fn) {
-			return this.hit(fn.apply(new RankEvalHit.Builder()).build());
+		public final Builder hit(Consumer<RankEvalHit.Builder> fn) {
+			RankEvalHit.Builder builder = new RankEvalHit.Builder();
+			fn.accept(builder);
+			return this.hit(builder.build());
 		}
 
 		/**

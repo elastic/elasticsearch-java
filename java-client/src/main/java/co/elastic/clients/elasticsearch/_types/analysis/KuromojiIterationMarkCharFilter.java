@@ -33,7 +33,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 
 // typedef: _types.analysis.KuromojiIterationMarkCharFilter
 @JsonpDeserializable
@@ -52,17 +52,18 @@ public class KuromojiIterationMarkCharFilter extends CharFilterBase implements C
 
 	}
 
-	public static KuromojiIterationMarkCharFilter of(
-			Function<Builder, ObjectBuilder<KuromojiIterationMarkCharFilter>> fn) {
-		return fn.apply(new Builder()).build();
+	public static KuromojiIterationMarkCharFilter of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
-	 * {@link CharFilterDefinition} variant type
+	 * CharFilterDefinition variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "kuromoji_iteration_mark";
+	public CharFilterDefinition.Kind _charFilterDefinitionKind() {
+		return CharFilterDefinition.Kind.KuromojiIterationMark;
 	}
 
 	/**

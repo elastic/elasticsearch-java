@@ -36,9 +36,9 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.Collections;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -55,8 +55,10 @@ public class IndexAliases implements JsonpSerializable {
 
 	}
 
-	public static IndexAliases of(Function<Builder, ObjectBuilder<IndexAliases>> fn) {
-		return fn.apply(new Builder()).build();
+	public static IndexAliases of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -105,13 +107,6 @@ public class IndexAliases implements JsonpSerializable {
 		public final Builder aliases(Map<String, AliasDefinition> value) {
 			this.aliases = value;
 			return this;
-		}
-
-		/**
-		 * Set {@link #aliases(Map)} to a singleton map.
-		 */
-		public Builder aliases(String key, Function<AliasDefinition.Builder, ObjectBuilder<AliasDefinition>> fn) {
-			return this.aliases(Collections.singletonMap(key, fn.apply(new AliasDefinition.Builder()).build()));
 		}
 
 		public final Builder aliases(

@@ -23,13 +23,23 @@
 
 package co.elastic.clients.elasticsearch.watcher;
 
+import co.elastic.clients.json.JsonEnum;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
-import co.elastic.clients.util.StringEnum;
 
 @JsonpDeserializable
-public enum ConditionType implements StringEnum {
-	Always("always"), Never("never"), Script("script"), Compare("compare"), ArrayCompare("array_compare");
+public enum ConditionType implements JsonEnum {
+	Always("always"),
+
+	Never("never"),
+
+	Script("script"),
+
+	Compare("compare"),
+
+	ArrayCompare("array_compare"),
+
+	;
 
 	private final String jsonValue;
 
@@ -41,6 +51,6 @@ public enum ConditionType implements StringEnum {
 		return this.jsonValue;
 	}
 
-	public static final StringEnum.Deserializer<ConditionType> _DESERIALIZER = new StringEnum.Deserializer<>(
+	public static final JsonEnum.Deserializer<ConditionType> _DESERIALIZER = new JsonEnum.Deserializer<>(
 			ConditionType.values());
 }

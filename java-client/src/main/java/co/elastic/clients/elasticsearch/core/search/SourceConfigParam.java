@@ -40,24 +40,26 @@ import java.lang.Object;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 // typedef: _global.search._types.SourceConfigParam
 // union type: Union[]
 @JsonpDeserializable
-public class SourceConfigParam implements TaggedUnion<Object>, JsonpSerializable {
+public class SourceConfigParam implements TaggedUnion<SourceConfigParam.Kind, Object>, JsonpSerializable {
 
-	public static final String FIELDS = "fields";
-	public static final String FETCH = "fetch";
+	public enum Kind {
+		Fields, Fetch
 
-	private final String _type;
+	}
+
+	private final Kind _kind;
 	private final Object _value;
 
 	@Override
-	public final String _type() {
-		return _type;
+	public final Kind _kind() {
+		return _kind;
 	}
 
 	@Override
@@ -65,38 +67,41 @@ public class SourceConfigParam implements TaggedUnion<Object>, JsonpSerializable
 		return _value;
 	}
 
-	public SourceConfigParam(String type, Object value) {
-		this._type = type;
+	public SourceConfigParam(Kind kind, Object value) {
+		this._kind = kind;
 		this._value = value;
 	}
 
 	public String _toJsonString() {
-		switch (_type) {
-			case "fields" :
+		switch (_kind) {
+			case Fields :
 				return this.fields().stream().map(v -> v).collect(Collectors.joining(","));
-			case "fetch" :
+			case Fetch :
 				return String.valueOf(this.fetch());
 
 			default :
-				throw new IllegalStateException("Unknown type " + _type);
+				throw new IllegalStateException("Unknown kind " + _kind);
 		}
 	}
+
 	private SourceConfigParam(Builder builder) {
 
-		this._type = ModelTypeHelper.requireNonNull(builder._type, builder, "<variant type>");
+		this._kind = ModelTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
 		this._value = ModelTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
 
 	}
 
-	public static SourceConfigParam of(Function<Builder, ObjectBuilder<SourceConfigParam>> fn) {
-		return fn.apply(new Builder()).build();
+	public static SourceConfigParam of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
 	 * Is this variant instance of kind {@code fields}?
 	 */
-	public boolean _isFields() {
-		return FIELDS.equals(_type());
+	public boolean isFields() {
+		return _kind == Kind.Fields;
 	}
 
 	/**
@@ -106,14 +111,14 @@ public class SourceConfigParam implements TaggedUnion<Object>, JsonpSerializable
 	 *             if the current variant is not of the {@code fields} kind.
 	 */
 	public List<String> fields() {
-		return TaggedUnionUtils.get(this, FIELDS);
+		return TaggedUnionUtils.get(this, Kind.Fields);
 	}
 
 	/**
 	 * Is this variant instance of kind {@code fetch}?
 	 */
-	public boolean _isFetch() {
-		return FETCH.equals(_type());
+	public boolean isFetch() {
+		return _kind == Kind.Fetch;
 	}
 
 	/**
@@ -123,7 +128,7 @@ public class SourceConfigParam implements TaggedUnion<Object>, JsonpSerializable
 	 *             if the current variant is not of the {@code fetch} kind.
 	 */
 	public Boolean fetch() {
-		return TaggedUnionUtils.get(this, FETCH);
+		return TaggedUnionUtils.get(this, Kind.Fetch);
 	}
 
 	@Override
@@ -131,8 +136,8 @@ public class SourceConfigParam implements TaggedUnion<Object>, JsonpSerializable
 		if (_value instanceof JsonpSerializable) {
 			((JsonpSerializable) _value).serialize(generator, mapper);
 		} else {
-			switch (_type) {
-				case FIELDS :
+			switch (_kind) {
+				case Fields :
 					generator.writeStartArray();
 					for (String item0 : ((List<String>) this._value)) {
 						generator.write(item0);
@@ -141,7 +146,7 @@ public class SourceConfigParam implements TaggedUnion<Object>, JsonpSerializable
 					generator.writeEnd();
 
 					break;
-				case FETCH :
+				case Fetch :
 					generator.write(((Boolean) this._value));
 
 					break;
@@ -151,17 +156,17 @@ public class SourceConfigParam implements TaggedUnion<Object>, JsonpSerializable
 	}
 
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<SourceConfigParam> {
-		private String _type;
+		private Kind _kind;
 		private Object _value;
 
 		public Builder fields(List<String> v) {
-			this._type = FIELDS;
+			this._kind = Kind.Fields;
 			this._value = v;
 			return this;
 		}
 
 		public Builder fetch(Boolean v) {
-			this._type = FETCH;
+			this._kind = Kind.Fetch;
 			this._value = v;
 			return this;
 		}
@@ -174,9 +179,9 @@ public class SourceConfigParam implements TaggedUnion<Object>, JsonpSerializable
 	}
 
 	private static JsonpDeserializer<SourceConfigParam> buildSourceConfigParamDeserializer() {
-		return new UnionDeserializer.Builder<>(SourceConfigParam::new, false)
-				.addMember("fields", JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()))
-				.addMember("fetch", JsonpDeserializer.booleanDeserializer()).build();
+		return new UnionDeserializer.Builder<SourceConfigParam, Kind, Object>(SourceConfigParam::new, false)
+				.addMember(Kind.Fields, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()))
+				.addMember(Kind.Fetch, JsonpDeserializer.booleanDeserializer()).build();
 	}
 
 	public static final JsonpDeserializer<SourceConfigParam> _DESERIALIZER = JsonpDeserializer

@@ -27,6 +27,7 @@ import co.elastic.clients.elasticsearch._types.aggregations.DateHistogramAggrega
 import co.elastic.clients.elasticsearch._types.aggregations.GeoTileGridAggregation;
 import co.elastic.clients.elasticsearch._types.aggregations.HistogramAggregation;
 import co.elastic.clients.elasticsearch._types.aggregations.TermsAggregation;
+import co.elastic.clients.json.JsonEnum;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -41,25 +42,47 @@ import co.elastic.clients.util.TaggedUnionUtils;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Object;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: transform._types.PivotGroupByContainer
 // union type: Container[]
 @JsonpDeserializable
-public class PivotGroupBy implements TaggedUnion<Object>, JsonpSerializable {
+public class PivotGroupBy implements TaggedUnion<PivotGroupBy.Kind, Object>, JsonpSerializable {
 
-	public static final String DATE_HISTOGRAM = "date_histogram";
-	public static final String GEOTILE_GRID = "geotile_grid";
-	public static final String HISTOGRAM = "histogram";
-	public static final String TERMS = "terms";
+	/**
+	 * {@link PivotGroupBy} variant kinds.
+	 */
 
-	private final String _type;
+	public enum Kind implements JsonEnum {
+		DateHistogram("date_histogram"),
+
+		GeotileGrid("geotile_grid"),
+
+		Histogram("histogram"),
+
+		Terms("terms"),
+
+		;
+
+		private final String jsonValue;
+
+		Kind(String jsonValue) {
+			this.jsonValue = jsonValue;
+		}
+
+		public String jsonValue() {
+			return this.jsonValue;
+		}
+
+	}
+
+	private final Kind _kind;
 	private final Object _value;
 
 	@Override
-	public final String _type() {
-		return _type;
+	public final Kind _kind() {
+		return _kind;
 	}
 
 	@Override
@@ -69,27 +92,29 @@ public class PivotGroupBy implements TaggedUnion<Object>, JsonpSerializable {
 
 	public PivotGroupBy(PivotGroupByVariant value) {
 
-		this._type = ModelTypeHelper.requireNonNull(value._variantType(), this, "<variant type>");
+		this._kind = ModelTypeHelper.requireNonNull(value._pivotGroupByKind(), this, "<variant kind>");
 		this._value = ModelTypeHelper.requireNonNull(value, this, "<variant value>");
 
 	}
 
 	private PivotGroupBy(Builder builder) {
 
-		this._type = ModelTypeHelper.requireNonNull(builder._type, builder, "<variant type>");
+		this._kind = ModelTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
 		this._value = ModelTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
 
 	}
 
-	public static PivotGroupBy of(Function<Builder, ObjectBuilder<PivotGroupBy>> fn) {
-		return fn.apply(new Builder()).build();
+	public static PivotGroupBy of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
 	 * Is this variant instance of kind {@code date_histogram}?
 	 */
-	public boolean _isDateHistogram() {
-		return DATE_HISTOGRAM.equals(_type());
+	public boolean isDateHistogram() {
+		return _kind == Kind.DateHistogram;
 	}
 
 	/**
@@ -99,14 +124,14 @@ public class PivotGroupBy implements TaggedUnion<Object>, JsonpSerializable {
 	 *             if the current variant is not of the {@code date_histogram} kind.
 	 */
 	public DateHistogramAggregation dateHistogram() {
-		return TaggedUnionUtils.get(this, DATE_HISTOGRAM);
+		return TaggedUnionUtils.get(this, Kind.DateHistogram);
 	}
 
 	/**
 	 * Is this variant instance of kind {@code geotile_grid}?
 	 */
-	public boolean _isGeotileGrid() {
-		return GEOTILE_GRID.equals(_type());
+	public boolean isGeotileGrid() {
+		return _kind == Kind.GeotileGrid;
 	}
 
 	/**
@@ -116,14 +141,14 @@ public class PivotGroupBy implements TaggedUnion<Object>, JsonpSerializable {
 	 *             if the current variant is not of the {@code geotile_grid} kind.
 	 */
 	public GeoTileGridAggregation geotileGrid() {
-		return TaggedUnionUtils.get(this, GEOTILE_GRID);
+		return TaggedUnionUtils.get(this, Kind.GeotileGrid);
 	}
 
 	/**
 	 * Is this variant instance of kind {@code histogram}?
 	 */
-	public boolean _isHistogram() {
-		return HISTOGRAM.equals(_type());
+	public boolean isHistogram() {
+		return _kind == Kind.Histogram;
 	}
 
 	/**
@@ -133,14 +158,14 @@ public class PivotGroupBy implements TaggedUnion<Object>, JsonpSerializable {
 	 *             if the current variant is not of the {@code histogram} kind.
 	 */
 	public HistogramAggregation histogram() {
-		return TaggedUnionUtils.get(this, HISTOGRAM);
+		return TaggedUnionUtils.get(this, Kind.Histogram);
 	}
 
 	/**
 	 * Is this variant instance of kind {@code terms}?
 	 */
-	public boolean _isTerms() {
-		return TERMS.equals(_type());
+	public boolean isTerms() {
+		return _kind == Kind.Terms;
 	}
 
 	/**
@@ -150,7 +175,7 @@ public class PivotGroupBy implements TaggedUnion<Object>, JsonpSerializable {
 	 *             if the current variant is not of the {@code terms} kind.
 	 */
 	public TermsAggregation terms() {
-		return TaggedUnionUtils.get(this, TERMS);
+		return TaggedUnionUtils.get(this, Kind.Terms);
 	}
 
 	@Override
@@ -159,7 +184,7 @@ public class PivotGroupBy implements TaggedUnion<Object>, JsonpSerializable {
 
 		generator.writeStartObject();
 
-		generator.writeKey(_type);
+		generator.writeKey(_kind.jsonValue());
 		if (_value instanceof JsonpSerializable) {
 			((JsonpSerializable) _value).serialize(generator, mapper);
 		}
@@ -169,48 +194,55 @@ public class PivotGroupBy implements TaggedUnion<Object>, JsonpSerializable {
 	}
 
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PivotGroupBy> {
-		private String _type;
+		private Kind _kind;
 		private Object _value;
 
 		public Builder dateHistogram(DateHistogramAggregation v) {
-			this._type = DATE_HISTOGRAM;
+			this._kind = Kind.DateHistogram;
 			this._value = v;
 			return this;
 		}
 
-		public Builder dateHistogram(
-				Function<DateHistogramAggregation.Builder, ObjectBuilder<DateHistogramAggregation>> f) {
-			return this.dateHistogram(f.apply(new DateHistogramAggregation.Builder()).build());
+		public Builder dateHistogram(Consumer<DateHistogramAggregation.Builder> fn) {
+			DateHistogramAggregation.Builder builder = new DateHistogramAggregation.Builder();
+			fn.accept(builder);
+			return this.dateHistogram(builder.build());
 		}
 
 		public Builder geotileGrid(GeoTileGridAggregation v) {
-			this._type = GEOTILE_GRID;
+			this._kind = Kind.GeotileGrid;
 			this._value = v;
 			return this;
 		}
 
-		public Builder geotileGrid(Function<GeoTileGridAggregation.Builder, ObjectBuilder<GeoTileGridAggregation>> f) {
-			return this.geotileGrid(f.apply(new GeoTileGridAggregation.Builder()).build());
+		public Builder geotileGrid(Consumer<GeoTileGridAggregation.Builder> fn) {
+			GeoTileGridAggregation.Builder builder = new GeoTileGridAggregation.Builder();
+			fn.accept(builder);
+			return this.geotileGrid(builder.build());
 		}
 
 		public Builder histogram(HistogramAggregation v) {
-			this._type = HISTOGRAM;
+			this._kind = Kind.Histogram;
 			this._value = v;
 			return this;
 		}
 
-		public Builder histogram(Function<HistogramAggregation.Builder, ObjectBuilder<HistogramAggregation>> f) {
-			return this.histogram(f.apply(new HistogramAggregation.Builder()).build());
+		public Builder histogram(Consumer<HistogramAggregation.Builder> fn) {
+			HistogramAggregation.Builder builder = new HistogramAggregation.Builder();
+			fn.accept(builder);
+			return this.histogram(builder.build());
 		}
 
 		public Builder terms(TermsAggregation v) {
-			this._type = TERMS;
+			this._kind = Kind.Terms;
 			this._value = v;
 			return this;
 		}
 
-		public Builder terms(Function<TermsAggregation.Builder, ObjectBuilder<TermsAggregation>> f) {
-			return this.terms(f.apply(new TermsAggregation.Builder()).build());
+		public Builder terms(Consumer<TermsAggregation.Builder> fn) {
+			TermsAggregation.Builder builder = new TermsAggregation.Builder();
+			fn.accept(builder);
+			return this.terms(builder.build());
 		}
 
 		public PivotGroupBy build() {

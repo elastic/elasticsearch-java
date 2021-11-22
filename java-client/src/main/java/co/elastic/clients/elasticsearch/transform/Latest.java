@@ -37,7 +37,7 @@ import java.lang.String;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: transform._types.Latest
@@ -56,8 +56,10 @@ public class Latest implements JsonpSerializable {
 
 	}
 
-	public static Latest of(Function<Builder, ObjectBuilder<Latest>> fn) {
-		return fn.apply(new Builder()).build();
+	public static Latest of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**

@@ -37,7 +37,7 @@ import java.lang.Integer;
 import java.lang.Long;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: snapshot._types.IndexDetails
@@ -64,8 +64,10 @@ public class IndexDetails implements JsonpSerializable {
 
 	}
 
-	public static IndexDetails of(Function<Builder, ObjectBuilder<IndexDetails>> fn) {
-		return fn.apply(new Builder()).build();
+	public static IndexDetails of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**

@@ -26,24 +26,25 @@ package co.elastic.clients.elasticsearch.migration;
 import co.elastic.clients.ApiClient;
 import co.elastic.clients.elasticsearch._types.ElasticsearchException;
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
+import co.elastic.clients.transport.ElasticsearchTransport;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.Transport;
 import co.elastic.clients.transport.TransportOptions;
 import co.elastic.clients.util.ObjectBuilder;
 import java.io.IOException;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 /**
  * Client for the migration namespace.
  */
-public class ElasticsearchMigrationClient extends ApiClient<ElasticsearchMigrationClient> {
+public class ElasticsearchMigrationClient extends ApiClient<ElasticsearchTransport, ElasticsearchMigrationClient> {
 
-	public ElasticsearchMigrationClient(Transport transport) {
+	public ElasticsearchMigrationClient(ElasticsearchTransport transport) {
 		super(transport, null);
 	}
 
-	public ElasticsearchMigrationClient(Transport transport, @Nullable TransportOptions transportOptions) {
+	public ElasticsearchMigrationClient(ElasticsearchTransport transport, @Nullable TransportOptions transportOptions) {
 		super(transport, transportOptions);
 	}
 
@@ -84,10 +85,11 @@ public class ElasticsearchMigrationClient extends ApiClient<ElasticsearchMigrati
 	 *      on elastic.co</a>
 	 */
 
-	public final DeprecationsResponse deprecations(
-			Function<DeprecationsRequest.Builder, ObjectBuilder<DeprecationsRequest>> fn)
+	public final DeprecationsResponse deprecations(Consumer<DeprecationsRequest.Builder> fn)
 			throws IOException, ElasticsearchException {
-		return deprecations(fn.apply(new DeprecationsRequest.Builder()).build());
+		DeprecationsRequest.Builder builder = new DeprecationsRequest.Builder();
+		fn.accept(builder);
+		return deprecations(builder.build());
 	}
 
 	/**

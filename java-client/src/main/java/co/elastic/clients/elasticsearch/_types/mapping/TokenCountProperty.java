@@ -34,7 +34,7 @@ import java.lang.Boolean;
 import java.lang.Double;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: _types.mapping.TokenCountProperty
@@ -68,16 +68,18 @@ public class TokenCountProperty extends DocValuesPropertyBase implements Propert
 
 	}
 
-	public static TokenCountProperty of(Function<Builder, ObjectBuilder<TokenCountProperty>> fn) {
-		return fn.apply(new Builder()).build();
+	public static TokenCountProperty of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
-	 * {@link Property} variant type
+	 * Property variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "token_count";
+	public Property.Kind _propertyKind() {
+		return Property.Kind.TokenCount;
 	}
 
 	/**

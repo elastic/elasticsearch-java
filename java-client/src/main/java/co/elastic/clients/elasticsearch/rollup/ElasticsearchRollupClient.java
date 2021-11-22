@@ -26,25 +26,26 @@ package co.elastic.clients.elasticsearch.rollup;
 import co.elastic.clients.ApiClient;
 import co.elastic.clients.elasticsearch._types.ElasticsearchException;
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
+import co.elastic.clients.transport.ElasticsearchTransport;
 import co.elastic.clients.transport.Endpoint;
-import co.elastic.clients.transport.EndpointWithResponseMapperAttr;
 import co.elastic.clients.transport.Transport;
 import co.elastic.clients.transport.TransportOptions;
+import co.elastic.clients.transport.endpoints.EndpointWithResponseMapperAttr;
 import co.elastic.clients.util.ObjectBuilder;
 import java.io.IOException;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 /**
  * Client for the rollup namespace.
  */
-public class ElasticsearchRollupClient extends ApiClient<ElasticsearchRollupClient> {
+public class ElasticsearchRollupClient extends ApiClient<ElasticsearchTransport, ElasticsearchRollupClient> {
 
-	public ElasticsearchRollupClient(Transport transport) {
+	public ElasticsearchRollupClient(ElasticsearchTransport transport) {
 		super(transport, null);
 	}
 
-	public ElasticsearchRollupClient(Transport transport, @Nullable TransportOptions transportOptions) {
+	public ElasticsearchRollupClient(ElasticsearchTransport transport, @Nullable TransportOptions transportOptions) {
 		super(transport, transportOptions);
 	}
 
@@ -81,9 +82,11 @@ public class ElasticsearchRollupClient extends ApiClient<ElasticsearchRollupClie
 	 *      on elastic.co</a>
 	 */
 
-	public final DeleteJobResponse deleteJob(Function<DeleteJobRequest.Builder, ObjectBuilder<DeleteJobRequest>> fn)
+	public final DeleteJobResponse deleteJob(Consumer<DeleteJobRequest.Builder> fn)
 			throws IOException, ElasticsearchException {
-		return deleteJob(fn.apply(new DeleteJobRequest.Builder()).build());
+		DeleteJobRequest.Builder builder = new DeleteJobRequest.Builder();
+		fn.accept(builder);
+		return deleteJob(builder.build());
 	}
 
 	// ----- Endpoint: rollup.get_jobs
@@ -114,9 +117,11 @@ public class ElasticsearchRollupClient extends ApiClient<ElasticsearchRollupClie
 	 *      on elastic.co</a>
 	 */
 
-	public final GetJobsResponse getJobs(Function<GetJobsRequest.Builder, ObjectBuilder<GetJobsRequest>> fn)
+	public final GetJobsResponse getJobs(Consumer<GetJobsRequest.Builder> fn)
 			throws IOException, ElasticsearchException {
-		return getJobs(fn.apply(new GetJobsRequest.Builder()).build());
+		GetJobsRequest.Builder builder = new GetJobsRequest.Builder();
+		fn.accept(builder);
+		return getJobs(builder.build());
 	}
 
 	/**
@@ -163,10 +168,11 @@ public class ElasticsearchRollupClient extends ApiClient<ElasticsearchRollupClie
 	 *      on elastic.co</a>
 	 */
 
-	public final GetRollupCapsResponse getRollupCaps(
-			Function<GetRollupCapsRequest.Builder, ObjectBuilder<GetRollupCapsRequest>> fn)
+	public final GetRollupCapsResponse getRollupCaps(Consumer<GetRollupCapsRequest.Builder> fn)
 			throws IOException, ElasticsearchException {
-		return getRollupCaps(fn.apply(new GetRollupCapsRequest.Builder()).build());
+		GetRollupCapsRequest.Builder builder = new GetRollupCapsRequest.Builder();
+		fn.accept(builder);
+		return getRollupCaps(builder.build());
 	}
 
 	/**
@@ -214,10 +220,11 @@ public class ElasticsearchRollupClient extends ApiClient<ElasticsearchRollupClie
 	 *      on elastic.co</a>
 	 */
 
-	public final GetRollupIndexCapsResponse getRollupIndexCaps(
-			Function<GetRollupIndexCapsRequest.Builder, ObjectBuilder<GetRollupIndexCapsRequest>> fn)
+	public final GetRollupIndexCapsResponse getRollupIndexCaps(Consumer<GetRollupIndexCapsRequest.Builder> fn)
 			throws IOException, ElasticsearchException {
-		return getRollupIndexCaps(fn.apply(new GetRollupIndexCapsRequest.Builder()).build());
+		GetRollupIndexCapsRequest.Builder builder = new GetRollupIndexCapsRequest.Builder();
+		fn.accept(builder);
+		return getRollupIndexCaps(builder.build());
 	}
 
 	// ----- Endpoint: rollup.put_job
@@ -248,9 +255,10 @@ public class ElasticsearchRollupClient extends ApiClient<ElasticsearchRollupClie
 	 *      on elastic.co</a>
 	 */
 
-	public final PutJobResponse putJob(Function<PutJobRequest.Builder, ObjectBuilder<PutJobRequest>> fn)
-			throws IOException, ElasticsearchException {
-		return putJob(fn.apply(new PutJobRequest.Builder()).build());
+	public final PutJobResponse putJob(Consumer<PutJobRequest.Builder> fn) throws IOException, ElasticsearchException {
+		PutJobRequest.Builder builder = new PutJobRequest.Builder();
+		fn.accept(builder);
+		return putJob(builder.build());
 	}
 
 	// ----- Endpoint: rollup.rollup
@@ -281,9 +289,10 @@ public class ElasticsearchRollupClient extends ApiClient<ElasticsearchRollupClie
 	 *      on elastic.co</a>
 	 */
 
-	public final RollupResponse rollup(Function<RollupRequest.Builder, ObjectBuilder<RollupRequest>> fn)
-			throws IOException, ElasticsearchException {
-		return rollup(fn.apply(new RollupRequest.Builder()).build());
+	public final RollupResponse rollup(Consumer<RollupRequest.Builder> fn) throws IOException, ElasticsearchException {
+		RollupRequest.Builder builder = new RollupRequest.Builder();
+		fn.accept(builder);
+		return rollup(builder.build());
 	}
 
 	// ----- Endpoint: rollup.rollup_search
@@ -317,10 +326,11 @@ public class ElasticsearchRollupClient extends ApiClient<ElasticsearchRollupClie
 	 *      on elastic.co</a>
 	 */
 
-	public final <TDocument> RollupSearchResponse<TDocument> rollupSearch(
-			Function<RollupSearchRequest.Builder, ObjectBuilder<RollupSearchRequest>> fn,
+	public final <TDocument> RollupSearchResponse<TDocument> rollupSearch(Consumer<RollupSearchRequest.Builder> fn,
 			Class<TDocument> tDocumentClass) throws IOException, ElasticsearchException {
-		return rollupSearch(fn.apply(new RollupSearchRequest.Builder()).build(), tDocumentClass);
+		RollupSearchRequest.Builder builder = new RollupSearchRequest.Builder();
+		fn.accept(builder);
+		return rollupSearch(builder.build(), tDocumentClass);
 	}
 
 	// ----- Endpoint: rollup.start_job
@@ -351,9 +361,11 @@ public class ElasticsearchRollupClient extends ApiClient<ElasticsearchRollupClie
 	 *      on elastic.co</a>
 	 */
 
-	public final StartJobResponse startJob(Function<StartJobRequest.Builder, ObjectBuilder<StartJobRequest>> fn)
+	public final StartJobResponse startJob(Consumer<StartJobRequest.Builder> fn)
 			throws IOException, ElasticsearchException {
-		return startJob(fn.apply(new StartJobRequest.Builder()).build());
+		StartJobRequest.Builder builder = new StartJobRequest.Builder();
+		fn.accept(builder);
+		return startJob(builder.build());
 	}
 
 	// ----- Endpoint: rollup.stop_job
@@ -384,9 +396,11 @@ public class ElasticsearchRollupClient extends ApiClient<ElasticsearchRollupClie
 	 *      on elastic.co</a>
 	 */
 
-	public final StopJobResponse stopJob(Function<StopJobRequest.Builder, ObjectBuilder<StopJobRequest>> fn)
+	public final StopJobResponse stopJob(Consumer<StopJobRequest.Builder> fn)
 			throws IOException, ElasticsearchException {
-		return stopJob(fn.apply(new StopJobRequest.Builder()).build());
+		StopJobRequest.Builder builder = new StopJobRequest.Builder();
+		fn.accept(builder);
+		return stopJob(builder.build());
 	}
 
 }

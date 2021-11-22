@@ -38,7 +38,7 @@ import java.lang.Integer;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.TrainedModelStats
@@ -64,8 +64,10 @@ public class TrainedModelStats implements JsonpSerializable {
 
 	}
 
-	public static TrainedModelStats of(Function<Builder, ObjectBuilder<TrainedModelStats>> fn) {
-		return fn.apply(new Builder()).build();
+	public static TrainedModelStats of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -194,9 +196,10 @@ public class TrainedModelStats implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code inference_stats}
 		 */
-		public final Builder inferenceStats(
-				Function<TrainedModelInferenceStats.Builder, ObjectBuilder<TrainedModelInferenceStats>> fn) {
-			return this.inferenceStats(fn.apply(new TrainedModelInferenceStats.Builder()).build());
+		public final Builder inferenceStats(Consumer<TrainedModelInferenceStats.Builder> fn) {
+			TrainedModelInferenceStats.Builder builder = new TrainedModelInferenceStats.Builder();
+			fn.accept(builder);
+			return this.inferenceStats(builder.build());
 		}
 
 		/**

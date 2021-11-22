@@ -36,7 +36,7 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
-import co.elastic.clients.transport.SimpleEndpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
@@ -46,7 +46,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: ml.put_trained_model.Request
@@ -70,6 +70,9 @@ public class PutTrainedModelRequest extends RequestBase implements JsonpSerializ
 
 	private final String modelId;
 
+	@Nullable
+	private final TrainedModelType modelType;
+
 	private final List<String> tags;
 
 	// ---------------------------------------------------------------------------------------------
@@ -83,12 +86,15 @@ public class PutTrainedModelRequest extends RequestBase implements JsonpSerializ
 		this.input = ModelTypeHelper.requireNonNull(builder.input, this, "input");
 		this.metadata = builder.metadata;
 		this.modelId = ModelTypeHelper.requireNonNull(builder.modelId, this, "modelId");
+		this.modelType = builder.modelType;
 		this.tags = ModelTypeHelper.unmodifiable(builder.tags);
 
 	}
 
-	public static PutTrainedModelRequest of(Function<Builder, ObjectBuilder<PutTrainedModelRequest>> fn) {
-		return fn.apply(new Builder()).build();
+	public static PutTrainedModelRequest of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -164,6 +170,16 @@ public class PutTrainedModelRequest extends RequestBase implements JsonpSerializ
 	}
 
 	/**
+	 * The model type.
+	 * <p>
+	 * API name: {@code model_type}
+	 */
+	@Nullable
+	public final TrainedModelType modelType() {
+		return this.modelType;
+	}
+
+	/**
 	 * An array of tags to organize the model.
 	 * <p>
 	 * API name: {@code tags}
@@ -209,6 +225,10 @@ public class PutTrainedModelRequest extends RequestBase implements JsonpSerializ
 			this.metadata.serialize(generator, mapper);
 
 		}
+		if (this.modelType != null) {
+			generator.writeKey("model_type");
+			this.modelType.serialize(generator, mapper);
+		}
 		if (ModelTypeHelper.isDefined(this.tags)) {
 			generator.writeKey("tags");
 			generator.writeStartArray();
@@ -247,6 +267,9 @@ public class PutTrainedModelRequest extends RequestBase implements JsonpSerializ
 		private String modelId;
 
 		@Nullable
+		private TrainedModelType modelType;
+
+		@Nullable
 		private List<String> tags;
 
 		/**
@@ -278,8 +301,10 @@ public class PutTrainedModelRequest extends RequestBase implements JsonpSerializ
 		 * <p>
 		 * API name: {@code definition}
 		 */
-		public final Builder definition(Function<Definition.Builder, ObjectBuilder<Definition>> fn) {
-			return this.definition(fn.apply(new Definition.Builder()).build());
+		public final Builder definition(Consumer<Definition.Builder> fn) {
+			Definition.Builder builder = new Definition.Builder();
+			fn.accept(builder);
+			return this.definition(builder.build());
 		}
 
 		/**
@@ -311,8 +336,10 @@ public class PutTrainedModelRequest extends RequestBase implements JsonpSerializ
 		 * <p>
 		 * API name: {@code inference_config}
 		 */
-		public final Builder inferenceConfig(Function<InferenceConfig.Builder, ObjectBuilder<InferenceConfig>> fn) {
-			return this.inferenceConfig(fn.apply(new InferenceConfig.Builder()).build());
+		public final Builder inferenceConfig(Consumer<InferenceConfig.Builder> fn) {
+			InferenceConfig.Builder builder = new InferenceConfig.Builder();
+			fn.accept(builder);
+			return this.inferenceConfig(builder.build());
 		}
 
 		/**
@@ -330,8 +357,10 @@ public class PutTrainedModelRequest extends RequestBase implements JsonpSerializ
 		 * <p>
 		 * API name: {@code input}
 		 */
-		public final Builder input(Function<Input.Builder, ObjectBuilder<Input>> fn) {
-			return this.input(fn.apply(new Input.Builder()).build());
+		public final Builder input(Consumer<Input.Builder> fn) {
+			Input.Builder builder = new Input.Builder();
+			fn.accept(builder);
+			return this.input(builder.build());
 		}
 
 		/**
@@ -351,6 +380,16 @@ public class PutTrainedModelRequest extends RequestBase implements JsonpSerializ
 		 */
 		public final Builder modelId(String value) {
 			this.modelId = value;
+			return this;
+		}
+
+		/**
+		 * The model type.
+		 * <p>
+		 * API name: {@code model_type}
+		 */
+		public final Builder modelType(@Nullable TrainedModelType value) {
+			this.modelType = value;
 			return this;
 		}
 
@@ -404,6 +443,7 @@ public class PutTrainedModelRequest extends RequestBase implements JsonpSerializ
 		op.add(Builder::inferenceConfig, InferenceConfig._DESERIALIZER, "inference_config");
 		op.add(Builder::input, Input._DESERIALIZER, "input");
 		op.add(Builder::metadata, JsonData._DESERIALIZER, "metadata");
+		op.add(Builder::modelType, TrainedModelType._DESERIALIZER, "model_type");
 		op.add(Builder::tags, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "tags");
 
 	}

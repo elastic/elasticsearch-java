@@ -23,12 +23,12 @@
 
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
-import co.elastic.clients.util.UnionVariant;
-
 /**
  * Base interface for {@link FunctionScore} variants.
  */
-public interface FunctionScoreVariant extends UnionVariant {
+public interface FunctionScoreVariant {
+
+	FunctionScore.Kind _functionScoreKind();
 
 	default FunctionScore _toFunctionScore() {
 		return new FunctionScore(this);

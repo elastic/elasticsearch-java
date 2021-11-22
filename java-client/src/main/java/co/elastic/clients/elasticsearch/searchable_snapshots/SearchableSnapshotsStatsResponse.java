@@ -35,7 +35,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: searchable_snapshots.stats.Response
@@ -54,9 +54,10 @@ public class SearchableSnapshotsStatsResponse implements JsonpSerializable {
 
 	}
 
-	public static SearchableSnapshotsStatsResponse of(
-			Function<Builder, ObjectBuilder<SearchableSnapshotsStatsResponse>> fn) {
-		return fn.apply(new Builder()).build();
+	public static SearchableSnapshotsStatsResponse of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**

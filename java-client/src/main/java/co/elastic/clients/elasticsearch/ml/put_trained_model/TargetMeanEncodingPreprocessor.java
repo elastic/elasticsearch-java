@@ -37,7 +37,7 @@ import java.lang.Double;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: ml.put_trained_model.TargetMeanEncodingPreprocessor
@@ -62,17 +62,18 @@ public class TargetMeanEncodingPreprocessor implements PreprocessorVariant, Json
 
 	}
 
-	public static TargetMeanEncodingPreprocessor of(
-			Function<Builder, ObjectBuilder<TargetMeanEncodingPreprocessor>> fn) {
-		return fn.apply(new Builder()).build();
+	public static TargetMeanEncodingPreprocessor of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
-	 * {@link Preprocessor} variant type
+	 * Preprocessor variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "target_mean_encoding";
+	public Preprocessor.Kind _preprocessorKind() {
+		return Preprocessor.Kind.TargetMeanEncoding;
 	}
 
 	/**

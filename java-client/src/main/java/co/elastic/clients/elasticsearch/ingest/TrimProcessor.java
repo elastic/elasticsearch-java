@@ -34,7 +34,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: ingest._types.TrimProcessor
@@ -59,16 +59,18 @@ public class TrimProcessor extends ProcessorBase implements ProcessorVariant {
 
 	}
 
-	public static TrimProcessor of(Function<Builder, ObjectBuilder<TrimProcessor>> fn) {
-		return fn.apply(new Builder()).build();
+	public static TrimProcessor of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
-	 * {@link Processor} variant type
+	 * Processor variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "trim";
+	public Processor.Kind _processorKind() {
+		return Processor.Kind.Trim;
 	}
 
 	/**

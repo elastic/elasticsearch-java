@@ -26,25 +26,27 @@ package co.elastic.clients.elasticsearch.enrich;
 import co.elastic.clients.ApiClient;
 import co.elastic.clients.elasticsearch._types.ElasticsearchException;
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
+import co.elastic.clients.transport.ElasticsearchTransport;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.Transport;
 import co.elastic.clients.transport.TransportOptions;
 import co.elastic.clients.util.ObjectBuilder;
 import java.io.IOException;
 import java.util.concurrent.CompletableFuture;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 /**
  * Client for the enrich namespace.
  */
-public class ElasticsearchEnrichAsyncClient extends ApiClient<ElasticsearchEnrichAsyncClient> {
+public class ElasticsearchEnrichAsyncClient extends ApiClient<ElasticsearchTransport, ElasticsearchEnrichAsyncClient> {
 
-	public ElasticsearchEnrichAsyncClient(Transport transport) {
+	public ElasticsearchEnrichAsyncClient(ElasticsearchTransport transport) {
 		super(transport, null);
 	}
 
-	public ElasticsearchEnrichAsyncClient(Transport transport, @Nullable TransportOptions transportOptions) {
+	public ElasticsearchEnrichAsyncClient(ElasticsearchTransport transport,
+			@Nullable TransportOptions transportOptions) {
 		super(transport, transportOptions);
 	}
 
@@ -82,10 +84,11 @@ public class ElasticsearchEnrichAsyncClient extends ApiClient<ElasticsearchEnric
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<DeletePolicyResponse> deletePolicy(
-			Function<DeletePolicyRequest.Builder, ObjectBuilder<DeletePolicyRequest>> fn)
+	public final CompletableFuture<DeletePolicyResponse> deletePolicy(Consumer<DeletePolicyRequest.Builder> fn)
 			throws IOException, ElasticsearchException {
-		return deletePolicy(fn.apply(new DeletePolicyRequest.Builder()).build());
+		DeletePolicyRequest.Builder builder = new DeletePolicyRequest.Builder();
+		fn.accept(builder);
+		return deletePolicy(builder.build());
 	}
 
 	// ----- Endpoint: enrich.execute_policy
@@ -117,10 +120,11 @@ public class ElasticsearchEnrichAsyncClient extends ApiClient<ElasticsearchEnric
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<ExecutePolicyResponse> executePolicy(
-			Function<ExecutePolicyRequest.Builder, ObjectBuilder<ExecutePolicyRequest>> fn)
+	public final CompletableFuture<ExecutePolicyResponse> executePolicy(Consumer<ExecutePolicyRequest.Builder> fn)
 			throws IOException, ElasticsearchException {
-		return executePolicy(fn.apply(new ExecutePolicyRequest.Builder()).build());
+		ExecutePolicyRequest.Builder builder = new ExecutePolicyRequest.Builder();
+		fn.accept(builder);
+		return executePolicy(builder.build());
 	}
 
 	// ----- Endpoint: enrich.get_policy
@@ -152,10 +156,11 @@ public class ElasticsearchEnrichAsyncClient extends ApiClient<ElasticsearchEnric
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<GetPolicyResponse> getPolicy(
-			Function<GetPolicyRequest.Builder, ObjectBuilder<GetPolicyRequest>> fn)
+	public final CompletableFuture<GetPolicyResponse> getPolicy(Consumer<GetPolicyRequest.Builder> fn)
 			throws IOException, ElasticsearchException {
-		return getPolicy(fn.apply(new GetPolicyRequest.Builder()).build());
+		GetPolicyRequest.Builder builder = new GetPolicyRequest.Builder();
+		fn.accept(builder);
+		return getPolicy(builder.build());
 	}
 
 	/**
@@ -200,10 +205,11 @@ public class ElasticsearchEnrichAsyncClient extends ApiClient<ElasticsearchEnric
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<PutPolicyResponse> putPolicy(
-			Function<PutPolicyRequest.Builder, ObjectBuilder<PutPolicyRequest>> fn)
+	public final CompletableFuture<PutPolicyResponse> putPolicy(Consumer<PutPolicyRequest.Builder> fn)
 			throws IOException, ElasticsearchException {
-		return putPolicy(fn.apply(new PutPolicyRequest.Builder()).build());
+		PutPolicyRequest.Builder builder = new PutPolicyRequest.Builder();
+		fn.accept(builder);
+		return putPolicy(builder.build());
 	}
 
 	// ----- Endpoint: enrich.stats

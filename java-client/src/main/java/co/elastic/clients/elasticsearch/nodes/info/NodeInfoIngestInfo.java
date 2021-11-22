@@ -34,7 +34,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: nodes.info.NodeInfoIngestInfo
@@ -50,8 +50,10 @@ public class NodeInfoIngestInfo implements JsonpSerializable {
 
 	}
 
-	public static NodeInfoIngestInfo of(Function<Builder, ObjectBuilder<NodeInfoIngestInfo>> fn) {
-		return fn.apply(new Builder()).build();
+	public static NodeInfoIngestInfo of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -96,9 +98,10 @@ public class NodeInfoIngestInfo implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code downloader}
 		 */
-		public final Builder downloader(
-				Function<NodeInfoIngestDownloader.Builder, ObjectBuilder<NodeInfoIngestDownloader>> fn) {
-			return this.downloader(fn.apply(new NodeInfoIngestDownloader.Builder()).build());
+		public final Builder downloader(Consumer<NodeInfoIngestDownloader.Builder> fn) {
+			NodeInfoIngestDownloader.Builder builder = new NodeInfoIngestDownloader.Builder();
+			fn.accept(builder);
+			return this.downloader(builder.build());
 		}
 
 		/**

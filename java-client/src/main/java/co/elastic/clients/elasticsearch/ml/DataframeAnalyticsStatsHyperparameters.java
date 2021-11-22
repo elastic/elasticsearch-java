@@ -36,12 +36,12 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.DataframeAnalyticsStatsHyperparameters
 @JsonpDeserializable
-public class DataframeAnalyticsStatsHyperparameters implements JsonpSerializable {
+public class DataframeAnalyticsStatsHyperparameters implements DataframeAnalyticsStatsVariant, JsonpSerializable {
 	private final Hyperparameters hyperparameters;
 
 	private final int iteration;
@@ -64,9 +64,18 @@ public class DataframeAnalyticsStatsHyperparameters implements JsonpSerializable
 
 	}
 
-	public static DataframeAnalyticsStatsHyperparameters of(
-			Function<Builder, ObjectBuilder<DataframeAnalyticsStatsHyperparameters>> fn) {
-		return fn.apply(new Builder()).build();
+	public static DataframeAnalyticsStatsHyperparameters of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
+	}
+
+	/**
+	 * DataframeAnalyticsStats variant kind.
+	 */
+	@Override
+	public DataframeAnalyticsStats.Kind _dataframeAnalyticsStatsKind() {
+		return DataframeAnalyticsStats.Kind.RegressionStats;
 	}
 
 	/**
@@ -163,8 +172,10 @@ public class DataframeAnalyticsStatsHyperparameters implements JsonpSerializable
 		/**
 		 * Required - API name: {@code hyperparameters}
 		 */
-		public final Builder hyperparameters(Function<Hyperparameters.Builder, ObjectBuilder<Hyperparameters>> fn) {
-			return this.hyperparameters(fn.apply(new Hyperparameters.Builder()).build());
+		public final Builder hyperparameters(Consumer<Hyperparameters.Builder> fn) {
+			Hyperparameters.Builder builder = new Hyperparameters.Builder();
+			fn.accept(builder);
+			return this.hyperparameters(builder.build());
 		}
 
 		/**
@@ -196,8 +207,10 @@ public class DataframeAnalyticsStatsHyperparameters implements JsonpSerializable
 		/**
 		 * Required - API name: {@code timing_stats}
 		 */
-		public final Builder timingStats(Function<TimingStats.Builder, ObjectBuilder<TimingStats>> fn) {
-			return this.timingStats(fn.apply(new TimingStats.Builder()).build());
+		public final Builder timingStats(Consumer<TimingStats.Builder> fn) {
+			TimingStats.Builder builder = new TimingStats.Builder();
+			fn.accept(builder);
+			return this.timingStats(builder.build());
 		}
 
 		/**
@@ -211,8 +224,10 @@ public class DataframeAnalyticsStatsHyperparameters implements JsonpSerializable
 		/**
 		 * Required - API name: {@code validation_loss}
 		 */
-		public final Builder validationLoss(Function<ValidationLoss.Builder, ObjectBuilder<ValidationLoss>> fn) {
-			return this.validationLoss(fn.apply(new ValidationLoss.Builder()).build());
+		public final Builder validationLoss(Consumer<ValidationLoss.Builder> fn) {
+			ValidationLoss.Builder builder = new ValidationLoss.Builder();
+			fn.accept(builder);
+			return this.validationLoss(builder.build());
 		}
 
 		/**

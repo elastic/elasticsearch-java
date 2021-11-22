@@ -29,15 +29,16 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -71,8 +72,10 @@ public class SlackMessage implements JsonpSerializable {
 
 	}
 
-	public static SlackMessage of(Function<Builder, ObjectBuilder<SlackMessage>> fn) {
-		return fn.apply(new Builder()).build();
+	public static SlackMessage of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -208,13 +211,9 @@ public class SlackMessage implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code attachments}
 		 */
-		@SafeVarargs
-		public final Builder attachments(Function<SlackAttachment.Builder, ObjectBuilder<SlackAttachment>>... fns) {
-			this.attachments = new ArrayList<>(fns.length);
-			for (Function<SlackAttachment.Builder, ObjectBuilder<SlackAttachment>> fn : fns) {
-				this.attachments.add(fn.apply(new SlackAttachment.Builder()).build());
-			}
-			return this;
+		public final Builder attachments(
+				Function<ListBuilder<SlackAttachment, SlackAttachment.Builder>, ObjectBuilder<List<SlackAttachment>>> fn) {
+			return attachments(fn.apply(new ListBuilder<>(SlackAttachment.Builder::new)).build());
 		}
 
 		/**
@@ -228,9 +227,10 @@ public class SlackMessage implements JsonpSerializable {
 		/**
 		 * API name: {@code dynamic_attachments}
 		 */
-		public final Builder dynamicAttachments(
-				Function<SlackDynamicAttachment.Builder, ObjectBuilder<SlackDynamicAttachment>> fn) {
-			return this.dynamicAttachments(fn.apply(new SlackDynamicAttachment.Builder()).build());
+		public final Builder dynamicAttachments(Consumer<SlackDynamicAttachment.Builder> fn) {
+			SlackDynamicAttachment.Builder builder = new SlackDynamicAttachment.Builder();
+			fn.accept(builder);
+			return this.dynamicAttachments(builder.build());
 		}
 
 		/**

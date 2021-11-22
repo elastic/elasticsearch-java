@@ -35,7 +35,7 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 
 // typedef: cluster.stats.ClusterProcessCpu
 @JsonpDeserializable
@@ -50,8 +50,10 @@ public class ClusterProcessCpu implements JsonpSerializable {
 
 	}
 
-	public static ClusterProcessCpu of(Function<Builder, ObjectBuilder<ClusterProcessCpu>> fn) {
-		return fn.apply(new Builder()).build();
+	public static ClusterProcessCpu of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**

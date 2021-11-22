@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 
 // typedef: _types.analysis.HtmlStripCharFilter
 @JsonpDeserializable
@@ -43,16 +43,18 @@ public class HtmlStripCharFilter extends CharFilterBase implements CharFilterDef
 
 	}
 
-	public static HtmlStripCharFilter of(Function<Builder, ObjectBuilder<HtmlStripCharFilter>> fn) {
-		return fn.apply(new Builder()).build();
+	public static HtmlStripCharFilter of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
-	 * {@link CharFilterDefinition} variant type
+	 * CharFilterDefinition variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "html_strip";
+	public CharFilterDefinition.Kind _charFilterDefinitionKind() {
+		return CharFilterDefinition.Kind.HtmlStrip;
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {

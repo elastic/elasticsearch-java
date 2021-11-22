@@ -23,12 +23,12 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
-import co.elastic.clients.util.UnionVariant;
-
 /**
  * Base interface for {@link Aggregate} variants.
  */
-public interface AggregateVariant extends UnionVariant {
+public interface AggregateVariant {
+
+	Aggregate.Kind _aggregateKind();
 
 	default Aggregate _toAggregate() {
 		return new Aggregate(this);

@@ -37,7 +37,7 @@ import java.lang.String;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.HttpInput
@@ -65,16 +65,18 @@ public class HttpInput implements InputVariant, JsonpSerializable {
 
 	}
 
-	public static HttpInput of(Function<Builder, ObjectBuilder<HttpInput>> fn) {
-		return fn.apply(new Builder()).build();
+	public static HttpInput of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
-	 * {@link Input} variant type
+	 * Input variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "http";
+	public Input.Kind _inputKind() {
+		return Input.Kind.Http;
 	}
 
 	/**
@@ -175,8 +177,10 @@ public class HttpInput implements InputVariant, JsonpSerializable {
 		/**
 		 * API name: {@code http}
 		 */
-		public final Builder http(Function<HttpInput.Builder, ObjectBuilder<HttpInput>> fn) {
-			return this.http(fn.apply(new HttpInput.Builder()).build());
+		public final Builder http(Consumer<HttpInput.Builder> fn) {
+			HttpInput.Builder builder = new HttpInput.Builder();
+			fn.accept(builder);
+			return this.http(builder.build());
 		}
 
 		/**
@@ -206,9 +210,10 @@ public class HttpInput implements InputVariant, JsonpSerializable {
 		/**
 		 * API name: {@code request}
 		 */
-		public final Builder request(
-				Function<HttpInputRequestDefinition.Builder, ObjectBuilder<HttpInputRequestDefinition>> fn) {
-			return this.request(fn.apply(new HttpInputRequestDefinition.Builder()).build());
+		public final Builder request(Consumer<HttpInputRequestDefinition.Builder> fn) {
+			HttpInputRequestDefinition.Builder builder = new HttpInputRequestDefinition.Builder();
+			fn.accept(builder);
+			return this.request(builder.build());
 		}
 
 		/**

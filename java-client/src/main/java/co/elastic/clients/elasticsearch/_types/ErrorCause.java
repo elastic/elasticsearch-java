@@ -30,17 +30,18 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -78,8 +79,10 @@ public class ErrorCause implements JsonpSerializable {
 
 	}
 
-	public static ErrorCause of(Function<Builder, ObjectBuilder<ErrorCause>> fn) {
-		return fn.apply(new Builder()).build();
+	public static ErrorCause of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -271,8 +274,10 @@ public class ErrorCause implements JsonpSerializable {
 		/**
 		 * API name: {@code caused_by}
 		 */
-		public final Builder causedBy(Function<ErrorCause.Builder, ObjectBuilder<ErrorCause>> fn) {
-			return this.causedBy(fn.apply(new ErrorCause.Builder()).build());
+		public final Builder causedBy(Consumer<ErrorCause.Builder> fn) {
+			ErrorCause.Builder builder = new ErrorCause.Builder();
+			fn.accept(builder);
+			return this.causedBy(builder.build());
 		}
 
 		/**
@@ -294,13 +299,9 @@ public class ErrorCause implements JsonpSerializable {
 		/**
 		 * API name: {@code root_cause}
 		 */
-		@SafeVarargs
-		public final Builder rootCause(Function<ErrorCause.Builder, ObjectBuilder<ErrorCause>>... fns) {
-			this.rootCause = new ArrayList<>(fns.length);
-			for (Function<ErrorCause.Builder, ObjectBuilder<ErrorCause>> fn : fns) {
-				this.rootCause.add(fn.apply(new ErrorCause.Builder()).build());
-			}
-			return this;
+		public final Builder rootCause(
+				Function<ListBuilder<ErrorCause, ErrorCause.Builder>, ObjectBuilder<List<ErrorCause>>> fn) {
+			return rootCause(fn.apply(new ListBuilder<>(ErrorCause.Builder::new)).build());
 		}
 
 		/**
@@ -322,13 +323,9 @@ public class ErrorCause implements JsonpSerializable {
 		/**
 		 * API name: {@code suppressed}
 		 */
-		@SafeVarargs
-		public final Builder suppressed(Function<ErrorCause.Builder, ObjectBuilder<ErrorCause>>... fns) {
-			this.suppressed = new ArrayList<>(fns.length);
-			for (Function<ErrorCause.Builder, ObjectBuilder<ErrorCause>> fn : fns) {
-				this.suppressed.add(fn.apply(new ErrorCause.Builder()).build());
-			}
-			return this;
+		public final Builder suppressed(
+				Function<ListBuilder<ErrorCause, ErrorCause.Builder>, ObjectBuilder<List<ErrorCause>>> fn) {
+			return suppressed(fn.apply(new ListBuilder<>(ErrorCause.Builder::new)).build());
 		}
 
 		/**

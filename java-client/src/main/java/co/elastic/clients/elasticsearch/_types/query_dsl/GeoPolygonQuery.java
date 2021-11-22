@@ -34,7 +34,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.GeoPolygonQuery
@@ -62,16 +62,18 @@ public class GeoPolygonQuery extends QueryBase implements QueryVariant {
 
 	}
 
-	public static GeoPolygonQuery of(Function<Builder, ObjectBuilder<GeoPolygonQuery>> fn) {
-		return fn.apply(new Builder()).build();
+	public static GeoPolygonQuery of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
-	 * {@link Query} variant type
+	 * Query variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "geo_polygon";
+	public Query.Kind _queryKind() {
+		return Query.Kind.GeoPolygon;
 	}
 
 	/**
@@ -150,8 +152,10 @@ public class GeoPolygonQuery extends QueryBase implements QueryVariant {
 		/**
 		 * Required -
 		 */
-		public final Builder polygon(Function<GeoPolygonPoints.Builder, ObjectBuilder<GeoPolygonPoints>> fn) {
-			return this.polygon(fn.apply(new GeoPolygonPoints.Builder()).build());
+		public final Builder polygon(Consumer<GeoPolygonPoints.Builder> fn) {
+			GeoPolygonPoints.Builder builder = new GeoPolygonPoints.Builder();
+			fn.accept(builder);
+			return this.polygon(builder.build());
 		}
 
 		@Nullable

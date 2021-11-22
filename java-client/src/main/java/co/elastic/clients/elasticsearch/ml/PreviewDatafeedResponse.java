@@ -39,7 +39,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import java.util.function.Supplier;
 import javax.annotation.Nullable;
 
@@ -60,9 +60,10 @@ public class PreviewDatafeedResponse<TDocument> implements JsonpSerializable {
 
 	}
 
-	public static <TDocument> PreviewDatafeedResponse<TDocument> of(
-			Function<Builder<TDocument>, ObjectBuilder<PreviewDatafeedResponse<TDocument>>> fn) {
-		return fn.apply(new Builder<>()).build();
+	public static <TDocument> PreviewDatafeedResponse<TDocument> of(Consumer<Builder<TDocument>> fn) {
+		Builder<TDocument> builder = new Builder<>();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**

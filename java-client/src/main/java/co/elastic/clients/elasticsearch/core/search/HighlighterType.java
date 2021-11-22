@@ -38,23 +38,25 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Object;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: _global.search._types.HighlighterType
 // union type: Union[]
 @JsonpDeserializable
-public class HighlighterType implements TaggedUnion<Object>, JsonpSerializable {
+public class HighlighterType implements TaggedUnion<HighlighterType.Kind, Object>, JsonpSerializable {
 
-	public static final String BUILTIN = "builtin";
-	public static final String CUSTOM = "custom";
+	public enum Kind {
+		Builtin, Custom
 
-	private final String _type;
+	}
+
+	private final Kind _kind;
 	private final Object _value;
 
 	@Override
-	public final String _type() {
-		return _type;
+	public final Kind _kind() {
+		return _kind;
 	}
 
 	@Override
@@ -62,38 +64,41 @@ public class HighlighterType implements TaggedUnion<Object>, JsonpSerializable {
 		return _value;
 	}
 
-	public HighlighterType(String type, Object value) {
-		this._type = type;
+	public HighlighterType(Kind kind, Object value) {
+		this._kind = kind;
 		this._value = value;
 	}
 
 	public String _toJsonString() {
-		switch (_type) {
-			case "builtin" :
+		switch (_kind) {
+			case Builtin :
 				return this.builtin().jsonValue();
-			case "custom" :
+			case Custom :
 				return this.custom();
 
 			default :
-				throw new IllegalStateException("Unknown type " + _type);
+				throw new IllegalStateException("Unknown kind " + _kind);
 		}
 	}
+
 	private HighlighterType(Builder builder) {
 
-		this._type = ModelTypeHelper.requireNonNull(builder._type, builder, "<variant type>");
+		this._kind = ModelTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
 		this._value = ModelTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
 
 	}
 
-	public static HighlighterType of(Function<Builder, ObjectBuilder<HighlighterType>> fn) {
-		return fn.apply(new Builder()).build();
+	public static HighlighterType of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
 	 * Is this variant instance of kind {@code builtin}?
 	 */
-	public boolean _isBuiltin() {
-		return BUILTIN.equals(_type());
+	public boolean isBuiltin() {
+		return _kind == Kind.Builtin;
 	}
 
 	/**
@@ -103,14 +108,14 @@ public class HighlighterType implements TaggedUnion<Object>, JsonpSerializable {
 	 *             if the current variant is not of the {@code builtin} kind.
 	 */
 	public BuiltinHighlighterType builtin() {
-		return TaggedUnionUtils.get(this, BUILTIN);
+		return TaggedUnionUtils.get(this, Kind.Builtin);
 	}
 
 	/**
 	 * Is this variant instance of kind {@code custom}?
 	 */
-	public boolean _isCustom() {
-		return CUSTOM.equals(_type());
+	public boolean isCustom() {
+		return _kind == Kind.Custom;
 	}
 
 	/**
@@ -120,7 +125,7 @@ public class HighlighterType implements TaggedUnion<Object>, JsonpSerializable {
 	 *             if the current variant is not of the {@code custom} kind.
 	 */
 	public String custom() {
-		return TaggedUnionUtils.get(this, CUSTOM);
+		return TaggedUnionUtils.get(this, Kind.Custom);
 	}
 
 	@Override
@@ -128,8 +133,8 @@ public class HighlighterType implements TaggedUnion<Object>, JsonpSerializable {
 		if (_value instanceof JsonpSerializable) {
 			((JsonpSerializable) _value).serialize(generator, mapper);
 		} else {
-			switch (_type) {
-				case CUSTOM :
+			switch (_kind) {
+				case Custom :
 					generator.write(((String) this._value));
 
 					break;
@@ -139,17 +144,17 @@ public class HighlighterType implements TaggedUnion<Object>, JsonpSerializable {
 	}
 
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<HighlighterType> {
-		private String _type;
+		private Kind _kind;
 		private Object _value;
 
 		public Builder builtin(BuiltinHighlighterType v) {
-			this._type = BUILTIN;
+			this._kind = Kind.Builtin;
 			this._value = v;
 			return this;
 		}
 
 		public Builder custom(String v) {
-			this._type = CUSTOM;
+			this._kind = Kind.Custom;
 			this._value = v;
 			return this;
 		}
@@ -162,9 +167,9 @@ public class HighlighterType implements TaggedUnion<Object>, JsonpSerializable {
 	}
 
 	private static JsonpDeserializer<HighlighterType> buildHighlighterTypeDeserializer() {
-		return new UnionDeserializer.Builder<>(HighlighterType::new, true)
-				.addMember("builtin", BuiltinHighlighterType._DESERIALIZER)
-				.addMember("custom", JsonpDeserializer.stringDeserializer()).build();
+		return new UnionDeserializer.Builder<HighlighterType, Kind, Object>(HighlighterType::new, true)
+				.addMember(Kind.Builtin, BuiltinHighlighterType._DESERIALIZER)
+				.addMember(Kind.Custom, JsonpDeserializer.stringDeserializer()).build();
 	}
 
 	public static final JsonpDeserializer<HighlighterType> _DESERIALIZER = JsonpDeserializer

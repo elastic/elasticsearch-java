@@ -35,7 +35,7 @@ import java.lang.String;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: _types.analysis.MappingCharFilter
@@ -56,16 +56,18 @@ public class MappingCharFilter extends CharFilterBase implements CharFilterDefin
 
 	}
 
-	public static MappingCharFilter of(Function<Builder, ObjectBuilder<MappingCharFilter>> fn) {
-		return fn.apply(new Builder()).build();
+	public static MappingCharFilter of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
-	 * {@link CharFilterDefinition} variant type
+	 * CharFilterDefinition variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "mapping";
+	public CharFilterDefinition.Kind _charFilterDefinitionKind() {
+		return CharFilterDefinition.Kind.Mapping;
 	}
 
 	/**

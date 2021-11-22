@@ -38,7 +38,7 @@ import java.lang.Boolean;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: _global.search._types.PhraseSuggestCollate
@@ -61,8 +61,10 @@ public class PhraseSuggestCollate implements JsonpSerializable {
 
 	}
 
-	public static PhraseSuggestCollate of(Function<Builder, ObjectBuilder<PhraseSuggestCollate>> fn) {
-		return fn.apply(new Builder()).build();
+	public static PhraseSuggestCollate of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -160,9 +162,10 @@ public class PhraseSuggestCollate implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code query}
 		 */
-		public final Builder query(
-				Function<PhraseSuggestCollateQuery.Builder, ObjectBuilder<PhraseSuggestCollateQuery>> fn) {
-			return this.query(fn.apply(new PhraseSuggestCollateQuery.Builder()).build());
+		public final Builder query(Consumer<PhraseSuggestCollateQuery.Builder> fn) {
+			PhraseSuggestCollateQuery.Builder builder = new PhraseSuggestCollateQuery.Builder();
+			fn.accept(builder);
+			return this.query(builder.build());
 		}
 
 		/**

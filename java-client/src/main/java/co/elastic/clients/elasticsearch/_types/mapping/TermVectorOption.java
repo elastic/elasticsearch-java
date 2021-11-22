@@ -23,14 +23,27 @@
 
 package co.elastic.clients.elasticsearch._types.mapping;
 
+import co.elastic.clients.json.JsonEnum;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
-import co.elastic.clients.util.StringEnum;
 
 @JsonpDeserializable
-public enum TermVectorOption implements StringEnum {
-	No("no"), Yes("yes"), WithOffsets("with_offsets"), WithPositions("with_positions"), WithPositionsOffsets(
-			"with_positions_offsets"), WithPositionsOffsetsPayloads("with_positions_offsets_payloads");
+public enum TermVectorOption implements JsonEnum {
+	No("no"),
+
+	Yes("yes"),
+
+	WithOffsets("with_offsets"),
+
+	WithPositions("with_positions"),
+
+	WithPositionsOffsets("with_positions_offsets"),
+
+	WithPositionsOffsetsPayloads("with_positions_offsets_payloads"),
+
+	WithPositionsPayloads("with_positions_payloads"),
+
+	;
 
 	private final String jsonValue;
 
@@ -42,6 +55,6 @@ public enum TermVectorOption implements StringEnum {
 		return this.jsonValue;
 	}
 
-	public static final StringEnum.Deserializer<TermVectorOption> _DESERIALIZER = new StringEnum.Deserializer<>(
+	public static final JsonEnum.Deserializer<TermVectorOption> _DESERIALIZER = new JsonEnum.Deserializer<>(
 			TermVectorOption.values());
 }

@@ -40,9 +40,9 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.lang.String;
-import java.util.Collections;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -73,8 +73,10 @@ public class ComponentTemplateSummary implements JsonpSerializable {
 
 	}
 
-	public static ComponentTemplateSummary of(Function<Builder, ObjectBuilder<ComponentTemplateSummary>> fn) {
-		return fn.apply(new Builder()).build();
+	public static ComponentTemplateSummary of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -215,13 +217,6 @@ public class ComponentTemplateSummary implements JsonpSerializable {
 			return this;
 		}
 
-		/**
-		 * Set {@link #settings(Map)} to a singleton map.
-		 */
-		public Builder settings(String key, Function<IndexSettings.Builder, ObjectBuilder<IndexSettings>> fn) {
-			return this.settings(Collections.singletonMap(key, fn.apply(new IndexSettings.Builder()).build()));
-		}
-
 		public final Builder settings(
 				Function<MapBuilder<String, IndexSettings, IndexSettings.Builder>, ObjectBuilder<Map<String, IndexSettings>>> fn) {
 			return settings(fn.apply(new MapBuilder<>(IndexSettings.Builder::new)).build());
@@ -238,8 +233,10 @@ public class ComponentTemplateSummary implements JsonpSerializable {
 		/**
 		 * API name: {@code mappings}
 		 */
-		public final Builder mappings(Function<TypeMapping.Builder, ObjectBuilder<TypeMapping>> fn) {
-			return this.mappings(fn.apply(new TypeMapping.Builder()).build());
+		public final Builder mappings(Consumer<TypeMapping.Builder> fn) {
+			TypeMapping.Builder builder = new TypeMapping.Builder();
+			fn.accept(builder);
+			return this.mappings(builder.build());
 		}
 
 		/**
@@ -248,13 +245,6 @@ public class ComponentTemplateSummary implements JsonpSerializable {
 		public final Builder aliases(@Nullable Map<String, AliasDefinition> value) {
 			this.aliases = value;
 			return this;
-		}
-
-		/**
-		 * Set {@link #aliases(Map)} to a singleton map.
-		 */
-		public Builder aliases(String key, Function<AliasDefinition.Builder, ObjectBuilder<AliasDefinition>> fn) {
-			return this.aliases(Collections.singletonMap(key, fn.apply(new AliasDefinition.Builder()).build()));
 		}
 
 		public final Builder aliases(

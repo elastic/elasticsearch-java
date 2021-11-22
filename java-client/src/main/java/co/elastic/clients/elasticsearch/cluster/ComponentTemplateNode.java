@@ -38,7 +38,7 @@ import java.lang.Long;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: cluster._types.ComponentTemplateNode
@@ -61,8 +61,10 @@ public class ComponentTemplateNode implements JsonpSerializable {
 
 	}
 
-	public static ComponentTemplateNode of(Function<Builder, ObjectBuilder<ComponentTemplateNode>> fn) {
-		return fn.apply(new Builder()).build();
+	public static ComponentTemplateNode of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -145,9 +147,10 @@ public class ComponentTemplateNode implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code template}
 		 */
-		public final Builder template(
-				Function<ComponentTemplateSummary.Builder, ObjectBuilder<ComponentTemplateSummary>> fn) {
-			return this.template(fn.apply(new ComponentTemplateSummary.Builder()).build());
+		public final Builder template(Consumer<ComponentTemplateSummary.Builder> fn) {
+			ComponentTemplateSummary.Builder builder = new ComponentTemplateSummary.Builder();
+			fn.accept(builder);
+			return this.template(builder.build());
 		}
 
 		/**

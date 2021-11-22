@@ -39,23 +39,25 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Object;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.TermsQueryField
 // union type: Union[]
 @JsonpDeserializable
-public class TermsQueryField implements TaggedUnion<Object>, JsonpSerializable {
+public class TermsQueryField implements TaggedUnion<TermsQueryField.Kind, Object>, JsonpSerializable {
 
-	public static final String VALUE = "value";
-	public static final String LOOKUP = "lookup";
+	public enum Kind {
+		Value, Lookup
 
-	private final String _type;
+	}
+
+	private final Kind _kind;
 	private final Object _value;
 
 	@Override
-	public final String _type() {
-		return _type;
+	public final Kind _kind() {
+		return _kind;
 	}
 
 	@Override
@@ -63,27 +65,29 @@ public class TermsQueryField implements TaggedUnion<Object>, JsonpSerializable {
 		return _value;
 	}
 
-	public TermsQueryField(String type, Object value) {
-		this._type = type;
+	public TermsQueryField(Kind kind, Object value) {
+		this._kind = kind;
 		this._value = value;
 	}
 
 	private TermsQueryField(Builder builder) {
 
-		this._type = ModelTypeHelper.requireNonNull(builder._type, builder, "<variant type>");
+		this._kind = ModelTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
 		this._value = ModelTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
 
 	}
 
-	public static TermsQueryField of(Function<Builder, ObjectBuilder<TermsQueryField>> fn) {
-		return fn.apply(new Builder()).build();
+	public static TermsQueryField of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
 	 * Is this variant instance of kind {@code value}?
 	 */
-	public boolean _isValue() {
-		return VALUE.equals(_type());
+	public boolean isValue() {
+		return _kind == Kind.Value;
 	}
 
 	/**
@@ -93,14 +97,14 @@ public class TermsQueryField implements TaggedUnion<Object>, JsonpSerializable {
 	 *             if the current variant is not of the {@code value} kind.
 	 */
 	public List<FieldValue> value() {
-		return TaggedUnionUtils.get(this, VALUE);
+		return TaggedUnionUtils.get(this, Kind.Value);
 	}
 
 	/**
 	 * Is this variant instance of kind {@code lookup}?
 	 */
-	public boolean _isLookup() {
-		return LOOKUP.equals(_type());
+	public boolean isLookup() {
+		return _kind == Kind.Lookup;
 	}
 
 	/**
@@ -110,7 +114,7 @@ public class TermsQueryField implements TaggedUnion<Object>, JsonpSerializable {
 	 *             if the current variant is not of the {@code lookup} kind.
 	 */
 	public TermsLookup lookup() {
-		return TaggedUnionUtils.get(this, LOOKUP);
+		return TaggedUnionUtils.get(this, Kind.Lookup);
 	}
 
 	@Override
@@ -118,8 +122,8 @@ public class TermsQueryField implements TaggedUnion<Object>, JsonpSerializable {
 		if (_value instanceof JsonpSerializable) {
 			((JsonpSerializable) _value).serialize(generator, mapper);
 		} else {
-			switch (_type) {
-				case VALUE :
+			switch (_kind) {
+				case Value :
 					generator.writeStartArray();
 					for (FieldValue item0 : ((List<FieldValue>) this._value)) {
 						item0.serialize(generator, mapper);
@@ -134,23 +138,25 @@ public class TermsQueryField implements TaggedUnion<Object>, JsonpSerializable {
 	}
 
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TermsQueryField> {
-		private String _type;
+		private Kind _kind;
 		private Object _value;
 
 		public Builder value(List<FieldValue> v) {
-			this._type = VALUE;
+			this._kind = Kind.Value;
 			this._value = v;
 			return this;
 		}
 
 		public Builder lookup(TermsLookup v) {
-			this._type = LOOKUP;
+			this._kind = Kind.Lookup;
 			this._value = v;
 			return this;
 		}
 
-		public Builder lookup(Function<TermsLookup.Builder, ObjectBuilder<TermsLookup>> f) {
-			return this.lookup(f.apply(new TermsLookup.Builder()).build());
+		public Builder lookup(Consumer<TermsLookup.Builder> fn) {
+			TermsLookup.Builder builder = new TermsLookup.Builder();
+			fn.accept(builder);
+			return this.lookup(builder.build());
 		}
 
 		public TermsQueryField build() {
@@ -161,9 +167,9 @@ public class TermsQueryField implements TaggedUnion<Object>, JsonpSerializable {
 	}
 
 	private static JsonpDeserializer<TermsQueryField> buildTermsQueryFieldDeserializer() {
-		return new UnionDeserializer.Builder<>(TermsQueryField::new, false)
-				.addMember("value", JsonpDeserializer.arrayDeserializer(FieldValue._DESERIALIZER))
-				.addMember("lookup", TermsLookup._DESERIALIZER).build();
+		return new UnionDeserializer.Builder<TermsQueryField, Kind, Object>(TermsQueryField::new, false)
+				.addMember(Kind.Value, JsonpDeserializer.arrayDeserializer(FieldValue._DESERIALIZER))
+				.addMember(Kind.Lookup, TermsLookup._DESERIALIZER).build();
 	}
 
 	public static final JsonpDeserializer<TermsQueryField> _DESERIALIZER = JsonpDeserializer

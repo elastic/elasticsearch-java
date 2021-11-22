@@ -35,9 +35,9 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.Collections;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -60,9 +60,10 @@ public class NodeInfoXpackSecurityAuthcRealms implements JsonpSerializable {
 
 	}
 
-	public static NodeInfoXpackSecurityAuthcRealms of(
-			Function<Builder, ObjectBuilder<NodeInfoXpackSecurityAuthcRealms>> fn) {
-		return fn.apply(new Builder()).build();
+	public static NodeInfoXpackSecurityAuthcRealms of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -156,15 +157,6 @@ public class NodeInfoXpackSecurityAuthcRealms implements JsonpSerializable {
 			return this;
 		}
 
-		/**
-		 * Set {@link #file(Map)} to a singleton map.
-		 */
-		public Builder file(String key,
-				Function<NodeInfoXpackSecurityAuthcRealmsStatus.Builder, ObjectBuilder<NodeInfoXpackSecurityAuthcRealmsStatus>> fn) {
-			return this.file(Collections.singletonMap(key,
-					fn.apply(new NodeInfoXpackSecurityAuthcRealmsStatus.Builder()).build()));
-		}
-
 		public final Builder file(
 				Function<MapBuilder<String, NodeInfoXpackSecurityAuthcRealmsStatus, NodeInfoXpackSecurityAuthcRealmsStatus.Builder>, ObjectBuilder<Map<String, NodeInfoXpackSecurityAuthcRealmsStatus>>> fn) {
 			return file(fn.apply(new MapBuilder<>(NodeInfoXpackSecurityAuthcRealmsStatus.Builder::new)).build());
@@ -178,15 +170,6 @@ public class NodeInfoXpackSecurityAuthcRealms implements JsonpSerializable {
 			return this;
 		}
 
-		/**
-		 * Set {@link #native_(Map)} to a singleton map.
-		 */
-		public Builder native_(String key,
-				Function<NodeInfoXpackSecurityAuthcRealmsStatus.Builder, ObjectBuilder<NodeInfoXpackSecurityAuthcRealmsStatus>> fn) {
-			return this.native_(Collections.singletonMap(key,
-					fn.apply(new NodeInfoXpackSecurityAuthcRealmsStatus.Builder()).build()));
-		}
-
 		public final Builder native_(
 				Function<MapBuilder<String, NodeInfoXpackSecurityAuthcRealmsStatus, NodeInfoXpackSecurityAuthcRealmsStatus.Builder>, ObjectBuilder<Map<String, NodeInfoXpackSecurityAuthcRealmsStatus>>> fn) {
 			return native_(fn.apply(new MapBuilder<>(NodeInfoXpackSecurityAuthcRealmsStatus.Builder::new)).build());
@@ -198,15 +181,6 @@ public class NodeInfoXpackSecurityAuthcRealms implements JsonpSerializable {
 		public final Builder pki(@Nullable Map<String, NodeInfoXpackSecurityAuthcRealmsStatus> value) {
 			this.pki = value;
 			return this;
-		}
-
-		/**
-		 * Set {@link #pki(Map)} to a singleton map.
-		 */
-		public Builder pki(String key,
-				Function<NodeInfoXpackSecurityAuthcRealmsStatus.Builder, ObjectBuilder<NodeInfoXpackSecurityAuthcRealmsStatus>> fn) {
-			return this.pki(Collections.singletonMap(key,
-					fn.apply(new NodeInfoXpackSecurityAuthcRealmsStatus.Builder()).build()));
 		}
 
 		public final Builder pki(

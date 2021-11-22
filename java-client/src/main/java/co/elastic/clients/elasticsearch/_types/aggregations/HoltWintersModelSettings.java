@@ -36,7 +36,7 @@ import java.lang.Boolean;
 import java.lang.Float;
 import java.lang.Integer;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.HoltWintersModelSettings
@@ -73,8 +73,10 @@ public class HoltWintersModelSettings implements JsonpSerializable {
 
 	}
 
-	public static HoltWintersModelSettings of(Function<Builder, ObjectBuilder<HoltWintersModelSettings>> fn) {
-		return fn.apply(new Builder()).build();
+	public static HoltWintersModelSettings of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**

@@ -29,13 +29,13 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
@@ -187,13 +187,9 @@ public abstract class ProcessorBase implements JsonpSerializable {
 		/**
 		 * API name: {@code on_failure}
 		 */
-		@SafeVarargs
-		public final BuilderT onFailure(Function<Processor.Builder, ObjectBuilder<Processor>>... fns) {
-			this.onFailure = new ArrayList<>(fns.length);
-			for (Function<Processor.Builder, ObjectBuilder<Processor>> fn : fns) {
-				this.onFailure.add(fn.apply(new Processor.Builder()).build());
-			}
-			return self();
+		public final BuilderT onFailure(
+				Function<ListBuilder<Processor, Processor.Builder>, ObjectBuilder<List<Processor>>> fn) {
+			return onFailure(fn.apply(new ListBuilder<>(Processor.Builder::new)).build());
 		}
 
 		/**

@@ -35,7 +35,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.CompositeAggregate
@@ -52,16 +52,18 @@ public class CompositeAggregate extends MultiBucketAggregateBase<CompositeBucket
 
 	}
 
-	public static CompositeAggregate of(Function<Builder, ObjectBuilder<CompositeAggregate>> fn) {
-		return fn.apply(new Builder()).build();
+	public static CompositeAggregate of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
-	 * {@link Aggregate} variant type
+	 * Aggregate variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "composite";
+	public Aggregate.Kind _aggregateKind() {
+		return Aggregate.Kind.Composite;
 	}
 
 	/**

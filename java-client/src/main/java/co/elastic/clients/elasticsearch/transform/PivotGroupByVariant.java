@@ -23,12 +23,12 @@
 
 package co.elastic.clients.elasticsearch.transform;
 
-import co.elastic.clients.util.UnionVariant;
-
 /**
  * Base interface for {@link PivotGroupBy} variants.
  */
-public interface PivotGroupByVariant extends UnionVariant {
+public interface PivotGroupByVariant {
+
+	PivotGroupBy.Kind _pivotGroupByKind();
 
 	default PivotGroupBy _toPivotGroupBy() {
 		return new PivotGroupBy(this);

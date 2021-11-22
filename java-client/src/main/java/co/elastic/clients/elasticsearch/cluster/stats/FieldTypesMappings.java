@@ -29,14 +29,15 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -56,8 +57,10 @@ public class FieldTypesMappings implements JsonpSerializable {
 
 	}
 
-	public static FieldTypesMappings of(Function<Builder, ObjectBuilder<FieldTypesMappings>> fn) {
-		return fn.apply(new Builder()).build();
+	public static FieldTypesMappings of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -138,13 +141,9 @@ public class FieldTypesMappings implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code field_types}
 		 */
-		@SafeVarargs
-		public final Builder fieldTypes(Function<FieldTypes.Builder, ObjectBuilder<FieldTypes>>... fns) {
-			this.fieldTypes = new ArrayList<>(fns.length);
-			for (Function<FieldTypes.Builder, ObjectBuilder<FieldTypes>> fn : fns) {
-				this.fieldTypes.add(fn.apply(new FieldTypes.Builder()).build());
-			}
-			return this;
+		public final Builder fieldTypes(
+				Function<ListBuilder<FieldTypes, FieldTypes.Builder>, ObjectBuilder<List<FieldTypes>>> fn) {
+			return fieldTypes(fn.apply(new ListBuilder<>(FieldTypes.Builder::new)).build());
 		}
 
 		/**
@@ -166,14 +165,9 @@ public class FieldTypesMappings implements JsonpSerializable {
 		/**
 		 * API name: {@code runtime_field_types}
 		 */
-		@SafeVarargs
 		public final Builder runtimeFieldTypes(
-				Function<RuntimeFieldTypes.Builder, ObjectBuilder<RuntimeFieldTypes>>... fns) {
-			this.runtimeFieldTypes = new ArrayList<>(fns.length);
-			for (Function<RuntimeFieldTypes.Builder, ObjectBuilder<RuntimeFieldTypes>> fn : fns) {
-				this.runtimeFieldTypes.add(fn.apply(new RuntimeFieldTypes.Builder()).build());
-			}
-			return this;
+				Function<ListBuilder<RuntimeFieldTypes, RuntimeFieldTypes.Builder>, ObjectBuilder<List<RuntimeFieldTypes>>> fn) {
+			return runtimeFieldTypes(fn.apply(new ListBuilder<>(RuntimeFieldTypes.Builder::new)).build());
 		}
 
 		/**

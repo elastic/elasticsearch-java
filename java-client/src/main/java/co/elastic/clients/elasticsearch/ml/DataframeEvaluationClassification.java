@@ -35,7 +35,7 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.DataframeEvaluationClassification
@@ -63,17 +63,18 @@ public class DataframeEvaluationClassification implements DataframeEvaluationVar
 
 	}
 
-	public static DataframeEvaluationClassification of(
-			Function<Builder, ObjectBuilder<DataframeEvaluationClassification>> fn) {
-		return fn.apply(new Builder()).build();
+	public static DataframeEvaluationClassification of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
-	 * {@link DataframeEvaluation} variant type
+	 * DataframeEvaluation variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "classification";
+	public DataframeEvaluation.Kind _dataframeEvaluationKind() {
+		return DataframeEvaluation.Kind.Classification;
 	}
 
 	/**
@@ -219,9 +220,10 @@ public class DataframeEvaluationClassification implements DataframeEvaluationVar
 		 * <p>
 		 * API name: {@code metrics}
 		 */
-		public final Builder metrics(
-				Function<DataframeEvaluationClassificationMetrics.Builder, ObjectBuilder<DataframeEvaluationClassificationMetrics>> fn) {
-			return this.metrics(fn.apply(new DataframeEvaluationClassificationMetrics.Builder()).build());
+		public final Builder metrics(Consumer<DataframeEvaluationClassificationMetrics.Builder> fn) {
+			DataframeEvaluationClassificationMetrics.Builder builder = new DataframeEvaluationClassificationMetrics.Builder();
+			fn.accept(builder);
+			return this.metrics(builder.build());
 		}
 
 		/**

@@ -32,7 +32,7 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
-import co.elastic.clients.transport.SimpleEndpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
@@ -40,17 +40,17 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: enrich.put_policy.Request
 @JsonpDeserializable
 public class PutPolicyRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
-	private final Policy geoMatch;
+	private final EnrichPolicy geoMatch;
 
 	@Nullable
-	private final Policy match;
+	private final EnrichPolicy match;
 
 	private final String name;
 
@@ -64,15 +64,17 @@ public class PutPolicyRequest extends RequestBase implements JsonpSerializable {
 
 	}
 
-	public static PutPolicyRequest of(Function<Builder, ObjectBuilder<PutPolicyRequest>> fn) {
-		return fn.apply(new Builder()).build();
+	public static PutPolicyRequest of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
 	 * API name: {@code geo_match}
 	 */
 	@Nullable
-	public final Policy geoMatch() {
+	public final EnrichPolicy geoMatch() {
 		return this.geoMatch;
 	}
 
@@ -80,7 +82,7 @@ public class PutPolicyRequest extends RequestBase implements JsonpSerializable {
 	 * API name: {@code match}
 	 */
 	@Nullable
-	public final Policy match() {
+	public final EnrichPolicy match() {
 		return this.match;
 	}
 
@@ -124,17 +126,17 @@ public class PutPolicyRequest extends RequestBase implements JsonpSerializable {
 	 */
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PutPolicyRequest> {
 		@Nullable
-		private Policy geoMatch;
+		private EnrichPolicy geoMatch;
 
 		@Nullable
-		private Policy match;
+		private EnrichPolicy match;
 
 		private String name;
 
 		/**
 		 * API name: {@code geo_match}
 		 */
-		public final Builder geoMatch(@Nullable Policy value) {
+		public final Builder geoMatch(@Nullable EnrichPolicy value) {
 			this.geoMatch = value;
 			return this;
 		}
@@ -142,14 +144,16 @@ public class PutPolicyRequest extends RequestBase implements JsonpSerializable {
 		/**
 		 * API name: {@code geo_match}
 		 */
-		public final Builder geoMatch(Function<Policy.Builder, ObjectBuilder<Policy>> fn) {
-			return this.geoMatch(fn.apply(new Policy.Builder()).build());
+		public final Builder geoMatch(Consumer<EnrichPolicy.Builder> fn) {
+			EnrichPolicy.Builder builder = new EnrichPolicy.Builder();
+			fn.accept(builder);
+			return this.geoMatch(builder.build());
 		}
 
 		/**
 		 * API name: {@code match}
 		 */
-		public final Builder match(@Nullable Policy value) {
+		public final Builder match(@Nullable EnrichPolicy value) {
 			this.match = value;
 			return this;
 		}
@@ -157,8 +161,10 @@ public class PutPolicyRequest extends RequestBase implements JsonpSerializable {
 		/**
 		 * API name: {@code match}
 		 */
-		public final Builder match(Function<Policy.Builder, ObjectBuilder<Policy>> fn) {
-			return this.match(fn.apply(new Policy.Builder()).build());
+		public final Builder match(Consumer<EnrichPolicy.Builder> fn) {
+			EnrichPolicy.Builder builder = new EnrichPolicy.Builder();
+			fn.accept(builder);
+			return this.match(builder.build());
 		}
 
 		/**
@@ -194,8 +200,8 @@ public class PutPolicyRequest extends RequestBase implements JsonpSerializable {
 
 	protected static void setupPutPolicyRequestDeserializer(ObjectDeserializer<PutPolicyRequest.Builder> op) {
 
-		op.add(Builder::geoMatch, Policy._DESERIALIZER, "geo_match");
-		op.add(Builder::match, Policy._DESERIALIZER, "match");
+		op.add(Builder::geoMatch, EnrichPolicy._DESERIALIZER, "geo_match");
+		op.add(Builder::match, EnrichPolicy._DESERIALIZER, "match");
 
 	}
 

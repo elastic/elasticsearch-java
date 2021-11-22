@@ -23,12 +23,12 @@
 
 package co.elastic.clients.elasticsearch.watcher;
 
-import co.elastic.clients.util.UnionVariant;
-
 /**
  * Base interface for {@link Schedule} variants.
  */
-public interface ScheduleVariant extends UnionVariant {
+public interface ScheduleVariant {
+
+	Schedule.Kind _scheduleKind();
 
 	default Schedule _toSchedule() {
 		return new Schedule(this);

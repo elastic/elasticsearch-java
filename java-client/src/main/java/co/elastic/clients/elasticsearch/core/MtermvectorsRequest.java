@@ -26,7 +26,7 @@ package co.elastic.clients.elasticsearch.core;
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch._types.VersionType;
-import co.elastic.clients.elasticsearch.core.mtermvectors.Operation;
+import co.elastic.clients.elasticsearch.core.mtermvectors.MultiTermVectorsOperation;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -34,7 +34,8 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
-import co.elastic.clients.transport.SimpleEndpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
+import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
@@ -42,12 +43,12 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Long;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
@@ -55,7 +56,7 @@ import javax.annotation.Nullable;
 // typedef: _global.mtermvectors.Request
 @JsonpDeserializable
 public class MtermvectorsRequest extends RequestBase implements JsonpSerializable {
-	private final List<Operation> docs;
+	private final List<MultiTermVectorsOperation> docs;
 
 	@Nullable
 	private final Boolean fieldStatistics;
@@ -115,14 +116,16 @@ public class MtermvectorsRequest extends RequestBase implements JsonpSerializabl
 
 	}
 
-	public static MtermvectorsRequest of(Function<Builder, ObjectBuilder<MtermvectorsRequest>> fn) {
-		return fn.apply(new Builder()).build();
+	public static MtermvectorsRequest of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
 	 * API name: {@code docs}
 	 */
-	public final List<Operation> docs() {
+	public final List<MultiTermVectorsOperation> docs() {
 		return this.docs;
 	}
 
@@ -281,7 +284,7 @@ public class MtermvectorsRequest extends RequestBase implements JsonpSerializabl
 		if (ModelTypeHelper.isDefined(this.docs)) {
 			generator.writeKey("docs");
 			generator.writeStartArray();
-			for (Operation item0 : this.docs) {
+			for (MultiTermVectorsOperation item0 : this.docs) {
 				item0.serialize(generator, mapper);
 
 			}
@@ -308,7 +311,7 @@ public class MtermvectorsRequest extends RequestBase implements JsonpSerializabl
 	 */
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<MtermvectorsRequest> {
 		@Nullable
-		private List<Operation> docs;
+		private List<MultiTermVectorsOperation> docs;
 
 		@Nullable
 		private Boolean fieldStatistics;
@@ -352,7 +355,7 @@ public class MtermvectorsRequest extends RequestBase implements JsonpSerializabl
 		/**
 		 * API name: {@code docs}
 		 */
-		public final Builder docs(@Nullable List<Operation> value) {
+		public final Builder docs(@Nullable List<MultiTermVectorsOperation> value) {
 			this.docs = value;
 			return this;
 		}
@@ -360,7 +363,7 @@ public class MtermvectorsRequest extends RequestBase implements JsonpSerializabl
 		/**
 		 * API name: {@code docs}
 		 */
-		public final Builder docs(Operation... value) {
+		public final Builder docs(MultiTermVectorsOperation... value) {
 			this.docs = Arrays.asList(value);
 			return this;
 		}
@@ -368,13 +371,9 @@ public class MtermvectorsRequest extends RequestBase implements JsonpSerializabl
 		/**
 		 * API name: {@code docs}
 		 */
-		@SafeVarargs
-		public final Builder docs(Function<Operation.Builder, ObjectBuilder<Operation>>... fns) {
-			this.docs = new ArrayList<>(fns.length);
-			for (Function<Operation.Builder, ObjectBuilder<Operation>> fn : fns) {
-				this.docs.add(fn.apply(new Operation.Builder()).build());
-			}
-			return this;
+		public final Builder docs(
+				Function<ListBuilder<MultiTermVectorsOperation, MultiTermVectorsOperation.Builder>, ObjectBuilder<List<MultiTermVectorsOperation>>> fn) {
+			return docs(fn.apply(new ListBuilder<>(MultiTermVectorsOperation.Builder::new)).build());
 		}
 
 		/**
@@ -562,7 +561,7 @@ public class MtermvectorsRequest extends RequestBase implements JsonpSerializabl
 
 	protected static void setupMtermvectorsRequestDeserializer(ObjectDeserializer<MtermvectorsRequest.Builder> op) {
 
-		op.add(Builder::docs, JsonpDeserializer.arrayDeserializer(Operation._DESERIALIZER), "docs");
+		op.add(Builder::docs, JsonpDeserializer.arrayDeserializer(MultiTermVectorsOperation._DESERIALIZER), "docs");
 		op.add(Builder::ids, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "ids");
 
 	}

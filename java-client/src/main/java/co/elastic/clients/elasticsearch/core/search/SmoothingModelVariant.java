@@ -23,12 +23,12 @@
 
 package co.elastic.clients.elasticsearch.core.search;
 
-import co.elastic.clients.util.UnionVariant;
-
 /**
  * Base interface for {@link SmoothingModel} variants.
  */
-public interface SmoothingModelVariant extends UnionVariant {
+public interface SmoothingModelVariant {
+
+	SmoothingModel.Kind _smoothingModelKind();
 
 	default SmoothingModel _toSmoothingModel() {
 		return new SmoothingModel(this);

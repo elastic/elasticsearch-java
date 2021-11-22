@@ -37,7 +37,7 @@ import java.lang.String;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: ingest._types.AttachmentProcessor
@@ -77,16 +77,18 @@ public class AttachmentProcessor extends ProcessorBase implements ProcessorVaria
 
 	}
 
-	public static AttachmentProcessor of(Function<Builder, ObjectBuilder<AttachmentProcessor>> fn) {
-		return fn.apply(new Builder()).build();
+	public static AttachmentProcessor of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
-	 * {@link Processor} variant type
+	 * Processor variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "attachment";
+	public Processor.Kind _processorKind() {
+		return Processor.Kind.Attachment;
 	}
 
 	/**

@@ -37,7 +37,7 @@ import java.lang.Integer;
 import java.lang.Long;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: enrich.stats.CoordinatorStats
@@ -68,8 +68,10 @@ public class CoordinatorStats implements JsonpSerializable {
 
 	}
 
-	public static CoordinatorStats of(Function<Builder, ObjectBuilder<CoordinatorStats>> fn) {
-		return fn.apply(new Builder()).build();
+	public static CoordinatorStats of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**

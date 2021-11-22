@@ -35,7 +35,7 @@ import java.lang.String;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: ingest._types.SetSecurityUserProcessor
@@ -55,16 +55,18 @@ public class SetSecurityUserProcessor extends ProcessorBase implements Processor
 
 	}
 
-	public static SetSecurityUserProcessor of(Function<Builder, ObjectBuilder<SetSecurityUserProcessor>> fn) {
-		return fn.apply(new Builder()).build();
+	public static SetSecurityUserProcessor of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
-	 * {@link Processor} variant type
+	 * Processor variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "set_security_user";
+	public Processor.Kind _processorKind() {
+		return Processor.Kind.SetSecurityUser;
 	}
 
 	/**

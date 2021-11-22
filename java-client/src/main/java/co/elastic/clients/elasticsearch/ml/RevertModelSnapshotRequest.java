@@ -32,7 +32,7 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
-import co.elastic.clients.transport.SimpleEndpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
@@ -41,7 +41,7 @@ import java.lang.Boolean;
 import java.lang.String;
 import java.util.Collections;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: ml.revert_model_snapshot.Request
@@ -64,17 +64,15 @@ public class RevertModelSnapshotRequest extends RequestBase implements JsonpSeri
 
 	}
 
-	public static RevertModelSnapshotRequest of(Function<Builder, ObjectBuilder<RevertModelSnapshotRequest>> fn) {
-		return fn.apply(new Builder()).build();
+	public static RevertModelSnapshotRequest of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
-	 * If true, deletes the results in the time period between the latest results
-	 * and the time of the reverted snapshot. It also resets the model to accept
-	 * records for this time period. If you choose not to delete intervening results
-	 * when reverting a snapshot, the job will not accept input data that is older
-	 * than the current time. If you want to resend data, then delete the
-	 * intervening results.
+	 * Refer to the description for the <code>delete_intervening_results</code>
+	 * query parameter.
 	 * <p>
 	 * API name: {@code delete_intervening_results}
 	 */
@@ -136,12 +134,8 @@ public class RevertModelSnapshotRequest extends RequestBase implements JsonpSeri
 		private String snapshotId;
 
 		/**
-		 * If true, deletes the results in the time period between the latest results
-		 * and the time of the reverted snapshot. It also resets the model to accept
-		 * records for this time period. If you choose not to delete intervening results
-		 * when reverting a snapshot, the job will not accept input data that is older
-		 * than the current time. If you want to resend data, then delete the
-		 * intervening results.
+		 * Refer to the description for the <code>delete_intervening_results</code>
+		 * query parameter.
 		 * <p>
 		 * API name: {@code delete_intervening_results}
 		 */

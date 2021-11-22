@@ -36,7 +36,7 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: rollup.get_rollup_index_caps.RollupJobSummaryField
@@ -60,8 +60,10 @@ public class RollupJobSummaryField implements JsonpSerializable {
 
 	}
 
-	public static RollupJobSummaryField of(Function<Builder, ObjectBuilder<RollupJobSummaryField>> fn) {
-		return fn.apply(new Builder()).build();
+	public static RollupJobSummaryField of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -155,8 +157,10 @@ public class RollupJobSummaryField implements JsonpSerializable {
 		/**
 		 * API name: {@code calendar_interval}
 		 */
-		public final Builder calendarInterval(Function<Time.Builder, ObjectBuilder<Time>> fn) {
-			return this.calendarInterval(fn.apply(new Time.Builder()).build());
+		public final Builder calendarInterval(Consumer<Time.Builder> fn) {
+			Time.Builder builder = new Time.Builder();
+			fn.accept(builder);
+			return this.calendarInterval(builder.build());
 		}
 
 		/**

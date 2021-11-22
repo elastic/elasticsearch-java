@@ -29,14 +29,15 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -77,8 +78,10 @@ public class CharFilterTypes implements JsonpSerializable {
 
 	}
 
-	public static CharFilterTypes of(Function<Builder, ObjectBuilder<CharFilterTypes>> fn) {
-		return fn.apply(new Builder()).build();
+	public static CharFilterTypes of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -272,13 +275,9 @@ public class CharFilterTypes implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code char_filter_types}
 		 */
-		@SafeVarargs
-		public final Builder charFilterTypes(Function<FieldTypes.Builder, ObjectBuilder<FieldTypes>>... fns) {
-			this.charFilterTypes = new ArrayList<>(fns.length);
-			for (Function<FieldTypes.Builder, ObjectBuilder<FieldTypes>> fn : fns) {
-				this.charFilterTypes.add(fn.apply(new FieldTypes.Builder()).build());
-			}
-			return this;
+		public final Builder charFilterTypes(
+				Function<ListBuilder<FieldTypes, FieldTypes.Builder>, ObjectBuilder<List<FieldTypes>>> fn) {
+			return charFilterTypes(fn.apply(new ListBuilder<>(FieldTypes.Builder::new)).build());
 		}
 
 		/**
@@ -300,13 +299,9 @@ public class CharFilterTypes implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code tokenizer_types}
 		 */
-		@SafeVarargs
-		public final Builder tokenizerTypes(Function<FieldTypes.Builder, ObjectBuilder<FieldTypes>>... fns) {
-			this.tokenizerTypes = new ArrayList<>(fns.length);
-			for (Function<FieldTypes.Builder, ObjectBuilder<FieldTypes>> fn : fns) {
-				this.tokenizerTypes.add(fn.apply(new FieldTypes.Builder()).build());
-			}
-			return this;
+		public final Builder tokenizerTypes(
+				Function<ListBuilder<FieldTypes, FieldTypes.Builder>, ObjectBuilder<List<FieldTypes>>> fn) {
+			return tokenizerTypes(fn.apply(new ListBuilder<>(FieldTypes.Builder::new)).build());
 		}
 
 		/**
@@ -328,13 +323,9 @@ public class CharFilterTypes implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code filter_types}
 		 */
-		@SafeVarargs
-		public final Builder filterTypes(Function<FieldTypes.Builder, ObjectBuilder<FieldTypes>>... fns) {
-			this.filterTypes = new ArrayList<>(fns.length);
-			for (Function<FieldTypes.Builder, ObjectBuilder<FieldTypes>> fn : fns) {
-				this.filterTypes.add(fn.apply(new FieldTypes.Builder()).build());
-			}
-			return this;
+		public final Builder filterTypes(
+				Function<ListBuilder<FieldTypes, FieldTypes.Builder>, ObjectBuilder<List<FieldTypes>>> fn) {
+			return filterTypes(fn.apply(new ListBuilder<>(FieldTypes.Builder::new)).build());
 		}
 
 		/**
@@ -356,13 +347,9 @@ public class CharFilterTypes implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code analyzer_types}
 		 */
-		@SafeVarargs
-		public final Builder analyzerTypes(Function<FieldTypes.Builder, ObjectBuilder<FieldTypes>>... fns) {
-			this.analyzerTypes = new ArrayList<>(fns.length);
-			for (Function<FieldTypes.Builder, ObjectBuilder<FieldTypes>> fn : fns) {
-				this.analyzerTypes.add(fn.apply(new FieldTypes.Builder()).build());
-			}
-			return this;
+		public final Builder analyzerTypes(
+				Function<ListBuilder<FieldTypes, FieldTypes.Builder>, ObjectBuilder<List<FieldTypes>>> fn) {
+			return analyzerTypes(fn.apply(new ListBuilder<>(FieldTypes.Builder::new)).build());
 		}
 
 		/**
@@ -384,13 +371,9 @@ public class CharFilterTypes implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code built_in_char_filters}
 		 */
-		@SafeVarargs
-		public final Builder builtInCharFilters(Function<FieldTypes.Builder, ObjectBuilder<FieldTypes>>... fns) {
-			this.builtInCharFilters = new ArrayList<>(fns.length);
-			for (Function<FieldTypes.Builder, ObjectBuilder<FieldTypes>> fn : fns) {
-				this.builtInCharFilters.add(fn.apply(new FieldTypes.Builder()).build());
-			}
-			return this;
+		public final Builder builtInCharFilters(
+				Function<ListBuilder<FieldTypes, FieldTypes.Builder>, ObjectBuilder<List<FieldTypes>>> fn) {
+			return builtInCharFilters(fn.apply(new ListBuilder<>(FieldTypes.Builder::new)).build());
 		}
 
 		/**
@@ -412,13 +395,9 @@ public class CharFilterTypes implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code built_in_tokenizers}
 		 */
-		@SafeVarargs
-		public final Builder builtInTokenizers(Function<FieldTypes.Builder, ObjectBuilder<FieldTypes>>... fns) {
-			this.builtInTokenizers = new ArrayList<>(fns.length);
-			for (Function<FieldTypes.Builder, ObjectBuilder<FieldTypes>> fn : fns) {
-				this.builtInTokenizers.add(fn.apply(new FieldTypes.Builder()).build());
-			}
-			return this;
+		public final Builder builtInTokenizers(
+				Function<ListBuilder<FieldTypes, FieldTypes.Builder>, ObjectBuilder<List<FieldTypes>>> fn) {
+			return builtInTokenizers(fn.apply(new ListBuilder<>(FieldTypes.Builder::new)).build());
 		}
 
 		/**
@@ -440,13 +419,9 @@ public class CharFilterTypes implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code built_in_filters}
 		 */
-		@SafeVarargs
-		public final Builder builtInFilters(Function<FieldTypes.Builder, ObjectBuilder<FieldTypes>>... fns) {
-			this.builtInFilters = new ArrayList<>(fns.length);
-			for (Function<FieldTypes.Builder, ObjectBuilder<FieldTypes>> fn : fns) {
-				this.builtInFilters.add(fn.apply(new FieldTypes.Builder()).build());
-			}
-			return this;
+		public final Builder builtInFilters(
+				Function<ListBuilder<FieldTypes, FieldTypes.Builder>, ObjectBuilder<List<FieldTypes>>> fn) {
+			return builtInFilters(fn.apply(new ListBuilder<>(FieldTypes.Builder::new)).build());
 		}
 
 		/**
@@ -468,13 +443,9 @@ public class CharFilterTypes implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code built_in_analyzers}
 		 */
-		@SafeVarargs
-		public final Builder builtInAnalyzers(Function<FieldTypes.Builder, ObjectBuilder<FieldTypes>>... fns) {
-			this.builtInAnalyzers = new ArrayList<>(fns.length);
-			for (Function<FieldTypes.Builder, ObjectBuilder<FieldTypes>> fn : fns) {
-				this.builtInAnalyzers.add(fn.apply(new FieldTypes.Builder()).build());
-			}
-			return this;
+		public final Builder builtInAnalyzers(
+				Function<ListBuilder<FieldTypes, FieldTypes.Builder>, ObjectBuilder<List<FieldTypes>>> fn) {
+			return builtInAnalyzers(fn.apply(new ListBuilder<>(FieldTypes.Builder::new)).build());
 		}
 
 		/**

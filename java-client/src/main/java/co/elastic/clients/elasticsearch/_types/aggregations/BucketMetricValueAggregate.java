@@ -35,7 +35,7 @@ import java.lang.String;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.BucketMetricValueAggregate
@@ -52,16 +52,18 @@ public class BucketMetricValueAggregate extends SingleMetricAggregateBase implem
 
 	}
 
-	public static BucketMetricValueAggregate of(Function<Builder, ObjectBuilder<BucketMetricValueAggregate>> fn) {
-		return fn.apply(new Builder()).build();
+	public static BucketMetricValueAggregate of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
-	 * {@link Aggregate} variant type
+	 * Aggregate variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "bucket_metric_value";
+	public Aggregate.Kind _aggregateKind() {
+		return Aggregate.Kind.BucketMetricValue;
 	}
 
 	/**

@@ -37,7 +37,7 @@ import java.lang.String;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: indices.stats.IndicesStats
@@ -63,8 +63,10 @@ public class IndicesStats implements JsonpSerializable {
 
 	}
 
-	public static IndicesStats of(Function<Builder, ObjectBuilder<IndicesStats>> fn) {
-		return fn.apply(new Builder()).build();
+	public static IndicesStats of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -166,8 +168,10 @@ public class IndicesStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code primaries}
 		 */
-		public final Builder primaries(Function<IndexStats.Builder, ObjectBuilder<IndexStats>> fn) {
-			return this.primaries(fn.apply(new IndexStats.Builder()).build());
+		public final Builder primaries(Consumer<IndexStats.Builder> fn) {
+			IndexStats.Builder builder = new IndexStats.Builder();
+			fn.accept(builder);
+			return this.primaries(builder.build());
 		}
 
 		/**
@@ -189,8 +193,10 @@ public class IndicesStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code total}
 		 */
-		public final Builder total(Function<IndexStats.Builder, ObjectBuilder<IndexStats>> fn) {
-			return this.total(fn.apply(new IndexStats.Builder()).build());
+		public final Builder total(Consumer<IndexStats.Builder> fn) {
+			IndexStats.Builder builder = new IndexStats.Builder();
+			fn.accept(builder);
+			return this.total(builder.build());
 		}
 
 		/**

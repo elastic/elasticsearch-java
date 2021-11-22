@@ -38,7 +38,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: ml.preview_data_frame_analytics.Response
@@ -54,9 +54,10 @@ public class PreviewDataFrameAnalyticsResponse implements JsonpSerializable {
 
 	}
 
-	public static PreviewDataFrameAnalyticsResponse of(
-			Function<Builder, ObjectBuilder<PreviewDataFrameAnalyticsResponse>> fn) {
-		return fn.apply(new Builder()).build();
+	public static PreviewDataFrameAnalyticsResponse of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**

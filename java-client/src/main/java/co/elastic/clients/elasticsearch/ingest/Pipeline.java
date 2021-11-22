@@ -29,16 +29,17 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -66,8 +67,10 @@ public class Pipeline implements JsonpSerializable {
 
 	}
 
-	public static Pipeline of(Function<Builder, ObjectBuilder<Pipeline>> fn) {
-		return fn.apply(new Builder()).build();
+	public static Pipeline of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -189,13 +192,9 @@ public class Pipeline implements JsonpSerializable {
 		/**
 		 * API name: {@code on_failure}
 		 */
-		@SafeVarargs
-		public final Builder onFailure(Function<Processor.Builder, ObjectBuilder<Processor>>... fns) {
-			this.onFailure = new ArrayList<>(fns.length);
-			for (Function<Processor.Builder, ObjectBuilder<Processor>> fn : fns) {
-				this.onFailure.add(fn.apply(new Processor.Builder()).build());
-			}
-			return this;
+		public final Builder onFailure(
+				Function<ListBuilder<Processor, Processor.Builder>, ObjectBuilder<List<Processor>>> fn) {
+			return onFailure(fn.apply(new ListBuilder<>(Processor.Builder::new)).build());
 		}
 
 		/**
@@ -217,13 +216,9 @@ public class Pipeline implements JsonpSerializable {
 		/**
 		 * API name: {@code processors}
 		 */
-		@SafeVarargs
-		public final Builder processors(Function<Processor.Builder, ObjectBuilder<Processor>>... fns) {
-			this.processors = new ArrayList<>(fns.length);
-			for (Function<Processor.Builder, ObjectBuilder<Processor>> fn : fns) {
-				this.processors.add(fn.apply(new Processor.Builder()).build());
-			}
-			return this;
+		public final Builder processors(
+				Function<ListBuilder<Processor, Processor.Builder>, ObjectBuilder<List<Processor>>> fn) {
+			return processors(fn.apply(new ListBuilder<>(Processor.Builder::new)).build());
 		}
 
 		/**

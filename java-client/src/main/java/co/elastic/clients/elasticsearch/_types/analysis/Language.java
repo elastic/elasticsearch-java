@@ -23,21 +23,81 @@
 
 package co.elastic.clients.elasticsearch._types.analysis;
 
+import co.elastic.clients.json.JsonEnum;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
-import co.elastic.clients.util.StringEnum;
 
 @JsonpDeserializable
-public enum Language implements StringEnum {
-	Arabic("Arabic"), Armenian("Armenian"), Basque("Basque"), Brazilian("Brazilian"), Bulgarian("Bulgarian"), Catalan(
-			"Catalan"), Chinese("Chinese"), Cjk("Cjk"), Czech("Czech"), Danish("Danish"), Dutch(
-					"Dutch"), English("English"), Estonian("Estonian"), Finnish("Finnish"), French("French"), Galician(
-							"Galician"), German("German"), Greek("Greek"), Hindi("Hindi"), Hungarian(
-									"Hungarian"), Indonesian("Indonesian"), Irish("Irish"), Italian("Italian"), Latvian(
-											"Latvian"), Norwegian("Norwegian"), Persian("Persian"), Portuguese(
-													"Portuguese"), Romanian("Romanian"), Russian("Russian"), Sorani(
-															"Sorani"), Spanish("Spanish"), Swedish(
-																	"Swedish"), Turkish("Turkish"), Thai("Thai");
+public enum Language implements JsonEnum {
+	Arabic("Arabic"),
+
+	Armenian("Armenian"),
+
+	Basque("Basque"),
+
+	Brazilian("Brazilian"),
+
+	Bulgarian("Bulgarian"),
+
+	Catalan("Catalan"),
+
+	Chinese("Chinese"),
+
+	Cjk("Cjk"),
+
+	Czech("Czech"),
+
+	Danish("Danish"),
+
+	Dutch("Dutch"),
+
+	English("English"),
+
+	Estonian("Estonian"),
+
+	Finnish("Finnish"),
+
+	French("French"),
+
+	Galician("Galician"),
+
+	German("German"),
+
+	Greek("Greek"),
+
+	Hindi("Hindi"),
+
+	Hungarian("Hungarian"),
+
+	Indonesian("Indonesian"),
+
+	Irish("Irish"),
+
+	Italian("Italian"),
+
+	Latvian("Latvian"),
+
+	Norwegian("Norwegian"),
+
+	Persian("Persian"),
+
+	Portuguese("Portuguese"),
+
+	Romanian("Romanian"),
+
+	Russian("Russian"),
+
+	Sorani("Sorani"),
+
+	Spanish("Spanish"),
+
+	Swedish("Swedish"),
+
+	Turkish("Turkish"),
+
+	Thai("Thai"),
+
+	;
 
 	private final String jsonValue;
 
@@ -49,6 +109,5 @@ public enum Language implements StringEnum {
 		return this.jsonValue;
 	}
 
-	public static final StringEnum.Deserializer<Language> _DESERIALIZER = new StringEnum.Deserializer<>(
-			Language.values());
+	public static final JsonEnum.Deserializer<Language> _DESERIALIZER = new JsonEnum.Deserializer<>(Language.values());
 }

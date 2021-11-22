@@ -34,7 +34,7 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.DataDescription
@@ -63,8 +63,10 @@ public class DataDescription implements JsonpSerializable {
 
 	}
 
-	public static DataDescription of(Function<Builder, ObjectBuilder<DataDescription>> fn) {
-		return fn.apply(new Builder()).build();
+	public static DataDescription of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**

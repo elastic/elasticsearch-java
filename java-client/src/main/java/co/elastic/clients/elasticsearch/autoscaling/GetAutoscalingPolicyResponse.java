@@ -25,50 +25,27 @@ package co.elastic.clients.elasticsearch.autoscaling;
 
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
-import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Function;
-import javax.annotation.Nullable;
+import java.util.function.Consumer;
 
 // typedef: autoscaling.get_autoscaling_policy.Response
 @JsonpDeserializable
-public class GetAutoscalingPolicyResponse implements JsonpSerializable {
-	private final AutoscalingPolicy valueBody;
-
+public class GetAutoscalingPolicyResponse extends AutoscalingPolicy {
 	// ---------------------------------------------------------------------------------------------
 
 	private GetAutoscalingPolicyResponse(Builder builder) {
-
-		this.valueBody = ModelTypeHelper.requireNonNull(builder.valueBody, this, "valueBody");
+		super(builder);
 
 	}
 
-	public static GetAutoscalingPolicyResponse of(Function<Builder, ObjectBuilder<GetAutoscalingPolicyResponse>> fn) {
-		return fn.apply(new Builder()).build();
-	}
-
-	/**
-	 * Required - Response value.
-	 * <p>
-	 * API name: {@code _value_body}
-	 */
-	public final AutoscalingPolicy valueBody() {
-		return this.valueBody;
-	}
-
-	/**
-	 * Serialize this value to JSON.
-	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		this.valueBody.serialize(generator, mapper);
-
+	public static GetAutoscalingPolicyResponse of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -76,26 +53,12 @@ public class GetAutoscalingPolicyResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link GetAutoscalingPolicyResponse}.
 	 */
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetAutoscalingPolicyResponse> {
-		private AutoscalingPolicy valueBody;
-
-		/**
-		 * Required - Response value.
-		 * <p>
-		 * API name: {@code _value_body}
-		 */
-		public final Builder valueBody(AutoscalingPolicy value) {
-			this.valueBody = value;
+	public static class Builder extends AutoscalingPolicy.AbstractBuilder<Builder>
+			implements
+				ObjectBuilder<GetAutoscalingPolicyResponse> {
+		@Override
+		protected Builder self() {
 			return this;
-		}
-
-		/**
-		 * Required - Response value.
-		 * <p>
-		 * API name: {@code _value_body}
-		 */
-		public final Builder valueBody(Function<AutoscalingPolicy.Builder, ObjectBuilder<AutoscalingPolicy>> fn) {
-			return this.valueBody(fn.apply(new AutoscalingPolicy.Builder()).build());
 		}
 
 		/**
@@ -111,13 +74,18 @@ public class GetAutoscalingPolicyResponse implements JsonpSerializable {
 		}
 	}
 
-	public static final JsonpDeserializer<GetAutoscalingPolicyResponse> _DESERIALIZER = createGetAutoscalingPolicyResponseDeserializer();
-	protected static JsonpDeserializer<GetAutoscalingPolicyResponse> createGetAutoscalingPolicyResponseDeserializer() {
+	// ---------------------------------------------------------------------------------------------
 
-		JsonpDeserializer<AutoscalingPolicy> valueDeserializer = AutoscalingPolicy._DESERIALIZER;
+	/**
+	 * Json deserializer for {@link GetAutoscalingPolicyResponse}
+	 */
+	public static final JsonpDeserializer<GetAutoscalingPolicyResponse> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, GetAutoscalingPolicyResponse::setupGetAutoscalingPolicyResponseDeserializer);
 
-		return JsonpDeserializer.of(valueDeserializer.acceptedEvents(),
-				(parser, mapper) -> new Builder().valueBody(valueDeserializer.deserialize(parser, mapper)).build());
+	protected static void setupGetAutoscalingPolicyResponseDeserializer(
+			ObjectDeserializer<GetAutoscalingPolicyResponse.Builder> op) {
+		AutoscalingPolicy.setupAutoscalingPolicyDeserializer(op);
+
 	}
 
 }

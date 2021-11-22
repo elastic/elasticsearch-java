@@ -23,12 +23,12 @@
 
 package co.elastic.clients.elasticsearch.core.search;
 
-import co.elastic.clients.util.UnionVariant;
-
 /**
  * Base interface for {@link FieldSuggester} variants.
  */
-public interface FieldSuggesterVariant extends UnionVariant {
+public interface FieldSuggesterVariant {
+
+	FieldSuggester.Kind _fieldSuggesterKind();
 
 	default FieldSuggester _toFieldSuggester() {
 		return new FieldSuggester(this);

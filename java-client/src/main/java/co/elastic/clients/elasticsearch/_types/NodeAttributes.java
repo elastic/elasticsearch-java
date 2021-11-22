@@ -38,7 +38,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: _types.NodeAttributes
@@ -70,8 +70,10 @@ public class NodeAttributes implements JsonpSerializable {
 
 	}
 
-	public static NodeAttributes of(Function<Builder, ObjectBuilder<NodeAttributes>> fn) {
-		return fn.apply(new Builder()).build();
+	public static NodeAttributes of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**

@@ -30,7 +30,7 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 
 // typedef: _types.aggregations.MinAggregation
 @JsonpDeserializable
@@ -42,16 +42,18 @@ public class MinAggregation extends FormatMetricAggregationBase implements Aggre
 
 	}
 
-	public static MinAggregation of(Function<Builder, ObjectBuilder<MinAggregation>> fn) {
-		return fn.apply(new Builder()).build();
+	public static MinAggregation of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
-	 * {@link Aggregation} variant type
+	 * Aggregation variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "min";
+	public Aggregation.Kind _aggregationKind() {
+		return Aggregation.Kind.Min;
 	}
 
 	// ---------------------------------------------------------------------------------------------

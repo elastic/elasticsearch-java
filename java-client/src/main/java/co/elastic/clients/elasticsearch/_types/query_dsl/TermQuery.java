@@ -35,7 +35,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.TermQuery
@@ -60,16 +60,18 @@ public class TermQuery extends QueryBase implements QueryVariant {
 
 	}
 
-	public static TermQuery of(Function<Builder, ObjectBuilder<TermQuery>> fn) {
-		return fn.apply(new Builder()).build();
+	public static TermQuery of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
-	 * {@link Query} variant type
+	 * Query variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "term";
+	public Query.Kind _queryKind() {
+		return Query.Kind.Term;
 	}
 
 	/**
@@ -143,8 +145,10 @@ public class TermQuery extends QueryBase implements QueryVariant {
 		/**
 		 * Required - API name: {@code value}
 		 */
-		public final Builder value(Function<FieldValue.Builder, ObjectBuilder<FieldValue>> fn) {
-			return this.value(fn.apply(new FieldValue.Builder()).build());
+		public final Builder value(Consumer<FieldValue.Builder> fn) {
+			FieldValue.Builder builder = new FieldValue.Builder();
+			fn.accept(builder);
+			return this.value(builder.build());
 		}
 
 		/**

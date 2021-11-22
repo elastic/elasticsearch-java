@@ -26,24 +26,25 @@ package co.elastic.clients.elasticsearch.xpack;
 import co.elastic.clients.ApiClient;
 import co.elastic.clients.elasticsearch._types.ElasticsearchException;
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
+import co.elastic.clients.transport.ElasticsearchTransport;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.Transport;
 import co.elastic.clients.transport.TransportOptions;
 import co.elastic.clients.util.ObjectBuilder;
 import java.io.IOException;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 /**
  * Client for the xpack namespace.
  */
-public class ElasticsearchXpackClient extends ApiClient<ElasticsearchXpackClient> {
+public class ElasticsearchXpackClient extends ApiClient<ElasticsearchTransport, ElasticsearchXpackClient> {
 
-	public ElasticsearchXpackClient(Transport transport) {
+	public ElasticsearchXpackClient(ElasticsearchTransport transport) {
 		super(transport, null);
 	}
 
-	public ElasticsearchXpackClient(Transport transport, @Nullable TransportOptions transportOptions) {
+	public ElasticsearchXpackClient(ElasticsearchTransport transport, @Nullable TransportOptions transportOptions) {
 		super(transport, transportOptions);
 	}
 
@@ -80,9 +81,11 @@ public class ElasticsearchXpackClient extends ApiClient<ElasticsearchXpackClient
 	 *      on elastic.co</a>
 	 */
 
-	public final XpackInfoResponse info(Function<XpackInfoRequest.Builder, ObjectBuilder<XpackInfoRequest>> fn)
+	public final XpackInfoResponse info(Consumer<XpackInfoRequest.Builder> fn)
 			throws IOException, ElasticsearchException {
-		return info(fn.apply(new XpackInfoRequest.Builder()).build());
+		XpackInfoRequest.Builder builder = new XpackInfoRequest.Builder();
+		fn.accept(builder);
+		return info(builder.build());
 	}
 
 	/**
@@ -108,9 +111,9 @@ public class ElasticsearchXpackClient extends ApiClient<ElasticsearchXpackClient
 	 *      on elastic.co</a>
 	 */
 
-	public UsageResponse usage(UsageRequest request) throws IOException, ElasticsearchException {
+	public XpackUsageResponse usage(XpackUsageRequest request) throws IOException, ElasticsearchException {
 		@SuppressWarnings("unchecked")
-		Endpoint<UsageRequest, UsageResponse, ErrorResponse> endpoint = (Endpoint<UsageRequest, UsageResponse, ErrorResponse>) UsageRequest._ENDPOINT;
+		Endpoint<XpackUsageRequest, XpackUsageResponse, ErrorResponse> endpoint = (Endpoint<XpackUsageRequest, XpackUsageResponse, ErrorResponse>) XpackUsageRequest._ENDPOINT;
 
 		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
@@ -120,15 +123,17 @@ public class ElasticsearchXpackClient extends ApiClient<ElasticsearchXpackClient
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
-	 *            {@link UsageRequest}
+	 *            {@link XpackUsageRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/usage-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
-	public final UsageResponse usage(Function<UsageRequest.Builder, ObjectBuilder<UsageRequest>> fn)
+	public final XpackUsageResponse usage(Consumer<XpackUsageRequest.Builder> fn)
 			throws IOException, ElasticsearchException {
-		return usage(fn.apply(new UsageRequest.Builder()).build());
+		XpackUsageRequest.Builder builder = new XpackUsageRequest.Builder();
+		fn.accept(builder);
+		return usage(builder.build());
 	}
 
 	/**
@@ -139,8 +144,8 @@ public class ElasticsearchXpackClient extends ApiClient<ElasticsearchXpackClient
 	 *      on elastic.co</a>
 	 */
 
-	public UsageResponse usage() throws IOException, ElasticsearchException {
-		return this.transport.performRequest(new UsageRequest.Builder().build(), UsageRequest._ENDPOINT,
+	public XpackUsageResponse usage() throws IOException, ElasticsearchException {
+		return this.transport.performRequest(new XpackUsageRequest.Builder().build(), XpackUsageRequest._ENDPOINT,
 				this.transportOptions);
 	}
 

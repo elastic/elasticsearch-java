@@ -23,18 +23,19 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
+import co.elastic.clients.json.JsonEnum;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
-import co.elastic.clients.util.StringEnum;
 
 @JsonpDeserializable
-public enum RuleAction implements StringEnum {
+public enum RuleAction implements JsonEnum {
 	/**
 	 * The result will not be created. Unless you also specify
 	 * <code>skip_model_update</code>, the model will be updated as usual with the
 	 * corresponding series value.
 	 */
 	SkipResult("skip_result"),
+
 	/**
 	 * The value for that series will not be used to update the model. Unless you
 	 * also specify <code>skip_result</code>, the results will be created as usual.
@@ -42,7 +43,9 @@ public enum RuleAction implements StringEnum {
 	 * anomalous and they affect the model in a way that negatively impacts the rest
 	 * of the results.
 	 */
-	SkipModelUpdate("skip_model_update");
+	SkipModelUpdate("skip_model_update"),
+
+	;
 
 	private final String jsonValue;
 
@@ -54,6 +57,6 @@ public enum RuleAction implements StringEnum {
 		return this.jsonValue;
 	}
 
-	public static final StringEnum.Deserializer<RuleAction> _DESERIALIZER = new StringEnum.Deserializer<>(
+	public static final JsonEnum.Deserializer<RuleAction> _DESERIALIZER = new JsonEnum.Deserializer<>(
 			RuleAction.values());
 }

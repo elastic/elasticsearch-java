@@ -37,7 +37,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: _global.search._types.NestedSortValue
@@ -65,8 +65,10 @@ public class NestedSortValue implements JsonpSerializable {
 
 	}
 
-	public static NestedSortValue of(Function<Builder, ObjectBuilder<NestedSortValue>> fn) {
-		return fn.apply(new Builder()).build();
+	public static NestedSortValue of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -159,8 +161,10 @@ public class NestedSortValue implements JsonpSerializable {
 		/**
 		 * API name: {@code filter}
 		 */
-		public final Builder filter(Function<Query.Builder, ObjectBuilder<Query>> fn) {
-			return this.filter(fn.apply(new Query.Builder()).build());
+		public final Builder filter(Consumer<Query.Builder> fn) {
+			Query.Builder builder = new Query.Builder();
+			fn.accept(builder);
+			return this.filter(builder.build());
 		}
 
 		/**
@@ -182,8 +186,10 @@ public class NestedSortValue implements JsonpSerializable {
 		/**
 		 * API name: {@code nested}
 		 */
-		public final Builder nested(Function<NestedSortValue.Builder, ObjectBuilder<NestedSortValue>> fn) {
-			return this.nested(fn.apply(new NestedSortValue.Builder()).build());
+		public final Builder nested(Consumer<NestedSortValue.Builder> fn) {
+			NestedSortValue.Builder builder = new NestedSortValue.Builder();
+			fn.accept(builder);
+			return this.nested(builder.build());
 		}
 
 		/**

@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 
 // typedef: dangling_indices.delete_dangling_index.Response
 @JsonpDeserializable
@@ -43,8 +43,10 @@ public class DeleteDanglingIndexResponse extends AcknowledgedResponseBase {
 
 	}
 
-	public static DeleteDanglingIndexResponse of(Function<Builder, ObjectBuilder<DeleteDanglingIndexResponse>> fn) {
-		return fn.apply(new Builder()).build();
+	public static DeleteDanglingIndexResponse of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	// ---------------------------------------------------------------------------------------------

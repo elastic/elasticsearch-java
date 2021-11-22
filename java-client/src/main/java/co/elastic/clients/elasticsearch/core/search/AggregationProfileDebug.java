@@ -39,7 +39,7 @@ import java.lang.String;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: _global.search._types.AggregationProfileDebug
@@ -139,8 +139,10 @@ public class AggregationProfileDebug implements JsonpSerializable {
 
 	}
 
-	public static AggregationProfileDebug of(Function<Builder, ObjectBuilder<AggregationProfileDebug>> fn) {
-		return fn.apply(new Builder()).build();
+	public static AggregationProfileDebug of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -594,9 +596,10 @@ public class AggregationProfileDebug implements JsonpSerializable {
 		/**
 		 * API name: {@code delegate_debug}
 		 */
-		public final Builder delegateDebug(
-				Function<AggregationProfileDelegateDebug.Builder, ObjectBuilder<AggregationProfileDelegateDebug>> fn) {
-			return this.delegateDebug(fn.apply(new AggregationProfileDelegateDebug.Builder()).build());
+		public final Builder delegateDebug(Consumer<AggregationProfileDelegateDebug.Builder> fn) {
+			AggregationProfileDelegateDebug.Builder builder = new AggregationProfileDelegateDebug.Builder();
+			fn.accept(builder);
+			return this.delegateDebug(builder.build());
 		}
 
 		/**

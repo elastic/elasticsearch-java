@@ -36,7 +36,7 @@ import java.lang.Double;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.MatchQuery
@@ -105,16 +105,18 @@ public class MatchQuery extends QueryBase implements QueryVariant {
 
 	}
 
-	public static MatchQuery of(Function<Builder, ObjectBuilder<MatchQuery>> fn) {
-		return fn.apply(new Builder()).build();
+	public static MatchQuery of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
-	 * {@link Query} variant type
+	 * Query variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "match";
+	public Query.Kind _queryKind() {
+		return Query.Kind.Match;
 	}
 
 	/**

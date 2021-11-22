@@ -23,12 +23,12 @@
 
 package co.elastic.clients.elasticsearch._types;
 
-import co.elastic.clients.util.UnionVariant;
-
 /**
  * Base interface for {@link Transform} variants.
  */
-public interface TransformVariant extends UnionVariant {
+public interface TransformVariant {
+
+	Transform.Kind _transformKind();
 
 	default Transform _toTransform() {
 		return new Transform(this);

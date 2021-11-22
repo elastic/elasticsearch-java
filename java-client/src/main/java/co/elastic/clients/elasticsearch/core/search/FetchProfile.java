@@ -29,16 +29,17 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -71,8 +72,10 @@ public class FetchProfile implements JsonpSerializable {
 
 	}
 
-	public static FetchProfile of(Function<Builder, ObjectBuilder<FetchProfile>> fn) {
-		return fn.apply(new Builder()).build();
+	public static FetchProfile of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -214,9 +217,10 @@ public class FetchProfile implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code breakdown}
 		 */
-		public final Builder breakdown(
-				Function<FetchProfileBreakdown.Builder, ObjectBuilder<FetchProfileBreakdown>> fn) {
-			return this.breakdown(fn.apply(new FetchProfileBreakdown.Builder()).build());
+		public final Builder breakdown(Consumer<FetchProfileBreakdown.Builder> fn) {
+			FetchProfileBreakdown.Builder builder = new FetchProfileBreakdown.Builder();
+			fn.accept(builder);
+			return this.breakdown(builder.build());
 		}
 
 		/**
@@ -230,8 +234,10 @@ public class FetchProfile implements JsonpSerializable {
 		/**
 		 * API name: {@code debug}
 		 */
-		public final Builder debug(Function<FetchProfileDebug.Builder, ObjectBuilder<FetchProfileDebug>> fn) {
-			return this.debug(fn.apply(new FetchProfileDebug.Builder()).build());
+		public final Builder debug(Consumer<FetchProfileDebug.Builder> fn) {
+			FetchProfileDebug.Builder builder = new FetchProfileDebug.Builder();
+			fn.accept(builder);
+			return this.debug(builder.build());
 		}
 
 		/**
@@ -253,13 +259,9 @@ public class FetchProfile implements JsonpSerializable {
 		/**
 		 * API name: {@code children}
 		 */
-		@SafeVarargs
-		public final Builder children(Function<FetchProfile.Builder, ObjectBuilder<FetchProfile>>... fns) {
-			this.children = new ArrayList<>(fns.length);
-			for (Function<FetchProfile.Builder, ObjectBuilder<FetchProfile>> fn : fns) {
-				this.children.add(fn.apply(new FetchProfile.Builder()).build());
-			}
-			return this;
+		public final Builder children(
+				Function<ListBuilder<FetchProfile, FetchProfile.Builder>, ObjectBuilder<List<FetchProfile>>> fn) {
+			return children(fn.apply(new ListBuilder<>(FetchProfile.Builder::new)).build());
 		}
 
 		/**

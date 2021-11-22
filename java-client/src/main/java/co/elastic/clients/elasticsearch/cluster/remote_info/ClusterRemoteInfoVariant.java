@@ -24,12 +24,13 @@
 package co.elastic.clients.elasticsearch.cluster.remote_info;
 
 import co.elastic.clients.json.JsonpSerializable;
-import co.elastic.clients.util.UnionVariant;
 
 /**
  * Base interface for {@link ClusterRemoteInfo} variants.
  */
-public interface ClusterRemoteInfoVariant extends UnionVariant, JsonpSerializable {
+public interface ClusterRemoteInfoVariant extends JsonpSerializable {
+
+	ClusterRemoteInfo.Kind _clusterRemoteInfoKind();
 
 	default ClusterRemoteInfo _toClusterRemoteInfo() {
 		return new ClusterRemoteInfo(this);

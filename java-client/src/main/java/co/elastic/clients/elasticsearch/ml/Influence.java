@@ -37,7 +37,7 @@ import java.lang.String;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.Influence
@@ -58,8 +58,10 @@ public class Influence implements JsonpSerializable {
 
 	}
 
-	public static Influence of(Function<Builder, ObjectBuilder<Influence>> fn) {
-		return fn.apply(new Builder()).build();
+	public static Influence of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**

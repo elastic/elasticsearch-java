@@ -36,7 +36,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: graph._types.SampleDiversity
@@ -55,8 +55,10 @@ public class SampleDiversity implements JsonpSerializable {
 
 	}
 
-	public static SampleDiversity of(Function<Builder, ObjectBuilder<SampleDiversity>> fn) {
-		return fn.apply(new Builder()).build();
+	public static SampleDiversity of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**

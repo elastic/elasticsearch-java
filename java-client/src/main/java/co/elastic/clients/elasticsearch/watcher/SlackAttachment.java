@@ -29,15 +29,16 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -108,8 +109,10 @@ public class SlackAttachment implements JsonpSerializable {
 
 	}
 
-	public static SlackAttachment of(Function<Builder, ObjectBuilder<SlackAttachment>> fn) {
-		return fn.apply(new Builder()).build();
+	public static SlackAttachment of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -427,14 +430,9 @@ public class SlackAttachment implements JsonpSerializable {
 		/**
 		 * API name: {@code fields}
 		 */
-		@SafeVarargs
 		public final Builder fields(
-				Function<SlackAttachmentField.Builder, ObjectBuilder<SlackAttachmentField>>... fns) {
-			this.fields = new ArrayList<>(fns.length);
-			for (Function<SlackAttachmentField.Builder, ObjectBuilder<SlackAttachmentField>> fn : fns) {
-				this.fields.add(fn.apply(new SlackAttachmentField.Builder()).build());
-			}
-			return this;
+				Function<ListBuilder<SlackAttachmentField, SlackAttachmentField.Builder>, ObjectBuilder<List<SlackAttachmentField>>> fn) {
+			return fields(fn.apply(new ListBuilder<>(SlackAttachmentField.Builder::new)).build());
 		}
 
 		/**

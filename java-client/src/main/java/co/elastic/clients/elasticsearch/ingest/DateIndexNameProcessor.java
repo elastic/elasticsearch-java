@@ -35,7 +35,7 @@ import java.lang.String;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: ingest._types.DateIndexNameProcessor
@@ -70,16 +70,18 @@ public class DateIndexNameProcessor extends ProcessorBase implements ProcessorVa
 
 	}
 
-	public static DateIndexNameProcessor of(Function<Builder, ObjectBuilder<DateIndexNameProcessor>> fn) {
-		return fn.apply(new Builder()).build();
+	public static DateIndexNameProcessor of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
-	 * {@link Processor} variant type
+	 * Processor variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "date_index_name";
+	public Processor.Kind _processorKind() {
+		return Processor.Kind.DateIndexName;
 	}
 
 	/**

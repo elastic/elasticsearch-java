@@ -38,7 +38,7 @@ import java.lang.Integer;
 import java.lang.Long;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.ModelSnapshot
@@ -84,8 +84,10 @@ public class ModelSnapshot implements JsonpSerializable {
 
 	}
 
-	public static ModelSnapshot of(Function<Builder, ObjectBuilder<ModelSnapshot>> fn) {
-		return fn.apply(new Builder()).build();
+	public static ModelSnapshot of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -323,8 +325,10 @@ public class ModelSnapshot implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code model_size_stats}
 		 */
-		public final Builder modelSizeStats(Function<ModelSizeStats.Builder, ObjectBuilder<ModelSizeStats>> fn) {
-			return this.modelSizeStats(fn.apply(new ModelSizeStats.Builder()).build());
+		public final Builder modelSizeStats(Consumer<ModelSizeStats.Builder> fn) {
+			ModelSizeStats.Builder builder = new ModelSizeStats.Builder();
+			fn.accept(builder);
+			return this.modelSizeStats(builder.build());
 		}
 
 		/**

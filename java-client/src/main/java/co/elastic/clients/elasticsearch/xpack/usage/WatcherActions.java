@@ -35,9 +35,9 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.Collections;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -54,8 +54,10 @@ public class WatcherActions implements JsonpSerializable {
 
 	}
 
-	public static WatcherActions of(Function<Builder, ObjectBuilder<WatcherActions>> fn) {
-		return fn.apply(new Builder()).build();
+	public static WatcherActions of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -104,14 +106,6 @@ public class WatcherActions implements JsonpSerializable {
 		public final Builder actions(Map<String, WatcherActionTotals> value) {
 			this.actions = value;
 			return this;
-		}
-
-		/**
-		 * Set {@link #actions(Map)} to a singleton map.
-		 */
-		public Builder actions(String key,
-				Function<WatcherActionTotals.Builder, ObjectBuilder<WatcherActionTotals>> fn) {
-			return this.actions(Collections.singletonMap(key, fn.apply(new WatcherActionTotals.Builder()).build()));
 		}
 
 		public final Builder actions(

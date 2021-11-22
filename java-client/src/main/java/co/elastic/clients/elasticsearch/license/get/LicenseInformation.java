@@ -39,7 +39,7 @@ import java.lang.Integer;
 import java.lang.Long;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: license.get.LicenseInformation
@@ -90,8 +90,10 @@ public class LicenseInformation implements JsonpSerializable {
 
 	}
 
-	public static LicenseInformation of(Function<Builder, ObjectBuilder<LicenseInformation>> fn) {
-		return fn.apply(new Builder()).build();
+	public static LicenseInformation of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**

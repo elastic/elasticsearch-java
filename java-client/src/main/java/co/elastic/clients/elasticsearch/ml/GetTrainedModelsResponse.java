@@ -29,15 +29,16 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -58,8 +59,10 @@ public class GetTrainedModelsResponse implements JsonpSerializable {
 
 	}
 
-	public static GetTrainedModelsResponse of(Function<Builder, ObjectBuilder<GetTrainedModelsResponse>> fn) {
-		return fn.apply(new Builder()).build();
+	public static GetTrainedModelsResponse of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -152,14 +155,9 @@ public class GetTrainedModelsResponse implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code trained_model_configs}
 		 */
-		@SafeVarargs
 		public final Builder trainedModelConfigs(
-				Function<TrainedModelConfig.Builder, ObjectBuilder<TrainedModelConfig>>... fns) {
-			this.trainedModelConfigs = new ArrayList<>(fns.length);
-			for (Function<TrainedModelConfig.Builder, ObjectBuilder<TrainedModelConfig>> fn : fns) {
-				this.trainedModelConfigs.add(fn.apply(new TrainedModelConfig.Builder()).build());
-			}
-			return this;
+				Function<ListBuilder<TrainedModelConfig, TrainedModelConfig.Builder>, ObjectBuilder<List<TrainedModelConfig>>> fn) {
+			return trainedModelConfigs(fn.apply(new ListBuilder<>(TrainedModelConfig.Builder::new)).build());
 		}
 
 		/**

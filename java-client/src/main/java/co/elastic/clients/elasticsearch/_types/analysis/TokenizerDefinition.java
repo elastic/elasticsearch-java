@@ -23,6 +23,7 @@
 
 package co.elastic.clients.elasticsearch._types.analysis;
 
+import co.elastic.clients.json.JsonEnum;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -36,35 +37,70 @@ import co.elastic.clients.util.TaggedUnion;
 import co.elastic.clients.util.TaggedUnionUtils;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: _types.analysis.TokenizerDefinition
 // union type: InternalTag[tag=type]
 @JsonpDeserializable
-public class TokenizerDefinition implements TaggedUnion<TokenizerDefinitionVariant>, JsonpSerializable {
+public class TokenizerDefinition
+		implements
+			TaggedUnion<TokenizerDefinition.Kind, TokenizerDefinitionVariant>,
+			JsonpSerializable {
 
-	public static final String CHAR_GROUP = "char_group";
-	public static final String EDGE_NGRAM = "edge_ngram";
-	public static final String ICU_TOKENIZER = "icu_tokenizer";
-	public static final String KEYWORD = "keyword";
-	public static final String KUROMOJI_TOKENIZER = "kuromoji_tokenizer";
-	public static final String LETTER = "letter";
-	public static final String LOWERCASE = "lowercase";
-	public static final String NGRAM = "ngram";
-	public static final String NORI_TOKENIZER = "nori_tokenizer";
-	public static final String PATH_HIERARCHY = "path_hierarchy";
-	public static final String PATTERN = "pattern";
-	public static final String STANDARD = "standard";
-	public static final String UAX_URL_EMAIL = "uax_url_email";
-	public static final String WHITESPACE = "whitespace";
+	/**
+	 * {@link TokenizerDefinition} variant kinds.
+	 */
 
-	private final String _type;
+	public enum Kind implements JsonEnum {
+		CharGroup("char_group"),
+
+		EdgeNgram("edge_ngram"),
+
+		IcuTokenizer("icu_tokenizer"),
+
+		Keyword("keyword"),
+
+		KuromojiTokenizer("kuromoji_tokenizer"),
+
+		Letter("letter"),
+
+		Lowercase("lowercase"),
+
+		Ngram("ngram"),
+
+		NoriTokenizer("nori_tokenizer"),
+
+		PathHierarchy("path_hierarchy"),
+
+		Pattern("pattern"),
+
+		Standard("standard"),
+
+		UaxUrlEmail("uax_url_email"),
+
+		Whitespace("whitespace"),
+
+		;
+
+		private final String jsonValue;
+
+		Kind(String jsonValue) {
+			this.jsonValue = jsonValue;
+		}
+
+		public String jsonValue() {
+			return this.jsonValue;
+		}
+
+	}
+
+	private final Kind _kind;
 	private final TokenizerDefinitionVariant _value;
 
 	@Override
-	public final String _type() {
-		return _type;
+	public final Kind _kind() {
+		return _kind;
 	}
 
 	@Override
@@ -74,27 +110,29 @@ public class TokenizerDefinition implements TaggedUnion<TokenizerDefinitionVaria
 
 	public TokenizerDefinition(TokenizerDefinitionVariant value) {
 
-		this._type = ModelTypeHelper.requireNonNull(value._variantType(), this, "<variant type>");
+		this._kind = ModelTypeHelper.requireNonNull(value._tokenizerDefinitionKind(), this, "<variant kind>");
 		this._value = ModelTypeHelper.requireNonNull(value, this, "<variant value>");
 
 	}
 
 	private TokenizerDefinition(Builder builder) {
 
-		this._type = ModelTypeHelper.requireNonNull(builder._type, builder, "<variant type>");
+		this._kind = ModelTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
 		this._value = ModelTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
 
 	}
 
-	public static TokenizerDefinition of(Function<Builder, ObjectBuilder<TokenizerDefinition>> fn) {
-		return fn.apply(new Builder()).build();
+	public static TokenizerDefinition of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
 	 * Is this variant instance of kind {@code char_group}?
 	 */
-	public boolean _isCharGroup() {
-		return CHAR_GROUP.equals(_type());
+	public boolean isCharGroup() {
+		return _kind == Kind.CharGroup;
 	}
 
 	/**
@@ -104,14 +142,14 @@ public class TokenizerDefinition implements TaggedUnion<TokenizerDefinitionVaria
 	 *             if the current variant is not of the {@code char_group} kind.
 	 */
 	public CharGroupTokenizer charGroup() {
-		return TaggedUnionUtils.get(this, CHAR_GROUP);
+		return TaggedUnionUtils.get(this, Kind.CharGroup);
 	}
 
 	/**
 	 * Is this variant instance of kind {@code edge_ngram}?
 	 */
-	public boolean _isEdgeNgram() {
-		return EDGE_NGRAM.equals(_type());
+	public boolean isEdgeNgram() {
+		return _kind == Kind.EdgeNgram;
 	}
 
 	/**
@@ -121,14 +159,14 @@ public class TokenizerDefinition implements TaggedUnion<TokenizerDefinitionVaria
 	 *             if the current variant is not of the {@code edge_ngram} kind.
 	 */
 	public EdgeNGramTokenizer edgeNgram() {
-		return TaggedUnionUtils.get(this, EDGE_NGRAM);
+		return TaggedUnionUtils.get(this, Kind.EdgeNgram);
 	}
 
 	/**
 	 * Is this variant instance of kind {@code icu_tokenizer}?
 	 */
-	public boolean _isIcuTokenizer() {
-		return ICU_TOKENIZER.equals(_type());
+	public boolean isIcuTokenizer() {
+		return _kind == Kind.IcuTokenizer;
 	}
 
 	/**
@@ -138,14 +176,14 @@ public class TokenizerDefinition implements TaggedUnion<TokenizerDefinitionVaria
 	 *             if the current variant is not of the {@code icu_tokenizer} kind.
 	 */
 	public IcuTokenizer icuTokenizer() {
-		return TaggedUnionUtils.get(this, ICU_TOKENIZER);
+		return TaggedUnionUtils.get(this, Kind.IcuTokenizer);
 	}
 
 	/**
 	 * Is this variant instance of kind {@code keyword}?
 	 */
-	public boolean _isKeyword() {
-		return KEYWORD.equals(_type());
+	public boolean isKeyword() {
+		return _kind == Kind.Keyword;
 	}
 
 	/**
@@ -155,14 +193,14 @@ public class TokenizerDefinition implements TaggedUnion<TokenizerDefinitionVaria
 	 *             if the current variant is not of the {@code keyword} kind.
 	 */
 	public KeywordTokenizer keyword() {
-		return TaggedUnionUtils.get(this, KEYWORD);
+		return TaggedUnionUtils.get(this, Kind.Keyword);
 	}
 
 	/**
 	 * Is this variant instance of kind {@code kuromoji_tokenizer}?
 	 */
-	public boolean _isKuromojiTokenizer() {
-		return KUROMOJI_TOKENIZER.equals(_type());
+	public boolean isKuromojiTokenizer() {
+		return _kind == Kind.KuromojiTokenizer;
 	}
 
 	/**
@@ -173,14 +211,14 @@ public class TokenizerDefinition implements TaggedUnion<TokenizerDefinitionVaria
 	 *             kind.
 	 */
 	public KuromojiTokenizer kuromojiTokenizer() {
-		return TaggedUnionUtils.get(this, KUROMOJI_TOKENIZER);
+		return TaggedUnionUtils.get(this, Kind.KuromojiTokenizer);
 	}
 
 	/**
 	 * Is this variant instance of kind {@code letter}?
 	 */
-	public boolean _isLetter() {
-		return LETTER.equals(_type());
+	public boolean isLetter() {
+		return _kind == Kind.Letter;
 	}
 
 	/**
@@ -190,14 +228,14 @@ public class TokenizerDefinition implements TaggedUnion<TokenizerDefinitionVaria
 	 *             if the current variant is not of the {@code letter} kind.
 	 */
 	public LetterTokenizer letter() {
-		return TaggedUnionUtils.get(this, LETTER);
+		return TaggedUnionUtils.get(this, Kind.Letter);
 	}
 
 	/**
 	 * Is this variant instance of kind {@code lowercase}?
 	 */
-	public boolean _isLowercase() {
-		return LOWERCASE.equals(_type());
+	public boolean isLowercase() {
+		return _kind == Kind.Lowercase;
 	}
 
 	/**
@@ -207,14 +245,14 @@ public class TokenizerDefinition implements TaggedUnion<TokenizerDefinitionVaria
 	 *             if the current variant is not of the {@code lowercase} kind.
 	 */
 	public LowercaseTokenizer lowercase() {
-		return TaggedUnionUtils.get(this, LOWERCASE);
+		return TaggedUnionUtils.get(this, Kind.Lowercase);
 	}
 
 	/**
 	 * Is this variant instance of kind {@code ngram}?
 	 */
-	public boolean _isNgram() {
-		return NGRAM.equals(_type());
+	public boolean isNgram() {
+		return _kind == Kind.Ngram;
 	}
 
 	/**
@@ -224,14 +262,14 @@ public class TokenizerDefinition implements TaggedUnion<TokenizerDefinitionVaria
 	 *             if the current variant is not of the {@code ngram} kind.
 	 */
 	public NGramTokenizer ngram() {
-		return TaggedUnionUtils.get(this, NGRAM);
+		return TaggedUnionUtils.get(this, Kind.Ngram);
 	}
 
 	/**
 	 * Is this variant instance of kind {@code nori_tokenizer}?
 	 */
-	public boolean _isNoriTokenizer() {
-		return NORI_TOKENIZER.equals(_type());
+	public boolean isNoriTokenizer() {
+		return _kind == Kind.NoriTokenizer;
 	}
 
 	/**
@@ -241,14 +279,14 @@ public class TokenizerDefinition implements TaggedUnion<TokenizerDefinitionVaria
 	 *             if the current variant is not of the {@code nori_tokenizer} kind.
 	 */
 	public NoriTokenizer noriTokenizer() {
-		return TaggedUnionUtils.get(this, NORI_TOKENIZER);
+		return TaggedUnionUtils.get(this, Kind.NoriTokenizer);
 	}
 
 	/**
 	 * Is this variant instance of kind {@code path_hierarchy}?
 	 */
-	public boolean _isPathHierarchy() {
-		return PATH_HIERARCHY.equals(_type());
+	public boolean isPathHierarchy() {
+		return _kind == Kind.PathHierarchy;
 	}
 
 	/**
@@ -258,14 +296,14 @@ public class TokenizerDefinition implements TaggedUnion<TokenizerDefinitionVaria
 	 *             if the current variant is not of the {@code path_hierarchy} kind.
 	 */
 	public PathHierarchyTokenizer pathHierarchy() {
-		return TaggedUnionUtils.get(this, PATH_HIERARCHY);
+		return TaggedUnionUtils.get(this, Kind.PathHierarchy);
 	}
 
 	/**
 	 * Is this variant instance of kind {@code pattern}?
 	 */
-	public boolean _isPattern() {
-		return PATTERN.equals(_type());
+	public boolean isPattern() {
+		return _kind == Kind.Pattern;
 	}
 
 	/**
@@ -275,14 +313,14 @@ public class TokenizerDefinition implements TaggedUnion<TokenizerDefinitionVaria
 	 *             if the current variant is not of the {@code pattern} kind.
 	 */
 	public PatternTokenizer pattern() {
-		return TaggedUnionUtils.get(this, PATTERN);
+		return TaggedUnionUtils.get(this, Kind.Pattern);
 	}
 
 	/**
 	 * Is this variant instance of kind {@code standard}?
 	 */
-	public boolean _isStandard() {
-		return STANDARD.equals(_type());
+	public boolean isStandard() {
+		return _kind == Kind.Standard;
 	}
 
 	/**
@@ -292,14 +330,14 @@ public class TokenizerDefinition implements TaggedUnion<TokenizerDefinitionVaria
 	 *             if the current variant is not of the {@code standard} kind.
 	 */
 	public StandardTokenizer standard() {
-		return TaggedUnionUtils.get(this, STANDARD);
+		return TaggedUnionUtils.get(this, Kind.Standard);
 	}
 
 	/**
 	 * Is this variant instance of kind {@code uax_url_email}?
 	 */
-	public boolean _isUaxUrlEmail() {
-		return UAX_URL_EMAIL.equals(_type());
+	public boolean isUaxUrlEmail() {
+		return _kind == Kind.UaxUrlEmail;
 	}
 
 	/**
@@ -309,14 +347,14 @@ public class TokenizerDefinition implements TaggedUnion<TokenizerDefinitionVaria
 	 *             if the current variant is not of the {@code uax_url_email} kind.
 	 */
 	public UaxEmailUrlTokenizer uaxUrlEmail() {
-		return TaggedUnionUtils.get(this, UAX_URL_EMAIL);
+		return TaggedUnionUtils.get(this, Kind.UaxUrlEmail);
 	}
 
 	/**
 	 * Is this variant instance of kind {@code whitespace}?
 	 */
-	public boolean _isWhitespace() {
-		return WHITESPACE.equals(_type());
+	public boolean isWhitespace() {
+		return _kind == Kind.Whitespace;
 	}
 
 	/**
@@ -326,7 +364,7 @@ public class TokenizerDefinition implements TaggedUnion<TokenizerDefinitionVaria
 	 *             if the current variant is not of the {@code whitespace} kind.
 	 */
 	public WhitespaceTokenizer whitespace() {
-		return TaggedUnionUtils.get(this, WHITESPACE);
+		return TaggedUnionUtils.get(this, Kind.Whitespace);
 	}
 
 	@Override
@@ -337,148 +375,175 @@ public class TokenizerDefinition implements TaggedUnion<TokenizerDefinitionVaria
 	}
 
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TokenizerDefinition> {
-		private String _type;
+		private Kind _kind;
 		private TokenizerDefinitionVariant _value;
 
 		public Builder charGroup(CharGroupTokenizer v) {
-			this._type = CHAR_GROUP;
+			this._kind = Kind.CharGroup;
 			this._value = v;
 			return this;
 		}
 
-		public Builder charGroup(Function<CharGroupTokenizer.Builder, ObjectBuilder<CharGroupTokenizer>> f) {
-			return this.charGroup(f.apply(new CharGroupTokenizer.Builder()).build());
+		public Builder charGroup(Consumer<CharGroupTokenizer.Builder> fn) {
+			CharGroupTokenizer.Builder builder = new CharGroupTokenizer.Builder();
+			fn.accept(builder);
+			return this.charGroup(builder.build());
 		}
 
 		public Builder edgeNgram(EdgeNGramTokenizer v) {
-			this._type = EDGE_NGRAM;
+			this._kind = Kind.EdgeNgram;
 			this._value = v;
 			return this;
 		}
 
-		public Builder edgeNgram(Function<EdgeNGramTokenizer.Builder, ObjectBuilder<EdgeNGramTokenizer>> f) {
-			return this.edgeNgram(f.apply(new EdgeNGramTokenizer.Builder()).build());
+		public Builder edgeNgram(Consumer<EdgeNGramTokenizer.Builder> fn) {
+			EdgeNGramTokenizer.Builder builder = new EdgeNGramTokenizer.Builder();
+			fn.accept(builder);
+			return this.edgeNgram(builder.build());
 		}
 
 		public Builder icuTokenizer(IcuTokenizer v) {
-			this._type = ICU_TOKENIZER;
+			this._kind = Kind.IcuTokenizer;
 			this._value = v;
 			return this;
 		}
 
-		public Builder icuTokenizer(Function<IcuTokenizer.Builder, ObjectBuilder<IcuTokenizer>> f) {
-			return this.icuTokenizer(f.apply(new IcuTokenizer.Builder()).build());
+		public Builder icuTokenizer(Consumer<IcuTokenizer.Builder> fn) {
+			IcuTokenizer.Builder builder = new IcuTokenizer.Builder();
+			fn.accept(builder);
+			return this.icuTokenizer(builder.build());
 		}
 
 		public Builder keyword(KeywordTokenizer v) {
-			this._type = KEYWORD;
+			this._kind = Kind.Keyword;
 			this._value = v;
 			return this;
 		}
 
-		public Builder keyword(Function<KeywordTokenizer.Builder, ObjectBuilder<KeywordTokenizer>> f) {
-			return this.keyword(f.apply(new KeywordTokenizer.Builder()).build());
+		public Builder keyword(Consumer<KeywordTokenizer.Builder> fn) {
+			KeywordTokenizer.Builder builder = new KeywordTokenizer.Builder();
+			fn.accept(builder);
+			return this.keyword(builder.build());
 		}
 
 		public Builder kuromojiTokenizer(KuromojiTokenizer v) {
-			this._type = KUROMOJI_TOKENIZER;
+			this._kind = Kind.KuromojiTokenizer;
 			this._value = v;
 			return this;
 		}
 
-		public Builder kuromojiTokenizer(Function<KuromojiTokenizer.Builder, ObjectBuilder<KuromojiTokenizer>> f) {
-			return this.kuromojiTokenizer(f.apply(new KuromojiTokenizer.Builder()).build());
+		public Builder kuromojiTokenizer(Consumer<KuromojiTokenizer.Builder> fn) {
+			KuromojiTokenizer.Builder builder = new KuromojiTokenizer.Builder();
+			fn.accept(builder);
+			return this.kuromojiTokenizer(builder.build());
 		}
 
 		public Builder letter(LetterTokenizer v) {
-			this._type = LETTER;
+			this._kind = Kind.Letter;
 			this._value = v;
 			return this;
 		}
 
-		public Builder letter(Function<LetterTokenizer.Builder, ObjectBuilder<LetterTokenizer>> f) {
-			return this.letter(f.apply(new LetterTokenizer.Builder()).build());
+		public Builder letter(Consumer<LetterTokenizer.Builder> fn) {
+			LetterTokenizer.Builder builder = new LetterTokenizer.Builder();
+			fn.accept(builder);
+			return this.letter(builder.build());
 		}
 
 		public Builder lowercase(LowercaseTokenizer v) {
-			this._type = LOWERCASE;
+			this._kind = Kind.Lowercase;
 			this._value = v;
 			return this;
 		}
 
-		public Builder lowercase(Function<LowercaseTokenizer.Builder, ObjectBuilder<LowercaseTokenizer>> f) {
-			return this.lowercase(f.apply(new LowercaseTokenizer.Builder()).build());
+		public Builder lowercase(Consumer<LowercaseTokenizer.Builder> fn) {
+			LowercaseTokenizer.Builder builder = new LowercaseTokenizer.Builder();
+			fn.accept(builder);
+			return this.lowercase(builder.build());
 		}
 
 		public Builder ngram(NGramTokenizer v) {
-			this._type = NGRAM;
+			this._kind = Kind.Ngram;
 			this._value = v;
 			return this;
 		}
 
-		public Builder ngram(Function<NGramTokenizer.Builder, ObjectBuilder<NGramTokenizer>> f) {
-			return this.ngram(f.apply(new NGramTokenizer.Builder()).build());
+		public Builder ngram(Consumer<NGramTokenizer.Builder> fn) {
+			NGramTokenizer.Builder builder = new NGramTokenizer.Builder();
+			fn.accept(builder);
+			return this.ngram(builder.build());
 		}
 
 		public Builder noriTokenizer(NoriTokenizer v) {
-			this._type = NORI_TOKENIZER;
+			this._kind = Kind.NoriTokenizer;
 			this._value = v;
 			return this;
 		}
 
-		public Builder noriTokenizer(Function<NoriTokenizer.Builder, ObjectBuilder<NoriTokenizer>> f) {
-			return this.noriTokenizer(f.apply(new NoriTokenizer.Builder()).build());
+		public Builder noriTokenizer(Consumer<NoriTokenizer.Builder> fn) {
+			NoriTokenizer.Builder builder = new NoriTokenizer.Builder();
+			fn.accept(builder);
+			return this.noriTokenizer(builder.build());
 		}
 
 		public Builder pathHierarchy(PathHierarchyTokenizer v) {
-			this._type = PATH_HIERARCHY;
+			this._kind = Kind.PathHierarchy;
 			this._value = v;
 			return this;
 		}
 
-		public Builder pathHierarchy(
-				Function<PathHierarchyTokenizer.Builder, ObjectBuilder<PathHierarchyTokenizer>> f) {
-			return this.pathHierarchy(f.apply(new PathHierarchyTokenizer.Builder()).build());
+		public Builder pathHierarchy(Consumer<PathHierarchyTokenizer.Builder> fn) {
+			PathHierarchyTokenizer.Builder builder = new PathHierarchyTokenizer.Builder();
+			fn.accept(builder);
+			return this.pathHierarchy(builder.build());
 		}
 
 		public Builder pattern(PatternTokenizer v) {
-			this._type = PATTERN;
+			this._kind = Kind.Pattern;
 			this._value = v;
 			return this;
 		}
 
-		public Builder pattern(Function<PatternTokenizer.Builder, ObjectBuilder<PatternTokenizer>> f) {
-			return this.pattern(f.apply(new PatternTokenizer.Builder()).build());
+		public Builder pattern(Consumer<PatternTokenizer.Builder> fn) {
+			PatternTokenizer.Builder builder = new PatternTokenizer.Builder();
+			fn.accept(builder);
+			return this.pattern(builder.build());
 		}
 
 		public Builder standard(StandardTokenizer v) {
-			this._type = STANDARD;
+			this._kind = Kind.Standard;
 			this._value = v;
 			return this;
 		}
 
-		public Builder standard(Function<StandardTokenizer.Builder, ObjectBuilder<StandardTokenizer>> f) {
-			return this.standard(f.apply(new StandardTokenizer.Builder()).build());
+		public Builder standard(Consumer<StandardTokenizer.Builder> fn) {
+			StandardTokenizer.Builder builder = new StandardTokenizer.Builder();
+			fn.accept(builder);
+			return this.standard(builder.build());
 		}
 
 		public Builder uaxUrlEmail(UaxEmailUrlTokenizer v) {
-			this._type = UAX_URL_EMAIL;
+			this._kind = Kind.UaxUrlEmail;
 			this._value = v;
 			return this;
 		}
 
-		public Builder uaxUrlEmail(Function<UaxEmailUrlTokenizer.Builder, ObjectBuilder<UaxEmailUrlTokenizer>> f) {
-			return this.uaxUrlEmail(f.apply(new UaxEmailUrlTokenizer.Builder()).build());
+		public Builder uaxUrlEmail(Consumer<UaxEmailUrlTokenizer.Builder> fn) {
+			UaxEmailUrlTokenizer.Builder builder = new UaxEmailUrlTokenizer.Builder();
+			fn.accept(builder);
+			return this.uaxUrlEmail(builder.build());
 		}
 
 		public Builder whitespace(WhitespaceTokenizer v) {
-			this._type = WHITESPACE;
+			this._kind = Kind.Whitespace;
 			this._value = v;
 			return this;
 		}
 
-		public Builder whitespace(Function<WhitespaceTokenizer.Builder, ObjectBuilder<WhitespaceTokenizer>> f) {
-			return this.whitespace(f.apply(new WhitespaceTokenizer.Builder()).build());
+		public Builder whitespace(Consumer<WhitespaceTokenizer.Builder> fn) {
+			WhitespaceTokenizer.Builder builder = new WhitespaceTokenizer.Builder();
+			fn.accept(builder);
+			return this.whitespace(builder.build());
 		}
 
 		public TokenizerDefinition build() {

@@ -35,7 +35,7 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: snapshot.create.Response
@@ -55,8 +55,10 @@ public class CreateSnapshotResponse implements JsonpSerializable {
 
 	}
 
-	public static CreateSnapshotResponse of(Function<Builder, ObjectBuilder<CreateSnapshotResponse>> fn) {
-		return fn.apply(new Builder()).build();
+	public static CreateSnapshotResponse of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -125,8 +127,10 @@ public class CreateSnapshotResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code snapshot}
 		 */
-		public final Builder snapshot(Function<SnapshotInfo.Builder, ObjectBuilder<SnapshotInfo>> fn) {
-			return this.snapshot(fn.apply(new SnapshotInfo.Builder()).build());
+		public final Builder snapshot(Consumer<SnapshotInfo.Builder> fn) {
+			SnapshotInfo.Builder builder = new SnapshotInfo.Builder();
+			fn.accept(builder);
+			return this.snapshot(builder.build());
 		}
 
 		/**

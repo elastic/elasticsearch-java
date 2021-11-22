@@ -23,6 +23,7 @@
 
 package co.elastic.clients.elasticsearch._types;
 
+import co.elastic.clients.json.JsonEnum;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -37,24 +38,45 @@ import co.elastic.clients.util.TaggedUnionUtils;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Object;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: _types.TransformContainer
 // union type: Container[]
 @JsonpDeserializable
-public class Transform implements TaggedUnion<Object>, JsonpSerializable {
+public class Transform implements TaggedUnion<Transform.Kind, Object>, JsonpSerializable {
 
-	public static final String CHAIN = "chain";
-	public static final String SCRIPT = "script";
-	public static final String SEARCH = "search";
+	/**
+	 * {@link Transform} variant kinds.
+	 */
 
-	private final String _type;
+	public enum Kind implements JsonEnum {
+		Chain("chain"),
+
+		Script("script"),
+
+		Search("search"),
+
+		;
+
+		private final String jsonValue;
+
+		Kind(String jsonValue) {
+			this.jsonValue = jsonValue;
+		}
+
+		public String jsonValue() {
+			return this.jsonValue;
+		}
+
+	}
+
+	private final Kind _kind;
 	private final Object _value;
 
 	@Override
-	public final String _type() {
-		return _type;
+	public final Kind _kind() {
+		return _kind;
 	}
 
 	@Override
@@ -64,27 +86,29 @@ public class Transform implements TaggedUnion<Object>, JsonpSerializable {
 
 	public Transform(TransformVariant value) {
 
-		this._type = ModelTypeHelper.requireNonNull(value._variantType(), this, "<variant type>");
+		this._kind = ModelTypeHelper.requireNonNull(value._transformKind(), this, "<variant kind>");
 		this._value = ModelTypeHelper.requireNonNull(value, this, "<variant value>");
 
 	}
 
 	private Transform(Builder builder) {
 
-		this._type = ModelTypeHelper.requireNonNull(builder._type, builder, "<variant type>");
+		this._kind = ModelTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
 		this._value = ModelTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
 
 	}
 
-	public static Transform of(Function<Builder, ObjectBuilder<Transform>> fn) {
-		return fn.apply(new Builder()).build();
+	public static Transform of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
 	 * Is this variant instance of kind {@code chain}?
 	 */
-	public boolean _isChain() {
-		return CHAIN.equals(_type());
+	public boolean isChain() {
+		return _kind == Kind.Chain;
 	}
 
 	/**
@@ -94,14 +118,14 @@ public class Transform implements TaggedUnion<Object>, JsonpSerializable {
 	 *             if the current variant is not of the {@code chain} kind.
 	 */
 	public ChainTransform chain() {
-		return TaggedUnionUtils.get(this, CHAIN);
+		return TaggedUnionUtils.get(this, Kind.Chain);
 	}
 
 	/**
 	 * Is this variant instance of kind {@code script}?
 	 */
-	public boolean _isScript() {
-		return SCRIPT.equals(_type());
+	public boolean isScript() {
+		return _kind == Kind.Script;
 	}
 
 	/**
@@ -111,14 +135,14 @@ public class Transform implements TaggedUnion<Object>, JsonpSerializable {
 	 *             if the current variant is not of the {@code script} kind.
 	 */
 	public ScriptTransform script() {
-		return TaggedUnionUtils.get(this, SCRIPT);
+		return TaggedUnionUtils.get(this, Kind.Script);
 	}
 
 	/**
 	 * Is this variant instance of kind {@code search}?
 	 */
-	public boolean _isSearch() {
-		return SEARCH.equals(_type());
+	public boolean isSearch() {
+		return _kind == Kind.Search;
 	}
 
 	/**
@@ -128,7 +152,7 @@ public class Transform implements TaggedUnion<Object>, JsonpSerializable {
 	 *             if the current variant is not of the {@code search} kind.
 	 */
 	public SearchTransform search() {
-		return TaggedUnionUtils.get(this, SEARCH);
+		return TaggedUnionUtils.get(this, Kind.Search);
 	}
 
 	@Override
@@ -137,7 +161,7 @@ public class Transform implements TaggedUnion<Object>, JsonpSerializable {
 
 		generator.writeStartObject();
 
-		generator.writeKey(_type);
+		generator.writeKey(_kind.jsonValue());
 		if (_value instanceof JsonpSerializable) {
 			((JsonpSerializable) _value).serialize(generator, mapper);
 		}
@@ -147,37 +171,43 @@ public class Transform implements TaggedUnion<Object>, JsonpSerializable {
 	}
 
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Transform> {
-		private String _type;
+		private Kind _kind;
 		private Object _value;
 
 		public Builder chain(ChainTransform v) {
-			this._type = CHAIN;
+			this._kind = Kind.Chain;
 			this._value = v;
 			return this;
 		}
 
-		public Builder chain(Function<ChainTransform.Builder, ObjectBuilder<ChainTransform>> f) {
-			return this.chain(f.apply(new ChainTransform.Builder()).build());
+		public Builder chain(Consumer<ChainTransform.Builder> fn) {
+			ChainTransform.Builder builder = new ChainTransform.Builder();
+			fn.accept(builder);
+			return this.chain(builder.build());
 		}
 
 		public Builder script(ScriptTransform v) {
-			this._type = SCRIPT;
+			this._kind = Kind.Script;
 			this._value = v;
 			return this;
 		}
 
-		public Builder script(Function<ScriptTransform.Builder, ObjectBuilder<ScriptTransform>> f) {
-			return this.script(f.apply(new ScriptTransform.Builder()).build());
+		public Builder script(Consumer<ScriptTransform.Builder> fn) {
+			ScriptTransform.Builder builder = new ScriptTransform.Builder();
+			fn.accept(builder);
+			return this.script(builder.build());
 		}
 
 		public Builder search(SearchTransform v) {
-			this._type = SEARCH;
+			this._kind = Kind.Search;
 			this._value = v;
 			return this;
 		}
 
-		public Builder search(Function<SearchTransform.Builder, ObjectBuilder<SearchTransform>> f) {
-			return this.search(f.apply(new SearchTransform.Builder()).build());
+		public Builder search(Consumer<SearchTransform.Builder> fn) {
+			SearchTransform.Builder builder = new SearchTransform.Builder();
+			fn.accept(builder);
+			return this.search(builder.build());
 		}
 
 		public Transform build() {

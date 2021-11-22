@@ -35,7 +35,7 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.DataframeAnalyticsDestination
@@ -55,8 +55,10 @@ public class DataframeAnalyticsDestination implements JsonpSerializable {
 
 	}
 
-	public static DataframeAnalyticsDestination of(Function<Builder, ObjectBuilder<DataframeAnalyticsDestination>> fn) {
-		return fn.apply(new Builder()).build();
+	public static DataframeAnalyticsDestination of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**

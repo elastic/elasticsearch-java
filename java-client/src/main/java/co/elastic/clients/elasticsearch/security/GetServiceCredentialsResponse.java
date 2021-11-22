@@ -39,7 +39,7 @@ import java.lang.Integer;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: security.get_service_credentials.Response
@@ -64,8 +64,10 @@ public class GetServiceCredentialsResponse implements JsonpSerializable {
 
 	}
 
-	public static GetServiceCredentialsResponse of(Function<Builder, ObjectBuilder<GetServiceCredentialsResponse>> fn) {
-		return fn.apply(new Builder()).build();
+	public static GetServiceCredentialsResponse of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -195,8 +197,10 @@ public class GetServiceCredentialsResponse implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code nodes_credentials}
 		 */
-		public final Builder nodesCredentials(Function<NodesCredentials.Builder, ObjectBuilder<NodesCredentials>> fn) {
-			return this.nodesCredentials(fn.apply(new NodesCredentials.Builder()).build());
+		public final Builder nodesCredentials(Consumer<NodesCredentials.Builder> fn) {
+			NodesCredentials.Builder builder = new NodesCredentials.Builder();
+			fn.accept(builder);
+			return this.nodesCredentials(builder.build());
 		}
 
 		/**

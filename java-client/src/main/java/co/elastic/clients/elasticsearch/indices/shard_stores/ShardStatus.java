@@ -23,28 +23,33 @@
 
 package co.elastic.clients.elasticsearch.indices.shard_stores;
 
+import co.elastic.clients.json.JsonEnum;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
-import co.elastic.clients.util.StringEnum;
 
 @JsonpDeserializable
-public enum ShardStatus implements StringEnum {
+public enum ShardStatus implements JsonEnum {
 	/**
 	 * The primary shard and all replica shards are assigned.
 	 */
 	Green("green"),
+
 	/**
 	 * One or more replica shards are unassigned.
 	 */
 	Yellow("yellow"),
+
 	/**
 	 * The primary shard is unassigned.
 	 */
 	Red("red"),
+
 	/**
 	 * Return all shards, regardless of health status.
 	 */
-	All("all");
+	All("all"),
+
+	;
 
 	private final String jsonValue;
 
@@ -56,6 +61,6 @@ public enum ShardStatus implements StringEnum {
 		return this.jsonValue;
 	}
 
-	public static final StringEnum.Deserializer<ShardStatus> _DESERIALIZER = new StringEnum.Deserializer<>(
+	public static final JsonEnum.Deserializer<ShardStatus> _DESERIALIZER = new JsonEnum.Deserializer<>(
 			ShardStatus.values());
 }

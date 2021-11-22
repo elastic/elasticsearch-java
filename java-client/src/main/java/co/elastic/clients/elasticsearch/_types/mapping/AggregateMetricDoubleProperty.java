@@ -35,7 +35,7 @@ import java.lang.String;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: _types.mapping.AggregateMetricDoubleProperty
@@ -55,16 +55,18 @@ public class AggregateMetricDoubleProperty extends PropertyBase implements Prope
 
 	}
 
-	public static AggregateMetricDoubleProperty of(Function<Builder, ObjectBuilder<AggregateMetricDoubleProperty>> fn) {
-		return fn.apply(new Builder()).build();
+	public static AggregateMetricDoubleProperty of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
-	 * {@link Property} variant type
+	 * Property variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "aggregate_metric_double";
+	public Property.Kind _propertyKind() {
+		return Property.Kind.AggregateMetricDouble;
 	}
 
 	/**

@@ -32,6 +32,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.MapBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
@@ -40,12 +41,11 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Long;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -135,8 +135,10 @@ public class SnapshotInfo implements JsonpSerializable {
 
 	}
 
-	public static SnapshotInfo of(Function<Builder, ObjectBuilder<SnapshotInfo>> fn) {
-		return fn.apply(new Builder()).build();
+	public static SnapshotInfo of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -538,8 +540,10 @@ public class SnapshotInfo implements JsonpSerializable {
 		/**
 		 * API name: {@code duration}
 		 */
-		public final Builder duration(Function<Time.Builder, ObjectBuilder<Time>> fn) {
-			return this.duration(fn.apply(new Time.Builder()).build());
+		public final Builder duration(Consumer<Time.Builder> fn) {
+			Time.Builder builder = new Time.Builder();
+			fn.accept(builder);
+			return this.duration(builder.build());
 		}
 
 		/**
@@ -561,8 +565,10 @@ public class SnapshotInfo implements JsonpSerializable {
 		/**
 		 * API name: {@code end_time}
 		 */
-		public final Builder endTime(Function<Time.Builder, ObjectBuilder<Time>> fn) {
-			return this.endTime(fn.apply(new Time.Builder()).build());
+		public final Builder endTime(Consumer<Time.Builder> fn) {
+			Time.Builder builder = new Time.Builder();
+			fn.accept(builder);
+			return this.endTime(builder.build());
 		}
 
 		/**
@@ -592,14 +598,9 @@ public class SnapshotInfo implements JsonpSerializable {
 		/**
 		 * API name: {@code failures}
 		 */
-		@SafeVarargs
 		public final Builder failures(
-				Function<SnapshotShardFailure.Builder, ObjectBuilder<SnapshotShardFailure>>... fns) {
-			this.failures = new ArrayList<>(fns.length);
-			for (Function<SnapshotShardFailure.Builder, ObjectBuilder<SnapshotShardFailure>> fn : fns) {
-				this.failures.add(fn.apply(new SnapshotShardFailure.Builder()).build());
-			}
-			return this;
+				Function<ListBuilder<SnapshotShardFailure, SnapshotShardFailure.Builder>, ObjectBuilder<List<SnapshotShardFailure>>> fn) {
+			return failures(fn.apply(new ListBuilder<>(SnapshotShardFailure.Builder::new)).build());
 		}
 
 		/**
@@ -632,13 +633,6 @@ public class SnapshotInfo implements JsonpSerializable {
 		public final Builder indexDetails(@Nullable Map<String, IndexDetails> value) {
 			this.indexDetails = value;
 			return this;
-		}
-
-		/**
-		 * Set {@link #indexDetails(Map)} to a singleton map.
-		 */
-		public Builder indexDetails(String key, Function<IndexDetails.Builder, ObjectBuilder<IndexDetails>> fn) {
-			return this.indexDetails(Collections.singletonMap(key, fn.apply(new IndexDetails.Builder()).build()));
 		}
 
 		public final Builder indexDetails(
@@ -689,8 +683,10 @@ public class SnapshotInfo implements JsonpSerializable {
 		/**
 		 * API name: {@code shards}
 		 */
-		public final Builder shards(Function<ShardStatistics.Builder, ObjectBuilder<ShardStatistics>> fn) {
-			return this.shards(fn.apply(new ShardStatistics.Builder()).build());
+		public final Builder shards(Consumer<ShardStatistics.Builder> fn) {
+			ShardStatistics.Builder builder = new ShardStatistics.Builder();
+			fn.accept(builder);
+			return this.shards(builder.build());
 		}
 
 		/**
@@ -704,8 +700,10 @@ public class SnapshotInfo implements JsonpSerializable {
 		/**
 		 * API name: {@code start_time}
 		 */
-		public final Builder startTime(Function<Time.Builder, ObjectBuilder<Time>> fn) {
-			return this.startTime(fn.apply(new Time.Builder()).build());
+		public final Builder startTime(Consumer<Time.Builder> fn) {
+			Time.Builder builder = new Time.Builder();
+			fn.accept(builder);
+			return this.startTime(builder.build());
 		}
 
 		/**
@@ -767,13 +765,9 @@ public class SnapshotInfo implements JsonpSerializable {
 		/**
 		 * API name: {@code feature_states}
 		 */
-		@SafeVarargs
-		public final Builder featureStates(Function<InfoFeatureState.Builder, ObjectBuilder<InfoFeatureState>>... fns) {
-			this.featureStates = new ArrayList<>(fns.length);
-			for (Function<InfoFeatureState.Builder, ObjectBuilder<InfoFeatureState>> fn : fns) {
-				this.featureStates.add(fn.apply(new InfoFeatureState.Builder()).build());
-			}
-			return this;
+		public final Builder featureStates(
+				Function<ListBuilder<InfoFeatureState, InfoFeatureState.Builder>, ObjectBuilder<List<InfoFeatureState>>> fn) {
+			return featureStates(fn.apply(new ListBuilder<>(InfoFeatureState.Builder::new)).build());
 		}
 
 		/**

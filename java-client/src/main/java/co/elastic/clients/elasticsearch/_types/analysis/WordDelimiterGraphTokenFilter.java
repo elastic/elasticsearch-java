@@ -36,7 +36,7 @@ import java.lang.String;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: _types.analysis.WordDelimiterGraphTokenFilter
@@ -108,16 +108,18 @@ public class WordDelimiterGraphTokenFilter extends TokenFilterBase implements To
 
 	}
 
-	public static WordDelimiterGraphTokenFilter of(Function<Builder, ObjectBuilder<WordDelimiterGraphTokenFilter>> fn) {
-		return fn.apply(new Builder()).build();
+	public static WordDelimiterGraphTokenFilter of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
-	 * {@link TokenFilterDefinition} variant type
+	 * TokenFilterDefinition variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "word_delimiter_graph";
+	public TokenFilterDefinition.Kind _tokenFilterDefinitionKind() {
+		return TokenFilterDefinition.Kind.WordDelimiterGraph;
 	}
 
 	/**

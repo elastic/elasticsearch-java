@@ -39,7 +39,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: autoscaling._types.AutoscalingPolicy
@@ -51,15 +50,11 @@ public class AutoscalingPolicy implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	private AutoscalingPolicy(Builder builder) {
+	protected AutoscalingPolicy(AbstractBuilder<?> builder) {
 
 		this.roles = ModelTypeHelper.unmodifiableRequired(builder.roles, this, "roles");
 		this.deciders = ModelTypeHelper.unmodifiableRequired(builder.deciders, this, "deciders");
 
-	}
-
-	public static AutoscalingPolicy of(Function<Builder, ObjectBuilder<AutoscalingPolicy>> fn) {
-		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -118,34 +113,11 @@ public class AutoscalingPolicy implements JsonpSerializable {
 	/**
 	 * Builder for {@link AutoscalingPolicy}.
 	 */
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<AutoscalingPolicy> {
-		private List<String> roles;
-
-		private Map<String, JsonData> deciders;
-
-		/**
-		 * Required - API name: {@code roles}
-		 */
-		public final Builder roles(List<String> value) {
-			this.roles = value;
-			return this;
-		}
-
-		/**
-		 * Required - API name: {@code roles}
-		 */
-		public final Builder roles(String... value) {
-			this.roles = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Required - Decider settings
-		 * <p>
-		 * API name: {@code deciders}
-		 */
-		public final Builder deciders(Map<String, JsonData> value) {
-			this.deciders = value;
+	public static class Builder extends AutoscalingPolicy.AbstractBuilder<Builder>
+			implements
+				ObjectBuilder<AutoscalingPolicy> {
+		@Override
+		protected Builder self() {
 			return this;
 		}
 
@@ -162,6 +134,43 @@ public class AutoscalingPolicy implements JsonpSerializable {
 		}
 	}
 
+	protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>>
+			extends
+				ObjectBuilderBase {
+		private List<String> roles;
+
+		private Map<String, JsonData> deciders;
+
+		/**
+		 * Required - API name: {@code roles}
+		 */
+		public final BuilderT roles(List<String> value) {
+			this.roles = value;
+			return self();
+		}
+
+		/**
+		 * Required - API name: {@code roles}
+		 */
+		public final BuilderT roles(String... value) {
+			this.roles = Arrays.asList(value);
+			return self();
+		}
+
+		/**
+		 * Required - Decider settings
+		 * <p>
+		 * API name: {@code deciders}
+		 */
+		public final BuilderT deciders(Map<String, JsonData> value) {
+			this.deciders = value;
+			return self();
+		}
+
+		protected abstract BuilderT self();
+
+	}
+
 	// ---------------------------------------------------------------------------------------------
 
 	/**
@@ -170,10 +179,12 @@ public class AutoscalingPolicy implements JsonpSerializable {
 	public static final JsonpDeserializer<AutoscalingPolicy> _DESERIALIZER = ObjectBuilderDeserializer
 			.lazy(Builder::new, AutoscalingPolicy::setupAutoscalingPolicyDeserializer);
 
-	protected static void setupAutoscalingPolicyDeserializer(ObjectDeserializer<AutoscalingPolicy.Builder> op) {
+	protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupAutoscalingPolicyDeserializer(
+			ObjectDeserializer<BuilderT> op) {
 
-		op.add(Builder::roles, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "roles");
-		op.add(Builder::deciders, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "deciders");
+		op.add(AbstractBuilder::roles, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
+				"roles");
+		op.add(AbstractBuilder::deciders, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "deciders");
 
 	}
 

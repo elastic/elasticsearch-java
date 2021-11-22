@@ -37,7 +37,7 @@ import java.lang.String;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: _types.analysis.CustomNormalizer
@@ -56,16 +56,18 @@ public class CustomNormalizer implements NormalizerVariant, JsonpSerializable {
 
 	}
 
-	public static CustomNormalizer of(Function<Builder, ObjectBuilder<CustomNormalizer>> fn) {
-		return fn.apply(new Builder()).build();
+	public static CustomNormalizer of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
-	 * {@link Normalizer} variant type
+	 * Normalizer variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "custom";
+	public Normalizer.Kind _normalizerKind() {
+		return Normalizer.Kind.Custom;
 	}
 
 	/**

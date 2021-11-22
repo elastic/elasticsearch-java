@@ -30,16 +30,17 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -70,8 +71,10 @@ public class RankEvalRequestItem implements JsonpSerializable {
 
 	}
 
-	public static RankEvalRequestItem of(Function<Builder, ObjectBuilder<RankEvalRequestItem>> fn) {
-		return fn.apply(new Builder()).build();
+	public static RankEvalRequestItem of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -213,8 +216,10 @@ public class RankEvalRequestItem implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code request}
 		 */
-		public final Builder request(Function<RankEvalQuery.Builder, ObjectBuilder<RankEvalQuery>> fn) {
-			return this.request(fn.apply(new RankEvalQuery.Builder()).build());
+		public final Builder request(Consumer<RankEvalQuery.Builder> fn) {
+			RankEvalQuery.Builder builder = new RankEvalQuery.Builder();
+			fn.accept(builder);
+			return this.request(builder.build());
 		}
 
 		/**
@@ -242,13 +247,9 @@ public class RankEvalRequestItem implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code ratings}
 		 */
-		@SafeVarargs
-		public final Builder ratings(Function<DocumentRating.Builder, ObjectBuilder<DocumentRating>>... fns) {
-			this.ratings = new ArrayList<>(fns.length);
-			for (Function<DocumentRating.Builder, ObjectBuilder<DocumentRating>> fn : fns) {
-				this.ratings.add(fn.apply(new DocumentRating.Builder()).build());
-			}
-			return this;
+		public final Builder ratings(
+				Function<ListBuilder<DocumentRating, DocumentRating.Builder>, ObjectBuilder<List<DocumentRating>>> fn) {
+			return ratings(fn.apply(new ListBuilder<>(DocumentRating.Builder::new)).build());
 		}
 
 		/**

@@ -36,7 +36,7 @@ import java.lang.String;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: ingest._types.KeyValueProcessor
@@ -89,16 +89,18 @@ public class KeyValueProcessor extends ProcessorBase implements ProcessorVariant
 
 	}
 
-	public static KeyValueProcessor of(Function<Builder, ObjectBuilder<KeyValueProcessor>> fn) {
-		return fn.apply(new Builder()).build();
+	public static KeyValueProcessor of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
-	 * {@link Processor} variant type
+	 * Processor variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "kv";
+	public Processor.Kind _processorKind() {
+		return Processor.Kind.Kv;
 	}
 
 	/**

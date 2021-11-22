@@ -28,25 +28,26 @@ import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
+import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
-import co.elastic.clients.transport.SimpleEndpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.Collections;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: ml.close_job.Request
-
-public class CloseJobRequest extends RequestBase {
+@JsonpDeserializable
+public class CloseJobRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
 	private final Boolean allowNoMatch;
 
@@ -69,18 +70,14 @@ public class CloseJobRequest extends RequestBase {
 
 	}
 
-	public static CloseJobRequest of(Function<Builder, ObjectBuilder<CloseJobRequest>> fn) {
-		return fn.apply(new Builder()).build();
+	public static CloseJobRequest of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
-	 * Specifies what to do when the request: contains wildcard expressions and
-	 * there are no jobs that match; contains the <code>_all</code> string or no
-	 * identifiers and there are no matches; or contains wildcard expressions and
-	 * there are only partial matches. By default, it returns an empty jobs array
-	 * when there are no matches and the subset of results when there are partial
-	 * matches. If <code>false</code>, the request returns a 404 status code when
-	 * there are no matches or only partial matches.
+	 * Refer to the description for the <code>allow_no_match</code> query parameter.
 	 * <p>
 	 * API name: {@code allow_no_match}
 	 */
@@ -90,14 +87,7 @@ public class CloseJobRequest extends RequestBase {
 	}
 
 	/**
-	 * Use to close a failed job, or to forcefully close a job which has not
-	 * responded to its initial close request; the request returns without
-	 * performing the associated actions such as flushing buffers and persisting the
-	 * model snapshots. If you want the job to be in a consistent state after the
-	 * close job API returns, do not set to <code>true</code>. This parameter should
-	 * be used only in situations where the job has already failed or where you are
-	 * not interested in results the job might have recently produced or might
-	 * produce in the future.
+	 * Refer to the descriptiion for the <code>force</code> query parameter.
 	 * <p>
 	 * API name: {@code force}
 	 */
@@ -121,13 +111,42 @@ public class CloseJobRequest extends RequestBase {
 	}
 
 	/**
-	 * Controls the time to wait until a job has closed.
+	 * Refer to the description for the <code>timeout</code> query parameter.
 	 * <p>
 	 * API name: {@code timeout}
 	 */
 	@Nullable
 	public final Time timeout() {
 		return this.timeout;
+	}
+
+	/**
+	 * Serialize this object to JSON.
+	 */
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+		generator.writeStartObject();
+		serializeInternal(generator, mapper);
+		generator.writeEnd();
+	}
+
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		if (this.allowNoMatch != null) {
+			generator.writeKey("allow_no_match");
+			generator.write(this.allowNoMatch);
+
+		}
+		if (this.force != null) {
+			generator.writeKey("force");
+			generator.write(this.force);
+
+		}
+		if (this.timeout != null) {
+			generator.writeKey("timeout");
+			this.timeout.serialize(generator, mapper);
+
+		}
+
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -148,13 +167,7 @@ public class CloseJobRequest extends RequestBase {
 		private Time timeout;
 
 		/**
-		 * Specifies what to do when the request: contains wildcard expressions and
-		 * there are no jobs that match; contains the <code>_all</code> string or no
-		 * identifiers and there are no matches; or contains wildcard expressions and
-		 * there are only partial matches. By default, it returns an empty jobs array
-		 * when there are no matches and the subset of results when there are partial
-		 * matches. If <code>false</code>, the request returns a 404 status code when
-		 * there are no matches or only partial matches.
+		 * Refer to the description for the <code>allow_no_match</code> query parameter.
 		 * <p>
 		 * API name: {@code allow_no_match}
 		 */
@@ -164,14 +177,7 @@ public class CloseJobRequest extends RequestBase {
 		}
 
 		/**
-		 * Use to close a failed job, or to forcefully close a job which has not
-		 * responded to its initial close request; the request returns without
-		 * performing the associated actions such as flushing buffers and persisting the
-		 * model snapshots. If you want the job to be in a consistent state after the
-		 * close job API returns, do not set to <code>true</code>. This parameter should
-		 * be used only in situations where the job has already failed or where you are
-		 * not interested in results the job might have recently produced or might
-		 * produce in the future.
+		 * Refer to the descriptiion for the <code>force</code> query parameter.
 		 * <p>
 		 * API name: {@code force}
 		 */
@@ -196,7 +202,7 @@ public class CloseJobRequest extends RequestBase {
 		}
 
 		/**
-		 * Controls the time to wait until a job has closed.
+		 * Refer to the description for the <code>timeout</code> query parameter.
 		 * <p>
 		 * API name: {@code timeout}
 		 */
@@ -206,12 +212,14 @@ public class CloseJobRequest extends RequestBase {
 		}
 
 		/**
-		 * Controls the time to wait until a job has closed.
+		 * Refer to the description for the <code>timeout</code> query parameter.
 		 * <p>
 		 * API name: {@code timeout}
 		 */
-		public final Builder timeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
-			return this.timeout(fn.apply(new Time.Builder()).build());
+		public final Builder timeout(Consumer<Time.Builder> fn) {
+			Time.Builder builder = new Time.Builder();
+			fn.accept(builder);
+			return this.timeout(builder.build());
 		}
 
 		/**
@@ -225,6 +233,22 @@ public class CloseJobRequest extends RequestBase {
 
 			return new CloseJobRequest(this);
 		}
+	}
+
+	// ---------------------------------------------------------------------------------------------
+
+	/**
+	 * Json deserializer for {@link CloseJobRequest}
+	 */
+	public static final JsonpDeserializer<CloseJobRequest> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			CloseJobRequest::setupCloseJobRequestDeserializer);
+
+	protected static void setupCloseJobRequestDeserializer(ObjectDeserializer<CloseJobRequest.Builder> op) {
+
+		op.add(Builder::allowNoMatch, JsonpDeserializer.booleanDeserializer(), "allow_no_match");
+		op.add(Builder::force, JsonpDeserializer.booleanDeserializer(), "force");
+		op.add(Builder::timeout, Time._DESERIALIZER, "timeout");
+
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -262,17 +286,7 @@ public class CloseJobRequest extends RequestBase {
 
 			// Request parameters
 			request -> {
-				Map<String, String> params = new HashMap<>();
-				if (request.force != null) {
-					params.put("force", String.valueOf(request.force));
-				}
-				if (request.allowNoMatch != null) {
-					params.put("allow_no_match", String.valueOf(request.allowNoMatch));
-				}
-				if (request.timeout != null) {
-					params.put("timeout", request.timeout._toJsonString());
-				}
-				return params;
+				return Collections.emptyMap();
 
-			}, SimpleEndpoint.emptyMap(), false, CloseJobResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, CloseJobResponse._DESERIALIZER);
 }

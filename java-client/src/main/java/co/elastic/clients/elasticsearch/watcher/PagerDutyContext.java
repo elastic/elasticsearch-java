@@ -35,7 +35,7 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.PagerDutyContext
@@ -57,8 +57,10 @@ public class PagerDutyContext implements JsonpSerializable {
 
 	}
 
-	public static PagerDutyContext of(Function<Builder, ObjectBuilder<PagerDutyContext>> fn) {
-		return fn.apply(new Builder()).build();
+	public static PagerDutyContext of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**

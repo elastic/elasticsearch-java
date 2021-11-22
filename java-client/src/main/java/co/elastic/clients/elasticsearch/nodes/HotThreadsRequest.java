@@ -32,7 +32,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
-import co.elastic.clients.transport.SimpleEndpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
@@ -45,7 +45,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
@@ -58,13 +58,13 @@ public class HotThreadsRequest extends RequestBase {
 	@Nullable
 	private final Time interval;
 
+	@Nullable
+	private final Time masterTimeout;
+
 	private final List<String> nodeId;
 
 	@Nullable
 	private final Long snapshots;
-
-	@Nullable
-	private final ThreadType threadType;
 
 	@Nullable
 	private final Long threads;
@@ -72,27 +72,33 @@ public class HotThreadsRequest extends RequestBase {
 	@Nullable
 	private final Time timeout;
 
+	@Nullable
+	private final ThreadType type;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private HotThreadsRequest(Builder builder) {
 
 		this.ignoreIdleThreads = builder.ignoreIdleThreads;
 		this.interval = builder.interval;
+		this.masterTimeout = builder.masterTimeout;
 		this.nodeId = ModelTypeHelper.unmodifiable(builder.nodeId);
 		this.snapshots = builder.snapshots;
-		this.threadType = builder.threadType;
 		this.threads = builder.threads;
 		this.timeout = builder.timeout;
+		this.type = builder.type;
 
 	}
 
-	public static HotThreadsRequest of(Function<Builder, ObjectBuilder<HotThreadsRequest>> fn) {
-		return fn.apply(new Builder()).build();
+	public static HotThreadsRequest of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
-	 * Don't show threads that are in known-idle places, such as waiting on a socket
-	 * select or pulling from an empty task queue (default: true)
+	 * If true, known idle threads (e.g. waiting in a socket select, or to get a
+	 * task from an empty queue) are filtered out.
 	 * <p>
 	 * API name: {@code ignore_idle_threads}
 	 */
@@ -102,7 +108,7 @@ public class HotThreadsRequest extends RequestBase {
 	}
 
 	/**
-	 * The interval for the second sampling of threads
+	 * The interval to do the second sampling of threads.
 	 * <p>
 	 * API name: {@code interval}
 	 */
@@ -112,9 +118,18 @@ public class HotThreadsRequest extends RequestBase {
 	}
 
 	/**
-	 * A comma-separated list of node IDs or names to limit the returned
-	 * information; use <code>_local</code> to return information from the node
-	 * you're connecting to, leave empty to get information from all nodes
+	 * Period to wait for a connection to the master node. If no response is
+	 * received before the timeout expires, the request fails and returns an error.
+	 * <p>
+	 * API name: {@code master_timeout}
+	 */
+	@Nullable
+	public final Time masterTimeout() {
+		return this.masterTimeout;
+	}
+
+	/**
+	 * List of node IDs or names used to limit returned information.
 	 * <p>
 	 * API name: {@code node_id}
 	 */
@@ -123,7 +138,7 @@ public class HotThreadsRequest extends RequestBase {
 	}
 
 	/**
-	 * Number of samples of thread stacktrace (default: 10)
+	 * Number of samples of thread stacktrace.
 	 * <p>
 	 * API name: {@code snapshots}
 	 */
@@ -133,15 +148,7 @@ public class HotThreadsRequest extends RequestBase {
 	}
 
 	/**
-	 * API name: {@code thread_type}
-	 */
-	@Nullable
-	public final ThreadType threadType() {
-		return this.threadType;
-	}
-
-	/**
-	 * Specify the number of threads to provide information for (default: 3)
+	 * Specifies the number of hot threads to provide information for.
 	 * <p>
 	 * API name: {@code threads}
 	 */
@@ -151,13 +158,24 @@ public class HotThreadsRequest extends RequestBase {
 	}
 
 	/**
-	 * Explicit operation timeout
+	 * Period to wait for a response. If no response is received before the timeout
+	 * expires, the request fails and returns an error.
 	 * <p>
 	 * API name: {@code timeout}
 	 */
 	@Nullable
 	public final Time timeout() {
 		return this.timeout;
+	}
+
+	/**
+	 * The type to sample.
+	 * <p>
+	 * API name: {@code type}
+	 */
+	@Nullable
+	public final ThreadType type() {
+		return this.type;
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -173,13 +191,13 @@ public class HotThreadsRequest extends RequestBase {
 		private Time interval;
 
 		@Nullable
+		private Time masterTimeout;
+
+		@Nullable
 		private List<String> nodeId;
 
 		@Nullable
 		private Long snapshots;
-
-		@Nullable
-		private ThreadType threadType;
 
 		@Nullable
 		private Long threads;
@@ -187,9 +205,12 @@ public class HotThreadsRequest extends RequestBase {
 		@Nullable
 		private Time timeout;
 
+		@Nullable
+		private ThreadType type;
+
 		/**
-		 * Don't show threads that are in known-idle places, such as waiting on a socket
-		 * select or pulling from an empty task queue (default: true)
+		 * If true, known idle threads (e.g. waiting in a socket select, or to get a
+		 * task from an empty queue) are filtered out.
 		 * <p>
 		 * API name: {@code ignore_idle_threads}
 		 */
@@ -199,7 +220,7 @@ public class HotThreadsRequest extends RequestBase {
 		}
 
 		/**
-		 * The interval for the second sampling of threads
+		 * The interval to do the second sampling of threads.
 		 * <p>
 		 * API name: {@code interval}
 		 */
@@ -209,18 +230,41 @@ public class HotThreadsRequest extends RequestBase {
 		}
 
 		/**
-		 * The interval for the second sampling of threads
+		 * The interval to do the second sampling of threads.
 		 * <p>
 		 * API name: {@code interval}
 		 */
-		public final Builder interval(Function<Time.Builder, ObjectBuilder<Time>> fn) {
-			return this.interval(fn.apply(new Time.Builder()).build());
+		public final Builder interval(Consumer<Time.Builder> fn) {
+			Time.Builder builder = new Time.Builder();
+			fn.accept(builder);
+			return this.interval(builder.build());
 		}
 
 		/**
-		 * A comma-separated list of node IDs or names to limit the returned
-		 * information; use <code>_local</code> to return information from the node
-		 * you're connecting to, leave empty to get information from all nodes
+		 * Period to wait for a connection to the master node. If no response is
+		 * received before the timeout expires, the request fails and returns an error.
+		 * <p>
+		 * API name: {@code master_timeout}
+		 */
+		public final Builder masterTimeout(@Nullable Time value) {
+			this.masterTimeout = value;
+			return this;
+		}
+
+		/**
+		 * Period to wait for a connection to the master node. If no response is
+		 * received before the timeout expires, the request fails and returns an error.
+		 * <p>
+		 * API name: {@code master_timeout}
+		 */
+		public final Builder masterTimeout(Consumer<Time.Builder> fn) {
+			Time.Builder builder = new Time.Builder();
+			fn.accept(builder);
+			return this.masterTimeout(builder.build());
+		}
+
+		/**
+		 * List of node IDs or names used to limit returned information.
 		 * <p>
 		 * API name: {@code node_id}
 		 */
@@ -230,9 +274,7 @@ public class HotThreadsRequest extends RequestBase {
 		}
 
 		/**
-		 * A comma-separated list of node IDs or names to limit the returned
-		 * information; use <code>_local</code> to return information from the node
-		 * you're connecting to, leave empty to get information from all nodes
+		 * List of node IDs or names used to limit returned information.
 		 * <p>
 		 * API name: {@code node_id}
 		 */
@@ -242,7 +284,7 @@ public class HotThreadsRequest extends RequestBase {
 		}
 
 		/**
-		 * Number of samples of thread stacktrace (default: 10)
+		 * Number of samples of thread stacktrace.
 		 * <p>
 		 * API name: {@code snapshots}
 		 */
@@ -252,15 +294,7 @@ public class HotThreadsRequest extends RequestBase {
 		}
 
 		/**
-		 * API name: {@code thread_type}
-		 */
-		public final Builder threadType(@Nullable ThreadType value) {
-			this.threadType = value;
-			return this;
-		}
-
-		/**
-		 * Specify the number of threads to provide information for (default: 3)
+		 * Specifies the number of hot threads to provide information for.
 		 * <p>
 		 * API name: {@code threads}
 		 */
@@ -270,7 +304,8 @@ public class HotThreadsRequest extends RequestBase {
 		}
 
 		/**
-		 * Explicit operation timeout
+		 * Period to wait for a response. If no response is received before the timeout
+		 * expires, the request fails and returns an error.
 		 * <p>
 		 * API name: {@code timeout}
 		 */
@@ -280,12 +315,25 @@ public class HotThreadsRequest extends RequestBase {
 		}
 
 		/**
-		 * Explicit operation timeout
+		 * Period to wait for a response. If no response is received before the timeout
+		 * expires, the request fails and returns an error.
 		 * <p>
 		 * API name: {@code timeout}
 		 */
-		public final Builder timeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
-			return this.timeout(fn.apply(new Time.Builder()).build());
+		public final Builder timeout(Consumer<Time.Builder> fn) {
+			Time.Builder builder = new Time.Builder();
+			fn.accept(builder);
+			return this.timeout(builder.build());
+		}
+
+		/**
+		 * The type to sample.
+		 * <p>
+		 * API name: {@code type}
+		 */
+		public final Builder type(@Nullable ThreadType value) {
+			this.type = value;
+			return this;
 		}
 
 		/**
@@ -347,14 +395,17 @@ public class HotThreadsRequest extends RequestBase {
 				if (request.snapshots != null) {
 					params.put("snapshots", String.valueOf(request.snapshots));
 				}
-				if (request.threadType != null) {
-					params.put("thread_type", request.threadType.jsonValue());
+				if (request.masterTimeout != null) {
+					params.put("master_timeout", request.masterTimeout._toJsonString());
 				}
 				if (request.threads != null) {
 					params.put("threads", String.valueOf(request.threads));
 				}
 				if (request.interval != null) {
 					params.put("interval", request.interval._toJsonString());
+				}
+				if (request.type != null) {
+					params.put("type", request.type.jsonValue());
 				}
 				if (request.timeout != null) {
 					params.put("timeout", request.timeout._toJsonString());

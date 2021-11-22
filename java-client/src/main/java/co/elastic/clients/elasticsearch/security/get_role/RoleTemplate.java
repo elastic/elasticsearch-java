@@ -35,7 +35,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: security.get_role.RoleTemplate
@@ -55,8 +55,10 @@ public class RoleTemplate implements JsonpSerializable {
 
 	}
 
-	public static RoleTemplate of(Function<Builder, ObjectBuilder<RoleTemplate>> fn) {
-		return fn.apply(new Builder()).build();
+	public static RoleTemplate of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -124,8 +126,10 @@ public class RoleTemplate implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code template}
 		 */
-		public final Builder template(Function<Script.Builder, ObjectBuilder<Script>> fn) {
-			return this.template(fn.apply(new Script.Builder()).build());
+		public final Builder template(Consumer<Script.Builder> fn) {
+			Script.Builder builder = new Script.Builder();
+			fn.accept(builder);
+			return this.template(builder.build());
 		}
 
 		/**

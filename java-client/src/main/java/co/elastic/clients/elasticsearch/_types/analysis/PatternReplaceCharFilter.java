@@ -33,7 +33,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: _types.analysis.PatternReplaceCharFilter
@@ -56,16 +56,18 @@ public class PatternReplaceCharFilter extends CharFilterBase implements CharFilt
 
 	}
 
-	public static PatternReplaceCharFilter of(Function<Builder, ObjectBuilder<PatternReplaceCharFilter>> fn) {
-		return fn.apply(new Builder()).build();
+	public static PatternReplaceCharFilter of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
-	 * {@link CharFilterDefinition} variant type
+	 * CharFilterDefinition variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "pattern_replace";
+	public CharFilterDefinition.Kind _charFilterDefinitionKind() {
+		return CharFilterDefinition.Kind.PatternReplace;
 	}
 
 	/**

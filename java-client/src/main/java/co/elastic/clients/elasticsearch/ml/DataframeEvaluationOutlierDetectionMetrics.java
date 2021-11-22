@@ -35,7 +35,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.DataframeEvaluationOutlierDetectionMetrics
@@ -52,9 +52,10 @@ public class DataframeEvaluationOutlierDetectionMetrics extends DataframeEvaluat
 
 	}
 
-	public static DataframeEvaluationOutlierDetectionMetrics of(
-			Function<Builder, ObjectBuilder<DataframeEvaluationOutlierDetectionMetrics>> fn) {
-		return fn.apply(new Builder()).build();
+	public static DataframeEvaluationOutlierDetectionMetrics of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**

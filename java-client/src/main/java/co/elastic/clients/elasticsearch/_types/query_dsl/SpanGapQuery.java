@@ -31,7 +31,7 @@ import jakarta.json.stream.JsonParser;
 
 import java.util.EnumSet;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 
 @JsonpDeserializable
 public class SpanGapQuery implements SpanQueryVariant, JsonpSerializable {
@@ -41,8 +41,8 @@ public class SpanGapQuery implements SpanQueryVariant, JsonpSerializable {
 	private final int spanWidth;
 
 	@Override
-	public String _variantType() {
-		return "span_gap";
+	public SpanQuery.Kind _spanQueryKind() {
+		return SpanQuery.Kind.SpanGap;
 	}
 
 	private SpanGapQuery(SpanGapQuery.Builder builder) {
@@ -50,8 +50,10 @@ public class SpanGapQuery implements SpanQueryVariant, JsonpSerializable {
 		this.spanWidth = Objects.requireNonNull(builder.spanWidth, "span_width");
 	}
 
-	public static SpanGapQuery of(Function<SpanGapQuery.Builder, ObjectBuilder<SpanGapQuery>> fn) {
-		return fn.apply(new SpanGapQuery.Builder()).build();
+	public static SpanGapQuery of(Consumer<SpanGapQuery.Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	public final String field() {

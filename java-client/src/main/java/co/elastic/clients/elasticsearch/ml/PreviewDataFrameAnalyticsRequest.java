@@ -33,14 +33,14 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
-import co.elastic.clients.transport.SimpleEndpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: ml.preview_data_frame_analytics.Request
@@ -61,9 +61,10 @@ public class PreviewDataFrameAnalyticsRequest extends RequestBase implements Jso
 
 	}
 
-	public static PreviewDataFrameAnalyticsRequest of(
-			Function<Builder, ObjectBuilder<PreviewDataFrameAnalyticsRequest>> fn) {
-		return fn.apply(new Builder()).build();
+	public static PreviewDataFrameAnalyticsRequest of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -138,9 +139,10 @@ public class PreviewDataFrameAnalyticsRequest extends RequestBase implements Jso
 		 * <p>
 		 * API name: {@code config}
 		 */
-		public final Builder config(
-				Function<DataframePreviewConfig.Builder, ObjectBuilder<DataframePreviewConfig>> fn) {
-			return this.config(fn.apply(new DataframePreviewConfig.Builder()).build());
+		public final Builder config(Consumer<DataframePreviewConfig.Builder> fn) {
+			DataframePreviewConfig.Builder builder = new DataframePreviewConfig.Builder();
+			fn.accept(builder);
+			return this.config(builder.build());
 		}
 
 		/**

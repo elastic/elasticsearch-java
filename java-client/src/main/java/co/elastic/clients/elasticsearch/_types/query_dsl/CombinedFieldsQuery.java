@@ -36,7 +36,7 @@ import java.lang.String;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.CombinedFieldsQuery
@@ -72,16 +72,18 @@ public class CombinedFieldsQuery extends QueryBase implements QueryVariant {
 
 	}
 
-	public static CombinedFieldsQuery of(Function<Builder, ObjectBuilder<CombinedFieldsQuery>> fn) {
-		return fn.apply(new Builder()).build();
+	public static CombinedFieldsQuery of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
-	 * {@link Query} variant type
+	 * Query variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "combined_fields";
+	public Query.Kind _queryKind() {
+		return Query.Kind.CombinedFields;
 	}
 
 	/**

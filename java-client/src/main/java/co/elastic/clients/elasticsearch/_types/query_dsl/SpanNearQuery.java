@@ -28,15 +28,16 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Integer;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -62,16 +63,26 @@ public class SpanNearQuery extends QueryBase implements SpanQueryVariant, QueryV
 
 	}
 
-	public static SpanNearQuery of(Function<Builder, ObjectBuilder<SpanNearQuery>> fn) {
-		return fn.apply(new Builder()).build();
+	public static SpanNearQuery of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
-	 * {@link SpanQuery}, {@link Query} variant type
+	 * SpanQuery variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "span_near";
+	public SpanQuery.Kind _spanQueryKind() {
+		return SpanQuery.Kind.SpanNear;
+	}
+
+	/**
+	 * Query variant kind.
+	 */
+	@Override
+	public Query.Kind _queryKind() {
+		return Query.Kind.SpanNear;
 	}
 
 	/**
@@ -156,13 +167,9 @@ public class SpanNearQuery extends QueryBase implements SpanQueryVariant, QueryV
 		/**
 		 * Required - API name: {@code clauses}
 		 */
-		@SafeVarargs
-		public final Builder clauses(Function<SpanQuery.Builder, ObjectBuilder<SpanQuery>>... fns) {
-			this.clauses = new ArrayList<>(fns.length);
-			for (Function<SpanQuery.Builder, ObjectBuilder<SpanQuery>> fn : fns) {
-				this.clauses.add(fn.apply(new SpanQuery.Builder()).build());
-			}
-			return this;
+		public final Builder clauses(
+				Function<ListBuilder<SpanQuery, SpanQuery.Builder>, ObjectBuilder<List<SpanQuery>>> fn) {
+			return clauses(fn.apply(new ListBuilder<>(SpanQuery.Builder::new)).build());
 		}
 
 		/**

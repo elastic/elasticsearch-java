@@ -29,15 +29,16 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -70,9 +71,10 @@ public class AggregationProfileDelegateDebug implements JsonpSerializable {
 
 	}
 
-	public static AggregationProfileDelegateDebug of(
-			Function<Builder, ObjectBuilder<AggregationProfileDelegateDebug>> fn) {
-		return fn.apply(new Builder()).build();
+	public static AggregationProfileDelegateDebug of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -214,14 +216,9 @@ public class AggregationProfileDelegateDebug implements JsonpSerializable {
 		/**
 		 * API name: {@code filters}
 		 */
-		@SafeVarargs
 		public final Builder filters(
-				Function<AggregationProfileDelegateDebugFilter.Builder, ObjectBuilder<AggregationProfileDelegateDebugFilter>>... fns) {
-			this.filters = new ArrayList<>(fns.length);
-			for (Function<AggregationProfileDelegateDebugFilter.Builder, ObjectBuilder<AggregationProfileDelegateDebugFilter>> fn : fns) {
-				this.filters.add(fn.apply(new AggregationProfileDelegateDebugFilter.Builder()).build());
-			}
-			return this;
+				Function<ListBuilder<AggregationProfileDelegateDebugFilter, AggregationProfileDelegateDebugFilter.Builder>, ObjectBuilder<List<AggregationProfileDelegateDebugFilter>>> fn) {
+			return filters(fn.apply(new ListBuilder<>(AggregationProfileDelegateDebugFilter.Builder::new)).build());
 		}
 
 		/**

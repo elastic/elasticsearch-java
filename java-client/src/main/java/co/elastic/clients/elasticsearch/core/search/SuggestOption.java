@@ -38,24 +38,25 @@ import co.elastic.clients.util.TaggedUnionUtils;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Object;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: _global.search._types.SuggestOption
 // union type: Union[]
 
-public class SuggestOption<TDocument> implements TaggedUnion<Object>, JsonpSerializable {
+public class SuggestOption<TDocument> implements TaggedUnion<SuggestOption.Kind, Object>, JsonpSerializable {
 
-	public static final String COMPLETION = "completion";
-	public static final String PHRASE = "phrase";
-	public static final String TERM = "term";
+	public enum Kind {
+		Completion, Phrase, Term
 
-	private final String _type;
+	}
+
+	private final Kind _kind;
 	private final Object _value;
 
 	@Override
-	public final String _type() {
-		return _type;
+	public final Kind _kind() {
+		return _kind;
 	}
 
 	@Override
@@ -65,28 +66,29 @@ public class SuggestOption<TDocument> implements TaggedUnion<Object>, JsonpSeria
 
 	private final JsonpSerializer<TDocument> tDocumentSerializer = null;
 
-	public SuggestOption(String type, Object value) {
-		this._type = type;
+	public SuggestOption(Kind kind, Object value) {
+		this._kind = kind;
 		this._value = value;
 	}
 
 	private SuggestOption(Builder<TDocument> builder) {
 
-		this._type = ModelTypeHelper.requireNonNull(builder._type, builder, "<variant type>");
+		this._kind = ModelTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
 		this._value = ModelTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
 
 	}
 
-	public static <TDocument> SuggestOption<TDocument> of(
-			Function<Builder<TDocument>, ObjectBuilder<SuggestOption<TDocument>>> fn) {
-		return fn.apply(new Builder<>()).build();
+	public static <TDocument> SuggestOption<TDocument> of(Consumer<Builder<TDocument>> fn) {
+		Builder<TDocument> builder = new Builder<>();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
 	 * Is this variant instance of kind {@code completion}?
 	 */
-	public boolean _isCompletion() {
-		return COMPLETION.equals(_type());
+	public boolean isCompletion() {
+		return _kind == Kind.Completion;
 	}
 
 	/**
@@ -96,14 +98,14 @@ public class SuggestOption<TDocument> implements TaggedUnion<Object>, JsonpSeria
 	 *             if the current variant is not of the {@code completion} kind.
 	 */
 	public CompletionSuggestOption<TDocument> completion() {
-		return TaggedUnionUtils.get(this, COMPLETION);
+		return TaggedUnionUtils.get(this, Kind.Completion);
 	}
 
 	/**
 	 * Is this variant instance of kind {@code phrase}?
 	 */
-	public boolean _isPhrase() {
-		return PHRASE.equals(_type());
+	public boolean isPhrase() {
+		return _kind == Kind.Phrase;
 	}
 
 	/**
@@ -113,14 +115,14 @@ public class SuggestOption<TDocument> implements TaggedUnion<Object>, JsonpSeria
 	 *             if the current variant is not of the {@code phrase} kind.
 	 */
 	public PhraseSuggestOption phrase() {
-		return TaggedUnionUtils.get(this, PHRASE);
+		return TaggedUnionUtils.get(this, Kind.Phrase);
 	}
 
 	/**
 	 * Is this variant instance of kind {@code term}?
 	 */
-	public boolean _isTerm() {
-		return TERM.equals(_type());
+	public boolean isTerm() {
+		return _kind == Kind.Term;
 	}
 
 	/**
@@ -130,7 +132,7 @@ public class SuggestOption<TDocument> implements TaggedUnion<Object>, JsonpSeria
 	 *             if the current variant is not of the {@code term} kind.
 	 */
 	public TermSuggestOption term() {
-		return TaggedUnionUtils.get(this, TERM);
+		return TaggedUnionUtils.get(this, Kind.Term);
 	}
 
 	@Override
@@ -144,38 +146,43 @@ public class SuggestOption<TDocument> implements TaggedUnion<Object>, JsonpSeria
 	public static class Builder<TDocument> extends ObjectBuilderBase
 			implements
 				ObjectBuilder<SuggestOption<TDocument>> {
-		private String _type;
+		private Kind _kind;
 		private Object _value;
 
 		public Builder<TDocument> completion(CompletionSuggestOption<TDocument> v) {
-			this._type = COMPLETION;
+			this._kind = Kind.Completion;
 			this._value = v;
 			return this;
 		}
 
-		public Builder<TDocument> completion(
-				Function<CompletionSuggestOption.Builder<TDocument>, ObjectBuilder<CompletionSuggestOption<TDocument>>> f) {
-			return this.completion(f.apply(new CompletionSuggestOption.Builder<TDocument>()).build());
+		public Builder<TDocument> completion(Consumer<CompletionSuggestOption.Builder<TDocument>> fn) {
+			CompletionSuggestOption.Builder<TDocument> builder = new CompletionSuggestOption.Builder<TDocument>();
+			fn.accept(builder);
+			return this.completion(builder.build());
 		}
 
 		public Builder<TDocument> phrase(PhraseSuggestOption v) {
-			this._type = PHRASE;
+			this._kind = Kind.Phrase;
 			this._value = v;
 			return this;
 		}
 
-		public Builder<TDocument> phrase(Function<PhraseSuggestOption.Builder, ObjectBuilder<PhraseSuggestOption>> f) {
-			return this.phrase(f.apply(new PhraseSuggestOption.Builder()).build());
+		public Builder<TDocument> phrase(Consumer<PhraseSuggestOption.Builder> fn) {
+			PhraseSuggestOption.Builder builder = new PhraseSuggestOption.Builder();
+			fn.accept(builder);
+			return this.phrase(builder.build());
 		}
 
 		public Builder<TDocument> term(TermSuggestOption v) {
-			this._type = TERM;
+			this._kind = Kind.Term;
 			this._value = v;
 			return this;
 		}
 
-		public Builder<TDocument> term(Function<TermSuggestOption.Builder, ObjectBuilder<TermSuggestOption>> f) {
-			return this.term(f.apply(new TermSuggestOption.Builder()).build());
+		public Builder<TDocument> term(Consumer<TermSuggestOption.Builder> fn) {
+			TermSuggestOption.Builder builder = new TermSuggestOption.Builder();
+			fn.accept(builder);
+			return this.term(builder.build());
 		}
 
 		public SuggestOption<TDocument> build() {
@@ -187,11 +194,11 @@ public class SuggestOption<TDocument> implements TaggedUnion<Object>, JsonpSeria
 
 	public static <TDocument> JsonpDeserializer<SuggestOption<TDocument>> createSuggestOptionDeserializer(
 			JsonpDeserializer<TDocument> tDocumentDeserializer) {
-		return new UnionDeserializer.Builder<>(SuggestOption<TDocument>::new, false)
-				.addMember("completion",
+		return new UnionDeserializer.Builder<SuggestOption<TDocument>, Kind, Object>(SuggestOption<TDocument>::new,
+				false).addMember(Kind.Completion,
 						CompletionSuggestOption.createCompletionSuggestOptionDeserializer(tDocumentDeserializer))
-				.addMember("phrase", PhraseSuggestOption._DESERIALIZER)
-				.addMember("term", TermSuggestOption._DESERIALIZER).build();
+						.addMember(Kind.Phrase, PhraseSuggestOption._DESERIALIZER)
+						.addMember(Kind.Term, TermSuggestOption._DESERIALIZER).build();
 	}
 
 }

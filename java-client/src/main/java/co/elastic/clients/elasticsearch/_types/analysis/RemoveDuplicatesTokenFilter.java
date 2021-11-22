@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 
 // typedef: _types.analysis.RemoveDuplicatesTokenFilter
 @JsonpDeserializable
@@ -43,16 +43,18 @@ public class RemoveDuplicatesTokenFilter extends TokenFilterBase implements Toke
 
 	}
 
-	public static RemoveDuplicatesTokenFilter of(Function<Builder, ObjectBuilder<RemoveDuplicatesTokenFilter>> fn) {
-		return fn.apply(new Builder()).build();
+	public static RemoveDuplicatesTokenFilter of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
-	 * {@link TokenFilterDefinition} variant type
+	 * TokenFilterDefinition variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "remove_duplicates";
+	public TokenFilterDefinition.Kind _tokenFilterDefinitionKind() {
+		return TokenFilterDefinition.Kind.RemoveDuplicates;
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {

@@ -40,7 +40,7 @@ import java.lang.String;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: _global.search._types.HighlightField
@@ -134,8 +134,10 @@ public class HighlightField implements JsonpSerializable {
 
 	}
 
-	public static HighlightField of(Function<Builder, ObjectBuilder<HighlightField>> fn) {
-		return fn.apply(new Builder()).build();
+	public static HighlightField of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -585,8 +587,10 @@ public class HighlightField implements JsonpSerializable {
 		/**
 		 * API name: {@code highlight_query}
 		 */
-		public final Builder highlightQuery(Function<Query.Builder, ObjectBuilder<Query>> fn) {
-			return this.highlightQuery(fn.apply(new Query.Builder()).build());
+		public final Builder highlightQuery(Consumer<Query.Builder> fn) {
+			Query.Builder builder = new Query.Builder();
+			fn.accept(builder);
+			return this.highlightQuery(builder.build());
 		}
 
 		/**
@@ -704,8 +708,10 @@ public class HighlightField implements JsonpSerializable {
 		/**
 		 * API name: {@code type}
 		 */
-		public final Builder type(Function<HighlighterType.Builder, ObjectBuilder<HighlighterType>> fn) {
-			return this.type(fn.apply(new HighlighterType.Builder()).build());
+		public final Builder type(Consumer<HighlighterType.Builder> fn) {
+			HighlighterType.Builder builder = new HighlighterType.Builder();
+			fn.accept(builder);
+			return this.type(builder.build());
 		}
 
 		/**

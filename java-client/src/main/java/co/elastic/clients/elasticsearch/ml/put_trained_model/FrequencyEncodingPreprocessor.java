@@ -37,7 +37,7 @@ import java.lang.Double;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: ml.put_trained_model.FrequencyEncodingPreprocessor
@@ -59,16 +59,18 @@ public class FrequencyEncodingPreprocessor implements PreprocessorVariant, Jsonp
 
 	}
 
-	public static FrequencyEncodingPreprocessor of(Function<Builder, ObjectBuilder<FrequencyEncodingPreprocessor>> fn) {
-		return fn.apply(new Builder()).build();
+	public static FrequencyEncodingPreprocessor of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
-	 * {@link Preprocessor} variant type
+	 * Preprocessor variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "frequency_encoding";
+	public Preprocessor.Kind _preprocessorKind() {
+		return Preprocessor.Kind.FrequencyEncoding;
 	}
 
 	/**

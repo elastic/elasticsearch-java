@@ -35,7 +35,7 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: nodes.info.NodeInfoAction
@@ -52,8 +52,10 @@ public class NodeInfoAction implements JsonpSerializable {
 
 	}
 
-	public static NodeInfoAction of(Function<Builder, ObjectBuilder<NodeInfoAction>> fn) {
-		return fn.apply(new Builder()).build();
+	public static NodeInfoAction of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**

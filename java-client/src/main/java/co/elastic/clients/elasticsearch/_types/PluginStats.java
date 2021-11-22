@@ -38,7 +38,7 @@ import java.lang.String;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: _types.PluginStats
@@ -83,8 +83,10 @@ public class PluginStats implements JsonpSerializable {
 
 	}
 
-	public static PluginStats of(Function<Builder, ObjectBuilder<PluginStats>> fn) {
-		return fn.apply(new Builder()).build();
+	public static PluginStats of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**

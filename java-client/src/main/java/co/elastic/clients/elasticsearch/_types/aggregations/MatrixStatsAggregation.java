@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.MatrixStatsAggregation
@@ -49,16 +49,18 @@ public class MatrixStatsAggregation extends MatrixAggregation implements Aggrega
 
 	}
 
-	public static MatrixStatsAggregation of(Function<Builder, ObjectBuilder<MatrixStatsAggregation>> fn) {
-		return fn.apply(new Builder()).build();
+	public static MatrixStatsAggregation of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
-	 * {@link Aggregation} variant type
+	 * Aggregation variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "matrix_stats";
+	public Aggregation.Kind _aggregationKind() {
+		return Aggregation.Kind.MatrixStats;
 	}
 
 	/**

@@ -23,6 +23,7 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
+import co.elastic.clients.json.JsonEnum;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -37,26 +38,52 @@ import co.elastic.clients.util.TaggedUnionUtils;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Object;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.DataframeAnalysisFeatureProcessor
 // union type: Container[]
 @JsonpDeserializable
-public class DataframeAnalysisFeatureProcessor implements TaggedUnion<Object>, JsonpSerializable {
+public class DataframeAnalysisFeatureProcessor
+		implements
+			TaggedUnion<DataframeAnalysisFeatureProcessor.Kind, Object>,
+			JsonpSerializable {
 
-	public static final String FREQUENCY_ENCODING = "frequency_encoding";
-	public static final String MULTI_ENCODING = "multi_encoding";
-	public static final String N_GRAM_ENCODING = "n_gram_encoding";
-	public static final String ONE_HOT_ENCODING = "one_hot_encoding";
-	public static final String TARGET_MEAN_ENCODING = "target_mean_encoding";
+	/**
+	 * {@link DataframeAnalysisFeatureProcessor} variant kinds.
+	 */
 
-	private final String _type;
+	public enum Kind implements JsonEnum {
+		FrequencyEncoding("frequency_encoding"),
+
+		MultiEncoding("multi_encoding"),
+
+		NGramEncoding("n_gram_encoding"),
+
+		OneHotEncoding("one_hot_encoding"),
+
+		TargetMeanEncoding("target_mean_encoding"),
+
+		;
+
+		private final String jsonValue;
+
+		Kind(String jsonValue) {
+			this.jsonValue = jsonValue;
+		}
+
+		public String jsonValue() {
+			return this.jsonValue;
+		}
+
+	}
+
+	private final Kind _kind;
 	private final Object _value;
 
 	@Override
-	public final String _type() {
-		return _type;
+	public final Kind _kind() {
+		return _kind;
 	}
 
 	@Override
@@ -66,28 +93,30 @@ public class DataframeAnalysisFeatureProcessor implements TaggedUnion<Object>, J
 
 	public DataframeAnalysisFeatureProcessor(DataframeAnalysisFeatureProcessorVariant value) {
 
-		this._type = ModelTypeHelper.requireNonNull(value._variantType(), this, "<variant type>");
+		this._kind = ModelTypeHelper.requireNonNull(value._dataframeAnalysisFeatureProcessorKind(), this,
+				"<variant kind>");
 		this._value = ModelTypeHelper.requireNonNull(value, this, "<variant value>");
 
 	}
 
 	private DataframeAnalysisFeatureProcessor(Builder builder) {
 
-		this._type = ModelTypeHelper.requireNonNull(builder._type, builder, "<variant type>");
+		this._kind = ModelTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
 		this._value = ModelTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
 
 	}
 
-	public static DataframeAnalysisFeatureProcessor of(
-			Function<Builder, ObjectBuilder<DataframeAnalysisFeatureProcessor>> fn) {
-		return fn.apply(new Builder()).build();
+	public static DataframeAnalysisFeatureProcessor of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
 	 * Is this variant instance of kind {@code frequency_encoding}?
 	 */
-	public boolean _isFrequencyEncoding() {
-		return FREQUENCY_ENCODING.equals(_type());
+	public boolean isFrequencyEncoding() {
+		return _kind == Kind.FrequencyEncoding;
 	}
 
 	/**
@@ -98,14 +127,14 @@ public class DataframeAnalysisFeatureProcessor implements TaggedUnion<Object>, J
 	 *             kind.
 	 */
 	public DataframeAnalysisFeatureProcessorFrequencyEncoding frequencyEncoding() {
-		return TaggedUnionUtils.get(this, FREQUENCY_ENCODING);
+		return TaggedUnionUtils.get(this, Kind.FrequencyEncoding);
 	}
 
 	/**
 	 * Is this variant instance of kind {@code multi_encoding}?
 	 */
-	public boolean _isMultiEncoding() {
-		return MULTI_ENCODING.equals(_type());
+	public boolean isMultiEncoding() {
+		return _kind == Kind.MultiEncoding;
 	}
 
 	/**
@@ -115,14 +144,14 @@ public class DataframeAnalysisFeatureProcessor implements TaggedUnion<Object>, J
 	 *             if the current variant is not of the {@code multi_encoding} kind.
 	 */
 	public DataframeAnalysisFeatureProcessorMultiEncoding multiEncoding() {
-		return TaggedUnionUtils.get(this, MULTI_ENCODING);
+		return TaggedUnionUtils.get(this, Kind.MultiEncoding);
 	}
 
 	/**
 	 * Is this variant instance of kind {@code n_gram_encoding}?
 	 */
-	public boolean _isNGramEncoding() {
-		return N_GRAM_ENCODING.equals(_type());
+	public boolean isNGramEncoding() {
+		return _kind == Kind.NGramEncoding;
 	}
 
 	/**
@@ -133,14 +162,14 @@ public class DataframeAnalysisFeatureProcessor implements TaggedUnion<Object>, J
 	 *             kind.
 	 */
 	public DataframeAnalysisFeatureProcessorNGramEncoding nGramEncoding() {
-		return TaggedUnionUtils.get(this, N_GRAM_ENCODING);
+		return TaggedUnionUtils.get(this, Kind.NGramEncoding);
 	}
 
 	/**
 	 * Is this variant instance of kind {@code one_hot_encoding}?
 	 */
-	public boolean _isOneHotEncoding() {
-		return ONE_HOT_ENCODING.equals(_type());
+	public boolean isOneHotEncoding() {
+		return _kind == Kind.OneHotEncoding;
 	}
 
 	/**
@@ -151,14 +180,14 @@ public class DataframeAnalysisFeatureProcessor implements TaggedUnion<Object>, J
 	 *             kind.
 	 */
 	public DataframeAnalysisFeatureProcessorOneHotEncoding oneHotEncoding() {
-		return TaggedUnionUtils.get(this, ONE_HOT_ENCODING);
+		return TaggedUnionUtils.get(this, Kind.OneHotEncoding);
 	}
 
 	/**
 	 * Is this variant instance of kind {@code target_mean_encoding}?
 	 */
-	public boolean _isTargetMeanEncoding() {
-		return TARGET_MEAN_ENCODING.equals(_type());
+	public boolean isTargetMeanEncoding() {
+		return _kind == Kind.TargetMeanEncoding;
 	}
 
 	/**
@@ -169,7 +198,7 @@ public class DataframeAnalysisFeatureProcessor implements TaggedUnion<Object>, J
 	 *             kind.
 	 */
 	public DataframeAnalysisFeatureProcessorTargetMeanEncoding targetMeanEncoding() {
-		return TaggedUnionUtils.get(this, TARGET_MEAN_ENCODING);
+		return TaggedUnionUtils.get(this, Kind.TargetMeanEncoding);
 	}
 
 	@Override
@@ -178,7 +207,7 @@ public class DataframeAnalysisFeatureProcessor implements TaggedUnion<Object>, J
 
 		generator.writeStartObject();
 
-		generator.writeKey(_type);
+		generator.writeKey(_kind.jsonValue());
 		if (_value instanceof JsonpSerializable) {
 			((JsonpSerializable) _value).serialize(generator, mapper);
 		}
@@ -188,64 +217,67 @@ public class DataframeAnalysisFeatureProcessor implements TaggedUnion<Object>, J
 	}
 
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DataframeAnalysisFeatureProcessor> {
-		private String _type;
+		private Kind _kind;
 		private Object _value;
 
 		public Builder frequencyEncoding(DataframeAnalysisFeatureProcessorFrequencyEncoding v) {
-			this._type = FREQUENCY_ENCODING;
+			this._kind = Kind.FrequencyEncoding;
 			this._value = v;
 			return this;
 		}
 
-		public Builder frequencyEncoding(
-				Function<DataframeAnalysisFeatureProcessorFrequencyEncoding.Builder, ObjectBuilder<DataframeAnalysisFeatureProcessorFrequencyEncoding>> f) {
-			return this.frequencyEncoding(
-					f.apply(new DataframeAnalysisFeatureProcessorFrequencyEncoding.Builder()).build());
+		public Builder frequencyEncoding(Consumer<DataframeAnalysisFeatureProcessorFrequencyEncoding.Builder> fn) {
+			DataframeAnalysisFeatureProcessorFrequencyEncoding.Builder builder = new DataframeAnalysisFeatureProcessorFrequencyEncoding.Builder();
+			fn.accept(builder);
+			return this.frequencyEncoding(builder.build());
 		}
 
 		public Builder multiEncoding(DataframeAnalysisFeatureProcessorMultiEncoding v) {
-			this._type = MULTI_ENCODING;
+			this._kind = Kind.MultiEncoding;
 			this._value = v;
 			return this;
 		}
 
-		public Builder multiEncoding(
-				Function<DataframeAnalysisFeatureProcessorMultiEncoding.Builder, ObjectBuilder<DataframeAnalysisFeatureProcessorMultiEncoding>> f) {
-			return this.multiEncoding(f.apply(new DataframeAnalysisFeatureProcessorMultiEncoding.Builder()).build());
+		public Builder multiEncoding(Consumer<DataframeAnalysisFeatureProcessorMultiEncoding.Builder> fn) {
+			DataframeAnalysisFeatureProcessorMultiEncoding.Builder builder = new DataframeAnalysisFeatureProcessorMultiEncoding.Builder();
+			fn.accept(builder);
+			return this.multiEncoding(builder.build());
 		}
 
 		public Builder nGramEncoding(DataframeAnalysisFeatureProcessorNGramEncoding v) {
-			this._type = N_GRAM_ENCODING;
+			this._kind = Kind.NGramEncoding;
 			this._value = v;
 			return this;
 		}
 
-		public Builder nGramEncoding(
-				Function<DataframeAnalysisFeatureProcessorNGramEncoding.Builder, ObjectBuilder<DataframeAnalysisFeatureProcessorNGramEncoding>> f) {
-			return this.nGramEncoding(f.apply(new DataframeAnalysisFeatureProcessorNGramEncoding.Builder()).build());
+		public Builder nGramEncoding(Consumer<DataframeAnalysisFeatureProcessorNGramEncoding.Builder> fn) {
+			DataframeAnalysisFeatureProcessorNGramEncoding.Builder builder = new DataframeAnalysisFeatureProcessorNGramEncoding.Builder();
+			fn.accept(builder);
+			return this.nGramEncoding(builder.build());
 		}
 
 		public Builder oneHotEncoding(DataframeAnalysisFeatureProcessorOneHotEncoding v) {
-			this._type = ONE_HOT_ENCODING;
+			this._kind = Kind.OneHotEncoding;
 			this._value = v;
 			return this;
 		}
 
-		public Builder oneHotEncoding(
-				Function<DataframeAnalysisFeatureProcessorOneHotEncoding.Builder, ObjectBuilder<DataframeAnalysisFeatureProcessorOneHotEncoding>> f) {
-			return this.oneHotEncoding(f.apply(new DataframeAnalysisFeatureProcessorOneHotEncoding.Builder()).build());
+		public Builder oneHotEncoding(Consumer<DataframeAnalysisFeatureProcessorOneHotEncoding.Builder> fn) {
+			DataframeAnalysisFeatureProcessorOneHotEncoding.Builder builder = new DataframeAnalysisFeatureProcessorOneHotEncoding.Builder();
+			fn.accept(builder);
+			return this.oneHotEncoding(builder.build());
 		}
 
 		public Builder targetMeanEncoding(DataframeAnalysisFeatureProcessorTargetMeanEncoding v) {
-			this._type = TARGET_MEAN_ENCODING;
+			this._kind = Kind.TargetMeanEncoding;
 			this._value = v;
 			return this;
 		}
 
-		public Builder targetMeanEncoding(
-				Function<DataframeAnalysisFeatureProcessorTargetMeanEncoding.Builder, ObjectBuilder<DataframeAnalysisFeatureProcessorTargetMeanEncoding>> f) {
-			return this.targetMeanEncoding(
-					f.apply(new DataframeAnalysisFeatureProcessorTargetMeanEncoding.Builder()).build());
+		public Builder targetMeanEncoding(Consumer<DataframeAnalysisFeatureProcessorTargetMeanEncoding.Builder> fn) {
+			DataframeAnalysisFeatureProcessorTargetMeanEncoding.Builder builder = new DataframeAnalysisFeatureProcessorTargetMeanEncoding.Builder();
+			fn.accept(builder);
+			return this.targetMeanEncoding(builder.build());
 		}
 
 		public DataframeAnalysisFeatureProcessor build() {

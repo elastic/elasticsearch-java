@@ -26,13 +26,14 @@ package co.elastic.clients.elasticsearch.searchable_snapshots;
 import co.elastic.clients.ApiClient;
 import co.elastic.clients.elasticsearch._types.ElasticsearchException;
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
+import co.elastic.clients.transport.ElasticsearchTransport;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.Transport;
 import co.elastic.clients.transport.TransportOptions;
 import co.elastic.clients.util.ObjectBuilder;
 import java.io.IOException;
 import java.util.concurrent.CompletableFuture;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 /**
@@ -40,13 +41,13 @@ import javax.annotation.Nullable;
  */
 public class ElasticsearchSearchableSnapshotsAsyncClient
 		extends
-			ApiClient<ElasticsearchSearchableSnapshotsAsyncClient> {
+			ApiClient<ElasticsearchTransport, ElasticsearchSearchableSnapshotsAsyncClient> {
 
-	public ElasticsearchSearchableSnapshotsAsyncClient(Transport transport) {
+	public ElasticsearchSearchableSnapshotsAsyncClient(ElasticsearchTransport transport) {
 		super(transport, null);
 	}
 
-	public ElasticsearchSearchableSnapshotsAsyncClient(Transport transport,
+	public ElasticsearchSearchableSnapshotsAsyncClient(ElasticsearchTransport transport,
 			@Nullable TransportOptions transportOptions) {
 		super(transport, transportOptions);
 	}
@@ -86,10 +87,11 @@ public class ElasticsearchSearchableSnapshotsAsyncClient
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<ClearCacheResponse> clearCache(
-			Function<ClearCacheRequest.Builder, ObjectBuilder<ClearCacheRequest>> fn)
+	public final CompletableFuture<ClearCacheResponse> clearCache(Consumer<ClearCacheRequest.Builder> fn)
 			throws IOException, ElasticsearchException {
-		return clearCache(fn.apply(new ClearCacheRequest.Builder()).build());
+		ClearCacheRequest.Builder builder = new ClearCacheRequest.Builder();
+		fn.accept(builder);
+		return clearCache(builder.build());
 	}
 
 	/**
@@ -133,9 +135,11 @@ public class ElasticsearchSearchableSnapshotsAsyncClient
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<MountResponse> mount(Function<MountRequest.Builder, ObjectBuilder<MountRequest>> fn)
+	public final CompletableFuture<MountResponse> mount(Consumer<MountRequest.Builder> fn)
 			throws IOException, ElasticsearchException {
-		return mount(fn.apply(new MountRequest.Builder()).build());
+		MountRequest.Builder builder = new MountRequest.Builder();
+		fn.accept(builder);
+		return mount(builder.build());
 	}
 
 	// ----- Endpoint: searchable_snapshots.stats
@@ -168,9 +172,10 @@ public class ElasticsearchSearchableSnapshotsAsyncClient
 	 */
 
 	public final CompletableFuture<SearchableSnapshotsStatsResponse> stats(
-			Function<SearchableSnapshotsStatsRequest.Builder, ObjectBuilder<SearchableSnapshotsStatsRequest>> fn)
-			throws IOException, ElasticsearchException {
-		return stats(fn.apply(new SearchableSnapshotsStatsRequest.Builder()).build());
+			Consumer<SearchableSnapshotsStatsRequest.Builder> fn) throws IOException, ElasticsearchException {
+		SearchableSnapshotsStatsRequest.Builder builder = new SearchableSnapshotsStatsRequest.Builder();
+		fn.accept(builder);
+		return stats(builder.build());
 	}
 
 	/**

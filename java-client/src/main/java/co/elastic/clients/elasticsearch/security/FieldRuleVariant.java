@@ -23,12 +23,12 @@
 
 package co.elastic.clients.elasticsearch.security;
 
-import co.elastic.clients.util.UnionVariant;
-
 /**
  * Base interface for {@link FieldRule} variants.
  */
-public interface FieldRuleVariant extends UnionVariant {
+public interface FieldRuleVariant {
+
+	FieldRule.Kind _fieldRuleKind();
 
 	default FieldRule _toFieldRule() {
 		return new FieldRule(this);

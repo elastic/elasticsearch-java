@@ -35,7 +35,7 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.FilterRef
@@ -55,8 +55,10 @@ public class FilterRef implements JsonpSerializable {
 
 	}
 
-	public static FilterRef of(Function<Builder, ObjectBuilder<FilterRef>> fn) {
-		return fn.apply(new Builder()).build();
+	public static FilterRef of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**

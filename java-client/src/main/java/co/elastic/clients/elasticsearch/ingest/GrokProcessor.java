@@ -37,7 +37,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: ingest._types.GrokProcessor
@@ -69,16 +69,18 @@ public class GrokProcessor extends ProcessorBase implements ProcessorVariant {
 
 	}
 
-	public static GrokProcessor of(Function<Builder, ObjectBuilder<GrokProcessor>> fn) {
-		return fn.apply(new Builder()).build();
+	public static GrokProcessor of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
-	 * {@link Processor} variant type
+	 * Processor variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "grok";
+	public Processor.Kind _processorKind() {
+		return Processor.Kind.Grok;
 	}
 
 	/**

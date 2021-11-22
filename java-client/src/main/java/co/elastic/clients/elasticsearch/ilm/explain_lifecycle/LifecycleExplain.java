@@ -23,6 +23,7 @@
 
 package co.elastic.clients.elasticsearch.ilm.explain_lifecycle;
 
+import co.elastic.clients.json.JsonEnum;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -36,23 +37,46 @@ import co.elastic.clients.util.TaggedUnion;
 import co.elastic.clients.util.TaggedUnionUtils;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: ilm.explain_lifecycle.LifecycleExplain
 // union type: InternalTag[tag=managed]
 @JsonpDeserializable
-public class LifecycleExplain implements TaggedUnion<LifecycleExplainVariant>, JsonpSerializable {
+public class LifecycleExplain
+		implements
+			TaggedUnion<LifecycleExplain.Kind, LifecycleExplainVariant>,
+			JsonpSerializable {
 
-	public static final String TRUE = "true";
-	public static final String FALSE = "false";
+	/**
+	 * {@link LifecycleExplain} variant kinds.
+	 */
 
-	private final String _type;
+	public enum Kind implements JsonEnum {
+		True("true"),
+
+		False("false"),
+
+		;
+
+		private final String jsonValue;
+
+		Kind(String jsonValue) {
+			this.jsonValue = jsonValue;
+		}
+
+		public String jsonValue() {
+			return this.jsonValue;
+		}
+
+	}
+
+	private final Kind _kind;
 	private final LifecycleExplainVariant _value;
 
 	@Override
-	public final String _type() {
-		return _type;
+	public final Kind _kind() {
+		return _kind;
 	}
 
 	@Override
@@ -62,27 +86,29 @@ public class LifecycleExplain implements TaggedUnion<LifecycleExplainVariant>, J
 
 	public LifecycleExplain(LifecycleExplainVariant value) {
 
-		this._type = ModelTypeHelper.requireNonNull(value._variantType(), this, "<variant type>");
+		this._kind = ModelTypeHelper.requireNonNull(value._lifecycleExplainKind(), this, "<variant kind>");
 		this._value = ModelTypeHelper.requireNonNull(value, this, "<variant value>");
 
 	}
 
 	private LifecycleExplain(Builder builder) {
 
-		this._type = ModelTypeHelper.requireNonNull(builder._type, builder, "<variant type>");
+		this._kind = ModelTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
 		this._value = ModelTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
 
 	}
 
-	public static LifecycleExplain of(Function<Builder, ObjectBuilder<LifecycleExplain>> fn) {
-		return fn.apply(new Builder()).build();
+	public static LifecycleExplain of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
 	 * Is this variant instance of kind {@code true}?
 	 */
-	public boolean _isTrue() {
-		return TRUE.equals(_type());
+	public boolean isTrue() {
+		return _kind == Kind.True;
 	}
 
 	/**
@@ -92,14 +118,14 @@ public class LifecycleExplain implements TaggedUnion<LifecycleExplainVariant>, J
 	 *             if the current variant is not of the {@code true} kind.
 	 */
 	public LifecycleExplainManaged true_() {
-		return TaggedUnionUtils.get(this, TRUE);
+		return TaggedUnionUtils.get(this, Kind.True);
 	}
 
 	/**
 	 * Is this variant instance of kind {@code false}?
 	 */
-	public boolean _isFalse() {
-		return FALSE.equals(_type());
+	public boolean isFalse() {
+		return _kind == Kind.False;
 	}
 
 	/**
@@ -109,7 +135,7 @@ public class LifecycleExplain implements TaggedUnion<LifecycleExplainVariant>, J
 	 *             if the current variant is not of the {@code false} kind.
 	 */
 	public LifecycleExplainUnmanaged false_() {
-		return TaggedUnionUtils.get(this, FALSE);
+		return TaggedUnionUtils.get(this, Kind.False);
 	}
 
 	@Override
@@ -120,27 +146,31 @@ public class LifecycleExplain implements TaggedUnion<LifecycleExplainVariant>, J
 	}
 
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<LifecycleExplain> {
-		private String _type;
+		private Kind _kind;
 		private LifecycleExplainVariant _value;
 
 		public Builder true_(LifecycleExplainManaged v) {
-			this._type = TRUE;
+			this._kind = Kind.True;
 			this._value = v;
 			return this;
 		}
 
-		public Builder true_(Function<LifecycleExplainManaged.Builder, ObjectBuilder<LifecycleExplainManaged>> f) {
-			return this.true_(f.apply(new LifecycleExplainManaged.Builder()).build());
+		public Builder true_(Consumer<LifecycleExplainManaged.Builder> fn) {
+			LifecycleExplainManaged.Builder builder = new LifecycleExplainManaged.Builder();
+			fn.accept(builder);
+			return this.true_(builder.build());
 		}
 
 		public Builder false_(LifecycleExplainUnmanaged v) {
-			this._type = FALSE;
+			this._kind = Kind.False;
 			this._value = v;
 			return this;
 		}
 
-		public Builder false_(Function<LifecycleExplainUnmanaged.Builder, ObjectBuilder<LifecycleExplainUnmanaged>> f) {
-			return this.false_(f.apply(new LifecycleExplainUnmanaged.Builder()).build());
+		public Builder false_(Consumer<LifecycleExplainUnmanaged.Builder> fn) {
+			LifecycleExplainUnmanaged.Builder builder = new LifecycleExplainUnmanaged.Builder();
+			fn.accept(builder);
+			return this.false_(builder.build());
 		}
 
 		public LifecycleExplain build() {

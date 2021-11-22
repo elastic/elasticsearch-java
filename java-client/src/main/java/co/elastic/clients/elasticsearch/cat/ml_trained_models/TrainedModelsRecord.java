@@ -34,7 +34,7 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: cat.ml_trained_models.TrainedModelsRecord
@@ -119,8 +119,10 @@ public class TrainedModelsRecord implements JsonpSerializable {
 
 	}
 
-	public static TrainedModelsRecord of(Function<Builder, ObjectBuilder<TrainedModelsRecord>> fn) {
-		return fn.apply(new Builder()).build();
+	public static TrainedModelsRecord of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**

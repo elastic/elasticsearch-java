@@ -34,7 +34,7 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.Page
@@ -55,8 +55,10 @@ public class Page implements JsonpSerializable {
 
 	}
 
-	public static Page of(Function<Builder, ObjectBuilder<Page>> fn) {
-		return fn.apply(new Builder()).build();
+	public static Page of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**

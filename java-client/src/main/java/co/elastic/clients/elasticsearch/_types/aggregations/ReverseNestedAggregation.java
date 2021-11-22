@@ -32,7 +32,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.ReverseNestedAggregation
@@ -50,16 +50,18 @@ public class ReverseNestedAggregation extends BucketAggregationBase implements A
 
 	}
 
-	public static ReverseNestedAggregation of(Function<Builder, ObjectBuilder<ReverseNestedAggregation>> fn) {
-		return fn.apply(new Builder()).build();
+	public static ReverseNestedAggregation of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
-	 * {@link Aggregation} variant type
+	 * Aggregation variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "reverse_nested";
+	public Aggregation.Kind _aggregationKind() {
+		return Aggregation.Kind.ReverseNested;
 	}
 
 	/**

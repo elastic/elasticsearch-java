@@ -29,17 +29,18 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -78,8 +79,10 @@ public class NodeAllocationExplanation implements JsonpSerializable {
 
 	}
 
-	public static NodeAllocationExplanation of(Function<Builder, ObjectBuilder<NodeAllocationExplanation>> fn) {
-		return fn.apply(new Builder()).build();
+	public static NodeAllocationExplanation of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -234,13 +237,9 @@ public class NodeAllocationExplanation implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code deciders}
 		 */
-		@SafeVarargs
-		public final Builder deciders(Function<AllocationDecision.Builder, ObjectBuilder<AllocationDecision>>... fns) {
-			this.deciders = new ArrayList<>(fns.length);
-			for (Function<AllocationDecision.Builder, ObjectBuilder<AllocationDecision>> fn : fns) {
-				this.deciders.add(fn.apply(new AllocationDecision.Builder()).build());
-			}
-			return this;
+		public final Builder deciders(
+				Function<ListBuilder<AllocationDecision, AllocationDecision.Builder>, ObjectBuilder<List<AllocationDecision>>> fn) {
+			return deciders(fn.apply(new ListBuilder<>(AllocationDecision.Builder::new)).build());
 		}
 
 		/**
@@ -286,8 +285,10 @@ public class NodeAllocationExplanation implements JsonpSerializable {
 		/**
 		 * API name: {@code store}
 		 */
-		public final Builder store(Function<AllocationStore.Builder, ObjectBuilder<AllocationStore>> fn) {
-			return this.store(fn.apply(new AllocationStore.Builder()).build());
+		public final Builder store(Consumer<AllocationStore.Builder> fn) {
+			AllocationStore.Builder builder = new AllocationStore.Builder();
+			fn.accept(builder);
+			return this.store(builder.build());
 		}
 
 		/**

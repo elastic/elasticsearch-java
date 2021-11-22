@@ -40,23 +40,25 @@ import java.lang.String;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.Percentiles
 // union type: Union[]
 @JsonpDeserializable
-public class Percentiles implements TaggedUnion<Object>, JsonpSerializable {
+public class Percentiles implements TaggedUnion<Percentiles.Kind, Object>, JsonpSerializable {
 
-	public static final String ARRAY = "array";
-	public static final String KEYED = "keyed";
+	public enum Kind {
+		Array, Keyed
 
-	private final String _type;
+	}
+
+	private final Kind _kind;
 	private final Object _value;
 
 	@Override
-	public final String _type() {
-		return _type;
+	public final Kind _kind() {
+		return _kind;
 	}
 
 	@Override
@@ -64,27 +66,29 @@ public class Percentiles implements TaggedUnion<Object>, JsonpSerializable {
 		return _value;
 	}
 
-	public Percentiles(String type, Object value) {
-		this._type = type;
+	public Percentiles(Kind kind, Object value) {
+		this._kind = kind;
 		this._value = value;
 	}
 
 	private Percentiles(Builder builder) {
 
-		this._type = ModelTypeHelper.requireNonNull(builder._type, builder, "<variant type>");
+		this._kind = ModelTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
 		this._value = ModelTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
 
 	}
 
-	public static Percentiles of(Function<Builder, ObjectBuilder<Percentiles>> fn) {
-		return fn.apply(new Builder()).build();
+	public static Percentiles of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
 	 * Is this variant instance of kind {@code array}?
 	 */
-	public boolean _isArray() {
-		return ARRAY.equals(_type());
+	public boolean isArray() {
+		return _kind == Kind.Array;
 	}
 
 	/**
@@ -94,14 +98,14 @@ public class Percentiles implements TaggedUnion<Object>, JsonpSerializable {
 	 *             if the current variant is not of the {@code array} kind.
 	 */
 	public List<ArrayPercentilesItem> array() {
-		return TaggedUnionUtils.get(this, ARRAY);
+		return TaggedUnionUtils.get(this, Kind.Array);
 	}
 
 	/**
 	 * Is this variant instance of kind {@code keyed}?
 	 */
-	public boolean _isKeyed() {
-		return KEYED.equals(_type());
+	public boolean isKeyed() {
+		return _kind == Kind.Keyed;
 	}
 
 	/**
@@ -111,7 +115,7 @@ public class Percentiles implements TaggedUnion<Object>, JsonpSerializable {
 	 *             if the current variant is not of the {@code keyed} kind.
 	 */
 	public Map<String, String> keyed() {
-		return TaggedUnionUtils.get(this, KEYED);
+		return TaggedUnionUtils.get(this, Kind.Keyed);
 	}
 
 	@Override
@@ -119,8 +123,8 @@ public class Percentiles implements TaggedUnion<Object>, JsonpSerializable {
 		if (_value instanceof JsonpSerializable) {
 			((JsonpSerializable) _value).serialize(generator, mapper);
 		} else {
-			switch (_type) {
-				case ARRAY :
+			switch (_kind) {
+				case Array :
 					generator.writeStartArray();
 					for (ArrayPercentilesItem item0 : ((List<ArrayPercentilesItem>) this._value)) {
 						item0.serialize(generator, mapper);
@@ -129,7 +133,7 @@ public class Percentiles implements TaggedUnion<Object>, JsonpSerializable {
 					generator.writeEnd();
 
 					break;
-				case KEYED :
+				case Keyed :
 					generator.writeStartObject();
 					for (Map.Entry<String, String> item0 : ((Map<String, String>) this._value).entrySet()) {
 						generator.writeKey(item0.getKey());
@@ -145,17 +149,17 @@ public class Percentiles implements TaggedUnion<Object>, JsonpSerializable {
 	}
 
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Percentiles> {
-		private String _type;
+		private Kind _kind;
 		private Object _value;
 
 		public Builder array(List<ArrayPercentilesItem> v) {
-			this._type = ARRAY;
+			this._kind = Kind.Array;
 			this._value = v;
 			return this;
 		}
 
 		public Builder keyed(Map<String, String> v) {
-			this._type = KEYED;
+			this._kind = Kind.Keyed;
 			this._value = v;
 			return this;
 		}
@@ -168,9 +172,9 @@ public class Percentiles implements TaggedUnion<Object>, JsonpSerializable {
 	}
 
 	private static JsonpDeserializer<Percentiles> buildPercentilesDeserializer() {
-		return new UnionDeserializer.Builder<>(Percentiles::new, false)
-				.addMember("array", JsonpDeserializer.arrayDeserializer(ArrayPercentilesItem._DESERIALIZER))
-				.addMember("keyed", JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.stringDeserializer()))
+		return new UnionDeserializer.Builder<Percentiles, Kind, Object>(Percentiles::new, false)
+				.addMember(Kind.Array, JsonpDeserializer.arrayDeserializer(ArrayPercentilesItem._DESERIALIZER))
+				.addMember(Kind.Keyed, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.stringDeserializer()))
 				.build();
 	}
 

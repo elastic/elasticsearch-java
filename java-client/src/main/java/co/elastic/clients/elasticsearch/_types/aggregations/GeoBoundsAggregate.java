@@ -33,7 +33,7 @@ import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.GeoBoundsAggregate
@@ -50,16 +50,18 @@ public class GeoBoundsAggregate extends AggregateBase implements AggregateVarian
 
 	}
 
-	public static GeoBoundsAggregate of(Function<Builder, ObjectBuilder<GeoBoundsAggregate>> fn) {
-		return fn.apply(new Builder()).build();
+	public static GeoBoundsAggregate of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
-	 * {@link Aggregate} variant type
+	 * Aggregate variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "geo_bounds";
+	public Aggregate.Kind _aggregateKind() {
+		return Aggregate.Kind.GeoBounds;
 	}
 
 	/**
@@ -98,8 +100,10 @@ public class GeoBoundsAggregate extends AggregateBase implements AggregateVarian
 		/**
 		 * Required - API name: {@code bounds}
 		 */
-		public final Builder bounds(Function<GeoBounds.Builder, ObjectBuilder<GeoBounds>> fn) {
-			return this.bounds(fn.apply(new GeoBounds.Builder()).build());
+		public final Builder bounds(Consumer<GeoBounds.Builder> fn) {
+			GeoBounds.Builder builder = new GeoBounds.Builder();
+			fn.accept(builder);
+			return this.bounds(builder.build());
 		}
 
 		@Override

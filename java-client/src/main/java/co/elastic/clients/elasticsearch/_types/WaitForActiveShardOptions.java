@@ -23,13 +23,15 @@
 
 package co.elastic.clients.elasticsearch._types;
 
+import co.elastic.clients.json.JsonEnum;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
-import co.elastic.clients.util.StringEnum;
 
 @JsonpDeserializable
-public enum WaitForActiveShardOptions implements StringEnum {
-	All("all");
+public enum WaitForActiveShardOptions implements JsonEnum {
+	All("all"),
+
+	;
 
 	private final String jsonValue;
 
@@ -41,6 +43,6 @@ public enum WaitForActiveShardOptions implements StringEnum {
 		return this.jsonValue;
 	}
 
-	public static final StringEnum.Deserializer<WaitForActiveShardOptions> _DESERIALIZER = new StringEnum.Deserializer<>(
+	public static final JsonEnum.Deserializer<WaitForActiveShardOptions> _DESERIALIZER = new JsonEnum.Deserializer<>(
 			WaitForActiveShardOptions.values());
 }

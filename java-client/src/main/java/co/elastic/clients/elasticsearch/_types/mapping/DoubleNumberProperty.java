@@ -32,7 +32,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: _types.mapping.DoubleNumberProperty
@@ -50,16 +50,18 @@ public class DoubleNumberProperty extends StandardNumberProperty implements Prop
 
 	}
 
-	public static DoubleNumberProperty of(Function<Builder, ObjectBuilder<DoubleNumberProperty>> fn) {
-		return fn.apply(new Builder()).build();
+	public static DoubleNumberProperty of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
-	 * {@link Property} variant type
+	 * Property variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "double";
+	public Property.Kind _propertyKind() {
+		return Property.Kind.Double;
 	}
 
 	/**

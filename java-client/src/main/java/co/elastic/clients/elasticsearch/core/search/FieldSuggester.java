@@ -23,6 +23,7 @@
 
 package co.elastic.clients.elasticsearch.core.search;
 
+import co.elastic.clients.json.JsonEnum;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -38,27 +39,51 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Object;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: _global.search._types.FieldSuggester
 // union type: Container[]
 @JsonpDeserializable
-public class FieldSuggester implements TaggedUnion<Object>, JsonpSerializable {
+public class FieldSuggester implements TaggedUnion<FieldSuggester.Kind, Object>, JsonpSerializable {
 
-	public static final String COMPLETION = "completion";
-	public static final String PHRASE = "phrase";
-	public static final String PREFIX = "prefix";
-	public static final String REGEX = "regex";
-	public static final String TERM = "term";
-	public static final String TEXT = "text";
+	/**
+	 * {@link FieldSuggester} variant kinds.
+	 */
 
-	private final String _type;
+	public enum Kind implements JsonEnum {
+		Completion("completion"),
+
+		Phrase("phrase"),
+
+		Prefix("prefix"),
+
+		Regex("regex"),
+
+		Term("term"),
+
+		Text("text"),
+
+		;
+
+		private final String jsonValue;
+
+		Kind(String jsonValue) {
+			this.jsonValue = jsonValue;
+		}
+
+		public String jsonValue() {
+			return this.jsonValue;
+		}
+
+	}
+
+	private final Kind _kind;
 	private final Object _value;
 
 	@Override
-	public final String _type() {
-		return _type;
+	public final Kind _kind() {
+		return _kind;
 	}
 
 	@Override
@@ -68,27 +93,29 @@ public class FieldSuggester implements TaggedUnion<Object>, JsonpSerializable {
 
 	public FieldSuggester(FieldSuggesterVariant value) {
 
-		this._type = ModelTypeHelper.requireNonNull(value._variantType(), this, "<variant type>");
+		this._kind = ModelTypeHelper.requireNonNull(value._fieldSuggesterKind(), this, "<variant kind>");
 		this._value = ModelTypeHelper.requireNonNull(value, this, "<variant value>");
 
 	}
 
 	private FieldSuggester(Builder builder) {
 
-		this._type = ModelTypeHelper.requireNonNull(builder._type, builder, "<variant type>");
+		this._kind = ModelTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
 		this._value = ModelTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
 
 	}
 
-	public static FieldSuggester of(Function<Builder, ObjectBuilder<FieldSuggester>> fn) {
-		return fn.apply(new Builder()).build();
+	public static FieldSuggester of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
 	 * Is this variant instance of kind {@code completion}?
 	 */
-	public boolean _isCompletion() {
-		return COMPLETION.equals(_type());
+	public boolean isCompletion() {
+		return _kind == Kind.Completion;
 	}
 
 	/**
@@ -98,14 +125,14 @@ public class FieldSuggester implements TaggedUnion<Object>, JsonpSerializable {
 	 *             if the current variant is not of the {@code completion} kind.
 	 */
 	public CompletionSuggester completion() {
-		return TaggedUnionUtils.get(this, COMPLETION);
+		return TaggedUnionUtils.get(this, Kind.Completion);
 	}
 
 	/**
 	 * Is this variant instance of kind {@code phrase}?
 	 */
-	public boolean _isPhrase() {
-		return PHRASE.equals(_type());
+	public boolean isPhrase() {
+		return _kind == Kind.Phrase;
 	}
 
 	/**
@@ -115,14 +142,14 @@ public class FieldSuggester implements TaggedUnion<Object>, JsonpSerializable {
 	 *             if the current variant is not of the {@code phrase} kind.
 	 */
 	public PhraseSuggester phrase() {
-		return TaggedUnionUtils.get(this, PHRASE);
+		return TaggedUnionUtils.get(this, Kind.Phrase);
 	}
 
 	/**
 	 * Is this variant instance of kind {@code prefix}?
 	 */
-	public boolean _isPrefix() {
-		return PREFIX.equals(_type());
+	public boolean isPrefix() {
+		return _kind == Kind.Prefix;
 	}
 
 	/**
@@ -132,14 +159,14 @@ public class FieldSuggester implements TaggedUnion<Object>, JsonpSerializable {
 	 *             if the current variant is not of the {@code prefix} kind.
 	 */
 	public String prefix() {
-		return TaggedUnionUtils.get(this, PREFIX);
+		return TaggedUnionUtils.get(this, Kind.Prefix);
 	}
 
 	/**
 	 * Is this variant instance of kind {@code regex}?
 	 */
-	public boolean _isRegex() {
-		return REGEX.equals(_type());
+	public boolean isRegex() {
+		return _kind == Kind.Regex;
 	}
 
 	/**
@@ -149,14 +176,14 @@ public class FieldSuggester implements TaggedUnion<Object>, JsonpSerializable {
 	 *             if the current variant is not of the {@code regex} kind.
 	 */
 	public String regex() {
-		return TaggedUnionUtils.get(this, REGEX);
+		return TaggedUnionUtils.get(this, Kind.Regex);
 	}
 
 	/**
 	 * Is this variant instance of kind {@code term}?
 	 */
-	public boolean _isTerm() {
-		return TERM.equals(_type());
+	public boolean isTerm() {
+		return _kind == Kind.Term;
 	}
 
 	/**
@@ -166,14 +193,14 @@ public class FieldSuggester implements TaggedUnion<Object>, JsonpSerializable {
 	 *             if the current variant is not of the {@code term} kind.
 	 */
 	public TermSuggester term() {
-		return TaggedUnionUtils.get(this, TERM);
+		return TaggedUnionUtils.get(this, Kind.Term);
 	}
 
 	/**
 	 * Is this variant instance of kind {@code text}?
 	 */
-	public boolean _isText() {
-		return TEXT.equals(_type());
+	public boolean isText() {
+		return _kind == Kind.Text;
 	}
 
 	/**
@@ -183,7 +210,7 @@ public class FieldSuggester implements TaggedUnion<Object>, JsonpSerializable {
 	 *             if the current variant is not of the {@code text} kind.
 	 */
 	public String text() {
-		return TaggedUnionUtils.get(this, TEXT);
+		return TaggedUnionUtils.get(this, Kind.Text);
 	}
 
 	@Override
@@ -192,20 +219,20 @@ public class FieldSuggester implements TaggedUnion<Object>, JsonpSerializable {
 
 		generator.writeStartObject();
 
-		generator.writeKey(_type);
+		generator.writeKey(_kind.jsonValue());
 		if (_value instanceof JsonpSerializable) {
 			((JsonpSerializable) _value).serialize(generator, mapper);
 		} else {
-			switch (_type) {
-				case PREFIX :
+			switch (_kind) {
+				case Prefix :
 					generator.write(((String) this._value));
 
 					break;
-				case REGEX :
+				case Regex :
 					generator.write(((String) this._value));
 
 					break;
-				case TEXT :
+				case Text :
 					generator.write(((String) this._value));
 
 					break;
@@ -217,53 +244,59 @@ public class FieldSuggester implements TaggedUnion<Object>, JsonpSerializable {
 	}
 
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<FieldSuggester> {
-		private String _type;
+		private Kind _kind;
 		private Object _value;
 
 		public Builder completion(CompletionSuggester v) {
-			this._type = COMPLETION;
+			this._kind = Kind.Completion;
 			this._value = v;
 			return this;
 		}
 
-		public Builder completion(Function<CompletionSuggester.Builder, ObjectBuilder<CompletionSuggester>> f) {
-			return this.completion(f.apply(new CompletionSuggester.Builder()).build());
+		public Builder completion(Consumer<CompletionSuggester.Builder> fn) {
+			CompletionSuggester.Builder builder = new CompletionSuggester.Builder();
+			fn.accept(builder);
+			return this.completion(builder.build());
 		}
 
 		public Builder phrase(PhraseSuggester v) {
-			this._type = PHRASE;
+			this._kind = Kind.Phrase;
 			this._value = v;
 			return this;
 		}
 
-		public Builder phrase(Function<PhraseSuggester.Builder, ObjectBuilder<PhraseSuggester>> f) {
-			return this.phrase(f.apply(new PhraseSuggester.Builder()).build());
+		public Builder phrase(Consumer<PhraseSuggester.Builder> fn) {
+			PhraseSuggester.Builder builder = new PhraseSuggester.Builder();
+			fn.accept(builder);
+			return this.phrase(builder.build());
 		}
 
 		public Builder prefix(String v) {
-			this._type = PREFIX;
+			this._kind = Kind.Prefix;
 			this._value = v;
 			return this;
 		}
 
 		public Builder regex(String v) {
-			this._type = REGEX;
+			this._kind = Kind.Regex;
 			this._value = v;
 			return this;
 		}
 
 		public Builder term(TermSuggester v) {
-			this._type = TERM;
+			this._kind = Kind.Term;
 			this._value = v;
 			return this;
 		}
 
-		public Builder term(Function<TermSuggester.Builder, ObjectBuilder<TermSuggester>> f) {
-			return this.term(f.apply(new TermSuggester.Builder()).build());
+		public Builder term(Consumer<TermSuggester.Builder> fn) {
+			TermSuggester.Builder builder = new TermSuggester.Builder();
+			fn.accept(builder);
+			return this.term(builder.build());
 		}
 
 		public Builder text(String v) {
-			this._type = TEXT;
+			this._kind = Kind.Text;
 			this._value = v;
 			return this;
 		}

@@ -23,6 +23,7 @@
 
 package co.elastic.clients.elasticsearch.cluster.remote_info;
 
+import co.elastic.clients.json.JsonEnum;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -36,23 +37,46 @@ import co.elastic.clients.util.TaggedUnion;
 import co.elastic.clients.util.TaggedUnionUtils;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: cluster.remote_info.ClusterRemoteInfo
 // union type: InternalTag[tag=mode]
 @JsonpDeserializable
-public class ClusterRemoteInfo implements TaggedUnion<ClusterRemoteInfoVariant>, JsonpSerializable {
+public class ClusterRemoteInfo
+		implements
+			TaggedUnion<ClusterRemoteInfo.Kind, ClusterRemoteInfoVariant>,
+			JsonpSerializable {
 
-	public static final String PROXY = "proxy";
-	public static final String SNIFF = "sniff";
+	/**
+	 * {@link ClusterRemoteInfo} variant kinds.
+	 */
 
-	private final String _type;
+	public enum Kind implements JsonEnum {
+		Proxy("proxy"),
+
+		Sniff("sniff"),
+
+		;
+
+		private final String jsonValue;
+
+		Kind(String jsonValue) {
+			this.jsonValue = jsonValue;
+		}
+
+		public String jsonValue() {
+			return this.jsonValue;
+		}
+
+	}
+
+	private final Kind _kind;
 	private final ClusterRemoteInfoVariant _value;
 
 	@Override
-	public final String _type() {
-		return _type;
+	public final Kind _kind() {
+		return _kind;
 	}
 
 	@Override
@@ -62,27 +86,29 @@ public class ClusterRemoteInfo implements TaggedUnion<ClusterRemoteInfoVariant>,
 
 	public ClusterRemoteInfo(ClusterRemoteInfoVariant value) {
 
-		this._type = ModelTypeHelper.requireNonNull(value._variantType(), this, "<variant type>");
+		this._kind = ModelTypeHelper.requireNonNull(value._clusterRemoteInfoKind(), this, "<variant kind>");
 		this._value = ModelTypeHelper.requireNonNull(value, this, "<variant value>");
 
 	}
 
 	private ClusterRemoteInfo(Builder builder) {
 
-		this._type = ModelTypeHelper.requireNonNull(builder._type, builder, "<variant type>");
+		this._kind = ModelTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
 		this._value = ModelTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
 
 	}
 
-	public static ClusterRemoteInfo of(Function<Builder, ObjectBuilder<ClusterRemoteInfo>> fn) {
-		return fn.apply(new Builder()).build();
+	public static ClusterRemoteInfo of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
 	 * Is this variant instance of kind {@code proxy}?
 	 */
-	public boolean _isProxy() {
-		return PROXY.equals(_type());
+	public boolean isProxy() {
+		return _kind == Kind.Proxy;
 	}
 
 	/**
@@ -92,14 +118,14 @@ public class ClusterRemoteInfo implements TaggedUnion<ClusterRemoteInfoVariant>,
 	 *             if the current variant is not of the {@code proxy} kind.
 	 */
 	public ClusterRemoteProxyInfo proxy() {
-		return TaggedUnionUtils.get(this, PROXY);
+		return TaggedUnionUtils.get(this, Kind.Proxy);
 	}
 
 	/**
 	 * Is this variant instance of kind {@code sniff}?
 	 */
-	public boolean _isSniff() {
-		return SNIFF.equals(_type());
+	public boolean isSniff() {
+		return _kind == Kind.Sniff;
 	}
 
 	/**
@@ -109,7 +135,7 @@ public class ClusterRemoteInfo implements TaggedUnion<ClusterRemoteInfoVariant>,
 	 *             if the current variant is not of the {@code sniff} kind.
 	 */
 	public ClusterRemoteSniffInfo sniff() {
-		return TaggedUnionUtils.get(this, SNIFF);
+		return TaggedUnionUtils.get(this, Kind.Sniff);
 	}
 
 	@Override
@@ -120,27 +146,31 @@ public class ClusterRemoteInfo implements TaggedUnion<ClusterRemoteInfoVariant>,
 	}
 
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ClusterRemoteInfo> {
-		private String _type;
+		private Kind _kind;
 		private ClusterRemoteInfoVariant _value;
 
 		public Builder proxy(ClusterRemoteProxyInfo v) {
-			this._type = PROXY;
+			this._kind = Kind.Proxy;
 			this._value = v;
 			return this;
 		}
 
-		public Builder proxy(Function<ClusterRemoteProxyInfo.Builder, ObjectBuilder<ClusterRemoteProxyInfo>> f) {
-			return this.proxy(f.apply(new ClusterRemoteProxyInfo.Builder()).build());
+		public Builder proxy(Consumer<ClusterRemoteProxyInfo.Builder> fn) {
+			ClusterRemoteProxyInfo.Builder builder = new ClusterRemoteProxyInfo.Builder();
+			fn.accept(builder);
+			return this.proxy(builder.build());
 		}
 
 		public Builder sniff(ClusterRemoteSniffInfo v) {
-			this._type = SNIFF;
+			this._kind = Kind.Sniff;
 			this._value = v;
 			return this;
 		}
 
-		public Builder sniff(Function<ClusterRemoteSniffInfo.Builder, ObjectBuilder<ClusterRemoteSniffInfo>> f) {
-			return this.sniff(f.apply(new ClusterRemoteSniffInfo.Builder()).build());
+		public Builder sniff(Consumer<ClusterRemoteSniffInfo.Builder> fn) {
+			ClusterRemoteSniffInfo.Builder builder = new ClusterRemoteSniffInfo.Builder();
+			fn.accept(builder);
+			return this.sniff(builder.build());
 		}
 
 		public ClusterRemoteInfo build() {

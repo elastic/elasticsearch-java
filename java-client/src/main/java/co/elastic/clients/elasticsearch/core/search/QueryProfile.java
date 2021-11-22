@@ -29,16 +29,17 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -67,8 +68,10 @@ public class QueryProfile implements JsonpSerializable {
 
 	}
 
-	public static QueryProfile of(Function<Builder, ObjectBuilder<QueryProfile>> fn) {
-		return fn.apply(new Builder()).build();
+	public static QueryProfile of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -170,8 +173,10 @@ public class QueryProfile implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code breakdown}
 		 */
-		public final Builder breakdown(Function<QueryBreakdown.Builder, ObjectBuilder<QueryBreakdown>> fn) {
-			return this.breakdown(fn.apply(new QueryBreakdown.Builder()).build());
+		public final Builder breakdown(Consumer<QueryBreakdown.Builder> fn) {
+			QueryBreakdown.Builder builder = new QueryBreakdown.Builder();
+			fn.accept(builder);
+			return this.breakdown(builder.build());
 		}
 
 		/**
@@ -217,13 +222,9 @@ public class QueryProfile implements JsonpSerializable {
 		/**
 		 * API name: {@code children}
 		 */
-		@SafeVarargs
-		public final Builder children(Function<QueryProfile.Builder, ObjectBuilder<QueryProfile>>... fns) {
-			this.children = new ArrayList<>(fns.length);
-			for (Function<QueryProfile.Builder, ObjectBuilder<QueryProfile>> fn : fns) {
-				this.children.add(fn.apply(new QueryProfile.Builder()).build());
-			}
-			return this;
+		public final Builder children(
+				Function<ListBuilder<QueryProfile, QueryProfile.Builder>, ObjectBuilder<List<QueryProfile>>> fn) {
+			return children(fn.apply(new ListBuilder<>(QueryProfile.Builder::new)).build());
 		}
 
 		/**

@@ -34,11 +34,11 @@ import jakarta.json.stream.JsonGenerator;
 public class AlwaysCondition implements ConditionVariant, JsonpSerializable {
 
 	/**
-	 * {@link Condition} variant type
+	 * Condition variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "always";
+	public Condition.Kind _conditionKind() {
+		return Condition.Kind.Always;
 	}
 
 	public static final class Builder implements ObjectBuilder<AlwaysCondition> {

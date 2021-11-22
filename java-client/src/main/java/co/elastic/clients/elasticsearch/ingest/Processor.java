@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.ingest;
 
 import co.elastic.clients.elasticsearch._types.Script;
+import co.elastic.clients.json.JsonEnum;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -38,55 +39,107 @@ import co.elastic.clients.util.TaggedUnionUtils;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Object;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: ingest._types.ProcessorContainer
 // union type: Container[]
 @JsonpDeserializable
-public class Processor implements TaggedUnion<Object>, JsonpSerializable {
+public class Processor implements TaggedUnion<Processor.Kind, Object>, JsonpSerializable {
 
-	public static final String ATTACHMENT = "attachment";
-	public static final String APPEND = "append";
-	public static final String CSV = "csv";
-	public static final String CONVERT = "convert";
-	public static final String DATE = "date";
-	public static final String DATE_INDEX_NAME = "date_index_name";
-	public static final String DOT_EXPANDER = "dot_expander";
-	public static final String ENRICH = "enrich";
-	public static final String FAIL = "fail";
-	public static final String FOREACH = "foreach";
-	public static final String JSON = "json";
-	public static final String USER_AGENT = "user_agent";
-	public static final String KV = "kv";
-	public static final String GEOIP = "geoip";
-	public static final String GROK = "grok";
-	public static final String GSUB = "gsub";
-	public static final String JOIN = "join";
-	public static final String LOWERCASE = "lowercase";
-	public static final String REMOVE = "remove";
-	public static final String RENAME = "rename";
-	public static final String SCRIPT = "script";
-	public static final String SET = "set";
-	public static final String SORT = "sort";
-	public static final String SPLIT = "split";
-	public static final String TRIM = "trim";
-	public static final String UPPERCASE = "uppercase";
-	public static final String URLDECODE = "urldecode";
-	public static final String BYTES = "bytes";
-	public static final String DISSECT = "dissect";
-	public static final String SET_SECURITY_USER = "set_security_user";
-	public static final String PIPELINE = "pipeline";
-	public static final String DROP = "drop";
-	public static final String CIRCLE = "circle";
-	public static final String INFERENCE = "inference";
+	/**
+	 * {@link Processor} variant kinds.
+	 */
 
-	private final String _type;
+	public enum Kind implements JsonEnum {
+		Attachment("attachment"),
+
+		Append("append"),
+
+		Csv("csv"),
+
+		Convert("convert"),
+
+		Date("date"),
+
+		DateIndexName("date_index_name"),
+
+		DotExpander("dot_expander"),
+
+		Enrich("enrich"),
+
+		Fail("fail"),
+
+		Foreach("foreach"),
+
+		Json("json"),
+
+		UserAgent("user_agent"),
+
+		Kv("kv"),
+
+		Geoip("geoip"),
+
+		Grok("grok"),
+
+		Gsub("gsub"),
+
+		Join("join"),
+
+		Lowercase("lowercase"),
+
+		Remove("remove"),
+
+		Rename("rename"),
+
+		Script("script"),
+
+		Set("set"),
+
+		Sort("sort"),
+
+		Split("split"),
+
+		Trim("trim"),
+
+		Uppercase("uppercase"),
+
+		Urldecode("urldecode"),
+
+		Bytes("bytes"),
+
+		Dissect("dissect"),
+
+		SetSecurityUser("set_security_user"),
+
+		Pipeline("pipeline"),
+
+		Drop("drop"),
+
+		Circle("circle"),
+
+		Inference("inference"),
+
+		;
+
+		private final String jsonValue;
+
+		Kind(String jsonValue) {
+			this.jsonValue = jsonValue;
+		}
+
+		public String jsonValue() {
+			return this.jsonValue;
+		}
+
+	}
+
+	private final Kind _kind;
 	private final Object _value;
 
 	@Override
-	public final String _type() {
-		return _type;
+	public final Kind _kind() {
+		return _kind;
 	}
 
 	@Override
@@ -96,27 +149,29 @@ public class Processor implements TaggedUnion<Object>, JsonpSerializable {
 
 	public Processor(ProcessorVariant value) {
 
-		this._type = ModelTypeHelper.requireNonNull(value._variantType(), this, "<variant type>");
+		this._kind = ModelTypeHelper.requireNonNull(value._processorKind(), this, "<variant kind>");
 		this._value = ModelTypeHelper.requireNonNull(value, this, "<variant value>");
 
 	}
 
 	private Processor(Builder builder) {
 
-		this._type = ModelTypeHelper.requireNonNull(builder._type, builder, "<variant type>");
+		this._kind = ModelTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
 		this._value = ModelTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
 
 	}
 
-	public static Processor of(Function<Builder, ObjectBuilder<Processor>> fn) {
-		return fn.apply(new Builder()).build();
+	public static Processor of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
 	 * Is this variant instance of kind {@code attachment}?
 	 */
-	public boolean _isAttachment() {
-		return ATTACHMENT.equals(_type());
+	public boolean isAttachment() {
+		return _kind == Kind.Attachment;
 	}
 
 	/**
@@ -126,14 +181,14 @@ public class Processor implements TaggedUnion<Object>, JsonpSerializable {
 	 *             if the current variant is not of the {@code attachment} kind.
 	 */
 	public AttachmentProcessor attachment() {
-		return TaggedUnionUtils.get(this, ATTACHMENT);
+		return TaggedUnionUtils.get(this, Kind.Attachment);
 	}
 
 	/**
 	 * Is this variant instance of kind {@code append}?
 	 */
-	public boolean _isAppend() {
-		return APPEND.equals(_type());
+	public boolean isAppend() {
+		return _kind == Kind.Append;
 	}
 
 	/**
@@ -143,14 +198,14 @@ public class Processor implements TaggedUnion<Object>, JsonpSerializable {
 	 *             if the current variant is not of the {@code append} kind.
 	 */
 	public AppendProcessor append() {
-		return TaggedUnionUtils.get(this, APPEND);
+		return TaggedUnionUtils.get(this, Kind.Append);
 	}
 
 	/**
 	 * Is this variant instance of kind {@code csv}?
 	 */
-	public boolean _isCsv() {
-		return CSV.equals(_type());
+	public boolean isCsv() {
+		return _kind == Kind.Csv;
 	}
 
 	/**
@@ -160,14 +215,14 @@ public class Processor implements TaggedUnion<Object>, JsonpSerializable {
 	 *             if the current variant is not of the {@code csv} kind.
 	 */
 	public CsvProcessor csv() {
-		return TaggedUnionUtils.get(this, CSV);
+		return TaggedUnionUtils.get(this, Kind.Csv);
 	}
 
 	/**
 	 * Is this variant instance of kind {@code convert}?
 	 */
-	public boolean _isConvert() {
-		return CONVERT.equals(_type());
+	public boolean isConvert() {
+		return _kind == Kind.Convert;
 	}
 
 	/**
@@ -177,14 +232,14 @@ public class Processor implements TaggedUnion<Object>, JsonpSerializable {
 	 *             if the current variant is not of the {@code convert} kind.
 	 */
 	public ConvertProcessor convert() {
-		return TaggedUnionUtils.get(this, CONVERT);
+		return TaggedUnionUtils.get(this, Kind.Convert);
 	}
 
 	/**
 	 * Is this variant instance of kind {@code date}?
 	 */
-	public boolean _isDate() {
-		return DATE.equals(_type());
+	public boolean isDate() {
+		return _kind == Kind.Date;
 	}
 
 	/**
@@ -194,14 +249,14 @@ public class Processor implements TaggedUnion<Object>, JsonpSerializable {
 	 *             if the current variant is not of the {@code date} kind.
 	 */
 	public DateProcessor date() {
-		return TaggedUnionUtils.get(this, DATE);
+		return TaggedUnionUtils.get(this, Kind.Date);
 	}
 
 	/**
 	 * Is this variant instance of kind {@code date_index_name}?
 	 */
-	public boolean _isDateIndexName() {
-		return DATE_INDEX_NAME.equals(_type());
+	public boolean isDateIndexName() {
+		return _kind == Kind.DateIndexName;
 	}
 
 	/**
@@ -212,14 +267,14 @@ public class Processor implements TaggedUnion<Object>, JsonpSerializable {
 	 *             kind.
 	 */
 	public DateIndexNameProcessor dateIndexName() {
-		return TaggedUnionUtils.get(this, DATE_INDEX_NAME);
+		return TaggedUnionUtils.get(this, Kind.DateIndexName);
 	}
 
 	/**
 	 * Is this variant instance of kind {@code dot_expander}?
 	 */
-	public boolean _isDotExpander() {
-		return DOT_EXPANDER.equals(_type());
+	public boolean isDotExpander() {
+		return _kind == Kind.DotExpander;
 	}
 
 	/**
@@ -229,14 +284,14 @@ public class Processor implements TaggedUnion<Object>, JsonpSerializable {
 	 *             if the current variant is not of the {@code dot_expander} kind.
 	 */
 	public DotExpanderProcessor dotExpander() {
-		return TaggedUnionUtils.get(this, DOT_EXPANDER);
+		return TaggedUnionUtils.get(this, Kind.DotExpander);
 	}
 
 	/**
 	 * Is this variant instance of kind {@code enrich}?
 	 */
-	public boolean _isEnrich() {
-		return ENRICH.equals(_type());
+	public boolean isEnrich() {
+		return _kind == Kind.Enrich;
 	}
 
 	/**
@@ -246,14 +301,14 @@ public class Processor implements TaggedUnion<Object>, JsonpSerializable {
 	 *             if the current variant is not of the {@code enrich} kind.
 	 */
 	public EnrichProcessor enrich() {
-		return TaggedUnionUtils.get(this, ENRICH);
+		return TaggedUnionUtils.get(this, Kind.Enrich);
 	}
 
 	/**
 	 * Is this variant instance of kind {@code fail}?
 	 */
-	public boolean _isFail() {
-		return FAIL.equals(_type());
+	public boolean isFail() {
+		return _kind == Kind.Fail;
 	}
 
 	/**
@@ -263,14 +318,14 @@ public class Processor implements TaggedUnion<Object>, JsonpSerializable {
 	 *             if the current variant is not of the {@code fail} kind.
 	 */
 	public FailProcessor fail() {
-		return TaggedUnionUtils.get(this, FAIL);
+		return TaggedUnionUtils.get(this, Kind.Fail);
 	}
 
 	/**
 	 * Is this variant instance of kind {@code foreach}?
 	 */
-	public boolean _isForeach() {
-		return FOREACH.equals(_type());
+	public boolean isForeach() {
+		return _kind == Kind.Foreach;
 	}
 
 	/**
@@ -280,14 +335,14 @@ public class Processor implements TaggedUnion<Object>, JsonpSerializable {
 	 *             if the current variant is not of the {@code foreach} kind.
 	 */
 	public ForeachProcessor foreach() {
-		return TaggedUnionUtils.get(this, FOREACH);
+		return TaggedUnionUtils.get(this, Kind.Foreach);
 	}
 
 	/**
 	 * Is this variant instance of kind {@code json}?
 	 */
-	public boolean _isJson() {
-		return JSON.equals(_type());
+	public boolean isJson() {
+		return _kind == Kind.Json;
 	}
 
 	/**
@@ -297,14 +352,14 @@ public class Processor implements TaggedUnion<Object>, JsonpSerializable {
 	 *             if the current variant is not of the {@code json} kind.
 	 */
 	public JsonProcessor json() {
-		return TaggedUnionUtils.get(this, JSON);
+		return TaggedUnionUtils.get(this, Kind.Json);
 	}
 
 	/**
 	 * Is this variant instance of kind {@code user_agent}?
 	 */
-	public boolean _isUserAgent() {
-		return USER_AGENT.equals(_type());
+	public boolean isUserAgent() {
+		return _kind == Kind.UserAgent;
 	}
 
 	/**
@@ -314,14 +369,14 @@ public class Processor implements TaggedUnion<Object>, JsonpSerializable {
 	 *             if the current variant is not of the {@code user_agent} kind.
 	 */
 	public UserAgentProcessor userAgent() {
-		return TaggedUnionUtils.get(this, USER_AGENT);
+		return TaggedUnionUtils.get(this, Kind.UserAgent);
 	}
 
 	/**
 	 * Is this variant instance of kind {@code kv}?
 	 */
-	public boolean _isKv() {
-		return KV.equals(_type());
+	public boolean isKv() {
+		return _kind == Kind.Kv;
 	}
 
 	/**
@@ -331,14 +386,14 @@ public class Processor implements TaggedUnion<Object>, JsonpSerializable {
 	 *             if the current variant is not of the {@code kv} kind.
 	 */
 	public KeyValueProcessor kv() {
-		return TaggedUnionUtils.get(this, KV);
+		return TaggedUnionUtils.get(this, Kind.Kv);
 	}
 
 	/**
 	 * Is this variant instance of kind {@code geoip}?
 	 */
-	public boolean _isGeoip() {
-		return GEOIP.equals(_type());
+	public boolean isGeoip() {
+		return _kind == Kind.Geoip;
 	}
 
 	/**
@@ -348,14 +403,14 @@ public class Processor implements TaggedUnion<Object>, JsonpSerializable {
 	 *             if the current variant is not of the {@code geoip} kind.
 	 */
 	public GeoIpProcessor geoip() {
-		return TaggedUnionUtils.get(this, GEOIP);
+		return TaggedUnionUtils.get(this, Kind.Geoip);
 	}
 
 	/**
 	 * Is this variant instance of kind {@code grok}?
 	 */
-	public boolean _isGrok() {
-		return GROK.equals(_type());
+	public boolean isGrok() {
+		return _kind == Kind.Grok;
 	}
 
 	/**
@@ -365,14 +420,14 @@ public class Processor implements TaggedUnion<Object>, JsonpSerializable {
 	 *             if the current variant is not of the {@code grok} kind.
 	 */
 	public GrokProcessor grok() {
-		return TaggedUnionUtils.get(this, GROK);
+		return TaggedUnionUtils.get(this, Kind.Grok);
 	}
 
 	/**
 	 * Is this variant instance of kind {@code gsub}?
 	 */
-	public boolean _isGsub() {
-		return GSUB.equals(_type());
+	public boolean isGsub() {
+		return _kind == Kind.Gsub;
 	}
 
 	/**
@@ -382,14 +437,14 @@ public class Processor implements TaggedUnion<Object>, JsonpSerializable {
 	 *             if the current variant is not of the {@code gsub} kind.
 	 */
 	public GsubProcessor gsub() {
-		return TaggedUnionUtils.get(this, GSUB);
+		return TaggedUnionUtils.get(this, Kind.Gsub);
 	}
 
 	/**
 	 * Is this variant instance of kind {@code join}?
 	 */
-	public boolean _isJoin() {
-		return JOIN.equals(_type());
+	public boolean isJoin() {
+		return _kind == Kind.Join;
 	}
 
 	/**
@@ -399,14 +454,14 @@ public class Processor implements TaggedUnion<Object>, JsonpSerializable {
 	 *             if the current variant is not of the {@code join} kind.
 	 */
 	public JoinProcessor join() {
-		return TaggedUnionUtils.get(this, JOIN);
+		return TaggedUnionUtils.get(this, Kind.Join);
 	}
 
 	/**
 	 * Is this variant instance of kind {@code lowercase}?
 	 */
-	public boolean _isLowercase() {
-		return LOWERCASE.equals(_type());
+	public boolean isLowercase() {
+		return _kind == Kind.Lowercase;
 	}
 
 	/**
@@ -416,14 +471,14 @@ public class Processor implements TaggedUnion<Object>, JsonpSerializable {
 	 *             if the current variant is not of the {@code lowercase} kind.
 	 */
 	public LowercaseProcessor lowercase() {
-		return TaggedUnionUtils.get(this, LOWERCASE);
+		return TaggedUnionUtils.get(this, Kind.Lowercase);
 	}
 
 	/**
 	 * Is this variant instance of kind {@code remove}?
 	 */
-	public boolean _isRemove() {
-		return REMOVE.equals(_type());
+	public boolean isRemove() {
+		return _kind == Kind.Remove;
 	}
 
 	/**
@@ -433,14 +488,14 @@ public class Processor implements TaggedUnion<Object>, JsonpSerializable {
 	 *             if the current variant is not of the {@code remove} kind.
 	 */
 	public RemoveProcessor remove() {
-		return TaggedUnionUtils.get(this, REMOVE);
+		return TaggedUnionUtils.get(this, Kind.Remove);
 	}
 
 	/**
 	 * Is this variant instance of kind {@code rename}?
 	 */
-	public boolean _isRename() {
-		return RENAME.equals(_type());
+	public boolean isRename() {
+		return _kind == Kind.Rename;
 	}
 
 	/**
@@ -450,14 +505,14 @@ public class Processor implements TaggedUnion<Object>, JsonpSerializable {
 	 *             if the current variant is not of the {@code rename} kind.
 	 */
 	public RenameProcessor rename() {
-		return TaggedUnionUtils.get(this, RENAME);
+		return TaggedUnionUtils.get(this, Kind.Rename);
 	}
 
 	/**
 	 * Is this variant instance of kind {@code script}?
 	 */
-	public boolean _isScript() {
-		return SCRIPT.equals(_type());
+	public boolean isScript() {
+		return _kind == Kind.Script;
 	}
 
 	/**
@@ -467,14 +522,14 @@ public class Processor implements TaggedUnion<Object>, JsonpSerializable {
 	 *             if the current variant is not of the {@code script} kind.
 	 */
 	public Script script() {
-		return TaggedUnionUtils.get(this, SCRIPT);
+		return TaggedUnionUtils.get(this, Kind.Script);
 	}
 
 	/**
 	 * Is this variant instance of kind {@code set}?
 	 */
-	public boolean _isSet() {
-		return SET.equals(_type());
+	public boolean isSet() {
+		return _kind == Kind.Set;
 	}
 
 	/**
@@ -484,14 +539,14 @@ public class Processor implements TaggedUnion<Object>, JsonpSerializable {
 	 *             if the current variant is not of the {@code set} kind.
 	 */
 	public SetProcessor set() {
-		return TaggedUnionUtils.get(this, SET);
+		return TaggedUnionUtils.get(this, Kind.Set);
 	}
 
 	/**
 	 * Is this variant instance of kind {@code sort}?
 	 */
-	public boolean _isSort() {
-		return SORT.equals(_type());
+	public boolean isSort() {
+		return _kind == Kind.Sort;
 	}
 
 	/**
@@ -501,14 +556,14 @@ public class Processor implements TaggedUnion<Object>, JsonpSerializable {
 	 *             if the current variant is not of the {@code sort} kind.
 	 */
 	public SortProcessor sort() {
-		return TaggedUnionUtils.get(this, SORT);
+		return TaggedUnionUtils.get(this, Kind.Sort);
 	}
 
 	/**
 	 * Is this variant instance of kind {@code split}?
 	 */
-	public boolean _isSplit() {
-		return SPLIT.equals(_type());
+	public boolean isSplit() {
+		return _kind == Kind.Split;
 	}
 
 	/**
@@ -518,14 +573,14 @@ public class Processor implements TaggedUnion<Object>, JsonpSerializable {
 	 *             if the current variant is not of the {@code split} kind.
 	 */
 	public SplitProcessor split() {
-		return TaggedUnionUtils.get(this, SPLIT);
+		return TaggedUnionUtils.get(this, Kind.Split);
 	}
 
 	/**
 	 * Is this variant instance of kind {@code trim}?
 	 */
-	public boolean _isTrim() {
-		return TRIM.equals(_type());
+	public boolean isTrim() {
+		return _kind == Kind.Trim;
 	}
 
 	/**
@@ -535,14 +590,14 @@ public class Processor implements TaggedUnion<Object>, JsonpSerializable {
 	 *             if the current variant is not of the {@code trim} kind.
 	 */
 	public TrimProcessor trim() {
-		return TaggedUnionUtils.get(this, TRIM);
+		return TaggedUnionUtils.get(this, Kind.Trim);
 	}
 
 	/**
 	 * Is this variant instance of kind {@code uppercase}?
 	 */
-	public boolean _isUppercase() {
-		return UPPERCASE.equals(_type());
+	public boolean isUppercase() {
+		return _kind == Kind.Uppercase;
 	}
 
 	/**
@@ -552,14 +607,14 @@ public class Processor implements TaggedUnion<Object>, JsonpSerializable {
 	 *             if the current variant is not of the {@code uppercase} kind.
 	 */
 	public UppercaseProcessor uppercase() {
-		return TaggedUnionUtils.get(this, UPPERCASE);
+		return TaggedUnionUtils.get(this, Kind.Uppercase);
 	}
 
 	/**
 	 * Is this variant instance of kind {@code urldecode}?
 	 */
-	public boolean _isUrldecode() {
-		return URLDECODE.equals(_type());
+	public boolean isUrldecode() {
+		return _kind == Kind.Urldecode;
 	}
 
 	/**
@@ -569,14 +624,14 @@ public class Processor implements TaggedUnion<Object>, JsonpSerializable {
 	 *             if the current variant is not of the {@code urldecode} kind.
 	 */
 	public UrlDecodeProcessor urldecode() {
-		return TaggedUnionUtils.get(this, URLDECODE);
+		return TaggedUnionUtils.get(this, Kind.Urldecode);
 	}
 
 	/**
 	 * Is this variant instance of kind {@code bytes}?
 	 */
-	public boolean _isBytes() {
-		return BYTES.equals(_type());
+	public boolean isBytes() {
+		return _kind == Kind.Bytes;
 	}
 
 	/**
@@ -586,14 +641,14 @@ public class Processor implements TaggedUnion<Object>, JsonpSerializable {
 	 *             if the current variant is not of the {@code bytes} kind.
 	 */
 	public BytesProcessor bytes() {
-		return TaggedUnionUtils.get(this, BYTES);
+		return TaggedUnionUtils.get(this, Kind.Bytes);
 	}
 
 	/**
 	 * Is this variant instance of kind {@code dissect}?
 	 */
-	public boolean _isDissect() {
-		return DISSECT.equals(_type());
+	public boolean isDissect() {
+		return _kind == Kind.Dissect;
 	}
 
 	/**
@@ -603,14 +658,14 @@ public class Processor implements TaggedUnion<Object>, JsonpSerializable {
 	 *             if the current variant is not of the {@code dissect} kind.
 	 */
 	public DissectProcessor dissect() {
-		return TaggedUnionUtils.get(this, DISSECT);
+		return TaggedUnionUtils.get(this, Kind.Dissect);
 	}
 
 	/**
 	 * Is this variant instance of kind {@code set_security_user}?
 	 */
-	public boolean _isSetSecurityUser() {
-		return SET_SECURITY_USER.equals(_type());
+	public boolean isSetSecurityUser() {
+		return _kind == Kind.SetSecurityUser;
 	}
 
 	/**
@@ -621,14 +676,14 @@ public class Processor implements TaggedUnion<Object>, JsonpSerializable {
 	 *             kind.
 	 */
 	public SetSecurityUserProcessor setSecurityUser() {
-		return TaggedUnionUtils.get(this, SET_SECURITY_USER);
+		return TaggedUnionUtils.get(this, Kind.SetSecurityUser);
 	}
 
 	/**
 	 * Is this variant instance of kind {@code pipeline}?
 	 */
-	public boolean _isPipeline() {
-		return PIPELINE.equals(_type());
+	public boolean isPipeline() {
+		return _kind == Kind.Pipeline;
 	}
 
 	/**
@@ -638,14 +693,14 @@ public class Processor implements TaggedUnion<Object>, JsonpSerializable {
 	 *             if the current variant is not of the {@code pipeline} kind.
 	 */
 	public PipelineProcessor pipeline() {
-		return TaggedUnionUtils.get(this, PIPELINE);
+		return TaggedUnionUtils.get(this, Kind.Pipeline);
 	}
 
 	/**
 	 * Is this variant instance of kind {@code drop}?
 	 */
-	public boolean _isDrop() {
-		return DROP.equals(_type());
+	public boolean isDrop() {
+		return _kind == Kind.Drop;
 	}
 
 	/**
@@ -655,14 +710,14 @@ public class Processor implements TaggedUnion<Object>, JsonpSerializable {
 	 *             if the current variant is not of the {@code drop} kind.
 	 */
 	public DropProcessor drop() {
-		return TaggedUnionUtils.get(this, DROP);
+		return TaggedUnionUtils.get(this, Kind.Drop);
 	}
 
 	/**
 	 * Is this variant instance of kind {@code circle}?
 	 */
-	public boolean _isCircle() {
-		return CIRCLE.equals(_type());
+	public boolean isCircle() {
+		return _kind == Kind.Circle;
 	}
 
 	/**
@@ -672,14 +727,14 @@ public class Processor implements TaggedUnion<Object>, JsonpSerializable {
 	 *             if the current variant is not of the {@code circle} kind.
 	 */
 	public CircleProcessor circle() {
-		return TaggedUnionUtils.get(this, CIRCLE);
+		return TaggedUnionUtils.get(this, Kind.Circle);
 	}
 
 	/**
 	 * Is this variant instance of kind {@code inference}?
 	 */
-	public boolean _isInference() {
-		return INFERENCE.equals(_type());
+	public boolean isInference() {
+		return _kind == Kind.Inference;
 	}
 
 	/**
@@ -689,7 +744,7 @@ public class Processor implements TaggedUnion<Object>, JsonpSerializable {
 	 *             if the current variant is not of the {@code inference} kind.
 	 */
 	public InferenceProcessor inference() {
-		return TaggedUnionUtils.get(this, INFERENCE);
+		return TaggedUnionUtils.get(this, Kind.Inference);
 	}
 
 	@Override
@@ -698,7 +753,7 @@ public class Processor implements TaggedUnion<Object>, JsonpSerializable {
 
 		generator.writeStartObject();
 
-		generator.writeKey(_type);
+		generator.writeKey(_kind.jsonValue());
 		if (_value instanceof JsonpSerializable) {
 			((JsonpSerializable) _value).serialize(generator, mapper);
 		}
@@ -708,349 +763,415 @@ public class Processor implements TaggedUnion<Object>, JsonpSerializable {
 	}
 
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Processor> {
-		private String _type;
+		private Kind _kind;
 		private Object _value;
 
 		public Builder attachment(AttachmentProcessor v) {
-			this._type = ATTACHMENT;
+			this._kind = Kind.Attachment;
 			this._value = v;
 			return this;
 		}
 
-		public Builder attachment(Function<AttachmentProcessor.Builder, ObjectBuilder<AttachmentProcessor>> f) {
-			return this.attachment(f.apply(new AttachmentProcessor.Builder()).build());
+		public Builder attachment(Consumer<AttachmentProcessor.Builder> fn) {
+			AttachmentProcessor.Builder builder = new AttachmentProcessor.Builder();
+			fn.accept(builder);
+			return this.attachment(builder.build());
 		}
 
 		public Builder append(AppendProcessor v) {
-			this._type = APPEND;
+			this._kind = Kind.Append;
 			this._value = v;
 			return this;
 		}
 
-		public Builder append(Function<AppendProcessor.Builder, ObjectBuilder<AppendProcessor>> f) {
-			return this.append(f.apply(new AppendProcessor.Builder()).build());
+		public Builder append(Consumer<AppendProcessor.Builder> fn) {
+			AppendProcessor.Builder builder = new AppendProcessor.Builder();
+			fn.accept(builder);
+			return this.append(builder.build());
 		}
 
 		public Builder csv(CsvProcessor v) {
-			this._type = CSV;
+			this._kind = Kind.Csv;
 			this._value = v;
 			return this;
 		}
 
-		public Builder csv(Function<CsvProcessor.Builder, ObjectBuilder<CsvProcessor>> f) {
-			return this.csv(f.apply(new CsvProcessor.Builder()).build());
+		public Builder csv(Consumer<CsvProcessor.Builder> fn) {
+			CsvProcessor.Builder builder = new CsvProcessor.Builder();
+			fn.accept(builder);
+			return this.csv(builder.build());
 		}
 
 		public Builder convert(ConvertProcessor v) {
-			this._type = CONVERT;
+			this._kind = Kind.Convert;
 			this._value = v;
 			return this;
 		}
 
-		public Builder convert(Function<ConvertProcessor.Builder, ObjectBuilder<ConvertProcessor>> f) {
-			return this.convert(f.apply(new ConvertProcessor.Builder()).build());
+		public Builder convert(Consumer<ConvertProcessor.Builder> fn) {
+			ConvertProcessor.Builder builder = new ConvertProcessor.Builder();
+			fn.accept(builder);
+			return this.convert(builder.build());
 		}
 
 		public Builder date(DateProcessor v) {
-			this._type = DATE;
+			this._kind = Kind.Date;
 			this._value = v;
 			return this;
 		}
 
-		public Builder date(Function<DateProcessor.Builder, ObjectBuilder<DateProcessor>> f) {
-			return this.date(f.apply(new DateProcessor.Builder()).build());
+		public Builder date(Consumer<DateProcessor.Builder> fn) {
+			DateProcessor.Builder builder = new DateProcessor.Builder();
+			fn.accept(builder);
+			return this.date(builder.build());
 		}
 
 		public Builder dateIndexName(DateIndexNameProcessor v) {
-			this._type = DATE_INDEX_NAME;
+			this._kind = Kind.DateIndexName;
 			this._value = v;
 			return this;
 		}
 
-		public Builder dateIndexName(
-				Function<DateIndexNameProcessor.Builder, ObjectBuilder<DateIndexNameProcessor>> f) {
-			return this.dateIndexName(f.apply(new DateIndexNameProcessor.Builder()).build());
+		public Builder dateIndexName(Consumer<DateIndexNameProcessor.Builder> fn) {
+			DateIndexNameProcessor.Builder builder = new DateIndexNameProcessor.Builder();
+			fn.accept(builder);
+			return this.dateIndexName(builder.build());
 		}
 
 		public Builder dotExpander(DotExpanderProcessor v) {
-			this._type = DOT_EXPANDER;
+			this._kind = Kind.DotExpander;
 			this._value = v;
 			return this;
 		}
 
-		public Builder dotExpander(Function<DotExpanderProcessor.Builder, ObjectBuilder<DotExpanderProcessor>> f) {
-			return this.dotExpander(f.apply(new DotExpanderProcessor.Builder()).build());
+		public Builder dotExpander(Consumer<DotExpanderProcessor.Builder> fn) {
+			DotExpanderProcessor.Builder builder = new DotExpanderProcessor.Builder();
+			fn.accept(builder);
+			return this.dotExpander(builder.build());
 		}
 
 		public Builder enrich(EnrichProcessor v) {
-			this._type = ENRICH;
+			this._kind = Kind.Enrich;
 			this._value = v;
 			return this;
 		}
 
-		public Builder enrich(Function<EnrichProcessor.Builder, ObjectBuilder<EnrichProcessor>> f) {
-			return this.enrich(f.apply(new EnrichProcessor.Builder()).build());
+		public Builder enrich(Consumer<EnrichProcessor.Builder> fn) {
+			EnrichProcessor.Builder builder = new EnrichProcessor.Builder();
+			fn.accept(builder);
+			return this.enrich(builder.build());
 		}
 
 		public Builder fail(FailProcessor v) {
-			this._type = FAIL;
+			this._kind = Kind.Fail;
 			this._value = v;
 			return this;
 		}
 
-		public Builder fail(Function<FailProcessor.Builder, ObjectBuilder<FailProcessor>> f) {
-			return this.fail(f.apply(new FailProcessor.Builder()).build());
+		public Builder fail(Consumer<FailProcessor.Builder> fn) {
+			FailProcessor.Builder builder = new FailProcessor.Builder();
+			fn.accept(builder);
+			return this.fail(builder.build());
 		}
 
 		public Builder foreach(ForeachProcessor v) {
-			this._type = FOREACH;
+			this._kind = Kind.Foreach;
 			this._value = v;
 			return this;
 		}
 
-		public Builder foreach(Function<ForeachProcessor.Builder, ObjectBuilder<ForeachProcessor>> f) {
-			return this.foreach(f.apply(new ForeachProcessor.Builder()).build());
+		public Builder foreach(Consumer<ForeachProcessor.Builder> fn) {
+			ForeachProcessor.Builder builder = new ForeachProcessor.Builder();
+			fn.accept(builder);
+			return this.foreach(builder.build());
 		}
 
 		public Builder json(JsonProcessor v) {
-			this._type = JSON;
+			this._kind = Kind.Json;
 			this._value = v;
 			return this;
 		}
 
-		public Builder json(Function<JsonProcessor.Builder, ObjectBuilder<JsonProcessor>> f) {
-			return this.json(f.apply(new JsonProcessor.Builder()).build());
+		public Builder json(Consumer<JsonProcessor.Builder> fn) {
+			JsonProcessor.Builder builder = new JsonProcessor.Builder();
+			fn.accept(builder);
+			return this.json(builder.build());
 		}
 
 		public Builder userAgent(UserAgentProcessor v) {
-			this._type = USER_AGENT;
+			this._kind = Kind.UserAgent;
 			this._value = v;
 			return this;
 		}
 
-		public Builder userAgent(Function<UserAgentProcessor.Builder, ObjectBuilder<UserAgentProcessor>> f) {
-			return this.userAgent(f.apply(new UserAgentProcessor.Builder()).build());
+		public Builder userAgent(Consumer<UserAgentProcessor.Builder> fn) {
+			UserAgentProcessor.Builder builder = new UserAgentProcessor.Builder();
+			fn.accept(builder);
+			return this.userAgent(builder.build());
 		}
 
 		public Builder kv(KeyValueProcessor v) {
-			this._type = KV;
+			this._kind = Kind.Kv;
 			this._value = v;
 			return this;
 		}
 
-		public Builder kv(Function<KeyValueProcessor.Builder, ObjectBuilder<KeyValueProcessor>> f) {
-			return this.kv(f.apply(new KeyValueProcessor.Builder()).build());
+		public Builder kv(Consumer<KeyValueProcessor.Builder> fn) {
+			KeyValueProcessor.Builder builder = new KeyValueProcessor.Builder();
+			fn.accept(builder);
+			return this.kv(builder.build());
 		}
 
 		public Builder geoip(GeoIpProcessor v) {
-			this._type = GEOIP;
+			this._kind = Kind.Geoip;
 			this._value = v;
 			return this;
 		}
 
-		public Builder geoip(Function<GeoIpProcessor.Builder, ObjectBuilder<GeoIpProcessor>> f) {
-			return this.geoip(f.apply(new GeoIpProcessor.Builder()).build());
+		public Builder geoip(Consumer<GeoIpProcessor.Builder> fn) {
+			GeoIpProcessor.Builder builder = new GeoIpProcessor.Builder();
+			fn.accept(builder);
+			return this.geoip(builder.build());
 		}
 
 		public Builder grok(GrokProcessor v) {
-			this._type = GROK;
+			this._kind = Kind.Grok;
 			this._value = v;
 			return this;
 		}
 
-		public Builder grok(Function<GrokProcessor.Builder, ObjectBuilder<GrokProcessor>> f) {
-			return this.grok(f.apply(new GrokProcessor.Builder()).build());
+		public Builder grok(Consumer<GrokProcessor.Builder> fn) {
+			GrokProcessor.Builder builder = new GrokProcessor.Builder();
+			fn.accept(builder);
+			return this.grok(builder.build());
 		}
 
 		public Builder gsub(GsubProcessor v) {
-			this._type = GSUB;
+			this._kind = Kind.Gsub;
 			this._value = v;
 			return this;
 		}
 
-		public Builder gsub(Function<GsubProcessor.Builder, ObjectBuilder<GsubProcessor>> f) {
-			return this.gsub(f.apply(new GsubProcessor.Builder()).build());
+		public Builder gsub(Consumer<GsubProcessor.Builder> fn) {
+			GsubProcessor.Builder builder = new GsubProcessor.Builder();
+			fn.accept(builder);
+			return this.gsub(builder.build());
 		}
 
 		public Builder join(JoinProcessor v) {
-			this._type = JOIN;
+			this._kind = Kind.Join;
 			this._value = v;
 			return this;
 		}
 
-		public Builder join(Function<JoinProcessor.Builder, ObjectBuilder<JoinProcessor>> f) {
-			return this.join(f.apply(new JoinProcessor.Builder()).build());
+		public Builder join(Consumer<JoinProcessor.Builder> fn) {
+			JoinProcessor.Builder builder = new JoinProcessor.Builder();
+			fn.accept(builder);
+			return this.join(builder.build());
 		}
 
 		public Builder lowercase(LowercaseProcessor v) {
-			this._type = LOWERCASE;
+			this._kind = Kind.Lowercase;
 			this._value = v;
 			return this;
 		}
 
-		public Builder lowercase(Function<LowercaseProcessor.Builder, ObjectBuilder<LowercaseProcessor>> f) {
-			return this.lowercase(f.apply(new LowercaseProcessor.Builder()).build());
+		public Builder lowercase(Consumer<LowercaseProcessor.Builder> fn) {
+			LowercaseProcessor.Builder builder = new LowercaseProcessor.Builder();
+			fn.accept(builder);
+			return this.lowercase(builder.build());
 		}
 
 		public Builder remove(RemoveProcessor v) {
-			this._type = REMOVE;
+			this._kind = Kind.Remove;
 			this._value = v;
 			return this;
 		}
 
-		public Builder remove(Function<RemoveProcessor.Builder, ObjectBuilder<RemoveProcessor>> f) {
-			return this.remove(f.apply(new RemoveProcessor.Builder()).build());
+		public Builder remove(Consumer<RemoveProcessor.Builder> fn) {
+			RemoveProcessor.Builder builder = new RemoveProcessor.Builder();
+			fn.accept(builder);
+			return this.remove(builder.build());
 		}
 
 		public Builder rename(RenameProcessor v) {
-			this._type = RENAME;
+			this._kind = Kind.Rename;
 			this._value = v;
 			return this;
 		}
 
-		public Builder rename(Function<RenameProcessor.Builder, ObjectBuilder<RenameProcessor>> f) {
-			return this.rename(f.apply(new RenameProcessor.Builder()).build());
+		public Builder rename(Consumer<RenameProcessor.Builder> fn) {
+			RenameProcessor.Builder builder = new RenameProcessor.Builder();
+			fn.accept(builder);
+			return this.rename(builder.build());
 		}
 
 		public Builder script(Script v) {
-			this._type = SCRIPT;
+			this._kind = Kind.Script;
 			this._value = v;
 			return this;
 		}
 
-		public Builder script(Function<Script.Builder, ObjectBuilder<Script>> f) {
-			return this.script(f.apply(new Script.Builder()).build());
+		public Builder script(Consumer<Script.Builder> fn) {
+			Script.Builder builder = new Script.Builder();
+			fn.accept(builder);
+			return this.script(builder.build());
 		}
 
 		public Builder set(SetProcessor v) {
-			this._type = SET;
+			this._kind = Kind.Set;
 			this._value = v;
 			return this;
 		}
 
-		public Builder set(Function<SetProcessor.Builder, ObjectBuilder<SetProcessor>> f) {
-			return this.set(f.apply(new SetProcessor.Builder()).build());
+		public Builder set(Consumer<SetProcessor.Builder> fn) {
+			SetProcessor.Builder builder = new SetProcessor.Builder();
+			fn.accept(builder);
+			return this.set(builder.build());
 		}
 
 		public Builder sort(SortProcessor v) {
-			this._type = SORT;
+			this._kind = Kind.Sort;
 			this._value = v;
 			return this;
 		}
 
-		public Builder sort(Function<SortProcessor.Builder, ObjectBuilder<SortProcessor>> f) {
-			return this.sort(f.apply(new SortProcessor.Builder()).build());
+		public Builder sort(Consumer<SortProcessor.Builder> fn) {
+			SortProcessor.Builder builder = new SortProcessor.Builder();
+			fn.accept(builder);
+			return this.sort(builder.build());
 		}
 
 		public Builder split(SplitProcessor v) {
-			this._type = SPLIT;
+			this._kind = Kind.Split;
 			this._value = v;
 			return this;
 		}
 
-		public Builder split(Function<SplitProcessor.Builder, ObjectBuilder<SplitProcessor>> f) {
-			return this.split(f.apply(new SplitProcessor.Builder()).build());
+		public Builder split(Consumer<SplitProcessor.Builder> fn) {
+			SplitProcessor.Builder builder = new SplitProcessor.Builder();
+			fn.accept(builder);
+			return this.split(builder.build());
 		}
 
 		public Builder trim(TrimProcessor v) {
-			this._type = TRIM;
+			this._kind = Kind.Trim;
 			this._value = v;
 			return this;
 		}
 
-		public Builder trim(Function<TrimProcessor.Builder, ObjectBuilder<TrimProcessor>> f) {
-			return this.trim(f.apply(new TrimProcessor.Builder()).build());
+		public Builder trim(Consumer<TrimProcessor.Builder> fn) {
+			TrimProcessor.Builder builder = new TrimProcessor.Builder();
+			fn.accept(builder);
+			return this.trim(builder.build());
 		}
 
 		public Builder uppercase(UppercaseProcessor v) {
-			this._type = UPPERCASE;
+			this._kind = Kind.Uppercase;
 			this._value = v;
 			return this;
 		}
 
-		public Builder uppercase(Function<UppercaseProcessor.Builder, ObjectBuilder<UppercaseProcessor>> f) {
-			return this.uppercase(f.apply(new UppercaseProcessor.Builder()).build());
+		public Builder uppercase(Consumer<UppercaseProcessor.Builder> fn) {
+			UppercaseProcessor.Builder builder = new UppercaseProcessor.Builder();
+			fn.accept(builder);
+			return this.uppercase(builder.build());
 		}
 
 		public Builder urldecode(UrlDecodeProcessor v) {
-			this._type = URLDECODE;
+			this._kind = Kind.Urldecode;
 			this._value = v;
 			return this;
 		}
 
-		public Builder urldecode(Function<UrlDecodeProcessor.Builder, ObjectBuilder<UrlDecodeProcessor>> f) {
-			return this.urldecode(f.apply(new UrlDecodeProcessor.Builder()).build());
+		public Builder urldecode(Consumer<UrlDecodeProcessor.Builder> fn) {
+			UrlDecodeProcessor.Builder builder = new UrlDecodeProcessor.Builder();
+			fn.accept(builder);
+			return this.urldecode(builder.build());
 		}
 
 		public Builder bytes(BytesProcessor v) {
-			this._type = BYTES;
+			this._kind = Kind.Bytes;
 			this._value = v;
 			return this;
 		}
 
-		public Builder bytes(Function<BytesProcessor.Builder, ObjectBuilder<BytesProcessor>> f) {
-			return this.bytes(f.apply(new BytesProcessor.Builder()).build());
+		public Builder bytes(Consumer<BytesProcessor.Builder> fn) {
+			BytesProcessor.Builder builder = new BytesProcessor.Builder();
+			fn.accept(builder);
+			return this.bytes(builder.build());
 		}
 
 		public Builder dissect(DissectProcessor v) {
-			this._type = DISSECT;
+			this._kind = Kind.Dissect;
 			this._value = v;
 			return this;
 		}
 
-		public Builder dissect(Function<DissectProcessor.Builder, ObjectBuilder<DissectProcessor>> f) {
-			return this.dissect(f.apply(new DissectProcessor.Builder()).build());
+		public Builder dissect(Consumer<DissectProcessor.Builder> fn) {
+			DissectProcessor.Builder builder = new DissectProcessor.Builder();
+			fn.accept(builder);
+			return this.dissect(builder.build());
 		}
 
 		public Builder setSecurityUser(SetSecurityUserProcessor v) {
-			this._type = SET_SECURITY_USER;
+			this._kind = Kind.SetSecurityUser;
 			this._value = v;
 			return this;
 		}
 
-		public Builder setSecurityUser(
-				Function<SetSecurityUserProcessor.Builder, ObjectBuilder<SetSecurityUserProcessor>> f) {
-			return this.setSecurityUser(f.apply(new SetSecurityUserProcessor.Builder()).build());
+		public Builder setSecurityUser(Consumer<SetSecurityUserProcessor.Builder> fn) {
+			SetSecurityUserProcessor.Builder builder = new SetSecurityUserProcessor.Builder();
+			fn.accept(builder);
+			return this.setSecurityUser(builder.build());
 		}
 
 		public Builder pipeline(PipelineProcessor v) {
-			this._type = PIPELINE;
+			this._kind = Kind.Pipeline;
 			this._value = v;
 			return this;
 		}
 
-		public Builder pipeline(Function<PipelineProcessor.Builder, ObjectBuilder<PipelineProcessor>> f) {
-			return this.pipeline(f.apply(new PipelineProcessor.Builder()).build());
+		public Builder pipeline(Consumer<PipelineProcessor.Builder> fn) {
+			PipelineProcessor.Builder builder = new PipelineProcessor.Builder();
+			fn.accept(builder);
+			return this.pipeline(builder.build());
 		}
 
 		public Builder drop(DropProcessor v) {
-			this._type = DROP;
+			this._kind = Kind.Drop;
 			this._value = v;
 			return this;
 		}
 
-		public Builder drop(Function<DropProcessor.Builder, ObjectBuilder<DropProcessor>> f) {
-			return this.drop(f.apply(new DropProcessor.Builder()).build());
+		public Builder drop(Consumer<DropProcessor.Builder> fn) {
+			DropProcessor.Builder builder = new DropProcessor.Builder();
+			fn.accept(builder);
+			return this.drop(builder.build());
 		}
 
 		public Builder circle(CircleProcessor v) {
-			this._type = CIRCLE;
+			this._kind = Kind.Circle;
 			this._value = v;
 			return this;
 		}
 
-		public Builder circle(Function<CircleProcessor.Builder, ObjectBuilder<CircleProcessor>> f) {
-			return this.circle(f.apply(new CircleProcessor.Builder()).build());
+		public Builder circle(Consumer<CircleProcessor.Builder> fn) {
+			CircleProcessor.Builder builder = new CircleProcessor.Builder();
+			fn.accept(builder);
+			return this.circle(builder.build());
 		}
 
 		public Builder inference(InferenceProcessor v) {
-			this._type = INFERENCE;
+			this._kind = Kind.Inference;
 			this._value = v;
 			return this;
 		}
 
-		public Builder inference(Function<InferenceProcessor.Builder, ObjectBuilder<InferenceProcessor>> f) {
-			return this.inference(f.apply(new InferenceProcessor.Builder()).build());
+		public Builder inference(Consumer<InferenceProcessor.Builder> fn) {
+			InferenceProcessor.Builder builder = new InferenceProcessor.Builder();
+			fn.accept(builder);
+			return this.inference(builder.build());
 		}
 
 		public Processor build() {

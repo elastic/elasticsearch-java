@@ -33,7 +33,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.SpanFirstQuery
@@ -53,16 +53,26 @@ public class SpanFirstQuery extends QueryBase implements SpanQueryVariant, Query
 
 	}
 
-	public static SpanFirstQuery of(Function<Builder, ObjectBuilder<SpanFirstQuery>> fn) {
-		return fn.apply(new Builder()).build();
+	public static SpanFirstQuery of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
-	 * {@link SpanQuery}, {@link Query} variant type
+	 * SpanQuery variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "span_first";
+	public SpanQuery.Kind _spanQueryKind() {
+		return SpanQuery.Kind.SpanFirst;
+	}
+
+	/**
+	 * Query variant kind.
+	 */
+	@Override
+	public Query.Kind _queryKind() {
+		return Query.Kind.SpanFirst;
 	}
 
 	/**
@@ -119,8 +129,10 @@ public class SpanFirstQuery extends QueryBase implements SpanQueryVariant, Query
 		/**
 		 * Required - API name: {@code match}
 		 */
-		public final Builder match(Function<SpanQuery.Builder, ObjectBuilder<SpanQuery>> fn) {
-			return this.match(fn.apply(new SpanQuery.Builder()).build());
+		public final Builder match(Consumer<SpanQuery.Builder> fn) {
+			SpanQuery.Builder builder = new SpanQuery.Builder();
+			fn.accept(builder);
+			return this.match(builder.build());
 		}
 
 		@Override

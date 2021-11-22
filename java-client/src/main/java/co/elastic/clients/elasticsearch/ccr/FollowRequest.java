@@ -34,7 +34,7 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
-import co.elastic.clients.transport.SimpleEndpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
@@ -44,7 +44,7 @@ import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: ccr.follow.Request
@@ -112,8 +112,10 @@ public class FollowRequest extends RequestBase implements JsonpSerializable {
 
 	}
 
-	public static FollowRequest of(Function<Builder, ObjectBuilder<FollowRequest>> fn) {
-		return fn.apply(new Builder()).build();
+	public static FollowRequest of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -416,8 +418,10 @@ public class FollowRequest extends RequestBase implements JsonpSerializable {
 		/**
 		 * API name: {@code max_retry_delay}
 		 */
-		public final Builder maxRetryDelay(Function<Time.Builder, ObjectBuilder<Time>> fn) {
-			return this.maxRetryDelay(fn.apply(new Time.Builder()).build());
+		public final Builder maxRetryDelay(Consumer<Time.Builder> fn) {
+			Time.Builder builder = new Time.Builder();
+			fn.accept(builder);
+			return this.maxRetryDelay(builder.build());
 		}
 
 		/**
@@ -463,8 +467,10 @@ public class FollowRequest extends RequestBase implements JsonpSerializable {
 		/**
 		 * API name: {@code read_poll_timeout}
 		 */
-		public final Builder readPollTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
-			return this.readPollTimeout(fn.apply(new Time.Builder()).build());
+		public final Builder readPollTimeout(Consumer<Time.Builder> fn) {
+			Time.Builder builder = new Time.Builder();
+			fn.accept(builder);
+			return this.readPollTimeout(builder.build());
 		}
 
 		/**
@@ -496,9 +502,10 @@ public class FollowRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code wait_for_active_shards}
 		 */
-		public final Builder waitForActiveShards(
-				Function<WaitForActiveShards.Builder, ObjectBuilder<WaitForActiveShards>> fn) {
-			return this.waitForActiveShards(fn.apply(new WaitForActiveShards.Builder()).build());
+		public final Builder waitForActiveShards(Consumer<WaitForActiveShards.Builder> fn) {
+			WaitForActiveShards.Builder builder = new WaitForActiveShards.Builder();
+			fn.accept(builder);
+			return this.waitForActiveShards(builder.build());
 		}
 
 		/**

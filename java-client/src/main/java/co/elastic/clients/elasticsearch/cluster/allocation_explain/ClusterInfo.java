@@ -29,6 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.MapBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
@@ -36,12 +37,11 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -70,8 +70,10 @@ public class ClusterInfo implements JsonpSerializable {
 
 	}
 
-	public static ClusterInfo of(Function<Builder, ObjectBuilder<ClusterInfo>> fn) {
-		return fn.apply(new Builder()).build();
+	public static ClusterInfo of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -202,13 +204,6 @@ public class ClusterInfo implements JsonpSerializable {
 			return this;
 		}
 
-		/**
-		 * Set {@link #nodes(Map)} to a singleton map.
-		 */
-		public Builder nodes(String key, Function<NodeDiskUsage.Builder, ObjectBuilder<NodeDiskUsage>> fn) {
-			return this.nodes(Collections.singletonMap(key, fn.apply(new NodeDiskUsage.Builder()).build()));
-		}
-
 		public final Builder nodes(
 				Function<MapBuilder<String, NodeDiskUsage, NodeDiskUsage.Builder>, ObjectBuilder<Map<String, NodeDiskUsage>>> fn) {
 			return nodes(fn.apply(new MapBuilder<>(NodeDiskUsage.Builder::new)).build());
@@ -257,13 +252,9 @@ public class ClusterInfo implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code reserved_sizes}
 		 */
-		@SafeVarargs
-		public final Builder reservedSizes(Function<ReservedSize.Builder, ObjectBuilder<ReservedSize>>... fns) {
-			this.reservedSizes = new ArrayList<>(fns.length);
-			for (Function<ReservedSize.Builder, ObjectBuilder<ReservedSize>> fn : fns) {
-				this.reservedSizes.add(fn.apply(new ReservedSize.Builder()).build());
-			}
-			return this;
+		public final Builder reservedSizes(
+				Function<ListBuilder<ReservedSize, ReservedSize.Builder>, ObjectBuilder<List<ReservedSize>>> fn) {
+			return reservedSizes(fn.apply(new ListBuilder<>(ReservedSize.Builder::new)).build());
 		}
 
 		/**

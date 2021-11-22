@@ -34,17 +34,18 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
-import co.elastic.clients.transport.SimpleEndpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
+import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -69,8 +70,10 @@ public class UpdateAliasesRequest extends RequestBase implements JsonpSerializab
 
 	}
 
-	public static UpdateAliasesRequest of(Function<Builder, ObjectBuilder<UpdateAliasesRequest>> fn) {
-		return fn.apply(new Builder()).build();
+	public static UpdateAliasesRequest of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -158,13 +161,8 @@ public class UpdateAliasesRequest extends RequestBase implements JsonpSerializab
 		/**
 		 * API name: {@code actions}
 		 */
-		@SafeVarargs
-		public final Builder actions(Function<Action.Builder, ObjectBuilder<Action>>... fns) {
-			this.actions = new ArrayList<>(fns.length);
-			for (Function<Action.Builder, ObjectBuilder<Action>> fn : fns) {
-				this.actions.add(fn.apply(new Action.Builder()).build());
-			}
-			return this;
+		public final Builder actions(Function<ListBuilder<Action, Action.Builder>, ObjectBuilder<List<Action>>> fn) {
+			return actions(fn.apply(new ListBuilder<>(Action.Builder::new)).build());
 		}
 
 		/**
@@ -182,8 +180,10 @@ public class UpdateAliasesRequest extends RequestBase implements JsonpSerializab
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
-		public final Builder masterTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
-			return this.masterTimeout(fn.apply(new Time.Builder()).build());
+		public final Builder masterTimeout(Consumer<Time.Builder> fn) {
+			Time.Builder builder = new Time.Builder();
+			fn.accept(builder);
+			return this.masterTimeout(builder.build());
 		}
 
 		/**
@@ -201,8 +201,10 @@ public class UpdateAliasesRequest extends RequestBase implements JsonpSerializab
 		 * <p>
 		 * API name: {@code timeout}
 		 */
-		public final Builder timeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
-			return this.timeout(fn.apply(new Time.Builder()).build());
+		public final Builder timeout(Consumer<Time.Builder> fn) {
+			Time.Builder builder = new Time.Builder();
+			fn.accept(builder);
+			return this.timeout(builder.build());
 		}
 
 		/**

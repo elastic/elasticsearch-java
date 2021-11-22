@@ -34,7 +34,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.WildcardQuery
@@ -68,16 +68,18 @@ public class WildcardQuery extends QueryBase implements QueryVariant {
 
 	}
 
-	public static WildcardQuery of(Function<Builder, ObjectBuilder<WildcardQuery>> fn) {
-		return fn.apply(new Builder()).build();
+	public static WildcardQuery of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
-	 * {@link Query} variant type
+	 * Query variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "wildcard";
+	public Query.Kind _queryKind() {
+		return Query.Kind.Wildcard;
 	}
 
 	/**

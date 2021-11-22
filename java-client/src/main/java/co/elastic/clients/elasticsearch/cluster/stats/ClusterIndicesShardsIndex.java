@@ -34,7 +34,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: cluster.stats.ClusterIndicesShardsIndex
@@ -56,8 +56,10 @@ public class ClusterIndicesShardsIndex implements JsonpSerializable {
 
 	}
 
-	public static ClusterIndicesShardsIndex of(Function<Builder, ObjectBuilder<ClusterIndicesShardsIndex>> fn) {
-		return fn.apply(new Builder()).build();
+	public static ClusterIndicesShardsIndex of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -141,8 +143,10 @@ public class ClusterIndicesShardsIndex implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code primaries}
 		 */
-		public final Builder primaries(Function<ClusterShardMetrics.Builder, ObjectBuilder<ClusterShardMetrics>> fn) {
-			return this.primaries(fn.apply(new ClusterShardMetrics.Builder()).build());
+		public final Builder primaries(Consumer<ClusterShardMetrics.Builder> fn) {
+			ClusterShardMetrics.Builder builder = new ClusterShardMetrics.Builder();
+			fn.accept(builder);
+			return this.primaries(builder.build());
 		}
 
 		/**
@@ -162,8 +166,10 @@ public class ClusterIndicesShardsIndex implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code replication}
 		 */
-		public final Builder replication(Function<ClusterShardMetrics.Builder, ObjectBuilder<ClusterShardMetrics>> fn) {
-			return this.replication(fn.apply(new ClusterShardMetrics.Builder()).build());
+		public final Builder replication(Consumer<ClusterShardMetrics.Builder> fn) {
+			ClusterShardMetrics.Builder builder = new ClusterShardMetrics.Builder();
+			fn.accept(builder);
+			return this.replication(builder.build());
 		}
 
 		/**
@@ -183,8 +189,10 @@ public class ClusterIndicesShardsIndex implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code shards}
 		 */
-		public final Builder shards(Function<ClusterShardMetrics.Builder, ObjectBuilder<ClusterShardMetrics>> fn) {
-			return this.shards(fn.apply(new ClusterShardMetrics.Builder()).build());
+		public final Builder shards(Consumer<ClusterShardMetrics.Builder> fn) {
+			ClusterShardMetrics.Builder builder = new ClusterShardMetrics.Builder();
+			fn.accept(builder);
+			return this.shards(builder.build());
 		}
 
 		/**

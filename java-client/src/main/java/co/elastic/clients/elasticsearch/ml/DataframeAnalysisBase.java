@@ -29,6 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
@@ -37,7 +38,6 @@ import java.lang.Boolean;
 import java.lang.Double;
 import java.lang.Integer;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
@@ -697,14 +697,10 @@ public abstract class DataframeAnalysisBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code feature_processors}
 		 */
-		@SafeVarargs
 		public final BuilderT featureProcessors(
-				Function<DataframeAnalysisFeatureProcessor.Builder, ObjectBuilder<DataframeAnalysisFeatureProcessor>>... fns) {
-			this.featureProcessors = new ArrayList<>(fns.length);
-			for (Function<DataframeAnalysisFeatureProcessor.Builder, ObjectBuilder<DataframeAnalysisFeatureProcessor>> fn : fns) {
-				this.featureProcessors.add(fn.apply(new DataframeAnalysisFeatureProcessor.Builder()).build());
-			}
-			return self();
+				Function<ListBuilder<DataframeAnalysisFeatureProcessor, DataframeAnalysisFeatureProcessor.Builder>, ObjectBuilder<List<DataframeAnalysisFeatureProcessor>>> fn) {
+			return featureProcessors(
+					fn.apply(new ListBuilder<>(DataframeAnalysisFeatureProcessor.Builder::new)).build());
 		}
 
 		/**

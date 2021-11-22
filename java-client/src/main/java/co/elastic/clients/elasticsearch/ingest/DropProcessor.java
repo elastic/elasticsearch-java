@@ -30,7 +30,7 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 
 // typedef: ingest._types.DropProcessor
 @JsonpDeserializable
@@ -42,16 +42,18 @@ public class DropProcessor extends ProcessorBase implements ProcessorVariant {
 
 	}
 
-	public static DropProcessor of(Function<Builder, ObjectBuilder<DropProcessor>> fn) {
-		return fn.apply(new Builder()).build();
+	public static DropProcessor of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
-	 * {@link Processor} variant type
+	 * Processor variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "drop";
+	public Processor.Kind _processorKind() {
+		return Processor.Kind.Drop;
 	}
 
 	// ---------------------------------------------------------------------------------------------

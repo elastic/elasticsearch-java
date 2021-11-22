@@ -34,7 +34,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.ShapeQuery
@@ -58,16 +58,18 @@ public class ShapeQuery extends QueryBase implements QueryVariant {
 
 	}
 
-	public static ShapeQuery of(Function<Builder, ObjectBuilder<ShapeQuery>> fn) {
-		return fn.apply(new Builder()).build();
+	public static ShapeQuery of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
-	 * {@link Query} variant type
+	 * Query variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "shape";
+	public Query.Kind _queryKind() {
+		return Query.Kind.Shape;
 	}
 
 	/**
@@ -134,8 +136,10 @@ public class ShapeQuery extends QueryBase implements QueryVariant {
 		/**
 		 * Required -
 		 */
-		public final Builder shape(Function<ShapeFieldQuery.Builder, ObjectBuilder<ShapeFieldQuery>> fn) {
-			return this.shape(fn.apply(new ShapeFieldQuery.Builder()).build());
+		public final Builder shape(Consumer<ShapeFieldQuery.Builder> fn) {
+			ShapeFieldQuery.Builder builder = new ShapeFieldQuery.Builder();
+			fn.accept(builder);
+			return this.shape(builder.build());
 		}
 
 		@Nullable

@@ -38,23 +38,25 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Object;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: _types.analysis.TokenFilter
 // union type: Union[]
 @JsonpDeserializable
-public class TokenFilter implements TaggedUnion<Object>, JsonpSerializable {
+public class TokenFilter implements TaggedUnion<TokenFilter.Kind, Object>, JsonpSerializable {
 
-	public static final String DEFINITION = "definition";
-	public static final String NAME = "name";
+	public enum Kind {
+		Definition, Name
 
-	private final String _type;
+	}
+
+	private final Kind _kind;
 	private final Object _value;
 
 	@Override
-	public final String _type() {
-		return _type;
+	public final Kind _kind() {
+		return _kind;
 	}
 
 	@Override
@@ -62,27 +64,29 @@ public class TokenFilter implements TaggedUnion<Object>, JsonpSerializable {
 		return _value;
 	}
 
-	public TokenFilter(String type, Object value) {
-		this._type = type;
+	public TokenFilter(Kind kind, Object value) {
+		this._kind = kind;
 		this._value = value;
 	}
 
 	private TokenFilter(Builder builder) {
 
-		this._type = ModelTypeHelper.requireNonNull(builder._type, builder, "<variant type>");
+		this._kind = ModelTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
 		this._value = ModelTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
 
 	}
 
-	public static TokenFilter of(Function<Builder, ObjectBuilder<TokenFilter>> fn) {
-		return fn.apply(new Builder()).build();
+	public static TokenFilter of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
 	 * Is this variant instance of kind {@code definition}?
 	 */
-	public boolean _isDefinition() {
-		return DEFINITION.equals(_type());
+	public boolean isDefinition() {
+		return _kind == Kind.Definition;
 	}
 
 	/**
@@ -92,14 +96,14 @@ public class TokenFilter implements TaggedUnion<Object>, JsonpSerializable {
 	 *             if the current variant is not of the {@code definition} kind.
 	 */
 	public TokenFilterDefinition definition() {
-		return TaggedUnionUtils.get(this, DEFINITION);
+		return TaggedUnionUtils.get(this, Kind.Definition);
 	}
 
 	/**
 	 * Is this variant instance of kind {@code name}?
 	 */
-	public boolean _isName() {
-		return NAME.equals(_type());
+	public boolean isName() {
+		return _kind == Kind.Name;
 	}
 
 	/**
@@ -109,7 +113,7 @@ public class TokenFilter implements TaggedUnion<Object>, JsonpSerializable {
 	 *             if the current variant is not of the {@code name} kind.
 	 */
 	public String name() {
-		return TaggedUnionUtils.get(this, NAME);
+		return TaggedUnionUtils.get(this, Kind.Name);
 	}
 
 	@Override
@@ -117,8 +121,8 @@ public class TokenFilter implements TaggedUnion<Object>, JsonpSerializable {
 		if (_value instanceof JsonpSerializable) {
 			((JsonpSerializable) _value).serialize(generator, mapper);
 		} else {
-			switch (_type) {
-				case NAME :
+			switch (_kind) {
+				case Name :
 					generator.write(((String) this._value));
 
 					break;
@@ -128,21 +132,23 @@ public class TokenFilter implements TaggedUnion<Object>, JsonpSerializable {
 	}
 
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TokenFilter> {
-		private String _type;
+		private Kind _kind;
 		private Object _value;
 
 		public Builder definition(TokenFilterDefinition v) {
-			this._type = DEFINITION;
+			this._kind = Kind.Definition;
 			this._value = v;
 			return this;
 		}
 
-		public Builder definition(Function<TokenFilterDefinition.Builder, ObjectBuilder<TokenFilterDefinition>> f) {
-			return this.definition(f.apply(new TokenFilterDefinition.Builder()).build());
+		public Builder definition(Consumer<TokenFilterDefinition.Builder> fn) {
+			TokenFilterDefinition.Builder builder = new TokenFilterDefinition.Builder();
+			fn.accept(builder);
+			return this.definition(builder.build());
 		}
 
 		public Builder name(String v) {
-			this._type = NAME;
+			this._kind = Kind.Name;
 			this._value = v;
 			return this;
 		}
@@ -155,9 +161,9 @@ public class TokenFilter implements TaggedUnion<Object>, JsonpSerializable {
 	}
 
 	private static JsonpDeserializer<TokenFilter> buildTokenFilterDeserializer() {
-		return new UnionDeserializer.Builder<>(TokenFilter::new, false)
-				.addMember("definition", TokenFilterDefinition._DESERIALIZER)
-				.addMember("name", JsonpDeserializer.stringDeserializer()).build();
+		return new UnionDeserializer.Builder<TokenFilter, Kind, Object>(TokenFilter::new, false)
+				.addMember(Kind.Definition, TokenFilterDefinition._DESERIALIZER)
+				.addMember(Kind.Name, JsonpDeserializer.stringDeserializer()).build();
 	}
 
 	public static final JsonpDeserializer<TokenFilter> _DESERIALIZER = JsonpDeserializer

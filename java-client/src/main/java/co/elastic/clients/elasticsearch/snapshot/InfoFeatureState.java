@@ -37,7 +37,7 @@ import java.lang.String;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: snapshot._types.InfoFeatureState
@@ -56,8 +56,10 @@ public class InfoFeatureState implements JsonpSerializable {
 
 	}
 
-	public static InfoFeatureState of(Function<Builder, ObjectBuilder<InfoFeatureState>> fn) {
-		return fn.apply(new Builder()).build();
+	public static InfoFeatureState of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**

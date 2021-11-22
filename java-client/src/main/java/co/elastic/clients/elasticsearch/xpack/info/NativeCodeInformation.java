@@ -35,7 +35,7 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: xpack.info.NativeCodeInformation
@@ -54,8 +54,10 @@ public class NativeCodeInformation implements JsonpSerializable {
 
 	}
 
-	public static NativeCodeInformation of(Function<Builder, ObjectBuilder<NativeCodeInformation>> fn) {
-		return fn.apply(new Builder()).build();
+	public static NativeCodeInformation of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**

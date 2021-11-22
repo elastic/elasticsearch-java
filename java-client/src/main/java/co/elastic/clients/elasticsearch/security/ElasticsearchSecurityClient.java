@@ -26,24 +26,25 @@ package co.elastic.clients.elasticsearch.security;
 import co.elastic.clients.ApiClient;
 import co.elastic.clients.elasticsearch._types.ElasticsearchException;
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
+import co.elastic.clients.transport.ElasticsearchTransport;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.Transport;
 import co.elastic.clients.transport.TransportOptions;
 import co.elastic.clients.util.ObjectBuilder;
 import java.io.IOException;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 /**
  * Client for the security namespace.
  */
-public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchSecurityClient> {
+public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchTransport, ElasticsearchSecurityClient> {
 
-	public ElasticsearchSecurityClient(Transport transport) {
+	public ElasticsearchSecurityClient(ElasticsearchTransport transport) {
 		super(transport, null);
 	}
 
-	public ElasticsearchSecurityClient(Transport transport, @Nullable TransportOptions transportOptions) {
+	public ElasticsearchSecurityClient(ElasticsearchTransport transport, @Nullable TransportOptions transportOptions) {
 		super(transport, transportOptions);
 	}
 
@@ -96,10 +97,11 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchSecurity
 	 *      on elastic.co</a>
 	 */
 
-	public final ChangePasswordResponse changePassword(
-			Function<ChangePasswordRequest.Builder, ObjectBuilder<ChangePasswordRequest>> fn)
+	public final ChangePasswordResponse changePassword(Consumer<ChangePasswordRequest.Builder> fn)
 			throws IOException, ElasticsearchException {
-		return changePassword(fn.apply(new ChangePasswordRequest.Builder()).build());
+		ChangePasswordRequest.Builder builder = new ChangePasswordRequest.Builder();
+		fn.accept(builder);
+		return changePassword(builder.build());
 	}
 
 	/**
@@ -144,10 +146,11 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchSecurity
 	 *      on elastic.co</a>
 	 */
 
-	public final ClearApiKeyCacheResponse clearApiKeyCache(
-			Function<ClearApiKeyCacheRequest.Builder, ObjectBuilder<ClearApiKeyCacheRequest>> fn)
+	public final ClearApiKeyCacheResponse clearApiKeyCache(Consumer<ClearApiKeyCacheRequest.Builder> fn)
 			throws IOException, ElasticsearchException {
-		return clearApiKeyCache(fn.apply(new ClearApiKeyCacheRequest.Builder()).build());
+		ClearApiKeyCacheRequest.Builder builder = new ClearApiKeyCacheRequest.Builder();
+		fn.accept(builder);
+		return clearApiKeyCache(builder.build());
 	}
 
 	// ----- Endpoint: security.clear_cached_privileges
@@ -179,10 +182,11 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchSecurity
 	 *      on elastic.co</a>
 	 */
 
-	public final ClearCachedPrivilegesResponse clearCachedPrivileges(
-			Function<ClearCachedPrivilegesRequest.Builder, ObjectBuilder<ClearCachedPrivilegesRequest>> fn)
+	public final ClearCachedPrivilegesResponse clearCachedPrivileges(Consumer<ClearCachedPrivilegesRequest.Builder> fn)
 			throws IOException, ElasticsearchException {
-		return clearCachedPrivileges(fn.apply(new ClearCachedPrivilegesRequest.Builder()).build());
+		ClearCachedPrivilegesRequest.Builder builder = new ClearCachedPrivilegesRequest.Builder();
+		fn.accept(builder);
+		return clearCachedPrivileges(builder.build());
 	}
 
 	// ----- Endpoint: security.clear_cached_realms
@@ -216,10 +220,11 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchSecurity
 	 *      on elastic.co</a>
 	 */
 
-	public final ClearCachedRealmsResponse clearCachedRealms(
-			Function<ClearCachedRealmsRequest.Builder, ObjectBuilder<ClearCachedRealmsRequest>> fn)
+	public final ClearCachedRealmsResponse clearCachedRealms(Consumer<ClearCachedRealmsRequest.Builder> fn)
 			throws IOException, ElasticsearchException {
-		return clearCachedRealms(fn.apply(new ClearCachedRealmsRequest.Builder()).build());
+		ClearCachedRealmsRequest.Builder builder = new ClearCachedRealmsRequest.Builder();
+		fn.accept(builder);
+		return clearCachedRealms(builder.build());
 	}
 
 	// ----- Endpoint: security.clear_cached_roles
@@ -251,10 +256,11 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchSecurity
 	 *      on elastic.co</a>
 	 */
 
-	public final ClearCachedRolesResponse clearCachedRoles(
-			Function<ClearCachedRolesRequest.Builder, ObjectBuilder<ClearCachedRolesRequest>> fn)
+	public final ClearCachedRolesResponse clearCachedRoles(Consumer<ClearCachedRolesRequest.Builder> fn)
 			throws IOException, ElasticsearchException {
-		return clearCachedRoles(fn.apply(new ClearCachedRolesRequest.Builder()).build());
+		ClearCachedRolesRequest.Builder builder = new ClearCachedRolesRequest.Builder();
+		fn.accept(builder);
+		return clearCachedRoles(builder.build());
 	}
 
 	// ----- Endpoint: security.clear_cached_service_tokens
@@ -287,9 +293,10 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchSecurity
 	 */
 
 	public final ClearCachedServiceTokensResponse clearCachedServiceTokens(
-			Function<ClearCachedServiceTokensRequest.Builder, ObjectBuilder<ClearCachedServiceTokensRequest>> fn)
-			throws IOException, ElasticsearchException {
-		return clearCachedServiceTokens(fn.apply(new ClearCachedServiceTokensRequest.Builder()).build());
+			Consumer<ClearCachedServiceTokensRequest.Builder> fn) throws IOException, ElasticsearchException {
+		ClearCachedServiceTokensRequest.Builder builder = new ClearCachedServiceTokensRequest.Builder();
+		fn.accept(builder);
+		return clearCachedServiceTokens(builder.build());
 	}
 
 	// ----- Endpoint: security.create_api_key
@@ -320,10 +327,11 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchSecurity
 	 *      on elastic.co</a>
 	 */
 
-	public final CreateApiKeyResponse createApiKey(
-			Function<CreateApiKeyRequest.Builder, ObjectBuilder<CreateApiKeyRequest>> fn)
+	public final CreateApiKeyResponse createApiKey(Consumer<CreateApiKeyRequest.Builder> fn)
 			throws IOException, ElasticsearchException {
-		return createApiKey(fn.apply(new CreateApiKeyRequest.Builder()).build());
+		CreateApiKeyRequest.Builder builder = new CreateApiKeyRequest.Builder();
+		fn.accept(builder);
+		return createApiKey(builder.build());
 	}
 
 	/**
@@ -370,10 +378,11 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchSecurity
 	 *      on elastic.co</a>
 	 */
 
-	public final CreateServiceTokenResponse createServiceToken(
-			Function<CreateServiceTokenRequest.Builder, ObjectBuilder<CreateServiceTokenRequest>> fn)
+	public final CreateServiceTokenResponse createServiceToken(Consumer<CreateServiceTokenRequest.Builder> fn)
 			throws IOException, ElasticsearchException {
-		return createServiceToken(fn.apply(new CreateServiceTokenRequest.Builder()).build());
+		CreateServiceTokenRequest.Builder builder = new CreateServiceTokenRequest.Builder();
+		fn.accept(builder);
+		return createServiceToken(builder.build());
 	}
 
 	// ----- Endpoint: security.delete_privileges
@@ -405,10 +414,11 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchSecurity
 	 *      on elastic.co</a>
 	 */
 
-	public final DeletePrivilegesResponse deletePrivileges(
-			Function<DeletePrivilegesRequest.Builder, ObjectBuilder<DeletePrivilegesRequest>> fn)
+	public final DeletePrivilegesResponse deletePrivileges(Consumer<DeletePrivilegesRequest.Builder> fn)
 			throws IOException, ElasticsearchException {
-		return deletePrivileges(fn.apply(new DeletePrivilegesRequest.Builder()).build());
+		DeletePrivilegesRequest.Builder builder = new DeletePrivilegesRequest.Builder();
+		fn.accept(builder);
+		return deletePrivileges(builder.build());
 	}
 
 	// ----- Endpoint: security.delete_role
@@ -439,9 +449,11 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchSecurity
 	 *      on elastic.co</a>
 	 */
 
-	public final DeleteRoleResponse deleteRole(Function<DeleteRoleRequest.Builder, ObjectBuilder<DeleteRoleRequest>> fn)
+	public final DeleteRoleResponse deleteRole(Consumer<DeleteRoleRequest.Builder> fn)
 			throws IOException, ElasticsearchException {
-		return deleteRole(fn.apply(new DeleteRoleRequest.Builder()).build());
+		DeleteRoleRequest.Builder builder = new DeleteRoleRequest.Builder();
+		fn.accept(builder);
+		return deleteRole(builder.build());
 	}
 
 	// ----- Endpoint: security.delete_role_mapping
@@ -473,10 +485,11 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchSecurity
 	 *      on elastic.co</a>
 	 */
 
-	public final DeleteRoleMappingResponse deleteRoleMapping(
-			Function<DeleteRoleMappingRequest.Builder, ObjectBuilder<DeleteRoleMappingRequest>> fn)
+	public final DeleteRoleMappingResponse deleteRoleMapping(Consumer<DeleteRoleMappingRequest.Builder> fn)
 			throws IOException, ElasticsearchException {
-		return deleteRoleMapping(fn.apply(new DeleteRoleMappingRequest.Builder()).build());
+		DeleteRoleMappingRequest.Builder builder = new DeleteRoleMappingRequest.Builder();
+		fn.accept(builder);
+		return deleteRoleMapping(builder.build());
 	}
 
 	// ----- Endpoint: security.delete_service_token
@@ -508,10 +521,11 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchSecurity
 	 *      on elastic.co</a>
 	 */
 
-	public final DeleteServiceTokenResponse deleteServiceToken(
-			Function<DeleteServiceTokenRequest.Builder, ObjectBuilder<DeleteServiceTokenRequest>> fn)
+	public final DeleteServiceTokenResponse deleteServiceToken(Consumer<DeleteServiceTokenRequest.Builder> fn)
 			throws IOException, ElasticsearchException {
-		return deleteServiceToken(fn.apply(new DeleteServiceTokenRequest.Builder()).build());
+		DeleteServiceTokenRequest.Builder builder = new DeleteServiceTokenRequest.Builder();
+		fn.accept(builder);
+		return deleteServiceToken(builder.build());
 	}
 
 	// ----- Endpoint: security.delete_user
@@ -542,9 +556,11 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchSecurity
 	 *      on elastic.co</a>
 	 */
 
-	public final DeleteUserResponse deleteUser(Function<DeleteUserRequest.Builder, ObjectBuilder<DeleteUserRequest>> fn)
+	public final DeleteUserResponse deleteUser(Consumer<DeleteUserRequest.Builder> fn)
 			throws IOException, ElasticsearchException {
-		return deleteUser(fn.apply(new DeleteUserRequest.Builder()).build());
+		DeleteUserRequest.Builder builder = new DeleteUserRequest.Builder();
+		fn.accept(builder);
+		return deleteUser(builder.build());
 	}
 
 	// ----- Endpoint: security.disable_user
@@ -575,10 +591,11 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchSecurity
 	 *      on elastic.co</a>
 	 */
 
-	public final DisableUserResponse disableUser(
-			Function<DisableUserRequest.Builder, ObjectBuilder<DisableUserRequest>> fn)
+	public final DisableUserResponse disableUser(Consumer<DisableUserRequest.Builder> fn)
 			throws IOException, ElasticsearchException {
-		return disableUser(fn.apply(new DisableUserRequest.Builder()).build());
+		DisableUserRequest.Builder builder = new DisableUserRequest.Builder();
+		fn.accept(builder);
+		return disableUser(builder.build());
 	}
 
 	// ----- Endpoint: security.enable_user
@@ -609,9 +626,11 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchSecurity
 	 *      on elastic.co</a>
 	 */
 
-	public final EnableUserResponse enableUser(Function<EnableUserRequest.Builder, ObjectBuilder<EnableUserRequest>> fn)
+	public final EnableUserResponse enableUser(Consumer<EnableUserRequest.Builder> fn)
 			throws IOException, ElasticsearchException {
-		return enableUser(fn.apply(new EnableUserRequest.Builder()).build());
+		EnableUserRequest.Builder builder = new EnableUserRequest.Builder();
+		fn.accept(builder);
+		return enableUser(builder.build());
 	}
 
 	// ----- Endpoint: security.get_api_key
@@ -642,9 +661,11 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchSecurity
 	 *      on elastic.co</a>
 	 */
 
-	public final GetApiKeyResponse getApiKey(Function<GetApiKeyRequest.Builder, ObjectBuilder<GetApiKeyRequest>> fn)
+	public final GetApiKeyResponse getApiKey(Consumer<GetApiKeyRequest.Builder> fn)
 			throws IOException, ElasticsearchException {
-		return getApiKey(fn.apply(new GetApiKeyRequest.Builder()).build());
+		GetApiKeyRequest.Builder builder = new GetApiKeyRequest.Builder();
+		fn.accept(builder);
+		return getApiKey(builder.build());
 	}
 
 	/**
@@ -704,10 +725,11 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchSecurity
 	 *      on elastic.co</a>
 	 */
 
-	public final GetPrivilegesResponse getPrivileges(
-			Function<GetPrivilegesRequest.Builder, ObjectBuilder<GetPrivilegesRequest>> fn)
+	public final GetPrivilegesResponse getPrivileges(Consumer<GetPrivilegesRequest.Builder> fn)
 			throws IOException, ElasticsearchException {
-		return getPrivileges(fn.apply(new GetPrivilegesRequest.Builder()).build());
+		GetPrivilegesRequest.Builder builder = new GetPrivilegesRequest.Builder();
+		fn.accept(builder);
+		return getPrivileges(builder.build());
 	}
 
 	/**
@@ -751,9 +773,11 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchSecurity
 	 *      on elastic.co</a>
 	 */
 
-	public final GetRoleResponse getRole(Function<GetRoleRequest.Builder, ObjectBuilder<GetRoleRequest>> fn)
+	public final GetRoleResponse getRole(Consumer<GetRoleRequest.Builder> fn)
 			throws IOException, ElasticsearchException {
-		return getRole(fn.apply(new GetRoleRequest.Builder()).build());
+		GetRoleRequest.Builder builder = new GetRoleRequest.Builder();
+		fn.accept(builder);
+		return getRole(builder.build());
 	}
 
 	/**
@@ -798,10 +822,11 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchSecurity
 	 *      on elastic.co</a>
 	 */
 
-	public final GetRoleMappingResponse getRoleMapping(
-			Function<GetRoleMappingRequest.Builder, ObjectBuilder<GetRoleMappingRequest>> fn)
+	public final GetRoleMappingResponse getRoleMapping(Consumer<GetRoleMappingRequest.Builder> fn)
 			throws IOException, ElasticsearchException {
-		return getRoleMapping(fn.apply(new GetRoleMappingRequest.Builder()).build());
+		GetRoleMappingRequest.Builder builder = new GetRoleMappingRequest.Builder();
+		fn.accept(builder);
+		return getRoleMapping(builder.build());
 	}
 
 	/**
@@ -846,10 +871,11 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchSecurity
 	 *      on elastic.co</a>
 	 */
 
-	public final GetServiceAccountsResponse getServiceAccounts(
-			Function<GetServiceAccountsRequest.Builder, ObjectBuilder<GetServiceAccountsRequest>> fn)
+	public final GetServiceAccountsResponse getServiceAccounts(Consumer<GetServiceAccountsRequest.Builder> fn)
 			throws IOException, ElasticsearchException {
-		return getServiceAccounts(fn.apply(new GetServiceAccountsRequest.Builder()).build());
+		GetServiceAccountsRequest.Builder builder = new GetServiceAccountsRequest.Builder();
+		fn.accept(builder);
+		return getServiceAccounts(builder.build());
 	}
 
 	/**
@@ -894,10 +920,11 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchSecurity
 	 *      on elastic.co</a>
 	 */
 
-	public final GetServiceCredentialsResponse getServiceCredentials(
-			Function<GetServiceCredentialsRequest.Builder, ObjectBuilder<GetServiceCredentialsRequest>> fn)
+	public final GetServiceCredentialsResponse getServiceCredentials(Consumer<GetServiceCredentialsRequest.Builder> fn)
 			throws IOException, ElasticsearchException {
-		return getServiceCredentials(fn.apply(new GetServiceCredentialsRequest.Builder()).build());
+		GetServiceCredentialsRequest.Builder builder = new GetServiceCredentialsRequest.Builder();
+		fn.accept(builder);
+		return getServiceCredentials(builder.build());
 	}
 
 	// ----- Endpoint: security.get_token
@@ -928,9 +955,11 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchSecurity
 	 *      on elastic.co</a>
 	 */
 
-	public final GetTokenResponse getToken(Function<GetTokenRequest.Builder, ObjectBuilder<GetTokenRequest>> fn)
+	public final GetTokenResponse getToken(Consumer<GetTokenRequest.Builder> fn)
 			throws IOException, ElasticsearchException {
-		return getToken(fn.apply(new GetTokenRequest.Builder()).build());
+		GetTokenRequest.Builder builder = new GetTokenRequest.Builder();
+		fn.accept(builder);
+		return getToken(builder.build());
 	}
 
 	/**
@@ -974,9 +1003,11 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchSecurity
 	 *      on elastic.co</a>
 	 */
 
-	public final GetUserResponse getUser(Function<GetUserRequest.Builder, ObjectBuilder<GetUserRequest>> fn)
+	public final GetUserResponse getUser(Consumer<GetUserRequest.Builder> fn)
 			throws IOException, ElasticsearchException {
-		return getUser(fn.apply(new GetUserRequest.Builder()).build());
+		GetUserRequest.Builder builder = new GetUserRequest.Builder();
+		fn.accept(builder);
+		return getUser(builder.build());
 	}
 
 	/**
@@ -1021,10 +1052,11 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchSecurity
 	 *      on elastic.co</a>
 	 */
 
-	public final GetUserPrivilegesResponse getUserPrivileges(
-			Function<GetUserPrivilegesRequest.Builder, ObjectBuilder<GetUserPrivilegesRequest>> fn)
+	public final GetUserPrivilegesResponse getUserPrivileges(Consumer<GetUserPrivilegesRequest.Builder> fn)
 			throws IOException, ElasticsearchException {
-		return getUserPrivileges(fn.apply(new GetUserPrivilegesRequest.Builder()).build());
+		GetUserPrivilegesRequest.Builder builder = new GetUserPrivilegesRequest.Builder();
+		fn.accept(builder);
+		return getUserPrivileges(builder.build());
 	}
 
 	/**
@@ -1068,10 +1100,11 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchSecurity
 	 *      on elastic.co</a>
 	 */
 
-	public final GrantApiKeyResponse grantApiKey(
-			Function<GrantApiKeyRequest.Builder, ObjectBuilder<GrantApiKeyRequest>> fn)
+	public final GrantApiKeyResponse grantApiKey(Consumer<GrantApiKeyRequest.Builder> fn)
 			throws IOException, ElasticsearchException {
-		return grantApiKey(fn.apply(new GrantApiKeyRequest.Builder()).build());
+		GrantApiKeyRequest.Builder builder = new GrantApiKeyRequest.Builder();
+		fn.accept(builder);
+		return grantApiKey(builder.build());
 	}
 
 	// ----- Endpoint: security.has_privileges
@@ -1103,10 +1136,11 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchSecurity
 	 *      on elastic.co</a>
 	 */
 
-	public final HasPrivilegesResponse hasPrivileges(
-			Function<HasPrivilegesRequest.Builder, ObjectBuilder<HasPrivilegesRequest>> fn)
+	public final HasPrivilegesResponse hasPrivileges(Consumer<HasPrivilegesRequest.Builder> fn)
 			throws IOException, ElasticsearchException {
-		return hasPrivileges(fn.apply(new HasPrivilegesRequest.Builder()).build());
+		HasPrivilegesRequest.Builder builder = new HasPrivilegesRequest.Builder();
+		fn.accept(builder);
+		return hasPrivileges(builder.build());
 	}
 
 	/**
@@ -1151,10 +1185,11 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchSecurity
 	 *      on elastic.co</a>
 	 */
 
-	public final InvalidateApiKeyResponse invalidateApiKey(
-			Function<InvalidateApiKeyRequest.Builder, ObjectBuilder<InvalidateApiKeyRequest>> fn)
+	public final InvalidateApiKeyResponse invalidateApiKey(Consumer<InvalidateApiKeyRequest.Builder> fn)
 			throws IOException, ElasticsearchException {
-		return invalidateApiKey(fn.apply(new InvalidateApiKeyRequest.Builder()).build());
+		InvalidateApiKeyRequest.Builder builder = new InvalidateApiKeyRequest.Builder();
+		fn.accept(builder);
+		return invalidateApiKey(builder.build());
 	}
 
 	/**
@@ -1199,10 +1234,11 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchSecurity
 	 *      on elastic.co</a>
 	 */
 
-	public final InvalidateTokenResponse invalidateToken(
-			Function<InvalidateTokenRequest.Builder, ObjectBuilder<InvalidateTokenRequest>> fn)
+	public final InvalidateTokenResponse invalidateToken(Consumer<InvalidateTokenRequest.Builder> fn)
 			throws IOException, ElasticsearchException {
-		return invalidateToken(fn.apply(new InvalidateTokenRequest.Builder()).build());
+		InvalidateTokenRequest.Builder builder = new InvalidateTokenRequest.Builder();
+		fn.accept(builder);
+		return invalidateToken(builder.build());
 	}
 
 	/**
@@ -1247,10 +1283,11 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchSecurity
 	 *      on elastic.co</a>
 	 */
 
-	public final PutPrivilegesResponse putPrivileges(
-			Function<PutPrivilegesRequest.Builder, ObjectBuilder<PutPrivilegesRequest>> fn)
+	public final PutPrivilegesResponse putPrivileges(Consumer<PutPrivilegesRequest.Builder> fn)
 			throws IOException, ElasticsearchException {
-		return putPrivileges(fn.apply(new PutPrivilegesRequest.Builder()).build());
+		PutPrivilegesRequest.Builder builder = new PutPrivilegesRequest.Builder();
+		fn.accept(builder);
+		return putPrivileges(builder.build());
 	}
 
 	/**
@@ -1294,9 +1331,11 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchSecurity
 	 *      on elastic.co</a>
 	 */
 
-	public final PutRoleResponse putRole(Function<PutRoleRequest.Builder, ObjectBuilder<PutRoleRequest>> fn)
+	public final PutRoleResponse putRole(Consumer<PutRoleRequest.Builder> fn)
 			throws IOException, ElasticsearchException {
-		return putRole(fn.apply(new PutRoleRequest.Builder()).build());
+		PutRoleRequest.Builder builder = new PutRoleRequest.Builder();
+		fn.accept(builder);
+		return putRole(builder.build());
 	}
 
 	// ----- Endpoint: security.put_role_mapping
@@ -1328,10 +1367,11 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchSecurity
 	 *      on elastic.co</a>
 	 */
 
-	public final PutRoleMappingResponse putRoleMapping(
-			Function<PutRoleMappingRequest.Builder, ObjectBuilder<PutRoleMappingRequest>> fn)
+	public final PutRoleMappingResponse putRoleMapping(Consumer<PutRoleMappingRequest.Builder> fn)
 			throws IOException, ElasticsearchException {
-		return putRoleMapping(fn.apply(new PutRoleMappingRequest.Builder()).build());
+		PutRoleMappingRequest.Builder builder = new PutRoleMappingRequest.Builder();
+		fn.accept(builder);
+		return putRoleMapping(builder.build());
 	}
 
 	// ----- Endpoint: security.put_user
@@ -1364,9 +1404,11 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchSecurity
 	 *      on elastic.co</a>
 	 */
 
-	public final PutUserResponse putUser(Function<PutUserRequest.Builder, ObjectBuilder<PutUserRequest>> fn)
+	public final PutUserResponse putUser(Consumer<PutUserRequest.Builder> fn)
 			throws IOException, ElasticsearchException {
-		return putUser(fn.apply(new PutUserRequest.Builder()).build());
+		PutUserRequest.Builder builder = new PutUserRequest.Builder();
+		fn.accept(builder);
+		return putUser(builder.build());
 	}
 
 }

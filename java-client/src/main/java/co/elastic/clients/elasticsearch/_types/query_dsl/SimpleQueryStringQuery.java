@@ -37,7 +37,7 @@ import java.lang.String;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.SimpleQueryStringQuery
@@ -101,16 +101,18 @@ public class SimpleQueryStringQuery extends QueryBase implements QueryVariant {
 
 	}
 
-	public static SimpleQueryStringQuery of(Function<Builder, ObjectBuilder<SimpleQueryStringQuery>> fn) {
-		return fn.apply(new Builder()).build();
+	public static SimpleQueryStringQuery of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
-	 * {@link Query} variant type
+	 * Query variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "simple_query_string";
+	public Query.Kind _queryKind() {
+		return Query.Kind.SimpleQueryString;
 	}
 
 	/**
@@ -393,8 +395,10 @@ public class SimpleQueryStringQuery extends QueryBase implements QueryVariant {
 		/**
 		 * API name: {@code flags}
 		 */
-		public final Builder flags(Function<SimpleQueryStringFlags.Builder, ObjectBuilder<SimpleQueryStringFlags>> fn) {
-			return this.flags(fn.apply(new SimpleQueryStringFlags.Builder()).build());
+		public final Builder flags(Consumer<SimpleQueryStringFlags.Builder> fn) {
+			SimpleQueryStringFlags.Builder builder = new SimpleQueryStringFlags.Builder();
+			fn.accept(builder);
+			return this.flags(builder.build());
 		}
 
 		/**

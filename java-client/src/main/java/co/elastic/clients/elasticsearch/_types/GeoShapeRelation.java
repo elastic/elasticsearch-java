@@ -23,13 +23,21 @@
 
 package co.elastic.clients.elasticsearch._types;
 
+import co.elastic.clients.json.JsonEnum;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
-import co.elastic.clients.util.StringEnum;
 
 @JsonpDeserializable
-public enum GeoShapeRelation implements StringEnum {
-	Intersects("intersects"), Disjoint("disjoint"), Within("within"), Contains("contains");
+public enum GeoShapeRelation implements JsonEnum {
+	Intersects("intersects"),
+
+	Disjoint("disjoint"),
+
+	Within("within"),
+
+	Contains("contains"),
+
+	;
 
 	private final String jsonValue;
 
@@ -41,6 +49,6 @@ public enum GeoShapeRelation implements StringEnum {
 		return this.jsonValue;
 	}
 
-	public static final StringEnum.Deserializer<GeoShapeRelation> _DESERIALIZER = new StringEnum.Deserializer<>(
+	public static final JsonEnum.Deserializer<GeoShapeRelation> _DESERIALIZER = new JsonEnum.Deserializer<>(
 			GeoShapeRelation.values());
 }

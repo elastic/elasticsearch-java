@@ -23,6 +23,7 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
+import co.elastic.clients.json.JsonEnum;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -37,24 +38,45 @@ import co.elastic.clients.util.TaggedUnionUtils;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Object;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.DataframeEvaluationContainer
 // union type: Container[]
 @JsonpDeserializable
-public class DataframeEvaluation implements TaggedUnion<Object>, JsonpSerializable {
+public class DataframeEvaluation implements TaggedUnion<DataframeEvaluation.Kind, Object>, JsonpSerializable {
 
-	public static final String CLASSIFICATION = "classification";
-	public static final String OUTLIER_DETECTION = "outlier_detection";
-	public static final String REGRESSION = "regression";
+	/**
+	 * {@link DataframeEvaluation} variant kinds.
+	 */
 
-	private final String _type;
+	public enum Kind implements JsonEnum {
+		Classification("classification"),
+
+		OutlierDetection("outlier_detection"),
+
+		Regression("regression"),
+
+		;
+
+		private final String jsonValue;
+
+		Kind(String jsonValue) {
+			this.jsonValue = jsonValue;
+		}
+
+		public String jsonValue() {
+			return this.jsonValue;
+		}
+
+	}
+
+	private final Kind _kind;
 	private final Object _value;
 
 	@Override
-	public final String _type() {
-		return _type;
+	public final Kind _kind() {
+		return _kind;
 	}
 
 	@Override
@@ -64,27 +86,29 @@ public class DataframeEvaluation implements TaggedUnion<Object>, JsonpSerializab
 
 	public DataframeEvaluation(DataframeEvaluationVariant value) {
 
-		this._type = ModelTypeHelper.requireNonNull(value._variantType(), this, "<variant type>");
+		this._kind = ModelTypeHelper.requireNonNull(value._dataframeEvaluationKind(), this, "<variant kind>");
 		this._value = ModelTypeHelper.requireNonNull(value, this, "<variant value>");
 
 	}
 
 	private DataframeEvaluation(Builder builder) {
 
-		this._type = ModelTypeHelper.requireNonNull(builder._type, builder, "<variant type>");
+		this._kind = ModelTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
 		this._value = ModelTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
 
 	}
 
-	public static DataframeEvaluation of(Function<Builder, ObjectBuilder<DataframeEvaluation>> fn) {
-		return fn.apply(new Builder()).build();
+	public static DataframeEvaluation of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
 	 * Is this variant instance of kind {@code classification}?
 	 */
-	public boolean _isClassification() {
-		return CLASSIFICATION.equals(_type());
+	public boolean isClassification() {
+		return _kind == Kind.Classification;
 	}
 
 	/**
@@ -94,14 +118,14 @@ public class DataframeEvaluation implements TaggedUnion<Object>, JsonpSerializab
 	 *             if the current variant is not of the {@code classification} kind.
 	 */
 	public DataframeEvaluationClassification classification() {
-		return TaggedUnionUtils.get(this, CLASSIFICATION);
+		return TaggedUnionUtils.get(this, Kind.Classification);
 	}
 
 	/**
 	 * Is this variant instance of kind {@code outlier_detection}?
 	 */
-	public boolean _isOutlierDetection() {
-		return OUTLIER_DETECTION.equals(_type());
+	public boolean isOutlierDetection() {
+		return _kind == Kind.OutlierDetection;
 	}
 
 	/**
@@ -112,14 +136,14 @@ public class DataframeEvaluation implements TaggedUnion<Object>, JsonpSerializab
 	 *             kind.
 	 */
 	public DataframeEvaluationOutlierDetection outlierDetection() {
-		return TaggedUnionUtils.get(this, OUTLIER_DETECTION);
+		return TaggedUnionUtils.get(this, Kind.OutlierDetection);
 	}
 
 	/**
 	 * Is this variant instance of kind {@code regression}?
 	 */
-	public boolean _isRegression() {
-		return REGRESSION.equals(_type());
+	public boolean isRegression() {
+		return _kind == Kind.Regression;
 	}
 
 	/**
@@ -129,7 +153,7 @@ public class DataframeEvaluation implements TaggedUnion<Object>, JsonpSerializab
 	 *             if the current variant is not of the {@code regression} kind.
 	 */
 	public DataframeEvaluationRegression regression() {
-		return TaggedUnionUtils.get(this, REGRESSION);
+		return TaggedUnionUtils.get(this, Kind.Regression);
 	}
 
 	@Override
@@ -138,7 +162,7 @@ public class DataframeEvaluation implements TaggedUnion<Object>, JsonpSerializab
 
 		generator.writeStartObject();
 
-		generator.writeKey(_type);
+		generator.writeKey(_kind.jsonValue());
 		if (_value instanceof JsonpSerializable) {
 			((JsonpSerializable) _value).serialize(generator, mapper);
 		}
@@ -148,40 +172,43 @@ public class DataframeEvaluation implements TaggedUnion<Object>, JsonpSerializab
 	}
 
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DataframeEvaluation> {
-		private String _type;
+		private Kind _kind;
 		private Object _value;
 
 		public Builder classification(DataframeEvaluationClassification v) {
-			this._type = CLASSIFICATION;
+			this._kind = Kind.Classification;
 			this._value = v;
 			return this;
 		}
 
-		public Builder classification(
-				Function<DataframeEvaluationClassification.Builder, ObjectBuilder<DataframeEvaluationClassification>> f) {
-			return this.classification(f.apply(new DataframeEvaluationClassification.Builder()).build());
+		public Builder classification(Consumer<DataframeEvaluationClassification.Builder> fn) {
+			DataframeEvaluationClassification.Builder builder = new DataframeEvaluationClassification.Builder();
+			fn.accept(builder);
+			return this.classification(builder.build());
 		}
 
 		public Builder outlierDetection(DataframeEvaluationOutlierDetection v) {
-			this._type = OUTLIER_DETECTION;
+			this._kind = Kind.OutlierDetection;
 			this._value = v;
 			return this;
 		}
 
-		public Builder outlierDetection(
-				Function<DataframeEvaluationOutlierDetection.Builder, ObjectBuilder<DataframeEvaluationOutlierDetection>> f) {
-			return this.outlierDetection(f.apply(new DataframeEvaluationOutlierDetection.Builder()).build());
+		public Builder outlierDetection(Consumer<DataframeEvaluationOutlierDetection.Builder> fn) {
+			DataframeEvaluationOutlierDetection.Builder builder = new DataframeEvaluationOutlierDetection.Builder();
+			fn.accept(builder);
+			return this.outlierDetection(builder.build());
 		}
 
 		public Builder regression(DataframeEvaluationRegression v) {
-			this._type = REGRESSION;
+			this._kind = Kind.Regression;
 			this._value = v;
 			return this;
 		}
 
-		public Builder regression(
-				Function<DataframeEvaluationRegression.Builder, ObjectBuilder<DataframeEvaluationRegression>> f) {
-			return this.regression(f.apply(new DataframeEvaluationRegression.Builder()).build());
+		public Builder regression(Consumer<DataframeEvaluationRegression.Builder> fn) {
+			DataframeEvaluationRegression.Builder builder = new DataframeEvaluationRegression.Builder();
+			fn.accept(builder);
+			return this.regression(builder.build());
 		}
 
 		public DataframeEvaluation build() {

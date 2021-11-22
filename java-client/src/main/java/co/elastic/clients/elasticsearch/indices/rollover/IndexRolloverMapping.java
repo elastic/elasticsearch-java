@@ -40,23 +40,25 @@ import java.lang.Object;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: indices.rollover.IndexRolloverMapping
 // union type: Union[]
 @JsonpDeserializable
-public class IndexRolloverMapping implements TaggedUnion<Object>, JsonpSerializable {
+public class IndexRolloverMapping implements TaggedUnion<IndexRolloverMapping.Kind, Object>, JsonpSerializable {
 
-	public static final String BY_TYPE = "by_type";
-	public static final String SINGLE = "single";
+	public enum Kind {
+		ByType, Single
 
-	private final String _type;
+	}
+
+	private final Kind _kind;
 	private final Object _value;
 
 	@Override
-	public final String _type() {
-		return _type;
+	public final Kind _kind() {
+		return _kind;
 	}
 
 	@Override
@@ -64,27 +66,29 @@ public class IndexRolloverMapping implements TaggedUnion<Object>, JsonpSerializa
 		return _value;
 	}
 
-	public IndexRolloverMapping(String type, Object value) {
-		this._type = type;
+	public IndexRolloverMapping(Kind kind, Object value) {
+		this._kind = kind;
 		this._value = value;
 	}
 
 	private IndexRolloverMapping(Builder builder) {
 
-		this._type = ModelTypeHelper.requireNonNull(builder._type, builder, "<variant type>");
+		this._kind = ModelTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
 		this._value = ModelTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
 
 	}
 
-	public static IndexRolloverMapping of(Function<Builder, ObjectBuilder<IndexRolloverMapping>> fn) {
-		return fn.apply(new Builder()).build();
+	public static IndexRolloverMapping of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
 	 * Is this variant instance of kind {@code by_type}?
 	 */
-	public boolean _isByType() {
-		return BY_TYPE.equals(_type());
+	public boolean isByType() {
+		return _kind == Kind.ByType;
 	}
 
 	/**
@@ -94,14 +98,14 @@ public class IndexRolloverMapping implements TaggedUnion<Object>, JsonpSerializa
 	 *             if the current variant is not of the {@code by_type} kind.
 	 */
 	public Map<String, TypeMapping> byType() {
-		return TaggedUnionUtils.get(this, BY_TYPE);
+		return TaggedUnionUtils.get(this, Kind.ByType);
 	}
 
 	/**
 	 * Is this variant instance of kind {@code single}?
 	 */
-	public boolean _isSingle() {
-		return SINGLE.equals(_type());
+	public boolean isSingle() {
+		return _kind == Kind.Single;
 	}
 
 	/**
@@ -111,7 +115,7 @@ public class IndexRolloverMapping implements TaggedUnion<Object>, JsonpSerializa
 	 *             if the current variant is not of the {@code single} kind.
 	 */
 	public TypeMapping single() {
-		return TaggedUnionUtils.get(this, SINGLE);
+		return TaggedUnionUtils.get(this, Kind.Single);
 	}
 
 	@Override
@@ -119,8 +123,8 @@ public class IndexRolloverMapping implements TaggedUnion<Object>, JsonpSerializa
 		if (_value instanceof JsonpSerializable) {
 			((JsonpSerializable) _value).serialize(generator, mapper);
 		} else {
-			switch (_type) {
-				case BY_TYPE :
+			switch (_kind) {
+				case ByType :
 					generator.writeStartObject();
 					for (Map.Entry<String, TypeMapping> item0 : ((Map<String, TypeMapping>) this._value).entrySet()) {
 						generator.writeKey(item0.getKey());
@@ -136,23 +140,25 @@ public class IndexRolloverMapping implements TaggedUnion<Object>, JsonpSerializa
 	}
 
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<IndexRolloverMapping> {
-		private String _type;
+		private Kind _kind;
 		private Object _value;
 
 		public Builder byType(Map<String, TypeMapping> v) {
-			this._type = BY_TYPE;
+			this._kind = Kind.ByType;
 			this._value = v;
 			return this;
 		}
 
 		public Builder single(TypeMapping v) {
-			this._type = SINGLE;
+			this._kind = Kind.Single;
 			this._value = v;
 			return this;
 		}
 
-		public Builder single(Function<TypeMapping.Builder, ObjectBuilder<TypeMapping>> f) {
-			return this.single(f.apply(new TypeMapping.Builder()).build());
+		public Builder single(Consumer<TypeMapping.Builder> fn) {
+			TypeMapping.Builder builder = new TypeMapping.Builder();
+			fn.accept(builder);
+			return this.single(builder.build());
 		}
 
 		public IndexRolloverMapping build() {
@@ -163,9 +169,9 @@ public class IndexRolloverMapping implements TaggedUnion<Object>, JsonpSerializa
 	}
 
 	private static JsonpDeserializer<IndexRolloverMapping> buildIndexRolloverMappingDeserializer() {
-		return new UnionDeserializer.Builder<>(IndexRolloverMapping::new, false)
-				.addMember("by_type", JsonpDeserializer.stringMapDeserializer(TypeMapping._DESERIALIZER))
-				.addMember("single", TypeMapping._DESERIALIZER).build();
+		return new UnionDeserializer.Builder<IndexRolloverMapping, Kind, Object>(IndexRolloverMapping::new, false)
+				.addMember(Kind.ByType, JsonpDeserializer.stringMapDeserializer(TypeMapping._DESERIALIZER))
+				.addMember(Kind.Single, TypeMapping._DESERIALIZER).build();
 	}
 
 	public static final JsonpDeserializer<IndexRolloverMapping> _DESERIALIZER = JsonpDeserializer

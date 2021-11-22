@@ -23,14 +23,27 @@
 
 package co.elastic.clients.elasticsearch.watcher;
 
+import co.elastic.clients.json.JsonEnum;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
-import co.elastic.clients.util.StringEnum;
 
 @JsonpDeserializable
-public enum Day implements StringEnum {
-	Sunday("sunday"), Monday("monday"), Tuesday("tuesday"), Wednesday("wednesday"), Thursday("thursday"), Friday(
-			"friday"), Saturday("saturday");
+public enum Day implements JsonEnum {
+	Sunday("sunday"),
+
+	Monday("monday"),
+
+	Tuesday("tuesday"),
+
+	Wednesday("wednesday"),
+
+	Thursday("thursday"),
+
+	Friday("friday"),
+
+	Saturday("saturday"),
+
+	;
 
 	private final String jsonValue;
 
@@ -42,5 +55,5 @@ public enum Day implements StringEnum {
 		return this.jsonValue;
 	}
 
-	public static final StringEnum.Deserializer<Day> _DESERIALIZER = new StringEnum.Deserializer<>(Day.values());
+	public static final JsonEnum.Deserializer<Day> _DESERIALIZER = new JsonEnum.Deserializer<>(Day.values());
 }

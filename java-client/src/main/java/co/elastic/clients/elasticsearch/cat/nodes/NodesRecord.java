@@ -34,7 +34,7 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: cat.nodes.NodesRecord
@@ -431,8 +431,10 @@ public class NodesRecord implements JsonpSerializable {
 
 	}
 
-	public static NodesRecord of(Function<Builder, ObjectBuilder<NodesRecord>> fn) {
-		return fn.apply(new Builder()).build();
+	public static NodesRecord of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**

@@ -34,7 +34,7 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.DateRangeExpression
@@ -59,8 +59,10 @@ public class DateRangeExpression implements JsonpSerializable {
 
 	}
 
-	public static DateRangeExpression of(Function<Builder, ObjectBuilder<DateRangeExpression>> fn) {
-		return fn.apply(new Builder()).build();
+	public static DateRangeExpression of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -142,8 +144,10 @@ public class DateRangeExpression implements JsonpSerializable {
 		/**
 		 * API name: {@code from}
 		 */
-		public final Builder from(Function<FieldDateMath.Builder, ObjectBuilder<FieldDateMath>> fn) {
-			return this.from(fn.apply(new FieldDateMath.Builder()).build());
+		public final Builder from(Consumer<FieldDateMath.Builder> fn) {
+			FieldDateMath.Builder builder = new FieldDateMath.Builder();
+			fn.accept(builder);
+			return this.from(builder.build());
 		}
 
 		/**
@@ -165,8 +169,10 @@ public class DateRangeExpression implements JsonpSerializable {
 		/**
 		 * API name: {@code to}
 		 */
-		public final Builder to(Function<FieldDateMath.Builder, ObjectBuilder<FieldDateMath>> fn) {
-			return this.to(fn.apply(new FieldDateMath.Builder()).build());
+		public final Builder to(Consumer<FieldDateMath.Builder> fn) {
+			FieldDateMath.Builder builder = new FieldDateMath.Builder();
+			fn.accept(builder);
+			return this.to(builder.build());
 		}
 
 		/**

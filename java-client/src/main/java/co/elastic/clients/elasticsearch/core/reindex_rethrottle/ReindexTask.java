@@ -39,7 +39,7 @@ import java.lang.String;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: _global.reindex_rethrottle.ReindexTask
@@ -83,8 +83,10 @@ public class ReindexTask implements JsonpSerializable {
 
 	}
 
-	public static ReindexTask of(Function<Builder, ObjectBuilder<ReindexTask>> fn) {
-		return fn.apply(new Builder()).build();
+	public static ReindexTask of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -309,8 +311,10 @@ public class ReindexTask implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code status}
 		 */
-		public final Builder status(Function<ReindexStatus.Builder, ObjectBuilder<ReindexStatus>> fn) {
-			return this.status(fn.apply(new ReindexStatus.Builder()).build());
+		public final Builder status(Consumer<ReindexStatus.Builder> fn) {
+			ReindexStatus.Builder builder = new ReindexStatus.Builder();
+			fn.accept(builder);
+			return this.status(builder.build());
 		}
 
 		/**

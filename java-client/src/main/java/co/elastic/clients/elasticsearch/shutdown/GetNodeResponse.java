@@ -30,14 +30,15 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -54,8 +55,10 @@ public class GetNodeResponse implements JsonpSerializable {
 
 	}
 
-	public static GetNodeResponse of(Function<Builder, ObjectBuilder<GetNodeResponse>> fn) {
-		return fn.apply(new Builder()).build();
+	public static GetNodeResponse of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -116,13 +119,9 @@ public class GetNodeResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code nodes}
 		 */
-		@SafeVarargs
-		public final Builder nodes(Function<NodeShutdownStatus.Builder, ObjectBuilder<NodeShutdownStatus>>... fns) {
-			this.nodes = new ArrayList<>(fns.length);
-			for (Function<NodeShutdownStatus.Builder, ObjectBuilder<NodeShutdownStatus>> fn : fns) {
-				this.nodes.add(fn.apply(new NodeShutdownStatus.Builder()).build());
-			}
-			return this;
+		public final Builder nodes(
+				Function<ListBuilder<NodeShutdownStatus, NodeShutdownStatus.Builder>, ObjectBuilder<List<NodeShutdownStatus>>> fn) {
+			return nodes(fn.apply(new ListBuilder<>(NodeShutdownStatus.Builder::new)).build());
 		}
 
 		/**

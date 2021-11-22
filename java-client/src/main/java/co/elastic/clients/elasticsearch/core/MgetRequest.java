@@ -25,7 +25,7 @@ package co.elastic.clients.elasticsearch.core;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.elasticsearch.core.mget.Operation;
+import co.elastic.clients.elasticsearch.core.mget.MultiGetOperation;
 import co.elastic.clients.elasticsearch.core.search.SourceConfigParam;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -34,19 +34,20 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
-import co.elastic.clients.transport.SimpleEndpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
+import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
@@ -61,7 +62,7 @@ public class MgetRequest extends RequestBase implements JsonpSerializable {
 
 	private final List<String> sourceIncludes;
 
-	private final List<Operation> docs;
+	private final List<MultiGetOperation> docs;
 
 	private final List<String> ids;
 
@@ -100,8 +101,10 @@ public class MgetRequest extends RequestBase implements JsonpSerializable {
 
 	}
 
-	public static MgetRequest of(Function<Builder, ObjectBuilder<MgetRequest>> fn) {
-		return fn.apply(new Builder()).build();
+	public static MgetRequest of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -136,7 +139,7 @@ public class MgetRequest extends RequestBase implements JsonpSerializable {
 	/**
 	 * API name: {@code docs}
 	 */
-	public final List<Operation> docs() {
+	public final List<MultiGetOperation> docs() {
 		return this.docs;
 	}
 
@@ -221,7 +224,7 @@ public class MgetRequest extends RequestBase implements JsonpSerializable {
 		if (ModelTypeHelper.isDefined(this.docs)) {
 			generator.writeKey("docs");
 			generator.writeStartArray();
-			for (Operation item0 : this.docs) {
+			for (MultiGetOperation item0 : this.docs) {
 				item0.serialize(generator, mapper);
 
 			}
@@ -257,7 +260,7 @@ public class MgetRequest extends RequestBase implements JsonpSerializable {
 		private List<String> sourceIncludes;
 
 		@Nullable
-		private List<Operation> docs;
+		private List<MultiGetOperation> docs;
 
 		@Nullable
 		private List<String> ids;
@@ -297,8 +300,10 @@ public class MgetRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code _source}
 		 */
-		public final Builder source(Function<SourceConfigParam.Builder, ObjectBuilder<SourceConfigParam>> fn) {
-			return this.source(fn.apply(new SourceConfigParam.Builder()).build());
+		public final Builder source(Consumer<SourceConfigParam.Builder> fn) {
+			SourceConfigParam.Builder builder = new SourceConfigParam.Builder();
+			fn.accept(builder);
+			return this.source(builder.build());
 		}
 
 		/**
@@ -344,7 +349,7 @@ public class MgetRequest extends RequestBase implements JsonpSerializable {
 		/**
 		 * API name: {@code docs}
 		 */
-		public final Builder docs(@Nullable List<Operation> value) {
+		public final Builder docs(@Nullable List<MultiGetOperation> value) {
 			this.docs = value;
 			return this;
 		}
@@ -352,7 +357,7 @@ public class MgetRequest extends RequestBase implements JsonpSerializable {
 		/**
 		 * API name: {@code docs}
 		 */
-		public final Builder docs(Operation... value) {
+		public final Builder docs(MultiGetOperation... value) {
 			this.docs = Arrays.asList(value);
 			return this;
 		}
@@ -360,13 +365,9 @@ public class MgetRequest extends RequestBase implements JsonpSerializable {
 		/**
 		 * API name: {@code docs}
 		 */
-		@SafeVarargs
-		public final Builder docs(Function<Operation.Builder, ObjectBuilder<Operation>>... fns) {
-			this.docs = new ArrayList<>(fns.length);
-			for (Function<Operation.Builder, ObjectBuilder<Operation>> fn : fns) {
-				this.docs.add(fn.apply(new Operation.Builder()).build());
-			}
-			return this;
+		public final Builder docs(
+				Function<ListBuilder<MultiGetOperation, MultiGetOperation.Builder>, ObjectBuilder<List<MultiGetOperation>>> fn) {
+			return docs(fn.apply(new ListBuilder<>(MultiGetOperation.Builder::new)).build());
 		}
 
 		/**
@@ -479,7 +480,7 @@ public class MgetRequest extends RequestBase implements JsonpSerializable {
 
 	protected static void setupMgetRequestDeserializer(ObjectDeserializer<MgetRequest.Builder> op) {
 
-		op.add(Builder::docs, JsonpDeserializer.arrayDeserializer(Operation._DESERIALIZER), "docs");
+		op.add(Builder::docs, JsonpDeserializer.arrayDeserializer(MultiGetOperation._DESERIALIZER), "docs");
 		op.add(Builder::ids, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "ids");
 
 	}

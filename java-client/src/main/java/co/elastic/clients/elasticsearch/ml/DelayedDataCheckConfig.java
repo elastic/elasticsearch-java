@@ -36,7 +36,7 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.DelayedDataCheckConfig
@@ -56,8 +56,10 @@ public class DelayedDataCheckConfig implements JsonpSerializable {
 
 	}
 
-	public static DelayedDataCheckConfig of(Function<Builder, ObjectBuilder<DelayedDataCheckConfig>> fn) {
-		return fn.apply(new Builder()).build();
+	public static DelayedDataCheckConfig of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -142,8 +144,10 @@ public class DelayedDataCheckConfig implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code check_window}
 		 */
-		public final Builder checkWindow(Function<Time.Builder, ObjectBuilder<Time>> fn) {
-			return this.checkWindow(fn.apply(new Time.Builder()).build());
+		public final Builder checkWindow(Consumer<Time.Builder> fn) {
+			Time.Builder builder = new Time.Builder();
+			fn.accept(builder);
+			return this.checkWindow(builder.build());
 		}
 
 		/**

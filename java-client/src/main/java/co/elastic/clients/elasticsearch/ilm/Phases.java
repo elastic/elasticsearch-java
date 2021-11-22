@@ -33,7 +33,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: ilm._types.Phases
@@ -62,8 +62,10 @@ public class Phases implements JsonpSerializable {
 
 	}
 
-	public static Phases of(Function<Builder, ObjectBuilder<Phases>> fn) {
-		return fn.apply(new Builder()).build();
+	public static Phases of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -161,8 +163,10 @@ public class Phases implements JsonpSerializable {
 		/**
 		 * API name: {@code cold}
 		 */
-		public final Builder cold(Function<Phase.Builder, ObjectBuilder<Phase>> fn) {
-			return this.cold(fn.apply(new Phase.Builder()).build());
+		public final Builder cold(Consumer<Phase.Builder> fn) {
+			Phase.Builder builder = new Phase.Builder();
+			fn.accept(builder);
+			return this.cold(builder.build());
 		}
 
 		/**
@@ -176,8 +180,10 @@ public class Phases implements JsonpSerializable {
 		/**
 		 * API name: {@code delete}
 		 */
-		public final Builder delete(Function<Phase.Builder, ObjectBuilder<Phase>> fn) {
-			return this.delete(fn.apply(new Phase.Builder()).build());
+		public final Builder delete(Consumer<Phase.Builder> fn) {
+			Phase.Builder builder = new Phase.Builder();
+			fn.accept(builder);
+			return this.delete(builder.build());
 		}
 
 		/**
@@ -191,8 +197,10 @@ public class Phases implements JsonpSerializable {
 		/**
 		 * API name: {@code hot}
 		 */
-		public final Builder hot(Function<Phase.Builder, ObjectBuilder<Phase>> fn) {
-			return this.hot(fn.apply(new Phase.Builder()).build());
+		public final Builder hot(Consumer<Phase.Builder> fn) {
+			Phase.Builder builder = new Phase.Builder();
+			fn.accept(builder);
+			return this.hot(builder.build());
 		}
 
 		/**
@@ -206,8 +214,10 @@ public class Phases implements JsonpSerializable {
 		/**
 		 * API name: {@code warm}
 		 */
-		public final Builder warm(Function<Phase.Builder, ObjectBuilder<Phase>> fn) {
-			return this.warm(fn.apply(new Phase.Builder()).build());
+		public final Builder warm(Consumer<Phase.Builder> fn) {
+			Phase.Builder builder = new Phase.Builder();
+			fn.accept(builder);
+			return this.warm(builder.build());
 		}
 
 		/**

@@ -35,7 +35,7 @@ import java.lang.Double;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.PercentilesBucketAggregation
@@ -52,16 +52,18 @@ public class PercentilesBucketAggregation extends PipelineAggregationBase implem
 
 	}
 
-	public static PercentilesBucketAggregation of(Function<Builder, ObjectBuilder<PercentilesBucketAggregation>> fn) {
-		return fn.apply(new Builder()).build();
+	public static PercentilesBucketAggregation of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
-	 * {@link Aggregation} variant type
+	 * Aggregation variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "percentiles_bucket";
+	public Aggregation.Kind _aggregationKind() {
+		return Aggregation.Kind.PercentilesBucket;
 	}
 
 	/**

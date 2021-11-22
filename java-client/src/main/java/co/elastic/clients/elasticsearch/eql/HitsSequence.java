@@ -31,14 +31,15 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.JsonpSerializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Supplier;
 import javax.annotation.Nullable;
@@ -63,8 +64,10 @@ public class HitsSequence<TEvent> implements JsonpSerializable {
 
 	}
 
-	public static <TEvent> HitsSequence<TEvent> of(Function<Builder<TEvent>, ObjectBuilder<HitsSequence<TEvent>>> fn) {
-		return fn.apply(new Builder<>()).build();
+	public static <TEvent> HitsSequence<TEvent> of(Consumer<Builder<TEvent>> fn) {
+		Builder<TEvent> builder = new Builder<>();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -162,14 +165,9 @@ public class HitsSequence<TEvent> implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code events}
 		 */
-		@SafeVarargs
 		public final Builder<TEvent> events(
-				Function<HitsEvent.Builder<TEvent>, ObjectBuilder<HitsEvent<TEvent>>>... fns) {
-			this.events = new ArrayList<>(fns.length);
-			for (Function<HitsEvent.Builder<TEvent>, ObjectBuilder<HitsEvent<TEvent>>> fn : fns) {
-				this.events.add(fn.apply(new HitsEvent.Builder<TEvent>()).build());
-			}
-			return this;
+				Function<ListBuilder<HitsEvent<TEvent>, HitsEvent.Builder<TEvent>>, ObjectBuilder<List<HitsEvent<TEvent>>>> fn) {
+			return events(fn.apply(new ListBuilder<>(HitsEvent.Builder<TEvent>::new)).build());
 		}
 
 		/**

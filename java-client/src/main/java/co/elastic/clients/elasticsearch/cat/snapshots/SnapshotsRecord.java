@@ -35,7 +35,7 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: cat.snapshots.SnapshotsRecord
@@ -100,8 +100,10 @@ public class SnapshotsRecord implements JsonpSerializable {
 
 	}
 
-	public static SnapshotsRecord of(Function<Builder, ObjectBuilder<SnapshotsRecord>> fn) {
-		return fn.apply(new Builder()).build();
+	public static SnapshotsRecord of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -443,8 +445,10 @@ public class SnapshotsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code duration}
 		 */
-		public final Builder duration(Function<Time.Builder, ObjectBuilder<Time>> fn) {
-			return this.duration(fn.apply(new Time.Builder()).build());
+		public final Builder duration(Consumer<Time.Builder> fn) {
+			Time.Builder builder = new Time.Builder();
+			fn.accept(builder);
+			return this.duration(builder.build());
 		}
 
 		/**

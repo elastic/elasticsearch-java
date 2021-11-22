@@ -23,6 +23,7 @@
 
 package co.elastic.clients.elasticsearch.indices.update_aliases;
 
+import co.elastic.clients.json.JsonEnum;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -37,24 +38,45 @@ import co.elastic.clients.util.TaggedUnionUtils;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Object;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: indices.update_aliases.Action
 // union type: Container[]
 @JsonpDeserializable
-public class Action implements TaggedUnion<Object>, JsonpSerializable {
+public class Action implements TaggedUnion<Action.Kind, Object>, JsonpSerializable {
 
-	public static final String ADD = "add";
-	public static final String REMOVE = "remove";
-	public static final String REMOVE_INDEX = "remove_index";
+	/**
+	 * {@link Action} variant kinds.
+	 */
 
-	private final String _type;
+	public enum Kind implements JsonEnum {
+		Add("add"),
+
+		Remove("remove"),
+
+		RemoveIndex("remove_index"),
+
+		;
+
+		private final String jsonValue;
+
+		Kind(String jsonValue) {
+			this.jsonValue = jsonValue;
+		}
+
+		public String jsonValue() {
+			return this.jsonValue;
+		}
+
+	}
+
+	private final Kind _kind;
 	private final Object _value;
 
 	@Override
-	public final String _type() {
-		return _type;
+	public final Kind _kind() {
+		return _kind;
 	}
 
 	@Override
@@ -64,27 +86,29 @@ public class Action implements TaggedUnion<Object>, JsonpSerializable {
 
 	public Action(ActionVariant value) {
 
-		this._type = ModelTypeHelper.requireNonNull(value._variantType(), this, "<variant type>");
+		this._kind = ModelTypeHelper.requireNonNull(value._actionKind(), this, "<variant kind>");
 		this._value = ModelTypeHelper.requireNonNull(value, this, "<variant value>");
 
 	}
 
 	private Action(Builder builder) {
 
-		this._type = ModelTypeHelper.requireNonNull(builder._type, builder, "<variant type>");
+		this._kind = ModelTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
 		this._value = ModelTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
 
 	}
 
-	public static Action of(Function<Builder, ObjectBuilder<Action>> fn) {
-		return fn.apply(new Builder()).build();
+	public static Action of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
 	 * Is this variant instance of kind {@code add}?
 	 */
-	public boolean _isAdd() {
-		return ADD.equals(_type());
+	public boolean isAdd() {
+		return _kind == Kind.Add;
 	}
 
 	/**
@@ -94,14 +118,14 @@ public class Action implements TaggedUnion<Object>, JsonpSerializable {
 	 *             if the current variant is not of the {@code add} kind.
 	 */
 	public AddAction add() {
-		return TaggedUnionUtils.get(this, ADD);
+		return TaggedUnionUtils.get(this, Kind.Add);
 	}
 
 	/**
 	 * Is this variant instance of kind {@code remove}?
 	 */
-	public boolean _isRemove() {
-		return REMOVE.equals(_type());
+	public boolean isRemove() {
+		return _kind == Kind.Remove;
 	}
 
 	/**
@@ -111,14 +135,14 @@ public class Action implements TaggedUnion<Object>, JsonpSerializable {
 	 *             if the current variant is not of the {@code remove} kind.
 	 */
 	public RemoveAction remove() {
-		return TaggedUnionUtils.get(this, REMOVE);
+		return TaggedUnionUtils.get(this, Kind.Remove);
 	}
 
 	/**
 	 * Is this variant instance of kind {@code remove_index}?
 	 */
-	public boolean _isRemoveIndex() {
-		return REMOVE_INDEX.equals(_type());
+	public boolean isRemoveIndex() {
+		return _kind == Kind.RemoveIndex;
 	}
 
 	/**
@@ -128,7 +152,7 @@ public class Action implements TaggedUnion<Object>, JsonpSerializable {
 	 *             if the current variant is not of the {@code remove_index} kind.
 	 */
 	public RemoveIndexAction removeIndex() {
-		return TaggedUnionUtils.get(this, REMOVE_INDEX);
+		return TaggedUnionUtils.get(this, Kind.RemoveIndex);
 	}
 
 	@Override
@@ -137,7 +161,7 @@ public class Action implements TaggedUnion<Object>, JsonpSerializable {
 
 		generator.writeStartObject();
 
-		generator.writeKey(_type);
+		generator.writeKey(_kind.jsonValue());
 		if (_value instanceof JsonpSerializable) {
 			((JsonpSerializable) _value).serialize(generator, mapper);
 		}
@@ -147,37 +171,43 @@ public class Action implements TaggedUnion<Object>, JsonpSerializable {
 	}
 
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Action> {
-		private String _type;
+		private Kind _kind;
 		private Object _value;
 
 		public Builder add(AddAction v) {
-			this._type = ADD;
+			this._kind = Kind.Add;
 			this._value = v;
 			return this;
 		}
 
-		public Builder add(Function<AddAction.Builder, ObjectBuilder<AddAction>> f) {
-			return this.add(f.apply(new AddAction.Builder()).build());
+		public Builder add(Consumer<AddAction.Builder> fn) {
+			AddAction.Builder builder = new AddAction.Builder();
+			fn.accept(builder);
+			return this.add(builder.build());
 		}
 
 		public Builder remove(RemoveAction v) {
-			this._type = REMOVE;
+			this._kind = Kind.Remove;
 			this._value = v;
 			return this;
 		}
 
-		public Builder remove(Function<RemoveAction.Builder, ObjectBuilder<RemoveAction>> f) {
-			return this.remove(f.apply(new RemoveAction.Builder()).build());
+		public Builder remove(Consumer<RemoveAction.Builder> fn) {
+			RemoveAction.Builder builder = new RemoveAction.Builder();
+			fn.accept(builder);
+			return this.remove(builder.build());
 		}
 
 		public Builder removeIndex(RemoveIndexAction v) {
-			this._type = REMOVE_INDEX;
+			this._kind = Kind.RemoveIndex;
 			this._value = v;
 			return this;
 		}
 
-		public Builder removeIndex(Function<RemoveIndexAction.Builder, ObjectBuilder<RemoveIndexAction>> f) {
-			return this.removeIndex(f.apply(new RemoveIndexAction.Builder()).build());
+		public Builder removeIndex(Consumer<RemoveIndexAction.Builder> fn) {
+			RemoveIndexAction.Builder builder = new RemoveIndexAction.Builder();
+			fn.accept(builder);
+			return this.removeIndex(builder.build());
 		}
 
 		public Action build() {

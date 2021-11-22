@@ -36,7 +36,7 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: security.create_service_token.Response
@@ -55,8 +55,10 @@ public class CreateServiceTokenResponse implements JsonpSerializable {
 
 	}
 
-	public static CreateServiceTokenResponse of(Function<Builder, ObjectBuilder<CreateServiceTokenResponse>> fn) {
-		return fn.apply(new Builder()).build();
+	public static CreateServiceTokenResponse of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -121,8 +123,10 @@ public class CreateServiceTokenResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code token}
 		 */
-		public final Builder token(Function<Token.Builder, ObjectBuilder<Token>> fn) {
-			return this.token(fn.apply(new Token.Builder()).build());
+		public final Builder token(Consumer<Token.Builder> fn) {
+			Token.Builder builder = new Token.Builder();
+			fn.accept(builder);
+			return this.token(builder.build());
 		}
 
 		/**

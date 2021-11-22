@@ -36,7 +36,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: logstash._types.PipelineSettings
@@ -74,8 +74,10 @@ public class PipelineSettings implements JsonpSerializable {
 
 	}
 
-	public static PipelineSettings of(Function<Builder, ObjectBuilder<PipelineSettings>> fn) {
-		return fn.apply(new Builder()).build();
+	public static PipelineSettings of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**

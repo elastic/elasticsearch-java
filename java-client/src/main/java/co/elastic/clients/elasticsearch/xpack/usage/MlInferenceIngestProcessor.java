@@ -34,7 +34,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: xpack.usage.MlInferenceIngestProcessor
@@ -59,8 +59,10 @@ public class MlInferenceIngestProcessor implements JsonpSerializable {
 
 	}
 
-	public static MlInferenceIngestProcessor of(Function<Builder, ObjectBuilder<MlInferenceIngestProcessor>> fn) {
-		return fn.apply(new Builder()).build();
+	public static MlInferenceIngestProcessor of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -141,9 +143,10 @@ public class MlInferenceIngestProcessor implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code num_docs_processed}
 		 */
-		public final Builder numDocsProcessed(
-				Function<MlInferenceIngestProcessorCount.Builder, ObjectBuilder<MlInferenceIngestProcessorCount>> fn) {
-			return this.numDocsProcessed(fn.apply(new MlInferenceIngestProcessorCount.Builder()).build());
+		public final Builder numDocsProcessed(Consumer<MlInferenceIngestProcessorCount.Builder> fn) {
+			MlInferenceIngestProcessorCount.Builder builder = new MlInferenceIngestProcessorCount.Builder();
+			fn.accept(builder);
+			return this.numDocsProcessed(builder.build());
 		}
 
 		/**
@@ -157,8 +160,10 @@ public class MlInferenceIngestProcessor implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code pipelines}
 		 */
-		public final Builder pipelines(Function<MlCounter.Builder, ObjectBuilder<MlCounter>> fn) {
-			return this.pipelines(fn.apply(new MlCounter.Builder()).build());
+		public final Builder pipelines(Consumer<MlCounter.Builder> fn) {
+			MlCounter.Builder builder = new MlCounter.Builder();
+			fn.accept(builder);
+			return this.pipelines(builder.build());
 		}
 
 		/**
@@ -172,9 +177,10 @@ public class MlInferenceIngestProcessor implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code num_failures}
 		 */
-		public final Builder numFailures(
-				Function<MlInferenceIngestProcessorCount.Builder, ObjectBuilder<MlInferenceIngestProcessorCount>> fn) {
-			return this.numFailures(fn.apply(new MlInferenceIngestProcessorCount.Builder()).build());
+		public final Builder numFailures(Consumer<MlInferenceIngestProcessorCount.Builder> fn) {
+			MlInferenceIngestProcessorCount.Builder builder = new MlInferenceIngestProcessorCount.Builder();
+			fn.accept(builder);
+			return this.numFailures(builder.build());
 		}
 
 		/**
@@ -188,9 +194,10 @@ public class MlInferenceIngestProcessor implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code time_ms}
 		 */
-		public final Builder timeMs(
-				Function<MlInferenceIngestProcessorCount.Builder, ObjectBuilder<MlInferenceIngestProcessorCount>> fn) {
-			return this.timeMs(fn.apply(new MlInferenceIngestProcessorCount.Builder()).build());
+		public final Builder timeMs(Consumer<MlInferenceIngestProcessorCount.Builder> fn) {
+			MlInferenceIngestProcessorCount.Builder builder = new MlInferenceIngestProcessorCount.Builder();
+			fn.accept(builder);
+			return this.timeMs(builder.build());
 		}
 
 		/**

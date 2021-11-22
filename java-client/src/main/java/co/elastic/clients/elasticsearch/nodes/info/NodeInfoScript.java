@@ -35,7 +35,7 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: nodes.info.NodeInfoScript
@@ -55,8 +55,10 @@ public class NodeInfoScript implements JsonpSerializable {
 
 	}
 
-	public static NodeInfoScript of(Function<Builder, ObjectBuilder<NodeInfoScript>> fn) {
-		return fn.apply(new Builder()).build();
+	public static NodeInfoScript of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**

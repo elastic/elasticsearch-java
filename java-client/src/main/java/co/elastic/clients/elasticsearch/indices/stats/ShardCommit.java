@@ -38,7 +38,7 @@ import java.lang.Long;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: indices.stats.ShardCommit
@@ -63,8 +63,10 @@ public class ShardCommit implements JsonpSerializable {
 
 	}
 
-	public static ShardCommit of(Function<Builder, ObjectBuilder<ShardCommit>> fn) {
-		return fn.apply(new Builder()).build();
+	public static ShardCommit of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**

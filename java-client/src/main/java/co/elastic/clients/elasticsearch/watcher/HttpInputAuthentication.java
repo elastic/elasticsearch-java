@@ -34,7 +34,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.HttpInputAuthentication
@@ -50,8 +50,10 @@ public class HttpInputAuthentication implements JsonpSerializable {
 
 	}
 
-	public static HttpInputAuthentication of(Function<Builder, ObjectBuilder<HttpInputAuthentication>> fn) {
-		return fn.apply(new Builder()).build();
+	public static HttpInputAuthentication of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -96,9 +98,10 @@ public class HttpInputAuthentication implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code basic}
 		 */
-		public final Builder basic(
-				Function<HttpInputBasicAuthentication.Builder, ObjectBuilder<HttpInputBasicAuthentication>> fn) {
-			return this.basic(fn.apply(new HttpInputBasicAuthentication.Builder()).build());
+		public final Builder basic(Consumer<HttpInputBasicAuthentication.Builder> fn) {
+			HttpInputBasicAuthentication.Builder builder = new HttpInputBasicAuthentication.Builder();
+			fn.accept(builder);
+			return this.basic(builder.build());
 		}
 
 		/**

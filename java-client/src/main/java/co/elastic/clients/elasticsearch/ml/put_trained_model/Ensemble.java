@@ -29,15 +29,16 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -68,8 +69,10 @@ public class Ensemble implements JsonpSerializable {
 
 	}
 
-	public static Ensemble of(Function<Builder, ObjectBuilder<Ensemble>> fn) {
-		return fn.apply(new Builder()).build();
+	public static Ensemble of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -194,8 +197,10 @@ public class Ensemble implements JsonpSerializable {
 		/**
 		 * API name: {@code aggregate_output}
 		 */
-		public final Builder aggregateOutput(Function<AggregateOutput.Builder, ObjectBuilder<AggregateOutput>> fn) {
-			return this.aggregateOutput(fn.apply(new AggregateOutput.Builder()).build());
+		public final Builder aggregateOutput(Consumer<AggregateOutput.Builder> fn) {
+			AggregateOutput.Builder builder = new AggregateOutput.Builder();
+			fn.accept(builder);
+			return this.aggregateOutput(builder.build());
 		}
 
 		/**
@@ -257,13 +262,9 @@ public class Ensemble implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code trained_models}
 		 */
-		@SafeVarargs
-		public final Builder trainedModels(Function<TrainedModel.Builder, ObjectBuilder<TrainedModel>>... fns) {
-			this.trainedModels = new ArrayList<>(fns.length);
-			for (Function<TrainedModel.Builder, ObjectBuilder<TrainedModel>> fn : fns) {
-				this.trainedModels.add(fn.apply(new TrainedModel.Builder()).build());
-			}
-			return this;
+		public final Builder trainedModels(
+				Function<ListBuilder<TrainedModel, TrainedModel.Builder>, ObjectBuilder<List<TrainedModel>>> fn) {
+			return trainedModels(fn.apply(new ListBuilder<>(TrainedModel.Builder::new)).build());
 		}
 
 		/**

@@ -35,7 +35,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: nodes._types.NodesResponseBase
@@ -99,8 +99,10 @@ public abstract class NodesResponseBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code _nodes}
 		 */
-		public final BuilderT nodeStats(Function<NodeStatistics.Builder, ObjectBuilder<NodeStatistics>> fn) {
-			return this.nodeStats(fn.apply(new NodeStatistics.Builder()).build());
+		public final BuilderT nodeStats(Consumer<NodeStatistics.Builder> fn) {
+			NodeStatistics.Builder builder = new NodeStatistics.Builder();
+			fn.accept(builder);
+			return this.nodeStats(builder.build());
 		}
 
 		protected abstract BuilderT self();

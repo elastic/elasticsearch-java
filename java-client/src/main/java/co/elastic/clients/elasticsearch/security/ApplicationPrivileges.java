@@ -37,7 +37,7 @@ import java.lang.String;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: security._types.ApplicationPrivileges
@@ -59,8 +59,10 @@ public class ApplicationPrivileges implements JsonpSerializable {
 
 	}
 
-	public static ApplicationPrivileges of(Function<Builder, ObjectBuilder<ApplicationPrivileges>> fn) {
-		return fn.apply(new Builder()).build();
+	public static ApplicationPrivileges of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**

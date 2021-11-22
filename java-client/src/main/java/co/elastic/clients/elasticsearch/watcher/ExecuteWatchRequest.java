@@ -33,7 +33,7 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
-import co.elastic.clients.transport.SimpleEndpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
@@ -43,7 +43,7 @@ import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: watcher.execute_watch.Request
@@ -90,8 +90,10 @@ public class ExecuteWatchRequest extends RequestBase implements JsonpSerializabl
 
 	}
 
-	public static ExecuteWatchRequest of(Function<Builder, ObjectBuilder<ExecuteWatchRequest>> fn) {
-		return fn.apply(new Builder()).build();
+	public static ExecuteWatchRequest of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -324,8 +326,10 @@ public class ExecuteWatchRequest extends RequestBase implements JsonpSerializabl
 		/**
 		 * API name: {@code simulated_actions}
 		 */
-		public final Builder simulatedActions(Function<SimulatedActions.Builder, ObjectBuilder<SimulatedActions>> fn) {
-			return this.simulatedActions(fn.apply(new SimulatedActions.Builder()).build());
+		public final Builder simulatedActions(Consumer<SimulatedActions.Builder> fn) {
+			SimulatedActions.Builder builder = new SimulatedActions.Builder();
+			fn.accept(builder);
+			return this.simulatedActions(builder.build());
 		}
 
 		/**
@@ -339,9 +343,10 @@ public class ExecuteWatchRequest extends RequestBase implements JsonpSerializabl
 		/**
 		 * API name: {@code trigger_data}
 		 */
-		public final Builder triggerData(
-				Function<ScheduleTriggerEvent.Builder, ObjectBuilder<ScheduleTriggerEvent>> fn) {
-			return this.triggerData(fn.apply(new ScheduleTriggerEvent.Builder()).build());
+		public final Builder triggerData(Consumer<ScheduleTriggerEvent.Builder> fn) {
+			ScheduleTriggerEvent.Builder builder = new ScheduleTriggerEvent.Builder();
+			fn.accept(builder);
+			return this.triggerData(builder.build());
 		}
 
 		/**
@@ -355,8 +360,10 @@ public class ExecuteWatchRequest extends RequestBase implements JsonpSerializabl
 		/**
 		 * API name: {@code watch}
 		 */
-		public final Builder watch(Function<Watch.Builder, ObjectBuilder<Watch>> fn) {
-			return this.watch(fn.apply(new Watch.Builder()).build());
+		public final Builder watch(Consumer<Watch.Builder> fn) {
+			Watch.Builder builder = new Watch.Builder();
+			fn.accept(builder);
+			return this.watch(builder.build());
 		}
 
 		/**

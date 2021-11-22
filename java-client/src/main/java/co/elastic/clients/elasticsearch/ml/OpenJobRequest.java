@@ -33,7 +33,7 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
-import co.elastic.clients.transport.SimpleEndpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
@@ -41,7 +41,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: ml.open_job.Request
@@ -61,8 +61,10 @@ public class OpenJobRequest extends RequestBase implements JsonpSerializable {
 
 	}
 
-	public static OpenJobRequest of(Function<Builder, ObjectBuilder<OpenJobRequest>> fn) {
-		return fn.apply(new Builder()).build();
+	public static OpenJobRequest of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -75,7 +77,7 @@ public class OpenJobRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * Controls the time to wait until a job has opened.
+	 * Refer to the description for the <code>timeout</code> query parameter.
 	 * <p>
 	 * API name: {@code timeout}
 	 */
@@ -125,7 +127,7 @@ public class OpenJobRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Controls the time to wait until a job has opened.
+		 * Refer to the description for the <code>timeout</code> query parameter.
 		 * <p>
 		 * API name: {@code timeout}
 		 */
@@ -135,12 +137,14 @@ public class OpenJobRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Controls the time to wait until a job has opened.
+		 * Refer to the description for the <code>timeout</code> query parameter.
 		 * <p>
 		 * API name: {@code timeout}
 		 */
-		public final Builder timeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
-			return this.timeout(fn.apply(new Time.Builder()).build());
+		public final Builder timeout(Consumer<Time.Builder> fn) {
+			Time.Builder builder = new Time.Builder();
+			fn.accept(builder);
+			return this.timeout(builder.build());
 		}
 
 		/**

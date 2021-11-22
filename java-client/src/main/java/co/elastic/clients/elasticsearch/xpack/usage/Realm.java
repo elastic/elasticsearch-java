@@ -28,16 +28,17 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Long;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -76,8 +77,10 @@ public class Realm extends Base {
 
 	}
 
-	public static Realm of(Function<Builder, ObjectBuilder<Realm>> fn) {
-		return fn.apply(new Builder()).build();
+	public static Realm of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -319,13 +322,9 @@ public class Realm extends Base {
 		/**
 		 * API name: {@code cache}
 		 */
-		@SafeVarargs
-		public final Builder cache(Function<RealmCache.Builder, ObjectBuilder<RealmCache>>... fns) {
-			this.cache = new ArrayList<>(fns.length);
-			for (Function<RealmCache.Builder, ObjectBuilder<RealmCache>> fn : fns) {
-				this.cache.add(fn.apply(new RealmCache.Builder()).build());
-			}
-			return this;
+		public final Builder cache(
+				Function<ListBuilder<RealmCache, RealmCache.Builder>, ObjectBuilder<List<RealmCache>>> fn) {
+			return cache(fn.apply(new ListBuilder<>(RealmCache.Builder::new)).build());
 		}
 
 		/**

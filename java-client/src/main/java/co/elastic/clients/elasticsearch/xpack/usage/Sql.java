@@ -34,9 +34,9 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
-import java.util.Collections;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -45,7 +45,7 @@ import javax.annotation.Nullable;
 public class Sql extends Base {
 	private final Map<String, Integer> features;
 
-	private final Map<String, Query> queries;
+	private final Map<String, XpackUsageQuery> queries;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -57,8 +57,10 @@ public class Sql extends Base {
 
 	}
 
-	public static Sql of(Function<Builder, ObjectBuilder<Sql>> fn) {
-		return fn.apply(new Builder()).build();
+	public static Sql of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -71,7 +73,7 @@ public class Sql extends Base {
 	/**
 	 * Required - API name: {@code queries}
 	 */
-	public final Map<String, Query> queries() {
+	public final Map<String, XpackUsageQuery> queries() {
 		return this.queries;
 	}
 
@@ -92,7 +94,7 @@ public class Sql extends Base {
 		if (ModelTypeHelper.isDefined(this.queries)) {
 			generator.writeKey("queries");
 			generator.writeStartObject();
-			for (Map.Entry<String, Query> item0 : this.queries.entrySet()) {
+			for (Map.Entry<String, XpackUsageQuery> item0 : this.queries.entrySet()) {
 				generator.writeKey(item0.getKey());
 				item0.getValue().serialize(generator, mapper);
 
@@ -111,7 +113,7 @@ public class Sql extends Base {
 	public static class Builder extends Base.AbstractBuilder<Builder> implements ObjectBuilder<Sql> {
 		private Map<String, Integer> features;
 
-		private Map<String, Query> queries;
+		private Map<String, XpackUsageQuery> queries;
 
 		/**
 		 * Required - API name: {@code features}
@@ -124,21 +126,14 @@ public class Sql extends Base {
 		/**
 		 * Required - API name: {@code queries}
 		 */
-		public final Builder queries(Map<String, Query> value) {
+		public final Builder queries(Map<String, XpackUsageQuery> value) {
 			this.queries = value;
 			return this;
 		}
 
-		/**
-		 * Set {@link #queries(Map)} to a singleton map.
-		 */
-		public Builder queries(String key, Function<Query.Builder, ObjectBuilder<Query>> fn) {
-			return this.queries(Collections.singletonMap(key, fn.apply(new Query.Builder()).build()));
-		}
-
 		public final Builder queries(
-				Function<MapBuilder<String, Query, Query.Builder>, ObjectBuilder<Map<String, Query>>> fn) {
-			return queries(fn.apply(new MapBuilder<>(Query.Builder::new)).build());
+				Function<MapBuilder<String, XpackUsageQuery, XpackUsageQuery.Builder>, ObjectBuilder<Map<String, XpackUsageQuery>>> fn) {
+			return queries(fn.apply(new MapBuilder<>(XpackUsageQuery.Builder::new)).build());
 		}
 
 		@Override
@@ -171,7 +166,7 @@ public class Sql extends Base {
 		Base.setupBaseDeserializer(op);
 		op.add(Builder::features, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.integerDeserializer()),
 				"features");
-		op.add(Builder::queries, JsonpDeserializer.stringMapDeserializer(Query._DESERIALIZER), "queries");
+		op.add(Builder::queries, JsonpDeserializer.stringMapDeserializer(XpackUsageQuery._DESERIALIZER), "queries");
 
 	}
 

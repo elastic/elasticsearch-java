@@ -42,7 +42,7 @@ import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import java.util.function.Supplier;
 import javax.annotation.Nullable;
 
@@ -85,9 +85,10 @@ public class InlineGet<TDocument> implements JsonpSerializable {
 
 	}
 
-	public static <TDocument> InlineGet<TDocument> of(
-			Function<Builder<TDocument>, ObjectBuilder<InlineGet<TDocument>>> fn) {
-		return fn.apply(new Builder<>()).build();
+	public static <TDocument> InlineGet<TDocument> of(Consumer<Builder<TDocument>> fn) {
+		Builder<TDocument> builder = new Builder<>();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
