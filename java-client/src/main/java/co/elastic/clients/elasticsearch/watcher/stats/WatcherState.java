@@ -23,13 +23,21 @@
 
 package co.elastic.clients.elasticsearch.watcher.stats;
 
+import co.elastic.clients.json.JsonEnum;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
-import co.elastic.clients.util.StringEnum;
 
 @JsonpDeserializable
-public enum WatcherState implements StringEnum {
-	Stopped("stopped"), Starting("starting"), Started("started"), Stopping("stopping");
+public enum WatcherState implements JsonEnum {
+	Stopped("stopped"),
+
+	Starting("starting"),
+
+	Started("started"),
+
+	Stopping("stopping"),
+
+	;
 
 	private final String jsonValue;
 
@@ -41,6 +49,6 @@ public enum WatcherState implements StringEnum {
 		return this.jsonValue;
 	}
 
-	public static final StringEnum.Deserializer<WatcherState> _DESERIALIZER = new StringEnum.Deserializer<>(
+	public static final JsonEnum.Deserializer<WatcherState> _DESERIALIZER = new JsonEnum.Deserializer<>(
 			WatcherState.values());
 }

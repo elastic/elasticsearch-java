@@ -37,7 +37,7 @@ import java.lang.String;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.TimeOfWeek
@@ -56,8 +56,10 @@ public class TimeOfWeek implements JsonpSerializable {
 
 	}
 
-	public static TimeOfWeek of(Function<Builder, ObjectBuilder<TimeOfWeek>> fn) {
-		return fn.apply(new Builder()).build();
+	public static TimeOfWeek of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**

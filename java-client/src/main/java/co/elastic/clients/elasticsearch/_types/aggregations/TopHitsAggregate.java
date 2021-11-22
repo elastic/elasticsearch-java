@@ -34,7 +34,7 @@ import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.TopHitsAggregate
@@ -51,16 +51,18 @@ public class TopHitsAggregate extends AggregateBase implements AggregateVariant 
 
 	}
 
-	public static TopHitsAggregate of(Function<Builder, ObjectBuilder<TopHitsAggregate>> fn) {
-		return fn.apply(new Builder()).build();
+	public static TopHitsAggregate of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
-	 * {@link Aggregate} variant type
+	 * Aggregate variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "top_hits";
+	public Aggregate.Kind _aggregateKind() {
+		return Aggregate.Kind.TopHits;
 	}
 
 	/**
@@ -99,8 +101,10 @@ public class TopHitsAggregate extends AggregateBase implements AggregateVariant 
 		/**
 		 * Required - API name: {@code hits}
 		 */
-		public final Builder hits(Function<HitsMetadata.Builder<JsonData>, ObjectBuilder<HitsMetadata<JsonData>>> fn) {
-			return this.hits(fn.apply(new HitsMetadata.Builder<JsonData>()).build());
+		public final Builder hits(Consumer<HitsMetadata.Builder<JsonData>> fn) {
+			HitsMetadata.Builder<JsonData> builder = new HitsMetadata.Builder<JsonData>();
+			fn.accept(builder);
+			return this.hits(builder.build());
 		}
 
 		@Override

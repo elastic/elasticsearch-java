@@ -29,15 +29,16 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -57,8 +58,10 @@ public class GetCalendarEventsResponse implements JsonpSerializable {
 
 	}
 
-	public static GetCalendarEventsResponse of(Function<Builder, ObjectBuilder<GetCalendarEventsResponse>> fn) {
-		return fn.apply(new Builder()).build();
+	public static GetCalendarEventsResponse of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -139,13 +142,9 @@ public class GetCalendarEventsResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code events}
 		 */
-		@SafeVarargs
-		public final Builder events(Function<CalendarEvent.Builder, ObjectBuilder<CalendarEvent>>... fns) {
-			this.events = new ArrayList<>(fns.length);
-			for (Function<CalendarEvent.Builder, ObjectBuilder<CalendarEvent>> fn : fns) {
-				this.events.add(fn.apply(new CalendarEvent.Builder()).build());
-			}
-			return this;
+		public final Builder events(
+				Function<ListBuilder<CalendarEvent, CalendarEvent.Builder>, ObjectBuilder<List<CalendarEvent>>> fn) {
+			return events(fn.apply(new ListBuilder<>(CalendarEvent.Builder::new)).build());
 		}
 
 		/**

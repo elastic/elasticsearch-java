@@ -35,7 +35,7 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
-import co.elastic.clients.transport.SimpleEndpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
@@ -47,7 +47,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
@@ -120,8 +120,10 @@ public class ExplainRequest extends RequestBase implements JsonpSerializable {
 
 	}
 
-	public static ExplainRequest of(Function<Builder, ObjectBuilder<ExplainRequest>> fn) {
-		return fn.apply(new Builder()).build();
+	public static ExplainRequest of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -369,8 +371,10 @@ public class ExplainRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code _source}
 		 */
-		public final Builder source(Function<SourceConfigParam.Builder, ObjectBuilder<SourceConfigParam>> fn) {
-			return this.source(fn.apply(new SourceConfigParam.Builder()).build());
+		public final Builder source(Consumer<SourceConfigParam.Builder> fn) {
+			SourceConfigParam.Builder builder = new SourceConfigParam.Builder();
+			fn.accept(builder);
+			return this.source(builder.build());
 		}
 
 		/**
@@ -517,8 +521,10 @@ public class ExplainRequest extends RequestBase implements JsonpSerializable {
 		/**
 		 * API name: {@code query}
 		 */
-		public final Builder query(Function<Query.Builder, ObjectBuilder<Query>> fn) {
-			return this.query(fn.apply(new Query.Builder()).build());
+		public final Builder query(Consumer<Query.Builder> fn) {
+			Query.Builder builder = new Query.Builder();
+			fn.accept(builder);
+			return this.query(builder.build());
 		}
 
 		/**

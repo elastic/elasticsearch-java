@@ -30,15 +30,16 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -71,8 +72,10 @@ public class PipelineSimulation implements JsonpSerializable {
 
 	}
 
-	public static PipelineSimulation of(Function<Builder, ObjectBuilder<PipelineSimulation>> fn) {
-		return fn.apply(new Builder()).build();
+	public static PipelineSimulation of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -189,8 +192,10 @@ public class PipelineSimulation implements JsonpSerializable {
 		/**
 		 * API name: {@code doc}
 		 */
-		public final Builder doc(Function<DocumentSimulation.Builder, ObjectBuilder<DocumentSimulation>> fn) {
-			return this.doc(fn.apply(new DocumentSimulation.Builder()).build());
+		public final Builder doc(Consumer<DocumentSimulation.Builder> fn) {
+			DocumentSimulation.Builder builder = new DocumentSimulation.Builder();
+			fn.accept(builder);
+			return this.doc(builder.build());
 		}
 
 		/**
@@ -212,14 +217,9 @@ public class PipelineSimulation implements JsonpSerializable {
 		/**
 		 * API name: {@code processor_results}
 		 */
-		@SafeVarargs
 		public final Builder processorResults(
-				Function<PipelineSimulation.Builder, ObjectBuilder<PipelineSimulation>>... fns) {
-			this.processorResults = new ArrayList<>(fns.length);
-			for (Function<PipelineSimulation.Builder, ObjectBuilder<PipelineSimulation>> fn : fns) {
-				this.processorResults.add(fn.apply(new PipelineSimulation.Builder()).build());
-			}
-			return this;
+				Function<ListBuilder<PipelineSimulation, PipelineSimulation.Builder>, ObjectBuilder<List<PipelineSimulation>>> fn) {
+			return processorResults(fn.apply(new ListBuilder<>(PipelineSimulation.Builder::new)).build());
 		}
 
 		/**

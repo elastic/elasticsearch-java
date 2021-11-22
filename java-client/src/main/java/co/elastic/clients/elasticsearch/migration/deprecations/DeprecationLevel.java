@@ -23,22 +23,28 @@
 
 package co.elastic.clients.elasticsearch.migration.deprecations;
 
+import co.elastic.clients.json.JsonEnum;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
-import co.elastic.clients.util.StringEnum;
 
 @JsonpDeserializable
-public enum DeprecationLevel implements StringEnum {
-	None("none"), Info("info"),
+public enum DeprecationLevel implements JsonEnum {
+	None("none"),
+
+	Info("info"),
+
 	/**
 	 * You can upgrade directly, but you are using deprecated functionality which
 	 * will not be available or behave differently in the next major version.
 	 */
 	Warning("warning"),
+
 	/**
 	 * You cannot upgrade without fixing this problem.
 	 */
-	Critical("critical");
+	Critical("critical"),
+
+	;
 
 	private final String jsonValue;
 
@@ -50,6 +56,6 @@ public enum DeprecationLevel implements StringEnum {
 		return this.jsonValue;
 	}
 
-	public static final StringEnum.Deserializer<DeprecationLevel> _DESERIALIZER = new StringEnum.Deserializer<>(
+	public static final JsonEnum.Deserializer<DeprecationLevel> _DESERIALIZER = new JsonEnum.Deserializer<>(
 			DeprecationLevel.values());
 }

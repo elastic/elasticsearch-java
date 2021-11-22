@@ -26,26 +26,27 @@ package co.elastic.clients.elasticsearch.eql;
 import co.elastic.clients.ApiClient;
 import co.elastic.clients.elasticsearch._types.ElasticsearchException;
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
+import co.elastic.clients.transport.ElasticsearchTransport;
 import co.elastic.clients.transport.Endpoint;
-import co.elastic.clients.transport.EndpointWithResponseMapperAttr;
 import co.elastic.clients.transport.Transport;
 import co.elastic.clients.transport.TransportOptions;
+import co.elastic.clients.transport.endpoints.EndpointWithResponseMapperAttr;
 import co.elastic.clients.util.ObjectBuilder;
 import java.io.IOException;
 import java.util.concurrent.CompletableFuture;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 /**
  * Client for the eql namespace.
  */
-public class ElasticsearchEqlAsyncClient extends ApiClient<ElasticsearchEqlAsyncClient> {
+public class ElasticsearchEqlAsyncClient extends ApiClient<ElasticsearchTransport, ElasticsearchEqlAsyncClient> {
 
-	public ElasticsearchEqlAsyncClient(Transport transport) {
+	public ElasticsearchEqlAsyncClient(ElasticsearchTransport transport) {
 		super(transport, null);
 	}
 
-	public ElasticsearchEqlAsyncClient(Transport transport, @Nullable TransportOptions transportOptions) {
+	public ElasticsearchEqlAsyncClient(ElasticsearchTransport transport, @Nullable TransportOptions transportOptions) {
 		super(transport, transportOptions);
 	}
 
@@ -85,10 +86,11 @@ public class ElasticsearchEqlAsyncClient extends ApiClient<ElasticsearchEqlAsync
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<EqlDeleteResponse> delete(
-			Function<EqlDeleteRequest.Builder, ObjectBuilder<EqlDeleteRequest>> fn)
+	public final CompletableFuture<EqlDeleteResponse> delete(Consumer<EqlDeleteRequest.Builder> fn)
 			throws IOException, ElasticsearchException {
-		return delete(fn.apply(new EqlDeleteRequest.Builder()).build());
+		EqlDeleteRequest.Builder builder = new EqlDeleteRequest.Builder();
+		fn.accept(builder);
+		return delete(builder.build());
 	}
 
 	// ----- Endpoint: eql.get
@@ -124,10 +126,11 @@ public class ElasticsearchEqlAsyncClient extends ApiClient<ElasticsearchEqlAsync
 	 *      on elastic.co</a>
 	 */
 
-	public final <TEvent> CompletableFuture<EqlGetResponse<TEvent>> get(
-			Function<EqlGetRequest.Builder, ObjectBuilder<EqlGetRequest>> fn, Class<TEvent> tEventClass)
-			throws IOException, ElasticsearchException {
-		return get(fn.apply(new EqlGetRequest.Builder()).build(), tEventClass);
+	public final <TEvent> CompletableFuture<EqlGetResponse<TEvent>> get(Consumer<EqlGetRequest.Builder> fn,
+			Class<TEvent> tEventClass) throws IOException, ElasticsearchException {
+		EqlGetRequest.Builder builder = new EqlGetRequest.Builder();
+		fn.accept(builder);
+		return get(builder.build(), tEventClass);
 	}
 
 	// ----- Endpoint: eql.get_status
@@ -141,10 +144,10 @@ public class ElasticsearchEqlAsyncClient extends ApiClient<ElasticsearchEqlAsync
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<GetStatusResponse> getStatus(GetStatusRequest request)
+	public CompletableFuture<GetEqlStatusResponse> getStatus(GetEqlStatusRequest request)
 			throws IOException, ElasticsearchException {
 		@SuppressWarnings("unchecked")
-		Endpoint<GetStatusRequest, GetStatusResponse, ErrorResponse> endpoint = (Endpoint<GetStatusRequest, GetStatusResponse, ErrorResponse>) GetStatusRequest._ENDPOINT;
+		Endpoint<GetEqlStatusRequest, GetEqlStatusResponse, ErrorResponse> endpoint = (Endpoint<GetEqlStatusRequest, GetEqlStatusResponse, ErrorResponse>) GetEqlStatusRequest._ENDPOINT;
 
 		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
@@ -155,16 +158,17 @@ public class ElasticsearchEqlAsyncClient extends ApiClient<ElasticsearchEqlAsync
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
-	 *            {@link GetStatusRequest}
+	 *            {@link GetEqlStatusRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/eql-search-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<GetStatusResponse> getStatus(
-			Function<GetStatusRequest.Builder, ObjectBuilder<GetStatusRequest>> fn)
+	public final CompletableFuture<GetEqlStatusResponse> getStatus(Consumer<GetEqlStatusRequest.Builder> fn)
 			throws IOException, ElasticsearchException {
-		return getStatus(fn.apply(new GetStatusRequest.Builder()).build());
+		GetEqlStatusRequest.Builder builder = new GetEqlStatusRequest.Builder();
+		fn.accept(builder);
+		return getStatus(builder.build());
 	}
 
 	// ----- Endpoint: eql.search
@@ -198,10 +202,11 @@ public class ElasticsearchEqlAsyncClient extends ApiClient<ElasticsearchEqlAsync
 	 *      on elastic.co</a>
 	 */
 
-	public final <TEvent> CompletableFuture<EqlSearchResponse<TEvent>> search(
-			Function<EqlSearchRequest.Builder, ObjectBuilder<EqlSearchRequest>> fn, Class<TEvent> tEventClass)
-			throws IOException, ElasticsearchException {
-		return search(fn.apply(new EqlSearchRequest.Builder()).build(), tEventClass);
+	public final <TEvent> CompletableFuture<EqlSearchResponse<TEvent>> search(Consumer<EqlSearchRequest.Builder> fn,
+			Class<TEvent> tEventClass) throws IOException, ElasticsearchException {
+		EqlSearchRequest.Builder builder = new EqlSearchRequest.Builder();
+		fn.accept(builder);
+		return search(builder.build(), tEventClass);
 	}
 
 }

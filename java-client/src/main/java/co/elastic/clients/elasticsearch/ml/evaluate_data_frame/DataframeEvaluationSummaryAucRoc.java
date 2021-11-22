@@ -28,13 +28,14 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -52,9 +53,10 @@ public class DataframeEvaluationSummaryAucRoc extends DataframeEvaluationValue {
 
 	}
 
-	public static DataframeEvaluationSummaryAucRoc of(
-			Function<Builder, ObjectBuilder<DataframeEvaluationSummaryAucRoc>> fn) {
-		return fn.apply(new Builder()).build();
+	public static DataframeEvaluationSummaryAucRoc of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -110,14 +112,9 @@ public class DataframeEvaluationSummaryAucRoc extends DataframeEvaluationValue {
 		/**
 		 * API name: {@code curve}
 		 */
-		@SafeVarargs
 		public final Builder curve(
-				Function<DataframeEvaluationSummaryAucRocCurveItem.Builder, ObjectBuilder<DataframeEvaluationSummaryAucRocCurveItem>>... fns) {
-			this.curve = new ArrayList<>(fns.length);
-			for (Function<DataframeEvaluationSummaryAucRocCurveItem.Builder, ObjectBuilder<DataframeEvaluationSummaryAucRocCurveItem>> fn : fns) {
-				this.curve.add(fn.apply(new DataframeEvaluationSummaryAucRocCurveItem.Builder()).build());
-			}
-			return this;
+				Function<ListBuilder<DataframeEvaluationSummaryAucRocCurveItem, DataframeEvaluationSummaryAucRocCurveItem.Builder>, ObjectBuilder<List<DataframeEvaluationSummaryAucRocCurveItem>>> fn) {
+			return curve(fn.apply(new ListBuilder<>(DataframeEvaluationSummaryAucRocCurveItem.Builder::new)).build());
 		}
 
 		@Override

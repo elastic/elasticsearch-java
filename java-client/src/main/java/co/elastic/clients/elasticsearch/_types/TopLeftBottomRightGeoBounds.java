@@ -34,7 +34,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: _types.TopLeftBottomRightGeoBounds
@@ -53,8 +53,10 @@ public class TopLeftBottomRightGeoBounds implements JsonpSerializable {
 
 	}
 
-	public static TopLeftBottomRightGeoBounds of(Function<Builder, ObjectBuilder<TopLeftBottomRightGeoBounds>> fn) {
-		return fn.apply(new Builder()).build();
+	public static TopLeftBottomRightGeoBounds of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -111,8 +113,10 @@ public class TopLeftBottomRightGeoBounds implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code top_left}
 		 */
-		public final Builder topLeft(Function<GeoLocation.Builder, ObjectBuilder<GeoLocation>> fn) {
-			return this.topLeft(fn.apply(new GeoLocation.Builder()).build());
+		public final Builder topLeft(Consumer<GeoLocation.Builder> fn) {
+			GeoLocation.Builder builder = new GeoLocation.Builder();
+			fn.accept(builder);
+			return this.topLeft(builder.build());
 		}
 
 		/**
@@ -126,8 +130,10 @@ public class TopLeftBottomRightGeoBounds implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code bottom_right}
 		 */
-		public final Builder bottomRight(Function<GeoLocation.Builder, ObjectBuilder<GeoLocation>> fn) {
-			return this.bottomRight(fn.apply(new GeoLocation.Builder()).build());
+		public final Builder bottomRight(Consumer<GeoLocation.Builder> fn) {
+			GeoLocation.Builder builder = new GeoLocation.Builder();
+			fn.accept(builder);
+			return this.bottomRight(builder.build());
 		}
 
 		/**

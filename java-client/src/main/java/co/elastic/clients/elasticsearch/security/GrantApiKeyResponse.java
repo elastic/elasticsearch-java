@@ -35,7 +35,7 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: security.grant_api_key.Response
@@ -61,8 +61,10 @@ public class GrantApiKeyResponse implements JsonpSerializable {
 
 	}
 
-	public static GrantApiKeyResponse of(Function<Builder, ObjectBuilder<GrantApiKeyResponse>> fn) {
-		return fn.apply(new Builder()).build();
+	public static GrantApiKeyResponse of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**

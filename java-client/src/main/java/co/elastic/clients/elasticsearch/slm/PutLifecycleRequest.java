@@ -33,7 +33,7 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
-import co.elastic.clients.transport.SimpleEndpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
@@ -42,14 +42,14 @@ import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: slm.put_lifecycle.Request
 @JsonpDeserializable
 public class PutLifecycleRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
-	private final Configuration config;
+	private final SlmConfiguration config;
 
 	@Nullable
 	private final Time masterTimeout;
@@ -86,8 +86,10 @@ public class PutLifecycleRequest extends RequestBase implements JsonpSerializabl
 
 	}
 
-	public static PutLifecycleRequest of(Function<Builder, ObjectBuilder<PutLifecycleRequest>> fn) {
-		return fn.apply(new Builder()).build();
+	public static PutLifecycleRequest of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -96,7 +98,7 @@ public class PutLifecycleRequest extends RequestBase implements JsonpSerializabl
 	 * API name: {@code config}
 	 */
 	@Nullable
-	public final Configuration config() {
+	public final SlmConfiguration config() {
 		return this.config;
 	}
 
@@ -222,7 +224,7 @@ public class PutLifecycleRequest extends RequestBase implements JsonpSerializabl
 	 */
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PutLifecycleRequest> {
 		@Nullable
-		private Configuration config;
+		private SlmConfiguration config;
 
 		@Nullable
 		private Time masterTimeout;
@@ -249,7 +251,7 @@ public class PutLifecycleRequest extends RequestBase implements JsonpSerializabl
 		 * <p>
 		 * API name: {@code config}
 		 */
-		public final Builder config(@Nullable Configuration value) {
+		public final Builder config(@Nullable SlmConfiguration value) {
 			this.config = value;
 			return this;
 		}
@@ -259,8 +261,10 @@ public class PutLifecycleRequest extends RequestBase implements JsonpSerializabl
 		 * <p>
 		 * API name: {@code config}
 		 */
-		public final Builder config(Function<Configuration.Builder, ObjectBuilder<Configuration>> fn) {
-			return this.config(fn.apply(new Configuration.Builder()).build());
+		public final Builder config(Consumer<SlmConfiguration.Builder> fn) {
+			SlmConfiguration.Builder builder = new SlmConfiguration.Builder();
+			fn.accept(builder);
+			return this.config(builder.build());
 		}
 
 		/**
@@ -280,8 +284,10 @@ public class PutLifecycleRequest extends RequestBase implements JsonpSerializabl
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
-		public final Builder masterTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
-			return this.masterTimeout(fn.apply(new Time.Builder()).build());
+		public final Builder masterTimeout(Consumer<Time.Builder> fn) {
+			Time.Builder builder = new Time.Builder();
+			fn.accept(builder);
+			return this.masterTimeout(builder.build());
 		}
 
 		/**
@@ -333,8 +339,10 @@ public class PutLifecycleRequest extends RequestBase implements JsonpSerializabl
 		 * <p>
 		 * API name: {@code retention}
 		 */
-		public final Builder retention(Function<Retention.Builder, ObjectBuilder<Retention>> fn) {
-			return this.retention(fn.apply(new Retention.Builder()).build());
+		public final Builder retention(Consumer<Retention.Builder> fn) {
+			Retention.Builder builder = new Retention.Builder();
+			fn.accept(builder);
+			return this.retention(builder.build());
 		}
 
 		/**
@@ -365,8 +373,10 @@ public class PutLifecycleRequest extends RequestBase implements JsonpSerializabl
 		 * <p>
 		 * API name: {@code timeout}
 		 */
-		public final Builder timeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
-			return this.timeout(fn.apply(new Time.Builder()).build());
+		public final Builder timeout(Consumer<Time.Builder> fn) {
+			Time.Builder builder = new Time.Builder();
+			fn.accept(builder);
+			return this.timeout(builder.build());
 		}
 
 		/**
@@ -392,7 +402,7 @@ public class PutLifecycleRequest extends RequestBase implements JsonpSerializabl
 
 	protected static void setupPutLifecycleRequestDeserializer(ObjectDeserializer<PutLifecycleRequest.Builder> op) {
 
-		op.add(Builder::config, Configuration._DESERIALIZER, "config");
+		op.add(Builder::config, SlmConfiguration._DESERIALIZER, "config");
 		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
 		op.add(Builder::repository, JsonpDeserializer.stringDeserializer(), "repository");
 		op.add(Builder::retention, Retention._DESERIALIZER, "retention");

@@ -30,14 +30,15 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -54,8 +55,10 @@ public class FollowStats implements JsonpSerializable {
 
 	}
 
-	public static FollowStats of(Function<Builder, ObjectBuilder<FollowStats>> fn) {
-		return fn.apply(new Builder()).build();
+	public static FollowStats of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -116,13 +119,9 @@ public class FollowStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code indices}
 		 */
-		@SafeVarargs
-		public final Builder indices(Function<FollowIndexStats.Builder, ObjectBuilder<FollowIndexStats>>... fns) {
-			this.indices = new ArrayList<>(fns.length);
-			for (Function<FollowIndexStats.Builder, ObjectBuilder<FollowIndexStats>> fn : fns) {
-				this.indices.add(fn.apply(new FollowIndexStats.Builder()).build());
-			}
-			return this;
+		public final Builder indices(
+				Function<ListBuilder<FollowIndexStats, FollowIndexStats.Builder>, ObjectBuilder<List<FollowIndexStats>>> fn) {
+			return indices(fn.apply(new ListBuilder<>(FollowIndexStats.Builder::new)).build());
 		}
 
 		/**

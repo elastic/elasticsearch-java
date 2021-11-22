@@ -50,7 +50,8 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
-import co.elastic.clients.transport.SimpleEndpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
+import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.MapBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
@@ -61,13 +62,12 @@ import java.lang.Double;
 import java.lang.Integer;
 import java.lang.Long;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
@@ -280,8 +280,10 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 
 	}
 
-	public static SearchRequest of(Function<Builder, ObjectBuilder<SearchRequest>> fn) {
-		return fn.apply(new Builder()).build();
+	public static SearchRequest of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -1244,8 +1246,10 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code _source}
 		 */
-		public final Builder source(Function<SourceConfig.Builder, ObjectBuilder<SourceConfig>> fn) {
-			return this.source(fn.apply(new SourceConfig.Builder()).build());
+		public final Builder source(Consumer<SourceConfig.Builder> fn) {
+			SourceConfig.Builder builder = new SourceConfig.Builder();
+			fn.accept(builder);
+			return this.source(builder.build());
 		}
 
 		/**
@@ -1254,13 +1258,6 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 		public final Builder aggregations(@Nullable Map<String, Aggregation> value) {
 			this.aggregations = value;
 			return this;
-		}
-
-		/**
-		 * Set {@link #aggregations(Map)} to a singleton map.
-		 */
-		public Builder aggregations(String key, Function<Aggregation.Builder, ObjectBuilder<Aggregation>> fn) {
-			return this.aggregations(Collections.singletonMap(key, fn.apply(new Aggregation.Builder()).build()));
 		}
 
 		public final Builder aggregations(
@@ -1347,8 +1344,10 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 		/**
 		 * API name: {@code collapse}
 		 */
-		public final Builder collapse(Function<FieldCollapse.Builder, ObjectBuilder<FieldCollapse>> fn) {
-			return this.collapse(fn.apply(new FieldCollapse.Builder()).build());
+		public final Builder collapse(Consumer<FieldCollapse.Builder> fn) {
+			FieldCollapse.Builder builder = new FieldCollapse.Builder();
+			fn.accept(builder);
+			return this.collapse(builder.build());
 		}
 
 		/**
@@ -1400,13 +1399,9 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code docvalue_fields}
 		 */
-		@SafeVarargs
-		public final Builder docvalueFields(Function<FieldAndFormat.Builder, ObjectBuilder<FieldAndFormat>>... fns) {
-			this.docvalueFields = new ArrayList<>(fns.length);
-			for (Function<FieldAndFormat.Builder, ObjectBuilder<FieldAndFormat>> fn : fns) {
-				this.docvalueFields.add(fn.apply(new FieldAndFormat.Builder()).build());
-			}
-			return this;
+		public final Builder docvalueFields(
+				Function<ListBuilder<FieldAndFormat, FieldAndFormat.Builder>, ObjectBuilder<List<FieldAndFormat>>> fn) {
+			return docvalueFields(fn.apply(new ListBuilder<>(FieldAndFormat.Builder::new)).build());
 		}
 
 		/**
@@ -1470,13 +1465,9 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code fields}
 		 */
-		@SafeVarargs
-		public final Builder fields(Function<FieldAndFormat.Builder, ObjectBuilder<FieldAndFormat>>... fns) {
-			this.fields = new ArrayList<>(fns.length);
-			for (Function<FieldAndFormat.Builder, ObjectBuilder<FieldAndFormat>> fn : fns) {
-				this.fields.add(fn.apply(new FieldAndFormat.Builder()).build());
-			}
-			return this;
+		public final Builder fields(
+				Function<ListBuilder<FieldAndFormat, FieldAndFormat.Builder>, ObjectBuilder<List<FieldAndFormat>>> fn) {
+			return fields(fn.apply(new ListBuilder<>(FieldAndFormat.Builder::new)).build());
 		}
 
 		/**
@@ -1502,8 +1493,10 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 		/**
 		 * API name: {@code highlight}
 		 */
-		public final Builder highlight(Function<Highlight.Builder, ObjectBuilder<Highlight>> fn) {
-			return this.highlight(fn.apply(new Highlight.Builder()).build());
+		public final Builder highlight(Consumer<Highlight.Builder> fn) {
+			Highlight.Builder builder = new Highlight.Builder();
+			fn.accept(builder);
+			return this.highlight(builder.build());
 		}
 
 		/**
@@ -1632,8 +1625,10 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code pit}
 		 */
-		public final Builder pit(Function<PointInTimeReference.Builder, ObjectBuilder<PointInTimeReference>> fn) {
-			return this.pit(fn.apply(new PointInTimeReference.Builder()).build());
+		public final Builder pit(Consumer<PointInTimeReference.Builder> fn) {
+			PointInTimeReference.Builder builder = new PointInTimeReference.Builder();
+			fn.accept(builder);
+			return this.pit(builder.build());
 		}
 
 		/**
@@ -1647,8 +1642,10 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 		/**
 		 * API name: {@code post_filter}
 		 */
-		public final Builder postFilter(Function<Query.Builder, ObjectBuilder<Query>> fn) {
-			return this.postFilter(fn.apply(new Query.Builder()).build());
+		public final Builder postFilter(Consumer<Query.Builder> fn) {
+			Query.Builder builder = new Query.Builder();
+			fn.accept(builder);
+			return this.postFilter(builder.build());
 		}
 
 		/**
@@ -1710,8 +1707,10 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code query}
 		 */
-		public final Builder query(Function<Query.Builder, ObjectBuilder<Query>> fn) {
-			return this.query(fn.apply(new Query.Builder()).build());
+		public final Builder query(Consumer<Query.Builder> fn) {
+			Query.Builder builder = new Query.Builder();
+			fn.accept(builder);
+			return this.query(builder.build());
 		}
 
 		/**
@@ -1744,13 +1743,8 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 		/**
 		 * API name: {@code rescore}
 		 */
-		@SafeVarargs
-		public final Builder rescore(Function<Rescore.Builder, ObjectBuilder<Rescore>>... fns) {
-			this.rescore = new ArrayList<>(fns.length);
-			for (Function<Rescore.Builder, ObjectBuilder<Rescore>> fn : fns) {
-				this.rescore.add(fn.apply(new Rescore.Builder()).build());
-			}
-			return this;
+		public final Builder rescore(Function<ListBuilder<Rescore, Rescore.Builder>, ObjectBuilder<List<Rescore>>> fn) {
+			return rescore(fn.apply(new ListBuilder<>(Rescore.Builder::new)).build());
 		}
 
 		/**
@@ -1774,13 +1768,6 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 			return this;
 		}
 
-		/**
-		 * Set {@link #runtimeMappings(Map)} to a singleton map.
-		 */
-		public Builder runtimeMappings(String key, Function<RuntimeField.Builder, ObjectBuilder<RuntimeField>> fn) {
-			return this.runtimeMappings(Collections.singletonMap(key, fn.apply(new RuntimeField.Builder()).build()));
-		}
-
 		public final Builder runtimeMappings(
 				Function<MapBuilder<String, RuntimeField, RuntimeField.Builder>, ObjectBuilder<Map<String, RuntimeField>>> fn) {
 			return runtimeMappings(fn.apply(new MapBuilder<>(RuntimeField.Builder::new)).build());
@@ -1794,13 +1781,6 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 		public final Builder scriptFields(@Nullable Map<String, ScriptField> value) {
 			this.scriptFields = value;
 			return this;
-		}
-
-		/**
-		 * Set {@link #scriptFields(Map)} to a singleton map.
-		 */
-		public Builder scriptFields(String key, Function<ScriptField.Builder, ObjectBuilder<ScriptField>> fn) {
-			return this.scriptFields(Collections.singletonMap(key, fn.apply(new ScriptField.Builder()).build()));
 		}
 
 		public final Builder scriptFields(
@@ -1825,8 +1805,10 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code scroll}
 		 */
-		public final Builder scroll(Function<Time.Builder, ObjectBuilder<Time>> fn) {
-			return this.scroll(fn.apply(new Time.Builder()).build());
+		public final Builder scroll(Consumer<Time.Builder> fn) {
+			Time.Builder builder = new Time.Builder();
+			fn.accept(builder);
+			return this.scroll(builder.build());
 		}
 
 		/**
@@ -1889,8 +1871,10 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 		/**
 		 * API name: {@code slice}
 		 */
-		public final Builder slice(Function<SlicedScroll.Builder, ObjectBuilder<SlicedScroll>> fn) {
-			return this.slice(fn.apply(new SlicedScroll.Builder()).build());
+		public final Builder slice(Consumer<SlicedScroll.Builder> fn) {
+			SlicedScroll.Builder builder = new SlicedScroll.Builder();
+			fn.accept(builder);
+			return this.slice(builder.build());
 		}
 
 		/**
@@ -1912,13 +1896,9 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 		/**
 		 * API name: {@code sort}
 		 */
-		@SafeVarargs
-		public final Builder sort(Function<SortOptions.Builder, ObjectBuilder<SortOptions>>... fns) {
-			this.sort = new ArrayList<>(fns.length);
-			for (Function<SortOptions.Builder, ObjectBuilder<SortOptions>> fn : fns) {
-				this.sort.add(fn.apply(new SortOptions.Builder()).build());
-			}
-			return this;
+		public final Builder sort(
+				Function<ListBuilder<SortOptions, SortOptions.Builder>, ObjectBuilder<List<SortOptions>>> fn) {
+			return sort(fn.apply(new ListBuilder<>(SortOptions.Builder::new)).build());
 		}
 
 		/**
@@ -1982,8 +1962,10 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 		/**
 		 * API name: {@code suggest}
 		 */
-		public final Builder suggest(Function<Suggester.Builder, ObjectBuilder<Suggester>> fn) {
-			return this.suggest(fn.apply(new Suggester.Builder()).build());
+		public final Builder suggest(Consumer<Suggester.Builder> fn) {
+			Suggester.Builder builder = new Suggester.Builder();
+			fn.accept(builder);
+			return this.suggest(builder.build());
 		}
 
 		/**
@@ -2043,8 +2025,10 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code track_total_hits}
 		 */
-		public final Builder trackTotalHits(Function<TrackHits.Builder, ObjectBuilder<TrackHits>> fn) {
-			return this.trackTotalHits(fn.apply(new TrackHits.Builder()).build());
+		public final Builder trackTotalHits(Consumer<TrackHits.Builder> fn) {
+			TrackHits.Builder builder = new TrackHits.Builder();
+			fn.accept(builder);
+			return this.trackTotalHits(builder.build());
 		}
 
 		/**

@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import java.util.function.Supplier;
 
 // typedef: eql.search.Response
@@ -44,9 +44,10 @@ public class EqlSearchResponse<TEvent> extends EqlSearchResponseBase<TEvent> {
 
 	}
 
-	public static <TEvent> EqlSearchResponse<TEvent> of(
-			Function<Builder<TEvent>, ObjectBuilder<EqlSearchResponse<TEvent>>> fn) {
-		return fn.apply(new Builder<>()).build();
+	public static <TEvent> EqlSearchResponse<TEvent> of(Consumer<Builder<TEvent>> fn) {
+		Builder<TEvent> builder = new Builder<>();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	// ---------------------------------------------------------------------------------------------

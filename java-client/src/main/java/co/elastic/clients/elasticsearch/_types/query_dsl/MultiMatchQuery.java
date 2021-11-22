@@ -38,7 +38,7 @@ import java.lang.String;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.MultiMatchQuery
@@ -118,16 +118,18 @@ public class MultiMatchQuery extends QueryBase implements QueryVariant {
 
 	}
 
-	public static MultiMatchQuery of(Function<Builder, ObjectBuilder<MultiMatchQuery>> fn) {
-		return fn.apply(new Builder()).build();
+	public static MultiMatchQuery of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
-	 * {@link Query} variant type
+	 * Query variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "multi_match";
+	public Query.Kind _queryKind() {
+		return Query.Kind.MultiMatch;
 	}
 
 	/**

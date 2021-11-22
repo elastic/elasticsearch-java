@@ -36,9 +36,9 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.Collections;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -60,8 +60,10 @@ public class CloseIndexResponse extends AcknowledgedResponseBase {
 
 	}
 
-	public static CloseIndexResponse of(Function<Builder, ObjectBuilder<CloseIndexResponse>> fn) {
-		return fn.apply(new Builder()).build();
+	public static CloseIndexResponse of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -115,13 +117,6 @@ public class CloseIndexResponse extends AcknowledgedResponseBase {
 		public final Builder indices(Map<String, CloseIndexResult> value) {
 			this.indices = value;
 			return this;
-		}
-
-		/**
-		 * Set {@link #indices(Map)} to a singleton map.
-		 */
-		public Builder indices(String key, Function<CloseIndexResult.Builder, ObjectBuilder<CloseIndexResult>> fn) {
-			return this.indices(Collections.singletonMap(key, fn.apply(new CloseIndexResult.Builder()).build()));
 		}
 
 		public final Builder indices(

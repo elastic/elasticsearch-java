@@ -40,23 +40,25 @@ import java.lang.Double;
 import java.lang.Object;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: _global.search._types.Context
 // union type: Union[]
 @JsonpDeserializable
-public class Context implements TaggedUnion<Object>, JsonpSerializable {
+public class Context implements TaggedUnion<Context.Kind, Object>, JsonpSerializable {
 
-	public static final String LOCATION = "location";
-	public static final String CATEGORY = "category";
+	public enum Kind {
+		Location, Category
 
-	private final String _type;
+	}
+
+	private final Kind _kind;
 	private final Object _value;
 
 	@Override
-	public final String _type() {
-		return _type;
+	public final Kind _kind() {
+		return _kind;
 	}
 
 	@Override
@@ -64,20 +66,29 @@ public class Context implements TaggedUnion<Object>, JsonpSerializable {
 		return _value;
 	}
 
-	public Context(String type, Object value) {
-		this._type = type;
+	public Context(Kind kind, Object value) {
+		this._kind = kind;
 		this._value = value;
 	}
 
 	private Context(Builder builder) {
 
-		this._type = ModelTypeHelper.requireNonNull(builder._type, builder, "<variant type>");
+		this._kind = ModelTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
 		this._value = ModelTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
 
 	}
 
-	public static Context of(Function<Builder, ObjectBuilder<Context>> fn) {
-		return fn.apply(new Builder()).build();
+	public static Context of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
+	}
+
+	/**
+	 * Is this variant instance of kind {@code location}?
+	 */
+	public boolean isLocation() {
+		return _kind == Kind.Location;
 	}
 
 	/**
@@ -87,7 +98,14 @@ public class Context implements TaggedUnion<Object>, JsonpSerializable {
 	 *             if the current variant is not of the {@code location} kind.
 	 */
 	public GeoLocation location() {
-		return TaggedUnionUtils.get(this, LOCATION);
+		return TaggedUnionUtils.get(this, Kind.Location);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code category}?
+	 */
+	public boolean isCategory() {
+		return _kind == Kind.Category;
 	}
 
 	/**
@@ -97,7 +115,7 @@ public class Context implements TaggedUnion<Object>, JsonpSerializable {
 	 *             if the current variant is not of the {@code category} kind.
 	 */
 	public String category() {
-		return TaggedUnionUtils.get(this, CATEGORY);
+		return TaggedUnionUtils.get(this, Kind.Category);
 	}
 
 	@Override
@@ -105,8 +123,8 @@ public class Context implements TaggedUnion<Object>, JsonpSerializable {
 		if (_value instanceof JsonpSerializable) {
 			((JsonpSerializable) _value).serialize(generator, mapper);
 		} else {
-			switch (_type) {
-				case CATEGORY :
+			switch (_kind) {
+				case Category :
 					generator.write(((String) this._value));
 
 					break;
@@ -116,21 +134,23 @@ public class Context implements TaggedUnion<Object>, JsonpSerializable {
 	}
 
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Context> {
-		private String _type;
+		private Kind _kind;
 		private Object _value;
 
 		public Builder location(GeoLocation v) {
-			this._type = LOCATION;
+			this._kind = Kind.Location;
 			this._value = v;
 			return this;
 		}
 
-		public Builder location(Function<GeoLocation.Builder, ObjectBuilder<GeoLocation>> f) {
-			return this.location(f.apply(new GeoLocation.Builder()).build());
+		public Builder location(Consumer<GeoLocation.Builder> fn) {
+			GeoLocation.Builder builder = new GeoLocation.Builder();
+			fn.accept(builder);
+			return this.location(builder.build());
 		}
 
 		public Builder category(String v) {
-			this._type = CATEGORY;
+			this._kind = Kind.Category;
 			this._value = v;
 			return this;
 		}
@@ -143,8 +163,9 @@ public class Context implements TaggedUnion<Object>, JsonpSerializable {
 	}
 
 	private static JsonpDeserializer<Context> buildContextDeserializer() {
-		return new UnionDeserializer.Builder<>(Context::new, true).addMember("location", GeoLocation._DESERIALIZER)
-				.addMember("category", JsonpDeserializer.stringDeserializer()).build();
+		return new UnionDeserializer.Builder<Context, Kind, Object>(Context::new, true)
+				.addMember(Kind.Location, GeoLocation._DESERIALIZER)
+				.addMember(Kind.Category, JsonpDeserializer.stringDeserializer()).build();
 	}
 
 	public static final JsonpDeserializer<Context> _DESERIALIZER = JsonpDeserializer

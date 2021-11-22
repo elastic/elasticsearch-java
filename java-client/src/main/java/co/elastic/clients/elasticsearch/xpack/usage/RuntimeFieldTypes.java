@@ -28,13 +28,14 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -52,8 +53,10 @@ public class RuntimeFieldTypes extends Base {
 
 	}
 
-	public static RuntimeFieldTypes of(Function<Builder, ObjectBuilder<RuntimeFieldTypes>> fn) {
-		return fn.apply(new Builder()).build();
+	public static RuntimeFieldTypes of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -106,13 +109,9 @@ public class RuntimeFieldTypes extends Base {
 		/**
 		 * Required - API name: {@code field_types}
 		 */
-		@SafeVarargs
-		public final Builder fieldTypes(Function<RuntimeFieldsType.Builder, ObjectBuilder<RuntimeFieldsType>>... fns) {
-			this.fieldTypes = new ArrayList<>(fns.length);
-			for (Function<RuntimeFieldsType.Builder, ObjectBuilder<RuntimeFieldsType>> fn : fns) {
-				this.fieldTypes.add(fn.apply(new RuntimeFieldsType.Builder()).build());
-			}
-			return this;
+		public final Builder fieldTypes(
+				Function<ListBuilder<RuntimeFieldsType, RuntimeFieldsType.Builder>, ObjectBuilder<List<RuntimeFieldsType>>> fn) {
+			return fieldTypes(fn.apply(new ListBuilder<>(RuntimeFieldsType.Builder::new)).build());
 		}
 
 		@Override

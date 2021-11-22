@@ -35,7 +35,7 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.TimingStats
@@ -55,8 +55,10 @@ public class TimingStats implements JsonpSerializable {
 
 	}
 
-	public static TimingStats of(Function<Builder, ObjectBuilder<TimingStats>> fn) {
-		return fn.apply(new Builder()).build();
+	public static TimingStats of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**

@@ -33,7 +33,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 
 // typedef: xpack.usage.Flattened
 @JsonpDeserializable
@@ -49,8 +49,10 @@ public class Flattened extends Base {
 
 	}
 
-	public static Flattened of(Function<Builder, ObjectBuilder<Flattened>> fn) {
-		return fn.apply(new Builder()).build();
+	public static Flattened of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**

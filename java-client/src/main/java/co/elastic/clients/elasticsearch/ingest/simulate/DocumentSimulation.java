@@ -37,7 +37,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: ingest.simulate.DocumentSimulation
@@ -74,8 +74,10 @@ public class DocumentSimulation implements JsonpSerializable {
 
 	}
 
-	public static DocumentSimulation of(Function<Builder, ObjectBuilder<DocumentSimulation>> fn) {
-		return fn.apply(new Builder()).build();
+	public static DocumentSimulation of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -229,8 +231,10 @@ public class DocumentSimulation implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code _ingest}
 		 */
-		public final Builder ingest(Function<Ingest.Builder, ObjectBuilder<Ingest>> fn) {
-			return this.ingest(fn.apply(new Ingest.Builder()).build());
+		public final Builder ingest(Consumer<Ingest.Builder> fn) {
+			Ingest.Builder builder = new Ingest.Builder();
+			fn.accept(builder);
+			return this.ingest(builder.build());
 		}
 
 		/**

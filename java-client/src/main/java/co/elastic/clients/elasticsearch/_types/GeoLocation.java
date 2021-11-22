@@ -40,25 +40,25 @@ import java.lang.Object;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: _types.GeoLocation
 // union type: Union[]
 @JsonpDeserializable
-public class GeoLocation implements TaggedUnion<Object>, JsonpSerializable {
+public class GeoLocation implements TaggedUnion<GeoLocation.Kind, Object>, JsonpSerializable {
 
-	public static final String COORDS = "coords";
-	public static final String GEOHASH = "geohash";
-	public static final String LATLON = "latlon";
-	public static final String TEXT = "text";
+	public enum Kind {
+		Coords, Geohash, Latlon, Text
 
-	private final String _type;
+	}
+
+	private final Kind _kind;
 	private final Object _value;
 
 	@Override
-	public final String _type() {
-		return _type;
+	public final Kind _kind() {
+		return _kind;
 	}
 
 	@Override
@@ -66,20 +66,29 @@ public class GeoLocation implements TaggedUnion<Object>, JsonpSerializable {
 		return _value;
 	}
 
-	public GeoLocation(String type, Object value) {
-		this._type = type;
+	public GeoLocation(Kind kind, Object value) {
+		this._kind = kind;
 		this._value = value;
 	}
 
 	private GeoLocation(Builder builder) {
 
-		this._type = ModelTypeHelper.requireNonNull(builder._type, builder, "<variant type>");
+		this._kind = ModelTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
 		this._value = ModelTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
 
 	}
 
-	public static GeoLocation of(Function<Builder, ObjectBuilder<GeoLocation>> fn) {
-		return fn.apply(new Builder()).build();
+	public static GeoLocation of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
+	}
+
+	/**
+	 * Is this variant instance of kind {@code coords}?
+	 */
+	public boolean isCoords() {
+		return _kind == Kind.Coords;
 	}
 
 	/**
@@ -89,7 +98,14 @@ public class GeoLocation implements TaggedUnion<Object>, JsonpSerializable {
 	 *             if the current variant is not of the {@code coords} kind.
 	 */
 	public List<Double> coords() {
-		return TaggedUnionUtils.get(this, COORDS);
+		return TaggedUnionUtils.get(this, Kind.Coords);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code geohash}?
+	 */
+	public boolean isGeohash() {
+		return _kind == Kind.Geohash;
 	}
 
 	/**
@@ -99,7 +115,14 @@ public class GeoLocation implements TaggedUnion<Object>, JsonpSerializable {
 	 *             if the current variant is not of the {@code geohash} kind.
 	 */
 	public GeoHashLocation geohash() {
-		return TaggedUnionUtils.get(this, GEOHASH);
+		return TaggedUnionUtils.get(this, Kind.Geohash);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code latlon}?
+	 */
+	public boolean isLatlon() {
+		return _kind == Kind.Latlon;
 	}
 
 	/**
@@ -109,7 +132,14 @@ public class GeoLocation implements TaggedUnion<Object>, JsonpSerializable {
 	 *             if the current variant is not of the {@code latlon} kind.
 	 */
 	public LatLonGeoLocation latlon() {
-		return TaggedUnionUtils.get(this, LATLON);
+		return TaggedUnionUtils.get(this, Kind.Latlon);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code text}?
+	 */
+	public boolean isText() {
+		return _kind == Kind.Text;
 	}
 
 	/**
@@ -119,7 +149,7 @@ public class GeoLocation implements TaggedUnion<Object>, JsonpSerializable {
 	 *             if the current variant is not of the {@code text} kind.
 	 */
 	public String text() {
-		return TaggedUnionUtils.get(this, TEXT);
+		return TaggedUnionUtils.get(this, Kind.Text);
 	}
 
 	@Override
@@ -127,8 +157,8 @@ public class GeoLocation implements TaggedUnion<Object>, JsonpSerializable {
 		if (_value instanceof JsonpSerializable) {
 			((JsonpSerializable) _value).serialize(generator, mapper);
 		} else {
-			switch (_type) {
-				case COORDS :
+			switch (_kind) {
+				case Coords :
 					generator.writeStartArray();
 					for (Double item0 : ((List<Double>) this._value)) {
 						generator.write(item0);
@@ -137,7 +167,7 @@ public class GeoLocation implements TaggedUnion<Object>, JsonpSerializable {
 					generator.writeEnd();
 
 					break;
-				case TEXT :
+				case Text :
 					generator.write(((String) this._value));
 
 					break;
@@ -147,37 +177,41 @@ public class GeoLocation implements TaggedUnion<Object>, JsonpSerializable {
 	}
 
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GeoLocation> {
-		private String _type;
+		private Kind _kind;
 		private Object _value;
 
 		public Builder coords(List<Double> v) {
-			this._type = COORDS;
+			this._kind = Kind.Coords;
 			this._value = v;
 			return this;
 		}
 
 		public Builder geohash(GeoHashLocation v) {
-			this._type = GEOHASH;
+			this._kind = Kind.Geohash;
 			this._value = v;
 			return this;
 		}
 
-		public Builder geohash(Function<GeoHashLocation.Builder, ObjectBuilder<GeoHashLocation>> f) {
-			return this.geohash(f.apply(new GeoHashLocation.Builder()).build());
+		public Builder geohash(Consumer<GeoHashLocation.Builder> fn) {
+			GeoHashLocation.Builder builder = new GeoHashLocation.Builder();
+			fn.accept(builder);
+			return this.geohash(builder.build());
 		}
 
 		public Builder latlon(LatLonGeoLocation v) {
-			this._type = LATLON;
+			this._kind = Kind.Latlon;
 			this._value = v;
 			return this;
 		}
 
-		public Builder latlon(Function<LatLonGeoLocation.Builder, ObjectBuilder<LatLonGeoLocation>> f) {
-			return this.latlon(f.apply(new LatLonGeoLocation.Builder()).build());
+		public Builder latlon(Consumer<LatLonGeoLocation.Builder> fn) {
+			LatLonGeoLocation.Builder builder = new LatLonGeoLocation.Builder();
+			fn.accept(builder);
+			return this.latlon(builder.build());
 		}
 
 		public Builder text(String v) {
-			this._type = TEXT;
+			this._kind = Kind.Text;
 			this._value = v;
 			return this;
 		}
@@ -190,11 +224,11 @@ public class GeoLocation implements TaggedUnion<Object>, JsonpSerializable {
 	}
 
 	private static JsonpDeserializer<GeoLocation> buildGeoLocationDeserializer() {
-		return new UnionDeserializer.Builder<>(GeoLocation::new, false)
-				.addMember("coords", JsonpDeserializer.arrayDeserializer(JsonpDeserializer.doubleDeserializer()))
-				.addMember("geohash", GeoHashLocation._DESERIALIZER)
-				.addMember("latlon", LatLonGeoLocation._DESERIALIZER)
-				.addMember("text", JsonpDeserializer.stringDeserializer()).build();
+		return new UnionDeserializer.Builder<GeoLocation, Kind, Object>(GeoLocation::new, false)
+				.addMember(Kind.Coords, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.doubleDeserializer()))
+				.addMember(Kind.Geohash, GeoHashLocation._DESERIALIZER)
+				.addMember(Kind.Latlon, LatLonGeoLocation._DESERIALIZER)
+				.addMember(Kind.Text, JsonpDeserializer.stringDeserializer()).build();
 	}
 
 	public static final JsonpDeserializer<GeoLocation> _DESERIALIZER = JsonpDeserializer

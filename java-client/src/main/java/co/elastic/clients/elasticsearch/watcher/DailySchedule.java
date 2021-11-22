@@ -29,14 +29,15 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -53,16 +54,18 @@ public class DailySchedule implements ScheduleVariant, JsonpSerializable {
 
 	}
 
-	public static DailySchedule of(Function<Builder, ObjectBuilder<DailySchedule>> fn) {
-		return fn.apply(new Builder()).build();
+	public static DailySchedule of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
-	 * {@link Schedule} variant type
+	 * Schedule variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "daily";
+	public Schedule.Kind _scheduleKind() {
+		return Schedule.Kind.Daily;
 	}
 
 	/**
@@ -123,13 +126,9 @@ public class DailySchedule implements ScheduleVariant, JsonpSerializable {
 		/**
 		 * Required - API name: {@code at}
 		 */
-		@SafeVarargs
-		public final Builder at(Function<TimeOfDay.Builder, ObjectBuilder<TimeOfDay>>... fns) {
-			this.at = new ArrayList<>(fns.length);
-			for (Function<TimeOfDay.Builder, ObjectBuilder<TimeOfDay>> fn : fns) {
-				this.at.add(fn.apply(new TimeOfDay.Builder()).build());
-			}
-			return this;
+		public final Builder at(
+				Function<ListBuilder<TimeOfDay, TimeOfDay.Builder>, ObjectBuilder<List<TimeOfDay>>> fn) {
+			return at(fn.apply(new ListBuilder<>(TimeOfDay.Builder::new)).build());
 		}
 
 		/**

@@ -32,7 +32,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.MissingAggregation
@@ -54,16 +54,18 @@ public class MissingAggregation extends BucketAggregationBase implements Aggrega
 
 	}
 
-	public static MissingAggregation of(Function<Builder, ObjectBuilder<MissingAggregation>> fn) {
-		return fn.apply(new Builder()).build();
+	public static MissingAggregation of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
-	 * {@link Aggregation} variant type
+	 * Aggregation variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "missing";
+	public Aggregation.Kind _aggregationKind() {
+		return Aggregation.Kind.Missing;
 	}
 
 	/**

@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
-import co.elastic.clients.util.UnionVariant;
-
 /**
  * Base interface for {@link PinnedQuery} variants.
  */
-public interface PinnedQueryVariant extends UnionVariant {
+public interface PinnedQueryVariant {
+
+	PinnedQuery.Kind _pinnedQueryKind();
 
 }

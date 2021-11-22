@@ -34,7 +34,7 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: _types.analysis.SimpleAnalyzer
@@ -51,16 +51,18 @@ public class SimpleAnalyzer implements AnalyzerVariant, JsonpSerializable {
 
 	}
 
-	public static SimpleAnalyzer of(Function<Builder, ObjectBuilder<SimpleAnalyzer>> fn) {
-		return fn.apply(new Builder()).build();
+	public static SimpleAnalyzer of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
-	 * {@link Analyzer} variant type
+	 * Analyzer variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "simple";
+	public Analyzer.Kind _analyzerKind() {
+		return Analyzer.Kind.Simple;
 	}
 
 	/**

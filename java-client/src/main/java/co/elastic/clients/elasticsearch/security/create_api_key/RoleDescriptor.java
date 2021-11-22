@@ -30,15 +30,16 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -61,8 +62,10 @@ public class RoleDescriptor implements JsonpSerializable {
 
 	}
 
-	public static RoleDescriptor of(Function<Builder, ObjectBuilder<RoleDescriptor>> fn) {
-		return fn.apply(new Builder()).build();
+	public static RoleDescriptor of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -178,13 +181,9 @@ public class RoleDescriptor implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code index}
 		 */
-		@SafeVarargs
-		public final Builder index(Function<IndexPrivileges.Builder, ObjectBuilder<IndexPrivileges>>... fns) {
-			this.index = new ArrayList<>(fns.length);
-			for (Function<IndexPrivileges.Builder, ObjectBuilder<IndexPrivileges>> fn : fns) {
-				this.index.add(fn.apply(new IndexPrivileges.Builder()).build());
-			}
-			return this;
+		public final Builder index(
+				Function<ListBuilder<IndexPrivileges, IndexPrivileges.Builder>, ObjectBuilder<List<IndexPrivileges>>> fn) {
+			return index(fn.apply(new ListBuilder<>(IndexPrivileges.Builder::new)).build());
 		}
 
 		/**
@@ -206,14 +205,9 @@ public class RoleDescriptor implements JsonpSerializable {
 		/**
 		 * API name: {@code applications}
 		 */
-		@SafeVarargs
 		public final Builder applications(
-				Function<ApplicationPrivileges.Builder, ObjectBuilder<ApplicationPrivileges>>... fns) {
-			this.applications = new ArrayList<>(fns.length);
-			for (Function<ApplicationPrivileges.Builder, ObjectBuilder<ApplicationPrivileges>> fn : fns) {
-				this.applications.add(fn.apply(new ApplicationPrivileges.Builder()).build());
-			}
-			return this;
+				Function<ListBuilder<ApplicationPrivileges, ApplicationPrivileges.Builder>, ObjectBuilder<List<ApplicationPrivileges>>> fn) {
+			return applications(fn.apply(new ListBuilder<>(ApplicationPrivileges.Builder::new)).build());
 		}
 
 		/**

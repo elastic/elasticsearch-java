@@ -29,16 +29,17 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -62,8 +63,10 @@ public class InferenceFeatureImportance implements JsonpSerializable {
 
 	}
 
-	public static InferenceFeatureImportance of(Function<Builder, ObjectBuilder<InferenceFeatureImportance>> fn) {
-		return fn.apply(new Builder()).build();
+	public static InferenceFeatureImportance of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -169,14 +172,9 @@ public class InferenceFeatureImportance implements JsonpSerializable {
 		/**
 		 * API name: {@code classes}
 		 */
-		@SafeVarargs
 		public final Builder classes(
-				Function<InferenceClassImportance.Builder, ObjectBuilder<InferenceClassImportance>>... fns) {
-			this.classes = new ArrayList<>(fns.length);
-			for (Function<InferenceClassImportance.Builder, ObjectBuilder<InferenceClassImportance>> fn : fns) {
-				this.classes.add(fn.apply(new InferenceClassImportance.Builder()).build());
-			}
-			return this;
+				Function<ListBuilder<InferenceClassImportance, InferenceClassImportance.Builder>, ObjectBuilder<List<InferenceClassImportance>>> fn) {
+			return classes(fn.apply(new ListBuilder<>(InferenceClassImportance.Builder::new)).build());
 		}
 
 		/**

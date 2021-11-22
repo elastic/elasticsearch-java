@@ -23,14 +23,25 @@
 
 package co.elastic.clients.elasticsearch._types.analysis;
 
+import co.elastic.clients.json.JsonEnum;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
-import co.elastic.clients.util.StringEnum;
 
 @JsonpDeserializable
-public enum TokenChar implements StringEnum {
-	Letter("letter"), Digit("digit"), Whitespace("whitespace"), Punctuation("punctuation"), Symbol("symbol"), Custom(
-			"custom");
+public enum TokenChar implements JsonEnum {
+	Letter("letter"),
+
+	Digit("digit"),
+
+	Whitespace("whitespace"),
+
+	Punctuation("punctuation"),
+
+	Symbol("symbol"),
+
+	Custom("custom"),
+
+	;
 
 	private final String jsonValue;
 
@@ -42,6 +53,6 @@ public enum TokenChar implements StringEnum {
 		return this.jsonValue;
 	}
 
-	public static final StringEnum.Deserializer<TokenChar> _DESERIALIZER = new StringEnum.Deserializer<>(
+	public static final JsonEnum.Deserializer<TokenChar> _DESERIALIZER = new JsonEnum.Deserializer<>(
 			TokenChar.values());
 }

@@ -37,7 +37,7 @@ import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: cluster.pending_tasks.PendingTask
@@ -68,8 +68,10 @@ public class PendingTask implements JsonpSerializable {
 
 	}
 
-	public static PendingTask of(Function<Builder, ObjectBuilder<PendingTask>> fn) {
-		return fn.apply(new Builder()).build();
+	public static PendingTask of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**

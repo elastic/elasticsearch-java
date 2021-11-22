@@ -34,7 +34,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: ingest._types.BytesProcessor
@@ -59,16 +59,18 @@ public class BytesProcessor extends ProcessorBase implements ProcessorVariant {
 
 	}
 
-	public static BytesProcessor of(Function<Builder, ObjectBuilder<BytesProcessor>> fn) {
-		return fn.apply(new Builder()).build();
+	public static BytesProcessor of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
-	 * {@link Processor} variant type
+	 * Processor variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "bytes";
+	public Processor.Kind _processorKind() {
+		return Processor.Kind.Bytes;
 	}
 
 	/**

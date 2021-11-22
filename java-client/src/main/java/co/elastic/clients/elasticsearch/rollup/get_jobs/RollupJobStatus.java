@@ -38,7 +38,7 @@ import java.lang.Boolean;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: rollup.get_jobs.RollupJobStatus
@@ -61,8 +61,10 @@ public class RollupJobStatus implements JsonpSerializable {
 
 	}
 
-	public static RollupJobStatus of(Function<Builder, ObjectBuilder<RollupJobStatus>> fn) {
-		return fn.apply(new Builder()).build();
+	public static RollupJobStatus of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**

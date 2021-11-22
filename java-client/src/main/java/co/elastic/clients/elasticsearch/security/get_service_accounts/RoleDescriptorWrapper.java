@@ -34,7 +34,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: security.get_service_accounts.RoleDescriptorWrapper
@@ -50,8 +50,10 @@ public class RoleDescriptorWrapper implements JsonpSerializable {
 
 	}
 
-	public static RoleDescriptorWrapper of(Function<Builder, ObjectBuilder<RoleDescriptorWrapper>> fn) {
-		return fn.apply(new Builder()).build();
+	public static RoleDescriptorWrapper of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -96,8 +98,10 @@ public class RoleDescriptorWrapper implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code role_descriptor}
 		 */
-		public final Builder roleDescriptor(Function<RoleDescriptor.Builder, ObjectBuilder<RoleDescriptor>> fn) {
-			return this.roleDescriptor(fn.apply(new RoleDescriptor.Builder()).build());
+		public final Builder roleDescriptor(Consumer<RoleDescriptor.Builder> fn) {
+			RoleDescriptor.Builder builder = new RoleDescriptor.Builder();
+			fn.accept(builder);
+			return this.roleDescriptor(builder.build());
 		}
 
 		/**

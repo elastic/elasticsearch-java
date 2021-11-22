@@ -34,7 +34,8 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
-import co.elastic.clients.transport.SimpleEndpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
+import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
@@ -42,12 +43,12 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Long;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -116,8 +117,10 @@ public class UpdateJobRequest extends RequestBase implements JsonpSerializable {
 
 	}
 
-	public static UpdateJobRequest of(Function<Builder, ObjectBuilder<UpdateJobRequest>> fn) {
-		return fn.apply(new Builder()).build();
+	public static UpdateJobRequest of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -474,9 +477,10 @@ public class UpdateJobRequest extends RequestBase implements JsonpSerializable {
 		/**
 		 * API name: {@code analysis_limits}
 		 */
-		public final Builder analysisLimits(
-				Function<AnalysisMemoryLimit.Builder, ObjectBuilder<AnalysisMemoryLimit>> fn) {
-			return this.analysisLimits(fn.apply(new AnalysisMemoryLimit.Builder()).build());
+		public final Builder analysisLimits(Consumer<AnalysisMemoryLimit.Builder> fn) {
+			AnalysisMemoryLimit.Builder builder = new AnalysisMemoryLimit.Builder();
+			fn.accept(builder);
+			return this.analysisLimits(builder.build());
 		}
 
 		/**
@@ -506,8 +510,10 @@ public class UpdateJobRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code background_persist_interval}
 		 */
-		public final Builder backgroundPersistInterval(Function<Time.Builder, ObjectBuilder<Time>> fn) {
-			return this.backgroundPersistInterval(fn.apply(new Time.Builder()).build());
+		public final Builder backgroundPersistInterval(Consumer<Time.Builder> fn) {
+			Time.Builder builder = new Time.Builder();
+			fn.accept(builder);
+			return this.backgroundPersistInterval(builder.build());
 		}
 
 		/**
@@ -589,13 +595,9 @@ public class UpdateJobRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code detectors}
 		 */
-		@SafeVarargs
-		public final Builder detectors(Function<Detector.Builder, ObjectBuilder<Detector>>... fns) {
-			this.detectors = new ArrayList<>(fns.length);
-			for (Function<Detector.Builder, ObjectBuilder<Detector>> fn : fns) {
-				this.detectors.add(fn.apply(new Detector.Builder()).build());
-			}
-			return this;
+		public final Builder detectors(
+				Function<ListBuilder<Detector, Detector.Builder>, ObjectBuilder<List<Detector>>> fn) {
+			return detectors(fn.apply(new ListBuilder<>(Detector.Builder::new)).build());
 		}
 
 		/**
@@ -639,8 +641,10 @@ public class UpdateJobRequest extends RequestBase implements JsonpSerializable {
 		/**
 		 * API name: {@code model_plot_config}
 		 */
-		public final Builder modelPlotConfig(Function<ModelPlotConfig.Builder, ObjectBuilder<ModelPlotConfig>> fn) {
-			return this.modelPlotConfig(fn.apply(new ModelPlotConfig.Builder()).build());
+		public final Builder modelPlotConfig(Consumer<ModelPlotConfig.Builder> fn) {
+			ModelPlotConfig.Builder builder = new ModelPlotConfig.Builder();
+			fn.accept(builder);
+			return this.modelPlotConfig(builder.build());
 		}
 
 		/**
@@ -671,9 +675,10 @@ public class UpdateJobRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code per_partition_categorization}
 		 */
-		public final Builder perPartitionCategorization(
-				Function<PerPartitionCategorization.Builder, ObjectBuilder<PerPartitionCategorization>> fn) {
-			return this.perPartitionCategorization(fn.apply(new PerPartitionCategorization.Builder()).build());
+		public final Builder perPartitionCategorization(Consumer<PerPartitionCategorization.Builder> fn) {
+			PerPartitionCategorization.Builder builder = new PerPartitionCategorization.Builder();
+			fn.accept(builder);
+			return this.perPartitionCategorization(builder.build());
 		}
 
 		/**

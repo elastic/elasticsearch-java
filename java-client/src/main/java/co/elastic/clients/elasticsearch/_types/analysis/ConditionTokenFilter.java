@@ -36,7 +36,7 @@ import java.lang.String;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: _types.analysis.ConditionTokenFilter
@@ -56,16 +56,18 @@ public class ConditionTokenFilter extends TokenFilterBase implements TokenFilter
 
 	}
 
-	public static ConditionTokenFilter of(Function<Builder, ObjectBuilder<ConditionTokenFilter>> fn) {
-		return fn.apply(new Builder()).build();
+	public static ConditionTokenFilter of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
-	 * {@link TokenFilterDefinition} variant type
+	 * TokenFilterDefinition variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "condition";
+	public TokenFilterDefinition.Kind _tokenFilterDefinitionKind() {
+		return TokenFilterDefinition.Kind.Condition;
 	}
 
 	/**
@@ -140,8 +142,10 @@ public class ConditionTokenFilter extends TokenFilterBase implements TokenFilter
 		/**
 		 * Required - API name: {@code script}
 		 */
-		public final Builder script(Function<Script.Builder, ObjectBuilder<Script>> fn) {
-			return this.script(fn.apply(new Script.Builder()).build());
+		public final Builder script(Consumer<Script.Builder> fn) {
+			Script.Builder builder = new Script.Builder();
+			fn.accept(builder);
+			return this.script(builder.build());
 		}
 
 		@Override

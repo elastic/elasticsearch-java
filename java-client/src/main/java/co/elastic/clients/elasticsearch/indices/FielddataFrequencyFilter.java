@@ -36,7 +36,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
 import java.lang.Integer;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 
 // typedef: indices._types.FielddataFrequencyFilter
 @JsonpDeserializable
@@ -57,8 +57,10 @@ public class FielddataFrequencyFilter implements JsonpSerializable {
 
 	}
 
-	public static FielddataFrequencyFilter of(Function<Builder, ObjectBuilder<FielddataFrequencyFilter>> fn) {
-		return fn.apply(new Builder()).build();
+	public static FielddataFrequencyFilter of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**

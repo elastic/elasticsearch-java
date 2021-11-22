@@ -36,7 +36,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import java.util.function.Supplier;
 import javax.annotation.Nullable;
 
@@ -60,8 +60,10 @@ public class ExtendedBounds<T> implements JsonpSerializable {
 
 	}
 
-	public static <T> ExtendedBounds<T> of(Function<Builder<T>, ObjectBuilder<ExtendedBounds<T>>> fn) {
-		return fn.apply(new Builder<>()).build();
+	public static <T> ExtendedBounds<T> of(Consumer<Builder<T>> fn) {
+		Builder<T> builder = new Builder<>();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**

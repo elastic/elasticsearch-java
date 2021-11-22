@@ -36,7 +36,7 @@ import java.lang.String;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: _global.search._types.CompletionSuggester
@@ -69,16 +69,18 @@ public class CompletionSuggester extends SuggesterBase implements FieldSuggester
 
 	}
 
-	public static CompletionSuggester of(Function<Builder, ObjectBuilder<CompletionSuggester>> fn) {
-		return fn.apply(new Builder()).build();
+	public static CompletionSuggester of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
-	 * {@link FieldSuggester} variant type
+	 * FieldSuggester variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "completion";
+	public FieldSuggester.Kind _fieldSuggesterKind() {
+		return FieldSuggester.Kind.Completion;
 	}
 
 	/**
@@ -206,8 +208,10 @@ public class CompletionSuggester extends SuggesterBase implements FieldSuggester
 		/**
 		 * API name: {@code fuzzy}
 		 */
-		public final Builder fuzzy(Function<SuggestFuzziness.Builder, ObjectBuilder<SuggestFuzziness>> fn) {
-			return this.fuzzy(fn.apply(new SuggestFuzziness.Builder()).build());
+		public final Builder fuzzy(Consumer<SuggestFuzziness.Builder> fn) {
+			SuggestFuzziness.Builder builder = new SuggestFuzziness.Builder();
+			fn.accept(builder);
+			return this.fuzzy(builder.build());
 		}
 
 		/**

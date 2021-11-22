@@ -33,7 +33,7 @@ import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.ScriptedMetricAggregate
@@ -50,16 +50,18 @@ public class ScriptedMetricAggregate extends AggregateBase implements AggregateV
 
 	}
 
-	public static ScriptedMetricAggregate of(Function<Builder, ObjectBuilder<ScriptedMetricAggregate>> fn) {
-		return fn.apply(new Builder()).build();
+	public static ScriptedMetricAggregate of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
-	 * {@link Aggregate} variant type
+	 * Aggregate variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "scripted_metric";
+	public Aggregate.Kind _aggregateKind() {
+		return Aggregate.Kind.ScriptedMetric;
 	}
 
 	/**

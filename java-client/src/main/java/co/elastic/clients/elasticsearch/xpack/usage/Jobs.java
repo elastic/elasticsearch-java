@@ -36,10 +36,10 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -61,8 +61,10 @@ public class Jobs implements JsonpSerializable {
 
 	}
 
-	public static Jobs of(Function<Builder, ObjectBuilder<Jobs>> fn) {
-		return fn.apply(new Builder()).build();
+	public static Jobs of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -122,13 +124,6 @@ public class Jobs implements JsonpSerializable {
 			return this;
 		}
 
-		/**
-		 * Set {@link #jobs(Map)} to a singleton map.
-		 */
-		public Builder jobs(String key, Function<Job.Builder, ObjectBuilder<Job>> fn) {
-			return this.jobs(Collections.singletonMap(key, fn.apply(new Job.Builder()).build()));
-		}
-
 		public final Builder jobs(Function<MapBuilder<String, Job, Job.Builder>, ObjectBuilder<Map<String, Job>>> fn) {
 			return jobs(fn.apply(new MapBuilder<>(Job.Builder::new)).build());
 		}
@@ -147,8 +142,10 @@ public class Jobs implements JsonpSerializable {
 		/**
 		 * API name: {@code _all}
 		 */
-		public final Builder all(Function<AllJobs.Builder, ObjectBuilder<AllJobs>> fn) {
-			return this.all(fn.apply(new AllJobs.Builder()).build());
+		public final Builder all(Consumer<AllJobs.Builder> fn) {
+			AllJobs.Builder builder = new AllJobs.Builder();
+			fn.accept(builder);
+			return this.all(builder.build());
 		}
 
 		/**

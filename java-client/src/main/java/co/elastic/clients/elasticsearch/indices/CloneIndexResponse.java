@@ -35,7 +35,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: indices.clone.Response
@@ -56,8 +56,10 @@ public class CloneIndexResponse extends AcknowledgedResponseBase {
 
 	}
 
-	public static CloneIndexResponse of(Function<Builder, ObjectBuilder<CloneIndexResponse>> fn) {
-		return fn.apply(new Builder()).build();
+	public static CloneIndexResponse of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**

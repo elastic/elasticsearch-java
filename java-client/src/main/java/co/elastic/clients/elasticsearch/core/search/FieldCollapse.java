@@ -29,16 +29,17 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -62,8 +63,10 @@ public class FieldCollapse implements JsonpSerializable {
 
 	}
 
-	public static FieldCollapse of(Function<Builder, ObjectBuilder<FieldCollapse>> fn) {
-		return fn.apply(new Builder()).build();
+	public static FieldCollapse of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -161,13 +164,9 @@ public class FieldCollapse implements JsonpSerializable {
 		/**
 		 * API name: {@code inner_hits}
 		 */
-		@SafeVarargs
-		public final Builder innerHits(Function<InnerHits.Builder, ObjectBuilder<InnerHits>>... fns) {
-			this.innerHits = new ArrayList<>(fns.length);
-			for (Function<InnerHits.Builder, ObjectBuilder<InnerHits>> fn : fns) {
-				this.innerHits.add(fn.apply(new InnerHits.Builder()).build());
-			}
-			return this;
+		public final Builder innerHits(
+				Function<ListBuilder<InnerHits, InnerHits.Builder>, ObjectBuilder<List<InnerHits>>> fn) {
+			return innerHits(fn.apply(new ListBuilder<>(InnerHits.Builder::new)).build());
 		}
 
 		/**

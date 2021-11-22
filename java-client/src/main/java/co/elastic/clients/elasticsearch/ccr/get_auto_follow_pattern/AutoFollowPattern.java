@@ -35,7 +35,7 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: ccr.get_auto_follow_pattern.AutoFollowPattern
@@ -54,8 +54,10 @@ public class AutoFollowPattern implements JsonpSerializable {
 
 	}
 
-	public static AutoFollowPattern of(Function<Builder, ObjectBuilder<AutoFollowPattern>> fn) {
-		return fn.apply(new Builder()).build();
+	public static AutoFollowPattern of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -120,9 +122,10 @@ public class AutoFollowPattern implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code pattern}
 		 */
-		public final Builder pattern(
-				Function<AutoFollowPatternSummary.Builder, ObjectBuilder<AutoFollowPatternSummary>> fn) {
-			return this.pattern(fn.apply(new AutoFollowPatternSummary.Builder()).build());
+		public final Builder pattern(Consumer<AutoFollowPatternSummary.Builder> fn) {
+			AutoFollowPatternSummary.Builder builder = new AutoFollowPatternSummary.Builder();
+			fn.accept(builder);
+			return this.pattern(builder.build());
 		}
 
 		/**

@@ -34,7 +34,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: snapshot._types.SnapshotShardsStatus
@@ -53,8 +53,10 @@ public class SnapshotShardsStatus implements JsonpSerializable {
 
 	}
 
-	public static SnapshotShardsStatus of(Function<Builder, ObjectBuilder<SnapshotShardsStatus>> fn) {
-		return fn.apply(new Builder()).build();
+	public static SnapshotShardsStatus of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -118,8 +120,10 @@ public class SnapshotShardsStatus implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code stats}
 		 */
-		public final Builder stats(Function<ShardsStatsSummary.Builder, ObjectBuilder<ShardsStatsSummary>> fn) {
-			return this.stats(fn.apply(new ShardsStatsSummary.Builder()).build());
+		public final Builder stats(Consumer<ShardsStatsSummary.Builder> fn) {
+			ShardsStatsSummary.Builder builder = new ShardsStatsSummary.Builder();
+			fn.accept(builder);
+			return this.stats(builder.build());
 		}
 
 		/**

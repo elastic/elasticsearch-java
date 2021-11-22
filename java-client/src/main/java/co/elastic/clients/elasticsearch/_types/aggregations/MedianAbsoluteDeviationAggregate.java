@@ -30,7 +30,7 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 
 // typedef: _types.aggregations.MedianAbsoluteDeviationAggregate
 @JsonpDeserializable
@@ -42,17 +42,18 @@ public class MedianAbsoluteDeviationAggregate extends SingleMetricAggregateBase 
 
 	}
 
-	public static MedianAbsoluteDeviationAggregate of(
-			Function<Builder, ObjectBuilder<MedianAbsoluteDeviationAggregate>> fn) {
-		return fn.apply(new Builder()).build();
+	public static MedianAbsoluteDeviationAggregate of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
-	 * {@link Aggregate} variant type
+	 * Aggregate variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "median_absolute_deviation";
+	public Aggregate.Kind _aggregateKind() {
+		return Aggregate.Kind.MedianAbsoluteDeviation;
 	}
 
 	// ---------------------------------------------------------------------------------------------

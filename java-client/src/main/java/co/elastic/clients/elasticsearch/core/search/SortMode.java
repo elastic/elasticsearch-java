@@ -23,13 +23,23 @@
 
 package co.elastic.clients.elasticsearch.core.search;
 
+import co.elastic.clients.json.JsonEnum;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
-import co.elastic.clients.util.StringEnum;
 
 @JsonpDeserializable
-public enum SortMode implements StringEnum {
-	Min("min"), Max("max"), Sum("sum"), Avg("avg"), Median("median");
+public enum SortMode implements JsonEnum {
+	Min("min"),
+
+	Max("max"),
+
+	Sum("sum"),
+
+	Avg("avg"),
+
+	Median("median"),
+
+	;
 
 	private final String jsonValue;
 
@@ -41,6 +51,5 @@ public enum SortMode implements StringEnum {
 		return this.jsonValue;
 	}
 
-	public static final StringEnum.Deserializer<SortMode> _DESERIALIZER = new StringEnum.Deserializer<>(
-			SortMode.values());
+	public static final JsonEnum.Deserializer<SortMode> _DESERIALIZER = new JsonEnum.Deserializer<>(SortMode.values());
 }

@@ -34,7 +34,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: xpack.usage.SecurityRoles
@@ -56,8 +56,10 @@ public class SecurityRoles implements JsonpSerializable {
 
 	}
 
-	public static SecurityRoles of(Function<Builder, ObjectBuilder<SecurityRoles>> fn) {
-		return fn.apply(new Builder()).build();
+	public static SecurityRoles of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -126,8 +128,10 @@ public class SecurityRoles implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code native}
 		 */
-		public final Builder native_(Function<SecurityRolesNative.Builder, ObjectBuilder<SecurityRolesNative>> fn) {
-			return this.native_(fn.apply(new SecurityRolesNative.Builder()).build());
+		public final Builder native_(Consumer<SecurityRolesNative.Builder> fn) {
+			SecurityRolesNative.Builder builder = new SecurityRolesNative.Builder();
+			fn.accept(builder);
+			return this.native_(builder.build());
 		}
 
 		/**
@@ -141,8 +145,10 @@ public class SecurityRoles implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code dls}
 		 */
-		public final Builder dls(Function<SecurityRolesDls.Builder, ObjectBuilder<SecurityRolesDls>> fn) {
-			return this.dls(fn.apply(new SecurityRolesDls.Builder()).build());
+		public final Builder dls(Consumer<SecurityRolesDls.Builder> fn) {
+			SecurityRolesDls.Builder builder = new SecurityRolesDls.Builder();
+			fn.accept(builder);
+			return this.dls(builder.build());
 		}
 
 		/**
@@ -156,8 +162,10 @@ public class SecurityRoles implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code file}
 		 */
-		public final Builder file(Function<SecurityRolesFile.Builder, ObjectBuilder<SecurityRolesFile>> fn) {
-			return this.file(fn.apply(new SecurityRolesFile.Builder()).build());
+		public final Builder file(Consumer<SecurityRolesFile.Builder> fn) {
+			SecurityRolesFile.Builder builder = new SecurityRolesFile.Builder();
+			fn.accept(builder);
+			return this.file(builder.build());
 		}
 
 		/**

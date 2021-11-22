@@ -34,7 +34,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.WebhookResult
@@ -54,8 +54,10 @@ public class WebhookResult implements JsonpSerializable {
 
 	}
 
-	public static WebhookResult of(Function<Builder, ObjectBuilder<WebhookResult>> fn) {
-		return fn.apply(new Builder()).build();
+	public static WebhookResult of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -117,9 +119,10 @@ public class WebhookResult implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code request}
 		 */
-		public final Builder request(
-				Function<HttpInputRequestResult.Builder, ObjectBuilder<HttpInputRequestResult>> fn) {
-			return this.request(fn.apply(new HttpInputRequestResult.Builder()).build());
+		public final Builder request(Consumer<HttpInputRequestResult.Builder> fn) {
+			HttpInputRequestResult.Builder builder = new HttpInputRequestResult.Builder();
+			fn.accept(builder);
+			return this.request(builder.build());
 		}
 
 		/**
@@ -133,9 +136,10 @@ public class WebhookResult implements JsonpSerializable {
 		/**
 		 * API name: {@code response}
 		 */
-		public final Builder response(
-				Function<HttpInputResponseResult.Builder, ObjectBuilder<HttpInputResponseResult>> fn) {
-			return this.response(fn.apply(new HttpInputResponseResult.Builder()).build());
+		public final Builder response(Consumer<HttpInputResponseResult.Builder> fn) {
+			HttpInputResponseResult.Builder builder = new HttpInputResponseResult.Builder();
+			fn.accept(builder);
+			return this.response(builder.build());
 		}
 
 		/**

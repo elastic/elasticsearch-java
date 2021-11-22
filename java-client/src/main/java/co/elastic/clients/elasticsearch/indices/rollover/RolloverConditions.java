@@ -36,7 +36,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: indices.rollover.RolloverConditions
@@ -65,8 +65,10 @@ public class RolloverConditions implements JsonpSerializable {
 
 	}
 
-	public static RolloverConditions of(Function<Builder, ObjectBuilder<RolloverConditions>> fn) {
-		return fn.apply(new Builder()).build();
+	public static RolloverConditions of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -164,8 +166,10 @@ public class RolloverConditions implements JsonpSerializable {
 		/**
 		 * API name: {@code max_age}
 		 */
-		public final Builder maxAge(Function<Time.Builder, ObjectBuilder<Time>> fn) {
-			return this.maxAge(fn.apply(new Time.Builder()).build());
+		public final Builder maxAge(Consumer<Time.Builder> fn) {
+			Time.Builder builder = new Time.Builder();
+			fn.accept(builder);
+			return this.maxAge(builder.build());
 		}
 
 		/**

@@ -37,7 +37,6 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
-import java.util.Collections;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
@@ -257,13 +256,6 @@ public abstract class PropertyBase implements JsonpSerializable {
 			return self();
 		}
 
-		/**
-		 * Set {@link #properties(Map)} to a singleton map.
-		 */
-		public BuilderT properties(String key, Function<Property.Builder, ObjectBuilder<Property>> fn) {
-			return this.properties(Collections.singletonMap(key, fn.apply(new Property.Builder()).build()));
-		}
-
 		public final BuilderT properties(
 				Function<MapBuilder<String, Property, Property.Builder>, ObjectBuilder<Map<String, Property>>> fn) {
 			return properties(fn.apply(new MapBuilder<>(Property.Builder::new)).build());
@@ -291,13 +283,6 @@ public abstract class PropertyBase implements JsonpSerializable {
 		public final BuilderT fields(@Nullable Map<String, Property> value) {
 			this.fields = value;
 			return self();
-		}
-
-		/**
-		 * Set {@link #fields(Map)} to a singleton map.
-		 */
-		public BuilderT fields(String key, Function<Property.Builder, ObjectBuilder<Property>> fn) {
-			return this.fields(Collections.singletonMap(key, fn.apply(new Property.Builder()).build()));
 		}
 
 		public final BuilderT fields(

@@ -36,7 +36,7 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: _global.search._types.PointInTimeReference
@@ -56,8 +56,10 @@ public class PointInTimeReference implements JsonpSerializable {
 
 	}
 
-	public static PointInTimeReference of(Function<Builder, ObjectBuilder<PointInTimeReference>> fn) {
-		return fn.apply(new Builder()).build();
+	public static PointInTimeReference of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -127,8 +129,10 @@ public class PointInTimeReference implements JsonpSerializable {
 		/**
 		 * API name: {@code keep_alive}
 		 */
-		public final Builder keepAlive(Function<Time.Builder, ObjectBuilder<Time>> fn) {
-			return this.keepAlive(fn.apply(new Time.Builder()).build());
+		public final Builder keepAlive(Consumer<Time.Builder> fn) {
+			Time.Builder builder = new Time.Builder();
+			fn.accept(builder);
+			return this.keepAlive(builder.build());
 		}
 
 		/**

@@ -33,7 +33,7 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
-import co.elastic.clients.transport.SimpleEndpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
@@ -41,7 +41,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: ilm.move_to_step.Request
@@ -65,8 +65,10 @@ public class MoveToStepRequest extends RequestBase implements JsonpSerializable 
 
 	}
 
-	public static MoveToStepRequest of(Function<Builder, ObjectBuilder<MoveToStepRequest>> fn) {
-		return fn.apply(new Builder()).build();
+	public static MoveToStepRequest of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -143,8 +145,10 @@ public class MoveToStepRequest extends RequestBase implements JsonpSerializable 
 		/**
 		 * API name: {@code current_step}
 		 */
-		public final Builder currentStep(Function<StepKey.Builder, ObjectBuilder<StepKey>> fn) {
-			return this.currentStep(fn.apply(new StepKey.Builder()).build());
+		public final Builder currentStep(Consumer<StepKey.Builder> fn) {
+			StepKey.Builder builder = new StepKey.Builder();
+			fn.accept(builder);
+			return this.currentStep(builder.build());
 		}
 
 		/**
@@ -168,8 +172,10 @@ public class MoveToStepRequest extends RequestBase implements JsonpSerializable 
 		/**
 		 * API name: {@code next_step}
 		 */
-		public final Builder nextStep(Function<StepKey.Builder, ObjectBuilder<StepKey>> fn) {
-			return this.nextStep(fn.apply(new StepKey.Builder()).build());
+		public final Builder nextStep(Consumer<StepKey.Builder> fn) {
+			StepKey.Builder builder = new StepKey.Builder();
+			fn.accept(builder);
+			return this.nextStep(builder.build());
 		}
 
 		/**

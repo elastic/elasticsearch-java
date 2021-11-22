@@ -35,7 +35,7 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 
 // typedef: _types.LatLonGeoLocation
 @JsonpDeserializable
@@ -53,8 +53,10 @@ public class LatLonGeoLocation implements JsonpSerializable {
 
 	}
 
-	public static LatLonGeoLocation of(Function<Builder, ObjectBuilder<LatLonGeoLocation>> fn) {
-		return fn.apply(new Builder()).build();
+	public static LatLonGeoLocation of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**

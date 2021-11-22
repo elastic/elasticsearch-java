@@ -36,7 +36,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.ArrayPercentilesItem
@@ -59,8 +59,10 @@ public class ArrayPercentilesItem implements JsonpSerializable {
 
 	}
 
-	public static ArrayPercentilesItem of(Function<Builder, ObjectBuilder<ArrayPercentilesItem>> fn) {
-		return fn.apply(new Builder()).build();
+	public static ArrayPercentilesItem of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**

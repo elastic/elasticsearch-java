@@ -30,18 +30,18 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.MapBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -61,8 +61,10 @@ public class TopMetrics implements JsonpSerializable {
 
 	}
 
-	public static TopMetrics of(Function<Builder, ObjectBuilder<TopMetrics>> fn) {
-		return fn.apply(new Builder()).build();
+	public static TopMetrics of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -143,13 +145,9 @@ public class TopMetrics implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code sort}
 		 */
-		@SafeVarargs
-		public final Builder sort(Function<FieldValue.Builder, ObjectBuilder<FieldValue>>... fns) {
-			this.sort = new ArrayList<>(fns.length);
-			for (Function<FieldValue.Builder, ObjectBuilder<FieldValue>> fn : fns) {
-				this.sort.add(fn.apply(new FieldValue.Builder()).build());
-			}
-			return this;
+		public final Builder sort(
+				Function<ListBuilder<FieldValue, FieldValue.Builder>, ObjectBuilder<List<FieldValue>>> fn) {
+			return sort(fn.apply(new ListBuilder<>(FieldValue.Builder::new)).build());
 		}
 
 		/**
@@ -158,13 +156,6 @@ public class TopMetrics implements JsonpSerializable {
 		public final Builder metrics(Map<String, FieldValue> value) {
 			this.metrics = value;
 			return this;
-		}
-
-		/**
-		 * Set {@link #metrics(Map)} to a singleton map.
-		 */
-		public Builder metrics(String key, Function<FieldValue.Builder, ObjectBuilder<FieldValue>> fn) {
-			return this.metrics(Collections.singletonMap(key, fn.apply(new FieldValue.Builder()).build()));
 		}
 
 		public final Builder metrics(

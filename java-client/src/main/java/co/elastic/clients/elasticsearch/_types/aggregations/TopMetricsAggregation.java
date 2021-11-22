@@ -29,14 +29,15 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -61,16 +62,18 @@ public class TopMetricsAggregation extends MetricAggregationBase implements Aggr
 
 	}
 
-	public static TopMetricsAggregation of(Function<Builder, ObjectBuilder<TopMetricsAggregation>> fn) {
-		return fn.apply(new Builder()).build();
+	public static TopMetricsAggregation of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
-	 * {@link Aggregation} variant type
+	 * Aggregation variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "top_metrics";
+	public Aggregation.Kind _aggregationKind() {
+		return Aggregation.Kind.TopMetrics;
 	}
 
 	/**
@@ -162,13 +165,9 @@ public class TopMetricsAggregation extends MetricAggregationBase implements Aggr
 		/**
 		 * API name: {@code metrics}
 		 */
-		@SafeVarargs
-		public final Builder metrics(Function<TopMetricsValue.Builder, ObjectBuilder<TopMetricsValue>>... fns) {
-			this.metrics = new ArrayList<>(fns.length);
-			for (Function<TopMetricsValue.Builder, ObjectBuilder<TopMetricsValue>> fn : fns) {
-				this.metrics.add(fn.apply(new TopMetricsValue.Builder()).build());
-			}
-			return this;
+		public final Builder metrics(
+				Function<ListBuilder<TopMetricsValue, TopMetricsValue.Builder>, ObjectBuilder<List<TopMetricsValue>>> fn) {
+			return metrics(fn.apply(new ListBuilder<>(TopMetricsValue.Builder::new)).build());
 		}
 
 		/**
@@ -198,13 +197,9 @@ public class TopMetricsAggregation extends MetricAggregationBase implements Aggr
 		/**
 		 * API name: {@code sort}
 		 */
-		@SafeVarargs
-		public final Builder sort(Function<SortOptions.Builder, ObjectBuilder<SortOptions>>... fns) {
-			this.sort = new ArrayList<>(fns.length);
-			for (Function<SortOptions.Builder, ObjectBuilder<SortOptions>> fn : fns) {
-				this.sort.add(fn.apply(new SortOptions.Builder()).build());
-			}
-			return this;
+		public final Builder sort(
+				Function<ListBuilder<SortOptions, SortOptions.Builder>, ObjectBuilder<List<SortOptions>>> fn) {
+			return sort(fn.apply(new ListBuilder<>(SortOptions.Builder::new)).build());
 		}
 
 		@Override

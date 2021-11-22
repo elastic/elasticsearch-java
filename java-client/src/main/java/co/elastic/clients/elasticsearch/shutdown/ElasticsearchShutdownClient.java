@@ -26,24 +26,25 @@ package co.elastic.clients.elasticsearch.shutdown;
 import co.elastic.clients.ApiClient;
 import co.elastic.clients.elasticsearch._types.ElasticsearchException;
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
+import co.elastic.clients.transport.ElasticsearchTransport;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.Transport;
 import co.elastic.clients.transport.TransportOptions;
 import co.elastic.clients.util.ObjectBuilder;
 import java.io.IOException;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 /**
  * Client for the shutdown namespace.
  */
-public class ElasticsearchShutdownClient extends ApiClient<ElasticsearchShutdownClient> {
+public class ElasticsearchShutdownClient extends ApiClient<ElasticsearchTransport, ElasticsearchShutdownClient> {
 
-	public ElasticsearchShutdownClient(Transport transport) {
+	public ElasticsearchShutdownClient(ElasticsearchTransport transport) {
 		super(transport, null);
 	}
 
-	public ElasticsearchShutdownClient(Transport transport, @Nullable TransportOptions transportOptions) {
+	public ElasticsearchShutdownClient(ElasticsearchTransport transport, @Nullable TransportOptions transportOptions) {
 		super(transport, transportOptions);
 	}
 
@@ -82,9 +83,11 @@ public class ElasticsearchShutdownClient extends ApiClient<ElasticsearchShutdown
 	 *      on elastic.co</a>
 	 */
 
-	public final DeleteNodeResponse deleteNode(Function<DeleteNodeRequest.Builder, ObjectBuilder<DeleteNodeRequest>> fn)
+	public final DeleteNodeResponse deleteNode(Consumer<DeleteNodeRequest.Builder> fn)
 			throws IOException, ElasticsearchException {
-		return deleteNode(fn.apply(new DeleteNodeRequest.Builder()).build());
+		DeleteNodeRequest.Builder builder = new DeleteNodeRequest.Builder();
+		fn.accept(builder);
+		return deleteNode(builder.build());
 	}
 
 	// ----- Endpoint: shutdown.get_node
@@ -119,9 +122,11 @@ public class ElasticsearchShutdownClient extends ApiClient<ElasticsearchShutdown
 	 *      on elastic.co</a>
 	 */
 
-	public final GetNodeResponse getNode(Function<GetNodeRequest.Builder, ObjectBuilder<GetNodeRequest>> fn)
+	public final GetNodeResponse getNode(Consumer<GetNodeRequest.Builder> fn)
 			throws IOException, ElasticsearchException {
-		return getNode(fn.apply(new GetNodeRequest.Builder()).build());
+		GetNodeRequest.Builder builder = new GetNodeRequest.Builder();
+		fn.accept(builder);
+		return getNode(builder.build());
 	}
 
 	/**
@@ -169,9 +174,11 @@ public class ElasticsearchShutdownClient extends ApiClient<ElasticsearchShutdown
 	 *      on elastic.co</a>
 	 */
 
-	public final PutNodeResponse putNode(Function<PutNodeRequest.Builder, ObjectBuilder<PutNodeRequest>> fn)
+	public final PutNodeResponse putNode(Consumer<PutNodeRequest.Builder> fn)
 			throws IOException, ElasticsearchException {
-		return putNode(fn.apply(new PutNodeRequest.Builder()).build());
+		PutNodeRequest.Builder builder = new PutNodeRequest.Builder();
+		fn.accept(builder);
+		return putNode(builder.build());
 	}
 
 }

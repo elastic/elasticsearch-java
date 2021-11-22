@@ -29,16 +29,17 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -72,16 +73,18 @@ public class RangeAggregation extends BucketAggregationBase implements Aggregati
 
 	}
 
-	public static RangeAggregation of(Function<Builder, ObjectBuilder<RangeAggregation>> fn) {
-		return fn.apply(new Builder()).build();
+	public static RangeAggregation of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
-	 * {@link Aggregation} variant type
+	 * Aggregation variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "range";
+	public Aggregation.Kind _aggregationKind() {
+		return Aggregation.Kind.Range;
 	}
 
 	/**
@@ -217,13 +220,9 @@ public class RangeAggregation extends BucketAggregationBase implements Aggregati
 		/**
 		 * API name: {@code ranges}
 		 */
-		@SafeVarargs
-		public final Builder ranges(Function<AggregationRange.Builder, ObjectBuilder<AggregationRange>>... fns) {
-			this.ranges = new ArrayList<>(fns.length);
-			for (Function<AggregationRange.Builder, ObjectBuilder<AggregationRange>> fn : fns) {
-				this.ranges.add(fn.apply(new AggregationRange.Builder()).build());
-			}
-			return this;
+		public final Builder ranges(
+				Function<ListBuilder<AggregationRange, AggregationRange.Builder>, ObjectBuilder<List<AggregationRange>>> fn) {
+			return ranges(fn.apply(new ListBuilder<>(AggregationRange.Builder::new)).build());
 		}
 
 		/**
@@ -237,8 +236,10 @@ public class RangeAggregation extends BucketAggregationBase implements Aggregati
 		/**
 		 * API name: {@code script}
 		 */
-		public final Builder script(Function<Script.Builder, ObjectBuilder<Script>> fn) {
-			return this.script(fn.apply(new Script.Builder()).build());
+		public final Builder script(Consumer<Script.Builder> fn) {
+			Script.Builder builder = new Script.Builder();
+			fn.accept(builder);
+			return this.script(builder.build());
 		}
 
 		/**

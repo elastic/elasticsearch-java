@@ -29,15 +29,16 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -60,8 +61,10 @@ public class ContextMethod implements JsonpSerializable {
 
 	}
 
-	public static ContextMethod of(Function<Builder, ObjectBuilder<ContextMethod>> fn) {
-		return fn.apply(new Builder()).build();
+	public static ContextMethod of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -162,13 +165,9 @@ public class ContextMethod implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code params}
 		 */
-		@SafeVarargs
-		public final Builder params(Function<ContextMethodParam.Builder, ObjectBuilder<ContextMethodParam>>... fns) {
-			this.params = new ArrayList<>(fns.length);
-			for (Function<ContextMethodParam.Builder, ObjectBuilder<ContextMethodParam>> fn : fns) {
-				this.params.add(fn.apply(new ContextMethodParam.Builder()).build());
-			}
-			return this;
+		public final Builder params(
+				Function<ListBuilder<ContextMethodParam, ContextMethodParam.Builder>, ObjectBuilder<List<ContextMethodParam>>> fn) {
+			return params(fn.apply(new ListBuilder<>(ContextMethodParam.Builder::new)).build());
 		}
 
 		/**

@@ -31,14 +31,15 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -59,8 +60,10 @@ public class AnalyzeResponse implements JsonpSerializable {
 
 	}
 
-	public static AnalyzeResponse of(Function<Builder, ObjectBuilder<AnalyzeResponse>> fn) {
-		return fn.apply(new Builder()).build();
+	public static AnalyzeResponse of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -130,8 +133,10 @@ public class AnalyzeResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code detail}
 		 */
-		public final Builder detail(Function<AnalyzeDetail.Builder, ObjectBuilder<AnalyzeDetail>> fn) {
-			return this.detail(fn.apply(new AnalyzeDetail.Builder()).build());
+		public final Builder detail(Consumer<AnalyzeDetail.Builder> fn) {
+			AnalyzeDetail.Builder builder = new AnalyzeDetail.Builder();
+			fn.accept(builder);
+			return this.detail(builder.build());
 		}
 
 		/**
@@ -153,13 +158,9 @@ public class AnalyzeResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code tokens}
 		 */
-		@SafeVarargs
-		public final Builder tokens(Function<AnalyzeToken.Builder, ObjectBuilder<AnalyzeToken>>... fns) {
-			this.tokens = new ArrayList<>(fns.length);
-			for (Function<AnalyzeToken.Builder, ObjectBuilder<AnalyzeToken>> fn : fns) {
-				this.tokens.add(fn.apply(new AnalyzeToken.Builder()).build());
-			}
-			return this;
+		public final Builder tokens(
+				Function<ListBuilder<AnalyzeToken, AnalyzeToken.Builder>, ObjectBuilder<List<AnalyzeToken>>> fn) {
+			return tokens(fn.apply(new ListBuilder<>(AnalyzeToken.Builder::new)).build());
 		}
 
 		/**

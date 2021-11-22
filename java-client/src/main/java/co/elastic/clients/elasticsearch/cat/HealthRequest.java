@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
-import co.elastic.clients.transport.SimpleEndpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -37,15 +37,12 @@ import java.lang.Boolean;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: cat.health.Request
 
 public class HealthRequest extends CatRequestBase {
-	@Nullable
-	private final Boolean includeTimestamp;
-
 	@Nullable
 	private final Boolean ts;
 
@@ -53,21 +50,14 @@ public class HealthRequest extends CatRequestBase {
 
 	private HealthRequest(Builder builder) {
 
-		this.includeTimestamp = builder.includeTimestamp;
 		this.ts = builder.ts;
 
 	}
 
-	public static HealthRequest of(Function<Builder, ObjectBuilder<HealthRequest>> fn) {
-		return fn.apply(new Builder()).build();
-	}
-
-	/**
-	 * API name: {@code include_timestamp}
-	 */
-	@Nullable
-	public final Boolean includeTimestamp() {
-		return this.includeTimestamp;
+	public static HealthRequest of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -87,18 +77,7 @@ public class HealthRequest extends CatRequestBase {
 	 */
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<HealthRequest> {
 		@Nullable
-		private Boolean includeTimestamp;
-
-		@Nullable
 		private Boolean ts;
-
-		/**
-		 * API name: {@code include_timestamp}
-		 */
-		public final Builder includeTimestamp(@Nullable Boolean value) {
-			this.includeTimestamp = value;
-			return this;
-		}
 
 		/**
 		 * Set to false to disable timestamping
@@ -145,9 +124,6 @@ public class HealthRequest extends CatRequestBase {
 			request -> {
 				Map<String, String> params = new HashMap<>();
 				params.put("format", "json");
-				if (request.includeTimestamp != null) {
-					params.put("include_timestamp", String.valueOf(request.includeTimestamp));
-				}
 				if (request.ts != null) {
 					params.put("ts", String.valueOf(request.ts));
 				}

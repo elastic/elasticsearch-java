@@ -31,17 +31,18 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -67,8 +68,10 @@ public class TranslateResponse implements JsonpSerializable {
 
 	}
 
-	public static TranslateResponse of(Function<Builder, ObjectBuilder<TranslateResponse>> fn) {
-		return fn.apply(new Builder()).build();
+	public static TranslateResponse of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -180,8 +183,10 @@ public class TranslateResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code _source}
 		 */
-		public final Builder source(Function<SourceConfig.Builder, ObjectBuilder<SourceConfig>> fn) {
-			return this.source(fn.apply(new SourceConfig.Builder()).build());
+		public final Builder source(Consumer<SourceConfig.Builder> fn) {
+			SourceConfig.Builder builder = new SourceConfig.Builder();
+			fn.accept(builder);
+			return this.source(builder.build());
 		}
 
 		/**
@@ -219,13 +224,9 @@ public class TranslateResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code sort}
 		 */
-		@SafeVarargs
-		public final Builder sort(Function<SortOptions.Builder, ObjectBuilder<SortOptions>>... fns) {
-			this.sort = new ArrayList<>(fns.length);
-			for (Function<SortOptions.Builder, ObjectBuilder<SortOptions>> fn : fns) {
-				this.sort.add(fn.apply(new SortOptions.Builder()).build());
-			}
-			return this;
+		public final Builder sort(
+				Function<ListBuilder<SortOptions, SortOptions.Builder>, ObjectBuilder<List<SortOptions>>> fn) {
+			return sort(fn.apply(new ListBuilder<>(SortOptions.Builder::new)).build());
 		}
 
 		/**

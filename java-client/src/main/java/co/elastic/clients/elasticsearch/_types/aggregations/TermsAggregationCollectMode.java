@@ -23,13 +23,17 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
+import co.elastic.clients.json.JsonEnum;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
-import co.elastic.clients.util.StringEnum;
 
 @JsonpDeserializable
-public enum TermsAggregationCollectMode implements StringEnum {
-	DepthFirst("depth_first"), BreadthFirst("breadth_first");
+public enum TermsAggregationCollectMode implements JsonEnum {
+	DepthFirst("depth_first"),
+
+	BreadthFirst("breadth_first"),
+
+	;
 
 	private final String jsonValue;
 
@@ -41,6 +45,6 @@ public enum TermsAggregationCollectMode implements StringEnum {
 		return this.jsonValue;
 	}
 
-	public static final StringEnum.Deserializer<TermsAggregationCollectMode> _DESERIALIZER = new StringEnum.Deserializer<>(
+	public static final JsonEnum.Deserializer<TermsAggregationCollectMode> _DESERIALIZER = new JsonEnum.Deserializer<>(
 			TermsAggregationCollectMode.values());
 }

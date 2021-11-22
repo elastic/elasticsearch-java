@@ -23,13 +23,25 @@
 
 package co.elastic.clients.elasticsearch._types;
 
+import co.elastic.clients.json.JsonEnum;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
-import co.elastic.clients.util.StringEnum;
 
 @JsonpDeserializable
-public enum Bytes implements StringEnum {
-	Bytes("b"), KiloBytes("kb"), MegaBytes("mb"), GigaBytes("gb"), TeraBytes("tb"), PetaBytes("pb");
+public enum Bytes implements JsonEnum {
+	Bytes("b"),
+
+	KiloBytes("kb"),
+
+	MegaBytes("mb"),
+
+	GigaBytes("gb"),
+
+	TeraBytes("tb"),
+
+	PetaBytes("pb"),
+
+	;
 
 	private final String jsonValue;
 
@@ -41,5 +53,5 @@ public enum Bytes implements StringEnum {
 		return this.jsonValue;
 	}
 
-	public static final StringEnum.Deserializer<Bytes> _DESERIALIZER = new StringEnum.Deserializer<>(Bytes.values());
+	public static final JsonEnum.Deserializer<Bytes> _DESERIALIZER = new JsonEnum.Deserializer<>(Bytes.values());
 }

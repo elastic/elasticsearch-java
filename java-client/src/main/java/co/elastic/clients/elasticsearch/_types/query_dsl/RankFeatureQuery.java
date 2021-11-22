@@ -33,7 +33,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.RankFeatureQuery
@@ -66,16 +66,18 @@ public class RankFeatureQuery extends QueryBase implements QueryVariant {
 
 	}
 
-	public static RankFeatureQuery of(Function<Builder, ObjectBuilder<RankFeatureQuery>> fn) {
-		return fn.apply(new Builder()).build();
+	public static RankFeatureQuery of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
-	 * {@link Query} variant type
+	 * Query variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "rank_feature";
+	public Query.Kind _queryKind() {
+		return Query.Kind.RankFeature;
 	}
 
 	/**
@@ -185,9 +187,10 @@ public class RankFeatureQuery extends QueryBase implements QueryVariant {
 		/**
 		 * API name: {@code saturation}
 		 */
-		public final Builder saturation(
-				Function<RankFeatureFunctionSaturation.Builder, ObjectBuilder<RankFeatureFunctionSaturation>> fn) {
-			return this.saturation(fn.apply(new RankFeatureFunctionSaturation.Builder()).build());
+		public final Builder saturation(Consumer<RankFeatureFunctionSaturation.Builder> fn) {
+			RankFeatureFunctionSaturation.Builder builder = new RankFeatureFunctionSaturation.Builder();
+			fn.accept(builder);
+			return this.saturation(builder.build());
 		}
 
 		/**
@@ -201,9 +204,10 @@ public class RankFeatureQuery extends QueryBase implements QueryVariant {
 		/**
 		 * API name: {@code log}
 		 */
-		public final Builder log(
-				Function<RankFeatureFunctionLogarithm.Builder, ObjectBuilder<RankFeatureFunctionLogarithm>> fn) {
-			return this.log(fn.apply(new RankFeatureFunctionLogarithm.Builder()).build());
+		public final Builder log(Consumer<RankFeatureFunctionLogarithm.Builder> fn) {
+			RankFeatureFunctionLogarithm.Builder builder = new RankFeatureFunctionLogarithm.Builder();
+			fn.accept(builder);
+			return this.log(builder.build());
 		}
 
 		/**
@@ -217,9 +221,10 @@ public class RankFeatureQuery extends QueryBase implements QueryVariant {
 		/**
 		 * API name: {@code linear}
 		 */
-		public final Builder linear(
-				Function<RankFeatureFunctionLinear.Builder, ObjectBuilder<RankFeatureFunctionLinear>> fn) {
-			return this.linear(fn.apply(new RankFeatureFunctionLinear.Builder()).build());
+		public final Builder linear(Consumer<RankFeatureFunctionLinear.Builder> fn) {
+			RankFeatureFunctionLinear.Builder builder = new RankFeatureFunctionLinear.Builder();
+			fn.accept(builder);
+			return this.linear(builder.build());
 		}
 
 		/**
@@ -233,9 +238,10 @@ public class RankFeatureQuery extends QueryBase implements QueryVariant {
 		/**
 		 * API name: {@code sigmoid}
 		 */
-		public final Builder sigmoid(
-				Function<RankFeatureFunctionSigmoid.Builder, ObjectBuilder<RankFeatureFunctionSigmoid>> fn) {
-			return this.sigmoid(fn.apply(new RankFeatureFunctionSigmoid.Builder()).build());
+		public final Builder sigmoid(Consumer<RankFeatureFunctionSigmoid.Builder> fn) {
+			RankFeatureFunctionSigmoid.Builder builder = new RankFeatureFunctionSigmoid.Builder();
+			fn.accept(builder);
+			return this.sigmoid(builder.build());
 		}
 
 		@Override

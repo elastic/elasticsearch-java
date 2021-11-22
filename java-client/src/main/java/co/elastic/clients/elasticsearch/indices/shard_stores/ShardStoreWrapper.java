@@ -29,14 +29,15 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -53,8 +54,10 @@ public class ShardStoreWrapper implements JsonpSerializable {
 
 	}
 
-	public static ShardStoreWrapper of(Function<Builder, ObjectBuilder<ShardStoreWrapper>> fn) {
-		return fn.apply(new Builder()).build();
+	public static ShardStoreWrapper of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -115,13 +118,9 @@ public class ShardStoreWrapper implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code stores}
 		 */
-		@SafeVarargs
-		public final Builder stores(Function<ShardStore.Builder, ObjectBuilder<ShardStore>>... fns) {
-			this.stores = new ArrayList<>(fns.length);
-			for (Function<ShardStore.Builder, ObjectBuilder<ShardStore>> fn : fns) {
-				this.stores.add(fn.apply(new ShardStore.Builder()).build());
-			}
-			return this;
+		public final Builder stores(
+				Function<ListBuilder<ShardStore, ShardStore.Builder>, ObjectBuilder<List<ShardStore>>> fn) {
+			return stores(fn.apply(new ListBuilder<>(ShardStore.Builder::new)).build());
 		}
 
 		/**

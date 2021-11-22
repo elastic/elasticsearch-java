@@ -30,6 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
@@ -38,10 +39,10 @@ import java.lang.Boolean;
 import java.lang.Double;
 import java.lang.Long;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -73,8 +74,10 @@ public class OverallBucket implements JsonpSerializable {
 
 	}
 
-	public static OverallBucket of(Function<Builder, ObjectBuilder<OverallBucket>> fn) {
-		return fn.apply(new Builder()).build();
+	public static OverallBucket of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -237,13 +240,9 @@ public class OverallBucket implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code jobs}
 		 */
-		@SafeVarargs
-		public final Builder jobs(Function<OverallBucketJob.Builder, ObjectBuilder<OverallBucketJob>>... fns) {
-			this.jobs = new ArrayList<>(fns.length);
-			for (Function<OverallBucketJob.Builder, ObjectBuilder<OverallBucketJob>> fn : fns) {
-				this.jobs.add(fn.apply(new OverallBucketJob.Builder()).build());
-			}
-			return this;
+		public final Builder jobs(
+				Function<ListBuilder<OverallBucketJob, OverallBucketJob.Builder>, ObjectBuilder<List<OverallBucketJob>>> fn) {
+			return jobs(fn.apply(new ListBuilder<>(OverallBucketJob.Builder::new)).build());
 		}
 
 		/**
@@ -283,8 +282,10 @@ public class OverallBucket implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code timestamp}
 		 */
-		public final Builder timestamp(Function<Time.Builder, ObjectBuilder<Time>> fn) {
-			return this.timestamp(fn.apply(new Time.Builder()).build());
+		public final Builder timestamp(Consumer<Time.Builder> fn) {
+			Time.Builder builder = new Time.Builder();
+			fn.accept(builder);
+			return this.timestamp(builder.build());
 		}
 
 		/**

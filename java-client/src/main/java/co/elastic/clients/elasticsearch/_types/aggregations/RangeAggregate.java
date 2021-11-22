@@ -30,7 +30,6 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Function;
 
 // typedef: _types.aggregations.RangeAggregate
 @JsonpDeserializable
@@ -43,11 +42,11 @@ public class RangeAggregate extends MultiBucketAggregateBase<RangeBucket> implem
 	}
 
 	/**
-	 * {@link Aggregate} variant type
+	 * Aggregate variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "range";
+	public Aggregate.Kind _aggregateKind() {
+		return Aggregate.Kind.Range;
 	}
 
 	// ---------------------------------------------------------------------------------------------

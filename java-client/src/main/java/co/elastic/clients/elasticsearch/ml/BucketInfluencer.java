@@ -39,7 +39,7 @@ import java.lang.Double;
 import java.lang.Long;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.BucketInfluencer
@@ -84,8 +84,10 @@ public class BucketInfluencer implements JsonpSerializable {
 
 	}
 
-	public static BucketInfluencer of(Function<Builder, ObjectBuilder<BucketInfluencer>> fn) {
-		return fn.apply(new Builder()).build();
+	public static BucketInfluencer of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -371,8 +373,10 @@ public class BucketInfluencer implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code timestamp}
 		 */
-		public final Builder timestamp(Function<Time.Builder, ObjectBuilder<Time>> fn) {
-			return this.timestamp(fn.apply(new Time.Builder()).build());
+		public final Builder timestamp(Consumer<Time.Builder> fn) {
+			Time.Builder builder = new Time.Builder();
+			fn.accept(builder);
+			return this.timestamp(builder.build());
 		}
 
 		/**

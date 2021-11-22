@@ -36,7 +36,7 @@ import java.lang.String;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: ingest._types.GeoIpProcessor
@@ -68,16 +68,18 @@ public class GeoIpProcessor extends ProcessorBase implements ProcessorVariant {
 
 	}
 
-	public static GeoIpProcessor of(Function<Builder, ObjectBuilder<GeoIpProcessor>> fn) {
-		return fn.apply(new Builder()).build();
+	public static GeoIpProcessor of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
-	 * {@link Processor} variant type
+	 * Processor variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "geoip";
+	public Processor.Kind _processorKind() {
+		return Processor.Kind.Geoip;
 	}
 
 	/**

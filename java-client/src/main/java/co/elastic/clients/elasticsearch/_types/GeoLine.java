@@ -38,7 +38,7 @@ import java.lang.String;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: _types.GeoLine
@@ -57,8 +57,10 @@ public class GeoLine implements JsonpSerializable {
 
 	}
 
-	public static GeoLine of(Function<Builder, ObjectBuilder<GeoLine>> fn) {
-		return fn.apply(new Builder()).build();
+	public static GeoLine of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**

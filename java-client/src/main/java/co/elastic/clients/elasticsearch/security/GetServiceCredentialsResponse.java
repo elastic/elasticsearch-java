@@ -37,9 +37,9 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
-import java.util.Collections;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -68,8 +68,10 @@ public class GetServiceCredentialsResponse implements JsonpSerializable {
 
 	}
 
-	public static GetServiceCredentialsResponse of(Function<Builder, ObjectBuilder<GetServiceCredentialsResponse>> fn) {
-		return fn.apply(new Builder()).build();
+	public static GetServiceCredentialsResponse of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -200,13 +202,6 @@ public class GetServiceCredentialsResponse implements JsonpSerializable {
 			return this;
 		}
 
-		/**
-		 * Set {@link #tokens(Map)} to a singleton map.
-		 */
-		public Builder tokens(String key, Function<EmptyObject.Builder, ObjectBuilder<EmptyObject>> fn) {
-			return this.tokens(Collections.singletonMap(key, fn.apply(new EmptyObject.Builder()).build()));
-		}
-
 		public final Builder tokens(
 				Function<MapBuilder<String, EmptyObject, EmptyObject.Builder>, ObjectBuilder<Map<String, EmptyObject>>> fn) {
 			return tokens(fn.apply(new MapBuilder<>(EmptyObject.Builder::new)).build());
@@ -218,13 +213,6 @@ public class GetServiceCredentialsResponse implements JsonpSerializable {
 		public final Builder fileTokens(Map<String, EmptyObject> value) {
 			this.fileTokens = value;
 			return this;
-		}
-
-		/**
-		 * Set {@link #fileTokens(Map)} to a singleton map.
-		 */
-		public Builder fileTokens(String key, Function<EmptyObject.Builder, ObjectBuilder<EmptyObject>> fn) {
-			return this.fileTokens(Collections.singletonMap(key, fn.apply(new EmptyObject.Builder()).build()));
 		}
 
 		public final Builder fileTokens(

@@ -35,9 +35,9 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.Collections;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -54,8 +54,10 @@ public class GarbageCollector implements JsonpSerializable {
 
 	}
 
-	public static GarbageCollector of(Function<Builder, ObjectBuilder<GarbageCollector>> fn) {
-		return fn.apply(new Builder()).build();
+	public static GarbageCollector of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -104,15 +106,6 @@ public class GarbageCollector implements JsonpSerializable {
 		public final Builder collectors(Map<String, GarbageCollectorTotal> value) {
 			this.collectors = value;
 			return this;
-		}
-
-		/**
-		 * Set {@link #collectors(Map)} to a singleton map.
-		 */
-		public Builder collectors(String key,
-				Function<GarbageCollectorTotal.Builder, ObjectBuilder<GarbageCollectorTotal>> fn) {
-			return this
-					.collectors(Collections.singletonMap(key, fn.apply(new GarbageCollectorTotal.Builder()).build()));
 		}
 
 		public final Builder collectors(

@@ -29,16 +29,17 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
 import java.lang.Integer;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -70,8 +71,10 @@ public class Term implements JsonpSerializable {
 
 	}
 
-	public static Term of(Function<Builder, ObjectBuilder<Term>> fn) {
-		return fn.apply(new Builder()).build();
+	public static Term of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -216,13 +219,8 @@ public class Term implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code tokens}
 		 */
-		@SafeVarargs
-		public final Builder tokens(Function<Token.Builder, ObjectBuilder<Token>>... fns) {
-			this.tokens = new ArrayList<>(fns.length);
-			for (Function<Token.Builder, ObjectBuilder<Token>> fn : fns) {
-				this.tokens.add(fn.apply(new Token.Builder()).build());
-			}
-			return this;
+		public final Builder tokens(Function<ListBuilder<Token, Token.Builder>, ObjectBuilder<List<Token>>> fn) {
+			return tokens(fn.apply(new ListBuilder<>(Token.Builder::new)).build());
 		}
 
 		/**

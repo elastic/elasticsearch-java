@@ -38,12 +38,12 @@ import java.lang.Integer;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: _global.bulk.UpdateOperation
 
-public class UpdateOperation<TDocument> extends OperationBase implements NdJsonpSerializable, OperationVariant {
+public class UpdateOperation<TDocument> extends BulkOperationBase implements NdJsonpSerializable, BulkOperationVariant {
 	private final TDocument document;
 
 	@Nullable
@@ -67,17 +67,18 @@ public class UpdateOperation<TDocument> extends OperationBase implements NdJsonp
 
 	}
 
-	public static <TDocument> UpdateOperation<TDocument> of(
-			Function<Builder<TDocument>, ObjectBuilder<UpdateOperation<TDocument>>> fn) {
-		return fn.apply(new Builder<>()).build();
+	public static <TDocument> UpdateOperation<TDocument> of(Consumer<Builder<TDocument>> fn) {
+		Builder<TDocument> builder = new Builder<>();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
-	 * {@link Operation} variant type
+	 * BulkOperation variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "update";
+	public BulkOperation.Kind _bulkOperationKind() {
+		return BulkOperation.Kind.Update;
 	}
 
 	/**
@@ -129,7 +130,7 @@ public class UpdateOperation<TDocument> extends OperationBase implements NdJsonp
 	/**
 	 * Builder for {@link UpdateOperation}.
 	 */
-	public static class Builder<TDocument> extends OperationBase.AbstractBuilder<Builder<TDocument>>
+	public static class Builder<TDocument> extends BulkOperationBase.AbstractBuilder<Builder<TDocument>>
 			implements
 				ObjectBuilder<UpdateOperation<TDocument>> {
 		private TDocument document;

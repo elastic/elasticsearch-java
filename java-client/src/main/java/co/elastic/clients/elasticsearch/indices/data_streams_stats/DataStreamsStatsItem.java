@@ -36,7 +36,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: indices.data_streams_stats.DataStreamsStatsItem
@@ -65,8 +65,10 @@ public class DataStreamsStatsItem implements JsonpSerializable {
 
 	}
 
-	public static DataStreamsStatsItem of(Function<Builder, ObjectBuilder<DataStreamsStatsItem>> fn) {
-		return fn.apply(new Builder()).build();
+	public static DataStreamsStatsItem of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**

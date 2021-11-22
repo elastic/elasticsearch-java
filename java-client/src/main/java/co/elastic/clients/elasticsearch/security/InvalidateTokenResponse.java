@@ -30,15 +30,16 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -65,8 +66,10 @@ public class InvalidateTokenResponse implements JsonpSerializable {
 
 	}
 
-	public static InvalidateTokenResponse of(Function<Builder, ObjectBuilder<InvalidateTokenResponse>> fn) {
-		return fn.apply(new Builder()).build();
+	public static InvalidateTokenResponse of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -171,13 +174,9 @@ public class InvalidateTokenResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code error_details}
 		 */
-		@SafeVarargs
-		public final Builder errorDetails(Function<ErrorCause.Builder, ObjectBuilder<ErrorCause>>... fns) {
-			this.errorDetails = new ArrayList<>(fns.length);
-			for (Function<ErrorCause.Builder, ObjectBuilder<ErrorCause>> fn : fns) {
-				this.errorDetails.add(fn.apply(new ErrorCause.Builder()).build());
-			}
-			return this;
+		public final Builder errorDetails(
+				Function<ListBuilder<ErrorCause, ErrorCause.Builder>, ObjectBuilder<List<ErrorCause>>> fn) {
+			return errorDetails(fn.apply(new ListBuilder<>(ErrorCause.Builder::new)).build());
 		}
 
 		/**

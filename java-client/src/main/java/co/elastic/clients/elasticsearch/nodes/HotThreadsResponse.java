@@ -30,14 +30,15 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -54,8 +55,10 @@ public class HotThreadsResponse implements JsonpSerializable {
 
 	}
 
-	public static HotThreadsResponse of(Function<Builder, ObjectBuilder<HotThreadsResponse>> fn) {
-		return fn.apply(new Builder()).build();
+	public static HotThreadsResponse of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -116,13 +119,9 @@ public class HotThreadsResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code hot_threads}
 		 */
-		@SafeVarargs
-		public final Builder hotThreads(Function<HotThread.Builder, ObjectBuilder<HotThread>>... fns) {
-			this.hotThreads = new ArrayList<>(fns.length);
-			for (Function<HotThread.Builder, ObjectBuilder<HotThread>> fn : fns) {
-				this.hotThreads.add(fn.apply(new HotThread.Builder()).build());
-			}
-			return this;
+		public final Builder hotThreads(
+				Function<ListBuilder<HotThread, HotThread.Builder>, ObjectBuilder<List<HotThread>>> fn) {
+			return hotThreads(fn.apply(new ListBuilder<>(HotThread.Builder::new)).build());
 		}
 
 		/**

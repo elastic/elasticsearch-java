@@ -23,13 +23,17 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
+import co.elastic.clients.json.JsonEnum;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
-import co.elastic.clients.util.StringEnum;
 
 @JsonpDeserializable
-public enum FilterType implements StringEnum {
-	Include("include"), Exclude("exclude");
+public enum FilterType implements JsonEnum {
+	Include("include"),
+
+	Exclude("exclude"),
+
+	;
 
 	private final String jsonValue;
 
@@ -41,6 +45,6 @@ public enum FilterType implements StringEnum {
 		return this.jsonValue;
 	}
 
-	public static final StringEnum.Deserializer<FilterType> _DESERIALIZER = new StringEnum.Deserializer<>(
+	public static final JsonEnum.Deserializer<FilterType> _DESERIALIZER = new JsonEnum.Deserializer<>(
 			FilterType.values());
 }

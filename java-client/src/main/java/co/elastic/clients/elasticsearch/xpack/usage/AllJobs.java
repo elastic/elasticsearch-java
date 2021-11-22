@@ -37,7 +37,7 @@ import java.lang.Integer;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: xpack.usage.AllJobs
@@ -65,8 +65,10 @@ public class AllJobs implements JsonpSerializable {
 
 	}
 
-	public static AllJobs of(Function<Builder, ObjectBuilder<AllJobs>> fn) {
-		return fn.apply(new Builder()).build();
+	public static AllJobs of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**

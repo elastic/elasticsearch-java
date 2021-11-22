@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 
 // typedef: indices.update_aliases.Response
 @JsonpDeserializable
@@ -43,8 +43,10 @@ public class UpdateAliasesResponse extends AcknowledgedResponseBase {
 
 	}
 
-	public static UpdateAliasesResponse of(Function<Builder, ObjectBuilder<UpdateAliasesResponse>> fn) {
-		return fn.apply(new Builder()).build();
+	public static UpdateAliasesResponse of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	// ---------------------------------------------------------------------------------------------

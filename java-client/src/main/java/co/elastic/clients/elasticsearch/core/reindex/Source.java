@@ -33,6 +33,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.MapBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
@@ -40,12 +41,11 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -87,8 +87,10 @@ public class Source implements JsonpSerializable {
 
 	}
 
-	public static Source of(Function<Builder, ObjectBuilder<Source>> fn) {
-		return fn.apply(new Builder()).build();
+	public static Source of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -282,8 +284,10 @@ public class Source implements JsonpSerializable {
 		/**
 		 * API name: {@code query}
 		 */
-		public final Builder query(Function<Query.Builder, ObjectBuilder<Query>> fn) {
-			return this.query(fn.apply(new Query.Builder()).build());
+		public final Builder query(Consumer<Query.Builder> fn) {
+			Query.Builder builder = new Query.Builder();
+			fn.accept(builder);
+			return this.query(builder.build());
 		}
 
 		/**
@@ -297,8 +301,10 @@ public class Source implements JsonpSerializable {
 		/**
 		 * API name: {@code remote}
 		 */
-		public final Builder remote(Function<RemoteSource.Builder, ObjectBuilder<RemoteSource>> fn) {
-			return this.remote(fn.apply(new RemoteSource.Builder()).build());
+		public final Builder remote(Consumer<RemoteSource.Builder> fn) {
+			RemoteSource.Builder builder = new RemoteSource.Builder();
+			fn.accept(builder);
+			return this.remote(builder.build());
 		}
 
 		/**
@@ -320,8 +326,10 @@ public class Source implements JsonpSerializable {
 		/**
 		 * API name: {@code slice}
 		 */
-		public final Builder slice(Function<SlicedScroll.Builder, ObjectBuilder<SlicedScroll>> fn) {
-			return this.slice(fn.apply(new SlicedScroll.Builder()).build());
+		public final Builder slice(Consumer<SlicedScroll.Builder> fn) {
+			SlicedScroll.Builder builder = new SlicedScroll.Builder();
+			fn.accept(builder);
+			return this.slice(builder.build());
 		}
 
 		/**
@@ -343,13 +351,9 @@ public class Source implements JsonpSerializable {
 		/**
 		 * API name: {@code sort}
 		 */
-		@SafeVarargs
-		public final Builder sort(Function<SortOptions.Builder, ObjectBuilder<SortOptions>>... fns) {
-			this.sort = new ArrayList<>(fns.length);
-			for (Function<SortOptions.Builder, ObjectBuilder<SortOptions>> fn : fns) {
-				this.sort.add(fn.apply(new SortOptions.Builder()).build());
-			}
-			return this;
+		public final Builder sort(
+				Function<ListBuilder<SortOptions, SortOptions.Builder>, ObjectBuilder<List<SortOptions>>> fn) {
+			return sort(fn.apply(new ListBuilder<>(SortOptions.Builder::new)).build());
 		}
 
 		/**
@@ -374,13 +378,6 @@ public class Source implements JsonpSerializable {
 		public final Builder runtimeMappings(@Nullable Map<String, RuntimeField> value) {
 			this.runtimeMappings = value;
 			return this;
-		}
-
-		/**
-		 * Set {@link #runtimeMappings(Map)} to a singleton map.
-		 */
-		public Builder runtimeMappings(String key, Function<RuntimeField.Builder, ObjectBuilder<RuntimeField>> fn) {
-			return this.runtimeMappings(Collections.singletonMap(key, fn.apply(new RuntimeField.Builder()).build()));
 		}
 
 		public final Builder runtimeMappings(

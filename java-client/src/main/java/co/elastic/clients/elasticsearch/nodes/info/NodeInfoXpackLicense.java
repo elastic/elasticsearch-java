@@ -34,7 +34,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: nodes.info.NodeInfoXpackLicense
@@ -50,8 +50,10 @@ public class NodeInfoXpackLicense implements JsonpSerializable {
 
 	}
 
-	public static NodeInfoXpackLicense of(Function<Builder, ObjectBuilder<NodeInfoXpackLicense>> fn) {
-		return fn.apply(new Builder()).build();
+	public static NodeInfoXpackLicense of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -96,9 +98,10 @@ public class NodeInfoXpackLicense implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code self_generated}
 		 */
-		public final Builder selfGenerated(
-				Function<NodeInfoXpackLicenseType.Builder, ObjectBuilder<NodeInfoXpackLicenseType>> fn) {
-			return this.selfGenerated(fn.apply(new NodeInfoXpackLicenseType.Builder()).build());
+		public final Builder selfGenerated(Consumer<NodeInfoXpackLicenseType.Builder> fn) {
+			NodeInfoXpackLicenseType.Builder builder = new NodeInfoXpackLicenseType.Builder();
+			fn.accept(builder);
+			return this.selfGenerated(builder.build());
 		}
 
 		/**

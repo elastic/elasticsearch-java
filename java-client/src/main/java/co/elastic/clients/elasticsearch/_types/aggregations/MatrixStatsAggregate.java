@@ -28,14 +28,15 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -56,16 +57,18 @@ public class MatrixStatsAggregate extends AggregateBase implements AggregateVari
 
 	}
 
-	public static MatrixStatsAggregate of(Function<Builder, ObjectBuilder<MatrixStatsAggregate>> fn) {
-		return fn.apply(new Builder()).build();
+	public static MatrixStatsAggregate of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
-	 * {@link Aggregate} variant type
+	 * Aggregate variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "matrix_stats";
+	public Aggregate.Kind _aggregateKind() {
+		return Aggregate.Kind.MatrixStats;
 	}
 
 	/**
@@ -140,13 +143,9 @@ public class MatrixStatsAggregate extends AggregateBase implements AggregateVari
 		/**
 		 * Required - API name: {@code fields}
 		 */
-		@SafeVarargs
-		public final Builder fields(Function<MatrixStatsFields.Builder, ObjectBuilder<MatrixStatsFields>>... fns) {
-			this.fields = new ArrayList<>(fns.length);
-			for (Function<MatrixStatsFields.Builder, ObjectBuilder<MatrixStatsFields>> fn : fns) {
-				this.fields.add(fn.apply(new MatrixStatsFields.Builder()).build());
-			}
-			return this;
+		public final Builder fields(
+				Function<ListBuilder<MatrixStatsFields, MatrixStatsFields.Builder>, ObjectBuilder<List<MatrixStatsFields>>> fn) {
+			return fields(fn.apply(new ListBuilder<>(MatrixStatsFields.Builder::new)).build());
 		}
 
 		@Override

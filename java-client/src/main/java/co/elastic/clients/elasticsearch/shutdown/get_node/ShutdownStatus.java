@@ -23,13 +23,21 @@
 
 package co.elastic.clients.elasticsearch.shutdown.get_node;
 
+import co.elastic.clients.json.JsonEnum;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
-import co.elastic.clients.util.StringEnum;
 
 @JsonpDeserializable
-public enum ShutdownStatus implements StringEnum {
-	NotStarted("not_started"), InProgress("in_progress"), Stalled("stalled"), Complete("complete");
+public enum ShutdownStatus implements JsonEnum {
+	NotStarted("not_started"),
+
+	InProgress("in_progress"),
+
+	Stalled("stalled"),
+
+	Complete("complete"),
+
+	;
 
 	private final String jsonValue;
 
@@ -41,6 +49,6 @@ public enum ShutdownStatus implements StringEnum {
 		return this.jsonValue;
 	}
 
-	public static final StringEnum.Deserializer<ShutdownStatus> _DESERIALIZER = new StringEnum.Deserializer<>(
+	public static final JsonEnum.Deserializer<ShutdownStatus> _DESERIALIZER = new JsonEnum.Deserializer<>(
 			ShutdownStatus.values());
 }

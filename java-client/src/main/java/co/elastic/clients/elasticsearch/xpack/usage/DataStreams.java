@@ -33,7 +33,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 
 // typedef: xpack.usage.DataStreams
 @JsonpDeserializable
@@ -52,8 +52,10 @@ public class DataStreams extends Base {
 
 	}
 
-	public static DataStreams of(Function<Builder, ObjectBuilder<DataStreams>> fn) {
-		return fn.apply(new Builder()).build();
+	public static DataStreams of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**

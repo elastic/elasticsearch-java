@@ -40,7 +40,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import java.util.function.Supplier;
 import javax.annotation.Nullable;
 
@@ -79,9 +79,10 @@ public class ExplainResponse<TDocument> implements JsonpSerializable {
 
 	}
 
-	public static <TDocument> ExplainResponse<TDocument> of(
-			Function<Builder<TDocument>, ObjectBuilder<ExplainResponse<TDocument>>> fn) {
-		return fn.apply(new Builder<>()).build();
+	public static <TDocument> ExplainResponse<TDocument> of(Consumer<Builder<TDocument>> fn) {
+		Builder<TDocument> builder = new Builder<>();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -236,9 +237,10 @@ public class ExplainResponse<TDocument> implements JsonpSerializable {
 		/**
 		 * API name: {@code explanation}
 		 */
-		public final Builder<TDocument> explanation(
-				Function<ExplanationDetail.Builder, ObjectBuilder<ExplanationDetail>> fn) {
-			return this.explanation(fn.apply(new ExplanationDetail.Builder()).build());
+		public final Builder<TDocument> explanation(Consumer<ExplanationDetail.Builder> fn) {
+			ExplanationDetail.Builder builder = new ExplanationDetail.Builder();
+			fn.accept(builder);
+			return this.explanation(builder.build());
 		}
 
 		/**
@@ -252,9 +254,10 @@ public class ExplainResponse<TDocument> implements JsonpSerializable {
 		/**
 		 * API name: {@code get}
 		 */
-		public final Builder<TDocument> get(
-				Function<InlineGet.Builder<TDocument>, ObjectBuilder<InlineGet<TDocument>>> fn) {
-			return this.get(fn.apply(new InlineGet.Builder<TDocument>()).build());
+		public final Builder<TDocument> get(Consumer<InlineGet.Builder<TDocument>> fn) {
+			InlineGet.Builder<TDocument> builder = new InlineGet.Builder<TDocument>();
+			fn.accept(builder);
+			return this.get(builder.build());
 		}
 
 		/**

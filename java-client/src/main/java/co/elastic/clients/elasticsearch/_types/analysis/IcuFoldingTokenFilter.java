@@ -33,7 +33,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: _types.analysis.IcuFoldingTokenFilter
@@ -50,16 +50,18 @@ public class IcuFoldingTokenFilter extends TokenFilterBase implements TokenFilte
 
 	}
 
-	public static IcuFoldingTokenFilter of(Function<Builder, ObjectBuilder<IcuFoldingTokenFilter>> fn) {
-		return fn.apply(new Builder()).build();
+	public static IcuFoldingTokenFilter of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
-	 * {@link TokenFilterDefinition} variant type
+	 * TokenFilterDefinition variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "icu_folding";
+	public TokenFilterDefinition.Kind _tokenFilterDefinitionKind() {
+		return TokenFilterDefinition.Kind.IcuFolding;
 	}
 
 	/**

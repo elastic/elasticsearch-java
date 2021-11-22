@@ -29,21 +29,22 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: enrich.get_policy.Response
 @JsonpDeserializable
 public class GetPolicyResponse implements JsonpSerializable {
-	private final List<Summary> policies;
+	private final List<EnrichSummary> policies;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -53,14 +54,16 @@ public class GetPolicyResponse implements JsonpSerializable {
 
 	}
 
-	public static GetPolicyResponse of(Function<Builder, ObjectBuilder<GetPolicyResponse>> fn) {
-		return fn.apply(new Builder()).build();
+	public static GetPolicyResponse of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
 	 * Required - API name: {@code policies}
 	 */
-	public final List<Summary> policies() {
+	public final List<EnrichSummary> policies() {
 		return this.policies;
 	}
 
@@ -78,7 +81,7 @@ public class GetPolicyResponse implements JsonpSerializable {
 		if (ModelTypeHelper.isDefined(this.policies)) {
 			generator.writeKey("policies");
 			generator.writeStartArray();
-			for (Summary item0 : this.policies) {
+			for (EnrichSummary item0 : this.policies) {
 				item0.serialize(generator, mapper);
 
 			}
@@ -94,12 +97,12 @@ public class GetPolicyResponse implements JsonpSerializable {
 	 * Builder for {@link GetPolicyResponse}.
 	 */
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetPolicyResponse> {
-		private List<Summary> policies;
+		private List<EnrichSummary> policies;
 
 		/**
 		 * Required - API name: {@code policies}
 		 */
-		public final Builder policies(List<Summary> value) {
+		public final Builder policies(List<EnrichSummary> value) {
 			this.policies = value;
 			return this;
 		}
@@ -107,7 +110,7 @@ public class GetPolicyResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code policies}
 		 */
-		public final Builder policies(Summary... value) {
+		public final Builder policies(EnrichSummary... value) {
 			this.policies = Arrays.asList(value);
 			return this;
 		}
@@ -115,13 +118,9 @@ public class GetPolicyResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code policies}
 		 */
-		@SafeVarargs
-		public final Builder policies(Function<Summary.Builder, ObjectBuilder<Summary>>... fns) {
-			this.policies = new ArrayList<>(fns.length);
-			for (Function<Summary.Builder, ObjectBuilder<Summary>> fn : fns) {
-				this.policies.add(fn.apply(new Summary.Builder()).build());
-			}
-			return this;
+		public final Builder policies(
+				Function<ListBuilder<EnrichSummary, EnrichSummary.Builder>, ObjectBuilder<List<EnrichSummary>>> fn) {
+			return policies(fn.apply(new ListBuilder<>(EnrichSummary.Builder::new)).build());
 		}
 
 		/**
@@ -147,7 +146,7 @@ public class GetPolicyResponse implements JsonpSerializable {
 
 	protected static void setupGetPolicyResponseDeserializer(ObjectDeserializer<GetPolicyResponse.Builder> op) {
 
-		op.add(Builder::policies, JsonpDeserializer.arrayDeserializer(Summary._DESERIALIZER), "policies");
+		op.add(Builder::policies, JsonpDeserializer.arrayDeserializer(EnrichSummary._DESERIALIZER), "policies");
 
 	}
 

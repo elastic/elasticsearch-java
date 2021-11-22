@@ -34,9 +34,9 @@ import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.Collections;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -54,8 +54,10 @@ public class TaskExecutingNode extends BaseNode {
 
 	}
 
-	public static TaskExecutingNode of(Function<Builder, ObjectBuilder<TaskExecutingNode>> fn) {
-		return fn.apply(new Builder()).build();
+	public static TaskExecutingNode of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -96,13 +98,6 @@ public class TaskExecutingNode extends BaseNode {
 		public final Builder tasks(Map<String, State> value) {
 			this.tasks = value;
 			return this;
-		}
-
-		/**
-		 * Set {@link #tasks(Map)} to a singleton map.
-		 */
-		public Builder tasks(String key, Function<State.Builder, ObjectBuilder<State>> fn) {
-			return this.tasks(Collections.singletonMap(key, fn.apply(new State.Builder()).build()));
 		}
 
 		public final Builder tasks(

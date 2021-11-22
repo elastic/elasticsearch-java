@@ -23,6 +23,7 @@
 
 package co.elastic.clients.elasticsearch._types.analysis;
 
+import co.elastic.clients.json.JsonEnum;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -36,69 +37,138 @@ import co.elastic.clients.util.TaggedUnion;
 import co.elastic.clients.util.TaggedUnionUtils;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: _types.analysis.TokenFilterDefinition
 // union type: InternalTag[tag=type]
 @JsonpDeserializable
-public class TokenFilterDefinition implements TaggedUnion<TokenFilterDefinitionVariant>, JsonpSerializable {
+public class TokenFilterDefinition
+		implements
+			TaggedUnion<TokenFilterDefinition.Kind, TokenFilterDefinitionVariant>,
+			JsonpSerializable {
 
-	public static final String ASCIIFOLDING = "asciifolding";
-	public static final String COMMON_GRAMS = "common_grams";
-	public static final String CONDITION = "condition";
-	public static final String DELIMITED_PAYLOAD = "delimited_payload";
-	public static final String DICTIONARY_DECOMPOUNDER = "dictionary_decompounder";
-	public static final String EDGE_NGRAM = "edge_ngram";
-	public static final String ELISION = "elision";
-	public static final String FINGERPRINT = "fingerprint";
-	public static final String HUNSPELL = "hunspell";
-	public static final String HYPHENATION_DECOMPOUNDER = "hyphenation_decompounder";
-	public static final String ICU_COLLATION = "icu_collation";
-	public static final String ICU_FOLDING = "icu_folding";
-	public static final String ICU_NORMALIZER = "icu_normalizer";
-	public static final String ICU_TOKENIZER = "icu_tokenizer";
-	public static final String ICU_TRANSFORM = "icu_transform";
-	public static final String KSTEM = "kstem";
-	public static final String KEEP_TYPES = "keep_types";
-	public static final String KEEP = "keep";
-	public static final String KEYWORD_MARKER = "keyword_marker";
-	public static final String KUROMOJI_PART_OF_SPEECH = "kuromoji_part_of_speech";
-	public static final String KUROMOJI_READINGFORM = "kuromoji_readingform";
-	public static final String KUROMOJI_STEMMER = "kuromoji_stemmer";
-	public static final String LENGTH = "length";
-	public static final String LIMIT = "limit";
-	public static final String LOWERCASE = "lowercase";
-	public static final String MULTIPLEXER = "multiplexer";
-	public static final String NGRAM = "ngram";
-	public static final String NORI_PART_OF_SPEECH = "nori_part_of_speech";
-	public static final String PATTERN_CAPTURE = "pattern_capture";
-	public static final String PATTERN_REPLACE = "pattern_replace";
-	public static final String PHONETIC = "phonetic";
-	public static final String PORTER_STEM = "porter_stem";
-	public static final String PREDICATE_TOKEN_FILTER = "predicate_token_filter";
-	public static final String REMOVE_DUPLICATES = "remove_duplicates";
-	public static final String REVERSE = "reverse";
-	public static final String SHINGLE = "shingle";
-	public static final String SNOWBALL = "snowball";
-	public static final String STEMMER_OVERRIDE = "stemmer_override";
-	public static final String STEMMER = "stemmer";
-	public static final String STOP = "stop";
-	public static final String SYNONYM_GRAPH = "synonym_graph";
-	public static final String SYNONYM = "synonym";
-	public static final String TRIM = "trim";
-	public static final String TRUNCATE = "truncate";
-	public static final String UNIQUE = "unique";
-	public static final String UPPERCASE = "uppercase";
-	public static final String WORD_DELIMITER_GRAPH = "word_delimiter_graph";
-	public static final String WORD_DELIMITER = "word_delimiter";
+	/**
+	 * {@link TokenFilterDefinition} variant kinds.
+	 */
 
-	private final String _type;
+	public enum Kind implements JsonEnum {
+		Asciifolding("asciifolding"),
+
+		CommonGrams("common_grams"),
+
+		Condition("condition"),
+
+		DelimitedPayload("delimited_payload"),
+
+		DictionaryDecompounder("dictionary_decompounder"),
+
+		EdgeNgram("edge_ngram"),
+
+		Elision("elision"),
+
+		Fingerprint("fingerprint"),
+
+		Hunspell("hunspell"),
+
+		HyphenationDecompounder("hyphenation_decompounder"),
+
+		IcuCollation("icu_collation"),
+
+		IcuFolding("icu_folding"),
+
+		IcuNormalizer("icu_normalizer"),
+
+		IcuTokenizer("icu_tokenizer"),
+
+		IcuTransform("icu_transform"),
+
+		Kstem("kstem"),
+
+		KeepTypes("keep_types"),
+
+		Keep("keep"),
+
+		KeywordMarker("keyword_marker"),
+
+		KuromojiPartOfSpeech("kuromoji_part_of_speech"),
+
+		KuromojiReadingform("kuromoji_readingform"),
+
+		KuromojiStemmer("kuromoji_stemmer"),
+
+		Length("length"),
+
+		Limit("limit"),
+
+		Lowercase("lowercase"),
+
+		Multiplexer("multiplexer"),
+
+		Ngram("ngram"),
+
+		NoriPartOfSpeech("nori_part_of_speech"),
+
+		PatternCapture("pattern_capture"),
+
+		PatternReplace("pattern_replace"),
+
+		Phonetic("phonetic"),
+
+		PorterStem("porter_stem"),
+
+		PredicateTokenFilter("predicate_token_filter"),
+
+		RemoveDuplicates("remove_duplicates"),
+
+		Reverse("reverse"),
+
+		Shingle("shingle"),
+
+		Snowball("snowball"),
+
+		StemmerOverride("stemmer_override"),
+
+		Stemmer("stemmer"),
+
+		Stop("stop"),
+
+		SynonymGraph("synonym_graph"),
+
+		Synonym("synonym"),
+
+		Trim("trim"),
+
+		Truncate("truncate"),
+
+		Unique("unique"),
+
+		Uppercase("uppercase"),
+
+		WordDelimiterGraph("word_delimiter_graph"),
+
+		WordDelimiter("word_delimiter"),
+
+		;
+
+		private final String jsonValue;
+
+		Kind(String jsonValue) {
+			this.jsonValue = jsonValue;
+		}
+
+		public String jsonValue() {
+			return this.jsonValue;
+		}
+
+	}
+
+	private final Kind _kind;
 	private final TokenFilterDefinitionVariant _value;
 
 	@Override
-	public final String _type() {
-		return _type;
+	public final Kind _kind() {
+		return _kind;
 	}
 
 	@Override
@@ -108,20 +178,29 @@ public class TokenFilterDefinition implements TaggedUnion<TokenFilterDefinitionV
 
 	public TokenFilterDefinition(TokenFilterDefinitionVariant value) {
 
-		this._type = ModelTypeHelper.requireNonNull(value._variantType(), this, "<variant type>");
+		this._kind = ModelTypeHelper.requireNonNull(value._tokenFilterDefinitionKind(), this, "<variant kind>");
 		this._value = ModelTypeHelper.requireNonNull(value, this, "<variant value>");
 
 	}
 
 	private TokenFilterDefinition(Builder builder) {
 
-		this._type = ModelTypeHelper.requireNonNull(builder._type, builder, "<variant type>");
+		this._kind = ModelTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
 		this._value = ModelTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
 
 	}
 
-	public static TokenFilterDefinition of(Function<Builder, ObjectBuilder<TokenFilterDefinition>> fn) {
-		return fn.apply(new Builder()).build();
+	public static TokenFilterDefinition of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
+	}
+
+	/**
+	 * Is this variant instance of kind {@code asciifolding}?
+	 */
+	public boolean isAsciifolding() {
+		return _kind == Kind.Asciifolding;
 	}
 
 	/**
@@ -131,7 +210,14 @@ public class TokenFilterDefinition implements TaggedUnion<TokenFilterDefinitionV
 	 *             if the current variant is not of the {@code asciifolding} kind.
 	 */
 	public AsciiFoldingTokenFilter asciifolding() {
-		return TaggedUnionUtils.get(this, ASCIIFOLDING);
+		return TaggedUnionUtils.get(this, Kind.Asciifolding);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code common_grams}?
+	 */
+	public boolean isCommonGrams() {
+		return _kind == Kind.CommonGrams;
 	}
 
 	/**
@@ -141,7 +227,14 @@ public class TokenFilterDefinition implements TaggedUnion<TokenFilterDefinitionV
 	 *             if the current variant is not of the {@code common_grams} kind.
 	 */
 	public CommonGramsTokenFilter commonGrams() {
-		return TaggedUnionUtils.get(this, COMMON_GRAMS);
+		return TaggedUnionUtils.get(this, Kind.CommonGrams);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code condition}?
+	 */
+	public boolean isCondition() {
+		return _kind == Kind.Condition;
 	}
 
 	/**
@@ -151,7 +244,14 @@ public class TokenFilterDefinition implements TaggedUnion<TokenFilterDefinitionV
 	 *             if the current variant is not of the {@code condition} kind.
 	 */
 	public ConditionTokenFilter condition() {
-		return TaggedUnionUtils.get(this, CONDITION);
+		return TaggedUnionUtils.get(this, Kind.Condition);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code delimited_payload}?
+	 */
+	public boolean isDelimitedPayload() {
+		return _kind == Kind.DelimitedPayload;
 	}
 
 	/**
@@ -162,7 +262,14 @@ public class TokenFilterDefinition implements TaggedUnion<TokenFilterDefinitionV
 	 *             kind.
 	 */
 	public DelimitedPayloadTokenFilter delimitedPayload() {
-		return TaggedUnionUtils.get(this, DELIMITED_PAYLOAD);
+		return TaggedUnionUtils.get(this, Kind.DelimitedPayload);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code dictionary_decompounder}?
+	 */
+	public boolean isDictionaryDecompounder() {
+		return _kind == Kind.DictionaryDecompounder;
 	}
 
 	/**
@@ -173,7 +280,14 @@ public class TokenFilterDefinition implements TaggedUnion<TokenFilterDefinitionV
 	 *             {@code dictionary_decompounder} kind.
 	 */
 	public DictionaryDecompounderTokenFilter dictionaryDecompounder() {
-		return TaggedUnionUtils.get(this, DICTIONARY_DECOMPOUNDER);
+		return TaggedUnionUtils.get(this, Kind.DictionaryDecompounder);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code edge_ngram}?
+	 */
+	public boolean isEdgeNgram() {
+		return _kind == Kind.EdgeNgram;
 	}
 
 	/**
@@ -183,7 +297,14 @@ public class TokenFilterDefinition implements TaggedUnion<TokenFilterDefinitionV
 	 *             if the current variant is not of the {@code edge_ngram} kind.
 	 */
 	public EdgeNGramTokenFilter edgeNgram() {
-		return TaggedUnionUtils.get(this, EDGE_NGRAM);
+		return TaggedUnionUtils.get(this, Kind.EdgeNgram);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code elision}?
+	 */
+	public boolean isElision() {
+		return _kind == Kind.Elision;
 	}
 
 	/**
@@ -193,7 +314,14 @@ public class TokenFilterDefinition implements TaggedUnion<TokenFilterDefinitionV
 	 *             if the current variant is not of the {@code elision} kind.
 	 */
 	public ElisionTokenFilter elision() {
-		return TaggedUnionUtils.get(this, ELISION);
+		return TaggedUnionUtils.get(this, Kind.Elision);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code fingerprint}?
+	 */
+	public boolean isFingerprint() {
+		return _kind == Kind.Fingerprint;
 	}
 
 	/**
@@ -203,7 +331,14 @@ public class TokenFilterDefinition implements TaggedUnion<TokenFilterDefinitionV
 	 *             if the current variant is not of the {@code fingerprint} kind.
 	 */
 	public FingerprintTokenFilter fingerprint() {
-		return TaggedUnionUtils.get(this, FINGERPRINT);
+		return TaggedUnionUtils.get(this, Kind.Fingerprint);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code hunspell}?
+	 */
+	public boolean isHunspell() {
+		return _kind == Kind.Hunspell;
 	}
 
 	/**
@@ -213,7 +348,14 @@ public class TokenFilterDefinition implements TaggedUnion<TokenFilterDefinitionV
 	 *             if the current variant is not of the {@code hunspell} kind.
 	 */
 	public HunspellTokenFilter hunspell() {
-		return TaggedUnionUtils.get(this, HUNSPELL);
+		return TaggedUnionUtils.get(this, Kind.Hunspell);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code hyphenation_decompounder}?
+	 */
+	public boolean isHyphenationDecompounder() {
+		return _kind == Kind.HyphenationDecompounder;
 	}
 
 	/**
@@ -224,7 +366,14 @@ public class TokenFilterDefinition implements TaggedUnion<TokenFilterDefinitionV
 	 *             {@code hyphenation_decompounder} kind.
 	 */
 	public HyphenationDecompounderTokenFilter hyphenationDecompounder() {
-		return TaggedUnionUtils.get(this, HYPHENATION_DECOMPOUNDER);
+		return TaggedUnionUtils.get(this, Kind.HyphenationDecompounder);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code icu_collation}?
+	 */
+	public boolean isIcuCollation() {
+		return _kind == Kind.IcuCollation;
 	}
 
 	/**
@@ -234,7 +383,14 @@ public class TokenFilterDefinition implements TaggedUnion<TokenFilterDefinitionV
 	 *             if the current variant is not of the {@code icu_collation} kind.
 	 */
 	public IcuCollationTokenFilter icuCollation() {
-		return TaggedUnionUtils.get(this, ICU_COLLATION);
+		return TaggedUnionUtils.get(this, Kind.IcuCollation);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code icu_folding}?
+	 */
+	public boolean isIcuFolding() {
+		return _kind == Kind.IcuFolding;
 	}
 
 	/**
@@ -244,7 +400,14 @@ public class TokenFilterDefinition implements TaggedUnion<TokenFilterDefinitionV
 	 *             if the current variant is not of the {@code icu_folding} kind.
 	 */
 	public IcuFoldingTokenFilter icuFolding() {
-		return TaggedUnionUtils.get(this, ICU_FOLDING);
+		return TaggedUnionUtils.get(this, Kind.IcuFolding);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code icu_normalizer}?
+	 */
+	public boolean isIcuNormalizer() {
+		return _kind == Kind.IcuNormalizer;
 	}
 
 	/**
@@ -254,7 +417,14 @@ public class TokenFilterDefinition implements TaggedUnion<TokenFilterDefinitionV
 	 *             if the current variant is not of the {@code icu_normalizer} kind.
 	 */
 	public IcuNormalizationTokenFilter icuNormalizer() {
-		return TaggedUnionUtils.get(this, ICU_NORMALIZER);
+		return TaggedUnionUtils.get(this, Kind.IcuNormalizer);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code icu_tokenizer}?
+	 */
+	public boolean isIcuTokenizer() {
+		return _kind == Kind.IcuTokenizer;
 	}
 
 	/**
@@ -264,7 +434,14 @@ public class TokenFilterDefinition implements TaggedUnion<TokenFilterDefinitionV
 	 *             if the current variant is not of the {@code icu_tokenizer} kind.
 	 */
 	public IcuTokenizer icuTokenizer() {
-		return TaggedUnionUtils.get(this, ICU_TOKENIZER);
+		return TaggedUnionUtils.get(this, Kind.IcuTokenizer);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code icu_transform}?
+	 */
+	public boolean isIcuTransform() {
+		return _kind == Kind.IcuTransform;
 	}
 
 	/**
@@ -274,7 +451,14 @@ public class TokenFilterDefinition implements TaggedUnion<TokenFilterDefinitionV
 	 *             if the current variant is not of the {@code icu_transform} kind.
 	 */
 	public IcuTransformTokenFilter icuTransform() {
-		return TaggedUnionUtils.get(this, ICU_TRANSFORM);
+		return TaggedUnionUtils.get(this, Kind.IcuTransform);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code kstem}?
+	 */
+	public boolean isKstem() {
+		return _kind == Kind.Kstem;
 	}
 
 	/**
@@ -284,7 +468,14 @@ public class TokenFilterDefinition implements TaggedUnion<TokenFilterDefinitionV
 	 *             if the current variant is not of the {@code kstem} kind.
 	 */
 	public KStemTokenFilter kstem() {
-		return TaggedUnionUtils.get(this, KSTEM);
+		return TaggedUnionUtils.get(this, Kind.Kstem);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code keep_types}?
+	 */
+	public boolean isKeepTypes() {
+		return _kind == Kind.KeepTypes;
 	}
 
 	/**
@@ -294,7 +485,14 @@ public class TokenFilterDefinition implements TaggedUnion<TokenFilterDefinitionV
 	 *             if the current variant is not of the {@code keep_types} kind.
 	 */
 	public KeepTypesTokenFilter keepTypes() {
-		return TaggedUnionUtils.get(this, KEEP_TYPES);
+		return TaggedUnionUtils.get(this, Kind.KeepTypes);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code keep}?
+	 */
+	public boolean isKeep() {
+		return _kind == Kind.Keep;
 	}
 
 	/**
@@ -304,7 +502,14 @@ public class TokenFilterDefinition implements TaggedUnion<TokenFilterDefinitionV
 	 *             if the current variant is not of the {@code keep} kind.
 	 */
 	public KeepWordsTokenFilter keep() {
-		return TaggedUnionUtils.get(this, KEEP);
+		return TaggedUnionUtils.get(this, Kind.Keep);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code keyword_marker}?
+	 */
+	public boolean isKeywordMarker() {
+		return _kind == Kind.KeywordMarker;
 	}
 
 	/**
@@ -314,7 +519,14 @@ public class TokenFilterDefinition implements TaggedUnion<TokenFilterDefinitionV
 	 *             if the current variant is not of the {@code keyword_marker} kind.
 	 */
 	public KeywordMarkerTokenFilter keywordMarker() {
-		return TaggedUnionUtils.get(this, KEYWORD_MARKER);
+		return TaggedUnionUtils.get(this, Kind.KeywordMarker);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code kuromoji_part_of_speech}?
+	 */
+	public boolean isKuromojiPartOfSpeech() {
+		return _kind == Kind.KuromojiPartOfSpeech;
 	}
 
 	/**
@@ -325,7 +537,14 @@ public class TokenFilterDefinition implements TaggedUnion<TokenFilterDefinitionV
 	 *             {@code kuromoji_part_of_speech} kind.
 	 */
 	public KuromojiPartOfSpeechTokenFilter kuromojiPartOfSpeech() {
-		return TaggedUnionUtils.get(this, KUROMOJI_PART_OF_SPEECH);
+		return TaggedUnionUtils.get(this, Kind.KuromojiPartOfSpeech);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code kuromoji_readingform}?
+	 */
+	public boolean isKuromojiReadingform() {
+		return _kind == Kind.KuromojiReadingform;
 	}
 
 	/**
@@ -336,7 +555,14 @@ public class TokenFilterDefinition implements TaggedUnion<TokenFilterDefinitionV
 	 *             kind.
 	 */
 	public KuromojiReadingFormTokenFilter kuromojiReadingform() {
-		return TaggedUnionUtils.get(this, KUROMOJI_READINGFORM);
+		return TaggedUnionUtils.get(this, Kind.KuromojiReadingform);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code kuromoji_stemmer}?
+	 */
+	public boolean isKuromojiStemmer() {
+		return _kind == Kind.KuromojiStemmer;
 	}
 
 	/**
@@ -347,7 +573,14 @@ public class TokenFilterDefinition implements TaggedUnion<TokenFilterDefinitionV
 	 *             kind.
 	 */
 	public KuromojiStemmerTokenFilter kuromojiStemmer() {
-		return TaggedUnionUtils.get(this, KUROMOJI_STEMMER);
+		return TaggedUnionUtils.get(this, Kind.KuromojiStemmer);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code length}?
+	 */
+	public boolean isLength() {
+		return _kind == Kind.Length;
 	}
 
 	/**
@@ -357,7 +590,14 @@ public class TokenFilterDefinition implements TaggedUnion<TokenFilterDefinitionV
 	 *             if the current variant is not of the {@code length} kind.
 	 */
 	public LengthTokenFilter length() {
-		return TaggedUnionUtils.get(this, LENGTH);
+		return TaggedUnionUtils.get(this, Kind.Length);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code limit}?
+	 */
+	public boolean isLimit() {
+		return _kind == Kind.Limit;
 	}
 
 	/**
@@ -367,7 +607,14 @@ public class TokenFilterDefinition implements TaggedUnion<TokenFilterDefinitionV
 	 *             if the current variant is not of the {@code limit} kind.
 	 */
 	public LimitTokenCountTokenFilter limit() {
-		return TaggedUnionUtils.get(this, LIMIT);
+		return TaggedUnionUtils.get(this, Kind.Limit);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code lowercase}?
+	 */
+	public boolean isLowercase() {
+		return _kind == Kind.Lowercase;
 	}
 
 	/**
@@ -377,7 +624,14 @@ public class TokenFilterDefinition implements TaggedUnion<TokenFilterDefinitionV
 	 *             if the current variant is not of the {@code lowercase} kind.
 	 */
 	public LowercaseTokenFilter lowercase() {
-		return TaggedUnionUtils.get(this, LOWERCASE);
+		return TaggedUnionUtils.get(this, Kind.Lowercase);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code multiplexer}?
+	 */
+	public boolean isMultiplexer() {
+		return _kind == Kind.Multiplexer;
 	}
 
 	/**
@@ -387,7 +641,14 @@ public class TokenFilterDefinition implements TaggedUnion<TokenFilterDefinitionV
 	 *             if the current variant is not of the {@code multiplexer} kind.
 	 */
 	public MultiplexerTokenFilter multiplexer() {
-		return TaggedUnionUtils.get(this, MULTIPLEXER);
+		return TaggedUnionUtils.get(this, Kind.Multiplexer);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code ngram}?
+	 */
+	public boolean isNgram() {
+		return _kind == Kind.Ngram;
 	}
 
 	/**
@@ -397,7 +658,14 @@ public class TokenFilterDefinition implements TaggedUnion<TokenFilterDefinitionV
 	 *             if the current variant is not of the {@code ngram} kind.
 	 */
 	public NGramTokenFilter ngram() {
-		return TaggedUnionUtils.get(this, NGRAM);
+		return TaggedUnionUtils.get(this, Kind.Ngram);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code nori_part_of_speech}?
+	 */
+	public boolean isNoriPartOfSpeech() {
+		return _kind == Kind.NoriPartOfSpeech;
 	}
 
 	/**
@@ -408,7 +676,14 @@ public class TokenFilterDefinition implements TaggedUnion<TokenFilterDefinitionV
 	 *             kind.
 	 */
 	public NoriPartOfSpeechTokenFilter noriPartOfSpeech() {
-		return TaggedUnionUtils.get(this, NORI_PART_OF_SPEECH);
+		return TaggedUnionUtils.get(this, Kind.NoriPartOfSpeech);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code pattern_capture}?
+	 */
+	public boolean isPatternCapture() {
+		return _kind == Kind.PatternCapture;
 	}
 
 	/**
@@ -419,7 +694,14 @@ public class TokenFilterDefinition implements TaggedUnion<TokenFilterDefinitionV
 	 *             kind.
 	 */
 	public PatternCaptureTokenFilter patternCapture() {
-		return TaggedUnionUtils.get(this, PATTERN_CAPTURE);
+		return TaggedUnionUtils.get(this, Kind.PatternCapture);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code pattern_replace}?
+	 */
+	public boolean isPatternReplace() {
+		return _kind == Kind.PatternReplace;
 	}
 
 	/**
@@ -430,7 +712,14 @@ public class TokenFilterDefinition implements TaggedUnion<TokenFilterDefinitionV
 	 *             kind.
 	 */
 	public PatternReplaceTokenFilter patternReplace() {
-		return TaggedUnionUtils.get(this, PATTERN_REPLACE);
+		return TaggedUnionUtils.get(this, Kind.PatternReplace);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code phonetic}?
+	 */
+	public boolean isPhonetic() {
+		return _kind == Kind.Phonetic;
 	}
 
 	/**
@@ -440,7 +729,14 @@ public class TokenFilterDefinition implements TaggedUnion<TokenFilterDefinitionV
 	 *             if the current variant is not of the {@code phonetic} kind.
 	 */
 	public PhoneticTokenFilter phonetic() {
-		return TaggedUnionUtils.get(this, PHONETIC);
+		return TaggedUnionUtils.get(this, Kind.Phonetic);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code porter_stem}?
+	 */
+	public boolean isPorterStem() {
+		return _kind == Kind.PorterStem;
 	}
 
 	/**
@@ -450,7 +746,14 @@ public class TokenFilterDefinition implements TaggedUnion<TokenFilterDefinitionV
 	 *             if the current variant is not of the {@code porter_stem} kind.
 	 */
 	public PorterStemTokenFilter porterStem() {
-		return TaggedUnionUtils.get(this, PORTER_STEM);
+		return TaggedUnionUtils.get(this, Kind.PorterStem);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code predicate_token_filter}?
+	 */
+	public boolean isPredicateTokenFilter() {
+		return _kind == Kind.PredicateTokenFilter;
 	}
 
 	/**
@@ -461,7 +764,14 @@ public class TokenFilterDefinition implements TaggedUnion<TokenFilterDefinitionV
 	 *             {@code predicate_token_filter} kind.
 	 */
 	public PredicateTokenFilter predicateTokenFilter() {
-		return TaggedUnionUtils.get(this, PREDICATE_TOKEN_FILTER);
+		return TaggedUnionUtils.get(this, Kind.PredicateTokenFilter);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code remove_duplicates}?
+	 */
+	public boolean isRemoveDuplicates() {
+		return _kind == Kind.RemoveDuplicates;
 	}
 
 	/**
@@ -472,7 +782,14 @@ public class TokenFilterDefinition implements TaggedUnion<TokenFilterDefinitionV
 	 *             kind.
 	 */
 	public RemoveDuplicatesTokenFilter removeDuplicates() {
-		return TaggedUnionUtils.get(this, REMOVE_DUPLICATES);
+		return TaggedUnionUtils.get(this, Kind.RemoveDuplicates);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code reverse}?
+	 */
+	public boolean isReverse() {
+		return _kind == Kind.Reverse;
 	}
 
 	/**
@@ -482,7 +799,14 @@ public class TokenFilterDefinition implements TaggedUnion<TokenFilterDefinitionV
 	 *             if the current variant is not of the {@code reverse} kind.
 	 */
 	public ReverseTokenFilter reverse() {
-		return TaggedUnionUtils.get(this, REVERSE);
+		return TaggedUnionUtils.get(this, Kind.Reverse);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code shingle}?
+	 */
+	public boolean isShingle() {
+		return _kind == Kind.Shingle;
 	}
 
 	/**
@@ -492,7 +816,14 @@ public class TokenFilterDefinition implements TaggedUnion<TokenFilterDefinitionV
 	 *             if the current variant is not of the {@code shingle} kind.
 	 */
 	public ShingleTokenFilter shingle() {
-		return TaggedUnionUtils.get(this, SHINGLE);
+		return TaggedUnionUtils.get(this, Kind.Shingle);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code snowball}?
+	 */
+	public boolean isSnowball() {
+		return _kind == Kind.Snowball;
 	}
 
 	/**
@@ -502,7 +833,14 @@ public class TokenFilterDefinition implements TaggedUnion<TokenFilterDefinitionV
 	 *             if the current variant is not of the {@code snowball} kind.
 	 */
 	public SnowballTokenFilter snowball() {
-		return TaggedUnionUtils.get(this, SNOWBALL);
+		return TaggedUnionUtils.get(this, Kind.Snowball);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code stemmer_override}?
+	 */
+	public boolean isStemmerOverride() {
+		return _kind == Kind.StemmerOverride;
 	}
 
 	/**
@@ -513,7 +851,14 @@ public class TokenFilterDefinition implements TaggedUnion<TokenFilterDefinitionV
 	 *             kind.
 	 */
 	public StemmerOverrideTokenFilter stemmerOverride() {
-		return TaggedUnionUtils.get(this, STEMMER_OVERRIDE);
+		return TaggedUnionUtils.get(this, Kind.StemmerOverride);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code stemmer}?
+	 */
+	public boolean isStemmer() {
+		return _kind == Kind.Stemmer;
 	}
 
 	/**
@@ -523,7 +868,14 @@ public class TokenFilterDefinition implements TaggedUnion<TokenFilterDefinitionV
 	 *             if the current variant is not of the {@code stemmer} kind.
 	 */
 	public StemmerTokenFilter stemmer() {
-		return TaggedUnionUtils.get(this, STEMMER);
+		return TaggedUnionUtils.get(this, Kind.Stemmer);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code stop}?
+	 */
+	public boolean isStop() {
+		return _kind == Kind.Stop;
 	}
 
 	/**
@@ -533,7 +885,14 @@ public class TokenFilterDefinition implements TaggedUnion<TokenFilterDefinitionV
 	 *             if the current variant is not of the {@code stop} kind.
 	 */
 	public StopTokenFilter stop() {
-		return TaggedUnionUtils.get(this, STOP);
+		return TaggedUnionUtils.get(this, Kind.Stop);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code synonym_graph}?
+	 */
+	public boolean isSynonymGraph() {
+		return _kind == Kind.SynonymGraph;
 	}
 
 	/**
@@ -543,7 +902,14 @@ public class TokenFilterDefinition implements TaggedUnion<TokenFilterDefinitionV
 	 *             if the current variant is not of the {@code synonym_graph} kind.
 	 */
 	public SynonymGraphTokenFilter synonymGraph() {
-		return TaggedUnionUtils.get(this, SYNONYM_GRAPH);
+		return TaggedUnionUtils.get(this, Kind.SynonymGraph);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code synonym}?
+	 */
+	public boolean isSynonym() {
+		return _kind == Kind.Synonym;
 	}
 
 	/**
@@ -553,7 +919,14 @@ public class TokenFilterDefinition implements TaggedUnion<TokenFilterDefinitionV
 	 *             if the current variant is not of the {@code synonym} kind.
 	 */
 	public SynonymTokenFilter synonym() {
-		return TaggedUnionUtils.get(this, SYNONYM);
+		return TaggedUnionUtils.get(this, Kind.Synonym);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code trim}?
+	 */
+	public boolean isTrim() {
+		return _kind == Kind.Trim;
 	}
 
 	/**
@@ -563,7 +936,14 @@ public class TokenFilterDefinition implements TaggedUnion<TokenFilterDefinitionV
 	 *             if the current variant is not of the {@code trim} kind.
 	 */
 	public TrimTokenFilter trim() {
-		return TaggedUnionUtils.get(this, TRIM);
+		return TaggedUnionUtils.get(this, Kind.Trim);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code truncate}?
+	 */
+	public boolean isTruncate() {
+		return _kind == Kind.Truncate;
 	}
 
 	/**
@@ -573,7 +953,14 @@ public class TokenFilterDefinition implements TaggedUnion<TokenFilterDefinitionV
 	 *             if the current variant is not of the {@code truncate} kind.
 	 */
 	public TruncateTokenFilter truncate() {
-		return TaggedUnionUtils.get(this, TRUNCATE);
+		return TaggedUnionUtils.get(this, Kind.Truncate);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code unique}?
+	 */
+	public boolean isUnique() {
+		return _kind == Kind.Unique;
 	}
 
 	/**
@@ -583,7 +970,14 @@ public class TokenFilterDefinition implements TaggedUnion<TokenFilterDefinitionV
 	 *             if the current variant is not of the {@code unique} kind.
 	 */
 	public UniqueTokenFilter unique() {
-		return TaggedUnionUtils.get(this, UNIQUE);
+		return TaggedUnionUtils.get(this, Kind.Unique);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code uppercase}?
+	 */
+	public boolean isUppercase() {
+		return _kind == Kind.Uppercase;
 	}
 
 	/**
@@ -593,7 +987,14 @@ public class TokenFilterDefinition implements TaggedUnion<TokenFilterDefinitionV
 	 *             if the current variant is not of the {@code uppercase} kind.
 	 */
 	public UppercaseTokenFilter uppercase() {
-		return TaggedUnionUtils.get(this, UPPERCASE);
+		return TaggedUnionUtils.get(this, Kind.Uppercase);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code word_delimiter_graph}?
+	 */
+	public boolean isWordDelimiterGraph() {
+		return _kind == Kind.WordDelimiterGraph;
 	}
 
 	/**
@@ -604,7 +1005,14 @@ public class TokenFilterDefinition implements TaggedUnion<TokenFilterDefinitionV
 	 *             kind.
 	 */
 	public WordDelimiterGraphTokenFilter wordDelimiterGraph() {
-		return TaggedUnionUtils.get(this, WORD_DELIMITER_GRAPH);
+		return TaggedUnionUtils.get(this, Kind.WordDelimiterGraph);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code word_delimiter}?
+	 */
+	public boolean isWordDelimiter() {
+		return _kind == Kind.WordDelimiter;
 	}
 
 	/**
@@ -614,7 +1022,7 @@ public class TokenFilterDefinition implements TaggedUnion<TokenFilterDefinitionV
 	 *             if the current variant is not of the {@code word_delimiter} kind.
 	 */
 	public WordDelimiterTokenFilter wordDelimiter() {
-		return TaggedUnionUtils.get(this, WORD_DELIMITER);
+		return TaggedUnionUtils.get(this, Kind.WordDelimiter);
 	}
 
 	@Override
@@ -625,508 +1033,583 @@ public class TokenFilterDefinition implements TaggedUnion<TokenFilterDefinitionV
 	}
 
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TokenFilterDefinition> {
-		private String _type;
+		private Kind _kind;
 		private TokenFilterDefinitionVariant _value;
 
 		public Builder asciifolding(AsciiFoldingTokenFilter v) {
-			this._type = ASCIIFOLDING;
+			this._kind = Kind.Asciifolding;
 			this._value = v;
 			return this;
 		}
 
-		public Builder asciifolding(
-				Function<AsciiFoldingTokenFilter.Builder, ObjectBuilder<AsciiFoldingTokenFilter>> f) {
-			return this.asciifolding(f.apply(new AsciiFoldingTokenFilter.Builder()).build());
+		public Builder asciifolding(Consumer<AsciiFoldingTokenFilter.Builder> fn) {
+			AsciiFoldingTokenFilter.Builder builder = new AsciiFoldingTokenFilter.Builder();
+			fn.accept(builder);
+			return this.asciifolding(builder.build());
 		}
 
 		public Builder commonGrams(CommonGramsTokenFilter v) {
-			this._type = COMMON_GRAMS;
+			this._kind = Kind.CommonGrams;
 			this._value = v;
 			return this;
 		}
 
-		public Builder commonGrams(Function<CommonGramsTokenFilter.Builder, ObjectBuilder<CommonGramsTokenFilter>> f) {
-			return this.commonGrams(f.apply(new CommonGramsTokenFilter.Builder()).build());
+		public Builder commonGrams(Consumer<CommonGramsTokenFilter.Builder> fn) {
+			CommonGramsTokenFilter.Builder builder = new CommonGramsTokenFilter.Builder();
+			fn.accept(builder);
+			return this.commonGrams(builder.build());
 		}
 
 		public Builder condition(ConditionTokenFilter v) {
-			this._type = CONDITION;
+			this._kind = Kind.Condition;
 			this._value = v;
 			return this;
 		}
 
-		public Builder condition(Function<ConditionTokenFilter.Builder, ObjectBuilder<ConditionTokenFilter>> f) {
-			return this.condition(f.apply(new ConditionTokenFilter.Builder()).build());
+		public Builder condition(Consumer<ConditionTokenFilter.Builder> fn) {
+			ConditionTokenFilter.Builder builder = new ConditionTokenFilter.Builder();
+			fn.accept(builder);
+			return this.condition(builder.build());
 		}
 
 		public Builder delimitedPayload(DelimitedPayloadTokenFilter v) {
-			this._type = DELIMITED_PAYLOAD;
+			this._kind = Kind.DelimitedPayload;
 			this._value = v;
 			return this;
 		}
 
-		public Builder delimitedPayload(
-				Function<DelimitedPayloadTokenFilter.Builder, ObjectBuilder<DelimitedPayloadTokenFilter>> f) {
-			return this.delimitedPayload(f.apply(new DelimitedPayloadTokenFilter.Builder()).build());
+		public Builder delimitedPayload(Consumer<DelimitedPayloadTokenFilter.Builder> fn) {
+			DelimitedPayloadTokenFilter.Builder builder = new DelimitedPayloadTokenFilter.Builder();
+			fn.accept(builder);
+			return this.delimitedPayload(builder.build());
 		}
 
 		public Builder dictionaryDecompounder(DictionaryDecompounderTokenFilter v) {
-			this._type = DICTIONARY_DECOMPOUNDER;
+			this._kind = Kind.DictionaryDecompounder;
 			this._value = v;
 			return this;
 		}
 
-		public Builder dictionaryDecompounder(
-				Function<DictionaryDecompounderTokenFilter.Builder, ObjectBuilder<DictionaryDecompounderTokenFilter>> f) {
-			return this.dictionaryDecompounder(f.apply(new DictionaryDecompounderTokenFilter.Builder()).build());
+		public Builder dictionaryDecompounder(Consumer<DictionaryDecompounderTokenFilter.Builder> fn) {
+			DictionaryDecompounderTokenFilter.Builder builder = new DictionaryDecompounderTokenFilter.Builder();
+			fn.accept(builder);
+			return this.dictionaryDecompounder(builder.build());
 		}
 
 		public Builder edgeNgram(EdgeNGramTokenFilter v) {
-			this._type = EDGE_NGRAM;
+			this._kind = Kind.EdgeNgram;
 			this._value = v;
 			return this;
 		}
 
-		public Builder edgeNgram(Function<EdgeNGramTokenFilter.Builder, ObjectBuilder<EdgeNGramTokenFilter>> f) {
-			return this.edgeNgram(f.apply(new EdgeNGramTokenFilter.Builder()).build());
+		public Builder edgeNgram(Consumer<EdgeNGramTokenFilter.Builder> fn) {
+			EdgeNGramTokenFilter.Builder builder = new EdgeNGramTokenFilter.Builder();
+			fn.accept(builder);
+			return this.edgeNgram(builder.build());
 		}
 
 		public Builder elision(ElisionTokenFilter v) {
-			this._type = ELISION;
+			this._kind = Kind.Elision;
 			this._value = v;
 			return this;
 		}
 
-		public Builder elision(Function<ElisionTokenFilter.Builder, ObjectBuilder<ElisionTokenFilter>> f) {
-			return this.elision(f.apply(new ElisionTokenFilter.Builder()).build());
+		public Builder elision(Consumer<ElisionTokenFilter.Builder> fn) {
+			ElisionTokenFilter.Builder builder = new ElisionTokenFilter.Builder();
+			fn.accept(builder);
+			return this.elision(builder.build());
 		}
 
 		public Builder fingerprint(FingerprintTokenFilter v) {
-			this._type = FINGERPRINT;
+			this._kind = Kind.Fingerprint;
 			this._value = v;
 			return this;
 		}
 
-		public Builder fingerprint(Function<FingerprintTokenFilter.Builder, ObjectBuilder<FingerprintTokenFilter>> f) {
-			return this.fingerprint(f.apply(new FingerprintTokenFilter.Builder()).build());
+		public Builder fingerprint(Consumer<FingerprintTokenFilter.Builder> fn) {
+			FingerprintTokenFilter.Builder builder = new FingerprintTokenFilter.Builder();
+			fn.accept(builder);
+			return this.fingerprint(builder.build());
 		}
 
 		public Builder hunspell(HunspellTokenFilter v) {
-			this._type = HUNSPELL;
+			this._kind = Kind.Hunspell;
 			this._value = v;
 			return this;
 		}
 
-		public Builder hunspell(Function<HunspellTokenFilter.Builder, ObjectBuilder<HunspellTokenFilter>> f) {
-			return this.hunspell(f.apply(new HunspellTokenFilter.Builder()).build());
+		public Builder hunspell(Consumer<HunspellTokenFilter.Builder> fn) {
+			HunspellTokenFilter.Builder builder = new HunspellTokenFilter.Builder();
+			fn.accept(builder);
+			return this.hunspell(builder.build());
 		}
 
 		public Builder hyphenationDecompounder(HyphenationDecompounderTokenFilter v) {
-			this._type = HYPHENATION_DECOMPOUNDER;
+			this._kind = Kind.HyphenationDecompounder;
 			this._value = v;
 			return this;
 		}
 
-		public Builder hyphenationDecompounder(
-				Function<HyphenationDecompounderTokenFilter.Builder, ObjectBuilder<HyphenationDecompounderTokenFilter>> f) {
-			return this.hyphenationDecompounder(f.apply(new HyphenationDecompounderTokenFilter.Builder()).build());
+		public Builder hyphenationDecompounder(Consumer<HyphenationDecompounderTokenFilter.Builder> fn) {
+			HyphenationDecompounderTokenFilter.Builder builder = new HyphenationDecompounderTokenFilter.Builder();
+			fn.accept(builder);
+			return this.hyphenationDecompounder(builder.build());
 		}
 
 		public Builder icuCollation(IcuCollationTokenFilter v) {
-			this._type = ICU_COLLATION;
+			this._kind = Kind.IcuCollation;
 			this._value = v;
 			return this;
 		}
 
-		public Builder icuCollation(
-				Function<IcuCollationTokenFilter.Builder, ObjectBuilder<IcuCollationTokenFilter>> f) {
-			return this.icuCollation(f.apply(new IcuCollationTokenFilter.Builder()).build());
+		public Builder icuCollation(Consumer<IcuCollationTokenFilter.Builder> fn) {
+			IcuCollationTokenFilter.Builder builder = new IcuCollationTokenFilter.Builder();
+			fn.accept(builder);
+			return this.icuCollation(builder.build());
 		}
 
 		public Builder icuFolding(IcuFoldingTokenFilter v) {
-			this._type = ICU_FOLDING;
+			this._kind = Kind.IcuFolding;
 			this._value = v;
 			return this;
 		}
 
-		public Builder icuFolding(Function<IcuFoldingTokenFilter.Builder, ObjectBuilder<IcuFoldingTokenFilter>> f) {
-			return this.icuFolding(f.apply(new IcuFoldingTokenFilter.Builder()).build());
+		public Builder icuFolding(Consumer<IcuFoldingTokenFilter.Builder> fn) {
+			IcuFoldingTokenFilter.Builder builder = new IcuFoldingTokenFilter.Builder();
+			fn.accept(builder);
+			return this.icuFolding(builder.build());
 		}
 
 		public Builder icuNormalizer(IcuNormalizationTokenFilter v) {
-			this._type = ICU_NORMALIZER;
+			this._kind = Kind.IcuNormalizer;
 			this._value = v;
 			return this;
 		}
 
-		public Builder icuNormalizer(
-				Function<IcuNormalizationTokenFilter.Builder, ObjectBuilder<IcuNormalizationTokenFilter>> f) {
-			return this.icuNormalizer(f.apply(new IcuNormalizationTokenFilter.Builder()).build());
+		public Builder icuNormalizer(Consumer<IcuNormalizationTokenFilter.Builder> fn) {
+			IcuNormalizationTokenFilter.Builder builder = new IcuNormalizationTokenFilter.Builder();
+			fn.accept(builder);
+			return this.icuNormalizer(builder.build());
 		}
 
 		public Builder icuTokenizer(IcuTokenizer v) {
-			this._type = ICU_TOKENIZER;
+			this._kind = Kind.IcuTokenizer;
 			this._value = v;
 			return this;
 		}
 
-		public Builder icuTokenizer(Function<IcuTokenizer.Builder, ObjectBuilder<IcuTokenizer>> f) {
-			return this.icuTokenizer(f.apply(new IcuTokenizer.Builder()).build());
+		public Builder icuTokenizer(Consumer<IcuTokenizer.Builder> fn) {
+			IcuTokenizer.Builder builder = new IcuTokenizer.Builder();
+			fn.accept(builder);
+			return this.icuTokenizer(builder.build());
 		}
 
 		public Builder icuTransform(IcuTransformTokenFilter v) {
-			this._type = ICU_TRANSFORM;
+			this._kind = Kind.IcuTransform;
 			this._value = v;
 			return this;
 		}
 
-		public Builder icuTransform(
-				Function<IcuTransformTokenFilter.Builder, ObjectBuilder<IcuTransformTokenFilter>> f) {
-			return this.icuTransform(f.apply(new IcuTransformTokenFilter.Builder()).build());
+		public Builder icuTransform(Consumer<IcuTransformTokenFilter.Builder> fn) {
+			IcuTransformTokenFilter.Builder builder = new IcuTransformTokenFilter.Builder();
+			fn.accept(builder);
+			return this.icuTransform(builder.build());
 		}
 
 		public Builder kstem(KStemTokenFilter v) {
-			this._type = KSTEM;
+			this._kind = Kind.Kstem;
 			this._value = v;
 			return this;
 		}
 
-		public Builder kstem(Function<KStemTokenFilter.Builder, ObjectBuilder<KStemTokenFilter>> f) {
-			return this.kstem(f.apply(new KStemTokenFilter.Builder()).build());
+		public Builder kstem(Consumer<KStemTokenFilter.Builder> fn) {
+			KStemTokenFilter.Builder builder = new KStemTokenFilter.Builder();
+			fn.accept(builder);
+			return this.kstem(builder.build());
 		}
 
 		public Builder keepTypes(KeepTypesTokenFilter v) {
-			this._type = KEEP_TYPES;
+			this._kind = Kind.KeepTypes;
 			this._value = v;
 			return this;
 		}
 
-		public Builder keepTypes(Function<KeepTypesTokenFilter.Builder, ObjectBuilder<KeepTypesTokenFilter>> f) {
-			return this.keepTypes(f.apply(new KeepTypesTokenFilter.Builder()).build());
+		public Builder keepTypes(Consumer<KeepTypesTokenFilter.Builder> fn) {
+			KeepTypesTokenFilter.Builder builder = new KeepTypesTokenFilter.Builder();
+			fn.accept(builder);
+			return this.keepTypes(builder.build());
 		}
 
 		public Builder keep(KeepWordsTokenFilter v) {
-			this._type = KEEP;
+			this._kind = Kind.Keep;
 			this._value = v;
 			return this;
 		}
 
-		public Builder keep(Function<KeepWordsTokenFilter.Builder, ObjectBuilder<KeepWordsTokenFilter>> f) {
-			return this.keep(f.apply(new KeepWordsTokenFilter.Builder()).build());
+		public Builder keep(Consumer<KeepWordsTokenFilter.Builder> fn) {
+			KeepWordsTokenFilter.Builder builder = new KeepWordsTokenFilter.Builder();
+			fn.accept(builder);
+			return this.keep(builder.build());
 		}
 
 		public Builder keywordMarker(KeywordMarkerTokenFilter v) {
-			this._type = KEYWORD_MARKER;
+			this._kind = Kind.KeywordMarker;
 			this._value = v;
 			return this;
 		}
 
-		public Builder keywordMarker(
-				Function<KeywordMarkerTokenFilter.Builder, ObjectBuilder<KeywordMarkerTokenFilter>> f) {
-			return this.keywordMarker(f.apply(new KeywordMarkerTokenFilter.Builder()).build());
+		public Builder keywordMarker(Consumer<KeywordMarkerTokenFilter.Builder> fn) {
+			KeywordMarkerTokenFilter.Builder builder = new KeywordMarkerTokenFilter.Builder();
+			fn.accept(builder);
+			return this.keywordMarker(builder.build());
 		}
 
 		public Builder kuromojiPartOfSpeech(KuromojiPartOfSpeechTokenFilter v) {
-			this._type = KUROMOJI_PART_OF_SPEECH;
+			this._kind = Kind.KuromojiPartOfSpeech;
 			this._value = v;
 			return this;
 		}
 
-		public Builder kuromojiPartOfSpeech(
-				Function<KuromojiPartOfSpeechTokenFilter.Builder, ObjectBuilder<KuromojiPartOfSpeechTokenFilter>> f) {
-			return this.kuromojiPartOfSpeech(f.apply(new KuromojiPartOfSpeechTokenFilter.Builder()).build());
+		public Builder kuromojiPartOfSpeech(Consumer<KuromojiPartOfSpeechTokenFilter.Builder> fn) {
+			KuromojiPartOfSpeechTokenFilter.Builder builder = new KuromojiPartOfSpeechTokenFilter.Builder();
+			fn.accept(builder);
+			return this.kuromojiPartOfSpeech(builder.build());
 		}
 
 		public Builder kuromojiReadingform(KuromojiReadingFormTokenFilter v) {
-			this._type = KUROMOJI_READINGFORM;
+			this._kind = Kind.KuromojiReadingform;
 			this._value = v;
 			return this;
 		}
 
-		public Builder kuromojiReadingform(
-				Function<KuromojiReadingFormTokenFilter.Builder, ObjectBuilder<KuromojiReadingFormTokenFilter>> f) {
-			return this.kuromojiReadingform(f.apply(new KuromojiReadingFormTokenFilter.Builder()).build());
+		public Builder kuromojiReadingform(Consumer<KuromojiReadingFormTokenFilter.Builder> fn) {
+			KuromojiReadingFormTokenFilter.Builder builder = new KuromojiReadingFormTokenFilter.Builder();
+			fn.accept(builder);
+			return this.kuromojiReadingform(builder.build());
 		}
 
 		public Builder kuromojiStemmer(KuromojiStemmerTokenFilter v) {
-			this._type = KUROMOJI_STEMMER;
+			this._kind = Kind.KuromojiStemmer;
 			this._value = v;
 			return this;
 		}
 
-		public Builder kuromojiStemmer(
-				Function<KuromojiStemmerTokenFilter.Builder, ObjectBuilder<KuromojiStemmerTokenFilter>> f) {
-			return this.kuromojiStemmer(f.apply(new KuromojiStemmerTokenFilter.Builder()).build());
+		public Builder kuromojiStemmer(Consumer<KuromojiStemmerTokenFilter.Builder> fn) {
+			KuromojiStemmerTokenFilter.Builder builder = new KuromojiStemmerTokenFilter.Builder();
+			fn.accept(builder);
+			return this.kuromojiStemmer(builder.build());
 		}
 
 		public Builder length(LengthTokenFilter v) {
-			this._type = LENGTH;
+			this._kind = Kind.Length;
 			this._value = v;
 			return this;
 		}
 
-		public Builder length(Function<LengthTokenFilter.Builder, ObjectBuilder<LengthTokenFilter>> f) {
-			return this.length(f.apply(new LengthTokenFilter.Builder()).build());
+		public Builder length(Consumer<LengthTokenFilter.Builder> fn) {
+			LengthTokenFilter.Builder builder = new LengthTokenFilter.Builder();
+			fn.accept(builder);
+			return this.length(builder.build());
 		}
 
 		public Builder limit(LimitTokenCountTokenFilter v) {
-			this._type = LIMIT;
+			this._kind = Kind.Limit;
 			this._value = v;
 			return this;
 		}
 
-		public Builder limit(
-				Function<LimitTokenCountTokenFilter.Builder, ObjectBuilder<LimitTokenCountTokenFilter>> f) {
-			return this.limit(f.apply(new LimitTokenCountTokenFilter.Builder()).build());
+		public Builder limit(Consumer<LimitTokenCountTokenFilter.Builder> fn) {
+			LimitTokenCountTokenFilter.Builder builder = new LimitTokenCountTokenFilter.Builder();
+			fn.accept(builder);
+			return this.limit(builder.build());
 		}
 
 		public Builder lowercase(LowercaseTokenFilter v) {
-			this._type = LOWERCASE;
+			this._kind = Kind.Lowercase;
 			this._value = v;
 			return this;
 		}
 
-		public Builder lowercase(Function<LowercaseTokenFilter.Builder, ObjectBuilder<LowercaseTokenFilter>> f) {
-			return this.lowercase(f.apply(new LowercaseTokenFilter.Builder()).build());
+		public Builder lowercase(Consumer<LowercaseTokenFilter.Builder> fn) {
+			LowercaseTokenFilter.Builder builder = new LowercaseTokenFilter.Builder();
+			fn.accept(builder);
+			return this.lowercase(builder.build());
 		}
 
 		public Builder multiplexer(MultiplexerTokenFilter v) {
-			this._type = MULTIPLEXER;
+			this._kind = Kind.Multiplexer;
 			this._value = v;
 			return this;
 		}
 
-		public Builder multiplexer(Function<MultiplexerTokenFilter.Builder, ObjectBuilder<MultiplexerTokenFilter>> f) {
-			return this.multiplexer(f.apply(new MultiplexerTokenFilter.Builder()).build());
+		public Builder multiplexer(Consumer<MultiplexerTokenFilter.Builder> fn) {
+			MultiplexerTokenFilter.Builder builder = new MultiplexerTokenFilter.Builder();
+			fn.accept(builder);
+			return this.multiplexer(builder.build());
 		}
 
 		public Builder ngram(NGramTokenFilter v) {
-			this._type = NGRAM;
+			this._kind = Kind.Ngram;
 			this._value = v;
 			return this;
 		}
 
-		public Builder ngram(Function<NGramTokenFilter.Builder, ObjectBuilder<NGramTokenFilter>> f) {
-			return this.ngram(f.apply(new NGramTokenFilter.Builder()).build());
+		public Builder ngram(Consumer<NGramTokenFilter.Builder> fn) {
+			NGramTokenFilter.Builder builder = new NGramTokenFilter.Builder();
+			fn.accept(builder);
+			return this.ngram(builder.build());
 		}
 
 		public Builder noriPartOfSpeech(NoriPartOfSpeechTokenFilter v) {
-			this._type = NORI_PART_OF_SPEECH;
+			this._kind = Kind.NoriPartOfSpeech;
 			this._value = v;
 			return this;
 		}
 
-		public Builder noriPartOfSpeech(
-				Function<NoriPartOfSpeechTokenFilter.Builder, ObjectBuilder<NoriPartOfSpeechTokenFilter>> f) {
-			return this.noriPartOfSpeech(f.apply(new NoriPartOfSpeechTokenFilter.Builder()).build());
+		public Builder noriPartOfSpeech(Consumer<NoriPartOfSpeechTokenFilter.Builder> fn) {
+			NoriPartOfSpeechTokenFilter.Builder builder = new NoriPartOfSpeechTokenFilter.Builder();
+			fn.accept(builder);
+			return this.noriPartOfSpeech(builder.build());
 		}
 
 		public Builder patternCapture(PatternCaptureTokenFilter v) {
-			this._type = PATTERN_CAPTURE;
+			this._kind = Kind.PatternCapture;
 			this._value = v;
 			return this;
 		}
 
-		public Builder patternCapture(
-				Function<PatternCaptureTokenFilter.Builder, ObjectBuilder<PatternCaptureTokenFilter>> f) {
-			return this.patternCapture(f.apply(new PatternCaptureTokenFilter.Builder()).build());
+		public Builder patternCapture(Consumer<PatternCaptureTokenFilter.Builder> fn) {
+			PatternCaptureTokenFilter.Builder builder = new PatternCaptureTokenFilter.Builder();
+			fn.accept(builder);
+			return this.patternCapture(builder.build());
 		}
 
 		public Builder patternReplace(PatternReplaceTokenFilter v) {
-			this._type = PATTERN_REPLACE;
+			this._kind = Kind.PatternReplace;
 			this._value = v;
 			return this;
 		}
 
-		public Builder patternReplace(
-				Function<PatternReplaceTokenFilter.Builder, ObjectBuilder<PatternReplaceTokenFilter>> f) {
-			return this.patternReplace(f.apply(new PatternReplaceTokenFilter.Builder()).build());
+		public Builder patternReplace(Consumer<PatternReplaceTokenFilter.Builder> fn) {
+			PatternReplaceTokenFilter.Builder builder = new PatternReplaceTokenFilter.Builder();
+			fn.accept(builder);
+			return this.patternReplace(builder.build());
 		}
 
 		public Builder phonetic(PhoneticTokenFilter v) {
-			this._type = PHONETIC;
+			this._kind = Kind.Phonetic;
 			this._value = v;
 			return this;
 		}
 
-		public Builder phonetic(Function<PhoneticTokenFilter.Builder, ObjectBuilder<PhoneticTokenFilter>> f) {
-			return this.phonetic(f.apply(new PhoneticTokenFilter.Builder()).build());
+		public Builder phonetic(Consumer<PhoneticTokenFilter.Builder> fn) {
+			PhoneticTokenFilter.Builder builder = new PhoneticTokenFilter.Builder();
+			fn.accept(builder);
+			return this.phonetic(builder.build());
 		}
 
 		public Builder porterStem(PorterStemTokenFilter v) {
-			this._type = PORTER_STEM;
+			this._kind = Kind.PorterStem;
 			this._value = v;
 			return this;
 		}
 
-		public Builder porterStem(Function<PorterStemTokenFilter.Builder, ObjectBuilder<PorterStemTokenFilter>> f) {
-			return this.porterStem(f.apply(new PorterStemTokenFilter.Builder()).build());
+		public Builder porterStem(Consumer<PorterStemTokenFilter.Builder> fn) {
+			PorterStemTokenFilter.Builder builder = new PorterStemTokenFilter.Builder();
+			fn.accept(builder);
+			return this.porterStem(builder.build());
 		}
 
 		public Builder predicateTokenFilter(PredicateTokenFilter v) {
-			this._type = PREDICATE_TOKEN_FILTER;
+			this._kind = Kind.PredicateTokenFilter;
 			this._value = v;
 			return this;
 		}
 
-		public Builder predicateTokenFilter(
-				Function<PredicateTokenFilter.Builder, ObjectBuilder<PredicateTokenFilter>> f) {
-			return this.predicateTokenFilter(f.apply(new PredicateTokenFilter.Builder()).build());
+		public Builder predicateTokenFilter(Consumer<PredicateTokenFilter.Builder> fn) {
+			PredicateTokenFilter.Builder builder = new PredicateTokenFilter.Builder();
+			fn.accept(builder);
+			return this.predicateTokenFilter(builder.build());
 		}
 
 		public Builder removeDuplicates(RemoveDuplicatesTokenFilter v) {
-			this._type = REMOVE_DUPLICATES;
+			this._kind = Kind.RemoveDuplicates;
 			this._value = v;
 			return this;
 		}
 
-		public Builder removeDuplicates(
-				Function<RemoveDuplicatesTokenFilter.Builder, ObjectBuilder<RemoveDuplicatesTokenFilter>> f) {
-			return this.removeDuplicates(f.apply(new RemoveDuplicatesTokenFilter.Builder()).build());
+		public Builder removeDuplicates(Consumer<RemoveDuplicatesTokenFilter.Builder> fn) {
+			RemoveDuplicatesTokenFilter.Builder builder = new RemoveDuplicatesTokenFilter.Builder();
+			fn.accept(builder);
+			return this.removeDuplicates(builder.build());
 		}
 
 		public Builder reverse(ReverseTokenFilter v) {
-			this._type = REVERSE;
+			this._kind = Kind.Reverse;
 			this._value = v;
 			return this;
 		}
 
-		public Builder reverse(Function<ReverseTokenFilter.Builder, ObjectBuilder<ReverseTokenFilter>> f) {
-			return this.reverse(f.apply(new ReverseTokenFilter.Builder()).build());
+		public Builder reverse(Consumer<ReverseTokenFilter.Builder> fn) {
+			ReverseTokenFilter.Builder builder = new ReverseTokenFilter.Builder();
+			fn.accept(builder);
+			return this.reverse(builder.build());
 		}
 
 		public Builder shingle(ShingleTokenFilter v) {
-			this._type = SHINGLE;
+			this._kind = Kind.Shingle;
 			this._value = v;
 			return this;
 		}
 
-		public Builder shingle(Function<ShingleTokenFilter.Builder, ObjectBuilder<ShingleTokenFilter>> f) {
-			return this.shingle(f.apply(new ShingleTokenFilter.Builder()).build());
+		public Builder shingle(Consumer<ShingleTokenFilter.Builder> fn) {
+			ShingleTokenFilter.Builder builder = new ShingleTokenFilter.Builder();
+			fn.accept(builder);
+			return this.shingle(builder.build());
 		}
 
 		public Builder snowball(SnowballTokenFilter v) {
-			this._type = SNOWBALL;
+			this._kind = Kind.Snowball;
 			this._value = v;
 			return this;
 		}
 
-		public Builder snowball(Function<SnowballTokenFilter.Builder, ObjectBuilder<SnowballTokenFilter>> f) {
-			return this.snowball(f.apply(new SnowballTokenFilter.Builder()).build());
+		public Builder snowball(Consumer<SnowballTokenFilter.Builder> fn) {
+			SnowballTokenFilter.Builder builder = new SnowballTokenFilter.Builder();
+			fn.accept(builder);
+			return this.snowball(builder.build());
 		}
 
 		public Builder stemmerOverride(StemmerOverrideTokenFilter v) {
-			this._type = STEMMER_OVERRIDE;
+			this._kind = Kind.StemmerOverride;
 			this._value = v;
 			return this;
 		}
 
-		public Builder stemmerOverride(
-				Function<StemmerOverrideTokenFilter.Builder, ObjectBuilder<StemmerOverrideTokenFilter>> f) {
-			return this.stemmerOverride(f.apply(new StemmerOverrideTokenFilter.Builder()).build());
+		public Builder stemmerOverride(Consumer<StemmerOverrideTokenFilter.Builder> fn) {
+			StemmerOverrideTokenFilter.Builder builder = new StemmerOverrideTokenFilter.Builder();
+			fn.accept(builder);
+			return this.stemmerOverride(builder.build());
 		}
 
 		public Builder stemmer(StemmerTokenFilter v) {
-			this._type = STEMMER;
+			this._kind = Kind.Stemmer;
 			this._value = v;
 			return this;
 		}
 
-		public Builder stemmer(Function<StemmerTokenFilter.Builder, ObjectBuilder<StemmerTokenFilter>> f) {
-			return this.stemmer(f.apply(new StemmerTokenFilter.Builder()).build());
+		public Builder stemmer(Consumer<StemmerTokenFilter.Builder> fn) {
+			StemmerTokenFilter.Builder builder = new StemmerTokenFilter.Builder();
+			fn.accept(builder);
+			return this.stemmer(builder.build());
 		}
 
 		public Builder stop(StopTokenFilter v) {
-			this._type = STOP;
+			this._kind = Kind.Stop;
 			this._value = v;
 			return this;
 		}
 
-		public Builder stop(Function<StopTokenFilter.Builder, ObjectBuilder<StopTokenFilter>> f) {
-			return this.stop(f.apply(new StopTokenFilter.Builder()).build());
+		public Builder stop(Consumer<StopTokenFilter.Builder> fn) {
+			StopTokenFilter.Builder builder = new StopTokenFilter.Builder();
+			fn.accept(builder);
+			return this.stop(builder.build());
 		}
 
 		public Builder synonymGraph(SynonymGraphTokenFilter v) {
-			this._type = SYNONYM_GRAPH;
+			this._kind = Kind.SynonymGraph;
 			this._value = v;
 			return this;
 		}
 
-		public Builder synonymGraph(
-				Function<SynonymGraphTokenFilter.Builder, ObjectBuilder<SynonymGraphTokenFilter>> f) {
-			return this.synonymGraph(f.apply(new SynonymGraphTokenFilter.Builder()).build());
+		public Builder synonymGraph(Consumer<SynonymGraphTokenFilter.Builder> fn) {
+			SynonymGraphTokenFilter.Builder builder = new SynonymGraphTokenFilter.Builder();
+			fn.accept(builder);
+			return this.synonymGraph(builder.build());
 		}
 
 		public Builder synonym(SynonymTokenFilter v) {
-			this._type = SYNONYM;
+			this._kind = Kind.Synonym;
 			this._value = v;
 			return this;
 		}
 
-		public Builder synonym(Function<SynonymTokenFilter.Builder, ObjectBuilder<SynonymTokenFilter>> f) {
-			return this.synonym(f.apply(new SynonymTokenFilter.Builder()).build());
+		public Builder synonym(Consumer<SynonymTokenFilter.Builder> fn) {
+			SynonymTokenFilter.Builder builder = new SynonymTokenFilter.Builder();
+			fn.accept(builder);
+			return this.synonym(builder.build());
 		}
 
 		public Builder trim(TrimTokenFilter v) {
-			this._type = TRIM;
+			this._kind = Kind.Trim;
 			this._value = v;
 			return this;
 		}
 
-		public Builder trim(Function<TrimTokenFilter.Builder, ObjectBuilder<TrimTokenFilter>> f) {
-			return this.trim(f.apply(new TrimTokenFilter.Builder()).build());
+		public Builder trim(Consumer<TrimTokenFilter.Builder> fn) {
+			TrimTokenFilter.Builder builder = new TrimTokenFilter.Builder();
+			fn.accept(builder);
+			return this.trim(builder.build());
 		}
 
 		public Builder truncate(TruncateTokenFilter v) {
-			this._type = TRUNCATE;
+			this._kind = Kind.Truncate;
 			this._value = v;
 			return this;
 		}
 
-		public Builder truncate(Function<TruncateTokenFilter.Builder, ObjectBuilder<TruncateTokenFilter>> f) {
-			return this.truncate(f.apply(new TruncateTokenFilter.Builder()).build());
+		public Builder truncate(Consumer<TruncateTokenFilter.Builder> fn) {
+			TruncateTokenFilter.Builder builder = new TruncateTokenFilter.Builder();
+			fn.accept(builder);
+			return this.truncate(builder.build());
 		}
 
 		public Builder unique(UniqueTokenFilter v) {
-			this._type = UNIQUE;
+			this._kind = Kind.Unique;
 			this._value = v;
 			return this;
 		}
 
-		public Builder unique(Function<UniqueTokenFilter.Builder, ObjectBuilder<UniqueTokenFilter>> f) {
-			return this.unique(f.apply(new UniqueTokenFilter.Builder()).build());
+		public Builder unique(Consumer<UniqueTokenFilter.Builder> fn) {
+			UniqueTokenFilter.Builder builder = new UniqueTokenFilter.Builder();
+			fn.accept(builder);
+			return this.unique(builder.build());
 		}
 
 		public Builder uppercase(UppercaseTokenFilter v) {
-			this._type = UPPERCASE;
+			this._kind = Kind.Uppercase;
 			this._value = v;
 			return this;
 		}
 
-		public Builder uppercase(Function<UppercaseTokenFilter.Builder, ObjectBuilder<UppercaseTokenFilter>> f) {
-			return this.uppercase(f.apply(new UppercaseTokenFilter.Builder()).build());
+		public Builder uppercase(Consumer<UppercaseTokenFilter.Builder> fn) {
+			UppercaseTokenFilter.Builder builder = new UppercaseTokenFilter.Builder();
+			fn.accept(builder);
+			return this.uppercase(builder.build());
 		}
 
 		public Builder wordDelimiterGraph(WordDelimiterGraphTokenFilter v) {
-			this._type = WORD_DELIMITER_GRAPH;
+			this._kind = Kind.WordDelimiterGraph;
 			this._value = v;
 			return this;
 		}
 
-		public Builder wordDelimiterGraph(
-				Function<WordDelimiterGraphTokenFilter.Builder, ObjectBuilder<WordDelimiterGraphTokenFilter>> f) {
-			return this.wordDelimiterGraph(f.apply(new WordDelimiterGraphTokenFilter.Builder()).build());
+		public Builder wordDelimiterGraph(Consumer<WordDelimiterGraphTokenFilter.Builder> fn) {
+			WordDelimiterGraphTokenFilter.Builder builder = new WordDelimiterGraphTokenFilter.Builder();
+			fn.accept(builder);
+			return this.wordDelimiterGraph(builder.build());
 		}
 
 		public Builder wordDelimiter(WordDelimiterTokenFilter v) {
-			this._type = WORD_DELIMITER;
+			this._kind = Kind.WordDelimiter;
 			this._value = v;
 			return this;
 		}
 
-		public Builder wordDelimiter(
-				Function<WordDelimiterTokenFilter.Builder, ObjectBuilder<WordDelimiterTokenFilter>> f) {
-			return this.wordDelimiter(f.apply(new WordDelimiterTokenFilter.Builder()).build());
+		public Builder wordDelimiter(Consumer<WordDelimiterTokenFilter.Builder> fn) {
+			WordDelimiterTokenFilter.Builder builder = new WordDelimiterTokenFilter.Builder();
+			fn.accept(builder);
+			return this.wordDelimiter(builder.build());
 		}
 
 		public TokenFilterDefinition build() {

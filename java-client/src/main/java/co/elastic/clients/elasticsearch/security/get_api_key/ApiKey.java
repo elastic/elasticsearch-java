@@ -39,7 +39,7 @@ import java.lang.Long;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: security.get_api_key.ApiKey
@@ -77,8 +77,10 @@ public class ApiKey implements JsonpSerializable {
 
 	}
 
-	public static ApiKey of(Function<Builder, ObjectBuilder<ApiKey>> fn) {
-		return fn.apply(new Builder()).build();
+	public static ApiKey of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**

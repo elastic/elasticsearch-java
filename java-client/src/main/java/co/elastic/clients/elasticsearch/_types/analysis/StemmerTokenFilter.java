@@ -33,7 +33,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: _types.analysis.StemmerTokenFilter
@@ -50,16 +50,18 @@ public class StemmerTokenFilter extends TokenFilterBase implements TokenFilterDe
 
 	}
 
-	public static StemmerTokenFilter of(Function<Builder, ObjectBuilder<StemmerTokenFilter>> fn) {
-		return fn.apply(new Builder()).build();
+	public static StemmerTokenFilter of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
-	 * {@link TokenFilterDefinition} variant type
+	 * TokenFilterDefinition variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "stemmer";
+	public TokenFilterDefinition.Kind _tokenFilterDefinitionKind() {
+		return TokenFilterDefinition.Kind.Stemmer;
 	}
 
 	/**

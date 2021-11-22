@@ -30,7 +30,7 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 
 // typedef: _types.aggregations.HdrPercentileRanksAggregate
 @JsonpDeserializable
@@ -42,16 +42,18 @@ public class HdrPercentileRanksAggregate extends PercentilesAggregateBase implem
 
 	}
 
-	public static HdrPercentileRanksAggregate of(Function<Builder, ObjectBuilder<HdrPercentileRanksAggregate>> fn) {
-		return fn.apply(new Builder()).build();
+	public static HdrPercentileRanksAggregate of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
-	 * {@link Aggregate} variant type
+	 * Aggregate variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "hdr_percentile_ranks";
+	public Aggregate.Kind _aggregateKind() {
+		return Aggregate.Kind.HdrPercentileRanks;
 	}
 
 	// ---------------------------------------------------------------------------------------------

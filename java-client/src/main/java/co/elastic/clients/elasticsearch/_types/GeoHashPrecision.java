@@ -39,23 +39,25 @@ import java.lang.Number;
 import java.lang.Object;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: _types.GeoHashPrecision
 // union type: Union[]
 @JsonpDeserializable
-public class GeoHashPrecision implements TaggedUnion<Object>, JsonpSerializable {
+public class GeoHashPrecision implements TaggedUnion<GeoHashPrecision.Kind, Object>, JsonpSerializable {
 
-	public static final String GEOHASH_LENGTH = "geohash_length";
-	public static final String DISTANCE = "distance";
+	public enum Kind {
+		GeohashLength, Distance
 
-	private final String _type;
+	}
+
+	private final Kind _kind;
 	private final Object _value;
 
 	@Override
-	public final String _type() {
-		return _type;
+	public final Kind _kind() {
+		return _kind;
 	}
 
 	@Override
@@ -63,31 +65,41 @@ public class GeoHashPrecision implements TaggedUnion<Object>, JsonpSerializable 
 		return _value;
 	}
 
-	public GeoHashPrecision(String type, Object value) {
-		this._type = type;
+	public GeoHashPrecision(Kind kind, Object value) {
+		this._kind = kind;
 		this._value = value;
 	}
 
 	public String _toJsonString() {
-		switch (_type) {
-			case "geohash_length" :
+		switch (_kind) {
+			case GeohashLength :
 				return this.geohashLength().toString();
-			case "distance" :
+			case Distance :
 				return this.distance();
 
 			default :
-				throw new IllegalStateException("Unknown type " + _type);
+				throw new IllegalStateException("Unknown kind " + _kind);
 		}
 	}
+
 	private GeoHashPrecision(Builder builder) {
 
-		this._type = ModelTypeHelper.requireNonNull(builder._type, builder, "<variant type>");
+		this._kind = ModelTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
 		this._value = ModelTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
 
 	}
 
-	public static GeoHashPrecision of(Function<Builder, ObjectBuilder<GeoHashPrecision>> fn) {
-		return fn.apply(new Builder()).build();
+	public static GeoHashPrecision of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
+	}
+
+	/**
+	 * Is this variant instance of kind {@code geohash_length}?
+	 */
+	public boolean isGeohashLength() {
+		return _kind == Kind.GeohashLength;
 	}
 
 	/**
@@ -97,7 +109,14 @@ public class GeoHashPrecision implements TaggedUnion<Object>, JsonpSerializable 
 	 *             if the current variant is not of the {@code geohash_length} kind.
 	 */
 	public Number geohashLength() {
-		return TaggedUnionUtils.get(this, GEOHASH_LENGTH);
+		return TaggedUnionUtils.get(this, Kind.GeohashLength);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code distance}?
+	 */
+	public boolean isDistance() {
+		return _kind == Kind.Distance;
 	}
 
 	/**
@@ -107,7 +126,7 @@ public class GeoHashPrecision implements TaggedUnion<Object>, JsonpSerializable 
 	 *             if the current variant is not of the {@code distance} kind.
 	 */
 	public String distance() {
-		return TaggedUnionUtils.get(this, DISTANCE);
+		return TaggedUnionUtils.get(this, Kind.Distance);
 	}
 
 	@Override
@@ -115,12 +134,12 @@ public class GeoHashPrecision implements TaggedUnion<Object>, JsonpSerializable 
 		if (_value instanceof JsonpSerializable) {
 			((JsonpSerializable) _value).serialize(generator, mapper);
 		} else {
-			switch (_type) {
-				case GEOHASH_LENGTH :
+			switch (_kind) {
+				case GeohashLength :
 					generator.write(((Number) this._value).doubleValue());
 
 					break;
-				case DISTANCE :
+				case Distance :
 					generator.write(((String) this._value));
 
 					break;
@@ -130,17 +149,17 @@ public class GeoHashPrecision implements TaggedUnion<Object>, JsonpSerializable 
 	}
 
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GeoHashPrecision> {
-		private String _type;
+		private Kind _kind;
 		private Object _value;
 
 		public Builder geohashLength(Number v) {
-			this._type = GEOHASH_LENGTH;
+			this._kind = Kind.GeohashLength;
 			this._value = v;
 			return this;
 		}
 
 		public Builder distance(String v) {
-			this._type = DISTANCE;
+			this._kind = Kind.Distance;
 			this._value = v;
 			return this;
 		}
@@ -153,9 +172,9 @@ public class GeoHashPrecision implements TaggedUnion<Object>, JsonpSerializable 
 	}
 
 	private static JsonpDeserializer<GeoHashPrecision> buildGeoHashPrecisionDeserializer() {
-		return new UnionDeserializer.Builder<>(GeoHashPrecision::new, true)
-				.addMember("geohash_length", JsonpDeserializer.numberDeserializer())
-				.addMember("distance", JsonpDeserializer.stringDeserializer()).build();
+		return new UnionDeserializer.Builder<GeoHashPrecision, Kind, Object>(GeoHashPrecision::new, true)
+				.addMember(Kind.GeohashLength, JsonpDeserializer.numberDeserializer())
+				.addMember(Kind.Distance, JsonpDeserializer.stringDeserializer()).build();
 	}
 
 	public static final JsonpDeserializer<GeoHashPrecision> _DESERIALIZER = JsonpDeserializer

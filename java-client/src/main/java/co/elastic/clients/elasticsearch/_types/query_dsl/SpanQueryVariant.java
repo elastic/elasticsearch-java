@@ -23,12 +23,12 @@
 
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
-import co.elastic.clients.util.UnionVariant;
-
 /**
  * Base interface for {@link SpanQuery} variants.
  */
-public interface SpanQueryVariant extends UnionVariant {
+public interface SpanQueryVariant {
+
+	SpanQuery.Kind _spanQueryKind();
 
 	default SpanQuery _toSpanQuery() {
 		return new SpanQuery(this);

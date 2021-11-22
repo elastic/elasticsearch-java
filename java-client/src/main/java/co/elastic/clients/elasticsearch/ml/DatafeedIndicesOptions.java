@@ -38,7 +38,7 @@ import java.lang.Boolean;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.DatafeedIndicesOptions
@@ -66,8 +66,10 @@ public class DatafeedIndicesOptions implements JsonpSerializable {
 
 	}
 
-	public static DatafeedIndicesOptions of(Function<Builder, ObjectBuilder<DatafeedIndicesOptions>> fn) {
-		return fn.apply(new Builder()).build();
+	public static DatafeedIndicesOptions of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**

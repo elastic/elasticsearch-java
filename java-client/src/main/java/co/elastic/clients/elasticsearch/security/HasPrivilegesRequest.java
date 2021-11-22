@@ -34,17 +34,18 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
-import co.elastic.clients.transport.SimpleEndpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
+import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -71,8 +72,10 @@ public class HasPrivilegesRequest extends RequestBase implements JsonpSerializab
 
 	}
 
-	public static HasPrivilegesRequest of(Function<Builder, ObjectBuilder<HasPrivilegesRequest>> fn) {
-		return fn.apply(new Builder()).build();
+	public static HasPrivilegesRequest of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -186,14 +189,9 @@ public class HasPrivilegesRequest extends RequestBase implements JsonpSerializab
 		/**
 		 * API name: {@code application}
 		 */
-		@SafeVarargs
 		public final Builder application(
-				Function<ApplicationPrivilegesCheck.Builder, ObjectBuilder<ApplicationPrivilegesCheck>>... fns) {
-			this.application = new ArrayList<>(fns.length);
-			for (Function<ApplicationPrivilegesCheck.Builder, ObjectBuilder<ApplicationPrivilegesCheck>> fn : fns) {
-				this.application.add(fn.apply(new ApplicationPrivilegesCheck.Builder()).build());
-			}
-			return this;
+				Function<ListBuilder<ApplicationPrivilegesCheck, ApplicationPrivilegesCheck.Builder>, ObjectBuilder<List<ApplicationPrivilegesCheck>>> fn) {
+			return application(fn.apply(new ListBuilder<>(ApplicationPrivilegesCheck.Builder::new)).build());
 		}
 
 		/**
@@ -231,13 +229,9 @@ public class HasPrivilegesRequest extends RequestBase implements JsonpSerializab
 		/**
 		 * API name: {@code index}
 		 */
-		@SafeVarargs
-		public final Builder index(Function<IndexPrivilegesCheck.Builder, ObjectBuilder<IndexPrivilegesCheck>>... fns) {
-			this.index = new ArrayList<>(fns.length);
-			for (Function<IndexPrivilegesCheck.Builder, ObjectBuilder<IndexPrivilegesCheck>> fn : fns) {
-				this.index.add(fn.apply(new IndexPrivilegesCheck.Builder()).build());
-			}
-			return this;
+		public final Builder index(
+				Function<ListBuilder<IndexPrivilegesCheck, IndexPrivilegesCheck.Builder>, ObjectBuilder<List<IndexPrivilegesCheck>>> fn) {
+			return index(fn.apply(new ListBuilder<>(IndexPrivilegesCheck.Builder::new)).build());
 		}
 
 		/**

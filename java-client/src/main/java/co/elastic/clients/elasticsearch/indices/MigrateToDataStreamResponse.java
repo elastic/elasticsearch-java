@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 
 // typedef: indices.migrate_to_data_stream.Response
 @JsonpDeserializable
@@ -43,8 +43,10 @@ public class MigrateToDataStreamResponse extends AcknowledgedResponseBase {
 
 	}
 
-	public static MigrateToDataStreamResponse of(Function<Builder, ObjectBuilder<MigrateToDataStreamResponse>> fn) {
-		return fn.apply(new Builder()).build();
+	public static MigrateToDataStreamResponse of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	// ---------------------------------------------------------------------------------------------

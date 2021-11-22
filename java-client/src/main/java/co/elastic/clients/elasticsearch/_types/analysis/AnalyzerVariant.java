@@ -24,12 +24,13 @@
 package co.elastic.clients.elasticsearch._types.analysis;
 
 import co.elastic.clients.json.JsonpSerializable;
-import co.elastic.clients.util.UnionVariant;
 
 /**
  * Base interface for {@link Analyzer} variants.
  */
-public interface AnalyzerVariant extends UnionVariant, JsonpSerializable {
+public interface AnalyzerVariant extends JsonpSerializable {
+
+	Analyzer.Kind _analyzerKind();
 
 	default Analyzer _toAnalyzer() {
 		return new Analyzer(this);

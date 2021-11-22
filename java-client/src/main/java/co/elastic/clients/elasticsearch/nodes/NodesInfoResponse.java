@@ -34,9 +34,9 @@ import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.Collections;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -57,8 +57,10 @@ public class NodesInfoResponse extends NodesResponseBase {
 
 	}
 
-	public static NodesInfoResponse of(Function<Builder, ObjectBuilder<NodesInfoResponse>> fn) {
-		return fn.apply(new Builder()).build();
+	public static NodesInfoResponse of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -121,13 +123,6 @@ public class NodesInfoResponse extends NodesResponseBase {
 		public final Builder nodes(Map<String, NodeInfo> value) {
 			this.nodes = value;
 			return this;
-		}
-
-		/**
-		 * Set {@link #nodes(Map)} to a singleton map.
-		 */
-		public Builder nodes(String key, Function<NodeInfo.Builder, ObjectBuilder<NodeInfo>> fn) {
-			return this.nodes(Collections.singletonMap(key, fn.apply(new NodeInfo.Builder()).build()));
 		}
 
 		public final Builder nodes(

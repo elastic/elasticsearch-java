@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 
 // typedef: ccr.pause_follow.Response
 @JsonpDeserializable
@@ -43,8 +43,10 @@ public class PauseFollowResponse extends AcknowledgedResponseBase {
 
 	}
 
-	public static PauseFollowResponse of(Function<Builder, ObjectBuilder<PauseFollowResponse>> fn) {
-		return fn.apply(new Builder()).build();
+	public static PauseFollowResponse of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	// ---------------------------------------------------------------------------------------------

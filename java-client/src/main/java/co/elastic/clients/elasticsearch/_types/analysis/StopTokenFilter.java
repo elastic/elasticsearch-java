@@ -36,7 +36,7 @@ import java.lang.String;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: _types.analysis.StopTokenFilter
@@ -65,16 +65,18 @@ public class StopTokenFilter extends TokenFilterBase implements TokenFilterDefin
 
 	}
 
-	public static StopTokenFilter of(Function<Builder, ObjectBuilder<StopTokenFilter>> fn) {
-		return fn.apply(new Builder()).build();
+	public static StopTokenFilter of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
-	 * {@link TokenFilterDefinition} variant type
+	 * TokenFilterDefinition variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "stop";
+	public TokenFilterDefinition.Kind _tokenFilterDefinitionKind() {
+		return TokenFilterDefinition.Kind.Stop;
 	}
 
 	/**

@@ -26,26 +26,30 @@ package co.elastic.clients.elasticsearch.async_search;
 import co.elastic.clients.ApiClient;
 import co.elastic.clients.elasticsearch._types.ElasticsearchException;
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
+import co.elastic.clients.transport.ElasticsearchTransport;
 import co.elastic.clients.transport.Endpoint;
-import co.elastic.clients.transport.EndpointWithResponseMapperAttr;
 import co.elastic.clients.transport.Transport;
 import co.elastic.clients.transport.TransportOptions;
+import co.elastic.clients.transport.endpoints.EndpointWithResponseMapperAttr;
 import co.elastic.clients.util.ObjectBuilder;
 import java.io.IOException;
 import java.util.concurrent.CompletableFuture;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 /**
  * Client for the async_search namespace.
  */
-public class ElasticsearchAsyncSearchAsyncClient extends ApiClient<ElasticsearchAsyncSearchAsyncClient> {
+public class ElasticsearchAsyncSearchAsyncClient
+		extends
+			ApiClient<ElasticsearchTransport, ElasticsearchAsyncSearchAsyncClient> {
 
-	public ElasticsearchAsyncSearchAsyncClient(Transport transport) {
+	public ElasticsearchAsyncSearchAsyncClient(ElasticsearchTransport transport) {
 		super(transport, null);
 	}
 
-	public ElasticsearchAsyncSearchAsyncClient(Transport transport, @Nullable TransportOptions transportOptions) {
+	public ElasticsearchAsyncSearchAsyncClient(ElasticsearchTransport transport,
+			@Nullable TransportOptions transportOptions) {
 		super(transport, transportOptions);
 	}
 
@@ -85,10 +89,11 @@ public class ElasticsearchAsyncSearchAsyncClient extends ApiClient<Elasticsearch
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<DeleteAsyncSearchResponse> delete(
-			Function<DeleteAsyncSearchRequest.Builder, ObjectBuilder<DeleteAsyncSearchRequest>> fn)
+	public final CompletableFuture<DeleteAsyncSearchResponse> delete(Consumer<DeleteAsyncSearchRequest.Builder> fn)
 			throws IOException, ElasticsearchException {
-		return delete(fn.apply(new DeleteAsyncSearchRequest.Builder()).build());
+		DeleteAsyncSearchRequest.Builder builder = new DeleteAsyncSearchRequest.Builder();
+		fn.accept(builder);
+		return delete(builder.build());
 	}
 
 	// ----- Endpoint: async_search.get
@@ -125,9 +130,11 @@ public class ElasticsearchAsyncSearchAsyncClient extends ApiClient<Elasticsearch
 	 */
 
 	public final <TDocument> CompletableFuture<GetAsyncSearchResponse<TDocument>> get(
-			Function<GetAsyncSearchRequest.Builder, ObjectBuilder<GetAsyncSearchRequest>> fn,
-			Class<TDocument> tDocumentClass) throws IOException, ElasticsearchException {
-		return get(fn.apply(new GetAsyncSearchRequest.Builder()).build(), tDocumentClass);
+			Consumer<GetAsyncSearchRequest.Builder> fn, Class<TDocument> tDocumentClass)
+			throws IOException, ElasticsearchException {
+		GetAsyncSearchRequest.Builder builder = new GetAsyncSearchRequest.Builder();
+		fn.accept(builder);
+		return get(builder.build(), tDocumentClass);
 	}
 
 	// ----- Endpoint: async_search.status
@@ -141,10 +148,10 @@ public class ElasticsearchAsyncSearchAsyncClient extends ApiClient<Elasticsearch
 	 *      on elastic.co</a>
 	 */
 
-	public <TDocument> CompletableFuture<StatusResponse<TDocument>> status(StatusRequest request,
+	public <TDocument> CompletableFuture<AsyncSearchStatusResponse<TDocument>> status(AsyncSearchStatusRequest request,
 			Class<TDocument> tDocumentClass) throws IOException, ElasticsearchException {
 		@SuppressWarnings("unchecked")
-		Endpoint<StatusRequest, StatusResponse<TDocument>, ErrorResponse> endpoint = (Endpoint<StatusRequest, StatusResponse<TDocument>, ErrorResponse>) StatusRequest._ENDPOINT;
+		Endpoint<AsyncSearchStatusRequest, AsyncSearchStatusResponse<TDocument>, ErrorResponse> endpoint = (Endpoint<AsyncSearchStatusRequest, AsyncSearchStatusResponse<TDocument>, ErrorResponse>) AsyncSearchStatusRequest._ENDPOINT;
 		endpoint = new EndpointWithResponseMapperAttr<>(endpoint,
 				"co.elastic.clients:Deserializer:async_search.status.TDocument", getDeserializer(tDocumentClass));
 
@@ -157,16 +164,18 @@ public class ElasticsearchAsyncSearchAsyncClient extends ApiClient<Elasticsearch
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
-	 *            {@link StatusRequest}
+	 *            {@link AsyncSearchStatusRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/async-search.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
-	public final <TDocument> CompletableFuture<StatusResponse<TDocument>> status(
-			Function<StatusRequest.Builder, ObjectBuilder<StatusRequest>> fn, Class<TDocument> tDocumentClass)
+	public final <TDocument> CompletableFuture<AsyncSearchStatusResponse<TDocument>> status(
+			Consumer<AsyncSearchStatusRequest.Builder> fn, Class<TDocument> tDocumentClass)
 			throws IOException, ElasticsearchException {
-		return status(fn.apply(new StatusRequest.Builder()).build(), tDocumentClass);
+		AsyncSearchStatusRequest.Builder builder = new AsyncSearchStatusRequest.Builder();
+		fn.accept(builder);
+		return status(builder.build(), tDocumentClass);
 	}
 
 	// ----- Endpoint: async_search.submit
@@ -200,10 +209,11 @@ public class ElasticsearchAsyncSearchAsyncClient extends ApiClient<Elasticsearch
 	 *      on elastic.co</a>
 	 */
 
-	public final <TDocument> CompletableFuture<SubmitResponse<TDocument>> submit(
-			Function<SubmitRequest.Builder, ObjectBuilder<SubmitRequest>> fn, Class<TDocument> tDocumentClass)
-			throws IOException, ElasticsearchException {
-		return submit(fn.apply(new SubmitRequest.Builder()).build(), tDocumentClass);
+	public final <TDocument> CompletableFuture<SubmitResponse<TDocument>> submit(Consumer<SubmitRequest.Builder> fn,
+			Class<TDocument> tDocumentClass) throws IOException, ElasticsearchException {
+		SubmitRequest.Builder builder = new SubmitRequest.Builder();
+		fn.accept(builder);
+		return submit(builder.build(), tDocumentClass);
 	}
 
 }

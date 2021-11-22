@@ -35,9 +35,9 @@ import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.Collections;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -55,8 +55,10 @@ public class UpdateByQueryRethrottleNode extends BaseNode {
 
 	}
 
-	public static UpdateByQueryRethrottleNode of(Function<Builder, ObjectBuilder<UpdateByQueryRethrottleNode>> fn) {
-		return fn.apply(new Builder()).build();
+	public static UpdateByQueryRethrottleNode of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -99,13 +101,6 @@ public class UpdateByQueryRethrottleNode extends BaseNode {
 		public final Builder tasks(Map<String, Info> value) {
 			this.tasks = value;
 			return this;
-		}
-
-		/**
-		 * Set {@link #tasks(Map)} to a singleton map.
-		 */
-		public Builder tasks(String key, Function<Info.Builder, ObjectBuilder<Info>> fn) {
-			return this.tasks(Collections.singletonMap(key, fn.apply(new Info.Builder()).build()));
 		}
 
 		public final Builder tasks(

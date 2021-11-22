@@ -37,7 +37,7 @@ import java.lang.Integer;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.DataframeAnalysisFeatureProcessorMultiEncoding
@@ -56,17 +56,18 @@ public class DataframeAnalysisFeatureProcessorMultiEncoding
 
 	}
 
-	public static DataframeAnalysisFeatureProcessorMultiEncoding of(
-			Function<Builder, ObjectBuilder<DataframeAnalysisFeatureProcessorMultiEncoding>> fn) {
-		return fn.apply(new Builder()).build();
+	public static DataframeAnalysisFeatureProcessorMultiEncoding of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
-	 * {@link DataframeAnalysisFeatureProcessor} variant type
+	 * DataframeAnalysisFeatureProcessor variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "multi_encoding";
+	public DataframeAnalysisFeatureProcessor.Kind _dataframeAnalysisFeatureProcessorKind() {
+		return DataframeAnalysisFeatureProcessor.Kind.MultiEncoding;
 	}
 
 	/**

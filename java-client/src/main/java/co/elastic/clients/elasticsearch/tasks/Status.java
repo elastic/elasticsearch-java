@@ -42,7 +42,7 @@ import java.lang.String;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: tasks._types.Status
@@ -112,8 +112,10 @@ public class Status implements JsonpSerializable {
 
 	}
 
-	public static Status of(Function<Builder, ObjectBuilder<Status>> fn) {
-		return fn.apply(new Builder()).build();
+	public static Status of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -442,8 +444,10 @@ public class Status implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code retries}
 		 */
-		public final Builder retries(Function<Retries.Builder, ObjectBuilder<Retries>> fn) {
-			return this.retries(fn.apply(new Retries.Builder()).build());
+		public final Builder retries(Consumer<Retries.Builder> fn) {
+			Retries.Builder builder = new Retries.Builder();
+			fn.accept(builder);
+			return this.retries(builder.build());
 		}
 
 		/**
@@ -457,8 +461,10 @@ public class Status implements JsonpSerializable {
 		/**
 		 * API name: {@code throttled}
 		 */
-		public final Builder throttled(Function<Time.Builder, ObjectBuilder<Time>> fn) {
-			return this.throttled(fn.apply(new Time.Builder()).build());
+		public final Builder throttled(Consumer<Time.Builder> fn) {
+			Time.Builder builder = new Time.Builder();
+			fn.accept(builder);
+			return this.throttled(builder.build());
 		}
 
 		/**
@@ -480,8 +486,10 @@ public class Status implements JsonpSerializable {
 		/**
 		 * API name: {@code throttled_until}
 		 */
-		public final Builder throttledUntil(Function<Time.Builder, ObjectBuilder<Time>> fn) {
-			return this.throttledUntil(fn.apply(new Time.Builder()).build());
+		public final Builder throttledUntil(Consumer<Time.Builder> fn) {
+			Time.Builder builder = new Time.Builder();
+			fn.accept(builder);
+			return this.throttledUntil(builder.build());
 		}
 
 		/**

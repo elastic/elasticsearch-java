@@ -33,7 +33,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.SpanFieldMaskingQuery
@@ -53,16 +53,26 @@ public class SpanFieldMaskingQuery extends QueryBase implements SpanQueryVariant
 
 	}
 
-	public static SpanFieldMaskingQuery of(Function<Builder, ObjectBuilder<SpanFieldMaskingQuery>> fn) {
-		return fn.apply(new Builder()).build();
+	public static SpanFieldMaskingQuery of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
-	 * {@link SpanQuery}, {@link Query} variant type
+	 * SpanQuery variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "field_masking_span";
+	public SpanQuery.Kind _spanQueryKind() {
+		return SpanQuery.Kind.FieldMaskingSpan;
+	}
+
+	/**
+	 * Query variant kind.
+	 */
+	@Override
+	public Query.Kind _queryKind() {
+		return Query.Kind.FieldMaskingSpan;
 	}
 
 	/**
@@ -121,8 +131,10 @@ public class SpanFieldMaskingQuery extends QueryBase implements SpanQueryVariant
 		/**
 		 * Required - API name: {@code query}
 		 */
-		public final Builder query(Function<SpanQuery.Builder, ObjectBuilder<SpanQuery>> fn) {
-			return this.query(fn.apply(new SpanQuery.Builder()).build());
+		public final Builder query(Consumer<SpanQuery.Builder> fn) {
+			SpanQuery.Builder builder = new SpanQuery.Builder();
+			fn.accept(builder);
+			return this.query(builder.build());
 		}
 
 		@Override

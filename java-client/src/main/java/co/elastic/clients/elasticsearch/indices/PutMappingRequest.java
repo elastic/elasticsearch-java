@@ -42,7 +42,7 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
-import co.elastic.clients.transport.SimpleEndpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.MapBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
@@ -51,11 +51,11 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
@@ -143,8 +143,10 @@ public class PutMappingRequest extends RequestBase implements JsonpSerializable 
 
 	}
 
-	public static PutMappingRequest of(Function<Builder, ObjectBuilder<PutMappingRequest>> fn) {
-		return fn.apply(new Builder()).build();
+	public static PutMappingRequest of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -540,8 +542,10 @@ public class PutMappingRequest extends RequestBase implements JsonpSerializable 
 		 * <p>
 		 * API name: {@code _field_names}
 		 */
-		public final Builder fieldNames(Function<FieldNamesField.Builder, ObjectBuilder<FieldNamesField>> fn) {
-			return this.fieldNames(fn.apply(new FieldNamesField.Builder()).build());
+		public final Builder fieldNames(Consumer<FieldNamesField.Builder> fn) {
+			FieldNamesField.Builder builder = new FieldNamesField.Builder();
+			fn.accept(builder);
+			return this.fieldNames(builder.build());
 		}
 
 		/**
@@ -571,8 +575,10 @@ public class PutMappingRequest extends RequestBase implements JsonpSerializable 
 		 * <p>
 		 * API name: {@code _routing}
 		 */
-		public final Builder routing(Function<RoutingField.Builder, ObjectBuilder<RoutingField>> fn) {
-			return this.routing(fn.apply(new RoutingField.Builder()).build());
+		public final Builder routing(Consumer<RoutingField.Builder> fn) {
+			RoutingField.Builder builder = new RoutingField.Builder();
+			fn.accept(builder);
+			return this.routing(builder.build());
 		}
 
 		/**
@@ -590,8 +596,10 @@ public class PutMappingRequest extends RequestBase implements JsonpSerializable 
 		 * <p>
 		 * API name: {@code _source}
 		 */
-		public final Builder source(Function<SourceField.Builder, ObjectBuilder<SourceField>> fn) {
-			return this.source(fn.apply(new SourceField.Builder()).build());
+		public final Builder source(Consumer<SourceField.Builder> fn) {
+			SourceField.Builder builder = new SourceField.Builder();
+			fn.accept(builder);
+			return this.source(builder.build());
 		}
 
 		/**
@@ -752,8 +760,10 @@ public class PutMappingRequest extends RequestBase implements JsonpSerializable 
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
-		public final Builder masterTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
-			return this.masterTimeout(fn.apply(new Time.Builder()).build());
+		public final Builder masterTimeout(Consumer<Time.Builder> fn) {
+			Time.Builder builder = new Time.Builder();
+			fn.accept(builder);
+			return this.masterTimeout(builder.build());
 		}
 
 		/**
@@ -781,13 +791,6 @@ public class PutMappingRequest extends RequestBase implements JsonpSerializable 
 			return this;
 		}
 
-		/**
-		 * Set {@link #properties(Map)} to a singleton map.
-		 */
-		public Builder properties(String key, Function<Property.Builder, ObjectBuilder<Property>> fn) {
-			return this.properties(Collections.singletonMap(key, fn.apply(new Property.Builder()).build()));
-		}
-
 		public final Builder properties(
 				Function<MapBuilder<String, Property, Property.Builder>, ObjectBuilder<Map<String, Property>>> fn) {
 			return properties(fn.apply(new MapBuilder<>(Property.Builder::new)).build());
@@ -801,13 +804,6 @@ public class PutMappingRequest extends RequestBase implements JsonpSerializable 
 		public final Builder runtime(@Nullable Map<String, RuntimeField> value) {
 			this.runtime = value;
 			return this;
-		}
-
-		/**
-		 * Set {@link #runtime(Map)} to a singleton map.
-		 */
-		public Builder runtime(String key, Function<RuntimeField.Builder, ObjectBuilder<RuntimeField>> fn) {
-			return this.runtime(Collections.singletonMap(key, fn.apply(new RuntimeField.Builder()).build()));
 		}
 
 		public final Builder runtime(
@@ -830,8 +826,10 @@ public class PutMappingRequest extends RequestBase implements JsonpSerializable 
 		 * <p>
 		 * API name: {@code timeout}
 		 */
-		public final Builder timeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
-			return this.timeout(fn.apply(new Time.Builder()).build());
+		public final Builder timeout(Consumer<Time.Builder> fn) {
+			Time.Builder builder = new Time.Builder();
+			fn.accept(builder);
+			return this.timeout(builder.build());
 		}
 
 		/**

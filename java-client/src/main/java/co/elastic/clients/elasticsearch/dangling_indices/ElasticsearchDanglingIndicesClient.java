@@ -26,24 +26,28 @@ package co.elastic.clients.elasticsearch.dangling_indices;
 import co.elastic.clients.ApiClient;
 import co.elastic.clients.elasticsearch._types.ElasticsearchException;
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
+import co.elastic.clients.transport.ElasticsearchTransport;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.Transport;
 import co.elastic.clients.transport.TransportOptions;
 import co.elastic.clients.util.ObjectBuilder;
 import java.io.IOException;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 /**
  * Client for the dangling_indices namespace.
  */
-public class ElasticsearchDanglingIndicesClient extends ApiClient<ElasticsearchDanglingIndicesClient> {
+public class ElasticsearchDanglingIndicesClient
+		extends
+			ApiClient<ElasticsearchTransport, ElasticsearchDanglingIndicesClient> {
 
-	public ElasticsearchDanglingIndicesClient(Transport transport) {
+	public ElasticsearchDanglingIndicesClient(ElasticsearchTransport transport) {
 		super(transport, null);
 	}
 
-	public ElasticsearchDanglingIndicesClient(Transport transport, @Nullable TransportOptions transportOptions) {
+	public ElasticsearchDanglingIndicesClient(ElasticsearchTransport transport,
+			@Nullable TransportOptions transportOptions) {
 		super(transport, transportOptions);
 	}
 
@@ -81,10 +85,11 @@ public class ElasticsearchDanglingIndicesClient extends ApiClient<ElasticsearchD
 	 *      on elastic.co</a>
 	 */
 
-	public final DeleteDanglingIndexResponse deleteDanglingIndex(
-			Function<DeleteDanglingIndexRequest.Builder, ObjectBuilder<DeleteDanglingIndexRequest>> fn)
+	public final DeleteDanglingIndexResponse deleteDanglingIndex(Consumer<DeleteDanglingIndexRequest.Builder> fn)
 			throws IOException, ElasticsearchException {
-		return deleteDanglingIndex(fn.apply(new DeleteDanglingIndexRequest.Builder()).build());
+		DeleteDanglingIndexRequest.Builder builder = new DeleteDanglingIndexRequest.Builder();
+		fn.accept(builder);
+		return deleteDanglingIndex(builder.build());
 	}
 
 	// ----- Endpoint: dangling_indices.import_dangling_index
@@ -116,10 +121,11 @@ public class ElasticsearchDanglingIndicesClient extends ApiClient<ElasticsearchD
 	 *      on elastic.co</a>
 	 */
 
-	public final ImportDanglingIndexResponse importDanglingIndex(
-			Function<ImportDanglingIndexRequest.Builder, ObjectBuilder<ImportDanglingIndexRequest>> fn)
+	public final ImportDanglingIndexResponse importDanglingIndex(Consumer<ImportDanglingIndexRequest.Builder> fn)
 			throws IOException, ElasticsearchException {
-		return importDanglingIndex(fn.apply(new ImportDanglingIndexRequest.Builder()).build());
+		ImportDanglingIndexRequest.Builder builder = new ImportDanglingIndexRequest.Builder();
+		fn.accept(builder);
+		return importDanglingIndex(builder.build());
 	}
 
 	// ----- Endpoint: dangling_indices.list_dangling_indices

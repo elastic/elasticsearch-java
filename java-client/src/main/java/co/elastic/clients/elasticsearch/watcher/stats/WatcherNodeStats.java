@@ -30,16 +30,17 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -72,8 +73,10 @@ public class WatcherNodeStats implements JsonpSerializable {
 
 	}
 
-	public static WatcherNodeStats of(Function<Builder, ObjectBuilder<WatcherNodeStats>> fn) {
-		return fn.apply(new Builder()).build();
+	public static WatcherNodeStats of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -201,14 +204,9 @@ public class WatcherNodeStats implements JsonpSerializable {
 		/**
 		 * API name: {@code current_watches}
 		 */
-		@SafeVarargs
 		public final Builder currentWatches(
-				Function<WatchRecordStats.Builder, ObjectBuilder<WatchRecordStats>>... fns) {
-			this.currentWatches = new ArrayList<>(fns.length);
-			for (Function<WatchRecordStats.Builder, ObjectBuilder<WatchRecordStats>> fn : fns) {
-				this.currentWatches.add(fn.apply(new WatchRecordStats.Builder()).build());
-			}
-			return this;
+				Function<ListBuilder<WatchRecordStats, WatchRecordStats.Builder>, ObjectBuilder<List<WatchRecordStats>>> fn) {
+			return currentWatches(fn.apply(new ListBuilder<>(WatchRecordStats.Builder::new)).build());
 		}
 
 		/**
@@ -222,9 +220,10 @@ public class WatcherNodeStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code execution_thread_pool}
 		 */
-		public final Builder executionThreadPool(
-				Function<ExecutionThreadPool.Builder, ObjectBuilder<ExecutionThreadPool>> fn) {
-			return this.executionThreadPool(fn.apply(new ExecutionThreadPool.Builder()).build());
+		public final Builder executionThreadPool(Consumer<ExecutionThreadPool.Builder> fn) {
+			ExecutionThreadPool.Builder builder = new ExecutionThreadPool.Builder();
+			fn.accept(builder);
+			return this.executionThreadPool(builder.build());
 		}
 
 		/**
@@ -246,14 +245,9 @@ public class WatcherNodeStats implements JsonpSerializable {
 		/**
 		 * API name: {@code queued_watches}
 		 */
-		@SafeVarargs
 		public final Builder queuedWatches(
-				Function<WatchRecordQueuedStats.Builder, ObjectBuilder<WatchRecordQueuedStats>>... fns) {
-			this.queuedWatches = new ArrayList<>(fns.length);
-			for (Function<WatchRecordQueuedStats.Builder, ObjectBuilder<WatchRecordQueuedStats>> fn : fns) {
-				this.queuedWatches.add(fn.apply(new WatchRecordQueuedStats.Builder()).build());
-			}
-			return this;
+				Function<ListBuilder<WatchRecordQueuedStats, WatchRecordQueuedStats.Builder>, ObjectBuilder<List<WatchRecordQueuedStats>>> fn) {
+			return queuedWatches(fn.apply(new ListBuilder<>(WatchRecordQueuedStats.Builder::new)).build());
 		}
 
 		/**

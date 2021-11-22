@@ -28,14 +28,15 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -66,16 +67,18 @@ public class BoolQuery extends QueryBase implements QueryVariant {
 
 	}
 
-	public static BoolQuery of(Function<Builder, ObjectBuilder<BoolQuery>> fn) {
-		return fn.apply(new Builder()).build();
+	public static BoolQuery of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
-	 * {@link Query} variant type
+	 * Query variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "bool";
+	public Query.Kind _queryKind() {
+		return Query.Kind.Bool;
 	}
 
 	/**
@@ -205,13 +208,8 @@ public class BoolQuery extends QueryBase implements QueryVariant {
 		/**
 		 * API name: {@code filter}
 		 */
-		@SafeVarargs
-		public final Builder filter(Function<Query.Builder, ObjectBuilder<Query>>... fns) {
-			this.filter = new ArrayList<>(fns.length);
-			for (Function<Query.Builder, ObjectBuilder<Query>> fn : fns) {
-				this.filter.add(fn.apply(new Query.Builder()).build());
-			}
-			return this;
+		public final Builder filter(Function<ListBuilder<Query, Query.Builder>, ObjectBuilder<List<Query>>> fn) {
+			return filter(fn.apply(new ListBuilder<>(Query.Builder::new)).build());
 		}
 
 		/**
@@ -241,13 +239,8 @@ public class BoolQuery extends QueryBase implements QueryVariant {
 		/**
 		 * API name: {@code must}
 		 */
-		@SafeVarargs
-		public final Builder must(Function<Query.Builder, ObjectBuilder<Query>>... fns) {
-			this.must = new ArrayList<>(fns.length);
-			for (Function<Query.Builder, ObjectBuilder<Query>> fn : fns) {
-				this.must.add(fn.apply(new Query.Builder()).build());
-			}
-			return this;
+		public final Builder must(Function<ListBuilder<Query, Query.Builder>, ObjectBuilder<List<Query>>> fn) {
+			return must(fn.apply(new ListBuilder<>(Query.Builder::new)).build());
 		}
 
 		/**
@@ -269,13 +262,8 @@ public class BoolQuery extends QueryBase implements QueryVariant {
 		/**
 		 * API name: {@code must_not}
 		 */
-		@SafeVarargs
-		public final Builder mustNot(Function<Query.Builder, ObjectBuilder<Query>>... fns) {
-			this.mustNot = new ArrayList<>(fns.length);
-			for (Function<Query.Builder, ObjectBuilder<Query>> fn : fns) {
-				this.mustNot.add(fn.apply(new Query.Builder()).build());
-			}
-			return this;
+		public final Builder mustNot(Function<ListBuilder<Query, Query.Builder>, ObjectBuilder<List<Query>>> fn) {
+			return mustNot(fn.apply(new ListBuilder<>(Query.Builder::new)).build());
 		}
 
 		/**
@@ -297,13 +285,8 @@ public class BoolQuery extends QueryBase implements QueryVariant {
 		/**
 		 * API name: {@code should}
 		 */
-		@SafeVarargs
-		public final Builder should(Function<Query.Builder, ObjectBuilder<Query>>... fns) {
-			this.should = new ArrayList<>(fns.length);
-			for (Function<Query.Builder, ObjectBuilder<Query>> fn : fns) {
-				this.should.add(fn.apply(new Query.Builder()).build());
-			}
-			return this;
+		public final Builder should(Function<ListBuilder<Query, Query.Builder>, ObjectBuilder<List<Query>>> fn) {
+			return should(fn.apply(new ListBuilder<>(Query.Builder::new)).build());
 		}
 
 		@Override

@@ -34,7 +34,7 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: cat.allocation.AllocationRecord
@@ -83,8 +83,10 @@ public class AllocationRecord implements JsonpSerializable {
 
 	}
 
-	public static AllocationRecord of(Function<Builder, ObjectBuilder<AllocationRecord>> fn) {
-		return fn.apply(new Builder()).build();
+	public static AllocationRecord of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**

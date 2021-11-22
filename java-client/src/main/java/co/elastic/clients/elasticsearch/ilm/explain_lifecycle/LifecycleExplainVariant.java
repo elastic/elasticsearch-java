@@ -24,12 +24,13 @@
 package co.elastic.clients.elasticsearch.ilm.explain_lifecycle;
 
 import co.elastic.clients.json.JsonpSerializable;
-import co.elastic.clients.util.UnionVariant;
 
 /**
  * Base interface for {@link LifecycleExplain} variants.
  */
-public interface LifecycleExplainVariant extends UnionVariant, JsonpSerializable {
+public interface LifecycleExplainVariant extends JsonpSerializable {
+
+	LifecycleExplain.Kind _lifecycleExplainKind();
 
 	default LifecycleExplain _toLifecycleExplain() {
 		return new LifecycleExplain(this);

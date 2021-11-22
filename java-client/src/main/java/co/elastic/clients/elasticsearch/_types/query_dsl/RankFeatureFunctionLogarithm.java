@@ -35,7 +35,7 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Float;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 
 // typedef: _types.query_dsl.RankFeatureFunctionLogarithm
 @JsonpDeserializable
@@ -50,8 +50,10 @@ public class RankFeatureFunctionLogarithm extends RankFeatureFunction implements
 
 	}
 
-	public static RankFeatureFunctionLogarithm of(Function<Builder, ObjectBuilder<RankFeatureFunctionLogarithm>> fn) {
-		return fn.apply(new Builder()).build();
+	public static RankFeatureFunctionLogarithm of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**

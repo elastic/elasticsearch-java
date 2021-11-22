@@ -36,7 +36,7 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: _global.search._types.RescoreQuery
@@ -64,8 +64,10 @@ public class RescoreQuery implements JsonpSerializable {
 
 	}
 
-	public static RescoreQuery of(Function<Builder, ObjectBuilder<RescoreQuery>> fn) {
-		return fn.apply(new Builder()).build();
+	public static RescoreQuery of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -158,8 +160,10 @@ public class RescoreQuery implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code rescore_query}
 		 */
-		public final Builder query(Function<Query.Builder, ObjectBuilder<Query>> fn) {
-			return this.query(fn.apply(new Query.Builder()).build());
+		public final Builder query(Consumer<Query.Builder> fn) {
+			Query.Builder builder = new Query.Builder();
+			fn.accept(builder);
+			return this.query(builder.build());
 		}
 
 		/**

@@ -36,7 +36,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: nodes.info.NodeInfoSettingsHttp
@@ -64,8 +64,10 @@ public class NodeInfoSettingsHttp implements JsonpSerializable {
 
 	}
 
-	public static NodeInfoSettingsHttp of(Function<Builder, ObjectBuilder<NodeInfoSettingsHttp>> fn) {
-		return fn.apply(new Builder()).build();
+	public static NodeInfoSettingsHttp of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -159,9 +161,10 @@ public class NodeInfoSettingsHttp implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code type}
 		 */
-		public final Builder type(
-				Function<NodeInfoSettingsHttpType.Builder, ObjectBuilder<NodeInfoSettingsHttpType>> fn) {
-			return this.type(fn.apply(new NodeInfoSettingsHttpType.Builder()).build());
+		public final Builder type(Consumer<NodeInfoSettingsHttpType.Builder> fn) {
+			NodeInfoSettingsHttpType.Builder builder = new NodeInfoSettingsHttpType.Builder();
+			fn.accept(builder);
+			return this.type(builder.build());
 		}
 
 		/**

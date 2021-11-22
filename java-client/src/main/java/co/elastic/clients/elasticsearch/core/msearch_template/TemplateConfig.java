@@ -38,7 +38,7 @@ import java.lang.Boolean;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: _global.msearch_template.TemplateConfig
@@ -70,8 +70,10 @@ public class TemplateConfig implements JsonpSerializable {
 
 	}
 
-	public static TemplateConfig of(Function<Builder, ObjectBuilder<TemplateConfig>> fn) {
-		return fn.apply(new Builder()).build();
+	public static TemplateConfig of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**

@@ -23,6 +23,7 @@
 
 package co.elastic.clients.elasticsearch.transform;
 
+import co.elastic.clients.json.JsonEnum;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -37,22 +38,41 @@ import co.elastic.clients.util.TaggedUnionUtils;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Object;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: transform._types.SyncContainer
 // union type: Container[]
 @JsonpDeserializable
-public class Sync implements TaggedUnion<Object>, JsonpSerializable {
+public class Sync implements TaggedUnion<Sync.Kind, Object>, JsonpSerializable {
 
-	public static final String TIME = "time";
+	/**
+	 * {@link Sync} variant kinds.
+	 */
 
-	private final String _type;
+	public enum Kind implements JsonEnum {
+		Time("time"),
+
+		;
+
+		private final String jsonValue;
+
+		Kind(String jsonValue) {
+			this.jsonValue = jsonValue;
+		}
+
+		public String jsonValue() {
+			return this.jsonValue;
+		}
+
+	}
+
+	private final Kind _kind;
 	private final Object _value;
 
 	@Override
-	public final String _type() {
-		return _type;
+	public final Kind _kind() {
+		return _kind;
 	}
 
 	@Override
@@ -62,20 +82,29 @@ public class Sync implements TaggedUnion<Object>, JsonpSerializable {
 
 	public Sync(SyncVariant value) {
 
-		this._type = ModelTypeHelper.requireNonNull(value._variantType(), this, "<variant type>");
+		this._kind = ModelTypeHelper.requireNonNull(value._syncKind(), this, "<variant kind>");
 		this._value = ModelTypeHelper.requireNonNull(value, this, "<variant value>");
 
 	}
 
 	private Sync(Builder builder) {
 
-		this._type = ModelTypeHelper.requireNonNull(builder._type, builder, "<variant type>");
+		this._kind = ModelTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
 		this._value = ModelTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
 
 	}
 
-	public static Sync of(Function<Builder, ObjectBuilder<Sync>> fn) {
-		return fn.apply(new Builder()).build();
+	public static Sync of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
+	}
+
+	/**
+	 * Is this variant instance of kind {@code time}?
+	 */
+	public boolean isTime() {
+		return _kind == Kind.Time;
 	}
 
 	/**
@@ -85,7 +114,7 @@ public class Sync implements TaggedUnion<Object>, JsonpSerializable {
 	 *             if the current variant is not of the {@code time} kind.
 	 */
 	public TimeSync time() {
-		return TaggedUnionUtils.get(this, TIME);
+		return TaggedUnionUtils.get(this, Kind.Time);
 	}
 
 	@Override
@@ -94,7 +123,7 @@ public class Sync implements TaggedUnion<Object>, JsonpSerializable {
 
 		generator.writeStartObject();
 
-		generator.writeKey(_type);
+		generator.writeKey(_kind.jsonValue());
 		if (_value instanceof JsonpSerializable) {
 			((JsonpSerializable) _value).serialize(generator, mapper);
 		}
@@ -104,17 +133,19 @@ public class Sync implements TaggedUnion<Object>, JsonpSerializable {
 	}
 
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Sync> {
-		private String _type;
+		private Kind _kind;
 		private Object _value;
 
 		public Builder time(TimeSync v) {
-			this._type = TIME;
+			this._kind = Kind.Time;
 			this._value = v;
 			return this;
 		}
 
-		public Builder time(Function<TimeSync.Builder, ObjectBuilder<TimeSync>> f) {
-			return this.time(f.apply(new TimeSync.Builder()).build());
+		public Builder time(Consumer<TimeSync.Builder> fn) {
+			TimeSync.Builder builder = new TimeSync.Builder();
+			fn.accept(builder);
+			return this.time(builder.build());
 		}
 
 		public Sync build() {

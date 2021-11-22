@@ -29,14 +29,15 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -53,8 +54,10 @@ public class RecoveryStatus implements JsonpSerializable {
 
 	}
 
-	public static RecoveryStatus of(Function<Builder, ObjectBuilder<RecoveryStatus>> fn) {
-		return fn.apply(new Builder()).build();
+	public static RecoveryStatus of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -115,13 +118,9 @@ public class RecoveryStatus implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code shards}
 		 */
-		@SafeVarargs
-		public final Builder shards(Function<ShardRecovery.Builder, ObjectBuilder<ShardRecovery>>... fns) {
-			this.shards = new ArrayList<>(fns.length);
-			for (Function<ShardRecovery.Builder, ObjectBuilder<ShardRecovery>> fn : fns) {
-				this.shards.add(fn.apply(new ShardRecovery.Builder()).build());
-			}
-			return this;
+		public final Builder shards(
+				Function<ListBuilder<ShardRecovery, ShardRecovery.Builder>, ObjectBuilder<List<ShardRecovery>>> fn) {
+			return shards(fn.apply(new ListBuilder<>(ShardRecovery.Builder::new)).build());
 		}
 
 		/**

@@ -39,7 +39,7 @@ import java.lang.String;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.SignificantTextAggregation
@@ -115,16 +115,18 @@ public class SignificantTextAggregation extends BucketAggregationBase implements
 
 	}
 
-	public static SignificantTextAggregation of(Function<Builder, ObjectBuilder<SignificantTextAggregation>> fn) {
-		return fn.apply(new Builder()).build();
+	public static SignificantTextAggregation of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
-	 * {@link Aggregation} variant type
+	 * Aggregation variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "significant_text";
+	public Aggregation.Kind _aggregationKind() {
+		return Aggregation.Kind.SignificantText;
 	}
 
 	/**
@@ -415,8 +417,10 @@ public class SignificantTextAggregation extends BucketAggregationBase implements
 		/**
 		 * API name: {@code background_filter}
 		 */
-		public final Builder backgroundFilter(Function<Query.Builder, ObjectBuilder<Query>> fn) {
-			return this.backgroundFilter(fn.apply(new Query.Builder()).build());
+		public final Builder backgroundFilter(Consumer<Query.Builder> fn) {
+			Query.Builder builder = new Query.Builder();
+			fn.accept(builder);
+			return this.backgroundFilter(builder.build());
 		}
 
 		/**
@@ -430,8 +434,10 @@ public class SignificantTextAggregation extends BucketAggregationBase implements
 		/**
 		 * API name: {@code chi_square}
 		 */
-		public final Builder chiSquare(Function<ChiSquareHeuristic.Builder, ObjectBuilder<ChiSquareHeuristic>> fn) {
-			return this.chiSquare(fn.apply(new ChiSquareHeuristic.Builder()).build());
+		public final Builder chiSquare(Consumer<ChiSquareHeuristic.Builder> fn) {
+			ChiSquareHeuristic.Builder builder = new ChiSquareHeuristic.Builder();
+			fn.accept(builder);
+			return this.chiSquare(builder.build());
 		}
 
 		/**
@@ -445,8 +451,10 @@ public class SignificantTextAggregation extends BucketAggregationBase implements
 		/**
 		 * API name: {@code exclude}
 		 */
-		public final Builder exclude(Function<TermsExclude.Builder, ObjectBuilder<TermsExclude>> fn) {
-			return this.exclude(fn.apply(new TermsExclude.Builder()).build());
+		public final Builder exclude(Consumer<TermsExclude.Builder> fn) {
+			TermsExclude.Builder builder = new TermsExclude.Builder();
+			fn.accept(builder);
+			return this.exclude(builder.build());
 		}
 
 		/**
@@ -484,9 +492,10 @@ public class SignificantTextAggregation extends BucketAggregationBase implements
 		/**
 		 * API name: {@code gnd}
 		 */
-		public final Builder gnd(
-				Function<GoogleNormalizedDistanceHeuristic.Builder, ObjectBuilder<GoogleNormalizedDistanceHeuristic>> fn) {
-			return this.gnd(fn.apply(new GoogleNormalizedDistanceHeuristic.Builder()).build());
+		public final Builder gnd(Consumer<GoogleNormalizedDistanceHeuristic.Builder> fn) {
+			GoogleNormalizedDistanceHeuristic.Builder builder = new GoogleNormalizedDistanceHeuristic.Builder();
+			fn.accept(builder);
+			return this.gnd(builder.build());
 		}
 
 		/**
@@ -524,9 +533,10 @@ public class SignificantTextAggregation extends BucketAggregationBase implements
 		/**
 		 * API name: {@code mutual_information}
 		 */
-		public final Builder mutualInformation(
-				Function<MutualInformationHeuristic.Builder, ObjectBuilder<MutualInformationHeuristic>> fn) {
-			return this.mutualInformation(fn.apply(new MutualInformationHeuristic.Builder()).build());
+		public final Builder mutualInformation(Consumer<MutualInformationHeuristic.Builder> fn) {
+			MutualInformationHeuristic.Builder builder = new MutualInformationHeuristic.Builder();
+			fn.accept(builder);
+			return this.mutualInformation(builder.build());
 		}
 
 		/**
@@ -540,9 +550,10 @@ public class SignificantTextAggregation extends BucketAggregationBase implements
 		/**
 		 * API name: {@code percentage}
 		 */
-		public final Builder percentage(
-				Function<PercentageScoreHeuristic.Builder, ObjectBuilder<PercentageScoreHeuristic>> fn) {
-			return this.percentage(fn.apply(new PercentageScoreHeuristic.Builder()).build());
+		public final Builder percentage(Consumer<PercentageScoreHeuristic.Builder> fn) {
+			PercentageScoreHeuristic.Builder builder = new PercentageScoreHeuristic.Builder();
+			fn.accept(builder);
+			return this.percentage(builder.build());
 		}
 
 		/**
@@ -556,8 +567,10 @@ public class SignificantTextAggregation extends BucketAggregationBase implements
 		/**
 		 * API name: {@code script_heuristic}
 		 */
-		public final Builder scriptHeuristic(Function<ScriptedHeuristic.Builder, ObjectBuilder<ScriptedHeuristic>> fn) {
-			return this.scriptHeuristic(fn.apply(new ScriptedHeuristic.Builder()).build());
+		public final Builder scriptHeuristic(Consumer<ScriptedHeuristic.Builder> fn) {
+			ScriptedHeuristic.Builder builder = new ScriptedHeuristic.Builder();
+			fn.accept(builder);
+			return this.scriptHeuristic(builder.build());
 		}
 
 		/**

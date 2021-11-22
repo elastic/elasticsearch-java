@@ -37,7 +37,7 @@ import java.lang.Integer;
 import java.lang.Long;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: _types.TranslogStats
@@ -76,8 +76,10 @@ public class TranslogStats implements JsonpSerializable {
 
 	}
 
-	public static TranslogStats of(Function<Builder, ObjectBuilder<TranslogStats>> fn) {
-		return fn.apply(new Builder()).build();
+	public static TranslogStats of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**

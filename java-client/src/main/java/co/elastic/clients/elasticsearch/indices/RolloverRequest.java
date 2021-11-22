@@ -37,7 +37,7 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
-import co.elastic.clients.transport.SimpleEndpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.MapBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
@@ -45,10 +45,10 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -103,8 +103,10 @@ public class RolloverRequest extends RequestBase implements JsonpSerializable {
 
 	}
 
-	public static RolloverRequest of(Function<Builder, ObjectBuilder<RolloverRequest>> fn) {
-		return fn.apply(new Builder()).build();
+	public static RolloverRequest of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -310,13 +312,6 @@ public class RolloverRequest extends RequestBase implements JsonpSerializable {
 			return this;
 		}
 
-		/**
-		 * Set {@link #aliases(Map)} to a singleton map.
-		 */
-		public Builder aliases(String key, Function<Alias.Builder, ObjectBuilder<Alias>> fn) {
-			return this.aliases(Collections.singletonMap(key, fn.apply(new Alias.Builder()).build()));
-		}
-
 		public final Builder aliases(
 				Function<MapBuilder<String, Alias, Alias.Builder>, ObjectBuilder<Map<String, Alias>>> fn) {
 			return aliases(fn.apply(new MapBuilder<>(Alias.Builder::new)).build());
@@ -333,8 +328,10 @@ public class RolloverRequest extends RequestBase implements JsonpSerializable {
 		/**
 		 * API name: {@code conditions}
 		 */
-		public final Builder conditions(Function<RolloverConditions.Builder, ObjectBuilder<RolloverConditions>> fn) {
-			return this.conditions(fn.apply(new RolloverConditions.Builder()).build());
+		public final Builder conditions(Consumer<RolloverConditions.Builder> fn) {
+			RolloverConditions.Builder builder = new RolloverConditions.Builder();
+			fn.accept(builder);
+			return this.conditions(builder.build());
 		}
 
 		/**
@@ -369,8 +366,10 @@ public class RolloverRequest extends RequestBase implements JsonpSerializable {
 		/**
 		 * API name: {@code mappings}
 		 */
-		public final Builder mappings(Function<IndexRolloverMapping.Builder, ObjectBuilder<IndexRolloverMapping>> fn) {
-			return this.mappings(fn.apply(new IndexRolloverMapping.Builder()).build());
+		public final Builder mappings(Consumer<IndexRolloverMapping.Builder> fn) {
+			IndexRolloverMapping.Builder builder = new IndexRolloverMapping.Builder();
+			fn.accept(builder);
+			return this.mappings(builder.build());
 		}
 
 		/**
@@ -388,8 +387,10 @@ public class RolloverRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
-		public final Builder masterTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
-			return this.masterTimeout(fn.apply(new Time.Builder()).build());
+		public final Builder masterTimeout(Consumer<Time.Builder> fn) {
+			Time.Builder builder = new Time.Builder();
+			fn.accept(builder);
+			return this.masterTimeout(builder.build());
 		}
 
 		/**
@@ -425,8 +426,10 @@ public class RolloverRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code timeout}
 		 */
-		public final Builder timeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
-			return this.timeout(fn.apply(new Time.Builder()).build());
+		public final Builder timeout(Consumer<Time.Builder> fn) {
+			Time.Builder builder = new Time.Builder();
+			fn.accept(builder);
+			return this.timeout(builder.build());
 		}
 
 		/**
@@ -446,9 +449,10 @@ public class RolloverRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code wait_for_active_shards}
 		 */
-		public final Builder waitForActiveShards(
-				Function<WaitForActiveShards.Builder, ObjectBuilder<WaitForActiveShards>> fn) {
-			return this.waitForActiveShards(fn.apply(new WaitForActiveShards.Builder()).build());
+		public final Builder waitForActiveShards(Consumer<WaitForActiveShards.Builder> fn) {
+			WaitForActiveShards.Builder builder = new WaitForActiveShards.Builder();
+			fn.accept(builder);
+			return this.waitForActiveShards(builder.build());
 		}
 
 		/**

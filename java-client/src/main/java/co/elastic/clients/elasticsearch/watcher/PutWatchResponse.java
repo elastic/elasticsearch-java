@@ -37,7 +37,7 @@ import java.lang.Boolean;
 import java.lang.Long;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: watcher.put_watch.Response
@@ -65,8 +65,10 @@ public class PutWatchResponse implements JsonpSerializable {
 
 	}
 
-	public static PutWatchResponse of(Function<Builder, ObjectBuilder<PutWatchResponse>> fn) {
-		return fn.apply(new Builder()).build();
+	public static PutWatchResponse of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**

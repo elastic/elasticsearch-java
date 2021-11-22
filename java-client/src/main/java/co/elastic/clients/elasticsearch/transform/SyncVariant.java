@@ -23,12 +23,12 @@
 
 package co.elastic.clients.elasticsearch.transform;
 
-import co.elastic.clients.util.UnionVariant;
-
 /**
  * Base interface for {@link Sync} variants.
  */
-public interface SyncVariant extends UnionVariant {
+public interface SyncVariant {
+
+	Sync.Kind _syncKind();
 
 	default Sync _toSync() {
 		return new Sync(this);

@@ -32,7 +32,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: _types.analysis.UniqueTokenFilter
@@ -50,16 +50,18 @@ public class UniqueTokenFilter extends TokenFilterBase implements TokenFilterDef
 
 	}
 
-	public static UniqueTokenFilter of(Function<Builder, ObjectBuilder<UniqueTokenFilter>> fn) {
-		return fn.apply(new Builder()).build();
+	public static UniqueTokenFilter of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
-	 * {@link TokenFilterDefinition} variant type
+	 * TokenFilterDefinition variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "unique";
+	public TokenFilterDefinition.Kind _tokenFilterDefinitionKind() {
+		return TokenFilterDefinition.Kind.Unique;
 	}
 
 	/**

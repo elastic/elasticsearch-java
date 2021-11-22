@@ -36,7 +36,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
 import java.lang.Integer;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 
 // typedef: ml._types.TotalFeatureImportanceStatistics
 @JsonpDeserializable
@@ -57,9 +57,10 @@ public class TotalFeatureImportanceStatistics implements JsonpSerializable {
 
 	}
 
-	public static TotalFeatureImportanceStatistics of(
-			Function<Builder, ObjectBuilder<TotalFeatureImportanceStatistics>> fn) {
-		return fn.apply(new Builder()).build();
+	public static TotalFeatureImportanceStatistics of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**

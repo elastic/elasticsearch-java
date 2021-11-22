@@ -35,9 +35,9 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.Collections;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -54,8 +54,10 @@ public class GetPipelineResponse implements JsonpSerializable {
 
 	}
 
-	public static GetPipelineResponse of(Function<Builder, ObjectBuilder<GetPipelineResponse>> fn) {
-		return fn.apply(new Builder()).build();
+	public static GetPipelineResponse of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -97,13 +99,6 @@ public class GetPipelineResponse implements JsonpSerializable {
 		public final Builder valueBody(Map<String, Pipeline> value) {
 			this.valueBody = value;
 			return this;
-		}
-
-		/**
-		 * Set {@link #valueBody(Map)} to a singleton map.
-		 */
-		public Builder valueBody(String key, Function<Pipeline.Builder, ObjectBuilder<Pipeline>> fn) {
-			return this.valueBody(Collections.singletonMap(key, fn.apply(new Pipeline.Builder()).build()));
 		}
 
 		public final Builder valueBody(

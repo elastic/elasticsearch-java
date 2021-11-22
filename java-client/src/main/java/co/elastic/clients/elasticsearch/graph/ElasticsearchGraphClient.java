@@ -26,24 +26,25 @@ package co.elastic.clients.elasticsearch.graph;
 import co.elastic.clients.ApiClient;
 import co.elastic.clients.elasticsearch._types.ElasticsearchException;
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
+import co.elastic.clients.transport.ElasticsearchTransport;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.Transport;
 import co.elastic.clients.transport.TransportOptions;
 import co.elastic.clients.util.ObjectBuilder;
 import java.io.IOException;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 /**
  * Client for the graph namespace.
  */
-public class ElasticsearchGraphClient extends ApiClient<ElasticsearchGraphClient> {
+public class ElasticsearchGraphClient extends ApiClient<ElasticsearchTransport, ElasticsearchGraphClient> {
 
-	public ElasticsearchGraphClient(Transport transport) {
+	public ElasticsearchGraphClient(ElasticsearchTransport transport) {
 		super(transport, null);
 	}
 
-	public ElasticsearchGraphClient(Transport transport, @Nullable TransportOptions transportOptions) {
+	public ElasticsearchGraphClient(ElasticsearchTransport transport, @Nullable TransportOptions transportOptions) {
 		super(transport, transportOptions);
 	}
 
@@ -82,9 +83,11 @@ public class ElasticsearchGraphClient extends ApiClient<ElasticsearchGraphClient
 	 *      on elastic.co</a>
 	 */
 
-	public final ExploreResponse explore(Function<ExploreRequest.Builder, ObjectBuilder<ExploreRequest>> fn)
+	public final ExploreResponse explore(Consumer<ExploreRequest.Builder> fn)
 			throws IOException, ElasticsearchException {
-		return explore(fn.apply(new ExploreRequest.Builder()).build());
+		ExploreRequest.Builder builder = new ExploreRequest.Builder();
+		fn.accept(builder);
+		return explore(builder.build());
 	}
 
 }

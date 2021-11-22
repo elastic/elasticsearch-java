@@ -38,7 +38,7 @@ import java.lang.String;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.DataframeAnalyticsFieldSelection
@@ -71,9 +71,10 @@ public class DataframeAnalyticsFieldSelection implements JsonpSerializable {
 
 	}
 
-	public static DataframeAnalyticsFieldSelection of(
-			Function<Builder, ObjectBuilder<DataframeAnalyticsFieldSelection>> fn) {
-		return fn.apply(new Builder()).build();
+	public static DataframeAnalyticsFieldSelection of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**

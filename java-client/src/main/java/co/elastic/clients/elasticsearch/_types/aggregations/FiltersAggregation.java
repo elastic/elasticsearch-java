@@ -34,7 +34,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.FiltersAggregation
@@ -64,16 +64,18 @@ public class FiltersAggregation extends BucketAggregationBase implements Aggrega
 
 	}
 
-	public static FiltersAggregation of(Function<Builder, ObjectBuilder<FiltersAggregation>> fn) {
-		return fn.apply(new Builder()).build();
+	public static FiltersAggregation of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
-	 * {@link Aggregation} variant type
+	 * Aggregation variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "filters";
+	public Aggregation.Kind _aggregationKind() {
+		return Aggregation.Kind.Filters;
 	}
 
 	/**
@@ -165,8 +167,10 @@ public class FiltersAggregation extends BucketAggregationBase implements Aggrega
 		/**
 		 * API name: {@code filters}
 		 */
-		public final Builder filters(Function<Buckets.Builder<Query>, ObjectBuilder<Buckets<Query>>> fn) {
-			return this.filters(fn.apply(new Buckets.Builder<Query>()).build());
+		public final Builder filters(Consumer<Buckets.Builder<Query>> fn) {
+			Buckets.Builder<Query> builder = new Buckets.Builder<Query>();
+			fn.accept(builder);
+			return this.filters(builder.build());
 		}
 
 		/**

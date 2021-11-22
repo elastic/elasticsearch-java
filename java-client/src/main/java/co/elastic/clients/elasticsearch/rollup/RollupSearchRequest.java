@@ -34,7 +34,7 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
-import co.elastic.clients.transport.SimpleEndpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.MapBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
@@ -47,6 +47,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
@@ -79,8 +80,10 @@ public class RollupSearchRequest extends RequestBase implements JsonpSerializabl
 
 	}
 
-	public static RollupSearchRequest of(Function<Builder, ObjectBuilder<RollupSearchRequest>> fn) {
-		return fn.apply(new Builder()).build();
+	public static RollupSearchRequest of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -191,13 +194,6 @@ public class RollupSearchRequest extends RequestBase implements JsonpSerializabl
 			return this;
 		}
 
-		/**
-		 * Set {@link #aggregations(Map)} to a singleton map.
-		 */
-		public Builder aggregations(String key, Function<Aggregation.Builder, ObjectBuilder<Aggregation>> fn) {
-			return this.aggregations(Collections.singletonMap(key, fn.apply(new Aggregation.Builder()).build()));
-		}
-
 		public final Builder aggregations(
 				Function<MapBuilder<String, Aggregation, Aggregation.Builder>, ObjectBuilder<Map<String, Aggregation>>> fn) {
 			return aggregations(fn.apply(new MapBuilder<>(Aggregation.Builder::new)).build());
@@ -236,8 +232,10 @@ public class RollupSearchRequest extends RequestBase implements JsonpSerializabl
 		/**
 		 * API name: {@code query}
 		 */
-		public final Builder query(Function<Query.Builder, ObjectBuilder<Query>> fn) {
-			return this.query(fn.apply(new Query.Builder()).build());
+		public final Builder query(Consumer<Query.Builder> fn) {
+			Query.Builder builder = new Query.Builder();
+			fn.accept(builder);
+			return this.query(builder.build());
 		}
 
 		/**

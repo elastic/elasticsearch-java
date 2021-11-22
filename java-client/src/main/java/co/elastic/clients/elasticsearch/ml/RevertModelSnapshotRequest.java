@@ -32,7 +32,7 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
-import co.elastic.clients.transport.SimpleEndpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
@@ -41,7 +41,7 @@ import java.lang.Boolean;
 import java.lang.String;
 import java.util.Collections;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: ml.revert_model_snapshot.Request
@@ -64,8 +64,10 @@ public class RevertModelSnapshotRequest extends RequestBase implements JsonpSeri
 
 	}
 
-	public static RevertModelSnapshotRequest of(Function<Builder, ObjectBuilder<RevertModelSnapshotRequest>> fn) {
-		return fn.apply(new Builder()).build();
+	public static RevertModelSnapshotRequest of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**

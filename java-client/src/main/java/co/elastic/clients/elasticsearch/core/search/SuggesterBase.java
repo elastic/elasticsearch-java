@@ -36,7 +36,6 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.search._types.SuggesterBase

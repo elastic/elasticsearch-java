@@ -31,14 +31,15 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -58,8 +59,10 @@ public class ReloadSearchAnalyzersResponse implements JsonpSerializable {
 
 	}
 
-	public static ReloadSearchAnalyzersResponse of(Function<Builder, ObjectBuilder<ReloadSearchAnalyzersResponse>> fn) {
-		return fn.apply(new Builder()).build();
+	public static ReloadSearchAnalyzersResponse of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -131,13 +134,9 @@ public class ReloadSearchAnalyzersResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code reload_details}
 		 */
-		@SafeVarargs
-		public final Builder reloadDetails(Function<ReloadDetails.Builder, ObjectBuilder<ReloadDetails>>... fns) {
-			this.reloadDetails = new ArrayList<>(fns.length);
-			for (Function<ReloadDetails.Builder, ObjectBuilder<ReloadDetails>> fn : fns) {
-				this.reloadDetails.add(fn.apply(new ReloadDetails.Builder()).build());
-			}
-			return this;
+		public final Builder reloadDetails(
+				Function<ListBuilder<ReloadDetails, ReloadDetails.Builder>, ObjectBuilder<List<ReloadDetails>>> fn) {
+			return reloadDetails(fn.apply(new ListBuilder<>(ReloadDetails.Builder::new)).build());
 		}
 
 		/**
@@ -151,8 +150,10 @@ public class ReloadSearchAnalyzersResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code _shards}
 		 */
-		public final Builder shards(Function<ShardStatistics.Builder, ObjectBuilder<ShardStatistics>> fn) {
-			return this.shards(fn.apply(new ShardStatistics.Builder()).build());
+		public final Builder shards(Consumer<ShardStatistics.Builder> fn) {
+			ShardStatistics.Builder builder = new ShardStatistics.Builder();
+			fn.accept(builder);
+			return this.shards(builder.build());
 		}
 
 		/**

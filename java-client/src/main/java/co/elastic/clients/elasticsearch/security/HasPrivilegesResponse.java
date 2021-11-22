@@ -37,7 +37,7 @@ import java.lang.Boolean;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: security.has_privileges.Response
@@ -65,8 +65,10 @@ public class HasPrivilegesResponse implements JsonpSerializable {
 
 	}
 
-	public static HasPrivilegesResponse of(Function<Builder, ObjectBuilder<HasPrivilegesResponse>> fn) {
-		return fn.apply(new Builder()).build();
+	public static HasPrivilegesResponse of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**

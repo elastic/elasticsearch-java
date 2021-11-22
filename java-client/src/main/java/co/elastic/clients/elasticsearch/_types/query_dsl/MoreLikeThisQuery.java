@@ -29,6 +29,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -37,11 +38,11 @@ import java.lang.Double;
 import java.lang.Integer;
 import java.lang.Long;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -127,16 +128,18 @@ public class MoreLikeThisQuery extends QueryBase implements QueryVariant {
 
 	}
 
-	public static MoreLikeThisQuery of(Function<Builder, ObjectBuilder<MoreLikeThisQuery>> fn) {
-		return fn.apply(new Builder()).build();
+	public static MoreLikeThisQuery of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
-	 * {@link Query} variant type
+	 * Query variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "more_like_this";
+	public Query.Kind _queryKind() {
+		return Query.Kind.MoreLikeThis;
 	}
 
 	/**
@@ -541,13 +544,8 @@ public class MoreLikeThisQuery extends QueryBase implements QueryVariant {
 		/**
 		 * Required - API name: {@code like}
 		 */
-		@SafeVarargs
-		public final Builder like(Function<Like.Builder, ObjectBuilder<Like>>... fns) {
-			this.like = new ArrayList<>(fns.length);
-			for (Function<Like.Builder, ObjectBuilder<Like>> fn : fns) {
-				this.like.add(fn.apply(new Like.Builder()).build());
-			}
-			return this;
+		public final Builder like(Function<ListBuilder<Like, Like.Builder>, ObjectBuilder<List<Like>>> fn) {
+			return like(fn.apply(new ListBuilder<>(Like.Builder::new)).build());
 		}
 
 		/**
@@ -657,13 +655,8 @@ public class MoreLikeThisQuery extends QueryBase implements QueryVariant {
 		/**
 		 * API name: {@code unlike}
 		 */
-		@SafeVarargs
-		public final Builder unlike(Function<Like.Builder, ObjectBuilder<Like>>... fns) {
-			this.unlike = new ArrayList<>(fns.length);
-			for (Function<Like.Builder, ObjectBuilder<Like>> fn : fns) {
-				this.unlike.add(fn.apply(new Like.Builder()).build());
-			}
-			return this;
+		public final Builder unlike(Function<ListBuilder<Like, Like.Builder>, ObjectBuilder<List<Like>>> fn) {
+			return unlike(fn.apply(new ListBuilder<>(Like.Builder::new)).build());
 		}
 
 		/**

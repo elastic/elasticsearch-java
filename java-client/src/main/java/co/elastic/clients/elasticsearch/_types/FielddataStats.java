@@ -36,9 +36,9 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.lang.String;
-import java.util.Collections;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -66,8 +66,10 @@ public class FielddataStats implements JsonpSerializable {
 
 	}
 
-	public static FielddataStats of(Function<Builder, ObjectBuilder<FielddataStats>> fn) {
-		return fn.apply(new Builder()).build();
+	public static FielddataStats of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -185,13 +187,6 @@ public class FielddataStats implements JsonpSerializable {
 		public final Builder fields(@Nullable Map<String, FieldMemoryUsage> value) {
 			this.fields = value;
 			return this;
-		}
-
-		/**
-		 * Set {@link #fields(Map)} to a singleton map.
-		 */
-		public Builder fields(String key, Function<FieldMemoryUsage.Builder, ObjectBuilder<FieldMemoryUsage>> fn) {
-			return this.fields(Collections.singletonMap(key, fn.apply(new FieldMemoryUsage.Builder()).build()));
 		}
 
 		public final Builder fields(

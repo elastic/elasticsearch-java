@@ -29,15 +29,16 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -71,8 +72,10 @@ public class ClusterOperatingSystem implements JsonpSerializable {
 
 	}
 
-	public static ClusterOperatingSystem of(Function<Builder, ObjectBuilder<ClusterOperatingSystem>> fn) {
-		return fn.apply(new Builder()).build();
+	public static ClusterOperatingSystem of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -216,9 +219,10 @@ public class ClusterOperatingSystem implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code mem}
 		 */
-		public final Builder mem(
-				Function<OperatingSystemMemoryInfo.Builder, ObjectBuilder<OperatingSystemMemoryInfo>> fn) {
-			return this.mem(fn.apply(new OperatingSystemMemoryInfo.Builder()).build());
+		public final Builder mem(Consumer<OperatingSystemMemoryInfo.Builder> fn) {
+			OperatingSystemMemoryInfo.Builder builder = new OperatingSystemMemoryInfo.Builder();
+			fn.accept(builder);
+			return this.mem(builder.build());
 		}
 
 		/**
@@ -240,14 +244,9 @@ public class ClusterOperatingSystem implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code names}
 		 */
-		@SafeVarargs
 		public final Builder names(
-				Function<ClusterOperatingSystemName.Builder, ObjectBuilder<ClusterOperatingSystemName>>... fns) {
-			this.names = new ArrayList<>(fns.length);
-			for (Function<ClusterOperatingSystemName.Builder, ObjectBuilder<ClusterOperatingSystemName>> fn : fns) {
-				this.names.add(fn.apply(new ClusterOperatingSystemName.Builder()).build());
-			}
-			return this;
+				Function<ListBuilder<ClusterOperatingSystemName, ClusterOperatingSystemName.Builder>, ObjectBuilder<List<ClusterOperatingSystemName>>> fn) {
+			return names(fn.apply(new ListBuilder<>(ClusterOperatingSystemName.Builder::new)).build());
 		}
 
 		/**
@@ -269,14 +268,9 @@ public class ClusterOperatingSystem implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code pretty_names}
 		 */
-		@SafeVarargs
 		public final Builder prettyNames(
-				Function<ClusterOperatingSystemPrettyName.Builder, ObjectBuilder<ClusterOperatingSystemPrettyName>>... fns) {
-			this.prettyNames = new ArrayList<>(fns.length);
-			for (Function<ClusterOperatingSystemPrettyName.Builder, ObjectBuilder<ClusterOperatingSystemPrettyName>> fn : fns) {
-				this.prettyNames.add(fn.apply(new ClusterOperatingSystemPrettyName.Builder()).build());
-			}
-			return this;
+				Function<ListBuilder<ClusterOperatingSystemPrettyName, ClusterOperatingSystemPrettyName.Builder>, ObjectBuilder<List<ClusterOperatingSystemPrettyName>>> fn) {
+			return prettyNames(fn.apply(new ListBuilder<>(ClusterOperatingSystemPrettyName.Builder::new)).build());
 		}
 
 		/**
@@ -298,14 +292,9 @@ public class ClusterOperatingSystem implements JsonpSerializable {
 		/**
 		 * API name: {@code architectures}
 		 */
-		@SafeVarargs
 		public final Builder architectures(
-				Function<ClusterOperatingSystemArchitecture.Builder, ObjectBuilder<ClusterOperatingSystemArchitecture>>... fns) {
-			this.architectures = new ArrayList<>(fns.length);
-			for (Function<ClusterOperatingSystemArchitecture.Builder, ObjectBuilder<ClusterOperatingSystemArchitecture>> fn : fns) {
-				this.architectures.add(fn.apply(new ClusterOperatingSystemArchitecture.Builder()).build());
-			}
-			return this;
+				Function<ListBuilder<ClusterOperatingSystemArchitecture, ClusterOperatingSystemArchitecture.Builder>, ObjectBuilder<List<ClusterOperatingSystemArchitecture>>> fn) {
+			return architectures(fn.apply(new ListBuilder<>(ClusterOperatingSystemArchitecture.Builder::new)).build());
 		}
 
 		/**

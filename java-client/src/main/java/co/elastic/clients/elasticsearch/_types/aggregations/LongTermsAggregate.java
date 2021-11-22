@@ -30,7 +30,7 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 
 // typedef: _types.aggregations.LongTermsAggregate
 @JsonpDeserializable
@@ -42,16 +42,18 @@ public class LongTermsAggregate extends TermsAggregateBase<LongTermsBucket> impl
 
 	}
 
-	public static LongTermsAggregate of(Function<Builder, ObjectBuilder<LongTermsAggregate>> fn) {
-		return fn.apply(new Builder()).build();
+	public static LongTermsAggregate of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
-	 * {@link Aggregate} variant type
+	 * Aggregate variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "lterms";
+	public Aggregate.Kind _aggregateKind() {
+		return Aggregate.Kind.Lterms;
 	}
 
 	// ---------------------------------------------------------------------------------------------

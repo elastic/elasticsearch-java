@@ -30,14 +30,15 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -54,8 +55,10 @@ public class RepositoriesResponse implements JsonpSerializable {
 
 	}
 
-	public static RepositoriesResponse of(Function<Builder, ObjectBuilder<RepositoriesResponse>> fn) {
-		return fn.apply(new Builder()).build();
+	public static RepositoriesResponse of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -113,13 +116,9 @@ public class RepositoriesResponse implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code _value_body}
 		 */
-		@SafeVarargs
-		public final Builder valueBody(Function<RepositoriesRecord.Builder, ObjectBuilder<RepositoriesRecord>>... fns) {
-			this.valueBody = new ArrayList<>(fns.length);
-			for (Function<RepositoriesRecord.Builder, ObjectBuilder<RepositoriesRecord>> fn : fns) {
-				this.valueBody.add(fn.apply(new RepositoriesRecord.Builder()).build());
-			}
-			return this;
+		public final Builder valueBody(
+				Function<ListBuilder<RepositoriesRecord, RepositoriesRecord.Builder>, ObjectBuilder<List<RepositoriesRecord>>> fn) {
+			return valueBody(fn.apply(new ListBuilder<>(RepositoriesRecord.Builder::new)).build());
 		}
 
 		/**

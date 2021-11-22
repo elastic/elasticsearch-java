@@ -35,7 +35,7 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.TriggerEventResult
@@ -57,8 +57,10 @@ public class TriggerEventResult implements JsonpSerializable {
 
 	}
 
-	public static TriggerEventResult of(Function<Builder, ObjectBuilder<TriggerEventResult>> fn) {
-		return fn.apply(new Builder()).build();
+	public static TriggerEventResult of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -127,8 +129,10 @@ public class TriggerEventResult implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code manual}
 		 */
-		public final Builder manual(Function<TriggerEvent.Builder, ObjectBuilder<TriggerEvent>> fn) {
-			return this.manual(fn.apply(new TriggerEvent.Builder()).build());
+		public final Builder manual(Consumer<TriggerEvent.Builder> fn) {
+			TriggerEvent.Builder builder = new TriggerEvent.Builder();
+			fn.accept(builder);
+			return this.manual(builder.build());
 		}
 
 		/**

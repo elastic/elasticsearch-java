@@ -50,7 +50,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: indices.stats.ShardStats
@@ -133,8 +133,10 @@ public class ShardStats implements JsonpSerializable {
 
 	}
 
-	public static ShardStats of(Function<Builder, ObjectBuilder<ShardStats>> fn) {
-		return fn.apply(new Builder()).build();
+	public static ShardStats of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -447,8 +449,10 @@ public class ShardStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code commit}
 		 */
-		public final Builder commit(Function<ShardCommit.Builder, ObjectBuilder<ShardCommit>> fn) {
-			return this.commit(fn.apply(new ShardCommit.Builder()).build());
+		public final Builder commit(Consumer<ShardCommit.Builder> fn) {
+			ShardCommit.Builder builder = new ShardCommit.Builder();
+			fn.accept(builder);
+			return this.commit(builder.build());
 		}
 
 		/**
@@ -462,8 +466,10 @@ public class ShardStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code completion}
 		 */
-		public final Builder completion(Function<CompletionStats.Builder, ObjectBuilder<CompletionStats>> fn) {
-			return this.completion(fn.apply(new CompletionStats.Builder()).build());
+		public final Builder completion(Consumer<CompletionStats.Builder> fn) {
+			CompletionStats.Builder builder = new CompletionStats.Builder();
+			fn.accept(builder);
+			return this.completion(builder.build());
 		}
 
 		/**
@@ -477,8 +483,10 @@ public class ShardStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code docs}
 		 */
-		public final Builder docs(Function<DocStats.Builder, ObjectBuilder<DocStats>> fn) {
-			return this.docs(fn.apply(new DocStats.Builder()).build());
+		public final Builder docs(Consumer<DocStats.Builder> fn) {
+			DocStats.Builder builder = new DocStats.Builder();
+			fn.accept(builder);
+			return this.docs(builder.build());
 		}
 
 		/**
@@ -492,8 +500,10 @@ public class ShardStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code fielddata}
 		 */
-		public final Builder fielddata(Function<FielddataStats.Builder, ObjectBuilder<FielddataStats>> fn) {
-			return this.fielddata(fn.apply(new FielddataStats.Builder()).build());
+		public final Builder fielddata(Consumer<FielddataStats.Builder> fn) {
+			FielddataStats.Builder builder = new FielddataStats.Builder();
+			fn.accept(builder);
+			return this.fielddata(builder.build());
 		}
 
 		/**
@@ -507,8 +517,10 @@ public class ShardStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code flush}
 		 */
-		public final Builder flush(Function<FlushStats.Builder, ObjectBuilder<FlushStats>> fn) {
-			return this.flush(fn.apply(new FlushStats.Builder()).build());
+		public final Builder flush(Consumer<FlushStats.Builder> fn) {
+			FlushStats.Builder builder = new FlushStats.Builder();
+			fn.accept(builder);
+			return this.flush(builder.build());
 		}
 
 		/**
@@ -522,8 +534,10 @@ public class ShardStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code get}
 		 */
-		public final Builder get(Function<GetStats.Builder, ObjectBuilder<GetStats>> fn) {
-			return this.get(fn.apply(new GetStats.Builder()).build());
+		public final Builder get(Consumer<GetStats.Builder> fn) {
+			GetStats.Builder builder = new GetStats.Builder();
+			fn.accept(builder);
+			return this.get(builder.build());
 		}
 
 		/**
@@ -537,8 +551,10 @@ public class ShardStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code indexing}
 		 */
-		public final Builder indexing(Function<IndexingStats.Builder, ObjectBuilder<IndexingStats>> fn) {
-			return this.indexing(fn.apply(new IndexingStats.Builder()).build());
+		public final Builder indexing(Consumer<IndexingStats.Builder> fn) {
+			IndexingStats.Builder builder = new IndexingStats.Builder();
+			fn.accept(builder);
+			return this.indexing(builder.build());
 		}
 
 		/**
@@ -552,8 +568,10 @@ public class ShardStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code merges}
 		 */
-		public final Builder merges(Function<MergesStats.Builder, ObjectBuilder<MergesStats>> fn) {
-			return this.merges(fn.apply(new MergesStats.Builder()).build());
+		public final Builder merges(Consumer<MergesStats.Builder> fn) {
+			MergesStats.Builder builder = new MergesStats.Builder();
+			fn.accept(builder);
+			return this.merges(builder.build());
 		}
 
 		/**
@@ -567,8 +585,10 @@ public class ShardStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code shard_path}
 		 */
-		public final Builder shardPath(Function<ShardPath.Builder, ObjectBuilder<ShardPath>> fn) {
-			return this.shardPath(fn.apply(new ShardPath.Builder()).build());
+		public final Builder shardPath(Consumer<ShardPath.Builder> fn) {
+			ShardPath.Builder builder = new ShardPath.Builder();
+			fn.accept(builder);
+			return this.shardPath(builder.build());
 		}
 
 		/**
@@ -582,8 +602,10 @@ public class ShardStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code query_cache}
 		 */
-		public final Builder queryCache(Function<ShardQueryCache.Builder, ObjectBuilder<ShardQueryCache>> fn) {
-			return this.queryCache(fn.apply(new ShardQueryCache.Builder()).build());
+		public final Builder queryCache(Consumer<ShardQueryCache.Builder> fn) {
+			ShardQueryCache.Builder builder = new ShardQueryCache.Builder();
+			fn.accept(builder);
+			return this.queryCache(builder.build());
 		}
 
 		/**
@@ -597,8 +619,10 @@ public class ShardStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code recovery}
 		 */
-		public final Builder recovery(Function<RecoveryStats.Builder, ObjectBuilder<RecoveryStats>> fn) {
-			return this.recovery(fn.apply(new RecoveryStats.Builder()).build());
+		public final Builder recovery(Consumer<RecoveryStats.Builder> fn) {
+			RecoveryStats.Builder builder = new RecoveryStats.Builder();
+			fn.accept(builder);
+			return this.recovery(builder.build());
 		}
 
 		/**
@@ -612,8 +636,10 @@ public class ShardStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code refresh}
 		 */
-		public final Builder refresh(Function<RefreshStats.Builder, ObjectBuilder<RefreshStats>> fn) {
-			return this.refresh(fn.apply(new RefreshStats.Builder()).build());
+		public final Builder refresh(Consumer<RefreshStats.Builder> fn) {
+			RefreshStats.Builder builder = new RefreshStats.Builder();
+			fn.accept(builder);
+			return this.refresh(builder.build());
 		}
 
 		/**
@@ -627,8 +653,10 @@ public class ShardStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code request_cache}
 		 */
-		public final Builder requestCache(Function<RequestCacheStats.Builder, ObjectBuilder<RequestCacheStats>> fn) {
-			return this.requestCache(fn.apply(new RequestCacheStats.Builder()).build());
+		public final Builder requestCache(Consumer<RequestCacheStats.Builder> fn) {
+			RequestCacheStats.Builder builder = new RequestCacheStats.Builder();
+			fn.accept(builder);
+			return this.requestCache(builder.build());
 		}
 
 		/**
@@ -642,9 +670,10 @@ public class ShardStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code retention_leases}
 		 */
-		public final Builder retentionLeases(
-				Function<ShardRetentionLeases.Builder, ObjectBuilder<ShardRetentionLeases>> fn) {
-			return this.retentionLeases(fn.apply(new ShardRetentionLeases.Builder()).build());
+		public final Builder retentionLeases(Consumer<ShardRetentionLeases.Builder> fn) {
+			ShardRetentionLeases.Builder builder = new ShardRetentionLeases.Builder();
+			fn.accept(builder);
+			return this.retentionLeases(builder.build());
 		}
 
 		/**
@@ -658,8 +687,10 @@ public class ShardStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code routing}
 		 */
-		public final Builder routing(Function<ShardRouting.Builder, ObjectBuilder<ShardRouting>> fn) {
-			return this.routing(fn.apply(new ShardRouting.Builder()).build());
+		public final Builder routing(Consumer<ShardRouting.Builder> fn) {
+			ShardRouting.Builder builder = new ShardRouting.Builder();
+			fn.accept(builder);
+			return this.routing(builder.build());
 		}
 
 		/**
@@ -673,8 +704,10 @@ public class ShardStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code search}
 		 */
-		public final Builder search(Function<SearchStats.Builder, ObjectBuilder<SearchStats>> fn) {
-			return this.search(fn.apply(new SearchStats.Builder()).build());
+		public final Builder search(Consumer<SearchStats.Builder> fn) {
+			SearchStats.Builder builder = new SearchStats.Builder();
+			fn.accept(builder);
+			return this.search(builder.build());
 		}
 
 		/**
@@ -688,8 +721,10 @@ public class ShardStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code segments}
 		 */
-		public final Builder segments(Function<SegmentsStats.Builder, ObjectBuilder<SegmentsStats>> fn) {
-			return this.segments(fn.apply(new SegmentsStats.Builder()).build());
+		public final Builder segments(Consumer<SegmentsStats.Builder> fn) {
+			SegmentsStats.Builder builder = new SegmentsStats.Builder();
+			fn.accept(builder);
+			return this.segments(builder.build());
 		}
 
 		/**
@@ -703,8 +738,10 @@ public class ShardStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code seq_no}
 		 */
-		public final Builder seqNo(Function<ShardSequenceNumber.Builder, ObjectBuilder<ShardSequenceNumber>> fn) {
-			return this.seqNo(fn.apply(new ShardSequenceNumber.Builder()).build());
+		public final Builder seqNo(Consumer<ShardSequenceNumber.Builder> fn) {
+			ShardSequenceNumber.Builder builder = new ShardSequenceNumber.Builder();
+			fn.accept(builder);
+			return this.seqNo(builder.build());
 		}
 
 		/**
@@ -718,8 +755,10 @@ public class ShardStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code store}
 		 */
-		public final Builder store(Function<StoreStats.Builder, ObjectBuilder<StoreStats>> fn) {
-			return this.store(fn.apply(new StoreStats.Builder()).build());
+		public final Builder store(Consumer<StoreStats.Builder> fn) {
+			StoreStats.Builder builder = new StoreStats.Builder();
+			fn.accept(builder);
+			return this.store(builder.build());
 		}
 
 		/**
@@ -733,8 +772,10 @@ public class ShardStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code translog}
 		 */
-		public final Builder translog(Function<TranslogStats.Builder, ObjectBuilder<TranslogStats>> fn) {
-			return this.translog(fn.apply(new TranslogStats.Builder()).build());
+		public final Builder translog(Consumer<TranslogStats.Builder> fn) {
+			TranslogStats.Builder builder = new TranslogStats.Builder();
+			fn.accept(builder);
+			return this.translog(builder.build());
 		}
 
 		/**
@@ -748,8 +789,10 @@ public class ShardStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code warmer}
 		 */
-		public final Builder warmer(Function<WarmerStats.Builder, ObjectBuilder<WarmerStats>> fn) {
-			return this.warmer(fn.apply(new WarmerStats.Builder()).build());
+		public final Builder warmer(Consumer<WarmerStats.Builder> fn) {
+			WarmerStats.Builder builder = new WarmerStats.Builder();
+			fn.accept(builder);
+			return this.warmer(builder.build());
 		}
 
 		/**
@@ -763,8 +806,10 @@ public class ShardStats implements JsonpSerializable {
 		/**
 		 * API name: {@code bulk}
 		 */
-		public final Builder bulk(Function<BulkStats.Builder, ObjectBuilder<BulkStats>> fn) {
-			return this.bulk(fn.apply(new BulkStats.Builder()).build());
+		public final Builder bulk(Consumer<BulkStats.Builder> fn) {
+			BulkStats.Builder builder = new BulkStats.Builder();
+			fn.accept(builder);
+			return this.bulk(builder.build());
 		}
 
 		/**
@@ -778,8 +823,10 @@ public class ShardStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code shards}
 		 */
-		public final Builder shards(Function<ShardsTotalStats.Builder, ObjectBuilder<ShardsTotalStats>> fn) {
-			return this.shards(fn.apply(new ShardsTotalStats.Builder()).build());
+		public final Builder shards(Consumer<ShardsTotalStats.Builder> fn) {
+			ShardsTotalStats.Builder builder = new ShardsTotalStats.Builder();
+			fn.accept(builder);
+			return this.shards(builder.build());
 		}
 
 		/**

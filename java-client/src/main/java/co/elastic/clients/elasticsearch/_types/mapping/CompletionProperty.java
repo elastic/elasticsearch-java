@@ -28,16 +28,17 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -75,16 +76,18 @@ public class CompletionProperty extends DocValuesPropertyBase implements Propert
 
 	}
 
-	public static CompletionProperty of(Function<Builder, ObjectBuilder<CompletionProperty>> fn) {
-		return fn.apply(new Builder()).build();
+	public static CompletionProperty of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
-	 * {@link Property} variant type
+	 * Property variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "completion";
+	public Property.Kind _propertyKind() {
+		return Property.Kind.Completion;
 	}
 
 	/**
@@ -229,13 +232,9 @@ public class CompletionProperty extends DocValuesPropertyBase implements Propert
 		/**
 		 * API name: {@code contexts}
 		 */
-		@SafeVarargs
-		public final Builder contexts(Function<SuggestContext.Builder, ObjectBuilder<SuggestContext>>... fns) {
-			this.contexts = new ArrayList<>(fns.length);
-			for (Function<SuggestContext.Builder, ObjectBuilder<SuggestContext>> fn : fns) {
-				this.contexts.add(fn.apply(new SuggestContext.Builder()).build());
-			}
-			return this;
+		public final Builder contexts(
+				Function<ListBuilder<SuggestContext, SuggestContext.Builder>, ObjectBuilder<List<SuggestContext>>> fn) {
+			return contexts(fn.apply(new ListBuilder<>(SuggestContext.Builder::new)).build());
 		}
 
 		/**

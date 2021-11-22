@@ -29,16 +29,17 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -64,8 +65,10 @@ public class TrainedModelConfigMetadata implements JsonpSerializable {
 
 	}
 
-	public static TrainedModelConfigMetadata of(Function<Builder, ObjectBuilder<TrainedModelConfigMetadata>> fn) {
-		return fn.apply(new Builder()).build();
+	public static TrainedModelConfigMetadata of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -237,13 +240,9 @@ public class TrainedModelConfigMetadata implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code hyperparameters}
 		 */
-		@SafeVarargs
-		public final Builder hyperparameters(Function<Hyperparameter.Builder, ObjectBuilder<Hyperparameter>>... fns) {
-			this.hyperparameters = new ArrayList<>(fns.length);
-			for (Function<Hyperparameter.Builder, ObjectBuilder<Hyperparameter>> fn : fns) {
-				this.hyperparameters.add(fn.apply(new Hyperparameter.Builder()).build());
-			}
-			return this;
+		public final Builder hyperparameters(
+				Function<ListBuilder<Hyperparameter, Hyperparameter.Builder>, ObjectBuilder<List<Hyperparameter>>> fn) {
+			return hyperparameters(fn.apply(new ListBuilder<>(Hyperparameter.Builder::new)).build());
 		}
 
 		/**
@@ -280,14 +279,9 @@ public class TrainedModelConfigMetadata implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code total_feature_importance}
 		 */
-		@SafeVarargs
 		public final Builder totalFeatureImportance(
-				Function<TotalFeatureImportance.Builder, ObjectBuilder<TotalFeatureImportance>>... fns) {
-			this.totalFeatureImportance = new ArrayList<>(fns.length);
-			for (Function<TotalFeatureImportance.Builder, ObjectBuilder<TotalFeatureImportance>> fn : fns) {
-				this.totalFeatureImportance.add(fn.apply(new TotalFeatureImportance.Builder()).build());
-			}
-			return this;
+				Function<ListBuilder<TotalFeatureImportance, TotalFeatureImportance.Builder>, ObjectBuilder<List<TotalFeatureImportance>>> fn) {
+			return totalFeatureImportance(fn.apply(new ListBuilder<>(TotalFeatureImportance.Builder::new)).build());
 		}
 
 		/**

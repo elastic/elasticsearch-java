@@ -37,7 +37,7 @@ import java.lang.String;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: security._types.FieldSecurity
@@ -56,8 +56,10 @@ public class FieldSecurity implements JsonpSerializable {
 
 	}
 
-	public static FieldSecurity of(Function<Builder, ObjectBuilder<FieldSecurity>> fn) {
-		return fn.apply(new Builder()).build();
+	public static FieldSecurity of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**

@@ -35,7 +35,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: snapshot.cleanup_repository.Response
@@ -51,8 +51,10 @@ public class CleanupRepositoryResponse implements JsonpSerializable {
 
 	}
 
-	public static CleanupRepositoryResponse of(Function<Builder, ObjectBuilder<CleanupRepositoryResponse>> fn) {
-		return fn.apply(new Builder()).build();
+	public static CleanupRepositoryResponse of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -97,9 +99,10 @@ public class CleanupRepositoryResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code results}
 		 */
-		public final Builder results(
-				Function<CleanupRepositoryResults.Builder, ObjectBuilder<CleanupRepositoryResults>> fn) {
-			return this.results(fn.apply(new CleanupRepositoryResults.Builder()).build());
+		public final Builder results(Consumer<CleanupRepositoryResults.Builder> fn) {
+			CleanupRepositoryResults.Builder builder = new CleanupRepositoryResults.Builder();
+			fn.accept(builder);
+			return this.results(builder.build());
 		}
 
 		/**

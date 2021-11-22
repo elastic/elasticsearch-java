@@ -26,25 +26,29 @@ package co.elastic.clients.elasticsearch.monitoring;
 import co.elastic.clients.ApiClient;
 import co.elastic.clients.elasticsearch._types.ElasticsearchException;
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
+import co.elastic.clients.transport.ElasticsearchTransport;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.Transport;
 import co.elastic.clients.transport.TransportOptions;
 import co.elastic.clients.util.ObjectBuilder;
 import java.io.IOException;
 import java.util.concurrent.CompletableFuture;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 /**
  * Client for the monitoring namespace.
  */
-public class ElasticsearchMonitoringAsyncClient extends ApiClient<ElasticsearchMonitoringAsyncClient> {
+public class ElasticsearchMonitoringAsyncClient
+		extends
+			ApiClient<ElasticsearchTransport, ElasticsearchMonitoringAsyncClient> {
 
-	public ElasticsearchMonitoringAsyncClient(Transport transport) {
+	public ElasticsearchMonitoringAsyncClient(ElasticsearchTransport transport) {
 		super(transport, null);
 	}
 
-	public ElasticsearchMonitoringAsyncClient(Transport transport, @Nullable TransportOptions transportOptions) {
+	public ElasticsearchMonitoringAsyncClient(ElasticsearchTransport transport,
+			@Nullable TransportOptions transportOptions) {
 		super(transport, transportOptions);
 	}
 
@@ -81,9 +85,11 @@ public class ElasticsearchMonitoringAsyncClient extends ApiClient<ElasticsearchM
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<BulkResponse> bulk(Function<BulkRequest.Builder, ObjectBuilder<BulkRequest>> fn)
+	public final CompletableFuture<BulkResponse> bulk(Consumer<BulkRequest.Builder> fn)
 			throws IOException, ElasticsearchException {
-		return bulk(fn.apply(new BulkRequest.Builder()).build());
+		BulkRequest.Builder builder = new BulkRequest.Builder();
+		fn.accept(builder);
+		return bulk(builder.build());
 	}
 
 }

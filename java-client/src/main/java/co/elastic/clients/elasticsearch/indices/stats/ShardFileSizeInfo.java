@@ -36,7 +36,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: indices.stats.ShardFileSizeInfo
@@ -71,8 +71,10 @@ public class ShardFileSizeInfo implements JsonpSerializable {
 
 	}
 
-	public static ShardFileSizeInfo of(Function<Builder, ObjectBuilder<ShardFileSizeInfo>> fn) {
-		return fn.apply(new Builder()).build();
+	public static ShardFileSizeInfo of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**

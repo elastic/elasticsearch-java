@@ -34,7 +34,7 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
-import co.elastic.clients.transport.SimpleEndpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.MapBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
@@ -43,10 +43,10 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Long;
 import java.lang.String;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -67,7 +67,7 @@ public class PutWatchRequest extends RequestBase implements JsonpSerializable {
 	private final Long ifPrimaryTerm;
 
 	@Nullable
-	private final Long ifSequenceNumber;
+	private final Long ifSeqNo;
 
 	@Nullable
 	private final Input input;
@@ -95,7 +95,7 @@ public class PutWatchRequest extends RequestBase implements JsonpSerializable {
 		this.condition = builder.condition;
 		this.id = ModelTypeHelper.requireNonNull(builder.id, this, "id");
 		this.ifPrimaryTerm = builder.ifPrimaryTerm;
-		this.ifSequenceNumber = builder.ifSequenceNumber;
+		this.ifSeqNo = builder.ifSeqNo;
 		this.input = builder.input;
 		this.metadata = ModelTypeHelper.unmodifiable(builder.metadata);
 		this.throttlePeriod = builder.throttlePeriod;
@@ -105,8 +105,10 @@ public class PutWatchRequest extends RequestBase implements JsonpSerializable {
 
 	}
 
-	public static PutWatchRequest of(Function<Builder, ObjectBuilder<PutWatchRequest>> fn) {
-		return fn.apply(new Builder()).build();
+	public static PutWatchRequest of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -155,11 +157,14 @@ public class PutWatchRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code if_sequence_number}
+	 * only update the watch if the last operation that has changed the watch has
+	 * the specified sequence number
+	 * <p>
+	 * API name: {@code if_seq_no}
 	 */
 	@Nullable
-	public final Long ifSequenceNumber() {
-		return this.ifSequenceNumber;
+	public final Long ifSeqNo() {
+		return this.ifSeqNo;
 	}
 
 	/**
@@ -293,7 +298,7 @@ public class PutWatchRequest extends RequestBase implements JsonpSerializable {
 		private Long ifPrimaryTerm;
 
 		@Nullable
-		private Long ifSequenceNumber;
+		private Long ifSeqNo;
 
 		@Nullable
 		private Input input;
@@ -319,13 +324,6 @@ public class PutWatchRequest extends RequestBase implements JsonpSerializable {
 		public final Builder actions(@Nullable Map<String, Action> value) {
 			this.actions = value;
 			return this;
-		}
-
-		/**
-		 * Set {@link #actions(Map)} to a singleton map.
-		 */
-		public Builder actions(String key, Function<Action.Builder, ObjectBuilder<Action>> fn) {
-			return this.actions(Collections.singletonMap(key, fn.apply(new Action.Builder()).build()));
 		}
 
 		public final Builder actions(
@@ -354,8 +352,10 @@ public class PutWatchRequest extends RequestBase implements JsonpSerializable {
 		/**
 		 * API name: {@code condition}
 		 */
-		public final Builder condition(Function<Condition.Builder, ObjectBuilder<Condition>> fn) {
-			return this.condition(fn.apply(new Condition.Builder()).build());
+		public final Builder condition(Consumer<Condition.Builder> fn) {
+			Condition.Builder builder = new Condition.Builder();
+			fn.accept(builder);
+			return this.condition(builder.build());
 		}
 
 		/**
@@ -380,10 +380,13 @@ public class PutWatchRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code if_sequence_number}
+		 * only update the watch if the last operation that has changed the watch has
+		 * the specified sequence number
+		 * <p>
+		 * API name: {@code if_seq_no}
 		 */
-		public final Builder ifSequenceNumber(@Nullable Long value) {
-			this.ifSequenceNumber = value;
+		public final Builder ifSeqNo(@Nullable Long value) {
+			this.ifSeqNo = value;
 			return this;
 		}
 
@@ -398,8 +401,10 @@ public class PutWatchRequest extends RequestBase implements JsonpSerializable {
 		/**
 		 * API name: {@code input}
 		 */
-		public final Builder input(Function<Input.Builder, ObjectBuilder<Input>> fn) {
-			return this.input(fn.apply(new Input.Builder()).build());
+		public final Builder input(Consumer<Input.Builder> fn) {
+			Input.Builder builder = new Input.Builder();
+			fn.accept(builder);
+			return this.input(builder.build());
 		}
 
 		/**
@@ -429,8 +434,10 @@ public class PutWatchRequest extends RequestBase implements JsonpSerializable {
 		/**
 		 * API name: {@code transform}
 		 */
-		public final Builder transform(Function<Transform.Builder, ObjectBuilder<Transform>> fn) {
-			return this.transform(fn.apply(new Transform.Builder()).build());
+		public final Builder transform(Consumer<Transform.Builder> fn) {
+			Transform.Builder builder = new Transform.Builder();
+			fn.accept(builder);
+			return this.transform(builder.build());
 		}
 
 		/**
@@ -444,8 +451,10 @@ public class PutWatchRequest extends RequestBase implements JsonpSerializable {
 		/**
 		 * API name: {@code trigger}
 		 */
-		public final Builder trigger(Function<Trigger.Builder, ObjectBuilder<Trigger>> fn) {
-			return this.trigger(fn.apply(new Trigger.Builder()).build());
+		public final Builder trigger(Consumer<Trigger.Builder> fn) {
+			Trigger.Builder builder = new Trigger.Builder();
+			fn.accept(builder);
+			return this.trigger(builder.build());
 		}
 
 		/**
@@ -532,8 +541,8 @@ public class PutWatchRequest extends RequestBase implements JsonpSerializable {
 				if (request.ifPrimaryTerm != null) {
 					params.put("if_primary_term", String.valueOf(request.ifPrimaryTerm));
 				}
-				if (request.ifSequenceNumber != null) {
-					params.put("if_sequence_number", String.valueOf(request.ifSequenceNumber));
+				if (request.ifSeqNo != null) {
+					params.put("if_seq_no", String.valueOf(request.ifSeqNo));
 				}
 				if (request.version != null) {
 					params.put("version", String.valueOf(request.version));

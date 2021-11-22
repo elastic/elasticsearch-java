@@ -30,7 +30,7 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 
 // typedef: _types.query_dsl.MatchAllQuery
 @JsonpDeserializable
@@ -42,16 +42,18 @@ public class MatchAllQuery extends QueryBase implements QueryVariant {
 
 	}
 
-	public static MatchAllQuery of(Function<Builder, ObjectBuilder<MatchAllQuery>> fn) {
-		return fn.apply(new Builder()).build();
+	public static MatchAllQuery of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
-	 * {@link Query} variant type
+	 * Query variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "match_all";
+	public Query.Kind _queryKind() {
+		return Query.Kind.MatchAll;
 	}
 
 	// ---------------------------------------------------------------------------------------------

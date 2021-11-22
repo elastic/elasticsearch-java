@@ -37,7 +37,7 @@ import java.lang.Integer;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: cluster.allocation_explain.CurrentNode
@@ -65,8 +65,10 @@ public class CurrentNode implements JsonpSerializable {
 
 	}
 
-	public static CurrentNode of(Function<Builder, ObjectBuilder<CurrentNode>> fn) {
-		return fn.apply(new Builder()).build();
+	public static CurrentNode of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**

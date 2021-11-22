@@ -40,7 +40,7 @@ import java.lang.String;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: indices._types.IndexSettings
@@ -276,8 +276,10 @@ public class IndexSettings implements JsonpSerializable {
 
 	}
 
-	public static IndexSettings of(Function<Builder, ObjectBuilder<IndexSettings>> fn) {
-		return fn.apply(new Builder()).build();
+	public static IndexSettings of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -1210,8 +1212,10 @@ public class IndexSettings implements JsonpSerializable {
 		/**
 		 * API name: {@code index}
 		 */
-		public final Builder index(Function<IndexSettings.Builder, ObjectBuilder<IndexSettings>> fn) {
-			return this.index(fn.apply(new IndexSettings.Builder()).build());
+		public final Builder index(Consumer<IndexSettings.Builder> fn) {
+			IndexSettings.Builder builder = new IndexSettings.Builder();
+			fn.accept(builder);
+			return this.index(builder.build());
 		}
 
 		/**
@@ -1249,8 +1253,10 @@ public class IndexSettings implements JsonpSerializable {
 		/**
 		 * API name: {@code soft_deletes}
 		 */
-		public final Builder softDeletes(Function<SoftDeletes.Builder, ObjectBuilder<SoftDeletes>> fn) {
-			return this.softDeletes(fn.apply(new SoftDeletes.Builder()).build());
+		public final Builder softDeletes(Consumer<SoftDeletes.Builder> fn) {
+			SoftDeletes.Builder builder = new SoftDeletes.Builder();
+			fn.accept(builder);
+			return this.softDeletes(builder.build());
 		}
 
 		/**
@@ -1264,8 +1270,10 @@ public class IndexSettings implements JsonpSerializable {
 		/**
 		 * API name: {@code sort}
 		 */
-		public final Builder sort(Function<IndexSegmentSort.Builder, ObjectBuilder<IndexSegmentSort>> fn) {
-			return this.sort(fn.apply(new IndexSegmentSort.Builder()).build());
+		public final Builder sort(Consumer<IndexSegmentSort.Builder> fn) {
+			IndexSegmentSort.Builder builder = new IndexSegmentSort.Builder();
+			fn.accept(builder);
+			return this.sort(builder.build());
 		}
 
 		/**
@@ -1327,8 +1335,10 @@ public class IndexSettings implements JsonpSerializable {
 		/**
 		 * API name: {@code soft_deletes.retention_lease.period}
 		 */
-		public final Builder softDeletesRetentionLeasePeriod(Function<Time.Builder, ObjectBuilder<Time>> fn) {
-			return this.softDeletesRetentionLeasePeriod(fn.apply(new Time.Builder()).build());
+		public final Builder softDeletesRetentionLeasePeriod(Consumer<Time.Builder> fn) {
+			Time.Builder builder = new Time.Builder();
+			fn.accept(builder);
+			return this.softDeletesRetentionLeasePeriod(builder.build());
 		}
 
 		/**
@@ -1374,8 +1384,10 @@ public class IndexSettings implements JsonpSerializable {
 		/**
 		 * API name: {@code search.idle.after}
 		 */
-		public final Builder searchIdleAfter(Function<Time.Builder, ObjectBuilder<Time>> fn) {
-			return this.searchIdleAfter(fn.apply(new Time.Builder()).build());
+		public final Builder searchIdleAfter(Consumer<Time.Builder> fn) {
+			Time.Builder builder = new Time.Builder();
+			fn.accept(builder);
+			return this.searchIdleAfter(builder.build());
 		}
 
 		/**
@@ -1389,8 +1401,10 @@ public class IndexSettings implements JsonpSerializable {
 		/**
 		 * API name: {@code refresh_interval}
 		 */
-		public final Builder refreshInterval(Function<Time.Builder, ObjectBuilder<Time>> fn) {
-			return this.refreshInterval(fn.apply(new Time.Builder()).build());
+		public final Builder refreshInterval(Consumer<Time.Builder> fn) {
+			Time.Builder builder = new Time.Builder();
+			fn.accept(builder);
+			return this.refreshInterval(builder.build());
 		}
 
 		/**
@@ -1460,8 +1474,10 @@ public class IndexSettings implements JsonpSerializable {
 		/**
 		 * API name: {@code blocks}
 		 */
-		public final Builder blocks(Function<IndexSettingBlocks.Builder, ObjectBuilder<IndexSettingBlocks>> fn) {
-			return this.blocks(fn.apply(new IndexSettingBlocks.Builder()).build());
+		public final Builder blocks(Consumer<IndexSettingBlocks.Builder> fn) {
+			IndexSettingBlocks.Builder builder = new IndexSettingBlocks.Builder();
+			fn.accept(builder);
+			return this.blocks(builder.build());
 		}
 
 		/**
@@ -1555,8 +1571,10 @@ public class IndexSettings implements JsonpSerializable {
 		/**
 		 * API name: {@code routing}
 		 */
-		public final Builder routing(Function<IndexRouting.Builder, ObjectBuilder<IndexRouting>> fn) {
-			return this.routing(fn.apply(new IndexRouting.Builder()).build());
+		public final Builder routing(Consumer<IndexRouting.Builder> fn) {
+			IndexRouting.Builder builder = new IndexRouting.Builder();
+			fn.accept(builder);
+			return this.routing(builder.build());
 		}
 
 		/**
@@ -1570,8 +1588,10 @@ public class IndexSettings implements JsonpSerializable {
 		/**
 		 * API name: {@code gc_deletes}
 		 */
-		public final Builder gcDeletes(Function<Time.Builder, ObjectBuilder<Time>> fn) {
-			return this.gcDeletes(fn.apply(new Time.Builder()).build());
+		public final Builder gcDeletes(Consumer<Time.Builder> fn) {
+			Time.Builder builder = new Time.Builder();
+			fn.accept(builder);
+			return this.gcDeletes(builder.build());
 		}
 
 		/**
@@ -1601,9 +1621,10 @@ public class IndexSettings implements JsonpSerializable {
 		/**
 		 * API name: {@code lifecycle}
 		 */
-		public final Builder lifecycle(
-				Function<IndexSettingsLifecycle.Builder, ObjectBuilder<IndexSettingsLifecycle>> fn) {
-			return this.lifecycle(fn.apply(new IndexSettingsLifecycle.Builder()).build());
+		public final Builder lifecycle(Consumer<IndexSettingsLifecycle.Builder> fn) {
+			IndexSettingsLifecycle.Builder builder = new IndexSettingsLifecycle.Builder();
+			fn.accept(builder);
+			return this.lifecycle(builder.build());
 		}
 
 		/**
@@ -1649,8 +1670,10 @@ public class IndexSettings implements JsonpSerializable {
 		/**
 		 * API name: {@code version}
 		 */
-		public final Builder version(Function<IndexVersioning.Builder, ObjectBuilder<IndexVersioning>> fn) {
-			return this.version(fn.apply(new IndexVersioning.Builder()).build());
+		public final Builder version(Consumer<IndexVersioning.Builder> fn) {
+			IndexVersioning.Builder builder = new IndexVersioning.Builder();
+			fn.accept(builder);
+			return this.version(builder.build());
 		}
 
 		/**
@@ -1728,9 +1751,10 @@ public class IndexSettings implements JsonpSerializable {
 		/**
 		 * API name: {@code analysis}
 		 */
-		public final Builder analysis(
-				Function<IndexSettingsAnalysis.Builder, ObjectBuilder<IndexSettingsAnalysis>> fn) {
-			return this.analysis(fn.apply(new IndexSettingsAnalysis.Builder()).build());
+		public final Builder analysis(Consumer<IndexSettingsAnalysis.Builder> fn) {
+			IndexSettingsAnalysis.Builder builder = new IndexSettingsAnalysis.Builder();
+			fn.accept(builder);
+			return this.analysis(builder.build());
 		}
 
 		/**
@@ -1744,8 +1768,10 @@ public class IndexSettings implements JsonpSerializable {
 		/**
 		 * API name: {@code settings}
 		 */
-		public final Builder settings(Function<IndexSettings.Builder, ObjectBuilder<IndexSettings>> fn) {
-			return this.settings(fn.apply(new IndexSettings.Builder()).build());
+		public final Builder settings(Consumer<IndexSettings.Builder> fn) {
+			IndexSettings.Builder builder = new IndexSettings.Builder();
+			fn.accept(builder);
+			return this.settings(builder.build());
 		}
 
 		/**

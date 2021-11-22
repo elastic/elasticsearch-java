@@ -28,6 +28,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -35,10 +36,10 @@ import java.lang.Boolean;
 import java.lang.Double;
 import java.lang.Integer;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -104,16 +105,18 @@ public class PhraseSuggester extends SuggesterBase implements FieldSuggesterVari
 
 	}
 
-	public static PhraseSuggester of(Function<Builder, ObjectBuilder<PhraseSuggester>> fn) {
-		return fn.apply(new Builder()).build();
+	public static PhraseSuggester of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
-	 * {@link FieldSuggester} variant type
+	 * FieldSuggester variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "phrase";
+	public FieldSuggester.Kind _fieldSuggesterKind() {
+		return FieldSuggester.Kind.Phrase;
 	}
 
 	/**
@@ -353,8 +356,10 @@ public class PhraseSuggester extends SuggesterBase implements FieldSuggesterVari
 		/**
 		 * API name: {@code collate}
 		 */
-		public final Builder collate(Function<PhraseSuggestCollate.Builder, ObjectBuilder<PhraseSuggestCollate>> fn) {
-			return this.collate(fn.apply(new PhraseSuggestCollate.Builder()).build());
+		public final Builder collate(Consumer<PhraseSuggestCollate.Builder> fn) {
+			PhraseSuggestCollate.Builder builder = new PhraseSuggestCollate.Builder();
+			fn.accept(builder);
+			return this.collate(builder.build());
 		}
 
 		/**
@@ -384,13 +389,9 @@ public class PhraseSuggester extends SuggesterBase implements FieldSuggesterVari
 		/**
 		 * API name: {@code direct_generator}
 		 */
-		@SafeVarargs
-		public final Builder directGenerator(Function<DirectGenerator.Builder, ObjectBuilder<DirectGenerator>>... fns) {
-			this.directGenerator = new ArrayList<>(fns.length);
-			for (Function<DirectGenerator.Builder, ObjectBuilder<DirectGenerator>> fn : fns) {
-				this.directGenerator.add(fn.apply(new DirectGenerator.Builder()).build());
-			}
-			return this;
+		public final Builder directGenerator(
+				Function<ListBuilder<DirectGenerator, DirectGenerator.Builder>, ObjectBuilder<List<DirectGenerator>>> fn) {
+			return directGenerator(fn.apply(new ListBuilder<>(DirectGenerator.Builder::new)).build());
 		}
 
 		/**
@@ -420,9 +421,10 @@ public class PhraseSuggester extends SuggesterBase implements FieldSuggesterVari
 		/**
 		 * API name: {@code highlight}
 		 */
-		public final Builder highlight(
-				Function<PhraseSuggestHighlight.Builder, ObjectBuilder<PhraseSuggestHighlight>> fn) {
-			return this.highlight(fn.apply(new PhraseSuggestHighlight.Builder()).build());
+		public final Builder highlight(Consumer<PhraseSuggestHighlight.Builder> fn) {
+			PhraseSuggestHighlight.Builder builder = new PhraseSuggestHighlight.Builder();
+			fn.accept(builder);
+			return this.highlight(builder.build());
 		}
 
 		/**
@@ -468,8 +470,10 @@ public class PhraseSuggester extends SuggesterBase implements FieldSuggesterVari
 		/**
 		 * API name: {@code smoothing}
 		 */
-		public final Builder smoothing(Function<SmoothingModel.Builder, ObjectBuilder<SmoothingModel>> fn) {
-			return this.smoothing(fn.apply(new SmoothingModel.Builder()).build());
+		public final Builder smoothing(Consumer<SmoothingModel.Builder> fn) {
+			SmoothingModel.Builder builder = new SmoothingModel.Builder();
+			fn.accept(builder);
+			return this.smoothing(builder.build());
 		}
 
 		/**

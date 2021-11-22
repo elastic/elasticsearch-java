@@ -33,7 +33,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.CardinalityAggregation
@@ -55,16 +55,18 @@ public class CardinalityAggregation extends MetricAggregationBase implements Agg
 
 	}
 
-	public static CardinalityAggregation of(Function<Builder, ObjectBuilder<CardinalityAggregation>> fn) {
-		return fn.apply(new Builder()).build();
+	public static CardinalityAggregation of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
-	 * {@link Aggregation} variant type
+	 * Aggregation variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "cardinality";
+	public Aggregation.Kind _aggregationKind() {
+		return Aggregation.Kind.Cardinality;
 	}
 
 	/**

@@ -33,7 +33,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.SpanTermQuery
@@ -54,16 +54,26 @@ public class SpanTermQuery extends QueryBase implements SpanQueryVariant, QueryV
 
 	}
 
-	public static SpanTermQuery of(Function<Builder, ObjectBuilder<SpanTermQuery>> fn) {
-		return fn.apply(new Builder()).build();
+	public static SpanTermQuery of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
-	 * {@link SpanQuery}, {@link Query} variant type
+	 * SpanQuery variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "span_term";
+	public SpanQuery.Kind _spanQueryKind() {
+		return SpanQuery.Kind.SpanTerm;
+	}
+
+	/**
+	 * Query variant kind.
+	 */
+	@Override
+	public Query.Kind _queryKind() {
+		return Query.Kind.SpanTerm;
 	}
 
 	/**

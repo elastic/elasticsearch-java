@@ -35,9 +35,9 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.Collections;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -57,8 +57,10 @@ public class TermVector implements JsonpSerializable {
 
 	}
 
-	public static TermVector of(Function<Builder, ObjectBuilder<TermVector>> fn) {
-		return fn.apply(new Builder()).build();
+	public static TermVector of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -124,8 +126,10 @@ public class TermVector implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code field_statistics}
 		 */
-		public final Builder fieldStatistics(Function<FieldStatistics.Builder, ObjectBuilder<FieldStatistics>> fn) {
-			return this.fieldStatistics(fn.apply(new FieldStatistics.Builder()).build());
+		public final Builder fieldStatistics(Consumer<FieldStatistics.Builder> fn) {
+			FieldStatistics.Builder builder = new FieldStatistics.Builder();
+			fn.accept(builder);
+			return this.fieldStatistics(builder.build());
 		}
 
 		/**
@@ -134,13 +138,6 @@ public class TermVector implements JsonpSerializable {
 		public final Builder terms(Map<String, Term> value) {
 			this.terms = value;
 			return this;
-		}
-
-		/**
-		 * Set {@link #terms(Map)} to a singleton map.
-		 */
-		public Builder terms(String key, Function<Term.Builder, ObjectBuilder<Term>> fn) {
-			return this.terms(Collections.singletonMap(key, fn.apply(new Term.Builder()).build()));
 		}
 
 		public final Builder terms(

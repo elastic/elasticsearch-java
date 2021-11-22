@@ -29,14 +29,15 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -56,8 +57,10 @@ public class Definition implements JsonpSerializable {
 
 	}
 
-	public static Definition of(Function<Builder, ObjectBuilder<Definition>> fn) {
-		return fn.apply(new Builder()).build();
+	public static Definition of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -140,13 +143,9 @@ public class Definition implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code preprocessors}
 		 */
-		@SafeVarargs
-		public final Builder preprocessors(Function<Preprocessor.Builder, ObjectBuilder<Preprocessor>>... fns) {
-			this.preprocessors = new ArrayList<>(fns.length);
-			for (Function<Preprocessor.Builder, ObjectBuilder<Preprocessor>> fn : fns) {
-				this.preprocessors.add(fn.apply(new Preprocessor.Builder()).build());
-			}
-			return this;
+		public final Builder preprocessors(
+				Function<ListBuilder<Preprocessor, Preprocessor.Builder>, ObjectBuilder<List<Preprocessor>>> fn) {
+			return preprocessors(fn.apply(new ListBuilder<>(Preprocessor.Builder::new)).build());
 		}
 
 		/**
@@ -164,8 +163,10 @@ public class Definition implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code trained_model}
 		 */
-		public final Builder trainedModel(Function<TrainedModel.Builder, ObjectBuilder<TrainedModel>> fn) {
-			return this.trainedModel(fn.apply(new TrainedModel.Builder()).build());
+		public final Builder trainedModel(Consumer<TrainedModel.Builder> fn) {
+			TrainedModel.Builder builder = new TrainedModel.Builder();
+			fn.accept(builder);
+			return this.trainedModel(builder.build());
 		}
 
 		/**

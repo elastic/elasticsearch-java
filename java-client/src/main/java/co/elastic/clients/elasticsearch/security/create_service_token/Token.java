@@ -35,7 +35,7 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: security.create_service_token.Token
@@ -54,8 +54,10 @@ public class Token implements JsonpSerializable {
 
 	}
 
-	public static Token of(Function<Builder, ObjectBuilder<Token>> fn) {
-		return fn.apply(new Builder()).build();
+	public static Token of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**

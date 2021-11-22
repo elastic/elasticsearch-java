@@ -37,9 +37,9 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.Collections;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -62,8 +62,10 @@ public class IndicesStatsResponse implements JsonpSerializable {
 
 	}
 
-	public static IndicesStatsResponse of(Function<Builder, ObjectBuilder<IndicesStatsResponse>> fn) {
-		return fn.apply(new Builder()).build();
+	public static IndicesStatsResponse of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -138,13 +140,6 @@ public class IndicesStatsResponse implements JsonpSerializable {
 			return this;
 		}
 
-		/**
-		 * Set {@link #indices(Map)} to a singleton map.
-		 */
-		public Builder indices(String key, Function<IndicesStats.Builder, ObjectBuilder<IndicesStats>> fn) {
-			return this.indices(Collections.singletonMap(key, fn.apply(new IndicesStats.Builder()).build()));
-		}
-
 		public final Builder indices(
 				Function<MapBuilder<String, IndicesStats, IndicesStats.Builder>, ObjectBuilder<Map<String, IndicesStats>>> fn) {
 			return indices(fn.apply(new MapBuilder<>(IndicesStats.Builder::new)).build());
@@ -161,8 +156,10 @@ public class IndicesStatsResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code _shards}
 		 */
-		public final Builder shards(Function<ShardStatistics.Builder, ObjectBuilder<ShardStatistics>> fn) {
-			return this.shards(fn.apply(new ShardStatistics.Builder()).build());
+		public final Builder shards(Consumer<ShardStatistics.Builder> fn) {
+			ShardStatistics.Builder builder = new ShardStatistics.Builder();
+			fn.accept(builder);
+			return this.shards(builder.build());
 		}
 
 		/**
@@ -176,8 +173,10 @@ public class IndicesStatsResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code _all}
 		 */
-		public final Builder all(Function<IndicesStats.Builder, ObjectBuilder<IndicesStats>> fn) {
-			return this.all(fn.apply(new IndicesStats.Builder()).build());
+		public final Builder all(Consumer<IndicesStats.Builder> fn) {
+			IndicesStats.Builder builder = new IndicesStats.Builder();
+			fn.accept(builder);
+			return this.all(builder.build());
 		}
 
 		/**

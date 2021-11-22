@@ -39,10 +39,10 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.lang.String;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -114,8 +114,10 @@ public class Stats implements JsonpSerializable {
 
 	}
 
-	public static Stats of(Function<Builder, ObjectBuilder<Stats>> fn) {
-		return fn.apply(new Builder()).build();
+	public static Stats of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -419,15 +421,6 @@ public class Stats implements JsonpSerializable {
 			return this;
 		}
 
-		/**
-		 * Set {@link #adaptiveSelection(Map)} to a singleton map.
-		 */
-		public Builder adaptiveSelection(String key,
-				Function<AdaptiveSelection.Builder, ObjectBuilder<AdaptiveSelection>> fn) {
-			return this.adaptiveSelection(
-					Collections.singletonMap(key, fn.apply(new AdaptiveSelection.Builder()).build()));
-		}
-
 		public final Builder adaptiveSelection(
 				Function<MapBuilder<String, AdaptiveSelection, AdaptiveSelection.Builder>, ObjectBuilder<Map<String, AdaptiveSelection>>> fn) {
 			return adaptiveSelection(fn.apply(new MapBuilder<>(AdaptiveSelection.Builder::new)).build());
@@ -439,13 +432,6 @@ public class Stats implements JsonpSerializable {
 		public final Builder breakers(Map<String, Breaker> value) {
 			this.breakers = value;
 			return this;
-		}
-
-		/**
-		 * Set {@link #breakers(Map)} to a singleton map.
-		 */
-		public Builder breakers(String key, Function<Breaker.Builder, ObjectBuilder<Breaker>> fn) {
-			return this.breakers(Collections.singletonMap(key, fn.apply(new Breaker.Builder()).build()));
 		}
 
 		public final Builder breakers(
@@ -464,8 +450,10 @@ public class Stats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code fs}
 		 */
-		public final Builder fs(Function<FileSystem.Builder, ObjectBuilder<FileSystem>> fn) {
-			return this.fs(fn.apply(new FileSystem.Builder()).build());
+		public final Builder fs(Consumer<FileSystem.Builder> fn) {
+			FileSystem.Builder builder = new FileSystem.Builder();
+			fn.accept(builder);
+			return this.fs(builder.build());
 		}
 
 		/**
@@ -487,8 +475,10 @@ public class Stats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code http}
 		 */
-		public final Builder http(Function<Http.Builder, ObjectBuilder<Http>> fn) {
-			return this.http(fn.apply(new Http.Builder()).build());
+		public final Builder http(Consumer<Http.Builder> fn) {
+			Http.Builder builder = new Http.Builder();
+			fn.accept(builder);
+			return this.http(builder.build());
 		}
 
 		/**
@@ -502,8 +492,10 @@ public class Stats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code indices}
 		 */
-		public final Builder indices(Function<IndexStats.Builder, ObjectBuilder<IndexStats>> fn) {
-			return this.indices(fn.apply(new IndexStats.Builder()).build());
+		public final Builder indices(Consumer<IndexStats.Builder> fn) {
+			IndexStats.Builder builder = new IndexStats.Builder();
+			fn.accept(builder);
+			return this.indices(builder.build());
 		}
 
 		/**
@@ -517,8 +509,10 @@ public class Stats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code ingest}
 		 */
-		public final Builder ingest(Function<Ingest.Builder, ObjectBuilder<Ingest>> fn) {
-			return this.ingest(fn.apply(new Ingest.Builder()).build());
+		public final Builder ingest(Consumer<Ingest.Builder> fn) {
+			Ingest.Builder builder = new Ingest.Builder();
+			fn.accept(builder);
+			return this.ingest(builder.build());
 		}
 
 		/**
@@ -548,8 +542,10 @@ public class Stats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code jvm}
 		 */
-		public final Builder jvm(Function<Jvm.Builder, ObjectBuilder<Jvm>> fn) {
-			return this.jvm(fn.apply(new Jvm.Builder()).build());
+		public final Builder jvm(Consumer<Jvm.Builder> fn) {
+			Jvm.Builder builder = new Jvm.Builder();
+			fn.accept(builder);
+			return this.jvm(builder.build());
 		}
 
 		/**
@@ -571,8 +567,10 @@ public class Stats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code os}
 		 */
-		public final Builder os(Function<OperatingSystem.Builder, ObjectBuilder<OperatingSystem>> fn) {
-			return this.os(fn.apply(new OperatingSystem.Builder()).build());
+		public final Builder os(Consumer<OperatingSystem.Builder> fn) {
+			OperatingSystem.Builder builder = new OperatingSystem.Builder();
+			fn.accept(builder);
+			return this.os(builder.build());
 		}
 
 		/**
@@ -586,8 +584,10 @@ public class Stats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code process}
 		 */
-		public final Builder process(Function<Process.Builder, ObjectBuilder<Process>> fn) {
-			return this.process(fn.apply(new Process.Builder()).build());
+		public final Builder process(Consumer<Process.Builder> fn) {
+			Process.Builder builder = new Process.Builder();
+			fn.accept(builder);
+			return this.process(builder.build());
 		}
 
 		/**
@@ -617,8 +617,10 @@ public class Stats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code script}
 		 */
-		public final Builder script(Function<Scripting.Builder, ObjectBuilder<Scripting>> fn) {
-			return this.script(fn.apply(new Scripting.Builder()).build());
+		public final Builder script(Consumer<Scripting.Builder> fn) {
+			Scripting.Builder builder = new Scripting.Builder();
+			fn.accept(builder);
+			return this.script(builder.build());
 		}
 
 		/**
@@ -627,13 +629,6 @@ public class Stats implements JsonpSerializable {
 		public final Builder threadPool(Map<String, ThreadCount> value) {
 			this.threadPool = value;
 			return this;
-		}
-
-		/**
-		 * Set {@link #threadPool(Map)} to a singleton map.
-		 */
-		public Builder threadPool(String key, Function<ThreadCount.Builder, ObjectBuilder<ThreadCount>> fn) {
-			return this.threadPool(Collections.singletonMap(key, fn.apply(new ThreadCount.Builder()).build()));
 		}
 
 		public final Builder threadPool(
@@ -660,8 +655,10 @@ public class Stats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code transport}
 		 */
-		public final Builder transport(Function<Transport.Builder, ObjectBuilder<Transport>> fn) {
-			return this.transport(fn.apply(new Transport.Builder()).build());
+		public final Builder transport(Consumer<Transport.Builder> fn) {
+			Transport.Builder builder = new Transport.Builder();
+			fn.accept(builder);
+			return this.transport(builder.build());
 		}
 
 		/**

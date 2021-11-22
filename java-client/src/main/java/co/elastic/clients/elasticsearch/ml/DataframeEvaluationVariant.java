@@ -23,12 +23,12 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.util.UnionVariant;
-
 /**
  * Base interface for {@link DataframeEvaluation} variants.
  */
-public interface DataframeEvaluationVariant extends UnionVariant {
+public interface DataframeEvaluationVariant {
+
+	DataframeEvaluation.Kind _dataframeEvaluationKind();
 
 	default DataframeEvaluation _toDataframeEvaluation() {
 		return new DataframeEvaluation(this);

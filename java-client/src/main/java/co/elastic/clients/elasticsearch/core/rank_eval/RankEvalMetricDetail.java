@@ -30,17 +30,18 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -66,8 +67,10 @@ public class RankEvalMetricDetail implements JsonpSerializable {
 
 	}
 
-	public static RankEvalMetricDetail of(Function<Builder, ObjectBuilder<RankEvalMetricDetail>> fn) {
-		return fn.apply(new Builder()).build();
+	public static RankEvalMetricDetail of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -225,13 +228,9 @@ public class RankEvalMetricDetail implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code unrated_docs}
 		 */
-		@SafeVarargs
-		public final Builder unratedDocs(Function<UnratedDocument.Builder, ObjectBuilder<UnratedDocument>>... fns) {
-			this.unratedDocs = new ArrayList<>(fns.length);
-			for (Function<UnratedDocument.Builder, ObjectBuilder<UnratedDocument>> fn : fns) {
-				this.unratedDocs.add(fn.apply(new UnratedDocument.Builder()).build());
-			}
-			return this;
+		public final Builder unratedDocs(
+				Function<ListBuilder<UnratedDocument, UnratedDocument.Builder>, ObjectBuilder<List<UnratedDocument>>> fn) {
+			return unratedDocs(fn.apply(new ListBuilder<>(UnratedDocument.Builder::new)).build());
 		}
 
 		/**
@@ -262,13 +261,9 @@ public class RankEvalMetricDetail implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code hits}
 		 */
-		@SafeVarargs
-		public final Builder hits(Function<RankEvalHitItem.Builder, ObjectBuilder<RankEvalHitItem>>... fns) {
-			this.hits = new ArrayList<>(fns.length);
-			for (Function<RankEvalHitItem.Builder, ObjectBuilder<RankEvalHitItem>> fn : fns) {
-				this.hits.add(fn.apply(new RankEvalHitItem.Builder()).build());
-			}
-			return this;
+		public final Builder hits(
+				Function<ListBuilder<RankEvalHitItem, RankEvalHitItem.Builder>, ObjectBuilder<List<RankEvalHitItem>>> fn) {
+			return hits(fn.apply(new ListBuilder<>(RankEvalHitItem.Builder::new)).build());
 		}
 
 		/**

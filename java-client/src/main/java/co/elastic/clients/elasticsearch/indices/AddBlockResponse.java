@@ -30,14 +30,15 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -59,8 +60,10 @@ public class AddBlockResponse extends AcknowledgedResponseBase {
 
 	}
 
-	public static AddBlockResponse of(Function<Builder, ObjectBuilder<AddBlockResponse>> fn) {
-		return fn.apply(new Builder()).build();
+	public static AddBlockResponse of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -135,13 +138,9 @@ public class AddBlockResponse extends AcknowledgedResponseBase {
 		/**
 		 * Required - API name: {@code indices}
 		 */
-		@SafeVarargs
-		public final Builder indices(Function<IndicesBlockStatus.Builder, ObjectBuilder<IndicesBlockStatus>>... fns) {
-			this.indices = new ArrayList<>(fns.length);
-			for (Function<IndicesBlockStatus.Builder, ObjectBuilder<IndicesBlockStatus>> fn : fns) {
-				this.indices.add(fn.apply(new IndicesBlockStatus.Builder()).build());
-			}
-			return this;
+		public final Builder indices(
+				Function<ListBuilder<IndicesBlockStatus, IndicesBlockStatus.Builder>, ObjectBuilder<List<IndicesBlockStatus>>> fn) {
+			return indices(fn.apply(new ListBuilder<>(IndicesBlockStatus.Builder::new)).build());
 		}
 
 		@Override

@@ -35,7 +35,7 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
-import co.elastic.clients.transport.SimpleEndpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.MapBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
@@ -44,11 +44,11 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
@@ -91,8 +91,10 @@ public class FieldCapsRequest extends RequestBase implements JsonpSerializable {
 
 	}
 
-	public static FieldCapsRequest of(Function<Builder, ObjectBuilder<FieldCapsRequest>> fn) {
-		return fn.apply(new Builder()).build();
+	public static FieldCapsRequest of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -340,8 +342,10 @@ public class FieldCapsRequest extends RequestBase implements JsonpSerializable {
 		/**
 		 * API name: {@code index_filter}
 		 */
-		public final Builder indexFilter(Function<Query.Builder, ObjectBuilder<Query>> fn) {
-			return this.indexFilter(fn.apply(new Query.Builder()).build());
+		public final Builder indexFilter(Consumer<Query.Builder> fn) {
+			Query.Builder builder = new Query.Builder();
+			fn.accept(builder);
+			return this.indexFilter(builder.build());
 		}
 
 		/**
@@ -350,13 +354,6 @@ public class FieldCapsRequest extends RequestBase implements JsonpSerializable {
 		public final Builder runtimeMappings(@Nullable Map<String, RuntimeField> value) {
 			this.runtimeMappings = value;
 			return this;
-		}
-
-		/**
-		 * Set {@link #runtimeMappings(Map)} to a singleton map.
-		 */
-		public Builder runtimeMappings(String key, Function<RuntimeField.Builder, ObjectBuilder<RuntimeField>> fn) {
-			return this.runtimeMappings(Collections.singletonMap(key, fn.apply(new RuntimeField.Builder()).build()));
 		}
 
 		public final Builder runtimeMappings(

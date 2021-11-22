@@ -32,7 +32,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: _types.mapping.GeoShapeProperty
@@ -66,16 +66,18 @@ public class GeoShapeProperty extends DocValuesPropertyBase implements PropertyV
 
 	}
 
-	public static GeoShapeProperty of(Function<Builder, ObjectBuilder<GeoShapeProperty>> fn) {
-		return fn.apply(new Builder()).build();
+	public static GeoShapeProperty of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
-	 * {@link Property} variant type
+	 * Property variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "geo_shape";
+	public Property.Kind _propertyKind() {
+		return Property.Kind.GeoShape;
 	}
 
 	/**

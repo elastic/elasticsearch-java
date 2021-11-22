@@ -28,13 +28,14 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -52,16 +53,18 @@ public class MultiTermsAggregation extends BucketAggregationBase implements Aggr
 
 	}
 
-	public static MultiTermsAggregation of(Function<Builder, ObjectBuilder<MultiTermsAggregation>> fn) {
-		return fn.apply(new Builder()).build();
+	public static MultiTermsAggregation of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
-	 * {@link Aggregation} variant type
+	 * Aggregation variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "multi_terms";
+	public Aggregation.Kind _aggregationKind() {
+		return Aggregation.Kind.MultiTerms;
 	}
 
 	/**
@@ -116,13 +119,9 @@ public class MultiTermsAggregation extends BucketAggregationBase implements Aggr
 		/**
 		 * Required - API name: {@code terms}
 		 */
-		@SafeVarargs
-		public final Builder terms(Function<MultiTermLookup.Builder, ObjectBuilder<MultiTermLookup>>... fns) {
-			this.terms = new ArrayList<>(fns.length);
-			for (Function<MultiTermLookup.Builder, ObjectBuilder<MultiTermLookup>> fn : fns) {
-				this.terms.add(fn.apply(new MultiTermLookup.Builder()).build());
-			}
-			return this;
+		public final Builder terms(
+				Function<ListBuilder<MultiTermLookup, MultiTermLookup.Builder>, ObjectBuilder<List<MultiTermLookup>>> fn) {
+			return terms(fn.apply(new ListBuilder<>(MultiTermLookup.Builder::new)).build());
 		}
 
 		@Override

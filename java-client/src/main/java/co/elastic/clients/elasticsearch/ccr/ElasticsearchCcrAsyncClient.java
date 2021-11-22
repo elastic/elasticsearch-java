@@ -26,25 +26,26 @@ package co.elastic.clients.elasticsearch.ccr;
 import co.elastic.clients.ApiClient;
 import co.elastic.clients.elasticsearch._types.ElasticsearchException;
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
+import co.elastic.clients.transport.ElasticsearchTransport;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.Transport;
 import co.elastic.clients.transport.TransportOptions;
 import co.elastic.clients.util.ObjectBuilder;
 import java.io.IOException;
 import java.util.concurrent.CompletableFuture;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 /**
  * Client for the ccr namespace.
  */
-public class ElasticsearchCcrAsyncClient extends ApiClient<ElasticsearchCcrAsyncClient> {
+public class ElasticsearchCcrAsyncClient extends ApiClient<ElasticsearchTransport, ElasticsearchCcrAsyncClient> {
 
-	public ElasticsearchCcrAsyncClient(Transport transport) {
+	public ElasticsearchCcrAsyncClient(ElasticsearchTransport transport) {
 		super(transport, null);
 	}
 
-	public ElasticsearchCcrAsyncClient(Transport transport, @Nullable TransportOptions transportOptions) {
+	public ElasticsearchCcrAsyncClient(ElasticsearchTransport transport, @Nullable TransportOptions transportOptions) {
 		super(transport, transportOptions);
 	}
 
@@ -83,9 +84,10 @@ public class ElasticsearchCcrAsyncClient extends ApiClient<ElasticsearchCcrAsync
 	 */
 
 	public final CompletableFuture<DeleteAutoFollowPatternResponse> deleteAutoFollowPattern(
-			Function<DeleteAutoFollowPatternRequest.Builder, ObjectBuilder<DeleteAutoFollowPatternRequest>> fn)
-			throws IOException, ElasticsearchException {
-		return deleteAutoFollowPattern(fn.apply(new DeleteAutoFollowPatternRequest.Builder()).build());
+			Consumer<DeleteAutoFollowPatternRequest.Builder> fn) throws IOException, ElasticsearchException {
+		DeleteAutoFollowPatternRequest.Builder builder = new DeleteAutoFollowPatternRequest.Builder();
+		fn.accept(builder);
+		return deleteAutoFollowPattern(builder.build());
 	}
 
 	// ----- Endpoint: ccr.follow
@@ -118,10 +120,11 @@ public class ElasticsearchCcrAsyncClient extends ApiClient<ElasticsearchCcrAsync
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<FollowResponse> follow(
-			Function<FollowRequest.Builder, ObjectBuilder<FollowRequest>> fn)
+	public final CompletableFuture<FollowResponse> follow(Consumer<FollowRequest.Builder> fn)
 			throws IOException, ElasticsearchException {
-		return follow(fn.apply(new FollowRequest.Builder()).build());
+		FollowRequest.Builder builder = new FollowRequest.Builder();
+		fn.accept(builder);
+		return follow(builder.build());
 	}
 
 	// ----- Endpoint: ccr.follow_info
@@ -155,10 +158,11 @@ public class ElasticsearchCcrAsyncClient extends ApiClient<ElasticsearchCcrAsync
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<FollowInfoResponse> followInfo(
-			Function<FollowInfoRequest.Builder, ObjectBuilder<FollowInfoRequest>> fn)
+	public final CompletableFuture<FollowInfoResponse> followInfo(Consumer<FollowInfoRequest.Builder> fn)
 			throws IOException, ElasticsearchException {
-		return followInfo(fn.apply(new FollowInfoRequest.Builder()).build());
+		FollowInfoRequest.Builder builder = new FollowInfoRequest.Builder();
+		fn.accept(builder);
+		return followInfo(builder.build());
 	}
 
 	// ----- Endpoint: ccr.follow_stats
@@ -192,10 +196,11 @@ public class ElasticsearchCcrAsyncClient extends ApiClient<ElasticsearchCcrAsync
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<FollowStatsResponse> followStats(
-			Function<FollowStatsRequest.Builder, ObjectBuilder<FollowStatsRequest>> fn)
+	public final CompletableFuture<FollowStatsResponse> followStats(Consumer<FollowStatsRequest.Builder> fn)
 			throws IOException, ElasticsearchException {
-		return followStats(fn.apply(new FollowStatsRequest.Builder()).build());
+		FollowStatsRequest.Builder builder = new FollowStatsRequest.Builder();
+		fn.accept(builder);
+		return followStats(builder.build());
 	}
 
 	// ----- Endpoint: ccr.forget_follower
@@ -227,10 +232,11 @@ public class ElasticsearchCcrAsyncClient extends ApiClient<ElasticsearchCcrAsync
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<ForgetFollowerResponse> forgetFollower(
-			Function<ForgetFollowerRequest.Builder, ObjectBuilder<ForgetFollowerRequest>> fn)
+	public final CompletableFuture<ForgetFollowerResponse> forgetFollower(Consumer<ForgetFollowerRequest.Builder> fn)
 			throws IOException, ElasticsearchException {
-		return forgetFollower(fn.apply(new ForgetFollowerRequest.Builder()).build());
+		ForgetFollowerRequest.Builder builder = new ForgetFollowerRequest.Builder();
+		fn.accept(builder);
+		return forgetFollower(builder.build());
 	}
 
 	// ----- Endpoint: ccr.get_auto_follow_pattern
@@ -265,9 +271,10 @@ public class ElasticsearchCcrAsyncClient extends ApiClient<ElasticsearchCcrAsync
 	 */
 
 	public final CompletableFuture<GetAutoFollowPatternResponse> getAutoFollowPattern(
-			Function<GetAutoFollowPatternRequest.Builder, ObjectBuilder<GetAutoFollowPatternRequest>> fn)
-			throws IOException, ElasticsearchException {
-		return getAutoFollowPattern(fn.apply(new GetAutoFollowPatternRequest.Builder()).build());
+			Consumer<GetAutoFollowPatternRequest.Builder> fn) throws IOException, ElasticsearchException {
+		GetAutoFollowPatternRequest.Builder builder = new GetAutoFollowPatternRequest.Builder();
+		fn.accept(builder);
+		return getAutoFollowPattern(builder.build());
 	}
 
 	/**
@@ -315,9 +322,10 @@ public class ElasticsearchCcrAsyncClient extends ApiClient<ElasticsearchCcrAsync
 	 */
 
 	public final CompletableFuture<PauseAutoFollowPatternResponse> pauseAutoFollowPattern(
-			Function<PauseAutoFollowPatternRequest.Builder, ObjectBuilder<PauseAutoFollowPatternRequest>> fn)
-			throws IOException, ElasticsearchException {
-		return pauseAutoFollowPattern(fn.apply(new PauseAutoFollowPatternRequest.Builder()).build());
+			Consumer<PauseAutoFollowPatternRequest.Builder> fn) throws IOException, ElasticsearchException {
+		PauseAutoFollowPatternRequest.Builder builder = new PauseAutoFollowPatternRequest.Builder();
+		fn.accept(builder);
+		return pauseAutoFollowPattern(builder.build());
 	}
 
 	// ----- Endpoint: ccr.pause_follow
@@ -351,10 +359,11 @@ public class ElasticsearchCcrAsyncClient extends ApiClient<ElasticsearchCcrAsync
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<PauseFollowResponse> pauseFollow(
-			Function<PauseFollowRequest.Builder, ObjectBuilder<PauseFollowRequest>> fn)
+	public final CompletableFuture<PauseFollowResponse> pauseFollow(Consumer<PauseFollowRequest.Builder> fn)
 			throws IOException, ElasticsearchException {
-		return pauseFollow(fn.apply(new PauseFollowRequest.Builder()).build());
+		PauseFollowRequest.Builder builder = new PauseFollowRequest.Builder();
+		fn.accept(builder);
+		return pauseFollow(builder.build());
 	}
 
 	// ----- Endpoint: ccr.put_auto_follow_pattern
@@ -391,9 +400,10 @@ public class ElasticsearchCcrAsyncClient extends ApiClient<ElasticsearchCcrAsync
 	 */
 
 	public final CompletableFuture<PutAutoFollowPatternResponse> putAutoFollowPattern(
-			Function<PutAutoFollowPatternRequest.Builder, ObjectBuilder<PutAutoFollowPatternRequest>> fn)
-			throws IOException, ElasticsearchException {
-		return putAutoFollowPattern(fn.apply(new PutAutoFollowPatternRequest.Builder()).build());
+			Consumer<PutAutoFollowPatternRequest.Builder> fn) throws IOException, ElasticsearchException {
+		PutAutoFollowPatternRequest.Builder builder = new PutAutoFollowPatternRequest.Builder();
+		fn.accept(builder);
+		return putAutoFollowPattern(builder.build());
 	}
 
 	// ----- Endpoint: ccr.resume_auto_follow_pattern
@@ -426,9 +436,10 @@ public class ElasticsearchCcrAsyncClient extends ApiClient<ElasticsearchCcrAsync
 	 */
 
 	public final CompletableFuture<ResumeAutoFollowPatternResponse> resumeAutoFollowPattern(
-			Function<ResumeAutoFollowPatternRequest.Builder, ObjectBuilder<ResumeAutoFollowPatternRequest>> fn)
-			throws IOException, ElasticsearchException {
-		return resumeAutoFollowPattern(fn.apply(new ResumeAutoFollowPatternRequest.Builder()).build());
+			Consumer<ResumeAutoFollowPatternRequest.Builder> fn) throws IOException, ElasticsearchException {
+		ResumeAutoFollowPatternRequest.Builder builder = new ResumeAutoFollowPatternRequest.Builder();
+		fn.accept(builder);
+		return resumeAutoFollowPattern(builder.build());
 	}
 
 	// ----- Endpoint: ccr.resume_follow
@@ -460,10 +471,11 @@ public class ElasticsearchCcrAsyncClient extends ApiClient<ElasticsearchCcrAsync
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<ResumeFollowResponse> resumeFollow(
-			Function<ResumeFollowRequest.Builder, ObjectBuilder<ResumeFollowRequest>> fn)
+	public final CompletableFuture<ResumeFollowResponse> resumeFollow(Consumer<ResumeFollowRequest.Builder> fn)
 			throws IOException, ElasticsearchException {
-		return resumeFollow(fn.apply(new ResumeFollowRequest.Builder()).build());
+		ResumeFollowRequest.Builder builder = new ResumeFollowRequest.Builder();
+		fn.accept(builder);
+		return resumeFollow(builder.build());
 	}
 
 	// ----- Endpoint: ccr.stats
@@ -511,10 +523,11 @@ public class ElasticsearchCcrAsyncClient extends ApiClient<ElasticsearchCcrAsync
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<UnfollowResponse> unfollow(
-			Function<UnfollowRequest.Builder, ObjectBuilder<UnfollowRequest>> fn)
+	public final CompletableFuture<UnfollowResponse> unfollow(Consumer<UnfollowRequest.Builder> fn)
 			throws IOException, ElasticsearchException {
-		return unfollow(fn.apply(new UnfollowRequest.Builder()).build());
+		UnfollowRequest.Builder builder = new UnfollowRequest.Builder();
+		fn.accept(builder);
+		return unfollow(builder.build());
 	}
 
 }

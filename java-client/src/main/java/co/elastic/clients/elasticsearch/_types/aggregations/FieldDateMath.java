@@ -39,23 +39,25 @@ import java.lang.Double;
 import java.lang.Object;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.FieldDateMath
 // union type: Union[]
 @JsonpDeserializable
-public class FieldDateMath implements TaggedUnion<Object>, JsonpSerializable {
+public class FieldDateMath implements TaggedUnion<FieldDateMath.Kind, Object>, JsonpSerializable {
 
-	public static final String EXPR = "expr";
-	public static final String VALUE = "value";
+	public enum Kind {
+		Expr, Value
 
-	private final String _type;
+	}
+
+	private final Kind _kind;
 	private final Object _value;
 
 	@Override
-	public final String _type() {
-		return _type;
+	public final Kind _kind() {
+		return _kind;
 	}
 
 	@Override
@@ -63,31 +65,41 @@ public class FieldDateMath implements TaggedUnion<Object>, JsonpSerializable {
 		return _value;
 	}
 
-	public FieldDateMath(String type, Object value) {
-		this._type = type;
+	public FieldDateMath(Kind kind, Object value) {
+		this._kind = kind;
 		this._value = value;
 	}
 
 	public String _toJsonString() {
-		switch (_type) {
-			case "expr" :
+		switch (_kind) {
+			case Expr :
 				return this.expr();
-			case "value" :
+			case Value :
 				return String.valueOf(this.value());
 
 			default :
-				throw new IllegalStateException("Unknown type " + _type);
+				throw new IllegalStateException("Unknown kind " + _kind);
 		}
 	}
+
 	private FieldDateMath(Builder builder) {
 
-		this._type = ModelTypeHelper.requireNonNull(builder._type, builder, "<variant type>");
+		this._kind = ModelTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
 		this._value = ModelTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
 
 	}
 
-	public static FieldDateMath of(Function<Builder, ObjectBuilder<FieldDateMath>> fn) {
-		return fn.apply(new Builder()).build();
+	public static FieldDateMath of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
+	}
+
+	/**
+	 * Is this variant instance of kind {@code expr}?
+	 */
+	public boolean isExpr() {
+		return _kind == Kind.Expr;
 	}
 
 	/**
@@ -97,7 +109,14 @@ public class FieldDateMath implements TaggedUnion<Object>, JsonpSerializable {
 	 *             if the current variant is not of the {@code expr} kind.
 	 */
 	public String expr() {
-		return TaggedUnionUtils.get(this, EXPR);
+		return TaggedUnionUtils.get(this, Kind.Expr);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code value}?
+	 */
+	public boolean isValue() {
+		return _kind == Kind.Value;
 	}
 
 	/**
@@ -107,7 +126,7 @@ public class FieldDateMath implements TaggedUnion<Object>, JsonpSerializable {
 	 *             if the current variant is not of the {@code value} kind.
 	 */
 	public Double value() {
-		return TaggedUnionUtils.get(this, VALUE);
+		return TaggedUnionUtils.get(this, Kind.Value);
 	}
 
 	@Override
@@ -115,12 +134,12 @@ public class FieldDateMath implements TaggedUnion<Object>, JsonpSerializable {
 		if (_value instanceof JsonpSerializable) {
 			((JsonpSerializable) _value).serialize(generator, mapper);
 		} else {
-			switch (_type) {
-				case EXPR :
+			switch (_kind) {
+				case Expr :
 					generator.write(((String) this._value));
 
 					break;
-				case VALUE :
+				case Value :
 					generator.write(((Double) this._value));
 
 					break;
@@ -130,17 +149,17 @@ public class FieldDateMath implements TaggedUnion<Object>, JsonpSerializable {
 	}
 
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<FieldDateMath> {
-		private String _type;
+		private Kind _kind;
 		private Object _value;
 
 		public Builder expr(String v) {
-			this._type = EXPR;
+			this._kind = Kind.Expr;
 			this._value = v;
 			return this;
 		}
 
 		public Builder value(Double v) {
-			this._type = VALUE;
+			this._kind = Kind.Value;
 			this._value = v;
 			return this;
 		}
@@ -153,9 +172,9 @@ public class FieldDateMath implements TaggedUnion<Object>, JsonpSerializable {
 	}
 
 	private static JsonpDeserializer<FieldDateMath> buildFieldDateMathDeserializer() {
-		return new UnionDeserializer.Builder<>(FieldDateMath::new, false)
-				.addMember("expr", JsonpDeserializer.stringDeserializer())
-				.addMember("value", JsonpDeserializer.doubleDeserializer()).build();
+		return new UnionDeserializer.Builder<FieldDateMath, Kind, Object>(FieldDateMath::new, false)
+				.addMember(Kind.Expr, JsonpDeserializer.stringDeserializer())
+				.addMember(Kind.Value, JsonpDeserializer.doubleDeserializer()).build();
 	}
 
 	public static final JsonpDeserializer<FieldDateMath> _DESERIALIZER = JsonpDeserializer

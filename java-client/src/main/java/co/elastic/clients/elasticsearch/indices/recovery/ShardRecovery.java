@@ -37,7 +37,7 @@ import java.lang.Boolean;
 import java.lang.Long;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: indices.recovery.ShardRecovery
@@ -102,8 +102,10 @@ public class ShardRecovery implements JsonpSerializable {
 
 	}
 
-	public static ShardRecovery of(Function<Builder, ObjectBuilder<ShardRecovery>> fn) {
-		return fn.apply(new Builder()).build();
+	public static ShardRecovery of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -352,8 +354,10 @@ public class ShardRecovery implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code index}
 		 */
-		public final Builder index(Function<RecoveryIndexStatus.Builder, ObjectBuilder<RecoveryIndexStatus>> fn) {
-			return this.index(fn.apply(new RecoveryIndexStatus.Builder()).build());
+		public final Builder index(Consumer<RecoveryIndexStatus.Builder> fn) {
+			RecoveryIndexStatus.Builder builder = new RecoveryIndexStatus.Builder();
+			fn.accept(builder);
+			return this.index(builder.build());
 		}
 
 		/**
@@ -375,8 +379,10 @@ public class ShardRecovery implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code source}
 		 */
-		public final Builder source(Function<RecoveryOrigin.Builder, ObjectBuilder<RecoveryOrigin>> fn) {
-			return this.source(fn.apply(new RecoveryOrigin.Builder()).build());
+		public final Builder source(Consumer<RecoveryOrigin.Builder> fn) {
+			RecoveryOrigin.Builder builder = new RecoveryOrigin.Builder();
+			fn.accept(builder);
+			return this.source(builder.build());
 		}
 
 		/**
@@ -398,8 +404,10 @@ public class ShardRecovery implements JsonpSerializable {
 		/**
 		 * API name: {@code start}
 		 */
-		public final Builder start(Function<RecoveryStartStatus.Builder, ObjectBuilder<RecoveryStartStatus>> fn) {
-			return this.start(fn.apply(new RecoveryStartStatus.Builder()).build());
+		public final Builder start(Consumer<RecoveryStartStatus.Builder> fn) {
+			RecoveryStartStatus.Builder builder = new RecoveryStartStatus.Builder();
+			fn.accept(builder);
+			return this.start(builder.build());
 		}
 
 		/**
@@ -445,8 +453,10 @@ public class ShardRecovery implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code target}
 		 */
-		public final Builder target(Function<RecoveryOrigin.Builder, ObjectBuilder<RecoveryOrigin>> fn) {
-			return this.target(fn.apply(new RecoveryOrigin.Builder()).build());
+		public final Builder target(Consumer<RecoveryOrigin.Builder> fn) {
+			RecoveryOrigin.Builder builder = new RecoveryOrigin.Builder();
+			fn.accept(builder);
+			return this.target(builder.build());
 		}
 
 		/**
@@ -476,8 +486,10 @@ public class ShardRecovery implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code translog}
 		 */
-		public final Builder translog(Function<TranslogStatus.Builder, ObjectBuilder<TranslogStatus>> fn) {
-			return this.translog(fn.apply(new TranslogStatus.Builder()).build());
+		public final Builder translog(Consumer<TranslogStatus.Builder> fn) {
+			TranslogStatus.Builder builder = new TranslogStatus.Builder();
+			fn.accept(builder);
+			return this.translog(builder.build());
 		}
 
 		/**
@@ -499,8 +511,10 @@ public class ShardRecovery implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code verify_index}
 		 */
-		public final Builder verifyIndex(Function<VerifyIndex.Builder, ObjectBuilder<VerifyIndex>> fn) {
-			return this.verifyIndex(fn.apply(new VerifyIndex.Builder()).build());
+		public final Builder verifyIndex(Consumer<VerifyIndex.Builder> fn) {
+			VerifyIndex.Builder builder = new VerifyIndex.Builder();
+			fn.accept(builder);
+			return this.verifyIndex(builder.build());
 		}
 
 		/**

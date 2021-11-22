@@ -32,7 +32,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: _global.rank_eval.RankEvalMetricPrecision
@@ -50,8 +50,10 @@ public class RankEvalMetricPrecision extends RankEvalMetricRatingTreshold {
 
 	}
 
-	public static RankEvalMetricPrecision of(Function<Builder, ObjectBuilder<RankEvalMetricPrecision>> fn) {
-		return fn.apply(new Builder()).build();
+	public static RankEvalMetricPrecision of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**

@@ -37,7 +37,7 @@ import java.lang.String;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: ml.put_calendar.Response
@@ -59,8 +59,10 @@ public class PutCalendarResponse implements JsonpSerializable {
 
 	}
 
-	public static PutCalendarResponse of(Function<Builder, ObjectBuilder<PutCalendarResponse>> fn) {
-		return fn.apply(new Builder()).build();
+	public static PutCalendarResponse of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**

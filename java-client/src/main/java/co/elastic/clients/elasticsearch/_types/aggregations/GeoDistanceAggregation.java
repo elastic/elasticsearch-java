@@ -31,14 +31,15 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -72,16 +73,18 @@ public class GeoDistanceAggregation extends BucketAggregationBase implements Agg
 
 	}
 
-	public static GeoDistanceAggregation of(Function<Builder, ObjectBuilder<GeoDistanceAggregation>> fn) {
-		return fn.apply(new Builder()).build();
+	public static GeoDistanceAggregation of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
-	 * {@link Aggregation} variant type
+	 * Aggregation variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "geo_distance";
+	public Aggregation.Kind _aggregationKind() {
+		return Aggregation.Kind.GeoDistance;
 	}
 
 	/**
@@ -207,8 +210,10 @@ public class GeoDistanceAggregation extends BucketAggregationBase implements Agg
 		/**
 		 * API name: {@code origin}
 		 */
-		public final Builder origin(Function<GeoLocation.Builder, ObjectBuilder<GeoLocation>> fn) {
-			return this.origin(fn.apply(new GeoLocation.Builder()).build());
+		public final Builder origin(Consumer<GeoLocation.Builder> fn) {
+			GeoLocation.Builder builder = new GeoLocation.Builder();
+			fn.accept(builder);
+			return this.origin(builder.build());
 		}
 
 		/**
@@ -230,13 +235,9 @@ public class GeoDistanceAggregation extends BucketAggregationBase implements Agg
 		/**
 		 * API name: {@code ranges}
 		 */
-		@SafeVarargs
-		public final Builder ranges(Function<AggregationRange.Builder, ObjectBuilder<AggregationRange>>... fns) {
-			this.ranges = new ArrayList<>(fns.length);
-			for (Function<AggregationRange.Builder, ObjectBuilder<AggregationRange>> fn : fns) {
-				this.ranges.add(fn.apply(new AggregationRange.Builder()).build());
-			}
-			return this;
+		public final Builder ranges(
+				Function<ListBuilder<AggregationRange, AggregationRange.Builder>, ObjectBuilder<List<AggregationRange>>> fn) {
+			return ranges(fn.apply(new ListBuilder<>(AggregationRange.Builder::new)).build());
 		}
 
 		/**

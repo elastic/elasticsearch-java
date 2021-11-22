@@ -23,13 +23,19 @@
 
 package co.elastic.clients.elasticsearch._types.analysis;
 
+import co.elastic.clients.json.JsonEnum;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
-import co.elastic.clients.util.StringEnum;
 
 @JsonpDeserializable
-public enum KuromojiTokenizationMode implements StringEnum {
-	Normal("normal"), Search("search"), Extended("extended");
+public enum KuromojiTokenizationMode implements JsonEnum {
+	Normal("normal"),
+
+	Search("search"),
+
+	Extended("extended"),
+
+	;
 
 	private final String jsonValue;
 
@@ -41,6 +47,6 @@ public enum KuromojiTokenizationMode implements StringEnum {
 		return this.jsonValue;
 	}
 
-	public static final StringEnum.Deserializer<KuromojiTokenizationMode> _DESERIALIZER = new StringEnum.Deserializer<>(
+	public static final JsonEnum.Deserializer<KuromojiTokenizationMode> _DESERIALIZER = new JsonEnum.Deserializer<>(
 			KuromojiTokenizationMode.values());
 }

@@ -23,12 +23,12 @@
 
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
-import co.elastic.clients.util.UnionVariant;
-
 /**
  * Base interface for {@link Intervals} variants.
  */
-public interface IntervalsVariant extends UnionVariant {
+public interface IntervalsVariant {
+
+	Intervals.Kind _intervalsKind();
 
 	default Intervals _toIntervals() {
 		return new Intervals(this);

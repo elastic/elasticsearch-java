@@ -34,7 +34,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: xpack.usage.SecurityRolesDls
@@ -50,8 +50,10 @@ public class SecurityRolesDls implements JsonpSerializable {
 
 	}
 
-	public static SecurityRolesDls of(Function<Builder, ObjectBuilder<SecurityRolesDls>> fn) {
-		return fn.apply(new Builder()).build();
+	public static SecurityRolesDls of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -96,9 +98,10 @@ public class SecurityRolesDls implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code bit_set_cache}
 		 */
-		public final Builder bitSetCache(
-				Function<SecurityRolesDlsBitSetCache.Builder, ObjectBuilder<SecurityRolesDlsBitSetCache>> fn) {
-			return this.bitSetCache(fn.apply(new SecurityRolesDlsBitSetCache.Builder()).build());
+		public final Builder bitSetCache(Consumer<SecurityRolesDlsBitSetCache.Builder> fn) {
+			SecurityRolesDlsBitSetCache.Builder builder = new SecurityRolesDlsBitSetCache.Builder();
+			fn.accept(builder);
+			return this.bitSetCache(builder.build());
 		}
 
 		/**

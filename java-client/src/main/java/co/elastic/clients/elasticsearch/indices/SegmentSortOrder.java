@@ -23,13 +23,17 @@
 
 package co.elastic.clients.elasticsearch.indices;
 
+import co.elastic.clients.json.JsonEnum;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
-import co.elastic.clients.util.StringEnum;
 
 @JsonpDeserializable
-public enum SegmentSortOrder implements StringEnum {
-	Asc("asc"), Desc("desc");
+public enum SegmentSortOrder implements JsonEnum {
+	Asc("asc"),
+
+	Desc("desc"),
+
+	;
 
 	private final String jsonValue;
 
@@ -41,6 +45,6 @@ public enum SegmentSortOrder implements StringEnum {
 		return this.jsonValue;
 	}
 
-	public static final StringEnum.Deserializer<SegmentSortOrder> _DESERIALIZER = new StringEnum.Deserializer<>(
+	public static final JsonEnum.Deserializer<SegmentSortOrder> _DESERIALIZER = new JsonEnum.Deserializer<>(
 			SegmentSortOrder.values());
 }

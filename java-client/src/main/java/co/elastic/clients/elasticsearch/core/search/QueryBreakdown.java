@@ -35,7 +35,7 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 
 // typedef: _global.search._types.QueryBreakdown
 @JsonpDeserializable
@@ -105,8 +105,10 @@ public class QueryBreakdown implements JsonpSerializable {
 
 	}
 
-	public static QueryBreakdown of(Function<Builder, ObjectBuilder<QueryBreakdown>> fn) {
-		return fn.apply(new Builder()).build();
+	public static QueryBreakdown of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**

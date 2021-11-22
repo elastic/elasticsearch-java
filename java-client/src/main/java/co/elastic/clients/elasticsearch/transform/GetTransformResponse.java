@@ -30,15 +30,16 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -58,8 +59,10 @@ public class GetTransformResponse implements JsonpSerializable {
 
 	}
 
-	public static GetTransformResponse of(Function<Builder, ObjectBuilder<GetTransformResponse>> fn) {
-		return fn.apply(new Builder()).build();
+	public static GetTransformResponse of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -140,13 +143,9 @@ public class GetTransformResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code transforms}
 		 */
-		@SafeVarargs
-		public final Builder transforms(Function<EmptyTransform.Builder, ObjectBuilder<EmptyTransform>>... fns) {
-			this.transforms = new ArrayList<>(fns.length);
-			for (Function<EmptyTransform.Builder, ObjectBuilder<EmptyTransform>> fn : fns) {
-				this.transforms.add(fn.apply(new EmptyTransform.Builder()).build());
-			}
-			return this;
+		public final Builder transforms(
+				Function<ListBuilder<EmptyTransform, EmptyTransform.Builder>, ObjectBuilder<List<EmptyTransform>>> fn) {
+			return transforms(fn.apply(new ListBuilder<>(EmptyTransform.Builder::new)).build());
 		}
 
 		/**

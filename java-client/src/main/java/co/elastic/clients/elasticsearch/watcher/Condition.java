@@ -23,6 +23,7 @@
 
 package co.elastic.clients.elasticsearch.watcher;
 
+import co.elastic.clients.json.JsonEnum;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -37,26 +38,49 @@ import co.elastic.clients.util.TaggedUnionUtils;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Object;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.ConditionContainer
 // union type: Container[]
 @JsonpDeserializable
-public class Condition implements TaggedUnion<Object>, JsonpSerializable {
+public class Condition implements TaggedUnion<Condition.Kind, Object>, JsonpSerializable {
 
-	public static final String ALWAYS = "always";
-	public static final String ARRAY_COMPARE = "array_compare";
-	public static final String COMPARE = "compare";
-	public static final String NEVER = "never";
-	public static final String SCRIPT = "script";
+	/**
+	 * {@link Condition} variant kinds.
+	 */
 
-	private final String _type;
+	public enum Kind implements JsonEnum {
+		Always("always"),
+
+		ArrayCompare("array_compare"),
+
+		Compare("compare"),
+
+		Never("never"),
+
+		Script("script"),
+
+		;
+
+		private final String jsonValue;
+
+		Kind(String jsonValue) {
+			this.jsonValue = jsonValue;
+		}
+
+		public String jsonValue() {
+			return this.jsonValue;
+		}
+
+	}
+
+	private final Kind _kind;
 	private final Object _value;
 
 	@Override
-	public final String _type() {
-		return _type;
+	public final Kind _kind() {
+		return _kind;
 	}
 
 	@Override
@@ -66,20 +90,29 @@ public class Condition implements TaggedUnion<Object>, JsonpSerializable {
 
 	public Condition(ConditionVariant value) {
 
-		this._type = ModelTypeHelper.requireNonNull(value._variantType(), this, "<variant type>");
+		this._kind = ModelTypeHelper.requireNonNull(value._conditionKind(), this, "<variant kind>");
 		this._value = ModelTypeHelper.requireNonNull(value, this, "<variant value>");
 
 	}
 
 	private Condition(Builder builder) {
 
-		this._type = ModelTypeHelper.requireNonNull(builder._type, builder, "<variant type>");
+		this._kind = ModelTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
 		this._value = ModelTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
 
 	}
 
-	public static Condition of(Function<Builder, ObjectBuilder<Condition>> fn) {
-		return fn.apply(new Builder()).build();
+	public static Condition of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
+	}
+
+	/**
+	 * Is this variant instance of kind {@code always}?
+	 */
+	public boolean isAlways() {
+		return _kind == Kind.Always;
 	}
 
 	/**
@@ -89,7 +122,14 @@ public class Condition implements TaggedUnion<Object>, JsonpSerializable {
 	 *             if the current variant is not of the {@code always} kind.
 	 */
 	public AlwaysCondition always() {
-		return TaggedUnionUtils.get(this, ALWAYS);
+		return TaggedUnionUtils.get(this, Kind.Always);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code array_compare}?
+	 */
+	public boolean isArrayCompare() {
+		return _kind == Kind.ArrayCompare;
 	}
 
 	/**
@@ -99,7 +139,14 @@ public class Condition implements TaggedUnion<Object>, JsonpSerializable {
 	 *             if the current variant is not of the {@code array_compare} kind.
 	 */
 	public ArrayCompareCondition arrayCompare() {
-		return TaggedUnionUtils.get(this, ARRAY_COMPARE);
+		return TaggedUnionUtils.get(this, Kind.ArrayCompare);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code compare}?
+	 */
+	public boolean isCompare() {
+		return _kind == Kind.Compare;
 	}
 
 	/**
@@ -109,7 +156,14 @@ public class Condition implements TaggedUnion<Object>, JsonpSerializable {
 	 *             if the current variant is not of the {@code compare} kind.
 	 */
 	public CompareCondition compare() {
-		return TaggedUnionUtils.get(this, COMPARE);
+		return TaggedUnionUtils.get(this, Kind.Compare);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code never}?
+	 */
+	public boolean isNever() {
+		return _kind == Kind.Never;
 	}
 
 	/**
@@ -119,7 +173,14 @@ public class Condition implements TaggedUnion<Object>, JsonpSerializable {
 	 *             if the current variant is not of the {@code never} kind.
 	 */
 	public NeverCondition never() {
-		return TaggedUnionUtils.get(this, NEVER);
+		return TaggedUnionUtils.get(this, Kind.Never);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code script}?
+	 */
+	public boolean isScript() {
+		return _kind == Kind.Script;
 	}
 
 	/**
@@ -129,7 +190,7 @@ public class Condition implements TaggedUnion<Object>, JsonpSerializable {
 	 *             if the current variant is not of the {@code script} kind.
 	 */
 	public ScriptCondition script() {
-		return TaggedUnionUtils.get(this, SCRIPT);
+		return TaggedUnionUtils.get(this, Kind.Script);
 	}
 
 	@Override
@@ -138,7 +199,7 @@ public class Condition implements TaggedUnion<Object>, JsonpSerializable {
 
 		generator.writeStartObject();
 
-		generator.writeKey(_type);
+		generator.writeKey(_kind.jsonValue());
 		if (_value instanceof JsonpSerializable) {
 			((JsonpSerializable) _value).serialize(generator, mapper);
 		}
@@ -148,57 +209,67 @@ public class Condition implements TaggedUnion<Object>, JsonpSerializable {
 	}
 
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Condition> {
-		private String _type;
+		private Kind _kind;
 		private Object _value;
 
 		public Builder always(AlwaysCondition v) {
-			this._type = ALWAYS;
+			this._kind = Kind.Always;
 			this._value = v;
 			return this;
 		}
 
-		public Builder always(Function<AlwaysCondition.Builder, ObjectBuilder<AlwaysCondition>> f) {
-			return this.always(f.apply(new AlwaysCondition.Builder()).build());
+		public Builder always(Consumer<AlwaysCondition.Builder> fn) {
+			AlwaysCondition.Builder builder = new AlwaysCondition.Builder();
+			fn.accept(builder);
+			return this.always(builder.build());
 		}
 
 		public Builder arrayCompare(ArrayCompareCondition v) {
-			this._type = ARRAY_COMPARE;
+			this._kind = Kind.ArrayCompare;
 			this._value = v;
 			return this;
 		}
 
-		public Builder arrayCompare(Function<ArrayCompareCondition.Builder, ObjectBuilder<ArrayCompareCondition>> f) {
-			return this.arrayCompare(f.apply(new ArrayCompareCondition.Builder()).build());
+		public Builder arrayCompare(Consumer<ArrayCompareCondition.Builder> fn) {
+			ArrayCompareCondition.Builder builder = new ArrayCompareCondition.Builder();
+			fn.accept(builder);
+			return this.arrayCompare(builder.build());
 		}
 
 		public Builder compare(CompareCondition v) {
-			this._type = COMPARE;
+			this._kind = Kind.Compare;
 			this._value = v;
 			return this;
 		}
 
-		public Builder compare(Function<CompareCondition.Builder, ObjectBuilder<CompareCondition>> f) {
-			return this.compare(f.apply(new CompareCondition.Builder()).build());
+		public Builder compare(Consumer<CompareCondition.Builder> fn) {
+			CompareCondition.Builder builder = new CompareCondition.Builder();
+			fn.accept(builder);
+			return this.compare(builder.build());
 		}
 
 		public Builder never(NeverCondition v) {
-			this._type = NEVER;
+			this._kind = Kind.Never;
 			this._value = v;
 			return this;
 		}
 
-		public Builder never(Function<NeverCondition.Builder, ObjectBuilder<NeverCondition>> f) {
-			return this.never(f.apply(new NeverCondition.Builder()).build());
+		public Builder never(Consumer<NeverCondition.Builder> fn) {
+			NeverCondition.Builder builder = new NeverCondition.Builder();
+			fn.accept(builder);
+			return this.never(builder.build());
 		}
 
 		public Builder script(ScriptCondition v) {
-			this._type = SCRIPT;
+			this._kind = Kind.Script;
 			this._value = v;
 			return this;
 		}
 
-		public Builder script(Function<ScriptCondition.Builder, ObjectBuilder<ScriptCondition>> f) {
-			return this.script(f.apply(new ScriptCondition.Builder()).build());
+		public Builder script(Consumer<ScriptCondition.Builder> fn) {
+			ScriptCondition.Builder builder = new ScriptCondition.Builder();
+			fn.accept(builder);
+			return this.script(builder.build());
 		}
 
 		public Condition build() {

@@ -35,7 +35,7 @@ import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.MatchBoolPrefixQuery
@@ -88,16 +88,18 @@ public class MatchBoolPrefixQuery extends QueryBase implements QueryVariant {
 
 	}
 
-	public static MatchBoolPrefixQuery of(Function<Builder, ObjectBuilder<MatchBoolPrefixQuery>> fn) {
-		return fn.apply(new Builder()).build();
+	public static MatchBoolPrefixQuery of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
-	 * {@link Query} variant type
+	 * Query variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "match_bool_prefix";
+	public Query.Kind _queryKind() {
+		return Query.Kind.MatchBoolPrefix;
 	}
 
 	/**

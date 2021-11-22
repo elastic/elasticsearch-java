@@ -35,7 +35,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: license.get.Response
@@ -51,8 +51,10 @@ public class GetLicenseResponse implements JsonpSerializable {
 
 	}
 
-	public static GetLicenseResponse of(Function<Builder, ObjectBuilder<GetLicenseResponse>> fn) {
-		return fn.apply(new Builder()).build();
+	public static GetLicenseResponse of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -97,8 +99,10 @@ public class GetLicenseResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code license}
 		 */
-		public final Builder license(Function<LicenseInformation.Builder, ObjectBuilder<LicenseInformation>> fn) {
-			return this.license(fn.apply(new LicenseInformation.Builder()).build());
+		public final Builder license(Consumer<LicenseInformation.Builder> fn) {
+			LicenseInformation.Builder builder = new LicenseInformation.Builder();
+			fn.accept(builder);
+			return this.license(builder.build());
 		}
 
 		/**

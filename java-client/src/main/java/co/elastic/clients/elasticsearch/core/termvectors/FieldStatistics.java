@@ -36,7 +36,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.Long;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 
 // typedef: _global.termvectors.FieldStatistics
 @JsonpDeserializable
@@ -57,8 +57,10 @@ public class FieldStatistics implements JsonpSerializable {
 
 	}
 
-	public static FieldStatistics of(Function<Builder, ObjectBuilder<FieldStatistics>> fn) {
-		return fn.apply(new Builder()).build();
+	public static FieldStatistics of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**

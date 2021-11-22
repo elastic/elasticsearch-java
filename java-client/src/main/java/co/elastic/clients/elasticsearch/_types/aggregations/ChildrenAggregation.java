@@ -32,7 +32,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.ChildrenAggregation
@@ -50,16 +50,18 @@ public class ChildrenAggregation extends BucketAggregationBase implements Aggreg
 
 	}
 
-	public static ChildrenAggregation of(Function<Builder, ObjectBuilder<ChildrenAggregation>> fn) {
-		return fn.apply(new Builder()).build();
+	public static ChildrenAggregation of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
-	 * {@link Aggregation} variant type
+	 * Aggregation variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "children";
+	public Aggregation.Kind _aggregationKind() {
+		return Aggregation.Kind.Children;
 	}
 
 	/**

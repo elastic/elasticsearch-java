@@ -34,7 +34,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Float;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.ScriptScoreQuery
@@ -58,16 +58,18 @@ public class ScriptScoreQuery extends QueryBase implements QueryVariant {
 
 	}
 
-	public static ScriptScoreQuery of(Function<Builder, ObjectBuilder<ScriptScoreQuery>> fn) {
-		return fn.apply(new Builder()).build();
+	public static ScriptScoreQuery of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
-	 * {@link Query} variant type
+	 * Query variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "script_score";
+	public Query.Kind _queryKind() {
+		return Query.Kind.ScriptScore;
 	}
 
 	/**
@@ -140,8 +142,10 @@ public class ScriptScoreQuery extends QueryBase implements QueryVariant {
 		/**
 		 * Required - API name: {@code query}
 		 */
-		public final Builder query(Function<Query.Builder, ObjectBuilder<Query>> fn) {
-			return this.query(fn.apply(new Query.Builder()).build());
+		public final Builder query(Consumer<Query.Builder> fn) {
+			Query.Builder builder = new Query.Builder();
+			fn.accept(builder);
+			return this.query(builder.build());
 		}
 
 		/**
@@ -155,8 +159,10 @@ public class ScriptScoreQuery extends QueryBase implements QueryVariant {
 		/**
 		 * Required - API name: {@code script}
 		 */
-		public final Builder script(Function<Script.Builder, ObjectBuilder<Script>> fn) {
-			return this.script(fn.apply(new Script.Builder()).build());
+		public final Builder script(Consumer<Script.Builder> fn) {
+			Script.Builder builder = new Script.Builder();
+			fn.accept(builder);
+			return this.script(builder.build());
 		}
 
 		@Override

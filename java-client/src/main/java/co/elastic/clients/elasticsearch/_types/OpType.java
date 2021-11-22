@@ -23,13 +23,17 @@
 
 package co.elastic.clients.elasticsearch._types;
 
+import co.elastic.clients.json.JsonEnum;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
-import co.elastic.clients.util.StringEnum;
 
 @JsonpDeserializable
-public enum OpType implements StringEnum {
-	Index("index"), Create("create");
+public enum OpType implements JsonEnum {
+	Index("index"),
+
+	Create("create"),
+
+	;
 
 	private final String jsonValue;
 
@@ -41,5 +45,5 @@ public enum OpType implements StringEnum {
 		return this.jsonValue;
 	}
 
-	public static final StringEnum.Deserializer<OpType> _DESERIALIZER = new StringEnum.Deserializer<>(OpType.values());
+	public static final JsonEnum.Deserializer<OpType> _DESERIALIZER = new JsonEnum.Deserializer<>(OpType.values());
 }

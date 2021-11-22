@@ -34,7 +34,7 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Float;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.EwmaModelSettings
@@ -51,8 +51,10 @@ public class EwmaModelSettings implements JsonpSerializable {
 
 	}
 
-	public static EwmaModelSettings of(Function<Builder, ObjectBuilder<EwmaModelSettings>> fn) {
-		return fn.apply(new Builder()).build();
+	public static EwmaModelSettings of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**

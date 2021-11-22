@@ -34,7 +34,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Double;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: _types.mapping.BooleanProperty
@@ -64,16 +64,18 @@ public class BooleanProperty extends DocValuesPropertyBase implements PropertyVa
 
 	}
 
-	public static BooleanProperty of(Function<Builder, ObjectBuilder<BooleanProperty>> fn) {
-		return fn.apply(new Builder()).build();
+	public static BooleanProperty of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
-	 * {@link Property} variant type
+	 * Property variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "boolean";
+	public Property.Kind _propertyKind() {
+		return Property.Kind.Boolean;
 	}
 
 	/**
@@ -174,8 +176,10 @@ public class BooleanProperty extends DocValuesPropertyBase implements PropertyVa
 		/**
 		 * API name: {@code fielddata}
 		 */
-		public final Builder fielddata(Function<NumericFielddata.Builder, ObjectBuilder<NumericFielddata>> fn) {
-			return this.fielddata(fn.apply(new NumericFielddata.Builder()).build());
+		public final Builder fielddata(Consumer<NumericFielddata.Builder> fn) {
+			NumericFielddata.Builder builder = new NumericFielddata.Builder();
+			fn.accept(builder);
+			return this.fielddata(builder.build());
 		}
 
 		/**

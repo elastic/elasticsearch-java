@@ -29,15 +29,16 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -60,8 +61,10 @@ public class FileSystem implements JsonpSerializable {
 
 	}
 
-	public static FileSystem of(Function<Builder, ObjectBuilder<FileSystem>> fn) {
-		return fn.apply(new Builder()).build();
+	public static FileSystem of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -145,13 +148,9 @@ public class FileSystem implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code data}
 		 */
-		@SafeVarargs
-		public final Builder data(Function<DataPathStats.Builder, ObjectBuilder<DataPathStats>>... fns) {
-			this.data = new ArrayList<>(fns.length);
-			for (Function<DataPathStats.Builder, ObjectBuilder<DataPathStats>> fn : fns) {
-				this.data.add(fn.apply(new DataPathStats.Builder()).build());
-			}
-			return this;
+		public final Builder data(
+				Function<ListBuilder<DataPathStats, DataPathStats.Builder>, ObjectBuilder<List<DataPathStats>>> fn) {
+			return data(fn.apply(new ListBuilder<>(DataPathStats.Builder::new)).build());
 		}
 
 		/**
@@ -173,8 +172,10 @@ public class FileSystem implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code total}
 		 */
-		public final Builder total(Function<FileSystemTotal.Builder, ObjectBuilder<FileSystemTotal>> fn) {
-			return this.total(fn.apply(new FileSystemTotal.Builder()).build());
+		public final Builder total(Consumer<FileSystemTotal.Builder> fn) {
+			FileSystemTotal.Builder builder = new FileSystemTotal.Builder();
+			fn.accept(builder);
+			return this.total(builder.build());
 		}
 
 		/**

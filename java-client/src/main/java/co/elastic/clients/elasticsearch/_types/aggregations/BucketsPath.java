@@ -40,24 +40,25 @@ import java.lang.String;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.BucketsPath
 // union type: Union[]
 @JsonpDeserializable
-public class BucketsPath implements TaggedUnion<Object>, JsonpSerializable {
+public class BucketsPath implements TaggedUnion<BucketsPath.Kind, Object>, JsonpSerializable {
 
-	public static final String ARRAY = "array";
-	public static final String DICT = "dict";
-	public static final String SINGLE = "single";
+	public enum Kind {
+		Array, Dict, Single
 
-	private final String _type;
+	}
+
+	private final Kind _kind;
 	private final Object _value;
 
 	@Override
-	public final String _type() {
-		return _type;
+	public final Kind _kind() {
+		return _kind;
 	}
 
 	@Override
@@ -65,20 +66,29 @@ public class BucketsPath implements TaggedUnion<Object>, JsonpSerializable {
 		return _value;
 	}
 
-	public BucketsPath(String type, Object value) {
-		this._type = type;
+	public BucketsPath(Kind kind, Object value) {
+		this._kind = kind;
 		this._value = value;
 	}
 
 	private BucketsPath(Builder builder) {
 
-		this._type = ModelTypeHelper.requireNonNull(builder._type, builder, "<variant type>");
+		this._kind = ModelTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
 		this._value = ModelTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
 
 	}
 
-	public static BucketsPath of(Function<Builder, ObjectBuilder<BucketsPath>> fn) {
-		return fn.apply(new Builder()).build();
+	public static BucketsPath of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
+	}
+
+	/**
+	 * Is this variant instance of kind {@code array}?
+	 */
+	public boolean isArray() {
+		return _kind == Kind.Array;
 	}
 
 	/**
@@ -88,7 +98,14 @@ public class BucketsPath implements TaggedUnion<Object>, JsonpSerializable {
 	 *             if the current variant is not of the {@code array} kind.
 	 */
 	public List<String> array() {
-		return TaggedUnionUtils.get(this, ARRAY);
+		return TaggedUnionUtils.get(this, Kind.Array);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code dict}?
+	 */
+	public boolean isDict() {
+		return _kind == Kind.Dict;
 	}
 
 	/**
@@ -98,7 +115,14 @@ public class BucketsPath implements TaggedUnion<Object>, JsonpSerializable {
 	 *             if the current variant is not of the {@code dict} kind.
 	 */
 	public Map<String, String> dict() {
-		return TaggedUnionUtils.get(this, DICT);
+		return TaggedUnionUtils.get(this, Kind.Dict);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code single}?
+	 */
+	public boolean isSingle() {
+		return _kind == Kind.Single;
 	}
 
 	/**
@@ -108,7 +132,7 @@ public class BucketsPath implements TaggedUnion<Object>, JsonpSerializable {
 	 *             if the current variant is not of the {@code single} kind.
 	 */
 	public String single() {
-		return TaggedUnionUtils.get(this, SINGLE);
+		return TaggedUnionUtils.get(this, Kind.Single);
 	}
 
 	@Override
@@ -116,8 +140,8 @@ public class BucketsPath implements TaggedUnion<Object>, JsonpSerializable {
 		if (_value instanceof JsonpSerializable) {
 			((JsonpSerializable) _value).serialize(generator, mapper);
 		} else {
-			switch (_type) {
-				case ARRAY :
+			switch (_kind) {
+				case Array :
 					generator.writeStartArray();
 					for (String item0 : ((List<String>) this._value)) {
 						generator.write(item0);
@@ -126,7 +150,7 @@ public class BucketsPath implements TaggedUnion<Object>, JsonpSerializable {
 					generator.writeEnd();
 
 					break;
-				case DICT :
+				case Dict :
 					generator.writeStartObject();
 					for (Map.Entry<String, String> item0 : ((Map<String, String>) this._value).entrySet()) {
 						generator.writeKey(item0.getKey());
@@ -136,7 +160,7 @@ public class BucketsPath implements TaggedUnion<Object>, JsonpSerializable {
 					generator.writeEnd();
 
 					break;
-				case SINGLE :
+				case Single :
 					generator.write(((String) this._value));
 
 					break;
@@ -146,23 +170,23 @@ public class BucketsPath implements TaggedUnion<Object>, JsonpSerializable {
 	}
 
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<BucketsPath> {
-		private String _type;
+		private Kind _kind;
 		private Object _value;
 
 		public Builder array(List<String> v) {
-			this._type = ARRAY;
+			this._kind = Kind.Array;
 			this._value = v;
 			return this;
 		}
 
 		public Builder dict(Map<String, String> v) {
-			this._type = DICT;
+			this._kind = Kind.Dict;
 			this._value = v;
 			return this;
 		}
 
 		public Builder single(String v) {
-			this._type = SINGLE;
+			this._kind = Kind.Single;
 			this._value = v;
 			return this;
 		}
@@ -175,10 +199,10 @@ public class BucketsPath implements TaggedUnion<Object>, JsonpSerializable {
 	}
 
 	private static JsonpDeserializer<BucketsPath> buildBucketsPathDeserializer() {
-		return new UnionDeserializer.Builder<>(BucketsPath::new, false)
-				.addMember("array", JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()))
-				.addMember("dict", JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.stringDeserializer()))
-				.addMember("single", JsonpDeserializer.stringDeserializer()).build();
+		return new UnionDeserializer.Builder<BucketsPath, Kind, Object>(BucketsPath::new, false)
+				.addMember(Kind.Array, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()))
+				.addMember(Kind.Dict, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.stringDeserializer()))
+				.addMember(Kind.Single, JsonpDeserializer.stringDeserializer()).build();
 	}
 
 	public static final JsonpDeserializer<BucketsPath> _DESERIALIZER = JsonpDeserializer

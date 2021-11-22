@@ -23,34 +23,40 @@
 
 package co.elastic.clients.elasticsearch._types;
 
+import co.elastic.clients.json.JsonEnum;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
-import co.elastic.clients.util.StringEnum;
 
 @JsonpDeserializable
-public enum ExpandWildcard implements StringEnum {
+public enum ExpandWildcard implements JsonEnum {
 	/**
 	 * Match any data stream or index, including hidden ones.
 	 */
 	All("all"),
+
 	/**
 	 * Match open, non-hidden indices. Also matches any non-hidden data stream.
 	 */
 	Open("open"),
+
 	/**
 	 * Match closed, non-hidden indices. Also matches any non-hidden data stream.
 	 * Data streams cannot be closed.
 	 */
 	Closed("closed"),
+
 	/**
 	 * Match hidden data streams and hidden indices. Must be combined with open,
 	 * closed, or both.
 	 */
 	Hidden("hidden"),
+
 	/**
 	 * Wildcard expressions are not accepted.
 	 */
-	None("none");
+	None("none"),
+
+	;
 
 	private final String jsonValue;
 
@@ -62,6 +68,6 @@ public enum ExpandWildcard implements StringEnum {
 		return this.jsonValue;
 	}
 
-	public static final StringEnum.Deserializer<ExpandWildcard> _DESERIALIZER = new StringEnum.Deserializer<>(
+	public static final JsonEnum.Deserializer<ExpandWildcard> _DESERIALIZER = new JsonEnum.Deserializer<>(
 			ExpandWildcard.values());
 }

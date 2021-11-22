@@ -23,13 +23,19 @@
 
 package co.elastic.clients.elasticsearch.watcher;
 
+import co.elastic.clients.json.JsonEnum;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
-import co.elastic.clients.util.StringEnum;
 
 @JsonpDeserializable
-public enum AcknowledgementOptions implements StringEnum {
-	AwaitsSuccessfulExecution("awaits_successful_execution"), Ackable("ackable"), Acked("acked");
+public enum AcknowledgementOptions implements JsonEnum {
+	AwaitsSuccessfulExecution("awaits_successful_execution"),
+
+	Ackable("ackable"),
+
+	Acked("acked"),
+
+	;
 
 	private final String jsonValue;
 
@@ -41,6 +47,6 @@ public enum AcknowledgementOptions implements StringEnum {
 		return this.jsonValue;
 	}
 
-	public static final StringEnum.Deserializer<AcknowledgementOptions> _DESERIALIZER = new StringEnum.Deserializer<>(
+	public static final JsonEnum.Deserializer<AcknowledgementOptions> _DESERIALIZER = new JsonEnum.Deserializer<>(
 			AcknowledgementOptions.values());
 }

@@ -35,9 +35,9 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.Collections;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -58,8 +58,10 @@ public class MlInference implements JsonpSerializable {
 
 	}
 
-	public static MlInference of(Function<Builder, ObjectBuilder<MlInference>> fn) {
-		return fn.apply(new Builder()).build();
+	public static MlInference of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -121,15 +123,6 @@ public class MlInference implements JsonpSerializable {
 			return this;
 		}
 
-		/**
-		 * Set {@link #ingestProcessors(Map)} to a singleton map.
-		 */
-		public Builder ingestProcessors(String key,
-				Function<MlInferenceIngestProcessor.Builder, ObjectBuilder<MlInferenceIngestProcessor>> fn) {
-			return this.ingestProcessors(
-					Collections.singletonMap(key, fn.apply(new MlInferenceIngestProcessor.Builder()).build()));
-		}
-
 		public final Builder ingestProcessors(
 				Function<MapBuilder<String, MlInferenceIngestProcessor, MlInferenceIngestProcessor.Builder>, ObjectBuilder<Map<String, MlInferenceIngestProcessor>>> fn) {
 			return ingestProcessors(fn.apply(new MapBuilder<>(MlInferenceIngestProcessor.Builder::new)).build());
@@ -146,9 +139,10 @@ public class MlInference implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code trained_models}
 		 */
-		public final Builder trainedModels(
-				Function<MlInferenceTrainedModels.Builder, ObjectBuilder<MlInferenceTrainedModels>> fn) {
-			return this.trainedModels(fn.apply(new MlInferenceTrainedModels.Builder()).build());
+		public final Builder trainedModels(Consumer<MlInferenceTrainedModels.Builder> fn) {
+			MlInferenceTrainedModels.Builder builder = new MlInferenceTrainedModels.Builder();
+			fn.accept(builder);
+			return this.trainedModels(builder.build());
 		}
 
 		/**

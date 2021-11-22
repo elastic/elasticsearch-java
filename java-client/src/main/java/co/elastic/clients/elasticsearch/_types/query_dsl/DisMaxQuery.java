@@ -28,14 +28,15 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -57,16 +58,18 @@ public class DisMaxQuery extends QueryBase implements QueryVariant {
 
 	}
 
-	public static DisMaxQuery of(Function<Builder, ObjectBuilder<DisMaxQuery>> fn) {
-		return fn.apply(new Builder()).build();
+	public static DisMaxQuery of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
-	 * {@link Query} variant type
+	 * Query variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "dis_max";
+	public Query.Kind _queryKind() {
+		return Query.Kind.DisMax;
 	}
 
 	/**
@@ -135,13 +138,8 @@ public class DisMaxQuery extends QueryBase implements QueryVariant {
 		/**
 		 * Required - API name: {@code queries}
 		 */
-		@SafeVarargs
-		public final Builder queries(Function<Query.Builder, ObjectBuilder<Query>>... fns) {
-			this.queries = new ArrayList<>(fns.length);
-			for (Function<Query.Builder, ObjectBuilder<Query>> fn : fns) {
-				this.queries.add(fn.apply(new Query.Builder()).build());
-			}
-			return this;
+		public final Builder queries(Function<ListBuilder<Query, Query.Builder>, ObjectBuilder<List<Query>>> fn) {
+			return queries(fn.apply(new ListBuilder<>(Query.Builder::new)).build());
 		}
 
 		/**

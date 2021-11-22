@@ -36,7 +36,7 @@ import java.lang.Integer;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: _types.analysis.PhoneticTokenFilter
@@ -70,16 +70,18 @@ public class PhoneticTokenFilter extends TokenFilterBase implements TokenFilterD
 
 	}
 
-	public static PhoneticTokenFilter of(Function<Builder, ObjectBuilder<PhoneticTokenFilter>> fn) {
-		return fn.apply(new Builder()).build();
+	public static PhoneticTokenFilter of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
-	 * {@link TokenFilterDefinition} variant type
+	 * TokenFilterDefinition variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "phonetic";
+	public TokenFilterDefinition.Kind _tokenFilterDefinitionKind() {
+		return TokenFilterDefinition.Kind.Phonetic;
 	}
 
 	/**

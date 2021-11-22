@@ -36,7 +36,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.JobStats
@@ -82,8 +82,10 @@ public class JobStats implements JsonpSerializable {
 
 	}
 
-	public static JobStats of(Function<Builder, ObjectBuilder<JobStats>> fn) {
-		return fn.apply(new Builder()).build();
+	public static JobStats of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -252,8 +254,10 @@ public class JobStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code data_counts}
 		 */
-		public final Builder dataCounts(Function<DataCounts.Builder, ObjectBuilder<DataCounts>> fn) {
-			return this.dataCounts(fn.apply(new DataCounts.Builder()).build());
+		public final Builder dataCounts(Consumer<DataCounts.Builder> fn) {
+			DataCounts.Builder builder = new DataCounts.Builder();
+			fn.accept(builder);
+			return this.dataCounts(builder.build());
 		}
 
 		/**
@@ -267,9 +271,10 @@ public class JobStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code forecasts_stats}
 		 */
-		public final Builder forecastsStats(
-				Function<JobForecastStatistics.Builder, ObjectBuilder<JobForecastStatistics>> fn) {
-			return this.forecastsStats(fn.apply(new JobForecastStatistics.Builder()).build());
+		public final Builder forecastsStats(Consumer<JobForecastStatistics.Builder> fn) {
+			JobForecastStatistics.Builder builder = new JobForecastStatistics.Builder();
+			fn.accept(builder);
+			return this.forecastsStats(builder.build());
 		}
 
 		/**
@@ -291,8 +296,10 @@ public class JobStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code model_size_stats}
 		 */
-		public final Builder modelSizeStats(Function<ModelSizeStats.Builder, ObjectBuilder<ModelSizeStats>> fn) {
-			return this.modelSizeStats(fn.apply(new ModelSizeStats.Builder()).build());
+		public final Builder modelSizeStats(Consumer<ModelSizeStats.Builder> fn) {
+			ModelSizeStats.Builder builder = new ModelSizeStats.Builder();
+			fn.accept(builder);
+			return this.modelSizeStats(builder.build());
 		}
 
 		/**
@@ -306,8 +313,10 @@ public class JobStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code node}
 		 */
-		public final Builder node(Function<DiscoveryNode.Builder, ObjectBuilder<DiscoveryNode>> fn) {
-			return this.node(fn.apply(new DiscoveryNode.Builder()).build());
+		public final Builder node(Consumer<DiscoveryNode.Builder> fn) {
+			DiscoveryNode.Builder builder = new DiscoveryNode.Builder();
+			fn.accept(builder);
+			return this.node(builder.build());
 		}
 
 		/**
@@ -337,8 +346,10 @@ public class JobStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code timing_stats}
 		 */
-		public final Builder timingStats(Function<JobTimingStats.Builder, ObjectBuilder<JobTimingStats>> fn) {
-			return this.timingStats(fn.apply(new JobTimingStats.Builder()).build());
+		public final Builder timingStats(Consumer<JobTimingStats.Builder> fn) {
+			JobTimingStats.Builder builder = new JobTimingStats.Builder();
+			fn.accept(builder);
+			return this.timingStats(builder.build());
 		}
 
 		/**

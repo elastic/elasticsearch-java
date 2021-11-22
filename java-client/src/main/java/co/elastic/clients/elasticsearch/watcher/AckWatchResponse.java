@@ -34,7 +34,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: watcher.ack_watch.Response
@@ -50,8 +50,10 @@ public class AckWatchResponse implements JsonpSerializable {
 
 	}
 
-	public static AckWatchResponse of(Function<Builder, ObjectBuilder<AckWatchResponse>> fn) {
-		return fn.apply(new Builder()).build();
+	public static AckWatchResponse of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -96,8 +98,10 @@ public class AckWatchResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code status}
 		 */
-		public final Builder status(Function<WatchStatus.Builder, ObjectBuilder<WatchStatus>> fn) {
-			return this.status(fn.apply(new WatchStatus.Builder()).build());
+		public final Builder status(Consumer<WatchStatus.Builder> fn) {
+			WatchStatus.Builder builder = new WatchStatus.Builder();
+			fn.accept(builder);
+			return this.status(builder.build());
 		}
 
 		/**

@@ -23,13 +23,17 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
+import co.elastic.clients.json.JsonEnum;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
-import co.elastic.clients.util.StringEnum;
 
 @JsonpDeserializable
-public enum GapPolicy implements StringEnum {
-	Skip("skip"), InsertZeros("insert_zeros");
+public enum GapPolicy implements JsonEnum {
+	Skip("skip"),
+
+	InsertZeros("insert_zeros"),
+
+	;
 
 	private final String jsonValue;
 
@@ -41,6 +45,6 @@ public enum GapPolicy implements StringEnum {
 		return this.jsonValue;
 	}
 
-	public static final StringEnum.Deserializer<GapPolicy> _DESERIALIZER = new StringEnum.Deserializer<>(
+	public static final JsonEnum.Deserializer<GapPolicy> _DESERIALIZER = new JsonEnum.Deserializer<>(
 			GapPolicy.values());
 }

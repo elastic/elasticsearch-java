@@ -38,7 +38,7 @@ import java.lang.String;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.TimeOfMonth
@@ -57,8 +57,10 @@ public class TimeOfMonth implements JsonpSerializable {
 
 	}
 
-	public static TimeOfMonth of(Function<Builder, ObjectBuilder<TimeOfMonth>> fn) {
-		return fn.apply(new Builder()).build();
+	public static TimeOfMonth of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**

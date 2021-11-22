@@ -30,16 +30,17 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Long;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -68,8 +69,10 @@ public class ExploreResponse implements JsonpSerializable {
 
 	}
 
-	public static ExploreResponse of(Function<Builder, ObjectBuilder<ExploreResponse>> fn) {
-		return fn.apply(new Builder()).build();
+	public static ExploreResponse of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -192,13 +195,9 @@ public class ExploreResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code connections}
 		 */
-		@SafeVarargs
-		public final Builder connections(Function<Connection.Builder, ObjectBuilder<Connection>>... fns) {
-			this.connections = new ArrayList<>(fns.length);
-			for (Function<Connection.Builder, ObjectBuilder<Connection>> fn : fns) {
-				this.connections.add(fn.apply(new Connection.Builder()).build());
-			}
-			return this;
+		public final Builder connections(
+				Function<ListBuilder<Connection, Connection.Builder>, ObjectBuilder<List<Connection>>> fn) {
+			return connections(fn.apply(new ListBuilder<>(Connection.Builder::new)).build());
 		}
 
 		/**
@@ -220,13 +219,9 @@ public class ExploreResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code failures}
 		 */
-		@SafeVarargs
-		public final Builder failures(Function<ShardFailure.Builder, ObjectBuilder<ShardFailure>>... fns) {
-			this.failures = new ArrayList<>(fns.length);
-			for (Function<ShardFailure.Builder, ObjectBuilder<ShardFailure>> fn : fns) {
-				this.failures.add(fn.apply(new ShardFailure.Builder()).build());
-			}
-			return this;
+		public final Builder failures(
+				Function<ListBuilder<ShardFailure, ShardFailure.Builder>, ObjectBuilder<List<ShardFailure>>> fn) {
+			return failures(fn.apply(new ListBuilder<>(ShardFailure.Builder::new)).build());
 		}
 
 		/**
@@ -264,13 +259,8 @@ public class ExploreResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code vertices}
 		 */
-		@SafeVarargs
-		public final Builder vertices(Function<Vertex.Builder, ObjectBuilder<Vertex>>... fns) {
-			this.vertices = new ArrayList<>(fns.length);
-			for (Function<Vertex.Builder, ObjectBuilder<Vertex>> fn : fns) {
-				this.vertices.add(fn.apply(new Vertex.Builder()).build());
-			}
-			return this;
+		public final Builder vertices(Function<ListBuilder<Vertex, Vertex.Builder>, ObjectBuilder<List<Vertex>>> fn) {
+			return vertices(fn.apply(new ListBuilder<>(Vertex.Builder::new)).build());
 		}
 
 		/**

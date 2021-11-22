@@ -23,12 +23,12 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.util.UnionVariant;
-
 /**
  * Base interface for {@link DataframeAnalysis} variants.
  */
-public interface DataframeAnalysisVariant extends UnionVariant {
+public interface DataframeAnalysisVariant {
+
+	DataframeAnalysis.Kind _dataframeAnalysisKind();
 
 	default DataframeAnalysis _toDataframeAnalysis() {
 		return new DataframeAnalysis(this);

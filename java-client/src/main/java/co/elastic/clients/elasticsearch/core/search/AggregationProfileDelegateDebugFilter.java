@@ -35,7 +35,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: _global.search._types.AggregationProfileDelegateDebugFilter
@@ -60,9 +60,10 @@ public class AggregationProfileDelegateDebugFilter implements JsonpSerializable 
 
 	}
 
-	public static AggregationProfileDelegateDebugFilter of(
-			Function<Builder, ObjectBuilder<AggregationProfileDelegateDebugFilter>> fn) {
-		return fn.apply(new Builder()).build();
+	public static AggregationProfileDelegateDebugFilter of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**

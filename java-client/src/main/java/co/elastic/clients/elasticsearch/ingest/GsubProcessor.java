@@ -34,7 +34,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: ingest._types.GsubProcessor
@@ -65,16 +65,18 @@ public class GsubProcessor extends ProcessorBase implements ProcessorVariant {
 
 	}
 
-	public static GsubProcessor of(Function<Builder, ObjectBuilder<GsubProcessor>> fn) {
-		return fn.apply(new Builder()).build();
+	public static GsubProcessor of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
-	 * {@link Processor} variant type
+	 * Processor variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "gsub";
+	public Processor.Kind _processorKind() {
+		return Processor.Kind.Gsub;
 	}
 
 	/**

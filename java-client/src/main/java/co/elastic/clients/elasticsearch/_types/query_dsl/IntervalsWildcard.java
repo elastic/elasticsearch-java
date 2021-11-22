@@ -35,7 +35,7 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.IntervalsWildcard
@@ -59,16 +59,26 @@ public class IntervalsWildcard implements IntervalsQueryVariant, IntervalsVarian
 
 	}
 
-	public static IntervalsWildcard of(Function<Builder, ObjectBuilder<IntervalsWildcard>> fn) {
-		return fn.apply(new Builder()).build();
+	public static IntervalsWildcard of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
-	 * {@link IntervalsQuery}, {@link Intervals} variant type
+	 * IntervalsQuery variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "wildcard";
+	public IntervalsQuery.Kind _intervalsQueryKind() {
+		return IntervalsQuery.Kind.Wildcard;
+	}
+
+	/**
+	 * Intervals variant kind.
+	 */
+	@Override
+	public Intervals.Kind _intervalsKind() {
+		return Intervals.Kind.Wildcard;
 	}
 
 	/**

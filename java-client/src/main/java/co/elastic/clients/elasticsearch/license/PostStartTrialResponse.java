@@ -35,7 +35,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: license.post_start_trial.Response
@@ -59,8 +59,10 @@ public class PostStartTrialResponse extends AcknowledgedResponseBase {
 
 	}
 
-	public static PostStartTrialResponse of(Function<Builder, ObjectBuilder<PostStartTrialResponse>> fn) {
-		return fn.apply(new Builder()).build();
+	public static PostStartTrialResponse of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**

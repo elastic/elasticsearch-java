@@ -30,15 +30,16 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -72,8 +73,10 @@ public class AutoFollowStats implements JsonpSerializable {
 
 	}
 
-	public static AutoFollowStats of(Function<Builder, ObjectBuilder<AutoFollowStats>> fn) {
-		return fn.apply(new Builder()).build();
+	public static AutoFollowStats of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -189,14 +192,9 @@ public class AutoFollowStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code auto_followed_clusters}
 		 */
-		@SafeVarargs
 		public final Builder autoFollowedClusters(
-				Function<AutoFollowedCluster.Builder, ObjectBuilder<AutoFollowedCluster>>... fns) {
-			this.autoFollowedClusters = new ArrayList<>(fns.length);
-			for (Function<AutoFollowedCluster.Builder, ObjectBuilder<AutoFollowedCluster>> fn : fns) {
-				this.autoFollowedClusters.add(fn.apply(new AutoFollowedCluster.Builder()).build());
-			}
-			return this;
+				Function<ListBuilder<AutoFollowedCluster, AutoFollowedCluster.Builder>, ObjectBuilder<List<AutoFollowedCluster>>> fn) {
+			return autoFollowedClusters(fn.apply(new ListBuilder<>(AutoFollowedCluster.Builder::new)).build());
 		}
 
 		/**
@@ -242,13 +240,9 @@ public class AutoFollowStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code recent_auto_follow_errors}
 		 */
-		@SafeVarargs
-		public final Builder recentAutoFollowErrors(Function<ErrorCause.Builder, ObjectBuilder<ErrorCause>>... fns) {
-			this.recentAutoFollowErrors = new ArrayList<>(fns.length);
-			for (Function<ErrorCause.Builder, ObjectBuilder<ErrorCause>> fn : fns) {
-				this.recentAutoFollowErrors.add(fn.apply(new ErrorCause.Builder()).build());
-			}
-			return this;
+		public final Builder recentAutoFollowErrors(
+				Function<ListBuilder<ErrorCause, ErrorCause.Builder>, ObjectBuilder<List<ErrorCause>>> fn) {
+			return recentAutoFollowErrors(fn.apply(new ListBuilder<>(ErrorCause.Builder::new)).build());
 		}
 
 		/**

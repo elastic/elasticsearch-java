@@ -34,7 +34,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.MatchPhrasePrefixQuery
@@ -71,16 +71,18 @@ public class MatchPhrasePrefixQuery extends QueryBase implements QueryVariant {
 
 	}
 
-	public static MatchPhrasePrefixQuery of(Function<Builder, ObjectBuilder<MatchPhrasePrefixQuery>> fn) {
-		return fn.apply(new Builder()).build();
+	public static MatchPhrasePrefixQuery of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
-	 * {@link Query} variant type
+	 * Query variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "match_phrase_prefix";
+	public Query.Kind _queryKind() {
+		return Query.Kind.MatchPhrasePrefix;
 	}
 
 	/**

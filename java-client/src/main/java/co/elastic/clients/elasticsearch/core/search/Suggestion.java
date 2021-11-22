@@ -30,16 +30,17 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.JsonpSerializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Supplier;
 import javax.annotation.Nullable;
@@ -70,8 +71,10 @@ public class Suggestion<T> implements JsonpSerializable {
 
 	}
 
-	public static <T> Suggestion<T> of(Function<Builder<T>, ObjectBuilder<Suggestion<T>>> fn) {
-		return fn.apply(new Builder<>()).build();
+	public static <T> Suggestion<T> of(Consumer<Builder<T>> fn) {
+		Builder<T> builder = new Builder<>();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -186,13 +189,9 @@ public class Suggestion<T> implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code options}
 		 */
-		@SafeVarargs
-		public final Builder<T> options(Function<SuggestOption.Builder<T>, ObjectBuilder<SuggestOption<T>>>... fns) {
-			this.options = new ArrayList<>(fns.length);
-			for (Function<SuggestOption.Builder<T>, ObjectBuilder<SuggestOption<T>>> fn : fns) {
-				this.options.add(fn.apply(new SuggestOption.Builder<T>()).build());
-			}
-			return this;
+		public final Builder<T> options(
+				Function<ListBuilder<SuggestOption<T>, SuggestOption.Builder<T>>, ObjectBuilder<List<SuggestOption<T>>>> fn) {
+			return options(fn.apply(new ListBuilder<>(SuggestOption.Builder<T>::new)).build());
 		}
 
 		/**

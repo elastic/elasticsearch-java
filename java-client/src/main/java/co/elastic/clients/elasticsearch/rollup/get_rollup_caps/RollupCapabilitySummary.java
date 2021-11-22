@@ -37,7 +37,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: rollup.get_rollup_caps.RollupCapabilitySummary
@@ -62,8 +62,10 @@ public class RollupCapabilitySummary implements JsonpSerializable {
 
 	}
 
-	public static RollupCapabilitySummary of(Function<Builder, ObjectBuilder<RollupCapabilitySummary>> fn) {
-		return fn.apply(new Builder()).build();
+	public static RollupCapabilitySummary of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**

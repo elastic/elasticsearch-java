@@ -37,7 +37,7 @@ import java.lang.String;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: ml.put_trained_model.Input
@@ -53,8 +53,10 @@ public class Input implements JsonpSerializable {
 
 	}
 
-	public static Input of(Function<Builder, ObjectBuilder<Input>> fn) {
-		return fn.apply(new Builder()).build();
+	public static Input of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**

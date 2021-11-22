@@ -28,13 +28,14 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -52,16 +53,26 @@ public class SpanOrQuery extends QueryBase implements SpanQueryVariant, QueryVar
 
 	}
 
-	public static SpanOrQuery of(Function<Builder, ObjectBuilder<SpanOrQuery>> fn) {
-		return fn.apply(new Builder()).build();
+	public static SpanOrQuery of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
-	 * {@link SpanQuery}, {@link Query} variant type
+	 * SpanQuery variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "span_or";
+	public SpanQuery.Kind _spanQueryKind() {
+		return SpanQuery.Kind.SpanOr;
+	}
+
+	/**
+	 * Query variant kind.
+	 */
+	@Override
+	public Query.Kind _queryKind() {
+		return Query.Kind.SpanOr;
 	}
 
 	/**
@@ -114,13 +125,9 @@ public class SpanOrQuery extends QueryBase implements SpanQueryVariant, QueryVar
 		/**
 		 * Required - API name: {@code clauses}
 		 */
-		@SafeVarargs
-		public final Builder clauses(Function<SpanQuery.Builder, ObjectBuilder<SpanQuery>>... fns) {
-			this.clauses = new ArrayList<>(fns.length);
-			for (Function<SpanQuery.Builder, ObjectBuilder<SpanQuery>> fn : fns) {
-				this.clauses.add(fn.apply(new SpanQuery.Builder()).build());
-			}
-			return this;
+		public final Builder clauses(
+				Function<ListBuilder<SpanQuery, SpanQuery.Builder>, ObjectBuilder<List<SpanQuery>>> fn) {
+			return clauses(fn.apply(new ListBuilder<>(SpanQuery.Builder::new)).build());
 		}
 
 		@Override

@@ -37,7 +37,7 @@ import java.lang.String;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: _types.analysis.KuromojiTokenizer
@@ -77,16 +77,18 @@ public class KuromojiTokenizer extends TokenizerBase implements TokenizerDefinit
 
 	}
 
-	public static KuromojiTokenizer of(Function<Builder, ObjectBuilder<KuromojiTokenizer>> fn) {
-		return fn.apply(new Builder()).build();
+	public static KuromojiTokenizer of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
-	 * {@link TokenizerDefinition} variant type
+	 * TokenizerDefinition variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "kuromoji_tokenizer";
+	public TokenizerDefinition.Kind _tokenizerDefinitionKind() {
+		return TokenizerDefinition.Kind.KuromojiTokenizer;
 	}
 
 	/**

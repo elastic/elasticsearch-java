@@ -36,7 +36,7 @@ import java.lang.String;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: watcher.stats.WatchRecordStats
@@ -65,8 +65,10 @@ public class WatchRecordStats extends WatchRecordQueuedStats {
 
 	}
 
-	public static WatchRecordStats of(Function<Builder, ObjectBuilder<WatchRecordStats>> fn) {
-		return fn.apply(new Builder()).build();
+	public static WatchRecordStats of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**

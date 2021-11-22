@@ -38,7 +38,7 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: xpack.info.Response
@@ -63,8 +63,10 @@ public class XpackInfoResponse implements JsonpSerializable {
 
 	}
 
-	public static XpackInfoResponse of(Function<Builder, ObjectBuilder<XpackInfoResponse>> fn) {
-		return fn.apply(new Builder()).build();
+	public static XpackInfoResponse of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -145,8 +147,10 @@ public class XpackInfoResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code build}
 		 */
-		public final Builder build(Function<BuildInformation.Builder, ObjectBuilder<BuildInformation>> fn) {
-			return this.build(fn.apply(new BuildInformation.Builder()).build());
+		public final Builder build(Consumer<BuildInformation.Builder> fn) {
+			BuildInformation.Builder builder = new BuildInformation.Builder();
+			fn.accept(builder);
+			return this.build(builder.build());
 		}
 
 		/**
@@ -160,8 +164,10 @@ public class XpackInfoResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code features}
 		 */
-		public final Builder features(Function<Features.Builder, ObjectBuilder<Features>> fn) {
-			return this.features(fn.apply(new Features.Builder()).build());
+		public final Builder features(Consumer<Features.Builder> fn) {
+			Features.Builder builder = new Features.Builder();
+			fn.accept(builder);
+			return this.features(builder.build());
 		}
 
 		/**
@@ -175,9 +181,10 @@ public class XpackInfoResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code license}
 		 */
-		public final Builder license(
-				Function<MinimalLicenseInformation.Builder, ObjectBuilder<MinimalLicenseInformation>> fn) {
-			return this.license(fn.apply(new MinimalLicenseInformation.Builder()).build());
+		public final Builder license(Consumer<MinimalLicenseInformation.Builder> fn) {
+			MinimalLicenseInformation.Builder builder = new MinimalLicenseInformation.Builder();
+			fn.accept(builder);
+			return this.license(builder.build());
 		}
 
 		/**

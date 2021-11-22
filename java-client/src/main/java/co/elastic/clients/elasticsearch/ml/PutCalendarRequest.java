@@ -32,15 +32,17 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
-import co.elastic.clients.transport.SimpleEndpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
+import java.util.Arrays;
 import java.util.Collections;
+import java.util.List;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: ml.put_calendar.Request
@@ -51,17 +53,22 @@ public class PutCalendarRequest extends RequestBase implements JsonpSerializable
 	@Nullable
 	private final String description;
 
+	private final List<String> jobIds;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private PutCalendarRequest(Builder builder) {
 
 		this.calendarId = ModelTypeHelper.requireNonNull(builder.calendarId, this, "calendarId");
 		this.description = builder.description;
+		this.jobIds = ModelTypeHelper.unmodifiable(builder.jobIds);
 
 	}
 
-	public static PutCalendarRequest of(Function<Builder, ObjectBuilder<PutCalendarRequest>> fn) {
-		return fn.apply(new Builder()).build();
+	public static PutCalendarRequest of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -84,6 +91,15 @@ public class PutCalendarRequest extends RequestBase implements JsonpSerializable
 	}
 
 	/**
+	 * An array of anomaly detection job identifiers.
+	 * <p>
+	 * API name: {@code job_ids}
+	 */
+	public final List<String> jobIds() {
+		return this.jobIds;
+	}
+
+	/**
 	 * Serialize this object to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
@@ -99,6 +115,16 @@ public class PutCalendarRequest extends RequestBase implements JsonpSerializable
 			generator.write(this.description);
 
 		}
+		if (ModelTypeHelper.isDefined(this.jobIds)) {
+			generator.writeKey("job_ids");
+			generator.writeStartArray();
+			for (String item0 : this.jobIds) {
+				generator.write(item0);
+
+			}
+			generator.writeEnd();
+
+		}
 
 	}
 
@@ -112,6 +138,9 @@ public class PutCalendarRequest extends RequestBase implements JsonpSerializable
 
 		@Nullable
 		private String description;
+
+		@Nullable
+		private List<String> jobIds;
 
 		/**
 		 * Required - A string that uniquely identifies a calendar.
@@ -130,6 +159,26 @@ public class PutCalendarRequest extends RequestBase implements JsonpSerializable
 		 */
 		public final Builder description(@Nullable String value) {
 			this.description = value;
+			return this;
+		}
+
+		/**
+		 * An array of anomaly detection job identifiers.
+		 * <p>
+		 * API name: {@code job_ids}
+		 */
+		public final Builder jobIds(@Nullable List<String> value) {
+			this.jobIds = value;
+			return this;
+		}
+
+		/**
+		 * An array of anomaly detection job identifiers.
+		 * <p>
+		 * API name: {@code job_ids}
+		 */
+		public final Builder jobIds(String... value) {
+			this.jobIds = Arrays.asList(value);
 			return this;
 		}
 
@@ -157,6 +206,7 @@ public class PutCalendarRequest extends RequestBase implements JsonpSerializable
 	protected static void setupPutCalendarRequestDeserializer(ObjectDeserializer<PutCalendarRequest.Builder> op) {
 
 		op.add(Builder::description, JsonpDeserializer.stringDeserializer(), "description");
+		op.add(Builder::jobIds, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "job_ids");
 
 	}
 

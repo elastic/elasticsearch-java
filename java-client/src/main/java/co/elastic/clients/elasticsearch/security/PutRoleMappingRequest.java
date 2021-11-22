@@ -34,7 +34,7 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
-import co.elastic.clients.transport.SimpleEndpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
@@ -46,7 +46,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: security.put_role_mapping.Request
@@ -83,8 +83,10 @@ public class PutRoleMappingRequest extends RequestBase implements JsonpSerializa
 
 	}
 
-	public static PutRoleMappingRequest of(Function<Builder, ObjectBuilder<PutRoleMappingRequest>> fn) {
-		return fn.apply(new Builder()).build();
+	public static PutRoleMappingRequest of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -293,8 +295,10 @@ public class PutRoleMappingRequest extends RequestBase implements JsonpSerializa
 		/**
 		 * API name: {@code rules}
 		 */
-		public final Builder rules(Function<RoleMappingRule.Builder, ObjectBuilder<RoleMappingRule>> fn) {
-			return this.rules(fn.apply(new RoleMappingRule.Builder()).build());
+		public final Builder rules(Consumer<RoleMappingRule.Builder> fn) {
+			RoleMappingRule.Builder builder = new RoleMappingRule.Builder();
+			fn.accept(builder);
+			return this.rules(builder.build());
 		}
 
 		/**

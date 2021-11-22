@@ -32,14 +32,15 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -63,9 +64,10 @@ public class CategorizationAnalyzerDefinition implements JsonpSerializable {
 
 	}
 
-	public static CategorizationAnalyzerDefinition of(
-			Function<Builder, ObjectBuilder<CategorizationAnalyzerDefinition>> fn) {
-		return fn.apply(new Builder()).build();
+	public static CategorizationAnalyzerDefinition of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -214,13 +216,9 @@ public class CategorizationAnalyzerDefinition implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code char_filter}
 		 */
-		@SafeVarargs
-		public final Builder charFilter(Function<CharFilter.Builder, ObjectBuilder<CharFilter>>... fns) {
-			this.charFilter = new ArrayList<>(fns.length);
-			for (Function<CharFilter.Builder, ObjectBuilder<CharFilter>> fn : fns) {
-				this.charFilter.add(fn.apply(new CharFilter.Builder()).build());
-			}
-			return this;
+		public final Builder charFilter(
+				Function<ListBuilder<CharFilter, CharFilter.Builder>, ObjectBuilder<List<CharFilter>>> fn) {
+			return charFilter(fn.apply(new ListBuilder<>(CharFilter.Builder::new)).build());
 		}
 
 		/**
@@ -254,13 +252,9 @@ public class CategorizationAnalyzerDefinition implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code filter}
 		 */
-		@SafeVarargs
-		public final Builder filter(Function<TokenFilter.Builder, ObjectBuilder<TokenFilter>>... fns) {
-			this.filter = new ArrayList<>(fns.length);
-			for (Function<TokenFilter.Builder, ObjectBuilder<TokenFilter>> fn : fns) {
-				this.filter.add(fn.apply(new TokenFilter.Builder()).build());
-			}
-			return this;
+		public final Builder filter(
+				Function<ListBuilder<TokenFilter, TokenFilter.Builder>, ObjectBuilder<List<TokenFilter>>> fn) {
+			return filter(fn.apply(new ListBuilder<>(TokenFilter.Builder::new)).build());
 		}
 
 		/**
@@ -304,8 +298,10 @@ public class CategorizationAnalyzerDefinition implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code tokenizer}
 		 */
-		public final Builder tokenizer(Function<Tokenizer.Builder, ObjectBuilder<Tokenizer>> fn) {
-			return this.tokenizer(fn.apply(new Tokenizer.Builder()).build());
+		public final Builder tokenizer(Consumer<Tokenizer.Builder> fn) {
+			Tokenizer.Builder builder = new Tokenizer.Builder();
+			fn.accept(builder);
+			return this.tokenizer(builder.build());
 		}
 
 		/**

@@ -23,23 +23,24 @@
 
 package co.elastic.clients.elasticsearch.core;
 
-import co.elastic.clients.elasticsearch.core.bulk.ResponseItem;
+import co.elastic.clients.elasticsearch.core.bulk.BulkResponseItem;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Long;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -48,7 +49,7 @@ import javax.annotation.Nullable;
 public class BulkResponse implements JsonpSerializable {
 	private final boolean errors;
 
-	private final List<ResponseItem> items;
+	private final List<BulkResponseItem> items;
 
 	private final long took;
 
@@ -66,8 +67,10 @@ public class BulkResponse implements JsonpSerializable {
 
 	}
 
-	public static BulkResponse of(Function<Builder, ObjectBuilder<BulkResponse>> fn) {
-		return fn.apply(new Builder()).build();
+	public static BulkResponse of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -80,7 +83,7 @@ public class BulkResponse implements JsonpSerializable {
 	/**
 	 * Required - API name: {@code items}
 	 */
-	public final List<ResponseItem> items() {
+	public final List<BulkResponseItem> items() {
 		return this.items;
 	}
 
@@ -116,7 +119,7 @@ public class BulkResponse implements JsonpSerializable {
 		if (ModelTypeHelper.isDefined(this.items)) {
 			generator.writeKey("items");
 			generator.writeStartArray();
-			for (ResponseItem item0 : this.items) {
+			for (BulkResponseItem item0 : this.items) {
 				item0.serialize(generator, mapper);
 
 			}
@@ -142,7 +145,7 @@ public class BulkResponse implements JsonpSerializable {
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<BulkResponse> {
 		private Boolean errors;
 
-		private List<ResponseItem> items;
+		private List<BulkResponseItem> items;
 
 		private Long took;
 
@@ -160,7 +163,7 @@ public class BulkResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code items}
 		 */
-		public final Builder items(List<ResponseItem> value) {
+		public final Builder items(List<BulkResponseItem> value) {
 			this.items = value;
 			return this;
 		}
@@ -168,7 +171,7 @@ public class BulkResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code items}
 		 */
-		public final Builder items(ResponseItem... value) {
+		public final Builder items(BulkResponseItem... value) {
 			this.items = Arrays.asList(value);
 			return this;
 		}
@@ -176,13 +179,9 @@ public class BulkResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code items}
 		 */
-		@SafeVarargs
-		public final Builder items(Function<ResponseItem.Builder, ObjectBuilder<ResponseItem>>... fns) {
-			this.items = new ArrayList<>(fns.length);
-			for (Function<ResponseItem.Builder, ObjectBuilder<ResponseItem>> fn : fns) {
-				this.items.add(fn.apply(new ResponseItem.Builder()).build());
-			}
-			return this;
+		public final Builder items(
+				Function<ListBuilder<BulkResponseItem, BulkResponseItem.Builder>, ObjectBuilder<List<BulkResponseItem>>> fn) {
+			return items(fn.apply(new ListBuilder<>(BulkResponseItem.Builder::new)).build());
 		}
 
 		/**
@@ -225,7 +224,7 @@ public class BulkResponse implements JsonpSerializable {
 	protected static void setupBulkResponseDeserializer(ObjectDeserializer<BulkResponse.Builder> op) {
 
 		op.add(Builder::errors, JsonpDeserializer.booleanDeserializer(), "errors");
-		op.add(Builder::items, JsonpDeserializer.arrayDeserializer(ResponseItem._DESERIALIZER), "items");
+		op.add(Builder::items, JsonpDeserializer.arrayDeserializer(BulkResponseItem._DESERIALIZER), "items");
 		op.add(Builder::took, JsonpDeserializer.longDeserializer(), "took");
 		op.add(Builder::ingestTook, JsonpDeserializer.longDeserializer(), "ingest_took");
 

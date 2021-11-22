@@ -36,7 +36,7 @@ import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
-import co.elastic.clients.transport.SimpleEndpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
@@ -49,7 +49,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
@@ -133,9 +133,10 @@ public class TermvectorsRequest<TDocument> extends RequestBase implements JsonpS
 
 	}
 
-	public static <TDocument> TermvectorsRequest<TDocument> of(
-			Function<Builder<TDocument>, ObjectBuilder<TermvectorsRequest<TDocument>>> fn) {
-		return fn.apply(new Builder<>()).build();
+	public static <TDocument> TermvectorsRequest<TDocument> of(Consumer<Builder<TDocument>> fn) {
+		Builder<TDocument> builder = new Builder<>();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -448,8 +449,10 @@ public class TermvectorsRequest<TDocument> extends RequestBase implements JsonpS
 		/**
 		 * API name: {@code filter}
 		 */
-		public final Builder<TDocument> filter(Function<Filter.Builder, ObjectBuilder<Filter>> fn) {
-			return this.filter(fn.apply(new Filter.Builder()).build());
+		public final Builder<TDocument> filter(Consumer<Filter.Builder> fn) {
+			Filter.Builder builder = new Filter.Builder();
+			fn.accept(builder);
+			return this.filter(builder.build());
 		}
 
 		/**

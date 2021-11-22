@@ -38,7 +38,7 @@ import java.lang.String;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: _global.search._types.FetchProfileDebug
@@ -58,8 +58,10 @@ public class FetchProfileDebug implements JsonpSerializable {
 
 	}
 
-	public static FetchProfileDebug of(Function<Builder, ObjectBuilder<FetchProfileDebug>> fn) {
-		return fn.apply(new Builder()).build();
+	public static FetchProfileDebug of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**

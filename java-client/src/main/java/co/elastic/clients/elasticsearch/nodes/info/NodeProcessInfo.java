@@ -36,7 +36,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Long;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 
 // typedef: nodes.info.NodeProcessInfo
 @JsonpDeserializable
@@ -58,8 +58,10 @@ public class NodeProcessInfo implements JsonpSerializable {
 
 	}
 
-	public static NodeProcessInfo of(Function<Builder, ObjectBuilder<NodeProcessInfo>> fn) {
-		return fn.apply(new Builder()).build();
+	public static NodeProcessInfo of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**

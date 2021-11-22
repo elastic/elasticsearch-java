@@ -23,6 +23,7 @@
 
 package co.elastic.clients.elasticsearch._types.analysis;
 
+import co.elastic.clients.json.JsonEnum;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -36,35 +37,67 @@ import co.elastic.clients.util.TaggedUnion;
 import co.elastic.clients.util.TaggedUnionUtils;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: _types.analysis.Analyzer
 // union type: InternalTag[tag=type]
 @JsonpDeserializable
-public class Analyzer implements TaggedUnion<AnalyzerVariant>, JsonpSerializable {
+public class Analyzer implements TaggedUnion<Analyzer.Kind, AnalyzerVariant>, JsonpSerializable {
 
-	public static final String CUSTOM = "custom";
-	public static final String DUTCH = "dutch";
-	public static final String FINGERPRINT = "fingerprint";
-	public static final String ICU_ANALYZER = "icu_analyzer";
-	public static final String KEYWORD = "keyword";
-	public static final String KUROMOJI = "kuromoji";
-	public static final String LANGUAGE = "language";
-	public static final String NORI = "nori";
-	public static final String PATTERN = "pattern";
-	public static final String SIMPLE = "simple";
-	public static final String SNOWBALL = "snowball";
-	public static final String STANDARD = "standard";
-	public static final String STOP = "stop";
-	public static final String WHITESPACE = "whitespace";
+	/**
+	 * {@link Analyzer} variant kinds.
+	 */
 
-	private final String _type;
+	public enum Kind implements JsonEnum {
+		Custom("custom"),
+
+		Dutch("dutch"),
+
+		Fingerprint("fingerprint"),
+
+		IcuAnalyzer("icu_analyzer"),
+
+		Keyword("keyword"),
+
+		Kuromoji("kuromoji"),
+
+		Language("language"),
+
+		Nori("nori"),
+
+		Pattern("pattern"),
+
+		Simple("simple"),
+
+		Snowball("snowball"),
+
+		Standard("standard"),
+
+		Stop("stop"),
+
+		Whitespace("whitespace"),
+
+		;
+
+		private final String jsonValue;
+
+		Kind(String jsonValue) {
+			this.jsonValue = jsonValue;
+		}
+
+		public String jsonValue() {
+			return this.jsonValue;
+		}
+
+	}
+
+	private final Kind _kind;
 	private final AnalyzerVariant _value;
 
 	@Override
-	public final String _type() {
-		return _type;
+	public final Kind _kind() {
+		return _kind;
 	}
 
 	@Override
@@ -74,20 +107,29 @@ public class Analyzer implements TaggedUnion<AnalyzerVariant>, JsonpSerializable
 
 	public Analyzer(AnalyzerVariant value) {
 
-		this._type = ModelTypeHelper.requireNonNull(value._variantType(), this, "<variant type>");
+		this._kind = ModelTypeHelper.requireNonNull(value._analyzerKind(), this, "<variant kind>");
 		this._value = ModelTypeHelper.requireNonNull(value, this, "<variant value>");
 
 	}
 
 	private Analyzer(Builder builder) {
 
-		this._type = ModelTypeHelper.requireNonNull(builder._type, builder, "<variant type>");
+		this._kind = ModelTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
 		this._value = ModelTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
 
 	}
 
-	public static Analyzer of(Function<Builder, ObjectBuilder<Analyzer>> fn) {
-		return fn.apply(new Builder()).build();
+	public static Analyzer of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
+	}
+
+	/**
+	 * Is this variant instance of kind {@code custom}?
+	 */
+	public boolean isCustom() {
+		return _kind == Kind.Custom;
 	}
 
 	/**
@@ -97,7 +139,14 @@ public class Analyzer implements TaggedUnion<AnalyzerVariant>, JsonpSerializable
 	 *             if the current variant is not of the {@code custom} kind.
 	 */
 	public CustomAnalyzer custom() {
-		return TaggedUnionUtils.get(this, CUSTOM);
+		return TaggedUnionUtils.get(this, Kind.Custom);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code dutch}?
+	 */
+	public boolean isDutch() {
+		return _kind == Kind.Dutch;
 	}
 
 	/**
@@ -107,7 +156,14 @@ public class Analyzer implements TaggedUnion<AnalyzerVariant>, JsonpSerializable
 	 *             if the current variant is not of the {@code dutch} kind.
 	 */
 	public DutchAnalyzer dutch() {
-		return TaggedUnionUtils.get(this, DUTCH);
+		return TaggedUnionUtils.get(this, Kind.Dutch);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code fingerprint}?
+	 */
+	public boolean isFingerprint() {
+		return _kind == Kind.Fingerprint;
 	}
 
 	/**
@@ -117,7 +173,14 @@ public class Analyzer implements TaggedUnion<AnalyzerVariant>, JsonpSerializable
 	 *             if the current variant is not of the {@code fingerprint} kind.
 	 */
 	public FingerprintAnalyzer fingerprint() {
-		return TaggedUnionUtils.get(this, FINGERPRINT);
+		return TaggedUnionUtils.get(this, Kind.Fingerprint);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code icu_analyzer}?
+	 */
+	public boolean isIcuAnalyzer() {
+		return _kind == Kind.IcuAnalyzer;
 	}
 
 	/**
@@ -127,7 +190,14 @@ public class Analyzer implements TaggedUnion<AnalyzerVariant>, JsonpSerializable
 	 *             if the current variant is not of the {@code icu_analyzer} kind.
 	 */
 	public IcuAnalyzer icuAnalyzer() {
-		return TaggedUnionUtils.get(this, ICU_ANALYZER);
+		return TaggedUnionUtils.get(this, Kind.IcuAnalyzer);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code keyword}?
+	 */
+	public boolean isKeyword() {
+		return _kind == Kind.Keyword;
 	}
 
 	/**
@@ -137,7 +207,14 @@ public class Analyzer implements TaggedUnion<AnalyzerVariant>, JsonpSerializable
 	 *             if the current variant is not of the {@code keyword} kind.
 	 */
 	public KeywordAnalyzer keyword() {
-		return TaggedUnionUtils.get(this, KEYWORD);
+		return TaggedUnionUtils.get(this, Kind.Keyword);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code kuromoji}?
+	 */
+	public boolean isKuromoji() {
+		return _kind == Kind.Kuromoji;
 	}
 
 	/**
@@ -147,7 +224,14 @@ public class Analyzer implements TaggedUnion<AnalyzerVariant>, JsonpSerializable
 	 *             if the current variant is not of the {@code kuromoji} kind.
 	 */
 	public KuromojiAnalyzer kuromoji() {
-		return TaggedUnionUtils.get(this, KUROMOJI);
+		return TaggedUnionUtils.get(this, Kind.Kuromoji);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code language}?
+	 */
+	public boolean isLanguage() {
+		return _kind == Kind.Language;
 	}
 
 	/**
@@ -157,7 +241,14 @@ public class Analyzer implements TaggedUnion<AnalyzerVariant>, JsonpSerializable
 	 *             if the current variant is not of the {@code language} kind.
 	 */
 	public LanguageAnalyzer language() {
-		return TaggedUnionUtils.get(this, LANGUAGE);
+		return TaggedUnionUtils.get(this, Kind.Language);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code nori}?
+	 */
+	public boolean isNori() {
+		return _kind == Kind.Nori;
 	}
 
 	/**
@@ -167,7 +258,14 @@ public class Analyzer implements TaggedUnion<AnalyzerVariant>, JsonpSerializable
 	 *             if the current variant is not of the {@code nori} kind.
 	 */
 	public NoriAnalyzer nori() {
-		return TaggedUnionUtils.get(this, NORI);
+		return TaggedUnionUtils.get(this, Kind.Nori);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code pattern}?
+	 */
+	public boolean isPattern() {
+		return _kind == Kind.Pattern;
 	}
 
 	/**
@@ -177,7 +275,14 @@ public class Analyzer implements TaggedUnion<AnalyzerVariant>, JsonpSerializable
 	 *             if the current variant is not of the {@code pattern} kind.
 	 */
 	public PatternAnalyzer pattern() {
-		return TaggedUnionUtils.get(this, PATTERN);
+		return TaggedUnionUtils.get(this, Kind.Pattern);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code simple}?
+	 */
+	public boolean isSimple() {
+		return _kind == Kind.Simple;
 	}
 
 	/**
@@ -187,7 +292,14 @@ public class Analyzer implements TaggedUnion<AnalyzerVariant>, JsonpSerializable
 	 *             if the current variant is not of the {@code simple} kind.
 	 */
 	public SimpleAnalyzer simple() {
-		return TaggedUnionUtils.get(this, SIMPLE);
+		return TaggedUnionUtils.get(this, Kind.Simple);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code snowball}?
+	 */
+	public boolean isSnowball() {
+		return _kind == Kind.Snowball;
 	}
 
 	/**
@@ -197,7 +309,14 @@ public class Analyzer implements TaggedUnion<AnalyzerVariant>, JsonpSerializable
 	 *             if the current variant is not of the {@code snowball} kind.
 	 */
 	public SnowballAnalyzer snowball() {
-		return TaggedUnionUtils.get(this, SNOWBALL);
+		return TaggedUnionUtils.get(this, Kind.Snowball);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code standard}?
+	 */
+	public boolean isStandard() {
+		return _kind == Kind.Standard;
 	}
 
 	/**
@@ -207,7 +326,14 @@ public class Analyzer implements TaggedUnion<AnalyzerVariant>, JsonpSerializable
 	 *             if the current variant is not of the {@code standard} kind.
 	 */
 	public StandardAnalyzer standard() {
-		return TaggedUnionUtils.get(this, STANDARD);
+		return TaggedUnionUtils.get(this, Kind.Standard);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code stop}?
+	 */
+	public boolean isStop() {
+		return _kind == Kind.Stop;
 	}
 
 	/**
@@ -217,7 +343,14 @@ public class Analyzer implements TaggedUnion<AnalyzerVariant>, JsonpSerializable
 	 *             if the current variant is not of the {@code stop} kind.
 	 */
 	public StopAnalyzer stop() {
-		return TaggedUnionUtils.get(this, STOP);
+		return TaggedUnionUtils.get(this, Kind.Stop);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code whitespace}?
+	 */
+	public boolean isWhitespace() {
+		return _kind == Kind.Whitespace;
 	}
 
 	/**
@@ -227,7 +360,7 @@ public class Analyzer implements TaggedUnion<AnalyzerVariant>, JsonpSerializable
 	 *             if the current variant is not of the {@code whitespace} kind.
 	 */
 	public WhitespaceAnalyzer whitespace() {
-		return TaggedUnionUtils.get(this, WHITESPACE);
+		return TaggedUnionUtils.get(this, Kind.Whitespace);
 	}
 
 	@Override
@@ -238,147 +371,175 @@ public class Analyzer implements TaggedUnion<AnalyzerVariant>, JsonpSerializable
 	}
 
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Analyzer> {
-		private String _type;
+		private Kind _kind;
 		private AnalyzerVariant _value;
 
 		public Builder custom(CustomAnalyzer v) {
-			this._type = CUSTOM;
+			this._kind = Kind.Custom;
 			this._value = v;
 			return this;
 		}
 
-		public Builder custom(Function<CustomAnalyzer.Builder, ObjectBuilder<CustomAnalyzer>> f) {
-			return this.custom(f.apply(new CustomAnalyzer.Builder()).build());
+		public Builder custom(Consumer<CustomAnalyzer.Builder> fn) {
+			CustomAnalyzer.Builder builder = new CustomAnalyzer.Builder();
+			fn.accept(builder);
+			return this.custom(builder.build());
 		}
 
 		public Builder dutch(DutchAnalyzer v) {
-			this._type = DUTCH;
+			this._kind = Kind.Dutch;
 			this._value = v;
 			return this;
 		}
 
-		public Builder dutch(Function<DutchAnalyzer.Builder, ObjectBuilder<DutchAnalyzer>> f) {
-			return this.dutch(f.apply(new DutchAnalyzer.Builder()).build());
+		public Builder dutch(Consumer<DutchAnalyzer.Builder> fn) {
+			DutchAnalyzer.Builder builder = new DutchAnalyzer.Builder();
+			fn.accept(builder);
+			return this.dutch(builder.build());
 		}
 
 		public Builder fingerprint(FingerprintAnalyzer v) {
-			this._type = FINGERPRINT;
+			this._kind = Kind.Fingerprint;
 			this._value = v;
 			return this;
 		}
 
-		public Builder fingerprint(Function<FingerprintAnalyzer.Builder, ObjectBuilder<FingerprintAnalyzer>> f) {
-			return this.fingerprint(f.apply(new FingerprintAnalyzer.Builder()).build());
+		public Builder fingerprint(Consumer<FingerprintAnalyzer.Builder> fn) {
+			FingerprintAnalyzer.Builder builder = new FingerprintAnalyzer.Builder();
+			fn.accept(builder);
+			return this.fingerprint(builder.build());
 		}
 
 		public Builder icuAnalyzer(IcuAnalyzer v) {
-			this._type = ICU_ANALYZER;
+			this._kind = Kind.IcuAnalyzer;
 			this._value = v;
 			return this;
 		}
 
-		public Builder icuAnalyzer(Function<IcuAnalyzer.Builder, ObjectBuilder<IcuAnalyzer>> f) {
-			return this.icuAnalyzer(f.apply(new IcuAnalyzer.Builder()).build());
+		public Builder icuAnalyzer(Consumer<IcuAnalyzer.Builder> fn) {
+			IcuAnalyzer.Builder builder = new IcuAnalyzer.Builder();
+			fn.accept(builder);
+			return this.icuAnalyzer(builder.build());
 		}
 
 		public Builder keyword(KeywordAnalyzer v) {
-			this._type = KEYWORD;
+			this._kind = Kind.Keyword;
 			this._value = v;
 			return this;
 		}
 
-		public Builder keyword(Function<KeywordAnalyzer.Builder, ObjectBuilder<KeywordAnalyzer>> f) {
-			return this.keyword(f.apply(new KeywordAnalyzer.Builder()).build());
+		public Builder keyword(Consumer<KeywordAnalyzer.Builder> fn) {
+			KeywordAnalyzer.Builder builder = new KeywordAnalyzer.Builder();
+			fn.accept(builder);
+			return this.keyword(builder.build());
 		}
 
 		public Builder kuromoji(KuromojiAnalyzer v) {
-			this._type = KUROMOJI;
+			this._kind = Kind.Kuromoji;
 			this._value = v;
 			return this;
 		}
 
-		public Builder kuromoji(Function<KuromojiAnalyzer.Builder, ObjectBuilder<KuromojiAnalyzer>> f) {
-			return this.kuromoji(f.apply(new KuromojiAnalyzer.Builder()).build());
+		public Builder kuromoji(Consumer<KuromojiAnalyzer.Builder> fn) {
+			KuromojiAnalyzer.Builder builder = new KuromojiAnalyzer.Builder();
+			fn.accept(builder);
+			return this.kuromoji(builder.build());
 		}
 
 		public Builder language(LanguageAnalyzer v) {
-			this._type = LANGUAGE;
+			this._kind = Kind.Language;
 			this._value = v;
 			return this;
 		}
 
-		public Builder language(Function<LanguageAnalyzer.Builder, ObjectBuilder<LanguageAnalyzer>> f) {
-			return this.language(f.apply(new LanguageAnalyzer.Builder()).build());
+		public Builder language(Consumer<LanguageAnalyzer.Builder> fn) {
+			LanguageAnalyzer.Builder builder = new LanguageAnalyzer.Builder();
+			fn.accept(builder);
+			return this.language(builder.build());
 		}
 
 		public Builder nori(NoriAnalyzer v) {
-			this._type = NORI;
+			this._kind = Kind.Nori;
 			this._value = v;
 			return this;
 		}
 
-		public Builder nori(Function<NoriAnalyzer.Builder, ObjectBuilder<NoriAnalyzer>> f) {
-			return this.nori(f.apply(new NoriAnalyzer.Builder()).build());
+		public Builder nori(Consumer<NoriAnalyzer.Builder> fn) {
+			NoriAnalyzer.Builder builder = new NoriAnalyzer.Builder();
+			fn.accept(builder);
+			return this.nori(builder.build());
 		}
 
 		public Builder pattern(PatternAnalyzer v) {
-			this._type = PATTERN;
+			this._kind = Kind.Pattern;
 			this._value = v;
 			return this;
 		}
 
-		public Builder pattern(Function<PatternAnalyzer.Builder, ObjectBuilder<PatternAnalyzer>> f) {
-			return this.pattern(f.apply(new PatternAnalyzer.Builder()).build());
+		public Builder pattern(Consumer<PatternAnalyzer.Builder> fn) {
+			PatternAnalyzer.Builder builder = new PatternAnalyzer.Builder();
+			fn.accept(builder);
+			return this.pattern(builder.build());
 		}
 
 		public Builder simple(SimpleAnalyzer v) {
-			this._type = SIMPLE;
+			this._kind = Kind.Simple;
 			this._value = v;
 			return this;
 		}
 
-		public Builder simple(Function<SimpleAnalyzer.Builder, ObjectBuilder<SimpleAnalyzer>> f) {
-			return this.simple(f.apply(new SimpleAnalyzer.Builder()).build());
+		public Builder simple(Consumer<SimpleAnalyzer.Builder> fn) {
+			SimpleAnalyzer.Builder builder = new SimpleAnalyzer.Builder();
+			fn.accept(builder);
+			return this.simple(builder.build());
 		}
 
 		public Builder snowball(SnowballAnalyzer v) {
-			this._type = SNOWBALL;
+			this._kind = Kind.Snowball;
 			this._value = v;
 			return this;
 		}
 
-		public Builder snowball(Function<SnowballAnalyzer.Builder, ObjectBuilder<SnowballAnalyzer>> f) {
-			return this.snowball(f.apply(new SnowballAnalyzer.Builder()).build());
+		public Builder snowball(Consumer<SnowballAnalyzer.Builder> fn) {
+			SnowballAnalyzer.Builder builder = new SnowballAnalyzer.Builder();
+			fn.accept(builder);
+			return this.snowball(builder.build());
 		}
 
 		public Builder standard(StandardAnalyzer v) {
-			this._type = STANDARD;
+			this._kind = Kind.Standard;
 			this._value = v;
 			return this;
 		}
 
-		public Builder standard(Function<StandardAnalyzer.Builder, ObjectBuilder<StandardAnalyzer>> f) {
-			return this.standard(f.apply(new StandardAnalyzer.Builder()).build());
+		public Builder standard(Consumer<StandardAnalyzer.Builder> fn) {
+			StandardAnalyzer.Builder builder = new StandardAnalyzer.Builder();
+			fn.accept(builder);
+			return this.standard(builder.build());
 		}
 
 		public Builder stop(StopAnalyzer v) {
-			this._type = STOP;
+			this._kind = Kind.Stop;
 			this._value = v;
 			return this;
 		}
 
-		public Builder stop(Function<StopAnalyzer.Builder, ObjectBuilder<StopAnalyzer>> f) {
-			return this.stop(f.apply(new StopAnalyzer.Builder()).build());
+		public Builder stop(Consumer<StopAnalyzer.Builder> fn) {
+			StopAnalyzer.Builder builder = new StopAnalyzer.Builder();
+			fn.accept(builder);
+			return this.stop(builder.build());
 		}
 
 		public Builder whitespace(WhitespaceAnalyzer v) {
-			this._type = WHITESPACE;
+			this._kind = Kind.Whitespace;
 			this._value = v;
 			return this;
 		}
 
-		public Builder whitespace(Function<WhitespaceAnalyzer.Builder, ObjectBuilder<WhitespaceAnalyzer>> f) {
-			return this.whitespace(f.apply(new WhitespaceAnalyzer.Builder()).build());
+		public Builder whitespace(Consumer<WhitespaceAnalyzer.Builder> fn) {
+			WhitespaceAnalyzer.Builder builder = new WhitespaceAnalyzer.Builder();
+			fn.accept(builder);
+			return this.whitespace(builder.build());
 		}
 
 		public Analyzer build() {

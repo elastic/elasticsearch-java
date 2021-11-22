@@ -26,24 +26,25 @@ package co.elastic.clients.elasticsearch.snapshot;
 import co.elastic.clients.ApiClient;
 import co.elastic.clients.elasticsearch._types.ElasticsearchException;
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
+import co.elastic.clients.transport.ElasticsearchTransport;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.Transport;
 import co.elastic.clients.transport.TransportOptions;
 import co.elastic.clients.util.ObjectBuilder;
 import java.io.IOException;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 /**
  * Client for the snapshot namespace.
  */
-public class ElasticsearchSnapshotClient extends ApiClient<ElasticsearchSnapshotClient> {
+public class ElasticsearchSnapshotClient extends ApiClient<ElasticsearchTransport, ElasticsearchSnapshotClient> {
 
-	public ElasticsearchSnapshotClient(Transport transport) {
+	public ElasticsearchSnapshotClient(ElasticsearchTransport transport) {
 		super(transport, null);
 	}
 
-	public ElasticsearchSnapshotClient(Transport transport, @Nullable TransportOptions transportOptions) {
+	public ElasticsearchSnapshotClient(ElasticsearchTransport transport, @Nullable TransportOptions transportOptions) {
 		super(transport, transportOptions);
 	}
 
@@ -81,10 +82,11 @@ public class ElasticsearchSnapshotClient extends ApiClient<ElasticsearchSnapshot
 	 *      on elastic.co</a>
 	 */
 
-	public final CleanupRepositoryResponse cleanupRepository(
-			Function<CleanupRepositoryRequest.Builder, ObjectBuilder<CleanupRepositoryRequest>> fn)
+	public final CleanupRepositoryResponse cleanupRepository(Consumer<CleanupRepositoryRequest.Builder> fn)
 			throws IOException, ElasticsearchException {
-		return cleanupRepository(fn.apply(new CleanupRepositoryRequest.Builder()).build());
+		CleanupRepositoryRequest.Builder builder = new CleanupRepositoryRequest.Builder();
+		fn.accept(builder);
+		return cleanupRepository(builder.build());
 	}
 
 	// ----- Endpoint: snapshot.clone
@@ -117,10 +119,11 @@ public class ElasticsearchSnapshotClient extends ApiClient<ElasticsearchSnapshot
 	 *      on elastic.co</a>
 	 */
 
-	public final CloneSnapshotResponse clone(
-			Function<CloneSnapshotRequest.Builder, ObjectBuilder<CloneSnapshotRequest>> fn)
+	public final CloneSnapshotResponse clone(Consumer<CloneSnapshotRequest.Builder> fn)
 			throws IOException, ElasticsearchException {
-		return clone(fn.apply(new CloneSnapshotRequest.Builder()).build());
+		CloneSnapshotRequest.Builder builder = new CloneSnapshotRequest.Builder();
+		fn.accept(builder);
+		return clone(builder.build());
 	}
 
 	// ----- Endpoint: snapshot.create
@@ -151,10 +154,11 @@ public class ElasticsearchSnapshotClient extends ApiClient<ElasticsearchSnapshot
 	 *      on elastic.co</a>
 	 */
 
-	public final CreateSnapshotResponse create(
-			Function<CreateSnapshotRequest.Builder, ObjectBuilder<CreateSnapshotRequest>> fn)
+	public final CreateSnapshotResponse create(Consumer<CreateSnapshotRequest.Builder> fn)
 			throws IOException, ElasticsearchException {
-		return create(fn.apply(new CreateSnapshotRequest.Builder()).build());
+		CreateSnapshotRequest.Builder builder = new CreateSnapshotRequest.Builder();
+		fn.accept(builder);
+		return create(builder.build());
 	}
 
 	// ----- Endpoint: snapshot.create_repository
@@ -186,10 +190,11 @@ public class ElasticsearchSnapshotClient extends ApiClient<ElasticsearchSnapshot
 	 *      on elastic.co</a>
 	 */
 
-	public final CreateRepositoryResponse createRepository(
-			Function<CreateRepositoryRequest.Builder, ObjectBuilder<CreateRepositoryRequest>> fn)
+	public final CreateRepositoryResponse createRepository(Consumer<CreateRepositoryRequest.Builder> fn)
 			throws IOException, ElasticsearchException {
-		return createRepository(fn.apply(new CreateRepositoryRequest.Builder()).build());
+		CreateRepositoryRequest.Builder builder = new CreateRepositoryRequest.Builder();
+		fn.accept(builder);
+		return createRepository(builder.build());
 	}
 
 	// ----- Endpoint: snapshot.delete
@@ -220,10 +225,11 @@ public class ElasticsearchSnapshotClient extends ApiClient<ElasticsearchSnapshot
 	 *      on elastic.co</a>
 	 */
 
-	public final DeleteSnapshotResponse delete(
-			Function<DeleteSnapshotRequest.Builder, ObjectBuilder<DeleteSnapshotRequest>> fn)
+	public final DeleteSnapshotResponse delete(Consumer<DeleteSnapshotRequest.Builder> fn)
 			throws IOException, ElasticsearchException {
-		return delete(fn.apply(new DeleteSnapshotRequest.Builder()).build());
+		DeleteSnapshotRequest.Builder builder = new DeleteSnapshotRequest.Builder();
+		fn.accept(builder);
+		return delete(builder.build());
 	}
 
 	// ----- Endpoint: snapshot.delete_repository
@@ -255,10 +261,11 @@ public class ElasticsearchSnapshotClient extends ApiClient<ElasticsearchSnapshot
 	 *      on elastic.co</a>
 	 */
 
-	public final DeleteRepositoryResponse deleteRepository(
-			Function<DeleteRepositoryRequest.Builder, ObjectBuilder<DeleteRepositoryRequest>> fn)
+	public final DeleteRepositoryResponse deleteRepository(Consumer<DeleteRepositoryRequest.Builder> fn)
 			throws IOException, ElasticsearchException {
-		return deleteRepository(fn.apply(new DeleteRepositoryRequest.Builder()).build());
+		DeleteRepositoryRequest.Builder builder = new DeleteRepositoryRequest.Builder();
+		fn.accept(builder);
+		return deleteRepository(builder.build());
 	}
 
 	// ----- Endpoint: snapshot.get
@@ -289,9 +296,11 @@ public class ElasticsearchSnapshotClient extends ApiClient<ElasticsearchSnapshot
 	 *      on elastic.co</a>
 	 */
 
-	public final GetSnapshotResponse get(Function<GetSnapshotRequest.Builder, ObjectBuilder<GetSnapshotRequest>> fn)
+	public final GetSnapshotResponse get(Consumer<GetSnapshotRequest.Builder> fn)
 			throws IOException, ElasticsearchException {
-		return get(fn.apply(new GetSnapshotRequest.Builder()).build());
+		GetSnapshotRequest.Builder builder = new GetSnapshotRequest.Builder();
+		fn.accept(builder);
+		return get(builder.build());
 	}
 
 	// ----- Endpoint: snapshot.get_repository
@@ -323,10 +332,11 @@ public class ElasticsearchSnapshotClient extends ApiClient<ElasticsearchSnapshot
 	 *      on elastic.co</a>
 	 */
 
-	public final GetRepositoryResponse getRepository(
-			Function<GetRepositoryRequest.Builder, ObjectBuilder<GetRepositoryRequest>> fn)
+	public final GetRepositoryResponse getRepository(Consumer<GetRepositoryRequest.Builder> fn)
 			throws IOException, ElasticsearchException {
-		return getRepository(fn.apply(new GetRepositoryRequest.Builder()).build());
+		GetRepositoryRequest.Builder builder = new GetRepositoryRequest.Builder();
+		fn.accept(builder);
+		return getRepository(builder.build());
 	}
 
 	/**
@@ -370,9 +380,11 @@ public class ElasticsearchSnapshotClient extends ApiClient<ElasticsearchSnapshot
 	 *      on elastic.co</a>
 	 */
 
-	public final RestoreResponse restore(Function<RestoreRequest.Builder, ObjectBuilder<RestoreRequest>> fn)
+	public final RestoreResponse restore(Consumer<RestoreRequest.Builder> fn)
 			throws IOException, ElasticsearchException {
-		return restore(fn.apply(new RestoreRequest.Builder()).build());
+		RestoreRequest.Builder builder = new RestoreRequest.Builder();
+		fn.accept(builder);
+		return restore(builder.build());
 	}
 
 	// ----- Endpoint: snapshot.status
@@ -385,9 +397,9 @@ public class ElasticsearchSnapshotClient extends ApiClient<ElasticsearchSnapshot
 	 *      on elastic.co</a>
 	 */
 
-	public StatusResponse status(StatusRequest request) throws IOException, ElasticsearchException {
+	public SnapshotStatusResponse status(SnapshotStatusRequest request) throws IOException, ElasticsearchException {
 		@SuppressWarnings("unchecked")
-		Endpoint<StatusRequest, StatusResponse, ErrorResponse> endpoint = (Endpoint<StatusRequest, StatusResponse, ErrorResponse>) StatusRequest._ENDPOINT;
+		Endpoint<SnapshotStatusRequest, SnapshotStatusResponse, ErrorResponse> endpoint = (Endpoint<SnapshotStatusRequest, SnapshotStatusResponse, ErrorResponse>) SnapshotStatusRequest._ENDPOINT;
 
 		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
@@ -397,15 +409,17 @@ public class ElasticsearchSnapshotClient extends ApiClient<ElasticsearchSnapshot
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
-	 *            {@link StatusRequest}
+	 *            {@link SnapshotStatusRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-snapshots.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
-	public final StatusResponse status(Function<StatusRequest.Builder, ObjectBuilder<StatusRequest>> fn)
+	public final SnapshotStatusResponse status(Consumer<SnapshotStatusRequest.Builder> fn)
 			throws IOException, ElasticsearchException {
-		return status(fn.apply(new StatusRequest.Builder()).build());
+		SnapshotStatusRequest.Builder builder = new SnapshotStatusRequest.Builder();
+		fn.accept(builder);
+		return status(builder.build());
 	}
 
 	/**
@@ -416,9 +430,9 @@ public class ElasticsearchSnapshotClient extends ApiClient<ElasticsearchSnapshot
 	 *      on elastic.co</a>
 	 */
 
-	public StatusResponse status() throws IOException, ElasticsearchException {
-		return this.transport.performRequest(new StatusRequest.Builder().build(), StatusRequest._ENDPOINT,
-				this.transportOptions);
+	public SnapshotStatusResponse status() throws IOException, ElasticsearchException {
+		return this.transport.performRequest(new SnapshotStatusRequest.Builder().build(),
+				SnapshotStatusRequest._ENDPOINT, this.transportOptions);
 	}
 
 	// ----- Endpoint: snapshot.verify_repository
@@ -450,10 +464,11 @@ public class ElasticsearchSnapshotClient extends ApiClient<ElasticsearchSnapshot
 	 *      on elastic.co</a>
 	 */
 
-	public final VerifyRepositoryResponse verifyRepository(
-			Function<VerifyRepositoryRequest.Builder, ObjectBuilder<VerifyRepositoryRequest>> fn)
+	public final VerifyRepositoryResponse verifyRepository(Consumer<VerifyRepositoryRequest.Builder> fn)
 			throws IOException, ElasticsearchException {
-		return verifyRepository(fn.apply(new VerifyRepositoryRequest.Builder()).build());
+		VerifyRepositoryRequest.Builder builder = new VerifyRepositoryRequest.Builder();
+		fn.accept(builder);
+		return verifyRepository(builder.build());
 	}
 
 }

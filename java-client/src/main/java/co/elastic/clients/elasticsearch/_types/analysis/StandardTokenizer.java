@@ -32,7 +32,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: _types.analysis.StandardTokenizer
@@ -50,16 +50,18 @@ public class StandardTokenizer extends TokenizerBase implements TokenizerDefinit
 
 	}
 
-	public static StandardTokenizer of(Function<Builder, ObjectBuilder<StandardTokenizer>> fn) {
-		return fn.apply(new Builder()).build();
+	public static StandardTokenizer of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
-	 * {@link TokenizerDefinition} variant type
+	 * TokenizerDefinition variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "standard";
+	public TokenizerDefinition.Kind _tokenizerDefinitionKind() {
+		return TokenizerDefinition.Kind.Standard;
 	}
 
 	/**

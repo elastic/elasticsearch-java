@@ -36,7 +36,7 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: _global.reindex.RemoteSource
@@ -64,8 +64,10 @@ public class RemoteSource implements JsonpSerializable {
 
 	}
 
-	public static RemoteSource of(Function<Builder, ObjectBuilder<RemoteSource>> fn) {
-		return fn.apply(new Builder()).build();
+	public static RemoteSource of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -158,8 +160,10 @@ public class RemoteSource implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code connect_timeout}
 		 */
-		public final Builder connectTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
-			return this.connectTimeout(fn.apply(new Time.Builder()).build());
+		public final Builder connectTimeout(Consumer<Time.Builder> fn) {
+			Time.Builder builder = new Time.Builder();
+			fn.accept(builder);
+			return this.connectTimeout(builder.build());
 		}
 
 		/**
@@ -197,8 +201,10 @@ public class RemoteSource implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code socket_timeout}
 		 */
-		public final Builder socketTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
-			return this.socketTimeout(fn.apply(new Time.Builder()).build());
+		public final Builder socketTimeout(Consumer<Time.Builder> fn) {
+			Time.Builder builder = new Time.Builder();
+			fn.accept(builder);
+			return this.socketTimeout(builder.build());
 		}
 
 		/**

@@ -37,7 +37,7 @@ import java.lang.String;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: _global.search._types.SourceFilter
@@ -56,8 +56,10 @@ public class SourceFilter implements JsonpSerializable {
 
 	}
 
-	public static SourceFilter of(Function<Builder, ObjectBuilder<SourceFilter>> fn) {
-		return fn.apply(new Builder()).build();
+	public static SourceFilter of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**

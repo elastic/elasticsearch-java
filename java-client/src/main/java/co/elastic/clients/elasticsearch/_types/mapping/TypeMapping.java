@@ -38,10 +38,10 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -110,8 +110,10 @@ public class TypeMapping implements JsonpSerializable {
 
 	}
 
-	public static TypeMapping of(Function<Builder, ObjectBuilder<TypeMapping>> fn) {
-		return fn.apply(new Builder()).build();
+	public static TypeMapping of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -415,8 +417,10 @@ public class TypeMapping implements JsonpSerializable {
 		/**
 		 * API name: {@code all_field}
 		 */
-		public final Builder allField(Function<AllField.Builder, ObjectBuilder<AllField>> fn) {
-			return this.allField(fn.apply(new AllField.Builder()).build());
+		public final Builder allField(Consumer<AllField.Builder> fn) {
+			AllField.Builder builder = new AllField.Builder();
+			fn.accept(builder);
+			return this.allField(builder.build());
 		}
 
 		/**
@@ -478,8 +482,10 @@ public class TypeMapping implements JsonpSerializable {
 		/**
 		 * API name: {@code _field_names}
 		 */
-		public final Builder fieldNames(Function<FieldNamesField.Builder, ObjectBuilder<FieldNamesField>> fn) {
-			return this.fieldNames(fn.apply(new FieldNamesField.Builder()).build());
+		public final Builder fieldNames(Consumer<FieldNamesField.Builder> fn) {
+			FieldNamesField.Builder builder = new FieldNamesField.Builder();
+			fn.accept(builder);
+			return this.fieldNames(builder.build());
 		}
 
 		/**
@@ -493,8 +499,10 @@ public class TypeMapping implements JsonpSerializable {
 		/**
 		 * API name: {@code index_field}
 		 */
-		public final Builder indexField(Function<IndexField.Builder, ObjectBuilder<IndexField>> fn) {
-			return this.indexField(fn.apply(new IndexField.Builder()).build());
+		public final Builder indexField(Consumer<IndexField.Builder> fn) {
+			IndexField.Builder builder = new IndexField.Builder();
+			fn.accept(builder);
+			return this.indexField(builder.build());
 		}
 
 		/**
@@ -521,13 +529,6 @@ public class TypeMapping implements JsonpSerializable {
 			return this;
 		}
 
-		/**
-		 * Set {@link #properties(Map)} to a singleton map.
-		 */
-		public Builder properties(String key, Function<Property.Builder, ObjectBuilder<Property>> fn) {
-			return this.properties(Collections.singletonMap(key, fn.apply(new Property.Builder()).build()));
-		}
-
 		public final Builder properties(
 				Function<MapBuilder<String, Property, Property.Builder>, ObjectBuilder<Map<String, Property>>> fn) {
 			return properties(fn.apply(new MapBuilder<>(Property.Builder::new)).build());
@@ -544,8 +545,10 @@ public class TypeMapping implements JsonpSerializable {
 		/**
 		 * API name: {@code _routing}
 		 */
-		public final Builder routing(Function<RoutingField.Builder, ObjectBuilder<RoutingField>> fn) {
-			return this.routing(fn.apply(new RoutingField.Builder()).build());
+		public final Builder routing(Consumer<RoutingField.Builder> fn) {
+			RoutingField.Builder builder = new RoutingField.Builder();
+			fn.accept(builder);
+			return this.routing(builder.build());
 		}
 
 		/**
@@ -559,8 +562,10 @@ public class TypeMapping implements JsonpSerializable {
 		/**
 		 * API name: {@code _size}
 		 */
-		public final Builder size(Function<SizeField.Builder, ObjectBuilder<SizeField>> fn) {
-			return this.size(fn.apply(new SizeField.Builder()).build());
+		public final Builder size(Consumer<SizeField.Builder> fn) {
+			SizeField.Builder builder = new SizeField.Builder();
+			fn.accept(builder);
+			return this.size(builder.build());
 		}
 
 		/**
@@ -574,8 +579,10 @@ public class TypeMapping implements JsonpSerializable {
 		/**
 		 * API name: {@code _source}
 		 */
-		public final Builder source(Function<SourceField.Builder, ObjectBuilder<SourceField>> fn) {
-			return this.source(fn.apply(new SourceField.Builder()).build());
+		public final Builder source(Consumer<SourceField.Builder> fn) {
+			SourceField.Builder builder = new SourceField.Builder();
+			fn.accept(builder);
+			return this.source(builder.build());
 		}
 
 		/**
@@ -584,13 +591,6 @@ public class TypeMapping implements JsonpSerializable {
 		public final Builder runtime(@Nullable Map<String, RuntimeField> value) {
 			this.runtime = value;
 			return this;
-		}
-
-		/**
-		 * Set {@link #runtime(Map)} to a singleton map.
-		 */
-		public Builder runtime(String key, Function<RuntimeField.Builder, ObjectBuilder<RuntimeField>> fn) {
-			return this.runtime(Collections.singletonMap(key, fn.apply(new RuntimeField.Builder()).build()));
 		}
 
 		public final Builder runtime(

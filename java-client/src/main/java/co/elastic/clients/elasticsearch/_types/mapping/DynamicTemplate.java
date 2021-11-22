@@ -34,7 +34,7 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: _types.mapping.DynamicTemplate
@@ -75,8 +75,10 @@ public class DynamicTemplate implements JsonpSerializable {
 
 	}
 
-	public static DynamicTemplate of(Function<Builder, ObjectBuilder<DynamicTemplate>> fn) {
-		return fn.apply(new Builder()).build();
+	public static DynamicTemplate of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -221,8 +223,10 @@ public class DynamicTemplate implements JsonpSerializable {
 		/**
 		 * API name: {@code mapping}
 		 */
-		public final Builder mapping(Function<Property.Builder, ObjectBuilder<Property>> fn) {
-			return this.mapping(fn.apply(new Property.Builder()).build());
+		public final Builder mapping(Consumer<Property.Builder> fn) {
+			Property.Builder builder = new Property.Builder();
+			fn.accept(builder);
+			return this.mapping(builder.build());
 		}
 
 		/**

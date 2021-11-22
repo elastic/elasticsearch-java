@@ -32,7 +32,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Number;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: _types.mapping.ShortNumberProperty
@@ -50,16 +50,18 @@ public class ShortNumberProperty extends StandardNumberProperty implements Prope
 
 	}
 
-	public static ShortNumberProperty of(Function<Builder, ObjectBuilder<ShortNumberProperty>> fn) {
-		return fn.apply(new Builder()).build();
+	public static ShortNumberProperty of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
-	 * {@link Property} variant type
+	 * Property variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "short";
+	public Property.Kind _propertyKind() {
+		return Property.Kind.Short;
 	}
 
 	/**

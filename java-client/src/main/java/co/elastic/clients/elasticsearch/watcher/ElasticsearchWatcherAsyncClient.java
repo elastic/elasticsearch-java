@@ -26,25 +26,29 @@ package co.elastic.clients.elasticsearch.watcher;
 import co.elastic.clients.ApiClient;
 import co.elastic.clients.elasticsearch._types.ElasticsearchException;
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
+import co.elastic.clients.transport.ElasticsearchTransport;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.Transport;
 import co.elastic.clients.transport.TransportOptions;
 import co.elastic.clients.util.ObjectBuilder;
 import java.io.IOException;
 import java.util.concurrent.CompletableFuture;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 /**
  * Client for the watcher namespace.
  */
-public class ElasticsearchWatcherAsyncClient extends ApiClient<ElasticsearchWatcherAsyncClient> {
+public class ElasticsearchWatcherAsyncClient
+		extends
+			ApiClient<ElasticsearchTransport, ElasticsearchWatcherAsyncClient> {
 
-	public ElasticsearchWatcherAsyncClient(Transport transport) {
+	public ElasticsearchWatcherAsyncClient(ElasticsearchTransport transport) {
 		super(transport, null);
 	}
 
-	public ElasticsearchWatcherAsyncClient(Transport transport, @Nullable TransportOptions transportOptions) {
+	public ElasticsearchWatcherAsyncClient(ElasticsearchTransport transport,
+			@Nullable TransportOptions transportOptions) {
 		super(transport, transportOptions);
 	}
 
@@ -84,10 +88,11 @@ public class ElasticsearchWatcherAsyncClient extends ApiClient<ElasticsearchWatc
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<AckWatchResponse> ackWatch(
-			Function<AckWatchRequest.Builder, ObjectBuilder<AckWatchRequest>> fn)
+	public final CompletableFuture<AckWatchResponse> ackWatch(Consumer<AckWatchRequest.Builder> fn)
 			throws IOException, ElasticsearchException {
-		return ackWatch(fn.apply(new AckWatchRequest.Builder()).build());
+		AckWatchRequest.Builder builder = new AckWatchRequest.Builder();
+		fn.accept(builder);
+		return ackWatch(builder.build());
 	}
 
 	// ----- Endpoint: watcher.activate_watch
@@ -119,10 +124,11 @@ public class ElasticsearchWatcherAsyncClient extends ApiClient<ElasticsearchWatc
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<ActivateWatchResponse> activateWatch(
-			Function<ActivateWatchRequest.Builder, ObjectBuilder<ActivateWatchRequest>> fn)
+	public final CompletableFuture<ActivateWatchResponse> activateWatch(Consumer<ActivateWatchRequest.Builder> fn)
 			throws IOException, ElasticsearchException {
-		return activateWatch(fn.apply(new ActivateWatchRequest.Builder()).build());
+		ActivateWatchRequest.Builder builder = new ActivateWatchRequest.Builder();
+		fn.accept(builder);
+		return activateWatch(builder.build());
 	}
 
 	// ----- Endpoint: watcher.deactivate_watch
@@ -154,10 +160,11 @@ public class ElasticsearchWatcherAsyncClient extends ApiClient<ElasticsearchWatc
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<DeactivateWatchResponse> deactivateWatch(
-			Function<DeactivateWatchRequest.Builder, ObjectBuilder<DeactivateWatchRequest>> fn)
+	public final CompletableFuture<DeactivateWatchResponse> deactivateWatch(Consumer<DeactivateWatchRequest.Builder> fn)
 			throws IOException, ElasticsearchException {
-		return deactivateWatch(fn.apply(new DeactivateWatchRequest.Builder()).build());
+		DeactivateWatchRequest.Builder builder = new DeactivateWatchRequest.Builder();
+		fn.accept(builder);
+		return deactivateWatch(builder.build());
 	}
 
 	// ----- Endpoint: watcher.delete_watch
@@ -189,10 +196,11 @@ public class ElasticsearchWatcherAsyncClient extends ApiClient<ElasticsearchWatc
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<DeleteWatchResponse> deleteWatch(
-			Function<DeleteWatchRequest.Builder, ObjectBuilder<DeleteWatchRequest>> fn)
+	public final CompletableFuture<DeleteWatchResponse> deleteWatch(Consumer<DeleteWatchRequest.Builder> fn)
 			throws IOException, ElasticsearchException {
-		return deleteWatch(fn.apply(new DeleteWatchRequest.Builder()).build());
+		DeleteWatchRequest.Builder builder = new DeleteWatchRequest.Builder();
+		fn.accept(builder);
+		return deleteWatch(builder.build());
 	}
 
 	// ----- Endpoint: watcher.execute_watch
@@ -224,10 +232,11 @@ public class ElasticsearchWatcherAsyncClient extends ApiClient<ElasticsearchWatc
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<ExecuteWatchResponse> executeWatch(
-			Function<ExecuteWatchRequest.Builder, ObjectBuilder<ExecuteWatchRequest>> fn)
+	public final CompletableFuture<ExecuteWatchResponse> executeWatch(Consumer<ExecuteWatchRequest.Builder> fn)
 			throws IOException, ElasticsearchException {
-		return executeWatch(fn.apply(new ExecuteWatchRequest.Builder()).build());
+		ExecuteWatchRequest.Builder builder = new ExecuteWatchRequest.Builder();
+		fn.accept(builder);
+		return executeWatch(builder.build());
 	}
 
 	/**
@@ -272,10 +281,11 @@ public class ElasticsearchWatcherAsyncClient extends ApiClient<ElasticsearchWatc
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<GetWatchResponse> getWatch(
-			Function<GetWatchRequest.Builder, ObjectBuilder<GetWatchRequest>> fn)
+	public final CompletableFuture<GetWatchResponse> getWatch(Consumer<GetWatchRequest.Builder> fn)
 			throws IOException, ElasticsearchException {
-		return getWatch(fn.apply(new GetWatchRequest.Builder()).build());
+		GetWatchRequest.Builder builder = new GetWatchRequest.Builder();
+		fn.accept(builder);
+		return getWatch(builder.build());
 	}
 
 	// ----- Endpoint: watcher.put_watch
@@ -307,10 +317,11 @@ public class ElasticsearchWatcherAsyncClient extends ApiClient<ElasticsearchWatc
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<PutWatchResponse> putWatch(
-			Function<PutWatchRequest.Builder, ObjectBuilder<PutWatchRequest>> fn)
+	public final CompletableFuture<PutWatchResponse> putWatch(Consumer<PutWatchRequest.Builder> fn)
 			throws IOException, ElasticsearchException {
-		return putWatch(fn.apply(new PutWatchRequest.Builder()).build());
+		PutWatchRequest.Builder builder = new PutWatchRequest.Builder();
+		fn.accept(builder);
+		return putWatch(builder.build());
 	}
 
 	// ----- Endpoint: watcher.query_watches
@@ -342,10 +353,11 @@ public class ElasticsearchWatcherAsyncClient extends ApiClient<ElasticsearchWatc
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<QueryWatchesResponse> queryWatches(
-			Function<QueryWatchesRequest.Builder, ObjectBuilder<QueryWatchesRequest>> fn)
+	public final CompletableFuture<QueryWatchesResponse> queryWatches(Consumer<QueryWatchesRequest.Builder> fn)
 			throws IOException, ElasticsearchException {
-		return queryWatches(fn.apply(new QueryWatchesRequest.Builder()).build());
+		QueryWatchesRequest.Builder builder = new QueryWatchesRequest.Builder();
+		fn.accept(builder);
+		return queryWatches(builder.build());
 	}
 
 	/**
@@ -404,10 +416,11 @@ public class ElasticsearchWatcherAsyncClient extends ApiClient<ElasticsearchWatc
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<WatcherStatsResponse> stats(
-			Function<WatcherStatsRequest.Builder, ObjectBuilder<WatcherStatsRequest>> fn)
+	public final CompletableFuture<WatcherStatsResponse> stats(Consumer<WatcherStatsRequest.Builder> fn)
 			throws IOException, ElasticsearchException {
-		return stats(fn.apply(new WatcherStatsRequest.Builder()).build());
+		WatcherStatsRequest.Builder builder = new WatcherStatsRequest.Builder();
+		fn.accept(builder);
+		return stats(builder.build());
 	}
 
 	/**

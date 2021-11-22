@@ -30,14 +30,15 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -54,8 +55,10 @@ public class GetScriptContextResponse implements JsonpSerializable {
 
 	}
 
-	public static GetScriptContextResponse of(Function<Builder, ObjectBuilder<GetScriptContextResponse>> fn) {
-		return fn.apply(new Builder()).build();
+	public static GetScriptContextResponse of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -116,13 +119,9 @@ public class GetScriptContextResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code contexts}
 		 */
-		@SafeVarargs
-		public final Builder contexts(Function<Context.Builder, ObjectBuilder<Context>>... fns) {
-			this.contexts = new ArrayList<>(fns.length);
-			for (Function<Context.Builder, ObjectBuilder<Context>> fn : fns) {
-				this.contexts.add(fn.apply(new Context.Builder()).build());
-			}
-			return this;
+		public final Builder contexts(
+				Function<ListBuilder<Context, Context.Builder>, ObjectBuilder<List<Context>>> fn) {
+			return contexts(fn.apply(new ListBuilder<>(Context.Builder::new)).build());
 		}
 
 		/**

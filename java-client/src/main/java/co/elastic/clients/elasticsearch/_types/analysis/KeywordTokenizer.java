@@ -33,7 +33,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 
 // typedef: _types.analysis.KeywordTokenizer
 @JsonpDeserializable
@@ -49,16 +49,18 @@ public class KeywordTokenizer extends TokenizerBase implements TokenizerDefiniti
 
 	}
 
-	public static KeywordTokenizer of(Function<Builder, ObjectBuilder<KeywordTokenizer>> fn) {
-		return fn.apply(new Builder()).build();
+	public static KeywordTokenizer of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
-	 * {@link TokenizerDefinition} variant type
+	 * TokenizerDefinition variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "keyword";
+	public TokenizerDefinition.Kind _tokenizerDefinitionKind() {
+		return TokenizerDefinition.Kind.Keyword;
 	}
 
 	/**

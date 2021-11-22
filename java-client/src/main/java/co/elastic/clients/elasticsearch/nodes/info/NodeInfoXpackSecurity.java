@@ -35,7 +35,7 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: nodes.info.NodeInfoXpackSecurity
@@ -61,8 +61,10 @@ public class NodeInfoXpackSecurity implements JsonpSerializable {
 
 	}
 
-	public static NodeInfoXpackSecurity of(Function<Builder, ObjectBuilder<NodeInfoXpackSecurity>> fn) {
-		return fn.apply(new Builder()).build();
+	public static NodeInfoXpackSecurity of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -148,9 +150,10 @@ public class NodeInfoXpackSecurity implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code http}
 		 */
-		public final Builder http(
-				Function<NodeInfoXpackSecuritySsl.Builder, ObjectBuilder<NodeInfoXpackSecuritySsl>> fn) {
-			return this.http(fn.apply(new NodeInfoXpackSecuritySsl.Builder()).build());
+		public final Builder http(Consumer<NodeInfoXpackSecuritySsl.Builder> fn) {
+			NodeInfoXpackSecuritySsl.Builder builder = new NodeInfoXpackSecuritySsl.Builder();
+			fn.accept(builder);
+			return this.http(builder.build());
 		}
 
 		/**
@@ -172,9 +175,10 @@ public class NodeInfoXpackSecurity implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code transport}
 		 */
-		public final Builder transport(
-				Function<NodeInfoXpackSecuritySsl.Builder, ObjectBuilder<NodeInfoXpackSecuritySsl>> fn) {
-			return this.transport(fn.apply(new NodeInfoXpackSecuritySsl.Builder()).build());
+		public final Builder transport(Consumer<NodeInfoXpackSecuritySsl.Builder> fn) {
+			NodeInfoXpackSecuritySsl.Builder builder = new NodeInfoXpackSecuritySsl.Builder();
+			fn.accept(builder);
+			return this.transport(builder.build());
 		}
 
 		/**
@@ -188,9 +192,10 @@ public class NodeInfoXpackSecurity implements JsonpSerializable {
 		/**
 		 * API name: {@code authc}
 		 */
-		public final Builder authc(
-				Function<NodeInfoXpackSecurityAuthc.Builder, ObjectBuilder<NodeInfoXpackSecurityAuthc>> fn) {
-			return this.authc(fn.apply(new NodeInfoXpackSecurityAuthc.Builder()).build());
+		public final Builder authc(Consumer<NodeInfoXpackSecurityAuthc.Builder> fn) {
+			NodeInfoXpackSecurityAuthc.Builder builder = new NodeInfoXpackSecurityAuthc.Builder();
+			fn.accept(builder);
+			return this.authc(builder.build());
 		}
 
 		/**

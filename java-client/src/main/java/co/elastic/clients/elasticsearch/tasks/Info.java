@@ -29,6 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
@@ -36,11 +37,11 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Long;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -94,8 +95,10 @@ public class Info implements JsonpSerializable {
 
 	}
 
-	public static Info of(Function<Builder, ObjectBuilder<Info>> fn) {
-		return fn.apply(new Builder()).build();
+	public static Info of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -332,13 +335,8 @@ public class Info implements JsonpSerializable {
 		/**
 		 * API name: {@code children}
 		 */
-		@SafeVarargs
-		public final Builder children(Function<Info.Builder, ObjectBuilder<Info>>... fns) {
-			this.children = new ArrayList<>(fns.length);
-			for (Function<Info.Builder, ObjectBuilder<Info>> fn : fns) {
-				this.children.add(fn.apply(new Info.Builder()).build());
-			}
-			return this;
+		public final Builder children(Function<ListBuilder<Info, Info.Builder>, ObjectBuilder<List<Info>>> fn) {
+			return children(fn.apply(new ListBuilder<>(Info.Builder::new)).build());
 		}
 
 		/**
@@ -400,8 +398,10 @@ public class Info implements JsonpSerializable {
 		/**
 		 * API name: {@code status}
 		 */
-		public final Builder status(Function<Status.Builder, ObjectBuilder<Status>> fn) {
-			return this.status(fn.apply(new Status.Builder()).build());
+		public final Builder status(Consumer<Status.Builder> fn) {
+			Status.Builder builder = new Status.Builder();
+			fn.accept(builder);
+			return this.status(builder.build());
 		}
 
 		/**

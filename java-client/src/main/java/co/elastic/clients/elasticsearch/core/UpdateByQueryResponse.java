@@ -31,6 +31,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
@@ -40,10 +41,10 @@ import java.lang.Float;
 import java.lang.Long;
 import java.lang.Number;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -112,8 +113,10 @@ public class UpdateByQueryResponse implements JsonpSerializable {
 
 	}
 
-	public static UpdateByQueryResponse of(Function<Builder, ObjectBuilder<UpdateByQueryResponse>> fn) {
-		return fn.apply(new Builder()).build();
+	public static UpdateByQueryResponse of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -391,14 +394,9 @@ public class UpdateByQueryResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code failures}
 		 */
-		@SafeVarargs
 		public final Builder failures(
-				Function<BulkIndexByScrollFailure.Builder, ObjectBuilder<BulkIndexByScrollFailure>>... fns) {
-			this.failures = new ArrayList<>(fns.length);
-			for (Function<BulkIndexByScrollFailure.Builder, ObjectBuilder<BulkIndexByScrollFailure>> fn : fns) {
-				this.failures.add(fn.apply(new BulkIndexByScrollFailure.Builder()).build());
-			}
-			return this;
+				Function<ListBuilder<BulkIndexByScrollFailure, BulkIndexByScrollFailure.Builder>, ObjectBuilder<List<BulkIndexByScrollFailure>>> fn) {
+			return failures(fn.apply(new ListBuilder<>(BulkIndexByScrollFailure.Builder::new)).build());
 		}
 
 		/**
@@ -436,8 +434,10 @@ public class UpdateByQueryResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code retries}
 		 */
-		public final Builder retries(Function<Retries.Builder, ObjectBuilder<Retries>> fn) {
-			return this.retries(fn.apply(new Retries.Builder()).build());
+		public final Builder retries(Consumer<Retries.Builder> fn) {
+			Retries.Builder builder = new Retries.Builder();
+			fn.accept(builder);
+			return this.retries(builder.build());
 		}
 
 		/**

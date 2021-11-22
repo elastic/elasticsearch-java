@@ -31,14 +31,15 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -58,8 +59,10 @@ public class RerouteResponse implements JsonpSerializable {
 
 	}
 
-	public static RerouteResponse of(Function<Builder, ObjectBuilder<RerouteResponse>> fn) {
-		return fn.apply(new Builder()).build();
+	public static RerouteResponse of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -136,14 +139,9 @@ public class RerouteResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code explanations}
 		 */
-		@SafeVarargs
 		public final Builder explanations(
-				Function<RerouteExplanation.Builder, ObjectBuilder<RerouteExplanation>>... fns) {
-			this.explanations = new ArrayList<>(fns.length);
-			for (Function<RerouteExplanation.Builder, ObjectBuilder<RerouteExplanation>> fn : fns) {
-				this.explanations.add(fn.apply(new RerouteExplanation.Builder()).build());
-			}
-			return this;
+				Function<ListBuilder<RerouteExplanation, RerouteExplanation.Builder>, ObjectBuilder<List<RerouteExplanation>>> fn) {
+			return explanations(fn.apply(new ListBuilder<>(RerouteExplanation.Builder::new)).build());
 		}
 
 		/**

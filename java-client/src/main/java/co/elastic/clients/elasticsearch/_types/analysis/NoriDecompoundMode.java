@@ -23,13 +23,19 @@
 
 package co.elastic.clients.elasticsearch._types.analysis;
 
+import co.elastic.clients.json.JsonEnum;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
-import co.elastic.clients.util.StringEnum;
 
 @JsonpDeserializable
-public enum NoriDecompoundMode implements StringEnum {
-	Discard("discard"), None("none"), Mixed("mixed");
+public enum NoriDecompoundMode implements JsonEnum {
+	Discard("discard"),
+
+	None("none"),
+
+	Mixed("mixed"),
+
+	;
 
 	private final String jsonValue;
 
@@ -41,6 +47,6 @@ public enum NoriDecompoundMode implements StringEnum {
 		return this.jsonValue;
 	}
 
-	public static final StringEnum.Deserializer<NoriDecompoundMode> _DESERIALIZER = new StringEnum.Deserializer<>(
+	public static final JsonEnum.Deserializer<NoriDecompoundMode> _DESERIALIZER = new JsonEnum.Deserializer<>(
 			NoriDecompoundMode.values());
 }

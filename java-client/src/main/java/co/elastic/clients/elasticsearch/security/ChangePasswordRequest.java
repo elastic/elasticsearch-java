@@ -33,7 +33,7 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
-import co.elastic.clients.transport.SimpleEndpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -41,7 +41,7 @@ import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: security.change_password.Request
@@ -49,6 +49,9 @@ import javax.annotation.Nullable;
 public class ChangePasswordRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
 	private final String password;
+
+	@Nullable
+	private final String passwordHash;
 
 	@Nullable
 	private final Refresh refresh;
@@ -61,21 +64,39 @@ public class ChangePasswordRequest extends RequestBase implements JsonpSerializa
 	private ChangePasswordRequest(Builder builder) {
 
 		this.password = builder.password;
+		this.passwordHash = builder.passwordHash;
 		this.refresh = builder.refresh;
 		this.username = builder.username;
 
 	}
 
-	public static ChangePasswordRequest of(Function<Builder, ObjectBuilder<ChangePasswordRequest>> fn) {
-		return fn.apply(new Builder()).build();
+	public static ChangePasswordRequest of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
+	 * The new password value. Passwords must be at least 6 characters long.
+	 * <p>
 	 * API name: {@code password}
 	 */
 	@Nullable
 	public final String password() {
 		return this.password;
+	}
+
+	/**
+	 * A hash of the new password value. This must be produced using the same
+	 * hashing algorithm as has been configured for password storage. For more
+	 * details, see the explanation of the
+	 * <code>xpack.security.authc.password_hashing.algorithm</code> setting.
+	 * <p>
+	 * API name: {@code password_hash}
+	 */
+	@Nullable
+	public final String passwordHash() {
+		return this.passwordHash;
 	}
 
 	/**
@@ -92,7 +113,8 @@ public class ChangePasswordRequest extends RequestBase implements JsonpSerializa
 	}
 
 	/**
-	 * The username of the user to change the password for
+	 * The user whose password you want to change. If you do not specify this
+	 * parameter, the password is changed for the current user.
 	 * <p>
 	 * API name: {@code username}
 	 */
@@ -117,6 +139,11 @@ public class ChangePasswordRequest extends RequestBase implements JsonpSerializa
 			generator.write(this.password);
 
 		}
+		if (this.passwordHash != null) {
+			generator.writeKey("password_hash");
+			generator.write(this.passwordHash);
+
+		}
 
 	}
 
@@ -130,16 +157,34 @@ public class ChangePasswordRequest extends RequestBase implements JsonpSerializa
 		private String password;
 
 		@Nullable
+		private String passwordHash;
+
+		@Nullable
 		private Refresh refresh;
 
 		@Nullable
 		private String username;
 
 		/**
+		 * The new password value. Passwords must be at least 6 characters long.
+		 * <p>
 		 * API name: {@code password}
 		 */
 		public final Builder password(@Nullable String value) {
 			this.password = value;
+			return this;
+		}
+
+		/**
+		 * A hash of the new password value. This must be produced using the same
+		 * hashing algorithm as has been configured for password storage. For more
+		 * details, see the explanation of the
+		 * <code>xpack.security.authc.password_hashing.algorithm</code> setting.
+		 * <p>
+		 * API name: {@code password_hash}
+		 */
+		public final Builder passwordHash(@Nullable String value) {
+			this.passwordHash = value;
 			return this;
 		}
 
@@ -157,7 +202,8 @@ public class ChangePasswordRequest extends RequestBase implements JsonpSerializa
 		}
 
 		/**
-		 * The username of the user to change the password for
+		 * The user whose password you want to change. If you do not specify this
+		 * parameter, the password is changed for the current user.
 		 * <p>
 		 * API name: {@code username}
 		 */
@@ -190,6 +236,7 @@ public class ChangePasswordRequest extends RequestBase implements JsonpSerializa
 	protected static void setupChangePasswordRequestDeserializer(ObjectDeserializer<ChangePasswordRequest.Builder> op) {
 
 		op.add(Builder::password, JsonpDeserializer.stringDeserializer(), "password");
+		op.add(Builder::passwordHash, JsonpDeserializer.stringDeserializer(), "password_hash");
 
 	}
 

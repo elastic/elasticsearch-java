@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 
 // typedef: _types.mapping.IntegerRangeProperty
 @JsonpDeserializable
@@ -43,16 +43,18 @@ public class IntegerRangeProperty extends RangePropertyBase implements PropertyV
 
 	}
 
-	public static IntegerRangeProperty of(Function<Builder, ObjectBuilder<IntegerRangeProperty>> fn) {
-		return fn.apply(new Builder()).build();
+	public static IntegerRangeProperty of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
-	 * {@link Property} variant type
+	 * Property variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "integer_range";
+	public Property.Kind _propertyKind() {
+		return Property.Kind.IntegerRange;
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {

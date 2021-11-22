@@ -35,7 +35,7 @@ import java.lang.String;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: _types.mapping.JoinProperty
@@ -52,16 +52,18 @@ public class JoinProperty extends PropertyBase implements PropertyVariant {
 
 	}
 
-	public static JoinProperty of(Function<Builder, ObjectBuilder<JoinProperty>> fn) {
-		return fn.apply(new Builder()).build();
+	public static JoinProperty of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
-	 * {@link Property} variant type
+	 * Property variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "join";
+	public Property.Kind _propertyKind() {
+		return Property.Kind.Join;
 	}
 
 	/**

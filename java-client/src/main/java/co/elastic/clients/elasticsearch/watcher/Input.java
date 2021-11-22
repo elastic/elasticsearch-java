@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.watcher;
 
 import co.elastic.clients.json.JsonData;
+import co.elastic.clients.json.JsonEnum;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -40,25 +41,47 @@ import java.lang.Object;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.InputContainer
 // union type: Container[]
 @JsonpDeserializable
-public class Input implements TaggedUnion<Object>, JsonpSerializable {
+public class Input implements TaggedUnion<Input.Kind, Object>, JsonpSerializable {
 
-	public static final String CHAIN = "chain";
-	public static final String HTTP = "http";
-	public static final String SEARCH = "search";
-	public static final String SIMPLE = "simple";
+	/**
+	 * {@link Input} variant kinds.
+	 */
 
-	private final String _type;
+	public enum Kind implements JsonEnum {
+		Chain("chain"),
+
+		Http("http"),
+
+		Search("search"),
+
+		Simple("simple"),
+
+		;
+
+		private final String jsonValue;
+
+		Kind(String jsonValue) {
+			this.jsonValue = jsonValue;
+		}
+
+		public String jsonValue() {
+			return this.jsonValue;
+		}
+
+	}
+
+	private final Kind _kind;
 	private final Object _value;
 
 	@Override
-	public final String _type() {
-		return _type;
+	public final Kind _kind() {
+		return _kind;
 	}
 
 	@Override
@@ -68,20 +91,29 @@ public class Input implements TaggedUnion<Object>, JsonpSerializable {
 
 	public Input(InputVariant value) {
 
-		this._type = ModelTypeHelper.requireNonNull(value._variantType(), this, "<variant type>");
+		this._kind = ModelTypeHelper.requireNonNull(value._inputKind(), this, "<variant kind>");
 		this._value = ModelTypeHelper.requireNonNull(value, this, "<variant value>");
 
 	}
 
 	private Input(Builder builder) {
 
-		this._type = ModelTypeHelper.requireNonNull(builder._type, builder, "<variant type>");
+		this._kind = ModelTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
 		this._value = ModelTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
 
 	}
 
-	public static Input of(Function<Builder, ObjectBuilder<Input>> fn) {
-		return fn.apply(new Builder()).build();
+	public static Input of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
+	}
+
+	/**
+	 * Is this variant instance of kind {@code chain}?
+	 */
+	public boolean isChain() {
+		return _kind == Kind.Chain;
 	}
 
 	/**
@@ -91,7 +123,14 @@ public class Input implements TaggedUnion<Object>, JsonpSerializable {
 	 *             if the current variant is not of the {@code chain} kind.
 	 */
 	public ChainInput chain() {
-		return TaggedUnionUtils.get(this, CHAIN);
+		return TaggedUnionUtils.get(this, Kind.Chain);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code http}?
+	 */
+	public boolean isHttp() {
+		return _kind == Kind.Http;
 	}
 
 	/**
@@ -101,7 +140,14 @@ public class Input implements TaggedUnion<Object>, JsonpSerializable {
 	 *             if the current variant is not of the {@code http} kind.
 	 */
 	public HttpInput http() {
-		return TaggedUnionUtils.get(this, HTTP);
+		return TaggedUnionUtils.get(this, Kind.Http);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code search}?
+	 */
+	public boolean isSearch() {
+		return _kind == Kind.Search;
 	}
 
 	/**
@@ -111,7 +157,14 @@ public class Input implements TaggedUnion<Object>, JsonpSerializable {
 	 *             if the current variant is not of the {@code search} kind.
 	 */
 	public SearchInput search() {
-		return TaggedUnionUtils.get(this, SEARCH);
+		return TaggedUnionUtils.get(this, Kind.Search);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code simple}?
+	 */
+	public boolean isSimple() {
+		return _kind == Kind.Simple;
 	}
 
 	/**
@@ -121,7 +174,7 @@ public class Input implements TaggedUnion<Object>, JsonpSerializable {
 	 *             if the current variant is not of the {@code simple} kind.
 	 */
 	public Map<String, JsonData> simple() {
-		return TaggedUnionUtils.get(this, SIMPLE);
+		return TaggedUnionUtils.get(this, Kind.Simple);
 	}
 
 	@Override
@@ -130,12 +183,12 @@ public class Input implements TaggedUnion<Object>, JsonpSerializable {
 
 		generator.writeStartObject();
 
-		generator.writeKey(_type);
+		generator.writeKey(_kind.jsonValue());
 		if (_value instanceof JsonpSerializable) {
 			((JsonpSerializable) _value).serialize(generator, mapper);
 		} else {
-			switch (_type) {
-				case SIMPLE :
+			switch (_kind) {
+				case Simple :
 					generator.writeStartObject();
 					for (Map.Entry<String, JsonData> item0 : ((Map<String, JsonData>) this._value).entrySet()) {
 						generator.writeKey(item0.getKey());
@@ -153,41 +206,47 @@ public class Input implements TaggedUnion<Object>, JsonpSerializable {
 	}
 
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Input> {
-		private String _type;
+		private Kind _kind;
 		private Object _value;
 
 		public Builder chain(ChainInput v) {
-			this._type = CHAIN;
+			this._kind = Kind.Chain;
 			this._value = v;
 			return this;
 		}
 
-		public Builder chain(Function<ChainInput.Builder, ObjectBuilder<ChainInput>> f) {
-			return this.chain(f.apply(new ChainInput.Builder()).build());
+		public Builder chain(Consumer<ChainInput.Builder> fn) {
+			ChainInput.Builder builder = new ChainInput.Builder();
+			fn.accept(builder);
+			return this.chain(builder.build());
 		}
 
 		public Builder http(HttpInput v) {
-			this._type = HTTP;
+			this._kind = Kind.Http;
 			this._value = v;
 			return this;
 		}
 
-		public Builder http(Function<HttpInput.Builder, ObjectBuilder<HttpInput>> f) {
-			return this.http(f.apply(new HttpInput.Builder()).build());
+		public Builder http(Consumer<HttpInput.Builder> fn) {
+			HttpInput.Builder builder = new HttpInput.Builder();
+			fn.accept(builder);
+			return this.http(builder.build());
 		}
 
 		public Builder search(SearchInput v) {
-			this._type = SEARCH;
+			this._kind = Kind.Search;
 			this._value = v;
 			return this;
 		}
 
-		public Builder search(Function<SearchInput.Builder, ObjectBuilder<SearchInput>> f) {
-			return this.search(f.apply(new SearchInput.Builder()).build());
+		public Builder search(Consumer<SearchInput.Builder> fn) {
+			SearchInput.Builder builder = new SearchInput.Builder();
+			fn.accept(builder);
+			return this.search(builder.build());
 		}
 
 		public Builder simple(Map<String, JsonData> v) {
-			this._type = SIMPLE;
+			this._kind = Kind.Simple;
 			this._value = v;
 			return this;
 		}

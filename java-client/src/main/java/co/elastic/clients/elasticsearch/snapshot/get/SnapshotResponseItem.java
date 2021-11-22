@@ -31,15 +31,16 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -63,8 +64,10 @@ public class SnapshotResponseItem implements JsonpSerializable {
 
 	}
 
-	public static SnapshotResponseItem of(Function<Builder, ObjectBuilder<SnapshotResponseItem>> fn) {
-		return fn.apply(new Builder()).build();
+	public static SnapshotResponseItem of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -162,13 +165,9 @@ public class SnapshotResponseItem implements JsonpSerializable {
 		/**
 		 * API name: {@code snapshots}
 		 */
-		@SafeVarargs
-		public final Builder snapshots(Function<SnapshotInfo.Builder, ObjectBuilder<SnapshotInfo>>... fns) {
-			this.snapshots = new ArrayList<>(fns.length);
-			for (Function<SnapshotInfo.Builder, ObjectBuilder<SnapshotInfo>> fn : fns) {
-				this.snapshots.add(fn.apply(new SnapshotInfo.Builder()).build());
-			}
-			return this;
+		public final Builder snapshots(
+				Function<ListBuilder<SnapshotInfo, SnapshotInfo.Builder>, ObjectBuilder<List<SnapshotInfo>>> fn) {
+			return snapshots(fn.apply(new ListBuilder<>(SnapshotInfo.Builder::new)).build());
 		}
 
 		/**
@@ -182,8 +181,10 @@ public class SnapshotResponseItem implements JsonpSerializable {
 		/**
 		 * API name: {@code error}
 		 */
-		public final Builder error(Function<ErrorCause.Builder, ObjectBuilder<ErrorCause>> fn) {
-			return this.error(fn.apply(new ErrorCause.Builder()).build());
+		public final Builder error(Consumer<ErrorCause.Builder> fn) {
+			ErrorCause.Builder builder = new ErrorCause.Builder();
+			fn.accept(builder);
+			return this.error(builder.build());
 		}
 
 		/**

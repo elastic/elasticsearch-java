@@ -40,10 +40,10 @@ import java.lang.Integer;
 import java.lang.Long;
 import java.lang.String;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -76,8 +76,10 @@ public class TemplateMapping implements JsonpSerializable {
 
 	}
 
-	public static TemplateMapping of(Function<Builder, ObjectBuilder<TemplateMapping>> fn) {
-		return fn.apply(new Builder()).build();
+	public static TemplateMapping of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -207,13 +209,6 @@ public class TemplateMapping implements JsonpSerializable {
 			return this;
 		}
 
-		/**
-		 * Set {@link #aliases(Map)} to a singleton map.
-		 */
-		public Builder aliases(String key, Function<Alias.Builder, ObjectBuilder<Alias>> fn) {
-			return this.aliases(Collections.singletonMap(key, fn.apply(new Alias.Builder()).build()));
-		}
-
 		public final Builder aliases(
 				Function<MapBuilder<String, Alias, Alias.Builder>, ObjectBuilder<Map<String, Alias>>> fn) {
 			return aliases(fn.apply(new MapBuilder<>(Alias.Builder::new)).build());
@@ -246,8 +241,10 @@ public class TemplateMapping implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code mappings}
 		 */
-		public final Builder mappings(Function<TypeMapping.Builder, ObjectBuilder<TypeMapping>> fn) {
-			return this.mappings(fn.apply(new TypeMapping.Builder()).build());
+		public final Builder mappings(Consumer<TypeMapping.Builder> fn) {
+			TypeMapping.Builder builder = new TypeMapping.Builder();
+			fn.accept(builder);
+			return this.mappings(builder.build());
 		}
 
 		/**

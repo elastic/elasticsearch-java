@@ -36,7 +36,8 @@ import co.elastic.clients.json.NdJsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
-import co.elastic.clients.transport.SimpleEndpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
+import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
@@ -44,13 +45,13 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Long;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
@@ -109,8 +110,10 @@ public class MsearchRequest extends RequestBase implements NdJsonpSerializable, 
 
 	}
 
-	public static MsearchRequest of(Function<Builder, ObjectBuilder<MsearchRequest>> fn) {
-		return fn.apply(new Builder()).build();
+	public static MsearchRequest of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	@Override
@@ -482,13 +485,9 @@ public class MsearchRequest extends RequestBase implements NdJsonpSerializable, 
 		 * <p>
 		 * API name: {@code _value_body}
 		 */
-		@SafeVarargs
-		public final Builder searches(Function<RequestItem.Builder, ObjectBuilder<RequestItem>>... fns) {
-			this.searches = new ArrayList<>(fns.length);
-			for (Function<RequestItem.Builder, ObjectBuilder<RequestItem>> fn : fns) {
-				this.searches.add(fn.apply(new RequestItem.Builder()).build());
-			}
-			return this;
+		public final Builder searches(
+				Function<ListBuilder<RequestItem, RequestItem.Builder>, ObjectBuilder<List<RequestItem>>> fn) {
+			return searches(fn.apply(new ListBuilder<>(RequestItem.Builder::new)).build());
 		}
 
 		/**

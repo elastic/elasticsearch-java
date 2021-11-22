@@ -35,7 +35,7 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.DecayPlacement
@@ -64,8 +64,10 @@ public class DecayPlacement implements JsonpSerializable {
 
 	}
 
-	public static DecayPlacement of(Function<Builder, ObjectBuilder<DecayPlacement>> fn) {
-		return fn.apply(new Builder()).build();
+	public static DecayPlacement of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**

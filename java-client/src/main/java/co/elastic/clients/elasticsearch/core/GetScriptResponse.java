@@ -37,7 +37,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: _global.get_script.Response
@@ -60,8 +60,10 @@ public class GetScriptResponse implements JsonpSerializable {
 
 	}
 
-	public static GetScriptResponse of(Function<Builder, ObjectBuilder<GetScriptResponse>> fn) {
-		return fn.apply(new Builder()).build();
+	public static GetScriptResponse of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -151,8 +153,10 @@ public class GetScriptResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code script}
 		 */
-		public final Builder script(Function<StoredScript.Builder, ObjectBuilder<StoredScript>> fn) {
-			return this.script(fn.apply(new StoredScript.Builder()).build());
+		public final Builder script(Consumer<StoredScript.Builder> fn) {
+			StoredScript.Builder builder = new StoredScript.Builder();
+			fn.accept(builder);
+			return this.script(builder.build());
 		}
 
 		/**

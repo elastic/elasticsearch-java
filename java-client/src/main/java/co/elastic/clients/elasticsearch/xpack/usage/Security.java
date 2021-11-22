@@ -33,9 +33,9 @@ import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.Collections;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -88,8 +88,10 @@ public class Security extends Base {
 
 	}
 
-	public static Security of(Function<Builder, ObjectBuilder<Security>> fn) {
-		return fn.apply(new Builder()).build();
+	public static Security of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -278,8 +280,10 @@ public class Security extends Base {
 		/**
 		 * Required - API name: {@code api_key_service}
 		 */
-		public final Builder apiKeyService(Function<FeatureToggle.Builder, ObjectBuilder<FeatureToggle>> fn) {
-			return this.apiKeyService(fn.apply(new FeatureToggle.Builder()).build());
+		public final Builder apiKeyService(Consumer<FeatureToggle.Builder> fn) {
+			FeatureToggle.Builder builder = new FeatureToggle.Builder();
+			fn.accept(builder);
+			return this.apiKeyService(builder.build());
 		}
 
 		/**
@@ -293,8 +297,10 @@ public class Security extends Base {
 		/**
 		 * Required - API name: {@code anonymous}
 		 */
-		public final Builder anonymous(Function<FeatureToggle.Builder, ObjectBuilder<FeatureToggle>> fn) {
-			return this.anonymous(fn.apply(new FeatureToggle.Builder()).build());
+		public final Builder anonymous(Consumer<FeatureToggle.Builder> fn) {
+			FeatureToggle.Builder builder = new FeatureToggle.Builder();
+			fn.accept(builder);
+			return this.anonymous(builder.build());
 		}
 
 		/**
@@ -308,8 +314,10 @@ public class Security extends Base {
 		/**
 		 * Required - API name: {@code audit}
 		 */
-		public final Builder audit(Function<Audit.Builder, ObjectBuilder<Audit>> fn) {
-			return this.audit(fn.apply(new Audit.Builder()).build());
+		public final Builder audit(Consumer<Audit.Builder> fn) {
+			Audit.Builder builder = new Audit.Builder();
+			fn.accept(builder);
+			return this.audit(builder.build());
 		}
 
 		/**
@@ -323,8 +331,10 @@ public class Security extends Base {
 		/**
 		 * Required - API name: {@code fips_140}
 		 */
-		public final Builder fips140(Function<FeatureToggle.Builder, ObjectBuilder<FeatureToggle>> fn) {
-			return this.fips140(fn.apply(new FeatureToggle.Builder()).build());
+		public final Builder fips140(Consumer<FeatureToggle.Builder> fn) {
+			FeatureToggle.Builder builder = new FeatureToggle.Builder();
+			fn.accept(builder);
+			return this.fips140(builder.build());
 		}
 
 		/**
@@ -338,8 +348,10 @@ public class Security extends Base {
 		/**
 		 * Required - API name: {@code ipfilter}
 		 */
-		public final Builder ipfilter(Function<IpFilter.Builder, ObjectBuilder<IpFilter>> fn) {
-			return this.ipfilter(fn.apply(new IpFilter.Builder()).build());
+		public final Builder ipfilter(Consumer<IpFilter.Builder> fn) {
+			IpFilter.Builder builder = new IpFilter.Builder();
+			fn.accept(builder);
+			return this.ipfilter(builder.build());
 		}
 
 		/**
@@ -348,13 +360,6 @@ public class Security extends Base {
 		public final Builder realms(Map<String, Realm> value) {
 			this.realms = value;
 			return this;
-		}
-
-		/**
-		 * Set {@link #realms(Map)} to a singleton map.
-		 */
-		public Builder realms(String key, Function<Realm.Builder, ObjectBuilder<Realm>> fn) {
-			return this.realms(Collections.singletonMap(key, fn.apply(new Realm.Builder()).build()));
 		}
 
 		public final Builder realms(
@@ -368,13 +373,6 @@ public class Security extends Base {
 		public final Builder roleMapping(Map<String, RoleMapping> value) {
 			this.roleMapping = value;
 			return this;
-		}
-
-		/**
-		 * Set {@link #roleMapping(Map)} to a singleton map.
-		 */
-		public Builder roleMapping(String key, Function<RoleMapping.Builder, ObjectBuilder<RoleMapping>> fn) {
-			return this.roleMapping(Collections.singletonMap(key, fn.apply(new RoleMapping.Builder()).build()));
 		}
 
 		public final Builder roleMapping(
@@ -393,8 +391,10 @@ public class Security extends Base {
 		/**
 		 * Required - API name: {@code roles}
 		 */
-		public final Builder roles(Function<SecurityRoles.Builder, ObjectBuilder<SecurityRoles>> fn) {
-			return this.roles(fn.apply(new SecurityRoles.Builder()).build());
+		public final Builder roles(Consumer<SecurityRoles.Builder> fn) {
+			SecurityRoles.Builder builder = new SecurityRoles.Builder();
+			fn.accept(builder);
+			return this.roles(builder.build());
 		}
 
 		/**
@@ -408,8 +408,10 @@ public class Security extends Base {
 		/**
 		 * Required - API name: {@code ssl}
 		 */
-		public final Builder ssl(Function<Ssl.Builder, ObjectBuilder<Ssl>> fn) {
-			return this.ssl(fn.apply(new Ssl.Builder()).build());
+		public final Builder ssl(Consumer<Ssl.Builder> fn) {
+			Ssl.Builder builder = new Ssl.Builder();
+			fn.accept(builder);
+			return this.ssl(builder.build());
 		}
 
 		/**
@@ -423,8 +425,10 @@ public class Security extends Base {
 		/**
 		 * API name: {@code system_key}
 		 */
-		public final Builder systemKey(Function<FeatureToggle.Builder, ObjectBuilder<FeatureToggle>> fn) {
-			return this.systemKey(fn.apply(new FeatureToggle.Builder()).build());
+		public final Builder systemKey(Consumer<FeatureToggle.Builder> fn) {
+			FeatureToggle.Builder builder = new FeatureToggle.Builder();
+			fn.accept(builder);
+			return this.systemKey(builder.build());
 		}
 
 		/**
@@ -438,8 +442,10 @@ public class Security extends Base {
 		/**
 		 * Required - API name: {@code token_service}
 		 */
-		public final Builder tokenService(Function<FeatureToggle.Builder, ObjectBuilder<FeatureToggle>> fn) {
-			return this.tokenService(fn.apply(new FeatureToggle.Builder()).build());
+		public final Builder tokenService(Consumer<FeatureToggle.Builder> fn) {
+			FeatureToggle.Builder builder = new FeatureToggle.Builder();
+			fn.accept(builder);
+			return this.tokenService(builder.build());
 		}
 
 		/**
@@ -453,8 +459,10 @@ public class Security extends Base {
 		/**
 		 * Required - API name: {@code operator_privileges}
 		 */
-		public final Builder operatorPrivileges(Function<Base.Builder, ObjectBuilder<Base>> fn) {
-			return this.operatorPrivileges(fn.apply(new Base.Builder()).build());
+		public final Builder operatorPrivileges(Consumer<Base.Builder> fn) {
+			Base.Builder builder = new Base.Builder();
+			fn.accept(builder);
+			return this.operatorPrivileges(builder.build());
 		}
 
 		@Override

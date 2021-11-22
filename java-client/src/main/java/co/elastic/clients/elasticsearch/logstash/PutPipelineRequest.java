@@ -31,10 +31,10 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.transport.BooleanEndpoint;
-import co.elastic.clients.transport.BooleanResponse;
 import co.elastic.clients.transport.Endpoint;
-import co.elastic.clients.transport.SimpleEndpoint;
+import co.elastic.clients.transport.endpoints.BooleanEndpoint;
+import co.elastic.clients.transport.endpoints.BooleanResponse;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
@@ -42,7 +42,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: logstash.put_pipeline.Request
@@ -61,8 +61,10 @@ public class PutPipelineRequest extends RequestBase implements JsonpSerializable
 
 	}
 
-	public static PutPipelineRequest of(Function<Builder, ObjectBuilder<PutPipelineRequest>> fn) {
-		return fn.apply(new Builder()).build();
+	public static PutPipelineRequest of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -126,8 +128,10 @@ public class PutPipelineRequest extends RequestBase implements JsonpSerializable
 		 * <p>
 		 * API name: {@code _value_body}
 		 */
-		public final Builder pipeline(Function<Pipeline.Builder, ObjectBuilder<Pipeline>> fn) {
-			return this.pipeline(fn.apply(new Pipeline.Builder()).build());
+		public final Builder pipeline(Consumer<Pipeline.Builder> fn) {
+			Pipeline.Builder builder = new Pipeline.Builder();
+			fn.accept(builder);
+			return this.pipeline(builder.build());
 		}
 
 		/**

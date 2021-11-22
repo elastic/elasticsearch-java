@@ -37,7 +37,7 @@ import java.lang.String;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: indices._types.OverlappingIndexTemplate
@@ -56,8 +56,10 @@ public class OverlappingIndexTemplate implements JsonpSerializable {
 
 	}
 
-	public static OverlappingIndexTemplate of(Function<Builder, ObjectBuilder<OverlappingIndexTemplate>> fn) {
-		return fn.apply(new Builder()).build();
+	public static OverlappingIndexTemplate of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**

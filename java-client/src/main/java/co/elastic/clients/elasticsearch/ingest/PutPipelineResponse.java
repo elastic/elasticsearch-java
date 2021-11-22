@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 
 // typedef: ingest.put_pipeline.Response
 @JsonpDeserializable
@@ -43,8 +43,10 @@ public class PutPipelineResponse extends AcknowledgedResponseBase {
 
 	}
 
-	public static PutPipelineResponse of(Function<Builder, ObjectBuilder<PutPipelineResponse>> fn) {
-		return fn.apply(new Builder()).build();
+	public static PutPipelineResponse of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	// ---------------------------------------------------------------------------------------------

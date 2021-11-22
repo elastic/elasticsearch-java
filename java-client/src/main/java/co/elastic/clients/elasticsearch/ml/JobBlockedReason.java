@@ -23,13 +23,19 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
+import co.elastic.clients.json.JsonEnum;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
-import co.elastic.clients.util.StringEnum;
 
 @JsonpDeserializable
-public enum JobBlockedReason implements StringEnum {
-	Delete("delete"), Reset("reset"), Revert("revert");
+public enum JobBlockedReason implements JsonEnum {
+	Delete("delete"),
+
+	Reset("reset"),
+
+	Revert("revert"),
+
+	;
 
 	private final String jsonValue;
 
@@ -41,6 +47,6 @@ public enum JobBlockedReason implements StringEnum {
 		return this.jsonValue;
 	}
 
-	public static final StringEnum.Deserializer<JobBlockedReason> _DESERIALIZER = new StringEnum.Deserializer<>(
+	public static final JsonEnum.Deserializer<JobBlockedReason> _DESERIALIZER = new JsonEnum.Deserializer<>(
 			JobBlockedReason.values());
 }

@@ -26,24 +26,25 @@ package co.elastic.clients.elasticsearch.sql;
 import co.elastic.clients.ApiClient;
 import co.elastic.clients.elasticsearch._types.ElasticsearchException;
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
+import co.elastic.clients.transport.ElasticsearchTransport;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.Transport;
 import co.elastic.clients.transport.TransportOptions;
 import co.elastic.clients.util.ObjectBuilder;
 import java.io.IOException;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 /**
  * Client for the sql namespace.
  */
-public class ElasticsearchSqlClient extends ApiClient<ElasticsearchSqlClient> {
+public class ElasticsearchSqlClient extends ApiClient<ElasticsearchTransport, ElasticsearchSqlClient> {
 
-	public ElasticsearchSqlClient(Transport transport) {
+	public ElasticsearchSqlClient(ElasticsearchTransport transport) {
 		super(transport, null);
 	}
 
-	public ElasticsearchSqlClient(Transport transport, @Nullable TransportOptions transportOptions) {
+	public ElasticsearchSqlClient(ElasticsearchTransport transport, @Nullable TransportOptions transportOptions) {
 		super(transport, transportOptions);
 	}
 
@@ -80,10 +81,11 @@ public class ElasticsearchSqlClient extends ApiClient<ElasticsearchSqlClient> {
 	 *      on elastic.co</a>
 	 */
 
-	public final ClearCursorResponse clearCursor(
-			Function<ClearCursorRequest.Builder, ObjectBuilder<ClearCursorRequest>> fn)
+	public final ClearCursorResponse clearCursor(Consumer<ClearCursorRequest.Builder> fn)
 			throws IOException, ElasticsearchException {
-		return clearCursor(fn.apply(new ClearCursorRequest.Builder()).build());
+		ClearCursorRequest.Builder builder = new ClearCursorRequest.Builder();
+		fn.accept(builder);
+		return clearCursor(builder.build());
 	}
 
 	// ----- Endpoint: sql.query
@@ -114,9 +116,10 @@ public class ElasticsearchSqlClient extends ApiClient<ElasticsearchSqlClient> {
 	 *      on elastic.co</a>
 	 */
 
-	public final QueryResponse query(Function<QueryRequest.Builder, ObjectBuilder<QueryRequest>> fn)
-			throws IOException, ElasticsearchException {
-		return query(fn.apply(new QueryRequest.Builder()).build());
+	public final QueryResponse query(Consumer<QueryRequest.Builder> fn) throws IOException, ElasticsearchException {
+		QueryRequest.Builder builder = new QueryRequest.Builder();
+		fn.accept(builder);
+		return query(builder.build());
 	}
 
 	/**
@@ -160,9 +163,11 @@ public class ElasticsearchSqlClient extends ApiClient<ElasticsearchSqlClient> {
 	 *      on elastic.co</a>
 	 */
 
-	public final TranslateResponse translate(Function<TranslateRequest.Builder, ObjectBuilder<TranslateRequest>> fn)
+	public final TranslateResponse translate(Consumer<TranslateRequest.Builder> fn)
 			throws IOException, ElasticsearchException {
-		return translate(fn.apply(new TranslateRequest.Builder()).build());
+		TranslateRequest.Builder builder = new TranslateRequest.Builder();
+		fn.accept(builder);
+		return translate(builder.build());
 	}
 
 }

@@ -35,12 +35,11 @@ import java.lang.Boolean;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.bulk.WriteOperation
 
-public abstract class WriteOperation extends OperationBase {
+public abstract class WriteOperation extends BulkOperationBase {
 	private final Map<String, String> dynamicTemplates;
 
 	@Nullable
@@ -112,7 +111,7 @@ public abstract class WriteOperation extends OperationBase {
 
 	protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>>
 			extends
-				OperationBase.AbstractBuilder<BuilderT> {
+				BulkOperationBase.AbstractBuilder<BuilderT> {
 		@Nullable
 		private Map<String, String> dynamicTemplates;
 
@@ -151,7 +150,7 @@ public abstract class WriteOperation extends OperationBase {
 	// ---------------------------------------------------------------------------------------------
 	protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupWriteOperationDeserializer(
 			ObjectDeserializer<BuilderT> op) {
-		OperationBase.setupOperationBaseDeserializer(op);
+		BulkOperationBase.setupBulkOperationBaseDeserializer(op);
 		op.add(AbstractBuilder::dynamicTemplates,
 				JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.stringDeserializer()), "dynamic_templates");
 		op.add(AbstractBuilder::pipeline, JsonpDeserializer.stringDeserializer(), "pipeline");

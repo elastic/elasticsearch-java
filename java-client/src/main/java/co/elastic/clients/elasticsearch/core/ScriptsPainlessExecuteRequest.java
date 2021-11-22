@@ -34,14 +34,14 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
-import co.elastic.clients.transport.SimpleEndpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: _global.scripts_painless_execute.Request
@@ -66,8 +66,10 @@ public class ScriptsPainlessExecuteRequest extends RequestBase implements JsonpS
 
 	}
 
-	public static ScriptsPainlessExecuteRequest of(Function<Builder, ObjectBuilder<ScriptsPainlessExecuteRequest>> fn) {
-		return fn.apply(new Builder()).build();
+	public static ScriptsPainlessExecuteRequest of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -157,9 +159,10 @@ public class ScriptsPainlessExecuteRequest extends RequestBase implements JsonpS
 		/**
 		 * API name: {@code context_setup}
 		 */
-		public final Builder contextSetup(
-				Function<PainlessContextSetup.Builder, ObjectBuilder<PainlessContextSetup>> fn) {
-			return this.contextSetup(fn.apply(new PainlessContextSetup.Builder()).build());
+		public final Builder contextSetup(Consumer<PainlessContextSetup.Builder> fn) {
+			PainlessContextSetup.Builder builder = new PainlessContextSetup.Builder();
+			fn.accept(builder);
+			return this.contextSetup(builder.build());
 		}
 
 		/**
@@ -173,8 +176,10 @@ public class ScriptsPainlessExecuteRequest extends RequestBase implements JsonpS
 		/**
 		 * API name: {@code script}
 		 */
-		public final Builder script(Function<InlineScript.Builder, ObjectBuilder<InlineScript>> fn) {
-			return this.script(fn.apply(new InlineScript.Builder()).build());
+		public final Builder script(Consumer<InlineScript.Builder> fn) {
+			InlineScript.Builder builder = new InlineScript.Builder();
+			fn.accept(builder);
+			return this.script(builder.build());
 		}
 
 		/**

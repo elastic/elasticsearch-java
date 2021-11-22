@@ -23,13 +23,23 @@
 
 package co.elastic.clients.elasticsearch._types.analysis;
 
+import co.elastic.clients.json.JsonEnum;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
-import co.elastic.clients.util.StringEnum;
 
 @JsonpDeserializable
-public enum IcuCollationStrength implements StringEnum {
-	Primary("primary"), Secondary("secondary"), Tertiary("tertiary"), Quaternary("quaternary"), Identical("identical");
+public enum IcuCollationStrength implements JsonEnum {
+	Primary("primary"),
+
+	Secondary("secondary"),
+
+	Tertiary("tertiary"),
+
+	Quaternary("quaternary"),
+
+	Identical("identical"),
+
+	;
 
 	private final String jsonValue;
 
@@ -41,6 +51,6 @@ public enum IcuCollationStrength implements StringEnum {
 		return this.jsonValue;
 	}
 
-	public static final StringEnum.Deserializer<IcuCollationStrength> _DESERIALIZER = new StringEnum.Deserializer<>(
+	public static final JsonEnum.Deserializer<IcuCollationStrength> _DESERIALIZER = new JsonEnum.Deserializer<>(
 			IcuCollationStrength.values());
 }

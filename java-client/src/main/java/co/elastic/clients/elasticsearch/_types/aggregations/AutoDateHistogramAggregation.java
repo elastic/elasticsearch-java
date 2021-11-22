@@ -37,7 +37,7 @@ import java.lang.Integer;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.AutoDateHistogramAggregation
@@ -86,16 +86,18 @@ public class AutoDateHistogramAggregation extends BucketAggregationBase implemen
 
 	}
 
-	public static AutoDateHistogramAggregation of(Function<Builder, ObjectBuilder<AutoDateHistogramAggregation>> fn) {
-		return fn.apply(new Builder()).build();
+	public static AutoDateHistogramAggregation of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
-	 * {@link Aggregation} variant type
+	 * Aggregation variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "auto_date_histogram";
+	public Aggregation.Kind _aggregationKind() {
+		return Aggregation.Kind.AutoDateHistogram;
 	}
 
 	/**
@@ -327,8 +329,10 @@ public class AutoDateHistogramAggregation extends BucketAggregationBase implemen
 		/**
 		 * API name: {@code script}
 		 */
-		public final Builder script(Function<Script.Builder, ObjectBuilder<Script>> fn) {
-			return this.script(fn.apply(new Script.Builder()).build());
+		public final Builder script(Consumer<Script.Builder> fn) {
+			Script.Builder builder = new Script.Builder();
+			fn.accept(builder);
+			return this.script(builder.build());
 		}
 
 		/**

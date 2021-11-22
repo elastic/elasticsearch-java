@@ -23,13 +23,21 @@
 
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
+import co.elastic.clients.json.JsonEnum;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
-import co.elastic.clients.util.StringEnum;
 
 @JsonpDeserializable
-public enum MultiValueMode implements StringEnum {
-	Min("min"), Max("max"), Avg("avg"), Sum("sum");
+public enum MultiValueMode implements JsonEnum {
+	Min("min"),
+
+	Max("max"),
+
+	Avg("avg"),
+
+	Sum("sum"),
+
+	;
 
 	private final String jsonValue;
 
@@ -41,6 +49,6 @@ public enum MultiValueMode implements StringEnum {
 		return this.jsonValue;
 	}
 
-	public static final StringEnum.Deserializer<MultiValueMode> _DESERIALIZER = new StringEnum.Deserializer<>(
+	public static final JsonEnum.Deserializer<MultiValueMode> _DESERIALIZER = new JsonEnum.Deserializer<>(
 			MultiValueMode.values());
 }

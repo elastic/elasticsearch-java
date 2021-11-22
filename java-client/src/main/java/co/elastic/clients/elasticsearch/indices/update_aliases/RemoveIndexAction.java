@@ -37,7 +37,7 @@ import java.lang.String;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: indices.update_aliases.RemoveIndexAction
@@ -57,16 +57,18 @@ public class RemoveIndexAction implements ActionVariant, JsonpSerializable {
 
 	}
 
-	public static RemoveIndexAction of(Function<Builder, ObjectBuilder<RemoveIndexAction>> fn) {
-		return fn.apply(new Builder()).build();
+	public static RemoveIndexAction of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
-	 * {@link Action} variant type
+	 * Action variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "remove_index";
+	public Action.Kind _actionKind() {
+		return Action.Kind.RemoveIndex;
 	}
 
 	/**

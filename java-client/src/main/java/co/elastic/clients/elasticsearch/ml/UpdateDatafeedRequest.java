@@ -38,7 +38,7 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
-import co.elastic.clients.transport.SimpleEndpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.MapBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
@@ -48,11 +48,11 @@ import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
@@ -129,8 +129,10 @@ public class UpdateDatafeedRequest extends RequestBase implements JsonpSerializa
 
 	}
 
-	public static UpdateDatafeedRequest of(Function<Builder, ObjectBuilder<UpdateDatafeedRequest>> fn) {
-		return fn.apply(new Builder()).build();
+	public static UpdateDatafeedRequest of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -521,13 +523,6 @@ public class UpdateDatafeedRequest extends RequestBase implements JsonpSerializa
 			return this;
 		}
 
-		/**
-		 * Set {@link #aggregations(Map)} to a singleton map.
-		 */
-		public Builder aggregations(String key, Function<Aggregation.Builder, ObjectBuilder<Aggregation>> fn) {
-			return this.aggregations(Collections.singletonMap(key, fn.apply(new Aggregation.Builder()).build()));
-		}
-
 		public final Builder aggregations(
 				Function<MapBuilder<String, Aggregation, Aggregation.Builder>, ObjectBuilder<Map<String, Aggregation>>> fn) {
 			return aggregations(fn.apply(new MapBuilder<>(Aggregation.Builder::new)).build());
@@ -566,8 +561,10 @@ public class UpdateDatafeedRequest extends RequestBase implements JsonpSerializa
 		 * <p>
 		 * API name: {@code chunking_config}
 		 */
-		public final Builder chunkingConfig(Function<ChunkingConfig.Builder, ObjectBuilder<ChunkingConfig>> fn) {
-			return this.chunkingConfig(fn.apply(new ChunkingConfig.Builder()).build());
+		public final Builder chunkingConfig(Consumer<ChunkingConfig.Builder> fn) {
+			ChunkingConfig.Builder builder = new ChunkingConfig.Builder();
+			fn.accept(builder);
+			return this.chunkingConfig(builder.build());
 		}
 
 		/**
@@ -610,9 +607,10 @@ public class UpdateDatafeedRequest extends RequestBase implements JsonpSerializa
 		 * <p>
 		 * API name: {@code delayed_data_check_config}
 		 */
-		public final Builder delayedDataCheckConfig(
-				Function<DelayedDataCheckConfig.Builder, ObjectBuilder<DelayedDataCheckConfig>> fn) {
-			return this.delayedDataCheckConfig(fn.apply(new DelayedDataCheckConfig.Builder()).build());
+		public final Builder delayedDataCheckConfig(Consumer<DelayedDataCheckConfig.Builder> fn) {
+			DelayedDataCheckConfig.Builder builder = new DelayedDataCheckConfig.Builder();
+			fn.accept(builder);
+			return this.delayedDataCheckConfig(builder.build());
 		}
 
 		/**
@@ -688,8 +686,10 @@ public class UpdateDatafeedRequest extends RequestBase implements JsonpSerializa
 		 * <p>
 		 * API name: {@code frequency}
 		 */
-		public final Builder frequency(Function<Time.Builder, ObjectBuilder<Time>> fn) {
-			return this.frequency(fn.apply(new Time.Builder()).build());
+		public final Builder frequency(Consumer<Time.Builder> fn) {
+			Time.Builder builder = new Time.Builder();
+			fn.accept(builder);
+			return this.frequency(builder.build());
 		}
 
 		/**
@@ -752,9 +752,10 @@ public class UpdateDatafeedRequest extends RequestBase implements JsonpSerializa
 		 * <p>
 		 * API name: {@code indices_options}
 		 */
-		public final Builder indicesOptions(
-				Function<DatafeedIndicesOptions.Builder, ObjectBuilder<DatafeedIndicesOptions>> fn) {
-			return this.indicesOptions(fn.apply(new DatafeedIndicesOptions.Builder()).build());
+		public final Builder indicesOptions(Consumer<DatafeedIndicesOptions.Builder> fn) {
+			DatafeedIndicesOptions.Builder builder = new DatafeedIndicesOptions.Builder();
+			fn.accept(builder);
+			return this.indicesOptions(builder.build());
 		}
 
 		/**
@@ -804,8 +805,10 @@ public class UpdateDatafeedRequest extends RequestBase implements JsonpSerializa
 		 * <p>
 		 * API name: {@code query}
 		 */
-		public final Builder query(Function<Query.Builder, ObjectBuilder<Query>> fn) {
-			return this.query(fn.apply(new Query.Builder()).build());
+		public final Builder query(Consumer<Query.Builder> fn) {
+			Query.Builder builder = new Query.Builder();
+			fn.accept(builder);
+			return this.query(builder.build());
 		}
 
 		/**
@@ -833,8 +836,10 @@ public class UpdateDatafeedRequest extends RequestBase implements JsonpSerializa
 		 * <p>
 		 * API name: {@code query_delay}
 		 */
-		public final Builder queryDelay(Function<Time.Builder, ObjectBuilder<Time>> fn) {
-			return this.queryDelay(fn.apply(new Time.Builder()).build());
+		public final Builder queryDelay(Consumer<Time.Builder> fn) {
+			Time.Builder builder = new Time.Builder();
+			fn.accept(builder);
+			return this.queryDelay(builder.build());
 		}
 
 		/**
@@ -845,13 +850,6 @@ public class UpdateDatafeedRequest extends RequestBase implements JsonpSerializa
 		public final Builder runtimeMappings(@Nullable Map<String, RuntimeField> value) {
 			this.runtimeMappings = value;
 			return this;
-		}
-
-		/**
-		 * Set {@link #runtimeMappings(Map)} to a singleton map.
-		 */
-		public Builder runtimeMappings(String key, Function<RuntimeField.Builder, ObjectBuilder<RuntimeField>> fn) {
-			return this.runtimeMappings(Collections.singletonMap(key, fn.apply(new RuntimeField.Builder()).build()));
 		}
 
 		public final Builder runtimeMappings(
@@ -869,13 +867,6 @@ public class UpdateDatafeedRequest extends RequestBase implements JsonpSerializa
 		public final Builder scriptFields(@Nullable Map<String, ScriptField> value) {
 			this.scriptFields = value;
 			return this;
-		}
-
-		/**
-		 * Set {@link #scriptFields(Map)} to a singleton map.
-		 */
-		public Builder scriptFields(String key, Function<ScriptField.Builder, ObjectBuilder<ScriptField>> fn) {
-			return this.scriptFields(Collections.singletonMap(key, fn.apply(new ScriptField.Builder()).build()));
 		}
 
 		public final Builder scriptFields(

@@ -38,7 +38,7 @@ import java.lang.Integer;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: nodes.usage.NodeUsage
@@ -63,8 +63,10 @@ public class NodeUsage implements JsonpSerializable {
 
 	}
 
-	public static NodeUsage of(Function<Builder, ObjectBuilder<NodeUsage>> fn) {
-		return fn.apply(new Builder()).build();
+	public static NodeUsage of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**

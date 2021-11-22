@@ -23,7 +23,7 @@
 
 package co.elastic.clients.elasticsearch.ilm.get_lifecycle;
 
-import co.elastic.clients.elasticsearch.ilm.Policy;
+import co.elastic.clients.elasticsearch.ilm.IlmPolicy;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -37,7 +37,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: ilm.get_lifecycle.Lifecycle
@@ -45,7 +45,7 @@ import javax.annotation.Nullable;
 public class Lifecycle implements JsonpSerializable {
 	private final String modifiedDate;
 
-	private final Policy policy;
+	private final IlmPolicy policy;
 
 	private final long version;
 
@@ -59,8 +59,10 @@ public class Lifecycle implements JsonpSerializable {
 
 	}
 
-	public static Lifecycle of(Function<Builder, ObjectBuilder<Lifecycle>> fn) {
-		return fn.apply(new Builder()).build();
+	public static Lifecycle of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -73,7 +75,7 @@ public class Lifecycle implements JsonpSerializable {
 	/**
 	 * Required - API name: {@code policy}
 	 */
-	public final Policy policy() {
+	public final IlmPolicy policy() {
 		return this.policy;
 	}
 
@@ -114,7 +116,7 @@ public class Lifecycle implements JsonpSerializable {
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Lifecycle> {
 		private String modifiedDate;
 
-		private Policy policy;
+		private IlmPolicy policy;
 
 		private Long version;
 
@@ -129,7 +131,7 @@ public class Lifecycle implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code policy}
 		 */
-		public final Builder policy(Policy value) {
+		public final Builder policy(IlmPolicy value) {
 			this.policy = value;
 			return this;
 		}
@@ -137,8 +139,10 @@ public class Lifecycle implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code policy}
 		 */
-		public final Builder policy(Function<Policy.Builder, ObjectBuilder<Policy>> fn) {
-			return this.policy(fn.apply(new Policy.Builder()).build());
+		public final Builder policy(Consumer<IlmPolicy.Builder> fn) {
+			IlmPolicy.Builder builder = new IlmPolicy.Builder();
+			fn.accept(builder);
+			return this.policy(builder.build());
 		}
 
 		/**
@@ -173,7 +177,7 @@ public class Lifecycle implements JsonpSerializable {
 	protected static void setupLifecycleDeserializer(ObjectDeserializer<Lifecycle.Builder> op) {
 
 		op.add(Builder::modifiedDate, JsonpDeserializer.stringDeserializer(), "modified_date");
-		op.add(Builder::policy, Policy._DESERIALIZER, "policy");
+		op.add(Builder::policy, IlmPolicy._DESERIALIZER, "policy");
 		op.add(Builder::version, JsonpDeserializer.longDeserializer(), "version");
 
 	}

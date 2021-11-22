@@ -36,9 +36,9 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.Collections;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -77,8 +77,10 @@ public class Status implements JsonpSerializable {
 
 	}
 
-	public static Status of(Function<Builder, ObjectBuilder<Status>> fn) {
-		return fn.apply(new Builder()).build();
+	public static Status of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -220,13 +222,6 @@ public class Status implements JsonpSerializable {
 			return this;
 		}
 
-		/**
-		 * Set {@link #indices(Map)} to a singleton map.
-		 */
-		public Builder indices(String key, Function<SnapshotIndexStats.Builder, ObjectBuilder<SnapshotIndexStats>> fn) {
-			return this.indices(Collections.singletonMap(key, fn.apply(new SnapshotIndexStats.Builder()).build()));
-		}
-
 		public final Builder indices(
 				Function<MapBuilder<String, SnapshotIndexStats, SnapshotIndexStats.Builder>, ObjectBuilder<Map<String, SnapshotIndexStats>>> fn) {
 			return indices(fn.apply(new MapBuilder<>(SnapshotIndexStats.Builder::new)).build());
@@ -251,8 +246,10 @@ public class Status implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code shards_stats}
 		 */
-		public final Builder shardsStats(Function<ShardsStats.Builder, ObjectBuilder<ShardsStats>> fn) {
-			return this.shardsStats(fn.apply(new ShardsStats.Builder()).build());
+		public final Builder shardsStats(Consumer<ShardsStats.Builder> fn) {
+			ShardsStats.Builder builder = new ShardsStats.Builder();
+			fn.accept(builder);
+			return this.shardsStats(builder.build());
 		}
 
 		/**
@@ -282,8 +279,10 @@ public class Status implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code stats}
 		 */
-		public final Builder stats(Function<SnapshotStats.Builder, ObjectBuilder<SnapshotStats>> fn) {
-			return this.stats(fn.apply(new SnapshotStats.Builder()).build());
+		public final Builder stats(Consumer<SnapshotStats.Builder> fn) {
+			SnapshotStats.Builder builder = new SnapshotStats.Builder();
+			fn.accept(builder);
+			return this.stats(builder.build());
 		}
 
 		/**

@@ -23,13 +23,19 @@
 
 package co.elastic.clients.elasticsearch._types;
 
+import co.elastic.clients.json.JsonEnum;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
-import co.elastic.clients.util.StringEnum;
 
 @JsonpDeserializable
-public enum Refresh implements StringEnum {
-	True("true"), False("false"), WaitFor("wait_for");
+public enum Refresh implements JsonEnum {
+	True("true"),
+
+	False("false"),
+
+	WaitFor("wait_for"),
+
+	;
 
 	private final String jsonValue;
 
@@ -41,6 +47,5 @@ public enum Refresh implements StringEnum {
 		return this.jsonValue;
 	}
 
-	public static final StringEnum.Deserializer<Refresh> _DESERIALIZER = new StringEnum.Deserializer<>(
-			Refresh.values());
+	public static final JsonEnum.Deserializer<Refresh> _DESERIALIZER = new JsonEnum.Deserializer<>(Refresh.values());
 }

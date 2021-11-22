@@ -32,7 +32,7 @@ import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: xpack.usage.Analytics
@@ -49,8 +49,10 @@ public class Analytics extends Base {
 
 	}
 
-	public static Analytics of(Function<Builder, ObjectBuilder<Analytics>> fn) {
-		return fn.apply(new Builder()).build();
+	public static Analytics of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -87,8 +89,10 @@ public class Analytics extends Base {
 		/**
 		 * Required - API name: {@code stats}
 		 */
-		public final Builder stats(Function<AnalyticsStatistics.Builder, ObjectBuilder<AnalyticsStatistics>> fn) {
-			return this.stats(fn.apply(new AnalyticsStatistics.Builder()).build());
+		public final Builder stats(Consumer<AnalyticsStatistics.Builder> fn) {
+			AnalyticsStatistics.Builder builder = new AnalyticsStatistics.Builder();
+			fn.accept(builder);
+			return this.stats(builder.build());
 		}
 
 		@Override

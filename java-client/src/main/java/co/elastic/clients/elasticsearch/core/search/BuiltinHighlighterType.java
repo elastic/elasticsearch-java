@@ -23,13 +23,19 @@
 
 package co.elastic.clients.elasticsearch.core.search;
 
+import co.elastic.clients.json.JsonEnum;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
-import co.elastic.clients.util.StringEnum;
 
 @JsonpDeserializable
-public enum BuiltinHighlighterType implements StringEnum {
-	Plain("plain"), FastVector("fvh"), Unified("unified");
+public enum BuiltinHighlighterType implements JsonEnum {
+	Plain("plain"),
+
+	FastVector("fvh"),
+
+	Unified("unified"),
+
+	;
 
 	private final String jsonValue;
 
@@ -41,6 +47,6 @@ public enum BuiltinHighlighterType implements StringEnum {
 		return this.jsonValue;
 	}
 
-	public static final StringEnum.Deserializer<BuiltinHighlighterType> _DESERIALIZER = new StringEnum.Deserializer<>(
+	public static final JsonEnum.Deserializer<BuiltinHighlighterType> _DESERIALIZER = new JsonEnum.Deserializer<>(
 			BuiltinHighlighterType.values());
 }

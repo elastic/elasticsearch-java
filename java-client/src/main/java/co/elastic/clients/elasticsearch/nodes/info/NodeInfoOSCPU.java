@@ -36,7 +36,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: nodes.info.NodeInfoOSCPU
@@ -73,8 +73,10 @@ public class NodeInfoOSCPU implements JsonpSerializable {
 
 	}
 
-	public static NodeInfoOSCPU of(Function<Builder, ObjectBuilder<NodeInfoOSCPU>> fn) {
-		return fn.apply(new Builder()).build();
+	public static NodeInfoOSCPU of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**

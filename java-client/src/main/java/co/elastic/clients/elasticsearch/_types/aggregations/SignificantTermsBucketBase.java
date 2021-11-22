@@ -34,7 +34,6 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
 import java.lang.Long;
 import java.util.Objects;
-import java.util.function.Function;
 
 // typedef: _types.aggregations.SignificantTermsBucketBase
 

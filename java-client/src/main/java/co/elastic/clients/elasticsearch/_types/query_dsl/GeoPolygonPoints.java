@@ -30,14 +30,15 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -54,8 +55,10 @@ public class GeoPolygonPoints implements JsonpSerializable {
 
 	}
 
-	public static GeoPolygonPoints of(Function<Builder, ObjectBuilder<GeoPolygonPoints>> fn) {
-		return fn.apply(new Builder()).build();
+	public static GeoPolygonPoints of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -116,13 +119,9 @@ public class GeoPolygonPoints implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code points}
 		 */
-		@SafeVarargs
-		public final Builder points(Function<GeoLocation.Builder, ObjectBuilder<GeoLocation>>... fns) {
-			this.points = new ArrayList<>(fns.length);
-			for (Function<GeoLocation.Builder, ObjectBuilder<GeoLocation>> fn : fns) {
-				this.points.add(fn.apply(new GeoLocation.Builder()).build());
-			}
-			return this;
+		public final Builder points(
+				Function<ListBuilder<GeoLocation, GeoLocation.Builder>, ObjectBuilder<List<GeoLocation>>> fn) {
+			return points(fn.apply(new ListBuilder<>(GeoLocation.Builder::new)).build());
 		}
 
 		/**

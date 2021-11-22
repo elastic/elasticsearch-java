@@ -36,17 +36,17 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
-import co.elastic.clients.transport.SimpleEndpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.MapBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -78,8 +78,10 @@ public class CreateApiKeyRequest extends RequestBase implements JsonpSerializabl
 
 	}
 
-	public static CreateApiKeyRequest of(Function<Builder, ObjectBuilder<CreateApiKeyRequest>> fn) {
-		return fn.apply(new Builder()).build();
+	public static CreateApiKeyRequest of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -224,8 +226,10 @@ public class CreateApiKeyRequest extends RequestBase implements JsonpSerializabl
 		 * <p>
 		 * API name: {@code expiration}
 		 */
-		public final Builder expiration(Function<Time.Builder, ObjectBuilder<Time>> fn) {
-			return this.expiration(fn.apply(new Time.Builder()).build());
+		public final Builder expiration(Consumer<Time.Builder> fn) {
+			Time.Builder builder = new Time.Builder();
+			fn.accept(builder);
+			return this.expiration(builder.build());
 		}
 
 		/**
@@ -278,13 +282,6 @@ public class CreateApiKeyRequest extends RequestBase implements JsonpSerializabl
 		public final Builder roleDescriptors(@Nullable Map<String, RoleDescriptor> value) {
 			this.roleDescriptors = value;
 			return this;
-		}
-
-		/**
-		 * Set {@link #roleDescriptors(Map)} to a singleton map.
-		 */
-		public Builder roleDescriptors(String key, Function<RoleDescriptor.Builder, ObjectBuilder<RoleDescriptor>> fn) {
-			return this.roleDescriptors(Collections.singletonMap(key, fn.apply(new RoleDescriptor.Builder()).build()));
 		}
 
 		public final Builder roleDescriptors(

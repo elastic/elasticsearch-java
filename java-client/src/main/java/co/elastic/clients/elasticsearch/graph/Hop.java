@@ -30,14 +30,15 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -61,8 +62,10 @@ public class Hop implements JsonpSerializable {
 
 	}
 
-	public static Hop of(Function<Builder, ObjectBuilder<Hop>> fn) {
-		return fn.apply(new Builder()).build();
+	public static Hop of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -143,8 +146,10 @@ public class Hop implements JsonpSerializable {
 		/**
 		 * API name: {@code connections}
 		 */
-		public final Builder connections(Function<Hop.Builder, ObjectBuilder<Hop>> fn) {
-			return this.connections(fn.apply(new Hop.Builder()).build());
+		public final Builder connections(Consumer<Hop.Builder> fn) {
+			Hop.Builder builder = new Hop.Builder();
+			fn.accept(builder);
+			return this.connections(builder.build());
 		}
 
 		/**
@@ -158,8 +163,10 @@ public class Hop implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code query}
 		 */
-		public final Builder query(Function<Query.Builder, ObjectBuilder<Query>> fn) {
-			return this.query(fn.apply(new Query.Builder()).build());
+		public final Builder query(Consumer<Query.Builder> fn) {
+			Query.Builder builder = new Query.Builder();
+			fn.accept(builder);
+			return this.query(builder.build());
 		}
 
 		/**
@@ -181,13 +188,9 @@ public class Hop implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code vertices}
 		 */
-		@SafeVarargs
-		public final Builder vertices(Function<VertexDefinition.Builder, ObjectBuilder<VertexDefinition>>... fns) {
-			this.vertices = new ArrayList<>(fns.length);
-			for (Function<VertexDefinition.Builder, ObjectBuilder<VertexDefinition>> fn : fns) {
-				this.vertices.add(fn.apply(new VertexDefinition.Builder()).build());
-			}
-			return this;
+		public final Builder vertices(
+				Function<ListBuilder<VertexDefinition, VertexDefinition.Builder>, ObjectBuilder<List<VertexDefinition>>> fn) {
+			return vertices(fn.apply(new ListBuilder<>(VertexDefinition.Builder::new)).build());
 		}
 
 		/**

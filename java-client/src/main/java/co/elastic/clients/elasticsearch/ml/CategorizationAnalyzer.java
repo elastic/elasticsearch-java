@@ -38,23 +38,25 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Object;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.CategorizationAnalyzer
 // union type: Union[]
 @JsonpDeserializable
-public class CategorizationAnalyzer implements TaggedUnion<Object>, JsonpSerializable {
+public class CategorizationAnalyzer implements TaggedUnion<CategorizationAnalyzer.Kind, Object>, JsonpSerializable {
 
-	public static final String NAME = "name";
-	public static final String DEFINITION = "definition";
+	public enum Kind {
+		Name, Definition
 
-	private final String _type;
+	}
+
+	private final Kind _kind;
 	private final Object _value;
 
 	@Override
-	public final String _type() {
-		return _type;
+	public final Kind _kind() {
+		return _kind;
 	}
 
 	@Override
@@ -62,20 +64,29 @@ public class CategorizationAnalyzer implements TaggedUnion<Object>, JsonpSeriali
 		return _value;
 	}
 
-	public CategorizationAnalyzer(String type, Object value) {
-		this._type = type;
+	public CategorizationAnalyzer(Kind kind, Object value) {
+		this._kind = kind;
 		this._value = value;
 	}
 
 	private CategorizationAnalyzer(Builder builder) {
 
-		this._type = ModelTypeHelper.requireNonNull(builder._type, builder, "<variant type>");
+		this._kind = ModelTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
 		this._value = ModelTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
 
 	}
 
-	public static CategorizationAnalyzer of(Function<Builder, ObjectBuilder<CategorizationAnalyzer>> fn) {
-		return fn.apply(new Builder()).build();
+	public static CategorizationAnalyzer of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
+	}
+
+	/**
+	 * Is this variant instance of kind {@code name}?
+	 */
+	public boolean isName() {
+		return _kind == Kind.Name;
 	}
 
 	/**
@@ -85,7 +96,14 @@ public class CategorizationAnalyzer implements TaggedUnion<Object>, JsonpSeriali
 	 *             if the current variant is not of the {@code name} kind.
 	 */
 	public String name() {
-		return TaggedUnionUtils.get(this, NAME);
+		return TaggedUnionUtils.get(this, Kind.Name);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code definition}?
+	 */
+	public boolean isDefinition() {
+		return _kind == Kind.Definition;
 	}
 
 	/**
@@ -95,7 +113,7 @@ public class CategorizationAnalyzer implements TaggedUnion<Object>, JsonpSeriali
 	 *             if the current variant is not of the {@code definition} kind.
 	 */
 	public CategorizationAnalyzerDefinition definition() {
-		return TaggedUnionUtils.get(this, DEFINITION);
+		return TaggedUnionUtils.get(this, Kind.Definition);
 	}
 
 	@Override
@@ -103,8 +121,8 @@ public class CategorizationAnalyzer implements TaggedUnion<Object>, JsonpSeriali
 		if (_value instanceof JsonpSerializable) {
 			((JsonpSerializable) _value).serialize(generator, mapper);
 		} else {
-			switch (_type) {
-				case NAME :
+			switch (_kind) {
+				case Name :
 					generator.write(((String) this._value));
 
 					break;
@@ -114,24 +132,25 @@ public class CategorizationAnalyzer implements TaggedUnion<Object>, JsonpSeriali
 	}
 
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<CategorizationAnalyzer> {
-		private String _type;
+		private Kind _kind;
 		private Object _value;
 
 		public Builder name(String v) {
-			this._type = NAME;
+			this._kind = Kind.Name;
 			this._value = v;
 			return this;
 		}
 
 		public Builder definition(CategorizationAnalyzerDefinition v) {
-			this._type = DEFINITION;
+			this._kind = Kind.Definition;
 			this._value = v;
 			return this;
 		}
 
-		public Builder definition(
-				Function<CategorizationAnalyzerDefinition.Builder, ObjectBuilder<CategorizationAnalyzerDefinition>> f) {
-			return this.definition(f.apply(new CategorizationAnalyzerDefinition.Builder()).build());
+		public Builder definition(Consumer<CategorizationAnalyzerDefinition.Builder> fn) {
+			CategorizationAnalyzerDefinition.Builder builder = new CategorizationAnalyzerDefinition.Builder();
+			fn.accept(builder);
+			return this.definition(builder.build());
 		}
 
 		public CategorizationAnalyzer build() {
@@ -142,9 +161,9 @@ public class CategorizationAnalyzer implements TaggedUnion<Object>, JsonpSeriali
 	}
 
 	private static JsonpDeserializer<CategorizationAnalyzer> buildCategorizationAnalyzerDeserializer() {
-		return new UnionDeserializer.Builder<>(CategorizationAnalyzer::new, false)
-				.addMember("name", JsonpDeserializer.stringDeserializer())
-				.addMember("definition", CategorizationAnalyzerDefinition._DESERIALIZER).build();
+		return new UnionDeserializer.Builder<CategorizationAnalyzer, Kind, Object>(CategorizationAnalyzer::new, false)
+				.addMember(Kind.Name, JsonpDeserializer.stringDeserializer())
+				.addMember(Kind.Definition, CategorizationAnalyzerDefinition._DESERIALIZER).build();
 	}
 
 	public static final JsonpDeserializer<CategorizationAnalyzer> _DESERIALIZER = JsonpDeserializer

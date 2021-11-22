@@ -29,15 +29,16 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -68,8 +69,10 @@ public class AnalyzeDetail implements JsonpSerializable {
 
 	}
 
-	public static AnalyzeDetail of(Function<Builder, ObjectBuilder<AnalyzeDetail>> fn) {
-		return fn.apply(new Builder()).build();
+	public static AnalyzeDetail of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -187,8 +190,10 @@ public class AnalyzeDetail implements JsonpSerializable {
 		/**
 		 * API name: {@code analyzer}
 		 */
-		public final Builder analyzer(Function<AnalyzerDetail.Builder, ObjectBuilder<AnalyzerDetail>> fn) {
-			return this.analyzer(fn.apply(new AnalyzerDetail.Builder()).build());
+		public final Builder analyzer(Consumer<AnalyzerDetail.Builder> fn) {
+			AnalyzerDetail.Builder builder = new AnalyzerDetail.Builder();
+			fn.accept(builder);
+			return this.analyzer(builder.build());
 		}
 
 		/**
@@ -210,13 +215,9 @@ public class AnalyzeDetail implements JsonpSerializable {
 		/**
 		 * API name: {@code charfilters}
 		 */
-		@SafeVarargs
-		public final Builder charfilters(Function<CharFilterDetail.Builder, ObjectBuilder<CharFilterDetail>>... fns) {
-			this.charfilters = new ArrayList<>(fns.length);
-			for (Function<CharFilterDetail.Builder, ObjectBuilder<CharFilterDetail>> fn : fns) {
-				this.charfilters.add(fn.apply(new CharFilterDetail.Builder()).build());
-			}
-			return this;
+		public final Builder charfilters(
+				Function<ListBuilder<CharFilterDetail, CharFilterDetail.Builder>, ObjectBuilder<List<CharFilterDetail>>> fn) {
+			return charfilters(fn.apply(new ListBuilder<>(CharFilterDetail.Builder::new)).build());
 		}
 
 		/**
@@ -246,13 +247,9 @@ public class AnalyzeDetail implements JsonpSerializable {
 		/**
 		 * API name: {@code tokenfilters}
 		 */
-		@SafeVarargs
-		public final Builder tokenfilters(Function<TokenDetail.Builder, ObjectBuilder<TokenDetail>>... fns) {
-			this.tokenfilters = new ArrayList<>(fns.length);
-			for (Function<TokenDetail.Builder, ObjectBuilder<TokenDetail>> fn : fns) {
-				this.tokenfilters.add(fn.apply(new TokenDetail.Builder()).build());
-			}
-			return this;
+		public final Builder tokenfilters(
+				Function<ListBuilder<TokenDetail, TokenDetail.Builder>, ObjectBuilder<List<TokenDetail>>> fn) {
+			return tokenfilters(fn.apply(new ListBuilder<>(TokenDetail.Builder::new)).build());
 		}
 
 		/**
@@ -266,8 +263,10 @@ public class AnalyzeDetail implements JsonpSerializable {
 		/**
 		 * API name: {@code tokenizer}
 		 */
-		public final Builder tokenizer(Function<TokenDetail.Builder, ObjectBuilder<TokenDetail>> fn) {
-			return this.tokenizer(fn.apply(new TokenDetail.Builder()).build());
+		public final Builder tokenizer(Consumer<TokenDetail.Builder> fn) {
+			TokenDetail.Builder builder = new TokenDetail.Builder();
+			fn.accept(builder);
+			return this.tokenizer(builder.build());
 		}
 
 		/**

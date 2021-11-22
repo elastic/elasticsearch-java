@@ -34,7 +34,7 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
-import co.elastic.clients.transport.SimpleEndpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
@@ -47,7 +47,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: indices.put_index_template.Request
@@ -88,8 +88,10 @@ public class PutIndexTemplateRequest extends RequestBase implements JsonpSeriali
 
 	}
 
-	public static PutIndexTemplateRequest of(Function<Builder, ObjectBuilder<PutIndexTemplateRequest>> fn) {
-		return fn.apply(new Builder()).build();
+	public static PutIndexTemplateRequest of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -283,8 +285,10 @@ public class PutIndexTemplateRequest extends RequestBase implements JsonpSeriali
 		/**
 		 * API name: {@code data_stream}
 		 */
-		public final Builder dataStream(Function<DataStream.Builder, ObjectBuilder<DataStream>> fn) {
-			return this.dataStream(fn.apply(new DataStream.Builder()).build());
+		public final Builder dataStream(Consumer<DataStream.Builder> fn) {
+			DataStream.Builder builder = new DataStream.Builder();
+			fn.accept(builder);
+			return this.dataStream(builder.build());
 		}
 
 		/**
@@ -332,8 +336,10 @@ public class PutIndexTemplateRequest extends RequestBase implements JsonpSeriali
 		/**
 		 * API name: {@code template}
 		 */
-		public final Builder template(Function<IndexTemplateMapping.Builder, ObjectBuilder<IndexTemplateMapping>> fn) {
-			return this.template(fn.apply(new IndexTemplateMapping.Builder()).build());
+		public final Builder template(Consumer<IndexTemplateMapping.Builder> fn) {
+			IndexTemplateMapping.Builder builder = new IndexTemplateMapping.Builder();
+			fn.accept(builder);
+			return this.template(builder.build());
 		}
 
 		/**

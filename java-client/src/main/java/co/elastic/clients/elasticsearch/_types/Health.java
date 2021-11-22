@@ -23,27 +23,31 @@
 
 package co.elastic.clients.elasticsearch._types;
 
+import co.elastic.clients.json.JsonEnum;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
-import co.elastic.clients.util.StringEnum;
 
 @JsonpDeserializable
-public enum Health implements StringEnum {
+public enum Health implements JsonEnum {
 	/**
 	 * All shards are assigned.
 	 */
 	Green("green"),
+
 	/**
 	 * All primary shards are assigned, but one or more replica shards are
 	 * unassigned. If a node in the cluster fails, some data could be unavailable
 	 * until that node is repaired.
 	 */
 	Yellow("yellow"),
+
 	/**
 	 * One or more primary shards are unassigned, so some data is unavailable. This
 	 * can occur briefly during cluster startup as primary shards are assigned.
 	 */
-	Red("red");
+	Red("red"),
+
+	;
 
 	private final String jsonValue;
 
@@ -55,5 +59,5 @@ public enum Health implements StringEnum {
 		return this.jsonValue;
 	}
 
-	public static final StringEnum.Deserializer<Health> _DESERIALIZER = new StringEnum.Deserializer<>(Health.values());
+	public static final JsonEnum.Deserializer<Health> _DESERIALIZER = new JsonEnum.Deserializer<>(Health.values());
 }

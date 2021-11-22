@@ -32,14 +32,15 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -62,8 +63,10 @@ public class ResolveIndexResponse implements JsonpSerializable {
 
 	}
 
-	public static ResolveIndexResponse of(Function<Builder, ObjectBuilder<ResolveIndexResponse>> fn) {
-		return fn.apply(new Builder()).build();
+	public static ResolveIndexResponse of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -162,13 +165,9 @@ public class ResolveIndexResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code indices}
 		 */
-		@SafeVarargs
-		public final Builder indices(Function<ResolveIndexItem.Builder, ObjectBuilder<ResolveIndexItem>>... fns) {
-			this.indices = new ArrayList<>(fns.length);
-			for (Function<ResolveIndexItem.Builder, ObjectBuilder<ResolveIndexItem>> fn : fns) {
-				this.indices.add(fn.apply(new ResolveIndexItem.Builder()).build());
-			}
-			return this;
+		public final Builder indices(
+				Function<ListBuilder<ResolveIndexItem, ResolveIndexItem.Builder>, ObjectBuilder<List<ResolveIndexItem>>> fn) {
+			return indices(fn.apply(new ListBuilder<>(ResolveIndexItem.Builder::new)).build());
 		}
 
 		/**
@@ -190,14 +189,9 @@ public class ResolveIndexResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code aliases}
 		 */
-		@SafeVarargs
 		public final Builder aliases(
-				Function<ResolveIndexAliasItem.Builder, ObjectBuilder<ResolveIndexAliasItem>>... fns) {
-			this.aliases = new ArrayList<>(fns.length);
-			for (Function<ResolveIndexAliasItem.Builder, ObjectBuilder<ResolveIndexAliasItem>> fn : fns) {
-				this.aliases.add(fn.apply(new ResolveIndexAliasItem.Builder()).build());
-			}
-			return this;
+				Function<ListBuilder<ResolveIndexAliasItem, ResolveIndexAliasItem.Builder>, ObjectBuilder<List<ResolveIndexAliasItem>>> fn) {
+			return aliases(fn.apply(new ListBuilder<>(ResolveIndexAliasItem.Builder::new)).build());
 		}
 
 		/**
@@ -219,14 +213,9 @@ public class ResolveIndexResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code data_streams}
 		 */
-		@SafeVarargs
 		public final Builder dataStreams(
-				Function<ResolveIndexDataStreamsItem.Builder, ObjectBuilder<ResolveIndexDataStreamsItem>>... fns) {
-			this.dataStreams = new ArrayList<>(fns.length);
-			for (Function<ResolveIndexDataStreamsItem.Builder, ObjectBuilder<ResolveIndexDataStreamsItem>> fn : fns) {
-				this.dataStreams.add(fn.apply(new ResolveIndexDataStreamsItem.Builder()).build());
-			}
-			return this;
+				Function<ListBuilder<ResolveIndexDataStreamsItem, ResolveIndexDataStreamsItem.Builder>, ObjectBuilder<List<ResolveIndexDataStreamsItem>>> fn) {
+			return dataStreams(fn.apply(new ListBuilder<>(ResolveIndexDataStreamsItem.Builder::new)).build());
 		}
 
 		/**

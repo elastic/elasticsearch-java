@@ -23,30 +23,95 @@
 
 package co.elastic.clients.elasticsearch._types.mapping;
 
+import co.elastic.clients.json.JsonEnum;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
-import co.elastic.clients.util.StringEnum;
 
 @JsonpDeserializable
-public enum FieldType implements StringEnum {
-	None("none"), GeoPoint("geo_point"), GeoShape("geo_shape"), Ip("ip"), Binary("binary"), Keyword("keyword"), Text(
-			"text"), SearchAsYouType("search_as_you_type"), Date("date"), DateNanos("date_nanos"), Boolean(
-					"boolean"), Completion("completion"), Nested("nested"), Object("object"), Murmur3(
-							"murmur3"), TokenCount("token_count"), Percolator("percolator"), Integer("integer"), Long(
-									"long"), Short("short"), Byte("byte"), Float("float"), HalfFloat(
-											"half_float"), ScaledFloat("scaled_float"), Double("double"), IntegerRange(
-													"integer_range"), FloatRange("float_range"), LongRange(
-															"long_range"), DoubleRange("double_range"), DateRange(
-																	"date_range"), IpRange("ip_range"), Alias(
-																			"alias"), Join("join"), RankFeature(
-																					"rank_feature"), RankFeatures(
-																							"rank_features"), Flattened(
-																									"flattened"), Shape(
-																											"shape"), Histogram(
-																													"histogram"), ConstantKeyword(
-																															"constant_keyword"), AggregateMetricDouble(
-																																	"aggregate_metric_double"), DenseVector(
-																																			"dense_vector");
+public enum FieldType implements JsonEnum {
+	None("none"),
+
+	GeoPoint("geo_point"),
+
+	GeoShape("geo_shape"),
+
+	Ip("ip"),
+
+	Binary("binary"),
+
+	Keyword("keyword"),
+
+	Text("text"),
+
+	SearchAsYouType("search_as_you_type"),
+
+	Date("date"),
+
+	DateNanos("date_nanos"),
+
+	Boolean("boolean"),
+
+	Completion("completion"),
+
+	Nested("nested"),
+
+	Object("object"),
+
+	Murmur3("murmur3"),
+
+	TokenCount("token_count"),
+
+	Percolator("percolator"),
+
+	Integer("integer"),
+
+	Long("long"),
+
+	Short("short"),
+
+	Byte("byte"),
+
+	Float("float"),
+
+	HalfFloat("half_float"),
+
+	ScaledFloat("scaled_float"),
+
+	Double("double"),
+
+	IntegerRange("integer_range"),
+
+	FloatRange("float_range"),
+
+	LongRange("long_range"),
+
+	DoubleRange("double_range"),
+
+	DateRange("date_range"),
+
+	IpRange("ip_range"),
+
+	Alias("alias"),
+
+	Join("join"),
+
+	RankFeature("rank_feature"),
+
+	RankFeatures("rank_features"),
+
+	Flattened("flattened"),
+
+	Shape("shape"),
+
+	Histogram("histogram"),
+
+	ConstantKeyword("constant_keyword"),
+
+	AggregateMetricDouble("aggregate_metric_double"),
+
+	DenseVector("dense_vector"),
+
+	;
 
 	private final String jsonValue;
 
@@ -58,6 +123,6 @@ public enum FieldType implements StringEnum {
 		return this.jsonValue;
 	}
 
-	public static final StringEnum.Deserializer<FieldType> _DESERIALIZER = new StringEnum.Deserializer<>(
+	public static final JsonEnum.Deserializer<FieldType> _DESERIALIZER = new JsonEnum.Deserializer<>(
 			FieldType.values());
 }

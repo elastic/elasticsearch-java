@@ -37,9 +37,9 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
-import java.util.Collections;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -82,8 +82,10 @@ public class IndexHealthStats implements JsonpSerializable {
 
 	}
 
-	public static IndexHealthStats of(Function<Builder, ObjectBuilder<IndexHealthStats>> fn) {
-		return fn.apply(new Builder()).build();
+	public static IndexHealthStats of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -275,13 +277,6 @@ public class IndexHealthStats implements JsonpSerializable {
 		public final Builder shards(@Nullable Map<String, ShardHealthStats> value) {
 			this.shards = value;
 			return this;
-		}
-
-		/**
-		 * Set {@link #shards(Map)} to a singleton map.
-		 */
-		public Builder shards(String key, Function<ShardHealthStats.Builder, ObjectBuilder<ShardHealthStats>> fn) {
-			return this.shards(Collections.singletonMap(key, fn.apply(new ShardHealthStats.Builder()).build()));
 		}
 
 		public final Builder shards(

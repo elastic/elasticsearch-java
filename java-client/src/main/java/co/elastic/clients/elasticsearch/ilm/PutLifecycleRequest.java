@@ -32,7 +32,7 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
-import co.elastic.clients.transport.SimpleEndpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
@@ -40,7 +40,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: ilm.put_lifecycle.Request
@@ -49,7 +49,7 @@ public class PutLifecycleRequest extends RequestBase implements JsonpSerializabl
 	private final String name;
 
 	@Nullable
-	private final Policy policy;
+	private final IlmPolicy policy;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -60,8 +60,10 @@ public class PutLifecycleRequest extends RequestBase implements JsonpSerializabl
 
 	}
 
-	public static PutLifecycleRequest of(Function<Builder, ObjectBuilder<PutLifecycleRequest>> fn) {
-		return fn.apply(new Builder()).build();
+	public static PutLifecycleRequest of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -77,7 +79,7 @@ public class PutLifecycleRequest extends RequestBase implements JsonpSerializabl
 	 * API name: {@code policy}
 	 */
 	@Nullable
-	public final Policy policy() {
+	public final IlmPolicy policy() {
 		return this.policy;
 	}
 
@@ -109,7 +111,7 @@ public class PutLifecycleRequest extends RequestBase implements JsonpSerializabl
 		private String name;
 
 		@Nullable
-		private Policy policy;
+		private IlmPolicy policy;
 
 		/**
 		 * Required - The name of the index lifecycle policy
@@ -124,7 +126,7 @@ public class PutLifecycleRequest extends RequestBase implements JsonpSerializabl
 		/**
 		 * API name: {@code policy}
 		 */
-		public final Builder policy(@Nullable Policy value) {
+		public final Builder policy(@Nullable IlmPolicy value) {
 			this.policy = value;
 			return this;
 		}
@@ -132,8 +134,10 @@ public class PutLifecycleRequest extends RequestBase implements JsonpSerializabl
 		/**
 		 * API name: {@code policy}
 		 */
-		public final Builder policy(Function<Policy.Builder, ObjectBuilder<Policy>> fn) {
-			return this.policy(fn.apply(new Policy.Builder()).build());
+		public final Builder policy(Consumer<IlmPolicy.Builder> fn) {
+			IlmPolicy.Builder builder = new IlmPolicy.Builder();
+			fn.accept(builder);
+			return this.policy(builder.build());
 		}
 
 		/**
@@ -159,7 +163,7 @@ public class PutLifecycleRequest extends RequestBase implements JsonpSerializabl
 
 	protected static void setupPutLifecycleRequestDeserializer(ObjectDeserializer<PutLifecycleRequest.Builder> op) {
 
-		op.add(Builder::policy, Policy._DESERIALIZER, "policy");
+		op.add(Builder::policy, IlmPolicy._DESERIALIZER, "policy");
 
 	}
 

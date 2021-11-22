@@ -34,7 +34,7 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: cat.indices.IndicesRecord
@@ -611,8 +611,10 @@ public class IndicesRecord implements JsonpSerializable {
 
 	}
 
-	public static IndicesRecord of(Function<Builder, ObjectBuilder<IndicesRecord>> fn) {
-		return fn.apply(new Builder()).build();
+	public static IndicesRecord of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**

@@ -31,6 +31,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
@@ -38,11 +39,11 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -88,8 +89,10 @@ public class IndicesGetDataStreamItem implements JsonpSerializable {
 
 	}
 
-	public static IndicesGetDataStreamItem of(Function<Builder, ObjectBuilder<IndicesGetDataStreamItem>> fn) {
-		return fn.apply(new Builder()).build();
+	public static IndicesGetDataStreamItem of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -274,9 +277,10 @@ public class IndicesGetDataStreamItem implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code timestamp_field}
 		 */
-		public final Builder timestampField(
-				Function<IndicesGetDataStreamItemTimestampField.Builder, ObjectBuilder<IndicesGetDataStreamItemTimestampField>> fn) {
-			return this.timestampField(fn.apply(new IndicesGetDataStreamItemTimestampField.Builder()).build());
+		public final Builder timestampField(Consumer<IndicesGetDataStreamItemTimestampField.Builder> fn) {
+			IndicesGetDataStreamItemTimestampField.Builder builder = new IndicesGetDataStreamItemTimestampField.Builder();
+			fn.accept(builder);
+			return this.timestampField(builder.build());
 		}
 
 		/**
@@ -298,14 +302,9 @@ public class IndicesGetDataStreamItem implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code indices}
 		 */
-		@SafeVarargs
 		public final Builder indices(
-				Function<IndicesGetDataStreamItemIndex.Builder, ObjectBuilder<IndicesGetDataStreamItemIndex>>... fns) {
-			this.indices = new ArrayList<>(fns.length);
-			for (Function<IndicesGetDataStreamItemIndex.Builder, ObjectBuilder<IndicesGetDataStreamItemIndex>> fn : fns) {
-				this.indices.add(fn.apply(new IndicesGetDataStreamItemIndex.Builder()).build());
-			}
-			return this;
+				Function<ListBuilder<IndicesGetDataStreamItemIndex, IndicesGetDataStreamItemIndex.Builder>, ObjectBuilder<List<IndicesGetDataStreamItemIndex>>> fn) {
+			return indices(fn.apply(new ListBuilder<>(IndicesGetDataStreamItemIndex.Builder::new)).build());
 		}
 
 		/**

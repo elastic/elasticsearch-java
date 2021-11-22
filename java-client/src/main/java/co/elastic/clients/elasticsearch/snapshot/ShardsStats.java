@@ -35,7 +35,7 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 
 // typedef: snapshot._types.ShardsStats
 @JsonpDeserializable
@@ -65,8 +65,10 @@ public class ShardsStats implements JsonpSerializable {
 
 	}
 
-	public static ShardsStats of(Function<Builder, ObjectBuilder<ShardsStats>> fn) {
-		return fn.apply(new Builder()).build();
+	public static ShardsStats of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**

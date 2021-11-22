@@ -36,7 +36,6 @@ import java.lang.String;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.mapping.CorePropertyBase

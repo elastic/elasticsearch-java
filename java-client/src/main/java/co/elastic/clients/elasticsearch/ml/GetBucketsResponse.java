@@ -29,15 +29,16 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -57,8 +58,10 @@ public class GetBucketsResponse implements JsonpSerializable {
 
 	}
 
-	public static GetBucketsResponse of(Function<Builder, ObjectBuilder<GetBucketsResponse>> fn) {
-		return fn.apply(new Builder()).build();
+	public static GetBucketsResponse of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -130,13 +133,9 @@ public class GetBucketsResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code buckets}
 		 */
-		@SafeVarargs
-		public final Builder buckets(Function<BucketSummary.Builder, ObjectBuilder<BucketSummary>>... fns) {
-			this.buckets = new ArrayList<>(fns.length);
-			for (Function<BucketSummary.Builder, ObjectBuilder<BucketSummary>> fn : fns) {
-				this.buckets.add(fn.apply(new BucketSummary.Builder()).build());
-			}
-			return this;
+		public final Builder buckets(
+				Function<ListBuilder<BucketSummary, BucketSummary.Builder>, ObjectBuilder<List<BucketSummary>>> fn) {
+			return buckets(fn.apply(new ListBuilder<>(BucketSummary.Builder::new)).build());
 		}
 
 		/**

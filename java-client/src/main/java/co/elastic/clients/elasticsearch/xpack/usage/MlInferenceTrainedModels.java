@@ -35,7 +35,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: xpack.usage.MlInferenceTrainedModels
@@ -63,8 +63,10 @@ public class MlInferenceTrainedModels implements JsonpSerializable {
 
 	}
 
-	public static MlInferenceTrainedModels of(Function<Builder, ObjectBuilder<MlInferenceTrainedModels>> fn) {
-		return fn.apply(new Builder()).build();
+	public static MlInferenceTrainedModels of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -157,8 +159,10 @@ public class MlInferenceTrainedModels implements JsonpSerializable {
 		/**
 		 * API name: {@code estimated_operations}
 		 */
-		public final Builder estimatedOperations(Function<JobStatistics.Builder, ObjectBuilder<JobStatistics>> fn) {
-			return this.estimatedOperations(fn.apply(new JobStatistics.Builder()).build());
+		public final Builder estimatedOperations(Consumer<JobStatistics.Builder> fn) {
+			JobStatistics.Builder builder = new JobStatistics.Builder();
+			fn.accept(builder);
+			return this.estimatedOperations(builder.build());
 		}
 
 		/**
@@ -172,9 +176,10 @@ public class MlInferenceTrainedModels implements JsonpSerializable {
 		/**
 		 * API name: {@code estimated_heap_memory_usage_bytes}
 		 */
-		public final Builder estimatedHeapMemoryUsageBytes(
-				Function<JobStatistics.Builder, ObjectBuilder<JobStatistics>> fn) {
-			return this.estimatedHeapMemoryUsageBytes(fn.apply(new JobStatistics.Builder()).build());
+		public final Builder estimatedHeapMemoryUsageBytes(Consumer<JobStatistics.Builder> fn) {
+			JobStatistics.Builder builder = new JobStatistics.Builder();
+			fn.accept(builder);
+			return this.estimatedHeapMemoryUsageBytes(builder.build());
 		}
 
 		/**
@@ -188,9 +193,10 @@ public class MlInferenceTrainedModels implements JsonpSerializable {
 		/**
 		 * API name: {@code count}
 		 */
-		public final Builder count(
-				Function<MlInferenceTrainedModelsCount.Builder, ObjectBuilder<MlInferenceTrainedModelsCount>> fn) {
-			return this.count(fn.apply(new MlInferenceTrainedModelsCount.Builder()).build());
+		public final Builder count(Consumer<MlInferenceTrainedModelsCount.Builder> fn) {
+			MlInferenceTrainedModelsCount.Builder builder = new MlInferenceTrainedModelsCount.Builder();
+			fn.accept(builder);
+			return this.count(builder.build());
 		}
 
 		/**
@@ -204,8 +210,10 @@ public class MlInferenceTrainedModels implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code _all}
 		 */
-		public final Builder all(Function<MlCounter.Builder, ObjectBuilder<MlCounter>> fn) {
-			return this.all(fn.apply(new MlCounter.Builder()).build());
+		public final Builder all(Consumer<MlCounter.Builder> fn) {
+			MlCounter.Builder builder = new MlCounter.Builder();
+			fn.accept(builder);
+			return this.all(builder.build());
 		}
 
 		/**

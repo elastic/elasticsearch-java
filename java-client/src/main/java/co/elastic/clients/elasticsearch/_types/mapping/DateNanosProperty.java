@@ -35,7 +35,7 @@ import java.lang.Double;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: _types.mapping.DateNanosProperty
@@ -73,16 +73,18 @@ public class DateNanosProperty extends DocValuesPropertyBase implements Property
 
 	}
 
-	public static DateNanosProperty of(Function<Builder, ObjectBuilder<DateNanosProperty>> fn) {
-		return fn.apply(new Builder()).build();
+	public static DateNanosProperty of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
-	 * {@link Property} variant type
+	 * Property variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "date_nanos";
+	public Property.Kind _propertyKind() {
+		return Property.Kind.DateNanos;
 	}
 
 	/**

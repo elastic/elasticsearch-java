@@ -35,9 +35,9 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.Collections;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -60,8 +60,10 @@ public class SnapshotIndexStats implements JsonpSerializable {
 
 	}
 
-	public static SnapshotIndexStats of(Function<Builder, ObjectBuilder<SnapshotIndexStats>> fn) {
-		return fn.apply(new Builder()).build();
+	public static SnapshotIndexStats of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -135,14 +137,6 @@ public class SnapshotIndexStats implements JsonpSerializable {
 			return this;
 		}
 
-		/**
-		 * Set {@link #shards(Map)} to a singleton map.
-		 */
-		public Builder shards(String key,
-				Function<SnapshotShardsStatus.Builder, ObjectBuilder<SnapshotShardsStatus>> fn) {
-			return this.shards(Collections.singletonMap(key, fn.apply(new SnapshotShardsStatus.Builder()).build()));
-		}
-
 		public final Builder shards(
 				Function<MapBuilder<String, SnapshotShardsStatus, SnapshotShardsStatus.Builder>, ObjectBuilder<Map<String, SnapshotShardsStatus>>> fn) {
 			return shards(fn.apply(new MapBuilder<>(SnapshotShardsStatus.Builder::new)).build());
@@ -159,8 +153,10 @@ public class SnapshotIndexStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code shards_stats}
 		 */
-		public final Builder shardsStats(Function<ShardsStats.Builder, ObjectBuilder<ShardsStats>> fn) {
-			return this.shardsStats(fn.apply(new ShardsStats.Builder()).build());
+		public final Builder shardsStats(Consumer<ShardsStats.Builder> fn) {
+			ShardsStats.Builder builder = new ShardsStats.Builder();
+			fn.accept(builder);
+			return this.shardsStats(builder.build());
 		}
 
 		/**
@@ -174,8 +170,10 @@ public class SnapshotIndexStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code stats}
 		 */
-		public final Builder stats(Function<SnapshotStats.Builder, ObjectBuilder<SnapshotStats>> fn) {
-			return this.stats(fn.apply(new SnapshotStats.Builder()).build());
+		public final Builder stats(Consumer<SnapshotStats.Builder> fn) {
+			SnapshotStats.Builder builder = new SnapshotStats.Builder();
+			fn.accept(builder);
+			return this.stats(builder.build());
 		}
 
 		/**

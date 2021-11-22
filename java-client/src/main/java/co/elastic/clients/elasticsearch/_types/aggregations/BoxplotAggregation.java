@@ -32,7 +32,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.BoxplotAggregation
@@ -50,16 +50,18 @@ public class BoxplotAggregation extends MetricAggregationBase implements Aggrega
 
 	}
 
-	public static BoxplotAggregation of(Function<Builder, ObjectBuilder<BoxplotAggregation>> fn) {
-		return fn.apply(new Builder()).build();
+	public static BoxplotAggregation of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
-	 * {@link Aggregation} variant type
+	 * Aggregation variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "boxplot";
+	public Aggregation.Kind _aggregationKind() {
+		return Aggregation.Kind.Boxplot;
 	}
 
 	/**

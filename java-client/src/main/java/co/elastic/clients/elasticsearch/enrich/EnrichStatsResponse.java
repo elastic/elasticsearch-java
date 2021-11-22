@@ -32,14 +32,15 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -64,8 +65,10 @@ public class EnrichStatsResponse implements JsonpSerializable {
 
 	}
 
-	public static EnrichStatsResponse of(Function<Builder, ObjectBuilder<EnrichStatsResponse>> fn) {
-		return fn.apply(new Builder()).build();
+	public static EnrichStatsResponse of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -165,14 +168,9 @@ public class EnrichStatsResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code coordinator_stats}
 		 */
-		@SafeVarargs
 		public final Builder coordinatorStats(
-				Function<CoordinatorStats.Builder, ObjectBuilder<CoordinatorStats>>... fns) {
-			this.coordinatorStats = new ArrayList<>(fns.length);
-			for (Function<CoordinatorStats.Builder, ObjectBuilder<CoordinatorStats>> fn : fns) {
-				this.coordinatorStats.add(fn.apply(new CoordinatorStats.Builder()).build());
-			}
-			return this;
+				Function<ListBuilder<CoordinatorStats, CoordinatorStats.Builder>, ObjectBuilder<List<CoordinatorStats>>> fn) {
+			return coordinatorStats(fn.apply(new ListBuilder<>(CoordinatorStats.Builder::new)).build());
 		}
 
 		/**
@@ -194,14 +192,9 @@ public class EnrichStatsResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code executing_policies}
 		 */
-		@SafeVarargs
 		public final Builder executingPolicies(
-				Function<ExecutingPolicy.Builder, ObjectBuilder<ExecutingPolicy>>... fns) {
-			this.executingPolicies = new ArrayList<>(fns.length);
-			for (Function<ExecutingPolicy.Builder, ObjectBuilder<ExecutingPolicy>> fn : fns) {
-				this.executingPolicies.add(fn.apply(new ExecutingPolicy.Builder()).build());
-			}
-			return this;
+				Function<ListBuilder<ExecutingPolicy, ExecutingPolicy.Builder>, ObjectBuilder<List<ExecutingPolicy>>> fn) {
+			return executingPolicies(fn.apply(new ListBuilder<>(ExecutingPolicy.Builder::new)).build());
 		}
 
 		/**
@@ -223,13 +216,9 @@ public class EnrichStatsResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code cache_stats}
 		 */
-		@SafeVarargs
-		public final Builder cacheStats(Function<CacheStats.Builder, ObjectBuilder<CacheStats>>... fns) {
-			this.cacheStats = new ArrayList<>(fns.length);
-			for (Function<CacheStats.Builder, ObjectBuilder<CacheStats>> fn : fns) {
-				this.cacheStats.add(fn.apply(new CacheStats.Builder()).build());
-			}
-			return this;
+		public final Builder cacheStats(
+				Function<ListBuilder<CacheStats, CacheStats.Builder>, ObjectBuilder<List<CacheStats>>> fn) {
+			return cacheStats(fn.apply(new ListBuilder<>(CacheStats.Builder::new)).build());
 		}
 
 		/**

@@ -39,24 +39,26 @@ import java.lang.Object;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.TermsExclude
 // union type: Union[]
 @JsonpDeserializable
-public class TermsExclude implements TaggedUnion<Object>, JsonpSerializable {
+public class TermsExclude implements TaggedUnion<TermsExclude.Kind, Object>, JsonpSerializable {
 
-	public static final String TERMS = "terms";
-	public static final String REGEXP = "regexp";
+	public enum Kind {
+		Terms, Regexp
 
-	private final String _type;
+	}
+
+	private final Kind _kind;
 	private final Object _value;
 
 	@Override
-	public final String _type() {
-		return _type;
+	public final Kind _kind() {
+		return _kind;
 	}
 
 	@Override
@@ -64,31 +66,41 @@ public class TermsExclude implements TaggedUnion<Object>, JsonpSerializable {
 		return _value;
 	}
 
-	public TermsExclude(String type, Object value) {
-		this._type = type;
+	public TermsExclude(Kind kind, Object value) {
+		this._kind = kind;
 		this._value = value;
 	}
 
 	public String _toJsonString() {
-		switch (_type) {
-			case "terms" :
+		switch (_kind) {
+			case Terms :
 				return this.terms().stream().map(v -> v).collect(Collectors.joining(","));
-			case "regexp" :
+			case Regexp :
 				return this.regexp();
 
 			default :
-				throw new IllegalStateException("Unknown type " + _type);
+				throw new IllegalStateException("Unknown kind " + _kind);
 		}
 	}
+
 	private TermsExclude(Builder builder) {
 
-		this._type = ModelTypeHelper.requireNonNull(builder._type, builder, "<variant type>");
+		this._kind = ModelTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
 		this._value = ModelTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
 
 	}
 
-	public static TermsExclude of(Function<Builder, ObjectBuilder<TermsExclude>> fn) {
-		return fn.apply(new Builder()).build();
+	public static TermsExclude of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
+	}
+
+	/**
+	 * Is this variant instance of kind {@code terms}?
+	 */
+	public boolean isTerms() {
+		return _kind == Kind.Terms;
 	}
 
 	/**
@@ -98,7 +110,14 @@ public class TermsExclude implements TaggedUnion<Object>, JsonpSerializable {
 	 *             if the current variant is not of the {@code terms} kind.
 	 */
 	public List<String> terms() {
-		return TaggedUnionUtils.get(this, TERMS);
+		return TaggedUnionUtils.get(this, Kind.Terms);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code regexp}?
+	 */
+	public boolean isRegexp() {
+		return _kind == Kind.Regexp;
 	}
 
 	/**
@@ -108,7 +127,7 @@ public class TermsExclude implements TaggedUnion<Object>, JsonpSerializable {
 	 *             if the current variant is not of the {@code regexp} kind.
 	 */
 	public String regexp() {
-		return TaggedUnionUtils.get(this, REGEXP);
+		return TaggedUnionUtils.get(this, Kind.Regexp);
 	}
 
 	@Override
@@ -116,8 +135,8 @@ public class TermsExclude implements TaggedUnion<Object>, JsonpSerializable {
 		if (_value instanceof JsonpSerializable) {
 			((JsonpSerializable) _value).serialize(generator, mapper);
 		} else {
-			switch (_type) {
-				case TERMS :
+			switch (_kind) {
+				case Terms :
 					generator.writeStartArray();
 					for (String item0 : ((List<String>) this._value)) {
 						generator.write(item0);
@@ -126,7 +145,7 @@ public class TermsExclude implements TaggedUnion<Object>, JsonpSerializable {
 					generator.writeEnd();
 
 					break;
-				case REGEXP :
+				case Regexp :
 					generator.write(((String) this._value));
 
 					break;
@@ -136,17 +155,17 @@ public class TermsExclude implements TaggedUnion<Object>, JsonpSerializable {
 	}
 
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TermsExclude> {
-		private String _type;
+		private Kind _kind;
 		private Object _value;
 
 		public Builder terms(List<String> v) {
-			this._type = TERMS;
+			this._kind = Kind.Terms;
 			this._value = v;
 			return this;
 		}
 
 		public Builder regexp(String v) {
-			this._type = REGEXP;
+			this._kind = Kind.Regexp;
 			this._value = v;
 			return this;
 		}
@@ -159,9 +178,9 @@ public class TermsExclude implements TaggedUnion<Object>, JsonpSerializable {
 	}
 
 	private static JsonpDeserializer<TermsExclude> buildTermsExcludeDeserializer() {
-		return new UnionDeserializer.Builder<>(TermsExclude::new, false)
-				.addMember("terms", JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()))
-				.addMember("regexp", JsonpDeserializer.stringDeserializer()).build();
+		return new UnionDeserializer.Builder<TermsExclude, Kind, Object>(TermsExclude::new, false)
+				.addMember(Kind.Terms, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()))
+				.addMember(Kind.Regexp, JsonpDeserializer.stringDeserializer()).build();
 	}
 
 	public static final JsonpDeserializer<TermsExclude> _DESERIALIZER = JsonpDeserializer

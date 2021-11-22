@@ -36,7 +36,7 @@ import java.lang.String;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.MultiTermsBucket
@@ -61,8 +61,10 @@ public class MultiTermsBucket extends MultiBucketBase {
 
 	}
 
-	public static MultiTermsBucket of(Function<Builder, ObjectBuilder<MultiTermsBucket>> fn) {
-		return fn.apply(new Builder()).build();
+	public static MultiTermsBucket of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**

@@ -29,16 +29,17 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Float;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -61,8 +62,10 @@ public class Explanation implements JsonpSerializable {
 
 	}
 
-	public static Explanation of(Function<Builder, ObjectBuilder<Explanation>> fn) {
-		return fn.apply(new Builder()).build();
+	public static Explanation of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -154,13 +157,9 @@ public class Explanation implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code details}
 		 */
-		@SafeVarargs
-		public final Builder details(Function<ExplanationDetail.Builder, ObjectBuilder<ExplanationDetail>>... fns) {
-			this.details = new ArrayList<>(fns.length);
-			for (Function<ExplanationDetail.Builder, ObjectBuilder<ExplanationDetail>> fn : fns) {
-				this.details.add(fn.apply(new ExplanationDetail.Builder()).build());
-			}
-			return this;
+		public final Builder details(
+				Function<ListBuilder<ExplanationDetail, ExplanationDetail.Builder>, ObjectBuilder<List<ExplanationDetail>>> fn) {
+			return details(fn.apply(new ListBuilder<>(ExplanationDetail.Builder::new)).build());
 		}
 
 		/**

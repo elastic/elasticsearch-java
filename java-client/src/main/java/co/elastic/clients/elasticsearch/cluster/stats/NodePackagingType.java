@@ -36,7 +36,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: cluster.stats.NodePackagingType
@@ -58,8 +58,10 @@ public class NodePackagingType implements JsonpSerializable {
 
 	}
 
-	public static NodePackagingType of(Function<Builder, ObjectBuilder<NodePackagingType>> fn) {
-		return fn.apply(new Builder()).build();
+	public static NodePackagingType of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**

@@ -32,16 +32,17 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -76,8 +77,10 @@ public class Role implements JsonpSerializable {
 
 	}
 
-	public static Role of(Function<Builder, ObjectBuilder<Role>> fn) {
-		return fn.apply(new Builder()).build();
+	public static Role of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -263,13 +266,9 @@ public class Role implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code indices}
 		 */
-		@SafeVarargs
-		public final Builder indices(Function<IndicesPrivileges.Builder, ObjectBuilder<IndicesPrivileges>>... fns) {
-			this.indices = new ArrayList<>(fns.length);
-			for (Function<IndicesPrivileges.Builder, ObjectBuilder<IndicesPrivileges>> fn : fns) {
-				this.indices.add(fn.apply(new IndicesPrivileges.Builder()).build());
-			}
-			return this;
+		public final Builder indices(
+				Function<ListBuilder<IndicesPrivileges, IndicesPrivileges.Builder>, ObjectBuilder<List<IndicesPrivileges>>> fn) {
+			return indices(fn.apply(new ListBuilder<>(IndicesPrivileges.Builder::new)).build());
 		}
 
 		/**
@@ -307,9 +306,10 @@ public class Role implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code transient_metadata}
 		 */
-		public final Builder transientMetadata(
-				Function<TransientMetadata.Builder, ObjectBuilder<TransientMetadata>> fn) {
-			return this.transientMetadata(fn.apply(new TransientMetadata.Builder()).build());
+		public final Builder transientMetadata(Consumer<TransientMetadata.Builder> fn) {
+			TransientMetadata.Builder builder = new TransientMetadata.Builder();
+			fn.accept(builder);
+			return this.transientMetadata(builder.build());
 		}
 
 		/**
@@ -331,14 +331,9 @@ public class Role implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code applications}
 		 */
-		@SafeVarargs
 		public final Builder applications(
-				Function<ApplicationPrivileges.Builder, ObjectBuilder<ApplicationPrivileges>>... fns) {
-			this.applications = new ArrayList<>(fns.length);
-			for (Function<ApplicationPrivileges.Builder, ObjectBuilder<ApplicationPrivileges>> fn : fns) {
-				this.applications.add(fn.apply(new ApplicationPrivileges.Builder()).build());
-			}
-			return this;
+				Function<ListBuilder<ApplicationPrivileges, ApplicationPrivileges.Builder>, ObjectBuilder<List<ApplicationPrivileges>>> fn) {
+			return applications(fn.apply(new ListBuilder<>(ApplicationPrivileges.Builder::new)).build());
 		}
 
 		/**
@@ -360,13 +355,9 @@ public class Role implements JsonpSerializable {
 		/**
 		 * API name: {@code role_templates}
 		 */
-		@SafeVarargs
-		public final Builder roleTemplates(Function<RoleTemplate.Builder, ObjectBuilder<RoleTemplate>>... fns) {
-			this.roleTemplates = new ArrayList<>(fns.length);
-			for (Function<RoleTemplate.Builder, ObjectBuilder<RoleTemplate>> fn : fns) {
-				this.roleTemplates.add(fn.apply(new RoleTemplate.Builder()).build());
-			}
-			return this;
+		public final Builder roleTemplates(
+				Function<ListBuilder<RoleTemplate, RoleTemplate.Builder>, ObjectBuilder<List<RoleTemplate>>> fn) {
+			return roleTemplates(fn.apply(new ListBuilder<>(RoleTemplate.Builder::new)).build());
 		}
 
 		/**

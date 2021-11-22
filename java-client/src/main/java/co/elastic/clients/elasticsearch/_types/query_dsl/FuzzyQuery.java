@@ -35,7 +35,7 @@ import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.FuzzyQuery
@@ -76,16 +76,18 @@ public class FuzzyQuery extends QueryBase implements QueryVariant {
 
 	}
 
-	public static FuzzyQuery of(Function<Builder, ObjectBuilder<FuzzyQuery>> fn) {
-		return fn.apply(new Builder()).build();
+	public static FuzzyQuery of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
-	 * {@link Query} variant type
+	 * Query variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "fuzzy";
+	public Query.Kind _queryKind() {
+		return Query.Kind.Fuzzy;
 	}
 
 	/**

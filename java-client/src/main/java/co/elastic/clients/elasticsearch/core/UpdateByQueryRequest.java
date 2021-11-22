@@ -42,7 +42,7 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
-import co.elastic.clients.transport.SimpleEndpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
@@ -55,7 +55,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
@@ -218,8 +218,10 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 
 	}
 
-	public static UpdateByQueryRequest of(Function<Builder, ObjectBuilder<UpdateByQueryRequest>> fn) {
-		return fn.apply(new Builder()).build();
+	public static UpdateByQueryRequest of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -795,8 +797,10 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 		 * <p>
 		 * API name: {@code _source}
 		 */
-		public final Builder source(Function<SourceConfigParam.Builder, ObjectBuilder<SourceConfigParam>> fn) {
-			return this.source(fn.apply(new SourceConfigParam.Builder()).build());
+		public final Builder source(Consumer<SourceConfigParam.Builder> fn) {
+			SourceConfigParam.Builder builder = new SourceConfigParam.Builder();
+			fn.accept(builder);
+			return this.source(builder.build());
 		}
 
 		/**
@@ -1017,8 +1021,10 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 		/**
 		 * API name: {@code query}
 		 */
-		public final Builder query(Function<Query.Builder, ObjectBuilder<Query>> fn) {
-			return this.query(fn.apply(new Query.Builder()).build());
+		public final Builder query(Consumer<Query.Builder> fn) {
+			Query.Builder builder = new Query.Builder();
+			fn.accept(builder);
+			return this.query(builder.build());
 		}
 
 		/**
@@ -1074,8 +1080,10 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 		/**
 		 * API name: {@code script}
 		 */
-		public final Builder script(Function<Script.Builder, ObjectBuilder<Script>> fn) {
-			return this.script(fn.apply(new Script.Builder()).build());
+		public final Builder script(Consumer<Script.Builder> fn) {
+			Script.Builder builder = new Script.Builder();
+			fn.accept(builder);
+			return this.script(builder.build());
 		}
 
 		/**
@@ -1095,8 +1103,10 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 		 * <p>
 		 * API name: {@code scroll}
 		 */
-		public final Builder scroll(Function<Time.Builder, ObjectBuilder<Time>> fn) {
-			return this.scroll(fn.apply(new Time.Builder()).build());
+		public final Builder scroll(Consumer<Time.Builder> fn) {
+			Time.Builder builder = new Time.Builder();
+			fn.accept(builder);
+			return this.scroll(builder.build());
 		}
 
 		/**
@@ -1124,8 +1134,10 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 		 * <p>
 		 * API name: {@code search_timeout}
 		 */
-		public final Builder searchTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
-			return this.searchTimeout(fn.apply(new Time.Builder()).build());
+		public final Builder searchTimeout(Consumer<Time.Builder> fn) {
+			Time.Builder builder = new Time.Builder();
+			fn.accept(builder);
+			return this.searchTimeout(builder.build());
 		}
 
 		/**
@@ -1159,8 +1171,10 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 		/**
 		 * API name: {@code slice}
 		 */
-		public final Builder slice(Function<SlicedScroll.Builder, ObjectBuilder<SlicedScroll>> fn) {
-			return this.slice(fn.apply(new SlicedScroll.Builder()).build());
+		public final Builder slice(Consumer<SlicedScroll.Builder> fn) {
+			SlicedScroll.Builder builder = new SlicedScroll.Builder();
+			fn.accept(builder);
+			return this.slice(builder.build());
 		}
 
 		/**
@@ -1242,8 +1256,10 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 		 * <p>
 		 * API name: {@code timeout}
 		 */
-		public final Builder timeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
-			return this.timeout(fn.apply(new Time.Builder()).build());
+		public final Builder timeout(Consumer<Time.Builder> fn) {
+			Time.Builder builder = new Time.Builder();
+			fn.accept(builder);
+			return this.timeout(builder.build());
 		}
 
 		/**
@@ -1312,9 +1328,10 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 		 * <p>
 		 * API name: {@code wait_for_active_shards}
 		 */
-		public final Builder waitForActiveShards(
-				Function<WaitForActiveShards.Builder, ObjectBuilder<WaitForActiveShards>> fn) {
-			return this.waitForActiveShards(fn.apply(new WaitForActiveShards.Builder()).build());
+		public final Builder waitForActiveShards(Consumer<WaitForActiveShards.Builder> fn) {
+			WaitForActiveShards.Builder builder = new WaitForActiveShards.Builder();
+			fn.accept(builder);
+			return this.waitForActiveShards(builder.build());
 		}
 
 		/**

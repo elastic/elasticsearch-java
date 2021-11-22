@@ -24,12 +24,13 @@
 package co.elastic.clients.elasticsearch._types.mapping;
 
 import co.elastic.clients.json.JsonpSerializable;
-import co.elastic.clients.util.UnionVariant;
 
 /**
  * Base interface for {@link Property} variants.
  */
-public interface PropertyVariant extends UnionVariant, JsonpSerializable {
+public interface PropertyVariant extends JsonpSerializable {
+
+	Property.Kind _propertyKind();
 
 	default Property _toProperty() {
 		return new Property(this);

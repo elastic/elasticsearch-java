@@ -30,6 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
@@ -38,10 +39,10 @@ import java.lang.Boolean;
 import java.lang.Double;
 import java.lang.Integer;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -131,8 +132,10 @@ public class Anomaly implements JsonpSerializable {
 
 	}
 
-	public static Anomaly of(Function<Builder, ObjectBuilder<Anomaly>> fn) {
-		return fn.apply(new Builder()).build();
+	public static Anomaly of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -514,8 +517,10 @@ public class Anomaly implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code bucket_span}
 		 */
-		public final Builder bucketSpan(Function<Time.Builder, ObjectBuilder<Time>> fn) {
-			return this.bucketSpan(fn.apply(new Time.Builder()).build());
+		public final Builder bucketSpan(Consumer<Time.Builder> fn) {
+			Time.Builder builder = new Time.Builder();
+			fn.accept(builder);
+			return this.bucketSpan(builder.build());
 		}
 
 		/**
@@ -553,13 +558,9 @@ public class Anomaly implements JsonpSerializable {
 		/**
 		 * API name: {@code causes}
 		 */
-		@SafeVarargs
-		public final Builder causes(Function<AnomalyCause.Builder, ObjectBuilder<AnomalyCause>>... fns) {
-			this.causes = new ArrayList<>(fns.length);
-			for (Function<AnomalyCause.Builder, ObjectBuilder<AnomalyCause>> fn : fns) {
-				this.causes.add(fn.apply(new AnomalyCause.Builder()).build());
-			}
-			return this;
+		public final Builder causes(
+				Function<ListBuilder<AnomalyCause, AnomalyCause.Builder>, ObjectBuilder<List<AnomalyCause>>> fn) {
+			return causes(fn.apply(new ListBuilder<>(AnomalyCause.Builder::new)).build());
 		}
 
 		/**
@@ -613,13 +614,9 @@ public class Anomaly implements JsonpSerializable {
 		/**
 		 * API name: {@code influencers}
 		 */
-		@SafeVarargs
-		public final Builder influencers(Function<Influence.Builder, ObjectBuilder<Influence>>... fns) {
-			this.influencers = new ArrayList<>(fns.length);
-			for (Function<Influence.Builder, ObjectBuilder<Influence>> fn : fns) {
-				this.influencers.add(fn.apply(new Influence.Builder()).build());
-			}
-			return this;
+		public final Builder influencers(
+				Function<ListBuilder<Influence, Influence.Builder>, ObjectBuilder<List<Influence>>> fn) {
+			return influencers(fn.apply(new ListBuilder<>(Influence.Builder::new)).build());
 		}
 
 		/**

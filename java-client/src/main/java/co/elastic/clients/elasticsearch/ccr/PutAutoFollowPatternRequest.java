@@ -34,7 +34,7 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
-import co.elastic.clients.transport.SimpleEndpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
@@ -46,7 +46,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: ccr.put_auto_follow_pattern.Request
@@ -118,8 +118,10 @@ public class PutAutoFollowPatternRequest extends RequestBase implements JsonpSer
 
 	}
 
-	public static PutAutoFollowPatternRequest of(Function<Builder, ObjectBuilder<PutAutoFollowPatternRequest>> fn) {
-		return fn.apply(new Builder()).build();
+	public static PutAutoFollowPatternRequest of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -571,8 +573,10 @@ public class PutAutoFollowPatternRequest extends RequestBase implements JsonpSer
 		 * <p>
 		 * API name: {@code max_retry_delay}
 		 */
-		public final Builder maxRetryDelay(Function<Time.Builder, ObjectBuilder<Time>> fn) {
-			return this.maxRetryDelay(fn.apply(new Time.Builder()).build());
+		public final Builder maxRetryDelay(Consumer<Time.Builder> fn) {
+			Time.Builder builder = new Time.Builder();
+			fn.accept(builder);
+			return this.maxRetryDelay(builder.build());
 		}
 
 		/**
@@ -654,8 +658,10 @@ public class PutAutoFollowPatternRequest extends RequestBase implements JsonpSer
 		 * <p>
 		 * API name: {@code read_poll_timeout}
 		 */
-		public final Builder readPollTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
-			return this.readPollTimeout(fn.apply(new Time.Builder()).build());
+		public final Builder readPollTimeout(Consumer<Time.Builder> fn) {
+			Time.Builder builder = new Time.Builder();
+			fn.accept(builder);
+			return this.readPollTimeout(builder.build());
 		}
 
 		/**

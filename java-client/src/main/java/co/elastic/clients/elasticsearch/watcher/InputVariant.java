@@ -23,12 +23,12 @@
 
 package co.elastic.clients.elasticsearch.watcher;
 
-import co.elastic.clients.util.UnionVariant;
-
 /**
  * Base interface for {@link Input} variants.
  */
-public interface InputVariant extends UnionVariant {
+public interface InputVariant {
+
+	Input.Kind _inputKind();
 
 	default Input _toInput() {
 		return new Input(this);

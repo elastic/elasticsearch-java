@@ -38,7 +38,7 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
-import co.elastic.clients.transport.SimpleEndpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.MapBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
@@ -47,10 +47,10 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Long;
 import java.lang.String;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -96,8 +96,10 @@ public class PutComponentTemplateRequest extends RequestBase implements JsonpSer
 
 	}
 
-	public static PutComponentTemplateRequest of(Function<Builder, ObjectBuilder<PutComponentTemplateRequest>> fn) {
-		return fn.apply(new Builder()).build();
+	public static PutComponentTemplateRequest of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -276,13 +278,6 @@ public class PutComponentTemplateRequest extends RequestBase implements JsonpSer
 			return this;
 		}
 
-		/**
-		 * Set {@link #aliases(Map)} to a singleton map.
-		 */
-		public Builder aliases(String key, Function<AliasDefinition.Builder, ObjectBuilder<AliasDefinition>> fn) {
-			return this.aliases(Collections.singletonMap(key, fn.apply(new AliasDefinition.Builder()).build()));
-		}
-
 		public final Builder aliases(
 				Function<MapBuilder<String, AliasDefinition, AliasDefinition.Builder>, ObjectBuilder<Map<String, AliasDefinition>>> fn) {
 			return aliases(fn.apply(new MapBuilder<>(AliasDefinition.Builder::new)).build());
@@ -310,8 +305,10 @@ public class PutComponentTemplateRequest extends RequestBase implements JsonpSer
 		/**
 		 * API name: {@code mappings}
 		 */
-		public final Builder mappings(Function<TypeMapping.Builder, ObjectBuilder<TypeMapping>> fn) {
-			return this.mappings(fn.apply(new TypeMapping.Builder()).build());
+		public final Builder mappings(Consumer<TypeMapping.Builder> fn) {
+			TypeMapping.Builder builder = new TypeMapping.Builder();
+			fn.accept(builder);
+			return this.mappings(builder.build());
 		}
 
 		/**
@@ -329,8 +326,10 @@ public class PutComponentTemplateRequest extends RequestBase implements JsonpSer
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
-		public final Builder masterTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
-			return this.masterTimeout(fn.apply(new Time.Builder()).build());
+		public final Builder masterTimeout(Consumer<Time.Builder> fn) {
+			Time.Builder builder = new Time.Builder();
+			fn.accept(builder);
+			return this.masterTimeout(builder.build());
 		}
 
 		/**
@@ -354,8 +353,10 @@ public class PutComponentTemplateRequest extends RequestBase implements JsonpSer
 		/**
 		 * API name: {@code settings}
 		 */
-		public final Builder settings(Function<IndexSettings.Builder, ObjectBuilder<IndexSettings>> fn) {
-			return this.settings(fn.apply(new IndexSettings.Builder()).build());
+		public final Builder settings(Consumer<IndexSettings.Builder> fn) {
+			IndexSettings.Builder builder = new IndexSettings.Builder();
+			fn.accept(builder);
+			return this.settings(builder.build());
 		}
 
 		/**
@@ -369,8 +370,10 @@ public class PutComponentTemplateRequest extends RequestBase implements JsonpSer
 		/**
 		 * Required - API name: {@code template}
 		 */
-		public final Builder template(Function<IndexState.Builder, ObjectBuilder<IndexState>> fn) {
-			return this.template(fn.apply(new IndexState.Builder()).build());
+		public final Builder template(Consumer<IndexState.Builder> fn) {
+			IndexState.Builder builder = new IndexState.Builder();
+			fn.accept(builder);
+			return this.template(builder.build());
 		}
 
 		/**

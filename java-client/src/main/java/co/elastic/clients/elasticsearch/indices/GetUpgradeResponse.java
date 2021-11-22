@@ -29,14 +29,15 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -57,8 +58,10 @@ public class GetUpgradeResponse implements JsonpSerializable {
 
 	}
 
-	public static GetUpgradeResponse of(Function<Builder, ObjectBuilder<GetUpgradeResponse>> fn) {
-		return fn.apply(new Builder()).build();
+	public static GetUpgradeResponse of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -147,14 +150,9 @@ public class GetUpgradeResponse implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code overlapping}
 		 */
-		@SafeVarargs
 		public final Builder overlapping(
-				Function<OverlappingIndexTemplate.Builder, ObjectBuilder<OverlappingIndexTemplate>>... fns) {
-			this.overlapping = new ArrayList<>(fns.length);
-			for (Function<OverlappingIndexTemplate.Builder, ObjectBuilder<OverlappingIndexTemplate>> fn : fns) {
-				this.overlapping.add(fn.apply(new OverlappingIndexTemplate.Builder()).build());
-			}
-			return this;
+				Function<ListBuilder<OverlappingIndexTemplate, OverlappingIndexTemplate.Builder>, ObjectBuilder<List<OverlappingIndexTemplate>>> fn) {
+			return overlapping(fn.apply(new ListBuilder<>(OverlappingIndexTemplate.Builder::new)).build());
 		}
 
 		/**
@@ -174,8 +172,10 @@ public class GetUpgradeResponse implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code template}
 		 */
-		public final Builder template(Function<TemplateMapping.Builder, ObjectBuilder<TemplateMapping>> fn) {
-			return this.template(fn.apply(new TemplateMapping.Builder()).build());
+		public final Builder template(Consumer<TemplateMapping.Builder> fn) {
+			TemplateMapping.Builder builder = new TemplateMapping.Builder();
+			fn.accept(builder);
+			return this.template(builder.build());
 		}
 
 		/**

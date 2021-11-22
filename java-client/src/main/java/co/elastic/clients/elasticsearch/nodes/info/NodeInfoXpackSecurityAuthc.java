@@ -34,7 +34,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: nodes.info.NodeInfoXpackSecurityAuthc
@@ -53,8 +53,10 @@ public class NodeInfoXpackSecurityAuthc implements JsonpSerializable {
 
 	}
 
-	public static NodeInfoXpackSecurityAuthc of(Function<Builder, ObjectBuilder<NodeInfoXpackSecurityAuthc>> fn) {
-		return fn.apply(new Builder()).build();
+	public static NodeInfoXpackSecurityAuthc of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -111,9 +113,10 @@ public class NodeInfoXpackSecurityAuthc implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code realms}
 		 */
-		public final Builder realms(
-				Function<NodeInfoXpackSecurityAuthcRealms.Builder, ObjectBuilder<NodeInfoXpackSecurityAuthcRealms>> fn) {
-			return this.realms(fn.apply(new NodeInfoXpackSecurityAuthcRealms.Builder()).build());
+		public final Builder realms(Consumer<NodeInfoXpackSecurityAuthcRealms.Builder> fn) {
+			NodeInfoXpackSecurityAuthcRealms.Builder builder = new NodeInfoXpackSecurityAuthcRealms.Builder();
+			fn.accept(builder);
+			return this.realms(builder.build());
 		}
 
 		/**
@@ -127,9 +130,10 @@ public class NodeInfoXpackSecurityAuthc implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code token}
 		 */
-		public final Builder token(
-				Function<NodeInfoXpackSecurityAuthcToken.Builder, ObjectBuilder<NodeInfoXpackSecurityAuthcToken>> fn) {
-			return this.token(fn.apply(new NodeInfoXpackSecurityAuthcToken.Builder()).build());
+		public final Builder token(Consumer<NodeInfoXpackSecurityAuthcToken.Builder> fn) {
+			NodeInfoXpackSecurityAuthcToken.Builder builder = new NodeInfoXpackSecurityAuthcToken.Builder();
+			fn.accept(builder);
+			return this.token(builder.build());
 		}
 
 		/**

@@ -36,7 +36,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: _types.StoreStats
@@ -71,8 +71,10 @@ public class StoreStats implements JsonpSerializable {
 
 	}
 
-	public static StoreStats of(Function<Builder, ObjectBuilder<StoreStats>> fn) {
-		return fn.apply(new Builder()).build();
+	public static StoreStats of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**

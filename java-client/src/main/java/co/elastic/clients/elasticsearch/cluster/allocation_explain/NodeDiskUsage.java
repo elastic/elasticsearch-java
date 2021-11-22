@@ -35,7 +35,7 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: cluster.allocation_explain.NodeDiskUsage
@@ -57,8 +57,10 @@ public class NodeDiskUsage implements JsonpSerializable {
 
 	}
 
-	public static NodeDiskUsage of(Function<Builder, ObjectBuilder<NodeDiskUsage>> fn) {
-		return fn.apply(new Builder()).build();
+	public static NodeDiskUsage of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -135,8 +137,10 @@ public class NodeDiskUsage implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code least_available}
 		 */
-		public final Builder leastAvailable(Function<DiskUsage.Builder, ObjectBuilder<DiskUsage>> fn) {
-			return this.leastAvailable(fn.apply(new DiskUsage.Builder()).build());
+		public final Builder leastAvailable(Consumer<DiskUsage.Builder> fn) {
+			DiskUsage.Builder builder = new DiskUsage.Builder();
+			fn.accept(builder);
+			return this.leastAvailable(builder.build());
 		}
 
 		/**
@@ -150,8 +154,10 @@ public class NodeDiskUsage implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code most_available}
 		 */
-		public final Builder mostAvailable(Function<DiskUsage.Builder, ObjectBuilder<DiskUsage>> fn) {
-			return this.mostAvailable(fn.apply(new DiskUsage.Builder()).build());
+		public final Builder mostAvailable(Consumer<DiskUsage.Builder> fn) {
+			DiskUsage.Builder builder = new DiskUsage.Builder();
+			fn.accept(builder);
+			return this.mostAvailable(builder.build());
 		}
 
 		/**

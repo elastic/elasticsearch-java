@@ -38,9 +38,9 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Long;
 import java.lang.String;
-import java.util.Collections;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -76,8 +76,10 @@ public class TermvectorsResponse implements JsonpSerializable {
 
 	}
 
-	public static TermvectorsResponse of(Function<Builder, ObjectBuilder<TermvectorsResponse>> fn) {
-		return fn.apply(new Builder()).build();
+	public static TermvectorsResponse of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -226,13 +228,6 @@ public class TermvectorsResponse implements JsonpSerializable {
 		public final Builder termVectors(@Nullable Map<String, TermVector> value) {
 			this.termVectors = value;
 			return this;
-		}
-
-		/**
-		 * Set {@link #termVectors(Map)} to a singleton map.
-		 */
-		public Builder termVectors(String key, Function<TermVector.Builder, ObjectBuilder<TermVector>> fn) {
-			return this.termVectors(Collections.singletonMap(key, fn.apply(new TermVector.Builder()).build()));
 		}
 
 		public final Builder termVectors(

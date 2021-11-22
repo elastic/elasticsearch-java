@@ -23,14 +23,33 @@
 
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
+import co.elastic.clients.json.JsonEnum;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
-import co.elastic.clients.util.StringEnum;
 
 @JsonpDeserializable
-public enum FieldValueFactorModifier implements StringEnum {
-	None("none"), Log("log"), Log1p("log1p"), Log2p("log2p"), Ln("ln"), Ln1p("ln1p"), Ln2p("ln2p"), Square(
-			"square"), Sqrt("sqrt"), Reciprocal("reciprocal");
+public enum FieldValueFactorModifier implements JsonEnum {
+	None("none"),
+
+	Log("log"),
+
+	Log1p("log1p"),
+
+	Log2p("log2p"),
+
+	Ln("ln"),
+
+	Ln1p("ln1p"),
+
+	Ln2p("ln2p"),
+
+	Square("square"),
+
+	Sqrt("sqrt"),
+
+	Reciprocal("reciprocal"),
+
+	;
 
 	private final String jsonValue;
 
@@ -42,6 +61,6 @@ public enum FieldValueFactorModifier implements StringEnum {
 		return this.jsonValue;
 	}
 
-	public static final StringEnum.Deserializer<FieldValueFactorModifier> _DESERIALIZER = new StringEnum.Deserializer<>(
+	public static final JsonEnum.Deserializer<FieldValueFactorModifier> _DESERIALIZER = new JsonEnum.Deserializer<>(
 			FieldValueFactorModifier.values());
 }

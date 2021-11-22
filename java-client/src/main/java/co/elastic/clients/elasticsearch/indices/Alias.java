@@ -36,7 +36,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: indices._types.Alias
@@ -73,8 +73,10 @@ public class Alias implements JsonpSerializable {
 
 	}
 
-	public static Alias of(Function<Builder, ObjectBuilder<Alias>> fn) {
-		return fn.apply(new Builder()).build();
+	public static Alias of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -204,8 +206,10 @@ public class Alias implements JsonpSerializable {
 		/**
 		 * API name: {@code filter}
 		 */
-		public final Builder filter(Function<Query.Builder, ObjectBuilder<Query>> fn) {
-			return this.filter(fn.apply(new Query.Builder()).build());
+		public final Builder filter(Consumer<Query.Builder> fn) {
+			Query.Builder builder = new Query.Builder();
+			fn.accept(builder);
+			return this.filter(builder.build());
 		}
 
 		/**

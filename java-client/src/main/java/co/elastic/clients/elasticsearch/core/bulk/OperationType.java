@@ -23,13 +23,21 @@
 
 package co.elastic.clients.elasticsearch.core.bulk;
 
+import co.elastic.clients.json.JsonEnum;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
-import co.elastic.clients.util.StringEnum;
 
 @JsonpDeserializable
-public enum OperationType implements StringEnum {
-	Index("index"), Create("create"), Update("update"), Delete("delete");
+public enum OperationType implements JsonEnum {
+	Index("index"),
+
+	Create("create"),
+
+	Update("update"),
+
+	Delete("delete"),
+
+	;
 
 	private final String jsonValue;
 
@@ -41,6 +49,6 @@ public enum OperationType implements StringEnum {
 		return this.jsonValue;
 	}
 
-	public static final StringEnum.Deserializer<OperationType> _DESERIALIZER = new StringEnum.Deserializer<>(
+	public static final JsonEnum.Deserializer<OperationType> _DESERIALIZER = new JsonEnum.Deserializer<>(
 			OperationType.values());
 }

@@ -26,25 +26,29 @@ package co.elastic.clients.elasticsearch.migration;
 import co.elastic.clients.ApiClient;
 import co.elastic.clients.elasticsearch._types.ElasticsearchException;
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
+import co.elastic.clients.transport.ElasticsearchTransport;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.Transport;
 import co.elastic.clients.transport.TransportOptions;
 import co.elastic.clients.util.ObjectBuilder;
 import java.io.IOException;
 import java.util.concurrent.CompletableFuture;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 /**
  * Client for the migration namespace.
  */
-public class ElasticsearchMigrationAsyncClient extends ApiClient<ElasticsearchMigrationAsyncClient> {
+public class ElasticsearchMigrationAsyncClient
+		extends
+			ApiClient<ElasticsearchTransport, ElasticsearchMigrationAsyncClient> {
 
-	public ElasticsearchMigrationAsyncClient(Transport transport) {
+	public ElasticsearchMigrationAsyncClient(ElasticsearchTransport transport) {
 		super(transport, null);
 	}
 
-	public ElasticsearchMigrationAsyncClient(Transport transport, @Nullable TransportOptions transportOptions) {
+	public ElasticsearchMigrationAsyncClient(ElasticsearchTransport transport,
+			@Nullable TransportOptions transportOptions) {
 		super(transport, transportOptions);
 	}
 
@@ -86,10 +90,11 @@ public class ElasticsearchMigrationAsyncClient extends ApiClient<ElasticsearchMi
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<DeprecationsResponse> deprecations(
-			Function<DeprecationsRequest.Builder, ObjectBuilder<DeprecationsRequest>> fn)
+	public final CompletableFuture<DeprecationsResponse> deprecations(Consumer<DeprecationsRequest.Builder> fn)
 			throws IOException, ElasticsearchException {
-		return deprecations(fn.apply(new DeprecationsRequest.Builder()).build());
+		DeprecationsRequest.Builder builder = new DeprecationsRequest.Builder();
+		fn.accept(builder);
+		return deprecations(builder.build());
 	}
 
 	/**

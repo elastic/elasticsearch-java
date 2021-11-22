@@ -37,25 +37,25 @@ import co.elastic.clients.util.TaggedUnionUtils;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Object;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: _types.GeoBounds
 // union type: Union[]
 @JsonpDeserializable
-public class GeoBounds implements TaggedUnion<Object>, JsonpSerializable {
+public class GeoBounds implements TaggedUnion<GeoBounds.Kind, Object>, JsonpSerializable {
 
-	public static final String COORDS = "coords";
-	public static final String TLBR = "tlbr";
-	public static final String TRBL = "trbl";
-	public static final String WKT = "wkt";
+	public enum Kind {
+		Coords, Tlbr, Trbl, Wkt
 
-	private final String _type;
+	}
+
+	private final Kind _kind;
 	private final Object _value;
 
 	@Override
-	public final String _type() {
-		return _type;
+	public final Kind _kind() {
+		return _kind;
 	}
 
 	@Override
@@ -63,20 +63,29 @@ public class GeoBounds implements TaggedUnion<Object>, JsonpSerializable {
 		return _value;
 	}
 
-	public GeoBounds(String type, Object value) {
-		this._type = type;
+	public GeoBounds(Kind kind, Object value) {
+		this._kind = kind;
 		this._value = value;
 	}
 
 	private GeoBounds(Builder builder) {
 
-		this._type = ModelTypeHelper.requireNonNull(builder._type, builder, "<variant type>");
+		this._kind = ModelTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
 		this._value = ModelTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
 
 	}
 
-	public static GeoBounds of(Function<Builder, ObjectBuilder<GeoBounds>> fn) {
-		return fn.apply(new Builder()).build();
+	public static GeoBounds of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
+	}
+
+	/**
+	 * Is this variant instance of kind {@code coords}?
+	 */
+	public boolean isCoords() {
+		return _kind == Kind.Coords;
 	}
 
 	/**
@@ -86,7 +95,14 @@ public class GeoBounds implements TaggedUnion<Object>, JsonpSerializable {
 	 *             if the current variant is not of the {@code coords} kind.
 	 */
 	public CoordsGeoBounds coords() {
-		return TaggedUnionUtils.get(this, COORDS);
+		return TaggedUnionUtils.get(this, Kind.Coords);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code tlbr}?
+	 */
+	public boolean isTlbr() {
+		return _kind == Kind.Tlbr;
 	}
 
 	/**
@@ -96,7 +112,14 @@ public class GeoBounds implements TaggedUnion<Object>, JsonpSerializable {
 	 *             if the current variant is not of the {@code tlbr} kind.
 	 */
 	public TopLeftBottomRightGeoBounds tlbr() {
-		return TaggedUnionUtils.get(this, TLBR);
+		return TaggedUnionUtils.get(this, Kind.Tlbr);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code trbl}?
+	 */
+	public boolean isTrbl() {
+		return _kind == Kind.Trbl;
 	}
 
 	/**
@@ -106,7 +129,14 @@ public class GeoBounds implements TaggedUnion<Object>, JsonpSerializable {
 	 *             if the current variant is not of the {@code trbl} kind.
 	 */
 	public TopRightBottomLeftGeoBounds trbl() {
-		return TaggedUnionUtils.get(this, TRBL);
+		return TaggedUnionUtils.get(this, Kind.Trbl);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code wkt}?
+	 */
+	public boolean isWkt() {
+		return _kind == Kind.Wkt;
 	}
 
 	/**
@@ -116,7 +146,7 @@ public class GeoBounds implements TaggedUnion<Object>, JsonpSerializable {
 	 *             if the current variant is not of the {@code wkt} kind.
 	 */
 	public WktGeoBounds wkt() {
-		return TaggedUnionUtils.get(this, WKT);
+		return TaggedUnionUtils.get(this, Kind.Wkt);
 	}
 
 	@Override
@@ -128,49 +158,55 @@ public class GeoBounds implements TaggedUnion<Object>, JsonpSerializable {
 	}
 
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GeoBounds> {
-		private String _type;
+		private Kind _kind;
 		private Object _value;
 
 		public Builder coords(CoordsGeoBounds v) {
-			this._type = COORDS;
+			this._kind = Kind.Coords;
 			this._value = v;
 			return this;
 		}
 
-		public Builder coords(Function<CoordsGeoBounds.Builder, ObjectBuilder<CoordsGeoBounds>> f) {
-			return this.coords(f.apply(new CoordsGeoBounds.Builder()).build());
+		public Builder coords(Consumer<CoordsGeoBounds.Builder> fn) {
+			CoordsGeoBounds.Builder builder = new CoordsGeoBounds.Builder();
+			fn.accept(builder);
+			return this.coords(builder.build());
 		}
 
 		public Builder tlbr(TopLeftBottomRightGeoBounds v) {
-			this._type = TLBR;
+			this._kind = Kind.Tlbr;
 			this._value = v;
 			return this;
 		}
 
-		public Builder tlbr(
-				Function<TopLeftBottomRightGeoBounds.Builder, ObjectBuilder<TopLeftBottomRightGeoBounds>> f) {
-			return this.tlbr(f.apply(new TopLeftBottomRightGeoBounds.Builder()).build());
+		public Builder tlbr(Consumer<TopLeftBottomRightGeoBounds.Builder> fn) {
+			TopLeftBottomRightGeoBounds.Builder builder = new TopLeftBottomRightGeoBounds.Builder();
+			fn.accept(builder);
+			return this.tlbr(builder.build());
 		}
 
 		public Builder trbl(TopRightBottomLeftGeoBounds v) {
-			this._type = TRBL;
+			this._kind = Kind.Trbl;
 			this._value = v;
 			return this;
 		}
 
-		public Builder trbl(
-				Function<TopRightBottomLeftGeoBounds.Builder, ObjectBuilder<TopRightBottomLeftGeoBounds>> f) {
-			return this.trbl(f.apply(new TopRightBottomLeftGeoBounds.Builder()).build());
+		public Builder trbl(Consumer<TopRightBottomLeftGeoBounds.Builder> fn) {
+			TopRightBottomLeftGeoBounds.Builder builder = new TopRightBottomLeftGeoBounds.Builder();
+			fn.accept(builder);
+			return this.trbl(builder.build());
 		}
 
 		public Builder wkt(WktGeoBounds v) {
-			this._type = WKT;
+			this._kind = Kind.Wkt;
 			this._value = v;
 			return this;
 		}
 
-		public Builder wkt(Function<WktGeoBounds.Builder, ObjectBuilder<WktGeoBounds>> f) {
-			return this.wkt(f.apply(new WktGeoBounds.Builder()).build());
+		public Builder wkt(Consumer<WktGeoBounds.Builder> fn) {
+			WktGeoBounds.Builder builder = new WktGeoBounds.Builder();
+			fn.accept(builder);
+			return this.wkt(builder.build());
 		}
 
 		public GeoBounds build() {
@@ -181,10 +217,11 @@ public class GeoBounds implements TaggedUnion<Object>, JsonpSerializable {
 	}
 
 	private static JsonpDeserializer<GeoBounds> buildGeoBoundsDeserializer() {
-		return new UnionDeserializer.Builder<>(GeoBounds::new, false).addMember("coords", CoordsGeoBounds._DESERIALIZER)
-				.addMember("tlbr", TopLeftBottomRightGeoBounds._DESERIALIZER)
-				.addMember("trbl", TopRightBottomLeftGeoBounds._DESERIALIZER)
-				.addMember("wkt", WktGeoBounds._DESERIALIZER).build();
+		return new UnionDeserializer.Builder<GeoBounds, Kind, Object>(GeoBounds::new, false)
+				.addMember(Kind.Coords, CoordsGeoBounds._DESERIALIZER)
+				.addMember(Kind.Tlbr, TopLeftBottomRightGeoBounds._DESERIALIZER)
+				.addMember(Kind.Trbl, TopRightBottomLeftGeoBounds._DESERIALIZER)
+				.addMember(Kind.Wkt, WktGeoBounds._DESERIALIZER).build();
 	}
 
 	public static final JsonpDeserializer<GeoBounds> _DESERIALIZER = JsonpDeserializer

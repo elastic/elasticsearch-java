@@ -34,7 +34,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: shutdown.get_node.PersistentTaskStatus
@@ -50,8 +50,10 @@ public class PersistentTaskStatus implements JsonpSerializable {
 
 	}
 
-	public static PersistentTaskStatus of(Function<Builder, ObjectBuilder<PersistentTaskStatus>> fn) {
-		return fn.apply(new Builder()).build();
+	public static PersistentTaskStatus of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**

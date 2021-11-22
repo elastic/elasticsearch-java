@@ -23,13 +23,21 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
+import co.elastic.clients.json.JsonEnum;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
-import co.elastic.clients.util.StringEnum;
 
 @JsonpDeserializable
-public enum ExcludeFrequent implements StringEnum {
-	All("all"), None("none"), By("by"), Over("over");
+public enum ExcludeFrequent implements JsonEnum {
+	All("all"),
+
+	None("none"),
+
+	By("by"),
+
+	Over("over"),
+
+	;
 
 	private final String jsonValue;
 
@@ -41,6 +49,6 @@ public enum ExcludeFrequent implements StringEnum {
 		return this.jsonValue;
 	}
 
-	public static final StringEnum.Deserializer<ExcludeFrequent> _DESERIALIZER = new StringEnum.Deserializer<>(
+	public static final JsonEnum.Deserializer<ExcludeFrequent> _DESERIALIZER = new JsonEnum.Deserializer<>(
 			ExcludeFrequent.values());
 }

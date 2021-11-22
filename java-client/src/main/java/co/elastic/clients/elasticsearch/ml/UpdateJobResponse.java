@@ -41,7 +41,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: ml.update_job.Response
@@ -127,8 +127,10 @@ public class UpdateJobResponse implements JsonpSerializable {
 
 	}
 
-	public static UpdateJobResponse of(Function<Builder, ObjectBuilder<UpdateJobResponse>> fn) {
-		return fn.apply(new Builder()).build();
+	public static UpdateJobResponse of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -471,9 +473,10 @@ public class UpdateJobResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code analysis_config}
 		 */
-		public final Builder analysisConfig(
-				Function<AnalysisConfigRead.Builder, ObjectBuilder<AnalysisConfigRead>> fn) {
-			return this.analysisConfig(fn.apply(new AnalysisConfigRead.Builder()).build());
+		public final Builder analysisConfig(Consumer<AnalysisConfigRead.Builder> fn) {
+			AnalysisConfigRead.Builder builder = new AnalysisConfigRead.Builder();
+			fn.accept(builder);
+			return this.analysisConfig(builder.build());
 		}
 
 		/**
@@ -487,8 +490,10 @@ public class UpdateJobResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code analysis_limits}
 		 */
-		public final Builder analysisLimits(Function<AnalysisLimits.Builder, ObjectBuilder<AnalysisLimits>> fn) {
-			return this.analysisLimits(fn.apply(new AnalysisLimits.Builder()).build());
+		public final Builder analysisLimits(Consumer<AnalysisLimits.Builder> fn) {
+			AnalysisLimits.Builder builder = new AnalysisLimits.Builder();
+			fn.accept(builder);
+			return this.analysisLimits(builder.build());
 		}
 
 		/**
@@ -502,8 +507,10 @@ public class UpdateJobResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code background_persist_interval}
 		 */
-		public final Builder backgroundPersistInterval(Function<Time.Builder, ObjectBuilder<Time>> fn) {
-			return this.backgroundPersistInterval(fn.apply(new Time.Builder()).build());
+		public final Builder backgroundPersistInterval(Consumer<Time.Builder> fn) {
+			Time.Builder builder = new Time.Builder();
+			fn.accept(builder);
+			return this.backgroundPersistInterval(builder.build());
 		}
 
 		/**
@@ -549,8 +556,10 @@ public class UpdateJobResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code data_description}
 		 */
-		public final Builder dataDescription(Function<DataDescription.Builder, ObjectBuilder<DataDescription>> fn) {
-			return this.dataDescription(fn.apply(new DataDescription.Builder()).build());
+		public final Builder dataDescription(Consumer<DataDescription.Builder> fn) {
+			DataDescription.Builder builder = new DataDescription.Builder();
+			fn.accept(builder);
+			return this.dataDescription(builder.build());
 		}
 
 		/**
@@ -564,8 +573,10 @@ public class UpdateJobResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code datafeed_config}
 		 */
-		public final Builder datafeedConfig(Function<Datafeed.Builder, ObjectBuilder<Datafeed>> fn) {
-			return this.datafeedConfig(fn.apply(new Datafeed.Builder()).build());
+		public final Builder datafeedConfig(Consumer<Datafeed.Builder> fn) {
+			Datafeed.Builder builder = new Datafeed.Builder();
+			fn.accept(builder);
+			return this.datafeedConfig(builder.build());
 		}
 
 		/**
@@ -627,8 +638,10 @@ public class UpdateJobResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code model_plot_config}
 		 */
-		public final Builder modelPlotConfig(Function<ModelPlotConfig.Builder, ObjectBuilder<ModelPlotConfig>> fn) {
-			return this.modelPlotConfig(fn.apply(new ModelPlotConfig.Builder()).build());
+		public final Builder modelPlotConfig(Consumer<ModelPlotConfig.Builder> fn) {
+			ModelPlotConfig.Builder builder = new ModelPlotConfig.Builder();
+			fn.accept(builder);
+			return this.modelPlotConfig(builder.build());
 		}
 
 		/**

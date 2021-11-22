@@ -33,7 +33,7 @@ import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.LinearMovingAverageAggregation
@@ -52,17 +52,18 @@ public class LinearMovingAverageAggregation extends MovingAverageAggregationBase
 
 	}
 
-	public static LinearMovingAverageAggregation of(
-			Function<Builder, ObjectBuilder<LinearMovingAverageAggregation>> fn) {
-		return fn.apply(new Builder()).build();
+	public static LinearMovingAverageAggregation of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
-	 * {@link MovingAverageAggregation} variant type
+	 * MovingAverageAggregation variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "linear";
+	public MovingAverageAggregation.Kind _movingAverageAggregationKind() {
+		return MovingAverageAggregation.Kind.Linear;
 	}
 
 	/**
@@ -102,8 +103,10 @@ public class LinearMovingAverageAggregation extends MovingAverageAggregationBase
 		/**
 		 * Required - API name: {@code settings}
 		 */
-		public final Builder settings(Function<EmptyObject.Builder, ObjectBuilder<EmptyObject>> fn) {
-			return this.settings(fn.apply(new EmptyObject.Builder()).build());
+		public final Builder settings(Consumer<EmptyObject.Builder> fn) {
+			EmptyObject.Builder builder = new EmptyObject.Builder();
+			fn.accept(builder);
+			return this.settings(builder.build());
 		}
 
 		@Override

@@ -38,23 +38,25 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Object;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.TimeOfDay
 // union type: Union[]
 @JsonpDeserializable
-public class TimeOfDay implements TaggedUnion<Object>, JsonpSerializable {
+public class TimeOfDay implements TaggedUnion<TimeOfDay.Kind, Object>, JsonpSerializable {
 
-	public static final String TEXT = "text";
-	public static final String HOUR_MINUTE = "hour_minute";
+	public enum Kind {
+		Text, HourMinute
 
-	private final String _type;
+	}
+
+	private final Kind _kind;
 	private final Object _value;
 
 	@Override
-	public final String _type() {
-		return _type;
+	public final Kind _kind() {
+		return _kind;
 	}
 
 	@Override
@@ -62,20 +64,29 @@ public class TimeOfDay implements TaggedUnion<Object>, JsonpSerializable {
 		return _value;
 	}
 
-	public TimeOfDay(String type, Object value) {
-		this._type = type;
+	public TimeOfDay(Kind kind, Object value) {
+		this._kind = kind;
 		this._value = value;
 	}
 
 	private TimeOfDay(Builder builder) {
 
-		this._type = ModelTypeHelper.requireNonNull(builder._type, builder, "<variant type>");
+		this._kind = ModelTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
 		this._value = ModelTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
 
 	}
 
-	public static TimeOfDay of(Function<Builder, ObjectBuilder<TimeOfDay>> fn) {
-		return fn.apply(new Builder()).build();
+	public static TimeOfDay of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
+	}
+
+	/**
+	 * Is this variant instance of kind {@code text}?
+	 */
+	public boolean isText() {
+		return _kind == Kind.Text;
 	}
 
 	/**
@@ -85,7 +96,14 @@ public class TimeOfDay implements TaggedUnion<Object>, JsonpSerializable {
 	 *             if the current variant is not of the {@code text} kind.
 	 */
 	public String text() {
-		return TaggedUnionUtils.get(this, TEXT);
+		return TaggedUnionUtils.get(this, Kind.Text);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code hour_minute}?
+	 */
+	public boolean isHourMinute() {
+		return _kind == Kind.HourMinute;
 	}
 
 	/**
@@ -95,7 +113,7 @@ public class TimeOfDay implements TaggedUnion<Object>, JsonpSerializable {
 	 *             if the current variant is not of the {@code hour_minute} kind.
 	 */
 	public HourAndMinute hourMinute() {
-		return TaggedUnionUtils.get(this, HOUR_MINUTE);
+		return TaggedUnionUtils.get(this, Kind.HourMinute);
 	}
 
 	@Override
@@ -103,8 +121,8 @@ public class TimeOfDay implements TaggedUnion<Object>, JsonpSerializable {
 		if (_value instanceof JsonpSerializable) {
 			((JsonpSerializable) _value).serialize(generator, mapper);
 		} else {
-			switch (_type) {
-				case TEXT :
+			switch (_kind) {
+				case Text :
 					generator.write(((String) this._value));
 
 					break;
@@ -114,23 +132,25 @@ public class TimeOfDay implements TaggedUnion<Object>, JsonpSerializable {
 	}
 
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TimeOfDay> {
-		private String _type;
+		private Kind _kind;
 		private Object _value;
 
 		public Builder text(String v) {
-			this._type = TEXT;
+			this._kind = Kind.Text;
 			this._value = v;
 			return this;
 		}
 
 		public Builder hourMinute(HourAndMinute v) {
-			this._type = HOUR_MINUTE;
+			this._kind = Kind.HourMinute;
 			this._value = v;
 			return this;
 		}
 
-		public Builder hourMinute(Function<HourAndMinute.Builder, ObjectBuilder<HourAndMinute>> f) {
-			return this.hourMinute(f.apply(new HourAndMinute.Builder()).build());
+		public Builder hourMinute(Consumer<HourAndMinute.Builder> fn) {
+			HourAndMinute.Builder builder = new HourAndMinute.Builder();
+			fn.accept(builder);
+			return this.hourMinute(builder.build());
 		}
 
 		public TimeOfDay build() {
@@ -141,9 +161,9 @@ public class TimeOfDay implements TaggedUnion<Object>, JsonpSerializable {
 	}
 
 	private static JsonpDeserializer<TimeOfDay> buildTimeOfDayDeserializer() {
-		return new UnionDeserializer.Builder<>(TimeOfDay::new, false)
-				.addMember("text", JsonpDeserializer.stringDeserializer())
-				.addMember("hour_minute", HourAndMinute._DESERIALIZER).build();
+		return new UnionDeserializer.Builder<TimeOfDay, Kind, Object>(TimeOfDay::new, false)
+				.addMember(Kind.Text, JsonpDeserializer.stringDeserializer())
+				.addMember(Kind.HourMinute, HourAndMinute._DESERIALIZER).build();
 	}
 
 	public static final JsonpDeserializer<TimeOfDay> _DESERIALIZER = JsonpDeserializer

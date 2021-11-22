@@ -30,14 +30,15 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -54,8 +55,10 @@ public class NodeattrsResponse implements JsonpSerializable {
 
 	}
 
-	public static NodeattrsResponse of(Function<Builder, ObjectBuilder<NodeattrsResponse>> fn) {
-		return fn.apply(new Builder()).build();
+	public static NodeattrsResponse of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -113,14 +116,9 @@ public class NodeattrsResponse implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code _value_body}
 		 */
-		@SafeVarargs
 		public final Builder valueBody(
-				Function<NodeAttributesRecord.Builder, ObjectBuilder<NodeAttributesRecord>>... fns) {
-			this.valueBody = new ArrayList<>(fns.length);
-			for (Function<NodeAttributesRecord.Builder, ObjectBuilder<NodeAttributesRecord>> fn : fns) {
-				this.valueBody.add(fn.apply(new NodeAttributesRecord.Builder()).build());
-			}
-			return this;
+				Function<ListBuilder<NodeAttributesRecord, NodeAttributesRecord.Builder>, ObjectBuilder<List<NodeAttributesRecord>>> fn) {
+			return valueBody(fn.apply(new ListBuilder<>(NodeAttributesRecord.Builder::new)).build());
 		}
 
 		/**

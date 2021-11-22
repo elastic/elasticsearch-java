@@ -38,7 +38,7 @@ import java.lang.String;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: security._types.IndicesPrivileges
@@ -68,8 +68,10 @@ public class IndicesPrivileges implements JsonpSerializable {
 
 	}
 
-	public static IndicesPrivileges of(Function<Builder, ObjectBuilder<IndicesPrivileges>> fn) {
-		return fn.apply(new Builder()).build();
+	public static IndicesPrivileges of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -215,8 +217,10 @@ public class IndicesPrivileges implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code field_security}
 		 */
-		public final Builder fieldSecurity(Function<FieldSecurity.Builder, ObjectBuilder<FieldSecurity>> fn) {
-			return this.fieldSecurity(fn.apply(new FieldSecurity.Builder()).build());
+		public final Builder fieldSecurity(Consumer<FieldSecurity.Builder> fn) {
+			FieldSecurity.Builder builder = new FieldSecurity.Builder();
+			fn.accept(builder);
+			return this.fieldSecurity(builder.build());
 		}
 
 		/**

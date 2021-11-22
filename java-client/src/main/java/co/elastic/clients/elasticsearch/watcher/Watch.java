@@ -38,9 +38,9 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.lang.String;
-import java.util.Collections;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -85,8 +85,10 @@ public class Watch implements JsonpSerializable {
 
 	}
 
-	public static Watch of(Function<Builder, ObjectBuilder<Watch>> fn) {
-		return fn.apply(new Builder()).build();
+	public static Watch of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -258,13 +260,6 @@ public class Watch implements JsonpSerializable {
 			return this;
 		}
 
-		/**
-		 * Set {@link #actions(Map)} to a singleton map.
-		 */
-		public Builder actions(String key, Function<Action.Builder, ObjectBuilder<Action>> fn) {
-			return this.actions(Collections.singletonMap(key, fn.apply(new Action.Builder()).build()));
-		}
-
 		public final Builder actions(
 				Function<MapBuilder<String, Action, Action.Builder>, ObjectBuilder<Map<String, Action>>> fn) {
 			return actions(fn.apply(new MapBuilder<>(Action.Builder::new)).build());
@@ -281,8 +276,10 @@ public class Watch implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code condition}
 		 */
-		public final Builder condition(Function<Condition.Builder, ObjectBuilder<Condition>> fn) {
-			return this.condition(fn.apply(new Condition.Builder()).build());
+		public final Builder condition(Consumer<Condition.Builder> fn) {
+			Condition.Builder builder = new Condition.Builder();
+			fn.accept(builder);
+			return this.condition(builder.build());
 		}
 
 		/**
@@ -296,8 +293,10 @@ public class Watch implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code input}
 		 */
-		public final Builder input(Function<Input.Builder, ObjectBuilder<Input>> fn) {
-			return this.input(fn.apply(new Input.Builder()).build());
+		public final Builder input(Consumer<Input.Builder> fn) {
+			Input.Builder builder = new Input.Builder();
+			fn.accept(builder);
+			return this.input(builder.build());
 		}
 
 		/**
@@ -319,8 +318,10 @@ public class Watch implements JsonpSerializable {
 		/**
 		 * API name: {@code status}
 		 */
-		public final Builder status(Function<WatchStatus.Builder, ObjectBuilder<WatchStatus>> fn) {
-			return this.status(fn.apply(new WatchStatus.Builder()).build());
+		public final Builder status(Consumer<WatchStatus.Builder> fn) {
+			WatchStatus.Builder builder = new WatchStatus.Builder();
+			fn.accept(builder);
+			return this.status(builder.build());
 		}
 
 		/**
@@ -342,8 +343,10 @@ public class Watch implements JsonpSerializable {
 		/**
 		 * API name: {@code transform}
 		 */
-		public final Builder transform(Function<Transform.Builder, ObjectBuilder<Transform>> fn) {
-			return this.transform(fn.apply(new Transform.Builder()).build());
+		public final Builder transform(Consumer<Transform.Builder> fn) {
+			Transform.Builder builder = new Transform.Builder();
+			fn.accept(builder);
+			return this.transform(builder.build());
 		}
 
 		/**
@@ -357,8 +360,10 @@ public class Watch implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code trigger}
 		 */
-		public final Builder trigger(Function<Trigger.Builder, ObjectBuilder<Trigger>> fn) {
-			return this.trigger(fn.apply(new Trigger.Builder()).build());
+		public final Builder trigger(Consumer<Trigger.Builder> fn) {
+			Trigger.Builder builder = new Trigger.Builder();
+			fn.accept(builder);
+			return this.trigger(builder.build());
 		}
 
 		/**

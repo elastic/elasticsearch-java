@@ -33,12 +33,12 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.DecayFunction
 @JsonpDeserializable
-public class DecayFunction extends DecayFunctionBase {
+public class DecayFunction extends DecayFunctionBase implements FunctionScoreVariant {
 	private final String field;
 
 	private final DecayPlacement placement;
@@ -52,8 +52,18 @@ public class DecayFunction extends DecayFunctionBase {
 
 	}
 
-	public static DecayFunction of(Function<Builder, ObjectBuilder<DecayFunction>> fn) {
-		return fn.apply(new Builder()).build();
+	public static DecayFunction of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
+	}
+
+	/**
+	 * FunctionScore variant kind.
+	 */
+	@Override
+	public FunctionScore.Kind _functionScoreKind() {
+		return FunctionScore.Kind.Linear;
 	}
 
 	/**
@@ -109,8 +119,10 @@ public class DecayFunction extends DecayFunctionBase {
 		/**
 		 * Required -
 		 */
-		public final Builder placement(Function<DecayPlacement.Builder, ObjectBuilder<DecayPlacement>> fn) {
-			return this.placement(fn.apply(new DecayPlacement.Builder()).build());
+		public final Builder placement(Consumer<DecayPlacement.Builder> fn) {
+			DecayPlacement.Builder builder = new DecayPlacement.Builder();
+			fn.accept(builder);
+			return this.placement(builder.build());
 		}
 
 		@Override

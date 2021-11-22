@@ -33,7 +33,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: _types.mapping.GeoPointProperty
@@ -59,16 +59,18 @@ public class GeoPointProperty extends DocValuesPropertyBase implements PropertyV
 
 	}
 
-	public static GeoPointProperty of(Function<Builder, ObjectBuilder<GeoPointProperty>> fn) {
-		return fn.apply(new Builder()).build();
+	public static GeoPointProperty of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
-	 * {@link Property} variant type
+	 * Property variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "geo_point";
+	public Property.Kind _propertyKind() {
+		return Property.Kind.GeoPoint;
 	}
 
 	/**
@@ -161,8 +163,10 @@ public class GeoPointProperty extends DocValuesPropertyBase implements PropertyV
 		/**
 		 * API name: {@code null_value}
 		 */
-		public final Builder nullValue(Function<GeoLocation.Builder, ObjectBuilder<GeoLocation>> fn) {
-			return this.nullValue(fn.apply(new GeoLocation.Builder()).build());
+		public final Builder nullValue(Consumer<GeoLocation.Builder> fn) {
+			GeoLocation.Builder builder = new GeoLocation.Builder();
+			fn.accept(builder);
+			return this.nullValue(builder.build());
 		}
 
 		@Override

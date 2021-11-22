@@ -36,7 +36,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: security.create_api_key.Response
@@ -62,8 +62,10 @@ public class CreateApiKeyResponse implements JsonpSerializable {
 
 	}
 
-	public static CreateApiKeyResponse of(Function<Builder, ObjectBuilder<CreateApiKeyResponse>> fn) {
-		return fn.apply(new Builder()).build();
+	public static CreateApiKeyResponse of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**

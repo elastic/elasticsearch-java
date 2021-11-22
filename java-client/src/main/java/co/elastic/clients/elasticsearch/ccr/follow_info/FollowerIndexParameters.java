@@ -37,7 +37,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: ccr.follow_info.FollowerIndexParameters
@@ -88,8 +88,10 @@ public class FollowerIndexParameters implements JsonpSerializable {
 
 	}
 
-	public static FollowerIndexParameters of(Function<Builder, ObjectBuilder<FollowerIndexParameters>> fn) {
-		return fn.apply(new Builder()).build();
+	public static FollowerIndexParameters of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -274,8 +276,10 @@ public class FollowerIndexParameters implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code max_retry_delay}
 		 */
-		public final Builder maxRetryDelay(Function<Time.Builder, ObjectBuilder<Time>> fn) {
-			return this.maxRetryDelay(fn.apply(new Time.Builder()).build());
+		public final Builder maxRetryDelay(Consumer<Time.Builder> fn) {
+			Time.Builder builder = new Time.Builder();
+			fn.accept(builder);
+			return this.maxRetryDelay(builder.build());
 		}
 
 		/**
@@ -321,8 +325,10 @@ public class FollowerIndexParameters implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code read_poll_timeout}
 		 */
-		public final Builder readPollTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
-			return this.readPollTimeout(fn.apply(new Time.Builder()).build());
+		public final Builder readPollTimeout(Consumer<Time.Builder> fn) {
+			Time.Builder builder = new Time.Builder();
+			fn.accept(builder);
+			return this.readPollTimeout(builder.build());
 		}
 
 		/**

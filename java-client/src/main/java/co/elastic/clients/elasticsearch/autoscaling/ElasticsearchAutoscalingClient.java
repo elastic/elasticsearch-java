@@ -26,24 +26,26 @@ package co.elastic.clients.elasticsearch.autoscaling;
 import co.elastic.clients.ApiClient;
 import co.elastic.clients.elasticsearch._types.ElasticsearchException;
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
+import co.elastic.clients.transport.ElasticsearchTransport;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.Transport;
 import co.elastic.clients.transport.TransportOptions;
 import co.elastic.clients.util.ObjectBuilder;
 import java.io.IOException;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 /**
  * Client for the autoscaling namespace.
  */
-public class ElasticsearchAutoscalingClient extends ApiClient<ElasticsearchAutoscalingClient> {
+public class ElasticsearchAutoscalingClient extends ApiClient<ElasticsearchTransport, ElasticsearchAutoscalingClient> {
 
-	public ElasticsearchAutoscalingClient(Transport transport) {
+	public ElasticsearchAutoscalingClient(ElasticsearchTransport transport) {
 		super(transport, null);
 	}
 
-	public ElasticsearchAutoscalingClient(Transport transport, @Nullable TransportOptions transportOptions) {
+	public ElasticsearchAutoscalingClient(ElasticsearchTransport transport,
+			@Nullable TransportOptions transportOptions) {
 		super(transport, transportOptions);
 	}
 
@@ -84,9 +86,10 @@ public class ElasticsearchAutoscalingClient extends ApiClient<ElasticsearchAutos
 	 */
 
 	public final DeleteAutoscalingPolicyResponse deleteAutoscalingPolicy(
-			Function<DeleteAutoscalingPolicyRequest.Builder, ObjectBuilder<DeleteAutoscalingPolicyRequest>> fn)
-			throws IOException, ElasticsearchException {
-		return deleteAutoscalingPolicy(fn.apply(new DeleteAutoscalingPolicyRequest.Builder()).build());
+			Consumer<DeleteAutoscalingPolicyRequest.Builder> fn) throws IOException, ElasticsearchException {
+		DeleteAutoscalingPolicyRequest.Builder builder = new DeleteAutoscalingPolicyRequest.Builder();
+		fn.accept(builder);
+		return deleteAutoscalingPolicy(builder.build());
 	}
 
 	// ----- Endpoint: autoscaling.get_autoscaling_capacity
@@ -136,10 +139,11 @@ public class ElasticsearchAutoscalingClient extends ApiClient<ElasticsearchAutos
 	 *      on elastic.co</a>
 	 */
 
-	public final GetAutoscalingPolicyResponse getAutoscalingPolicy(
-			Function<GetAutoscalingPolicyRequest.Builder, ObjectBuilder<GetAutoscalingPolicyRequest>> fn)
+	public final GetAutoscalingPolicyResponse getAutoscalingPolicy(Consumer<GetAutoscalingPolicyRequest.Builder> fn)
 			throws IOException, ElasticsearchException {
-		return getAutoscalingPolicy(fn.apply(new GetAutoscalingPolicyRequest.Builder()).build());
+		GetAutoscalingPolicyRequest.Builder builder = new GetAutoscalingPolicyRequest.Builder();
+		fn.accept(builder);
+		return getAutoscalingPolicy(builder.build());
 	}
 
 	// ----- Endpoint: autoscaling.put_autoscaling_policy
@@ -173,10 +177,11 @@ public class ElasticsearchAutoscalingClient extends ApiClient<ElasticsearchAutos
 	 *      on elastic.co</a>
 	 */
 
-	public final PutAutoscalingPolicyResponse putAutoscalingPolicy(
-			Function<PutAutoscalingPolicyRequest.Builder, ObjectBuilder<PutAutoscalingPolicyRequest>> fn)
+	public final PutAutoscalingPolicyResponse putAutoscalingPolicy(Consumer<PutAutoscalingPolicyRequest.Builder> fn)
 			throws IOException, ElasticsearchException {
-		return putAutoscalingPolicy(fn.apply(new PutAutoscalingPolicyRequest.Builder()).build());
+		PutAutoscalingPolicyRequest.Builder builder = new PutAutoscalingPolicyRequest.Builder();
+		fn.accept(builder);
+		return putAutoscalingPolicy(builder.build());
 	}
 
 }

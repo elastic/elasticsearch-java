@@ -38,7 +38,7 @@ import java.lang.Long;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: indices.shard_stores.ShardStore
@@ -75,8 +75,10 @@ public class ShardStore implements JsonpSerializable {
 
 	}
 
-	public static ShardStore of(Function<Builder, ObjectBuilder<ShardStore>> fn) {
-		return fn.apply(new Builder()).build();
+	public static ShardStore of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -260,9 +262,10 @@ public class ShardStore implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code store_exception}
 		 */
-		public final Builder storeException(
-				Function<ShardStoreException.Builder, ObjectBuilder<ShardStoreException>> fn) {
-			return this.storeException(fn.apply(new ShardStoreException.Builder()).build());
+		public final Builder storeException(Consumer<ShardStoreException.Builder> fn) {
+			ShardStoreException.Builder builder = new ShardStoreException.Builder();
+			fn.accept(builder);
+			return this.storeException(builder.build());
 		}
 
 		/**

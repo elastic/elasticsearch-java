@@ -39,23 +39,25 @@ import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.Object;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: _global.search._types.TrackHits
 // union type: Union[]
 @JsonpDeserializable
-public class TrackHits implements TaggedUnion<Object>, JsonpSerializable {
+public class TrackHits implements TaggedUnion<TrackHits.Kind, Object>, JsonpSerializable {
 
-	public static final String COUNT = "count";
-	public static final String ENABLED = "enabled";
+	public enum Kind {
+		Count, Enabled
 
-	private final String _type;
+	}
+
+	private final Kind _kind;
 	private final Object _value;
 
 	@Override
-	public final String _type() {
-		return _type;
+	public final Kind _kind() {
+		return _kind;
 	}
 
 	@Override
@@ -63,31 +65,41 @@ public class TrackHits implements TaggedUnion<Object>, JsonpSerializable {
 		return _value;
 	}
 
-	public TrackHits(String type, Object value) {
-		this._type = type;
+	public TrackHits(Kind kind, Object value) {
+		this._kind = kind;
 		this._value = value;
 	}
 
 	public String _toJsonString() {
-		switch (_type) {
-			case "count" :
+		switch (_kind) {
+			case Count :
 				return String.valueOf(this.count());
-			case "enabled" :
+			case Enabled :
 				return String.valueOf(this.enabled());
 
 			default :
-				throw new IllegalStateException("Unknown type " + _type);
+				throw new IllegalStateException("Unknown kind " + _kind);
 		}
 	}
+
 	private TrackHits(Builder builder) {
 
-		this._type = ModelTypeHelper.requireNonNull(builder._type, builder, "<variant type>");
+		this._kind = ModelTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
 		this._value = ModelTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
 
 	}
 
-	public static TrackHits of(Function<Builder, ObjectBuilder<TrackHits>> fn) {
-		return fn.apply(new Builder()).build();
+	public static TrackHits of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
+	}
+
+	/**
+	 * Is this variant instance of kind {@code count}?
+	 */
+	public boolean isCount() {
+		return _kind == Kind.Count;
 	}
 
 	/**
@@ -97,7 +109,14 @@ public class TrackHits implements TaggedUnion<Object>, JsonpSerializable {
 	 *             if the current variant is not of the {@code count} kind.
 	 */
 	public Integer count() {
-		return TaggedUnionUtils.get(this, COUNT);
+		return TaggedUnionUtils.get(this, Kind.Count);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code enabled}?
+	 */
+	public boolean isEnabled() {
+		return _kind == Kind.Enabled;
 	}
 
 	/**
@@ -107,7 +126,7 @@ public class TrackHits implements TaggedUnion<Object>, JsonpSerializable {
 	 *             if the current variant is not of the {@code enabled} kind.
 	 */
 	public Boolean enabled() {
-		return TaggedUnionUtils.get(this, ENABLED);
+		return TaggedUnionUtils.get(this, Kind.Enabled);
 	}
 
 	@Override
@@ -115,12 +134,12 @@ public class TrackHits implements TaggedUnion<Object>, JsonpSerializable {
 		if (_value instanceof JsonpSerializable) {
 			((JsonpSerializable) _value).serialize(generator, mapper);
 		} else {
-			switch (_type) {
-				case COUNT :
+			switch (_kind) {
+				case Count :
 					generator.write(((Integer) this._value));
 
 					break;
-				case ENABLED :
+				case Enabled :
 					generator.write(((Boolean) this._value));
 
 					break;
@@ -130,17 +149,17 @@ public class TrackHits implements TaggedUnion<Object>, JsonpSerializable {
 	}
 
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TrackHits> {
-		private String _type;
+		private Kind _kind;
 		private Object _value;
 
 		public Builder count(Integer v) {
-			this._type = COUNT;
+			this._kind = Kind.Count;
 			this._value = v;
 			return this;
 		}
 
 		public Builder enabled(Boolean v) {
-			this._type = ENABLED;
+			this._kind = Kind.Enabled;
 			this._value = v;
 			return this;
 		}
@@ -153,9 +172,9 @@ public class TrackHits implements TaggedUnion<Object>, JsonpSerializable {
 	}
 
 	private static JsonpDeserializer<TrackHits> buildTrackHitsDeserializer() {
-		return new UnionDeserializer.Builder<>(TrackHits::new, false)
-				.addMember("count", JsonpDeserializer.integerDeserializer())
-				.addMember("enabled", JsonpDeserializer.booleanDeserializer()).build();
+		return new UnionDeserializer.Builder<TrackHits, Kind, Object>(TrackHits::new, false)
+				.addMember(Kind.Count, JsonpDeserializer.integerDeserializer())
+				.addMember(Kind.Enabled, JsonpDeserializer.booleanDeserializer()).build();
 	}
 
 	public static final JsonpDeserializer<TrackHits> _DESERIALIZER = JsonpDeserializer

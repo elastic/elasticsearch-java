@@ -34,18 +34,19 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
-import co.elastic.clients.transport.SimpleEndpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
+import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
@@ -89,8 +90,10 @@ public class ExploreRequest extends RequestBase implements JsonpSerializable {
 
 	}
 
-	public static ExploreRequest of(Function<Builder, ObjectBuilder<ExploreRequest>> fn) {
-		return fn.apply(new Builder()).build();
+	public static ExploreRequest of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -243,8 +246,10 @@ public class ExploreRequest extends RequestBase implements JsonpSerializable {
 		/**
 		 * API name: {@code connections}
 		 */
-		public final Builder connections(Function<Hop.Builder, ObjectBuilder<Hop>> fn) {
-			return this.connections(fn.apply(new Hop.Builder()).build());
+		public final Builder connections(Consumer<Hop.Builder> fn) {
+			Hop.Builder builder = new Hop.Builder();
+			fn.accept(builder);
+			return this.connections(builder.build());
 		}
 
 		/**
@@ -258,8 +263,10 @@ public class ExploreRequest extends RequestBase implements JsonpSerializable {
 		/**
 		 * API name: {@code controls}
 		 */
-		public final Builder controls(Function<ExploreControls.Builder, ObjectBuilder<ExploreControls>> fn) {
-			return this.controls(fn.apply(new ExploreControls.Builder()).build());
+		public final Builder controls(Consumer<ExploreControls.Builder> fn) {
+			ExploreControls.Builder builder = new ExploreControls.Builder();
+			fn.accept(builder);
+			return this.controls(builder.build());
 		}
 
 		/**
@@ -295,8 +302,10 @@ public class ExploreRequest extends RequestBase implements JsonpSerializable {
 		/**
 		 * API name: {@code query}
 		 */
-		public final Builder query(Function<Query.Builder, ObjectBuilder<Query>> fn) {
-			return this.query(fn.apply(new Query.Builder()).build());
+		public final Builder query(Consumer<Query.Builder> fn) {
+			Query.Builder builder = new Query.Builder();
+			fn.accept(builder);
+			return this.query(builder.build());
 		}
 
 		/**
@@ -324,8 +333,10 @@ public class ExploreRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code timeout}
 		 */
-		public final Builder timeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
-			return this.timeout(fn.apply(new Time.Builder()).build());
+		public final Builder timeout(Consumer<Time.Builder> fn) {
+			Time.Builder builder = new Time.Builder();
+			fn.accept(builder);
+			return this.timeout(builder.build());
 		}
 
 		/**
@@ -369,13 +380,9 @@ public class ExploreRequest extends RequestBase implements JsonpSerializable {
 		/**
 		 * API name: {@code vertices}
 		 */
-		@SafeVarargs
-		public final Builder vertices(Function<VertexDefinition.Builder, ObjectBuilder<VertexDefinition>>... fns) {
-			this.vertices = new ArrayList<>(fns.length);
-			for (Function<VertexDefinition.Builder, ObjectBuilder<VertexDefinition>> fn : fns) {
-				this.vertices.add(fn.apply(new VertexDefinition.Builder()).build());
-			}
-			return this;
+		public final Builder vertices(
+				Function<ListBuilder<VertexDefinition, VertexDefinition.Builder>, ObjectBuilder<List<VertexDefinition>>> fn) {
+			return vertices(fn.apply(new ListBuilder<>(VertexDefinition.Builder::new)).build());
 		}
 
 		/**

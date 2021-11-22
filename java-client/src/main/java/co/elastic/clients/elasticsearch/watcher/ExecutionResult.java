@@ -29,16 +29,17 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -67,8 +68,10 @@ public class ExecutionResult implements JsonpSerializable {
 
 	}
 
-	public static ExecutionResult of(Function<Builder, ObjectBuilder<ExecutionResult>> fn) {
-		return fn.apply(new Builder()).build();
+	public static ExecutionResult of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -176,14 +179,9 @@ public class ExecutionResult implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code actions}
 		 */
-		@SafeVarargs
 		public final Builder actions(
-				Function<ExecutionResultAction.Builder, ObjectBuilder<ExecutionResultAction>>... fns) {
-			this.actions = new ArrayList<>(fns.length);
-			for (Function<ExecutionResultAction.Builder, ObjectBuilder<ExecutionResultAction>> fn : fns) {
-				this.actions.add(fn.apply(new ExecutionResultAction.Builder()).build());
-			}
-			return this;
+				Function<ListBuilder<ExecutionResultAction, ExecutionResultAction.Builder>, ObjectBuilder<List<ExecutionResultAction>>> fn) {
+			return actions(fn.apply(new ListBuilder<>(ExecutionResultAction.Builder::new)).build());
 		}
 
 		/**
@@ -197,9 +195,10 @@ public class ExecutionResult implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code condition}
 		 */
-		public final Builder condition(
-				Function<ExecutionResultCondition.Builder, ObjectBuilder<ExecutionResultCondition>> fn) {
-			return this.condition(fn.apply(new ExecutionResultCondition.Builder()).build());
+		public final Builder condition(Consumer<ExecutionResultCondition.Builder> fn) {
+			ExecutionResultCondition.Builder builder = new ExecutionResultCondition.Builder();
+			fn.accept(builder);
+			return this.condition(builder.build());
 		}
 
 		/**
@@ -229,8 +228,10 @@ public class ExecutionResult implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code input}
 		 */
-		public final Builder input(Function<ExecutionResultInput.Builder, ObjectBuilder<ExecutionResultInput>> fn) {
-			return this.input(fn.apply(new ExecutionResultInput.Builder()).build());
+		public final Builder input(Consumer<ExecutionResultInput.Builder> fn) {
+			ExecutionResultInput.Builder builder = new ExecutionResultInput.Builder();
+			fn.accept(builder);
+			return this.input(builder.build());
 		}
 
 		/**

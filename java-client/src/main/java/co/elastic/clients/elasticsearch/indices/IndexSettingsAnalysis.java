@@ -40,9 +40,9 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.Collections;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -71,8 +71,10 @@ public class IndexSettingsAnalysis implements JsonpSerializable {
 
 	}
 
-	public static IndexSettingsAnalysis of(Function<Builder, ObjectBuilder<IndexSettingsAnalysis>> fn) {
-		return fn.apply(new Builder()).build();
+	public static IndexSettingsAnalysis of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -208,13 +210,6 @@ public class IndexSettingsAnalysis implements JsonpSerializable {
 			return this;
 		}
 
-		/**
-		 * Set {@link #analyzer(Map)} to a singleton map.
-		 */
-		public Builder analyzer(String key, Function<Analyzer.Builder, ObjectBuilder<Analyzer>> fn) {
-			return this.analyzer(Collections.singletonMap(key, fn.apply(new Analyzer.Builder()).build()));
-		}
-
 		public final Builder analyzer(
 				Function<MapBuilder<String, Analyzer, Analyzer.Builder>, ObjectBuilder<Map<String, Analyzer>>> fn) {
 			return analyzer(fn.apply(new MapBuilder<>(Analyzer.Builder::new)).build());
@@ -226,13 +221,6 @@ public class IndexSettingsAnalysis implements JsonpSerializable {
 		public final Builder charFilter(@Nullable Map<String, CharFilter> value) {
 			this.charFilter = value;
 			return this;
-		}
-
-		/**
-		 * Set {@link #charFilter(Map)} to a singleton map.
-		 */
-		public Builder charFilter(String key, Function<CharFilter.Builder, ObjectBuilder<CharFilter>> fn) {
-			return this.charFilter(Collections.singletonMap(key, fn.apply(new CharFilter.Builder()).build()));
 		}
 
 		public final Builder charFilter(
@@ -248,13 +236,6 @@ public class IndexSettingsAnalysis implements JsonpSerializable {
 			return this;
 		}
 
-		/**
-		 * Set {@link #filter(Map)} to a singleton map.
-		 */
-		public Builder filter(String key, Function<TokenFilter.Builder, ObjectBuilder<TokenFilter>> fn) {
-			return this.filter(Collections.singletonMap(key, fn.apply(new TokenFilter.Builder()).build()));
-		}
-
 		public final Builder filter(
 				Function<MapBuilder<String, TokenFilter, TokenFilter.Builder>, ObjectBuilder<Map<String, TokenFilter>>> fn) {
 			return filter(fn.apply(new MapBuilder<>(TokenFilter.Builder::new)).build());
@@ -268,13 +249,6 @@ public class IndexSettingsAnalysis implements JsonpSerializable {
 			return this;
 		}
 
-		/**
-		 * Set {@link #normalizer(Map)} to a singleton map.
-		 */
-		public Builder normalizer(String key, Function<Normalizer.Builder, ObjectBuilder<Normalizer>> fn) {
-			return this.normalizer(Collections.singletonMap(key, fn.apply(new Normalizer.Builder()).build()));
-		}
-
 		public final Builder normalizer(
 				Function<MapBuilder<String, Normalizer, Normalizer.Builder>, ObjectBuilder<Map<String, Normalizer>>> fn) {
 			return normalizer(fn.apply(new MapBuilder<>(Normalizer.Builder::new)).build());
@@ -286,13 +260,6 @@ public class IndexSettingsAnalysis implements JsonpSerializable {
 		public final Builder tokenizer(@Nullable Map<String, Tokenizer> value) {
 			this.tokenizer = value;
 			return this;
-		}
-
-		/**
-		 * Set {@link #tokenizer(Map)} to a singleton map.
-		 */
-		public Builder tokenizer(String key, Function<Tokenizer.Builder, ObjectBuilder<Tokenizer>> fn) {
-			return this.tokenizer(Collections.singletonMap(key, fn.apply(new Tokenizer.Builder()).build()));
 		}
 
 		public final Builder tokenizer(

@@ -35,7 +35,7 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 
 // typedef: nodes._types.JvmClasses
 @JsonpDeserializable
@@ -58,8 +58,10 @@ public class JvmClasses implements JsonpSerializable {
 
 	}
 
-	public static JvmClasses of(Function<Builder, ObjectBuilder<JvmClasses>> fn) {
-		return fn.apply(new Builder()).build();
+	public static JvmClasses of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**

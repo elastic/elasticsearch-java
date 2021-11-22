@@ -23,15 +23,37 @@
 
 package co.elastic.clients.elasticsearch._types.analysis;
 
+import co.elastic.clients.json.JsonEnum;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
-import co.elastic.clients.util.StringEnum;
 
 @JsonpDeserializable
-public enum PhoneticLanguage implements StringEnum {
-	Any("any"), Common("common"), Cyrillic("cyrillic"), English("english"), French("french"), German("german"), Hebrew(
-			"hebrew"), Hungarian(
-					"hungarian"), Polish("polish"), Romanian("romanian"), Russian("russian"), Spanish("spanish");
+public enum PhoneticLanguage implements JsonEnum {
+	Any("any"),
+
+	Common("common"),
+
+	Cyrillic("cyrillic"),
+
+	English("english"),
+
+	French("french"),
+
+	German("german"),
+
+	Hebrew("hebrew"),
+
+	Hungarian("hungarian"),
+
+	Polish("polish"),
+
+	Romanian("romanian"),
+
+	Russian("russian"),
+
+	Spanish("spanish"),
+
+	;
 
 	private final String jsonValue;
 
@@ -43,6 +65,6 @@ public enum PhoneticLanguage implements StringEnum {
 		return this.jsonValue;
 	}
 
-	public static final StringEnum.Deserializer<PhoneticLanguage> _DESERIALIZER = new StringEnum.Deserializer<>(
+	public static final JsonEnum.Deserializer<PhoneticLanguage> _DESERIALIZER = new JsonEnum.Deserializer<>(
 			PhoneticLanguage.values());
 }

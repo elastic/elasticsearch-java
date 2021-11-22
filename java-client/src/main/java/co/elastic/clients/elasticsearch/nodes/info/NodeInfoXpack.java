@@ -37,7 +37,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: nodes.info.NodeInfoXpack
@@ -60,8 +60,10 @@ public class NodeInfoXpack implements JsonpSerializable {
 
 	}
 
-	public static NodeInfoXpack of(Function<Builder, ObjectBuilder<NodeInfoXpack>> fn) {
-		return fn.apply(new Builder()).build();
+	public static NodeInfoXpack of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -144,8 +146,10 @@ public class NodeInfoXpack implements JsonpSerializable {
 		/**
 		 * API name: {@code license}
 		 */
-		public final Builder license(Function<NodeInfoXpackLicense.Builder, ObjectBuilder<NodeInfoXpackLicense>> fn) {
-			return this.license(fn.apply(new NodeInfoXpackLicense.Builder()).build());
+		public final Builder license(Consumer<NodeInfoXpackLicense.Builder> fn) {
+			NodeInfoXpackLicense.Builder builder = new NodeInfoXpackLicense.Builder();
+			fn.accept(builder);
+			return this.license(builder.build());
 		}
 
 		/**
@@ -159,9 +163,10 @@ public class NodeInfoXpack implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code security}
 		 */
-		public final Builder security(
-				Function<NodeInfoXpackSecurity.Builder, ObjectBuilder<NodeInfoXpackSecurity>> fn) {
-			return this.security(fn.apply(new NodeInfoXpackSecurity.Builder()).build());
+		public final Builder security(Consumer<NodeInfoXpackSecurity.Builder> fn) {
+			NodeInfoXpackSecurity.Builder builder = new NodeInfoXpackSecurity.Builder();
+			fn.accept(builder);
+			return this.security(builder.build());
 		}
 
 		/**

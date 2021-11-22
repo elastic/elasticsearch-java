@@ -31,16 +31,17 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -68,8 +69,10 @@ public class ValidateQueryResponse implements JsonpSerializable {
 
 	}
 
-	public static ValidateQueryResponse of(Function<Builder, ObjectBuilder<ValidateQueryResponse>> fn) {
-		return fn.apply(new Builder()).build();
+	public static ValidateQueryResponse of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -175,14 +178,9 @@ public class ValidateQueryResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code explanations}
 		 */
-		@SafeVarargs
 		public final Builder explanations(
-				Function<IndicesValidationExplanation.Builder, ObjectBuilder<IndicesValidationExplanation>>... fns) {
-			this.explanations = new ArrayList<>(fns.length);
-			for (Function<IndicesValidationExplanation.Builder, ObjectBuilder<IndicesValidationExplanation>> fn : fns) {
-				this.explanations.add(fn.apply(new IndicesValidationExplanation.Builder()).build());
-			}
-			return this;
+				Function<ListBuilder<IndicesValidationExplanation, IndicesValidationExplanation.Builder>, ObjectBuilder<List<IndicesValidationExplanation>>> fn) {
+			return explanations(fn.apply(new ListBuilder<>(IndicesValidationExplanation.Builder::new)).build());
 		}
 
 		/**
@@ -196,8 +194,10 @@ public class ValidateQueryResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code _shards}
 		 */
-		public final Builder shards(Function<ShardStatistics.Builder, ObjectBuilder<ShardStatistics>> fn) {
-			return this.shards(fn.apply(new ShardStatistics.Builder()).build());
+		public final Builder shards(Consumer<ShardStatistics.Builder> fn) {
+			ShardStatistics.Builder builder = new ShardStatistics.Builder();
+			fn.accept(builder);
+			return this.shards(builder.build());
 		}
 
 		/**

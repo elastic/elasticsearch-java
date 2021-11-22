@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 
 // typedef: _types.analysis.LetterTokenizer
 @JsonpDeserializable
@@ -43,16 +43,18 @@ public class LetterTokenizer extends TokenizerBase implements TokenizerDefinitio
 
 	}
 
-	public static LetterTokenizer of(Function<Builder, ObjectBuilder<LetterTokenizer>> fn) {
-		return fn.apply(new Builder()).build();
+	public static LetterTokenizer of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
-	 * {@link TokenizerDefinition} variant type
+	 * TokenizerDefinition variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "letter";
+	public TokenizerDefinition.Kind _tokenizerDefinitionKind() {
+		return TokenizerDefinition.Kind.Letter;
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {

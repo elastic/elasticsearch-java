@@ -35,7 +35,7 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: snapshot._types.SnapshotShardFailure
@@ -63,8 +63,10 @@ public class SnapshotShardFailure implements JsonpSerializable {
 
 	}
 
-	public static SnapshotShardFailure of(Function<Builder, ObjectBuilder<SnapshotShardFailure>> fn) {
-		return fn.apply(new Builder()).build();
+	public static SnapshotShardFailure of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**

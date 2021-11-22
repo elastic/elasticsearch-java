@@ -39,7 +39,7 @@ import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
-import co.elastic.clients.transport.SimpleEndpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
@@ -51,7 +51,7 @@ import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import java.util.function.Supplier;
 import javax.annotation.Nullable;
 
@@ -148,8 +148,10 @@ public class UpdateRequest<TDocument, TPartialDocument> extends RequestBase impl
 	}
 
 	public static <TDocument, TPartialDocument> UpdateRequest<TDocument, TPartialDocument> of(
-			Function<Builder<TDocument, TPartialDocument>, ObjectBuilder<UpdateRequest<TDocument, TPartialDocument>>> fn) {
-		return fn.apply(new Builder<>()).build();
+			Consumer<Builder<TDocument, TPartialDocument>> fn) {
+		Builder<TDocument, TPartialDocument> builder = new Builder<>();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -486,9 +488,10 @@ public class UpdateRequest<TDocument, TPartialDocument> extends RequestBase impl
 		 * <p>
 		 * API name: {@code _source}
 		 */
-		public final Builder<TDocument, TPartialDocument> source(
-				Function<SourceConfig.Builder, ObjectBuilder<SourceConfig>> fn) {
-			return this.source(fn.apply(new SourceConfig.Builder()).build());
+		public final Builder<TDocument, TPartialDocument> source(Consumer<SourceConfig.Builder> fn) {
+			SourceConfig.Builder builder = new SourceConfig.Builder();
+			fn.accept(builder);
+			return this.source(builder.build());
 		}
 
 		/**
@@ -630,8 +633,10 @@ public class UpdateRequest<TDocument, TPartialDocument> extends RequestBase impl
 		 * <p>
 		 * API name: {@code script}
 		 */
-		public final Builder<TDocument, TPartialDocument> script(Function<Script.Builder, ObjectBuilder<Script>> fn) {
-			return this.script(fn.apply(new Script.Builder()).build());
+		public final Builder<TDocument, TPartialDocument> script(Consumer<Script.Builder> fn) {
+			Script.Builder builder = new Script.Builder();
+			fn.accept(builder);
+			return this.script(builder.build());
 		}
 
 		/**
@@ -663,8 +668,10 @@ public class UpdateRequest<TDocument, TPartialDocument> extends RequestBase impl
 		 * <p>
 		 * API name: {@code timeout}
 		 */
-		public final Builder<TDocument, TPartialDocument> timeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
-			return this.timeout(fn.apply(new Time.Builder()).build());
+		public final Builder<TDocument, TPartialDocument> timeout(Consumer<Time.Builder> fn) {
+			Time.Builder builder = new Time.Builder();
+			fn.accept(builder);
+			return this.timeout(builder.build());
 		}
 
 		/**
@@ -710,8 +717,10 @@ public class UpdateRequest<TDocument, TPartialDocument> extends RequestBase impl
 		 * API name: {@code wait_for_active_shards}
 		 */
 		public final Builder<TDocument, TPartialDocument> waitForActiveShards(
-				Function<WaitForActiveShards.Builder, ObjectBuilder<WaitForActiveShards>> fn) {
-			return this.waitForActiveShards(fn.apply(new WaitForActiveShards.Builder()).build());
+				Consumer<WaitForActiveShards.Builder> fn) {
+			WaitForActiveShards.Builder builder = new WaitForActiveShards.Builder();
+			fn.accept(builder);
+			return this.waitForActiveShards(builder.build());
 		}
 
 		/**

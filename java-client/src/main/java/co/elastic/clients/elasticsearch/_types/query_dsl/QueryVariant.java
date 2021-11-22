@@ -23,12 +23,12 @@
 
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
-import co.elastic.clients.util.UnionVariant;
-
 /**
  * Base interface for {@link Query} variants.
  */
-public interface QueryVariant extends UnionVariant {
+public interface QueryVariant {
+
+	Query.Kind _queryKind();
 
 	default Query _toQuery() {
 		return new Query(this);

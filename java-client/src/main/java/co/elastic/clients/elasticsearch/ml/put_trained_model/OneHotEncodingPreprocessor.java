@@ -36,7 +36,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: ml.put_trained_model.OneHotEncodingPreprocessor
@@ -55,16 +55,18 @@ public class OneHotEncodingPreprocessor implements PreprocessorVariant, JsonpSer
 
 	}
 
-	public static OneHotEncodingPreprocessor of(Function<Builder, ObjectBuilder<OneHotEncodingPreprocessor>> fn) {
-		return fn.apply(new Builder()).build();
+	public static OneHotEncodingPreprocessor of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
-	 * {@link Preprocessor} variant type
+	 * Preprocessor variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "one_hot_encoding";
+	public Preprocessor.Kind _preprocessorKind() {
+		return Preprocessor.Kind.OneHotEncoding;
 	}
 
 	/**

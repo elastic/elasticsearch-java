@@ -30,16 +30,17 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -93,8 +94,10 @@ public class AnalysisConfigRead implements JsonpSerializable {
 
 	}
 
-	public static AnalysisConfigRead of(Function<Builder, ObjectBuilder<AnalysisConfigRead>> fn) {
-		return fn.apply(new Builder()).build();
+	public static AnalysisConfigRead of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -426,9 +429,10 @@ public class AnalysisConfigRead implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code categorization_analyzer}
 		 */
-		public final Builder categorizationAnalyzer(
-				Function<CategorizationAnalyzer.Builder, ObjectBuilder<CategorizationAnalyzer>> fn) {
-			return this.categorizationAnalyzer(fn.apply(new CategorizationAnalyzer.Builder()).build());
+		public final Builder categorizationAnalyzer(Consumer<CategorizationAnalyzer.Builder> fn) {
+			CategorizationAnalyzer.Builder builder = new CategorizationAnalyzer.Builder();
+			fn.accept(builder);
+			return this.categorizationAnalyzer(builder.build());
 		}
 
 		/**
@@ -522,13 +526,9 @@ public class AnalysisConfigRead implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code detectors}
 		 */
-		@SafeVarargs
-		public final Builder detectors(Function<Detector.Builder, ObjectBuilder<Detector>>... fns) {
-			this.detectors = new ArrayList<>(fns.length);
-			for (Function<Detector.Builder, ObjectBuilder<Detector>> fn : fns) {
-				this.detectors.add(fn.apply(new Detector.Builder()).build());
-			}
-			return this;
+		public final Builder detectors(
+				Function<ListBuilder<Detector, Detector.Builder>, ObjectBuilder<List<Detector>>> fn) {
+			return detectors(fn.apply(new ListBuilder<>(Detector.Builder::new)).build());
 		}
 
 		/**
@@ -586,8 +586,10 @@ public class AnalysisConfigRead implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code model_prune_window}
 		 */
-		public final Builder modelPruneWindow(Function<Time.Builder, ObjectBuilder<Time>> fn) {
-			return this.modelPruneWindow(fn.apply(new Time.Builder()).build());
+		public final Builder modelPruneWindow(Consumer<Time.Builder> fn) {
+			Time.Builder builder = new Time.Builder();
+			fn.accept(builder);
+			return this.modelPruneWindow(builder.build());
 		}
 
 		/**
@@ -611,8 +613,10 @@ public class AnalysisConfigRead implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code latency}
 		 */
-		public final Builder latency(Function<Time.Builder, ObjectBuilder<Time>> fn) {
-			return this.latency(fn.apply(new Time.Builder()).build());
+		public final Builder latency(Consumer<Time.Builder> fn) {
+			Time.Builder builder = new Time.Builder();
+			fn.accept(builder);
+			return this.latency(builder.build());
 		}
 
 		/**
@@ -651,9 +655,10 @@ public class AnalysisConfigRead implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code per_partition_categorization}
 		 */
-		public final Builder perPartitionCategorization(
-				Function<PerPartitionCategorization.Builder, ObjectBuilder<PerPartitionCategorization>> fn) {
-			return this.perPartitionCategorization(fn.apply(new PerPartitionCategorization.Builder()).build());
+		public final Builder perPartitionCategorization(Consumer<PerPartitionCategorization.Builder> fn) {
+			PerPartitionCategorization.Builder builder = new PerPartitionCategorization.Builder();
+			fn.accept(builder);
+			return this.perPartitionCategorization(builder.build());
 		}
 
 		/**

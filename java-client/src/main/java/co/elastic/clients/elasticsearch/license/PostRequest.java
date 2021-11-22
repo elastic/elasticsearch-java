@@ -32,18 +32,19 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
-import co.elastic.clients.transport.SimpleEndpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
+import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -68,8 +69,10 @@ public class PostRequest extends RequestBase implements JsonpSerializable {
 
 	}
 
-	public static PostRequest of(Function<Builder, ObjectBuilder<PostRequest>> fn) {
-		return fn.apply(new Builder()).build();
+	public static PostRequest of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -162,8 +165,10 @@ public class PostRequest extends RequestBase implements JsonpSerializable {
 		/**
 		 * API name: {@code license}
 		 */
-		public final Builder license(Function<License.Builder, ObjectBuilder<License>> fn) {
-			return this.license(fn.apply(new License.Builder()).build());
+		public final Builder license(Consumer<License.Builder> fn) {
+			License.Builder builder = new License.Builder();
+			fn.accept(builder);
+			return this.license(builder.build());
 		}
 
 		/**
@@ -185,13 +190,9 @@ public class PostRequest extends RequestBase implements JsonpSerializable {
 		/**
 		 * API name: {@code licenses}
 		 */
-		@SafeVarargs
-		public final Builder licenses(Function<License.Builder, ObjectBuilder<License>>... fns) {
-			this.licenses = new ArrayList<>(fns.length);
-			for (Function<License.Builder, ObjectBuilder<License>> fn : fns) {
-				this.licenses.add(fn.apply(new License.Builder()).build());
-			}
-			return this;
+		public final Builder licenses(
+				Function<ListBuilder<License, License.Builder>, ObjectBuilder<List<License>>> fn) {
+			return licenses(fn.apply(new ListBuilder<>(License.Builder::new)).build());
 		}
 
 		/**

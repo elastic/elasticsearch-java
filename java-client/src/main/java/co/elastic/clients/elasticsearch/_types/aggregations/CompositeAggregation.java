@@ -37,7 +37,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.CompositeAggregation
@@ -61,16 +61,18 @@ public class CompositeAggregation extends BucketAggregationBase implements Aggre
 
 	}
 
-	public static CompositeAggregation of(Function<Builder, ObjectBuilder<CompositeAggregation>> fn) {
-		return fn.apply(new Builder()).build();
+	public static CompositeAggregation of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
-	 * {@link Aggregation} variant type
+	 * Aggregation variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "composite";
+	public Aggregation.Kind _aggregationKind() {
+		return Aggregation.Kind.Composite;
 	}
 
 	/**

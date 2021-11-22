@@ -36,9 +36,9 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.Collections;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -61,8 +61,10 @@ public class ClearCachedRolesResponse implements JsonpSerializable {
 
 	}
 
-	public static ClearCachedRolesResponse of(Function<Builder, ObjectBuilder<ClearCachedRolesResponse>> fn) {
-		return fn.apply(new Builder()).build();
+	public static ClearCachedRolesResponse of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -140,8 +142,10 @@ public class ClearCachedRolesResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code _nodes}
 		 */
-		public final Builder nodeStats(Function<NodeStatistics.Builder, ObjectBuilder<NodeStatistics>> fn) {
-			return this.nodeStats(fn.apply(new NodeStatistics.Builder()).build());
+		public final Builder nodeStats(Consumer<NodeStatistics.Builder> fn) {
+			NodeStatistics.Builder builder = new NodeStatistics.Builder();
+			fn.accept(builder);
+			return this.nodeStats(builder.build());
 		}
 
 		/**
@@ -158,13 +162,6 @@ public class ClearCachedRolesResponse implements JsonpSerializable {
 		public final Builder nodes(Map<String, ClusterNode> value) {
 			this.nodes = value;
 			return this;
-		}
-
-		/**
-		 * Set {@link #nodes(Map)} to a singleton map.
-		 */
-		public Builder nodes(String key, Function<ClusterNode.Builder, ObjectBuilder<ClusterNode>> fn) {
-			return this.nodes(Collections.singletonMap(key, fn.apply(new ClusterNode.Builder()).build()));
 		}
 
 		public final Builder nodes(

@@ -36,7 +36,7 @@ import java.lang.String;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: _types.analysis.NoriTokenizer
@@ -65,16 +65,18 @@ public class NoriTokenizer extends TokenizerBase implements TokenizerDefinitionV
 
 	}
 
-	public static NoriTokenizer of(Function<Builder, ObjectBuilder<NoriTokenizer>> fn) {
-		return fn.apply(new Builder()).build();
+	public static NoriTokenizer of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
-	 * {@link TokenizerDefinition} variant type
+	 * TokenizerDefinition variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "nori_tokenizer";
+	public TokenizerDefinition.Kind _tokenizerDefinitionKind() {
+		return TokenizerDefinition.Kind.NoriTokenizer;
 	}
 
 	/**

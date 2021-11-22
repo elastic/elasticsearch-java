@@ -35,7 +35,7 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: nodes.info.NodeInfoNetwork
@@ -54,8 +54,10 @@ public class NodeInfoNetwork implements JsonpSerializable {
 
 	}
 
-	public static NodeInfoNetwork of(Function<Builder, ObjectBuilder<NodeInfoNetwork>> fn) {
-		return fn.apply(new Builder()).build();
+	public static NodeInfoNetwork of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -112,9 +114,10 @@ public class NodeInfoNetwork implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code primary_interface}
 		 */
-		public final Builder primaryInterface(
-				Function<NodeInfoNetworkInterface.Builder, ObjectBuilder<NodeInfoNetworkInterface>> fn) {
-			return this.primaryInterface(fn.apply(new NodeInfoNetworkInterface.Builder()).build());
+		public final Builder primaryInterface(Consumer<NodeInfoNetworkInterface.Builder> fn) {
+			NodeInfoNetworkInterface.Builder builder = new NodeInfoNetworkInterface.Builder();
+			fn.accept(builder);
+			return this.primaryInterface(builder.build());
 		}
 
 		/**

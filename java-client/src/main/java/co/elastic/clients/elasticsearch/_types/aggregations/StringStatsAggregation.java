@@ -32,7 +32,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.StringStatsAggregation
@@ -50,16 +50,18 @@ public class StringStatsAggregation extends MetricAggregationBase implements Agg
 
 	}
 
-	public static StringStatsAggregation of(Function<Builder, ObjectBuilder<StringStatsAggregation>> fn) {
-		return fn.apply(new Builder()).build();
+	public static StringStatsAggregation of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
-	 * {@link Aggregation} variant type
+	 * Aggregation variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "string_stats";
+	public Aggregation.Kind _aggregationKind() {
+		return Aggregation.Kind.StringStats;
 	}
 
 	/**

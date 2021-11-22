@@ -30,15 +30,14 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.MapBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -186,13 +185,9 @@ public class ListResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code node_failures}
 		 */
-		@SafeVarargs
-		public final BuilderT nodeFailures(Function<ErrorCause.Builder, ObjectBuilder<ErrorCause>>... fns) {
-			this.nodeFailures = new ArrayList<>(fns.length);
-			for (Function<ErrorCause.Builder, ObjectBuilder<ErrorCause>> fn : fns) {
-				this.nodeFailures.add(fn.apply(new ErrorCause.Builder()).build());
-			}
-			return self();
+		public final BuilderT nodeFailures(
+				Function<ListBuilder<ErrorCause, ErrorCause.Builder>, ObjectBuilder<List<ErrorCause>>> fn) {
+			return nodeFailures(fn.apply(new ListBuilder<>(ErrorCause.Builder::new)).build());
 		}
 
 		/**
@@ -201,13 +196,6 @@ public class ListResponse implements JsonpSerializable {
 		public final BuilderT nodes(@Nullable Map<String, TaskExecutingNode> value) {
 			this.nodes = value;
 			return self();
-		}
-
-		/**
-		 * Set {@link #nodes(Map)} to a singleton map.
-		 */
-		public BuilderT nodes(String key, Function<TaskExecutingNode.Builder, ObjectBuilder<TaskExecutingNode>> fn) {
-			return this.nodes(Collections.singletonMap(key, fn.apply(new TaskExecutingNode.Builder()).build()));
 		}
 
 		public final BuilderT nodes(
@@ -221,13 +209,6 @@ public class ListResponse implements JsonpSerializable {
 		public final BuilderT tasks(@Nullable Map<String, Info> value) {
 			this.tasks = value;
 			return self();
-		}
-
-		/**
-		 * Set {@link #tasks(Map)} to a singleton map.
-		 */
-		public BuilderT tasks(String key, Function<Info.Builder, ObjectBuilder<Info>> fn) {
-			return this.tasks(Collections.singletonMap(key, fn.apply(new Info.Builder()).build()));
 		}
 
 		public final BuilderT tasks(

@@ -23,6 +23,7 @@
 
 package co.elastic.clients.elasticsearch.watcher;
 
+import co.elastic.clients.json.JsonEnum;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -37,22 +38,41 @@ import co.elastic.clients.util.TaggedUnionUtils;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Object;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.TriggerEventContainer
 // union type: Container[]
 @JsonpDeserializable
-public class TriggerEvent implements TaggedUnion<Object>, JsonpSerializable {
+public class TriggerEvent implements TaggedUnion<TriggerEvent.Kind, Object>, JsonpSerializable {
 
-	public static final String SCHEDULE = "schedule";
+	/**
+	 * {@link TriggerEvent} variant kinds.
+	 */
 
-	private final String _type;
+	public enum Kind implements JsonEnum {
+		Schedule("schedule"),
+
+		;
+
+		private final String jsonValue;
+
+		Kind(String jsonValue) {
+			this.jsonValue = jsonValue;
+		}
+
+		public String jsonValue() {
+			return this.jsonValue;
+		}
+
+	}
+
+	private final Kind _kind;
 	private final Object _value;
 
 	@Override
-	public final String _type() {
-		return _type;
+	public final Kind _kind() {
+		return _kind;
 	}
 
 	@Override
@@ -62,20 +82,29 @@ public class TriggerEvent implements TaggedUnion<Object>, JsonpSerializable {
 
 	public TriggerEvent(TriggerEventVariant value) {
 
-		this._type = ModelTypeHelper.requireNonNull(value._variantType(), this, "<variant type>");
+		this._kind = ModelTypeHelper.requireNonNull(value._triggerEventKind(), this, "<variant kind>");
 		this._value = ModelTypeHelper.requireNonNull(value, this, "<variant value>");
 
 	}
 
 	private TriggerEvent(Builder builder) {
 
-		this._type = ModelTypeHelper.requireNonNull(builder._type, builder, "<variant type>");
+		this._kind = ModelTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
 		this._value = ModelTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
 
 	}
 
-	public static TriggerEvent of(Function<Builder, ObjectBuilder<TriggerEvent>> fn) {
-		return fn.apply(new Builder()).build();
+	public static TriggerEvent of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
+	}
+
+	/**
+	 * Is this variant instance of kind {@code schedule}?
+	 */
+	public boolean isSchedule() {
+		return _kind == Kind.Schedule;
 	}
 
 	/**
@@ -85,7 +114,7 @@ public class TriggerEvent implements TaggedUnion<Object>, JsonpSerializable {
 	 *             if the current variant is not of the {@code schedule} kind.
 	 */
 	public ScheduleTriggerEvent schedule() {
-		return TaggedUnionUtils.get(this, SCHEDULE);
+		return TaggedUnionUtils.get(this, Kind.Schedule);
 	}
 
 	@Override
@@ -94,7 +123,7 @@ public class TriggerEvent implements TaggedUnion<Object>, JsonpSerializable {
 
 		generator.writeStartObject();
 
-		generator.writeKey(_type);
+		generator.writeKey(_kind.jsonValue());
 		if (_value instanceof JsonpSerializable) {
 			((JsonpSerializable) _value).serialize(generator, mapper);
 		}
@@ -104,17 +133,19 @@ public class TriggerEvent implements TaggedUnion<Object>, JsonpSerializable {
 	}
 
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TriggerEvent> {
-		private String _type;
+		private Kind _kind;
 		private Object _value;
 
 		public Builder schedule(ScheduleTriggerEvent v) {
-			this._type = SCHEDULE;
+			this._kind = Kind.Schedule;
 			this._value = v;
 			return this;
 		}
 
-		public Builder schedule(Function<ScheduleTriggerEvent.Builder, ObjectBuilder<ScheduleTriggerEvent>> f) {
-			return this.schedule(f.apply(new ScheduleTriggerEvent.Builder()).build());
+		public Builder schedule(Consumer<ScheduleTriggerEvent.Builder> fn) {
+			ScheduleTriggerEvent.Builder builder = new ScheduleTriggerEvent.Builder();
+			fn.accept(builder);
+			return this.schedule(builder.build());
 		}
 
 		public TriggerEvent build() {

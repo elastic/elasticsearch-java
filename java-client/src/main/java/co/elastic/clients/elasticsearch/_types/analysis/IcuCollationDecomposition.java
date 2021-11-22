@@ -23,13 +23,17 @@
 
 package co.elastic.clients.elasticsearch._types.analysis;
 
+import co.elastic.clients.json.JsonEnum;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
-import co.elastic.clients.util.StringEnum;
 
 @JsonpDeserializable
-public enum IcuCollationDecomposition implements StringEnum {
-	No("no"), Identical("identical");
+public enum IcuCollationDecomposition implements JsonEnum {
+	No("no"),
+
+	Identical("identical"),
+
+	;
 
 	private final String jsonValue;
 
@@ -41,6 +45,6 @@ public enum IcuCollationDecomposition implements StringEnum {
 		return this.jsonValue;
 	}
 
-	public static final StringEnum.Deserializer<IcuCollationDecomposition> _DESERIALIZER = new StringEnum.Deserializer<>(
+	public static final JsonEnum.Deserializer<IcuCollationDecomposition> _DESERIALIZER = new JsonEnum.Deserializer<>(
 			IcuCollationDecomposition.values());
 }

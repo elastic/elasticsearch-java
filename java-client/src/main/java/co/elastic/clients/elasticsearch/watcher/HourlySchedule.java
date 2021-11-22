@@ -37,7 +37,7 @@ import java.lang.Integer;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.HourlySchedule
@@ -53,16 +53,18 @@ public class HourlySchedule implements ScheduleVariant, JsonpSerializable {
 
 	}
 
-	public static HourlySchedule of(Function<Builder, ObjectBuilder<HourlySchedule>> fn) {
-		return fn.apply(new Builder()).build();
+	public static HourlySchedule of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
-	 * {@link Schedule} variant type
+	 * Schedule variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "hourly";
+	public Schedule.Kind _scheduleKind() {
+		return Schedule.Kind.Hourly;
 	}
 
 	/**

@@ -36,7 +36,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.Long;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 
 // typedef: nodes._types.Http
 @JsonpDeserializable
@@ -54,8 +54,10 @@ public class Http implements JsonpSerializable {
 
 	}
 
-	public static Http of(Function<Builder, ObjectBuilder<Http>> fn) {
-		return fn.apply(new Builder()).build();
+	public static Http of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**

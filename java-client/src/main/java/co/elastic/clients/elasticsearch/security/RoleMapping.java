@@ -31,17 +31,18 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -70,8 +71,10 @@ public class RoleMapping implements JsonpSerializable {
 
 	}
 
-	public static RoleMapping of(Function<Builder, ObjectBuilder<RoleMapping>> fn) {
-		return fn.apply(new Builder()).build();
+	public static RoleMapping of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -220,8 +223,10 @@ public class RoleMapping implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code rules}
 		 */
-		public final Builder rules(Function<RoleMappingRule.Builder, ObjectBuilder<RoleMappingRule>> fn) {
-			return this.rules(fn.apply(new RoleMappingRule.Builder()).build());
+		public final Builder rules(Consumer<RoleMappingRule.Builder> fn) {
+			RoleMappingRule.Builder builder = new RoleMappingRule.Builder();
+			fn.accept(builder);
+			return this.rules(builder.build());
 		}
 
 		/**
@@ -243,13 +248,9 @@ public class RoleMapping implements JsonpSerializable {
 		/**
 		 * API name: {@code role_templates}
 		 */
-		@SafeVarargs
-		public final Builder roleTemplates(Function<RoleTemplate.Builder, ObjectBuilder<RoleTemplate>>... fns) {
-			this.roleTemplates = new ArrayList<>(fns.length);
-			for (Function<RoleTemplate.Builder, ObjectBuilder<RoleTemplate>> fn : fns) {
-				this.roleTemplates.add(fn.apply(new RoleTemplate.Builder()).build());
-			}
-			return this;
+		public final Builder roleTemplates(
+				Function<ListBuilder<RoleTemplate, RoleTemplate.Builder>, ObjectBuilder<List<RoleTemplate>>> fn) {
+			return roleTemplates(fn.apply(new ListBuilder<>(RoleTemplate.Builder::new)).build());
 		}
 
 		/**

@@ -35,7 +35,7 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 
 // typedef: ml.put_trained_model.Weights
 @JsonpDeserializable
@@ -50,8 +50,10 @@ public class Weights implements JsonpSerializable {
 
 	}
 
-	public static Weights of(Function<Builder, ObjectBuilder<Weights>> fn) {
-		return fn.apply(new Builder()).build();
+	public static Weights of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**

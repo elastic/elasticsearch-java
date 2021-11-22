@@ -38,7 +38,7 @@ import java.lang.String;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.HttpInputResponseResult
@@ -60,8 +60,10 @@ public class HttpInputResponseResult implements JsonpSerializable {
 
 	}
 
-	public static HttpInputResponseResult of(Function<Builder, ObjectBuilder<HttpInputResponseResult>> fn) {
-		return fn.apply(new Builder()).build();
+	public static HttpInputResponseResult of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**

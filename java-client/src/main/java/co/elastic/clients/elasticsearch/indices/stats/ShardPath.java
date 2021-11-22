@@ -36,7 +36,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: indices.stats.ShardPath
@@ -58,8 +58,10 @@ public class ShardPath implements JsonpSerializable {
 
 	}
 
-	public static ShardPath of(Function<Builder, ObjectBuilder<ShardPath>> fn) {
-		return fn.apply(new Builder()).build();
+	public static ShardPath of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**

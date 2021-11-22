@@ -31,6 +31,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.MapBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
@@ -38,12 +39,11 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -139,8 +139,10 @@ public class NodeInfo implements JsonpSerializable {
 
 	}
 
-	public static NodeInfo of(Function<Builder, ObjectBuilder<NodeInfo>> fn) {
-		return fn.apply(new Builder()).build();
+	public static NodeInfo of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -612,8 +614,10 @@ public class NodeInfo implements JsonpSerializable {
 		/**
 		 * API name: {@code http}
 		 */
-		public final Builder http(Function<NodeInfoHttp.Builder, ObjectBuilder<NodeInfoHttp>> fn) {
-			return this.http(fn.apply(new NodeInfoHttp.Builder()).build());
+		public final Builder http(Consumer<NodeInfoHttp.Builder> fn) {
+			NodeInfoHttp.Builder builder = new NodeInfoHttp.Builder();
+			fn.accept(builder);
+			return this.http(builder.build());
 		}
 
 		/**
@@ -637,8 +641,10 @@ public class NodeInfo implements JsonpSerializable {
 		/**
 		 * API name: {@code jvm}
 		 */
-		public final Builder jvm(Function<NodeJvmInfo.Builder, ObjectBuilder<NodeJvmInfo>> fn) {
-			return this.jvm(fn.apply(new NodeJvmInfo.Builder()).build());
+		public final Builder jvm(Consumer<NodeJvmInfo.Builder> fn) {
+			NodeJvmInfo.Builder builder = new NodeJvmInfo.Builder();
+			fn.accept(builder);
+			return this.jvm(builder.build());
 		}
 
 		/**
@@ -662,8 +668,10 @@ public class NodeInfo implements JsonpSerializable {
 		/**
 		 * API name: {@code network}
 		 */
-		public final Builder network(Function<NodeInfoNetwork.Builder, ObjectBuilder<NodeInfoNetwork>> fn) {
-			return this.network(fn.apply(new NodeInfoNetwork.Builder()).build());
+		public final Builder network(Consumer<NodeInfoNetwork.Builder> fn) {
+			NodeInfoNetwork.Builder builder = new NodeInfoNetwork.Builder();
+			fn.accept(builder);
+			return this.network(builder.build());
 		}
 
 		/**
@@ -677,8 +685,10 @@ public class NodeInfo implements JsonpSerializable {
 		/**
 		 * API name: {@code os}
 		 */
-		public final Builder os(Function<NodeOperatingSystemInfo.Builder, ObjectBuilder<NodeOperatingSystemInfo>> fn) {
-			return this.os(fn.apply(new NodeOperatingSystemInfo.Builder()).build());
+		public final Builder os(Consumer<NodeOperatingSystemInfo.Builder> fn) {
+			NodeOperatingSystemInfo.Builder builder = new NodeOperatingSystemInfo.Builder();
+			fn.accept(builder);
+			return this.os(builder.build());
 		}
 
 		/**
@@ -700,13 +710,9 @@ public class NodeInfo implements JsonpSerializable {
 		/**
 		 * API name: {@code plugins}
 		 */
-		@SafeVarargs
-		public final Builder plugins(Function<PluginStats.Builder, ObjectBuilder<PluginStats>>... fns) {
-			this.plugins = new ArrayList<>(fns.length);
-			for (Function<PluginStats.Builder, ObjectBuilder<PluginStats>> fn : fns) {
-				this.plugins.add(fn.apply(new PluginStats.Builder()).build());
-			}
-			return this;
+		public final Builder plugins(
+				Function<ListBuilder<PluginStats, PluginStats.Builder>, ObjectBuilder<List<PluginStats>>> fn) {
+			return plugins(fn.apply(new ListBuilder<>(PluginStats.Builder::new)).build());
 		}
 
 		/**
@@ -720,8 +726,10 @@ public class NodeInfo implements JsonpSerializable {
 		/**
 		 * API name: {@code process}
 		 */
-		public final Builder process(Function<NodeProcessInfo.Builder, ObjectBuilder<NodeProcessInfo>> fn) {
-			return this.process(fn.apply(new NodeProcessInfo.Builder()).build());
+		public final Builder process(Consumer<NodeProcessInfo.Builder> fn) {
+			NodeProcessInfo.Builder builder = new NodeProcessInfo.Builder();
+			fn.accept(builder);
+			return this.process(builder.build());
 		}
 
 		/**
@@ -751,8 +759,10 @@ public class NodeInfo implements JsonpSerializable {
 		/**
 		 * API name: {@code settings}
 		 */
-		public final Builder settings(Function<NodeInfoSettings.Builder, ObjectBuilder<NodeInfoSettings>> fn) {
-			return this.settings(fn.apply(new NodeInfoSettings.Builder()).build());
+		public final Builder settings(Consumer<NodeInfoSettings.Builder> fn) {
+			NodeInfoSettings.Builder builder = new NodeInfoSettings.Builder();
+			fn.accept(builder);
+			return this.settings(builder.build());
 		}
 
 		/**
@@ -761,14 +771,6 @@ public class NodeInfo implements JsonpSerializable {
 		public final Builder threadPool(@Nullable Map<String, NodeThreadPoolInfo> value) {
 			this.threadPool = value;
 			return this;
-		}
-
-		/**
-		 * Set {@link #threadPool(Map)} to a singleton map.
-		 */
-		public Builder threadPool(String key,
-				Function<NodeThreadPoolInfo.Builder, ObjectBuilder<NodeThreadPoolInfo>> fn) {
-			return this.threadPool(Collections.singletonMap(key, fn.apply(new NodeThreadPoolInfo.Builder()).build()));
 		}
 
 		public final Builder threadPool(
@@ -809,8 +811,10 @@ public class NodeInfo implements JsonpSerializable {
 		/**
 		 * API name: {@code transport}
 		 */
-		public final Builder transport(Function<NodeInfoTransport.Builder, ObjectBuilder<NodeInfoTransport>> fn) {
-			return this.transport(fn.apply(new NodeInfoTransport.Builder()).build());
+		public final Builder transport(Consumer<NodeInfoTransport.Builder> fn) {
+			NodeInfoTransport.Builder builder = new NodeInfoTransport.Builder();
+			fn.accept(builder);
+			return this.transport(builder.build());
 		}
 
 		/**
@@ -852,13 +856,9 @@ public class NodeInfo implements JsonpSerializable {
 		/**
 		 * API name: {@code modules}
 		 */
-		@SafeVarargs
-		public final Builder modules(Function<PluginStats.Builder, ObjectBuilder<PluginStats>>... fns) {
-			this.modules = new ArrayList<>(fns.length);
-			for (Function<PluginStats.Builder, ObjectBuilder<PluginStats>> fn : fns) {
-				this.modules.add(fn.apply(new PluginStats.Builder()).build());
-			}
-			return this;
+		public final Builder modules(
+				Function<ListBuilder<PluginStats, PluginStats.Builder>, ObjectBuilder<List<PluginStats>>> fn) {
+			return modules(fn.apply(new ListBuilder<>(PluginStats.Builder::new)).build());
 		}
 
 		/**
@@ -872,8 +872,10 @@ public class NodeInfo implements JsonpSerializable {
 		/**
 		 * API name: {@code ingest}
 		 */
-		public final Builder ingest(Function<NodeInfoIngest.Builder, ObjectBuilder<NodeInfoIngest>> fn) {
-			return this.ingest(fn.apply(new NodeInfoIngest.Builder()).build());
+		public final Builder ingest(Consumer<NodeInfoIngest.Builder> fn) {
+			NodeInfoIngest.Builder builder = new NodeInfoIngest.Builder();
+			fn.accept(builder);
+			return this.ingest(builder.build());
 		}
 
 		/**
@@ -882,15 +884,6 @@ public class NodeInfo implements JsonpSerializable {
 		public final Builder aggregations(@Nullable Map<String, NodeInfoAggregation> value) {
 			this.aggregations = value;
 			return this;
-		}
-
-		/**
-		 * Set {@link #aggregations(Map)} to a singleton map.
-		 */
-		public Builder aggregations(String key,
-				Function<NodeInfoAggregation.Builder, ObjectBuilder<NodeInfoAggregation>> fn) {
-			return this
-					.aggregations(Collections.singletonMap(key, fn.apply(new NodeInfoAggregation.Builder()).build()));
 		}
 
 		public final Builder aggregations(

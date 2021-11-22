@@ -35,9 +35,9 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.Collections;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -57,8 +57,10 @@ public class Ingest implements JsonpSerializable {
 
 	}
 
-	public static Ingest of(Function<Builder, ObjectBuilder<Ingest>> fn) {
-		return fn.apply(new Builder()).build();
+	public static Ingest of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -120,13 +122,6 @@ public class Ingest implements JsonpSerializable {
 			return this;
 		}
 
-		/**
-		 * Set {@link #pipelines(Map)} to a singleton map.
-		 */
-		public Builder pipelines(String key, Function<IngestTotal.Builder, ObjectBuilder<IngestTotal>> fn) {
-			return this.pipelines(Collections.singletonMap(key, fn.apply(new IngestTotal.Builder()).build()));
-		}
-
 		public final Builder pipelines(
 				Function<MapBuilder<String, IngestTotal, IngestTotal.Builder>, ObjectBuilder<Map<String, IngestTotal>>> fn) {
 			return pipelines(fn.apply(new MapBuilder<>(IngestTotal.Builder::new)).build());
@@ -143,8 +138,10 @@ public class Ingest implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code total}
 		 */
-		public final Builder total(Function<IngestTotal.Builder, ObjectBuilder<IngestTotal>> fn) {
-			return this.total(fn.apply(new IngestTotal.Builder()).build());
+		public final Builder total(Consumer<IngestTotal.Builder> fn) {
+			IngestTotal.Builder builder = new IngestTotal.Builder();
+			fn.accept(builder);
+			return this.total(builder.build());
 		}
 
 		/**

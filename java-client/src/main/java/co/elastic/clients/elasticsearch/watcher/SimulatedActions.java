@@ -38,7 +38,7 @@ import java.lang.String;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.SimulatedActions
@@ -60,8 +60,10 @@ public class SimulatedActions implements JsonpSerializable {
 
 	}
 
-	public static SimulatedActions of(Function<Builder, ObjectBuilder<SimulatedActions>> fn) {
-		return fn.apply(new Builder()).build();
+	public static SimulatedActions of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -153,8 +155,10 @@ public class SimulatedActions implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code all}
 		 */
-		public final Builder all(Function<SimulatedActions.Builder, ObjectBuilder<SimulatedActions>> fn) {
-			return this.all(fn.apply(new SimulatedActions.Builder()).build());
+		public final Builder all(Consumer<SimulatedActions.Builder> fn) {
+			SimulatedActions.Builder builder = new SimulatedActions.Builder();
+			fn.accept(builder);
+			return this.all(builder.build());
 		}
 
 		/**

@@ -32,7 +32,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: _types.mapping.WildcardProperty
@@ -50,16 +50,18 @@ public class WildcardProperty extends DocValuesPropertyBase implements PropertyV
 
 	}
 
-	public static WildcardProperty of(Function<Builder, ObjectBuilder<WildcardProperty>> fn) {
-		return fn.apply(new Builder()).build();
+	public static WildcardProperty of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
-	 * {@link Property} variant type
+	 * Property variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "wildcard";
+	public Property.Kind _propertyKind() {
+		return Property.Kind.Wildcard;
 	}
 
 	/**

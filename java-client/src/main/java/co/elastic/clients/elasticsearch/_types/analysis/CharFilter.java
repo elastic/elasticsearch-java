@@ -38,23 +38,25 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Object;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: _types.analysis.CharFilter
 // union type: Union[]
 @JsonpDeserializable
-public class CharFilter implements TaggedUnion<Object>, JsonpSerializable {
+public class CharFilter implements TaggedUnion<CharFilter.Kind, Object>, JsonpSerializable {
 
-	public static final String DEFINITION = "definition";
-	public static final String NAME = "name";
+	public enum Kind {
+		Definition, Name
 
-	private final String _type;
+	}
+
+	private final Kind _kind;
 	private final Object _value;
 
 	@Override
-	public final String _type() {
-		return _type;
+	public final Kind _kind() {
+		return _kind;
 	}
 
 	@Override
@@ -62,20 +64,29 @@ public class CharFilter implements TaggedUnion<Object>, JsonpSerializable {
 		return _value;
 	}
 
-	public CharFilter(String type, Object value) {
-		this._type = type;
+	public CharFilter(Kind kind, Object value) {
+		this._kind = kind;
 		this._value = value;
 	}
 
 	private CharFilter(Builder builder) {
 
-		this._type = ModelTypeHelper.requireNonNull(builder._type, builder, "<variant type>");
+		this._kind = ModelTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
 		this._value = ModelTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
 
 	}
 
-	public static CharFilter of(Function<Builder, ObjectBuilder<CharFilter>> fn) {
-		return fn.apply(new Builder()).build();
+	public static CharFilter of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
+	}
+
+	/**
+	 * Is this variant instance of kind {@code definition}?
+	 */
+	public boolean isDefinition() {
+		return _kind == Kind.Definition;
 	}
 
 	/**
@@ -85,7 +96,14 @@ public class CharFilter implements TaggedUnion<Object>, JsonpSerializable {
 	 *             if the current variant is not of the {@code definition} kind.
 	 */
 	public CharFilterDefinition definition() {
-		return TaggedUnionUtils.get(this, DEFINITION);
+		return TaggedUnionUtils.get(this, Kind.Definition);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code name}?
+	 */
+	public boolean isName() {
+		return _kind == Kind.Name;
 	}
 
 	/**
@@ -95,7 +113,7 @@ public class CharFilter implements TaggedUnion<Object>, JsonpSerializable {
 	 *             if the current variant is not of the {@code name} kind.
 	 */
 	public String name() {
-		return TaggedUnionUtils.get(this, NAME);
+		return TaggedUnionUtils.get(this, Kind.Name);
 	}
 
 	@Override
@@ -103,8 +121,8 @@ public class CharFilter implements TaggedUnion<Object>, JsonpSerializable {
 		if (_value instanceof JsonpSerializable) {
 			((JsonpSerializable) _value).serialize(generator, mapper);
 		} else {
-			switch (_type) {
-				case NAME :
+			switch (_kind) {
+				case Name :
 					generator.write(((String) this._value));
 
 					break;
@@ -114,21 +132,23 @@ public class CharFilter implements TaggedUnion<Object>, JsonpSerializable {
 	}
 
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<CharFilter> {
-		private String _type;
+		private Kind _kind;
 		private Object _value;
 
 		public Builder definition(CharFilterDefinition v) {
-			this._type = DEFINITION;
+			this._kind = Kind.Definition;
 			this._value = v;
 			return this;
 		}
 
-		public Builder definition(Function<CharFilterDefinition.Builder, ObjectBuilder<CharFilterDefinition>> f) {
-			return this.definition(f.apply(new CharFilterDefinition.Builder()).build());
+		public Builder definition(Consumer<CharFilterDefinition.Builder> fn) {
+			CharFilterDefinition.Builder builder = new CharFilterDefinition.Builder();
+			fn.accept(builder);
+			return this.definition(builder.build());
 		}
 
 		public Builder name(String v) {
-			this._type = NAME;
+			this._kind = Kind.Name;
 			this._value = v;
 			return this;
 		}
@@ -141,9 +161,9 @@ public class CharFilter implements TaggedUnion<Object>, JsonpSerializable {
 	}
 
 	private static JsonpDeserializer<CharFilter> buildCharFilterDeserializer() {
-		return new UnionDeserializer.Builder<>(CharFilter::new, false)
-				.addMember("definition", CharFilterDefinition._DESERIALIZER)
-				.addMember("name", JsonpDeserializer.stringDeserializer()).build();
+		return new UnionDeserializer.Builder<CharFilter, Kind, Object>(CharFilter::new, false)
+				.addMember(Kind.Definition, CharFilterDefinition._DESERIALIZER)
+				.addMember(Kind.Name, JsonpDeserializer.stringDeserializer()).build();
 	}
 
 	public static final JsonpDeserializer<CharFilter> _DESERIALIZER = JsonpDeserializer

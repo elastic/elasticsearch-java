@@ -36,7 +36,7 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: rollup._types.DateHistogramGrouping
@@ -76,8 +76,10 @@ public class DateHistogramGrouping implements JsonpSerializable {
 
 	}
 
-	public static DateHistogramGrouping of(Function<Builder, ObjectBuilder<DateHistogramGrouping>> fn) {
-		return fn.apply(new Builder()).build();
+	public static DateHistogramGrouping of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -219,8 +221,10 @@ public class DateHistogramGrouping implements JsonpSerializable {
 		/**
 		 * API name: {@code delay}
 		 */
-		public final Builder delay(Function<Time.Builder, ObjectBuilder<Time>> fn) {
-			return this.delay(fn.apply(new Time.Builder()).build());
+		public final Builder delay(Consumer<Time.Builder> fn) {
+			Time.Builder builder = new Time.Builder();
+			fn.accept(builder);
+			return this.delay(builder.build());
 		}
 
 		/**
@@ -250,8 +254,10 @@ public class DateHistogramGrouping implements JsonpSerializable {
 		/**
 		 * API name: {@code interval}
 		 */
-		public final Builder interval(Function<Time.Builder, ObjectBuilder<Time>> fn) {
-			return this.interval(fn.apply(new Time.Builder()).build());
+		public final Builder interval(Consumer<Time.Builder> fn) {
+			Time.Builder builder = new Time.Builder();
+			fn.accept(builder);
+			return this.interval(builder.build());
 		}
 
 		/**
@@ -265,8 +271,10 @@ public class DateHistogramGrouping implements JsonpSerializable {
 		/**
 		 * API name: {@code calendar_interval}
 		 */
-		public final Builder calendarInterval(Function<Time.Builder, ObjectBuilder<Time>> fn) {
-			return this.calendarInterval(fn.apply(new Time.Builder()).build());
+		public final Builder calendarInterval(Consumer<Time.Builder> fn) {
+			Time.Builder builder = new Time.Builder();
+			fn.accept(builder);
+			return this.calendarInterval(builder.build());
 		}
 
 		/**
@@ -280,8 +288,10 @@ public class DateHistogramGrouping implements JsonpSerializable {
 		/**
 		 * API name: {@code fixed_interval}
 		 */
-		public final Builder fixedInterval(Function<Time.Builder, ObjectBuilder<Time>> fn) {
-			return this.fixedInterval(fn.apply(new Time.Builder()).build());
+		public final Builder fixedInterval(Consumer<Time.Builder> fn) {
+			Time.Builder builder = new Time.Builder();
+			fn.accept(builder);
+			return this.fixedInterval(builder.build());
 		}
 
 		/**

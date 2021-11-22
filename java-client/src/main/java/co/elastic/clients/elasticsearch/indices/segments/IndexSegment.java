@@ -37,7 +37,7 @@ import java.lang.String;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: indices.segments.IndexSegment
@@ -53,8 +53,10 @@ public class IndexSegment implements JsonpSerializable {
 
 	}
 
-	public static IndexSegment of(Function<Builder, ObjectBuilder<IndexSegment>> fn) {
-		return fn.apply(new Builder()).build();
+	public static IndexSegment of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**

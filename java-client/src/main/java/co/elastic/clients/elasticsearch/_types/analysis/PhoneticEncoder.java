@@ -23,16 +23,37 @@
 
 package co.elastic.clients.elasticsearch._types.analysis;
 
+import co.elastic.clients.json.JsonEnum;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
-import co.elastic.clients.util.StringEnum;
 
 @JsonpDeserializable
-public enum PhoneticEncoder implements StringEnum {
-	Metaphone("metaphone"), DoubleMetaphone("double_metaphone"), Soundex("soundex"), RefinedSoundex(
-			"refined_soundex"), Caverphone1("caverphone1"), Caverphone2("caverphone2"), Cologne("cologne"), Nysiis(
-					"nysiis"), Koelnerphonetik("koelnerphonetik"), Haasephonetik(
-							"haasephonetik"), BeiderMorse("beider_morse"), DaitchMokotoff("daitch_mokotoff");
+public enum PhoneticEncoder implements JsonEnum {
+	Metaphone("metaphone"),
+
+	DoubleMetaphone("double_metaphone"),
+
+	Soundex("soundex"),
+
+	RefinedSoundex("refined_soundex"),
+
+	Caverphone1("caverphone1"),
+
+	Caverphone2("caverphone2"),
+
+	Cologne("cologne"),
+
+	Nysiis("nysiis"),
+
+	Koelnerphonetik("koelnerphonetik"),
+
+	Haasephonetik("haasephonetik"),
+
+	BeiderMorse("beider_morse"),
+
+	DaitchMokotoff("daitch_mokotoff"),
+
+	;
 
 	private final String jsonValue;
 
@@ -44,6 +65,6 @@ public enum PhoneticEncoder implements StringEnum {
 		return this.jsonValue;
 	}
 
-	public static final StringEnum.Deserializer<PhoneticEncoder> _DESERIALIZER = new StringEnum.Deserializer<>(
+	public static final JsonEnum.Deserializer<PhoneticEncoder> _DESERIALIZER = new JsonEnum.Deserializer<>(
 			PhoneticEncoder.values());
 }

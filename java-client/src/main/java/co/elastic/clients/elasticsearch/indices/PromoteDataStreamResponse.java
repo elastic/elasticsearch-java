@@ -35,7 +35,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: indices.promote_data_stream.Response
@@ -51,8 +51,10 @@ public class PromoteDataStreamResponse implements JsonpSerializable {
 
 	}
 
-	public static PromoteDataStreamResponse of(Function<Builder, ObjectBuilder<PromoteDataStreamResponse>> fn) {
-		return fn.apply(new Builder()).build();
+	public static PromoteDataStreamResponse of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**

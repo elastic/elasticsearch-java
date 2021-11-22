@@ -36,9 +36,9 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.lang.String;
-import java.util.Collections;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -97,8 +97,10 @@ public class SearchStats implements JsonpSerializable {
 
 	}
 
-	public static SearchStats of(Function<Builder, ObjectBuilder<SearchStats>> fn) {
-		return fn.apply(new Builder()).build();
+	public static SearchStats of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -412,13 +414,6 @@ public class SearchStats implements JsonpSerializable {
 		public final Builder groups(@Nullable Map<String, SearchStats> value) {
 			this.groups = value;
 			return this;
-		}
-
-		/**
-		 * Set {@link #groups(Map)} to a singleton map.
-		 */
-		public Builder groups(String key, Function<SearchStats.Builder, ObjectBuilder<SearchStats>> fn) {
-			return this.groups(Collections.singletonMap(key, fn.apply(new SearchStats.Builder()).build()));
 		}
 
 		public final Builder groups(

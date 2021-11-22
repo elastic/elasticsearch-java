@@ -35,7 +35,7 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 
 // typedef: _global.search._types.StupidBackoffSmoothingModel
 @JsonpDeserializable
@@ -50,16 +50,18 @@ public class StupidBackoffSmoothingModel implements SmoothingModelVariant, Jsonp
 
 	}
 
-	public static StupidBackoffSmoothingModel of(Function<Builder, ObjectBuilder<StupidBackoffSmoothingModel>> fn) {
-		return fn.apply(new Builder()).build();
+	public static StupidBackoffSmoothingModel of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
-	 * {@link SmoothingModel} variant type
+	 * SmoothingModel variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "stupid_backoff";
+	public SmoothingModel.Kind _smoothingModelKind() {
+		return SmoothingModel.Kind.StupidBackoff;
 	}
 
 	/**

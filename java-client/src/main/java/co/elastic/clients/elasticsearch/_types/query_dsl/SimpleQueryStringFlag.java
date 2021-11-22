@@ -23,15 +23,39 @@
 
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
+import co.elastic.clients.json.JsonEnum;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
-import co.elastic.clients.util.StringEnum;
 
 @JsonpDeserializable
-public enum SimpleQueryStringFlag implements StringEnum {
-	None("NONE"), And("AND"), Or("OR"), Not("NOT"), Prefix("PREFIX"), Phrase("PHRASE"), Precedence(
-			"PRECEDENCE"), Escape(
-					"ESCAPE"), Whitespace("WHITESPACE"), Fuzzy("FUZZY"), Near("NEAR"), Slop("SLOP"), All("ALL");
+public enum SimpleQueryStringFlag implements JsonEnum {
+	None("NONE"),
+
+	And("AND"),
+
+	Or("OR"),
+
+	Not("NOT"),
+
+	Prefix("PREFIX"),
+
+	Phrase("PHRASE"),
+
+	Precedence("PRECEDENCE"),
+
+	Escape("ESCAPE"),
+
+	Whitespace("WHITESPACE"),
+
+	Fuzzy("FUZZY"),
+
+	Near("NEAR"),
+
+	Slop("SLOP"),
+
+	All("ALL"),
+
+	;
 
 	private final String jsonValue;
 
@@ -43,6 +67,6 @@ public enum SimpleQueryStringFlag implements StringEnum {
 		return this.jsonValue;
 	}
 
-	public static final StringEnum.Deserializer<SimpleQueryStringFlag> _DESERIALIZER = new StringEnum.Deserializer<>(
+	public static final JsonEnum.Deserializer<SimpleQueryStringFlag> _DESERIALIZER = new JsonEnum.Deserializer<>(
 			SimpleQueryStringFlag.values());
 }

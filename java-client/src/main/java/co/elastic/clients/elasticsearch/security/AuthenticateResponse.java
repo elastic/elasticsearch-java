@@ -23,7 +23,7 @@
 
 package co.elastic.clients.elasticsearch.security;
 
-import co.elastic.clients.elasticsearch.security.authenticate.Token;
+import co.elastic.clients.elasticsearch.security.authenticate.ServiceToken;
 import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -41,7 +41,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: security.authenticate.Response
@@ -68,7 +68,7 @@ public class AuthenticateResponse implements JsonpSerializable {
 	private final String authenticationType;
 
 	@Nullable
-	private final Token token;
+	private final ServiceToken token;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -89,8 +89,10 @@ public class AuthenticateResponse implements JsonpSerializable {
 
 	}
 
-	public static AuthenticateResponse of(Function<Builder, ObjectBuilder<AuthenticateResponse>> fn) {
-		return fn.apply(new Builder()).build();
+	public static AuthenticateResponse of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -162,7 +164,7 @@ public class AuthenticateResponse implements JsonpSerializable {
 	 * API name: {@code token}
 	 */
 	@Nullable
-	public final Token token() {
+	public final ServiceToken token() {
 		return this.token;
 	}
 
@@ -258,7 +260,7 @@ public class AuthenticateResponse implements JsonpSerializable {
 		private String authenticationType;
 
 		@Nullable
-		private Token token;
+		private ServiceToken token;
 
 		/**
 		 * Required - API name: {@code authentication_realm}
@@ -271,8 +273,10 @@ public class AuthenticateResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code authentication_realm}
 		 */
-		public final Builder authenticationRealm(Function<RealmInfo.Builder, ObjectBuilder<RealmInfo>> fn) {
-			return this.authenticationRealm(fn.apply(new RealmInfo.Builder()).build());
+		public final Builder authenticationRealm(Consumer<RealmInfo.Builder> fn) {
+			RealmInfo.Builder builder = new RealmInfo.Builder();
+			fn.accept(builder);
+			return this.authenticationRealm(builder.build());
 		}
 
 		/**
@@ -302,8 +306,10 @@ public class AuthenticateResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code lookup_realm}
 		 */
-		public final Builder lookupRealm(Function<RealmInfo.Builder, ObjectBuilder<RealmInfo>> fn) {
-			return this.lookupRealm(fn.apply(new RealmInfo.Builder()).build());
+		public final Builder lookupRealm(Consumer<RealmInfo.Builder> fn) {
+			RealmInfo.Builder builder = new RealmInfo.Builder();
+			fn.accept(builder);
+			return this.lookupRealm(builder.build());
 		}
 
 		/**
@@ -357,7 +363,7 @@ public class AuthenticateResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code token}
 		 */
-		public final Builder token(@Nullable Token value) {
+		public final Builder token(@Nullable ServiceToken value) {
 			this.token = value;
 			return this;
 		}
@@ -365,8 +371,10 @@ public class AuthenticateResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code token}
 		 */
-		public final Builder token(Function<Token.Builder, ObjectBuilder<Token>> fn) {
-			return this.token(fn.apply(new Token.Builder()).build());
+		public final Builder token(Consumer<ServiceToken.Builder> fn) {
+			ServiceToken.Builder builder = new ServiceToken.Builder();
+			fn.accept(builder);
+			return this.token(builder.build());
 		}
 
 		/**
@@ -401,7 +409,7 @@ public class AuthenticateResponse implements JsonpSerializable {
 		op.add(Builder::username, JsonpDeserializer.stringDeserializer(), "username");
 		op.add(Builder::enabled, JsonpDeserializer.booleanDeserializer(), "enabled");
 		op.add(Builder::authenticationType, JsonpDeserializer.stringDeserializer(), "authentication_type");
-		op.add(Builder::token, Token._DESERIALIZER, "token");
+		op.add(Builder::token, ServiceToken._DESERIALIZER, "token");
 
 	}
 

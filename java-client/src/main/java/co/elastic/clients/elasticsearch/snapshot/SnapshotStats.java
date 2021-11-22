@@ -35,7 +35,7 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: snapshot._types.SnapshotStats
@@ -60,8 +60,10 @@ public class SnapshotStats implements JsonpSerializable {
 
 	}
 
-	public static SnapshotStats of(Function<Builder, ObjectBuilder<SnapshotStats>> fn) {
-		return fn.apply(new Builder()).build();
+	public static SnapshotStats of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -142,9 +144,10 @@ public class SnapshotStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code incremental}
 		 */
-		public final Builder incremental(
-				Function<FileCountSnapshotStats.Builder, ObjectBuilder<FileCountSnapshotStats>> fn) {
-			return this.incremental(fn.apply(new FileCountSnapshotStats.Builder()).build());
+		public final Builder incremental(Consumer<FileCountSnapshotStats.Builder> fn) {
+			FileCountSnapshotStats.Builder builder = new FileCountSnapshotStats.Builder();
+			fn.accept(builder);
+			return this.incremental(builder.build());
 		}
 
 		/**
@@ -174,8 +177,10 @@ public class SnapshotStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code total}
 		 */
-		public final Builder total(Function<FileCountSnapshotStats.Builder, ObjectBuilder<FileCountSnapshotStats>> fn) {
-			return this.total(fn.apply(new FileCountSnapshotStats.Builder()).build());
+		public final Builder total(Consumer<FileCountSnapshotStats.Builder> fn) {
+			FileCountSnapshotStats.Builder builder = new FileCountSnapshotStats.Builder();
+			fn.accept(builder);
+			return this.total(builder.build());
 		}
 
 		/**

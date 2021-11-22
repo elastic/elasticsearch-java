@@ -25,6 +25,9 @@ package co.elastic.clients.elasticsearch.indices;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.elasticsearch._types.Time;
+import co.elastic.clients.elasticsearch.indices.put_index_template.IndexTemplateMapping;
+import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -32,48 +35,92 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
-import co.elastic.clients.transport.SimpleEndpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
+import java.lang.Boolean;
+import java.lang.Integer;
+import java.lang.Long;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: indices.simulate_index_template.Request
 @JsonpDeserializable
 public class SimulateIndexTemplateRequest extends RequestBase implements JsonpSerializable {
+	private final Map<String, JsonData> meta;
+
+	@Nullable
+	private final Boolean allowAutoCreate;
+
 	private final List<String> composedOf;
+
+	@Nullable
+	private final Boolean create;
+
+	@Nullable
+	private final DataStream dataStream;
 
 	private final List<String> indexPatterns;
 
+	@Nullable
+	private final Time masterTimeout;
+
 	private final String name;
 
-	private final List<OverlappingIndexTemplate> overlapping;
+	@Nullable
+	private final Integer priority;
 
 	@Nullable
-	private final TemplateMapping template;
+	private final IndexTemplateMapping template;
+
+	@Nullable
+	private final Long version;
 
 	// ---------------------------------------------------------------------------------------------
 
 	private SimulateIndexTemplateRequest(Builder builder) {
 
+		this.meta = ModelTypeHelper.unmodifiable(builder.meta);
+		this.allowAutoCreate = builder.allowAutoCreate;
 		this.composedOf = ModelTypeHelper.unmodifiable(builder.composedOf);
+		this.create = builder.create;
+		this.dataStream = builder.dataStream;
 		this.indexPatterns = ModelTypeHelper.unmodifiable(builder.indexPatterns);
+		this.masterTimeout = builder.masterTimeout;
 		this.name = ModelTypeHelper.requireNonNull(builder.name, this, "name");
-		this.overlapping = ModelTypeHelper.unmodifiable(builder.overlapping);
+		this.priority = builder.priority;
 		this.template = builder.template;
+		this.version = builder.version;
 
 	}
 
-	public static SimulateIndexTemplateRequest of(Function<Builder, ObjectBuilder<SimulateIndexTemplateRequest>> fn) {
-		return fn.apply(new Builder()).build();
+	public static SimulateIndexTemplateRequest of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
+	}
+
+	/**
+	 * API name: {@code _meta}
+	 */
+	public final Map<String, JsonData> meta() {
+		return this.meta;
+	}
+
+	/**
+	 * API name: {@code allow_auto_create}
+	 */
+	@Nullable
+	public final Boolean allowAutoCreate() {
+		return this.allowAutoCreate;
 	}
 
 	/**
@@ -84,10 +131,43 @@ public class SimulateIndexTemplateRequest extends RequestBase implements JsonpSe
 	}
 
 	/**
+	 * If <code>true</code>, the template passed in the body is only used if no
+	 * existing templates match the same index patterns. If <code>false</code>, the
+	 * simulation uses the template with the highest priority. Note that the
+	 * template is not permanently added or updated in either case; it is only used
+	 * for the simulation.
+	 * <p>
+	 * API name: {@code create}
+	 */
+	@Nullable
+	public final Boolean create() {
+		return this.create;
+	}
+
+	/**
+	 * API name: {@code data_stream}
+	 */
+	@Nullable
+	public final DataStream dataStream() {
+		return this.dataStream;
+	}
+
+	/**
 	 * API name: {@code index_patterns}
 	 */
 	public final List<String> indexPatterns() {
 		return this.indexPatterns;
+	}
+
+	/**
+	 * Period to wait for a connection to the master node. If no response is
+	 * received before the timeout expires, the request fails and returns an error.
+	 * <p>
+	 * API name: {@code master_timeout}
+	 */
+	@Nullable
+	public final Time masterTimeout() {
+		return this.masterTimeout;
 	}
 
 	/**
@@ -100,20 +180,27 @@ public class SimulateIndexTemplateRequest extends RequestBase implements JsonpSe
 	}
 
 	/**
-	 * Any overlapping templates that would have matched, but have lower priority
-	 * <p>
-	 * API name: {@code overlapping}
+	 * API name: {@code priority}
 	 */
-	public final List<OverlappingIndexTemplate> overlapping() {
-		return this.overlapping;
+	@Nullable
+	public final Integer priority() {
+		return this.priority;
 	}
 
 	/**
 	 * API name: {@code template}
 	 */
 	@Nullable
-	public final TemplateMapping template() {
+	public final IndexTemplateMapping template() {
 		return this.template;
+	}
+
+	/**
+	 * API name: {@code version}
+	 */
+	@Nullable
+	public final Long version() {
+		return this.version;
 	}
 
 	/**
@@ -127,6 +214,22 @@ public class SimulateIndexTemplateRequest extends RequestBase implements JsonpSe
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
+		if (ModelTypeHelper.isDefined(this.meta)) {
+			generator.writeKey("_meta");
+			generator.writeStartObject();
+			for (Map.Entry<String, JsonData> item0 : this.meta.entrySet()) {
+				generator.writeKey(item0.getKey());
+				item0.getValue().serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
+
+		}
+		if (this.allowAutoCreate != null) {
+			generator.writeKey("allow_auto_create");
+			generator.write(this.allowAutoCreate);
+
+		}
 		if (ModelTypeHelper.isDefined(this.composedOf)) {
 			generator.writeKey("composed_of");
 			generator.writeStartArray();
@@ -135,6 +238,11 @@ public class SimulateIndexTemplateRequest extends RequestBase implements JsonpSe
 
 			}
 			generator.writeEnd();
+
+		}
+		if (this.dataStream != null) {
+			generator.writeKey("data_stream");
+			this.dataStream.serialize(generator, mapper);
 
 		}
 		if (ModelTypeHelper.isDefined(this.indexPatterns)) {
@@ -147,19 +255,19 @@ public class SimulateIndexTemplateRequest extends RequestBase implements JsonpSe
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.overlapping)) {
-			generator.writeKey("overlapping");
-			generator.writeStartArray();
-			for (OverlappingIndexTemplate item0 : this.overlapping) {
-				item0.serialize(generator, mapper);
-
-			}
-			generator.writeEnd();
+		if (this.priority != null) {
+			generator.writeKey("priority");
+			generator.write(this.priority);
 
 		}
 		if (this.template != null) {
 			generator.writeKey("template");
 			this.template.serialize(generator, mapper);
+
+		}
+		if (this.version != null) {
+			generator.writeKey("version");
+			generator.write(this.version);
 
 		}
 
@@ -172,18 +280,52 @@ public class SimulateIndexTemplateRequest extends RequestBase implements JsonpSe
 	 */
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<SimulateIndexTemplateRequest> {
 		@Nullable
+		private Map<String, JsonData> meta;
+
+		@Nullable
+		private Boolean allowAutoCreate;
+
+		@Nullable
 		private List<String> composedOf;
+
+		@Nullable
+		private Boolean create;
+
+		@Nullable
+		private DataStream dataStream;
 
 		@Nullable
 		private List<String> indexPatterns;
 
+		@Nullable
+		private Time masterTimeout;
+
 		private String name;
 
 		@Nullable
-		private List<OverlappingIndexTemplate> overlapping;
+		private Integer priority;
 
 		@Nullable
-		private TemplateMapping template;
+		private IndexTemplateMapping template;
+
+		@Nullable
+		private Long version;
+
+		/**
+		 * API name: {@code _meta}
+		 */
+		public final Builder meta(@Nullable Map<String, JsonData> value) {
+			this.meta = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code allow_auto_create}
+		 */
+		public final Builder allowAutoCreate(@Nullable Boolean value) {
+			this.allowAutoCreate = value;
+			return this;
+		}
 
 		/**
 		 * API name: {@code composed_of}
@@ -199,6 +341,37 @@ public class SimulateIndexTemplateRequest extends RequestBase implements JsonpSe
 		public final Builder composedOf(String... value) {
 			this.composedOf = Arrays.asList(value);
 			return this;
+		}
+
+		/**
+		 * If <code>true</code>, the template passed in the body is only used if no
+		 * existing templates match the same index patterns. If <code>false</code>, the
+		 * simulation uses the template with the highest priority. Note that the
+		 * template is not permanently added or updated in either case; it is only used
+		 * for the simulation.
+		 * <p>
+		 * API name: {@code create}
+		 */
+		public final Builder create(@Nullable Boolean value) {
+			this.create = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code data_stream}
+		 */
+		public final Builder dataStream(@Nullable DataStream value) {
+			this.dataStream = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code data_stream}
+		 */
+		public final Builder dataStream(Consumer<DataStream.Builder> fn) {
+			DataStream.Builder builder = new DataStream.Builder();
+			fn.accept(builder);
+			return this.dataStream(builder.build());
 		}
 
 		/**
@@ -218,6 +391,29 @@ public class SimulateIndexTemplateRequest extends RequestBase implements JsonpSe
 		}
 
 		/**
+		 * Period to wait for a connection to the master node. If no response is
+		 * received before the timeout expires, the request fails and returns an error.
+		 * <p>
+		 * API name: {@code master_timeout}
+		 */
+		public final Builder masterTimeout(@Nullable Time value) {
+			this.masterTimeout = value;
+			return this;
+		}
+
+		/**
+		 * Period to wait for a connection to the master node. If no response is
+		 * received before the timeout expires, the request fails and returns an error.
+		 * <p>
+		 * API name: {@code master_timeout}
+		 */
+		public final Builder masterTimeout(Consumer<Time.Builder> fn) {
+			Time.Builder builder = new Time.Builder();
+			fn.accept(builder);
+			return this.masterTimeout(builder.build());
+		}
+
+		/**
 		 * Required - Index or template name to simulate
 		 * <p>
 		 * API name: {@code name}
@@ -228,44 +424,17 @@ public class SimulateIndexTemplateRequest extends RequestBase implements JsonpSe
 		}
 
 		/**
-		 * Any overlapping templates that would have matched, but have lower priority
-		 * <p>
-		 * API name: {@code overlapping}
+		 * API name: {@code priority}
 		 */
-		public final Builder overlapping(@Nullable List<OverlappingIndexTemplate> value) {
-			this.overlapping = value;
-			return this;
-		}
-
-		/**
-		 * Any overlapping templates that would have matched, but have lower priority
-		 * <p>
-		 * API name: {@code overlapping}
-		 */
-		public final Builder overlapping(OverlappingIndexTemplate... value) {
-			this.overlapping = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Any overlapping templates that would have matched, but have lower priority
-		 * <p>
-		 * API name: {@code overlapping}
-		 */
-		@SafeVarargs
-		public final Builder overlapping(
-				Function<OverlappingIndexTemplate.Builder, ObjectBuilder<OverlappingIndexTemplate>>... fns) {
-			this.overlapping = new ArrayList<>(fns.length);
-			for (Function<OverlappingIndexTemplate.Builder, ObjectBuilder<OverlappingIndexTemplate>> fn : fns) {
-				this.overlapping.add(fn.apply(new OverlappingIndexTemplate.Builder()).build());
-			}
+		public final Builder priority(@Nullable Integer value) {
+			this.priority = value;
 			return this;
 		}
 
 		/**
 		 * API name: {@code template}
 		 */
-		public final Builder template(@Nullable TemplateMapping value) {
+		public final Builder template(@Nullable IndexTemplateMapping value) {
 			this.template = value;
 			return this;
 		}
@@ -273,8 +442,18 @@ public class SimulateIndexTemplateRequest extends RequestBase implements JsonpSe
 		/**
 		 * API name: {@code template}
 		 */
-		public final Builder template(Function<TemplateMapping.Builder, ObjectBuilder<TemplateMapping>> fn) {
-			return this.template(fn.apply(new TemplateMapping.Builder()).build());
+		public final Builder template(Consumer<IndexTemplateMapping.Builder> fn) {
+			IndexTemplateMapping.Builder builder = new IndexTemplateMapping.Builder();
+			fn.accept(builder);
+			return this.template(builder.build());
+		}
+
+		/**
+		 * API name: {@code version}
+		 */
+		public final Builder version(@Nullable Long value) {
+			this.version = value;
+			return this;
 		}
 
 		/**
@@ -301,13 +480,16 @@ public class SimulateIndexTemplateRequest extends RequestBase implements JsonpSe
 	protected static void setupSimulateIndexTemplateRequestDeserializer(
 			ObjectDeserializer<SimulateIndexTemplateRequest.Builder> op) {
 
+		op.add(Builder::meta, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "_meta");
+		op.add(Builder::allowAutoCreate, JsonpDeserializer.booleanDeserializer(), "allow_auto_create");
 		op.add(Builder::composedOf, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"composed_of");
+		op.add(Builder::dataStream, DataStream._DESERIALIZER, "data_stream");
 		op.add(Builder::indexPatterns, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"index_patterns");
-		op.add(Builder::overlapping, JsonpDeserializer.arrayDeserializer(OverlappingIndexTemplate._DESERIALIZER),
-				"overlapping");
-		op.add(Builder::template, TemplateMapping._DESERIALIZER, "template");
+		op.add(Builder::priority, JsonpDeserializer.integerDeserializer(), "priority");
+		op.add(Builder::template, IndexTemplateMapping._DESERIALIZER, "template");
+		op.add(Builder::version, JsonpDeserializer.longDeserializer(), "version");
 
 	}
 
@@ -345,7 +527,14 @@ public class SimulateIndexTemplateRequest extends RequestBase implements JsonpSe
 
 			// Request parameters
 			request -> {
-				return Collections.emptyMap();
+				Map<String, String> params = new HashMap<>();
+				if (request.masterTimeout != null) {
+					params.put("master_timeout", request.masterTimeout._toJsonString());
+				}
+				if (request.create != null) {
+					params.put("create", String.valueOf(request.create));
+				}
+				return params;
 
 			}, SimpleEndpoint.emptyMap(), true, SimulateIndexTemplateResponse._DESERIALIZER);
 }

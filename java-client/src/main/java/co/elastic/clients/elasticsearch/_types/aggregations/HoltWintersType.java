@@ -23,13 +23,17 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
+import co.elastic.clients.json.JsonEnum;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
-import co.elastic.clients.util.StringEnum;
 
 @JsonpDeserializable
-public enum HoltWintersType implements StringEnum {
-	Additive("add"), Multiplicative("mult");
+public enum HoltWintersType implements JsonEnum {
+	Additive("add"),
+
+	Multiplicative("mult"),
+
+	;
 
 	private final String jsonValue;
 
@@ -41,6 +45,6 @@ public enum HoltWintersType implements StringEnum {
 		return this.jsonValue;
 	}
 
-	public static final StringEnum.Deserializer<HoltWintersType> _DESERIALIZER = new StringEnum.Deserializer<>(
+	public static final JsonEnum.Deserializer<HoltWintersType> _DESERIALIZER = new JsonEnum.Deserializer<>(
 			HoltWintersType.values());
 }

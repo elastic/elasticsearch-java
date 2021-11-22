@@ -38,7 +38,7 @@ import java.lang.Number;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.HttpInputRequestDefinition
@@ -371,9 +371,10 @@ public class HttpInputRequestDefinition implements JsonpSerializable {
 		/**
 		 * API name: {@code auth}
 		 */
-		public final BuilderT auth(
-				Function<HttpInputAuthentication.Builder, ObjectBuilder<HttpInputAuthentication>> fn) {
-			return this.auth(fn.apply(new HttpInputAuthentication.Builder()).build());
+		public final BuilderT auth(Consumer<HttpInputAuthentication.Builder> fn) {
+			HttpInputAuthentication.Builder builder = new HttpInputAuthentication.Builder();
+			fn.accept(builder);
+			return this.auth(builder.build());
 		}
 
 		/**
@@ -395,8 +396,10 @@ public class HttpInputRequestDefinition implements JsonpSerializable {
 		/**
 		 * API name: {@code connection_timeout}
 		 */
-		public final BuilderT connectionTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
-			return this.connectionTimeout(fn.apply(new Time.Builder()).build());
+		public final BuilderT connectionTimeout(Consumer<Time.Builder> fn) {
+			Time.Builder builder = new Time.Builder();
+			fn.accept(builder);
+			return this.connectionTimeout(builder.build());
 		}
 
 		/**
@@ -458,8 +461,10 @@ public class HttpInputRequestDefinition implements JsonpSerializable {
 		/**
 		 * API name: {@code proxy}
 		 */
-		public final BuilderT proxy(Function<HttpInputProxy.Builder, ObjectBuilder<HttpInputProxy>> fn) {
-			return this.proxy(fn.apply(new HttpInputProxy.Builder()).build());
+		public final BuilderT proxy(Consumer<HttpInputProxy.Builder> fn) {
+			HttpInputProxy.Builder builder = new HttpInputProxy.Builder();
+			fn.accept(builder);
+			return this.proxy(builder.build());
 		}
 
 		/**
@@ -473,8 +478,10 @@ public class HttpInputRequestDefinition implements JsonpSerializable {
 		/**
 		 * API name: {@code read_timeout}
 		 */
-		public final BuilderT readTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
-			return this.readTimeout(fn.apply(new Time.Builder()).build());
+		public final BuilderT readTimeout(Consumer<Time.Builder> fn) {
+			Time.Builder builder = new Time.Builder();
+			fn.accept(builder);
+			return this.readTimeout(builder.build());
 		}
 
 		/**

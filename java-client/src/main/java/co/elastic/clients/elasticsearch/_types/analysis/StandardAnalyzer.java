@@ -38,7 +38,7 @@ import java.lang.String;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: _types.analysis.StandardAnalyzer
@@ -58,16 +58,18 @@ public class StandardAnalyzer implements AnalyzerVariant, JsonpSerializable {
 
 	}
 
-	public static StandardAnalyzer of(Function<Builder, ObjectBuilder<StandardAnalyzer>> fn) {
-		return fn.apply(new Builder()).build();
+	public static StandardAnalyzer of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
-	 * {@link Analyzer} variant type
+	 * Analyzer variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "standard";
+	public Analyzer.Kind _analyzerKind() {
+		return Analyzer.Kind.Standard;
 	}
 
 	/**

@@ -37,7 +37,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.DataframeEvaluationMetrics
@@ -162,9 +162,10 @@ public abstract class DataframeEvaluationMetrics implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code auc_roc}
 		 */
-		public final BuilderT aucRoc(
-				Function<DataframeEvaluationClassificationMetricsAucRoc.Builder, ObjectBuilder<DataframeEvaluationClassificationMetricsAucRoc>> fn) {
-			return this.aucRoc(fn.apply(new DataframeEvaluationClassificationMetricsAucRoc.Builder()).build());
+		public final BuilderT aucRoc(Consumer<DataframeEvaluationClassificationMetricsAucRoc.Builder> fn) {
+			DataframeEvaluationClassificationMetricsAucRoc.Builder builder = new DataframeEvaluationClassificationMetricsAucRoc.Builder();
+			fn.accept(builder);
+			return this.aucRoc(builder.build());
 		}
 
 		/**

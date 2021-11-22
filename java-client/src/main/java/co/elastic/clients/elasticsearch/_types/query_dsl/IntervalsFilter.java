@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
 import co.elastic.clients.elasticsearch._types.Script;
+import co.elastic.clients.json.JsonEnum;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -38,30 +39,57 @@ import co.elastic.clients.util.TaggedUnionUtils;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Object;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.IntervalsFilter
 // union type: Container[]
 @JsonpDeserializable
-public class IntervalsFilter implements TaggedUnion<Object>, JsonpSerializable {
+public class IntervalsFilter implements TaggedUnion<IntervalsFilter.Kind, Object>, JsonpSerializable {
 
-	public static final String AFTER = "after";
-	public static final String BEFORE = "before";
-	public static final String CONTAINED_BY = "contained_by";
-	public static final String CONTAINING = "containing";
-	public static final String NOT_CONTAINED_BY = "not_contained_by";
-	public static final String NOT_CONTAINING = "not_containing";
-	public static final String NOT_OVERLAPPING = "not_overlapping";
-	public static final String OVERLAPPING = "overlapping";
-	public static final String SCRIPT = "script";
+	/**
+	 * {@link IntervalsFilter} variant kinds.
+	 */
 
-	private final String _type;
+	public enum Kind implements JsonEnum {
+		After("after"),
+
+		Before("before"),
+
+		ContainedBy("contained_by"),
+
+		Containing("containing"),
+
+		NotContainedBy("not_contained_by"),
+
+		NotContaining("not_containing"),
+
+		NotOverlapping("not_overlapping"),
+
+		Overlapping("overlapping"),
+
+		Script("script"),
+
+		;
+
+		private final String jsonValue;
+
+		Kind(String jsonValue) {
+			this.jsonValue = jsonValue;
+		}
+
+		public String jsonValue() {
+			return this.jsonValue;
+		}
+
+	}
+
+	private final Kind _kind;
 	private final Object _value;
 
 	@Override
-	public final String _type() {
-		return _type;
+	public final Kind _kind() {
+		return _kind;
 	}
 
 	@Override
@@ -71,20 +99,29 @@ public class IntervalsFilter implements TaggedUnion<Object>, JsonpSerializable {
 
 	public IntervalsFilter(IntervalsFilterVariant value) {
 
-		this._type = ModelTypeHelper.requireNonNull(value._variantType(), this, "<variant type>");
+		this._kind = ModelTypeHelper.requireNonNull(value._intervalsFilterKind(), this, "<variant kind>");
 		this._value = ModelTypeHelper.requireNonNull(value, this, "<variant value>");
 
 	}
 
 	private IntervalsFilter(Builder builder) {
 
-		this._type = ModelTypeHelper.requireNonNull(builder._type, builder, "<variant type>");
+		this._kind = ModelTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
 		this._value = ModelTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
 
 	}
 
-	public static IntervalsFilter of(Function<Builder, ObjectBuilder<IntervalsFilter>> fn) {
-		return fn.apply(new Builder()).build();
+	public static IntervalsFilter of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
+	}
+
+	/**
+	 * Is this variant instance of kind {@code after}?
+	 */
+	public boolean isAfter() {
+		return _kind == Kind.After;
 	}
 
 	/**
@@ -94,7 +131,14 @@ public class IntervalsFilter implements TaggedUnion<Object>, JsonpSerializable {
 	 *             if the current variant is not of the {@code after} kind.
 	 */
 	public Intervals after() {
-		return TaggedUnionUtils.get(this, AFTER);
+		return TaggedUnionUtils.get(this, Kind.After);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code before}?
+	 */
+	public boolean isBefore() {
+		return _kind == Kind.Before;
 	}
 
 	/**
@@ -104,7 +148,14 @@ public class IntervalsFilter implements TaggedUnion<Object>, JsonpSerializable {
 	 *             if the current variant is not of the {@code before} kind.
 	 */
 	public Intervals before() {
-		return TaggedUnionUtils.get(this, BEFORE);
+		return TaggedUnionUtils.get(this, Kind.Before);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code contained_by}?
+	 */
+	public boolean isContainedBy() {
+		return _kind == Kind.ContainedBy;
 	}
 
 	/**
@@ -114,7 +165,14 @@ public class IntervalsFilter implements TaggedUnion<Object>, JsonpSerializable {
 	 *             if the current variant is not of the {@code contained_by} kind.
 	 */
 	public Intervals containedBy() {
-		return TaggedUnionUtils.get(this, CONTAINED_BY);
+		return TaggedUnionUtils.get(this, Kind.ContainedBy);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code containing}?
+	 */
+	public boolean isContaining() {
+		return _kind == Kind.Containing;
 	}
 
 	/**
@@ -124,7 +182,14 @@ public class IntervalsFilter implements TaggedUnion<Object>, JsonpSerializable {
 	 *             if the current variant is not of the {@code containing} kind.
 	 */
 	public Intervals containing() {
-		return TaggedUnionUtils.get(this, CONTAINING);
+		return TaggedUnionUtils.get(this, Kind.Containing);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code not_contained_by}?
+	 */
+	public boolean isNotContainedBy() {
+		return _kind == Kind.NotContainedBy;
 	}
 
 	/**
@@ -135,7 +200,14 @@ public class IntervalsFilter implements TaggedUnion<Object>, JsonpSerializable {
 	 *             kind.
 	 */
 	public Intervals notContainedBy() {
-		return TaggedUnionUtils.get(this, NOT_CONTAINED_BY);
+		return TaggedUnionUtils.get(this, Kind.NotContainedBy);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code not_containing}?
+	 */
+	public boolean isNotContaining() {
+		return _kind == Kind.NotContaining;
 	}
 
 	/**
@@ -145,7 +217,14 @@ public class IntervalsFilter implements TaggedUnion<Object>, JsonpSerializable {
 	 *             if the current variant is not of the {@code not_containing} kind.
 	 */
 	public Intervals notContaining() {
-		return TaggedUnionUtils.get(this, NOT_CONTAINING);
+		return TaggedUnionUtils.get(this, Kind.NotContaining);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code not_overlapping}?
+	 */
+	public boolean isNotOverlapping() {
+		return _kind == Kind.NotOverlapping;
 	}
 
 	/**
@@ -156,7 +235,14 @@ public class IntervalsFilter implements TaggedUnion<Object>, JsonpSerializable {
 	 *             kind.
 	 */
 	public Intervals notOverlapping() {
-		return TaggedUnionUtils.get(this, NOT_OVERLAPPING);
+		return TaggedUnionUtils.get(this, Kind.NotOverlapping);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code overlapping}?
+	 */
+	public boolean isOverlapping() {
+		return _kind == Kind.Overlapping;
 	}
 
 	/**
@@ -166,7 +252,14 @@ public class IntervalsFilter implements TaggedUnion<Object>, JsonpSerializable {
 	 *             if the current variant is not of the {@code overlapping} kind.
 	 */
 	public Intervals overlapping() {
-		return TaggedUnionUtils.get(this, OVERLAPPING);
+		return TaggedUnionUtils.get(this, Kind.Overlapping);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code script}?
+	 */
+	public boolean isScript() {
+		return _kind == Kind.Script;
 	}
 
 	/**
@@ -176,7 +269,7 @@ public class IntervalsFilter implements TaggedUnion<Object>, JsonpSerializable {
 	 *             if the current variant is not of the {@code script} kind.
 	 */
 	public Script script() {
-		return TaggedUnionUtils.get(this, SCRIPT);
+		return TaggedUnionUtils.get(this, Kind.Script);
 	}
 
 	@Override
@@ -185,7 +278,7 @@ public class IntervalsFilter implements TaggedUnion<Object>, JsonpSerializable {
 
 		generator.writeStartObject();
 
-		generator.writeKey(_type);
+		generator.writeKey(_kind.jsonValue());
 		if (_value instanceof JsonpSerializable) {
 			((JsonpSerializable) _value).serialize(generator, mapper);
 		}
@@ -195,97 +288,115 @@ public class IntervalsFilter implements TaggedUnion<Object>, JsonpSerializable {
 	}
 
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<IntervalsFilter> {
-		private String _type;
+		private Kind _kind;
 		private Object _value;
 
 		public Builder after(Intervals v) {
-			this._type = AFTER;
+			this._kind = Kind.After;
 			this._value = v;
 			return this;
 		}
 
-		public Builder after(Function<Intervals.Builder, ObjectBuilder<Intervals>> f) {
-			return this.after(f.apply(new Intervals.Builder()).build());
+		public Builder after(Consumer<Intervals.Builder> fn) {
+			Intervals.Builder builder = new Intervals.Builder();
+			fn.accept(builder);
+			return this.after(builder.build());
 		}
 
 		public Builder before(Intervals v) {
-			this._type = BEFORE;
+			this._kind = Kind.Before;
 			this._value = v;
 			return this;
 		}
 
-		public Builder before(Function<Intervals.Builder, ObjectBuilder<Intervals>> f) {
-			return this.before(f.apply(new Intervals.Builder()).build());
+		public Builder before(Consumer<Intervals.Builder> fn) {
+			Intervals.Builder builder = new Intervals.Builder();
+			fn.accept(builder);
+			return this.before(builder.build());
 		}
 
 		public Builder containedBy(Intervals v) {
-			this._type = CONTAINED_BY;
+			this._kind = Kind.ContainedBy;
 			this._value = v;
 			return this;
 		}
 
-		public Builder containedBy(Function<Intervals.Builder, ObjectBuilder<Intervals>> f) {
-			return this.containedBy(f.apply(new Intervals.Builder()).build());
+		public Builder containedBy(Consumer<Intervals.Builder> fn) {
+			Intervals.Builder builder = new Intervals.Builder();
+			fn.accept(builder);
+			return this.containedBy(builder.build());
 		}
 
 		public Builder containing(Intervals v) {
-			this._type = CONTAINING;
+			this._kind = Kind.Containing;
 			this._value = v;
 			return this;
 		}
 
-		public Builder containing(Function<Intervals.Builder, ObjectBuilder<Intervals>> f) {
-			return this.containing(f.apply(new Intervals.Builder()).build());
+		public Builder containing(Consumer<Intervals.Builder> fn) {
+			Intervals.Builder builder = new Intervals.Builder();
+			fn.accept(builder);
+			return this.containing(builder.build());
 		}
 
 		public Builder notContainedBy(Intervals v) {
-			this._type = NOT_CONTAINED_BY;
+			this._kind = Kind.NotContainedBy;
 			this._value = v;
 			return this;
 		}
 
-		public Builder notContainedBy(Function<Intervals.Builder, ObjectBuilder<Intervals>> f) {
-			return this.notContainedBy(f.apply(new Intervals.Builder()).build());
+		public Builder notContainedBy(Consumer<Intervals.Builder> fn) {
+			Intervals.Builder builder = new Intervals.Builder();
+			fn.accept(builder);
+			return this.notContainedBy(builder.build());
 		}
 
 		public Builder notContaining(Intervals v) {
-			this._type = NOT_CONTAINING;
+			this._kind = Kind.NotContaining;
 			this._value = v;
 			return this;
 		}
 
-		public Builder notContaining(Function<Intervals.Builder, ObjectBuilder<Intervals>> f) {
-			return this.notContaining(f.apply(new Intervals.Builder()).build());
+		public Builder notContaining(Consumer<Intervals.Builder> fn) {
+			Intervals.Builder builder = new Intervals.Builder();
+			fn.accept(builder);
+			return this.notContaining(builder.build());
 		}
 
 		public Builder notOverlapping(Intervals v) {
-			this._type = NOT_OVERLAPPING;
+			this._kind = Kind.NotOverlapping;
 			this._value = v;
 			return this;
 		}
 
-		public Builder notOverlapping(Function<Intervals.Builder, ObjectBuilder<Intervals>> f) {
-			return this.notOverlapping(f.apply(new Intervals.Builder()).build());
+		public Builder notOverlapping(Consumer<Intervals.Builder> fn) {
+			Intervals.Builder builder = new Intervals.Builder();
+			fn.accept(builder);
+			return this.notOverlapping(builder.build());
 		}
 
 		public Builder overlapping(Intervals v) {
-			this._type = OVERLAPPING;
+			this._kind = Kind.Overlapping;
 			this._value = v;
 			return this;
 		}
 
-		public Builder overlapping(Function<Intervals.Builder, ObjectBuilder<Intervals>> f) {
-			return this.overlapping(f.apply(new Intervals.Builder()).build());
+		public Builder overlapping(Consumer<Intervals.Builder> fn) {
+			Intervals.Builder builder = new Intervals.Builder();
+			fn.accept(builder);
+			return this.overlapping(builder.build());
 		}
 
 		public Builder script(Script v) {
-			this._type = SCRIPT;
+			this._kind = Kind.Script;
 			this._value = v;
 			return this;
 		}
 
-		public Builder script(Function<Script.Builder, ObjectBuilder<Script>> f) {
-			return this.script(f.apply(new Script.Builder()).build());
+		public Builder script(Consumer<Script.Builder> fn) {
+			Script.Builder builder = new Script.Builder();
+			fn.accept(builder);
+			return this.script(builder.build());
 		}
 
 		public IntervalsFilter build() {

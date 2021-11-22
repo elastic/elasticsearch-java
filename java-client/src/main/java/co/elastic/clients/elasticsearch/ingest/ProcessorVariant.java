@@ -23,12 +23,12 @@
 
 package co.elastic.clients.elasticsearch.ingest;
 
-import co.elastic.clients.util.UnionVariant;
-
 /**
  * Base interface for {@link Processor} variants.
  */
-public interface ProcessorVariant extends UnionVariant {
+public interface ProcessorVariant {
+
+	Processor.Kind _processorKind();
 
 	default Processor _toProcessor() {
 		return new Processor(this);

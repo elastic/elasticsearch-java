@@ -33,7 +33,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: xpack.usage.Slm
@@ -55,8 +55,10 @@ public class Slm extends Base {
 
 	}
 
-	public static Slm of(Function<Builder, ObjectBuilder<Slm>> fn) {
-		return fn.apply(new Builder()).build();
+	public static Slm of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -122,8 +124,10 @@ public class Slm extends Base {
 		/**
 		 * API name: {@code policy_stats}
 		 */
-		public final Builder policyStats(Function<Statistics.Builder, ObjectBuilder<Statistics>> fn) {
-			return this.policyStats(fn.apply(new Statistics.Builder()).build());
+		public final Builder policyStats(Consumer<Statistics.Builder> fn) {
+			Statistics.Builder builder = new Statistics.Builder();
+			fn.accept(builder);
+			return this.policyStats(builder.build());
 		}
 
 		@Override

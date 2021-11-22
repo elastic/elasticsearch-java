@@ -29,15 +29,16 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -64,8 +65,10 @@ public class ShardProfile implements JsonpSerializable {
 
 	}
 
-	public static ShardProfile of(Function<Builder, ObjectBuilder<ShardProfile>> fn) {
-		return fn.apply(new Builder()).build();
+	public static ShardProfile of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -173,14 +176,9 @@ public class ShardProfile implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code aggregations}
 		 */
-		@SafeVarargs
 		public final Builder aggregations(
-				Function<AggregationProfile.Builder, ObjectBuilder<AggregationProfile>>... fns) {
-			this.aggregations = new ArrayList<>(fns.length);
-			for (Function<AggregationProfile.Builder, ObjectBuilder<AggregationProfile>> fn : fns) {
-				this.aggregations.add(fn.apply(new AggregationProfile.Builder()).build());
-			}
-			return this;
+				Function<ListBuilder<AggregationProfile, AggregationProfile.Builder>, ObjectBuilder<List<AggregationProfile>>> fn) {
+			return aggregations(fn.apply(new ListBuilder<>(AggregationProfile.Builder::new)).build());
 		}
 
 		/**
@@ -210,13 +208,9 @@ public class ShardProfile implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code searches}
 		 */
-		@SafeVarargs
-		public final Builder searches(Function<SearchProfile.Builder, ObjectBuilder<SearchProfile>>... fns) {
-			this.searches = new ArrayList<>(fns.length);
-			for (Function<SearchProfile.Builder, ObjectBuilder<SearchProfile>> fn : fns) {
-				this.searches.add(fn.apply(new SearchProfile.Builder()).build());
-			}
-			return this;
+		public final Builder searches(
+				Function<ListBuilder<SearchProfile, SearchProfile.Builder>, ObjectBuilder<List<SearchProfile>>> fn) {
+			return searches(fn.apply(new ListBuilder<>(SearchProfile.Builder::new)).build());
 		}
 
 		/**
@@ -230,8 +224,10 @@ public class ShardProfile implements JsonpSerializable {
 		/**
 		 * API name: {@code fetch}
 		 */
-		public final Builder fetch(Function<FetchProfile.Builder, ObjectBuilder<FetchProfile>> fn) {
-			return this.fetch(fn.apply(new FetchProfile.Builder()).build());
+		public final Builder fetch(Consumer<FetchProfile.Builder> fn) {
+			FetchProfile.Builder builder = new FetchProfile.Builder();
+			fn.accept(builder);
+			return this.fetch(builder.build());
 		}
 
 		/**

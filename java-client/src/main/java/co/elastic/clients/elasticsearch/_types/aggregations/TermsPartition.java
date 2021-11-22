@@ -35,7 +35,7 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 
 // typedef: _types.aggregations.TermsPartition
 @JsonpDeserializable
@@ -53,8 +53,10 @@ public class TermsPartition implements JsonpSerializable {
 
 	}
 
-	public static TermsPartition of(Function<Builder, ObjectBuilder<TermsPartition>> fn) {
-		return fn.apply(new Builder()).build();
+	public static TermsPartition of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**

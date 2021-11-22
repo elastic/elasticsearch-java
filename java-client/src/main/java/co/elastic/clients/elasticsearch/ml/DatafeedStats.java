@@ -35,7 +35,7 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.DatafeedStats
@@ -64,8 +64,10 @@ public class DatafeedStats implements JsonpSerializable {
 
 	}
 
-	public static DatafeedStats of(Function<Builder, ObjectBuilder<DatafeedStats>> fn) {
-		return fn.apply(new Builder()).build();
+	public static DatafeedStats of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -173,8 +175,10 @@ public class DatafeedStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code node}
 		 */
-		public final Builder node(Function<DiscoveryNode.Builder, ObjectBuilder<DiscoveryNode>> fn) {
-			return this.node(fn.apply(new DiscoveryNode.Builder()).build());
+		public final Builder node(Consumer<DiscoveryNode.Builder> fn) {
+			DiscoveryNode.Builder builder = new DiscoveryNode.Builder();
+			fn.accept(builder);
+			return this.node(builder.build());
 		}
 
 		/**
@@ -196,8 +200,10 @@ public class DatafeedStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code timing_stats}
 		 */
-		public final Builder timingStats(Function<DatafeedTimingStats.Builder, ObjectBuilder<DatafeedTimingStats>> fn) {
-			return this.timingStats(fn.apply(new DatafeedTimingStats.Builder()).build());
+		public final Builder timingStats(Consumer<DatafeedTimingStats.Builder> fn) {
+			DatafeedTimingStats.Builder builder = new DatafeedTimingStats.Builder();
+			fn.accept(builder);
+			return this.timingStats(builder.build());
 		}
 
 		/**

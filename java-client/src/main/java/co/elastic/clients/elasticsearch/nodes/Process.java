@@ -36,7 +36,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.Long;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: nodes._types.Process
@@ -62,8 +62,10 @@ public class Process implements JsonpSerializable {
 
 	}
 
-	public static Process of(Function<Builder, ObjectBuilder<Process>> fn) {
-		return fn.apply(new Builder()).build();
+	public static Process of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -144,8 +146,10 @@ public class Process implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code cpu}
 		 */
-		public final Builder cpu(Function<Cpu.Builder, ObjectBuilder<Cpu>> fn) {
-			return this.cpu(fn.apply(new Cpu.Builder()).build());
+		public final Builder cpu(Consumer<Cpu.Builder> fn) {
+			Cpu.Builder builder = new Cpu.Builder();
+			fn.accept(builder);
+			return this.cpu(builder.build());
 		}
 
 		/**
@@ -159,8 +163,10 @@ public class Process implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code mem}
 		 */
-		public final Builder mem(Function<MemoryStats.Builder, ObjectBuilder<MemoryStats>> fn) {
-			return this.mem(fn.apply(new MemoryStats.Builder()).build());
+		public final Builder mem(Consumer<MemoryStats.Builder> fn) {
+			MemoryStats.Builder builder = new MemoryStats.Builder();
+			fn.accept(builder);
+			return this.mem(builder.build());
 		}
 
 		/**

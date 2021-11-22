@@ -39,10 +39,10 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -65,8 +65,10 @@ public class SearchShardsResponse implements JsonpSerializable {
 
 	}
 
-	public static SearchShardsResponse of(Function<Builder, ObjectBuilder<SearchShardsResponse>> fn) {
-		return fn.apply(new Builder()).build();
+	public static SearchShardsResponse of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -163,13 +165,6 @@ public class SearchShardsResponse implements JsonpSerializable {
 			return this;
 		}
 
-		/**
-		 * Set {@link #nodes(Map)} to a singleton map.
-		 */
-		public Builder nodes(String key, Function<NodeAttributes.Builder, ObjectBuilder<NodeAttributes>> fn) {
-			return this.nodes(Collections.singletonMap(key, fn.apply(new NodeAttributes.Builder()).build()));
-		}
-
 		public final Builder nodes(
 				Function<MapBuilder<String, NodeAttributes, NodeAttributes.Builder>, ObjectBuilder<Map<String, NodeAttributes>>> fn) {
 			return nodes(fn.apply(new MapBuilder<>(NodeAttributes.Builder::new)).build());
@@ -197,13 +192,6 @@ public class SearchShardsResponse implements JsonpSerializable {
 		public final Builder indices(Map<String, ShardStoreIndex> value) {
 			this.indices = value;
 			return this;
-		}
-
-		/**
-		 * Set {@link #indices(Map)} to a singleton map.
-		 */
-		public Builder indices(String key, Function<ShardStoreIndex.Builder, ObjectBuilder<ShardStoreIndex>> fn) {
-			return this.indices(Collections.singletonMap(key, fn.apply(new ShardStoreIndex.Builder()).build()));
 		}
 
 		public final Builder indices(

@@ -29,15 +29,16 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -60,8 +61,10 @@ public class SearchProfile implements JsonpSerializable {
 
 	}
 
-	public static SearchProfile of(Function<Builder, ObjectBuilder<SearchProfile>> fn) {
-		return fn.apply(new Builder()).build();
+	public static SearchProfile of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -152,13 +155,9 @@ public class SearchProfile implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code collector}
 		 */
-		@SafeVarargs
-		public final Builder collector(Function<Collector.Builder, ObjectBuilder<Collector>>... fns) {
-			this.collector = new ArrayList<>(fns.length);
-			for (Function<Collector.Builder, ObjectBuilder<Collector>> fn : fns) {
-				this.collector.add(fn.apply(new Collector.Builder()).build());
-			}
-			return this;
+		public final Builder collector(
+				Function<ListBuilder<Collector, Collector.Builder>, ObjectBuilder<List<Collector>>> fn) {
+			return collector(fn.apply(new ListBuilder<>(Collector.Builder::new)).build());
 		}
 
 		/**
@@ -180,13 +179,9 @@ public class SearchProfile implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code query}
 		 */
-		@SafeVarargs
-		public final Builder query(Function<QueryProfile.Builder, ObjectBuilder<QueryProfile>>... fns) {
-			this.query = new ArrayList<>(fns.length);
-			for (Function<QueryProfile.Builder, ObjectBuilder<QueryProfile>> fn : fns) {
-				this.query.add(fn.apply(new QueryProfile.Builder()).build());
-			}
-			return this;
+		public final Builder query(
+				Function<ListBuilder<QueryProfile, QueryProfile.Builder>, ObjectBuilder<List<QueryProfile>>> fn) {
+			return query(fn.apply(new ListBuilder<>(QueryProfile.Builder::new)).build());
 		}
 
 		/**

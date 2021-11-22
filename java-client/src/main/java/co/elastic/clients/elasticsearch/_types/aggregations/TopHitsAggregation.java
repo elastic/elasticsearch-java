@@ -32,6 +32,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.MapBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
@@ -39,12 +40,11 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -103,16 +103,18 @@ public class TopHitsAggregation extends MetricAggregationBase implements Aggrega
 
 	}
 
-	public static TopHitsAggregation of(Function<Builder, ObjectBuilder<TopHitsAggregation>> fn) {
-		return fn.apply(new Builder()).build();
+	public static TopHitsAggregation of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
-	 * {@link Aggregation} variant type
+	 * Aggregation variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "top_hits";
+	public Aggregation.Kind _aggregationKind() {
+		return Aggregation.Kind.TopHits;
 	}
 
 	/**
@@ -381,8 +383,10 @@ public class TopHitsAggregation extends MetricAggregationBase implements Aggrega
 		/**
 		 * API name: {@code highlight}
 		 */
-		public final Builder highlight(Function<Highlight.Builder, ObjectBuilder<Highlight>> fn) {
-			return this.highlight(fn.apply(new Highlight.Builder()).build());
+		public final Builder highlight(Consumer<Highlight.Builder> fn) {
+			Highlight.Builder builder = new Highlight.Builder();
+			fn.accept(builder);
+			return this.highlight(builder.build());
 		}
 
 		/**
@@ -391,13 +395,6 @@ public class TopHitsAggregation extends MetricAggregationBase implements Aggrega
 		public final Builder scriptFields(@Nullable Map<String, ScriptField> value) {
 			this.scriptFields = value;
 			return this;
-		}
-
-		/**
-		 * Set {@link #scriptFields(Map)} to a singleton map.
-		 */
-		public Builder scriptFields(String key, Function<ScriptField.Builder, ObjectBuilder<ScriptField>> fn) {
-			return this.scriptFields(Collections.singletonMap(key, fn.apply(new ScriptField.Builder()).build()));
 		}
 
 		public final Builder scriptFields(
@@ -432,13 +429,9 @@ public class TopHitsAggregation extends MetricAggregationBase implements Aggrega
 		/**
 		 * API name: {@code sort}
 		 */
-		@SafeVarargs
-		public final Builder sort(Function<SortOptions.Builder, ObjectBuilder<SortOptions>>... fns) {
-			this.sort = new ArrayList<>(fns.length);
-			for (Function<SortOptions.Builder, ObjectBuilder<SortOptions>> fn : fns) {
-				this.sort.add(fn.apply(new SortOptions.Builder()).build());
-			}
-			return this;
+		public final Builder sort(
+				Function<ListBuilder<SortOptions, SortOptions.Builder>, ObjectBuilder<List<SortOptions>>> fn) {
+			return sort(fn.apply(new ListBuilder<>(SortOptions.Builder::new)).build());
 		}
 
 		/**
@@ -452,8 +445,10 @@ public class TopHitsAggregation extends MetricAggregationBase implements Aggrega
 		/**
 		 * API name: {@code _source}
 		 */
-		public final Builder source(Function<SourceConfig.Builder, ObjectBuilder<SourceConfig>> fn) {
-			return this.source(fn.apply(new SourceConfig.Builder()).build());
+		public final Builder source(Consumer<SourceConfig.Builder> fn) {
+			SourceConfig.Builder builder = new SourceConfig.Builder();
+			fn.accept(builder);
+			return this.source(builder.build());
 		}
 
 		/**

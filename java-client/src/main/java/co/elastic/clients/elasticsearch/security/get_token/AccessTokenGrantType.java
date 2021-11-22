@@ -23,13 +23,21 @@
 
 package co.elastic.clients.elasticsearch.security.get_token;
 
+import co.elastic.clients.json.JsonEnum;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
-import co.elastic.clients.util.StringEnum;
 
 @JsonpDeserializable
-public enum AccessTokenGrantType implements StringEnum {
-	Password("password"), ClientCredentials("client_credentials"), Kerberos("_kerberos"), RefreshToken("refresh_token");
+public enum AccessTokenGrantType implements JsonEnum {
+	Password("password"),
+
+	ClientCredentials("client_credentials"),
+
+	Kerberos("_kerberos"),
+
+	RefreshToken("refresh_token"),
+
+	;
 
 	private final String jsonValue;
 
@@ -41,6 +49,6 @@ public enum AccessTokenGrantType implements StringEnum {
 		return this.jsonValue;
 	}
 
-	public static final StringEnum.Deserializer<AccessTokenGrantType> _DESERIALIZER = new StringEnum.Deserializer<>(
+	public static final JsonEnum.Deserializer<AccessTokenGrantType> _DESERIALIZER = new JsonEnum.Deserializer<>(
 			AccessTokenGrantType.values());
 }

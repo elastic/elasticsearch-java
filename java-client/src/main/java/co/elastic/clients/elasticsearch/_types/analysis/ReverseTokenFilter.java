@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 
 // typedef: _types.analysis.ReverseTokenFilter
 @JsonpDeserializable
@@ -43,16 +43,18 @@ public class ReverseTokenFilter extends TokenFilterBase implements TokenFilterDe
 
 	}
 
-	public static ReverseTokenFilter of(Function<Builder, ObjectBuilder<ReverseTokenFilter>> fn) {
-		return fn.apply(new Builder()).build();
+	public static ReverseTokenFilter of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
-	 * {@link TokenFilterDefinition} variant type
+	 * TokenFilterDefinition variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "reverse";
+	public TokenFilterDefinition.Kind _tokenFilterDefinitionKind() {
+		return TokenFilterDefinition.Kind.Reverse;
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {

@@ -29,15 +29,16 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -64,8 +65,10 @@ public class TrainedModelTree implements JsonpSerializable {
 
 	}
 
-	public static TrainedModelTree of(Function<Builder, ObjectBuilder<TrainedModelTree>> fn) {
-		return fn.apply(new Builder()).build();
+	public static TrainedModelTree of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -221,14 +224,9 @@ public class TrainedModelTree implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code tree_structure}
 		 */
-		@SafeVarargs
 		public final Builder treeStructure(
-				Function<TrainedModelTreeNode.Builder, ObjectBuilder<TrainedModelTreeNode>>... fns) {
-			this.treeStructure = new ArrayList<>(fns.length);
-			for (Function<TrainedModelTreeNode.Builder, ObjectBuilder<TrainedModelTreeNode>> fn : fns) {
-				this.treeStructure.add(fn.apply(new TrainedModelTreeNode.Builder()).build());
-			}
-			return this;
+				Function<ListBuilder<TrainedModelTreeNode, TrainedModelTreeNode.Builder>, ObjectBuilder<List<TrainedModelTreeNode>>> fn) {
+			return treeStructure(fn.apply(new ListBuilder<>(TrainedModelTreeNode.Builder::new)).build());
 		}
 
 		/**

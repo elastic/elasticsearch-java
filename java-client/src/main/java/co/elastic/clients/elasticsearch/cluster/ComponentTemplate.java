@@ -35,7 +35,7 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: cluster._types.ComponentTemplate
@@ -54,8 +54,10 @@ public class ComponentTemplate implements JsonpSerializable {
 
 	}
 
-	public static ComponentTemplate of(Function<Builder, ObjectBuilder<ComponentTemplate>> fn) {
-		return fn.apply(new Builder()).build();
+	public static ComponentTemplate of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -120,9 +122,10 @@ public class ComponentTemplate implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code component_template}
 		 */
-		public final Builder componentTemplate(
-				Function<ComponentTemplateNode.Builder, ObjectBuilder<ComponentTemplateNode>> fn) {
-			return this.componentTemplate(fn.apply(new ComponentTemplateNode.Builder()).build());
+		public final Builder componentTemplate(Consumer<ComponentTemplateNode.Builder> fn) {
+			ComponentTemplateNode.Builder builder = new ComponentTemplateNode.Builder();
+			fn.accept(builder);
+			return this.componentTemplate(builder.build());
 		}
 
 		/**

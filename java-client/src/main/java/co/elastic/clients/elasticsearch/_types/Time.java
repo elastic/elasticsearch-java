@@ -39,23 +39,25 @@ import java.lang.Integer;
 import java.lang.Object;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: _types.Time
 // union type: Union[]
 @JsonpDeserializable
-public class Time implements TaggedUnion<Object>, JsonpSerializable {
+public class Time implements TaggedUnion<Time.Kind, Object>, JsonpSerializable {
 
-	public static final String OFFSET = "offset";
-	public static final String TIME = "time";
+	public enum Kind {
+		Offset, Time
 
-	private final String _type;
+	}
+
+	private final Kind _kind;
 	private final Object _value;
 
 	@Override
-	public final String _type() {
-		return _type;
+	public final Kind _kind() {
+		return _kind;
 	}
 
 	@Override
@@ -63,31 +65,41 @@ public class Time implements TaggedUnion<Object>, JsonpSerializable {
 		return _value;
 	}
 
-	public Time(String type, Object value) {
-		this._type = type;
+	public Time(Kind kind, Object value) {
+		this._kind = kind;
 		this._value = value;
 	}
 
 	public String _toJsonString() {
-		switch (_type) {
-			case "offset" :
+		switch (_kind) {
+			case Offset :
 				return String.valueOf(this.offset());
-			case "time" :
+			case Time :
 				return this.time();
 
 			default :
-				throw new IllegalStateException("Unknown type " + _type);
+				throw new IllegalStateException("Unknown kind " + _kind);
 		}
 	}
+
 	private Time(Builder builder) {
 
-		this._type = ModelTypeHelper.requireNonNull(builder._type, builder, "<variant type>");
+		this._kind = ModelTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
 		this._value = ModelTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
 
 	}
 
-	public static Time of(Function<Builder, ObjectBuilder<Time>> fn) {
-		return fn.apply(new Builder()).build();
+	public static Time of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
+	}
+
+	/**
+	 * Is this variant instance of kind {@code offset}?
+	 */
+	public boolean isOffset() {
+		return _kind == Kind.Offset;
 	}
 
 	/**
@@ -97,7 +109,14 @@ public class Time implements TaggedUnion<Object>, JsonpSerializable {
 	 *             if the current variant is not of the {@code offset} kind.
 	 */
 	public Integer offset() {
-		return TaggedUnionUtils.get(this, OFFSET);
+		return TaggedUnionUtils.get(this, Kind.Offset);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code time}?
+	 */
+	public boolean isTime() {
+		return _kind == Kind.Time;
 	}
 
 	/**
@@ -107,7 +126,7 @@ public class Time implements TaggedUnion<Object>, JsonpSerializable {
 	 *             if the current variant is not of the {@code time} kind.
 	 */
 	public String time() {
-		return TaggedUnionUtils.get(this, TIME);
+		return TaggedUnionUtils.get(this, Kind.Time);
 	}
 
 	@Override
@@ -115,12 +134,12 @@ public class Time implements TaggedUnion<Object>, JsonpSerializable {
 		if (_value instanceof JsonpSerializable) {
 			((JsonpSerializable) _value).serialize(generator, mapper);
 		} else {
-			switch (_type) {
-				case OFFSET :
+			switch (_kind) {
+				case Offset :
 					generator.write(((Integer) this._value));
 
 					break;
-				case TIME :
+				case Time :
 					generator.write(((String) this._value));
 
 					break;
@@ -130,17 +149,17 @@ public class Time implements TaggedUnion<Object>, JsonpSerializable {
 	}
 
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Time> {
-		private String _type;
+		private Kind _kind;
 		private Object _value;
 
 		public Builder offset(Integer v) {
-			this._type = OFFSET;
+			this._kind = Kind.Offset;
 			this._value = v;
 			return this;
 		}
 
 		public Builder time(String v) {
-			this._type = TIME;
+			this._kind = Kind.Time;
 			this._value = v;
 			return this;
 		}
@@ -153,9 +172,9 @@ public class Time implements TaggedUnion<Object>, JsonpSerializable {
 	}
 
 	private static JsonpDeserializer<Time> buildTimeDeserializer() {
-		return new UnionDeserializer.Builder<>(Time::new, false)
-				.addMember("offset", JsonpDeserializer.integerDeserializer())
-				.addMember("time", JsonpDeserializer.stringDeserializer()).build();
+		return new UnionDeserializer.Builder<Time, Kind, Object>(Time::new, false)
+				.addMember(Kind.Offset, JsonpDeserializer.integerDeserializer())
+				.addMember(Kind.Time, JsonpDeserializer.stringDeserializer()).build();
 	}
 
 	public static final JsonpDeserializer<Time> _DESERIALIZER = JsonpDeserializer.lazy(Time::buildTimeDeserializer);

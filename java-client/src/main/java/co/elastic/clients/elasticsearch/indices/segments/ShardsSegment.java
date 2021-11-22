@@ -36,9 +36,9 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
-import java.util.Collections;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -65,8 +65,10 @@ public class ShardsSegment implements JsonpSerializable {
 
 	}
 
-	public static ShardsSegment of(Function<Builder, ObjectBuilder<ShardsSegment>> fn) {
-		return fn.apply(new Builder()).build();
+	public static ShardsSegment of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -164,8 +166,10 @@ public class ShardsSegment implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code routing}
 		 */
-		public final Builder routing(Function<ShardSegmentRouting.Builder, ObjectBuilder<ShardSegmentRouting>> fn) {
-			return this.routing(fn.apply(new ShardSegmentRouting.Builder()).build());
+		public final Builder routing(Consumer<ShardSegmentRouting.Builder> fn) {
+			ShardSegmentRouting.Builder builder = new ShardSegmentRouting.Builder();
+			fn.accept(builder);
+			return this.routing(builder.build());
 		}
 
 		/**
@@ -182,13 +186,6 @@ public class ShardsSegment implements JsonpSerializable {
 		public final Builder segments(Map<String, Segment> value) {
 			this.segments = value;
 			return this;
-		}
-
-		/**
-		 * Set {@link #segments(Map)} to a singleton map.
-		 */
-		public Builder segments(String key, Function<Segment.Builder, ObjectBuilder<Segment>> fn) {
-			return this.segments(Collections.singletonMap(key, fn.apply(new Segment.Builder()).build()));
 		}
 
 		public final Builder segments(

@@ -38,9 +38,9 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.Collections;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -64,8 +64,10 @@ public class IndexTemplateSummary implements JsonpSerializable {
 
 	}
 
-	public static IndexTemplateSummary of(Function<Builder, ObjectBuilder<IndexTemplateSummary>> fn) {
-		return fn.apply(new Builder()).build();
+	public static IndexTemplateSummary of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -154,13 +156,6 @@ public class IndexTemplateSummary implements JsonpSerializable {
 			return this;
 		}
 
-		/**
-		 * Set {@link #aliases(Map)} to a singleton map.
-		 */
-		public Builder aliases(String key, Function<Alias.Builder, ObjectBuilder<Alias>> fn) {
-			return this.aliases(Collections.singletonMap(key, fn.apply(new Alias.Builder()).build()));
-		}
-
 		public final Builder aliases(
 				Function<MapBuilder<String, Alias, Alias.Builder>, ObjectBuilder<Map<String, Alias>>> fn) {
 			return aliases(fn.apply(new MapBuilder<>(Alias.Builder::new)).build());
@@ -177,8 +172,10 @@ public class IndexTemplateSummary implements JsonpSerializable {
 		/**
 		 * API name: {@code mappings}
 		 */
-		public final Builder mappings(Function<TypeMapping.Builder, ObjectBuilder<TypeMapping>> fn) {
-			return this.mappings(fn.apply(new TypeMapping.Builder()).build());
+		public final Builder mappings(Consumer<TypeMapping.Builder> fn) {
+			TypeMapping.Builder builder = new TypeMapping.Builder();
+			fn.accept(builder);
+			return this.mappings(builder.build());
 		}
 
 		/**

@@ -23,15 +23,29 @@
 
 package co.elastic.clients.elasticsearch.cluster.allocation_explain;
 
+import co.elastic.clients.json.JsonEnum;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
-import co.elastic.clients.util.StringEnum;
 
 @JsonpDeserializable
-public enum Decision implements StringEnum {
-	Yes("yes"), No("no"), WorseBalance("worse_balance"), Throttled("throttled"), AwaitingInfo(
-			"awaiting_info"), AllocationDelayed(
-					"allocation_delayed"), NoValidShardCopy("no_valid_shard_copy"), NoAttempt("no_attempt");
+public enum Decision implements JsonEnum {
+	Yes("yes"),
+
+	No("no"),
+
+	WorseBalance("worse_balance"),
+
+	Throttled("throttled"),
+
+	AwaitingInfo("awaiting_info"),
+
+	AllocationDelayed("allocation_delayed"),
+
+	NoValidShardCopy("no_valid_shard_copy"),
+
+	NoAttempt("no_attempt"),
+
+	;
 
 	private final String jsonValue;
 
@@ -43,6 +57,5 @@ public enum Decision implements StringEnum {
 		return this.jsonValue;
 	}
 
-	public static final StringEnum.Deserializer<Decision> _DESERIALIZER = new StringEnum.Deserializer<>(
-			Decision.values());
+	public static final JsonEnum.Deserializer<Decision> _DESERIALIZER = new JsonEnum.Deserializer<>(Decision.values());
 }

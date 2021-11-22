@@ -33,7 +33,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.MovingFunctionAggregation
@@ -59,16 +59,18 @@ public class MovingFunctionAggregation extends PipelineAggregationBase implement
 
 	}
 
-	public static MovingFunctionAggregation of(Function<Builder, ObjectBuilder<MovingFunctionAggregation>> fn) {
-		return fn.apply(new Builder()).build();
+	public static MovingFunctionAggregation of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
-	 * {@link Aggregation} variant type
+	 * Aggregation variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "moving_fn";
+	public Aggregation.Kind _aggregationKind() {
+		return Aggregation.Kind.MovingFn;
 	}
 
 	/**

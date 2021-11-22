@@ -29,14 +29,15 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -56,9 +57,10 @@ public class ExplainDataFrameAnalyticsResponse implements JsonpSerializable {
 
 	}
 
-	public static ExplainDataFrameAnalyticsResponse of(
-			Function<Builder, ObjectBuilder<ExplainDataFrameAnalyticsResponse>> fn) {
-		return fn.apply(new Builder()).build();
+	public static ExplainDataFrameAnalyticsResponse of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -145,14 +147,9 @@ public class ExplainDataFrameAnalyticsResponse implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code field_selection}
 		 */
-		@SafeVarargs
 		public final Builder fieldSelection(
-				Function<DataframeAnalyticsFieldSelection.Builder, ObjectBuilder<DataframeAnalyticsFieldSelection>>... fns) {
-			this.fieldSelection = new ArrayList<>(fns.length);
-			for (Function<DataframeAnalyticsFieldSelection.Builder, ObjectBuilder<DataframeAnalyticsFieldSelection>> fn : fns) {
-				this.fieldSelection.add(fn.apply(new DataframeAnalyticsFieldSelection.Builder()).build());
-			}
-			return this;
+				Function<ListBuilder<DataframeAnalyticsFieldSelection, DataframeAnalyticsFieldSelection.Builder>, ObjectBuilder<List<DataframeAnalyticsFieldSelection>>> fn) {
+			return fieldSelection(fn.apply(new ListBuilder<>(DataframeAnalyticsFieldSelection.Builder::new)).build());
 		}
 
 		/**
@@ -172,9 +169,10 @@ public class ExplainDataFrameAnalyticsResponse implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code memory_estimation}
 		 */
-		public final Builder memoryEstimation(
-				Function<DataframeAnalyticsMemoryEstimation.Builder, ObjectBuilder<DataframeAnalyticsMemoryEstimation>> fn) {
-			return this.memoryEstimation(fn.apply(new DataframeAnalyticsMemoryEstimation.Builder()).build());
+		public final Builder memoryEstimation(Consumer<DataframeAnalyticsMemoryEstimation.Builder> fn) {
+			DataframeAnalyticsMemoryEstimation.Builder builder = new DataframeAnalyticsMemoryEstimation.Builder();
+			fn.accept(builder);
+			return this.memoryEstimation(builder.build());
 		}
 
 		/**

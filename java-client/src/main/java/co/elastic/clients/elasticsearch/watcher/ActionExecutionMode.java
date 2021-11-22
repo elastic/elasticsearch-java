@@ -23,14 +23,23 @@
 
 package co.elastic.clients.elasticsearch.watcher;
 
+import co.elastic.clients.json.JsonEnum;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
-import co.elastic.clients.util.StringEnum;
 
 @JsonpDeserializable
-public enum ActionExecutionMode implements StringEnum {
-	Simulate("simulate"), ForceSimulate("force_simulate"), Execute("execute"), ForceExecute("force_execute"), Skip(
-			"skip");
+public enum ActionExecutionMode implements JsonEnum {
+	Simulate("simulate"),
+
+	ForceSimulate("force_simulate"),
+
+	Execute("execute"),
+
+	ForceExecute("force_execute"),
+
+	Skip("skip"),
+
+	;
 
 	private final String jsonValue;
 
@@ -42,6 +51,6 @@ public enum ActionExecutionMode implements StringEnum {
 		return this.jsonValue;
 	}
 
-	public static final StringEnum.Deserializer<ActionExecutionMode> _DESERIALIZER = new StringEnum.Deserializer<>(
+	public static final JsonEnum.Deserializer<ActionExecutionMode> _DESERIALIZER = new JsonEnum.Deserializer<>(
 			ActionExecutionMode.values());
 }

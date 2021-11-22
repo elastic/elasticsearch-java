@@ -34,7 +34,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: security.put_role.Response
@@ -50,8 +50,10 @@ public class PutRoleResponse implements JsonpSerializable {
 
 	}
 
-	public static PutRoleResponse of(Function<Builder, ObjectBuilder<PutRoleResponse>> fn) {
-		return fn.apply(new Builder()).build();
+	public static PutRoleResponse of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -96,8 +98,10 @@ public class PutRoleResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code role}
 		 */
-		public final Builder role(Function<CreatedStatus.Builder, ObjectBuilder<CreatedStatus>> fn) {
-			return this.role(fn.apply(new CreatedStatus.Builder()).build());
+		public final Builder role(Consumer<CreatedStatus.Builder> fn) {
+			CreatedStatus.Builder builder = new CreatedStatus.Builder();
+			fn.accept(builder);
+			return this.role(builder.build());
 		}
 
 		/**

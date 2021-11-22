@@ -33,12 +33,12 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: _global.search._types.ScoreSort
 @JsonpDeserializable
-public class ScoreSort implements JsonpSerializable {
+public class ScoreSort implements SortOptionsVariant, JsonpSerializable {
 	@Nullable
 	private final SortOrder order;
 
@@ -50,8 +50,18 @@ public class ScoreSort implements JsonpSerializable {
 
 	}
 
-	public static ScoreSort of(Function<Builder, ObjectBuilder<ScoreSort>> fn) {
-		return fn.apply(new Builder()).build();
+	public static ScoreSort of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
+	}
+
+	/**
+	 * SortOptions variant kind.
+	 */
+	@Override
+	public SortOptions.Kind _sortOptionsKind() {
+		return SortOptions.Kind.Doc;
 	}
 
 	/**

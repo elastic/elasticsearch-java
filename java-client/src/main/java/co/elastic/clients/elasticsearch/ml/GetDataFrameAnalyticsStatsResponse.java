@@ -29,15 +29,16 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -58,9 +59,10 @@ public class GetDataFrameAnalyticsStatsResponse implements JsonpSerializable {
 
 	}
 
-	public static GetDataFrameAnalyticsStatsResponse of(
-			Function<Builder, ObjectBuilder<GetDataFrameAnalyticsStatsResponse>> fn) {
-		return fn.apply(new Builder()).build();
+	public static GetDataFrameAnalyticsStatsResponse of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -153,14 +155,9 @@ public class GetDataFrameAnalyticsStatsResponse implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code data_frame_analytics}
 		 */
-		@SafeVarargs
 		public final Builder dataFrameAnalytics(
-				Function<DataframeAnalytics.Builder, ObjectBuilder<DataframeAnalytics>>... fns) {
-			this.dataFrameAnalytics = new ArrayList<>(fns.length);
-			for (Function<DataframeAnalytics.Builder, ObjectBuilder<DataframeAnalytics>> fn : fns) {
-				this.dataFrameAnalytics.add(fn.apply(new DataframeAnalytics.Builder()).build());
-			}
-			return this;
+				Function<ListBuilder<DataframeAnalytics, DataframeAnalytics.Builder>, ObjectBuilder<List<DataframeAnalytics>>> fn) {
+			return dataFrameAnalytics(fn.apply(new ListBuilder<>(DataframeAnalytics.Builder::new)).build());
 		}
 
 		/**

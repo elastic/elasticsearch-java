@@ -38,23 +38,25 @@ import co.elastic.clients.util.TaggedUnionUtils;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Object;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: nodes.reload_secure_settings.NodeReloadResult
 // union type: Union[]
 @JsonpDeserializable
-public class NodeReloadResult implements TaggedUnion<Object>, JsonpSerializable {
+public class NodeReloadResult implements TaggedUnion<NodeReloadResult.Kind, Object>, JsonpSerializable {
 
-	public static final String STATS = "stats";
-	public static final String ERROR = "error";
+	public enum Kind {
+		Stats, Error
 
-	private final String _type;
+	}
+
+	private final Kind _kind;
 	private final Object _value;
 
 	@Override
-	public final String _type() {
-		return _type;
+	public final Kind _kind() {
+		return _kind;
 	}
 
 	@Override
@@ -62,20 +64,29 @@ public class NodeReloadResult implements TaggedUnion<Object>, JsonpSerializable 
 		return _value;
 	}
 
-	public NodeReloadResult(String type, Object value) {
-		this._type = type;
+	public NodeReloadResult(Kind kind, Object value) {
+		this._kind = kind;
 		this._value = value;
 	}
 
 	private NodeReloadResult(Builder builder) {
 
-		this._type = ModelTypeHelper.requireNonNull(builder._type, builder, "<variant type>");
+		this._kind = ModelTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
 		this._value = ModelTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
 
 	}
 
-	public static NodeReloadResult of(Function<Builder, ObjectBuilder<NodeReloadResult>> fn) {
-		return fn.apply(new Builder()).build();
+	public static NodeReloadResult of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
+	}
+
+	/**
+	 * Is this variant instance of kind {@code stats}?
+	 */
+	public boolean isStats() {
+		return _kind == Kind.Stats;
 	}
 
 	/**
@@ -85,7 +96,14 @@ public class NodeReloadResult implements TaggedUnion<Object>, JsonpSerializable 
 	 *             if the current variant is not of the {@code stats} kind.
 	 */
 	public Stats stats() {
-		return TaggedUnionUtils.get(this, STATS);
+		return TaggedUnionUtils.get(this, Kind.Stats);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code error}?
+	 */
+	public boolean isError() {
+		return _kind == Kind.Error;
 	}
 
 	/**
@@ -95,7 +113,7 @@ public class NodeReloadResult implements TaggedUnion<Object>, JsonpSerializable 
 	 *             if the current variant is not of the {@code error} kind.
 	 */
 	public NodeReloadError error() {
-		return TaggedUnionUtils.get(this, ERROR);
+		return TaggedUnionUtils.get(this, Kind.Error);
 	}
 
 	@Override
@@ -107,27 +125,31 @@ public class NodeReloadResult implements TaggedUnion<Object>, JsonpSerializable 
 	}
 
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodeReloadResult> {
-		private String _type;
+		private Kind _kind;
 		private Object _value;
 
 		public Builder stats(Stats v) {
-			this._type = STATS;
+			this._kind = Kind.Stats;
 			this._value = v;
 			return this;
 		}
 
-		public Builder stats(Function<Stats.Builder, ObjectBuilder<Stats>> f) {
-			return this.stats(f.apply(new Stats.Builder()).build());
+		public Builder stats(Consumer<Stats.Builder> fn) {
+			Stats.Builder builder = new Stats.Builder();
+			fn.accept(builder);
+			return this.stats(builder.build());
 		}
 
 		public Builder error(NodeReloadError v) {
-			this._type = ERROR;
+			this._kind = Kind.Error;
 			this._value = v;
 			return this;
 		}
 
-		public Builder error(Function<NodeReloadError.Builder, ObjectBuilder<NodeReloadError>> f) {
-			return this.error(f.apply(new NodeReloadError.Builder()).build());
+		public Builder error(Consumer<NodeReloadError.Builder> fn) {
+			NodeReloadError.Builder builder = new NodeReloadError.Builder();
+			fn.accept(builder);
+			return this.error(builder.build());
 		}
 
 		public NodeReloadResult build() {
@@ -138,8 +160,9 @@ public class NodeReloadResult implements TaggedUnion<Object>, JsonpSerializable 
 	}
 
 	private static JsonpDeserializer<NodeReloadResult> buildNodeReloadResultDeserializer() {
-		return new UnionDeserializer.Builder<>(NodeReloadResult::new, false).addMember("stats", Stats._DESERIALIZER)
-				.addMember("error", NodeReloadError._DESERIALIZER).build();
+		return new UnionDeserializer.Builder<NodeReloadResult, Kind, Object>(NodeReloadResult::new, false)
+				.addMember(Kind.Stats, Stats._DESERIALIZER).addMember(Kind.Error, NodeReloadError._DESERIALIZER)
+				.build();
 	}
 
 	public static final JsonpDeserializer<NodeReloadResult> _DESERIALIZER = JsonpDeserializer

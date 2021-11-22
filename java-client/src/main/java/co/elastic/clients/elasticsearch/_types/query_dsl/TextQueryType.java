@@ -23,14 +23,25 @@
 
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
+import co.elastic.clients.json.JsonEnum;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
-import co.elastic.clients.util.StringEnum;
 
 @JsonpDeserializable
-public enum TextQueryType implements StringEnum {
-	BestFields("best_fields"), MostFields("most_fields"), CrossFields("cross_fields"), Phrase("phrase"), PhrasePrefix(
-			"phrase_prefix"), BoolPrefix("bool_prefix");
+public enum TextQueryType implements JsonEnum {
+	BestFields("best_fields"),
+
+	MostFields("most_fields"),
+
+	CrossFields("cross_fields"),
+
+	Phrase("phrase"),
+
+	PhrasePrefix("phrase_prefix"),
+
+	BoolPrefix("bool_prefix"),
+
+	;
 
 	private final String jsonValue;
 
@@ -42,6 +53,6 @@ public enum TextQueryType implements StringEnum {
 		return this.jsonValue;
 	}
 
-	public static final StringEnum.Deserializer<TextQueryType> _DESERIALIZER = new StringEnum.Deserializer<>(
+	public static final JsonEnum.Deserializer<TextQueryType> _DESERIALIZER = new JsonEnum.Deserializer<>(
 			TextQueryType.values());
 }

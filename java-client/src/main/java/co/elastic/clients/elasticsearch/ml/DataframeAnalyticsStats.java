@@ -23,6 +23,7 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
+import co.elastic.clients.json.JsonEnum;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -37,24 +38,45 @@ import co.elastic.clients.util.TaggedUnionUtils;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Object;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.DataframeAnalyticsStatsContainer
 // union type: Container[]
 @JsonpDeserializable
-public class DataframeAnalyticsStats implements TaggedUnion<Object>, JsonpSerializable {
+public class DataframeAnalyticsStats implements TaggedUnion<DataframeAnalyticsStats.Kind, Object>, JsonpSerializable {
 
-	public static final String CLASSIFICATION_STATS = "classification_stats";
-	public static final String OUTLIER_DETECTION_STATS = "outlier_detection_stats";
-	public static final String REGRESSION_STATS = "regression_stats";
+	/**
+	 * {@link DataframeAnalyticsStats} variant kinds.
+	 */
 
-	private final String _type;
+	public enum Kind implements JsonEnum {
+		ClassificationStats("classification_stats"),
+
+		OutlierDetectionStats("outlier_detection_stats"),
+
+		RegressionStats("regression_stats"),
+
+		;
+
+		private final String jsonValue;
+
+		Kind(String jsonValue) {
+			this.jsonValue = jsonValue;
+		}
+
+		public String jsonValue() {
+			return this.jsonValue;
+		}
+
+	}
+
+	private final Kind _kind;
 	private final Object _value;
 
 	@Override
-	public final String _type() {
-		return _type;
+	public final Kind _kind() {
+		return _kind;
 	}
 
 	@Override
@@ -64,20 +86,29 @@ public class DataframeAnalyticsStats implements TaggedUnion<Object>, JsonpSerial
 
 	public DataframeAnalyticsStats(DataframeAnalyticsStatsVariant value) {
 
-		this._type = ModelTypeHelper.requireNonNull(value._variantType(), this, "<variant type>");
+		this._kind = ModelTypeHelper.requireNonNull(value._dataframeAnalyticsStatsKind(), this, "<variant kind>");
 		this._value = ModelTypeHelper.requireNonNull(value, this, "<variant value>");
 
 	}
 
 	private DataframeAnalyticsStats(Builder builder) {
 
-		this._type = ModelTypeHelper.requireNonNull(builder._type, builder, "<variant type>");
+		this._kind = ModelTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
 		this._value = ModelTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
 
 	}
 
-	public static DataframeAnalyticsStats of(Function<Builder, ObjectBuilder<DataframeAnalyticsStats>> fn) {
-		return fn.apply(new Builder()).build();
+	public static DataframeAnalyticsStats of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
+	}
+
+	/**
+	 * Is this variant instance of kind {@code classification_stats}?
+	 */
+	public boolean isClassificationStats() {
+		return _kind == Kind.ClassificationStats;
 	}
 
 	/**
@@ -88,7 +119,14 @@ public class DataframeAnalyticsStats implements TaggedUnion<Object>, JsonpSerial
 	 *             kind.
 	 */
 	public DataframeAnalyticsStatsHyperparameters classificationStats() {
-		return TaggedUnionUtils.get(this, CLASSIFICATION_STATS);
+		return TaggedUnionUtils.get(this, Kind.ClassificationStats);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code outlier_detection_stats}?
+	 */
+	public boolean isOutlierDetectionStats() {
+		return _kind == Kind.OutlierDetectionStats;
 	}
 
 	/**
@@ -99,7 +137,14 @@ public class DataframeAnalyticsStats implements TaggedUnion<Object>, JsonpSerial
 	 *             {@code outlier_detection_stats} kind.
 	 */
 	public DataframeAnalyticsStatsOutlierDetection outlierDetectionStats() {
-		return TaggedUnionUtils.get(this, OUTLIER_DETECTION_STATS);
+		return TaggedUnionUtils.get(this, Kind.OutlierDetectionStats);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code regression_stats}?
+	 */
+	public boolean isRegressionStats() {
+		return _kind == Kind.RegressionStats;
 	}
 
 	/**
@@ -110,7 +155,7 @@ public class DataframeAnalyticsStats implements TaggedUnion<Object>, JsonpSerial
 	 *             kind.
 	 */
 	public DataframeAnalyticsStatsHyperparameters regressionStats() {
-		return TaggedUnionUtils.get(this, REGRESSION_STATS);
+		return TaggedUnionUtils.get(this, Kind.RegressionStats);
 	}
 
 	@Override
@@ -119,7 +164,7 @@ public class DataframeAnalyticsStats implements TaggedUnion<Object>, JsonpSerial
 
 		generator.writeStartObject();
 
-		generator.writeKey(_type);
+		generator.writeKey(_kind.jsonValue());
 		if (_value instanceof JsonpSerializable) {
 			((JsonpSerializable) _value).serialize(generator, mapper);
 		}
@@ -129,40 +174,43 @@ public class DataframeAnalyticsStats implements TaggedUnion<Object>, JsonpSerial
 	}
 
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DataframeAnalyticsStats> {
-		private String _type;
+		private Kind _kind;
 		private Object _value;
 
 		public Builder classificationStats(DataframeAnalyticsStatsHyperparameters v) {
-			this._type = CLASSIFICATION_STATS;
+			this._kind = Kind.ClassificationStats;
 			this._value = v;
 			return this;
 		}
 
-		public Builder classificationStats(
-				Function<DataframeAnalyticsStatsHyperparameters.Builder, ObjectBuilder<DataframeAnalyticsStatsHyperparameters>> f) {
-			return this.classificationStats(f.apply(new DataframeAnalyticsStatsHyperparameters.Builder()).build());
+		public Builder classificationStats(Consumer<DataframeAnalyticsStatsHyperparameters.Builder> fn) {
+			DataframeAnalyticsStatsHyperparameters.Builder builder = new DataframeAnalyticsStatsHyperparameters.Builder();
+			fn.accept(builder);
+			return this.classificationStats(builder.build());
 		}
 
 		public Builder outlierDetectionStats(DataframeAnalyticsStatsOutlierDetection v) {
-			this._type = OUTLIER_DETECTION_STATS;
+			this._kind = Kind.OutlierDetectionStats;
 			this._value = v;
 			return this;
 		}
 
-		public Builder outlierDetectionStats(
-				Function<DataframeAnalyticsStatsOutlierDetection.Builder, ObjectBuilder<DataframeAnalyticsStatsOutlierDetection>> f) {
-			return this.outlierDetectionStats(f.apply(new DataframeAnalyticsStatsOutlierDetection.Builder()).build());
+		public Builder outlierDetectionStats(Consumer<DataframeAnalyticsStatsOutlierDetection.Builder> fn) {
+			DataframeAnalyticsStatsOutlierDetection.Builder builder = new DataframeAnalyticsStatsOutlierDetection.Builder();
+			fn.accept(builder);
+			return this.outlierDetectionStats(builder.build());
 		}
 
 		public Builder regressionStats(DataframeAnalyticsStatsHyperparameters v) {
-			this._type = REGRESSION_STATS;
+			this._kind = Kind.RegressionStats;
 			this._value = v;
 			return this;
 		}
 
-		public Builder regressionStats(
-				Function<DataframeAnalyticsStatsHyperparameters.Builder, ObjectBuilder<DataframeAnalyticsStatsHyperparameters>> f) {
-			return this.regressionStats(f.apply(new DataframeAnalyticsStatsHyperparameters.Builder()).build());
+		public Builder regressionStats(Consumer<DataframeAnalyticsStatsHyperparameters.Builder> fn) {
+			DataframeAnalyticsStatsHyperparameters.Builder builder = new DataframeAnalyticsStatsHyperparameters.Builder();
+			fn.accept(builder);
+			return this.regressionStats(builder.build());
 		}
 
 		public DataframeAnalyticsStats build() {

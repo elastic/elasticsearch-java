@@ -35,7 +35,7 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Consumer;
 
 // typedef: ml.info.Datafeeds
 @JsonpDeserializable
@@ -50,8 +50,10 @@ public class Datafeeds implements JsonpSerializable {
 
 	}
 
-	public static Datafeeds of(Function<Builder, ObjectBuilder<Datafeeds>> fn) {
-		return fn.apply(new Builder()).build();
+	public static Datafeeds of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**

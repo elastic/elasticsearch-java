@@ -35,9 +35,9 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.Collections;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -63,8 +63,10 @@ public class WatcherWatch implements JsonpSerializable {
 
 	}
 
-	public static WatcherWatch of(Function<Builder, ObjectBuilder<WatcherWatch>> fn) {
-		return fn.apply(new Builder()).build();
+	public static WatcherWatch of(Consumer<Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
 	}
 
 	/**
@@ -168,13 +170,6 @@ public class WatcherWatch implements JsonpSerializable {
 			return this;
 		}
 
-		/**
-		 * Set {@link #input(Map)} to a singleton map.
-		 */
-		public Builder input(String key, Function<Counter.Builder, ObjectBuilder<Counter>> fn) {
-			return this.input(Collections.singletonMap(key, fn.apply(new Counter.Builder()).build()));
-		}
-
 		public final Builder input(
 				Function<MapBuilder<String, Counter, Counter.Builder>, ObjectBuilder<Map<String, Counter>>> fn) {
 			return input(fn.apply(new MapBuilder<>(Counter.Builder::new)).build());
@@ -188,13 +183,6 @@ public class WatcherWatch implements JsonpSerializable {
 			return this;
 		}
 
-		/**
-		 * Set {@link #condition(Map)} to a singleton map.
-		 */
-		public Builder condition(String key, Function<Counter.Builder, ObjectBuilder<Counter>> fn) {
-			return this.condition(Collections.singletonMap(key, fn.apply(new Counter.Builder()).build()));
-		}
-
 		public final Builder condition(
 				Function<MapBuilder<String, Counter, Counter.Builder>, ObjectBuilder<Map<String, Counter>>> fn) {
 			return condition(fn.apply(new MapBuilder<>(Counter.Builder::new)).build());
@@ -206,13 +194,6 @@ public class WatcherWatch implements JsonpSerializable {
 		public final Builder action(@Nullable Map<String, Counter> value) {
 			this.action = value;
 			return this;
-		}
-
-		/**
-		 * Set {@link #action(Map)} to a singleton map.
-		 */
-		public Builder action(String key, Function<Counter.Builder, ObjectBuilder<Counter>> fn) {
-			return this.action(Collections.singletonMap(key, fn.apply(new Counter.Builder()).build()));
 		}
 
 		public final Builder action(
@@ -231,8 +212,10 @@ public class WatcherWatch implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code trigger}
 		 */
-		public final Builder trigger(Function<WatcherWatchTrigger.Builder, ObjectBuilder<WatcherWatchTrigger>> fn) {
-			return this.trigger(fn.apply(new WatcherWatchTrigger.Builder()).build());
+		public final Builder trigger(Consumer<WatcherWatchTrigger.Builder> fn) {
+			WatcherWatchTrigger.Builder builder = new WatcherWatchTrigger.Builder();
+			fn.accept(builder);
+			return this.trigger(builder.build());
 		}
 
 		/**
