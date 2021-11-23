@@ -45,6 +45,13 @@ public class ListBuilder<T, B> implements ObjectBuilder<List<T>> {
         return add(fn.apply(builderCtor.get()).build());
     }
 
+    public ListBuilder<T, B> addAll(Iterable<? extends T> iterable) {
+        for (T item: iterable) {
+            list.add(item);
+        }
+        return this;
+    }
+
     @Override
     public List<T> build() {
         return list;

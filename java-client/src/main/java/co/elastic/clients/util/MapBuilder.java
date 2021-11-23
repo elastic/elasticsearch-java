@@ -43,6 +43,18 @@ public class MapBuilder<K, V, B> implements ObjectBuilder<Map<K, V>> {
         return put(key, fn.apply(builderCtor.get()).build());
     }
 
+    public MapBuilder<K, V, B> putAll(Map<? extends K, ? extends V> map) {
+        this.map.putAll(map);
+        return this;
+    }
+
+    public MapBuilder<K, V, B> putAll(Iterable<Map.Entry<? extends K, ? extends V>> entries) {
+        for (Map.Entry<? extends K, ? extends V> entry: entries) {
+            this.map.put(entry.getKey(), entry.getValue());
+        }
+        return this;
+    }
+
     @Override
     public Map<K, V> build() {
         return map;
