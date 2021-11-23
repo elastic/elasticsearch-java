@@ -147,7 +147,7 @@ public class Union2<A, B> {
         return Union2.ofB(parserB.deserialize(parser, mapper, event));
 
       } else {
-        throw new JsonParsingException("Unexpected event [" + event + "]", parser.getLocation());
+        throw new JsonParsingException("Unexpected event '" + event + "'", parser.getLocation());
       }
     }
   }

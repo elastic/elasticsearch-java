@@ -266,26 +266,29 @@ public class RequestTest extends Assert {
         BooleanResponse exists = client.exists(_0 -> _0.index("doesnotexist").id("reallynot"));
         assertFalse(exists.value());
 
-        try {
+        ElasticsearchException ex = assertThrows(ElasticsearchException.class, () -> {
             GetResponse<String> response = client.get(
                 _0 -> _0.index("doesnotexist").id("reallynot"), String.class
             );
-        } catch(ElasticsearchException ex) {
-            assertEquals(404, ex.status());
-            assertEquals("index_not_found_exception", ex.error().type());
-            assertEquals("doesnotexist", ex.error().metadata().get("index").to(String.class));
-        }
+        });
 
-        try {
+        assertEquals("es/get", ex.endpointId());
+        assertEquals(404, ex.status());
+        assertEquals("index_not_found_exception", ex.error().type());
+        assertEquals("doesnotexist", ex.error().metadata().get("index").to(String.class));
+
+
+        ExecutionException ee = assertThrows(ExecutionException.class, () -> {
             ElasticsearchAsyncClient aClient = new ElasticsearchAsyncClient(transport);
             GetResponse<String> response = aClient.get(
                 _0 -> _0.index("doesnotexist").id("reallynot"), String.class
             ).get();
-        } catch(ExecutionException ee) {
-            ElasticsearchException ex = ((ElasticsearchException) ee.getCause());
-            assertEquals(404, ex.status());
-            assertEquals("index_not_found_exception", ex.error().type());
-        }
+        });
+
+        ex = ((ElasticsearchException) ee.getCause());
+        assertEquals("es/get", ex.endpointId());
+        assertEquals(404, ex.status());
+        assertEquals("index_not_found_exception", ex.error().type());
     }
 
     @Test

@@ -81,7 +81,7 @@ public class JacksonJsonpParser implements JsonParser {
     }
 
     private JsonParsingException convertException(IOException ioe) {
-        return new JsonParsingException("Jackson exception", ioe, getLocation());
+        return new JsonParsingException("Jackson exception: " + ioe.getMessage(), ioe, getLocation());
     }
 
     private JsonToken fetchNextToken() {
@@ -124,7 +124,7 @@ public class JacksonJsonpParser implements JsonParser {
 
         Event result = tokenToEvent.get(token);
         if (result == null) {
-            throw new JsonParsingException("Unsupported Jackson event type "+ token.toString(), getLocation());
+            throw new JsonParsingException("Unsupported Jackson event type '"+ token + "'", getLocation());
         }
 
         return result;
@@ -196,8 +196,8 @@ public class JacksonJsonpParser implements JsonParser {
     public JsonObject getObject() {
         ensureTokenIsCurrent();
         if (parser.currentToken() != JsonToken.START_OBJECT) {
-            throw new IllegalStateException("Unexpected token " + parser.currentToken() +
-                " at " + parser.getTokenLocation());
+            throw new IllegalStateException("Unexpected event '" + parser.currentToken() +
+                "' at " + parser.getTokenLocation());
         }
         if (valueParser == null) {
             valueParser = new JsonValueParser();
@@ -216,8 +216,8 @@ public class JacksonJsonpParser implements JsonParser {
             valueParser = new JsonValueParser();
         }
         if (parser.currentToken() != JsonToken.START_ARRAY) {
-            throw new IllegalStateException("Unexpected token " + parser.currentToken() +
-                " at " + parser.getTokenLocation());
+            throw new IllegalStateException("Unexpected event '" + parser.currentToken() +
+                "' at " + parser.getTokenLocation());
         }
         try {
             return valueParser.parseArray(parser);

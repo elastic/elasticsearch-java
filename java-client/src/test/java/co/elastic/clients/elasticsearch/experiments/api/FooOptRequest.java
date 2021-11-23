@@ -259,6 +259,7 @@ public class FooOptRequest implements JsonpSerializable {
 
   public static final Endpoint<FooOptRequest, FooResponse, ErrorResponse> ENDPOINT =
     new SimpleEndpoint<FooOptRequest, FooResponse>(
+      "foo",
       r -> "POST",
       r -> "/foo",
       SimpleEndpoint.emptyMap(),

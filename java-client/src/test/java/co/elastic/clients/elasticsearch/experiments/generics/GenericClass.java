@@ -104,6 +104,7 @@ public class GenericClass<GenParam> implements JsonpSerializable {
         JsonpDeserializer<GenParam> genParamDeserializer
     ) {
         return new SimpleEndpoint<>(
+            "genclass",
             // Request method
             request -> "GET",
 

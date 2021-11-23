@@ -71,7 +71,7 @@ public class JacksonJsonpMapper extends JsonpMapperBase {
     public <T> void serialize(T value, JsonGenerator generator) {
 
         if (!(generator instanceof JacksonJsonpGenerator)) {
-            throw new IllegalArgumentException("Jackson' ObjectMapper can only be used with the JacksonJsonpProvider");
+            throw new IllegalArgumentException("Jackson's ObjectMapper can only be used with the JacksonJsonpProvider");
         }
 
         JsonpSerializer<T> serializer = findSerializer(value);
@@ -101,7 +101,7 @@ public class JacksonJsonpMapper extends JsonpMapperBase {
         public T deserialize(JsonParser parser, JsonpMapper mapper, JsonParser.Event event) {
 
             if (!(parser instanceof JacksonJsonpParser)) {
-                throw new IllegalArgumentException("Jackson' ObjectMapper can only be used with the JacksonJsonpProvider");
+                throw new IllegalArgumentException("Jackson's ObjectMapper can only be used with the JacksonJsonpProvider");
             }
 
             com.fasterxml.jackson.core.JsonParser jkParser = ((JacksonJsonpParser)parser).jacksonParser();
