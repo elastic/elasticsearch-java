@@ -102,6 +102,7 @@ public class ObjectDeserializer<ObjectType> implements JsonpDeserializer<ObjectT
     protected final Map<String, FieldDeserializer<ObjectType>> fieldDeserializers;
     private FieldDeserializer<ObjectType> singleKey;
     private String typeProperty;
+    private String defaultType;
     private FieldDeserializer<ObjectType> shortcutProperty;
     private QuadConsumer<ObjectType, String, JsonParser, JsonpMapper> unknownFieldHandler;
 
@@ -180,7 +181,7 @@ public class ObjectDeserializer<ObjectType> implements JsonpDeserializer<ObjectT
             // Union variant: find the property to find the proper deserializer
             // We cannot start with a key name here.
             JsonpUtils.expectEvent(parser, Event.START_OBJECT, event);
-            Map.Entry<String, JsonParser> unionInfo = JsonpUtils.lookAheadFieldValue(typeProperty, parser, mapper);
+            Map.Entry<String, JsonParser> unionInfo = JsonpUtils.lookAheadFieldValue(typeProperty, defaultType, parser, mapper);
             String variant = unionInfo.getKey();
             JsonParser innerParser = unionInfo.getValue();
 
@@ -261,8 +262,9 @@ public class ObjectDeserializer<ObjectType> implements JsonpDeserializer<ObjectT
         this.singleKey = new FieldObjectDeserializer<>(setter, deserializer, null);
     }
 
-    public void setTypeProperty(String name) {
+    public void setTypeProperty(String name, String defaultType) {
         this.typeProperty = name;
+        this.defaultType = defaultType;
     }
 
     //----- Primitive types

@@ -20,6 +20,9 @@
 package co.elastic.clients.elasticsearch.model;
 
 import co.elastic.clients.elasticsearch._types.Script;
+import co.elastic.clients.elasticsearch._types.mapping.TypeMapping;
+import co.elastic.clients.elasticsearch.indices.GetIndicesSettingsResponse;
+import co.elastic.clients.elasticsearch.indices.GetMappingResponse;
 import org.junit.Test;
 
 
@@ -27,7 +30,7 @@ public class UnionTests extends ModelTestCase {
 
     @Test
     public void testScriptDeserializer() {
-
+        // A union discriminated by its field names (source -> inline, id -> stored)
         {
             Script s = Script.of(_1 -> _1
                 .inline(_2 -> _2

@@ -24,6 +24,7 @@ import co.elastic.clients.elasticsearch.ElasticsearchClient;
 import co.elastic.clients.elasticsearch._types.ElasticsearchException;
 import co.elastic.clients.elasticsearch._types.Refresh;
 import co.elastic.clients.elasticsearch._types.aggregations.HistogramAggregate;
+import co.elastic.clients.elasticsearch._types.mapping.Property;
 import co.elastic.clients.elasticsearch.cat.NodesResponse;
 import co.elastic.clients.elasticsearch.core.BulkResponse;
 import co.elastic.clients.elasticsearch.core.ClearScrollResponse;
@@ -37,6 +38,8 @@ import co.elastic.clients.elasticsearch.core.msearch.RequestItem;
 import co.elastic.clients.elasticsearch.indices.CreateIndexResponse;
 import co.elastic.clients.elasticsearch.indices.DiskUsageResponse;
 import co.elastic.clients.elasticsearch.indices.GetIndexResponse;
+import co.elastic.clients.elasticsearch.indices.GetIndicesSettingsResponse;
+import co.elastic.clients.elasticsearch.indices.GetMappingResponse;
 import co.elastic.clients.elasticsearch.indices.IndexState;
 import co.elastic.clients.elasticsearch.model.ModelTestCase;
 import co.elastic.clients.json.JsonpMapper;
@@ -57,6 +60,7 @@ import org.testcontainers.elasticsearch.ElasticsearchContainer;
 
 import java.io.IOException;
 import java.time.Duration;
+import java.util.Collections;
 import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
@@ -343,6 +347,49 @@ public class RequestTest extends Assert {
         // We've set "size" to zero
         assertEquals(0, searchResponse.hits().hits().size());
 
+    }
+
+    @Test
+    public void testGetMapping() throws Exception {
+        // See also VariantsTest.testNestedTaggedUnionWithDefaultTag()
+        // and https://github.com/elastic/elasticsearch-java/issues/45
+        String index = "testindex";
+
+        Map<String, Property> fields = Collections.singletonMap("keyword", Property.of(p -> p.keyword(k -> k.ignoreAbove(256))));
+        Property text = Property.of(p -> p.text(t -> t.fields(fields)));
+
+        client.indices().create(c -> c
+            .index(index)
+            .mappings(m -> m.properties(ps -> ps
+                .put("id", text)
+                .put("name", p -> p
+                    .object(o -> o.properties(fs -> fs
+                        .put("first", text)
+                        .put("last", text)
+                    ))
+                )
+            ))
+        );
+
+        GetMappingResponse mr = client.indices().getMapping(mrb -> mrb.index(index));
+
+        assertNotNull(mr.result().get(index));
+        assertNotNull(mr.result().get(index).mappings().properties().get("name").object());
+    }
+
+    @Test
+    public void testDefaultIndexSettings() throws IOException {
+        //https://github.com/elastic/elasticsearch-java/issues/46
+
+        String index = "index-settings";
+        client.index(_1 -> _1.index(index).document(new Product(5)).refresh(Refresh.True));
+
+        GetIndicesSettingsResponse settings;
+        settings = client.indices().getSettings(b -> b.index(index).includeDefaults(true));
+        assertNotNull(settings.get(index).defaults());
+
+        settings = client.indices().getSettings(b -> b.index(index));
+        assertNull(settings.get(index).defaults());
     }
 
     @Test

@@ -20,8 +20,10 @@
 package co.elastic.clients.elasticsearch.model;
 
 import co.elastic.clients.elasticsearch._types.mapping.Property;
+import co.elastic.clients.elasticsearch._types.mapping.TypeMapping;
 import co.elastic.clients.elasticsearch._types.query_dsl.Query;
 import co.elastic.clients.elasticsearch._types.query_dsl.QueryBuilders;
+import co.elastic.clients.elasticsearch.indices.GetMappingResponse;
 import org.junit.Test;
 
 public class VariantsTest extends ModelTestCase {
@@ -104,5 +106,76 @@ public class VariantsTest extends ModelTestCase {
         Query q = new Query(QueryBuilders.exists().field("foo").build());
 
         assertEquals("{\"exists\":{\"field\":\"foo\"}}", toJson(q));
+    }
+
+
+    @Test
+    public void testNestedTaggedUnionWithDefaultTag() {
+        // https://github.com/elastic/elasticsearch-java/issues/45
+
+        // Object fields don't really exist in ES and are based on a naming convention where field names
+        // are dot-separated paths. The hierarchy is rebuilt from these names and ES doesn't send back
+        // "type": "object" for object properties.
+        // See https://www.elastic.co/guide/en/elasticsearch/reference/current/object.html
+        //
+        // Mappings are therefore a hierarchy of internally-tagged unions based on the "type" property
+        // with a default "object" tag value if the "type" property is missing.
+
+        String json =
+            "{\n" +
+            "  \"testindex\" : {\n" +
+            "    \"mappings\" : {\n" +
+            "      \"properties\" : {\n" +
+            "        \"id\" : {\n" +
+            "          \"type\" : \"text\",\n" +
+            "          \"fields\" : {\n" +
+            "            \"keyword\" : {\n" +
+            "              \"type\" : \"keyword\",\n" +
+            "              \"ignore_above\" : 256\n" +
+            "            }\n" +
+            "          }\n" +
+            "        },\n" +
+            "        \"name\" : {\n" +
+            "          \"properties\" : {\n" +
+            "            \"first\" : {\n" +
+            "              \"type\" : \"text\",\n" +
+            "              \"fields\" : {\n" +
+            "                \"keyword\" : {\n" +
+            "                  \"type\" : \"keyword\",\n" +
+            "                  \"ignore_above\" : 256\n" +
+            "                }\n" +
+            "              }\n" +
+            "            },\n" +
+            "            \"last\" : {\n" +
+            "              \"type\" : \"text\",\n" +
+            "              \"fields\" : {\n" +
+            "                \"keyword\" : {\n" +
+            "                  \"type\" : \"keyword\",\n" +
+            "                  \"ignore_above\" : 256\n" +
+            "                }\n" +
+            "              }\n" +
+            "            }\n" +
+            "          }\n" +
+            "        }\n" +
+            "      }\n" +
+            "    }\n" +
+            "  }\n" +
+            "}";
+
+        GetMappingResponse response = fromJson(json, GetMappingResponse.class);
+
+        TypeMapping mappings = response.get("testindex").mappings();
+        assertTrue(mappings.properties().get("name").isObject());
+
+        assertEquals(256, mappings
+            .properties().get("name").object()
+            .properties().get("first").text()
+            .fields().get("keyword").keyword().
+            ignoreAbove().longValue()
+        );
+
+        assertTrue(mappings.properties().get("id").isText());
+
+        assertEquals(256, mappings.properties().get("id").text().fields().get("keyword").keyword().ignoreAbove().longValue());
     }
 }
