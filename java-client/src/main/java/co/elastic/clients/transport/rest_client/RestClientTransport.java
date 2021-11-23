@@ -24,6 +24,7 @@ import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.NdJsonpSerializable;
+import co.elastic.clients.transport.JsonEndpoint;
 import co.elastic.clients.transport.TransportException;
 import co.elastic.clients.transport.Version;
 import co.elastic.clients.transport.endpoints.BooleanEndpoint;
@@ -260,7 +261,10 @@ public class RestClientTransport implements ElasticsearchTransport {
 
                 HttpEntity entity = clientResp.getEntity();
                 if (entity == null) {
-                    throw new TransportException("Expecting a response body, but none was sent", endpoint.id(), new ResponseException(clientResp));
+                    throw new TransportException(
+                        "Expecting a response body, but none was sent",
+                        endpoint.id(), new ResponseException(clientResp)
+                    );
                 }
 
                 // We may have to replay it.
@@ -302,10 +306,12 @@ public class RestClientTransport implements ElasticsearchTransport {
             ResponseT response = (ResponseT) new BooleanResponse(bep.getResult(statusCode));
             return response;
 
-        } else {
+        } else if (endpoint instanceof JsonEndpoint){
+            @SuppressWarnings("unchecked")
+            JsonEndpoint<?, ResponseT, ?> jsonEndpoint = (JsonEndpoint<?, ResponseT, ?>)endpoint;
             // Successful response
             ResponseT response = null;
-            JsonpDeserializer<ResponseT> responseParser = endpoint.responseDeserializer();
+            JsonpDeserializer<ResponseT> responseParser = jsonEndpoint.responseDeserializer();
             if (responseParser != null) {
                 // Expecting a body
                 if (entity == null) {
@@ -320,6 +326,8 @@ public class RestClientTransport implements ElasticsearchTransport {
                 };
             }
             return response;
+        } else {
+            throw new TransportException("Unhandled endpoint type: '" + endpoint.getClass().getName() + "'", endpoint.id());
         }
     }
 
