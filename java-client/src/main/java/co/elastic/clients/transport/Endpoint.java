@@ -26,8 +26,13 @@ import java.util.Collections;
 import java.util.Map;
 
 /**
- * And endpoint links request and responses to protocol encoding. It also defines the error response
+ * An endpoint links requests and responses to HTTP protocol encoding. It also defines the error response
  * when the server cannot perform the request.
+ * <p>
+ * Requests are serialized as JSON by default, unless they implement specific marker interfaces that indicate
+ * otherwise and must be handled by the transport processing the request (e.g. {@link co.elastic.clients.json.NdJsonpSerializable}).
+ * <p>
+ * Response body decoding, when applicable, is defined by child interfaces like {@link JsonEndpoint}.
  *
  * @param <RequestT> the endpoint's request
  * @param <ResponseT> the endpoint's response. Use {@code Void} when there's no response body.
@@ -41,23 +46,24 @@ public interface Endpoint<RequestT, ResponseT, ErrorT> {
   String id();
 
   /**
-   * The endpoint's http method
+   * Get the endpoint's HTTP method for a request.
    */
   String method(RequestT request);
+
   /**
-   * Build the URL path for a request
+   * Get the URL path for a request.
    */
   String requestUrl(RequestT request);
 
   /**
-   * Build the query parameters for a request
+   * Get the query parameters for a request.
    */
   default Map<String, String> queryParameters(RequestT request) {
     return Collections.emptyMap();
   }
 
   /**
-   * Build the headers for a request
+   * Get the HTTP headers for a request.
    */
   default Map<String, String> headers(RequestT request) {
     return Collections.emptyMap();
@@ -66,12 +72,8 @@ public interface Endpoint<RequestT, ResponseT, ErrorT> {
   boolean hasRequestBody();
 
   /**
-   * The entity parser for the response body. Can be {@code null} to indicate that there's no response body.
+   * Is this status code to be considered as an error?
    */
-  @Nullable
-  JsonpDeserializer<ResponseT> responseDeserializer();
-
-  // TODO: combine isError and errorParser in a single method with a tri-state result?
   boolean isError(int statusCode);
 
   /**

@@ -33,10 +33,10 @@ public class BooleanEndpoint<RequestT> extends SimpleEndpoint<RequestT, BooleanR
         Function<RequestT,
             Map<String, String>> queryParameters,
         Function<RequestT, Map<String, String>> headers,
-        boolean hasRequestBody, // always true
-        JsonpDeserializer<BooleanResponse> responseParser // always null
+        boolean hasRequestBody, // always false
+        JsonpDeserializer<?> responseParser // always null
     ) {
-        super(id, method, requestUrl, queryParameters, headers, hasRequestBody, responseParser);
+        super(id, method, requestUrl, queryParameters, headers, false, null);
     }
 
     @Override

@@ -21,14 +21,14 @@ package co.elastic.clients.transport.endpoints;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.json.JsonpDeserializer;
-import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.JsonEndpoint;
 import org.apache.http.client.utils.URLEncodedUtils;
 
 import java.util.Collections;
 import java.util.Map;
 import java.util.function.Function;
 
-public class SimpleEndpoint<RequestT, ResponseT> implements Endpoint<RequestT, ResponseT, ErrorResponse> {
+public class SimpleEndpoint<RequestT, ResponseT> implements JsonEndpoint<RequestT, ResponseT, ErrorResponse> {
 
     private static final Function<?, Map<String, String>> EMPTY_MAP = x -> Collections.emptyMap();
 

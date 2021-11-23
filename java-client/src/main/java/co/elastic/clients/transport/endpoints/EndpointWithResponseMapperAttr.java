@@ -22,7 +22,7 @@ package co.elastic.clients.transport.endpoints;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.JsonEndpoint;
 import jakarta.json.stream.JsonParser;
 
 import javax.annotation.Nullable;
@@ -30,12 +30,12 @@ import javax.annotation.Nullable;
 /**
  * An endpoint wrapper that adds attributes to the JSON mapper used to deserialize its response.
  */
-public class EndpointWithResponseMapperAttr<Req, Res, Err> extends DelegatingEndpoint<Req, Res, Err> {
+public class EndpointWithResponseMapperAttr<Req, Res, Err> extends DelegatingJsonEndpoint<Req, Res, Err> {
 
     private final String attrName;
     private final Object attrValue;
 
-    public EndpointWithResponseMapperAttr(Endpoint<Req, Res, Err> endpoint, String attrName, Object attrValue) {
+    public EndpointWithResponseMapperAttr(JsonEndpoint<Req, Res, Err> endpoint, String attrName, Object attrValue) {
         super(endpoint);
         this.attrName = attrName;
         this.attrValue = attrValue;

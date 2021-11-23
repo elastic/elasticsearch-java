@@ -20,16 +20,16 @@
 package co.elastic.clients.transport.endpoints;
 
 import co.elastic.clients.json.JsonpDeserializer;
-import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.JsonEndpoint;
 
 import javax.annotation.Nullable;
 import java.util.Map;
 
-public class DelegatingEndpoint<Req, Res, Err> implements Endpoint<Req, Res, Err> {
+public class DelegatingJsonEndpoint<Req, Res, Err> implements JsonEndpoint<Req, Res, Err> {
 
-    protected final Endpoint<Req, Res, Err> endpoint;
+    protected final JsonEndpoint<Req, Res, Err> endpoint;
 
-    public DelegatingEndpoint(Endpoint<Req, Res, Err> endpoint) {
+    public DelegatingJsonEndpoint(JsonEndpoint<Req, Res, Err> endpoint) {
         this.endpoint = endpoint;
     }
 
