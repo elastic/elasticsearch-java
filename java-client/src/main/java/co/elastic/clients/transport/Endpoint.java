@@ -34,6 +34,12 @@ import java.util.Map;
  * @param <ErrorT> the endpoint's error type. Use {@code Void} when error responses have no body.
  */
 public interface Endpoint<RequestT, ResponseT, ErrorT> {
+
+  /**
+   * The endpoint's identifier.
+   */
+  String id();
+
   /**
    * The endpoint's http method
    */

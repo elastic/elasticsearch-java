@@ -34,6 +34,11 @@ public class DelegatingEndpoint<Req, Res, Err> implements Endpoint<Req, Res, Err
     }
 
     @Override
+    public String id() {
+        return endpoint.id();
+    }
+
+    @Override
     public String method(Req request) {
         return endpoint.method(request);
     }

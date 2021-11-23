@@ -208,7 +208,7 @@ public class ObjectDeserializer<ObjectType> implements JsonpDeserializer<ObjectT
 
         } else {
             throw new JsonParsingException(
-                "Unknown field [" + fieldName + "] for type [" + object.getClass().getName() +"]",
+                "Unknown field '" + fieldName + "' for type '" + object.getClass().getName() +"'",
                 parser.getLocation()
             );
         }

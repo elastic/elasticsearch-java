@@ -19,15 +19,27 @@
 
 package co.elastic.clients.transport;
 
+import javax.annotation.Nullable;
 import java.io.IOException;
 
 public class TransportException extends IOException {
 
-    public TransportException(String message) {
-        super(message);
+    private final String endpointId;
+
+    public TransportException(String message, String endpointId) {
+        this(message, endpointId, null);
     }
 
-    public TransportException(String message, Throwable cause) {
-        super(message, cause);
+    public TransportException(String message, String endpointId, Throwable cause) {
+        super(endpointId == null ? message : "[" + endpointId + "] " + message, cause);
+        this.endpointId = endpointId;
+    }
+
+    /**
+     * Identifier of the API endpoint that caused the exception, if known.
+     */
+    @Nullable
+    String getEndpointId() {
+        return endpointId;
     }
 }

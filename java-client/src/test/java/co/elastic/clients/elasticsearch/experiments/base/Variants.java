@@ -121,7 +121,7 @@ public class Variants<T> {
         JsonpDeserializer<? extends T> variantParser = variants.variantParser(variant);
 
         if (variantParser == null) {
-          throw new JsonParsingException("Unknown variant [" + variant + "]", parser.getLocation());
+          throw new JsonParsingException("Unknown variant '" + variant + "'", parser.getLocation());
         }
 
         T result = variantParser.deserialize(parser, params);

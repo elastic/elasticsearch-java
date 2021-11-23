@@ -99,7 +99,7 @@ public class JsonpUtils {
      * Throws a {@link JsonParsingException} because some unknown property name was encountered
      */
     public static void unknownKey(JsonParser parser, String keyName) {
-        throw new JsonParsingException("Unknown property " + keyName , parser.getLocation());
+        throw new JsonParsingException("Unknown property '" + keyName + "'", parser.getLocation());
     }
 
     public static String ensureSingleVariant(JsonParser parser, String variant1, String variant2) {
@@ -188,7 +188,7 @@ public class JsonpUtils {
                 return value.toString();
 
             default:
-                throw new IllegalArgumentException("Unknown json value type: " + value);
+                throw new IllegalArgumentException("Unknown json value type: '" + value + "'");
         }
     }
 }

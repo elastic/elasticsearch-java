@@ -27,6 +27,7 @@ import java.util.function.Function;
 public class BooleanEndpoint<RequestT> extends SimpleEndpoint<RequestT, BooleanResponse> {
 
     public BooleanEndpoint(
+        String id,
         Function<RequestT, String> method,
         Function<RequestT, String> requestUrl,
         Function<RequestT,
@@ -35,7 +36,7 @@ public class BooleanEndpoint<RequestT> extends SimpleEndpoint<RequestT, BooleanR
         boolean hasRequestBody, // always true
         JsonpDeserializer<BooleanResponse> responseParser // always null
     ) {
-        super(method, requestUrl, queryParameters, headers, hasRequestBody, responseParser);
+        super(id, method, requestUrl, queryParameters, headers, hasRequestBody, responseParser);
     }
 
     @Override

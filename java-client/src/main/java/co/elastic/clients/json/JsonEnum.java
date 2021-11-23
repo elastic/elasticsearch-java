@@ -84,7 +84,7 @@ public interface JsonEnum extends JsonpSerializable {
         public T deserialize(String value, JsonParser parser) {
             T result = this.lookupTable.get(value);
             if (result == null) {
-                throw new JsonParsingException("Invalid enum [" + value + "]", parser.getLocation());
+                throw new JsonParsingException("Invalid enum '" + value + "'", parser.getLocation());
             }
             return result;
         }
@@ -99,7 +99,7 @@ public interface JsonEnum extends JsonpSerializable {
         public T parse(String value) {
             T result = this.lookupTable.get(value);
             if (result == null) {
-                throw new NoSuchElementException("Invalid enum [" + value + "]");
+                throw new NoSuchElementException("Invalid enum '" + value + "'");
             }
             return result;
         }

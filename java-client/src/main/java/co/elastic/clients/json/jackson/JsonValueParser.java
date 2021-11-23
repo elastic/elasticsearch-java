@@ -100,7 +100,7 @@ class JsonValueParser {
                 }
 
             default:
-                throw new JsonParsingException("Unexpected token " + parser.currentToken(), new JacksonJsonpLocation(parser));
+                throw new JsonParsingException("Unexpected token '" + parser.currentToken() + "'", new JacksonJsonpLocation(parser));
 
         }
     }
