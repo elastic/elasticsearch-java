@@ -125,11 +125,15 @@ public abstract class JsonpDeserializerBase<V> implements JsonpDeserializer<V> {
 
     static final JsonpDeserializer<Boolean> BOOLEAN =
         new JsonpDeserializerBase<Boolean>(
-            EnumSet.of(Event.VALUE_FALSE, Event.VALUE_TRUE)
+            EnumSet.of(Event.VALUE_FALSE, Event.VALUE_TRUE, Event.VALUE_STRING)
         ) {
             @Override
             public Boolean deserialize(JsonParser parser, JsonpMapper mapper, Event event) {
-                return event == Event.VALUE_TRUE;
+                if (event == Event.VALUE_STRING) {
+                    return Boolean.parseBoolean(parser.getString());
+                } else {
+                    return event == Event.VALUE_TRUE;
+                }
             }
         };
 

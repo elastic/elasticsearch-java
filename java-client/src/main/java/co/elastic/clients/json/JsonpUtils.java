@@ -136,11 +136,17 @@ public class JsonpUtils {
      * Returns a pair containing that value and a parser that should be used to actually parse the object
      * (the object has been consumed from the original one).
      */
-    public static Map.Entry<String, JsonParser> lookAheadFieldValue(String name, JsonParser parser, JsonpMapper mapper) {
+    public static Map.Entry<String, JsonParser> lookAheadFieldValue(
+        String name, String defaultValue, JsonParser parser, JsonpMapper mapper
+    ) {
         // FIXME: need a buffering parser wrapper so that we don't roundtrip through a JsonObject and a String
         // FIXME: resulting parser should return locations that are offset with the original parser's location
         JsonObject object = parser.getObject();
         String result = object.getString(name, null);
+
+        if (result == null) {
+            result = defaultValue;
+        }
 
         if (result == null) {
             throw new JsonParsingException("Property '" + name + "' not found", parser.getLocation());

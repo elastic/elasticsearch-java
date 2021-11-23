@@ -87,14 +87,14 @@ public class BehaviorsTest extends ModelTestCase {
         {
             SortOptions so = SortOptionsBuilders.geoDistance()
                 .field("foo")
-                .value(GeoLocation.of(_b -> _b.text("someWKT")))
+                .location(GeoLocation.of(_b -> _b.text("someWKT")))
                 .build()
                 ._toSortOptions();
 
             so = checkJsonRoundtrip(so, "{\"_geo_distance\":{\"foo\":[\"someWKT\"]}}");
             assertEquals(SortOptions.Kind.GeoDistance, so._kind());
             assertEquals("foo", so.geoDistance().field());
-            assertEquals("someWKT", so.geoDistance().value().get(0).text());
+            assertEquals("someWKT", so.geoDistance().location().get(0).text());
         }
 
         {

@@ -348,6 +348,5 @@ public class RestClientTransport implements ElasticsearchTransport {
                 new ResponseException(clientResp)
             );
         }
-
     }
 }

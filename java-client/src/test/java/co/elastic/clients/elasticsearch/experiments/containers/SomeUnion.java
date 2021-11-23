@@ -147,6 +147,6 @@ public class SomeUnion implements TaggedUnion<SomeUnion.Kind, SomeUnionVariant>,
         op.add(SomeUnion.Builder::variantA, UVariantA._DESERIALIZER, "variant_a");
         op.add(SomeUnion.Builder::variantB, UVariantB._DESERIALIZER, "variant_b");
 
-        op.setTypeProperty("type");
+        op.setTypeProperty("type", null);
     }
 }
