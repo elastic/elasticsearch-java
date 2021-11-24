@@ -19,16 +19,16 @@
 
 package co.elastic.clients.elasticsearch.experiments.api.query2;
 
+import co.elastic.clients.elasticsearch.experiments.UnionVariant;
 import co.elastic.clients.json.BuildFunctionDeserializer;
+import co.elastic.clients.json.JsonEnum;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.json.JsonEnum;
 import co.elastic.clients.util.TaggedUnion;
 import co.elastic.clients.util.TaggedUnionUtils;
-import co.elastic.clients.elasticsearch.experiments.UnionVariant;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 

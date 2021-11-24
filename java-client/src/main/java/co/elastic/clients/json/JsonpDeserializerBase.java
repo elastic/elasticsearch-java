@@ -125,7 +125,8 @@ public abstract class JsonpDeserializerBase<V> implements JsonpDeserializer<V> {
 
     static final JsonpDeserializer<Boolean> BOOLEAN =
         new JsonpDeserializerBase<Boolean>(
-            EnumSet.of(Event.VALUE_FALSE, Event.VALUE_TRUE, Event.VALUE_STRING)
+            EnumSet.of(Event.VALUE_FALSE, Event.VALUE_TRUE, Event.VALUE_STRING),
+            EnumSet.of(Event.VALUE_FALSE, Event.VALUE_TRUE)
         ) {
             @Override
             public Boolean deserialize(JsonParser parser, JsonpMapper mapper, Event event) {
@@ -183,7 +184,7 @@ public abstract class JsonpDeserializerBase<V> implements JsonpDeserializer<V> {
     static final JsonpDeserializer<Number> NUMBER =
         new JsonpDeserializerBase<Number>(
             EnumSet.of(Event.VALUE_NUMBER, Event.VALUE_STRING),
-            EnumSet.of(Event.VALUE_STRING)
+            EnumSet.of(Event.VALUE_NUMBER)
         ) {
             @Override
             public Number deserialize(JsonParser parser, JsonpMapper mapper, Event event) {

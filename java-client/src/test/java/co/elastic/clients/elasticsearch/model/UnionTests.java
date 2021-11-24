@@ -20,9 +20,8 @@
 package co.elastic.clients.elasticsearch.model;
 
 import co.elastic.clients.elasticsearch._types.Script;
-import co.elastic.clients.elasticsearch._types.mapping.TypeMapping;
-import co.elastic.clients.elasticsearch.indices.GetIndicesSettingsResponse;
-import co.elastic.clients.elasticsearch.indices.GetMappingResponse;
+import co.elastic.clients.elasticsearch._types.query_dsl.SimpleQueryStringFlag;
+import co.elastic.clients.elasticsearch._types.query_dsl.SimpleQueryStringFlags;
 import org.junit.Test;
 
 
@@ -56,5 +55,20 @@ public class UnionTests extends ModelTestCase {
             Script s = fromJson("\"a script\"", Script.class);
             assertEquals("a script", s.inline().source());
         }
+    }
+
+    @Test
+    public void testSimpleQueryStringFlag() {
+        // Ambiguous union on strings
+
+        SimpleQueryStringFlags f;
+
+        f= fromJson("\"OR\"", SimpleQueryStringFlags.class);
+        assertEquals(SimpleQueryStringFlag.Or, f.single());
+
+        f = fromJson("\"OR|AND\"", SimpleQueryStringFlags.class);
+        assertEquals("OR|AND", f.multiple());
+
+
     }
 }

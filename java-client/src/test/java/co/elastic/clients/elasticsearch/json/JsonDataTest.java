@@ -22,6 +22,8 @@ package co.elastic.clients.elasticsearch.json;
 import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.jsonb.JsonbJsonpMapper;
+import jakarta.json.JsonString;
+import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import jakarta.json.stream.JsonParser;
 import org.junit.Assert;
@@ -72,5 +74,16 @@ public class JsonDataTest extends Assert {
         generator.close();
 
         assertEquals(json, sw.toString());
+    }
+
+    @Test
+    public void testConvert() {
+
+        JsonData json = JsonData.of("foo");
+
+        final JsonValue value = json.toJson(new JsonbJsonpMapper());
+
+        assertEquals(JsonValue.ValueType.STRING, value.getValueType());
+        assertEquals("foo", ((JsonString)value).getString());
     }
 }
