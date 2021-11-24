@@ -25,8 +25,8 @@ package co.elastic.clients.elasticsearch.watcher;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.elasticsearch._types.SortOptions;
 import co.elastic.clients.elasticsearch._types.query_dsl.Query;
-import co.elastic.clients.elasticsearch.core.search.SortOptions;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -331,6 +331,8 @@ public class QueryWatchesRequest extends RequestBase implements JsonpSerializabl
 	 * Endpoint "{@code watcher.query_watches}".
 	 */
 	public static final Endpoint<QueryWatchesRequest, QueryWatchesResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/watcher.query_watches",
+
 			// Request method
 			request -> {
 				return "POST";

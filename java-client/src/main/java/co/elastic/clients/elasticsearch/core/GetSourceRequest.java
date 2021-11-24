@@ -444,7 +444,8 @@ public class GetSourceRequest {
 	/**
 	 * Endpoint "{@code get_source}".
 	 */
-	public static final SimpleEndpoint<GetSourceRequest, ?> _ENDPOINT = new SimpleEndpoint<>(
+	public static final SimpleEndpoint<GetSourceRequest, ?> _ENDPOINT = new SimpleEndpoint<>("es/get_source",
+
 			// Request method
 			request -> {
 				return "GET";

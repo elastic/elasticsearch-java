@@ -132,6 +132,8 @@ public class PutCalendarJobRequest extends RequestBase {
 	 * Endpoint "{@code ml.put_calendar_job}".
 	 */
 	public static final Endpoint<PutCalendarJobRequest, PutCalendarJobResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/ml.put_calendar_job",
+
 			// Request method
 			request -> {
 				return "PUT";

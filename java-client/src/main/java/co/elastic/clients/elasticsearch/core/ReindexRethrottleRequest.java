@@ -137,6 +137,8 @@ public class ReindexRethrottleRequest extends RequestBase {
 	 * Endpoint "{@code reindex_rethrottle}".
 	 */
 	public static final Endpoint<ReindexRethrottleRequest, ReindexRethrottleResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/reindex_rethrottle",
+
 			// Request method
 			request -> {
 				return "POST";

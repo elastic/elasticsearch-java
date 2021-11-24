@@ -22,6 +22,6 @@
 //----------------------------------------------------
 
 /**
- * Generated from https://github.com/elastic/elasticsearch-specification/tree/3d8a433
+ * Generated from https://github.com/elastic/elasticsearch-specification/tree/9eec415
  */
 package co.elastic.clients.elasticsearch;

@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.ExpandWildcard;
+import co.elastic.clients.elasticsearch._types.IndicesOptions;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch._types.ScriptField;
 import co.elastic.clients.elasticsearch._types.Time;
@@ -87,7 +88,7 @@ public class UpdateDatafeedRequest extends RequestBase implements JsonpSerializa
 	private final List<String> indices;
 
 	@Nullable
-	private final DatafeedIndicesOptions indicesOptions;
+	private final IndicesOptions indicesOptions;
 
 	@Nullable
 	private final Integer maxEmptySearches;
@@ -274,7 +275,7 @@ public class UpdateDatafeedRequest extends RequestBase implements JsonpSerializa
 	 * API name: {@code indices_options}
 	 */
 	@Nullable
-	public final DatafeedIndicesOptions indicesOptions() {
+	public final IndicesOptions indicesOptions() {
 		return this.indicesOptions;
 	}
 
@@ -492,7 +493,7 @@ public class UpdateDatafeedRequest extends RequestBase implements JsonpSerializa
 		private List<String> indices;
 
 		@Nullable
-		private DatafeedIndicesOptions indicesOptions;
+		private IndicesOptions indicesOptions;
 
 		@Nullable
 		private Integer maxEmptySearches;
@@ -742,7 +743,7 @@ public class UpdateDatafeedRequest extends RequestBase implements JsonpSerializa
 		 * <p>
 		 * API name: {@code indices_options}
 		 */
-		public final Builder indicesOptions(@Nullable DatafeedIndicesOptions value) {
+		public final Builder indicesOptions(@Nullable IndicesOptions value) {
 			this.indicesOptions = value;
 			return this;
 		}
@@ -752,8 +753,8 @@ public class UpdateDatafeedRequest extends RequestBase implements JsonpSerializa
 		 * <p>
 		 * API name: {@code indices_options}
 		 */
-		public final Builder indicesOptions(Consumer<DatafeedIndicesOptions.Builder> fn) {
-			DatafeedIndicesOptions.Builder builder = new DatafeedIndicesOptions.Builder();
+		public final Builder indicesOptions(Consumer<IndicesOptions.Builder> fn) {
+			IndicesOptions.Builder builder = new IndicesOptions.Builder();
 			fn.accept(builder);
 			return this.indicesOptions(builder.build());
 		}
@@ -916,7 +917,7 @@ public class UpdateDatafeedRequest extends RequestBase implements JsonpSerializa
 		op.add(Builder::frequency, Time._DESERIALIZER, "frequency");
 		op.add(Builder::indices, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "indices",
 				"indexes");
-		op.add(Builder::indicesOptions, DatafeedIndicesOptions._DESERIALIZER, "indices_options");
+		op.add(Builder::indicesOptions, IndicesOptions._DESERIALIZER, "indices_options");
 		op.add(Builder::maxEmptySearches, JsonpDeserializer.integerDeserializer(), "max_empty_searches");
 		op.add(Builder::query, Query._DESERIALIZER, "query");
 		op.add(Builder::queryDelay, Time._DESERIALIZER, "query_delay");
@@ -934,6 +935,8 @@ public class UpdateDatafeedRequest extends RequestBase implements JsonpSerializa
 	 * Endpoint "{@code ml.update_datafeed}".
 	 */
 	public static final Endpoint<UpdateDatafeedRequest, UpdateDatafeedResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/ml.update_datafeed",
+
 			// Request method
 			request -> {
 				return "POST";

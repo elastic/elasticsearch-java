@@ -70,7 +70,7 @@ public class MultiGetResponseItem<TDocument>
 
 	private final JsonpSerializer<TDocument> tDocumentSerializer = null;
 
-	public MultiGetResponseItem(Kind kind, Object value) {
+	private MultiGetResponseItem(Kind kind, Object value) {
 		this._kind = kind;
 		this._value = value;
 	}
@@ -136,25 +136,25 @@ public class MultiGetResponseItem<TDocument>
 		private Kind _kind;
 		private Object _value;
 
-		public Builder<TDocument> result(GetResult<TDocument> v) {
+		public ObjectBuilder<MultiGetResponseItem<TDocument>> result(GetResult<TDocument> v) {
 			this._kind = Kind.Result;
 			this._value = v;
 			return this;
 		}
 
-		public Builder<TDocument> result(Consumer<GetResult.Builder<TDocument>> fn) {
+		public ObjectBuilder<MultiGetResponseItem<TDocument>> result(Consumer<GetResult.Builder<TDocument>> fn) {
 			GetResult.Builder<TDocument> builder = new GetResult.Builder<TDocument>();
 			fn.accept(builder);
 			return this.result(builder.build());
 		}
 
-		public Builder<TDocument> failure(MultiGetError v) {
+		public ObjectBuilder<MultiGetResponseItem<TDocument>> failure(MultiGetError v) {
 			this._kind = Kind.Failure;
 			this._value = v;
 			return this;
 		}
 
-		public Builder<TDocument> failure(Consumer<MultiGetError.Builder> fn) {
+		public ObjectBuilder<MultiGetResponseItem<TDocument>> failure(Consumer<MultiGetError.Builder> fn) {
 			MultiGetError.Builder builder = new MultiGetError.Builder();
 			fn.accept(builder);
 			return this.failure(builder.build());

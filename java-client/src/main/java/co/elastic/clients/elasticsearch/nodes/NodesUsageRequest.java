@@ -201,6 +201,8 @@ public class NodesUsageRequest extends RequestBase {
 	 * Endpoint "{@code nodes.usage}".
 	 */
 	public static final Endpoint<NodesUsageRequest, NodesUsageResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/nodes.usage",
+
 			// Request method
 			request -> {
 				return "GET";

@@ -28,18 +28,20 @@ import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 
 @JsonpDeserializable
-public enum WaitForStatus implements JsonEnum {
-	Green("green"),
+public enum FieldSortNumericType implements JsonEnum {
+	Long("long"),
 
-	Yellow("yellow"),
+	Double("double"),
 
-	Red("red"),
+	Date("date"),
+
+	DateNanos("date_nanos"),
 
 	;
 
 	private final String jsonValue;
 
-	WaitForStatus(String jsonValue) {
+	FieldSortNumericType(String jsonValue) {
 		this.jsonValue = jsonValue;
 	}
 
@@ -47,6 +49,6 @@ public enum WaitForStatus implements JsonEnum {
 		return this.jsonValue;
 	}
 
-	public static final JsonEnum.Deserializer<WaitForStatus> _DESERIALIZER = new JsonEnum.Deserializer<>(
-			WaitForStatus.values());
+	public static final JsonEnum.Deserializer<FieldSortNumericType> _DESERIALIZER = new JsonEnum.Deserializer<>(
+			FieldSortNumericType.values());
 }

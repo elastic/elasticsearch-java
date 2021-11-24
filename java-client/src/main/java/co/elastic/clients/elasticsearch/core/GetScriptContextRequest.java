@@ -53,6 +53,8 @@ public class GetScriptContextRequest extends RequestBase {
 	 * Endpoint "{@code get_script_context}".
 	 */
 	public static final Endpoint<GetScriptContextRequest, GetScriptContextResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/get_script_context",
+
 			// Request method
 			request -> {
 				return "GET";

@@ -392,6 +392,8 @@ public class PutUserRequest extends RequestBase implements JsonpSerializable {
 	 * Endpoint "{@code security.put_user}".
 	 */
 	public static final Endpoint<PutUserRequest, PutUserResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/security.put_user",
+
 			// Request method
 			request -> {
 				return "PUT";

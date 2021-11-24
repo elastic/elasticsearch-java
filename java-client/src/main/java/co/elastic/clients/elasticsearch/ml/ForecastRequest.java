@@ -261,6 +261,8 @@ public class ForecastRequest extends RequestBase implements JsonpSerializable {
 	 * Endpoint "{@code ml.forecast}".
 	 */
 	public static final Endpoint<ForecastRequest, ForecastResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/ml.forecast",
+
 			// Request method
 			request -> {
 				return "POST";

@@ -165,6 +165,8 @@ public class DeletePrivilegesRequest extends RequestBase {
 	 * Endpoint "{@code security.delete_privileges}".
 	 */
 	public static final Endpoint<DeletePrivilegesRequest, DeletePrivilegesResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/security.delete_privileges",
+
 			// Request method
 			request -> {
 				return "DELETE";

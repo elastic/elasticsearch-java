@@ -211,6 +211,8 @@ public class PutPolicyRequest extends RequestBase implements JsonpSerializable {
 	 * Endpoint "{@code enrich.put_policy}".
 	 */
 	public static final Endpoint<PutPolicyRequest, PutPolicyResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/enrich.put_policy",
+
 			// Request method
 			request -> {
 				return "PUT";

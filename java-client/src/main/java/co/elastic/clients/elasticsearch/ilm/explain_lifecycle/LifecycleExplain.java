@@ -149,25 +149,25 @@ public class LifecycleExplain
 		private Kind _kind;
 		private LifecycleExplainVariant _value;
 
-		public Builder true_(LifecycleExplainManaged v) {
+		public ObjectBuilder<LifecycleExplain> true_(LifecycleExplainManaged v) {
 			this._kind = Kind.True;
 			this._value = v;
 			return this;
 		}
 
-		public Builder true_(Consumer<LifecycleExplainManaged.Builder> fn) {
+		public ObjectBuilder<LifecycleExplain> true_(Consumer<LifecycleExplainManaged.Builder> fn) {
 			LifecycleExplainManaged.Builder builder = new LifecycleExplainManaged.Builder();
 			fn.accept(builder);
 			return this.true_(builder.build());
 		}
 
-		public Builder false_(LifecycleExplainUnmanaged v) {
+		public ObjectBuilder<LifecycleExplain> false_(LifecycleExplainUnmanaged v) {
 			this._kind = Kind.False;
 			this._value = v;
 			return this;
 		}
 
-		public Builder false_(Consumer<LifecycleExplainUnmanaged.Builder> fn) {
+		public ObjectBuilder<LifecycleExplain> false_(Consumer<LifecycleExplainUnmanaged.Builder> fn) {
 			LifecycleExplainUnmanaged.Builder builder = new LifecycleExplainUnmanaged.Builder();
 			fn.accept(builder);
 			return this.false_(builder.build());
@@ -185,7 +185,7 @@ public class LifecycleExplain
 		op.add(Builder::true_, LifecycleExplainManaged._DESERIALIZER, "true");
 		op.add(Builder::false_, LifecycleExplainUnmanaged._DESERIALIZER, "false");
 
-		op.setTypeProperty("managed");
+		op.setTypeProperty("managed", null);
 
 	}
 

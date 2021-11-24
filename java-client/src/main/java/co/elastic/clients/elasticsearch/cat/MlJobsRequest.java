@@ -214,6 +214,8 @@ public class MlJobsRequest extends CatRequestBase {
 	 * Endpoint "{@code cat.ml_jobs}".
 	 */
 	public static final Endpoint<MlJobsRequest, MlJobsResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/cat.ml_jobs",
+
 			// Request method
 			request -> {
 				return "GET";

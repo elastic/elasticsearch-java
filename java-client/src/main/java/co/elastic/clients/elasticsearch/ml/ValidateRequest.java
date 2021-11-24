@@ -380,6 +380,8 @@ public class ValidateRequest extends RequestBase implements JsonpSerializable {
 	 * Endpoint "{@code ml.validate}".
 	 */
 	public static final Endpoint<ValidateRequest, ValidateResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/ml.validate",
+
 			// Request method
 			request -> {
 				return "POST";

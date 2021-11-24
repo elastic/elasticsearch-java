@@ -65,7 +65,7 @@ public class TermsQueryField implements TaggedUnion<TermsQueryField.Kind, Object
 		return _value;
 	}
 
-	public TermsQueryField(Kind kind, Object value) {
+	private TermsQueryField(Kind kind, Object value) {
 		this._kind = kind;
 		this._value = value;
 	}
@@ -141,19 +141,19 @@ public class TermsQueryField implements TaggedUnion<TermsQueryField.Kind, Object
 		private Kind _kind;
 		private Object _value;
 
-		public Builder value(List<FieldValue> v) {
+		public ObjectBuilder<TermsQueryField> value(List<FieldValue> v) {
 			this._kind = Kind.Value;
 			this._value = v;
 			return this;
 		}
 
-		public Builder lookup(TermsLookup v) {
+		public ObjectBuilder<TermsQueryField> lookup(TermsLookup v) {
 			this._kind = Kind.Lookup;
 			this._value = v;
 			return this;
 		}
 
-		public Builder lookup(Consumer<TermsLookup.Builder> fn) {
+		public ObjectBuilder<TermsQueryField> lookup(Consumer<TermsLookup.Builder> fn) {
 			TermsLookup.Builder builder = new TermsLookup.Builder();
 			fn.accept(builder);
 			return this.lookup(builder.build());

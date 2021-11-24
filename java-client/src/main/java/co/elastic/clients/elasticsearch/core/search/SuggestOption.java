@@ -66,7 +66,7 @@ public class SuggestOption<TDocument> implements TaggedUnion<SuggestOption.Kind,
 
 	private final JsonpSerializer<TDocument> tDocumentSerializer = null;
 
-	public SuggestOption(Kind kind, Object value) {
+	private SuggestOption(Kind kind, Object value) {
 		this._kind = kind;
 		this._value = value;
 	}
@@ -149,37 +149,38 @@ public class SuggestOption<TDocument> implements TaggedUnion<SuggestOption.Kind,
 		private Kind _kind;
 		private Object _value;
 
-		public Builder<TDocument> completion(CompletionSuggestOption<TDocument> v) {
+		public ObjectBuilder<SuggestOption<TDocument>> completion(CompletionSuggestOption<TDocument> v) {
 			this._kind = Kind.Completion;
 			this._value = v;
 			return this;
 		}
 
-		public Builder<TDocument> completion(Consumer<CompletionSuggestOption.Builder<TDocument>> fn) {
+		public ObjectBuilder<SuggestOption<TDocument>> completion(
+				Consumer<CompletionSuggestOption.Builder<TDocument>> fn) {
 			CompletionSuggestOption.Builder<TDocument> builder = new CompletionSuggestOption.Builder<TDocument>();
 			fn.accept(builder);
 			return this.completion(builder.build());
 		}
 
-		public Builder<TDocument> phrase(PhraseSuggestOption v) {
+		public ObjectBuilder<SuggestOption<TDocument>> phrase(PhraseSuggestOption v) {
 			this._kind = Kind.Phrase;
 			this._value = v;
 			return this;
 		}
 
-		public Builder<TDocument> phrase(Consumer<PhraseSuggestOption.Builder> fn) {
+		public ObjectBuilder<SuggestOption<TDocument>> phrase(Consumer<PhraseSuggestOption.Builder> fn) {
 			PhraseSuggestOption.Builder builder = new PhraseSuggestOption.Builder();
 			fn.accept(builder);
 			return this.phrase(builder.build());
 		}
 
-		public Builder<TDocument> term(TermSuggestOption v) {
+		public ObjectBuilder<SuggestOption<TDocument>> term(TermSuggestOption v) {
 			this._kind = Kind.Term;
 			this._value = v;
 			return this;
 		}
 
-		public Builder<TDocument> term(Consumer<TermSuggestOption.Builder> fn) {
+		public ObjectBuilder<SuggestOption<TDocument>> term(Consumer<TermSuggestOption.Builder> fn) {
 			TermSuggestOption.Builder builder = new TermSuggestOption.Builder();
 			fn.accept(builder);
 			return this.term(builder.build());

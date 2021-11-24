@@ -199,49 +199,49 @@ public class BulkOperation implements TaggedUnion<BulkOperation.Kind, Object>, N
 		private Kind _kind;
 		private Object _value;
 
-		public <TDocument> Builder index(IndexOperation<TDocument> v) {
+		public <TDocument> ObjectBuilder<BulkOperation> index(IndexOperation<TDocument> v) {
 			this._kind = Kind.Index;
 			this._value = v;
 			return this;
 		}
 
-		public <TDocument> Builder index(Consumer<IndexOperation.Builder<TDocument>> fn) {
+		public <TDocument> ObjectBuilder<BulkOperation> index(Consumer<IndexOperation.Builder<TDocument>> fn) {
 			IndexOperation.Builder builder = new IndexOperation.Builder();
 			fn.accept(builder);
 			return this.index(builder.build());
 		}
 
-		public <TDocument> Builder create(CreateOperation<TDocument> v) {
+		public <TDocument> ObjectBuilder<BulkOperation> create(CreateOperation<TDocument> v) {
 			this._kind = Kind.Create;
 			this._value = v;
 			return this;
 		}
 
-		public <TDocument> Builder create(Consumer<CreateOperation.Builder<TDocument>> fn) {
+		public <TDocument> ObjectBuilder<BulkOperation> create(Consumer<CreateOperation.Builder<TDocument>> fn) {
 			CreateOperation.Builder builder = new CreateOperation.Builder();
 			fn.accept(builder);
 			return this.create(builder.build());
 		}
 
-		public <TDocument> Builder update(UpdateOperation<TDocument> v) {
+		public <TDocument> ObjectBuilder<BulkOperation> update(UpdateOperation<TDocument> v) {
 			this._kind = Kind.Update;
 			this._value = v;
 			return this;
 		}
 
-		public <TDocument> Builder update(Consumer<UpdateOperation.Builder<TDocument>> fn) {
+		public <TDocument> ObjectBuilder<BulkOperation> update(Consumer<UpdateOperation.Builder<TDocument>> fn) {
 			UpdateOperation.Builder builder = new UpdateOperation.Builder();
 			fn.accept(builder);
 			return this.update(builder.build());
 		}
 
-		public Builder delete(DeleteOperation v) {
+		public ObjectBuilder<BulkOperation> delete(DeleteOperation v) {
 			this._kind = Kind.Delete;
 			this._value = v;
 			return this;
 		}
 
-		public Builder delete(Consumer<DeleteOperation.Builder> fn) {
+		public ObjectBuilder<BulkOperation> delete(Consumer<DeleteOperation.Builder> fn) {
 			DeleteOperation.Builder builder = new DeleteOperation.Builder();
 			fn.accept(builder);
 			return this.delete(builder.build());

@@ -220,6 +220,8 @@ public class ReloadSearchAnalyzersRequest extends RequestBase {
 	 * Endpoint "{@code indices.reload_search_analyzers}".
 	 */
 	public static final Endpoint<ReloadSearchAnalyzersRequest, ReloadSearchAnalyzersResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/indices.reload_search_analyzers",
+
 			// Request method
 			request -> {
 				return "POST";

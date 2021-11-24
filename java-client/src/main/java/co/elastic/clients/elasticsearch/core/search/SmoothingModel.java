@@ -175,37 +175,38 @@ public class SmoothingModel implements TaggedUnion<SmoothingModel.Kind, Object>,
 		private Kind _kind;
 		private Object _value;
 
-		public Builder laplace(LaplaceSmoothingModel v) {
+		public ObjectBuilder<SmoothingModel> laplace(LaplaceSmoothingModel v) {
 			this._kind = Kind.Laplace;
 			this._value = v;
 			return this;
 		}
 
-		public Builder laplace(Consumer<LaplaceSmoothingModel.Builder> fn) {
+		public ObjectBuilder<SmoothingModel> laplace(Consumer<LaplaceSmoothingModel.Builder> fn) {
 			LaplaceSmoothingModel.Builder builder = new LaplaceSmoothingModel.Builder();
 			fn.accept(builder);
 			return this.laplace(builder.build());
 		}
 
-		public Builder linearInterpolation(LinearInterpolationSmoothingModel v) {
+		public ObjectBuilder<SmoothingModel> linearInterpolation(LinearInterpolationSmoothingModel v) {
 			this._kind = Kind.LinearInterpolation;
 			this._value = v;
 			return this;
 		}
 
-		public Builder linearInterpolation(Consumer<LinearInterpolationSmoothingModel.Builder> fn) {
+		public ObjectBuilder<SmoothingModel> linearInterpolation(
+				Consumer<LinearInterpolationSmoothingModel.Builder> fn) {
 			LinearInterpolationSmoothingModel.Builder builder = new LinearInterpolationSmoothingModel.Builder();
 			fn.accept(builder);
 			return this.linearInterpolation(builder.build());
 		}
 
-		public Builder stupidBackoff(StupidBackoffSmoothingModel v) {
+		public ObjectBuilder<SmoothingModel> stupidBackoff(StupidBackoffSmoothingModel v) {
 			this._kind = Kind.StupidBackoff;
 			this._value = v;
 			return this;
 		}
 
-		public Builder stupidBackoff(Consumer<StupidBackoffSmoothingModel.Builder> fn) {
+		public ObjectBuilder<SmoothingModel> stupidBackoff(Consumer<StupidBackoffSmoothingModel.Builder> fn) {
 			StupidBackoffSmoothingModel.Builder builder = new StupidBackoffSmoothingModel.Builder();
 			fn.accept(builder);
 			return this.stupidBackoff(builder.build());

@@ -553,6 +553,8 @@ public class PutDataFrameAnalyticsRequest extends RequestBase implements JsonpSe
 	 * Endpoint "{@code ml.put_data_frame_analytics}".
 	 */
 	public static final Endpoint<PutDataFrameAnalyticsRequest, PutDataFrameAnalyticsResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/ml.put_data_frame_analytics",
+
 			// Request method
 			request -> {
 				return "PUT";

@@ -21,21 +21,21 @@
 // THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
 //----------------------------------------------------
 
-package co.elastic.clients.elasticsearch._types.aggregations;
+package co.elastic.clients.elasticsearch._types;
 
 import co.elastic.clients.json.JsonEnum;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 
 @JsonpDeserializable
-public enum MatrixStatsMode implements JsonEnum {
-	Avg("avg"),
-
+public enum SortMode implements JsonEnum {
 	Min("min"),
 
 	Max("max"),
 
 	Sum("sum"),
+
+	Avg("avg"),
 
 	Median("median"),
 
@@ -43,7 +43,7 @@ public enum MatrixStatsMode implements JsonEnum {
 
 	private final String jsonValue;
 
-	MatrixStatsMode(String jsonValue) {
+	SortMode(String jsonValue) {
 		this.jsonValue = jsonValue;
 	}
 
@@ -51,6 +51,5 @@ public enum MatrixStatsMode implements JsonEnum {
 		return this.jsonValue;
 	}
 
-	public static final JsonEnum.Deserializer<MatrixStatsMode> _DESERIALIZER = new JsonEnum.Deserializer<>(
-			MatrixStatsMode.values());
+	public static final JsonEnum.Deserializer<SortMode> _DESERIALIZER = new JsonEnum.Deserializer<>(SortMode.values());
 }

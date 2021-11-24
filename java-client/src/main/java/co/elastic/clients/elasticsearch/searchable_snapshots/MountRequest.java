@@ -389,6 +389,8 @@ public class MountRequest extends RequestBase implements JsonpSerializable {
 	 * Endpoint "{@code searchable_snapshots.mount}".
 	 */
 	public static final Endpoint<MountRequest, MountResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/searchable_snapshots.mount",
+
 			// Request method
 			request -> {
 				return "POST";

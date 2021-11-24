@@ -106,6 +106,8 @@ public class GetWatchRequest extends RequestBase {
 	 * Endpoint "{@code watcher.get_watch}".
 	 */
 	public static final Endpoint<GetWatchRequest, GetWatchResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/watcher.get_watch",
+
 			// Request method
 			request -> {
 				return "GET";

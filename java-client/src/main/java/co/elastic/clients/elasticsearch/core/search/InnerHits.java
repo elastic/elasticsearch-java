@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.core.search;
 
 import co.elastic.clients.elasticsearch._types.ScriptField;
+import co.elastic.clients.elasticsearch._types.SortOptions;
 import co.elastic.clients.elasticsearch._types.query_dsl.FieldAndFormat;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;

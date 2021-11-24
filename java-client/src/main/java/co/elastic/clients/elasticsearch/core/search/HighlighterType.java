@@ -64,7 +64,7 @@ public class HighlighterType implements TaggedUnion<HighlighterType.Kind, Object
 		return _value;
 	}
 
-	public HighlighterType(Kind kind, Object value) {
+	private HighlighterType(Kind kind, Object value) {
 		this._kind = kind;
 		this._value = value;
 	}
@@ -147,13 +147,13 @@ public class HighlighterType implements TaggedUnion<HighlighterType.Kind, Object
 		private Kind _kind;
 		private Object _value;
 
-		public Builder builtin(BuiltinHighlighterType v) {
+		public ObjectBuilder<HighlighterType> builtin(BuiltinHighlighterType v) {
 			this._kind = Kind.Builtin;
 			this._value = v;
 			return this;
 		}
 
-		public Builder custom(String v) {
+		public ObjectBuilder<HighlighterType> custom(String v) {
 			this._kind = Kind.Custom;
 			this._value = v;
 			return this;

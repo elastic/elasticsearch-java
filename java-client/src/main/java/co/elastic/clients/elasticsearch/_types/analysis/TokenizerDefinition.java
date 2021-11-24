@@ -378,169 +378,169 @@ public class TokenizerDefinition
 		private Kind _kind;
 		private TokenizerDefinitionVariant _value;
 
-		public Builder charGroup(CharGroupTokenizer v) {
+		public ObjectBuilder<TokenizerDefinition> charGroup(CharGroupTokenizer v) {
 			this._kind = Kind.CharGroup;
 			this._value = v;
 			return this;
 		}
 
-		public Builder charGroup(Consumer<CharGroupTokenizer.Builder> fn) {
+		public ObjectBuilder<TokenizerDefinition> charGroup(Consumer<CharGroupTokenizer.Builder> fn) {
 			CharGroupTokenizer.Builder builder = new CharGroupTokenizer.Builder();
 			fn.accept(builder);
 			return this.charGroup(builder.build());
 		}
 
-		public Builder edgeNgram(EdgeNGramTokenizer v) {
+		public ObjectBuilder<TokenizerDefinition> edgeNgram(EdgeNGramTokenizer v) {
 			this._kind = Kind.EdgeNgram;
 			this._value = v;
 			return this;
 		}
 
-		public Builder edgeNgram(Consumer<EdgeNGramTokenizer.Builder> fn) {
+		public ObjectBuilder<TokenizerDefinition> edgeNgram(Consumer<EdgeNGramTokenizer.Builder> fn) {
 			EdgeNGramTokenizer.Builder builder = new EdgeNGramTokenizer.Builder();
 			fn.accept(builder);
 			return this.edgeNgram(builder.build());
 		}
 
-		public Builder icuTokenizer(IcuTokenizer v) {
+		public ObjectBuilder<TokenizerDefinition> icuTokenizer(IcuTokenizer v) {
 			this._kind = Kind.IcuTokenizer;
 			this._value = v;
 			return this;
 		}
 
-		public Builder icuTokenizer(Consumer<IcuTokenizer.Builder> fn) {
+		public ObjectBuilder<TokenizerDefinition> icuTokenizer(Consumer<IcuTokenizer.Builder> fn) {
 			IcuTokenizer.Builder builder = new IcuTokenizer.Builder();
 			fn.accept(builder);
 			return this.icuTokenizer(builder.build());
 		}
 
-		public Builder keyword(KeywordTokenizer v) {
+		public ObjectBuilder<TokenizerDefinition> keyword(KeywordTokenizer v) {
 			this._kind = Kind.Keyword;
 			this._value = v;
 			return this;
 		}
 
-		public Builder keyword(Consumer<KeywordTokenizer.Builder> fn) {
+		public ObjectBuilder<TokenizerDefinition> keyword(Consumer<KeywordTokenizer.Builder> fn) {
 			KeywordTokenizer.Builder builder = new KeywordTokenizer.Builder();
 			fn.accept(builder);
 			return this.keyword(builder.build());
 		}
 
-		public Builder kuromojiTokenizer(KuromojiTokenizer v) {
+		public ObjectBuilder<TokenizerDefinition> kuromojiTokenizer(KuromojiTokenizer v) {
 			this._kind = Kind.KuromojiTokenizer;
 			this._value = v;
 			return this;
 		}
 
-		public Builder kuromojiTokenizer(Consumer<KuromojiTokenizer.Builder> fn) {
+		public ObjectBuilder<TokenizerDefinition> kuromojiTokenizer(Consumer<KuromojiTokenizer.Builder> fn) {
 			KuromojiTokenizer.Builder builder = new KuromojiTokenizer.Builder();
 			fn.accept(builder);
 			return this.kuromojiTokenizer(builder.build());
 		}
 
-		public Builder letter(LetterTokenizer v) {
+		public ObjectBuilder<TokenizerDefinition> letter(LetterTokenizer v) {
 			this._kind = Kind.Letter;
 			this._value = v;
 			return this;
 		}
 
-		public Builder letter(Consumer<LetterTokenizer.Builder> fn) {
+		public ObjectBuilder<TokenizerDefinition> letter(Consumer<LetterTokenizer.Builder> fn) {
 			LetterTokenizer.Builder builder = new LetterTokenizer.Builder();
 			fn.accept(builder);
 			return this.letter(builder.build());
 		}
 
-		public Builder lowercase(LowercaseTokenizer v) {
+		public ObjectBuilder<TokenizerDefinition> lowercase(LowercaseTokenizer v) {
 			this._kind = Kind.Lowercase;
 			this._value = v;
 			return this;
 		}
 
-		public Builder lowercase(Consumer<LowercaseTokenizer.Builder> fn) {
+		public ObjectBuilder<TokenizerDefinition> lowercase(Consumer<LowercaseTokenizer.Builder> fn) {
 			LowercaseTokenizer.Builder builder = new LowercaseTokenizer.Builder();
 			fn.accept(builder);
 			return this.lowercase(builder.build());
 		}
 
-		public Builder ngram(NGramTokenizer v) {
+		public ObjectBuilder<TokenizerDefinition> ngram(NGramTokenizer v) {
 			this._kind = Kind.Ngram;
 			this._value = v;
 			return this;
 		}
 
-		public Builder ngram(Consumer<NGramTokenizer.Builder> fn) {
+		public ObjectBuilder<TokenizerDefinition> ngram(Consumer<NGramTokenizer.Builder> fn) {
 			NGramTokenizer.Builder builder = new NGramTokenizer.Builder();
 			fn.accept(builder);
 			return this.ngram(builder.build());
 		}
 
-		public Builder noriTokenizer(NoriTokenizer v) {
+		public ObjectBuilder<TokenizerDefinition> noriTokenizer(NoriTokenizer v) {
 			this._kind = Kind.NoriTokenizer;
 			this._value = v;
 			return this;
 		}
 
-		public Builder noriTokenizer(Consumer<NoriTokenizer.Builder> fn) {
+		public ObjectBuilder<TokenizerDefinition> noriTokenizer(Consumer<NoriTokenizer.Builder> fn) {
 			NoriTokenizer.Builder builder = new NoriTokenizer.Builder();
 			fn.accept(builder);
 			return this.noriTokenizer(builder.build());
 		}
 
-		public Builder pathHierarchy(PathHierarchyTokenizer v) {
+		public ObjectBuilder<TokenizerDefinition> pathHierarchy(PathHierarchyTokenizer v) {
 			this._kind = Kind.PathHierarchy;
 			this._value = v;
 			return this;
 		}
 
-		public Builder pathHierarchy(Consumer<PathHierarchyTokenizer.Builder> fn) {
+		public ObjectBuilder<TokenizerDefinition> pathHierarchy(Consumer<PathHierarchyTokenizer.Builder> fn) {
 			PathHierarchyTokenizer.Builder builder = new PathHierarchyTokenizer.Builder();
 			fn.accept(builder);
 			return this.pathHierarchy(builder.build());
 		}
 
-		public Builder pattern(PatternTokenizer v) {
+		public ObjectBuilder<TokenizerDefinition> pattern(PatternTokenizer v) {
 			this._kind = Kind.Pattern;
 			this._value = v;
 			return this;
 		}
 
-		public Builder pattern(Consumer<PatternTokenizer.Builder> fn) {
+		public ObjectBuilder<TokenizerDefinition> pattern(Consumer<PatternTokenizer.Builder> fn) {
 			PatternTokenizer.Builder builder = new PatternTokenizer.Builder();
 			fn.accept(builder);
 			return this.pattern(builder.build());
 		}
 
-		public Builder standard(StandardTokenizer v) {
+		public ObjectBuilder<TokenizerDefinition> standard(StandardTokenizer v) {
 			this._kind = Kind.Standard;
 			this._value = v;
 			return this;
 		}
 
-		public Builder standard(Consumer<StandardTokenizer.Builder> fn) {
+		public ObjectBuilder<TokenizerDefinition> standard(Consumer<StandardTokenizer.Builder> fn) {
 			StandardTokenizer.Builder builder = new StandardTokenizer.Builder();
 			fn.accept(builder);
 			return this.standard(builder.build());
 		}
 
-		public Builder uaxUrlEmail(UaxEmailUrlTokenizer v) {
+		public ObjectBuilder<TokenizerDefinition> uaxUrlEmail(UaxEmailUrlTokenizer v) {
 			this._kind = Kind.UaxUrlEmail;
 			this._value = v;
 			return this;
 		}
 
-		public Builder uaxUrlEmail(Consumer<UaxEmailUrlTokenizer.Builder> fn) {
+		public ObjectBuilder<TokenizerDefinition> uaxUrlEmail(Consumer<UaxEmailUrlTokenizer.Builder> fn) {
 			UaxEmailUrlTokenizer.Builder builder = new UaxEmailUrlTokenizer.Builder();
 			fn.accept(builder);
 			return this.uaxUrlEmail(builder.build());
 		}
 
-		public Builder whitespace(WhitespaceTokenizer v) {
+		public ObjectBuilder<TokenizerDefinition> whitespace(WhitespaceTokenizer v) {
 			this._kind = Kind.Whitespace;
 			this._value = v;
 			return this;
 		}
 
-		public Builder whitespace(Consumer<WhitespaceTokenizer.Builder> fn) {
+		public ObjectBuilder<TokenizerDefinition> whitespace(Consumer<WhitespaceTokenizer.Builder> fn) {
 			WhitespaceTokenizer.Builder builder = new WhitespaceTokenizer.Builder();
 			fn.accept(builder);
 			return this.whitespace(builder.build());
@@ -570,7 +570,7 @@ public class TokenizerDefinition
 		op.add(Builder::uaxUrlEmail, UaxEmailUrlTokenizer._DESERIALIZER, "uax_url_email");
 		op.add(Builder::whitespace, WhitespaceTokenizer._DESERIALIZER, "whitespace");
 
-		op.setTypeProperty("type");
+		op.setTypeProperty("type", null);
 
 	}
 

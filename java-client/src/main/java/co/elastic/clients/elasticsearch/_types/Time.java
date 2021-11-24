@@ -65,7 +65,7 @@ public class Time implements TaggedUnion<Time.Kind, Object>, JsonpSerializable {
 		return _value;
 	}
 
-	public Time(Kind kind, Object value) {
+	private Time(Kind kind, Object value) {
 		this._kind = kind;
 		this._value = value;
 	}
@@ -152,13 +152,13 @@ public class Time implements TaggedUnion<Time.Kind, Object>, JsonpSerializable {
 		private Kind _kind;
 		private Object _value;
 
-		public Builder offset(Integer v) {
+		public ObjectBuilder<Time> offset(Integer v) {
 			this._kind = Kind.Offset;
 			this._value = v;
 			return this;
 		}
 
-		public Builder time(String v) {
+		public ObjectBuilder<Time> time(String v) {
 			this._kind = Kind.Time;
 			this._value = v;
 			return this;

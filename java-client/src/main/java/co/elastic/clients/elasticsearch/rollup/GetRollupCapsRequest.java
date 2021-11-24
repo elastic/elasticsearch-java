@@ -110,6 +110,8 @@ public class GetRollupCapsRequest extends RequestBase {
 	 * Endpoint "{@code rollup.get_rollup_caps}".
 	 */
 	public static final Endpoint<GetRollupCapsRequest, GetRollupCapsResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/rollup.get_rollup_caps",
+
 			// Request method
 			request -> {
 				return "GET";

@@ -138,6 +138,7 @@ import co.elastic.clients.elasticsearch.watcher.ElasticsearchWatcherClient;
 import co.elastic.clients.elasticsearch.xpack.ElasticsearchXpackClient;
 import co.elastic.clients.transport.ElasticsearchTransport;
 import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.JsonEndpoint;
 import co.elastic.clients.transport.Transport;
 import co.elastic.clients.transport.TransportOptions;
 import co.elastic.clients.transport.endpoints.BooleanResponse;
@@ -304,7 +305,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 
 	public BulkResponse bulk(BulkRequest request) throws IOException, ElasticsearchException {
 		@SuppressWarnings("unchecked")
-		Endpoint<BulkRequest, BulkResponse, ErrorResponse> endpoint = (Endpoint<BulkRequest, BulkResponse, ErrorResponse>) BulkRequest._ENDPOINT;
+		JsonEndpoint<BulkRequest, BulkResponse, ErrorResponse> endpoint = (JsonEndpoint<BulkRequest, BulkResponse, ErrorResponse>) BulkRequest._ENDPOINT;
 
 		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
@@ -353,7 +354,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 
 	public ClearScrollResponse clearScroll(ClearScrollRequest request) throws IOException, ElasticsearchException {
 		@SuppressWarnings("unchecked")
-		Endpoint<ClearScrollRequest, ClearScrollResponse, ErrorResponse> endpoint = (Endpoint<ClearScrollRequest, ClearScrollResponse, ErrorResponse>) ClearScrollRequest._ENDPOINT;
+		JsonEndpoint<ClearScrollRequest, ClearScrollResponse, ErrorResponse> endpoint = (JsonEndpoint<ClearScrollRequest, ClearScrollResponse, ErrorResponse>) ClearScrollRequest._ENDPOINT;
 
 		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
@@ -402,7 +403,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	public ClosePointInTimeResponse closePointInTime(ClosePointInTimeRequest request)
 			throws IOException, ElasticsearchException {
 		@SuppressWarnings("unchecked")
-		Endpoint<ClosePointInTimeRequest, ClosePointInTimeResponse, ErrorResponse> endpoint = (Endpoint<ClosePointInTimeRequest, ClosePointInTimeResponse, ErrorResponse>) ClosePointInTimeRequest._ENDPOINT;
+		JsonEndpoint<ClosePointInTimeRequest, ClosePointInTimeResponse, ErrorResponse> endpoint = (JsonEndpoint<ClosePointInTimeRequest, ClosePointInTimeResponse, ErrorResponse>) ClosePointInTimeRequest._ENDPOINT;
 
 		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
@@ -437,7 +438,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 
 	public CountResponse count(CountRequest request) throws IOException, ElasticsearchException {
 		@SuppressWarnings("unchecked")
-		Endpoint<CountRequest, CountResponse, ErrorResponse> endpoint = (Endpoint<CountRequest, CountResponse, ErrorResponse>) CountRequest._ENDPOINT;
+		JsonEndpoint<CountRequest, CountResponse, ErrorResponse> endpoint = (JsonEndpoint<CountRequest, CountResponse, ErrorResponse>) CountRequest._ENDPOINT;
 
 		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
@@ -488,7 +489,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	public <TDocument> CreateResponse create(CreateRequest<TDocument> request)
 			throws IOException, ElasticsearchException {
 		@SuppressWarnings("unchecked")
-		Endpoint<CreateRequest<?>, CreateResponse, ErrorResponse> endpoint = (Endpoint<CreateRequest<?>, CreateResponse, ErrorResponse>) CreateRequest._ENDPOINT;
+		JsonEndpoint<CreateRequest<?>, CreateResponse, ErrorResponse> endpoint = (JsonEndpoint<CreateRequest<?>, CreateResponse, ErrorResponse>) CreateRequest._ENDPOINT;
 
 		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
@@ -526,7 +527,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 
 	public DeleteResponse delete(DeleteRequest request) throws IOException, ElasticsearchException {
 		@SuppressWarnings("unchecked")
-		Endpoint<DeleteRequest, DeleteResponse, ErrorResponse> endpoint = (Endpoint<DeleteRequest, DeleteResponse, ErrorResponse>) DeleteRequest._ENDPOINT;
+		JsonEndpoint<DeleteRequest, DeleteResponse, ErrorResponse> endpoint = (JsonEndpoint<DeleteRequest, DeleteResponse, ErrorResponse>) DeleteRequest._ENDPOINT;
 
 		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
@@ -561,7 +562,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	public DeleteByQueryResponse deleteByQuery(DeleteByQueryRequest request)
 			throws IOException, ElasticsearchException {
 		@SuppressWarnings("unchecked")
-		Endpoint<DeleteByQueryRequest, DeleteByQueryResponse, ErrorResponse> endpoint = (Endpoint<DeleteByQueryRequest, DeleteByQueryResponse, ErrorResponse>) DeleteByQueryRequest._ENDPOINT;
+		JsonEndpoint<DeleteByQueryRequest, DeleteByQueryResponse, ErrorResponse> endpoint = (JsonEndpoint<DeleteByQueryRequest, DeleteByQueryResponse, ErrorResponse>) DeleteByQueryRequest._ENDPOINT;
 
 		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
@@ -598,7 +599,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	public DeleteByQueryRethrottleResponse deleteByQueryRethrottle(DeleteByQueryRethrottleRequest request)
 			throws IOException, ElasticsearchException {
 		@SuppressWarnings("unchecked")
-		Endpoint<DeleteByQueryRethrottleRequest, DeleteByQueryRethrottleResponse, ErrorResponse> endpoint = (Endpoint<DeleteByQueryRethrottleRequest, DeleteByQueryRethrottleResponse, ErrorResponse>) DeleteByQueryRethrottleRequest._ENDPOINT;
+		JsonEndpoint<DeleteByQueryRethrottleRequest, DeleteByQueryRethrottleResponse, ErrorResponse> endpoint = (JsonEndpoint<DeleteByQueryRethrottleRequest, DeleteByQueryRethrottleResponse, ErrorResponse>) DeleteByQueryRethrottleRequest._ENDPOINT;
 
 		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
@@ -634,7 +635,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 
 	public DeleteScriptResponse deleteScript(DeleteScriptRequest request) throws IOException, ElasticsearchException {
 		@SuppressWarnings("unchecked")
-		Endpoint<DeleteScriptRequest, DeleteScriptResponse, ErrorResponse> endpoint = (Endpoint<DeleteScriptRequest, DeleteScriptResponse, ErrorResponse>) DeleteScriptRequest._ENDPOINT;
+		JsonEndpoint<DeleteScriptRequest, DeleteScriptResponse, ErrorResponse> endpoint = (JsonEndpoint<DeleteScriptRequest, DeleteScriptResponse, ErrorResponse>) DeleteScriptRequest._ENDPOINT;
 
 		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
@@ -669,7 +670,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 
 	public BooleanResponse exists(ExistsRequest request) throws IOException, ElasticsearchException {
 		@SuppressWarnings("unchecked")
-		Endpoint<ExistsRequest, BooleanResponse, ErrorResponse> endpoint = (Endpoint<ExistsRequest, BooleanResponse, ErrorResponse>) ExistsRequest._ENDPOINT;
+		JsonEndpoint<ExistsRequest, BooleanResponse, ErrorResponse> endpoint = (JsonEndpoint<ExistsRequest, BooleanResponse, ErrorResponse>) ExistsRequest._ENDPOINT;
 
 		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
@@ -703,7 +704,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 
 	public BooleanResponse existsSource(ExistsSourceRequest request) throws IOException, ElasticsearchException {
 		@SuppressWarnings("unchecked")
-		Endpoint<ExistsSourceRequest, BooleanResponse, ErrorResponse> endpoint = (Endpoint<ExistsSourceRequest, BooleanResponse, ErrorResponse>) ExistsSourceRequest._ENDPOINT;
+		JsonEndpoint<ExistsSourceRequest, BooleanResponse, ErrorResponse> endpoint = (JsonEndpoint<ExistsSourceRequest, BooleanResponse, ErrorResponse>) ExistsSourceRequest._ENDPOINT;
 
 		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
@@ -739,7 +740,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	public <TDocument> ExplainResponse<TDocument> explain(ExplainRequest request, Class<TDocument> tDocumentClass)
 			throws IOException, ElasticsearchException {
 		@SuppressWarnings("unchecked")
-		Endpoint<ExplainRequest, ExplainResponse<TDocument>, ErrorResponse> endpoint = (Endpoint<ExplainRequest, ExplainResponse<TDocument>, ErrorResponse>) ExplainRequest._ENDPOINT;
+		JsonEndpoint<ExplainRequest, ExplainResponse<TDocument>, ErrorResponse> endpoint = (JsonEndpoint<ExplainRequest, ExplainResponse<TDocument>, ErrorResponse>) ExplainRequest._ENDPOINT;
 		endpoint = new EndpointWithResponseMapperAttr<>(endpoint,
 				"co.elastic.clients:Deserializer:_global.explain.TDocument", getDeserializer(tDocumentClass));
 
@@ -777,7 +778,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 
 	public FieldCapsResponse fieldCaps(FieldCapsRequest request) throws IOException, ElasticsearchException {
 		@SuppressWarnings("unchecked")
-		Endpoint<FieldCapsRequest, FieldCapsResponse, ErrorResponse> endpoint = (Endpoint<FieldCapsRequest, FieldCapsResponse, ErrorResponse>) FieldCapsRequest._ENDPOINT;
+		JsonEndpoint<FieldCapsRequest, FieldCapsResponse, ErrorResponse> endpoint = (JsonEndpoint<FieldCapsRequest, FieldCapsResponse, ErrorResponse>) FieldCapsRequest._ENDPOINT;
 
 		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
@@ -828,7 +829,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	public <TDocument> GetResponse<TDocument> get(GetRequest request, Class<TDocument> tDocumentClass)
 			throws IOException, ElasticsearchException {
 		@SuppressWarnings("unchecked")
-		Endpoint<GetRequest, GetResponse<TDocument>, ErrorResponse> endpoint = (Endpoint<GetRequest, GetResponse<TDocument>, ErrorResponse>) GetRequest._ENDPOINT;
+		JsonEndpoint<GetRequest, GetResponse<TDocument>, ErrorResponse> endpoint = (JsonEndpoint<GetRequest, GetResponse<TDocument>, ErrorResponse>) GetRequest._ENDPOINT;
 		endpoint = new EndpointWithResponseMapperAttr<>(endpoint,
 				"co.elastic.clients:Deserializer:_global.get.TDocument", getDeserializer(tDocumentClass));
 
@@ -865,7 +866,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 
 	public GetScriptResponse getScript(GetScriptRequest request) throws IOException, ElasticsearchException {
 		@SuppressWarnings("unchecked")
-		Endpoint<GetScriptRequest, GetScriptResponse, ErrorResponse> endpoint = (Endpoint<GetScriptRequest, GetScriptResponse, ErrorResponse>) GetScriptRequest._ENDPOINT;
+		JsonEndpoint<GetScriptRequest, GetScriptResponse, ErrorResponse> endpoint = (JsonEndpoint<GetScriptRequest, GetScriptResponse, ErrorResponse>) GetScriptRequest._ENDPOINT;
 
 		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
@@ -929,7 +930,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	public <TDocument> GetSourceResponse<TDocument> getSource(GetSourceRequest request, Class<TDocument> tDocumentClass)
 			throws IOException, ElasticsearchException {
 		@SuppressWarnings("unchecked")
-		Endpoint<GetSourceRequest, GetSourceResponse<TDocument>, ErrorResponse> endpoint = (Endpoint<GetSourceRequest, GetSourceResponse<TDocument>, ErrorResponse>) GetSourceRequest._ENDPOINT;
+		JsonEndpoint<GetSourceRequest, GetSourceResponse<TDocument>, ErrorResponse> endpoint = (JsonEndpoint<GetSourceRequest, GetSourceResponse<TDocument>, ErrorResponse>) GetSourceRequest._ENDPOINT;
 		endpoint = new EndpointWithResponseMapperAttr<>(endpoint,
 				"co.elastic.clients:Deserializer:_global.get_source.TDocument", getDeserializer(tDocumentClass));
 
@@ -966,7 +967,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 
 	public <TDocument> IndexResponse index(IndexRequest<TDocument> request) throws IOException, ElasticsearchException {
 		@SuppressWarnings("unchecked")
-		Endpoint<IndexRequest<?>, IndexResponse, ErrorResponse> endpoint = (Endpoint<IndexRequest<?>, IndexResponse, ErrorResponse>) IndexRequest._ENDPOINT;
+		JsonEndpoint<IndexRequest<?>, IndexResponse, ErrorResponse> endpoint = (JsonEndpoint<IndexRequest<?>, IndexResponse, ErrorResponse>) IndexRequest._ENDPOINT;
 
 		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
@@ -1015,7 +1016,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	public <TDocument> KnnSearchResponse<TDocument> knnSearch(KnnSearchRequest request, Class<TDocument> tDocumentClass)
 			throws IOException, ElasticsearchException {
 		@SuppressWarnings("unchecked")
-		Endpoint<KnnSearchRequest, KnnSearchResponse<TDocument>, ErrorResponse> endpoint = (Endpoint<KnnSearchRequest, KnnSearchResponse<TDocument>, ErrorResponse>) KnnSearchRequest._ENDPOINT;
+		JsonEndpoint<KnnSearchRequest, KnnSearchResponse<TDocument>, ErrorResponse> endpoint = (JsonEndpoint<KnnSearchRequest, KnnSearchResponse<TDocument>, ErrorResponse>) KnnSearchRequest._ENDPOINT;
 		endpoint = new EndpointWithResponseMapperAttr<>(endpoint,
 				"co.elastic.clients:Deserializer:_global.knn_search.TDocument", getDeserializer(tDocumentClass));
 
@@ -1053,7 +1054,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	public <TDocument> MgetResponse<TDocument> mget(MgetRequest request, Class<TDocument> tDocumentClass)
 			throws IOException, ElasticsearchException {
 		@SuppressWarnings("unchecked")
-		Endpoint<MgetRequest, MgetResponse<TDocument>, ErrorResponse> endpoint = (Endpoint<MgetRequest, MgetResponse<TDocument>, ErrorResponse>) MgetRequest._ENDPOINT;
+		JsonEndpoint<MgetRequest, MgetResponse<TDocument>, ErrorResponse> endpoint = (JsonEndpoint<MgetRequest, MgetResponse<TDocument>, ErrorResponse>) MgetRequest._ENDPOINT;
 		endpoint = new EndpointWithResponseMapperAttr<>(endpoint,
 				"co.elastic.clients:Deserializer:_global.mget.TDocument", getDeserializer(tDocumentClass));
 
@@ -1091,7 +1092,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	public <TDocument> MsearchResponse<TDocument> msearch(MsearchRequest request, Class<TDocument> tDocumentClass)
 			throws IOException, ElasticsearchException {
 		@SuppressWarnings("unchecked")
-		Endpoint<MsearchRequest, MsearchResponse<TDocument>, ErrorResponse> endpoint = (Endpoint<MsearchRequest, MsearchResponse<TDocument>, ErrorResponse>) MsearchRequest._ENDPOINT;
+		JsonEndpoint<MsearchRequest, MsearchResponse<TDocument>, ErrorResponse> endpoint = (JsonEndpoint<MsearchRequest, MsearchResponse<TDocument>, ErrorResponse>) MsearchRequest._ENDPOINT;
 		endpoint = new EndpointWithResponseMapperAttr<>(endpoint,
 				"co.elastic.clients:Deserializer:_global.msearch.TDocument", getDeserializer(tDocumentClass));
 
@@ -1129,7 +1130,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	public <TDocument> MsearchTemplateResponse<TDocument> msearchTemplate(MsearchTemplateRequest request,
 			Class<TDocument> tDocumentClass) throws IOException, ElasticsearchException {
 		@SuppressWarnings("unchecked")
-		Endpoint<MsearchTemplateRequest, MsearchTemplateResponse<TDocument>, ErrorResponse> endpoint = (Endpoint<MsearchTemplateRequest, MsearchTemplateResponse<TDocument>, ErrorResponse>) MsearchTemplateRequest._ENDPOINT;
+		JsonEndpoint<MsearchTemplateRequest, MsearchTemplateResponse<TDocument>, ErrorResponse> endpoint = (JsonEndpoint<MsearchTemplateRequest, MsearchTemplateResponse<TDocument>, ErrorResponse>) MsearchTemplateRequest._ENDPOINT;
 		endpoint = new EndpointWithResponseMapperAttr<>(endpoint,
 				"co.elastic.clients:Deserializer:_global.msearch_template.TDocument", getDeserializer(tDocumentClass));
 
@@ -1167,7 +1168,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 
 	public MtermvectorsResponse mtermvectors(MtermvectorsRequest request) throws IOException, ElasticsearchException {
 		@SuppressWarnings("unchecked")
-		Endpoint<MtermvectorsRequest, MtermvectorsResponse, ErrorResponse> endpoint = (Endpoint<MtermvectorsRequest, MtermvectorsResponse, ErrorResponse>) MtermvectorsRequest._ENDPOINT;
+		JsonEndpoint<MtermvectorsRequest, MtermvectorsResponse, ErrorResponse> endpoint = (JsonEndpoint<MtermvectorsRequest, MtermvectorsResponse, ErrorResponse>) MtermvectorsRequest._ENDPOINT;
 
 		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
@@ -1216,7 +1217,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	public OpenPointInTimeResponse openPointInTime(OpenPointInTimeRequest request)
 			throws IOException, ElasticsearchException {
 		@SuppressWarnings("unchecked")
-		Endpoint<OpenPointInTimeRequest, OpenPointInTimeResponse, ErrorResponse> endpoint = (Endpoint<OpenPointInTimeRequest, OpenPointInTimeResponse, ErrorResponse>) OpenPointInTimeRequest._ENDPOINT;
+		JsonEndpoint<OpenPointInTimeRequest, OpenPointInTimeResponse, ErrorResponse> endpoint = (JsonEndpoint<OpenPointInTimeRequest, OpenPointInTimeResponse, ErrorResponse>) OpenPointInTimeRequest._ENDPOINT;
 
 		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
@@ -1264,7 +1265,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 
 	public PutScriptResponse putScript(PutScriptRequest request) throws IOException, ElasticsearchException {
 		@SuppressWarnings("unchecked")
-		Endpoint<PutScriptRequest, PutScriptResponse, ErrorResponse> endpoint = (Endpoint<PutScriptRequest, PutScriptResponse, ErrorResponse>) PutScriptRequest._ENDPOINT;
+		JsonEndpoint<PutScriptRequest, PutScriptResponse, ErrorResponse> endpoint = (JsonEndpoint<PutScriptRequest, PutScriptResponse, ErrorResponse>) PutScriptRequest._ENDPOINT;
 
 		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
@@ -1300,7 +1301,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 
 	public RankEvalResponse rankEval(RankEvalRequest request) throws IOException, ElasticsearchException {
 		@SuppressWarnings("unchecked")
-		Endpoint<RankEvalRequest, RankEvalResponse, ErrorResponse> endpoint = (Endpoint<RankEvalRequest, RankEvalResponse, ErrorResponse>) RankEvalRequest._ENDPOINT;
+		JsonEndpoint<RankEvalRequest, RankEvalResponse, ErrorResponse> endpoint = (JsonEndpoint<RankEvalRequest, RankEvalResponse, ErrorResponse>) RankEvalRequest._ENDPOINT;
 
 		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
@@ -1338,7 +1339,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 
 	public ReindexResponse reindex(ReindexRequest request) throws IOException, ElasticsearchException {
 		@SuppressWarnings("unchecked")
-		Endpoint<ReindexRequest, ReindexResponse, ErrorResponse> endpoint = (Endpoint<ReindexRequest, ReindexResponse, ErrorResponse>) ReindexRequest._ENDPOINT;
+		JsonEndpoint<ReindexRequest, ReindexResponse, ErrorResponse> endpoint = (JsonEndpoint<ReindexRequest, ReindexResponse, ErrorResponse>) ReindexRequest._ENDPOINT;
 
 		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
@@ -1391,7 +1392,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	public ReindexRethrottleResponse reindexRethrottle(ReindexRethrottleRequest request)
 			throws IOException, ElasticsearchException {
 		@SuppressWarnings("unchecked")
-		Endpoint<ReindexRethrottleRequest, ReindexRethrottleResponse, ErrorResponse> endpoint = (Endpoint<ReindexRethrottleRequest, ReindexRethrottleResponse, ErrorResponse>) ReindexRethrottleRequest._ENDPOINT;
+		JsonEndpoint<ReindexRethrottleRequest, ReindexRethrottleResponse, ErrorResponse> endpoint = (JsonEndpoint<ReindexRethrottleRequest, ReindexRethrottleResponse, ErrorResponse>) ReindexRethrottleRequest._ENDPOINT;
 
 		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
@@ -1427,7 +1428,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	public RenderSearchTemplateResponse renderSearchTemplate(RenderSearchTemplateRequest request)
 			throws IOException, ElasticsearchException {
 		@SuppressWarnings("unchecked")
-		Endpoint<RenderSearchTemplateRequest, RenderSearchTemplateResponse, ErrorResponse> endpoint = (Endpoint<RenderSearchTemplateRequest, RenderSearchTemplateResponse, ErrorResponse>) RenderSearchTemplateRequest._ENDPOINT;
+		JsonEndpoint<RenderSearchTemplateRequest, RenderSearchTemplateResponse, ErrorResponse> endpoint = (JsonEndpoint<RenderSearchTemplateRequest, RenderSearchTemplateResponse, ErrorResponse>) RenderSearchTemplateRequest._ENDPOINT;
 
 		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
@@ -1477,7 +1478,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 			ScriptsPainlessExecuteRequest request, Class<TResult> tResultClass)
 			throws IOException, ElasticsearchException {
 		@SuppressWarnings("unchecked")
-		Endpoint<ScriptsPainlessExecuteRequest, ScriptsPainlessExecuteResponse<TResult>, ErrorResponse> endpoint = (Endpoint<ScriptsPainlessExecuteRequest, ScriptsPainlessExecuteResponse<TResult>, ErrorResponse>) ScriptsPainlessExecuteRequest._ENDPOINT;
+		JsonEndpoint<ScriptsPainlessExecuteRequest, ScriptsPainlessExecuteResponse<TResult>, ErrorResponse> endpoint = (JsonEndpoint<ScriptsPainlessExecuteRequest, ScriptsPainlessExecuteResponse<TResult>, ErrorResponse>) ScriptsPainlessExecuteRequest._ENDPOINT;
 		endpoint = new EndpointWithResponseMapperAttr<>(endpoint,
 				"co.elastic.clients:Deserializer:_global.scripts_painless_execute.TResult",
 				getDeserializer(tResultClass));
@@ -1517,7 +1518,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	public <TDocument> SearchResponse<TDocument> search(SearchRequest request, Class<TDocument> tDocumentClass)
 			throws IOException, ElasticsearchException {
 		@SuppressWarnings("unchecked")
-		Endpoint<SearchRequest, SearchResponse<TDocument>, ErrorResponse> endpoint = (Endpoint<SearchRequest, SearchResponse<TDocument>, ErrorResponse>) SearchRequest._ENDPOINT;
+		JsonEndpoint<SearchRequest, SearchResponse<TDocument>, ErrorResponse> endpoint = (JsonEndpoint<SearchRequest, SearchResponse<TDocument>, ErrorResponse>) SearchRequest._ENDPOINT;
 		endpoint = new EndpointWithResponseMapperAttr<>(endpoint,
 				"co.elastic.clients:Deserializer:_global.search.TDocument", getDeserializer(tDocumentClass));
 
@@ -1555,7 +1556,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 
 	public SearchShardsResponse searchShards(SearchShardsRequest request) throws IOException, ElasticsearchException {
 		@SuppressWarnings("unchecked")
-		Endpoint<SearchShardsRequest, SearchShardsResponse, ErrorResponse> endpoint = (Endpoint<SearchShardsRequest, SearchShardsResponse, ErrorResponse>) SearchShardsRequest._ENDPOINT;
+		JsonEndpoint<SearchShardsRequest, SearchShardsResponse, ErrorResponse> endpoint = (JsonEndpoint<SearchShardsRequest, SearchShardsResponse, ErrorResponse>) SearchShardsRequest._ENDPOINT;
 
 		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
@@ -1606,7 +1607,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	public <TDocument> SearchTemplateResponse<TDocument> searchTemplate(SearchTemplateRequest request,
 			Class<TDocument> tDocumentClass) throws IOException, ElasticsearchException {
 		@SuppressWarnings("unchecked")
-		Endpoint<SearchTemplateRequest, SearchTemplateResponse<TDocument>, ErrorResponse> endpoint = (Endpoint<SearchTemplateRequest, SearchTemplateResponse<TDocument>, ErrorResponse>) SearchTemplateRequest._ENDPOINT;
+		JsonEndpoint<SearchTemplateRequest, SearchTemplateResponse<TDocument>, ErrorResponse> endpoint = (JsonEndpoint<SearchTemplateRequest, SearchTemplateResponse<TDocument>, ErrorResponse>) SearchTemplateRequest._ENDPOINT;
 		endpoint = new EndpointWithResponseMapperAttr<>(endpoint,
 				"co.elastic.clients:Deserializer:_global.search_template.TDocument", getDeserializer(tDocumentClass));
 
@@ -1646,7 +1647,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 
 	public TermsEnumResponse termsEnum(TermsEnumRequest request) throws IOException, ElasticsearchException {
 		@SuppressWarnings("unchecked")
-		Endpoint<TermsEnumRequest, TermsEnumResponse, ErrorResponse> endpoint = (Endpoint<TermsEnumRequest, TermsEnumResponse, ErrorResponse>) TermsEnumRequest._ENDPOINT;
+		JsonEndpoint<TermsEnumRequest, TermsEnumResponse, ErrorResponse> endpoint = (JsonEndpoint<TermsEnumRequest, TermsEnumResponse, ErrorResponse>) TermsEnumRequest._ENDPOINT;
 
 		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
@@ -1685,7 +1686,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	public <TDocument> TermvectorsResponse termvectors(TermvectorsRequest<TDocument> request)
 			throws IOException, ElasticsearchException {
 		@SuppressWarnings("unchecked")
-		Endpoint<TermvectorsRequest<?>, TermvectorsResponse, ErrorResponse> endpoint = (Endpoint<TermvectorsRequest<?>, TermvectorsResponse, ErrorResponse>) TermvectorsRequest._ENDPOINT;
+		JsonEndpoint<TermvectorsRequest<?>, TermvectorsResponse, ErrorResponse> endpoint = (JsonEndpoint<TermvectorsRequest<?>, TermvectorsResponse, ErrorResponse>) TermvectorsRequest._ENDPOINT;
 
 		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
@@ -1723,7 +1724,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 			UpdateRequest<TDocument, TPartialDocument> request, Class<TDocument> tDocumentClass)
 			throws IOException, ElasticsearchException {
 		@SuppressWarnings("unchecked")
-		Endpoint<UpdateRequest<?, ?>, UpdateResponse<TDocument>, ErrorResponse> endpoint = (Endpoint<UpdateRequest<?, ?>, UpdateResponse<TDocument>, ErrorResponse>) UpdateRequest._ENDPOINT;
+		JsonEndpoint<UpdateRequest<?, ?>, UpdateResponse<TDocument>, ErrorResponse> endpoint = (JsonEndpoint<UpdateRequest<?, ?>, UpdateResponse<TDocument>, ErrorResponse>) UpdateRequest._ENDPOINT;
 		endpoint = new EndpointWithResponseMapperAttr<>(endpoint,
 				"co.elastic.clients:Deserializer:_global.update.TDocument", getDeserializer(tDocumentClass));
 
@@ -1763,7 +1764,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	public UpdateByQueryResponse updateByQuery(UpdateByQueryRequest request)
 			throws IOException, ElasticsearchException {
 		@SuppressWarnings("unchecked")
-		Endpoint<UpdateByQueryRequest, UpdateByQueryResponse, ErrorResponse> endpoint = (Endpoint<UpdateByQueryRequest, UpdateByQueryResponse, ErrorResponse>) UpdateByQueryRequest._ENDPOINT;
+		JsonEndpoint<UpdateByQueryRequest, UpdateByQueryResponse, ErrorResponse> endpoint = (JsonEndpoint<UpdateByQueryRequest, UpdateByQueryResponse, ErrorResponse>) UpdateByQueryRequest._ENDPOINT;
 
 		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
@@ -1801,7 +1802,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	public UpdateByQueryRethrottleResponse updateByQueryRethrottle(UpdateByQueryRethrottleRequest request)
 			throws IOException, ElasticsearchException {
 		@SuppressWarnings("unchecked")
-		Endpoint<UpdateByQueryRethrottleRequest, UpdateByQueryRethrottleResponse, ErrorResponse> endpoint = (Endpoint<UpdateByQueryRethrottleRequest, UpdateByQueryRethrottleResponse, ErrorResponse>) UpdateByQueryRethrottleRequest._ENDPOINT;
+		JsonEndpoint<UpdateByQueryRethrottleRequest, UpdateByQueryRethrottleResponse, ErrorResponse> endpoint = (JsonEndpoint<UpdateByQueryRethrottleRequest, UpdateByQueryRethrottleResponse, ErrorResponse>) UpdateByQueryRethrottleRequest._ENDPOINT;
 
 		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}

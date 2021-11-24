@@ -203,6 +203,8 @@ public class PostCalendarEventsRequest extends RequestBase implements JsonpSeria
 	 * Endpoint "{@code ml.post_calendar_events}".
 	 */
 	public static final Endpoint<PostCalendarEventsRequest, PostCalendarEventsResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/ml.post_calendar_events",
+
 			// Request method
 			request -> {
 				return "POST";

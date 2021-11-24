@@ -64,7 +64,7 @@ public class SourceConfig implements TaggedUnion<SourceConfig.Kind, Object>, Jso
 		return _value;
 	}
 
-	public SourceConfig(Kind kind, Object value) {
+	private SourceConfig(Kind kind, Object value) {
 		this._kind = kind;
 		this._value = value;
 	}
@@ -135,19 +135,19 @@ public class SourceConfig implements TaggedUnion<SourceConfig.Kind, Object>, Jso
 		private Kind _kind;
 		private Object _value;
 
-		public Builder filter(SourceFilter v) {
+		public ObjectBuilder<SourceConfig> filter(SourceFilter v) {
 			this._kind = Kind.Filter;
 			this._value = v;
 			return this;
 		}
 
-		public Builder filter(Consumer<SourceFilter.Builder> fn) {
+		public ObjectBuilder<SourceConfig> filter(Consumer<SourceFilter.Builder> fn) {
 			SourceFilter.Builder builder = new SourceFilter.Builder();
 			fn.accept(builder);
 			return this.filter(builder.build());
 		}
 
-		public Builder fetch(Boolean v) {
+		public ObjectBuilder<SourceConfig> fetch(Boolean v) {
 			this._kind = Kind.Fetch;
 			this._value = v;
 			return this;

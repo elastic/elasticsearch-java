@@ -28,6 +28,7 @@ import co.elastic.clients.elasticsearch._types.ElasticsearchException;
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.transport.ElasticsearchTransport;
 import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.JsonEndpoint;
 import co.elastic.clients.transport.Transport;
 import co.elastic.clients.transport.TransportOptions;
 import co.elastic.clients.transport.endpoints.EndpointWithResponseMapperAttr;
@@ -69,7 +70,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	public CompletableFuture<CloseJobResponse> closeJob(CloseJobRequest request)
 			throws IOException, ElasticsearchException {
 		@SuppressWarnings("unchecked")
-		Endpoint<CloseJobRequest, CloseJobResponse, ErrorResponse> endpoint = (Endpoint<CloseJobRequest, CloseJobResponse, ErrorResponse>) CloseJobRequest._ENDPOINT;
+		JsonEndpoint<CloseJobRequest, CloseJobResponse, ErrorResponse> endpoint = (JsonEndpoint<CloseJobRequest, CloseJobResponse, ErrorResponse>) CloseJobRequest._ENDPOINT;
 
 		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
@@ -106,7 +107,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	public CompletableFuture<DeleteCalendarResponse> deleteCalendar(DeleteCalendarRequest request)
 			throws IOException, ElasticsearchException {
 		@SuppressWarnings("unchecked")
-		Endpoint<DeleteCalendarRequest, DeleteCalendarResponse, ErrorResponse> endpoint = (Endpoint<DeleteCalendarRequest, DeleteCalendarResponse, ErrorResponse>) DeleteCalendarRequest._ENDPOINT;
+		JsonEndpoint<DeleteCalendarRequest, DeleteCalendarResponse, ErrorResponse> endpoint = (JsonEndpoint<DeleteCalendarRequest, DeleteCalendarResponse, ErrorResponse>) DeleteCalendarRequest._ENDPOINT;
 
 		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
@@ -142,7 +143,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	public CompletableFuture<DeleteCalendarEventResponse> deleteCalendarEvent(DeleteCalendarEventRequest request)
 			throws IOException, ElasticsearchException {
 		@SuppressWarnings("unchecked")
-		Endpoint<DeleteCalendarEventRequest, DeleteCalendarEventResponse, ErrorResponse> endpoint = (Endpoint<DeleteCalendarEventRequest, DeleteCalendarEventResponse, ErrorResponse>) DeleteCalendarEventRequest._ENDPOINT;
+		JsonEndpoint<DeleteCalendarEventRequest, DeleteCalendarEventResponse, ErrorResponse> endpoint = (JsonEndpoint<DeleteCalendarEventRequest, DeleteCalendarEventResponse, ErrorResponse>) DeleteCalendarEventRequest._ENDPOINT;
 
 		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
@@ -178,7 +179,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	public CompletableFuture<DeleteCalendarJobResponse> deleteCalendarJob(DeleteCalendarJobRequest request)
 			throws IOException, ElasticsearchException {
 		@SuppressWarnings("unchecked")
-		Endpoint<DeleteCalendarJobRequest, DeleteCalendarJobResponse, ErrorResponse> endpoint = (Endpoint<DeleteCalendarJobRequest, DeleteCalendarJobResponse, ErrorResponse>) DeleteCalendarJobRequest._ENDPOINT;
+		JsonEndpoint<DeleteCalendarJobRequest, DeleteCalendarJobResponse, ErrorResponse> endpoint = (JsonEndpoint<DeleteCalendarJobRequest, DeleteCalendarJobResponse, ErrorResponse>) DeleteCalendarJobRequest._ENDPOINT;
 
 		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
@@ -214,7 +215,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	public CompletableFuture<DeleteDataFrameAnalyticsResponse> deleteDataFrameAnalytics(
 			DeleteDataFrameAnalyticsRequest request) throws IOException, ElasticsearchException {
 		@SuppressWarnings("unchecked")
-		Endpoint<DeleteDataFrameAnalyticsRequest, DeleteDataFrameAnalyticsResponse, ErrorResponse> endpoint = (Endpoint<DeleteDataFrameAnalyticsRequest, DeleteDataFrameAnalyticsResponse, ErrorResponse>) DeleteDataFrameAnalyticsRequest._ENDPOINT;
+		JsonEndpoint<DeleteDataFrameAnalyticsRequest, DeleteDataFrameAnalyticsResponse, ErrorResponse> endpoint = (JsonEndpoint<DeleteDataFrameAnalyticsRequest, DeleteDataFrameAnalyticsResponse, ErrorResponse>) DeleteDataFrameAnalyticsRequest._ENDPOINT;
 
 		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
@@ -250,7 +251,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	public CompletableFuture<DeleteDatafeedResponse> deleteDatafeed(DeleteDatafeedRequest request)
 			throws IOException, ElasticsearchException {
 		@SuppressWarnings("unchecked")
-		Endpoint<DeleteDatafeedRequest, DeleteDatafeedResponse, ErrorResponse> endpoint = (Endpoint<DeleteDatafeedRequest, DeleteDatafeedResponse, ErrorResponse>) DeleteDatafeedRequest._ENDPOINT;
+		JsonEndpoint<DeleteDatafeedRequest, DeleteDatafeedResponse, ErrorResponse> endpoint = (JsonEndpoint<DeleteDatafeedRequest, DeleteDatafeedResponse, ErrorResponse>) DeleteDatafeedRequest._ENDPOINT;
 
 		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
@@ -286,7 +287,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	public CompletableFuture<DeleteExpiredDataResponse> deleteExpiredData(DeleteExpiredDataRequest request)
 			throws IOException, ElasticsearchException {
 		@SuppressWarnings("unchecked")
-		Endpoint<DeleteExpiredDataRequest, DeleteExpiredDataResponse, ErrorResponse> endpoint = (Endpoint<DeleteExpiredDataRequest, DeleteExpiredDataResponse, ErrorResponse>) DeleteExpiredDataRequest._ENDPOINT;
+		JsonEndpoint<DeleteExpiredDataRequest, DeleteExpiredDataResponse, ErrorResponse> endpoint = (JsonEndpoint<DeleteExpiredDataRequest, DeleteExpiredDataResponse, ErrorResponse>) DeleteExpiredDataRequest._ENDPOINT;
 
 		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
@@ -335,7 +336,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	public CompletableFuture<DeleteFilterResponse> deleteFilter(DeleteFilterRequest request)
 			throws IOException, ElasticsearchException {
 		@SuppressWarnings("unchecked")
-		Endpoint<DeleteFilterRequest, DeleteFilterResponse, ErrorResponse> endpoint = (Endpoint<DeleteFilterRequest, DeleteFilterResponse, ErrorResponse>) DeleteFilterRequest._ENDPOINT;
+		JsonEndpoint<DeleteFilterRequest, DeleteFilterResponse, ErrorResponse> endpoint = (JsonEndpoint<DeleteFilterRequest, DeleteFilterResponse, ErrorResponse>) DeleteFilterRequest._ENDPOINT;
 
 		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
@@ -371,7 +372,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	public CompletableFuture<DeleteForecastResponse> deleteForecast(DeleteForecastRequest request)
 			throws IOException, ElasticsearchException {
 		@SuppressWarnings("unchecked")
-		Endpoint<DeleteForecastRequest, DeleteForecastResponse, ErrorResponse> endpoint = (Endpoint<DeleteForecastRequest, DeleteForecastResponse, ErrorResponse>) DeleteForecastRequest._ENDPOINT;
+		JsonEndpoint<DeleteForecastRequest, DeleteForecastResponse, ErrorResponse> endpoint = (JsonEndpoint<DeleteForecastRequest, DeleteForecastResponse, ErrorResponse>) DeleteForecastRequest._ENDPOINT;
 
 		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
@@ -407,7 +408,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	public CompletableFuture<DeleteJobResponse> deleteJob(DeleteJobRequest request)
 			throws IOException, ElasticsearchException {
 		@SuppressWarnings("unchecked")
-		Endpoint<DeleteJobRequest, DeleteJobResponse, ErrorResponse> endpoint = (Endpoint<DeleteJobRequest, DeleteJobResponse, ErrorResponse>) DeleteJobRequest._ENDPOINT;
+		JsonEndpoint<DeleteJobRequest, DeleteJobResponse, ErrorResponse> endpoint = (JsonEndpoint<DeleteJobRequest, DeleteJobResponse, ErrorResponse>) DeleteJobRequest._ENDPOINT;
 
 		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
@@ -443,7 +444,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	public CompletableFuture<DeleteModelSnapshotResponse> deleteModelSnapshot(DeleteModelSnapshotRequest request)
 			throws IOException, ElasticsearchException {
 		@SuppressWarnings("unchecked")
-		Endpoint<DeleteModelSnapshotRequest, DeleteModelSnapshotResponse, ErrorResponse> endpoint = (Endpoint<DeleteModelSnapshotRequest, DeleteModelSnapshotResponse, ErrorResponse>) DeleteModelSnapshotRequest._ENDPOINT;
+		JsonEndpoint<DeleteModelSnapshotRequest, DeleteModelSnapshotResponse, ErrorResponse> endpoint = (JsonEndpoint<DeleteModelSnapshotRequest, DeleteModelSnapshotResponse, ErrorResponse>) DeleteModelSnapshotRequest._ENDPOINT;
 
 		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
@@ -480,7 +481,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	public CompletableFuture<DeleteTrainedModelResponse> deleteTrainedModel(DeleteTrainedModelRequest request)
 			throws IOException, ElasticsearchException {
 		@SuppressWarnings("unchecked")
-		Endpoint<DeleteTrainedModelRequest, DeleteTrainedModelResponse, ErrorResponse> endpoint = (Endpoint<DeleteTrainedModelRequest, DeleteTrainedModelResponse, ErrorResponse>) DeleteTrainedModelRequest._ENDPOINT;
+		JsonEndpoint<DeleteTrainedModelRequest, DeleteTrainedModelResponse, ErrorResponse> endpoint = (JsonEndpoint<DeleteTrainedModelRequest, DeleteTrainedModelResponse, ErrorResponse>) DeleteTrainedModelRequest._ENDPOINT;
 
 		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
@@ -517,7 +518,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	public CompletableFuture<DeleteTrainedModelAliasResponse> deleteTrainedModelAlias(
 			DeleteTrainedModelAliasRequest request) throws IOException, ElasticsearchException {
 		@SuppressWarnings("unchecked")
-		Endpoint<DeleteTrainedModelAliasRequest, DeleteTrainedModelAliasResponse, ErrorResponse> endpoint = (Endpoint<DeleteTrainedModelAliasRequest, DeleteTrainedModelAliasResponse, ErrorResponse>) DeleteTrainedModelAliasRequest._ENDPOINT;
+		JsonEndpoint<DeleteTrainedModelAliasRequest, DeleteTrainedModelAliasResponse, ErrorResponse> endpoint = (JsonEndpoint<DeleteTrainedModelAliasRequest, DeleteTrainedModelAliasResponse, ErrorResponse>) DeleteTrainedModelAliasRequest._ENDPOINT;
 
 		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
@@ -553,7 +554,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	public CompletableFuture<EstimateModelMemoryResponse> estimateModelMemory(EstimateModelMemoryRequest request)
 			throws IOException, ElasticsearchException {
 		@SuppressWarnings("unchecked")
-		Endpoint<EstimateModelMemoryRequest, EstimateModelMemoryResponse, ErrorResponse> endpoint = (Endpoint<EstimateModelMemoryRequest, EstimateModelMemoryResponse, ErrorResponse>) EstimateModelMemoryRequest._ENDPOINT;
+		JsonEndpoint<EstimateModelMemoryRequest, EstimateModelMemoryResponse, ErrorResponse> endpoint = (JsonEndpoint<EstimateModelMemoryRequest, EstimateModelMemoryResponse, ErrorResponse>) EstimateModelMemoryRequest._ENDPOINT;
 
 		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
@@ -603,7 +604,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	public CompletableFuture<EvaluateDataFrameResponse> evaluateDataFrame(EvaluateDataFrameRequest request)
 			throws IOException, ElasticsearchException {
 		@SuppressWarnings("unchecked")
-		Endpoint<EvaluateDataFrameRequest, EvaluateDataFrameResponse, ErrorResponse> endpoint = (Endpoint<EvaluateDataFrameRequest, EvaluateDataFrameResponse, ErrorResponse>) EvaluateDataFrameRequest._ENDPOINT;
+		JsonEndpoint<EvaluateDataFrameRequest, EvaluateDataFrameResponse, ErrorResponse> endpoint = (JsonEndpoint<EvaluateDataFrameRequest, EvaluateDataFrameResponse, ErrorResponse>) EvaluateDataFrameRequest._ENDPOINT;
 
 		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
@@ -639,7 +640,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	public CompletableFuture<ExplainDataFrameAnalyticsResponse> explainDataFrameAnalytics(
 			ExplainDataFrameAnalyticsRequest request) throws IOException, ElasticsearchException {
 		@SuppressWarnings("unchecked")
-		Endpoint<ExplainDataFrameAnalyticsRequest, ExplainDataFrameAnalyticsResponse, ErrorResponse> endpoint = (Endpoint<ExplainDataFrameAnalyticsRequest, ExplainDataFrameAnalyticsResponse, ErrorResponse>) ExplainDataFrameAnalyticsRequest._ENDPOINT;
+		JsonEndpoint<ExplainDataFrameAnalyticsRequest, ExplainDataFrameAnalyticsResponse, ErrorResponse> endpoint = (JsonEndpoint<ExplainDataFrameAnalyticsRequest, ExplainDataFrameAnalyticsResponse, ErrorResponse>) ExplainDataFrameAnalyticsRequest._ENDPOINT;
 
 		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
@@ -689,7 +690,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	public CompletableFuture<FlushJobResponse> flushJob(FlushJobRequest request)
 			throws IOException, ElasticsearchException {
 		@SuppressWarnings("unchecked")
-		Endpoint<FlushJobRequest, FlushJobResponse, ErrorResponse> endpoint = (Endpoint<FlushJobRequest, FlushJobResponse, ErrorResponse>) FlushJobRequest._ENDPOINT;
+		JsonEndpoint<FlushJobRequest, FlushJobResponse, ErrorResponse> endpoint = (JsonEndpoint<FlushJobRequest, FlushJobResponse, ErrorResponse>) FlushJobRequest._ENDPOINT;
 
 		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
@@ -726,7 +727,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	public CompletableFuture<ForecastResponse> forecast(ForecastRequest request)
 			throws IOException, ElasticsearchException {
 		@SuppressWarnings("unchecked")
-		Endpoint<ForecastRequest, ForecastResponse, ErrorResponse> endpoint = (Endpoint<ForecastRequest, ForecastResponse, ErrorResponse>) ForecastRequest._ENDPOINT;
+		JsonEndpoint<ForecastRequest, ForecastResponse, ErrorResponse> endpoint = (JsonEndpoint<ForecastRequest, ForecastResponse, ErrorResponse>) ForecastRequest._ENDPOINT;
 
 		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
@@ -763,7 +764,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	public CompletableFuture<GetBucketsResponse> getBuckets(GetBucketsRequest request)
 			throws IOException, ElasticsearchException {
 		@SuppressWarnings("unchecked")
-		Endpoint<GetBucketsRequest, GetBucketsResponse, ErrorResponse> endpoint = (Endpoint<GetBucketsRequest, GetBucketsResponse, ErrorResponse>) GetBucketsRequest._ENDPOINT;
+		JsonEndpoint<GetBucketsRequest, GetBucketsResponse, ErrorResponse> endpoint = (JsonEndpoint<GetBucketsRequest, GetBucketsResponse, ErrorResponse>) GetBucketsRequest._ENDPOINT;
 
 		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
@@ -799,7 +800,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	public CompletableFuture<GetCalendarEventsResponse> getCalendarEvents(GetCalendarEventsRequest request)
 			throws IOException, ElasticsearchException {
 		@SuppressWarnings("unchecked")
-		Endpoint<GetCalendarEventsRequest, GetCalendarEventsResponse, ErrorResponse> endpoint = (Endpoint<GetCalendarEventsRequest, GetCalendarEventsResponse, ErrorResponse>) GetCalendarEventsRequest._ENDPOINT;
+		JsonEndpoint<GetCalendarEventsRequest, GetCalendarEventsResponse, ErrorResponse> endpoint = (JsonEndpoint<GetCalendarEventsRequest, GetCalendarEventsResponse, ErrorResponse>) GetCalendarEventsRequest._ENDPOINT;
 
 		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
@@ -835,7 +836,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	public CompletableFuture<GetCalendarsResponse> getCalendars(GetCalendarsRequest request)
 			throws IOException, ElasticsearchException {
 		@SuppressWarnings("unchecked")
-		Endpoint<GetCalendarsRequest, GetCalendarsResponse, ErrorResponse> endpoint = (Endpoint<GetCalendarsRequest, GetCalendarsResponse, ErrorResponse>) GetCalendarsRequest._ENDPOINT;
+		JsonEndpoint<GetCalendarsRequest, GetCalendarsResponse, ErrorResponse> endpoint = (JsonEndpoint<GetCalendarsRequest, GetCalendarsResponse, ErrorResponse>) GetCalendarsRequest._ENDPOINT;
 
 		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
@@ -884,7 +885,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	public CompletableFuture<GetCategoriesResponse> getCategories(GetCategoriesRequest request)
 			throws IOException, ElasticsearchException {
 		@SuppressWarnings("unchecked")
-		Endpoint<GetCategoriesRequest, GetCategoriesResponse, ErrorResponse> endpoint = (Endpoint<GetCategoriesRequest, GetCategoriesResponse, ErrorResponse>) GetCategoriesRequest._ENDPOINT;
+		JsonEndpoint<GetCategoriesRequest, GetCategoriesResponse, ErrorResponse> endpoint = (JsonEndpoint<GetCategoriesRequest, GetCategoriesResponse, ErrorResponse>) GetCategoriesRequest._ENDPOINT;
 
 		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
@@ -920,7 +921,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	public CompletableFuture<GetDataFrameAnalyticsResponse> getDataFrameAnalytics(GetDataFrameAnalyticsRequest request)
 			throws IOException, ElasticsearchException {
 		@SuppressWarnings("unchecked")
-		Endpoint<GetDataFrameAnalyticsRequest, GetDataFrameAnalyticsResponse, ErrorResponse> endpoint = (Endpoint<GetDataFrameAnalyticsRequest, GetDataFrameAnalyticsResponse, ErrorResponse>) GetDataFrameAnalyticsRequest._ENDPOINT;
+		JsonEndpoint<GetDataFrameAnalyticsRequest, GetDataFrameAnalyticsResponse, ErrorResponse> endpoint = (JsonEndpoint<GetDataFrameAnalyticsRequest, GetDataFrameAnalyticsResponse, ErrorResponse>) GetDataFrameAnalyticsRequest._ENDPOINT;
 
 		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
@@ -970,7 +971,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	public CompletableFuture<GetDataFrameAnalyticsStatsResponse> getDataFrameAnalyticsStats(
 			GetDataFrameAnalyticsStatsRequest request) throws IOException, ElasticsearchException {
 		@SuppressWarnings("unchecked")
-		Endpoint<GetDataFrameAnalyticsStatsRequest, GetDataFrameAnalyticsStatsResponse, ErrorResponse> endpoint = (Endpoint<GetDataFrameAnalyticsStatsRequest, GetDataFrameAnalyticsStatsResponse, ErrorResponse>) GetDataFrameAnalyticsStatsRequest._ENDPOINT;
+		JsonEndpoint<GetDataFrameAnalyticsStatsRequest, GetDataFrameAnalyticsStatsResponse, ErrorResponse> endpoint = (JsonEndpoint<GetDataFrameAnalyticsStatsRequest, GetDataFrameAnalyticsStatsResponse, ErrorResponse>) GetDataFrameAnalyticsStatsRequest._ENDPOINT;
 
 		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
@@ -1020,7 +1021,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	public CompletableFuture<GetDatafeedStatsResponse> getDatafeedStats(GetDatafeedStatsRequest request)
 			throws IOException, ElasticsearchException {
 		@SuppressWarnings("unchecked")
-		Endpoint<GetDatafeedStatsRequest, GetDatafeedStatsResponse, ErrorResponse> endpoint = (Endpoint<GetDatafeedStatsRequest, GetDatafeedStatsResponse, ErrorResponse>) GetDatafeedStatsRequest._ENDPOINT;
+		JsonEndpoint<GetDatafeedStatsRequest, GetDatafeedStatsResponse, ErrorResponse> endpoint = (JsonEndpoint<GetDatafeedStatsRequest, GetDatafeedStatsResponse, ErrorResponse>) GetDatafeedStatsRequest._ENDPOINT;
 
 		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
@@ -1069,7 +1070,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	public CompletableFuture<GetDatafeedsResponse> getDatafeeds(GetDatafeedsRequest request)
 			throws IOException, ElasticsearchException {
 		@SuppressWarnings("unchecked")
-		Endpoint<GetDatafeedsRequest, GetDatafeedsResponse, ErrorResponse> endpoint = (Endpoint<GetDatafeedsRequest, GetDatafeedsResponse, ErrorResponse>) GetDatafeedsRequest._ENDPOINT;
+		JsonEndpoint<GetDatafeedsRequest, GetDatafeedsResponse, ErrorResponse> endpoint = (JsonEndpoint<GetDatafeedsRequest, GetDatafeedsResponse, ErrorResponse>) GetDatafeedsRequest._ENDPOINT;
 
 		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
@@ -1118,7 +1119,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	public CompletableFuture<GetFiltersResponse> getFilters(GetFiltersRequest request)
 			throws IOException, ElasticsearchException {
 		@SuppressWarnings("unchecked")
-		Endpoint<GetFiltersRequest, GetFiltersResponse, ErrorResponse> endpoint = (Endpoint<GetFiltersRequest, GetFiltersResponse, ErrorResponse>) GetFiltersRequest._ENDPOINT;
+		JsonEndpoint<GetFiltersRequest, GetFiltersResponse, ErrorResponse> endpoint = (JsonEndpoint<GetFiltersRequest, GetFiltersResponse, ErrorResponse>) GetFiltersRequest._ENDPOINT;
 
 		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
@@ -1167,7 +1168,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	public CompletableFuture<GetInfluencersResponse> getInfluencers(GetInfluencersRequest request)
 			throws IOException, ElasticsearchException {
 		@SuppressWarnings("unchecked")
-		Endpoint<GetInfluencersRequest, GetInfluencersResponse, ErrorResponse> endpoint = (Endpoint<GetInfluencersRequest, GetInfluencersResponse, ErrorResponse>) GetInfluencersRequest._ENDPOINT;
+		JsonEndpoint<GetInfluencersRequest, GetInfluencersResponse, ErrorResponse> endpoint = (JsonEndpoint<GetInfluencersRequest, GetInfluencersResponse, ErrorResponse>) GetInfluencersRequest._ENDPOINT;
 
 		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
@@ -1203,7 +1204,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	public CompletableFuture<GetJobStatsResponse> getJobStats(GetJobStatsRequest request)
 			throws IOException, ElasticsearchException {
 		@SuppressWarnings("unchecked")
-		Endpoint<GetJobStatsRequest, GetJobStatsResponse, ErrorResponse> endpoint = (Endpoint<GetJobStatsRequest, GetJobStatsResponse, ErrorResponse>) GetJobStatsRequest._ENDPOINT;
+		JsonEndpoint<GetJobStatsRequest, GetJobStatsResponse, ErrorResponse> endpoint = (JsonEndpoint<GetJobStatsRequest, GetJobStatsResponse, ErrorResponse>) GetJobStatsRequest._ENDPOINT;
 
 		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
@@ -1252,7 +1253,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	public CompletableFuture<GetJobsResponse> getJobs(GetJobsRequest request)
 			throws IOException, ElasticsearchException {
 		@SuppressWarnings("unchecked")
-		Endpoint<GetJobsRequest, GetJobsResponse, ErrorResponse> endpoint = (Endpoint<GetJobsRequest, GetJobsResponse, ErrorResponse>) GetJobsRequest._ENDPOINT;
+		JsonEndpoint<GetJobsRequest, GetJobsResponse, ErrorResponse> endpoint = (JsonEndpoint<GetJobsRequest, GetJobsResponse, ErrorResponse>) GetJobsRequest._ENDPOINT;
 
 		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
@@ -1301,7 +1302,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	public CompletableFuture<GetModelSnapshotsResponse> getModelSnapshots(GetModelSnapshotsRequest request)
 			throws IOException, ElasticsearchException {
 		@SuppressWarnings("unchecked")
-		Endpoint<GetModelSnapshotsRequest, GetModelSnapshotsResponse, ErrorResponse> endpoint = (Endpoint<GetModelSnapshotsRequest, GetModelSnapshotsResponse, ErrorResponse>) GetModelSnapshotsRequest._ENDPOINT;
+		JsonEndpoint<GetModelSnapshotsRequest, GetModelSnapshotsResponse, ErrorResponse> endpoint = (JsonEndpoint<GetModelSnapshotsRequest, GetModelSnapshotsResponse, ErrorResponse>) GetModelSnapshotsRequest._ENDPOINT;
 
 		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
@@ -1338,7 +1339,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	public CompletableFuture<GetOverallBucketsResponse> getOverallBuckets(GetOverallBucketsRequest request)
 			throws IOException, ElasticsearchException {
 		@SuppressWarnings("unchecked")
-		Endpoint<GetOverallBucketsRequest, GetOverallBucketsResponse, ErrorResponse> endpoint = (Endpoint<GetOverallBucketsRequest, GetOverallBucketsResponse, ErrorResponse>) GetOverallBucketsRequest._ENDPOINT;
+		JsonEndpoint<GetOverallBucketsRequest, GetOverallBucketsResponse, ErrorResponse> endpoint = (JsonEndpoint<GetOverallBucketsRequest, GetOverallBucketsResponse, ErrorResponse>) GetOverallBucketsRequest._ENDPOINT;
 
 		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
@@ -1375,7 +1376,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	public CompletableFuture<GetRecordsResponse> getRecords(GetRecordsRequest request)
 			throws IOException, ElasticsearchException {
 		@SuppressWarnings("unchecked")
-		Endpoint<GetRecordsRequest, GetRecordsResponse, ErrorResponse> endpoint = (Endpoint<GetRecordsRequest, GetRecordsResponse, ErrorResponse>) GetRecordsRequest._ENDPOINT;
+		JsonEndpoint<GetRecordsRequest, GetRecordsResponse, ErrorResponse> endpoint = (JsonEndpoint<GetRecordsRequest, GetRecordsResponse, ErrorResponse>) GetRecordsRequest._ENDPOINT;
 
 		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
@@ -1411,7 +1412,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	public CompletableFuture<GetTrainedModelsResponse> getTrainedModels(GetTrainedModelsRequest request)
 			throws IOException, ElasticsearchException {
 		@SuppressWarnings("unchecked")
-		Endpoint<GetTrainedModelsRequest, GetTrainedModelsResponse, ErrorResponse> endpoint = (Endpoint<GetTrainedModelsRequest, GetTrainedModelsResponse, ErrorResponse>) GetTrainedModelsRequest._ENDPOINT;
+		JsonEndpoint<GetTrainedModelsRequest, GetTrainedModelsResponse, ErrorResponse> endpoint = (JsonEndpoint<GetTrainedModelsRequest, GetTrainedModelsResponse, ErrorResponse>) GetTrainedModelsRequest._ENDPOINT;
 
 		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
@@ -1460,7 +1461,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	public CompletableFuture<GetTrainedModelsStatsResponse> getTrainedModelsStats(GetTrainedModelsStatsRequest request)
 			throws IOException, ElasticsearchException {
 		@SuppressWarnings("unchecked")
-		Endpoint<GetTrainedModelsStatsRequest, GetTrainedModelsStatsResponse, ErrorResponse> endpoint = (Endpoint<GetTrainedModelsStatsRequest, GetTrainedModelsStatsResponse, ErrorResponse>) GetTrainedModelsStatsRequest._ENDPOINT;
+		JsonEndpoint<GetTrainedModelsStatsRequest, GetTrainedModelsStatsResponse, ErrorResponse> endpoint = (JsonEndpoint<GetTrainedModelsStatsRequest, GetTrainedModelsStatsResponse, ErrorResponse>) GetTrainedModelsStatsRequest._ENDPOINT;
 
 		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
@@ -1524,7 +1525,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	public CompletableFuture<OpenJobResponse> openJob(OpenJobRequest request)
 			throws IOException, ElasticsearchException {
 		@SuppressWarnings("unchecked")
-		Endpoint<OpenJobRequest, OpenJobResponse, ErrorResponse> endpoint = (Endpoint<OpenJobRequest, OpenJobResponse, ErrorResponse>) OpenJobRequest._ENDPOINT;
+		JsonEndpoint<OpenJobRequest, OpenJobResponse, ErrorResponse> endpoint = (JsonEndpoint<OpenJobRequest, OpenJobResponse, ErrorResponse>) OpenJobRequest._ENDPOINT;
 
 		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
@@ -1560,7 +1561,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	public CompletableFuture<PostCalendarEventsResponse> postCalendarEvents(PostCalendarEventsRequest request)
 			throws IOException, ElasticsearchException {
 		@SuppressWarnings("unchecked")
-		Endpoint<PostCalendarEventsRequest, PostCalendarEventsResponse, ErrorResponse> endpoint = (Endpoint<PostCalendarEventsRequest, PostCalendarEventsResponse, ErrorResponse>) PostCalendarEventsRequest._ENDPOINT;
+		JsonEndpoint<PostCalendarEventsRequest, PostCalendarEventsResponse, ErrorResponse> endpoint = (JsonEndpoint<PostCalendarEventsRequest, PostCalendarEventsResponse, ErrorResponse>) PostCalendarEventsRequest._ENDPOINT;
 
 		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
@@ -1596,7 +1597,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	public <TData> CompletableFuture<PostDataResponse> postData(PostDataRequest<TData> request)
 			throws IOException, ElasticsearchException {
 		@SuppressWarnings("unchecked")
-		Endpoint<PostDataRequest<?>, PostDataResponse, ErrorResponse> endpoint = (Endpoint<PostDataRequest<?>, PostDataResponse, ErrorResponse>) PostDataRequest._ENDPOINT;
+		JsonEndpoint<PostDataRequest<?>, PostDataResponse, ErrorResponse> endpoint = (JsonEndpoint<PostDataRequest<?>, PostDataResponse, ErrorResponse>) PostDataRequest._ENDPOINT;
 
 		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
@@ -1632,7 +1633,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	public CompletableFuture<PreviewDataFrameAnalyticsResponse> previewDataFrameAnalytics(
 			PreviewDataFrameAnalyticsRequest request) throws IOException, ElasticsearchException {
 		@SuppressWarnings("unchecked")
-		Endpoint<PreviewDataFrameAnalyticsRequest, PreviewDataFrameAnalyticsResponse, ErrorResponse> endpoint = (Endpoint<PreviewDataFrameAnalyticsRequest, PreviewDataFrameAnalyticsResponse, ErrorResponse>) PreviewDataFrameAnalyticsRequest._ENDPOINT;
+		JsonEndpoint<PreviewDataFrameAnalyticsRequest, PreviewDataFrameAnalyticsResponse, ErrorResponse> endpoint = (JsonEndpoint<PreviewDataFrameAnalyticsRequest, PreviewDataFrameAnalyticsResponse, ErrorResponse>) PreviewDataFrameAnalyticsRequest._ENDPOINT;
 
 		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
@@ -1683,7 +1684,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 			PreviewDatafeedRequest request, Class<TDocument> tDocumentClass)
 			throws IOException, ElasticsearchException {
 		@SuppressWarnings("unchecked")
-		Endpoint<PreviewDatafeedRequest, PreviewDatafeedResponse<TDocument>, ErrorResponse> endpoint = (Endpoint<PreviewDatafeedRequest, PreviewDatafeedResponse<TDocument>, ErrorResponse>) PreviewDatafeedRequest._ENDPOINT;
+		JsonEndpoint<PreviewDatafeedRequest, PreviewDatafeedResponse<TDocument>, ErrorResponse> endpoint = (JsonEndpoint<PreviewDatafeedRequest, PreviewDatafeedResponse<TDocument>, ErrorResponse>) PreviewDatafeedRequest._ENDPOINT;
 		endpoint = new EndpointWithResponseMapperAttr<>(endpoint,
 				"co.elastic.clients:Deserializer:ml.preview_datafeed.TDocument", getDeserializer(tDocumentClass));
 
@@ -1722,7 +1723,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	public CompletableFuture<PutCalendarResponse> putCalendar(PutCalendarRequest request)
 			throws IOException, ElasticsearchException {
 		@SuppressWarnings("unchecked")
-		Endpoint<PutCalendarRequest, PutCalendarResponse, ErrorResponse> endpoint = (Endpoint<PutCalendarRequest, PutCalendarResponse, ErrorResponse>) PutCalendarRequest._ENDPOINT;
+		JsonEndpoint<PutCalendarRequest, PutCalendarResponse, ErrorResponse> endpoint = (JsonEndpoint<PutCalendarRequest, PutCalendarResponse, ErrorResponse>) PutCalendarRequest._ENDPOINT;
 
 		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
@@ -1758,7 +1759,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	public CompletableFuture<PutCalendarJobResponse> putCalendarJob(PutCalendarJobRequest request)
 			throws IOException, ElasticsearchException {
 		@SuppressWarnings("unchecked")
-		Endpoint<PutCalendarJobRequest, PutCalendarJobResponse, ErrorResponse> endpoint = (Endpoint<PutCalendarJobRequest, PutCalendarJobResponse, ErrorResponse>) PutCalendarJobRequest._ENDPOINT;
+		JsonEndpoint<PutCalendarJobRequest, PutCalendarJobResponse, ErrorResponse> endpoint = (JsonEndpoint<PutCalendarJobRequest, PutCalendarJobResponse, ErrorResponse>) PutCalendarJobRequest._ENDPOINT;
 
 		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
@@ -1794,7 +1795,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	public CompletableFuture<PutDataFrameAnalyticsResponse> putDataFrameAnalytics(PutDataFrameAnalyticsRequest request)
 			throws IOException, ElasticsearchException {
 		@SuppressWarnings("unchecked")
-		Endpoint<PutDataFrameAnalyticsRequest, PutDataFrameAnalyticsResponse, ErrorResponse> endpoint = (Endpoint<PutDataFrameAnalyticsRequest, PutDataFrameAnalyticsResponse, ErrorResponse>) PutDataFrameAnalyticsRequest._ENDPOINT;
+		JsonEndpoint<PutDataFrameAnalyticsRequest, PutDataFrameAnalyticsResponse, ErrorResponse> endpoint = (JsonEndpoint<PutDataFrameAnalyticsRequest, PutDataFrameAnalyticsResponse, ErrorResponse>) PutDataFrameAnalyticsRequest._ENDPOINT;
 
 		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
@@ -1830,7 +1831,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	public CompletableFuture<PutDatafeedResponse> putDatafeed(PutDatafeedRequest request)
 			throws IOException, ElasticsearchException {
 		@SuppressWarnings("unchecked")
-		Endpoint<PutDatafeedRequest, PutDatafeedResponse, ErrorResponse> endpoint = (Endpoint<PutDatafeedRequest, PutDatafeedResponse, ErrorResponse>) PutDatafeedRequest._ENDPOINT;
+		JsonEndpoint<PutDatafeedRequest, PutDatafeedResponse, ErrorResponse> endpoint = (JsonEndpoint<PutDatafeedRequest, PutDatafeedResponse, ErrorResponse>) PutDatafeedRequest._ENDPOINT;
 
 		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
@@ -1866,7 +1867,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	public CompletableFuture<PutFilterResponse> putFilter(PutFilterRequest request)
 			throws IOException, ElasticsearchException {
 		@SuppressWarnings("unchecked")
-		Endpoint<PutFilterRequest, PutFilterResponse, ErrorResponse> endpoint = (Endpoint<PutFilterRequest, PutFilterResponse, ErrorResponse>) PutFilterRequest._ENDPOINT;
+		JsonEndpoint<PutFilterRequest, PutFilterResponse, ErrorResponse> endpoint = (JsonEndpoint<PutFilterRequest, PutFilterResponse, ErrorResponse>) PutFilterRequest._ENDPOINT;
 
 		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
@@ -1901,7 +1902,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 
 	public CompletableFuture<PutJobResponse> putJob(PutJobRequest request) throws IOException, ElasticsearchException {
 		@SuppressWarnings("unchecked")
-		Endpoint<PutJobRequest, PutJobResponse, ErrorResponse> endpoint = (Endpoint<PutJobRequest, PutJobResponse, ErrorResponse>) PutJobRequest._ENDPOINT;
+		JsonEndpoint<PutJobRequest, PutJobResponse, ErrorResponse> endpoint = (JsonEndpoint<PutJobRequest, PutJobResponse, ErrorResponse>) PutJobRequest._ENDPOINT;
 
 		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
@@ -1937,7 +1938,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	public CompletableFuture<PutTrainedModelResponse> putTrainedModel(PutTrainedModelRequest request)
 			throws IOException, ElasticsearchException {
 		@SuppressWarnings("unchecked")
-		Endpoint<PutTrainedModelRequest, PutTrainedModelResponse, ErrorResponse> endpoint = (Endpoint<PutTrainedModelRequest, PutTrainedModelResponse, ErrorResponse>) PutTrainedModelRequest._ENDPOINT;
+		JsonEndpoint<PutTrainedModelRequest, PutTrainedModelResponse, ErrorResponse> endpoint = (JsonEndpoint<PutTrainedModelRequest, PutTrainedModelResponse, ErrorResponse>) PutTrainedModelRequest._ENDPOINT;
 
 		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
@@ -1974,7 +1975,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	public CompletableFuture<PutTrainedModelAliasResponse> putTrainedModelAlias(PutTrainedModelAliasRequest request)
 			throws IOException, ElasticsearchException {
 		@SuppressWarnings("unchecked")
-		Endpoint<PutTrainedModelAliasRequest, PutTrainedModelAliasResponse, ErrorResponse> endpoint = (Endpoint<PutTrainedModelAliasRequest, PutTrainedModelAliasResponse, ErrorResponse>) PutTrainedModelAliasRequest._ENDPOINT;
+		JsonEndpoint<PutTrainedModelAliasRequest, PutTrainedModelAliasResponse, ErrorResponse> endpoint = (JsonEndpoint<PutTrainedModelAliasRequest, PutTrainedModelAliasResponse, ErrorResponse>) PutTrainedModelAliasRequest._ENDPOINT;
 
 		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
@@ -2011,7 +2012,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	public CompletableFuture<ResetJobResponse> resetJob(ResetJobRequest request)
 			throws IOException, ElasticsearchException {
 		@SuppressWarnings("unchecked")
-		Endpoint<ResetJobRequest, ResetJobResponse, ErrorResponse> endpoint = (Endpoint<ResetJobRequest, ResetJobResponse, ErrorResponse>) ResetJobRequest._ENDPOINT;
+		JsonEndpoint<ResetJobRequest, ResetJobResponse, ErrorResponse> endpoint = (JsonEndpoint<ResetJobRequest, ResetJobResponse, ErrorResponse>) ResetJobRequest._ENDPOINT;
 
 		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
@@ -2047,7 +2048,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	public CompletableFuture<RevertModelSnapshotResponse> revertModelSnapshot(RevertModelSnapshotRequest request)
 			throws IOException, ElasticsearchException {
 		@SuppressWarnings("unchecked")
-		Endpoint<RevertModelSnapshotRequest, RevertModelSnapshotResponse, ErrorResponse> endpoint = (Endpoint<RevertModelSnapshotRequest, RevertModelSnapshotResponse, ErrorResponse>) RevertModelSnapshotRequest._ENDPOINT;
+		JsonEndpoint<RevertModelSnapshotRequest, RevertModelSnapshotResponse, ErrorResponse> endpoint = (JsonEndpoint<RevertModelSnapshotRequest, RevertModelSnapshotResponse, ErrorResponse>) RevertModelSnapshotRequest._ENDPOINT;
 
 		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
@@ -2084,7 +2085,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	public CompletableFuture<SetUpgradeModeResponse> setUpgradeMode(SetUpgradeModeRequest request)
 			throws IOException, ElasticsearchException {
 		@SuppressWarnings("unchecked")
-		Endpoint<SetUpgradeModeRequest, SetUpgradeModeResponse, ErrorResponse> endpoint = (Endpoint<SetUpgradeModeRequest, SetUpgradeModeResponse, ErrorResponse>) SetUpgradeModeRequest._ENDPOINT;
+		JsonEndpoint<SetUpgradeModeRequest, SetUpgradeModeResponse, ErrorResponse> endpoint = (JsonEndpoint<SetUpgradeModeRequest, SetUpgradeModeResponse, ErrorResponse>) SetUpgradeModeRequest._ENDPOINT;
 
 		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
@@ -2135,7 +2136,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	public CompletableFuture<StartDataFrameAnalyticsResponse> startDataFrameAnalytics(
 			StartDataFrameAnalyticsRequest request) throws IOException, ElasticsearchException {
 		@SuppressWarnings("unchecked")
-		Endpoint<StartDataFrameAnalyticsRequest, StartDataFrameAnalyticsResponse, ErrorResponse> endpoint = (Endpoint<StartDataFrameAnalyticsRequest, StartDataFrameAnalyticsResponse, ErrorResponse>) StartDataFrameAnalyticsRequest._ENDPOINT;
+		JsonEndpoint<StartDataFrameAnalyticsRequest, StartDataFrameAnalyticsResponse, ErrorResponse> endpoint = (JsonEndpoint<StartDataFrameAnalyticsRequest, StartDataFrameAnalyticsResponse, ErrorResponse>) StartDataFrameAnalyticsRequest._ENDPOINT;
 
 		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
@@ -2171,7 +2172,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	public CompletableFuture<StartDatafeedResponse> startDatafeed(StartDatafeedRequest request)
 			throws IOException, ElasticsearchException {
 		@SuppressWarnings("unchecked")
-		Endpoint<StartDatafeedRequest, StartDatafeedResponse, ErrorResponse> endpoint = (Endpoint<StartDatafeedRequest, StartDatafeedResponse, ErrorResponse>) StartDatafeedRequest._ENDPOINT;
+		JsonEndpoint<StartDatafeedRequest, StartDatafeedResponse, ErrorResponse> endpoint = (JsonEndpoint<StartDatafeedRequest, StartDatafeedResponse, ErrorResponse>) StartDatafeedRequest._ENDPOINT;
 
 		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
@@ -2207,7 +2208,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	public CompletableFuture<StopDataFrameAnalyticsResponse> stopDataFrameAnalytics(
 			StopDataFrameAnalyticsRequest request) throws IOException, ElasticsearchException {
 		@SuppressWarnings("unchecked")
-		Endpoint<StopDataFrameAnalyticsRequest, StopDataFrameAnalyticsResponse, ErrorResponse> endpoint = (Endpoint<StopDataFrameAnalyticsRequest, StopDataFrameAnalyticsResponse, ErrorResponse>) StopDataFrameAnalyticsRequest._ENDPOINT;
+		JsonEndpoint<StopDataFrameAnalyticsRequest, StopDataFrameAnalyticsResponse, ErrorResponse> endpoint = (JsonEndpoint<StopDataFrameAnalyticsRequest, StopDataFrameAnalyticsResponse, ErrorResponse>) StopDataFrameAnalyticsRequest._ENDPOINT;
 
 		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
@@ -2243,7 +2244,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	public CompletableFuture<StopDatafeedResponse> stopDatafeed(StopDatafeedRequest request)
 			throws IOException, ElasticsearchException {
 		@SuppressWarnings("unchecked")
-		Endpoint<StopDatafeedRequest, StopDatafeedResponse, ErrorResponse> endpoint = (Endpoint<StopDatafeedRequest, StopDatafeedResponse, ErrorResponse>) StopDatafeedRequest._ENDPOINT;
+		JsonEndpoint<StopDatafeedRequest, StopDatafeedResponse, ErrorResponse> endpoint = (JsonEndpoint<StopDatafeedRequest, StopDatafeedResponse, ErrorResponse>) StopDatafeedRequest._ENDPOINT;
 
 		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
@@ -2279,7 +2280,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	public CompletableFuture<UpdateDataFrameAnalyticsResponse> updateDataFrameAnalytics(
 			UpdateDataFrameAnalyticsRequest request) throws IOException, ElasticsearchException {
 		@SuppressWarnings("unchecked")
-		Endpoint<UpdateDataFrameAnalyticsRequest, UpdateDataFrameAnalyticsResponse, ErrorResponse> endpoint = (Endpoint<UpdateDataFrameAnalyticsRequest, UpdateDataFrameAnalyticsResponse, ErrorResponse>) UpdateDataFrameAnalyticsRequest._ENDPOINT;
+		JsonEndpoint<UpdateDataFrameAnalyticsRequest, UpdateDataFrameAnalyticsResponse, ErrorResponse> endpoint = (JsonEndpoint<UpdateDataFrameAnalyticsRequest, UpdateDataFrameAnalyticsResponse, ErrorResponse>) UpdateDataFrameAnalyticsRequest._ENDPOINT;
 
 		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
@@ -2315,7 +2316,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	public CompletableFuture<UpdateDatafeedResponse> updateDatafeed(UpdateDatafeedRequest request)
 			throws IOException, ElasticsearchException {
 		@SuppressWarnings("unchecked")
-		Endpoint<UpdateDatafeedRequest, UpdateDatafeedResponse, ErrorResponse> endpoint = (Endpoint<UpdateDatafeedRequest, UpdateDatafeedResponse, ErrorResponse>) UpdateDatafeedRequest._ENDPOINT;
+		JsonEndpoint<UpdateDatafeedRequest, UpdateDatafeedResponse, ErrorResponse> endpoint = (JsonEndpoint<UpdateDatafeedRequest, UpdateDatafeedResponse, ErrorResponse>) UpdateDatafeedRequest._ENDPOINT;
 
 		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
@@ -2351,7 +2352,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	public CompletableFuture<UpdateFilterResponse> updateFilter(UpdateFilterRequest request)
 			throws IOException, ElasticsearchException {
 		@SuppressWarnings("unchecked")
-		Endpoint<UpdateFilterRequest, UpdateFilterResponse, ErrorResponse> endpoint = (Endpoint<UpdateFilterRequest, UpdateFilterResponse, ErrorResponse>) UpdateFilterRequest._ENDPOINT;
+		JsonEndpoint<UpdateFilterRequest, UpdateFilterResponse, ErrorResponse> endpoint = (JsonEndpoint<UpdateFilterRequest, UpdateFilterResponse, ErrorResponse>) UpdateFilterRequest._ENDPOINT;
 
 		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
@@ -2387,7 +2388,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	public CompletableFuture<UpdateJobResponse> updateJob(UpdateJobRequest request)
 			throws IOException, ElasticsearchException {
 		@SuppressWarnings("unchecked")
-		Endpoint<UpdateJobRequest, UpdateJobResponse, ErrorResponse> endpoint = (Endpoint<UpdateJobRequest, UpdateJobResponse, ErrorResponse>) UpdateJobRequest._ENDPOINT;
+		JsonEndpoint<UpdateJobRequest, UpdateJobResponse, ErrorResponse> endpoint = (JsonEndpoint<UpdateJobRequest, UpdateJobResponse, ErrorResponse>) UpdateJobRequest._ENDPOINT;
 
 		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
@@ -2423,7 +2424,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	public CompletableFuture<UpdateModelSnapshotResponse> updateModelSnapshot(UpdateModelSnapshotRequest request)
 			throws IOException, ElasticsearchException {
 		@SuppressWarnings("unchecked")
-		Endpoint<UpdateModelSnapshotRequest, UpdateModelSnapshotResponse, ErrorResponse> endpoint = (Endpoint<UpdateModelSnapshotRequest, UpdateModelSnapshotResponse, ErrorResponse>) UpdateModelSnapshotRequest._ENDPOINT;
+		JsonEndpoint<UpdateModelSnapshotRequest, UpdateModelSnapshotResponse, ErrorResponse> endpoint = (JsonEndpoint<UpdateModelSnapshotRequest, UpdateModelSnapshotResponse, ErrorResponse>) UpdateModelSnapshotRequest._ENDPOINT;
 
 		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
@@ -2459,7 +2460,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	public CompletableFuture<UpgradeJobSnapshotResponse> upgradeJobSnapshot(UpgradeJobSnapshotRequest request)
 			throws IOException, ElasticsearchException {
 		@SuppressWarnings("unchecked")
-		Endpoint<UpgradeJobSnapshotRequest, UpgradeJobSnapshotResponse, ErrorResponse> endpoint = (Endpoint<UpgradeJobSnapshotRequest, UpgradeJobSnapshotResponse, ErrorResponse>) UpgradeJobSnapshotRequest._ENDPOINT;
+		JsonEndpoint<UpgradeJobSnapshotRequest, UpgradeJobSnapshotResponse, ErrorResponse> endpoint = (JsonEndpoint<UpgradeJobSnapshotRequest, UpgradeJobSnapshotResponse, ErrorResponse>) UpgradeJobSnapshotRequest._ENDPOINT;
 
 		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
@@ -2495,7 +2496,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	public CompletableFuture<ValidateResponse> validate(ValidateRequest request)
 			throws IOException, ElasticsearchException {
 		@SuppressWarnings("unchecked")
-		Endpoint<ValidateRequest, ValidateResponse, ErrorResponse> endpoint = (Endpoint<ValidateRequest, ValidateResponse, ErrorResponse>) ValidateRequest._ENDPOINT;
+		JsonEndpoint<ValidateRequest, ValidateResponse, ErrorResponse> endpoint = (JsonEndpoint<ValidateRequest, ValidateResponse, ErrorResponse>) ValidateRequest._ENDPOINT;
 
 		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
@@ -2544,7 +2545,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	public CompletableFuture<ValidateDetectorResponse> validateDetector(ValidateDetectorRequest request)
 			throws IOException, ElasticsearchException {
 		@SuppressWarnings("unchecked")
-		Endpoint<ValidateDetectorRequest, ValidateDetectorResponse, ErrorResponse> endpoint = (Endpoint<ValidateDetectorRequest, ValidateDetectorResponse, ErrorResponse>) ValidateDetectorRequest._ENDPOINT;
+		JsonEndpoint<ValidateDetectorRequest, ValidateDetectorResponse, ErrorResponse> endpoint = (JsonEndpoint<ValidateDetectorRequest, ValidateDetectorResponse, ErrorResponse>) ValidateDetectorRequest._ENDPOINT;
 
 		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}

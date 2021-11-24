@@ -110,6 +110,8 @@ public class GetAutoFollowPatternRequest extends RequestBase {
 	 * Endpoint "{@code ccr.get_auto_follow_pattern}".
 	 */
 	public static final Endpoint<GetAutoFollowPatternRequest, GetAutoFollowPatternResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/ccr.get_auto_follow_pattern",
+
 			// Request method
 			request -> {
 				return "GET";

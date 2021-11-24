@@ -412,6 +412,8 @@ public class PutAliasRequest extends RequestBase implements JsonpSerializable {
 	 * Endpoint "{@code indices.put_alias}".
 	 */
 	public static final Endpoint<PutAliasRequest, PutAliasResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/indices.put_alias",
+
 			// Request method
 			request -> {
 				return "PUT";

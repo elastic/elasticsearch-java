@@ -227,37 +227,37 @@ public class RoleMappingRule
 		private Kind _kind;
 		private Object _value;
 
-		public Builder any(List<RoleMappingRule> v) {
+		public ObjectBuilder<RoleMappingRule> any(List<RoleMappingRule> v) {
 			this._kind = Kind.Any;
 			this._value = v;
 			return this;
 		}
 
-		public Builder all(List<RoleMappingRule> v) {
+		public ObjectBuilder<RoleMappingRule> all(List<RoleMappingRule> v) {
 			this._kind = Kind.All;
 			this._value = v;
 			return this;
 		}
 
-		public Builder field(FieldRule v) {
+		public ObjectBuilder<RoleMappingRule> field(FieldRule v) {
 			this._kind = Kind.Field;
 			this._value = v;
 			return this;
 		}
 
-		public Builder field(Consumer<FieldRule.Builder> fn) {
+		public ObjectBuilder<RoleMappingRule> field(Consumer<FieldRule.Builder> fn) {
 			FieldRule.Builder builder = new FieldRule.Builder();
 			fn.accept(builder);
 			return this.field(builder.build());
 		}
 
-		public Builder except(RoleMappingRule v) {
+		public ObjectBuilder<RoleMappingRule> except(RoleMappingRule v) {
 			this._kind = Kind.Except;
 			this._value = v;
 			return this;
 		}
 
-		public Builder except(Consumer<RoleMappingRule.Builder> fn) {
+		public ObjectBuilder<RoleMappingRule> except(Consumer<RoleMappingRule.Builder> fn) {
 			RoleMappingRule.Builder builder = new RoleMappingRule.Builder();
 			fn.accept(builder);
 			return this.except(builder.build());

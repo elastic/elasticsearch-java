@@ -106,6 +106,8 @@ public class DeletePolicyRequest extends RequestBase {
 	 * Endpoint "{@code enrich.delete_policy}".
 	 */
 	public static final Endpoint<DeletePolicyRequest, DeletePolicyResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/enrich.delete_policy",
+
 			// Request method
 			request -> {
 				return "DELETE";

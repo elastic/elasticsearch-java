@@ -252,6 +252,8 @@ public class BulkRequest extends RequestBase implements NdJsonpSerializable, Jso
 	 * Endpoint "{@code monitoring.bulk}".
 	 */
 	public static final Endpoint<BulkRequest, BulkResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/monitoring.bulk",
+
 			// Request method
 			request -> {
 				return "POST";

@@ -381,6 +381,8 @@ public class GetIndicesSettingsRequest extends RequestBase {
 	 * Endpoint "{@code indices.get_settings}".
 	 */
 	public static final Endpoint<GetIndicesSettingsRequest, GetIndicesSettingsResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/indices.get_settings",
+
 			// Request method
 			request -> {
 				return "GET";

@@ -216,6 +216,8 @@ public class PutCalendarRequest extends RequestBase implements JsonpSerializable
 	 * Endpoint "{@code ml.put_calendar}".
 	 */
 	public static final Endpoint<PutCalendarRequest, PutCalendarResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/ml.put_calendar",
+
 			// Request method
 			request -> {
 				return "PUT";

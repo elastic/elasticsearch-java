@@ -66,7 +66,7 @@ public class Percentiles implements TaggedUnion<Percentiles.Kind, Object>, Jsonp
 		return _value;
 	}
 
-	public Percentiles(Kind kind, Object value) {
+	private Percentiles(Kind kind, Object value) {
 		this._kind = kind;
 		this._value = value;
 	}
@@ -152,13 +152,13 @@ public class Percentiles implements TaggedUnion<Percentiles.Kind, Object>, Jsonp
 		private Kind _kind;
 		private Object _value;
 
-		public Builder array(List<ArrayPercentilesItem> v) {
+		public ObjectBuilder<Percentiles> array(List<ArrayPercentilesItem> v) {
 			this._kind = Kind.Array;
 			this._value = v;
 			return this;
 		}
 
-		public Builder keyed(Map<String, String> v) {
+		public ObjectBuilder<Percentiles> keyed(Map<String, String> v) {
 			this._kind = Kind.Keyed;
 			this._value = v;
 			return this;

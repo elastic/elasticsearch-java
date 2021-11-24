@@ -174,37 +174,37 @@ public class Action implements TaggedUnion<Action.Kind, Object>, JsonpSerializab
 		private Kind _kind;
 		private Object _value;
 
-		public Builder add(AddAction v) {
+		public ObjectBuilder<Action> add(AddAction v) {
 			this._kind = Kind.Add;
 			this._value = v;
 			return this;
 		}
 
-		public Builder add(Consumer<AddAction.Builder> fn) {
+		public ObjectBuilder<Action> add(Consumer<AddAction.Builder> fn) {
 			AddAction.Builder builder = new AddAction.Builder();
 			fn.accept(builder);
 			return this.add(builder.build());
 		}
 
-		public Builder remove(RemoveAction v) {
+		public ObjectBuilder<Action> remove(RemoveAction v) {
 			this._kind = Kind.Remove;
 			this._value = v;
 			return this;
 		}
 
-		public Builder remove(Consumer<RemoveAction.Builder> fn) {
+		public ObjectBuilder<Action> remove(Consumer<RemoveAction.Builder> fn) {
 			RemoveAction.Builder builder = new RemoveAction.Builder();
 			fn.accept(builder);
 			return this.remove(builder.build());
 		}
 
-		public Builder removeIndex(RemoveIndexAction v) {
+		public ObjectBuilder<Action> removeIndex(RemoveIndexAction v) {
 			this._kind = Kind.RemoveIndex;
 			this._value = v;
 			return this;
 		}
 
-		public Builder removeIndex(Consumer<RemoveIndexAction.Builder> fn) {
+		public ObjectBuilder<Action> removeIndex(Consumer<RemoveIndexAction.Builder> fn) {
 			RemoveIndexAction.Builder builder = new RemoveIndexAction.Builder();
 			fn.accept(builder);
 			return this.removeIndex(builder.build());

@@ -28,6 +28,7 @@ import co.elastic.clients.elasticsearch._types.ElasticsearchException;
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.transport.ElasticsearchTransport;
 import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.JsonEndpoint;
 import co.elastic.clients.transport.Transport;
 import co.elastic.clients.transport.TransportOptions;
 import co.elastic.clients.transport.endpoints.EndpointWithResponseMapperAttr;
@@ -71,7 +72,7 @@ public class ElasticsearchTransformAsyncClient
 	public CompletableFuture<DeleteTransformResponse> deleteTransform(DeleteTransformRequest request)
 			throws IOException, ElasticsearchException {
 		@SuppressWarnings("unchecked")
-		Endpoint<DeleteTransformRequest, DeleteTransformResponse, ErrorResponse> endpoint = (Endpoint<DeleteTransformRequest, DeleteTransformResponse, ErrorResponse>) DeleteTransformRequest._ENDPOINT;
+		JsonEndpoint<DeleteTransformRequest, DeleteTransformResponse, ErrorResponse> endpoint = (JsonEndpoint<DeleteTransformRequest, DeleteTransformResponse, ErrorResponse>) DeleteTransformRequest._ENDPOINT;
 
 		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
@@ -107,7 +108,7 @@ public class ElasticsearchTransformAsyncClient
 	public CompletableFuture<GetTransformResponse> getTransform(GetTransformRequest request)
 			throws IOException, ElasticsearchException {
 		@SuppressWarnings("unchecked")
-		Endpoint<GetTransformRequest, GetTransformResponse, ErrorResponse> endpoint = (Endpoint<GetTransformRequest, GetTransformResponse, ErrorResponse>) GetTransformRequest._ENDPOINT;
+		JsonEndpoint<GetTransformRequest, GetTransformResponse, ErrorResponse> endpoint = (JsonEndpoint<GetTransformRequest, GetTransformResponse, ErrorResponse>) GetTransformRequest._ENDPOINT;
 
 		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
@@ -156,7 +157,7 @@ public class ElasticsearchTransformAsyncClient
 	public CompletableFuture<GetTransformStatsResponse> getTransformStats(GetTransformStatsRequest request)
 			throws IOException, ElasticsearchException {
 		@SuppressWarnings("unchecked")
-		Endpoint<GetTransformStatsRequest, GetTransformStatsResponse, ErrorResponse> endpoint = (Endpoint<GetTransformStatsRequest, GetTransformStatsResponse, ErrorResponse>) GetTransformStatsRequest._ENDPOINT;
+		JsonEndpoint<GetTransformStatsRequest, GetTransformStatsResponse, ErrorResponse> endpoint = (JsonEndpoint<GetTransformStatsRequest, GetTransformStatsResponse, ErrorResponse>) GetTransformStatsRequest._ENDPOINT;
 
 		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
@@ -193,7 +194,7 @@ public class ElasticsearchTransformAsyncClient
 			PreviewTransformRequest request, Class<TTransform> tTransformClass)
 			throws IOException, ElasticsearchException {
 		@SuppressWarnings("unchecked")
-		Endpoint<PreviewTransformRequest, PreviewTransformResponse<TTransform>, ErrorResponse> endpoint = (Endpoint<PreviewTransformRequest, PreviewTransformResponse<TTransform>, ErrorResponse>) PreviewTransformRequest._ENDPOINT;
+		JsonEndpoint<PreviewTransformRequest, PreviewTransformResponse<TTransform>, ErrorResponse> endpoint = (JsonEndpoint<PreviewTransformRequest, PreviewTransformResponse<TTransform>, ErrorResponse>) PreviewTransformRequest._ENDPOINT;
 		endpoint = new EndpointWithResponseMapperAttr<>(endpoint,
 				"co.elastic.clients:Deserializer:transform.preview_transform.TTransform",
 				getDeserializer(tTransformClass));
@@ -233,7 +234,7 @@ public class ElasticsearchTransformAsyncClient
 	public CompletableFuture<PutTransformResponse> putTransform(PutTransformRequest request)
 			throws IOException, ElasticsearchException {
 		@SuppressWarnings("unchecked")
-		Endpoint<PutTransformRequest, PutTransformResponse, ErrorResponse> endpoint = (Endpoint<PutTransformRequest, PutTransformResponse, ErrorResponse>) PutTransformRequest._ENDPOINT;
+		JsonEndpoint<PutTransformRequest, PutTransformResponse, ErrorResponse> endpoint = (JsonEndpoint<PutTransformRequest, PutTransformResponse, ErrorResponse>) PutTransformRequest._ENDPOINT;
 
 		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
@@ -269,7 +270,7 @@ public class ElasticsearchTransformAsyncClient
 	public CompletableFuture<StartTransformResponse> startTransform(StartTransformRequest request)
 			throws IOException, ElasticsearchException {
 		@SuppressWarnings("unchecked")
-		Endpoint<StartTransformRequest, StartTransformResponse, ErrorResponse> endpoint = (Endpoint<StartTransformRequest, StartTransformResponse, ErrorResponse>) StartTransformRequest._ENDPOINT;
+		JsonEndpoint<StartTransformRequest, StartTransformResponse, ErrorResponse> endpoint = (JsonEndpoint<StartTransformRequest, StartTransformResponse, ErrorResponse>) StartTransformRequest._ENDPOINT;
 
 		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
@@ -305,7 +306,7 @@ public class ElasticsearchTransformAsyncClient
 	public CompletableFuture<StopTransformResponse> stopTransform(StopTransformRequest request)
 			throws IOException, ElasticsearchException {
 		@SuppressWarnings("unchecked")
-		Endpoint<StopTransformRequest, StopTransformResponse, ErrorResponse> endpoint = (Endpoint<StopTransformRequest, StopTransformResponse, ErrorResponse>) StopTransformRequest._ENDPOINT;
+		JsonEndpoint<StopTransformRequest, StopTransformResponse, ErrorResponse> endpoint = (JsonEndpoint<StopTransformRequest, StopTransformResponse, ErrorResponse>) StopTransformRequest._ENDPOINT;
 
 		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
@@ -341,7 +342,7 @@ public class ElasticsearchTransformAsyncClient
 	public CompletableFuture<UpdateTransformResponse> updateTransform(UpdateTransformRequest request)
 			throws IOException, ElasticsearchException {
 		@SuppressWarnings("unchecked")
-		Endpoint<UpdateTransformRequest, UpdateTransformResponse, ErrorResponse> endpoint = (Endpoint<UpdateTransformRequest, UpdateTransformResponse, ErrorResponse>) UpdateTransformRequest._ENDPOINT;
+		JsonEndpoint<UpdateTransformRequest, UpdateTransformResponse, ErrorResponse> endpoint = (JsonEndpoint<UpdateTransformRequest, UpdateTransformResponse, ErrorResponse>) UpdateTransformRequest._ENDPOINT;
 
 		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}

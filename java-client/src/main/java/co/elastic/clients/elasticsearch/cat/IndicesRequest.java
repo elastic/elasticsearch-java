@@ -26,7 +26,7 @@ package co.elastic.clients.elasticsearch.cat;
 import co.elastic.clients.elasticsearch._types.Bytes;
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.ExpandWildcard;
-import co.elastic.clients.elasticsearch._types.Health;
+import co.elastic.clients.elasticsearch._types.HealthStatus;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -57,7 +57,7 @@ public class IndicesRequest extends CatRequestBase {
 	private final List<ExpandWildcard> expandWildcards;
 
 	@Nullable
-	private final Health health;
+	private final HealthStatus health;
 
 	@Nullable
 	private final Boolean includeUnloadedSegments;
@@ -113,7 +113,7 @@ public class IndicesRequest extends CatRequestBase {
 	 * API name: {@code health}
 	 */
 	@Nullable
-	public final Health health() {
+	public final HealthStatus health() {
 		return this.health;
 	}
 
@@ -160,7 +160,7 @@ public class IndicesRequest extends CatRequestBase {
 		private List<ExpandWildcard> expandWildcards;
 
 		@Nullable
-		private Health health;
+		private HealthStatus health;
 
 		@Nullable
 		private Boolean includeUnloadedSegments;
@@ -209,7 +209,7 @@ public class IndicesRequest extends CatRequestBase {
 		 * <p>
 		 * API name: {@code health}
 		 */
-		public final Builder health(@Nullable Health value) {
+		public final Builder health(@Nullable HealthStatus value) {
 			this.health = value;
 			return this;
 		}
@@ -274,6 +274,8 @@ public class IndicesRequest extends CatRequestBase {
 	 * Endpoint "{@code cat.indices}".
 	 */
 	public static final Endpoint<IndicesRequest, IndicesResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/cat.indices",
+
 			// Request method
 			request -> {
 				return "GET";

@@ -106,6 +106,8 @@ public class RemovePolicyRequest extends RequestBase {
 	 * Endpoint "{@code ilm.remove_policy}".
 	 */
 	public static final Endpoint<RemovePolicyRequest, RemovePolicyResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/ilm.remove_policy",
+
 			// Request method
 			request -> {
 				return "POST";

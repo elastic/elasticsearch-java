@@ -21,30 +21,50 @@
 // THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
 //----------------------------------------------------
 
-package co.elastic.clients.elasticsearch.core.search;
+package co.elastic.clients.elasticsearch._types;
 
 import co.elastic.clients.json.JsonEnum;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 
 @JsonpDeserializable
-public enum ScriptSortType implements JsonEnum {
-	String("string"),
+public enum HealthStatus implements JsonEnum {
+	/**
+	 * All shards are assigned.
+	 */
+	Green("green", "GREEN"),
 
-	Number("number"),
+	/**
+	 * All primary shards are assigned, but one or more replica shards are
+	 * unassigned. If a node in the cluster fails, some data could be unavailable
+	 * until that node is repaired.
+	 */
+	Yellow("yellow", "YELLOW"),
+
+	/**
+	 * One or more primary shards are unassigned, so some data is unavailable. This
+	 * can occur briefly during cluster startup as primary shards are assigned.
+	 */
+	Red("red", "RED"),
 
 	;
 
 	private final String jsonValue;
+	private final String[] aliases;
 
-	ScriptSortType(String jsonValue) {
+	HealthStatus(String jsonValue, String... aliases) {
 		this.jsonValue = jsonValue;
+		this.aliases = aliases;
 	}
 
 	public String jsonValue() {
 		return this.jsonValue;
 	}
 
-	public static final JsonEnum.Deserializer<ScriptSortType> _DESERIALIZER = new JsonEnum.Deserializer<>(
-			ScriptSortType.values());
+	public String[] aliases() {
+		return this.aliases;
+	}
+
+	public static final JsonEnum.Deserializer<HealthStatus> _DESERIALIZER = new JsonEnum.Deserializer<>(
+			HealthStatus.values());
 }

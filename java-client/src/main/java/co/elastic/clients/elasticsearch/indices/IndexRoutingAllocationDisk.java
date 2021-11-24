@@ -29,24 +29,25 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.Objects;
 import java.util.function.Consumer;
+import javax.annotation.Nullable;
 
 // typedef: indices._types.IndexRoutingAllocationDisk
 @JsonpDeserializable
 public class IndexRoutingAllocationDisk implements JsonpSerializable {
-	private final boolean thresholdEnabled;
+	@Nullable
+	private final Boolean thresholdEnabled;
 
 	// ---------------------------------------------------------------------------------------------
 
 	private IndexRoutingAllocationDisk(Builder builder) {
 
-		this.thresholdEnabled = ModelTypeHelper.requireNonNull(builder.thresholdEnabled, this, "thresholdEnabled");
+		this.thresholdEnabled = builder.thresholdEnabled;
 
 	}
 
@@ -57,9 +58,10 @@ public class IndexRoutingAllocationDisk implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code threshold_enabled}
+	 * API name: {@code threshold_enabled}
 	 */
-	public final boolean thresholdEnabled() {
+	@Nullable
+	public final Boolean thresholdEnabled() {
 		return this.thresholdEnabled;
 	}
 
@@ -74,8 +76,11 @@ public class IndexRoutingAllocationDisk implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("threshold_enabled");
-		generator.write(this.thresholdEnabled);
+		if (this.thresholdEnabled != null) {
+			generator.writeKey("threshold_enabled");
+			generator.write(this.thresholdEnabled);
+
+		}
 
 	}
 
@@ -85,12 +90,13 @@ public class IndexRoutingAllocationDisk implements JsonpSerializable {
 	 * Builder for {@link IndexRoutingAllocationDisk}.
 	 */
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<IndexRoutingAllocationDisk> {
+		@Nullable
 		private Boolean thresholdEnabled;
 
 		/**
-		 * Required - API name: {@code threshold_enabled}
+		 * API name: {@code threshold_enabled}
 		 */
-		public final Builder thresholdEnabled(boolean value) {
+		public final Builder thresholdEnabled(@Nullable Boolean value) {
 			this.thresholdEnabled = value;
 			return this;
 		}

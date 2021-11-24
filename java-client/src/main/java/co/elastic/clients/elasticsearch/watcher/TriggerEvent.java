@@ -136,13 +136,13 @@ public class TriggerEvent implements TaggedUnion<TriggerEvent.Kind, Object>, Jso
 		private Kind _kind;
 		private Object _value;
 
-		public Builder schedule(ScheduleTriggerEvent v) {
+		public ObjectBuilder<TriggerEvent> schedule(ScheduleTriggerEvent v) {
 			this._kind = Kind.Schedule;
 			this._value = v;
 			return this;
 		}
 
-		public Builder schedule(Consumer<ScheduleTriggerEvent.Builder> fn) {
+		public ObjectBuilder<TriggerEvent> schedule(Consumer<ScheduleTriggerEvent.Builder> fn) {
 			ScheduleTriggerEvent.Builder builder = new ScheduleTriggerEvent.Builder();
 			fn.accept(builder);
 			return this.schedule(builder.build());

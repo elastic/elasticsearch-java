@@ -483,6 +483,8 @@ public class UpdateTransformRequest extends RequestBase implements JsonpSerializ
 	 * Endpoint "{@code transform.update_transform}".
 	 */
 	public static final Endpoint<UpdateTransformRequest, UpdateTransformResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/transform.update_transform",
+
 			// Request method
 			request -> {
 				return "POST";

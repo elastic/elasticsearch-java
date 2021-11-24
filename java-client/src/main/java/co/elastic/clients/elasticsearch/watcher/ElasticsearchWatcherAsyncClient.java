@@ -28,6 +28,7 @@ import co.elastic.clients.elasticsearch._types.ElasticsearchException;
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.transport.ElasticsearchTransport;
 import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.JsonEndpoint;
 import co.elastic.clients.transport.Transport;
 import co.elastic.clients.transport.TransportOptions;
 import co.elastic.clients.util.ObjectBuilder;
@@ -71,7 +72,7 @@ public class ElasticsearchWatcherAsyncClient
 	public CompletableFuture<AckWatchResponse> ackWatch(AckWatchRequest request)
 			throws IOException, ElasticsearchException {
 		@SuppressWarnings("unchecked")
-		Endpoint<AckWatchRequest, AckWatchResponse, ErrorResponse> endpoint = (Endpoint<AckWatchRequest, AckWatchResponse, ErrorResponse>) AckWatchRequest._ENDPOINT;
+		JsonEndpoint<AckWatchRequest, AckWatchResponse, ErrorResponse> endpoint = (JsonEndpoint<AckWatchRequest, AckWatchResponse, ErrorResponse>) AckWatchRequest._ENDPOINT;
 
 		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
@@ -108,7 +109,7 @@ public class ElasticsearchWatcherAsyncClient
 	public CompletableFuture<ActivateWatchResponse> activateWatch(ActivateWatchRequest request)
 			throws IOException, ElasticsearchException {
 		@SuppressWarnings("unchecked")
-		Endpoint<ActivateWatchRequest, ActivateWatchResponse, ErrorResponse> endpoint = (Endpoint<ActivateWatchRequest, ActivateWatchResponse, ErrorResponse>) ActivateWatchRequest._ENDPOINT;
+		JsonEndpoint<ActivateWatchRequest, ActivateWatchResponse, ErrorResponse> endpoint = (JsonEndpoint<ActivateWatchRequest, ActivateWatchResponse, ErrorResponse>) ActivateWatchRequest._ENDPOINT;
 
 		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
@@ -144,7 +145,7 @@ public class ElasticsearchWatcherAsyncClient
 	public CompletableFuture<DeactivateWatchResponse> deactivateWatch(DeactivateWatchRequest request)
 			throws IOException, ElasticsearchException {
 		@SuppressWarnings("unchecked")
-		Endpoint<DeactivateWatchRequest, DeactivateWatchResponse, ErrorResponse> endpoint = (Endpoint<DeactivateWatchRequest, DeactivateWatchResponse, ErrorResponse>) DeactivateWatchRequest._ENDPOINT;
+		JsonEndpoint<DeactivateWatchRequest, DeactivateWatchResponse, ErrorResponse> endpoint = (JsonEndpoint<DeactivateWatchRequest, DeactivateWatchResponse, ErrorResponse>) DeactivateWatchRequest._ENDPOINT;
 
 		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
@@ -180,7 +181,7 @@ public class ElasticsearchWatcherAsyncClient
 	public CompletableFuture<DeleteWatchResponse> deleteWatch(DeleteWatchRequest request)
 			throws IOException, ElasticsearchException {
 		@SuppressWarnings("unchecked")
-		Endpoint<DeleteWatchRequest, DeleteWatchResponse, ErrorResponse> endpoint = (Endpoint<DeleteWatchRequest, DeleteWatchResponse, ErrorResponse>) DeleteWatchRequest._ENDPOINT;
+		JsonEndpoint<DeleteWatchRequest, DeleteWatchResponse, ErrorResponse> endpoint = (JsonEndpoint<DeleteWatchRequest, DeleteWatchResponse, ErrorResponse>) DeleteWatchRequest._ENDPOINT;
 
 		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
@@ -216,7 +217,7 @@ public class ElasticsearchWatcherAsyncClient
 	public CompletableFuture<ExecuteWatchResponse> executeWatch(ExecuteWatchRequest request)
 			throws IOException, ElasticsearchException {
 		@SuppressWarnings("unchecked")
-		Endpoint<ExecuteWatchRequest, ExecuteWatchResponse, ErrorResponse> endpoint = (Endpoint<ExecuteWatchRequest, ExecuteWatchResponse, ErrorResponse>) ExecuteWatchRequest._ENDPOINT;
+		JsonEndpoint<ExecuteWatchRequest, ExecuteWatchResponse, ErrorResponse> endpoint = (JsonEndpoint<ExecuteWatchRequest, ExecuteWatchResponse, ErrorResponse>) ExecuteWatchRequest._ENDPOINT;
 
 		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
@@ -265,7 +266,7 @@ public class ElasticsearchWatcherAsyncClient
 	public CompletableFuture<GetWatchResponse> getWatch(GetWatchRequest request)
 			throws IOException, ElasticsearchException {
 		@SuppressWarnings("unchecked")
-		Endpoint<GetWatchRequest, GetWatchResponse, ErrorResponse> endpoint = (Endpoint<GetWatchRequest, GetWatchResponse, ErrorResponse>) GetWatchRequest._ENDPOINT;
+		JsonEndpoint<GetWatchRequest, GetWatchResponse, ErrorResponse> endpoint = (JsonEndpoint<GetWatchRequest, GetWatchResponse, ErrorResponse>) GetWatchRequest._ENDPOINT;
 
 		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
@@ -301,7 +302,7 @@ public class ElasticsearchWatcherAsyncClient
 	public CompletableFuture<PutWatchResponse> putWatch(PutWatchRequest request)
 			throws IOException, ElasticsearchException {
 		@SuppressWarnings("unchecked")
-		Endpoint<PutWatchRequest, PutWatchResponse, ErrorResponse> endpoint = (Endpoint<PutWatchRequest, PutWatchResponse, ErrorResponse>) PutWatchRequest._ENDPOINT;
+		JsonEndpoint<PutWatchRequest, PutWatchResponse, ErrorResponse> endpoint = (JsonEndpoint<PutWatchRequest, PutWatchResponse, ErrorResponse>) PutWatchRequest._ENDPOINT;
 
 		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
@@ -337,7 +338,7 @@ public class ElasticsearchWatcherAsyncClient
 	public CompletableFuture<QueryWatchesResponse> queryWatches(QueryWatchesRequest request)
 			throws IOException, ElasticsearchException {
 		@SuppressWarnings("unchecked")
-		Endpoint<QueryWatchesRequest, QueryWatchesResponse, ErrorResponse> endpoint = (Endpoint<QueryWatchesRequest, QueryWatchesResponse, ErrorResponse>) QueryWatchesRequest._ENDPOINT;
+		JsonEndpoint<QueryWatchesRequest, QueryWatchesResponse, ErrorResponse> endpoint = (JsonEndpoint<QueryWatchesRequest, QueryWatchesResponse, ErrorResponse>) QueryWatchesRequest._ENDPOINT;
 
 		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
@@ -400,7 +401,7 @@ public class ElasticsearchWatcherAsyncClient
 	public CompletableFuture<WatcherStatsResponse> stats(WatcherStatsRequest request)
 			throws IOException, ElasticsearchException {
 		@SuppressWarnings("unchecked")
-		Endpoint<WatcherStatsRequest, WatcherStatsResponse, ErrorResponse> endpoint = (Endpoint<WatcherStatsRequest, WatcherStatsResponse, ErrorResponse>) WatcherStatsRequest._ENDPOINT;
+		JsonEndpoint<WatcherStatsRequest, WatcherStatsResponse, ErrorResponse> endpoint = (JsonEndpoint<WatcherStatsRequest, WatcherStatsResponse, ErrorResponse>) WatcherStatsRequest._ENDPOINT;
 
 		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}

@@ -28,6 +28,7 @@ import co.elastic.clients.elasticsearch._types.ElasticsearchException;
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.transport.ElasticsearchTransport;
 import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.JsonEndpoint;
 import co.elastic.clients.transport.Transport;
 import co.elastic.clients.transport.TransportOptions;
 import co.elastic.clients.util.ObjectBuilder;
@@ -66,7 +67,7 @@ public class ElasticsearchShutdownClient extends ApiClient<ElasticsearchTranspor
 
 	public DeleteNodeResponse deleteNode(DeleteNodeRequest request) throws IOException, ElasticsearchException {
 		@SuppressWarnings("unchecked")
-		Endpoint<DeleteNodeRequest, DeleteNodeResponse, ErrorResponse> endpoint = (Endpoint<DeleteNodeRequest, DeleteNodeResponse, ErrorResponse>) DeleteNodeRequest._ENDPOINT;
+		JsonEndpoint<DeleteNodeRequest, DeleteNodeResponse, ErrorResponse> endpoint = (JsonEndpoint<DeleteNodeRequest, DeleteNodeResponse, ErrorResponse>) DeleteNodeRequest._ENDPOINT;
 
 		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
@@ -104,7 +105,7 @@ public class ElasticsearchShutdownClient extends ApiClient<ElasticsearchTranspor
 
 	public GetNodeResponse getNode(GetNodeRequest request) throws IOException, ElasticsearchException {
 		@SuppressWarnings("unchecked")
-		Endpoint<GetNodeRequest, GetNodeResponse, ErrorResponse> endpoint = (Endpoint<GetNodeRequest, GetNodeResponse, ErrorResponse>) GetNodeRequest._ENDPOINT;
+		JsonEndpoint<GetNodeRequest, GetNodeResponse, ErrorResponse> endpoint = (JsonEndpoint<GetNodeRequest, GetNodeResponse, ErrorResponse>) GetNodeRequest._ENDPOINT;
 
 		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
@@ -157,7 +158,7 @@ public class ElasticsearchShutdownClient extends ApiClient<ElasticsearchTranspor
 
 	public PutNodeResponse putNode(PutNodeRequest request) throws IOException, ElasticsearchException {
 		@SuppressWarnings("unchecked")
-		Endpoint<PutNodeRequest, PutNodeResponse, ErrorResponse> endpoint = (Endpoint<PutNodeRequest, PutNodeResponse, ErrorResponse>) PutNodeRequest._ENDPOINT;
+		JsonEndpoint<PutNodeRequest, PutNodeResponse, ErrorResponse> endpoint = (JsonEndpoint<PutNodeRequest, PutNodeResponse, ErrorResponse>) PutNodeRequest._ENDPOINT;
 
 		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}

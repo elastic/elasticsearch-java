@@ -63,7 +63,7 @@ public class GeoBounds implements TaggedUnion<GeoBounds.Kind, Object>, JsonpSeri
 		return _value;
 	}
 
-	public GeoBounds(Kind kind, Object value) {
+	private GeoBounds(Kind kind, Object value) {
 		this._kind = kind;
 		this._value = value;
 	}
@@ -161,49 +161,49 @@ public class GeoBounds implements TaggedUnion<GeoBounds.Kind, Object>, JsonpSeri
 		private Kind _kind;
 		private Object _value;
 
-		public Builder coords(CoordsGeoBounds v) {
+		public ObjectBuilder<GeoBounds> coords(CoordsGeoBounds v) {
 			this._kind = Kind.Coords;
 			this._value = v;
 			return this;
 		}
 
-		public Builder coords(Consumer<CoordsGeoBounds.Builder> fn) {
+		public ObjectBuilder<GeoBounds> coords(Consumer<CoordsGeoBounds.Builder> fn) {
 			CoordsGeoBounds.Builder builder = new CoordsGeoBounds.Builder();
 			fn.accept(builder);
 			return this.coords(builder.build());
 		}
 
-		public Builder tlbr(TopLeftBottomRightGeoBounds v) {
+		public ObjectBuilder<GeoBounds> tlbr(TopLeftBottomRightGeoBounds v) {
 			this._kind = Kind.Tlbr;
 			this._value = v;
 			return this;
 		}
 
-		public Builder tlbr(Consumer<TopLeftBottomRightGeoBounds.Builder> fn) {
+		public ObjectBuilder<GeoBounds> tlbr(Consumer<TopLeftBottomRightGeoBounds.Builder> fn) {
 			TopLeftBottomRightGeoBounds.Builder builder = new TopLeftBottomRightGeoBounds.Builder();
 			fn.accept(builder);
 			return this.tlbr(builder.build());
 		}
 
-		public Builder trbl(TopRightBottomLeftGeoBounds v) {
+		public ObjectBuilder<GeoBounds> trbl(TopRightBottomLeftGeoBounds v) {
 			this._kind = Kind.Trbl;
 			this._value = v;
 			return this;
 		}
 
-		public Builder trbl(Consumer<TopRightBottomLeftGeoBounds.Builder> fn) {
+		public ObjectBuilder<GeoBounds> trbl(Consumer<TopRightBottomLeftGeoBounds.Builder> fn) {
 			TopRightBottomLeftGeoBounds.Builder builder = new TopRightBottomLeftGeoBounds.Builder();
 			fn.accept(builder);
 			return this.trbl(builder.build());
 		}
 
-		public Builder wkt(WktGeoBounds v) {
+		public ObjectBuilder<GeoBounds> wkt(WktGeoBounds v) {
 			this._kind = Kind.Wkt;
 			this._value = v;
 			return this;
 		}
 
-		public Builder wkt(Consumer<WktGeoBounds.Builder> fn) {
+		public ObjectBuilder<GeoBounds> wkt(Consumer<WktGeoBounds.Builder> fn) {
 			WktGeoBounds.Builder builder = new WktGeoBounds.Builder();
 			fn.accept(builder);
 			return this.wkt(builder.build());

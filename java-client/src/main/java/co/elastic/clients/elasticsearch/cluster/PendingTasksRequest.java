@@ -150,6 +150,8 @@ public class PendingTasksRequest extends RequestBase {
 	 * Endpoint "{@code cluster.pending_tasks}".
 	 */
 	public static final Endpoint<PendingTasksRequest, PendingTasksResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/cluster.pending_tasks",
+
 			// Request method
 			request -> {
 				return "GET";

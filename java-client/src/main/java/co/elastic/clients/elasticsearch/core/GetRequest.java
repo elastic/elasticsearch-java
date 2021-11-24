@@ -451,7 +451,8 @@ public class GetRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code get}".
 	 */
-	public static final SimpleEndpoint<GetRequest, ?> _ENDPOINT = new SimpleEndpoint<>(
+	public static final SimpleEndpoint<GetRequest, ?> _ENDPOINT = new SimpleEndpoint<>("es/get",
+
 			// Request method
 			request -> {
 				return "GET";

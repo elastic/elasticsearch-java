@@ -291,109 +291,109 @@ public class IntervalsFilter implements TaggedUnion<IntervalsFilter.Kind, Object
 		private Kind _kind;
 		private Object _value;
 
-		public Builder after(Intervals v) {
+		public ObjectBuilder<IntervalsFilter> after(Intervals v) {
 			this._kind = Kind.After;
 			this._value = v;
 			return this;
 		}
 
-		public Builder after(Consumer<Intervals.Builder> fn) {
+		public ObjectBuilder<IntervalsFilter> after(Consumer<Intervals.Builder> fn) {
 			Intervals.Builder builder = new Intervals.Builder();
 			fn.accept(builder);
 			return this.after(builder.build());
 		}
 
-		public Builder before(Intervals v) {
+		public ObjectBuilder<IntervalsFilter> before(Intervals v) {
 			this._kind = Kind.Before;
 			this._value = v;
 			return this;
 		}
 
-		public Builder before(Consumer<Intervals.Builder> fn) {
+		public ObjectBuilder<IntervalsFilter> before(Consumer<Intervals.Builder> fn) {
 			Intervals.Builder builder = new Intervals.Builder();
 			fn.accept(builder);
 			return this.before(builder.build());
 		}
 
-		public Builder containedBy(Intervals v) {
+		public ObjectBuilder<IntervalsFilter> containedBy(Intervals v) {
 			this._kind = Kind.ContainedBy;
 			this._value = v;
 			return this;
 		}
 
-		public Builder containedBy(Consumer<Intervals.Builder> fn) {
+		public ObjectBuilder<IntervalsFilter> containedBy(Consumer<Intervals.Builder> fn) {
 			Intervals.Builder builder = new Intervals.Builder();
 			fn.accept(builder);
 			return this.containedBy(builder.build());
 		}
 
-		public Builder containing(Intervals v) {
+		public ObjectBuilder<IntervalsFilter> containing(Intervals v) {
 			this._kind = Kind.Containing;
 			this._value = v;
 			return this;
 		}
 
-		public Builder containing(Consumer<Intervals.Builder> fn) {
+		public ObjectBuilder<IntervalsFilter> containing(Consumer<Intervals.Builder> fn) {
 			Intervals.Builder builder = new Intervals.Builder();
 			fn.accept(builder);
 			return this.containing(builder.build());
 		}
 
-		public Builder notContainedBy(Intervals v) {
+		public ObjectBuilder<IntervalsFilter> notContainedBy(Intervals v) {
 			this._kind = Kind.NotContainedBy;
 			this._value = v;
 			return this;
 		}
 
-		public Builder notContainedBy(Consumer<Intervals.Builder> fn) {
+		public ObjectBuilder<IntervalsFilter> notContainedBy(Consumer<Intervals.Builder> fn) {
 			Intervals.Builder builder = new Intervals.Builder();
 			fn.accept(builder);
 			return this.notContainedBy(builder.build());
 		}
 
-		public Builder notContaining(Intervals v) {
+		public ObjectBuilder<IntervalsFilter> notContaining(Intervals v) {
 			this._kind = Kind.NotContaining;
 			this._value = v;
 			return this;
 		}
 
-		public Builder notContaining(Consumer<Intervals.Builder> fn) {
+		public ObjectBuilder<IntervalsFilter> notContaining(Consumer<Intervals.Builder> fn) {
 			Intervals.Builder builder = new Intervals.Builder();
 			fn.accept(builder);
 			return this.notContaining(builder.build());
 		}
 
-		public Builder notOverlapping(Intervals v) {
+		public ObjectBuilder<IntervalsFilter> notOverlapping(Intervals v) {
 			this._kind = Kind.NotOverlapping;
 			this._value = v;
 			return this;
 		}
 
-		public Builder notOverlapping(Consumer<Intervals.Builder> fn) {
+		public ObjectBuilder<IntervalsFilter> notOverlapping(Consumer<Intervals.Builder> fn) {
 			Intervals.Builder builder = new Intervals.Builder();
 			fn.accept(builder);
 			return this.notOverlapping(builder.build());
 		}
 
-		public Builder overlapping(Intervals v) {
+		public ObjectBuilder<IntervalsFilter> overlapping(Intervals v) {
 			this._kind = Kind.Overlapping;
 			this._value = v;
 			return this;
 		}
 
-		public Builder overlapping(Consumer<Intervals.Builder> fn) {
+		public ObjectBuilder<IntervalsFilter> overlapping(Consumer<Intervals.Builder> fn) {
 			Intervals.Builder builder = new Intervals.Builder();
 			fn.accept(builder);
 			return this.overlapping(builder.build());
 		}
 
-		public Builder script(Script v) {
+		public ObjectBuilder<IntervalsFilter> script(Script v) {
 			this._kind = Kind.Script;
 			this._value = v;
 			return this;
 		}
 
-		public Builder script(Consumer<Script.Builder> fn) {
+		public ObjectBuilder<IntervalsFilter> script(Consumer<Script.Builder> fn) {
 			Script.Builder builder = new Script.Builder();
 			fn.accept(builder);
 			return this.script(builder.build());

@@ -141,6 +141,8 @@ public class DisableUserRequest extends RequestBase {
 	 * Endpoint "{@code security.disable_user}".
 	 */
 	public static final Endpoint<DisableUserRequest, DisableUserResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/security.disable_user",
+
 			// Request method
 			request -> {
 				return "PUT";

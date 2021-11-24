@@ -135,6 +135,8 @@ public class GetServiceAccountsRequest extends RequestBase {
 	 * Endpoint "{@code security.get_service_accounts}".
 	 */
 	public static final Endpoint<GetServiceAccountsRequest, GetServiceAccountsResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/security.get_service_accounts",
+
 			// Request method
 			request -> {
 				return "GET";

@@ -136,13 +136,13 @@ public class Sync implements TaggedUnion<Sync.Kind, Object>, JsonpSerializable {
 		private Kind _kind;
 		private Object _value;
 
-		public Builder time(TimeSync v) {
+		public ObjectBuilder<Sync> time(TimeSync v) {
 			this._kind = Kind.Time;
 			this._value = v;
 			return this;
 		}
 
-		public Builder time(Consumer<TimeSync.Builder> fn) {
+		public ObjectBuilder<Sync> time(Consumer<TimeSync.Builder> fn) {
 			TimeSync.Builder builder = new TimeSync.Builder();
 			fn.accept(builder);
 			return this.time(builder.build());

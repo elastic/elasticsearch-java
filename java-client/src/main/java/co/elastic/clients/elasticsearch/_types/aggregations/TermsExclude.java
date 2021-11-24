@@ -66,7 +66,7 @@ public class TermsExclude implements TaggedUnion<TermsExclude.Kind, Object>, Jso
 		return _value;
 	}
 
-	public TermsExclude(Kind kind, Object value) {
+	private TermsExclude(Kind kind, Object value) {
 		this._kind = kind;
 		this._value = value;
 	}
@@ -158,13 +158,13 @@ public class TermsExclude implements TaggedUnion<TermsExclude.Kind, Object>, Jso
 		private Kind _kind;
 		private Object _value;
 
-		public Builder terms(List<String> v) {
+		public ObjectBuilder<TermsExclude> terms(List<String> v) {
 			this._kind = Kind.Terms;
 			this._value = v;
 			return this;
 		}
 
-		public Builder regexp(String v) {
+		public ObjectBuilder<TermsExclude> regexp(String v) {
 			this._kind = Kind.Regexp;
 			this._value = v;
 			return this;

@@ -21,29 +21,23 @@
 // THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
 //----------------------------------------------------
 
-package co.elastic.clients.elasticsearch._types.query_dsl;
+package co.elastic.clients.elasticsearch._types;
 
 import co.elastic.clients.json.JsonEnum;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 
 @JsonpDeserializable
-public enum NestedScoreMode implements JsonEnum {
-	Avg("avg"),
+public enum SortOrder implements JsonEnum {
+	Asc("asc"),
 
-	Sum("sum"),
-
-	Min("min"),
-
-	Max("max"),
-
-	None("none"),
+	Desc("desc"),
 
 	;
 
 	private final String jsonValue;
 
-	NestedScoreMode(String jsonValue) {
+	SortOrder(String jsonValue) {
 		this.jsonValue = jsonValue;
 	}
 
@@ -51,6 +45,6 @@ public enum NestedScoreMode implements JsonEnum {
 		return this.jsonValue;
 	}
 
-	public static final JsonEnum.Deserializer<NestedScoreMode> _DESERIALIZER = new JsonEnum.Deserializer<>(
-			NestedScoreMode.values());
+	public static final JsonEnum.Deserializer<SortOrder> _DESERIALIZER = new JsonEnum.Deserializer<>(
+			SortOrder.values());
 }

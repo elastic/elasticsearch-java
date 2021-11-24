@@ -421,6 +421,8 @@ public class GetModelSnapshotsRequest extends RequestBase implements JsonpSerial
 	 * Endpoint "{@code ml.get_model_snapshots}".
 	 */
 	public static final Endpoint<GetModelSnapshotsRequest, GetModelSnapshotsResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/ml.get_model_snapshots",
+
 			// Request method
 			request -> {
 				return "POST";

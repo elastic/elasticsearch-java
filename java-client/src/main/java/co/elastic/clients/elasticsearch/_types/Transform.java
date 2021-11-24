@@ -174,37 +174,37 @@ public class Transform implements TaggedUnion<Transform.Kind, Object>, JsonpSeri
 		private Kind _kind;
 		private Object _value;
 
-		public Builder chain(ChainTransform v) {
+		public ObjectBuilder<Transform> chain(ChainTransform v) {
 			this._kind = Kind.Chain;
 			this._value = v;
 			return this;
 		}
 
-		public Builder chain(Consumer<ChainTransform.Builder> fn) {
+		public ObjectBuilder<Transform> chain(Consumer<ChainTransform.Builder> fn) {
 			ChainTransform.Builder builder = new ChainTransform.Builder();
 			fn.accept(builder);
 			return this.chain(builder.build());
 		}
 
-		public Builder script(ScriptTransform v) {
+		public ObjectBuilder<Transform> script(ScriptTransform v) {
 			this._kind = Kind.Script;
 			this._value = v;
 			return this;
 		}
 
-		public Builder script(Consumer<ScriptTransform.Builder> fn) {
+		public ObjectBuilder<Transform> script(Consumer<ScriptTransform.Builder> fn) {
 			ScriptTransform.Builder builder = new ScriptTransform.Builder();
 			fn.accept(builder);
 			return this.script(builder.build());
 		}
 
-		public Builder search(SearchTransform v) {
+		public ObjectBuilder<Transform> search(SearchTransform v) {
 			this._kind = Kind.Search;
 			this._value = v;
 			return this;
 		}
 
-		public Builder search(Consumer<SearchTransform.Builder> fn) {
+		public ObjectBuilder<Transform> search(Consumer<SearchTransform.Builder> fn) {
 			SearchTransform.Builder builder = new SearchTransform.Builder();
 			fn.accept(builder);
 			return this.search(builder.build());

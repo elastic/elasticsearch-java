@@ -139,6 +139,8 @@ public class DeleteTransformRequest extends RequestBase {
 	 * Endpoint "{@code transform.delete_transform}".
 	 */
 	public static final Endpoint<DeleteTransformRequest, DeleteTransformResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/transform.delete_transform",
+
 			// Request method
 			request -> {
 				return "DELETE";

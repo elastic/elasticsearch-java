@@ -70,7 +70,7 @@ public class MultiSearchResponseItem<TDocument>
 
 	private final JsonpSerializer<TDocument> tDocumentSerializer = null;
 
-	public MultiSearchResponseItem(Kind kind, Object value) {
+	private MultiSearchResponseItem(Kind kind, Object value) {
 		this._kind = kind;
 		this._value = value;
 	}
@@ -136,25 +136,26 @@ public class MultiSearchResponseItem<TDocument>
 		private Kind _kind;
 		private Object _value;
 
-		public Builder<TDocument> result(MultiSearchItem<TDocument> v) {
+		public ObjectBuilder<MultiSearchResponseItem<TDocument>> result(MultiSearchItem<TDocument> v) {
 			this._kind = Kind.Result;
 			this._value = v;
 			return this;
 		}
 
-		public Builder<TDocument> result(Consumer<MultiSearchItem.Builder<TDocument>> fn) {
+		public ObjectBuilder<MultiSearchResponseItem<TDocument>> result(
+				Consumer<MultiSearchItem.Builder<TDocument>> fn) {
 			MultiSearchItem.Builder<TDocument> builder = new MultiSearchItem.Builder<TDocument>();
 			fn.accept(builder);
 			return this.result(builder.build());
 		}
 
-		public Builder<TDocument> failure(ErrorResponse v) {
+		public ObjectBuilder<MultiSearchResponseItem<TDocument>> failure(ErrorResponse v) {
 			this._kind = Kind.Failure;
 			this._value = v;
 			return this;
 		}
 
-		public Builder<TDocument> failure(Consumer<ErrorResponse.Builder> fn) {
+		public ObjectBuilder<MultiSearchResponseItem<TDocument>> failure(Consumer<ErrorResponse.Builder> fn) {
 			ErrorResponse.Builder builder = new ErrorResponse.Builder();
 			fn.accept(builder);
 			return this.failure(builder.build());

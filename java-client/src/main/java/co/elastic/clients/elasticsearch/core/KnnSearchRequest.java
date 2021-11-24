@@ -435,7 +435,8 @@ public class KnnSearchRequest extends RequestBase implements JsonpSerializable {
 	/**
 	 * Endpoint "{@code knn_search}".
 	 */
-	public static final SimpleEndpoint<KnnSearchRequest, ?> _ENDPOINT = new SimpleEndpoint<>(
+	public static final SimpleEndpoint<KnnSearchRequest, ?> _ENDPOINT = new SimpleEndpoint<>("es/knn_search",
+
 			// Request method
 			request -> {
 				return "POST";

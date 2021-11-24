@@ -108,6 +108,8 @@ public class GetRoleMappingRequest extends RequestBase {
 	 * Endpoint "{@code security.get_role_mapping}".
 	 */
 	public static final Endpoint<GetRoleMappingRequest, GetRoleMappingResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/security.get_role_mapping",
+
 			// Request method
 			request -> {
 				return "GET";

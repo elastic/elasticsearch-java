@@ -29,8 +29,6 @@ import co.elastic.clients.json.JsonpDeserializer;
 
 @JsonpDeserializable
 public enum Result implements JsonEnum {
-	Error("Error"),
-
 	Created("created"),
 
 	Updated("updated"),

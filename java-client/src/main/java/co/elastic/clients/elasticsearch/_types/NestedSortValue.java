@@ -21,7 +21,7 @@
 // THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
 //----------------------------------------------------
 
-package co.elastic.clients.elasticsearch.core.search;
+package co.elastic.clients.elasticsearch._types;
 
 import co.elastic.clients.elasticsearch._types.query_dsl.Query;
 import co.elastic.clients.json.JsonpDeserializable;
@@ -40,7 +40,7 @@ import java.util.Objects;
 import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
-// typedef: _global.search._types.NestedSortValue
+// typedef: _types.NestedSortValue
 @JsonpDeserializable
 public class NestedSortValue implements JsonpSerializable {
 	@Nullable

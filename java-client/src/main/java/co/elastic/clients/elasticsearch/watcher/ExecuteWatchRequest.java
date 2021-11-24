@@ -407,6 +407,8 @@ public class ExecuteWatchRequest extends RequestBase implements JsonpSerializabl
 	 * Endpoint "{@code watcher.execute_watch}".
 	 */
 	public static final Endpoint<ExecuteWatchRequest, ExecuteWatchResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/watcher.execute_watch",
+
 			// Request method
 			request -> {
 				return "PUT";

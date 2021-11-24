@@ -28,6 +28,7 @@ import co.elastic.clients.elasticsearch._types.ElasticsearchException;
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.transport.ElasticsearchTransport;
 import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.JsonEndpoint;
 import co.elastic.clients.transport.Transport;
 import co.elastic.clients.transport.TransportOptions;
 import co.elastic.clients.util.ObjectBuilder;
@@ -72,7 +73,7 @@ public class ElasticsearchMigrationAsyncClient
 	public CompletableFuture<DeprecationsResponse> deprecations(DeprecationsRequest request)
 			throws IOException, ElasticsearchException {
 		@SuppressWarnings("unchecked")
-		Endpoint<DeprecationsRequest, DeprecationsResponse, ErrorResponse> endpoint = (Endpoint<DeprecationsRequest, DeprecationsResponse, ErrorResponse>) DeprecationsRequest._ENDPOINT;
+		JsonEndpoint<DeprecationsRequest, DeprecationsResponse, ErrorResponse> endpoint = (JsonEndpoint<DeprecationsRequest, DeprecationsResponse, ErrorResponse>) DeprecationsRequest._ENDPOINT;
 
 		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}

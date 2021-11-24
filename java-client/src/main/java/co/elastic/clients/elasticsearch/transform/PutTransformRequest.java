@@ -566,6 +566,8 @@ public class PutTransformRequest extends RequestBase implements JsonpSerializabl
 	 * Endpoint "{@code transform.put_transform}".
 	 */
 	public static final Endpoint<PutTransformRequest, PutTransformResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/transform.put_transform",
+
 			// Request method
 			request -> {
 				return "PUT";

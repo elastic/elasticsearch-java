@@ -146,6 +146,8 @@ public class StartIlmRequest extends RequestBase {
 	 * Endpoint "{@code ilm.start}".
 	 */
 	public static final Endpoint<StartIlmRequest, StartIlmResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/ilm.start",
+
 			// Request method
 			request -> {
 				return "POST";

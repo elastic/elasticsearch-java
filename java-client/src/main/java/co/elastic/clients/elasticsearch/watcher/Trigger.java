@@ -136,13 +136,13 @@ public class Trigger implements TaggedUnion<Trigger.Kind, Object>, JsonpSerializ
 		private Kind _kind;
 		private Object _value;
 
-		public Builder schedule(Schedule v) {
+		public ObjectBuilder<Trigger> schedule(Schedule v) {
 			this._kind = Kind.Schedule;
 			this._value = v;
 			return this;
 		}
 
-		public Builder schedule(Consumer<Schedule.Builder> fn) {
+		public ObjectBuilder<Trigger> schedule(Consumer<Schedule.Builder> fn) {
 			Schedule.Builder builder = new Schedule.Builder();
 			fn.accept(builder);
 			return this.schedule(builder.build());

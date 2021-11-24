@@ -309,121 +309,121 @@ public class SpanQuery implements TaggedUnion<SpanQuery.Kind, Object>, JsonpSeri
 		private Kind _kind;
 		private Object _value;
 
-		public Builder spanContaining(SpanContainingQuery v) {
+		public ObjectBuilder<SpanQuery> spanContaining(SpanContainingQuery v) {
 			this._kind = Kind.SpanContaining;
 			this._value = v;
 			return this;
 		}
 
-		public Builder spanContaining(Consumer<SpanContainingQuery.Builder> fn) {
+		public ObjectBuilder<SpanQuery> spanContaining(Consumer<SpanContainingQuery.Builder> fn) {
 			SpanContainingQuery.Builder builder = new SpanContainingQuery.Builder();
 			fn.accept(builder);
 			return this.spanContaining(builder.build());
 		}
 
-		public Builder fieldMaskingSpan(SpanFieldMaskingQuery v) {
+		public ObjectBuilder<SpanQuery> fieldMaskingSpan(SpanFieldMaskingQuery v) {
 			this._kind = Kind.FieldMaskingSpan;
 			this._value = v;
 			return this;
 		}
 
-		public Builder fieldMaskingSpan(Consumer<SpanFieldMaskingQuery.Builder> fn) {
+		public ObjectBuilder<SpanQuery> fieldMaskingSpan(Consumer<SpanFieldMaskingQuery.Builder> fn) {
 			SpanFieldMaskingQuery.Builder builder = new SpanFieldMaskingQuery.Builder();
 			fn.accept(builder);
 			return this.fieldMaskingSpan(builder.build());
 		}
 
-		public Builder spanFirst(SpanFirstQuery v) {
+		public ObjectBuilder<SpanQuery> spanFirst(SpanFirstQuery v) {
 			this._kind = Kind.SpanFirst;
 			this._value = v;
 			return this;
 		}
 
-		public Builder spanFirst(Consumer<SpanFirstQuery.Builder> fn) {
+		public ObjectBuilder<SpanQuery> spanFirst(Consumer<SpanFirstQuery.Builder> fn) {
 			SpanFirstQuery.Builder builder = new SpanFirstQuery.Builder();
 			fn.accept(builder);
 			return this.spanFirst(builder.build());
 		}
 
-		public Builder spanGap(SpanGapQuery v) {
+		public ObjectBuilder<SpanQuery> spanGap(SpanGapQuery v) {
 			this._kind = Kind.SpanGap;
 			this._value = v;
 			return this;
 		}
 
-		public Builder spanGap(Consumer<SpanGapQuery.Builder> fn) {
+		public ObjectBuilder<SpanQuery> spanGap(Consumer<SpanGapQuery.Builder> fn) {
 			SpanGapQuery.Builder builder = new SpanGapQuery.Builder();
 			fn.accept(builder);
 			return this.spanGap(builder.build());
 		}
 
-		public Builder spanMulti(SpanMultiTermQuery v) {
+		public ObjectBuilder<SpanQuery> spanMulti(SpanMultiTermQuery v) {
 			this._kind = Kind.SpanMulti;
 			this._value = v;
 			return this;
 		}
 
-		public Builder spanMulti(Consumer<SpanMultiTermQuery.Builder> fn) {
+		public ObjectBuilder<SpanQuery> spanMulti(Consumer<SpanMultiTermQuery.Builder> fn) {
 			SpanMultiTermQuery.Builder builder = new SpanMultiTermQuery.Builder();
 			fn.accept(builder);
 			return this.spanMulti(builder.build());
 		}
 
-		public Builder spanNear(SpanNearQuery v) {
+		public ObjectBuilder<SpanQuery> spanNear(SpanNearQuery v) {
 			this._kind = Kind.SpanNear;
 			this._value = v;
 			return this;
 		}
 
-		public Builder spanNear(Consumer<SpanNearQuery.Builder> fn) {
+		public ObjectBuilder<SpanQuery> spanNear(Consumer<SpanNearQuery.Builder> fn) {
 			SpanNearQuery.Builder builder = new SpanNearQuery.Builder();
 			fn.accept(builder);
 			return this.spanNear(builder.build());
 		}
 
-		public Builder spanNot(SpanNotQuery v) {
+		public ObjectBuilder<SpanQuery> spanNot(SpanNotQuery v) {
 			this._kind = Kind.SpanNot;
 			this._value = v;
 			return this;
 		}
 
-		public Builder spanNot(Consumer<SpanNotQuery.Builder> fn) {
+		public ObjectBuilder<SpanQuery> spanNot(Consumer<SpanNotQuery.Builder> fn) {
 			SpanNotQuery.Builder builder = new SpanNotQuery.Builder();
 			fn.accept(builder);
 			return this.spanNot(builder.build());
 		}
 
-		public Builder spanOr(SpanOrQuery v) {
+		public ObjectBuilder<SpanQuery> spanOr(SpanOrQuery v) {
 			this._kind = Kind.SpanOr;
 			this._value = v;
 			return this;
 		}
 
-		public Builder spanOr(Consumer<SpanOrQuery.Builder> fn) {
+		public ObjectBuilder<SpanQuery> spanOr(Consumer<SpanOrQuery.Builder> fn) {
 			SpanOrQuery.Builder builder = new SpanOrQuery.Builder();
 			fn.accept(builder);
 			return this.spanOr(builder.build());
 		}
 
-		public Builder spanTerm(SpanTermQuery v) {
+		public ObjectBuilder<SpanQuery> spanTerm(SpanTermQuery v) {
 			this._kind = Kind.SpanTerm;
 			this._value = v;
 			return this;
 		}
 
-		public Builder spanTerm(Consumer<SpanTermQuery.Builder> fn) {
+		public ObjectBuilder<SpanQuery> spanTerm(Consumer<SpanTermQuery.Builder> fn) {
 			SpanTermQuery.Builder builder = new SpanTermQuery.Builder();
 			fn.accept(builder);
 			return this.spanTerm(builder.build());
 		}
 
-		public Builder spanWithin(SpanWithinQuery v) {
+		public ObjectBuilder<SpanQuery> spanWithin(SpanWithinQuery v) {
 			this._kind = Kind.SpanWithin;
 			this._value = v;
 			return this;
 		}
 
-		public Builder spanWithin(Consumer<SpanWithinQuery.Builder> fn) {
+		public ObjectBuilder<SpanQuery> spanWithin(Consumer<SpanWithinQuery.Builder> fn) {
 			SpanWithinQuery.Builder builder = new SpanWithinQuery.Builder();
 			fn.accept(builder);
 			return this.spanWithin(builder.build());

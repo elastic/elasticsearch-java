@@ -221,6 +221,8 @@ public class DeleteExpiredDataRequest extends RequestBase implements JsonpSerial
 	 * Endpoint "{@code ml.delete_expired_data}".
 	 */
 	public static final Endpoint<DeleteExpiredDataRequest, DeleteExpiredDataResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/ml.delete_expired_data",
+
 			// Request method
 			request -> {
 				return "DELETE";

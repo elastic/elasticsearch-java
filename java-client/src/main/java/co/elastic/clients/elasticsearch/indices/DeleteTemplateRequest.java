@@ -184,6 +184,8 @@ public class DeleteTemplateRequest extends RequestBase {
 	 * Endpoint "{@code indices.delete_template}".
 	 */
 	public static final Endpoint<DeleteTemplateRequest, DeleteTemplateResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/indices.delete_template",
+
 			// Request method
 			request -> {
 				return "DELETE";

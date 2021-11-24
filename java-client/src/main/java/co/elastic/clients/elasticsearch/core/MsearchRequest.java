@@ -473,7 +473,8 @@ public class MsearchRequest extends RequestBase implements NdJsonpSerializable, 
 	/**
 	 * Endpoint "{@code msearch}".
 	 */
-	public static final SimpleEndpoint<MsearchRequest, ?> _ENDPOINT = new SimpleEndpoint<>(
+	public static final SimpleEndpoint<MsearchRequest, ?> _ENDPOINT = new SimpleEndpoint<>("es/msearch",
+
 			// Request method
 			request -> {
 				return "POST";

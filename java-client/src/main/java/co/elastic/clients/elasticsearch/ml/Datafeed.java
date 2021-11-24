@@ -23,6 +23,7 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
+import co.elastic.clients.elasticsearch._types.IndicesOptions;
 import co.elastic.clients.elasticsearch._types.ScriptField;
 import co.elastic.clients.elasticsearch._types.aggregations.Aggregation;
 import co.elastic.clients.elasticsearch._types.mapping.RuntimeField;
@@ -85,7 +86,7 @@ public class Datafeed implements JsonpSerializable {
 	private final Map<String, RuntimeField> runtimeMappings;
 
 	@Nullable
-	private final DatafeedIndicesOptions indicesOptions;
+	private final IndicesOptions indicesOptions;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -223,7 +224,7 @@ public class Datafeed implements JsonpSerializable {
 	 * API name: {@code indices_options}
 	 */
 	@Nullable
-	public final DatafeedIndicesOptions indicesOptions() {
+	public final IndicesOptions indicesOptions() {
 		return this.indicesOptions;
 	}
 
@@ -380,7 +381,7 @@ public class Datafeed implements JsonpSerializable {
 		private Map<String, RuntimeField> runtimeMappings;
 
 		@Nullable
-		private DatafeedIndicesOptions indicesOptions;
+		private IndicesOptions indicesOptions;
 
 		/**
 		 * API name: {@code aggregations}
@@ -555,7 +556,7 @@ public class Datafeed implements JsonpSerializable {
 		/**
 		 * API name: {@code indices_options}
 		 */
-		public final Builder indicesOptions(@Nullable DatafeedIndicesOptions value) {
+		public final Builder indicesOptions(@Nullable IndicesOptions value) {
 			this.indicesOptions = value;
 			return this;
 		}
@@ -563,8 +564,8 @@ public class Datafeed implements JsonpSerializable {
 		/**
 		 * API name: {@code indices_options}
 		 */
-		public final Builder indicesOptions(Consumer<DatafeedIndicesOptions.Builder> fn) {
-			DatafeedIndicesOptions.Builder builder = new DatafeedIndicesOptions.Builder();
+		public final Builder indicesOptions(Consumer<IndicesOptions.Builder> fn) {
+			IndicesOptions.Builder builder = new IndicesOptions.Builder();
 			fn.accept(builder);
 			return this.indicesOptions(builder.build());
 		}
@@ -611,7 +612,7 @@ public class Datafeed implements JsonpSerializable {
 		op.add(Builder::delayedDataCheckConfig, DelayedDataCheckConfig._DESERIALIZER, "delayed_data_check_config");
 		op.add(Builder::runtimeMappings, JsonpDeserializer.stringMapDeserializer(RuntimeField._DESERIALIZER),
 				"runtime_mappings");
-		op.add(Builder::indicesOptions, DatafeedIndicesOptions._DESERIALIZER, "indices_options");
+		op.add(Builder::indicesOptions, IndicesOptions._DESERIALIZER, "indices_options");
 
 	}
 

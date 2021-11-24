@@ -354,6 +354,8 @@ public class PutRoleMappingRequest extends RequestBase implements JsonpSerializa
 	 * Endpoint "{@code security.put_role_mapping}".
 	 */
 	public static final Endpoint<PutRoleMappingRequest, PutRoleMappingResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/security.put_role_mapping",
+
 			// Request method
 			request -> {
 				return "PUT";

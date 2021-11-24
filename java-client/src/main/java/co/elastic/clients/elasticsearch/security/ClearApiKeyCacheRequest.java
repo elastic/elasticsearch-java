@@ -119,6 +119,8 @@ public class ClearApiKeyCacheRequest extends RequestBase {
 	 * Endpoint "{@code security.clear_api_key_cache}".
 	 */
 	public static final Endpoint<ClearApiKeyCacheRequest, ClearApiKeyCacheResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/security.clear_api_key_cache",
+
 			// Request method
 			request -> {
 				return "POST";

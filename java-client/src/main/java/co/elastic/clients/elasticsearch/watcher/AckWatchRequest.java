@@ -144,6 +144,8 @@ public class AckWatchRequest extends RequestBase {
 	 * Endpoint "{@code watcher.ack_watch}".
 	 */
 	public static final Endpoint<AckWatchRequest, AckWatchResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/watcher.ack_watch",
+
 			// Request method
 			request -> {
 				return "PUT";

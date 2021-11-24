@@ -135,6 +135,8 @@ public class ExecutePolicyRequest extends RequestBase {
 	 * Endpoint "{@code enrich.execute_policy}".
 	 */
 	public static final Endpoint<ExecutePolicyRequest, ExecutePolicyResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/enrich.execute_policy",
+
 			// Request method
 			request -> {
 				return "PUT";

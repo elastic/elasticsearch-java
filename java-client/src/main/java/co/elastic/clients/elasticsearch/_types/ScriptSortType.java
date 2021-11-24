@@ -23,16 +23,28 @@
 
 package co.elastic.clients.elasticsearch._types;
 
-/**
- * Builders for {@link FieldValue} variants.
- * <p>
- * Variants <code>double</code>, <code>long</code>, <code>boolean</code>,
- * <code>string</code> are not available here as they don't have a dedicated
- * class. Use {@link FieldValue}'s builder for these.
- * 
- */
-public class FieldValueBuilders {
-	private FieldValueBuilders() {
+import co.elastic.clients.json.JsonEnum;
+import co.elastic.clients.json.JsonpDeserializable;
+import co.elastic.clients.json.JsonpDeserializer;
+
+@JsonpDeserializable
+public enum ScriptSortType implements JsonEnum {
+	String("string"),
+
+	Number("number"),
+
+	;
+
+	private final String jsonValue;
+
+	ScriptSortType(String jsonValue) {
+		this.jsonValue = jsonValue;
 	}
 
+	public String jsonValue() {
+		return this.jsonValue;
+	}
+
+	public static final JsonEnum.Deserializer<ScriptSortType> _DESERIALIZER = new JsonEnum.Deserializer<>(
+			ScriptSortType.values());
 }

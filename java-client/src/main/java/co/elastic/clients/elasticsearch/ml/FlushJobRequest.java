@@ -301,6 +301,8 @@ public class FlushJobRequest extends RequestBase implements JsonpSerializable {
 	 * Endpoint "{@code ml.flush_job}".
 	 */
 	public static final Endpoint<FlushJobRequest, FlushJobResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/ml.flush_job",
+
 			// Request method
 			request -> {
 				return "POST";

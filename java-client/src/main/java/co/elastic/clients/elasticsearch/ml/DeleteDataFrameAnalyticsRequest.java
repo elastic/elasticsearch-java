@@ -176,6 +176,8 @@ public class DeleteDataFrameAnalyticsRequest extends RequestBase {
 	 * Endpoint "{@code ml.delete_data_frame_analytics}".
 	 */
 	public static final Endpoint<DeleteDataFrameAnalyticsRequest, DeleteDataFrameAnalyticsResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/ml.delete_data_frame_analytics",
+
 			// Request method
 			request -> {
 				return "DELETE";

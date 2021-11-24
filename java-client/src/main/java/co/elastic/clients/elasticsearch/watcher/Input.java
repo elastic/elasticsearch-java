@@ -209,43 +209,43 @@ public class Input implements TaggedUnion<Input.Kind, Object>, JsonpSerializable
 		private Kind _kind;
 		private Object _value;
 
-		public Builder chain(ChainInput v) {
+		public ObjectBuilder<Input> chain(ChainInput v) {
 			this._kind = Kind.Chain;
 			this._value = v;
 			return this;
 		}
 
-		public Builder chain(Consumer<ChainInput.Builder> fn) {
+		public ObjectBuilder<Input> chain(Consumer<ChainInput.Builder> fn) {
 			ChainInput.Builder builder = new ChainInput.Builder();
 			fn.accept(builder);
 			return this.chain(builder.build());
 		}
 
-		public Builder http(HttpInput v) {
+		public ObjectBuilder<Input> http(HttpInput v) {
 			this._kind = Kind.Http;
 			this._value = v;
 			return this;
 		}
 
-		public Builder http(Consumer<HttpInput.Builder> fn) {
+		public ObjectBuilder<Input> http(Consumer<HttpInput.Builder> fn) {
 			HttpInput.Builder builder = new HttpInput.Builder();
 			fn.accept(builder);
 			return this.http(builder.build());
 		}
 
-		public Builder search(SearchInput v) {
+		public ObjectBuilder<Input> search(SearchInput v) {
 			this._kind = Kind.Search;
 			this._value = v;
 			return this;
 		}
 
-		public Builder search(Consumer<SearchInput.Builder> fn) {
+		public ObjectBuilder<Input> search(Consumer<SearchInput.Builder> fn) {
 			SearchInput.Builder builder = new SearchInput.Builder();
 			fn.accept(builder);
 			return this.search(builder.build());
 		}
 
-		public Builder simple(Map<String, JsonData> v) {
+		public ObjectBuilder<Input> simple(Map<String, JsonData> v) {
 			this._kind = Kind.Simple;
 			this._value = v;
 			return this;

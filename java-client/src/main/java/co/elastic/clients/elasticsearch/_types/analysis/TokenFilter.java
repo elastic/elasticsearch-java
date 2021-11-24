@@ -64,7 +64,7 @@ public class TokenFilter implements TaggedUnion<TokenFilter.Kind, Object>, Jsonp
 		return _value;
 	}
 
-	public TokenFilter(Kind kind, Object value) {
+	private TokenFilter(Kind kind, Object value) {
 		this._kind = kind;
 		this._value = value;
 	}
@@ -135,19 +135,19 @@ public class TokenFilter implements TaggedUnion<TokenFilter.Kind, Object>, Jsonp
 		private Kind _kind;
 		private Object _value;
 
-		public Builder definition(TokenFilterDefinition v) {
+		public ObjectBuilder<TokenFilter> definition(TokenFilterDefinition v) {
 			this._kind = Kind.Definition;
 			this._value = v;
 			return this;
 		}
 
-		public Builder definition(Consumer<TokenFilterDefinition.Builder> fn) {
+		public ObjectBuilder<TokenFilter> definition(Consumer<TokenFilterDefinition.Builder> fn) {
 			TokenFilterDefinition.Builder builder = new TokenFilterDefinition.Builder();
 			fn.accept(builder);
 			return this.definition(builder.build());
 		}
 
-		public Builder name(String v) {
+		public ObjectBuilder<TokenFilter> name(String v) {
 			this._kind = Kind.Name;
 			this._value = v;
 			return this;

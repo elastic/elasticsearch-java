@@ -411,6 +411,8 @@ public class PutIndicesSettingsRequest extends RequestBase implements JsonpSeria
 	 * Endpoint "{@code indices.put_settings}".
 	 */
 	public static final Endpoint<PutIndicesSettingsRequest, PutIndicesSettingsResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/indices.put_settings",
+
 			// Request method
 			request -> {
 				return "PUT";

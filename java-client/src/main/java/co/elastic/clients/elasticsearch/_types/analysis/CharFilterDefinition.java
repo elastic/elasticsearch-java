@@ -208,61 +208,62 @@ public class CharFilterDefinition
 		private Kind _kind;
 		private CharFilterDefinitionVariant _value;
 
-		public Builder htmlStrip(HtmlStripCharFilter v) {
+		public ObjectBuilder<CharFilterDefinition> htmlStrip(HtmlStripCharFilter v) {
 			this._kind = Kind.HtmlStrip;
 			this._value = v;
 			return this;
 		}
 
-		public Builder htmlStrip(Consumer<HtmlStripCharFilter.Builder> fn) {
+		public ObjectBuilder<CharFilterDefinition> htmlStrip(Consumer<HtmlStripCharFilter.Builder> fn) {
 			HtmlStripCharFilter.Builder builder = new HtmlStripCharFilter.Builder();
 			fn.accept(builder);
 			return this.htmlStrip(builder.build());
 		}
 
-		public Builder icuNormalizer(IcuNormalizationCharFilter v) {
+		public ObjectBuilder<CharFilterDefinition> icuNormalizer(IcuNormalizationCharFilter v) {
 			this._kind = Kind.IcuNormalizer;
 			this._value = v;
 			return this;
 		}
 
-		public Builder icuNormalizer(Consumer<IcuNormalizationCharFilter.Builder> fn) {
+		public ObjectBuilder<CharFilterDefinition> icuNormalizer(Consumer<IcuNormalizationCharFilter.Builder> fn) {
 			IcuNormalizationCharFilter.Builder builder = new IcuNormalizationCharFilter.Builder();
 			fn.accept(builder);
 			return this.icuNormalizer(builder.build());
 		}
 
-		public Builder kuromojiIterationMark(KuromojiIterationMarkCharFilter v) {
+		public ObjectBuilder<CharFilterDefinition> kuromojiIterationMark(KuromojiIterationMarkCharFilter v) {
 			this._kind = Kind.KuromojiIterationMark;
 			this._value = v;
 			return this;
 		}
 
-		public Builder kuromojiIterationMark(Consumer<KuromojiIterationMarkCharFilter.Builder> fn) {
+		public ObjectBuilder<CharFilterDefinition> kuromojiIterationMark(
+				Consumer<KuromojiIterationMarkCharFilter.Builder> fn) {
 			KuromojiIterationMarkCharFilter.Builder builder = new KuromojiIterationMarkCharFilter.Builder();
 			fn.accept(builder);
 			return this.kuromojiIterationMark(builder.build());
 		}
 
-		public Builder mapping(MappingCharFilter v) {
+		public ObjectBuilder<CharFilterDefinition> mapping(MappingCharFilter v) {
 			this._kind = Kind.Mapping;
 			this._value = v;
 			return this;
 		}
 
-		public Builder mapping(Consumer<MappingCharFilter.Builder> fn) {
+		public ObjectBuilder<CharFilterDefinition> mapping(Consumer<MappingCharFilter.Builder> fn) {
 			MappingCharFilter.Builder builder = new MappingCharFilter.Builder();
 			fn.accept(builder);
 			return this.mapping(builder.build());
 		}
 
-		public Builder patternReplace(PatternReplaceCharFilter v) {
+		public ObjectBuilder<CharFilterDefinition> patternReplace(PatternReplaceCharFilter v) {
 			this._kind = Kind.PatternReplace;
 			this._value = v;
 			return this;
 		}
 
-		public Builder patternReplace(Consumer<PatternReplaceCharFilter.Builder> fn) {
+		public ObjectBuilder<CharFilterDefinition> patternReplace(Consumer<PatternReplaceCharFilter.Builder> fn) {
 			PatternReplaceCharFilter.Builder builder = new PatternReplaceCharFilter.Builder();
 			fn.accept(builder);
 			return this.patternReplace(builder.build());
@@ -284,7 +285,7 @@ public class CharFilterDefinition
 		op.add(Builder::mapping, MappingCharFilter._DESERIALIZER, "mapping");
 		op.add(Builder::patternReplace, PatternReplaceCharFilter._DESERIALIZER, "pattern_replace");
 
-		op.setTypeProperty("type");
+		op.setTypeProperty("type", null);
 
 	}
 

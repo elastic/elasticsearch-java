@@ -175,37 +175,38 @@ public class DataframeAnalysis implements TaggedUnion<DataframeAnalysis.Kind, Ob
 		private Kind _kind;
 		private Object _value;
 
-		public Builder classification(DataframeAnalysisClassification v) {
+		public ObjectBuilder<DataframeAnalysis> classification(DataframeAnalysisClassification v) {
 			this._kind = Kind.Classification;
 			this._value = v;
 			return this;
 		}
 
-		public Builder classification(Consumer<DataframeAnalysisClassification.Builder> fn) {
+		public ObjectBuilder<DataframeAnalysis> classification(Consumer<DataframeAnalysisClassification.Builder> fn) {
 			DataframeAnalysisClassification.Builder builder = new DataframeAnalysisClassification.Builder();
 			fn.accept(builder);
 			return this.classification(builder.build());
 		}
 
-		public Builder outlierDetection(DataframeAnalysisOutlierDetection v) {
+		public ObjectBuilder<DataframeAnalysis> outlierDetection(DataframeAnalysisOutlierDetection v) {
 			this._kind = Kind.OutlierDetection;
 			this._value = v;
 			return this;
 		}
 
-		public Builder outlierDetection(Consumer<DataframeAnalysisOutlierDetection.Builder> fn) {
+		public ObjectBuilder<DataframeAnalysis> outlierDetection(
+				Consumer<DataframeAnalysisOutlierDetection.Builder> fn) {
 			DataframeAnalysisOutlierDetection.Builder builder = new DataframeAnalysisOutlierDetection.Builder();
 			fn.accept(builder);
 			return this.outlierDetection(builder.build());
 		}
 
-		public Builder regression(DataframeAnalysisRegression v) {
+		public ObjectBuilder<DataframeAnalysis> regression(DataframeAnalysisRegression v) {
 			this._kind = Kind.Regression;
 			this._value = v;
 			return this;
 		}
 
-		public Builder regression(Consumer<DataframeAnalysisRegression.Builder> fn) {
+		public ObjectBuilder<DataframeAnalysis> regression(Consumer<DataframeAnalysisRegression.Builder> fn) {
 			DataframeAnalysisRegression.Builder builder = new DataframeAnalysisRegression.Builder();
 			fn.accept(builder);
 			return this.regression(builder.build());

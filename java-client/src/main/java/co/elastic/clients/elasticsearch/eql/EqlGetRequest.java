@@ -189,7 +189,8 @@ public class EqlGetRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code eql.get}".
 	 */
-	public static final SimpleEndpoint<EqlGetRequest, ?> _ENDPOINT = new SimpleEndpoint<>(
+	public static final SimpleEndpoint<EqlGetRequest, ?> _ENDPOINT = new SimpleEndpoint<>("es/eql.get",
+
 			// Request method
 			request -> {
 				return "GET";

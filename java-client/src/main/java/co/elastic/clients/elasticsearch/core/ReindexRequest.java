@@ -582,6 +582,8 @@ public class ReindexRequest extends RequestBase implements JsonpSerializable {
 	 * Endpoint "{@code reindex}".
 	 */
 	public static final Endpoint<ReindexRequest, ReindexResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/reindex",
+
 			// Request method
 			request -> {
 				return "POST";

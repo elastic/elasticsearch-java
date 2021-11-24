@@ -179,6 +179,8 @@ public class RecoveryRequest extends RequestBase {
 	 * Endpoint "{@code indices.recovery}".
 	 */
 	public static final Endpoint<RecoveryRequest, RecoveryResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/indices.recovery",
+
 			// Request method
 			request -> {
 				return "GET";

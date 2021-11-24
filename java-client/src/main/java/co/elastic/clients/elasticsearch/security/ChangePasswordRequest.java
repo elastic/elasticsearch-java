@@ -246,6 +246,8 @@ public class ChangePasswordRequest extends RequestBase implements JsonpSerializa
 	 * Endpoint "{@code security.change_password}".
 	 */
 	public static final Endpoint<ChangePasswordRequest, ChangePasswordResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/security.change_password",
+
 			// Request method
 			request -> {
 				return "PUT";

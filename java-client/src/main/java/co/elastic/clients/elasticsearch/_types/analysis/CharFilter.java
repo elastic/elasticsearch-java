@@ -64,7 +64,7 @@ public class CharFilter implements TaggedUnion<CharFilter.Kind, Object>, JsonpSe
 		return _value;
 	}
 
-	public CharFilter(Kind kind, Object value) {
+	private CharFilter(Kind kind, Object value) {
 		this._kind = kind;
 		this._value = value;
 	}
@@ -135,19 +135,19 @@ public class CharFilter implements TaggedUnion<CharFilter.Kind, Object>, JsonpSe
 		private Kind _kind;
 		private Object _value;
 
-		public Builder definition(CharFilterDefinition v) {
+		public ObjectBuilder<CharFilter> definition(CharFilterDefinition v) {
 			this._kind = Kind.Definition;
 			this._value = v;
 			return this;
 		}
 
-		public Builder definition(Consumer<CharFilterDefinition.Builder> fn) {
+		public ObjectBuilder<CharFilter> definition(Consumer<CharFilterDefinition.Builder> fn) {
 			CharFilterDefinition.Builder builder = new CharFilterDefinition.Builder();
 			fn.accept(builder);
 			return this.definition(builder.build());
 		}
 
-		public Builder name(String v) {
+		public ObjectBuilder<CharFilter> name(String v) {
 			this._kind = Kind.Name;
 			this._value = v;
 			return this;

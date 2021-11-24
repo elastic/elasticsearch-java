@@ -53,6 +53,8 @@ public class AuthenticateRequest extends RequestBase {
 	 * Endpoint "{@code security.authenticate}".
 	 */
 	public static final Endpoint<AuthenticateRequest, AuthenticateResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/security.authenticate",
+
 			// Request method
 			request -> {
 				return "GET";

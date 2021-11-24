@@ -146,6 +146,8 @@ public class StartTransformRequest extends RequestBase {
 	 * Endpoint "{@code transform.start_transform}".
 	 */
 	public static final Endpoint<StartTransformRequest, StartTransformResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/transform.start_transform",
+
 			// Request method
 			request -> {
 				return "POST";

@@ -353,6 +353,8 @@ public class CloneIndexRequest extends RequestBase implements JsonpSerializable 
 	 * Endpoint "{@code indices.clone}".
 	 */
 	public static final Endpoint<CloneIndexRequest, CloneIndexResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/indices.clone",
+
 			// Request method
 			request -> {
 				return "PUT";

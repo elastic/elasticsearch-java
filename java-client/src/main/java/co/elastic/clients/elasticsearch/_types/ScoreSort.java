@@ -21,7 +21,7 @@
 // THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
 //----------------------------------------------------
 
-package co.elastic.clients.elasticsearch.core.search;
+package co.elastic.clients.elasticsearch._types;
 
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -36,7 +36,7 @@ import java.util.Objects;
 import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
-// typedef: _global.search._types.ScoreSort
+// typedef: _types.ScoreSort
 @JsonpDeserializable
 public class ScoreSort implements SortOptionsVariant, JsonpSerializable {
 	@Nullable

@@ -64,7 +64,7 @@ public class Like implements TaggedUnion<Like.Kind, Object>, JsonpSerializable {
 		return _value;
 	}
 
-	public Like(Kind kind, Object value) {
+	private Like(Kind kind, Object value) {
 		this._kind = kind;
 		this._value = value;
 	}
@@ -135,19 +135,19 @@ public class Like implements TaggedUnion<Like.Kind, Object>, JsonpSerializable {
 		private Kind _kind;
 		private Object _value;
 
-		public Builder document(LikeDocument v) {
+		public ObjectBuilder<Like> document(LikeDocument v) {
 			this._kind = Kind.Document;
 			this._value = v;
 			return this;
 		}
 
-		public Builder document(Consumer<LikeDocument.Builder> fn) {
+		public ObjectBuilder<Like> document(Consumer<LikeDocument.Builder> fn) {
 			LikeDocument.Builder builder = new LikeDocument.Builder();
 			fn.accept(builder);
 			return this.document(builder.build());
 		}
 
-		public Builder text(String v) {
+		public ObjectBuilder<Like> text(String v) {
 			this._kind = Kind.Text;
 			this._value = v;
 			return this;

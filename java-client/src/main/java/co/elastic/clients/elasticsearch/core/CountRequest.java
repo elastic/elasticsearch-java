@@ -23,10 +23,10 @@
 
 package co.elastic.clients.elasticsearch.core;
 
-import co.elastic.clients.elasticsearch._types.DefaultOperator;
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.ExpandWildcard;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.elasticsearch._types.query_dsl.Operator;
 import co.elastic.clients.elasticsearch._types.query_dsl.Query;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -66,7 +66,7 @@ public class CountRequest extends RequestBase implements JsonpSerializable {
 	private final String analyzer;
 
 	@Nullable
-	private final DefaultOperator defaultOperator;
+	private final Operator defaultOperator;
 
 	@Nullable
 	private final String df;
@@ -170,7 +170,7 @@ public class CountRequest extends RequestBase implements JsonpSerializable {
 	 * API name: {@code default_operator}
 	 */
 	@Nullable
-	public final DefaultOperator defaultOperator() {
+	public final Operator defaultOperator() {
 		return this.defaultOperator;
 	}
 
@@ -333,7 +333,7 @@ public class CountRequest extends RequestBase implements JsonpSerializable {
 		private String analyzer;
 
 		@Nullable
-		private DefaultOperator defaultOperator;
+		private Operator defaultOperator;
 
 		@Nullable
 		private String df;
@@ -409,7 +409,7 @@ public class CountRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code default_operator}
 		 */
-		public final Builder defaultOperator(@Nullable DefaultOperator value) {
+		public final Builder defaultOperator(@Nullable Operator value) {
 			this.defaultOperator = value;
 			return this;
 		}
@@ -603,6 +603,8 @@ public class CountRequest extends RequestBase implements JsonpSerializable {
 	 * Endpoint "{@code count}".
 	 */
 	public static final Endpoint<CountRequest, CountResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/count",
+
 			// Request method
 			request -> {
 				return "POST";

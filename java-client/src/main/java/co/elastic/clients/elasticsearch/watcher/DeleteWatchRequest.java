@@ -106,6 +106,8 @@ public class DeleteWatchRequest extends RequestBase {
 	 * Endpoint "{@code watcher.delete_watch}".
 	 */
 	public static final Endpoint<DeleteWatchRequest, DeleteWatchResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/watcher.delete_watch",
+
 			// Request method
 			request -> {
 				return "DELETE";

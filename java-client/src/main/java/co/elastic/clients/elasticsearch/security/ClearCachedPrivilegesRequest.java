@@ -106,6 +106,8 @@ public class ClearCachedPrivilegesRequest extends RequestBase {
 	 * Endpoint "{@code security.clear_cached_privileges}".
 	 */
 	public static final Endpoint<ClearCachedPrivilegesRequest, ClearCachedPrivilegesResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/security.clear_cached_privileges",
+
 			// Request method
 			request -> {
 				return "POST";

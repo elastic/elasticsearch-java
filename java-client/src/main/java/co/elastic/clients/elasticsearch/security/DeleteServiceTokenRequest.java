@@ -189,6 +189,8 @@ public class DeleteServiceTokenRequest extends RequestBase {
 	 * Endpoint "{@code security.delete_service_token}".
 	 */
 	public static final Endpoint<DeleteServiceTokenRequest, DeleteServiceTokenResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/security.delete_service_token",
+
 			// Request method
 			request -> {
 				return "DELETE";

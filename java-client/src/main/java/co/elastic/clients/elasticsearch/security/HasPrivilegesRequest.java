@@ -280,6 +280,8 @@ public class HasPrivilegesRequest extends RequestBase implements JsonpSerializab
 	 * Endpoint "{@code security.has_privileges}".
 	 */
 	public static final Endpoint<HasPrivilegesRequest, HasPrivilegesResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/security.has_privileges",
+
 			// Request method
 			request -> {
 				return "POST";

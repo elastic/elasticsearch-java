@@ -252,37 +252,37 @@ public class FieldRule implements TaggedUnion<FieldRule.Kind, Object>, RoleMappi
 		private Kind _kind;
 		private Object _value;
 
-		public Builder username(String v) {
+		public ObjectBuilder<FieldRule> username(String v) {
 			this._kind = Kind.Username;
 			this._value = v;
 			return this;
 		}
 
-		public Builder dn(List<String> v) {
+		public ObjectBuilder<FieldRule> dn(List<String> v) {
 			this._kind = Kind.Dn;
 			this._value = v;
 			return this;
 		}
 
-		public Builder groups(List<String> v) {
+		public ObjectBuilder<FieldRule> groups(List<String> v) {
 			this._kind = Kind.Groups;
 			this._value = v;
 			return this;
 		}
 
-		public Builder metadata(JsonData v) {
+		public ObjectBuilder<FieldRule> metadata(JsonData v) {
 			this._kind = Kind.Metadata;
 			this._value = v;
 			return this;
 		}
 
-		public Builder realm(Realm v) {
+		public ObjectBuilder<FieldRule> realm(Realm v) {
 			this._kind = Kind.Realm;
 			this._value = v;
 			return this;
 		}
 
-		public Builder realm(Consumer<Realm.Builder> fn) {
+		public ObjectBuilder<FieldRule> realm(Consumer<Realm.Builder> fn) {
 			Realm.Builder builder = new Realm.Builder();
 			fn.accept(builder);
 			return this.realm(builder.build());

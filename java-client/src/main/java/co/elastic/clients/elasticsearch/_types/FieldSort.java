@@ -21,7 +21,7 @@
 // THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
 //----------------------------------------------------
 
-package co.elastic.clients.elasticsearch.core.search;
+package co.elastic.clients.elasticsearch._types;
 
 import co.elastic.clients.elasticsearch._types.mapping.FieldType;
 import co.elastic.clients.json.JsonpDeserializable;
@@ -39,7 +39,7 @@ import java.util.Objects;
 import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
-// typedef: _global.search._types.FieldSort
+// typedef: _types.FieldSort
 @JsonpDeserializable
 public class FieldSort implements JsonpSerializable {
 	// Single key dictionary

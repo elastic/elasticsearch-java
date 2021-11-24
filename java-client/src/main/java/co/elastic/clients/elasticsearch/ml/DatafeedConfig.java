@@ -23,6 +23,7 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
+import co.elastic.clients.elasticsearch._types.IndicesOptions;
 import co.elastic.clients.elasticsearch._types.ScriptField;
 import co.elastic.clients.elasticsearch._types.aggregations.Aggregation;
 import co.elastic.clients.elasticsearch._types.mapping.RuntimeField;
@@ -70,7 +71,7 @@ public class DatafeedConfig implements JsonpSerializable {
 	private final List<String> indices;
 
 	@Nullable
-	private final DatafeedIndicesOptions indicesOptions;
+	private final IndicesOptions indicesOptions;
 
 	@Nullable
 	private final String jobId;
@@ -212,7 +213,7 @@ public class DatafeedConfig implements JsonpSerializable {
 	 * API name: {@code indices_options}
 	 */
 	@Nullable
-	public final DatafeedIndicesOptions indicesOptions() {
+	public final IndicesOptions indicesOptions() {
 		return this.indicesOptions;
 	}
 
@@ -441,7 +442,7 @@ public class DatafeedConfig implements JsonpSerializable {
 		private List<String> indices;
 
 		@Nullable
-		private DatafeedIndicesOptions indicesOptions;
+		private IndicesOptions indicesOptions;
 
 		@Nullable
 		private String jobId;
@@ -616,7 +617,7 @@ public class DatafeedConfig implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code indices_options}
 		 */
-		public final Builder indicesOptions(@Nullable DatafeedIndicesOptions value) {
+		public final Builder indicesOptions(@Nullable IndicesOptions value) {
 			this.indicesOptions = value;
 			return this;
 		}
@@ -626,8 +627,8 @@ public class DatafeedConfig implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code indices_options}
 		 */
-		public final Builder indicesOptions(Consumer<DatafeedIndicesOptions.Builder> fn) {
-			DatafeedIndicesOptions.Builder builder = new DatafeedIndicesOptions.Builder();
+		public final Builder indicesOptions(Consumer<IndicesOptions.Builder> fn) {
+			IndicesOptions.Builder builder = new IndicesOptions.Builder();
 			fn.accept(builder);
 			return this.indicesOptions(builder.build());
 		}
@@ -775,7 +776,7 @@ public class DatafeedConfig implements JsonpSerializable {
 				"indexes");
 		op.add(Builder::indices, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"indices");
-		op.add(Builder::indicesOptions, DatafeedIndicesOptions._DESERIALIZER, "indices_options");
+		op.add(Builder::indicesOptions, IndicesOptions._DESERIALIZER, "indices_options");
 		op.add(Builder::jobId, JsonpDeserializer.stringDeserializer(), "job_id");
 		op.add(Builder::maxEmptySearches, JsonpDeserializer.integerDeserializer(), "max_empty_searches");
 		op.add(Builder::query, Query._DESERIALIZER, "query");

@@ -53,6 +53,8 @@ public class GetScriptLanguagesRequest extends RequestBase {
 	 * Endpoint "{@code get_script_languages}".
 	 */
 	public static final Endpoint<GetScriptLanguagesRequest, GetScriptLanguagesResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/get_script_languages",
+
 			// Request method
 			request -> {
 				return "GET";

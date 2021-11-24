@@ -53,6 +53,8 @@ public class NodeattrsRequest extends CatRequestBase {
 	 * Endpoint "{@code cat.nodeattrs}".
 	 */
 	public static final Endpoint<NodeattrsRequest, NodeattrsResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/cat.nodeattrs",
+
 			// Request method
 			request -> {
 				return "GET";

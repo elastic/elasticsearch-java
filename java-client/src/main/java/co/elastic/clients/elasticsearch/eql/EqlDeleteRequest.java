@@ -106,6 +106,8 @@ public class EqlDeleteRequest extends RequestBase {
 	 * Endpoint "{@code eql.delete}".
 	 */
 	public static final Endpoint<EqlDeleteRequest, EqlDeleteResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/eql.delete",
+
 			// Request method
 			request -> {
 				return "DELETE";

@@ -556,6 +556,8 @@ public class FollowRequest extends RequestBase implements JsonpSerializable {
 	 * Endpoint "{@code ccr.follow}".
 	 */
 	public static final Endpoint<FollowRequest, FollowResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/ccr.follow",
+
 			// Request method
 			request -> {
 				return "PUT";

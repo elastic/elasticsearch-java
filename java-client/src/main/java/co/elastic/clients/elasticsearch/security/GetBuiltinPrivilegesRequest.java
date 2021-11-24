@@ -53,6 +53,8 @@ public class GetBuiltinPrivilegesRequest extends RequestBase {
 	 * Endpoint "{@code security.get_builtin_privileges}".
 	 */
 	public static final Endpoint<GetBuiltinPrivilegesRequest, GetBuiltinPrivilegesResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/security.get_builtin_privileges",
+
 			// Request method
 			request -> {
 				return "GET";

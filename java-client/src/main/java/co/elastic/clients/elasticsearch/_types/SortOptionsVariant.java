@@ -23,28 +23,15 @@
 
 package co.elastic.clients.elasticsearch._types;
 
-import co.elastic.clients.json.JsonEnum;
-import co.elastic.clients.json.JsonpDeserializable;
-import co.elastic.clients.json.JsonpDeserializer;
+/**
+ * Base interface for {@link SortOptions} variants.
+ */
+public interface SortOptionsVariant {
 
-@JsonpDeserializable
-public enum DefaultOperator implements JsonEnum {
-	And("AND"),
+	SortOptions.Kind _sortOptionsKind();
 
-	Or("OR"),
-
-	;
-
-	private final String jsonValue;
-
-	DefaultOperator(String jsonValue) {
-		this.jsonValue = jsonValue;
+	default SortOptions _toSortOptions() {
+		return new SortOptions(this);
 	}
 
-	public String jsonValue() {
-		return this.jsonValue;
-	}
-
-	public static final JsonEnum.Deserializer<DefaultOperator> _DESERIALIZER = new JsonEnum.Deserializer<>(
-			DefaultOperator.values());
 }

@@ -176,6 +176,8 @@ public class PutPrivilegesRequest extends RequestBase implements JsonpSerializab
 	 * Endpoint "{@code security.put_privileges}".
 	 */
 	public static final Endpoint<PutPrivilegesRequest, PutPrivilegesResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/security.put_privileges",
+
 			// Request method
 			request -> {
 				return "PUT";

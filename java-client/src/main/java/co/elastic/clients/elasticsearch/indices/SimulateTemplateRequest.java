@@ -245,6 +245,8 @@ public class SimulateTemplateRequest extends RequestBase implements JsonpSeriali
 	 * Endpoint "{@code indices.simulate_template}".
 	 */
 	public static final Endpoint<SimulateTemplateRequest, SimulateTemplateResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/indices.simulate_template",
+
 			// Request method
 			request -> {
 				return "POST";

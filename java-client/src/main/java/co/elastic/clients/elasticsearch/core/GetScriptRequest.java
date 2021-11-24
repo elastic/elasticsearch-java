@@ -146,6 +146,8 @@ public class GetScriptRequest extends RequestBase {
 	 * Endpoint "{@code get_script}".
 	 */
 	public static final Endpoint<GetScriptRequest, GetScriptResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/get_script",
+
 			// Request method
 			request -> {
 				return "GET";

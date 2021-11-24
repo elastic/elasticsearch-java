@@ -66,7 +66,7 @@ public class GeoLocation implements TaggedUnion<GeoLocation.Kind, Object>, Jsonp
 		return _value;
 	}
 
-	public GeoLocation(Kind kind, Object value) {
+	private GeoLocation(Kind kind, Object value) {
 		this._kind = kind;
 		this._value = value;
 	}
@@ -180,37 +180,37 @@ public class GeoLocation implements TaggedUnion<GeoLocation.Kind, Object>, Jsonp
 		private Kind _kind;
 		private Object _value;
 
-		public Builder coords(List<Double> v) {
+		public ObjectBuilder<GeoLocation> coords(List<Double> v) {
 			this._kind = Kind.Coords;
 			this._value = v;
 			return this;
 		}
 
-		public Builder geohash(GeoHashLocation v) {
+		public ObjectBuilder<GeoLocation> geohash(GeoHashLocation v) {
 			this._kind = Kind.Geohash;
 			this._value = v;
 			return this;
 		}
 
-		public Builder geohash(Consumer<GeoHashLocation.Builder> fn) {
+		public ObjectBuilder<GeoLocation> geohash(Consumer<GeoHashLocation.Builder> fn) {
 			GeoHashLocation.Builder builder = new GeoHashLocation.Builder();
 			fn.accept(builder);
 			return this.geohash(builder.build());
 		}
 
-		public Builder latlon(LatLonGeoLocation v) {
+		public ObjectBuilder<GeoLocation> latlon(LatLonGeoLocation v) {
 			this._kind = Kind.Latlon;
 			this._value = v;
 			return this;
 		}
 
-		public Builder latlon(Consumer<LatLonGeoLocation.Builder> fn) {
+		public ObjectBuilder<GeoLocation> latlon(Consumer<LatLonGeoLocation.Builder> fn) {
 			LatLonGeoLocation.Builder builder = new LatLonGeoLocation.Builder();
 			fn.accept(builder);
 			return this.latlon(builder.build());
 		}
 
-		public Builder text(String v) {
+		public ObjectBuilder<GeoLocation> text(String v) {
 			this._kind = Kind.Text;
 			this._value = v;
 			return this;

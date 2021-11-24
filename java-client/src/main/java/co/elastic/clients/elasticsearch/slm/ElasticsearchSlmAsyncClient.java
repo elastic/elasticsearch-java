@@ -28,6 +28,7 @@ import co.elastic.clients.elasticsearch._types.ElasticsearchException;
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.transport.ElasticsearchTransport;
 import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.JsonEndpoint;
 import co.elastic.clients.transport.Transport;
 import co.elastic.clients.transport.TransportOptions;
 import co.elastic.clients.util.ObjectBuilder;
@@ -67,7 +68,7 @@ public class ElasticsearchSlmAsyncClient extends ApiClient<ElasticsearchTranspor
 	public CompletableFuture<DeleteLifecycleResponse> deleteLifecycle(DeleteLifecycleRequest request)
 			throws IOException, ElasticsearchException {
 		@SuppressWarnings("unchecked")
-		Endpoint<DeleteLifecycleRequest, DeleteLifecycleResponse, ErrorResponse> endpoint = (Endpoint<DeleteLifecycleRequest, DeleteLifecycleResponse, ErrorResponse>) DeleteLifecycleRequest._ENDPOINT;
+		JsonEndpoint<DeleteLifecycleRequest, DeleteLifecycleResponse, ErrorResponse> endpoint = (JsonEndpoint<DeleteLifecycleRequest, DeleteLifecycleResponse, ErrorResponse>) DeleteLifecycleRequest._ENDPOINT;
 
 		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
@@ -104,7 +105,7 @@ public class ElasticsearchSlmAsyncClient extends ApiClient<ElasticsearchTranspor
 	public CompletableFuture<ExecuteLifecycleResponse> executeLifecycle(ExecuteLifecycleRequest request)
 			throws IOException, ElasticsearchException {
 		@SuppressWarnings("unchecked")
-		Endpoint<ExecuteLifecycleRequest, ExecuteLifecycleResponse, ErrorResponse> endpoint = (Endpoint<ExecuteLifecycleRequest, ExecuteLifecycleResponse, ErrorResponse>) ExecuteLifecycleRequest._ENDPOINT;
+		JsonEndpoint<ExecuteLifecycleRequest, ExecuteLifecycleResponse, ErrorResponse> endpoint = (JsonEndpoint<ExecuteLifecycleRequest, ExecuteLifecycleResponse, ErrorResponse>) ExecuteLifecycleRequest._ENDPOINT;
 
 		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
@@ -157,7 +158,7 @@ public class ElasticsearchSlmAsyncClient extends ApiClient<ElasticsearchTranspor
 	public CompletableFuture<GetLifecycleResponse> getLifecycle(GetLifecycleRequest request)
 			throws IOException, ElasticsearchException {
 		@SuppressWarnings("unchecked")
-		Endpoint<GetLifecycleRequest, GetLifecycleResponse, ErrorResponse> endpoint = (Endpoint<GetLifecycleRequest, GetLifecycleResponse, ErrorResponse>) GetLifecycleRequest._ENDPOINT;
+		JsonEndpoint<GetLifecycleRequest, GetLifecycleResponse, ErrorResponse> endpoint = (JsonEndpoint<GetLifecycleRequest, GetLifecycleResponse, ErrorResponse>) GetLifecycleRequest._ENDPOINT;
 
 		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
@@ -237,7 +238,7 @@ public class ElasticsearchSlmAsyncClient extends ApiClient<ElasticsearchTranspor
 	public CompletableFuture<PutLifecycleResponse> putLifecycle(PutLifecycleRequest request)
 			throws IOException, ElasticsearchException {
 		@SuppressWarnings("unchecked")
-		Endpoint<PutLifecycleRequest, PutLifecycleResponse, ErrorResponse> endpoint = (Endpoint<PutLifecycleRequest, PutLifecycleResponse, ErrorResponse>) PutLifecycleRequest._ENDPOINT;
+		JsonEndpoint<PutLifecycleRequest, PutLifecycleResponse, ErrorResponse> endpoint = (JsonEndpoint<PutLifecycleRequest, PutLifecycleResponse, ErrorResponse>) PutLifecycleRequest._ENDPOINT;
 
 		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}

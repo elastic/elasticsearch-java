@@ -53,6 +53,8 @@ public class GetSlmStatusRequest extends RequestBase {
 	 * Endpoint "{@code slm.get_status}".
 	 */
 	public static final Endpoint<GetSlmStatusRequest, GetSlmStatusResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/slm.get_status",
+
 			// Request method
 			request -> {
 				return "GET";

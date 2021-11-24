@@ -30,12 +30,19 @@ package co.elastic.clients.elasticsearch._types;
 public class ElasticsearchException extends RuntimeException {
 
 	private final ErrorResponse response;
+	private final String endpointId;
 
-	public ElasticsearchException(ErrorResponse response) {
-		super(response.error().type() != null
-				? "[" + response.error().type() + "] " + response.error().reason()
-				: response.error().reason());
+	public ElasticsearchException(String endpointId, ErrorResponse response) {
+		super("[" + endpointId + "] failed: [" + response.error().type() + "] " + response.error().reason());
 		this.response = response;
+		this.endpointId = endpointId;
+	}
+
+	/**
+	 * Identifier of the API endpoint that failed to be called.
+	 */
+	public String endpointId() {
+		return this.endpointId;
 	}
 
 	/**

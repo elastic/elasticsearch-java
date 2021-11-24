@@ -222,6 +222,8 @@ public class ReloadSecureSettingsRequest extends RequestBase implements JsonpSer
 	 * Endpoint "{@code nodes.reload_secure_settings}".
 	 */
 	public static final Endpoint<ReloadSecureSettingsRequest, ReloadSecureSettingsResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/nodes.reload_secure_settings",
+
 			// Request method
 			request -> {
 				return "POST";

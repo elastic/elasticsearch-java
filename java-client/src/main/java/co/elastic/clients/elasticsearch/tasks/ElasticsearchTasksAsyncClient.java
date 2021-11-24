@@ -28,6 +28,7 @@ import co.elastic.clients.elasticsearch._types.ElasticsearchException;
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.transport.ElasticsearchTransport;
 import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.JsonEndpoint;
 import co.elastic.clients.transport.Transport;
 import co.elastic.clients.transport.TransportOptions;
 import co.elastic.clients.util.ObjectBuilder;
@@ -67,7 +68,7 @@ public class ElasticsearchTasksAsyncClient extends ApiClient<ElasticsearchTransp
 
 	public CompletableFuture<CancelResponse> cancel(CancelRequest request) throws IOException, ElasticsearchException {
 		@SuppressWarnings("unchecked")
-		Endpoint<CancelRequest, CancelResponse, ErrorResponse> endpoint = (Endpoint<CancelRequest, CancelResponse, ErrorResponse>) CancelRequest._ENDPOINT;
+		JsonEndpoint<CancelRequest, CancelResponse, ErrorResponse> endpoint = (JsonEndpoint<CancelRequest, CancelResponse, ErrorResponse>) CancelRequest._ENDPOINT;
 
 		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
@@ -115,7 +116,7 @@ public class ElasticsearchTasksAsyncClient extends ApiClient<ElasticsearchTransp
 
 	public CompletableFuture<GetTasksResponse> get(GetTasksRequest request) throws IOException, ElasticsearchException {
 		@SuppressWarnings("unchecked")
-		Endpoint<GetTasksRequest, GetTasksResponse, ErrorResponse> endpoint = (Endpoint<GetTasksRequest, GetTasksResponse, ErrorResponse>) GetTasksRequest._ENDPOINT;
+		JsonEndpoint<GetTasksRequest, GetTasksResponse, ErrorResponse> endpoint = (JsonEndpoint<GetTasksRequest, GetTasksResponse, ErrorResponse>) GetTasksRequest._ENDPOINT;
 
 		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
@@ -150,7 +151,7 @@ public class ElasticsearchTasksAsyncClient extends ApiClient<ElasticsearchTransp
 
 	public CompletableFuture<ListResponse> list(ListRequest request) throws IOException, ElasticsearchException {
 		@SuppressWarnings("unchecked")
-		Endpoint<ListRequest, ListResponse, ErrorResponse> endpoint = (Endpoint<ListRequest, ListResponse, ErrorResponse>) ListRequest._ENDPOINT;
+		JsonEndpoint<ListRequest, ListResponse, ErrorResponse> endpoint = (JsonEndpoint<ListRequest, ListResponse, ErrorResponse>) ListRequest._ENDPOINT;
 
 		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}

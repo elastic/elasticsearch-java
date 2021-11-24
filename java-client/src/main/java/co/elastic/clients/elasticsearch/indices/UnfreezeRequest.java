@@ -314,6 +314,8 @@ public class UnfreezeRequest extends RequestBase {
 	 * Endpoint "{@code indices.unfreeze}".
 	 */
 	public static final Endpoint<UnfreezeRequest, UnfreezeResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/indices.unfreeze",
+
 			// Request method
 			request -> {
 				return "POST";

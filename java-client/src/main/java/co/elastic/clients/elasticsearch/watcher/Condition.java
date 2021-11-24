@@ -212,61 +212,61 @@ public class Condition implements TaggedUnion<Condition.Kind, Object>, JsonpSeri
 		private Kind _kind;
 		private Object _value;
 
-		public Builder always(AlwaysCondition v) {
+		public ObjectBuilder<Condition> always(AlwaysCondition v) {
 			this._kind = Kind.Always;
 			this._value = v;
 			return this;
 		}
 
-		public Builder always(Consumer<AlwaysCondition.Builder> fn) {
+		public ObjectBuilder<Condition> always(Consumer<AlwaysCondition.Builder> fn) {
 			AlwaysCondition.Builder builder = new AlwaysCondition.Builder();
 			fn.accept(builder);
 			return this.always(builder.build());
 		}
 
-		public Builder arrayCompare(ArrayCompareCondition v) {
+		public ObjectBuilder<Condition> arrayCompare(ArrayCompareCondition v) {
 			this._kind = Kind.ArrayCompare;
 			this._value = v;
 			return this;
 		}
 
-		public Builder arrayCompare(Consumer<ArrayCompareCondition.Builder> fn) {
+		public ObjectBuilder<Condition> arrayCompare(Consumer<ArrayCompareCondition.Builder> fn) {
 			ArrayCompareCondition.Builder builder = new ArrayCompareCondition.Builder();
 			fn.accept(builder);
 			return this.arrayCompare(builder.build());
 		}
 
-		public Builder compare(CompareCondition v) {
+		public ObjectBuilder<Condition> compare(CompareCondition v) {
 			this._kind = Kind.Compare;
 			this._value = v;
 			return this;
 		}
 
-		public Builder compare(Consumer<CompareCondition.Builder> fn) {
+		public ObjectBuilder<Condition> compare(Consumer<CompareCondition.Builder> fn) {
 			CompareCondition.Builder builder = new CompareCondition.Builder();
 			fn.accept(builder);
 			return this.compare(builder.build());
 		}
 
-		public Builder never(NeverCondition v) {
+		public ObjectBuilder<Condition> never(NeverCondition v) {
 			this._kind = Kind.Never;
 			this._value = v;
 			return this;
 		}
 
-		public Builder never(Consumer<NeverCondition.Builder> fn) {
+		public ObjectBuilder<Condition> never(Consumer<NeverCondition.Builder> fn) {
 			NeverCondition.Builder builder = new NeverCondition.Builder();
 			fn.accept(builder);
 			return this.never(builder.build());
 		}
 
-		public Builder script(ScriptCondition v) {
+		public ObjectBuilder<Condition> script(ScriptCondition v) {
 			this._kind = Kind.Script;
 			this._value = v;
 			return this;
 		}
 
-		public Builder script(Consumer<ScriptCondition.Builder> fn) {
+		public ObjectBuilder<Condition> script(Consumer<ScriptCondition.Builder> fn) {
 			ScriptCondition.Builder builder = new ScriptCondition.Builder();
 			fn.accept(builder);
 			return this.script(builder.build());

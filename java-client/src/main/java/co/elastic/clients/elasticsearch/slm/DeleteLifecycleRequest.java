@@ -106,6 +106,8 @@ public class DeleteLifecycleRequest extends RequestBase {
 	 * Endpoint "{@code slm.delete_lifecycle}".
 	 */
 	public static final Endpoint<DeleteLifecycleRequest, DeleteLifecycleResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/slm.delete_lifecycle",
+
 			// Request method
 			request -> {
 				return "DELETE";

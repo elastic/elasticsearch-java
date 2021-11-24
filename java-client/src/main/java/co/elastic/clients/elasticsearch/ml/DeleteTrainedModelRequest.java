@@ -106,6 +106,8 @@ public class DeleteTrainedModelRequest extends RequestBase {
 	 * Endpoint "{@code ml.delete_trained_model}".
 	 */
 	public static final Endpoint<DeleteTrainedModelRequest, DeleteTrainedModelResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/ml.delete_trained_model",
+
 			// Request method
 			request -> {
 				return "DELETE";

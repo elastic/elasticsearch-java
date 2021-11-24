@@ -65,7 +65,7 @@ public class GeoHashPrecision implements TaggedUnion<GeoHashPrecision.Kind, Obje
 		return _value;
 	}
 
-	public GeoHashPrecision(Kind kind, Object value) {
+	private GeoHashPrecision(Kind kind, Object value) {
 		this._kind = kind;
 		this._value = value;
 	}
@@ -152,13 +152,13 @@ public class GeoHashPrecision implements TaggedUnion<GeoHashPrecision.Kind, Obje
 		private Kind _kind;
 		private Object _value;
 
-		public Builder geohashLength(Number v) {
+		public ObjectBuilder<GeoHashPrecision> geohashLength(Number v) {
 			this._kind = Kind.GeohashLength;
 			this._value = v;
 			return this;
 		}
 
-		public Builder distance(String v) {
+		public ObjectBuilder<GeoHashPrecision> distance(String v) {
 			this._kind = Kind.Distance;
 			this._value = v;
 			return this;
@@ -172,7 +172,7 @@ public class GeoHashPrecision implements TaggedUnion<GeoHashPrecision.Kind, Obje
 	}
 
 	private static JsonpDeserializer<GeoHashPrecision> buildGeoHashPrecisionDeserializer() {
-		return new UnionDeserializer.Builder<GeoHashPrecision, Kind, Object>(GeoHashPrecision::new, true)
+		return new UnionDeserializer.Builder<GeoHashPrecision, Kind, Object>(GeoHashPrecision::new, false)
 				.addMember(Kind.GeohashLength, JsonpDeserializer.numberDeserializer())
 				.addMember(Kind.Distance, JsonpDeserializer.stringDeserializer()).build();
 	}

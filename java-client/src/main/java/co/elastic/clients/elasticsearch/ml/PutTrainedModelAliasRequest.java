@@ -163,6 +163,8 @@ public class PutTrainedModelAliasRequest extends RequestBase {
 	 * Endpoint "{@code ml.put_trained_model_alias}".
 	 */
 	public static final Endpoint<PutTrainedModelAliasRequest, PutTrainedModelAliasResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/ml.put_trained_model_alias",
+
 			// Request method
 			request -> {
 				return "PUT";

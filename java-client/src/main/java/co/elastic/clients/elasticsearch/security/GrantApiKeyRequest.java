@@ -256,6 +256,8 @@ public class GrantApiKeyRequest extends RequestBase implements JsonpSerializable
 	 * Endpoint "{@code security.grant_api_key}".
 	 */
 	public static final Endpoint<GrantApiKeyRequest, GrantApiKeyResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/security.grant_api_key",
+
 			// Request method
 			request -> {
 				return "POST";

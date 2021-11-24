@@ -110,6 +110,8 @@ public class GetJobsRequest extends RequestBase {
 	 * Endpoint "{@code rollup.get_jobs}".
 	 */
 	public static final Endpoint<GetJobsRequest, GetJobsResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/rollup.get_jobs",
+
 			// Request method
 			request -> {
 				return "GET";

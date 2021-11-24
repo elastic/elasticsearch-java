@@ -170,6 +170,8 @@ public class DeleteSnapshotRequest extends RequestBase {
 	 * Endpoint "{@code snapshot.delete}".
 	 */
 	public static final Endpoint<DeleteSnapshotRequest, DeleteSnapshotResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/snapshot.delete",
+
 			// Request method
 			request -> {
 				return "DELETE";

@@ -28,6 +28,7 @@ import co.elastic.clients.elasticsearch._types.ElasticsearchException;
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.transport.ElasticsearchTransport;
 import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.JsonEndpoint;
 import co.elastic.clients.transport.Transport;
 import co.elastic.clients.transport.TransportOptions;
 import co.elastic.clients.util.ObjectBuilder;
@@ -67,7 +68,7 @@ public class ElasticsearchSqlAsyncClient extends ApiClient<ElasticsearchTranspor
 	public CompletableFuture<ClearCursorResponse> clearCursor(ClearCursorRequest request)
 			throws IOException, ElasticsearchException {
 		@SuppressWarnings("unchecked")
-		Endpoint<ClearCursorRequest, ClearCursorResponse, ErrorResponse> endpoint = (Endpoint<ClearCursorRequest, ClearCursorResponse, ErrorResponse>) ClearCursorRequest._ENDPOINT;
+		JsonEndpoint<ClearCursorRequest, ClearCursorResponse, ErrorResponse> endpoint = (JsonEndpoint<ClearCursorRequest, ClearCursorResponse, ErrorResponse>) ClearCursorRequest._ENDPOINT;
 
 		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
@@ -102,7 +103,7 @@ public class ElasticsearchSqlAsyncClient extends ApiClient<ElasticsearchTranspor
 
 	public CompletableFuture<QueryResponse> query(QueryRequest request) throws IOException, ElasticsearchException {
 		@SuppressWarnings("unchecked")
-		Endpoint<QueryRequest, QueryResponse, ErrorResponse> endpoint = (Endpoint<QueryRequest, QueryResponse, ErrorResponse>) QueryRequest._ENDPOINT;
+		JsonEndpoint<QueryRequest, QueryResponse, ErrorResponse> endpoint = (JsonEndpoint<QueryRequest, QueryResponse, ErrorResponse>) QueryRequest._ENDPOINT;
 
 		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
@@ -151,7 +152,7 @@ public class ElasticsearchSqlAsyncClient extends ApiClient<ElasticsearchTranspor
 	public CompletableFuture<TranslateResponse> translate(TranslateRequest request)
 			throws IOException, ElasticsearchException {
 		@SuppressWarnings("unchecked")
-		Endpoint<TranslateRequest, TranslateResponse, ErrorResponse> endpoint = (Endpoint<TranslateRequest, TranslateResponse, ErrorResponse>) TranslateRequest._ENDPOINT;
+		JsonEndpoint<TranslateRequest, TranslateResponse, ErrorResponse> endpoint = (JsonEndpoint<TranslateRequest, TranslateResponse, ErrorResponse>) TranslateRequest._ENDPOINT;
 
 		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}

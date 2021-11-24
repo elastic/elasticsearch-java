@@ -197,6 +197,8 @@ public class ExistsComponentTemplateRequest extends RequestBase {
 	 * Endpoint "{@code cluster.exists_component_template}".
 	 */
 	public static final Endpoint<ExistsComponentTemplateRequest, BooleanResponse, ErrorResponse> _ENDPOINT = new BooleanEndpoint<>(
+			"es/cluster.exists_component_template",
+
 			// Request method
 			request -> {
 				return "HEAD";

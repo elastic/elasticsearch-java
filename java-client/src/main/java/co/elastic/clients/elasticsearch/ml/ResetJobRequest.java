@@ -135,6 +135,8 @@ public class ResetJobRequest extends RequestBase {
 	 * Endpoint "{@code ml.reset_job}".
 	 */
 	public static final Endpoint<ResetJobRequest, ResetJobResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/ml.reset_job",
+
 			// Request method
 			request -> {
 				return "POST";

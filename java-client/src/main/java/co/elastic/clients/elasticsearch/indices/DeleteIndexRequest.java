@@ -296,6 +296,8 @@ public class DeleteIndexRequest extends RequestBase {
 	 * Endpoint "{@code indices.delete}".
 	 */
 	public static final Endpoint<DeleteIndexRequest, DeleteIndexResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/indices.delete",
+
 			// Request method
 			request -> {
 				return "DELETE";

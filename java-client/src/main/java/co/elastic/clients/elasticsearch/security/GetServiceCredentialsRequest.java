@@ -130,6 +130,8 @@ public class GetServiceCredentialsRequest extends RequestBase {
 	 * Endpoint "{@code security.get_service_credentials}".
 	 */
 	public static final Endpoint<GetServiceCredentialsRequest, GetServiceCredentialsResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/security.get_service_credentials",
+
 			// Request method
 			request -> {
 				return "GET";

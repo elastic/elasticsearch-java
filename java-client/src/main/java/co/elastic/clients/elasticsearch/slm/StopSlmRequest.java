@@ -53,6 +53,8 @@ public class StopSlmRequest extends RequestBase {
 	 * Endpoint "{@code slm.stop}".
 	 */
 	public static final Endpoint<StopSlmRequest, StopSlmResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/slm.stop",
+
 			// Request method
 			request -> {
 				return "POST";

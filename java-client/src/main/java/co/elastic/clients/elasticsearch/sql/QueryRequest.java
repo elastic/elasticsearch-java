@@ -470,6 +470,8 @@ public class QueryRequest extends RequestBase implements JsonpSerializable {
 	 * Endpoint "{@code sql.query}".
 	 */
 	public static final Endpoint<QueryRequest, QueryResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/sql.query",
+
 			// Request method
 			request -> {
 				return "POST";

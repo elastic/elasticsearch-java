@@ -522,6 +522,8 @@ public class PutRoleRequest extends RequestBase implements JsonpSerializable {
 	 * Endpoint "{@code security.put_role}".
 	 */
 	public static final Endpoint<PutRoleRequest, PutRoleResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/security.put_role",
+
 			// Request method
 			request -> {
 				return "PUT";

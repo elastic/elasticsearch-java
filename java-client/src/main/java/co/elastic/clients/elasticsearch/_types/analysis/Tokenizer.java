@@ -64,7 +64,7 @@ public class Tokenizer implements TaggedUnion<Tokenizer.Kind, Object>, JsonpSeri
 		return _value;
 	}
 
-	public Tokenizer(Kind kind, Object value) {
+	private Tokenizer(Kind kind, Object value) {
 		this._kind = kind;
 		this._value = value;
 	}
@@ -135,19 +135,19 @@ public class Tokenizer implements TaggedUnion<Tokenizer.Kind, Object>, JsonpSeri
 		private Kind _kind;
 		private Object _value;
 
-		public Builder definition(TokenizerDefinition v) {
+		public ObjectBuilder<Tokenizer> definition(TokenizerDefinition v) {
 			this._kind = Kind.Definition;
 			this._value = v;
 			return this;
 		}
 
-		public Builder definition(Consumer<TokenizerDefinition.Builder> fn) {
+		public ObjectBuilder<Tokenizer> definition(Consumer<TokenizerDefinition.Builder> fn) {
 			TokenizerDefinition.Builder builder = new TokenizerDefinition.Builder();
 			fn.accept(builder);
 			return this.definition(builder.build());
 		}
 
-		public Builder name(String v) {
+		public ObjectBuilder<Tokenizer> name(String v) {
 			this._kind = Kind.Name;
 			this._value = v;
 			return this;

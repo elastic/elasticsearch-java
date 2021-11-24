@@ -154,6 +154,8 @@ public class CreateServiceTokenRequest extends RequestBase {
 	 * Endpoint "{@code security.create_service_token}".
 	 */
 	public static final Endpoint<CreateServiceTokenRequest, CreateServiceTokenResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/security.create_service_token",
+
 			// Request method
 			request -> {
 				final int _service = 1 << 0;

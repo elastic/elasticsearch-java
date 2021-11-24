@@ -340,6 +340,8 @@ public class ClearCacheRequest extends RequestBase {
 	 * Endpoint "{@code indices.clear_cache}".
 	 */
 	public static final Endpoint<ClearCacheRequest, ClearCacheResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/indices.clear_cache",
+
 			// Request method
 			request -> {
 				return "POST";

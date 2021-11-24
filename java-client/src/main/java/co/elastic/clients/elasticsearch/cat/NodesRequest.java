@@ -136,6 +136,8 @@ public class NodesRequest extends CatRequestBase {
 	 * Endpoint "{@code cat.nodes}".
 	 */
 	public static final Endpoint<NodesRequest, NodesResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/cat.nodes",
+
 			// Request method
 			request -> {
 				return "GET";

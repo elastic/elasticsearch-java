@@ -65,7 +65,7 @@ public class TrackHits implements TaggedUnion<TrackHits.Kind, Object>, JsonpSeri
 		return _value;
 	}
 
-	public TrackHits(Kind kind, Object value) {
+	private TrackHits(Kind kind, Object value) {
 		this._kind = kind;
 		this._value = value;
 	}
@@ -152,13 +152,13 @@ public class TrackHits implements TaggedUnion<TrackHits.Kind, Object>, JsonpSeri
 		private Kind _kind;
 		private Object _value;
 
-		public Builder count(Integer v) {
+		public ObjectBuilder<TrackHits> count(Integer v) {
 			this._kind = Kind.Count;
 			this._value = v;
 			return this;
 		}
 
-		public Builder enabled(Boolean v) {
+		public ObjectBuilder<TrackHits> enabled(Boolean v) {
 			this._kind = Kind.Enabled;
 			this._value = v;
 			return this;

@@ -326,6 +326,8 @@ public class CreateApiKeyRequest extends RequestBase implements JsonpSerializabl
 	 * Endpoint "{@code security.create_api_key}".
 	 */
 	public static final Endpoint<CreateApiKeyRequest, CreateApiKeyResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/security.create_api_key",
+
 			// Request method
 			request -> {
 				return "PUT";

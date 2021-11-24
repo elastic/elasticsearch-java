@@ -220,61 +220,71 @@ public class DataframeAnalysisFeatureProcessor
 		private Kind _kind;
 		private Object _value;
 
-		public Builder frequencyEncoding(DataframeAnalysisFeatureProcessorFrequencyEncoding v) {
+		public ObjectBuilder<DataframeAnalysisFeatureProcessor> frequencyEncoding(
+				DataframeAnalysisFeatureProcessorFrequencyEncoding v) {
 			this._kind = Kind.FrequencyEncoding;
 			this._value = v;
 			return this;
 		}
 
-		public Builder frequencyEncoding(Consumer<DataframeAnalysisFeatureProcessorFrequencyEncoding.Builder> fn) {
+		public ObjectBuilder<DataframeAnalysisFeatureProcessor> frequencyEncoding(
+				Consumer<DataframeAnalysisFeatureProcessorFrequencyEncoding.Builder> fn) {
 			DataframeAnalysisFeatureProcessorFrequencyEncoding.Builder builder = new DataframeAnalysisFeatureProcessorFrequencyEncoding.Builder();
 			fn.accept(builder);
 			return this.frequencyEncoding(builder.build());
 		}
 
-		public Builder multiEncoding(DataframeAnalysisFeatureProcessorMultiEncoding v) {
+		public ObjectBuilder<DataframeAnalysisFeatureProcessor> multiEncoding(
+				DataframeAnalysisFeatureProcessorMultiEncoding v) {
 			this._kind = Kind.MultiEncoding;
 			this._value = v;
 			return this;
 		}
 
-		public Builder multiEncoding(Consumer<DataframeAnalysisFeatureProcessorMultiEncoding.Builder> fn) {
+		public ObjectBuilder<DataframeAnalysisFeatureProcessor> multiEncoding(
+				Consumer<DataframeAnalysisFeatureProcessorMultiEncoding.Builder> fn) {
 			DataframeAnalysisFeatureProcessorMultiEncoding.Builder builder = new DataframeAnalysisFeatureProcessorMultiEncoding.Builder();
 			fn.accept(builder);
 			return this.multiEncoding(builder.build());
 		}
 
-		public Builder nGramEncoding(DataframeAnalysisFeatureProcessorNGramEncoding v) {
+		public ObjectBuilder<DataframeAnalysisFeatureProcessor> nGramEncoding(
+				DataframeAnalysisFeatureProcessorNGramEncoding v) {
 			this._kind = Kind.NGramEncoding;
 			this._value = v;
 			return this;
 		}
 
-		public Builder nGramEncoding(Consumer<DataframeAnalysisFeatureProcessorNGramEncoding.Builder> fn) {
+		public ObjectBuilder<DataframeAnalysisFeatureProcessor> nGramEncoding(
+				Consumer<DataframeAnalysisFeatureProcessorNGramEncoding.Builder> fn) {
 			DataframeAnalysisFeatureProcessorNGramEncoding.Builder builder = new DataframeAnalysisFeatureProcessorNGramEncoding.Builder();
 			fn.accept(builder);
 			return this.nGramEncoding(builder.build());
 		}
 
-		public Builder oneHotEncoding(DataframeAnalysisFeatureProcessorOneHotEncoding v) {
+		public ObjectBuilder<DataframeAnalysisFeatureProcessor> oneHotEncoding(
+				DataframeAnalysisFeatureProcessorOneHotEncoding v) {
 			this._kind = Kind.OneHotEncoding;
 			this._value = v;
 			return this;
 		}
 
-		public Builder oneHotEncoding(Consumer<DataframeAnalysisFeatureProcessorOneHotEncoding.Builder> fn) {
+		public ObjectBuilder<DataframeAnalysisFeatureProcessor> oneHotEncoding(
+				Consumer<DataframeAnalysisFeatureProcessorOneHotEncoding.Builder> fn) {
 			DataframeAnalysisFeatureProcessorOneHotEncoding.Builder builder = new DataframeAnalysisFeatureProcessorOneHotEncoding.Builder();
 			fn.accept(builder);
 			return this.oneHotEncoding(builder.build());
 		}
 
-		public Builder targetMeanEncoding(DataframeAnalysisFeatureProcessorTargetMeanEncoding v) {
+		public ObjectBuilder<DataframeAnalysisFeatureProcessor> targetMeanEncoding(
+				DataframeAnalysisFeatureProcessorTargetMeanEncoding v) {
 			this._kind = Kind.TargetMeanEncoding;
 			this._value = v;
 			return this;
 		}
 
-		public Builder targetMeanEncoding(Consumer<DataframeAnalysisFeatureProcessorTargetMeanEncoding.Builder> fn) {
+		public ObjectBuilder<DataframeAnalysisFeatureProcessor> targetMeanEncoding(
+				Consumer<DataframeAnalysisFeatureProcessorTargetMeanEncoding.Builder> fn) {
 			DataframeAnalysisFeatureProcessorTargetMeanEncoding.Builder builder = new DataframeAnalysisFeatureProcessorTargetMeanEncoding.Builder();
 			fn.accept(builder);
 			return this.targetMeanEncoding(builder.build());

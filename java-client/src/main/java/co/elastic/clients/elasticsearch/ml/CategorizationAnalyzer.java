@@ -64,7 +64,7 @@ public class CategorizationAnalyzer implements TaggedUnion<CategorizationAnalyze
 		return _value;
 	}
 
-	public CategorizationAnalyzer(Kind kind, Object value) {
+	private CategorizationAnalyzer(Kind kind, Object value) {
 		this._kind = kind;
 		this._value = value;
 	}
@@ -135,19 +135,19 @@ public class CategorizationAnalyzer implements TaggedUnion<CategorizationAnalyze
 		private Kind _kind;
 		private Object _value;
 
-		public Builder name(String v) {
+		public ObjectBuilder<CategorizationAnalyzer> name(String v) {
 			this._kind = Kind.Name;
 			this._value = v;
 			return this;
 		}
 
-		public Builder definition(CategorizationAnalyzerDefinition v) {
+		public ObjectBuilder<CategorizationAnalyzer> definition(CategorizationAnalyzerDefinition v) {
 			this._kind = Kind.Definition;
 			this._value = v;
 			return this;
 		}
 
-		public Builder definition(Consumer<CategorizationAnalyzerDefinition.Builder> fn) {
+		public ObjectBuilder<CategorizationAnalyzer> definition(Consumer<CategorizationAnalyzerDefinition.Builder> fn) {
 			CategorizationAnalyzerDefinition.Builder builder = new CategorizationAnalyzerDefinition.Builder();
 			fn.accept(builder);
 			return this.definition(builder.build());

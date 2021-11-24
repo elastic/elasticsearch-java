@@ -106,6 +106,8 @@ public class AsyncSearchStatusRequest extends RequestBase {
 	 * Endpoint "{@code async_search.status}".
 	 */
 	public static final SimpleEndpoint<AsyncSearchStatusRequest, ?> _ENDPOINT = new SimpleEndpoint<>(
+			"es/async_search.status",
+
 			// Request method
 			request -> {
 				return "GET";

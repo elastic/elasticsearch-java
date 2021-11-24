@@ -186,7 +186,8 @@ public class GetAsyncSearchRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code async_search.get}".
 	 */
-	public static final SimpleEndpoint<GetAsyncSearchRequest, ?> _ENDPOINT = new SimpleEndpoint<>(
+	public static final SimpleEndpoint<GetAsyncSearchRequest, ?> _ENDPOINT = new SimpleEndpoint<>("es/async_search.get",
+
 			// Request method
 			request -> {
 				return "GET";
