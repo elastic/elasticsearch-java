@@ -106,6 +106,8 @@ public class GetEqlStatusRequest extends RequestBase {
 	 * Endpoint "{@code eql.get_status}".
 	 */
 	public static final Endpoint<GetEqlStatusRequest, GetEqlStatusResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/eql.get_status",
+
 			// Request method
 			request -> {
 				return "GET";

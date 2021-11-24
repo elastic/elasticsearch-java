@@ -55,6 +55,8 @@ public class PingRequest extends RequestBase {
 	 * Endpoint "{@code ping}".
 	 */
 	public static final Endpoint<PingRequest, BooleanResponse, ErrorResponse> _ENDPOINT = new BooleanEndpoint<>(
+			"es/ping",
+
 			// Request method
 			request -> {
 				return "HEAD";

@@ -740,6 +740,8 @@ public class PutAutoFollowPatternRequest extends RequestBase implements JsonpSer
 	 * Endpoint "{@code ccr.put_auto_follow_pattern}".
 	 */
 	public static final Endpoint<PutAutoFollowPatternRequest, PutAutoFollowPatternResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/ccr.put_auto_follow_pattern",
+
 			// Request method
 			request -> {
 				return "PUT";

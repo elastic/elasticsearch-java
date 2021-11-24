@@ -209,6 +209,8 @@ public class ImportDanglingIndexRequest extends RequestBase {
 	 * Endpoint "{@code dangling_indices.import_dangling_index}".
 	 */
 	public static final Endpoint<ImportDanglingIndexRequest, ImportDanglingIndexResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/dangling_indices.import_dangling_index",
+
 			// Request method
 			request -> {
 				return "POST";

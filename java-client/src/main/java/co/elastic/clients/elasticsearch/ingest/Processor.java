@@ -766,409 +766,409 @@ public class Processor implements TaggedUnion<Processor.Kind, Object>, JsonpSeri
 		private Kind _kind;
 		private Object _value;
 
-		public Builder attachment(AttachmentProcessor v) {
+		public ObjectBuilder<Processor> attachment(AttachmentProcessor v) {
 			this._kind = Kind.Attachment;
 			this._value = v;
 			return this;
 		}
 
-		public Builder attachment(Consumer<AttachmentProcessor.Builder> fn) {
+		public ObjectBuilder<Processor> attachment(Consumer<AttachmentProcessor.Builder> fn) {
 			AttachmentProcessor.Builder builder = new AttachmentProcessor.Builder();
 			fn.accept(builder);
 			return this.attachment(builder.build());
 		}
 
-		public Builder append(AppendProcessor v) {
+		public ObjectBuilder<Processor> append(AppendProcessor v) {
 			this._kind = Kind.Append;
 			this._value = v;
 			return this;
 		}
 
-		public Builder append(Consumer<AppendProcessor.Builder> fn) {
+		public ObjectBuilder<Processor> append(Consumer<AppendProcessor.Builder> fn) {
 			AppendProcessor.Builder builder = new AppendProcessor.Builder();
 			fn.accept(builder);
 			return this.append(builder.build());
 		}
 
-		public Builder csv(CsvProcessor v) {
+		public ObjectBuilder<Processor> csv(CsvProcessor v) {
 			this._kind = Kind.Csv;
 			this._value = v;
 			return this;
 		}
 
-		public Builder csv(Consumer<CsvProcessor.Builder> fn) {
+		public ObjectBuilder<Processor> csv(Consumer<CsvProcessor.Builder> fn) {
 			CsvProcessor.Builder builder = new CsvProcessor.Builder();
 			fn.accept(builder);
 			return this.csv(builder.build());
 		}
 
-		public Builder convert(ConvertProcessor v) {
+		public ObjectBuilder<Processor> convert(ConvertProcessor v) {
 			this._kind = Kind.Convert;
 			this._value = v;
 			return this;
 		}
 
-		public Builder convert(Consumer<ConvertProcessor.Builder> fn) {
+		public ObjectBuilder<Processor> convert(Consumer<ConvertProcessor.Builder> fn) {
 			ConvertProcessor.Builder builder = new ConvertProcessor.Builder();
 			fn.accept(builder);
 			return this.convert(builder.build());
 		}
 
-		public Builder date(DateProcessor v) {
+		public ObjectBuilder<Processor> date(DateProcessor v) {
 			this._kind = Kind.Date;
 			this._value = v;
 			return this;
 		}
 
-		public Builder date(Consumer<DateProcessor.Builder> fn) {
+		public ObjectBuilder<Processor> date(Consumer<DateProcessor.Builder> fn) {
 			DateProcessor.Builder builder = new DateProcessor.Builder();
 			fn.accept(builder);
 			return this.date(builder.build());
 		}
 
-		public Builder dateIndexName(DateIndexNameProcessor v) {
+		public ObjectBuilder<Processor> dateIndexName(DateIndexNameProcessor v) {
 			this._kind = Kind.DateIndexName;
 			this._value = v;
 			return this;
 		}
 
-		public Builder dateIndexName(Consumer<DateIndexNameProcessor.Builder> fn) {
+		public ObjectBuilder<Processor> dateIndexName(Consumer<DateIndexNameProcessor.Builder> fn) {
 			DateIndexNameProcessor.Builder builder = new DateIndexNameProcessor.Builder();
 			fn.accept(builder);
 			return this.dateIndexName(builder.build());
 		}
 
-		public Builder dotExpander(DotExpanderProcessor v) {
+		public ObjectBuilder<Processor> dotExpander(DotExpanderProcessor v) {
 			this._kind = Kind.DotExpander;
 			this._value = v;
 			return this;
 		}
 
-		public Builder dotExpander(Consumer<DotExpanderProcessor.Builder> fn) {
+		public ObjectBuilder<Processor> dotExpander(Consumer<DotExpanderProcessor.Builder> fn) {
 			DotExpanderProcessor.Builder builder = new DotExpanderProcessor.Builder();
 			fn.accept(builder);
 			return this.dotExpander(builder.build());
 		}
 
-		public Builder enrich(EnrichProcessor v) {
+		public ObjectBuilder<Processor> enrich(EnrichProcessor v) {
 			this._kind = Kind.Enrich;
 			this._value = v;
 			return this;
 		}
 
-		public Builder enrich(Consumer<EnrichProcessor.Builder> fn) {
+		public ObjectBuilder<Processor> enrich(Consumer<EnrichProcessor.Builder> fn) {
 			EnrichProcessor.Builder builder = new EnrichProcessor.Builder();
 			fn.accept(builder);
 			return this.enrich(builder.build());
 		}
 
-		public Builder fail(FailProcessor v) {
+		public ObjectBuilder<Processor> fail(FailProcessor v) {
 			this._kind = Kind.Fail;
 			this._value = v;
 			return this;
 		}
 
-		public Builder fail(Consumer<FailProcessor.Builder> fn) {
+		public ObjectBuilder<Processor> fail(Consumer<FailProcessor.Builder> fn) {
 			FailProcessor.Builder builder = new FailProcessor.Builder();
 			fn.accept(builder);
 			return this.fail(builder.build());
 		}
 
-		public Builder foreach(ForeachProcessor v) {
+		public ObjectBuilder<Processor> foreach(ForeachProcessor v) {
 			this._kind = Kind.Foreach;
 			this._value = v;
 			return this;
 		}
 
-		public Builder foreach(Consumer<ForeachProcessor.Builder> fn) {
+		public ObjectBuilder<Processor> foreach(Consumer<ForeachProcessor.Builder> fn) {
 			ForeachProcessor.Builder builder = new ForeachProcessor.Builder();
 			fn.accept(builder);
 			return this.foreach(builder.build());
 		}
 
-		public Builder json(JsonProcessor v) {
+		public ObjectBuilder<Processor> json(JsonProcessor v) {
 			this._kind = Kind.Json;
 			this._value = v;
 			return this;
 		}
 
-		public Builder json(Consumer<JsonProcessor.Builder> fn) {
+		public ObjectBuilder<Processor> json(Consumer<JsonProcessor.Builder> fn) {
 			JsonProcessor.Builder builder = new JsonProcessor.Builder();
 			fn.accept(builder);
 			return this.json(builder.build());
 		}
 
-		public Builder userAgent(UserAgentProcessor v) {
+		public ObjectBuilder<Processor> userAgent(UserAgentProcessor v) {
 			this._kind = Kind.UserAgent;
 			this._value = v;
 			return this;
 		}
 
-		public Builder userAgent(Consumer<UserAgentProcessor.Builder> fn) {
+		public ObjectBuilder<Processor> userAgent(Consumer<UserAgentProcessor.Builder> fn) {
 			UserAgentProcessor.Builder builder = new UserAgentProcessor.Builder();
 			fn.accept(builder);
 			return this.userAgent(builder.build());
 		}
 
-		public Builder kv(KeyValueProcessor v) {
+		public ObjectBuilder<Processor> kv(KeyValueProcessor v) {
 			this._kind = Kind.Kv;
 			this._value = v;
 			return this;
 		}
 
-		public Builder kv(Consumer<KeyValueProcessor.Builder> fn) {
+		public ObjectBuilder<Processor> kv(Consumer<KeyValueProcessor.Builder> fn) {
 			KeyValueProcessor.Builder builder = new KeyValueProcessor.Builder();
 			fn.accept(builder);
 			return this.kv(builder.build());
 		}
 
-		public Builder geoip(GeoIpProcessor v) {
+		public ObjectBuilder<Processor> geoip(GeoIpProcessor v) {
 			this._kind = Kind.Geoip;
 			this._value = v;
 			return this;
 		}
 
-		public Builder geoip(Consumer<GeoIpProcessor.Builder> fn) {
+		public ObjectBuilder<Processor> geoip(Consumer<GeoIpProcessor.Builder> fn) {
 			GeoIpProcessor.Builder builder = new GeoIpProcessor.Builder();
 			fn.accept(builder);
 			return this.geoip(builder.build());
 		}
 
-		public Builder grok(GrokProcessor v) {
+		public ObjectBuilder<Processor> grok(GrokProcessor v) {
 			this._kind = Kind.Grok;
 			this._value = v;
 			return this;
 		}
 
-		public Builder grok(Consumer<GrokProcessor.Builder> fn) {
+		public ObjectBuilder<Processor> grok(Consumer<GrokProcessor.Builder> fn) {
 			GrokProcessor.Builder builder = new GrokProcessor.Builder();
 			fn.accept(builder);
 			return this.grok(builder.build());
 		}
 
-		public Builder gsub(GsubProcessor v) {
+		public ObjectBuilder<Processor> gsub(GsubProcessor v) {
 			this._kind = Kind.Gsub;
 			this._value = v;
 			return this;
 		}
 
-		public Builder gsub(Consumer<GsubProcessor.Builder> fn) {
+		public ObjectBuilder<Processor> gsub(Consumer<GsubProcessor.Builder> fn) {
 			GsubProcessor.Builder builder = new GsubProcessor.Builder();
 			fn.accept(builder);
 			return this.gsub(builder.build());
 		}
 
-		public Builder join(JoinProcessor v) {
+		public ObjectBuilder<Processor> join(JoinProcessor v) {
 			this._kind = Kind.Join;
 			this._value = v;
 			return this;
 		}
 
-		public Builder join(Consumer<JoinProcessor.Builder> fn) {
+		public ObjectBuilder<Processor> join(Consumer<JoinProcessor.Builder> fn) {
 			JoinProcessor.Builder builder = new JoinProcessor.Builder();
 			fn.accept(builder);
 			return this.join(builder.build());
 		}
 
-		public Builder lowercase(LowercaseProcessor v) {
+		public ObjectBuilder<Processor> lowercase(LowercaseProcessor v) {
 			this._kind = Kind.Lowercase;
 			this._value = v;
 			return this;
 		}
 
-		public Builder lowercase(Consumer<LowercaseProcessor.Builder> fn) {
+		public ObjectBuilder<Processor> lowercase(Consumer<LowercaseProcessor.Builder> fn) {
 			LowercaseProcessor.Builder builder = new LowercaseProcessor.Builder();
 			fn.accept(builder);
 			return this.lowercase(builder.build());
 		}
 
-		public Builder remove(RemoveProcessor v) {
+		public ObjectBuilder<Processor> remove(RemoveProcessor v) {
 			this._kind = Kind.Remove;
 			this._value = v;
 			return this;
 		}
 
-		public Builder remove(Consumer<RemoveProcessor.Builder> fn) {
+		public ObjectBuilder<Processor> remove(Consumer<RemoveProcessor.Builder> fn) {
 			RemoveProcessor.Builder builder = new RemoveProcessor.Builder();
 			fn.accept(builder);
 			return this.remove(builder.build());
 		}
 
-		public Builder rename(RenameProcessor v) {
+		public ObjectBuilder<Processor> rename(RenameProcessor v) {
 			this._kind = Kind.Rename;
 			this._value = v;
 			return this;
 		}
 
-		public Builder rename(Consumer<RenameProcessor.Builder> fn) {
+		public ObjectBuilder<Processor> rename(Consumer<RenameProcessor.Builder> fn) {
 			RenameProcessor.Builder builder = new RenameProcessor.Builder();
 			fn.accept(builder);
 			return this.rename(builder.build());
 		}
 
-		public Builder script(Script v) {
+		public ObjectBuilder<Processor> script(Script v) {
 			this._kind = Kind.Script;
 			this._value = v;
 			return this;
 		}
 
-		public Builder script(Consumer<Script.Builder> fn) {
+		public ObjectBuilder<Processor> script(Consumer<Script.Builder> fn) {
 			Script.Builder builder = new Script.Builder();
 			fn.accept(builder);
 			return this.script(builder.build());
 		}
 
-		public Builder set(SetProcessor v) {
+		public ObjectBuilder<Processor> set(SetProcessor v) {
 			this._kind = Kind.Set;
 			this._value = v;
 			return this;
 		}
 
-		public Builder set(Consumer<SetProcessor.Builder> fn) {
+		public ObjectBuilder<Processor> set(Consumer<SetProcessor.Builder> fn) {
 			SetProcessor.Builder builder = new SetProcessor.Builder();
 			fn.accept(builder);
 			return this.set(builder.build());
 		}
 
-		public Builder sort(SortProcessor v) {
+		public ObjectBuilder<Processor> sort(SortProcessor v) {
 			this._kind = Kind.Sort;
 			this._value = v;
 			return this;
 		}
 
-		public Builder sort(Consumer<SortProcessor.Builder> fn) {
+		public ObjectBuilder<Processor> sort(Consumer<SortProcessor.Builder> fn) {
 			SortProcessor.Builder builder = new SortProcessor.Builder();
 			fn.accept(builder);
 			return this.sort(builder.build());
 		}
 
-		public Builder split(SplitProcessor v) {
+		public ObjectBuilder<Processor> split(SplitProcessor v) {
 			this._kind = Kind.Split;
 			this._value = v;
 			return this;
 		}
 
-		public Builder split(Consumer<SplitProcessor.Builder> fn) {
+		public ObjectBuilder<Processor> split(Consumer<SplitProcessor.Builder> fn) {
 			SplitProcessor.Builder builder = new SplitProcessor.Builder();
 			fn.accept(builder);
 			return this.split(builder.build());
 		}
 
-		public Builder trim(TrimProcessor v) {
+		public ObjectBuilder<Processor> trim(TrimProcessor v) {
 			this._kind = Kind.Trim;
 			this._value = v;
 			return this;
 		}
 
-		public Builder trim(Consumer<TrimProcessor.Builder> fn) {
+		public ObjectBuilder<Processor> trim(Consumer<TrimProcessor.Builder> fn) {
 			TrimProcessor.Builder builder = new TrimProcessor.Builder();
 			fn.accept(builder);
 			return this.trim(builder.build());
 		}
 
-		public Builder uppercase(UppercaseProcessor v) {
+		public ObjectBuilder<Processor> uppercase(UppercaseProcessor v) {
 			this._kind = Kind.Uppercase;
 			this._value = v;
 			return this;
 		}
 
-		public Builder uppercase(Consumer<UppercaseProcessor.Builder> fn) {
+		public ObjectBuilder<Processor> uppercase(Consumer<UppercaseProcessor.Builder> fn) {
 			UppercaseProcessor.Builder builder = new UppercaseProcessor.Builder();
 			fn.accept(builder);
 			return this.uppercase(builder.build());
 		}
 
-		public Builder urldecode(UrlDecodeProcessor v) {
+		public ObjectBuilder<Processor> urldecode(UrlDecodeProcessor v) {
 			this._kind = Kind.Urldecode;
 			this._value = v;
 			return this;
 		}
 
-		public Builder urldecode(Consumer<UrlDecodeProcessor.Builder> fn) {
+		public ObjectBuilder<Processor> urldecode(Consumer<UrlDecodeProcessor.Builder> fn) {
 			UrlDecodeProcessor.Builder builder = new UrlDecodeProcessor.Builder();
 			fn.accept(builder);
 			return this.urldecode(builder.build());
 		}
 
-		public Builder bytes(BytesProcessor v) {
+		public ObjectBuilder<Processor> bytes(BytesProcessor v) {
 			this._kind = Kind.Bytes;
 			this._value = v;
 			return this;
 		}
 
-		public Builder bytes(Consumer<BytesProcessor.Builder> fn) {
+		public ObjectBuilder<Processor> bytes(Consumer<BytesProcessor.Builder> fn) {
 			BytesProcessor.Builder builder = new BytesProcessor.Builder();
 			fn.accept(builder);
 			return this.bytes(builder.build());
 		}
 
-		public Builder dissect(DissectProcessor v) {
+		public ObjectBuilder<Processor> dissect(DissectProcessor v) {
 			this._kind = Kind.Dissect;
 			this._value = v;
 			return this;
 		}
 
-		public Builder dissect(Consumer<DissectProcessor.Builder> fn) {
+		public ObjectBuilder<Processor> dissect(Consumer<DissectProcessor.Builder> fn) {
 			DissectProcessor.Builder builder = new DissectProcessor.Builder();
 			fn.accept(builder);
 			return this.dissect(builder.build());
 		}
 
-		public Builder setSecurityUser(SetSecurityUserProcessor v) {
+		public ObjectBuilder<Processor> setSecurityUser(SetSecurityUserProcessor v) {
 			this._kind = Kind.SetSecurityUser;
 			this._value = v;
 			return this;
 		}
 
-		public Builder setSecurityUser(Consumer<SetSecurityUserProcessor.Builder> fn) {
+		public ObjectBuilder<Processor> setSecurityUser(Consumer<SetSecurityUserProcessor.Builder> fn) {
 			SetSecurityUserProcessor.Builder builder = new SetSecurityUserProcessor.Builder();
 			fn.accept(builder);
 			return this.setSecurityUser(builder.build());
 		}
 
-		public Builder pipeline(PipelineProcessor v) {
+		public ObjectBuilder<Processor> pipeline(PipelineProcessor v) {
 			this._kind = Kind.Pipeline;
 			this._value = v;
 			return this;
 		}
 
-		public Builder pipeline(Consumer<PipelineProcessor.Builder> fn) {
+		public ObjectBuilder<Processor> pipeline(Consumer<PipelineProcessor.Builder> fn) {
 			PipelineProcessor.Builder builder = new PipelineProcessor.Builder();
 			fn.accept(builder);
 			return this.pipeline(builder.build());
 		}
 
-		public Builder drop(DropProcessor v) {
+		public ObjectBuilder<Processor> drop(DropProcessor v) {
 			this._kind = Kind.Drop;
 			this._value = v;
 			return this;
 		}
 
-		public Builder drop(Consumer<DropProcessor.Builder> fn) {
+		public ObjectBuilder<Processor> drop(Consumer<DropProcessor.Builder> fn) {
 			DropProcessor.Builder builder = new DropProcessor.Builder();
 			fn.accept(builder);
 			return this.drop(builder.build());
 		}
 
-		public Builder circle(CircleProcessor v) {
+		public ObjectBuilder<Processor> circle(CircleProcessor v) {
 			this._kind = Kind.Circle;
 			this._value = v;
 			return this;
 		}
 
-		public Builder circle(Consumer<CircleProcessor.Builder> fn) {
+		public ObjectBuilder<Processor> circle(Consumer<CircleProcessor.Builder> fn) {
 			CircleProcessor.Builder builder = new CircleProcessor.Builder();
 			fn.accept(builder);
 			return this.circle(builder.build());
 		}
 
-		public Builder inference(InferenceProcessor v) {
+		public ObjectBuilder<Processor> inference(InferenceProcessor v) {
 			this._kind = Kind.Inference;
 			this._value = v;
 			return this;
 		}
 
-		public Builder inference(Consumer<InferenceProcessor.Builder> fn) {
+		public ObjectBuilder<Processor> inference(Consumer<InferenceProcessor.Builder> fn) {
 			InferenceProcessor.Builder builder = new InferenceProcessor.Builder();
 			fn.accept(builder);
 			return this.inference(builder.build());

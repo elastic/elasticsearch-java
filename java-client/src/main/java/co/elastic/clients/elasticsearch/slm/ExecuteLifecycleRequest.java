@@ -106,6 +106,8 @@ public class ExecuteLifecycleRequest extends RequestBase {
 	 * Endpoint "{@code slm.execute_lifecycle}".
 	 */
 	public static final Endpoint<ExecuteLifecycleRequest, ExecuteLifecycleResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/slm.execute_lifecycle",
+
 			// Request method
 			request -> {
 				return "PUT";

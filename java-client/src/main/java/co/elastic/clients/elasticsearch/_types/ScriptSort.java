@@ -21,9 +21,8 @@
 // THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
 //----------------------------------------------------
 
-package co.elastic.clients.elasticsearch.core.search;
+package co.elastic.clients.elasticsearch._types;
 
-import co.elastic.clients.elasticsearch._types.Script;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -38,7 +37,7 @@ import java.util.Objects;
 import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
-// typedef: _global.search._types.ScriptSort
+// typedef: _types.ScriptSort
 @JsonpDeserializable
 public class ScriptSort implements SortOptionsVariant, JsonpSerializable {
 	@Nullable

@@ -136,13 +136,13 @@ public class RetentionPolicy implements TaggedUnion<RetentionPolicy.Kind, Object
 		private Kind _kind;
 		private Object _value;
 
-		public Builder time(TimeRetentionPolicy v) {
+		public ObjectBuilder<RetentionPolicy> time(TimeRetentionPolicy v) {
 			this._kind = Kind.Time;
 			this._value = v;
 			return this;
 		}
 
-		public Builder time(Consumer<TimeRetentionPolicy.Builder> fn) {
+		public ObjectBuilder<RetentionPolicy> time(Consumer<TimeRetentionPolicy.Builder> fn) {
 			TimeRetentionPolicy.Builder builder = new TimeRetentionPolicy.Builder();
 			fn.accept(builder);
 			return this.time(builder.build());

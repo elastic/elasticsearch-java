@@ -175,37 +175,39 @@ public class DataframeEvaluation implements TaggedUnion<DataframeEvaluation.Kind
 		private Kind _kind;
 		private Object _value;
 
-		public Builder classification(DataframeEvaluationClassification v) {
+		public ObjectBuilder<DataframeEvaluation> classification(DataframeEvaluationClassification v) {
 			this._kind = Kind.Classification;
 			this._value = v;
 			return this;
 		}
 
-		public Builder classification(Consumer<DataframeEvaluationClassification.Builder> fn) {
+		public ObjectBuilder<DataframeEvaluation> classification(
+				Consumer<DataframeEvaluationClassification.Builder> fn) {
 			DataframeEvaluationClassification.Builder builder = new DataframeEvaluationClassification.Builder();
 			fn.accept(builder);
 			return this.classification(builder.build());
 		}
 
-		public Builder outlierDetection(DataframeEvaluationOutlierDetection v) {
+		public ObjectBuilder<DataframeEvaluation> outlierDetection(DataframeEvaluationOutlierDetection v) {
 			this._kind = Kind.OutlierDetection;
 			this._value = v;
 			return this;
 		}
 
-		public Builder outlierDetection(Consumer<DataframeEvaluationOutlierDetection.Builder> fn) {
+		public ObjectBuilder<DataframeEvaluation> outlierDetection(
+				Consumer<DataframeEvaluationOutlierDetection.Builder> fn) {
 			DataframeEvaluationOutlierDetection.Builder builder = new DataframeEvaluationOutlierDetection.Builder();
 			fn.accept(builder);
 			return this.outlierDetection(builder.build());
 		}
 
-		public Builder regression(DataframeEvaluationRegression v) {
+		public ObjectBuilder<DataframeEvaluation> regression(DataframeEvaluationRegression v) {
 			this._kind = Kind.Regression;
 			this._value = v;
 			return this;
 		}
 
-		public Builder regression(Consumer<DataframeEvaluationRegression.Builder> fn) {
+		public ObjectBuilder<DataframeEvaluation> regression(Consumer<DataframeEvaluationRegression.Builder> fn) {
 			DataframeEvaluationRegression.Builder builder = new DataframeEvaluationRegression.Builder();
 			fn.accept(builder);
 			return this.regression(builder.build());

@@ -148,6 +148,8 @@ public class SearchableSnapshotsStatsRequest extends RequestBase {
 	 * Endpoint "{@code searchable_snapshots.stats}".
 	 */
 	public static final Endpoint<SearchableSnapshotsStatsRequest, SearchableSnapshotsStatsResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/searchable_snapshots.stats",
+
 			// Request method
 			request -> {
 				return "GET";

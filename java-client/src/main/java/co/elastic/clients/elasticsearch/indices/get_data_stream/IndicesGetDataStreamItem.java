@@ -23,7 +23,7 @@
 
 package co.elastic.clients.elasticsearch.indices.get_data_stream;
 
-import co.elastic.clients.elasticsearch.indices.DataStreamHealthStatus;
+import co.elastic.clients.elasticsearch._types.HealthStatus;
 import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -65,7 +65,7 @@ public class IndicesGetDataStreamItem implements JsonpSerializable {
 	@Nullable
 	private final Boolean system;
 
-	private final DataStreamHealthStatus status;
+	private final HealthStatus status;
 
 	@Nullable
 	private final String ilmPolicy;
@@ -148,7 +148,7 @@ public class IndicesGetDataStreamItem implements JsonpSerializable {
 	/**
 	 * Required - API name: {@code status}
 	 */
-	public final DataStreamHealthStatus status() {
+	public final HealthStatus status() {
 		return this.status;
 	}
 
@@ -250,7 +250,7 @@ public class IndicesGetDataStreamItem implements JsonpSerializable {
 		@Nullable
 		private Boolean system;
 
-		private DataStreamHealthStatus status;
+		private HealthStatus status;
 
 		@Nullable
 		private String ilmPolicy;
@@ -342,7 +342,7 @@ public class IndicesGetDataStreamItem implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code status}
 		 */
-		public final Builder status(DataStreamHealthStatus value) {
+		public final Builder status(HealthStatus value) {
 			this.status = value;
 			return this;
 		}
@@ -395,7 +395,7 @@ public class IndicesGetDataStreamItem implements JsonpSerializable {
 		op.add(Builder::template, JsonpDeserializer.stringDeserializer(), "template");
 		op.add(Builder::hidden, JsonpDeserializer.booleanDeserializer(), "hidden");
 		op.add(Builder::system, JsonpDeserializer.booleanDeserializer(), "system");
-		op.add(Builder::status, DataStreamHealthStatus._DESERIALIZER, "status");
+		op.add(Builder::status, HealthStatus._DESERIALIZER, "status");
 		op.add(Builder::ilmPolicy, JsonpDeserializer.stringDeserializer(), "ilm_policy");
 		op.add(Builder::meta, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "_meta");
 

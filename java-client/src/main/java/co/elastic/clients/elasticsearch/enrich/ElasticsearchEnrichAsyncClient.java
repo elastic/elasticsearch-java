@@ -28,6 +28,7 @@ import co.elastic.clients.elasticsearch._types.ElasticsearchException;
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.transport.ElasticsearchTransport;
 import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.JsonEndpoint;
 import co.elastic.clients.transport.Transport;
 import co.elastic.clients.transport.TransportOptions;
 import co.elastic.clients.util.ObjectBuilder;
@@ -68,7 +69,7 @@ public class ElasticsearchEnrichAsyncClient extends ApiClient<ElasticsearchTrans
 	public CompletableFuture<DeletePolicyResponse> deletePolicy(DeletePolicyRequest request)
 			throws IOException, ElasticsearchException {
 		@SuppressWarnings("unchecked")
-		Endpoint<DeletePolicyRequest, DeletePolicyResponse, ErrorResponse> endpoint = (Endpoint<DeletePolicyRequest, DeletePolicyResponse, ErrorResponse>) DeletePolicyRequest._ENDPOINT;
+		JsonEndpoint<DeletePolicyRequest, DeletePolicyResponse, ErrorResponse> endpoint = (JsonEndpoint<DeletePolicyRequest, DeletePolicyResponse, ErrorResponse>) DeletePolicyRequest._ENDPOINT;
 
 		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
@@ -104,7 +105,7 @@ public class ElasticsearchEnrichAsyncClient extends ApiClient<ElasticsearchTrans
 	public CompletableFuture<ExecutePolicyResponse> executePolicy(ExecutePolicyRequest request)
 			throws IOException, ElasticsearchException {
 		@SuppressWarnings("unchecked")
-		Endpoint<ExecutePolicyRequest, ExecutePolicyResponse, ErrorResponse> endpoint = (Endpoint<ExecutePolicyRequest, ExecutePolicyResponse, ErrorResponse>) ExecutePolicyRequest._ENDPOINT;
+		JsonEndpoint<ExecutePolicyRequest, ExecutePolicyResponse, ErrorResponse> endpoint = (JsonEndpoint<ExecutePolicyRequest, ExecutePolicyResponse, ErrorResponse>) ExecutePolicyRequest._ENDPOINT;
 
 		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
@@ -140,7 +141,7 @@ public class ElasticsearchEnrichAsyncClient extends ApiClient<ElasticsearchTrans
 	public CompletableFuture<GetPolicyResponse> getPolicy(GetPolicyRequest request)
 			throws IOException, ElasticsearchException {
 		@SuppressWarnings("unchecked")
-		Endpoint<GetPolicyRequest, GetPolicyResponse, ErrorResponse> endpoint = (Endpoint<GetPolicyRequest, GetPolicyResponse, ErrorResponse>) GetPolicyRequest._ENDPOINT;
+		JsonEndpoint<GetPolicyRequest, GetPolicyResponse, ErrorResponse> endpoint = (JsonEndpoint<GetPolicyRequest, GetPolicyResponse, ErrorResponse>) GetPolicyRequest._ENDPOINT;
 
 		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
@@ -189,7 +190,7 @@ public class ElasticsearchEnrichAsyncClient extends ApiClient<ElasticsearchTrans
 	public CompletableFuture<PutPolicyResponse> putPolicy(PutPolicyRequest request)
 			throws IOException, ElasticsearchException {
 		@SuppressWarnings("unchecked")
-		Endpoint<PutPolicyRequest, PutPolicyResponse, ErrorResponse> endpoint = (Endpoint<PutPolicyRequest, PutPolicyResponse, ErrorResponse>) PutPolicyRequest._ENDPOINT;
+		JsonEndpoint<PutPolicyRequest, PutPolicyResponse, ErrorResponse> endpoint = (JsonEndpoint<PutPolicyRequest, PutPolicyResponse, ErrorResponse>) PutPolicyRequest._ENDPOINT;
 
 		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}

@@ -28,16 +28,20 @@ import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 
 @JsonpDeserializable
-public enum DefaultOperator implements JsonEnum {
-	And("AND"),
+public enum FieldSortNumericType implements JsonEnum {
+	Long("long"),
 
-	Or("OR"),
+	Double("double"),
+
+	Date("date"),
+
+	DateNanos("date_nanos"),
 
 	;
 
 	private final String jsonValue;
 
-	DefaultOperator(String jsonValue) {
+	FieldSortNumericType(String jsonValue) {
 		this.jsonValue = jsonValue;
 	}
 
@@ -45,6 +49,6 @@ public enum DefaultOperator implements JsonEnum {
 		return this.jsonValue;
 	}
 
-	public static final JsonEnum.Deserializer<DefaultOperator> _DESERIALIZER = new JsonEnum.Deserializer<>(
-			DefaultOperator.values());
+	public static final JsonEnum.Deserializer<FieldSortNumericType> _DESERIALIZER = new JsonEnum.Deserializer<>(
+			FieldSortNumericType.values());
 }

@@ -53,6 +53,8 @@ public class GetTrialStatusRequest extends RequestBase {
 	 * Endpoint "{@code license.get_trial_status}".
 	 */
 	public static final Endpoint<GetTrialStatusRequest, GetTrialStatusResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/license.get_trial_status",
+
 			// Request method
 			request -> {
 				return "GET";

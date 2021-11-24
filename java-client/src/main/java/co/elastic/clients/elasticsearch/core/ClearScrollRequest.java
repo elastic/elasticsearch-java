@@ -154,6 +154,8 @@ public class ClearScrollRequest extends RequestBase implements JsonpSerializable
 	 * Endpoint "{@code clear_scroll}".
 	 */
 	public static final Endpoint<ClearScrollRequest, ClearScrollResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/clear_scroll",
+
 			// Request method
 			request -> {
 				return "DELETE";

@@ -233,6 +233,8 @@ public class TranslateRequest extends RequestBase implements JsonpSerializable {
 	 * Endpoint "{@code sql.translate}".
 	 */
 	public static final Endpoint<TranslateRequest, TranslateResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/sql.translate",
+
 			// Request method
 			request -> {
 				return "POST";

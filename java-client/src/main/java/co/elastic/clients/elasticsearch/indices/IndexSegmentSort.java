@@ -47,11 +47,9 @@ public class IndexSegmentSort implements JsonpSerializable {
 
 	private final List<SegmentSortOrder> order;
 
-	@Nullable
-	private final SegmentSortMode mode;
+	private final List<SegmentSortMode> mode;
 
-	@Nullable
-	private final SegmentSortMissing missing;
+	private final List<SegmentSortMissing> missing;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -59,8 +57,8 @@ public class IndexSegmentSort implements JsonpSerializable {
 
 		this.field = ModelTypeHelper.unmodifiableRequired(builder.field, this, "field");
 		this.order = ModelTypeHelper.unmodifiableRequired(builder.order, this, "order");
-		this.mode = builder.mode;
-		this.missing = builder.missing;
+		this.mode = ModelTypeHelper.unmodifiable(builder.mode);
+		this.missing = ModelTypeHelper.unmodifiable(builder.missing);
 
 	}
 
@@ -87,16 +85,14 @@ public class IndexSegmentSort implements JsonpSerializable {
 	/**
 	 * API name: {@code mode}
 	 */
-	@Nullable
-	public final SegmentSortMode mode() {
+	public final List<SegmentSortMode> mode() {
 		return this.mode;
 	}
 
 	/**
 	 * API name: {@code missing}
 	 */
-	@Nullable
-	public final SegmentSortMissing missing() {
+	public final List<SegmentSortMissing> missing() {
 		return this.missing;
 	}
 
@@ -130,13 +126,23 @@ public class IndexSegmentSort implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (this.mode != null) {
+		if (ModelTypeHelper.isDefined(this.mode)) {
 			generator.writeKey("mode");
-			this.mode.serialize(generator, mapper);
+			generator.writeStartArray();
+			for (SegmentSortMode item0 : this.mode) {
+				item0.serialize(generator, mapper);
+			}
+			generator.writeEnd();
+
 		}
-		if (this.missing != null) {
+		if (ModelTypeHelper.isDefined(this.missing)) {
 			generator.writeKey("missing");
-			this.missing.serialize(generator, mapper);
+			generator.writeStartArray();
+			for (SegmentSortMissing item0 : this.missing) {
+				item0.serialize(generator, mapper);
+			}
+			generator.writeEnd();
+
 		}
 
 	}
@@ -152,10 +158,10 @@ public class IndexSegmentSort implements JsonpSerializable {
 		private List<SegmentSortOrder> order;
 
 		@Nullable
-		private SegmentSortMode mode;
+		private List<SegmentSortMode> mode;
 
 		@Nullable
-		private SegmentSortMissing missing;
+		private List<SegmentSortMissing> missing;
 
 		/**
 		 * Required - API name: {@code field}
@@ -192,16 +198,32 @@ public class IndexSegmentSort implements JsonpSerializable {
 		/**
 		 * API name: {@code mode}
 		 */
-		public final Builder mode(@Nullable SegmentSortMode value) {
+		public final Builder mode(@Nullable List<SegmentSortMode> value) {
 			this.mode = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code mode}
+		 */
+		public final Builder mode(SegmentSortMode... value) {
+			this.mode = Arrays.asList(value);
 			return this;
 		}
 
 		/**
 		 * API name: {@code missing}
 		 */
-		public final Builder missing(@Nullable SegmentSortMissing value) {
+		public final Builder missing(@Nullable List<SegmentSortMissing> value) {
 			this.missing = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code missing}
+		 */
+		public final Builder missing(SegmentSortMissing... value) {
+			this.missing = Arrays.asList(value);
 			return this;
 		}
 
@@ -230,8 +252,8 @@ public class IndexSegmentSort implements JsonpSerializable {
 
 		op.add(Builder::field, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "field");
 		op.add(Builder::order, JsonpDeserializer.arrayDeserializer(SegmentSortOrder._DESERIALIZER), "order");
-		op.add(Builder::mode, SegmentSortMode._DESERIALIZER, "mode");
-		op.add(Builder::missing, SegmentSortMissing._DESERIALIZER, "missing");
+		op.add(Builder::mode, JsonpDeserializer.arrayDeserializer(SegmentSortMode._DESERIALIZER), "mode");
+		op.add(Builder::missing, JsonpDeserializer.arrayDeserializer(SegmentSortMissing._DESERIALIZER), "missing");
 
 	}
 

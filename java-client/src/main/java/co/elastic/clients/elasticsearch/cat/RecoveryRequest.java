@@ -208,6 +208,8 @@ public class RecoveryRequest extends CatRequestBase {
 	 * Endpoint "{@code cat.recovery}".
 	 */
 	public static final Endpoint<RecoveryRequest, RecoveryResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/cat.recovery",
+
 			// Request method
 			request -> {
 				return "GET";

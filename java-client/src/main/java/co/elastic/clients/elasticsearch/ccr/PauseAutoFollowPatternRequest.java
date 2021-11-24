@@ -108,6 +108,8 @@ public class PauseAutoFollowPatternRequest extends RequestBase {
 	 * Endpoint "{@code ccr.pause_auto_follow_pattern}".
 	 */
 	public static final Endpoint<PauseAutoFollowPatternRequest, PauseAutoFollowPatternResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/ccr.pause_auto_follow_pattern",
+
 			// Request method
 			request -> {
 				return "POST";

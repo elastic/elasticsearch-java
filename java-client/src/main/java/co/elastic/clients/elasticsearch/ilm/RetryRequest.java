@@ -108,6 +108,8 @@ public class RetryRequest extends RequestBase {
 	 * Endpoint "{@code ilm.retry}".
 	 */
 	public static final Endpoint<RetryRequest, RetryResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/ilm.retry",
+
 			// Request method
 			request -> {
 				return "POST";

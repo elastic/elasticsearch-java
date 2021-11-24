@@ -138,6 +138,8 @@ public class MlDatafeedsRequest extends CatRequestBase {
 	 * Endpoint "{@code cat.ml_datafeeds}".
 	 */
 	public static final Endpoint<MlDatafeedsRequest, MlDatafeedsResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/cat.ml_datafeeds",
+
 			// Request method
 			request -> {
 				return "GET";

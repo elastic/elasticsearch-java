@@ -224,6 +224,8 @@ public class RefreshRequest extends RequestBase {
 	 * Endpoint "{@code indices.refresh}".
 	 */
 	public static final Endpoint<RefreshRequest, RefreshResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/indices.refresh",
+
 			// Request method
 			request -> {
 				return "POST";

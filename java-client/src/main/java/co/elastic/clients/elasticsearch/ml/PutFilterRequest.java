@@ -206,6 +206,8 @@ public class PutFilterRequest extends RequestBase implements JsonpSerializable {
 	 * Endpoint "{@code ml.put_filter}".
 	 */
 	public static final Endpoint<PutFilterRequest, PutFilterResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/ml.put_filter",
+
 			// Request method
 			request -> {
 				return "PUT";

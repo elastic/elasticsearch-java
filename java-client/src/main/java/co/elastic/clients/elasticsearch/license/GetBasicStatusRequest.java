@@ -53,6 +53,8 @@ public class GetBasicStatusRequest extends RequestBase {
 	 * Endpoint "{@code license.get_basic_status}".
 	 */
 	public static final Endpoint<GetBasicStatusRequest, GetBasicStatusResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/license.get_basic_status",
+
 			// Request method
 			request -> {
 				return "GET";

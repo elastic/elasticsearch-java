@@ -260,6 +260,8 @@ public class EstimateModelMemoryRequest extends RequestBase implements JsonpSeri
 	 * Endpoint "{@code ml.estimate_model_memory}".
 	 */
 	public static final Endpoint<EstimateModelMemoryRequest, EstimateModelMemoryResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/ml.estimate_model_memory",
+
 			// Request method
 			request -> {
 				return "POST";

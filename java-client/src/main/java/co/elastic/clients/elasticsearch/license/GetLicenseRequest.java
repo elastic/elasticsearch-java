@@ -140,6 +140,8 @@ public class GetLicenseRequest extends RequestBase {
 	 * Endpoint "{@code license.get}".
 	 */
 	public static final Endpoint<GetLicenseRequest, GetLicenseResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/license.get",
+
 			// Request method
 			request -> {
 				return "GET";

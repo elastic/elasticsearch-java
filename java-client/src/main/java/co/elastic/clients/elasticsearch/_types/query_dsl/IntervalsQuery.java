@@ -267,73 +267,73 @@ public class IntervalsQuery extends QueryBase
 		protected Builder self() {
 			return this;
 		}
-		public Builder allOf(IntervalsAllOf v) {
+		public ObjectBuilder<IntervalsQuery> allOf(IntervalsAllOf v) {
 			this._kind = Kind.AllOf;
 			this._value = v;
 			return this;
 		}
 
-		public Builder allOf(Consumer<IntervalsAllOf.Builder> fn) {
+		public ObjectBuilder<IntervalsQuery> allOf(Consumer<IntervalsAllOf.Builder> fn) {
 			IntervalsAllOf.Builder builder = new IntervalsAllOf.Builder();
 			fn.accept(builder);
 			return this.allOf(builder.build());
 		}
 
-		public Builder anyOf(IntervalsAnyOf v) {
+		public ObjectBuilder<IntervalsQuery> anyOf(IntervalsAnyOf v) {
 			this._kind = Kind.AnyOf;
 			this._value = v;
 			return this;
 		}
 
-		public Builder anyOf(Consumer<IntervalsAnyOf.Builder> fn) {
+		public ObjectBuilder<IntervalsQuery> anyOf(Consumer<IntervalsAnyOf.Builder> fn) {
 			IntervalsAnyOf.Builder builder = new IntervalsAnyOf.Builder();
 			fn.accept(builder);
 			return this.anyOf(builder.build());
 		}
 
-		public Builder fuzzy(IntervalsFuzzy v) {
+		public ObjectBuilder<IntervalsQuery> fuzzy(IntervalsFuzzy v) {
 			this._kind = Kind.Fuzzy;
 			this._value = v;
 			return this;
 		}
 
-		public Builder fuzzy(Consumer<IntervalsFuzzy.Builder> fn) {
+		public ObjectBuilder<IntervalsQuery> fuzzy(Consumer<IntervalsFuzzy.Builder> fn) {
 			IntervalsFuzzy.Builder builder = new IntervalsFuzzy.Builder();
 			fn.accept(builder);
 			return this.fuzzy(builder.build());
 		}
 
-		public Builder match(IntervalsMatch v) {
+		public ObjectBuilder<IntervalsQuery> match(IntervalsMatch v) {
 			this._kind = Kind.Match;
 			this._value = v;
 			return this;
 		}
 
-		public Builder match(Consumer<IntervalsMatch.Builder> fn) {
+		public ObjectBuilder<IntervalsQuery> match(Consumer<IntervalsMatch.Builder> fn) {
 			IntervalsMatch.Builder builder = new IntervalsMatch.Builder();
 			fn.accept(builder);
 			return this.match(builder.build());
 		}
 
-		public Builder prefix(IntervalsPrefix v) {
+		public ObjectBuilder<IntervalsQuery> prefix(IntervalsPrefix v) {
 			this._kind = Kind.Prefix;
 			this._value = v;
 			return this;
 		}
 
-		public Builder prefix(Consumer<IntervalsPrefix.Builder> fn) {
+		public ObjectBuilder<IntervalsQuery> prefix(Consumer<IntervalsPrefix.Builder> fn) {
 			IntervalsPrefix.Builder builder = new IntervalsPrefix.Builder();
 			fn.accept(builder);
 			return this.prefix(builder.build());
 		}
 
-		public Builder wildcard(IntervalsWildcard v) {
+		public ObjectBuilder<IntervalsQuery> wildcard(IntervalsWildcard v) {
 			this._kind = Kind.Wildcard;
 			this._value = v;
 			return this;
 		}
 
-		public Builder wildcard(Consumer<IntervalsWildcard.Builder> fn) {
+		public ObjectBuilder<IntervalsQuery> wildcard(Consumer<IntervalsWildcard.Builder> fn) {
 			IntervalsWildcard.Builder builder = new IntervalsWildcard.Builder();
 			fn.accept(builder);
 			return this.wildcard(builder.build());

@@ -106,6 +106,8 @@ public class PutNodeRequest extends RequestBase {
 	 * Endpoint "{@code shutdown.put_node}".
 	 */
 	public static final Endpoint<PutNodeRequest, PutNodeResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/shutdown.put_node",
+
 			// Request method
 			request -> {
 				return "PUT";

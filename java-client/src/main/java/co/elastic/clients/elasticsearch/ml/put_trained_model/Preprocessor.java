@@ -177,37 +177,37 @@ public class Preprocessor implements TaggedUnion<Preprocessor.Kind, Object>, Jso
 		private Kind _kind;
 		private Object _value;
 
-		public Builder frequencyEncoding(FrequencyEncodingPreprocessor v) {
+		public ObjectBuilder<Preprocessor> frequencyEncoding(FrequencyEncodingPreprocessor v) {
 			this._kind = Kind.FrequencyEncoding;
 			this._value = v;
 			return this;
 		}
 
-		public Builder frequencyEncoding(Consumer<FrequencyEncodingPreprocessor.Builder> fn) {
+		public ObjectBuilder<Preprocessor> frequencyEncoding(Consumer<FrequencyEncodingPreprocessor.Builder> fn) {
 			FrequencyEncodingPreprocessor.Builder builder = new FrequencyEncodingPreprocessor.Builder();
 			fn.accept(builder);
 			return this.frequencyEncoding(builder.build());
 		}
 
-		public Builder oneHotEncoding(OneHotEncodingPreprocessor v) {
+		public ObjectBuilder<Preprocessor> oneHotEncoding(OneHotEncodingPreprocessor v) {
 			this._kind = Kind.OneHotEncoding;
 			this._value = v;
 			return this;
 		}
 
-		public Builder oneHotEncoding(Consumer<OneHotEncodingPreprocessor.Builder> fn) {
+		public ObjectBuilder<Preprocessor> oneHotEncoding(Consumer<OneHotEncodingPreprocessor.Builder> fn) {
 			OneHotEncodingPreprocessor.Builder builder = new OneHotEncodingPreprocessor.Builder();
 			fn.accept(builder);
 			return this.oneHotEncoding(builder.build());
 		}
 
-		public Builder targetMeanEncoding(TargetMeanEncodingPreprocessor v) {
+		public ObjectBuilder<Preprocessor> targetMeanEncoding(TargetMeanEncodingPreprocessor v) {
 			this._kind = Kind.TargetMeanEncoding;
 			this._value = v;
 			return this;
 		}
 
-		public Builder targetMeanEncoding(Consumer<TargetMeanEncodingPreprocessor.Builder> fn) {
+		public ObjectBuilder<Preprocessor> targetMeanEncoding(Consumer<TargetMeanEncodingPreprocessor.Builder> fn) {
 			TargetMeanEncodingPreprocessor.Builder builder = new TargetMeanEncodingPreprocessor.Builder();
 			fn.accept(builder);
 			return this.targetMeanEncoding(builder.build());

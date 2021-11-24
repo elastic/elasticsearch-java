@@ -202,6 +202,8 @@ public class UpgradeJobSnapshotRequest extends RequestBase {
 	 * Endpoint "{@code ml.upgrade_job_snapshot}".
 	 */
 	public static final Endpoint<UpgradeJobSnapshotRequest, UpgradeJobSnapshotResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/ml.upgrade_job_snapshot",
+
 			// Request method
 			request -> {
 				return "POST";

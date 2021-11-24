@@ -23,6 +23,7 @@
 
 package co.elastic.clients.elasticsearch.watcher;
 
+import co.elastic.clients.elasticsearch._types.IndicesOptions;
 import co.elastic.clients.elasticsearch._types.SearchType;
 import co.elastic.clients.elasticsearch.core.SearchTemplateRequest;
 import co.elastic.clients.json.JsonpDeserializable;

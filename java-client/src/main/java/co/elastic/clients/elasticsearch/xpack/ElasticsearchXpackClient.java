@@ -28,6 +28,7 @@ import co.elastic.clients.elasticsearch._types.ElasticsearchException;
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.transport.ElasticsearchTransport;
 import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.JsonEndpoint;
 import co.elastic.clients.transport.Transport;
 import co.elastic.clients.transport.TransportOptions;
 import co.elastic.clients.util.ObjectBuilder;
@@ -65,7 +66,7 @@ public class ElasticsearchXpackClient extends ApiClient<ElasticsearchTransport, 
 
 	public XpackInfoResponse info(XpackInfoRequest request) throws IOException, ElasticsearchException {
 		@SuppressWarnings("unchecked")
-		Endpoint<XpackInfoRequest, XpackInfoResponse, ErrorResponse> endpoint = (Endpoint<XpackInfoRequest, XpackInfoResponse, ErrorResponse>) XpackInfoRequest._ENDPOINT;
+		JsonEndpoint<XpackInfoRequest, XpackInfoResponse, ErrorResponse> endpoint = (JsonEndpoint<XpackInfoRequest, XpackInfoResponse, ErrorResponse>) XpackInfoRequest._ENDPOINT;
 
 		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
@@ -113,7 +114,7 @@ public class ElasticsearchXpackClient extends ApiClient<ElasticsearchTransport, 
 
 	public XpackUsageResponse usage(XpackUsageRequest request) throws IOException, ElasticsearchException {
 		@SuppressWarnings("unchecked")
-		Endpoint<XpackUsageRequest, XpackUsageResponse, ErrorResponse> endpoint = (Endpoint<XpackUsageRequest, XpackUsageResponse, ErrorResponse>) XpackUsageRequest._ENDPOINT;
+		JsonEndpoint<XpackUsageRequest, XpackUsageResponse, ErrorResponse> endpoint = (JsonEndpoint<XpackUsageRequest, XpackUsageResponse, ErrorResponse>) XpackUsageRequest._ENDPOINT;
 
 		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}

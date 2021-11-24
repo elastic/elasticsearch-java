@@ -146,6 +146,8 @@ public class StopIlmRequest extends RequestBase {
 	 * Endpoint "{@code ilm.stop}".
 	 */
 	public static final Endpoint<StopIlmRequest, StopIlmResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/ilm.stop",
+
 			// Request method
 			request -> {
 				return "POST";

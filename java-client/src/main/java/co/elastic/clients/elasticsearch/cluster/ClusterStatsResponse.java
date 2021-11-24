@@ -23,6 +23,7 @@
 
 package co.elastic.clients.elasticsearch.cluster;
 
+import co.elastic.clients.elasticsearch._types.HealthStatus;
 import co.elastic.clients.elasticsearch.cluster.stats.ClusterIndices;
 import co.elastic.clients.elasticsearch.cluster.stats.ClusterNodes;
 import co.elastic.clients.elasticsearch.nodes.NodesResponseBase;
@@ -51,7 +52,7 @@ public class ClusterStatsResponse extends NodesResponseBase {
 
 	private final ClusterNodes nodes;
 
-	private final ClusterStatus status;
+	private final HealthStatus status;
 
 	private final long timestamp;
 
@@ -119,7 +120,7 @@ public class ClusterStatsResponse extends NodesResponseBase {
 	 * <p>
 	 * API name: {@code status}
 	 */
-	public final ClusterStatus status() {
+	public final HealthStatus status() {
 		return this.status;
 	}
 
@@ -171,7 +172,7 @@ public class ClusterStatsResponse extends NodesResponseBase {
 
 		private ClusterNodes nodes;
 
-		private ClusterStatus status;
+		private HealthStatus status;
 
 		private Long timestamp;
 
@@ -247,7 +248,7 @@ public class ClusterStatsResponse extends NodesResponseBase {
 		 * <p>
 		 * API name: {@code status}
 		 */
-		public final Builder status(ClusterStatus value) {
+		public final Builder status(HealthStatus value) {
 			this.status = value;
 			return this;
 		}
@@ -295,7 +296,7 @@ public class ClusterStatsResponse extends NodesResponseBase {
 		op.add(Builder::clusterUuid, JsonpDeserializer.stringDeserializer(), "cluster_uuid");
 		op.add(Builder::indices, ClusterIndices._DESERIALIZER, "indices");
 		op.add(Builder::nodes, ClusterNodes._DESERIALIZER, "nodes");
-		op.add(Builder::status, ClusterStatus._DESERIALIZER, "status");
+		op.add(Builder::status, HealthStatus._DESERIALIZER, "status");
 		op.add(Builder::timestamp, JsonpDeserializer.longDeserializer(), "timestamp");
 
 	}

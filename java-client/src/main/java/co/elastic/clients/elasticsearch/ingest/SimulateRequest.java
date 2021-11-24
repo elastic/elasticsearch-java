@@ -257,6 +257,8 @@ public class SimulateRequest extends RequestBase implements JsonpSerializable {
 	 * Endpoint "{@code ingest.simulate}".
 	 */
 	public static final Endpoint<SimulateRequest, SimulateResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/ingest.simulate",
+
 			// Request method
 			request -> {
 				return "POST";

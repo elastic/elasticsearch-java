@@ -218,6 +218,8 @@ public class GetApiKeyRequest extends RequestBase {
 	 * Endpoint "{@code security.get_api_key}".
 	 */
 	public static final Endpoint<GetApiKeyRequest, GetApiKeyResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/security.get_api_key",
+
 			// Request method
 			request -> {
 				return "GET";

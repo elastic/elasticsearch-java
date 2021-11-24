@@ -167,6 +167,8 @@ public class ClearCachedServiceTokensRequest extends RequestBase {
 	 * Endpoint "{@code security.clear_cached_service_tokens}".
 	 */
 	public static final Endpoint<ClearCachedServiceTokensRequest, ClearCachedServiceTokensResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/security.clear_cached_service_tokens",
+
 			// Request method
 			request -> {
 				return "POST";

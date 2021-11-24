@@ -287,6 +287,8 @@ public class CloseJobRequest extends RequestBase implements JsonpSerializable {
 	 * Endpoint "{@code ml.close_job}".
 	 */
 	public static final Endpoint<CloseJobRequest, CloseJobResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/ml.close_job",
+
 			// Request method
 			request -> {
 				return "POST";

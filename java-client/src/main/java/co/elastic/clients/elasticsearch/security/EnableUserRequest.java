@@ -141,6 +141,8 @@ public class EnableUserRequest extends RequestBase {
 	 * Endpoint "{@code security.enable_user}".
 	 */
 	public static final Endpoint<EnableUserRequest, EnableUserResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/security.enable_user",
+
 			// Request method
 			request -> {
 				return "PUT";

@@ -106,6 +106,8 @@ public class StartJobRequest extends RequestBase {
 	 * Endpoint "{@code rollup.start_job}".
 	 */
 	public static final Endpoint<StartJobRequest, StartJobResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/rollup.start_job",
+
 			// Request method
 			request -> {
 				return "POST";

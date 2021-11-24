@@ -247,6 +247,8 @@ public class GetDataFrameAnalyticsStatsRequest extends RequestBase {
 	 * Endpoint "{@code ml.get_data_frame_analytics_stats}".
 	 */
 	public static final Endpoint<GetDataFrameAnalyticsStatsRequest, GetDataFrameAnalyticsStatsResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/ml.get_data_frame_analytics_stats",
+
 			// Request method
 			request -> {
 				return "GET";

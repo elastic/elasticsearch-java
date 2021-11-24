@@ -54,6 +54,9 @@ public class IndexState implements JsonpSerializable {
 	private final IndexSettings settings;
 
 	@Nullable
+	private final IndexSettings defaults;
+
+	@Nullable
 	private final String dataStream;
 
 	// ---------------------------------------------------------------------------------------------
@@ -63,6 +66,7 @@ public class IndexState implements JsonpSerializable {
 		this.aliases = ModelTypeHelper.unmodifiable(builder.aliases);
 		this.mappings = builder.mappings;
 		this.settings = builder.settings;
+		this.defaults = builder.defaults;
 		this.dataStream = builder.dataStream;
 
 	}
@@ -94,6 +98,17 @@ public class IndexState implements JsonpSerializable {
 	@Nullable
 	public final IndexSettings settings() {
 		return this.settings;
+	}
+
+	/**
+	 * Default settings, included when the request's <code>include_default</code> is
+	 * <code>true</code>.
+	 * <p>
+	 * API name: {@code defaults}
+	 */
+	@Nullable
+	public final IndexSettings defaults() {
+		return this.defaults;
 	}
 
 	/**
@@ -136,6 +151,11 @@ public class IndexState implements JsonpSerializable {
 			this.settings.serialize(generator, mapper);
 
 		}
+		if (this.defaults != null) {
+			generator.writeKey("defaults");
+			this.defaults.serialize(generator, mapper);
+
+		}
 		if (this.dataStream != null) {
 			generator.writeKey("data_stream");
 			generator.write(this.dataStream);
@@ -158,6 +178,9 @@ public class IndexState implements JsonpSerializable {
 
 		@Nullable
 		private IndexSettings settings;
+
+		@Nullable
+		private IndexSettings defaults;
 
 		@Nullable
 		private String dataStream;
@@ -210,6 +233,29 @@ public class IndexState implements JsonpSerializable {
 		}
 
 		/**
+		 * Default settings, included when the request's <code>include_default</code> is
+		 * <code>true</code>.
+		 * <p>
+		 * API name: {@code defaults}
+		 */
+		public final Builder defaults(@Nullable IndexSettings value) {
+			this.defaults = value;
+			return this;
+		}
+
+		/**
+		 * Default settings, included when the request's <code>include_default</code> is
+		 * <code>true</code>.
+		 * <p>
+		 * API name: {@code defaults}
+		 */
+		public final Builder defaults(Consumer<IndexSettings.Builder> fn) {
+			IndexSettings.Builder builder = new IndexSettings.Builder();
+			fn.accept(builder);
+			return this.defaults(builder.build());
+		}
+
+		/**
 		 * API name: {@code data_stream}
 		 */
 		public final Builder dataStream(@Nullable String value) {
@@ -243,6 +289,7 @@ public class IndexState implements JsonpSerializable {
 		op.add(Builder::aliases, JsonpDeserializer.stringMapDeserializer(Alias._DESERIALIZER), "aliases");
 		op.add(Builder::mappings, TypeMapping._DESERIALIZER, "mappings");
 		op.add(Builder::settings, IndexSettings._DESERIALIZER, "settings");
+		op.add(Builder::defaults, IndexSettings._DESERIALIZER, "defaults");
 		op.add(Builder::dataStream, JsonpDeserializer.stringDeserializer(), "data_stream");
 
 	}

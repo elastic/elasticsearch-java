@@ -21,11 +21,8 @@
 // THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
 //----------------------------------------------------
 
-package co.elastic.clients.elasticsearch.core.search;
+package co.elastic.clients.elasticsearch._types;
 
-import co.elastic.clients.elasticsearch._types.DistanceUnit;
-import co.elastic.clients.elasticsearch._types.GeoDistanceType;
-import co.elastic.clients.elasticsearch._types.GeoLocation;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -46,12 +43,12 @@ import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
-// typedef: _global.search._types.GeoDistanceSort
+// typedef: _types.GeoDistanceSort
 @JsonpDeserializable
 public class GeoDistanceSort implements SortOptionsVariant, JsonpSerializable {
 	private final String field;
 
-	private final List<GeoLocation> value;
+	private final List<GeoLocation> location;
 
 	@Nullable
 	private final SortMode mode;
@@ -73,7 +70,7 @@ public class GeoDistanceSort implements SortOptionsVariant, JsonpSerializable {
 	private GeoDistanceSort(Builder builder) {
 
 		this.field = ModelTypeHelper.requireNonNull(builder.field, this, "field");
-		this.value = ModelTypeHelper.unmodifiableRequired(builder.value, this, "value");
+		this.location = ModelTypeHelper.unmodifiableRequired(builder.location, this, "location");
 
 		this.mode = builder.mode;
 		this.distanceType = builder.distanceType;
@@ -107,8 +104,8 @@ public class GeoDistanceSort implements SortOptionsVariant, JsonpSerializable {
 	/**
 	 * Required -
 	 */
-	public final List<GeoLocation> value() {
-		return this.value;
+	public final List<GeoLocation> location() {
+		return this.location;
 	}
 
 	/**
@@ -163,7 +160,7 @@ public class GeoDistanceSort implements SortOptionsVariant, JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeKey(this.field);
 		generator.writeStartArray();
-		for (GeoLocation item0 : this.value) {
+		for (GeoLocation item0 : this.location) {
 			item0.serialize(generator, mapper);
 
 		}
@@ -201,7 +198,7 @@ public class GeoDistanceSort implements SortOptionsVariant, JsonpSerializable {
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GeoDistanceSort> {
 		private String field;
 
-		private List<GeoLocation> value;
+		private List<GeoLocation> location;
 
 		/**
 		 * Required -
@@ -214,25 +211,25 @@ public class GeoDistanceSort implements SortOptionsVariant, JsonpSerializable {
 		/**
 		 * Required -
 		 */
-		public final Builder value(List<GeoLocation> value) {
-			this.value = value;
+		public final Builder location(List<GeoLocation> value) {
+			this.location = value;
 			return this;
 		}
 
 		/**
 		 * Required -
 		 */
-		public final Builder value(GeoLocation... value) {
-			this.value = Arrays.asList(value);
+		public final Builder location(GeoLocation... value) {
+			this.location = Arrays.asList(value);
 			return this;
 		}
 
 		/**
 		 * Required -
 		 */
-		public final Builder value(
+		public final Builder location(
 				Function<ListBuilder<GeoLocation, GeoLocation.Builder>, ObjectBuilder<List<GeoLocation>>> fn) {
-			return value(fn.apply(new ListBuilder<>(GeoLocation.Builder::new)).build());
+			return location(fn.apply(new ListBuilder<>(GeoLocation.Builder::new)).build());
 		}
 
 		@Nullable
@@ -321,7 +318,8 @@ public class GeoDistanceSort implements SortOptionsVariant, JsonpSerializable {
 
 		op.setUnknownFieldHandler((builder, name, parser, mapper) -> {
 			builder.field(name);
-			builder.value(JsonpDeserializer.arrayDeserializer(GeoLocation._DESERIALIZER).deserialize(parser, mapper));
+			builder.location(
+					JsonpDeserializer.arrayDeserializer(GeoLocation._DESERIALIZER).deserialize(parser, mapper));
 		});
 
 	}

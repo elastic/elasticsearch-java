@@ -23,7 +23,7 @@
 
 package co.elastic.clients.elasticsearch.cluster.health;
 
-import co.elastic.clients.elasticsearch._types.Health;
+import co.elastic.clients.elasticsearch._types.HealthStatus;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -60,7 +60,7 @@ public class IndexHealthStats implements JsonpSerializable {
 
 	private final Map<String, ShardHealthStats> shards;
 
-	private final Health status;
+	private final HealthStatus status;
 
 	private final int unassignedShards;
 
@@ -140,7 +140,7 @@ public class IndexHealthStats implements JsonpSerializable {
 	/**
 	 * Required - API name: {@code status}
 	 */
-	public final Health status() {
+	public final HealthStatus status() {
 		return this.status;
 	}
 
@@ -219,7 +219,7 @@ public class IndexHealthStats implements JsonpSerializable {
 		@Nullable
 		private Map<String, ShardHealthStats> shards;
 
-		private Health status;
+		private HealthStatus status;
 
 		private Integer unassignedShards;
 
@@ -287,7 +287,7 @@ public class IndexHealthStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code status}
 		 */
-		public final Builder status(Health value) {
+		public final Builder status(HealthStatus value) {
 			this.status = value;
 			return this;
 		}
@@ -330,7 +330,7 @@ public class IndexHealthStats implements JsonpSerializable {
 		op.add(Builder::numberOfShards, JsonpDeserializer.integerDeserializer(), "number_of_shards");
 		op.add(Builder::relocatingShards, JsonpDeserializer.integerDeserializer(), "relocating_shards");
 		op.add(Builder::shards, JsonpDeserializer.stringMapDeserializer(ShardHealthStats._DESERIALIZER), "shards");
-		op.add(Builder::status, Health._DESERIALIZER, "status");
+		op.add(Builder::status, HealthStatus._DESERIALIZER, "status");
 		op.add(Builder::unassignedShards, JsonpDeserializer.integerDeserializer(), "unassigned_shards");
 
 	}

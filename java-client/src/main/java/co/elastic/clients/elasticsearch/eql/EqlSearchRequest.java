@@ -689,7 +689,8 @@ public class EqlSearchRequest extends RequestBase implements JsonpSerializable {
 	/**
 	 * Endpoint "{@code eql.search}".
 	 */
-	public static final SimpleEndpoint<EqlSearchRequest, ?> _ENDPOINT = new SimpleEndpoint<>(
+	public static final SimpleEndpoint<EqlSearchRequest, ?> _ENDPOINT = new SimpleEndpoint<>("es/eql.search",
+
 			// Request method
 			request -> {
 				return "POST";

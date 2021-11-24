@@ -264,6 +264,8 @@ public class StopTransformRequest extends RequestBase {
 	 * Endpoint "{@code transform.stop_transform}".
 	 */
 	public static final Endpoint<StopTransformRequest, StopTransformResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/transform.stop_transform",
+
 			// Request method
 			request -> {
 				return "POST";

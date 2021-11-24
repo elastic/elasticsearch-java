@@ -108,6 +108,8 @@ public class PauseFollowRequest extends RequestBase {
 	 * Endpoint "{@code ccr.pause_follow}".
 	 */
 	public static final Endpoint<PauseFollowRequest, PauseFollowResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/ccr.pause_follow",
+
 			// Request method
 			request -> {
 				return "POST";

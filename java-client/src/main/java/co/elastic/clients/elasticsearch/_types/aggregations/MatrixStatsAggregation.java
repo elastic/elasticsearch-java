@@ -23,6 +23,7 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
+import co.elastic.clients.elasticsearch._types.SortMode;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -38,7 +39,7 @@ import javax.annotation.Nullable;
 @JsonpDeserializable
 public class MatrixStatsAggregation extends MatrixAggregation implements AggregationVariant {
 	@Nullable
-	private final MatrixStatsMode mode;
+	private final SortMode mode;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -67,7 +68,7 @@ public class MatrixStatsAggregation extends MatrixAggregation implements Aggrega
 	 * API name: {@code mode}
 	 */
 	@Nullable
-	public final MatrixStatsMode mode() {
+	public final SortMode mode() {
 		return this.mode;
 	}
 
@@ -90,12 +91,12 @@ public class MatrixStatsAggregation extends MatrixAggregation implements Aggrega
 			implements
 				ObjectBuilder<MatrixStatsAggregation> {
 		@Nullable
-		private MatrixStatsMode mode;
+		private SortMode mode;
 
 		/**
 		 * API name: {@code mode}
 		 */
-		public final Builder mode(@Nullable MatrixStatsMode value) {
+		public final Builder mode(@Nullable SortMode value) {
 			this.mode = value;
 			return this;
 		}
@@ -129,7 +130,7 @@ public class MatrixStatsAggregation extends MatrixAggregation implements Aggrega
 	protected static void setupMatrixStatsAggregationDeserializer(
 			ObjectDeserializer<MatrixStatsAggregation.Builder> op) {
 		MatrixAggregation.setupMatrixAggregationDeserializer(op);
-		op.add(Builder::mode, MatrixStatsMode._DESERIALIZER, "mode");
+		op.add(Builder::mode, SortMode._DESERIALIZER, "mode");
 
 	}
 

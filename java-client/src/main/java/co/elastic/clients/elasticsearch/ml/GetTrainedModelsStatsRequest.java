@@ -208,6 +208,8 @@ public class GetTrainedModelsStatsRequest extends RequestBase {
 	 * Endpoint "{@code ml.get_trained_models_stats}".
 	 */
 	public static final Endpoint<GetTrainedModelsStatsRequest, GetTrainedModelsStatsResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/ml.get_trained_models_stats",
+
 			// Request method
 			request -> {
 				return "GET";

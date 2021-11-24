@@ -70,7 +70,7 @@ public class Buckets<TBucket> implements TaggedUnion<Buckets.Kind, Object>, Json
 
 	private final JsonpSerializer<TBucket> tBucketSerializer = null;
 
-	public Buckets(Kind kind, Object value) {
+	private Buckets(Kind kind, Object value) {
 		this._kind = kind;
 		this._value = value;
 	}
@@ -156,13 +156,13 @@ public class Buckets<TBucket> implements TaggedUnion<Buckets.Kind, Object>, Json
 		private Kind _kind;
 		private Object _value;
 
-		public Builder<TBucket> array(List<TBucket> v) {
+		public ObjectBuilder<Buckets<TBucket>> array(List<TBucket> v) {
 			this._kind = Kind.Array;
 			this._value = v;
 			return this;
 		}
 
-		public Builder<TBucket> keyed(Map<String, TBucket> v) {
+		public ObjectBuilder<Buckets<TBucket>> keyed(Map<String, TBucket> v) {
 			this._kind = Kind.Keyed;
 			this._value = v;
 			return this;

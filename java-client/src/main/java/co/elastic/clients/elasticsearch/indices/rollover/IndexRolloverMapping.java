@@ -66,7 +66,7 @@ public class IndexRolloverMapping implements TaggedUnion<IndexRolloverMapping.Ki
 		return _value;
 	}
 
-	public IndexRolloverMapping(Kind kind, Object value) {
+	private IndexRolloverMapping(Kind kind, Object value) {
 		this._kind = kind;
 		this._value = value;
 	}
@@ -143,19 +143,19 @@ public class IndexRolloverMapping implements TaggedUnion<IndexRolloverMapping.Ki
 		private Kind _kind;
 		private Object _value;
 
-		public Builder byType(Map<String, TypeMapping> v) {
+		public ObjectBuilder<IndexRolloverMapping> byType(Map<String, TypeMapping> v) {
 			this._kind = Kind.ByType;
 			this._value = v;
 			return this;
 		}
 
-		public Builder single(TypeMapping v) {
+		public ObjectBuilder<IndexRolloverMapping> single(TypeMapping v) {
 			this._kind = Kind.Single;
 			this._value = v;
 			return this;
 		}
 
-		public Builder single(Consumer<TypeMapping.Builder> fn) {
+		public ObjectBuilder<IndexRolloverMapping> single(Consumer<TypeMapping.Builder> fn) {
 			TypeMapping.Builder builder = new TypeMapping.Builder();
 			fn.accept(builder);
 			return this.single(builder.build());

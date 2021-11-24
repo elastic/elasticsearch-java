@@ -300,6 +300,8 @@ public class InvalidateApiKeyRequest extends RequestBase implements JsonpSeriali
 	 * Endpoint "{@code security.invalidate_api_key}".
 	 */
 	public static final Endpoint<InvalidateApiKeyRequest, InvalidateApiKeyResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/security.invalidate_api_key",
+
 			// Request method
 			request -> {
 				return "DELETE";

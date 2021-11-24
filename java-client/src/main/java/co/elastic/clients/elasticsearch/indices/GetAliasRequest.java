@@ -285,6 +285,8 @@ public class GetAliasRequest extends RequestBase {
 	 * Endpoint "{@code indices.get_alias}".
 	 */
 	public static final Endpoint<GetAliasRequest, GetAliasResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/indices.get_alias",
+
 			// Request method
 			request -> {
 				return "GET";

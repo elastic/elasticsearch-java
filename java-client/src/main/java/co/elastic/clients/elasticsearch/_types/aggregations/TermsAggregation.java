@@ -24,7 +24,7 @@
 package co.elastic.clients.elasticsearch._types.aggregations;
 
 import co.elastic.clients.elasticsearch._types.Script;
-import co.elastic.clients.elasticsearch.core.search.SortOrder;
+import co.elastic.clients.elasticsearch._types.SortOrder;
 import co.elastic.clients.elasticsearch.transform.PivotGroupBy;
 import co.elastic.clients.elasticsearch.transform.PivotGroupByVariant;
 import co.elastic.clients.json.JsonpDeserializable;

@@ -351,6 +351,8 @@ public class GetMappingRequest extends RequestBase {
 	 * Endpoint "{@code indices.get_mapping}".
 	 */
 	public static final Endpoint<GetMappingRequest, GetMappingResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/indices.get_mapping",
+
 			// Request method
 			request -> {
 				return "GET";

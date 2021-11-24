@@ -517,7 +517,8 @@ public class MgetRequest extends RequestBase implements JsonpSerializable {
 	/**
 	 * Endpoint "{@code mget}".
 	 */
-	public static final SimpleEndpoint<MgetRequest, ?> _ENDPOINT = new SimpleEndpoint<>(
+	public static final SimpleEndpoint<MgetRequest, ?> _ENDPOINT = new SimpleEndpoint<>("es/mget",
+
 			// Request method
 			request -> {
 				return "POST";

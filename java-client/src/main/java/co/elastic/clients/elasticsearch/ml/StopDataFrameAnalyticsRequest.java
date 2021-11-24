@@ -230,6 +230,8 @@ public class StopDataFrameAnalyticsRequest extends RequestBase {
 	 * Endpoint "{@code ml.stop_data_frame_analytics}".
 	 */
 	public static final Endpoint<StopDataFrameAnalyticsRequest, StopDataFrameAnalyticsResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/ml.stop_data_frame_analytics",
+
 			// Request method
 			request -> {
 				return "POST";

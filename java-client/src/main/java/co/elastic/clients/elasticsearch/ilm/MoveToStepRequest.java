@@ -212,6 +212,8 @@ public class MoveToStepRequest extends RequestBase implements JsonpSerializable 
 	 * Endpoint "{@code ilm.move_to_step}".
 	 */
 	public static final Endpoint<MoveToStepRequest, MoveToStepResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/ilm.move_to_step",
+
 			// Request method
 			request -> {
 				return "POST";

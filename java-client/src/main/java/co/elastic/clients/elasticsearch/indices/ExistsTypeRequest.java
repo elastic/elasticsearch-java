@@ -288,6 +288,8 @@ public class ExistsTypeRequest extends RequestBase {
 	 * Endpoint "{@code indices.exists_type}".
 	 */
 	public static final Endpoint<ExistsTypeRequest, BooleanResponse, ErrorResponse> _ENDPOINT = new BooleanEndpoint<>(
+			"es/indices.exists_type",
+
 			// Request method
 			request -> {
 				return "HEAD";

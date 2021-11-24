@@ -898,6 +898,8 @@ public class PutMappingRequest extends RequestBase implements JsonpSerializable 
 	 * Endpoint "{@code indices.put_mapping}".
 	 */
 	public static final Endpoint<PutMappingRequest, PutMappingResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/indices.put_mapping",
+
 			// Request method
 			request -> {
 				return "PUT";

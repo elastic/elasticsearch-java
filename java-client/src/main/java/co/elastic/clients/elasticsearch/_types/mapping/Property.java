@@ -947,529 +947,529 @@ public class Property implements TaggedUnion<Property.Kind, PropertyVariant>, Js
 		private Kind _kind;
 		private PropertyVariant _value;
 
-		public Builder aggregateMetricDouble(AggregateMetricDoubleProperty v) {
+		public ObjectBuilder<Property> aggregateMetricDouble(AggregateMetricDoubleProperty v) {
 			this._kind = Kind.AggregateMetricDouble;
 			this._value = v;
 			return this;
 		}
 
-		public Builder aggregateMetricDouble(Consumer<AggregateMetricDoubleProperty.Builder> fn) {
+		public ObjectBuilder<Property> aggregateMetricDouble(Consumer<AggregateMetricDoubleProperty.Builder> fn) {
 			AggregateMetricDoubleProperty.Builder builder = new AggregateMetricDoubleProperty.Builder();
 			fn.accept(builder);
 			return this.aggregateMetricDouble(builder.build());
 		}
 
-		public Builder binary(BinaryProperty v) {
+		public ObjectBuilder<Property> binary(BinaryProperty v) {
 			this._kind = Kind.Binary;
 			this._value = v;
 			return this;
 		}
 
-		public Builder binary(Consumer<BinaryProperty.Builder> fn) {
+		public ObjectBuilder<Property> binary(Consumer<BinaryProperty.Builder> fn) {
 			BinaryProperty.Builder builder = new BinaryProperty.Builder();
 			fn.accept(builder);
 			return this.binary(builder.build());
 		}
 
-		public Builder boolean_(BooleanProperty v) {
+		public ObjectBuilder<Property> boolean_(BooleanProperty v) {
 			this._kind = Kind.Boolean;
 			this._value = v;
 			return this;
 		}
 
-		public Builder boolean_(Consumer<BooleanProperty.Builder> fn) {
+		public ObjectBuilder<Property> boolean_(Consumer<BooleanProperty.Builder> fn) {
 			BooleanProperty.Builder builder = new BooleanProperty.Builder();
 			fn.accept(builder);
 			return this.boolean_(builder.build());
 		}
 
-		public Builder byte_(ByteNumberProperty v) {
+		public ObjectBuilder<Property> byte_(ByteNumberProperty v) {
 			this._kind = Kind.Byte;
 			this._value = v;
 			return this;
 		}
 
-		public Builder byte_(Consumer<ByteNumberProperty.Builder> fn) {
+		public ObjectBuilder<Property> byte_(Consumer<ByteNumberProperty.Builder> fn) {
 			ByteNumberProperty.Builder builder = new ByteNumberProperty.Builder();
 			fn.accept(builder);
 			return this.byte_(builder.build());
 		}
 
-		public Builder completion(CompletionProperty v) {
+		public ObjectBuilder<Property> completion(CompletionProperty v) {
 			this._kind = Kind.Completion;
 			this._value = v;
 			return this;
 		}
 
-		public Builder completion(Consumer<CompletionProperty.Builder> fn) {
+		public ObjectBuilder<Property> completion(Consumer<CompletionProperty.Builder> fn) {
 			CompletionProperty.Builder builder = new CompletionProperty.Builder();
 			fn.accept(builder);
 			return this.completion(builder.build());
 		}
 
-		public Builder constantKeyword(ConstantKeywordProperty v) {
+		public ObjectBuilder<Property> constantKeyword(ConstantKeywordProperty v) {
 			this._kind = Kind.ConstantKeyword;
 			this._value = v;
 			return this;
 		}
 
-		public Builder constantKeyword(Consumer<ConstantKeywordProperty.Builder> fn) {
+		public ObjectBuilder<Property> constantKeyword(Consumer<ConstantKeywordProperty.Builder> fn) {
 			ConstantKeywordProperty.Builder builder = new ConstantKeywordProperty.Builder();
 			fn.accept(builder);
 			return this.constantKeyword(builder.build());
 		}
 
-		public Builder dateNanos(DateNanosProperty v) {
+		public ObjectBuilder<Property> dateNanos(DateNanosProperty v) {
 			this._kind = Kind.DateNanos;
 			this._value = v;
 			return this;
 		}
 
-		public Builder dateNanos(Consumer<DateNanosProperty.Builder> fn) {
+		public ObjectBuilder<Property> dateNanos(Consumer<DateNanosProperty.Builder> fn) {
 			DateNanosProperty.Builder builder = new DateNanosProperty.Builder();
 			fn.accept(builder);
 			return this.dateNanos(builder.build());
 		}
 
-		public Builder date(DateProperty v) {
+		public ObjectBuilder<Property> date(DateProperty v) {
 			this._kind = Kind.Date;
 			this._value = v;
 			return this;
 		}
 
-		public Builder date(Consumer<DateProperty.Builder> fn) {
+		public ObjectBuilder<Property> date(Consumer<DateProperty.Builder> fn) {
 			DateProperty.Builder builder = new DateProperty.Builder();
 			fn.accept(builder);
 			return this.date(builder.build());
 		}
 
-		public Builder dateRange(DateRangeProperty v) {
+		public ObjectBuilder<Property> dateRange(DateRangeProperty v) {
 			this._kind = Kind.DateRange;
 			this._value = v;
 			return this;
 		}
 
-		public Builder dateRange(Consumer<DateRangeProperty.Builder> fn) {
+		public ObjectBuilder<Property> dateRange(Consumer<DateRangeProperty.Builder> fn) {
 			DateRangeProperty.Builder builder = new DateRangeProperty.Builder();
 			fn.accept(builder);
 			return this.dateRange(builder.build());
 		}
 
-		public Builder denseVector(DenseVectorProperty v) {
+		public ObjectBuilder<Property> denseVector(DenseVectorProperty v) {
 			this._kind = Kind.DenseVector;
 			this._value = v;
 			return this;
 		}
 
-		public Builder denseVector(Consumer<DenseVectorProperty.Builder> fn) {
+		public ObjectBuilder<Property> denseVector(Consumer<DenseVectorProperty.Builder> fn) {
 			DenseVectorProperty.Builder builder = new DenseVectorProperty.Builder();
 			fn.accept(builder);
 			return this.denseVector(builder.build());
 		}
 
-		public Builder double_(DoubleNumberProperty v) {
+		public ObjectBuilder<Property> double_(DoubleNumberProperty v) {
 			this._kind = Kind.Double;
 			this._value = v;
 			return this;
 		}
 
-		public Builder double_(Consumer<DoubleNumberProperty.Builder> fn) {
+		public ObjectBuilder<Property> double_(Consumer<DoubleNumberProperty.Builder> fn) {
 			DoubleNumberProperty.Builder builder = new DoubleNumberProperty.Builder();
 			fn.accept(builder);
 			return this.double_(builder.build());
 		}
 
-		public Builder doubleRange(DoubleRangeProperty v) {
+		public ObjectBuilder<Property> doubleRange(DoubleRangeProperty v) {
 			this._kind = Kind.DoubleRange;
 			this._value = v;
 			return this;
 		}
 
-		public Builder doubleRange(Consumer<DoubleRangeProperty.Builder> fn) {
+		public ObjectBuilder<Property> doubleRange(Consumer<DoubleRangeProperty.Builder> fn) {
 			DoubleRangeProperty.Builder builder = new DoubleRangeProperty.Builder();
 			fn.accept(builder);
 			return this.doubleRange(builder.build());
 		}
 
-		public Builder alias(FieldAliasProperty v) {
+		public ObjectBuilder<Property> alias(FieldAliasProperty v) {
 			this._kind = Kind.Alias;
 			this._value = v;
 			return this;
 		}
 
-		public Builder alias(Consumer<FieldAliasProperty.Builder> fn) {
+		public ObjectBuilder<Property> alias(Consumer<FieldAliasProperty.Builder> fn) {
 			FieldAliasProperty.Builder builder = new FieldAliasProperty.Builder();
 			fn.accept(builder);
 			return this.alias(builder.build());
 		}
 
-		public Builder flattened(FlattenedProperty v) {
+		public ObjectBuilder<Property> flattened(FlattenedProperty v) {
 			this._kind = Kind.Flattened;
 			this._value = v;
 			return this;
 		}
 
-		public Builder flattened(Consumer<FlattenedProperty.Builder> fn) {
+		public ObjectBuilder<Property> flattened(Consumer<FlattenedProperty.Builder> fn) {
 			FlattenedProperty.Builder builder = new FlattenedProperty.Builder();
 			fn.accept(builder);
 			return this.flattened(builder.build());
 		}
 
-		public Builder float_(FloatNumberProperty v) {
+		public ObjectBuilder<Property> float_(FloatNumberProperty v) {
 			this._kind = Kind.Float;
 			this._value = v;
 			return this;
 		}
 
-		public Builder float_(Consumer<FloatNumberProperty.Builder> fn) {
+		public ObjectBuilder<Property> float_(Consumer<FloatNumberProperty.Builder> fn) {
 			FloatNumberProperty.Builder builder = new FloatNumberProperty.Builder();
 			fn.accept(builder);
 			return this.float_(builder.build());
 		}
 
-		public Builder floatRange(FloatRangeProperty v) {
+		public ObjectBuilder<Property> floatRange(FloatRangeProperty v) {
 			this._kind = Kind.FloatRange;
 			this._value = v;
 			return this;
 		}
 
-		public Builder floatRange(Consumer<FloatRangeProperty.Builder> fn) {
+		public ObjectBuilder<Property> floatRange(Consumer<FloatRangeProperty.Builder> fn) {
 			FloatRangeProperty.Builder builder = new FloatRangeProperty.Builder();
 			fn.accept(builder);
 			return this.floatRange(builder.build());
 		}
 
-		public Builder geoPoint(GeoPointProperty v) {
+		public ObjectBuilder<Property> geoPoint(GeoPointProperty v) {
 			this._kind = Kind.GeoPoint;
 			this._value = v;
 			return this;
 		}
 
-		public Builder geoPoint(Consumer<GeoPointProperty.Builder> fn) {
+		public ObjectBuilder<Property> geoPoint(Consumer<GeoPointProperty.Builder> fn) {
 			GeoPointProperty.Builder builder = new GeoPointProperty.Builder();
 			fn.accept(builder);
 			return this.geoPoint(builder.build());
 		}
 
-		public Builder geoShape(GeoShapeProperty v) {
+		public ObjectBuilder<Property> geoShape(GeoShapeProperty v) {
 			this._kind = Kind.GeoShape;
 			this._value = v;
 			return this;
 		}
 
-		public Builder geoShape(Consumer<GeoShapeProperty.Builder> fn) {
+		public ObjectBuilder<Property> geoShape(Consumer<GeoShapeProperty.Builder> fn) {
 			GeoShapeProperty.Builder builder = new GeoShapeProperty.Builder();
 			fn.accept(builder);
 			return this.geoShape(builder.build());
 		}
 
-		public Builder halfFloat(HalfFloatNumberProperty v) {
+		public ObjectBuilder<Property> halfFloat(HalfFloatNumberProperty v) {
 			this._kind = Kind.HalfFloat;
 			this._value = v;
 			return this;
 		}
 
-		public Builder halfFloat(Consumer<HalfFloatNumberProperty.Builder> fn) {
+		public ObjectBuilder<Property> halfFloat(Consumer<HalfFloatNumberProperty.Builder> fn) {
 			HalfFloatNumberProperty.Builder builder = new HalfFloatNumberProperty.Builder();
 			fn.accept(builder);
 			return this.halfFloat(builder.build());
 		}
 
-		public Builder histogram(HistogramProperty v) {
+		public ObjectBuilder<Property> histogram(HistogramProperty v) {
 			this._kind = Kind.Histogram;
 			this._value = v;
 			return this;
 		}
 
-		public Builder histogram(Consumer<HistogramProperty.Builder> fn) {
+		public ObjectBuilder<Property> histogram(Consumer<HistogramProperty.Builder> fn) {
 			HistogramProperty.Builder builder = new HistogramProperty.Builder();
 			fn.accept(builder);
 			return this.histogram(builder.build());
 		}
 
-		public Builder integer(IntegerNumberProperty v) {
+		public ObjectBuilder<Property> integer(IntegerNumberProperty v) {
 			this._kind = Kind.Integer;
 			this._value = v;
 			return this;
 		}
 
-		public Builder integer(Consumer<IntegerNumberProperty.Builder> fn) {
+		public ObjectBuilder<Property> integer(Consumer<IntegerNumberProperty.Builder> fn) {
 			IntegerNumberProperty.Builder builder = new IntegerNumberProperty.Builder();
 			fn.accept(builder);
 			return this.integer(builder.build());
 		}
 
-		public Builder integerRange(IntegerRangeProperty v) {
+		public ObjectBuilder<Property> integerRange(IntegerRangeProperty v) {
 			this._kind = Kind.IntegerRange;
 			this._value = v;
 			return this;
 		}
 
-		public Builder integerRange(Consumer<IntegerRangeProperty.Builder> fn) {
+		public ObjectBuilder<Property> integerRange(Consumer<IntegerRangeProperty.Builder> fn) {
 			IntegerRangeProperty.Builder builder = new IntegerRangeProperty.Builder();
 			fn.accept(builder);
 			return this.integerRange(builder.build());
 		}
 
-		public Builder ip(IpProperty v) {
+		public ObjectBuilder<Property> ip(IpProperty v) {
 			this._kind = Kind.Ip;
 			this._value = v;
 			return this;
 		}
 
-		public Builder ip(Consumer<IpProperty.Builder> fn) {
+		public ObjectBuilder<Property> ip(Consumer<IpProperty.Builder> fn) {
 			IpProperty.Builder builder = new IpProperty.Builder();
 			fn.accept(builder);
 			return this.ip(builder.build());
 		}
 
-		public Builder ipRange(IpRangeProperty v) {
+		public ObjectBuilder<Property> ipRange(IpRangeProperty v) {
 			this._kind = Kind.IpRange;
 			this._value = v;
 			return this;
 		}
 
-		public Builder ipRange(Consumer<IpRangeProperty.Builder> fn) {
+		public ObjectBuilder<Property> ipRange(Consumer<IpRangeProperty.Builder> fn) {
 			IpRangeProperty.Builder builder = new IpRangeProperty.Builder();
 			fn.accept(builder);
 			return this.ipRange(builder.build());
 		}
 
-		public Builder join(JoinProperty v) {
+		public ObjectBuilder<Property> join(JoinProperty v) {
 			this._kind = Kind.Join;
 			this._value = v;
 			return this;
 		}
 
-		public Builder join(Consumer<JoinProperty.Builder> fn) {
+		public ObjectBuilder<Property> join(Consumer<JoinProperty.Builder> fn) {
 			JoinProperty.Builder builder = new JoinProperty.Builder();
 			fn.accept(builder);
 			return this.join(builder.build());
 		}
 
-		public Builder keyword(KeywordProperty v) {
+		public ObjectBuilder<Property> keyword(KeywordProperty v) {
 			this._kind = Kind.Keyword;
 			this._value = v;
 			return this;
 		}
 
-		public Builder keyword(Consumer<KeywordProperty.Builder> fn) {
+		public ObjectBuilder<Property> keyword(Consumer<KeywordProperty.Builder> fn) {
 			KeywordProperty.Builder builder = new KeywordProperty.Builder();
 			fn.accept(builder);
 			return this.keyword(builder.build());
 		}
 
-		public Builder long_(LongNumberProperty v) {
+		public ObjectBuilder<Property> long_(LongNumberProperty v) {
 			this._kind = Kind.Long;
 			this._value = v;
 			return this;
 		}
 
-		public Builder long_(Consumer<LongNumberProperty.Builder> fn) {
+		public ObjectBuilder<Property> long_(Consumer<LongNumberProperty.Builder> fn) {
 			LongNumberProperty.Builder builder = new LongNumberProperty.Builder();
 			fn.accept(builder);
 			return this.long_(builder.build());
 		}
 
-		public Builder longRange(LongRangeProperty v) {
+		public ObjectBuilder<Property> longRange(LongRangeProperty v) {
 			this._kind = Kind.LongRange;
 			this._value = v;
 			return this;
 		}
 
-		public Builder longRange(Consumer<LongRangeProperty.Builder> fn) {
+		public ObjectBuilder<Property> longRange(Consumer<LongRangeProperty.Builder> fn) {
 			LongRangeProperty.Builder builder = new LongRangeProperty.Builder();
 			fn.accept(builder);
 			return this.longRange(builder.build());
 		}
 
-		public Builder murmur3(Murmur3HashProperty v) {
+		public ObjectBuilder<Property> murmur3(Murmur3HashProperty v) {
 			this._kind = Kind.Murmur3;
 			this._value = v;
 			return this;
 		}
 
-		public Builder murmur3(Consumer<Murmur3HashProperty.Builder> fn) {
+		public ObjectBuilder<Property> murmur3(Consumer<Murmur3HashProperty.Builder> fn) {
 			Murmur3HashProperty.Builder builder = new Murmur3HashProperty.Builder();
 			fn.accept(builder);
 			return this.murmur3(builder.build());
 		}
 
-		public Builder nested(NestedProperty v) {
+		public ObjectBuilder<Property> nested(NestedProperty v) {
 			this._kind = Kind.Nested;
 			this._value = v;
 			return this;
 		}
 
-		public Builder nested(Consumer<NestedProperty.Builder> fn) {
+		public ObjectBuilder<Property> nested(Consumer<NestedProperty.Builder> fn) {
 			NestedProperty.Builder builder = new NestedProperty.Builder();
 			fn.accept(builder);
 			return this.nested(builder.build());
 		}
 
-		public Builder object(ObjectProperty v) {
+		public ObjectBuilder<Property> object(ObjectProperty v) {
 			this._kind = Kind.Object;
 			this._value = v;
 			return this;
 		}
 
-		public Builder object(Consumer<ObjectProperty.Builder> fn) {
+		public ObjectBuilder<Property> object(Consumer<ObjectProperty.Builder> fn) {
 			ObjectProperty.Builder builder = new ObjectProperty.Builder();
 			fn.accept(builder);
 			return this.object(builder.build());
 		}
 
-		public Builder percolator(PercolatorProperty v) {
+		public ObjectBuilder<Property> percolator(PercolatorProperty v) {
 			this._kind = Kind.Percolator;
 			this._value = v;
 			return this;
 		}
 
-		public Builder percolator(Consumer<PercolatorProperty.Builder> fn) {
+		public ObjectBuilder<Property> percolator(Consumer<PercolatorProperty.Builder> fn) {
 			PercolatorProperty.Builder builder = new PercolatorProperty.Builder();
 			fn.accept(builder);
 			return this.percolator(builder.build());
 		}
 
-		public Builder point(PointProperty v) {
+		public ObjectBuilder<Property> point(PointProperty v) {
 			this._kind = Kind.Point;
 			this._value = v;
 			return this;
 		}
 
-		public Builder point(Consumer<PointProperty.Builder> fn) {
+		public ObjectBuilder<Property> point(Consumer<PointProperty.Builder> fn) {
 			PointProperty.Builder builder = new PointProperty.Builder();
 			fn.accept(builder);
 			return this.point(builder.build());
 		}
 
-		public Builder rankFeature(RankFeatureProperty v) {
+		public ObjectBuilder<Property> rankFeature(RankFeatureProperty v) {
 			this._kind = Kind.RankFeature;
 			this._value = v;
 			return this;
 		}
 
-		public Builder rankFeature(Consumer<RankFeatureProperty.Builder> fn) {
+		public ObjectBuilder<Property> rankFeature(Consumer<RankFeatureProperty.Builder> fn) {
 			RankFeatureProperty.Builder builder = new RankFeatureProperty.Builder();
 			fn.accept(builder);
 			return this.rankFeature(builder.build());
 		}
 
-		public Builder rankFeatures(RankFeaturesProperty v) {
+		public ObjectBuilder<Property> rankFeatures(RankFeaturesProperty v) {
 			this._kind = Kind.RankFeatures;
 			this._value = v;
 			return this;
 		}
 
-		public Builder rankFeatures(Consumer<RankFeaturesProperty.Builder> fn) {
+		public ObjectBuilder<Property> rankFeatures(Consumer<RankFeaturesProperty.Builder> fn) {
 			RankFeaturesProperty.Builder builder = new RankFeaturesProperty.Builder();
 			fn.accept(builder);
 			return this.rankFeatures(builder.build());
 		}
 
-		public Builder scaledFloat(ScaledFloatNumberProperty v) {
+		public ObjectBuilder<Property> scaledFloat(ScaledFloatNumberProperty v) {
 			this._kind = Kind.ScaledFloat;
 			this._value = v;
 			return this;
 		}
 
-		public Builder scaledFloat(Consumer<ScaledFloatNumberProperty.Builder> fn) {
+		public ObjectBuilder<Property> scaledFloat(Consumer<ScaledFloatNumberProperty.Builder> fn) {
 			ScaledFloatNumberProperty.Builder builder = new ScaledFloatNumberProperty.Builder();
 			fn.accept(builder);
 			return this.scaledFloat(builder.build());
 		}
 
-		public Builder searchAsYouType(SearchAsYouTypeProperty v) {
+		public ObjectBuilder<Property> searchAsYouType(SearchAsYouTypeProperty v) {
 			this._kind = Kind.SearchAsYouType;
 			this._value = v;
 			return this;
 		}
 
-		public Builder searchAsYouType(Consumer<SearchAsYouTypeProperty.Builder> fn) {
+		public ObjectBuilder<Property> searchAsYouType(Consumer<SearchAsYouTypeProperty.Builder> fn) {
 			SearchAsYouTypeProperty.Builder builder = new SearchAsYouTypeProperty.Builder();
 			fn.accept(builder);
 			return this.searchAsYouType(builder.build());
 		}
 
-		public Builder shape(ShapeProperty v) {
+		public ObjectBuilder<Property> shape(ShapeProperty v) {
 			this._kind = Kind.Shape;
 			this._value = v;
 			return this;
 		}
 
-		public Builder shape(Consumer<ShapeProperty.Builder> fn) {
+		public ObjectBuilder<Property> shape(Consumer<ShapeProperty.Builder> fn) {
 			ShapeProperty.Builder builder = new ShapeProperty.Builder();
 			fn.accept(builder);
 			return this.shape(builder.build());
 		}
 
-		public Builder short_(ShortNumberProperty v) {
+		public ObjectBuilder<Property> short_(ShortNumberProperty v) {
 			this._kind = Kind.Short;
 			this._value = v;
 			return this;
 		}
 
-		public Builder short_(Consumer<ShortNumberProperty.Builder> fn) {
+		public ObjectBuilder<Property> short_(Consumer<ShortNumberProperty.Builder> fn) {
 			ShortNumberProperty.Builder builder = new ShortNumberProperty.Builder();
 			fn.accept(builder);
 			return this.short_(builder.build());
 		}
 
-		public Builder text(TextProperty v) {
+		public ObjectBuilder<Property> text(TextProperty v) {
 			this._kind = Kind.Text;
 			this._value = v;
 			return this;
 		}
 
-		public Builder text(Consumer<TextProperty.Builder> fn) {
+		public ObjectBuilder<Property> text(Consumer<TextProperty.Builder> fn) {
 			TextProperty.Builder builder = new TextProperty.Builder();
 			fn.accept(builder);
 			return this.text(builder.build());
 		}
 
-		public Builder tokenCount(TokenCountProperty v) {
+		public ObjectBuilder<Property> tokenCount(TokenCountProperty v) {
 			this._kind = Kind.TokenCount;
 			this._value = v;
 			return this;
 		}
 
-		public Builder tokenCount(Consumer<TokenCountProperty.Builder> fn) {
+		public ObjectBuilder<Property> tokenCount(Consumer<TokenCountProperty.Builder> fn) {
 			TokenCountProperty.Builder builder = new TokenCountProperty.Builder();
 			fn.accept(builder);
 			return this.tokenCount(builder.build());
 		}
 
-		public Builder unsignedLong(UnsignedLongNumberProperty v) {
+		public ObjectBuilder<Property> unsignedLong(UnsignedLongNumberProperty v) {
 			this._kind = Kind.UnsignedLong;
 			this._value = v;
 			return this;
 		}
 
-		public Builder unsignedLong(Consumer<UnsignedLongNumberProperty.Builder> fn) {
+		public ObjectBuilder<Property> unsignedLong(Consumer<UnsignedLongNumberProperty.Builder> fn) {
 			UnsignedLongNumberProperty.Builder builder = new UnsignedLongNumberProperty.Builder();
 			fn.accept(builder);
 			return this.unsignedLong(builder.build());
 		}
 
-		public Builder version(VersionProperty v) {
+		public ObjectBuilder<Property> version(VersionProperty v) {
 			this._kind = Kind.Version;
 			this._value = v;
 			return this;
 		}
 
-		public Builder version(Consumer<VersionProperty.Builder> fn) {
+		public ObjectBuilder<Property> version(Consumer<VersionProperty.Builder> fn) {
 			VersionProperty.Builder builder = new VersionProperty.Builder();
 			fn.accept(builder);
 			return this.version(builder.build());
 		}
 
-		public Builder wildcard(WildcardProperty v) {
+		public ObjectBuilder<Property> wildcard(WildcardProperty v) {
 			this._kind = Kind.Wildcard;
 			this._value = v;
 			return this;
 		}
 
-		public Builder wildcard(Consumer<WildcardProperty.Builder> fn) {
+		public ObjectBuilder<Property> wildcard(Consumer<WildcardProperty.Builder> fn) {
 			WildcardProperty.Builder builder = new WildcardProperty.Builder();
 			fn.accept(builder);
 			return this.wildcard(builder.build());
@@ -1529,7 +1529,7 @@ public class Property implements TaggedUnion<Property.Kind, PropertyVariant>, Js
 		op.add(Builder::version, VersionProperty._DESERIALIZER, "version");
 		op.add(Builder::wildcard, WildcardProperty._DESERIALIZER, "wildcard");
 
-		op.setTypeProperty("type");
+		op.setTypeProperty("type", "object");
 
 	}
 

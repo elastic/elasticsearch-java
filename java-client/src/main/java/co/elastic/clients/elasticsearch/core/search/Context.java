@@ -66,7 +66,7 @@ public class Context implements TaggedUnion<Context.Kind, Object>, JsonpSerializ
 		return _value;
 	}
 
-	public Context(Kind kind, Object value) {
+	private Context(Kind kind, Object value) {
 		this._kind = kind;
 		this._value = value;
 	}
@@ -137,19 +137,19 @@ public class Context implements TaggedUnion<Context.Kind, Object>, JsonpSerializ
 		private Kind _kind;
 		private Object _value;
 
-		public Builder location(GeoLocation v) {
+		public ObjectBuilder<Context> location(GeoLocation v) {
 			this._kind = Kind.Location;
 			this._value = v;
 			return this;
 		}
 
-		public Builder location(Consumer<GeoLocation.Builder> fn) {
+		public ObjectBuilder<Context> location(Consumer<GeoLocation.Builder> fn) {
 			GeoLocation.Builder builder = new GeoLocation.Builder();
 			fn.accept(builder);
 			return this.location(builder.build());
 		}
 
-		public Builder category(String v) {
+		public ObjectBuilder<Context> category(String v) {
 			this._kind = Kind.Category;
 			this._value = v;
 			return this;

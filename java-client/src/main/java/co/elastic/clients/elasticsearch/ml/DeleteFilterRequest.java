@@ -106,6 +106,8 @@ public class DeleteFilterRequest extends RequestBase {
 	 * Endpoint "{@code ml.delete_filter}".
 	 */
 	public static final Endpoint<DeleteFilterRequest, DeleteFilterResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/ml.delete_filter",
+
 			// Request method
 			request -> {
 				return "DELETE";

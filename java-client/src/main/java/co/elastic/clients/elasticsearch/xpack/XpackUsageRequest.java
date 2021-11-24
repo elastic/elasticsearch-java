@@ -120,6 +120,8 @@ public class XpackUsageRequest extends RequestBase {
 	 * Endpoint "{@code xpack.usage}".
 	 */
 	public static final Endpoint<XpackUsageRequest, XpackUsageResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/xpack.usage",
+
 			// Request method
 			request -> {
 				return "GET";

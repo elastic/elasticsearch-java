@@ -422,6 +422,8 @@ public class StateRequest extends RequestBase {
 	 * Endpoint "{@code cluster.state}".
 	 */
 	public static final Endpoint<StateRequest, StateResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/cluster.state",
+
 			// Request method
 			request -> {
 				return "GET";

@@ -141,6 +141,8 @@ public class DeleteUserRequest extends RequestBase {
 	 * Endpoint "{@code security.delete_user}".
 	 */
 	public static final Endpoint<DeleteUserRequest, DeleteUserResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/security.delete_user",
+
 			// Request method
 			request -> {
 				return "DELETE";

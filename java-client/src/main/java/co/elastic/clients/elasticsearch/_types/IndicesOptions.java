@@ -21,9 +21,8 @@
 // THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
 //----------------------------------------------------
 
-package co.elastic.clients.elasticsearch.watcher;
+package co.elastic.clients.elasticsearch._types;
 
-import co.elastic.clients.elasticsearch._types.ExpandWildcard;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -41,7 +40,7 @@ import java.util.Objects;
 import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
-// typedef: watcher._types.IndicesOptions
+// typedef: _types.IndicesOptions
 @JsonpDeserializable
 public class IndicesOptions implements JsonpSerializable {
 	@Nullable
@@ -73,6 +72,12 @@ public class IndicesOptions implements JsonpSerializable {
 	}
 
 	/**
+	 * If false, the request returns an error if any wildcard expression, index
+	 * alias, or <code>_all</code> value targets only missing or closed indices.
+	 * This behavior applies even if the request targets other open indices. For
+	 * example, a request targeting <code>foo*,bar*</code> returns an error if an
+	 * index starts with <code>foo</code> but no index starts with <code>bar</code>.
+	 * <p>
 	 * API name: {@code allow_no_indices}
 	 */
 	@Nullable
@@ -81,6 +86,11 @@ public class IndicesOptions implements JsonpSerializable {
 	}
 
 	/**
+	 * Type of index that wildcard patterns can match. If the request can target
+	 * data streams, this argument determines whether wildcard expressions match
+	 * hidden data streams. Supports comma-separated values, such as
+	 * <code>open,hidden</code>.
+	 * <p>
 	 * API name: {@code expand_wildcards}
 	 */
 	public final List<ExpandWildcard> expandWildcards() {
@@ -88,6 +98,8 @@ public class IndicesOptions implements JsonpSerializable {
 	}
 
 	/**
+	 * If true, missing or closed indices are not included in the response.
+	 * <p>
 	 * API name: {@code ignore_unavailable}
 	 */
 	@Nullable
@@ -96,6 +108,8 @@ public class IndicesOptions implements JsonpSerializable {
 	}
 
 	/**
+	 * If true, concrete, expanded or aliased indices are ignored when frozen.
+	 * <p>
 	 * API name: {@code ignore_throttled}
 	 */
 	@Nullable
@@ -160,6 +174,12 @@ public class IndicesOptions implements JsonpSerializable {
 		private Boolean ignoreThrottled;
 
 		/**
+		 * If false, the request returns an error if any wildcard expression, index
+		 * alias, or <code>_all</code> value targets only missing or closed indices.
+		 * This behavior applies even if the request targets other open indices. For
+		 * example, a request targeting <code>foo*,bar*</code> returns an error if an
+		 * index starts with <code>foo</code> but no index starts with <code>bar</code>.
+		 * <p>
 		 * API name: {@code allow_no_indices}
 		 */
 		public final Builder allowNoIndices(@Nullable Boolean value) {
@@ -168,6 +188,11 @@ public class IndicesOptions implements JsonpSerializable {
 		}
 
 		/**
+		 * Type of index that wildcard patterns can match. If the request can target
+		 * data streams, this argument determines whether wildcard expressions match
+		 * hidden data streams. Supports comma-separated values, such as
+		 * <code>open,hidden</code>.
+		 * <p>
 		 * API name: {@code expand_wildcards}
 		 */
 		public final Builder expandWildcards(@Nullable List<ExpandWildcard> value) {
@@ -176,6 +201,11 @@ public class IndicesOptions implements JsonpSerializable {
 		}
 
 		/**
+		 * Type of index that wildcard patterns can match. If the request can target
+		 * data streams, this argument determines whether wildcard expressions match
+		 * hidden data streams. Supports comma-separated values, such as
+		 * <code>open,hidden</code>.
+		 * <p>
 		 * API name: {@code expand_wildcards}
 		 */
 		public final Builder expandWildcards(ExpandWildcard... value) {
@@ -184,6 +214,8 @@ public class IndicesOptions implements JsonpSerializable {
 		}
 
 		/**
+		 * If true, missing or closed indices are not included in the response.
+		 * <p>
 		 * API name: {@code ignore_unavailable}
 		 */
 		public final Builder ignoreUnavailable(@Nullable Boolean value) {
@@ -192,6 +224,8 @@ public class IndicesOptions implements JsonpSerializable {
 		}
 
 		/**
+		 * If true, concrete, expanded or aliased indices are ignored when frozen.
+		 * <p>
 		 * API name: {@code ignore_throttled}
 		 */
 		public final Builder ignoreThrottled(@Nullable Boolean value) {

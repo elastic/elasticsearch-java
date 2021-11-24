@@ -201,6 +201,8 @@ public class GetComponentTemplateRequest extends RequestBase {
 	 * Endpoint "{@code cluster.get_component_template}".
 	 */
 	public static final Endpoint<GetComponentTemplateRequest, GetComponentTemplateResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/cluster.get_component_template",
+
 			// Request method
 			request -> {
 				return "GET";

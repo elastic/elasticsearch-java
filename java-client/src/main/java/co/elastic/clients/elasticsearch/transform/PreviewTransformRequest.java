@@ -544,6 +544,8 @@ public class PreviewTransformRequest extends RequestBase implements JsonpSeriali
 	 * Endpoint "{@code transform.preview_transform}".
 	 */
 	public static final SimpleEndpoint<PreviewTransformRequest, ?> _ENDPOINT = new SimpleEndpoint<>(
+			"es/transform.preview_transform",
+
 			// Request method
 			request -> {
 				return "POST";

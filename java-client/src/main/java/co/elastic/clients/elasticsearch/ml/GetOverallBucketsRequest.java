@@ -417,6 +417,8 @@ public class GetOverallBucketsRequest extends RequestBase implements JsonpSerial
 	 * Endpoint "{@code ml.get_overall_buckets}".
 	 */
 	public static final Endpoint<GetOverallBucketsRequest, GetOverallBucketsResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/ml.get_overall_buckets",
+
 			// Request method
 			request -> {
 				return "POST";

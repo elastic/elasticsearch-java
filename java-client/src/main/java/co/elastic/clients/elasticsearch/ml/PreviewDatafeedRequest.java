@@ -214,6 +214,8 @@ public class PreviewDatafeedRequest extends RequestBase implements JsonpSerializ
 	 * Endpoint "{@code ml.preview_datafeed}".
 	 */
 	public static final SimpleEndpoint<PreviewDatafeedRequest, ?> _ENDPOINT = new SimpleEndpoint<>(
+			"es/ml.preview_datafeed",
+
 			// Request method
 			request -> {
 				return "POST";

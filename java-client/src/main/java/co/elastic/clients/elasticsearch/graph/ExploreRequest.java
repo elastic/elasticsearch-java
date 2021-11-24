@@ -421,6 +421,8 @@ public class ExploreRequest extends RequestBase implements JsonpSerializable {
 	 * Endpoint "{@code graph.explore}".
 	 */
 	public static final Endpoint<ExploreRequest, ExploreResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/graph.explore",
+
 			// Request method
 			request -> {
 				return "POST";

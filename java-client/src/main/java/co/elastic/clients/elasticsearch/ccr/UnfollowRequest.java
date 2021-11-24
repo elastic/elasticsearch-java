@@ -108,6 +108,8 @@ public class UnfollowRequest extends RequestBase {
 	 * Endpoint "{@code ccr.unfollow}".
 	 */
 	public static final Endpoint<UnfollowRequest, UnfollowResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/ccr.unfollow",
+
 			// Request method
 			request -> {
 				return "POST";

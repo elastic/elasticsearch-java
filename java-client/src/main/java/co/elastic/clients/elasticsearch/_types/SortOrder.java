@@ -23,16 +23,28 @@
 
 package co.elastic.clients.elasticsearch._types;
 
-/**
- * Builders for {@link FieldValue} variants.
- * <p>
- * Variants <code>double</code>, <code>long</code>, <code>boolean</code>,
- * <code>string</code> are not available here as they don't have a dedicated
- * class. Use {@link FieldValue}'s builder for these.
- * 
- */
-public class FieldValueBuilders {
-	private FieldValueBuilders() {
+import co.elastic.clients.json.JsonEnum;
+import co.elastic.clients.json.JsonpDeserializable;
+import co.elastic.clients.json.JsonpDeserializer;
+
+@JsonpDeserializable
+public enum SortOrder implements JsonEnum {
+	Asc("asc"),
+
+	Desc("desc"),
+
+	;
+
+	private final String jsonValue;
+
+	SortOrder(String jsonValue) {
+		this.jsonValue = jsonValue;
 	}
 
+	public String jsonValue() {
+		return this.jsonValue;
+	}
+
+	public static final JsonEnum.Deserializer<SortOrder> _DESERIALIZER = new JsonEnum.Deserializer<>(
+			SortOrder.values());
 }

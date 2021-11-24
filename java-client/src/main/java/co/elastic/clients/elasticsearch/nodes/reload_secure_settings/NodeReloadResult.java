@@ -64,7 +64,7 @@ public class NodeReloadResult implements TaggedUnion<NodeReloadResult.Kind, Obje
 		return _value;
 	}
 
-	public NodeReloadResult(Kind kind, Object value) {
+	private NodeReloadResult(Kind kind, Object value) {
 		this._kind = kind;
 		this._value = value;
 	}
@@ -128,25 +128,25 @@ public class NodeReloadResult implements TaggedUnion<NodeReloadResult.Kind, Obje
 		private Kind _kind;
 		private Object _value;
 
-		public Builder stats(Stats v) {
+		public ObjectBuilder<NodeReloadResult> stats(Stats v) {
 			this._kind = Kind.Stats;
 			this._value = v;
 			return this;
 		}
 
-		public Builder stats(Consumer<Stats.Builder> fn) {
+		public ObjectBuilder<NodeReloadResult> stats(Consumer<Stats.Builder> fn) {
 			Stats.Builder builder = new Stats.Builder();
 			fn.accept(builder);
 			return this.stats(builder.build());
 		}
 
-		public Builder error(NodeReloadError v) {
+		public ObjectBuilder<NodeReloadResult> error(NodeReloadError v) {
 			this._kind = Kind.Error;
 			this._value = v;
 			return this;
 		}
 
-		public Builder error(Consumer<NodeReloadError.Builder> fn) {
+		public ObjectBuilder<NodeReloadResult> error(Consumer<NodeReloadError.Builder> fn) {
 			NodeReloadError.Builder builder = new NodeReloadError.Builder();
 			fn.accept(builder);
 			return this.error(builder.build());

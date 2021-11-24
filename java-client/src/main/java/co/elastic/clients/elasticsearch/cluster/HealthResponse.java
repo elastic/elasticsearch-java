@@ -23,7 +23,7 @@
 
 package co.elastic.clients.elasticsearch.cluster;
 
-import co.elastic.clients.elasticsearch._types.Health;
+import co.elastic.clients.elasticsearch._types.HealthStatus;
 import co.elastic.clients.elasticsearch.cluster.health.IndexHealthStats;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -72,7 +72,7 @@ public class HealthResponse implements JsonpSerializable {
 
 	private final int relocatingShards;
 
-	private final Health status;
+	private final HealthStatus status;
 
 	private final String taskMaxWaitingInQueueMillis;
 
@@ -226,7 +226,7 @@ public class HealthResponse implements JsonpSerializable {
 	/**
 	 * Required - API name: {@code status}
 	 */
-	public final Health status() {
+	public final HealthStatus status() {
 		return this.status;
 	}
 
@@ -358,7 +358,7 @@ public class HealthResponse implements JsonpSerializable {
 
 		private Integer relocatingShards;
 
-		private Health status;
+		private HealthStatus status;
 
 		private String taskMaxWaitingInQueueMillis;
 
@@ -493,7 +493,7 @@ public class HealthResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code status}
 		 */
-		public final Builder status(Health value) {
+		public final Builder status(HealthStatus value) {
 			this.status = value;
 			return this;
 		}
@@ -566,7 +566,7 @@ public class HealthResponse implements JsonpSerializable {
 		op.add(Builder::numberOfNodes, JsonpDeserializer.integerDeserializer(), "number_of_nodes");
 		op.add(Builder::numberOfPendingTasks, JsonpDeserializer.integerDeserializer(), "number_of_pending_tasks");
 		op.add(Builder::relocatingShards, JsonpDeserializer.integerDeserializer(), "relocating_shards");
-		op.add(Builder::status, Health._DESERIALIZER, "status");
+		op.add(Builder::status, HealthStatus._DESERIALIZER, "status");
 		op.add(Builder::taskMaxWaitingInQueueMillis, JsonpDeserializer.stringDeserializer(),
 				"task_max_waiting_in_queue_millis");
 		op.add(Builder::timedOut, JsonpDeserializer.booleanDeserializer(), "timed_out");

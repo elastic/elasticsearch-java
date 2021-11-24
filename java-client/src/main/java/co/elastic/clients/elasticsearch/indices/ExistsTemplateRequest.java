@@ -218,6 +218,8 @@ public class ExistsTemplateRequest extends RequestBase {
 	 * Endpoint "{@code indices.exists_template}".
 	 */
 	public static final Endpoint<ExistsTemplateRequest, BooleanResponse, ErrorResponse> _ENDPOINT = new BooleanEndpoint<>(
+			"es/indices.exists_template",
+
 			// Request method
 			request -> {
 				return "HEAD";

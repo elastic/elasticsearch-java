@@ -21,42 +21,17 @@
 // THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
 //----------------------------------------------------
 
-package co.elastic.clients.elasticsearch.indices;
+package co.elastic.clients.elasticsearch._types;
 
-import co.elastic.clients.json.JsonEnum;
-import co.elastic.clients.json.JsonpDeserializable;
-import co.elastic.clients.json.JsonpDeserializer;
+/**
+ * Base interface for {@link SortOptions} variants.
+ */
+public interface SortOptionsVariant {
 
-@JsonpDeserializable
-public enum DataStreamHealthStatus implements JsonEnum {
-	/**
-	 * All shards are assigned.
-	 */
-	Green("green"),
+	SortOptions.Kind _sortOptionsKind();
 
-	/**
-	 * All primary shards are assigned, but one or more replica shards are
-	 * unassigned.
-	 */
-	Yellow("yellow"),
-
-	/**
-	 * One or more primary shards are unassigned, so some data is unavailable.
-	 */
-	Red("red"),
-
-	;
-
-	private final String jsonValue;
-
-	DataStreamHealthStatus(String jsonValue) {
-		this.jsonValue = jsonValue;
+	default SortOptions _toSortOptions() {
+		return new SortOptions(this);
 	}
 
-	public String jsonValue() {
-		return this.jsonValue;
-	}
-
-	public static final JsonEnum.Deserializer<DataStreamHealthStatus> _DESERIALIZER = new JsonEnum.Deserializer<>(
-			DataStreamHealthStatus.values());
 }

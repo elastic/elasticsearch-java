@@ -53,6 +53,8 @@ public class ListDanglingIndicesRequest extends RequestBase {
 	 * Endpoint "{@code dangling_indices.list_dangling_indices}".
 	 */
 	public static final Endpoint<ListDanglingIndicesRequest, ListDanglingIndicesResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/dangling_indices.list_dangling_indices",
+
 			// Request method
 			request -> {
 				return "GET";

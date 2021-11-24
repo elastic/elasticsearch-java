@@ -373,6 +373,8 @@ public class GetFieldMappingRequest extends RequestBase {
 	 * Endpoint "{@code indices.get_field_mapping}".
 	 */
 	public static final Endpoint<GetFieldMappingRequest, GetFieldMappingResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/indices.get_field_mapping",
+
 			// Request method
 			request -> {
 				return "GET";

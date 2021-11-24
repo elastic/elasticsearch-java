@@ -197,49 +197,49 @@ public class PivotGroupBy implements TaggedUnion<PivotGroupBy.Kind, Object>, Jso
 		private Kind _kind;
 		private Object _value;
 
-		public Builder dateHistogram(DateHistogramAggregation v) {
+		public ObjectBuilder<PivotGroupBy> dateHistogram(DateHistogramAggregation v) {
 			this._kind = Kind.DateHistogram;
 			this._value = v;
 			return this;
 		}
 
-		public Builder dateHistogram(Consumer<DateHistogramAggregation.Builder> fn) {
+		public ObjectBuilder<PivotGroupBy> dateHistogram(Consumer<DateHistogramAggregation.Builder> fn) {
 			DateHistogramAggregation.Builder builder = new DateHistogramAggregation.Builder();
 			fn.accept(builder);
 			return this.dateHistogram(builder.build());
 		}
 
-		public Builder geotileGrid(GeoTileGridAggregation v) {
+		public ObjectBuilder<PivotGroupBy> geotileGrid(GeoTileGridAggregation v) {
 			this._kind = Kind.GeotileGrid;
 			this._value = v;
 			return this;
 		}
 
-		public Builder geotileGrid(Consumer<GeoTileGridAggregation.Builder> fn) {
+		public ObjectBuilder<PivotGroupBy> geotileGrid(Consumer<GeoTileGridAggregation.Builder> fn) {
 			GeoTileGridAggregation.Builder builder = new GeoTileGridAggregation.Builder();
 			fn.accept(builder);
 			return this.geotileGrid(builder.build());
 		}
 
-		public Builder histogram(HistogramAggregation v) {
+		public ObjectBuilder<PivotGroupBy> histogram(HistogramAggregation v) {
 			this._kind = Kind.Histogram;
 			this._value = v;
 			return this;
 		}
 
-		public Builder histogram(Consumer<HistogramAggregation.Builder> fn) {
+		public ObjectBuilder<PivotGroupBy> histogram(Consumer<HistogramAggregation.Builder> fn) {
 			HistogramAggregation.Builder builder = new HistogramAggregation.Builder();
 			fn.accept(builder);
 			return this.histogram(builder.build());
 		}
 
-		public Builder terms(TermsAggregation v) {
+		public ObjectBuilder<PivotGroupBy> terms(TermsAggregation v) {
 			this._kind = Kind.Terms;
 			this._value = v;
 			return this;
 		}
 
-		public Builder terms(Consumer<TermsAggregation.Builder> fn) {
+		public ObjectBuilder<PivotGroupBy> terms(Consumer<TermsAggregation.Builder> fn) {
 			TermsAggregation.Builder builder = new TermsAggregation.Builder();
 			fn.accept(builder);
 			return this.terms(builder.build());

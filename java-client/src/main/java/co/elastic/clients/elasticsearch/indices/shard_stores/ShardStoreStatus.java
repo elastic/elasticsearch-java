@@ -21,29 +21,39 @@
 // THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
 //----------------------------------------------------
 
-package co.elastic.clients.elasticsearch._types.aggregations;
+package co.elastic.clients.elasticsearch.indices.shard_stores;
 
 import co.elastic.clients.json.JsonEnum;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 
 @JsonpDeserializable
-public enum MatrixStatsMode implements JsonEnum {
-	Avg("avg"),
+public enum ShardStoreStatus implements JsonEnum {
+	/**
+	 * The primary shard and all replica shards are assigned.
+	 */
+	Green("green"),
 
-	Min("min"),
+	/**
+	 * One or more replica shards are unassigned.
+	 */
+	Yellow("yellow"),
 
-	Max("max"),
+	/**
+	 * The primary shard is unassigned.
+	 */
+	Red("red"),
 
-	Sum("sum"),
-
-	Median("median"),
+	/**
+	 * Return all shards, regardless of health status.
+	 */
+	All("all"),
 
 	;
 
 	private final String jsonValue;
 
-	MatrixStatsMode(String jsonValue) {
+	ShardStoreStatus(String jsonValue) {
 		this.jsonValue = jsonValue;
 	}
 
@@ -51,6 +61,6 @@ public enum MatrixStatsMode implements JsonEnum {
 		return this.jsonValue;
 	}
 
-	public static final JsonEnum.Deserializer<MatrixStatsMode> _DESERIALIZER = new JsonEnum.Deserializer<>(
-			MatrixStatsMode.values());
+	public static final JsonEnum.Deserializer<ShardStoreStatus> _DESERIALIZER = new JsonEnum.Deserializer<>(
+			ShardStoreStatus.values());
 }

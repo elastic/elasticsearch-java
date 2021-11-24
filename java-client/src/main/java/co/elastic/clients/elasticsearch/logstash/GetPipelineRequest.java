@@ -119,6 +119,8 @@ public class GetPipelineRequest extends RequestBase {
 	 * Endpoint "{@code logstash.get_pipeline}".
 	 */
 	public static final Endpoint<GetPipelineRequest, GetPipelineResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/logstash.get_pipeline",
+
 			// Request method
 			request -> {
 				return "GET";

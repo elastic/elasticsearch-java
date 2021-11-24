@@ -21,7 +21,7 @@
 // THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
 //----------------------------------------------------
 
-package co.elastic.clients.elasticsearch.core.search;
+package co.elastic.clients.elasticsearch._types;
 
 import co.elastic.clients.json.JsonEnum;
 import co.elastic.clients.json.JsonpDeserializable;
@@ -43,7 +43,7 @@ import java.util.Objects;
 import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
-// typedef: _global.search._types.SortOptions
+// typedef: _types.SortOptions
 // union type: Container[]
 @JsonpDeserializable
 public class SortOptions implements TaggedUnion<SortOptions.Kind, Object>, JsonpSerializable {
@@ -217,61 +217,61 @@ public class SortOptions implements TaggedUnion<SortOptions.Kind, Object>, Jsonp
 		private Kind _kind;
 		private Object _value;
 
-		public Builder score(ScoreSort v) {
+		public ObjectBuilder<SortOptions> score(ScoreSort v) {
 			this._kind = Kind.Score;
 			this._value = v;
 			return this;
 		}
 
-		public Builder score(Consumer<ScoreSort.Builder> fn) {
+		public ObjectBuilder<SortOptions> score(Consumer<ScoreSort.Builder> fn) {
 			ScoreSort.Builder builder = new ScoreSort.Builder();
 			fn.accept(builder);
 			return this.score(builder.build());
 		}
 
-		public Builder doc(ScoreSort v) {
+		public ObjectBuilder<SortOptions> doc(ScoreSort v) {
 			this._kind = Kind.Doc;
 			this._value = v;
 			return this;
 		}
 
-		public Builder doc(Consumer<ScoreSort.Builder> fn) {
+		public ObjectBuilder<SortOptions> doc(Consumer<ScoreSort.Builder> fn) {
 			ScoreSort.Builder builder = new ScoreSort.Builder();
 			fn.accept(builder);
 			return this.doc(builder.build());
 		}
 
-		public Builder geoDistance(GeoDistanceSort v) {
+		public ObjectBuilder<SortOptions> geoDistance(GeoDistanceSort v) {
 			this._kind = Kind.GeoDistance;
 			this._value = v;
 			return this;
 		}
 
-		public Builder geoDistance(Consumer<GeoDistanceSort.Builder> fn) {
+		public ObjectBuilder<SortOptions> geoDistance(Consumer<GeoDistanceSort.Builder> fn) {
 			GeoDistanceSort.Builder builder = new GeoDistanceSort.Builder();
 			fn.accept(builder);
 			return this.geoDistance(builder.build());
 		}
 
-		public Builder script(ScriptSort v) {
+		public ObjectBuilder<SortOptions> script(ScriptSort v) {
 			this._kind = Kind.Script;
 			this._value = v;
 			return this;
 		}
 
-		public Builder script(Consumer<ScriptSort.Builder> fn) {
+		public ObjectBuilder<SortOptions> script(Consumer<ScriptSort.Builder> fn) {
 			ScriptSort.Builder builder = new ScriptSort.Builder();
 			fn.accept(builder);
 			return this.script(builder.build());
 		}
 
-		public Builder field(FieldSort v) {
+		public ObjectBuilder<SortOptions> field(FieldSort v) {
 			this._kind = Kind.Field;
 			this._value = v;
 			return this;
 		}
 
-		public Builder field(Consumer<FieldSort.Builder> fn) {
+		public ObjectBuilder<SortOptions> field(Consumer<FieldSort.Builder> fn) {
 			FieldSort.Builder builder = new FieldSort.Builder();
 			fn.accept(builder);
 			return this.field(builder.build());
@@ -284,10 +284,28 @@ public class SortOptions implements TaggedUnion<SortOptions.Kind, Object>, Jsonp
 
 	}
 
-	public static final JsonpDeserializer<SortOptions> _DESERIALIZER = JsonpDeserializer
-			.lazy(() -> JsonpDeserializer.of(EnumSet.of(JsonParser.Event.START_OBJECT), (parser, mapper) -> {
+	public static final JsonpDeserializer<SortOptions> _DESERIALIZER = JsonpDeserializer.lazy(() -> JsonpDeserializer
+			.of(EnumSet.of(JsonParser.Event.START_OBJECT, JsonParser.Event.VALUE_STRING), (parser, mapper) -> {
 				SortOptions.Builder b = new SortOptions.Builder();
-				JsonpUtils.expectNextEvent(parser, JsonParser.Event.START_OBJECT);
+
+				JsonParser.Event event = parser.next();
+				if (event == JsonParser.Event.VALUE_STRING) {
+					switch (parser.getString()) {
+						case "_score" :
+							b.score(s -> {
+							});
+							break;
+						case "_doc" :
+							b.doc(d -> {
+							});
+							break;
+						default :
+							b.field(f -> f.field(parser.getString()));
+					}
+					return b.build();
+				}
+
+				JsonpUtils.expectEvent(parser, JsonParser.Event.START_OBJECT, event);
 				JsonpUtils.expectNextEvent(parser, JsonParser.Event.KEY_NAME);
 				switch (parser.getString()) {
 					case "_score" :

@@ -106,6 +106,8 @@ public class GetAutoscalingPolicyRequest extends RequestBase {
 	 * Endpoint "{@code autoscaling.get_autoscaling_policy}".
 	 */
 	public static final Endpoint<GetAutoscalingPolicyRequest, GetAutoscalingPolicyResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/autoscaling.get_autoscaling_policy",
+
 			// Request method
 			request -> {
 				return "GET";

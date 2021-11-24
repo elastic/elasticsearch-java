@@ -23,23 +23,23 @@
 
 package co.elastic.clients.elasticsearch.core;
 
-import co.elastic.clients.elasticsearch._types.DefaultOperator;
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.ExpandWildcard;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch._types.ScriptField;
 import co.elastic.clients.elasticsearch._types.SearchType;
 import co.elastic.clients.elasticsearch._types.SlicedScroll;
+import co.elastic.clients.elasticsearch._types.SortOptions;
 import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.elasticsearch._types.aggregations.Aggregation;
 import co.elastic.clients.elasticsearch._types.mapping.RuntimeField;
 import co.elastic.clients.elasticsearch._types.query_dsl.FieldAndFormat;
+import co.elastic.clients.elasticsearch._types.query_dsl.Operator;
 import co.elastic.clients.elasticsearch._types.query_dsl.Query;
 import co.elastic.clients.elasticsearch.core.search.FieldCollapse;
 import co.elastic.clients.elasticsearch.core.search.Highlight;
 import co.elastic.clients.elasticsearch.core.search.PointInTimeReference;
 import co.elastic.clients.elasticsearch.core.search.Rescore;
-import co.elastic.clients.elasticsearch.core.search.SortOptions;
 import co.elastic.clients.elasticsearch.core.search.SourceConfig;
 import co.elastic.clients.elasticsearch.core.search.Suggester;
 import co.elastic.clients.elasticsearch.core.search.TrackHits;
@@ -102,7 +102,7 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 	private final FieldCollapse collapse;
 
 	@Nullable
-	private final DefaultOperator defaultOperator;
+	private final Operator defaultOperator;
 
 	@Nullable
 	private final String df;
@@ -386,7 +386,7 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 	 * API name: {@code default_operator}
 	 */
 	@Nullable
-	public final DefaultOperator defaultOperator() {
+	public final Operator defaultOperator() {
 		return this.defaultOperator;
 	}
 
@@ -1098,7 +1098,7 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 		private FieldCollapse collapse;
 
 		@Nullable
-		private DefaultOperator defaultOperator;
+		private Operator defaultOperator;
 
 		@Nullable
 		private String df;
@@ -1355,7 +1355,7 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code default_operator}
 		 */
-		public final Builder defaultOperator(@Nullable DefaultOperator value) {
+		public final Builder defaultOperator(@Nullable Operator value) {
 			this.defaultOperator = value;
 			return this;
 		}
@@ -2133,7 +2133,8 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 	/**
 	 * Endpoint "{@code search}".
 	 */
-	public static final SimpleEndpoint<SearchRequest, ?> _ENDPOINT = new SimpleEndpoint<>(
+	public static final SimpleEndpoint<SearchRequest, ?> _ENDPOINT = new SimpleEndpoint<>("es/search",
+
 			// Request method
 			request -> {
 				return "POST";

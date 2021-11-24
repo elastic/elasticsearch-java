@@ -758,6 +758,8 @@ public class UpdateJobRequest extends RequestBase implements JsonpSerializable {
 	 * Endpoint "{@code ml.update_job}".
 	 */
 	public static final Endpoint<UpdateJobRequest, UpdateJobResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/ml.update_job",
+
 			// Request method
 			request -> {
 				return "POST";

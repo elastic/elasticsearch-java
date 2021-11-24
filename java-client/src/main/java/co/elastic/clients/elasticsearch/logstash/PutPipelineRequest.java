@@ -162,6 +162,8 @@ public class PutPipelineRequest extends RequestBase implements JsonpSerializable
 	 * Endpoint "{@code logstash.put_pipeline}".
 	 */
 	public static final Endpoint<PutPipelineRequest, BooleanResponse, ErrorResponse> _ENDPOINT = new BooleanEndpoint<>(
+			"es/logstash.put_pipeline",
+
 			// Request method
 			request -> {
 				return "PUT";

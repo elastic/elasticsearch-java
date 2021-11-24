@@ -52,7 +52,7 @@ public class NestedQuery extends QueryBase implements QueryVariant {
 	private final Query query;
 
 	@Nullable
-	private final NestedScoreMode scoreMode;
+	private final ChildScoreMode scoreMode;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -115,7 +115,7 @@ public class NestedQuery extends QueryBase implements QueryVariant {
 	 * API name: {@code score_mode}
 	 */
 	@Nullable
-	public final NestedScoreMode scoreMode() {
+	public final ChildScoreMode scoreMode() {
 		return this.scoreMode;
 	}
 
@@ -162,7 +162,7 @@ public class NestedQuery extends QueryBase implements QueryVariant {
 		private Query query;
 
 		@Nullable
-		private NestedScoreMode scoreMode;
+		private ChildScoreMode scoreMode;
 
 		/**
 		 * API name: {@code ignore_unmapped}
@@ -217,7 +217,7 @@ public class NestedQuery extends QueryBase implements QueryVariant {
 		/**
 		 * API name: {@code score_mode}
 		 */
-		public final Builder scoreMode(@Nullable NestedScoreMode value) {
+		public final Builder scoreMode(@Nullable ChildScoreMode value) {
 			this.scoreMode = value;
 			return this;
 		}
@@ -254,7 +254,7 @@ public class NestedQuery extends QueryBase implements QueryVariant {
 		op.add(Builder::innerHits, InnerHits._DESERIALIZER, "inner_hits");
 		op.add(Builder::path, JsonpDeserializer.stringDeserializer(), "path");
 		op.add(Builder::query, Query._DESERIALIZER, "query");
-		op.add(Builder::scoreMode, NestedScoreMode._DESERIALIZER, "score_mode");
+		op.add(Builder::scoreMode, ChildScoreMode._DESERIALIZER, "score_mode");
 
 	}
 

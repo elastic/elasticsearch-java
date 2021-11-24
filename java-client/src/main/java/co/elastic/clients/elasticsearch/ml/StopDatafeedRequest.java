@@ -263,6 +263,8 @@ public class StopDatafeedRequest extends RequestBase implements JsonpSerializabl
 	 * Endpoint "{@code ml.stop_datafeed}".
 	 */
 	public static final Endpoint<StopDatafeedRequest, StopDatafeedResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/ml.stop_datafeed",
+
 			// Request method
 			request -> {
 				return "POST";

@@ -212,6 +212,8 @@ public class PostVotingConfigExclusionsRequest extends RequestBase {
 	 * Endpoint "{@code cluster.post_voting_config_exclusions}".
 	 */
 	public static final Endpoint<PostVotingConfigExclusionsRequest, BooleanResponse, ErrorResponse> _ENDPOINT = new BooleanEndpoint<>(
+			"es/cluster.post_voting_config_exclusions",
+
 			// Request method
 			request -> {
 				return "POST";

@@ -253,6 +253,8 @@ public class GetCalendarEventsRequest extends RequestBase {
 	 * Endpoint "{@code ml.get_calendar_events}".
 	 */
 	public static final Endpoint<GetCalendarEventsRequest, GetCalendarEventsResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/ml.get_calendar_events",
+
 			// Request method
 			request -> {
 				return "GET";

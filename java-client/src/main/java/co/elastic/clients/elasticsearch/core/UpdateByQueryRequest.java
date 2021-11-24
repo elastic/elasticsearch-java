@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch.core;
 
 import co.elastic.clients.elasticsearch._types.Conflicts;
-import co.elastic.clients.elasticsearch._types.DefaultOperator;
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.ExpandWildcard;
 import co.elastic.clients.elasticsearch._types.RequestBase;
@@ -33,6 +32,7 @@ import co.elastic.clients.elasticsearch._types.SearchType;
 import co.elastic.clients.elasticsearch._types.SlicedScroll;
 import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.elasticsearch._types.WaitForActiveShards;
+import co.elastic.clients.elasticsearch._types.query_dsl.Operator;
 import co.elastic.clients.elasticsearch._types.query_dsl.Query;
 import co.elastic.clients.elasticsearch.core.search.SourceConfigParam;
 import co.elastic.clients.json.JsonpDeserializable;
@@ -82,7 +82,7 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 	private final Conflicts conflicts;
 
 	@Nullable
-	private final DefaultOperator defaultOperator;
+	private final Operator defaultOperator;
 
 	@Nullable
 	private final String df;
@@ -300,7 +300,7 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 	 * API name: {@code default_operator}
 	 */
 	@Nullable
-	public final DefaultOperator defaultOperator() {
+	public final Operator defaultOperator() {
 		return this.defaultOperator;
 	}
 
@@ -686,7 +686,7 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 		private Conflicts conflicts;
 
 		@Nullable
-		private DefaultOperator defaultOperator;
+		private Operator defaultOperator;
 
 		@Nullable
 		private String df;
@@ -889,7 +889,7 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 		 * <p>
 		 * API name: {@code default_operator}
 		 */
-		public final Builder defaultOperator(@Nullable DefaultOperator value) {
+		public final Builder defaultOperator(@Nullable Operator value) {
 			this.defaultOperator = value;
 			return this;
 		}
@@ -1382,6 +1382,8 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 	 * Endpoint "{@code update_by_query}".
 	 */
 	public static final Endpoint<UpdateByQueryRequest, UpdateByQueryResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/update_by_query",
+
 			// Request method
 			request -> {
 				return "POST";

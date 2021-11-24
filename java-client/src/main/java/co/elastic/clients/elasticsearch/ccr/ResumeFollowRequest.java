@@ -449,6 +449,8 @@ public class ResumeFollowRequest extends RequestBase implements JsonpSerializabl
 	 * Endpoint "{@code ccr.resume_follow}".
 	 */
 	public static final Endpoint<ResumeFollowRequest, ResumeFollowResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/ccr.resume_follow",
+
 			// Request method
 			request -> {
 				return "POST";

@@ -66,7 +66,7 @@ public class BucketsPath implements TaggedUnion<BucketsPath.Kind, Object>, Jsonp
 		return _value;
 	}
 
-	public BucketsPath(Kind kind, Object value) {
+	private BucketsPath(Kind kind, Object value) {
 		this._kind = kind;
 		this._value = value;
 	}
@@ -173,19 +173,19 @@ public class BucketsPath implements TaggedUnion<BucketsPath.Kind, Object>, Jsonp
 		private Kind _kind;
 		private Object _value;
 
-		public Builder array(List<String> v) {
+		public ObjectBuilder<BucketsPath> array(List<String> v) {
 			this._kind = Kind.Array;
 			this._value = v;
 			return this;
 		}
 
-		public Builder dict(Map<String, String> v) {
+		public ObjectBuilder<BucketsPath> dict(Map<String, String> v) {
 			this._kind = Kind.Dict;
 			this._value = v;
 			return this;
 		}
 
-		public Builder single(String v) {
+		public ObjectBuilder<BucketsPath> single(String v) {
 			this._kind = Kind.Single;
 			this._value = v;
 			return this;

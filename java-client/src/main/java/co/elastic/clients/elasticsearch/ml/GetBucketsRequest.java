@@ -493,6 +493,8 @@ public class GetBucketsRequest extends RequestBase implements JsonpSerializable 
 	 * Endpoint "{@code ml.get_buckets}".
 	 */
 	public static final Endpoint<GetBucketsRequest, GetBucketsResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/ml.get_buckets",
+
 			// Request method
 			request -> {
 				return "POST";

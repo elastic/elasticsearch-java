@@ -163,6 +163,8 @@ public class GetDataStreamRequest extends RequestBase {
 	 * Endpoint "{@code indices.get_data_stream}".
 	 */
 	public static final Endpoint<GetDataStreamRequest, GetDataStreamResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/indices.get_data_stream",
+
 			// Request method
 			request -> {
 				return "GET";

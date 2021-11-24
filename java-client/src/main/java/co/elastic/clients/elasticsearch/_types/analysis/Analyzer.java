@@ -374,169 +374,169 @@ public class Analyzer implements TaggedUnion<Analyzer.Kind, AnalyzerVariant>, Js
 		private Kind _kind;
 		private AnalyzerVariant _value;
 
-		public Builder custom(CustomAnalyzer v) {
+		public ObjectBuilder<Analyzer> custom(CustomAnalyzer v) {
 			this._kind = Kind.Custom;
 			this._value = v;
 			return this;
 		}
 
-		public Builder custom(Consumer<CustomAnalyzer.Builder> fn) {
+		public ObjectBuilder<Analyzer> custom(Consumer<CustomAnalyzer.Builder> fn) {
 			CustomAnalyzer.Builder builder = new CustomAnalyzer.Builder();
 			fn.accept(builder);
 			return this.custom(builder.build());
 		}
 
-		public Builder dutch(DutchAnalyzer v) {
+		public ObjectBuilder<Analyzer> dutch(DutchAnalyzer v) {
 			this._kind = Kind.Dutch;
 			this._value = v;
 			return this;
 		}
 
-		public Builder dutch(Consumer<DutchAnalyzer.Builder> fn) {
+		public ObjectBuilder<Analyzer> dutch(Consumer<DutchAnalyzer.Builder> fn) {
 			DutchAnalyzer.Builder builder = new DutchAnalyzer.Builder();
 			fn.accept(builder);
 			return this.dutch(builder.build());
 		}
 
-		public Builder fingerprint(FingerprintAnalyzer v) {
+		public ObjectBuilder<Analyzer> fingerprint(FingerprintAnalyzer v) {
 			this._kind = Kind.Fingerprint;
 			this._value = v;
 			return this;
 		}
 
-		public Builder fingerprint(Consumer<FingerprintAnalyzer.Builder> fn) {
+		public ObjectBuilder<Analyzer> fingerprint(Consumer<FingerprintAnalyzer.Builder> fn) {
 			FingerprintAnalyzer.Builder builder = new FingerprintAnalyzer.Builder();
 			fn.accept(builder);
 			return this.fingerprint(builder.build());
 		}
 
-		public Builder icuAnalyzer(IcuAnalyzer v) {
+		public ObjectBuilder<Analyzer> icuAnalyzer(IcuAnalyzer v) {
 			this._kind = Kind.IcuAnalyzer;
 			this._value = v;
 			return this;
 		}
 
-		public Builder icuAnalyzer(Consumer<IcuAnalyzer.Builder> fn) {
+		public ObjectBuilder<Analyzer> icuAnalyzer(Consumer<IcuAnalyzer.Builder> fn) {
 			IcuAnalyzer.Builder builder = new IcuAnalyzer.Builder();
 			fn.accept(builder);
 			return this.icuAnalyzer(builder.build());
 		}
 
-		public Builder keyword(KeywordAnalyzer v) {
+		public ObjectBuilder<Analyzer> keyword(KeywordAnalyzer v) {
 			this._kind = Kind.Keyword;
 			this._value = v;
 			return this;
 		}
 
-		public Builder keyword(Consumer<KeywordAnalyzer.Builder> fn) {
+		public ObjectBuilder<Analyzer> keyword(Consumer<KeywordAnalyzer.Builder> fn) {
 			KeywordAnalyzer.Builder builder = new KeywordAnalyzer.Builder();
 			fn.accept(builder);
 			return this.keyword(builder.build());
 		}
 
-		public Builder kuromoji(KuromojiAnalyzer v) {
+		public ObjectBuilder<Analyzer> kuromoji(KuromojiAnalyzer v) {
 			this._kind = Kind.Kuromoji;
 			this._value = v;
 			return this;
 		}
 
-		public Builder kuromoji(Consumer<KuromojiAnalyzer.Builder> fn) {
+		public ObjectBuilder<Analyzer> kuromoji(Consumer<KuromojiAnalyzer.Builder> fn) {
 			KuromojiAnalyzer.Builder builder = new KuromojiAnalyzer.Builder();
 			fn.accept(builder);
 			return this.kuromoji(builder.build());
 		}
 
-		public Builder language(LanguageAnalyzer v) {
+		public ObjectBuilder<Analyzer> language(LanguageAnalyzer v) {
 			this._kind = Kind.Language;
 			this._value = v;
 			return this;
 		}
 
-		public Builder language(Consumer<LanguageAnalyzer.Builder> fn) {
+		public ObjectBuilder<Analyzer> language(Consumer<LanguageAnalyzer.Builder> fn) {
 			LanguageAnalyzer.Builder builder = new LanguageAnalyzer.Builder();
 			fn.accept(builder);
 			return this.language(builder.build());
 		}
 
-		public Builder nori(NoriAnalyzer v) {
+		public ObjectBuilder<Analyzer> nori(NoriAnalyzer v) {
 			this._kind = Kind.Nori;
 			this._value = v;
 			return this;
 		}
 
-		public Builder nori(Consumer<NoriAnalyzer.Builder> fn) {
+		public ObjectBuilder<Analyzer> nori(Consumer<NoriAnalyzer.Builder> fn) {
 			NoriAnalyzer.Builder builder = new NoriAnalyzer.Builder();
 			fn.accept(builder);
 			return this.nori(builder.build());
 		}
 
-		public Builder pattern(PatternAnalyzer v) {
+		public ObjectBuilder<Analyzer> pattern(PatternAnalyzer v) {
 			this._kind = Kind.Pattern;
 			this._value = v;
 			return this;
 		}
 
-		public Builder pattern(Consumer<PatternAnalyzer.Builder> fn) {
+		public ObjectBuilder<Analyzer> pattern(Consumer<PatternAnalyzer.Builder> fn) {
 			PatternAnalyzer.Builder builder = new PatternAnalyzer.Builder();
 			fn.accept(builder);
 			return this.pattern(builder.build());
 		}
 
-		public Builder simple(SimpleAnalyzer v) {
+		public ObjectBuilder<Analyzer> simple(SimpleAnalyzer v) {
 			this._kind = Kind.Simple;
 			this._value = v;
 			return this;
 		}
 
-		public Builder simple(Consumer<SimpleAnalyzer.Builder> fn) {
+		public ObjectBuilder<Analyzer> simple(Consumer<SimpleAnalyzer.Builder> fn) {
 			SimpleAnalyzer.Builder builder = new SimpleAnalyzer.Builder();
 			fn.accept(builder);
 			return this.simple(builder.build());
 		}
 
-		public Builder snowball(SnowballAnalyzer v) {
+		public ObjectBuilder<Analyzer> snowball(SnowballAnalyzer v) {
 			this._kind = Kind.Snowball;
 			this._value = v;
 			return this;
 		}
 
-		public Builder snowball(Consumer<SnowballAnalyzer.Builder> fn) {
+		public ObjectBuilder<Analyzer> snowball(Consumer<SnowballAnalyzer.Builder> fn) {
 			SnowballAnalyzer.Builder builder = new SnowballAnalyzer.Builder();
 			fn.accept(builder);
 			return this.snowball(builder.build());
 		}
 
-		public Builder standard(StandardAnalyzer v) {
+		public ObjectBuilder<Analyzer> standard(StandardAnalyzer v) {
 			this._kind = Kind.Standard;
 			this._value = v;
 			return this;
 		}
 
-		public Builder standard(Consumer<StandardAnalyzer.Builder> fn) {
+		public ObjectBuilder<Analyzer> standard(Consumer<StandardAnalyzer.Builder> fn) {
 			StandardAnalyzer.Builder builder = new StandardAnalyzer.Builder();
 			fn.accept(builder);
 			return this.standard(builder.build());
 		}
 
-		public Builder stop(StopAnalyzer v) {
+		public ObjectBuilder<Analyzer> stop(StopAnalyzer v) {
 			this._kind = Kind.Stop;
 			this._value = v;
 			return this;
 		}
 
-		public Builder stop(Consumer<StopAnalyzer.Builder> fn) {
+		public ObjectBuilder<Analyzer> stop(Consumer<StopAnalyzer.Builder> fn) {
 			StopAnalyzer.Builder builder = new StopAnalyzer.Builder();
 			fn.accept(builder);
 			return this.stop(builder.build());
 		}
 
-		public Builder whitespace(WhitespaceAnalyzer v) {
+		public ObjectBuilder<Analyzer> whitespace(WhitespaceAnalyzer v) {
 			this._kind = Kind.Whitespace;
 			this._value = v;
 			return this;
 		}
 
-		public Builder whitespace(Consumer<WhitespaceAnalyzer.Builder> fn) {
+		public ObjectBuilder<Analyzer> whitespace(Consumer<WhitespaceAnalyzer.Builder> fn) {
 			WhitespaceAnalyzer.Builder builder = new WhitespaceAnalyzer.Builder();
 			fn.accept(builder);
 			return this.whitespace(builder.build());
@@ -566,7 +566,7 @@ public class Analyzer implements TaggedUnion<Analyzer.Kind, AnalyzerVariant>, Js
 		op.add(Builder::stop, StopAnalyzer._DESERIALIZER, "stop");
 		op.add(Builder::whitespace, WhitespaceAnalyzer._DESERIALIZER, "whitespace");
 
-		op.setTypeProperty("type");
+		op.setTypeProperty("type", null);
 
 	}
 

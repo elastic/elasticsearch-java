@@ -64,7 +64,7 @@ public class SimpleQueryStringFlags implements TaggedUnion<SimpleQueryStringFlag
 		return _value;
 	}
 
-	public SimpleQueryStringFlags(Kind kind, Object value) {
+	private SimpleQueryStringFlags(Kind kind, Object value) {
 		this._kind = kind;
 		this._value = value;
 	}
@@ -147,13 +147,13 @@ public class SimpleQueryStringFlags implements TaggedUnion<SimpleQueryStringFlag
 		private Kind _kind;
 		private Object _value;
 
-		public Builder single(SimpleQueryStringFlag v) {
+		public ObjectBuilder<SimpleQueryStringFlags> single(SimpleQueryStringFlag v) {
 			this._kind = Kind.Single;
 			this._value = v;
 			return this;
 		}
 
-		public Builder multiple(String v) {
+		public ObjectBuilder<SimpleQueryStringFlags> multiple(String v) {
 			this._kind = Kind.Multiple;
 			this._value = v;
 			return this;

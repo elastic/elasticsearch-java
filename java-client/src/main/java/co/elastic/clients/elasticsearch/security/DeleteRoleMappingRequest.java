@@ -141,6 +141,8 @@ public class DeleteRoleMappingRequest extends RequestBase {
 	 * Endpoint "{@code security.delete_role_mapping}".
 	 */
 	public static final Endpoint<DeleteRoleMappingRequest, DeleteRoleMappingResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/security.delete_role_mapping",
+
 			// Request method
 			request -> {
 				return "DELETE";

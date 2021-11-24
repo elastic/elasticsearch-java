@@ -64,7 +64,7 @@ public class TimeOfDay implements TaggedUnion<TimeOfDay.Kind, Object>, JsonpSeri
 		return _value;
 	}
 
-	public TimeOfDay(Kind kind, Object value) {
+	private TimeOfDay(Kind kind, Object value) {
 		this._kind = kind;
 		this._value = value;
 	}
@@ -135,19 +135,19 @@ public class TimeOfDay implements TaggedUnion<TimeOfDay.Kind, Object>, JsonpSeri
 		private Kind _kind;
 		private Object _value;
 
-		public Builder text(String v) {
+		public ObjectBuilder<TimeOfDay> text(String v) {
 			this._kind = Kind.Text;
 			this._value = v;
 			return this;
 		}
 
-		public Builder hourMinute(HourAndMinute v) {
+		public ObjectBuilder<TimeOfDay> hourMinute(HourAndMinute v) {
 			this._kind = Kind.HourMinute;
 			this._value = v;
 			return this;
 		}
 
-		public Builder hourMinute(Consumer<HourAndMinute.Builder> fn) {
+		public ObjectBuilder<TimeOfDay> hourMinute(Consumer<HourAndMinute.Builder> fn) {
 			HourAndMinute.Builder builder = new HourAndMinute.Builder();
 			fn.accept(builder);
 			return this.hourMinute(builder.build());

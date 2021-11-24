@@ -149,6 +149,8 @@ public class WatcherStatsRequest extends RequestBase {
 	 * Endpoint "{@code watcher.stats}".
 	 */
 	public static final Endpoint<WatcherStatsRequest, WatcherStatsResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/watcher.stats",
+
 			// Request method
 			request -> {
 				return "GET";

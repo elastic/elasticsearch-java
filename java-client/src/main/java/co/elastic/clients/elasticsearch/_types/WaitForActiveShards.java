@@ -64,7 +64,7 @@ public class WaitForActiveShards implements TaggedUnion<WaitForActiveShards.Kind
 		return _value;
 	}
 
-	public WaitForActiveShards(Kind kind, Object value) {
+	private WaitForActiveShards(Kind kind, Object value) {
 		this._kind = kind;
 		this._value = value;
 	}
@@ -147,13 +147,13 @@ public class WaitForActiveShards implements TaggedUnion<WaitForActiveShards.Kind
 		private Kind _kind;
 		private Object _value;
 
-		public Builder option(WaitForActiveShardOptions v) {
+		public ObjectBuilder<WaitForActiveShards> option(WaitForActiveShardOptions v) {
 			this._kind = Kind.Option;
 			this._value = v;
 			return this;
 		}
 
-		public Builder count(Integer v) {
+		public ObjectBuilder<WaitForActiveShards> count(Integer v) {
 			this._kind = Kind.Count;
 			this._value = v;
 			return this;

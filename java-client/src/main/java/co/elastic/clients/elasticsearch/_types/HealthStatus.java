@@ -28,25 +28,43 @@ import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 
 @JsonpDeserializable
-public enum WaitForStatus implements JsonEnum {
-	Green("green"),
+public enum HealthStatus implements JsonEnum {
+	/**
+	 * All shards are assigned.
+	 */
+	Green("green", "GREEN"),
 
-	Yellow("yellow"),
+	/**
+	 * All primary shards are assigned, but one or more replica shards are
+	 * unassigned. If a node in the cluster fails, some data could be unavailable
+	 * until that node is repaired.
+	 */
+	Yellow("yellow", "YELLOW"),
 
-	Red("red"),
+	/**
+	 * One or more primary shards are unassigned, so some data is unavailable. This
+	 * can occur briefly during cluster startup as primary shards are assigned.
+	 */
+	Red("red", "RED"),
 
 	;
 
 	private final String jsonValue;
+	private final String[] aliases;
 
-	WaitForStatus(String jsonValue) {
+	HealthStatus(String jsonValue, String... aliases) {
 		this.jsonValue = jsonValue;
+		this.aliases = aliases;
 	}
 
 	public String jsonValue() {
 		return this.jsonValue;
 	}
 
-	public static final JsonEnum.Deserializer<WaitForStatus> _DESERIALIZER = new JsonEnum.Deserializer<>(
-			WaitForStatus.values());
+	public String[] aliases() {
+		return this.aliases;
+	}
+
+	public static final JsonEnum.Deserializer<HealthStatus> _DESERIALIZER = new JsonEnum.Deserializer<>(
+			HealthStatus.values());
 }

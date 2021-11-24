@@ -159,6 +159,8 @@ public class OpenPointInTimeRequest extends RequestBase {
 	 * Endpoint "{@code open_point_in_time}".
 	 */
 	public static final Endpoint<OpenPointInTimeRequest, OpenPointInTimeResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/open_point_in_time",
+
 			// Request method
 			request -> {
 				return "POST";

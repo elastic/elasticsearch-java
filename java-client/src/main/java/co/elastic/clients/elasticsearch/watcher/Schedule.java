@@ -295,61 +295,61 @@ public class Schedule implements TaggedUnion<Schedule.Kind, Object>, TriggerVari
 		private Kind _kind;
 		private Object _value;
 
-		public Builder cron(String v) {
+		public ObjectBuilder<Schedule> cron(String v) {
 			this._kind = Kind.Cron;
 			this._value = v;
 			return this;
 		}
 
-		public Builder daily(DailySchedule v) {
+		public ObjectBuilder<Schedule> daily(DailySchedule v) {
 			this._kind = Kind.Daily;
 			this._value = v;
 			return this;
 		}
 
-		public Builder daily(Consumer<DailySchedule.Builder> fn) {
+		public ObjectBuilder<Schedule> daily(Consumer<DailySchedule.Builder> fn) {
 			DailySchedule.Builder builder = new DailySchedule.Builder();
 			fn.accept(builder);
 			return this.daily(builder.build());
 		}
 
-		public Builder hourly(HourlySchedule v) {
+		public ObjectBuilder<Schedule> hourly(HourlySchedule v) {
 			this._kind = Kind.Hourly;
 			this._value = v;
 			return this;
 		}
 
-		public Builder hourly(Consumer<HourlySchedule.Builder> fn) {
+		public ObjectBuilder<Schedule> hourly(Consumer<HourlySchedule.Builder> fn) {
 			HourlySchedule.Builder builder = new HourlySchedule.Builder();
 			fn.accept(builder);
 			return this.hourly(builder.build());
 		}
 
-		public Builder interval(Time v) {
+		public ObjectBuilder<Schedule> interval(Time v) {
 			this._kind = Kind.Interval;
 			this._value = v;
 			return this;
 		}
 
-		public Builder interval(Consumer<Time.Builder> fn) {
+		public ObjectBuilder<Schedule> interval(Consumer<Time.Builder> fn) {
 			Time.Builder builder = new Time.Builder();
 			fn.accept(builder);
 			return this.interval(builder.build());
 		}
 
-		public Builder monthly(List<TimeOfMonth> v) {
+		public ObjectBuilder<Schedule> monthly(List<TimeOfMonth> v) {
 			this._kind = Kind.Monthly;
 			this._value = v;
 			return this;
 		}
 
-		public Builder weekly(List<TimeOfWeek> v) {
+		public ObjectBuilder<Schedule> weekly(List<TimeOfWeek> v) {
 			this._kind = Kind.Weekly;
 			this._value = v;
 			return this;
 		}
 
-		public Builder yearly(List<TimeOfYear> v) {
+		public ObjectBuilder<Schedule> yearly(List<TimeOfYear> v) {
 			this._kind = Kind.Yearly;
 			this._value = v;
 			return this;

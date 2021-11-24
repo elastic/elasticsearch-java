@@ -215,6 +215,8 @@ public class DeleteForecastRequest extends RequestBase {
 	 * Endpoint "{@code ml.delete_forecast}".
 	 */
 	public static final Endpoint<DeleteForecastRequest, DeleteForecastResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/ml.delete_forecast",
+
 			// Request method
 			request -> {
 				return "DELETE";

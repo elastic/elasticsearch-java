@@ -28,6 +28,7 @@ import co.elastic.clients.elasticsearch._types.ElasticsearchException;
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.transport.ElasticsearchTransport;
 import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.JsonEndpoint;
 import co.elastic.clients.transport.Transport;
 import co.elastic.clients.transport.TransportOptions;
 import co.elastic.clients.util.ObjectBuilder;
@@ -69,7 +70,7 @@ public class ElasticsearchGraphAsyncClient extends ApiClient<ElasticsearchTransp
 	public CompletableFuture<ExploreResponse> explore(ExploreRequest request)
 			throws IOException, ElasticsearchException {
 		@SuppressWarnings("unchecked")
-		Endpoint<ExploreRequest, ExploreResponse, ErrorResponse> endpoint = (Endpoint<ExploreRequest, ExploreResponse, ErrorResponse>) ExploreRequest._ENDPOINT;
+		JsonEndpoint<ExploreRequest, ExploreResponse, ErrorResponse> endpoint = (JsonEndpoint<ExploreRequest, ExploreResponse, ErrorResponse>) ExploreRequest._ENDPOINT;
 
 		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}

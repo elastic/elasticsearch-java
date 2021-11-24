@@ -108,6 +108,8 @@ public class ResumeAutoFollowPatternRequest extends RequestBase {
 	 * Endpoint "{@code ccr.resume_auto_follow_pattern}".
 	 */
 	public static final Endpoint<ResumeAutoFollowPatternRequest, ResumeAutoFollowPatternResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/ccr.resume_auto_follow_pattern",
+
 			// Request method
 			request -> {
 				return "POST";

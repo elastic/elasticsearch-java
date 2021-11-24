@@ -26,7 +26,7 @@ package co.elastic.clients.elasticsearch.indices;
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.ExpandWildcard;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.elasticsearch.indices.shard_stores.ShardStatus;
+import co.elastic.clients.elasticsearch.indices.shard_stores.ShardStoreStatus;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -61,7 +61,7 @@ public class ShardStoresRequest extends RequestBase {
 
 	private final List<String> index;
 
-	private final List<ShardStatus> status;
+	private final List<ShardStoreStatus> status;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -128,7 +128,7 @@ public class ShardStoresRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code status}
 	 */
-	public final List<ShardStatus> status() {
+	public final List<ShardStoreStatus> status() {
 		return this.status;
 	}
 
@@ -151,7 +151,7 @@ public class ShardStoresRequest extends RequestBase {
 		private List<String> index;
 
 		@Nullable
-		private List<ShardStatus> status;
+		private List<ShardStoreStatus> status;
 
 		/**
 		 * If false, the request returns an error if any wildcard expression, index
@@ -224,7 +224,7 @@ public class ShardStoresRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code status}
 		 */
-		public final Builder status(@Nullable List<ShardStatus> value) {
+		public final Builder status(@Nullable List<ShardStoreStatus> value) {
 			this.status = value;
 			return this;
 		}
@@ -234,7 +234,7 @@ public class ShardStoresRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code status}
 		 */
-		public final Builder status(ShardStatus... value) {
+		public final Builder status(ShardStoreStatus... value) {
 			this.status = Arrays.asList(value);
 			return this;
 		}
@@ -258,6 +258,8 @@ public class ShardStoresRequest extends RequestBase {
 	 * Endpoint "{@code indices.shard_stores}".
 	 */
 	public static final Endpoint<ShardStoresRequest, ShardStoresResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/indices.shard_stores",
+
 			// Request method
 			request -> {
 				return "GET";

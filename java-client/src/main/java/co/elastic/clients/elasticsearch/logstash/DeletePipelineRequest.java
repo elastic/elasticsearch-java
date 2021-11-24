@@ -108,6 +108,8 @@ public class DeletePipelineRequest extends RequestBase {
 	 * Endpoint "{@code logstash.delete_pipeline}".
 	 */
 	public static final Endpoint<DeletePipelineRequest, BooleanResponse, ErrorResponse> _ENDPOINT = new BooleanEndpoint<>(
+			"es/logstash.delete_pipeline",
+
 			// Request method
 			request -> {
 				return "DELETE";

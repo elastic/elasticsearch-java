@@ -179,6 +179,8 @@ public class StopJobRequest extends RequestBase {
 	 * Endpoint "{@code rollup.stop_job}".
 	 */
 	public static final Endpoint<StopJobRequest, StopJobResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/rollup.stop_job",
+
 			// Request method
 			request -> {
 				return "POST";

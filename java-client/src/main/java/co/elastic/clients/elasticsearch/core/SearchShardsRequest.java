@@ -309,6 +309,8 @@ public class SearchShardsRequest extends RequestBase {
 	 * Endpoint "{@code search_shards}".
 	 */
 	public static final Endpoint<SearchShardsRequest, SearchShardsResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/search_shards",
+
 			// Request method
 			request -> {
 				return "POST";

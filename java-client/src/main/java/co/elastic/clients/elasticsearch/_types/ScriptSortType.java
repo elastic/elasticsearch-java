@@ -21,27 +21,23 @@
 // THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
 //----------------------------------------------------
 
-package co.elastic.clients.elasticsearch.core.search;
+package co.elastic.clients.elasticsearch._types;
 
 import co.elastic.clients.json.JsonEnum;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 
 @JsonpDeserializable
-public enum FieldSortNumericType implements JsonEnum {
-	Long("long"),
+public enum ScriptSortType implements JsonEnum {
+	String("string"),
 
-	Double("double"),
-
-	Date("date"),
-
-	DateNanos("date_nanos"),
+	Number("number"),
 
 	;
 
 	private final String jsonValue;
 
-	FieldSortNumericType(String jsonValue) {
+	ScriptSortType(String jsonValue) {
 		this.jsonValue = jsonValue;
 	}
 
@@ -49,6 +45,6 @@ public enum FieldSortNumericType implements JsonEnum {
 		return this.jsonValue;
 	}
 
-	public static final JsonEnum.Deserializer<FieldSortNumericType> _DESERIALIZER = new JsonEnum.Deserializer<>(
-			FieldSortNumericType.values());
+	public static final JsonEnum.Deserializer<ScriptSortType> _DESERIALIZER = new JsonEnum.Deserializer<>(
+			ScriptSortType.values());
 }

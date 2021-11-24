@@ -149,25 +149,25 @@ public class ClusterRemoteInfo
 		private Kind _kind;
 		private ClusterRemoteInfoVariant _value;
 
-		public Builder proxy(ClusterRemoteProxyInfo v) {
+		public ObjectBuilder<ClusterRemoteInfo> proxy(ClusterRemoteProxyInfo v) {
 			this._kind = Kind.Proxy;
 			this._value = v;
 			return this;
 		}
 
-		public Builder proxy(Consumer<ClusterRemoteProxyInfo.Builder> fn) {
+		public ObjectBuilder<ClusterRemoteInfo> proxy(Consumer<ClusterRemoteProxyInfo.Builder> fn) {
 			ClusterRemoteProxyInfo.Builder builder = new ClusterRemoteProxyInfo.Builder();
 			fn.accept(builder);
 			return this.proxy(builder.build());
 		}
 
-		public Builder sniff(ClusterRemoteSniffInfo v) {
+		public ObjectBuilder<ClusterRemoteInfo> sniff(ClusterRemoteSniffInfo v) {
 			this._kind = Kind.Sniff;
 			this._value = v;
 			return this;
 		}
 
-		public Builder sniff(Consumer<ClusterRemoteSniffInfo.Builder> fn) {
+		public ObjectBuilder<ClusterRemoteInfo> sniff(Consumer<ClusterRemoteSniffInfo.Builder> fn) {
 			ClusterRemoteSniffInfo.Builder builder = new ClusterRemoteSniffInfo.Builder();
 			fn.accept(builder);
 			return this.sniff(builder.build());
@@ -185,7 +185,7 @@ public class ClusterRemoteInfo
 		op.add(Builder::proxy, ClusterRemoteProxyInfo._DESERIALIZER, "proxy");
 		op.add(Builder::sniff, ClusterRemoteSniffInfo._DESERIALIZER, "sniff");
 
-		op.setTypeProperty("mode");
+		op.setTypeProperty("mode", null);
 
 	}
 

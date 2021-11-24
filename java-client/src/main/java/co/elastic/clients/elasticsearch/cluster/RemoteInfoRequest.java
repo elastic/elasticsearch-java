@@ -53,6 +53,8 @@ public class RemoteInfoRequest extends RequestBase {
 	 * Endpoint "{@code cluster.remote_info}".
 	 */
 	public static final Endpoint<RemoteInfoRequest, RemoteInfoResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/cluster.remote_info",
+
 			// Request method
 			request -> {
 				return "GET";

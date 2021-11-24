@@ -1142,637 +1142,637 @@ public class Query implements TaggedUnion<Query.Kind, Object>, AggregationVarian
 		private Kind _kind;
 		private Object _value;
 
-		public Builder bool(BoolQuery v) {
+		public ObjectBuilder<Query> bool(BoolQuery v) {
 			this._kind = Kind.Bool;
 			this._value = v;
 			return this;
 		}
 
-		public Builder bool(Consumer<BoolQuery.Builder> fn) {
+		public ObjectBuilder<Query> bool(Consumer<BoolQuery.Builder> fn) {
 			BoolQuery.Builder builder = new BoolQuery.Builder();
 			fn.accept(builder);
 			return this.bool(builder.build());
 		}
 
-		public Builder boosting(BoostingQuery v) {
+		public ObjectBuilder<Query> boosting(BoostingQuery v) {
 			this._kind = Kind.Boosting;
 			this._value = v;
 			return this;
 		}
 
-		public Builder boosting(Consumer<BoostingQuery.Builder> fn) {
+		public ObjectBuilder<Query> boosting(Consumer<BoostingQuery.Builder> fn) {
 			BoostingQuery.Builder builder = new BoostingQuery.Builder();
 			fn.accept(builder);
 			return this.boosting(builder.build());
 		}
 
-		public Builder common(CommonTermsQuery v) {
+		public ObjectBuilder<Query> common(CommonTermsQuery v) {
 			this._kind = Kind.Common;
 			this._value = v;
 			return this;
 		}
 
-		public Builder common(Consumer<CommonTermsQuery.Builder> fn) {
+		public ObjectBuilder<Query> common(Consumer<CommonTermsQuery.Builder> fn) {
 			CommonTermsQuery.Builder builder = new CommonTermsQuery.Builder();
 			fn.accept(builder);
 			return this.common(builder.build());
 		}
 
-		public Builder combinedFields(CombinedFieldsQuery v) {
+		public ObjectBuilder<Query> combinedFields(CombinedFieldsQuery v) {
 			this._kind = Kind.CombinedFields;
 			this._value = v;
 			return this;
 		}
 
-		public Builder combinedFields(Consumer<CombinedFieldsQuery.Builder> fn) {
+		public ObjectBuilder<Query> combinedFields(Consumer<CombinedFieldsQuery.Builder> fn) {
 			CombinedFieldsQuery.Builder builder = new CombinedFieldsQuery.Builder();
 			fn.accept(builder);
 			return this.combinedFields(builder.build());
 		}
 
-		public Builder constantScore(ConstantScoreQuery v) {
+		public ObjectBuilder<Query> constantScore(ConstantScoreQuery v) {
 			this._kind = Kind.ConstantScore;
 			this._value = v;
 			return this;
 		}
 
-		public Builder constantScore(Consumer<ConstantScoreQuery.Builder> fn) {
+		public ObjectBuilder<Query> constantScore(Consumer<ConstantScoreQuery.Builder> fn) {
 			ConstantScoreQuery.Builder builder = new ConstantScoreQuery.Builder();
 			fn.accept(builder);
 			return this.constantScore(builder.build());
 		}
 
-		public Builder disMax(DisMaxQuery v) {
+		public ObjectBuilder<Query> disMax(DisMaxQuery v) {
 			this._kind = Kind.DisMax;
 			this._value = v;
 			return this;
 		}
 
-		public Builder disMax(Consumer<DisMaxQuery.Builder> fn) {
+		public ObjectBuilder<Query> disMax(Consumer<DisMaxQuery.Builder> fn) {
 			DisMaxQuery.Builder builder = new DisMaxQuery.Builder();
 			fn.accept(builder);
 			return this.disMax(builder.build());
 		}
 
-		public Builder distanceFeature(DistanceFeatureQuery v) {
+		public ObjectBuilder<Query> distanceFeature(DistanceFeatureQuery v) {
 			this._kind = Kind.DistanceFeature;
 			this._value = v;
 			return this;
 		}
 
-		public Builder distanceFeature(Consumer<DistanceFeatureQuery.Builder> fn) {
+		public ObjectBuilder<Query> distanceFeature(Consumer<DistanceFeatureQuery.Builder> fn) {
 			DistanceFeatureQuery.Builder builder = new DistanceFeatureQuery.Builder();
 			fn.accept(builder);
 			return this.distanceFeature(builder.build());
 		}
 
-		public Builder exists(ExistsQuery v) {
+		public ObjectBuilder<Query> exists(ExistsQuery v) {
 			this._kind = Kind.Exists;
 			this._value = v;
 			return this;
 		}
 
-		public Builder exists(Consumer<ExistsQuery.Builder> fn) {
+		public ObjectBuilder<Query> exists(Consumer<ExistsQuery.Builder> fn) {
 			ExistsQuery.Builder builder = new ExistsQuery.Builder();
 			fn.accept(builder);
 			return this.exists(builder.build());
 		}
 
-		public Builder functionScore(FunctionScoreQuery v) {
+		public ObjectBuilder<Query> functionScore(FunctionScoreQuery v) {
 			this._kind = Kind.FunctionScore;
 			this._value = v;
 			return this;
 		}
 
-		public Builder functionScore(Consumer<FunctionScoreQuery.Builder> fn) {
+		public ObjectBuilder<Query> functionScore(Consumer<FunctionScoreQuery.Builder> fn) {
 			FunctionScoreQuery.Builder builder = new FunctionScoreQuery.Builder();
 			fn.accept(builder);
 			return this.functionScore(builder.build());
 		}
 
-		public Builder fuzzy(FuzzyQuery v) {
+		public ObjectBuilder<Query> fuzzy(FuzzyQuery v) {
 			this._kind = Kind.Fuzzy;
 			this._value = v;
 			return this;
 		}
 
-		public Builder fuzzy(Consumer<FuzzyQuery.Builder> fn) {
+		public ObjectBuilder<Query> fuzzy(Consumer<FuzzyQuery.Builder> fn) {
 			FuzzyQuery.Builder builder = new FuzzyQuery.Builder();
 			fn.accept(builder);
 			return this.fuzzy(builder.build());
 		}
 
-		public Builder geoBoundingBox(GeoBoundingBoxQuery v) {
+		public ObjectBuilder<Query> geoBoundingBox(GeoBoundingBoxQuery v) {
 			this._kind = Kind.GeoBoundingBox;
 			this._value = v;
 			return this;
 		}
 
-		public Builder geoBoundingBox(Consumer<GeoBoundingBoxQuery.Builder> fn) {
+		public ObjectBuilder<Query> geoBoundingBox(Consumer<GeoBoundingBoxQuery.Builder> fn) {
 			GeoBoundingBoxQuery.Builder builder = new GeoBoundingBoxQuery.Builder();
 			fn.accept(builder);
 			return this.geoBoundingBox(builder.build());
 		}
 
-		public Builder geoDistance(GeoDistanceQuery v) {
+		public ObjectBuilder<Query> geoDistance(GeoDistanceQuery v) {
 			this._kind = Kind.GeoDistance;
 			this._value = v;
 			return this;
 		}
 
-		public Builder geoDistance(Consumer<GeoDistanceQuery.Builder> fn) {
+		public ObjectBuilder<Query> geoDistance(Consumer<GeoDistanceQuery.Builder> fn) {
 			GeoDistanceQuery.Builder builder = new GeoDistanceQuery.Builder();
 			fn.accept(builder);
 			return this.geoDistance(builder.build());
 		}
 
-		public Builder geoPolygon(GeoPolygonQuery v) {
+		public ObjectBuilder<Query> geoPolygon(GeoPolygonQuery v) {
 			this._kind = Kind.GeoPolygon;
 			this._value = v;
 			return this;
 		}
 
-		public Builder geoPolygon(Consumer<GeoPolygonQuery.Builder> fn) {
+		public ObjectBuilder<Query> geoPolygon(Consumer<GeoPolygonQuery.Builder> fn) {
 			GeoPolygonQuery.Builder builder = new GeoPolygonQuery.Builder();
 			fn.accept(builder);
 			return this.geoPolygon(builder.build());
 		}
 
-		public Builder geoShape(GeoShapeQuery v) {
+		public ObjectBuilder<Query> geoShape(GeoShapeQuery v) {
 			this._kind = Kind.GeoShape;
 			this._value = v;
 			return this;
 		}
 
-		public Builder geoShape(Consumer<GeoShapeQuery.Builder> fn) {
+		public ObjectBuilder<Query> geoShape(Consumer<GeoShapeQuery.Builder> fn) {
 			GeoShapeQuery.Builder builder = new GeoShapeQuery.Builder();
 			fn.accept(builder);
 			return this.geoShape(builder.build());
 		}
 
-		public Builder hasChild(HasChildQuery v) {
+		public ObjectBuilder<Query> hasChild(HasChildQuery v) {
 			this._kind = Kind.HasChild;
 			this._value = v;
 			return this;
 		}
 
-		public Builder hasChild(Consumer<HasChildQuery.Builder> fn) {
+		public ObjectBuilder<Query> hasChild(Consumer<HasChildQuery.Builder> fn) {
 			HasChildQuery.Builder builder = new HasChildQuery.Builder();
 			fn.accept(builder);
 			return this.hasChild(builder.build());
 		}
 
-		public Builder hasParent(HasParentQuery v) {
+		public ObjectBuilder<Query> hasParent(HasParentQuery v) {
 			this._kind = Kind.HasParent;
 			this._value = v;
 			return this;
 		}
 
-		public Builder hasParent(Consumer<HasParentQuery.Builder> fn) {
+		public ObjectBuilder<Query> hasParent(Consumer<HasParentQuery.Builder> fn) {
 			HasParentQuery.Builder builder = new HasParentQuery.Builder();
 			fn.accept(builder);
 			return this.hasParent(builder.build());
 		}
 
-		public Builder ids(IdsQuery v) {
+		public ObjectBuilder<Query> ids(IdsQuery v) {
 			this._kind = Kind.Ids;
 			this._value = v;
 			return this;
 		}
 
-		public Builder ids(Consumer<IdsQuery.Builder> fn) {
+		public ObjectBuilder<Query> ids(Consumer<IdsQuery.Builder> fn) {
 			IdsQuery.Builder builder = new IdsQuery.Builder();
 			fn.accept(builder);
 			return this.ids(builder.build());
 		}
 
-		public Builder intervals(IntervalsQuery v) {
+		public ObjectBuilder<Query> intervals(IntervalsQuery v) {
 			this._kind = Kind.Intervals;
 			this._value = v;
 			return this;
 		}
 
-		public Builder intervals(Consumer<IntervalsQuery.Builder> fn) {
+		public ObjectBuilder<Query> intervals(Consumer<IntervalsQuery.Builder> fn) {
 			IntervalsQuery.Builder builder = new IntervalsQuery.Builder();
 			fn.accept(builder);
 			return this.intervals(builder.build());
 		}
 
-		public Builder match(MatchQuery v) {
+		public ObjectBuilder<Query> match(MatchQuery v) {
 			this._kind = Kind.Match;
 			this._value = v;
 			return this;
 		}
 
-		public Builder match(Consumer<MatchQuery.Builder> fn) {
+		public ObjectBuilder<Query> match(Consumer<MatchQuery.Builder> fn) {
 			MatchQuery.Builder builder = new MatchQuery.Builder();
 			fn.accept(builder);
 			return this.match(builder.build());
 		}
 
-		public Builder matchAll(MatchAllQuery v) {
+		public ObjectBuilder<Query> matchAll(MatchAllQuery v) {
 			this._kind = Kind.MatchAll;
 			this._value = v;
 			return this;
 		}
 
-		public Builder matchAll(Consumer<MatchAllQuery.Builder> fn) {
+		public ObjectBuilder<Query> matchAll(Consumer<MatchAllQuery.Builder> fn) {
 			MatchAllQuery.Builder builder = new MatchAllQuery.Builder();
 			fn.accept(builder);
 			return this.matchAll(builder.build());
 		}
 
-		public Builder matchBoolPrefix(MatchBoolPrefixQuery v) {
+		public ObjectBuilder<Query> matchBoolPrefix(MatchBoolPrefixQuery v) {
 			this._kind = Kind.MatchBoolPrefix;
 			this._value = v;
 			return this;
 		}
 
-		public Builder matchBoolPrefix(Consumer<MatchBoolPrefixQuery.Builder> fn) {
+		public ObjectBuilder<Query> matchBoolPrefix(Consumer<MatchBoolPrefixQuery.Builder> fn) {
 			MatchBoolPrefixQuery.Builder builder = new MatchBoolPrefixQuery.Builder();
 			fn.accept(builder);
 			return this.matchBoolPrefix(builder.build());
 		}
 
-		public Builder matchNone(MatchNoneQuery v) {
+		public ObjectBuilder<Query> matchNone(MatchNoneQuery v) {
 			this._kind = Kind.MatchNone;
 			this._value = v;
 			return this;
 		}
 
-		public Builder matchNone(Consumer<MatchNoneQuery.Builder> fn) {
+		public ObjectBuilder<Query> matchNone(Consumer<MatchNoneQuery.Builder> fn) {
 			MatchNoneQuery.Builder builder = new MatchNoneQuery.Builder();
 			fn.accept(builder);
 			return this.matchNone(builder.build());
 		}
 
-		public Builder matchPhrase(MatchPhraseQuery v) {
+		public ObjectBuilder<Query> matchPhrase(MatchPhraseQuery v) {
 			this._kind = Kind.MatchPhrase;
 			this._value = v;
 			return this;
 		}
 
-		public Builder matchPhrase(Consumer<MatchPhraseQuery.Builder> fn) {
+		public ObjectBuilder<Query> matchPhrase(Consumer<MatchPhraseQuery.Builder> fn) {
 			MatchPhraseQuery.Builder builder = new MatchPhraseQuery.Builder();
 			fn.accept(builder);
 			return this.matchPhrase(builder.build());
 		}
 
-		public Builder matchPhrasePrefix(MatchPhrasePrefixQuery v) {
+		public ObjectBuilder<Query> matchPhrasePrefix(MatchPhrasePrefixQuery v) {
 			this._kind = Kind.MatchPhrasePrefix;
 			this._value = v;
 			return this;
 		}
 
-		public Builder matchPhrasePrefix(Consumer<MatchPhrasePrefixQuery.Builder> fn) {
+		public ObjectBuilder<Query> matchPhrasePrefix(Consumer<MatchPhrasePrefixQuery.Builder> fn) {
 			MatchPhrasePrefixQuery.Builder builder = new MatchPhrasePrefixQuery.Builder();
 			fn.accept(builder);
 			return this.matchPhrasePrefix(builder.build());
 		}
 
-		public Builder moreLikeThis(MoreLikeThisQuery v) {
+		public ObjectBuilder<Query> moreLikeThis(MoreLikeThisQuery v) {
 			this._kind = Kind.MoreLikeThis;
 			this._value = v;
 			return this;
 		}
 
-		public Builder moreLikeThis(Consumer<MoreLikeThisQuery.Builder> fn) {
+		public ObjectBuilder<Query> moreLikeThis(Consumer<MoreLikeThisQuery.Builder> fn) {
 			MoreLikeThisQuery.Builder builder = new MoreLikeThisQuery.Builder();
 			fn.accept(builder);
 			return this.moreLikeThis(builder.build());
 		}
 
-		public Builder multiMatch(MultiMatchQuery v) {
+		public ObjectBuilder<Query> multiMatch(MultiMatchQuery v) {
 			this._kind = Kind.MultiMatch;
 			this._value = v;
 			return this;
 		}
 
-		public Builder multiMatch(Consumer<MultiMatchQuery.Builder> fn) {
+		public ObjectBuilder<Query> multiMatch(Consumer<MultiMatchQuery.Builder> fn) {
 			MultiMatchQuery.Builder builder = new MultiMatchQuery.Builder();
 			fn.accept(builder);
 			return this.multiMatch(builder.build());
 		}
 
-		public Builder nested(NestedQuery v) {
+		public ObjectBuilder<Query> nested(NestedQuery v) {
 			this._kind = Kind.Nested;
 			this._value = v;
 			return this;
 		}
 
-		public Builder nested(Consumer<NestedQuery.Builder> fn) {
+		public ObjectBuilder<Query> nested(Consumer<NestedQuery.Builder> fn) {
 			NestedQuery.Builder builder = new NestedQuery.Builder();
 			fn.accept(builder);
 			return this.nested(builder.build());
 		}
 
-		public Builder parentId(ParentIdQuery v) {
+		public ObjectBuilder<Query> parentId(ParentIdQuery v) {
 			this._kind = Kind.ParentId;
 			this._value = v;
 			return this;
 		}
 
-		public Builder parentId(Consumer<ParentIdQuery.Builder> fn) {
+		public ObjectBuilder<Query> parentId(Consumer<ParentIdQuery.Builder> fn) {
 			ParentIdQuery.Builder builder = new ParentIdQuery.Builder();
 			fn.accept(builder);
 			return this.parentId(builder.build());
 		}
 
-		public Builder percolate(PercolateQuery v) {
+		public ObjectBuilder<Query> percolate(PercolateQuery v) {
 			this._kind = Kind.Percolate;
 			this._value = v;
 			return this;
 		}
 
-		public Builder percolate(Consumer<PercolateQuery.Builder> fn) {
+		public ObjectBuilder<Query> percolate(Consumer<PercolateQuery.Builder> fn) {
 			PercolateQuery.Builder builder = new PercolateQuery.Builder();
 			fn.accept(builder);
 			return this.percolate(builder.build());
 		}
 
-		public Builder pinned(PinnedQuery v) {
+		public ObjectBuilder<Query> pinned(PinnedQuery v) {
 			this._kind = Kind.Pinned;
 			this._value = v;
 			return this;
 		}
 
-		public Builder pinned(Consumer<PinnedQuery.Builder> fn) {
+		public ObjectBuilder<Query> pinned(Consumer<PinnedQuery.Builder> fn) {
 			PinnedQuery.Builder builder = new PinnedQuery.Builder();
 			fn.accept(builder);
 			return this.pinned(builder.build());
 		}
 
-		public Builder prefix(PrefixQuery v) {
+		public ObjectBuilder<Query> prefix(PrefixQuery v) {
 			this._kind = Kind.Prefix;
 			this._value = v;
 			return this;
 		}
 
-		public Builder prefix(Consumer<PrefixQuery.Builder> fn) {
+		public ObjectBuilder<Query> prefix(Consumer<PrefixQuery.Builder> fn) {
 			PrefixQuery.Builder builder = new PrefixQuery.Builder();
 			fn.accept(builder);
 			return this.prefix(builder.build());
 		}
 
-		public Builder queryString(QueryStringQuery v) {
+		public ObjectBuilder<Query> queryString(QueryStringQuery v) {
 			this._kind = Kind.QueryString;
 			this._value = v;
 			return this;
 		}
 
-		public Builder queryString(Consumer<QueryStringQuery.Builder> fn) {
+		public ObjectBuilder<Query> queryString(Consumer<QueryStringQuery.Builder> fn) {
 			QueryStringQuery.Builder builder = new QueryStringQuery.Builder();
 			fn.accept(builder);
 			return this.queryString(builder.build());
 		}
 
-		public Builder range(RangeQuery v) {
+		public ObjectBuilder<Query> range(RangeQuery v) {
 			this._kind = Kind.Range;
 			this._value = v;
 			return this;
 		}
 
-		public Builder range(Consumer<RangeQuery.Builder> fn) {
+		public ObjectBuilder<Query> range(Consumer<RangeQuery.Builder> fn) {
 			RangeQuery.Builder builder = new RangeQuery.Builder();
 			fn.accept(builder);
 			return this.range(builder.build());
 		}
 
-		public Builder rankFeature(RankFeatureQuery v) {
+		public ObjectBuilder<Query> rankFeature(RankFeatureQuery v) {
 			this._kind = Kind.RankFeature;
 			this._value = v;
 			return this;
 		}
 
-		public Builder rankFeature(Consumer<RankFeatureQuery.Builder> fn) {
+		public ObjectBuilder<Query> rankFeature(Consumer<RankFeatureQuery.Builder> fn) {
 			RankFeatureQuery.Builder builder = new RankFeatureQuery.Builder();
 			fn.accept(builder);
 			return this.rankFeature(builder.build());
 		}
 
-		public Builder regexp(RegexpQuery v) {
+		public ObjectBuilder<Query> regexp(RegexpQuery v) {
 			this._kind = Kind.Regexp;
 			this._value = v;
 			return this;
 		}
 
-		public Builder regexp(Consumer<RegexpQuery.Builder> fn) {
+		public ObjectBuilder<Query> regexp(Consumer<RegexpQuery.Builder> fn) {
 			RegexpQuery.Builder builder = new RegexpQuery.Builder();
 			fn.accept(builder);
 			return this.regexp(builder.build());
 		}
 
-		public Builder script(ScriptQuery v) {
+		public ObjectBuilder<Query> script(ScriptQuery v) {
 			this._kind = Kind.Script;
 			this._value = v;
 			return this;
 		}
 
-		public Builder script(Consumer<ScriptQuery.Builder> fn) {
+		public ObjectBuilder<Query> script(Consumer<ScriptQuery.Builder> fn) {
 			ScriptQuery.Builder builder = new ScriptQuery.Builder();
 			fn.accept(builder);
 			return this.script(builder.build());
 		}
 
-		public Builder scriptScore(ScriptScoreQuery v) {
+		public ObjectBuilder<Query> scriptScore(ScriptScoreQuery v) {
 			this._kind = Kind.ScriptScore;
 			this._value = v;
 			return this;
 		}
 
-		public Builder scriptScore(Consumer<ScriptScoreQuery.Builder> fn) {
+		public ObjectBuilder<Query> scriptScore(Consumer<ScriptScoreQuery.Builder> fn) {
 			ScriptScoreQuery.Builder builder = new ScriptScoreQuery.Builder();
 			fn.accept(builder);
 			return this.scriptScore(builder.build());
 		}
 
-		public Builder shape(ShapeQuery v) {
+		public ObjectBuilder<Query> shape(ShapeQuery v) {
 			this._kind = Kind.Shape;
 			this._value = v;
 			return this;
 		}
 
-		public Builder shape(Consumer<ShapeQuery.Builder> fn) {
+		public ObjectBuilder<Query> shape(Consumer<ShapeQuery.Builder> fn) {
 			ShapeQuery.Builder builder = new ShapeQuery.Builder();
 			fn.accept(builder);
 			return this.shape(builder.build());
 		}
 
-		public Builder simpleQueryString(SimpleQueryStringQuery v) {
+		public ObjectBuilder<Query> simpleQueryString(SimpleQueryStringQuery v) {
 			this._kind = Kind.SimpleQueryString;
 			this._value = v;
 			return this;
 		}
 
-		public Builder simpleQueryString(Consumer<SimpleQueryStringQuery.Builder> fn) {
+		public ObjectBuilder<Query> simpleQueryString(Consumer<SimpleQueryStringQuery.Builder> fn) {
 			SimpleQueryStringQuery.Builder builder = new SimpleQueryStringQuery.Builder();
 			fn.accept(builder);
 			return this.simpleQueryString(builder.build());
 		}
 
-		public Builder spanContaining(SpanContainingQuery v) {
+		public ObjectBuilder<Query> spanContaining(SpanContainingQuery v) {
 			this._kind = Kind.SpanContaining;
 			this._value = v;
 			return this;
 		}
 
-		public Builder spanContaining(Consumer<SpanContainingQuery.Builder> fn) {
+		public ObjectBuilder<Query> spanContaining(Consumer<SpanContainingQuery.Builder> fn) {
 			SpanContainingQuery.Builder builder = new SpanContainingQuery.Builder();
 			fn.accept(builder);
 			return this.spanContaining(builder.build());
 		}
 
-		public Builder fieldMaskingSpan(SpanFieldMaskingQuery v) {
+		public ObjectBuilder<Query> fieldMaskingSpan(SpanFieldMaskingQuery v) {
 			this._kind = Kind.FieldMaskingSpan;
 			this._value = v;
 			return this;
 		}
 
-		public Builder fieldMaskingSpan(Consumer<SpanFieldMaskingQuery.Builder> fn) {
+		public ObjectBuilder<Query> fieldMaskingSpan(Consumer<SpanFieldMaskingQuery.Builder> fn) {
 			SpanFieldMaskingQuery.Builder builder = new SpanFieldMaskingQuery.Builder();
 			fn.accept(builder);
 			return this.fieldMaskingSpan(builder.build());
 		}
 
-		public Builder spanFirst(SpanFirstQuery v) {
+		public ObjectBuilder<Query> spanFirst(SpanFirstQuery v) {
 			this._kind = Kind.SpanFirst;
 			this._value = v;
 			return this;
 		}
 
-		public Builder spanFirst(Consumer<SpanFirstQuery.Builder> fn) {
+		public ObjectBuilder<Query> spanFirst(Consumer<SpanFirstQuery.Builder> fn) {
 			SpanFirstQuery.Builder builder = new SpanFirstQuery.Builder();
 			fn.accept(builder);
 			return this.spanFirst(builder.build());
 		}
 
-		public Builder spanMulti(SpanMultiTermQuery v) {
+		public ObjectBuilder<Query> spanMulti(SpanMultiTermQuery v) {
 			this._kind = Kind.SpanMulti;
 			this._value = v;
 			return this;
 		}
 
-		public Builder spanMulti(Consumer<SpanMultiTermQuery.Builder> fn) {
+		public ObjectBuilder<Query> spanMulti(Consumer<SpanMultiTermQuery.Builder> fn) {
 			SpanMultiTermQuery.Builder builder = new SpanMultiTermQuery.Builder();
 			fn.accept(builder);
 			return this.spanMulti(builder.build());
 		}
 
-		public Builder spanNear(SpanNearQuery v) {
+		public ObjectBuilder<Query> spanNear(SpanNearQuery v) {
 			this._kind = Kind.SpanNear;
 			this._value = v;
 			return this;
 		}
 
-		public Builder spanNear(Consumer<SpanNearQuery.Builder> fn) {
+		public ObjectBuilder<Query> spanNear(Consumer<SpanNearQuery.Builder> fn) {
 			SpanNearQuery.Builder builder = new SpanNearQuery.Builder();
 			fn.accept(builder);
 			return this.spanNear(builder.build());
 		}
 
-		public Builder spanNot(SpanNotQuery v) {
+		public ObjectBuilder<Query> spanNot(SpanNotQuery v) {
 			this._kind = Kind.SpanNot;
 			this._value = v;
 			return this;
 		}
 
-		public Builder spanNot(Consumer<SpanNotQuery.Builder> fn) {
+		public ObjectBuilder<Query> spanNot(Consumer<SpanNotQuery.Builder> fn) {
 			SpanNotQuery.Builder builder = new SpanNotQuery.Builder();
 			fn.accept(builder);
 			return this.spanNot(builder.build());
 		}
 
-		public Builder spanOr(SpanOrQuery v) {
+		public ObjectBuilder<Query> spanOr(SpanOrQuery v) {
 			this._kind = Kind.SpanOr;
 			this._value = v;
 			return this;
 		}
 
-		public Builder spanOr(Consumer<SpanOrQuery.Builder> fn) {
+		public ObjectBuilder<Query> spanOr(Consumer<SpanOrQuery.Builder> fn) {
 			SpanOrQuery.Builder builder = new SpanOrQuery.Builder();
 			fn.accept(builder);
 			return this.spanOr(builder.build());
 		}
 
-		public Builder spanTerm(SpanTermQuery v) {
+		public ObjectBuilder<Query> spanTerm(SpanTermQuery v) {
 			this._kind = Kind.SpanTerm;
 			this._value = v;
 			return this;
 		}
 
-		public Builder spanTerm(Consumer<SpanTermQuery.Builder> fn) {
+		public ObjectBuilder<Query> spanTerm(Consumer<SpanTermQuery.Builder> fn) {
 			SpanTermQuery.Builder builder = new SpanTermQuery.Builder();
 			fn.accept(builder);
 			return this.spanTerm(builder.build());
 		}
 
-		public Builder spanWithin(SpanWithinQuery v) {
+		public ObjectBuilder<Query> spanWithin(SpanWithinQuery v) {
 			this._kind = Kind.SpanWithin;
 			this._value = v;
 			return this;
 		}
 
-		public Builder spanWithin(Consumer<SpanWithinQuery.Builder> fn) {
+		public ObjectBuilder<Query> spanWithin(Consumer<SpanWithinQuery.Builder> fn) {
 			SpanWithinQuery.Builder builder = new SpanWithinQuery.Builder();
 			fn.accept(builder);
 			return this.spanWithin(builder.build());
 		}
 
-		public Builder term(TermQuery v) {
+		public ObjectBuilder<Query> term(TermQuery v) {
 			this._kind = Kind.Term;
 			this._value = v;
 			return this;
 		}
 
-		public Builder term(Consumer<TermQuery.Builder> fn) {
+		public ObjectBuilder<Query> term(Consumer<TermQuery.Builder> fn) {
 			TermQuery.Builder builder = new TermQuery.Builder();
 			fn.accept(builder);
 			return this.term(builder.build());
 		}
 
-		public Builder terms(TermsQuery v) {
+		public ObjectBuilder<Query> terms(TermsQuery v) {
 			this._kind = Kind.Terms;
 			this._value = v;
 			return this;
 		}
 
-		public Builder terms(Consumer<TermsQuery.Builder> fn) {
+		public ObjectBuilder<Query> terms(Consumer<TermsQuery.Builder> fn) {
 			TermsQuery.Builder builder = new TermsQuery.Builder();
 			fn.accept(builder);
 			return this.terms(builder.build());
 		}
 
-		public Builder termsSet(TermsSetQuery v) {
+		public ObjectBuilder<Query> termsSet(TermsSetQuery v) {
 			this._kind = Kind.TermsSet;
 			this._value = v;
 			return this;
 		}
 
-		public Builder termsSet(Consumer<TermsSetQuery.Builder> fn) {
+		public ObjectBuilder<Query> termsSet(Consumer<TermsSetQuery.Builder> fn) {
 			TermsSetQuery.Builder builder = new TermsSetQuery.Builder();
 			fn.accept(builder);
 			return this.termsSet(builder.build());
 		}
 
-		public Builder wildcard(WildcardQuery v) {
+		public ObjectBuilder<Query> wildcard(WildcardQuery v) {
 			this._kind = Kind.Wildcard;
 			this._value = v;
 			return this;
 		}
 
-		public Builder wildcard(Consumer<WildcardQuery.Builder> fn) {
+		public ObjectBuilder<Query> wildcard(Consumer<WildcardQuery.Builder> fn) {
 			WildcardQuery.Builder builder = new WildcardQuery.Builder();
 			fn.accept(builder);
 			return this.wildcard(builder.build());
 		}
 
-		public Builder type(TypeQuery v) {
+		public ObjectBuilder<Query> type(TypeQuery v) {
 			this._kind = Kind.Type;
 			this._value = v;
 			return this;
 		}
 
-		public Builder type(Consumer<TypeQuery.Builder> fn) {
+		public ObjectBuilder<Query> type(Consumer<TypeQuery.Builder> fn) {
 			TypeQuery.Builder builder = new TypeQuery.Builder();
 			fn.accept(builder);
 			return this.type(builder.build());

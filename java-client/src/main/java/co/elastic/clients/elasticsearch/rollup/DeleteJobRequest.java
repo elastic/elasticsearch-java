@@ -106,6 +106,8 @@ public class DeleteJobRequest extends RequestBase {
 	 * Endpoint "{@code rollup.delete_job}".
 	 */
 	public static final Endpoint<DeleteJobRequest, DeleteJobResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/rollup.delete_job",
+
 			// Request method
 			request -> {
 				return "DELETE";

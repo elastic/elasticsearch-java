@@ -496,6 +496,8 @@ public class ExplainDataFrameAnalyticsRequest extends RequestBase implements Jso
 	 * Endpoint "{@code ml.explain_data_frame_analytics}".
 	 */
 	public static final Endpoint<ExplainDataFrameAnalyticsRequest, ExplainDataFrameAnalyticsResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/ml.explain_data_frame_analytics",
+
 			// Request method
 			request -> {
 				return "POST";

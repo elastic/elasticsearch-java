@@ -180,6 +180,8 @@ public class OpenJobRequest extends RequestBase implements JsonpSerializable {
 	 * Endpoint "{@code ml.open_job}".
 	 */
 	public static final Endpoint<OpenJobRequest, OpenJobResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/ml.open_job",
+
 			// Request method
 			request -> {
 				return "POST";

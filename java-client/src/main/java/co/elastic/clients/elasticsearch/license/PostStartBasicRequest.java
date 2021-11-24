@@ -109,6 +109,8 @@ public class PostStartBasicRequest extends RequestBase {
 	 * Endpoint "{@code license.post_start_basic}".
 	 */
 	public static final Endpoint<PostStartBasicRequest, PostStartBasicResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/license.post_start_basic",
+
 			// Request method
 			request -> {
 				return "POST";

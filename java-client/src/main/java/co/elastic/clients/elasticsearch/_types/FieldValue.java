@@ -27,19 +27,22 @@ import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
+import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.UnionDeserializer;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import co.elastic.clients.util.TaggedUnion;
 import co.elastic.clients.util.TaggedUnionUtils;
 import jakarta.json.stream.JsonGenerator;
+import jakarta.json.stream.JsonParser;
+
 import java.lang.Boolean;
 import java.lang.Double;
 import java.lang.Long;
 import java.lang.Object;
 import java.lang.String;
+import java.util.EnumSet;
 import java.util.Objects;
 import java.util.function.Consumer;
 import javax.annotation.Nullable;
@@ -50,8 +53,7 @@ import javax.annotation.Nullable;
 public class FieldValue implements TaggedUnion<FieldValue.Kind, Object>, JsonpSerializable {
 
 	public enum Kind {
-		Double, Long, Boolean, String
-
+		Double, Long, Boolean, String, Null
 	}
 
 	private final Kind _kind;
@@ -67,11 +69,6 @@ public class FieldValue implements TaggedUnion<FieldValue.Kind, Object>, JsonpSe
 		return _value;
 	}
 
-	public FieldValue(Kind kind, Object value) {
-		this._kind = kind;
-		this._value = value;
-	}
-
 	public String _toJsonString() {
 		switch (_kind) {
 			case Double :
@@ -82,6 +79,8 @@ public class FieldValue implements TaggedUnion<FieldValue.Kind, Object>, JsonpSe
 				return String.valueOf(this.boolean_());
 			case String :
 				return this.string();
+			case Null :
+				return "null";
 
 			default :
 				throw new IllegalStateException("Unknown kind " + _kind);
@@ -91,7 +90,9 @@ public class FieldValue implements TaggedUnion<FieldValue.Kind, Object>, JsonpSe
 	private FieldValue(Builder builder) {
 
 		this._kind = ModelTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
-		this._value = ModelTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
+		this._value = this._kind == Kind.Null
+				? null
+				: ModelTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
 
 	}
 
@@ -114,7 +115,7 @@ public class FieldValue implements TaggedUnion<FieldValue.Kind, Object>, JsonpSe
 	 * @throws IllegalStateException
 	 *             if the current variant is not of the {@code double} kind.
 	 */
-	public Double double_() {
+	public double double_() {
 		return TaggedUnionUtils.get(this, Kind.Double);
 	}
 
@@ -131,7 +132,7 @@ public class FieldValue implements TaggedUnion<FieldValue.Kind, Object>, JsonpSe
 	 * @throws IllegalStateException
 	 *             if the current variant is not of the {@code long} kind.
 	 */
-	public Long long_() {
+	public long long_() {
 		return TaggedUnionUtils.get(this, Kind.Long);
 	}
 
@@ -148,7 +149,7 @@ public class FieldValue implements TaggedUnion<FieldValue.Kind, Object>, JsonpSe
 	 * @throws IllegalStateException
 	 *             if the current variant is not of the {@code boolean} kind.
 	 */
-	public Boolean boolean_() {
+	public boolean boolean_() {
 		return TaggedUnionUtils.get(this, Kind.Boolean);
 	}
 
@@ -169,58 +170,75 @@ public class FieldValue implements TaggedUnion<FieldValue.Kind, Object>, JsonpSe
 		return TaggedUnionUtils.get(this, Kind.String);
 	}
 
+	/**
+	 * Is this variant instance of kind {@code null}?
+	 */
+	public boolean isNull() {
+		return _kind == Kind.Null;
+	}
+
+	/**
+	 * Get the {@code null} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code null} kind.
+	 */
+	public String null_() {
+		return TaggedUnionUtils.get(this, Kind.Null);
+	}
+
 	@Override
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		if (_value instanceof JsonpSerializable) {
-			((JsonpSerializable) _value).serialize(generator, mapper);
-		} else {
-			switch (_kind) {
-				case Double :
-					generator.write(((Double) this._value));
-
-					break;
-				case Long :
-					generator.write(((Long) this._value));
-
-					break;
-				case Boolean :
-					generator.write(((Boolean) this._value));
-
-					break;
-				case String :
-					generator.write(((String) this._value));
-
-					break;
-			}
+		switch (_kind) {
+			case Double :
+				generator.write(((Double) this._value));
+				break;
+			case Long :
+				generator.write(((Long) this._value));
+				break;
+			case Boolean :
+				generator.write(((Boolean) this._value));
+				break;
+			case String :
+				generator.write(((String) this._value));
+				break;
+			case Null :
+				generator.writeNull();
+				break;
 		}
-
 	}
 
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<FieldValue> {
 		private Kind _kind;
 		private Object _value;
 
-		public Builder double_(Double v) {
+		public ObjectBuilder<FieldValue> double_(double v) {
 			this._kind = Kind.Double;
 			this._value = v;
 			return this;
 		}
 
-		public Builder long_(Long v) {
+		public ObjectBuilder<FieldValue> long_(long v) {
 			this._kind = Kind.Long;
 			this._value = v;
 			return this;
 		}
 
-		public Builder boolean_(Boolean v) {
+		public ObjectBuilder<FieldValue> boolean_(boolean v) {
 			this._kind = Kind.Boolean;
 			this._value = v;
 			return this;
 		}
 
-		public Builder string(String v) {
+		public ObjectBuilder<FieldValue> string(String v) {
 			this._kind = Kind.String;
 			this._value = v;
+			return this;
+		}
+
+		public ObjectBuilder<FieldValue> null_() {
+			this._kind = Kind.Null;
+			this._value = null;
 			return this;
 		}
 
@@ -231,14 +249,34 @@ public class FieldValue implements TaggedUnion<FieldValue.Kind, Object>, JsonpSe
 
 	}
 
-	private static JsonpDeserializer<FieldValue> buildFieldValueDeserializer() {
-		return new UnionDeserializer.Builder<FieldValue, Kind, Object>(FieldValue::new, true)
-				.addMember(Kind.Double, JsonpDeserializer.doubleDeserializer())
-				.addMember(Kind.Long, JsonpDeserializer.longDeserializer())
-				.addMember(Kind.Boolean, JsonpDeserializer.booleanDeserializer())
-				.addMember(Kind.String, JsonpDeserializer.stringDeserializer()).build();
-	}
-
 	public static final JsonpDeserializer<FieldValue> _DESERIALIZER = JsonpDeserializer
-			.lazy(FieldValue::buildFieldValueDeserializer);
+			.lazy(() -> JsonpDeserializer.of(
+					EnumSet.of(JsonParser.Event.VALUE_STRING, JsonParser.Event.VALUE_NUMBER,
+							JsonParser.Event.VALUE_NULL, JsonParser.Event.VALUE_TRUE, JsonParser.Event.VALUE_FALSE),
+					(parser, mapper, event) -> {
+						FieldValue.Builder b = new FieldValue.Builder();
+						switch (event) {
+							case VALUE_NULL :
+								b.null_();
+								break;
+							case VALUE_STRING :
+								b.string(parser.getString());
+								break;
+							case VALUE_TRUE :
+								b.boolean_(Boolean.TRUE);
+								break;
+							case VALUE_FALSE :
+								b.boolean_(Boolean.FALSE);
+								break;
+							case VALUE_NUMBER :
+								if (parser.isIntegralNumber()) {
+									b.long_(parser.getLong());
+								} else {
+									b.double_(parser.getBigDecimal().doubleValue());
+								}
+								break;
+						}
+						return b.build();
+					}));
+
 }

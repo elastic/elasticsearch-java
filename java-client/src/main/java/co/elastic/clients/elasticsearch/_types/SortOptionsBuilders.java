@@ -23,41 +23,50 @@
 
 package co.elastic.clients.elasticsearch._types;
 
-import co.elastic.clients.json.JsonEnum;
-import co.elastic.clients.json.JsonpDeserializable;
-import co.elastic.clients.json.JsonpDeserializer;
-
-@JsonpDeserializable
-public enum Health implements JsonEnum {
-	/**
-	 * All shards are assigned.
-	 */
-	Green("green"),
-
-	/**
-	 * All primary shards are assigned, but one or more replica shards are
-	 * unassigned. If a node in the cluster fails, some data could be unavailable
-	 * until that node is repaired.
-	 */
-	Yellow("yellow"),
-
-	/**
-	 * One or more primary shards are unassigned, so some data is unavailable. This
-	 * can occur briefly during cluster startup as primary shards are assigned.
-	 */
-	Red("red"),
-
-	;
-
-	private final String jsonValue;
-
-	Health(String jsonValue) {
-		this.jsonValue = jsonValue;
+/**
+ * Builders for {@link SortOptions} variants.
+ */
+public class SortOptionsBuilders {
+	private SortOptionsBuilders() {
 	}
 
-	public String jsonValue() {
-		return this.jsonValue;
+	/**
+	 * Creates a builder for the {@link ScoreSort _score} {@code SortOptions}
+	 * variant.
+	 */
+	public static ScoreSort.Builder score() {
+		return new ScoreSort.Builder();
 	}
 
-	public static final JsonEnum.Deserializer<Health> _DESERIALIZER = new JsonEnum.Deserializer<>(Health.values());
+	/**
+	 * Creates a builder for the {@link ScoreSort _doc} {@code SortOptions} variant.
+	 */
+	public static ScoreSort.Builder doc() {
+		return new ScoreSort.Builder();
+	}
+
+	/**
+	 * Creates a builder for the {@link GeoDistanceSort _geo_distance}
+	 * {@code SortOptions} variant.
+	 */
+	public static GeoDistanceSort.Builder geoDistance() {
+		return new GeoDistanceSort.Builder();
+	}
+
+	/**
+	 * Creates a builder for the {@link ScriptSort _script} {@code SortOptions}
+	 * variant.
+	 */
+	public static ScriptSort.Builder script() {
+		return new ScriptSort.Builder();
+	}
+
+	/**
+	 * Creates a builder for the {@link FieldSort field} {@code SortOptions}
+	 * variant.
+	 */
+	public static FieldSort.Builder field() {
+		return new FieldSort.Builder();
+	}
+
 }

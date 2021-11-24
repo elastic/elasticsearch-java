@@ -224,6 +224,8 @@ public class EvaluateDataFrameRequest extends RequestBase implements JsonpSerial
 	 * Endpoint "{@code ml.evaluate_data_frame}".
 	 */
 	public static final Endpoint<EvaluateDataFrameRequest, EvaluateDataFrameResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/ml.evaluate_data_frame",
+
 			// Request method
 			request -> {
 				return "POST";

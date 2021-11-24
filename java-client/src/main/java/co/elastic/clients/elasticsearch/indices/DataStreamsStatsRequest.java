@@ -145,6 +145,8 @@ public class DataStreamsStatsRequest extends RequestBase {
 	 * Endpoint "{@code indices.data_streams_stats}".
 	 */
 	public static final Endpoint<DataStreamsStatsRequest, DataStreamsStatsResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/indices.data_streams_stats",
+
 			// Request method
 			request -> {
 				return "GET";

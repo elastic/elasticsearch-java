@@ -135,6 +135,8 @@ public class ValidateDetectorRequest extends RequestBase implements JsonpSeriali
 	 * Endpoint "{@code ml.validate_detector}".
 	 */
 	public static final Endpoint<ValidateDetectorRequest, ValidateDetectorResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/ml.validate_detector",
+
 			// Request method
 			request -> {
 				return "POST";

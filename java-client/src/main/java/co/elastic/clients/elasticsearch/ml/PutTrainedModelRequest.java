@@ -422,6 +422,8 @@ public class PutTrainedModelRequest extends RequestBase implements JsonpSerializ
 	 * Endpoint "{@code ml.put_trained_model}".
 	 */
 	public static final Endpoint<PutTrainedModelRequest, PutTrainedModelResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/ml.put_trained_model",
+
 			// Request method
 			request -> {
 				return "PUT";

@@ -250,6 +250,8 @@ public class StartDatafeedRequest extends RequestBase implements JsonpSerializab
 	 * Endpoint "{@code ml.start_datafeed}".
 	 */
 	public static final Endpoint<StartDatafeedRequest, StartDatafeedResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/ml.start_datafeed",
+
 			// Request method
 			request -> {
 				return "POST";

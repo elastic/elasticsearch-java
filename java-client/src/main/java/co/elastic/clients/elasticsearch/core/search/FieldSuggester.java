@@ -247,55 +247,55 @@ public class FieldSuggester implements TaggedUnion<FieldSuggester.Kind, Object>,
 		private Kind _kind;
 		private Object _value;
 
-		public Builder completion(CompletionSuggester v) {
+		public ObjectBuilder<FieldSuggester> completion(CompletionSuggester v) {
 			this._kind = Kind.Completion;
 			this._value = v;
 			return this;
 		}
 
-		public Builder completion(Consumer<CompletionSuggester.Builder> fn) {
+		public ObjectBuilder<FieldSuggester> completion(Consumer<CompletionSuggester.Builder> fn) {
 			CompletionSuggester.Builder builder = new CompletionSuggester.Builder();
 			fn.accept(builder);
 			return this.completion(builder.build());
 		}
 
-		public Builder phrase(PhraseSuggester v) {
+		public ObjectBuilder<FieldSuggester> phrase(PhraseSuggester v) {
 			this._kind = Kind.Phrase;
 			this._value = v;
 			return this;
 		}
 
-		public Builder phrase(Consumer<PhraseSuggester.Builder> fn) {
+		public ObjectBuilder<FieldSuggester> phrase(Consumer<PhraseSuggester.Builder> fn) {
 			PhraseSuggester.Builder builder = new PhraseSuggester.Builder();
 			fn.accept(builder);
 			return this.phrase(builder.build());
 		}
 
-		public Builder prefix(String v) {
+		public ObjectBuilder<FieldSuggester> prefix(String v) {
 			this._kind = Kind.Prefix;
 			this._value = v;
 			return this;
 		}
 
-		public Builder regex(String v) {
+		public ObjectBuilder<FieldSuggester> regex(String v) {
 			this._kind = Kind.Regex;
 			this._value = v;
 			return this;
 		}
 
-		public Builder term(TermSuggester v) {
+		public ObjectBuilder<FieldSuggester> term(TermSuggester v) {
 			this._kind = Kind.Term;
 			this._value = v;
 			return this;
 		}
 
-		public Builder term(Consumer<TermSuggester.Builder> fn) {
+		public ObjectBuilder<FieldSuggester> term(Consumer<TermSuggester.Builder> fn) {
 			TermSuggester.Builder builder = new TermSuggester.Builder();
 			fn.accept(builder);
 			return this.term(builder.build());
 		}
 
-		public Builder text(String v) {
+		public ObjectBuilder<FieldSuggester> text(String v) {
 			this._kind = Kind.Text;
 			this._value = v;
 			return this;

@@ -110,6 +110,8 @@ public class GetUpgradeRequest extends RequestBase {
 	 * Endpoint "{@code indices.get_upgrade}".
 	 */
 	public static final Endpoint<GetUpgradeRequest, GetUpgradeResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/indices.get_upgrade",
+
 			// Request method
 			request -> {
 				return "GET";

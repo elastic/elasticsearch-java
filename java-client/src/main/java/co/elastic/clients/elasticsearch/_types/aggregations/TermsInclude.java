@@ -65,7 +65,7 @@ public class TermsInclude implements TaggedUnion<TermsInclude.Kind, Object>, Jso
 		return _value;
 	}
 
-	public TermsInclude(Kind kind, Object value) {
+	private TermsInclude(Kind kind, Object value) {
 		this._kind = kind;
 		this._value = value;
 	}
@@ -162,25 +162,25 @@ public class TermsInclude implements TaggedUnion<TermsInclude.Kind, Object>, Jso
 		private Kind _kind;
 		private Object _value;
 
-		public Builder terms(List<String> v) {
+		public ObjectBuilder<TermsInclude> terms(List<String> v) {
 			this._kind = Kind.Terms;
 			this._value = v;
 			return this;
 		}
 
-		public Builder partition(TermsPartition v) {
+		public ObjectBuilder<TermsInclude> partition(TermsPartition v) {
 			this._kind = Kind.Partition;
 			this._value = v;
 			return this;
 		}
 
-		public Builder partition(Consumer<TermsPartition.Builder> fn) {
+		public ObjectBuilder<TermsInclude> partition(Consumer<TermsPartition.Builder> fn) {
 			TermsPartition.Builder builder = new TermsPartition.Builder();
 			fn.accept(builder);
 			return this.partition(builder.build());
 		}
 
-		public Builder regexp(String v) {
+		public ObjectBuilder<TermsInclude> regexp(String v) {
 			this._kind = Kind.Regexp;
 			this._value = v;
 			return this;

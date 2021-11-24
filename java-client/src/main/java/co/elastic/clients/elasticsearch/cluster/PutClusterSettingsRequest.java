@@ -285,6 +285,8 @@ public class PutClusterSettingsRequest extends RequestBase implements JsonpSeria
 	 * Endpoint "{@code cluster.put_settings}".
 	 */
 	public static final Endpoint<PutClusterSettingsRequest, PutClusterSettingsResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/cluster.put_settings",
+
 			// Request method
 			request -> {
 				return "PUT";

@@ -63,7 +63,7 @@ public class Script implements TaggedUnion<Script.Kind, Object>, JsonpSerializab
 		return _value;
 	}
 
-	public Script(Kind kind, Object value) {
+	private Script(Kind kind, Object value) {
 		this._kind = kind;
 		this._value = value;
 	}
@@ -127,25 +127,25 @@ public class Script implements TaggedUnion<Script.Kind, Object>, JsonpSerializab
 		private Kind _kind;
 		private Object _value;
 
-		public Builder inline(InlineScript v) {
+		public ObjectBuilder<Script> inline(InlineScript v) {
 			this._kind = Kind.Inline;
 			this._value = v;
 			return this;
 		}
 
-		public Builder inline(Consumer<InlineScript.Builder> fn) {
+		public ObjectBuilder<Script> inline(Consumer<InlineScript.Builder> fn) {
 			InlineScript.Builder builder = new InlineScript.Builder();
 			fn.accept(builder);
 			return this.inline(builder.build());
 		}
 
-		public Builder stored(StoredScriptId v) {
+		public ObjectBuilder<Script> stored(StoredScriptId v) {
 			this._kind = Kind.Stored;
 			this._value = v;
 			return this;
 		}
 
-		public Builder stored(Consumer<StoredScriptId.Builder> fn) {
+		public ObjectBuilder<Script> stored(Consumer<StoredScriptId.Builder> fn) {
 			StoredScriptId.Builder builder = new StoredScriptId.Builder();
 			fn.accept(builder);
 			return this.stored(builder.build());

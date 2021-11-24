@@ -53,6 +53,8 @@ public class GetIlmStatusRequest extends RequestBase {
 	 * Endpoint "{@code ilm.get_status}".
 	 */
 	public static final Endpoint<GetIlmStatusRequest, GetIlmStatusResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/ilm.get_status",
+
 			// Request method
 			request -> {
 				return "GET";

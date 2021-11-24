@@ -162,6 +162,8 @@ public class DeleteDataStreamRequest extends RequestBase {
 	 * Endpoint "{@code indices.delete_data_stream}".
 	 */
 	public static final Endpoint<DeleteDataStreamRequest, DeleteDataStreamResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/indices.delete_data_stream",
+
 			// Request method
 			request -> {
 				return "DELETE";

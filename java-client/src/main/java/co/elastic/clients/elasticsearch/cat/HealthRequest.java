@@ -108,6 +108,8 @@ public class HealthRequest extends CatRequestBase {
 	 * Endpoint "{@code cat.health}".
 	 */
 	public static final Endpoint<HealthRequest, HealthResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/cat.health",
+
 			// Request method
 			request -> {
 				return "GET";

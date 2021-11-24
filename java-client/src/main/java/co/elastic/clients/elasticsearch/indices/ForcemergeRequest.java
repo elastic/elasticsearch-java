@@ -308,6 +308,8 @@ public class ForcemergeRequest extends RequestBase {
 	 * Endpoint "{@code indices.forcemerge}".
 	 */
 	public static final Endpoint<ForcemergeRequest, ForcemergeResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/indices.forcemerge",
+
 			// Request method
 			request -> {
 				return "POST";

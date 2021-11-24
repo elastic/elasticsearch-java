@@ -177,37 +177,40 @@ public class DataframeAnalyticsStats implements TaggedUnion<DataframeAnalyticsSt
 		private Kind _kind;
 		private Object _value;
 
-		public Builder classificationStats(DataframeAnalyticsStatsHyperparameters v) {
+		public ObjectBuilder<DataframeAnalyticsStats> classificationStats(DataframeAnalyticsStatsHyperparameters v) {
 			this._kind = Kind.ClassificationStats;
 			this._value = v;
 			return this;
 		}
 
-		public Builder classificationStats(Consumer<DataframeAnalyticsStatsHyperparameters.Builder> fn) {
+		public ObjectBuilder<DataframeAnalyticsStats> classificationStats(
+				Consumer<DataframeAnalyticsStatsHyperparameters.Builder> fn) {
 			DataframeAnalyticsStatsHyperparameters.Builder builder = new DataframeAnalyticsStatsHyperparameters.Builder();
 			fn.accept(builder);
 			return this.classificationStats(builder.build());
 		}
 
-		public Builder outlierDetectionStats(DataframeAnalyticsStatsOutlierDetection v) {
+		public ObjectBuilder<DataframeAnalyticsStats> outlierDetectionStats(DataframeAnalyticsStatsOutlierDetection v) {
 			this._kind = Kind.OutlierDetectionStats;
 			this._value = v;
 			return this;
 		}
 
-		public Builder outlierDetectionStats(Consumer<DataframeAnalyticsStatsOutlierDetection.Builder> fn) {
+		public ObjectBuilder<DataframeAnalyticsStats> outlierDetectionStats(
+				Consumer<DataframeAnalyticsStatsOutlierDetection.Builder> fn) {
 			DataframeAnalyticsStatsOutlierDetection.Builder builder = new DataframeAnalyticsStatsOutlierDetection.Builder();
 			fn.accept(builder);
 			return this.outlierDetectionStats(builder.build());
 		}
 
-		public Builder regressionStats(DataframeAnalyticsStatsHyperparameters v) {
+		public ObjectBuilder<DataframeAnalyticsStats> regressionStats(DataframeAnalyticsStatsHyperparameters v) {
 			this._kind = Kind.RegressionStats;
 			this._value = v;
 			return this;
 		}
 
-		public Builder regressionStats(Consumer<DataframeAnalyticsStatsHyperparameters.Builder> fn) {
+		public ObjectBuilder<DataframeAnalyticsStats> regressionStats(
+				Consumer<DataframeAnalyticsStatsHyperparameters.Builder> fn) {
 			DataframeAnalyticsStatsHyperparameters.Builder builder = new DataframeAnalyticsStatsHyperparameters.Builder();
 			fn.accept(builder);
 			return this.regressionStats(builder.build());

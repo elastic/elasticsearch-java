@@ -294,6 +294,8 @@ public class RollupSearchRequest extends RequestBase implements JsonpSerializabl
 	 * Endpoint "{@code rollup.rollup_search}".
 	 */
 	public static final SimpleEndpoint<RollupSearchRequest, ?> _ENDPOINT = new SimpleEndpoint<>(
+			"es/rollup.rollup_search",
+
 			// Request method
 			request -> {
 				return "POST";

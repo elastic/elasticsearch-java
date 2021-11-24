@@ -218,6 +218,8 @@ public class ScriptsPainlessExecuteRequest extends RequestBase implements JsonpS
 	 * Endpoint "{@code scripts_painless_execute}".
 	 */
 	public static final SimpleEndpoint<ScriptsPainlessExecuteRequest, ?> _ENDPOINT = new SimpleEndpoint<>(
+			"es/scripts_painless_execute",
+
 			// Request method
 			request -> {
 				return "POST";

@@ -247,6 +247,8 @@ public class GetCalendarsRequest extends RequestBase implements JsonpSerializabl
 	 * Endpoint "{@code ml.get_calendars}".
 	 */
 	public static final Endpoint<GetCalendarsRequest, GetCalendarsResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/ml.get_calendars",
+
 			// Request method
 			request -> {
 				return "POST";

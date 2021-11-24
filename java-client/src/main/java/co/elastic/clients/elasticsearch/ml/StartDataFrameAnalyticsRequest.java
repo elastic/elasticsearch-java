@@ -153,6 +153,8 @@ public class StartDataFrameAnalyticsRequest extends RequestBase {
 	 * Endpoint "{@code ml.start_data_frame_analytics}".
 	 */
 	public static final Endpoint<StartDataFrameAnalyticsRequest, StartDataFrameAnalyticsResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/ml.start_data_frame_analytics",
+
 			// Request method
 			request -> {
 				return "POST";

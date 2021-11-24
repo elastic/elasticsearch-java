@@ -65,7 +65,7 @@ public class FieldDateMath implements TaggedUnion<FieldDateMath.Kind, Object>, J
 		return _value;
 	}
 
-	public FieldDateMath(Kind kind, Object value) {
+	private FieldDateMath(Kind kind, Object value) {
 		this._kind = kind;
 		this._value = value;
 	}
@@ -152,13 +152,13 @@ public class FieldDateMath implements TaggedUnion<FieldDateMath.Kind, Object>, J
 		private Kind _kind;
 		private Object _value;
 
-		public Builder expr(String v) {
+		public ObjectBuilder<FieldDateMath> expr(String v) {
 			this._kind = Kind.Expr;
 			this._value = v;
 			return this;
 		}
 
-		public Builder value(Double v) {
+		public ObjectBuilder<FieldDateMath> value(Double v) {
 			this._kind = Kind.Value;
 			this._value = v;
 			return this;

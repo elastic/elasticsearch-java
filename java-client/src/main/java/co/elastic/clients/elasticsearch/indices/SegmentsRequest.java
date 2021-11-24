@@ -251,6 +251,8 @@ public class SegmentsRequest extends RequestBase {
 	 * Endpoint "{@code indices.segments}".
 	 */
 	public static final Endpoint<SegmentsRequest, SegmentsResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/indices.segments",
+
 			// Request method
 			request -> {
 				return "GET";

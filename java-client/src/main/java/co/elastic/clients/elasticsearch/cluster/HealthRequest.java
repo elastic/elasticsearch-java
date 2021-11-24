@@ -25,12 +25,12 @@ package co.elastic.clients.elasticsearch.cluster;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.ExpandWildcard;
+import co.elastic.clients.elasticsearch._types.HealthStatus;
 import co.elastic.clients.elasticsearch._types.Level;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.elasticsearch._types.WaitForActiveShards;
 import co.elastic.clients.elasticsearch._types.WaitForEvents;
-import co.elastic.clients.elasticsearch._types.WaitForStatus;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -87,7 +87,7 @@ public class HealthRequest extends RequestBase {
 	private final String waitForNodes;
 
 	@Nullable
-	private final WaitForStatus waitForStatus;
+	private final HealthStatus waitForStatus;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -245,7 +245,7 @@ public class HealthRequest extends RequestBase {
 	 * API name: {@code wait_for_status}
 	 */
 	@Nullable
-	public final WaitForStatus waitForStatus() {
+	public final HealthStatus waitForStatus() {
 		return this.waitForStatus;
 	}
 
@@ -289,7 +289,7 @@ public class HealthRequest extends RequestBase {
 		private String waitForNodes;
 
 		@Nullable
-		private WaitForStatus waitForStatus;
+		private HealthStatus waitForStatus;
 
 		/**
 		 * Whether to expand wildcard expression to concrete indices that are open,
@@ -482,7 +482,7 @@ public class HealthRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code wait_for_status}
 		 */
-		public final Builder waitForStatus(@Nullable WaitForStatus value) {
+		public final Builder waitForStatus(@Nullable HealthStatus value) {
 			this.waitForStatus = value;
 			return this;
 		}
@@ -506,6 +506,8 @@ public class HealthRequest extends RequestBase {
 	 * Endpoint "{@code cluster.health}".
 	 */
 	public static final Endpoint<HealthRequest, HealthResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/cluster.health",
+
 			// Request method
 			request -> {
 				return "GET";

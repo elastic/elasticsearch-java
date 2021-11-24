@@ -67,7 +67,7 @@ public class SourceConfigParam implements TaggedUnion<SourceConfigParam.Kind, Ob
 		return _value;
 	}
 
-	public SourceConfigParam(Kind kind, Object value) {
+	private SourceConfigParam(Kind kind, Object value) {
 		this._kind = kind;
 		this._value = value;
 	}
@@ -159,13 +159,13 @@ public class SourceConfigParam implements TaggedUnion<SourceConfigParam.Kind, Ob
 		private Kind _kind;
 		private Object _value;
 
-		public Builder fields(List<String> v) {
+		public ObjectBuilder<SourceConfigParam> fields(List<String> v) {
 			this._kind = Kind.Fields;
 			this._value = v;
 			return this;
 		}
 
-		public Builder fetch(Boolean v) {
+		public ObjectBuilder<SourceConfigParam> fetch(Boolean v) {
 			this._kind = Kind.Fetch;
 			this._value = v;
 			return this;

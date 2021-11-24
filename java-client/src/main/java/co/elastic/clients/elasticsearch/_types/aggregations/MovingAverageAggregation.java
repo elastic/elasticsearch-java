@@ -206,61 +206,62 @@ public class MovingAverageAggregation
 		private Kind _kind;
 		private MovingAverageAggregationVariant _value;
 
-		public Builder ewma(EwmaMovingAverageAggregation v) {
+		public ObjectBuilder<MovingAverageAggregation> ewma(EwmaMovingAverageAggregation v) {
 			this._kind = Kind.Ewma;
 			this._value = v;
 			return this;
 		}
 
-		public Builder ewma(Consumer<EwmaMovingAverageAggregation.Builder> fn) {
+		public ObjectBuilder<MovingAverageAggregation> ewma(Consumer<EwmaMovingAverageAggregation.Builder> fn) {
 			EwmaMovingAverageAggregation.Builder builder = new EwmaMovingAverageAggregation.Builder();
 			fn.accept(builder);
 			return this.ewma(builder.build());
 		}
 
-		public Builder holt(HoltMovingAverageAggregation v) {
+		public ObjectBuilder<MovingAverageAggregation> holt(HoltMovingAverageAggregation v) {
 			this._kind = Kind.Holt;
 			this._value = v;
 			return this;
 		}
 
-		public Builder holt(Consumer<HoltMovingAverageAggregation.Builder> fn) {
+		public ObjectBuilder<MovingAverageAggregation> holt(Consumer<HoltMovingAverageAggregation.Builder> fn) {
 			HoltMovingAverageAggregation.Builder builder = new HoltMovingAverageAggregation.Builder();
 			fn.accept(builder);
 			return this.holt(builder.build());
 		}
 
-		public Builder holtWinters(HoltWintersMovingAverageAggregation v) {
+		public ObjectBuilder<MovingAverageAggregation> holtWinters(HoltWintersMovingAverageAggregation v) {
 			this._kind = Kind.HoltWinters;
 			this._value = v;
 			return this;
 		}
 
-		public Builder holtWinters(Consumer<HoltWintersMovingAverageAggregation.Builder> fn) {
+		public ObjectBuilder<MovingAverageAggregation> holtWinters(
+				Consumer<HoltWintersMovingAverageAggregation.Builder> fn) {
 			HoltWintersMovingAverageAggregation.Builder builder = new HoltWintersMovingAverageAggregation.Builder();
 			fn.accept(builder);
 			return this.holtWinters(builder.build());
 		}
 
-		public Builder linear(LinearMovingAverageAggregation v) {
+		public ObjectBuilder<MovingAverageAggregation> linear(LinearMovingAverageAggregation v) {
 			this._kind = Kind.Linear;
 			this._value = v;
 			return this;
 		}
 
-		public Builder linear(Consumer<LinearMovingAverageAggregation.Builder> fn) {
+		public ObjectBuilder<MovingAverageAggregation> linear(Consumer<LinearMovingAverageAggregation.Builder> fn) {
 			LinearMovingAverageAggregation.Builder builder = new LinearMovingAverageAggregation.Builder();
 			fn.accept(builder);
 			return this.linear(builder.build());
 		}
 
-		public Builder simple(SimpleMovingAverageAggregation v) {
+		public ObjectBuilder<MovingAverageAggregation> simple(SimpleMovingAverageAggregation v) {
 			this._kind = Kind.Simple;
 			this._value = v;
 			return this;
 		}
 
-		public Builder simple(Consumer<SimpleMovingAverageAggregation.Builder> fn) {
+		public ObjectBuilder<MovingAverageAggregation> simple(Consumer<SimpleMovingAverageAggregation.Builder> fn) {
 			SimpleMovingAverageAggregation.Builder builder = new SimpleMovingAverageAggregation.Builder();
 			fn.accept(builder);
 			return this.simple(builder.build());
@@ -281,7 +282,7 @@ public class MovingAverageAggregation
 		op.add(Builder::linear, LinearMovingAverageAggregation._DESERIALIZER, "linear");
 		op.add(Builder::simple, SimpleMovingAverageAggregation._DESERIALIZER, "simple");
 
-		op.setTypeProperty("model");
+		op.setTypeProperty("model", null);
 
 	}
 

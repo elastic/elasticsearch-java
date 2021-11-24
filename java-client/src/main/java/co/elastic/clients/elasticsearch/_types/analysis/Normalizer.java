@@ -146,25 +146,25 @@ public class Normalizer implements TaggedUnion<Normalizer.Kind, NormalizerVarian
 		private Kind _kind;
 		private NormalizerVariant _value;
 
-		public Builder custom(CustomNormalizer v) {
+		public ObjectBuilder<Normalizer> custom(CustomNormalizer v) {
 			this._kind = Kind.Custom;
 			this._value = v;
 			return this;
 		}
 
-		public Builder custom(Consumer<CustomNormalizer.Builder> fn) {
+		public ObjectBuilder<Normalizer> custom(Consumer<CustomNormalizer.Builder> fn) {
 			CustomNormalizer.Builder builder = new CustomNormalizer.Builder();
 			fn.accept(builder);
 			return this.custom(builder.build());
 		}
 
-		public Builder lowercase(LowercaseNormalizer v) {
+		public ObjectBuilder<Normalizer> lowercase(LowercaseNormalizer v) {
 			this._kind = Kind.Lowercase;
 			this._value = v;
 			return this;
 		}
 
-		public Builder lowercase(Consumer<LowercaseNormalizer.Builder> fn) {
+		public ObjectBuilder<Normalizer> lowercase(Consumer<LowercaseNormalizer.Builder> fn) {
 			LowercaseNormalizer.Builder builder = new LowercaseNormalizer.Builder();
 			fn.accept(builder);
 			return this.lowercase(builder.build());
@@ -182,7 +182,7 @@ public class Normalizer implements TaggedUnion<Normalizer.Kind, NormalizerVarian
 		op.add(Builder::custom, CustomNormalizer._DESERIALIZER, "custom");
 		op.add(Builder::lowercase, LowercaseNormalizer._DESERIALIZER, "lowercase");
 
-		op.setTypeProperty("type");
+		op.setTypeProperty("type", null);
 
 	}
 

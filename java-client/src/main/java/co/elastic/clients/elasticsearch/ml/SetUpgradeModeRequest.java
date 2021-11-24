@@ -152,6 +152,8 @@ public class SetUpgradeModeRequest extends RequestBase {
 	 * Endpoint "{@code ml.set_upgrade_mode}".
 	 */
 	public static final Endpoint<SetUpgradeModeRequest, SetUpgradeModeResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/ml.set_upgrade_mode",
+
 			// Request method
 			request -> {
 				return "POST";
