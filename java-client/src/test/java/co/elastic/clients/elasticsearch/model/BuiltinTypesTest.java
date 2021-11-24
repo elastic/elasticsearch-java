@@ -19,6 +19,9 @@
 
 package co.elastic.clients.elasticsearch.model;
 
+import co.elastic.clients.elasticsearch._types.FieldValue;
+import co.elastic.clients.elasticsearch._types.SortOptions;
+import co.elastic.clients.elasticsearch._types.SortOrder;
 import co.elastic.clients.elasticsearch._types.query_dsl.SpanGapQuery;
 import co.elastic.clients.elasticsearch.core.SearchRequest;
 import co.elastic.clients.elasticsearch.indices.IndexSettings;
@@ -57,5 +60,92 @@ public class BuiltinTypesTest extends ModelTestCase {
 
         assertEquals("a-field", q.field());
         assertEquals(12, q.spanWidth());
+    }
+
+    @Test
+    public void testSortOptions() {
+        // Has a custom deserializer
+        // Examples: see https://www.elastic.co/guide/en/elasticsearch/reference/current/sort-search-results.html
+
+        String json;
+        SortOptions sort;
+
+        // Arbitrary field
+        sort = fromJson(
+            "{ \"post_date\" : {\"order\" : \"asc\", \"format\": \"strict_date_optional_time_nanos\"}}",
+            SortOptions.class);
+
+        assertEquals("post_date", sort.field().field());
+        assertEquals(SortOrder.Asc, sort.field().order());
+
+        sort = fromJson("{\n" +
+            "          \"offer.price\" : {\n" +
+            "             \"mode\" :  \"avg\",\n" +
+            "             \"order\" : \"asc\",\n" +
+            "             \"nested\": {\n" +
+            "                \"path\": \"offer\",\n" +
+            "                \"filter\": {\n" +
+            "                   \"term\" : { \"offer.color\" : \"blue\" }\n" +
+            "                }\n" +
+            "             }\n" +
+            "          }\n" +
+            "       }", SortOptions.class);
+
+        assertEquals("blue", sort.field().nested().filter().term().value().string());
+
+        // Geo distance
+        sort = fromJson("{\n" +
+            "      \"_geo_distance\" : {\n" +
+            "        \"pin.location\" : {\n" +
+            "          \"lat\" : 40,\n" +
+            "          \"lon\" : -70\n" +
+            "        },\n" +
+            "        \"order\" : \"asc\",\n" +
+            "        \"unit\" : \"km\"\n" +
+            "      }\n" +
+            "    }", SortOptions.class);
+
+        assertEquals(40, sort.geoDistance().location().get(0).latlon().lat(), 0.1);
+
+        // Simple string shortcuts
+        sort = fromJson("\"user\"", SortOptions.class);
+        assertEquals("user", sort.field().field());
+
+        sort = fromJson("\"_doc\"", SortOptions.class);
+        assertTrue(sort.isDoc());
+
+        sort = fromJson("\"_score\"", SortOptions.class);
+        assertTrue(sort.isScore());
+    }
+
+    @Test
+    public void testFieldValue() {
+
+        FieldValue f;
+
+        f = FieldValue.of(b -> b.null_());
+        f = checkJsonRoundtrip(f, "null");
+        assertTrue(f.isNull());
+
+        f = FieldValue.of(b -> b.double_(1.23));
+        f = checkJsonRoundtrip(f, "1.23");
+        assertTrue(f.isDouble());
+        assertEquals(1.23, f.double_(), 0.01);
+
+        f = FieldValue.of(b -> b.long_(123));
+        f = checkJsonRoundtrip(f, "123");
+        assertTrue(f.isLong());
+        assertEquals(123, f.long_());
+
+        f = FieldValue.of(b -> b.boolean_(true));
+        f = checkJsonRoundtrip(f, "true");
+        assertTrue(f.isBoolean());
+        assertTrue(f.boolean_());
+
+        f = FieldValue.of(b -> b.string("foo"));
+        f = checkJsonRoundtrip(f, "\"foo\"");
+        assertTrue(f.isString());
+        assertEquals("foo", f.string());
+
     }
 }

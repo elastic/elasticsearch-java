@@ -19,6 +19,7 @@
 
 package co.elastic.clients.json;
 
+import co.elastic.clients.util.TriFunction;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonParser;
 import jakarta.json.stream.JsonParser.Event;
@@ -62,7 +63,8 @@ public interface JsonpDeserializer<V> {
      */
     default V deserialize(JsonParser parser, JsonpMapper mapper) {
         JsonParser.Event event = parser.next();
-        if (event == JsonParser.Event.VALUE_NULL) {
+        // JSON null: return null unless the deserializer can handle it
+        if (event == JsonParser.Event.VALUE_NULL && !accepts(Event.VALUE_NULL)) {
             return null;
         }
         JsonpUtils.ensureAccepts(this, parser, event);
@@ -109,6 +111,15 @@ public interface JsonpDeserializer<V> {
             @Override
             public T deserialize(JsonParser parser, JsonpMapper mapper, Event event) {
                 throw new UnsupportedOperationException();
+            }
+        };
+    }
+
+    static <T> JsonpDeserializer<T> of(EnumSet<Event> acceptedEvents, TriFunction<JsonParser, JsonpMapper, JsonParser.Event, T> fn) {
+        return new JsonpDeserializerBase<T>(acceptedEvents) {
+            @Override
+            public T deserialize(JsonParser parser, JsonpMapper mapper, Event event) {
+                return fn.apply(parser, mapper, event);
             }
         };
     }

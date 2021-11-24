@@ -95,23 +95,6 @@ public class JsonpUtils {
         }
     }
 
-    /**
-     * Throws a {@link JsonParsingException} because some unknown property name was encountered
-     */
-    public static void unknownKey(JsonParser parser, String keyName) {
-        throw new JsonParsingException("Unknown property '" + keyName + "'", parser.getLocation());
-    }
-
-    public static String ensureSingleVariant(JsonParser parser, String variant1, String variant2) {
-        if (variant1 != null && variant2 != null) {
-            throw new JsonParsingException(
-                "Only one variant can be specified, found '" + variant1 + "' and '" + variant2 + "'",
-                parser.getLocation()
-            );
-        }
-        return variant2;
-    }
-
     public static <T> T buildVariant(JsonParser parser, ObjectBuilder<T> builder) {
         if (builder == null) {
             throw new JsonParsingException("No variant found" , parser.getLocation());
