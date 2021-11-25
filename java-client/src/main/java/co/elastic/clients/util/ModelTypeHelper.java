@@ -80,7 +80,8 @@ public class ModelTypeHelper {
 
     //----- Lists
 
-    private static final List<Object> UNDEFINED_LIST = new AbstractList<Object>() {
+    /** Immutable empty list implementation so that we can create marker list objects */
+    static class EmptyList extends AbstractList<Object> {
         @Override
         public Object get(int index) {
             throw new IndexOutOfBoundsException();
@@ -97,6 +98,9 @@ public class ModelTypeHelper {
         }
     };
 
+    static final List<Object> UNDEFINED_LIST = new EmptyList();
+    static final List<Object> RESET_LIST = new EmptyList();
+
     /**
      * Returns an empty list that is undefined from a JSON perspective. It will not be serialized
      * when used as the value of an array property in API objects.
@@ -104,6 +108,11 @@ public class ModelTypeHelper {
     @SuppressWarnings("unchecked")
     public static <T> List<T> undefinedList() {
         return (List<T>)UNDEFINED_LIST;
+    }
+
+    @SuppressWarnings("unchecked")
+    public static <T> List<T> resetList() {
+        return (List<T>)RESET_LIST;
     }
 
     /**
@@ -141,12 +150,15 @@ public class ModelTypeHelper {
 
     //----- Maps
 
-    private static final Map<Object, Object> UNDEFINED_MAP = new AbstractMap<Object, Object>() {
+    static class EmptyMap extends AbstractMap<Object, Object> {
         @Override
         public Set<Entry<Object, Object>> entrySet() {
             return Collections.emptySet();
         }
-    };
+    }
+
+    static final Map<Object, Object> UNDEFINED_MAP = new EmptyMap();
+    static final Map<Object, Object> RESET_MAP = new ModelTypeHelper.EmptyMap();
 
     /**
      * Returns an empty list that is undefined from a JSON perspective. It will not be serialized
@@ -155,6 +167,11 @@ public class ModelTypeHelper {
     @SuppressWarnings("unchecked")
     public static <K, V> Map<K, V> undefinedMap() {
         return (Map<K, V>)UNDEFINED_MAP;
+    }
+
+    @SuppressWarnings("unchecked")
+    public static <K, V> Map<K, V> resetMap() {
+        return (Map<K, V>)RESET_MAP;
     }
 
     /**

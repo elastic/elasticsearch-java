@@ -37,10 +37,9 @@ public class RequestEncodingTest extends ModelTestCase {
                 .type(b2 -> b2
                     .value("foo"))
             )
-            .aggregations(b1 -> b1
-                .put("myagg", b2 -> b2
+            .aggregations(
+                "myagg", b2 -> b2
                     .avg(b3 -> b3.field("foo"))
-                )
             )
             .build();
 

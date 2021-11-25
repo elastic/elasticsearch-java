@@ -24,7 +24,6 @@ import co.elastic.clients.elasticsearch._types.query_dsl.SimpleQueryStringFlag;
 import co.elastic.clients.elasticsearch._types.query_dsl.SimpleQueryStringFlags;
 import org.junit.Test;
 
-
 public class UnionTests extends ModelTestCase {
 
     @Test

@@ -189,16 +189,13 @@ public class RequestTest extends Assert {
         // MSearch: 1st search on an existing index, 2nd one on a non-existing index
         final MsearchResponse<AppData> msearch = client.msearch(_0 -> _0
             .searches(_1 -> _1
-                .add(_2 -> _2
-                    .header(_3 -> _3.index(index))
-                    .body(_3 -> _3.query(_4 -> _4.matchAll(_5 -> {})))
-                )
-                .add(_2 -> _2
-                    .header(_3 -> _3.index("non-existing"))
-                    .body(_3 -> _3.query(_4 -> _4.matchAll(_5 -> {})))
-                )
+                .header(_3 -> _3.index(index))
+                .body(_3 -> _3.query(_4 -> _4.matchAll(_5 -> _5)))
+            ).searches(_1 -> _1
+                .header(_3 -> _3.index("non-existing"))
+                .body(_3 -> _3.query(_4 -> _4.matchAll(_5 -> _5)))
             )
-            , AppData.class);
+        , AppData.class);
 
         assertEquals(2, msearch.responses().size());
         assertTrue(msearch.responses().get(0).isResult());
@@ -210,7 +207,7 @@ public class RequestTest extends Assert {
     @Test
     public void testCatRequest() throws IOException {
         // Cat requests should have the "format=json" added by the transport
-        NodesResponse nodes = client.cat().nodes(_0 -> {});
+        NodesResponse nodes = client.cat().nodes(_0 -> _0);
         System.out.println(ModelTestCase.toJson(nodes, mapper));
 
         assertEquals(1, nodes.valueBody().size());
@@ -225,20 +222,17 @@ public class RequestTest extends Assert {
 
         BulkResponse bulk = client.bulk(_0 -> _0
             .operations(_1 -> _1
-                .add(_2 -> _2
-                    .create(_3 -> _3
-                        .index("foo")
-                        .id("abc")
-                        .document(appData)
-                    )
-                ).add(_2 -> _2
-                    .create(_3 -> _3
-                        .index("foo")
-                        .id("def")
-                        .document(appData)
-                    )
-                )
-            )
+                .create(_2 -> _2
+                    .index("foo")
+                    .id("abc")
+                    .document(appData)
+            ))
+            .operations(_1 -> _1
+                .create(_2 -> _2
+                    .index("foo")
+                    .id("def")
+                    .document(appData)
+            ))
         );
 
         assertFalse(bulk.errors());
@@ -324,16 +318,14 @@ public class RequestTest extends Assert {
         SearchResponse<Product> searchResponse = client.search(_1 -> _1
             .index("products")
             .size(0)
-            .aggregations(_2 -> _2
-                .put("prices", _3 -> _3
-                    .histogram(_4 -> _4
-                        .field("price")
-                        .interval(10.0)
-                    ).aggregations(_4 -> _4
-                        .put("average", _5 -> _5
-                            .avg(_6 -> _6.field("price"))
-                        )
-                    )
+            .aggregations(
+                "prices", _3 -> _3
+                .histogram(_4 -> _4
+                    .field("price")
+                    .interval(10.0)
+                ).aggregations(
+                    "average", _5 -> _5
+                    .avg(_6 -> _6.field("price"))
                 )
             )
             , Product.class
@@ -360,15 +352,15 @@ public class RequestTest extends Assert {
 
         client.indices().create(c -> c
             .index(index)
-            .mappings(m -> m.properties(ps -> ps
-                .put("id", text)
-                .put("name", p -> p
-                    .object(o -> o.properties(fs -> fs
-                        .put("first", text)
-                        .put("last", text)
-                    ))
+            .mappings(m -> m
+                .properties("id", text)
+                .properties("name", p -> p
+                    .object(o -> o
+                        .properties("first", text)
+                        .properties("last", text)
+                    )
                 )
-            ))
+            )
         );
 
         GetMappingResponse mr = client.indices().getMapping(mrb -> mrb.index(index));

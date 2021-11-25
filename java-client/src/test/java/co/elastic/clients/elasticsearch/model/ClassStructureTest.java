@@ -21,10 +21,13 @@ package co.elastic.clients.elasticsearch.model;
 
 import co.elastic.clients.elasticsearch._types.ErrorCause;
 import co.elastic.clients.elasticsearch._types.aggregations.Aggregate;
+import co.elastic.clients.elasticsearch._types.aggregations.Aggregation;
 import co.elastic.clients.elasticsearch._types.aggregations.Buckets;
 import co.elastic.clients.elasticsearch._types.aggregations.CardinalityAggregate;
 import co.elastic.clients.elasticsearch._types.aggregations.DateRangeAggregate;
 import co.elastic.clients.elasticsearch._types.aggregations.RangeBucket;
+import co.elastic.clients.elasticsearch._types.aggregations.ValueCountAggregation;
+import co.elastic.clients.elasticsearch._types.query_dsl.FieldAndFormat;
 import co.elastic.clients.elasticsearch._types.query_dsl.IntervalsQuery;
 import co.elastic.clients.elasticsearch.core.GetRequest;
 import co.elastic.clients.elasticsearch.core.SearchRequest;
@@ -41,6 +44,10 @@ import javax.annotation.Nullable;
 import java.lang.reflect.Method;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 /**
  * Tests that verify common features of generated classes.
@@ -82,7 +89,7 @@ public class ClassStructureTest extends ModelTestCase {
 
         // Not setting a required primitive should throw an exception
         {
-            assertThrows(MissingRequiredPropertyException.class, () -> TotalHits.of(b -> {}));
+            assertThrows(MissingRequiredPropertyException.class, () -> TotalHits.of(b -> b));
         }
     }
 
@@ -142,7 +149,7 @@ public class ClassStructureTest extends ModelTestCase {
 
         // Unset list should be non-null, empty but not serialized
         {
-            SearchRequest search = SearchRequest.of(b -> {});
+            SearchRequest search = SearchRequest.of(b -> b);
             assertNotNull(search.storedFields());
             assertEquals(0, search.storedFields().size());
             assertFalse(ModelTypeHelper.isDefined(search.storedFields()));
@@ -177,6 +184,109 @@ public class ClassStructureTest extends ModelTestCase {
             assertEquals(0, card.meta().size());
             assertTrue(ModelTypeHelper.isDefined(card.meta()));
             assertEquals("{\"meta\":{},\"value\":1}", toJson(card));
+        }
+    }
+
+    @Test
+    public void testListSetters() {
+        List<String> fields = Arrays.asList("a", "b");
+
+        {
+            // Appending doesn't modify the original collection
+            SearchRequest search = SearchRequest.of(b -> b
+                .storedFields(fields)
+                .storedFields("c")
+                .storedFields("d", "e", "f")
+            );
+            assertEquals(Arrays.asList("a", "b"), fields);
+            assertEquals(Arrays.asList("a", "b", "c", "d", "e", "f"), search.storedFields());
+        }
+
+        {
+            // Appending doesn't modify the original collection (appending the same list twice)
+            SearchRequest search = SearchRequest.of(b -> b
+                .storedFields(fields)
+                .storedFields(fields)
+            );
+            assertEquals(Arrays.asList("a", "b"), fields);
+            assertEquals(Arrays.asList("a", "b", "a", "b"), search.storedFields());
+        }
+
+
+        {
+            // Reset builder property
+            SearchRequest search = SearchRequest.of(b -> b
+                .storedFields(fields)
+                .storedFields(ModelTypeHelper.resetList())
+            );
+            assertFalse(ModelTypeHelper.isDefined(search.storedFields()));
+
+            search = SearchRequest.of(b -> b
+                .storedFields(fields)
+                .storedFields(ModelTypeHelper.resetList())
+                .storedFields("d", "e")
+            );
+            assertEquals(Arrays.asList("d", "e"), search.storedFields());
+        }
+
+        {
+            // Combine value and builder
+            FieldAndFormat fieldA = FieldAndFormat.of(f -> f.field("a"));
+            SearchRequest search = SearchRequest.of(b -> b
+                .docvalueFields(fieldA)
+                .docvalueFields(f -> f.field("b"))
+                .docvalueFields(f -> f.field("c"))
+            );
+
+            assertEquals(Arrays.asList("a", "b", "c"), search.docvalueFields().stream()
+                .map(FieldAndFormat::field).collect(Collectors.toList()));
+        }
+    }
+
+    @Test
+    public void testMapSetters() {
+        ValueCountAggregation countA = ValueCountAggregation.of(v -> v.field("a"));
+        ValueCountAggregation countB = ValueCountAggregation.of(v -> v.field("b"));
+        ValueCountAggregation countC = ValueCountAggregation.of(v -> v.field("c"));
+
+        Map<String, Aggregation> aggs = new HashMap<>();
+        aggs.put("aggA", countA._toAggregation());
+        aggs.put("aggB", countB._toAggregation());
+
+        {
+            // Appending doesn't modify the original collection
+
+            SearchRequest search = SearchRequest.of(b -> b
+                .aggregations(aggs)
+                .aggregations("aggC", countC._toAggregation())
+                .aggregations("aggD", a -> a.valueCount(c -> c.field("d")))
+            );
+
+            // Original map wasn't modified
+            assertEquals(2, aggs.size());
+
+            assertEquals(4, search.aggregations().size());
+            assertEquals("a", search.aggregations().get("aggA").valueCount().field());
+            assertEquals("b", search.aggregations().get("aggB").valueCount().field());
+            assertEquals("c", search.aggregations().get("aggC").valueCount().field());
+            assertEquals("d", search.aggregations().get("aggD").valueCount().field());
+        }
+
+        {
+            // Reset builder property
+            SearchRequest search = SearchRequest.of(b -> b
+                .aggregations(aggs)
+                .aggregations(ModelTypeHelper.resetMap())
+            );
+            assertFalse(ModelTypeHelper.isDefined(search.storedFields()));
+
+            search = SearchRequest.of(b -> b
+                .aggregations(aggs)
+                .aggregations(ModelTypeHelper.resetMap())
+                .aggregations("aggC", countC._toAggregation())
+            );
+            assertEquals(1, search.aggregations().size());
+            assertEquals("c", search.aggregations().get("aggC").valueCount().field());
         }
     }
 
