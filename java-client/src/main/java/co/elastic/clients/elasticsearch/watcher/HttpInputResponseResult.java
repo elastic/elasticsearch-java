@@ -38,7 +38,7 @@ import java.lang.String;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.HttpInputResponseResult
@@ -60,10 +60,8 @@ public class HttpInputResponseResult implements JsonpSerializable {
 
 	}
 
-	public static HttpInputResponseResult of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static HttpInputResponseResult of(Function<Builder, ObjectBuilder<HttpInputResponseResult>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -146,9 +144,25 @@ public class HttpInputResponseResult implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code headers}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>headers</code>. Use
+		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
+		 * <code>headers</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetMap()
 		 */
-		public final Builder headers(Map<String, List<String>> value) {
-			this.headers = value;
+		public final Builder headers(Map<String, List<String>> map) {
+			this.headers = _mapPutAll(this.headers, map);
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code headers}
+		 * <p>
+		 * Adds an entry to <code>headers</code>.
+		 */
+		public final Builder headers(String key, List<String> value) {
+			this.headers = _mapPut(this.headers, key, value);
 			return this;
 		}
 

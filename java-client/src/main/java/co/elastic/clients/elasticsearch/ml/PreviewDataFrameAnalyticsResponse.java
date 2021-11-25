@@ -34,11 +34,10 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.preview_data_frame_analytics.Response
@@ -54,10 +53,9 @@ public class PreviewDataFrameAnalyticsResponse implements JsonpSerializable {
 
 	}
 
-	public static PreviewDataFrameAnalyticsResponse of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static PreviewDataFrameAnalyticsResponse of(
+			Function<Builder, ObjectBuilder<PreviewDataFrameAnalyticsResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -117,9 +115,15 @@ public class PreviewDataFrameAnalyticsResponse implements JsonpSerializable {
 		 * training.
 		 * <p>
 		 * API name: {@code feature_values}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>featureValues</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>featureValues</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder featureValues(List<Map<String, String>> value) {
-			this.featureValues = value;
+		public final Builder featureValues(List<Map<String, String>> list) {
+			this.featureValues = _listAddAll(this.featureValues, list);
 			return this;
 		}
 
@@ -129,9 +133,11 @@ public class PreviewDataFrameAnalyticsResponse implements JsonpSerializable {
 		 * training.
 		 * <p>
 		 * API name: {@code feature_values}
+		 * <p>
+		 * Adds one or more values to <code>featureValues</code>.
 		 */
-		public final Builder featureValues(Map<String, String>... value) {
-			this.featureValues = Arrays.asList(value);
+		public final Builder featureValues(Map<String, String> value, Map<String, String>... values) {
+			this.featureValues = _listAdd(this.featureValues, value, values);
 			return this;
 		}
 

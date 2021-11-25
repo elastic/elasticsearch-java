@@ -37,7 +37,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cluster.get_settings.Response
@@ -59,10 +59,8 @@ public class GetClusterSettingsResponse implements JsonpSerializable {
 
 	}
 
-	public static GetClusterSettingsResponse of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static GetClusterSettingsResponse of(Function<Builder, ObjectBuilder<GetClusterSettingsResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -148,25 +146,73 @@ public class GetClusterSettingsResponse implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code persistent}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>persistent</code>. Use
+		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
+		 * <code>persistent</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetMap()
 		 */
-		public final Builder persistent(Map<String, JsonData> value) {
-			this.persistent = value;
+		public final Builder persistent(Map<String, JsonData> map) {
+			this.persistent = _mapPutAll(this.persistent, map);
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code persistent}
+		 * <p>
+		 * Adds an entry to <code>persistent</code>.
+		 */
+		public final Builder persistent(String key, JsonData value) {
+			this.persistent = _mapPut(this.persistent, key, value);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code transient}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>transient_</code>. Use
+		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
+		 * <code>transient_</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetMap()
 		 */
-		public final Builder transient_(Map<String, JsonData> value) {
-			this.transient_ = value;
+		public final Builder transient_(Map<String, JsonData> map) {
+			this.transient_ = _mapPutAll(this.transient_, map);
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code transient}
+		 * <p>
+		 * Adds an entry to <code>transient_</code>.
+		 */
+		public final Builder transient_(String key, JsonData value) {
+			this.transient_ = _mapPut(this.transient_, key, value);
 			return this;
 		}
 
 		/**
 		 * API name: {@code defaults}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>defaults</code>. Use
+		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
+		 * <code>defaults</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetMap()
 		 */
-		public final Builder defaults(@Nullable Map<String, JsonData> value) {
-			this.defaults = value;
+		public final Builder defaults(Map<String, JsonData> map) {
+			this.defaults = _mapPutAll(this.defaults, map);
+			return this;
+		}
+
+		/**
+		 * API name: {@code defaults}
+		 * <p>
+		 * Adds an entry to <code>defaults</code>.
+		 */
+		public final Builder defaults(String key, JsonData value) {
+			this.defaults = _mapPut(this.defaults, key, value);
 			return this;
 		}
 

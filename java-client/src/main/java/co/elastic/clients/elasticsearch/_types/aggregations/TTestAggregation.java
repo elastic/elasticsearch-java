@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.TTestAggregation
@@ -57,10 +57,8 @@ public class TTestAggregation extends AggregationBase implements AggregationVari
 
 	}
 
-	public static TTestAggregation of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static TTestAggregation of(Function<Builder, ObjectBuilder<TTestAggregation>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -143,10 +141,8 @@ public class TTestAggregation extends AggregationBase implements AggregationVari
 		/**
 		 * API name: {@code a}
 		 */
-		public final Builder a(Consumer<TestPopulation.Builder> fn) {
-			TestPopulation.Builder builder = new TestPopulation.Builder();
-			fn.accept(builder);
-			return this.a(builder.build());
+		public final Builder a(Function<TestPopulation.Builder, ObjectBuilder<TestPopulation>> fn) {
+			return this.a(fn.apply(new TestPopulation.Builder()).build());
 		}
 
 		/**
@@ -160,10 +156,8 @@ public class TTestAggregation extends AggregationBase implements AggregationVari
 		/**
 		 * API name: {@code b}
 		 */
-		public final Builder b(Consumer<TestPopulation.Builder> fn) {
-			TestPopulation.Builder builder = new TestPopulation.Builder();
-			fn.accept(builder);
-			return this.b(builder.build());
+		public final Builder b(Function<TestPopulation.Builder, ObjectBuilder<TestPopulation>> fn) {
+			return this.b(fn.apply(new TestPopulation.Builder()).build());
 		}
 
 		/**

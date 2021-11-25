@@ -39,7 +39,7 @@ import co.elastic.clients.util.TaggedUnionUtils;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Object;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.msearch.ResponseItem
@@ -82,10 +82,9 @@ public class MultiSearchResponseItem<TDocument>
 
 	}
 
-	public static <TDocument> MultiSearchResponseItem<TDocument> of(Consumer<Builder<TDocument>> fn) {
-		Builder<TDocument> builder = new Builder<>();
-		fn.accept(builder);
-		return builder.build();
+	public static <TDocument> MultiSearchResponseItem<TDocument> of(
+			Function<Builder<TDocument>, ObjectBuilder<MultiSearchResponseItem<TDocument>>> fn) {
+		return fn.apply(new Builder<>()).build();
 	}
 
 	/**
@@ -143,10 +142,8 @@ public class MultiSearchResponseItem<TDocument>
 		}
 
 		public ObjectBuilder<MultiSearchResponseItem<TDocument>> result(
-				Consumer<MultiSearchItem.Builder<TDocument>> fn) {
-			MultiSearchItem.Builder<TDocument> builder = new MultiSearchItem.Builder<TDocument>();
-			fn.accept(builder);
-			return this.result(builder.build());
+				Function<MultiSearchItem.Builder<TDocument>, ObjectBuilder<MultiSearchItem<TDocument>>> fn) {
+			return this.result(fn.apply(new MultiSearchItem.Builder<TDocument>()).build());
 		}
 
 		public ObjectBuilder<MultiSearchResponseItem<TDocument>> failure(ErrorResponse v) {
@@ -155,10 +152,9 @@ public class MultiSearchResponseItem<TDocument>
 			return this;
 		}
 
-		public ObjectBuilder<MultiSearchResponseItem<TDocument>> failure(Consumer<ErrorResponse.Builder> fn) {
-			ErrorResponse.Builder builder = new ErrorResponse.Builder();
-			fn.accept(builder);
-			return this.failure(builder.build());
+		public ObjectBuilder<MultiSearchResponseItem<TDocument>> failure(
+				Function<ErrorResponse.Builder, ObjectBuilder<ErrorResponse>> fn) {
+			return this.failure(fn.apply(new ErrorResponse.Builder()).build());
 		}
 
 		public MultiSearchResponseItem<TDocument> build() {

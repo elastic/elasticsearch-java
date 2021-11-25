@@ -30,7 +30,6 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
@@ -38,10 +37,8 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.Long;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -161,10 +158,8 @@ public class ShardStats implements JsonpSerializable {
 
 	}
 
-	public static ShardStats of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static ShardStats of(Function<Builder, ObjectBuilder<ShardStats>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -580,10 +575,8 @@ public class ShardStats implements JsonpSerializable {
 		/**
 		 * API name: {@code fatal_exception}
 		 */
-		public final Builder fatalException(Consumer<ErrorCause.Builder> fn) {
-			ErrorCause.Builder builder = new ErrorCause.Builder();
-			fn.accept(builder);
-			return this.fatalException(builder.build());
+		public final Builder fatalException(Function<ErrorCause.Builder, ObjectBuilder<ErrorCause>> fn) {
+			return this.fatalException(fn.apply(new ErrorCause.Builder()).build());
 		}
 
 		/**
@@ -700,26 +693,35 @@ public class ShardStats implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code read_exceptions}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>readExceptions</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>readExceptions</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder readExceptions(List<ReadException> value) {
-			this.readExceptions = value;
+		public final Builder readExceptions(List<ReadException> list) {
+			this.readExceptions = _listAddAll(this.readExceptions, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code read_exceptions}
+		 * <p>
+		 * Adds one or more values to <code>readExceptions</code>.
 		 */
-		public final Builder readExceptions(ReadException... value) {
-			this.readExceptions = Arrays.asList(value);
+		public final Builder readExceptions(ReadException value, ReadException... values) {
+			this.readExceptions = _listAdd(this.readExceptions, value, values);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code read_exceptions}
+		 * <p>
+		 * Adds a value to <code>readExceptions</code> using a builder lambda.
 		 */
-		public final Builder readExceptions(
-				Function<ListBuilder<ReadException, ReadException.Builder>, ObjectBuilder<List<ReadException>>> fn) {
-			return readExceptions(fn.apply(new ListBuilder<>(ReadException.Builder::new)).build());
+		public final Builder readExceptions(Function<ReadException.Builder, ObjectBuilder<ReadException>> fn) {
+			return readExceptions(fn.apply(new ReadException.Builder()).build());
 		}
 
 		/**

@@ -38,7 +38,7 @@ import co.elastic.clients.util.TaggedUnionUtils;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Object;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.update_aliases.Action
@@ -98,10 +98,8 @@ public class Action implements TaggedUnion<Action.Kind, Object>, JsonpSerializab
 
 	}
 
-	public static Action of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static Action of(Function<Builder, ObjectBuilder<Action>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -180,10 +178,8 @@ public class Action implements TaggedUnion<Action.Kind, Object>, JsonpSerializab
 			return this;
 		}
 
-		public ObjectBuilder<Action> add(Consumer<AddAction.Builder> fn) {
-			AddAction.Builder builder = new AddAction.Builder();
-			fn.accept(builder);
-			return this.add(builder.build());
+		public ObjectBuilder<Action> add(Function<AddAction.Builder, ObjectBuilder<AddAction>> fn) {
+			return this.add(fn.apply(new AddAction.Builder()).build());
 		}
 
 		public ObjectBuilder<Action> remove(RemoveAction v) {
@@ -192,10 +188,8 @@ public class Action implements TaggedUnion<Action.Kind, Object>, JsonpSerializab
 			return this;
 		}
 
-		public ObjectBuilder<Action> remove(Consumer<RemoveAction.Builder> fn) {
-			RemoveAction.Builder builder = new RemoveAction.Builder();
-			fn.accept(builder);
-			return this.remove(builder.build());
+		public ObjectBuilder<Action> remove(Function<RemoveAction.Builder, ObjectBuilder<RemoveAction>> fn) {
+			return this.remove(fn.apply(new RemoveAction.Builder()).build());
 		}
 
 		public ObjectBuilder<Action> removeIndex(RemoveIndexAction v) {
@@ -204,10 +198,9 @@ public class Action implements TaggedUnion<Action.Kind, Object>, JsonpSerializab
 			return this;
 		}
 
-		public ObjectBuilder<Action> removeIndex(Consumer<RemoveIndexAction.Builder> fn) {
-			RemoveIndexAction.Builder builder = new RemoveIndexAction.Builder();
-			fn.accept(builder);
-			return this.removeIndex(builder.build());
+		public ObjectBuilder<Action> removeIndex(
+				Function<RemoveIndexAction.Builder, ObjectBuilder<RemoveIndexAction>> fn) {
+			return this.removeIndex(fn.apply(new RemoveIndexAction.Builder()).build());
 		}
 
 		public Action build() {

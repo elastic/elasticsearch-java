@@ -37,7 +37,7 @@ import java.lang.Double;
 import java.lang.Long;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: graph._types.Vertex
@@ -62,10 +62,8 @@ public class Vertex implements JsonpSerializable {
 
 	}
 
-	public static Vertex of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static Vertex of(Function<Builder, ObjectBuilder<Vertex>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**

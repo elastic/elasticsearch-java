@@ -35,10 +35,9 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.DataframeAnalyticsFieldSelection
@@ -71,10 +70,9 @@ public class DataframeAnalyticsFieldSelection implements JsonpSerializable {
 
 	}
 
-	public static DataframeAnalyticsFieldSelection of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static DataframeAnalyticsFieldSelection of(
+			Function<Builder, ObjectBuilder<DataframeAnalyticsFieldSelection>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -232,9 +230,15 @@ public class DataframeAnalyticsFieldSelection implements JsonpSerializable {
 		 * Required - The mapping types of the field.
 		 * <p>
 		 * API name: {@code mapping_types}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>mappingTypes</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>mappingTypes</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder mappingTypes(List<String> value) {
-			this.mappingTypes = value;
+		public final Builder mappingTypes(List<String> list) {
+			this.mappingTypes = _listAddAll(this.mappingTypes, list);
 			return this;
 		}
 
@@ -242,9 +246,11 @@ public class DataframeAnalyticsFieldSelection implements JsonpSerializable {
 		 * Required - The mapping types of the field.
 		 * <p>
 		 * API name: {@code mapping_types}
+		 * <p>
+		 * Adds one or more values to <code>mappingTypes</code>.
 		 */
-		public final Builder mappingTypes(String... value) {
-			this.mappingTypes = Arrays.asList(value);
+		public final Builder mappingTypes(String value, String... values) {
+			this.mappingTypes = _listAdd(this.mappingTypes, value, values);
 			return this;
 		}
 

@@ -37,7 +37,7 @@ import java.lang.Boolean;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: security.has_privileges.Response
@@ -65,10 +65,8 @@ public class HasPrivilegesResponse implements JsonpSerializable {
 
 	}
 
-	public static HasPrivilegesResponse of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static HasPrivilegesResponse of(Function<Builder, ObjectBuilder<HasPrivilegesResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -200,17 +198,49 @@ public class HasPrivilegesResponse implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code application}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>application</code>. Use
+		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
+		 * <code>application</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetMap()
 		 */
-		public final Builder application(Map<String, Map<String, Map<String, Boolean>>> value) {
-			this.application = value;
+		public final Builder application(Map<String, Map<String, Map<String, Boolean>>> map) {
+			this.application = _mapPutAll(this.application, map);
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code application}
+		 * <p>
+		 * Adds an entry to <code>application</code>.
+		 */
+		public final Builder application(String key, Map<String, Map<String, Boolean>> value) {
+			this.application = _mapPut(this.application, key, value);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code cluster}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>cluster</code>. Use
+		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
+		 * <code>cluster</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetMap()
 		 */
-		public final Builder cluster(Map<String, Boolean> value) {
-			this.cluster = value;
+		public final Builder cluster(Map<String, Boolean> map) {
+			this.cluster = _mapPutAll(this.cluster, map);
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code cluster}
+		 * <p>
+		 * Adds an entry to <code>cluster</code>.
+		 */
+		public final Builder cluster(String key, Boolean value) {
+			this.cluster = _mapPut(this.cluster, key, value);
 			return this;
 		}
 
@@ -224,9 +254,25 @@ public class HasPrivilegesResponse implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code index}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>index</code>. Use
+		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
+		 * <code>index</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetMap()
 		 */
-		public final Builder index(Map<String, Map<String, Boolean>> value) {
-			this.index = value;
+		public final Builder index(Map<String, Map<String, Boolean>> map) {
+			this.index = _mapPutAll(this.index, map);
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code index}
+		 * <p>
+		 * Adds an entry to <code>index</code>.
+		 */
+		public final Builder index(String key, Map<String, Boolean> value) {
+			this.index = _mapPut(this.index, key, value);
 			return this;
 		}
 

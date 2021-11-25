@@ -44,12 +44,11 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Long;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
@@ -129,10 +128,9 @@ public class TermvectorsRequest<TDocument> extends RequestBase implements JsonpS
 
 	}
 
-	public static <TDocument> TermvectorsRequest<TDocument> of(Consumer<Builder<TDocument>> fn) {
-		Builder<TDocument> builder = new Builder<>();
-		fn.accept(builder);
-		return builder.build();
+	public static <TDocument> TermvectorsRequest<TDocument> of(
+			Function<Builder<TDocument>, ObjectBuilder<TermvectorsRequest<TDocument>>> fn) {
+		return fn.apply(new Builder<>()).build();
 	}
 
 	/**
@@ -405,9 +403,15 @@ public class TermvectorsRequest<TDocument> extends RequestBase implements JsonpS
 		 * A comma-separated list of fields to return.
 		 * <p>
 		 * API name: {@code fields}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>fields</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>fields</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder<TDocument> fields(@Nullable List<String> value) {
-			this.fields = value;
+		public final Builder<TDocument> fields(List<String> list) {
+			this.fields = _listAddAll(this.fields, list);
 			return this;
 		}
 
@@ -415,9 +419,11 @@ public class TermvectorsRequest<TDocument> extends RequestBase implements JsonpS
 		 * A comma-separated list of fields to return.
 		 * <p>
 		 * API name: {@code fields}
+		 * <p>
+		 * Adds one or more values to <code>fields</code>.
 		 */
-		public final Builder<TDocument> fields(String... value) {
-			this.fields = Arrays.asList(value);
+		public final Builder<TDocument> fields(String value, String... values) {
+			this.fields = _listAdd(this.fields, value, values);
 			return this;
 		}
 
@@ -432,10 +438,8 @@ public class TermvectorsRequest<TDocument> extends RequestBase implements JsonpS
 		/**
 		 * API name: {@code filter}
 		 */
-		public final Builder<TDocument> filter(Consumer<Filter.Builder> fn) {
-			Filter.Builder builder = new Filter.Builder();
-			fn.accept(builder);
-			return this.filter(builder.build());
+		public final Builder<TDocument> filter(Function<Filter.Builder, ObjectBuilder<Filter>> fn) {
+			return this.filter(fn.apply(new Filter.Builder()).build());
 		}
 
 		/**
@@ -480,9 +484,25 @@ public class TermvectorsRequest<TDocument> extends RequestBase implements JsonpS
 
 		/**
 		 * API name: {@code per_field_analyzer}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>perFieldAnalyzer</code>. Use
+		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
+		 * <code>perFieldAnalyzer</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetMap()
 		 */
-		public final Builder<TDocument> perFieldAnalyzer(@Nullable Map<String, String> value) {
-			this.perFieldAnalyzer = value;
+		public final Builder<TDocument> perFieldAnalyzer(Map<String, String> map) {
+			this.perFieldAnalyzer = _mapPutAll(this.perFieldAnalyzer, map);
+			return this;
+		}
+
+		/**
+		 * API name: {@code per_field_analyzer}
+		 * <p>
+		 * Adds an entry to <code>perFieldAnalyzer</code>.
+		 */
+		public final Builder<TDocument> perFieldAnalyzer(String key, String value) {
+			this.perFieldAnalyzer = _mapPut(this.perFieldAnalyzer, key, value);
 			return this;
 		}
 

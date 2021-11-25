@@ -37,7 +37,7 @@ import java.lang.Double;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.DataframeAnalysisFeatureProcessorFrequencyEncoding
@@ -62,10 +62,9 @@ public class DataframeAnalysisFeatureProcessorFrequencyEncoding
 
 	}
 
-	public static DataframeAnalysisFeatureProcessorFrequencyEncoding of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static DataframeAnalysisFeatureProcessorFrequencyEncoding of(
+			Function<Builder, ObjectBuilder<DataframeAnalysisFeatureProcessorFrequencyEncoding>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -170,9 +169,28 @@ public class DataframeAnalysisFeatureProcessorFrequencyEncoding
 		 * value is missing from the frequency_map, the resulting value is 0.
 		 * <p>
 		 * API name: {@code frequency_map}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>frequencyMap</code>. Use
+		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
+		 * <code>frequencyMap</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetMap()
 		 */
-		public final Builder frequencyMap(Map<String, Double> value) {
-			this.frequencyMap = value;
+		public final Builder frequencyMap(Map<String, Double> map) {
+			this.frequencyMap = _mapPutAll(this.frequencyMap, map);
+			return this;
+		}
+
+		/**
+		 * Required - The resulting frequency map for the field value. If the field
+		 * value is missing from the frequency_map, the resulting value is 0.
+		 * <p>
+		 * API name: {@code frequency_map}
+		 * <p>
+		 * Adds an entry to <code>frequencyMap</code>.
+		 */
+		public final Builder frequencyMap(String key, Double value) {
+			this.frequencyMap = _mapPut(this.frequencyMap, key, value);
 			return this;
 		}
 

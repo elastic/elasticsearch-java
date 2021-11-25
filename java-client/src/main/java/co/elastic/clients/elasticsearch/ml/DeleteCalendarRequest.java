@@ -38,7 +38,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.delete_calendar.Request
@@ -54,10 +54,8 @@ public class DeleteCalendarRequest extends RequestBase {
 
 	}
 
-	public static DeleteCalendarRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static DeleteCalendarRequest of(Function<Builder, ObjectBuilder<DeleteCalendarRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**

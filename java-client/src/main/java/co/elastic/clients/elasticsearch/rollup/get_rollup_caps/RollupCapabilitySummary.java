@@ -37,7 +37,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: rollup.get_rollup_caps.RollupCapabilitySummary
@@ -62,10 +62,8 @@ public class RollupCapabilitySummary implements JsonpSerializable {
 
 	}
 
-	public static RollupCapabilitySummary of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static RollupCapabilitySummary of(Function<Builder, ObjectBuilder<RollupCapabilitySummary>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -153,9 +151,25 @@ public class RollupCapabilitySummary implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code fields}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>fields</code>. Use
+		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
+		 * <code>fields</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetMap()
 		 */
-		public final Builder fields(Map<String, Map<String, JsonData>> value) {
-			this.fields = value;
+		public final Builder fields(Map<String, Map<String, JsonData>> map) {
+			this.fields = _mapPutAll(this.fields, map);
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code fields}
+		 * <p>
+		 * Adds an entry to <code>fields</code>.
+		 */
+		public final Builder fields(String key, Map<String, JsonData> value) {
+			this.fields = _mapPut(this.fields, key, value);
 			return this;
 		}
 

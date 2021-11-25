@@ -30,17 +30,14 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -66,10 +63,8 @@ public class DeprecationsResponse implements JsonpSerializable {
 
 	}
 
-	public static DeprecationsResponse of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static DeprecationsResponse of(Function<Builder, ObjectBuilder<DeprecationsResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -178,82 +173,125 @@ public class DeprecationsResponse implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code cluster_settings}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>clusterSettings</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>clusterSettings</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder clusterSettings(List<Deprecation> value) {
-			this.clusterSettings = value;
+		public final Builder clusterSettings(List<Deprecation> list) {
+			this.clusterSettings = _listAddAll(this.clusterSettings, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code cluster_settings}
+		 * <p>
+		 * Adds one or more values to <code>clusterSettings</code>.
 		 */
-		public final Builder clusterSettings(Deprecation... value) {
-			this.clusterSettings = Arrays.asList(value);
+		public final Builder clusterSettings(Deprecation value, Deprecation... values) {
+			this.clusterSettings = _listAdd(this.clusterSettings, value, values);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code cluster_settings}
+		 * <p>
+		 * Adds a value to <code>clusterSettings</code> using a builder lambda.
 		 */
-		public final Builder clusterSettings(
-				Function<ListBuilder<Deprecation, Deprecation.Builder>, ObjectBuilder<List<Deprecation>>> fn) {
-			return clusterSettings(fn.apply(new ListBuilder<>(Deprecation.Builder::new)).build());
+		public final Builder clusterSettings(Function<Deprecation.Builder, ObjectBuilder<Deprecation>> fn) {
+			return clusterSettings(fn.apply(new Deprecation.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code index_settings}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>indexSettings</code>. Use
+		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
+		 * <code>indexSettings</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetMap()
 		 */
-		public final Builder indexSettings(Map<String, List<Deprecation>> value) {
-			this.indexSettings = value;
+		public final Builder indexSettings(Map<String, List<Deprecation>> map) {
+			this.indexSettings = _mapPutAll(this.indexSettings, map);
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code index_settings}
+		 * <p>
+		 * Adds an entry to <code>indexSettings</code>.
+		 */
+		public final Builder indexSettings(String key, List<Deprecation> value) {
+			this.indexSettings = _mapPut(this.indexSettings, key, value);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code node_settings}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>nodeSettings</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>nodeSettings</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder nodeSettings(List<Deprecation> value) {
-			this.nodeSettings = value;
+		public final Builder nodeSettings(List<Deprecation> list) {
+			this.nodeSettings = _listAddAll(this.nodeSettings, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code node_settings}
+		 * <p>
+		 * Adds one or more values to <code>nodeSettings</code>.
 		 */
-		public final Builder nodeSettings(Deprecation... value) {
-			this.nodeSettings = Arrays.asList(value);
+		public final Builder nodeSettings(Deprecation value, Deprecation... values) {
+			this.nodeSettings = _listAdd(this.nodeSettings, value, values);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code node_settings}
+		 * <p>
+		 * Adds a value to <code>nodeSettings</code> using a builder lambda.
 		 */
-		public final Builder nodeSettings(
-				Function<ListBuilder<Deprecation, Deprecation.Builder>, ObjectBuilder<List<Deprecation>>> fn) {
-			return nodeSettings(fn.apply(new ListBuilder<>(Deprecation.Builder::new)).build());
+		public final Builder nodeSettings(Function<Deprecation.Builder, ObjectBuilder<Deprecation>> fn) {
+			return nodeSettings(fn.apply(new Deprecation.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code ml_settings}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>mlSettings</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>mlSettings</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder mlSettings(List<Deprecation> value) {
-			this.mlSettings = value;
+		public final Builder mlSettings(List<Deprecation> list) {
+			this.mlSettings = _listAddAll(this.mlSettings, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code ml_settings}
+		 * <p>
+		 * Adds one or more values to <code>mlSettings</code>.
 		 */
-		public final Builder mlSettings(Deprecation... value) {
-			this.mlSettings = Arrays.asList(value);
+		public final Builder mlSettings(Deprecation value, Deprecation... values) {
+			this.mlSettings = _listAdd(this.mlSettings, value, values);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code ml_settings}
+		 * <p>
+		 * Adds a value to <code>mlSettings</code> using a builder lambda.
 		 */
-		public final Builder mlSettings(
-				Function<ListBuilder<Deprecation, Deprecation.Builder>, ObjectBuilder<List<Deprecation>>> fn) {
-			return mlSettings(fn.apply(new ListBuilder<>(Deprecation.Builder::new)).build());
+		public final Builder mlSettings(Function<Deprecation.Builder, ObjectBuilder<Deprecation>> fn) {
+			return mlSettings(fn.apply(new Deprecation.Builder()).build());
 		}
 
 		/**

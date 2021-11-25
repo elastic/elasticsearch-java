@@ -29,7 +29,6 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.MapBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
@@ -37,7 +36,6 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -54,10 +52,8 @@ public class GarbageCollector implements JsonpSerializable {
 
 	}
 
-	public static GarbageCollector of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static GarbageCollector of(Function<Builder, ObjectBuilder<GarbageCollector>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -102,15 +98,36 @@ public class GarbageCollector implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code collectors}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>collectors</code>. Use
+		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
+		 * <code>collectors</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetMap()
 		 */
-		public final Builder collectors(Map<String, GarbageCollectorTotal> value) {
-			this.collectors = value;
+		public final Builder collectors(Map<String, GarbageCollectorTotal> map) {
+			this.collectors = _mapPutAll(this.collectors, map);
 			return this;
 		}
 
-		public final Builder collectors(
-				Function<MapBuilder<String, GarbageCollectorTotal, GarbageCollectorTotal.Builder>, ObjectBuilder<Map<String, GarbageCollectorTotal>>> fn) {
-			return collectors(fn.apply(new MapBuilder<>(GarbageCollectorTotal.Builder::new)).build());
+		/**
+		 * Required - API name: {@code collectors}
+		 * <p>
+		 * Adds an entry to <code>collectors</code>.
+		 */
+		public final Builder collectors(String key, GarbageCollectorTotal value) {
+			this.collectors = _mapPut(this.collectors, key, value);
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code collectors}
+		 * <p>
+		 * Adds an entry to <code>collectors</code> using a builder lambda.
+		 */
+		public final Builder collectors(String key,
+				Function<GarbageCollectorTotal.Builder, ObjectBuilder<GarbageCollectorTotal>> fn) {
+			return collectors(key, fn.apply(new GarbageCollectorTotal.Builder()).build());
 		}
 
 		/**

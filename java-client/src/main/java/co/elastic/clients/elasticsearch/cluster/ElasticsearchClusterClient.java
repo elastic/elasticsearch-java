@@ -34,7 +34,7 @@ import co.elastic.clients.transport.TransportOptions;
 import co.elastic.clients.transport.endpoints.BooleanResponse;
 import co.elastic.clients.util.ObjectBuilder;
 import java.io.IOException;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 /**
@@ -84,11 +84,10 @@ public class ElasticsearchClusterClient extends ApiClient<ElasticsearchTransport
 	 *      on elastic.co</a>
 	 */
 
-	public final AllocationExplainResponse allocationExplain(Consumer<AllocationExplainRequest.Builder> fn)
+	public final AllocationExplainResponse allocationExplain(
+			Function<AllocationExplainRequest.Builder, ObjectBuilder<AllocationExplainRequest>> fn)
 			throws IOException, ElasticsearchException {
-		AllocationExplainRequest.Builder builder = new AllocationExplainRequest.Builder();
-		fn.accept(builder);
-		return allocationExplain(builder.build());
+		return allocationExplain(fn.apply(new AllocationExplainRequest.Builder()).build());
 	}
 
 	/**
@@ -134,10 +133,9 @@ public class ElasticsearchClusterClient extends ApiClient<ElasticsearchTransport
 	 */
 
 	public final DeleteComponentTemplateResponse deleteComponentTemplate(
-			Consumer<DeleteComponentTemplateRequest.Builder> fn) throws IOException, ElasticsearchException {
-		DeleteComponentTemplateRequest.Builder builder = new DeleteComponentTemplateRequest.Builder();
-		fn.accept(builder);
-		return deleteComponentTemplate(builder.build());
+			Function<DeleteComponentTemplateRequest.Builder, ObjectBuilder<DeleteComponentTemplateRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return deleteComponentTemplate(fn.apply(new DeleteComponentTemplateRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: cluster.delete_voting_config_exclusions
@@ -169,11 +167,10 @@ public class ElasticsearchClusterClient extends ApiClient<ElasticsearchTransport
 	 *      on elastic.co</a>
 	 */
 
-	public final BooleanResponse deleteVotingConfigExclusions(Consumer<DeleteVotingConfigExclusionsRequest.Builder> fn)
+	public final BooleanResponse deleteVotingConfigExclusions(
+			Function<DeleteVotingConfigExclusionsRequest.Builder, ObjectBuilder<DeleteVotingConfigExclusionsRequest>> fn)
 			throws IOException, ElasticsearchException {
-		DeleteVotingConfigExclusionsRequest.Builder builder = new DeleteVotingConfigExclusionsRequest.Builder();
-		fn.accept(builder);
-		return deleteVotingConfigExclusions(builder.build());
+		return deleteVotingConfigExclusions(fn.apply(new DeleteVotingConfigExclusionsRequest.Builder()).build());
 	}
 
 	/**
@@ -218,11 +215,10 @@ public class ElasticsearchClusterClient extends ApiClient<ElasticsearchTransport
 	 *      on elastic.co</a>
 	 */
 
-	public final BooleanResponse existsComponentTemplate(Consumer<ExistsComponentTemplateRequest.Builder> fn)
+	public final BooleanResponse existsComponentTemplate(
+			Function<ExistsComponentTemplateRequest.Builder, ObjectBuilder<ExistsComponentTemplateRequest>> fn)
 			throws IOException, ElasticsearchException {
-		ExistsComponentTemplateRequest.Builder builder = new ExistsComponentTemplateRequest.Builder();
-		fn.accept(builder);
-		return existsComponentTemplate(builder.build());
+		return existsComponentTemplate(fn.apply(new ExistsComponentTemplateRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: cluster.get_component_template
@@ -254,11 +250,10 @@ public class ElasticsearchClusterClient extends ApiClient<ElasticsearchTransport
 	 *      on elastic.co</a>
 	 */
 
-	public final GetComponentTemplateResponse getComponentTemplate(Consumer<GetComponentTemplateRequest.Builder> fn)
+	public final GetComponentTemplateResponse getComponentTemplate(
+			Function<GetComponentTemplateRequest.Builder, ObjectBuilder<GetComponentTemplateRequest>> fn)
 			throws IOException, ElasticsearchException {
-		GetComponentTemplateRequest.Builder builder = new GetComponentTemplateRequest.Builder();
-		fn.accept(builder);
-		return getComponentTemplate(builder.build());
+		return getComponentTemplate(fn.apply(new GetComponentTemplateRequest.Builder()).build());
 	}
 
 	/**
@@ -303,11 +298,10 @@ public class ElasticsearchClusterClient extends ApiClient<ElasticsearchTransport
 	 *      on elastic.co</a>
 	 */
 
-	public final GetClusterSettingsResponse getSettings(Consumer<GetClusterSettingsRequest.Builder> fn)
+	public final GetClusterSettingsResponse getSettings(
+			Function<GetClusterSettingsRequest.Builder, ObjectBuilder<GetClusterSettingsRequest>> fn)
 			throws IOException, ElasticsearchException {
-		GetClusterSettingsRequest.Builder builder = new GetClusterSettingsRequest.Builder();
-		fn.accept(builder);
-		return getSettings(builder.build());
+		return getSettings(fn.apply(new GetClusterSettingsRequest.Builder()).build());
 	}
 
 	/**
@@ -351,10 +345,9 @@ public class ElasticsearchClusterClient extends ApiClient<ElasticsearchTransport
 	 *      on elastic.co</a>
 	 */
 
-	public final HealthResponse health(Consumer<HealthRequest.Builder> fn) throws IOException, ElasticsearchException {
-		HealthRequest.Builder builder = new HealthRequest.Builder();
-		fn.accept(builder);
-		return health(builder.build());
+	public final HealthResponse health(Function<HealthRequest.Builder, ObjectBuilder<HealthRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return health(fn.apply(new HealthRequest.Builder()).build());
 	}
 
 	/**
@@ -400,11 +393,10 @@ public class ElasticsearchClusterClient extends ApiClient<ElasticsearchTransport
 	 *      on elastic.co</a>
 	 */
 
-	public final PendingTasksResponse pendingTasks(Consumer<PendingTasksRequest.Builder> fn)
+	public final PendingTasksResponse pendingTasks(
+			Function<PendingTasksRequest.Builder, ObjectBuilder<PendingTasksRequest>> fn)
 			throws IOException, ElasticsearchException {
-		PendingTasksRequest.Builder builder = new PendingTasksRequest.Builder();
-		fn.accept(builder);
-		return pendingTasks(builder.build());
+		return pendingTasks(fn.apply(new PendingTasksRequest.Builder()).build());
 	}
 
 	/**
@@ -450,11 +442,10 @@ public class ElasticsearchClusterClient extends ApiClient<ElasticsearchTransport
 	 *      on elastic.co</a>
 	 */
 
-	public final BooleanResponse postVotingConfigExclusions(Consumer<PostVotingConfigExclusionsRequest.Builder> fn)
+	public final BooleanResponse postVotingConfigExclusions(
+			Function<PostVotingConfigExclusionsRequest.Builder, ObjectBuilder<PostVotingConfigExclusionsRequest>> fn)
 			throws IOException, ElasticsearchException {
-		PostVotingConfigExclusionsRequest.Builder builder = new PostVotingConfigExclusionsRequest.Builder();
-		fn.accept(builder);
-		return postVotingConfigExclusions(builder.build());
+		return postVotingConfigExclusions(fn.apply(new PostVotingConfigExclusionsRequest.Builder()).build());
 	}
 
 	/**
@@ -499,11 +490,10 @@ public class ElasticsearchClusterClient extends ApiClient<ElasticsearchTransport
 	 *      on elastic.co</a>
 	 */
 
-	public final PutComponentTemplateResponse putComponentTemplate(Consumer<PutComponentTemplateRequest.Builder> fn)
+	public final PutComponentTemplateResponse putComponentTemplate(
+			Function<PutComponentTemplateRequest.Builder, ObjectBuilder<PutComponentTemplateRequest>> fn)
 			throws IOException, ElasticsearchException {
-		PutComponentTemplateRequest.Builder builder = new PutComponentTemplateRequest.Builder();
-		fn.accept(builder);
-		return putComponentTemplate(builder.build());
+		return putComponentTemplate(fn.apply(new PutComponentTemplateRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: cluster.put_settings
@@ -535,11 +525,10 @@ public class ElasticsearchClusterClient extends ApiClient<ElasticsearchTransport
 	 *      on elastic.co</a>
 	 */
 
-	public final PutClusterSettingsResponse putSettings(Consumer<PutClusterSettingsRequest.Builder> fn)
+	public final PutClusterSettingsResponse putSettings(
+			Function<PutClusterSettingsRequest.Builder, ObjectBuilder<PutClusterSettingsRequest>> fn)
 			throws IOException, ElasticsearchException {
-		PutClusterSettingsRequest.Builder builder = new PutClusterSettingsRequest.Builder();
-		fn.accept(builder);
-		return putSettings(builder.build());
+		return putSettings(fn.apply(new PutClusterSettingsRequest.Builder()).build());
 	}
 
 	/**
@@ -597,11 +586,9 @@ public class ElasticsearchClusterClient extends ApiClient<ElasticsearchTransport
 	 *      on elastic.co</a>
 	 */
 
-	public final RerouteResponse reroute(Consumer<RerouteRequest.Builder> fn)
+	public final RerouteResponse reroute(Function<RerouteRequest.Builder, ObjectBuilder<RerouteRequest>> fn)
 			throws IOException, ElasticsearchException {
-		RerouteRequest.Builder builder = new RerouteRequest.Builder();
-		fn.accept(builder);
-		return reroute(builder.build());
+		return reroute(fn.apply(new RerouteRequest.Builder()).build());
 	}
 
 	/**
@@ -645,10 +632,9 @@ public class ElasticsearchClusterClient extends ApiClient<ElasticsearchTransport
 	 *      on elastic.co</a>
 	 */
 
-	public final StateResponse state(Consumer<StateRequest.Builder> fn) throws IOException, ElasticsearchException {
-		StateRequest.Builder builder = new StateRequest.Builder();
-		fn.accept(builder);
-		return state(builder.build());
+	public final StateResponse state(Function<StateRequest.Builder, ObjectBuilder<StateRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return state(fn.apply(new StateRequest.Builder()).build());
 	}
 
 	/**
@@ -692,11 +678,10 @@ public class ElasticsearchClusterClient extends ApiClient<ElasticsearchTransport
 	 *      on elastic.co</a>
 	 */
 
-	public final ClusterStatsResponse stats(Consumer<ClusterStatsRequest.Builder> fn)
+	public final ClusterStatsResponse stats(
+			Function<ClusterStatsRequest.Builder, ObjectBuilder<ClusterStatsRequest>> fn)
 			throws IOException, ElasticsearchException {
-		ClusterStatsRequest.Builder builder = new ClusterStatsRequest.Builder();
-		fn.accept(builder);
-		return stats(builder.build());
+		return stats(fn.apply(new ClusterStatsRequest.Builder()).build());
 	}
 
 	/**

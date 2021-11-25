@@ -36,7 +36,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
 import java.lang.Long;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 
 // typedef: transform.get_transform_stats.TransformIndexerStats
 @JsonpDeserializable
@@ -98,10 +98,8 @@ public class TransformIndexerStats implements JsonpSerializable {
 
 	}
 
-	public static TransformIndexerStats of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static TransformIndexerStats of(Function<Builder, ObjectBuilder<TransformIndexerStats>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**

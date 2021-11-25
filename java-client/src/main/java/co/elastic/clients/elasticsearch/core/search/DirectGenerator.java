@@ -38,7 +38,7 @@ import java.lang.Float;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.search._types.DirectGenerator
@@ -94,10 +94,8 @@ public class DirectGenerator implements JsonpSerializable {
 
 	}
 
-	public static DirectGenerator of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static DirectGenerator of(Function<Builder, ObjectBuilder<DirectGenerator>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**

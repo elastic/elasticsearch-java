@@ -34,7 +34,7 @@ import co.elastic.clients.transport.TransportOptions;
 import co.elastic.clients.util.ObjectBuilder;
 import java.io.IOException;
 import java.util.concurrent.CompletableFuture;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 /**
@@ -89,11 +89,10 @@ public class ElasticsearchShutdownAsyncClient
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<DeleteNodeResponse> deleteNode(Consumer<DeleteNodeRequest.Builder> fn)
+	public final CompletableFuture<DeleteNodeResponse> deleteNode(
+			Function<DeleteNodeRequest.Builder, ObjectBuilder<DeleteNodeRequest>> fn)
 			throws IOException, ElasticsearchException {
-		DeleteNodeRequest.Builder builder = new DeleteNodeRequest.Builder();
-		fn.accept(builder);
-		return deleteNode(builder.build());
+		return deleteNode(fn.apply(new DeleteNodeRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: shutdown.get_node
@@ -129,11 +128,10 @@ public class ElasticsearchShutdownAsyncClient
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<GetNodeResponse> getNode(Consumer<GetNodeRequest.Builder> fn)
+	public final CompletableFuture<GetNodeResponse> getNode(
+			Function<GetNodeRequest.Builder, ObjectBuilder<GetNodeRequest>> fn)
 			throws IOException, ElasticsearchException {
-		GetNodeRequest.Builder builder = new GetNodeRequest.Builder();
-		fn.accept(builder);
-		return getNode(builder.build());
+		return getNode(fn.apply(new GetNodeRequest.Builder()).build());
 	}
 
 	/**
@@ -182,11 +180,10 @@ public class ElasticsearchShutdownAsyncClient
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<PutNodeResponse> putNode(Consumer<PutNodeRequest.Builder> fn)
+	public final CompletableFuture<PutNodeResponse> putNode(
+			Function<PutNodeRequest.Builder, ObjectBuilder<PutNodeRequest>> fn)
 			throws IOException, ElasticsearchException {
-		PutNodeRequest.Builder builder = new PutNodeRequest.Builder();
-		fn.accept(builder);
-		return putNode(builder.build());
+		return putNode(fn.apply(new PutNodeRequest.Builder()).build());
 	}
 
 }

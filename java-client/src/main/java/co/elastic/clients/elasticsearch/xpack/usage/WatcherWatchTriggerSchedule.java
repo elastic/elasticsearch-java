@@ -32,7 +32,7 @@ import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: xpack.usage.WatcherWatchTriggerSchedule
@@ -52,10 +52,8 @@ public class WatcherWatchTriggerSchedule extends Counter {
 
 	}
 
-	public static WatcherWatchTriggerSchedule of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static WatcherWatchTriggerSchedule of(Function<Builder, ObjectBuilder<WatcherWatchTriggerSchedule>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -106,10 +104,8 @@ public class WatcherWatchTriggerSchedule extends Counter {
 		/**
 		 * Required - API name: {@code cron}
 		 */
-		public final Builder cron(Consumer<Counter.Builder> fn) {
-			Counter.Builder builder = new Counter.Builder();
-			fn.accept(builder);
-			return this.cron(builder.build());
+		public final Builder cron(Function<Counter.Builder, ObjectBuilder<Counter>> fn) {
+			return this.cron(fn.apply(new Counter.Builder()).build());
 		}
 
 		/**
@@ -123,10 +119,8 @@ public class WatcherWatchTriggerSchedule extends Counter {
 		/**
 		 * Required - API name: {@code _all}
 		 */
-		public final Builder all(Consumer<Counter.Builder> fn) {
-			Counter.Builder builder = new Counter.Builder();
-			fn.accept(builder);
-			return this.all(builder.build());
+		public final Builder all(Function<Counter.Builder, ObjectBuilder<Counter>> fn) {
+			return this.all(fn.apply(new Counter.Builder()).build());
 		}
 
 		@Override

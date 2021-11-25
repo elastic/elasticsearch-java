@@ -33,7 +33,7 @@ import co.elastic.clients.transport.Transport;
 import co.elastic.clients.transport.TransportOptions;
 import co.elastic.clients.util.ObjectBuilder;
 import java.io.IOException;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 /**
@@ -82,10 +82,9 @@ public class ElasticsearchTasksClient extends ApiClient<ElasticsearchTransport, 
 	 *      on elastic.co</a>
 	 */
 
-	public final CancelResponse cancel(Consumer<CancelRequest.Builder> fn) throws IOException, ElasticsearchException {
-		CancelRequest.Builder builder = new CancelRequest.Builder();
-		fn.accept(builder);
-		return cancel(builder.build());
+	public final CancelResponse cancel(Function<CancelRequest.Builder, ObjectBuilder<CancelRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return cancel(fn.apply(new CancelRequest.Builder()).build());
 	}
 
 	/**
@@ -129,10 +128,9 @@ public class ElasticsearchTasksClient extends ApiClient<ElasticsearchTransport, 
 	 *      on elastic.co</a>
 	 */
 
-	public final GetTasksResponse get(Consumer<GetTasksRequest.Builder> fn) throws IOException, ElasticsearchException {
-		GetTasksRequest.Builder builder = new GetTasksRequest.Builder();
-		fn.accept(builder);
-		return get(builder.build());
+	public final GetTasksResponse get(Function<GetTasksRequest.Builder, ObjectBuilder<GetTasksRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return get(fn.apply(new GetTasksRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: tasks.list
@@ -163,10 +161,9 @@ public class ElasticsearchTasksClient extends ApiClient<ElasticsearchTransport, 
 	 *      on elastic.co</a>
 	 */
 
-	public final ListResponse list(Consumer<ListRequest.Builder> fn) throws IOException, ElasticsearchException {
-		ListRequest.Builder builder = new ListRequest.Builder();
-		fn.accept(builder);
-		return list(builder.build());
+	public final ListResponse list(Function<ListRequest.Builder, ObjectBuilder<ListRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return list(fn.apply(new ListRequest.Builder()).build());
 	}
 
 	/**

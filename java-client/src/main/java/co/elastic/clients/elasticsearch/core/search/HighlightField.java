@@ -37,10 +37,9 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.search._types.HighlightField
@@ -134,10 +133,8 @@ public class HighlightField implements JsonpSerializable {
 
 	}
 
-	public static HighlightField of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static HighlightField of(Function<Builder, ObjectBuilder<HighlightField>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -587,25 +584,31 @@ public class HighlightField implements JsonpSerializable {
 		/**
 		 * API name: {@code highlight_query}
 		 */
-		public final Builder highlightQuery(Consumer<Query.Builder> fn) {
-			Query.Builder builder = new Query.Builder();
-			fn.accept(builder);
-			return this.highlightQuery(builder.build());
+		public final Builder highlightQuery(Function<Query.Builder, ObjectBuilder<Query>> fn) {
+			return this.highlightQuery(fn.apply(new Query.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code matched_fields}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>matchedFields</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>matchedFields</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder matchedFields(@Nullable List<String> value) {
-			this.matchedFields = value;
+		public final Builder matchedFields(List<String> list) {
+			this.matchedFields = _listAddAll(this.matchedFields, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code matched_fields}
+		 * <p>
+		 * Adds one or more values to <code>matchedFields</code>.
 		 */
-		public final Builder matchedFields(String... value) {
-			this.matchedFields = Arrays.asList(value);
+		public final Builder matchedFields(String value, String... values) {
+			this.matchedFields = _listAdd(this.matchedFields, value, values);
 			return this;
 		}
 
@@ -651,33 +654,49 @@ public class HighlightField implements JsonpSerializable {
 
 		/**
 		 * API name: {@code post_tags}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>postTags</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>postTags</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder postTags(@Nullable List<String> value) {
-			this.postTags = value;
+		public final Builder postTags(List<String> list) {
+			this.postTags = _listAddAll(this.postTags, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code post_tags}
+		 * <p>
+		 * Adds one or more values to <code>postTags</code>.
 		 */
-		public final Builder postTags(String... value) {
-			this.postTags = Arrays.asList(value);
+		public final Builder postTags(String value, String... values) {
+			this.postTags = _listAdd(this.postTags, value, values);
 			return this;
 		}
 
 		/**
 		 * API name: {@code pre_tags}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>preTags</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>preTags</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder preTags(@Nullable List<String> value) {
-			this.preTags = value;
+		public final Builder preTags(List<String> list) {
+			this.preTags = _listAddAll(this.preTags, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code pre_tags}
+		 * <p>
+		 * Adds one or more values to <code>preTags</code>.
 		 */
-		public final Builder preTags(String... value) {
-			this.preTags = Arrays.asList(value);
+		public final Builder preTags(String value, String... values) {
+			this.preTags = _listAdd(this.preTags, value, values);
 			return this;
 		}
 
@@ -708,10 +727,8 @@ public class HighlightField implements JsonpSerializable {
 		/**
 		 * API name: {@code type}
 		 */
-		public final Builder type(Consumer<HighlighterType.Builder> fn) {
-			HighlighterType.Builder builder = new HighlighterType.Builder();
-			fn.accept(builder);
-			return this.type(builder.build());
+		public final Builder type(Function<HighlighterType.Builder, ObjectBuilder<HighlighterType>> fn) {
+			return this.type(fn.apply(new HighlighterType.Builder()).build());
 		}
 
 		/**

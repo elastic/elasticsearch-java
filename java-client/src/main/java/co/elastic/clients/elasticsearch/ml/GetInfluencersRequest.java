@@ -44,7 +44,7 @@ import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.get_influencers.Request
@@ -96,10 +96,8 @@ public class GetInfluencersRequest extends RequestBase implements JsonpSerializa
 
 	}
 
-	public static GetInfluencersRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static GetInfluencersRequest of(Function<Builder, ObjectBuilder<GetInfluencersRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -330,10 +328,8 @@ public class GetInfluencersRequest extends RequestBase implements JsonpSerializa
 		/**
 		 * API name: {@code page}
 		 */
-		public final Builder page(Consumer<Page.Builder> fn) {
-			Page.Builder builder = new Page.Builder();
-			fn.accept(builder);
-			return this.page(builder.build());
+		public final Builder page(Function<Page.Builder, ObjectBuilder<Page>> fn) {
+			return this.page(fn.apply(new Page.Builder()).build());
 		}
 
 		/**

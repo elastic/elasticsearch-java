@@ -29,16 +29,13 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -61,10 +58,8 @@ public class RerouteExplanation implements JsonpSerializable {
 
 	}
 
-	public static RerouteExplanation of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static RerouteExplanation of(Function<Builder, ObjectBuilder<RerouteExplanation>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -139,26 +134,35 @@ public class RerouteExplanation implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code decisions}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>decisions</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>decisions</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder decisions(List<RerouteDecision> value) {
-			this.decisions = value;
+		public final Builder decisions(List<RerouteDecision> list) {
+			this.decisions = _listAddAll(this.decisions, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code decisions}
+		 * <p>
+		 * Adds one or more values to <code>decisions</code>.
 		 */
-		public final Builder decisions(RerouteDecision... value) {
-			this.decisions = Arrays.asList(value);
+		public final Builder decisions(RerouteDecision value, RerouteDecision... values) {
+			this.decisions = _listAdd(this.decisions, value, values);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code decisions}
+		 * <p>
+		 * Adds a value to <code>decisions</code> using a builder lambda.
 		 */
-		public final Builder decisions(
-				Function<ListBuilder<RerouteDecision, RerouteDecision.Builder>, ObjectBuilder<List<RerouteDecision>>> fn) {
-			return decisions(fn.apply(new ListBuilder<>(RerouteDecision.Builder::new)).build());
+		public final Builder decisions(Function<RerouteDecision.Builder, ObjectBuilder<RerouteDecision>> fn) {
+			return decisions(fn.apply(new RerouteDecision.Builder()).build());
 		}
 
 		/**
@@ -172,10 +176,8 @@ public class RerouteExplanation implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code parameters}
 		 */
-		public final Builder parameters(Consumer<RerouteParameters.Builder> fn) {
-			RerouteParameters.Builder builder = new RerouteParameters.Builder();
-			fn.accept(builder);
-			return this.parameters(builder.build());
+		public final Builder parameters(Function<RerouteParameters.Builder, ObjectBuilder<RerouteParameters>> fn) {
+			return this.parameters(fn.apply(new RerouteParameters.Builder()).build());
 		}
 
 		/**

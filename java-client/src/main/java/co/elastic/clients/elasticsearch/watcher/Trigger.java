@@ -38,7 +38,7 @@ import co.elastic.clients.util.TaggedUnionUtils;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Object;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.TriggerContainer
@@ -94,10 +94,8 @@ public class Trigger implements TaggedUnion<Trigger.Kind, Object>, JsonpSerializ
 
 	}
 
-	public static Trigger of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static Trigger of(Function<Builder, ObjectBuilder<Trigger>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -142,10 +140,8 @@ public class Trigger implements TaggedUnion<Trigger.Kind, Object>, JsonpSerializ
 			return this;
 		}
 
-		public ObjectBuilder<Trigger> schedule(Consumer<Schedule.Builder> fn) {
-			Schedule.Builder builder = new Schedule.Builder();
-			fn.accept(builder);
-			return this.schedule(builder.build());
+		public ObjectBuilder<Trigger> schedule(Function<Schedule.Builder, ObjectBuilder<Schedule>> fn) {
+			return this.schedule(fn.apply(new Schedule.Builder()).build());
 		}
 
 		public Trigger build() {

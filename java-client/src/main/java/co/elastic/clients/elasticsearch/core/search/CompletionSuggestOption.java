@@ -42,7 +42,7 @@ import java.lang.String;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import java.util.function.Supplier;
 import javax.annotation.Nullable;
 
@@ -93,10 +93,9 @@ public class CompletionSuggestOption<TDocument> implements JsonpSerializable {
 
 	}
 
-	public static <TDocument> CompletionSuggestOption<TDocument> of(Consumer<Builder<TDocument>> fn) {
-		Builder<TDocument> builder = new Builder<>();
-		fn.accept(builder);
-		return builder.build();
+	public static <TDocument> CompletionSuggestOption<TDocument> of(
+			Function<Builder<TDocument>, ObjectBuilder<CompletionSuggestOption<TDocument>>> fn) {
+		return fn.apply(new Builder<>()).build();
 	}
 
 	/**
@@ -290,17 +289,49 @@ public class CompletionSuggestOption<TDocument> implements JsonpSerializable {
 
 		/**
 		 * API name: {@code contexts}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>contexts</code>. Use
+		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
+		 * <code>contexts</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetMap()
 		 */
-		public final Builder<TDocument> contexts(@Nullable Map<String, List<Context>> value) {
-			this.contexts = value;
+		public final Builder<TDocument> contexts(Map<String, List<Context>> map) {
+			this.contexts = _mapPutAll(this.contexts, map);
+			return this;
+		}
+
+		/**
+		 * API name: {@code contexts}
+		 * <p>
+		 * Adds an entry to <code>contexts</code>.
+		 */
+		public final Builder<TDocument> contexts(String key, List<Context> value) {
+			this.contexts = _mapPut(this.contexts, key, value);
 			return this;
 		}
 
 		/**
 		 * API name: {@code fields}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>fields</code>. Use
+		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
+		 * <code>fields</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetMap()
 		 */
-		public final Builder<TDocument> fields(@Nullable Map<String, JsonData> value) {
-			this.fields = value;
+		public final Builder<TDocument> fields(Map<String, JsonData> map) {
+			this.fields = _mapPutAll(this.fields, map);
+			return this;
+		}
+
+		/**
+		 * API name: {@code fields}
+		 * <p>
+		 * Adds an entry to <code>fields</code>.
+		 */
+		public final Builder<TDocument> fields(String key, JsonData value) {
+			this.fields = _mapPut(this.fields, key, value);
 			return this;
 		}
 

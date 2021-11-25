@@ -40,7 +40,7 @@ import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ilm.explain_lifecycle.Request
@@ -64,10 +64,8 @@ public class ExplainLifecycleRequest extends RequestBase {
 
 	}
 
-	public static ExplainLifecycleRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static ExplainLifecycleRequest of(Function<Builder, ObjectBuilder<ExplainLifecycleRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**

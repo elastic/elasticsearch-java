@@ -38,7 +38,7 @@ import java.lang.Integer;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.TrainedModelStats
@@ -64,10 +64,8 @@ public class TrainedModelStats implements JsonpSerializable {
 
 	}
 
-	public static TrainedModelStats of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static TrainedModelStats of(Function<Builder, ObjectBuilder<TrainedModelStats>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -196,10 +194,9 @@ public class TrainedModelStats implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code inference_stats}
 		 */
-		public final Builder inferenceStats(Consumer<TrainedModelInferenceStats.Builder> fn) {
-			TrainedModelInferenceStats.Builder builder = new TrainedModelInferenceStats.Builder();
-			fn.accept(builder);
-			return this.inferenceStats(builder.build());
+		public final Builder inferenceStats(
+				Function<TrainedModelInferenceStats.Builder, ObjectBuilder<TrainedModelInferenceStats>> fn) {
+			return this.inferenceStats(fn.apply(new TrainedModelInferenceStats.Builder()).build());
 		}
 
 		/**
@@ -208,9 +205,29 @@ public class TrainedModelStats implements JsonpSerializable {
 		 * section in Nodes stats.
 		 * <p>
 		 * API name: {@code ingest}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>ingest</code>. Use
+		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
+		 * <code>ingest</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetMap()
 		 */
-		public final Builder ingest(@Nullable Map<String, JsonData> value) {
-			this.ingest = value;
+		public final Builder ingest(Map<String, JsonData> map) {
+			this.ingest = _mapPutAll(this.ingest, map);
+			return this;
+		}
+
+		/**
+		 * A collection of ingest stats for the model across all nodes. The values are
+		 * summations of the individual node statistics. The format matches the ingest
+		 * section in Nodes stats.
+		 * <p>
+		 * API name: {@code ingest}
+		 * <p>
+		 * Adds an entry to <code>ingest</code>.
+		 */
+		public final Builder ingest(String key, JsonData value) {
+			this.ingest = _mapPut(this.ingest, key, value);
 			return this;
 		}
 

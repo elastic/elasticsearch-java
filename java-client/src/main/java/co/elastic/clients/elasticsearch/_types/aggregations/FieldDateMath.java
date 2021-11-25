@@ -39,7 +39,7 @@ import java.lang.Double;
 import java.lang.Object;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.FieldDateMath
@@ -89,10 +89,8 @@ public class FieldDateMath implements TaggedUnion<FieldDateMath.Kind, Object>, J
 
 	}
 
-	public static FieldDateMath of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static FieldDateMath of(Function<Builder, ObjectBuilder<FieldDateMath>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**

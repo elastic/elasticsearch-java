@@ -38,7 +38,7 @@ import java.lang.Integer;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.DataframeAnalysisFeatureProcessorTargetMeanEncoding
@@ -66,10 +66,9 @@ public class DataframeAnalysisFeatureProcessorTargetMeanEncoding
 
 	}
 
-	public static DataframeAnalysisFeatureProcessorTargetMeanEncoding of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static DataframeAnalysisFeatureProcessorTargetMeanEncoding of(
+			Function<Builder, ObjectBuilder<DataframeAnalysisFeatureProcessorTargetMeanEncoding>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -200,9 +199,27 @@ public class DataframeAnalysisFeatureProcessorTargetMeanEncoding
 		 * Required - The field value to target mean transition map.
 		 * <p>
 		 * API name: {@code target_map}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>targetMap</code>. Use
+		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
+		 * <code>targetMap</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetMap()
 		 */
-		public final Builder targetMap(Map<String, JsonData> value) {
-			this.targetMap = value;
+		public final Builder targetMap(Map<String, JsonData> map) {
+			this.targetMap = _mapPutAll(this.targetMap, map);
+			return this;
+		}
+
+		/**
+		 * Required - The field value to target mean transition map.
+		 * <p>
+		 * API name: {@code target_map}
+		 * <p>
+		 * Adds an entry to <code>targetMap</code>.
+		 */
+		public final Builder targetMap(String key, JsonData value) {
+			this.targetMap = _mapPut(this.targetMap, key, value);
 			return this;
 		}
 

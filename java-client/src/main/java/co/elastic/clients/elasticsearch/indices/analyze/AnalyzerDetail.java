@@ -29,16 +29,13 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -58,10 +55,8 @@ public class AnalyzerDetail implements JsonpSerializable {
 
 	}
 
-	public static AnalyzerDetail of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static AnalyzerDetail of(Function<Builder, ObjectBuilder<AnalyzerDetail>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -125,26 +120,35 @@ public class AnalyzerDetail implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code tokens}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>tokens</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>tokens</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder tokens(List<ExplainAnalyzeToken> value) {
-			this.tokens = value;
+		public final Builder tokens(List<ExplainAnalyzeToken> list) {
+			this.tokens = _listAddAll(this.tokens, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code tokens}
+		 * <p>
+		 * Adds one or more values to <code>tokens</code>.
 		 */
-		public final Builder tokens(ExplainAnalyzeToken... value) {
-			this.tokens = Arrays.asList(value);
+		public final Builder tokens(ExplainAnalyzeToken value, ExplainAnalyzeToken... values) {
+			this.tokens = _listAdd(this.tokens, value, values);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code tokens}
+		 * <p>
+		 * Adds a value to <code>tokens</code> using a builder lambda.
 		 */
-		public final Builder tokens(
-				Function<ListBuilder<ExplainAnalyzeToken, ExplainAnalyzeToken.Builder>, ObjectBuilder<List<ExplainAnalyzeToken>>> fn) {
-			return tokens(fn.apply(new ListBuilder<>(ExplainAnalyzeToken.Builder::new)).build());
+		public final Builder tokens(Function<ExplainAnalyzeToken.Builder, ObjectBuilder<ExplainAnalyzeToken>> fn) {
+			return tokens(fn.apply(new ExplainAnalyzeToken.Builder()).build());
 		}
 
 		/**

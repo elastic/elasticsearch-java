@@ -34,10 +34,9 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.HourlySchedule
@@ -53,10 +52,8 @@ public class HourlySchedule implements ScheduleVariant, JsonpSerializable {
 
 	}
 
-	public static HourlySchedule of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static HourlySchedule of(Function<Builder, ObjectBuilder<HourlySchedule>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -108,17 +105,25 @@ public class HourlySchedule implements ScheduleVariant, JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code minute}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>minute</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>minute</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder minute(List<Integer> value) {
-			this.minute = value;
+		public final Builder minute(List<Integer> list) {
+			this.minute = _listAddAll(this.minute, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code minute}
+		 * <p>
+		 * Adds one or more values to <code>minute</code>.
 		 */
-		public final Builder minute(Integer... value) {
-			this.minute = Arrays.asList(value);
+		public final Builder minute(Integer value, Integer... values) {
+			this.minute = _listAdd(this.minute, value, values);
 			return this;
 		}
 

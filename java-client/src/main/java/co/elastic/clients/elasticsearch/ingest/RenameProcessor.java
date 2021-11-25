@@ -34,7 +34,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ingest._types.RenameProcessor
@@ -58,10 +58,8 @@ public class RenameProcessor extends ProcessorBase implements ProcessorVariant {
 
 	}
 
-	public static RenameProcessor of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static RenameProcessor of(Function<Builder, ObjectBuilder<RenameProcessor>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**

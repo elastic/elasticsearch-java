@@ -35,7 +35,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.get_field_mapping.TypeFieldMappings
@@ -51,10 +51,8 @@ public class TypeFieldMappings implements JsonpSerializable {
 
 	}
 
-	public static TypeFieldMappings of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static TypeFieldMappings of(Function<Builder, ObjectBuilder<TypeFieldMappings>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -99,10 +97,8 @@ public class TypeFieldMappings implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code mappings}
 		 */
-		public final Builder mappings(Consumer<FieldMapping.Builder> fn) {
-			FieldMapping.Builder builder = new FieldMapping.Builder();
-			fn.accept(builder);
-			return this.mappings(builder.build());
+		public final Builder mappings(Function<FieldMapping.Builder, ObjectBuilder<FieldMapping>> fn) {
+			return this.mappings(fn.apply(new FieldMapping.Builder()).build());
 		}
 
 		/**

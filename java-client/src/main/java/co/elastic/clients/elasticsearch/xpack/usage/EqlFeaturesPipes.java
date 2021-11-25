@@ -35,7 +35,7 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Number;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: xpack.usage.EqlFeaturesPipes
@@ -54,10 +54,8 @@ public class EqlFeaturesPipes implements JsonpSerializable {
 
 	}
 
-	public static EqlFeaturesPipes of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static EqlFeaturesPipes of(Function<Builder, ObjectBuilder<EqlFeaturesPipes>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**

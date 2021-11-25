@@ -40,7 +40,7 @@ import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: security.delete_service_token.Request
@@ -66,10 +66,8 @@ public class DeleteServiceTokenRequest extends RequestBase {
 
 	}
 
-	public static DeleteServiceTokenRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static DeleteServiceTokenRequest of(Function<Builder, ObjectBuilder<DeleteServiceTokenRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**

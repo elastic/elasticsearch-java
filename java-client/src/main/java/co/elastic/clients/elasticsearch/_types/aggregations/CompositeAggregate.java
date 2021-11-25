@@ -35,7 +35,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.CompositeAggregate
@@ -52,10 +52,8 @@ public class CompositeAggregate extends MultiBucketAggregateBase<CompositeBucket
 
 	}
 
-	public static CompositeAggregate of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static CompositeAggregate of(Function<Builder, ObjectBuilder<CompositeAggregate>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -103,9 +101,25 @@ public class CompositeAggregate extends MultiBucketAggregateBase<CompositeBucket
 
 		/**
 		 * API name: {@code after_key}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>afterKey</code>. Use
+		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
+		 * <code>afterKey</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetMap()
 		 */
-		public final Builder afterKey(@Nullable Map<String, JsonData> value) {
-			this.afterKey = value;
+		public final Builder afterKey(Map<String, JsonData> map) {
+			this.afterKey = _mapPutAll(this.afterKey, map);
+			return this;
+		}
+
+		/**
+		 * API name: {@code after_key}
+		 * <p>
+		 * Adds an entry to <code>afterKey</code>.
+		 */
+		public final Builder afterKey(String key, JsonData value) {
+			this.afterKey = _mapPut(this.afterKey, key, value);
 			return this;
 		}
 

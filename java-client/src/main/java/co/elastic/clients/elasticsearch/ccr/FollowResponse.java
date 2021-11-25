@@ -35,7 +35,7 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 
 // typedef: ccr.follow.Response
 @JsonpDeserializable
@@ -59,10 +59,8 @@ public class FollowResponse implements JsonpSerializable {
 
 	}
 
-	public static FollowResponse of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static FollowResponse of(Function<Builder, ObjectBuilder<FollowResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**

@@ -30,15 +30,12 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -55,10 +52,8 @@ public class GetDataStreamResponse implements JsonpSerializable {
 
 	}
 
-	public static GetDataStreamResponse of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static GetDataStreamResponse of(Function<Builder, ObjectBuilder<GetDataStreamResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -102,26 +97,36 @@ public class GetDataStreamResponse implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code data_streams}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>dataStreams</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>dataStreams</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder dataStreams(List<IndicesGetDataStreamItem> value) {
-			this.dataStreams = value;
+		public final Builder dataStreams(List<IndicesGetDataStreamItem> list) {
+			this.dataStreams = _listAddAll(this.dataStreams, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code data_streams}
+		 * <p>
+		 * Adds one or more values to <code>dataStreams</code>.
 		 */
-		public final Builder dataStreams(IndicesGetDataStreamItem... value) {
-			this.dataStreams = Arrays.asList(value);
+		public final Builder dataStreams(IndicesGetDataStreamItem value, IndicesGetDataStreamItem... values) {
+			this.dataStreams = _listAdd(this.dataStreams, value, values);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code data_streams}
+		 * <p>
+		 * Adds a value to <code>dataStreams</code> using a builder lambda.
 		 */
 		public final Builder dataStreams(
-				Function<ListBuilder<IndicesGetDataStreamItem, IndicesGetDataStreamItem.Builder>, ObjectBuilder<List<IndicesGetDataStreamItem>>> fn) {
-			return dataStreams(fn.apply(new ListBuilder<>(IndicesGetDataStreamItem.Builder::new)).build());
+				Function<IndicesGetDataStreamItem.Builder, ObjectBuilder<IndicesGetDataStreamItem>> fn) {
+			return dataStreams(fn.apply(new IndicesGetDataStreamItem.Builder()).build());
 		}
 
 		/**

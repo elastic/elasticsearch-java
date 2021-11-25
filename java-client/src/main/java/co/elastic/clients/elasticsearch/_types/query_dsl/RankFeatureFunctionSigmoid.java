@@ -35,7 +35,7 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Float;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 
 // typedef: _types.query_dsl.RankFeatureFunctionSigmoid
 @JsonpDeserializable
@@ -53,10 +53,8 @@ public class RankFeatureFunctionSigmoid extends RankFeatureFunction implements J
 
 	}
 
-	public static RankFeatureFunctionSigmoid of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static RankFeatureFunctionSigmoid of(Function<Builder, ObjectBuilder<RankFeatureFunctionSigmoid>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**

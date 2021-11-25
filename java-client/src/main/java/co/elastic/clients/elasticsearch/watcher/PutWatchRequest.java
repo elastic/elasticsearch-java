@@ -35,7 +35,6 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.MapBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
@@ -46,7 +45,6 @@ import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -105,10 +103,8 @@ public class PutWatchRequest extends RequestBase implements JsonpSerializable {
 
 	}
 
-	public static PutWatchRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static PutWatchRequest of(Function<Builder, ObjectBuilder<PutWatchRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -320,15 +316,35 @@ public class PutWatchRequest extends RequestBase implements JsonpSerializable {
 
 		/**
 		 * API name: {@code actions}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>actions</code>. Use
+		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
+		 * <code>actions</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetMap()
 		 */
-		public final Builder actions(@Nullable Map<String, Action> value) {
-			this.actions = value;
+		public final Builder actions(Map<String, Action> map) {
+			this.actions = _mapPutAll(this.actions, map);
 			return this;
 		}
 
-		public final Builder actions(
-				Function<MapBuilder<String, Action, Action.Builder>, ObjectBuilder<Map<String, Action>>> fn) {
-			return actions(fn.apply(new MapBuilder<>(Action.Builder::new)).build());
+		/**
+		 * API name: {@code actions}
+		 * <p>
+		 * Adds an entry to <code>actions</code>.
+		 */
+		public final Builder actions(String key, Action value) {
+			this.actions = _mapPut(this.actions, key, value);
+			return this;
+		}
+
+		/**
+		 * API name: {@code actions}
+		 * <p>
+		 * Adds an entry to <code>actions</code> using a builder lambda.
+		 */
+		public final Builder actions(String key, Function<Action.Builder, ObjectBuilder<Action>> fn) {
+			return actions(key, fn.apply(new Action.Builder()).build());
 		}
 
 		/**
@@ -352,10 +368,8 @@ public class PutWatchRequest extends RequestBase implements JsonpSerializable {
 		/**
 		 * API name: {@code condition}
 		 */
-		public final Builder condition(Consumer<Condition.Builder> fn) {
-			Condition.Builder builder = new Condition.Builder();
-			fn.accept(builder);
-			return this.condition(builder.build());
+		public final Builder condition(Function<Condition.Builder, ObjectBuilder<Condition>> fn) {
+			return this.condition(fn.apply(new Condition.Builder()).build());
 		}
 
 		/**
@@ -401,17 +415,31 @@ public class PutWatchRequest extends RequestBase implements JsonpSerializable {
 		/**
 		 * API name: {@code input}
 		 */
-		public final Builder input(Consumer<Input.Builder> fn) {
-			Input.Builder builder = new Input.Builder();
-			fn.accept(builder);
-			return this.input(builder.build());
+		public final Builder input(Function<Input.Builder, ObjectBuilder<Input>> fn) {
+			return this.input(fn.apply(new Input.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code metadata}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>metadata</code>. Use
+		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
+		 * <code>metadata</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetMap()
 		 */
-		public final Builder metadata(@Nullable Map<String, JsonData> value) {
-			this.metadata = value;
+		public final Builder metadata(Map<String, JsonData> map) {
+			this.metadata = _mapPutAll(this.metadata, map);
+			return this;
+		}
+
+		/**
+		 * API name: {@code metadata}
+		 * <p>
+		 * Adds an entry to <code>metadata</code>.
+		 */
+		public final Builder metadata(String key, JsonData value) {
+			this.metadata = _mapPut(this.metadata, key, value);
 			return this;
 		}
 
@@ -434,10 +462,8 @@ public class PutWatchRequest extends RequestBase implements JsonpSerializable {
 		/**
 		 * API name: {@code transform}
 		 */
-		public final Builder transform(Consumer<Transform.Builder> fn) {
-			Transform.Builder builder = new Transform.Builder();
-			fn.accept(builder);
-			return this.transform(builder.build());
+		public final Builder transform(Function<Transform.Builder, ObjectBuilder<Transform>> fn) {
+			return this.transform(fn.apply(new Transform.Builder()).build());
 		}
 
 		/**
@@ -451,10 +477,8 @@ public class PutWatchRequest extends RequestBase implements JsonpSerializable {
 		/**
 		 * API name: {@code trigger}
 		 */
-		public final Builder trigger(Consumer<Trigger.Builder> fn) {
-			Trigger.Builder builder = new Trigger.Builder();
-			fn.accept(builder);
-			return this.trigger(builder.build());
+		public final Builder trigger(Function<Trigger.Builder, ObjectBuilder<Trigger>> fn) {
+			return this.trigger(fn.apply(new Trigger.Builder()).build());
 		}
 
 		/**

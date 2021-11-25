@@ -33,7 +33,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.analysis.NGramTokenFilter
@@ -59,10 +59,8 @@ public class NGramTokenFilter extends TokenFilterBase implements TokenFilterDefi
 
 	}
 
-	public static NGramTokenFilter of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static NGramTokenFilter of(Function<Builder, ObjectBuilder<NGramTokenFilter>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**

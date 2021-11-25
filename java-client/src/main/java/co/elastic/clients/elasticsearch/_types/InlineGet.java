@@ -42,7 +42,7 @@ import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import java.util.function.Supplier;
 import javax.annotation.Nullable;
 
@@ -85,10 +85,9 @@ public class InlineGet<TDocument> implements JsonpSerializable {
 
 	}
 
-	public static <TDocument> InlineGet<TDocument> of(Consumer<Builder<TDocument>> fn) {
-		Builder<TDocument> builder = new Builder<>();
-		fn.accept(builder);
-		return builder.build();
+	public static <TDocument> InlineGet<TDocument> of(
+			Function<Builder<TDocument>, ObjectBuilder<InlineGet<TDocument>>> fn) {
+		return fn.apply(new Builder<>()).build();
 	}
 
 	/**
@@ -205,9 +204,25 @@ public class InlineGet<TDocument> implements JsonpSerializable {
 
 		/**
 		 * Document metadata
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>metadata</code>. Use
+		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
+		 * <code>metadata</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetMap()
 		 */
-		public final Builder<TDocument> metadata(@Nullable Map<String, JsonData> value) {
-			this.metadata = value;
+		public final Builder<TDocument> metadata(Map<String, JsonData> map) {
+			this.metadata = _mapPutAll(this.metadata, map);
+			return this;
+		}
+
+		/**
+		 * Document metadata
+		 * <p>
+		 * Adds an entry to <code>metadata</code>.
+		 */
+		public final Builder<TDocument> metadata(String key, JsonData value) {
+			this.metadata = _mapPut(this.metadata, key, value);
 			return this;
 		}
 
@@ -232,9 +247,25 @@ public class InlineGet<TDocument> implements JsonpSerializable {
 
 		/**
 		 * API name: {@code fields}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>fields</code>. Use
+		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
+		 * <code>fields</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetMap()
 		 */
-		public final Builder<TDocument> fields(@Nullable Map<String, JsonData> value) {
-			this.fields = value;
+		public final Builder<TDocument> fields(Map<String, JsonData> map) {
+			this.fields = _mapPutAll(this.fields, map);
+			return this;
+		}
+
+		/**
+		 * API name: {@code fields}
+		 * <p>
+		 * Adds an entry to <code>fields</code>.
+		 */
+		public final Builder<TDocument> fields(String key, JsonData value) {
+			this.fields = _mapPut(this.fields, key, value);
 			return this;
 		}
 

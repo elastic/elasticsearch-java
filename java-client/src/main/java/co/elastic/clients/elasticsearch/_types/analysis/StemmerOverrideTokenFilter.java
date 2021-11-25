@@ -32,10 +32,9 @@ import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.analysis.StemmerOverrideTokenFilter
@@ -56,10 +55,8 @@ public class StemmerOverrideTokenFilter extends TokenFilterBase implements Token
 
 	}
 
-	public static StemmerOverrideTokenFilter of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static StemmerOverrideTokenFilter of(Function<Builder, ObjectBuilder<StemmerOverrideTokenFilter>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -123,17 +120,25 @@ public class StemmerOverrideTokenFilter extends TokenFilterBase implements Token
 
 		/**
 		 * API name: {@code rules}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>rules</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>rules</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder rules(@Nullable List<String> value) {
-			this.rules = value;
+		public final Builder rules(List<String> list) {
+			this.rules = _listAddAll(this.rules, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code rules}
+		 * <p>
+		 * Adds one or more values to <code>rules</code>.
 		 */
-		public final Builder rules(String... value) {
-			this.rules = Arrays.asList(value);
+		public final Builder rules(String value, String... values) {
+			this.rules = _listAdd(this.rules, value, values);
 			return this;
 		}
 

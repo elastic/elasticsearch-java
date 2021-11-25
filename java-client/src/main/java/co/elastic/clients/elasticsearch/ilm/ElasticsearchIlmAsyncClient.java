@@ -34,7 +34,7 @@ import co.elastic.clients.transport.TransportOptions;
 import co.elastic.clients.util.ObjectBuilder;
 import java.io.IOException;
 import java.util.concurrent.CompletableFuture;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 /**
@@ -86,11 +86,10 @@ public class ElasticsearchIlmAsyncClient extends ApiClient<ElasticsearchTranspor
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<DeleteLifecycleResponse> deleteLifecycle(Consumer<DeleteLifecycleRequest.Builder> fn)
+	public final CompletableFuture<DeleteLifecycleResponse> deleteLifecycle(
+			Function<DeleteLifecycleRequest.Builder, ObjectBuilder<DeleteLifecycleRequest>> fn)
 			throws IOException, ElasticsearchException {
-		DeleteLifecycleRequest.Builder builder = new DeleteLifecycleRequest.Builder();
-		fn.accept(builder);
-		return deleteLifecycle(builder.build());
+		return deleteLifecycle(fn.apply(new DeleteLifecycleRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: ilm.explain_lifecycle
@@ -125,10 +124,9 @@ public class ElasticsearchIlmAsyncClient extends ApiClient<ElasticsearchTranspor
 	 */
 
 	public final CompletableFuture<ExplainLifecycleResponse> explainLifecycle(
-			Consumer<ExplainLifecycleRequest.Builder> fn) throws IOException, ElasticsearchException {
-		ExplainLifecycleRequest.Builder builder = new ExplainLifecycleRequest.Builder();
-		fn.accept(builder);
-		return explainLifecycle(builder.build());
+			Function<ExplainLifecycleRequest.Builder, ObjectBuilder<ExplainLifecycleRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return explainLifecycle(fn.apply(new ExplainLifecycleRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: ilm.get_lifecycle
@@ -162,11 +160,10 @@ public class ElasticsearchIlmAsyncClient extends ApiClient<ElasticsearchTranspor
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<GetLifecycleResponse> getLifecycle(Consumer<GetLifecycleRequest.Builder> fn)
+	public final CompletableFuture<GetLifecycleResponse> getLifecycle(
+			Function<GetLifecycleRequest.Builder, ObjectBuilder<GetLifecycleRequest>> fn)
 			throws IOException, ElasticsearchException {
-		GetLifecycleRequest.Builder builder = new GetLifecycleRequest.Builder();
-		fn.accept(builder);
-		return getLifecycle(builder.build());
+		return getLifecycle(fn.apply(new GetLifecycleRequest.Builder()).build());
 	}
 
 	/**
@@ -226,11 +223,10 @@ public class ElasticsearchIlmAsyncClient extends ApiClient<ElasticsearchTranspor
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<MoveToStepResponse> moveToStep(Consumer<MoveToStepRequest.Builder> fn)
+	public final CompletableFuture<MoveToStepResponse> moveToStep(
+			Function<MoveToStepRequest.Builder, ObjectBuilder<MoveToStepRequest>> fn)
 			throws IOException, ElasticsearchException {
-		MoveToStepRequest.Builder builder = new MoveToStepRequest.Builder();
-		fn.accept(builder);
-		return moveToStep(builder.build());
+		return moveToStep(fn.apply(new MoveToStepRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: ilm.put_lifecycle
@@ -262,11 +258,10 @@ public class ElasticsearchIlmAsyncClient extends ApiClient<ElasticsearchTranspor
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<PutLifecycleResponse> putLifecycle(Consumer<PutLifecycleRequest.Builder> fn)
+	public final CompletableFuture<PutLifecycleResponse> putLifecycle(
+			Function<PutLifecycleRequest.Builder, ObjectBuilder<PutLifecycleRequest>> fn)
 			throws IOException, ElasticsearchException {
-		PutLifecycleRequest.Builder builder = new PutLifecycleRequest.Builder();
-		fn.accept(builder);
-		return putLifecycle(builder.build());
+		return putLifecycle(fn.apply(new PutLifecycleRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: ilm.remove_policy
@@ -298,11 +293,10 @@ public class ElasticsearchIlmAsyncClient extends ApiClient<ElasticsearchTranspor
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<RemovePolicyResponse> removePolicy(Consumer<RemovePolicyRequest.Builder> fn)
+	public final CompletableFuture<RemovePolicyResponse> removePolicy(
+			Function<RemovePolicyRequest.Builder, ObjectBuilder<RemovePolicyRequest>> fn)
 			throws IOException, ElasticsearchException {
-		RemovePolicyRequest.Builder builder = new RemovePolicyRequest.Builder();
-		fn.accept(builder);
-		return removePolicy(builder.build());
+		return removePolicy(fn.apply(new RemovePolicyRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: ilm.retry
@@ -333,11 +327,9 @@ public class ElasticsearchIlmAsyncClient extends ApiClient<ElasticsearchTranspor
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<RetryResponse> retry(Consumer<RetryRequest.Builder> fn)
+	public final CompletableFuture<RetryResponse> retry(Function<RetryRequest.Builder, ObjectBuilder<RetryRequest>> fn)
 			throws IOException, ElasticsearchException {
-		RetryRequest.Builder builder = new RetryRequest.Builder();
-		fn.accept(builder);
-		return retry(builder.build());
+		return retry(fn.apply(new RetryRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: ilm.start
@@ -369,11 +361,10 @@ public class ElasticsearchIlmAsyncClient extends ApiClient<ElasticsearchTranspor
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<StartIlmResponse> start(Consumer<StartIlmRequest.Builder> fn)
+	public final CompletableFuture<StartIlmResponse> start(
+			Function<StartIlmRequest.Builder, ObjectBuilder<StartIlmRequest>> fn)
 			throws IOException, ElasticsearchException {
-		StartIlmRequest.Builder builder = new StartIlmRequest.Builder();
-		fn.accept(builder);
-		return start(builder.build());
+		return start(fn.apply(new StartIlmRequest.Builder()).build());
 	}
 
 	/**
@@ -419,11 +410,10 @@ public class ElasticsearchIlmAsyncClient extends ApiClient<ElasticsearchTranspor
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<StopIlmResponse> stop(Consumer<StopIlmRequest.Builder> fn)
+	public final CompletableFuture<StopIlmResponse> stop(
+			Function<StopIlmRequest.Builder, ObjectBuilder<StopIlmRequest>> fn)
 			throws IOException, ElasticsearchException {
-		StopIlmRequest.Builder builder = new StopIlmRequest.Builder();
-		fn.accept(builder);
-		return stop(builder.build());
+		return stop(fn.apply(new StopIlmRequest.Builder()).build());
 	}
 
 	/**

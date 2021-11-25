@@ -38,11 +38,10 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.clear_scroll.Request
@@ -58,10 +57,8 @@ public class ClearScrollRequest extends RequestBase implements JsonpSerializable
 
 	}
 
-	public static ClearScrollRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static ClearScrollRequest of(Function<Builder, ObjectBuilder<ClearScrollRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -106,17 +103,25 @@ public class ClearScrollRequest extends RequestBase implements JsonpSerializable
 
 		/**
 		 * API name: {@code scroll_id}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>scrollId</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>scrollId</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder scrollId(@Nullable List<String> value) {
-			this.scrollId = value;
+		public final Builder scrollId(List<String> list) {
+			this.scrollId = _listAddAll(this.scrollId, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code scroll_id}
+		 * <p>
+		 * Adds one or more values to <code>scrollId</code>.
 		 */
-		public final Builder scrollId(String... value) {
-			this.scrollId = Arrays.asList(value);
+		public final Builder scrollId(String value, String... values) {
+			this.scrollId = _listAdd(this.scrollId, value, values);
 			return this;
 		}
 

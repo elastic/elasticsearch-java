@@ -32,15 +32,12 @@ import co.elastic.clients.json.JsonpSerializer;
 import co.elastic.clients.json.NamedDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Supplier;
 import javax.annotation.Nullable;
@@ -62,10 +59,9 @@ public class MgetResponse<TDocument> implements JsonpSerializable {
 
 	}
 
-	public static <TDocument> MgetResponse<TDocument> of(Consumer<Builder<TDocument>> fn) {
-		Builder<TDocument> builder = new Builder<>();
-		fn.accept(builder);
-		return builder.build();
+	public static <TDocument> MgetResponse<TDocument> of(
+			Function<Builder<TDocument>, ObjectBuilder<MgetResponse<TDocument>>> fn) {
+		return fn.apply(new Builder<>()).build();
 	}
 
 	/**
@@ -112,26 +108,37 @@ public class MgetResponse<TDocument> implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code docs}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>docs</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>docs</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder<TDocument> docs(List<MultiGetResponseItem<TDocument>> value) {
-			this.docs = value;
+		public final Builder<TDocument> docs(List<MultiGetResponseItem<TDocument>> list) {
+			this.docs = _listAddAll(this.docs, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code docs}
+		 * <p>
+		 * Adds one or more values to <code>docs</code>.
 		 */
-		public final Builder<TDocument> docs(MultiGetResponseItem<TDocument>... value) {
-			this.docs = Arrays.asList(value);
+		public final Builder<TDocument> docs(MultiGetResponseItem<TDocument> value,
+				MultiGetResponseItem<TDocument>... values) {
+			this.docs = _listAdd(this.docs, value, values);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code docs}
+		 * <p>
+		 * Adds a value to <code>docs</code> using a builder lambda.
 		 */
 		public final Builder<TDocument> docs(
-				Function<ListBuilder<MultiGetResponseItem<TDocument>, MultiGetResponseItem.Builder<TDocument>>, ObjectBuilder<List<MultiGetResponseItem<TDocument>>>> fn) {
-			return docs(fn.apply(new ListBuilder<>(MultiGetResponseItem.Builder<TDocument>::new)).build());
+				Function<MultiGetResponseItem.Builder<TDocument>, ObjectBuilder<MultiGetResponseItem<TDocument>>> fn) {
+			return docs(fn.apply(new MultiGetResponseItem.Builder<TDocument>()).build());
 		}
 
 		/**

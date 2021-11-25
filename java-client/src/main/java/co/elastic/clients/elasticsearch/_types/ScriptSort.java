@@ -34,7 +34,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.ScriptSort
@@ -66,10 +66,8 @@ public class ScriptSort implements SortOptionsVariant, JsonpSerializable {
 
 	}
 
-	public static ScriptSort of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static ScriptSort of(Function<Builder, ObjectBuilder<ScriptSort>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -192,10 +190,8 @@ public class ScriptSort implements SortOptionsVariant, JsonpSerializable {
 		/**
 		 * Required - API name: {@code script}
 		 */
-		public final Builder script(Consumer<Script.Builder> fn) {
-			Script.Builder builder = new Script.Builder();
-			fn.accept(builder);
-			return this.script(builder.build());
+		public final Builder script(Function<Script.Builder, ObjectBuilder<Script>> fn) {
+			return this.script(fn.apply(new Script.Builder()).build());
 		}
 
 		/**
@@ -225,10 +221,8 @@ public class ScriptSort implements SortOptionsVariant, JsonpSerializable {
 		/**
 		 * API name: {@code nested}
 		 */
-		public final Builder nested(Consumer<NestedSortValue.Builder> fn) {
-			NestedSortValue.Builder builder = new NestedSortValue.Builder();
-			fn.accept(builder);
-			return this.nested(builder.build());
+		public final Builder nested(Function<NestedSortValue.Builder, ObjectBuilder<NestedSortValue>> fn) {
+			return this.nested(fn.apply(new NestedSortValue.Builder()).build());
 		}
 
 		/**

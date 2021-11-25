@@ -33,7 +33,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.RangeBucket
@@ -63,10 +63,8 @@ public class RangeBucket extends MultiBucketBase {
 
 	}
 
-	public static RangeBucket of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static RangeBucket of(Function<Builder, ObjectBuilder<RangeBucket>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**

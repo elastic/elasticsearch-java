@@ -29,17 +29,14 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -63,10 +60,8 @@ public class FieldCollapse implements JsonpSerializable {
 
 	}
 
-	public static FieldCollapse of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static FieldCollapse of(Function<Builder, ObjectBuilder<FieldCollapse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -147,26 +142,35 @@ public class FieldCollapse implements JsonpSerializable {
 
 		/**
 		 * API name: {@code inner_hits}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>innerHits</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>innerHits</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder innerHits(@Nullable List<InnerHits> value) {
-			this.innerHits = value;
+		public final Builder innerHits(List<InnerHits> list) {
+			this.innerHits = _listAddAll(this.innerHits, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code inner_hits}
+		 * <p>
+		 * Adds one or more values to <code>innerHits</code>.
 		 */
-		public final Builder innerHits(InnerHits... value) {
-			this.innerHits = Arrays.asList(value);
+		public final Builder innerHits(InnerHits value, InnerHits... values) {
+			this.innerHits = _listAdd(this.innerHits, value, values);
 			return this;
 		}
 
 		/**
 		 * API name: {@code inner_hits}
+		 * <p>
+		 * Adds a value to <code>innerHits</code> using a builder lambda.
 		 */
-		public final Builder innerHits(
-				Function<ListBuilder<InnerHits, InnerHits.Builder>, ObjectBuilder<List<InnerHits>>> fn) {
-			return innerHits(fn.apply(new ListBuilder<>(InnerHits.Builder::new)).build());
+		public final Builder innerHits(Function<InnerHits.Builder, ObjectBuilder<InnerHits>> fn) {
+			return innerHits(fn.apply(new InnerHits.Builder()).build());
 		}
 
 		/**

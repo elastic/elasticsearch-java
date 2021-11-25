@@ -37,12 +37,11 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
@@ -67,10 +66,8 @@ public class GetDatafeedsRequest extends RequestBase {
 
 	}
 
-	public static GetDatafeedsRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static GetDatafeedsRequest of(Function<Builder, ObjectBuilder<GetDatafeedsRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -161,9 +158,15 @@ public class GetDatafeedsRequest extends RequestBase {
 		 * information about all datafeeds.
 		 * <p>
 		 * API name: {@code datafeed_id}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>datafeedId</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>datafeedId</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder datafeedId(@Nullable List<String> value) {
-			this.datafeedId = value;
+		public final Builder datafeedId(List<String> list) {
+			this.datafeedId = _listAddAll(this.datafeedId, list);
 			return this;
 		}
 
@@ -173,9 +176,11 @@ public class GetDatafeedsRequest extends RequestBase {
 		 * information about all datafeeds.
 		 * <p>
 		 * API name: {@code datafeed_id}
+		 * <p>
+		 * Adds one or more values to <code>datafeedId</code>.
 		 */
-		public final Builder datafeedId(String... value) {
-			this.datafeedId = Arrays.asList(value);
+		public final Builder datafeedId(String value, String... values) {
+			this.datafeedId = _listAdd(this.datafeedId, value, values);
 			return this;
 		}
 

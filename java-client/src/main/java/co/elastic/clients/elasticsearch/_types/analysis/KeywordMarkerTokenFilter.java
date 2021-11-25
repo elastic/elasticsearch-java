@@ -33,10 +33,9 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.analysis.KeywordMarkerTokenFilter
@@ -65,10 +64,8 @@ public class KeywordMarkerTokenFilter extends TokenFilterBase implements TokenFi
 
 	}
 
-	public static KeywordMarkerTokenFilter of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static KeywordMarkerTokenFilter of(Function<Builder, ObjectBuilder<KeywordMarkerTokenFilter>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -172,17 +169,25 @@ public class KeywordMarkerTokenFilter extends TokenFilterBase implements TokenFi
 
 		/**
 		 * API name: {@code keywords}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>keywords</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>keywords</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder keywords(@Nullable List<String> value) {
-			this.keywords = value;
+		public final Builder keywords(List<String> list) {
+			this.keywords = _listAddAll(this.keywords, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code keywords}
+		 * <p>
+		 * Adds one or more values to <code>keywords</code>.
 		 */
-		public final Builder keywords(String... value) {
-			this.keywords = Arrays.asList(value);
+		public final Builder keywords(String value, String... values) {
+			this.keywords = _listAdd(this.keywords, value, values);
 			return this;
 		}
 

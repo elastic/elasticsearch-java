@@ -30,15 +30,12 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -55,10 +52,8 @@ public class CertificatesResponse implements JsonpSerializable {
 
 	}
 
-	public static CertificatesResponse of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static CertificatesResponse of(Function<Builder, ObjectBuilder<CertificatesResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -95,9 +90,15 @@ public class CertificatesResponse implements JsonpSerializable {
 		 * Required - Response value.
 		 * <p>
 		 * API name: {@code _value_body}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>valueBody</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>valueBody</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder valueBody(List<CertificateInformation> value) {
-			this.valueBody = value;
+		public final Builder valueBody(List<CertificateInformation> list) {
+			this.valueBody = _listAddAll(this.valueBody, list);
 			return this;
 		}
 
@@ -105,9 +106,11 @@ public class CertificatesResponse implements JsonpSerializable {
 		 * Required - Response value.
 		 * <p>
 		 * API name: {@code _value_body}
+		 * <p>
+		 * Adds one or more values to <code>valueBody</code>.
 		 */
-		public final Builder valueBody(CertificateInformation... value) {
-			this.valueBody = Arrays.asList(value);
+		public final Builder valueBody(CertificateInformation value, CertificateInformation... values) {
+			this.valueBody = _listAdd(this.valueBody, value, values);
 			return this;
 		}
 
@@ -115,10 +118,12 @@ public class CertificatesResponse implements JsonpSerializable {
 		 * Required - Response value.
 		 * <p>
 		 * API name: {@code _value_body}
+		 * <p>
+		 * Adds a value to <code>valueBody</code> using a builder lambda.
 		 */
 		public final Builder valueBody(
-				Function<ListBuilder<CertificateInformation, CertificateInformation.Builder>, ObjectBuilder<List<CertificateInformation>>> fn) {
-			return valueBody(fn.apply(new ListBuilder<>(CertificateInformation.Builder::new)).build());
+				Function<CertificateInformation.Builder, ObjectBuilder<CertificateInformation>> fn) {
+			return valueBody(fn.apply(new CertificateInformation.Builder()).build());
 		}
 
 		/**

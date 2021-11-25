@@ -34,7 +34,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.GeoShapeQuery
@@ -58,10 +58,8 @@ public class GeoShapeQuery extends QueryBase implements QueryVariant {
 
 	}
 
-	public static GeoShapeQuery of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static GeoShapeQuery of(Function<Builder, ObjectBuilder<GeoShapeQuery>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -136,10 +134,8 @@ public class GeoShapeQuery extends QueryBase implements QueryVariant {
 		/**
 		 * Required -
 		 */
-		public final Builder shape(Consumer<GeoShapeFieldQuery.Builder> fn) {
-			GeoShapeFieldQuery.Builder builder = new GeoShapeFieldQuery.Builder();
-			fn.accept(builder);
-			return this.shape(builder.build());
+		public final Builder shape(Function<GeoShapeFieldQuery.Builder, ObjectBuilder<GeoShapeFieldQuery>> fn) {
+			return this.shape(fn.apply(new GeoShapeFieldQuery.Builder()).build());
 		}
 
 		@Nullable

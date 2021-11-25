@@ -29,7 +29,6 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
@@ -37,11 +36,9 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Long;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -95,10 +92,8 @@ public class Info implements JsonpSerializable {
 
 	}
 
-	public static Info of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static Info of(Function<Builder, ObjectBuilder<Info>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -318,25 +313,35 @@ public class Info implements JsonpSerializable {
 
 		/**
 		 * API name: {@code children}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>children</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>children</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder children(@Nullable List<Info> value) {
-			this.children = value;
+		public final Builder children(List<Info> list) {
+			this.children = _listAddAll(this.children, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code children}
+		 * <p>
+		 * Adds one or more values to <code>children</code>.
 		 */
-		public final Builder children(Info... value) {
-			this.children = Arrays.asList(value);
+		public final Builder children(Info value, Info... values) {
+			this.children = _listAdd(this.children, value, values);
 			return this;
 		}
 
 		/**
 		 * API name: {@code children}
+		 * <p>
+		 * Adds a value to <code>children</code> using a builder lambda.
 		 */
-		public final Builder children(Function<ListBuilder<Info, Info.Builder>, ObjectBuilder<List<Info>>> fn) {
-			return children(fn.apply(new ListBuilder<>(Info.Builder::new)).build());
+		public final Builder children(Function<Info.Builder, ObjectBuilder<Info>> fn) {
+			return children(fn.apply(new Info.Builder()).build());
 		}
 
 		/**
@@ -349,9 +354,25 @@ public class Info implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code headers}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>headers</code>. Use
+		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
+		 * <code>headers</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetMap()
 		 */
-		public final Builder headers(Map<String, List<String>> value) {
-			this.headers = value;
+		public final Builder headers(Map<String, List<String>> map) {
+			this.headers = _mapPutAll(this.headers, map);
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code headers}
+		 * <p>
+		 * Adds an entry to <code>headers</code>.
+		 */
+		public final Builder headers(String key, List<String> value) {
+			this.headers = _mapPut(this.headers, key, value);
 			return this;
 		}
 
@@ -398,10 +419,8 @@ public class Info implements JsonpSerializable {
 		/**
 		 * API name: {@code status}
 		 */
-		public final Builder status(Consumer<Status.Builder> fn) {
-			Status.Builder builder = new Status.Builder();
-			fn.accept(builder);
-			return this.status(builder.build());
+		public final Builder status(Function<Status.Builder, ObjectBuilder<Status>> fn) {
+			return this.status(fn.apply(new Status.Builder()).build());
 		}
 
 		/**

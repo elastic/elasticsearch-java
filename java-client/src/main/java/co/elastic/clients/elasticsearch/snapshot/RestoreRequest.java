@@ -41,12 +41,11 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: snapshot.restore.Request
@@ -107,10 +106,8 @@ public class RestoreRequest extends RequestBase implements JsonpSerializable {
 
 	}
 
-	public static RestoreRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static RestoreRequest of(Function<Builder, ObjectBuilder<RestoreRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -335,17 +332,25 @@ public class RestoreRequest extends RequestBase implements JsonpSerializable {
 
 		/**
 		 * API name: {@code ignore_index_settings}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>ignoreIndexSettings</code>.
+		 * Use <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>ignoreIndexSettings</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder ignoreIndexSettings(@Nullable List<String> value) {
-			this.ignoreIndexSettings = value;
+		public final Builder ignoreIndexSettings(List<String> list) {
+			this.ignoreIndexSettings = _listAddAll(this.ignoreIndexSettings, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code ignore_index_settings}
+		 * <p>
+		 * Adds one or more values to <code>ignoreIndexSettings</code>.
 		 */
-		public final Builder ignoreIndexSettings(String... value) {
-			this.ignoreIndexSettings = Arrays.asList(value);
+		public final Builder ignoreIndexSettings(String value, String... values) {
+			this.ignoreIndexSettings = _listAdd(this.ignoreIndexSettings, value, values);
 			return this;
 		}
 
@@ -384,25 +389,32 @@ public class RestoreRequest extends RequestBase implements JsonpSerializable {
 		/**
 		 * API name: {@code index_settings}
 		 */
-		public final Builder indexSettings(Consumer<PutIndicesSettingsRequest.Builder> fn) {
-			PutIndicesSettingsRequest.Builder builder = new PutIndicesSettingsRequest.Builder();
-			fn.accept(builder);
-			return this.indexSettings(builder.build());
+		public final Builder indexSettings(
+				Function<PutIndicesSettingsRequest.Builder, ObjectBuilder<PutIndicesSettingsRequest>> fn) {
+			return this.indexSettings(fn.apply(new PutIndicesSettingsRequest.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code indices}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>indices</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>indices</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder indices(@Nullable List<String> value) {
-			this.indices = value;
+		public final Builder indices(List<String> list) {
+			this.indices = _listAddAll(this.indices, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code indices}
+		 * <p>
+		 * Adds one or more values to <code>indices</code>.
 		 */
-		public final Builder indices(String... value) {
-			this.indices = Arrays.asList(value);
+		public final Builder indices(String value, String... values) {
+			this.indices = _listAdd(this.indices, value, values);
 			return this;
 		}
 
@@ -421,10 +433,8 @@ public class RestoreRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
-		public final Builder masterTimeout(Consumer<Time.Builder> fn) {
-			Time.Builder builder = new Time.Builder();
-			fn.accept(builder);
-			return this.masterTimeout(builder.build());
+		public final Builder masterTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.masterTimeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**

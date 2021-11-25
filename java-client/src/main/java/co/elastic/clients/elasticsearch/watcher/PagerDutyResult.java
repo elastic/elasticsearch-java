@@ -34,7 +34,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.PagerDutyResult
@@ -50,10 +50,8 @@ public class PagerDutyResult implements JsonpSerializable {
 
 	}
 
-	public static PagerDutyResult of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static PagerDutyResult of(Function<Builder, ObjectBuilder<PagerDutyResult>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -98,10 +96,9 @@ public class PagerDutyResult implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code sent_event}
 		 */
-		public final Builder sentEvent(Consumer<PagerDutyActionEventResult.Builder> fn) {
-			PagerDutyActionEventResult.Builder builder = new PagerDutyActionEventResult.Builder();
-			fn.accept(builder);
-			return this.sentEvent(builder.build());
+		public final Builder sentEvent(
+				Function<PagerDutyActionEventResult.Builder, ObjectBuilder<PagerDutyActionEventResult>> fn) {
+			return this.sentEvent(fn.apply(new PagerDutyActionEventResult.Builder()).build());
 		}
 
 		/**

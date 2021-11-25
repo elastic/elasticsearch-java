@@ -33,7 +33,7 @@ import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.SimpleMovingAverageAggregation
@@ -52,10 +52,9 @@ public class SimpleMovingAverageAggregation extends MovingAverageAggregationBase
 
 	}
 
-	public static SimpleMovingAverageAggregation of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static SimpleMovingAverageAggregation of(
+			Function<Builder, ObjectBuilder<SimpleMovingAverageAggregation>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -103,10 +102,8 @@ public class SimpleMovingAverageAggregation extends MovingAverageAggregationBase
 		/**
 		 * Required - API name: {@code settings}
 		 */
-		public final Builder settings(Consumer<EmptyObject.Builder> fn) {
-			EmptyObject.Builder builder = new EmptyObject.Builder();
-			fn.accept(builder);
-			return this.settings(builder.build());
+		public final Builder settings(Function<EmptyObject.Builder, ObjectBuilder<EmptyObject>> fn) {
+			return this.settings(fn.apply(new EmptyObject.Builder()).build());
 		}
 
 		@Override

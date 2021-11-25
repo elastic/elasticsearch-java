@@ -35,7 +35,7 @@ import java.lang.String;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.mapping.JoinProperty
@@ -52,10 +52,8 @@ public class JoinProperty extends PropertyBase implements PropertyVariant {
 
 	}
 
-	public static JoinProperty of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static JoinProperty of(Function<Builder, ObjectBuilder<JoinProperty>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -109,9 +107,25 @@ public class JoinProperty extends PropertyBase implements PropertyVariant {
 
 		/**
 		 * API name: {@code relations}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>relations</code>. Use
+		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
+		 * <code>relations</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetMap()
 		 */
-		public final Builder relations(@Nullable Map<String, List<String>> value) {
-			this.relations = value;
+		public final Builder relations(Map<String, List<String>> map) {
+			this.relations = _mapPutAll(this.relations, map);
+			return this;
+		}
+
+		/**
+		 * API name: {@code relations}
+		 * <p>
+		 * Adds an entry to <code>relations</code>.
+		 */
+		public final Builder relations(String key, List<String> value) {
+			this.relations = _mapPut(this.relations, key, value);
 			return this;
 		}
 

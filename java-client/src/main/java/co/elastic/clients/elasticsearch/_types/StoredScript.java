@@ -36,7 +36,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.StoredScript
@@ -58,10 +58,8 @@ public class StoredScript implements JsonpSerializable {
 
 	}
 
-	public static StoredScript of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static StoredScript of(Function<Builder, ObjectBuilder<StoredScript>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -138,9 +136,25 @@ public class StoredScript implements JsonpSerializable {
 
 		/**
 		 * API name: {@code options}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>options</code>. Use
+		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
+		 * <code>options</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetMap()
 		 */
-		public final Builder options(@Nullable Map<String, String> value) {
-			this.options = value;
+		public final Builder options(Map<String, String> map) {
+			this.options = _mapPutAll(this.options, map);
+			return this;
+		}
+
+		/**
+		 * API name: {@code options}
+		 * <p>
+		 * Adds an entry to <code>options</code>.
+		 */
+		public final Builder options(String key, String value) {
+			this.options = _mapPut(this.options, key, value);
 			return this;
 		}
 

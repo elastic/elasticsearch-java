@@ -35,7 +35,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.DataframeEvaluationClassificationMetrics
@@ -55,10 +55,9 @@ public class DataframeEvaluationClassificationMetrics extends DataframeEvaluatio
 
 	}
 
-	public static DataframeEvaluationClassificationMetrics of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static DataframeEvaluationClassificationMetrics of(
+			Function<Builder, ObjectBuilder<DataframeEvaluationClassificationMetrics>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -125,9 +124,27 @@ public class DataframeEvaluationClassificationMetrics extends DataframeEvaluatio
 		 * Accuracy of predictions (per-class and overall).
 		 * <p>
 		 * API name: {@code accuracy}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>accuracy</code>. Use
+		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
+		 * <code>accuracy</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetMap()
 		 */
-		public final Builder accuracy(@Nullable Map<String, JsonData> value) {
-			this.accuracy = value;
+		public final Builder accuracy(Map<String, JsonData> map) {
+			this.accuracy = _mapPutAll(this.accuracy, map);
+			return this;
+		}
+
+		/**
+		 * Accuracy of predictions (per-class and overall).
+		 * <p>
+		 * API name: {@code accuracy}
+		 * <p>
+		 * Adds an entry to <code>accuracy</code>.
+		 */
+		public final Builder accuracy(String key, JsonData value) {
+			this.accuracy = _mapPut(this.accuracy, key, value);
 			return this;
 		}
 
@@ -135,9 +152,28 @@ public class DataframeEvaluationClassificationMetrics extends DataframeEvaluatio
 		 * Multiclass confusion matrix.
 		 * <p>
 		 * API name: {@code multiclass_confusion_matrix}
+		 * <p>
+		 * Adds all entries of <code>map</code> to
+		 * <code>multiclassConfusionMatrix</code>. Use
+		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
+		 * <code>multiclassConfusionMatrix</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetMap()
 		 */
-		public final Builder multiclassConfusionMatrix(@Nullable Map<String, JsonData> value) {
-			this.multiclassConfusionMatrix = value;
+		public final Builder multiclassConfusionMatrix(Map<String, JsonData> map) {
+			this.multiclassConfusionMatrix = _mapPutAll(this.multiclassConfusionMatrix, map);
+			return this;
+		}
+
+		/**
+		 * Multiclass confusion matrix.
+		 * <p>
+		 * API name: {@code multiclass_confusion_matrix}
+		 * <p>
+		 * Adds an entry to <code>multiclassConfusionMatrix</code>.
+		 */
+		public final Builder multiclassConfusionMatrix(String key, JsonData value) {
+			this.multiclassConfusionMatrix = _mapPut(this.multiclassConfusionMatrix, key, value);
 			return this;
 		}
 

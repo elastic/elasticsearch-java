@@ -34,7 +34,7 @@ import co.elastic.clients.transport.TransportOptions;
 import co.elastic.clients.util.ObjectBuilder;
 import java.io.IOException;
 import java.util.concurrent.CompletableFuture;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 /**
@@ -84,11 +84,10 @@ public class ElasticsearchSqlAsyncClient extends ApiClient<ElasticsearchTranspor
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<ClearCursorResponse> clearCursor(Consumer<ClearCursorRequest.Builder> fn)
+	public final CompletableFuture<ClearCursorResponse> clearCursor(
+			Function<ClearCursorRequest.Builder, ObjectBuilder<ClearCursorRequest>> fn)
 			throws IOException, ElasticsearchException {
-		ClearCursorRequest.Builder builder = new ClearCursorRequest.Builder();
-		fn.accept(builder);
-		return clearCursor(builder.build());
+		return clearCursor(fn.apply(new ClearCursorRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: sql.query
@@ -119,11 +118,9 @@ public class ElasticsearchSqlAsyncClient extends ApiClient<ElasticsearchTranspor
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<QueryResponse> query(Consumer<QueryRequest.Builder> fn)
+	public final CompletableFuture<QueryResponse> query(Function<QueryRequest.Builder, ObjectBuilder<QueryRequest>> fn)
 			throws IOException, ElasticsearchException {
-		QueryRequest.Builder builder = new QueryRequest.Builder();
-		fn.accept(builder);
-		return query(builder.build());
+		return query(fn.apply(new QueryRequest.Builder()).build());
 	}
 
 	/**
@@ -168,11 +165,10 @@ public class ElasticsearchSqlAsyncClient extends ApiClient<ElasticsearchTranspor
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<TranslateResponse> translate(Consumer<TranslateRequest.Builder> fn)
+	public final CompletableFuture<TranslateResponse> translate(
+			Function<TranslateRequest.Builder, ObjectBuilder<TranslateRequest>> fn)
 			throws IOException, ElasticsearchException {
-		TranslateRequest.Builder builder = new TranslateRequest.Builder();
-		fn.accept(builder);
-		return translate(builder.build());
+		return translate(fn.apply(new TranslateRequest.Builder()).build());
 	}
 
 }

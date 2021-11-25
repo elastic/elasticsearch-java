@@ -34,7 +34,7 @@ import co.elastic.clients.transport.TransportOptions;
 import co.elastic.clients.util.ObjectBuilder;
 import java.io.IOException;
 import java.util.concurrent.CompletableFuture;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 /**
@@ -102,11 +102,10 @@ public class ElasticsearchSecurityAsyncClient
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<ChangePasswordResponse> changePassword(Consumer<ChangePasswordRequest.Builder> fn)
+	public final CompletableFuture<ChangePasswordResponse> changePassword(
+			Function<ChangePasswordRequest.Builder, ObjectBuilder<ChangePasswordRequest>> fn)
 			throws IOException, ElasticsearchException {
-		ChangePasswordRequest.Builder builder = new ChangePasswordRequest.Builder();
-		fn.accept(builder);
-		return changePassword(builder.build());
+		return changePassword(fn.apply(new ChangePasswordRequest.Builder()).build());
 	}
 
 	/**
@@ -152,10 +151,9 @@ public class ElasticsearchSecurityAsyncClient
 	 */
 
 	public final CompletableFuture<ClearApiKeyCacheResponse> clearApiKeyCache(
-			Consumer<ClearApiKeyCacheRequest.Builder> fn) throws IOException, ElasticsearchException {
-		ClearApiKeyCacheRequest.Builder builder = new ClearApiKeyCacheRequest.Builder();
-		fn.accept(builder);
-		return clearApiKeyCache(builder.build());
+			Function<ClearApiKeyCacheRequest.Builder, ObjectBuilder<ClearApiKeyCacheRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return clearApiKeyCache(fn.apply(new ClearApiKeyCacheRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: security.clear_cached_privileges
@@ -188,10 +186,9 @@ public class ElasticsearchSecurityAsyncClient
 	 */
 
 	public final CompletableFuture<ClearCachedPrivilegesResponse> clearCachedPrivileges(
-			Consumer<ClearCachedPrivilegesRequest.Builder> fn) throws IOException, ElasticsearchException {
-		ClearCachedPrivilegesRequest.Builder builder = new ClearCachedPrivilegesRequest.Builder();
-		fn.accept(builder);
-		return clearCachedPrivileges(builder.build());
+			Function<ClearCachedPrivilegesRequest.Builder, ObjectBuilder<ClearCachedPrivilegesRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return clearCachedPrivileges(fn.apply(new ClearCachedPrivilegesRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: security.clear_cached_realms
@@ -226,10 +223,9 @@ public class ElasticsearchSecurityAsyncClient
 	 */
 
 	public final CompletableFuture<ClearCachedRealmsResponse> clearCachedRealms(
-			Consumer<ClearCachedRealmsRequest.Builder> fn) throws IOException, ElasticsearchException {
-		ClearCachedRealmsRequest.Builder builder = new ClearCachedRealmsRequest.Builder();
-		fn.accept(builder);
-		return clearCachedRealms(builder.build());
+			Function<ClearCachedRealmsRequest.Builder, ObjectBuilder<ClearCachedRealmsRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return clearCachedRealms(fn.apply(new ClearCachedRealmsRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: security.clear_cached_roles
@@ -262,10 +258,9 @@ public class ElasticsearchSecurityAsyncClient
 	 */
 
 	public final CompletableFuture<ClearCachedRolesResponse> clearCachedRoles(
-			Consumer<ClearCachedRolesRequest.Builder> fn) throws IOException, ElasticsearchException {
-		ClearCachedRolesRequest.Builder builder = new ClearCachedRolesRequest.Builder();
-		fn.accept(builder);
-		return clearCachedRoles(builder.build());
+			Function<ClearCachedRolesRequest.Builder, ObjectBuilder<ClearCachedRolesRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return clearCachedRoles(fn.apply(new ClearCachedRolesRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: security.clear_cached_service_tokens
@@ -298,10 +293,9 @@ public class ElasticsearchSecurityAsyncClient
 	 */
 
 	public final CompletableFuture<ClearCachedServiceTokensResponse> clearCachedServiceTokens(
-			Consumer<ClearCachedServiceTokensRequest.Builder> fn) throws IOException, ElasticsearchException {
-		ClearCachedServiceTokensRequest.Builder builder = new ClearCachedServiceTokensRequest.Builder();
-		fn.accept(builder);
-		return clearCachedServiceTokens(builder.build());
+			Function<ClearCachedServiceTokensRequest.Builder, ObjectBuilder<ClearCachedServiceTokensRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return clearCachedServiceTokens(fn.apply(new ClearCachedServiceTokensRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: security.create_api_key
@@ -333,11 +327,10 @@ public class ElasticsearchSecurityAsyncClient
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<CreateApiKeyResponse> createApiKey(Consumer<CreateApiKeyRequest.Builder> fn)
+	public final CompletableFuture<CreateApiKeyResponse> createApiKey(
+			Function<CreateApiKeyRequest.Builder, ObjectBuilder<CreateApiKeyRequest>> fn)
 			throws IOException, ElasticsearchException {
-		CreateApiKeyRequest.Builder builder = new CreateApiKeyRequest.Builder();
-		fn.accept(builder);
-		return createApiKey(builder.build());
+		return createApiKey(fn.apply(new CreateApiKeyRequest.Builder()).build());
 	}
 
 	/**
@@ -385,10 +378,9 @@ public class ElasticsearchSecurityAsyncClient
 	 */
 
 	public final CompletableFuture<CreateServiceTokenResponse> createServiceToken(
-			Consumer<CreateServiceTokenRequest.Builder> fn) throws IOException, ElasticsearchException {
-		CreateServiceTokenRequest.Builder builder = new CreateServiceTokenRequest.Builder();
-		fn.accept(builder);
-		return createServiceToken(builder.build());
+			Function<CreateServiceTokenRequest.Builder, ObjectBuilder<CreateServiceTokenRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return createServiceToken(fn.apply(new CreateServiceTokenRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: security.delete_privileges
@@ -421,10 +413,9 @@ public class ElasticsearchSecurityAsyncClient
 	 */
 
 	public final CompletableFuture<DeletePrivilegesResponse> deletePrivileges(
-			Consumer<DeletePrivilegesRequest.Builder> fn) throws IOException, ElasticsearchException {
-		DeletePrivilegesRequest.Builder builder = new DeletePrivilegesRequest.Builder();
-		fn.accept(builder);
-		return deletePrivileges(builder.build());
+			Function<DeletePrivilegesRequest.Builder, ObjectBuilder<DeletePrivilegesRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return deletePrivileges(fn.apply(new DeletePrivilegesRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: security.delete_role
@@ -456,11 +447,10 @@ public class ElasticsearchSecurityAsyncClient
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<DeleteRoleResponse> deleteRole(Consumer<DeleteRoleRequest.Builder> fn)
+	public final CompletableFuture<DeleteRoleResponse> deleteRole(
+			Function<DeleteRoleRequest.Builder, ObjectBuilder<DeleteRoleRequest>> fn)
 			throws IOException, ElasticsearchException {
-		DeleteRoleRequest.Builder builder = new DeleteRoleRequest.Builder();
-		fn.accept(builder);
-		return deleteRole(builder.build());
+		return deleteRole(fn.apply(new DeleteRoleRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: security.delete_role_mapping
@@ -493,10 +483,9 @@ public class ElasticsearchSecurityAsyncClient
 	 */
 
 	public final CompletableFuture<DeleteRoleMappingResponse> deleteRoleMapping(
-			Consumer<DeleteRoleMappingRequest.Builder> fn) throws IOException, ElasticsearchException {
-		DeleteRoleMappingRequest.Builder builder = new DeleteRoleMappingRequest.Builder();
-		fn.accept(builder);
-		return deleteRoleMapping(builder.build());
+			Function<DeleteRoleMappingRequest.Builder, ObjectBuilder<DeleteRoleMappingRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return deleteRoleMapping(fn.apply(new DeleteRoleMappingRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: security.delete_service_token
@@ -529,10 +518,9 @@ public class ElasticsearchSecurityAsyncClient
 	 */
 
 	public final CompletableFuture<DeleteServiceTokenResponse> deleteServiceToken(
-			Consumer<DeleteServiceTokenRequest.Builder> fn) throws IOException, ElasticsearchException {
-		DeleteServiceTokenRequest.Builder builder = new DeleteServiceTokenRequest.Builder();
-		fn.accept(builder);
-		return deleteServiceToken(builder.build());
+			Function<DeleteServiceTokenRequest.Builder, ObjectBuilder<DeleteServiceTokenRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return deleteServiceToken(fn.apply(new DeleteServiceTokenRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: security.delete_user
@@ -564,11 +552,10 @@ public class ElasticsearchSecurityAsyncClient
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<DeleteUserResponse> deleteUser(Consumer<DeleteUserRequest.Builder> fn)
+	public final CompletableFuture<DeleteUserResponse> deleteUser(
+			Function<DeleteUserRequest.Builder, ObjectBuilder<DeleteUserRequest>> fn)
 			throws IOException, ElasticsearchException {
-		DeleteUserRequest.Builder builder = new DeleteUserRequest.Builder();
-		fn.accept(builder);
-		return deleteUser(builder.build());
+		return deleteUser(fn.apply(new DeleteUserRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: security.disable_user
@@ -600,11 +587,10 @@ public class ElasticsearchSecurityAsyncClient
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<DisableUserResponse> disableUser(Consumer<DisableUserRequest.Builder> fn)
+	public final CompletableFuture<DisableUserResponse> disableUser(
+			Function<DisableUserRequest.Builder, ObjectBuilder<DisableUserRequest>> fn)
 			throws IOException, ElasticsearchException {
-		DisableUserRequest.Builder builder = new DisableUserRequest.Builder();
-		fn.accept(builder);
-		return disableUser(builder.build());
+		return disableUser(fn.apply(new DisableUserRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: security.enable_user
@@ -636,11 +622,10 @@ public class ElasticsearchSecurityAsyncClient
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<EnableUserResponse> enableUser(Consumer<EnableUserRequest.Builder> fn)
+	public final CompletableFuture<EnableUserResponse> enableUser(
+			Function<EnableUserRequest.Builder, ObjectBuilder<EnableUserRequest>> fn)
 			throws IOException, ElasticsearchException {
-		EnableUserRequest.Builder builder = new EnableUserRequest.Builder();
-		fn.accept(builder);
-		return enableUser(builder.build());
+		return enableUser(fn.apply(new EnableUserRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: security.get_api_key
@@ -672,11 +657,10 @@ public class ElasticsearchSecurityAsyncClient
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<GetApiKeyResponse> getApiKey(Consumer<GetApiKeyRequest.Builder> fn)
+	public final CompletableFuture<GetApiKeyResponse> getApiKey(
+			Function<GetApiKeyRequest.Builder, ObjectBuilder<GetApiKeyRequest>> fn)
 			throws IOException, ElasticsearchException {
-		GetApiKeyRequest.Builder builder = new GetApiKeyRequest.Builder();
-		fn.accept(builder);
-		return getApiKey(builder.build());
+		return getApiKey(fn.apply(new GetApiKeyRequest.Builder()).build());
 	}
 
 	/**
@@ -737,11 +721,10 @@ public class ElasticsearchSecurityAsyncClient
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<GetPrivilegesResponse> getPrivileges(Consumer<GetPrivilegesRequest.Builder> fn)
+	public final CompletableFuture<GetPrivilegesResponse> getPrivileges(
+			Function<GetPrivilegesRequest.Builder, ObjectBuilder<GetPrivilegesRequest>> fn)
 			throws IOException, ElasticsearchException {
-		GetPrivilegesRequest.Builder builder = new GetPrivilegesRequest.Builder();
-		fn.accept(builder);
-		return getPrivileges(builder.build());
+		return getPrivileges(fn.apply(new GetPrivilegesRequest.Builder()).build());
 	}
 
 	/**
@@ -786,11 +769,10 @@ public class ElasticsearchSecurityAsyncClient
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<GetRoleResponse> getRole(Consumer<GetRoleRequest.Builder> fn)
+	public final CompletableFuture<GetRoleResponse> getRole(
+			Function<GetRoleRequest.Builder, ObjectBuilder<GetRoleRequest>> fn)
 			throws IOException, ElasticsearchException {
-		GetRoleRequest.Builder builder = new GetRoleRequest.Builder();
-		fn.accept(builder);
-		return getRole(builder.build());
+		return getRole(fn.apply(new GetRoleRequest.Builder()).build());
 	}
 
 	/**
@@ -835,11 +817,10 @@ public class ElasticsearchSecurityAsyncClient
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<GetRoleMappingResponse> getRoleMapping(Consumer<GetRoleMappingRequest.Builder> fn)
+	public final CompletableFuture<GetRoleMappingResponse> getRoleMapping(
+			Function<GetRoleMappingRequest.Builder, ObjectBuilder<GetRoleMappingRequest>> fn)
 			throws IOException, ElasticsearchException {
-		GetRoleMappingRequest.Builder builder = new GetRoleMappingRequest.Builder();
-		fn.accept(builder);
-		return getRoleMapping(builder.build());
+		return getRoleMapping(fn.apply(new GetRoleMappingRequest.Builder()).build());
 	}
 
 	/**
@@ -885,10 +866,9 @@ public class ElasticsearchSecurityAsyncClient
 	 */
 
 	public final CompletableFuture<GetServiceAccountsResponse> getServiceAccounts(
-			Consumer<GetServiceAccountsRequest.Builder> fn) throws IOException, ElasticsearchException {
-		GetServiceAccountsRequest.Builder builder = new GetServiceAccountsRequest.Builder();
-		fn.accept(builder);
-		return getServiceAccounts(builder.build());
+			Function<GetServiceAccountsRequest.Builder, ObjectBuilder<GetServiceAccountsRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return getServiceAccounts(fn.apply(new GetServiceAccountsRequest.Builder()).build());
 	}
 
 	/**
@@ -935,10 +915,9 @@ public class ElasticsearchSecurityAsyncClient
 	 */
 
 	public final CompletableFuture<GetServiceCredentialsResponse> getServiceCredentials(
-			Consumer<GetServiceCredentialsRequest.Builder> fn) throws IOException, ElasticsearchException {
-		GetServiceCredentialsRequest.Builder builder = new GetServiceCredentialsRequest.Builder();
-		fn.accept(builder);
-		return getServiceCredentials(builder.build());
+			Function<GetServiceCredentialsRequest.Builder, ObjectBuilder<GetServiceCredentialsRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return getServiceCredentials(fn.apply(new GetServiceCredentialsRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: security.get_token
@@ -970,11 +949,10 @@ public class ElasticsearchSecurityAsyncClient
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<GetTokenResponse> getToken(Consumer<GetTokenRequest.Builder> fn)
+	public final CompletableFuture<GetTokenResponse> getToken(
+			Function<GetTokenRequest.Builder, ObjectBuilder<GetTokenRequest>> fn)
 			throws IOException, ElasticsearchException {
-		GetTokenRequest.Builder builder = new GetTokenRequest.Builder();
-		fn.accept(builder);
-		return getToken(builder.build());
+		return getToken(fn.apply(new GetTokenRequest.Builder()).build());
 	}
 
 	/**
@@ -1019,11 +997,10 @@ public class ElasticsearchSecurityAsyncClient
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<GetUserResponse> getUser(Consumer<GetUserRequest.Builder> fn)
+	public final CompletableFuture<GetUserResponse> getUser(
+			Function<GetUserRequest.Builder, ObjectBuilder<GetUserRequest>> fn)
 			throws IOException, ElasticsearchException {
-		GetUserRequest.Builder builder = new GetUserRequest.Builder();
-		fn.accept(builder);
-		return getUser(builder.build());
+		return getUser(fn.apply(new GetUserRequest.Builder()).build());
 	}
 
 	/**
@@ -1069,10 +1046,9 @@ public class ElasticsearchSecurityAsyncClient
 	 */
 
 	public final CompletableFuture<GetUserPrivilegesResponse> getUserPrivileges(
-			Consumer<GetUserPrivilegesRequest.Builder> fn) throws IOException, ElasticsearchException {
-		GetUserPrivilegesRequest.Builder builder = new GetUserPrivilegesRequest.Builder();
-		fn.accept(builder);
-		return getUserPrivileges(builder.build());
+			Function<GetUserPrivilegesRequest.Builder, ObjectBuilder<GetUserPrivilegesRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return getUserPrivileges(fn.apply(new GetUserPrivilegesRequest.Builder()).build());
 	}
 
 	/**
@@ -1117,11 +1093,10 @@ public class ElasticsearchSecurityAsyncClient
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<GrantApiKeyResponse> grantApiKey(Consumer<GrantApiKeyRequest.Builder> fn)
+	public final CompletableFuture<GrantApiKeyResponse> grantApiKey(
+			Function<GrantApiKeyRequest.Builder, ObjectBuilder<GrantApiKeyRequest>> fn)
 			throws IOException, ElasticsearchException {
-		GrantApiKeyRequest.Builder builder = new GrantApiKeyRequest.Builder();
-		fn.accept(builder);
-		return grantApiKey(builder.build());
+		return grantApiKey(fn.apply(new GrantApiKeyRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: security.has_privileges
@@ -1153,11 +1128,10 @@ public class ElasticsearchSecurityAsyncClient
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<HasPrivilegesResponse> hasPrivileges(Consumer<HasPrivilegesRequest.Builder> fn)
+	public final CompletableFuture<HasPrivilegesResponse> hasPrivileges(
+			Function<HasPrivilegesRequest.Builder, ObjectBuilder<HasPrivilegesRequest>> fn)
 			throws IOException, ElasticsearchException {
-		HasPrivilegesRequest.Builder builder = new HasPrivilegesRequest.Builder();
-		fn.accept(builder);
-		return hasPrivileges(builder.build());
+		return hasPrivileges(fn.apply(new HasPrivilegesRequest.Builder()).build());
 	}
 
 	/**
@@ -1203,10 +1177,9 @@ public class ElasticsearchSecurityAsyncClient
 	 */
 
 	public final CompletableFuture<InvalidateApiKeyResponse> invalidateApiKey(
-			Consumer<InvalidateApiKeyRequest.Builder> fn) throws IOException, ElasticsearchException {
-		InvalidateApiKeyRequest.Builder builder = new InvalidateApiKeyRequest.Builder();
-		fn.accept(builder);
-		return invalidateApiKey(builder.build());
+			Function<InvalidateApiKeyRequest.Builder, ObjectBuilder<InvalidateApiKeyRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return invalidateApiKey(fn.apply(new InvalidateApiKeyRequest.Builder()).build());
 	}
 
 	/**
@@ -1251,11 +1224,10 @@ public class ElasticsearchSecurityAsyncClient
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<InvalidateTokenResponse> invalidateToken(Consumer<InvalidateTokenRequest.Builder> fn)
+	public final CompletableFuture<InvalidateTokenResponse> invalidateToken(
+			Function<InvalidateTokenRequest.Builder, ObjectBuilder<InvalidateTokenRequest>> fn)
 			throws IOException, ElasticsearchException {
-		InvalidateTokenRequest.Builder builder = new InvalidateTokenRequest.Builder();
-		fn.accept(builder);
-		return invalidateToken(builder.build());
+		return invalidateToken(fn.apply(new InvalidateTokenRequest.Builder()).build());
 	}
 
 	/**
@@ -1300,11 +1272,10 @@ public class ElasticsearchSecurityAsyncClient
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<PutPrivilegesResponse> putPrivileges(Consumer<PutPrivilegesRequest.Builder> fn)
+	public final CompletableFuture<PutPrivilegesResponse> putPrivileges(
+			Function<PutPrivilegesRequest.Builder, ObjectBuilder<PutPrivilegesRequest>> fn)
 			throws IOException, ElasticsearchException {
-		PutPrivilegesRequest.Builder builder = new PutPrivilegesRequest.Builder();
-		fn.accept(builder);
-		return putPrivileges(builder.build());
+		return putPrivileges(fn.apply(new PutPrivilegesRequest.Builder()).build());
 	}
 
 	/**
@@ -1349,11 +1320,10 @@ public class ElasticsearchSecurityAsyncClient
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<PutRoleResponse> putRole(Consumer<PutRoleRequest.Builder> fn)
+	public final CompletableFuture<PutRoleResponse> putRole(
+			Function<PutRoleRequest.Builder, ObjectBuilder<PutRoleRequest>> fn)
 			throws IOException, ElasticsearchException {
-		PutRoleRequest.Builder builder = new PutRoleRequest.Builder();
-		fn.accept(builder);
-		return putRole(builder.build());
+		return putRole(fn.apply(new PutRoleRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: security.put_role_mapping
@@ -1385,11 +1355,10 @@ public class ElasticsearchSecurityAsyncClient
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<PutRoleMappingResponse> putRoleMapping(Consumer<PutRoleMappingRequest.Builder> fn)
+	public final CompletableFuture<PutRoleMappingResponse> putRoleMapping(
+			Function<PutRoleMappingRequest.Builder, ObjectBuilder<PutRoleMappingRequest>> fn)
 			throws IOException, ElasticsearchException {
-		PutRoleMappingRequest.Builder builder = new PutRoleMappingRequest.Builder();
-		fn.accept(builder);
-		return putRoleMapping(builder.build());
+		return putRoleMapping(fn.apply(new PutRoleMappingRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: security.put_user
@@ -1423,11 +1392,10 @@ public class ElasticsearchSecurityAsyncClient
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<PutUserResponse> putUser(Consumer<PutUserRequest.Builder> fn)
+	public final CompletableFuture<PutUserResponse> putUser(
+			Function<PutUserRequest.Builder, ObjectBuilder<PutUserRequest>> fn)
 			throws IOException, ElasticsearchException {
-		PutUserRequest.Builder builder = new PutUserRequest.Builder();
-		fn.accept(builder);
-		return putUser(builder.build());
+		return putUser(fn.apply(new PutUserRequest.Builder()).build());
 	}
 
 }

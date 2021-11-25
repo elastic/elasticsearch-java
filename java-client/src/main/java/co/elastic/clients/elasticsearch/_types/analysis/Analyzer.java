@@ -37,7 +37,7 @@ import co.elastic.clients.util.TaggedUnion;
 import co.elastic.clients.util.TaggedUnionUtils;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.analysis.Analyzer
@@ -119,10 +119,8 @@ public class Analyzer implements TaggedUnion<Analyzer.Kind, AnalyzerVariant>, Js
 
 	}
 
-	public static Analyzer of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static Analyzer of(Function<Builder, ObjectBuilder<Analyzer>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -380,10 +378,8 @@ public class Analyzer implements TaggedUnion<Analyzer.Kind, AnalyzerVariant>, Js
 			return this;
 		}
 
-		public ObjectBuilder<Analyzer> custom(Consumer<CustomAnalyzer.Builder> fn) {
-			CustomAnalyzer.Builder builder = new CustomAnalyzer.Builder();
-			fn.accept(builder);
-			return this.custom(builder.build());
+		public ObjectBuilder<Analyzer> custom(Function<CustomAnalyzer.Builder, ObjectBuilder<CustomAnalyzer>> fn) {
+			return this.custom(fn.apply(new CustomAnalyzer.Builder()).build());
 		}
 
 		public ObjectBuilder<Analyzer> dutch(DutchAnalyzer v) {
@@ -392,10 +388,8 @@ public class Analyzer implements TaggedUnion<Analyzer.Kind, AnalyzerVariant>, Js
 			return this;
 		}
 
-		public ObjectBuilder<Analyzer> dutch(Consumer<DutchAnalyzer.Builder> fn) {
-			DutchAnalyzer.Builder builder = new DutchAnalyzer.Builder();
-			fn.accept(builder);
-			return this.dutch(builder.build());
+		public ObjectBuilder<Analyzer> dutch(Function<DutchAnalyzer.Builder, ObjectBuilder<DutchAnalyzer>> fn) {
+			return this.dutch(fn.apply(new DutchAnalyzer.Builder()).build());
 		}
 
 		public ObjectBuilder<Analyzer> fingerprint(FingerprintAnalyzer v) {
@@ -404,10 +398,9 @@ public class Analyzer implements TaggedUnion<Analyzer.Kind, AnalyzerVariant>, Js
 			return this;
 		}
 
-		public ObjectBuilder<Analyzer> fingerprint(Consumer<FingerprintAnalyzer.Builder> fn) {
-			FingerprintAnalyzer.Builder builder = new FingerprintAnalyzer.Builder();
-			fn.accept(builder);
-			return this.fingerprint(builder.build());
+		public ObjectBuilder<Analyzer> fingerprint(
+				Function<FingerprintAnalyzer.Builder, ObjectBuilder<FingerprintAnalyzer>> fn) {
+			return this.fingerprint(fn.apply(new FingerprintAnalyzer.Builder()).build());
 		}
 
 		public ObjectBuilder<Analyzer> icuAnalyzer(IcuAnalyzer v) {
@@ -416,10 +409,8 @@ public class Analyzer implements TaggedUnion<Analyzer.Kind, AnalyzerVariant>, Js
 			return this;
 		}
 
-		public ObjectBuilder<Analyzer> icuAnalyzer(Consumer<IcuAnalyzer.Builder> fn) {
-			IcuAnalyzer.Builder builder = new IcuAnalyzer.Builder();
-			fn.accept(builder);
-			return this.icuAnalyzer(builder.build());
+		public ObjectBuilder<Analyzer> icuAnalyzer(Function<IcuAnalyzer.Builder, ObjectBuilder<IcuAnalyzer>> fn) {
+			return this.icuAnalyzer(fn.apply(new IcuAnalyzer.Builder()).build());
 		}
 
 		public ObjectBuilder<Analyzer> keyword(KeywordAnalyzer v) {
@@ -428,10 +419,8 @@ public class Analyzer implements TaggedUnion<Analyzer.Kind, AnalyzerVariant>, Js
 			return this;
 		}
 
-		public ObjectBuilder<Analyzer> keyword(Consumer<KeywordAnalyzer.Builder> fn) {
-			KeywordAnalyzer.Builder builder = new KeywordAnalyzer.Builder();
-			fn.accept(builder);
-			return this.keyword(builder.build());
+		public ObjectBuilder<Analyzer> keyword(Function<KeywordAnalyzer.Builder, ObjectBuilder<KeywordAnalyzer>> fn) {
+			return this.keyword(fn.apply(new KeywordAnalyzer.Builder()).build());
 		}
 
 		public ObjectBuilder<Analyzer> kuromoji(KuromojiAnalyzer v) {
@@ -440,10 +429,9 @@ public class Analyzer implements TaggedUnion<Analyzer.Kind, AnalyzerVariant>, Js
 			return this;
 		}
 
-		public ObjectBuilder<Analyzer> kuromoji(Consumer<KuromojiAnalyzer.Builder> fn) {
-			KuromojiAnalyzer.Builder builder = new KuromojiAnalyzer.Builder();
-			fn.accept(builder);
-			return this.kuromoji(builder.build());
+		public ObjectBuilder<Analyzer> kuromoji(
+				Function<KuromojiAnalyzer.Builder, ObjectBuilder<KuromojiAnalyzer>> fn) {
+			return this.kuromoji(fn.apply(new KuromojiAnalyzer.Builder()).build());
 		}
 
 		public ObjectBuilder<Analyzer> language(LanguageAnalyzer v) {
@@ -452,10 +440,9 @@ public class Analyzer implements TaggedUnion<Analyzer.Kind, AnalyzerVariant>, Js
 			return this;
 		}
 
-		public ObjectBuilder<Analyzer> language(Consumer<LanguageAnalyzer.Builder> fn) {
-			LanguageAnalyzer.Builder builder = new LanguageAnalyzer.Builder();
-			fn.accept(builder);
-			return this.language(builder.build());
+		public ObjectBuilder<Analyzer> language(
+				Function<LanguageAnalyzer.Builder, ObjectBuilder<LanguageAnalyzer>> fn) {
+			return this.language(fn.apply(new LanguageAnalyzer.Builder()).build());
 		}
 
 		public ObjectBuilder<Analyzer> nori(NoriAnalyzer v) {
@@ -464,10 +451,8 @@ public class Analyzer implements TaggedUnion<Analyzer.Kind, AnalyzerVariant>, Js
 			return this;
 		}
 
-		public ObjectBuilder<Analyzer> nori(Consumer<NoriAnalyzer.Builder> fn) {
-			NoriAnalyzer.Builder builder = new NoriAnalyzer.Builder();
-			fn.accept(builder);
-			return this.nori(builder.build());
+		public ObjectBuilder<Analyzer> nori(Function<NoriAnalyzer.Builder, ObjectBuilder<NoriAnalyzer>> fn) {
+			return this.nori(fn.apply(new NoriAnalyzer.Builder()).build());
 		}
 
 		public ObjectBuilder<Analyzer> pattern(PatternAnalyzer v) {
@@ -476,10 +461,8 @@ public class Analyzer implements TaggedUnion<Analyzer.Kind, AnalyzerVariant>, Js
 			return this;
 		}
 
-		public ObjectBuilder<Analyzer> pattern(Consumer<PatternAnalyzer.Builder> fn) {
-			PatternAnalyzer.Builder builder = new PatternAnalyzer.Builder();
-			fn.accept(builder);
-			return this.pattern(builder.build());
+		public ObjectBuilder<Analyzer> pattern(Function<PatternAnalyzer.Builder, ObjectBuilder<PatternAnalyzer>> fn) {
+			return this.pattern(fn.apply(new PatternAnalyzer.Builder()).build());
 		}
 
 		public ObjectBuilder<Analyzer> simple(SimpleAnalyzer v) {
@@ -488,10 +471,8 @@ public class Analyzer implements TaggedUnion<Analyzer.Kind, AnalyzerVariant>, Js
 			return this;
 		}
 
-		public ObjectBuilder<Analyzer> simple(Consumer<SimpleAnalyzer.Builder> fn) {
-			SimpleAnalyzer.Builder builder = new SimpleAnalyzer.Builder();
-			fn.accept(builder);
-			return this.simple(builder.build());
+		public ObjectBuilder<Analyzer> simple(Function<SimpleAnalyzer.Builder, ObjectBuilder<SimpleAnalyzer>> fn) {
+			return this.simple(fn.apply(new SimpleAnalyzer.Builder()).build());
 		}
 
 		public ObjectBuilder<Analyzer> snowball(SnowballAnalyzer v) {
@@ -500,10 +481,9 @@ public class Analyzer implements TaggedUnion<Analyzer.Kind, AnalyzerVariant>, Js
 			return this;
 		}
 
-		public ObjectBuilder<Analyzer> snowball(Consumer<SnowballAnalyzer.Builder> fn) {
-			SnowballAnalyzer.Builder builder = new SnowballAnalyzer.Builder();
-			fn.accept(builder);
-			return this.snowball(builder.build());
+		public ObjectBuilder<Analyzer> snowball(
+				Function<SnowballAnalyzer.Builder, ObjectBuilder<SnowballAnalyzer>> fn) {
+			return this.snowball(fn.apply(new SnowballAnalyzer.Builder()).build());
 		}
 
 		public ObjectBuilder<Analyzer> standard(StandardAnalyzer v) {
@@ -512,10 +492,9 @@ public class Analyzer implements TaggedUnion<Analyzer.Kind, AnalyzerVariant>, Js
 			return this;
 		}
 
-		public ObjectBuilder<Analyzer> standard(Consumer<StandardAnalyzer.Builder> fn) {
-			StandardAnalyzer.Builder builder = new StandardAnalyzer.Builder();
-			fn.accept(builder);
-			return this.standard(builder.build());
+		public ObjectBuilder<Analyzer> standard(
+				Function<StandardAnalyzer.Builder, ObjectBuilder<StandardAnalyzer>> fn) {
+			return this.standard(fn.apply(new StandardAnalyzer.Builder()).build());
 		}
 
 		public ObjectBuilder<Analyzer> stop(StopAnalyzer v) {
@@ -524,10 +503,8 @@ public class Analyzer implements TaggedUnion<Analyzer.Kind, AnalyzerVariant>, Js
 			return this;
 		}
 
-		public ObjectBuilder<Analyzer> stop(Consumer<StopAnalyzer.Builder> fn) {
-			StopAnalyzer.Builder builder = new StopAnalyzer.Builder();
-			fn.accept(builder);
-			return this.stop(builder.build());
+		public ObjectBuilder<Analyzer> stop(Function<StopAnalyzer.Builder, ObjectBuilder<StopAnalyzer>> fn) {
+			return this.stop(fn.apply(new StopAnalyzer.Builder()).build());
 		}
 
 		public ObjectBuilder<Analyzer> whitespace(WhitespaceAnalyzer v) {
@@ -536,10 +513,9 @@ public class Analyzer implements TaggedUnion<Analyzer.Kind, AnalyzerVariant>, Js
 			return this;
 		}
 
-		public ObjectBuilder<Analyzer> whitespace(Consumer<WhitespaceAnalyzer.Builder> fn) {
-			WhitespaceAnalyzer.Builder builder = new WhitespaceAnalyzer.Builder();
-			fn.accept(builder);
-			return this.whitespace(builder.build());
+		public ObjectBuilder<Analyzer> whitespace(
+				Function<WhitespaceAnalyzer.Builder, ObjectBuilder<WhitespaceAnalyzer>> fn) {
+			return this.whitespace(fn.apply(new WhitespaceAnalyzer.Builder()).build());
 		}
 
 		public Analyzer build() {

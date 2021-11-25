@@ -32,7 +32,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.mapping.ObjectProperty
@@ -50,10 +50,8 @@ public class ObjectProperty extends CorePropertyBase implements PropertyVariant 
 
 	}
 
-	public static ObjectProperty of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static ObjectProperty of(Function<Builder, ObjectBuilder<ObjectProperty>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**

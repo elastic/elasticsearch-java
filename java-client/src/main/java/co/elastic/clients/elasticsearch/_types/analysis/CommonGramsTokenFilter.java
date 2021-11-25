@@ -33,10 +33,9 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.analysis.CommonGramsTokenFilter
@@ -65,10 +64,8 @@ public class CommonGramsTokenFilter extends TokenFilterBase implements TokenFilt
 
 	}
 
-	public static CommonGramsTokenFilter of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static CommonGramsTokenFilter of(Function<Builder, ObjectBuilder<CommonGramsTokenFilter>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -164,17 +161,25 @@ public class CommonGramsTokenFilter extends TokenFilterBase implements TokenFilt
 
 		/**
 		 * API name: {@code common_words}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>commonWords</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>commonWords</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder commonWords(@Nullable List<String> value) {
-			this.commonWords = value;
+		public final Builder commonWords(List<String> list) {
+			this.commonWords = _listAddAll(this.commonWords, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code common_words}
+		 * <p>
+		 * Adds one or more values to <code>commonWords</code>.
 		 */
-		public final Builder commonWords(String... value) {
-			this.commonWords = Arrays.asList(value);
+		public final Builder commonWords(String value, String... values) {
+			this.commonWords = _listAdd(this.commonWords, value, values);
 			return this;
 		}
 

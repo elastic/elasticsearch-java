@@ -34,7 +34,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: security._types.GlobalPrivilege
@@ -50,10 +50,8 @@ public class GlobalPrivilege implements JsonpSerializable {
 
 	}
 
-	public static GlobalPrivilege of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static GlobalPrivilege of(Function<Builder, ObjectBuilder<GlobalPrivilege>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -98,10 +96,9 @@ public class GlobalPrivilege implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code application}
 		 */
-		public final Builder application(Consumer<ApplicationGlobalUserPrivileges.Builder> fn) {
-			ApplicationGlobalUserPrivileges.Builder builder = new ApplicationGlobalUserPrivileges.Builder();
-			fn.accept(builder);
-			return this.application(builder.build());
+		public final Builder application(
+				Function<ApplicationGlobalUserPrivileges.Builder, ObjectBuilder<ApplicationGlobalUserPrivileges>> fn) {
+			return this.application(fn.apply(new ApplicationGlobalUserPrivileges.Builder()).build());
 		}
 
 		/**

@@ -34,10 +34,9 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.Filter
@@ -60,10 +59,8 @@ public class Filter implements JsonpSerializable {
 
 	}
 
-	public static Filter of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static Filter of(Function<Builder, ObjectBuilder<Filter>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -151,17 +148,25 @@ public class Filter implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code items}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>items</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>items</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder items(List<String> value) {
-			this.items = value;
+		public final Builder items(List<String> list) {
+			this.items = _listAddAll(this.items, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code items}
+		 * <p>
+		 * Adds one or more values to <code>items</code>.
 		 */
-		public final Builder items(String... value) {
-			this.items = Arrays.asList(value);
+		public final Builder items(String value, String... values) {
+			this.items = _listAdd(this.items, value, values);
 			return this;
 		}
 

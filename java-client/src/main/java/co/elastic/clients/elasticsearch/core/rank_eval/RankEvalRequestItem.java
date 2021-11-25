@@ -30,17 +30,14 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -71,10 +68,8 @@ public class RankEvalRequestItem implements JsonpSerializable {
 
 	}
 
-	public static RankEvalRequestItem of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static RankEvalRequestItem of(Function<Builder, ObjectBuilder<RankEvalRequestItem>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -216,19 +211,23 @@ public class RankEvalRequestItem implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code request}
 		 */
-		public final Builder request(Consumer<RankEvalQuery.Builder> fn) {
-			RankEvalQuery.Builder builder = new RankEvalQuery.Builder();
-			fn.accept(builder);
-			return this.request(builder.build());
+		public final Builder request(Function<RankEvalQuery.Builder, ObjectBuilder<RankEvalQuery>> fn) {
+			return this.request(fn.apply(new RankEvalQuery.Builder()).build());
 		}
 
 		/**
 		 * Required - List of document ratings
 		 * <p>
 		 * API name: {@code ratings}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>ratings</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>ratings</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder ratings(List<DocumentRating> value) {
-			this.ratings = value;
+		public final Builder ratings(List<DocumentRating> list) {
+			this.ratings = _listAddAll(this.ratings, list);
 			return this;
 		}
 
@@ -236,9 +235,11 @@ public class RankEvalRequestItem implements JsonpSerializable {
 		 * Required - List of document ratings
 		 * <p>
 		 * API name: {@code ratings}
+		 * <p>
+		 * Adds one or more values to <code>ratings</code>.
 		 */
-		public final Builder ratings(DocumentRating... value) {
-			this.ratings = Arrays.asList(value);
+		public final Builder ratings(DocumentRating value, DocumentRating... values) {
+			this.ratings = _listAdd(this.ratings, value, values);
 			return this;
 		}
 
@@ -246,10 +247,11 @@ public class RankEvalRequestItem implements JsonpSerializable {
 		 * Required - List of document ratings
 		 * <p>
 		 * API name: {@code ratings}
+		 * <p>
+		 * Adds a value to <code>ratings</code> using a builder lambda.
 		 */
-		public final Builder ratings(
-				Function<ListBuilder<DocumentRating, DocumentRating.Builder>, ObjectBuilder<List<DocumentRating>>> fn) {
-			return ratings(fn.apply(new ListBuilder<>(DocumentRating.Builder::new)).build());
+		public final Builder ratings(Function<DocumentRating.Builder, ObjectBuilder<DocumentRating>> fn) {
+			return ratings(fn.apply(new DocumentRating.Builder()).build());
 		}
 
 		/**
@@ -266,9 +268,27 @@ public class RankEvalRequestItem implements JsonpSerializable {
 		 * The search template parameters.
 		 * <p>
 		 * API name: {@code params}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>params</code>. Use
+		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
+		 * <code>params</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetMap()
 		 */
-		public final Builder params(@Nullable Map<String, JsonData> value) {
-			this.params = value;
+		public final Builder params(Map<String, JsonData> map) {
+			this.params = _mapPutAll(this.params, map);
+			return this;
+		}
+
+		/**
+		 * The search template parameters.
+		 * <p>
+		 * API name: {@code params}
+		 * <p>
+		 * Adds an entry to <code>params</code>.
+		 */
+		public final Builder params(String key, JsonData value) {
+			this.params = _mapPut(this.params, key, value);
 			return this;
 		}
 

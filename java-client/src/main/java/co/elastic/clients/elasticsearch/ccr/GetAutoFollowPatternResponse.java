@@ -30,15 +30,12 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -55,10 +52,8 @@ public class GetAutoFollowPatternResponse implements JsonpSerializable {
 
 	}
 
-	public static GetAutoFollowPatternResponse of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static GetAutoFollowPatternResponse of(Function<Builder, ObjectBuilder<GetAutoFollowPatternResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -102,26 +97,35 @@ public class GetAutoFollowPatternResponse implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code patterns}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>patterns</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>patterns</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder patterns(List<AutoFollowPattern> value) {
-			this.patterns = value;
+		public final Builder patterns(List<AutoFollowPattern> list) {
+			this.patterns = _listAddAll(this.patterns, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code patterns}
+		 * <p>
+		 * Adds one or more values to <code>patterns</code>.
 		 */
-		public final Builder patterns(AutoFollowPattern... value) {
-			this.patterns = Arrays.asList(value);
+		public final Builder patterns(AutoFollowPattern value, AutoFollowPattern... values) {
+			this.patterns = _listAdd(this.patterns, value, values);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code patterns}
+		 * <p>
+		 * Adds a value to <code>patterns</code> using a builder lambda.
 		 */
-		public final Builder patterns(
-				Function<ListBuilder<AutoFollowPattern, AutoFollowPattern.Builder>, ObjectBuilder<List<AutoFollowPattern>>> fn) {
-			return patterns(fn.apply(new ListBuilder<>(AutoFollowPattern.Builder::new)).build());
+		public final Builder patterns(Function<AutoFollowPattern.Builder, ObjectBuilder<AutoFollowPattern>> fn) {
+			return patterns(fn.apply(new AutoFollowPattern.Builder()).build());
 		}
 
 		/**

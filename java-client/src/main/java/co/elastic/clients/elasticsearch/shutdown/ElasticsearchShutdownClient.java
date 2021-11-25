@@ -33,7 +33,7 @@ import co.elastic.clients.transport.Transport;
 import co.elastic.clients.transport.TransportOptions;
 import co.elastic.clients.util.ObjectBuilder;
 import java.io.IOException;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 /**
@@ -84,11 +84,9 @@ public class ElasticsearchShutdownClient extends ApiClient<ElasticsearchTranspor
 	 *      on elastic.co</a>
 	 */
 
-	public final DeleteNodeResponse deleteNode(Consumer<DeleteNodeRequest.Builder> fn)
+	public final DeleteNodeResponse deleteNode(Function<DeleteNodeRequest.Builder, ObjectBuilder<DeleteNodeRequest>> fn)
 			throws IOException, ElasticsearchException {
-		DeleteNodeRequest.Builder builder = new DeleteNodeRequest.Builder();
-		fn.accept(builder);
-		return deleteNode(builder.build());
+		return deleteNode(fn.apply(new DeleteNodeRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: shutdown.get_node
@@ -123,11 +121,9 @@ public class ElasticsearchShutdownClient extends ApiClient<ElasticsearchTranspor
 	 *      on elastic.co</a>
 	 */
 
-	public final GetNodeResponse getNode(Consumer<GetNodeRequest.Builder> fn)
+	public final GetNodeResponse getNode(Function<GetNodeRequest.Builder, ObjectBuilder<GetNodeRequest>> fn)
 			throws IOException, ElasticsearchException {
-		GetNodeRequest.Builder builder = new GetNodeRequest.Builder();
-		fn.accept(builder);
-		return getNode(builder.build());
+		return getNode(fn.apply(new GetNodeRequest.Builder()).build());
 	}
 
 	/**
@@ -175,11 +171,9 @@ public class ElasticsearchShutdownClient extends ApiClient<ElasticsearchTranspor
 	 *      on elastic.co</a>
 	 */
 
-	public final PutNodeResponse putNode(Consumer<PutNodeRequest.Builder> fn)
+	public final PutNodeResponse putNode(Function<PutNodeRequest.Builder, ObjectBuilder<PutNodeRequest>> fn)
 			throws IOException, ElasticsearchException {
-		PutNodeRequest.Builder builder = new PutNodeRequest.Builder();
-		fn.accept(builder);
-		return putNode(builder.build());
+		return putNode(fn.apply(new PutNodeRequest.Builder()).build());
 	}
 
 }

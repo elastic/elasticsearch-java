@@ -37,7 +37,7 @@ import java.lang.Integer;
 import java.lang.Long;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: nodes._types.Transport
@@ -71,10 +71,8 @@ public class Transport implements JsonpSerializable {
 
 	}
 
-	public static Transport of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static Transport of(Function<Builder, ObjectBuilder<Transport>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**

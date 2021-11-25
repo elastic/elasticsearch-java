@@ -38,7 +38,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Object;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.Like
@@ -76,10 +76,8 @@ public class Like implements TaggedUnion<Like.Kind, Object>, JsonpSerializable {
 
 	}
 
-	public static Like of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static Like of(Function<Builder, ObjectBuilder<Like>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -141,10 +139,8 @@ public class Like implements TaggedUnion<Like.Kind, Object>, JsonpSerializable {
 			return this;
 		}
 
-		public ObjectBuilder<Like> document(Consumer<LikeDocument.Builder> fn) {
-			LikeDocument.Builder builder = new LikeDocument.Builder();
-			fn.accept(builder);
-			return this.document(builder.build());
+		public ObjectBuilder<Like> document(Function<LikeDocument.Builder, ObjectBuilder<LikeDocument>> fn) {
+			return this.document(fn.apply(new LikeDocument.Builder()).build());
 		}
 
 		public ObjectBuilder<Like> text(String v) {

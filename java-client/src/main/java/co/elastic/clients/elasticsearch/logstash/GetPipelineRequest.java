@@ -36,11 +36,10 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
@@ -57,10 +56,8 @@ public class GetPipelineRequest extends RequestBase {
 
 	}
 
-	public static GetPipelineRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static GetPipelineRequest of(Function<Builder, ObjectBuilder<GetPipelineRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -84,9 +81,15 @@ public class GetPipelineRequest extends RequestBase {
 		 * Required - A comma-separated list of Pipeline IDs
 		 * <p>
 		 * API name: {@code id}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>id</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset <code>id</code>
+		 * to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder id(List<String> value) {
-			this.id = value;
+		public final Builder id(List<String> list) {
+			this.id = _listAddAll(this.id, list);
 			return this;
 		}
 
@@ -94,9 +97,11 @@ public class GetPipelineRequest extends RequestBase {
 		 * Required - A comma-separated list of Pipeline IDs
 		 * <p>
 		 * API name: {@code id}
+		 * <p>
+		 * Adds one or more values to <code>id</code>.
 		 */
-		public final Builder id(String... value) {
-			this.id = Arrays.asList(value);
+		public final Builder id(String value, String... values) {
+			this.id = _listAdd(this.id, value, values);
 			return this;
 		}
 

@@ -37,7 +37,7 @@ import co.elastic.clients.util.TaggedUnion;
 import co.elastic.clients.util.TaggedUnionUtils;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cluster.remote_info.ClusterRemoteInfo
@@ -98,10 +98,8 @@ public class ClusterRemoteInfo
 
 	}
 
-	public static ClusterRemoteInfo of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static ClusterRemoteInfo of(Function<Builder, ObjectBuilder<ClusterRemoteInfo>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -155,10 +153,9 @@ public class ClusterRemoteInfo
 			return this;
 		}
 
-		public ObjectBuilder<ClusterRemoteInfo> proxy(Consumer<ClusterRemoteProxyInfo.Builder> fn) {
-			ClusterRemoteProxyInfo.Builder builder = new ClusterRemoteProxyInfo.Builder();
-			fn.accept(builder);
-			return this.proxy(builder.build());
+		public ObjectBuilder<ClusterRemoteInfo> proxy(
+				Function<ClusterRemoteProxyInfo.Builder, ObjectBuilder<ClusterRemoteProxyInfo>> fn) {
+			return this.proxy(fn.apply(new ClusterRemoteProxyInfo.Builder()).build());
 		}
 
 		public ObjectBuilder<ClusterRemoteInfo> sniff(ClusterRemoteSniffInfo v) {
@@ -167,10 +164,9 @@ public class ClusterRemoteInfo
 			return this;
 		}
 
-		public ObjectBuilder<ClusterRemoteInfo> sniff(Consumer<ClusterRemoteSniffInfo.Builder> fn) {
-			ClusterRemoteSniffInfo.Builder builder = new ClusterRemoteSniffInfo.Builder();
-			fn.accept(builder);
-			return this.sniff(builder.build());
+		public ObjectBuilder<ClusterRemoteInfo> sniff(
+				Function<ClusterRemoteSniffInfo.Builder, ObjectBuilder<ClusterRemoteSniffInfo>> fn) {
+			return this.sniff(fn.apply(new ClusterRemoteSniffInfo.Builder()).build());
 		}
 
 		public ClusterRemoteInfo build() {

@@ -35,10 +35,9 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.SimulatedActions
@@ -60,10 +59,8 @@ public class SimulatedActions implements JsonpSerializable {
 
 	}
 
-	public static SimulatedActions of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static SimulatedActions of(Function<Builder, ObjectBuilder<SimulatedActions>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -130,17 +127,25 @@ public class SimulatedActions implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code actions}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>actions</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>actions</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder actions(List<String> value) {
-			this.actions = value;
+		public final Builder actions(List<String> list) {
+			this.actions = _listAddAll(this.actions, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code actions}
+		 * <p>
+		 * Adds one or more values to <code>actions</code>.
 		 */
-		public final Builder actions(String... value) {
-			this.actions = Arrays.asList(value);
+		public final Builder actions(String value, String... values) {
+			this.actions = _listAdd(this.actions, value, values);
 			return this;
 		}
 
@@ -155,10 +160,8 @@ public class SimulatedActions implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code all}
 		 */
-		public final Builder all(Consumer<SimulatedActions.Builder> fn) {
-			SimulatedActions.Builder builder = new SimulatedActions.Builder();
-			fn.accept(builder);
-			return this.all(builder.build());
+		public final Builder all(Function<SimulatedActions.Builder, ObjectBuilder<SimulatedActions>> fn) {
+			return this.all(fn.apply(new SimulatedActions.Builder()).build());
 		}
 
 		/**

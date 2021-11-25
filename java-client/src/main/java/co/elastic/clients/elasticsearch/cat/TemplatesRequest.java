@@ -37,7 +37,7 @@ import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cat.templates.Request
@@ -54,10 +54,8 @@ public class TemplatesRequest extends CatRequestBase {
 
 	}
 
-	public static TemplatesRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static TemplatesRequest of(Function<Builder, ObjectBuilder<TemplatesRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**

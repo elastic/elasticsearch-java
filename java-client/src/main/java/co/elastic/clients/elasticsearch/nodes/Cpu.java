@@ -39,7 +39,7 @@ import java.lang.Long;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: nodes._types.Cpu
@@ -82,10 +82,8 @@ public class Cpu implements JsonpSerializable {
 
 	}
 
-	public static Cpu of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static Cpu of(Function<Builder, ObjectBuilder<Cpu>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -295,9 +293,25 @@ public class Cpu implements JsonpSerializable {
 
 		/**
 		 * API name: {@code load_average}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>loadAverage</code>. Use
+		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
+		 * <code>loadAverage</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetMap()
 		 */
-		public final Builder loadAverage(@Nullable Map<String, Double> value) {
-			this.loadAverage = value;
+		public final Builder loadAverage(Map<String, Double> map) {
+			this.loadAverage = _mapPutAll(this.loadAverage, map);
+			return this;
+		}
+
+		/**
+		 * API name: {@code load_average}
+		 * <p>
+		 * Adds an entry to <code>loadAverage</code>.
+		 */
+		public final Builder loadAverage(String key, Double value) {
+			this.loadAverage = _mapPut(this.loadAverage, key, value);
 			return this;
 		}
 

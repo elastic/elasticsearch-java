@@ -42,12 +42,11 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Long;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
@@ -105,10 +104,8 @@ public class ExistsSourceRequest extends RequestBase {
 
 	}
 
-	public static ExistsSourceRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static ExistsSourceRequest of(Function<Builder, ObjectBuilder<ExistsSourceRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -286,19 +283,23 @@ public class ExistsSourceRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code _source}
 		 */
-		public final Builder source(Consumer<SourceConfigParam.Builder> fn) {
-			SourceConfigParam.Builder builder = new SourceConfigParam.Builder();
-			fn.accept(builder);
-			return this.source(builder.build());
+		public final Builder source(Function<SourceConfigParam.Builder, ObjectBuilder<SourceConfigParam>> fn) {
+			return this.source(fn.apply(new SourceConfigParam.Builder()).build());
 		}
 
 		/**
 		 * A list of fields to exclude from the returned _source field
 		 * <p>
 		 * API name: {@code _source_excludes}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>sourceExcludes</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>sourceExcludes</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder sourceExcludes(@Nullable List<String> value) {
-			this.sourceExcludes = value;
+		public final Builder sourceExcludes(List<String> list) {
+			this.sourceExcludes = _listAddAll(this.sourceExcludes, list);
 			return this;
 		}
 
@@ -306,9 +307,11 @@ public class ExistsSourceRequest extends RequestBase {
 		 * A list of fields to exclude from the returned _source field
 		 * <p>
 		 * API name: {@code _source_excludes}
+		 * <p>
+		 * Adds one or more values to <code>sourceExcludes</code>.
 		 */
-		public final Builder sourceExcludes(String... value) {
-			this.sourceExcludes = Arrays.asList(value);
+		public final Builder sourceExcludes(String value, String... values) {
+			this.sourceExcludes = _listAdd(this.sourceExcludes, value, values);
 			return this;
 		}
 
@@ -316,9 +319,15 @@ public class ExistsSourceRequest extends RequestBase {
 		 * A list of fields to extract and return from the _source field
 		 * <p>
 		 * API name: {@code _source_includes}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>sourceIncludes</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>sourceIncludes</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder sourceIncludes(@Nullable List<String> value) {
-			this.sourceIncludes = value;
+		public final Builder sourceIncludes(List<String> list) {
+			this.sourceIncludes = _listAddAll(this.sourceIncludes, list);
 			return this;
 		}
 
@@ -326,9 +335,11 @@ public class ExistsSourceRequest extends RequestBase {
 		 * A list of fields to extract and return from the _source field
 		 * <p>
 		 * API name: {@code _source_includes}
+		 * <p>
+		 * Adds one or more values to <code>sourceIncludes</code>.
 		 */
-		public final Builder sourceIncludes(String... value) {
-			this.sourceIncludes = Arrays.asList(value);
+		public final Builder sourceIncludes(String value, String... values) {
+			this.sourceIncludes = _listAdd(this.sourceIncludes, value, values);
 			return this;
 		}
 

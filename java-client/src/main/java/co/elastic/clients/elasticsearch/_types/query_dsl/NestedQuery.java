@@ -35,7 +35,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.NestedQuery
@@ -67,10 +67,8 @@ public class NestedQuery extends QueryBase implements QueryVariant {
 
 	}
 
-	public static NestedQuery of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static NestedQuery of(Function<Builder, ObjectBuilder<NestedQuery>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -183,10 +181,8 @@ public class NestedQuery extends QueryBase implements QueryVariant {
 		/**
 		 * API name: {@code inner_hits}
 		 */
-		public final Builder innerHits(Consumer<InnerHits.Builder> fn) {
-			InnerHits.Builder builder = new InnerHits.Builder();
-			fn.accept(builder);
-			return this.innerHits(builder.build());
+		public final Builder innerHits(Function<InnerHits.Builder, ObjectBuilder<InnerHits>> fn) {
+			return this.innerHits(fn.apply(new InnerHits.Builder()).build());
 		}
 
 		/**
@@ -208,10 +204,8 @@ public class NestedQuery extends QueryBase implements QueryVariant {
 		/**
 		 * Required - API name: {@code query}
 		 */
-		public final Builder query(Consumer<Query.Builder> fn) {
-			Query.Builder builder = new Query.Builder();
-			fn.accept(builder);
-			return this.query(builder.build());
+		public final Builder query(Function<Query.Builder, ObjectBuilder<Query>> fn) {
+			return this.query(fn.apply(new Query.Builder()).build());
 		}
 
 		/**

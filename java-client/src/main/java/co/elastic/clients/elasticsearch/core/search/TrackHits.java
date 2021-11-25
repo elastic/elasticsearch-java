@@ -39,7 +39,7 @@ import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.Object;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.search._types.TrackHits
@@ -89,10 +89,8 @@ public class TrackHits implements TaggedUnion<TrackHits.Kind, Object>, JsonpSeri
 
 	}
 
-	public static TrackHits of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static TrackHits of(Function<Builder, ObjectBuilder<TrackHits>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**

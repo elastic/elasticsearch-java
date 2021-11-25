@@ -34,7 +34,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.info.Defaults
@@ -53,10 +53,8 @@ public class Defaults implements JsonpSerializable {
 
 	}
 
-	public static Defaults of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static Defaults of(Function<Builder, ObjectBuilder<Defaults>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -113,10 +111,8 @@ public class Defaults implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code anomaly_detectors}
 		 */
-		public final Builder anomalyDetectors(Consumer<AnomalyDetectors.Builder> fn) {
-			AnomalyDetectors.Builder builder = new AnomalyDetectors.Builder();
-			fn.accept(builder);
-			return this.anomalyDetectors(builder.build());
+		public final Builder anomalyDetectors(Function<AnomalyDetectors.Builder, ObjectBuilder<AnomalyDetectors>> fn) {
+			return this.anomalyDetectors(fn.apply(new AnomalyDetectors.Builder()).build());
 		}
 
 		/**
@@ -130,10 +126,8 @@ public class Defaults implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code datafeeds}
 		 */
-		public final Builder datafeeds(Consumer<Datafeeds.Builder> fn) {
-			Datafeeds.Builder builder = new Datafeeds.Builder();
-			fn.accept(builder);
-			return this.datafeeds(builder.build());
+		public final Builder datafeeds(Function<Datafeeds.Builder, ObjectBuilder<Datafeeds>> fn) {
+			return this.datafeeds(fn.apply(new Datafeeds.Builder()).build());
 		}
 
 		/**

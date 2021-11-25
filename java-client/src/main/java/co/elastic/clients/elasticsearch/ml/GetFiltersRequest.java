@@ -39,7 +39,7 @@ import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.get_filters.Request
@@ -64,10 +64,8 @@ public class GetFiltersRequest extends RequestBase {
 
 	}
 
-	public static GetFiltersRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static GetFiltersRequest of(Function<Builder, ObjectBuilder<GetFiltersRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**

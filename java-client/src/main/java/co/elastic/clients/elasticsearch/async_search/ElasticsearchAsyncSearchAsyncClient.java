@@ -35,7 +35,7 @@ import co.elastic.clients.transport.endpoints.EndpointWithResponseMapperAttr;
 import co.elastic.clients.util.ObjectBuilder;
 import java.io.IOException;
 import java.util.concurrent.CompletableFuture;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 /**
@@ -90,11 +90,10 @@ public class ElasticsearchAsyncSearchAsyncClient
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<DeleteAsyncSearchResponse> delete(Consumer<DeleteAsyncSearchRequest.Builder> fn)
+	public final CompletableFuture<DeleteAsyncSearchResponse> delete(
+			Function<DeleteAsyncSearchRequest.Builder, ObjectBuilder<DeleteAsyncSearchRequest>> fn)
 			throws IOException, ElasticsearchException {
-		DeleteAsyncSearchRequest.Builder builder = new DeleteAsyncSearchRequest.Builder();
-		fn.accept(builder);
-		return delete(builder.build());
+		return delete(fn.apply(new DeleteAsyncSearchRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: async_search.get
@@ -131,11 +130,9 @@ public class ElasticsearchAsyncSearchAsyncClient
 	 */
 
 	public final <TDocument> CompletableFuture<GetAsyncSearchResponse<TDocument>> get(
-			Consumer<GetAsyncSearchRequest.Builder> fn, Class<TDocument> tDocumentClass)
-			throws IOException, ElasticsearchException {
-		GetAsyncSearchRequest.Builder builder = new GetAsyncSearchRequest.Builder();
-		fn.accept(builder);
-		return get(builder.build(), tDocumentClass);
+			Function<GetAsyncSearchRequest.Builder, ObjectBuilder<GetAsyncSearchRequest>> fn,
+			Class<TDocument> tDocumentClass) throws IOException, ElasticsearchException {
+		return get(fn.apply(new GetAsyncSearchRequest.Builder()).build(), tDocumentClass);
 	}
 
 	// ----- Endpoint: async_search.status
@@ -172,11 +169,9 @@ public class ElasticsearchAsyncSearchAsyncClient
 	 */
 
 	public final <TDocument> CompletableFuture<AsyncSearchStatusResponse<TDocument>> status(
-			Consumer<AsyncSearchStatusRequest.Builder> fn, Class<TDocument> tDocumentClass)
-			throws IOException, ElasticsearchException {
-		AsyncSearchStatusRequest.Builder builder = new AsyncSearchStatusRequest.Builder();
-		fn.accept(builder);
-		return status(builder.build(), tDocumentClass);
+			Function<AsyncSearchStatusRequest.Builder, ObjectBuilder<AsyncSearchStatusRequest>> fn,
+			Class<TDocument> tDocumentClass) throws IOException, ElasticsearchException {
+		return status(fn.apply(new AsyncSearchStatusRequest.Builder()).build(), tDocumentClass);
 	}
 
 	// ----- Endpoint: async_search.submit
@@ -210,11 +205,10 @@ public class ElasticsearchAsyncSearchAsyncClient
 	 *      on elastic.co</a>
 	 */
 
-	public final <TDocument> CompletableFuture<SubmitResponse<TDocument>> submit(Consumer<SubmitRequest.Builder> fn,
-			Class<TDocument> tDocumentClass) throws IOException, ElasticsearchException {
-		SubmitRequest.Builder builder = new SubmitRequest.Builder();
-		fn.accept(builder);
-		return submit(builder.build(), tDocumentClass);
+	public final <TDocument> CompletableFuture<SubmitResponse<TDocument>> submit(
+			Function<SubmitRequest.Builder, ObjectBuilder<SubmitRequest>> fn, Class<TDocument> tDocumentClass)
+			throws IOException, ElasticsearchException {
+		return submit(fn.apply(new SubmitRequest.Builder()).build(), tDocumentClass);
 	}
 
 }

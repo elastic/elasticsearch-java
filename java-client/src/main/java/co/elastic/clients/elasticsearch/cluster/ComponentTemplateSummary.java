@@ -33,7 +33,6 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.MapBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
@@ -42,7 +41,6 @@ import java.lang.Long;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -73,10 +71,8 @@ public class ComponentTemplateSummary implements JsonpSerializable {
 
 	}
 
-	public static ComponentTemplateSummary of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static ComponentTemplateSummary of(Function<Builder, ObjectBuilder<ComponentTemplateSummary>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -195,9 +191,25 @@ public class ComponentTemplateSummary implements JsonpSerializable {
 
 		/**
 		 * API name: {@code _meta}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>meta</code>. Use
+		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
+		 * <code>meta</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetMap()
 		 */
-		public final Builder meta(@Nullable Map<String, JsonData> value) {
-			this.meta = value;
+		public final Builder meta(Map<String, JsonData> map) {
+			this.meta = _mapPutAll(this.meta, map);
+			return this;
+		}
+
+		/**
+		 * API name: {@code _meta}
+		 * <p>
+		 * Adds an entry to <code>meta</code>.
+		 */
+		public final Builder meta(String key, JsonData value) {
+			this.meta = _mapPut(this.meta, key, value);
 			return this;
 		}
 
@@ -211,15 +223,35 @@ public class ComponentTemplateSummary implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code settings}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>settings</code>. Use
+		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
+		 * <code>settings</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetMap()
 		 */
-		public final Builder settings(Map<String, IndexSettings> value) {
-			this.settings = value;
+		public final Builder settings(Map<String, IndexSettings> map) {
+			this.settings = _mapPutAll(this.settings, map);
 			return this;
 		}
 
-		public final Builder settings(
-				Function<MapBuilder<String, IndexSettings, IndexSettings.Builder>, ObjectBuilder<Map<String, IndexSettings>>> fn) {
-			return settings(fn.apply(new MapBuilder<>(IndexSettings.Builder::new)).build());
+		/**
+		 * Required - API name: {@code settings}
+		 * <p>
+		 * Adds an entry to <code>settings</code>.
+		 */
+		public final Builder settings(String key, IndexSettings value) {
+			this.settings = _mapPut(this.settings, key, value);
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code settings}
+		 * <p>
+		 * Adds an entry to <code>settings</code> using a builder lambda.
+		 */
+		public final Builder settings(String key, Function<IndexSettings.Builder, ObjectBuilder<IndexSettings>> fn) {
+			return settings(key, fn.apply(new IndexSettings.Builder()).build());
 		}
 
 		/**
@@ -233,23 +265,41 @@ public class ComponentTemplateSummary implements JsonpSerializable {
 		/**
 		 * API name: {@code mappings}
 		 */
-		public final Builder mappings(Consumer<TypeMapping.Builder> fn) {
-			TypeMapping.Builder builder = new TypeMapping.Builder();
-			fn.accept(builder);
-			return this.mappings(builder.build());
+		public final Builder mappings(Function<TypeMapping.Builder, ObjectBuilder<TypeMapping>> fn) {
+			return this.mappings(fn.apply(new TypeMapping.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code aliases}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>aliases</code>. Use
+		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
+		 * <code>aliases</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetMap()
 		 */
-		public final Builder aliases(@Nullable Map<String, AliasDefinition> value) {
-			this.aliases = value;
+		public final Builder aliases(Map<String, AliasDefinition> map) {
+			this.aliases = _mapPutAll(this.aliases, map);
 			return this;
 		}
 
-		public final Builder aliases(
-				Function<MapBuilder<String, AliasDefinition, AliasDefinition.Builder>, ObjectBuilder<Map<String, AliasDefinition>>> fn) {
-			return aliases(fn.apply(new MapBuilder<>(AliasDefinition.Builder::new)).build());
+		/**
+		 * API name: {@code aliases}
+		 * <p>
+		 * Adds an entry to <code>aliases</code>.
+		 */
+		public final Builder aliases(String key, AliasDefinition value) {
+			this.aliases = _mapPut(this.aliases, key, value);
+			return this;
+		}
+
+		/**
+		 * API name: {@code aliases}
+		 * <p>
+		 * Adds an entry to <code>aliases</code> using a builder lambda.
+		 */
+		public final Builder aliases(String key, Function<AliasDefinition.Builder, ObjectBuilder<AliasDefinition>> fn) {
+			return aliases(key, fn.apply(new AliasDefinition.Builder()).build());
 		}
 
 		/**

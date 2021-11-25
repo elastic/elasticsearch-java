@@ -40,7 +40,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.close_point_in_time.Request
@@ -56,10 +56,8 @@ public class ClosePointInTimeRequest extends RequestBase implements JsonpSeriali
 
 	}
 
-	public static ClosePointInTimeRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static ClosePointInTimeRequest of(Function<Builder, ObjectBuilder<ClosePointInTimeRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**

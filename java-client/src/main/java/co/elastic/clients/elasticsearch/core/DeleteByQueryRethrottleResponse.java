@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 
 // typedef: _global.delete_by_query_rethrottle.Response
 @JsonpDeserializable
@@ -43,10 +43,9 @@ public class DeleteByQueryRethrottleResponse extends ListResponse {
 
 	}
 
-	public static DeleteByQueryRethrottleResponse of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static DeleteByQueryRethrottleResponse of(
+			Function<Builder, ObjectBuilder<DeleteByQueryRethrottleResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------

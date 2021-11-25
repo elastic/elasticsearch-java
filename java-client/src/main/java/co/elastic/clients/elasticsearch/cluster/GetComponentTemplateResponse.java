@@ -29,15 +29,12 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -55,10 +52,8 @@ public class GetComponentTemplateResponse implements JsonpSerializable {
 
 	}
 
-	public static GetComponentTemplateResponse of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static GetComponentTemplateResponse of(Function<Builder, ObjectBuilder<GetComponentTemplateResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -102,26 +97,36 @@ public class GetComponentTemplateResponse implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code component_templates}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>componentTemplates</code>.
+		 * Use <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>componentTemplates</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder componentTemplates(List<ComponentTemplate> value) {
-			this.componentTemplates = value;
+		public final Builder componentTemplates(List<ComponentTemplate> list) {
+			this.componentTemplates = _listAddAll(this.componentTemplates, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code component_templates}
+		 * <p>
+		 * Adds one or more values to <code>componentTemplates</code>.
 		 */
-		public final Builder componentTemplates(ComponentTemplate... value) {
-			this.componentTemplates = Arrays.asList(value);
+		public final Builder componentTemplates(ComponentTemplate value, ComponentTemplate... values) {
+			this.componentTemplates = _listAdd(this.componentTemplates, value, values);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code component_templates}
+		 * <p>
+		 * Adds a value to <code>componentTemplates</code> using a builder lambda.
 		 */
 		public final Builder componentTemplates(
-				Function<ListBuilder<ComponentTemplate, ComponentTemplate.Builder>, ObjectBuilder<List<ComponentTemplate>>> fn) {
-			return componentTemplates(fn.apply(new ListBuilder<>(ComponentTemplate.Builder::new)).build());
+				Function<ComponentTemplate.Builder, ObjectBuilder<ComponentTemplate>> fn) {
+			return componentTemplates(fn.apply(new ComponentTemplate.Builder()).build());
 		}
 
 		/**

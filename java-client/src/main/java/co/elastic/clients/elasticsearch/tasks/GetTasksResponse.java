@@ -36,7 +36,7 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: tasks.get.Response
@@ -63,10 +63,8 @@ public class GetTasksResponse implements JsonpSerializable {
 
 	}
 
-	public static GetTasksResponse of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static GetTasksResponse of(Function<Builder, ObjectBuilder<GetTasksResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -164,10 +162,8 @@ public class GetTasksResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code task}
 		 */
-		public final Builder task(Consumer<Info.Builder> fn) {
-			Info.Builder builder = new Info.Builder();
-			fn.accept(builder);
-			return this.task(builder.build());
+		public final Builder task(Function<Info.Builder, ObjectBuilder<Info>> fn) {
+			return this.task(fn.apply(new Info.Builder()).build());
 		}
 
 		/**
@@ -181,10 +177,8 @@ public class GetTasksResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code response}
 		 */
-		public final Builder response(Consumer<Status.Builder> fn) {
-			Status.Builder builder = new Status.Builder();
-			fn.accept(builder);
-			return this.response(builder.build());
+		public final Builder response(Function<Status.Builder, ObjectBuilder<Status>> fn) {
+			return this.response(fn.apply(new Status.Builder()).build());
 		}
 
 		/**
@@ -198,10 +192,8 @@ public class GetTasksResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code error}
 		 */
-		public final Builder error(Consumer<ErrorCause.Builder> fn) {
-			ErrorCause.Builder builder = new ErrorCause.Builder();
-			fn.accept(builder);
-			return this.error(builder.build());
+		public final Builder error(Function<ErrorCause.Builder, ObjectBuilder<ErrorCause>> fn) {
+			return this.error(fn.apply(new ErrorCause.Builder()).build());
 		}
 
 		/**

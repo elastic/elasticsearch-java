@@ -36,7 +36,7 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: autoscaling.get_autoscaling_capacity.AutoscalingDecider
@@ -60,10 +60,8 @@ public class AutoscalingDecider implements JsonpSerializable {
 
 	}
 
-	public static AutoscalingDecider of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static AutoscalingDecider of(Function<Builder, ObjectBuilder<AutoscalingDecider>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -141,10 +139,9 @@ public class AutoscalingDecider implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code required_capacity}
 		 */
-		public final Builder requiredCapacity(Consumer<AutoscalingCapacity.Builder> fn) {
-			AutoscalingCapacity.Builder builder = new AutoscalingCapacity.Builder();
-			fn.accept(builder);
-			return this.requiredCapacity(builder.build());
+		public final Builder requiredCapacity(
+				Function<AutoscalingCapacity.Builder, ObjectBuilder<AutoscalingCapacity>> fn) {
+			return this.requiredCapacity(fn.apply(new AutoscalingCapacity.Builder()).build());
 		}
 
 		/**

@@ -39,7 +39,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.preview_data_frame_analytics.DataframePreviewConfig
@@ -70,10 +70,8 @@ public class DataframePreviewConfig implements JsonpSerializable {
 
 	}
 
-	public static DataframePreviewConfig of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static DataframePreviewConfig of(Function<Builder, ObjectBuilder<DataframePreviewConfig>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -179,10 +177,9 @@ public class DataframePreviewConfig implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code source}
 		 */
-		public final Builder source(Consumer<DataframeAnalyticsSource.Builder> fn) {
-			DataframeAnalyticsSource.Builder builder = new DataframeAnalyticsSource.Builder();
-			fn.accept(builder);
-			return this.source(builder.build());
+		public final Builder source(
+				Function<DataframeAnalyticsSource.Builder, ObjectBuilder<DataframeAnalyticsSource>> fn) {
+			return this.source(fn.apply(new DataframeAnalyticsSource.Builder()).build());
 		}
 
 		/**
@@ -196,10 +193,8 @@ public class DataframePreviewConfig implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code analysis}
 		 */
-		public final Builder analysis(Consumer<DataframeAnalysis.Builder> fn) {
-			DataframeAnalysis.Builder builder = new DataframeAnalysis.Builder();
-			fn.accept(builder);
-			return this.analysis(builder.build());
+		public final Builder analysis(Function<DataframeAnalysis.Builder, ObjectBuilder<DataframeAnalysis>> fn) {
+			return this.analysis(fn.apply(new DataframeAnalysis.Builder()).build());
 		}
 
 		/**
@@ -229,10 +224,9 @@ public class DataframePreviewConfig implements JsonpSerializable {
 		/**
 		 * API name: {@code analyzed_fields}
 		 */
-		public final Builder analyzedFields(Consumer<DataframeAnalysisAnalyzedFields.Builder> fn) {
-			DataframeAnalysisAnalyzedFields.Builder builder = new DataframeAnalysisAnalyzedFields.Builder();
-			fn.accept(builder);
-			return this.analyzedFields(builder.build());
+		public final Builder analyzedFields(
+				Function<DataframeAnalysisAnalyzedFields.Builder, ObjectBuilder<DataframeAnalysisAnalyzedFields>> fn) {
+			return this.analyzedFields(fn.apply(new DataframeAnalysisAnalyzedFields.Builder()).build());
 		}
 
 		/**

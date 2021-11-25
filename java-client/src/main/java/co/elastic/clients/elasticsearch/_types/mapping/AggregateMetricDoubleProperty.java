@@ -32,10 +32,9 @@ import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.mapping.AggregateMetricDoubleProperty
@@ -55,10 +54,8 @@ public class AggregateMetricDoubleProperty extends PropertyBase implements Prope
 
 	}
 
-	public static AggregateMetricDoubleProperty of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static AggregateMetricDoubleProperty of(Function<Builder, ObjectBuilder<AggregateMetricDoubleProperty>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -125,17 +122,25 @@ public class AggregateMetricDoubleProperty extends PropertyBase implements Prope
 
 		/**
 		 * Required - API name: {@code metrics}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>metrics</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>metrics</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder metrics(List<String> value) {
-			this.metrics = value;
+		public final Builder metrics(List<String> list) {
+			this.metrics = _listAddAll(this.metrics, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code metrics}
+		 * <p>
+		 * Adds one or more values to <code>metrics</code>.
 		 */
-		public final Builder metrics(String... value) {
-			this.metrics = Arrays.asList(value);
+		public final Builder metrics(String value, String... values) {
+			this.metrics = _listAdd(this.metrics, value, values);
 			return this;
 		}
 

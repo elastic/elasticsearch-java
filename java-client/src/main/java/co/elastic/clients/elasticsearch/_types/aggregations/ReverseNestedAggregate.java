@@ -30,7 +30,7 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 
 // typedef: _types.aggregations.ReverseNestedAggregate
 @JsonpDeserializable
@@ -42,10 +42,8 @@ public class ReverseNestedAggregate extends SingleBucketAggregateBase implements
 
 	}
 
-	public static ReverseNestedAggregate of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static ReverseNestedAggregate of(Function<Builder, ObjectBuilder<ReverseNestedAggregate>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**

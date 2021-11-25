@@ -38,7 +38,7 @@ import co.elastic.clients.util.TaggedUnionUtils;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Object;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: nodes.reload_secure_settings.NodeReloadResult
@@ -76,10 +76,8 @@ public class NodeReloadResult implements TaggedUnion<NodeReloadResult.Kind, Obje
 
 	}
 
-	public static NodeReloadResult of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static NodeReloadResult of(Function<Builder, ObjectBuilder<NodeReloadResult>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -134,10 +132,8 @@ public class NodeReloadResult implements TaggedUnion<NodeReloadResult.Kind, Obje
 			return this;
 		}
 
-		public ObjectBuilder<NodeReloadResult> stats(Consumer<Stats.Builder> fn) {
-			Stats.Builder builder = new Stats.Builder();
-			fn.accept(builder);
-			return this.stats(builder.build());
+		public ObjectBuilder<NodeReloadResult> stats(Function<Stats.Builder, ObjectBuilder<Stats>> fn) {
+			return this.stats(fn.apply(new Stats.Builder()).build());
 		}
 
 		public ObjectBuilder<NodeReloadResult> error(NodeReloadError v) {
@@ -146,10 +142,9 @@ public class NodeReloadResult implements TaggedUnion<NodeReloadResult.Kind, Obje
 			return this;
 		}
 
-		public ObjectBuilder<NodeReloadResult> error(Consumer<NodeReloadError.Builder> fn) {
-			NodeReloadError.Builder builder = new NodeReloadError.Builder();
-			fn.accept(builder);
-			return this.error(builder.build());
+		public ObjectBuilder<NodeReloadResult> error(
+				Function<NodeReloadError.Builder, ObjectBuilder<NodeReloadError>> fn) {
+			return this.error(fn.apply(new NodeReloadError.Builder()).build());
 		}
 
 		public NodeReloadResult build() {

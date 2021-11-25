@@ -34,7 +34,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.VariableWidthHistogramBucket
@@ -69,10 +69,8 @@ public class VariableWidthHistogramBucket extends MultiBucketBase {
 
 	}
 
-	public static VariableWidthHistogramBucket of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static VariableWidthHistogramBucket of(Function<Builder, ObjectBuilder<VariableWidthHistogramBucket>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**

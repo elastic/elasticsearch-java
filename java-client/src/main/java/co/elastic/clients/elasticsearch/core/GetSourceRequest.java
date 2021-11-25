@@ -39,12 +39,11 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Long;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
@@ -101,10 +100,8 @@ public class GetSourceRequest {
 
 	}
 
-	public static GetSourceRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static GetSourceRequest of(Function<Builder, ObjectBuilder<GetSourceRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -281,19 +278,23 @@ public class GetSourceRequest {
 		 * <p>
 		 * API name: {@code _source}
 		 */
-		public final Builder source(Consumer<SourceConfigParam.Builder> fn) {
-			SourceConfigParam.Builder builder = new SourceConfigParam.Builder();
-			fn.accept(builder);
-			return this.source(builder.build());
+		public final Builder source(Function<SourceConfigParam.Builder, ObjectBuilder<SourceConfigParam>> fn) {
+			return this.source(fn.apply(new SourceConfigParam.Builder()).build());
 		}
 
 		/**
 		 * A comma-separated list of source fields to exclude in the response.
 		 * <p>
 		 * API name: {@code _source_excludes}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>sourceExcludes</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>sourceExcludes</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder sourceExcludes(@Nullable List<String> value) {
-			this.sourceExcludes = value;
+		public final Builder sourceExcludes(List<String> list) {
+			this.sourceExcludes = _listAddAll(this.sourceExcludes, list);
 			return this;
 		}
 
@@ -301,9 +302,11 @@ public class GetSourceRequest {
 		 * A comma-separated list of source fields to exclude in the response.
 		 * <p>
 		 * API name: {@code _source_excludes}
+		 * <p>
+		 * Adds one or more values to <code>sourceExcludes</code>.
 		 */
-		public final Builder sourceExcludes(String... value) {
-			this.sourceExcludes = Arrays.asList(value);
+		public final Builder sourceExcludes(String value, String... values) {
+			this.sourceExcludes = _listAdd(this.sourceExcludes, value, values);
 			return this;
 		}
 
@@ -311,9 +314,15 @@ public class GetSourceRequest {
 		 * A comma-separated list of source fields to include in the response.
 		 * <p>
 		 * API name: {@code _source_includes}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>sourceIncludes</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>sourceIncludes</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder sourceIncludes(@Nullable List<String> value) {
-			this.sourceIncludes = value;
+		public final Builder sourceIncludes(List<String> list) {
+			this.sourceIncludes = _listAddAll(this.sourceIncludes, list);
 			return this;
 		}
 
@@ -321,9 +330,11 @@ public class GetSourceRequest {
 		 * A comma-separated list of source fields to include in the response.
 		 * <p>
 		 * API name: {@code _source_includes}
+		 * <p>
+		 * Adds one or more values to <code>sourceIncludes</code>.
 		 */
-		public final Builder sourceIncludes(String... value) {
-			this.sourceIncludes = Arrays.asList(value);
+		public final Builder sourceIncludes(String value, String... values) {
+			this.sourceIncludes = _listAdd(this.sourceIncludes, value, values);
 			return this;
 		}
 
@@ -391,17 +402,25 @@ public class GetSourceRequest {
 
 		/**
 		 * API name: {@code stored_fields}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>storedFields</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>storedFields</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder storedFields(@Nullable List<String> value) {
-			this.storedFields = value;
+		public final Builder storedFields(List<String> list) {
+			this.storedFields = _listAddAll(this.storedFields, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code stored_fields}
+		 * <p>
+		 * Adds one or more values to <code>storedFields</code>.
 		 */
-		public final Builder storedFields(String... value) {
-			this.storedFields = Arrays.asList(value);
+		public final Builder storedFields(String value, String... values) {
+			this.storedFields = _listAdd(this.storedFields, value, values);
 			return this;
 		}
 

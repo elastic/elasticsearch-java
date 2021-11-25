@@ -38,7 +38,7 @@ import java.lang.Number;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.HttpInputRequestDefinition
@@ -371,10 +371,9 @@ public class HttpInputRequestDefinition implements JsonpSerializable {
 		/**
 		 * API name: {@code auth}
 		 */
-		public final BuilderT auth(Consumer<HttpInputAuthentication.Builder> fn) {
-			HttpInputAuthentication.Builder builder = new HttpInputAuthentication.Builder();
-			fn.accept(builder);
-			return this.auth(builder.build());
+		public final BuilderT auth(
+				Function<HttpInputAuthentication.Builder, ObjectBuilder<HttpInputAuthentication>> fn) {
+			return this.auth(fn.apply(new HttpInputAuthentication.Builder()).build());
 		}
 
 		/**
@@ -396,17 +395,31 @@ public class HttpInputRequestDefinition implements JsonpSerializable {
 		/**
 		 * API name: {@code connection_timeout}
 		 */
-		public final BuilderT connectionTimeout(Consumer<Time.Builder> fn) {
-			Time.Builder builder = new Time.Builder();
-			fn.accept(builder);
-			return this.connectionTimeout(builder.build());
+		public final BuilderT connectionTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.connectionTimeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code headers}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>headers</code>. Use
+		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
+		 * <code>headers</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetMap()
 		 */
-		public final BuilderT headers(@Nullable Map<String, String> value) {
-			this.headers = value;
+		public final BuilderT headers(Map<String, String> map) {
+			this.headers = _mapPutAll(this.headers, map);
+			return self();
+		}
+
+		/**
+		 * API name: {@code headers}
+		 * <p>
+		 * Adds an entry to <code>headers</code>.
+		 */
+		public final BuilderT headers(String key, String value) {
+			this.headers = _mapPut(this.headers, key, value);
 			return self();
 		}
 
@@ -428,9 +441,25 @@ public class HttpInputRequestDefinition implements JsonpSerializable {
 
 		/**
 		 * API name: {@code params}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>params</code>. Use
+		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
+		 * <code>params</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetMap()
 		 */
-		public final BuilderT params(@Nullable Map<String, String> value) {
-			this.params = value;
+		public final BuilderT params(Map<String, String> map) {
+			this.params = _mapPutAll(this.params, map);
+			return self();
+		}
+
+		/**
+		 * API name: {@code params}
+		 * <p>
+		 * Adds an entry to <code>params</code>.
+		 */
+		public final BuilderT params(String key, String value) {
+			this.params = _mapPut(this.params, key, value);
 			return self();
 		}
 
@@ -461,10 +490,8 @@ public class HttpInputRequestDefinition implements JsonpSerializable {
 		/**
 		 * API name: {@code proxy}
 		 */
-		public final BuilderT proxy(Consumer<HttpInputProxy.Builder> fn) {
-			HttpInputProxy.Builder builder = new HttpInputProxy.Builder();
-			fn.accept(builder);
-			return this.proxy(builder.build());
+		public final BuilderT proxy(Function<HttpInputProxy.Builder, ObjectBuilder<HttpInputProxy>> fn) {
+			return this.proxy(fn.apply(new HttpInputProxy.Builder()).build());
 		}
 
 		/**
@@ -478,10 +505,8 @@ public class HttpInputRequestDefinition implements JsonpSerializable {
 		/**
 		 * API name: {@code read_timeout}
 		 */
-		public final BuilderT readTimeout(Consumer<Time.Builder> fn) {
-			Time.Builder builder = new Time.Builder();
-			fn.accept(builder);
-			return this.readTimeout(builder.build());
+		public final BuilderT readTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.readTimeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**

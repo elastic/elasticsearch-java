@@ -37,7 +37,7 @@ import java.lang.String;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.stats.IndicesStats
@@ -63,10 +63,8 @@ public class IndicesStats implements JsonpSerializable {
 
 	}
 
-	public static IndicesStats of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static IndicesStats of(Function<Builder, ObjectBuilder<IndicesStats>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -168,17 +166,31 @@ public class IndicesStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code primaries}
 		 */
-		public final Builder primaries(Consumer<IndexStats.Builder> fn) {
-			IndexStats.Builder builder = new IndexStats.Builder();
-			fn.accept(builder);
-			return this.primaries(builder.build());
+		public final Builder primaries(Function<IndexStats.Builder, ObjectBuilder<IndexStats>> fn) {
+			return this.primaries(fn.apply(new IndexStats.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code shards}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>shards</code>. Use
+		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
+		 * <code>shards</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetMap()
 		 */
-		public final Builder shards(@Nullable Map<String, List<ShardStats>> value) {
-			this.shards = value;
+		public final Builder shards(Map<String, List<ShardStats>> map) {
+			this.shards = _mapPutAll(this.shards, map);
+			return this;
+		}
+
+		/**
+		 * API name: {@code shards}
+		 * <p>
+		 * Adds an entry to <code>shards</code>.
+		 */
+		public final Builder shards(String key, List<ShardStats> value) {
+			this.shards = _mapPut(this.shards, key, value);
 			return this;
 		}
 
@@ -193,10 +205,8 @@ public class IndicesStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code total}
 		 */
-		public final Builder total(Consumer<IndexStats.Builder> fn) {
-			IndexStats.Builder builder = new IndexStats.Builder();
-			fn.accept(builder);
-			return this.total(builder.build());
+		public final Builder total(Function<IndexStats.Builder, ObjectBuilder<IndexStats>> fn) {
+			return this.total(fn.apply(new IndexStats.Builder()).build());
 		}
 
 		/**

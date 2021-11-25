@@ -34,7 +34,7 @@ import co.elastic.clients.transport.TransportOptions;
 import co.elastic.clients.util.ObjectBuilder;
 import java.io.IOException;
 import java.util.concurrent.CompletableFuture;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 /**
@@ -84,11 +84,10 @@ public class ElasticsearchTasksAsyncClient extends ApiClient<ElasticsearchTransp
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<CancelResponse> cancel(Consumer<CancelRequest.Builder> fn)
+	public final CompletableFuture<CancelResponse> cancel(
+			Function<CancelRequest.Builder, ObjectBuilder<CancelRequest>> fn)
 			throws IOException, ElasticsearchException {
-		CancelRequest.Builder builder = new CancelRequest.Builder();
-		fn.accept(builder);
-		return cancel(builder.build());
+		return cancel(fn.apply(new CancelRequest.Builder()).build());
 	}
 
 	/**
@@ -132,11 +131,10 @@ public class ElasticsearchTasksAsyncClient extends ApiClient<ElasticsearchTransp
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<GetTasksResponse> get(Consumer<GetTasksRequest.Builder> fn)
+	public final CompletableFuture<GetTasksResponse> get(
+			Function<GetTasksRequest.Builder, ObjectBuilder<GetTasksRequest>> fn)
 			throws IOException, ElasticsearchException {
-		GetTasksRequest.Builder builder = new GetTasksRequest.Builder();
-		fn.accept(builder);
-		return get(builder.build());
+		return get(fn.apply(new GetTasksRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: tasks.list
@@ -167,11 +165,9 @@ public class ElasticsearchTasksAsyncClient extends ApiClient<ElasticsearchTransp
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<ListResponse> list(Consumer<ListRequest.Builder> fn)
+	public final CompletableFuture<ListResponse> list(Function<ListRequest.Builder, ObjectBuilder<ListRequest>> fn)
 			throws IOException, ElasticsearchException {
-		ListRequest.Builder builder = new ListRequest.Builder();
-		fn.accept(builder);
-		return list(builder.build());
+		return list(fn.apply(new ListRequest.Builder()).build());
 	}
 
 	/**

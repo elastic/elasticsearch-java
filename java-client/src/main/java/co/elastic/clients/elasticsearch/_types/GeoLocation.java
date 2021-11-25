@@ -40,7 +40,7 @@ import java.lang.Object;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.GeoLocation
@@ -78,10 +78,8 @@ public class GeoLocation implements TaggedUnion<GeoLocation.Kind, Object>, Jsonp
 
 	}
 
-	public static GeoLocation of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static GeoLocation of(Function<Builder, ObjectBuilder<GeoLocation>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -192,10 +190,9 @@ public class GeoLocation implements TaggedUnion<GeoLocation.Kind, Object>, Jsonp
 			return this;
 		}
 
-		public ObjectBuilder<GeoLocation> geohash(Consumer<GeoHashLocation.Builder> fn) {
-			GeoHashLocation.Builder builder = new GeoHashLocation.Builder();
-			fn.accept(builder);
-			return this.geohash(builder.build());
+		public ObjectBuilder<GeoLocation> geohash(
+				Function<GeoHashLocation.Builder, ObjectBuilder<GeoHashLocation>> fn) {
+			return this.geohash(fn.apply(new GeoHashLocation.Builder()).build());
 		}
 
 		public ObjectBuilder<GeoLocation> latlon(LatLonGeoLocation v) {
@@ -204,10 +201,9 @@ public class GeoLocation implements TaggedUnion<GeoLocation.Kind, Object>, Jsonp
 			return this;
 		}
 
-		public ObjectBuilder<GeoLocation> latlon(Consumer<LatLonGeoLocation.Builder> fn) {
-			LatLonGeoLocation.Builder builder = new LatLonGeoLocation.Builder();
-			fn.accept(builder);
-			return this.latlon(builder.build());
+		public ObjectBuilder<GeoLocation> latlon(
+				Function<LatLonGeoLocation.Builder, ObjectBuilder<LatLonGeoLocation>> fn) {
+			return this.latlon(fn.apply(new LatLonGeoLocation.Builder()).build());
 		}
 
 		public ObjectBuilder<GeoLocation> text(String v) {

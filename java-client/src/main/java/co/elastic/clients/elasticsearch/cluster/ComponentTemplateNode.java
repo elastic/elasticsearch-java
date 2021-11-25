@@ -38,7 +38,7 @@ import java.lang.Long;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cluster._types.ComponentTemplateNode
@@ -61,10 +61,8 @@ public class ComponentTemplateNode implements JsonpSerializable {
 
 	}
 
-	public static ComponentTemplateNode of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static ComponentTemplateNode of(Function<Builder, ObjectBuilder<ComponentTemplateNode>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -147,10 +145,9 @@ public class ComponentTemplateNode implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code template}
 		 */
-		public final Builder template(Consumer<ComponentTemplateSummary.Builder> fn) {
-			ComponentTemplateSummary.Builder builder = new ComponentTemplateSummary.Builder();
-			fn.accept(builder);
-			return this.template(builder.build());
+		public final Builder template(
+				Function<ComponentTemplateSummary.Builder, ObjectBuilder<ComponentTemplateSummary>> fn) {
+			return this.template(fn.apply(new ComponentTemplateSummary.Builder()).build());
 		}
 
 		/**
@@ -163,9 +160,25 @@ public class ComponentTemplateNode implements JsonpSerializable {
 
 		/**
 		 * API name: {@code _meta}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>meta</code>. Use
+		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
+		 * <code>meta</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetMap()
 		 */
-		public final Builder meta(@Nullable Map<String, JsonData> value) {
-			this.meta = value;
+		public final Builder meta(Map<String, JsonData> map) {
+			this.meta = _mapPutAll(this.meta, map);
+			return this;
+		}
+
+		/**
+		 * API name: {@code _meta}
+		 * <p>
+		 * Adds an entry to <code>meta</code>.
+		 */
+		public final Builder meta(String key, JsonData value) {
+			this.meta = _mapPut(this.meta, key, value);
 			return this;
 		}
 

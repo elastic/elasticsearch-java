@@ -34,7 +34,7 @@ import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.mapping.SearchAsYouTypeProperty
@@ -80,10 +80,8 @@ public class SearchAsYouTypeProperty extends CorePropertyBase implements Propert
 
 	}
 
-	public static SearchAsYouTypeProperty of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static SearchAsYouTypeProperty of(Function<Builder, ObjectBuilder<SearchAsYouTypeProperty>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**

@@ -36,7 +36,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: nodes.info.NodeInfoXpackSecuritySsl
@@ -52,10 +52,8 @@ public class NodeInfoXpackSecuritySsl implements JsonpSerializable {
 
 	}
 
-	public static NodeInfoXpackSecuritySsl of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static NodeInfoXpackSecuritySsl of(Function<Builder, ObjectBuilder<NodeInfoXpackSecuritySsl>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -100,9 +98,25 @@ public class NodeInfoXpackSecuritySsl implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code ssl}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>ssl</code>. Use
+		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset <code>ssl</code>
+		 * to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetMap()
 		 */
-		public final Builder ssl(Map<String, String> value) {
-			this.ssl = value;
+		public final Builder ssl(Map<String, String> map) {
+			this.ssl = _mapPutAll(this.ssl, map);
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code ssl}
+		 * <p>
+		 * Adds an entry to <code>ssl</code>.
+		 */
+		public final Builder ssl(String key, String value) {
+			this.ssl = _mapPut(this.ssl, key, value);
 			return this;
 		}
 

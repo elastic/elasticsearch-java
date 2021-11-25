@@ -36,7 +36,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: xpack.info.Feature
@@ -63,10 +63,8 @@ public class Feature implements JsonpSerializable {
 
 	}
 
-	public static Feature of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static Feature of(Function<Builder, ObjectBuilder<Feature>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -180,10 +178,9 @@ public class Feature implements JsonpSerializable {
 		/**
 		 * API name: {@code native_code_info}
 		 */
-		public final Builder nativeCodeInfo(Consumer<NativeCodeInformation.Builder> fn) {
-			NativeCodeInformation.Builder builder = new NativeCodeInformation.Builder();
-			fn.accept(builder);
-			return this.nativeCodeInfo(builder.build());
+		public final Builder nativeCodeInfo(
+				Function<NativeCodeInformation.Builder, ObjectBuilder<NativeCodeInformation>> fn) {
+			return this.nativeCodeInfo(fn.apply(new NativeCodeInformation.Builder()).build());
 		}
 
 		/**

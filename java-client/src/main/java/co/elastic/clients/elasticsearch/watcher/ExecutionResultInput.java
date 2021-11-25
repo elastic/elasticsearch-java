@@ -37,7 +37,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.ExecutionResultInput
@@ -59,10 +59,8 @@ public class ExecutionResultInput implements JsonpSerializable {
 
 	}
 
-	public static ExecutionResultInput of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static ExecutionResultInput of(Function<Builder, ObjectBuilder<ExecutionResultInput>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -129,9 +127,25 @@ public class ExecutionResultInput implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code payload}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>payload</code>. Use
+		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
+		 * <code>payload</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetMap()
 		 */
-		public final Builder payload(Map<String, JsonData> value) {
-			this.payload = value;
+		public final Builder payload(Map<String, JsonData> map) {
+			this.payload = _mapPutAll(this.payload, map);
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code payload}
+		 * <p>
+		 * Adds an entry to <code>payload</code>.
+		 */
+		public final Builder payload(String key, JsonData value) {
+			this.payload = _mapPut(this.payload, key, value);
 			return this;
 		}
 

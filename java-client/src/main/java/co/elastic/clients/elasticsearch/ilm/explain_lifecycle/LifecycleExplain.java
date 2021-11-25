@@ -37,7 +37,7 @@ import co.elastic.clients.util.TaggedUnion;
 import co.elastic.clients.util.TaggedUnionUtils;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ilm.explain_lifecycle.LifecycleExplain
@@ -98,10 +98,8 @@ public class LifecycleExplain
 
 	}
 
-	public static LifecycleExplain of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static LifecycleExplain of(Function<Builder, ObjectBuilder<LifecycleExplain>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -155,10 +153,9 @@ public class LifecycleExplain
 			return this;
 		}
 
-		public ObjectBuilder<LifecycleExplain> true_(Consumer<LifecycleExplainManaged.Builder> fn) {
-			LifecycleExplainManaged.Builder builder = new LifecycleExplainManaged.Builder();
-			fn.accept(builder);
-			return this.true_(builder.build());
+		public ObjectBuilder<LifecycleExplain> true_(
+				Function<LifecycleExplainManaged.Builder, ObjectBuilder<LifecycleExplainManaged>> fn) {
+			return this.true_(fn.apply(new LifecycleExplainManaged.Builder()).build());
 		}
 
 		public ObjectBuilder<LifecycleExplain> false_(LifecycleExplainUnmanaged v) {
@@ -167,10 +164,9 @@ public class LifecycleExplain
 			return this;
 		}
 
-		public ObjectBuilder<LifecycleExplain> false_(Consumer<LifecycleExplainUnmanaged.Builder> fn) {
-			LifecycleExplainUnmanaged.Builder builder = new LifecycleExplainUnmanaged.Builder();
-			fn.accept(builder);
-			return this.false_(builder.build());
+		public ObjectBuilder<LifecycleExplain> false_(
+				Function<LifecycleExplainUnmanaged.Builder, ObjectBuilder<LifecycleExplainUnmanaged>> fn) {
+			return this.false_(fn.apply(new LifecycleExplainUnmanaged.Builder()).build());
 		}
 
 		public LifecycleExplain build() {

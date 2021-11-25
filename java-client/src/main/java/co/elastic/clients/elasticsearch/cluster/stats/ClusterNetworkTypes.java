@@ -37,7 +37,7 @@ import java.lang.Integer;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cluster.stats.ClusterNetworkTypes
@@ -56,10 +56,8 @@ public class ClusterNetworkTypes implements JsonpSerializable {
 
 	}
 
-	public static ClusterNetworkTypes of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static ClusterNetworkTypes of(Function<Builder, ObjectBuilder<ClusterNetworkTypes>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -124,17 +122,49 @@ public class ClusterNetworkTypes implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code http_types}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>httpTypes</code>. Use
+		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
+		 * <code>httpTypes</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetMap()
 		 */
-		public final Builder httpTypes(Map<String, Integer> value) {
-			this.httpTypes = value;
+		public final Builder httpTypes(Map<String, Integer> map) {
+			this.httpTypes = _mapPutAll(this.httpTypes, map);
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code http_types}
+		 * <p>
+		 * Adds an entry to <code>httpTypes</code>.
+		 */
+		public final Builder httpTypes(String key, Integer value) {
+			this.httpTypes = _mapPut(this.httpTypes, key, value);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code transport_types}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>transportTypes</code>. Use
+		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
+		 * <code>transportTypes</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetMap()
 		 */
-		public final Builder transportTypes(Map<String, Integer> value) {
-			this.transportTypes = value;
+		public final Builder transportTypes(Map<String, Integer> map) {
+			this.transportTypes = _mapPutAll(this.transportTypes, map);
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code transport_types}
+		 * <p>
+		 * Adds an entry to <code>transportTypes</code>.
+		 */
+		public final Builder transportTypes(String key, Integer value) {
+			this.transportTypes = _mapPut(this.transportTypes, key, value);
 			return this;
 		}
 

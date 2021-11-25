@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 
 // typedef: ml.set_upgrade_mode.Response
 @JsonpDeserializable
@@ -43,10 +43,8 @@ public class SetUpgradeModeResponse extends AcknowledgedResponseBase {
 
 	}
 
-	public static SetUpgradeModeResponse of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static SetUpgradeModeResponse of(Function<Builder, ObjectBuilder<SetUpgradeModeResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------

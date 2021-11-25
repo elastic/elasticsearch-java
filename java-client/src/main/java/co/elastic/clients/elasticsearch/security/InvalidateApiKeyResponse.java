@@ -30,17 +30,14 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -68,10 +65,8 @@ public class InvalidateApiKeyResponse implements JsonpSerializable {
 
 	}
 
-	public static InvalidateApiKeyResponse of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static InvalidateApiKeyResponse of(Function<Builder, ObjectBuilder<InvalidateApiKeyResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -174,57 +169,83 @@ public class InvalidateApiKeyResponse implements JsonpSerializable {
 
 		/**
 		 * API name: {@code error_details}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>errorDetails</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>errorDetails</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder errorDetails(@Nullable List<ErrorCause> value) {
-			this.errorDetails = value;
+		public final Builder errorDetails(List<ErrorCause> list) {
+			this.errorDetails = _listAddAll(this.errorDetails, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code error_details}
+		 * <p>
+		 * Adds one or more values to <code>errorDetails</code>.
 		 */
-		public final Builder errorDetails(ErrorCause... value) {
-			this.errorDetails = Arrays.asList(value);
+		public final Builder errorDetails(ErrorCause value, ErrorCause... values) {
+			this.errorDetails = _listAdd(this.errorDetails, value, values);
 			return this;
 		}
 
 		/**
 		 * API name: {@code error_details}
+		 * <p>
+		 * Adds a value to <code>errorDetails</code> using a builder lambda.
 		 */
-		public final Builder errorDetails(
-				Function<ListBuilder<ErrorCause, ErrorCause.Builder>, ObjectBuilder<List<ErrorCause>>> fn) {
-			return errorDetails(fn.apply(new ListBuilder<>(ErrorCause.Builder::new)).build());
+		public final Builder errorDetails(Function<ErrorCause.Builder, ObjectBuilder<ErrorCause>> fn) {
+			return errorDetails(fn.apply(new ErrorCause.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code invalidated_api_keys}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>invalidatedApiKeys</code>.
+		 * Use <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>invalidatedApiKeys</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder invalidatedApiKeys(List<String> value) {
-			this.invalidatedApiKeys = value;
+		public final Builder invalidatedApiKeys(List<String> list) {
+			this.invalidatedApiKeys = _listAddAll(this.invalidatedApiKeys, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code invalidated_api_keys}
+		 * <p>
+		 * Adds one or more values to <code>invalidatedApiKeys</code>.
 		 */
-		public final Builder invalidatedApiKeys(String... value) {
-			this.invalidatedApiKeys = Arrays.asList(value);
+		public final Builder invalidatedApiKeys(String value, String... values) {
+			this.invalidatedApiKeys = _listAdd(this.invalidatedApiKeys, value, values);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code previously_invalidated_api_keys}
+		 * <p>
+		 * Adds all elements of <code>list</code> to
+		 * <code>previouslyInvalidatedApiKeys</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>previouslyInvalidatedApiKeys</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder previouslyInvalidatedApiKeys(List<String> value) {
-			this.previouslyInvalidatedApiKeys = value;
+		public final Builder previouslyInvalidatedApiKeys(List<String> list) {
+			this.previouslyInvalidatedApiKeys = _listAddAll(this.previouslyInvalidatedApiKeys, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code previously_invalidated_api_keys}
+		 * <p>
+		 * Adds one or more values to <code>previouslyInvalidatedApiKeys</code>.
 		 */
-		public final Builder previouslyInvalidatedApiKeys(String... value) {
-			this.previouslyInvalidatedApiKeys = Arrays.asList(value);
+		public final Builder previouslyInvalidatedApiKeys(String value, String... values) {
+			this.previouslyInvalidatedApiKeys = _listAdd(this.previouslyInvalidatedApiKeys, value, values);
 			return this;
 		}
 

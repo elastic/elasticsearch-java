@@ -37,7 +37,7 @@ import java.lang.String;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: license.post_start_basic.Response
@@ -60,10 +60,8 @@ public class PostStartBasicResponse extends AcknowledgedResponseBase {
 
 	}
 
-	public static PostStartBasicResponse of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static PostStartBasicResponse of(Function<Builder, ObjectBuilder<PostStartBasicResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -132,9 +130,25 @@ public class PostStartBasicResponse extends AcknowledgedResponseBase {
 
 		/**
 		 * Required - API name: {@code acknowledge}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>acknowledge</code>. Use
+		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
+		 * <code>acknowledge</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetMap()
 		 */
-		public final Builder acknowledge(Map<String, List<String>> value) {
-			this.acknowledge = value;
+		public final Builder acknowledge(Map<String, List<String>> map) {
+			this.acknowledge = _mapPutAll(this.acknowledge, map);
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code acknowledge}
+		 * <p>
+		 * Adds an entry to <code>acknowledge</code>.
+		 */
+		public final Builder acknowledge(String key, List<String> value) {
+			this.acknowledge = _mapPut(this.acknowledge, key, value);
 			return this;
 		}
 

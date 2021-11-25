@@ -38,12 +38,11 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
@@ -87,10 +86,8 @@ public class GetSnapshotRequest extends RequestBase {
 
 	}
 
-	public static GetSnapshotRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static GetSnapshotRequest of(Function<Builder, ObjectBuilder<GetSnapshotRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -273,10 +270,8 @@ public class GetSnapshotRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
-		public final Builder masterTimeout(Consumer<Time.Builder> fn) {
-			Time.Builder builder = new Time.Builder();
-			fn.accept(builder);
-			return this.masterTimeout(builder.build());
+		public final Builder masterTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.masterTimeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -301,9 +296,15 @@ public class GetSnapshotRequest extends RequestBase {
 		 * </ul>
 		 * <p>
 		 * API name: {@code snapshot}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>snapshot</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>snapshot</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder snapshot(List<String> value) {
-			this.snapshot = value;
+		public final Builder snapshot(List<String> list) {
+			this.snapshot = _listAddAll(this.snapshot, list);
 			return this;
 		}
 
@@ -318,9 +319,11 @@ public class GetSnapshotRequest extends RequestBase {
 		 * </ul>
 		 * <p>
 		 * API name: {@code snapshot}
+		 * <p>
+		 * Adds one or more values to <code>snapshot</code>.
 		 */
-		public final Builder snapshot(String... value) {
-			this.snapshot = Arrays.asList(value);
+		public final Builder snapshot(String value, String... values) {
+			this.snapshot = _listAdd(this.snapshot, value, values);
 			return this;
 		}
 

@@ -38,7 +38,7 @@ import co.elastic.clients.util.TaggedUnionUtils;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Object;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.search._types.SmoothingModelContainer
@@ -98,10 +98,8 @@ public class SmoothingModel implements TaggedUnion<SmoothingModel.Kind, Object>,
 
 	}
 
-	public static SmoothingModel of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static SmoothingModel of(Function<Builder, ObjectBuilder<SmoothingModel>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -181,10 +179,9 @@ public class SmoothingModel implements TaggedUnion<SmoothingModel.Kind, Object>,
 			return this;
 		}
 
-		public ObjectBuilder<SmoothingModel> laplace(Consumer<LaplaceSmoothingModel.Builder> fn) {
-			LaplaceSmoothingModel.Builder builder = new LaplaceSmoothingModel.Builder();
-			fn.accept(builder);
-			return this.laplace(builder.build());
+		public ObjectBuilder<SmoothingModel> laplace(
+				Function<LaplaceSmoothingModel.Builder, ObjectBuilder<LaplaceSmoothingModel>> fn) {
+			return this.laplace(fn.apply(new LaplaceSmoothingModel.Builder()).build());
 		}
 
 		public ObjectBuilder<SmoothingModel> linearInterpolation(LinearInterpolationSmoothingModel v) {
@@ -194,10 +191,8 @@ public class SmoothingModel implements TaggedUnion<SmoothingModel.Kind, Object>,
 		}
 
 		public ObjectBuilder<SmoothingModel> linearInterpolation(
-				Consumer<LinearInterpolationSmoothingModel.Builder> fn) {
-			LinearInterpolationSmoothingModel.Builder builder = new LinearInterpolationSmoothingModel.Builder();
-			fn.accept(builder);
-			return this.linearInterpolation(builder.build());
+				Function<LinearInterpolationSmoothingModel.Builder, ObjectBuilder<LinearInterpolationSmoothingModel>> fn) {
+			return this.linearInterpolation(fn.apply(new LinearInterpolationSmoothingModel.Builder()).build());
 		}
 
 		public ObjectBuilder<SmoothingModel> stupidBackoff(StupidBackoffSmoothingModel v) {
@@ -206,10 +201,9 @@ public class SmoothingModel implements TaggedUnion<SmoothingModel.Kind, Object>,
 			return this;
 		}
 
-		public ObjectBuilder<SmoothingModel> stupidBackoff(Consumer<StupidBackoffSmoothingModel.Builder> fn) {
-			StupidBackoffSmoothingModel.Builder builder = new StupidBackoffSmoothingModel.Builder();
-			fn.accept(builder);
-			return this.stupidBackoff(builder.build());
+		public ObjectBuilder<SmoothingModel> stupidBackoff(
+				Function<StupidBackoffSmoothingModel.Builder, ObjectBuilder<StupidBackoffSmoothingModel>> fn) {
+			return this.stupidBackoff(fn.apply(new StupidBackoffSmoothingModel.Builder()).build());
 		}
 
 		public SmoothingModel build() {

@@ -30,16 +30,13 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -73,10 +70,8 @@ public class AutoFollowStats implements JsonpSerializable {
 
 	}
 
-	public static AutoFollowStats of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static AutoFollowStats of(Function<Builder, ObjectBuilder<AutoFollowStats>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -175,26 +170,36 @@ public class AutoFollowStats implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code auto_followed_clusters}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>autoFollowedClusters</code>.
+		 * Use <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>autoFollowedClusters</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder autoFollowedClusters(List<AutoFollowedCluster> value) {
-			this.autoFollowedClusters = value;
+		public final Builder autoFollowedClusters(List<AutoFollowedCluster> list) {
+			this.autoFollowedClusters = _listAddAll(this.autoFollowedClusters, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code auto_followed_clusters}
+		 * <p>
+		 * Adds one or more values to <code>autoFollowedClusters</code>.
 		 */
-		public final Builder autoFollowedClusters(AutoFollowedCluster... value) {
-			this.autoFollowedClusters = Arrays.asList(value);
+		public final Builder autoFollowedClusters(AutoFollowedCluster value, AutoFollowedCluster... values) {
+			this.autoFollowedClusters = _listAdd(this.autoFollowedClusters, value, values);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code auto_followed_clusters}
+		 * <p>
+		 * Adds a value to <code>autoFollowedClusters</code> using a builder lambda.
 		 */
 		public final Builder autoFollowedClusters(
-				Function<ListBuilder<AutoFollowedCluster, AutoFollowedCluster.Builder>, ObjectBuilder<List<AutoFollowedCluster>>> fn) {
-			return autoFollowedClusters(fn.apply(new ListBuilder<>(AutoFollowedCluster.Builder::new)).build());
+				Function<AutoFollowedCluster.Builder, ObjectBuilder<AutoFollowedCluster>> fn) {
+			return autoFollowedClusters(fn.apply(new AutoFollowedCluster.Builder()).build());
 		}
 
 		/**
@@ -223,26 +228,36 @@ public class AutoFollowStats implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code recent_auto_follow_errors}
+		 * <p>
+		 * Adds all elements of <code>list</code> to
+		 * <code>recentAutoFollowErrors</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>recentAutoFollowErrors</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder recentAutoFollowErrors(List<ErrorCause> value) {
-			this.recentAutoFollowErrors = value;
+		public final Builder recentAutoFollowErrors(List<ErrorCause> list) {
+			this.recentAutoFollowErrors = _listAddAll(this.recentAutoFollowErrors, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code recent_auto_follow_errors}
+		 * <p>
+		 * Adds one or more values to <code>recentAutoFollowErrors</code>.
 		 */
-		public final Builder recentAutoFollowErrors(ErrorCause... value) {
-			this.recentAutoFollowErrors = Arrays.asList(value);
+		public final Builder recentAutoFollowErrors(ErrorCause value, ErrorCause... values) {
+			this.recentAutoFollowErrors = _listAdd(this.recentAutoFollowErrors, value, values);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code recent_auto_follow_errors}
+		 * <p>
+		 * Adds a value to <code>recentAutoFollowErrors</code> using a builder lambda.
 		 */
-		public final Builder recentAutoFollowErrors(
-				Function<ListBuilder<ErrorCause, ErrorCause.Builder>, ObjectBuilder<List<ErrorCause>>> fn) {
-			return recentAutoFollowErrors(fn.apply(new ListBuilder<>(ErrorCause.Builder::new)).build());
+		public final Builder recentAutoFollowErrors(Function<ErrorCause.Builder, ObjectBuilder<ErrorCause>> fn) {
+			return recentAutoFollowErrors(fn.apply(new ErrorCause.Builder()).build());
 		}
 
 		/**

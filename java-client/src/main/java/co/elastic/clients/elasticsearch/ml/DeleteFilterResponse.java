@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 
 // typedef: ml.delete_filter.Response
 @JsonpDeserializable
@@ -43,10 +43,8 @@ public class DeleteFilterResponse extends AcknowledgedResponseBase {
 
 	}
 
-	public static DeleteFilterResponse of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static DeleteFilterResponse of(Function<Builder, ObjectBuilder<DeleteFilterResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------

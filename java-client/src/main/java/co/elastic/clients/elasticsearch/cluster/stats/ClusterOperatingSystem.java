@@ -29,16 +29,13 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -72,10 +69,8 @@ public class ClusterOperatingSystem implements JsonpSerializable {
 
 	}
 
-	public static ClusterOperatingSystem of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static ClusterOperatingSystem of(Function<Builder, ObjectBuilder<ClusterOperatingSystem>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -219,82 +214,113 @@ public class ClusterOperatingSystem implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code mem}
 		 */
-		public final Builder mem(Consumer<OperatingSystemMemoryInfo.Builder> fn) {
-			OperatingSystemMemoryInfo.Builder builder = new OperatingSystemMemoryInfo.Builder();
-			fn.accept(builder);
-			return this.mem(builder.build());
+		public final Builder mem(
+				Function<OperatingSystemMemoryInfo.Builder, ObjectBuilder<OperatingSystemMemoryInfo>> fn) {
+			return this.mem(fn.apply(new OperatingSystemMemoryInfo.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code names}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>names</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>names</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder names(List<ClusterOperatingSystemName> value) {
-			this.names = value;
+		public final Builder names(List<ClusterOperatingSystemName> list) {
+			this.names = _listAddAll(this.names, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code names}
+		 * <p>
+		 * Adds one or more values to <code>names</code>.
 		 */
-		public final Builder names(ClusterOperatingSystemName... value) {
-			this.names = Arrays.asList(value);
+		public final Builder names(ClusterOperatingSystemName value, ClusterOperatingSystemName... values) {
+			this.names = _listAdd(this.names, value, values);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code names}
+		 * <p>
+		 * Adds a value to <code>names</code> using a builder lambda.
 		 */
 		public final Builder names(
-				Function<ListBuilder<ClusterOperatingSystemName, ClusterOperatingSystemName.Builder>, ObjectBuilder<List<ClusterOperatingSystemName>>> fn) {
-			return names(fn.apply(new ListBuilder<>(ClusterOperatingSystemName.Builder::new)).build());
+				Function<ClusterOperatingSystemName.Builder, ObjectBuilder<ClusterOperatingSystemName>> fn) {
+			return names(fn.apply(new ClusterOperatingSystemName.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code pretty_names}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>prettyNames</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>prettyNames</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder prettyNames(List<ClusterOperatingSystemPrettyName> value) {
-			this.prettyNames = value;
+		public final Builder prettyNames(List<ClusterOperatingSystemPrettyName> list) {
+			this.prettyNames = _listAddAll(this.prettyNames, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code pretty_names}
+		 * <p>
+		 * Adds one or more values to <code>prettyNames</code>.
 		 */
-		public final Builder prettyNames(ClusterOperatingSystemPrettyName... value) {
-			this.prettyNames = Arrays.asList(value);
+		public final Builder prettyNames(ClusterOperatingSystemPrettyName value,
+				ClusterOperatingSystemPrettyName... values) {
+			this.prettyNames = _listAdd(this.prettyNames, value, values);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code pretty_names}
+		 * <p>
+		 * Adds a value to <code>prettyNames</code> using a builder lambda.
 		 */
 		public final Builder prettyNames(
-				Function<ListBuilder<ClusterOperatingSystemPrettyName, ClusterOperatingSystemPrettyName.Builder>, ObjectBuilder<List<ClusterOperatingSystemPrettyName>>> fn) {
-			return prettyNames(fn.apply(new ListBuilder<>(ClusterOperatingSystemPrettyName.Builder::new)).build());
+				Function<ClusterOperatingSystemPrettyName.Builder, ObjectBuilder<ClusterOperatingSystemPrettyName>> fn) {
+			return prettyNames(fn.apply(new ClusterOperatingSystemPrettyName.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code architectures}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>architectures</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>architectures</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder architectures(@Nullable List<ClusterOperatingSystemArchitecture> value) {
-			this.architectures = value;
+		public final Builder architectures(List<ClusterOperatingSystemArchitecture> list) {
+			this.architectures = _listAddAll(this.architectures, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code architectures}
+		 * <p>
+		 * Adds one or more values to <code>architectures</code>.
 		 */
-		public final Builder architectures(ClusterOperatingSystemArchitecture... value) {
-			this.architectures = Arrays.asList(value);
+		public final Builder architectures(ClusterOperatingSystemArchitecture value,
+				ClusterOperatingSystemArchitecture... values) {
+			this.architectures = _listAdd(this.architectures, value, values);
 			return this;
 		}
 
 		/**
 		 * API name: {@code architectures}
+		 * <p>
+		 * Adds a value to <code>architectures</code> using a builder lambda.
 		 */
 		public final Builder architectures(
-				Function<ListBuilder<ClusterOperatingSystemArchitecture, ClusterOperatingSystemArchitecture.Builder>, ObjectBuilder<List<ClusterOperatingSystemArchitecture>>> fn) {
-			return architectures(fn.apply(new ListBuilder<>(ClusterOperatingSystemArchitecture.Builder::new)).build());
+				Function<ClusterOperatingSystemArchitecture.Builder, ObjectBuilder<ClusterOperatingSystemArchitecture>> fn) {
+			return architectures(fn.apply(new ClusterOperatingSystemArchitecture.Builder()).build());
 		}
 
 		/**

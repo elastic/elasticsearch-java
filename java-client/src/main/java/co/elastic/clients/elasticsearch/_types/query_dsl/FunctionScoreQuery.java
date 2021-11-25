@@ -28,15 +28,12 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -74,10 +71,8 @@ public class FunctionScoreQuery extends QueryBase implements QueryVariant {
 
 	}
 
-	public static FunctionScoreQuery of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static FunctionScoreQuery of(Function<Builder, ObjectBuilder<FunctionScoreQuery>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -210,26 +205,35 @@ public class FunctionScoreQuery extends QueryBase implements QueryVariant {
 
 		/**
 		 * API name: {@code functions}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>functions</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>functions</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder functions(@Nullable List<FunctionScore> value) {
-			this.functions = value;
+		public final Builder functions(List<FunctionScore> list) {
+			this.functions = _listAddAll(this.functions, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code functions}
+		 * <p>
+		 * Adds one or more values to <code>functions</code>.
 		 */
-		public final Builder functions(FunctionScore... value) {
-			this.functions = Arrays.asList(value);
+		public final Builder functions(FunctionScore value, FunctionScore... values) {
+			this.functions = _listAdd(this.functions, value, values);
 			return this;
 		}
 
 		/**
 		 * API name: {@code functions}
+		 * <p>
+		 * Adds a value to <code>functions</code> using a builder lambda.
 		 */
-		public final Builder functions(
-				Function<ListBuilder<FunctionScore, FunctionScore.Builder>, ObjectBuilder<List<FunctionScore>>> fn) {
-			return functions(fn.apply(new ListBuilder<>(FunctionScore.Builder::new)).build());
+		public final Builder functions(Function<FunctionScore.Builder, ObjectBuilder<FunctionScore>> fn) {
+			return functions(fn.apply(new FunctionScore.Builder()).build());
 		}
 
 		/**
@@ -259,10 +263,8 @@ public class FunctionScoreQuery extends QueryBase implements QueryVariant {
 		/**
 		 * API name: {@code query}
 		 */
-		public final Builder query(Consumer<Query.Builder> fn) {
-			Query.Builder builder = new Query.Builder();
-			fn.accept(builder);
-			return this.query(builder.build());
+		public final Builder query(Function<Query.Builder, ObjectBuilder<Query>> fn) {
+			return this.query(fn.apply(new Query.Builder()).build());
 		}
 
 		/**

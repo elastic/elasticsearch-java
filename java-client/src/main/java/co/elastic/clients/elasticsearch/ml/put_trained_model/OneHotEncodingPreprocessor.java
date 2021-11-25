@@ -36,7 +36,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.put_trained_model.OneHotEncodingPreprocessor
@@ -55,10 +55,8 @@ public class OneHotEncodingPreprocessor implements PreprocessorVariant, JsonpSer
 
 	}
 
-	public static OneHotEncodingPreprocessor of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static OneHotEncodingPreprocessor of(Function<Builder, ObjectBuilder<OneHotEncodingPreprocessor>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -131,9 +129,25 @@ public class OneHotEncodingPreprocessor implements PreprocessorVariant, JsonpSer
 
 		/**
 		 * Required - API name: {@code hot_map}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>hotMap</code>. Use
+		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
+		 * <code>hotMap</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetMap()
 		 */
-		public final Builder hotMap(Map<String, String> value) {
-			this.hotMap = value;
+		public final Builder hotMap(Map<String, String> map) {
+			this.hotMap = _mapPutAll(this.hotMap, map);
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code hot_map}
+		 * <p>
+		 * Adds an entry to <code>hotMap</code>.
+		 */
+		public final Builder hotMap(String key, String value) {
+			this.hotMap = _mapPut(this.hotMap, key, value);
 			return this;
 		}
 

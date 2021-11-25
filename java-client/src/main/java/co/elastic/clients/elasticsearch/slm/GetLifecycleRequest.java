@@ -36,11 +36,10 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
@@ -57,10 +56,8 @@ public class GetLifecycleRequest extends RequestBase {
 
 	}
 
-	public static GetLifecycleRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static GetLifecycleRequest of(Function<Builder, ObjectBuilder<GetLifecycleRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -85,9 +82,15 @@ public class GetLifecycleRequest extends RequestBase {
 		 * Comma-separated list of snapshot lifecycle policies to retrieve
 		 * <p>
 		 * API name: {@code policy_id}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>policyId</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>policyId</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder policyId(@Nullable List<String> value) {
-			this.policyId = value;
+		public final Builder policyId(List<String> list) {
+			this.policyId = _listAddAll(this.policyId, list);
 			return this;
 		}
 
@@ -95,9 +98,11 @@ public class GetLifecycleRequest extends RequestBase {
 		 * Comma-separated list of snapshot lifecycle policies to retrieve
 		 * <p>
 		 * API name: {@code policy_id}
+		 * <p>
+		 * Adds one or more values to <code>policyId</code>.
 		 */
-		public final Builder policyId(String... value) {
-			this.policyId = Arrays.asList(value);
+		public final Builder policyId(String value, String... values) {
+			this.policyId = _listAdd(this.policyId, value, values);
 			return this;
 		}
 

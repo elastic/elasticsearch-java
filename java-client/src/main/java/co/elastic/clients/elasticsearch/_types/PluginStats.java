@@ -35,10 +35,9 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.PluginStats
@@ -83,10 +82,8 @@ public class PluginStats implements JsonpSerializable {
 
 	}
 
-	public static PluginStats of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static PluginStats of(Function<Builder, ObjectBuilder<PluginStats>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -261,17 +258,25 @@ public class PluginStats implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code extended_plugins}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>extendedPlugins</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>extendedPlugins</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder extendedPlugins(List<String> value) {
-			this.extendedPlugins = value;
+		public final Builder extendedPlugins(List<String> list) {
+			this.extendedPlugins = _listAddAll(this.extendedPlugins, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code extended_plugins}
+		 * <p>
+		 * Adds one or more values to <code>extendedPlugins</code>.
 		 */
-		public final Builder extendedPlugins(String... value) {
-			this.extendedPlugins = Arrays.asList(value);
+		public final Builder extendedPlugins(String value, String... values) {
+			this.extendedPlugins = _listAdd(this.extendedPlugins, value, values);
 			return this;
 		}
 

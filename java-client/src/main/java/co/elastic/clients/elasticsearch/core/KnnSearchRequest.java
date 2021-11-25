@@ -36,18 +36,15 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
@@ -85,10 +82,8 @@ public class KnnSearchRequest extends RequestBase implements JsonpSerializable {
 
 	}
 
-	public static KnnSearchRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static KnnSearchRequest of(Function<Builder, ObjectBuilder<KnnSearchRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -257,10 +252,8 @@ public class KnnSearchRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code _source}
 		 */
-		public final Builder source(Consumer<SourceConfig.Builder> fn) {
-			SourceConfig.Builder builder = new SourceConfig.Builder();
-			fn.accept(builder);
-			return this.source(builder.build());
+		public final Builder source(Function<SourceConfig.Builder, ObjectBuilder<SourceConfig>> fn) {
+			return this.source(fn.apply(new SourceConfig.Builder()).build());
 		}
 
 		/**
@@ -268,9 +261,15 @@ public class KnnSearchRequest extends RequestBase implements JsonpSerializable {
 		 * hits.fields property of the response. Accepts wildcard (*) patterns.
 		 * <p>
 		 * API name: {@code docvalue_fields}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>docvalueFields</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>docvalueFields</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder docvalueFields(@Nullable List<FieldAndFormat> value) {
-			this.docvalueFields = value;
+		public final Builder docvalueFields(List<FieldAndFormat> list) {
+			this.docvalueFields = _listAddAll(this.docvalueFields, list);
 			return this;
 		}
 
@@ -279,9 +278,11 @@ public class KnnSearchRequest extends RequestBase implements JsonpSerializable {
 		 * hits.fields property of the response. Accepts wildcard (*) patterns.
 		 * <p>
 		 * API name: {@code docvalue_fields}
+		 * <p>
+		 * Adds one or more values to <code>docvalueFields</code>.
 		 */
-		public final Builder docvalueFields(FieldAndFormat... value) {
-			this.docvalueFields = Arrays.asList(value);
+		public final Builder docvalueFields(FieldAndFormat value, FieldAndFormat... values) {
+			this.docvalueFields = _listAdd(this.docvalueFields, value, values);
 			return this;
 		}
 
@@ -290,10 +291,11 @@ public class KnnSearchRequest extends RequestBase implements JsonpSerializable {
 		 * hits.fields property of the response. Accepts wildcard (*) patterns.
 		 * <p>
 		 * API name: {@code docvalue_fields}
+		 * <p>
+		 * Adds a value to <code>docvalueFields</code> using a builder lambda.
 		 */
-		public final Builder docvalueFields(
-				Function<ListBuilder<FieldAndFormat, FieldAndFormat.Builder>, ObjectBuilder<List<FieldAndFormat>>> fn) {
-			return docvalueFields(fn.apply(new ListBuilder<>(FieldAndFormat.Builder::new)).build());
+		public final Builder docvalueFields(Function<FieldAndFormat.Builder, ObjectBuilder<FieldAndFormat>> fn) {
+			return docvalueFields(fn.apply(new FieldAndFormat.Builder()).build());
 		}
 
 		/**
@@ -301,9 +303,15 @@ public class KnnSearchRequest extends RequestBase implements JsonpSerializable {
 		 * hits.fields property of the response. Accepts wildcard (*) patterns.
 		 * <p>
 		 * API name: {@code fields}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>fields</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>fields</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder fields(@Nullable List<String> value) {
-			this.fields = value;
+		public final Builder fields(List<String> list) {
+			this.fields = _listAddAll(this.fields, list);
 			return this;
 		}
 
@@ -312,9 +320,11 @@ public class KnnSearchRequest extends RequestBase implements JsonpSerializable {
 		 * hits.fields property of the response. Accepts wildcard (*) patterns.
 		 * <p>
 		 * API name: {@code fields}
+		 * <p>
+		 * Adds one or more values to <code>fields</code>.
 		 */
-		public final Builder fields(String... value) {
-			this.fields = Arrays.asList(value);
+		public final Builder fields(String value, String... values) {
+			this.fields = _listAdd(this.fields, value, values);
 			return this;
 		}
 
@@ -323,9 +333,15 @@ public class KnnSearchRequest extends RequestBase implements JsonpSerializable {
 		 * <code>_all</code> or to perform the operation on all indices
 		 * <p>
 		 * API name: {@code index}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>index</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>index</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder index(List<String> value) {
-			this.index = value;
+		public final Builder index(List<String> list) {
+			this.index = _listAddAll(this.index, list);
 			return this;
 		}
 
@@ -334,9 +350,11 @@ public class KnnSearchRequest extends RequestBase implements JsonpSerializable {
 		 * <code>_all</code> or to perform the operation on all indices
 		 * <p>
 		 * API name: {@code index}
+		 * <p>
+		 * Adds one or more values to <code>index</code>.
 		 */
-		public final Builder index(String... value) {
-			this.index = Arrays.asList(value);
+		public final Builder index(String value, String... values) {
+			this.index = _listAdd(this.index, value, values);
 			return this;
 		}
 
@@ -355,10 +373,8 @@ public class KnnSearchRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code knn}
 		 */
-		public final Builder knn(Consumer<KnnSearchQuery.Builder> fn) {
-			KnnSearchQuery.Builder builder = new KnnSearchQuery.Builder();
-			fn.accept(builder);
-			return this.knn(builder.build());
+		public final Builder knn(Function<KnnSearchQuery.Builder, ObjectBuilder<KnnSearchQuery>> fn) {
+			return this.knn(fn.apply(new KnnSearchQuery.Builder()).build());
 		}
 
 		/**
@@ -378,9 +394,15 @@ public class KnnSearchRequest extends RequestBase implements JsonpSerializable {
 		 * both source fields and stored fields in the search response.
 		 * <p>
 		 * API name: {@code stored_fields}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>storedFields</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>storedFields</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder storedFields(@Nullable List<String> value) {
-			this.storedFields = value;
+		public final Builder storedFields(List<String> list) {
+			this.storedFields = _listAddAll(this.storedFields, list);
 			return this;
 		}
 
@@ -391,9 +413,11 @@ public class KnnSearchRequest extends RequestBase implements JsonpSerializable {
 		 * both source fields and stored fields in the search response.
 		 * <p>
 		 * API name: {@code stored_fields}
+		 * <p>
+		 * Adds one or more values to <code>storedFields</code>.
 		 */
-		public final Builder storedFields(String... value) {
-			this.storedFields = Arrays.asList(value);
+		public final Builder storedFields(String value, String... values) {
+			this.storedFields = _listAdd(this.storedFields, value, values);
 			return this;
 		}
 

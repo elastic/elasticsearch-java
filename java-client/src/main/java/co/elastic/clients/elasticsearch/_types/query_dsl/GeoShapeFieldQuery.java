@@ -35,7 +35,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.GeoShapeFieldQuery
@@ -60,10 +60,8 @@ public class GeoShapeFieldQuery implements JsonpSerializable {
 
 	}
 
-	public static GeoShapeFieldQuery of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static GeoShapeFieldQuery of(Function<Builder, ObjectBuilder<GeoShapeFieldQuery>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -152,10 +150,8 @@ public class GeoShapeFieldQuery implements JsonpSerializable {
 		/**
 		 * API name: {@code indexed_shape}
 		 */
-		public final Builder indexedShape(Consumer<FieldLookup.Builder> fn) {
-			FieldLookup.Builder builder = new FieldLookup.Builder();
-			fn.accept(builder);
-			return this.indexedShape(builder.build());
+		public final Builder indexedShape(Function<FieldLookup.Builder, ObjectBuilder<FieldLookup>> fn) {
+			return this.indexedShape(fn.apply(new FieldLookup.Builder()).build());
 		}
 
 		/**

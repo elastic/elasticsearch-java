@@ -39,7 +39,7 @@ import java.lang.String;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.reindex_rethrottle.ReindexTask
@@ -83,10 +83,8 @@ public class ReindexTask implements JsonpSerializable {
 
 	}
 
-	public static ReindexTask of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static ReindexTask of(Function<Builder, ObjectBuilder<ReindexTask>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -311,10 +309,8 @@ public class ReindexTask implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code status}
 		 */
-		public final Builder status(Consumer<ReindexStatus.Builder> fn) {
-			ReindexStatus.Builder builder = new ReindexStatus.Builder();
-			fn.accept(builder);
-			return this.status(builder.build());
+		public final Builder status(Function<ReindexStatus.Builder, ObjectBuilder<ReindexStatus>> fn) {
+			return this.status(fn.apply(new ReindexStatus.Builder()).build());
 		}
 
 		/**
@@ -327,9 +323,25 @@ public class ReindexTask implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code headers}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>headers</code>. Use
+		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
+		 * <code>headers</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetMap()
 		 */
-		public final Builder headers(Map<String, List<String>> value) {
-			this.headers = value;
+		public final Builder headers(Map<String, List<String>> map) {
+			this.headers = _mapPutAll(this.headers, map);
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code headers}
+		 * <p>
+		 * Adds an entry to <code>headers</code>.
+		 */
+		public final Builder headers(String key, List<String> value) {
+			this.headers = _mapPut(this.headers, key, value);
 			return this;
 		}
 

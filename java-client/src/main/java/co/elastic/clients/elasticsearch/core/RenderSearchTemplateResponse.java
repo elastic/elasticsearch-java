@@ -37,7 +37,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.render_search_template.Response
@@ -53,10 +53,8 @@ public class RenderSearchTemplateResponse implements JsonpSerializable {
 
 	}
 
-	public static RenderSearchTemplateResponse of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static RenderSearchTemplateResponse of(Function<Builder, ObjectBuilder<RenderSearchTemplateResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -101,9 +99,25 @@ public class RenderSearchTemplateResponse implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code template_output}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>templateOutput</code>. Use
+		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
+		 * <code>templateOutput</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetMap()
 		 */
-		public final Builder templateOutput(Map<String, JsonData> value) {
-			this.templateOutput = value;
+		public final Builder templateOutput(Map<String, JsonData> map) {
+			this.templateOutput = _mapPutAll(this.templateOutput, map);
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code template_output}
+		 * <p>
+		 * Adds an entry to <code>templateOutput</code>.
+		 */
+		public final Builder templateOutput(String key, JsonData value) {
+			this.templateOutput = _mapPut(this.templateOutput, key, value);
 			return this;
 		}
 

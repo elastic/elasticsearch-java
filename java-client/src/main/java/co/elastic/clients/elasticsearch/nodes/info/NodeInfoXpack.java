@@ -37,7 +37,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: nodes.info.NodeInfoXpack
@@ -60,10 +60,8 @@ public class NodeInfoXpack implements JsonpSerializable {
 
 	}
 
-	public static NodeInfoXpack of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static NodeInfoXpack of(Function<Builder, ObjectBuilder<NodeInfoXpack>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -146,10 +144,8 @@ public class NodeInfoXpack implements JsonpSerializable {
 		/**
 		 * API name: {@code license}
 		 */
-		public final Builder license(Consumer<NodeInfoXpackLicense.Builder> fn) {
-			NodeInfoXpackLicense.Builder builder = new NodeInfoXpackLicense.Builder();
-			fn.accept(builder);
-			return this.license(builder.build());
+		public final Builder license(Function<NodeInfoXpackLicense.Builder, ObjectBuilder<NodeInfoXpackLicense>> fn) {
+			return this.license(fn.apply(new NodeInfoXpackLicense.Builder()).build());
 		}
 
 		/**
@@ -163,17 +159,32 @@ public class NodeInfoXpack implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code security}
 		 */
-		public final Builder security(Consumer<NodeInfoXpackSecurity.Builder> fn) {
-			NodeInfoXpackSecurity.Builder builder = new NodeInfoXpackSecurity.Builder();
-			fn.accept(builder);
-			return this.security(builder.build());
+		public final Builder security(
+				Function<NodeInfoXpackSecurity.Builder, ObjectBuilder<NodeInfoXpackSecurity>> fn) {
+			return this.security(fn.apply(new NodeInfoXpackSecurity.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code notification}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>notification</code>. Use
+		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
+		 * <code>notification</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetMap()
 		 */
-		public final Builder notification(@Nullable Map<String, JsonData> value) {
-			this.notification = value;
+		public final Builder notification(Map<String, JsonData> map) {
+			this.notification = _mapPutAll(this.notification, map);
+			return this;
+		}
+
+		/**
+		 * API name: {@code notification}
+		 * <p>
+		 * Adds an entry to <code>notification</code>.
+		 */
+		public final Builder notification(String key, JsonData value) {
+			this.notification = _mapPut(this.notification, key, value);
 			return this;
 		}
 

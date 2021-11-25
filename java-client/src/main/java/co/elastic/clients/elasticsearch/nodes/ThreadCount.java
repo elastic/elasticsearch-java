@@ -35,7 +35,7 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 
 // typedef: nodes._types.ThreadCount
 @JsonpDeserializable
@@ -65,10 +65,8 @@ public class ThreadCount implements JsonpSerializable {
 
 	}
 
-	public static ThreadCount of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static ThreadCount of(Function<Builder, ObjectBuilder<ThreadCount>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**

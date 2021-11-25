@@ -34,7 +34,7 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.termvectors.Filter
@@ -75,10 +75,8 @@ public class Filter implements JsonpSerializable {
 
 	}
 
-	public static Filter of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static Filter of(Function<Builder, ObjectBuilder<Filter>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**

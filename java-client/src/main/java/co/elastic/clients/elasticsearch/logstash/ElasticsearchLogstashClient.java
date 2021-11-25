@@ -34,7 +34,7 @@ import co.elastic.clients.transport.TransportOptions;
 import co.elastic.clients.transport.endpoints.BooleanResponse;
 import co.elastic.clients.util.ObjectBuilder;
 import java.io.IOException;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 /**
@@ -83,11 +83,10 @@ public class ElasticsearchLogstashClient extends ApiClient<ElasticsearchTranspor
 	 *      on elastic.co</a>
 	 */
 
-	public final BooleanResponse deletePipeline(Consumer<DeletePipelineRequest.Builder> fn)
+	public final BooleanResponse deletePipeline(
+			Function<DeletePipelineRequest.Builder, ObjectBuilder<DeletePipelineRequest>> fn)
 			throws IOException, ElasticsearchException {
-		DeletePipelineRequest.Builder builder = new DeletePipelineRequest.Builder();
-		fn.accept(builder);
-		return deletePipeline(builder.build());
+		return deletePipeline(fn.apply(new DeletePipelineRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: logstash.get_pipeline
@@ -118,11 +117,10 @@ public class ElasticsearchLogstashClient extends ApiClient<ElasticsearchTranspor
 	 *      on elastic.co</a>
 	 */
 
-	public final GetPipelineResponse getPipeline(Consumer<GetPipelineRequest.Builder> fn)
+	public final GetPipelineResponse getPipeline(
+			Function<GetPipelineRequest.Builder, ObjectBuilder<GetPipelineRequest>> fn)
 			throws IOException, ElasticsearchException {
-		GetPipelineRequest.Builder builder = new GetPipelineRequest.Builder();
-		fn.accept(builder);
-		return getPipeline(builder.build());
+		return getPipeline(fn.apply(new GetPipelineRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: logstash.put_pipeline
@@ -153,11 +151,9 @@ public class ElasticsearchLogstashClient extends ApiClient<ElasticsearchTranspor
 	 *      on elastic.co</a>
 	 */
 
-	public final BooleanResponse putPipeline(Consumer<PutPipelineRequest.Builder> fn)
+	public final BooleanResponse putPipeline(Function<PutPipelineRequest.Builder, ObjectBuilder<PutPipelineRequest>> fn)
 			throws IOException, ElasticsearchException {
-		PutPipelineRequest.Builder builder = new PutPipelineRequest.Builder();
-		fn.accept(builder);
-		return putPipeline(builder.build());
+		return putPipeline(fn.apply(new PutPipelineRequest.Builder()).build());
 	}
 
 }

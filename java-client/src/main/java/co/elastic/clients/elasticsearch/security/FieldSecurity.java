@@ -34,10 +34,9 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: security._types.FieldSecurity
@@ -56,10 +55,8 @@ public class FieldSecurity implements JsonpSerializable {
 
 	}
 
-	public static FieldSecurity of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static FieldSecurity of(Function<Builder, ObjectBuilder<FieldSecurity>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -123,33 +120,49 @@ public class FieldSecurity implements JsonpSerializable {
 
 		/**
 		 * API name: {@code except}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>except</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>except</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder except(@Nullable List<String> value) {
-			this.except = value;
+		public final Builder except(List<String> list) {
+			this.except = _listAddAll(this.except, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code except}
+		 * <p>
+		 * Adds one or more values to <code>except</code>.
 		 */
-		public final Builder except(String... value) {
-			this.except = Arrays.asList(value);
+		public final Builder except(String value, String... values) {
+			this.except = _listAdd(this.except, value, values);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code grant}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>grant</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>grant</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder grant(List<String> value) {
-			this.grant = value;
+		public final Builder grant(List<String> list) {
+			this.grant = _listAddAll(this.grant, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code grant}
+		 * <p>
+		 * Adds one or more values to <code>grant</code>.
 		 */
-		public final Builder grant(String... value) {
-			this.grant = Arrays.asList(value);
+		public final Builder grant(String value, String... values) {
+			this.grant = _listAdd(this.grant, value, values);
 			return this;
 		}
 

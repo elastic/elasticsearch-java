@@ -37,7 +37,7 @@ import java.lang.Integer;
 import java.lang.Long;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.post_data.Response
@@ -100,10 +100,8 @@ public class PostDataResponse implements JsonpSerializable {
 
 	}
 
-	public static PostDataResponse of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static PostDataResponse of(Function<Builder, ObjectBuilder<PostDataResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**

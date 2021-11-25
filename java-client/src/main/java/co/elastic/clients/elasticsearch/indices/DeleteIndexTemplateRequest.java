@@ -38,7 +38,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.delete_index_template.Request
@@ -54,10 +54,8 @@ public class DeleteIndexTemplateRequest extends RequestBase {
 
 	}
 
-	public static DeleteIndexTemplateRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static DeleteIndexTemplateRequest of(Function<Builder, ObjectBuilder<DeleteIndexTemplateRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**

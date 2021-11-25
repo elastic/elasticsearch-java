@@ -38,7 +38,7 @@ import java.lang.Long;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.shard_stores.ShardStore
@@ -75,10 +75,8 @@ public class ShardStore implements JsonpSerializable {
 
 	}
 
-	public static ShardStore of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static ShardStore of(Function<Builder, ObjectBuilder<ShardStore>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -221,9 +219,25 @@ public class ShardStore implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code attributes}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>attributes</code>. Use
+		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
+		 * <code>attributes</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetMap()
 		 */
-		public final Builder attributes(Map<String, JsonData> value) {
-			this.attributes = value;
+		public final Builder attributes(Map<String, JsonData> map) {
+			this.attributes = _mapPutAll(this.attributes, map);
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code attributes}
+		 * <p>
+		 * Adds an entry to <code>attributes</code>.
+		 */
+		public final Builder attributes(String key, JsonData value) {
+			this.attributes = _mapPut(this.attributes, key, value);
 			return this;
 		}
 
@@ -262,10 +276,9 @@ public class ShardStore implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code store_exception}
 		 */
-		public final Builder storeException(Consumer<ShardStoreException.Builder> fn) {
-			ShardStoreException.Builder builder = new ShardStoreException.Builder();
-			fn.accept(builder);
-			return this.storeException(builder.build());
+		public final Builder storeException(
+				Function<ShardStoreException.Builder, ObjectBuilder<ShardStoreException>> fn) {
+			return this.storeException(fn.apply(new ShardStoreException.Builder()).build());
 		}
 
 		/**

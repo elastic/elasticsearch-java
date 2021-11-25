@@ -33,7 +33,6 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -108,25 +107,49 @@ public abstract class MatrixAggregation extends AggregationBase {
 
 		/**
 		 * API name: {@code fields}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>fields</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>fields</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final BuilderT fields(@Nullable List<String> value) {
-			this.fields = value;
+		public final BuilderT fields(List<String> list) {
+			this.fields = _listAddAll(this.fields, list);
 			return self();
 		}
 
 		/**
 		 * API name: {@code fields}
+		 * <p>
+		 * Adds one or more values to <code>fields</code>.
 		 */
-		public final BuilderT fields(String... value) {
-			this.fields = Arrays.asList(value);
+		public final BuilderT fields(String value, String... values) {
+			this.fields = _listAdd(this.fields, value, values);
 			return self();
 		}
 
 		/**
 		 * API name: {@code missing}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>missing</code>. Use
+		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
+		 * <code>missing</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetMap()
 		 */
-		public final BuilderT missing(@Nullable Map<String, Double> value) {
-			this.missing = value;
+		public final BuilderT missing(Map<String, Double> map) {
+			this.missing = _mapPutAll(this.missing, map);
+			return self();
+		}
+
+		/**
+		 * API name: {@code missing}
+		 * <p>
+		 * Adds an entry to <code>missing</code>.
+		 */
+		public final BuilderT missing(String key, Double value) {
+			this.missing = _mapPut(this.missing, key, value);
 			return self();
 		}
 

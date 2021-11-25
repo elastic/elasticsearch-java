@@ -33,7 +33,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.SpanFieldMaskingQuery
@@ -53,10 +53,8 @@ public class SpanFieldMaskingQuery extends QueryBase implements SpanQueryVariant
 
 	}
 
-	public static SpanFieldMaskingQuery of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static SpanFieldMaskingQuery of(Function<Builder, ObjectBuilder<SpanFieldMaskingQuery>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -131,10 +129,8 @@ public class SpanFieldMaskingQuery extends QueryBase implements SpanQueryVariant
 		/**
 		 * Required - API name: {@code query}
 		 */
-		public final Builder query(Consumer<SpanQuery.Builder> fn) {
-			SpanQuery.Builder builder = new SpanQuery.Builder();
-			fn.accept(builder);
-			return this.query(builder.build());
+		public final Builder query(Function<SpanQuery.Builder, ObjectBuilder<SpanQuery>> fn) {
+			return this.query(fn.apply(new SpanQuery.Builder()).build());
 		}
 
 		@Override

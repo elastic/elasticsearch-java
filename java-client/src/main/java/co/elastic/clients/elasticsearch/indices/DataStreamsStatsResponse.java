@@ -31,17 +31,14 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -75,10 +72,8 @@ public class DataStreamsStatsResponse implements JsonpSerializable {
 
 	}
 
-	public static DataStreamsStatsResponse of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static DataStreamsStatsResponse of(Function<Builder, ObjectBuilder<DataStreamsStatsResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -195,10 +190,8 @@ public class DataStreamsStatsResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code _shards}
 		 */
-		public final Builder shards(Consumer<ShardStatistics.Builder> fn) {
-			ShardStatistics.Builder builder = new ShardStatistics.Builder();
-			fn.accept(builder);
-			return this.shards(builder.build());
+		public final Builder shards(Function<ShardStatistics.Builder, ObjectBuilder<ShardStatistics>> fn) {
+			return this.shards(fn.apply(new ShardStatistics.Builder()).build());
 		}
 
 		/**
@@ -235,26 +228,36 @@ public class DataStreamsStatsResponse implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code data_streams}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>dataStreams</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>dataStreams</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder dataStreams(List<DataStreamsStatsItem> value) {
-			this.dataStreams = value;
+		public final Builder dataStreams(List<DataStreamsStatsItem> list) {
+			this.dataStreams = _listAddAll(this.dataStreams, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code data_streams}
+		 * <p>
+		 * Adds one or more values to <code>dataStreams</code>.
 		 */
-		public final Builder dataStreams(DataStreamsStatsItem... value) {
-			this.dataStreams = Arrays.asList(value);
+		public final Builder dataStreams(DataStreamsStatsItem value, DataStreamsStatsItem... values) {
+			this.dataStreams = _listAdd(this.dataStreams, value, values);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code data_streams}
+		 * <p>
+		 * Adds a value to <code>dataStreams</code> using a builder lambda.
 		 */
 		public final Builder dataStreams(
-				Function<ListBuilder<DataStreamsStatsItem, DataStreamsStatsItem.Builder>, ObjectBuilder<List<DataStreamsStatsItem>>> fn) {
-			return dataStreams(fn.apply(new ListBuilder<>(DataStreamsStatsItem.Builder::new)).build());
+				Function<DataStreamsStatsItem.Builder, ObjectBuilder<DataStreamsStatsItem>> fn) {
+			return dataStreams(fn.apply(new DataStreamsStatsItem.Builder()).build());
 		}
 
 		/**

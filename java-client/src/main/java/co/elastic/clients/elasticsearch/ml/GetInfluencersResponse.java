@@ -29,16 +29,13 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -58,10 +55,8 @@ public class GetInfluencersResponse implements JsonpSerializable {
 
 	}
 
-	public static GetInfluencersResponse of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static GetInfluencersResponse of(Function<Builder, ObjectBuilder<GetInfluencersResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -129,9 +124,15 @@ public class GetInfluencersResponse implements JsonpSerializable {
 		 * Required - Array of influencer objects
 		 * <p>
 		 * API name: {@code influencers}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>influencers</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>influencers</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder influencers(List<Influencer> value) {
-			this.influencers = value;
+		public final Builder influencers(List<Influencer> list) {
+			this.influencers = _listAddAll(this.influencers, list);
 			return this;
 		}
 
@@ -139,9 +140,11 @@ public class GetInfluencersResponse implements JsonpSerializable {
 		 * Required - Array of influencer objects
 		 * <p>
 		 * API name: {@code influencers}
+		 * <p>
+		 * Adds one or more values to <code>influencers</code>.
 		 */
-		public final Builder influencers(Influencer... value) {
-			this.influencers = Arrays.asList(value);
+		public final Builder influencers(Influencer value, Influencer... values) {
+			this.influencers = _listAdd(this.influencers, value, values);
 			return this;
 		}
 
@@ -149,10 +152,11 @@ public class GetInfluencersResponse implements JsonpSerializable {
 		 * Required - Array of influencer objects
 		 * <p>
 		 * API name: {@code influencers}
+		 * <p>
+		 * Adds a value to <code>influencers</code> using a builder lambda.
 		 */
-		public final Builder influencers(
-				Function<ListBuilder<Influencer, Influencer.Builder>, ObjectBuilder<List<Influencer>>> fn) {
-			return influencers(fn.apply(new ListBuilder<>(Influencer.Builder::new)).build());
+		public final Builder influencers(Function<Influencer.Builder, ObjectBuilder<Influencer>> fn) {
+			return influencers(fn.apply(new Influencer.Builder()).build());
 		}
 
 		/**

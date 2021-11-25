@@ -35,7 +35,7 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Number;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: xpack.usage.EqlFeaturesSequences
@@ -70,10 +70,8 @@ public class EqlFeaturesSequences implements JsonpSerializable {
 
 	}
 
-	public static EqlFeaturesSequences of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static EqlFeaturesSequences of(Function<Builder, ObjectBuilder<EqlFeaturesSequences>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**

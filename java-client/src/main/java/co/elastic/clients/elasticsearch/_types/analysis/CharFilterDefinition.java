@@ -37,7 +37,7 @@ import co.elastic.clients.util.TaggedUnion;
 import co.elastic.clients.util.TaggedUnionUtils;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.analysis.CharFilterDefinition
@@ -104,10 +104,8 @@ public class CharFilterDefinition
 
 	}
 
-	public static CharFilterDefinition of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static CharFilterDefinition of(Function<Builder, ObjectBuilder<CharFilterDefinition>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -214,10 +212,9 @@ public class CharFilterDefinition
 			return this;
 		}
 
-		public ObjectBuilder<CharFilterDefinition> htmlStrip(Consumer<HtmlStripCharFilter.Builder> fn) {
-			HtmlStripCharFilter.Builder builder = new HtmlStripCharFilter.Builder();
-			fn.accept(builder);
-			return this.htmlStrip(builder.build());
+		public ObjectBuilder<CharFilterDefinition> htmlStrip(
+				Function<HtmlStripCharFilter.Builder, ObjectBuilder<HtmlStripCharFilter>> fn) {
+			return this.htmlStrip(fn.apply(new HtmlStripCharFilter.Builder()).build());
 		}
 
 		public ObjectBuilder<CharFilterDefinition> icuNormalizer(IcuNormalizationCharFilter v) {
@@ -226,10 +223,9 @@ public class CharFilterDefinition
 			return this;
 		}
 
-		public ObjectBuilder<CharFilterDefinition> icuNormalizer(Consumer<IcuNormalizationCharFilter.Builder> fn) {
-			IcuNormalizationCharFilter.Builder builder = new IcuNormalizationCharFilter.Builder();
-			fn.accept(builder);
-			return this.icuNormalizer(builder.build());
+		public ObjectBuilder<CharFilterDefinition> icuNormalizer(
+				Function<IcuNormalizationCharFilter.Builder, ObjectBuilder<IcuNormalizationCharFilter>> fn) {
+			return this.icuNormalizer(fn.apply(new IcuNormalizationCharFilter.Builder()).build());
 		}
 
 		public ObjectBuilder<CharFilterDefinition> kuromojiIterationMark(KuromojiIterationMarkCharFilter v) {
@@ -239,10 +235,8 @@ public class CharFilterDefinition
 		}
 
 		public ObjectBuilder<CharFilterDefinition> kuromojiIterationMark(
-				Consumer<KuromojiIterationMarkCharFilter.Builder> fn) {
-			KuromojiIterationMarkCharFilter.Builder builder = new KuromojiIterationMarkCharFilter.Builder();
-			fn.accept(builder);
-			return this.kuromojiIterationMark(builder.build());
+				Function<KuromojiIterationMarkCharFilter.Builder, ObjectBuilder<KuromojiIterationMarkCharFilter>> fn) {
+			return this.kuromojiIterationMark(fn.apply(new KuromojiIterationMarkCharFilter.Builder()).build());
 		}
 
 		public ObjectBuilder<CharFilterDefinition> mapping(MappingCharFilter v) {
@@ -251,10 +245,9 @@ public class CharFilterDefinition
 			return this;
 		}
 
-		public ObjectBuilder<CharFilterDefinition> mapping(Consumer<MappingCharFilter.Builder> fn) {
-			MappingCharFilter.Builder builder = new MappingCharFilter.Builder();
-			fn.accept(builder);
-			return this.mapping(builder.build());
+		public ObjectBuilder<CharFilterDefinition> mapping(
+				Function<MappingCharFilter.Builder, ObjectBuilder<MappingCharFilter>> fn) {
+			return this.mapping(fn.apply(new MappingCharFilter.Builder()).build());
 		}
 
 		public ObjectBuilder<CharFilterDefinition> patternReplace(PatternReplaceCharFilter v) {
@@ -263,10 +256,9 @@ public class CharFilterDefinition
 			return this;
 		}
 
-		public ObjectBuilder<CharFilterDefinition> patternReplace(Consumer<PatternReplaceCharFilter.Builder> fn) {
-			PatternReplaceCharFilter.Builder builder = new PatternReplaceCharFilter.Builder();
-			fn.accept(builder);
-			return this.patternReplace(builder.build());
+		public ObjectBuilder<CharFilterDefinition> patternReplace(
+				Function<PatternReplaceCharFilter.Builder, ObjectBuilder<PatternReplaceCharFilter>> fn) {
+			return this.patternReplace(fn.apply(new PatternReplaceCharFilter.Builder()).build());
 		}
 
 		public CharFilterDefinition build() {

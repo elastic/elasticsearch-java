@@ -34,7 +34,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.DiversifiedSamplerAggregation
@@ -68,10 +68,8 @@ public class DiversifiedSamplerAggregation extends BucketAggregationBase impleme
 
 	}
 
-	public static DiversifiedSamplerAggregation of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static DiversifiedSamplerAggregation of(Function<Builder, ObjectBuilder<DiversifiedSamplerAggregation>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -202,10 +200,8 @@ public class DiversifiedSamplerAggregation extends BucketAggregationBase impleme
 		/**
 		 * API name: {@code script}
 		 */
-		public final Builder script(Consumer<Script.Builder> fn) {
-			Script.Builder builder = new Script.Builder();
-			fn.accept(builder);
-			return this.script(builder.build());
+		public final Builder script(Function<Script.Builder, ObjectBuilder<Script>> fn) {
+			return this.script(fn.apply(new Script.Builder()).build());
 		}
 
 		/**

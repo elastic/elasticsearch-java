@@ -33,7 +33,6 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import javax.annotation.Nullable;
@@ -123,17 +122,25 @@ public abstract class CorePropertyBase extends PropertyBase {
 
 		/**
 		 * API name: {@code copy_to}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>copyTo</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>copyTo</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final BuilderT copyTo(@Nullable List<String> value) {
-			this.copyTo = value;
+		public final BuilderT copyTo(List<String> list) {
+			this.copyTo = _listAddAll(this.copyTo, list);
 			return self();
 		}
 
 		/**
 		 * API name: {@code copy_to}
+		 * <p>
+		 * Adds one or more values to <code>copyTo</code>.
 		 */
-		public final BuilderT copyTo(String... value) {
-			this.copyTo = Arrays.asList(value);
+		public final BuilderT copyTo(String value, String... values) {
+			this.copyTo = _listAdd(this.copyTo, value, values);
 			return self();
 		}
 

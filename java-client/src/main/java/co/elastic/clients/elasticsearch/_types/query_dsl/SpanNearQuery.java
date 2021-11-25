@@ -28,16 +28,13 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Integer;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -63,10 +60,8 @@ public class SpanNearQuery extends QueryBase implements SpanQueryVariant, QueryV
 
 	}
 
-	public static SpanNearQuery of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static SpanNearQuery of(Function<Builder, ObjectBuilder<SpanNearQuery>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -150,26 +145,35 @@ public class SpanNearQuery extends QueryBase implements SpanQueryVariant, QueryV
 
 		/**
 		 * Required - API name: {@code clauses}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>clauses</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>clauses</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder clauses(List<SpanQuery> value) {
-			this.clauses = value;
+		public final Builder clauses(List<SpanQuery> list) {
+			this.clauses = _listAddAll(this.clauses, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code clauses}
+		 * <p>
+		 * Adds one or more values to <code>clauses</code>.
 		 */
-		public final Builder clauses(SpanQuery... value) {
-			this.clauses = Arrays.asList(value);
+		public final Builder clauses(SpanQuery value, SpanQuery... values) {
+			this.clauses = _listAdd(this.clauses, value, values);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code clauses}
+		 * <p>
+		 * Adds a value to <code>clauses</code> using a builder lambda.
 		 */
-		public final Builder clauses(
-				Function<ListBuilder<SpanQuery, SpanQuery.Builder>, ObjectBuilder<List<SpanQuery>>> fn) {
-			return clauses(fn.apply(new ListBuilder<>(SpanQuery.Builder::new)).build());
+		public final Builder clauses(Function<SpanQuery.Builder, ObjectBuilder<SpanQuery>> fn) {
+			return clauses(fn.apply(new SpanQuery.Builder()).build());
 		}
 
 		/**

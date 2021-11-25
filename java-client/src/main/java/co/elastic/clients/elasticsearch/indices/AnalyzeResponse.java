@@ -31,15 +31,12 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -60,10 +57,8 @@ public class AnalyzeResponse implements JsonpSerializable {
 
 	}
 
-	public static AnalyzeResponse of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static AnalyzeResponse of(Function<Builder, ObjectBuilder<AnalyzeResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -133,34 +128,41 @@ public class AnalyzeResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code detail}
 		 */
-		public final Builder detail(Consumer<AnalyzeDetail.Builder> fn) {
-			AnalyzeDetail.Builder builder = new AnalyzeDetail.Builder();
-			fn.accept(builder);
-			return this.detail(builder.build());
+		public final Builder detail(Function<AnalyzeDetail.Builder, ObjectBuilder<AnalyzeDetail>> fn) {
+			return this.detail(fn.apply(new AnalyzeDetail.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code tokens}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>tokens</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>tokens</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder tokens(@Nullable List<AnalyzeToken> value) {
-			this.tokens = value;
+		public final Builder tokens(List<AnalyzeToken> list) {
+			this.tokens = _listAddAll(this.tokens, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code tokens}
+		 * <p>
+		 * Adds one or more values to <code>tokens</code>.
 		 */
-		public final Builder tokens(AnalyzeToken... value) {
-			this.tokens = Arrays.asList(value);
+		public final Builder tokens(AnalyzeToken value, AnalyzeToken... values) {
+			this.tokens = _listAdd(this.tokens, value, values);
 			return this;
 		}
 
 		/**
 		 * API name: {@code tokens}
+		 * <p>
+		 * Adds a value to <code>tokens</code> using a builder lambda.
 		 */
-		public final Builder tokens(
-				Function<ListBuilder<AnalyzeToken, AnalyzeToken.Builder>, ObjectBuilder<List<AnalyzeToken>>> fn) {
-			return tokens(fn.apply(new ListBuilder<>(AnalyzeToken.Builder::new)).build());
+		public final Builder tokens(Function<AnalyzeToken.Builder, ObjectBuilder<AnalyzeToken>> fn) {
+			return tokens(fn.apply(new AnalyzeToken.Builder()).build());
 		}
 
 		/**

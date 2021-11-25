@@ -30,16 +30,13 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -59,10 +56,8 @@ public class GetCalendarsResponse implements JsonpSerializable {
 
 	}
 
-	public static GetCalendarsResponse of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static GetCalendarsResponse of(Function<Builder, ObjectBuilder<GetCalendarsResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -117,26 +112,35 @@ public class GetCalendarsResponse implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code calendars}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>calendars</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>calendars</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder calendars(List<Calendar> value) {
-			this.calendars = value;
+		public final Builder calendars(List<Calendar> list) {
+			this.calendars = _listAddAll(this.calendars, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code calendars}
+		 * <p>
+		 * Adds one or more values to <code>calendars</code>.
 		 */
-		public final Builder calendars(Calendar... value) {
-			this.calendars = Arrays.asList(value);
+		public final Builder calendars(Calendar value, Calendar... values) {
+			this.calendars = _listAdd(this.calendars, value, values);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code calendars}
+		 * <p>
+		 * Adds a value to <code>calendars</code> using a builder lambda.
 		 */
-		public final Builder calendars(
-				Function<ListBuilder<Calendar, Calendar.Builder>, ObjectBuilder<List<Calendar>>> fn) {
-			return calendars(fn.apply(new ListBuilder<>(Calendar.Builder::new)).build());
+		public final Builder calendars(Function<Calendar.Builder, ObjectBuilder<Calendar>> fn) {
+			return calendars(fn.apply(new Calendar.Builder()).build());
 		}
 
 		/**

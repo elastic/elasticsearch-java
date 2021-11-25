@@ -35,10 +35,9 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: slm.get_stats.Response
@@ -87,10 +86,8 @@ public class GetStatsResponse implements JsonpSerializable {
 
 	}
 
-	public static GetStatsResponse of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static GetStatsResponse of(Function<Builder, ObjectBuilder<GetStatsResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -314,17 +311,25 @@ public class GetStatsResponse implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code policy_stats}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>policyStats</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>policyStats</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder policyStats(List<String> value) {
-			this.policyStats = value;
+		public final Builder policyStats(List<String> list) {
+			this.policyStats = _listAddAll(this.policyStats, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code policy_stats}
+		 * <p>
+		 * Adds one or more values to <code>policyStats</code>.
 		 */
-		public final Builder policyStats(String... value) {
-			this.policyStats = Arrays.asList(value);
+		public final Builder policyStats(String value, String... values) {
+			this.policyStats = _listAdd(this.policyStats, value, values);
 			return this;
 		}
 

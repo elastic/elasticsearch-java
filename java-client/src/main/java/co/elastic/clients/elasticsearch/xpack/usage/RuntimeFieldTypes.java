@@ -28,14 +28,11 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -53,10 +50,8 @@ public class RuntimeFieldTypes extends Base {
 
 	}
 
-	public static RuntimeFieldTypes of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static RuntimeFieldTypes of(Function<Builder, ObjectBuilder<RuntimeFieldTypes>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -92,26 +87,35 @@ public class RuntimeFieldTypes extends Base {
 
 		/**
 		 * Required - API name: {@code field_types}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>fieldTypes</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>fieldTypes</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder fieldTypes(List<RuntimeFieldsType> value) {
-			this.fieldTypes = value;
+		public final Builder fieldTypes(List<RuntimeFieldsType> list) {
+			this.fieldTypes = _listAddAll(this.fieldTypes, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code field_types}
+		 * <p>
+		 * Adds one or more values to <code>fieldTypes</code>.
 		 */
-		public final Builder fieldTypes(RuntimeFieldsType... value) {
-			this.fieldTypes = Arrays.asList(value);
+		public final Builder fieldTypes(RuntimeFieldsType value, RuntimeFieldsType... values) {
+			this.fieldTypes = _listAdd(this.fieldTypes, value, values);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code field_types}
+		 * <p>
+		 * Adds a value to <code>fieldTypes</code> using a builder lambda.
 		 */
-		public final Builder fieldTypes(
-				Function<ListBuilder<RuntimeFieldsType, RuntimeFieldsType.Builder>, ObjectBuilder<List<RuntimeFieldsType>>> fn) {
-			return fieldTypes(fn.apply(new ListBuilder<>(RuntimeFieldsType.Builder::new)).build());
+		public final Builder fieldTypes(Function<RuntimeFieldsType.Builder, ObjectBuilder<RuntimeFieldsType>> fn) {
+			return fieldTypes(fn.apply(new RuntimeFieldsType.Builder()).build());
 		}
 
 		@Override

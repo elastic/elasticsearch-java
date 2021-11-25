@@ -28,15 +28,12 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -58,10 +55,8 @@ public class DisMaxQuery extends QueryBase implements QueryVariant {
 
 	}
 
-	public static DisMaxQuery of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static DisMaxQuery of(Function<Builder, ObjectBuilder<DisMaxQuery>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -121,25 +116,35 @@ public class DisMaxQuery extends QueryBase implements QueryVariant {
 
 		/**
 		 * Required - API name: {@code queries}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>queries</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>queries</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder queries(List<Query> value) {
-			this.queries = value;
+		public final Builder queries(List<Query> list) {
+			this.queries = _listAddAll(this.queries, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code queries}
+		 * <p>
+		 * Adds one or more values to <code>queries</code>.
 		 */
-		public final Builder queries(Query... value) {
-			this.queries = Arrays.asList(value);
+		public final Builder queries(Query value, Query... values) {
+			this.queries = _listAdd(this.queries, value, values);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code queries}
+		 * <p>
+		 * Adds a value to <code>queries</code> using a builder lambda.
 		 */
-		public final Builder queries(Function<ListBuilder<Query, Query.Builder>, ObjectBuilder<List<Query>>> fn) {
-			return queries(fn.apply(new ListBuilder<>(Query.Builder::new)).build());
+		public final Builder queries(Function<Query.Builder, ObjectBuilder<Query>> fn) {
+			return queries(fn.apply(new Query.Builder()).build());
 		}
 
 		/**

@@ -34,10 +34,9 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Long;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ingest._types.AttachmentProcessor
@@ -77,10 +76,8 @@ public class AttachmentProcessor extends ProcessorBase implements ProcessorVaria
 
 	}
 
-	public static AttachmentProcessor of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static AttachmentProcessor of(Function<Builder, ObjectBuilder<AttachmentProcessor>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -251,17 +248,25 @@ public class AttachmentProcessor extends ProcessorBase implements ProcessorVaria
 
 		/**
 		 * API name: {@code properties}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>properties</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>properties</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder properties(@Nullable List<String> value) {
-			this.properties = value;
+		public final Builder properties(List<String> list) {
+			this.properties = _listAddAll(this.properties, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code properties}
+		 * <p>
+		 * Adds one or more values to <code>properties</code>.
 		 */
-		public final Builder properties(String... value) {
-			this.properties = Arrays.asList(value);
+		public final Builder properties(String value, String... values) {
+			this.properties = _listAdd(this.properties, value, values);
 			return this;
 		}
 

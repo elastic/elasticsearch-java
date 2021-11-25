@@ -30,15 +30,12 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -55,10 +52,8 @@ public class GeoPolygonPoints implements JsonpSerializable {
 
 	}
 
-	public static GeoPolygonPoints of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static GeoPolygonPoints of(Function<Builder, ObjectBuilder<GeoPolygonPoints>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -102,26 +97,35 @@ public class GeoPolygonPoints implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code points}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>points</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>points</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder points(List<GeoLocation> value) {
-			this.points = value;
+		public final Builder points(List<GeoLocation> list) {
+			this.points = _listAddAll(this.points, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code points}
+		 * <p>
+		 * Adds one or more values to <code>points</code>.
 		 */
-		public final Builder points(GeoLocation... value) {
-			this.points = Arrays.asList(value);
+		public final Builder points(GeoLocation value, GeoLocation... values) {
+			this.points = _listAdd(this.points, value, values);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code points}
+		 * <p>
+		 * Adds a value to <code>points</code> using a builder lambda.
 		 */
-		public final Builder points(
-				Function<ListBuilder<GeoLocation, GeoLocation.Builder>, ObjectBuilder<List<GeoLocation>>> fn) {
-			return points(fn.apply(new ListBuilder<>(GeoLocation.Builder::new)).build());
+		public final Builder points(Function<GeoLocation.Builder, ObjectBuilder<GeoLocation>> fn) {
+			return points(fn.apply(new GeoLocation.Builder()).build());
 		}
 
 		/**

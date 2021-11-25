@@ -29,16 +29,13 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -59,10 +56,8 @@ public class GetTrainedModelsResponse implements JsonpSerializable {
 
 	}
 
-	public static GetTrainedModelsResponse of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static GetTrainedModelsResponse of(Function<Builder, ObjectBuilder<GetTrainedModelsResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -132,9 +127,15 @@ public class GetTrainedModelsResponse implements JsonpSerializable {
 		 * model_id value in ascending order.
 		 * <p>
 		 * API name: {@code trained_model_configs}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>trainedModelConfigs</code>.
+		 * Use <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>trainedModelConfigs</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder trainedModelConfigs(List<TrainedModelConfig> value) {
-			this.trainedModelConfigs = value;
+		public final Builder trainedModelConfigs(List<TrainedModelConfig> list) {
+			this.trainedModelConfigs = _listAddAll(this.trainedModelConfigs, list);
 			return this;
 		}
 
@@ -143,9 +144,11 @@ public class GetTrainedModelsResponse implements JsonpSerializable {
 		 * model_id value in ascending order.
 		 * <p>
 		 * API name: {@code trained_model_configs}
+		 * <p>
+		 * Adds one or more values to <code>trainedModelConfigs</code>.
 		 */
-		public final Builder trainedModelConfigs(TrainedModelConfig... value) {
-			this.trainedModelConfigs = Arrays.asList(value);
+		public final Builder trainedModelConfigs(TrainedModelConfig value, TrainedModelConfig... values) {
+			this.trainedModelConfigs = _listAdd(this.trainedModelConfigs, value, values);
 			return this;
 		}
 
@@ -154,10 +157,12 @@ public class GetTrainedModelsResponse implements JsonpSerializable {
 		 * model_id value in ascending order.
 		 * <p>
 		 * API name: {@code trained_model_configs}
+		 * <p>
+		 * Adds a value to <code>trainedModelConfigs</code> using a builder lambda.
 		 */
 		public final Builder trainedModelConfigs(
-				Function<ListBuilder<TrainedModelConfig, TrainedModelConfig.Builder>, ObjectBuilder<List<TrainedModelConfig>>> fn) {
-			return trainedModelConfigs(fn.apply(new ListBuilder<>(TrainedModelConfig.Builder::new)).build());
+				Function<TrainedModelConfig.Builder, ObjectBuilder<TrainedModelConfig>> fn) {
+			return trainedModelConfigs(fn.apply(new TrainedModelConfig.Builder()).build());
 		}
 
 		/**

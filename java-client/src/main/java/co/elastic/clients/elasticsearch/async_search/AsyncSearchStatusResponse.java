@@ -36,7 +36,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import java.util.function.Supplier;
 import javax.annotation.Nullable;
 
@@ -61,10 +61,9 @@ public class AsyncSearchStatusResponse<TDocument> extends AsyncSearchResponseBas
 
 	}
 
-	public static <TDocument> AsyncSearchStatusResponse<TDocument> of(Consumer<Builder<TDocument>> fn) {
-		Builder<TDocument> builder = new Builder<>();
-		fn.accept(builder);
-		return builder.build();
+	public static <TDocument> AsyncSearchStatusResponse<TDocument> of(
+			Function<Builder<TDocument>, ObjectBuilder<AsyncSearchStatusResponse<TDocument>>> fn) {
+		return fn.apply(new Builder<>()).build();
 	}
 
 	/**
@@ -118,10 +117,8 @@ public class AsyncSearchStatusResponse<TDocument> extends AsyncSearchResponseBas
 		/**
 		 * Required - API name: {@code _shards}
 		 */
-		public final Builder<TDocument> shards(Consumer<ShardStatistics.Builder> fn) {
-			ShardStatistics.Builder builder = new ShardStatistics.Builder();
-			fn.accept(builder);
-			return this.shards(builder.build());
+		public final Builder<TDocument> shards(Function<ShardStatistics.Builder, ObjectBuilder<ShardStatistics>> fn) {
+			return this.shards(fn.apply(new ShardStatistics.Builder()).build());
 		}
 
 		/**

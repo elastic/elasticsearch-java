@@ -30,17 +30,14 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -72,10 +69,8 @@ public class InferenceAggregate extends AggregateBase implements AggregateVarian
 
 	}
 
-	public static InferenceAggregate of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static InferenceAggregate of(Function<Builder, ObjectBuilder<InferenceAggregate>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -178,9 +173,25 @@ public class InferenceAggregate extends AggregateBase implements AggregateVarian
 
 		/**
 		 * Additional data
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>data</code>. Use
+		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
+		 * <code>data</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetMap()
 		 */
-		public final Builder data(@Nullable Map<String, JsonData> value) {
-			this.data = value;
+		public final Builder data(Map<String, JsonData> map) {
+			this.data = _mapPutAll(this.data, map);
+			return this;
+		}
+
+		/**
+		 * Additional data
+		 * <p>
+		 * Adds an entry to <code>data</code>.
+		 */
+		public final Builder data(String key, JsonData value) {
+			this.data = _mapPut(this.data, key, value);
 			return this;
 		}
 
@@ -207,58 +218,76 @@ public class InferenceAggregate extends AggregateBase implements AggregateVarian
 		/**
 		 * API name: {@code value}
 		 */
-		public final Builder value(Consumer<FieldValue.Builder> fn) {
-			FieldValue.Builder builder = new FieldValue.Builder();
-			fn.accept(builder);
-			return this.value(builder.build());
+		public final Builder value(Function<FieldValue.Builder, ObjectBuilder<FieldValue>> fn) {
+			return this.value(fn.apply(new FieldValue.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code feature_importance}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>featureImportance</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>featureImportance</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder featureImportance(@Nullable List<InferenceFeatureImportance> value) {
-			this.featureImportance = value;
+		public final Builder featureImportance(List<InferenceFeatureImportance> list) {
+			this.featureImportance = _listAddAll(this.featureImportance, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code feature_importance}
+		 * <p>
+		 * Adds one or more values to <code>featureImportance</code>.
 		 */
-		public final Builder featureImportance(InferenceFeatureImportance... value) {
-			this.featureImportance = Arrays.asList(value);
+		public final Builder featureImportance(InferenceFeatureImportance value, InferenceFeatureImportance... values) {
+			this.featureImportance = _listAdd(this.featureImportance, value, values);
 			return this;
 		}
 
 		/**
 		 * API name: {@code feature_importance}
+		 * <p>
+		 * Adds a value to <code>featureImportance</code> using a builder lambda.
 		 */
 		public final Builder featureImportance(
-				Function<ListBuilder<InferenceFeatureImportance, InferenceFeatureImportance.Builder>, ObjectBuilder<List<InferenceFeatureImportance>>> fn) {
-			return featureImportance(fn.apply(new ListBuilder<>(InferenceFeatureImportance.Builder::new)).build());
+				Function<InferenceFeatureImportance.Builder, ObjectBuilder<InferenceFeatureImportance>> fn) {
+			return featureImportance(fn.apply(new InferenceFeatureImportance.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code top_classes}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>topClasses</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>topClasses</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder topClasses(@Nullable List<InferenceTopClassEntry> value) {
-			this.topClasses = value;
+		public final Builder topClasses(List<InferenceTopClassEntry> list) {
+			this.topClasses = _listAddAll(this.topClasses, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code top_classes}
+		 * <p>
+		 * Adds one or more values to <code>topClasses</code>.
 		 */
-		public final Builder topClasses(InferenceTopClassEntry... value) {
-			this.topClasses = Arrays.asList(value);
+		public final Builder topClasses(InferenceTopClassEntry value, InferenceTopClassEntry... values) {
+			this.topClasses = _listAdd(this.topClasses, value, values);
 			return this;
 		}
 
 		/**
 		 * API name: {@code top_classes}
+		 * <p>
+		 * Adds a value to <code>topClasses</code> using a builder lambda.
 		 */
 		public final Builder topClasses(
-				Function<ListBuilder<InferenceTopClassEntry, InferenceTopClassEntry.Builder>, ObjectBuilder<List<InferenceTopClassEntry>>> fn) {
-			return topClasses(fn.apply(new ListBuilder<>(InferenceTopClassEntry.Builder::new)).build());
+				Function<InferenceTopClassEntry.Builder, ObjectBuilder<InferenceTopClassEntry>> fn) {
+			return topClasses(fn.apply(new InferenceTopClassEntry.Builder()).build());
 		}
 
 		/**

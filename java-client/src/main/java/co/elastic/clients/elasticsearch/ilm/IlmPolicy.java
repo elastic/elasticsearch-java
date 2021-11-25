@@ -35,7 +35,7 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ilm._types.Policy
@@ -55,10 +55,8 @@ public class IlmPolicy implements JsonpSerializable {
 
 	}
 
-	public static IlmPolicy of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static IlmPolicy of(Function<Builder, ObjectBuilder<IlmPolicy>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -120,10 +118,8 @@ public class IlmPolicy implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code phases}
 		 */
-		public final Builder phases(Consumer<Phases.Builder> fn) {
-			Phases.Builder builder = new Phases.Builder();
-			fn.accept(builder);
-			return this.phases(builder.build());
+		public final Builder phases(Function<Phases.Builder, ObjectBuilder<Phases>> fn) {
+			return this.phases(fn.apply(new Phases.Builder()).build());
 		}
 
 		/**

@@ -40,11 +40,10 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher.execute_watch.WatchRecord
@@ -87,10 +86,8 @@ public class WatchRecord implements JsonpSerializable {
 
 	}
 
-	public static WatchRecord of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static WatchRecord of(Function<Builder, ObjectBuilder<WatchRecord>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -257,10 +254,8 @@ public class WatchRecord implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code condition}
 		 */
-		public final Builder condition(Consumer<Condition.Builder> fn) {
-			Condition.Builder builder = new Condition.Builder();
-			fn.accept(builder);
-			return this.condition(builder.build());
+		public final Builder condition(Function<Condition.Builder, ObjectBuilder<Condition>> fn) {
+			return this.condition(fn.apply(new Condition.Builder()).build());
 		}
 
 		/**
@@ -274,33 +269,55 @@ public class WatchRecord implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code input}
 		 */
-		public final Builder input(Consumer<Input.Builder> fn) {
-			Input.Builder builder = new Input.Builder();
-			fn.accept(builder);
-			return this.input(builder.build());
+		public final Builder input(Function<Input.Builder, ObjectBuilder<Input>> fn) {
+			return this.input(fn.apply(new Input.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code messages}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>messages</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>messages</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder messages(List<String> value) {
-			this.messages = value;
+		public final Builder messages(List<String> list) {
+			this.messages = _listAddAll(this.messages, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code messages}
+		 * <p>
+		 * Adds one or more values to <code>messages</code>.
 		 */
-		public final Builder messages(String... value) {
-			this.messages = Arrays.asList(value);
+		public final Builder messages(String value, String... values) {
+			this.messages = _listAdd(this.messages, value, values);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code metadata}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>metadata</code>. Use
+		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
+		 * <code>metadata</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetMap()
 		 */
-		public final Builder metadata(Map<String, JsonData> value) {
-			this.metadata = value;
+		public final Builder metadata(Map<String, JsonData> map) {
+			this.metadata = _mapPutAll(this.metadata, map);
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code metadata}
+		 * <p>
+		 * Adds an entry to <code>metadata</code>.
+		 */
+		public final Builder metadata(String key, JsonData value) {
+			this.metadata = _mapPut(this.metadata, key, value);
 			return this;
 		}
 
@@ -323,10 +340,8 @@ public class WatchRecord implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code result}
 		 */
-		public final Builder result(Consumer<ExecutionResult.Builder> fn) {
-			ExecutionResult.Builder builder = new ExecutionResult.Builder();
-			fn.accept(builder);
-			return this.result(builder.build());
+		public final Builder result(Function<ExecutionResult.Builder, ObjectBuilder<ExecutionResult>> fn) {
+			return this.result(fn.apply(new ExecutionResult.Builder()).build());
 		}
 
 		/**
@@ -348,10 +363,8 @@ public class WatchRecord implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code trigger_event}
 		 */
-		public final Builder triggerEvent(Consumer<TriggerEventResult.Builder> fn) {
-			TriggerEventResult.Builder builder = new TriggerEventResult.Builder();
-			fn.accept(builder);
-			return this.triggerEvent(builder.build());
+		public final Builder triggerEvent(Function<TriggerEventResult.Builder, ObjectBuilder<TriggerEventResult>> fn) {
+			return this.triggerEvent(fn.apply(new TriggerEventResult.Builder()).build());
 		}
 
 		/**

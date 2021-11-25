@@ -35,7 +35,7 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.get_index_template.IndexTemplateItem
@@ -54,10 +54,8 @@ public class IndexTemplateItem implements JsonpSerializable {
 
 	}
 
-	public static IndexTemplateItem of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static IndexTemplateItem of(Function<Builder, ObjectBuilder<IndexTemplateItem>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -122,10 +120,8 @@ public class IndexTemplateItem implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code index_template}
 		 */
-		public final Builder indexTemplate(Consumer<IndexTemplate.Builder> fn) {
-			IndexTemplate.Builder builder = new IndexTemplate.Builder();
-			fn.accept(builder);
-			return this.indexTemplate(builder.build());
+		public final Builder indexTemplate(Function<IndexTemplate.Builder, ObjectBuilder<IndexTemplate>> fn) {
+			return this.indexTemplate(fn.apply(new IndexTemplate.Builder()).build());
 		}
 
 		/**

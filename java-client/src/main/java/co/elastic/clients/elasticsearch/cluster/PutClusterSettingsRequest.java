@@ -44,7 +44,7 @@ import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cluster.put_settings.Request
@@ -75,10 +75,8 @@ public class PutClusterSettingsRequest extends RequestBase implements JsonpSeria
 
 	}
 
-	public static PutClusterSettingsRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static PutClusterSettingsRequest of(Function<Builder, ObjectBuilder<PutClusterSettingsRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -207,17 +205,31 @@ public class PutClusterSettingsRequest extends RequestBase implements JsonpSeria
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
-		public final Builder masterTimeout(Consumer<Time.Builder> fn) {
-			Time.Builder builder = new Time.Builder();
-			fn.accept(builder);
-			return this.masterTimeout(builder.build());
+		public final Builder masterTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.masterTimeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code persistent}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>persistent</code>. Use
+		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
+		 * <code>persistent</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetMap()
 		 */
-		public final Builder persistent(@Nullable Map<String, JsonData> value) {
-			this.persistent = value;
+		public final Builder persistent(Map<String, JsonData> map) {
+			this.persistent = _mapPutAll(this.persistent, map);
+			return this;
+		}
+
+		/**
+		 * API name: {@code persistent}
+		 * <p>
+		 * Adds an entry to <code>persistent</code>.
+		 */
+		public final Builder persistent(String key, JsonData value) {
+			this.persistent = _mapPut(this.persistent, key, value);
 			return this;
 		}
 
@@ -236,17 +248,31 @@ public class PutClusterSettingsRequest extends RequestBase implements JsonpSeria
 		 * <p>
 		 * API name: {@code timeout}
 		 */
-		public final Builder timeout(Consumer<Time.Builder> fn) {
-			Time.Builder builder = new Time.Builder();
-			fn.accept(builder);
-			return this.timeout(builder.build());
+		public final Builder timeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.timeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code transient}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>transient_</code>. Use
+		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
+		 * <code>transient_</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetMap()
 		 */
-		public final Builder transient_(@Nullable Map<String, JsonData> value) {
-			this.transient_ = value;
+		public final Builder transient_(Map<String, JsonData> map) {
+			this.transient_ = _mapPutAll(this.transient_, map);
+			return this;
+		}
+
+		/**
+		 * API name: {@code transient}
+		 * <p>
+		 * Adds an entry to <code>transient_</code>.
+		 */
+		public final Builder transient_(String key, JsonData value) {
+			this.transient_ = _mapPut(this.transient_, key, value);
 			return this;
 		}
 

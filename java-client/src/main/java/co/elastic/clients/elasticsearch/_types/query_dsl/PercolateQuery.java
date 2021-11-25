@@ -34,10 +34,9 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.PercolateQuery
@@ -85,10 +84,8 @@ public class PercolateQuery extends QueryBase implements QueryVariant {
 
 	}
 
-	public static PercolateQuery of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static PercolateQuery of(Function<Builder, ObjectBuilder<PercolateQuery>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -265,17 +262,25 @@ public class PercolateQuery extends QueryBase implements QueryVariant {
 
 		/**
 		 * API name: {@code documents}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>documents</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>documents</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder documents(@Nullable List<JsonData> value) {
-			this.documents = value;
+		public final Builder documents(List<JsonData> list) {
+			this.documents = _listAddAll(this.documents, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code documents}
+		 * <p>
+		 * Adds one or more values to <code>documents</code>.
 		 */
-		public final Builder documents(JsonData... value) {
-			this.documents = Arrays.asList(value);
+		public final Builder documents(JsonData value, JsonData... values) {
+			this.documents = _listAdd(this.documents, value, values);
 			return this;
 		}
 

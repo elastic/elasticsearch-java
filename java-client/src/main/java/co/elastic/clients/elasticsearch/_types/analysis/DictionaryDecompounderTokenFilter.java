@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 
 // typedef: _types.analysis.DictionaryDecompounderTokenFilter
 @JsonpDeserializable
@@ -45,10 +45,9 @@ public class DictionaryDecompounderTokenFilter extends CompoundWordTokenFilterBa
 
 	}
 
-	public static DictionaryDecompounderTokenFilter of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static DictionaryDecompounderTokenFilter of(
+			Function<Builder, ObjectBuilder<DictionaryDecompounderTokenFilter>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**

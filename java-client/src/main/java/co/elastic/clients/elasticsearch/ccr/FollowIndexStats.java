@@ -29,16 +29,13 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -58,10 +55,8 @@ public class FollowIndexStats implements JsonpSerializable {
 
 	}
 
-	public static FollowIndexStats of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static FollowIndexStats of(Function<Builder, ObjectBuilder<FollowIndexStats>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -125,26 +120,35 @@ public class FollowIndexStats implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code shards}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>shards</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>shards</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder shards(List<ShardStats> value) {
-			this.shards = value;
+		public final Builder shards(List<ShardStats> list) {
+			this.shards = _listAddAll(this.shards, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code shards}
+		 * <p>
+		 * Adds one or more values to <code>shards</code>.
 		 */
-		public final Builder shards(ShardStats... value) {
-			this.shards = Arrays.asList(value);
+		public final Builder shards(ShardStats value, ShardStats... values) {
+			this.shards = _listAdd(this.shards, value, values);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code shards}
+		 * <p>
+		 * Adds a value to <code>shards</code> using a builder lambda.
 		 */
-		public final Builder shards(
-				Function<ListBuilder<ShardStats, ShardStats.Builder>, ObjectBuilder<List<ShardStats>>> fn) {
-			return shards(fn.apply(new ListBuilder<>(ShardStats.Builder::new)).build());
+		public final Builder shards(Function<ShardStats.Builder, ObjectBuilder<ShardStats>> fn) {
+			return shards(fn.apply(new ShardStats.Builder()).build());
 		}
 
 		/**

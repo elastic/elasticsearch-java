@@ -38,7 +38,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher.activate_watch.Request
@@ -54,10 +54,8 @@ public class ActivateWatchRequest extends RequestBase {
 
 	}
 
-	public static ActivateWatchRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static ActivateWatchRequest of(Function<Builder, ObjectBuilder<ActivateWatchRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**

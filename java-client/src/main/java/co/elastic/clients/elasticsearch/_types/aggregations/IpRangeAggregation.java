@@ -28,15 +28,12 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -58,10 +55,8 @@ public class IpRangeAggregation extends BucketAggregationBase implements Aggrega
 
 	}
 
-	public static IpRangeAggregation of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static IpRangeAggregation of(Function<Builder, ObjectBuilder<IpRangeAggregation>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -132,26 +127,36 @@ public class IpRangeAggregation extends BucketAggregationBase implements Aggrega
 
 		/**
 		 * API name: {@code ranges}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>ranges</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>ranges</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder ranges(@Nullable List<IpRangeAggregationRange> value) {
-			this.ranges = value;
+		public final Builder ranges(List<IpRangeAggregationRange> list) {
+			this.ranges = _listAddAll(this.ranges, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code ranges}
+		 * <p>
+		 * Adds one or more values to <code>ranges</code>.
 		 */
-		public final Builder ranges(IpRangeAggregationRange... value) {
-			this.ranges = Arrays.asList(value);
+		public final Builder ranges(IpRangeAggregationRange value, IpRangeAggregationRange... values) {
+			this.ranges = _listAdd(this.ranges, value, values);
 			return this;
 		}
 
 		/**
 		 * API name: {@code ranges}
+		 * <p>
+		 * Adds a value to <code>ranges</code> using a builder lambda.
 		 */
 		public final Builder ranges(
-				Function<ListBuilder<IpRangeAggregationRange, IpRangeAggregationRange.Builder>, ObjectBuilder<List<IpRangeAggregationRange>>> fn) {
-			return ranges(fn.apply(new ListBuilder<>(IpRangeAggregationRange.Builder::new)).build());
+				Function<IpRangeAggregationRange.Builder, ObjectBuilder<IpRangeAggregationRange>> fn) {
+			return ranges(fn.apply(new IpRangeAggregationRange.Builder()).build());
 		}
 
 		@Override

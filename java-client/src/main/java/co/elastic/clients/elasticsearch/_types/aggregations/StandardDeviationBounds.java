@@ -35,7 +35,7 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 
 // typedef: _types.aggregations.StandardDeviationBounds
 @JsonpDeserializable
@@ -65,10 +65,8 @@ public class StandardDeviationBounds implements JsonpSerializable {
 
 	}
 
-	public static StandardDeviationBounds of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static StandardDeviationBounds of(Function<Builder, ObjectBuilder<StandardDeviationBounds>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**

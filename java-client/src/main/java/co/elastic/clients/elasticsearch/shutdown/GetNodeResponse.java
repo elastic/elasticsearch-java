@@ -30,15 +30,12 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -55,10 +52,8 @@ public class GetNodeResponse implements JsonpSerializable {
 
 	}
 
-	public static GetNodeResponse of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static GetNodeResponse of(Function<Builder, ObjectBuilder<GetNodeResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -102,26 +97,35 @@ public class GetNodeResponse implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code nodes}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>nodes</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>nodes</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder nodes(List<NodeShutdownStatus> value) {
-			this.nodes = value;
+		public final Builder nodes(List<NodeShutdownStatus> list) {
+			this.nodes = _listAddAll(this.nodes, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code nodes}
+		 * <p>
+		 * Adds one or more values to <code>nodes</code>.
 		 */
-		public final Builder nodes(NodeShutdownStatus... value) {
-			this.nodes = Arrays.asList(value);
+		public final Builder nodes(NodeShutdownStatus value, NodeShutdownStatus... values) {
+			this.nodes = _listAdd(this.nodes, value, values);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code nodes}
+		 * <p>
+		 * Adds a value to <code>nodes</code> using a builder lambda.
 		 */
-		public final Builder nodes(
-				Function<ListBuilder<NodeShutdownStatus, NodeShutdownStatus.Builder>, ObjectBuilder<List<NodeShutdownStatus>>> fn) {
-			return nodes(fn.apply(new ListBuilder<>(NodeShutdownStatus.Builder::new)).build());
+		public final Builder nodes(Function<NodeShutdownStatus.Builder, ObjectBuilder<NodeShutdownStatus>> fn) {
+			return nodes(fn.apply(new NodeShutdownStatus.Builder()).build());
 		}
 
 		/**

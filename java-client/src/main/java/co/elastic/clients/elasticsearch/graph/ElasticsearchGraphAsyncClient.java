@@ -34,7 +34,7 @@ import co.elastic.clients.transport.TransportOptions;
 import co.elastic.clients.util.ObjectBuilder;
 import java.io.IOException;
 import java.util.concurrent.CompletableFuture;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 /**
@@ -87,11 +87,10 @@ public class ElasticsearchGraphAsyncClient extends ApiClient<ElasticsearchTransp
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<ExploreResponse> explore(Consumer<ExploreRequest.Builder> fn)
+	public final CompletableFuture<ExploreResponse> explore(
+			Function<ExploreRequest.Builder, ObjectBuilder<ExploreRequest>> fn)
 			throws IOException, ElasticsearchException {
-		ExploreRequest.Builder builder = new ExploreRequest.Builder();
-		fn.accept(builder);
-		return explore(builder.build());
+		return explore(fn.apply(new ExploreRequest.Builder()).build());
 	}
 
 }

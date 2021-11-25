@@ -34,10 +34,9 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: nodes.hot_threads.HotThread
@@ -62,10 +61,8 @@ public class HotThread implements JsonpSerializable {
 
 	}
 
-	public static HotThread of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static HotThread of(Function<Builder, ObjectBuilder<HotThread>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -152,17 +149,25 @@ public class HotThread implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code hosts}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>hosts</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>hosts</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder hosts(List<String> value) {
-			this.hosts = value;
+		public final Builder hosts(List<String> list) {
+			this.hosts = _listAddAll(this.hosts, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code hosts}
+		 * <p>
+		 * Adds one or more values to <code>hosts</code>.
 		 */
-		public final Builder hosts(String... value) {
-			this.hosts = Arrays.asList(value);
+		public final Builder hosts(String value, String... values) {
+			this.hosts = _listAdd(this.hosts, value, values);
 			return this;
 		}
 
@@ -184,17 +189,25 @@ public class HotThread implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code threads}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>threads</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>threads</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder threads(List<String> value) {
-			this.threads = value;
+		public final Builder threads(List<String> list) {
+			this.threads = _listAddAll(this.threads, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code threads}
+		 * <p>
+		 * Adds one or more values to <code>threads</code>.
 		 */
-		public final Builder threads(String... value) {
-			this.threads = Arrays.asList(value);
+		public final Builder threads(String value, String... values) {
+			this.threads = _listAdd(this.threads, value, values);
 			return this;
 		}
 

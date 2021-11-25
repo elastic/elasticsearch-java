@@ -35,19 +35,16 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -77,10 +74,8 @@ public class BulkRequest extends RequestBase implements NdJsonpSerializable, Jso
 
 	}
 
-	public static BulkRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static BulkRequest of(Function<Builder, ObjectBuilder<BulkRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	@Override
@@ -207,9 +202,15 @@ public class BulkRequest extends RequestBase implements NdJsonpSerializable, Jso
 		 * Required - Request body.
 		 * <p>
 		 * API name: {@code _value_body}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>operations</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>operations</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder operations(List<BulkOperation> value) {
-			this.operations = value;
+		public final Builder operations(List<BulkOperation> list) {
+			this.operations = _listAddAll(this.operations, list);
 			return this;
 		}
 
@@ -217,9 +218,11 @@ public class BulkRequest extends RequestBase implements NdJsonpSerializable, Jso
 		 * Required - Request body.
 		 * <p>
 		 * API name: {@code _value_body}
+		 * <p>
+		 * Adds one or more values to <code>operations</code>.
 		 */
-		public final Builder operations(BulkOperation... value) {
-			this.operations = Arrays.asList(value);
+		public final Builder operations(BulkOperation value, BulkOperation... values) {
+			this.operations = _listAdd(this.operations, value, values);
 			return this;
 		}
 
@@ -227,10 +230,11 @@ public class BulkRequest extends RequestBase implements NdJsonpSerializable, Jso
 		 * Required - Request body.
 		 * <p>
 		 * API name: {@code _value_body}
+		 * <p>
+		 * Adds a value to <code>operations</code> using a builder lambda.
 		 */
-		public final Builder operations(
-				Function<ListBuilder<BulkOperation, BulkOperation.Builder>, ObjectBuilder<List<BulkOperation>>> fn) {
-			return operations(fn.apply(new ListBuilder<>(BulkOperation.Builder::new)).build());
+		public final Builder operations(Function<BulkOperation.Builder, ObjectBuilder<BulkOperation>> fn) {
+			return operations(fn.apply(new BulkOperation.Builder()).build());
 		}
 
 		/**

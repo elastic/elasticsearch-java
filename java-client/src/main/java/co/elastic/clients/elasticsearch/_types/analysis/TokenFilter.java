@@ -38,7 +38,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Object;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.analysis.TokenFilter
@@ -76,10 +76,8 @@ public class TokenFilter implements TaggedUnion<TokenFilter.Kind, Object>, Jsonp
 
 	}
 
-	public static TokenFilter of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static TokenFilter of(Function<Builder, ObjectBuilder<TokenFilter>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -141,10 +139,9 @@ public class TokenFilter implements TaggedUnion<TokenFilter.Kind, Object>, Jsonp
 			return this;
 		}
 
-		public ObjectBuilder<TokenFilter> definition(Consumer<TokenFilterDefinition.Builder> fn) {
-			TokenFilterDefinition.Builder builder = new TokenFilterDefinition.Builder();
-			fn.accept(builder);
-			return this.definition(builder.build());
+		public ObjectBuilder<TokenFilter> definition(
+				Function<TokenFilterDefinition.Builder, ObjectBuilder<TokenFilterDefinition>> fn) {
+			return this.definition(fn.apply(new TokenFilterDefinition.Builder()).build());
 		}
 
 		public ObjectBuilder<TokenFilter> name(String v) {

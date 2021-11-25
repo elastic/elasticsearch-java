@@ -38,7 +38,7 @@ import java.lang.Double;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.put_trained_model.TrainedModelTreeNode
@@ -86,10 +86,8 @@ public class TrainedModelTreeNode implements JsonpSerializable {
 
 	}
 
-	public static TrainedModelTreeNode of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static TrainedModelTreeNode of(Function<Builder, ObjectBuilder<TrainedModelTreeNode>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**

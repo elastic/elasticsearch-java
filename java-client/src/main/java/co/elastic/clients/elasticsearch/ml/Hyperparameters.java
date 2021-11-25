@@ -35,7 +35,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
 import java.lang.Integer;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.Hyperparameters
@@ -104,10 +104,8 @@ public class Hyperparameters implements JsonpSerializable {
 
 	}
 
-	public static Hyperparameters of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static Hyperparameters of(Function<Builder, ObjectBuilder<Hyperparameters>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**

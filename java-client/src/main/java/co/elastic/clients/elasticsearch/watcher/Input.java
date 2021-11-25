@@ -41,7 +41,7 @@ import java.lang.Object;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.InputContainer
@@ -103,10 +103,8 @@ public class Input implements TaggedUnion<Input.Kind, Object>, JsonpSerializable
 
 	}
 
-	public static Input of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static Input of(Function<Builder, ObjectBuilder<Input>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -215,10 +213,8 @@ public class Input implements TaggedUnion<Input.Kind, Object>, JsonpSerializable
 			return this;
 		}
 
-		public ObjectBuilder<Input> chain(Consumer<ChainInput.Builder> fn) {
-			ChainInput.Builder builder = new ChainInput.Builder();
-			fn.accept(builder);
-			return this.chain(builder.build());
+		public ObjectBuilder<Input> chain(Function<ChainInput.Builder, ObjectBuilder<ChainInput>> fn) {
+			return this.chain(fn.apply(new ChainInput.Builder()).build());
 		}
 
 		public ObjectBuilder<Input> http(HttpInput v) {
@@ -227,10 +223,8 @@ public class Input implements TaggedUnion<Input.Kind, Object>, JsonpSerializable
 			return this;
 		}
 
-		public ObjectBuilder<Input> http(Consumer<HttpInput.Builder> fn) {
-			HttpInput.Builder builder = new HttpInput.Builder();
-			fn.accept(builder);
-			return this.http(builder.build());
+		public ObjectBuilder<Input> http(Function<HttpInput.Builder, ObjectBuilder<HttpInput>> fn) {
+			return this.http(fn.apply(new HttpInput.Builder()).build());
 		}
 
 		public ObjectBuilder<Input> search(SearchInput v) {
@@ -239,10 +233,8 @@ public class Input implements TaggedUnion<Input.Kind, Object>, JsonpSerializable
 			return this;
 		}
 
-		public ObjectBuilder<Input> search(Consumer<SearchInput.Builder> fn) {
-			SearchInput.Builder builder = new SearchInput.Builder();
-			fn.accept(builder);
-			return this.search(builder.build());
+		public ObjectBuilder<Input> search(Function<SearchInput.Builder, ObjectBuilder<SearchInput>> fn) {
+			return this.search(fn.apply(new SearchInput.Builder()).build());
 		}
 
 		public ObjectBuilder<Input> simple(Map<String, JsonData> v) {

@@ -42,7 +42,7 @@ import java.lang.String;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.Buckets
@@ -82,10 +82,8 @@ public class Buckets<TBucket> implements TaggedUnion<Buckets.Kind, Object>, Json
 
 	}
 
-	public static <TBucket> Buckets<TBucket> of(Consumer<Builder<TBucket>> fn) {
-		Builder<TBucket> builder = new Builder<>();
-		fn.accept(builder);
-		return builder.build();
+	public static <TBucket> Buckets<TBucket> of(Function<Builder<TBucket>, ObjectBuilder<Buckets<TBucket>>> fn) {
+		return fn.apply(new Builder<>()).build();
 	}
 
 	/**

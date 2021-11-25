@@ -29,17 +29,14 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Float;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -62,10 +59,8 @@ public class Explanation implements JsonpSerializable {
 
 	}
 
-	public static Explanation of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static Explanation of(Function<Builder, ObjectBuilder<Explanation>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -140,26 +135,35 @@ public class Explanation implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code details}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>details</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>details</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder details(List<ExplanationDetail> value) {
-			this.details = value;
+		public final Builder details(List<ExplanationDetail> list) {
+			this.details = _listAddAll(this.details, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code details}
+		 * <p>
+		 * Adds one or more values to <code>details</code>.
 		 */
-		public final Builder details(ExplanationDetail... value) {
-			this.details = Arrays.asList(value);
+		public final Builder details(ExplanationDetail value, ExplanationDetail... values) {
+			this.details = _listAdd(this.details, value, values);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code details}
+		 * <p>
+		 * Adds a value to <code>details</code> using a builder lambda.
 		 */
-		public final Builder details(
-				Function<ListBuilder<ExplanationDetail, ExplanationDetail.Builder>, ObjectBuilder<List<ExplanationDetail>>> fn) {
-			return details(fn.apply(new ListBuilder<>(ExplanationDetail.Builder::new)).build());
+		public final Builder details(Function<ExplanationDetail.Builder, ObjectBuilder<ExplanationDetail>> fn) {
+			return details(fn.apply(new ExplanationDetail.Builder()).build());
 		}
 
 		/**

@@ -36,10 +36,9 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.DataframeAnalysisFeatureProcessorNGramEncoding
@@ -77,10 +76,9 @@ public class DataframeAnalysisFeatureProcessorNGramEncoding
 
 	}
 
-	public static DataframeAnalysisFeatureProcessorNGramEncoding of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static DataframeAnalysisFeatureProcessorNGramEncoding of(
+			Function<Builder, ObjectBuilder<DataframeAnalysisFeatureProcessorNGramEncoding>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -257,9 +255,15 @@ public class DataframeAnalysisFeatureProcessorNGramEncoding
 		 * where the minimum value is 1, and a maximum value is 5.
 		 * <p>
 		 * API name: {@code n_grams}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>nGrams</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>nGrams</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder nGrams(List<Integer> value) {
-			this.nGrams = value;
+		public final Builder nGrams(List<Integer> list) {
+			this.nGrams = _listAddAll(this.nGrams, list);
 			return this;
 		}
 
@@ -268,9 +272,11 @@ public class DataframeAnalysisFeatureProcessorNGramEncoding
 		 * where the minimum value is 1, and a maximum value is 5.
 		 * <p>
 		 * API name: {@code n_grams}
+		 * <p>
+		 * Adds one or more values to <code>nGrams</code>.
 		 */
-		public final Builder nGrams(Integer... value) {
-			this.nGrams = Arrays.asList(value);
+		public final Builder nGrams(Integer value, Integer... values) {
+			this.nGrams = _listAdd(this.nGrams, value, values);
 			return this;
 		}
 

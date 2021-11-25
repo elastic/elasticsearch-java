@@ -29,18 +29,15 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -79,10 +76,8 @@ public class NodeAllocationExplanation implements JsonpSerializable {
 
 	}
 
-	public static NodeAllocationExplanation of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static NodeAllocationExplanation of(Function<Builder, ObjectBuilder<NodeAllocationExplanation>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -220,33 +215,58 @@ public class NodeAllocationExplanation implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code deciders}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>deciders</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>deciders</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder deciders(List<AllocationDecision> value) {
-			this.deciders = value;
+		public final Builder deciders(List<AllocationDecision> list) {
+			this.deciders = _listAddAll(this.deciders, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code deciders}
+		 * <p>
+		 * Adds one or more values to <code>deciders</code>.
 		 */
-		public final Builder deciders(AllocationDecision... value) {
-			this.deciders = Arrays.asList(value);
+		public final Builder deciders(AllocationDecision value, AllocationDecision... values) {
+			this.deciders = _listAdd(this.deciders, value, values);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code deciders}
+		 * <p>
+		 * Adds a value to <code>deciders</code> using a builder lambda.
 		 */
-		public final Builder deciders(
-				Function<ListBuilder<AllocationDecision, AllocationDecision.Builder>, ObjectBuilder<List<AllocationDecision>>> fn) {
-			return deciders(fn.apply(new ListBuilder<>(AllocationDecision.Builder::new)).build());
+		public final Builder deciders(Function<AllocationDecision.Builder, ObjectBuilder<AllocationDecision>> fn) {
+			return deciders(fn.apply(new AllocationDecision.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code node_attributes}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>nodeAttributes</code>. Use
+		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
+		 * <code>nodeAttributes</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetMap()
 		 */
-		public final Builder nodeAttributes(Map<String, String> value) {
-			this.nodeAttributes = value;
+		public final Builder nodeAttributes(Map<String, String> map) {
+			this.nodeAttributes = _mapPutAll(this.nodeAttributes, map);
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code node_attributes}
+		 * <p>
+		 * Adds an entry to <code>nodeAttributes</code>.
+		 */
+		public final Builder nodeAttributes(String key, String value) {
+			this.nodeAttributes = _mapPut(this.nodeAttributes, key, value);
 			return this;
 		}
 
@@ -285,10 +305,8 @@ public class NodeAllocationExplanation implements JsonpSerializable {
 		/**
 		 * API name: {@code store}
 		 */
-		public final Builder store(Consumer<AllocationStore.Builder> fn) {
-			AllocationStore.Builder builder = new AllocationStore.Builder();
-			fn.accept(builder);
-			return this.store(builder.build());
+		public final Builder store(Function<AllocationStore.Builder, ObjectBuilder<AllocationStore>> fn) {
+			return this.store(fn.apply(new AllocationStore.Builder()).build());
 		}
 
 		/**

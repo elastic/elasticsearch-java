@@ -34,7 +34,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.SignificantLongTermsBucket
@@ -55,10 +55,8 @@ public class SignificantLongTermsBucket extends SignificantTermsBucketBase {
 
 	}
 
-	public static SignificantLongTermsBucket of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static SignificantLongTermsBucket of(Function<Builder, ObjectBuilder<SignificantLongTermsBucket>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**

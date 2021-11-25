@@ -36,18 +36,15 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -97,10 +94,8 @@ public class AnalyzeRequest extends RequestBase implements JsonpSerializable {
 
 	}
 
-	public static AnalyzeRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static AnalyzeRequest of(Function<Builder, ObjectBuilder<AnalyzeRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -306,42 +301,59 @@ public class AnalyzeRequest extends RequestBase implements JsonpSerializable {
 
 		/**
 		 * API name: {@code attributes}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>attributes</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>attributes</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder attributes(@Nullable List<String> value) {
-			this.attributes = value;
+		public final Builder attributes(List<String> list) {
+			this.attributes = _listAddAll(this.attributes, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code attributes}
+		 * <p>
+		 * Adds one or more values to <code>attributes</code>.
 		 */
-		public final Builder attributes(String... value) {
-			this.attributes = Arrays.asList(value);
+		public final Builder attributes(String value, String... values) {
+			this.attributes = _listAdd(this.attributes, value, values);
 			return this;
 		}
 
 		/**
 		 * API name: {@code char_filter}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>charFilter</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>charFilter</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder charFilter(@Nullable List<CharFilter> value) {
-			this.charFilter = value;
+		public final Builder charFilter(List<CharFilter> list) {
+			this.charFilter = _listAddAll(this.charFilter, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code char_filter}
+		 * <p>
+		 * Adds one or more values to <code>charFilter</code>.
 		 */
-		public final Builder charFilter(CharFilter... value) {
-			this.charFilter = Arrays.asList(value);
+		public final Builder charFilter(CharFilter value, CharFilter... values) {
+			this.charFilter = _listAdd(this.charFilter, value, values);
 			return this;
 		}
 
 		/**
 		 * API name: {@code char_filter}
+		 * <p>
+		 * Adds a value to <code>charFilter</code> using a builder lambda.
 		 */
-		public final Builder charFilter(
-				Function<ListBuilder<CharFilter, CharFilter.Builder>, ObjectBuilder<List<CharFilter>>> fn) {
-			return charFilter(fn.apply(new ListBuilder<>(CharFilter.Builder::new)).build());
+		public final Builder charFilter(Function<CharFilter.Builder, ObjectBuilder<CharFilter>> fn) {
+			return charFilter(fn.apply(new CharFilter.Builder()).build());
 		}
 
 		/**
@@ -362,26 +374,35 @@ public class AnalyzeRequest extends RequestBase implements JsonpSerializable {
 
 		/**
 		 * API name: {@code filter}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>filter</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>filter</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder filter(@Nullable List<TokenFilter> value) {
-			this.filter = value;
+		public final Builder filter(List<TokenFilter> list) {
+			this.filter = _listAddAll(this.filter, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code filter}
+		 * <p>
+		 * Adds one or more values to <code>filter</code>.
 		 */
-		public final Builder filter(TokenFilter... value) {
-			this.filter = Arrays.asList(value);
+		public final Builder filter(TokenFilter value, TokenFilter... values) {
+			this.filter = _listAdd(this.filter, value, values);
 			return this;
 		}
 
 		/**
 		 * API name: {@code filter}
+		 * <p>
+		 * Adds a value to <code>filter</code> using a builder lambda.
 		 */
-		public final Builder filter(
-				Function<ListBuilder<TokenFilter, TokenFilter.Builder>, ObjectBuilder<List<TokenFilter>>> fn) {
-			return filter(fn.apply(new ListBuilder<>(TokenFilter.Builder::new)).build());
+		public final Builder filter(Function<TokenFilter.Builder, ObjectBuilder<TokenFilter>> fn) {
+			return filter(fn.apply(new TokenFilter.Builder()).build());
 		}
 
 		/**
@@ -404,17 +425,25 @@ public class AnalyzeRequest extends RequestBase implements JsonpSerializable {
 
 		/**
 		 * API name: {@code text}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>text</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>text</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder text(@Nullable List<String> value) {
-			this.text = value;
+		public final Builder text(List<String> list) {
+			this.text = _listAddAll(this.text, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code text}
+		 * <p>
+		 * Adds one or more values to <code>text</code>.
 		 */
-		public final Builder text(String... value) {
-			this.text = Arrays.asList(value);
+		public final Builder text(String value, String... values) {
+			this.text = _listAdd(this.text, value, values);
 			return this;
 		}
 
@@ -429,10 +458,8 @@ public class AnalyzeRequest extends RequestBase implements JsonpSerializable {
 		/**
 		 * API name: {@code tokenizer}
 		 */
-		public final Builder tokenizer(Consumer<Tokenizer.Builder> fn) {
-			Tokenizer.Builder builder = new Tokenizer.Builder();
-			fn.accept(builder);
-			return this.tokenizer(builder.build());
+		public final Builder tokenizer(Function<Tokenizer.Builder, ObjectBuilder<Tokenizer>> fn) {
+			return this.tokenizer(fn.apply(new Tokenizer.Builder()).build());
 		}
 
 		/**

@@ -38,7 +38,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cluster.stats.Response
@@ -70,10 +70,8 @@ public class ClusterStatsResponse extends NodesResponseBase {
 
 	}
 
-	public static ClusterStatsResponse of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static ClusterStatsResponse of(Function<Builder, ObjectBuilder<ClusterStatsResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -213,10 +211,8 @@ public class ClusterStatsResponse extends NodesResponseBase {
 		 * <p>
 		 * API name: {@code indices}
 		 */
-		public final Builder indices(Consumer<ClusterIndices.Builder> fn) {
-			ClusterIndices.Builder builder = new ClusterIndices.Builder();
-			fn.accept(builder);
-			return this.indices(builder.build());
+		public final Builder indices(Function<ClusterIndices.Builder, ObjectBuilder<ClusterIndices>> fn) {
+			return this.indices(fn.apply(new ClusterIndices.Builder()).build());
 		}
 
 		/**
@@ -236,10 +232,8 @@ public class ClusterStatsResponse extends NodesResponseBase {
 		 * <p>
 		 * API name: {@code nodes}
 		 */
-		public final Builder nodes(Consumer<ClusterNodes.Builder> fn) {
-			ClusterNodes.Builder builder = new ClusterNodes.Builder();
-			fn.accept(builder);
-			return this.nodes(builder.build());
+		public final Builder nodes(Function<ClusterNodes.Builder, ObjectBuilder<ClusterNodes>> fn) {
+			return this.nodes(fn.apply(new ClusterNodes.Builder()).build());
 		}
 
 		/**

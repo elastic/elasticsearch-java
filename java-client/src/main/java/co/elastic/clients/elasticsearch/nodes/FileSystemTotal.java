@@ -36,7 +36,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: nodes._types.FileSystemTotal
@@ -67,10 +67,8 @@ public class FileSystemTotal implements JsonpSerializable {
 
 	}
 
-	public static FileSystemTotal of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static FileSystemTotal of(Function<Builder, ObjectBuilder<FileSystemTotal>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**

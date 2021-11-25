@@ -37,11 +37,10 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.TrainedModelConfig
@@ -439,9 +438,15 @@ public class TrainedModelConfig implements JsonpSerializable {
 		 * tags, or none.
 		 * <p>
 		 * API name: {@code tags}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>tags</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>tags</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final BuilderT tags(List<String> value) {
-			this.tags = value;
+		public final BuilderT tags(List<String> list) {
+			this.tags = _listAddAll(this.tags, list);
 			return self();
 		}
 
@@ -450,9 +455,11 @@ public class TrainedModelConfig implements JsonpSerializable {
 		 * tags, or none.
 		 * <p>
 		 * API name: {@code tags}
+		 * <p>
+		 * Adds one or more values to <code>tags</code>.
 		 */
-		public final BuilderT tags(String... value) {
-			this.tags = Arrays.asList(value);
+		public final BuilderT tags(String value, String... values) {
+			this.tags = _listAdd(this.tags, value, values);
 			return self();
 		}
 
@@ -499,19 +506,35 @@ public class TrainedModelConfig implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code create_time}
 		 */
-		public final BuilderT createTime(Consumer<Time.Builder> fn) {
-			Time.Builder builder = new Time.Builder();
-			fn.accept(builder);
-			return this.createTime(builder.build());
+		public final BuilderT createTime(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.createTime(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
 		 * Any field map described in the inference configuration takes precedence.
 		 * <p>
 		 * API name: {@code default_field_map}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>defaultFieldMap</code>. Use
+		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
+		 * <code>defaultFieldMap</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetMap()
 		 */
-		public final BuilderT defaultFieldMap(@Nullable Map<String, String> value) {
-			this.defaultFieldMap = value;
+		public final BuilderT defaultFieldMap(Map<String, String> map) {
+			this.defaultFieldMap = _mapPutAll(this.defaultFieldMap, map);
+			return self();
+		}
+
+		/**
+		 * Any field map described in the inference configuration takes precedence.
+		 * <p>
+		 * API name: {@code default_field_map}
+		 * <p>
+		 * Adds an entry to <code>defaultFieldMap</code>.
+		 */
+		public final BuilderT defaultFieldMap(String key, String value) {
+			this.defaultFieldMap = _mapPut(this.defaultFieldMap, key, value);
 			return self();
 		}
 
@@ -564,10 +587,8 @@ public class TrainedModelConfig implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code inference_config}
 		 */
-		public final BuilderT inferenceConfig(Consumer<InferenceConfig.Builder> fn) {
-			InferenceConfig.Builder builder = new InferenceConfig.Builder();
-			fn.accept(builder);
-			return this.inferenceConfig(builder.build());
+		public final BuilderT inferenceConfig(Function<InferenceConfig.Builder, ObjectBuilder<InferenceConfig>> fn) {
+			return this.inferenceConfig(fn.apply(new InferenceConfig.Builder()).build());
 		}
 
 		/**
@@ -585,10 +606,9 @@ public class TrainedModelConfig implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code input}
 		 */
-		public final BuilderT input(Consumer<TrainedModelConfigInput.Builder> fn) {
-			TrainedModelConfigInput.Builder builder = new TrainedModelConfigInput.Builder();
-			fn.accept(builder);
-			return this.input(builder.build());
+		public final BuilderT input(
+				Function<TrainedModelConfigInput.Builder, ObjectBuilder<TrainedModelConfigInput>> fn) {
+			return this.input(fn.apply(new TrainedModelConfigInput.Builder()).build());
 		}
 
 		/**
@@ -618,10 +638,9 @@ public class TrainedModelConfig implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code metadata}
 		 */
-		public final BuilderT metadata(Consumer<TrainedModelConfigMetadata.Builder> fn) {
-			TrainedModelConfigMetadata.Builder builder = new TrainedModelConfigMetadata.Builder();
-			fn.accept(builder);
-			return this.metadata(builder.build());
+		public final BuilderT metadata(
+				Function<TrainedModelConfigMetadata.Builder, ObjectBuilder<TrainedModelConfigMetadata>> fn) {
+			return this.metadata(fn.apply(new TrainedModelConfigMetadata.Builder()).build());
 		}
 
 		protected abstract BuilderT self();

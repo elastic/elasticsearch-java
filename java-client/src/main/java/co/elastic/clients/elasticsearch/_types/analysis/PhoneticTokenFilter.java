@@ -33,10 +33,9 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Integer;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.analysis.PhoneticTokenFilter
@@ -70,10 +69,8 @@ public class PhoneticTokenFilter extends TokenFilterBase implements TokenFilterD
 
 	}
 
-	public static PhoneticTokenFilter of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static PhoneticTokenFilter of(Function<Builder, ObjectBuilder<PhoneticTokenFilter>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -192,17 +189,25 @@ public class PhoneticTokenFilter extends TokenFilterBase implements TokenFilterD
 
 		/**
 		 * Required - API name: {@code languageset}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>languageset</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>languageset</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder languageset(List<PhoneticLanguage> value) {
-			this.languageset = value;
+		public final Builder languageset(List<PhoneticLanguage> list) {
+			this.languageset = _listAddAll(this.languageset, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code languageset}
+		 * <p>
+		 * Adds one or more values to <code>languageset</code>.
 		 */
-		public final Builder languageset(PhoneticLanguage... value) {
-			this.languageset = Arrays.asList(value);
+		public final Builder languageset(PhoneticLanguage value, PhoneticLanguage... values) {
+			this.languageset = _listAdd(this.languageset, value, values);
 			return this;
 		}
 

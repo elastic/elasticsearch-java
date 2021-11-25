@@ -34,10 +34,9 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: transform._types.Latest
@@ -56,10 +55,8 @@ public class Latest implements JsonpSerializable {
 
 	}
 
-	public static Latest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static Latest of(Function<Builder, ObjectBuilder<Latest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -135,9 +132,15 @@ public class Latest implements JsonpSerializable {
 		 * the data.
 		 * <p>
 		 * API name: {@code unique_key}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>uniqueKey</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>uniqueKey</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder uniqueKey(List<String> value) {
-			this.uniqueKey = value;
+		public final Builder uniqueKey(List<String> list) {
+			this.uniqueKey = _listAddAll(this.uniqueKey, list);
 			return this;
 		}
 
@@ -146,9 +149,11 @@ public class Latest implements JsonpSerializable {
 		 * the data.
 		 * <p>
 		 * API name: {@code unique_key}
+		 * <p>
+		 * Adds one or more values to <code>uniqueKey</code>.
 		 */
-		public final Builder uniqueKey(String... value) {
-			this.uniqueKey = Arrays.asList(value);
+		public final Builder uniqueKey(String value, String... values) {
+			this.uniqueKey = _listAdd(this.uniqueKey, value, values);
 			return this;
 		}
 

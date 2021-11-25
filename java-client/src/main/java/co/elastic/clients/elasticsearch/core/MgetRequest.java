@@ -35,19 +35,16 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
@@ -101,10 +98,8 @@ public class MgetRequest extends RequestBase implements JsonpSerializable {
 
 	}
 
-	public static MgetRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static MgetRequest of(Function<Builder, ObjectBuilder<MgetRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -300,19 +295,23 @@ public class MgetRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code _source}
 		 */
-		public final Builder source(Consumer<SourceConfigParam.Builder> fn) {
-			SourceConfigParam.Builder builder = new SourceConfigParam.Builder();
-			fn.accept(builder);
-			return this.source(builder.build());
+		public final Builder source(Function<SourceConfigParam.Builder, ObjectBuilder<SourceConfigParam>> fn) {
+			return this.source(fn.apply(new SourceConfigParam.Builder()).build());
 		}
 
 		/**
 		 * A list of fields to exclude from the returned _source field
 		 * <p>
 		 * API name: {@code _source_excludes}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>sourceExcludes</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>sourceExcludes</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder sourceExcludes(@Nullable List<String> value) {
-			this.sourceExcludes = value;
+		public final Builder sourceExcludes(List<String> list) {
+			this.sourceExcludes = _listAddAll(this.sourceExcludes, list);
 			return this;
 		}
 
@@ -320,9 +319,11 @@ public class MgetRequest extends RequestBase implements JsonpSerializable {
 		 * A list of fields to exclude from the returned _source field
 		 * <p>
 		 * API name: {@code _source_excludes}
+		 * <p>
+		 * Adds one or more values to <code>sourceExcludes</code>.
 		 */
-		public final Builder sourceExcludes(String... value) {
-			this.sourceExcludes = Arrays.asList(value);
+		public final Builder sourceExcludes(String value, String... values) {
+			this.sourceExcludes = _listAdd(this.sourceExcludes, value, values);
 			return this;
 		}
 
@@ -330,9 +331,15 @@ public class MgetRequest extends RequestBase implements JsonpSerializable {
 		 * A list of fields to extract and return from the _source field
 		 * <p>
 		 * API name: {@code _source_includes}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>sourceIncludes</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>sourceIncludes</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder sourceIncludes(@Nullable List<String> value) {
-			this.sourceIncludes = value;
+		public final Builder sourceIncludes(List<String> list) {
+			this.sourceIncludes = _listAddAll(this.sourceIncludes, list);
 			return this;
 		}
 
@@ -340,49 +347,68 @@ public class MgetRequest extends RequestBase implements JsonpSerializable {
 		 * A list of fields to extract and return from the _source field
 		 * <p>
 		 * API name: {@code _source_includes}
+		 * <p>
+		 * Adds one or more values to <code>sourceIncludes</code>.
 		 */
-		public final Builder sourceIncludes(String... value) {
-			this.sourceIncludes = Arrays.asList(value);
+		public final Builder sourceIncludes(String value, String... values) {
+			this.sourceIncludes = _listAdd(this.sourceIncludes, value, values);
 			return this;
 		}
 
 		/**
 		 * API name: {@code docs}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>docs</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>docs</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder docs(@Nullable List<MultiGetOperation> value) {
-			this.docs = value;
+		public final Builder docs(List<MultiGetOperation> list) {
+			this.docs = _listAddAll(this.docs, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code docs}
+		 * <p>
+		 * Adds one or more values to <code>docs</code>.
 		 */
-		public final Builder docs(MultiGetOperation... value) {
-			this.docs = Arrays.asList(value);
+		public final Builder docs(MultiGetOperation value, MultiGetOperation... values) {
+			this.docs = _listAdd(this.docs, value, values);
 			return this;
 		}
 
 		/**
 		 * API name: {@code docs}
+		 * <p>
+		 * Adds a value to <code>docs</code> using a builder lambda.
 		 */
-		public final Builder docs(
-				Function<ListBuilder<MultiGetOperation, MultiGetOperation.Builder>, ObjectBuilder<List<MultiGetOperation>>> fn) {
-			return docs(fn.apply(new ListBuilder<>(MultiGetOperation.Builder::new)).build());
+		public final Builder docs(Function<MultiGetOperation.Builder, ObjectBuilder<MultiGetOperation>> fn) {
+			return docs(fn.apply(new MultiGetOperation.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code ids}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>ids</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>ids</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder ids(@Nullable List<String> value) {
-			this.ids = value;
+		public final Builder ids(List<String> list) {
+			this.ids = _listAddAll(this.ids, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code ids}
+		 * <p>
+		 * Adds one or more values to <code>ids</code>.
 		 */
-		public final Builder ids(String... value) {
-			this.ids = Arrays.asList(value);
+		public final Builder ids(String value, String... values) {
+			this.ids = _listAdd(this.ids, value, values);
 			return this;
 		}
 
@@ -441,9 +467,15 @@ public class MgetRequest extends RequestBase implements JsonpSerializable {
 		 * A comma-separated list of stored fields to return in the response
 		 * <p>
 		 * API name: {@code stored_fields}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>storedFields</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>storedFields</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder storedFields(@Nullable List<String> value) {
-			this.storedFields = value;
+		public final Builder storedFields(List<String> list) {
+			this.storedFields = _listAddAll(this.storedFields, list);
 			return this;
 		}
 
@@ -451,9 +483,11 @@ public class MgetRequest extends RequestBase implements JsonpSerializable {
 		 * A comma-separated list of stored fields to return in the response
 		 * <p>
 		 * API name: {@code stored_fields}
+		 * <p>
+		 * Adds one or more values to <code>storedFields</code>.
 		 */
-		public final Builder storedFields(String... value) {
-			this.storedFields = Arrays.asList(value);
+		public final Builder storedFields(String value, String... values) {
+			this.storedFields = _listAdd(this.storedFields, value, values);
 			return this;
 		}
 

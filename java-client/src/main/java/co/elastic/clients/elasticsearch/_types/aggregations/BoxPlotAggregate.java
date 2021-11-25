@@ -34,7 +34,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.BoxPlotAggregate
@@ -97,10 +97,8 @@ public class BoxPlotAggregate extends AggregateBase implements AggregateVariant 
 
 	}
 
-	public static BoxPlotAggregate of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static BoxPlotAggregate of(Function<Builder, ObjectBuilder<BoxPlotAggregate>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**

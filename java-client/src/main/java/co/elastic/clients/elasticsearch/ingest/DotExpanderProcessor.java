@@ -33,7 +33,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ingest._types.DotExpanderProcessor
@@ -54,10 +54,8 @@ public class DotExpanderProcessor extends ProcessorBase implements ProcessorVari
 
 	}
 
-	public static DotExpanderProcessor of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static DotExpanderProcessor of(Function<Builder, ObjectBuilder<DotExpanderProcessor>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**

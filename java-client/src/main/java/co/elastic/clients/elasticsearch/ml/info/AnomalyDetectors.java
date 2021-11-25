@@ -37,7 +37,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.info.AnomalyDetectors
@@ -69,10 +69,8 @@ public class AnomalyDetectors implements JsonpSerializable {
 
 	}
 
-	public static AnomalyDetectors of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static AnomalyDetectors of(Function<Builder, ObjectBuilder<AnomalyDetectors>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -165,10 +163,9 @@ public class AnomalyDetectors implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code categorization_analyzer}
 		 */
-		public final Builder categorizationAnalyzer(Consumer<CategorizationAnalyzer.Builder> fn) {
-			CategorizationAnalyzer.Builder builder = new CategorizationAnalyzer.Builder();
-			fn.accept(builder);
-			return this.categorizationAnalyzer(builder.build());
+		public final Builder categorizationAnalyzer(
+				Function<CategorizationAnalyzer.Builder, ObjectBuilder<CategorizationAnalyzer>> fn) {
+			return this.categorizationAnalyzer(fn.apply(new CategorizationAnalyzer.Builder()).build());
 		}
 
 		/**

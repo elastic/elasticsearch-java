@@ -37,12 +37,11 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Long;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
@@ -70,10 +69,8 @@ public class TasksRequest extends CatRequestBase {
 
 	}
 
-	public static TasksRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static TasksRequest of(Function<Builder, ObjectBuilder<TasksRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -134,9 +131,15 @@ public class TasksRequest extends CatRequestBase {
 		 * return all.
 		 * <p>
 		 * API name: {@code actions}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>actions</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>actions</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder actions(@Nullable List<String> value) {
-			this.actions = value;
+		public final Builder actions(List<String> list) {
+			this.actions = _listAddAll(this.actions, list);
 			return this;
 		}
 
@@ -145,9 +148,11 @@ public class TasksRequest extends CatRequestBase {
 		 * return all.
 		 * <p>
 		 * API name: {@code actions}
+		 * <p>
+		 * Adds one or more values to <code>actions</code>.
 		 */
-		public final Builder actions(String... value) {
-			this.actions = Arrays.asList(value);
+		public final Builder actions(String value, String... values) {
+			this.actions = _listAdd(this.actions, value, values);
 			return this;
 		}
 
@@ -163,17 +168,25 @@ public class TasksRequest extends CatRequestBase {
 
 		/**
 		 * API name: {@code node_id}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>nodeId</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>nodeId</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder nodeId(@Nullable List<String> value) {
-			this.nodeId = value;
+		public final Builder nodeId(List<String> list) {
+			this.nodeId = _listAddAll(this.nodeId, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code node_id}
+		 * <p>
+		 * Adds one or more values to <code>nodeId</code>.
 		 */
-		public final Builder nodeId(String... value) {
-			this.nodeId = Arrays.asList(value);
+		public final Builder nodeId(String value, String... values) {
+			this.nodeId = _listAdd(this.nodeId, value, values);
 			return this;
 		}
 

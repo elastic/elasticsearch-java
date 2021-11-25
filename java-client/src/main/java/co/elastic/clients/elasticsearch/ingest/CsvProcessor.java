@@ -34,10 +34,9 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ingest._types.CsvProcessor
@@ -79,10 +78,8 @@ public class CsvProcessor extends ProcessorBase implements ProcessorVariant {
 
 	}
 
-	public static CsvProcessor of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static CsvProcessor of(Function<Builder, ObjectBuilder<CsvProcessor>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -273,17 +270,25 @@ public class CsvProcessor extends ProcessorBase implements ProcessorVariant {
 
 		/**
 		 * Required - API name: {@code target_fields}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>targetFields</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>targetFields</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder targetFields(List<String> value) {
-			this.targetFields = value;
+		public final Builder targetFields(List<String> list) {
+			this.targetFields = _listAddAll(this.targetFields, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code target_fields}
+		 * <p>
+		 * Adds one or more values to <code>targetFields</code>.
 		 */
-		public final Builder targetFields(String... value) {
-			this.targetFields = Arrays.asList(value);
+		public final Builder targetFields(String value, String... values) {
+			this.targetFields = _listAdd(this.targetFields, value, values);
 			return this;
 		}
 

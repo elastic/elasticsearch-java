@@ -29,15 +29,12 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -54,10 +51,8 @@ public class RollupCapabilities implements JsonpSerializable {
 
 	}
 
-	public static RollupCapabilities of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static RollupCapabilities of(Function<Builder, ObjectBuilder<RollupCapabilities>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -101,26 +96,36 @@ public class RollupCapabilities implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code rollup_jobs}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>rollupJobs</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>rollupJobs</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder rollupJobs(List<RollupCapabilitySummary> value) {
-			this.rollupJobs = value;
+		public final Builder rollupJobs(List<RollupCapabilitySummary> list) {
+			this.rollupJobs = _listAddAll(this.rollupJobs, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code rollup_jobs}
+		 * <p>
+		 * Adds one or more values to <code>rollupJobs</code>.
 		 */
-		public final Builder rollupJobs(RollupCapabilitySummary... value) {
-			this.rollupJobs = Arrays.asList(value);
+		public final Builder rollupJobs(RollupCapabilitySummary value, RollupCapabilitySummary... values) {
+			this.rollupJobs = _listAdd(this.rollupJobs, value, values);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code rollup_jobs}
+		 * <p>
+		 * Adds a value to <code>rollupJobs</code> using a builder lambda.
 		 */
 		public final Builder rollupJobs(
-				Function<ListBuilder<RollupCapabilitySummary, RollupCapabilitySummary.Builder>, ObjectBuilder<List<RollupCapabilitySummary>>> fn) {
-			return rollupJobs(fn.apply(new ListBuilder<>(RollupCapabilitySummary.Builder::new)).build());
+				Function<RollupCapabilitySummary.Builder, ObjectBuilder<RollupCapabilitySummary>> fn) {
+			return rollupJobs(fn.apply(new RollupCapabilitySummary.Builder()).build());
 		}
 
 		/**

@@ -34,7 +34,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cluster.stats.ClusterProcess
@@ -54,10 +54,8 @@ public class ClusterProcess implements JsonpSerializable {
 
 	}
 
-	public static ClusterProcess of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static ClusterProcess of(Function<Builder, ObjectBuilder<ClusterProcess>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -114,10 +112,8 @@ public class ClusterProcess implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code cpu}
 		 */
-		public final Builder cpu(Consumer<ClusterProcessCpu.Builder> fn) {
-			ClusterProcessCpu.Builder builder = new ClusterProcessCpu.Builder();
-			fn.accept(builder);
-			return this.cpu(builder.build());
+		public final Builder cpu(Function<ClusterProcessCpu.Builder, ObjectBuilder<ClusterProcessCpu>> fn) {
+			return this.cpu(fn.apply(new ClusterProcessCpu.Builder()).build());
 		}
 
 		/**
@@ -131,10 +127,9 @@ public class ClusterProcess implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code open_file_descriptors}
 		 */
-		public final Builder openFileDescriptors(Consumer<ClusterProcessOpenFileDescriptors.Builder> fn) {
-			ClusterProcessOpenFileDescriptors.Builder builder = new ClusterProcessOpenFileDescriptors.Builder();
-			fn.accept(builder);
-			return this.openFileDescriptors(builder.build());
+		public final Builder openFileDescriptors(
+				Function<ClusterProcessOpenFileDescriptors.Builder, ObjectBuilder<ClusterProcessOpenFileDescriptors>> fn) {
+			return this.openFileDescriptors(fn.apply(new ClusterProcessOpenFileDescriptors.Builder()).build());
 		}
 
 		/**

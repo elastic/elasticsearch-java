@@ -33,18 +33,15 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -69,10 +66,8 @@ public class PostRequest extends RequestBase implements JsonpSerializable {
 
 	}
 
-	public static PostRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static PostRequest of(Function<Builder, ObjectBuilder<PostRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -165,34 +160,41 @@ public class PostRequest extends RequestBase implements JsonpSerializable {
 		/**
 		 * API name: {@code license}
 		 */
-		public final Builder license(Consumer<License.Builder> fn) {
-			License.Builder builder = new License.Builder();
-			fn.accept(builder);
-			return this.license(builder.build());
+		public final Builder license(Function<License.Builder, ObjectBuilder<License>> fn) {
+			return this.license(fn.apply(new License.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code licenses}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>licenses</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>licenses</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder licenses(@Nullable List<License> value) {
-			this.licenses = value;
+		public final Builder licenses(List<License> list) {
+			this.licenses = _listAddAll(this.licenses, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code licenses}
+		 * <p>
+		 * Adds one or more values to <code>licenses</code>.
 		 */
-		public final Builder licenses(License... value) {
-			this.licenses = Arrays.asList(value);
+		public final Builder licenses(License value, License... values) {
+			this.licenses = _listAdd(this.licenses, value, values);
 			return this;
 		}
 
 		/**
 		 * API name: {@code licenses}
+		 * <p>
+		 * Adds a value to <code>licenses</code> using a builder lambda.
 		 */
-		public final Builder licenses(
-				Function<ListBuilder<License, License.Builder>, ObjectBuilder<List<License>>> fn) {
-			return licenses(fn.apply(new ListBuilder<>(License.Builder::new)).build());
+		public final Builder licenses(Function<License.Builder, ObjectBuilder<License>> fn) {
+			return licenses(fn.apply(new License.Builder()).build());
 		}
 
 		/**

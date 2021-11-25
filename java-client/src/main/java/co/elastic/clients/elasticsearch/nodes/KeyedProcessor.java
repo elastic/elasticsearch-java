@@ -35,7 +35,7 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: nodes._types.KeyedProcessor
@@ -54,10 +54,8 @@ public class KeyedProcessor implements JsonpSerializable {
 
 	}
 
-	public static KeyedProcessor of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static KeyedProcessor of(Function<Builder, ObjectBuilder<KeyedProcessor>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -114,10 +112,8 @@ public class KeyedProcessor implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code statistics}
 		 */
-		public final Builder statistics(Consumer<Process.Builder> fn) {
-			Process.Builder builder = new Process.Builder();
-			fn.accept(builder);
-			return this.statistics(builder.build());
+		public final Builder statistics(Function<Process.Builder, ObjectBuilder<Process>> fn) {
+			return this.statistics(fn.apply(new Process.Builder()).build());
 		}
 
 		/**

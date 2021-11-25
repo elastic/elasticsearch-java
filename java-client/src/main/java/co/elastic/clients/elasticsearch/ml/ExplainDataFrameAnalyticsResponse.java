@@ -29,15 +29,12 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -57,10 +54,9 @@ public class ExplainDataFrameAnalyticsResponse implements JsonpSerializable {
 
 	}
 
-	public static ExplainDataFrameAnalyticsResponse of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static ExplainDataFrameAnalyticsResponse of(
+			Function<Builder, ObjectBuilder<ExplainDataFrameAnalyticsResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -124,9 +120,15 @@ public class ExplainDataFrameAnalyticsResponse implements JsonpSerializable {
 		 * by the field names.
 		 * <p>
 		 * API name: {@code field_selection}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>fieldSelection</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>fieldSelection</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder fieldSelection(List<DataframeAnalyticsFieldSelection> value) {
-			this.fieldSelection = value;
+		public final Builder fieldSelection(List<DataframeAnalyticsFieldSelection> list) {
+			this.fieldSelection = _listAddAll(this.fieldSelection, list);
 			return this;
 		}
 
@@ -135,9 +137,12 @@ public class ExplainDataFrameAnalyticsResponse implements JsonpSerializable {
 		 * by the field names.
 		 * <p>
 		 * API name: {@code field_selection}
+		 * <p>
+		 * Adds one or more values to <code>fieldSelection</code>.
 		 */
-		public final Builder fieldSelection(DataframeAnalyticsFieldSelection... value) {
-			this.fieldSelection = Arrays.asList(value);
+		public final Builder fieldSelection(DataframeAnalyticsFieldSelection value,
+				DataframeAnalyticsFieldSelection... values) {
+			this.fieldSelection = _listAdd(this.fieldSelection, value, values);
 			return this;
 		}
 
@@ -146,10 +151,12 @@ public class ExplainDataFrameAnalyticsResponse implements JsonpSerializable {
 		 * by the field names.
 		 * <p>
 		 * API name: {@code field_selection}
+		 * <p>
+		 * Adds a value to <code>fieldSelection</code> using a builder lambda.
 		 */
 		public final Builder fieldSelection(
-				Function<ListBuilder<DataframeAnalyticsFieldSelection, DataframeAnalyticsFieldSelection.Builder>, ObjectBuilder<List<DataframeAnalyticsFieldSelection>>> fn) {
-			return fieldSelection(fn.apply(new ListBuilder<>(DataframeAnalyticsFieldSelection.Builder::new)).build());
+				Function<DataframeAnalyticsFieldSelection.Builder, ObjectBuilder<DataframeAnalyticsFieldSelection>> fn) {
+			return fieldSelection(fn.apply(new DataframeAnalyticsFieldSelection.Builder()).build());
 		}
 
 		/**
@@ -169,10 +176,9 @@ public class ExplainDataFrameAnalyticsResponse implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code memory_estimation}
 		 */
-		public final Builder memoryEstimation(Consumer<DataframeAnalyticsMemoryEstimation.Builder> fn) {
-			DataframeAnalyticsMemoryEstimation.Builder builder = new DataframeAnalyticsMemoryEstimation.Builder();
-			fn.accept(builder);
-			return this.memoryEstimation(builder.build());
+		public final Builder memoryEstimation(
+				Function<DataframeAnalyticsMemoryEstimation.Builder, ObjectBuilder<DataframeAnalyticsMemoryEstimation>> fn) {
+			return this.memoryEstimation(fn.apply(new DataframeAnalyticsMemoryEstimation.Builder()).build());
 		}
 
 		/**

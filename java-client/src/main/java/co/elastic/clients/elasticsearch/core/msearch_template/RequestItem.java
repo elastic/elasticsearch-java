@@ -38,7 +38,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.msearch_template.RequestItem
@@ -57,10 +57,8 @@ public class RequestItem implements NdJsonpSerializable, JsonpSerializable {
 
 	}
 
-	public static RequestItem of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static RequestItem of(Function<Builder, ObjectBuilder<RequestItem>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	@Override
@@ -122,10 +120,8 @@ public class RequestItem implements NdJsonpSerializable, JsonpSerializable {
 		/**
 		 * Required - API name: {@code header}
 		 */
-		public final Builder header(Consumer<MultisearchHeader.Builder> fn) {
-			MultisearchHeader.Builder builder = new MultisearchHeader.Builder();
-			fn.accept(builder);
-			return this.header(builder.build());
+		public final Builder header(Function<MultisearchHeader.Builder, ObjectBuilder<MultisearchHeader>> fn) {
+			return this.header(fn.apply(new MultisearchHeader.Builder()).build());
 		}
 
 		/**
@@ -139,10 +135,8 @@ public class RequestItem implements NdJsonpSerializable, JsonpSerializable {
 		/**
 		 * Required - API name: {@code body}
 		 */
-		public final Builder body(Consumer<TemplateConfig.Builder> fn) {
-			TemplateConfig.Builder builder = new TemplateConfig.Builder();
-			fn.accept(builder);
-			return this.body(builder.build());
+		public final Builder body(Function<TemplateConfig.Builder, ObjectBuilder<TemplateConfig>> fn) {
+			return this.body(fn.apply(new TemplateConfig.Builder()).build());
 		}
 
 		/**

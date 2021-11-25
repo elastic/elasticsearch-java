@@ -35,7 +35,7 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.ErrorResponseBase
@@ -54,10 +54,8 @@ public class ErrorResponse implements JsonpSerializable {
 
 	}
 
-	public static ErrorResponse of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static ErrorResponse of(Function<Builder, ObjectBuilder<ErrorResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -114,10 +112,8 @@ public class ErrorResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code error}
 		 */
-		public final Builder error(Consumer<ErrorCause.Builder> fn) {
-			ErrorCause.Builder builder = new ErrorCause.Builder();
-			fn.accept(builder);
-			return this.error(builder.build());
+		public final Builder error(Function<ErrorCause.Builder, ObjectBuilder<ErrorCause>> fn) {
+			return this.error(fn.apply(new ErrorCause.Builder()).build());
 		}
 
 		/**

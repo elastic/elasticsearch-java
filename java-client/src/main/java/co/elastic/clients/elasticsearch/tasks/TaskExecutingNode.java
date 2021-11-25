@@ -29,14 +29,12 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.MapBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -54,10 +52,8 @@ public class TaskExecutingNode extends BaseNode {
 
 	}
 
-	public static TaskExecutingNode of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static TaskExecutingNode of(Function<Builder, ObjectBuilder<TaskExecutingNode>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -94,15 +90,35 @@ public class TaskExecutingNode extends BaseNode {
 
 		/**
 		 * Required - API name: {@code tasks}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>tasks</code>. Use
+		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
+		 * <code>tasks</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetMap()
 		 */
-		public final Builder tasks(Map<String, State> value) {
-			this.tasks = value;
+		public final Builder tasks(Map<String, State> map) {
+			this.tasks = _mapPutAll(this.tasks, map);
 			return this;
 		}
 
-		public final Builder tasks(
-				Function<MapBuilder<String, State, State.Builder>, ObjectBuilder<Map<String, State>>> fn) {
-			return tasks(fn.apply(new MapBuilder<>(State.Builder::new)).build());
+		/**
+		 * Required - API name: {@code tasks}
+		 * <p>
+		 * Adds an entry to <code>tasks</code>.
+		 */
+		public final Builder tasks(String key, State value) {
+			this.tasks = _mapPut(this.tasks, key, value);
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code tasks}
+		 * <p>
+		 * Adds an entry to <code>tasks</code> using a builder lambda.
+		 */
+		public final Builder tasks(String key, Function<State.Builder, ObjectBuilder<State>> fn) {
+			return tasks(key, fn.apply(new State.Builder()).build());
 		}
 
 		@Override

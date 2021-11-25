@@ -35,7 +35,7 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 
 // typedef: nodes._types.JvmThreads
 @JsonpDeserializable
@@ -53,10 +53,8 @@ public class JvmThreads implements JsonpSerializable {
 
 	}
 
-	public static JvmThreads of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static JvmThreads of(Function<Builder, ObjectBuilder<JvmThreads>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**

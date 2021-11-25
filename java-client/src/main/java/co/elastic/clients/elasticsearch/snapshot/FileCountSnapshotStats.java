@@ -36,7 +36,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.Long;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 
 // typedef: snapshot._types.FileCountSnapshotStats
 @JsonpDeserializable
@@ -54,10 +54,8 @@ public class FileCountSnapshotStats implements JsonpSerializable {
 
 	}
 
-	public static FileCountSnapshotStats of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static FileCountSnapshotStats of(Function<Builder, ObjectBuilder<FileCountSnapshotStats>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**

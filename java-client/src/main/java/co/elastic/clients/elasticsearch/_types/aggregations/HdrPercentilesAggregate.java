@@ -30,7 +30,7 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 
 // typedef: _types.aggregations.HdrPercentilesAggregate
 @JsonpDeserializable
@@ -42,10 +42,8 @@ public class HdrPercentilesAggregate extends PercentilesAggregateBase implements
 
 	}
 
-	public static HdrPercentilesAggregate of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static HdrPercentilesAggregate of(Function<Builder, ObjectBuilder<HdrPercentilesAggregate>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**

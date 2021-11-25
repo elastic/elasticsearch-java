@@ -37,7 +37,7 @@ import java.lang.Integer;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: xpack.usage.AllJobs
@@ -65,10 +65,8 @@ public class AllJobs implements JsonpSerializable {
 
 	}
 
-	public static AllJobs of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static AllJobs of(Function<Builder, ObjectBuilder<AllJobs>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -193,33 +191,97 @@ public class AllJobs implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code detectors}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>detectors</code>. Use
+		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
+		 * <code>detectors</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetMap()
 		 */
-		public final Builder detectors(Map<String, Integer> value) {
-			this.detectors = value;
+		public final Builder detectors(Map<String, Integer> map) {
+			this.detectors = _mapPutAll(this.detectors, map);
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code detectors}
+		 * <p>
+		 * Adds an entry to <code>detectors</code>.
+		 */
+		public final Builder detectors(String key, Integer value) {
+			this.detectors = _mapPut(this.detectors, key, value);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code created_by}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>createdBy</code>. Use
+		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
+		 * <code>createdBy</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetMap()
 		 */
-		public final Builder createdBy(Map<String, String> value) {
-			this.createdBy = value;
+		public final Builder createdBy(Map<String, String> map) {
+			this.createdBy = _mapPutAll(this.createdBy, map);
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code created_by}
+		 * <p>
+		 * Adds an entry to <code>createdBy</code>.
+		 */
+		public final Builder createdBy(String key, String value) {
+			this.createdBy = _mapPut(this.createdBy, key, value);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code model_size}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>modelSize</code>. Use
+		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
+		 * <code>modelSize</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetMap()
 		 */
-		public final Builder modelSize(Map<String, Integer> value) {
-			this.modelSize = value;
+		public final Builder modelSize(Map<String, Integer> map) {
+			this.modelSize = _mapPutAll(this.modelSize, map);
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code model_size}
+		 * <p>
+		 * Adds an entry to <code>modelSize</code>.
+		 */
+		public final Builder modelSize(String key, Integer value) {
+			this.modelSize = _mapPut(this.modelSize, key, value);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code forecasts}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>forecasts</code>. Use
+		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
+		 * <code>forecasts</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetMap()
 		 */
-		public final Builder forecasts(Map<String, Integer> value) {
-			this.forecasts = value;
+		public final Builder forecasts(Map<String, Integer> map) {
+			this.forecasts = _mapPutAll(this.forecasts, map);
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code forecasts}
+		 * <p>
+		 * Adds an entry to <code>forecasts</code>.
+		 */
+		public final Builder forecasts(String key, Integer value) {
+			this.forecasts = _mapPut(this.forecasts, key, value);
 			return this;
 		}
 

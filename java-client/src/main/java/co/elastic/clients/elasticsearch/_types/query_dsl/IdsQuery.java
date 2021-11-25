@@ -32,10 +32,9 @@ import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.IdsQuery
@@ -52,10 +51,8 @@ public class IdsQuery extends QueryBase implements QueryVariant {
 
 	}
 
-	public static IdsQuery of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static IdsQuery of(Function<Builder, ObjectBuilder<IdsQuery>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -100,17 +97,25 @@ public class IdsQuery extends QueryBase implements QueryVariant {
 
 		/**
 		 * API name: {@code values}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>values</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>values</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder values(@Nullable List<String> value) {
-			this.values = value;
+		public final Builder values(List<String> list) {
+			this.values = _listAddAll(this.values, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code values}
+		 * <p>
+		 * Adds one or more values to <code>values</code>.
 		 */
-		public final Builder values(String... value) {
-			this.values = Arrays.asList(value);
+		public final Builder values(String value, String... values) {
+			this.values = _listAdd(this.values, value, values);
 			return this;
 		}
 

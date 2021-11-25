@@ -29,7 +29,6 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.MapBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
@@ -37,7 +36,6 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -60,10 +58,8 @@ public class SnapshotIndexStats implements JsonpSerializable {
 
 	}
 
-	public static SnapshotIndexStats of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static SnapshotIndexStats of(Function<Builder, ObjectBuilder<SnapshotIndexStats>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -131,15 +127,36 @@ public class SnapshotIndexStats implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code shards}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>shards</code>. Use
+		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
+		 * <code>shards</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetMap()
 		 */
-		public final Builder shards(Map<String, SnapshotShardsStatus> value) {
-			this.shards = value;
+		public final Builder shards(Map<String, SnapshotShardsStatus> map) {
+			this.shards = _mapPutAll(this.shards, map);
 			return this;
 		}
 
-		public final Builder shards(
-				Function<MapBuilder<String, SnapshotShardsStatus, SnapshotShardsStatus.Builder>, ObjectBuilder<Map<String, SnapshotShardsStatus>>> fn) {
-			return shards(fn.apply(new MapBuilder<>(SnapshotShardsStatus.Builder::new)).build());
+		/**
+		 * Required - API name: {@code shards}
+		 * <p>
+		 * Adds an entry to <code>shards</code>.
+		 */
+		public final Builder shards(String key, SnapshotShardsStatus value) {
+			this.shards = _mapPut(this.shards, key, value);
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code shards}
+		 * <p>
+		 * Adds an entry to <code>shards</code> using a builder lambda.
+		 */
+		public final Builder shards(String key,
+				Function<SnapshotShardsStatus.Builder, ObjectBuilder<SnapshotShardsStatus>> fn) {
+			return shards(key, fn.apply(new SnapshotShardsStatus.Builder()).build());
 		}
 
 		/**
@@ -153,10 +170,8 @@ public class SnapshotIndexStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code shards_stats}
 		 */
-		public final Builder shardsStats(Consumer<ShardsStats.Builder> fn) {
-			ShardsStats.Builder builder = new ShardsStats.Builder();
-			fn.accept(builder);
-			return this.shardsStats(builder.build());
+		public final Builder shardsStats(Function<ShardsStats.Builder, ObjectBuilder<ShardsStats>> fn) {
+			return this.shardsStats(fn.apply(new ShardsStats.Builder()).build());
 		}
 
 		/**
@@ -170,10 +185,8 @@ public class SnapshotIndexStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code stats}
 		 */
-		public final Builder stats(Consumer<SnapshotStats.Builder> fn) {
-			SnapshotStats.Builder builder = new SnapshotStats.Builder();
-			fn.accept(builder);
-			return this.stats(builder.build());
+		public final Builder stats(Function<SnapshotStats.Builder, ObjectBuilder<SnapshotStats>> fn) {
+			return this.stats(fn.apply(new SnapshotStats.Builder()).build());
 		}
 
 		/**

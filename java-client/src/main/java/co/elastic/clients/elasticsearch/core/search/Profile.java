@@ -29,15 +29,12 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -54,10 +51,8 @@ public class Profile implements JsonpSerializable {
 
 	}
 
-	public static Profile of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static Profile of(Function<Builder, ObjectBuilder<Profile>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -101,26 +96,35 @@ public class Profile implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code shards}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>shards</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>shards</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder shards(List<ShardProfile> value) {
-			this.shards = value;
+		public final Builder shards(List<ShardProfile> list) {
+			this.shards = _listAddAll(this.shards, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code shards}
+		 * <p>
+		 * Adds one or more values to <code>shards</code>.
 		 */
-		public final Builder shards(ShardProfile... value) {
-			this.shards = Arrays.asList(value);
+		public final Builder shards(ShardProfile value, ShardProfile... values) {
+			this.shards = _listAdd(this.shards, value, values);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code shards}
+		 * <p>
+		 * Adds a value to <code>shards</code> using a builder lambda.
 		 */
-		public final Builder shards(
-				Function<ListBuilder<ShardProfile, ShardProfile.Builder>, ObjectBuilder<List<ShardProfile>>> fn) {
-			return shards(fn.apply(new ListBuilder<>(ShardProfile.Builder::new)).build());
+		public final Builder shards(Function<ShardProfile.Builder, ObjectBuilder<ShardProfile>> fn) {
+			return shards(fn.apply(new ShardProfile.Builder()).build());
 		}
 
 		/**

@@ -35,7 +35,7 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.IntervalsPrefix
@@ -59,10 +59,8 @@ public class IntervalsPrefix implements IntervalsQueryVariant, IntervalsVariant,
 
 	}
 
-	public static IntervalsPrefix of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static IntervalsPrefix of(Function<Builder, ObjectBuilder<IntervalsPrefix>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**

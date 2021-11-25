@@ -48,7 +48,7 @@ import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.create.Request
@@ -106,10 +106,9 @@ public class CreateRequest<TDocument> extends RequestBase implements JsonpSerial
 
 	}
 
-	public static <TDocument> CreateRequest<TDocument> of(Consumer<Builder<TDocument>> fn) {
-		Builder<TDocument> builder = new Builder<>();
-		fn.accept(builder);
-		return builder.build();
+	public static <TDocument> CreateRequest<TDocument> of(
+			Function<Builder<TDocument>, ObjectBuilder<CreateRequest<TDocument>>> fn) {
+		return fn.apply(new Builder<>()).build();
 	}
 
 	/**
@@ -343,10 +342,8 @@ public class CreateRequest<TDocument> extends RequestBase implements JsonpSerial
 		 * <p>
 		 * API name: {@code timeout}
 		 */
-		public final Builder<TDocument> timeout(Consumer<Time.Builder> fn) {
-			Time.Builder builder = new Time.Builder();
-			fn.accept(builder);
-			return this.timeout(builder.build());
+		public final Builder<TDocument> timeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.timeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -402,10 +399,9 @@ public class CreateRequest<TDocument> extends RequestBase implements JsonpSerial
 		 * <p>
 		 * API name: {@code wait_for_active_shards}
 		 */
-		public final Builder<TDocument> waitForActiveShards(Consumer<WaitForActiveShards.Builder> fn) {
-			WaitForActiveShards.Builder builder = new WaitForActiveShards.Builder();
-			fn.accept(builder);
-			return this.waitForActiveShards(builder.build());
+		public final Builder<TDocument> waitForActiveShards(
+				Function<WaitForActiveShards.Builder, ObjectBuilder<WaitForActiveShards>> fn) {
+			return this.waitForActiveShards(fn.apply(new WaitForActiveShards.Builder()).build());
 		}
 
 		/**

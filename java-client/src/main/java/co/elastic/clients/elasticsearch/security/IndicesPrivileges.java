@@ -29,17 +29,14 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -69,10 +66,8 @@ public class IndicesPrivileges implements JsonpSerializable {
 
 	}
 
-	public static IndicesPrivileges of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static IndicesPrivileges of(Function<Builder, ObjectBuilder<IndicesPrivileges>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -211,9 +206,15 @@ public class IndicesPrivileges implements JsonpSerializable {
 		 * The document fields that the owners of the role have read access to.
 		 * <p>
 		 * API name: {@code field_security}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>fieldSecurity</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>fieldSecurity</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder fieldSecurity(@Nullable List<FieldSecurity> value) {
-			this.fieldSecurity = value;
+		public final Builder fieldSecurity(List<FieldSecurity> list) {
+			this.fieldSecurity = _listAddAll(this.fieldSecurity, list);
 			return this;
 		}
 
@@ -221,9 +222,11 @@ public class IndicesPrivileges implements JsonpSerializable {
 		 * The document fields that the owners of the role have read access to.
 		 * <p>
 		 * API name: {@code field_security}
+		 * <p>
+		 * Adds one or more values to <code>fieldSecurity</code>.
 		 */
-		public final Builder fieldSecurity(FieldSecurity... value) {
-			this.fieldSecurity = Arrays.asList(value);
+		public final Builder fieldSecurity(FieldSecurity value, FieldSecurity... values) {
+			this.fieldSecurity = _listAdd(this.fieldSecurity, value, values);
 			return this;
 		}
 
@@ -231,10 +234,11 @@ public class IndicesPrivileges implements JsonpSerializable {
 		 * The document fields that the owners of the role have read access to.
 		 * <p>
 		 * API name: {@code field_security}
+		 * <p>
+		 * Adds a value to <code>fieldSecurity</code> using a builder lambda.
 		 */
-		public final Builder fieldSecurity(
-				Function<ListBuilder<FieldSecurity, FieldSecurity.Builder>, ObjectBuilder<List<FieldSecurity>>> fn) {
-			return fieldSecurity(fn.apply(new ListBuilder<>(FieldSecurity.Builder::new)).build());
+		public final Builder fieldSecurity(Function<FieldSecurity.Builder, ObjectBuilder<FieldSecurity>> fn) {
+			return fieldSecurity(fn.apply(new FieldSecurity.Builder()).build());
 		}
 
 		/**
@@ -242,9 +246,15 @@ public class IndicesPrivileges implements JsonpSerializable {
 		 * permissions in this entry apply.
 		 * <p>
 		 * API name: {@code names}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>names</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>names</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder names(List<String> value) {
-			this.names = value;
+		public final Builder names(List<String> list) {
+			this.names = _listAddAll(this.names, list);
 			return this;
 		}
 
@@ -253,9 +263,11 @@ public class IndicesPrivileges implements JsonpSerializable {
 		 * permissions in this entry apply.
 		 * <p>
 		 * API name: {@code names}
+		 * <p>
+		 * Adds one or more values to <code>names</code>.
 		 */
-		public final Builder names(String... value) {
-			this.names = Arrays.asList(value);
+		public final Builder names(String value, String... values) {
+			this.names = _listAdd(this.names, value, values);
 			return this;
 		}
 
@@ -264,9 +276,15 @@ public class IndicesPrivileges implements JsonpSerializable {
 		 * specified indices.
 		 * <p>
 		 * API name: {@code privileges}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>privileges</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>privileges</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder privileges(List<IndexPrivilege> value) {
-			this.privileges = value;
+		public final Builder privileges(List<IndexPrivilege> list) {
+			this.privileges = _listAddAll(this.privileges, list);
 			return this;
 		}
 
@@ -275,9 +293,11 @@ public class IndicesPrivileges implements JsonpSerializable {
 		 * specified indices.
 		 * <p>
 		 * API name: {@code privileges}
+		 * <p>
+		 * Adds one or more values to <code>privileges</code>.
 		 */
-		public final Builder privileges(IndexPrivilege... value) {
-			this.privileges = Arrays.asList(value);
+		public final Builder privileges(IndexPrivilege value, IndexPrivilege... values) {
+			this.privileges = _listAdd(this.privileges, value, values);
 			return this;
 		}
 
@@ -287,9 +307,15 @@ public class IndicesPrivileges implements JsonpSerializable {
 		 * it to be accessible by the owners of the role.
 		 * <p>
 		 * API name: {@code query}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>query</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>query</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder query(@Nullable List<String> value) {
-			this.query = value;
+		public final Builder query(List<String> list) {
+			this.query = _listAddAll(this.query, list);
 			return this;
 		}
 
@@ -299,9 +325,11 @@ public class IndicesPrivileges implements JsonpSerializable {
 		 * it to be accessible by the owners of the role.
 		 * <p>
 		 * API name: {@code query}
+		 * <p>
+		 * Adds one or more values to <code>query</code>.
 		 */
-		public final Builder query(String... value) {
-			this.query = Arrays.asList(value);
+		public final Builder query(String value, String... values) {
+			this.query = _listAdd(this.query, value, values);
 			return this;
 		}
 

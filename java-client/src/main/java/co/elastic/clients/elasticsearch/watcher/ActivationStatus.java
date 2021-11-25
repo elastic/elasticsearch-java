@@ -29,7 +29,6 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.MapBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
@@ -38,7 +37,6 @@ import java.lang.Long;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -61,10 +59,8 @@ public class ActivationStatus implements JsonpSerializable {
 
 	}
 
-	public static ActivationStatus of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static ActivationStatus of(Function<Builder, ObjectBuilder<ActivationStatus>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -132,15 +128,35 @@ public class ActivationStatus implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code actions}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>actions</code>. Use
+		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
+		 * <code>actions</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetMap()
 		 */
-		public final Builder actions(Map<String, ActionStatus> value) {
-			this.actions = value;
+		public final Builder actions(Map<String, ActionStatus> map) {
+			this.actions = _mapPutAll(this.actions, map);
 			return this;
 		}
 
-		public final Builder actions(
-				Function<MapBuilder<String, ActionStatus, ActionStatus.Builder>, ObjectBuilder<Map<String, ActionStatus>>> fn) {
-			return actions(fn.apply(new MapBuilder<>(ActionStatus.Builder::new)).build());
+		/**
+		 * Required - API name: {@code actions}
+		 * <p>
+		 * Adds an entry to <code>actions</code>.
+		 */
+		public final Builder actions(String key, ActionStatus value) {
+			this.actions = _mapPut(this.actions, key, value);
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code actions}
+		 * <p>
+		 * Adds an entry to <code>actions</code> using a builder lambda.
+		 */
+		public final Builder actions(String key, Function<ActionStatus.Builder, ObjectBuilder<ActionStatus>> fn) {
+			return actions(key, fn.apply(new ActionStatus.Builder()).build());
 		}
 
 		/**
@@ -154,10 +170,8 @@ public class ActivationStatus implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code state}
 		 */
-		public final Builder state(Consumer<ActivationState.Builder> fn) {
-			ActivationState.Builder builder = new ActivationState.Builder();
-			fn.accept(builder);
-			return this.state(builder.build());
+		public final Builder state(Function<ActivationState.Builder, ObjectBuilder<ActivationState>> fn) {
+			return this.state(fn.apply(new ActivationState.Builder()).build());
 		}
 
 		/**

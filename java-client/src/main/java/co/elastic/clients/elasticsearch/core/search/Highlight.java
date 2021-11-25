@@ -30,7 +30,6 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.MapBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
@@ -38,11 +37,9 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -133,10 +130,8 @@ public class Highlight implements JsonpSerializable {
 
 	}
 
-	public static Highlight of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static Highlight of(Function<Builder, ObjectBuilder<Highlight>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -488,15 +483,35 @@ public class Highlight implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code fields}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>fields</code>. Use
+		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
+		 * <code>fields</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetMap()
 		 */
-		public final Builder fields(Map<String, HighlightField> value) {
-			this.fields = value;
+		public final Builder fields(Map<String, HighlightField> map) {
+			this.fields = _mapPutAll(this.fields, map);
 			return this;
 		}
 
-		public final Builder fields(
-				Function<MapBuilder<String, HighlightField, HighlightField.Builder>, ObjectBuilder<Map<String, HighlightField>>> fn) {
-			return fields(fn.apply(new MapBuilder<>(HighlightField.Builder::new)).build());
+		/**
+		 * Required - API name: {@code fields}
+		 * <p>
+		 * Adds an entry to <code>fields</code>.
+		 */
+		public final Builder fields(String key, HighlightField value) {
+			this.fields = _mapPut(this.fields, key, value);
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code fields}
+		 * <p>
+		 * Adds an entry to <code>fields</code> using a builder lambda.
+		 */
+		public final Builder fields(String key, Function<HighlightField.Builder, ObjectBuilder<HighlightField>> fn) {
+			return fields(key, fn.apply(new HighlightField.Builder()).build());
 		}
 
 		/**
@@ -510,10 +525,8 @@ public class Highlight implements JsonpSerializable {
 		/**
 		 * API name: {@code type}
 		 */
-		public final Builder type(Consumer<HighlighterType.Builder> fn) {
-			HighlighterType.Builder builder = new HighlighterType.Builder();
-			fn.accept(builder);
-			return this.type(builder.build());
+		public final Builder type(Function<HighlighterType.Builder, ObjectBuilder<HighlighterType>> fn) {
+			return this.type(fn.apply(new HighlighterType.Builder()).build());
 		}
 
 		/**
@@ -614,33 +627,49 @@ public class Highlight implements JsonpSerializable {
 
 		/**
 		 * API name: {@code post_tags}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>postTags</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>postTags</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder postTags(@Nullable List<String> value) {
-			this.postTags = value;
+		public final Builder postTags(List<String> list) {
+			this.postTags = _listAddAll(this.postTags, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code post_tags}
+		 * <p>
+		 * Adds one or more values to <code>postTags</code>.
 		 */
-		public final Builder postTags(String... value) {
-			this.postTags = Arrays.asList(value);
+		public final Builder postTags(String value, String... values) {
+			this.postTags = _listAdd(this.postTags, value, values);
 			return this;
 		}
 
 		/**
 		 * API name: {@code pre_tags}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>preTags</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>preTags</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder preTags(@Nullable List<String> value) {
-			this.preTags = value;
+		public final Builder preTags(List<String> list) {
+			this.preTags = _listAddAll(this.preTags, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code pre_tags}
+		 * <p>
+		 * Adds one or more values to <code>preTags</code>.
 		 */
-		public final Builder preTags(String... value) {
-			this.preTags = Arrays.asList(value);
+		public final Builder preTags(String value, String... values) {
+			this.preTags = _listAdd(this.preTags, value, values);
 			return this;
 		}
 
@@ -671,10 +700,8 @@ public class Highlight implements JsonpSerializable {
 		/**
 		 * API name: {@code highlight_query}
 		 */
-		public final Builder highlightQuery(Consumer<Query.Builder> fn) {
-			Query.Builder builder = new Query.Builder();
-			fn.accept(builder);
-			return this.highlightQuery(builder.build());
+		public final Builder highlightQuery(Function<Query.Builder, ObjectBuilder<Query>> fn) {
+			return this.highlightQuery(fn.apply(new Query.Builder()).build());
 		}
 
 		/**

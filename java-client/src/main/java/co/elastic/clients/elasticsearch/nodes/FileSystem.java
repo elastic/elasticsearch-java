@@ -29,16 +29,13 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -61,10 +58,8 @@ public class FileSystem implements JsonpSerializable {
 
 	}
 
-	public static FileSystem of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static FileSystem of(Function<Builder, ObjectBuilder<FileSystem>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -131,26 +126,35 @@ public class FileSystem implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code data}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>data</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>data</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder data(List<DataPathStats> value) {
-			this.data = value;
+		public final Builder data(List<DataPathStats> list) {
+			this.data = _listAddAll(this.data, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code data}
+		 * <p>
+		 * Adds one or more values to <code>data</code>.
 		 */
-		public final Builder data(DataPathStats... value) {
-			this.data = Arrays.asList(value);
+		public final Builder data(DataPathStats value, DataPathStats... values) {
+			this.data = _listAdd(this.data, value, values);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code data}
+		 * <p>
+		 * Adds a value to <code>data</code> using a builder lambda.
 		 */
-		public final Builder data(
-				Function<ListBuilder<DataPathStats, DataPathStats.Builder>, ObjectBuilder<List<DataPathStats>>> fn) {
-			return data(fn.apply(new ListBuilder<>(DataPathStats.Builder::new)).build());
+		public final Builder data(Function<DataPathStats.Builder, ObjectBuilder<DataPathStats>> fn) {
+			return data(fn.apply(new DataPathStats.Builder()).build());
 		}
 
 		/**
@@ -172,10 +176,8 @@ public class FileSystem implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code total}
 		 */
-		public final Builder total(Consumer<FileSystemTotal.Builder> fn) {
-			FileSystemTotal.Builder builder = new FileSystemTotal.Builder();
-			fn.accept(builder);
-			return this.total(builder.build());
+		public final Builder total(Function<FileSystemTotal.Builder, ObjectBuilder<FileSystemTotal>> fn) {
+			return this.total(fn.apply(new FileSystemTotal.Builder()).build());
 		}
 
 		/**

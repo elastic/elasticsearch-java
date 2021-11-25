@@ -38,7 +38,7 @@ import co.elastic.clients.util.TaggedUnionUtils;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Object;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: transform._types.RetentionPolicyContainer
@@ -94,10 +94,8 @@ public class RetentionPolicy implements TaggedUnion<RetentionPolicy.Kind, Object
 
 	}
 
-	public static RetentionPolicy of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static RetentionPolicy of(Function<Builder, ObjectBuilder<RetentionPolicy>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -142,10 +140,9 @@ public class RetentionPolicy implements TaggedUnion<RetentionPolicy.Kind, Object
 			return this;
 		}
 
-		public ObjectBuilder<RetentionPolicy> time(Consumer<TimeRetentionPolicy.Builder> fn) {
-			TimeRetentionPolicy.Builder builder = new TimeRetentionPolicy.Builder();
-			fn.accept(builder);
-			return this.time(builder.build());
+		public ObjectBuilder<RetentionPolicy> time(
+				Function<TimeRetentionPolicy.Builder, ObjectBuilder<TimeRetentionPolicy>> fn) {
+			return this.time(fn.apply(new TimeRetentionPolicy.Builder()).build());
 		}
 
 		public RetentionPolicy build() {

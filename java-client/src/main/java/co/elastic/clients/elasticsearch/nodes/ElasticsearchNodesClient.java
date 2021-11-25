@@ -33,7 +33,7 @@ import co.elastic.clients.transport.Transport;
 import co.elastic.clients.transport.TransportOptions;
 import co.elastic.clients.util.ObjectBuilder;
 import java.io.IOException;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 /**
@@ -82,11 +82,9 @@ public class ElasticsearchNodesClient extends ApiClient<ElasticsearchTransport, 
 	 *      on elastic.co</a>
 	 */
 
-	public final HotThreadsResponse hotThreads(Consumer<HotThreadsRequest.Builder> fn)
+	public final HotThreadsResponse hotThreads(Function<HotThreadsRequest.Builder, ObjectBuilder<HotThreadsRequest>> fn)
 			throws IOException, ElasticsearchException {
-		HotThreadsRequest.Builder builder = new HotThreadsRequest.Builder();
-		fn.accept(builder);
-		return hotThreads(builder.build());
+		return hotThreads(fn.apply(new HotThreadsRequest.Builder()).build());
 	}
 
 	/**
@@ -130,11 +128,9 @@ public class ElasticsearchNodesClient extends ApiClient<ElasticsearchTransport, 
 	 *      on elastic.co</a>
 	 */
 
-	public final NodesInfoResponse info(Consumer<NodesInfoRequest.Builder> fn)
+	public final NodesInfoResponse info(Function<NodesInfoRequest.Builder, ObjectBuilder<NodesInfoRequest>> fn)
 			throws IOException, ElasticsearchException {
-		NodesInfoRequest.Builder builder = new NodesInfoRequest.Builder();
-		fn.accept(builder);
-		return info(builder.build());
+		return info(fn.apply(new NodesInfoRequest.Builder()).build());
 	}
 
 	/**
@@ -179,11 +175,10 @@ public class ElasticsearchNodesClient extends ApiClient<ElasticsearchTransport, 
 	 *      on elastic.co</a>
 	 */
 
-	public final ReloadSecureSettingsResponse reloadSecureSettings(Consumer<ReloadSecureSettingsRequest.Builder> fn)
+	public final ReloadSecureSettingsResponse reloadSecureSettings(
+			Function<ReloadSecureSettingsRequest.Builder, ObjectBuilder<ReloadSecureSettingsRequest>> fn)
 			throws IOException, ElasticsearchException {
-		ReloadSecureSettingsRequest.Builder builder = new ReloadSecureSettingsRequest.Builder();
-		fn.accept(builder);
-		return reloadSecureSettings(builder.build());
+		return reloadSecureSettings(fn.apply(new ReloadSecureSettingsRequest.Builder()).build());
 	}
 
 	/**
@@ -227,11 +222,9 @@ public class ElasticsearchNodesClient extends ApiClient<ElasticsearchTransport, 
 	 *      on elastic.co</a>
 	 */
 
-	public final NodesStatsResponse stats(Consumer<NodesStatsRequest.Builder> fn)
+	public final NodesStatsResponse stats(Function<NodesStatsRequest.Builder, ObjectBuilder<NodesStatsRequest>> fn)
 			throws IOException, ElasticsearchException {
-		NodesStatsRequest.Builder builder = new NodesStatsRequest.Builder();
-		fn.accept(builder);
-		return stats(builder.build());
+		return stats(fn.apply(new NodesStatsRequest.Builder()).build());
 	}
 
 	/**
@@ -275,11 +268,9 @@ public class ElasticsearchNodesClient extends ApiClient<ElasticsearchTransport, 
 	 *      on elastic.co</a>
 	 */
 
-	public final NodesUsageResponse usage(Consumer<NodesUsageRequest.Builder> fn)
+	public final NodesUsageResponse usage(Function<NodesUsageRequest.Builder, ObjectBuilder<NodesUsageRequest>> fn)
 			throws IOException, ElasticsearchException {
-		NodesUsageRequest.Builder builder = new NodesUsageRequest.Builder();
-		fn.accept(builder);
-		return usage(builder.build());
+		return usage(fn.apply(new NodesUsageRequest.Builder()).build());
 	}
 
 	/**

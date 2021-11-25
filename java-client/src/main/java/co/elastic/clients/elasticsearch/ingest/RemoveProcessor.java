@@ -33,10 +33,9 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ingest._types.RemoveProcessor
@@ -57,10 +56,8 @@ public class RemoveProcessor extends ProcessorBase implements ProcessorVariant {
 
 	}
 
-	public static RemoveProcessor of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static RemoveProcessor of(Function<Builder, ObjectBuilder<RemoveProcessor>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -122,17 +119,25 @@ public class RemoveProcessor extends ProcessorBase implements ProcessorVariant {
 
 		/**
 		 * Required - API name: {@code field}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>field</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>field</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder field(List<String> value) {
-			this.field = value;
+		public final Builder field(List<String> list) {
+			this.field = _listAddAll(this.field, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code field}
+		 * <p>
+		 * Adds one or more values to <code>field</code>.
 		 */
-		public final Builder field(String... value) {
-			this.field = Arrays.asList(value);
+		public final Builder field(String value, String... values) {
+			this.field = _listAdd(this.field, value, values);
 			return this;
 		}
 

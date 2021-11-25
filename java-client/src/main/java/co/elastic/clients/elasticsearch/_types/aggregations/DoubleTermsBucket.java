@@ -34,7 +34,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.DoubleTermsBucket
@@ -55,10 +55,8 @@ public class DoubleTermsBucket extends TermsBucketBase {
 
 	}
 
-	public static DoubleTermsBucket of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static DoubleTermsBucket of(Function<Builder, ObjectBuilder<DoubleTermsBucket>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**

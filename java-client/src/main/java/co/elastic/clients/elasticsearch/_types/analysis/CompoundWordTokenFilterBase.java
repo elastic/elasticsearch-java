@@ -34,7 +34,6 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import javax.annotation.Nullable;
@@ -244,17 +243,25 @@ public abstract class CompoundWordTokenFilterBase extends TokenFilterBase {
 
 		/**
 		 * API name: {@code word_list}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>wordList</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>wordList</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final BuilderT wordList(@Nullable List<String> value) {
-			this.wordList = value;
+		public final BuilderT wordList(List<String> list) {
+			this.wordList = _listAddAll(this.wordList, list);
 			return self();
 		}
 
 		/**
 		 * API name: {@code word_list}
+		 * <p>
+		 * Adds one or more values to <code>wordList</code>.
 		 */
-		public final BuilderT wordList(String... value) {
-			this.wordList = Arrays.asList(value);
+		public final BuilderT wordList(String value, String... values) {
+			this.wordList = _listAdd(this.wordList, value, values);
 			return self();
 		}
 

@@ -35,7 +35,7 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.DataframeAnalyticsStatsOutlierDetection
@@ -57,10 +57,9 @@ public class DataframeAnalyticsStatsOutlierDetection implements DataframeAnalyti
 
 	}
 
-	public static DataframeAnalyticsStatsOutlierDetection of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static DataframeAnalyticsStatsOutlierDetection of(
+			Function<Builder, ObjectBuilder<DataframeAnalyticsStatsOutlierDetection>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -139,10 +138,9 @@ public class DataframeAnalyticsStatsOutlierDetection implements DataframeAnalyti
 		/**
 		 * Required - API name: {@code parameters}
 		 */
-		public final Builder parameters(Consumer<OutlierDetectionParameters.Builder> fn) {
-			OutlierDetectionParameters.Builder builder = new OutlierDetectionParameters.Builder();
-			fn.accept(builder);
-			return this.parameters(builder.build());
+		public final Builder parameters(
+				Function<OutlierDetectionParameters.Builder, ObjectBuilder<OutlierDetectionParameters>> fn) {
+			return this.parameters(fn.apply(new OutlierDetectionParameters.Builder()).build());
 		}
 
 		/**
@@ -164,10 +162,8 @@ public class DataframeAnalyticsStatsOutlierDetection implements DataframeAnalyti
 		/**
 		 * Required - API name: {@code timing_stats}
 		 */
-		public final Builder timingStats(Consumer<TimingStats.Builder> fn) {
-			TimingStats.Builder builder = new TimingStats.Builder();
-			fn.accept(builder);
-			return this.timingStats(builder.build());
+		public final Builder timingStats(Function<TimingStats.Builder, ObjectBuilder<TimingStats>> fn) {
+			return this.timingStats(fn.apply(new TimingStats.Builder()).build());
 		}
 
 		/**

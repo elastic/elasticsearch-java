@@ -30,7 +30,6 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.MapBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
@@ -38,7 +37,6 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -58,10 +56,8 @@ public class NodesCredentials implements JsonpSerializable {
 
 	}
 
-	public static NodesCredentials of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static NodesCredentials of(Function<Builder, ObjectBuilder<NodesCredentials>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -138,25 +134,48 @@ public class NodesCredentials implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code _nodes}
 		 */
-		public final Builder nodes(Consumer<NodeStatistics.Builder> fn) {
-			NodeStatistics.Builder builder = new NodeStatistics.Builder();
-			fn.accept(builder);
-			return this.nodes(builder.build());
+		public final Builder nodes(Function<NodeStatistics.Builder, ObjectBuilder<NodeStatistics>> fn) {
+			return this.nodes(fn.apply(new NodeStatistics.Builder()).build());
 		}
 
 		/**
 		 * Required - File-backed tokens collected from all nodes
 		 * <p>
 		 * API name: {@code file_tokens}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>fileTokens</code>. Use
+		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
+		 * <code>fileTokens</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetMap()
 		 */
-		public final Builder fileTokens(Map<String, NodesCredentialsFileToken> value) {
-			this.fileTokens = value;
+		public final Builder fileTokens(Map<String, NodesCredentialsFileToken> map) {
+			this.fileTokens = _mapPutAll(this.fileTokens, map);
 			return this;
 		}
 
-		public final Builder fileTokens(
-				Function<MapBuilder<String, NodesCredentialsFileToken, NodesCredentialsFileToken.Builder>, ObjectBuilder<Map<String, NodesCredentialsFileToken>>> fn) {
-			return fileTokens(fn.apply(new MapBuilder<>(NodesCredentialsFileToken.Builder::new)).build());
+		/**
+		 * Required - File-backed tokens collected from all nodes
+		 * <p>
+		 * API name: {@code file_tokens}
+		 * <p>
+		 * Adds an entry to <code>fileTokens</code>.
+		 */
+		public final Builder fileTokens(String key, NodesCredentialsFileToken value) {
+			this.fileTokens = _mapPut(this.fileTokens, key, value);
+			return this;
+		}
+
+		/**
+		 * Required - File-backed tokens collected from all nodes
+		 * <p>
+		 * API name: {@code file_tokens}
+		 * <p>
+		 * Adds an entry to <code>fileTokens</code> using a builder lambda.
+		 */
+		public final Builder fileTokens(String key,
+				Function<NodesCredentialsFileToken.Builder, ObjectBuilder<NodesCredentialsFileToken>> fn) {
+			return fileTokens(key, fn.apply(new NodesCredentialsFileToken.Builder()).build());
 		}
 
 		/**

@@ -30,14 +30,11 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ListBuilder;
-import co.elastic.clients.util.MapBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -168,52 +165,102 @@ public class ListResponse implements JsonpSerializable {
 
 		/**
 		 * API name: {@code node_failures}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>nodeFailures</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>nodeFailures</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final BuilderT nodeFailures(@Nullable List<ErrorCause> value) {
-			this.nodeFailures = value;
+		public final BuilderT nodeFailures(List<ErrorCause> list) {
+			this.nodeFailures = _listAddAll(this.nodeFailures, list);
 			return self();
 		}
 
 		/**
 		 * API name: {@code node_failures}
+		 * <p>
+		 * Adds one or more values to <code>nodeFailures</code>.
 		 */
-		public final BuilderT nodeFailures(ErrorCause... value) {
-			this.nodeFailures = Arrays.asList(value);
+		public final BuilderT nodeFailures(ErrorCause value, ErrorCause... values) {
+			this.nodeFailures = _listAdd(this.nodeFailures, value, values);
 			return self();
 		}
 
 		/**
 		 * API name: {@code node_failures}
+		 * <p>
+		 * Adds a value to <code>nodeFailures</code> using a builder lambda.
 		 */
-		public final BuilderT nodeFailures(
-				Function<ListBuilder<ErrorCause, ErrorCause.Builder>, ObjectBuilder<List<ErrorCause>>> fn) {
-			return nodeFailures(fn.apply(new ListBuilder<>(ErrorCause.Builder::new)).build());
+		public final BuilderT nodeFailures(Function<ErrorCause.Builder, ObjectBuilder<ErrorCause>> fn) {
+			return nodeFailures(fn.apply(new ErrorCause.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code nodes}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>nodes</code>. Use
+		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
+		 * <code>nodes</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetMap()
 		 */
-		public final BuilderT nodes(@Nullable Map<String, TaskExecutingNode> value) {
-			this.nodes = value;
+		public final BuilderT nodes(Map<String, TaskExecutingNode> map) {
+			this.nodes = _mapPutAll(this.nodes, map);
 			return self();
 		}
 
-		public final BuilderT nodes(
-				Function<MapBuilder<String, TaskExecutingNode, TaskExecutingNode.Builder>, ObjectBuilder<Map<String, TaskExecutingNode>>> fn) {
-			return nodes(fn.apply(new MapBuilder<>(TaskExecutingNode.Builder::new)).build());
+		/**
+		 * API name: {@code nodes}
+		 * <p>
+		 * Adds an entry to <code>nodes</code>.
+		 */
+		public final BuilderT nodes(String key, TaskExecutingNode value) {
+			this.nodes = _mapPut(this.nodes, key, value);
+			return self();
+		}
+
+		/**
+		 * API name: {@code nodes}
+		 * <p>
+		 * Adds an entry to <code>nodes</code> using a builder lambda.
+		 */
+		public final BuilderT nodes(String key,
+				Function<TaskExecutingNode.Builder, ObjectBuilder<TaskExecutingNode>> fn) {
+			return nodes(key, fn.apply(new TaskExecutingNode.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code tasks}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>tasks</code>. Use
+		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
+		 * <code>tasks</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetMap()
 		 */
-		public final BuilderT tasks(@Nullable Map<String, Info> value) {
-			this.tasks = value;
+		public final BuilderT tasks(Map<String, Info> map) {
+			this.tasks = _mapPutAll(this.tasks, map);
 			return self();
 		}
 
-		public final BuilderT tasks(
-				Function<MapBuilder<String, Info, Info.Builder>, ObjectBuilder<Map<String, Info>>> fn) {
-			return tasks(fn.apply(new MapBuilder<>(Info.Builder::new)).build());
+		/**
+		 * API name: {@code tasks}
+		 * <p>
+		 * Adds an entry to <code>tasks</code>.
+		 */
+		public final BuilderT tasks(String key, Info value) {
+			this.tasks = _mapPut(this.tasks, key, value);
+			return self();
+		}
+
+		/**
+		 * API name: {@code tasks}
+		 * <p>
+		 * Adds an entry to <code>tasks</code> using a builder lambda.
+		 */
+		public final BuilderT tasks(String key, Function<Info.Builder, ObjectBuilder<Info>> fn) {
+			return tasks(key, fn.apply(new Info.Builder()).build());
 		}
 
 		protected abstract BuilderT self();

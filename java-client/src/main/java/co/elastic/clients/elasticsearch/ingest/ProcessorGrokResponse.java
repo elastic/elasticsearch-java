@@ -36,7 +36,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ingest.processor_grok.Response
@@ -52,10 +52,8 @@ public class ProcessorGrokResponse implements JsonpSerializable {
 
 	}
 
-	public static ProcessorGrokResponse of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static ProcessorGrokResponse of(Function<Builder, ObjectBuilder<ProcessorGrokResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -100,9 +98,25 @@ public class ProcessorGrokResponse implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code patterns}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>patterns</code>. Use
+		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
+		 * <code>patterns</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetMap()
 		 */
-		public final Builder patterns(Map<String, String> value) {
-			this.patterns = value;
+		public final Builder patterns(Map<String, String> map) {
+			this.patterns = _mapPutAll(this.patterns, map);
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code patterns}
+		 * <p>
+		 * Adds an entry to <code>patterns</code>.
+		 */
+		public final Builder patterns(String key, String value) {
+			this.patterns = _mapPut(this.patterns, key, value);
 			return this;
 		}
 

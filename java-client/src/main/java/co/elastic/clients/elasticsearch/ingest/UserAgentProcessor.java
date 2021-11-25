@@ -33,10 +33,9 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ingest._types.UserAgentProcessor
@@ -65,10 +64,8 @@ public class UserAgentProcessor extends ProcessorBase implements ProcessorVarian
 
 	}
 
-	public static UserAgentProcessor of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static UserAgentProcessor of(Function<Builder, ObjectBuilder<UserAgentProcessor>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -176,17 +173,25 @@ public class UserAgentProcessor extends ProcessorBase implements ProcessorVarian
 
 		/**
 		 * Required - API name: {@code options}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>options</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>options</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder options(List<UserAgentProperty> value) {
-			this.options = value;
+		public final Builder options(List<UserAgentProperty> list) {
+			this.options = _listAddAll(this.options, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code options}
+		 * <p>
+		 * Adds one or more values to <code>options</code>.
 		 */
-		public final Builder options(UserAgentProperty... value) {
-			this.options = Arrays.asList(value);
+		public final Builder options(UserAgentProperty value, UserAgentProperty... values) {
+			this.options = _listAdd(this.options, value, values);
 			return this;
 		}
 

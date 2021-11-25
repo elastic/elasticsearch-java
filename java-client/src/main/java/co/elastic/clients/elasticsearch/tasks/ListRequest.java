@@ -38,12 +38,11 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
@@ -83,10 +82,8 @@ public class ListRequest extends RequestBase {
 
 	}
 
-	public static ListRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static ListRequest of(Function<Builder, ObjectBuilder<ListRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -193,9 +190,15 @@ public class ListRequest extends RequestBase {
 		 * return all.
 		 * <p>
 		 * API name: {@code actions}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>actions</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>actions</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder actions(@Nullable List<String> value) {
-			this.actions = value;
+		public final Builder actions(List<String> list) {
+			this.actions = _listAddAll(this.actions, list);
 			return this;
 		}
 
@@ -204,9 +207,11 @@ public class ListRequest extends RequestBase {
 		 * return all.
 		 * <p>
 		 * API name: {@code actions}
+		 * <p>
+		 * Adds one or more values to <code>actions</code>.
 		 */
-		public final Builder actions(String... value) {
-			this.actions = Arrays.asList(value);
+		public final Builder actions(String value, String... values) {
+			this.actions = _listAdd(this.actions, value, values);
 			return this;
 		}
 
@@ -236,9 +241,15 @@ public class ListRequest extends RequestBase {
 		 * you're connecting to, leave empty to get information from all nodes
 		 * <p>
 		 * API name: {@code nodes}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>nodes</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>nodes</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder nodes(@Nullable List<String> value) {
-			this.nodes = value;
+		public final Builder nodes(List<String> list) {
+			this.nodes = _listAddAll(this.nodes, list);
 			return this;
 		}
 
@@ -248,9 +259,11 @@ public class ListRequest extends RequestBase {
 		 * you're connecting to, leave empty to get information from all nodes
 		 * <p>
 		 * API name: {@code nodes}
+		 * <p>
+		 * Adds one or more values to <code>nodes</code>.
 		 */
-		public final Builder nodes(String... value) {
-			this.nodes = Arrays.asList(value);
+		public final Builder nodes(String value, String... values) {
+			this.nodes = _listAdd(this.nodes, value, values);
 			return this;
 		}
 
@@ -280,10 +293,8 @@ public class ListRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code timeout}
 		 */
-		public final Builder timeout(Consumer<Time.Builder> fn) {
-			Time.Builder builder = new Time.Builder();
-			fn.accept(builder);
-			return this.timeout(builder.build());
+		public final Builder timeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.timeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**

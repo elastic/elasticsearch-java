@@ -34,7 +34,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: nodes.info.NodeInfoSettings
@@ -101,10 +101,8 @@ public class NodeInfoSettings implements JsonpSerializable {
 
 	}
 
-	public static NodeInfoSettings of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static NodeInfoSettings of(Function<Builder, ObjectBuilder<NodeInfoSettings>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -354,10 +352,9 @@ public class NodeInfoSettings implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code cluster}
 		 */
-		public final Builder cluster(Consumer<NodeInfoSettingsCluster.Builder> fn) {
-			NodeInfoSettingsCluster.Builder builder = new NodeInfoSettingsCluster.Builder();
-			fn.accept(builder);
-			return this.cluster(builder.build());
+		public final Builder cluster(
+				Function<NodeInfoSettingsCluster.Builder, ObjectBuilder<NodeInfoSettingsCluster>> fn) {
+			return this.cluster(fn.apply(new NodeInfoSettingsCluster.Builder()).build());
 		}
 
 		/**
@@ -371,10 +368,8 @@ public class NodeInfoSettings implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code node}
 		 */
-		public final Builder node(Consumer<NodeInfoSettingsNode.Builder> fn) {
-			NodeInfoSettingsNode.Builder builder = new NodeInfoSettingsNode.Builder();
-			fn.accept(builder);
-			return this.node(builder.build());
+		public final Builder node(Function<NodeInfoSettingsNode.Builder, ObjectBuilder<NodeInfoSettingsNode>> fn) {
+			return this.node(fn.apply(new NodeInfoSettingsNode.Builder()).build());
 		}
 
 		/**
@@ -388,10 +383,8 @@ public class NodeInfoSettings implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code path}
 		 */
-		public final Builder path(Consumer<NodeInfoPath.Builder> fn) {
-			NodeInfoPath.Builder builder = new NodeInfoPath.Builder();
-			fn.accept(builder);
-			return this.path(builder.build());
+		public final Builder path(Function<NodeInfoPath.Builder, ObjectBuilder<NodeInfoPath>> fn) {
+			return this.path(fn.apply(new NodeInfoPath.Builder()).build());
 		}
 
 		/**
@@ -405,10 +398,9 @@ public class NodeInfoSettings implements JsonpSerializable {
 		/**
 		 * API name: {@code repositories}
 		 */
-		public final Builder repositories(Consumer<NodeInfoRepositories.Builder> fn) {
-			NodeInfoRepositories.Builder builder = new NodeInfoRepositories.Builder();
-			fn.accept(builder);
-			return this.repositories(builder.build());
+		public final Builder repositories(
+				Function<NodeInfoRepositories.Builder, ObjectBuilder<NodeInfoRepositories>> fn) {
+			return this.repositories(fn.apply(new NodeInfoRepositories.Builder()).build());
 		}
 
 		/**
@@ -422,10 +414,8 @@ public class NodeInfoSettings implements JsonpSerializable {
 		/**
 		 * API name: {@code discovery}
 		 */
-		public final Builder discovery(Consumer<NodeInfoDiscover.Builder> fn) {
-			NodeInfoDiscover.Builder builder = new NodeInfoDiscover.Builder();
-			fn.accept(builder);
-			return this.discovery(builder.build());
+		public final Builder discovery(Function<NodeInfoDiscover.Builder, ObjectBuilder<NodeInfoDiscover>> fn) {
+			return this.discovery(fn.apply(new NodeInfoDiscover.Builder()).build());
 		}
 
 		/**
@@ -439,10 +429,8 @@ public class NodeInfoSettings implements JsonpSerializable {
 		/**
 		 * API name: {@code action}
 		 */
-		public final Builder action(Consumer<NodeInfoAction.Builder> fn) {
-			NodeInfoAction.Builder builder = new NodeInfoAction.Builder();
-			fn.accept(builder);
-			return this.action(builder.build());
+		public final Builder action(Function<NodeInfoAction.Builder, ObjectBuilder<NodeInfoAction>> fn) {
+			return this.action(fn.apply(new NodeInfoAction.Builder()).build());
 		}
 
 		/**
@@ -456,10 +444,8 @@ public class NodeInfoSettings implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code client}
 		 */
-		public final Builder client(Consumer<NodeInfoClient.Builder> fn) {
-			NodeInfoClient.Builder builder = new NodeInfoClient.Builder();
-			fn.accept(builder);
-			return this.client(builder.build());
+		public final Builder client(Function<NodeInfoClient.Builder, ObjectBuilder<NodeInfoClient>> fn) {
+			return this.client(fn.apply(new NodeInfoClient.Builder()).build());
 		}
 
 		/**
@@ -473,10 +459,8 @@ public class NodeInfoSettings implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code http}
 		 */
-		public final Builder http(Consumer<NodeInfoSettingsHttp.Builder> fn) {
-			NodeInfoSettingsHttp.Builder builder = new NodeInfoSettingsHttp.Builder();
-			fn.accept(builder);
-			return this.http(builder.build());
+		public final Builder http(Function<NodeInfoSettingsHttp.Builder, ObjectBuilder<NodeInfoSettingsHttp>> fn) {
+			return this.http(fn.apply(new NodeInfoSettingsHttp.Builder()).build());
 		}
 
 		/**
@@ -490,10 +474,8 @@ public class NodeInfoSettings implements JsonpSerializable {
 		/**
 		 * API name: {@code bootstrap}
 		 */
-		public final Builder bootstrap(Consumer<NodeInfoBootstrap.Builder> fn) {
-			NodeInfoBootstrap.Builder builder = new NodeInfoBootstrap.Builder();
-			fn.accept(builder);
-			return this.bootstrap(builder.build());
+		public final Builder bootstrap(Function<NodeInfoBootstrap.Builder, ObjectBuilder<NodeInfoBootstrap>> fn) {
+			return this.bootstrap(fn.apply(new NodeInfoBootstrap.Builder()).build());
 		}
 
 		/**
@@ -507,10 +489,9 @@ public class NodeInfoSettings implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code transport}
 		 */
-		public final Builder transport(Consumer<NodeInfoSettingsTransport.Builder> fn) {
-			NodeInfoSettingsTransport.Builder builder = new NodeInfoSettingsTransport.Builder();
-			fn.accept(builder);
-			return this.transport(builder.build());
+		public final Builder transport(
+				Function<NodeInfoSettingsTransport.Builder, ObjectBuilder<NodeInfoSettingsTransport>> fn) {
+			return this.transport(fn.apply(new NodeInfoSettingsTransport.Builder()).build());
 		}
 
 		/**
@@ -524,10 +505,9 @@ public class NodeInfoSettings implements JsonpSerializable {
 		/**
 		 * API name: {@code network}
 		 */
-		public final Builder network(Consumer<NodeInfoSettingsNetwork.Builder> fn) {
-			NodeInfoSettingsNetwork.Builder builder = new NodeInfoSettingsNetwork.Builder();
-			fn.accept(builder);
-			return this.network(builder.build());
+		public final Builder network(
+				Function<NodeInfoSettingsNetwork.Builder, ObjectBuilder<NodeInfoSettingsNetwork>> fn) {
+			return this.network(fn.apply(new NodeInfoSettingsNetwork.Builder()).build());
 		}
 
 		/**
@@ -541,10 +521,8 @@ public class NodeInfoSettings implements JsonpSerializable {
 		/**
 		 * API name: {@code xpack}
 		 */
-		public final Builder xpack(Consumer<NodeInfoXpack.Builder> fn) {
-			NodeInfoXpack.Builder builder = new NodeInfoXpack.Builder();
-			fn.accept(builder);
-			return this.xpack(builder.build());
+		public final Builder xpack(Function<NodeInfoXpack.Builder, ObjectBuilder<NodeInfoXpack>> fn) {
+			return this.xpack(fn.apply(new NodeInfoXpack.Builder()).build());
 		}
 
 		/**
@@ -558,10 +536,8 @@ public class NodeInfoSettings implements JsonpSerializable {
 		/**
 		 * API name: {@code script}
 		 */
-		public final Builder script(Consumer<NodeInfoScript.Builder> fn) {
-			NodeInfoScript.Builder builder = new NodeInfoScript.Builder();
-			fn.accept(builder);
-			return this.script(builder.build());
+		public final Builder script(Function<NodeInfoScript.Builder, ObjectBuilder<NodeInfoScript>> fn) {
+			return this.script(fn.apply(new NodeInfoScript.Builder()).build());
 		}
 
 		/**
@@ -575,10 +551,8 @@ public class NodeInfoSettings implements JsonpSerializable {
 		/**
 		 * API name: {@code search}
 		 */
-		public final Builder search(Consumer<NodeInfoSearch.Builder> fn) {
-			NodeInfoSearch.Builder builder = new NodeInfoSearch.Builder();
-			fn.accept(builder);
-			return this.search(builder.build());
+		public final Builder search(Function<NodeInfoSearch.Builder, ObjectBuilder<NodeInfoSearch>> fn) {
+			return this.search(fn.apply(new NodeInfoSearch.Builder()).build());
 		}
 
 		/**
@@ -592,10 +566,9 @@ public class NodeInfoSettings implements JsonpSerializable {
 		/**
 		 * API name: {@code ingest}
 		 */
-		public final Builder ingest(Consumer<NodeInfoSettingsIngest.Builder> fn) {
-			NodeInfoSettingsIngest.Builder builder = new NodeInfoSettingsIngest.Builder();
-			fn.accept(builder);
-			return this.ingest(builder.build());
+		public final Builder ingest(
+				Function<NodeInfoSettingsIngest.Builder, ObjectBuilder<NodeInfoSettingsIngest>> fn) {
+			return this.ingest(fn.apply(new NodeInfoSettingsIngest.Builder()).build());
 		}
 
 		/**

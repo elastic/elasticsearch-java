@@ -30,16 +30,13 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.JsonpSerializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Supplier;
 import javax.annotation.Nullable;
@@ -68,10 +65,8 @@ public class HitsMetadata<T> implements JsonpSerializable {
 
 	}
 
-	public static <T> HitsMetadata<T> of(Consumer<Builder<T>> fn) {
-		Builder<T> builder = new Builder<>();
-		fn.accept(builder);
-		return builder.build();
+	public static <T> HitsMetadata<T> of(Function<Builder<T>, ObjectBuilder<HitsMetadata<T>>> fn) {
+		return fn.apply(new Builder<>()).build();
 	}
 
 	/**
@@ -155,33 +150,41 @@ public class HitsMetadata<T> implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code total}
 		 */
-		public final Builder<T> total(Consumer<TotalHits.Builder> fn) {
-			TotalHits.Builder builder = new TotalHits.Builder();
-			fn.accept(builder);
-			return this.total(builder.build());
+		public final Builder<T> total(Function<TotalHits.Builder, ObjectBuilder<TotalHits>> fn) {
+			return this.total(fn.apply(new TotalHits.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code hits}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>hits</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>hits</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder<T> hits(List<Hit<T>> value) {
-			this.hits = value;
+		public final Builder<T> hits(List<Hit<T>> list) {
+			this.hits = _listAddAll(this.hits, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code hits}
+		 * <p>
+		 * Adds one or more values to <code>hits</code>.
 		 */
-		public final Builder<T> hits(Hit<T>... value) {
-			this.hits = Arrays.asList(value);
+		public final Builder<T> hits(Hit<T> value, Hit<T>... values) {
+			this.hits = _listAdd(this.hits, value, values);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code hits}
+		 * <p>
+		 * Adds a value to <code>hits</code> using a builder lambda.
 		 */
-		public final Builder<T> hits(Function<ListBuilder<Hit<T>, Hit.Builder<T>>, ObjectBuilder<List<Hit<T>>>> fn) {
-			return hits(fn.apply(new ListBuilder<>(Hit.Builder<T>::new)).build());
+		public final Builder<T> hits(Function<Hit.Builder<T>, ObjectBuilder<Hit<T>>> fn) {
+			return hits(fn.apply(new Hit.Builder<T>()).build());
 		}
 
 		/**

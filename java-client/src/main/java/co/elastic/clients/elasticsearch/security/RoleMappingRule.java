@@ -39,7 +39,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Object;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: security._types.RoleMappingRule
@@ -113,10 +113,8 @@ public class RoleMappingRule
 
 	}
 
-	public static RoleMappingRule of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static RoleMappingRule of(Function<Builder, ObjectBuilder<RoleMappingRule>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -245,10 +243,8 @@ public class RoleMappingRule
 			return this;
 		}
 
-		public ObjectBuilder<RoleMappingRule> field(Consumer<FieldRule.Builder> fn) {
-			FieldRule.Builder builder = new FieldRule.Builder();
-			fn.accept(builder);
-			return this.field(builder.build());
+		public ObjectBuilder<RoleMappingRule> field(Function<FieldRule.Builder, ObjectBuilder<FieldRule>> fn) {
+			return this.field(fn.apply(new FieldRule.Builder()).build());
 		}
 
 		public ObjectBuilder<RoleMappingRule> except(RoleMappingRule v) {
@@ -257,10 +253,9 @@ public class RoleMappingRule
 			return this;
 		}
 
-		public ObjectBuilder<RoleMappingRule> except(Consumer<RoleMappingRule.Builder> fn) {
-			RoleMappingRule.Builder builder = new RoleMappingRule.Builder();
-			fn.accept(builder);
-			return this.except(builder.build());
+		public ObjectBuilder<RoleMappingRule> except(
+				Function<RoleMappingRule.Builder, ObjectBuilder<RoleMappingRule>> fn) {
+			return this.except(fn.apply(new RoleMappingRule.Builder()).build());
 		}
 
 		public RoleMappingRule build() {

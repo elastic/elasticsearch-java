@@ -123,9 +123,25 @@ public abstract class WriteOperation extends BulkOperationBase {
 
 		/**
 		 * API name: {@code dynamic_templates}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>dynamicTemplates</code>. Use
+		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
+		 * <code>dynamicTemplates</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetMap()
 		 */
-		public final BuilderT dynamicTemplates(@Nullable Map<String, String> value) {
-			this.dynamicTemplates = value;
+		public final BuilderT dynamicTemplates(Map<String, String> map) {
+			this.dynamicTemplates = _mapPutAll(this.dynamicTemplates, map);
+			return self();
+		}
+
+		/**
+		 * API name: {@code dynamic_templates}
+		 * <p>
+		 * Adds an entry to <code>dynamicTemplates</code>.
+		 */
+		public final BuilderT dynamicTemplates(String key, String value) {
+			this.dynamicTemplates = _mapPut(this.dynamicTemplates, key, value);
 			return self();
 		}
 

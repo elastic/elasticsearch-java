@@ -32,8 +32,6 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ListBuilder;
-import co.elastic.clients.util.MapBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
@@ -41,11 +39,9 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Long;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -135,10 +131,8 @@ public class SnapshotInfo implements JsonpSerializable {
 
 	}
 
-	public static SnapshotInfo of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static SnapshotInfo of(Function<Builder, ObjectBuilder<SnapshotInfo>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -515,17 +509,25 @@ public class SnapshotInfo implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code data_streams}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>dataStreams</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>dataStreams</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder dataStreams(List<String> value) {
-			this.dataStreams = value;
+		public final Builder dataStreams(List<String> list) {
+			this.dataStreams = _listAddAll(this.dataStreams, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code data_streams}
+		 * <p>
+		 * Adds one or more values to <code>dataStreams</code>.
 		 */
-		public final Builder dataStreams(String... value) {
-			this.dataStreams = Arrays.asList(value);
+		public final Builder dataStreams(String value, String... values) {
+			this.dataStreams = _listAdd(this.dataStreams, value, values);
 			return this;
 		}
 
@@ -540,10 +542,8 @@ public class SnapshotInfo implements JsonpSerializable {
 		/**
 		 * API name: {@code duration}
 		 */
-		public final Builder duration(Consumer<Time.Builder> fn) {
-			Time.Builder builder = new Time.Builder();
-			fn.accept(builder);
-			return this.duration(builder.build());
+		public final Builder duration(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.duration(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -565,10 +565,8 @@ public class SnapshotInfo implements JsonpSerializable {
 		/**
 		 * API name: {@code end_time}
 		 */
-		public final Builder endTime(Consumer<Time.Builder> fn) {
-			Time.Builder builder = new Time.Builder();
-			fn.accept(builder);
-			return this.endTime(builder.build());
+		public final Builder endTime(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.endTime(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -581,26 +579,35 @@ public class SnapshotInfo implements JsonpSerializable {
 
 		/**
 		 * API name: {@code failures}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>failures</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>failures</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder failures(@Nullable List<SnapshotShardFailure> value) {
-			this.failures = value;
+		public final Builder failures(List<SnapshotShardFailure> list) {
+			this.failures = _listAddAll(this.failures, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code failures}
+		 * <p>
+		 * Adds one or more values to <code>failures</code>.
 		 */
-		public final Builder failures(SnapshotShardFailure... value) {
-			this.failures = Arrays.asList(value);
+		public final Builder failures(SnapshotShardFailure value, SnapshotShardFailure... values) {
+			this.failures = _listAdd(this.failures, value, values);
 			return this;
 		}
 
 		/**
 		 * API name: {@code failures}
+		 * <p>
+		 * Adds a value to <code>failures</code> using a builder lambda.
 		 */
-		public final Builder failures(
-				Function<ListBuilder<SnapshotShardFailure, SnapshotShardFailure.Builder>, ObjectBuilder<List<SnapshotShardFailure>>> fn) {
-			return failures(fn.apply(new ListBuilder<>(SnapshotShardFailure.Builder::new)).build());
+		public final Builder failures(Function<SnapshotShardFailure.Builder, ObjectBuilder<SnapshotShardFailure>> fn) {
+			return failures(fn.apply(new SnapshotShardFailure.Builder()).build());
 		}
 
 		/**
@@ -613,38 +620,82 @@ public class SnapshotInfo implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code indices}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>indices</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>indices</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder indices(List<String> value) {
-			this.indices = value;
+		public final Builder indices(List<String> list) {
+			this.indices = _listAddAll(this.indices, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code indices}
+		 * <p>
+		 * Adds one or more values to <code>indices</code>.
 		 */
-		public final Builder indices(String... value) {
-			this.indices = Arrays.asList(value);
+		public final Builder indices(String value, String... values) {
+			this.indices = _listAdd(this.indices, value, values);
 			return this;
 		}
 
 		/**
 		 * API name: {@code index_details}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>indexDetails</code>. Use
+		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
+		 * <code>indexDetails</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetMap()
 		 */
-		public final Builder indexDetails(@Nullable Map<String, IndexDetails> value) {
-			this.indexDetails = value;
+		public final Builder indexDetails(Map<String, IndexDetails> map) {
+			this.indexDetails = _mapPutAll(this.indexDetails, map);
 			return this;
 		}
 
-		public final Builder indexDetails(
-				Function<MapBuilder<String, IndexDetails, IndexDetails.Builder>, ObjectBuilder<Map<String, IndexDetails>>> fn) {
-			return indexDetails(fn.apply(new MapBuilder<>(IndexDetails.Builder::new)).build());
+		/**
+		 * API name: {@code index_details}
+		 * <p>
+		 * Adds an entry to <code>indexDetails</code>.
+		 */
+		public final Builder indexDetails(String key, IndexDetails value) {
+			this.indexDetails = _mapPut(this.indexDetails, key, value);
+			return this;
+		}
+
+		/**
+		 * API name: {@code index_details}
+		 * <p>
+		 * Adds an entry to <code>indexDetails</code> using a builder lambda.
+		 */
+		public final Builder indexDetails(String key, Function<IndexDetails.Builder, ObjectBuilder<IndexDetails>> fn) {
+			return indexDetails(key, fn.apply(new IndexDetails.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code metadata}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>metadata</code>. Use
+		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
+		 * <code>metadata</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetMap()
 		 */
-		public final Builder metadata(@Nullable Map<String, JsonData> value) {
-			this.metadata = value;
+		public final Builder metadata(Map<String, JsonData> map) {
+			this.metadata = _mapPutAll(this.metadata, map);
+			return this;
+		}
+
+		/**
+		 * API name: {@code metadata}
+		 * <p>
+		 * Adds an entry to <code>metadata</code>.
+		 */
+		public final Builder metadata(String key, JsonData value) {
+			this.metadata = _mapPut(this.metadata, key, value);
 			return this;
 		}
 
@@ -683,10 +734,8 @@ public class SnapshotInfo implements JsonpSerializable {
 		/**
 		 * API name: {@code shards}
 		 */
-		public final Builder shards(Consumer<ShardStatistics.Builder> fn) {
-			ShardStatistics.Builder builder = new ShardStatistics.Builder();
-			fn.accept(builder);
-			return this.shards(builder.build());
+		public final Builder shards(Function<ShardStatistics.Builder, ObjectBuilder<ShardStatistics>> fn) {
+			return this.shards(fn.apply(new ShardStatistics.Builder()).build());
 		}
 
 		/**
@@ -700,10 +749,8 @@ public class SnapshotInfo implements JsonpSerializable {
 		/**
 		 * API name: {@code start_time}
 		 */
-		public final Builder startTime(Consumer<Time.Builder> fn) {
-			Time.Builder builder = new Time.Builder();
-			fn.accept(builder);
-			return this.startTime(builder.build());
+		public final Builder startTime(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.startTime(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -748,26 +795,35 @@ public class SnapshotInfo implements JsonpSerializable {
 
 		/**
 		 * API name: {@code feature_states}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>featureStates</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>featureStates</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder featureStates(@Nullable List<InfoFeatureState> value) {
-			this.featureStates = value;
+		public final Builder featureStates(List<InfoFeatureState> list) {
+			this.featureStates = _listAddAll(this.featureStates, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code feature_states}
+		 * <p>
+		 * Adds one or more values to <code>featureStates</code>.
 		 */
-		public final Builder featureStates(InfoFeatureState... value) {
-			this.featureStates = Arrays.asList(value);
+		public final Builder featureStates(InfoFeatureState value, InfoFeatureState... values) {
+			this.featureStates = _listAdd(this.featureStates, value, values);
 			return this;
 		}
 
 		/**
 		 * API name: {@code feature_states}
+		 * <p>
+		 * Adds a value to <code>featureStates</code> using a builder lambda.
 		 */
-		public final Builder featureStates(
-				Function<ListBuilder<InfoFeatureState, InfoFeatureState.Builder>, ObjectBuilder<List<InfoFeatureState>>> fn) {
-			return featureStates(fn.apply(new ListBuilder<>(InfoFeatureState.Builder::new)).build());
+		public final Builder featureStates(Function<InfoFeatureState.Builder, ObjectBuilder<InfoFeatureState>> fn) {
+			return featureStates(fn.apply(new InfoFeatureState.Builder()).build());
 		}
 
 		/**

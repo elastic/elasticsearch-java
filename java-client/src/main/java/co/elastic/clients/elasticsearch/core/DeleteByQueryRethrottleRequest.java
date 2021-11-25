@@ -40,7 +40,7 @@ import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.delete_by_query_rethrottle.Request
@@ -60,10 +60,9 @@ public class DeleteByQueryRethrottleRequest extends RequestBase {
 
 	}
 
-	public static DeleteByQueryRethrottleRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static DeleteByQueryRethrottleRequest of(
+			Function<Builder, ObjectBuilder<DeleteByQueryRethrottleRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**

@@ -35,7 +35,7 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 
 // typedef: rollup.get_jobs.RollupJobStats
 @JsonpDeserializable
@@ -85,10 +85,8 @@ public class RollupJobStats implements JsonpSerializable {
 
 	}
 
-	public static RollupJobStats of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static RollupJobStats of(Function<Builder, ObjectBuilder<RollupJobStats>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**

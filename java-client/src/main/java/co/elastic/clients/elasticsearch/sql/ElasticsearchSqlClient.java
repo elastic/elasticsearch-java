@@ -33,7 +33,7 @@ import co.elastic.clients.transport.Transport;
 import co.elastic.clients.transport.TransportOptions;
 import co.elastic.clients.util.ObjectBuilder;
 import java.io.IOException;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 /**
@@ -82,11 +82,10 @@ public class ElasticsearchSqlClient extends ApiClient<ElasticsearchTransport, El
 	 *      on elastic.co</a>
 	 */
 
-	public final ClearCursorResponse clearCursor(Consumer<ClearCursorRequest.Builder> fn)
+	public final ClearCursorResponse clearCursor(
+			Function<ClearCursorRequest.Builder, ObjectBuilder<ClearCursorRequest>> fn)
 			throws IOException, ElasticsearchException {
-		ClearCursorRequest.Builder builder = new ClearCursorRequest.Builder();
-		fn.accept(builder);
-		return clearCursor(builder.build());
+		return clearCursor(fn.apply(new ClearCursorRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: sql.query
@@ -117,10 +116,9 @@ public class ElasticsearchSqlClient extends ApiClient<ElasticsearchTransport, El
 	 *      on elastic.co</a>
 	 */
 
-	public final QueryResponse query(Consumer<QueryRequest.Builder> fn) throws IOException, ElasticsearchException {
-		QueryRequest.Builder builder = new QueryRequest.Builder();
-		fn.accept(builder);
-		return query(builder.build());
+	public final QueryResponse query(Function<QueryRequest.Builder, ObjectBuilder<QueryRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return query(fn.apply(new QueryRequest.Builder()).build());
 	}
 
 	/**
@@ -164,11 +162,9 @@ public class ElasticsearchSqlClient extends ApiClient<ElasticsearchTransport, El
 	 *      on elastic.co</a>
 	 */
 
-	public final TranslateResponse translate(Consumer<TranslateRequest.Builder> fn)
+	public final TranslateResponse translate(Function<TranslateRequest.Builder, ObjectBuilder<TranslateRequest>> fn)
 			throws IOException, ElasticsearchException {
-		TranslateRequest.Builder builder = new TranslateRequest.Builder();
-		fn.accept(builder);
-		return translate(builder.build());
+		return translate(fn.apply(new TranslateRequest.Builder()).build());
 	}
 
 }

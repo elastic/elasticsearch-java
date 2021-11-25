@@ -38,7 +38,7 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.info.Response
@@ -63,10 +63,8 @@ public class MlInfoResponse implements JsonpSerializable {
 
 	}
 
-	public static MlInfoResponse of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static MlInfoResponse of(Function<Builder, ObjectBuilder<MlInfoResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -147,10 +145,8 @@ public class MlInfoResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code defaults}
 		 */
-		public final Builder defaults(Consumer<Defaults.Builder> fn) {
-			Defaults.Builder builder = new Defaults.Builder();
-			fn.accept(builder);
-			return this.defaults(builder.build());
+		public final Builder defaults(Function<Defaults.Builder, ObjectBuilder<Defaults>> fn) {
+			return this.defaults(fn.apply(new Defaults.Builder()).build());
 		}
 
 		/**
@@ -164,10 +160,8 @@ public class MlInfoResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code limits}
 		 */
-		public final Builder limits(Consumer<Limits.Builder> fn) {
-			Limits.Builder builder = new Limits.Builder();
-			fn.accept(builder);
-			return this.limits(builder.build());
+		public final Builder limits(Function<Limits.Builder, ObjectBuilder<Limits>> fn) {
+			return this.limits(fn.apply(new Limits.Builder()).build());
 		}
 
 		/**
@@ -189,10 +183,8 @@ public class MlInfoResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code native_code}
 		 */
-		public final Builder nativeCode(Consumer<NativeCode.Builder> fn) {
-			NativeCode.Builder builder = new NativeCode.Builder();
-			fn.accept(builder);
-			return this.nativeCode(builder.build());
+		public final Builder nativeCode(Function<NativeCode.Builder, ObjectBuilder<NativeCode>> fn) {
+			return this.nativeCode(fn.apply(new NativeCode.Builder()).build());
 		}
 
 		/**

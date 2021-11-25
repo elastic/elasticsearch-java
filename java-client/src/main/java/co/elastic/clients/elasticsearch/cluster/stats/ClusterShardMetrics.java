@@ -35,7 +35,7 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 
 // typedef: cluster.stats.ClusterShardMetrics
 @JsonpDeserializable
@@ -56,10 +56,8 @@ public class ClusterShardMetrics implements JsonpSerializable {
 
 	}
 
-	public static ClusterShardMetrics of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static ClusterShardMetrics of(Function<Builder, ObjectBuilder<ClusterShardMetrics>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**

@@ -32,7 +32,7 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.mapping.ConstantKeywordProperty
@@ -50,10 +50,8 @@ public class ConstantKeywordProperty extends PropertyBase implements PropertyVar
 
 	}
 
-	public static ConstantKeywordProperty of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static ConstantKeywordProperty of(Function<Builder, ObjectBuilder<ConstantKeywordProperty>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**

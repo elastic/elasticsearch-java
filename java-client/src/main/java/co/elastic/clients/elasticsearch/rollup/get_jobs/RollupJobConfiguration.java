@@ -32,17 +32,14 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -80,10 +77,8 @@ public class RollupJobConfiguration implements JsonpSerializable {
 
 	}
 
-	public static RollupJobConfiguration of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static RollupJobConfiguration of(Function<Builder, ObjectBuilder<RollupJobConfiguration>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -227,10 +222,8 @@ public class RollupJobConfiguration implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code groups}
 		 */
-		public final Builder groups(Consumer<Groupings.Builder> fn) {
-			Groupings.Builder builder = new Groupings.Builder();
-			fn.accept(builder);
-			return this.groups(builder.build());
+		public final Builder groups(Function<Groupings.Builder, ObjectBuilder<Groupings>> fn) {
+			return this.groups(fn.apply(new Groupings.Builder()).build());
 		}
 
 		/**
@@ -251,26 +244,35 @@ public class RollupJobConfiguration implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code metrics}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>metrics</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>metrics</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder metrics(List<FieldMetric> value) {
-			this.metrics = value;
+		public final Builder metrics(List<FieldMetric> list) {
+			this.metrics = _listAddAll(this.metrics, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code metrics}
+		 * <p>
+		 * Adds one or more values to <code>metrics</code>.
 		 */
-		public final Builder metrics(FieldMetric... value) {
-			this.metrics = Arrays.asList(value);
+		public final Builder metrics(FieldMetric value, FieldMetric... values) {
+			this.metrics = _listAdd(this.metrics, value, values);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code metrics}
+		 * <p>
+		 * Adds a value to <code>metrics</code> using a builder lambda.
 		 */
-		public final Builder metrics(
-				Function<ListBuilder<FieldMetric, FieldMetric.Builder>, ObjectBuilder<List<FieldMetric>>> fn) {
-			return metrics(fn.apply(new ListBuilder<>(FieldMetric.Builder::new)).build());
+		public final Builder metrics(Function<FieldMetric.Builder, ObjectBuilder<FieldMetric>> fn) {
+			return metrics(fn.apply(new FieldMetric.Builder()).build());
 		}
 
 		/**
@@ -300,10 +302,8 @@ public class RollupJobConfiguration implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code timeout}
 		 */
-		public final Builder timeout(Consumer<Time.Builder> fn) {
-			Time.Builder builder = new Time.Builder();
-			fn.accept(builder);
-			return this.timeout(builder.build());
+		public final Builder timeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.timeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**

@@ -45,7 +45,7 @@ import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: transform.put_transform.Request
@@ -99,10 +99,8 @@ public class PutTransformRequest extends RequestBase implements JsonpSerializabl
 
 	}
 
-	public static PutTransformRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static PutTransformRequest of(Function<Builder, ObjectBuilder<PutTransformRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -348,10 +346,8 @@ public class PutTransformRequest extends RequestBase implements JsonpSerializabl
 		 * <p>
 		 * API name: {@code dest}
 		 */
-		public final Builder dest(Consumer<Destination.Builder> fn) {
-			Destination.Builder builder = new Destination.Builder();
-			fn.accept(builder);
-			return this.dest(builder.build());
+		public final Builder dest(Function<Destination.Builder, ObjectBuilder<Destination>> fn) {
+			return this.dest(fn.apply(new Destination.Builder()).build());
 		}
 
 		/**
@@ -375,10 +371,8 @@ public class PutTransformRequest extends RequestBase implements JsonpSerializabl
 		 * <p>
 		 * API name: {@code frequency}
 		 */
-		public final Builder frequency(Consumer<Time.Builder> fn) {
-			Time.Builder builder = new Time.Builder();
-			fn.accept(builder);
-			return this.frequency(builder.build());
+		public final Builder frequency(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.frequency(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -398,10 +392,8 @@ public class PutTransformRequest extends RequestBase implements JsonpSerializabl
 		 * <p>
 		 * API name: {@code latest}
 		 */
-		public final Builder latest(Consumer<Latest.Builder> fn) {
-			Latest.Builder builder = new Latest.Builder();
-			fn.accept(builder);
-			return this.latest(builder.build());
+		public final Builder latest(Function<Latest.Builder, ObjectBuilder<Latest>> fn) {
+			return this.latest(fn.apply(new Latest.Builder()).build());
 		}
 
 		/**
@@ -421,10 +413,8 @@ public class PutTransformRequest extends RequestBase implements JsonpSerializabl
 		 * <p>
 		 * API name: {@code pivot}
 		 */
-		public final Builder pivot(Consumer<Pivot.Builder> fn) {
-			Pivot.Builder builder = new Pivot.Builder();
-			fn.accept(builder);
-			return this.pivot(builder.build());
+		public final Builder pivot(Function<Pivot.Builder, ObjectBuilder<Pivot>> fn) {
+			return this.pivot(fn.apply(new Pivot.Builder()).build());
 		}
 
 		/**
@@ -444,10 +434,8 @@ public class PutTransformRequest extends RequestBase implements JsonpSerializabl
 		 * <p>
 		 * API name: {@code retention_policy}
 		 */
-		public final Builder retentionPolicy(Consumer<RetentionPolicy.Builder> fn) {
-			RetentionPolicy.Builder builder = new RetentionPolicy.Builder();
-			fn.accept(builder);
-			return this.retentionPolicy(builder.build());
+		public final Builder retentionPolicy(Function<RetentionPolicy.Builder, ObjectBuilder<RetentionPolicy>> fn) {
+			return this.retentionPolicy(fn.apply(new RetentionPolicy.Builder()).build());
 		}
 
 		/**
@@ -465,10 +453,8 @@ public class PutTransformRequest extends RequestBase implements JsonpSerializabl
 		 * <p>
 		 * API name: {@code settings}
 		 */
-		public final Builder settings(Consumer<Settings.Builder> fn) {
-			Settings.Builder builder = new Settings.Builder();
-			fn.accept(builder);
-			return this.settings(builder.build());
+		public final Builder settings(Function<Settings.Builder, ObjectBuilder<Settings>> fn) {
+			return this.settings(fn.apply(new Settings.Builder()).build());
 		}
 
 		/**
@@ -486,10 +472,8 @@ public class PutTransformRequest extends RequestBase implements JsonpSerializabl
 		 * <p>
 		 * API name: {@code source}
 		 */
-		public final Builder source(Consumer<Source.Builder> fn) {
-			Source.Builder builder = new Source.Builder();
-			fn.accept(builder);
-			return this.source(builder.build());
+		public final Builder source(Function<Source.Builder, ObjectBuilder<Source>> fn) {
+			return this.source(fn.apply(new Source.Builder()).build());
 		}
 
 		/**
@@ -507,10 +491,8 @@ public class PutTransformRequest extends RequestBase implements JsonpSerializabl
 		 * <p>
 		 * API name: {@code sync}
 		 */
-		public final Builder sync(Consumer<Sync.Builder> fn) {
-			Sync.Builder builder = new Sync.Builder();
-			fn.accept(builder);
-			return this.sync(builder.build());
+		public final Builder sync(Function<Sync.Builder, ObjectBuilder<Sync>> fn) {
+			return this.sync(fn.apply(new Sync.Builder()).build());
 		}
 
 		/**

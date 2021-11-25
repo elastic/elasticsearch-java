@@ -29,16 +29,13 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -64,10 +61,8 @@ public class NodeStatistics implements JsonpSerializable {
 
 	}
 
-	public static NodeStatistics of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static NodeStatistics of(Function<Builder, ObjectBuilder<NodeStatistics>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -155,26 +150,35 @@ public class NodeStatistics implements JsonpSerializable {
 
 		/**
 		 * API name: {@code failures}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>failures</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>failures</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder failures(@Nullable List<ErrorCause> value) {
-			this.failures = value;
+		public final Builder failures(List<ErrorCause> list) {
+			this.failures = _listAddAll(this.failures, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code failures}
+		 * <p>
+		 * Adds one or more values to <code>failures</code>.
 		 */
-		public final Builder failures(ErrorCause... value) {
-			this.failures = Arrays.asList(value);
+		public final Builder failures(ErrorCause value, ErrorCause... values) {
+			this.failures = _listAdd(this.failures, value, values);
 			return this;
 		}
 
 		/**
 		 * API name: {@code failures}
+		 * <p>
+		 * Adds a value to <code>failures</code> using a builder lambda.
 		 */
-		public final Builder failures(
-				Function<ListBuilder<ErrorCause, ErrorCause.Builder>, ObjectBuilder<List<ErrorCause>>> fn) {
-			return failures(fn.apply(new ListBuilder<>(ErrorCause.Builder::new)).build());
+		public final Builder failures(Function<ErrorCause.Builder, ObjectBuilder<ErrorCause>> fn) {
+			return failures(fn.apply(new ErrorCause.Builder()).build());
 		}
 
 		/**

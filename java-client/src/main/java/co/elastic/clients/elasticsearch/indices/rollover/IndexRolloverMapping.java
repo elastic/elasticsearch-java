@@ -40,7 +40,7 @@ import java.lang.Object;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.rollover.IndexRolloverMapping
@@ -78,10 +78,8 @@ public class IndexRolloverMapping implements TaggedUnion<IndexRolloverMapping.Ki
 
 	}
 
-	public static IndexRolloverMapping of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static IndexRolloverMapping of(Function<Builder, ObjectBuilder<IndexRolloverMapping>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -155,10 +153,9 @@ public class IndexRolloverMapping implements TaggedUnion<IndexRolloverMapping.Ki
 			return this;
 		}
 
-		public ObjectBuilder<IndexRolloverMapping> single(Consumer<TypeMapping.Builder> fn) {
-			TypeMapping.Builder builder = new TypeMapping.Builder();
-			fn.accept(builder);
-			return this.single(builder.build());
+		public ObjectBuilder<IndexRolloverMapping> single(
+				Function<TypeMapping.Builder, ObjectBuilder<TypeMapping>> fn) {
+			return this.single(fn.apply(new TypeMapping.Builder()).build());
 		}
 
 		public IndexRolloverMapping build() {

@@ -36,7 +36,7 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.info.Response
@@ -64,10 +64,8 @@ public class InfoResponse implements JsonpSerializable {
 
 	}
 
-	public static InfoResponse of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static InfoResponse of(Function<Builder, ObjectBuilder<InfoResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -192,10 +190,9 @@ public class InfoResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code version}
 		 */
-		public final Builder version(Consumer<ElasticsearchVersionInfo.Builder> fn) {
-			ElasticsearchVersionInfo.Builder builder = new ElasticsearchVersionInfo.Builder();
-			fn.accept(builder);
-			return this.version(builder.build());
+		public final Builder version(
+				Function<ElasticsearchVersionInfo.Builder, ObjectBuilder<ElasticsearchVersionInfo>> fn) {
+			return this.version(fn.apply(new ElasticsearchVersionInfo.Builder()).build());
 		}
 
 		/**

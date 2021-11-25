@@ -35,7 +35,7 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: nodes.info.NodeInfoSettingsTransport
@@ -59,10 +59,8 @@ public class NodeInfoSettingsTransport implements JsonpSerializable {
 
 	}
 
-	public static NodeInfoSettingsTransport of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static NodeInfoSettingsTransport of(Function<Builder, ObjectBuilder<NodeInfoSettingsTransport>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -140,10 +138,9 @@ public class NodeInfoSettingsTransport implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code type}
 		 */
-		public final Builder type(Consumer<NodeInfoSettingsTransportType.Builder> fn) {
-			NodeInfoSettingsTransportType.Builder builder = new NodeInfoSettingsTransportType.Builder();
-			fn.accept(builder);
-			return this.type(builder.build());
+		public final Builder type(
+				Function<NodeInfoSettingsTransportType.Builder, ObjectBuilder<NodeInfoSettingsTransportType>> fn) {
+			return this.type(fn.apply(new NodeInfoSettingsTransportType.Builder()).build());
 		}
 
 		/**
@@ -165,10 +162,9 @@ public class NodeInfoSettingsTransport implements JsonpSerializable {
 		/**
 		 * API name: {@code features}
 		 */
-		public final Builder features(Consumer<NodeInfoSettingsTransportFeatures.Builder> fn) {
-			NodeInfoSettingsTransportFeatures.Builder builder = new NodeInfoSettingsTransportFeatures.Builder();
-			fn.accept(builder);
-			return this.features(builder.build());
+		public final Builder features(
+				Function<NodeInfoSettingsTransportFeatures.Builder, ObjectBuilder<NodeInfoSettingsTransportFeatures>> fn) {
+			return this.features(fn.apply(new NodeInfoSettingsTransportFeatures.Builder()).build());
 		}
 
 		/**

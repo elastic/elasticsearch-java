@@ -29,17 +29,14 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -73,10 +70,8 @@ public class RangeAggregation extends BucketAggregationBase implements Aggregati
 
 	}
 
-	public static RangeAggregation of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static RangeAggregation of(Function<Builder, ObjectBuilder<RangeAggregation>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -203,26 +198,35 @@ public class RangeAggregation extends BucketAggregationBase implements Aggregati
 
 		/**
 		 * API name: {@code ranges}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>ranges</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>ranges</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder ranges(@Nullable List<AggregationRange> value) {
-			this.ranges = value;
+		public final Builder ranges(List<AggregationRange> list) {
+			this.ranges = _listAddAll(this.ranges, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code ranges}
+		 * <p>
+		 * Adds one or more values to <code>ranges</code>.
 		 */
-		public final Builder ranges(AggregationRange... value) {
-			this.ranges = Arrays.asList(value);
+		public final Builder ranges(AggregationRange value, AggregationRange... values) {
+			this.ranges = _listAdd(this.ranges, value, values);
 			return this;
 		}
 
 		/**
 		 * API name: {@code ranges}
+		 * <p>
+		 * Adds a value to <code>ranges</code> using a builder lambda.
 		 */
-		public final Builder ranges(
-				Function<ListBuilder<AggregationRange, AggregationRange.Builder>, ObjectBuilder<List<AggregationRange>>> fn) {
-			return ranges(fn.apply(new ListBuilder<>(AggregationRange.Builder::new)).build());
+		public final Builder ranges(Function<AggregationRange.Builder, ObjectBuilder<AggregationRange>> fn) {
+			return ranges(fn.apply(new AggregationRange.Builder()).build());
 		}
 
 		/**
@@ -236,10 +240,8 @@ public class RangeAggregation extends BucketAggregationBase implements Aggregati
 		/**
 		 * API name: {@code script}
 		 */
-		public final Builder script(Consumer<Script.Builder> fn) {
-			Script.Builder builder = new Script.Builder();
-			fn.accept(builder);
-			return this.script(builder.build());
+		public final Builder script(Function<Script.Builder, ObjectBuilder<Script>> fn) {
+			return this.script(fn.apply(new Script.Builder()).build());
 		}
 
 		/**

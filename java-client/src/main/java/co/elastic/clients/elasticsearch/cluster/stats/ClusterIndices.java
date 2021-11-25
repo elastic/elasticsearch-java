@@ -35,16 +35,13 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -91,10 +88,8 @@ public class ClusterIndices implements JsonpSerializable {
 
 	}
 
-	public static ClusterIndices of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static ClusterIndices of(Function<Builder, ObjectBuilder<ClusterIndices>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -298,10 +293,8 @@ public class ClusterIndices implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code completion}
 		 */
-		public final Builder completion(Consumer<CompletionStats.Builder> fn) {
-			CompletionStats.Builder builder = new CompletionStats.Builder();
-			fn.accept(builder);
-			return this.completion(builder.build());
+		public final Builder completion(Function<CompletionStats.Builder, ObjectBuilder<CompletionStats>> fn) {
+			return this.completion(fn.apply(new CompletionStats.Builder()).build());
 		}
 
 		/**
@@ -329,10 +322,8 @@ public class ClusterIndices implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code docs}
 		 */
-		public final Builder docs(Consumer<DocStats.Builder> fn) {
-			DocStats.Builder builder = new DocStats.Builder();
-			fn.accept(builder);
-			return this.docs(builder.build());
+		public final Builder docs(Function<DocStats.Builder, ObjectBuilder<DocStats>> fn) {
+			return this.docs(fn.apply(new DocStats.Builder()).build());
 		}
 
 		/**
@@ -350,10 +341,8 @@ public class ClusterIndices implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code fielddata}
 		 */
-		public final Builder fielddata(Consumer<FielddataStats.Builder> fn) {
-			FielddataStats.Builder builder = new FielddataStats.Builder();
-			fn.accept(builder);
-			return this.fielddata(builder.build());
+		public final Builder fielddata(Function<FielddataStats.Builder, ObjectBuilder<FielddataStats>> fn) {
+			return this.fielddata(fn.apply(new FielddataStats.Builder()).build());
 		}
 
 		/**
@@ -371,10 +360,8 @@ public class ClusterIndices implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code query_cache}
 		 */
-		public final Builder queryCache(Consumer<QueryCacheStats.Builder> fn) {
-			QueryCacheStats.Builder builder = new QueryCacheStats.Builder();
-			fn.accept(builder);
-			return this.queryCache(builder.build());
+		public final Builder queryCache(Function<QueryCacheStats.Builder, ObjectBuilder<QueryCacheStats>> fn) {
+			return this.queryCache(fn.apply(new QueryCacheStats.Builder()).build());
 		}
 
 		/**
@@ -392,10 +379,8 @@ public class ClusterIndices implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code segments}
 		 */
-		public final Builder segments(Consumer<SegmentsStats.Builder> fn) {
-			SegmentsStats.Builder builder = new SegmentsStats.Builder();
-			fn.accept(builder);
-			return this.segments(builder.build());
+		public final Builder segments(Function<SegmentsStats.Builder, ObjectBuilder<SegmentsStats>> fn) {
+			return this.segments(fn.apply(new SegmentsStats.Builder()).build());
 		}
 
 		/**
@@ -415,10 +400,8 @@ public class ClusterIndices implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code shards}
 		 */
-		public final Builder shards(Consumer<ClusterIndicesShards.Builder> fn) {
-			ClusterIndicesShards.Builder builder = new ClusterIndicesShards.Builder();
-			fn.accept(builder);
-			return this.shards(builder.build());
+		public final Builder shards(Function<ClusterIndicesShards.Builder, ObjectBuilder<ClusterIndicesShards>> fn) {
+			return this.shards(fn.apply(new ClusterIndicesShards.Builder()).build());
 		}
 
 		/**
@@ -438,10 +421,8 @@ public class ClusterIndices implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code store}
 		 */
-		public final Builder store(Consumer<StoreStats.Builder> fn) {
-			StoreStats.Builder builder = new StoreStats.Builder();
-			fn.accept(builder);
-			return this.store(builder.build());
+		public final Builder store(Function<StoreStats.Builder, ObjectBuilder<StoreStats>> fn) {
+			return this.store(fn.apply(new StoreStats.Builder()).build());
 		}
 
 		/**
@@ -459,10 +440,8 @@ public class ClusterIndices implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code mappings}
 		 */
-		public final Builder mappings(Consumer<FieldTypesMappings.Builder> fn) {
-			FieldTypesMappings.Builder builder = new FieldTypesMappings.Builder();
-			fn.accept(builder);
-			return this.mappings(builder.build());
+		public final Builder mappings(Function<FieldTypesMappings.Builder, ObjectBuilder<FieldTypesMappings>> fn) {
+			return this.mappings(fn.apply(new FieldTypesMappings.Builder()).build());
 		}
 
 		/**
@@ -482,34 +461,41 @@ public class ClusterIndices implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code analysis}
 		 */
-		public final Builder analysis(Consumer<CharFilterTypes.Builder> fn) {
-			CharFilterTypes.Builder builder = new CharFilterTypes.Builder();
-			fn.accept(builder);
-			return this.analysis(builder.build());
+		public final Builder analysis(Function<CharFilterTypes.Builder, ObjectBuilder<CharFilterTypes>> fn) {
+			return this.analysis(fn.apply(new CharFilterTypes.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code versions}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>versions</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>versions</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder versions(@Nullable List<IndicesVersions> value) {
-			this.versions = value;
+		public final Builder versions(List<IndicesVersions> list) {
+			this.versions = _listAddAll(this.versions, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code versions}
+		 * <p>
+		 * Adds one or more values to <code>versions</code>.
 		 */
-		public final Builder versions(IndicesVersions... value) {
-			this.versions = Arrays.asList(value);
+		public final Builder versions(IndicesVersions value, IndicesVersions... values) {
+			this.versions = _listAdd(this.versions, value, values);
 			return this;
 		}
 
 		/**
 		 * API name: {@code versions}
+		 * <p>
+		 * Adds a value to <code>versions</code> using a builder lambda.
 		 */
-		public final Builder versions(
-				Function<ListBuilder<IndicesVersions, IndicesVersions.Builder>, ObjectBuilder<List<IndicesVersions>>> fn) {
-			return versions(fn.apply(new ListBuilder<>(IndicesVersions.Builder::new)).build());
+		public final Builder versions(Function<IndicesVersions.Builder, ObjectBuilder<IndicesVersions>> fn) {
+			return versions(fn.apply(new IndicesVersions.Builder()).build());
 		}
 
 		/**

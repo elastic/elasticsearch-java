@@ -36,7 +36,7 @@ import java.lang.Long;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: xpack.usage.Monitoring
@@ -57,10 +57,8 @@ public class Monitoring extends Base {
 
 	}
 
-	public static Monitoring of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static Monitoring of(Function<Builder, ObjectBuilder<Monitoring>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -117,9 +115,25 @@ public class Monitoring extends Base {
 
 		/**
 		 * Required - API name: {@code enabled_exporters}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>enabledExporters</code>. Use
+		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
+		 * <code>enabledExporters</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetMap()
 		 */
-		public final Builder enabledExporters(Map<String, Long> value) {
-			this.enabledExporters = value;
+		public final Builder enabledExporters(Map<String, Long> map) {
+			this.enabledExporters = _mapPutAll(this.enabledExporters, map);
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code enabled_exporters}
+		 * <p>
+		 * Adds an entry to <code>enabledExporters</code>.
+		 */
+		public final Builder enabledExporters(String key, Long value) {
+			this.enabledExporters = _mapPut(this.enabledExporters, key, value);
 			return this;
 		}
 

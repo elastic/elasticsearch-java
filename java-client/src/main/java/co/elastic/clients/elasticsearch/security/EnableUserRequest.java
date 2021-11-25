@@ -40,7 +40,7 @@ import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: security.enable_user.Request
@@ -60,10 +60,8 @@ public class EnableUserRequest extends RequestBase {
 
 	}
 
-	public static EnableUserRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static EnableUserRequest of(Function<Builder, ObjectBuilder<EnableUserRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**

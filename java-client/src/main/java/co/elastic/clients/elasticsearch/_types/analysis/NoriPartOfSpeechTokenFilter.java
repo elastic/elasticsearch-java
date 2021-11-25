@@ -32,10 +32,9 @@ import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.analysis.NoriPartOfSpeechTokenFilter
@@ -52,10 +51,8 @@ public class NoriPartOfSpeechTokenFilter extends TokenFilterBase implements Toke
 
 	}
 
-	public static NoriPartOfSpeechTokenFilter of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static NoriPartOfSpeechTokenFilter of(Function<Builder, ObjectBuilder<NoriPartOfSpeechTokenFilter>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -102,17 +99,25 @@ public class NoriPartOfSpeechTokenFilter extends TokenFilterBase implements Toke
 
 		/**
 		 * Required - API name: {@code stoptags}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>stoptags</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>stoptags</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder stoptags(List<String> value) {
-			this.stoptags = value;
+		public final Builder stoptags(List<String> list) {
+			this.stoptags = _listAddAll(this.stoptags, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code stoptags}
+		 * <p>
+		 * Adds one or more values to <code>stoptags</code>.
 		 */
-		public final Builder stoptags(String... value) {
-			this.stoptags = Arrays.asList(value);
+		public final Builder stoptags(String value, String... values) {
+			this.stoptags = _listAdd(this.stoptags, value, values);
 			return this;
 		}
 

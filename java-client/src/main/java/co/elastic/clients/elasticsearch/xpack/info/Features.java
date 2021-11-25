@@ -34,7 +34,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: xpack.info.Features
@@ -134,10 +134,8 @@ public class Features implements JsonpSerializable {
 
 	}
 
-	public static Features of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static Features of(Function<Builder, ObjectBuilder<Features>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -514,10 +512,8 @@ public class Features implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code aggregate_metric}
 		 */
-		public final Builder aggregateMetric(Consumer<Feature.Builder> fn) {
-			Feature.Builder builder = new Feature.Builder();
-			fn.accept(builder);
-			return this.aggregateMetric(builder.build());
+		public final Builder aggregateMetric(Function<Feature.Builder, ObjectBuilder<Feature>> fn) {
+			return this.aggregateMetric(fn.apply(new Feature.Builder()).build());
 		}
 
 		/**
@@ -531,10 +527,8 @@ public class Features implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code analytics}
 		 */
-		public final Builder analytics(Consumer<Feature.Builder> fn) {
-			Feature.Builder builder = new Feature.Builder();
-			fn.accept(builder);
-			return this.analytics(builder.build());
+		public final Builder analytics(Function<Feature.Builder, ObjectBuilder<Feature>> fn) {
+			return this.analytics(fn.apply(new Feature.Builder()).build());
 		}
 
 		/**
@@ -548,10 +542,8 @@ public class Features implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code ccr}
 		 */
-		public final Builder ccr(Consumer<Feature.Builder> fn) {
-			Feature.Builder builder = new Feature.Builder();
-			fn.accept(builder);
-			return this.ccr(builder.build());
+		public final Builder ccr(Function<Feature.Builder, ObjectBuilder<Feature>> fn) {
+			return this.ccr(fn.apply(new Feature.Builder()).build());
 		}
 
 		/**
@@ -565,10 +557,8 @@ public class Features implements JsonpSerializable {
 		/**
 		 * API name: {@code data_frame}
 		 */
-		public final Builder dataFrame(Consumer<Feature.Builder> fn) {
-			Feature.Builder builder = new Feature.Builder();
-			fn.accept(builder);
-			return this.dataFrame(builder.build());
+		public final Builder dataFrame(Function<Feature.Builder, ObjectBuilder<Feature>> fn) {
+			return this.dataFrame(fn.apply(new Feature.Builder()).build());
 		}
 
 		/**
@@ -582,10 +572,8 @@ public class Features implements JsonpSerializable {
 		/**
 		 * API name: {@code data_science}
 		 */
-		public final Builder dataScience(Consumer<Feature.Builder> fn) {
-			Feature.Builder builder = new Feature.Builder();
-			fn.accept(builder);
-			return this.dataScience(builder.build());
+		public final Builder dataScience(Function<Feature.Builder, ObjectBuilder<Feature>> fn) {
+			return this.dataScience(fn.apply(new Feature.Builder()).build());
 		}
 
 		/**
@@ -599,10 +587,8 @@ public class Features implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code data_streams}
 		 */
-		public final Builder dataStreams(Consumer<Feature.Builder> fn) {
-			Feature.Builder builder = new Feature.Builder();
-			fn.accept(builder);
-			return this.dataStreams(builder.build());
+		public final Builder dataStreams(Function<Feature.Builder, ObjectBuilder<Feature>> fn) {
+			return this.dataStreams(fn.apply(new Feature.Builder()).build());
 		}
 
 		/**
@@ -616,10 +602,8 @@ public class Features implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code data_tiers}
 		 */
-		public final Builder dataTiers(Consumer<Feature.Builder> fn) {
-			Feature.Builder builder = new Feature.Builder();
-			fn.accept(builder);
-			return this.dataTiers(builder.build());
+		public final Builder dataTiers(Function<Feature.Builder, ObjectBuilder<Feature>> fn) {
+			return this.dataTiers(fn.apply(new Feature.Builder()).build());
 		}
 
 		/**
@@ -633,10 +617,8 @@ public class Features implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code enrich}
 		 */
-		public final Builder enrich(Consumer<Feature.Builder> fn) {
-			Feature.Builder builder = new Feature.Builder();
-			fn.accept(builder);
-			return this.enrich(builder.build());
+		public final Builder enrich(Function<Feature.Builder, ObjectBuilder<Feature>> fn) {
+			return this.enrich(fn.apply(new Feature.Builder()).build());
 		}
 
 		/**
@@ -650,10 +632,8 @@ public class Features implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code eql}
 		 */
-		public final Builder eql(Consumer<Feature.Builder> fn) {
-			Feature.Builder builder = new Feature.Builder();
-			fn.accept(builder);
-			return this.eql(builder.build());
+		public final Builder eql(Function<Feature.Builder, ObjectBuilder<Feature>> fn) {
+			return this.eql(fn.apply(new Feature.Builder()).build());
 		}
 
 		/**
@@ -667,10 +647,8 @@ public class Features implements JsonpSerializable {
 		/**
 		 * API name: {@code flattened}
 		 */
-		public final Builder flattened(Consumer<Feature.Builder> fn) {
-			Feature.Builder builder = new Feature.Builder();
-			fn.accept(builder);
-			return this.flattened(builder.build());
+		public final Builder flattened(Function<Feature.Builder, ObjectBuilder<Feature>> fn) {
+			return this.flattened(fn.apply(new Feature.Builder()).build());
 		}
 
 		/**
@@ -684,10 +662,8 @@ public class Features implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code frozen_indices}
 		 */
-		public final Builder frozenIndices(Consumer<Feature.Builder> fn) {
-			Feature.Builder builder = new Feature.Builder();
-			fn.accept(builder);
-			return this.frozenIndices(builder.build());
+		public final Builder frozenIndices(Function<Feature.Builder, ObjectBuilder<Feature>> fn) {
+			return this.frozenIndices(fn.apply(new Feature.Builder()).build());
 		}
 
 		/**
@@ -701,10 +677,8 @@ public class Features implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code graph}
 		 */
-		public final Builder graph(Consumer<Feature.Builder> fn) {
-			Feature.Builder builder = new Feature.Builder();
-			fn.accept(builder);
-			return this.graph(builder.build());
+		public final Builder graph(Function<Feature.Builder, ObjectBuilder<Feature>> fn) {
+			return this.graph(fn.apply(new Feature.Builder()).build());
 		}
 
 		/**
@@ -718,10 +692,8 @@ public class Features implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code ilm}
 		 */
-		public final Builder ilm(Consumer<Feature.Builder> fn) {
-			Feature.Builder builder = new Feature.Builder();
-			fn.accept(builder);
-			return this.ilm(builder.build());
+		public final Builder ilm(Function<Feature.Builder, ObjectBuilder<Feature>> fn) {
+			return this.ilm(fn.apply(new Feature.Builder()).build());
 		}
 
 		/**
@@ -735,10 +707,8 @@ public class Features implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code logstash}
 		 */
-		public final Builder logstash(Consumer<Feature.Builder> fn) {
-			Feature.Builder builder = new Feature.Builder();
-			fn.accept(builder);
-			return this.logstash(builder.build());
+		public final Builder logstash(Function<Feature.Builder, ObjectBuilder<Feature>> fn) {
+			return this.logstash(fn.apply(new Feature.Builder()).build());
 		}
 
 		/**
@@ -752,10 +722,8 @@ public class Features implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code ml}
 		 */
-		public final Builder ml(Consumer<Feature.Builder> fn) {
-			Feature.Builder builder = new Feature.Builder();
-			fn.accept(builder);
-			return this.ml(builder.build());
+		public final Builder ml(Function<Feature.Builder, ObjectBuilder<Feature>> fn) {
+			return this.ml(fn.apply(new Feature.Builder()).build());
 		}
 
 		/**
@@ -769,10 +737,8 @@ public class Features implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code monitoring}
 		 */
-		public final Builder monitoring(Consumer<Feature.Builder> fn) {
-			Feature.Builder builder = new Feature.Builder();
-			fn.accept(builder);
-			return this.monitoring(builder.build());
+		public final Builder monitoring(Function<Feature.Builder, ObjectBuilder<Feature>> fn) {
+			return this.monitoring(fn.apply(new Feature.Builder()).build());
 		}
 
 		/**
@@ -786,10 +752,8 @@ public class Features implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code rollup}
 		 */
-		public final Builder rollup(Consumer<Feature.Builder> fn) {
-			Feature.Builder builder = new Feature.Builder();
-			fn.accept(builder);
-			return this.rollup(builder.build());
+		public final Builder rollup(Function<Feature.Builder, ObjectBuilder<Feature>> fn) {
+			return this.rollup(fn.apply(new Feature.Builder()).build());
 		}
 
 		/**
@@ -803,10 +767,8 @@ public class Features implements JsonpSerializable {
 		/**
 		 * API name: {@code runtime_fields}
 		 */
-		public final Builder runtimeFields(Consumer<Feature.Builder> fn) {
-			Feature.Builder builder = new Feature.Builder();
-			fn.accept(builder);
-			return this.runtimeFields(builder.build());
+		public final Builder runtimeFields(Function<Feature.Builder, ObjectBuilder<Feature>> fn) {
+			return this.runtimeFields(fn.apply(new Feature.Builder()).build());
 		}
 
 		/**
@@ -820,10 +782,8 @@ public class Features implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code searchable_snapshots}
 		 */
-		public final Builder searchableSnapshots(Consumer<Feature.Builder> fn) {
-			Feature.Builder builder = new Feature.Builder();
-			fn.accept(builder);
-			return this.searchableSnapshots(builder.build());
+		public final Builder searchableSnapshots(Function<Feature.Builder, ObjectBuilder<Feature>> fn) {
+			return this.searchableSnapshots(fn.apply(new Feature.Builder()).build());
 		}
 
 		/**
@@ -837,10 +797,8 @@ public class Features implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code security}
 		 */
-		public final Builder security(Consumer<Feature.Builder> fn) {
-			Feature.Builder builder = new Feature.Builder();
-			fn.accept(builder);
-			return this.security(builder.build());
+		public final Builder security(Function<Feature.Builder, ObjectBuilder<Feature>> fn) {
+			return this.security(fn.apply(new Feature.Builder()).build());
 		}
 
 		/**
@@ -854,10 +812,8 @@ public class Features implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code slm}
 		 */
-		public final Builder slm(Consumer<Feature.Builder> fn) {
-			Feature.Builder builder = new Feature.Builder();
-			fn.accept(builder);
-			return this.slm(builder.build());
+		public final Builder slm(Function<Feature.Builder, ObjectBuilder<Feature>> fn) {
+			return this.slm(fn.apply(new Feature.Builder()).build());
 		}
 
 		/**
@@ -871,10 +827,8 @@ public class Features implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code spatial}
 		 */
-		public final Builder spatial(Consumer<Feature.Builder> fn) {
-			Feature.Builder builder = new Feature.Builder();
-			fn.accept(builder);
-			return this.spatial(builder.build());
+		public final Builder spatial(Function<Feature.Builder, ObjectBuilder<Feature>> fn) {
+			return this.spatial(fn.apply(new Feature.Builder()).build());
 		}
 
 		/**
@@ -888,10 +842,8 @@ public class Features implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code sql}
 		 */
-		public final Builder sql(Consumer<Feature.Builder> fn) {
-			Feature.Builder builder = new Feature.Builder();
-			fn.accept(builder);
-			return this.sql(builder.build());
+		public final Builder sql(Function<Feature.Builder, ObjectBuilder<Feature>> fn) {
+			return this.sql(fn.apply(new Feature.Builder()).build());
 		}
 
 		/**
@@ -905,10 +857,8 @@ public class Features implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code transform}
 		 */
-		public final Builder transform(Consumer<Feature.Builder> fn) {
-			Feature.Builder builder = new Feature.Builder();
-			fn.accept(builder);
-			return this.transform(builder.build());
+		public final Builder transform(Function<Feature.Builder, ObjectBuilder<Feature>> fn) {
+			return this.transform(fn.apply(new Feature.Builder()).build());
 		}
 
 		/**
@@ -922,10 +872,8 @@ public class Features implements JsonpSerializable {
 		/**
 		 * API name: {@code vectors}
 		 */
-		public final Builder vectors(Consumer<Feature.Builder> fn) {
-			Feature.Builder builder = new Feature.Builder();
-			fn.accept(builder);
-			return this.vectors(builder.build());
+		public final Builder vectors(Function<Feature.Builder, ObjectBuilder<Feature>> fn) {
+			return this.vectors(fn.apply(new Feature.Builder()).build());
 		}
 
 		/**
@@ -939,10 +887,8 @@ public class Features implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code voting_only}
 		 */
-		public final Builder votingOnly(Consumer<Feature.Builder> fn) {
-			Feature.Builder builder = new Feature.Builder();
-			fn.accept(builder);
-			return this.votingOnly(builder.build());
+		public final Builder votingOnly(Function<Feature.Builder, ObjectBuilder<Feature>> fn) {
+			return this.votingOnly(fn.apply(new Feature.Builder()).build());
 		}
 
 		/**
@@ -956,10 +902,8 @@ public class Features implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code watcher}
 		 */
-		public final Builder watcher(Consumer<Feature.Builder> fn) {
-			Feature.Builder builder = new Feature.Builder();
-			fn.accept(builder);
-			return this.watcher(builder.build());
+		public final Builder watcher(Function<Feature.Builder, ObjectBuilder<Feature>> fn) {
+			return this.watcher(fn.apply(new Feature.Builder()).build());
 		}
 
 		/**

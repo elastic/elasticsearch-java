@@ -32,7 +32,7 @@ import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.HoltWintersMovingAverageAggregation
@@ -51,10 +51,9 @@ public class HoltWintersMovingAverageAggregation extends MovingAverageAggregatio
 
 	}
 
-	public static HoltWintersMovingAverageAggregation of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static HoltWintersMovingAverageAggregation of(
+			Function<Builder, ObjectBuilder<HoltWintersMovingAverageAggregation>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -102,10 +101,9 @@ public class HoltWintersMovingAverageAggregation extends MovingAverageAggregatio
 		/**
 		 * Required - API name: {@code settings}
 		 */
-		public final Builder settings(Consumer<HoltWintersModelSettings.Builder> fn) {
-			HoltWintersModelSettings.Builder builder = new HoltWintersModelSettings.Builder();
-			fn.accept(builder);
-			return this.settings(builder.build());
+		public final Builder settings(
+				Function<HoltWintersModelSettings.Builder, ObjectBuilder<HoltWintersModelSettings>> fn) {
+			return this.settings(fn.apply(new HoltWintersModelSettings.Builder()).build());
 		}
 
 		@Override

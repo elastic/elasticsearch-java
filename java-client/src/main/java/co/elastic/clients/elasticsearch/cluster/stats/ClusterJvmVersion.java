@@ -37,7 +37,7 @@ import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cluster.stats.ClusterJvmVersion
@@ -71,10 +71,8 @@ public class ClusterJvmVersion implements JsonpSerializable {
 
 	}
 
-	public static ClusterJvmVersion of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static ClusterJvmVersion of(Function<Builder, ObjectBuilder<ClusterJvmVersion>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**

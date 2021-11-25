@@ -34,10 +34,9 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.reload_search_analyzers.ReloadDetails
@@ -60,10 +59,8 @@ public class ReloadDetails implements JsonpSerializable {
 
 	}
 
-	public static ReloadDetails of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static ReloadDetails of(Function<Builder, ObjectBuilder<ReloadDetails>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -146,33 +143,49 @@ public class ReloadDetails implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code reloaded_analyzers}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>reloadedAnalyzers</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>reloadedAnalyzers</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder reloadedAnalyzers(List<String> value) {
-			this.reloadedAnalyzers = value;
+		public final Builder reloadedAnalyzers(List<String> list) {
+			this.reloadedAnalyzers = _listAddAll(this.reloadedAnalyzers, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code reloaded_analyzers}
+		 * <p>
+		 * Adds one or more values to <code>reloadedAnalyzers</code>.
 		 */
-		public final Builder reloadedAnalyzers(String... value) {
-			this.reloadedAnalyzers = Arrays.asList(value);
+		public final Builder reloadedAnalyzers(String value, String... values) {
+			this.reloadedAnalyzers = _listAdd(this.reloadedAnalyzers, value, values);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code reloaded_node_ids}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>reloadedNodeIds</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>reloadedNodeIds</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder reloadedNodeIds(List<String> value) {
-			this.reloadedNodeIds = value;
+		public final Builder reloadedNodeIds(List<String> list) {
+			this.reloadedNodeIds = _listAddAll(this.reloadedNodeIds, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code reloaded_node_ids}
+		 * <p>
+		 * Adds one or more values to <code>reloadedNodeIds</code>.
 		 */
-		public final Builder reloadedNodeIds(String... value) {
-			this.reloadedNodeIds = Arrays.asList(value);
+		public final Builder reloadedNodeIds(String value, String... values) {
+			this.reloadedNodeIds = _listAdd(this.reloadedNodeIds, value, values);
 			return this;
 		}
 

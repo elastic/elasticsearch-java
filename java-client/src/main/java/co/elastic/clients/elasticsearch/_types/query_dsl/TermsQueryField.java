@@ -39,7 +39,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Object;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.TermsQueryField
@@ -77,10 +77,8 @@ public class TermsQueryField implements TaggedUnion<TermsQueryField.Kind, Object
 
 	}
 
-	public static TermsQueryField of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static TermsQueryField of(Function<Builder, ObjectBuilder<TermsQueryField>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -153,10 +151,8 @@ public class TermsQueryField implements TaggedUnion<TermsQueryField.Kind, Object
 			return this;
 		}
 
-		public ObjectBuilder<TermsQueryField> lookup(Consumer<TermsLookup.Builder> fn) {
-			TermsLookup.Builder builder = new TermsLookup.Builder();
-			fn.accept(builder);
-			return this.lookup(builder.build());
+		public ObjectBuilder<TermsQueryField> lookup(Function<TermsLookup.Builder, ObjectBuilder<TermsLookup>> fn) {
+			return this.lookup(fn.apply(new TermsLookup.Builder()).build());
 		}
 
 		public TermsQueryField build() {

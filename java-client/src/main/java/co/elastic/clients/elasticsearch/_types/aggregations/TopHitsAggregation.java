@@ -32,19 +32,15 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ListBuilder;
-import co.elastic.clients.util.MapBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -103,10 +99,8 @@ public class TopHitsAggregation extends MetricAggregationBase implements Aggrega
 
 	}
 
-	public static TopHitsAggregation of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static TopHitsAggregation of(Function<Builder, ObjectBuilder<TopHitsAggregation>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -342,17 +336,25 @@ public class TopHitsAggregation extends MetricAggregationBase implements Aggrega
 
 		/**
 		 * API name: {@code docvalue_fields}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>docvalueFields</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>docvalueFields</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder docvalueFields(@Nullable List<String> value) {
-			this.docvalueFields = value;
+		public final Builder docvalueFields(List<String> list) {
+			this.docvalueFields = _listAddAll(this.docvalueFields, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code docvalue_fields}
+		 * <p>
+		 * Adds one or more values to <code>docvalueFields</code>.
 		 */
-		public final Builder docvalueFields(String... value) {
-			this.docvalueFields = Arrays.asList(value);
+		public final Builder docvalueFields(String value, String... values) {
+			this.docvalueFields = _listAdd(this.docvalueFields, value, values);
 			return this;
 		}
 
@@ -383,23 +385,41 @@ public class TopHitsAggregation extends MetricAggregationBase implements Aggrega
 		/**
 		 * API name: {@code highlight}
 		 */
-		public final Builder highlight(Consumer<Highlight.Builder> fn) {
-			Highlight.Builder builder = new Highlight.Builder();
-			fn.accept(builder);
-			return this.highlight(builder.build());
+		public final Builder highlight(Function<Highlight.Builder, ObjectBuilder<Highlight>> fn) {
+			return this.highlight(fn.apply(new Highlight.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code script_fields}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>scriptFields</code>. Use
+		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
+		 * <code>scriptFields</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetMap()
 		 */
-		public final Builder scriptFields(@Nullable Map<String, ScriptField> value) {
-			this.scriptFields = value;
+		public final Builder scriptFields(Map<String, ScriptField> map) {
+			this.scriptFields = _mapPutAll(this.scriptFields, map);
 			return this;
 		}
 
-		public final Builder scriptFields(
-				Function<MapBuilder<String, ScriptField, ScriptField.Builder>, ObjectBuilder<Map<String, ScriptField>>> fn) {
-			return scriptFields(fn.apply(new MapBuilder<>(ScriptField.Builder::new)).build());
+		/**
+		 * API name: {@code script_fields}
+		 * <p>
+		 * Adds an entry to <code>scriptFields</code>.
+		 */
+		public final Builder scriptFields(String key, ScriptField value) {
+			this.scriptFields = _mapPut(this.scriptFields, key, value);
+			return this;
+		}
+
+		/**
+		 * API name: {@code script_fields}
+		 * <p>
+		 * Adds an entry to <code>scriptFields</code> using a builder lambda.
+		 */
+		public final Builder scriptFields(String key, Function<ScriptField.Builder, ObjectBuilder<ScriptField>> fn) {
+			return scriptFields(key, fn.apply(new ScriptField.Builder()).build());
 		}
 
 		/**
@@ -412,26 +432,35 @@ public class TopHitsAggregation extends MetricAggregationBase implements Aggrega
 
 		/**
 		 * API name: {@code sort}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>sort</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>sort</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder sort(@Nullable List<SortOptions> value) {
-			this.sort = value;
+		public final Builder sort(List<SortOptions> list) {
+			this.sort = _listAddAll(this.sort, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code sort}
+		 * <p>
+		 * Adds one or more values to <code>sort</code>.
 		 */
-		public final Builder sort(SortOptions... value) {
-			this.sort = Arrays.asList(value);
+		public final Builder sort(SortOptions value, SortOptions... values) {
+			this.sort = _listAdd(this.sort, value, values);
 			return this;
 		}
 
 		/**
 		 * API name: {@code sort}
+		 * <p>
+		 * Adds a value to <code>sort</code> using a builder lambda.
 		 */
-		public final Builder sort(
-				Function<ListBuilder<SortOptions, SortOptions.Builder>, ObjectBuilder<List<SortOptions>>> fn) {
-			return sort(fn.apply(new ListBuilder<>(SortOptions.Builder::new)).build());
+		public final Builder sort(Function<SortOptions.Builder, ObjectBuilder<SortOptions>> fn) {
+			return sort(fn.apply(new SortOptions.Builder()).build());
 		}
 
 		/**
@@ -445,25 +474,31 @@ public class TopHitsAggregation extends MetricAggregationBase implements Aggrega
 		/**
 		 * API name: {@code _source}
 		 */
-		public final Builder source(Consumer<SourceConfig.Builder> fn) {
-			SourceConfig.Builder builder = new SourceConfig.Builder();
-			fn.accept(builder);
-			return this.source(builder.build());
+		public final Builder source(Function<SourceConfig.Builder, ObjectBuilder<SourceConfig>> fn) {
+			return this.source(fn.apply(new SourceConfig.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code stored_fields}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>storedFields</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>storedFields</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder storedFields(@Nullable List<String> value) {
-			this.storedFields = value;
+		public final Builder storedFields(List<String> list) {
+			this.storedFields = _listAddAll(this.storedFields, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code stored_fields}
+		 * <p>
+		 * Adds one or more values to <code>storedFields</code>.
 		 */
-		public final Builder storedFields(String... value) {
-			this.storedFields = Arrays.asList(value);
+		public final Builder storedFields(String value, String... values) {
+			this.storedFields = _listAdd(this.storedFields, value, values);
 			return this;
 		}
 

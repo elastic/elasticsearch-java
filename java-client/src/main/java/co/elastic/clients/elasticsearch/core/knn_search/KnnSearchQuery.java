@@ -36,10 +36,9 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
 import java.lang.Long;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.knn_search._types.Query
@@ -64,10 +63,8 @@ public class KnnSearchQuery implements JsonpSerializable {
 
 	}
 
-	public static KnnSearchQuery of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static KnnSearchQuery of(Function<Builder, ObjectBuilder<KnnSearchQuery>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -166,9 +163,15 @@ public class KnnSearchQuery implements JsonpSerializable {
 		 * Required - The query vector
 		 * <p>
 		 * API name: {@code query_vector}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>queryVector</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>queryVector</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder queryVector(List<Double> value) {
-			this.queryVector = value;
+		public final Builder queryVector(List<Double> list) {
+			this.queryVector = _listAddAll(this.queryVector, list);
 			return this;
 		}
 
@@ -176,9 +179,11 @@ public class KnnSearchQuery implements JsonpSerializable {
 		 * Required - The query vector
 		 * <p>
 		 * API name: {@code query_vector}
+		 * <p>
+		 * Adds one or more values to <code>queryVector</code>.
 		 */
-		public final Builder queryVector(Double... value) {
-			this.queryVector = Arrays.asList(value);
+		public final Builder queryVector(Double value, Double... values) {
+			this.queryVector = _listAdd(this.queryVector, value, values);
 			return this;
 		}
 

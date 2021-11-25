@@ -34,7 +34,7 @@ import co.elastic.clients.transport.TransportOptions;
 import co.elastic.clients.util.ObjectBuilder;
 import java.io.IOException;
 import java.util.concurrent.CompletableFuture;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 /**
@@ -84,11 +84,10 @@ public class ElasticsearchSlmAsyncClient extends ApiClient<ElasticsearchTranspor
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<DeleteLifecycleResponse> deleteLifecycle(Consumer<DeleteLifecycleRequest.Builder> fn)
+	public final CompletableFuture<DeleteLifecycleResponse> deleteLifecycle(
+			Function<DeleteLifecycleRequest.Builder, ObjectBuilder<DeleteLifecycleRequest>> fn)
 			throws IOException, ElasticsearchException {
-		DeleteLifecycleRequest.Builder builder = new DeleteLifecycleRequest.Builder();
-		fn.accept(builder);
-		return deleteLifecycle(builder.build());
+		return deleteLifecycle(fn.apply(new DeleteLifecycleRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: slm.execute_lifecycle
@@ -123,10 +122,9 @@ public class ElasticsearchSlmAsyncClient extends ApiClient<ElasticsearchTranspor
 	 */
 
 	public final CompletableFuture<ExecuteLifecycleResponse> executeLifecycle(
-			Consumer<ExecuteLifecycleRequest.Builder> fn) throws IOException, ElasticsearchException {
-		ExecuteLifecycleRequest.Builder builder = new ExecuteLifecycleRequest.Builder();
-		fn.accept(builder);
-		return executeLifecycle(builder.build());
+			Function<ExecuteLifecycleRequest.Builder, ObjectBuilder<ExecuteLifecycleRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return executeLifecycle(fn.apply(new ExecuteLifecycleRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: slm.execute_retention
@@ -175,11 +173,10 @@ public class ElasticsearchSlmAsyncClient extends ApiClient<ElasticsearchTranspor
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<GetLifecycleResponse> getLifecycle(Consumer<GetLifecycleRequest.Builder> fn)
+	public final CompletableFuture<GetLifecycleResponse> getLifecycle(
+			Function<GetLifecycleRequest.Builder, ObjectBuilder<GetLifecycleRequest>> fn)
 			throws IOException, ElasticsearchException {
-		GetLifecycleRequest.Builder builder = new GetLifecycleRequest.Builder();
-		fn.accept(builder);
-		return getLifecycle(builder.build());
+		return getLifecycle(fn.apply(new GetLifecycleRequest.Builder()).build());
 	}
 
 	/**
@@ -254,11 +251,10 @@ public class ElasticsearchSlmAsyncClient extends ApiClient<ElasticsearchTranspor
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<PutLifecycleResponse> putLifecycle(Consumer<PutLifecycleRequest.Builder> fn)
+	public final CompletableFuture<PutLifecycleResponse> putLifecycle(
+			Function<PutLifecycleRequest.Builder, ObjectBuilder<PutLifecycleRequest>> fn)
 			throws IOException, ElasticsearchException {
-		PutLifecycleRequest.Builder builder = new PutLifecycleRequest.Builder();
-		fn.accept(builder);
-		return putLifecycle(builder.build());
+		return putLifecycle(fn.apply(new PutLifecycleRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: slm.start

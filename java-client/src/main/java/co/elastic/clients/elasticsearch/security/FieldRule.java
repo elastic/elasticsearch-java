@@ -41,7 +41,7 @@ import java.lang.Object;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: security._types.FieldRule
@@ -113,10 +113,8 @@ public class FieldRule implements TaggedUnion<FieldRule.Kind, Object>, RoleMappi
 
 	}
 
-	public static FieldRule of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static FieldRule of(Function<Builder, ObjectBuilder<FieldRule>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -282,10 +280,8 @@ public class FieldRule implements TaggedUnion<FieldRule.Kind, Object>, RoleMappi
 			return this;
 		}
 
-		public ObjectBuilder<FieldRule> realm(Consumer<Realm.Builder> fn) {
-			Realm.Builder builder = new Realm.Builder();
-			fn.accept(builder);
-			return this.realm(builder.build());
+		public ObjectBuilder<FieldRule> realm(Function<Realm.Builder, ObjectBuilder<Realm>> fn) {
+			return this.realm(fn.apply(new Realm.Builder()).build());
 		}
 
 		public FieldRule build() {

@@ -36,7 +36,7 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: slm._types.Retention
@@ -58,10 +58,8 @@ public class Retention implements JsonpSerializable {
 
 	}
 
-	public static Retention of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static Retention of(Function<Builder, ObjectBuilder<Retention>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -150,10 +148,8 @@ public class Retention implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code expire_after}
 		 */
-		public final Builder expireAfter(Consumer<Time.Builder> fn) {
-			Time.Builder builder = new Time.Builder();
-			fn.accept(builder);
-			return this.expireAfter(builder.build());
+		public final Builder expireAfter(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.expireAfter(fn.apply(new Time.Builder()).build());
 		}
 
 		/**

@@ -35,7 +35,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.DataframeEvaluationOutlierDetectionMetrics
@@ -52,10 +52,9 @@ public class DataframeEvaluationOutlierDetectionMetrics extends DataframeEvaluat
 
 	}
 
-	public static DataframeEvaluationOutlierDetectionMetrics of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static DataframeEvaluationOutlierDetectionMetrics of(
+			Function<Builder, ObjectBuilder<DataframeEvaluationOutlierDetectionMetrics>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -99,9 +98,27 @@ public class DataframeEvaluationOutlierDetectionMetrics extends DataframeEvaluat
 		 * Accuracy of predictions (per-class and overall).
 		 * <p>
 		 * API name: {@code confusion_matrix}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>confusionMatrix</code>. Use
+		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
+		 * <code>confusionMatrix</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetMap()
 		 */
-		public final Builder confusionMatrix(@Nullable Map<String, JsonData> value) {
-			this.confusionMatrix = value;
+		public final Builder confusionMatrix(Map<String, JsonData> map) {
+			this.confusionMatrix = _mapPutAll(this.confusionMatrix, map);
+			return this;
+		}
+
+		/**
+		 * Accuracy of predictions (per-class and overall).
+		 * <p>
+		 * API name: {@code confusion_matrix}
+		 * <p>
+		 * Adds an entry to <code>confusionMatrix</code>.
+		 */
+		public final Builder confusionMatrix(String key, JsonData value) {
+			this.confusionMatrix = _mapPut(this.confusionMatrix, key, value);
 			return this;
 		}
 

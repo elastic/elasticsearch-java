@@ -34,10 +34,9 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.Influence
@@ -58,10 +57,8 @@ public class Influence implements JsonpSerializable {
 
 	}
 
-	public static Influence of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static Influence of(Function<Builder, ObjectBuilder<Influence>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -125,17 +122,25 @@ public class Influence implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code influencer_field_values}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>influencerFieldValues</code>.
+		 * Use <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>influencerFieldValues</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder influencerFieldValues(List<String> value) {
-			this.influencerFieldValues = value;
+		public final Builder influencerFieldValues(List<String> list) {
+			this.influencerFieldValues = _listAddAll(this.influencerFieldValues, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code influencer_field_values}
+		 * <p>
+		 * Adds one or more values to <code>influencerFieldValues</code>.
 		 */
-		public final Builder influencerFieldValues(String... value) {
-			this.influencerFieldValues = Arrays.asList(value);
+		public final Builder influencerFieldValues(String value, String... values) {
+			this.influencerFieldValues = _listAdd(this.influencerFieldValues, value, values);
 			return this;
 		}
 

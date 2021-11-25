@@ -29,16 +29,13 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -72,10 +69,8 @@ public class SlackMessage implements JsonpSerializable {
 
 	}
 
-	public static SlackMessage of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static SlackMessage of(Function<Builder, ObjectBuilder<SlackMessage>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -194,26 +189,35 @@ public class SlackMessage implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code attachments}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>attachments</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>attachments</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder attachments(List<SlackAttachment> value) {
-			this.attachments = value;
+		public final Builder attachments(List<SlackAttachment> list) {
+			this.attachments = _listAddAll(this.attachments, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code attachments}
+		 * <p>
+		 * Adds one or more values to <code>attachments</code>.
 		 */
-		public final Builder attachments(SlackAttachment... value) {
-			this.attachments = Arrays.asList(value);
+		public final Builder attachments(SlackAttachment value, SlackAttachment... values) {
+			this.attachments = _listAdd(this.attachments, value, values);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code attachments}
+		 * <p>
+		 * Adds a value to <code>attachments</code> using a builder lambda.
 		 */
-		public final Builder attachments(
-				Function<ListBuilder<SlackAttachment, SlackAttachment.Builder>, ObjectBuilder<List<SlackAttachment>>> fn) {
-			return attachments(fn.apply(new ListBuilder<>(SlackAttachment.Builder::new)).build());
+		public final Builder attachments(Function<SlackAttachment.Builder, ObjectBuilder<SlackAttachment>> fn) {
+			return attachments(fn.apply(new SlackAttachment.Builder()).build());
 		}
 
 		/**
@@ -227,10 +231,9 @@ public class SlackMessage implements JsonpSerializable {
 		/**
 		 * API name: {@code dynamic_attachments}
 		 */
-		public final Builder dynamicAttachments(Consumer<SlackDynamicAttachment.Builder> fn) {
-			SlackDynamicAttachment.Builder builder = new SlackDynamicAttachment.Builder();
-			fn.accept(builder);
-			return this.dynamicAttachments(builder.build());
+		public final Builder dynamicAttachments(
+				Function<SlackDynamicAttachment.Builder, ObjectBuilder<SlackDynamicAttachment>> fn) {
+			return this.dynamicAttachments(fn.apply(new SlackDynamicAttachment.Builder()).build());
 		}
 
 		/**
@@ -259,17 +262,25 @@ public class SlackMessage implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code to}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>to</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset <code>to</code>
+		 * to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder to(List<String> value) {
-			this.to = value;
+		public final Builder to(List<String> list) {
+			this.to = _listAddAll(this.to, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code to}
+		 * <p>
+		 * Adds one or more values to <code>to</code>.
 		 */
-		public final Builder to(String... value) {
-			this.to = Arrays.asList(value);
+		public final Builder to(String value, String... values) {
+			this.to = _listAdd(this.to, value, values);
 			return this;
 		}
 

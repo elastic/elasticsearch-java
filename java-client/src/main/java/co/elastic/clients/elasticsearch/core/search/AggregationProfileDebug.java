@@ -36,10 +36,9 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.search._types.AggregationProfileDebug
@@ -139,10 +138,8 @@ public class AggregationProfileDebug implements JsonpSerializable {
 
 	}
 
-	public static AggregationProfileDebug of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static AggregationProfileDebug of(Function<Builder, ObjectBuilder<AggregationProfileDebug>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -596,10 +593,9 @@ public class AggregationProfileDebug implements JsonpSerializable {
 		/**
 		 * API name: {@code delegate_debug}
 		 */
-		public final Builder delegateDebug(Consumer<AggregationProfileDelegateDebug.Builder> fn) {
-			AggregationProfileDelegateDebug.Builder builder = new AggregationProfileDelegateDebug.Builder();
-			fn.accept(builder);
-			return this.delegateDebug(builder.build());
+		public final Builder delegateDebug(
+				Function<AggregationProfileDelegateDebug.Builder, ObjectBuilder<AggregationProfileDelegateDebug>> fn) {
+			return this.delegateDebug(fn.apply(new AggregationProfileDelegateDebug.Builder()).build());
 		}
 
 		/**
@@ -700,17 +696,25 @@ public class AggregationProfileDebug implements JsonpSerializable {
 
 		/**
 		 * API name: {@code deferred_aggregators}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>deferredAggregators</code>.
+		 * Use <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>deferredAggregators</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder deferredAggregators(@Nullable List<String> value) {
-			this.deferredAggregators = value;
+		public final Builder deferredAggregators(List<String> list) {
+			this.deferredAggregators = _listAddAll(this.deferredAggregators, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code deferred_aggregators}
+		 * <p>
+		 * Adds one or more values to <code>deferredAggregators</code>.
 		 */
-		public final Builder deferredAggregators(String... value) {
-			this.deferredAggregators = Arrays.asList(value);
+		public final Builder deferredAggregators(String value, String... values) {
+			this.deferredAggregators = _listAdd(this.deferredAggregators, value, values);
 			return this;
 		}
 

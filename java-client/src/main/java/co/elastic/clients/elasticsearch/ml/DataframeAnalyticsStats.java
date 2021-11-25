@@ -38,7 +38,7 @@ import co.elastic.clients.util.TaggedUnionUtils;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Object;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.DataframeAnalyticsStatsContainer
@@ -98,10 +98,8 @@ public class DataframeAnalyticsStats implements TaggedUnion<DataframeAnalyticsSt
 
 	}
 
-	public static DataframeAnalyticsStats of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static DataframeAnalyticsStats of(Function<Builder, ObjectBuilder<DataframeAnalyticsStats>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -184,10 +182,8 @@ public class DataframeAnalyticsStats implements TaggedUnion<DataframeAnalyticsSt
 		}
 
 		public ObjectBuilder<DataframeAnalyticsStats> classificationStats(
-				Consumer<DataframeAnalyticsStatsHyperparameters.Builder> fn) {
-			DataframeAnalyticsStatsHyperparameters.Builder builder = new DataframeAnalyticsStatsHyperparameters.Builder();
-			fn.accept(builder);
-			return this.classificationStats(builder.build());
+				Function<DataframeAnalyticsStatsHyperparameters.Builder, ObjectBuilder<DataframeAnalyticsStatsHyperparameters>> fn) {
+			return this.classificationStats(fn.apply(new DataframeAnalyticsStatsHyperparameters.Builder()).build());
 		}
 
 		public ObjectBuilder<DataframeAnalyticsStats> outlierDetectionStats(DataframeAnalyticsStatsOutlierDetection v) {
@@ -197,10 +193,8 @@ public class DataframeAnalyticsStats implements TaggedUnion<DataframeAnalyticsSt
 		}
 
 		public ObjectBuilder<DataframeAnalyticsStats> outlierDetectionStats(
-				Consumer<DataframeAnalyticsStatsOutlierDetection.Builder> fn) {
-			DataframeAnalyticsStatsOutlierDetection.Builder builder = new DataframeAnalyticsStatsOutlierDetection.Builder();
-			fn.accept(builder);
-			return this.outlierDetectionStats(builder.build());
+				Function<DataframeAnalyticsStatsOutlierDetection.Builder, ObjectBuilder<DataframeAnalyticsStatsOutlierDetection>> fn) {
+			return this.outlierDetectionStats(fn.apply(new DataframeAnalyticsStatsOutlierDetection.Builder()).build());
 		}
 
 		public ObjectBuilder<DataframeAnalyticsStats> regressionStats(DataframeAnalyticsStatsHyperparameters v) {
@@ -210,10 +204,8 @@ public class DataframeAnalyticsStats implements TaggedUnion<DataframeAnalyticsSt
 		}
 
 		public ObjectBuilder<DataframeAnalyticsStats> regressionStats(
-				Consumer<DataframeAnalyticsStatsHyperparameters.Builder> fn) {
-			DataframeAnalyticsStatsHyperparameters.Builder builder = new DataframeAnalyticsStatsHyperparameters.Builder();
-			fn.accept(builder);
-			return this.regressionStats(builder.build());
+				Function<DataframeAnalyticsStatsHyperparameters.Builder, ObjectBuilder<DataframeAnalyticsStatsHyperparameters>> fn) {
+			return this.regressionStats(fn.apply(new DataframeAnalyticsStatsHyperparameters.Builder()).build());
 		}
 
 		public DataframeAnalyticsStats build() {

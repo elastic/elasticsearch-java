@@ -41,7 +41,7 @@ import java.lang.Boolean;
 import java.lang.String;
 import java.util.Collections;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.revert_model_snapshot.Request
@@ -64,10 +64,8 @@ public class RevertModelSnapshotRequest extends RequestBase implements JsonpSeri
 
 	}
 
-	public static RevertModelSnapshotRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static RevertModelSnapshotRequest of(Function<Builder, ObjectBuilder<RevertModelSnapshotRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**

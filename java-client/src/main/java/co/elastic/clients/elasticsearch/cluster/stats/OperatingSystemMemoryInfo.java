@@ -36,7 +36,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.Long;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 
 // typedef: cluster.stats.OperatingSystemMemoryInfo
 @JsonpDeserializable
@@ -63,10 +63,8 @@ public class OperatingSystemMemoryInfo implements JsonpSerializable {
 
 	}
 
-	public static OperatingSystemMemoryInfo of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static OperatingSystemMemoryInfo of(Function<Builder, ObjectBuilder<OperatingSystemMemoryInfo>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**

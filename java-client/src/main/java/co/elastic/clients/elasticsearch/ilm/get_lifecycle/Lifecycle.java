@@ -37,7 +37,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ilm.get_lifecycle.Lifecycle
@@ -59,10 +59,8 @@ public class Lifecycle implements JsonpSerializable {
 
 	}
 
-	public static Lifecycle of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static Lifecycle of(Function<Builder, ObjectBuilder<Lifecycle>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -139,10 +137,8 @@ public class Lifecycle implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code policy}
 		 */
-		public final Builder policy(Consumer<IlmPolicy.Builder> fn) {
-			IlmPolicy.Builder builder = new IlmPolicy.Builder();
-			fn.accept(builder);
-			return this.policy(builder.build());
+		public final Builder policy(Function<IlmPolicy.Builder, ObjectBuilder<IlmPolicy>> fn) {
+			return this.policy(fn.apply(new IlmPolicy.Builder()).build());
 		}
 
 		/**

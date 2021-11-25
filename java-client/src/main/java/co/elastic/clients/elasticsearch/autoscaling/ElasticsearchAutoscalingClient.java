@@ -33,7 +33,7 @@ import co.elastic.clients.transport.Transport;
 import co.elastic.clients.transport.TransportOptions;
 import co.elastic.clients.util.ObjectBuilder;
 import java.io.IOException;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 /**
@@ -87,10 +87,9 @@ public class ElasticsearchAutoscalingClient extends ApiClient<ElasticsearchTrans
 	 */
 
 	public final DeleteAutoscalingPolicyResponse deleteAutoscalingPolicy(
-			Consumer<DeleteAutoscalingPolicyRequest.Builder> fn) throws IOException, ElasticsearchException {
-		DeleteAutoscalingPolicyRequest.Builder builder = new DeleteAutoscalingPolicyRequest.Builder();
-		fn.accept(builder);
-		return deleteAutoscalingPolicy(builder.build());
+			Function<DeleteAutoscalingPolicyRequest.Builder, ObjectBuilder<DeleteAutoscalingPolicyRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return deleteAutoscalingPolicy(fn.apply(new DeleteAutoscalingPolicyRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: autoscaling.get_autoscaling_capacity
@@ -140,11 +139,10 @@ public class ElasticsearchAutoscalingClient extends ApiClient<ElasticsearchTrans
 	 *      on elastic.co</a>
 	 */
 
-	public final GetAutoscalingPolicyResponse getAutoscalingPolicy(Consumer<GetAutoscalingPolicyRequest.Builder> fn)
+	public final GetAutoscalingPolicyResponse getAutoscalingPolicy(
+			Function<GetAutoscalingPolicyRequest.Builder, ObjectBuilder<GetAutoscalingPolicyRequest>> fn)
 			throws IOException, ElasticsearchException {
-		GetAutoscalingPolicyRequest.Builder builder = new GetAutoscalingPolicyRequest.Builder();
-		fn.accept(builder);
-		return getAutoscalingPolicy(builder.build());
+		return getAutoscalingPolicy(fn.apply(new GetAutoscalingPolicyRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: autoscaling.put_autoscaling_policy
@@ -178,11 +176,10 @@ public class ElasticsearchAutoscalingClient extends ApiClient<ElasticsearchTrans
 	 *      on elastic.co</a>
 	 */
 
-	public final PutAutoscalingPolicyResponse putAutoscalingPolicy(Consumer<PutAutoscalingPolicyRequest.Builder> fn)
+	public final PutAutoscalingPolicyResponse putAutoscalingPolicy(
+			Function<PutAutoscalingPolicyRequest.Builder, ObjectBuilder<PutAutoscalingPolicyRequest>> fn)
 			throws IOException, ElasticsearchException {
-		PutAutoscalingPolicyRequest.Builder builder = new PutAutoscalingPolicyRequest.Builder();
-		fn.accept(builder);
-		return putAutoscalingPolicy(builder.build());
+		return putAutoscalingPolicy(fn.apply(new PutAutoscalingPolicyRequest.Builder()).build());
 	}
 
 }

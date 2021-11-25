@@ -35,7 +35,7 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 
 // typedef: _types.ClusterStatistics
 @JsonpDeserializable
@@ -56,10 +56,8 @@ public class ClusterStatistics implements JsonpSerializable {
 
 	}
 
-	public static ClusterStatistics of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static ClusterStatistics of(Function<Builder, ObjectBuilder<ClusterStatistics>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**

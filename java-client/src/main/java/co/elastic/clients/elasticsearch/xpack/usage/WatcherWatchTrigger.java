@@ -34,7 +34,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: xpack.usage.WatcherWatchTrigger
@@ -54,10 +54,8 @@ public class WatcherWatchTrigger implements JsonpSerializable {
 
 	}
 
-	public static WatcherWatchTrigger of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static WatcherWatchTrigger of(Function<Builder, ObjectBuilder<WatcherWatchTrigger>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -118,10 +116,9 @@ public class WatcherWatchTrigger implements JsonpSerializable {
 		/**
 		 * API name: {@code schedule}
 		 */
-		public final Builder schedule(Consumer<WatcherWatchTriggerSchedule.Builder> fn) {
-			WatcherWatchTriggerSchedule.Builder builder = new WatcherWatchTriggerSchedule.Builder();
-			fn.accept(builder);
-			return this.schedule(builder.build());
+		public final Builder schedule(
+				Function<WatcherWatchTriggerSchedule.Builder, ObjectBuilder<WatcherWatchTriggerSchedule>> fn) {
+			return this.schedule(fn.apply(new WatcherWatchTriggerSchedule.Builder()).build());
 		}
 
 		/**
@@ -135,10 +132,8 @@ public class WatcherWatchTrigger implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code _all}
 		 */
-		public final Builder all(Consumer<Counter.Builder> fn) {
-			Counter.Builder builder = new Counter.Builder();
-			fn.accept(builder);
-			return this.all(builder.build());
+		public final Builder all(Function<Counter.Builder, ObjectBuilder<Counter>> fn) {
+			return this.all(fn.apply(new Counter.Builder()).build());
 		}
 
 		/**

@@ -39,12 +39,11 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
@@ -98,10 +97,8 @@ public class IndicesStatsRequest extends RequestBase {
 
 	}
 
-	public static IndicesStatsRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static IndicesStatsRequest of(Function<Builder, ObjectBuilder<IndicesStatsRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -272,9 +269,15 @@ public class IndicesStatsRequest extends RequestBase {
 		 * (supports wildcards)
 		 * <p>
 		 * API name: {@code completion_fields}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>completionFields</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>completionFields</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder completionFields(@Nullable List<String> value) {
-			this.completionFields = value;
+		public final Builder completionFields(List<String> list) {
+			this.completionFields = _listAddAll(this.completionFields, list);
 			return this;
 		}
 
@@ -283,9 +286,11 @@ public class IndicesStatsRequest extends RequestBase {
 		 * (supports wildcards)
 		 * <p>
 		 * API name: {@code completion_fields}
+		 * <p>
+		 * Adds one or more values to <code>completionFields</code>.
 		 */
-		public final Builder completionFields(String... value) {
-			this.completionFields = Arrays.asList(value);
+		public final Builder completionFields(String value, String... values) {
+			this.completionFields = _listAdd(this.completionFields, value, values);
 			return this;
 		}
 
@@ -294,9 +299,15 @@ public class IndicesStatsRequest extends RequestBase {
 		 * closed or both.
 		 * <p>
 		 * API name: {@code expand_wildcards}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>expandWildcards</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>expandWildcards</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder expandWildcards(@Nullable List<ExpandWildcard> value) {
-			this.expandWildcards = value;
+		public final Builder expandWildcards(List<ExpandWildcard> list) {
+			this.expandWildcards = _listAddAll(this.expandWildcards, list);
 			return this;
 		}
 
@@ -305,9 +316,11 @@ public class IndicesStatsRequest extends RequestBase {
 		 * closed or both.
 		 * <p>
 		 * API name: {@code expand_wildcards}
+		 * <p>
+		 * Adds one or more values to <code>expandWildcards</code>.
 		 */
-		public final Builder expandWildcards(ExpandWildcard... value) {
-			this.expandWildcards = Arrays.asList(value);
+		public final Builder expandWildcards(ExpandWildcard value, ExpandWildcard... values) {
+			this.expandWildcards = _listAdd(this.expandWildcards, value, values);
 			return this;
 		}
 
@@ -316,9 +329,15 @@ public class IndicesStatsRequest extends RequestBase {
 		 * (supports wildcards)
 		 * <p>
 		 * API name: {@code fielddata_fields}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>fielddataFields</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>fielddataFields</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder fielddataFields(@Nullable List<String> value) {
-			this.fielddataFields = value;
+		public final Builder fielddataFields(List<String> list) {
+			this.fielddataFields = _listAddAll(this.fielddataFields, list);
 			return this;
 		}
 
@@ -327,9 +346,11 @@ public class IndicesStatsRequest extends RequestBase {
 		 * (supports wildcards)
 		 * <p>
 		 * API name: {@code fielddata_fields}
+		 * <p>
+		 * Adds one or more values to <code>fielddataFields</code>.
 		 */
-		public final Builder fielddataFields(String... value) {
-			this.fielddataFields = Arrays.asList(value);
+		public final Builder fielddataFields(String value, String... values) {
+			this.fielddataFields = _listAdd(this.fielddataFields, value, values);
 			return this;
 		}
 
@@ -338,9 +359,15 @@ public class IndicesStatsRequest extends RequestBase {
 		 * <code>completion</code> index metric (supports wildcards)
 		 * <p>
 		 * API name: {@code fields}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>fields</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>fields</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder fields(@Nullable List<String> value) {
-			this.fields = value;
+		public final Builder fields(List<String> list) {
+			this.fields = _listAddAll(this.fields, list);
 			return this;
 		}
 
@@ -349,9 +376,11 @@ public class IndicesStatsRequest extends RequestBase {
 		 * <code>completion</code> index metric (supports wildcards)
 		 * <p>
 		 * API name: {@code fields}
+		 * <p>
+		 * Adds one or more values to <code>fields</code>.
 		 */
-		public final Builder fields(String... value) {
-			this.fields = Arrays.asList(value);
+		public final Builder fields(String value, String... values) {
+			this.fields = _listAdd(this.fields, value, values);
 			return this;
 		}
 
@@ -370,9 +399,15 @@ public class IndicesStatsRequest extends RequestBase {
 		 * A comma-separated list of search groups for <code>search</code> index metric
 		 * <p>
 		 * API name: {@code groups}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>groups</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>groups</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder groups(@Nullable List<String> value) {
-			this.groups = value;
+		public final Builder groups(List<String> list) {
+			this.groups = _listAddAll(this.groups, list);
 			return this;
 		}
 
@@ -380,9 +415,11 @@ public class IndicesStatsRequest extends RequestBase {
 		 * A comma-separated list of search groups for <code>search</code> index metric
 		 * <p>
 		 * API name: {@code groups}
+		 * <p>
+		 * Adds one or more values to <code>groups</code>.
 		 */
-		public final Builder groups(String... value) {
-			this.groups = Arrays.asList(value);
+		public final Builder groups(String value, String... values) {
+			this.groups = _listAdd(this.groups, value, values);
 			return this;
 		}
 
@@ -413,9 +450,15 @@ public class IndicesStatsRequest extends RequestBase {
 		 * to perform the operation on all indices
 		 * <p>
 		 * API name: {@code index}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>index</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>index</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder index(@Nullable List<String> value) {
-			this.index = value;
+		public final Builder index(List<String> list) {
+			this.index = _listAddAll(this.index, list);
 			return this;
 		}
 
@@ -424,9 +467,11 @@ public class IndicesStatsRequest extends RequestBase {
 		 * to perform the operation on all indices
 		 * <p>
 		 * API name: {@code index}
+		 * <p>
+		 * Adds one or more values to <code>index</code>.
 		 */
-		public final Builder index(String... value) {
-			this.index = Arrays.asList(value);
+		public final Builder index(String value, String... values) {
+			this.index = _listAdd(this.index, value, values);
 			return this;
 		}
 
@@ -444,9 +489,15 @@ public class IndicesStatsRequest extends RequestBase {
 		 * Limit the information returned the specific metrics.
 		 * <p>
 		 * API name: {@code metric}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>metric</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>metric</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder metric(@Nullable List<String> value) {
-			this.metric = value;
+		public final Builder metric(List<String> list) {
+			this.metric = _listAddAll(this.metric, list);
 			return this;
 		}
 
@@ -454,9 +505,11 @@ public class IndicesStatsRequest extends RequestBase {
 		 * Limit the information returned the specific metrics.
 		 * <p>
 		 * API name: {@code metric}
+		 * <p>
+		 * Adds one or more values to <code>metric</code>.
 		 */
-		public final Builder metric(String... value) {
-			this.metric = Arrays.asList(value);
+		public final Builder metric(String value, String... values) {
+			this.metric = _listAdd(this.metric, value, values);
 			return this;
 		}
 
@@ -465,9 +518,15 @@ public class IndicesStatsRequest extends RequestBase {
 		 * metric
 		 * <p>
 		 * API name: {@code types}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>types</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>types</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder types(@Nullable List<String> value) {
-			this.types = value;
+		public final Builder types(List<String> list) {
+			this.types = _listAddAll(this.types, list);
 			return this;
 		}
 
@@ -476,9 +535,11 @@ public class IndicesStatsRequest extends RequestBase {
 		 * metric
 		 * <p>
 		 * API name: {@code types}
+		 * <p>
+		 * Adds one or more values to <code>types</code>.
 		 */
-		public final Builder types(String... value) {
-			this.types = Arrays.asList(value);
+		public final Builder types(String value, String... values) {
+			this.types = _listAdd(this.types, value, values);
 			return this;
 		}
 

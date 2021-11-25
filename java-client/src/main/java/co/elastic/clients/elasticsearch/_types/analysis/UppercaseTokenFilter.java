@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 
 // typedef: _types.analysis.UppercaseTokenFilter
 @JsonpDeserializable
@@ -43,10 +43,8 @@ public class UppercaseTokenFilter extends TokenFilterBase implements TokenFilter
 
 	}
 
-	public static UppercaseTokenFilter of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static UppercaseTokenFilter of(Function<Builder, ObjectBuilder<UppercaseTokenFilter>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**

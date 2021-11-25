@@ -33,7 +33,6 @@ import co.elastic.clients.json.JsonpSerializer;
 import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.MapBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
@@ -41,11 +40,9 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
 import java.lang.Long;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Supplier;
 import javax.annotation.Nullable;
@@ -132,10 +129,8 @@ public class Hit<TDocument> implements JsonpSerializable {
 
 	}
 
-	public static <TDocument> Hit<TDocument> of(Consumer<Builder<TDocument>> fn) {
-		Builder<TDocument> builder = new Builder<>();
-		fn.accept(builder);
-		return builder.build();
+	public static <TDocument> Hit<TDocument> of(Function<Builder<TDocument>, ObjectBuilder<Hit<TDocument>>> fn) {
+		return fn.apply(new Builder<>()).build();
 	}
 
 	/**
@@ -534,54 +529,113 @@ public class Hit<TDocument> implements JsonpSerializable {
 		/**
 		 * API name: {@code _explanation}
 		 */
-		public final Builder<TDocument> explanation(Consumer<Explanation.Builder> fn) {
-			Explanation.Builder builder = new Explanation.Builder();
-			fn.accept(builder);
-			return this.explanation(builder.build());
+		public final Builder<TDocument> explanation(Function<Explanation.Builder, ObjectBuilder<Explanation>> fn) {
+			return this.explanation(fn.apply(new Explanation.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code fields}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>fields</code>. Use
+		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
+		 * <code>fields</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetMap()
 		 */
-		public final Builder<TDocument> fields(@Nullable Map<String, JsonData> value) {
-			this.fields = value;
+		public final Builder<TDocument> fields(Map<String, JsonData> map) {
+			this.fields = _mapPutAll(this.fields, map);
+			return this;
+		}
+
+		/**
+		 * API name: {@code fields}
+		 * <p>
+		 * Adds an entry to <code>fields</code>.
+		 */
+		public final Builder<TDocument> fields(String key, JsonData value) {
+			this.fields = _mapPut(this.fields, key, value);
 			return this;
 		}
 
 		/**
 		 * API name: {@code highlight}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>highlight</code>. Use
+		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
+		 * <code>highlight</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetMap()
 		 */
-		public final Builder<TDocument> highlight(@Nullable Map<String, List<String>> value) {
-			this.highlight = value;
+		public final Builder<TDocument> highlight(Map<String, List<String>> map) {
+			this.highlight = _mapPutAll(this.highlight, map);
+			return this;
+		}
+
+		/**
+		 * API name: {@code highlight}
+		 * <p>
+		 * Adds an entry to <code>highlight</code>.
+		 */
+		public final Builder<TDocument> highlight(String key, List<String> value) {
+			this.highlight = _mapPut(this.highlight, key, value);
 			return this;
 		}
 
 		/**
 		 * API name: {@code inner_hits}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>innerHits</code>. Use
+		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
+		 * <code>innerHits</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetMap()
 		 */
-		public final Builder<TDocument> innerHits(@Nullable Map<String, InnerHitsResult> value) {
-			this.innerHits = value;
-			return this;
-		}
-
-		public final Builder<TDocument> innerHits(
-				Function<MapBuilder<String, InnerHitsResult, InnerHitsResult.Builder>, ObjectBuilder<Map<String, InnerHitsResult>>> fn) {
-			return innerHits(fn.apply(new MapBuilder<>(InnerHitsResult.Builder::new)).build());
-		}
-
-		/**
-		 * API name: {@code matched_queries}
-		 */
-		public final Builder<TDocument> matchedQueries(@Nullable List<String> value) {
-			this.matchedQueries = value;
+		public final Builder<TDocument> innerHits(Map<String, InnerHitsResult> map) {
+			this.innerHits = _mapPutAll(this.innerHits, map);
 			return this;
 		}
 
 		/**
-		 * API name: {@code matched_queries}
+		 * API name: {@code inner_hits}
+		 * <p>
+		 * Adds an entry to <code>innerHits</code>.
 		 */
-		public final Builder<TDocument> matchedQueries(String... value) {
-			this.matchedQueries = Arrays.asList(value);
+		public final Builder<TDocument> innerHits(String key, InnerHitsResult value) {
+			this.innerHits = _mapPut(this.innerHits, key, value);
+			return this;
+		}
+
+		/**
+		 * API name: {@code inner_hits}
+		 * <p>
+		 * Adds an entry to <code>innerHits</code> using a builder lambda.
+		 */
+		public final Builder<TDocument> innerHits(String key,
+				Function<InnerHitsResult.Builder, ObjectBuilder<InnerHitsResult>> fn) {
+			return innerHits(key, fn.apply(new InnerHitsResult.Builder()).build());
+		}
+
+		/**
+		 * API name: {@code matched_queries}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>matchedQueries</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>matchedQueries</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
+		 */
+		public final Builder<TDocument> matchedQueries(List<String> list) {
+			this.matchedQueries = _listAddAll(this.matchedQueries, list);
+			return this;
+		}
+
+		/**
+		 * API name: {@code matched_queries}
+		 * <p>
+		 * Adds one or more values to <code>matchedQueries</code>.
+		 */
+		public final Builder<TDocument> matchedQueries(String value, String... values) {
+			this.matchedQueries = _listAdd(this.matchedQueries, value, values);
 			return this;
 		}
 
@@ -596,25 +650,31 @@ public class Hit<TDocument> implements JsonpSerializable {
 		/**
 		 * API name: {@code _nested}
 		 */
-		public final Builder<TDocument> nested(Consumer<NestedIdentity.Builder> fn) {
-			NestedIdentity.Builder builder = new NestedIdentity.Builder();
-			fn.accept(builder);
-			return this.nested(builder.build());
+		public final Builder<TDocument> nested(Function<NestedIdentity.Builder, ObjectBuilder<NestedIdentity>> fn) {
+			return this.nested(fn.apply(new NestedIdentity.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code _ignored}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>ignored</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>ignored</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder<TDocument> ignored(@Nullable List<String> value) {
-			this.ignored = value;
+		public final Builder<TDocument> ignored(List<String> list) {
+			this.ignored = _listAddAll(this.ignored, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code _ignored}
+		 * <p>
+		 * Adds one or more values to <code>ignored</code>.
 		 */
-		public final Builder<TDocument> ignored(String... value) {
-			this.ignored = Arrays.asList(value);
+		public final Builder<TDocument> ignored(String value, String... values) {
+			this.ignored = _listAdd(this.ignored, value, values);
 			return this;
 		}
 
@@ -676,17 +736,25 @@ public class Hit<TDocument> implements JsonpSerializable {
 
 		/**
 		 * API name: {@code sort}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>sort</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>sort</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder<TDocument> sort(@Nullable List<String> value) {
-			this.sort = value;
+		public final Builder<TDocument> sort(List<String> list) {
+			this.sort = _listAddAll(this.sort, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code sort}
+		 * <p>
+		 * Adds one or more values to <code>sort</code>.
 		 */
-		public final Builder<TDocument> sort(String... value) {
-			this.sort = Arrays.asList(value);
+		public final Builder<TDocument> sort(String value, String... values) {
+			this.sort = _listAdd(this.sort, value, values);
 			return this;
 		}
 

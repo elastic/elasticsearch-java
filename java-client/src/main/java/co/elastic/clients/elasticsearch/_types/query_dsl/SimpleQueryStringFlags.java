@@ -38,7 +38,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Object;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.SimpleQueryStringFlags
@@ -88,10 +88,8 @@ public class SimpleQueryStringFlags implements TaggedUnion<SimpleQueryStringFlag
 
 	}
 
-	public static SimpleQueryStringFlags of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static SimpleQueryStringFlags of(Function<Builder, ObjectBuilder<SimpleQueryStringFlags>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**

@@ -32,15 +32,12 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -65,10 +62,8 @@ public class EnrichStatsResponse implements JsonpSerializable {
 
 	}
 
-	public static EnrichStatsResponse of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static EnrichStatsResponse of(Function<Builder, ObjectBuilder<EnrichStatsResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -151,74 +146,101 @@ public class EnrichStatsResponse implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code coordinator_stats}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>coordinatorStats</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>coordinatorStats</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder coordinatorStats(List<CoordinatorStats> value) {
-			this.coordinatorStats = value;
+		public final Builder coordinatorStats(List<CoordinatorStats> list) {
+			this.coordinatorStats = _listAddAll(this.coordinatorStats, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code coordinator_stats}
+		 * <p>
+		 * Adds one or more values to <code>coordinatorStats</code>.
 		 */
-		public final Builder coordinatorStats(CoordinatorStats... value) {
-			this.coordinatorStats = Arrays.asList(value);
+		public final Builder coordinatorStats(CoordinatorStats value, CoordinatorStats... values) {
+			this.coordinatorStats = _listAdd(this.coordinatorStats, value, values);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code coordinator_stats}
+		 * <p>
+		 * Adds a value to <code>coordinatorStats</code> using a builder lambda.
 		 */
-		public final Builder coordinatorStats(
-				Function<ListBuilder<CoordinatorStats, CoordinatorStats.Builder>, ObjectBuilder<List<CoordinatorStats>>> fn) {
-			return coordinatorStats(fn.apply(new ListBuilder<>(CoordinatorStats.Builder::new)).build());
+		public final Builder coordinatorStats(Function<CoordinatorStats.Builder, ObjectBuilder<CoordinatorStats>> fn) {
+			return coordinatorStats(fn.apply(new CoordinatorStats.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code executing_policies}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>executingPolicies</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>executingPolicies</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder executingPolicies(List<ExecutingPolicy> value) {
-			this.executingPolicies = value;
+		public final Builder executingPolicies(List<ExecutingPolicy> list) {
+			this.executingPolicies = _listAddAll(this.executingPolicies, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code executing_policies}
+		 * <p>
+		 * Adds one or more values to <code>executingPolicies</code>.
 		 */
-		public final Builder executingPolicies(ExecutingPolicy... value) {
-			this.executingPolicies = Arrays.asList(value);
+		public final Builder executingPolicies(ExecutingPolicy value, ExecutingPolicy... values) {
+			this.executingPolicies = _listAdd(this.executingPolicies, value, values);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code executing_policies}
+		 * <p>
+		 * Adds a value to <code>executingPolicies</code> using a builder lambda.
 		 */
-		public final Builder executingPolicies(
-				Function<ListBuilder<ExecutingPolicy, ExecutingPolicy.Builder>, ObjectBuilder<List<ExecutingPolicy>>> fn) {
-			return executingPolicies(fn.apply(new ListBuilder<>(ExecutingPolicy.Builder::new)).build());
+		public final Builder executingPolicies(Function<ExecutingPolicy.Builder, ObjectBuilder<ExecutingPolicy>> fn) {
+			return executingPolicies(fn.apply(new ExecutingPolicy.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code cache_stats}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>cacheStats</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>cacheStats</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder cacheStats(@Nullable List<CacheStats> value) {
-			this.cacheStats = value;
+		public final Builder cacheStats(List<CacheStats> list) {
+			this.cacheStats = _listAddAll(this.cacheStats, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code cache_stats}
+		 * <p>
+		 * Adds one or more values to <code>cacheStats</code>.
 		 */
-		public final Builder cacheStats(CacheStats... value) {
-			this.cacheStats = Arrays.asList(value);
+		public final Builder cacheStats(CacheStats value, CacheStats... values) {
+			this.cacheStats = _listAdd(this.cacheStats, value, values);
 			return this;
 		}
 
 		/**
 		 * API name: {@code cache_stats}
+		 * <p>
+		 * Adds a value to <code>cacheStats</code> using a builder lambda.
 		 */
-		public final Builder cacheStats(
-				Function<ListBuilder<CacheStats, CacheStats.Builder>, ObjectBuilder<List<CacheStats>>> fn) {
-			return cacheStats(fn.apply(new ListBuilder<>(CacheStats.Builder::new)).build());
+		public final Builder cacheStats(Function<CacheStats.Builder, ObjectBuilder<CacheStats>> fn) {
+			return cacheStats(fn.apply(new CacheStats.Builder()).build());
 		}
 
 		/**

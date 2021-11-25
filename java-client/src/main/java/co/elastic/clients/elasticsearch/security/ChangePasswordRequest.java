@@ -41,7 +41,7 @@ import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: security.change_password.Request
@@ -70,10 +70,8 @@ public class ChangePasswordRequest extends RequestBase implements JsonpSerializa
 
 	}
 
-	public static ChangePasswordRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static ChangePasswordRequest of(Function<Builder, ObjectBuilder<ChangePasswordRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**

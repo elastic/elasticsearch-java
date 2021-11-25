@@ -32,7 +32,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.mapping.DateRangeProperty
@@ -50,10 +50,8 @@ public class DateRangeProperty extends RangePropertyBase implements PropertyVari
 
 	}
 
-	public static DateRangeProperty of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static DateRangeProperty of(Function<Builder, ObjectBuilder<DateRangeProperty>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**

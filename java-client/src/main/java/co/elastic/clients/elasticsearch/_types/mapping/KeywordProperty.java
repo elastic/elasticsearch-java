@@ -34,7 +34,7 @@ import java.lang.Boolean;
 import java.lang.Double;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.mapping.KeywordProperty
@@ -84,10 +84,8 @@ public class KeywordProperty extends DocValuesPropertyBase implements PropertyVa
 
 	}
 
-	public static KeywordProperty of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static KeywordProperty of(Function<Builder, ObjectBuilder<KeywordProperty>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**

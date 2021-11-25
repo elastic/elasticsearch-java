@@ -35,10 +35,9 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.analysis.PatternAnalyzer
@@ -69,10 +68,8 @@ public class PatternAnalyzer implements AnalyzerVariant, JsonpSerializable {
 
 	}
 
-	public static PatternAnalyzer of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static PatternAnalyzer of(Function<Builder, ObjectBuilder<PatternAnalyzer>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -219,17 +216,25 @@ public class PatternAnalyzer implements AnalyzerVariant, JsonpSerializable {
 
 		/**
 		 * API name: {@code stopwords}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>stopwords</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>stopwords</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder stopwords(@Nullable List<String> value) {
-			this.stopwords = value;
+		public final Builder stopwords(List<String> list) {
+			this.stopwords = _listAddAll(this.stopwords, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code stopwords}
+		 * <p>
+		 * Adds one or more values to <code>stopwords</code>.
 		 */
-		public final Builder stopwords(String... value) {
-			this.stopwords = Arrays.asList(value);
+		public final Builder stopwords(String value, String... values) {
+			this.stopwords = _listAdd(this.stopwords, value, values);
 			return this;
 		}
 

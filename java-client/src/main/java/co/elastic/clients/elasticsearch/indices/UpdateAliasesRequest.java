@@ -35,17 +35,14 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -70,10 +67,8 @@ public class UpdateAliasesRequest extends RequestBase implements JsonpSerializab
 
 	}
 
-	public static UpdateAliasesRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static UpdateAliasesRequest of(Function<Builder, ObjectBuilder<UpdateAliasesRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -144,25 +139,35 @@ public class UpdateAliasesRequest extends RequestBase implements JsonpSerializab
 
 		/**
 		 * API name: {@code actions}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>actions</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>actions</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder actions(@Nullable List<Action> value) {
-			this.actions = value;
+		public final Builder actions(List<Action> list) {
+			this.actions = _listAddAll(this.actions, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code actions}
+		 * <p>
+		 * Adds one or more values to <code>actions</code>.
 		 */
-		public final Builder actions(Action... value) {
-			this.actions = Arrays.asList(value);
+		public final Builder actions(Action value, Action... values) {
+			this.actions = _listAdd(this.actions, value, values);
 			return this;
 		}
 
 		/**
 		 * API name: {@code actions}
+		 * <p>
+		 * Adds a value to <code>actions</code> using a builder lambda.
 		 */
-		public final Builder actions(Function<ListBuilder<Action, Action.Builder>, ObjectBuilder<List<Action>>> fn) {
-			return actions(fn.apply(new ListBuilder<>(Action.Builder::new)).build());
+		public final Builder actions(Function<Action.Builder, ObjectBuilder<Action>> fn) {
+			return actions(fn.apply(new Action.Builder()).build());
 		}
 
 		/**
@@ -180,10 +185,8 @@ public class UpdateAliasesRequest extends RequestBase implements JsonpSerializab
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
-		public final Builder masterTimeout(Consumer<Time.Builder> fn) {
-			Time.Builder builder = new Time.Builder();
-			fn.accept(builder);
-			return this.masterTimeout(builder.build());
+		public final Builder masterTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.masterTimeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -201,10 +204,8 @@ public class UpdateAliasesRequest extends RequestBase implements JsonpSerializab
 		 * <p>
 		 * API name: {@code timeout}
 		 */
-		public final Builder timeout(Consumer<Time.Builder> fn) {
-			Time.Builder builder = new Time.Builder();
-			fn.accept(builder);
-			return this.timeout(builder.build());
+		public final Builder timeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.timeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**

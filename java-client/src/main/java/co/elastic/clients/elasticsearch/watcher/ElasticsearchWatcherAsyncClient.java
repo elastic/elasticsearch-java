@@ -34,7 +34,7 @@ import co.elastic.clients.transport.TransportOptions;
 import co.elastic.clients.util.ObjectBuilder;
 import java.io.IOException;
 import java.util.concurrent.CompletableFuture;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 /**
@@ -89,11 +89,10 @@ public class ElasticsearchWatcherAsyncClient
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<AckWatchResponse> ackWatch(Consumer<AckWatchRequest.Builder> fn)
+	public final CompletableFuture<AckWatchResponse> ackWatch(
+			Function<AckWatchRequest.Builder, ObjectBuilder<AckWatchRequest>> fn)
 			throws IOException, ElasticsearchException {
-		AckWatchRequest.Builder builder = new AckWatchRequest.Builder();
-		fn.accept(builder);
-		return ackWatch(builder.build());
+		return ackWatch(fn.apply(new AckWatchRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: watcher.activate_watch
@@ -125,11 +124,10 @@ public class ElasticsearchWatcherAsyncClient
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<ActivateWatchResponse> activateWatch(Consumer<ActivateWatchRequest.Builder> fn)
+	public final CompletableFuture<ActivateWatchResponse> activateWatch(
+			Function<ActivateWatchRequest.Builder, ObjectBuilder<ActivateWatchRequest>> fn)
 			throws IOException, ElasticsearchException {
-		ActivateWatchRequest.Builder builder = new ActivateWatchRequest.Builder();
-		fn.accept(builder);
-		return activateWatch(builder.build());
+		return activateWatch(fn.apply(new ActivateWatchRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: watcher.deactivate_watch
@@ -161,11 +159,10 @@ public class ElasticsearchWatcherAsyncClient
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<DeactivateWatchResponse> deactivateWatch(Consumer<DeactivateWatchRequest.Builder> fn)
+	public final CompletableFuture<DeactivateWatchResponse> deactivateWatch(
+			Function<DeactivateWatchRequest.Builder, ObjectBuilder<DeactivateWatchRequest>> fn)
 			throws IOException, ElasticsearchException {
-		DeactivateWatchRequest.Builder builder = new DeactivateWatchRequest.Builder();
-		fn.accept(builder);
-		return deactivateWatch(builder.build());
+		return deactivateWatch(fn.apply(new DeactivateWatchRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: watcher.delete_watch
@@ -197,11 +194,10 @@ public class ElasticsearchWatcherAsyncClient
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<DeleteWatchResponse> deleteWatch(Consumer<DeleteWatchRequest.Builder> fn)
+	public final CompletableFuture<DeleteWatchResponse> deleteWatch(
+			Function<DeleteWatchRequest.Builder, ObjectBuilder<DeleteWatchRequest>> fn)
 			throws IOException, ElasticsearchException {
-		DeleteWatchRequest.Builder builder = new DeleteWatchRequest.Builder();
-		fn.accept(builder);
-		return deleteWatch(builder.build());
+		return deleteWatch(fn.apply(new DeleteWatchRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: watcher.execute_watch
@@ -233,11 +229,10 @@ public class ElasticsearchWatcherAsyncClient
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<ExecuteWatchResponse> executeWatch(Consumer<ExecuteWatchRequest.Builder> fn)
+	public final CompletableFuture<ExecuteWatchResponse> executeWatch(
+			Function<ExecuteWatchRequest.Builder, ObjectBuilder<ExecuteWatchRequest>> fn)
 			throws IOException, ElasticsearchException {
-		ExecuteWatchRequest.Builder builder = new ExecuteWatchRequest.Builder();
-		fn.accept(builder);
-		return executeWatch(builder.build());
+		return executeWatch(fn.apply(new ExecuteWatchRequest.Builder()).build());
 	}
 
 	/**
@@ -282,11 +277,10 @@ public class ElasticsearchWatcherAsyncClient
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<GetWatchResponse> getWatch(Consumer<GetWatchRequest.Builder> fn)
+	public final CompletableFuture<GetWatchResponse> getWatch(
+			Function<GetWatchRequest.Builder, ObjectBuilder<GetWatchRequest>> fn)
 			throws IOException, ElasticsearchException {
-		GetWatchRequest.Builder builder = new GetWatchRequest.Builder();
-		fn.accept(builder);
-		return getWatch(builder.build());
+		return getWatch(fn.apply(new GetWatchRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: watcher.put_watch
@@ -318,11 +312,10 @@ public class ElasticsearchWatcherAsyncClient
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<PutWatchResponse> putWatch(Consumer<PutWatchRequest.Builder> fn)
+	public final CompletableFuture<PutWatchResponse> putWatch(
+			Function<PutWatchRequest.Builder, ObjectBuilder<PutWatchRequest>> fn)
 			throws IOException, ElasticsearchException {
-		PutWatchRequest.Builder builder = new PutWatchRequest.Builder();
-		fn.accept(builder);
-		return putWatch(builder.build());
+		return putWatch(fn.apply(new PutWatchRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: watcher.query_watches
@@ -354,11 +347,10 @@ public class ElasticsearchWatcherAsyncClient
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<QueryWatchesResponse> queryWatches(Consumer<QueryWatchesRequest.Builder> fn)
+	public final CompletableFuture<QueryWatchesResponse> queryWatches(
+			Function<QueryWatchesRequest.Builder, ObjectBuilder<QueryWatchesRequest>> fn)
 			throws IOException, ElasticsearchException {
-		QueryWatchesRequest.Builder builder = new QueryWatchesRequest.Builder();
-		fn.accept(builder);
-		return queryWatches(builder.build());
+		return queryWatches(fn.apply(new QueryWatchesRequest.Builder()).build());
 	}
 
 	/**
@@ -417,11 +409,10 @@ public class ElasticsearchWatcherAsyncClient
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<WatcherStatsResponse> stats(Consumer<WatcherStatsRequest.Builder> fn)
+	public final CompletableFuture<WatcherStatsResponse> stats(
+			Function<WatcherStatsRequest.Builder, ObjectBuilder<WatcherStatsRequest>> fn)
 			throws IOException, ElasticsearchException {
-		WatcherStatsRequest.Builder builder = new WatcherStatsRequest.Builder();
-		fn.accept(builder);
-		return stats(builder.build());
+		return stats(fn.apply(new WatcherStatsRequest.Builder()).build());
 	}
 
 	/**

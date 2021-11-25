@@ -39,10 +39,9 @@ import java.lang.Boolean;
 import java.lang.Float;
 import java.lang.Long;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: tasks._types.Status
@@ -112,10 +111,8 @@ public class Status implements JsonpSerializable {
 
 	}
 
-	public static Status of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static Status of(Function<Builder, ObjectBuilder<Status>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -411,17 +408,25 @@ public class Status implements JsonpSerializable {
 
 		/**
 		 * API name: {@code failures}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>failures</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>failures</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder failures(@Nullable List<String> value) {
-			this.failures = value;
+		public final Builder failures(List<String> list) {
+			this.failures = _listAddAll(this.failures, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code failures}
+		 * <p>
+		 * Adds one or more values to <code>failures</code>.
 		 */
-		public final Builder failures(String... value) {
-			this.failures = Arrays.asList(value);
+		public final Builder failures(String value, String... values) {
+			this.failures = _listAdd(this.failures, value, values);
 			return this;
 		}
 
@@ -444,10 +449,8 @@ public class Status implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code retries}
 		 */
-		public final Builder retries(Consumer<Retries.Builder> fn) {
-			Retries.Builder builder = new Retries.Builder();
-			fn.accept(builder);
-			return this.retries(builder.build());
+		public final Builder retries(Function<Retries.Builder, ObjectBuilder<Retries>> fn) {
+			return this.retries(fn.apply(new Retries.Builder()).build());
 		}
 
 		/**
@@ -461,10 +464,8 @@ public class Status implements JsonpSerializable {
 		/**
 		 * API name: {@code throttled}
 		 */
-		public final Builder throttled(Consumer<Time.Builder> fn) {
-			Time.Builder builder = new Time.Builder();
-			fn.accept(builder);
-			return this.throttled(builder.build());
+		public final Builder throttled(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.throttled(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -486,10 +487,8 @@ public class Status implements JsonpSerializable {
 		/**
 		 * API name: {@code throttled_until}
 		 */
-		public final Builder throttledUntil(Consumer<Time.Builder> fn) {
-			Time.Builder builder = new Time.Builder();
-			fn.accept(builder);
-			return this.throttledUntil(builder.build());
+		public final Builder throttledUntil(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.throttledUntil(fn.apply(new Time.Builder()).build());
 		}
 
 		/**

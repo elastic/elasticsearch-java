@@ -32,8 +32,6 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ListBuilder;
-import co.elastic.clients.util.MapBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
@@ -41,11 +39,9 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -118,10 +114,8 @@ public class InnerHits implements JsonpSerializable {
 
 	}
 
-	public static InnerHits of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static InnerHits of(Function<Builder, ObjectBuilder<InnerHits>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -456,34 +450,41 @@ public class InnerHits implements JsonpSerializable {
 		/**
 		 * API name: {@code collapse}
 		 */
-		public final Builder collapse(Consumer<FieldCollapse.Builder> fn) {
-			FieldCollapse.Builder builder = new FieldCollapse.Builder();
-			fn.accept(builder);
-			return this.collapse(builder.build());
+		public final Builder collapse(Function<FieldCollapse.Builder, ObjectBuilder<FieldCollapse>> fn) {
+			return this.collapse(fn.apply(new FieldCollapse.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code docvalue_fields}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>docvalueFields</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>docvalueFields</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder docvalueFields(@Nullable List<FieldAndFormat> value) {
-			this.docvalueFields = value;
+		public final Builder docvalueFields(List<FieldAndFormat> list) {
+			this.docvalueFields = _listAddAll(this.docvalueFields, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code docvalue_fields}
+		 * <p>
+		 * Adds one or more values to <code>docvalueFields</code>.
 		 */
-		public final Builder docvalueFields(FieldAndFormat... value) {
-			this.docvalueFields = Arrays.asList(value);
+		public final Builder docvalueFields(FieldAndFormat value, FieldAndFormat... values) {
+			this.docvalueFields = _listAdd(this.docvalueFields, value, values);
 			return this;
 		}
 
 		/**
 		 * API name: {@code docvalue_fields}
+		 * <p>
+		 * Adds a value to <code>docvalueFields</code> using a builder lambda.
 		 */
-		public final Builder docvalueFields(
-				Function<ListBuilder<FieldAndFormat, FieldAndFormat.Builder>, ObjectBuilder<List<FieldAndFormat>>> fn) {
-			return docvalueFields(fn.apply(new ListBuilder<>(FieldAndFormat.Builder::new)).build());
+		public final Builder docvalueFields(Function<FieldAndFormat.Builder, ObjectBuilder<FieldAndFormat>> fn) {
+			return docvalueFields(fn.apply(new FieldAndFormat.Builder()).build());
 		}
 
 		/**
@@ -505,10 +506,8 @@ public class InnerHits implements JsonpSerializable {
 		/**
 		 * API name: {@code highlight}
 		 */
-		public final Builder highlight(Consumer<Highlight.Builder> fn) {
-			Highlight.Builder builder = new Highlight.Builder();
-			fn.accept(builder);
-			return this.highlight(builder.build());
+		public final Builder highlight(Function<Highlight.Builder, ObjectBuilder<Highlight>> fn) {
+			return this.highlight(fn.apply(new Highlight.Builder()).build());
 		}
 
 		/**
@@ -521,15 +520,35 @@ public class InnerHits implements JsonpSerializable {
 
 		/**
 		 * API name: {@code script_fields}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>scriptFields</code>. Use
+		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
+		 * <code>scriptFields</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetMap()
 		 */
-		public final Builder scriptFields(@Nullable Map<String, ScriptField> value) {
-			this.scriptFields = value;
+		public final Builder scriptFields(Map<String, ScriptField> map) {
+			this.scriptFields = _mapPutAll(this.scriptFields, map);
 			return this;
 		}
 
-		public final Builder scriptFields(
-				Function<MapBuilder<String, ScriptField, ScriptField.Builder>, ObjectBuilder<Map<String, ScriptField>>> fn) {
-			return scriptFields(fn.apply(new MapBuilder<>(ScriptField.Builder::new)).build());
+		/**
+		 * API name: {@code script_fields}
+		 * <p>
+		 * Adds an entry to <code>scriptFields</code>.
+		 */
+		public final Builder scriptFields(String key, ScriptField value) {
+			this.scriptFields = _mapPut(this.scriptFields, key, value);
+			return this;
+		}
+
+		/**
+		 * API name: {@code script_fields}
+		 * <p>
+		 * Adds an entry to <code>scriptFields</code> using a builder lambda.
+		 */
+		public final Builder scriptFields(String key, Function<ScriptField.Builder, ObjectBuilder<ScriptField>> fn) {
+			return scriptFields(key, fn.apply(new ScriptField.Builder()).build());
 		}
 
 		/**
@@ -542,42 +561,59 @@ public class InnerHits implements JsonpSerializable {
 
 		/**
 		 * API name: {@code fields}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>fields</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>fields</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder fields(@Nullable List<String> value) {
-			this.fields = value;
+		public final Builder fields(List<String> list) {
+			this.fields = _listAddAll(this.fields, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code fields}
+		 * <p>
+		 * Adds one or more values to <code>fields</code>.
 		 */
-		public final Builder fields(String... value) {
-			this.fields = Arrays.asList(value);
+		public final Builder fields(String value, String... values) {
+			this.fields = _listAdd(this.fields, value, values);
 			return this;
 		}
 
 		/**
 		 * API name: {@code sort}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>sort</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>sort</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder sort(@Nullable List<SortOptions> value) {
-			this.sort = value;
+		public final Builder sort(List<SortOptions> list) {
+			this.sort = _listAddAll(this.sort, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code sort}
+		 * <p>
+		 * Adds one or more values to <code>sort</code>.
 		 */
-		public final Builder sort(SortOptions... value) {
-			this.sort = Arrays.asList(value);
+		public final Builder sort(SortOptions value, SortOptions... values) {
+			this.sort = _listAdd(this.sort, value, values);
 			return this;
 		}
 
 		/**
 		 * API name: {@code sort}
+		 * <p>
+		 * Adds a value to <code>sort</code> using a builder lambda.
 		 */
-		public final Builder sort(
-				Function<ListBuilder<SortOptions, SortOptions.Builder>, ObjectBuilder<List<SortOptions>>> fn) {
-			return sort(fn.apply(new ListBuilder<>(SortOptions.Builder::new)).build());
+		public final Builder sort(Function<SortOptions.Builder, ObjectBuilder<SortOptions>> fn) {
+			return sort(fn.apply(new SortOptions.Builder()).build());
 		}
 
 		/**
@@ -591,25 +627,31 @@ public class InnerHits implements JsonpSerializable {
 		/**
 		 * API name: {@code _source}
 		 */
-		public final Builder source(Consumer<SourceConfig.Builder> fn) {
-			SourceConfig.Builder builder = new SourceConfig.Builder();
-			fn.accept(builder);
-			return this.source(builder.build());
+		public final Builder source(Function<SourceConfig.Builder, ObjectBuilder<SourceConfig>> fn) {
+			return this.source(fn.apply(new SourceConfig.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code stored_field}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>storedField</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>storedField</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder storedField(@Nullable List<String> value) {
-			this.storedField = value;
+		public final Builder storedField(List<String> list) {
+			this.storedField = _listAddAll(this.storedField, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code stored_field}
+		 * <p>
+		 * Adds one or more values to <code>storedField</code>.
 		 */
-		public final Builder storedField(String... value) {
-			this.storedField = Arrays.asList(value);
+		public final Builder storedField(String value, String... values) {
+			this.storedField = _listAdd(this.storedField, value, values);
 			return this;
 		}
 

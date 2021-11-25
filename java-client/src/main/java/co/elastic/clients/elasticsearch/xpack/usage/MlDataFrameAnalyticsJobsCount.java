@@ -35,7 +35,7 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 
 // typedef: xpack.usage.MlDataFrameAnalyticsJobsCount
 @JsonpDeserializable
@@ -50,10 +50,8 @@ public class MlDataFrameAnalyticsJobsCount implements JsonpSerializable {
 
 	}
 
-	public static MlDataFrameAnalyticsJobsCount of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static MlDataFrameAnalyticsJobsCount of(Function<Builder, ObjectBuilder<MlDataFrameAnalyticsJobsCount>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**

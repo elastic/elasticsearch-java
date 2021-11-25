@@ -36,7 +36,7 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.recovery.RecoveryIndexStatus
@@ -82,10 +82,8 @@ public class RecoveryIndexStatus implements JsonpSerializable {
 
 	}
 
-	public static RecoveryIndexStatus of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static RecoveryIndexStatus of(Function<Builder, ObjectBuilder<RecoveryIndexStatus>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -243,10 +241,8 @@ public class RecoveryIndexStatus implements JsonpSerializable {
 		/**
 		 * API name: {@code bytes}
 		 */
-		public final Builder bytes(Consumer<RecoveryBytes.Builder> fn) {
-			RecoveryBytes.Builder builder = new RecoveryBytes.Builder();
-			fn.accept(builder);
-			return this.bytes(builder.build());
+		public final Builder bytes(Function<RecoveryBytes.Builder, ObjectBuilder<RecoveryBytes>> fn) {
+			return this.bytes(fn.apply(new RecoveryBytes.Builder()).build());
 		}
 
 		/**
@@ -260,10 +256,8 @@ public class RecoveryIndexStatus implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code files}
 		 */
-		public final Builder files(Consumer<RecoveryFiles.Builder> fn) {
-			RecoveryFiles.Builder builder = new RecoveryFiles.Builder();
-			fn.accept(builder);
-			return this.files(builder.build());
+		public final Builder files(Function<RecoveryFiles.Builder, ObjectBuilder<RecoveryFiles>> fn) {
+			return this.files(fn.apply(new RecoveryFiles.Builder()).build());
 		}
 
 		/**
@@ -277,10 +271,8 @@ public class RecoveryIndexStatus implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code size}
 		 */
-		public final Builder size(Consumer<RecoveryBytes.Builder> fn) {
-			RecoveryBytes.Builder builder = new RecoveryBytes.Builder();
-			fn.accept(builder);
-			return this.size(builder.build());
+		public final Builder size(Function<RecoveryBytes.Builder, ObjectBuilder<RecoveryBytes>> fn) {
+			return this.size(fn.apply(new RecoveryBytes.Builder()).build());
 		}
 
 		/**
@@ -294,10 +286,8 @@ public class RecoveryIndexStatus implements JsonpSerializable {
 		/**
 		 * API name: {@code source_throttle_time}
 		 */
-		public final Builder sourceThrottleTime(Consumer<Time.Builder> fn) {
-			Time.Builder builder = new Time.Builder();
-			fn.accept(builder);
-			return this.sourceThrottleTime(builder.build());
+		public final Builder sourceThrottleTime(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.sourceThrottleTime(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -319,10 +309,8 @@ public class RecoveryIndexStatus implements JsonpSerializable {
 		/**
 		 * API name: {@code target_throttle_time}
 		 */
-		public final Builder targetThrottleTime(Consumer<Time.Builder> fn) {
-			Time.Builder builder = new Time.Builder();
-			fn.accept(builder);
-			return this.targetThrottleTime(builder.build());
+		public final Builder targetThrottleTime(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.targetThrottleTime(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -352,10 +340,8 @@ public class RecoveryIndexStatus implements JsonpSerializable {
 		/**
 		 * API name: {@code total_time}
 		 */
-		public final Builder totalTime(Consumer<Time.Builder> fn) {
-			Time.Builder builder = new Time.Builder();
-			fn.accept(builder);
-			return this.totalTime(builder.build());
+		public final Builder totalTime(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.totalTime(fn.apply(new Time.Builder()).build());
 		}
 
 		/**

@@ -39,7 +39,7 @@ import co.elastic.clients.util.TaggedUnionUtils;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Object;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ingest._types.ProcessorContainer
@@ -161,10 +161,8 @@ public class Processor implements TaggedUnion<Processor.Kind, Object>, JsonpSeri
 
 	}
 
-	public static Processor of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static Processor of(Function<Builder, ObjectBuilder<Processor>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -772,10 +770,9 @@ public class Processor implements TaggedUnion<Processor.Kind, Object>, JsonpSeri
 			return this;
 		}
 
-		public ObjectBuilder<Processor> attachment(Consumer<AttachmentProcessor.Builder> fn) {
-			AttachmentProcessor.Builder builder = new AttachmentProcessor.Builder();
-			fn.accept(builder);
-			return this.attachment(builder.build());
+		public ObjectBuilder<Processor> attachment(
+				Function<AttachmentProcessor.Builder, ObjectBuilder<AttachmentProcessor>> fn) {
+			return this.attachment(fn.apply(new AttachmentProcessor.Builder()).build());
 		}
 
 		public ObjectBuilder<Processor> append(AppendProcessor v) {
@@ -784,10 +781,8 @@ public class Processor implements TaggedUnion<Processor.Kind, Object>, JsonpSeri
 			return this;
 		}
 
-		public ObjectBuilder<Processor> append(Consumer<AppendProcessor.Builder> fn) {
-			AppendProcessor.Builder builder = new AppendProcessor.Builder();
-			fn.accept(builder);
-			return this.append(builder.build());
+		public ObjectBuilder<Processor> append(Function<AppendProcessor.Builder, ObjectBuilder<AppendProcessor>> fn) {
+			return this.append(fn.apply(new AppendProcessor.Builder()).build());
 		}
 
 		public ObjectBuilder<Processor> csv(CsvProcessor v) {
@@ -796,10 +791,8 @@ public class Processor implements TaggedUnion<Processor.Kind, Object>, JsonpSeri
 			return this;
 		}
 
-		public ObjectBuilder<Processor> csv(Consumer<CsvProcessor.Builder> fn) {
-			CsvProcessor.Builder builder = new CsvProcessor.Builder();
-			fn.accept(builder);
-			return this.csv(builder.build());
+		public ObjectBuilder<Processor> csv(Function<CsvProcessor.Builder, ObjectBuilder<CsvProcessor>> fn) {
+			return this.csv(fn.apply(new CsvProcessor.Builder()).build());
 		}
 
 		public ObjectBuilder<Processor> convert(ConvertProcessor v) {
@@ -808,10 +801,9 @@ public class Processor implements TaggedUnion<Processor.Kind, Object>, JsonpSeri
 			return this;
 		}
 
-		public ObjectBuilder<Processor> convert(Consumer<ConvertProcessor.Builder> fn) {
-			ConvertProcessor.Builder builder = new ConvertProcessor.Builder();
-			fn.accept(builder);
-			return this.convert(builder.build());
+		public ObjectBuilder<Processor> convert(
+				Function<ConvertProcessor.Builder, ObjectBuilder<ConvertProcessor>> fn) {
+			return this.convert(fn.apply(new ConvertProcessor.Builder()).build());
 		}
 
 		public ObjectBuilder<Processor> date(DateProcessor v) {
@@ -820,10 +812,8 @@ public class Processor implements TaggedUnion<Processor.Kind, Object>, JsonpSeri
 			return this;
 		}
 
-		public ObjectBuilder<Processor> date(Consumer<DateProcessor.Builder> fn) {
-			DateProcessor.Builder builder = new DateProcessor.Builder();
-			fn.accept(builder);
-			return this.date(builder.build());
+		public ObjectBuilder<Processor> date(Function<DateProcessor.Builder, ObjectBuilder<DateProcessor>> fn) {
+			return this.date(fn.apply(new DateProcessor.Builder()).build());
 		}
 
 		public ObjectBuilder<Processor> dateIndexName(DateIndexNameProcessor v) {
@@ -832,10 +822,9 @@ public class Processor implements TaggedUnion<Processor.Kind, Object>, JsonpSeri
 			return this;
 		}
 
-		public ObjectBuilder<Processor> dateIndexName(Consumer<DateIndexNameProcessor.Builder> fn) {
-			DateIndexNameProcessor.Builder builder = new DateIndexNameProcessor.Builder();
-			fn.accept(builder);
-			return this.dateIndexName(builder.build());
+		public ObjectBuilder<Processor> dateIndexName(
+				Function<DateIndexNameProcessor.Builder, ObjectBuilder<DateIndexNameProcessor>> fn) {
+			return this.dateIndexName(fn.apply(new DateIndexNameProcessor.Builder()).build());
 		}
 
 		public ObjectBuilder<Processor> dotExpander(DotExpanderProcessor v) {
@@ -844,10 +833,9 @@ public class Processor implements TaggedUnion<Processor.Kind, Object>, JsonpSeri
 			return this;
 		}
 
-		public ObjectBuilder<Processor> dotExpander(Consumer<DotExpanderProcessor.Builder> fn) {
-			DotExpanderProcessor.Builder builder = new DotExpanderProcessor.Builder();
-			fn.accept(builder);
-			return this.dotExpander(builder.build());
+		public ObjectBuilder<Processor> dotExpander(
+				Function<DotExpanderProcessor.Builder, ObjectBuilder<DotExpanderProcessor>> fn) {
+			return this.dotExpander(fn.apply(new DotExpanderProcessor.Builder()).build());
 		}
 
 		public ObjectBuilder<Processor> enrich(EnrichProcessor v) {
@@ -856,10 +844,8 @@ public class Processor implements TaggedUnion<Processor.Kind, Object>, JsonpSeri
 			return this;
 		}
 
-		public ObjectBuilder<Processor> enrich(Consumer<EnrichProcessor.Builder> fn) {
-			EnrichProcessor.Builder builder = new EnrichProcessor.Builder();
-			fn.accept(builder);
-			return this.enrich(builder.build());
+		public ObjectBuilder<Processor> enrich(Function<EnrichProcessor.Builder, ObjectBuilder<EnrichProcessor>> fn) {
+			return this.enrich(fn.apply(new EnrichProcessor.Builder()).build());
 		}
 
 		public ObjectBuilder<Processor> fail(FailProcessor v) {
@@ -868,10 +854,8 @@ public class Processor implements TaggedUnion<Processor.Kind, Object>, JsonpSeri
 			return this;
 		}
 
-		public ObjectBuilder<Processor> fail(Consumer<FailProcessor.Builder> fn) {
-			FailProcessor.Builder builder = new FailProcessor.Builder();
-			fn.accept(builder);
-			return this.fail(builder.build());
+		public ObjectBuilder<Processor> fail(Function<FailProcessor.Builder, ObjectBuilder<FailProcessor>> fn) {
+			return this.fail(fn.apply(new FailProcessor.Builder()).build());
 		}
 
 		public ObjectBuilder<Processor> foreach(ForeachProcessor v) {
@@ -880,10 +864,9 @@ public class Processor implements TaggedUnion<Processor.Kind, Object>, JsonpSeri
 			return this;
 		}
 
-		public ObjectBuilder<Processor> foreach(Consumer<ForeachProcessor.Builder> fn) {
-			ForeachProcessor.Builder builder = new ForeachProcessor.Builder();
-			fn.accept(builder);
-			return this.foreach(builder.build());
+		public ObjectBuilder<Processor> foreach(
+				Function<ForeachProcessor.Builder, ObjectBuilder<ForeachProcessor>> fn) {
+			return this.foreach(fn.apply(new ForeachProcessor.Builder()).build());
 		}
 
 		public ObjectBuilder<Processor> json(JsonProcessor v) {
@@ -892,10 +875,8 @@ public class Processor implements TaggedUnion<Processor.Kind, Object>, JsonpSeri
 			return this;
 		}
 
-		public ObjectBuilder<Processor> json(Consumer<JsonProcessor.Builder> fn) {
-			JsonProcessor.Builder builder = new JsonProcessor.Builder();
-			fn.accept(builder);
-			return this.json(builder.build());
+		public ObjectBuilder<Processor> json(Function<JsonProcessor.Builder, ObjectBuilder<JsonProcessor>> fn) {
+			return this.json(fn.apply(new JsonProcessor.Builder()).build());
 		}
 
 		public ObjectBuilder<Processor> userAgent(UserAgentProcessor v) {
@@ -904,10 +885,9 @@ public class Processor implements TaggedUnion<Processor.Kind, Object>, JsonpSeri
 			return this;
 		}
 
-		public ObjectBuilder<Processor> userAgent(Consumer<UserAgentProcessor.Builder> fn) {
-			UserAgentProcessor.Builder builder = new UserAgentProcessor.Builder();
-			fn.accept(builder);
-			return this.userAgent(builder.build());
+		public ObjectBuilder<Processor> userAgent(
+				Function<UserAgentProcessor.Builder, ObjectBuilder<UserAgentProcessor>> fn) {
+			return this.userAgent(fn.apply(new UserAgentProcessor.Builder()).build());
 		}
 
 		public ObjectBuilder<Processor> kv(KeyValueProcessor v) {
@@ -916,10 +896,8 @@ public class Processor implements TaggedUnion<Processor.Kind, Object>, JsonpSeri
 			return this;
 		}
 
-		public ObjectBuilder<Processor> kv(Consumer<KeyValueProcessor.Builder> fn) {
-			KeyValueProcessor.Builder builder = new KeyValueProcessor.Builder();
-			fn.accept(builder);
-			return this.kv(builder.build());
+		public ObjectBuilder<Processor> kv(Function<KeyValueProcessor.Builder, ObjectBuilder<KeyValueProcessor>> fn) {
+			return this.kv(fn.apply(new KeyValueProcessor.Builder()).build());
 		}
 
 		public ObjectBuilder<Processor> geoip(GeoIpProcessor v) {
@@ -928,10 +906,8 @@ public class Processor implements TaggedUnion<Processor.Kind, Object>, JsonpSeri
 			return this;
 		}
 
-		public ObjectBuilder<Processor> geoip(Consumer<GeoIpProcessor.Builder> fn) {
-			GeoIpProcessor.Builder builder = new GeoIpProcessor.Builder();
-			fn.accept(builder);
-			return this.geoip(builder.build());
+		public ObjectBuilder<Processor> geoip(Function<GeoIpProcessor.Builder, ObjectBuilder<GeoIpProcessor>> fn) {
+			return this.geoip(fn.apply(new GeoIpProcessor.Builder()).build());
 		}
 
 		public ObjectBuilder<Processor> grok(GrokProcessor v) {
@@ -940,10 +916,8 @@ public class Processor implements TaggedUnion<Processor.Kind, Object>, JsonpSeri
 			return this;
 		}
 
-		public ObjectBuilder<Processor> grok(Consumer<GrokProcessor.Builder> fn) {
-			GrokProcessor.Builder builder = new GrokProcessor.Builder();
-			fn.accept(builder);
-			return this.grok(builder.build());
+		public ObjectBuilder<Processor> grok(Function<GrokProcessor.Builder, ObjectBuilder<GrokProcessor>> fn) {
+			return this.grok(fn.apply(new GrokProcessor.Builder()).build());
 		}
 
 		public ObjectBuilder<Processor> gsub(GsubProcessor v) {
@@ -952,10 +926,8 @@ public class Processor implements TaggedUnion<Processor.Kind, Object>, JsonpSeri
 			return this;
 		}
 
-		public ObjectBuilder<Processor> gsub(Consumer<GsubProcessor.Builder> fn) {
-			GsubProcessor.Builder builder = new GsubProcessor.Builder();
-			fn.accept(builder);
-			return this.gsub(builder.build());
+		public ObjectBuilder<Processor> gsub(Function<GsubProcessor.Builder, ObjectBuilder<GsubProcessor>> fn) {
+			return this.gsub(fn.apply(new GsubProcessor.Builder()).build());
 		}
 
 		public ObjectBuilder<Processor> join(JoinProcessor v) {
@@ -964,10 +936,8 @@ public class Processor implements TaggedUnion<Processor.Kind, Object>, JsonpSeri
 			return this;
 		}
 
-		public ObjectBuilder<Processor> join(Consumer<JoinProcessor.Builder> fn) {
-			JoinProcessor.Builder builder = new JoinProcessor.Builder();
-			fn.accept(builder);
-			return this.join(builder.build());
+		public ObjectBuilder<Processor> join(Function<JoinProcessor.Builder, ObjectBuilder<JoinProcessor>> fn) {
+			return this.join(fn.apply(new JoinProcessor.Builder()).build());
 		}
 
 		public ObjectBuilder<Processor> lowercase(LowercaseProcessor v) {
@@ -976,10 +946,9 @@ public class Processor implements TaggedUnion<Processor.Kind, Object>, JsonpSeri
 			return this;
 		}
 
-		public ObjectBuilder<Processor> lowercase(Consumer<LowercaseProcessor.Builder> fn) {
-			LowercaseProcessor.Builder builder = new LowercaseProcessor.Builder();
-			fn.accept(builder);
-			return this.lowercase(builder.build());
+		public ObjectBuilder<Processor> lowercase(
+				Function<LowercaseProcessor.Builder, ObjectBuilder<LowercaseProcessor>> fn) {
+			return this.lowercase(fn.apply(new LowercaseProcessor.Builder()).build());
 		}
 
 		public ObjectBuilder<Processor> remove(RemoveProcessor v) {
@@ -988,10 +957,8 @@ public class Processor implements TaggedUnion<Processor.Kind, Object>, JsonpSeri
 			return this;
 		}
 
-		public ObjectBuilder<Processor> remove(Consumer<RemoveProcessor.Builder> fn) {
-			RemoveProcessor.Builder builder = new RemoveProcessor.Builder();
-			fn.accept(builder);
-			return this.remove(builder.build());
+		public ObjectBuilder<Processor> remove(Function<RemoveProcessor.Builder, ObjectBuilder<RemoveProcessor>> fn) {
+			return this.remove(fn.apply(new RemoveProcessor.Builder()).build());
 		}
 
 		public ObjectBuilder<Processor> rename(RenameProcessor v) {
@@ -1000,10 +967,8 @@ public class Processor implements TaggedUnion<Processor.Kind, Object>, JsonpSeri
 			return this;
 		}
 
-		public ObjectBuilder<Processor> rename(Consumer<RenameProcessor.Builder> fn) {
-			RenameProcessor.Builder builder = new RenameProcessor.Builder();
-			fn.accept(builder);
-			return this.rename(builder.build());
+		public ObjectBuilder<Processor> rename(Function<RenameProcessor.Builder, ObjectBuilder<RenameProcessor>> fn) {
+			return this.rename(fn.apply(new RenameProcessor.Builder()).build());
 		}
 
 		public ObjectBuilder<Processor> script(Script v) {
@@ -1012,10 +977,8 @@ public class Processor implements TaggedUnion<Processor.Kind, Object>, JsonpSeri
 			return this;
 		}
 
-		public ObjectBuilder<Processor> script(Consumer<Script.Builder> fn) {
-			Script.Builder builder = new Script.Builder();
-			fn.accept(builder);
-			return this.script(builder.build());
+		public ObjectBuilder<Processor> script(Function<Script.Builder, ObjectBuilder<Script>> fn) {
+			return this.script(fn.apply(new Script.Builder()).build());
 		}
 
 		public ObjectBuilder<Processor> set(SetProcessor v) {
@@ -1024,10 +987,8 @@ public class Processor implements TaggedUnion<Processor.Kind, Object>, JsonpSeri
 			return this;
 		}
 
-		public ObjectBuilder<Processor> set(Consumer<SetProcessor.Builder> fn) {
-			SetProcessor.Builder builder = new SetProcessor.Builder();
-			fn.accept(builder);
-			return this.set(builder.build());
+		public ObjectBuilder<Processor> set(Function<SetProcessor.Builder, ObjectBuilder<SetProcessor>> fn) {
+			return this.set(fn.apply(new SetProcessor.Builder()).build());
 		}
 
 		public ObjectBuilder<Processor> sort(SortProcessor v) {
@@ -1036,10 +997,8 @@ public class Processor implements TaggedUnion<Processor.Kind, Object>, JsonpSeri
 			return this;
 		}
 
-		public ObjectBuilder<Processor> sort(Consumer<SortProcessor.Builder> fn) {
-			SortProcessor.Builder builder = new SortProcessor.Builder();
-			fn.accept(builder);
-			return this.sort(builder.build());
+		public ObjectBuilder<Processor> sort(Function<SortProcessor.Builder, ObjectBuilder<SortProcessor>> fn) {
+			return this.sort(fn.apply(new SortProcessor.Builder()).build());
 		}
 
 		public ObjectBuilder<Processor> split(SplitProcessor v) {
@@ -1048,10 +1007,8 @@ public class Processor implements TaggedUnion<Processor.Kind, Object>, JsonpSeri
 			return this;
 		}
 
-		public ObjectBuilder<Processor> split(Consumer<SplitProcessor.Builder> fn) {
-			SplitProcessor.Builder builder = new SplitProcessor.Builder();
-			fn.accept(builder);
-			return this.split(builder.build());
+		public ObjectBuilder<Processor> split(Function<SplitProcessor.Builder, ObjectBuilder<SplitProcessor>> fn) {
+			return this.split(fn.apply(new SplitProcessor.Builder()).build());
 		}
 
 		public ObjectBuilder<Processor> trim(TrimProcessor v) {
@@ -1060,10 +1017,8 @@ public class Processor implements TaggedUnion<Processor.Kind, Object>, JsonpSeri
 			return this;
 		}
 
-		public ObjectBuilder<Processor> trim(Consumer<TrimProcessor.Builder> fn) {
-			TrimProcessor.Builder builder = new TrimProcessor.Builder();
-			fn.accept(builder);
-			return this.trim(builder.build());
+		public ObjectBuilder<Processor> trim(Function<TrimProcessor.Builder, ObjectBuilder<TrimProcessor>> fn) {
+			return this.trim(fn.apply(new TrimProcessor.Builder()).build());
 		}
 
 		public ObjectBuilder<Processor> uppercase(UppercaseProcessor v) {
@@ -1072,10 +1027,9 @@ public class Processor implements TaggedUnion<Processor.Kind, Object>, JsonpSeri
 			return this;
 		}
 
-		public ObjectBuilder<Processor> uppercase(Consumer<UppercaseProcessor.Builder> fn) {
-			UppercaseProcessor.Builder builder = new UppercaseProcessor.Builder();
-			fn.accept(builder);
-			return this.uppercase(builder.build());
+		public ObjectBuilder<Processor> uppercase(
+				Function<UppercaseProcessor.Builder, ObjectBuilder<UppercaseProcessor>> fn) {
+			return this.uppercase(fn.apply(new UppercaseProcessor.Builder()).build());
 		}
 
 		public ObjectBuilder<Processor> urldecode(UrlDecodeProcessor v) {
@@ -1084,10 +1038,9 @@ public class Processor implements TaggedUnion<Processor.Kind, Object>, JsonpSeri
 			return this;
 		}
 
-		public ObjectBuilder<Processor> urldecode(Consumer<UrlDecodeProcessor.Builder> fn) {
-			UrlDecodeProcessor.Builder builder = new UrlDecodeProcessor.Builder();
-			fn.accept(builder);
-			return this.urldecode(builder.build());
+		public ObjectBuilder<Processor> urldecode(
+				Function<UrlDecodeProcessor.Builder, ObjectBuilder<UrlDecodeProcessor>> fn) {
+			return this.urldecode(fn.apply(new UrlDecodeProcessor.Builder()).build());
 		}
 
 		public ObjectBuilder<Processor> bytes(BytesProcessor v) {
@@ -1096,10 +1049,8 @@ public class Processor implements TaggedUnion<Processor.Kind, Object>, JsonpSeri
 			return this;
 		}
 
-		public ObjectBuilder<Processor> bytes(Consumer<BytesProcessor.Builder> fn) {
-			BytesProcessor.Builder builder = new BytesProcessor.Builder();
-			fn.accept(builder);
-			return this.bytes(builder.build());
+		public ObjectBuilder<Processor> bytes(Function<BytesProcessor.Builder, ObjectBuilder<BytesProcessor>> fn) {
+			return this.bytes(fn.apply(new BytesProcessor.Builder()).build());
 		}
 
 		public ObjectBuilder<Processor> dissect(DissectProcessor v) {
@@ -1108,10 +1059,9 @@ public class Processor implements TaggedUnion<Processor.Kind, Object>, JsonpSeri
 			return this;
 		}
 
-		public ObjectBuilder<Processor> dissect(Consumer<DissectProcessor.Builder> fn) {
-			DissectProcessor.Builder builder = new DissectProcessor.Builder();
-			fn.accept(builder);
-			return this.dissect(builder.build());
+		public ObjectBuilder<Processor> dissect(
+				Function<DissectProcessor.Builder, ObjectBuilder<DissectProcessor>> fn) {
+			return this.dissect(fn.apply(new DissectProcessor.Builder()).build());
 		}
 
 		public ObjectBuilder<Processor> setSecurityUser(SetSecurityUserProcessor v) {
@@ -1120,10 +1070,9 @@ public class Processor implements TaggedUnion<Processor.Kind, Object>, JsonpSeri
 			return this;
 		}
 
-		public ObjectBuilder<Processor> setSecurityUser(Consumer<SetSecurityUserProcessor.Builder> fn) {
-			SetSecurityUserProcessor.Builder builder = new SetSecurityUserProcessor.Builder();
-			fn.accept(builder);
-			return this.setSecurityUser(builder.build());
+		public ObjectBuilder<Processor> setSecurityUser(
+				Function<SetSecurityUserProcessor.Builder, ObjectBuilder<SetSecurityUserProcessor>> fn) {
+			return this.setSecurityUser(fn.apply(new SetSecurityUserProcessor.Builder()).build());
 		}
 
 		public ObjectBuilder<Processor> pipeline(PipelineProcessor v) {
@@ -1132,10 +1081,9 @@ public class Processor implements TaggedUnion<Processor.Kind, Object>, JsonpSeri
 			return this;
 		}
 
-		public ObjectBuilder<Processor> pipeline(Consumer<PipelineProcessor.Builder> fn) {
-			PipelineProcessor.Builder builder = new PipelineProcessor.Builder();
-			fn.accept(builder);
-			return this.pipeline(builder.build());
+		public ObjectBuilder<Processor> pipeline(
+				Function<PipelineProcessor.Builder, ObjectBuilder<PipelineProcessor>> fn) {
+			return this.pipeline(fn.apply(new PipelineProcessor.Builder()).build());
 		}
 
 		public ObjectBuilder<Processor> drop(DropProcessor v) {
@@ -1144,10 +1092,8 @@ public class Processor implements TaggedUnion<Processor.Kind, Object>, JsonpSeri
 			return this;
 		}
 
-		public ObjectBuilder<Processor> drop(Consumer<DropProcessor.Builder> fn) {
-			DropProcessor.Builder builder = new DropProcessor.Builder();
-			fn.accept(builder);
-			return this.drop(builder.build());
+		public ObjectBuilder<Processor> drop(Function<DropProcessor.Builder, ObjectBuilder<DropProcessor>> fn) {
+			return this.drop(fn.apply(new DropProcessor.Builder()).build());
 		}
 
 		public ObjectBuilder<Processor> circle(CircleProcessor v) {
@@ -1156,10 +1102,8 @@ public class Processor implements TaggedUnion<Processor.Kind, Object>, JsonpSeri
 			return this;
 		}
 
-		public ObjectBuilder<Processor> circle(Consumer<CircleProcessor.Builder> fn) {
-			CircleProcessor.Builder builder = new CircleProcessor.Builder();
-			fn.accept(builder);
-			return this.circle(builder.build());
+		public ObjectBuilder<Processor> circle(Function<CircleProcessor.Builder, ObjectBuilder<CircleProcessor>> fn) {
+			return this.circle(fn.apply(new CircleProcessor.Builder()).build());
 		}
 
 		public ObjectBuilder<Processor> inference(InferenceProcessor v) {
@@ -1168,10 +1112,9 @@ public class Processor implements TaggedUnion<Processor.Kind, Object>, JsonpSeri
 			return this;
 		}
 
-		public ObjectBuilder<Processor> inference(Consumer<InferenceProcessor.Builder> fn) {
-			InferenceProcessor.Builder builder = new InferenceProcessor.Builder();
-			fn.accept(builder);
-			return this.inference(builder.build());
+		public ObjectBuilder<Processor> inference(
+				Function<InferenceProcessor.Builder, ObjectBuilder<InferenceProcessor>> fn) {
+			return this.inference(fn.apply(new InferenceProcessor.Builder()).build());
 		}
 
 		public Processor build() {

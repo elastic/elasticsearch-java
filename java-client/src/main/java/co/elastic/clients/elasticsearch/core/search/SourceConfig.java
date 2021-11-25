@@ -38,7 +38,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Object;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.search._types.SourceConfig
@@ -76,10 +76,8 @@ public class SourceConfig implements TaggedUnion<SourceConfig.Kind, Object>, Jso
 
 	}
 
-	public static SourceConfig of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static SourceConfig of(Function<Builder, ObjectBuilder<SourceConfig>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -141,10 +139,8 @@ public class SourceConfig implements TaggedUnion<SourceConfig.Kind, Object>, Jso
 			return this;
 		}
 
-		public ObjectBuilder<SourceConfig> filter(Consumer<SourceFilter.Builder> fn) {
-			SourceFilter.Builder builder = new SourceFilter.Builder();
-			fn.accept(builder);
-			return this.filter(builder.build());
+		public ObjectBuilder<SourceConfig> filter(Function<SourceFilter.Builder, ObjectBuilder<SourceFilter>> fn) {
+			return this.filter(fn.apply(new SourceFilter.Builder()).build());
 		}
 
 		public ObjectBuilder<SourceConfig> fetch(Boolean v) {

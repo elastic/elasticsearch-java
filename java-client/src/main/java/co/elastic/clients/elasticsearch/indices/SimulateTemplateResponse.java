@@ -35,7 +35,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.simulate_template.Response
@@ -51,10 +51,8 @@ public class SimulateTemplateResponse implements JsonpSerializable {
 
 	}
 
-	public static SimulateTemplateResponse of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static SimulateTemplateResponse of(Function<Builder, ObjectBuilder<SimulateTemplateResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -99,10 +97,8 @@ public class SimulateTemplateResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code template}
 		 */
-		public final Builder template(Consumer<Template.Builder> fn) {
-			Template.Builder builder = new Template.Builder();
-			fn.accept(builder);
-			return this.template(builder.build());
+		public final Builder template(Function<Template.Builder, ObjectBuilder<Template>> fn) {
+			return this.template(fn.apply(new Template.Builder()).build());
 		}
 
 		/**

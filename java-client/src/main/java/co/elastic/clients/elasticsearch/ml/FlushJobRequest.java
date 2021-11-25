@@ -41,7 +41,7 @@ import java.lang.Boolean;
 import java.lang.String;
 import java.util.Collections;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.flush_job.Request
@@ -77,10 +77,8 @@ public class FlushJobRequest extends RequestBase implements JsonpSerializable {
 
 	}
 
-	public static FlushJobRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static FlushJobRequest of(Function<Builder, ObjectBuilder<FlushJobRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**

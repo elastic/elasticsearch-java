@@ -37,7 +37,7 @@ import java.lang.Double;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.DataframeAnalysisOutlierDetection
@@ -74,10 +74,9 @@ public class DataframeAnalysisOutlierDetection implements DataframeAnalysisVaria
 
 	}
 
-	public static DataframeAnalysisOutlierDetection of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static DataframeAnalysisOutlierDetection of(
+			Function<Builder, ObjectBuilder<DataframeAnalysisOutlierDetection>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**

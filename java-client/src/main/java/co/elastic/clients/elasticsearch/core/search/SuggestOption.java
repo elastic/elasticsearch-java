@@ -38,7 +38,7 @@ import co.elastic.clients.util.TaggedUnionUtils;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Object;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.search._types.SuggestOption
@@ -78,10 +78,9 @@ public class SuggestOption<TDocument> implements TaggedUnion<SuggestOption.Kind,
 
 	}
 
-	public static <TDocument> SuggestOption<TDocument> of(Consumer<Builder<TDocument>> fn) {
-		Builder<TDocument> builder = new Builder<>();
-		fn.accept(builder);
-		return builder.build();
+	public static <TDocument> SuggestOption<TDocument> of(
+			Function<Builder<TDocument>, ObjectBuilder<SuggestOption<TDocument>>> fn) {
+		return fn.apply(new Builder<>()).build();
 	}
 
 	/**
@@ -156,10 +155,8 @@ public class SuggestOption<TDocument> implements TaggedUnion<SuggestOption.Kind,
 		}
 
 		public ObjectBuilder<SuggestOption<TDocument>> completion(
-				Consumer<CompletionSuggestOption.Builder<TDocument>> fn) {
-			CompletionSuggestOption.Builder<TDocument> builder = new CompletionSuggestOption.Builder<TDocument>();
-			fn.accept(builder);
-			return this.completion(builder.build());
+				Function<CompletionSuggestOption.Builder<TDocument>, ObjectBuilder<CompletionSuggestOption<TDocument>>> fn) {
+			return this.completion(fn.apply(new CompletionSuggestOption.Builder<TDocument>()).build());
 		}
 
 		public ObjectBuilder<SuggestOption<TDocument>> phrase(PhraseSuggestOption v) {
@@ -168,10 +165,9 @@ public class SuggestOption<TDocument> implements TaggedUnion<SuggestOption.Kind,
 			return this;
 		}
 
-		public ObjectBuilder<SuggestOption<TDocument>> phrase(Consumer<PhraseSuggestOption.Builder> fn) {
-			PhraseSuggestOption.Builder builder = new PhraseSuggestOption.Builder();
-			fn.accept(builder);
-			return this.phrase(builder.build());
+		public ObjectBuilder<SuggestOption<TDocument>> phrase(
+				Function<PhraseSuggestOption.Builder, ObjectBuilder<PhraseSuggestOption>> fn) {
+			return this.phrase(fn.apply(new PhraseSuggestOption.Builder()).build());
 		}
 
 		public ObjectBuilder<SuggestOption<TDocument>> term(TermSuggestOption v) {
@@ -180,10 +176,9 @@ public class SuggestOption<TDocument> implements TaggedUnion<SuggestOption.Kind,
 			return this;
 		}
 
-		public ObjectBuilder<SuggestOption<TDocument>> term(Consumer<TermSuggestOption.Builder> fn) {
-			TermSuggestOption.Builder builder = new TermSuggestOption.Builder();
-			fn.accept(builder);
-			return this.term(builder.build());
+		public ObjectBuilder<SuggestOption<TDocument>> term(
+				Function<TermSuggestOption.Builder, ObjectBuilder<TermSuggestOption>> fn) {
+			return this.term(fn.apply(new TermSuggestOption.Builder()).build());
 		}
 
 		public SuggestOption<TDocument> build() {

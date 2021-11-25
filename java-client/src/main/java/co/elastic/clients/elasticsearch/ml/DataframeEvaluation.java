@@ -38,7 +38,7 @@ import co.elastic.clients.util.TaggedUnionUtils;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Object;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.DataframeEvaluationContainer
@@ -98,10 +98,8 @@ public class DataframeEvaluation implements TaggedUnion<DataframeEvaluation.Kind
 
 	}
 
-	public static DataframeEvaluation of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static DataframeEvaluation of(Function<Builder, ObjectBuilder<DataframeEvaluation>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -182,10 +180,8 @@ public class DataframeEvaluation implements TaggedUnion<DataframeEvaluation.Kind
 		}
 
 		public ObjectBuilder<DataframeEvaluation> classification(
-				Consumer<DataframeEvaluationClassification.Builder> fn) {
-			DataframeEvaluationClassification.Builder builder = new DataframeEvaluationClassification.Builder();
-			fn.accept(builder);
-			return this.classification(builder.build());
+				Function<DataframeEvaluationClassification.Builder, ObjectBuilder<DataframeEvaluationClassification>> fn) {
+			return this.classification(fn.apply(new DataframeEvaluationClassification.Builder()).build());
 		}
 
 		public ObjectBuilder<DataframeEvaluation> outlierDetection(DataframeEvaluationOutlierDetection v) {
@@ -195,10 +191,8 @@ public class DataframeEvaluation implements TaggedUnion<DataframeEvaluation.Kind
 		}
 
 		public ObjectBuilder<DataframeEvaluation> outlierDetection(
-				Consumer<DataframeEvaluationOutlierDetection.Builder> fn) {
-			DataframeEvaluationOutlierDetection.Builder builder = new DataframeEvaluationOutlierDetection.Builder();
-			fn.accept(builder);
-			return this.outlierDetection(builder.build());
+				Function<DataframeEvaluationOutlierDetection.Builder, ObjectBuilder<DataframeEvaluationOutlierDetection>> fn) {
+			return this.outlierDetection(fn.apply(new DataframeEvaluationOutlierDetection.Builder()).build());
 		}
 
 		public ObjectBuilder<DataframeEvaluation> regression(DataframeEvaluationRegression v) {
@@ -207,10 +201,9 @@ public class DataframeEvaluation implements TaggedUnion<DataframeEvaluation.Kind
 			return this;
 		}
 
-		public ObjectBuilder<DataframeEvaluation> regression(Consumer<DataframeEvaluationRegression.Builder> fn) {
-			DataframeEvaluationRegression.Builder builder = new DataframeEvaluationRegression.Builder();
-			fn.accept(builder);
-			return this.regression(builder.build());
+		public ObjectBuilder<DataframeEvaluation> regression(
+				Function<DataframeEvaluationRegression.Builder, ObjectBuilder<DataframeEvaluationRegression>> fn) {
+			return this.regression(fn.apply(new DataframeEvaluationRegression.Builder()).build());
 		}
 
 		public DataframeEvaluation build() {

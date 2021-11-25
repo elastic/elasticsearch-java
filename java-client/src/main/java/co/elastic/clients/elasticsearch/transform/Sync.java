@@ -38,7 +38,7 @@ import co.elastic.clients.util.TaggedUnionUtils;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Object;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: transform._types.SyncContainer
@@ -94,10 +94,8 @@ public class Sync implements TaggedUnion<Sync.Kind, Object>, JsonpSerializable {
 
 	}
 
-	public static Sync of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static Sync of(Function<Builder, ObjectBuilder<Sync>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -142,10 +140,8 @@ public class Sync implements TaggedUnion<Sync.Kind, Object>, JsonpSerializable {
 			return this;
 		}
 
-		public ObjectBuilder<Sync> time(Consumer<TimeSync.Builder> fn) {
-			TimeSync.Builder builder = new TimeSync.Builder();
-			fn.accept(builder);
-			return this.time(builder.build());
+		public ObjectBuilder<Sync> time(Function<TimeSync.Builder, ObjectBuilder<TimeSync>> fn) {
+			return this.time(fn.apply(new TimeSync.Builder()).build());
 		}
 
 		public Sync build() {

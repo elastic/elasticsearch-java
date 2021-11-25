@@ -34,10 +34,9 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.analysis.KuromojiTokenizer
@@ -77,10 +76,8 @@ public class KuromojiTokenizer extends TokenizerBase implements TokenizerDefinit
 
 	}
 
-	public static KuromojiTokenizer of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static KuromojiTokenizer of(Function<Builder, ObjectBuilder<KuromojiTokenizer>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -259,17 +256,25 @@ public class KuromojiTokenizer extends TokenizerBase implements TokenizerDefinit
 
 		/**
 		 * API name: {@code user_dictionary_rules}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>userDictionaryRules</code>.
+		 * Use <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>userDictionaryRules</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder userDictionaryRules(@Nullable List<String> value) {
-			this.userDictionaryRules = value;
+		public final Builder userDictionaryRules(List<String> list) {
+			this.userDictionaryRules = _listAddAll(this.userDictionaryRules, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code user_dictionary_rules}
+		 * <p>
+		 * Adds one or more values to <code>userDictionaryRules</code>.
 		 */
-		public final Builder userDictionaryRules(String... value) {
-			this.userDictionaryRules = Arrays.asList(value);
+		public final Builder userDictionaryRules(String value, String... values) {
+			this.userDictionaryRules = _listAdd(this.userDictionaryRules, value, values);
 			return this;
 		}
 

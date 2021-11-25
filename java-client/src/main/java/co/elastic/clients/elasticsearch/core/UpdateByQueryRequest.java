@@ -50,12 +50,11 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Long;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
@@ -215,10 +214,8 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 
 	}
 
-	public static UpdateByQueryRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static UpdateByQueryRequest of(Function<Builder, ObjectBuilder<UpdateByQueryRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -779,19 +776,23 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 		 * <p>
 		 * API name: {@code _source}
 		 */
-		public final Builder source(Consumer<SourceConfigParam.Builder> fn) {
-			SourceConfigParam.Builder builder = new SourceConfigParam.Builder();
-			fn.accept(builder);
-			return this.source(builder.build());
+		public final Builder source(Function<SourceConfigParam.Builder, ObjectBuilder<SourceConfigParam>> fn) {
+			return this.source(fn.apply(new SourceConfigParam.Builder()).build());
 		}
 
 		/**
 		 * A list of fields to exclude from the returned _source field
 		 * <p>
 		 * API name: {@code _source_excludes}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>sourceExcludes</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>sourceExcludes</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder sourceExcludes(@Nullable List<String> value) {
-			this.sourceExcludes = value;
+		public final Builder sourceExcludes(List<String> list) {
+			this.sourceExcludes = _listAddAll(this.sourceExcludes, list);
 			return this;
 		}
 
@@ -799,9 +800,11 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 		 * A list of fields to exclude from the returned _source field
 		 * <p>
 		 * API name: {@code _source_excludes}
+		 * <p>
+		 * Adds one or more values to <code>sourceExcludes</code>.
 		 */
-		public final Builder sourceExcludes(String... value) {
-			this.sourceExcludes = Arrays.asList(value);
+		public final Builder sourceExcludes(String value, String... values) {
+			this.sourceExcludes = _listAdd(this.sourceExcludes, value, values);
 			return this;
 		}
 
@@ -809,9 +812,15 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 		 * A list of fields to extract and return from the _source field
 		 * <p>
 		 * API name: {@code _source_includes}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>sourceIncludes</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>sourceIncludes</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder sourceIncludes(@Nullable List<String> value) {
-			this.sourceIncludes = value;
+		public final Builder sourceIncludes(List<String> list) {
+			this.sourceIncludes = _listAddAll(this.sourceIncludes, list);
 			return this;
 		}
 
@@ -819,9 +828,11 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 		 * A list of fields to extract and return from the _source field
 		 * <p>
 		 * API name: {@code _source_includes}
+		 * <p>
+		 * Adds one or more values to <code>sourceIncludes</code>.
 		 */
-		public final Builder sourceIncludes(String... value) {
-			this.sourceIncludes = Arrays.asList(value);
+		public final Builder sourceIncludes(String value, String... values) {
+			this.sourceIncludes = _listAdd(this.sourceIncludes, value, values);
 			return this;
 		}
 
@@ -892,9 +903,15 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 		 * closed or both.
 		 * <p>
 		 * API name: {@code expand_wildcards}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>expandWildcards</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>expandWildcards</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder expandWildcards(@Nullable List<ExpandWildcard> value) {
-			this.expandWildcards = value;
+		public final Builder expandWildcards(List<ExpandWildcard> list) {
+			this.expandWildcards = _listAddAll(this.expandWildcards, list);
 			return this;
 		}
 
@@ -903,9 +920,11 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 		 * closed or both.
 		 * <p>
 		 * API name: {@code expand_wildcards}
+		 * <p>
+		 * Adds one or more values to <code>expandWildcards</code>.
 		 */
-		public final Builder expandWildcards(ExpandWildcard... value) {
-			this.expandWildcards = Arrays.asList(value);
+		public final Builder expandWildcards(ExpandWildcard value, ExpandWildcard... values) {
+			this.expandWildcards = _listAdd(this.expandWildcards, value, values);
 			return this;
 		}
 
@@ -935,9 +954,15 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 		 * <code>_all</code> or empty string to perform the operation on all indices
 		 * <p>
 		 * API name: {@code index}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>index</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>index</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder index(List<String> value) {
-			this.index = value;
+		public final Builder index(List<String> list) {
+			this.index = _listAddAll(this.index, list);
 			return this;
 		}
 
@@ -946,9 +971,11 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 		 * <code>_all</code> or empty string to perform the operation on all indices
 		 * <p>
 		 * API name: {@code index}
+		 * <p>
+		 * Adds one or more values to <code>index</code>.
 		 */
-		public final Builder index(String... value) {
-			this.index = Arrays.asList(value);
+		public final Builder index(String value, String... values) {
+			this.index = _listAdd(this.index, value, values);
 			return this;
 		}
 
@@ -1003,10 +1030,8 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 		/**
 		 * API name: {@code query}
 		 */
-		public final Builder query(Consumer<Query.Builder> fn) {
-			Query.Builder builder = new Query.Builder();
-			fn.accept(builder);
-			return this.query(builder.build());
+		public final Builder query(Function<Query.Builder, ObjectBuilder<Query>> fn) {
+			return this.query(fn.apply(new Query.Builder()).build());
 		}
 
 		/**
@@ -1062,10 +1087,8 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 		/**
 		 * API name: {@code script}
 		 */
-		public final Builder script(Consumer<Script.Builder> fn) {
-			Script.Builder builder = new Script.Builder();
-			fn.accept(builder);
-			return this.script(builder.build());
+		public final Builder script(Function<Script.Builder, ObjectBuilder<Script>> fn) {
+			return this.script(fn.apply(new Script.Builder()).build());
 		}
 
 		/**
@@ -1085,10 +1108,8 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 		 * <p>
 		 * API name: {@code scroll}
 		 */
-		public final Builder scroll(Consumer<Time.Builder> fn) {
-			Time.Builder builder = new Time.Builder();
-			fn.accept(builder);
-			return this.scroll(builder.build());
+		public final Builder scroll(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.scroll(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -1116,10 +1137,8 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 		 * <p>
 		 * API name: {@code search_timeout}
 		 */
-		public final Builder searchTimeout(Consumer<Time.Builder> fn) {
-			Time.Builder builder = new Time.Builder();
-			fn.accept(builder);
-			return this.searchTimeout(builder.build());
+		public final Builder searchTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.searchTimeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -1151,10 +1170,8 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 		/**
 		 * API name: {@code slice}
 		 */
-		public final Builder slice(Consumer<SlicedScroll.Builder> fn) {
-			SlicedScroll.Builder builder = new SlicedScroll.Builder();
-			fn.accept(builder);
-			return this.slice(builder.build());
+		public final Builder slice(Function<SlicedScroll.Builder, ObjectBuilder<SlicedScroll>> fn) {
+			return this.slice(fn.apply(new SlicedScroll.Builder()).build());
 		}
 
 		/**
@@ -1172,9 +1189,15 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 		 * A comma-separated list of &lt;field&gt;:&lt;direction&gt; pairs
 		 * <p>
 		 * API name: {@code sort}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>sort</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>sort</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder sort(@Nullable List<String> value) {
-			this.sort = value;
+		public final Builder sort(List<String> list) {
+			this.sort = _listAddAll(this.sort, list);
 			return this;
 		}
 
@@ -1182,9 +1205,11 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 		 * A comma-separated list of &lt;field&gt;:&lt;direction&gt; pairs
 		 * <p>
 		 * API name: {@code sort}
+		 * <p>
+		 * Adds one or more values to <code>sort</code>.
 		 */
-		public final Builder sort(String... value) {
-			this.sort = Arrays.asList(value);
+		public final Builder sort(String value, String... values) {
+			this.sort = _listAdd(this.sort, value, values);
 			return this;
 		}
 
@@ -1192,9 +1217,15 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 		 * Specific 'tag' of the request for logging and statistical purposes
 		 * <p>
 		 * API name: {@code stats}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>stats</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>stats</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder stats(@Nullable List<String> value) {
-			this.stats = value;
+		public final Builder stats(List<String> list) {
+			this.stats = _listAddAll(this.stats, list);
 			return this;
 		}
 
@@ -1202,9 +1233,11 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 		 * Specific 'tag' of the request for logging and statistical purposes
 		 * <p>
 		 * API name: {@code stats}
+		 * <p>
+		 * Adds one or more values to <code>stats</code>.
 		 */
-		public final Builder stats(String... value) {
-			this.stats = Arrays.asList(value);
+		public final Builder stats(String value, String... values) {
+			this.stats = _listAdd(this.stats, value, values);
 			return this;
 		}
 
@@ -1236,10 +1269,8 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 		 * <p>
 		 * API name: {@code timeout}
 		 */
-		public final Builder timeout(Consumer<Time.Builder> fn) {
-			Time.Builder builder = new Time.Builder();
-			fn.accept(builder);
-			return this.timeout(builder.build());
+		public final Builder timeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.timeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -1286,10 +1317,9 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 		 * <p>
 		 * API name: {@code wait_for_active_shards}
 		 */
-		public final Builder waitForActiveShards(Consumer<WaitForActiveShards.Builder> fn) {
-			WaitForActiveShards.Builder builder = new WaitForActiveShards.Builder();
-			fn.accept(builder);
-			return this.waitForActiveShards(builder.build());
+		public final Builder waitForActiveShards(
+				Function<WaitForActiveShards.Builder, ObjectBuilder<WaitForActiveShards>> fn) {
+			return this.waitForActiveShards(fn.apply(new WaitForActiveShards.Builder()).build());
 		}
 
 		/**

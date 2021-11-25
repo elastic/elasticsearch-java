@@ -33,10 +33,9 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ingest._types.KeyValueProcessor
@@ -89,10 +88,8 @@ public class KeyValueProcessor extends ProcessorBase implements ProcessorVariant
 
 	}
 
-	public static KeyValueProcessor of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static KeyValueProcessor of(Function<Builder, ObjectBuilder<KeyValueProcessor>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -290,17 +287,25 @@ public class KeyValueProcessor extends ProcessorBase implements ProcessorVariant
 
 		/**
 		 * API name: {@code exclude_keys}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>excludeKeys</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>excludeKeys</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder excludeKeys(@Nullable List<String> value) {
-			this.excludeKeys = value;
+		public final Builder excludeKeys(List<String> list) {
+			this.excludeKeys = _listAddAll(this.excludeKeys, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code exclude_keys}
+		 * <p>
+		 * Adds one or more values to <code>excludeKeys</code>.
 		 */
-		public final Builder excludeKeys(String... value) {
-			this.excludeKeys = Arrays.asList(value);
+		public final Builder excludeKeys(String value, String... values) {
+			this.excludeKeys = _listAdd(this.excludeKeys, value, values);
 			return this;
 		}
 
@@ -330,17 +335,25 @@ public class KeyValueProcessor extends ProcessorBase implements ProcessorVariant
 
 		/**
 		 * API name: {@code include_keys}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>includeKeys</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>includeKeys</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder includeKeys(@Nullable List<String> value) {
-			this.includeKeys = value;
+		public final Builder includeKeys(List<String> list) {
+			this.includeKeys = _listAddAll(this.includeKeys, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code include_keys}
+		 * <p>
+		 * Adds one or more values to <code>includeKeys</code>.
 		 */
-		public final Builder includeKeys(String... value) {
-			this.includeKeys = Arrays.asList(value);
+		public final Builder includeKeys(String value, String... values) {
+			this.includeKeys = _listAdd(this.includeKeys, value, values);
 			return this;
 		}
 

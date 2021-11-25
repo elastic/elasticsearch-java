@@ -39,7 +39,7 @@ import java.lang.Object;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.PinnedQuery
@@ -107,10 +107,8 @@ public class PinnedQuery extends QueryBase
 
 	}
 
-	public static PinnedQuery of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static PinnedQuery of(Function<Builder, ObjectBuilder<PinnedQuery>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -211,10 +209,8 @@ public class PinnedQuery extends QueryBase
 		/**
 		 * Required - API name: {@code organic}
 		 */
-		public final Builder organic(Consumer<Query.Builder> fn) {
-			Query.Builder builder = new Query.Builder();
-			fn.accept(builder);
-			return this.organic(builder.build());
+		public final Builder organic(Function<Query.Builder, ObjectBuilder<Query>> fn) {
+			return this.organic(fn.apply(new Query.Builder()).build());
 		}
 
 		@Override
@@ -251,10 +247,8 @@ public class PinnedQuery extends QueryBase
 			/**
 			 * Required - API name: {@code organic}
 			 */
-			public final ContainerBuilder organic(Consumer<Query.Builder> fn) {
-				Query.Builder builder = new Query.Builder();
-				fn.accept(builder);
-				return this.organic(builder.build());
+			public final ContainerBuilder organic(Function<Query.Builder, ObjectBuilder<Query>> fn) {
+				return this.organic(fn.apply(new Query.Builder()).build());
 			}
 
 			public PinnedQuery build() {

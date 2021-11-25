@@ -33,7 +33,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.DecayFunction
@@ -52,10 +52,8 @@ public class DecayFunction extends DecayFunctionBase implements FunctionScoreVar
 
 	}
 
-	public static DecayFunction of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static DecayFunction of(Function<Builder, ObjectBuilder<DecayFunction>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -119,10 +117,8 @@ public class DecayFunction extends DecayFunctionBase implements FunctionScoreVar
 		/**
 		 * Required -
 		 */
-		public final Builder placement(Consumer<DecayPlacement.Builder> fn) {
-			DecayPlacement.Builder builder = new DecayPlacement.Builder();
-			fn.accept(builder);
-			return this.placement(builder.build());
+		public final Builder placement(Function<DecayPlacement.Builder, ObjectBuilder<DecayPlacement>> fn) {
+			return this.placement(fn.apply(new DecayPlacement.Builder()).build());
 		}
 
 		@Override

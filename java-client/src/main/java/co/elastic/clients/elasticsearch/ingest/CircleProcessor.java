@@ -35,7 +35,7 @@ import java.lang.Boolean;
 import java.lang.Double;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ingest._types.CircleProcessor
@@ -64,10 +64,8 @@ public class CircleProcessor extends ProcessorBase implements ProcessorVariant {
 
 	}
 
-	public static CircleProcessor of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static CircleProcessor of(Function<Builder, ObjectBuilder<CircleProcessor>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**

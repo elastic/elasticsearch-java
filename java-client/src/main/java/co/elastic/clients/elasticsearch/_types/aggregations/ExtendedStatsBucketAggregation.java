@@ -32,7 +32,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.ExtendedStatsBucketAggregation
@@ -50,10 +50,9 @@ public class ExtendedStatsBucketAggregation extends PipelineAggregationBase impl
 
 	}
 
-	public static ExtendedStatsBucketAggregation of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static ExtendedStatsBucketAggregation of(
+			Function<Builder, ObjectBuilder<ExtendedStatsBucketAggregation>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**

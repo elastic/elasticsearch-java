@@ -33,7 +33,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 
 // typedef: _types.analysis.KuromojiStemmerTokenFilter
 @JsonpDeserializable
@@ -49,10 +49,8 @@ public class KuromojiStemmerTokenFilter extends TokenFilterBase implements Token
 
 	}
 
-	public static KuromojiStemmerTokenFilter of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static KuromojiStemmerTokenFilter of(Function<Builder, ObjectBuilder<KuromojiStemmerTokenFilter>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**

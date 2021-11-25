@@ -35,7 +35,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ingest._types.SetProcessor
@@ -59,10 +59,8 @@ public class SetProcessor extends ProcessorBase implements ProcessorVariant {
 
 	}
 
-	public static SetProcessor of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static SetProcessor of(Function<Builder, ObjectBuilder<SetProcessor>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**

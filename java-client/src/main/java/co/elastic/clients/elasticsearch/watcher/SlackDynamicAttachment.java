@@ -35,7 +35,7 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.SlackDynamicAttachment
@@ -55,10 +55,8 @@ public class SlackDynamicAttachment implements JsonpSerializable {
 
 	}
 
-	public static SlackDynamicAttachment of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static SlackDynamicAttachment of(Function<Builder, ObjectBuilder<SlackDynamicAttachment>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -115,10 +113,8 @@ public class SlackDynamicAttachment implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code attachment_template}
 		 */
-		public final Builder attachmentTemplate(Consumer<SlackAttachment.Builder> fn) {
-			SlackAttachment.Builder builder = new SlackAttachment.Builder();
-			fn.accept(builder);
-			return this.attachmentTemplate(builder.build());
+		public final Builder attachmentTemplate(Function<SlackAttachment.Builder, ObjectBuilder<SlackAttachment>> fn) {
+			return this.attachmentTemplate(fn.apply(new SlackAttachment.Builder()).build());
 		}
 
 		/**

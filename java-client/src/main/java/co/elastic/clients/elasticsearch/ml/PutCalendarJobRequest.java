@@ -38,7 +38,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.put_calendar_job.Request
@@ -57,10 +57,8 @@ public class PutCalendarJobRequest extends RequestBase {
 
 	}
 
-	public static PutCalendarJobRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static PutCalendarJobRequest of(Function<Builder, ObjectBuilder<PutCalendarJobRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**

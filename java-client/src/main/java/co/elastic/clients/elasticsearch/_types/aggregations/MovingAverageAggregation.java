@@ -37,7 +37,7 @@ import co.elastic.clients.util.TaggedUnion;
 import co.elastic.clients.util.TaggedUnionUtils;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.MovingAverageAggregation
@@ -104,10 +104,8 @@ public class MovingAverageAggregation
 
 	}
 
-	public static MovingAverageAggregation of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static MovingAverageAggregation of(Function<Builder, ObjectBuilder<MovingAverageAggregation>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -212,10 +210,9 @@ public class MovingAverageAggregation
 			return this;
 		}
 
-		public ObjectBuilder<MovingAverageAggregation> ewma(Consumer<EwmaMovingAverageAggregation.Builder> fn) {
-			EwmaMovingAverageAggregation.Builder builder = new EwmaMovingAverageAggregation.Builder();
-			fn.accept(builder);
-			return this.ewma(builder.build());
+		public ObjectBuilder<MovingAverageAggregation> ewma(
+				Function<EwmaMovingAverageAggregation.Builder, ObjectBuilder<EwmaMovingAverageAggregation>> fn) {
+			return this.ewma(fn.apply(new EwmaMovingAverageAggregation.Builder()).build());
 		}
 
 		public ObjectBuilder<MovingAverageAggregation> holt(HoltMovingAverageAggregation v) {
@@ -224,10 +221,9 @@ public class MovingAverageAggregation
 			return this;
 		}
 
-		public ObjectBuilder<MovingAverageAggregation> holt(Consumer<HoltMovingAverageAggregation.Builder> fn) {
-			HoltMovingAverageAggregation.Builder builder = new HoltMovingAverageAggregation.Builder();
-			fn.accept(builder);
-			return this.holt(builder.build());
+		public ObjectBuilder<MovingAverageAggregation> holt(
+				Function<HoltMovingAverageAggregation.Builder, ObjectBuilder<HoltMovingAverageAggregation>> fn) {
+			return this.holt(fn.apply(new HoltMovingAverageAggregation.Builder()).build());
 		}
 
 		public ObjectBuilder<MovingAverageAggregation> holtWinters(HoltWintersMovingAverageAggregation v) {
@@ -237,10 +233,8 @@ public class MovingAverageAggregation
 		}
 
 		public ObjectBuilder<MovingAverageAggregation> holtWinters(
-				Consumer<HoltWintersMovingAverageAggregation.Builder> fn) {
-			HoltWintersMovingAverageAggregation.Builder builder = new HoltWintersMovingAverageAggregation.Builder();
-			fn.accept(builder);
-			return this.holtWinters(builder.build());
+				Function<HoltWintersMovingAverageAggregation.Builder, ObjectBuilder<HoltWintersMovingAverageAggregation>> fn) {
+			return this.holtWinters(fn.apply(new HoltWintersMovingAverageAggregation.Builder()).build());
 		}
 
 		public ObjectBuilder<MovingAverageAggregation> linear(LinearMovingAverageAggregation v) {
@@ -249,10 +243,9 @@ public class MovingAverageAggregation
 			return this;
 		}
 
-		public ObjectBuilder<MovingAverageAggregation> linear(Consumer<LinearMovingAverageAggregation.Builder> fn) {
-			LinearMovingAverageAggregation.Builder builder = new LinearMovingAverageAggregation.Builder();
-			fn.accept(builder);
-			return this.linear(builder.build());
+		public ObjectBuilder<MovingAverageAggregation> linear(
+				Function<LinearMovingAverageAggregation.Builder, ObjectBuilder<LinearMovingAverageAggregation>> fn) {
+			return this.linear(fn.apply(new LinearMovingAverageAggregation.Builder()).build());
 		}
 
 		public ObjectBuilder<MovingAverageAggregation> simple(SimpleMovingAverageAggregation v) {
@@ -261,10 +254,9 @@ public class MovingAverageAggregation
 			return this;
 		}
 
-		public ObjectBuilder<MovingAverageAggregation> simple(Consumer<SimpleMovingAverageAggregation.Builder> fn) {
-			SimpleMovingAverageAggregation.Builder builder = new SimpleMovingAverageAggregation.Builder();
-			fn.accept(builder);
-			return this.simple(builder.build());
+		public ObjectBuilder<MovingAverageAggregation> simple(
+				Function<SimpleMovingAverageAggregation.Builder, ObjectBuilder<SimpleMovingAverageAggregation>> fn) {
+			return this.simple(fn.apply(new SimpleMovingAverageAggregation.Builder()).build());
 		}
 
 		public MovingAverageAggregation build() {

@@ -34,10 +34,9 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: security.has_privileges.ApplicationPrivilegesCheck
@@ -59,10 +58,8 @@ public class ApplicationPrivilegesCheck implements JsonpSerializable {
 
 	}
 
-	public static ApplicationPrivilegesCheck of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static ApplicationPrivilegesCheck of(Function<Builder, ObjectBuilder<ApplicationPrivilegesCheck>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -145,33 +142,49 @@ public class ApplicationPrivilegesCheck implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code privileges}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>privileges</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>privileges</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder privileges(List<String> value) {
-			this.privileges = value;
+		public final Builder privileges(List<String> list) {
+			this.privileges = _listAddAll(this.privileges, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code privileges}
+		 * <p>
+		 * Adds one or more values to <code>privileges</code>.
 		 */
-		public final Builder privileges(String... value) {
-			this.privileges = Arrays.asList(value);
+		public final Builder privileges(String value, String... values) {
+			this.privileges = _listAdd(this.privileges, value, values);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code resources}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>resources</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>resources</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder resources(List<String> value) {
-			this.resources = value;
+		public final Builder resources(List<String> list) {
+			this.resources = _listAddAll(this.resources, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code resources}
+		 * <p>
+		 * Adds one or more values to <code>resources</code>.
 		 */
-		public final Builder resources(String... value) {
-			this.resources = Arrays.asList(value);
+		public final Builder resources(String value, String... values) {
+			this.resources = _listAdd(this.resources, value, values);
 			return this;
 		}
 

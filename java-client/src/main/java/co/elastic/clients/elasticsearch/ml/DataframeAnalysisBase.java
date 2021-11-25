@@ -29,7 +29,6 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
@@ -38,7 +37,6 @@ import java.lang.Boolean;
 import java.lang.Double;
 import java.lang.Integer;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
@@ -660,9 +658,15 @@ public abstract class DataframeAnalysisBase implements JsonpSerializable {
 		 * of the specified fields.
 		 * <p>
 		 * API name: {@code feature_processors}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>featureProcessors</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>featureProcessors</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final BuilderT featureProcessors(@Nullable List<DataframeAnalysisFeatureProcessor> value) {
-			this.featureProcessors = value;
+		public final BuilderT featureProcessors(List<DataframeAnalysisFeatureProcessor> list) {
+			this.featureProcessors = _listAddAll(this.featureProcessors, list);
 			return self();
 		}
 
@@ -678,9 +682,12 @@ public abstract class DataframeAnalysisBase implements JsonpSerializable {
 		 * of the specified fields.
 		 * <p>
 		 * API name: {@code feature_processors}
+		 * <p>
+		 * Adds one or more values to <code>featureProcessors</code>.
 		 */
-		public final BuilderT featureProcessors(DataframeAnalysisFeatureProcessor... value) {
-			this.featureProcessors = Arrays.asList(value);
+		public final BuilderT featureProcessors(DataframeAnalysisFeatureProcessor value,
+				DataframeAnalysisFeatureProcessor... values) {
+			this.featureProcessors = _listAdd(this.featureProcessors, value, values);
 			return self();
 		}
 
@@ -696,11 +703,12 @@ public abstract class DataframeAnalysisBase implements JsonpSerializable {
 		 * of the specified fields.
 		 * <p>
 		 * API name: {@code feature_processors}
+		 * <p>
+		 * Adds a value to <code>featureProcessors</code> using a builder lambda.
 		 */
 		public final BuilderT featureProcessors(
-				Function<ListBuilder<DataframeAnalysisFeatureProcessor, DataframeAnalysisFeatureProcessor.Builder>, ObjectBuilder<List<DataframeAnalysisFeatureProcessor>>> fn) {
-			return featureProcessors(
-					fn.apply(new ListBuilder<>(DataframeAnalysisFeatureProcessor.Builder::new)).build());
+				Function<DataframeAnalysisFeatureProcessor.Builder, ObjectBuilder<DataframeAnalysisFeatureProcessor>> fn) {
+			return featureProcessors(fn.apply(new DataframeAnalysisFeatureProcessor.Builder()).build());
 		}
 
 		/**

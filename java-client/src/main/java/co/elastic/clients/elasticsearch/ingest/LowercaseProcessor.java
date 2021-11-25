@@ -34,7 +34,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ingest._types.LowercaseProcessor
@@ -59,10 +59,8 @@ public class LowercaseProcessor extends ProcessorBase implements ProcessorVarian
 
 	}
 
-	public static LowercaseProcessor of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static LowercaseProcessor of(Function<Builder, ObjectBuilder<LowercaseProcessor>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**

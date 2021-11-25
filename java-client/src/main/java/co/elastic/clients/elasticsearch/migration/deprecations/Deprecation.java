@@ -35,7 +35,7 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: migration.deprecations.Deprecation
@@ -60,10 +60,8 @@ public class Deprecation implements JsonpSerializable {
 
 	}
 
-	public static Deprecation of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static Deprecation of(Function<Builder, ObjectBuilder<Deprecation>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**

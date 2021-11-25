@@ -32,7 +32,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.mapping.ShapeProperty
@@ -62,10 +62,8 @@ public class ShapeProperty extends DocValuesPropertyBase implements PropertyVari
 
 	}
 
-	public static ShapeProperty of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static ShapeProperty of(Function<Builder, ObjectBuilder<ShapeProperty>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**

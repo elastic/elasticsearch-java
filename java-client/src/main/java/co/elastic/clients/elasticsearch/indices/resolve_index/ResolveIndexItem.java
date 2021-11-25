@@ -34,10 +34,9 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.resolve_index.ResolveIndexItem
@@ -63,10 +62,8 @@ public class ResolveIndexItem implements JsonpSerializable {
 
 	}
 
-	public static ResolveIndexItem of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static ResolveIndexItem of(Function<Builder, ObjectBuilder<ResolveIndexItem>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -166,33 +163,49 @@ public class ResolveIndexItem implements JsonpSerializable {
 
 		/**
 		 * API name: {@code aliases}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>aliases</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>aliases</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder aliases(@Nullable List<String> value) {
-			this.aliases = value;
+		public final Builder aliases(List<String> list) {
+			this.aliases = _listAddAll(this.aliases, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code aliases}
+		 * <p>
+		 * Adds one or more values to <code>aliases</code>.
 		 */
-		public final Builder aliases(String... value) {
-			this.aliases = Arrays.asList(value);
+		public final Builder aliases(String value, String... values) {
+			this.aliases = _listAdd(this.aliases, value, values);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code attributes}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>attributes</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>attributes</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder attributes(List<String> value) {
-			this.attributes = value;
+		public final Builder attributes(List<String> list) {
+			this.attributes = _listAddAll(this.attributes, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code attributes}
+		 * <p>
+		 * Adds one or more values to <code>attributes</code>.
 		 */
-		public final Builder attributes(String... value) {
-			this.attributes = Arrays.asList(value);
+		public final Builder attributes(String value, String... values) {
+			this.attributes = _listAdd(this.attributes, value, values);
 			return this;
 		}
 

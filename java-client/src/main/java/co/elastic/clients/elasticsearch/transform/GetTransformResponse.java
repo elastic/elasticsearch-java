@@ -30,16 +30,13 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -59,10 +56,8 @@ public class GetTransformResponse implements JsonpSerializable {
 
 	}
 
-	public static GetTransformResponse of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static GetTransformResponse of(Function<Builder, ObjectBuilder<GetTransformResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -126,26 +121,35 @@ public class GetTransformResponse implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code transforms}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>transforms</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>transforms</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder transforms(List<EmptyTransform> value) {
-			this.transforms = value;
+		public final Builder transforms(List<EmptyTransform> list) {
+			this.transforms = _listAddAll(this.transforms, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code transforms}
+		 * <p>
+		 * Adds one or more values to <code>transforms</code>.
 		 */
-		public final Builder transforms(EmptyTransform... value) {
-			this.transforms = Arrays.asList(value);
+		public final Builder transforms(EmptyTransform value, EmptyTransform... values) {
+			this.transforms = _listAdd(this.transforms, value, values);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code transforms}
+		 * <p>
+		 * Adds a value to <code>transforms</code> using a builder lambda.
 		 */
-		public final Builder transforms(
-				Function<ListBuilder<EmptyTransform, EmptyTransform.Builder>, ObjectBuilder<List<EmptyTransform>>> fn) {
-			return transforms(fn.apply(new ListBuilder<>(EmptyTransform.Builder::new)).build());
+		public final Builder transforms(Function<EmptyTransform.Builder, ObjectBuilder<EmptyTransform>> fn) {
+			return transforms(fn.apply(new EmptyTransform.Builder()).build());
 		}
 
 		/**

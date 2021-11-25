@@ -32,7 +32,7 @@ import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: xpack.usage.Watcher
@@ -55,10 +55,8 @@ public class Watcher extends Base {
 
 	}
 
-	public static Watcher of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static Watcher of(Function<Builder, ObjectBuilder<Watcher>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -119,10 +117,8 @@ public class Watcher extends Base {
 		/**
 		 * Required - API name: {@code execution}
 		 */
-		public final Builder execution(Consumer<WatcherActions.Builder> fn) {
-			WatcherActions.Builder builder = new WatcherActions.Builder();
-			fn.accept(builder);
-			return this.execution(builder.build());
+		public final Builder execution(Function<WatcherActions.Builder, ObjectBuilder<WatcherActions>> fn) {
+			return this.execution(fn.apply(new WatcherActions.Builder()).build());
 		}
 
 		/**
@@ -136,10 +132,8 @@ public class Watcher extends Base {
 		/**
 		 * Required - API name: {@code watch}
 		 */
-		public final Builder watch(Consumer<WatcherWatch.Builder> fn) {
-			WatcherWatch.Builder builder = new WatcherWatch.Builder();
-			fn.accept(builder);
-			return this.watch(builder.build());
+		public final Builder watch(Function<WatcherWatch.Builder, ObjectBuilder<WatcherWatch>> fn) {
+			return this.watch(fn.apply(new WatcherWatch.Builder()).build());
 		}
 
 		/**
@@ -153,10 +147,8 @@ public class Watcher extends Base {
 		/**
 		 * Required - API name: {@code count}
 		 */
-		public final Builder count(Consumer<Counter.Builder> fn) {
-			Counter.Builder builder = new Counter.Builder();
-			fn.accept(builder);
-			return this.count(builder.build());
+		public final Builder count(Function<Counter.Builder, ObjectBuilder<Counter>> fn) {
+			return this.count(fn.apply(new Counter.Builder()).build());
 		}
 
 		@Override

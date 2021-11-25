@@ -36,7 +36,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.RefreshStats
@@ -69,10 +69,8 @@ public class RefreshStats implements JsonpSerializable {
 
 	}
 
-	public static RefreshStats of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static RefreshStats of(Function<Builder, ObjectBuilder<RefreshStats>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**

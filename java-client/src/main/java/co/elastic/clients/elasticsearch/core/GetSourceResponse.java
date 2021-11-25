@@ -37,7 +37,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.get_source.Response
@@ -57,10 +57,9 @@ public class GetSourceResponse<TDocument> implements JsonpSerializable {
 
 	}
 
-	public static <TDocument> GetSourceResponse<TDocument> of(Consumer<Builder<TDocument>> fn) {
-		Builder<TDocument> builder = new Builder<>();
-		fn.accept(builder);
-		return builder.build();
+	public static <TDocument> GetSourceResponse<TDocument> of(
+			Function<Builder<TDocument>, ObjectBuilder<GetSourceResponse<TDocument>>> fn) {
+		return fn.apply(new Builder<>()).build();
 	}
 
 	/**

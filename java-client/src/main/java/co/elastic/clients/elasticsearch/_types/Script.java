@@ -37,7 +37,7 @@ import co.elastic.clients.util.TaggedUnionUtils;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Object;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.Script
@@ -75,10 +75,8 @@ public class Script implements TaggedUnion<Script.Kind, Object>, JsonpSerializab
 
 	}
 
-	public static Script of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static Script of(Function<Builder, ObjectBuilder<Script>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -133,10 +131,8 @@ public class Script implements TaggedUnion<Script.Kind, Object>, JsonpSerializab
 			return this;
 		}
 
-		public ObjectBuilder<Script> inline(Consumer<InlineScript.Builder> fn) {
-			InlineScript.Builder builder = new InlineScript.Builder();
-			fn.accept(builder);
-			return this.inline(builder.build());
+		public ObjectBuilder<Script> inline(Function<InlineScript.Builder, ObjectBuilder<InlineScript>> fn) {
+			return this.inline(fn.apply(new InlineScript.Builder()).build());
 		}
 
 		public ObjectBuilder<Script> stored(StoredScriptId v) {
@@ -145,10 +141,8 @@ public class Script implements TaggedUnion<Script.Kind, Object>, JsonpSerializab
 			return this;
 		}
 
-		public ObjectBuilder<Script> stored(Consumer<StoredScriptId.Builder> fn) {
-			StoredScriptId.Builder builder = new StoredScriptId.Builder();
-			fn.accept(builder);
-			return this.stored(builder.build());
+		public ObjectBuilder<Script> stored(Function<StoredScriptId.Builder, ObjectBuilder<StoredScriptId>> fn) {
+			return this.stored(fn.apply(new StoredScriptId.Builder()).build());
 		}
 
 		public Script build() {

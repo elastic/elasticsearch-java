@@ -37,11 +37,10 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.LikeDocument
@@ -88,10 +87,8 @@ public class LikeDocument implements JsonpSerializable {
 
 	}
 
-	public static LikeDocument of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static LikeDocument of(Function<Builder, ObjectBuilder<LikeDocument>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -276,17 +273,25 @@ public class LikeDocument implements JsonpSerializable {
 
 		/**
 		 * API name: {@code fields}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>fields</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>fields</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder fields(@Nullable List<String> value) {
-			this.fields = value;
+		public final Builder fields(List<String> list) {
+			this.fields = _listAddAll(this.fields, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code fields}
+		 * <p>
+		 * Adds one or more values to <code>fields</code>.
 		 */
-		public final Builder fields(String... value) {
-			this.fields = Arrays.asList(value);
+		public final Builder fields(String value, String... values) {
+			this.fields = _listAdd(this.fields, value, values);
 			return this;
 		}
 
@@ -316,9 +321,25 @@ public class LikeDocument implements JsonpSerializable {
 
 		/**
 		 * API name: {@code per_field_analyzer}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>perFieldAnalyzer</code>. Use
+		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
+		 * <code>perFieldAnalyzer</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetMap()
 		 */
-		public final Builder perFieldAnalyzer(@Nullable Map<String, String> value) {
-			this.perFieldAnalyzer = value;
+		public final Builder perFieldAnalyzer(Map<String, String> map) {
+			this.perFieldAnalyzer = _mapPutAll(this.perFieldAnalyzer, map);
+			return this;
+		}
+
+		/**
+		 * API name: {@code per_field_analyzer}
+		 * <p>
+		 * Adds an entry to <code>perFieldAnalyzer</code>.
+		 */
+		public final Builder perFieldAnalyzer(String key, String value) {
+			this.perFieldAnalyzer = _mapPut(this.perFieldAnalyzer, key, value);
 			return this;
 		}
 

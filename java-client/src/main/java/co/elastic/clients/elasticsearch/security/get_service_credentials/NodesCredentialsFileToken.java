@@ -34,10 +34,9 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: security.get_service_credentials.NodesCredentialsFileToken
@@ -53,10 +52,8 @@ public class NodesCredentialsFileToken implements JsonpSerializable {
 
 	}
 
-	public static NodesCredentialsFileToken of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static NodesCredentialsFileToken of(Function<Builder, ObjectBuilder<NodesCredentialsFileToken>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -100,17 +97,25 @@ public class NodesCredentialsFileToken implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code nodes}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>nodes</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>nodes</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder nodes(List<String> value) {
-			this.nodes = value;
+		public final Builder nodes(List<String> list) {
+			this.nodes = _listAddAll(this.nodes, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code nodes}
+		 * <p>
+		 * Adds one or more values to <code>nodes</code>.
 		 */
-		public final Builder nodes(String... value) {
-			this.nodes = Arrays.asList(value);
+		public final Builder nodes(String value, String... values) {
+			this.nodes = _listAdd(this.nodes, value, values);
 			return this;
 		}
 

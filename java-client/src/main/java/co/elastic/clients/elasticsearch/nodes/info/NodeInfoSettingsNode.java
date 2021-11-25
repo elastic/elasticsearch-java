@@ -37,7 +37,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: nodes.info.NodeInfoSettingsNode
@@ -60,10 +60,8 @@ public class NodeInfoSettingsNode implements JsonpSerializable {
 
 	}
 
-	public static NodeInfoSettingsNode of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static NodeInfoSettingsNode of(Function<Builder, ObjectBuilder<NodeInfoSettingsNode>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -144,9 +142,25 @@ public class NodeInfoSettingsNode implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code attr}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>attr</code>. Use
+		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
+		 * <code>attr</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetMap()
 		 */
-		public final Builder attr(Map<String, JsonData> value) {
-			this.attr = value;
+		public final Builder attr(Map<String, JsonData> map) {
+			this.attr = _mapPutAll(this.attr, map);
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code attr}
+		 * <p>
+		 * Adds an entry to <code>attr</code>.
+		 */
+		public final Builder attr(String key, JsonData value) {
+			this.attr = _mapPut(this.attr, key, value);
 			return this;
 		}
 

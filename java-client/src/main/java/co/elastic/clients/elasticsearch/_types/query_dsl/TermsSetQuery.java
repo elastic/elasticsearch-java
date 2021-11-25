@@ -33,10 +33,9 @@ import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.TermsSetQuery
@@ -65,10 +64,8 @@ public class TermsSetQuery extends QueryBase implements QueryVariant {
 
 	}
 
-	public static TermsSetQuery of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static TermsSetQuery of(Function<Builder, ObjectBuilder<TermsSetQuery>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -181,25 +178,31 @@ public class TermsSetQuery extends QueryBase implements QueryVariant {
 		/**
 		 * API name: {@code minimum_should_match_script}
 		 */
-		public final Builder minimumShouldMatchScript(Consumer<Script.Builder> fn) {
-			Script.Builder builder = new Script.Builder();
-			fn.accept(builder);
-			return this.minimumShouldMatchScript(builder.build());
+		public final Builder minimumShouldMatchScript(Function<Script.Builder, ObjectBuilder<Script>> fn) {
+			return this.minimumShouldMatchScript(fn.apply(new Script.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code terms}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>terms</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>terms</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder terms(List<String> value) {
-			this.terms = value;
+		public final Builder terms(List<String> list) {
+			this.terms = _listAddAll(this.terms, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code terms}
+		 * <p>
+		 * Adds one or more values to <code>terms</code>.
 		 */
-		public final Builder terms(String... value) {
-			this.terms = Arrays.asList(value);
+		public final Builder terms(String value, String... values) {
+			this.terms = _listAdd(this.terms, value, values);
 			return this;
 		}
 

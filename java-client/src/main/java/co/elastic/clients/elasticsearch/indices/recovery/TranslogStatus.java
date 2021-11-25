@@ -36,7 +36,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.recovery.TranslogStatus
@@ -68,10 +68,8 @@ public class TranslogStatus implements JsonpSerializable {
 
 	}
 
-	public static TranslogStatus of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static TranslogStatus of(Function<Builder, ObjectBuilder<TranslogStatus>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**

@@ -35,7 +35,7 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 
 // typedef: ml.stop_data_frame_analytics.Response
 @JsonpDeserializable
@@ -50,10 +50,9 @@ public class StopDataFrameAnalyticsResponse implements JsonpSerializable {
 
 	}
 
-	public static StopDataFrameAnalyticsResponse of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static StopDataFrameAnalyticsResponse of(
+			Function<Builder, ObjectBuilder<StopDataFrameAnalyticsResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**

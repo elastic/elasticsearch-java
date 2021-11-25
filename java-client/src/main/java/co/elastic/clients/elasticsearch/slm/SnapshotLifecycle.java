@@ -36,7 +36,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: slm._types.SnapshotLifecycle
@@ -86,10 +86,8 @@ public class SnapshotLifecycle implements JsonpSerializable {
 
 	}
 
-	public static SnapshotLifecycle of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static SnapshotLifecycle of(Function<Builder, ObjectBuilder<SnapshotLifecycle>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -262,10 +260,8 @@ public class SnapshotLifecycle implements JsonpSerializable {
 		/**
 		 * API name: {@code in_progress}
 		 */
-		public final Builder inProgress(Consumer<InProgress.Builder> fn) {
-			InProgress.Builder builder = new InProgress.Builder();
-			fn.accept(builder);
-			return this.inProgress(builder.build());
+		public final Builder inProgress(Function<InProgress.Builder, ObjectBuilder<InProgress>> fn) {
+			return this.inProgress(fn.apply(new InProgress.Builder()).build());
 		}
 
 		/**
@@ -279,10 +275,8 @@ public class SnapshotLifecycle implements JsonpSerializable {
 		/**
 		 * API name: {@code last_failure}
 		 */
-		public final Builder lastFailure(Consumer<Invocation.Builder> fn) {
-			Invocation.Builder builder = new Invocation.Builder();
-			fn.accept(builder);
-			return this.lastFailure(builder.build());
+		public final Builder lastFailure(Function<Invocation.Builder, ObjectBuilder<Invocation>> fn) {
+			return this.lastFailure(fn.apply(new Invocation.Builder()).build());
 		}
 
 		/**
@@ -296,10 +290,8 @@ public class SnapshotLifecycle implements JsonpSerializable {
 		/**
 		 * API name: {@code last_success}
 		 */
-		public final Builder lastSuccess(Consumer<Invocation.Builder> fn) {
-			Invocation.Builder builder = new Invocation.Builder();
-			fn.accept(builder);
-			return this.lastSuccess(builder.build());
+		public final Builder lastSuccess(Function<Invocation.Builder, ObjectBuilder<Invocation>> fn) {
+			return this.lastSuccess(fn.apply(new Invocation.Builder()).build());
 		}
 
 		/**
@@ -345,10 +337,8 @@ public class SnapshotLifecycle implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code policy}
 		 */
-		public final Builder policy(Consumer<SlmPolicy.Builder> fn) {
-			SlmPolicy.Builder builder = new SlmPolicy.Builder();
-			fn.accept(builder);
-			return this.policy(builder.build());
+		public final Builder policy(Function<SlmPolicy.Builder, ObjectBuilder<SlmPolicy>> fn) {
+			return this.policy(fn.apply(new SlmPolicy.Builder()).build());
 		}
 
 		/**
@@ -370,10 +360,8 @@ public class SnapshotLifecycle implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code stats}
 		 */
-		public final Builder stats(Consumer<Statistics.Builder> fn) {
-			Statistics.Builder builder = new Statistics.Builder();
-			fn.accept(builder);
-			return this.stats(builder.build());
+		public final Builder stats(Function<Statistics.Builder, ObjectBuilder<Statistics>> fn) {
+			return this.stats(fn.apply(new Statistics.Builder()).build());
 		}
 
 		/**

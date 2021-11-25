@@ -42,7 +42,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: logstash.put_pipeline.Request
@@ -61,10 +61,8 @@ public class PutPipelineRequest extends RequestBase implements JsonpSerializable
 
 	}
 
-	public static PutPipelineRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static PutPipelineRequest of(Function<Builder, ObjectBuilder<PutPipelineRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -128,10 +126,8 @@ public class PutPipelineRequest extends RequestBase implements JsonpSerializable
 		 * <p>
 		 * API name: {@code _value_body}
 		 */
-		public final Builder pipeline(Consumer<Pipeline.Builder> fn) {
-			Pipeline.Builder builder = new Pipeline.Builder();
-			fn.accept(builder);
-			return this.pipeline(builder.build());
+		public final Builder pipeline(Function<Pipeline.Builder, ObjectBuilder<Pipeline>> fn) {
+			return this.pipeline(fn.apply(new Pipeline.Builder()).build());
 		}
 
 		/**

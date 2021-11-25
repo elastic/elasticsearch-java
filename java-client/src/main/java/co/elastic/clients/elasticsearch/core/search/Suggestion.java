@@ -30,17 +30,14 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.JsonpSerializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Supplier;
 import javax.annotation.Nullable;
@@ -71,10 +68,8 @@ public class Suggestion<T> implements JsonpSerializable {
 
 	}
 
-	public static <T> Suggestion<T> of(Consumer<Builder<T>> fn) {
-		Builder<T> builder = new Builder<>();
-		fn.accept(builder);
-		return builder.build();
+	public static <T> Suggestion<T> of(Function<Builder<T>, ObjectBuilder<Suggestion<T>>> fn) {
+		return fn.apply(new Builder<>()).build();
 	}
 
 	/**
@@ -172,26 +167,35 @@ public class Suggestion<T> implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code options}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>options</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>options</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder<T> options(List<SuggestOption<T>> value) {
-			this.options = value;
+		public final Builder<T> options(List<SuggestOption<T>> list) {
+			this.options = _listAddAll(this.options, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code options}
+		 * <p>
+		 * Adds one or more values to <code>options</code>.
 		 */
-		public final Builder<T> options(SuggestOption<T>... value) {
-			this.options = Arrays.asList(value);
+		public final Builder<T> options(SuggestOption<T> value, SuggestOption<T>... values) {
+			this.options = _listAdd(this.options, value, values);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code options}
+		 * <p>
+		 * Adds a value to <code>options</code> using a builder lambda.
 		 */
-		public final Builder<T> options(
-				Function<ListBuilder<SuggestOption<T>, SuggestOption.Builder<T>>, ObjectBuilder<List<SuggestOption<T>>>> fn) {
-			return options(fn.apply(new ListBuilder<>(SuggestOption.Builder<T>::new)).build());
+		public final Builder<T> options(Function<SuggestOption.Builder<T>, ObjectBuilder<SuggestOption<T>>> fn) {
+			return options(fn.apply(new SuggestOption.Builder<T>()).build());
 		}
 
 		/**

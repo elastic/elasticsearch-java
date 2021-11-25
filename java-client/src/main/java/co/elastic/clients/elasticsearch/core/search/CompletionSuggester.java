@@ -36,7 +36,7 @@ import java.lang.String;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.search._types.CompletionSuggester
@@ -69,10 +69,8 @@ public class CompletionSuggester extends SuggesterBase implements FieldSuggester
 
 	}
 
-	public static CompletionSuggester of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static CompletionSuggester of(Function<Builder, ObjectBuilder<CompletionSuggester>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -191,9 +189,25 @@ public class CompletionSuggester extends SuggesterBase implements FieldSuggester
 
 		/**
 		 * API name: {@code contexts}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>contexts</code>. Use
+		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
+		 * <code>contexts</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetMap()
 		 */
-		public final Builder contexts(@Nullable Map<String, List<CompletionContext>> value) {
-			this.contexts = value;
+		public final Builder contexts(Map<String, List<CompletionContext>> map) {
+			this.contexts = _mapPutAll(this.contexts, map);
+			return this;
+		}
+
+		/**
+		 * API name: {@code contexts}
+		 * <p>
+		 * Adds an entry to <code>contexts</code>.
+		 */
+		public final Builder contexts(String key, List<CompletionContext> value) {
+			this.contexts = _mapPut(this.contexts, key, value);
 			return this;
 		}
 
@@ -208,10 +222,8 @@ public class CompletionSuggester extends SuggesterBase implements FieldSuggester
 		/**
 		 * API name: {@code fuzzy}
 		 */
-		public final Builder fuzzy(Consumer<SuggestFuzziness.Builder> fn) {
-			SuggestFuzziness.Builder builder = new SuggestFuzziness.Builder();
-			fn.accept(builder);
-			return this.fuzzy(builder.build());
+		public final Builder fuzzy(Function<SuggestFuzziness.Builder, ObjectBuilder<SuggestFuzziness>> fn) {
+			return this.fuzzy(fn.apply(new SuggestFuzziness.Builder()).build());
 		}
 
 		/**

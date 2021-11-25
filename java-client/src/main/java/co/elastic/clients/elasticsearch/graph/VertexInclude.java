@@ -36,7 +36,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: graph._types.VertexInclude
@@ -55,10 +55,8 @@ public class VertexInclude implements JsonpSerializable {
 
 	}
 
-	public static VertexInclude of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static VertexInclude of(Function<Builder, ObjectBuilder<VertexInclude>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**

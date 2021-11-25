@@ -33,17 +33,14 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -63,10 +60,8 @@ public class PostCalendarEventsRequest extends RequestBase implements JsonpSeria
 
 	}
 
-	public static PostCalendarEventsRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static PostCalendarEventsRequest of(Function<Builder, ObjectBuilder<PostCalendarEventsRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -139,9 +134,15 @@ public class PostCalendarEventsRequest extends RequestBase implements JsonpSeria
 		 * in ISO 8601 format.
 		 * <p>
 		 * API name: {@code events}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>events</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>events</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder events(List<CalendarEvent> value) {
-			this.events = value;
+		public final Builder events(List<CalendarEvent> list) {
+			this.events = _listAddAll(this.events, list);
 			return this;
 		}
 
@@ -151,9 +152,11 @@ public class PostCalendarEventsRequest extends RequestBase implements JsonpSeria
 		 * in ISO 8601 format.
 		 * <p>
 		 * API name: {@code events}
+		 * <p>
+		 * Adds one or more values to <code>events</code>.
 		 */
-		public final Builder events(CalendarEvent... value) {
-			this.events = Arrays.asList(value);
+		public final Builder events(CalendarEvent value, CalendarEvent... values) {
+			this.events = _listAdd(this.events, value, values);
 			return this;
 		}
 
@@ -163,10 +166,11 @@ public class PostCalendarEventsRequest extends RequestBase implements JsonpSeria
 		 * in ISO 8601 format.
 		 * <p>
 		 * API name: {@code events}
+		 * <p>
+		 * Adds a value to <code>events</code> using a builder lambda.
 		 */
-		public final Builder events(
-				Function<ListBuilder<CalendarEvent, CalendarEvent.Builder>, ObjectBuilder<List<CalendarEvent>>> fn) {
-			return events(fn.apply(new ListBuilder<>(CalendarEvent.Builder::new)).build());
+		public final Builder events(Function<CalendarEvent.Builder, ObjectBuilder<CalendarEvent>> fn) {
+			return events(fn.apply(new CalendarEvent.Builder()).build());
 		}
 
 		/**

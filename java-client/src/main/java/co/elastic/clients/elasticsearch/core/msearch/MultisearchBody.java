@@ -34,7 +34,6 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.MapBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
@@ -43,7 +42,6 @@ import java.lang.Integer;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -84,10 +82,8 @@ public class MultisearchBody implements JsonpSerializable {
 
 	}
 
-	public static MultisearchBody of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static MultisearchBody of(Function<Builder, ObjectBuilder<MultisearchBody>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -229,15 +225,35 @@ public class MultisearchBody implements JsonpSerializable {
 
 		/**
 		 * API name: {@code aggregations}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>aggregations</code>. Use
+		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
+		 * <code>aggregations</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetMap()
 		 */
-		public final Builder aggregations(@Nullable Map<String, Aggregation> value) {
-			this.aggregations = value;
+		public final Builder aggregations(Map<String, Aggregation> map) {
+			this.aggregations = _mapPutAll(this.aggregations, map);
 			return this;
 		}
 
-		public final Builder aggregations(
-				Function<MapBuilder<String, Aggregation, Aggregation.Builder>, ObjectBuilder<Map<String, Aggregation>>> fn) {
-			return aggregations(fn.apply(new MapBuilder<>(Aggregation.Builder::new)).build());
+		/**
+		 * API name: {@code aggregations}
+		 * <p>
+		 * Adds an entry to <code>aggregations</code>.
+		 */
+		public final Builder aggregations(String key, Aggregation value) {
+			this.aggregations = _mapPut(this.aggregations, key, value);
+			return this;
+		}
+
+		/**
+		 * API name: {@code aggregations}
+		 * <p>
+		 * Adds an entry to <code>aggregations</code> using a builder lambda.
+		 */
+		public final Builder aggregations(String key, Function<Aggregation.Builder, ObjectBuilder<Aggregation>> fn) {
+			return aggregations(key, fn.apply(new Aggregation.Builder()).build());
 		}
 
 		/**
@@ -251,10 +267,8 @@ public class MultisearchBody implements JsonpSerializable {
 		/**
 		 * API name: {@code query}
 		 */
-		public final Builder query(Consumer<Query.Builder> fn) {
-			Query.Builder builder = new Query.Builder();
-			fn.accept(builder);
-			return this.query(builder.build());
+		public final Builder query(Function<Query.Builder, ObjectBuilder<Query>> fn) {
+			return this.query(fn.apply(new Query.Builder()).build());
 		}
 
 		/**
@@ -284,10 +298,8 @@ public class MultisearchBody implements JsonpSerializable {
 		/**
 		 * API name: {@code pit}
 		 */
-		public final Builder pit(Consumer<PointInTimeReference.Builder> fn) {
-			PointInTimeReference.Builder builder = new PointInTimeReference.Builder();
-			fn.accept(builder);
-			return this.pit(builder.build());
+		public final Builder pit(Function<PointInTimeReference.Builder, ObjectBuilder<PointInTimeReference>> fn) {
+			return this.pit(fn.apply(new PointInTimeReference.Builder()).build());
 		}
 
 		/**
@@ -301,10 +313,8 @@ public class MultisearchBody implements JsonpSerializable {
 		/**
 		 * API name: {@code track_total_hits}
 		 */
-		public final Builder trackTotalHits(Consumer<TrackHits.Builder> fn) {
-			TrackHits.Builder builder = new TrackHits.Builder();
-			fn.accept(builder);
-			return this.trackTotalHits(builder.build());
+		public final Builder trackTotalHits(Function<TrackHits.Builder, ObjectBuilder<TrackHits>> fn) {
+			return this.trackTotalHits(fn.apply(new TrackHits.Builder()).build());
 		}
 
 		/**
@@ -318,10 +328,8 @@ public class MultisearchBody implements JsonpSerializable {
 		/**
 		 * API name: {@code suggest}
 		 */
-		public final Builder suggest(Consumer<Suggester.Builder> fn) {
-			Suggester.Builder builder = new Suggester.Builder();
-			fn.accept(builder);
-			return this.suggest(builder.build());
+		public final Builder suggest(Function<Suggester.Builder, ObjectBuilder<Suggester>> fn) {
+			return this.suggest(fn.apply(new Suggester.Builder()).build());
 		}
 
 		/**

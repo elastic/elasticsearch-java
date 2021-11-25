@@ -34,7 +34,7 @@ import co.elastic.clients.transport.TransportOptions;
 import co.elastic.clients.transport.endpoints.EndpointWithResponseMapperAttr;
 import co.elastic.clients.util.ObjectBuilder;
 import java.io.IOException;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 /**
@@ -85,11 +85,9 @@ public class ElasticsearchEqlClient extends ApiClient<ElasticsearchTransport, El
 	 *      on elastic.co</a>
 	 */
 
-	public final EqlDeleteResponse delete(Consumer<EqlDeleteRequest.Builder> fn)
+	public final EqlDeleteResponse delete(Function<EqlDeleteRequest.Builder, ObjectBuilder<EqlDeleteRequest>> fn)
 			throws IOException, ElasticsearchException {
-		EqlDeleteRequest.Builder builder = new EqlDeleteRequest.Builder();
-		fn.accept(builder);
-		return delete(builder.build());
+		return delete(fn.apply(new EqlDeleteRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: eql.get
@@ -125,11 +123,9 @@ public class ElasticsearchEqlClient extends ApiClient<ElasticsearchTransport, El
 	 *      on elastic.co</a>
 	 */
 
-	public final <TEvent> EqlGetResponse<TEvent> get(Consumer<EqlGetRequest.Builder> fn, Class<TEvent> tEventClass)
-			throws IOException, ElasticsearchException {
-		EqlGetRequest.Builder builder = new EqlGetRequest.Builder();
-		fn.accept(builder);
-		return get(builder.build(), tEventClass);
+	public final <TEvent> EqlGetResponse<TEvent> get(Function<EqlGetRequest.Builder, ObjectBuilder<EqlGetRequest>> fn,
+			Class<TEvent> tEventClass) throws IOException, ElasticsearchException {
+		return get(fn.apply(new EqlGetRequest.Builder()).build(), tEventClass);
 	}
 
 	// ----- Endpoint: eql.get_status
@@ -162,11 +158,10 @@ public class ElasticsearchEqlClient extends ApiClient<ElasticsearchTransport, El
 	 *      on elastic.co</a>
 	 */
 
-	public final GetEqlStatusResponse getStatus(Consumer<GetEqlStatusRequest.Builder> fn)
+	public final GetEqlStatusResponse getStatus(
+			Function<GetEqlStatusRequest.Builder, ObjectBuilder<GetEqlStatusRequest>> fn)
 			throws IOException, ElasticsearchException {
-		GetEqlStatusRequest.Builder builder = new GetEqlStatusRequest.Builder();
-		fn.accept(builder);
-		return getStatus(builder.build());
+		return getStatus(fn.apply(new GetEqlStatusRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: eql.search
@@ -200,11 +195,10 @@ public class ElasticsearchEqlClient extends ApiClient<ElasticsearchTransport, El
 	 *      on elastic.co</a>
 	 */
 
-	public final <TEvent> EqlSearchResponse<TEvent> search(Consumer<EqlSearchRequest.Builder> fn,
-			Class<TEvent> tEventClass) throws IOException, ElasticsearchException {
-		EqlSearchRequest.Builder builder = new EqlSearchRequest.Builder();
-		fn.accept(builder);
-		return search(builder.build(), tEventClass);
+	public final <TEvent> EqlSearchResponse<TEvent> search(
+			Function<EqlSearchRequest.Builder, ObjectBuilder<EqlSearchRequest>> fn, Class<TEvent> tEventClass)
+			throws IOException, ElasticsearchException {
+		return search(fn.apply(new EqlSearchRequest.Builder()).build(), tEventClass);
 	}
 
 }

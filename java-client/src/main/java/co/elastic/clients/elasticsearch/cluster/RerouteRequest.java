@@ -35,19 +35,16 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
@@ -88,10 +85,8 @@ public class RerouteRequest extends RequestBase implements JsonpSerializable {
 
 	}
 
-	public static RerouteRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static RerouteRequest of(Function<Builder, ObjectBuilder<RerouteRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -222,9 +217,15 @@ public class RerouteRequest extends RequestBase implements JsonpSerializable {
 		 * Defines the commands to perform.
 		 * <p>
 		 * API name: {@code commands}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>commands</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>commands</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder commands(@Nullable List<Command> value) {
-			this.commands = value;
+		public final Builder commands(List<Command> list) {
+			this.commands = _listAddAll(this.commands, list);
 			return this;
 		}
 
@@ -232,9 +233,11 @@ public class RerouteRequest extends RequestBase implements JsonpSerializable {
 		 * Defines the commands to perform.
 		 * <p>
 		 * API name: {@code commands}
+		 * <p>
+		 * Adds one or more values to <code>commands</code>.
 		 */
-		public final Builder commands(Command... value) {
-			this.commands = Arrays.asList(value);
+		public final Builder commands(Command value, Command... values) {
+			this.commands = _listAdd(this.commands, value, values);
 			return this;
 		}
 
@@ -242,10 +245,11 @@ public class RerouteRequest extends RequestBase implements JsonpSerializable {
 		 * Defines the commands to perform.
 		 * <p>
 		 * API name: {@code commands}
+		 * <p>
+		 * Adds a value to <code>commands</code> using a builder lambda.
 		 */
-		public final Builder commands(
-				Function<ListBuilder<Command, Command.Builder>, ObjectBuilder<List<Command>>> fn) {
-			return commands(fn.apply(new ListBuilder<>(Command.Builder::new)).build());
+		public final Builder commands(Function<Command.Builder, ObjectBuilder<Command>> fn) {
+			return commands(fn.apply(new Command.Builder()).build());
 		}
 
 		/**
@@ -287,19 +291,23 @@ public class RerouteRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
-		public final Builder masterTimeout(Consumer<Time.Builder> fn) {
-			Time.Builder builder = new Time.Builder();
-			fn.accept(builder);
-			return this.masterTimeout(builder.build());
+		public final Builder masterTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.masterTimeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
 		 * Limits the information returned to the specified metrics.
 		 * <p>
 		 * API name: {@code metric}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>metric</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>metric</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder metric(@Nullable List<String> value) {
-			this.metric = value;
+		public final Builder metric(List<String> list) {
+			this.metric = _listAddAll(this.metric, list);
 			return this;
 		}
 
@@ -307,9 +315,11 @@ public class RerouteRequest extends RequestBase implements JsonpSerializable {
 		 * Limits the information returned to the specified metrics.
 		 * <p>
 		 * API name: {@code metric}
+		 * <p>
+		 * Adds one or more values to <code>metric</code>.
 		 */
-		public final Builder metric(String... value) {
-			this.metric = Arrays.asList(value);
+		public final Builder metric(String value, String... values) {
+			this.metric = _listAdd(this.metric, value, values);
 			return this;
 		}
 
@@ -341,10 +351,8 @@ public class RerouteRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code timeout}
 		 */
-		public final Builder timeout(Consumer<Time.Builder> fn) {
-			Time.Builder builder = new Time.Builder();
-			fn.accept(builder);
-			return this.timeout(builder.build());
+		public final Builder timeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.timeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**

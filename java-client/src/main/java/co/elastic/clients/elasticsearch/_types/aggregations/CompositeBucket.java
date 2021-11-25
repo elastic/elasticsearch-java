@@ -35,7 +35,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.CompositeBucket
@@ -52,10 +52,8 @@ public class CompositeBucket extends MultiBucketBase {
 
 	}
 
-	public static CompositeBucket of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static CompositeBucket of(Function<Builder, ObjectBuilder<CompositeBucket>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -94,9 +92,25 @@ public class CompositeBucket extends MultiBucketBase {
 
 		/**
 		 * Required - API name: {@code key}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>key</code>. Use
+		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset <code>key</code>
+		 * to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetMap()
 		 */
-		public final Builder key(Map<String, JsonData> value) {
-			this.key = value;
+		public final Builder key(Map<String, JsonData> map) {
+			this.key = _mapPutAll(this.key, map);
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code key}
+		 * <p>
+		 * Adds an entry to <code>key</code>.
+		 */
+		public final Builder key(String key, JsonData value) {
+			this.key = _mapPut(this.key, key, value);
 			return this;
 		}
 

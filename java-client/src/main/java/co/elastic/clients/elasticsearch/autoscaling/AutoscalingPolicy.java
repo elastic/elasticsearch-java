@@ -35,7 +35,6 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -143,17 +142,25 @@ public class AutoscalingPolicy implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code roles}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>roles</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>roles</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final BuilderT roles(List<String> value) {
-			this.roles = value;
+		public final BuilderT roles(List<String> list) {
+			this.roles = _listAddAll(this.roles, list);
 			return self();
 		}
 
 		/**
 		 * Required - API name: {@code roles}
+		 * <p>
+		 * Adds one or more values to <code>roles</code>.
 		 */
-		public final BuilderT roles(String... value) {
-			this.roles = Arrays.asList(value);
+		public final BuilderT roles(String value, String... values) {
+			this.roles = _listAdd(this.roles, value, values);
 			return self();
 		}
 
@@ -161,9 +168,27 @@ public class AutoscalingPolicy implements JsonpSerializable {
 		 * Required - Decider settings
 		 * <p>
 		 * API name: {@code deciders}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>deciders</code>. Use
+		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
+		 * <code>deciders</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetMap()
 		 */
-		public final BuilderT deciders(Map<String, JsonData> value) {
-			this.deciders = value;
+		public final BuilderT deciders(Map<String, JsonData> map) {
+			this.deciders = _mapPutAll(this.deciders, map);
+			return self();
+		}
+
+		/**
+		 * Required - Decider settings
+		 * <p>
+		 * API name: {@code deciders}
+		 * <p>
+		 * Adds an entry to <code>deciders</code>.
+		 */
+		public final BuilderT deciders(String key, JsonData value) {
+			this.deciders = _mapPut(this.deciders, key, value);
 			return self();
 		}
 
