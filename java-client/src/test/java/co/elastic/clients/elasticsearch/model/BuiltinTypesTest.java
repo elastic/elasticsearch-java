@@ -91,7 +91,7 @@ public class BuiltinTypesTest extends ModelTestCase {
             "          }\n" +
             "       }", SortOptions.class);
 
-        assertEquals("blue", sort.field().nested().filter().term().value().string());
+        assertEquals("blue", sort.field().nested().filter().term().value().stringValue());
 
         // Geo distance
         sort = fromJson("{\n" +
@@ -123,29 +123,40 @@ public class BuiltinTypesTest extends ModelTestCase {
 
         FieldValue f;
 
-        f = FieldValue.of(b -> b.null_());
+        f = FieldValue.of(b -> b.nullValue());
         f = checkJsonRoundtrip(f, "null");
         assertTrue(f.isNull());
+        assertEquals("null", f._toJsonString());
 
-        f = FieldValue.of(b -> b.double_(1.23));
+        f = FieldValue.of(b -> b.doubleValue(1.23));
         f = checkJsonRoundtrip(f, "1.23");
         assertTrue(f.isDouble());
-        assertEquals(1.23, f.double_(), 0.01);
+        assertEquals(1.23, f.doubleValue(), 0.01);
+        assertEquals("1.23", f._toJsonString());
 
-        f = FieldValue.of(b -> b.long_(123));
+        f = FieldValue.of(b -> b.longValue(123));
         f = checkJsonRoundtrip(f, "123");
         assertTrue(f.isLong());
-        assertEquals(123, f.long_());
+        assertEquals(123, f.longValue());
+        assertEquals("123", f._toJsonString());
 
-        f = FieldValue.of(b -> b.boolean_(true));
+        f = FieldValue.of(b -> b.booleanValue(true));
         f = checkJsonRoundtrip(f, "true");
         assertTrue(f.isBoolean());
-        assertTrue(f.boolean_());
+        assertTrue(f.booleanValue());
+        assertEquals("true", f._toJsonString());
 
-        f = FieldValue.of(b -> b.string("foo"));
+        f = FieldValue.of(b -> b.booleanValue(false));
+        f = checkJsonRoundtrip(f, "false");
+        assertTrue(f.isBoolean());
+        assertFalse(f.booleanValue());
+        assertEquals("false", f._toJsonString());
+
+        f = FieldValue.of(b -> b.stringValue("foo"));
         f = checkJsonRoundtrip(f, "\"foo\"");
         assertTrue(f.isString());
-        assertEquals("foo", f.string());
+        assertEquals("foo", f.stringValue());
+        assertEquals("foo", f._toJsonString());
 
     }
 }

@@ -20,6 +20,7 @@
 package co.elastic.clients.elasticsearch.model;
 
 import co.elastic.clients.elasticsearch._types.ErrorCause;
+import co.elastic.clients.elasticsearch._types.FieldValue;
 import co.elastic.clients.elasticsearch._types.GeoLocation;
 import co.elastic.clients.elasticsearch._types.GeoShapeRelation;
 import co.elastic.clients.elasticsearch._types.SortOptions;
@@ -39,14 +40,14 @@ public class BehaviorsTest extends ModelTestCase {
         TermQuery q = new TermQuery.Builder()
             .queryName("query-name")
             .field("field-name")
-            .value(_1 -> _1.string("some-value"))
+            .value(FieldValue.of("some-value"))
             .build();
 
         q = checkJsonRoundtrip(q, "{\"field-name\":{\"_name\":\"query-name\",\"value\":\"some-value\"}}");
 
         assertEquals("query-name", q.queryName());
         assertEquals("field-name", q.field());
-        assertEquals("some-value", q.value().string());
+        assertEquals("some-value", q.value().stringValue());
     }
 
     @Test
@@ -162,6 +163,6 @@ public class BehaviorsTest extends ModelTestCase {
         Query q = fromJson(json, Query.class);
 
         assertEquals("some-field", q.term().field());
-        assertEquals("some-value", q.term().value().string());
+        assertEquals("some-value", q.term().value().stringValue());
     }
 }
