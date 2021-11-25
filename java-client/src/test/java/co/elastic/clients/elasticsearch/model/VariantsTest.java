@@ -23,7 +23,9 @@ import co.elastic.clients.elasticsearch._types.mapping.Property;
 import co.elastic.clients.elasticsearch._types.mapping.TypeMapping;
 import co.elastic.clients.elasticsearch._types.query_dsl.Query;
 import co.elastic.clients.elasticsearch._types.query_dsl.QueryBuilders;
+import co.elastic.clients.elasticsearch.core.SearchRequest;
 import co.elastic.clients.elasticsearch.indices.GetMappingResponse;
+import co.elastic.clients.json.JsonData;
 import org.junit.Test;
 
 public class VariantsTest extends ModelTestCase {
@@ -40,13 +42,12 @@ public class VariantsTest extends ModelTestCase {
                 .field("a_field")
                 .anyOf(_2 -> _2
                     .intervals(_3 -> _3
-                        .add(_4 -> _4.match(
+                        .match(
                             _5 -> _5
                                 .query("match-query")
                                 .analyzer("lowercase")
                             )
                         )
-                    )
                 )
             )
         );
@@ -82,11 +83,10 @@ public class VariantsTest extends ModelTestCase {
             .ip(_1 -> _1
                 .index(true)
                 .boost(1.0)
-                .fields(_2 -> _2
-                    .put("a-field", _3 -> _3
-                        .float_(_4 -> _4
-                            .coerce(true)
-                        )
+                .fields(
+                    "a-field", _3 -> _3
+                    .float_(_4 -> _4
+                        .coerce(true)
                     )
                 )
             )
@@ -177,5 +177,23 @@ public class VariantsTest extends ModelTestCase {
         assertTrue(mappings.properties().get("id").isText());
 
         assertEquals(256, mappings.properties().get("id").text().fields().get("keyword").keyword().ignoreAbove().longValue());
+    }
+
+    @Test
+    public void testNestedVariantsWithContainerProperties() {
+
+        SearchRequest search = SearchRequest.of(s -> s
+            .aggregations(
+                "agg1", a -> a
+                    .meta("m1", JsonData.of("m1 value"))
+                    // Here we can choose any aggregation type, but build() isn't accessible
+                    .valueCount(v -> v.field("f"))
+                    // Here we can only set container properties (meta and (sub)aggregations) or build()
+                    .meta("m2", JsonData.of("m2 value"))
+            )
+        );
+
+        assertEquals("m1 value", search.aggregations().get("agg1").meta().get("m1").to(String.class));
+        assertEquals("m2 value", search.aggregations().get("agg1").meta().get("m2").to(String.class));
     }
 }

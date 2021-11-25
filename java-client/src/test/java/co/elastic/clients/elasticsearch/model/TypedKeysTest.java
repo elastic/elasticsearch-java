@@ -38,10 +38,9 @@ public class TypedKeysTest extends ModelTestCase {
     public void testMapProperty() {
 
         SearchResponse<Void> resp = new SearchResponse.Builder<Void>()
-            .aggregations(_1 -> _1
-                .put("foo", _2 -> _2
+            .aggregations(
+                "foo", _2 -> _2
                     .avg(_3 -> _3.value(3.14))
-                )
             )
             // Required properties on a SearchResponse
             .took(1)
@@ -91,9 +90,7 @@ public class TypedKeysTest extends ModelTestCase {
         ._toAggregate();
 
         SearchResponse<Void> resp = new SearchResponse.Builder<Void>()
-            .aggregations(_1 -> _1
-                .put("foo", aggregate)
-            )
+            .aggregations("foo", aggregate)
             // Required properties on a SearchResponse
             .took(1)
             .shards(_1 -> _1.successful(1).failed(0).total(1))
