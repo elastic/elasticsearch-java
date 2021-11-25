@@ -37,7 +37,7 @@ import java.lang.Double;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.put_trained_model.TargetMeanEncodingPreprocessor
@@ -62,10 +62,9 @@ public class TargetMeanEncodingPreprocessor implements PreprocessorVariant, Json
 
 	}
 
-	public static TargetMeanEncodingPreprocessor of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static TargetMeanEncodingPreprocessor of(
+			Function<Builder, ObjectBuilder<TargetMeanEncodingPreprocessor>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -169,9 +168,25 @@ public class TargetMeanEncodingPreprocessor implements PreprocessorVariant, Json
 
 		/**
 		 * Required - API name: {@code target_map}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>targetMap</code>. Use
+		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
+		 * <code>targetMap</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetMap()
 		 */
-		public final Builder targetMap(Map<String, Double> value) {
-			this.targetMap = value;
+		public final Builder targetMap(Map<String, Double> map) {
+			this.targetMap = _mapPutAll(this.targetMap, map);
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code target_map}
+		 * <p>
+		 * Adds an entry to <code>targetMap</code>.
+		 */
+		public final Builder targetMap(String key, Double value) {
+			this.targetMap = _mapPut(this.targetMap, key, value);
 			return this;
 		}
 

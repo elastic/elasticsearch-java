@@ -31,15 +31,12 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.JsonpSerializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Supplier;
 import javax.annotation.Nullable;
@@ -64,10 +61,8 @@ public class HitsSequence<TEvent> implements JsonpSerializable {
 
 	}
 
-	public static <TEvent> HitsSequence<TEvent> of(Consumer<Builder<TEvent>> fn) {
-		Builder<TEvent> builder = new Builder<>();
-		fn.accept(builder);
-		return builder.build();
+	public static <TEvent> HitsSequence<TEvent> of(Function<Builder<TEvent>, ObjectBuilder<HitsSequence<TEvent>>> fn) {
+		return fn.apply(new Builder<>()).build();
 	}
 
 	/**
@@ -142,9 +137,15 @@ public class HitsSequence<TEvent> implements JsonpSerializable {
 		 * matching event.
 		 * <p>
 		 * API name: {@code events}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>events</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>events</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder<TEvent> events(List<HitsEvent<TEvent>> value) {
-			this.events = value;
+		public final Builder<TEvent> events(List<HitsEvent<TEvent>> list) {
+			this.events = _listAddAll(this.events, list);
 			return this;
 		}
 
@@ -153,9 +154,11 @@ public class HitsSequence<TEvent> implements JsonpSerializable {
 		 * matching event.
 		 * <p>
 		 * API name: {@code events}
+		 * <p>
+		 * Adds one or more values to <code>events</code>.
 		 */
-		public final Builder<TEvent> events(HitsEvent<TEvent>... value) {
-			this.events = Arrays.asList(value);
+		public final Builder<TEvent> events(HitsEvent<TEvent> value, HitsEvent<TEvent>... values) {
+			this.events = _listAdd(this.events, value, values);
 			return this;
 		}
 
@@ -164,10 +167,11 @@ public class HitsSequence<TEvent> implements JsonpSerializable {
 		 * matching event.
 		 * <p>
 		 * API name: {@code events}
+		 * <p>
+		 * Adds a value to <code>events</code> using a builder lambda.
 		 */
-		public final Builder<TEvent> events(
-				Function<ListBuilder<HitsEvent<TEvent>, HitsEvent.Builder<TEvent>>, ObjectBuilder<List<HitsEvent<TEvent>>>> fn) {
-			return events(fn.apply(new ListBuilder<>(HitsEvent.Builder<TEvent>::new)).build());
+		public final Builder<TEvent> events(Function<HitsEvent.Builder<TEvent>, ObjectBuilder<HitsEvent<TEvent>>> fn) {
+			return events(fn.apply(new HitsEvent.Builder<TEvent>()).build());
 		}
 
 		/**
@@ -175,9 +179,15 @@ public class HitsSequence<TEvent> implements JsonpSerializable {
 		 * These are defined using the by keyword in the EQL query syntax.
 		 * <p>
 		 * API name: {@code join_keys}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>joinKeys</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>joinKeys</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder<TEvent> joinKeys(List<JsonData> value) {
-			this.joinKeys = value;
+		public final Builder<TEvent> joinKeys(List<JsonData> list) {
+			this.joinKeys = _listAddAll(this.joinKeys, list);
 			return this;
 		}
 
@@ -186,9 +196,11 @@ public class HitsSequence<TEvent> implements JsonpSerializable {
 		 * These are defined using the by keyword in the EQL query syntax.
 		 * <p>
 		 * API name: {@code join_keys}
+		 * <p>
+		 * Adds one or more values to <code>joinKeys</code>.
 		 */
-		public final Builder<TEvent> joinKeys(JsonData... value) {
-			this.joinKeys = Arrays.asList(value);
+		public final Builder<TEvent> joinKeys(JsonData value, JsonData... values) {
+			this.joinKeys = _listAdd(this.joinKeys, value, values);
 			return this;
 		}
 

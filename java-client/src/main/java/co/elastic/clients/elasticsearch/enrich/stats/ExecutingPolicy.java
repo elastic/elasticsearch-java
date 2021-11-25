@@ -36,7 +36,7 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: enrich.stats.ExecutingPolicy
@@ -55,10 +55,8 @@ public class ExecutingPolicy implements JsonpSerializable {
 
 	}
 
-	public static ExecutingPolicy of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static ExecutingPolicy of(Function<Builder, ObjectBuilder<ExecutingPolicy>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -123,10 +121,8 @@ public class ExecutingPolicy implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code task}
 		 */
-		public final Builder task(Consumer<Info.Builder> fn) {
-			Info.Builder builder = new Info.Builder();
-			fn.accept(builder);
-			return this.task(builder.build());
+		public final Builder task(Function<Info.Builder, ObjectBuilder<Info>> fn) {
+			return this.task(fn.apply(new Info.Builder()).build());
 		}
 
 		/**

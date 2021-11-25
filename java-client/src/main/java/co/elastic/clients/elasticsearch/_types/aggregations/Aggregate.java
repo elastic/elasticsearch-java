@@ -39,7 +39,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.Aggregate
@@ -221,10 +221,8 @@ public class Aggregate implements TaggedUnion<Aggregate.Kind, AggregateVariant>,
 
 	}
 
-	public static Aggregate of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static Aggregate of(Function<Builder, ObjectBuilder<Aggregate>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -1345,10 +1343,9 @@ public class Aggregate implements TaggedUnion<Aggregate.Kind, AggregateVariant>,
 			return this;
 		}
 
-		public ObjectBuilder<Aggregate> adjacencyMatrix(Consumer<AdjacencyMatrixAggregate.Builder> fn) {
-			AdjacencyMatrixAggregate.Builder builder = new AdjacencyMatrixAggregate.Builder();
-			fn.accept(builder);
-			return this.adjacencyMatrix(builder.build());
+		public ObjectBuilder<Aggregate> adjacencyMatrix(
+				Function<AdjacencyMatrixAggregate.Builder, ObjectBuilder<AdjacencyMatrixAggregate>> fn) {
+			return this.adjacencyMatrix(fn.apply(new AdjacencyMatrixAggregate.Builder()).build());
 		}
 
 		public ObjectBuilder<Aggregate> autoDateHistogram(AutoDateHistogramAggregate v) {
@@ -1357,10 +1354,9 @@ public class Aggregate implements TaggedUnion<Aggregate.Kind, AggregateVariant>,
 			return this;
 		}
 
-		public ObjectBuilder<Aggregate> autoDateHistogram(Consumer<AutoDateHistogramAggregate.Builder> fn) {
-			AutoDateHistogramAggregate.Builder builder = new AutoDateHistogramAggregate.Builder();
-			fn.accept(builder);
-			return this.autoDateHistogram(builder.build());
+		public ObjectBuilder<Aggregate> autoDateHistogram(
+				Function<AutoDateHistogramAggregate.Builder, ObjectBuilder<AutoDateHistogramAggregate>> fn) {
+			return this.autoDateHistogram(fn.apply(new AutoDateHistogramAggregate.Builder()).build());
 		}
 
 		public ObjectBuilder<Aggregate> avg(AvgAggregate v) {
@@ -1369,10 +1365,8 @@ public class Aggregate implements TaggedUnion<Aggregate.Kind, AggregateVariant>,
 			return this;
 		}
 
-		public ObjectBuilder<Aggregate> avg(Consumer<AvgAggregate.Builder> fn) {
-			AvgAggregate.Builder builder = new AvgAggregate.Builder();
-			fn.accept(builder);
-			return this.avg(builder.build());
+		public ObjectBuilder<Aggregate> avg(Function<AvgAggregate.Builder, ObjectBuilder<AvgAggregate>> fn) {
+			return this.avg(fn.apply(new AvgAggregate.Builder()).build());
 		}
 
 		public ObjectBuilder<Aggregate> boxPlot(BoxPlotAggregate v) {
@@ -1381,10 +1375,9 @@ public class Aggregate implements TaggedUnion<Aggregate.Kind, AggregateVariant>,
 			return this;
 		}
 
-		public ObjectBuilder<Aggregate> boxPlot(Consumer<BoxPlotAggregate.Builder> fn) {
-			BoxPlotAggregate.Builder builder = new BoxPlotAggregate.Builder();
-			fn.accept(builder);
-			return this.boxPlot(builder.build());
+		public ObjectBuilder<Aggregate> boxPlot(
+				Function<BoxPlotAggregate.Builder, ObjectBuilder<BoxPlotAggregate>> fn) {
+			return this.boxPlot(fn.apply(new BoxPlotAggregate.Builder()).build());
 		}
 
 		public ObjectBuilder<Aggregate> bucketMetricValue(BucketMetricValueAggregate v) {
@@ -1393,10 +1386,9 @@ public class Aggregate implements TaggedUnion<Aggregate.Kind, AggregateVariant>,
 			return this;
 		}
 
-		public ObjectBuilder<Aggregate> bucketMetricValue(Consumer<BucketMetricValueAggregate.Builder> fn) {
-			BucketMetricValueAggregate.Builder builder = new BucketMetricValueAggregate.Builder();
-			fn.accept(builder);
-			return this.bucketMetricValue(builder.build());
+		public ObjectBuilder<Aggregate> bucketMetricValue(
+				Function<BucketMetricValueAggregate.Builder, ObjectBuilder<BucketMetricValueAggregate>> fn) {
+			return this.bucketMetricValue(fn.apply(new BucketMetricValueAggregate.Builder()).build());
 		}
 
 		public ObjectBuilder<Aggregate> cardinality(CardinalityAggregate v) {
@@ -1405,10 +1397,9 @@ public class Aggregate implements TaggedUnion<Aggregate.Kind, AggregateVariant>,
 			return this;
 		}
 
-		public ObjectBuilder<Aggregate> cardinality(Consumer<CardinalityAggregate.Builder> fn) {
-			CardinalityAggregate.Builder builder = new CardinalityAggregate.Builder();
-			fn.accept(builder);
-			return this.cardinality(builder.build());
+		public ObjectBuilder<Aggregate> cardinality(
+				Function<CardinalityAggregate.Builder, ObjectBuilder<CardinalityAggregate>> fn) {
+			return this.cardinality(fn.apply(new CardinalityAggregate.Builder()).build());
 		}
 
 		public ObjectBuilder<Aggregate> children(ChildrenAggregate v) {
@@ -1417,10 +1408,9 @@ public class Aggregate implements TaggedUnion<Aggregate.Kind, AggregateVariant>,
 			return this;
 		}
 
-		public ObjectBuilder<Aggregate> children(Consumer<ChildrenAggregate.Builder> fn) {
-			ChildrenAggregate.Builder builder = new ChildrenAggregate.Builder();
-			fn.accept(builder);
-			return this.children(builder.build());
+		public ObjectBuilder<Aggregate> children(
+				Function<ChildrenAggregate.Builder, ObjectBuilder<ChildrenAggregate>> fn) {
+			return this.children(fn.apply(new ChildrenAggregate.Builder()).build());
 		}
 
 		public ObjectBuilder<Aggregate> composite(CompositeAggregate v) {
@@ -1429,10 +1419,9 @@ public class Aggregate implements TaggedUnion<Aggregate.Kind, AggregateVariant>,
 			return this;
 		}
 
-		public ObjectBuilder<Aggregate> composite(Consumer<CompositeAggregate.Builder> fn) {
-			CompositeAggregate.Builder builder = new CompositeAggregate.Builder();
-			fn.accept(builder);
-			return this.composite(builder.build());
+		public ObjectBuilder<Aggregate> composite(
+				Function<CompositeAggregate.Builder, ObjectBuilder<CompositeAggregate>> fn) {
+			return this.composite(fn.apply(new CompositeAggregate.Builder()).build());
 		}
 
 		public ObjectBuilder<Aggregate> simpleLongValue(CumulativeCardinalityAggregate v) {
@@ -1441,10 +1430,9 @@ public class Aggregate implements TaggedUnion<Aggregate.Kind, AggregateVariant>,
 			return this;
 		}
 
-		public ObjectBuilder<Aggregate> simpleLongValue(Consumer<CumulativeCardinalityAggregate.Builder> fn) {
-			CumulativeCardinalityAggregate.Builder builder = new CumulativeCardinalityAggregate.Builder();
-			fn.accept(builder);
-			return this.simpleLongValue(builder.build());
+		public ObjectBuilder<Aggregate> simpleLongValue(
+				Function<CumulativeCardinalityAggregate.Builder, ObjectBuilder<CumulativeCardinalityAggregate>> fn) {
+			return this.simpleLongValue(fn.apply(new CumulativeCardinalityAggregate.Builder()).build());
 		}
 
 		public ObjectBuilder<Aggregate> dateHistogram(DateHistogramAggregate v) {
@@ -1453,10 +1441,9 @@ public class Aggregate implements TaggedUnion<Aggregate.Kind, AggregateVariant>,
 			return this;
 		}
 
-		public ObjectBuilder<Aggregate> dateHistogram(Consumer<DateHistogramAggregate.Builder> fn) {
-			DateHistogramAggregate.Builder builder = new DateHistogramAggregate.Builder();
-			fn.accept(builder);
-			return this.dateHistogram(builder.build());
+		public ObjectBuilder<Aggregate> dateHistogram(
+				Function<DateHistogramAggregate.Builder, ObjectBuilder<DateHistogramAggregate>> fn) {
+			return this.dateHistogram(fn.apply(new DateHistogramAggregate.Builder()).build());
 		}
 
 		public ObjectBuilder<Aggregate> dateRange(DateRangeAggregate v) {
@@ -1465,10 +1452,9 @@ public class Aggregate implements TaggedUnion<Aggregate.Kind, AggregateVariant>,
 			return this;
 		}
 
-		public ObjectBuilder<Aggregate> dateRange(Consumer<DateRangeAggregate.Builder> fn) {
-			DateRangeAggregate.Builder builder = new DateRangeAggregate.Builder();
-			fn.accept(builder);
-			return this.dateRange(builder.build());
+		public ObjectBuilder<Aggregate> dateRange(
+				Function<DateRangeAggregate.Builder, ObjectBuilder<DateRangeAggregate>> fn) {
+			return this.dateRange(fn.apply(new DateRangeAggregate.Builder()).build());
 		}
 
 		public ObjectBuilder<Aggregate> derivative(DerivativeAggregate v) {
@@ -1477,10 +1463,9 @@ public class Aggregate implements TaggedUnion<Aggregate.Kind, AggregateVariant>,
 			return this;
 		}
 
-		public ObjectBuilder<Aggregate> derivative(Consumer<DerivativeAggregate.Builder> fn) {
-			DerivativeAggregate.Builder builder = new DerivativeAggregate.Builder();
-			fn.accept(builder);
-			return this.derivative(builder.build());
+		public ObjectBuilder<Aggregate> derivative(
+				Function<DerivativeAggregate.Builder, ObjectBuilder<DerivativeAggregate>> fn) {
+			return this.derivative(fn.apply(new DerivativeAggregate.Builder()).build());
 		}
 
 		public ObjectBuilder<Aggregate> dterms(DoubleTermsAggregate v) {
@@ -1489,10 +1474,9 @@ public class Aggregate implements TaggedUnion<Aggregate.Kind, AggregateVariant>,
 			return this;
 		}
 
-		public ObjectBuilder<Aggregate> dterms(Consumer<DoubleTermsAggregate.Builder> fn) {
-			DoubleTermsAggregate.Builder builder = new DoubleTermsAggregate.Builder();
-			fn.accept(builder);
-			return this.dterms(builder.build());
+		public ObjectBuilder<Aggregate> dterms(
+				Function<DoubleTermsAggregate.Builder, ObjectBuilder<DoubleTermsAggregate>> fn) {
+			return this.dterms(fn.apply(new DoubleTermsAggregate.Builder()).build());
 		}
 
 		public ObjectBuilder<Aggregate> extendedStats(ExtendedStatsAggregate v) {
@@ -1501,10 +1485,9 @@ public class Aggregate implements TaggedUnion<Aggregate.Kind, AggregateVariant>,
 			return this;
 		}
 
-		public ObjectBuilder<Aggregate> extendedStats(Consumer<ExtendedStatsAggregate.Builder> fn) {
-			ExtendedStatsAggregate.Builder builder = new ExtendedStatsAggregate.Builder();
-			fn.accept(builder);
-			return this.extendedStats(builder.build());
+		public ObjectBuilder<Aggregate> extendedStats(
+				Function<ExtendedStatsAggregate.Builder, ObjectBuilder<ExtendedStatsAggregate>> fn) {
+			return this.extendedStats(fn.apply(new ExtendedStatsAggregate.Builder()).build());
 		}
 
 		public ObjectBuilder<Aggregate> extendedStatsBucket(ExtendedStatsBucketAggregate v) {
@@ -1513,10 +1496,9 @@ public class Aggregate implements TaggedUnion<Aggregate.Kind, AggregateVariant>,
 			return this;
 		}
 
-		public ObjectBuilder<Aggregate> extendedStatsBucket(Consumer<ExtendedStatsBucketAggregate.Builder> fn) {
-			ExtendedStatsBucketAggregate.Builder builder = new ExtendedStatsBucketAggregate.Builder();
-			fn.accept(builder);
-			return this.extendedStatsBucket(builder.build());
+		public ObjectBuilder<Aggregate> extendedStatsBucket(
+				Function<ExtendedStatsBucketAggregate.Builder, ObjectBuilder<ExtendedStatsBucketAggregate>> fn) {
+			return this.extendedStatsBucket(fn.apply(new ExtendedStatsBucketAggregate.Builder()).build());
 		}
 
 		public ObjectBuilder<Aggregate> filter(FilterAggregate v) {
@@ -1525,10 +1507,8 @@ public class Aggregate implements TaggedUnion<Aggregate.Kind, AggregateVariant>,
 			return this;
 		}
 
-		public ObjectBuilder<Aggregate> filter(Consumer<FilterAggregate.Builder> fn) {
-			FilterAggregate.Builder builder = new FilterAggregate.Builder();
-			fn.accept(builder);
-			return this.filter(builder.build());
+		public ObjectBuilder<Aggregate> filter(Function<FilterAggregate.Builder, ObjectBuilder<FilterAggregate>> fn) {
+			return this.filter(fn.apply(new FilterAggregate.Builder()).build());
 		}
 
 		public ObjectBuilder<Aggregate> filters(FiltersAggregate v) {
@@ -1537,10 +1517,9 @@ public class Aggregate implements TaggedUnion<Aggregate.Kind, AggregateVariant>,
 			return this;
 		}
 
-		public ObjectBuilder<Aggregate> filters(Consumer<FiltersAggregate.Builder> fn) {
-			FiltersAggregate.Builder builder = new FiltersAggregate.Builder();
-			fn.accept(builder);
-			return this.filters(builder.build());
+		public ObjectBuilder<Aggregate> filters(
+				Function<FiltersAggregate.Builder, ObjectBuilder<FiltersAggregate>> fn) {
+			return this.filters(fn.apply(new FiltersAggregate.Builder()).build());
 		}
 
 		public ObjectBuilder<Aggregate> geoBounds(GeoBoundsAggregate v) {
@@ -1549,10 +1528,9 @@ public class Aggregate implements TaggedUnion<Aggregate.Kind, AggregateVariant>,
 			return this;
 		}
 
-		public ObjectBuilder<Aggregate> geoBounds(Consumer<GeoBoundsAggregate.Builder> fn) {
-			GeoBoundsAggregate.Builder builder = new GeoBoundsAggregate.Builder();
-			fn.accept(builder);
-			return this.geoBounds(builder.build());
+		public ObjectBuilder<Aggregate> geoBounds(
+				Function<GeoBoundsAggregate.Builder, ObjectBuilder<GeoBoundsAggregate>> fn) {
+			return this.geoBounds(fn.apply(new GeoBoundsAggregate.Builder()).build());
 		}
 
 		public ObjectBuilder<Aggregate> geoCentroid(GeoCentroidAggregate v) {
@@ -1561,10 +1539,9 @@ public class Aggregate implements TaggedUnion<Aggregate.Kind, AggregateVariant>,
 			return this;
 		}
 
-		public ObjectBuilder<Aggregate> geoCentroid(Consumer<GeoCentroidAggregate.Builder> fn) {
-			GeoCentroidAggregate.Builder builder = new GeoCentroidAggregate.Builder();
-			fn.accept(builder);
-			return this.geoCentroid(builder.build());
+		public ObjectBuilder<Aggregate> geoCentroid(
+				Function<GeoCentroidAggregate.Builder, ObjectBuilder<GeoCentroidAggregate>> fn) {
+			return this.geoCentroid(fn.apply(new GeoCentroidAggregate.Builder()).build());
 		}
 
 		public ObjectBuilder<Aggregate> geoDistance(GeoDistanceAggregate v) {
@@ -1573,10 +1550,9 @@ public class Aggregate implements TaggedUnion<Aggregate.Kind, AggregateVariant>,
 			return this;
 		}
 
-		public ObjectBuilder<Aggregate> geoDistance(Consumer<GeoDistanceAggregate.Builder> fn) {
-			GeoDistanceAggregate.Builder builder = new GeoDistanceAggregate.Builder();
-			fn.accept(builder);
-			return this.geoDistance(builder.build());
+		public ObjectBuilder<Aggregate> geoDistance(
+				Function<GeoDistanceAggregate.Builder, ObjectBuilder<GeoDistanceAggregate>> fn) {
+			return this.geoDistance(fn.apply(new GeoDistanceAggregate.Builder()).build());
 		}
 
 		public ObjectBuilder<Aggregate> geohashGrid(GeoHashGridAggregate v) {
@@ -1585,10 +1561,9 @@ public class Aggregate implements TaggedUnion<Aggregate.Kind, AggregateVariant>,
 			return this;
 		}
 
-		public ObjectBuilder<Aggregate> geohashGrid(Consumer<GeoHashGridAggregate.Builder> fn) {
-			GeoHashGridAggregate.Builder builder = new GeoHashGridAggregate.Builder();
-			fn.accept(builder);
-			return this.geohashGrid(builder.build());
+		public ObjectBuilder<Aggregate> geohashGrid(
+				Function<GeoHashGridAggregate.Builder, ObjectBuilder<GeoHashGridAggregate>> fn) {
+			return this.geohashGrid(fn.apply(new GeoHashGridAggregate.Builder()).build());
 		}
 
 		public ObjectBuilder<Aggregate> geoLine(GeoLineAggregate v) {
@@ -1597,10 +1572,9 @@ public class Aggregate implements TaggedUnion<Aggregate.Kind, AggregateVariant>,
 			return this;
 		}
 
-		public ObjectBuilder<Aggregate> geoLine(Consumer<GeoLineAggregate.Builder> fn) {
-			GeoLineAggregate.Builder builder = new GeoLineAggregate.Builder();
-			fn.accept(builder);
-			return this.geoLine(builder.build());
+		public ObjectBuilder<Aggregate> geoLine(
+				Function<GeoLineAggregate.Builder, ObjectBuilder<GeoLineAggregate>> fn) {
+			return this.geoLine(fn.apply(new GeoLineAggregate.Builder()).build());
 		}
 
 		public ObjectBuilder<Aggregate> geotileGrid(GeoTileGridAggregate v) {
@@ -1609,10 +1583,9 @@ public class Aggregate implements TaggedUnion<Aggregate.Kind, AggregateVariant>,
 			return this;
 		}
 
-		public ObjectBuilder<Aggregate> geotileGrid(Consumer<GeoTileGridAggregate.Builder> fn) {
-			GeoTileGridAggregate.Builder builder = new GeoTileGridAggregate.Builder();
-			fn.accept(builder);
-			return this.geotileGrid(builder.build());
+		public ObjectBuilder<Aggregate> geotileGrid(
+				Function<GeoTileGridAggregate.Builder, ObjectBuilder<GeoTileGridAggregate>> fn) {
+			return this.geotileGrid(fn.apply(new GeoTileGridAggregate.Builder()).build());
 		}
 
 		public ObjectBuilder<Aggregate> global(GlobalAggregate v) {
@@ -1621,10 +1594,8 @@ public class Aggregate implements TaggedUnion<Aggregate.Kind, AggregateVariant>,
 			return this;
 		}
 
-		public ObjectBuilder<Aggregate> global(Consumer<GlobalAggregate.Builder> fn) {
-			GlobalAggregate.Builder builder = new GlobalAggregate.Builder();
-			fn.accept(builder);
-			return this.global(builder.build());
+		public ObjectBuilder<Aggregate> global(Function<GlobalAggregate.Builder, ObjectBuilder<GlobalAggregate>> fn) {
+			return this.global(fn.apply(new GlobalAggregate.Builder()).build());
 		}
 
 		public ObjectBuilder<Aggregate> hdrPercentileRanks(HdrPercentileRanksAggregate v) {
@@ -1633,10 +1604,9 @@ public class Aggregate implements TaggedUnion<Aggregate.Kind, AggregateVariant>,
 			return this;
 		}
 
-		public ObjectBuilder<Aggregate> hdrPercentileRanks(Consumer<HdrPercentileRanksAggregate.Builder> fn) {
-			HdrPercentileRanksAggregate.Builder builder = new HdrPercentileRanksAggregate.Builder();
-			fn.accept(builder);
-			return this.hdrPercentileRanks(builder.build());
+		public ObjectBuilder<Aggregate> hdrPercentileRanks(
+				Function<HdrPercentileRanksAggregate.Builder, ObjectBuilder<HdrPercentileRanksAggregate>> fn) {
+			return this.hdrPercentileRanks(fn.apply(new HdrPercentileRanksAggregate.Builder()).build());
 		}
 
 		public ObjectBuilder<Aggregate> hdrPercentiles(HdrPercentilesAggregate v) {
@@ -1645,10 +1615,9 @@ public class Aggregate implements TaggedUnion<Aggregate.Kind, AggregateVariant>,
 			return this;
 		}
 
-		public ObjectBuilder<Aggregate> hdrPercentiles(Consumer<HdrPercentilesAggregate.Builder> fn) {
-			HdrPercentilesAggregate.Builder builder = new HdrPercentilesAggregate.Builder();
-			fn.accept(builder);
-			return this.hdrPercentiles(builder.build());
+		public ObjectBuilder<Aggregate> hdrPercentiles(
+				Function<HdrPercentilesAggregate.Builder, ObjectBuilder<HdrPercentilesAggregate>> fn) {
+			return this.hdrPercentiles(fn.apply(new HdrPercentilesAggregate.Builder()).build());
 		}
 
 		public ObjectBuilder<Aggregate> histogram(HistogramAggregate v) {
@@ -1657,10 +1626,9 @@ public class Aggregate implements TaggedUnion<Aggregate.Kind, AggregateVariant>,
 			return this;
 		}
 
-		public ObjectBuilder<Aggregate> histogram(Consumer<HistogramAggregate.Builder> fn) {
-			HistogramAggregate.Builder builder = new HistogramAggregate.Builder();
-			fn.accept(builder);
-			return this.histogram(builder.build());
+		public ObjectBuilder<Aggregate> histogram(
+				Function<HistogramAggregate.Builder, ObjectBuilder<HistogramAggregate>> fn) {
+			return this.histogram(fn.apply(new HistogramAggregate.Builder()).build());
 		}
 
 		public ObjectBuilder<Aggregate> inference(InferenceAggregate v) {
@@ -1669,10 +1637,9 @@ public class Aggregate implements TaggedUnion<Aggregate.Kind, AggregateVariant>,
 			return this;
 		}
 
-		public ObjectBuilder<Aggregate> inference(Consumer<InferenceAggregate.Builder> fn) {
-			InferenceAggregate.Builder builder = new InferenceAggregate.Builder();
-			fn.accept(builder);
-			return this.inference(builder.build());
+		public ObjectBuilder<Aggregate> inference(
+				Function<InferenceAggregate.Builder, ObjectBuilder<InferenceAggregate>> fn) {
+			return this.inference(fn.apply(new InferenceAggregate.Builder()).build());
 		}
 
 		public ObjectBuilder<Aggregate> ipRange(IpRangeAggregate v) {
@@ -1681,10 +1648,9 @@ public class Aggregate implements TaggedUnion<Aggregate.Kind, AggregateVariant>,
 			return this;
 		}
 
-		public ObjectBuilder<Aggregate> ipRange(Consumer<IpRangeAggregate.Builder> fn) {
-			IpRangeAggregate.Builder builder = new IpRangeAggregate.Builder();
-			fn.accept(builder);
-			return this.ipRange(builder.build());
+		public ObjectBuilder<Aggregate> ipRange(
+				Function<IpRangeAggregate.Builder, ObjectBuilder<IpRangeAggregate>> fn) {
+			return this.ipRange(fn.apply(new IpRangeAggregate.Builder()).build());
 		}
 
 		public ObjectBuilder<Aggregate> lrareterms(LongRareTermsAggregate v) {
@@ -1693,10 +1659,9 @@ public class Aggregate implements TaggedUnion<Aggregate.Kind, AggregateVariant>,
 			return this;
 		}
 
-		public ObjectBuilder<Aggregate> lrareterms(Consumer<LongRareTermsAggregate.Builder> fn) {
-			LongRareTermsAggregate.Builder builder = new LongRareTermsAggregate.Builder();
-			fn.accept(builder);
-			return this.lrareterms(builder.build());
+		public ObjectBuilder<Aggregate> lrareterms(
+				Function<LongRareTermsAggregate.Builder, ObjectBuilder<LongRareTermsAggregate>> fn) {
+			return this.lrareterms(fn.apply(new LongRareTermsAggregate.Builder()).build());
 		}
 
 		public ObjectBuilder<Aggregate> lterms(LongTermsAggregate v) {
@@ -1705,10 +1670,9 @@ public class Aggregate implements TaggedUnion<Aggregate.Kind, AggregateVariant>,
 			return this;
 		}
 
-		public ObjectBuilder<Aggregate> lterms(Consumer<LongTermsAggregate.Builder> fn) {
-			LongTermsAggregate.Builder builder = new LongTermsAggregate.Builder();
-			fn.accept(builder);
-			return this.lterms(builder.build());
+		public ObjectBuilder<Aggregate> lterms(
+				Function<LongTermsAggregate.Builder, ObjectBuilder<LongTermsAggregate>> fn) {
+			return this.lterms(fn.apply(new LongTermsAggregate.Builder()).build());
 		}
 
 		public ObjectBuilder<Aggregate> matrixStats(MatrixStatsAggregate v) {
@@ -1717,10 +1681,9 @@ public class Aggregate implements TaggedUnion<Aggregate.Kind, AggregateVariant>,
 			return this;
 		}
 
-		public ObjectBuilder<Aggregate> matrixStats(Consumer<MatrixStatsAggregate.Builder> fn) {
-			MatrixStatsAggregate.Builder builder = new MatrixStatsAggregate.Builder();
-			fn.accept(builder);
-			return this.matrixStats(builder.build());
+		public ObjectBuilder<Aggregate> matrixStats(
+				Function<MatrixStatsAggregate.Builder, ObjectBuilder<MatrixStatsAggregate>> fn) {
+			return this.matrixStats(fn.apply(new MatrixStatsAggregate.Builder()).build());
 		}
 
 		public ObjectBuilder<Aggregate> max(MaxAggregate v) {
@@ -1729,10 +1692,8 @@ public class Aggregate implements TaggedUnion<Aggregate.Kind, AggregateVariant>,
 			return this;
 		}
 
-		public ObjectBuilder<Aggregate> max(Consumer<MaxAggregate.Builder> fn) {
-			MaxAggregate.Builder builder = new MaxAggregate.Builder();
-			fn.accept(builder);
-			return this.max(builder.build());
+		public ObjectBuilder<Aggregate> max(Function<MaxAggregate.Builder, ObjectBuilder<MaxAggregate>> fn) {
+			return this.max(fn.apply(new MaxAggregate.Builder()).build());
 		}
 
 		public ObjectBuilder<Aggregate> medianAbsoluteDeviation(MedianAbsoluteDeviationAggregate v) {
@@ -1741,10 +1702,9 @@ public class Aggregate implements TaggedUnion<Aggregate.Kind, AggregateVariant>,
 			return this;
 		}
 
-		public ObjectBuilder<Aggregate> medianAbsoluteDeviation(Consumer<MedianAbsoluteDeviationAggregate.Builder> fn) {
-			MedianAbsoluteDeviationAggregate.Builder builder = new MedianAbsoluteDeviationAggregate.Builder();
-			fn.accept(builder);
-			return this.medianAbsoluteDeviation(builder.build());
+		public ObjectBuilder<Aggregate> medianAbsoluteDeviation(
+				Function<MedianAbsoluteDeviationAggregate.Builder, ObjectBuilder<MedianAbsoluteDeviationAggregate>> fn) {
+			return this.medianAbsoluteDeviation(fn.apply(new MedianAbsoluteDeviationAggregate.Builder()).build());
 		}
 
 		public ObjectBuilder<Aggregate> min(MinAggregate v) {
@@ -1753,10 +1713,8 @@ public class Aggregate implements TaggedUnion<Aggregate.Kind, AggregateVariant>,
 			return this;
 		}
 
-		public ObjectBuilder<Aggregate> min(Consumer<MinAggregate.Builder> fn) {
-			MinAggregate.Builder builder = new MinAggregate.Builder();
-			fn.accept(builder);
-			return this.min(builder.build());
+		public ObjectBuilder<Aggregate> min(Function<MinAggregate.Builder, ObjectBuilder<MinAggregate>> fn) {
+			return this.min(fn.apply(new MinAggregate.Builder()).build());
 		}
 
 		public ObjectBuilder<Aggregate> missing(MissingAggregate v) {
@@ -1765,10 +1723,9 @@ public class Aggregate implements TaggedUnion<Aggregate.Kind, AggregateVariant>,
 			return this;
 		}
 
-		public ObjectBuilder<Aggregate> missing(Consumer<MissingAggregate.Builder> fn) {
-			MissingAggregate.Builder builder = new MissingAggregate.Builder();
-			fn.accept(builder);
-			return this.missing(builder.build());
+		public ObjectBuilder<Aggregate> missing(
+				Function<MissingAggregate.Builder, ObjectBuilder<MissingAggregate>> fn) {
+			return this.missing(fn.apply(new MissingAggregate.Builder()).build());
 		}
 
 		public ObjectBuilder<Aggregate> multiTerms(MultiTermsAggregate v) {
@@ -1777,10 +1734,9 @@ public class Aggregate implements TaggedUnion<Aggregate.Kind, AggregateVariant>,
 			return this;
 		}
 
-		public ObjectBuilder<Aggregate> multiTerms(Consumer<MultiTermsAggregate.Builder> fn) {
-			MultiTermsAggregate.Builder builder = new MultiTermsAggregate.Builder();
-			fn.accept(builder);
-			return this.multiTerms(builder.build());
+		public ObjectBuilder<Aggregate> multiTerms(
+				Function<MultiTermsAggregate.Builder, ObjectBuilder<MultiTermsAggregate>> fn) {
+			return this.multiTerms(fn.apply(new MultiTermsAggregate.Builder()).build());
 		}
 
 		public ObjectBuilder<Aggregate> nested(NestedAggregate v) {
@@ -1789,10 +1745,8 @@ public class Aggregate implements TaggedUnion<Aggregate.Kind, AggregateVariant>,
 			return this;
 		}
 
-		public ObjectBuilder<Aggregate> nested(Consumer<NestedAggregate.Builder> fn) {
-			NestedAggregate.Builder builder = new NestedAggregate.Builder();
-			fn.accept(builder);
-			return this.nested(builder.build());
+		public ObjectBuilder<Aggregate> nested(Function<NestedAggregate.Builder, ObjectBuilder<NestedAggregate>> fn) {
+			return this.nested(fn.apply(new NestedAggregate.Builder()).build());
 		}
 
 		public ObjectBuilder<Aggregate> percentilesBucket(PercentilesBucketAggregate v) {
@@ -1801,10 +1755,9 @@ public class Aggregate implements TaggedUnion<Aggregate.Kind, AggregateVariant>,
 			return this;
 		}
 
-		public ObjectBuilder<Aggregate> percentilesBucket(Consumer<PercentilesBucketAggregate.Builder> fn) {
-			PercentilesBucketAggregate.Builder builder = new PercentilesBucketAggregate.Builder();
-			fn.accept(builder);
-			return this.percentilesBucket(builder.build());
+		public ObjectBuilder<Aggregate> percentilesBucket(
+				Function<PercentilesBucketAggregate.Builder, ObjectBuilder<PercentilesBucketAggregate>> fn) {
+			return this.percentilesBucket(fn.apply(new PercentilesBucketAggregate.Builder()).build());
 		}
 
 		public ObjectBuilder<Aggregate> range(RangeAggregate v) {
@@ -1813,10 +1766,8 @@ public class Aggregate implements TaggedUnion<Aggregate.Kind, AggregateVariant>,
 			return this;
 		}
 
-		public ObjectBuilder<Aggregate> range(Consumer<RangeAggregate.Builder> fn) {
-			RangeAggregate.Builder builder = new RangeAggregate.Builder();
-			fn.accept(builder);
-			return this.range(builder.build());
+		public ObjectBuilder<Aggregate> range(Function<RangeAggregate.Builder, ObjectBuilder<RangeAggregate>> fn) {
+			return this.range(fn.apply(new RangeAggregate.Builder()).build());
 		}
 
 		public ObjectBuilder<Aggregate> rate(RateAggregate v) {
@@ -1825,10 +1776,8 @@ public class Aggregate implements TaggedUnion<Aggregate.Kind, AggregateVariant>,
 			return this;
 		}
 
-		public ObjectBuilder<Aggregate> rate(Consumer<RateAggregate.Builder> fn) {
-			RateAggregate.Builder builder = new RateAggregate.Builder();
-			fn.accept(builder);
-			return this.rate(builder.build());
+		public ObjectBuilder<Aggregate> rate(Function<RateAggregate.Builder, ObjectBuilder<RateAggregate>> fn) {
+			return this.rate(fn.apply(new RateAggregate.Builder()).build());
 		}
 
 		public ObjectBuilder<Aggregate> reverseNested(ReverseNestedAggregate v) {
@@ -1837,10 +1786,9 @@ public class Aggregate implements TaggedUnion<Aggregate.Kind, AggregateVariant>,
 			return this;
 		}
 
-		public ObjectBuilder<Aggregate> reverseNested(Consumer<ReverseNestedAggregate.Builder> fn) {
-			ReverseNestedAggregate.Builder builder = new ReverseNestedAggregate.Builder();
-			fn.accept(builder);
-			return this.reverseNested(builder.build());
+		public ObjectBuilder<Aggregate> reverseNested(
+				Function<ReverseNestedAggregate.Builder, ObjectBuilder<ReverseNestedAggregate>> fn) {
+			return this.reverseNested(fn.apply(new ReverseNestedAggregate.Builder()).build());
 		}
 
 		public ObjectBuilder<Aggregate> sampler(SamplerAggregate v) {
@@ -1849,10 +1797,9 @@ public class Aggregate implements TaggedUnion<Aggregate.Kind, AggregateVariant>,
 			return this;
 		}
 
-		public ObjectBuilder<Aggregate> sampler(Consumer<SamplerAggregate.Builder> fn) {
-			SamplerAggregate.Builder builder = new SamplerAggregate.Builder();
-			fn.accept(builder);
-			return this.sampler(builder.build());
+		public ObjectBuilder<Aggregate> sampler(
+				Function<SamplerAggregate.Builder, ObjectBuilder<SamplerAggregate>> fn) {
+			return this.sampler(fn.apply(new SamplerAggregate.Builder()).build());
 		}
 
 		public ObjectBuilder<Aggregate> scriptedMetric(ScriptedMetricAggregate v) {
@@ -1861,10 +1808,9 @@ public class Aggregate implements TaggedUnion<Aggregate.Kind, AggregateVariant>,
 			return this;
 		}
 
-		public ObjectBuilder<Aggregate> scriptedMetric(Consumer<ScriptedMetricAggregate.Builder> fn) {
-			ScriptedMetricAggregate.Builder builder = new ScriptedMetricAggregate.Builder();
-			fn.accept(builder);
-			return this.scriptedMetric(builder.build());
+		public ObjectBuilder<Aggregate> scriptedMetric(
+				Function<ScriptedMetricAggregate.Builder, ObjectBuilder<ScriptedMetricAggregate>> fn) {
+			return this.scriptedMetric(fn.apply(new ScriptedMetricAggregate.Builder()).build());
 		}
 
 		public ObjectBuilder<Aggregate> siglterms(SignificantLongTermsAggregate v) {
@@ -1873,10 +1819,9 @@ public class Aggregate implements TaggedUnion<Aggregate.Kind, AggregateVariant>,
 			return this;
 		}
 
-		public ObjectBuilder<Aggregate> siglterms(Consumer<SignificantLongTermsAggregate.Builder> fn) {
-			SignificantLongTermsAggregate.Builder builder = new SignificantLongTermsAggregate.Builder();
-			fn.accept(builder);
-			return this.siglterms(builder.build());
+		public ObjectBuilder<Aggregate> siglterms(
+				Function<SignificantLongTermsAggregate.Builder, ObjectBuilder<SignificantLongTermsAggregate>> fn) {
+			return this.siglterms(fn.apply(new SignificantLongTermsAggregate.Builder()).build());
 		}
 
 		public ObjectBuilder<Aggregate> sigsterms(SignificantStringTermsAggregate v) {
@@ -1885,10 +1830,9 @@ public class Aggregate implements TaggedUnion<Aggregate.Kind, AggregateVariant>,
 			return this;
 		}
 
-		public ObjectBuilder<Aggregate> sigsterms(Consumer<SignificantStringTermsAggregate.Builder> fn) {
-			SignificantStringTermsAggregate.Builder builder = new SignificantStringTermsAggregate.Builder();
-			fn.accept(builder);
-			return this.sigsterms(builder.build());
+		public ObjectBuilder<Aggregate> sigsterms(
+				Function<SignificantStringTermsAggregate.Builder, ObjectBuilder<SignificantStringTermsAggregate>> fn) {
+			return this.sigsterms(fn.apply(new SignificantStringTermsAggregate.Builder()).build());
 		}
 
 		public ObjectBuilder<Aggregate> simpleValue(SimpleValueAggregate v) {
@@ -1897,10 +1841,9 @@ public class Aggregate implements TaggedUnion<Aggregate.Kind, AggregateVariant>,
 			return this;
 		}
 
-		public ObjectBuilder<Aggregate> simpleValue(Consumer<SimpleValueAggregate.Builder> fn) {
-			SimpleValueAggregate.Builder builder = new SimpleValueAggregate.Builder();
-			fn.accept(builder);
-			return this.simpleValue(builder.build());
+		public ObjectBuilder<Aggregate> simpleValue(
+				Function<SimpleValueAggregate.Builder, ObjectBuilder<SimpleValueAggregate>> fn) {
+			return this.simpleValue(fn.apply(new SimpleValueAggregate.Builder()).build());
 		}
 
 		public ObjectBuilder<Aggregate> stats(StatsAggregate v) {
@@ -1909,10 +1852,8 @@ public class Aggregate implements TaggedUnion<Aggregate.Kind, AggregateVariant>,
 			return this;
 		}
 
-		public ObjectBuilder<Aggregate> stats(Consumer<StatsAggregate.Builder> fn) {
-			StatsAggregate.Builder builder = new StatsAggregate.Builder();
-			fn.accept(builder);
-			return this.stats(builder.build());
+		public ObjectBuilder<Aggregate> stats(Function<StatsAggregate.Builder, ObjectBuilder<StatsAggregate>> fn) {
+			return this.stats(fn.apply(new StatsAggregate.Builder()).build());
 		}
 
 		public ObjectBuilder<Aggregate> statsBucket(StatsBucketAggregate v) {
@@ -1921,10 +1862,9 @@ public class Aggregate implements TaggedUnion<Aggregate.Kind, AggregateVariant>,
 			return this;
 		}
 
-		public ObjectBuilder<Aggregate> statsBucket(Consumer<StatsBucketAggregate.Builder> fn) {
-			StatsBucketAggregate.Builder builder = new StatsBucketAggregate.Builder();
-			fn.accept(builder);
-			return this.statsBucket(builder.build());
+		public ObjectBuilder<Aggregate> statsBucket(
+				Function<StatsBucketAggregate.Builder, ObjectBuilder<StatsBucketAggregate>> fn) {
+			return this.statsBucket(fn.apply(new StatsBucketAggregate.Builder()).build());
 		}
 
 		public ObjectBuilder<Aggregate> srareterms(StringRareTermsAggregate v) {
@@ -1933,10 +1873,9 @@ public class Aggregate implements TaggedUnion<Aggregate.Kind, AggregateVariant>,
 			return this;
 		}
 
-		public ObjectBuilder<Aggregate> srareterms(Consumer<StringRareTermsAggregate.Builder> fn) {
-			StringRareTermsAggregate.Builder builder = new StringRareTermsAggregate.Builder();
-			fn.accept(builder);
-			return this.srareterms(builder.build());
+		public ObjectBuilder<Aggregate> srareterms(
+				Function<StringRareTermsAggregate.Builder, ObjectBuilder<StringRareTermsAggregate>> fn) {
+			return this.srareterms(fn.apply(new StringRareTermsAggregate.Builder()).build());
 		}
 
 		public ObjectBuilder<Aggregate> stringStats(StringStatsAggregate v) {
@@ -1945,10 +1884,9 @@ public class Aggregate implements TaggedUnion<Aggregate.Kind, AggregateVariant>,
 			return this;
 		}
 
-		public ObjectBuilder<Aggregate> stringStats(Consumer<StringStatsAggregate.Builder> fn) {
-			StringStatsAggregate.Builder builder = new StringStatsAggregate.Builder();
-			fn.accept(builder);
-			return this.stringStats(builder.build());
+		public ObjectBuilder<Aggregate> stringStats(
+				Function<StringStatsAggregate.Builder, ObjectBuilder<StringStatsAggregate>> fn) {
+			return this.stringStats(fn.apply(new StringStatsAggregate.Builder()).build());
 		}
 
 		public ObjectBuilder<Aggregate> sterms(StringTermsAggregate v) {
@@ -1957,10 +1895,9 @@ public class Aggregate implements TaggedUnion<Aggregate.Kind, AggregateVariant>,
 			return this;
 		}
 
-		public ObjectBuilder<Aggregate> sterms(Consumer<StringTermsAggregate.Builder> fn) {
-			StringTermsAggregate.Builder builder = new StringTermsAggregate.Builder();
-			fn.accept(builder);
-			return this.sterms(builder.build());
+		public ObjectBuilder<Aggregate> sterms(
+				Function<StringTermsAggregate.Builder, ObjectBuilder<StringTermsAggregate>> fn) {
+			return this.sterms(fn.apply(new StringTermsAggregate.Builder()).build());
 		}
 
 		public ObjectBuilder<Aggregate> sum(SumAggregate v) {
@@ -1969,10 +1906,8 @@ public class Aggregate implements TaggedUnion<Aggregate.Kind, AggregateVariant>,
 			return this;
 		}
 
-		public ObjectBuilder<Aggregate> sum(Consumer<SumAggregate.Builder> fn) {
-			SumAggregate.Builder builder = new SumAggregate.Builder();
-			fn.accept(builder);
-			return this.sum(builder.build());
+		public ObjectBuilder<Aggregate> sum(Function<SumAggregate.Builder, ObjectBuilder<SumAggregate>> fn) {
+			return this.sum(fn.apply(new SumAggregate.Builder()).build());
 		}
 
 		public ObjectBuilder<Aggregate> tdigestPercentileRanks(TDigestPercentileRanksAggregate v) {
@@ -1981,10 +1916,9 @@ public class Aggregate implements TaggedUnion<Aggregate.Kind, AggregateVariant>,
 			return this;
 		}
 
-		public ObjectBuilder<Aggregate> tdigestPercentileRanks(Consumer<TDigestPercentileRanksAggregate.Builder> fn) {
-			TDigestPercentileRanksAggregate.Builder builder = new TDigestPercentileRanksAggregate.Builder();
-			fn.accept(builder);
-			return this.tdigestPercentileRanks(builder.build());
+		public ObjectBuilder<Aggregate> tdigestPercentileRanks(
+				Function<TDigestPercentileRanksAggregate.Builder, ObjectBuilder<TDigestPercentileRanksAggregate>> fn) {
+			return this.tdigestPercentileRanks(fn.apply(new TDigestPercentileRanksAggregate.Builder()).build());
 		}
 
 		public ObjectBuilder<Aggregate> tdigestPercentiles(TDigestPercentilesAggregate v) {
@@ -1993,10 +1927,9 @@ public class Aggregate implements TaggedUnion<Aggregate.Kind, AggregateVariant>,
 			return this;
 		}
 
-		public ObjectBuilder<Aggregate> tdigestPercentiles(Consumer<TDigestPercentilesAggregate.Builder> fn) {
-			TDigestPercentilesAggregate.Builder builder = new TDigestPercentilesAggregate.Builder();
-			fn.accept(builder);
-			return this.tdigestPercentiles(builder.build());
+		public ObjectBuilder<Aggregate> tdigestPercentiles(
+				Function<TDigestPercentilesAggregate.Builder, ObjectBuilder<TDigestPercentilesAggregate>> fn) {
+			return this.tdigestPercentiles(fn.apply(new TDigestPercentilesAggregate.Builder()).build());
 		}
 
 		public ObjectBuilder<Aggregate> tTest(TTestAggregate v) {
@@ -2005,10 +1938,8 @@ public class Aggregate implements TaggedUnion<Aggregate.Kind, AggregateVariant>,
 			return this;
 		}
 
-		public ObjectBuilder<Aggregate> tTest(Consumer<TTestAggregate.Builder> fn) {
-			TTestAggregate.Builder builder = new TTestAggregate.Builder();
-			fn.accept(builder);
-			return this.tTest(builder.build());
+		public ObjectBuilder<Aggregate> tTest(Function<TTestAggregate.Builder, ObjectBuilder<TTestAggregate>> fn) {
+			return this.tTest(fn.apply(new TTestAggregate.Builder()).build());
 		}
 
 		public ObjectBuilder<Aggregate> topHits(TopHitsAggregate v) {
@@ -2017,10 +1948,9 @@ public class Aggregate implements TaggedUnion<Aggregate.Kind, AggregateVariant>,
 			return this;
 		}
 
-		public ObjectBuilder<Aggregate> topHits(Consumer<TopHitsAggregate.Builder> fn) {
-			TopHitsAggregate.Builder builder = new TopHitsAggregate.Builder();
-			fn.accept(builder);
-			return this.topHits(builder.build());
+		public ObjectBuilder<Aggregate> topHits(
+				Function<TopHitsAggregate.Builder, ObjectBuilder<TopHitsAggregate>> fn) {
+			return this.topHits(fn.apply(new TopHitsAggregate.Builder()).build());
 		}
 
 		public ObjectBuilder<Aggregate> topMetrics(TopMetricsAggregate v) {
@@ -2029,10 +1959,9 @@ public class Aggregate implements TaggedUnion<Aggregate.Kind, AggregateVariant>,
 			return this;
 		}
 
-		public ObjectBuilder<Aggregate> topMetrics(Consumer<TopMetricsAggregate.Builder> fn) {
-			TopMetricsAggregate.Builder builder = new TopMetricsAggregate.Builder();
-			fn.accept(builder);
-			return this.topMetrics(builder.build());
+		public ObjectBuilder<Aggregate> topMetrics(
+				Function<TopMetricsAggregate.Builder, ObjectBuilder<TopMetricsAggregate>> fn) {
+			return this.topMetrics(fn.apply(new TopMetricsAggregate.Builder()).build());
 		}
 
 		public ObjectBuilder<Aggregate> umrareterms(UnmappedRareTermsAggregate v) {
@@ -2041,10 +1970,9 @@ public class Aggregate implements TaggedUnion<Aggregate.Kind, AggregateVariant>,
 			return this;
 		}
 
-		public ObjectBuilder<Aggregate> umrareterms(Consumer<UnmappedRareTermsAggregate.Builder> fn) {
-			UnmappedRareTermsAggregate.Builder builder = new UnmappedRareTermsAggregate.Builder();
-			fn.accept(builder);
-			return this.umrareterms(builder.build());
+		public ObjectBuilder<Aggregate> umrareterms(
+				Function<UnmappedRareTermsAggregate.Builder, ObjectBuilder<UnmappedRareTermsAggregate>> fn) {
+			return this.umrareterms(fn.apply(new UnmappedRareTermsAggregate.Builder()).build());
 		}
 
 		public ObjectBuilder<Aggregate> umsigterms(UnmappedSignificantTermsAggregate v) {
@@ -2053,10 +1981,9 @@ public class Aggregate implements TaggedUnion<Aggregate.Kind, AggregateVariant>,
 			return this;
 		}
 
-		public ObjectBuilder<Aggregate> umsigterms(Consumer<UnmappedSignificantTermsAggregate.Builder> fn) {
-			UnmappedSignificantTermsAggregate.Builder builder = new UnmappedSignificantTermsAggregate.Builder();
-			fn.accept(builder);
-			return this.umsigterms(builder.build());
+		public ObjectBuilder<Aggregate> umsigterms(
+				Function<UnmappedSignificantTermsAggregate.Builder, ObjectBuilder<UnmappedSignificantTermsAggregate>> fn) {
+			return this.umsigterms(fn.apply(new UnmappedSignificantTermsAggregate.Builder()).build());
 		}
 
 		public ObjectBuilder<Aggregate> umterms(UnmappedTermsAggregate v) {
@@ -2065,10 +1992,9 @@ public class Aggregate implements TaggedUnion<Aggregate.Kind, AggregateVariant>,
 			return this;
 		}
 
-		public ObjectBuilder<Aggregate> umterms(Consumer<UnmappedTermsAggregate.Builder> fn) {
-			UnmappedTermsAggregate.Builder builder = new UnmappedTermsAggregate.Builder();
-			fn.accept(builder);
-			return this.umterms(builder.build());
+		public ObjectBuilder<Aggregate> umterms(
+				Function<UnmappedTermsAggregate.Builder, ObjectBuilder<UnmappedTermsAggregate>> fn) {
+			return this.umterms(fn.apply(new UnmappedTermsAggregate.Builder()).build());
 		}
 
 		public ObjectBuilder<Aggregate> valueCount(ValueCountAggregate v) {
@@ -2077,10 +2003,9 @@ public class Aggregate implements TaggedUnion<Aggregate.Kind, AggregateVariant>,
 			return this;
 		}
 
-		public ObjectBuilder<Aggregate> valueCount(Consumer<ValueCountAggregate.Builder> fn) {
-			ValueCountAggregate.Builder builder = new ValueCountAggregate.Builder();
-			fn.accept(builder);
-			return this.valueCount(builder.build());
+		public ObjectBuilder<Aggregate> valueCount(
+				Function<ValueCountAggregate.Builder, ObjectBuilder<ValueCountAggregate>> fn) {
+			return this.valueCount(fn.apply(new ValueCountAggregate.Builder()).build());
 		}
 
 		public ObjectBuilder<Aggregate> variableWidthHistogram(VariableWidthHistogramAggregate v) {
@@ -2089,10 +2014,9 @@ public class Aggregate implements TaggedUnion<Aggregate.Kind, AggregateVariant>,
 			return this;
 		}
 
-		public ObjectBuilder<Aggregate> variableWidthHistogram(Consumer<VariableWidthHistogramAggregate.Builder> fn) {
-			VariableWidthHistogramAggregate.Builder builder = new VariableWidthHistogramAggregate.Builder();
-			fn.accept(builder);
-			return this.variableWidthHistogram(builder.build());
+		public ObjectBuilder<Aggregate> variableWidthHistogram(
+				Function<VariableWidthHistogramAggregate.Builder, ObjectBuilder<VariableWidthHistogramAggregate>> fn) {
+			return this.variableWidthHistogram(fn.apply(new VariableWidthHistogramAggregate.Builder()).build());
 		}
 
 		public ObjectBuilder<Aggregate> weightedAvg(WeightedAvgAggregate v) {
@@ -2101,10 +2025,9 @@ public class Aggregate implements TaggedUnion<Aggregate.Kind, AggregateVariant>,
 			return this;
 		}
 
-		public ObjectBuilder<Aggregate> weightedAvg(Consumer<WeightedAvgAggregate.Builder> fn) {
-			WeightedAvgAggregate.Builder builder = new WeightedAvgAggregate.Builder();
-			fn.accept(builder);
-			return this.weightedAvg(builder.build());
+		public ObjectBuilder<Aggregate> weightedAvg(
+				Function<WeightedAvgAggregate.Builder, ObjectBuilder<WeightedAvgAggregate>> fn) {
+			return this.weightedAvg(fn.apply(new WeightedAvgAggregate.Builder()).build());
 		}
 
 		public Aggregate build() {

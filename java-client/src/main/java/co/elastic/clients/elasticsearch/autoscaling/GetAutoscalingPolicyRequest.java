@@ -38,7 +38,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: autoscaling.get_autoscaling_policy.Request
@@ -54,10 +54,8 @@ public class GetAutoscalingPolicyRequest extends RequestBase {
 
 	}
 
-	public static GetAutoscalingPolicyRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static GetAutoscalingPolicyRequest of(Function<Builder, ObjectBuilder<GetAutoscalingPolicyRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**

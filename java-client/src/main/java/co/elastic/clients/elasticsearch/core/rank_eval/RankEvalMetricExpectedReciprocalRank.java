@@ -33,7 +33,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 
 // typedef: _global.rank_eval.RankEvalMetricExpectedReciprocalRank
 @JsonpDeserializable
@@ -49,10 +49,9 @@ public class RankEvalMetricExpectedReciprocalRank extends RankEvalMetricBase {
 
 	}
 
-	public static RankEvalMetricExpectedReciprocalRank of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static RankEvalMetricExpectedReciprocalRank of(
+			Function<Builder, ObjectBuilder<RankEvalMetricExpectedReciprocalRank>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**

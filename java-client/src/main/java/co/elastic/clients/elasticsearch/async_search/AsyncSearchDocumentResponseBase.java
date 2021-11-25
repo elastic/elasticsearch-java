@@ -33,7 +33,7 @@ import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: async_search._types.AsyncSearchDocumentResponseBase
@@ -88,10 +88,9 @@ public abstract class AsyncSearchDocumentResponseBase<TDocument> extends AsyncSe
 		/**
 		 * Required - API name: {@code response}
 		 */
-		public final BuilderT response(Consumer<AsyncSearch.Builder<TDocument>> fn) {
-			AsyncSearch.Builder<TDocument> builder = new AsyncSearch.Builder<TDocument>();
-			fn.accept(builder);
-			return this.response(builder.build());
+		public final BuilderT response(
+				Function<AsyncSearch.Builder<TDocument>, ObjectBuilder<AsyncSearch<TDocument>>> fn) {
+			return this.response(fn.apply(new AsyncSearch.Builder<TDocument>()).build());
 		}
 
 		/**

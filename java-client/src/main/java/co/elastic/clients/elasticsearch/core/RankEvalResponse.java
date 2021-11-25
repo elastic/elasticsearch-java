@@ -31,7 +31,6 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.MapBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
@@ -40,7 +39,6 @@ import java.lang.Double;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -63,10 +61,8 @@ public class RankEvalResponse implements JsonpSerializable {
 
 	}
 
-	public static RankEvalResponse of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static RankEvalResponse of(Function<Builder, ObjectBuilder<RankEvalResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -161,22 +157,65 @@ public class RankEvalResponse implements JsonpSerializable {
 		 * original requests section, keyed by the search request id
 		 * <p>
 		 * API name: {@code details}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>details</code>. Use
+		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
+		 * <code>details</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetMap()
 		 */
-		public final Builder details(Map<String, RankEvalMetricDetail> value) {
-			this.details = value;
+		public final Builder details(Map<String, RankEvalMetricDetail> map) {
+			this.details = _mapPutAll(this.details, map);
 			return this;
 		}
 
-		public final Builder details(
-				Function<MapBuilder<String, RankEvalMetricDetail, RankEvalMetricDetail.Builder>, ObjectBuilder<Map<String, RankEvalMetricDetail>>> fn) {
-			return details(fn.apply(new MapBuilder<>(RankEvalMetricDetail.Builder::new)).build());
+		/**
+		 * Required - The details section contains one entry for every query in the
+		 * original requests section, keyed by the search request id
+		 * <p>
+		 * API name: {@code details}
+		 * <p>
+		 * Adds an entry to <code>details</code>.
+		 */
+		public final Builder details(String key, RankEvalMetricDetail value) {
+			this.details = _mapPut(this.details, key, value);
+			return this;
+		}
+
+		/**
+		 * Required - The details section contains one entry for every query in the
+		 * original requests section, keyed by the search request id
+		 * <p>
+		 * API name: {@code details}
+		 * <p>
+		 * Adds an entry to <code>details</code> using a builder lambda.
+		 */
+		public final Builder details(String key,
+				Function<RankEvalMetricDetail.Builder, ObjectBuilder<RankEvalMetricDetail>> fn) {
+			return details(key, fn.apply(new RankEvalMetricDetail.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code failures}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>failures</code>. Use
+		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
+		 * <code>failures</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetMap()
 		 */
-		public final Builder failures(Map<String, JsonData> value) {
-			this.failures = value;
+		public final Builder failures(Map<String, JsonData> map) {
+			this.failures = _mapPutAll(this.failures, map);
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code failures}
+		 * <p>
+		 * Adds an entry to <code>failures</code>.
+		 */
+		public final Builder failures(String key, JsonData value) {
+			this.failures = _mapPut(this.failures, key, value);
 			return this;
 		}
 

@@ -40,7 +40,7 @@ import co.elastic.clients.util.TaggedUnionUtils;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Object;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.QueryContainer
@@ -208,10 +208,8 @@ public class Query implements TaggedUnion<Query.Kind, Object>, AggregationVarian
 
 	}
 
-	public static Query of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static Query of(Function<Builder, ObjectBuilder<Query>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -1148,10 +1146,8 @@ public class Query implements TaggedUnion<Query.Kind, Object>, AggregationVarian
 			return this;
 		}
 
-		public ObjectBuilder<Query> bool(Consumer<BoolQuery.Builder> fn) {
-			BoolQuery.Builder builder = new BoolQuery.Builder();
-			fn.accept(builder);
-			return this.bool(builder.build());
+		public ObjectBuilder<Query> bool(Function<BoolQuery.Builder, ObjectBuilder<BoolQuery>> fn) {
+			return this.bool(fn.apply(new BoolQuery.Builder()).build());
 		}
 
 		public ObjectBuilder<Query> boosting(BoostingQuery v) {
@@ -1160,10 +1156,8 @@ public class Query implements TaggedUnion<Query.Kind, Object>, AggregationVarian
 			return this;
 		}
 
-		public ObjectBuilder<Query> boosting(Consumer<BoostingQuery.Builder> fn) {
-			BoostingQuery.Builder builder = new BoostingQuery.Builder();
-			fn.accept(builder);
-			return this.boosting(builder.build());
+		public ObjectBuilder<Query> boosting(Function<BoostingQuery.Builder, ObjectBuilder<BoostingQuery>> fn) {
+			return this.boosting(fn.apply(new BoostingQuery.Builder()).build());
 		}
 
 		public ObjectBuilder<Query> common(CommonTermsQuery v) {
@@ -1172,10 +1166,8 @@ public class Query implements TaggedUnion<Query.Kind, Object>, AggregationVarian
 			return this;
 		}
 
-		public ObjectBuilder<Query> common(Consumer<CommonTermsQuery.Builder> fn) {
-			CommonTermsQuery.Builder builder = new CommonTermsQuery.Builder();
-			fn.accept(builder);
-			return this.common(builder.build());
+		public ObjectBuilder<Query> common(Function<CommonTermsQuery.Builder, ObjectBuilder<CommonTermsQuery>> fn) {
+			return this.common(fn.apply(new CommonTermsQuery.Builder()).build());
 		}
 
 		public ObjectBuilder<Query> combinedFields(CombinedFieldsQuery v) {
@@ -1184,10 +1176,9 @@ public class Query implements TaggedUnion<Query.Kind, Object>, AggregationVarian
 			return this;
 		}
 
-		public ObjectBuilder<Query> combinedFields(Consumer<CombinedFieldsQuery.Builder> fn) {
-			CombinedFieldsQuery.Builder builder = new CombinedFieldsQuery.Builder();
-			fn.accept(builder);
-			return this.combinedFields(builder.build());
+		public ObjectBuilder<Query> combinedFields(
+				Function<CombinedFieldsQuery.Builder, ObjectBuilder<CombinedFieldsQuery>> fn) {
+			return this.combinedFields(fn.apply(new CombinedFieldsQuery.Builder()).build());
 		}
 
 		public ObjectBuilder<Query> constantScore(ConstantScoreQuery v) {
@@ -1196,10 +1187,9 @@ public class Query implements TaggedUnion<Query.Kind, Object>, AggregationVarian
 			return this;
 		}
 
-		public ObjectBuilder<Query> constantScore(Consumer<ConstantScoreQuery.Builder> fn) {
-			ConstantScoreQuery.Builder builder = new ConstantScoreQuery.Builder();
-			fn.accept(builder);
-			return this.constantScore(builder.build());
+		public ObjectBuilder<Query> constantScore(
+				Function<ConstantScoreQuery.Builder, ObjectBuilder<ConstantScoreQuery>> fn) {
+			return this.constantScore(fn.apply(new ConstantScoreQuery.Builder()).build());
 		}
 
 		public ObjectBuilder<Query> disMax(DisMaxQuery v) {
@@ -1208,10 +1198,8 @@ public class Query implements TaggedUnion<Query.Kind, Object>, AggregationVarian
 			return this;
 		}
 
-		public ObjectBuilder<Query> disMax(Consumer<DisMaxQuery.Builder> fn) {
-			DisMaxQuery.Builder builder = new DisMaxQuery.Builder();
-			fn.accept(builder);
-			return this.disMax(builder.build());
+		public ObjectBuilder<Query> disMax(Function<DisMaxQuery.Builder, ObjectBuilder<DisMaxQuery>> fn) {
+			return this.disMax(fn.apply(new DisMaxQuery.Builder()).build());
 		}
 
 		public ObjectBuilder<Query> distanceFeature(DistanceFeatureQuery v) {
@@ -1220,10 +1208,9 @@ public class Query implements TaggedUnion<Query.Kind, Object>, AggregationVarian
 			return this;
 		}
 
-		public ObjectBuilder<Query> distanceFeature(Consumer<DistanceFeatureQuery.Builder> fn) {
-			DistanceFeatureQuery.Builder builder = new DistanceFeatureQuery.Builder();
-			fn.accept(builder);
-			return this.distanceFeature(builder.build());
+		public ObjectBuilder<Query> distanceFeature(
+				Function<DistanceFeatureQuery.Builder, ObjectBuilder<DistanceFeatureQuery>> fn) {
+			return this.distanceFeature(fn.apply(new DistanceFeatureQuery.Builder()).build());
 		}
 
 		public ObjectBuilder<Query> exists(ExistsQuery v) {
@@ -1232,10 +1219,8 @@ public class Query implements TaggedUnion<Query.Kind, Object>, AggregationVarian
 			return this;
 		}
 
-		public ObjectBuilder<Query> exists(Consumer<ExistsQuery.Builder> fn) {
-			ExistsQuery.Builder builder = new ExistsQuery.Builder();
-			fn.accept(builder);
-			return this.exists(builder.build());
+		public ObjectBuilder<Query> exists(Function<ExistsQuery.Builder, ObjectBuilder<ExistsQuery>> fn) {
+			return this.exists(fn.apply(new ExistsQuery.Builder()).build());
 		}
 
 		public ObjectBuilder<Query> functionScore(FunctionScoreQuery v) {
@@ -1244,10 +1229,9 @@ public class Query implements TaggedUnion<Query.Kind, Object>, AggregationVarian
 			return this;
 		}
 
-		public ObjectBuilder<Query> functionScore(Consumer<FunctionScoreQuery.Builder> fn) {
-			FunctionScoreQuery.Builder builder = new FunctionScoreQuery.Builder();
-			fn.accept(builder);
-			return this.functionScore(builder.build());
+		public ObjectBuilder<Query> functionScore(
+				Function<FunctionScoreQuery.Builder, ObjectBuilder<FunctionScoreQuery>> fn) {
+			return this.functionScore(fn.apply(new FunctionScoreQuery.Builder()).build());
 		}
 
 		public ObjectBuilder<Query> fuzzy(FuzzyQuery v) {
@@ -1256,10 +1240,8 @@ public class Query implements TaggedUnion<Query.Kind, Object>, AggregationVarian
 			return this;
 		}
 
-		public ObjectBuilder<Query> fuzzy(Consumer<FuzzyQuery.Builder> fn) {
-			FuzzyQuery.Builder builder = new FuzzyQuery.Builder();
-			fn.accept(builder);
-			return this.fuzzy(builder.build());
+		public ObjectBuilder<Query> fuzzy(Function<FuzzyQuery.Builder, ObjectBuilder<FuzzyQuery>> fn) {
+			return this.fuzzy(fn.apply(new FuzzyQuery.Builder()).build());
 		}
 
 		public ObjectBuilder<Query> geoBoundingBox(GeoBoundingBoxQuery v) {
@@ -1268,10 +1250,9 @@ public class Query implements TaggedUnion<Query.Kind, Object>, AggregationVarian
 			return this;
 		}
 
-		public ObjectBuilder<Query> geoBoundingBox(Consumer<GeoBoundingBoxQuery.Builder> fn) {
-			GeoBoundingBoxQuery.Builder builder = new GeoBoundingBoxQuery.Builder();
-			fn.accept(builder);
-			return this.geoBoundingBox(builder.build());
+		public ObjectBuilder<Query> geoBoundingBox(
+				Function<GeoBoundingBoxQuery.Builder, ObjectBuilder<GeoBoundingBoxQuery>> fn) {
+			return this.geoBoundingBox(fn.apply(new GeoBoundingBoxQuery.Builder()).build());
 		}
 
 		public ObjectBuilder<Query> geoDistance(GeoDistanceQuery v) {
@@ -1280,10 +1261,9 @@ public class Query implements TaggedUnion<Query.Kind, Object>, AggregationVarian
 			return this;
 		}
 
-		public ObjectBuilder<Query> geoDistance(Consumer<GeoDistanceQuery.Builder> fn) {
-			GeoDistanceQuery.Builder builder = new GeoDistanceQuery.Builder();
-			fn.accept(builder);
-			return this.geoDistance(builder.build());
+		public ObjectBuilder<Query> geoDistance(
+				Function<GeoDistanceQuery.Builder, ObjectBuilder<GeoDistanceQuery>> fn) {
+			return this.geoDistance(fn.apply(new GeoDistanceQuery.Builder()).build());
 		}
 
 		public ObjectBuilder<Query> geoPolygon(GeoPolygonQuery v) {
@@ -1292,10 +1272,8 @@ public class Query implements TaggedUnion<Query.Kind, Object>, AggregationVarian
 			return this;
 		}
 
-		public ObjectBuilder<Query> geoPolygon(Consumer<GeoPolygonQuery.Builder> fn) {
-			GeoPolygonQuery.Builder builder = new GeoPolygonQuery.Builder();
-			fn.accept(builder);
-			return this.geoPolygon(builder.build());
+		public ObjectBuilder<Query> geoPolygon(Function<GeoPolygonQuery.Builder, ObjectBuilder<GeoPolygonQuery>> fn) {
+			return this.geoPolygon(fn.apply(new GeoPolygonQuery.Builder()).build());
 		}
 
 		public ObjectBuilder<Query> geoShape(GeoShapeQuery v) {
@@ -1304,10 +1282,8 @@ public class Query implements TaggedUnion<Query.Kind, Object>, AggregationVarian
 			return this;
 		}
 
-		public ObjectBuilder<Query> geoShape(Consumer<GeoShapeQuery.Builder> fn) {
-			GeoShapeQuery.Builder builder = new GeoShapeQuery.Builder();
-			fn.accept(builder);
-			return this.geoShape(builder.build());
+		public ObjectBuilder<Query> geoShape(Function<GeoShapeQuery.Builder, ObjectBuilder<GeoShapeQuery>> fn) {
+			return this.geoShape(fn.apply(new GeoShapeQuery.Builder()).build());
 		}
 
 		public ObjectBuilder<Query> hasChild(HasChildQuery v) {
@@ -1316,10 +1292,8 @@ public class Query implements TaggedUnion<Query.Kind, Object>, AggregationVarian
 			return this;
 		}
 
-		public ObjectBuilder<Query> hasChild(Consumer<HasChildQuery.Builder> fn) {
-			HasChildQuery.Builder builder = new HasChildQuery.Builder();
-			fn.accept(builder);
-			return this.hasChild(builder.build());
+		public ObjectBuilder<Query> hasChild(Function<HasChildQuery.Builder, ObjectBuilder<HasChildQuery>> fn) {
+			return this.hasChild(fn.apply(new HasChildQuery.Builder()).build());
 		}
 
 		public ObjectBuilder<Query> hasParent(HasParentQuery v) {
@@ -1328,10 +1302,8 @@ public class Query implements TaggedUnion<Query.Kind, Object>, AggregationVarian
 			return this;
 		}
 
-		public ObjectBuilder<Query> hasParent(Consumer<HasParentQuery.Builder> fn) {
-			HasParentQuery.Builder builder = new HasParentQuery.Builder();
-			fn.accept(builder);
-			return this.hasParent(builder.build());
+		public ObjectBuilder<Query> hasParent(Function<HasParentQuery.Builder, ObjectBuilder<HasParentQuery>> fn) {
+			return this.hasParent(fn.apply(new HasParentQuery.Builder()).build());
 		}
 
 		public ObjectBuilder<Query> ids(IdsQuery v) {
@@ -1340,10 +1312,8 @@ public class Query implements TaggedUnion<Query.Kind, Object>, AggregationVarian
 			return this;
 		}
 
-		public ObjectBuilder<Query> ids(Consumer<IdsQuery.Builder> fn) {
-			IdsQuery.Builder builder = new IdsQuery.Builder();
-			fn.accept(builder);
-			return this.ids(builder.build());
+		public ObjectBuilder<Query> ids(Function<IdsQuery.Builder, ObjectBuilder<IdsQuery>> fn) {
+			return this.ids(fn.apply(new IdsQuery.Builder()).build());
 		}
 
 		public ObjectBuilder<Query> intervals(IntervalsQuery v) {
@@ -1352,10 +1322,8 @@ public class Query implements TaggedUnion<Query.Kind, Object>, AggregationVarian
 			return this;
 		}
 
-		public ObjectBuilder<Query> intervals(Consumer<IntervalsQuery.Builder> fn) {
-			IntervalsQuery.Builder builder = new IntervalsQuery.Builder();
-			fn.accept(builder);
-			return this.intervals(builder.build());
+		public ObjectBuilder<Query> intervals(Function<IntervalsQuery.Builder, ObjectBuilder<IntervalsQuery>> fn) {
+			return this.intervals(fn.apply(new IntervalsQuery.Builder()).build());
 		}
 
 		public ObjectBuilder<Query> match(MatchQuery v) {
@@ -1364,10 +1332,8 @@ public class Query implements TaggedUnion<Query.Kind, Object>, AggregationVarian
 			return this;
 		}
 
-		public ObjectBuilder<Query> match(Consumer<MatchQuery.Builder> fn) {
-			MatchQuery.Builder builder = new MatchQuery.Builder();
-			fn.accept(builder);
-			return this.match(builder.build());
+		public ObjectBuilder<Query> match(Function<MatchQuery.Builder, ObjectBuilder<MatchQuery>> fn) {
+			return this.match(fn.apply(new MatchQuery.Builder()).build());
 		}
 
 		public ObjectBuilder<Query> matchAll(MatchAllQuery v) {
@@ -1376,10 +1342,8 @@ public class Query implements TaggedUnion<Query.Kind, Object>, AggregationVarian
 			return this;
 		}
 
-		public ObjectBuilder<Query> matchAll(Consumer<MatchAllQuery.Builder> fn) {
-			MatchAllQuery.Builder builder = new MatchAllQuery.Builder();
-			fn.accept(builder);
-			return this.matchAll(builder.build());
+		public ObjectBuilder<Query> matchAll(Function<MatchAllQuery.Builder, ObjectBuilder<MatchAllQuery>> fn) {
+			return this.matchAll(fn.apply(new MatchAllQuery.Builder()).build());
 		}
 
 		public ObjectBuilder<Query> matchBoolPrefix(MatchBoolPrefixQuery v) {
@@ -1388,10 +1352,9 @@ public class Query implements TaggedUnion<Query.Kind, Object>, AggregationVarian
 			return this;
 		}
 
-		public ObjectBuilder<Query> matchBoolPrefix(Consumer<MatchBoolPrefixQuery.Builder> fn) {
-			MatchBoolPrefixQuery.Builder builder = new MatchBoolPrefixQuery.Builder();
-			fn.accept(builder);
-			return this.matchBoolPrefix(builder.build());
+		public ObjectBuilder<Query> matchBoolPrefix(
+				Function<MatchBoolPrefixQuery.Builder, ObjectBuilder<MatchBoolPrefixQuery>> fn) {
+			return this.matchBoolPrefix(fn.apply(new MatchBoolPrefixQuery.Builder()).build());
 		}
 
 		public ObjectBuilder<Query> matchNone(MatchNoneQuery v) {
@@ -1400,10 +1363,8 @@ public class Query implements TaggedUnion<Query.Kind, Object>, AggregationVarian
 			return this;
 		}
 
-		public ObjectBuilder<Query> matchNone(Consumer<MatchNoneQuery.Builder> fn) {
-			MatchNoneQuery.Builder builder = new MatchNoneQuery.Builder();
-			fn.accept(builder);
-			return this.matchNone(builder.build());
+		public ObjectBuilder<Query> matchNone(Function<MatchNoneQuery.Builder, ObjectBuilder<MatchNoneQuery>> fn) {
+			return this.matchNone(fn.apply(new MatchNoneQuery.Builder()).build());
 		}
 
 		public ObjectBuilder<Query> matchPhrase(MatchPhraseQuery v) {
@@ -1412,10 +1373,9 @@ public class Query implements TaggedUnion<Query.Kind, Object>, AggregationVarian
 			return this;
 		}
 
-		public ObjectBuilder<Query> matchPhrase(Consumer<MatchPhraseQuery.Builder> fn) {
-			MatchPhraseQuery.Builder builder = new MatchPhraseQuery.Builder();
-			fn.accept(builder);
-			return this.matchPhrase(builder.build());
+		public ObjectBuilder<Query> matchPhrase(
+				Function<MatchPhraseQuery.Builder, ObjectBuilder<MatchPhraseQuery>> fn) {
+			return this.matchPhrase(fn.apply(new MatchPhraseQuery.Builder()).build());
 		}
 
 		public ObjectBuilder<Query> matchPhrasePrefix(MatchPhrasePrefixQuery v) {
@@ -1424,10 +1384,9 @@ public class Query implements TaggedUnion<Query.Kind, Object>, AggregationVarian
 			return this;
 		}
 
-		public ObjectBuilder<Query> matchPhrasePrefix(Consumer<MatchPhrasePrefixQuery.Builder> fn) {
-			MatchPhrasePrefixQuery.Builder builder = new MatchPhrasePrefixQuery.Builder();
-			fn.accept(builder);
-			return this.matchPhrasePrefix(builder.build());
+		public ObjectBuilder<Query> matchPhrasePrefix(
+				Function<MatchPhrasePrefixQuery.Builder, ObjectBuilder<MatchPhrasePrefixQuery>> fn) {
+			return this.matchPhrasePrefix(fn.apply(new MatchPhrasePrefixQuery.Builder()).build());
 		}
 
 		public ObjectBuilder<Query> moreLikeThis(MoreLikeThisQuery v) {
@@ -1436,10 +1395,9 @@ public class Query implements TaggedUnion<Query.Kind, Object>, AggregationVarian
 			return this;
 		}
 
-		public ObjectBuilder<Query> moreLikeThis(Consumer<MoreLikeThisQuery.Builder> fn) {
-			MoreLikeThisQuery.Builder builder = new MoreLikeThisQuery.Builder();
-			fn.accept(builder);
-			return this.moreLikeThis(builder.build());
+		public ObjectBuilder<Query> moreLikeThis(
+				Function<MoreLikeThisQuery.Builder, ObjectBuilder<MoreLikeThisQuery>> fn) {
+			return this.moreLikeThis(fn.apply(new MoreLikeThisQuery.Builder()).build());
 		}
 
 		public ObjectBuilder<Query> multiMatch(MultiMatchQuery v) {
@@ -1448,10 +1406,8 @@ public class Query implements TaggedUnion<Query.Kind, Object>, AggregationVarian
 			return this;
 		}
 
-		public ObjectBuilder<Query> multiMatch(Consumer<MultiMatchQuery.Builder> fn) {
-			MultiMatchQuery.Builder builder = new MultiMatchQuery.Builder();
-			fn.accept(builder);
-			return this.multiMatch(builder.build());
+		public ObjectBuilder<Query> multiMatch(Function<MultiMatchQuery.Builder, ObjectBuilder<MultiMatchQuery>> fn) {
+			return this.multiMatch(fn.apply(new MultiMatchQuery.Builder()).build());
 		}
 
 		public ObjectBuilder<Query> nested(NestedQuery v) {
@@ -1460,10 +1416,8 @@ public class Query implements TaggedUnion<Query.Kind, Object>, AggregationVarian
 			return this;
 		}
 
-		public ObjectBuilder<Query> nested(Consumer<NestedQuery.Builder> fn) {
-			NestedQuery.Builder builder = new NestedQuery.Builder();
-			fn.accept(builder);
-			return this.nested(builder.build());
+		public ObjectBuilder<Query> nested(Function<NestedQuery.Builder, ObjectBuilder<NestedQuery>> fn) {
+			return this.nested(fn.apply(new NestedQuery.Builder()).build());
 		}
 
 		public ObjectBuilder<Query> parentId(ParentIdQuery v) {
@@ -1472,10 +1426,8 @@ public class Query implements TaggedUnion<Query.Kind, Object>, AggregationVarian
 			return this;
 		}
 
-		public ObjectBuilder<Query> parentId(Consumer<ParentIdQuery.Builder> fn) {
-			ParentIdQuery.Builder builder = new ParentIdQuery.Builder();
-			fn.accept(builder);
-			return this.parentId(builder.build());
+		public ObjectBuilder<Query> parentId(Function<ParentIdQuery.Builder, ObjectBuilder<ParentIdQuery>> fn) {
+			return this.parentId(fn.apply(new ParentIdQuery.Builder()).build());
 		}
 
 		public ObjectBuilder<Query> percolate(PercolateQuery v) {
@@ -1484,10 +1436,8 @@ public class Query implements TaggedUnion<Query.Kind, Object>, AggregationVarian
 			return this;
 		}
 
-		public ObjectBuilder<Query> percolate(Consumer<PercolateQuery.Builder> fn) {
-			PercolateQuery.Builder builder = new PercolateQuery.Builder();
-			fn.accept(builder);
-			return this.percolate(builder.build());
+		public ObjectBuilder<Query> percolate(Function<PercolateQuery.Builder, ObjectBuilder<PercolateQuery>> fn) {
+			return this.percolate(fn.apply(new PercolateQuery.Builder()).build());
 		}
 
 		public ObjectBuilder<Query> pinned(PinnedQuery v) {
@@ -1496,10 +1446,8 @@ public class Query implements TaggedUnion<Query.Kind, Object>, AggregationVarian
 			return this;
 		}
 
-		public ObjectBuilder<Query> pinned(Consumer<PinnedQuery.Builder> fn) {
-			PinnedQuery.Builder builder = new PinnedQuery.Builder();
-			fn.accept(builder);
-			return this.pinned(builder.build());
+		public ObjectBuilder<Query> pinned(Function<PinnedQuery.Builder, ObjectBuilder<PinnedQuery>> fn) {
+			return this.pinned(fn.apply(new PinnedQuery.Builder()).build());
 		}
 
 		public ObjectBuilder<Query> prefix(PrefixQuery v) {
@@ -1508,10 +1456,8 @@ public class Query implements TaggedUnion<Query.Kind, Object>, AggregationVarian
 			return this;
 		}
 
-		public ObjectBuilder<Query> prefix(Consumer<PrefixQuery.Builder> fn) {
-			PrefixQuery.Builder builder = new PrefixQuery.Builder();
-			fn.accept(builder);
-			return this.prefix(builder.build());
+		public ObjectBuilder<Query> prefix(Function<PrefixQuery.Builder, ObjectBuilder<PrefixQuery>> fn) {
+			return this.prefix(fn.apply(new PrefixQuery.Builder()).build());
 		}
 
 		public ObjectBuilder<Query> queryString(QueryStringQuery v) {
@@ -1520,10 +1466,9 @@ public class Query implements TaggedUnion<Query.Kind, Object>, AggregationVarian
 			return this;
 		}
 
-		public ObjectBuilder<Query> queryString(Consumer<QueryStringQuery.Builder> fn) {
-			QueryStringQuery.Builder builder = new QueryStringQuery.Builder();
-			fn.accept(builder);
-			return this.queryString(builder.build());
+		public ObjectBuilder<Query> queryString(
+				Function<QueryStringQuery.Builder, ObjectBuilder<QueryStringQuery>> fn) {
+			return this.queryString(fn.apply(new QueryStringQuery.Builder()).build());
 		}
 
 		public ObjectBuilder<Query> range(RangeQuery v) {
@@ -1532,10 +1477,8 @@ public class Query implements TaggedUnion<Query.Kind, Object>, AggregationVarian
 			return this;
 		}
 
-		public ObjectBuilder<Query> range(Consumer<RangeQuery.Builder> fn) {
-			RangeQuery.Builder builder = new RangeQuery.Builder();
-			fn.accept(builder);
-			return this.range(builder.build());
+		public ObjectBuilder<Query> range(Function<RangeQuery.Builder, ObjectBuilder<RangeQuery>> fn) {
+			return this.range(fn.apply(new RangeQuery.Builder()).build());
 		}
 
 		public ObjectBuilder<Query> rankFeature(RankFeatureQuery v) {
@@ -1544,10 +1487,9 @@ public class Query implements TaggedUnion<Query.Kind, Object>, AggregationVarian
 			return this;
 		}
 
-		public ObjectBuilder<Query> rankFeature(Consumer<RankFeatureQuery.Builder> fn) {
-			RankFeatureQuery.Builder builder = new RankFeatureQuery.Builder();
-			fn.accept(builder);
-			return this.rankFeature(builder.build());
+		public ObjectBuilder<Query> rankFeature(
+				Function<RankFeatureQuery.Builder, ObjectBuilder<RankFeatureQuery>> fn) {
+			return this.rankFeature(fn.apply(new RankFeatureQuery.Builder()).build());
 		}
 
 		public ObjectBuilder<Query> regexp(RegexpQuery v) {
@@ -1556,10 +1498,8 @@ public class Query implements TaggedUnion<Query.Kind, Object>, AggregationVarian
 			return this;
 		}
 
-		public ObjectBuilder<Query> regexp(Consumer<RegexpQuery.Builder> fn) {
-			RegexpQuery.Builder builder = new RegexpQuery.Builder();
-			fn.accept(builder);
-			return this.regexp(builder.build());
+		public ObjectBuilder<Query> regexp(Function<RegexpQuery.Builder, ObjectBuilder<RegexpQuery>> fn) {
+			return this.regexp(fn.apply(new RegexpQuery.Builder()).build());
 		}
 
 		public ObjectBuilder<Query> script(ScriptQuery v) {
@@ -1568,10 +1508,8 @@ public class Query implements TaggedUnion<Query.Kind, Object>, AggregationVarian
 			return this;
 		}
 
-		public ObjectBuilder<Query> script(Consumer<ScriptQuery.Builder> fn) {
-			ScriptQuery.Builder builder = new ScriptQuery.Builder();
-			fn.accept(builder);
-			return this.script(builder.build());
+		public ObjectBuilder<Query> script(Function<ScriptQuery.Builder, ObjectBuilder<ScriptQuery>> fn) {
+			return this.script(fn.apply(new ScriptQuery.Builder()).build());
 		}
 
 		public ObjectBuilder<Query> scriptScore(ScriptScoreQuery v) {
@@ -1580,10 +1518,9 @@ public class Query implements TaggedUnion<Query.Kind, Object>, AggregationVarian
 			return this;
 		}
 
-		public ObjectBuilder<Query> scriptScore(Consumer<ScriptScoreQuery.Builder> fn) {
-			ScriptScoreQuery.Builder builder = new ScriptScoreQuery.Builder();
-			fn.accept(builder);
-			return this.scriptScore(builder.build());
+		public ObjectBuilder<Query> scriptScore(
+				Function<ScriptScoreQuery.Builder, ObjectBuilder<ScriptScoreQuery>> fn) {
+			return this.scriptScore(fn.apply(new ScriptScoreQuery.Builder()).build());
 		}
 
 		public ObjectBuilder<Query> shape(ShapeQuery v) {
@@ -1592,10 +1529,8 @@ public class Query implements TaggedUnion<Query.Kind, Object>, AggregationVarian
 			return this;
 		}
 
-		public ObjectBuilder<Query> shape(Consumer<ShapeQuery.Builder> fn) {
-			ShapeQuery.Builder builder = new ShapeQuery.Builder();
-			fn.accept(builder);
-			return this.shape(builder.build());
+		public ObjectBuilder<Query> shape(Function<ShapeQuery.Builder, ObjectBuilder<ShapeQuery>> fn) {
+			return this.shape(fn.apply(new ShapeQuery.Builder()).build());
 		}
 
 		public ObjectBuilder<Query> simpleQueryString(SimpleQueryStringQuery v) {
@@ -1604,10 +1539,9 @@ public class Query implements TaggedUnion<Query.Kind, Object>, AggregationVarian
 			return this;
 		}
 
-		public ObjectBuilder<Query> simpleQueryString(Consumer<SimpleQueryStringQuery.Builder> fn) {
-			SimpleQueryStringQuery.Builder builder = new SimpleQueryStringQuery.Builder();
-			fn.accept(builder);
-			return this.simpleQueryString(builder.build());
+		public ObjectBuilder<Query> simpleQueryString(
+				Function<SimpleQueryStringQuery.Builder, ObjectBuilder<SimpleQueryStringQuery>> fn) {
+			return this.simpleQueryString(fn.apply(new SimpleQueryStringQuery.Builder()).build());
 		}
 
 		public ObjectBuilder<Query> spanContaining(SpanContainingQuery v) {
@@ -1616,10 +1550,9 @@ public class Query implements TaggedUnion<Query.Kind, Object>, AggregationVarian
 			return this;
 		}
 
-		public ObjectBuilder<Query> spanContaining(Consumer<SpanContainingQuery.Builder> fn) {
-			SpanContainingQuery.Builder builder = new SpanContainingQuery.Builder();
-			fn.accept(builder);
-			return this.spanContaining(builder.build());
+		public ObjectBuilder<Query> spanContaining(
+				Function<SpanContainingQuery.Builder, ObjectBuilder<SpanContainingQuery>> fn) {
+			return this.spanContaining(fn.apply(new SpanContainingQuery.Builder()).build());
 		}
 
 		public ObjectBuilder<Query> fieldMaskingSpan(SpanFieldMaskingQuery v) {
@@ -1628,10 +1561,9 @@ public class Query implements TaggedUnion<Query.Kind, Object>, AggregationVarian
 			return this;
 		}
 
-		public ObjectBuilder<Query> fieldMaskingSpan(Consumer<SpanFieldMaskingQuery.Builder> fn) {
-			SpanFieldMaskingQuery.Builder builder = new SpanFieldMaskingQuery.Builder();
-			fn.accept(builder);
-			return this.fieldMaskingSpan(builder.build());
+		public ObjectBuilder<Query> fieldMaskingSpan(
+				Function<SpanFieldMaskingQuery.Builder, ObjectBuilder<SpanFieldMaskingQuery>> fn) {
+			return this.fieldMaskingSpan(fn.apply(new SpanFieldMaskingQuery.Builder()).build());
 		}
 
 		public ObjectBuilder<Query> spanFirst(SpanFirstQuery v) {
@@ -1640,10 +1572,8 @@ public class Query implements TaggedUnion<Query.Kind, Object>, AggregationVarian
 			return this;
 		}
 
-		public ObjectBuilder<Query> spanFirst(Consumer<SpanFirstQuery.Builder> fn) {
-			SpanFirstQuery.Builder builder = new SpanFirstQuery.Builder();
-			fn.accept(builder);
-			return this.spanFirst(builder.build());
+		public ObjectBuilder<Query> spanFirst(Function<SpanFirstQuery.Builder, ObjectBuilder<SpanFirstQuery>> fn) {
+			return this.spanFirst(fn.apply(new SpanFirstQuery.Builder()).build());
 		}
 
 		public ObjectBuilder<Query> spanMulti(SpanMultiTermQuery v) {
@@ -1652,10 +1582,9 @@ public class Query implements TaggedUnion<Query.Kind, Object>, AggregationVarian
 			return this;
 		}
 
-		public ObjectBuilder<Query> spanMulti(Consumer<SpanMultiTermQuery.Builder> fn) {
-			SpanMultiTermQuery.Builder builder = new SpanMultiTermQuery.Builder();
-			fn.accept(builder);
-			return this.spanMulti(builder.build());
+		public ObjectBuilder<Query> spanMulti(
+				Function<SpanMultiTermQuery.Builder, ObjectBuilder<SpanMultiTermQuery>> fn) {
+			return this.spanMulti(fn.apply(new SpanMultiTermQuery.Builder()).build());
 		}
 
 		public ObjectBuilder<Query> spanNear(SpanNearQuery v) {
@@ -1664,10 +1593,8 @@ public class Query implements TaggedUnion<Query.Kind, Object>, AggregationVarian
 			return this;
 		}
 
-		public ObjectBuilder<Query> spanNear(Consumer<SpanNearQuery.Builder> fn) {
-			SpanNearQuery.Builder builder = new SpanNearQuery.Builder();
-			fn.accept(builder);
-			return this.spanNear(builder.build());
+		public ObjectBuilder<Query> spanNear(Function<SpanNearQuery.Builder, ObjectBuilder<SpanNearQuery>> fn) {
+			return this.spanNear(fn.apply(new SpanNearQuery.Builder()).build());
 		}
 
 		public ObjectBuilder<Query> spanNot(SpanNotQuery v) {
@@ -1676,10 +1603,8 @@ public class Query implements TaggedUnion<Query.Kind, Object>, AggregationVarian
 			return this;
 		}
 
-		public ObjectBuilder<Query> spanNot(Consumer<SpanNotQuery.Builder> fn) {
-			SpanNotQuery.Builder builder = new SpanNotQuery.Builder();
-			fn.accept(builder);
-			return this.spanNot(builder.build());
+		public ObjectBuilder<Query> spanNot(Function<SpanNotQuery.Builder, ObjectBuilder<SpanNotQuery>> fn) {
+			return this.spanNot(fn.apply(new SpanNotQuery.Builder()).build());
 		}
 
 		public ObjectBuilder<Query> spanOr(SpanOrQuery v) {
@@ -1688,10 +1613,8 @@ public class Query implements TaggedUnion<Query.Kind, Object>, AggregationVarian
 			return this;
 		}
 
-		public ObjectBuilder<Query> spanOr(Consumer<SpanOrQuery.Builder> fn) {
-			SpanOrQuery.Builder builder = new SpanOrQuery.Builder();
-			fn.accept(builder);
-			return this.spanOr(builder.build());
+		public ObjectBuilder<Query> spanOr(Function<SpanOrQuery.Builder, ObjectBuilder<SpanOrQuery>> fn) {
+			return this.spanOr(fn.apply(new SpanOrQuery.Builder()).build());
 		}
 
 		public ObjectBuilder<Query> spanTerm(SpanTermQuery v) {
@@ -1700,10 +1623,8 @@ public class Query implements TaggedUnion<Query.Kind, Object>, AggregationVarian
 			return this;
 		}
 
-		public ObjectBuilder<Query> spanTerm(Consumer<SpanTermQuery.Builder> fn) {
-			SpanTermQuery.Builder builder = new SpanTermQuery.Builder();
-			fn.accept(builder);
-			return this.spanTerm(builder.build());
+		public ObjectBuilder<Query> spanTerm(Function<SpanTermQuery.Builder, ObjectBuilder<SpanTermQuery>> fn) {
+			return this.spanTerm(fn.apply(new SpanTermQuery.Builder()).build());
 		}
 
 		public ObjectBuilder<Query> spanWithin(SpanWithinQuery v) {
@@ -1712,10 +1633,8 @@ public class Query implements TaggedUnion<Query.Kind, Object>, AggregationVarian
 			return this;
 		}
 
-		public ObjectBuilder<Query> spanWithin(Consumer<SpanWithinQuery.Builder> fn) {
-			SpanWithinQuery.Builder builder = new SpanWithinQuery.Builder();
-			fn.accept(builder);
-			return this.spanWithin(builder.build());
+		public ObjectBuilder<Query> spanWithin(Function<SpanWithinQuery.Builder, ObjectBuilder<SpanWithinQuery>> fn) {
+			return this.spanWithin(fn.apply(new SpanWithinQuery.Builder()).build());
 		}
 
 		public ObjectBuilder<Query> term(TermQuery v) {
@@ -1724,10 +1643,8 @@ public class Query implements TaggedUnion<Query.Kind, Object>, AggregationVarian
 			return this;
 		}
 
-		public ObjectBuilder<Query> term(Consumer<TermQuery.Builder> fn) {
-			TermQuery.Builder builder = new TermQuery.Builder();
-			fn.accept(builder);
-			return this.term(builder.build());
+		public ObjectBuilder<Query> term(Function<TermQuery.Builder, ObjectBuilder<TermQuery>> fn) {
+			return this.term(fn.apply(new TermQuery.Builder()).build());
 		}
 
 		public ObjectBuilder<Query> terms(TermsQuery v) {
@@ -1736,10 +1653,8 @@ public class Query implements TaggedUnion<Query.Kind, Object>, AggregationVarian
 			return this;
 		}
 
-		public ObjectBuilder<Query> terms(Consumer<TermsQuery.Builder> fn) {
-			TermsQuery.Builder builder = new TermsQuery.Builder();
-			fn.accept(builder);
-			return this.terms(builder.build());
+		public ObjectBuilder<Query> terms(Function<TermsQuery.Builder, ObjectBuilder<TermsQuery>> fn) {
+			return this.terms(fn.apply(new TermsQuery.Builder()).build());
 		}
 
 		public ObjectBuilder<Query> termsSet(TermsSetQuery v) {
@@ -1748,10 +1663,8 @@ public class Query implements TaggedUnion<Query.Kind, Object>, AggregationVarian
 			return this;
 		}
 
-		public ObjectBuilder<Query> termsSet(Consumer<TermsSetQuery.Builder> fn) {
-			TermsSetQuery.Builder builder = new TermsSetQuery.Builder();
-			fn.accept(builder);
-			return this.termsSet(builder.build());
+		public ObjectBuilder<Query> termsSet(Function<TermsSetQuery.Builder, ObjectBuilder<TermsSetQuery>> fn) {
+			return this.termsSet(fn.apply(new TermsSetQuery.Builder()).build());
 		}
 
 		public ObjectBuilder<Query> wildcard(WildcardQuery v) {
@@ -1760,10 +1673,8 @@ public class Query implements TaggedUnion<Query.Kind, Object>, AggregationVarian
 			return this;
 		}
 
-		public ObjectBuilder<Query> wildcard(Consumer<WildcardQuery.Builder> fn) {
-			WildcardQuery.Builder builder = new WildcardQuery.Builder();
-			fn.accept(builder);
-			return this.wildcard(builder.build());
+		public ObjectBuilder<Query> wildcard(Function<WildcardQuery.Builder, ObjectBuilder<WildcardQuery>> fn) {
+			return this.wildcard(fn.apply(new WildcardQuery.Builder()).build());
 		}
 
 		public ObjectBuilder<Query> type(TypeQuery v) {
@@ -1772,10 +1683,8 @@ public class Query implements TaggedUnion<Query.Kind, Object>, AggregationVarian
 			return this;
 		}
 
-		public ObjectBuilder<Query> type(Consumer<TypeQuery.Builder> fn) {
-			TypeQuery.Builder builder = new TypeQuery.Builder();
-			fn.accept(builder);
-			return this.type(builder.build());
+		public ObjectBuilder<Query> type(Function<TypeQuery.Builder, ObjectBuilder<TypeQuery>> fn) {
+			return this.type(fn.apply(new TypeQuery.Builder()).build());
 		}
 
 		public Query build() {

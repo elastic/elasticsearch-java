@@ -35,11 +35,10 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: security.put_privileges.Actions
@@ -66,10 +65,8 @@ public class Actions implements JsonpSerializable {
 
 	}
 
-	public static Actions of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static Actions of(Function<Builder, ObjectBuilder<Actions>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -166,17 +163,25 @@ public class Actions implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code actions}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>actions</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>actions</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder actions(List<String> value) {
-			this.actions = value;
+		public final Builder actions(List<String> list) {
+			this.actions = _listAddAll(this.actions, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code actions}
+		 * <p>
+		 * Adds one or more values to <code>actions</code>.
 		 */
-		public final Builder actions(String... value) {
-			this.actions = Arrays.asList(value);
+		public final Builder actions(String value, String... values) {
+			this.actions = _listAdd(this.actions, value, values);
 			return this;
 		}
 
@@ -198,9 +203,25 @@ public class Actions implements JsonpSerializable {
 
 		/**
 		 * API name: {@code metadata}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>metadata</code>. Use
+		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
+		 * <code>metadata</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetMap()
 		 */
-		public final Builder metadata(@Nullable Map<String, JsonData> value) {
-			this.metadata = value;
+		public final Builder metadata(Map<String, JsonData> map) {
+			this.metadata = _mapPutAll(this.metadata, map);
+			return this;
+		}
+
+		/**
+		 * API name: {@code metadata}
+		 * <p>
+		 * Adds an entry to <code>metadata</code>.
+		 */
+		public final Builder metadata(String key, JsonData value) {
+			this.metadata = _mapPut(this.metadata, key, value);
 			return this;
 		}
 

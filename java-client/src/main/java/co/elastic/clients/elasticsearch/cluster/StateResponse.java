@@ -35,7 +35,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cluster.state.Response
@@ -51,10 +51,8 @@ public class StateResponse implements JsonpSerializable {
 
 	}
 
-	public static StateResponse of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static StateResponse of(Function<Builder, ObjectBuilder<StateResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**

@@ -36,7 +36,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.QueryCacheStats
@@ -74,10 +74,8 @@ public class QueryCacheStats implements JsonpSerializable {
 
 	}
 
-	public static QueryCacheStats of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static QueryCacheStats of(Function<Builder, ObjectBuilder<QueryCacheStats>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**

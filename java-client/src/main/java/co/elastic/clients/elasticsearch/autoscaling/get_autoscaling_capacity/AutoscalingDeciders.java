@@ -29,18 +29,14 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ListBuilder;
-import co.elastic.clients.util.MapBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -66,10 +62,8 @@ public class AutoscalingDeciders implements JsonpSerializable {
 
 	}
 
-	public static AutoscalingDeciders of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static AutoscalingDeciders of(Function<Builder, ObjectBuilder<AutoscalingDeciders>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -166,10 +160,9 @@ public class AutoscalingDeciders implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code required_capacity}
 		 */
-		public final Builder requiredCapacity(Consumer<AutoscalingCapacity.Builder> fn) {
-			AutoscalingCapacity.Builder builder = new AutoscalingCapacity.Builder();
-			fn.accept(builder);
-			return this.requiredCapacity(builder.build());
+		public final Builder requiredCapacity(
+				Function<AutoscalingCapacity.Builder, ObjectBuilder<AutoscalingCapacity>> fn) {
+			return this.requiredCapacity(fn.apply(new AutoscalingCapacity.Builder()).build());
 		}
 
 		/**
@@ -183,47 +176,76 @@ public class AutoscalingDeciders implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code current_capacity}
 		 */
-		public final Builder currentCapacity(Consumer<AutoscalingCapacity.Builder> fn) {
-			AutoscalingCapacity.Builder builder = new AutoscalingCapacity.Builder();
-			fn.accept(builder);
-			return this.currentCapacity(builder.build());
+		public final Builder currentCapacity(
+				Function<AutoscalingCapacity.Builder, ObjectBuilder<AutoscalingCapacity>> fn) {
+			return this.currentCapacity(fn.apply(new AutoscalingCapacity.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code current_nodes}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>currentNodes</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>currentNodes</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder currentNodes(List<AutoscalingNode> value) {
-			this.currentNodes = value;
+		public final Builder currentNodes(List<AutoscalingNode> list) {
+			this.currentNodes = _listAddAll(this.currentNodes, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code current_nodes}
+		 * <p>
+		 * Adds one or more values to <code>currentNodes</code>.
 		 */
-		public final Builder currentNodes(AutoscalingNode... value) {
-			this.currentNodes = Arrays.asList(value);
+		public final Builder currentNodes(AutoscalingNode value, AutoscalingNode... values) {
+			this.currentNodes = _listAdd(this.currentNodes, value, values);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code current_nodes}
+		 * <p>
+		 * Adds a value to <code>currentNodes</code> using a builder lambda.
 		 */
-		public final Builder currentNodes(
-				Function<ListBuilder<AutoscalingNode, AutoscalingNode.Builder>, ObjectBuilder<List<AutoscalingNode>>> fn) {
-			return currentNodes(fn.apply(new ListBuilder<>(AutoscalingNode.Builder::new)).build());
+		public final Builder currentNodes(Function<AutoscalingNode.Builder, ObjectBuilder<AutoscalingNode>> fn) {
+			return currentNodes(fn.apply(new AutoscalingNode.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code deciders}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>deciders</code>. Use
+		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
+		 * <code>deciders</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetMap()
 		 */
-		public final Builder deciders(Map<String, AutoscalingDecider> value) {
-			this.deciders = value;
+		public final Builder deciders(Map<String, AutoscalingDecider> map) {
+			this.deciders = _mapPutAll(this.deciders, map);
 			return this;
 		}
 
-		public final Builder deciders(
-				Function<MapBuilder<String, AutoscalingDecider, AutoscalingDecider.Builder>, ObjectBuilder<Map<String, AutoscalingDecider>>> fn) {
-			return deciders(fn.apply(new MapBuilder<>(AutoscalingDecider.Builder::new)).build());
+		/**
+		 * Required - API name: {@code deciders}
+		 * <p>
+		 * Adds an entry to <code>deciders</code>.
+		 */
+		public final Builder deciders(String key, AutoscalingDecider value) {
+			this.deciders = _mapPut(this.deciders, key, value);
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code deciders}
+		 * <p>
+		 * Adds an entry to <code>deciders</code> using a builder lambda.
+		 */
+		public final Builder deciders(String key,
+				Function<AutoscalingDecider.Builder, ObjectBuilder<AutoscalingDecider>> fn) {
+			return deciders(key, fn.apply(new AutoscalingDecider.Builder()).build());
 		}
 
 		/**

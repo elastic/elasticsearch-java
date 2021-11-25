@@ -30,17 +30,14 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -73,10 +70,8 @@ public class WatcherNodeStats implements JsonpSerializable {
 
 	}
 
-	public static WatcherNodeStats of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static WatcherNodeStats of(Function<Builder, ObjectBuilder<WatcherNodeStats>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -187,26 +182,35 @@ public class WatcherNodeStats implements JsonpSerializable {
 
 		/**
 		 * API name: {@code current_watches}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>currentWatches</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>currentWatches</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder currentWatches(@Nullable List<WatchRecordStats> value) {
-			this.currentWatches = value;
+		public final Builder currentWatches(List<WatchRecordStats> list) {
+			this.currentWatches = _listAddAll(this.currentWatches, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code current_watches}
+		 * <p>
+		 * Adds one or more values to <code>currentWatches</code>.
 		 */
-		public final Builder currentWatches(WatchRecordStats... value) {
-			this.currentWatches = Arrays.asList(value);
+		public final Builder currentWatches(WatchRecordStats value, WatchRecordStats... values) {
+			this.currentWatches = _listAdd(this.currentWatches, value, values);
 			return this;
 		}
 
 		/**
 		 * API name: {@code current_watches}
+		 * <p>
+		 * Adds a value to <code>currentWatches</code> using a builder lambda.
 		 */
-		public final Builder currentWatches(
-				Function<ListBuilder<WatchRecordStats, WatchRecordStats.Builder>, ObjectBuilder<List<WatchRecordStats>>> fn) {
-			return currentWatches(fn.apply(new ListBuilder<>(WatchRecordStats.Builder::new)).build());
+		public final Builder currentWatches(Function<WatchRecordStats.Builder, ObjectBuilder<WatchRecordStats>> fn) {
+			return currentWatches(fn.apply(new WatchRecordStats.Builder()).build());
 		}
 
 		/**
@@ -220,34 +224,43 @@ public class WatcherNodeStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code execution_thread_pool}
 		 */
-		public final Builder executionThreadPool(Consumer<ExecutionThreadPool.Builder> fn) {
-			ExecutionThreadPool.Builder builder = new ExecutionThreadPool.Builder();
-			fn.accept(builder);
-			return this.executionThreadPool(builder.build());
+		public final Builder executionThreadPool(
+				Function<ExecutionThreadPool.Builder, ObjectBuilder<ExecutionThreadPool>> fn) {
+			return this.executionThreadPool(fn.apply(new ExecutionThreadPool.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code queued_watches}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>queuedWatches</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>queuedWatches</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder queuedWatches(@Nullable List<WatchRecordQueuedStats> value) {
-			this.queuedWatches = value;
+		public final Builder queuedWatches(List<WatchRecordQueuedStats> list) {
+			this.queuedWatches = _listAddAll(this.queuedWatches, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code queued_watches}
+		 * <p>
+		 * Adds one or more values to <code>queuedWatches</code>.
 		 */
-		public final Builder queuedWatches(WatchRecordQueuedStats... value) {
-			this.queuedWatches = Arrays.asList(value);
+		public final Builder queuedWatches(WatchRecordQueuedStats value, WatchRecordQueuedStats... values) {
+			this.queuedWatches = _listAdd(this.queuedWatches, value, values);
 			return this;
 		}
 
 		/**
 		 * API name: {@code queued_watches}
+		 * <p>
+		 * Adds a value to <code>queuedWatches</code> using a builder lambda.
 		 */
 		public final Builder queuedWatches(
-				Function<ListBuilder<WatchRecordQueuedStats, WatchRecordQueuedStats.Builder>, ObjectBuilder<List<WatchRecordQueuedStats>>> fn) {
-			return queuedWatches(fn.apply(new ListBuilder<>(WatchRecordQueuedStats.Builder::new)).build());
+				Function<WatchRecordQueuedStats.Builder, ObjectBuilder<WatchRecordQueuedStats>> fn) {
+			return queuedWatches(fn.apply(new WatchRecordQueuedStats.Builder()).build());
 		}
 
 		/**

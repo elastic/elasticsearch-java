@@ -43,7 +43,7 @@ import java.lang.Long;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.bulk.ResponseItem
@@ -107,10 +107,8 @@ public class BulkResponseItem implements JsonpSerializable {
 
 	}
 
-	public static BulkResponseItem of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static BulkResponseItem of(Function<Builder, ObjectBuilder<BulkResponseItem>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -372,10 +370,8 @@ public class BulkResponseItem implements JsonpSerializable {
 		/**
 		 * API name: {@code error}
 		 */
-		public final Builder error(Consumer<ErrorCause.Builder> fn) {
-			ErrorCause.Builder builder = new ErrorCause.Builder();
-			fn.accept(builder);
-			return this.error(builder.build());
+		public final Builder error(Function<ErrorCause.Builder, ObjectBuilder<ErrorCause>> fn) {
+			return this.error(fn.apply(new ErrorCause.Builder()).build());
 		}
 
 		/**
@@ -413,10 +409,8 @@ public class BulkResponseItem implements JsonpSerializable {
 		/**
 		 * API name: {@code _shards}
 		 */
-		public final Builder shards(Consumer<ShardStatistics.Builder> fn) {
-			ShardStatistics.Builder builder = new ShardStatistics.Builder();
-			fn.accept(builder);
-			return this.shards(builder.build());
+		public final Builder shards(Function<ShardStatistics.Builder, ObjectBuilder<ShardStatistics>> fn) {
+			return this.shards(fn.apply(new ShardStatistics.Builder()).build());
 		}
 
 		/**
@@ -454,10 +448,9 @@ public class BulkResponseItem implements JsonpSerializable {
 		/**
 		 * API name: {@code get}
 		 */
-		public final Builder get(Consumer<InlineGet.Builder<Map<String, JsonData>>> fn) {
-			InlineGet.Builder<Map<String, JsonData>> builder = new InlineGet.Builder<Map<String, JsonData>>();
-			fn.accept(builder);
-			return this.get(builder.build());
+		public final Builder get(
+				Function<InlineGet.Builder<Map<String, JsonData>>, ObjectBuilder<InlineGet<Map<String, JsonData>>>> fn) {
+			return this.get(fn.apply(new InlineGet.Builder<Map<String, JsonData>>()).build());
 		}
 
 		/**

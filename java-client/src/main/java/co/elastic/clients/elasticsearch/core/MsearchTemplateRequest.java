@@ -36,7 +36,6 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
@@ -44,13 +43,11 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Long;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
@@ -86,10 +83,8 @@ public class MsearchTemplateRequest extends RequestBase implements NdJsonpSerial
 
 	}
 
-	public static MsearchTemplateRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static MsearchTemplateRequest of(Function<Builder, ObjectBuilder<MsearchTemplateRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	@Override
@@ -206,9 +201,15 @@ public class MsearchTemplateRequest extends RequestBase implements NdJsonpSerial
 		 * A comma-separated list of index names to use as default
 		 * <p>
 		 * API name: {@code index}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>index</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>index</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder index(@Nullable List<String> value) {
-			this.index = value;
+		public final Builder index(List<String> list) {
+			this.index = _listAddAll(this.index, list);
 			return this;
 		}
 
@@ -216,9 +217,11 @@ public class MsearchTemplateRequest extends RequestBase implements NdJsonpSerial
 		 * A comma-separated list of index names to use as default
 		 * <p>
 		 * API name: {@code index}
+		 * <p>
+		 * Adds one or more values to <code>index</code>.
 		 */
-		public final Builder index(String... value) {
-			this.index = Arrays.asList(value);
+		public final Builder index(String value, String... values) {
+			this.index = _listAdd(this.index, value, values);
 			return this;
 		}
 
@@ -247,9 +250,15 @@ public class MsearchTemplateRequest extends RequestBase implements NdJsonpSerial
 		 * A comma-separated list of document types to use as default
 		 * <p>
 		 * API name: {@code type}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>type</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>type</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder type(@Nullable List<String> value) {
-			this.type = value;
+		public final Builder type(List<String> list) {
+			this.type = _listAddAll(this.type, list);
 			return this;
 		}
 
@@ -257,9 +266,11 @@ public class MsearchTemplateRequest extends RequestBase implements NdJsonpSerial
 		 * A comma-separated list of document types to use as default
 		 * <p>
 		 * API name: {@code type}
+		 * <p>
+		 * Adds one or more values to <code>type</code>.
 		 */
-		public final Builder type(String... value) {
-			this.type = Arrays.asList(value);
+		public final Builder type(String value, String... values) {
+			this.type = _listAdd(this.type, value, values);
 			return this;
 		}
 
@@ -267,9 +278,15 @@ public class MsearchTemplateRequest extends RequestBase implements NdJsonpSerial
 		 * Required - Request body.
 		 * <p>
 		 * API name: {@code _value_body}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>searchTemplates</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>searchTemplates</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder searchTemplates(List<RequestItem> value) {
-			this.searchTemplates = value;
+		public final Builder searchTemplates(List<RequestItem> list) {
+			this.searchTemplates = _listAddAll(this.searchTemplates, list);
 			return this;
 		}
 
@@ -277,9 +294,11 @@ public class MsearchTemplateRequest extends RequestBase implements NdJsonpSerial
 		 * Required - Request body.
 		 * <p>
 		 * API name: {@code _value_body}
+		 * <p>
+		 * Adds one or more values to <code>searchTemplates</code>.
 		 */
-		public final Builder searchTemplates(RequestItem... value) {
-			this.searchTemplates = Arrays.asList(value);
+		public final Builder searchTemplates(RequestItem value, RequestItem... values) {
+			this.searchTemplates = _listAdd(this.searchTemplates, value, values);
 			return this;
 		}
 
@@ -287,10 +306,11 @@ public class MsearchTemplateRequest extends RequestBase implements NdJsonpSerial
 		 * Required - Request body.
 		 * <p>
 		 * API name: {@code _value_body}
+		 * <p>
+		 * Adds a value to <code>searchTemplates</code> using a builder lambda.
 		 */
-		public final Builder searchTemplates(
-				Function<ListBuilder<RequestItem, RequestItem.Builder>, ObjectBuilder<List<RequestItem>>> fn) {
-			return searchTemplates(fn.apply(new ListBuilder<>(RequestItem.Builder::new)).build());
+		public final Builder searchTemplates(Function<RequestItem.Builder, ObjectBuilder<RequestItem>> fn) {
+			return searchTemplates(fn.apply(new RequestItem.Builder()).build());
 		}
 
 		/**

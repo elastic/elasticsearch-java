@@ -34,10 +34,9 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ingest._types.AppendProcessor
@@ -61,10 +60,8 @@ public class AppendProcessor extends ProcessorBase implements ProcessorVariant {
 
 	}
 
-	public static AppendProcessor of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static AppendProcessor of(Function<Builder, ObjectBuilder<AppendProcessor>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -146,17 +143,25 @@ public class AppendProcessor extends ProcessorBase implements ProcessorVariant {
 
 		/**
 		 * Required - API name: {@code value}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>value</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>value</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder value(List<JsonData> value) {
-			this.value = value;
+		public final Builder value(List<JsonData> list) {
+			this.value = _listAddAll(this.value, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code value}
+		 * <p>
+		 * Adds one or more values to <code>value</code>.
 		 */
-		public final Builder value(JsonData... value) {
-			this.value = Arrays.asList(value);
+		public final Builder value(JsonData value, JsonData... values) {
+			this.value = _listAdd(this.value, value, values);
 			return this;
 		}
 

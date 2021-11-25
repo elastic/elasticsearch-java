@@ -28,14 +28,11 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -53,10 +50,8 @@ public class TopMetricsBucket extends MultiBucketBase {
 
 	}
 
-	public static TopMetricsBucket of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static TopMetricsBucket of(Function<Builder, ObjectBuilder<TopMetricsBucket>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -94,26 +89,35 @@ public class TopMetricsBucket extends MultiBucketBase {
 
 		/**
 		 * Required - API name: {@code top}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>top</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>top</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder top(List<TopMetrics> value) {
-			this.top = value;
+		public final Builder top(List<TopMetrics> list) {
+			this.top = _listAddAll(this.top, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code top}
+		 * <p>
+		 * Adds one or more values to <code>top</code>.
 		 */
-		public final Builder top(TopMetrics... value) {
-			this.top = Arrays.asList(value);
+		public final Builder top(TopMetrics value, TopMetrics... values) {
+			this.top = _listAdd(this.top, value, values);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code top}
+		 * <p>
+		 * Adds a value to <code>top</code> using a builder lambda.
 		 */
-		public final Builder top(
-				Function<ListBuilder<TopMetrics, TopMetrics.Builder>, ObjectBuilder<List<TopMetrics>>> fn) {
-			return top(fn.apply(new ListBuilder<>(TopMetrics.Builder::new)).build());
+		public final Builder top(Function<TopMetrics.Builder, ObjectBuilder<TopMetrics>> fn) {
+			return top(fn.apply(new TopMetrics.Builder()).build());
 		}
 
 		@Override

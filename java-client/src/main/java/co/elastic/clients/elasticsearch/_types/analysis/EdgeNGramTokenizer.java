@@ -33,10 +33,9 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.analysis.EdgeNGramTokenizer
@@ -63,10 +62,8 @@ public class EdgeNGramTokenizer extends TokenizerBase implements TokenizerDefini
 
 	}
 
-	public static EdgeNGramTokenizer of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static EdgeNGramTokenizer of(Function<Builder, ObjectBuilder<EdgeNGramTokenizer>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -176,17 +173,25 @@ public class EdgeNGramTokenizer extends TokenizerBase implements TokenizerDefini
 
 		/**
 		 * Required - API name: {@code token_chars}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>tokenChars</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>tokenChars</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder tokenChars(List<TokenChar> value) {
-			this.tokenChars = value;
+		public final Builder tokenChars(List<TokenChar> list) {
+			this.tokenChars = _listAddAll(this.tokenChars, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code token_chars}
+		 * <p>
+		 * Adds one or more values to <code>tokenChars</code>.
 		 */
-		public final Builder tokenChars(TokenChar... value) {
-			this.tokenChars = Arrays.asList(value);
+		public final Builder tokenChars(TokenChar value, TokenChar... values) {
+			this.tokenChars = _listAdd(this.tokenChars, value, values);
 			return this;
 		}
 

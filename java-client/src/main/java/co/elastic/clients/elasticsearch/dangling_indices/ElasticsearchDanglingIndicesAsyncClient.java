@@ -34,7 +34,7 @@ import co.elastic.clients.transport.TransportOptions;
 import co.elastic.clients.util.ObjectBuilder;
 import java.io.IOException;
 import java.util.concurrent.CompletableFuture;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 /**
@@ -88,10 +88,9 @@ public class ElasticsearchDanglingIndicesAsyncClient
 	 */
 
 	public final CompletableFuture<DeleteDanglingIndexResponse> deleteDanglingIndex(
-			Consumer<DeleteDanglingIndexRequest.Builder> fn) throws IOException, ElasticsearchException {
-		DeleteDanglingIndexRequest.Builder builder = new DeleteDanglingIndexRequest.Builder();
-		fn.accept(builder);
-		return deleteDanglingIndex(builder.build());
+			Function<DeleteDanglingIndexRequest.Builder, ObjectBuilder<DeleteDanglingIndexRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return deleteDanglingIndex(fn.apply(new DeleteDanglingIndexRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: dangling_indices.import_dangling_index
@@ -124,10 +123,9 @@ public class ElasticsearchDanglingIndicesAsyncClient
 	 */
 
 	public final CompletableFuture<ImportDanglingIndexResponse> importDanglingIndex(
-			Consumer<ImportDanglingIndexRequest.Builder> fn) throws IOException, ElasticsearchException {
-		ImportDanglingIndexRequest.Builder builder = new ImportDanglingIndexRequest.Builder();
-		fn.accept(builder);
-		return importDanglingIndex(builder.build());
+			Function<ImportDanglingIndexRequest.Builder, ObjectBuilder<ImportDanglingIndexRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return importDanglingIndex(fn.apply(new ImportDanglingIndexRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: dangling_indices.list_dangling_indices

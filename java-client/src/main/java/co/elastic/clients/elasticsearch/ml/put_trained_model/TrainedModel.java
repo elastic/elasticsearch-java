@@ -33,7 +33,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.put_trained_model.TrainedModel
@@ -58,10 +58,8 @@ public class TrainedModel implements JsonpSerializable {
 
 	}
 
-	public static TrainedModel of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static TrainedModel of(Function<Builder, ObjectBuilder<TrainedModel>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -159,10 +157,8 @@ public class TrainedModel implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code tree}
 		 */
-		public final Builder tree(Consumer<TrainedModelTree.Builder> fn) {
-			TrainedModelTree.Builder builder = new TrainedModelTree.Builder();
-			fn.accept(builder);
-			return this.tree(builder.build());
+		public final Builder tree(Function<TrainedModelTree.Builder, ObjectBuilder<TrainedModelTree>> fn) {
+			return this.tree(fn.apply(new TrainedModelTree.Builder()).build());
 		}
 
 		/**
@@ -192,10 +188,8 @@ public class TrainedModel implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code tree_node}
 		 */
-		public final Builder treeNode(Consumer<TrainedModelTreeNode.Builder> fn) {
-			TrainedModelTreeNode.Builder builder = new TrainedModelTreeNode.Builder();
-			fn.accept(builder);
-			return this.treeNode(builder.build());
+		public final Builder treeNode(Function<TrainedModelTreeNode.Builder, ObjectBuilder<TrainedModelTreeNode>> fn) {
+			return this.treeNode(fn.apply(new TrainedModelTreeNode.Builder()).build());
 		}
 
 		/**
@@ -213,10 +207,8 @@ public class TrainedModel implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code ensemble}
 		 */
-		public final Builder ensemble(Consumer<Ensemble.Builder> fn) {
-			Ensemble.Builder builder = new Ensemble.Builder();
-			fn.accept(builder);
-			return this.ensemble(builder.build());
+		public final Builder ensemble(Function<Ensemble.Builder, ObjectBuilder<Ensemble>> fn) {
+			return this.ensemble(fn.apply(new Ensemble.Builder()).build());
 		}
 
 		/**

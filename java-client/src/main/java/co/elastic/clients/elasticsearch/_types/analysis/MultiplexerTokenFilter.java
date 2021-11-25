@@ -33,10 +33,9 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.analysis.MultiplexerTokenFilter
@@ -56,10 +55,8 @@ public class MultiplexerTokenFilter extends TokenFilterBase implements TokenFilt
 
 	}
 
-	public static MultiplexerTokenFilter of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static MultiplexerTokenFilter of(Function<Builder, ObjectBuilder<MultiplexerTokenFilter>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -117,17 +114,25 @@ public class MultiplexerTokenFilter extends TokenFilterBase implements TokenFilt
 
 		/**
 		 * Required - API name: {@code filters}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>filters</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>filters</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder filters(List<String> value) {
-			this.filters = value;
+		public final Builder filters(List<String> list) {
+			this.filters = _listAddAll(this.filters, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code filters}
+		 * <p>
+		 * Adds one or more values to <code>filters</code>.
 		 */
-		public final Builder filters(String... value) {
-			this.filters = Arrays.asList(value);
+		public final Builder filters(String value, String... values) {
+			this.filters = _listAdd(this.filters, value, values);
 			return this;
 		}
 

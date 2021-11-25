@@ -37,10 +37,9 @@ import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import java.util.function.Supplier;
 import javax.annotation.Nullable;
 
@@ -65,10 +64,9 @@ public class PreviewTransformResponse<TTransform> implements JsonpSerializable {
 
 	}
 
-	public static <TTransform> PreviewTransformResponse<TTransform> of(Consumer<Builder<TTransform>> fn) {
-		Builder<TTransform> builder = new Builder<>();
-		fn.accept(builder);
-		return builder.build();
+	public static <TTransform> PreviewTransformResponse<TTransform> of(
+			Function<Builder<TTransform>, ObjectBuilder<PreviewTransformResponse<TTransform>>> fn) {
+		return fn.apply(new Builder<>()).build();
 	}
 
 	/**
@@ -138,25 +136,32 @@ public class PreviewTransformResponse<TTransform> implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code generated_dest_index}
 		 */
-		public final Builder<TTransform> generatedDestIndex(Consumer<IndexState.Builder> fn) {
-			IndexState.Builder builder = new IndexState.Builder();
-			fn.accept(builder);
-			return this.generatedDestIndex(builder.build());
+		public final Builder<TTransform> generatedDestIndex(
+				Function<IndexState.Builder, ObjectBuilder<IndexState>> fn) {
+			return this.generatedDestIndex(fn.apply(new IndexState.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code preview}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>preview</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>preview</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder<TTransform> preview(List<TTransform> value) {
-			this.preview = value;
+		public final Builder<TTransform> preview(List<TTransform> list) {
+			this.preview = _listAddAll(this.preview, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code preview}
+		 * <p>
+		 * Adds one or more values to <code>preview</code>.
 		 */
-		public final Builder<TTransform> preview(TTransform... value) {
-			this.preview = Arrays.asList(value);
+		public final Builder<TTransform> preview(TTransform value, TTransform... values) {
+			this.preview = _listAdd(this.preview, value, values);
 			return this;
 		}
 

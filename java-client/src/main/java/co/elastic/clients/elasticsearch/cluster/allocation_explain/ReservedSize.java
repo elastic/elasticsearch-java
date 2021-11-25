@@ -35,10 +35,9 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cluster.allocation_explain.ReservedSize
@@ -63,10 +62,8 @@ public class ReservedSize implements JsonpSerializable {
 
 	}
 
-	public static ReservedSize of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static ReservedSize of(Function<Builder, ObjectBuilder<ReservedSize>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -170,17 +167,25 @@ public class ReservedSize implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code shards}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>shards</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>shards</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder shards(List<String> value) {
-			this.shards = value;
+		public final Builder shards(List<String> list) {
+			this.shards = _listAddAll(this.shards, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code shards}
+		 * <p>
+		 * Adds one or more values to <code>shards</code>.
 		 */
-		public final Builder shards(String... value) {
-			this.shards = Arrays.asList(value);
+		public final Builder shards(String value, String... values) {
+			this.shards = _listAdd(this.shards, value, values);
 			return this;
 		}
 

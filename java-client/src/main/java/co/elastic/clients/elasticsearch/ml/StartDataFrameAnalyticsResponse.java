@@ -34,7 +34,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.start_data_frame_analytics.Response
@@ -51,10 +51,9 @@ public class StartDataFrameAnalyticsResponse extends AcknowledgedResponseBase {
 
 	}
 
-	public static StartDataFrameAnalyticsResponse of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static StartDataFrameAnalyticsResponse of(
+			Function<Builder, ObjectBuilder<StartDataFrameAnalyticsResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**

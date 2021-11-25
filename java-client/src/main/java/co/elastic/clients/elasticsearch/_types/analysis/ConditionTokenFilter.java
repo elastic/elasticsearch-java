@@ -33,10 +33,9 @@ import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.analysis.ConditionTokenFilter
@@ -56,10 +55,8 @@ public class ConditionTokenFilter extends TokenFilterBase implements TokenFilter
 
 	}
 
-	public static ConditionTokenFilter of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static ConditionTokenFilter of(Function<Builder, ObjectBuilder<ConditionTokenFilter>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -117,17 +114,25 @@ public class ConditionTokenFilter extends TokenFilterBase implements TokenFilter
 
 		/**
 		 * Required - API name: {@code filter}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>filter</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>filter</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder filter(List<String> value) {
-			this.filter = value;
+		public final Builder filter(List<String> list) {
+			this.filter = _listAddAll(this.filter, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code filter}
+		 * <p>
+		 * Adds one or more values to <code>filter</code>.
 		 */
-		public final Builder filter(String... value) {
-			this.filter = Arrays.asList(value);
+		public final Builder filter(String value, String... values) {
+			this.filter = _listAdd(this.filter, value, values);
 			return this;
 		}
 
@@ -142,10 +147,8 @@ public class ConditionTokenFilter extends TokenFilterBase implements TokenFilter
 		/**
 		 * Required - API name: {@code script}
 		 */
-		public final Builder script(Consumer<Script.Builder> fn) {
-			Script.Builder builder = new Script.Builder();
-			fn.accept(builder);
-			return this.script(builder.build());
+		public final Builder script(Function<Script.Builder, ObjectBuilder<Script>> fn) {
+			return this.script(fn.apply(new Script.Builder()).build());
 		}
 
 		@Override

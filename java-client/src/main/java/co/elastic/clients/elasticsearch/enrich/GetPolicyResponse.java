@@ -29,15 +29,12 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -54,10 +51,8 @@ public class GetPolicyResponse implements JsonpSerializable {
 
 	}
 
-	public static GetPolicyResponse of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static GetPolicyResponse of(Function<Builder, ObjectBuilder<GetPolicyResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -101,26 +96,35 @@ public class GetPolicyResponse implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code policies}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>policies</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>policies</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder policies(List<EnrichSummary> value) {
-			this.policies = value;
+		public final Builder policies(List<EnrichSummary> list) {
+			this.policies = _listAddAll(this.policies, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code policies}
+		 * <p>
+		 * Adds one or more values to <code>policies</code>.
 		 */
-		public final Builder policies(EnrichSummary... value) {
-			this.policies = Arrays.asList(value);
+		public final Builder policies(EnrichSummary value, EnrichSummary... values) {
+			this.policies = _listAdd(this.policies, value, values);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code policies}
+		 * <p>
+		 * Adds a value to <code>policies</code> using a builder lambda.
 		 */
-		public final Builder policies(
-				Function<ListBuilder<EnrichSummary, EnrichSummary.Builder>, ObjectBuilder<List<EnrichSummary>>> fn) {
-			return policies(fn.apply(new ListBuilder<>(EnrichSummary.Builder::new)).build());
+		public final Builder policies(Function<EnrichSummary.Builder, ObjectBuilder<EnrichSummary>> fn) {
+			return policies(fn.apply(new EnrichSummary.Builder()).build());
 		}
 
 		/**

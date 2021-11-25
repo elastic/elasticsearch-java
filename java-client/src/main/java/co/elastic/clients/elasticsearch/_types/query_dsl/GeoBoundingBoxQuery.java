@@ -35,7 +35,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.GeoBoundingBoxQuery
@@ -67,10 +67,8 @@ public class GeoBoundingBoxQuery extends QueryBase implements QueryVariant {
 
 	}
 
-	public static GeoBoundingBoxQuery of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static GeoBoundingBoxQuery of(Function<Builder, ObjectBuilder<GeoBoundingBoxQuery>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -171,10 +169,8 @@ public class GeoBoundingBoxQuery extends QueryBase implements QueryVariant {
 		/**
 		 * Required -
 		 */
-		public final Builder boundingBox(Consumer<GeoBounds.Builder> fn) {
-			GeoBounds.Builder builder = new GeoBounds.Builder();
-			fn.accept(builder);
-			return this.boundingBox(builder.build());
+		public final Builder boundingBox(Function<GeoBounds.Builder, ObjectBuilder<GeoBounds>> fn) {
+			return this.boundingBox(fn.apply(new GeoBounds.Builder()).build());
 		}
 
 		@Nullable

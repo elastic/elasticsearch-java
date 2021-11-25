@@ -41,7 +41,7 @@ import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: transform.get_transform_stats.Request
@@ -69,10 +69,8 @@ public class GetTransformStatsRequest extends RequestBase {
 
 	}
 
-	public static GetTransformStatsRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static GetTransformStatsRequest of(Function<Builder, ObjectBuilder<GetTransformStatsRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**

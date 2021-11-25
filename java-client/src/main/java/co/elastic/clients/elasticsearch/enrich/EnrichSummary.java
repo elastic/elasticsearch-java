@@ -34,7 +34,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: enrich._types.Summary
@@ -50,10 +50,8 @@ public class EnrichSummary implements JsonpSerializable {
 
 	}
 
-	public static EnrichSummary of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static EnrichSummary of(Function<Builder, ObjectBuilder<EnrichSummary>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -98,10 +96,8 @@ public class EnrichSummary implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code config}
 		 */
-		public final Builder config(Consumer<EnrichConfiguration.Builder> fn) {
-			EnrichConfiguration.Builder builder = new EnrichConfiguration.Builder();
-			fn.accept(builder);
-			return this.config(builder.build());
+		public final Builder config(Function<EnrichConfiguration.Builder, ObjectBuilder<EnrichConfiguration>> fn) {
+			return this.config(fn.apply(new EnrichConfiguration.Builder()).build());
 		}
 
 		/**

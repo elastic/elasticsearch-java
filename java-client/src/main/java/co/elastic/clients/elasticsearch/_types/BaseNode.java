@@ -34,7 +34,6 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -173,9 +172,25 @@ public abstract class BaseNode implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code attributes}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>attributes</code>. Use
+		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
+		 * <code>attributes</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetMap()
 		 */
-		public final BuilderT attributes(Map<String, String> value) {
-			this.attributes = value;
+		public final BuilderT attributes(Map<String, String> map) {
+			this.attributes = _mapPutAll(this.attributes, map);
+			return self();
+		}
+
+		/**
+		 * Required - API name: {@code attributes}
+		 * <p>
+		 * Adds an entry to <code>attributes</code>.
+		 */
+		public final BuilderT attributes(String key, String value) {
+			this.attributes = _mapPut(this.attributes, key, value);
 			return self();
 		}
 
@@ -205,17 +220,25 @@ public abstract class BaseNode implements JsonpSerializable {
 
 		/**
 		 * API name: {@code roles}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>roles</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>roles</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final BuilderT roles(@Nullable List<NodeRole> value) {
-			this.roles = value;
+		public final BuilderT roles(List<NodeRole> list) {
+			this.roles = _listAddAll(this.roles, list);
 			return self();
 		}
 
 		/**
 		 * API name: {@code roles}
+		 * <p>
+		 * Adds one or more values to <code>roles</code>.
 		 */
-		public final BuilderT roles(NodeRole... value) {
-			this.roles = Arrays.asList(value);
+		public final BuilderT roles(NodeRole value, NodeRole... values) {
+			this.roles = _listAdd(this.roles, value, values);
 			return self();
 		}
 

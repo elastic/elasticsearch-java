@@ -40,7 +40,7 @@ import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.get_calendar_events.Request
@@ -76,10 +76,8 @@ public class GetCalendarEventsRequest extends RequestBase {
 
 	}
 
-	public static GetCalendarEventsRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static GetCalendarEventsRequest of(Function<Builder, ObjectBuilder<GetCalendarEventsRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**

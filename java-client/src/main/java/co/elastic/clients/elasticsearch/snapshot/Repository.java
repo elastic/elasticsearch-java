@@ -35,7 +35,7 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: snapshot._types.Repository
@@ -58,10 +58,8 @@ public class Repository implements JsonpSerializable {
 
 	}
 
-	public static Repository of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static Repository of(Function<Builder, ObjectBuilder<Repository>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -150,10 +148,8 @@ public class Repository implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code settings}
 		 */
-		public final Builder settings(Consumer<RepositorySettings.Builder> fn) {
-			RepositorySettings.Builder builder = new RepositorySettings.Builder();
-			fn.accept(builder);
-			return this.settings(builder.build());
+		public final Builder settings(Function<RepositorySettings.Builder, ObjectBuilder<RepositorySettings>> fn) {
+			return this.settings(fn.apply(new RepositorySettings.Builder()).build());
 		}
 
 		/**

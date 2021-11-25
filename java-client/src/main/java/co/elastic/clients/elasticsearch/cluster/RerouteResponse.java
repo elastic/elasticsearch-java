@@ -31,15 +31,12 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -59,10 +56,8 @@ public class RerouteResponse implements JsonpSerializable {
 
 	}
 
-	public static RerouteResponse of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static RerouteResponse of(Function<Builder, ObjectBuilder<RerouteResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -122,26 +117,35 @@ public class RerouteResponse implements JsonpSerializable {
 
 		/**
 		 * API name: {@code explanations}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>explanations</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>explanations</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder explanations(@Nullable List<RerouteExplanation> value) {
-			this.explanations = value;
+		public final Builder explanations(List<RerouteExplanation> list) {
+			this.explanations = _listAddAll(this.explanations, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code explanations}
+		 * <p>
+		 * Adds one or more values to <code>explanations</code>.
 		 */
-		public final Builder explanations(RerouteExplanation... value) {
-			this.explanations = Arrays.asList(value);
+		public final Builder explanations(RerouteExplanation value, RerouteExplanation... values) {
+			this.explanations = _listAdd(this.explanations, value, values);
 			return this;
 		}
 
 		/**
 		 * API name: {@code explanations}
+		 * <p>
+		 * Adds a value to <code>explanations</code> using a builder lambda.
 		 */
-		public final Builder explanations(
-				Function<ListBuilder<RerouteExplanation, RerouteExplanation.Builder>, ObjectBuilder<List<RerouteExplanation>>> fn) {
-			return explanations(fn.apply(new ListBuilder<>(RerouteExplanation.Builder::new)).build());
+		public final Builder explanations(Function<RerouteExplanation.Builder, ObjectBuilder<RerouteExplanation>> fn) {
+			return explanations(fn.apply(new RerouteExplanation.Builder()).build());
 		}
 
 		/**

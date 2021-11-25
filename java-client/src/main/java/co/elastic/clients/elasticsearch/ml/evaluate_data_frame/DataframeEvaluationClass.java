@@ -33,7 +33,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.evaluate_data_frame.DataframeEvaluationClass
@@ -50,10 +50,8 @@ public class DataframeEvaluationClass extends DataframeEvaluationValue {
 
 	}
 
-	public static DataframeEvaluationClass of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static DataframeEvaluationClass of(Function<Builder, ObjectBuilder<DataframeEvaluationClass>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**

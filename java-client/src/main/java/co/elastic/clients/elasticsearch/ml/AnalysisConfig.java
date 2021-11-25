@@ -30,17 +30,14 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -94,10 +91,8 @@ public class AnalysisConfig implements JsonpSerializable {
 
 	}
 
-	public static AnalysisConfig of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static AnalysisConfig of(Function<Builder, ObjectBuilder<AnalysisConfig>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -430,10 +425,9 @@ public class AnalysisConfig implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code categorization_analyzer}
 		 */
-		public final Builder categorizationAnalyzer(Consumer<CategorizationAnalyzer.Builder> fn) {
-			CategorizationAnalyzer.Builder builder = new CategorizationAnalyzer.Builder();
-			fn.accept(builder);
-			return this.categorizationAnalyzer(builder.build());
+		public final Builder categorizationAnalyzer(
+				Function<CategorizationAnalyzer.Builder, ObjectBuilder<CategorizationAnalyzer>> fn) {
+			return this.categorizationAnalyzer(fn.apply(new CategorizationAnalyzer.Builder()).build());
 		}
 
 		/**
@@ -465,9 +459,15 @@ public class AnalysisConfig implements JsonpSerializable {
 		 * as pattern_replace character filters. The effect is exactly the same.
 		 * <p>
 		 * API name: {@code categorization_filters}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>categorizationFilters</code>.
+		 * Use <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>categorizationFilters</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder categorizationFilters(@Nullable List<String> value) {
-			this.categorizationFilters = value;
+		public final Builder categorizationFilters(List<String> list) {
+			this.categorizationFilters = _listAddAll(this.categorizationFilters, list);
 			return this;
 		}
 
@@ -487,9 +487,11 @@ public class AnalysisConfig implements JsonpSerializable {
 		 * as pattern_replace character filters. The effect is exactly the same.
 		 * <p>
 		 * API name: {@code categorization_filters}
+		 * <p>
+		 * Adds one or more values to <code>categorizationFilters</code>.
 		 */
-		public final Builder categorizationFilters(String... value) {
-			this.categorizationFilters = Arrays.asList(value);
+		public final Builder categorizationFilters(String value, String... values) {
+			this.categorizationFilters = _listAdd(this.categorizationFilters, value, values);
 			return this;
 		}
 
@@ -500,9 +502,15 @@ public class AnalysisConfig implements JsonpSerializable {
 		 * at least one detector, no analysis can occur and an error is returned.
 		 * <p>
 		 * API name: {@code detectors}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>detectors</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>detectors</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder detectors(List<Detector> value) {
-			this.detectors = value;
+		public final Builder detectors(List<Detector> list) {
+			this.detectors = _listAddAll(this.detectors, list);
 			return this;
 		}
 
@@ -513,9 +521,11 @@ public class AnalysisConfig implements JsonpSerializable {
 		 * at least one detector, no analysis can occur and an error is returned.
 		 * <p>
 		 * API name: {@code detectors}
+		 * <p>
+		 * Adds one or more values to <code>detectors</code>.
 		 */
-		public final Builder detectors(Detector... value) {
-			this.detectors = Arrays.asList(value);
+		public final Builder detectors(Detector value, Detector... values) {
+			this.detectors = _listAdd(this.detectors, value, values);
 			return this;
 		}
 
@@ -526,10 +536,11 @@ public class AnalysisConfig implements JsonpSerializable {
 		 * at least one detector, no analysis can occur and an error is returned.
 		 * <p>
 		 * API name: {@code detectors}
+		 * <p>
+		 * Adds a value to <code>detectors</code> using a builder lambda.
 		 */
-		public final Builder detectors(
-				Function<ListBuilder<Detector, Detector.Builder>, ObjectBuilder<List<Detector>>> fn) {
-			return detectors(fn.apply(new ListBuilder<>(Detector.Builder::new)).build());
+		public final Builder detectors(Function<Detector.Builder, ObjectBuilder<Detector>> fn) {
+			return detectors(fn.apply(new Detector.Builder()).build());
 		}
 
 		/**
@@ -541,9 +552,15 @@ public class AnalysisConfig implements JsonpSerializable {
 		 * each influencer entity.
 		 * <p>
 		 * API name: {@code influencers}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>influencers</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>influencers</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder influencers(@Nullable List<String> value) {
-			this.influencers = value;
+		public final Builder influencers(List<String> list) {
+			this.influencers = _listAddAll(this.influencers, list);
 			return this;
 		}
 
@@ -556,9 +573,11 @@ public class AnalysisConfig implements JsonpSerializable {
 		 * each influencer entity.
 		 * <p>
 		 * API name: {@code influencers}
+		 * <p>
+		 * Adds one or more values to <code>influencers</code>.
 		 */
-		public final Builder influencers(String... value) {
-			this.influencers = Arrays.asList(value);
+		public final Builder influencers(String value, String... values) {
+			this.influencers = _listAdd(this.influencers, value, values);
 			return this;
 		}
 
@@ -587,10 +606,8 @@ public class AnalysisConfig implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code model_prune_window}
 		 */
-		public final Builder modelPruneWindow(Consumer<Time.Builder> fn) {
-			Time.Builder builder = new Time.Builder();
-			fn.accept(builder);
-			return this.modelPruneWindow(builder.build());
+		public final Builder modelPruneWindow(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.modelPruneWindow(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -614,10 +631,8 @@ public class AnalysisConfig implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code latency}
 		 */
-		public final Builder latency(Consumer<Time.Builder> fn) {
-			Time.Builder builder = new Time.Builder();
-			fn.accept(builder);
-			return this.latency(builder.build());
+		public final Builder latency(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.latency(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -656,10 +671,9 @@ public class AnalysisConfig implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code per_partition_categorization}
 		 */
-		public final Builder perPartitionCategorization(Consumer<PerPartitionCategorization.Builder> fn) {
-			PerPartitionCategorization.Builder builder = new PerPartitionCategorization.Builder();
-			fn.accept(builder);
-			return this.perPartitionCategorization(builder.build());
+		public final Builder perPartitionCategorization(
+				Function<PerPartitionCategorization.Builder, ObjectBuilder<PerPartitionCategorization>> fn) {
+			return this.perPartitionCategorization(fn.apply(new PerPartitionCategorization.Builder()).build());
 		}
 
 		/**

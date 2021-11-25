@@ -34,10 +34,9 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: nodes.info.NodeInfoPath
@@ -62,10 +61,8 @@ public class NodeInfoPath implements JsonpSerializable {
 
 	}
 
-	public static NodeInfoPath of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static NodeInfoPath of(Function<Builder, ObjectBuilder<NodeInfoPath>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -169,33 +166,49 @@ public class NodeInfoPath implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code repo}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>repo</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>repo</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder repo(List<String> value) {
-			this.repo = value;
+		public final Builder repo(List<String> list) {
+			this.repo = _listAddAll(this.repo, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code repo}
+		 * <p>
+		 * Adds one or more values to <code>repo</code>.
 		 */
-		public final Builder repo(String... value) {
-			this.repo = Arrays.asList(value);
+		public final Builder repo(String value, String... values) {
+			this.repo = _listAdd(this.repo, value, values);
 			return this;
 		}
 
 		/**
 		 * API name: {@code data}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>data</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>data</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder data(@Nullable List<String> value) {
-			this.data = value;
+		public final Builder data(List<String> list) {
+			this.data = _listAddAll(this.data, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code data}
+		 * <p>
+		 * Adds one or more values to <code>data</code>.
 		 */
-		public final Builder data(String... value) {
-			this.data = Arrays.asList(value);
+		public final Builder data(String value, String... values) {
+			this.data = _listAdd(this.data, value, values);
 			return this;
 		}
 

@@ -35,7 +35,7 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.DataframeEvaluationOutlierDetection
@@ -59,10 +59,9 @@ public class DataframeEvaluationOutlierDetection implements DataframeEvaluationV
 
 	}
 
-	public static DataframeEvaluationOutlierDetection of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static DataframeEvaluationOutlierDetection of(
+			Function<Builder, ObjectBuilder<DataframeEvaluationOutlierDetection>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -184,10 +183,9 @@ public class DataframeEvaluationOutlierDetection implements DataframeEvaluationV
 		 * <p>
 		 * API name: {@code metrics}
 		 */
-		public final Builder metrics(Consumer<DataframeEvaluationOutlierDetectionMetrics.Builder> fn) {
-			DataframeEvaluationOutlierDetectionMetrics.Builder builder = new DataframeEvaluationOutlierDetectionMetrics.Builder();
-			fn.accept(builder);
-			return this.metrics(builder.build());
+		public final Builder metrics(
+				Function<DataframeEvaluationOutlierDetectionMetrics.Builder, ObjectBuilder<DataframeEvaluationOutlierDetectionMetrics>> fn) {
+			return this.metrics(fn.apply(new DataframeEvaluationOutlierDetectionMetrics.Builder()).build());
 		}
 
 		/**

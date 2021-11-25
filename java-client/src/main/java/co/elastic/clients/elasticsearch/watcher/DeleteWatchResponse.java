@@ -37,7 +37,7 @@ import java.lang.Boolean;
 import java.lang.Long;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher.delete_watch.Response
@@ -59,10 +59,8 @@ public class DeleteWatchResponse implements JsonpSerializable {
 
 	}
 
-	public static DeleteWatchResponse of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static DeleteWatchResponse of(Function<Builder, ObjectBuilder<DeleteWatchResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**

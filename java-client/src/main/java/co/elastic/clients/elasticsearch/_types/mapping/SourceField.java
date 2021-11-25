@@ -35,10 +35,9 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.mapping.SourceField
@@ -69,10 +68,8 @@ public class SourceField implements JsonpSerializable {
 
 	}
 
-	public static SourceField of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static SourceField of(Function<Builder, ObjectBuilder<SourceField>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -209,33 +206,49 @@ public class SourceField implements JsonpSerializable {
 
 		/**
 		 * API name: {@code excludes}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>excludes</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>excludes</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder excludes(@Nullable List<String> value) {
-			this.excludes = value;
+		public final Builder excludes(List<String> list) {
+			this.excludes = _listAddAll(this.excludes, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code excludes}
+		 * <p>
+		 * Adds one or more values to <code>excludes</code>.
 		 */
-		public final Builder excludes(String... value) {
-			this.excludes = Arrays.asList(value);
+		public final Builder excludes(String value, String... values) {
+			this.excludes = _listAdd(this.excludes, value, values);
 			return this;
 		}
 
 		/**
 		 * API name: {@code includes}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>includes</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>includes</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder includes(@Nullable List<String> value) {
-			this.includes = value;
+		public final Builder includes(List<String> list) {
+			this.includes = _listAddAll(this.includes, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code includes}
+		 * <p>
+		 * Adds one or more values to <code>includes</code>.
 		 */
-		public final Builder includes(String... value) {
-			this.includes = Arrays.asList(value);
+		public final Builder includes(String value, String... values) {
+			this.includes = _listAdd(this.includes, value, values);
 			return this;
 		}
 

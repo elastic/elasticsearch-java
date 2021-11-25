@@ -38,7 +38,7 @@ import java.lang.Boolean;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: rollup.get_jobs.RollupJobStatus
@@ -61,10 +61,8 @@ public class RollupJobStatus implements JsonpSerializable {
 
 	}
 
-	public static RollupJobStatus of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static RollupJobStatus of(Function<Builder, ObjectBuilder<RollupJobStatus>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -137,9 +135,25 @@ public class RollupJobStatus implements JsonpSerializable {
 
 		/**
 		 * API name: {@code current_position}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>currentPosition</code>. Use
+		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
+		 * <code>currentPosition</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetMap()
 		 */
-		public final Builder currentPosition(@Nullable Map<String, JsonData> value) {
-			this.currentPosition = value;
+		public final Builder currentPosition(Map<String, JsonData> map) {
+			this.currentPosition = _mapPutAll(this.currentPosition, map);
+			return this;
+		}
+
+		/**
+		 * API name: {@code current_position}
+		 * <p>
+		 * Adds an entry to <code>currentPosition</code>.
+		 */
+		public final Builder currentPosition(String key, JsonData value) {
+			this.currentPosition = _mapPut(this.currentPosition, key, value);
 			return this;
 		}
 

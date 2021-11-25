@@ -36,7 +36,7 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: transform.get_transform_stats.TransformStats
@@ -69,10 +69,8 @@ public class TransformStats implements JsonpSerializable {
 
 	}
 
-	public static TransformStats of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static TransformStats of(Function<Builder, ObjectBuilder<TransformStats>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -185,10 +183,8 @@ public class TransformStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code checkpointing}
 		 */
-		public final Builder checkpointing(Consumer<Checkpointing.Builder> fn) {
-			Checkpointing.Builder builder = new Checkpointing.Builder();
-			fn.accept(builder);
-			return this.checkpointing(builder.build());
+		public final Builder checkpointing(Function<Checkpointing.Builder, ObjectBuilder<Checkpointing>> fn) {
+			return this.checkpointing(fn.apply(new Checkpointing.Builder()).build());
 		}
 
 		/**
@@ -210,10 +206,8 @@ public class TransformStats implements JsonpSerializable {
 		/**
 		 * API name: {@code node}
 		 */
-		public final Builder node(Consumer<NodeAttributes.Builder> fn) {
-			NodeAttributes.Builder builder = new NodeAttributes.Builder();
-			fn.accept(builder);
-			return this.node(builder.build());
+		public final Builder node(Function<NodeAttributes.Builder, ObjectBuilder<NodeAttributes>> fn) {
+			return this.node(fn.apply(new NodeAttributes.Builder()).build());
 		}
 
 		/**
@@ -243,10 +237,8 @@ public class TransformStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code stats}
 		 */
-		public final Builder stats(Consumer<TransformIndexerStats.Builder> fn) {
-			TransformIndexerStats.Builder builder = new TransformIndexerStats.Builder();
-			fn.accept(builder);
-			return this.stats(builder.build());
+		public final Builder stats(Function<TransformIndexerStats.Builder, ObjectBuilder<TransformIndexerStats>> fn) {
+			return this.stats(fn.apply(new TransformIndexerStats.Builder()).build());
 		}
 
 		/**

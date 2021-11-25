@@ -33,7 +33,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Double;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.mapping.ScaledFloatNumberProperty
@@ -59,10 +59,8 @@ public class ScaledFloatNumberProperty extends NumberPropertyBase implements Pro
 
 	}
 
-	public static ScaledFloatNumberProperty of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static ScaledFloatNumberProperty of(Function<Builder, ObjectBuilder<ScaledFloatNumberProperty>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**

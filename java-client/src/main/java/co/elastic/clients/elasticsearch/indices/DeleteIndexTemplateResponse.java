@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 
 // typedef: indices.delete_index_template.Response
 @JsonpDeserializable
@@ -43,10 +43,8 @@ public class DeleteIndexTemplateResponse extends AcknowledgedResponseBase {
 
 	}
 
-	public static DeleteIndexTemplateResponse of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static DeleteIndexTemplateResponse of(Function<Builder, ObjectBuilder<DeleteIndexTemplateResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------

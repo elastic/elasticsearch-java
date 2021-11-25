@@ -38,7 +38,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: security.clear_cached_privileges.Request
@@ -54,10 +54,8 @@ public class ClearCachedPrivilegesRequest extends RequestBase {
 
 	}
 
-	public static ClearCachedPrivilegesRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static ClearCachedPrivilegesRequest of(Function<Builder, ObjectBuilder<ClearCachedPrivilegesRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**

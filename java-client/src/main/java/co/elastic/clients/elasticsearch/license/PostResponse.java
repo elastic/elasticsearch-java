@@ -36,7 +36,7 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: license.post.Response
@@ -59,10 +59,8 @@ public class PostResponse implements JsonpSerializable {
 
 	}
 
-	public static PostResponse of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static PostResponse of(Function<Builder, ObjectBuilder<PostResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -135,10 +133,8 @@ public class PostResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code acknowledge}
 		 */
-		public final Builder acknowledge(Consumer<Acknowledgement.Builder> fn) {
-			Acknowledgement.Builder builder = new Acknowledgement.Builder();
-			fn.accept(builder);
-			return this.acknowledge(builder.build());
+		public final Builder acknowledge(Function<Acknowledgement.Builder, ObjectBuilder<Acknowledgement>> fn) {
+			return this.acknowledge(fn.apply(new Acknowledgement.Builder()).build());
 		}
 
 		/**

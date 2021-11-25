@@ -36,7 +36,7 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: nodes.info.NodeInfoSettingsCluster
@@ -63,10 +63,8 @@ public class NodeInfoSettingsCluster implements JsonpSerializable {
 
 	}
 
-	public static NodeInfoSettingsCluster of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static NodeInfoSettingsCluster of(Function<Builder, ObjectBuilder<NodeInfoSettingsCluster>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -164,10 +162,8 @@ public class NodeInfoSettingsCluster implements JsonpSerializable {
 		/**
 		 * API name: {@code routing}
 		 */
-		public final Builder routing(Consumer<IndexRouting.Builder> fn) {
-			IndexRouting.Builder builder = new IndexRouting.Builder();
-			fn.accept(builder);
-			return this.routing(builder.build());
+		public final Builder routing(Function<IndexRouting.Builder, ObjectBuilder<IndexRouting>> fn) {
+			return this.routing(fn.apply(new IndexRouting.Builder()).build());
 		}
 
 		/**
@@ -181,10 +177,9 @@ public class NodeInfoSettingsCluster implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code election}
 		 */
-		public final Builder election(Consumer<NodeInfoSettingsClusterElection.Builder> fn) {
-			NodeInfoSettingsClusterElection.Builder builder = new NodeInfoSettingsClusterElection.Builder();
-			fn.accept(builder);
-			return this.election(builder.build());
+		public final Builder election(
+				Function<NodeInfoSettingsClusterElection.Builder, ObjectBuilder<NodeInfoSettingsClusterElection>> fn) {
+			return this.election(fn.apply(new NodeInfoSettingsClusterElection.Builder()).build());
 		}
 
 		/**

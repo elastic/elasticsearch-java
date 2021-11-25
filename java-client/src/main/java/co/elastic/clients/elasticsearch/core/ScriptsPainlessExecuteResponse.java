@@ -37,7 +37,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import java.util.function.Supplier;
 import javax.annotation.Nullable;
 
@@ -58,10 +58,9 @@ public class ScriptsPainlessExecuteResponse<TResult> implements JsonpSerializabl
 
 	}
 
-	public static <TResult> ScriptsPainlessExecuteResponse<TResult> of(Consumer<Builder<TResult>> fn) {
-		Builder<TResult> builder = new Builder<>();
-		fn.accept(builder);
-		return builder.build();
+	public static <TResult> ScriptsPainlessExecuteResponse<TResult> of(
+			Function<Builder<TResult>, ObjectBuilder<ScriptsPainlessExecuteResponse<TResult>>> fn) {
+		return fn.apply(new Builder<>()).build();
 	}
 
 	/**

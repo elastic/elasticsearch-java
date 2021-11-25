@@ -44,7 +44,7 @@ import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.simulate_template.Request
@@ -72,10 +72,8 @@ public class SimulateTemplateRequest extends RequestBase implements JsonpSeriali
 
 	}
 
-	public static SimulateTemplateRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static SimulateTemplateRequest of(Function<Builder, ObjectBuilder<SimulateTemplateRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -178,10 +176,8 @@ public class SimulateTemplateRequest extends RequestBase implements JsonpSeriali
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
-		public final Builder masterTimeout(Consumer<Time.Builder> fn) {
-			Time.Builder builder = new Time.Builder();
-			fn.accept(builder);
-			return this.masterTimeout(builder.build());
+		public final Builder masterTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.masterTimeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -211,10 +207,8 @@ public class SimulateTemplateRequest extends RequestBase implements JsonpSeriali
 		 * <p>
 		 * API name: {@code _value_body}
 		 */
-		public final Builder template(Consumer<IndexTemplate.Builder> fn) {
-			IndexTemplate.Builder builder = new IndexTemplate.Builder();
-			fn.accept(builder);
-			return this.template(builder.build());
+		public final Builder template(Function<IndexTemplate.Builder, ObjectBuilder<IndexTemplate>> fn) {
+			return this.template(fn.apply(new IndexTemplate.Builder()).build());
 		}
 
 		/**

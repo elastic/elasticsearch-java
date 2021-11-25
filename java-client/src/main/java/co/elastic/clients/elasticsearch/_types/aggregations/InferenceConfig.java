@@ -33,7 +33,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.InferenceConfigContainer
@@ -54,10 +54,8 @@ public class InferenceConfig implements JsonpSerializable {
 
 	}
 
-	public static InferenceConfig of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static InferenceConfig of(Function<Builder, ObjectBuilder<InferenceConfig>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -131,10 +129,9 @@ public class InferenceConfig implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code regression}
 		 */
-		public final Builder regression(Consumer<RegressionInferenceOptions.Builder> fn) {
-			RegressionInferenceOptions.Builder builder = new RegressionInferenceOptions.Builder();
-			fn.accept(builder);
-			return this.regression(builder.build());
+		public final Builder regression(
+				Function<RegressionInferenceOptions.Builder, ObjectBuilder<RegressionInferenceOptions>> fn) {
+			return this.regression(fn.apply(new RegressionInferenceOptions.Builder()).build());
 		}
 
 		/**
@@ -152,10 +149,9 @@ public class InferenceConfig implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code classification}
 		 */
-		public final Builder classification(Consumer<ClassificationInferenceOptions.Builder> fn) {
-			ClassificationInferenceOptions.Builder builder = new ClassificationInferenceOptions.Builder();
-			fn.accept(builder);
-			return this.classification(builder.build());
+		public final Builder classification(
+				Function<ClassificationInferenceOptions.Builder, ObjectBuilder<ClassificationInferenceOptions>> fn) {
+			return this.classification(fn.apply(new ClassificationInferenceOptions.Builder()).build());
 		}
 
 		/**

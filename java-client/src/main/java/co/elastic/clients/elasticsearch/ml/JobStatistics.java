@@ -35,7 +35,7 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 
 // typedef: ml._types.JobStatistics
 @JsonpDeserializable
@@ -59,10 +59,8 @@ public class JobStatistics implements JsonpSerializable {
 
 	}
 
-	public static JobStatistics of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static JobStatistics of(Function<Builder, ObjectBuilder<JobStatistics>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**

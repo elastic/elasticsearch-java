@@ -34,7 +34,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.RateAggregate
@@ -55,10 +55,8 @@ public class RateAggregate extends AggregateBase implements AggregateVariant {
 
 	}
 
-	public static RateAggregate of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static RateAggregate of(Function<Builder, ObjectBuilder<RateAggregate>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**

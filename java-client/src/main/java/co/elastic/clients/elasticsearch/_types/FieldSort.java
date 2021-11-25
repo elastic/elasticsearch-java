@@ -36,7 +36,7 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.FieldSort
@@ -82,10 +82,8 @@ public class FieldSort implements JsonpSerializable {
 
 	}
 
-	public static FieldSort of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static FieldSort of(Function<Builder, ObjectBuilder<FieldSort>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -263,10 +261,8 @@ public class FieldSort implements JsonpSerializable {
 		/**
 		 * API name: {@code nested}
 		 */
-		public final Builder nested(Consumer<NestedSortValue.Builder> fn) {
-			NestedSortValue.Builder builder = new NestedSortValue.Builder();
-			fn.accept(builder);
-			return this.nested(builder.build());
+		public final Builder nested(Function<NestedSortValue.Builder, ObjectBuilder<NestedSortValue>> fn) {
+			return this.nested(fn.apply(new NestedSortValue.Builder()).build());
 		}
 
 		/**

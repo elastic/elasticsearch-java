@@ -32,7 +32,7 @@ import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.HoltMovingAverageAggregation
@@ -51,10 +51,8 @@ public class HoltMovingAverageAggregation extends MovingAverageAggregationBase
 
 	}
 
-	public static HoltMovingAverageAggregation of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static HoltMovingAverageAggregation of(Function<Builder, ObjectBuilder<HoltMovingAverageAggregation>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -102,10 +100,9 @@ public class HoltMovingAverageAggregation extends MovingAverageAggregationBase
 		/**
 		 * Required - API name: {@code settings}
 		 */
-		public final Builder settings(Consumer<HoltLinearModelSettings.Builder> fn) {
-			HoltLinearModelSettings.Builder builder = new HoltLinearModelSettings.Builder();
-			fn.accept(builder);
-			return this.settings(builder.build());
+		public final Builder settings(
+				Function<HoltLinearModelSettings.Builder, ObjectBuilder<HoltLinearModelSettings>> fn) {
+			return this.settings(fn.apply(new HoltLinearModelSettings.Builder()).build());
 		}
 
 		@Override

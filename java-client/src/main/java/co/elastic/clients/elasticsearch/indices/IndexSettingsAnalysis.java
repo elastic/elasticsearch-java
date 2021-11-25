@@ -34,7 +34,6 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.MapBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
@@ -42,7 +41,6 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -71,10 +69,8 @@ public class IndexSettingsAnalysis implements JsonpSerializable {
 
 	}
 
-	public static IndexSettingsAnalysis of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static IndexSettingsAnalysis of(Function<Builder, ObjectBuilder<IndexSettingsAnalysis>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -204,67 +200,167 @@ public class IndexSettingsAnalysis implements JsonpSerializable {
 
 		/**
 		 * API name: {@code analyzer}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>analyzer</code>. Use
+		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
+		 * <code>analyzer</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetMap()
 		 */
-		public final Builder analyzer(@Nullable Map<String, Analyzer> value) {
-			this.analyzer = value;
+		public final Builder analyzer(Map<String, Analyzer> map) {
+			this.analyzer = _mapPutAll(this.analyzer, map);
 			return this;
 		}
 
-		public final Builder analyzer(
-				Function<MapBuilder<String, Analyzer, Analyzer.Builder>, ObjectBuilder<Map<String, Analyzer>>> fn) {
-			return analyzer(fn.apply(new MapBuilder<>(Analyzer.Builder::new)).build());
+		/**
+		 * API name: {@code analyzer}
+		 * <p>
+		 * Adds an entry to <code>analyzer</code>.
+		 */
+		public final Builder analyzer(String key, Analyzer value) {
+			this.analyzer = _mapPut(this.analyzer, key, value);
+			return this;
+		}
+
+		/**
+		 * API name: {@code analyzer}
+		 * <p>
+		 * Adds an entry to <code>analyzer</code> using a builder lambda.
+		 */
+		public final Builder analyzer(String key, Function<Analyzer.Builder, ObjectBuilder<Analyzer>> fn) {
+			return analyzer(key, fn.apply(new Analyzer.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code char_filter}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>charFilter</code>. Use
+		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
+		 * <code>charFilter</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetMap()
 		 */
-		public final Builder charFilter(@Nullable Map<String, CharFilter> value) {
-			this.charFilter = value;
+		public final Builder charFilter(Map<String, CharFilter> map) {
+			this.charFilter = _mapPutAll(this.charFilter, map);
 			return this;
 		}
 
-		public final Builder charFilter(
-				Function<MapBuilder<String, CharFilter, CharFilter.Builder>, ObjectBuilder<Map<String, CharFilter>>> fn) {
-			return charFilter(fn.apply(new MapBuilder<>(CharFilter.Builder::new)).build());
+		/**
+		 * API name: {@code char_filter}
+		 * <p>
+		 * Adds an entry to <code>charFilter</code>.
+		 */
+		public final Builder charFilter(String key, CharFilter value) {
+			this.charFilter = _mapPut(this.charFilter, key, value);
+			return this;
+		}
+
+		/**
+		 * API name: {@code char_filter}
+		 * <p>
+		 * Adds an entry to <code>charFilter</code> using a builder lambda.
+		 */
+		public final Builder charFilter(String key, Function<CharFilter.Builder, ObjectBuilder<CharFilter>> fn) {
+			return charFilter(key, fn.apply(new CharFilter.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code filter}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>filter</code>. Use
+		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
+		 * <code>filter</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetMap()
 		 */
-		public final Builder filter(@Nullable Map<String, TokenFilter> value) {
-			this.filter = value;
+		public final Builder filter(Map<String, TokenFilter> map) {
+			this.filter = _mapPutAll(this.filter, map);
 			return this;
 		}
 
-		public final Builder filter(
-				Function<MapBuilder<String, TokenFilter, TokenFilter.Builder>, ObjectBuilder<Map<String, TokenFilter>>> fn) {
-			return filter(fn.apply(new MapBuilder<>(TokenFilter.Builder::new)).build());
+		/**
+		 * API name: {@code filter}
+		 * <p>
+		 * Adds an entry to <code>filter</code>.
+		 */
+		public final Builder filter(String key, TokenFilter value) {
+			this.filter = _mapPut(this.filter, key, value);
+			return this;
+		}
+
+		/**
+		 * API name: {@code filter}
+		 * <p>
+		 * Adds an entry to <code>filter</code> using a builder lambda.
+		 */
+		public final Builder filter(String key, Function<TokenFilter.Builder, ObjectBuilder<TokenFilter>> fn) {
+			return filter(key, fn.apply(new TokenFilter.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code normalizer}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>normalizer</code>. Use
+		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
+		 * <code>normalizer</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetMap()
 		 */
-		public final Builder normalizer(@Nullable Map<String, Normalizer> value) {
-			this.normalizer = value;
+		public final Builder normalizer(Map<String, Normalizer> map) {
+			this.normalizer = _mapPutAll(this.normalizer, map);
 			return this;
 		}
 
-		public final Builder normalizer(
-				Function<MapBuilder<String, Normalizer, Normalizer.Builder>, ObjectBuilder<Map<String, Normalizer>>> fn) {
-			return normalizer(fn.apply(new MapBuilder<>(Normalizer.Builder::new)).build());
+		/**
+		 * API name: {@code normalizer}
+		 * <p>
+		 * Adds an entry to <code>normalizer</code>.
+		 */
+		public final Builder normalizer(String key, Normalizer value) {
+			this.normalizer = _mapPut(this.normalizer, key, value);
+			return this;
+		}
+
+		/**
+		 * API name: {@code normalizer}
+		 * <p>
+		 * Adds an entry to <code>normalizer</code> using a builder lambda.
+		 */
+		public final Builder normalizer(String key, Function<Normalizer.Builder, ObjectBuilder<Normalizer>> fn) {
+			return normalizer(key, fn.apply(new Normalizer.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code tokenizer}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>tokenizer</code>. Use
+		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
+		 * <code>tokenizer</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetMap()
 		 */
-		public final Builder tokenizer(@Nullable Map<String, Tokenizer> value) {
-			this.tokenizer = value;
+		public final Builder tokenizer(Map<String, Tokenizer> map) {
+			this.tokenizer = _mapPutAll(this.tokenizer, map);
 			return this;
 		}
 
-		public final Builder tokenizer(
-				Function<MapBuilder<String, Tokenizer, Tokenizer.Builder>, ObjectBuilder<Map<String, Tokenizer>>> fn) {
-			return tokenizer(fn.apply(new MapBuilder<>(Tokenizer.Builder::new)).build());
+		/**
+		 * API name: {@code tokenizer}
+		 * <p>
+		 * Adds an entry to <code>tokenizer</code>.
+		 */
+		public final Builder tokenizer(String key, Tokenizer value) {
+			this.tokenizer = _mapPut(this.tokenizer, key, value);
+			return this;
+		}
+
+		/**
+		 * API name: {@code tokenizer}
+		 * <p>
+		 * Adds an entry to <code>tokenizer</code> using a builder lambda.
+		 */
+		public final Builder tokenizer(String key, Function<Tokenizer.Builder, ObjectBuilder<Tokenizer>> fn) {
+			return tokenizer(key, fn.apply(new Tokenizer.Builder()).build());
 		}
 
 		/**

@@ -34,7 +34,7 @@ import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.TopHitsAggregate
@@ -51,10 +51,8 @@ public class TopHitsAggregate extends AggregateBase implements AggregateVariant 
 
 	}
 
-	public static TopHitsAggregate of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static TopHitsAggregate of(Function<Builder, ObjectBuilder<TopHitsAggregate>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -101,10 +99,8 @@ public class TopHitsAggregate extends AggregateBase implements AggregateVariant 
 		/**
 		 * Required - API name: {@code hits}
 		 */
-		public final Builder hits(Consumer<HitsMetadata.Builder<JsonData>> fn) {
-			HitsMetadata.Builder<JsonData> builder = new HitsMetadata.Builder<JsonData>();
-			fn.accept(builder);
-			return this.hits(builder.build());
+		public final Builder hits(Function<HitsMetadata.Builder<JsonData>, ObjectBuilder<HitsMetadata<JsonData>>> fn) {
+			return this.hits(fn.apply(new HitsMetadata.Builder<JsonData>()).build());
 		}
 
 		@Override

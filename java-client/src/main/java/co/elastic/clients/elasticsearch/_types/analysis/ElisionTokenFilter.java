@@ -33,10 +33,9 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.analysis.ElisionTokenFilter
@@ -56,10 +55,8 @@ public class ElisionTokenFilter extends TokenFilterBase implements TokenFilterDe
 
 	}
 
-	public static ElisionTokenFilter of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static ElisionTokenFilter of(Function<Builder, ObjectBuilder<ElisionTokenFilter>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -117,17 +114,25 @@ public class ElisionTokenFilter extends TokenFilterBase implements TokenFilterDe
 
 		/**
 		 * Required - API name: {@code articles}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>articles</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>articles</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder articles(List<String> value) {
-			this.articles = value;
+		public final Builder articles(List<String> list) {
+			this.articles = _listAddAll(this.articles, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code articles}
+		 * <p>
+		 * Adds one or more values to <code>articles</code>.
 		 */
-		public final Builder articles(String... value) {
-			this.articles = Arrays.asList(value);
+		public final Builder articles(String value, String... values) {
+			this.articles = _listAdd(this.articles, value, values);
 			return this;
 		}
 

@@ -30,15 +30,12 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -55,10 +52,8 @@ public class CloseShardResult implements JsonpSerializable {
 
 	}
 
-	public static CloseShardResult of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static CloseShardResult of(Function<Builder, ObjectBuilder<CloseShardResult>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -102,26 +97,35 @@ public class CloseShardResult implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code failures}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>failures</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>failures</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder failures(List<ShardFailure> value) {
-			this.failures = value;
+		public final Builder failures(List<ShardFailure> list) {
+			this.failures = _listAddAll(this.failures, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code failures}
+		 * <p>
+		 * Adds one or more values to <code>failures</code>.
 		 */
-		public final Builder failures(ShardFailure... value) {
-			this.failures = Arrays.asList(value);
+		public final Builder failures(ShardFailure value, ShardFailure... values) {
+			this.failures = _listAdd(this.failures, value, values);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code failures}
+		 * <p>
+		 * Adds a value to <code>failures</code> using a builder lambda.
 		 */
-		public final Builder failures(
-				Function<ListBuilder<ShardFailure, ShardFailure.Builder>, ObjectBuilder<List<ShardFailure>>> fn) {
-			return failures(fn.apply(new ListBuilder<>(ShardFailure.Builder::new)).build());
+		public final Builder failures(Function<ShardFailure.Builder, ObjectBuilder<ShardFailure>> fn) {
+			return failures(fn.apply(new ShardFailure.Builder()).build());
 		}
 
 		/**

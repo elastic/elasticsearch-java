@@ -33,7 +33,7 @@ import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.MultiBucketAggregateBase
@@ -88,10 +88,8 @@ public abstract class MultiBucketAggregateBase<TBucket> extends AggregateBase {
 		/**
 		 * Required - API name: {@code buckets}
 		 */
-		public final BuilderT buckets(Consumer<Buckets.Builder<TBucket>> fn) {
-			Buckets.Builder<TBucket> builder = new Buckets.Builder<TBucket>();
-			fn.accept(builder);
-			return this.buckets(builder.build());
+		public final BuilderT buckets(Function<Buckets.Builder<TBucket>, ObjectBuilder<Buckets<TBucket>>> fn) {
+			return this.buckets(fn.apply(new Buckets.Builder<TBucket>()).build());
 		}
 
 		/**

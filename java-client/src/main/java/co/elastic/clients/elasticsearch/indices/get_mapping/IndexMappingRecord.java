@@ -35,7 +35,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.get_mapping.IndexMappingRecord
@@ -55,10 +55,8 @@ public class IndexMappingRecord implements JsonpSerializable {
 
 	}
 
-	public static IndexMappingRecord of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static IndexMappingRecord of(Function<Builder, ObjectBuilder<IndexMappingRecord>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -119,10 +117,8 @@ public class IndexMappingRecord implements JsonpSerializable {
 		/**
 		 * API name: {@code item}
 		 */
-		public final Builder item(Consumer<TypeMapping.Builder> fn) {
-			TypeMapping.Builder builder = new TypeMapping.Builder();
-			fn.accept(builder);
-			return this.item(builder.build());
+		public final Builder item(Function<TypeMapping.Builder, ObjectBuilder<TypeMapping>> fn) {
+			return this.item(fn.apply(new TypeMapping.Builder()).build());
 		}
 
 		/**
@@ -136,10 +132,8 @@ public class IndexMappingRecord implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code mappings}
 		 */
-		public final Builder mappings(Consumer<TypeMapping.Builder> fn) {
-			TypeMapping.Builder builder = new TypeMapping.Builder();
-			fn.accept(builder);
-			return this.mappings(builder.build());
+		public final Builder mappings(Function<TypeMapping.Builder, ObjectBuilder<TypeMapping>> fn) {
+			return this.mappings(fn.apply(new TypeMapping.Builder()).build());
 		}
 
 		/**

@@ -32,15 +32,12 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -63,10 +60,8 @@ public class ResolveIndexResponse implements JsonpSerializable {
 
 	}
 
-	public static ResolveIndexResponse of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static ResolveIndexResponse of(Function<Builder, ObjectBuilder<ResolveIndexResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -148,74 +143,102 @@ public class ResolveIndexResponse implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code indices}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>indices</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>indices</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder indices(List<ResolveIndexItem> value) {
-			this.indices = value;
+		public final Builder indices(List<ResolveIndexItem> list) {
+			this.indices = _listAddAll(this.indices, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code indices}
+		 * <p>
+		 * Adds one or more values to <code>indices</code>.
 		 */
-		public final Builder indices(ResolveIndexItem... value) {
-			this.indices = Arrays.asList(value);
+		public final Builder indices(ResolveIndexItem value, ResolveIndexItem... values) {
+			this.indices = _listAdd(this.indices, value, values);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code indices}
+		 * <p>
+		 * Adds a value to <code>indices</code> using a builder lambda.
 		 */
-		public final Builder indices(
-				Function<ListBuilder<ResolveIndexItem, ResolveIndexItem.Builder>, ObjectBuilder<List<ResolveIndexItem>>> fn) {
-			return indices(fn.apply(new ListBuilder<>(ResolveIndexItem.Builder::new)).build());
+		public final Builder indices(Function<ResolveIndexItem.Builder, ObjectBuilder<ResolveIndexItem>> fn) {
+			return indices(fn.apply(new ResolveIndexItem.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code aliases}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>aliases</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>aliases</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder aliases(List<ResolveIndexAliasItem> value) {
-			this.aliases = value;
+		public final Builder aliases(List<ResolveIndexAliasItem> list) {
+			this.aliases = _listAddAll(this.aliases, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code aliases}
+		 * <p>
+		 * Adds one or more values to <code>aliases</code>.
 		 */
-		public final Builder aliases(ResolveIndexAliasItem... value) {
-			this.aliases = Arrays.asList(value);
+		public final Builder aliases(ResolveIndexAliasItem value, ResolveIndexAliasItem... values) {
+			this.aliases = _listAdd(this.aliases, value, values);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code aliases}
+		 * <p>
+		 * Adds a value to <code>aliases</code> using a builder lambda.
 		 */
-		public final Builder aliases(
-				Function<ListBuilder<ResolveIndexAliasItem, ResolveIndexAliasItem.Builder>, ObjectBuilder<List<ResolveIndexAliasItem>>> fn) {
-			return aliases(fn.apply(new ListBuilder<>(ResolveIndexAliasItem.Builder::new)).build());
+		public final Builder aliases(Function<ResolveIndexAliasItem.Builder, ObjectBuilder<ResolveIndexAliasItem>> fn) {
+			return aliases(fn.apply(new ResolveIndexAliasItem.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code data_streams}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>dataStreams</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>dataStreams</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder dataStreams(List<ResolveIndexDataStreamsItem> value) {
-			this.dataStreams = value;
+		public final Builder dataStreams(List<ResolveIndexDataStreamsItem> list) {
+			this.dataStreams = _listAddAll(this.dataStreams, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code data_streams}
+		 * <p>
+		 * Adds one or more values to <code>dataStreams</code>.
 		 */
-		public final Builder dataStreams(ResolveIndexDataStreamsItem... value) {
-			this.dataStreams = Arrays.asList(value);
+		public final Builder dataStreams(ResolveIndexDataStreamsItem value, ResolveIndexDataStreamsItem... values) {
+			this.dataStreams = _listAdd(this.dataStreams, value, values);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code data_streams}
+		 * <p>
+		 * Adds a value to <code>dataStreams</code> using a builder lambda.
 		 */
 		public final Builder dataStreams(
-				Function<ListBuilder<ResolveIndexDataStreamsItem, ResolveIndexDataStreamsItem.Builder>, ObjectBuilder<List<ResolveIndexDataStreamsItem>>> fn) {
-			return dataStreams(fn.apply(new ListBuilder<>(ResolveIndexDataStreamsItem.Builder::new)).build());
+				Function<ResolveIndexDataStreamsItem.Builder, ObjectBuilder<ResolveIndexDataStreamsItem>> fn) {
+			return dataStreams(fn.apply(new ResolveIndexDataStreamsItem.Builder()).build());
 		}
 
 		/**

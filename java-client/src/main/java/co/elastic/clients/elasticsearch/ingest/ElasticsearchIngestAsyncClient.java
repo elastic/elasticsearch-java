@@ -34,7 +34,7 @@ import co.elastic.clients.transport.TransportOptions;
 import co.elastic.clients.util.ObjectBuilder;
 import java.io.IOException;
 import java.util.concurrent.CompletableFuture;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 /**
@@ -85,11 +85,10 @@ public class ElasticsearchIngestAsyncClient extends ApiClient<ElasticsearchTrans
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<DeletePipelineResponse> deletePipeline(Consumer<DeletePipelineRequest.Builder> fn)
+	public final CompletableFuture<DeletePipelineResponse> deletePipeline(
+			Function<DeletePipelineRequest.Builder, ObjectBuilder<DeletePipelineRequest>> fn)
 			throws IOException, ElasticsearchException {
-		DeletePipelineRequest.Builder builder = new DeletePipelineRequest.Builder();
-		fn.accept(builder);
-		return deletePipeline(builder.build());
+		return deletePipeline(fn.apply(new DeletePipelineRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: ingest.geo_ip_stats
@@ -135,11 +134,10 @@ public class ElasticsearchIngestAsyncClient extends ApiClient<ElasticsearchTrans
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<GetPipelineResponse> getPipeline(Consumer<GetPipelineRequest.Builder> fn)
+	public final CompletableFuture<GetPipelineResponse> getPipeline(
+			Function<GetPipelineRequest.Builder, ObjectBuilder<GetPipelineRequest>> fn)
 			throws IOException, ElasticsearchException {
-		GetPipelineRequest.Builder builder = new GetPipelineRequest.Builder();
-		fn.accept(builder);
-		return getPipeline(builder.build());
+		return getPipeline(fn.apply(new GetPipelineRequest.Builder()).build());
 	}
 
 	/**
@@ -198,11 +196,10 @@ public class ElasticsearchIngestAsyncClient extends ApiClient<ElasticsearchTrans
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<PutPipelineResponse> putPipeline(Consumer<PutPipelineRequest.Builder> fn)
+	public final CompletableFuture<PutPipelineResponse> putPipeline(
+			Function<PutPipelineRequest.Builder, ObjectBuilder<PutPipelineRequest>> fn)
 			throws IOException, ElasticsearchException {
-		PutPipelineRequest.Builder builder = new PutPipelineRequest.Builder();
-		fn.accept(builder);
-		return putPipeline(builder.build());
+		return putPipeline(fn.apply(new PutPipelineRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: ingest.simulate
@@ -234,11 +231,10 @@ public class ElasticsearchIngestAsyncClient extends ApiClient<ElasticsearchTrans
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<SimulateResponse> simulate(Consumer<SimulateRequest.Builder> fn)
+	public final CompletableFuture<SimulateResponse> simulate(
+			Function<SimulateRequest.Builder, ObjectBuilder<SimulateRequest>> fn)
 			throws IOException, ElasticsearchException {
-		SimulateRequest.Builder builder = new SimulateRequest.Builder();
-		fn.accept(builder);
-		return simulate(builder.build());
+		return simulate(fn.apply(new SimulateRequest.Builder()).build());
 	}
 
 	/**

@@ -33,7 +33,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.analysis.ShingleTokenFilter
@@ -71,10 +71,8 @@ public class ShingleTokenFilter extends TokenFilterBase implements TokenFilterDe
 
 	}
 
-	public static ShingleTokenFilter of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static ShingleTokenFilter of(Function<Builder, ObjectBuilder<ShingleTokenFilter>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**

@@ -32,7 +32,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Number;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.mapping.UnsignedLongNumberProperty
@@ -50,10 +50,8 @@ public class UnsignedLongNumberProperty extends NumberPropertyBase implements Pr
 
 	}
 
-	public static UnsignedLongNumberProperty of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static UnsignedLongNumberProperty of(Function<Builder, ObjectBuilder<UnsignedLongNumberProperty>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**

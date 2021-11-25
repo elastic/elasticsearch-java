@@ -29,17 +29,14 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -80,10 +77,8 @@ public class GeoDistanceSort implements SortOptionsVariant, JsonpSerializable {
 
 	}
 
-	public static GeoDistanceSort of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static GeoDistanceSort of(Function<Builder, ObjectBuilder<GeoDistanceSort>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -209,27 +204,30 @@ public class GeoDistanceSort implements SortOptionsVariant, JsonpSerializable {
 		}
 
 		/**
-		 * Required -
+		 * Required - Adds all elements of <code>list</code> to <code>location</code>.
+		 * Use <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>location</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder location(List<GeoLocation> value) {
-			this.location = value;
+		public final Builder location(List<GeoLocation> list) {
+			this.location = _listAddAll(this.location, list);
 			return this;
 		}
 
 		/**
-		 * Required -
+		 * Required - Adds one or more values to <code>location</code>.
 		 */
-		public final Builder location(GeoLocation... value) {
-			this.location = Arrays.asList(value);
+		public final Builder location(GeoLocation value, GeoLocation... values) {
+			this.location = _listAdd(this.location, value, values);
 			return this;
 		}
 
 		/**
-		 * Required -
+		 * Required - Adds a value to <code>location</code> using a builder lambda.
 		 */
-		public final Builder location(
-				Function<ListBuilder<GeoLocation, GeoLocation.Builder>, ObjectBuilder<List<GeoLocation>>> fn) {
-			return location(fn.apply(new ListBuilder<>(GeoLocation.Builder::new)).build());
+		public final Builder location(Function<GeoLocation.Builder, ObjectBuilder<GeoLocation>> fn) {
+			return location(fn.apply(new GeoLocation.Builder()).build());
 		}
 
 		@Nullable

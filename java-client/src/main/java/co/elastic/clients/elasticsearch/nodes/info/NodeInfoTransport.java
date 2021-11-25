@@ -34,11 +34,10 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: nodes.info.NodeInfoTransport
@@ -60,10 +59,8 @@ public class NodeInfoTransport implements JsonpSerializable {
 
 	}
 
-	public static NodeInfoTransport of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static NodeInfoTransport of(Function<Builder, ObjectBuilder<NodeInfoTransport>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -139,17 +136,25 @@ public class NodeInfoTransport implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code bound_address}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>boundAddress</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>boundAddress</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder boundAddress(List<String> value) {
-			this.boundAddress = value;
+		public final Builder boundAddress(List<String> list) {
+			this.boundAddress = _listAddAll(this.boundAddress, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code bound_address}
+		 * <p>
+		 * Adds one or more values to <code>boundAddress</code>.
 		 */
-		public final Builder boundAddress(String... value) {
-			this.boundAddress = Arrays.asList(value);
+		public final Builder boundAddress(String value, String... values) {
+			this.boundAddress = _listAdd(this.boundAddress, value, values);
 			return this;
 		}
 
@@ -163,9 +168,25 @@ public class NodeInfoTransport implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code profiles}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>profiles</code>. Use
+		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
+		 * <code>profiles</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetMap()
 		 */
-		public final Builder profiles(Map<String, String> value) {
-			this.profiles = value;
+		public final Builder profiles(Map<String, String> map) {
+			this.profiles = _mapPutAll(this.profiles, map);
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code profiles}
+		 * <p>
+		 * Adds an entry to <code>profiles</code>.
+		 */
+		public final Builder profiles(String key, String value) {
+			this.profiles = _mapPut(this.profiles, key, value);
 			return this;
 		}
 

@@ -41,7 +41,7 @@ import java.lang.Integer;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.DateHistogramAggregation
@@ -114,10 +114,8 @@ public class DateHistogramAggregation extends BucketAggregationBase implements A
 
 	}
 
-	public static DateHistogramAggregation of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static DateHistogramAggregation of(Function<Builder, ObjectBuilder<DateHistogramAggregation>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -413,10 +411,9 @@ public class DateHistogramAggregation extends BucketAggregationBase implements A
 		/**
 		 * API name: {@code extended_bounds}
 		 */
-		public final Builder extendedBounds(Consumer<ExtendedBounds.Builder<FieldDateMath>> fn) {
-			ExtendedBounds.Builder<FieldDateMath> builder = new ExtendedBounds.Builder<FieldDateMath>();
-			fn.accept(builder);
-			return this.extendedBounds(builder.build());
+		public final Builder extendedBounds(
+				Function<ExtendedBounds.Builder<FieldDateMath>, ObjectBuilder<ExtendedBounds<FieldDateMath>>> fn) {
+			return this.extendedBounds(fn.apply(new ExtendedBounds.Builder<FieldDateMath>()).build());
 		}
 
 		/**
@@ -430,10 +427,9 @@ public class DateHistogramAggregation extends BucketAggregationBase implements A
 		/**
 		 * API name: {@code hard_bounds}
 		 */
-		public final Builder hardBounds(Consumer<ExtendedBounds.Builder<FieldDateMath>> fn) {
-			ExtendedBounds.Builder<FieldDateMath> builder = new ExtendedBounds.Builder<FieldDateMath>();
-			fn.accept(builder);
-			return this.hardBounds(builder.build());
+		public final Builder hardBounds(
+				Function<ExtendedBounds.Builder<FieldDateMath>, ObjectBuilder<ExtendedBounds<FieldDateMath>>> fn) {
+			return this.hardBounds(fn.apply(new ExtendedBounds.Builder<FieldDateMath>()).build());
 		}
 
 		/**
@@ -455,10 +451,8 @@ public class DateHistogramAggregation extends BucketAggregationBase implements A
 		/**
 		 * API name: {@code fixed_interval}
 		 */
-		public final Builder fixedInterval(Consumer<Time.Builder> fn) {
-			Time.Builder builder = new Time.Builder();
-			fn.accept(builder);
-			return this.fixedInterval(builder.build());
+		public final Builder fixedInterval(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.fixedInterval(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -480,10 +474,8 @@ public class DateHistogramAggregation extends BucketAggregationBase implements A
 		/**
 		 * API name: {@code interval}
 		 */
-		public final Builder interval(Consumer<Time.Builder> fn) {
-			Time.Builder builder = new Time.Builder();
-			fn.accept(builder);
-			return this.interval(builder.build());
+		public final Builder interval(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.interval(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -513,10 +505,8 @@ public class DateHistogramAggregation extends BucketAggregationBase implements A
 		/**
 		 * API name: {@code offset}
 		 */
-		public final Builder offset(Consumer<Time.Builder> fn) {
-			Time.Builder builder = new Time.Builder();
-			fn.accept(builder);
-			return this.offset(builder.build());
+		public final Builder offset(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.offset(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -530,17 +520,31 @@ public class DateHistogramAggregation extends BucketAggregationBase implements A
 		/**
 		 * API name: {@code order}
 		 */
-		public final Builder order(Consumer<HistogramOrder.Builder> fn) {
-			HistogramOrder.Builder builder = new HistogramOrder.Builder();
-			fn.accept(builder);
-			return this.order(builder.build());
+		public final Builder order(Function<HistogramOrder.Builder, ObjectBuilder<HistogramOrder>> fn) {
+			return this.order(fn.apply(new HistogramOrder.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code params}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>params</code>. Use
+		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
+		 * <code>params</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetMap()
 		 */
-		public final Builder params(@Nullable Map<String, JsonData> value) {
-			this.params = value;
+		public final Builder params(Map<String, JsonData> map) {
+			this.params = _mapPutAll(this.params, map);
+			return this;
+		}
+
+		/**
+		 * API name: {@code params}
+		 * <p>
+		 * Adds an entry to <code>params</code>.
+		 */
+		public final Builder params(String key, JsonData value) {
+			this.params = _mapPut(this.params, key, value);
 			return this;
 		}
 
@@ -555,10 +559,8 @@ public class DateHistogramAggregation extends BucketAggregationBase implements A
 		/**
 		 * API name: {@code script}
 		 */
-		public final Builder script(Consumer<Script.Builder> fn) {
-			Script.Builder builder = new Script.Builder();
-			fn.accept(builder);
-			return this.script(builder.build());
+		public final Builder script(Function<Script.Builder, ObjectBuilder<Script>> fn) {
+			return this.script(fn.apply(new Script.Builder()).build());
 		}
 
 		/**

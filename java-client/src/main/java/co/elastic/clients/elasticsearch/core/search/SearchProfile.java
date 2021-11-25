@@ -29,16 +29,13 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -61,10 +58,8 @@ public class SearchProfile implements JsonpSerializable {
 
 	}
 
-	public static SearchProfile of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static SearchProfile of(Function<Builder, ObjectBuilder<SearchProfile>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -138,50 +133,68 @@ public class SearchProfile implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code collector}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>collector</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>collector</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder collector(List<Collector> value) {
-			this.collector = value;
+		public final Builder collector(List<Collector> list) {
+			this.collector = _listAddAll(this.collector, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code collector}
+		 * <p>
+		 * Adds one or more values to <code>collector</code>.
 		 */
-		public final Builder collector(Collector... value) {
-			this.collector = Arrays.asList(value);
+		public final Builder collector(Collector value, Collector... values) {
+			this.collector = _listAdd(this.collector, value, values);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code collector}
+		 * <p>
+		 * Adds a value to <code>collector</code> using a builder lambda.
 		 */
-		public final Builder collector(
-				Function<ListBuilder<Collector, Collector.Builder>, ObjectBuilder<List<Collector>>> fn) {
-			return collector(fn.apply(new ListBuilder<>(Collector.Builder::new)).build());
+		public final Builder collector(Function<Collector.Builder, ObjectBuilder<Collector>> fn) {
+			return collector(fn.apply(new Collector.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code query}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>query</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>query</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder query(List<QueryProfile> value) {
-			this.query = value;
+		public final Builder query(List<QueryProfile> list) {
+			this.query = _listAddAll(this.query, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code query}
+		 * <p>
+		 * Adds one or more values to <code>query</code>.
 		 */
-		public final Builder query(QueryProfile... value) {
-			this.query = Arrays.asList(value);
+		public final Builder query(QueryProfile value, QueryProfile... values) {
+			this.query = _listAdd(this.query, value, values);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code query}
+		 * <p>
+		 * Adds a value to <code>query</code> using a builder lambda.
 		 */
-		public final Builder query(
-				Function<ListBuilder<QueryProfile, QueryProfile.Builder>, ObjectBuilder<List<QueryProfile>>> fn) {
-			return query(fn.apply(new ListBuilder<>(QueryProfile.Builder::new)).build());
+		public final Builder query(Function<QueryProfile.Builder, ObjectBuilder<QueryProfile>> fn) {
+			return query(fn.apply(new QueryProfile.Builder()).build());
 		}
 
 		/**

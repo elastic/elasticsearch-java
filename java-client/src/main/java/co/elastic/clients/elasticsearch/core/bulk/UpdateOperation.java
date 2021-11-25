@@ -38,7 +38,7 @@ import java.lang.Integer;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.bulk.UpdateOperation
@@ -67,10 +67,9 @@ public class UpdateOperation<TDocument> extends BulkOperationBase implements NdJ
 
 	}
 
-	public static <TDocument> UpdateOperation<TDocument> of(Consumer<Builder<TDocument>> fn) {
-		Builder<TDocument> builder = new Builder<>();
-		fn.accept(builder);
-		return builder.build();
+	public static <TDocument> UpdateOperation<TDocument> of(
+			Function<Builder<TDocument>, ObjectBuilder<UpdateOperation<TDocument>>> fn) {
+		return fn.apply(new Builder<>()).build();
 	}
 
 	/**

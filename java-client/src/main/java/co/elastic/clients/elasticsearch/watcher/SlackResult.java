@@ -35,7 +35,7 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.SlackResult
@@ -55,10 +55,8 @@ public class SlackResult implements JsonpSerializable {
 
 	}
 
-	public static SlackResult of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static SlackResult of(Function<Builder, ObjectBuilder<SlackResult>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -127,10 +125,8 @@ public class SlackResult implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code message}
 		 */
-		public final Builder message(Consumer<SlackMessage.Builder> fn) {
-			SlackMessage.Builder builder = new SlackMessage.Builder();
-			fn.accept(builder);
-			return this.message(builder.build());
+		public final Builder message(Function<SlackMessage.Builder, ObjectBuilder<SlackMessage>> fn) {
+			return this.message(fn.apply(new SlackMessage.Builder()).build());
 		}
 
 		/**

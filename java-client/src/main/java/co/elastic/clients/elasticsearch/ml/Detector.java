@@ -29,7 +29,6 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
@@ -37,10 +36,8 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -92,10 +89,8 @@ public class Detector implements JsonpSerializable {
 
 	}
 
-	public static Detector of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static Detector of(Function<Builder, ObjectBuilder<Detector>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -333,9 +328,15 @@ public class Detector implements JsonpSerializable {
 		 * refers to custom rules as job rules.
 		 * <p>
 		 * API name: {@code custom_rules}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>customRules</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>customRules</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder customRules(@Nullable List<DetectionRule> value) {
-			this.customRules = value;
+		public final Builder customRules(List<DetectionRule> list) {
+			this.customRules = _listAddAll(this.customRules, list);
 			return this;
 		}
 
@@ -345,9 +346,11 @@ public class Detector implements JsonpSerializable {
 		 * refers to custom rules as job rules.
 		 * <p>
 		 * API name: {@code custom_rules}
+		 * <p>
+		 * Adds one or more values to <code>customRules</code>.
 		 */
-		public final Builder customRules(DetectionRule... value) {
-			this.customRules = Arrays.asList(value);
+		public final Builder customRules(DetectionRule value, DetectionRule... values) {
+			this.customRules = _listAdd(this.customRules, value, values);
 			return this;
 		}
 
@@ -357,10 +360,11 @@ public class Detector implements JsonpSerializable {
 		 * refers to custom rules as job rules.
 		 * <p>
 		 * API name: {@code custom_rules}
+		 * <p>
+		 * Adds a value to <code>customRules</code> using a builder lambda.
 		 */
-		public final Builder customRules(
-				Function<ListBuilder<DetectionRule, DetectionRule.Builder>, ObjectBuilder<List<DetectionRule>>> fn) {
-			return customRules(fn.apply(new ListBuilder<>(DetectionRule.Builder::new)).build());
+		public final Builder customRules(Function<DetectionRule.Builder, ObjectBuilder<DetectionRule>> fn) {
+			return customRules(fn.apply(new DetectionRule.Builder()).build());
 		}
 
 		/**

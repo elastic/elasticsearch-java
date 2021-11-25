@@ -35,7 +35,7 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: shutdown.get_node.NodeShutdownStatus
@@ -73,10 +73,8 @@ public class NodeShutdownStatus implements JsonpSerializable {
 
 	}
 
-	public static NodeShutdownStatus of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static NodeShutdownStatus of(Function<Builder, ObjectBuilder<NodeShutdownStatus>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -243,10 +241,9 @@ public class NodeShutdownStatus implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code shard_migration}
 		 */
-		public final Builder shardMigration(Consumer<ShardMigrationStatus.Builder> fn) {
-			ShardMigrationStatus.Builder builder = new ShardMigrationStatus.Builder();
-			fn.accept(builder);
-			return this.shardMigration(builder.build());
+		public final Builder shardMigration(
+				Function<ShardMigrationStatus.Builder, ObjectBuilder<ShardMigrationStatus>> fn) {
+			return this.shardMigration(fn.apply(new ShardMigrationStatus.Builder()).build());
 		}
 
 		/**
@@ -260,10 +257,9 @@ public class NodeShutdownStatus implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code persistent_tasks}
 		 */
-		public final Builder persistentTasks(Consumer<PersistentTaskStatus.Builder> fn) {
-			PersistentTaskStatus.Builder builder = new PersistentTaskStatus.Builder();
-			fn.accept(builder);
-			return this.persistentTasks(builder.build());
+		public final Builder persistentTasks(
+				Function<PersistentTaskStatus.Builder, ObjectBuilder<PersistentTaskStatus>> fn) {
+			return this.persistentTasks(fn.apply(new PersistentTaskStatus.Builder()).build());
 		}
 
 		/**
@@ -277,10 +273,8 @@ public class NodeShutdownStatus implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code plugins}
 		 */
-		public final Builder plugins(Consumer<PluginsStatus.Builder> fn) {
-			PluginsStatus.Builder builder = new PluginsStatus.Builder();
-			fn.accept(builder);
-			return this.plugins(builder.build());
+		public final Builder plugins(Function<PluginsStatus.Builder, ObjectBuilder<PluginsStatus>> fn) {
+			return this.plugins(fn.apply(new PluginsStatus.Builder()).build());
 		}
 
 		/**

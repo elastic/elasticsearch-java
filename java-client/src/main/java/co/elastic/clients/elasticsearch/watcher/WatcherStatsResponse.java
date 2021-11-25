@@ -31,17 +31,14 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -67,10 +64,8 @@ public class WatcherStatsResponse implements JsonpSerializable {
 
 	}
 
-	public static WatcherStatsResponse of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static WatcherStatsResponse of(Function<Builder, ObjectBuilder<WatcherStatsResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -159,10 +154,8 @@ public class WatcherStatsResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code _nodes}
 		 */
-		public final Builder nodeStats(Consumer<NodeStatistics.Builder> fn) {
-			NodeStatistics.Builder builder = new NodeStatistics.Builder();
-			fn.accept(builder);
-			return this.nodeStats(builder.build());
+		public final Builder nodeStats(Function<NodeStatistics.Builder, ObjectBuilder<NodeStatistics>> fn) {
+			return this.nodeStats(fn.apply(new NodeStatistics.Builder()).build());
 		}
 
 		/**
@@ -183,26 +176,35 @@ public class WatcherStatsResponse implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code stats}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>stats</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>stats</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder stats(List<WatcherNodeStats> value) {
-			this.stats = value;
+		public final Builder stats(List<WatcherNodeStats> list) {
+			this.stats = _listAddAll(this.stats, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code stats}
+		 * <p>
+		 * Adds one or more values to <code>stats</code>.
 		 */
-		public final Builder stats(WatcherNodeStats... value) {
-			this.stats = Arrays.asList(value);
+		public final Builder stats(WatcherNodeStats value, WatcherNodeStats... values) {
+			this.stats = _listAdd(this.stats, value, values);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code stats}
+		 * <p>
+		 * Adds a value to <code>stats</code> using a builder lambda.
 		 */
-		public final Builder stats(
-				Function<ListBuilder<WatcherNodeStats, WatcherNodeStats.Builder>, ObjectBuilder<List<WatcherNodeStats>>> fn) {
-			return stats(fn.apply(new ListBuilder<>(WatcherNodeStats.Builder::new)).build());
+		public final Builder stats(Function<WatcherNodeStats.Builder, ObjectBuilder<WatcherNodeStats>> fn) {
+			return stats(fn.apply(new WatcherNodeStats.Builder()).build());
 		}
 
 		/**

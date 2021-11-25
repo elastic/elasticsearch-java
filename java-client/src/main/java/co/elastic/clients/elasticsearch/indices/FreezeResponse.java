@@ -34,7 +34,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 
 // typedef: indices.freeze.Response
 @JsonpDeserializable
@@ -51,10 +51,8 @@ public class FreezeResponse extends AcknowledgedResponseBase {
 
 	}
 
-	public static FreezeResponse of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static FreezeResponse of(Function<Builder, ObjectBuilder<FreezeResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**

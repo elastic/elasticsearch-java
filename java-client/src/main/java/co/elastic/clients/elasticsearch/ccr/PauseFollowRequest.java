@@ -38,7 +38,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ccr.pause_follow.Request
@@ -54,10 +54,8 @@ public class PauseFollowRequest extends RequestBase {
 
 	}
 
-	public static PauseFollowRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static PauseFollowRequest of(Function<Builder, ObjectBuilder<PauseFollowRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**

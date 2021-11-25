@@ -37,7 +37,7 @@ import co.elastic.clients.util.TaggedUnionUtils;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Object;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.GeoBounds
@@ -75,10 +75,8 @@ public class GeoBounds implements TaggedUnion<GeoBounds.Kind, Object>, JsonpSeri
 
 	}
 
-	public static GeoBounds of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static GeoBounds of(Function<Builder, ObjectBuilder<GeoBounds>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -167,10 +165,8 @@ public class GeoBounds implements TaggedUnion<GeoBounds.Kind, Object>, JsonpSeri
 			return this;
 		}
 
-		public ObjectBuilder<GeoBounds> coords(Consumer<CoordsGeoBounds.Builder> fn) {
-			CoordsGeoBounds.Builder builder = new CoordsGeoBounds.Builder();
-			fn.accept(builder);
-			return this.coords(builder.build());
+		public ObjectBuilder<GeoBounds> coords(Function<CoordsGeoBounds.Builder, ObjectBuilder<CoordsGeoBounds>> fn) {
+			return this.coords(fn.apply(new CoordsGeoBounds.Builder()).build());
 		}
 
 		public ObjectBuilder<GeoBounds> tlbr(TopLeftBottomRightGeoBounds v) {
@@ -179,10 +175,9 @@ public class GeoBounds implements TaggedUnion<GeoBounds.Kind, Object>, JsonpSeri
 			return this;
 		}
 
-		public ObjectBuilder<GeoBounds> tlbr(Consumer<TopLeftBottomRightGeoBounds.Builder> fn) {
-			TopLeftBottomRightGeoBounds.Builder builder = new TopLeftBottomRightGeoBounds.Builder();
-			fn.accept(builder);
-			return this.tlbr(builder.build());
+		public ObjectBuilder<GeoBounds> tlbr(
+				Function<TopLeftBottomRightGeoBounds.Builder, ObjectBuilder<TopLeftBottomRightGeoBounds>> fn) {
+			return this.tlbr(fn.apply(new TopLeftBottomRightGeoBounds.Builder()).build());
 		}
 
 		public ObjectBuilder<GeoBounds> trbl(TopRightBottomLeftGeoBounds v) {
@@ -191,10 +186,9 @@ public class GeoBounds implements TaggedUnion<GeoBounds.Kind, Object>, JsonpSeri
 			return this;
 		}
 
-		public ObjectBuilder<GeoBounds> trbl(Consumer<TopRightBottomLeftGeoBounds.Builder> fn) {
-			TopRightBottomLeftGeoBounds.Builder builder = new TopRightBottomLeftGeoBounds.Builder();
-			fn.accept(builder);
-			return this.trbl(builder.build());
+		public ObjectBuilder<GeoBounds> trbl(
+				Function<TopRightBottomLeftGeoBounds.Builder, ObjectBuilder<TopRightBottomLeftGeoBounds>> fn) {
+			return this.trbl(fn.apply(new TopRightBottomLeftGeoBounds.Builder()).build());
 		}
 
 		public ObjectBuilder<GeoBounds> wkt(WktGeoBounds v) {
@@ -203,10 +197,8 @@ public class GeoBounds implements TaggedUnion<GeoBounds.Kind, Object>, JsonpSeri
 			return this;
 		}
 
-		public ObjectBuilder<GeoBounds> wkt(Consumer<WktGeoBounds.Builder> fn) {
-			WktGeoBounds.Builder builder = new WktGeoBounds.Builder();
-			fn.accept(builder);
-			return this.wkt(builder.build());
+		public ObjectBuilder<GeoBounds> wkt(Function<WktGeoBounds.Builder, ObjectBuilder<WktGeoBounds>> fn) {
+			return this.wkt(fn.apply(new WktGeoBounds.Builder()).build());
 		}
 
 		public GeoBounds build() {

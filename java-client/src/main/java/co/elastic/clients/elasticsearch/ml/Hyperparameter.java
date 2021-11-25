@@ -37,7 +37,7 @@ import java.lang.Boolean;
 import java.lang.Double;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.Hyperparameter
@@ -67,10 +67,8 @@ public class Hyperparameter implements JsonpSerializable {
 
 	}
 
-	public static Hyperparameter of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static Hyperparameter of(Function<Builder, ObjectBuilder<Hyperparameter>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**

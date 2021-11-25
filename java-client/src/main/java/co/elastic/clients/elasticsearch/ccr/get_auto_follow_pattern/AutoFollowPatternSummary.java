@@ -36,10 +36,9 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ccr.get_auto_follow_pattern.AutoFollowPatternSummary
@@ -74,10 +73,8 @@ public class AutoFollowPatternSummary implements JsonpSerializable {
 
 	}
 
-	public static AutoFollowPatternSummary of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static AutoFollowPatternSummary of(Function<Builder, ObjectBuilder<AutoFollowPatternSummary>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -235,9 +232,15 @@ public class AutoFollowPatternSummary implements JsonpSerializable {
 		 * remote cluster specified by the remote_cluster field.
 		 * <p>
 		 * API name: {@code leader_index_patterns}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>leaderIndexPatterns</code>.
+		 * Use <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>leaderIndexPatterns</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder leaderIndexPatterns(List<String> value) {
-			this.leaderIndexPatterns = value;
+		public final Builder leaderIndexPatterns(List<String> list) {
+			this.leaderIndexPatterns = _listAddAll(this.leaderIndexPatterns, list);
 			return this;
 		}
 
@@ -246,9 +249,11 @@ public class AutoFollowPatternSummary implements JsonpSerializable {
 		 * remote cluster specified by the remote_cluster field.
 		 * <p>
 		 * API name: {@code leader_index_patterns}
+		 * <p>
+		 * Adds one or more values to <code>leaderIndexPatterns</code>.
 		 */
-		public final Builder leaderIndexPatterns(String... value) {
-			this.leaderIndexPatterns = Arrays.asList(value);
+		public final Builder leaderIndexPatterns(String value, String... values) {
+			this.leaderIndexPatterns = _listAdd(this.leaderIndexPatterns, value, values);
 			return this;
 		}
 
@@ -257,9 +262,16 @@ public class AutoFollowPatternSummary implements JsonpSerializable {
 		 * indices from being auto-followed.
 		 * <p>
 		 * API name: {@code leader_index_exclusion_patterns}
+		 * <p>
+		 * Adds all elements of <code>list</code> to
+		 * <code>leaderIndexExclusionPatterns</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>leaderIndexExclusionPatterns</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder leaderIndexExclusionPatterns(List<String> value) {
-			this.leaderIndexExclusionPatterns = value;
+		public final Builder leaderIndexExclusionPatterns(List<String> list) {
+			this.leaderIndexExclusionPatterns = _listAddAll(this.leaderIndexExclusionPatterns, list);
 			return this;
 		}
 
@@ -268,9 +280,11 @@ public class AutoFollowPatternSummary implements JsonpSerializable {
 		 * indices from being auto-followed.
 		 * <p>
 		 * API name: {@code leader_index_exclusion_patterns}
+		 * <p>
+		 * Adds one or more values to <code>leaderIndexExclusionPatterns</code>.
 		 */
-		public final Builder leaderIndexExclusionPatterns(String... value) {
-			this.leaderIndexExclusionPatterns = Arrays.asList(value);
+		public final Builder leaderIndexExclusionPatterns(String value, String... values) {
+			this.leaderIndexExclusionPatterns = _listAdd(this.leaderIndexExclusionPatterns, value, values);
 			return this;
 		}
 

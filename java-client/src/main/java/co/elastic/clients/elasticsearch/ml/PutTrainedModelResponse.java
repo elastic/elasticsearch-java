@@ -30,7 +30,7 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 
 // typedef: ml.put_trained_model.Response
 @JsonpDeserializable
@@ -42,10 +42,8 @@ public class PutTrainedModelResponse extends TrainedModelConfig {
 
 	}
 
-	public static PutTrainedModelResponse of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static PutTrainedModelResponse of(Function<Builder, ObjectBuilder<PutTrainedModelResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------

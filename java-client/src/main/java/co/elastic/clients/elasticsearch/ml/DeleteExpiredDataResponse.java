@@ -35,7 +35,7 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 
 // typedef: ml.delete_expired_data.Response
 @JsonpDeserializable
@@ -50,10 +50,8 @@ public class DeleteExpiredDataResponse implements JsonpSerializable {
 
 	}
 
-	public static DeleteExpiredDataResponse of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static DeleteExpiredDataResponse of(Function<Builder, ObjectBuilder<DeleteExpiredDataResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**

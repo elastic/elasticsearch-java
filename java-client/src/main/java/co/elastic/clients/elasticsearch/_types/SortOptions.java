@@ -40,7 +40,7 @@ import jakarta.json.stream.JsonParser;
 import java.lang.Object;
 import java.util.EnumSet;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.SortOptions
@@ -104,10 +104,8 @@ public class SortOptions implements TaggedUnion<SortOptions.Kind, Object>, Jsonp
 
 	}
 
-	public static SortOptions of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static SortOptions of(Function<Builder, ObjectBuilder<SortOptions>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -223,10 +221,8 @@ public class SortOptions implements TaggedUnion<SortOptions.Kind, Object>, Jsonp
 			return this;
 		}
 
-		public ObjectBuilder<SortOptions> score(Consumer<ScoreSort.Builder> fn) {
-			ScoreSort.Builder builder = new ScoreSort.Builder();
-			fn.accept(builder);
-			return this.score(builder.build());
+		public ObjectBuilder<SortOptions> score(Function<ScoreSort.Builder, ObjectBuilder<ScoreSort>> fn) {
+			return this.score(fn.apply(new ScoreSort.Builder()).build());
 		}
 
 		public ObjectBuilder<SortOptions> doc(ScoreSort v) {
@@ -235,10 +231,8 @@ public class SortOptions implements TaggedUnion<SortOptions.Kind, Object>, Jsonp
 			return this;
 		}
 
-		public ObjectBuilder<SortOptions> doc(Consumer<ScoreSort.Builder> fn) {
-			ScoreSort.Builder builder = new ScoreSort.Builder();
-			fn.accept(builder);
-			return this.doc(builder.build());
+		public ObjectBuilder<SortOptions> doc(Function<ScoreSort.Builder, ObjectBuilder<ScoreSort>> fn) {
+			return this.doc(fn.apply(new ScoreSort.Builder()).build());
 		}
 
 		public ObjectBuilder<SortOptions> geoDistance(GeoDistanceSort v) {
@@ -247,10 +241,9 @@ public class SortOptions implements TaggedUnion<SortOptions.Kind, Object>, Jsonp
 			return this;
 		}
 
-		public ObjectBuilder<SortOptions> geoDistance(Consumer<GeoDistanceSort.Builder> fn) {
-			GeoDistanceSort.Builder builder = new GeoDistanceSort.Builder();
-			fn.accept(builder);
-			return this.geoDistance(builder.build());
+		public ObjectBuilder<SortOptions> geoDistance(
+				Function<GeoDistanceSort.Builder, ObjectBuilder<GeoDistanceSort>> fn) {
+			return this.geoDistance(fn.apply(new GeoDistanceSort.Builder()).build());
 		}
 
 		public ObjectBuilder<SortOptions> script(ScriptSort v) {
@@ -259,10 +252,8 @@ public class SortOptions implements TaggedUnion<SortOptions.Kind, Object>, Jsonp
 			return this;
 		}
 
-		public ObjectBuilder<SortOptions> script(Consumer<ScriptSort.Builder> fn) {
-			ScriptSort.Builder builder = new ScriptSort.Builder();
-			fn.accept(builder);
-			return this.script(builder.build());
+		public ObjectBuilder<SortOptions> script(Function<ScriptSort.Builder, ObjectBuilder<ScriptSort>> fn) {
+			return this.script(fn.apply(new ScriptSort.Builder()).build());
 		}
 
 		public ObjectBuilder<SortOptions> field(FieldSort v) {
@@ -271,10 +262,8 @@ public class SortOptions implements TaggedUnion<SortOptions.Kind, Object>, Jsonp
 			return this;
 		}
 
-		public ObjectBuilder<SortOptions> field(Consumer<FieldSort.Builder> fn) {
-			FieldSort.Builder builder = new FieldSort.Builder();
-			fn.accept(builder);
-			return this.field(builder.build());
+		public ObjectBuilder<SortOptions> field(Function<FieldSort.Builder, ObjectBuilder<FieldSort>> fn) {
+			return this.field(fn.apply(new FieldSort.Builder()).build());
 		}
 
 		public SortOptions build() {
@@ -292,12 +281,10 @@ public class SortOptions implements TaggedUnion<SortOptions.Kind, Object>, Jsonp
 				if (event == JsonParser.Event.VALUE_STRING) {
 					switch (parser.getString()) {
 						case "_score" :
-							b.score(s -> {
-							});
+							b.score(s -> s);
 							break;
 						case "_doc" :
-							b.doc(d -> {
-							});
+							b.doc(d -> d);
 							break;
 						default :
 							b.field(f -> f.field(parser.getString()));

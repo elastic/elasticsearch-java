@@ -30,15 +30,12 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -60,10 +57,8 @@ public class AddBlockResponse extends AcknowledgedResponseBase {
 
 	}
 
-	public static AddBlockResponse of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static AddBlockResponse of(Function<Builder, ObjectBuilder<AddBlockResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -121,26 +116,35 @@ public class AddBlockResponse extends AcknowledgedResponseBase {
 
 		/**
 		 * Required - API name: {@code indices}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>indices</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>indices</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder indices(List<IndicesBlockStatus> value) {
-			this.indices = value;
+		public final Builder indices(List<IndicesBlockStatus> list) {
+			this.indices = _listAddAll(this.indices, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code indices}
+		 * <p>
+		 * Adds one or more values to <code>indices</code>.
 		 */
-		public final Builder indices(IndicesBlockStatus... value) {
-			this.indices = Arrays.asList(value);
+		public final Builder indices(IndicesBlockStatus value, IndicesBlockStatus... values) {
+			this.indices = _listAdd(this.indices, value, values);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code indices}
+		 * <p>
+		 * Adds a value to <code>indices</code> using a builder lambda.
 		 */
-		public final Builder indices(
-				Function<ListBuilder<IndicesBlockStatus, IndicesBlockStatus.Builder>, ObjectBuilder<List<IndicesBlockStatus>>> fn) {
-			return indices(fn.apply(new ListBuilder<>(IndicesBlockStatus.Builder::new)).build());
+		public final Builder indices(Function<IndicesBlockStatus.Builder, ObjectBuilder<IndicesBlockStatus>> fn) {
+			return indices(fn.apply(new IndicesBlockStatus.Builder()).build());
 		}
 
 		@Override

@@ -36,7 +36,7 @@ import java.lang.Float;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.search._types.TermSuggester
@@ -98,10 +98,8 @@ public class TermSuggester extends SuggesterBase implements FieldSuggesterVarian
 
 	}
 
-	public static TermSuggester of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static TermSuggester of(Function<Builder, ObjectBuilder<TermSuggester>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**

@@ -38,7 +38,7 @@ import java.lang.Long;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.stats.ShardCommit
@@ -63,10 +63,8 @@ public class ShardCommit implements JsonpSerializable {
 
 	}
 
-	public static ShardCommit of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static ShardCommit of(Function<Builder, ObjectBuilder<ShardCommit>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -171,9 +169,25 @@ public class ShardCommit implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code user_data}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>userData</code>. Use
+		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
+		 * <code>userData</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetMap()
 		 */
-		public final Builder userData(Map<String, String> value) {
-			this.userData = value;
+		public final Builder userData(Map<String, String> map) {
+			this.userData = _mapPutAll(this.userData, map);
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code user_data}
+		 * <p>
+		 * Adds an entry to <code>userData</code>.
+		 */
+		public final Builder userData(String key, String value) {
+			this.userData = _mapPut(this.userData, key, value);
 			return this;
 		}
 

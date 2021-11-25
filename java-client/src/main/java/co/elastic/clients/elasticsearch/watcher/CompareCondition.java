@@ -35,7 +35,7 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.CompareCondition
@@ -68,10 +68,8 @@ public class CompareCondition implements ConditionVariant, JsonpSerializable {
 
 	}
 
-	public static CompareCondition of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static CompareCondition of(Function<Builder, ObjectBuilder<CompareCondition>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -217,10 +215,9 @@ public class CompareCondition implements ConditionVariant, JsonpSerializable {
 		/**
 		 * API name: {@code ctx.payload.match}
 		 */
-		public final Builder ctxPayloadMatch(Consumer<CompareContextPayloadCondition.Builder> fn) {
-			CompareContextPayloadCondition.Builder builder = new CompareContextPayloadCondition.Builder();
-			fn.accept(builder);
-			return this.ctxPayloadMatch(builder.build());
+		public final Builder ctxPayloadMatch(
+				Function<CompareContextPayloadCondition.Builder, ObjectBuilder<CompareContextPayloadCondition>> fn) {
+			return this.ctxPayloadMatch(fn.apply(new CompareContextPayloadCondition.Builder()).build());
 		}
 
 		/**
@@ -234,10 +231,9 @@ public class CompareCondition implements ConditionVariant, JsonpSerializable {
 		/**
 		 * API name: {@code ctx.payload.value}
 		 */
-		public final Builder ctxPayloadValue(Consumer<CompareContextPayloadCondition.Builder> fn) {
-			CompareContextPayloadCondition.Builder builder = new CompareContextPayloadCondition.Builder();
-			fn.accept(builder);
-			return this.ctxPayloadValue(builder.build());
+		public final Builder ctxPayloadValue(
+				Function<CompareContextPayloadCondition.Builder, ObjectBuilder<CompareContextPayloadCondition>> fn) {
+			return this.ctxPayloadValue(fn.apply(new CompareContextPayloadCondition.Builder()).build());
 		}
 
 		/**

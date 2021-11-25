@@ -44,7 +44,7 @@ import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: sql.query.Request
@@ -97,10 +97,8 @@ public class QueryRequest extends RequestBase implements JsonpSerializable {
 
 	}
 
-	public static QueryRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static QueryRequest of(Function<Builder, ObjectBuilder<QueryRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -350,10 +348,8 @@ public class QueryRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code filter}
 		 */
-		public final Builder filter(Consumer<Query.Builder> fn) {
-			Query.Builder builder = new Query.Builder();
-			fn.accept(builder);
-			return this.filter(builder.build());
+		public final Builder filter(Function<Query.Builder, ObjectBuilder<Query>> fn) {
+			return this.filter(fn.apply(new Query.Builder()).build());
 		}
 
 		/**
@@ -381,10 +377,8 @@ public class QueryRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code page_timeout}
 		 */
-		public final Builder pageTimeout(Consumer<Time.Builder> fn) {
-			Time.Builder builder = new Time.Builder();
-			fn.accept(builder);
-			return this.pageTimeout(builder.build());
+		public final Builder pageTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.pageTimeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -412,10 +406,8 @@ public class QueryRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code request_timeout}
 		 */
-		public final Builder requestTimeout(Consumer<Time.Builder> fn) {
-			Time.Builder builder = new Time.Builder();
-			fn.accept(builder);
-			return this.requestTimeout(builder.build());
+		public final Builder requestTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.requestTimeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**

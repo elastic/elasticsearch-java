@@ -37,7 +37,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: security.get_token.Response
@@ -73,10 +73,8 @@ public class GetTokenResponse implements JsonpSerializable {
 
 	}
 
-	public static GetTokenResponse of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static GetTokenResponse of(Function<Builder, ObjectBuilder<GetTokenResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -249,10 +247,8 @@ public class GetTokenResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code authentication}
 		 */
-		public final Builder authentication(Consumer<AuthenticatedUser.Builder> fn) {
-			AuthenticatedUser.Builder builder = new AuthenticatedUser.Builder();
-			fn.accept(builder);
-			return this.authentication(builder.build());
+		public final Builder authentication(Function<AuthenticatedUser.Builder, ObjectBuilder<AuthenticatedUser>> fn) {
+			return this.authentication(fn.apply(new AuthenticatedUser.Builder()).build());
 		}
 
 		/**

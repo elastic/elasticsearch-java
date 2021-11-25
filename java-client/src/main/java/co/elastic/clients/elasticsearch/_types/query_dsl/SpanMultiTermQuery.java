@@ -32,7 +32,7 @@ import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.SpanMultiTermQuery
@@ -49,10 +49,8 @@ public class SpanMultiTermQuery extends QueryBase implements SpanQueryVariant, Q
 
 	}
 
-	public static SpanMultiTermQuery of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static SpanMultiTermQuery of(Function<Builder, ObjectBuilder<SpanMultiTermQuery>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -116,10 +114,8 @@ public class SpanMultiTermQuery extends QueryBase implements SpanQueryVariant, Q
 		 * <p>
 		 * API name: {@code match}
 		 */
-		public final Builder match(Consumer<Query.Builder> fn) {
-			Query.Builder builder = new Query.Builder();
-			fn.accept(builder);
-			return this.match(builder.build());
+		public final Builder match(Function<Query.Builder, ObjectBuilder<Query>> fn) {
+			return this.match(fn.apply(new Query.Builder()).build());
 		}
 
 		@Override

@@ -34,7 +34,7 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices._types.IndexRoutingAllocationDisk
@@ -51,10 +51,8 @@ public class IndexRoutingAllocationDisk implements JsonpSerializable {
 
 	}
 
-	public static IndexRoutingAllocationDisk of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static IndexRoutingAllocationDisk of(Function<Builder, ObjectBuilder<IndexRoutingAllocationDisk>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**

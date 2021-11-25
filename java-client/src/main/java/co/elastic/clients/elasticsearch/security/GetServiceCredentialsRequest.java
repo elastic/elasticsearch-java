@@ -38,7 +38,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: security.get_service_credentials.Request
@@ -57,10 +57,8 @@ public class GetServiceCredentialsRequest extends RequestBase {
 
 	}
 
-	public static GetServiceCredentialsRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static GetServiceCredentialsRequest of(Function<Builder, ObjectBuilder<GetServiceCredentialsRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**

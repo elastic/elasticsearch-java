@@ -35,11 +35,10 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.field_caps.FieldCapability
@@ -77,10 +76,8 @@ public class FieldCapability implements JsonpSerializable {
 
 	}
 
-	public static FieldCapability of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static FieldCapability of(Function<Builder, ObjectBuilder<FieldCapability>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -253,57 +250,98 @@ public class FieldCapability implements JsonpSerializable {
 
 		/**
 		 * API name: {@code indices}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>indices</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>indices</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder indices(@Nullable List<String> value) {
-			this.indices = value;
+		public final Builder indices(List<String> list) {
+			this.indices = _listAddAll(this.indices, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code indices}
+		 * <p>
+		 * Adds one or more values to <code>indices</code>.
 		 */
-		public final Builder indices(String... value) {
-			this.indices = Arrays.asList(value);
+		public final Builder indices(String value, String... values) {
+			this.indices = _listAdd(this.indices, value, values);
 			return this;
 		}
 
 		/**
 		 * API name: {@code meta}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>meta</code>. Use
+		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
+		 * <code>meta</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetMap()
 		 */
-		public final Builder meta(@Nullable Map<String, List<String>> value) {
-			this.meta = value;
+		public final Builder meta(Map<String, List<String>> map) {
+			this.meta = _mapPutAll(this.meta, map);
+			return this;
+		}
+
+		/**
+		 * API name: {@code meta}
+		 * <p>
+		 * Adds an entry to <code>meta</code>.
+		 */
+		public final Builder meta(String key, List<String> value) {
+			this.meta = _mapPut(this.meta, key, value);
 			return this;
 		}
 
 		/**
 		 * API name: {@code non_aggregatable_indices}
+		 * <p>
+		 * Adds all elements of <code>list</code> to
+		 * <code>nonAggregatableIndices</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>nonAggregatableIndices</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder nonAggregatableIndices(@Nullable List<String> value) {
-			this.nonAggregatableIndices = value;
+		public final Builder nonAggregatableIndices(List<String> list) {
+			this.nonAggregatableIndices = _listAddAll(this.nonAggregatableIndices, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code non_aggregatable_indices}
+		 * <p>
+		 * Adds one or more values to <code>nonAggregatableIndices</code>.
 		 */
-		public final Builder nonAggregatableIndices(String... value) {
-			this.nonAggregatableIndices = Arrays.asList(value);
+		public final Builder nonAggregatableIndices(String value, String... values) {
+			this.nonAggregatableIndices = _listAdd(this.nonAggregatableIndices, value, values);
 			return this;
 		}
 
 		/**
 		 * API name: {@code non_searchable_indices}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>nonSearchableIndices</code>.
+		 * Use <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>nonSearchableIndices</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder nonSearchableIndices(@Nullable List<String> value) {
-			this.nonSearchableIndices = value;
+		public final Builder nonSearchableIndices(List<String> list) {
+			this.nonSearchableIndices = _listAddAll(this.nonSearchableIndices, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code non_searchable_indices}
+		 * <p>
+		 * Adds one or more values to <code>nonSearchableIndices</code>.
 		 */
-		public final Builder nonSearchableIndices(String... value) {
-			this.nonSearchableIndices = Arrays.asList(value);
+		public final Builder nonSearchableIndices(String value, String... values) {
+			this.nonSearchableIndices = _listAdd(this.nonSearchableIndices, value, values);
 			return this;
 		}
 

@@ -29,7 +29,6 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.MapBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
@@ -37,7 +36,6 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -54,10 +52,8 @@ public class GetPipelineResponse implements JsonpSerializable {
 
 	}
 
-	public static GetPipelineResponse of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static GetPipelineResponse of(Function<Builder, ObjectBuilder<GetPipelineResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -95,15 +91,39 @@ public class GetPipelineResponse implements JsonpSerializable {
 		 * Required - Response value.
 		 * <p>
 		 * API name: {@code _value_body}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>valueBody</code>. Use
+		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
+		 * <code>valueBody</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetMap()
 		 */
-		public final Builder valueBody(Map<String, Pipeline> value) {
-			this.valueBody = value;
+		public final Builder valueBody(Map<String, Pipeline> map) {
+			this.valueBody = _mapPutAll(this.valueBody, map);
 			return this;
 		}
 
-		public final Builder valueBody(
-				Function<MapBuilder<String, Pipeline, Pipeline.Builder>, ObjectBuilder<Map<String, Pipeline>>> fn) {
-			return valueBody(fn.apply(new MapBuilder<>(Pipeline.Builder::new)).build());
+		/**
+		 * Required - Response value.
+		 * <p>
+		 * API name: {@code _value_body}
+		 * <p>
+		 * Adds an entry to <code>valueBody</code>.
+		 */
+		public final Builder valueBody(String key, Pipeline value) {
+			this.valueBody = _mapPut(this.valueBody, key, value);
+			return this;
+		}
+
+		/**
+		 * Required - Response value.
+		 * <p>
+		 * API name: {@code _value_body}
+		 * <p>
+		 * Adds an entry to <code>valueBody</code> using a builder lambda.
+		 */
+		public final Builder valueBody(String key, Function<Pipeline.Builder, ObjectBuilder<Pipeline>> fn) {
+			return valueBody(key, fn.apply(new Pipeline.Builder()).build());
 		}
 
 		/**

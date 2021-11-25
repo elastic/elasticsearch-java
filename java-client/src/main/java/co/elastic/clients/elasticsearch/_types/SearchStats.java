@@ -29,7 +29,6 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.MapBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
@@ -38,7 +37,6 @@ import java.lang.Long;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -97,10 +95,8 @@ public class SearchStats implements JsonpSerializable {
 
 	}
 
-	public static SearchStats of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static SearchStats of(Function<Builder, ObjectBuilder<SearchStats>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -410,15 +406,35 @@ public class SearchStats implements JsonpSerializable {
 
 		/**
 		 * API name: {@code groups}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>groups</code>. Use
+		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
+		 * <code>groups</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetMap()
 		 */
-		public final Builder groups(@Nullable Map<String, SearchStats> value) {
-			this.groups = value;
+		public final Builder groups(Map<String, SearchStats> map) {
+			this.groups = _mapPutAll(this.groups, map);
 			return this;
 		}
 
-		public final Builder groups(
-				Function<MapBuilder<String, SearchStats, SearchStats.Builder>, ObjectBuilder<Map<String, SearchStats>>> fn) {
-			return groups(fn.apply(new MapBuilder<>(SearchStats.Builder::new)).build());
+		/**
+		 * API name: {@code groups}
+		 * <p>
+		 * Adds an entry to <code>groups</code>.
+		 */
+		public final Builder groups(String key, SearchStats value) {
+			this.groups = _mapPut(this.groups, key, value);
+			return this;
+		}
+
+		/**
+		 * API name: {@code groups}
+		 * <p>
+		 * Adds an entry to <code>groups</code> using a builder lambda.
+		 */
+		public final Builder groups(String key, Function<SearchStats.Builder, ObjectBuilder<SearchStats>> fn) {
+			return groups(key, fn.apply(new SearchStats.Builder()).build());
 		}
 
 		/**

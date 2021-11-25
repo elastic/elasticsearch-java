@@ -34,10 +34,9 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: dangling_indices.list_dangling_indices.DanglingIndex
@@ -63,10 +62,8 @@ public class DanglingIndex implements JsonpSerializable {
 
 	}
 
-	public static DanglingIndex of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static DanglingIndex of(Function<Builder, ObjectBuilder<DanglingIndex>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -170,17 +167,25 @@ public class DanglingIndex implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code node_ids}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>nodeIds</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>nodeIds</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder nodeIds(List<String> value) {
-			this.nodeIds = value;
+		public final Builder nodeIds(List<String> list) {
+			this.nodeIds = _listAddAll(this.nodeIds, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code node_ids}
+		 * <p>
+		 * Adds one or more values to <code>nodeIds</code>.
 		 */
-		public final Builder nodeIds(String... value) {
-			this.nodeIds = Arrays.asList(value);
+		public final Builder nodeIds(String value, String... values) {
+			this.nodeIds = _listAdd(this.nodeIds, value, values);
 			return this;
 		}
 

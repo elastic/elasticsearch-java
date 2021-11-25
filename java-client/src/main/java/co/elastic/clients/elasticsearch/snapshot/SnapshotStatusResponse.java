@@ -29,15 +29,12 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -54,10 +51,8 @@ public class SnapshotStatusResponse implements JsonpSerializable {
 
 	}
 
-	public static SnapshotStatusResponse of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static SnapshotStatusResponse of(Function<Builder, ObjectBuilder<SnapshotStatusResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -101,25 +96,35 @@ public class SnapshotStatusResponse implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code snapshots}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>snapshots</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>snapshots</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder snapshots(List<Status> value) {
-			this.snapshots = value;
+		public final Builder snapshots(List<Status> list) {
+			this.snapshots = _listAddAll(this.snapshots, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code snapshots}
+		 * <p>
+		 * Adds one or more values to <code>snapshots</code>.
 		 */
-		public final Builder snapshots(Status... value) {
-			this.snapshots = Arrays.asList(value);
+		public final Builder snapshots(Status value, Status... values) {
+			this.snapshots = _listAdd(this.snapshots, value, values);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code snapshots}
+		 * <p>
+		 * Adds a value to <code>snapshots</code> using a builder lambda.
 		 */
-		public final Builder snapshots(Function<ListBuilder<Status, Status.Builder>, ObjectBuilder<List<Status>>> fn) {
-			return snapshots(fn.apply(new ListBuilder<>(Status.Builder::new)).build());
+		public final Builder snapshots(Function<Status.Builder, ObjectBuilder<Status>> fn) {
+			return snapshots(fn.apply(new Status.Builder()).build());
 		}
 
 		/**

@@ -29,16 +29,13 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -59,10 +56,8 @@ public class GetDataFrameAnalyticsResponse implements JsonpSerializable {
 
 	}
 
-	public static GetDataFrameAnalyticsResponse of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static GetDataFrameAnalyticsResponse of(Function<Builder, ObjectBuilder<GetDataFrameAnalyticsResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -132,9 +127,15 @@ public class GetDataFrameAnalyticsResponse implements JsonpSerializable {
 		 * by the id value in ascending order.
 		 * <p>
 		 * API name: {@code data_frame_analytics}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>dataFrameAnalytics</code>.
+		 * Use <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>dataFrameAnalytics</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder dataFrameAnalytics(List<DataframeAnalyticsSummary> value) {
-			this.dataFrameAnalytics = value;
+		public final Builder dataFrameAnalytics(List<DataframeAnalyticsSummary> list) {
+			this.dataFrameAnalytics = _listAddAll(this.dataFrameAnalytics, list);
 			return this;
 		}
 
@@ -143,9 +144,11 @@ public class GetDataFrameAnalyticsResponse implements JsonpSerializable {
 		 * by the id value in ascending order.
 		 * <p>
 		 * API name: {@code data_frame_analytics}
+		 * <p>
+		 * Adds one or more values to <code>dataFrameAnalytics</code>.
 		 */
-		public final Builder dataFrameAnalytics(DataframeAnalyticsSummary... value) {
-			this.dataFrameAnalytics = Arrays.asList(value);
+		public final Builder dataFrameAnalytics(DataframeAnalyticsSummary value, DataframeAnalyticsSummary... values) {
+			this.dataFrameAnalytics = _listAdd(this.dataFrameAnalytics, value, values);
 			return this;
 		}
 
@@ -154,10 +157,12 @@ public class GetDataFrameAnalyticsResponse implements JsonpSerializable {
 		 * by the id value in ascending order.
 		 * <p>
 		 * API name: {@code data_frame_analytics}
+		 * <p>
+		 * Adds a value to <code>dataFrameAnalytics</code> using a builder lambda.
 		 */
 		public final Builder dataFrameAnalytics(
-				Function<ListBuilder<DataframeAnalyticsSummary, DataframeAnalyticsSummary.Builder>, ObjectBuilder<List<DataframeAnalyticsSummary>>> fn) {
-			return dataFrameAnalytics(fn.apply(new ListBuilder<>(DataframeAnalyticsSummary.Builder::new)).build());
+				Function<DataframeAnalyticsSummary.Builder, ObjectBuilder<DataframeAnalyticsSummary>> fn) {
+			return dataFrameAnalytics(fn.apply(new DataframeAnalyticsSummary.Builder()).build());
 		}
 
 		/**

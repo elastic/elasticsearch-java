@@ -28,7 +28,6 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.MapBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -36,7 +35,6 @@ import java.lang.Integer;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -57,10 +55,8 @@ public class Sql extends Base {
 
 	}
 
-	public static Sql of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static Sql of(Function<Builder, ObjectBuilder<Sql>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -117,23 +113,59 @@ public class Sql extends Base {
 
 		/**
 		 * Required - API name: {@code features}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>features</code>. Use
+		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
+		 * <code>features</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetMap()
 		 */
-		public final Builder features(Map<String, Integer> value) {
-			this.features = value;
+		public final Builder features(Map<String, Integer> map) {
+			this.features = _mapPutAll(this.features, map);
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code features}
+		 * <p>
+		 * Adds an entry to <code>features</code>.
+		 */
+		public final Builder features(String key, Integer value) {
+			this.features = _mapPut(this.features, key, value);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code queries}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>queries</code>. Use
+		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
+		 * <code>queries</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetMap()
 		 */
-		public final Builder queries(Map<String, XpackUsageQuery> value) {
-			this.queries = value;
+		public final Builder queries(Map<String, XpackUsageQuery> map) {
+			this.queries = _mapPutAll(this.queries, map);
 			return this;
 		}
 
-		public final Builder queries(
-				Function<MapBuilder<String, XpackUsageQuery, XpackUsageQuery.Builder>, ObjectBuilder<Map<String, XpackUsageQuery>>> fn) {
-			return queries(fn.apply(new MapBuilder<>(XpackUsageQuery.Builder::new)).build());
+		/**
+		 * Required - API name: {@code queries}
+		 * <p>
+		 * Adds an entry to <code>queries</code>.
+		 */
+		public final Builder queries(String key, XpackUsageQuery value) {
+			this.queries = _mapPut(this.queries, key, value);
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code queries}
+		 * <p>
+		 * Adds an entry to <code>queries</code> using a builder lambda.
+		 */
+		public final Builder queries(String key, Function<XpackUsageQuery.Builder, ObjectBuilder<XpackUsageQuery>> fn) {
+			return queries(key, fn.apply(new XpackUsageQuery.Builder()).build());
 		}
 
 		@Override

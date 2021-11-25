@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import java.util.function.Supplier;
 
 // typedef: async_search.get.Response
@@ -44,10 +44,9 @@ public class GetAsyncSearchResponse<TDocument> extends AsyncSearchDocumentRespon
 
 	}
 
-	public static <TDocument> GetAsyncSearchResponse<TDocument> of(Consumer<Builder<TDocument>> fn) {
-		Builder<TDocument> builder = new Builder<>();
-		fn.accept(builder);
-		return builder.build();
+	public static <TDocument> GetAsyncSearchResponse<TDocument> of(
+			Function<Builder<TDocument>, ObjectBuilder<GetAsyncSearchResponse<TDocument>>> fn) {
+		return fn.apply(new Builder<>()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------

@@ -36,7 +36,7 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.reindex.Destination
@@ -69,10 +69,8 @@ public class Destination implements JsonpSerializable {
 
 	}
 
-	public static Destination of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static Destination of(Function<Builder, ObjectBuilder<Destination>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**

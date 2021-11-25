@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 
 // typedef: ccr.pause_auto_follow_pattern.Response
 @JsonpDeserializable
@@ -43,10 +43,9 @@ public class PauseAutoFollowPatternResponse extends AcknowledgedResponseBase {
 
 	}
 
-	public static PauseAutoFollowPatternResponse of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static PauseAutoFollowPatternResponse of(
+			Function<Builder, ObjectBuilder<PauseAutoFollowPatternResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------

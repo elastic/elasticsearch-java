@@ -38,7 +38,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ccr.resume_auto_follow_pattern.Request
@@ -54,10 +54,9 @@ public class ResumeAutoFollowPatternRequest extends RequestBase {
 
 	}
 
-	public static ResumeAutoFollowPatternRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static ResumeAutoFollowPatternRequest of(
+			Function<Builder, ObjectBuilder<ResumeAutoFollowPatternRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**

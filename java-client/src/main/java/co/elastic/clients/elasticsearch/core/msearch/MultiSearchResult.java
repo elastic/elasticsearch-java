@@ -30,13 +30,11 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.JsonpSerializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
@@ -123,26 +121,37 @@ public abstract class MultiSearchResult<TDocument> implements JsonpSerializable 
 
 		/**
 		 * Required - API name: {@code responses}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>responses</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>responses</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final BuilderT responses(List<MultiSearchResponseItem<TDocument>> value) {
-			this.responses = value;
+		public final BuilderT responses(List<MultiSearchResponseItem<TDocument>> list) {
+			this.responses = _listAddAll(this.responses, list);
 			return self();
 		}
 
 		/**
 		 * Required - API name: {@code responses}
+		 * <p>
+		 * Adds one or more values to <code>responses</code>.
 		 */
-		public final BuilderT responses(MultiSearchResponseItem<TDocument>... value) {
-			this.responses = Arrays.asList(value);
+		public final BuilderT responses(MultiSearchResponseItem<TDocument> value,
+				MultiSearchResponseItem<TDocument>... values) {
+			this.responses = _listAdd(this.responses, value, values);
 			return self();
 		}
 
 		/**
 		 * Required - API name: {@code responses}
+		 * <p>
+		 * Adds a value to <code>responses</code> using a builder lambda.
 		 */
 		public final BuilderT responses(
-				Function<ListBuilder<MultiSearchResponseItem<TDocument>, MultiSearchResponseItem.Builder<TDocument>>, ObjectBuilder<List<MultiSearchResponseItem<TDocument>>>> fn) {
-			return responses(fn.apply(new ListBuilder<>(MultiSearchResponseItem.Builder<TDocument>::new)).build());
+				Function<MultiSearchResponseItem.Builder<TDocument>, ObjectBuilder<MultiSearchResponseItem<TDocument>>> fn) {
+			return responses(fn.apply(new MultiSearchResponseItem.Builder<TDocument>()).build());
 		}
 
 		/**

@@ -35,7 +35,7 @@ import co.elastic.clients.transport.endpoints.BooleanResponse;
 import co.elastic.clients.util.ObjectBuilder;
 import java.io.IOException;
 import java.util.concurrent.CompletableFuture;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 /**
@@ -88,11 +88,10 @@ public class ElasticsearchIndicesAsyncClient
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<AddBlockResponse> addBlock(Consumer<AddBlockRequest.Builder> fn)
+	public final CompletableFuture<AddBlockResponse> addBlock(
+			Function<AddBlockRequest.Builder, ObjectBuilder<AddBlockRequest>> fn)
 			throws IOException, ElasticsearchException {
-		AddBlockRequest.Builder builder = new AddBlockRequest.Builder();
-		fn.accept(builder);
-		return addBlock(builder.build());
+		return addBlock(fn.apply(new AddBlockRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: indices.analyze
@@ -126,11 +125,10 @@ public class ElasticsearchIndicesAsyncClient
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<AnalyzeResponse> analyze(Consumer<AnalyzeRequest.Builder> fn)
+	public final CompletableFuture<AnalyzeResponse> analyze(
+			Function<AnalyzeRequest.Builder, ObjectBuilder<AnalyzeRequest>> fn)
 			throws IOException, ElasticsearchException {
-		AnalyzeRequest.Builder builder = new AnalyzeRequest.Builder();
-		fn.accept(builder);
-		return analyze(builder.build());
+		return analyze(fn.apply(new AnalyzeRequest.Builder()).build());
 	}
 
 	/**
@@ -176,11 +174,10 @@ public class ElasticsearchIndicesAsyncClient
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<ClearCacheResponse> clearCache(Consumer<ClearCacheRequest.Builder> fn)
+	public final CompletableFuture<ClearCacheResponse> clearCache(
+			Function<ClearCacheRequest.Builder, ObjectBuilder<ClearCacheRequest>> fn)
 			throws IOException, ElasticsearchException {
-		ClearCacheRequest.Builder builder = new ClearCacheRequest.Builder();
-		fn.accept(builder);
-		return clearCache(builder.build());
+		return clearCache(fn.apply(new ClearCacheRequest.Builder()).build());
 	}
 
 	/**
@@ -225,11 +222,10 @@ public class ElasticsearchIndicesAsyncClient
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<CloneIndexResponse> clone(Consumer<CloneIndexRequest.Builder> fn)
+	public final CompletableFuture<CloneIndexResponse> clone(
+			Function<CloneIndexRequest.Builder, ObjectBuilder<CloneIndexRequest>> fn)
 			throws IOException, ElasticsearchException {
-		CloneIndexRequest.Builder builder = new CloneIndexRequest.Builder();
-		fn.accept(builder);
-		return clone(builder.build());
+		return clone(fn.apply(new CloneIndexRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: indices.close
@@ -261,11 +257,10 @@ public class ElasticsearchIndicesAsyncClient
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<CloseIndexResponse> close(Consumer<CloseIndexRequest.Builder> fn)
+	public final CompletableFuture<CloseIndexResponse> close(
+			Function<CloseIndexRequest.Builder, ObjectBuilder<CloseIndexRequest>> fn)
 			throws IOException, ElasticsearchException {
-		CloseIndexRequest.Builder builder = new CloseIndexRequest.Builder();
-		fn.accept(builder);
-		return close(builder.build());
+		return close(fn.apply(new CloseIndexRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: indices.create
@@ -297,11 +292,10 @@ public class ElasticsearchIndicesAsyncClient
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<CreateIndexResponse> create(Consumer<CreateIndexRequest.Builder> fn)
+	public final CompletableFuture<CreateIndexResponse> create(
+			Function<CreateIndexRequest.Builder, ObjectBuilder<CreateIndexRequest>> fn)
 			throws IOException, ElasticsearchException {
-		CreateIndexRequest.Builder builder = new CreateIndexRequest.Builder();
-		fn.accept(builder);
-		return create(builder.build());
+		return create(fn.apply(new CreateIndexRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: indices.create_data_stream
@@ -334,10 +328,9 @@ public class ElasticsearchIndicesAsyncClient
 	 */
 
 	public final CompletableFuture<CreateDataStreamResponse> createDataStream(
-			Consumer<CreateDataStreamRequest.Builder> fn) throws IOException, ElasticsearchException {
-		CreateDataStreamRequest.Builder builder = new CreateDataStreamRequest.Builder();
-		fn.accept(builder);
-		return createDataStream(builder.build());
+			Function<CreateDataStreamRequest.Builder, ObjectBuilder<CreateDataStreamRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return createDataStream(fn.apply(new CreateDataStreamRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: indices.data_streams_stats
@@ -370,10 +363,9 @@ public class ElasticsearchIndicesAsyncClient
 	 */
 
 	public final CompletableFuture<DataStreamsStatsResponse> dataStreamsStats(
-			Consumer<DataStreamsStatsRequest.Builder> fn) throws IOException, ElasticsearchException {
-		DataStreamsStatsRequest.Builder builder = new DataStreamsStatsRequest.Builder();
-		fn.accept(builder);
-		return dataStreamsStats(builder.build());
+			Function<DataStreamsStatsRequest.Builder, ObjectBuilder<DataStreamsStatsRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return dataStreamsStats(fn.apply(new DataStreamsStatsRequest.Builder()).build());
 	}
 
 	/**
@@ -418,11 +410,10 @@ public class ElasticsearchIndicesAsyncClient
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<DeleteIndexResponse> delete(Consumer<DeleteIndexRequest.Builder> fn)
+	public final CompletableFuture<DeleteIndexResponse> delete(
+			Function<DeleteIndexRequest.Builder, ObjectBuilder<DeleteIndexRequest>> fn)
 			throws IOException, ElasticsearchException {
-		DeleteIndexRequest.Builder builder = new DeleteIndexRequest.Builder();
-		fn.accept(builder);
-		return delete(builder.build());
+		return delete(fn.apply(new DeleteIndexRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: indices.delete_alias
@@ -454,11 +445,10 @@ public class ElasticsearchIndicesAsyncClient
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<DeleteAliasResponse> deleteAlias(Consumer<DeleteAliasRequest.Builder> fn)
+	public final CompletableFuture<DeleteAliasResponse> deleteAlias(
+			Function<DeleteAliasRequest.Builder, ObjectBuilder<DeleteAliasRequest>> fn)
 			throws IOException, ElasticsearchException {
-		DeleteAliasRequest.Builder builder = new DeleteAliasRequest.Builder();
-		fn.accept(builder);
-		return deleteAlias(builder.build());
+		return deleteAlias(fn.apply(new DeleteAliasRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: indices.delete_data_stream
@@ -491,10 +481,9 @@ public class ElasticsearchIndicesAsyncClient
 	 */
 
 	public final CompletableFuture<DeleteDataStreamResponse> deleteDataStream(
-			Consumer<DeleteDataStreamRequest.Builder> fn) throws IOException, ElasticsearchException {
-		DeleteDataStreamRequest.Builder builder = new DeleteDataStreamRequest.Builder();
-		fn.accept(builder);
-		return deleteDataStream(builder.build());
+			Function<DeleteDataStreamRequest.Builder, ObjectBuilder<DeleteDataStreamRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return deleteDataStream(fn.apply(new DeleteDataStreamRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: indices.delete_index_template
@@ -527,10 +516,9 @@ public class ElasticsearchIndicesAsyncClient
 	 */
 
 	public final CompletableFuture<DeleteIndexTemplateResponse> deleteIndexTemplate(
-			Consumer<DeleteIndexTemplateRequest.Builder> fn) throws IOException, ElasticsearchException {
-		DeleteIndexTemplateRequest.Builder builder = new DeleteIndexTemplateRequest.Builder();
-		fn.accept(builder);
-		return deleteIndexTemplate(builder.build());
+			Function<DeleteIndexTemplateRequest.Builder, ObjectBuilder<DeleteIndexTemplateRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return deleteIndexTemplate(fn.apply(new DeleteIndexTemplateRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: indices.delete_template
@@ -562,11 +550,10 @@ public class ElasticsearchIndicesAsyncClient
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<DeleteTemplateResponse> deleteTemplate(Consumer<DeleteTemplateRequest.Builder> fn)
+	public final CompletableFuture<DeleteTemplateResponse> deleteTemplate(
+			Function<DeleteTemplateRequest.Builder, ObjectBuilder<DeleteTemplateRequest>> fn)
 			throws IOException, ElasticsearchException {
-		DeleteTemplateRequest.Builder builder = new DeleteTemplateRequest.Builder();
-		fn.accept(builder);
-		return deleteTemplate(builder.build());
+		return deleteTemplate(fn.apply(new DeleteTemplateRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: indices.disk_usage
@@ -598,11 +585,10 @@ public class ElasticsearchIndicesAsyncClient
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<DiskUsageResponse> diskUsage(Consumer<DiskUsageRequest.Builder> fn)
+	public final CompletableFuture<DiskUsageResponse> diskUsage(
+			Function<DiskUsageRequest.Builder, ObjectBuilder<DiskUsageRequest>> fn)
 			throws IOException, ElasticsearchException {
-		DiskUsageRequest.Builder builder = new DiskUsageRequest.Builder();
-		fn.accept(builder);
-		return diskUsage(builder.build());
+		return diskUsage(fn.apply(new DiskUsageRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: indices.exists
@@ -633,11 +619,10 @@ public class ElasticsearchIndicesAsyncClient
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<BooleanResponse> exists(Consumer<ExistsRequest.Builder> fn)
+	public final CompletableFuture<BooleanResponse> exists(
+			Function<ExistsRequest.Builder, ObjectBuilder<ExistsRequest>> fn)
 			throws IOException, ElasticsearchException {
-		ExistsRequest.Builder builder = new ExistsRequest.Builder();
-		fn.accept(builder);
-		return exists(builder.build());
+		return exists(fn.apply(new ExistsRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: indices.exists_alias
@@ -669,11 +654,10 @@ public class ElasticsearchIndicesAsyncClient
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<BooleanResponse> existsAlias(Consumer<ExistsAliasRequest.Builder> fn)
+	public final CompletableFuture<BooleanResponse> existsAlias(
+			Function<ExistsAliasRequest.Builder, ObjectBuilder<ExistsAliasRequest>> fn)
 			throws IOException, ElasticsearchException {
-		ExistsAliasRequest.Builder builder = new ExistsAliasRequest.Builder();
-		fn.accept(builder);
-		return existsAlias(builder.build());
+		return existsAlias(fn.apply(new ExistsAliasRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: indices.exists_index_template
@@ -705,11 +689,10 @@ public class ElasticsearchIndicesAsyncClient
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<BooleanResponse> existsIndexTemplate(Consumer<ExistsIndexTemplateRequest.Builder> fn)
+	public final CompletableFuture<BooleanResponse> existsIndexTemplate(
+			Function<ExistsIndexTemplateRequest.Builder, ObjectBuilder<ExistsIndexTemplateRequest>> fn)
 			throws IOException, ElasticsearchException {
-		ExistsIndexTemplateRequest.Builder builder = new ExistsIndexTemplateRequest.Builder();
-		fn.accept(builder);
-		return existsIndexTemplate(builder.build());
+		return existsIndexTemplate(fn.apply(new ExistsIndexTemplateRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: indices.exists_template
@@ -741,11 +724,10 @@ public class ElasticsearchIndicesAsyncClient
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<BooleanResponse> existsTemplate(Consumer<ExistsTemplateRequest.Builder> fn)
+	public final CompletableFuture<BooleanResponse> existsTemplate(
+			Function<ExistsTemplateRequest.Builder, ObjectBuilder<ExistsTemplateRequest>> fn)
 			throws IOException, ElasticsearchException {
-		ExistsTemplateRequest.Builder builder = new ExistsTemplateRequest.Builder();
-		fn.accept(builder);
-		return existsTemplate(builder.build());
+		return existsTemplate(fn.apply(new ExistsTemplateRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: indices.exists_type
@@ -779,11 +761,10 @@ public class ElasticsearchIndicesAsyncClient
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<BooleanResponse> existsType(Consumer<ExistsTypeRequest.Builder> fn)
+	public final CompletableFuture<BooleanResponse> existsType(
+			Function<ExistsTypeRequest.Builder, ObjectBuilder<ExistsTypeRequest>> fn)
 			throws IOException, ElasticsearchException {
-		ExistsTypeRequest.Builder builder = new ExistsTypeRequest.Builder();
-		fn.accept(builder);
-		return existsType(builder.build());
+		return existsType(fn.apply(new ExistsTypeRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: indices.flush
@@ -814,11 +795,9 @@ public class ElasticsearchIndicesAsyncClient
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<FlushResponse> flush(Consumer<FlushRequest.Builder> fn)
+	public final CompletableFuture<FlushResponse> flush(Function<FlushRequest.Builder, ObjectBuilder<FlushRequest>> fn)
 			throws IOException, ElasticsearchException {
-		FlushRequest.Builder builder = new FlushRequest.Builder();
-		fn.accept(builder);
-		return flush(builder.build());
+		return flush(fn.apply(new FlushRequest.Builder()).build());
 	}
 
 	/**
@@ -865,11 +844,10 @@ public class ElasticsearchIndicesAsyncClient
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<FlushSyncedResponse> flushSynced(Consumer<FlushSyncedRequest.Builder> fn)
+	public final CompletableFuture<FlushSyncedResponse> flushSynced(
+			Function<FlushSyncedRequest.Builder, ObjectBuilder<FlushSyncedRequest>> fn)
 			throws IOException, ElasticsearchException {
-		FlushSyncedRequest.Builder builder = new FlushSyncedRequest.Builder();
-		fn.accept(builder);
-		return flushSynced(builder.build());
+		return flushSynced(fn.apply(new FlushSyncedRequest.Builder()).build());
 	}
 
 	/**
@@ -915,11 +893,10 @@ public class ElasticsearchIndicesAsyncClient
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<ForcemergeResponse> forcemerge(Consumer<ForcemergeRequest.Builder> fn)
+	public final CompletableFuture<ForcemergeResponse> forcemerge(
+			Function<ForcemergeRequest.Builder, ObjectBuilder<ForcemergeRequest>> fn)
 			throws IOException, ElasticsearchException {
-		ForcemergeRequest.Builder builder = new ForcemergeRequest.Builder();
-		fn.accept(builder);
-		return forcemerge(builder.build());
+		return forcemerge(fn.apply(new ForcemergeRequest.Builder()).build());
 	}
 
 	/**
@@ -965,11 +942,10 @@ public class ElasticsearchIndicesAsyncClient
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<FreezeResponse> freeze(Consumer<FreezeRequest.Builder> fn)
+	public final CompletableFuture<FreezeResponse> freeze(
+			Function<FreezeRequest.Builder, ObjectBuilder<FreezeRequest>> fn)
 			throws IOException, ElasticsearchException {
-		FreezeRequest.Builder builder = new FreezeRequest.Builder();
-		fn.accept(builder);
-		return freeze(builder.build());
+		return freeze(fn.apply(new FreezeRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: indices.get
@@ -1000,11 +976,10 @@ public class ElasticsearchIndicesAsyncClient
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<GetIndexResponse> get(Consumer<GetIndexRequest.Builder> fn)
+	public final CompletableFuture<GetIndexResponse> get(
+			Function<GetIndexRequest.Builder, ObjectBuilder<GetIndexRequest>> fn)
 			throws IOException, ElasticsearchException {
-		GetIndexRequest.Builder builder = new GetIndexRequest.Builder();
-		fn.accept(builder);
-		return get(builder.build());
+		return get(fn.apply(new GetIndexRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: indices.get_alias
@@ -1036,11 +1011,10 @@ public class ElasticsearchIndicesAsyncClient
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<GetAliasResponse> getAlias(Consumer<GetAliasRequest.Builder> fn)
+	public final CompletableFuture<GetAliasResponse> getAlias(
+			Function<GetAliasRequest.Builder, ObjectBuilder<GetAliasRequest>> fn)
 			throws IOException, ElasticsearchException {
-		GetAliasRequest.Builder builder = new GetAliasRequest.Builder();
-		fn.accept(builder);
-		return getAlias(builder.build());
+		return getAlias(fn.apply(new GetAliasRequest.Builder()).build());
 	}
 
 	/**
@@ -1085,11 +1059,10 @@ public class ElasticsearchIndicesAsyncClient
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<GetDataStreamResponse> getDataStream(Consumer<GetDataStreamRequest.Builder> fn)
+	public final CompletableFuture<GetDataStreamResponse> getDataStream(
+			Function<GetDataStreamRequest.Builder, ObjectBuilder<GetDataStreamRequest>> fn)
 			throws IOException, ElasticsearchException {
-		GetDataStreamRequest.Builder builder = new GetDataStreamRequest.Builder();
-		fn.accept(builder);
-		return getDataStream(builder.build());
+		return getDataStream(fn.apply(new GetDataStreamRequest.Builder()).build());
 	}
 
 	/**
@@ -1134,11 +1107,10 @@ public class ElasticsearchIndicesAsyncClient
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<GetFieldMappingResponse> getFieldMapping(Consumer<GetFieldMappingRequest.Builder> fn)
+	public final CompletableFuture<GetFieldMappingResponse> getFieldMapping(
+			Function<GetFieldMappingRequest.Builder, ObjectBuilder<GetFieldMappingRequest>> fn)
 			throws IOException, ElasticsearchException {
-		GetFieldMappingRequest.Builder builder = new GetFieldMappingRequest.Builder();
-		fn.accept(builder);
-		return getFieldMapping(builder.build());
+		return getFieldMapping(fn.apply(new GetFieldMappingRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: indices.get_index_template
@@ -1171,10 +1143,9 @@ public class ElasticsearchIndicesAsyncClient
 	 */
 
 	public final CompletableFuture<GetIndexTemplateResponse> getIndexTemplate(
-			Consumer<GetIndexTemplateRequest.Builder> fn) throws IOException, ElasticsearchException {
-		GetIndexTemplateRequest.Builder builder = new GetIndexTemplateRequest.Builder();
-		fn.accept(builder);
-		return getIndexTemplate(builder.build());
+			Function<GetIndexTemplateRequest.Builder, ObjectBuilder<GetIndexTemplateRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return getIndexTemplate(fn.apply(new GetIndexTemplateRequest.Builder()).build());
 	}
 
 	/**
@@ -1219,11 +1190,10 @@ public class ElasticsearchIndicesAsyncClient
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<GetMappingResponse> getMapping(Consumer<GetMappingRequest.Builder> fn)
+	public final CompletableFuture<GetMappingResponse> getMapping(
+			Function<GetMappingRequest.Builder, ObjectBuilder<GetMappingRequest>> fn)
 			throws IOException, ElasticsearchException {
-		GetMappingRequest.Builder builder = new GetMappingRequest.Builder();
-		fn.accept(builder);
-		return getMapping(builder.build());
+		return getMapping(fn.apply(new GetMappingRequest.Builder()).build());
 	}
 
 	/**
@@ -1269,10 +1239,9 @@ public class ElasticsearchIndicesAsyncClient
 	 */
 
 	public final CompletableFuture<GetIndicesSettingsResponse> getSettings(
-			Consumer<GetIndicesSettingsRequest.Builder> fn) throws IOException, ElasticsearchException {
-		GetIndicesSettingsRequest.Builder builder = new GetIndicesSettingsRequest.Builder();
-		fn.accept(builder);
-		return getSettings(builder.build());
+			Function<GetIndicesSettingsRequest.Builder, ObjectBuilder<GetIndicesSettingsRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return getSettings(fn.apply(new GetIndicesSettingsRequest.Builder()).build());
 	}
 
 	/**
@@ -1317,11 +1286,10 @@ public class ElasticsearchIndicesAsyncClient
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<GetTemplateResponse> getTemplate(Consumer<GetTemplateRequest.Builder> fn)
+	public final CompletableFuture<GetTemplateResponse> getTemplate(
+			Function<GetTemplateRequest.Builder, ObjectBuilder<GetTemplateRequest>> fn)
 			throws IOException, ElasticsearchException {
-		GetTemplateRequest.Builder builder = new GetTemplateRequest.Builder();
-		fn.accept(builder);
-		return getTemplate(builder.build());
+		return getTemplate(fn.apply(new GetTemplateRequest.Builder()).build());
 	}
 
 	/**
@@ -1366,11 +1334,10 @@ public class ElasticsearchIndicesAsyncClient
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<GetUpgradeResponse> getUpgrade(Consumer<GetUpgradeRequest.Builder> fn)
+	public final CompletableFuture<GetUpgradeResponse> getUpgrade(
+			Function<GetUpgradeRequest.Builder, ObjectBuilder<GetUpgradeRequest>> fn)
 			throws IOException, ElasticsearchException {
-		GetUpgradeRequest.Builder builder = new GetUpgradeRequest.Builder();
-		fn.accept(builder);
-		return getUpgrade(builder.build());
+		return getUpgrade(fn.apply(new GetUpgradeRequest.Builder()).build());
 	}
 
 	/**
@@ -1416,10 +1383,9 @@ public class ElasticsearchIndicesAsyncClient
 	 */
 
 	public final CompletableFuture<MigrateToDataStreamResponse> migrateToDataStream(
-			Consumer<MigrateToDataStreamRequest.Builder> fn) throws IOException, ElasticsearchException {
-		MigrateToDataStreamRequest.Builder builder = new MigrateToDataStreamRequest.Builder();
-		fn.accept(builder);
-		return migrateToDataStream(builder.build());
+			Function<MigrateToDataStreamRequest.Builder, ObjectBuilder<MigrateToDataStreamRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return migrateToDataStream(fn.apply(new MigrateToDataStreamRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: indices.open
@@ -1450,11 +1416,9 @@ public class ElasticsearchIndicesAsyncClient
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<OpenResponse> open(Consumer<OpenRequest.Builder> fn)
+	public final CompletableFuture<OpenResponse> open(Function<OpenRequest.Builder, ObjectBuilder<OpenRequest>> fn)
 			throws IOException, ElasticsearchException {
-		OpenRequest.Builder builder = new OpenRequest.Builder();
-		fn.accept(builder);
-		return open(builder.build());
+		return open(fn.apply(new OpenRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: indices.promote_data_stream
@@ -1489,10 +1453,9 @@ public class ElasticsearchIndicesAsyncClient
 	 */
 
 	public final CompletableFuture<PromoteDataStreamResponse> promoteDataStream(
-			Consumer<PromoteDataStreamRequest.Builder> fn) throws IOException, ElasticsearchException {
-		PromoteDataStreamRequest.Builder builder = new PromoteDataStreamRequest.Builder();
-		fn.accept(builder);
-		return promoteDataStream(builder.build());
+			Function<PromoteDataStreamRequest.Builder, ObjectBuilder<PromoteDataStreamRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return promoteDataStream(fn.apply(new PromoteDataStreamRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: indices.put_alias
@@ -1524,11 +1487,10 @@ public class ElasticsearchIndicesAsyncClient
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<PutAliasResponse> putAlias(Consumer<PutAliasRequest.Builder> fn)
+	public final CompletableFuture<PutAliasResponse> putAlias(
+			Function<PutAliasRequest.Builder, ObjectBuilder<PutAliasRequest>> fn)
 			throws IOException, ElasticsearchException {
-		PutAliasRequest.Builder builder = new PutAliasRequest.Builder();
-		fn.accept(builder);
-		return putAlias(builder.build());
+		return putAlias(fn.apply(new PutAliasRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: indices.put_index_template
@@ -1561,10 +1523,9 @@ public class ElasticsearchIndicesAsyncClient
 	 */
 
 	public final CompletableFuture<PutIndexTemplateResponse> putIndexTemplate(
-			Consumer<PutIndexTemplateRequest.Builder> fn) throws IOException, ElasticsearchException {
-		PutIndexTemplateRequest.Builder builder = new PutIndexTemplateRequest.Builder();
-		fn.accept(builder);
-		return putIndexTemplate(builder.build());
+			Function<PutIndexTemplateRequest.Builder, ObjectBuilder<PutIndexTemplateRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return putIndexTemplate(fn.apply(new PutIndexTemplateRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: indices.put_mapping
@@ -1596,11 +1557,10 @@ public class ElasticsearchIndicesAsyncClient
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<PutMappingResponse> putMapping(Consumer<PutMappingRequest.Builder> fn)
+	public final CompletableFuture<PutMappingResponse> putMapping(
+			Function<PutMappingRequest.Builder, ObjectBuilder<PutMappingRequest>> fn)
 			throws IOException, ElasticsearchException {
-		PutMappingRequest.Builder builder = new PutMappingRequest.Builder();
-		fn.accept(builder);
-		return putMapping(builder.build());
+		return putMapping(fn.apply(new PutMappingRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: indices.put_settings
@@ -1633,10 +1593,9 @@ public class ElasticsearchIndicesAsyncClient
 	 */
 
 	public final CompletableFuture<PutIndicesSettingsResponse> putSettings(
-			Consumer<PutIndicesSettingsRequest.Builder> fn) throws IOException, ElasticsearchException {
-		PutIndicesSettingsRequest.Builder builder = new PutIndicesSettingsRequest.Builder();
-		fn.accept(builder);
-		return putSettings(builder.build());
+			Function<PutIndicesSettingsRequest.Builder, ObjectBuilder<PutIndicesSettingsRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return putSettings(fn.apply(new PutIndicesSettingsRequest.Builder()).build());
 	}
 
 	/**
@@ -1681,11 +1640,10 @@ public class ElasticsearchIndicesAsyncClient
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<PutTemplateResponse> putTemplate(Consumer<PutTemplateRequest.Builder> fn)
+	public final CompletableFuture<PutTemplateResponse> putTemplate(
+			Function<PutTemplateRequest.Builder, ObjectBuilder<PutTemplateRequest>> fn)
 			throws IOException, ElasticsearchException {
-		PutTemplateRequest.Builder builder = new PutTemplateRequest.Builder();
-		fn.accept(builder);
-		return putTemplate(builder.build());
+		return putTemplate(fn.apply(new PutTemplateRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: indices.recovery
@@ -1717,11 +1675,10 @@ public class ElasticsearchIndicesAsyncClient
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<RecoveryResponse> recovery(Consumer<RecoveryRequest.Builder> fn)
+	public final CompletableFuture<RecoveryResponse> recovery(
+			Function<RecoveryRequest.Builder, ObjectBuilder<RecoveryRequest>> fn)
 			throws IOException, ElasticsearchException {
-		RecoveryRequest.Builder builder = new RecoveryRequest.Builder();
-		fn.accept(builder);
-		return recovery(builder.build());
+		return recovery(fn.apply(new RecoveryRequest.Builder()).build());
 	}
 
 	/**
@@ -1766,11 +1723,10 @@ public class ElasticsearchIndicesAsyncClient
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<RefreshResponse> refresh(Consumer<RefreshRequest.Builder> fn)
+	public final CompletableFuture<RefreshResponse> refresh(
+			Function<RefreshRequest.Builder, ObjectBuilder<RefreshRequest>> fn)
 			throws IOException, ElasticsearchException {
-		RefreshRequest.Builder builder = new RefreshRequest.Builder();
-		fn.accept(builder);
-		return refresh(builder.build());
+		return refresh(fn.apply(new RefreshRequest.Builder()).build());
 	}
 
 	/**
@@ -1816,10 +1772,9 @@ public class ElasticsearchIndicesAsyncClient
 	 */
 
 	public final CompletableFuture<ReloadSearchAnalyzersResponse> reloadSearchAnalyzers(
-			Consumer<ReloadSearchAnalyzersRequest.Builder> fn) throws IOException, ElasticsearchException {
-		ReloadSearchAnalyzersRequest.Builder builder = new ReloadSearchAnalyzersRequest.Builder();
-		fn.accept(builder);
-		return reloadSearchAnalyzers(builder.build());
+			Function<ReloadSearchAnalyzersRequest.Builder, ObjectBuilder<ReloadSearchAnalyzersRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return reloadSearchAnalyzers(fn.apply(new ReloadSearchAnalyzersRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: indices.resolve_index
@@ -1851,11 +1806,10 @@ public class ElasticsearchIndicesAsyncClient
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<ResolveIndexResponse> resolveIndex(Consumer<ResolveIndexRequest.Builder> fn)
+	public final CompletableFuture<ResolveIndexResponse> resolveIndex(
+			Function<ResolveIndexRequest.Builder, ObjectBuilder<ResolveIndexRequest>> fn)
 			throws IOException, ElasticsearchException {
-		ResolveIndexRequest.Builder builder = new ResolveIndexRequest.Builder();
-		fn.accept(builder);
-		return resolveIndex(builder.build());
+		return resolveIndex(fn.apply(new ResolveIndexRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: indices.rollover
@@ -1889,11 +1843,10 @@ public class ElasticsearchIndicesAsyncClient
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<RolloverResponse> rollover(Consumer<RolloverRequest.Builder> fn)
+	public final CompletableFuture<RolloverResponse> rollover(
+			Function<RolloverRequest.Builder, ObjectBuilder<RolloverRequest>> fn)
 			throws IOException, ElasticsearchException {
-		RolloverRequest.Builder builder = new RolloverRequest.Builder();
-		fn.accept(builder);
-		return rollover(builder.build());
+		return rollover(fn.apply(new RolloverRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: indices.segments
@@ -1925,11 +1878,10 @@ public class ElasticsearchIndicesAsyncClient
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<SegmentsResponse> segments(Consumer<SegmentsRequest.Builder> fn)
+	public final CompletableFuture<SegmentsResponse> segments(
+			Function<SegmentsRequest.Builder, ObjectBuilder<SegmentsRequest>> fn)
 			throws IOException, ElasticsearchException {
-		SegmentsRequest.Builder builder = new SegmentsRequest.Builder();
-		fn.accept(builder);
-		return segments(builder.build());
+		return segments(fn.apply(new SegmentsRequest.Builder()).build());
 	}
 
 	/**
@@ -1974,11 +1926,10 @@ public class ElasticsearchIndicesAsyncClient
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<ShardStoresResponse> shardStores(Consumer<ShardStoresRequest.Builder> fn)
+	public final CompletableFuture<ShardStoresResponse> shardStores(
+			Function<ShardStoresRequest.Builder, ObjectBuilder<ShardStoresRequest>> fn)
 			throws IOException, ElasticsearchException {
-		ShardStoresRequest.Builder builder = new ShardStoresRequest.Builder();
-		fn.accept(builder);
-		return shardStores(builder.build());
+		return shardStores(fn.apply(new ShardStoresRequest.Builder()).build());
 	}
 
 	/**
@@ -2022,11 +1973,10 @@ public class ElasticsearchIndicesAsyncClient
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<ShrinkResponse> shrink(Consumer<ShrinkRequest.Builder> fn)
+	public final CompletableFuture<ShrinkResponse> shrink(
+			Function<ShrinkRequest.Builder, ObjectBuilder<ShrinkRequest>> fn)
 			throws IOException, ElasticsearchException {
-		ShrinkRequest.Builder builder = new ShrinkRequest.Builder();
-		fn.accept(builder);
-		return shrink(builder.build());
+		return shrink(fn.apply(new ShrinkRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: indices.simulate_index_template
@@ -2061,10 +2011,9 @@ public class ElasticsearchIndicesAsyncClient
 	 */
 
 	public final CompletableFuture<SimulateIndexTemplateResponse> simulateIndexTemplate(
-			Consumer<SimulateIndexTemplateRequest.Builder> fn) throws IOException, ElasticsearchException {
-		SimulateIndexTemplateRequest.Builder builder = new SimulateIndexTemplateRequest.Builder();
-		fn.accept(builder);
-		return simulateIndexTemplate(builder.build());
+			Function<SimulateIndexTemplateRequest.Builder, ObjectBuilder<SimulateIndexTemplateRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return simulateIndexTemplate(fn.apply(new SimulateIndexTemplateRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: indices.simulate_template
@@ -2097,10 +2046,9 @@ public class ElasticsearchIndicesAsyncClient
 	 */
 
 	public final CompletableFuture<SimulateTemplateResponse> simulateTemplate(
-			Consumer<SimulateTemplateRequest.Builder> fn) throws IOException, ElasticsearchException {
-		SimulateTemplateRequest.Builder builder = new SimulateTemplateRequest.Builder();
-		fn.accept(builder);
-		return simulateTemplate(builder.build());
+			Function<SimulateTemplateRequest.Builder, ObjectBuilder<SimulateTemplateRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return simulateTemplate(fn.apply(new SimulateTemplateRequest.Builder()).build());
 	}
 
 	/**
@@ -2146,11 +2094,9 @@ public class ElasticsearchIndicesAsyncClient
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<SplitResponse> split(Consumer<SplitRequest.Builder> fn)
+	public final CompletableFuture<SplitResponse> split(Function<SplitRequest.Builder, ObjectBuilder<SplitRequest>> fn)
 			throws IOException, ElasticsearchException {
-		SplitRequest.Builder builder = new SplitRequest.Builder();
-		fn.accept(builder);
-		return split(builder.build());
+		return split(fn.apply(new SplitRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: indices.stats
@@ -2182,11 +2128,10 @@ public class ElasticsearchIndicesAsyncClient
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<IndicesStatsResponse> stats(Consumer<IndicesStatsRequest.Builder> fn)
+	public final CompletableFuture<IndicesStatsResponse> stats(
+			Function<IndicesStatsRequest.Builder, ObjectBuilder<IndicesStatsRequest>> fn)
 			throws IOException, ElasticsearchException {
-		IndicesStatsRequest.Builder builder = new IndicesStatsRequest.Builder();
-		fn.accept(builder);
-		return stats(builder.build());
+		return stats(fn.apply(new IndicesStatsRequest.Builder()).build());
 	}
 
 	/**
@@ -2233,11 +2178,10 @@ public class ElasticsearchIndicesAsyncClient
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<UnfreezeResponse> unfreeze(Consumer<UnfreezeRequest.Builder> fn)
+	public final CompletableFuture<UnfreezeResponse> unfreeze(
+			Function<UnfreezeRequest.Builder, ObjectBuilder<UnfreezeRequest>> fn)
 			throws IOException, ElasticsearchException {
-		UnfreezeRequest.Builder builder = new UnfreezeRequest.Builder();
-		fn.accept(builder);
-		return unfreeze(builder.build());
+		return unfreeze(fn.apply(new UnfreezeRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: indices.update_aliases
@@ -2269,11 +2213,10 @@ public class ElasticsearchIndicesAsyncClient
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<UpdateAliasesResponse> updateAliases(Consumer<UpdateAliasesRequest.Builder> fn)
+	public final CompletableFuture<UpdateAliasesResponse> updateAliases(
+			Function<UpdateAliasesRequest.Builder, ObjectBuilder<UpdateAliasesRequest>> fn)
 			throws IOException, ElasticsearchException {
-		UpdateAliasesRequest.Builder builder = new UpdateAliasesRequest.Builder();
-		fn.accept(builder);
-		return updateAliases(builder.build());
+		return updateAliases(fn.apply(new UpdateAliasesRequest.Builder()).build());
 	}
 
 	/**
@@ -2318,11 +2261,10 @@ public class ElasticsearchIndicesAsyncClient
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<UpgradeResponse> upgrade(Consumer<UpgradeRequest.Builder> fn)
+	public final CompletableFuture<UpgradeResponse> upgrade(
+			Function<UpgradeRequest.Builder, ObjectBuilder<UpgradeRequest>> fn)
 			throws IOException, ElasticsearchException {
-		UpgradeRequest.Builder builder = new UpgradeRequest.Builder();
-		fn.accept(builder);
-		return upgrade(builder.build());
+		return upgrade(fn.apply(new UpgradeRequest.Builder()).build());
 	}
 
 	/**
@@ -2367,11 +2309,10 @@ public class ElasticsearchIndicesAsyncClient
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<ValidateQueryResponse> validateQuery(Consumer<ValidateQueryRequest.Builder> fn)
+	public final CompletableFuture<ValidateQueryResponse> validateQuery(
+			Function<ValidateQueryRequest.Builder, ObjectBuilder<ValidateQueryRequest>> fn)
 			throws IOException, ElasticsearchException {
-		ValidateQueryRequest.Builder builder = new ValidateQueryRequest.Builder();
-		fn.accept(builder);
-		return validateQuery(builder.build());
+		return validateQuery(fn.apply(new ValidateQueryRequest.Builder()).build());
 	}
 
 	/**

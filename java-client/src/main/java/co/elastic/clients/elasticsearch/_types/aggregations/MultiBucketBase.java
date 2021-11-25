@@ -30,7 +30,6 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.MapBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
@@ -99,15 +98,35 @@ public abstract class MultiBucketBase implements JsonpSerializable {
 
 		/**
 		 * Nested aggregations
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>aggregations</code>. Use
+		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
+		 * <code>aggregations</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetMap()
 		 */
-		public final BuilderT aggregations(@Nullable Map<String, Aggregate> value) {
-			this.aggregations = value;
+		public final BuilderT aggregations(Map<String, Aggregate> map) {
+			this.aggregations = _mapPutAll(this.aggregations, map);
 			return self();
 		}
 
-		public final BuilderT aggregations(
-				Function<MapBuilder<String, Aggregate, Aggregate.Builder>, ObjectBuilder<Map<String, Aggregate>>> fn) {
-			return aggregations(fn.apply(new MapBuilder<>(Aggregate.Builder::new)).build());
+		/**
+		 * Nested aggregations
+		 * <p>
+		 * Adds an entry to <code>aggregations</code>.
+		 */
+		public final BuilderT aggregations(String key, Aggregate value) {
+			this.aggregations = _mapPut(this.aggregations, key, value);
+			return self();
+		}
+
+		/**
+		 * Nested aggregations
+		 * <p>
+		 * Adds an entry to <code>aggregations</code> using a builder lambda.
+		 */
+		public final BuilderT aggregations(String key, Function<Aggregate.Builder, ObjectBuilder<Aggregate>> fn) {
+			return aggregations(key, fn.apply(new Aggregate.Builder()).build());
 		}
 
 		private Long docCount;

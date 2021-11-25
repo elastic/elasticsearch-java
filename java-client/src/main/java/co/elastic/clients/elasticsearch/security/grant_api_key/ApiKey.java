@@ -36,11 +36,10 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: security.grant_api_key.ApiKey
@@ -63,10 +62,8 @@ public class ApiKey implements JsonpSerializable {
 
 	}
 
-	public static ApiKey of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static ApiKey of(Function<Builder, ObjectBuilder<ApiKey>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -164,25 +161,31 @@ public class ApiKey implements JsonpSerializable {
 		/**
 		 * API name: {@code expiration}
 		 */
-		public final Builder expiration(Consumer<Time.Builder> fn) {
-			Time.Builder builder = new Time.Builder();
-			fn.accept(builder);
-			return this.expiration(builder.build());
+		public final Builder expiration(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.expiration(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code role_descriptors}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>roleDescriptors</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>roleDescriptors</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder roleDescriptors(@Nullable List<Map<String, JsonData>> value) {
-			this.roleDescriptors = value;
+		public final Builder roleDescriptors(List<Map<String, JsonData>> list) {
+			this.roleDescriptors = _listAddAll(this.roleDescriptors, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code role_descriptors}
+		 * <p>
+		 * Adds one or more values to <code>roleDescriptors</code>.
 		 */
-		public final Builder roleDescriptors(Map<String, JsonData>... value) {
-			this.roleDescriptors = Arrays.asList(value);
+		public final Builder roleDescriptors(Map<String, JsonData> value, Map<String, JsonData>... values) {
+			this.roleDescriptors = _listAdd(this.roleDescriptors, value, values);
 			return this;
 		}
 

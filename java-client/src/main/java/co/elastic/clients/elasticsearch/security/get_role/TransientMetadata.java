@@ -35,7 +35,7 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 
 // typedef: security.get_role.TransientMetadata
 @JsonpDeserializable
@@ -50,10 +50,8 @@ public class TransientMetadata implements JsonpSerializable {
 
 	}
 
-	public static TransientMetadata of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static TransientMetadata of(Function<Builder, ObjectBuilder<TransientMetadata>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**

@@ -38,7 +38,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Object;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.search._types.HighlighterType
@@ -88,10 +88,8 @@ public class HighlighterType implements TaggedUnion<HighlighterType.Kind, Object
 
 	}
 
-	public static HighlighterType of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static HighlighterType of(Function<Builder, ObjectBuilder<HighlighterType>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**

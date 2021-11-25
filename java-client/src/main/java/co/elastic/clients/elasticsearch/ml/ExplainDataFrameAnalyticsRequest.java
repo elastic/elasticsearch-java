@@ -41,7 +41,7 @@ import java.lang.Integer;
 import java.lang.String;
 import java.util.Collections;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.explain_data_frame_analytics.Request
@@ -90,10 +90,9 @@ public class ExplainDataFrameAnalyticsRequest extends RequestBase implements Jso
 
 	}
 
-	public static ExplainDataFrameAnalyticsRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static ExplainDataFrameAnalyticsRequest of(
+			Function<Builder, ObjectBuilder<ExplainDataFrameAnalyticsRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -323,10 +322,8 @@ public class ExplainDataFrameAnalyticsRequest extends RequestBase implements Jso
 		 * <p>
 		 * API name: {@code analysis}
 		 */
-		public final Builder analysis(Consumer<DataframeAnalysis.Builder> fn) {
-			DataframeAnalysis.Builder builder = new DataframeAnalysis.Builder();
-			fn.accept(builder);
-			return this.analysis(builder.build());
+		public final Builder analysis(Function<DataframeAnalysis.Builder, ObjectBuilder<DataframeAnalysis>> fn) {
+			return this.analysis(fn.apply(new DataframeAnalysis.Builder()).build());
 		}
 
 		/**
@@ -352,10 +349,9 @@ public class ExplainDataFrameAnalyticsRequest extends RequestBase implements Jso
 		 * <p>
 		 * API name: {@code analyzed_fields}
 		 */
-		public final Builder analyzedFields(Consumer<DataframeAnalysisAnalyzedFields.Builder> fn) {
-			DataframeAnalysisAnalyzedFields.Builder builder = new DataframeAnalysisAnalyzedFields.Builder();
-			fn.accept(builder);
-			return this.analyzedFields(builder.build());
+		public final Builder analyzedFields(
+				Function<DataframeAnalysisAnalyzedFields.Builder, ObjectBuilder<DataframeAnalysisAnalyzedFields>> fn) {
+			return this.analyzedFields(fn.apply(new DataframeAnalysisAnalyzedFields.Builder()).build());
 		}
 
 		/**
@@ -385,10 +381,9 @@ public class ExplainDataFrameAnalyticsRequest extends RequestBase implements Jso
 		 * <p>
 		 * API name: {@code dest}
 		 */
-		public final Builder dest(Consumer<DataframeAnalyticsDestination.Builder> fn) {
-			DataframeAnalyticsDestination.Builder builder = new DataframeAnalyticsDestination.Builder();
-			fn.accept(builder);
-			return this.dest(builder.build());
+		public final Builder dest(
+				Function<DataframeAnalyticsDestination.Builder, ObjectBuilder<DataframeAnalyticsDestination>> fn) {
+			return this.dest(fn.apply(new DataframeAnalyticsDestination.Builder()).build());
 		}
 
 		/**
@@ -449,10 +444,9 @@ public class ExplainDataFrameAnalyticsRequest extends RequestBase implements Jso
 		 * <p>
 		 * API name: {@code source}
 		 */
-		public final Builder source(Consumer<DataframeAnalyticsSource.Builder> fn) {
-			DataframeAnalyticsSource.Builder builder = new DataframeAnalyticsSource.Builder();
-			fn.accept(builder);
-			return this.source(builder.build());
+		public final Builder source(
+				Function<DataframeAnalyticsSource.Builder, ObjectBuilder<DataframeAnalyticsSource>> fn) {
+			return this.source(fn.apply(new DataframeAnalyticsSource.Builder()).build());
 		}
 
 		/**

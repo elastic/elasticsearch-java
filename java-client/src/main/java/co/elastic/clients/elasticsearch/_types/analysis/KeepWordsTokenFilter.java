@@ -33,10 +33,9 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.analysis.KeepWordsTokenFilter
@@ -61,10 +60,8 @@ public class KeepWordsTokenFilter extends TokenFilterBase implements TokenFilter
 
 	}
 
-	public static KeepWordsTokenFilter of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static KeepWordsTokenFilter of(Function<Builder, ObjectBuilder<KeepWordsTokenFilter>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -144,17 +141,25 @@ public class KeepWordsTokenFilter extends TokenFilterBase implements TokenFilter
 
 		/**
 		 * API name: {@code keep_words}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>keepWords</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>keepWords</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder keepWords(@Nullable List<String> value) {
-			this.keepWords = value;
+		public final Builder keepWords(List<String> list) {
+			this.keepWords = _listAddAll(this.keepWords, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code keep_words}
+		 * <p>
+		 * Adds one or more values to <code>keepWords</code>.
 		 */
-		public final Builder keepWords(String... value) {
-			this.keepWords = Arrays.asList(value);
+		public final Builder keepWords(String value, String... values) {
+			this.keepWords = _listAdd(this.keepWords, value, values);
 			return this;
 		}
 

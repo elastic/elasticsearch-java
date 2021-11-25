@@ -37,7 +37,7 @@ import co.elastic.clients.util.TaggedUnion;
 import co.elastic.clients.util.TaggedUnionUtils;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.analysis.Normalizer
@@ -95,10 +95,8 @@ public class Normalizer implements TaggedUnion<Normalizer.Kind, NormalizerVarian
 
 	}
 
-	public static Normalizer of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static Normalizer of(Function<Builder, ObjectBuilder<Normalizer>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -152,10 +150,9 @@ public class Normalizer implements TaggedUnion<Normalizer.Kind, NormalizerVarian
 			return this;
 		}
 
-		public ObjectBuilder<Normalizer> custom(Consumer<CustomNormalizer.Builder> fn) {
-			CustomNormalizer.Builder builder = new CustomNormalizer.Builder();
-			fn.accept(builder);
-			return this.custom(builder.build());
+		public ObjectBuilder<Normalizer> custom(
+				Function<CustomNormalizer.Builder, ObjectBuilder<CustomNormalizer>> fn) {
+			return this.custom(fn.apply(new CustomNormalizer.Builder()).build());
 		}
 
 		public ObjectBuilder<Normalizer> lowercase(LowercaseNormalizer v) {
@@ -164,10 +161,9 @@ public class Normalizer implements TaggedUnion<Normalizer.Kind, NormalizerVarian
 			return this;
 		}
 
-		public ObjectBuilder<Normalizer> lowercase(Consumer<LowercaseNormalizer.Builder> fn) {
-			LowercaseNormalizer.Builder builder = new LowercaseNormalizer.Builder();
-			fn.accept(builder);
-			return this.lowercase(builder.build());
+		public ObjectBuilder<Normalizer> lowercase(
+				Function<LowercaseNormalizer.Builder, ObjectBuilder<LowercaseNormalizer>> fn) {
+			return this.lowercase(fn.apply(new LowercaseNormalizer.Builder()).build());
 		}
 
 		public Normalizer build() {

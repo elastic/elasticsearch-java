@@ -35,10 +35,9 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cluster.stats.RuntimeFieldTypes
@@ -93,10 +92,8 @@ public class RuntimeFieldTypes implements JsonpSerializable {
 
 	}
 
-	public static RuntimeFieldTypes of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static RuntimeFieldTypes of(Function<Builder, ObjectBuilder<RuntimeFieldTypes>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -335,17 +332,25 @@ public class RuntimeFieldTypes implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code lang}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>lang</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>lang</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder lang(List<String> value) {
-			this.lang = value;
+		public final Builder lang(List<String> list) {
+			this.lang = _listAddAll(this.lang, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code lang}
+		 * <p>
+		 * Adds one or more values to <code>lang</code>.
 		 */
-		public final Builder lang(String... value) {
-			this.lang = Arrays.asList(value);
+		public final Builder lang(String value, String... values) {
+			this.lang = _listAdd(this.lang, value, values);
 			return this;
 		}
 

@@ -37,11 +37,10 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: security.authenticate.Response
@@ -89,10 +88,8 @@ public class AuthenticateResponse implements JsonpSerializable {
 
 	}
 
-	public static AuthenticateResponse of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static AuthenticateResponse of(Function<Builder, ObjectBuilder<AuthenticateResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -273,10 +270,8 @@ public class AuthenticateResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code authentication_realm}
 		 */
-		public final Builder authenticationRealm(Consumer<RealmInfo.Builder> fn) {
-			RealmInfo.Builder builder = new RealmInfo.Builder();
-			fn.accept(builder);
-			return this.authenticationRealm(builder.build());
+		public final Builder authenticationRealm(Function<RealmInfo.Builder, ObjectBuilder<RealmInfo>> fn) {
+			return this.authenticationRealm(fn.apply(new RealmInfo.Builder()).build());
 		}
 
 		/**
@@ -306,33 +301,55 @@ public class AuthenticateResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code lookup_realm}
 		 */
-		public final Builder lookupRealm(Consumer<RealmInfo.Builder> fn) {
-			RealmInfo.Builder builder = new RealmInfo.Builder();
-			fn.accept(builder);
-			return this.lookupRealm(builder.build());
+		public final Builder lookupRealm(Function<RealmInfo.Builder, ObjectBuilder<RealmInfo>> fn) {
+			return this.lookupRealm(fn.apply(new RealmInfo.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code metadata}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>metadata</code>. Use
+		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
+		 * <code>metadata</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetMap()
 		 */
-		public final Builder metadata(Map<String, JsonData> value) {
-			this.metadata = value;
+		public final Builder metadata(Map<String, JsonData> map) {
+			this.metadata = _mapPutAll(this.metadata, map);
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code metadata}
+		 * <p>
+		 * Adds an entry to <code>metadata</code>.
+		 */
+		public final Builder metadata(String key, JsonData value) {
+			this.metadata = _mapPut(this.metadata, key, value);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code roles}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>roles</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>roles</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder roles(List<String> value) {
-			this.roles = value;
+		public final Builder roles(List<String> list) {
+			this.roles = _listAddAll(this.roles, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code roles}
+		 * <p>
+		 * Adds one or more values to <code>roles</code>.
 		 */
-		public final Builder roles(String... value) {
-			this.roles = Arrays.asList(value);
+		public final Builder roles(String value, String... values) {
+			this.roles = _listAdd(this.roles, value, values);
 			return this;
 		}
 
@@ -371,10 +388,8 @@ public class AuthenticateResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code token}
 		 */
-		public final Builder token(Consumer<ServiceToken.Builder> fn) {
-			ServiceToken.Builder builder = new ServiceToken.Builder();
-			fn.accept(builder);
-			return this.token(builder.build());
+		public final Builder token(Function<ServiceToken.Builder, ObjectBuilder<ServiceToken>> fn) {
+			return this.token(fn.apply(new ServiceToken.Builder()).build());
 		}
 
 		/**

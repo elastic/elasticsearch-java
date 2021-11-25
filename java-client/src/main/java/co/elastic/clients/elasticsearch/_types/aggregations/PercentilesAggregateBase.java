@@ -32,7 +32,7 @@ import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.PercentilesAggregateBase
@@ -80,10 +80,8 @@ public abstract class PercentilesAggregateBase extends AggregateBase {
 		/**
 		 * Required - API name: {@code values}
 		 */
-		public final BuilderT values(Consumer<Percentiles.Builder> fn) {
-			Percentiles.Builder builder = new Percentiles.Builder();
-			fn.accept(builder);
-			return this.values(builder.build());
+		public final BuilderT values(Function<Percentiles.Builder, ObjectBuilder<Percentiles>> fn) {
+			return this.values(fn.apply(new Percentiles.Builder()).build());
 		}
 
 	}

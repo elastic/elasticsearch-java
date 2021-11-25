@@ -40,7 +40,7 @@ import java.lang.Integer;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.NodeShard
@@ -79,10 +79,8 @@ public class NodeShard implements JsonpSerializable {
 
 	}
 
-	public static NodeShard of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static NodeShard of(Function<Builder, ObjectBuilder<NodeShard>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -268,17 +266,49 @@ public class NodeShard implements JsonpSerializable {
 
 		/**
 		 * API name: {@code allocation_id}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>allocationId</code>. Use
+		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
+		 * <code>allocationId</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetMap()
 		 */
-		public final Builder allocationId(@Nullable Map<String, String> value) {
-			this.allocationId = value;
+		public final Builder allocationId(Map<String, String> map) {
+			this.allocationId = _mapPutAll(this.allocationId, map);
+			return this;
+		}
+
+		/**
+		 * API name: {@code allocation_id}
+		 * <p>
+		 * Adds an entry to <code>allocationId</code>.
+		 */
+		public final Builder allocationId(String key, String value) {
+			this.allocationId = _mapPut(this.allocationId, key, value);
 			return this;
 		}
 
 		/**
 		 * API name: {@code recovery_source}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>recoverySource</code>. Use
+		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
+		 * <code>recoverySource</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetMap()
 		 */
-		public final Builder recoverySource(@Nullable Map<String, String> value) {
-			this.recoverySource = value;
+		public final Builder recoverySource(Map<String, String> map) {
+			this.recoverySource = _mapPutAll(this.recoverySource, map);
+			return this;
+		}
+
+		/**
+		 * API name: {@code recovery_source}
+		 * <p>
+		 * Adds an entry to <code>recoverySource</code>.
+		 */
+		public final Builder recoverySource(String key, String value) {
+			this.recoverySource = _mapPut(this.recoverySource, key, value);
 			return this;
 		}
 
@@ -293,10 +323,9 @@ public class NodeShard implements JsonpSerializable {
 		/**
 		 * API name: {@code unassigned_info}
 		 */
-		public final Builder unassignedInfo(Consumer<UnassignedInformation.Builder> fn) {
-			UnassignedInformation.Builder builder = new UnassignedInformation.Builder();
-			fn.accept(builder);
-			return this.unassignedInfo(builder.build());
+		public final Builder unassignedInfo(
+				Function<UnassignedInformation.Builder, ObjectBuilder<UnassignedInformation>> fn) {
+			return this.unassignedInfo(fn.apply(new UnassignedInformation.Builder()).build());
 		}
 
 		/**

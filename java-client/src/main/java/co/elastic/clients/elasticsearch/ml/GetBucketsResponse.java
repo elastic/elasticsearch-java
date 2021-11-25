@@ -29,16 +29,13 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -58,10 +55,8 @@ public class GetBucketsResponse implements JsonpSerializable {
 
 	}
 
-	public static GetBucketsResponse of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static GetBucketsResponse of(Function<Builder, ObjectBuilder<GetBucketsResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -116,26 +111,35 @@ public class GetBucketsResponse implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code buckets}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>buckets</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>buckets</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder buckets(List<BucketSummary> value) {
-			this.buckets = value;
+		public final Builder buckets(List<BucketSummary> list) {
+			this.buckets = _listAddAll(this.buckets, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code buckets}
+		 * <p>
+		 * Adds one or more values to <code>buckets</code>.
 		 */
-		public final Builder buckets(BucketSummary... value) {
-			this.buckets = Arrays.asList(value);
+		public final Builder buckets(BucketSummary value, BucketSummary... values) {
+			this.buckets = _listAdd(this.buckets, value, values);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code buckets}
+		 * <p>
+		 * Adds a value to <code>buckets</code> using a builder lambda.
 		 */
-		public final Builder buckets(
-				Function<ListBuilder<BucketSummary, BucketSummary.Builder>, ObjectBuilder<List<BucketSummary>>> fn) {
-			return buckets(fn.apply(new ListBuilder<>(BucketSummary.Builder::new)).build());
+		public final Builder buckets(Function<BucketSummary.Builder, ObjectBuilder<BucketSummary>> fn) {
+			return buckets(fn.apply(new BucketSummary.Builder()).build());
 		}
 
 		/**

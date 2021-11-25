@@ -34,10 +34,9 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: license.post.Acknowledgement
@@ -56,10 +55,8 @@ public class Acknowledgement implements JsonpSerializable {
 
 	}
 
-	public static Acknowledgement of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static Acknowledgement of(Function<Builder, ObjectBuilder<Acknowledgement>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -114,17 +111,25 @@ public class Acknowledgement implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code license}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>license</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>license</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder license(List<String> value) {
-			this.license = value;
+		public final Builder license(List<String> list) {
+			this.license = _listAddAll(this.license, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code license}
+		 * <p>
+		 * Adds one or more values to <code>license</code>.
 		 */
-		public final Builder license(String... value) {
-			this.license = Arrays.asList(value);
+		public final Builder license(String value, String... values) {
+			this.license = _listAdd(this.license, value, values);
 			return this;
 		}
 

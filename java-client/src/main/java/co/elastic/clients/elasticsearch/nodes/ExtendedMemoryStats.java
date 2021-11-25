@@ -33,7 +33,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 
 // typedef: nodes._types.ExtendedMemoryStats
 @JsonpDeserializable
@@ -52,10 +52,8 @@ public class ExtendedMemoryStats extends MemoryStats {
 
 	}
 
-	public static ExtendedMemoryStats of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static ExtendedMemoryStats of(Function<Builder, ObjectBuilder<ExtendedMemoryStats>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**

@@ -36,7 +36,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.evaluate_data_frame.Response
@@ -61,10 +61,8 @@ public class EvaluateDataFrameResponse implements JsonpSerializable {
 
 	}
 
-	public static EvaluateDataFrameResponse of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static EvaluateDataFrameResponse of(Function<Builder, ObjectBuilder<EvaluateDataFrameResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -146,10 +144,9 @@ public class EvaluateDataFrameResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code classification}
 		 */
-		public final Builder classification(Consumer<DataframeClassificationSummary.Builder> fn) {
-			DataframeClassificationSummary.Builder builder = new DataframeClassificationSummary.Builder();
-			fn.accept(builder);
-			return this.classification(builder.build());
+		public final Builder classification(
+				Function<DataframeClassificationSummary.Builder, ObjectBuilder<DataframeClassificationSummary>> fn) {
+			return this.classification(fn.apply(new DataframeClassificationSummary.Builder()).build());
 		}
 
 		/**
@@ -163,10 +160,9 @@ public class EvaluateDataFrameResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code outlier_detection}
 		 */
-		public final Builder outlierDetection(Consumer<DataframeOutlierDetectionSummary.Builder> fn) {
-			DataframeOutlierDetectionSummary.Builder builder = new DataframeOutlierDetectionSummary.Builder();
-			fn.accept(builder);
-			return this.outlierDetection(builder.build());
+		public final Builder outlierDetection(
+				Function<DataframeOutlierDetectionSummary.Builder, ObjectBuilder<DataframeOutlierDetectionSummary>> fn) {
+			return this.outlierDetection(fn.apply(new DataframeOutlierDetectionSummary.Builder()).build());
 		}
 
 		/**
@@ -180,10 +176,9 @@ public class EvaluateDataFrameResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code regression}
 		 */
-		public final Builder regression(Consumer<DataframeRegressionSummary.Builder> fn) {
-			DataframeRegressionSummary.Builder builder = new DataframeRegressionSummary.Builder();
-			fn.accept(builder);
-			return this.regression(builder.build());
+		public final Builder regression(
+				Function<DataframeRegressionSummary.Builder, ObjectBuilder<DataframeRegressionSummary>> fn) {
+			return this.regression(fn.apply(new DataframeRegressionSummary.Builder()).build());
 		}
 
 		/**

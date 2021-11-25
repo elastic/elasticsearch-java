@@ -30,15 +30,12 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -55,10 +52,8 @@ public class HotThreadsResponse implements JsonpSerializable {
 
 	}
 
-	public static HotThreadsResponse of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static HotThreadsResponse of(Function<Builder, ObjectBuilder<HotThreadsResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -102,26 +97,35 @@ public class HotThreadsResponse implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code hot_threads}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>hotThreads</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>hotThreads</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder hotThreads(List<HotThread> value) {
-			this.hotThreads = value;
+		public final Builder hotThreads(List<HotThread> list) {
+			this.hotThreads = _listAddAll(this.hotThreads, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code hot_threads}
+		 * <p>
+		 * Adds one or more values to <code>hotThreads</code>.
 		 */
-		public final Builder hotThreads(HotThread... value) {
-			this.hotThreads = Arrays.asList(value);
+		public final Builder hotThreads(HotThread value, HotThread... values) {
+			this.hotThreads = _listAdd(this.hotThreads, value, values);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code hot_threads}
+		 * <p>
+		 * Adds a value to <code>hotThreads</code> using a builder lambda.
 		 */
-		public final Builder hotThreads(
-				Function<ListBuilder<HotThread, HotThread.Builder>, ObjectBuilder<List<HotThread>>> fn) {
-			return hotThreads(fn.apply(new ListBuilder<>(HotThread.Builder::new)).build());
+		public final Builder hotThreads(Function<HotThread.Builder, ObjectBuilder<HotThread>> fn) {
+			return hotThreads(fn.apply(new HotThread.Builder()).build());
 		}
 
 		/**

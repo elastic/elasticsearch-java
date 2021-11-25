@@ -30,7 +30,6 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.MapBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
@@ -38,7 +37,6 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -55,10 +53,8 @@ public class VerifyRepositoryResponse implements JsonpSerializable {
 
 	}
 
-	public static VerifyRepositoryResponse of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static VerifyRepositoryResponse of(Function<Builder, ObjectBuilder<VerifyRepositoryResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -103,15 +99,35 @@ public class VerifyRepositoryResponse implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code nodes}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>nodes</code>. Use
+		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
+		 * <code>nodes</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetMap()
 		 */
-		public final Builder nodes(Map<String, CompactNodeInfo> value) {
-			this.nodes = value;
+		public final Builder nodes(Map<String, CompactNodeInfo> map) {
+			this.nodes = _mapPutAll(this.nodes, map);
 			return this;
 		}
 
-		public final Builder nodes(
-				Function<MapBuilder<String, CompactNodeInfo, CompactNodeInfo.Builder>, ObjectBuilder<Map<String, CompactNodeInfo>>> fn) {
-			return nodes(fn.apply(new MapBuilder<>(CompactNodeInfo.Builder::new)).build());
+		/**
+		 * Required - API name: {@code nodes}
+		 * <p>
+		 * Adds an entry to <code>nodes</code>.
+		 */
+		public final Builder nodes(String key, CompactNodeInfo value) {
+			this.nodes = _mapPut(this.nodes, key, value);
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code nodes}
+		 * <p>
+		 * Adds an entry to <code>nodes</code> using a builder lambda.
+		 */
+		public final Builder nodes(String key, Function<CompactNodeInfo.Builder, ObjectBuilder<CompactNodeInfo>> fn) {
+			return nodes(key, fn.apply(new CompactNodeInfo.Builder()).build());
 		}
 
 		/**

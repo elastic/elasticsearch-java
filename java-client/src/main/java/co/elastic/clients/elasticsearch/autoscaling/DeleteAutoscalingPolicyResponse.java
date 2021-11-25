@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 
 // typedef: autoscaling.delete_autoscaling_policy.Response
 @JsonpDeserializable
@@ -43,10 +43,9 @@ public class DeleteAutoscalingPolicyResponse extends AcknowledgedResponseBase {
 
 	}
 
-	public static DeleteAutoscalingPolicyResponse of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static DeleteAutoscalingPolicyResponse of(
+			Function<Builder, ObjectBuilder<DeleteAutoscalingPolicyResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------

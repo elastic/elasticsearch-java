@@ -37,7 +37,7 @@ import co.elastic.clients.util.TaggedUnion;
 import co.elastic.clients.util.TaggedUnionUtils;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.mapping.Property
@@ -179,10 +179,8 @@ public class Property implements TaggedUnion<Property.Kind, PropertyVariant>, Js
 
 	}
 
-	public static Property of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static Property of(Function<Builder, ObjectBuilder<Property>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -953,10 +951,9 @@ public class Property implements TaggedUnion<Property.Kind, PropertyVariant>, Js
 			return this;
 		}
 
-		public ObjectBuilder<Property> aggregateMetricDouble(Consumer<AggregateMetricDoubleProperty.Builder> fn) {
-			AggregateMetricDoubleProperty.Builder builder = new AggregateMetricDoubleProperty.Builder();
-			fn.accept(builder);
-			return this.aggregateMetricDouble(builder.build());
+		public ObjectBuilder<Property> aggregateMetricDouble(
+				Function<AggregateMetricDoubleProperty.Builder, ObjectBuilder<AggregateMetricDoubleProperty>> fn) {
+			return this.aggregateMetricDouble(fn.apply(new AggregateMetricDoubleProperty.Builder()).build());
 		}
 
 		public ObjectBuilder<Property> binary(BinaryProperty v) {
@@ -965,10 +962,8 @@ public class Property implements TaggedUnion<Property.Kind, PropertyVariant>, Js
 			return this;
 		}
 
-		public ObjectBuilder<Property> binary(Consumer<BinaryProperty.Builder> fn) {
-			BinaryProperty.Builder builder = new BinaryProperty.Builder();
-			fn.accept(builder);
-			return this.binary(builder.build());
+		public ObjectBuilder<Property> binary(Function<BinaryProperty.Builder, ObjectBuilder<BinaryProperty>> fn) {
+			return this.binary(fn.apply(new BinaryProperty.Builder()).build());
 		}
 
 		public ObjectBuilder<Property> boolean_(BooleanProperty v) {
@@ -977,10 +972,8 @@ public class Property implements TaggedUnion<Property.Kind, PropertyVariant>, Js
 			return this;
 		}
 
-		public ObjectBuilder<Property> boolean_(Consumer<BooleanProperty.Builder> fn) {
-			BooleanProperty.Builder builder = new BooleanProperty.Builder();
-			fn.accept(builder);
-			return this.boolean_(builder.build());
+		public ObjectBuilder<Property> boolean_(Function<BooleanProperty.Builder, ObjectBuilder<BooleanProperty>> fn) {
+			return this.boolean_(fn.apply(new BooleanProperty.Builder()).build());
 		}
 
 		public ObjectBuilder<Property> byte_(ByteNumberProperty v) {
@@ -989,10 +982,9 @@ public class Property implements TaggedUnion<Property.Kind, PropertyVariant>, Js
 			return this;
 		}
 
-		public ObjectBuilder<Property> byte_(Consumer<ByteNumberProperty.Builder> fn) {
-			ByteNumberProperty.Builder builder = new ByteNumberProperty.Builder();
-			fn.accept(builder);
-			return this.byte_(builder.build());
+		public ObjectBuilder<Property> byte_(
+				Function<ByteNumberProperty.Builder, ObjectBuilder<ByteNumberProperty>> fn) {
+			return this.byte_(fn.apply(new ByteNumberProperty.Builder()).build());
 		}
 
 		public ObjectBuilder<Property> completion(CompletionProperty v) {
@@ -1001,10 +993,9 @@ public class Property implements TaggedUnion<Property.Kind, PropertyVariant>, Js
 			return this;
 		}
 
-		public ObjectBuilder<Property> completion(Consumer<CompletionProperty.Builder> fn) {
-			CompletionProperty.Builder builder = new CompletionProperty.Builder();
-			fn.accept(builder);
-			return this.completion(builder.build());
+		public ObjectBuilder<Property> completion(
+				Function<CompletionProperty.Builder, ObjectBuilder<CompletionProperty>> fn) {
+			return this.completion(fn.apply(new CompletionProperty.Builder()).build());
 		}
 
 		public ObjectBuilder<Property> constantKeyword(ConstantKeywordProperty v) {
@@ -1013,10 +1004,9 @@ public class Property implements TaggedUnion<Property.Kind, PropertyVariant>, Js
 			return this;
 		}
 
-		public ObjectBuilder<Property> constantKeyword(Consumer<ConstantKeywordProperty.Builder> fn) {
-			ConstantKeywordProperty.Builder builder = new ConstantKeywordProperty.Builder();
-			fn.accept(builder);
-			return this.constantKeyword(builder.build());
+		public ObjectBuilder<Property> constantKeyword(
+				Function<ConstantKeywordProperty.Builder, ObjectBuilder<ConstantKeywordProperty>> fn) {
+			return this.constantKeyword(fn.apply(new ConstantKeywordProperty.Builder()).build());
 		}
 
 		public ObjectBuilder<Property> dateNanos(DateNanosProperty v) {
@@ -1025,10 +1015,9 @@ public class Property implements TaggedUnion<Property.Kind, PropertyVariant>, Js
 			return this;
 		}
 
-		public ObjectBuilder<Property> dateNanos(Consumer<DateNanosProperty.Builder> fn) {
-			DateNanosProperty.Builder builder = new DateNanosProperty.Builder();
-			fn.accept(builder);
-			return this.dateNanos(builder.build());
+		public ObjectBuilder<Property> dateNanos(
+				Function<DateNanosProperty.Builder, ObjectBuilder<DateNanosProperty>> fn) {
+			return this.dateNanos(fn.apply(new DateNanosProperty.Builder()).build());
 		}
 
 		public ObjectBuilder<Property> date(DateProperty v) {
@@ -1037,10 +1026,8 @@ public class Property implements TaggedUnion<Property.Kind, PropertyVariant>, Js
 			return this;
 		}
 
-		public ObjectBuilder<Property> date(Consumer<DateProperty.Builder> fn) {
-			DateProperty.Builder builder = new DateProperty.Builder();
-			fn.accept(builder);
-			return this.date(builder.build());
+		public ObjectBuilder<Property> date(Function<DateProperty.Builder, ObjectBuilder<DateProperty>> fn) {
+			return this.date(fn.apply(new DateProperty.Builder()).build());
 		}
 
 		public ObjectBuilder<Property> dateRange(DateRangeProperty v) {
@@ -1049,10 +1036,9 @@ public class Property implements TaggedUnion<Property.Kind, PropertyVariant>, Js
 			return this;
 		}
 
-		public ObjectBuilder<Property> dateRange(Consumer<DateRangeProperty.Builder> fn) {
-			DateRangeProperty.Builder builder = new DateRangeProperty.Builder();
-			fn.accept(builder);
-			return this.dateRange(builder.build());
+		public ObjectBuilder<Property> dateRange(
+				Function<DateRangeProperty.Builder, ObjectBuilder<DateRangeProperty>> fn) {
+			return this.dateRange(fn.apply(new DateRangeProperty.Builder()).build());
 		}
 
 		public ObjectBuilder<Property> denseVector(DenseVectorProperty v) {
@@ -1061,10 +1047,9 @@ public class Property implements TaggedUnion<Property.Kind, PropertyVariant>, Js
 			return this;
 		}
 
-		public ObjectBuilder<Property> denseVector(Consumer<DenseVectorProperty.Builder> fn) {
-			DenseVectorProperty.Builder builder = new DenseVectorProperty.Builder();
-			fn.accept(builder);
-			return this.denseVector(builder.build());
+		public ObjectBuilder<Property> denseVector(
+				Function<DenseVectorProperty.Builder, ObjectBuilder<DenseVectorProperty>> fn) {
+			return this.denseVector(fn.apply(new DenseVectorProperty.Builder()).build());
 		}
 
 		public ObjectBuilder<Property> double_(DoubleNumberProperty v) {
@@ -1073,10 +1058,9 @@ public class Property implements TaggedUnion<Property.Kind, PropertyVariant>, Js
 			return this;
 		}
 
-		public ObjectBuilder<Property> double_(Consumer<DoubleNumberProperty.Builder> fn) {
-			DoubleNumberProperty.Builder builder = new DoubleNumberProperty.Builder();
-			fn.accept(builder);
-			return this.double_(builder.build());
+		public ObjectBuilder<Property> double_(
+				Function<DoubleNumberProperty.Builder, ObjectBuilder<DoubleNumberProperty>> fn) {
+			return this.double_(fn.apply(new DoubleNumberProperty.Builder()).build());
 		}
 
 		public ObjectBuilder<Property> doubleRange(DoubleRangeProperty v) {
@@ -1085,10 +1069,9 @@ public class Property implements TaggedUnion<Property.Kind, PropertyVariant>, Js
 			return this;
 		}
 
-		public ObjectBuilder<Property> doubleRange(Consumer<DoubleRangeProperty.Builder> fn) {
-			DoubleRangeProperty.Builder builder = new DoubleRangeProperty.Builder();
-			fn.accept(builder);
-			return this.doubleRange(builder.build());
+		public ObjectBuilder<Property> doubleRange(
+				Function<DoubleRangeProperty.Builder, ObjectBuilder<DoubleRangeProperty>> fn) {
+			return this.doubleRange(fn.apply(new DoubleRangeProperty.Builder()).build());
 		}
 
 		public ObjectBuilder<Property> alias(FieldAliasProperty v) {
@@ -1097,10 +1080,9 @@ public class Property implements TaggedUnion<Property.Kind, PropertyVariant>, Js
 			return this;
 		}
 
-		public ObjectBuilder<Property> alias(Consumer<FieldAliasProperty.Builder> fn) {
-			FieldAliasProperty.Builder builder = new FieldAliasProperty.Builder();
-			fn.accept(builder);
-			return this.alias(builder.build());
+		public ObjectBuilder<Property> alias(
+				Function<FieldAliasProperty.Builder, ObjectBuilder<FieldAliasProperty>> fn) {
+			return this.alias(fn.apply(new FieldAliasProperty.Builder()).build());
 		}
 
 		public ObjectBuilder<Property> flattened(FlattenedProperty v) {
@@ -1109,10 +1091,9 @@ public class Property implements TaggedUnion<Property.Kind, PropertyVariant>, Js
 			return this;
 		}
 
-		public ObjectBuilder<Property> flattened(Consumer<FlattenedProperty.Builder> fn) {
-			FlattenedProperty.Builder builder = new FlattenedProperty.Builder();
-			fn.accept(builder);
-			return this.flattened(builder.build());
+		public ObjectBuilder<Property> flattened(
+				Function<FlattenedProperty.Builder, ObjectBuilder<FlattenedProperty>> fn) {
+			return this.flattened(fn.apply(new FlattenedProperty.Builder()).build());
 		}
 
 		public ObjectBuilder<Property> float_(FloatNumberProperty v) {
@@ -1121,10 +1102,9 @@ public class Property implements TaggedUnion<Property.Kind, PropertyVariant>, Js
 			return this;
 		}
 
-		public ObjectBuilder<Property> float_(Consumer<FloatNumberProperty.Builder> fn) {
-			FloatNumberProperty.Builder builder = new FloatNumberProperty.Builder();
-			fn.accept(builder);
-			return this.float_(builder.build());
+		public ObjectBuilder<Property> float_(
+				Function<FloatNumberProperty.Builder, ObjectBuilder<FloatNumberProperty>> fn) {
+			return this.float_(fn.apply(new FloatNumberProperty.Builder()).build());
 		}
 
 		public ObjectBuilder<Property> floatRange(FloatRangeProperty v) {
@@ -1133,10 +1113,9 @@ public class Property implements TaggedUnion<Property.Kind, PropertyVariant>, Js
 			return this;
 		}
 
-		public ObjectBuilder<Property> floatRange(Consumer<FloatRangeProperty.Builder> fn) {
-			FloatRangeProperty.Builder builder = new FloatRangeProperty.Builder();
-			fn.accept(builder);
-			return this.floatRange(builder.build());
+		public ObjectBuilder<Property> floatRange(
+				Function<FloatRangeProperty.Builder, ObjectBuilder<FloatRangeProperty>> fn) {
+			return this.floatRange(fn.apply(new FloatRangeProperty.Builder()).build());
 		}
 
 		public ObjectBuilder<Property> geoPoint(GeoPointProperty v) {
@@ -1145,10 +1124,9 @@ public class Property implements TaggedUnion<Property.Kind, PropertyVariant>, Js
 			return this;
 		}
 
-		public ObjectBuilder<Property> geoPoint(Consumer<GeoPointProperty.Builder> fn) {
-			GeoPointProperty.Builder builder = new GeoPointProperty.Builder();
-			fn.accept(builder);
-			return this.geoPoint(builder.build());
+		public ObjectBuilder<Property> geoPoint(
+				Function<GeoPointProperty.Builder, ObjectBuilder<GeoPointProperty>> fn) {
+			return this.geoPoint(fn.apply(new GeoPointProperty.Builder()).build());
 		}
 
 		public ObjectBuilder<Property> geoShape(GeoShapeProperty v) {
@@ -1157,10 +1135,9 @@ public class Property implements TaggedUnion<Property.Kind, PropertyVariant>, Js
 			return this;
 		}
 
-		public ObjectBuilder<Property> geoShape(Consumer<GeoShapeProperty.Builder> fn) {
-			GeoShapeProperty.Builder builder = new GeoShapeProperty.Builder();
-			fn.accept(builder);
-			return this.geoShape(builder.build());
+		public ObjectBuilder<Property> geoShape(
+				Function<GeoShapeProperty.Builder, ObjectBuilder<GeoShapeProperty>> fn) {
+			return this.geoShape(fn.apply(new GeoShapeProperty.Builder()).build());
 		}
 
 		public ObjectBuilder<Property> halfFloat(HalfFloatNumberProperty v) {
@@ -1169,10 +1146,9 @@ public class Property implements TaggedUnion<Property.Kind, PropertyVariant>, Js
 			return this;
 		}
 
-		public ObjectBuilder<Property> halfFloat(Consumer<HalfFloatNumberProperty.Builder> fn) {
-			HalfFloatNumberProperty.Builder builder = new HalfFloatNumberProperty.Builder();
-			fn.accept(builder);
-			return this.halfFloat(builder.build());
+		public ObjectBuilder<Property> halfFloat(
+				Function<HalfFloatNumberProperty.Builder, ObjectBuilder<HalfFloatNumberProperty>> fn) {
+			return this.halfFloat(fn.apply(new HalfFloatNumberProperty.Builder()).build());
 		}
 
 		public ObjectBuilder<Property> histogram(HistogramProperty v) {
@@ -1181,10 +1157,9 @@ public class Property implements TaggedUnion<Property.Kind, PropertyVariant>, Js
 			return this;
 		}
 
-		public ObjectBuilder<Property> histogram(Consumer<HistogramProperty.Builder> fn) {
-			HistogramProperty.Builder builder = new HistogramProperty.Builder();
-			fn.accept(builder);
-			return this.histogram(builder.build());
+		public ObjectBuilder<Property> histogram(
+				Function<HistogramProperty.Builder, ObjectBuilder<HistogramProperty>> fn) {
+			return this.histogram(fn.apply(new HistogramProperty.Builder()).build());
 		}
 
 		public ObjectBuilder<Property> integer(IntegerNumberProperty v) {
@@ -1193,10 +1168,9 @@ public class Property implements TaggedUnion<Property.Kind, PropertyVariant>, Js
 			return this;
 		}
 
-		public ObjectBuilder<Property> integer(Consumer<IntegerNumberProperty.Builder> fn) {
-			IntegerNumberProperty.Builder builder = new IntegerNumberProperty.Builder();
-			fn.accept(builder);
-			return this.integer(builder.build());
+		public ObjectBuilder<Property> integer(
+				Function<IntegerNumberProperty.Builder, ObjectBuilder<IntegerNumberProperty>> fn) {
+			return this.integer(fn.apply(new IntegerNumberProperty.Builder()).build());
 		}
 
 		public ObjectBuilder<Property> integerRange(IntegerRangeProperty v) {
@@ -1205,10 +1179,9 @@ public class Property implements TaggedUnion<Property.Kind, PropertyVariant>, Js
 			return this;
 		}
 
-		public ObjectBuilder<Property> integerRange(Consumer<IntegerRangeProperty.Builder> fn) {
-			IntegerRangeProperty.Builder builder = new IntegerRangeProperty.Builder();
-			fn.accept(builder);
-			return this.integerRange(builder.build());
+		public ObjectBuilder<Property> integerRange(
+				Function<IntegerRangeProperty.Builder, ObjectBuilder<IntegerRangeProperty>> fn) {
+			return this.integerRange(fn.apply(new IntegerRangeProperty.Builder()).build());
 		}
 
 		public ObjectBuilder<Property> ip(IpProperty v) {
@@ -1217,10 +1190,8 @@ public class Property implements TaggedUnion<Property.Kind, PropertyVariant>, Js
 			return this;
 		}
 
-		public ObjectBuilder<Property> ip(Consumer<IpProperty.Builder> fn) {
-			IpProperty.Builder builder = new IpProperty.Builder();
-			fn.accept(builder);
-			return this.ip(builder.build());
+		public ObjectBuilder<Property> ip(Function<IpProperty.Builder, ObjectBuilder<IpProperty>> fn) {
+			return this.ip(fn.apply(new IpProperty.Builder()).build());
 		}
 
 		public ObjectBuilder<Property> ipRange(IpRangeProperty v) {
@@ -1229,10 +1200,8 @@ public class Property implements TaggedUnion<Property.Kind, PropertyVariant>, Js
 			return this;
 		}
 
-		public ObjectBuilder<Property> ipRange(Consumer<IpRangeProperty.Builder> fn) {
-			IpRangeProperty.Builder builder = new IpRangeProperty.Builder();
-			fn.accept(builder);
-			return this.ipRange(builder.build());
+		public ObjectBuilder<Property> ipRange(Function<IpRangeProperty.Builder, ObjectBuilder<IpRangeProperty>> fn) {
+			return this.ipRange(fn.apply(new IpRangeProperty.Builder()).build());
 		}
 
 		public ObjectBuilder<Property> join(JoinProperty v) {
@@ -1241,10 +1210,8 @@ public class Property implements TaggedUnion<Property.Kind, PropertyVariant>, Js
 			return this;
 		}
 
-		public ObjectBuilder<Property> join(Consumer<JoinProperty.Builder> fn) {
-			JoinProperty.Builder builder = new JoinProperty.Builder();
-			fn.accept(builder);
-			return this.join(builder.build());
+		public ObjectBuilder<Property> join(Function<JoinProperty.Builder, ObjectBuilder<JoinProperty>> fn) {
+			return this.join(fn.apply(new JoinProperty.Builder()).build());
 		}
 
 		public ObjectBuilder<Property> keyword(KeywordProperty v) {
@@ -1253,10 +1220,8 @@ public class Property implements TaggedUnion<Property.Kind, PropertyVariant>, Js
 			return this;
 		}
 
-		public ObjectBuilder<Property> keyword(Consumer<KeywordProperty.Builder> fn) {
-			KeywordProperty.Builder builder = new KeywordProperty.Builder();
-			fn.accept(builder);
-			return this.keyword(builder.build());
+		public ObjectBuilder<Property> keyword(Function<KeywordProperty.Builder, ObjectBuilder<KeywordProperty>> fn) {
+			return this.keyword(fn.apply(new KeywordProperty.Builder()).build());
 		}
 
 		public ObjectBuilder<Property> long_(LongNumberProperty v) {
@@ -1265,10 +1230,9 @@ public class Property implements TaggedUnion<Property.Kind, PropertyVariant>, Js
 			return this;
 		}
 
-		public ObjectBuilder<Property> long_(Consumer<LongNumberProperty.Builder> fn) {
-			LongNumberProperty.Builder builder = new LongNumberProperty.Builder();
-			fn.accept(builder);
-			return this.long_(builder.build());
+		public ObjectBuilder<Property> long_(
+				Function<LongNumberProperty.Builder, ObjectBuilder<LongNumberProperty>> fn) {
+			return this.long_(fn.apply(new LongNumberProperty.Builder()).build());
 		}
 
 		public ObjectBuilder<Property> longRange(LongRangeProperty v) {
@@ -1277,10 +1241,9 @@ public class Property implements TaggedUnion<Property.Kind, PropertyVariant>, Js
 			return this;
 		}
 
-		public ObjectBuilder<Property> longRange(Consumer<LongRangeProperty.Builder> fn) {
-			LongRangeProperty.Builder builder = new LongRangeProperty.Builder();
-			fn.accept(builder);
-			return this.longRange(builder.build());
+		public ObjectBuilder<Property> longRange(
+				Function<LongRangeProperty.Builder, ObjectBuilder<LongRangeProperty>> fn) {
+			return this.longRange(fn.apply(new LongRangeProperty.Builder()).build());
 		}
 
 		public ObjectBuilder<Property> murmur3(Murmur3HashProperty v) {
@@ -1289,10 +1252,9 @@ public class Property implements TaggedUnion<Property.Kind, PropertyVariant>, Js
 			return this;
 		}
 
-		public ObjectBuilder<Property> murmur3(Consumer<Murmur3HashProperty.Builder> fn) {
-			Murmur3HashProperty.Builder builder = new Murmur3HashProperty.Builder();
-			fn.accept(builder);
-			return this.murmur3(builder.build());
+		public ObjectBuilder<Property> murmur3(
+				Function<Murmur3HashProperty.Builder, ObjectBuilder<Murmur3HashProperty>> fn) {
+			return this.murmur3(fn.apply(new Murmur3HashProperty.Builder()).build());
 		}
 
 		public ObjectBuilder<Property> nested(NestedProperty v) {
@@ -1301,10 +1263,8 @@ public class Property implements TaggedUnion<Property.Kind, PropertyVariant>, Js
 			return this;
 		}
 
-		public ObjectBuilder<Property> nested(Consumer<NestedProperty.Builder> fn) {
-			NestedProperty.Builder builder = new NestedProperty.Builder();
-			fn.accept(builder);
-			return this.nested(builder.build());
+		public ObjectBuilder<Property> nested(Function<NestedProperty.Builder, ObjectBuilder<NestedProperty>> fn) {
+			return this.nested(fn.apply(new NestedProperty.Builder()).build());
 		}
 
 		public ObjectBuilder<Property> object(ObjectProperty v) {
@@ -1313,10 +1273,8 @@ public class Property implements TaggedUnion<Property.Kind, PropertyVariant>, Js
 			return this;
 		}
 
-		public ObjectBuilder<Property> object(Consumer<ObjectProperty.Builder> fn) {
-			ObjectProperty.Builder builder = new ObjectProperty.Builder();
-			fn.accept(builder);
-			return this.object(builder.build());
+		public ObjectBuilder<Property> object(Function<ObjectProperty.Builder, ObjectBuilder<ObjectProperty>> fn) {
+			return this.object(fn.apply(new ObjectProperty.Builder()).build());
 		}
 
 		public ObjectBuilder<Property> percolator(PercolatorProperty v) {
@@ -1325,10 +1283,9 @@ public class Property implements TaggedUnion<Property.Kind, PropertyVariant>, Js
 			return this;
 		}
 
-		public ObjectBuilder<Property> percolator(Consumer<PercolatorProperty.Builder> fn) {
-			PercolatorProperty.Builder builder = new PercolatorProperty.Builder();
-			fn.accept(builder);
-			return this.percolator(builder.build());
+		public ObjectBuilder<Property> percolator(
+				Function<PercolatorProperty.Builder, ObjectBuilder<PercolatorProperty>> fn) {
+			return this.percolator(fn.apply(new PercolatorProperty.Builder()).build());
 		}
 
 		public ObjectBuilder<Property> point(PointProperty v) {
@@ -1337,10 +1294,8 @@ public class Property implements TaggedUnion<Property.Kind, PropertyVariant>, Js
 			return this;
 		}
 
-		public ObjectBuilder<Property> point(Consumer<PointProperty.Builder> fn) {
-			PointProperty.Builder builder = new PointProperty.Builder();
-			fn.accept(builder);
-			return this.point(builder.build());
+		public ObjectBuilder<Property> point(Function<PointProperty.Builder, ObjectBuilder<PointProperty>> fn) {
+			return this.point(fn.apply(new PointProperty.Builder()).build());
 		}
 
 		public ObjectBuilder<Property> rankFeature(RankFeatureProperty v) {
@@ -1349,10 +1304,9 @@ public class Property implements TaggedUnion<Property.Kind, PropertyVariant>, Js
 			return this;
 		}
 
-		public ObjectBuilder<Property> rankFeature(Consumer<RankFeatureProperty.Builder> fn) {
-			RankFeatureProperty.Builder builder = new RankFeatureProperty.Builder();
-			fn.accept(builder);
-			return this.rankFeature(builder.build());
+		public ObjectBuilder<Property> rankFeature(
+				Function<RankFeatureProperty.Builder, ObjectBuilder<RankFeatureProperty>> fn) {
+			return this.rankFeature(fn.apply(new RankFeatureProperty.Builder()).build());
 		}
 
 		public ObjectBuilder<Property> rankFeatures(RankFeaturesProperty v) {
@@ -1361,10 +1315,9 @@ public class Property implements TaggedUnion<Property.Kind, PropertyVariant>, Js
 			return this;
 		}
 
-		public ObjectBuilder<Property> rankFeatures(Consumer<RankFeaturesProperty.Builder> fn) {
-			RankFeaturesProperty.Builder builder = new RankFeaturesProperty.Builder();
-			fn.accept(builder);
-			return this.rankFeatures(builder.build());
+		public ObjectBuilder<Property> rankFeatures(
+				Function<RankFeaturesProperty.Builder, ObjectBuilder<RankFeaturesProperty>> fn) {
+			return this.rankFeatures(fn.apply(new RankFeaturesProperty.Builder()).build());
 		}
 
 		public ObjectBuilder<Property> scaledFloat(ScaledFloatNumberProperty v) {
@@ -1373,10 +1326,9 @@ public class Property implements TaggedUnion<Property.Kind, PropertyVariant>, Js
 			return this;
 		}
 
-		public ObjectBuilder<Property> scaledFloat(Consumer<ScaledFloatNumberProperty.Builder> fn) {
-			ScaledFloatNumberProperty.Builder builder = new ScaledFloatNumberProperty.Builder();
-			fn.accept(builder);
-			return this.scaledFloat(builder.build());
+		public ObjectBuilder<Property> scaledFloat(
+				Function<ScaledFloatNumberProperty.Builder, ObjectBuilder<ScaledFloatNumberProperty>> fn) {
+			return this.scaledFloat(fn.apply(new ScaledFloatNumberProperty.Builder()).build());
 		}
 
 		public ObjectBuilder<Property> searchAsYouType(SearchAsYouTypeProperty v) {
@@ -1385,10 +1337,9 @@ public class Property implements TaggedUnion<Property.Kind, PropertyVariant>, Js
 			return this;
 		}
 
-		public ObjectBuilder<Property> searchAsYouType(Consumer<SearchAsYouTypeProperty.Builder> fn) {
-			SearchAsYouTypeProperty.Builder builder = new SearchAsYouTypeProperty.Builder();
-			fn.accept(builder);
-			return this.searchAsYouType(builder.build());
+		public ObjectBuilder<Property> searchAsYouType(
+				Function<SearchAsYouTypeProperty.Builder, ObjectBuilder<SearchAsYouTypeProperty>> fn) {
+			return this.searchAsYouType(fn.apply(new SearchAsYouTypeProperty.Builder()).build());
 		}
 
 		public ObjectBuilder<Property> shape(ShapeProperty v) {
@@ -1397,10 +1348,8 @@ public class Property implements TaggedUnion<Property.Kind, PropertyVariant>, Js
 			return this;
 		}
 
-		public ObjectBuilder<Property> shape(Consumer<ShapeProperty.Builder> fn) {
-			ShapeProperty.Builder builder = new ShapeProperty.Builder();
-			fn.accept(builder);
-			return this.shape(builder.build());
+		public ObjectBuilder<Property> shape(Function<ShapeProperty.Builder, ObjectBuilder<ShapeProperty>> fn) {
+			return this.shape(fn.apply(new ShapeProperty.Builder()).build());
 		}
 
 		public ObjectBuilder<Property> short_(ShortNumberProperty v) {
@@ -1409,10 +1358,9 @@ public class Property implements TaggedUnion<Property.Kind, PropertyVariant>, Js
 			return this;
 		}
 
-		public ObjectBuilder<Property> short_(Consumer<ShortNumberProperty.Builder> fn) {
-			ShortNumberProperty.Builder builder = new ShortNumberProperty.Builder();
-			fn.accept(builder);
-			return this.short_(builder.build());
+		public ObjectBuilder<Property> short_(
+				Function<ShortNumberProperty.Builder, ObjectBuilder<ShortNumberProperty>> fn) {
+			return this.short_(fn.apply(new ShortNumberProperty.Builder()).build());
 		}
 
 		public ObjectBuilder<Property> text(TextProperty v) {
@@ -1421,10 +1369,8 @@ public class Property implements TaggedUnion<Property.Kind, PropertyVariant>, Js
 			return this;
 		}
 
-		public ObjectBuilder<Property> text(Consumer<TextProperty.Builder> fn) {
-			TextProperty.Builder builder = new TextProperty.Builder();
-			fn.accept(builder);
-			return this.text(builder.build());
+		public ObjectBuilder<Property> text(Function<TextProperty.Builder, ObjectBuilder<TextProperty>> fn) {
+			return this.text(fn.apply(new TextProperty.Builder()).build());
 		}
 
 		public ObjectBuilder<Property> tokenCount(TokenCountProperty v) {
@@ -1433,10 +1379,9 @@ public class Property implements TaggedUnion<Property.Kind, PropertyVariant>, Js
 			return this;
 		}
 
-		public ObjectBuilder<Property> tokenCount(Consumer<TokenCountProperty.Builder> fn) {
-			TokenCountProperty.Builder builder = new TokenCountProperty.Builder();
-			fn.accept(builder);
-			return this.tokenCount(builder.build());
+		public ObjectBuilder<Property> tokenCount(
+				Function<TokenCountProperty.Builder, ObjectBuilder<TokenCountProperty>> fn) {
+			return this.tokenCount(fn.apply(new TokenCountProperty.Builder()).build());
 		}
 
 		public ObjectBuilder<Property> unsignedLong(UnsignedLongNumberProperty v) {
@@ -1445,10 +1390,9 @@ public class Property implements TaggedUnion<Property.Kind, PropertyVariant>, Js
 			return this;
 		}
 
-		public ObjectBuilder<Property> unsignedLong(Consumer<UnsignedLongNumberProperty.Builder> fn) {
-			UnsignedLongNumberProperty.Builder builder = new UnsignedLongNumberProperty.Builder();
-			fn.accept(builder);
-			return this.unsignedLong(builder.build());
+		public ObjectBuilder<Property> unsignedLong(
+				Function<UnsignedLongNumberProperty.Builder, ObjectBuilder<UnsignedLongNumberProperty>> fn) {
+			return this.unsignedLong(fn.apply(new UnsignedLongNumberProperty.Builder()).build());
 		}
 
 		public ObjectBuilder<Property> version(VersionProperty v) {
@@ -1457,10 +1401,8 @@ public class Property implements TaggedUnion<Property.Kind, PropertyVariant>, Js
 			return this;
 		}
 
-		public ObjectBuilder<Property> version(Consumer<VersionProperty.Builder> fn) {
-			VersionProperty.Builder builder = new VersionProperty.Builder();
-			fn.accept(builder);
-			return this.version(builder.build());
+		public ObjectBuilder<Property> version(Function<VersionProperty.Builder, ObjectBuilder<VersionProperty>> fn) {
+			return this.version(fn.apply(new VersionProperty.Builder()).build());
 		}
 
 		public ObjectBuilder<Property> wildcard(WildcardProperty v) {
@@ -1469,10 +1411,9 @@ public class Property implements TaggedUnion<Property.Kind, PropertyVariant>, Js
 			return this;
 		}
 
-		public ObjectBuilder<Property> wildcard(Consumer<WildcardProperty.Builder> fn) {
-			WildcardProperty.Builder builder = new WildcardProperty.Builder();
-			fn.accept(builder);
-			return this.wildcard(builder.build());
+		public ObjectBuilder<Property> wildcard(
+				Function<WildcardProperty.Builder, ObjectBuilder<WildcardProperty>> fn) {
+			return this.wildcard(fn.apply(new WildcardProperty.Builder()).build());
 		}
 
 		public Property build() {

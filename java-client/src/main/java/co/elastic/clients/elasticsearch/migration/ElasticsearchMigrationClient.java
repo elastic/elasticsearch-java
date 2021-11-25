@@ -33,7 +33,7 @@ import co.elastic.clients.transport.Transport;
 import co.elastic.clients.transport.TransportOptions;
 import co.elastic.clients.util.ObjectBuilder;
 import java.io.IOException;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 /**
@@ -86,11 +86,10 @@ public class ElasticsearchMigrationClient extends ApiClient<ElasticsearchTranspo
 	 *      on elastic.co</a>
 	 */
 
-	public final DeprecationsResponse deprecations(Consumer<DeprecationsRequest.Builder> fn)
+	public final DeprecationsResponse deprecations(
+			Function<DeprecationsRequest.Builder, ObjectBuilder<DeprecationsRequest>> fn)
 			throws IOException, ElasticsearchException {
-		DeprecationsRequest.Builder builder = new DeprecationsRequest.Builder();
-		fn.accept(builder);
-		return deprecations(builder.build());
+		return deprecations(fn.apply(new DeprecationsRequest.Builder()).build());
 	}
 
 	/**

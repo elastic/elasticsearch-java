@@ -30,16 +30,13 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -62,10 +59,8 @@ public class RoleDescriptor implements JsonpSerializable {
 
 	}
 
-	public static RoleDescriptor of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static RoleDescriptor of(Function<Builder, ObjectBuilder<RoleDescriptor>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -148,66 +143,93 @@ public class RoleDescriptor implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code cluster}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>cluster</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>cluster</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder cluster(List<String> value) {
-			this.cluster = value;
+		public final Builder cluster(List<String> list) {
+			this.cluster = _listAddAll(this.cluster, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code cluster}
+		 * <p>
+		 * Adds one or more values to <code>cluster</code>.
 		 */
-		public final Builder cluster(String... value) {
-			this.cluster = Arrays.asList(value);
+		public final Builder cluster(String value, String... values) {
+			this.cluster = _listAdd(this.cluster, value, values);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code index}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>index</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>index</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder index(List<IndexPrivileges> value) {
-			this.index = value;
+		public final Builder index(List<IndexPrivileges> list) {
+			this.index = _listAddAll(this.index, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code index}
+		 * <p>
+		 * Adds one or more values to <code>index</code>.
 		 */
-		public final Builder index(IndexPrivileges... value) {
-			this.index = Arrays.asList(value);
+		public final Builder index(IndexPrivileges value, IndexPrivileges... values) {
+			this.index = _listAdd(this.index, value, values);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code index}
+		 * <p>
+		 * Adds a value to <code>index</code> using a builder lambda.
 		 */
-		public final Builder index(
-				Function<ListBuilder<IndexPrivileges, IndexPrivileges.Builder>, ObjectBuilder<List<IndexPrivileges>>> fn) {
-			return index(fn.apply(new ListBuilder<>(IndexPrivileges.Builder::new)).build());
+		public final Builder index(Function<IndexPrivileges.Builder, ObjectBuilder<IndexPrivileges>> fn) {
+			return index(fn.apply(new IndexPrivileges.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code applications}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>applications</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>applications</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder applications(@Nullable List<ApplicationPrivileges> value) {
-			this.applications = value;
+		public final Builder applications(List<ApplicationPrivileges> list) {
+			this.applications = _listAddAll(this.applications, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code applications}
+		 * <p>
+		 * Adds one or more values to <code>applications</code>.
 		 */
-		public final Builder applications(ApplicationPrivileges... value) {
-			this.applications = Arrays.asList(value);
+		public final Builder applications(ApplicationPrivileges value, ApplicationPrivileges... values) {
+			this.applications = _listAdd(this.applications, value, values);
 			return this;
 		}
 
 		/**
 		 * API name: {@code applications}
+		 * <p>
+		 * Adds a value to <code>applications</code> using a builder lambda.
 		 */
 		public final Builder applications(
-				Function<ListBuilder<ApplicationPrivileges, ApplicationPrivileges.Builder>, ObjectBuilder<List<ApplicationPrivileges>>> fn) {
-			return applications(fn.apply(new ListBuilder<>(ApplicationPrivileges.Builder::new)).build());
+				Function<ApplicationPrivileges.Builder, ObjectBuilder<ApplicationPrivileges>> fn) {
+			return applications(fn.apply(new ApplicationPrivileges.Builder()).build());
 		}
 
 		/**

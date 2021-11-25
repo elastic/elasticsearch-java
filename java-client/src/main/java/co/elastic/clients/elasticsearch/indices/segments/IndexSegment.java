@@ -37,7 +37,7 @@ import java.lang.String;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.segments.IndexSegment
@@ -53,10 +53,8 @@ public class IndexSegment implements JsonpSerializable {
 
 	}
 
-	public static IndexSegment of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static IndexSegment of(Function<Builder, ObjectBuilder<IndexSegment>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -108,9 +106,25 @@ public class IndexSegment implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code shards}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>shards</code>. Use
+		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
+		 * <code>shards</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetMap()
 		 */
-		public final Builder shards(Map<String, List<ShardsSegment>> value) {
-			this.shards = value;
+		public final Builder shards(Map<String, List<ShardsSegment>> map) {
+			this.shards = _mapPutAll(this.shards, map);
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code shards}
+		 * <p>
+		 * Adds an entry to <code>shards</code>.
+		 */
+		public final Builder shards(String key, List<ShardsSegment> value) {
+			this.shards = _mapPut(this.shards, key, value);
 			return this;
 		}
 

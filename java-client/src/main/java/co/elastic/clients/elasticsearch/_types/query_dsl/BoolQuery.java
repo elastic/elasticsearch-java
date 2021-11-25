@@ -28,15 +28,12 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -67,10 +64,8 @@ public class BoolQuery extends QueryBase implements QueryVariant {
 
 	}
 
-	public static BoolQuery of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static BoolQuery of(Function<Builder, ObjectBuilder<BoolQuery>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -191,25 +186,35 @@ public class BoolQuery extends QueryBase implements QueryVariant {
 
 		/**
 		 * API name: {@code filter}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>filter</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>filter</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder filter(@Nullable List<Query> value) {
-			this.filter = value;
+		public final Builder filter(List<Query> list) {
+			this.filter = _listAddAll(this.filter, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code filter}
+		 * <p>
+		 * Adds one or more values to <code>filter</code>.
 		 */
-		public final Builder filter(Query... value) {
-			this.filter = Arrays.asList(value);
+		public final Builder filter(Query value, Query... values) {
+			this.filter = _listAdd(this.filter, value, values);
 			return this;
 		}
 
 		/**
 		 * API name: {@code filter}
+		 * <p>
+		 * Adds a value to <code>filter</code> using a builder lambda.
 		 */
-		public final Builder filter(Function<ListBuilder<Query, Query.Builder>, ObjectBuilder<List<Query>>> fn) {
-			return filter(fn.apply(new ListBuilder<>(Query.Builder::new)).build());
+		public final Builder filter(Function<Query.Builder, ObjectBuilder<Query>> fn) {
+			return filter(fn.apply(new Query.Builder()).build());
 		}
 
 		/**
@@ -222,71 +227,101 @@ public class BoolQuery extends QueryBase implements QueryVariant {
 
 		/**
 		 * API name: {@code must}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>must</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>must</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder must(@Nullable List<Query> value) {
-			this.must = value;
+		public final Builder must(List<Query> list) {
+			this.must = _listAddAll(this.must, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code must}
+		 * <p>
+		 * Adds one or more values to <code>must</code>.
 		 */
-		public final Builder must(Query... value) {
-			this.must = Arrays.asList(value);
+		public final Builder must(Query value, Query... values) {
+			this.must = _listAdd(this.must, value, values);
 			return this;
 		}
 
 		/**
 		 * API name: {@code must}
+		 * <p>
+		 * Adds a value to <code>must</code> using a builder lambda.
 		 */
-		public final Builder must(Function<ListBuilder<Query, Query.Builder>, ObjectBuilder<List<Query>>> fn) {
-			return must(fn.apply(new ListBuilder<>(Query.Builder::new)).build());
+		public final Builder must(Function<Query.Builder, ObjectBuilder<Query>> fn) {
+			return must(fn.apply(new Query.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code must_not}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>mustNot</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>mustNot</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder mustNot(@Nullable List<Query> value) {
-			this.mustNot = value;
+		public final Builder mustNot(List<Query> list) {
+			this.mustNot = _listAddAll(this.mustNot, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code must_not}
+		 * <p>
+		 * Adds one or more values to <code>mustNot</code>.
 		 */
-		public final Builder mustNot(Query... value) {
-			this.mustNot = Arrays.asList(value);
+		public final Builder mustNot(Query value, Query... values) {
+			this.mustNot = _listAdd(this.mustNot, value, values);
 			return this;
 		}
 
 		/**
 		 * API name: {@code must_not}
+		 * <p>
+		 * Adds a value to <code>mustNot</code> using a builder lambda.
 		 */
-		public final Builder mustNot(Function<ListBuilder<Query, Query.Builder>, ObjectBuilder<List<Query>>> fn) {
-			return mustNot(fn.apply(new ListBuilder<>(Query.Builder::new)).build());
+		public final Builder mustNot(Function<Query.Builder, ObjectBuilder<Query>> fn) {
+			return mustNot(fn.apply(new Query.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code should}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>should</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>should</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder should(@Nullable List<Query> value) {
-			this.should = value;
+		public final Builder should(List<Query> list) {
+			this.should = _listAddAll(this.should, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code should}
+		 * <p>
+		 * Adds one or more values to <code>should</code>.
 		 */
-		public final Builder should(Query... value) {
-			this.should = Arrays.asList(value);
+		public final Builder should(Query value, Query... values) {
+			this.should = _listAdd(this.should, value, values);
 			return this;
 		}
 
 		/**
 		 * API name: {@code should}
+		 * <p>
+		 * Adds a value to <code>should</code> using a builder lambda.
 		 */
-		public final Builder should(Function<ListBuilder<Query, Query.Builder>, ObjectBuilder<List<Query>>> fn) {
-			return should(fn.apply(new ListBuilder<>(Query.Builder::new)).build());
+		public final Builder should(Function<Query.Builder, ObjectBuilder<Query>> fn) {
+			return should(fn.apply(new Query.Builder()).build());
 		}
 
 		@Override

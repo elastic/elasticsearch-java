@@ -42,11 +42,10 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Long;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.put_job.Request
@@ -119,10 +118,8 @@ public class PutJobRequest extends RequestBase implements JsonpSerializable {
 
 	}
 
-	public static PutJobRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static PutJobRequest of(Function<Builder, ObjectBuilder<PutJobRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -503,10 +500,8 @@ public class PutJobRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code analysis_config}
 		 */
-		public final Builder analysisConfig(Consumer<AnalysisConfig.Builder> fn) {
-			AnalysisConfig.Builder builder = new AnalysisConfig.Builder();
-			fn.accept(builder);
-			return this.analysisConfig(builder.build());
+		public final Builder analysisConfig(Function<AnalysisConfig.Builder, ObjectBuilder<AnalysisConfig>> fn) {
+			return this.analysisConfig(fn.apply(new AnalysisConfig.Builder()).build());
 		}
 
 		/**
@@ -530,10 +525,8 @@ public class PutJobRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code analysis_limits}
 		 */
-		public final Builder analysisLimits(Consumer<AnalysisLimits.Builder> fn) {
-			AnalysisLimits.Builder builder = new AnalysisLimits.Builder();
-			fn.accept(builder);
-			return this.analysisLimits(builder.build());
+		public final Builder analysisLimits(Function<AnalysisLimits.Builder, ObjectBuilder<AnalysisLimits>> fn) {
+			return this.analysisLimits(fn.apply(new AnalysisLimits.Builder()).build());
 		}
 
 		/**
@@ -561,10 +554,8 @@ public class PutJobRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code background_persist_interval}
 		 */
-		public final Builder backgroundPersistInterval(Consumer<Time.Builder> fn) {
-			Time.Builder builder = new Time.Builder();
-			fn.accept(builder);
-			return this.backgroundPersistInterval(builder.build());
+		public final Builder backgroundPersistInterval(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.backgroundPersistInterval(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -614,10 +605,8 @@ public class PutJobRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code data_description}
 		 */
-		public final Builder dataDescription(Consumer<DataDescription.Builder> fn) {
-			DataDescription.Builder builder = new DataDescription.Builder();
-			fn.accept(builder);
-			return this.dataDescription(builder.build());
+		public final Builder dataDescription(Function<DataDescription.Builder, ObjectBuilder<DataDescription>> fn) {
+			return this.dataDescription(fn.apply(new DataDescription.Builder()).build());
 		}
 
 		/**
@@ -635,10 +624,8 @@ public class PutJobRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code datafeed_config}
 		 */
-		public final Builder datafeedConfig(Consumer<DatafeedConfig.Builder> fn) {
-			DatafeedConfig.Builder builder = new DatafeedConfig.Builder();
-			fn.accept(builder);
-			return this.datafeedConfig(builder.build());
+		public final Builder datafeedConfig(Function<DatafeedConfig.Builder, ObjectBuilder<DatafeedConfig>> fn) {
+			return this.datafeedConfig(fn.apply(new DatafeedConfig.Builder()).build());
 		}
 
 		/**
@@ -655,9 +642,15 @@ public class PutJobRequest extends RequestBase implements JsonpSerializable {
 		 * A list of job groups. A job can belong to no groups or many.
 		 * <p>
 		 * API name: {@code groups}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>groups</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>groups</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder groups(@Nullable List<String> value) {
-			this.groups = value;
+		public final Builder groups(List<String> list) {
+			this.groups = _listAddAll(this.groups, list);
 			return this;
 		}
 
@@ -665,9 +658,11 @@ public class PutJobRequest extends RequestBase implements JsonpSerializable {
 		 * A list of job groups. A job can belong to no groups or many.
 		 * <p>
 		 * API name: {@code groups}
+		 * <p>
+		 * Adds one or more values to <code>groups</code>.
 		 */
-		public final Builder groups(String... value) {
-			this.groups = Arrays.asList(value);
+		public final Builder groups(String value, String... values) {
+			this.groups = _listAdd(this.groups, value, values);
 			return this;
 		}
 
@@ -714,10 +709,8 @@ public class PutJobRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code model_plot_config}
 		 */
-		public final Builder modelPlotConfig(Consumer<ModelPlotConfig.Builder> fn) {
-			ModelPlotConfig.Builder builder = new ModelPlotConfig.Builder();
-			fn.accept(builder);
-			return this.modelPlotConfig(builder.build());
+		public final Builder modelPlotConfig(Function<ModelPlotConfig.Builder, ObjectBuilder<ModelPlotConfig>> fn) {
+			return this.modelPlotConfig(fn.apply(new ModelPlotConfig.Builder()).build());
 		}
 
 		/**

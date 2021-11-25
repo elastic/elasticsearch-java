@@ -35,7 +35,7 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: slm._types.Policy
@@ -63,10 +63,8 @@ public class SlmPolicy implements JsonpSerializable {
 
 	}
 
-	public static SlmPolicy of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static SlmPolicy of(Function<Builder, ObjectBuilder<SlmPolicy>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -159,10 +157,8 @@ public class SlmPolicy implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code config}
 		 */
-		public final Builder config(Consumer<SlmConfiguration.Builder> fn) {
-			SlmConfiguration.Builder builder = new SlmConfiguration.Builder();
-			fn.accept(builder);
-			return this.config(builder.build());
+		public final Builder config(Function<SlmConfiguration.Builder, ObjectBuilder<SlmConfiguration>> fn) {
+			return this.config(fn.apply(new SlmConfiguration.Builder()).build());
 		}
 
 		/**
@@ -192,10 +188,8 @@ public class SlmPolicy implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code retention}
 		 */
-		public final Builder retention(Consumer<Retention.Builder> fn) {
-			Retention.Builder builder = new Retention.Builder();
-			fn.accept(builder);
-			return this.retention(builder.build());
+		public final Builder retention(Function<Retention.Builder, ObjectBuilder<Retention>> fn) {
+			return this.retention(fn.apply(new Retention.Builder()).build());
 		}
 
 		/**

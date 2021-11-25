@@ -29,16 +29,13 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -59,10 +56,8 @@ public class GetTrainedModelsStatsResponse implements JsonpSerializable {
 
 	}
 
-	public static GetTrainedModelsStatsResponse of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static GetTrainedModelsStatsResponse of(Function<Builder, ObjectBuilder<GetTrainedModelsStatsResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -142,9 +137,15 @@ public class GetTrainedModelsStatsResponse implements JsonpSerializable {
 		 * model_id value in ascending order.
 		 * <p>
 		 * API name: {@code trained_model_stats}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>trainedModelStats</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>trainedModelStats</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder trainedModelStats(List<TrainedModelStats> value) {
-			this.trainedModelStats = value;
+		public final Builder trainedModelStats(List<TrainedModelStats> list) {
+			this.trainedModelStats = _listAddAll(this.trainedModelStats, list);
 			return this;
 		}
 
@@ -153,9 +154,11 @@ public class GetTrainedModelsStatsResponse implements JsonpSerializable {
 		 * model_id value in ascending order.
 		 * <p>
 		 * API name: {@code trained_model_stats}
+		 * <p>
+		 * Adds one or more values to <code>trainedModelStats</code>.
 		 */
-		public final Builder trainedModelStats(TrainedModelStats... value) {
-			this.trainedModelStats = Arrays.asList(value);
+		public final Builder trainedModelStats(TrainedModelStats value, TrainedModelStats... values) {
+			this.trainedModelStats = _listAdd(this.trainedModelStats, value, values);
 			return this;
 		}
 
@@ -164,10 +167,12 @@ public class GetTrainedModelsStatsResponse implements JsonpSerializable {
 		 * model_id value in ascending order.
 		 * <p>
 		 * API name: {@code trained_model_stats}
+		 * <p>
+		 * Adds a value to <code>trainedModelStats</code> using a builder lambda.
 		 */
 		public final Builder trainedModelStats(
-				Function<ListBuilder<TrainedModelStats, TrainedModelStats.Builder>, ObjectBuilder<List<TrainedModelStats>>> fn) {
-			return trainedModelStats(fn.apply(new ListBuilder<>(TrainedModelStats.Builder::new)).build());
+				Function<TrainedModelStats.Builder, ObjectBuilder<TrainedModelStats>> fn) {
+			return trainedModelStats(fn.apply(new TrainedModelStats.Builder()).build());
 		}
 
 		/**

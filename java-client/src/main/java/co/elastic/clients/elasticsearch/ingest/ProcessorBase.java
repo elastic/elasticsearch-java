@@ -29,14 +29,12 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
@@ -170,26 +168,35 @@ public abstract class ProcessorBase implements JsonpSerializable {
 
 		/**
 		 * API name: {@code on_failure}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>onFailure</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>onFailure</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final BuilderT onFailure(@Nullable List<Processor> value) {
-			this.onFailure = value;
+		public final BuilderT onFailure(List<Processor> list) {
+			this.onFailure = _listAddAll(this.onFailure, list);
 			return self();
 		}
 
 		/**
 		 * API name: {@code on_failure}
+		 * <p>
+		 * Adds one or more values to <code>onFailure</code>.
 		 */
-		public final BuilderT onFailure(Processor... value) {
-			this.onFailure = Arrays.asList(value);
+		public final BuilderT onFailure(Processor value, Processor... values) {
+			this.onFailure = _listAdd(this.onFailure, value, values);
 			return self();
 		}
 
 		/**
 		 * API name: {@code on_failure}
+		 * <p>
+		 * Adds a value to <code>onFailure</code> using a builder lambda.
 		 */
-		public final BuilderT onFailure(
-				Function<ListBuilder<Processor, Processor.Builder>, ObjectBuilder<List<Processor>>> fn) {
-			return onFailure(fn.apply(new ListBuilder<>(Processor.Builder::new)).build());
+		public final BuilderT onFailure(Function<Processor.Builder, ObjectBuilder<Processor>> fn) {
+			return onFailure(fn.apply(new Processor.Builder()).build());
 		}
 
 		/**

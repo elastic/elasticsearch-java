@@ -32,7 +32,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 
 // typedef: security.get_user.Response
 @JsonpDeserializable
@@ -44,10 +44,8 @@ public class GetUserResponse extends DictionaryResponse<String, User> {
 
 	}
 
-	public static GetUserResponse of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static GetUserResponse of(Function<Builder, ObjectBuilder<GetUserResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------

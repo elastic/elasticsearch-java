@@ -33,10 +33,9 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Double;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.PercentileRanksAggregation
@@ -65,10 +64,8 @@ public class PercentileRanksAggregation extends FormatMetricAggregationBase impl
 
 	}
 
-	public static PercentileRanksAggregation of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static PercentileRanksAggregation of(Function<Builder, ObjectBuilder<PercentileRanksAggregation>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -171,17 +168,25 @@ public class PercentileRanksAggregation extends FormatMetricAggregationBase impl
 
 		/**
 		 * API name: {@code values}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>values</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>values</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder values(@Nullable List<Double> value) {
-			this.values = value;
+		public final Builder values(List<Double> list) {
+			this.values = _listAddAll(this.values, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code values}
+		 * <p>
+		 * Adds one or more values to <code>values</code>.
 		 */
-		public final Builder values(Double... value) {
-			this.values = Arrays.asList(value);
+		public final Builder values(Double value, Double... values) {
+			this.values = _listAdd(this.values, value, values);
 			return this;
 		}
 
@@ -196,10 +201,8 @@ public class PercentileRanksAggregation extends FormatMetricAggregationBase impl
 		/**
 		 * API name: {@code hdr}
 		 */
-		public final Builder hdr(Consumer<HdrMethod.Builder> fn) {
-			HdrMethod.Builder builder = new HdrMethod.Builder();
-			fn.accept(builder);
-			return this.hdr(builder.build());
+		public final Builder hdr(Function<HdrMethod.Builder, ObjectBuilder<HdrMethod>> fn) {
+			return this.hdr(fn.apply(new HdrMethod.Builder()).build());
 		}
 
 		/**
@@ -213,10 +216,8 @@ public class PercentileRanksAggregation extends FormatMetricAggregationBase impl
 		/**
 		 * API name: {@code tdigest}
 		 */
-		public final Builder tdigest(Consumer<TDigest.Builder> fn) {
-			TDigest.Builder builder = new TDigest.Builder();
-			fn.accept(builder);
-			return this.tdigest(builder.build());
+		public final Builder tdigest(Function<TDigest.Builder, ObjectBuilder<TDigest>> fn) {
+			return this.tdigest(fn.apply(new TDigest.Builder()).build());
 		}
 
 		@Override

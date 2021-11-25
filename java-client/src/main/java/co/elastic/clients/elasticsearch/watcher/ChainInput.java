@@ -29,15 +29,12 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -54,10 +51,8 @@ public class ChainInput implements InputVariant, JsonpSerializable {
 
 	}
 
-	public static ChainInput of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static ChainInput of(Function<Builder, ObjectBuilder<ChainInput>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -109,25 +104,35 @@ public class ChainInput implements InputVariant, JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code inputs}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>inputs</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>inputs</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder inputs(List<Input> value) {
-			this.inputs = value;
+		public final Builder inputs(List<Input> list) {
+			this.inputs = _listAddAll(this.inputs, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code inputs}
+		 * <p>
+		 * Adds one or more values to <code>inputs</code>.
 		 */
-		public final Builder inputs(Input... value) {
-			this.inputs = Arrays.asList(value);
+		public final Builder inputs(Input value, Input... values) {
+			this.inputs = _listAdd(this.inputs, value, values);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code inputs}
+		 * <p>
+		 * Adds a value to <code>inputs</code> using a builder lambda.
 		 */
-		public final Builder inputs(Function<ListBuilder<Input, Input.Builder>, ObjectBuilder<List<Input>>> fn) {
-			return inputs(fn.apply(new ListBuilder<>(Input.Builder::new)).build());
+		public final Builder inputs(Function<Input.Builder, ObjectBuilder<Input>> fn) {
+			return inputs(fn.apply(new Input.Builder()).build());
 		}
 
 		/**

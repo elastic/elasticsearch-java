@@ -36,7 +36,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: nodes.info.NodeOperatingSystemInfo
@@ -85,10 +85,8 @@ public class NodeOperatingSystemInfo implements JsonpSerializable {
 
 	}
 
-	public static NodeOperatingSystemInfo of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static NodeOperatingSystemInfo of(Function<Builder, ObjectBuilder<NodeOperatingSystemInfo>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -342,10 +340,8 @@ public class NodeOperatingSystemInfo implements JsonpSerializable {
 		/**
 		 * API name: {@code cpu}
 		 */
-		public final Builder cpu(Consumer<NodeInfoOSCPU.Builder> fn) {
-			NodeInfoOSCPU.Builder builder = new NodeInfoOSCPU.Builder();
-			fn.accept(builder);
-			return this.cpu(builder.build());
+		public final Builder cpu(Function<NodeInfoOSCPU.Builder, ObjectBuilder<NodeInfoOSCPU>> fn) {
+			return this.cpu(fn.apply(new NodeInfoOSCPU.Builder()).build());
 		}
 
 		/**
@@ -359,10 +355,8 @@ public class NodeOperatingSystemInfo implements JsonpSerializable {
 		/**
 		 * API name: {@code mem}
 		 */
-		public final Builder mem(Consumer<NodeInfoMemory.Builder> fn) {
-			NodeInfoMemory.Builder builder = new NodeInfoMemory.Builder();
-			fn.accept(builder);
-			return this.mem(builder.build());
+		public final Builder mem(Function<NodeInfoMemory.Builder, ObjectBuilder<NodeInfoMemory>> fn) {
+			return this.mem(fn.apply(new NodeInfoMemory.Builder()).build());
 		}
 
 		/**
@@ -376,10 +370,8 @@ public class NodeOperatingSystemInfo implements JsonpSerializable {
 		/**
 		 * API name: {@code swap}
 		 */
-		public final Builder swap(Consumer<NodeInfoMemory.Builder> fn) {
-			NodeInfoMemory.Builder builder = new NodeInfoMemory.Builder();
-			fn.accept(builder);
-			return this.swap(builder.build());
+		public final Builder swap(Function<NodeInfoMemory.Builder, ObjectBuilder<NodeInfoMemory>> fn) {
+			return this.swap(fn.apply(new NodeInfoMemory.Builder()).build());
 		}
 
 		/**

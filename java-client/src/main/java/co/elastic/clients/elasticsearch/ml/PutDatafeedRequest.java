@@ -40,7 +40,6 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.MapBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
@@ -48,12 +47,10 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
@@ -134,10 +131,8 @@ public class PutDatafeedRequest extends RequestBase implements JsonpSerializable
 
 	}
 
-	public static PutDatafeedRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static PutDatafeedRequest of(Function<Builder, ObjectBuilder<PutDatafeedRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -453,15 +448,35 @@ public class PutDatafeedRequest extends RequestBase implements JsonpSerializable
 
 		/**
 		 * API name: {@code aggregations}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>aggregations</code>. Use
+		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
+		 * <code>aggregations</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetMap()
 		 */
-		public final Builder aggregations(@Nullable Map<String, Aggregation> value) {
-			this.aggregations = value;
+		public final Builder aggregations(Map<String, Aggregation> map) {
+			this.aggregations = _mapPutAll(this.aggregations, map);
 			return this;
 		}
 
-		public final Builder aggregations(
-				Function<MapBuilder<String, Aggregation, Aggregation.Builder>, ObjectBuilder<Map<String, Aggregation>>> fn) {
-			return aggregations(fn.apply(new MapBuilder<>(Aggregation.Builder::new)).build());
+		/**
+		 * API name: {@code aggregations}
+		 * <p>
+		 * Adds an entry to <code>aggregations</code>.
+		 */
+		public final Builder aggregations(String key, Aggregation value) {
+			this.aggregations = _mapPut(this.aggregations, key, value);
+			return this;
+		}
+
+		/**
+		 * API name: {@code aggregations}
+		 * <p>
+		 * Adds an entry to <code>aggregations</code> using a builder lambda.
+		 */
+		public final Builder aggregations(String key, Function<Aggregation.Builder, ObjectBuilder<Aggregation>> fn) {
+			return aggregations(key, fn.apply(new Aggregation.Builder()).build());
 		}
 
 		/**
@@ -486,10 +501,8 @@ public class PutDatafeedRequest extends RequestBase implements JsonpSerializable
 		/**
 		 * API name: {@code chunking_config}
 		 */
-		public final Builder chunkingConfig(Consumer<ChunkingConfig.Builder> fn) {
-			ChunkingConfig.Builder builder = new ChunkingConfig.Builder();
-			fn.accept(builder);
-			return this.chunkingConfig(builder.build());
+		public final Builder chunkingConfig(Function<ChunkingConfig.Builder, ObjectBuilder<ChunkingConfig>> fn) {
+			return this.chunkingConfig(fn.apply(new ChunkingConfig.Builder()).build());
 		}
 
 		/**
@@ -513,10 +526,9 @@ public class PutDatafeedRequest extends RequestBase implements JsonpSerializable
 		/**
 		 * API name: {@code delayed_data_check_config}
 		 */
-		public final Builder delayedDataCheckConfig(Consumer<DelayedDataCheckConfig.Builder> fn) {
-			DelayedDataCheckConfig.Builder builder = new DelayedDataCheckConfig.Builder();
-			fn.accept(builder);
-			return this.delayedDataCheckConfig(builder.build());
+		public final Builder delayedDataCheckConfig(
+				Function<DelayedDataCheckConfig.Builder, ObjectBuilder<DelayedDataCheckConfig>> fn) {
+			return this.delayedDataCheckConfig(fn.apply(new DelayedDataCheckConfig.Builder()).build());
 		}
 
 		/**
@@ -524,9 +536,15 @@ public class PutDatafeedRequest extends RequestBase implements JsonpSerializable
 		 * indices (default: open)
 		 * <p>
 		 * API name: {@code expand_wildcards}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>expandWildcards</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>expandWildcards</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder expandWildcards(@Nullable List<ExpandWildcard> value) {
-			this.expandWildcards = value;
+		public final Builder expandWildcards(List<ExpandWildcard> list) {
+			this.expandWildcards = _listAddAll(this.expandWildcards, list);
 			return this;
 		}
 
@@ -535,9 +553,11 @@ public class PutDatafeedRequest extends RequestBase implements JsonpSerializable
 		 * indices (default: open)
 		 * <p>
 		 * API name: {@code expand_wildcards}
+		 * <p>
+		 * Adds one or more values to <code>expandWildcards</code>.
 		 */
-		public final Builder expandWildcards(ExpandWildcard... value) {
-			this.expandWildcards = Arrays.asList(value);
+		public final Builder expandWildcards(ExpandWildcard value, ExpandWildcard... values) {
+			this.expandWildcards = _listAdd(this.expandWildcards, value, values);
 			return this;
 		}
 
@@ -552,10 +572,8 @@ public class PutDatafeedRequest extends RequestBase implements JsonpSerializable
 		/**
 		 * API name: {@code frequency}
 		 */
-		public final Builder frequency(Consumer<Time.Builder> fn) {
-			Time.Builder builder = new Time.Builder();
-			fn.accept(builder);
-			return this.frequency(builder.build());
+		public final Builder frequency(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.frequency(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -580,17 +598,25 @@ public class PutDatafeedRequest extends RequestBase implements JsonpSerializable
 
 		/**
 		 * API name: {@code indices}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>indices</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>indices</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder indices(@Nullable List<String> value) {
-			this.indices = value;
+		public final Builder indices(List<String> list) {
+			this.indices = _listAddAll(this.indices, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code indices}
+		 * <p>
+		 * Adds one or more values to <code>indices</code>.
 		 */
-		public final Builder indices(String... value) {
-			this.indices = Arrays.asList(value);
+		public final Builder indices(String value, String... values) {
+			this.indices = _listAdd(this.indices, value, values);
 			return this;
 		}
 
@@ -605,10 +631,8 @@ public class PutDatafeedRequest extends RequestBase implements JsonpSerializable
 		/**
 		 * API name: {@code indices_options}
 		 */
-		public final Builder indicesOptions(Consumer<IndicesOptions.Builder> fn) {
-			IndicesOptions.Builder builder = new IndicesOptions.Builder();
-			fn.accept(builder);
-			return this.indicesOptions(builder.build());
+		public final Builder indicesOptions(Function<IndicesOptions.Builder, ObjectBuilder<IndicesOptions>> fn) {
+			return this.indicesOptions(fn.apply(new IndicesOptions.Builder()).build());
 		}
 
 		/**
@@ -638,10 +662,8 @@ public class PutDatafeedRequest extends RequestBase implements JsonpSerializable
 		/**
 		 * API name: {@code query}
 		 */
-		public final Builder query(Consumer<Query.Builder> fn) {
-			Query.Builder builder = new Query.Builder();
-			fn.accept(builder);
-			return this.query(builder.build());
+		public final Builder query(Function<Query.Builder, ObjectBuilder<Query>> fn) {
+			return this.query(fn.apply(new Query.Builder()).build());
 		}
 
 		/**
@@ -655,36 +677,75 @@ public class PutDatafeedRequest extends RequestBase implements JsonpSerializable
 		/**
 		 * API name: {@code query_delay}
 		 */
-		public final Builder queryDelay(Consumer<Time.Builder> fn) {
-			Time.Builder builder = new Time.Builder();
-			fn.accept(builder);
-			return this.queryDelay(builder.build());
+		public final Builder queryDelay(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.queryDelay(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code runtime_mappings}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>runtimeMappings</code>. Use
+		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
+		 * <code>runtimeMappings</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetMap()
 		 */
-		public final Builder runtimeMappings(@Nullable Map<String, RuntimeField> value) {
-			this.runtimeMappings = value;
+		public final Builder runtimeMappings(Map<String, RuntimeField> map) {
+			this.runtimeMappings = _mapPutAll(this.runtimeMappings, map);
 			return this;
 		}
 
-		public final Builder runtimeMappings(
-				Function<MapBuilder<String, RuntimeField, RuntimeField.Builder>, ObjectBuilder<Map<String, RuntimeField>>> fn) {
-			return runtimeMappings(fn.apply(new MapBuilder<>(RuntimeField.Builder::new)).build());
+		/**
+		 * API name: {@code runtime_mappings}
+		 * <p>
+		 * Adds an entry to <code>runtimeMappings</code>.
+		 */
+		public final Builder runtimeMappings(String key, RuntimeField value) {
+			this.runtimeMappings = _mapPut(this.runtimeMappings, key, value);
+			return this;
+		}
+
+		/**
+		 * API name: {@code runtime_mappings}
+		 * <p>
+		 * Adds an entry to <code>runtimeMappings</code> using a builder lambda.
+		 */
+		public final Builder runtimeMappings(String key,
+				Function<RuntimeField.Builder, ObjectBuilder<RuntimeField>> fn) {
+			return runtimeMappings(key, fn.apply(new RuntimeField.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code script_fields}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>scriptFields</code>. Use
+		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
+		 * <code>scriptFields</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetMap()
 		 */
-		public final Builder scriptFields(@Nullable Map<String, ScriptField> value) {
-			this.scriptFields = value;
+		public final Builder scriptFields(Map<String, ScriptField> map) {
+			this.scriptFields = _mapPutAll(this.scriptFields, map);
 			return this;
 		}
 
-		public final Builder scriptFields(
-				Function<MapBuilder<String, ScriptField, ScriptField.Builder>, ObjectBuilder<Map<String, ScriptField>>> fn) {
-			return scriptFields(fn.apply(new MapBuilder<>(ScriptField.Builder::new)).build());
+		/**
+		 * API name: {@code script_fields}
+		 * <p>
+		 * Adds an entry to <code>scriptFields</code>.
+		 */
+		public final Builder scriptFields(String key, ScriptField value) {
+			this.scriptFields = _mapPut(this.scriptFields, key, value);
+			return this;
+		}
+
+		/**
+		 * API name: {@code script_fields}
+		 * <p>
+		 * Adds an entry to <code>scriptFields</code> using a builder lambda.
+		 */
+		public final Builder scriptFields(String key, Function<ScriptField.Builder, ObjectBuilder<ScriptField>> fn) {
+			return scriptFields(key, fn.apply(new ScriptField.Builder()).build());
 		}
 
 		/**

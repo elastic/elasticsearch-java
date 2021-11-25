@@ -36,12 +36,11 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
@@ -61,10 +60,8 @@ public class ClearCachedRealmsRequest extends RequestBase {
 
 	}
 
-	public static ClearCachedRealmsRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static ClearCachedRealmsRequest of(Function<Builder, ObjectBuilder<ClearCachedRealmsRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -100,9 +97,15 @@ public class ClearCachedRealmsRequest extends RequestBase {
 		 * Required - Comma-separated list of realms to clear
 		 * <p>
 		 * API name: {@code realms}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>realms</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>realms</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder realms(List<String> value) {
-			this.realms = value;
+		public final Builder realms(List<String> list) {
+			this.realms = _listAddAll(this.realms, list);
 			return this;
 		}
 
@@ -110,9 +113,11 @@ public class ClearCachedRealmsRequest extends RequestBase {
 		 * Required - Comma-separated list of realms to clear
 		 * <p>
 		 * API name: {@code realms}
+		 * <p>
+		 * Adds one or more values to <code>realms</code>.
 		 */
-		public final Builder realms(String... value) {
-			this.realms = Arrays.asList(value);
+		public final Builder realms(String value, String... values) {
+			this.realms = _listAdd(this.realms, value, values);
 			return this;
 		}
 
@@ -120,9 +125,15 @@ public class ClearCachedRealmsRequest extends RequestBase {
 		 * Comma-separated list of usernames to clear from the cache
 		 * <p>
 		 * API name: {@code usernames}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>usernames</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>usernames</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder usernames(@Nullable List<String> value) {
-			this.usernames = value;
+		public final Builder usernames(List<String> list) {
+			this.usernames = _listAddAll(this.usernames, list);
 			return this;
 		}
 
@@ -130,9 +141,11 @@ public class ClearCachedRealmsRequest extends RequestBase {
 		 * Comma-separated list of usernames to clear from the cache
 		 * <p>
 		 * API name: {@code usernames}
+		 * <p>
+		 * Adds one or more values to <code>usernames</code>.
 		 */
-		public final Builder usernames(String... value) {
-			this.usernames = Arrays.asList(value);
+		public final Builder usernames(String value, String... values) {
+			this.usernames = _listAdd(this.usernames, value, values);
 			return this;
 		}
 

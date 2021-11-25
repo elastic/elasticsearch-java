@@ -34,10 +34,9 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.analyze.CharFilterDetail
@@ -56,10 +55,8 @@ public class CharFilterDetail implements JsonpSerializable {
 
 	}
 
-	public static CharFilterDetail of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static CharFilterDetail of(Function<Builder, ObjectBuilder<CharFilterDetail>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -114,17 +111,25 @@ public class CharFilterDetail implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code filtered_text}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>filteredText</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>filteredText</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder filteredText(List<String> value) {
-			this.filteredText = value;
+		public final Builder filteredText(List<String> list) {
+			this.filteredText = _listAddAll(this.filteredText, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code filtered_text}
+		 * <p>
+		 * Adds one or more values to <code>filteredText</code>.
 		 */
-		public final Builder filteredText(String... value) {
-			this.filteredText = Arrays.asList(value);
+		public final Builder filteredText(String value, String... values) {
+			this.filteredText = _listAdd(this.filteredText, value, values);
 			return this;
 		}
 

@@ -42,7 +42,7 @@ import java.lang.Long;
 import java.lang.String;
 import java.util.Collections;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ccr.resume_follow.Request
@@ -98,10 +98,8 @@ public class ResumeFollowRequest extends RequestBase implements JsonpSerializabl
 
 	}
 
-	public static ResumeFollowRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static ResumeFollowRequest of(Function<Builder, ObjectBuilder<ResumeFollowRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -348,10 +346,8 @@ public class ResumeFollowRequest extends RequestBase implements JsonpSerializabl
 		/**
 		 * API name: {@code max_retry_delay}
 		 */
-		public final Builder maxRetryDelay(Consumer<Time.Builder> fn) {
-			Time.Builder builder = new Time.Builder();
-			fn.accept(builder);
-			return this.maxRetryDelay(builder.build());
+		public final Builder maxRetryDelay(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.maxRetryDelay(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -397,10 +393,8 @@ public class ResumeFollowRequest extends RequestBase implements JsonpSerializabl
 		/**
 		 * API name: {@code read_poll_timeout}
 		 */
-		public final Builder readPollTimeout(Consumer<Time.Builder> fn) {
-			Time.Builder builder = new Time.Builder();
-			fn.accept(builder);
-			return this.readPollTimeout(builder.build());
+		public final Builder readPollTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.readPollTimeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**

@@ -36,7 +36,7 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.InferenceTopClassEntry
@@ -58,10 +58,8 @@ public class InferenceTopClassEntry implements JsonpSerializable {
 
 	}
 
-	public static InferenceTopClassEntry of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static InferenceTopClassEntry of(Function<Builder, ObjectBuilder<InferenceTopClassEntry>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -130,10 +128,8 @@ public class InferenceTopClassEntry implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code class_name}
 		 */
-		public final Builder className(Consumer<FieldValue.Builder> fn) {
-			FieldValue.Builder builder = new FieldValue.Builder();
-			fn.accept(builder);
-			return this.className(builder.build());
+		public final Builder className(Function<FieldValue.Builder, ObjectBuilder<FieldValue>> fn) {
+			return this.className(fn.apply(new FieldValue.Builder()).build());
 		}
 
 		/**

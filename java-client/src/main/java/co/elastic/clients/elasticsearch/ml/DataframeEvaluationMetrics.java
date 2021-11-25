@@ -37,7 +37,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.DataframeEvaluationMetrics
@@ -162,19 +162,36 @@ public abstract class DataframeEvaluationMetrics implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code auc_roc}
 		 */
-		public final BuilderT aucRoc(Consumer<DataframeEvaluationClassificationMetricsAucRoc.Builder> fn) {
-			DataframeEvaluationClassificationMetricsAucRoc.Builder builder = new DataframeEvaluationClassificationMetricsAucRoc.Builder();
-			fn.accept(builder);
-			return this.aucRoc(builder.build());
+		public final BuilderT aucRoc(
+				Function<DataframeEvaluationClassificationMetricsAucRoc.Builder, ObjectBuilder<DataframeEvaluationClassificationMetricsAucRoc>> fn) {
+			return this.aucRoc(fn.apply(new DataframeEvaluationClassificationMetricsAucRoc.Builder()).build());
 		}
 
 		/**
 		 * Precision of predictions (per-class and average).
 		 * <p>
 		 * API name: {@code precision}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>precision</code>. Use
+		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
+		 * <code>precision</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetMap()
 		 */
-		public final BuilderT precision(@Nullable Map<String, JsonData> value) {
-			this.precision = value;
+		public final BuilderT precision(Map<String, JsonData> map) {
+			this.precision = _mapPutAll(this.precision, map);
+			return self();
+		}
+
+		/**
+		 * Precision of predictions (per-class and average).
+		 * <p>
+		 * API name: {@code precision}
+		 * <p>
+		 * Adds an entry to <code>precision</code>.
+		 */
+		public final BuilderT precision(String key, JsonData value) {
+			this.precision = _mapPut(this.precision, key, value);
 			return self();
 		}
 
@@ -182,9 +199,27 @@ public abstract class DataframeEvaluationMetrics implements JsonpSerializable {
 		 * Recall of predictions (per-class and average).
 		 * <p>
 		 * API name: {@code recall}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>recall</code>. Use
+		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
+		 * <code>recall</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetMap()
 		 */
-		public final BuilderT recall(@Nullable Map<String, JsonData> value) {
-			this.recall = value;
+		public final BuilderT recall(Map<String, JsonData> map) {
+			this.recall = _mapPutAll(this.recall, map);
+			return self();
+		}
+
+		/**
+		 * Recall of predictions (per-class and average).
+		 * <p>
+		 * API name: {@code recall}
+		 * <p>
+		 * Adds an entry to <code>recall</code>.
+		 */
+		public final BuilderT recall(String key, JsonData value) {
+			this.recall = _mapPut(this.recall, key, value);
 			return self();
 		}
 

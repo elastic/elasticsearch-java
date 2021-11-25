@@ -35,7 +35,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ingest._types.InferenceProcessor
@@ -62,10 +62,8 @@ public class InferenceProcessor extends ProcessorBase implements ProcessorVarian
 
 	}
 
-	public static InferenceProcessor of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static InferenceProcessor of(Function<Builder, ObjectBuilder<InferenceProcessor>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -169,9 +167,25 @@ public class InferenceProcessor extends ProcessorBase implements ProcessorVarian
 
 		/**
 		 * API name: {@code field_map}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>fieldMap</code>. Use
+		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
+		 * <code>fieldMap</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetMap()
 		 */
-		public final Builder fieldMap(@Nullable Map<String, JsonData> value) {
-			this.fieldMap = value;
+		public final Builder fieldMap(Map<String, JsonData> map) {
+			this.fieldMap = _mapPutAll(this.fieldMap, map);
+			return this;
+		}
+
+		/**
+		 * API name: {@code field_map}
+		 * <p>
+		 * Adds an entry to <code>fieldMap</code>.
+		 */
+		public final Builder fieldMap(String key, JsonData value) {
+			this.fieldMap = _mapPut(this.fieldMap, key, value);
 			return this;
 		}
 
@@ -186,10 +200,8 @@ public class InferenceProcessor extends ProcessorBase implements ProcessorVarian
 		/**
 		 * API name: {@code inference_config}
 		 */
-		public final Builder inferenceConfig(Consumer<InferenceConfig.Builder> fn) {
-			InferenceConfig.Builder builder = new InferenceConfig.Builder();
-			fn.accept(builder);
-			return this.inferenceConfig(builder.build());
+		public final Builder inferenceConfig(Function<InferenceConfig.Builder, ObjectBuilder<InferenceConfig>> fn) {
+			return this.inferenceConfig(fn.apply(new InferenceConfig.Builder()).build());
 		}
 
 		@Override

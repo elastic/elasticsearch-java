@@ -31,7 +31,6 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.MapBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
@@ -41,7 +40,6 @@ import java.lang.Integer;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -110,10 +108,8 @@ public class HealthResponse implements JsonpSerializable {
 
 	}
 
-	public static HealthResponse of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static HealthResponse of(Function<Builder, ObjectBuilder<HealthResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -420,15 +416,36 @@ public class HealthResponse implements JsonpSerializable {
 
 		/**
 		 * API name: {@code indices}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>indices</code>. Use
+		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
+		 * <code>indices</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetMap()
 		 */
-		public final Builder indices(@Nullable Map<String, IndexHealthStats> value) {
-			this.indices = value;
+		public final Builder indices(Map<String, IndexHealthStats> map) {
+			this.indices = _mapPutAll(this.indices, map);
 			return this;
 		}
 
-		public final Builder indices(
-				Function<MapBuilder<String, IndexHealthStats, IndexHealthStats.Builder>, ObjectBuilder<Map<String, IndexHealthStats>>> fn) {
-			return indices(fn.apply(new MapBuilder<>(IndexHealthStats.Builder::new)).build());
+		/**
+		 * API name: {@code indices}
+		 * <p>
+		 * Adds an entry to <code>indices</code>.
+		 */
+		public final Builder indices(String key, IndexHealthStats value) {
+			this.indices = _mapPut(this.indices, key, value);
+			return this;
+		}
+
+		/**
+		 * API name: {@code indices}
+		 * <p>
+		 * Adds an entry to <code>indices</code> using a builder lambda.
+		 */
+		public final Builder indices(String key,
+				Function<IndexHealthStats.Builder, ObjectBuilder<IndexHealthStats>> fn) {
+			return indices(key, fn.apply(new IndexHealthStats.Builder()).build());
 		}
 
 		/**

@@ -43,7 +43,7 @@ import java.lang.Integer;
 import java.lang.String;
 import java.util.Collections;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.get_overall_buckets.Request
@@ -87,10 +87,8 @@ public class GetOverallBucketsRequest extends RequestBase implements JsonpSerial
 
 	}
 
-	public static GetOverallBucketsRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static GetOverallBucketsRequest of(Function<Builder, ObjectBuilder<GetOverallBucketsRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -282,10 +280,8 @@ public class GetOverallBucketsRequest extends RequestBase implements JsonpSerial
 		 * <p>
 		 * API name: {@code bucket_span}
 		 */
-		public final Builder bucketSpan(Consumer<Time.Builder> fn) {
-			Time.Builder builder = new Time.Builder();
-			fn.accept(builder);
-			return this.bucketSpan(builder.build());
+		public final Builder bucketSpan(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.bucketSpan(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -303,10 +299,8 @@ public class GetOverallBucketsRequest extends RequestBase implements JsonpSerial
 		 * <p>
 		 * API name: {@code end}
 		 */
-		public final Builder end(Consumer<Time.Builder> fn) {
-			Time.Builder builder = new Time.Builder();
-			fn.accept(builder);
-			return this.end(builder.build());
+		public final Builder end(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.end(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -361,10 +355,8 @@ public class GetOverallBucketsRequest extends RequestBase implements JsonpSerial
 		 * <p>
 		 * API name: {@code start}
 		 */
-		public final Builder start(Consumer<Time.Builder> fn) {
-			Time.Builder builder = new Time.Builder();
-			fn.accept(builder);
-			return this.start(builder.build());
+		public final Builder start(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.start(fn.apply(new Time.Builder()).build());
 		}
 
 		/**

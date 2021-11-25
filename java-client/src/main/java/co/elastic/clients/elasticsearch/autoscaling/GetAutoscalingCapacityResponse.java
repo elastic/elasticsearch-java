@@ -30,7 +30,6 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.MapBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
@@ -38,7 +37,6 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -55,10 +53,9 @@ public class GetAutoscalingCapacityResponse implements JsonpSerializable {
 
 	}
 
-	public static GetAutoscalingCapacityResponse of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static GetAutoscalingCapacityResponse of(
+			Function<Builder, ObjectBuilder<GetAutoscalingCapacityResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -103,15 +100,36 @@ public class GetAutoscalingCapacityResponse implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code policies}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>policies</code>. Use
+		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
+		 * <code>policies</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetMap()
 		 */
-		public final Builder policies(Map<String, AutoscalingDeciders> value) {
-			this.policies = value;
+		public final Builder policies(Map<String, AutoscalingDeciders> map) {
+			this.policies = _mapPutAll(this.policies, map);
 			return this;
 		}
 
-		public final Builder policies(
-				Function<MapBuilder<String, AutoscalingDeciders, AutoscalingDeciders.Builder>, ObjectBuilder<Map<String, AutoscalingDeciders>>> fn) {
-			return policies(fn.apply(new MapBuilder<>(AutoscalingDeciders.Builder::new)).build());
+		/**
+		 * Required - API name: {@code policies}
+		 * <p>
+		 * Adds an entry to <code>policies</code>.
+		 */
+		public final Builder policies(String key, AutoscalingDeciders value) {
+			this.policies = _mapPut(this.policies, key, value);
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code policies}
+		 * <p>
+		 * Adds an entry to <code>policies</code> using a builder lambda.
+		 */
+		public final Builder policies(String key,
+				Function<AutoscalingDeciders.Builder, ObjectBuilder<AutoscalingDeciders>> fn) {
+			return policies(key, fn.apply(new AutoscalingDeciders.Builder()).build());
 		}
 
 		/**

@@ -33,7 +33,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 
 // typedef: indices.get_alias.Response
 @JsonpDeserializable
@@ -45,10 +45,8 @@ public class GetAliasResponse extends DictionaryResponse<String, IndexAliases> {
 
 	}
 
-	public static GetAliasResponse of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static GetAliasResponse of(Function<Builder, ObjectBuilder<GetAliasResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------

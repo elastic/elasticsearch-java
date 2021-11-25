@@ -40,7 +40,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ilm.put_lifecycle.Request
@@ -60,10 +60,8 @@ public class PutLifecycleRequest extends RequestBase implements JsonpSerializabl
 
 	}
 
-	public static PutLifecycleRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static PutLifecycleRequest of(Function<Builder, ObjectBuilder<PutLifecycleRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -134,10 +132,8 @@ public class PutLifecycleRequest extends RequestBase implements JsonpSerializabl
 		/**
 		 * API name: {@code policy}
 		 */
-		public final Builder policy(Consumer<IlmPolicy.Builder> fn) {
-			IlmPolicy.Builder builder = new IlmPolicy.Builder();
-			fn.accept(builder);
-			return this.policy(builder.build());
+		public final Builder policy(Function<IlmPolicy.Builder, ObjectBuilder<IlmPolicy>> fn) {
+			return this.policy(fn.apply(new IlmPolicy.Builder()).build());
 		}
 
 		/**

@@ -34,7 +34,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.analysis.EdgeNGramTokenFilter
@@ -62,10 +62,8 @@ public class EdgeNGramTokenFilter extends TokenFilterBase implements TokenFilter
 
 	}
 
-	public static EdgeNGramTokenFilter of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static EdgeNGramTokenFilter of(Function<Builder, ObjectBuilder<EdgeNGramTokenFilter>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**

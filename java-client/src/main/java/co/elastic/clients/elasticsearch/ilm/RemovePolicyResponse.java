@@ -35,10 +35,9 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ilm.remove_policy.Response
@@ -57,10 +56,8 @@ public class RemovePolicyResponse implements JsonpSerializable {
 
 	}
 
-	public static RemovePolicyResponse of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static RemovePolicyResponse of(Function<Builder, ObjectBuilder<RemovePolicyResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -115,17 +112,25 @@ public class RemovePolicyResponse implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code failed_indexes}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>failedIndexes</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>failedIndexes</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder failedIndexes(List<String> value) {
-			this.failedIndexes = value;
+		public final Builder failedIndexes(List<String> list) {
+			this.failedIndexes = _listAddAll(this.failedIndexes, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code failed_indexes}
+		 * <p>
+		 * Adds one or more values to <code>failedIndexes</code>.
 		 */
-		public final Builder failedIndexes(String... value) {
-			this.failedIndexes = Arrays.asList(value);
+		public final Builder failedIndexes(String value, String... values) {
+			this.failedIndexes = _listAdd(this.failedIndexes, value, values);
 			return this;
 		}
 

@@ -35,10 +35,9 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: nodes.info.NodeInfoHttp
@@ -65,10 +64,8 @@ public class NodeInfoHttp implements JsonpSerializable {
 
 	}
 
-	public static NodeInfoHttp of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static NodeInfoHttp of(Function<Builder, ObjectBuilder<NodeInfoHttp>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -151,17 +148,25 @@ public class NodeInfoHttp implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code bound_address}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>boundAddress</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>boundAddress</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder boundAddress(List<String> value) {
-			this.boundAddress = value;
+		public final Builder boundAddress(List<String> list) {
+			this.boundAddress = _listAddAll(this.boundAddress, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code bound_address}
+		 * <p>
+		 * Adds one or more values to <code>boundAddress</code>.
 		 */
-		public final Builder boundAddress(String... value) {
-			this.boundAddress = Arrays.asList(value);
+		public final Builder boundAddress(String value, String... values) {
+			this.boundAddress = _listAdd(this.boundAddress, value, values);
 			return this;
 		}
 

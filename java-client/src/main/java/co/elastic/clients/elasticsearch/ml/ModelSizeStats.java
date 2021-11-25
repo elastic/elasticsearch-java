@@ -38,7 +38,7 @@ import java.lang.Integer;
 import java.lang.Long;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.ModelSizeStats
@@ -127,10 +127,8 @@ public class ModelSizeStats implements JsonpSerializable {
 
 	}
 
-	public static ModelSizeStats of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static ModelSizeStats of(Function<Builder, ObjectBuilder<ModelSizeStats>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -450,10 +448,8 @@ public class ModelSizeStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code log_time}
 		 */
-		public final Builder logTime(Consumer<Time.Builder> fn) {
-			Time.Builder builder = new Time.Builder();
-			fn.accept(builder);
-			return this.logTime(builder.build());
+		public final Builder logTime(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.logTime(fn.apply(new Time.Builder()).build());
 		}
 
 		/**

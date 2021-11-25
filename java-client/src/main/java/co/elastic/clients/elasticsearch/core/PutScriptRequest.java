@@ -43,7 +43,7 @@ import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.put_script.Request
@@ -74,10 +74,8 @@ public class PutScriptRequest extends RequestBase implements JsonpSerializable {
 
 	}
 
-	public static PutScriptRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static PutScriptRequest of(Function<Builder, ObjectBuilder<PutScriptRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -196,10 +194,8 @@ public class PutScriptRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
-		public final Builder masterTimeout(Consumer<Time.Builder> fn) {
-			Time.Builder builder = new Time.Builder();
-			fn.accept(builder);
-			return this.masterTimeout(builder.build());
+		public final Builder masterTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.masterTimeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -213,10 +209,8 @@ public class PutScriptRequest extends RequestBase implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code script}
 		 */
-		public final Builder script(Consumer<StoredScript.Builder> fn) {
-			StoredScript.Builder builder = new StoredScript.Builder();
-			fn.accept(builder);
-			return this.script(builder.build());
+		public final Builder script(Function<StoredScript.Builder, ObjectBuilder<StoredScript>> fn) {
+			return this.script(fn.apply(new StoredScript.Builder()).build());
 		}
 
 		/**
@@ -234,10 +228,8 @@ public class PutScriptRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code timeout}
 		 */
-		public final Builder timeout(Consumer<Time.Builder> fn) {
-			Time.Builder builder = new Time.Builder();
-			fn.accept(builder);
-			return this.timeout(builder.build());
+		public final Builder timeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.timeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**

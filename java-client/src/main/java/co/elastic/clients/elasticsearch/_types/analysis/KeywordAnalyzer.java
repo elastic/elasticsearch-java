@@ -34,7 +34,7 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.analysis.KeywordAnalyzer
@@ -51,10 +51,8 @@ public class KeywordAnalyzer implements AnalyzerVariant, JsonpSerializable {
 
 	}
 
-	public static KeywordAnalyzer of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static KeywordAnalyzer of(Function<Builder, ObjectBuilder<KeywordAnalyzer>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**

@@ -35,7 +35,7 @@ import java.lang.Double;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.mapping.FlattenedProperty
@@ -85,10 +85,8 @@ public class FlattenedProperty extends PropertyBase implements PropertyVariant {
 
 	}
 
-	public static FlattenedProperty of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static FlattenedProperty of(Function<Builder, ObjectBuilder<FlattenedProperty>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**

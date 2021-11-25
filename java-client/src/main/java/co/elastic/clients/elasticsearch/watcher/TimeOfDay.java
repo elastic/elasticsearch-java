@@ -38,7 +38,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Object;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.TimeOfDay
@@ -76,10 +76,8 @@ public class TimeOfDay implements TaggedUnion<TimeOfDay.Kind, Object>, JsonpSeri
 
 	}
 
-	public static TimeOfDay of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static TimeOfDay of(Function<Builder, ObjectBuilder<TimeOfDay>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -147,10 +145,8 @@ public class TimeOfDay implements TaggedUnion<TimeOfDay.Kind, Object>, JsonpSeri
 			return this;
 		}
 
-		public ObjectBuilder<TimeOfDay> hourMinute(Consumer<HourAndMinute.Builder> fn) {
-			HourAndMinute.Builder builder = new HourAndMinute.Builder();
-			fn.accept(builder);
-			return this.hourMinute(builder.build());
+		public ObjectBuilder<TimeOfDay> hourMinute(Function<HourAndMinute.Builder, ObjectBuilder<HourAndMinute>> fn) {
+			return this.hourMinute(fn.apply(new HourAndMinute.Builder()).build());
 		}
 
 		public TimeOfDay build() {

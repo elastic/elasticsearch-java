@@ -52,7 +52,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: xpack.usage.Response
@@ -154,10 +154,8 @@ public class XpackUsageResponse implements JsonpSerializable {
 
 	}
 
-	public static XpackUsageResponse of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static XpackUsageResponse of(Function<Builder, ObjectBuilder<XpackUsageResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -542,10 +540,8 @@ public class XpackUsageResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code aggregate_metric}
 		 */
-		public final Builder aggregateMetric(Consumer<Base.Builder> fn) {
-			Base.Builder builder = new Base.Builder();
-			fn.accept(builder);
-			return this.aggregateMetric(builder.build());
+		public final Builder aggregateMetric(Function<Base.Builder, ObjectBuilder<Base>> fn) {
+			return this.aggregateMetric(fn.apply(new Base.Builder()).build());
 		}
 
 		/**
@@ -559,10 +555,8 @@ public class XpackUsageResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code analytics}
 		 */
-		public final Builder analytics(Consumer<Analytics.Builder> fn) {
-			Analytics.Builder builder = new Analytics.Builder();
-			fn.accept(builder);
-			return this.analytics(builder.build());
+		public final Builder analytics(Function<Analytics.Builder, ObjectBuilder<Analytics>> fn) {
+			return this.analytics(fn.apply(new Analytics.Builder()).build());
 		}
 
 		/**
@@ -576,10 +570,8 @@ public class XpackUsageResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code watcher}
 		 */
-		public final Builder watcher(Consumer<Watcher.Builder> fn) {
-			Watcher.Builder builder = new Watcher.Builder();
-			fn.accept(builder);
-			return this.watcher(builder.build());
+		public final Builder watcher(Function<Watcher.Builder, ObjectBuilder<Watcher>> fn) {
+			return this.watcher(fn.apply(new Watcher.Builder()).build());
 		}
 
 		/**
@@ -593,10 +585,8 @@ public class XpackUsageResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code ccr}
 		 */
-		public final Builder ccr(Consumer<Ccr.Builder> fn) {
-			Ccr.Builder builder = new Ccr.Builder();
-			fn.accept(builder);
-			return this.ccr(builder.build());
+		public final Builder ccr(Function<Ccr.Builder, ObjectBuilder<Ccr>> fn) {
+			return this.ccr(fn.apply(new Ccr.Builder()).build());
 		}
 
 		/**
@@ -610,10 +600,8 @@ public class XpackUsageResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code data_frame}
 		 */
-		public final Builder dataFrame(Consumer<Base.Builder> fn) {
-			Base.Builder builder = new Base.Builder();
-			fn.accept(builder);
-			return this.dataFrame(builder.build());
+		public final Builder dataFrame(Function<Base.Builder, ObjectBuilder<Base>> fn) {
+			return this.dataFrame(fn.apply(new Base.Builder()).build());
 		}
 
 		/**
@@ -627,10 +615,8 @@ public class XpackUsageResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code data_science}
 		 */
-		public final Builder dataScience(Consumer<Base.Builder> fn) {
-			Base.Builder builder = new Base.Builder();
-			fn.accept(builder);
-			return this.dataScience(builder.build());
+		public final Builder dataScience(Function<Base.Builder, ObjectBuilder<Base>> fn) {
+			return this.dataScience(fn.apply(new Base.Builder()).build());
 		}
 
 		/**
@@ -644,10 +630,8 @@ public class XpackUsageResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code data_streams}
 		 */
-		public final Builder dataStreams(Consumer<DataStreams.Builder> fn) {
-			DataStreams.Builder builder = new DataStreams.Builder();
-			fn.accept(builder);
-			return this.dataStreams(builder.build());
+		public final Builder dataStreams(Function<DataStreams.Builder, ObjectBuilder<DataStreams>> fn) {
+			return this.dataStreams(fn.apply(new DataStreams.Builder()).build());
 		}
 
 		/**
@@ -661,10 +645,8 @@ public class XpackUsageResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code data_tiers}
 		 */
-		public final Builder dataTiers(Consumer<DataTiers.Builder> fn) {
-			DataTiers.Builder builder = new DataTiers.Builder();
-			fn.accept(builder);
-			return this.dataTiers(builder.build());
+		public final Builder dataTiers(Function<DataTiers.Builder, ObjectBuilder<DataTiers>> fn) {
+			return this.dataTiers(fn.apply(new DataTiers.Builder()).build());
 		}
 
 		/**
@@ -678,10 +660,8 @@ public class XpackUsageResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code enrich}
 		 */
-		public final Builder enrich(Consumer<Base.Builder> fn) {
-			Base.Builder builder = new Base.Builder();
-			fn.accept(builder);
-			return this.enrich(builder.build());
+		public final Builder enrich(Function<Base.Builder, ObjectBuilder<Base>> fn) {
+			return this.enrich(fn.apply(new Base.Builder()).build());
 		}
 
 		/**
@@ -695,10 +675,8 @@ public class XpackUsageResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code eql}
 		 */
-		public final Builder eql(Consumer<Eql.Builder> fn) {
-			Eql.Builder builder = new Eql.Builder();
-			fn.accept(builder);
-			return this.eql(builder.build());
+		public final Builder eql(Function<Eql.Builder, ObjectBuilder<Eql>> fn) {
+			return this.eql(fn.apply(new Eql.Builder()).build());
 		}
 
 		/**
@@ -712,10 +690,8 @@ public class XpackUsageResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code flattened}
 		 */
-		public final Builder flattened(Consumer<Flattened.Builder> fn) {
-			Flattened.Builder builder = new Flattened.Builder();
-			fn.accept(builder);
-			return this.flattened(builder.build());
+		public final Builder flattened(Function<Flattened.Builder, ObjectBuilder<Flattened>> fn) {
+			return this.flattened(fn.apply(new Flattened.Builder()).build());
 		}
 
 		/**
@@ -729,10 +705,8 @@ public class XpackUsageResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code frozen_indices}
 		 */
-		public final Builder frozenIndices(Consumer<FrozenIndices.Builder> fn) {
-			FrozenIndices.Builder builder = new FrozenIndices.Builder();
-			fn.accept(builder);
-			return this.frozenIndices(builder.build());
+		public final Builder frozenIndices(Function<FrozenIndices.Builder, ObjectBuilder<FrozenIndices>> fn) {
+			return this.frozenIndices(fn.apply(new FrozenIndices.Builder()).build());
 		}
 
 		/**
@@ -746,10 +720,8 @@ public class XpackUsageResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code graph}
 		 */
-		public final Builder graph(Consumer<Base.Builder> fn) {
-			Base.Builder builder = new Base.Builder();
-			fn.accept(builder);
-			return this.graph(builder.build());
+		public final Builder graph(Function<Base.Builder, ObjectBuilder<Base>> fn) {
+			return this.graph(fn.apply(new Base.Builder()).build());
 		}
 
 		/**
@@ -763,10 +735,8 @@ public class XpackUsageResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code ilm}
 		 */
-		public final Builder ilm(Consumer<Ilm.Builder> fn) {
-			Ilm.Builder builder = new Ilm.Builder();
-			fn.accept(builder);
-			return this.ilm(builder.build());
+		public final Builder ilm(Function<Ilm.Builder, ObjectBuilder<Ilm>> fn) {
+			return this.ilm(fn.apply(new Ilm.Builder()).build());
 		}
 
 		/**
@@ -780,10 +750,8 @@ public class XpackUsageResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code logstash}
 		 */
-		public final Builder logstash(Consumer<Base.Builder> fn) {
-			Base.Builder builder = new Base.Builder();
-			fn.accept(builder);
-			return this.logstash(builder.build());
+		public final Builder logstash(Function<Base.Builder, ObjectBuilder<Base>> fn) {
+			return this.logstash(fn.apply(new Base.Builder()).build());
 		}
 
 		/**
@@ -797,10 +765,8 @@ public class XpackUsageResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code ml}
 		 */
-		public final Builder ml(Consumer<MachineLearning.Builder> fn) {
-			MachineLearning.Builder builder = new MachineLearning.Builder();
-			fn.accept(builder);
-			return this.ml(builder.build());
+		public final Builder ml(Function<MachineLearning.Builder, ObjectBuilder<MachineLearning>> fn) {
+			return this.ml(fn.apply(new MachineLearning.Builder()).build());
 		}
 
 		/**
@@ -814,10 +780,8 @@ public class XpackUsageResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code monitoring}
 		 */
-		public final Builder monitoring(Consumer<Monitoring.Builder> fn) {
-			Monitoring.Builder builder = new Monitoring.Builder();
-			fn.accept(builder);
-			return this.monitoring(builder.build());
+		public final Builder monitoring(Function<Monitoring.Builder, ObjectBuilder<Monitoring>> fn) {
+			return this.monitoring(fn.apply(new Monitoring.Builder()).build());
 		}
 
 		/**
@@ -831,10 +795,8 @@ public class XpackUsageResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code rollup}
 		 */
-		public final Builder rollup(Consumer<Base.Builder> fn) {
-			Base.Builder builder = new Base.Builder();
-			fn.accept(builder);
-			return this.rollup(builder.build());
+		public final Builder rollup(Function<Base.Builder, ObjectBuilder<Base>> fn) {
+			return this.rollup(fn.apply(new Base.Builder()).build());
 		}
 
 		/**
@@ -848,10 +810,8 @@ public class XpackUsageResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code runtime_fields}
 		 */
-		public final Builder runtimeFields(Consumer<RuntimeFieldTypes.Builder> fn) {
-			RuntimeFieldTypes.Builder builder = new RuntimeFieldTypes.Builder();
-			fn.accept(builder);
-			return this.runtimeFields(builder.build());
+		public final Builder runtimeFields(Function<RuntimeFieldTypes.Builder, ObjectBuilder<RuntimeFieldTypes>> fn) {
+			return this.runtimeFields(fn.apply(new RuntimeFieldTypes.Builder()).build());
 		}
 
 		/**
@@ -865,10 +825,8 @@ public class XpackUsageResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code spatial}
 		 */
-		public final Builder spatial(Consumer<Base.Builder> fn) {
-			Base.Builder builder = new Base.Builder();
-			fn.accept(builder);
-			return this.spatial(builder.build());
+		public final Builder spatial(Function<Base.Builder, ObjectBuilder<Base>> fn) {
+			return this.spatial(fn.apply(new Base.Builder()).build());
 		}
 
 		/**
@@ -882,10 +840,9 @@ public class XpackUsageResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code searchable_snapshots}
 		 */
-		public final Builder searchableSnapshots(Consumer<SearchableSnapshots.Builder> fn) {
-			SearchableSnapshots.Builder builder = new SearchableSnapshots.Builder();
-			fn.accept(builder);
-			return this.searchableSnapshots(builder.build());
+		public final Builder searchableSnapshots(
+				Function<SearchableSnapshots.Builder, ObjectBuilder<SearchableSnapshots>> fn) {
+			return this.searchableSnapshots(fn.apply(new SearchableSnapshots.Builder()).build());
 		}
 
 		/**
@@ -899,10 +856,8 @@ public class XpackUsageResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code security}
 		 */
-		public final Builder security(Consumer<Security.Builder> fn) {
-			Security.Builder builder = new Security.Builder();
-			fn.accept(builder);
-			return this.security(builder.build());
+		public final Builder security(Function<Security.Builder, ObjectBuilder<Security>> fn) {
+			return this.security(fn.apply(new Security.Builder()).build());
 		}
 
 		/**
@@ -916,10 +871,8 @@ public class XpackUsageResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code slm}
 		 */
-		public final Builder slm(Consumer<Slm.Builder> fn) {
-			Slm.Builder builder = new Slm.Builder();
-			fn.accept(builder);
-			return this.slm(builder.build());
+		public final Builder slm(Function<Slm.Builder, ObjectBuilder<Slm>> fn) {
+			return this.slm(fn.apply(new Slm.Builder()).build());
 		}
 
 		/**
@@ -933,10 +886,8 @@ public class XpackUsageResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code sql}
 		 */
-		public final Builder sql(Consumer<Sql.Builder> fn) {
-			Sql.Builder builder = new Sql.Builder();
-			fn.accept(builder);
-			return this.sql(builder.build());
+		public final Builder sql(Function<Sql.Builder, ObjectBuilder<Sql>> fn) {
+			return this.sql(fn.apply(new Sql.Builder()).build());
 		}
 
 		/**
@@ -950,10 +901,8 @@ public class XpackUsageResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code transform}
 		 */
-		public final Builder transform(Consumer<Base.Builder> fn) {
-			Base.Builder builder = new Base.Builder();
-			fn.accept(builder);
-			return this.transform(builder.build());
+		public final Builder transform(Function<Base.Builder, ObjectBuilder<Base>> fn) {
+			return this.transform(fn.apply(new Base.Builder()).build());
 		}
 
 		/**
@@ -967,10 +916,8 @@ public class XpackUsageResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code vectors}
 		 */
-		public final Builder vectors(Consumer<Vector.Builder> fn) {
-			Vector.Builder builder = new Vector.Builder();
-			fn.accept(builder);
-			return this.vectors(builder.build());
+		public final Builder vectors(Function<Vector.Builder, ObjectBuilder<Vector>> fn) {
+			return this.vectors(fn.apply(new Vector.Builder()).build());
 		}
 
 		/**
@@ -984,10 +931,8 @@ public class XpackUsageResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code voting_only}
 		 */
-		public final Builder votingOnly(Consumer<Base.Builder> fn) {
-			Base.Builder builder = new Base.Builder();
-			fn.accept(builder);
-			return this.votingOnly(builder.build());
+		public final Builder votingOnly(Function<Base.Builder, ObjectBuilder<Base>> fn) {
+			return this.votingOnly(fn.apply(new Base.Builder()).build());
 		}
 
 		/**

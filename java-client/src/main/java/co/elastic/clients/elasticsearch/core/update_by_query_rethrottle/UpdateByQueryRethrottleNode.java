@@ -30,14 +30,12 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.MapBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -55,10 +53,8 @@ public class UpdateByQueryRethrottleNode extends BaseNode {
 
 	}
 
-	public static UpdateByQueryRethrottleNode of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static UpdateByQueryRethrottleNode of(Function<Builder, ObjectBuilder<UpdateByQueryRethrottleNode>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -97,15 +93,35 @@ public class UpdateByQueryRethrottleNode extends BaseNode {
 
 		/**
 		 * Required - API name: {@code tasks}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>tasks</code>. Use
+		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
+		 * <code>tasks</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetMap()
 		 */
-		public final Builder tasks(Map<String, Info> value) {
-			this.tasks = value;
+		public final Builder tasks(Map<String, Info> map) {
+			this.tasks = _mapPutAll(this.tasks, map);
 			return this;
 		}
 
-		public final Builder tasks(
-				Function<MapBuilder<String, Info, Info.Builder>, ObjectBuilder<Map<String, Info>>> fn) {
-			return tasks(fn.apply(new MapBuilder<>(Info.Builder::new)).build());
+		/**
+		 * Required - API name: {@code tasks}
+		 * <p>
+		 * Adds an entry to <code>tasks</code>.
+		 */
+		public final Builder tasks(String key, Info value) {
+			this.tasks = _mapPut(this.tasks, key, value);
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code tasks}
+		 * <p>
+		 * Adds an entry to <code>tasks</code> using a builder lambda.
+		 */
+		public final Builder tasks(String key, Function<Info.Builder, ObjectBuilder<Info>> fn) {
+			return tasks(key, fn.apply(new Info.Builder()).build());
 		}
 
 		@Override

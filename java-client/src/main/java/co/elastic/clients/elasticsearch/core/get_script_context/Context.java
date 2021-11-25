@@ -29,16 +29,13 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -58,10 +55,8 @@ public class Context implements JsonpSerializable {
 
 	}
 
-	public static Context of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static Context of(Function<Builder, ObjectBuilder<Context>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -116,26 +111,35 @@ public class Context implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code methods}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>methods</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>methods</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder methods(List<ContextMethod> value) {
-			this.methods = value;
+		public final Builder methods(List<ContextMethod> list) {
+			this.methods = _listAddAll(this.methods, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code methods}
+		 * <p>
+		 * Adds one or more values to <code>methods</code>.
 		 */
-		public final Builder methods(ContextMethod... value) {
-			this.methods = Arrays.asList(value);
+		public final Builder methods(ContextMethod value, ContextMethod... values) {
+			this.methods = _listAdd(this.methods, value, values);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code methods}
+		 * <p>
+		 * Adds a value to <code>methods</code> using a builder lambda.
 		 */
-		public final Builder methods(
-				Function<ListBuilder<ContextMethod, ContextMethod.Builder>, ObjectBuilder<List<ContextMethod>>> fn) {
-			return methods(fn.apply(new ListBuilder<>(ContextMethod.Builder::new)).build());
+		public final Builder methods(Function<ContextMethod.Builder, ObjectBuilder<ContextMethod>> fn) {
+			return methods(fn.apply(new ContextMethod.Builder()).build());
 		}
 
 		/**

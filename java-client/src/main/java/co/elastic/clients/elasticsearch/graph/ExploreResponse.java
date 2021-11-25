@@ -30,17 +30,14 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Long;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -69,10 +66,8 @@ public class ExploreResponse implements JsonpSerializable {
 
 	}
 
-	public static ExploreResponse of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static ExploreResponse of(Function<Builder, ObjectBuilder<ExploreResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -178,50 +173,68 @@ public class ExploreResponse implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code connections}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>connections</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>connections</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder connections(List<Connection> value) {
-			this.connections = value;
+		public final Builder connections(List<Connection> list) {
+			this.connections = _listAddAll(this.connections, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code connections}
+		 * <p>
+		 * Adds one or more values to <code>connections</code>.
 		 */
-		public final Builder connections(Connection... value) {
-			this.connections = Arrays.asList(value);
+		public final Builder connections(Connection value, Connection... values) {
+			this.connections = _listAdd(this.connections, value, values);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code connections}
+		 * <p>
+		 * Adds a value to <code>connections</code> using a builder lambda.
 		 */
-		public final Builder connections(
-				Function<ListBuilder<Connection, Connection.Builder>, ObjectBuilder<List<Connection>>> fn) {
-			return connections(fn.apply(new ListBuilder<>(Connection.Builder::new)).build());
+		public final Builder connections(Function<Connection.Builder, ObjectBuilder<Connection>> fn) {
+			return connections(fn.apply(new Connection.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code failures}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>failures</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>failures</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder failures(List<ShardFailure> value) {
-			this.failures = value;
+		public final Builder failures(List<ShardFailure> list) {
+			this.failures = _listAddAll(this.failures, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code failures}
+		 * <p>
+		 * Adds one or more values to <code>failures</code>.
 		 */
-		public final Builder failures(ShardFailure... value) {
-			this.failures = Arrays.asList(value);
+		public final Builder failures(ShardFailure value, ShardFailure... values) {
+			this.failures = _listAdd(this.failures, value, values);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code failures}
+		 * <p>
+		 * Adds a value to <code>failures</code> using a builder lambda.
 		 */
-		public final Builder failures(
-				Function<ListBuilder<ShardFailure, ShardFailure.Builder>, ObjectBuilder<List<ShardFailure>>> fn) {
-			return failures(fn.apply(new ListBuilder<>(ShardFailure.Builder::new)).build());
+		public final Builder failures(Function<ShardFailure.Builder, ObjectBuilder<ShardFailure>> fn) {
+			return failures(fn.apply(new ShardFailure.Builder()).build());
 		}
 
 		/**
@@ -242,25 +255,35 @@ public class ExploreResponse implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code vertices}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>vertices</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>vertices</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder vertices(List<Vertex> value) {
-			this.vertices = value;
+		public final Builder vertices(List<Vertex> list) {
+			this.vertices = _listAddAll(this.vertices, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code vertices}
+		 * <p>
+		 * Adds one or more values to <code>vertices</code>.
 		 */
-		public final Builder vertices(Vertex... value) {
-			this.vertices = Arrays.asList(value);
+		public final Builder vertices(Vertex value, Vertex... values) {
+			this.vertices = _listAdd(this.vertices, value, values);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code vertices}
+		 * <p>
+		 * Adds a value to <code>vertices</code> using a builder lambda.
 		 */
-		public final Builder vertices(Function<ListBuilder<Vertex, Vertex.Builder>, ObjectBuilder<List<Vertex>>> fn) {
-			return vertices(fn.apply(new ListBuilder<>(Vertex.Builder::new)).build());
+		public final Builder vertices(Function<Vertex.Builder, ObjectBuilder<Vertex>> fn) {
+			return vertices(fn.apply(new Vertex.Builder()).build());
 		}
 
 		/**

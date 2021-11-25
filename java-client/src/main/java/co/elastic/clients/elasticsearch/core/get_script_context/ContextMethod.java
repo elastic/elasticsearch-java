@@ -29,16 +29,13 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -61,10 +58,8 @@ public class ContextMethod implements JsonpSerializable {
 
 	}
 
-	public static ContextMethod of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static ContextMethod of(Function<Builder, ObjectBuilder<ContextMethod>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -148,26 +143,35 @@ public class ContextMethod implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code params}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>params</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>params</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder params(List<ContextMethodParam> value) {
-			this.params = value;
+		public final Builder params(List<ContextMethodParam> list) {
+			this.params = _listAddAll(this.params, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code params}
+		 * <p>
+		 * Adds one or more values to <code>params</code>.
 		 */
-		public final Builder params(ContextMethodParam... value) {
-			this.params = Arrays.asList(value);
+		public final Builder params(ContextMethodParam value, ContextMethodParam... values) {
+			this.params = _listAdd(this.params, value, values);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code params}
+		 * <p>
+		 * Adds a value to <code>params</code> using a builder lambda.
 		 */
-		public final Builder params(
-				Function<ListBuilder<ContextMethodParam, ContextMethodParam.Builder>, ObjectBuilder<List<ContextMethodParam>>> fn) {
-			return params(fn.apply(new ListBuilder<>(ContextMethodParam.Builder::new)).build());
+		public final Builder params(Function<ContextMethodParam.Builder, ObjectBuilder<ContextMethodParam>> fn) {
+			return params(fn.apply(new ContextMethodParam.Builder()).build());
 		}
 
 		/**

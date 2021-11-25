@@ -39,7 +39,7 @@ import co.elastic.clients.util.TaggedUnionUtils;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Object;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.mget.ResponseItem
@@ -82,10 +82,9 @@ public class MultiGetResponseItem<TDocument>
 
 	}
 
-	public static <TDocument> MultiGetResponseItem<TDocument> of(Consumer<Builder<TDocument>> fn) {
-		Builder<TDocument> builder = new Builder<>();
-		fn.accept(builder);
-		return builder.build();
+	public static <TDocument> MultiGetResponseItem<TDocument> of(
+			Function<Builder<TDocument>, ObjectBuilder<MultiGetResponseItem<TDocument>>> fn) {
+		return fn.apply(new Builder<>()).build();
 	}
 
 	/**
@@ -142,10 +141,9 @@ public class MultiGetResponseItem<TDocument>
 			return this;
 		}
 
-		public ObjectBuilder<MultiGetResponseItem<TDocument>> result(Consumer<GetResult.Builder<TDocument>> fn) {
-			GetResult.Builder<TDocument> builder = new GetResult.Builder<TDocument>();
-			fn.accept(builder);
-			return this.result(builder.build());
+		public ObjectBuilder<MultiGetResponseItem<TDocument>> result(
+				Function<GetResult.Builder<TDocument>, ObjectBuilder<GetResult<TDocument>>> fn) {
+			return this.result(fn.apply(new GetResult.Builder<TDocument>()).build());
 		}
 
 		public ObjectBuilder<MultiGetResponseItem<TDocument>> failure(MultiGetError v) {
@@ -154,10 +152,9 @@ public class MultiGetResponseItem<TDocument>
 			return this;
 		}
 
-		public ObjectBuilder<MultiGetResponseItem<TDocument>> failure(Consumer<MultiGetError.Builder> fn) {
-			MultiGetError.Builder builder = new MultiGetError.Builder();
-			fn.accept(builder);
-			return this.failure(builder.build());
+		public ObjectBuilder<MultiGetResponseItem<TDocument>> failure(
+				Function<MultiGetError.Builder, ObjectBuilder<MultiGetError>> fn) {
+			return this.failure(fn.apply(new MultiGetError.Builder()).build());
 		}
 
 		public MultiGetResponseItem<TDocument> build() {

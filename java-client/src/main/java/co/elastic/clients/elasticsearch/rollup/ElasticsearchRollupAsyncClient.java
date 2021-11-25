@@ -35,7 +35,7 @@ import co.elastic.clients.transport.endpoints.EndpointWithResponseMapperAttr;
 import co.elastic.clients.util.ObjectBuilder;
 import java.io.IOException;
 import java.util.concurrent.CompletableFuture;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 /**
@@ -86,11 +86,10 @@ public class ElasticsearchRollupAsyncClient extends ApiClient<ElasticsearchTrans
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<DeleteJobResponse> deleteJob(Consumer<DeleteJobRequest.Builder> fn)
+	public final CompletableFuture<DeleteJobResponse> deleteJob(
+			Function<DeleteJobRequest.Builder, ObjectBuilder<DeleteJobRequest>> fn)
 			throws IOException, ElasticsearchException {
-		DeleteJobRequest.Builder builder = new DeleteJobRequest.Builder();
-		fn.accept(builder);
-		return deleteJob(builder.build());
+		return deleteJob(fn.apply(new DeleteJobRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: rollup.get_jobs
@@ -122,11 +121,10 @@ public class ElasticsearchRollupAsyncClient extends ApiClient<ElasticsearchTrans
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<GetJobsResponse> getJobs(Consumer<GetJobsRequest.Builder> fn)
+	public final CompletableFuture<GetJobsResponse> getJobs(
+			Function<GetJobsRequest.Builder, ObjectBuilder<GetJobsRequest>> fn)
 			throws IOException, ElasticsearchException {
-		GetJobsRequest.Builder builder = new GetJobsRequest.Builder();
-		fn.accept(builder);
-		return getJobs(builder.build());
+		return getJobs(fn.apply(new GetJobsRequest.Builder()).build());
 	}
 
 	/**
@@ -173,11 +171,10 @@ public class ElasticsearchRollupAsyncClient extends ApiClient<ElasticsearchTrans
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<GetRollupCapsResponse> getRollupCaps(Consumer<GetRollupCapsRequest.Builder> fn)
+	public final CompletableFuture<GetRollupCapsResponse> getRollupCaps(
+			Function<GetRollupCapsRequest.Builder, ObjectBuilder<GetRollupCapsRequest>> fn)
 			throws IOException, ElasticsearchException {
-		GetRollupCapsRequest.Builder builder = new GetRollupCapsRequest.Builder();
-		fn.accept(builder);
-		return getRollupCaps(builder.build());
+		return getRollupCaps(fn.apply(new GetRollupCapsRequest.Builder()).build());
 	}
 
 	/**
@@ -226,10 +223,9 @@ public class ElasticsearchRollupAsyncClient extends ApiClient<ElasticsearchTrans
 	 */
 
 	public final CompletableFuture<GetRollupIndexCapsResponse> getRollupIndexCaps(
-			Consumer<GetRollupIndexCapsRequest.Builder> fn) throws IOException, ElasticsearchException {
-		GetRollupIndexCapsRequest.Builder builder = new GetRollupIndexCapsRequest.Builder();
-		fn.accept(builder);
-		return getRollupIndexCaps(builder.build());
+			Function<GetRollupIndexCapsRequest.Builder, ObjectBuilder<GetRollupIndexCapsRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return getRollupIndexCaps(fn.apply(new GetRollupIndexCapsRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: rollup.put_job
@@ -260,11 +256,10 @@ public class ElasticsearchRollupAsyncClient extends ApiClient<ElasticsearchTrans
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<PutJobResponse> putJob(Consumer<PutJobRequest.Builder> fn)
+	public final CompletableFuture<PutJobResponse> putJob(
+			Function<PutJobRequest.Builder, ObjectBuilder<PutJobRequest>> fn)
 			throws IOException, ElasticsearchException {
-		PutJobRequest.Builder builder = new PutJobRequest.Builder();
-		fn.accept(builder);
-		return putJob(builder.build());
+		return putJob(fn.apply(new PutJobRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: rollup.rollup
@@ -295,11 +290,10 @@ public class ElasticsearchRollupAsyncClient extends ApiClient<ElasticsearchTrans
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<RollupResponse> rollup(Consumer<RollupRequest.Builder> fn)
+	public final CompletableFuture<RollupResponse> rollup(
+			Function<RollupRequest.Builder, ObjectBuilder<RollupRequest>> fn)
 			throws IOException, ElasticsearchException {
-		RollupRequest.Builder builder = new RollupRequest.Builder();
-		fn.accept(builder);
-		return rollup(builder.build());
+		return rollup(fn.apply(new RollupRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: rollup.rollup_search
@@ -334,11 +328,9 @@ public class ElasticsearchRollupAsyncClient extends ApiClient<ElasticsearchTrans
 	 */
 
 	public final <TDocument> CompletableFuture<RollupSearchResponse<TDocument>> rollupSearch(
-			Consumer<RollupSearchRequest.Builder> fn, Class<TDocument> tDocumentClass)
-			throws IOException, ElasticsearchException {
-		RollupSearchRequest.Builder builder = new RollupSearchRequest.Builder();
-		fn.accept(builder);
-		return rollupSearch(builder.build(), tDocumentClass);
+			Function<RollupSearchRequest.Builder, ObjectBuilder<RollupSearchRequest>> fn,
+			Class<TDocument> tDocumentClass) throws IOException, ElasticsearchException {
+		return rollupSearch(fn.apply(new RollupSearchRequest.Builder()).build(), tDocumentClass);
 	}
 
 	// ----- Endpoint: rollup.start_job
@@ -370,11 +362,10 @@ public class ElasticsearchRollupAsyncClient extends ApiClient<ElasticsearchTrans
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<StartJobResponse> startJob(Consumer<StartJobRequest.Builder> fn)
+	public final CompletableFuture<StartJobResponse> startJob(
+			Function<StartJobRequest.Builder, ObjectBuilder<StartJobRequest>> fn)
 			throws IOException, ElasticsearchException {
-		StartJobRequest.Builder builder = new StartJobRequest.Builder();
-		fn.accept(builder);
-		return startJob(builder.build());
+		return startJob(fn.apply(new StartJobRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: rollup.stop_job
@@ -406,11 +397,10 @@ public class ElasticsearchRollupAsyncClient extends ApiClient<ElasticsearchTrans
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<StopJobResponse> stopJob(Consumer<StopJobRequest.Builder> fn)
+	public final CompletableFuture<StopJobResponse> stopJob(
+			Function<StopJobRequest.Builder, ObjectBuilder<StopJobRequest>> fn)
 			throws IOException, ElasticsearchException {
-		StopJobRequest.Builder builder = new StopJobRequest.Builder();
-		fn.accept(builder);
-		return stopJob(builder.build());
+		return stopJob(fn.apply(new StopJobRequest.Builder()).build());
 	}
 
 }

@@ -38,12 +38,11 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
@@ -75,10 +74,8 @@ public class NodesInfoRequest extends RequestBase {
 
 	}
 
-	public static NodesInfoRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static NodesInfoRequest of(Function<Builder, ObjectBuilder<NodesInfoRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -180,10 +177,8 @@ public class NodesInfoRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
-		public final Builder masterTimeout(Consumer<Time.Builder> fn) {
-			Time.Builder builder = new Time.Builder();
-			fn.accept(builder);
-			return this.masterTimeout(builder.build());
+		public final Builder masterTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.masterTimeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -191,9 +186,15 @@ public class NodesInfoRequest extends RequestBase {
 		 * comma-separated list, such as http,ingest.
 		 * <p>
 		 * API name: {@code metric}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>metric</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>metric</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder metric(@Nullable List<String> value) {
-			this.metric = value;
+		public final Builder metric(List<String> list) {
+			this.metric = _listAddAll(this.metric, list);
 			return this;
 		}
 
@@ -202,9 +203,11 @@ public class NodesInfoRequest extends RequestBase {
 		 * comma-separated list, such as http,ingest.
 		 * <p>
 		 * API name: {@code metric}
+		 * <p>
+		 * Adds one or more values to <code>metric</code>.
 		 */
-		public final Builder metric(String... value) {
-			this.metric = Arrays.asList(value);
+		public final Builder metric(String value, String... values) {
+			this.metric = _listAdd(this.metric, value, values);
 			return this;
 		}
 
@@ -212,9 +215,15 @@ public class NodesInfoRequest extends RequestBase {
 		 * Comma-separated list of node IDs or names used to limit returned information.
 		 * <p>
 		 * API name: {@code node_id}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>nodeId</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>nodeId</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder nodeId(@Nullable List<String> value) {
-			this.nodeId = value;
+		public final Builder nodeId(List<String> list) {
+			this.nodeId = _listAddAll(this.nodeId, list);
 			return this;
 		}
 
@@ -222,9 +231,11 @@ public class NodesInfoRequest extends RequestBase {
 		 * Comma-separated list of node IDs or names used to limit returned information.
 		 * <p>
 		 * API name: {@code node_id}
+		 * <p>
+		 * Adds one or more values to <code>nodeId</code>.
 		 */
-		public final Builder nodeId(String... value) {
-			this.nodeId = Arrays.asList(value);
+		public final Builder nodeId(String value, String... values) {
+			this.nodeId = _listAdd(this.nodeId, value, values);
 			return this;
 		}
 
@@ -245,10 +256,8 @@ public class NodesInfoRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code timeout}
 		 */
-		public final Builder timeout(Consumer<Time.Builder> fn) {
-			Time.Builder builder = new Time.Builder();
-			fn.accept(builder);
-			return this.timeout(builder.build());
+		public final Builder timeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.timeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**

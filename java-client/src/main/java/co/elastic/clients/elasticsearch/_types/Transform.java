@@ -38,7 +38,7 @@ import co.elastic.clients.util.TaggedUnionUtils;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Object;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.TransformContainer
@@ -98,10 +98,8 @@ public class Transform implements TaggedUnion<Transform.Kind, Object>, JsonpSeri
 
 	}
 
-	public static Transform of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static Transform of(Function<Builder, ObjectBuilder<Transform>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -180,10 +178,8 @@ public class Transform implements TaggedUnion<Transform.Kind, Object>, JsonpSeri
 			return this;
 		}
 
-		public ObjectBuilder<Transform> chain(Consumer<ChainTransform.Builder> fn) {
-			ChainTransform.Builder builder = new ChainTransform.Builder();
-			fn.accept(builder);
-			return this.chain(builder.build());
+		public ObjectBuilder<Transform> chain(Function<ChainTransform.Builder, ObjectBuilder<ChainTransform>> fn) {
+			return this.chain(fn.apply(new ChainTransform.Builder()).build());
 		}
 
 		public ObjectBuilder<Transform> script(ScriptTransform v) {
@@ -192,10 +188,8 @@ public class Transform implements TaggedUnion<Transform.Kind, Object>, JsonpSeri
 			return this;
 		}
 
-		public ObjectBuilder<Transform> script(Consumer<ScriptTransform.Builder> fn) {
-			ScriptTransform.Builder builder = new ScriptTransform.Builder();
-			fn.accept(builder);
-			return this.script(builder.build());
+		public ObjectBuilder<Transform> script(Function<ScriptTransform.Builder, ObjectBuilder<ScriptTransform>> fn) {
+			return this.script(fn.apply(new ScriptTransform.Builder()).build());
 		}
 
 		public ObjectBuilder<Transform> search(SearchTransform v) {
@@ -204,10 +198,8 @@ public class Transform implements TaggedUnion<Transform.Kind, Object>, JsonpSeri
 			return this;
 		}
 
-		public ObjectBuilder<Transform> search(Consumer<SearchTransform.Builder> fn) {
-			SearchTransform.Builder builder = new SearchTransform.Builder();
-			fn.accept(builder);
-			return this.search(builder.build());
+		public ObjectBuilder<Transform> search(Function<SearchTransform.Builder, ObjectBuilder<SearchTransform>> fn) {
+			return this.search(fn.apply(new SearchTransform.Builder()).build());
 		}
 
 		public Transform build() {

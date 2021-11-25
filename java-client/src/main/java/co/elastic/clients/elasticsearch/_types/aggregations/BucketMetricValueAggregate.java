@@ -32,10 +32,9 @@ import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.BucketMetricValueAggregate
@@ -52,10 +51,8 @@ public class BucketMetricValueAggregate extends SingleMetricAggregateBase implem
 
 	}
 
-	public static BucketMetricValueAggregate of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static BucketMetricValueAggregate of(Function<Builder, ObjectBuilder<BucketMetricValueAggregate>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -101,17 +98,25 @@ public class BucketMetricValueAggregate extends SingleMetricAggregateBase implem
 
 		/**
 		 * Required - API name: {@code keys}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>keys</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>keys</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder keys(List<String> value) {
-			this.keys = value;
+		public final Builder keys(List<String> list) {
+			this.keys = _listAddAll(this.keys, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code keys}
+		 * <p>
+		 * Adds one or more values to <code>keys</code>.
 		 */
-		public final Builder keys(String... value) {
-			this.keys = Arrays.asList(value);
+		public final Builder keys(String value, String... values) {
+			this.keys = _listAdd(this.keys, value, values);
 			return this;
 		}
 

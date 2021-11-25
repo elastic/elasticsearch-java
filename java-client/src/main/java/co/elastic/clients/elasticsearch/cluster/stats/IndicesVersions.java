@@ -37,7 +37,7 @@ import java.lang.Integer;
 import java.lang.Long;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cluster.stats.IndicesVersions
@@ -62,10 +62,8 @@ public class IndicesVersions implements JsonpSerializable {
 
 	}
 
-	public static IndicesVersions of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static IndicesVersions of(Function<Builder, ObjectBuilder<IndicesVersions>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**

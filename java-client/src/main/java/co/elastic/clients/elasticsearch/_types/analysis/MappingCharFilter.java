@@ -32,10 +32,9 @@ import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.analysis.MappingCharFilter
@@ -56,10 +55,8 @@ public class MappingCharFilter extends CharFilterBase implements CharFilterDefin
 
 	}
 
-	public static MappingCharFilter of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static MappingCharFilter of(Function<Builder, ObjectBuilder<MappingCharFilter>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -122,17 +119,25 @@ public class MappingCharFilter extends CharFilterBase implements CharFilterDefin
 
 		/**
 		 * Required - API name: {@code mappings}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>mappings</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>mappings</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder mappings(List<String> value) {
-			this.mappings = value;
+		public final Builder mappings(List<String> list) {
+			this.mappings = _listAddAll(this.mappings, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code mappings}
+		 * <p>
+		 * Adds one or more values to <code>mappings</code>.
 		 */
-		public final Builder mappings(String... value) {
-			this.mappings = Arrays.asList(value);
+		public final Builder mappings(String value, String... values) {
+			this.mappings = _listAdd(this.mappings, value, values);
 			return this;
 		}
 

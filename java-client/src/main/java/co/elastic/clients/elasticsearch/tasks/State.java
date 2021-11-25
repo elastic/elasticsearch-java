@@ -39,7 +39,7 @@ import java.lang.String;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: tasks._types.State
@@ -89,10 +89,8 @@ public class State implements JsonpSerializable {
 
 	}
 
-	public static State of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static State of(Function<Builder, ObjectBuilder<State>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -299,9 +297,25 @@ public class State implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code headers}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>headers</code>. Use
+		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
+		 * <code>headers</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetMap()
 		 */
-		public final Builder headers(Map<String, List<String>> value) {
-			this.headers = value;
+		public final Builder headers(Map<String, List<String>> map) {
+			this.headers = _mapPutAll(this.headers, map);
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code headers}
+		 * <p>
+		 * Adds an entry to <code>headers</code>.
+		 */
+		public final Builder headers(String key, List<String> value) {
+			this.headers = _mapPut(this.headers, key, value);
 			return this;
 		}
 
@@ -356,10 +370,8 @@ public class State implements JsonpSerializable {
 		/**
 		 * API name: {@code status}
 		 */
-		public final Builder status(Consumer<Status.Builder> fn) {
-			Status.Builder builder = new Status.Builder();
-			fn.accept(builder);
-			return this.status(builder.build());
+		public final Builder status(Function<Status.Builder, ObjectBuilder<Status>> fn) {
+			return this.status(fn.apply(new Status.Builder()).build());
 		}
 
 		/**

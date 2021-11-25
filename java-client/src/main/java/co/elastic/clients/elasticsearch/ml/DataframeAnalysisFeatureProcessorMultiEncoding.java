@@ -34,10 +34,9 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.DataframeAnalysisFeatureProcessorMultiEncoding
@@ -56,10 +55,9 @@ public class DataframeAnalysisFeatureProcessorMultiEncoding
 
 	}
 
-	public static DataframeAnalysisFeatureProcessorMultiEncoding of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static DataframeAnalysisFeatureProcessorMultiEncoding of(
+			Function<Builder, ObjectBuilder<DataframeAnalysisFeatureProcessorMultiEncoding>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -119,9 +117,15 @@ public class DataframeAnalysisFeatureProcessorMultiEncoding
 		 * than 1.
 		 * <p>
 		 * API name: {@code processors}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>processors</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>processors</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder processors(List<Integer> value) {
-			this.processors = value;
+		public final Builder processors(List<Integer> list) {
+			this.processors = _listAddAll(this.processors, list);
 			return this;
 		}
 
@@ -130,9 +134,11 @@ public class DataframeAnalysisFeatureProcessorMultiEncoding
 		 * than 1.
 		 * <p>
 		 * API name: {@code processors}
+		 * <p>
+		 * Adds one or more values to <code>processors</code>.
 		 */
-		public final Builder processors(Integer... value) {
-			this.processors = Arrays.asList(value);
+		public final Builder processors(Integer value, Integer... values) {
+			this.processors = _listAdd(this.processors, value, values);
 			return this;
 		}
 

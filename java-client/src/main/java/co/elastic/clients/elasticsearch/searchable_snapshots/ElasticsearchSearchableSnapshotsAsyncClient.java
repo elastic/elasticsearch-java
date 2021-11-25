@@ -34,7 +34,7 @@ import co.elastic.clients.transport.TransportOptions;
 import co.elastic.clients.util.ObjectBuilder;
 import java.io.IOException;
 import java.util.concurrent.CompletableFuture;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 /**
@@ -88,11 +88,10 @@ public class ElasticsearchSearchableSnapshotsAsyncClient
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<ClearCacheResponse> clearCache(Consumer<ClearCacheRequest.Builder> fn)
+	public final CompletableFuture<ClearCacheResponse> clearCache(
+			Function<ClearCacheRequest.Builder, ObjectBuilder<ClearCacheRequest>> fn)
 			throws IOException, ElasticsearchException {
-		ClearCacheRequest.Builder builder = new ClearCacheRequest.Builder();
-		fn.accept(builder);
-		return clearCache(builder.build());
+		return clearCache(fn.apply(new ClearCacheRequest.Builder()).build());
 	}
 
 	/**
@@ -136,11 +135,9 @@ public class ElasticsearchSearchableSnapshotsAsyncClient
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<MountResponse> mount(Consumer<MountRequest.Builder> fn)
+	public final CompletableFuture<MountResponse> mount(Function<MountRequest.Builder, ObjectBuilder<MountRequest>> fn)
 			throws IOException, ElasticsearchException {
-		MountRequest.Builder builder = new MountRequest.Builder();
-		fn.accept(builder);
-		return mount(builder.build());
+		return mount(fn.apply(new MountRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: searchable_snapshots.stats
@@ -173,10 +170,9 @@ public class ElasticsearchSearchableSnapshotsAsyncClient
 	 */
 
 	public final CompletableFuture<SearchableSnapshotsStatsResponse> stats(
-			Consumer<SearchableSnapshotsStatsRequest.Builder> fn) throws IOException, ElasticsearchException {
-		SearchableSnapshotsStatsRequest.Builder builder = new SearchableSnapshotsStatsRequest.Builder();
-		fn.accept(builder);
-		return stats(builder.build());
+			Function<SearchableSnapshotsStatsRequest.Builder, ObjectBuilder<SearchableSnapshotsStatsRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return stats(fn.apply(new SearchableSnapshotsStatsRequest.Builder()).build());
 	}
 
 	/**

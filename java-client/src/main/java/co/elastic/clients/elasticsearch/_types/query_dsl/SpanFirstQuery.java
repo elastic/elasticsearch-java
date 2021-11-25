@@ -33,7 +33,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.SpanFirstQuery
@@ -53,10 +53,8 @@ public class SpanFirstQuery extends QueryBase implements SpanQueryVariant, Query
 
 	}
 
-	public static SpanFirstQuery of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static SpanFirstQuery of(Function<Builder, ObjectBuilder<SpanFirstQuery>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -129,10 +127,8 @@ public class SpanFirstQuery extends QueryBase implements SpanQueryVariant, Query
 		/**
 		 * Required - API name: {@code match}
 		 */
-		public final Builder match(Consumer<SpanQuery.Builder> fn) {
-			SpanQuery.Builder builder = new SpanQuery.Builder();
-			fn.accept(builder);
-			return this.match(builder.build());
+		public final Builder match(Function<SpanQuery.Builder, ObjectBuilder<SpanQuery>> fn) {
+			return this.match(fn.apply(new SpanQuery.Builder()).build());
 		}
 
 		@Override

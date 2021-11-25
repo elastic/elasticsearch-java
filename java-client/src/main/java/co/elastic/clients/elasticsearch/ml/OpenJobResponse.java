@@ -35,7 +35,7 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 
 // typedef: ml.open_job.Response
 @JsonpDeserializable
@@ -50,10 +50,8 @@ public class OpenJobResponse implements JsonpSerializable {
 
 	}
 
-	public static OpenJobResponse of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static OpenJobResponse of(Function<Builder, ObjectBuilder<OpenJobResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**

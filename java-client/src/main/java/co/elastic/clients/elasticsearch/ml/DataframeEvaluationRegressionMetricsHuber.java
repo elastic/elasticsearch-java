@@ -34,7 +34,7 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.DataframeEvaluationRegressionMetricsHuber
@@ -51,10 +51,9 @@ public class DataframeEvaluationRegressionMetricsHuber implements JsonpSerializa
 
 	}
 
-	public static DataframeEvaluationRegressionMetricsHuber of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static DataframeEvaluationRegressionMetricsHuber of(
+			Function<Builder, ObjectBuilder<DataframeEvaluationRegressionMetricsHuber>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**

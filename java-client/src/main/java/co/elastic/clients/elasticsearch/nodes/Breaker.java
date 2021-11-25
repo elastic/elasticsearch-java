@@ -37,7 +37,7 @@ import java.lang.Float;
 import java.lang.Long;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: nodes._types.Breaker
@@ -69,10 +69,8 @@ public class Breaker implements JsonpSerializable {
 
 	}
 
-	public static Breaker of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static Breaker of(Function<Builder, ObjectBuilder<Breaker>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**

@@ -33,7 +33,7 @@ import co.elastic.clients.transport.Transport;
 import co.elastic.clients.transport.TransportOptions;
 import co.elastic.clients.util.ObjectBuilder;
 import java.io.IOException;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 /**
@@ -83,10 +83,9 @@ public class ElasticsearchMonitoringClient extends ApiClient<ElasticsearchTransp
 	 *      on elastic.co</a>
 	 */
 
-	public final BulkResponse bulk(Consumer<BulkRequest.Builder> fn) throws IOException, ElasticsearchException {
-		BulkRequest.Builder builder = new BulkRequest.Builder();
-		fn.accept(builder);
-		return bulk(builder.build());
+	public final BulkResponse bulk(Function<BulkRequest.Builder, ObjectBuilder<BulkRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return bulk(fn.apply(new BulkRequest.Builder()).build());
 	}
 
 }

@@ -29,7 +29,6 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.MapBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
@@ -38,7 +37,6 @@ import java.lang.Integer;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -65,10 +63,8 @@ public class ShardsSegment implements JsonpSerializable {
 
 	}
 
-	public static ShardsSegment of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static ShardsSegment of(Function<Builder, ObjectBuilder<ShardsSegment>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -166,10 +162,8 @@ public class ShardsSegment implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code routing}
 		 */
-		public final Builder routing(Consumer<ShardSegmentRouting.Builder> fn) {
-			ShardSegmentRouting.Builder builder = new ShardSegmentRouting.Builder();
-			fn.accept(builder);
-			return this.routing(builder.build());
+		public final Builder routing(Function<ShardSegmentRouting.Builder, ObjectBuilder<ShardSegmentRouting>> fn) {
+			return this.routing(fn.apply(new ShardSegmentRouting.Builder()).build());
 		}
 
 		/**
@@ -182,15 +176,35 @@ public class ShardsSegment implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code segments}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>segments</code>. Use
+		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
+		 * <code>segments</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetMap()
 		 */
-		public final Builder segments(Map<String, Segment> value) {
-			this.segments = value;
+		public final Builder segments(Map<String, Segment> map) {
+			this.segments = _mapPutAll(this.segments, map);
 			return this;
 		}
 
-		public final Builder segments(
-				Function<MapBuilder<String, Segment, Segment.Builder>, ObjectBuilder<Map<String, Segment>>> fn) {
-			return segments(fn.apply(new MapBuilder<>(Segment.Builder::new)).build());
+		/**
+		 * Required - API name: {@code segments}
+		 * <p>
+		 * Adds an entry to <code>segments</code>.
+		 */
+		public final Builder segments(String key, Segment value) {
+			this.segments = _mapPut(this.segments, key, value);
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code segments}
+		 * <p>
+		 * Adds an entry to <code>segments</code> using a builder lambda.
+		 */
+		public final Builder segments(String key, Function<Segment.Builder, ObjectBuilder<Segment>> fn) {
+			return segments(key, fn.apply(new Segment.Builder()).build());
 		}
 
 		/**

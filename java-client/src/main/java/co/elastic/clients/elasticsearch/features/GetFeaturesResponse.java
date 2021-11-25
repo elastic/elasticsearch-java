@@ -29,15 +29,12 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -54,10 +51,8 @@ public class GetFeaturesResponse implements JsonpSerializable {
 
 	}
 
-	public static GetFeaturesResponse of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static GetFeaturesResponse of(Function<Builder, ObjectBuilder<GetFeaturesResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -101,26 +96,35 @@ public class GetFeaturesResponse implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code features}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>features</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>features</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder features(List<Feature> value) {
-			this.features = value;
+		public final Builder features(List<Feature> list) {
+			this.features = _listAddAll(this.features, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code features}
+		 * <p>
+		 * Adds one or more values to <code>features</code>.
 		 */
-		public final Builder features(Feature... value) {
-			this.features = Arrays.asList(value);
+		public final Builder features(Feature value, Feature... values) {
+			this.features = _listAdd(this.features, value, values);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code features}
+		 * <p>
+		 * Adds a value to <code>features</code> using a builder lambda.
 		 */
-		public final Builder features(
-				Function<ListBuilder<Feature, Feature.Builder>, ObjectBuilder<List<Feature>>> fn) {
-			return features(fn.apply(new ListBuilder<>(Feature.Builder::new)).build());
+		public final Builder features(Function<Feature.Builder, ObjectBuilder<Feature>> fn) {
+			return features(fn.apply(new Feature.Builder()).build());
 		}
 
 		/**

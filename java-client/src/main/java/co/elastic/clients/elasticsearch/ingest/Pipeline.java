@@ -29,17 +29,14 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -67,10 +64,8 @@ public class Pipeline implements JsonpSerializable {
 
 	}
 
-	public static Pipeline of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static Pipeline of(Function<Builder, ObjectBuilder<Pipeline>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -175,50 +170,68 @@ public class Pipeline implements JsonpSerializable {
 
 		/**
 		 * API name: {@code on_failure}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>onFailure</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>onFailure</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder onFailure(@Nullable List<Processor> value) {
-			this.onFailure = value;
+		public final Builder onFailure(List<Processor> list) {
+			this.onFailure = _listAddAll(this.onFailure, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code on_failure}
+		 * <p>
+		 * Adds one or more values to <code>onFailure</code>.
 		 */
-		public final Builder onFailure(Processor... value) {
-			this.onFailure = Arrays.asList(value);
+		public final Builder onFailure(Processor value, Processor... values) {
+			this.onFailure = _listAdd(this.onFailure, value, values);
 			return this;
 		}
 
 		/**
 		 * API name: {@code on_failure}
+		 * <p>
+		 * Adds a value to <code>onFailure</code> using a builder lambda.
 		 */
-		public final Builder onFailure(
-				Function<ListBuilder<Processor, Processor.Builder>, ObjectBuilder<List<Processor>>> fn) {
-			return onFailure(fn.apply(new ListBuilder<>(Processor.Builder::new)).build());
+		public final Builder onFailure(Function<Processor.Builder, ObjectBuilder<Processor>> fn) {
+			return onFailure(fn.apply(new Processor.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code processors}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>processors</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>processors</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder processors(@Nullable List<Processor> value) {
-			this.processors = value;
+		public final Builder processors(List<Processor> list) {
+			this.processors = _listAddAll(this.processors, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code processors}
+		 * <p>
+		 * Adds one or more values to <code>processors</code>.
 		 */
-		public final Builder processors(Processor... value) {
-			this.processors = Arrays.asList(value);
+		public final Builder processors(Processor value, Processor... values) {
+			this.processors = _listAdd(this.processors, value, values);
 			return this;
 		}
 
 		/**
 		 * API name: {@code processors}
+		 * <p>
+		 * Adds a value to <code>processors</code> using a builder lambda.
 		 */
-		public final Builder processors(
-				Function<ListBuilder<Processor, Processor.Builder>, ObjectBuilder<List<Processor>>> fn) {
-			return processors(fn.apply(new ListBuilder<>(Processor.Builder::new)).build());
+		public final Builder processors(Function<Processor.Builder, ObjectBuilder<Processor>> fn) {
+			return processors(fn.apply(new Processor.Builder()).build());
 		}
 
 		/**

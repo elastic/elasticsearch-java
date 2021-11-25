@@ -35,7 +35,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: xpack.usage.MlDataFrameAnalyticsJobsMemory
@@ -51,10 +51,9 @@ public class MlDataFrameAnalyticsJobsMemory implements JsonpSerializable {
 
 	}
 
-	public static MlDataFrameAnalyticsJobsMemory of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static MlDataFrameAnalyticsJobsMemory of(
+			Function<Builder, ObjectBuilder<MlDataFrameAnalyticsJobsMemory>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -99,10 +98,8 @@ public class MlDataFrameAnalyticsJobsMemory implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code peak_usage_bytes}
 		 */
-		public final Builder peakUsageBytes(Consumer<JobStatistics.Builder> fn) {
-			JobStatistics.Builder builder = new JobStatistics.Builder();
-			fn.accept(builder);
-			return this.peakUsageBytes(builder.build());
+		public final Builder peakUsageBytes(Function<JobStatistics.Builder, ObjectBuilder<JobStatistics>> fn) {
+			return this.peakUsageBytes(fn.apply(new JobStatistics.Builder()).build());
 		}
 
 		/**

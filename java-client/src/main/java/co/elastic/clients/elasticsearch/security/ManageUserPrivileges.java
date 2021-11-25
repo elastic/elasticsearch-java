@@ -34,10 +34,9 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: security._types.ManageUserPrivileges
@@ -53,10 +52,8 @@ public class ManageUserPrivileges implements JsonpSerializable {
 
 	}
 
-	public static ManageUserPrivileges of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static ManageUserPrivileges of(Function<Builder, ObjectBuilder<ManageUserPrivileges>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -100,17 +97,25 @@ public class ManageUserPrivileges implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code applications}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>applications</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>applications</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder applications(List<String> value) {
-			this.applications = value;
+		public final Builder applications(List<String> list) {
+			this.applications = _listAddAll(this.applications, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code applications}
+		 * <p>
+		 * Adds one or more values to <code>applications</code>.
 		 */
-		public final Builder applications(String... value) {
-			this.applications = Arrays.asList(value);
+		public final Builder applications(String value, String... values) {
+			this.applications = _listAdd(this.applications, value, values);
 			return this;
 		}
 

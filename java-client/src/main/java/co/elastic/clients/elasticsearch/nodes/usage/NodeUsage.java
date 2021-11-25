@@ -38,7 +38,7 @@ import java.lang.Integer;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: nodes.usage.NodeUsage
@@ -63,10 +63,8 @@ public class NodeUsage implements JsonpSerializable {
 
 	}
 
-	public static NodeUsage of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static NodeUsage of(Function<Builder, ObjectBuilder<NodeUsage>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -155,9 +153,25 @@ public class NodeUsage implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code rest_actions}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>restActions</code>. Use
+		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
+		 * <code>restActions</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetMap()
 		 */
-		public final Builder restActions(Map<String, Integer> value) {
-			this.restActions = value;
+		public final Builder restActions(Map<String, Integer> map) {
+			this.restActions = _mapPutAll(this.restActions, map);
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code rest_actions}
+		 * <p>
+		 * Adds an entry to <code>restActions</code>.
+		 */
+		public final Builder restActions(String key, Integer value) {
+			this.restActions = _mapPut(this.restActions, key, value);
 			return this;
 		}
 
@@ -179,9 +193,25 @@ public class NodeUsage implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code aggregations}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>aggregations</code>. Use
+		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
+		 * <code>aggregations</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetMap()
 		 */
-		public final Builder aggregations(Map<String, JsonData> value) {
-			this.aggregations = value;
+		public final Builder aggregations(Map<String, JsonData> map) {
+			this.aggregations = _mapPutAll(this.aggregations, map);
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code aggregations}
+		 * <p>
+		 * Adds an entry to <code>aggregations</code>.
+		 */
+		public final Builder aggregations(String key, JsonData value) {
+			this.aggregations = _mapPut(this.aggregations, key, value);
 			return this;
 		}
 

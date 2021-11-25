@@ -35,7 +35,7 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.PagerDutyActionEventResult
@@ -60,10 +60,8 @@ public class PagerDutyActionEventResult implements JsonpSerializable {
 
 	}
 
-	public static PagerDutyActionEventResult of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static PagerDutyActionEventResult of(Function<Builder, ObjectBuilder<PagerDutyActionEventResult>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -144,10 +142,8 @@ public class PagerDutyActionEventResult implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code event}
 		 */
-		public final Builder event(Consumer<PagerDutyEvent.Builder> fn) {
-			PagerDutyEvent.Builder builder = new PagerDutyEvent.Builder();
-			fn.accept(builder);
-			return this.event(builder.build());
+		public final Builder event(Function<PagerDutyEvent.Builder, ObjectBuilder<PagerDutyEvent>> fn) {
+			return this.event(fn.apply(new PagerDutyEvent.Builder()).build());
 		}
 
 		/**
@@ -169,10 +165,9 @@ public class PagerDutyActionEventResult implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code request}
 		 */
-		public final Builder request(Consumer<HttpInputRequestResult.Builder> fn) {
-			HttpInputRequestResult.Builder builder = new HttpInputRequestResult.Builder();
-			fn.accept(builder);
-			return this.request(builder.build());
+		public final Builder request(
+				Function<HttpInputRequestResult.Builder, ObjectBuilder<HttpInputRequestResult>> fn) {
+			return this.request(fn.apply(new HttpInputRequestResult.Builder()).build());
 		}
 
 		/**
@@ -186,10 +181,9 @@ public class PagerDutyActionEventResult implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code response}
 		 */
-		public final Builder response(Consumer<HttpInputResponseResult.Builder> fn) {
-			HttpInputResponseResult.Builder builder = new HttpInputResponseResult.Builder();
-			fn.accept(builder);
-			return this.response(builder.build());
+		public final Builder response(
+				Function<HttpInputResponseResult.Builder, ObjectBuilder<HttpInputResponseResult>> fn) {
+			return this.response(fn.apply(new HttpInputResponseResult.Builder()).build());
 		}
 
 		/**

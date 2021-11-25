@@ -33,7 +33,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 
 // typedef: security.put_privileges.Response
 @JsonpDeserializable
@@ -45,10 +45,8 @@ public class PutPrivilegesResponse extends DictionaryResponse<String, Map<String
 
 	}
 
-	public static PutPrivilegesResponse of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static PutPrivilegesResponse of(Function<Builder, ObjectBuilder<PutPrivilegesResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------

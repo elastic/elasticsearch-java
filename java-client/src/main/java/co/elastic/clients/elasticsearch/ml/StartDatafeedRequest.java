@@ -41,7 +41,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.start_datafeed.Request
@@ -69,10 +69,8 @@ public class StartDatafeedRequest extends RequestBase implements JsonpSerializab
 
 	}
 
-	public static StartDatafeedRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static StartDatafeedRequest of(Function<Builder, ObjectBuilder<StartDatafeedRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -175,10 +173,8 @@ public class StartDatafeedRequest extends RequestBase implements JsonpSerializab
 		/**
 		 * API name: {@code end}
 		 */
-		public final Builder end(Consumer<Time.Builder> fn) {
-			Time.Builder builder = new Time.Builder();
-			fn.accept(builder);
-			return this.end(builder.build());
+		public final Builder end(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.end(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -192,10 +188,8 @@ public class StartDatafeedRequest extends RequestBase implements JsonpSerializab
 		/**
 		 * API name: {@code start}
 		 */
-		public final Builder start(Consumer<Time.Builder> fn) {
-			Time.Builder builder = new Time.Builder();
-			fn.accept(builder);
-			return this.start(builder.build());
+		public final Builder start(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.start(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -209,10 +203,8 @@ public class StartDatafeedRequest extends RequestBase implements JsonpSerializab
 		/**
 		 * API name: {@code timeout}
 		 */
-		public final Builder timeout(Consumer<Time.Builder> fn) {
-			Time.Builder builder = new Time.Builder();
-			fn.accept(builder);
-			return this.timeout(builder.build());
+		public final Builder timeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.timeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**

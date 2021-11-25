@@ -29,15 +29,12 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -58,10 +55,8 @@ public class IntervalsAnyOf implements IntervalsQueryVariant, IntervalsVariant, 
 
 	}
 
-	public static IntervalsAnyOf of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static IntervalsAnyOf of(Function<Builder, ObjectBuilder<IntervalsAnyOf>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -137,26 +132,35 @@ public class IntervalsAnyOf implements IntervalsQueryVariant, IntervalsVariant, 
 
 		/**
 		 * Required - API name: {@code intervals}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>intervals</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>intervals</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder intervals(List<Intervals> value) {
-			this.intervals = value;
+		public final Builder intervals(List<Intervals> list) {
+			this.intervals = _listAddAll(this.intervals, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code intervals}
+		 * <p>
+		 * Adds one or more values to <code>intervals</code>.
 		 */
-		public final Builder intervals(Intervals... value) {
-			this.intervals = Arrays.asList(value);
+		public final Builder intervals(Intervals value, Intervals... values) {
+			this.intervals = _listAdd(this.intervals, value, values);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code intervals}
+		 * <p>
+		 * Adds a value to <code>intervals</code> using a builder lambda.
 		 */
-		public final Builder intervals(
-				Function<ListBuilder<Intervals, Intervals.Builder>, ObjectBuilder<List<Intervals>>> fn) {
-			return intervals(fn.apply(new ListBuilder<>(Intervals.Builder::new)).build());
+		public final Builder intervals(Function<Intervals.Builder, ObjectBuilder<Intervals>> fn) {
+			return intervals(fn.apply(new Intervals.Builder()).build());
 		}
 
 		/**
@@ -170,10 +174,8 @@ public class IntervalsAnyOf implements IntervalsQueryVariant, IntervalsVariant, 
 		/**
 		 * API name: {@code filter}
 		 */
-		public final Builder filter(Consumer<IntervalsFilter.Builder> fn) {
-			IntervalsFilter.Builder builder = new IntervalsFilter.Builder();
-			fn.accept(builder);
-			return this.filter(builder.build());
+		public final Builder filter(Function<IntervalsFilter.Builder, ObjectBuilder<IntervalsFilter>> fn) {
+			return this.filter(fn.apply(new IntervalsFilter.Builder()).build());
 		}
 
 		/**

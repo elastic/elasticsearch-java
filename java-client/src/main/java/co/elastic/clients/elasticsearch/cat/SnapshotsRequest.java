@@ -36,12 +36,11 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
@@ -62,10 +61,8 @@ public class SnapshotsRequest extends CatRequestBase {
 
 	}
 
-	public static SnapshotsRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static SnapshotsRequest of(Function<Builder, ObjectBuilder<SnapshotsRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -113,9 +110,15 @@ public class SnapshotsRequest extends CatRequestBase {
 		 * Name of repository from which to fetch the snapshot information
 		 * <p>
 		 * API name: {@code repository}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>repository</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>repository</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder repository(@Nullable List<String> value) {
-			this.repository = value;
+		public final Builder repository(List<String> list) {
+			this.repository = _listAddAll(this.repository, list);
 			return this;
 		}
 
@@ -123,9 +126,11 @@ public class SnapshotsRequest extends CatRequestBase {
 		 * Name of repository from which to fetch the snapshot information
 		 * <p>
 		 * API name: {@code repository}
+		 * <p>
+		 * Adds one or more values to <code>repository</code>.
 		 */
-		public final Builder repository(String... value) {
-			this.repository = Arrays.asList(value);
+		public final Builder repository(String value, String... values) {
+			this.repository = _listAdd(this.repository, value, values);
 			return this;
 		}
 

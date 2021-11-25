@@ -36,7 +36,7 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: transform._types.RetentionPolicy
@@ -55,10 +55,8 @@ public class TimeRetentionPolicy implements RetentionPolicyVariant, JsonpSeriali
 
 	}
 
-	public static TimeRetentionPolicy of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static TimeRetentionPolicy of(Function<Builder, ObjectBuilder<TimeRetentionPolicy>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -147,10 +145,8 @@ public class TimeRetentionPolicy implements RetentionPolicyVariant, JsonpSeriali
 		 * <p>
 		 * API name: {@code max_age}
 		 */
-		public final Builder maxAge(Consumer<Time.Builder> fn) {
-			Time.Builder builder = new Time.Builder();
-			fn.accept(builder);
-			return this.maxAge(builder.build());
+		public final Builder maxAge(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.maxAge(fn.apply(new Time.Builder()).build());
 		}
 
 		/**

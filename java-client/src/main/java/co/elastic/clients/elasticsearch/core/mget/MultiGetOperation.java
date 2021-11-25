@@ -37,10 +37,9 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.mget.Operation
@@ -83,10 +82,8 @@ public class MultiGetOperation implements JsonpSerializable {
 
 	}
 
-	public static MultiGetOperation of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static MultiGetOperation of(Function<Builder, ObjectBuilder<MultiGetOperation>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -271,25 +268,31 @@ public class MultiGetOperation implements JsonpSerializable {
 		/**
 		 * API name: {@code _source}
 		 */
-		public final Builder source(Consumer<SourceConfig.Builder> fn) {
-			SourceConfig.Builder builder = new SourceConfig.Builder();
-			fn.accept(builder);
-			return this.source(builder.build());
+		public final Builder source(Function<SourceConfig.Builder, ObjectBuilder<SourceConfig>> fn) {
+			return this.source(fn.apply(new SourceConfig.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code stored_fields}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>storedFields</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>storedFields</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder storedFields(@Nullable List<String> value) {
-			this.storedFields = value;
+		public final Builder storedFields(List<String> list) {
+			this.storedFields = _listAddAll(this.storedFields, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code stored_fields}
+		 * <p>
+		 * Adds one or more values to <code>storedFields</code>.
 		 */
-		public final Builder storedFields(String... value) {
-			this.storedFields = Arrays.asList(value);
+		public final Builder storedFields(String value, String... values) {
+			this.storedFields = _listAdd(this.storedFields, value, values);
 			return this;
 		}
 

@@ -36,7 +36,7 @@ import java.lang.Boolean;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.rollover.Response
@@ -69,10 +69,8 @@ public class RolloverResponse extends AcknowledgedResponseBase {
 
 	}
 
-	public static RolloverResponse of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static RolloverResponse of(Function<Builder, ObjectBuilder<RolloverResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -170,9 +168,25 @@ public class RolloverResponse extends AcknowledgedResponseBase {
 
 		/**
 		 * Required - API name: {@code conditions}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>conditions</code>. Use
+		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
+		 * <code>conditions</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetMap()
 		 */
-		public final Builder conditions(Map<String, Boolean> value) {
-			this.conditions = value;
+		public final Builder conditions(Map<String, Boolean> map) {
+			this.conditions = _mapPutAll(this.conditions, map);
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code conditions}
+		 * <p>
+		 * Adds an entry to <code>conditions</code>.
+		 */
+		public final Builder conditions(String key, Boolean value) {
+			this.conditions = _mapPut(this.conditions, key, value);
 			return this;
 		}
 

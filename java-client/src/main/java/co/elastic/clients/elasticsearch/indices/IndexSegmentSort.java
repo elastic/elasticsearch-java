@@ -34,10 +34,9 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices._types.IndexSegmentSort
@@ -62,10 +61,8 @@ public class IndexSegmentSort implements JsonpSerializable {
 
 	}
 
-	public static IndexSegmentSort of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static IndexSegmentSort of(Function<Builder, ObjectBuilder<IndexSegmentSort>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -165,65 +162,97 @@ public class IndexSegmentSort implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code field}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>field</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>field</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder field(List<String> value) {
-			this.field = value;
+		public final Builder field(List<String> list) {
+			this.field = _listAddAll(this.field, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code field}
+		 * <p>
+		 * Adds one or more values to <code>field</code>.
 		 */
-		public final Builder field(String... value) {
-			this.field = Arrays.asList(value);
+		public final Builder field(String value, String... values) {
+			this.field = _listAdd(this.field, value, values);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code order}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>order</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>order</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder order(List<SegmentSortOrder> value) {
-			this.order = value;
+		public final Builder order(List<SegmentSortOrder> list) {
+			this.order = _listAddAll(this.order, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code order}
+		 * <p>
+		 * Adds one or more values to <code>order</code>.
 		 */
-		public final Builder order(SegmentSortOrder... value) {
-			this.order = Arrays.asList(value);
+		public final Builder order(SegmentSortOrder value, SegmentSortOrder... values) {
+			this.order = _listAdd(this.order, value, values);
 			return this;
 		}
 
 		/**
 		 * API name: {@code mode}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>mode</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>mode</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder mode(@Nullable List<SegmentSortMode> value) {
-			this.mode = value;
+		public final Builder mode(List<SegmentSortMode> list) {
+			this.mode = _listAddAll(this.mode, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code mode}
+		 * <p>
+		 * Adds one or more values to <code>mode</code>.
 		 */
-		public final Builder mode(SegmentSortMode... value) {
-			this.mode = Arrays.asList(value);
+		public final Builder mode(SegmentSortMode value, SegmentSortMode... values) {
+			this.mode = _listAdd(this.mode, value, values);
 			return this;
 		}
 
 		/**
 		 * API name: {@code missing}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>missing</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>missing</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder missing(@Nullable List<SegmentSortMissing> value) {
-			this.missing = value;
+		public final Builder missing(List<SegmentSortMissing> list) {
+			this.missing = _listAddAll(this.missing, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code missing}
+		 * <p>
+		 * Adds one or more values to <code>missing</code>.
 		 */
-		public final Builder missing(SegmentSortMissing... value) {
-			this.missing = Arrays.asList(value);
+		public final Builder missing(SegmentSortMissing value, SegmentSortMissing... values) {
+			this.missing = _listAdd(this.missing, value, values);
 			return this;
 		}
 

@@ -39,7 +39,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Object;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.search._types.FieldSuggester
@@ -105,10 +105,8 @@ public class FieldSuggester implements TaggedUnion<FieldSuggester.Kind, Object>,
 
 	}
 
-	public static FieldSuggester of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static FieldSuggester of(Function<Builder, ObjectBuilder<FieldSuggester>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -253,10 +251,9 @@ public class FieldSuggester implements TaggedUnion<FieldSuggester.Kind, Object>,
 			return this;
 		}
 
-		public ObjectBuilder<FieldSuggester> completion(Consumer<CompletionSuggester.Builder> fn) {
-			CompletionSuggester.Builder builder = new CompletionSuggester.Builder();
-			fn.accept(builder);
-			return this.completion(builder.build());
+		public ObjectBuilder<FieldSuggester> completion(
+				Function<CompletionSuggester.Builder, ObjectBuilder<CompletionSuggester>> fn) {
+			return this.completion(fn.apply(new CompletionSuggester.Builder()).build());
 		}
 
 		public ObjectBuilder<FieldSuggester> phrase(PhraseSuggester v) {
@@ -265,10 +262,9 @@ public class FieldSuggester implements TaggedUnion<FieldSuggester.Kind, Object>,
 			return this;
 		}
 
-		public ObjectBuilder<FieldSuggester> phrase(Consumer<PhraseSuggester.Builder> fn) {
-			PhraseSuggester.Builder builder = new PhraseSuggester.Builder();
-			fn.accept(builder);
-			return this.phrase(builder.build());
+		public ObjectBuilder<FieldSuggester> phrase(
+				Function<PhraseSuggester.Builder, ObjectBuilder<PhraseSuggester>> fn) {
+			return this.phrase(fn.apply(new PhraseSuggester.Builder()).build());
 		}
 
 		public ObjectBuilder<FieldSuggester> prefix(String v) {
@@ -289,10 +285,8 @@ public class FieldSuggester implements TaggedUnion<FieldSuggester.Kind, Object>,
 			return this;
 		}
 
-		public ObjectBuilder<FieldSuggester> term(Consumer<TermSuggester.Builder> fn) {
-			TermSuggester.Builder builder = new TermSuggester.Builder();
-			fn.accept(builder);
-			return this.term(builder.build());
+		public ObjectBuilder<FieldSuggester> term(Function<TermSuggester.Builder, ObjectBuilder<TermSuggester>> fn) {
+			return this.term(fn.apply(new TermSuggester.Builder()).build());
 		}
 
 		public ObjectBuilder<FieldSuggester> text(String v) {

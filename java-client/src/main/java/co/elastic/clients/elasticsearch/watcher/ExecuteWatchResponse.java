@@ -36,7 +36,7 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher.execute_watch.Response
@@ -55,10 +55,8 @@ public class ExecuteWatchResponse implements JsonpSerializable {
 
 	}
 
-	public static ExecuteWatchResponse of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static ExecuteWatchResponse of(Function<Builder, ObjectBuilder<ExecuteWatchResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -123,10 +121,8 @@ public class ExecuteWatchResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code watch_record}
 		 */
-		public final Builder watchRecord(Consumer<WatchRecord.Builder> fn) {
-			WatchRecord.Builder builder = new WatchRecord.Builder();
-			fn.accept(builder);
-			return this.watchRecord(builder.build());
+		public final Builder watchRecord(Function<WatchRecord.Builder, ObjectBuilder<WatchRecord>> fn) {
+			return this.watchRecord(fn.apply(new WatchRecord.Builder()).build());
 		}
 
 		/**

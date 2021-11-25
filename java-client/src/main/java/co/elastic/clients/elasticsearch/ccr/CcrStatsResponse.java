@@ -36,7 +36,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ccr.stats.Response
@@ -55,10 +55,8 @@ public class CcrStatsResponse implements JsonpSerializable {
 
 	}
 
-	public static CcrStatsResponse of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static CcrStatsResponse of(Function<Builder, ObjectBuilder<CcrStatsResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -115,10 +113,8 @@ public class CcrStatsResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code auto_follow_stats}
 		 */
-		public final Builder autoFollowStats(Consumer<AutoFollowStats.Builder> fn) {
-			AutoFollowStats.Builder builder = new AutoFollowStats.Builder();
-			fn.accept(builder);
-			return this.autoFollowStats(builder.build());
+		public final Builder autoFollowStats(Function<AutoFollowStats.Builder, ObjectBuilder<AutoFollowStats>> fn) {
+			return this.autoFollowStats(fn.apply(new AutoFollowStats.Builder()).build());
 		}
 
 		/**
@@ -132,10 +128,8 @@ public class CcrStatsResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code follow_stats}
 		 */
-		public final Builder followStats(Consumer<FollowStats.Builder> fn) {
-			FollowStats.Builder builder = new FollowStats.Builder();
-			fn.accept(builder);
-			return this.followStats(builder.build());
+		public final Builder followStats(Function<FollowStats.Builder, ObjectBuilder<FollowStats>> fn) {
+			return this.followStats(fn.apply(new FollowStats.Builder()).build());
 		}
 
 		/**

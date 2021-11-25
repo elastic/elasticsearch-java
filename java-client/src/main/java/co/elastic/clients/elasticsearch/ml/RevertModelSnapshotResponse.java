@@ -34,7 +34,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.revert_model_snapshot.Response
@@ -50,10 +50,8 @@ public class RevertModelSnapshotResponse implements JsonpSerializable {
 
 	}
 
-	public static RevertModelSnapshotResponse of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static RevertModelSnapshotResponse of(Function<Builder, ObjectBuilder<RevertModelSnapshotResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -98,10 +96,8 @@ public class RevertModelSnapshotResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code model}
 		 */
-		public final Builder model(Consumer<ModelSnapshot.Builder> fn) {
-			ModelSnapshot.Builder builder = new ModelSnapshot.Builder();
-			fn.accept(builder);
-			return this.model(builder.build());
+		public final Builder model(Function<ModelSnapshot.Builder, ObjectBuilder<ModelSnapshot>> fn) {
+			return this.model(fn.apply(new ModelSnapshot.Builder()).build());
 		}
 
 		/**

@@ -38,7 +38,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Object;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.analysis.Tokenizer
@@ -76,10 +76,8 @@ public class Tokenizer implements TaggedUnion<Tokenizer.Kind, Object>, JsonpSeri
 
 	}
 
-	public static Tokenizer of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static Tokenizer of(Function<Builder, ObjectBuilder<Tokenizer>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -141,10 +139,9 @@ public class Tokenizer implements TaggedUnion<Tokenizer.Kind, Object>, JsonpSeri
 			return this;
 		}
 
-		public ObjectBuilder<Tokenizer> definition(Consumer<TokenizerDefinition.Builder> fn) {
-			TokenizerDefinition.Builder builder = new TokenizerDefinition.Builder();
-			fn.accept(builder);
-			return this.definition(builder.build());
+		public ObjectBuilder<Tokenizer> definition(
+				Function<TokenizerDefinition.Builder, ObjectBuilder<TokenizerDefinition>> fn) {
+			return this.definition(fn.apply(new TokenizerDefinition.Builder()).build());
 		}
 
 		public ObjectBuilder<Tokenizer> name(String v) {

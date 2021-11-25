@@ -41,7 +41,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: rollup.rollup.Request
@@ -63,10 +63,8 @@ public class RollupRequest extends RequestBase implements JsonpSerializable {
 
 	}
 
-	public static RollupRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static RollupRequest of(Function<Builder, ObjectBuilder<RollupRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**

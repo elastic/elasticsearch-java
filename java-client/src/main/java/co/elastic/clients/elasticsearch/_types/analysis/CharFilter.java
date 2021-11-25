@@ -38,7 +38,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Object;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.analysis.CharFilter
@@ -76,10 +76,8 @@ public class CharFilter implements TaggedUnion<CharFilter.Kind, Object>, JsonpSe
 
 	}
 
-	public static CharFilter of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static CharFilter of(Function<Builder, ObjectBuilder<CharFilter>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -141,10 +139,9 @@ public class CharFilter implements TaggedUnion<CharFilter.Kind, Object>, JsonpSe
 			return this;
 		}
 
-		public ObjectBuilder<CharFilter> definition(Consumer<CharFilterDefinition.Builder> fn) {
-			CharFilterDefinition.Builder builder = new CharFilterDefinition.Builder();
-			fn.accept(builder);
-			return this.definition(builder.build());
+		public ObjectBuilder<CharFilter> definition(
+				Function<CharFilterDefinition.Builder, ObjectBuilder<CharFilterDefinition>> fn) {
+			return this.definition(fn.apply(new CharFilterDefinition.Builder()).build());
 		}
 
 		public ObjectBuilder<CharFilter> name(String v) {

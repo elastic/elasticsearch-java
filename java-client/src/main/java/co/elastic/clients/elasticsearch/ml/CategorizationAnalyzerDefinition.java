@@ -32,15 +32,12 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -64,10 +61,9 @@ public class CategorizationAnalyzerDefinition implements JsonpSerializable {
 
 	}
 
-	public static CategorizationAnalyzerDefinition of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static CategorizationAnalyzerDefinition of(
+			Function<Builder, ObjectBuilder<CategorizationAnalyzerDefinition>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -183,9 +179,15 @@ public class CategorizationAnalyzerDefinition implements JsonpSerializable {
 		 * pattern replace character filters.
 		 * <p>
 		 * API name: {@code char_filter}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>charFilter</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>charFilter</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder charFilter(@Nullable List<CharFilter> value) {
-			this.charFilter = value;
+		public final Builder charFilter(List<CharFilter> list) {
+			this.charFilter = _listAddAll(this.charFilter, list);
 			return this;
 		}
 
@@ -199,9 +201,11 @@ public class CategorizationAnalyzerDefinition implements JsonpSerializable {
 		 * pattern replace character filters.
 		 * <p>
 		 * API name: {@code char_filter}
+		 * <p>
+		 * Adds one or more values to <code>charFilter</code>.
 		 */
-		public final Builder charFilter(CharFilter... value) {
-			this.charFilter = Arrays.asList(value);
+		public final Builder charFilter(CharFilter value, CharFilter... values) {
+			this.charFilter = _listAdd(this.charFilter, value, values);
 			return this;
 		}
 
@@ -215,10 +219,11 @@ public class CategorizationAnalyzerDefinition implements JsonpSerializable {
 		 * pattern replace character filters.
 		 * <p>
 		 * API name: {@code char_filter}
+		 * <p>
+		 * Adds a value to <code>charFilter</code> using a builder lambda.
 		 */
-		public final Builder charFilter(
-				Function<ListBuilder<CharFilter, CharFilter.Builder>, ObjectBuilder<List<CharFilter>>> fn) {
-			return charFilter(fn.apply(new ListBuilder<>(CharFilter.Builder::new)).build());
+		public final Builder charFilter(Function<CharFilter.Builder, ObjectBuilder<CharFilter>> fn) {
+			return charFilter(fn.apply(new CharFilter.Builder()).build());
 		}
 
 		/**
@@ -227,9 +232,15 @@ public class CategorizationAnalyzerDefinition implements JsonpSerializable {
 		 * token filters are applied prior to categorization.
 		 * <p>
 		 * API name: {@code filter}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>filter</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>filter</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder filter(@Nullable List<TokenFilter> value) {
-			this.filter = value;
+		public final Builder filter(List<TokenFilter> list) {
+			this.filter = _listAddAll(this.filter, list);
 			return this;
 		}
 
@@ -239,9 +250,11 @@ public class CategorizationAnalyzerDefinition implements JsonpSerializable {
 		 * token filters are applied prior to categorization.
 		 * <p>
 		 * API name: {@code filter}
+		 * <p>
+		 * Adds one or more values to <code>filter</code>.
 		 */
-		public final Builder filter(TokenFilter... value) {
-			this.filter = Arrays.asList(value);
+		public final Builder filter(TokenFilter value, TokenFilter... values) {
+			this.filter = _listAdd(this.filter, value, values);
 			return this;
 		}
 
@@ -251,10 +264,11 @@ public class CategorizationAnalyzerDefinition implements JsonpSerializable {
 		 * token filters are applied prior to categorization.
 		 * <p>
 		 * API name: {@code filter}
+		 * <p>
+		 * Adds a value to <code>filter</code> using a builder lambda.
 		 */
-		public final Builder filter(
-				Function<ListBuilder<TokenFilter, TokenFilter.Builder>, ObjectBuilder<List<TokenFilter>>> fn) {
-			return filter(fn.apply(new ListBuilder<>(TokenFilter.Builder::new)).build());
+		public final Builder filter(Function<TokenFilter.Builder, ObjectBuilder<TokenFilter>> fn) {
+			return filter(fn.apply(new TokenFilter.Builder()).build());
 		}
 
 		/**
@@ -298,10 +312,8 @@ public class CategorizationAnalyzerDefinition implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code tokenizer}
 		 */
-		public final Builder tokenizer(Consumer<Tokenizer.Builder> fn) {
-			Tokenizer.Builder builder = new Tokenizer.Builder();
-			fn.accept(builder);
-			return this.tokenizer(builder.build());
+		public final Builder tokenizer(Function<Tokenizer.Builder, ObjectBuilder<Tokenizer>> fn) {
+			return this.tokenizer(fn.apply(new Tokenizer.Builder()).build());
 		}
 
 		/**

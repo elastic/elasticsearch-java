@@ -40,7 +40,7 @@ import java.lang.Double;
 import java.lang.Object;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.search._types.Context
@@ -78,10 +78,8 @@ public class Context implements TaggedUnion<Context.Kind, Object>, JsonpSerializ
 
 	}
 
-	public static Context of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static Context of(Function<Builder, ObjectBuilder<Context>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -143,10 +141,8 @@ public class Context implements TaggedUnion<Context.Kind, Object>, JsonpSerializ
 			return this;
 		}
 
-		public ObjectBuilder<Context> location(Consumer<GeoLocation.Builder> fn) {
-			GeoLocation.Builder builder = new GeoLocation.Builder();
-			fn.accept(builder);
-			return this.location(builder.build());
+		public ObjectBuilder<Context> location(Function<GeoLocation.Builder, ObjectBuilder<GeoLocation>> fn) {
+			return this.location(fn.apply(new GeoLocation.Builder()).build());
 		}
 
 		public ObjectBuilder<Context> category(String v) {

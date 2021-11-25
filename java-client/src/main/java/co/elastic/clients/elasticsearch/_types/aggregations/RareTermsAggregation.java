@@ -34,7 +34,7 @@ import java.lang.Double;
 import java.lang.Long;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.RareTermsAggregation
@@ -76,10 +76,8 @@ public class RareTermsAggregation extends BucketAggregationBase implements Aggre
 
 	}
 
-	public static RareTermsAggregation of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static RareTermsAggregation of(Function<Builder, ObjectBuilder<RareTermsAggregation>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -227,10 +225,8 @@ public class RareTermsAggregation extends BucketAggregationBase implements Aggre
 		/**
 		 * API name: {@code exclude}
 		 */
-		public final Builder exclude(Consumer<TermsExclude.Builder> fn) {
-			TermsExclude.Builder builder = new TermsExclude.Builder();
-			fn.accept(builder);
-			return this.exclude(builder.build());
+		public final Builder exclude(Function<TermsExclude.Builder, ObjectBuilder<TermsExclude>> fn) {
+			return this.exclude(fn.apply(new TermsExclude.Builder()).build());
 		}
 
 		/**
@@ -252,10 +248,8 @@ public class RareTermsAggregation extends BucketAggregationBase implements Aggre
 		/**
 		 * API name: {@code include}
 		 */
-		public final Builder include(Consumer<TermsInclude.Builder> fn) {
-			TermsInclude.Builder builder = new TermsInclude.Builder();
-			fn.accept(builder);
-			return this.include(builder.build());
+		public final Builder include(Function<TermsInclude.Builder, ObjectBuilder<TermsInclude>> fn) {
+			return this.include(fn.apply(new TermsInclude.Builder()).build());
 		}
 
 		/**

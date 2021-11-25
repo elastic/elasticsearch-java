@@ -38,7 +38,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: xpack.usage.Request
@@ -55,10 +55,8 @@ public class XpackUsageRequest extends RequestBase {
 
 	}
 
-	public static XpackUsageRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static XpackUsageRequest of(Function<Builder, ObjectBuilder<XpackUsageRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -95,10 +93,8 @@ public class XpackUsageRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
-		public final Builder masterTimeout(Consumer<Time.Builder> fn) {
-			Time.Builder builder = new Time.Builder();
-			fn.accept(builder);
-			return this.masterTimeout(builder.build());
+		public final Builder masterTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.masterTimeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**

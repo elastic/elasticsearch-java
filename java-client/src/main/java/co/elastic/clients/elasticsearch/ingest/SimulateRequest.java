@@ -34,19 +34,16 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -75,10 +72,8 @@ public class SimulateRequest extends RequestBase implements JsonpSerializable {
 
 	}
 
-	public static SimulateRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static SimulateRequest of(Function<Builder, ObjectBuilder<SimulateRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -165,25 +160,35 @@ public class SimulateRequest extends RequestBase implements JsonpSerializable {
 
 		/**
 		 * API name: {@code docs}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>docs</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>docs</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder docs(@Nullable List<Document> value) {
-			this.docs = value;
+		public final Builder docs(List<Document> list) {
+			this.docs = _listAddAll(this.docs, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code docs}
+		 * <p>
+		 * Adds one or more values to <code>docs</code>.
 		 */
-		public final Builder docs(Document... value) {
-			this.docs = Arrays.asList(value);
+		public final Builder docs(Document value, Document... values) {
+			this.docs = _listAdd(this.docs, value, values);
 			return this;
 		}
 
 		/**
 		 * API name: {@code docs}
+		 * <p>
+		 * Adds a value to <code>docs</code> using a builder lambda.
 		 */
-		public final Builder docs(Function<ListBuilder<Document, Document.Builder>, ObjectBuilder<List<Document>>> fn) {
-			return docs(fn.apply(new ListBuilder<>(Document.Builder::new)).build());
+		public final Builder docs(Function<Document.Builder, ObjectBuilder<Document>> fn) {
+			return docs(fn.apply(new Document.Builder()).build());
 		}
 
 		/**
@@ -207,10 +212,8 @@ public class SimulateRequest extends RequestBase implements JsonpSerializable {
 		/**
 		 * API name: {@code pipeline}
 		 */
-		public final Builder pipeline(Consumer<Pipeline.Builder> fn) {
-			Pipeline.Builder builder = new Pipeline.Builder();
-			fn.accept(builder);
-			return this.pipeline(builder.build());
+		public final Builder pipeline(Function<Pipeline.Builder, ObjectBuilder<Pipeline>> fn) {
+			return this.pipeline(fn.apply(new Pipeline.Builder()).build());
 		}
 
 		/**

@@ -34,7 +34,7 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cat.ml_data_frame_analytics.DataFrameAnalyticsRecord
@@ -111,10 +111,8 @@ public class DataFrameAnalyticsRecord implements JsonpSerializable {
 
 	}
 
-	public static DataFrameAnalyticsRecord of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static DataFrameAnalyticsRecord of(Function<Builder, ObjectBuilder<DataFrameAnalyticsRecord>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**

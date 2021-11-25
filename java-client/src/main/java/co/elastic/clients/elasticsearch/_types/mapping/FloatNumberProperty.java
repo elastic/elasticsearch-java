@@ -32,7 +32,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Float;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.mapping.FloatNumberProperty
@@ -50,10 +50,8 @@ public class FloatNumberProperty extends StandardNumberProperty implements Prope
 
 	}
 
-	public static FloatNumberProperty of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static FloatNumberProperty of(Function<Builder, ObjectBuilder<FloatNumberProperty>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**

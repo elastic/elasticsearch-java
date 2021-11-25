@@ -34,10 +34,9 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: rollup._types.FieldMetric
@@ -56,10 +55,8 @@ public class FieldMetric implements JsonpSerializable {
 
 	}
 
-	public static FieldMetric of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static FieldMetric of(Function<Builder, ObjectBuilder<FieldMetric>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -122,17 +119,25 @@ public class FieldMetric implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code metrics}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>metrics</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>metrics</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder metrics(List<Metric> value) {
-			this.metrics = value;
+		public final Builder metrics(List<Metric> list) {
+			this.metrics = _listAddAll(this.metrics, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code metrics}
+		 * <p>
+		 * Adds one or more values to <code>metrics</code>.
 		 */
-		public final Builder metrics(Metric... value) {
-			this.metrics = Arrays.asList(value);
+		public final Builder metrics(Metric value, Metric... values) {
+			this.metrics = _listAdd(this.metrics, value, values);
 			return this;
 		}
 

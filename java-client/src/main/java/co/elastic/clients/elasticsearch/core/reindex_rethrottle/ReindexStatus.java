@@ -37,7 +37,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Float;
 import java.lang.Long;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.reindex_rethrottle.ReindexStatus
@@ -84,10 +84,8 @@ public class ReindexStatus implements JsonpSerializable {
 
 	}
 
-	public static ReindexStatus of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static ReindexStatus of(Function<Builder, ObjectBuilder<ReindexStatus>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -292,10 +290,8 @@ public class ReindexStatus implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code retries}
 		 */
-		public final Builder retries(Consumer<Retries.Builder> fn) {
-			Retries.Builder builder = new Retries.Builder();
-			fn.accept(builder);
-			return this.retries(builder.build());
+		public final Builder retries(Function<Retries.Builder, ObjectBuilder<Retries>> fn) {
+			return this.retries(fn.apply(new Retries.Builder()).build());
 		}
 
 		/**

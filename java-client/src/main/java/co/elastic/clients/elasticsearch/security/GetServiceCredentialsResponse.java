@@ -30,7 +30,6 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.MapBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
@@ -39,7 +38,6 @@ import java.lang.Integer;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -68,10 +66,8 @@ public class GetServiceCredentialsResponse implements JsonpSerializable {
 
 	}
 
-	public static GetServiceCredentialsResponse of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static GetServiceCredentialsResponse of(Function<Builder, ObjectBuilder<GetServiceCredentialsResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -196,28 +192,68 @@ public class GetServiceCredentialsResponse implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code tokens}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>tokens</code>. Use
+		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
+		 * <code>tokens</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetMap()
 		 */
-		public final Builder tokens(Map<String, EmptyObject> value) {
-			this.tokens = value;
+		public final Builder tokens(Map<String, EmptyObject> map) {
+			this.tokens = _mapPutAll(this.tokens, map);
 			return this;
 		}
 
-		public final Builder tokens(
-				Function<MapBuilder<String, EmptyObject, EmptyObject.Builder>, ObjectBuilder<Map<String, EmptyObject>>> fn) {
-			return tokens(fn.apply(new MapBuilder<>(EmptyObject.Builder::new)).build());
+		/**
+		 * Required - API name: {@code tokens}
+		 * <p>
+		 * Adds an entry to <code>tokens</code>.
+		 */
+		public final Builder tokens(String key, EmptyObject value) {
+			this.tokens = _mapPut(this.tokens, key, value);
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code tokens}
+		 * <p>
+		 * Adds an entry to <code>tokens</code> using a builder lambda.
+		 */
+		public final Builder tokens(String key, Function<EmptyObject.Builder, ObjectBuilder<EmptyObject>> fn) {
+			return tokens(key, fn.apply(new EmptyObject.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code file_tokens}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>fileTokens</code>. Use
+		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
+		 * <code>fileTokens</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetMap()
 		 */
-		public final Builder fileTokens(Map<String, EmptyObject> value) {
-			this.fileTokens = value;
+		public final Builder fileTokens(Map<String, EmptyObject> map) {
+			this.fileTokens = _mapPutAll(this.fileTokens, map);
 			return this;
 		}
 
-		public final Builder fileTokens(
-				Function<MapBuilder<String, EmptyObject, EmptyObject.Builder>, ObjectBuilder<Map<String, EmptyObject>>> fn) {
-			return fileTokens(fn.apply(new MapBuilder<>(EmptyObject.Builder::new)).build());
+		/**
+		 * Required - API name: {@code file_tokens}
+		 * <p>
+		 * Adds an entry to <code>fileTokens</code>.
+		 */
+		public final Builder fileTokens(String key, EmptyObject value) {
+			this.fileTokens = _mapPut(this.fileTokens, key, value);
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code file_tokens}
+		 * <p>
+		 * Adds an entry to <code>fileTokens</code> using a builder lambda.
+		 */
+		public final Builder fileTokens(String key, Function<EmptyObject.Builder, ObjectBuilder<EmptyObject>> fn) {
+			return fileTokens(key, fn.apply(new EmptyObject.Builder()).build());
 		}
 
 		/**

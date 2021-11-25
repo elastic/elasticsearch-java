@@ -92,9 +92,25 @@ public abstract class ScriptBase implements JsonpSerializable {
 
 		/**
 		 * API name: {@code params}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>params</code>. Use
+		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
+		 * <code>params</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetMap()
 		 */
-		public final BuilderT params(@Nullable Map<String, JsonData> value) {
-			this.params = value;
+		public final BuilderT params(Map<String, JsonData> map) {
+			this.params = _mapPutAll(this.params, map);
+			return self();
+		}
+
+		/**
+		 * API name: {@code params}
+		 * <p>
+		 * Adds an entry to <code>params</code>.
+		 */
+		public final BuilderT params(String key, JsonData value) {
+			this.params = _mapPut(this.params, key, value);
 			return self();
 		}
 

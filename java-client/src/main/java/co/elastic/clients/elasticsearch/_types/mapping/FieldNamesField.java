@@ -35,7 +35,7 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 
 // typedef: _types.mapping.FieldNamesField
 @JsonpDeserializable
@@ -50,10 +50,8 @@ public class FieldNamesField implements JsonpSerializable {
 
 	}
 
-	public static FieldNamesField of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static FieldNamesField of(Function<Builder, ObjectBuilder<FieldNamesField>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**

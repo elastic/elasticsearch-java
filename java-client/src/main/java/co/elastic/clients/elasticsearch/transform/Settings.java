@@ -36,7 +36,7 @@ import java.lang.Boolean;
 import java.lang.Float;
 import java.lang.Integer;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: transform._types.Settings
@@ -61,10 +61,8 @@ public class Settings implements JsonpSerializable {
 
 	}
 
-	public static Settings of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static Settings of(Function<Builder, ObjectBuilder<Settings>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**

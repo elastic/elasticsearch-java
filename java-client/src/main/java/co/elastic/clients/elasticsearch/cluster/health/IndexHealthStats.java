@@ -30,7 +30,6 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.MapBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
@@ -39,7 +38,6 @@ import java.lang.Integer;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -82,10 +80,8 @@ public class IndexHealthStats implements JsonpSerializable {
 
 	}
 
-	public static IndexHealthStats of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static IndexHealthStats of(Function<Builder, ObjectBuilder<IndexHealthStats>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -273,15 +269,36 @@ public class IndexHealthStats implements JsonpSerializable {
 
 		/**
 		 * API name: {@code shards}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>shards</code>. Use
+		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
+		 * <code>shards</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetMap()
 		 */
-		public final Builder shards(@Nullable Map<String, ShardHealthStats> value) {
-			this.shards = value;
+		public final Builder shards(Map<String, ShardHealthStats> map) {
+			this.shards = _mapPutAll(this.shards, map);
 			return this;
 		}
 
-		public final Builder shards(
-				Function<MapBuilder<String, ShardHealthStats, ShardHealthStats.Builder>, ObjectBuilder<Map<String, ShardHealthStats>>> fn) {
-			return shards(fn.apply(new MapBuilder<>(ShardHealthStats.Builder::new)).build());
+		/**
+		 * API name: {@code shards}
+		 * <p>
+		 * Adds an entry to <code>shards</code>.
+		 */
+		public final Builder shards(String key, ShardHealthStats value) {
+			this.shards = _mapPut(this.shards, key, value);
+			return this;
+		}
+
+		/**
+		 * API name: {@code shards}
+		 * <p>
+		 * Adds an entry to <code>shards</code> using a builder lambda.
+		 */
+		public final Builder shards(String key,
+				Function<ShardHealthStats.Builder, ObjectBuilder<ShardHealthStats>> fn) {
+			return shards(key, fn.apply(new ShardHealthStats.Builder()).build());
 		}
 
 		/**

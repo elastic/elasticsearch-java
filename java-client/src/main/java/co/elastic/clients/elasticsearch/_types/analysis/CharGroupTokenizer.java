@@ -33,10 +33,9 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.analysis.CharGroupTokenizer
@@ -57,10 +56,8 @@ public class CharGroupTokenizer extends TokenizerBase implements TokenizerDefini
 
 	}
 
-	public static CharGroupTokenizer of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static CharGroupTokenizer of(Function<Builder, ObjectBuilder<CharGroupTokenizer>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -123,17 +120,25 @@ public class CharGroupTokenizer extends TokenizerBase implements TokenizerDefini
 
 		/**
 		 * Required - API name: {@code tokenize_on_chars}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>tokenizeOnChars</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>tokenizeOnChars</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder tokenizeOnChars(List<String> value) {
-			this.tokenizeOnChars = value;
+		public final Builder tokenizeOnChars(List<String> list) {
+			this.tokenizeOnChars = _listAddAll(this.tokenizeOnChars, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code tokenize_on_chars}
+		 * <p>
+		 * Adds one or more values to <code>tokenizeOnChars</code>.
 		 */
-		public final Builder tokenizeOnChars(String... value) {
-			this.tokenizeOnChars = Arrays.asList(value);
+		public final Builder tokenizeOnChars(String value, String... values) {
+			this.tokenizeOnChars = _listAdd(this.tokenizeOnChars, value, values);
 			return this;
 		}
 

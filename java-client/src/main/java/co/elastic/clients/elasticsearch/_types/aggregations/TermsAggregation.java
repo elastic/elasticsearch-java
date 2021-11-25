@@ -38,11 +38,10 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.TermsAggregation
@@ -115,10 +114,8 @@ public class TermsAggregation extends BucketAggregationBase implements Aggregati
 
 	}
 
-	public static TermsAggregation of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static TermsAggregation of(Function<Builder, ObjectBuilder<TermsAggregation>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -418,10 +415,8 @@ public class TermsAggregation extends BucketAggregationBase implements Aggregati
 		/**
 		 * API name: {@code exclude}
 		 */
-		public final Builder exclude(Consumer<TermsExclude.Builder> fn) {
-			TermsExclude.Builder builder = new TermsExclude.Builder();
-			fn.accept(builder);
-			return this.exclude(builder.build());
+		public final Builder exclude(Function<TermsExclude.Builder, ObjectBuilder<TermsExclude>> fn) {
+			return this.exclude(fn.apply(new TermsExclude.Builder()).build());
 		}
 
 		/**
@@ -451,10 +446,8 @@ public class TermsAggregation extends BucketAggregationBase implements Aggregati
 		/**
 		 * API name: {@code include}
 		 */
-		public final Builder include(Consumer<TermsInclude.Builder> fn) {
-			TermsInclude.Builder builder = new TermsInclude.Builder();
-			fn.accept(builder);
-			return this.include(builder.build());
+		public final Builder include(Function<TermsInclude.Builder, ObjectBuilder<TermsInclude>> fn) {
+			return this.include(fn.apply(new TermsInclude.Builder()).build());
 		}
 
 		/**
@@ -499,17 +492,25 @@ public class TermsAggregation extends BucketAggregationBase implements Aggregati
 
 		/**
 		 * API name: {@code order}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>order</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>order</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder order(@Nullable List<Map<String, SortOrder>> value) {
-			this.order = value;
+		public final Builder order(List<Map<String, SortOrder>> list) {
+			this.order = _listAddAll(this.order, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code order}
+		 * <p>
+		 * Adds one or more values to <code>order</code>.
 		 */
-		public final Builder order(Map<String, SortOrder>... value) {
-			this.order = Arrays.asList(value);
+		public final Builder order(Map<String, SortOrder> value, Map<String, SortOrder>... values) {
+			this.order = _listAdd(this.order, value, values);
 			return this;
 		}
 
@@ -524,10 +525,8 @@ public class TermsAggregation extends BucketAggregationBase implements Aggregati
 		/**
 		 * API name: {@code script}
 		 */
-		public final Builder script(Consumer<Script.Builder> fn) {
-			Script.Builder builder = new Script.Builder();
-			fn.accept(builder);
-			return this.script(builder.build());
+		public final Builder script(Function<Script.Builder, ObjectBuilder<Script>> fn) {
+			return this.script(fn.apply(new Script.Builder()).build());
 		}
 
 		/**

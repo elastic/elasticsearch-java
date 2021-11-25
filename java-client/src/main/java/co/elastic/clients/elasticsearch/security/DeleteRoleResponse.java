@@ -35,7 +35,7 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 
 // typedef: security.delete_role.Response
 @JsonpDeserializable
@@ -50,10 +50,8 @@ public class DeleteRoleResponse implements JsonpSerializable {
 
 	}
 
-	public static DeleteRoleResponse of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static DeleteRoleResponse of(Function<Builder, ObjectBuilder<DeleteRoleResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**

@@ -29,16 +29,13 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -58,10 +55,8 @@ public class GetOverallBucketsResponse implements JsonpSerializable {
 
 	}
 
-	public static GetOverallBucketsResponse of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static GetOverallBucketsResponse of(Function<Builder, ObjectBuilder<GetOverallBucketsResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -129,9 +124,15 @@ public class GetOverallBucketsResponse implements JsonpSerializable {
 		 * Required - Array of overall bucket objects
 		 * <p>
 		 * API name: {@code overall_buckets}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>overallBuckets</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>overallBuckets</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder overallBuckets(List<OverallBucket> value) {
-			this.overallBuckets = value;
+		public final Builder overallBuckets(List<OverallBucket> list) {
+			this.overallBuckets = _listAddAll(this.overallBuckets, list);
 			return this;
 		}
 
@@ -139,9 +140,11 @@ public class GetOverallBucketsResponse implements JsonpSerializable {
 		 * Required - Array of overall bucket objects
 		 * <p>
 		 * API name: {@code overall_buckets}
+		 * <p>
+		 * Adds one or more values to <code>overallBuckets</code>.
 		 */
-		public final Builder overallBuckets(OverallBucket... value) {
-			this.overallBuckets = Arrays.asList(value);
+		public final Builder overallBuckets(OverallBucket value, OverallBucket... values) {
+			this.overallBuckets = _listAdd(this.overallBuckets, value, values);
 			return this;
 		}
 
@@ -149,10 +152,11 @@ public class GetOverallBucketsResponse implements JsonpSerializable {
 		 * Required - Array of overall bucket objects
 		 * <p>
 		 * API name: {@code overall_buckets}
+		 * <p>
+		 * Adds a value to <code>overallBuckets</code> using a builder lambda.
 		 */
-		public final Builder overallBuckets(
-				Function<ListBuilder<OverallBucket, OverallBucket.Builder>, ObjectBuilder<List<OverallBucket>>> fn) {
-			return overallBuckets(fn.apply(new ListBuilder<>(OverallBucket.Builder::new)).build());
+		public final Builder overallBuckets(Function<OverallBucket.Builder, ObjectBuilder<OverallBucket>> fn) {
+			return overallBuckets(fn.apply(new OverallBucket.Builder()).build());
 		}
 
 		/**

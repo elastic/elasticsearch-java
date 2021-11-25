@@ -36,19 +36,16 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
@@ -88,10 +85,8 @@ public class RankEvalRequest extends RequestBase implements JsonpSerializable {
 
 	}
 
-	public static RankEvalRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static RankEvalRequest of(Function<Builder, ObjectBuilder<RankEvalRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -243,9 +238,15 @@ public class RankEvalRequest extends RequestBase implements JsonpSerializable {
 		 * closed or both.
 		 * <p>
 		 * API name: {@code expand_wildcards}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>expandWildcards</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>expandWildcards</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder expandWildcards(@Nullable List<ExpandWildcard> value) {
-			this.expandWildcards = value;
+		public final Builder expandWildcards(List<ExpandWildcard> list) {
+			this.expandWildcards = _listAddAll(this.expandWildcards, list);
 			return this;
 		}
 
@@ -254,9 +255,11 @@ public class RankEvalRequest extends RequestBase implements JsonpSerializable {
 		 * closed or both.
 		 * <p>
 		 * API name: {@code expand_wildcards}
+		 * <p>
+		 * Adds one or more values to <code>expandWildcards</code>.
 		 */
-		public final Builder expandWildcards(ExpandWildcard... value) {
-			this.expandWildcards = Arrays.asList(value);
+		public final Builder expandWildcards(ExpandWildcard value, ExpandWildcard... values) {
+			this.expandWildcards = _listAdd(this.expandWildcards, value, values);
 			return this;
 		}
 
@@ -277,9 +280,15 @@ public class RankEvalRequest extends RequestBase implements JsonpSerializable {
 		 * *.
 		 * <p>
 		 * API name: {@code index}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>index</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>index</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder index(List<String> value) {
-			this.index = value;
+		public final Builder index(List<String> list) {
+			this.index = _listAddAll(this.index, list);
 			return this;
 		}
 
@@ -290,9 +299,11 @@ public class RankEvalRequest extends RequestBase implements JsonpSerializable {
 		 * *.
 		 * <p>
 		 * API name: {@code index}
+		 * <p>
+		 * Adds one or more values to <code>index</code>.
 		 */
-		public final Builder index(String... value) {
-			this.index = Arrays.asList(value);
+		public final Builder index(String value, String... values) {
+			this.index = _listAdd(this.index, value, values);
 			return this;
 		}
 
@@ -311,10 +322,8 @@ public class RankEvalRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code metric}
 		 */
-		public final Builder metric(Consumer<RankEvalMetric.Builder> fn) {
-			RankEvalMetric.Builder builder = new RankEvalMetric.Builder();
-			fn.accept(builder);
-			return this.metric(builder.build());
+		public final Builder metric(Function<RankEvalMetric.Builder, ObjectBuilder<RankEvalMetric>> fn) {
+			return this.metric(fn.apply(new RankEvalMetric.Builder()).build());
 		}
 
 		/**
@@ -322,9 +331,15 @@ public class RankEvalRequest extends RequestBase implements JsonpSerializable {
 		 * ratings
 		 * <p>
 		 * API name: {@code requests}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>requests</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>requests</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder requests(List<RankEvalRequestItem> value) {
-			this.requests = value;
+		public final Builder requests(List<RankEvalRequestItem> list) {
+			this.requests = _listAddAll(this.requests, list);
 			return this;
 		}
 
@@ -333,9 +348,11 @@ public class RankEvalRequest extends RequestBase implements JsonpSerializable {
 		 * ratings
 		 * <p>
 		 * API name: {@code requests}
+		 * <p>
+		 * Adds one or more values to <code>requests</code>.
 		 */
-		public final Builder requests(RankEvalRequestItem... value) {
-			this.requests = Arrays.asList(value);
+		public final Builder requests(RankEvalRequestItem value, RankEvalRequestItem... values) {
+			this.requests = _listAdd(this.requests, value, values);
 			return this;
 		}
 
@@ -344,10 +361,11 @@ public class RankEvalRequest extends RequestBase implements JsonpSerializable {
 		 * ratings
 		 * <p>
 		 * API name: {@code requests}
+		 * <p>
+		 * Adds a value to <code>requests</code> using a builder lambda.
 		 */
-		public final Builder requests(
-				Function<ListBuilder<RankEvalRequestItem, RankEvalRequestItem.Builder>, ObjectBuilder<List<RankEvalRequestItem>>> fn) {
-			return requests(fn.apply(new ListBuilder<>(RankEvalRequestItem.Builder::new)).build());
+		public final Builder requests(Function<RankEvalRequestItem.Builder, ObjectBuilder<RankEvalRequestItem>> fn) {
+			return requests(fn.apply(new RankEvalRequestItem.Builder()).build());
 		}
 
 		/**

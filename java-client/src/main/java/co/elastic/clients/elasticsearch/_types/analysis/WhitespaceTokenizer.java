@@ -32,7 +32,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.analysis.WhitespaceTokenizer
@@ -50,10 +50,8 @@ public class WhitespaceTokenizer extends TokenizerBase implements TokenizerDefin
 
 	}
 
-	public static WhitespaceTokenizer of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static WhitespaceTokenizer of(Function<Builder, ObjectBuilder<WhitespaceTokenizer>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**

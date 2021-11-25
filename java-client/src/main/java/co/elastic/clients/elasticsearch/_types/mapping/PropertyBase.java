@@ -30,7 +30,6 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.MapBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
@@ -226,17 +225,49 @@ public abstract class PropertyBase implements JsonpSerializable {
 
 		/**
 		 * API name: {@code local_metadata}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>localMetadata</code>. Use
+		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
+		 * <code>localMetadata</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetMap()
 		 */
-		public final BuilderT localMetadata(@Nullable Map<String, JsonData> value) {
-			this.localMetadata = value;
+		public final BuilderT localMetadata(Map<String, JsonData> map) {
+			this.localMetadata = _mapPutAll(this.localMetadata, map);
+			return self();
+		}
+
+		/**
+		 * API name: {@code local_metadata}
+		 * <p>
+		 * Adds an entry to <code>localMetadata</code>.
+		 */
+		public final BuilderT localMetadata(String key, JsonData value) {
+			this.localMetadata = _mapPut(this.localMetadata, key, value);
 			return self();
 		}
 
 		/**
 		 * API name: {@code meta}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>meta</code>. Use
+		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
+		 * <code>meta</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetMap()
 		 */
-		public final BuilderT meta(@Nullable Map<String, String> value) {
-			this.meta = value;
+		public final BuilderT meta(Map<String, String> map) {
+			this.meta = _mapPutAll(this.meta, map);
+			return self();
+		}
+
+		/**
+		 * API name: {@code meta}
+		 * <p>
+		 * Adds an entry to <code>meta</code>.
+		 */
+		public final BuilderT meta(String key, String value) {
+			this.meta = _mapPut(this.meta, key, value);
 			return self();
 		}
 
@@ -250,15 +281,35 @@ public abstract class PropertyBase implements JsonpSerializable {
 
 		/**
 		 * API name: {@code properties}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>properties</code>. Use
+		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
+		 * <code>properties</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetMap()
 		 */
-		public final BuilderT properties(@Nullable Map<String, Property> value) {
-			this.properties = value;
+		public final BuilderT properties(Map<String, Property> map) {
+			this.properties = _mapPutAll(this.properties, map);
 			return self();
 		}
 
-		public final BuilderT properties(
-				Function<MapBuilder<String, Property, Property.Builder>, ObjectBuilder<Map<String, Property>>> fn) {
-			return properties(fn.apply(new MapBuilder<>(Property.Builder::new)).build());
+		/**
+		 * API name: {@code properties}
+		 * <p>
+		 * Adds an entry to <code>properties</code>.
+		 */
+		public final BuilderT properties(String key, Property value) {
+			this.properties = _mapPut(this.properties, key, value);
+			return self();
+		}
+
+		/**
+		 * API name: {@code properties}
+		 * <p>
+		 * Adds an entry to <code>properties</code> using a builder lambda.
+		 */
+		public final BuilderT properties(String key, Function<Property.Builder, ObjectBuilder<Property>> fn) {
+			return properties(key, fn.apply(new Property.Builder()).build());
 		}
 
 		/**
@@ -279,15 +330,35 @@ public abstract class PropertyBase implements JsonpSerializable {
 
 		/**
 		 * API name: {@code fields}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>fields</code>. Use
+		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
+		 * <code>fields</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetMap()
 		 */
-		public final BuilderT fields(@Nullable Map<String, Property> value) {
-			this.fields = value;
+		public final BuilderT fields(Map<String, Property> map) {
+			this.fields = _mapPutAll(this.fields, map);
 			return self();
 		}
 
-		public final BuilderT fields(
-				Function<MapBuilder<String, Property, Property.Builder>, ObjectBuilder<Map<String, Property>>> fn) {
-			return fields(fn.apply(new MapBuilder<>(Property.Builder::new)).build());
+		/**
+		 * API name: {@code fields}
+		 * <p>
+		 * Adds an entry to <code>fields</code>.
+		 */
+		public final BuilderT fields(String key, Property value) {
+			this.fields = _mapPut(this.fields, key, value);
+			return self();
+		}
+
+		/**
+		 * API name: {@code fields}
+		 * <p>
+		 * Adds an entry to <code>fields</code> using a builder lambda.
+		 */
+		public final BuilderT fields(String key, Function<Property.Builder, ObjectBuilder<Property>> fn) {
+			return fields(key, fn.apply(new Property.Builder()).build());
 		}
 
 		protected abstract BuilderT self();

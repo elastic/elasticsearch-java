@@ -39,7 +39,7 @@ import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.get_job_stats.Request
@@ -60,10 +60,8 @@ public class GetJobStatsRequest extends RequestBase {
 
 	}
 
-	public static GetJobStatsRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static GetJobStatsRequest of(Function<Builder, ObjectBuilder<GetJobStatsRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**

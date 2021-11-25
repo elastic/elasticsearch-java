@@ -36,7 +36,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.rank_eval.DocumentRating
@@ -58,10 +58,8 @@ public class DocumentRating implements JsonpSerializable {
 
 	}
 
-	public static DocumentRating of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static DocumentRating of(Function<Builder, ObjectBuilder<DocumentRating>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**

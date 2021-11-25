@@ -43,7 +43,7 @@ import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: security.put_privileges.Request
@@ -63,10 +63,8 @@ public class PutPrivilegesRequest extends RequestBase implements JsonpSerializab
 
 	}
 
-	public static PutPrivilegesRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static PutPrivilegesRequest of(Function<Builder, ObjectBuilder<PutPrivilegesRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -141,9 +139,27 @@ public class PutPrivilegesRequest extends RequestBase implements JsonpSerializab
 		 * Required - Request body.
 		 * <p>
 		 * API name: {@code _value_body}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>privileges</code>. Use
+		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
+		 * <code>privileges</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetMap()
 		 */
-		public final Builder privileges(Map<String, Map<String, Actions>> value) {
-			this.privileges = value;
+		public final Builder privileges(Map<String, Map<String, Actions>> map) {
+			this.privileges = _mapPutAll(this.privileges, map);
+			return this;
+		}
+
+		/**
+		 * Required - Request body.
+		 * <p>
+		 * API name: {@code _value_body}
+		 * <p>
+		 * Adds an entry to <code>privileges</code>.
+		 */
+		public final Builder privileges(String key, Map<String, Actions> value) {
+			this.privileges = _mapPut(this.privileges, key, value);
 			return this;
 		}
 

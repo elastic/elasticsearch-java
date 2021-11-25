@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.RateAggregation
@@ -53,10 +53,8 @@ public class RateAggregation extends FormatMetricAggregationBase implements Aggr
 
 	}
 
-	public static RateAggregation of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static RateAggregation of(Function<Builder, ObjectBuilder<RateAggregation>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**

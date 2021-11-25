@@ -35,10 +35,9 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.GeoLine
@@ -57,10 +56,8 @@ public class GeoLine implements JsonpSerializable {
 
 	}
 
-	public static GeoLine of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static GeoLine of(Function<Builder, ObjectBuilder<GeoLine>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -139,9 +136,15 @@ public class GeoLine implements JsonpSerializable {
 		 * Required - Array of <code>[lon, lat]</code> coordinates
 		 * <p>
 		 * API name: {@code coordinates}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>coordinates</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>coordinates</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder coordinates(List<List<Double>> value) {
-			this.coordinates = value;
+		public final Builder coordinates(List<List<Double>> list) {
+			this.coordinates = _listAddAll(this.coordinates, list);
 			return this;
 		}
 
@@ -149,9 +152,11 @@ public class GeoLine implements JsonpSerializable {
 		 * Required - Array of <code>[lon, lat]</code> coordinates
 		 * <p>
 		 * API name: {@code coordinates}
+		 * <p>
+		 * Adds one or more values to <code>coordinates</code>.
 		 */
-		public final Builder coordinates(List<Double>... value) {
-			this.coordinates = Arrays.asList(value);
+		public final Builder coordinates(List<Double> value, List<Double>... values) {
+			this.coordinates = _listAdd(this.coordinates, value, values);
 			return this;
 		}
 

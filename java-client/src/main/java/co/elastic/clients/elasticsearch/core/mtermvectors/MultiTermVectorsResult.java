@@ -30,7 +30,6 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.MapBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
@@ -40,7 +39,6 @@ import java.lang.Long;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -72,10 +70,8 @@ public class MultiTermVectorsResult implements JsonpSerializable {
 
 	}
 
-	public static MultiTermVectorsResult of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static MultiTermVectorsResult of(Function<Builder, ObjectBuilder<MultiTermVectorsResult>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -203,15 +199,35 @@ public class MultiTermVectorsResult implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code term_vectors}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>termVectors</code>. Use
+		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
+		 * <code>termVectors</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetMap()
 		 */
-		public final Builder termVectors(Map<String, TermVector> value) {
-			this.termVectors = value;
+		public final Builder termVectors(Map<String, TermVector> map) {
+			this.termVectors = _mapPutAll(this.termVectors, map);
 			return this;
 		}
 
-		public final Builder termVectors(
-				Function<MapBuilder<String, TermVector, TermVector.Builder>, ObjectBuilder<Map<String, TermVector>>> fn) {
-			return termVectors(fn.apply(new MapBuilder<>(TermVector.Builder::new)).build());
+		/**
+		 * Required - API name: {@code term_vectors}
+		 * <p>
+		 * Adds an entry to <code>termVectors</code>.
+		 */
+		public final Builder termVectors(String key, TermVector value) {
+			this.termVectors = _mapPut(this.termVectors, key, value);
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code term_vectors}
+		 * <p>
+		 * Adds an entry to <code>termVectors</code> using a builder lambda.
+		 */
+		public final Builder termVectors(String key, Function<TermVector.Builder, ObjectBuilder<TermVector>> fn) {
+			return termVectors(key, fn.apply(new TermVector.Builder()).build());
 		}
 
 		/**

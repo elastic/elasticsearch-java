@@ -38,7 +38,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Object;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.IntervalsQuery
@@ -114,10 +114,8 @@ public class IntervalsQuery extends QueryBase
 
 	}
 
-	public static IntervalsQuery of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static IntervalsQuery of(Function<Builder, ObjectBuilder<IntervalsQuery>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -273,10 +271,8 @@ public class IntervalsQuery extends QueryBase
 			return this;
 		}
 
-		public ObjectBuilder<IntervalsQuery> allOf(Consumer<IntervalsAllOf.Builder> fn) {
-			IntervalsAllOf.Builder builder = new IntervalsAllOf.Builder();
-			fn.accept(builder);
-			return this.allOf(builder.build());
+		public ObjectBuilder<IntervalsQuery> allOf(Function<IntervalsAllOf.Builder, ObjectBuilder<IntervalsAllOf>> fn) {
+			return this.allOf(fn.apply(new IntervalsAllOf.Builder()).build());
 		}
 
 		public ObjectBuilder<IntervalsQuery> anyOf(IntervalsAnyOf v) {
@@ -285,10 +281,8 @@ public class IntervalsQuery extends QueryBase
 			return this;
 		}
 
-		public ObjectBuilder<IntervalsQuery> anyOf(Consumer<IntervalsAnyOf.Builder> fn) {
-			IntervalsAnyOf.Builder builder = new IntervalsAnyOf.Builder();
-			fn.accept(builder);
-			return this.anyOf(builder.build());
+		public ObjectBuilder<IntervalsQuery> anyOf(Function<IntervalsAnyOf.Builder, ObjectBuilder<IntervalsAnyOf>> fn) {
+			return this.anyOf(fn.apply(new IntervalsAnyOf.Builder()).build());
 		}
 
 		public ObjectBuilder<IntervalsQuery> fuzzy(IntervalsFuzzy v) {
@@ -297,10 +291,8 @@ public class IntervalsQuery extends QueryBase
 			return this;
 		}
 
-		public ObjectBuilder<IntervalsQuery> fuzzy(Consumer<IntervalsFuzzy.Builder> fn) {
-			IntervalsFuzzy.Builder builder = new IntervalsFuzzy.Builder();
-			fn.accept(builder);
-			return this.fuzzy(builder.build());
+		public ObjectBuilder<IntervalsQuery> fuzzy(Function<IntervalsFuzzy.Builder, ObjectBuilder<IntervalsFuzzy>> fn) {
+			return this.fuzzy(fn.apply(new IntervalsFuzzy.Builder()).build());
 		}
 
 		public ObjectBuilder<IntervalsQuery> match(IntervalsMatch v) {
@@ -309,10 +301,8 @@ public class IntervalsQuery extends QueryBase
 			return this;
 		}
 
-		public ObjectBuilder<IntervalsQuery> match(Consumer<IntervalsMatch.Builder> fn) {
-			IntervalsMatch.Builder builder = new IntervalsMatch.Builder();
-			fn.accept(builder);
-			return this.match(builder.build());
+		public ObjectBuilder<IntervalsQuery> match(Function<IntervalsMatch.Builder, ObjectBuilder<IntervalsMatch>> fn) {
+			return this.match(fn.apply(new IntervalsMatch.Builder()).build());
 		}
 
 		public ObjectBuilder<IntervalsQuery> prefix(IntervalsPrefix v) {
@@ -321,10 +311,9 @@ public class IntervalsQuery extends QueryBase
 			return this;
 		}
 
-		public ObjectBuilder<IntervalsQuery> prefix(Consumer<IntervalsPrefix.Builder> fn) {
-			IntervalsPrefix.Builder builder = new IntervalsPrefix.Builder();
-			fn.accept(builder);
-			return this.prefix(builder.build());
+		public ObjectBuilder<IntervalsQuery> prefix(
+				Function<IntervalsPrefix.Builder, ObjectBuilder<IntervalsPrefix>> fn) {
+			return this.prefix(fn.apply(new IntervalsPrefix.Builder()).build());
 		}
 
 		public ObjectBuilder<IntervalsQuery> wildcard(IntervalsWildcard v) {
@@ -333,10 +322,9 @@ public class IntervalsQuery extends QueryBase
 			return this;
 		}
 
-		public ObjectBuilder<IntervalsQuery> wildcard(Consumer<IntervalsWildcard.Builder> fn) {
-			IntervalsWildcard.Builder builder = new IntervalsWildcard.Builder();
-			fn.accept(builder);
-			return this.wildcard(builder.build());
+		public ObjectBuilder<IntervalsQuery> wildcard(
+				Function<IntervalsWildcard.Builder, ObjectBuilder<IntervalsWildcard>> fn) {
+			return this.wildcard(fn.apply(new IntervalsWildcard.Builder()).build());
 		}
 
 		public IntervalsQuery build() {

@@ -33,7 +33,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.ExistsQuery
@@ -50,10 +50,8 @@ public class ExistsQuery extends QueryBase implements QueryVariant {
 
 	}
 
-	public static ExistsQuery of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static ExistsQuery of(Function<Builder, ObjectBuilder<ExistsQuery>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**

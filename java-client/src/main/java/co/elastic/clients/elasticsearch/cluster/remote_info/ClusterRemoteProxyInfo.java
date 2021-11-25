@@ -38,7 +38,7 @@ import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cluster.remote_info.ClusterRemoteProxyInfo
@@ -75,10 +75,8 @@ public class ClusterRemoteProxyInfo implements ClusterRemoteInfoVariant, JsonpSe
 
 	}
 
-	public static ClusterRemoteProxyInfo of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static ClusterRemoteProxyInfo of(Function<Builder, ObjectBuilder<ClusterRemoteProxyInfo>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -213,10 +211,8 @@ public class ClusterRemoteProxyInfo implements ClusterRemoteInfoVariant, JsonpSe
 		/**
 		 * Required - API name: {@code initial_connect_timeout}
 		 */
-		public final Builder initialConnectTimeout(Consumer<Time.Builder> fn) {
-			Time.Builder builder = new Time.Builder();
-			fn.accept(builder);
-			return this.initialConnectTimeout(builder.build());
+		public final Builder initialConnectTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.initialConnectTimeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**

@@ -36,7 +36,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 
 // typedef: _global.close_point_in_time.Response
 @JsonpDeserializable
@@ -54,10 +54,8 @@ public class ClosePointInTimeResponse implements JsonpSerializable {
 
 	}
 
-	public static ClosePointInTimeResponse of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static ClosePointInTimeResponse of(Function<Builder, ObjectBuilder<ClosePointInTimeResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**

@@ -36,7 +36,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: transform.get_transform_stats.Checkpointing
@@ -68,10 +68,8 @@ public class Checkpointing implements JsonpSerializable {
 
 	}
 
-	public static Checkpointing of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static Checkpointing of(Function<Builder, ObjectBuilder<Checkpointing>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -193,10 +191,8 @@ public class Checkpointing implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code last}
 		 */
-		public final Builder last(Consumer<CheckpointStats.Builder> fn) {
-			CheckpointStats.Builder builder = new CheckpointStats.Builder();
-			fn.accept(builder);
-			return this.last(builder.build());
+		public final Builder last(Function<CheckpointStats.Builder, ObjectBuilder<CheckpointStats>> fn) {
+			return this.last(fn.apply(new CheckpointStats.Builder()).build());
 		}
 
 		/**
@@ -210,10 +206,8 @@ public class Checkpointing implements JsonpSerializable {
 		/**
 		 * API name: {@code next}
 		 */
-		public final Builder next(Consumer<CheckpointStats.Builder> fn) {
-			CheckpointStats.Builder builder = new CheckpointStats.Builder();
-			fn.accept(builder);
-			return this.next(builder.build());
+		public final Builder next(Function<CheckpointStats.Builder, ObjectBuilder<CheckpointStats>> fn) {
+			return this.next(fn.apply(new CheckpointStats.Builder()).build());
 		}
 
 		/**

@@ -30,7 +30,6 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.MapBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
@@ -38,7 +37,6 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -61,10 +59,8 @@ public class ClearCachedRealmsResponse implements JsonpSerializable {
 
 	}
 
-	public static ClearCachedRealmsResponse of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static ClearCachedRealmsResponse of(Function<Builder, ObjectBuilder<ClearCachedRealmsResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -142,10 +138,8 @@ public class ClearCachedRealmsResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code _nodes}
 		 */
-		public final Builder nodeStats(Consumer<NodeStatistics.Builder> fn) {
-			NodeStatistics.Builder builder = new NodeStatistics.Builder();
-			fn.accept(builder);
-			return this.nodeStats(builder.build());
+		public final Builder nodeStats(Function<NodeStatistics.Builder, ObjectBuilder<NodeStatistics>> fn) {
+			return this.nodeStats(fn.apply(new NodeStatistics.Builder()).build());
 		}
 
 		/**
@@ -158,15 +152,35 @@ public class ClearCachedRealmsResponse implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code nodes}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>nodes</code>. Use
+		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
+		 * <code>nodes</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetMap()
 		 */
-		public final Builder nodes(Map<String, ClusterNode> value) {
-			this.nodes = value;
+		public final Builder nodes(Map<String, ClusterNode> map) {
+			this.nodes = _mapPutAll(this.nodes, map);
 			return this;
 		}
 
-		public final Builder nodes(
-				Function<MapBuilder<String, ClusterNode, ClusterNode.Builder>, ObjectBuilder<Map<String, ClusterNode>>> fn) {
-			return nodes(fn.apply(new MapBuilder<>(ClusterNode.Builder::new)).build());
+		/**
+		 * Required - API name: {@code nodes}
+		 * <p>
+		 * Adds an entry to <code>nodes</code>.
+		 */
+		public final Builder nodes(String key, ClusterNode value) {
+			this.nodes = _mapPut(this.nodes, key, value);
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code nodes}
+		 * <p>
+		 * Adds an entry to <code>nodes</code> using a builder lambda.
+		 */
+		public final Builder nodes(String key, Function<ClusterNode.Builder, ObjectBuilder<ClusterNode>> fn) {
+			return nodes(key, fn.apply(new ClusterNode.Builder()).build());
 		}
 
 		/**

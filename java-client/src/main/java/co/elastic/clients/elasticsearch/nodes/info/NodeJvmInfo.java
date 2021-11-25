@@ -37,10 +37,9 @@ import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.Long;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: nodes.info.NodeJvmInfo
@@ -93,10 +92,8 @@ public class NodeJvmInfo implements JsonpSerializable {
 
 	}
 
-	public static NodeJvmInfo of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static NodeJvmInfo of(Function<Builder, ObjectBuilder<NodeJvmInfo>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -302,17 +299,25 @@ public class NodeJvmInfo implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code gc_collectors}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>gcCollectors</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>gcCollectors</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder gcCollectors(List<String> value) {
-			this.gcCollectors = value;
+		public final Builder gcCollectors(List<String> list) {
+			this.gcCollectors = _listAddAll(this.gcCollectors, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code gc_collectors}
+		 * <p>
+		 * Adds one or more values to <code>gcCollectors</code>.
 		 */
-		public final Builder gcCollectors(String... value) {
-			this.gcCollectors = Arrays.asList(value);
+		public final Builder gcCollectors(String value, String... values) {
+			this.gcCollectors = _listAdd(this.gcCollectors, value, values);
 			return this;
 		}
 
@@ -327,25 +332,31 @@ public class NodeJvmInfo implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code mem}
 		 */
-		public final Builder mem(Consumer<NodeInfoJvmMemory.Builder> fn) {
-			NodeInfoJvmMemory.Builder builder = new NodeInfoJvmMemory.Builder();
-			fn.accept(builder);
-			return this.mem(builder.build());
+		public final Builder mem(Function<NodeInfoJvmMemory.Builder, ObjectBuilder<NodeInfoJvmMemory>> fn) {
+			return this.mem(fn.apply(new NodeInfoJvmMemory.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code memory_pools}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>memoryPools</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>memoryPools</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder memoryPools(List<String> value) {
-			this.memoryPools = value;
+		public final Builder memoryPools(List<String> list) {
+			this.memoryPools = _listAddAll(this.memoryPools, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code memory_pools}
+		 * <p>
+		 * Adds one or more values to <code>memoryPools</code>.
 		 */
-		public final Builder memoryPools(String... value) {
-			this.memoryPools = Arrays.asList(value);
+		public final Builder memoryPools(String value, String... values) {
+			this.memoryPools = _listAdd(this.memoryPools, value, values);
 			return this;
 		}
 
@@ -423,17 +434,25 @@ public class NodeJvmInfo implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code input_arguments}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>inputArguments</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>inputArguments</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder inputArguments(List<String> value) {
-			this.inputArguments = value;
+		public final Builder inputArguments(List<String> list) {
+			this.inputArguments = _listAddAll(this.inputArguments, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code input_arguments}
+		 * <p>
+		 * Adds one or more values to <code>inputArguments</code>.
 		 */
-		public final Builder inputArguments(String... value) {
-			this.inputArguments = Arrays.asList(value);
+		public final Builder inputArguments(String value, String... values) {
+			this.inputArguments = _listAdd(this.inputArguments, value, values);
 			return this;
 		}
 

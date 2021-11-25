@@ -33,7 +33,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 
 // typedef: _types.analysis.LengthTokenFilter
 @JsonpDeserializable
@@ -52,10 +52,8 @@ public class LengthTokenFilter extends TokenFilterBase implements TokenFilterDef
 
 	}
 
-	public static LengthTokenFilter of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static LengthTokenFilter of(Function<Builder, ObjectBuilder<LengthTokenFilter>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**

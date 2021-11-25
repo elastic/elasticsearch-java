@@ -29,15 +29,12 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -54,10 +51,8 @@ public class ShardStoreWrapper implements JsonpSerializable {
 
 	}
 
-	public static ShardStoreWrapper of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static ShardStoreWrapper of(Function<Builder, ObjectBuilder<ShardStoreWrapper>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -101,26 +96,35 @@ public class ShardStoreWrapper implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code stores}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>stores</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>stores</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder stores(List<ShardStore> value) {
-			this.stores = value;
+		public final Builder stores(List<ShardStore> list) {
+			this.stores = _listAddAll(this.stores, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code stores}
+		 * <p>
+		 * Adds one or more values to <code>stores</code>.
 		 */
-		public final Builder stores(ShardStore... value) {
-			this.stores = Arrays.asList(value);
+		public final Builder stores(ShardStore value, ShardStore... values) {
+			this.stores = _listAdd(this.stores, value, values);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code stores}
+		 * <p>
+		 * Adds a value to <code>stores</code> using a builder lambda.
 		 */
-		public final Builder stores(
-				Function<ListBuilder<ShardStore, ShardStore.Builder>, ObjectBuilder<List<ShardStore>>> fn) {
-			return stores(fn.apply(new ListBuilder<>(ShardStore.Builder::new)).build());
+		public final Builder stores(Function<ShardStore.Builder, ObjectBuilder<ShardStore>> fn) {
+			return stores(fn.apply(new ShardStore.Builder()).build());
 		}
 
 		/**

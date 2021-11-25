@@ -28,17 +28,14 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Long;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -77,10 +74,8 @@ public class Realm extends Base {
 
 	}
 
-	public static Realm of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static Realm of(Function<Builder, ObjectBuilder<Realm>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -257,137 +252,205 @@ public class Realm extends Base {
 
 		/**
 		 * API name: {@code name}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>name</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>name</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder name(@Nullable List<String> value) {
-			this.name = value;
+		public final Builder name(List<String> list) {
+			this.name = _listAddAll(this.name, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code name}
+		 * <p>
+		 * Adds one or more values to <code>name</code>.
 		 */
-		public final Builder name(String... value) {
-			this.name = Arrays.asList(value);
+		public final Builder name(String value, String... values) {
+			this.name = _listAdd(this.name, value, values);
 			return this;
 		}
 
 		/**
 		 * API name: {@code order}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>order</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>order</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder order(@Nullable List<Long> value) {
-			this.order = value;
+		public final Builder order(List<Long> list) {
+			this.order = _listAddAll(this.order, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code order}
+		 * <p>
+		 * Adds one or more values to <code>order</code>.
 		 */
-		public final Builder order(Long... value) {
-			this.order = Arrays.asList(value);
+		public final Builder order(Long value, Long... values) {
+			this.order = _listAdd(this.order, value, values);
 			return this;
 		}
 
 		/**
 		 * API name: {@code size}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>size</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>size</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder size(@Nullable List<Long> value) {
-			this.size = value;
+		public final Builder size(List<Long> list) {
+			this.size = _listAddAll(this.size, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code size}
+		 * <p>
+		 * Adds one or more values to <code>size</code>.
 		 */
-		public final Builder size(Long... value) {
-			this.size = Arrays.asList(value);
+		public final Builder size(Long value, Long... values) {
+			this.size = _listAdd(this.size, value, values);
 			return this;
 		}
 
 		/**
 		 * API name: {@code cache}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>cache</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>cache</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder cache(@Nullable List<RealmCache> value) {
-			this.cache = value;
+		public final Builder cache(List<RealmCache> list) {
+			this.cache = _listAddAll(this.cache, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code cache}
+		 * <p>
+		 * Adds one or more values to <code>cache</code>.
 		 */
-		public final Builder cache(RealmCache... value) {
-			this.cache = Arrays.asList(value);
+		public final Builder cache(RealmCache value, RealmCache... values) {
+			this.cache = _listAdd(this.cache, value, values);
 			return this;
 		}
 
 		/**
 		 * API name: {@code cache}
+		 * <p>
+		 * Adds a value to <code>cache</code> using a builder lambda.
 		 */
-		public final Builder cache(
-				Function<ListBuilder<RealmCache, RealmCache.Builder>, ObjectBuilder<List<RealmCache>>> fn) {
-			return cache(fn.apply(new ListBuilder<>(RealmCache.Builder::new)).build());
+		public final Builder cache(Function<RealmCache.Builder, ObjectBuilder<RealmCache>> fn) {
+			return cache(fn.apply(new RealmCache.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code has_authorization_realms}
+		 * <p>
+		 * Adds all elements of <code>list</code> to
+		 * <code>hasAuthorizationRealms</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>hasAuthorizationRealms</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder hasAuthorizationRealms(@Nullable List<Boolean> value) {
-			this.hasAuthorizationRealms = value;
+		public final Builder hasAuthorizationRealms(List<Boolean> list) {
+			this.hasAuthorizationRealms = _listAddAll(this.hasAuthorizationRealms, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code has_authorization_realms}
+		 * <p>
+		 * Adds one or more values to <code>hasAuthorizationRealms</code>.
 		 */
-		public final Builder hasAuthorizationRealms(Boolean... value) {
-			this.hasAuthorizationRealms = Arrays.asList(value);
+		public final Builder hasAuthorizationRealms(Boolean value, Boolean... values) {
+			this.hasAuthorizationRealms = _listAdd(this.hasAuthorizationRealms, value, values);
 			return this;
 		}
 
 		/**
 		 * API name: {@code has_default_username_pattern}
+		 * <p>
+		 * Adds all elements of <code>list</code> to
+		 * <code>hasDefaultUsernamePattern</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>hasDefaultUsernamePattern</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder hasDefaultUsernamePattern(@Nullable List<Boolean> value) {
-			this.hasDefaultUsernamePattern = value;
+		public final Builder hasDefaultUsernamePattern(List<Boolean> list) {
+			this.hasDefaultUsernamePattern = _listAddAll(this.hasDefaultUsernamePattern, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code has_default_username_pattern}
+		 * <p>
+		 * Adds one or more values to <code>hasDefaultUsernamePattern</code>.
 		 */
-		public final Builder hasDefaultUsernamePattern(Boolean... value) {
-			this.hasDefaultUsernamePattern = Arrays.asList(value);
+		public final Builder hasDefaultUsernamePattern(Boolean value, Boolean... values) {
+			this.hasDefaultUsernamePattern = _listAdd(this.hasDefaultUsernamePattern, value, values);
 			return this;
 		}
 
 		/**
 		 * API name: {@code has_truststore}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>hasTruststore</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>hasTruststore</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder hasTruststore(@Nullable List<Boolean> value) {
-			this.hasTruststore = value;
+		public final Builder hasTruststore(List<Boolean> list) {
+			this.hasTruststore = _listAddAll(this.hasTruststore, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code has_truststore}
+		 * <p>
+		 * Adds one or more values to <code>hasTruststore</code>.
 		 */
-		public final Builder hasTruststore(Boolean... value) {
-			this.hasTruststore = Arrays.asList(value);
+		public final Builder hasTruststore(Boolean value, Boolean... values) {
+			this.hasTruststore = _listAdd(this.hasTruststore, value, values);
 			return this;
 		}
 
 		/**
 		 * API name: {@code is_authentication_delegated}
+		 * <p>
+		 * Adds all elements of <code>list</code> to
+		 * <code>isAuthenticationDelegated</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>isAuthenticationDelegated</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder isAuthenticationDelegated(@Nullable List<Boolean> value) {
-			this.isAuthenticationDelegated = value;
+		public final Builder isAuthenticationDelegated(List<Boolean> list) {
+			this.isAuthenticationDelegated = _listAddAll(this.isAuthenticationDelegated, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code is_authentication_delegated}
+		 * <p>
+		 * Adds one or more values to <code>isAuthenticationDelegated</code>.
 		 */
-		public final Builder isAuthenticationDelegated(Boolean... value) {
-			this.isAuthenticationDelegated = Arrays.asList(value);
+		public final Builder isAuthenticationDelegated(Boolean value, Boolean... values) {
+			this.isAuthenticationDelegated = _listAdd(this.isAuthenticationDelegated, value, values);
 			return this;
 		}
 

@@ -31,19 +31,15 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ListBuilder;
-import co.elastic.clients.util.MapBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -139,10 +135,8 @@ public class NodeInfo implements JsonpSerializable {
 
 	}
 
-	public static NodeInfo of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static NodeInfo of(Function<Builder, ObjectBuilder<NodeInfo>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -561,9 +555,25 @@ public class NodeInfo implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code attributes}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>attributes</code>. Use
+		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
+		 * <code>attributes</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetMap()
 		 */
-		public final Builder attributes(Map<String, String> value) {
-			this.attributes = value;
+		public final Builder attributes(Map<String, String> map) {
+			this.attributes = _mapPutAll(this.attributes, map);
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code attributes}
+		 * <p>
+		 * Adds an entry to <code>attributes</code>.
+		 */
+		public final Builder attributes(String key, String value) {
+			this.attributes = _mapPut(this.attributes, key, value);
 			return this;
 		}
 
@@ -614,10 +624,8 @@ public class NodeInfo implements JsonpSerializable {
 		/**
 		 * API name: {@code http}
 		 */
-		public final Builder http(Consumer<NodeInfoHttp.Builder> fn) {
-			NodeInfoHttp.Builder builder = new NodeInfoHttp.Builder();
-			fn.accept(builder);
-			return this.http(builder.build());
+		public final Builder http(Function<NodeInfoHttp.Builder, ObjectBuilder<NodeInfoHttp>> fn) {
+			return this.http(fn.apply(new NodeInfoHttp.Builder()).build());
 		}
 
 		/**
@@ -641,10 +649,8 @@ public class NodeInfo implements JsonpSerializable {
 		/**
 		 * API name: {@code jvm}
 		 */
-		public final Builder jvm(Consumer<NodeJvmInfo.Builder> fn) {
-			NodeJvmInfo.Builder builder = new NodeJvmInfo.Builder();
-			fn.accept(builder);
-			return this.jvm(builder.build());
+		public final Builder jvm(Function<NodeJvmInfo.Builder, ObjectBuilder<NodeJvmInfo>> fn) {
+			return this.jvm(fn.apply(new NodeJvmInfo.Builder()).build());
 		}
 
 		/**
@@ -668,10 +674,8 @@ public class NodeInfo implements JsonpSerializable {
 		/**
 		 * API name: {@code network}
 		 */
-		public final Builder network(Consumer<NodeInfoNetwork.Builder> fn) {
-			NodeInfoNetwork.Builder builder = new NodeInfoNetwork.Builder();
-			fn.accept(builder);
-			return this.network(builder.build());
+		public final Builder network(Function<NodeInfoNetwork.Builder, ObjectBuilder<NodeInfoNetwork>> fn) {
+			return this.network(fn.apply(new NodeInfoNetwork.Builder()).build());
 		}
 
 		/**
@@ -685,34 +689,41 @@ public class NodeInfo implements JsonpSerializable {
 		/**
 		 * API name: {@code os}
 		 */
-		public final Builder os(Consumer<NodeOperatingSystemInfo.Builder> fn) {
-			NodeOperatingSystemInfo.Builder builder = new NodeOperatingSystemInfo.Builder();
-			fn.accept(builder);
-			return this.os(builder.build());
+		public final Builder os(Function<NodeOperatingSystemInfo.Builder, ObjectBuilder<NodeOperatingSystemInfo>> fn) {
+			return this.os(fn.apply(new NodeOperatingSystemInfo.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code plugins}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>plugins</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>plugins</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder plugins(@Nullable List<PluginStats> value) {
-			this.plugins = value;
+		public final Builder plugins(List<PluginStats> list) {
+			this.plugins = _listAddAll(this.plugins, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code plugins}
+		 * <p>
+		 * Adds one or more values to <code>plugins</code>.
 		 */
-		public final Builder plugins(PluginStats... value) {
-			this.plugins = Arrays.asList(value);
+		public final Builder plugins(PluginStats value, PluginStats... values) {
+			this.plugins = _listAdd(this.plugins, value, values);
 			return this;
 		}
 
 		/**
 		 * API name: {@code plugins}
+		 * <p>
+		 * Adds a value to <code>plugins</code> using a builder lambda.
 		 */
-		public final Builder plugins(
-				Function<ListBuilder<PluginStats, PluginStats.Builder>, ObjectBuilder<List<PluginStats>>> fn) {
-			return plugins(fn.apply(new ListBuilder<>(PluginStats.Builder::new)).build());
+		public final Builder plugins(Function<PluginStats.Builder, ObjectBuilder<PluginStats>> fn) {
+			return plugins(fn.apply(new PluginStats.Builder()).build());
 		}
 
 		/**
@@ -726,25 +737,31 @@ public class NodeInfo implements JsonpSerializable {
 		/**
 		 * API name: {@code process}
 		 */
-		public final Builder process(Consumer<NodeProcessInfo.Builder> fn) {
-			NodeProcessInfo.Builder builder = new NodeProcessInfo.Builder();
-			fn.accept(builder);
-			return this.process(builder.build());
+		public final Builder process(Function<NodeProcessInfo.Builder, ObjectBuilder<NodeProcessInfo>> fn) {
+			return this.process(fn.apply(new NodeProcessInfo.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code roles}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>roles</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>roles</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder roles(List<NodeRole> value) {
-			this.roles = value;
+		public final Builder roles(List<NodeRole> list) {
+			this.roles = _listAddAll(this.roles, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code roles}
+		 * <p>
+		 * Adds one or more values to <code>roles</code>.
 		 */
-		public final Builder roles(NodeRole... value) {
-			this.roles = Arrays.asList(value);
+		public final Builder roles(NodeRole value, NodeRole... values) {
+			this.roles = _listAdd(this.roles, value, values);
 			return this;
 		}
 
@@ -759,23 +776,42 @@ public class NodeInfo implements JsonpSerializable {
 		/**
 		 * API name: {@code settings}
 		 */
-		public final Builder settings(Consumer<NodeInfoSettings.Builder> fn) {
-			NodeInfoSettings.Builder builder = new NodeInfoSettings.Builder();
-			fn.accept(builder);
-			return this.settings(builder.build());
+		public final Builder settings(Function<NodeInfoSettings.Builder, ObjectBuilder<NodeInfoSettings>> fn) {
+			return this.settings(fn.apply(new NodeInfoSettings.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code thread_pool}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>threadPool</code>. Use
+		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
+		 * <code>threadPool</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetMap()
 		 */
-		public final Builder threadPool(@Nullable Map<String, NodeThreadPoolInfo> value) {
-			this.threadPool = value;
+		public final Builder threadPool(Map<String, NodeThreadPoolInfo> map) {
+			this.threadPool = _mapPutAll(this.threadPool, map);
 			return this;
 		}
 
-		public final Builder threadPool(
-				Function<MapBuilder<String, NodeThreadPoolInfo, NodeThreadPoolInfo.Builder>, ObjectBuilder<Map<String, NodeThreadPoolInfo>>> fn) {
-			return threadPool(fn.apply(new MapBuilder<>(NodeThreadPoolInfo.Builder::new)).build());
+		/**
+		 * API name: {@code thread_pool}
+		 * <p>
+		 * Adds an entry to <code>threadPool</code>.
+		 */
+		public final Builder threadPool(String key, NodeThreadPoolInfo value) {
+			this.threadPool = _mapPut(this.threadPool, key, value);
+			return this;
+		}
+
+		/**
+		 * API name: {@code thread_pool}
+		 * <p>
+		 * Adds an entry to <code>threadPool</code> using a builder lambda.
+		 */
+		public final Builder threadPool(String key,
+				Function<NodeThreadPoolInfo.Builder, ObjectBuilder<NodeThreadPoolInfo>> fn) {
+			return threadPool(key, fn.apply(new NodeThreadPoolInfo.Builder()).build());
 		}
 
 		/**
@@ -811,10 +847,8 @@ public class NodeInfo implements JsonpSerializable {
 		/**
 		 * API name: {@code transport}
 		 */
-		public final Builder transport(Consumer<NodeInfoTransport.Builder> fn) {
-			NodeInfoTransport.Builder builder = new NodeInfoTransport.Builder();
-			fn.accept(builder);
-			return this.transport(builder.build());
+		public final Builder transport(Function<NodeInfoTransport.Builder, ObjectBuilder<NodeInfoTransport>> fn) {
+			return this.transport(fn.apply(new NodeInfoTransport.Builder()).build());
 		}
 
 		/**
@@ -839,26 +873,35 @@ public class NodeInfo implements JsonpSerializable {
 
 		/**
 		 * API name: {@code modules}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>modules</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>modules</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder modules(@Nullable List<PluginStats> value) {
-			this.modules = value;
+		public final Builder modules(List<PluginStats> list) {
+			this.modules = _listAddAll(this.modules, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code modules}
+		 * <p>
+		 * Adds one or more values to <code>modules</code>.
 		 */
-		public final Builder modules(PluginStats... value) {
-			this.modules = Arrays.asList(value);
+		public final Builder modules(PluginStats value, PluginStats... values) {
+			this.modules = _listAdd(this.modules, value, values);
 			return this;
 		}
 
 		/**
 		 * API name: {@code modules}
+		 * <p>
+		 * Adds a value to <code>modules</code> using a builder lambda.
 		 */
-		public final Builder modules(
-				Function<ListBuilder<PluginStats, PluginStats.Builder>, ObjectBuilder<List<PluginStats>>> fn) {
-			return modules(fn.apply(new ListBuilder<>(PluginStats.Builder::new)).build());
+		public final Builder modules(Function<PluginStats.Builder, ObjectBuilder<PluginStats>> fn) {
+			return modules(fn.apply(new PluginStats.Builder()).build());
 		}
 
 		/**
@@ -872,23 +915,42 @@ public class NodeInfo implements JsonpSerializable {
 		/**
 		 * API name: {@code ingest}
 		 */
-		public final Builder ingest(Consumer<NodeInfoIngest.Builder> fn) {
-			NodeInfoIngest.Builder builder = new NodeInfoIngest.Builder();
-			fn.accept(builder);
-			return this.ingest(builder.build());
+		public final Builder ingest(Function<NodeInfoIngest.Builder, ObjectBuilder<NodeInfoIngest>> fn) {
+			return this.ingest(fn.apply(new NodeInfoIngest.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code aggregations}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>aggregations</code>. Use
+		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
+		 * <code>aggregations</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetMap()
 		 */
-		public final Builder aggregations(@Nullable Map<String, NodeInfoAggregation> value) {
-			this.aggregations = value;
+		public final Builder aggregations(Map<String, NodeInfoAggregation> map) {
+			this.aggregations = _mapPutAll(this.aggregations, map);
 			return this;
 		}
 
-		public final Builder aggregations(
-				Function<MapBuilder<String, NodeInfoAggregation, NodeInfoAggregation.Builder>, ObjectBuilder<Map<String, NodeInfoAggregation>>> fn) {
-			return aggregations(fn.apply(new MapBuilder<>(NodeInfoAggregation.Builder::new)).build());
+		/**
+		 * API name: {@code aggregations}
+		 * <p>
+		 * Adds an entry to <code>aggregations</code>.
+		 */
+		public final Builder aggregations(String key, NodeInfoAggregation value) {
+			this.aggregations = _mapPut(this.aggregations, key, value);
+			return this;
+		}
+
+		/**
+		 * API name: {@code aggregations}
+		 * <p>
+		 * Adds an entry to <code>aggregations</code> using a builder lambda.
+		 */
+		public final Builder aggregations(String key,
+				Function<NodeInfoAggregation.Builder, ObjectBuilder<NodeInfoAggregation>> fn) {
+			return aggregations(key, fn.apply(new NodeInfoAggregation.Builder()).build());
 		}
 
 		/**

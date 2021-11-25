@@ -38,7 +38,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Object;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.CategorizationAnalyzer
@@ -76,10 +76,8 @@ public class CategorizationAnalyzer implements TaggedUnion<CategorizationAnalyze
 
 	}
 
-	public static CategorizationAnalyzer of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static CategorizationAnalyzer of(Function<Builder, ObjectBuilder<CategorizationAnalyzer>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -147,10 +145,9 @@ public class CategorizationAnalyzer implements TaggedUnion<CategorizationAnalyze
 			return this;
 		}
 
-		public ObjectBuilder<CategorizationAnalyzer> definition(Consumer<CategorizationAnalyzerDefinition.Builder> fn) {
-			CategorizationAnalyzerDefinition.Builder builder = new CategorizationAnalyzerDefinition.Builder();
-			fn.accept(builder);
-			return this.definition(builder.build());
+		public ObjectBuilder<CategorizationAnalyzer> definition(
+				Function<CategorizationAnalyzerDefinition.Builder, ObjectBuilder<CategorizationAnalyzerDefinition>> fn) {
+			return this.definition(fn.apply(new CategorizationAnalyzerDefinition.Builder()).build());
 		}
 
 		public CategorizationAnalyzer build() {

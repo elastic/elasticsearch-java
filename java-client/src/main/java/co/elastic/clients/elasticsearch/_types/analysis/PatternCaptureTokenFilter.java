@@ -33,10 +33,9 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.analysis.PatternCaptureTokenFilter
@@ -56,10 +55,8 @@ public class PatternCaptureTokenFilter extends TokenFilterBase implements TokenF
 
 	}
 
-	public static PatternCaptureTokenFilter of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static PatternCaptureTokenFilter of(Function<Builder, ObjectBuilder<PatternCaptureTokenFilter>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -117,17 +114,25 @@ public class PatternCaptureTokenFilter extends TokenFilterBase implements TokenF
 
 		/**
 		 * Required - API name: {@code patterns}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>patterns</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>patterns</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder patterns(List<String> value) {
-			this.patterns = value;
+		public final Builder patterns(List<String> list) {
+			this.patterns = _listAddAll(this.patterns, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code patterns}
+		 * <p>
+		 * Adds one or more values to <code>patterns</code>.
 		 */
-		public final Builder patterns(String... value) {
-			this.patterns = Arrays.asList(value);
+		public final Builder patterns(String value, String... values) {
+			this.patterns = _listAdd(this.patterns, value, values);
 			return this;
 		}
 

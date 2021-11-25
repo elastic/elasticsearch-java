@@ -35,7 +35,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.GeoDistanceQuery
@@ -67,10 +67,8 @@ public class GeoDistanceQuery extends QueryBase implements QueryVariant {
 
 	}
 
-	public static GeoDistanceQuery of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static GeoDistanceQuery of(Function<Builder, ObjectBuilder<GeoDistanceQuery>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -169,10 +167,8 @@ public class GeoDistanceQuery extends QueryBase implements QueryVariant {
 		/**
 		 * Required -
 		 */
-		public final Builder location(Consumer<GeoLocation.Builder> fn) {
-			GeoLocation.Builder builder = new GeoLocation.Builder();
-			fn.accept(builder);
-			return this.location(builder.build());
+		public final Builder location(Function<GeoLocation.Builder, ObjectBuilder<GeoLocation>> fn) {
+			return this.location(fn.apply(new GeoLocation.Builder()).build());
 		}
 
 		@Nullable

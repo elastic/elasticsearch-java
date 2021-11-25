@@ -30,14 +30,11 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -55,10 +52,8 @@ public class DeleteJobResponse extends AcknowledgedResponseBase {
 
 	}
 
-	public static DeleteJobResponse of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static DeleteJobResponse of(Function<Builder, ObjectBuilder<DeleteJobResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -97,26 +92,35 @@ public class DeleteJobResponse extends AcknowledgedResponseBase {
 
 		/**
 		 * API name: {@code task_failures}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>taskFailures</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>taskFailures</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder taskFailures(@Nullable List<TaskFailure> value) {
-			this.taskFailures = value;
+		public final Builder taskFailures(List<TaskFailure> list) {
+			this.taskFailures = _listAddAll(this.taskFailures, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code task_failures}
+		 * <p>
+		 * Adds one or more values to <code>taskFailures</code>.
 		 */
-		public final Builder taskFailures(TaskFailure... value) {
-			this.taskFailures = Arrays.asList(value);
+		public final Builder taskFailures(TaskFailure value, TaskFailure... values) {
+			this.taskFailures = _listAdd(this.taskFailures, value, values);
 			return this;
 		}
 
 		/**
 		 * API name: {@code task_failures}
+		 * <p>
+		 * Adds a value to <code>taskFailures</code> using a builder lambda.
 		 */
-		public final Builder taskFailures(
-				Function<ListBuilder<TaskFailure, TaskFailure.Builder>, ObjectBuilder<List<TaskFailure>>> fn) {
-			return taskFailures(fn.apply(new ListBuilder<>(TaskFailure.Builder::new)).build());
+		public final Builder taskFailures(Function<TaskFailure.Builder, ObjectBuilder<TaskFailure>> fn) {
+			return taskFailures(fn.apply(new TaskFailure.Builder()).build());
 		}
 
 		@Override

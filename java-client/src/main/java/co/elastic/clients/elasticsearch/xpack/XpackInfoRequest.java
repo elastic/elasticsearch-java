@@ -36,12 +36,11 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
@@ -58,10 +57,8 @@ public class XpackInfoRequest extends RequestBase {
 
 	}
 
-	public static XpackInfoRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static XpackInfoRequest of(Function<Builder, ObjectBuilder<XpackInfoRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -88,9 +85,15 @@ public class XpackInfoRequest extends RequestBase {
 		 * features
 		 * <p>
 		 * API name: {@code categories}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>categories</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>categories</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder categories(@Nullable List<String> value) {
-			this.categories = value;
+		public final Builder categories(List<String> list) {
+			this.categories = _listAddAll(this.categories, list);
 			return this;
 		}
 
@@ -99,9 +102,11 @@ public class XpackInfoRequest extends RequestBase {
 		 * features
 		 * <p>
 		 * API name: {@code categories}
+		 * <p>
+		 * Adds one or more values to <code>categories</code>.
 		 */
-		public final Builder categories(String... value) {
-			this.categories = Arrays.asList(value);
+		public final Builder categories(String value, String... values) {
+			this.categories = _listAdd(this.categories, value, values);
 			return this;
 		}
 

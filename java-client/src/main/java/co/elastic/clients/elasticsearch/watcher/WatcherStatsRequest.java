@@ -37,12 +37,11 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
@@ -63,10 +62,8 @@ public class WatcherStatsRequest extends RequestBase {
 
 	}
 
-	public static WatcherStatsRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static WatcherStatsRequest of(Function<Builder, ObjectBuilder<WatcherStatsRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -114,9 +111,15 @@ public class WatcherStatsRequest extends RequestBase {
 		 * Defines which additional metrics are included in the response.
 		 * <p>
 		 * API name: {@code metric}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>metric</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>metric</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder metric(@Nullable List<WatcherMetric> value) {
-			this.metric = value;
+		public final Builder metric(List<WatcherMetric> list) {
+			this.metric = _listAddAll(this.metric, list);
 			return this;
 		}
 
@@ -124,9 +127,11 @@ public class WatcherStatsRequest extends RequestBase {
 		 * Defines which additional metrics are included in the response.
 		 * <p>
 		 * API name: {@code metric}
+		 * <p>
+		 * Adds one or more values to <code>metric</code>.
 		 */
-		public final Builder metric(WatcherMetric... value) {
-			this.metric = Arrays.asList(value);
+		public final Builder metric(WatcherMetric value, WatcherMetric... values) {
+			this.metric = _listAdd(this.metric, value, values);
 			return this;
 		}
 

@@ -38,7 +38,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher.delete_watch.Request
@@ -54,10 +54,8 @@ public class DeleteWatchRequest extends RequestBase {
 
 	}
 
-	public static DeleteWatchRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static DeleteWatchRequest of(Function<Builder, ObjectBuilder<DeleteWatchRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**

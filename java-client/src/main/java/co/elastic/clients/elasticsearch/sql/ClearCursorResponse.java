@@ -35,7 +35,7 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 
 // typedef: sql.clear_cursor.Response
 @JsonpDeserializable
@@ -50,10 +50,8 @@ public class ClearCursorResponse implements JsonpSerializable {
 
 	}
 
-	public static ClearCursorResponse of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static ClearCursorResponse of(Function<Builder, ObjectBuilder<ClearCursorResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**

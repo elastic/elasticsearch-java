@@ -38,7 +38,7 @@ import co.elastic.clients.util.TaggedUnionUtils;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Object;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.TriggerEventContainer
@@ -94,10 +94,8 @@ public class TriggerEvent implements TaggedUnion<TriggerEvent.Kind, Object>, Jso
 
 	}
 
-	public static TriggerEvent of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static TriggerEvent of(Function<Builder, ObjectBuilder<TriggerEvent>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -142,10 +140,9 @@ public class TriggerEvent implements TaggedUnion<TriggerEvent.Kind, Object>, Jso
 			return this;
 		}
 
-		public ObjectBuilder<TriggerEvent> schedule(Consumer<ScheduleTriggerEvent.Builder> fn) {
-			ScheduleTriggerEvent.Builder builder = new ScheduleTriggerEvent.Builder();
-			fn.accept(builder);
-			return this.schedule(builder.build());
+		public ObjectBuilder<TriggerEvent> schedule(
+				Function<ScheduleTriggerEvent.Builder, ObjectBuilder<ScheduleTriggerEvent>> fn) {
+			return this.schedule(fn.apply(new ScheduleTriggerEvent.Builder()).build());
 		}
 
 		public TriggerEvent build() {

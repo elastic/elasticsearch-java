@@ -34,7 +34,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.GeoCentroidAggregate
@@ -55,10 +55,8 @@ public class GeoCentroidAggregate extends AggregateBase implements AggregateVari
 
 	}
 
-	public static GeoCentroidAggregate of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static GeoCentroidAggregate of(Function<Builder, ObjectBuilder<GeoCentroidAggregate>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -130,10 +128,8 @@ public class GeoCentroidAggregate extends AggregateBase implements AggregateVari
 		/**
 		 * API name: {@code location}
 		 */
-		public final Builder location(Consumer<GeoLocation.Builder> fn) {
-			GeoLocation.Builder builder = new GeoLocation.Builder();
-			fn.accept(builder);
-			return this.location(builder.build());
+		public final Builder location(Function<GeoLocation.Builder, ObjectBuilder<GeoLocation>> fn) {
+			return this.location(fn.apply(new GeoLocation.Builder()).build());
 		}
 
 		@Override

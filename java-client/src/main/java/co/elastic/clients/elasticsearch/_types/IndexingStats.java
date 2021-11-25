@@ -29,7 +29,6 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.MapBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
@@ -39,7 +38,6 @@ import java.lang.Long;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -100,10 +98,8 @@ public class IndexingStats implements JsonpSerializable {
 
 	}
 
-	public static IndexingStats of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static IndexingStats of(Function<Builder, ObjectBuilder<IndexingStats>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -421,15 +417,35 @@ public class IndexingStats implements JsonpSerializable {
 
 		/**
 		 * API name: {@code types}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>types</code>. Use
+		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
+		 * <code>types</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetMap()
 		 */
-		public final Builder types(@Nullable Map<String, IndexingStats> value) {
-			this.types = value;
+		public final Builder types(Map<String, IndexingStats> map) {
+			this.types = _mapPutAll(this.types, map);
 			return this;
 		}
 
-		public final Builder types(
-				Function<MapBuilder<String, IndexingStats, IndexingStats.Builder>, ObjectBuilder<Map<String, IndexingStats>>> fn) {
-			return types(fn.apply(new MapBuilder<>(IndexingStats.Builder::new)).build());
+		/**
+		 * API name: {@code types}
+		 * <p>
+		 * Adds an entry to <code>types</code>.
+		 */
+		public final Builder types(String key, IndexingStats value) {
+			this.types = _mapPut(this.types, key, value);
+			return this;
+		}
+
+		/**
+		 * API name: {@code types}
+		 * <p>
+		 * Adds an entry to <code>types</code> using a builder lambda.
+		 */
+		public final Builder types(String key, Function<IndexingStats.Builder, ObjectBuilder<IndexingStats>> fn) {
+			return types(key, fn.apply(new IndexingStats.Builder()).build());
 		}
 
 		/**

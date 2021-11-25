@@ -29,7 +29,6 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.MapBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
@@ -37,7 +36,6 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -63,10 +61,8 @@ public class WatcherWatch implements JsonpSerializable {
 
 	}
 
-	public static WatcherWatch of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static WatcherWatch of(Function<Builder, ObjectBuilder<WatcherWatch>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -164,41 +160,101 @@ public class WatcherWatch implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code input}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>input</code>. Use
+		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
+		 * <code>input</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetMap()
 		 */
-		public final Builder input(Map<String, Counter> value) {
-			this.input = value;
+		public final Builder input(Map<String, Counter> map) {
+			this.input = _mapPutAll(this.input, map);
 			return this;
 		}
 
-		public final Builder input(
-				Function<MapBuilder<String, Counter, Counter.Builder>, ObjectBuilder<Map<String, Counter>>> fn) {
-			return input(fn.apply(new MapBuilder<>(Counter.Builder::new)).build());
+		/**
+		 * Required - API name: {@code input}
+		 * <p>
+		 * Adds an entry to <code>input</code>.
+		 */
+		public final Builder input(String key, Counter value) {
+			this.input = _mapPut(this.input, key, value);
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code input}
+		 * <p>
+		 * Adds an entry to <code>input</code> using a builder lambda.
+		 */
+		public final Builder input(String key, Function<Counter.Builder, ObjectBuilder<Counter>> fn) {
+			return input(key, fn.apply(new Counter.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code condition}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>condition</code>. Use
+		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
+		 * <code>condition</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetMap()
 		 */
-		public final Builder condition(@Nullable Map<String, Counter> value) {
-			this.condition = value;
+		public final Builder condition(Map<String, Counter> map) {
+			this.condition = _mapPutAll(this.condition, map);
 			return this;
 		}
 
-		public final Builder condition(
-				Function<MapBuilder<String, Counter, Counter.Builder>, ObjectBuilder<Map<String, Counter>>> fn) {
-			return condition(fn.apply(new MapBuilder<>(Counter.Builder::new)).build());
+		/**
+		 * API name: {@code condition}
+		 * <p>
+		 * Adds an entry to <code>condition</code>.
+		 */
+		public final Builder condition(String key, Counter value) {
+			this.condition = _mapPut(this.condition, key, value);
+			return this;
+		}
+
+		/**
+		 * API name: {@code condition}
+		 * <p>
+		 * Adds an entry to <code>condition</code> using a builder lambda.
+		 */
+		public final Builder condition(String key, Function<Counter.Builder, ObjectBuilder<Counter>> fn) {
+			return condition(key, fn.apply(new Counter.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code action}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>action</code>. Use
+		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
+		 * <code>action</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetMap()
 		 */
-		public final Builder action(@Nullable Map<String, Counter> value) {
-			this.action = value;
+		public final Builder action(Map<String, Counter> map) {
+			this.action = _mapPutAll(this.action, map);
 			return this;
 		}
 
-		public final Builder action(
-				Function<MapBuilder<String, Counter, Counter.Builder>, ObjectBuilder<Map<String, Counter>>> fn) {
-			return action(fn.apply(new MapBuilder<>(Counter.Builder::new)).build());
+		/**
+		 * API name: {@code action}
+		 * <p>
+		 * Adds an entry to <code>action</code>.
+		 */
+		public final Builder action(String key, Counter value) {
+			this.action = _mapPut(this.action, key, value);
+			return this;
+		}
+
+		/**
+		 * API name: {@code action}
+		 * <p>
+		 * Adds an entry to <code>action</code> using a builder lambda.
+		 */
+		public final Builder action(String key, Function<Counter.Builder, ObjectBuilder<Counter>> fn) {
+			return action(key, fn.apply(new Counter.Builder()).build());
 		}
 
 		/**
@@ -212,10 +268,8 @@ public class WatcherWatch implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code trigger}
 		 */
-		public final Builder trigger(Consumer<WatcherWatchTrigger.Builder> fn) {
-			WatcherWatchTrigger.Builder builder = new WatcherWatchTrigger.Builder();
-			fn.accept(builder);
-			return this.trigger(builder.build());
+		public final Builder trigger(Function<WatcherWatchTrigger.Builder, ObjectBuilder<WatcherWatchTrigger>> fn) {
+			return this.trigger(fn.apply(new WatcherWatchTrigger.Builder()).build());
 		}
 
 		/**

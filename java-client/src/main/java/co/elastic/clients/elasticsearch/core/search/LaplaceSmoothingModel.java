@@ -35,7 +35,7 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 
 // typedef: _global.search._types.LaplaceSmoothingModel
 @JsonpDeserializable
@@ -50,10 +50,8 @@ public class LaplaceSmoothingModel implements SmoothingModelVariant, JsonpSerial
 
 	}
 
-	public static LaplaceSmoothingModel of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static LaplaceSmoothingModel of(Function<Builder, ObjectBuilder<LaplaceSmoothingModel>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**

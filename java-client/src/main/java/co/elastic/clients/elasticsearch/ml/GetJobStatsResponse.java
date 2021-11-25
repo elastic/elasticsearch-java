@@ -29,16 +29,13 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -58,10 +55,8 @@ public class GetJobStatsResponse implements JsonpSerializable {
 
 	}
 
-	public static GetJobStatsResponse of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static GetJobStatsResponse of(Function<Builder, ObjectBuilder<GetJobStatsResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -125,25 +120,35 @@ public class GetJobStatsResponse implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code jobs}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>jobs</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>jobs</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder jobs(List<JobStats> value) {
-			this.jobs = value;
+		public final Builder jobs(List<JobStats> list) {
+			this.jobs = _listAddAll(this.jobs, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code jobs}
+		 * <p>
+		 * Adds one or more values to <code>jobs</code>.
 		 */
-		public final Builder jobs(JobStats... value) {
-			this.jobs = Arrays.asList(value);
+		public final Builder jobs(JobStats value, JobStats... values) {
+			this.jobs = _listAdd(this.jobs, value, values);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code jobs}
+		 * <p>
+		 * Adds a value to <code>jobs</code> using a builder lambda.
 		 */
-		public final Builder jobs(Function<ListBuilder<JobStats, JobStats.Builder>, ObjectBuilder<List<JobStats>>> fn) {
-			return jobs(fn.apply(new ListBuilder<>(JobStats.Builder::new)).build());
+		public final Builder jobs(Function<JobStats.Builder, ObjectBuilder<JobStats>> fn) {
+			return jobs(fn.apply(new JobStats.Builder()).build());
 		}
 
 		/**

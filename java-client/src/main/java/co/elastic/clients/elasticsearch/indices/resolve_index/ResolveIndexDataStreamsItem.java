@@ -34,10 +34,9 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.resolve_index.ResolveIndexDataStreamsItem
@@ -59,10 +58,8 @@ public class ResolveIndexDataStreamsItem implements JsonpSerializable {
 
 	}
 
-	public static ResolveIndexDataStreamsItem of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static ResolveIndexDataStreamsItem of(Function<Builder, ObjectBuilder<ResolveIndexDataStreamsItem>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -146,17 +143,25 @@ public class ResolveIndexDataStreamsItem implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code backing_indices}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>backingIndices</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>backingIndices</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder backingIndices(List<String> value) {
-			this.backingIndices = value;
+		public final Builder backingIndices(List<String> list) {
+			this.backingIndices = _listAddAll(this.backingIndices, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code backing_indices}
+		 * <p>
+		 * Adds one or more values to <code>backingIndices</code>.
 		 */
-		public final Builder backingIndices(String... value) {
-			this.backingIndices = Arrays.asList(value);
+		public final Builder backingIndices(String value, String... values) {
+			this.backingIndices = _listAdd(this.backingIndices, value, values);
 			return this;
 		}
 

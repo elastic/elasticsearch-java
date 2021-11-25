@@ -35,7 +35,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: slm.get_status.Response
@@ -51,10 +51,8 @@ public class GetSlmStatusResponse implements JsonpSerializable {
 
 	}
 
-	public static GetSlmStatusResponse of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static GetSlmStatusResponse of(Function<Builder, ObjectBuilder<GetSlmStatusResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**

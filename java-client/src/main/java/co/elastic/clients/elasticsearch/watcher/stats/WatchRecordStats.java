@@ -33,10 +33,9 @@ import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher.stats.WatchRecordStats
@@ -65,10 +64,8 @@ public class WatchRecordStats extends WatchRecordQueuedStats {
 
 	}
 
-	public static WatchRecordStats of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static WatchRecordStats of(Function<Builder, ObjectBuilder<WatchRecordStats>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -169,17 +166,25 @@ public class WatchRecordStats extends WatchRecordQueuedStats {
 
 		/**
 		 * API name: {@code executed_actions}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>executedActions</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>executedActions</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder executedActions(@Nullable List<String> value) {
-			this.executedActions = value;
+		public final Builder executedActions(List<String> list) {
+			this.executedActions = _listAddAll(this.executedActions, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code executed_actions}
+		 * <p>
+		 * Adds one or more values to <code>executedActions</code>.
 		 */
-		public final Builder executedActions(String... value) {
-			this.executedActions = Arrays.asList(value);
+		public final Builder executedActions(String value, String... values) {
+			this.executedActions = _listAdd(this.executedActions, value, values);
 			return this;
 		}
 

@@ -33,11 +33,10 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ingest._types.GrokProcessor
@@ -69,10 +68,8 @@ public class GrokProcessor extends ProcessorBase implements ProcessorVariant {
 
 	}
 
-	public static GrokProcessor of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static GrokProcessor of(Function<Builder, ObjectBuilder<GrokProcessor>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -196,25 +193,49 @@ public class GrokProcessor extends ProcessorBase implements ProcessorVariant {
 
 		/**
 		 * Required - API name: {@code pattern_definitions}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>patternDefinitions</code>. Use
+		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
+		 * <code>patternDefinitions</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetMap()
 		 */
-		public final Builder patternDefinitions(Map<String, String> value) {
-			this.patternDefinitions = value;
+		public final Builder patternDefinitions(Map<String, String> map) {
+			this.patternDefinitions = _mapPutAll(this.patternDefinitions, map);
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code pattern_definitions}
+		 * <p>
+		 * Adds an entry to <code>patternDefinitions</code>.
+		 */
+		public final Builder patternDefinitions(String key, String value) {
+			this.patternDefinitions = _mapPut(this.patternDefinitions, key, value);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code patterns}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>patterns</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>patterns</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder patterns(List<String> value) {
-			this.patterns = value;
+		public final Builder patterns(List<String> list) {
+			this.patterns = _listAddAll(this.patterns, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code patterns}
+		 * <p>
+		 * Adds one or more values to <code>patterns</code>.
 		 */
-		public final Builder patterns(String... value) {
-			this.patterns = Arrays.asList(value);
+		public final Builder patterns(String value, String... values) {
+			this.patterns = _listAdd(this.patterns, value, values);
 			return this;
 		}
 

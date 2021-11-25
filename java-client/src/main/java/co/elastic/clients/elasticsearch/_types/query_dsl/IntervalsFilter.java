@@ -39,7 +39,7 @@ import co.elastic.clients.util.TaggedUnionUtils;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Object;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.IntervalsFilter
@@ -111,10 +111,8 @@ public class IntervalsFilter implements TaggedUnion<IntervalsFilter.Kind, Object
 
 	}
 
-	public static IntervalsFilter of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static IntervalsFilter of(Function<Builder, ObjectBuilder<IntervalsFilter>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -297,10 +295,8 @@ public class IntervalsFilter implements TaggedUnion<IntervalsFilter.Kind, Object
 			return this;
 		}
 
-		public ObjectBuilder<IntervalsFilter> after(Consumer<Intervals.Builder> fn) {
-			Intervals.Builder builder = new Intervals.Builder();
-			fn.accept(builder);
-			return this.after(builder.build());
+		public ObjectBuilder<IntervalsFilter> after(Function<Intervals.Builder, ObjectBuilder<Intervals>> fn) {
+			return this.after(fn.apply(new Intervals.Builder()).build());
 		}
 
 		public ObjectBuilder<IntervalsFilter> before(Intervals v) {
@@ -309,10 +305,8 @@ public class IntervalsFilter implements TaggedUnion<IntervalsFilter.Kind, Object
 			return this;
 		}
 
-		public ObjectBuilder<IntervalsFilter> before(Consumer<Intervals.Builder> fn) {
-			Intervals.Builder builder = new Intervals.Builder();
-			fn.accept(builder);
-			return this.before(builder.build());
+		public ObjectBuilder<IntervalsFilter> before(Function<Intervals.Builder, ObjectBuilder<Intervals>> fn) {
+			return this.before(fn.apply(new Intervals.Builder()).build());
 		}
 
 		public ObjectBuilder<IntervalsFilter> containedBy(Intervals v) {
@@ -321,10 +315,8 @@ public class IntervalsFilter implements TaggedUnion<IntervalsFilter.Kind, Object
 			return this;
 		}
 
-		public ObjectBuilder<IntervalsFilter> containedBy(Consumer<Intervals.Builder> fn) {
-			Intervals.Builder builder = new Intervals.Builder();
-			fn.accept(builder);
-			return this.containedBy(builder.build());
+		public ObjectBuilder<IntervalsFilter> containedBy(Function<Intervals.Builder, ObjectBuilder<Intervals>> fn) {
+			return this.containedBy(fn.apply(new Intervals.Builder()).build());
 		}
 
 		public ObjectBuilder<IntervalsFilter> containing(Intervals v) {
@@ -333,10 +325,8 @@ public class IntervalsFilter implements TaggedUnion<IntervalsFilter.Kind, Object
 			return this;
 		}
 
-		public ObjectBuilder<IntervalsFilter> containing(Consumer<Intervals.Builder> fn) {
-			Intervals.Builder builder = new Intervals.Builder();
-			fn.accept(builder);
-			return this.containing(builder.build());
+		public ObjectBuilder<IntervalsFilter> containing(Function<Intervals.Builder, ObjectBuilder<Intervals>> fn) {
+			return this.containing(fn.apply(new Intervals.Builder()).build());
 		}
 
 		public ObjectBuilder<IntervalsFilter> notContainedBy(Intervals v) {
@@ -345,10 +335,8 @@ public class IntervalsFilter implements TaggedUnion<IntervalsFilter.Kind, Object
 			return this;
 		}
 
-		public ObjectBuilder<IntervalsFilter> notContainedBy(Consumer<Intervals.Builder> fn) {
-			Intervals.Builder builder = new Intervals.Builder();
-			fn.accept(builder);
-			return this.notContainedBy(builder.build());
+		public ObjectBuilder<IntervalsFilter> notContainedBy(Function<Intervals.Builder, ObjectBuilder<Intervals>> fn) {
+			return this.notContainedBy(fn.apply(new Intervals.Builder()).build());
 		}
 
 		public ObjectBuilder<IntervalsFilter> notContaining(Intervals v) {
@@ -357,10 +345,8 @@ public class IntervalsFilter implements TaggedUnion<IntervalsFilter.Kind, Object
 			return this;
 		}
 
-		public ObjectBuilder<IntervalsFilter> notContaining(Consumer<Intervals.Builder> fn) {
-			Intervals.Builder builder = new Intervals.Builder();
-			fn.accept(builder);
-			return this.notContaining(builder.build());
+		public ObjectBuilder<IntervalsFilter> notContaining(Function<Intervals.Builder, ObjectBuilder<Intervals>> fn) {
+			return this.notContaining(fn.apply(new Intervals.Builder()).build());
 		}
 
 		public ObjectBuilder<IntervalsFilter> notOverlapping(Intervals v) {
@@ -369,10 +355,8 @@ public class IntervalsFilter implements TaggedUnion<IntervalsFilter.Kind, Object
 			return this;
 		}
 
-		public ObjectBuilder<IntervalsFilter> notOverlapping(Consumer<Intervals.Builder> fn) {
-			Intervals.Builder builder = new Intervals.Builder();
-			fn.accept(builder);
-			return this.notOverlapping(builder.build());
+		public ObjectBuilder<IntervalsFilter> notOverlapping(Function<Intervals.Builder, ObjectBuilder<Intervals>> fn) {
+			return this.notOverlapping(fn.apply(new Intervals.Builder()).build());
 		}
 
 		public ObjectBuilder<IntervalsFilter> overlapping(Intervals v) {
@@ -381,10 +365,8 @@ public class IntervalsFilter implements TaggedUnion<IntervalsFilter.Kind, Object
 			return this;
 		}
 
-		public ObjectBuilder<IntervalsFilter> overlapping(Consumer<Intervals.Builder> fn) {
-			Intervals.Builder builder = new Intervals.Builder();
-			fn.accept(builder);
-			return this.overlapping(builder.build());
+		public ObjectBuilder<IntervalsFilter> overlapping(Function<Intervals.Builder, ObjectBuilder<Intervals>> fn) {
+			return this.overlapping(fn.apply(new Intervals.Builder()).build());
 		}
 
 		public ObjectBuilder<IntervalsFilter> script(Script v) {
@@ -393,10 +375,8 @@ public class IntervalsFilter implements TaggedUnion<IntervalsFilter.Kind, Object
 			return this;
 		}
 
-		public ObjectBuilder<IntervalsFilter> script(Consumer<Script.Builder> fn) {
-			Script.Builder builder = new Script.Builder();
-			fn.accept(builder);
-			return this.script(builder.build());
+		public ObjectBuilder<IntervalsFilter> script(Function<Script.Builder, ObjectBuilder<Script>> fn) {
+			return this.script(fn.apply(new Script.Builder()).build());
 		}
 
 		public IntervalsFilter build() {

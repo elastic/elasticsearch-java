@@ -40,7 +40,7 @@ import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.update_by_query_rethrottle.Request
@@ -60,10 +60,9 @@ public class UpdateByQueryRethrottleRequest extends RequestBase {
 
 	}
 
-	public static UpdateByQueryRethrottleRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static UpdateByQueryRethrottleRequest of(
+			Function<Builder, ObjectBuilder<UpdateByQueryRethrottleRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**

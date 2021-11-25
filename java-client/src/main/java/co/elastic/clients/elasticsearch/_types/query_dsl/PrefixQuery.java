@@ -34,7 +34,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.PrefixQuery
@@ -63,10 +63,8 @@ public class PrefixQuery extends QueryBase implements QueryVariant {
 
 	}
 
-	public static PrefixQuery of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static PrefixQuery of(Function<Builder, ObjectBuilder<PrefixQuery>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**

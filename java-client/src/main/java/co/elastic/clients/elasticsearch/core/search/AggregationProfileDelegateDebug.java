@@ -29,16 +29,13 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -71,10 +68,9 @@ public class AggregationProfileDelegateDebug implements JsonpSerializable {
 
 	}
 
-	public static AggregationProfileDelegateDebug of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static AggregationProfileDelegateDebug of(
+			Function<Builder, ObjectBuilder<AggregationProfileDelegateDebug>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -199,26 +195,37 @@ public class AggregationProfileDelegateDebug implements JsonpSerializable {
 
 		/**
 		 * API name: {@code filters}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>filters</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>filters</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder filters(@Nullable List<AggregationProfileDelegateDebugFilter> value) {
-			this.filters = value;
+		public final Builder filters(List<AggregationProfileDelegateDebugFilter> list) {
+			this.filters = _listAddAll(this.filters, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code filters}
+		 * <p>
+		 * Adds one or more values to <code>filters</code>.
 		 */
-		public final Builder filters(AggregationProfileDelegateDebugFilter... value) {
-			this.filters = Arrays.asList(value);
+		public final Builder filters(AggregationProfileDelegateDebugFilter value,
+				AggregationProfileDelegateDebugFilter... values) {
+			this.filters = _listAdd(this.filters, value, values);
 			return this;
 		}
 
 		/**
 		 * API name: {@code filters}
+		 * <p>
+		 * Adds a value to <code>filters</code> using a builder lambda.
 		 */
 		public final Builder filters(
-				Function<ListBuilder<AggregationProfileDelegateDebugFilter, AggregationProfileDelegateDebugFilter.Builder>, ObjectBuilder<List<AggregationProfileDelegateDebugFilter>>> fn) {
-			return filters(fn.apply(new ListBuilder<>(AggregationProfileDelegateDebugFilter.Builder::new)).build());
+				Function<AggregationProfileDelegateDebugFilter.Builder, ObjectBuilder<AggregationProfileDelegateDebugFilter>> fn) {
+			return filters(fn.apply(new AggregationProfileDelegateDebugFilter.Builder()).build());
 		}
 
 		/**

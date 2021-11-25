@@ -33,7 +33,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.DataframeAnalysisClassification
@@ -55,10 +55,9 @@ public class DataframeAnalysisClassification extends DataframeAnalysisBase imple
 
 	}
 
-	public static DataframeAnalysisClassification of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static DataframeAnalysisClassification of(
+			Function<Builder, ObjectBuilder<DataframeAnalysisClassification>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**

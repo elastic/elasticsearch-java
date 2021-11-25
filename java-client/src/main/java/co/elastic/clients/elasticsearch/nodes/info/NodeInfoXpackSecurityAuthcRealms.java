@@ -29,7 +29,6 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.MapBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
@@ -37,7 +36,6 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -60,10 +58,9 @@ public class NodeInfoXpackSecurityAuthcRealms implements JsonpSerializable {
 
 	}
 
-	public static NodeInfoXpackSecurityAuthcRealms of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static NodeInfoXpackSecurityAuthcRealms of(
+			Function<Builder, ObjectBuilder<NodeInfoXpackSecurityAuthcRealms>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -151,41 +148,104 @@ public class NodeInfoXpackSecurityAuthcRealms implements JsonpSerializable {
 
 		/**
 		 * API name: {@code file}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>file</code>. Use
+		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
+		 * <code>file</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetMap()
 		 */
-		public final Builder file(@Nullable Map<String, NodeInfoXpackSecurityAuthcRealmsStatus> value) {
-			this.file = value;
+		public final Builder file(Map<String, NodeInfoXpackSecurityAuthcRealmsStatus> map) {
+			this.file = _mapPutAll(this.file, map);
 			return this;
 		}
 
-		public final Builder file(
-				Function<MapBuilder<String, NodeInfoXpackSecurityAuthcRealmsStatus, NodeInfoXpackSecurityAuthcRealmsStatus.Builder>, ObjectBuilder<Map<String, NodeInfoXpackSecurityAuthcRealmsStatus>>> fn) {
-			return file(fn.apply(new MapBuilder<>(NodeInfoXpackSecurityAuthcRealmsStatus.Builder::new)).build());
+		/**
+		 * API name: {@code file}
+		 * <p>
+		 * Adds an entry to <code>file</code>.
+		 */
+		public final Builder file(String key, NodeInfoXpackSecurityAuthcRealmsStatus value) {
+			this.file = _mapPut(this.file, key, value);
+			return this;
+		}
+
+		/**
+		 * API name: {@code file}
+		 * <p>
+		 * Adds an entry to <code>file</code> using a builder lambda.
+		 */
+		public final Builder file(String key,
+				Function<NodeInfoXpackSecurityAuthcRealmsStatus.Builder, ObjectBuilder<NodeInfoXpackSecurityAuthcRealmsStatus>> fn) {
+			return file(key, fn.apply(new NodeInfoXpackSecurityAuthcRealmsStatus.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code native}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>native_</code>. Use
+		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
+		 * <code>native_</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetMap()
 		 */
-		public final Builder native_(@Nullable Map<String, NodeInfoXpackSecurityAuthcRealmsStatus> value) {
-			this.native_ = value;
+		public final Builder native_(Map<String, NodeInfoXpackSecurityAuthcRealmsStatus> map) {
+			this.native_ = _mapPutAll(this.native_, map);
 			return this;
 		}
 
-		public final Builder native_(
-				Function<MapBuilder<String, NodeInfoXpackSecurityAuthcRealmsStatus, NodeInfoXpackSecurityAuthcRealmsStatus.Builder>, ObjectBuilder<Map<String, NodeInfoXpackSecurityAuthcRealmsStatus>>> fn) {
-			return native_(fn.apply(new MapBuilder<>(NodeInfoXpackSecurityAuthcRealmsStatus.Builder::new)).build());
+		/**
+		 * API name: {@code native}
+		 * <p>
+		 * Adds an entry to <code>native_</code>.
+		 */
+		public final Builder native_(String key, NodeInfoXpackSecurityAuthcRealmsStatus value) {
+			this.native_ = _mapPut(this.native_, key, value);
+			return this;
+		}
+
+		/**
+		 * API name: {@code native}
+		 * <p>
+		 * Adds an entry to <code>native_</code> using a builder lambda.
+		 */
+		public final Builder native_(String key,
+				Function<NodeInfoXpackSecurityAuthcRealmsStatus.Builder, ObjectBuilder<NodeInfoXpackSecurityAuthcRealmsStatus>> fn) {
+			return native_(key, fn.apply(new NodeInfoXpackSecurityAuthcRealmsStatus.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code pki}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>pki</code>. Use
+		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset <code>pki</code>
+		 * to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetMap()
 		 */
-		public final Builder pki(@Nullable Map<String, NodeInfoXpackSecurityAuthcRealmsStatus> value) {
-			this.pki = value;
+		public final Builder pki(Map<String, NodeInfoXpackSecurityAuthcRealmsStatus> map) {
+			this.pki = _mapPutAll(this.pki, map);
 			return this;
 		}
 
-		public final Builder pki(
-				Function<MapBuilder<String, NodeInfoXpackSecurityAuthcRealmsStatus, NodeInfoXpackSecurityAuthcRealmsStatus.Builder>, ObjectBuilder<Map<String, NodeInfoXpackSecurityAuthcRealmsStatus>>> fn) {
-			return pki(fn.apply(new MapBuilder<>(NodeInfoXpackSecurityAuthcRealmsStatus.Builder::new)).build());
+		/**
+		 * API name: {@code pki}
+		 * <p>
+		 * Adds an entry to <code>pki</code>.
+		 */
+		public final Builder pki(String key, NodeInfoXpackSecurityAuthcRealmsStatus value) {
+			this.pki = _mapPut(this.pki, key, value);
+			return this;
+		}
+
+		/**
+		 * API name: {@code pki}
+		 * <p>
+		 * Adds an entry to <code>pki</code> using a builder lambda.
+		 */
+		public final Builder pki(String key,
+				Function<NodeInfoXpackSecurityAuthcRealmsStatus.Builder, ObjectBuilder<NodeInfoXpackSecurityAuthcRealmsStatus>> fn) {
+			return pki(key, fn.apply(new NodeInfoXpackSecurityAuthcRealmsStatus.Builder()).build());
 		}
 
 		/**

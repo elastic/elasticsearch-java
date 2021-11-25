@@ -36,7 +36,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.FieldMemoryUsage
@@ -56,10 +56,8 @@ public class FieldMemoryUsage implements JsonpSerializable {
 
 	}
 
-	public static FieldMemoryUsage of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static FieldMemoryUsage of(Function<Builder, ObjectBuilder<FieldMemoryUsage>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**

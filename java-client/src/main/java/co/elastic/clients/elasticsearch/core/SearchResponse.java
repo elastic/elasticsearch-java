@@ -40,7 +40,6 @@ import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.NamedDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.MapBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
@@ -49,11 +48,9 @@ import java.lang.Boolean;
 import java.lang.Double;
 import java.lang.Long;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Supplier;
 import javax.annotation.Nullable;
@@ -441,10 +438,8 @@ public class SearchResponse<TDocument> implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code _shards}
 		 */
-		public final BuilderT shards(Consumer<ShardStatistics.Builder> fn) {
-			ShardStatistics.Builder builder = new ShardStatistics.Builder();
-			fn.accept(builder);
-			return this.shards(builder.build());
+		public final BuilderT shards(Function<ShardStatistics.Builder, ObjectBuilder<ShardStatistics>> fn) {
+			return this.shards(fn.apply(new ShardStatistics.Builder()).build());
 		}
 
 		/**
@@ -458,23 +453,42 @@ public class SearchResponse<TDocument> implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code hits}
 		 */
-		public final BuilderT hits(Consumer<HitsMetadata.Builder<TDocument>> fn) {
-			HitsMetadata.Builder<TDocument> builder = new HitsMetadata.Builder<TDocument>();
-			fn.accept(builder);
-			return this.hits(builder.build());
+		public final BuilderT hits(
+				Function<HitsMetadata.Builder<TDocument>, ObjectBuilder<HitsMetadata<TDocument>>> fn) {
+			return this.hits(fn.apply(new HitsMetadata.Builder<TDocument>()).build());
 		}
 
 		/**
 		 * API name: {@code aggregations}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>aggregations</code>. Use
+		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
+		 * <code>aggregations</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetMap()
 		 */
-		public final BuilderT aggregations(@Nullable Map<String, Aggregate> value) {
-			this.aggregations = value;
+		public final BuilderT aggregations(Map<String, Aggregate> map) {
+			this.aggregations = _mapPutAll(this.aggregations, map);
 			return self();
 		}
 
-		public final BuilderT aggregations(
-				Function<MapBuilder<String, Aggregate, Aggregate.Builder>, ObjectBuilder<Map<String, Aggregate>>> fn) {
-			return aggregations(fn.apply(new MapBuilder<>(Aggregate.Builder::new)).build());
+		/**
+		 * API name: {@code aggregations}
+		 * <p>
+		 * Adds an entry to <code>aggregations</code>.
+		 */
+		public final BuilderT aggregations(String key, Aggregate value) {
+			this.aggregations = _mapPut(this.aggregations, key, value);
+			return self();
+		}
+
+		/**
+		 * API name: {@code aggregations}
+		 * <p>
+		 * Adds an entry to <code>aggregations</code> using a builder lambda.
+		 */
+		public final BuilderT aggregations(String key, Function<Aggregate.Builder, ObjectBuilder<Aggregate>> fn) {
+			return aggregations(key, fn.apply(new Aggregate.Builder()).build());
 		}
 
 		/**
@@ -488,33 +502,55 @@ public class SearchResponse<TDocument> implements JsonpSerializable {
 		/**
 		 * API name: {@code _clusters}
 		 */
-		public final BuilderT clusters(Consumer<ClusterStatistics.Builder> fn) {
-			ClusterStatistics.Builder builder = new ClusterStatistics.Builder();
-			fn.accept(builder);
-			return this.clusters(builder.build());
+		public final BuilderT clusters(Function<ClusterStatistics.Builder, ObjectBuilder<ClusterStatistics>> fn) {
+			return this.clusters(fn.apply(new ClusterStatistics.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code documents}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>documents</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>documents</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final BuilderT documents(@Nullable List<TDocument> value) {
-			this.documents = value;
+		public final BuilderT documents(List<TDocument> list) {
+			this.documents = _listAddAll(this.documents, list);
 			return self();
 		}
 
 		/**
 		 * API name: {@code documents}
+		 * <p>
+		 * Adds one or more values to <code>documents</code>.
 		 */
-		public final BuilderT documents(TDocument... value) {
-			this.documents = Arrays.asList(value);
+		public final BuilderT documents(TDocument value, TDocument... values) {
+			this.documents = _listAdd(this.documents, value, values);
 			return self();
 		}
 
 		/**
 		 * API name: {@code fields}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>fields</code>. Use
+		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
+		 * <code>fields</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetMap()
 		 */
-		public final BuilderT fields(@Nullable Map<String, JsonData> value) {
-			this.fields = value;
+		public final BuilderT fields(Map<String, JsonData> map) {
+			this.fields = _mapPutAll(this.fields, map);
+			return self();
+		}
+
+		/**
+		 * API name: {@code fields}
+		 * <p>
+		 * Adds an entry to <code>fields</code>.
+		 */
+		public final BuilderT fields(String key, JsonData value) {
+			this.fields = _mapPut(this.fields, key, value);
 			return self();
 		}
 
@@ -545,10 +581,8 @@ public class SearchResponse<TDocument> implements JsonpSerializable {
 		/**
 		 * API name: {@code profile}
 		 */
-		public final BuilderT profile(Consumer<Profile.Builder> fn) {
-			Profile.Builder builder = new Profile.Builder();
-			fn.accept(builder);
-			return this.profile(builder.build());
+		public final BuilderT profile(Function<Profile.Builder, ObjectBuilder<Profile>> fn) {
+			return this.profile(fn.apply(new Profile.Builder()).build());
 		}
 
 		/**
@@ -569,9 +603,25 @@ public class SearchResponse<TDocument> implements JsonpSerializable {
 
 		/**
 		 * API name: {@code suggest}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>suggest</code>. Use
+		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
+		 * <code>suggest</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetMap()
 		 */
-		public final BuilderT suggest(@Nullable Map<String, List<Suggestion<TDocument>>> value) {
-			this.suggest = value;
+		public final BuilderT suggest(Map<String, List<Suggestion<TDocument>>> map) {
+			this.suggest = _mapPutAll(this.suggest, map);
+			return self();
+		}
+
+		/**
+		 * API name: {@code suggest}
+		 * <p>
+		 * Adds an entry to <code>suggest</code>.
+		 */
+		public final BuilderT suggest(String key, List<Suggestion<TDocument>> value) {
+			this.suggest = _mapPut(this.suggest, key, value);
 			return self();
 		}
 

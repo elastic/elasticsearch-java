@@ -28,15 +28,12 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -57,10 +54,8 @@ public class MatrixStatsAggregate extends AggregateBase implements AggregateVari
 
 	}
 
-	public static MatrixStatsAggregate of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static MatrixStatsAggregate of(Function<Builder, ObjectBuilder<MatrixStatsAggregate>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -126,26 +121,35 @@ public class MatrixStatsAggregate extends AggregateBase implements AggregateVari
 
 		/**
 		 * Required - API name: {@code fields}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>fields</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>fields</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder fields(List<MatrixStatsFields> value) {
-			this.fields = value;
+		public final Builder fields(List<MatrixStatsFields> list) {
+			this.fields = _listAddAll(this.fields, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code fields}
+		 * <p>
+		 * Adds one or more values to <code>fields</code>.
 		 */
-		public final Builder fields(MatrixStatsFields... value) {
-			this.fields = Arrays.asList(value);
+		public final Builder fields(MatrixStatsFields value, MatrixStatsFields... values) {
+			this.fields = _listAdd(this.fields, value, values);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code fields}
+		 * <p>
+		 * Adds a value to <code>fields</code> using a builder lambda.
 		 */
-		public final Builder fields(
-				Function<ListBuilder<MatrixStatsFields, MatrixStatsFields.Builder>, ObjectBuilder<List<MatrixStatsFields>>> fn) {
-			return fields(fn.apply(new ListBuilder<>(MatrixStatsFields.Builder::new)).build());
+		public final Builder fields(Function<MatrixStatsFields.Builder, ObjectBuilder<MatrixStatsFields>> fn) {
+			return fields(fn.apply(new MatrixStatsFields.Builder()).build());
 		}
 
 		@Override

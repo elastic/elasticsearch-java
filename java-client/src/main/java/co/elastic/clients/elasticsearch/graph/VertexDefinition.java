@@ -29,7 +29,6 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
@@ -37,10 +36,8 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.Long;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -75,10 +72,8 @@ public class VertexDefinition implements JsonpSerializable {
 
 	}
 
-	public static VertexDefinition of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static VertexDefinition of(Function<Builder, ObjectBuilder<VertexDefinition>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -203,17 +198,25 @@ public class VertexDefinition implements JsonpSerializable {
 
 		/**
 		 * API name: {@code exclude}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>exclude</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>exclude</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder exclude(@Nullable List<String> value) {
-			this.exclude = value;
+		public final Builder exclude(List<String> list) {
+			this.exclude = _listAddAll(this.exclude, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code exclude}
+		 * <p>
+		 * Adds one or more values to <code>exclude</code>.
 		 */
-		public final Builder exclude(String... value) {
-			this.exclude = Arrays.asList(value);
+		public final Builder exclude(String value, String... values) {
+			this.exclude = _listAdd(this.exclude, value, values);
 			return this;
 		}
 
@@ -227,26 +230,35 @@ public class VertexDefinition implements JsonpSerializable {
 
 		/**
 		 * API name: {@code include}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>include</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>include</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder include(@Nullable List<VertexInclude> value) {
-			this.include = value;
+		public final Builder include(List<VertexInclude> list) {
+			this.include = _listAddAll(this.include, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code include}
+		 * <p>
+		 * Adds one or more values to <code>include</code>.
 		 */
-		public final Builder include(VertexInclude... value) {
-			this.include = Arrays.asList(value);
+		public final Builder include(VertexInclude value, VertexInclude... values) {
+			this.include = _listAdd(this.include, value, values);
 			return this;
 		}
 
 		/**
 		 * API name: {@code include}
+		 * <p>
+		 * Adds a value to <code>include</code> using a builder lambda.
 		 */
-		public final Builder include(
-				Function<ListBuilder<VertexInclude, VertexInclude.Builder>, ObjectBuilder<List<VertexInclude>>> fn) {
-			return include(fn.apply(new ListBuilder<>(VertexInclude.Builder::new)).build());
+		public final Builder include(Function<VertexInclude.Builder, ObjectBuilder<VertexInclude>> fn) {
+			return include(fn.apply(new VertexInclude.Builder()).build());
 		}
 
 		/**

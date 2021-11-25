@@ -29,17 +29,14 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
 import java.lang.Integer;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -71,10 +68,8 @@ public class Term implements JsonpSerializable {
 
 	}
 
-	public static Term of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static Term of(Function<Builder, ObjectBuilder<Term>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -202,25 +197,35 @@ public class Term implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code tokens}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>tokens</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>tokens</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder tokens(List<Token> value) {
-			this.tokens = value;
+		public final Builder tokens(List<Token> list) {
+			this.tokens = _listAddAll(this.tokens, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code tokens}
+		 * <p>
+		 * Adds one or more values to <code>tokens</code>.
 		 */
-		public final Builder tokens(Token... value) {
-			this.tokens = Arrays.asList(value);
+		public final Builder tokens(Token value, Token... values) {
+			this.tokens = _listAdd(this.tokens, value, values);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code tokens}
+		 * <p>
+		 * Adds a value to <code>tokens</code> using a builder lambda.
 		 */
-		public final Builder tokens(Function<ListBuilder<Token, Token.Builder>, ObjectBuilder<List<Token>>> fn) {
-			return tokens(fn.apply(new ListBuilder<>(Token.Builder::new)).build());
+		public final Builder tokens(Function<Token.Builder, ObjectBuilder<Token>> fn) {
+			return tokens(fn.apply(new Token.Builder()).build());
 		}
 
 		/**

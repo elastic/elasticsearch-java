@@ -39,7 +39,7 @@ import java.lang.Object;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.TermsInclude
@@ -77,10 +77,8 @@ public class TermsInclude implements TaggedUnion<TermsInclude.Kind, Object>, Jso
 
 	}
 
-	public static TermsInclude of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static TermsInclude of(Function<Builder, ObjectBuilder<TermsInclude>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -174,10 +172,9 @@ public class TermsInclude implements TaggedUnion<TermsInclude.Kind, Object>, Jso
 			return this;
 		}
 
-		public ObjectBuilder<TermsInclude> partition(Consumer<TermsPartition.Builder> fn) {
-			TermsPartition.Builder builder = new TermsPartition.Builder();
-			fn.accept(builder);
-			return this.partition(builder.build());
+		public ObjectBuilder<TermsInclude> partition(
+				Function<TermsPartition.Builder, ObjectBuilder<TermsPartition>> fn) {
+			return this.partition(fn.apply(new TermsPartition.Builder()).build());
 		}
 
 		public ObjectBuilder<TermsInclude> regexp(String v) {

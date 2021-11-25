@@ -29,16 +29,13 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -58,10 +55,8 @@ public class GetCategoriesResponse implements JsonpSerializable {
 
 	}
 
-	public static GetCategoriesResponse of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static GetCategoriesResponse of(Function<Builder, ObjectBuilder<GetCategoriesResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -116,26 +111,35 @@ public class GetCategoriesResponse implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code categories}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>categories</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>categories</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder categories(List<Category> value) {
-			this.categories = value;
+		public final Builder categories(List<Category> list) {
+			this.categories = _listAddAll(this.categories, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code categories}
+		 * <p>
+		 * Adds one or more values to <code>categories</code>.
 		 */
-		public final Builder categories(Category... value) {
-			this.categories = Arrays.asList(value);
+		public final Builder categories(Category value, Category... values) {
+			this.categories = _listAdd(this.categories, value, values);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code categories}
+		 * <p>
+		 * Adds a value to <code>categories</code> using a builder lambda.
 		 */
-		public final Builder categories(
-				Function<ListBuilder<Category, Category.Builder>, ObjectBuilder<List<Category>>> fn) {
-			return categories(fn.apply(new ListBuilder<>(Category.Builder::new)).build());
+		public final Builder categories(Function<Category.Builder, ObjectBuilder<Category>> fn) {
+			return categories(fn.apply(new Category.Builder()).build());
 		}
 
 		/**

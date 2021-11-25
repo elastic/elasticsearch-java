@@ -35,7 +35,7 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 
 // typedef: indices.stats.ShardQueryCache
 @JsonpDeserializable
@@ -68,10 +68,8 @@ public class ShardQueryCache implements JsonpSerializable {
 
 	}
 
-	public static ShardQueryCache of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static ShardQueryCache of(Function<Builder, ObjectBuilder<ShardQueryCache>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**

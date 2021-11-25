@@ -30,18 +30,15 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -88,10 +85,8 @@ public class ClusterNodes implements JsonpSerializable {
 
 	}
 
-	public static ClusterNodes of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static ClusterNodes of(Function<Builder, ObjectBuilder<ClusterNodes>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -316,10 +311,8 @@ public class ClusterNodes implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code count}
 		 */
-		public final Builder count(Consumer<ClusterNodeCount.Builder> fn) {
-			ClusterNodeCount.Builder builder = new ClusterNodeCount.Builder();
-			fn.accept(builder);
-			return this.count(builder.build());
+		public final Builder count(Function<ClusterNodeCount.Builder, ObjectBuilder<ClusterNodeCount>> fn) {
+			return this.count(fn.apply(new ClusterNodeCount.Builder()).build());
 		}
 
 		/**
@@ -327,9 +320,28 @@ public class ClusterNodes implements JsonpSerializable {
 		 * nodes.
 		 * <p>
 		 * API name: {@code discovery_types}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>discoveryTypes</code>. Use
+		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
+		 * <code>discoveryTypes</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetMap()
 		 */
-		public final Builder discoveryTypes(Map<String, Integer> value) {
-			this.discoveryTypes = value;
+		public final Builder discoveryTypes(Map<String, Integer> map) {
+			this.discoveryTypes = _mapPutAll(this.discoveryTypes, map);
+			return this;
+		}
+
+		/**
+		 * Required - Contains statistics about the discovery types used by selected
+		 * nodes.
+		 * <p>
+		 * API name: {@code discovery_types}
+		 * <p>
+		 * Adds an entry to <code>discoveryTypes</code>.
+		 */
+		public final Builder discoveryTypes(String key, Integer value) {
+			this.discoveryTypes = _mapPut(this.discoveryTypes, key, value);
 			return this;
 		}
 
@@ -348,10 +360,8 @@ public class ClusterNodes implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code fs}
 		 */
-		public final Builder fs(Consumer<ClusterFileSystem.Builder> fn) {
-			ClusterFileSystem.Builder builder = new ClusterFileSystem.Builder();
-			fn.accept(builder);
-			return this.fs(builder.build());
+		public final Builder fs(Function<ClusterFileSystem.Builder, ObjectBuilder<ClusterFileSystem>> fn) {
+			return this.fs(fn.apply(new ClusterFileSystem.Builder()).build());
 		}
 
 		/**
@@ -365,10 +375,8 @@ public class ClusterNodes implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code ingest}
 		 */
-		public final Builder ingest(Consumer<ClusterIngest.Builder> fn) {
-			ClusterIngest.Builder builder = new ClusterIngest.Builder();
-			fn.accept(builder);
-			return this.ingest(builder.build());
+		public final Builder ingest(Function<ClusterIngest.Builder, ObjectBuilder<ClusterIngest>> fn) {
+			return this.ingest(fn.apply(new ClusterIngest.Builder()).build());
 		}
 
 		/**
@@ -388,10 +396,8 @@ public class ClusterNodes implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code jvm}
 		 */
-		public final Builder jvm(Consumer<ClusterJvm.Builder> fn) {
-			ClusterJvm.Builder builder = new ClusterJvm.Builder();
-			fn.accept(builder);
-			return this.jvm(builder.build());
+		public final Builder jvm(Function<ClusterJvm.Builder, ObjectBuilder<ClusterJvm>> fn) {
+			return this.jvm(fn.apply(new ClusterJvm.Builder()).build());
 		}
 
 		/**
@@ -411,10 +417,9 @@ public class ClusterNodes implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code network_types}
 		 */
-		public final Builder networkTypes(Consumer<ClusterNetworkTypes.Builder> fn) {
-			ClusterNetworkTypes.Builder builder = new ClusterNetworkTypes.Builder();
-			fn.accept(builder);
-			return this.networkTypes(builder.build());
+		public final Builder networkTypes(
+				Function<ClusterNetworkTypes.Builder, ObjectBuilder<ClusterNetworkTypes>> fn) {
+			return this.networkTypes(fn.apply(new ClusterNetworkTypes.Builder()).build());
 		}
 
 		/**
@@ -434,10 +439,8 @@ public class ClusterNodes implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code os}
 		 */
-		public final Builder os(Consumer<ClusterOperatingSystem.Builder> fn) {
-			ClusterOperatingSystem.Builder builder = new ClusterOperatingSystem.Builder();
-			fn.accept(builder);
-			return this.os(builder.build());
+		public final Builder os(Function<ClusterOperatingSystem.Builder, ObjectBuilder<ClusterOperatingSystem>> fn) {
+			return this.os(fn.apply(new ClusterOperatingSystem.Builder()).build());
 		}
 
 		/**
@@ -445,20 +448,15 @@ public class ClusterNodes implements JsonpSerializable {
 		 * selected nodes.
 		 * <p>
 		 * API name: {@code packaging_types}
-		 */
-		public final Builder packagingTypes(List<NodePackagingType> value) {
-			this.packagingTypes = value;
-			return this;
-		}
-
-		/**
-		 * Required - Contains statistics about Elasticsearch distributions installed on
-		 * selected nodes.
 		 * <p>
-		 * API name: {@code packaging_types}
+		 * Adds all elements of <code>list</code> to <code>packagingTypes</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>packagingTypes</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder packagingTypes(NodePackagingType... value) {
-			this.packagingTypes = Arrays.asList(value);
+		public final Builder packagingTypes(List<NodePackagingType> list) {
+			this.packagingTypes = _listAddAll(this.packagingTypes, list);
 			return this;
 		}
 
@@ -467,10 +465,24 @@ public class ClusterNodes implements JsonpSerializable {
 		 * selected nodes.
 		 * <p>
 		 * API name: {@code packaging_types}
+		 * <p>
+		 * Adds one or more values to <code>packagingTypes</code>.
 		 */
-		public final Builder packagingTypes(
-				Function<ListBuilder<NodePackagingType, NodePackagingType.Builder>, ObjectBuilder<List<NodePackagingType>>> fn) {
-			return packagingTypes(fn.apply(new ListBuilder<>(NodePackagingType.Builder::new)).build());
+		public final Builder packagingTypes(NodePackagingType value, NodePackagingType... values) {
+			this.packagingTypes = _listAdd(this.packagingTypes, value, values);
+			return this;
+		}
+
+		/**
+		 * Required - Contains statistics about Elasticsearch distributions installed on
+		 * selected nodes.
+		 * <p>
+		 * API name: {@code packaging_types}
+		 * <p>
+		 * Adds a value to <code>packagingTypes</code> using a builder lambda.
+		 */
+		public final Builder packagingTypes(Function<NodePackagingType.Builder, ObjectBuilder<NodePackagingType>> fn) {
+			return packagingTypes(fn.apply(new NodePackagingType.Builder()).build());
 		}
 
 		/**
@@ -478,9 +490,15 @@ public class ClusterNodes implements JsonpSerializable {
 		 * selected nodes.
 		 * <p>
 		 * API name: {@code plugins}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>plugins</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>plugins</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder plugins(List<PluginStats> value) {
-			this.plugins = value;
+		public final Builder plugins(List<PluginStats> list) {
+			this.plugins = _listAddAll(this.plugins, list);
 			return this;
 		}
 
@@ -489,9 +507,11 @@ public class ClusterNodes implements JsonpSerializable {
 		 * selected nodes.
 		 * <p>
 		 * API name: {@code plugins}
+		 * <p>
+		 * Adds one or more values to <code>plugins</code>.
 		 */
-		public final Builder plugins(PluginStats... value) {
-			this.plugins = Arrays.asList(value);
+		public final Builder plugins(PluginStats value, PluginStats... values) {
+			this.plugins = _listAdd(this.plugins, value, values);
 			return this;
 		}
 
@@ -500,10 +520,11 @@ public class ClusterNodes implements JsonpSerializable {
 		 * selected nodes.
 		 * <p>
 		 * API name: {@code plugins}
+		 * <p>
+		 * Adds a value to <code>plugins</code> using a builder lambda.
 		 */
-		public final Builder plugins(
-				Function<ListBuilder<PluginStats, PluginStats.Builder>, ObjectBuilder<List<PluginStats>>> fn) {
-			return plugins(fn.apply(new ListBuilder<>(PluginStats.Builder::new)).build());
+		public final Builder plugins(Function<PluginStats.Builder, ObjectBuilder<PluginStats>> fn) {
+			return plugins(fn.apply(new PluginStats.Builder()).build());
 		}
 
 		/**
@@ -521,19 +542,23 @@ public class ClusterNodes implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code process}
 		 */
-		public final Builder process(Consumer<ClusterProcess.Builder> fn) {
-			ClusterProcess.Builder builder = new ClusterProcess.Builder();
-			fn.accept(builder);
-			return this.process(builder.build());
+		public final Builder process(Function<ClusterProcess.Builder, ObjectBuilder<ClusterProcess>> fn) {
+			return this.process(fn.apply(new ClusterProcess.Builder()).build());
 		}
 
 		/**
 		 * Required - Array of Elasticsearch versions used on selected nodes.
 		 * <p>
 		 * API name: {@code versions}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>versions</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>versions</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder versions(List<String> value) {
-			this.versions = value;
+		public final Builder versions(List<String> list) {
+			this.versions = _listAddAll(this.versions, list);
 			return this;
 		}
 
@@ -541,9 +566,11 @@ public class ClusterNodes implements JsonpSerializable {
 		 * Required - Array of Elasticsearch versions used on selected nodes.
 		 * <p>
 		 * API name: {@code versions}
+		 * <p>
+		 * Adds one or more values to <code>versions</code>.
 		 */
-		public final Builder versions(String... value) {
-			this.versions = Arrays.asList(value);
+		public final Builder versions(String value, String... values) {
+			this.versions = _listAdd(this.versions, value, values);
 			return this;
 		}
 

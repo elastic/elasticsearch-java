@@ -29,7 +29,6 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.MapBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
@@ -38,7 +37,6 @@ import java.lang.Double;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -65,10 +63,9 @@ public class DataframeOutlierDetectionSummary implements JsonpSerializable {
 
 	}
 
-	public static DataframeOutlierDetectionSummary of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static DataframeOutlierDetectionSummary of(
+			Function<Builder, ObjectBuilder<DataframeOutlierDetectionSummary>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -181,39 +178,91 @@ public class DataframeOutlierDetectionSummary implements JsonpSerializable {
 		/**
 		 * API name: {@code auc_roc}
 		 */
-		public final Builder aucRoc(Consumer<DataframeEvaluationSummaryAucRoc.Builder> fn) {
-			DataframeEvaluationSummaryAucRoc.Builder builder = new DataframeEvaluationSummaryAucRoc.Builder();
-			fn.accept(builder);
-			return this.aucRoc(builder.build());
+		public final Builder aucRoc(
+				Function<DataframeEvaluationSummaryAucRoc.Builder, ObjectBuilder<DataframeEvaluationSummaryAucRoc>> fn) {
+			return this.aucRoc(fn.apply(new DataframeEvaluationSummaryAucRoc.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code precision}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>precision</code>. Use
+		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
+		 * <code>precision</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetMap()
 		 */
-		public final Builder precision(@Nullable Map<String, Double> value) {
-			this.precision = value;
+		public final Builder precision(Map<String, Double> map) {
+			this.precision = _mapPutAll(this.precision, map);
+			return this;
+		}
+
+		/**
+		 * API name: {@code precision}
+		 * <p>
+		 * Adds an entry to <code>precision</code>.
+		 */
+		public final Builder precision(String key, Double value) {
+			this.precision = _mapPut(this.precision, key, value);
 			return this;
 		}
 
 		/**
 		 * API name: {@code recall}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>recall</code>. Use
+		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
+		 * <code>recall</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetMap()
 		 */
-		public final Builder recall(@Nullable Map<String, Double> value) {
-			this.recall = value;
+		public final Builder recall(Map<String, Double> map) {
+			this.recall = _mapPutAll(this.recall, map);
+			return this;
+		}
+
+		/**
+		 * API name: {@code recall}
+		 * <p>
+		 * Adds an entry to <code>recall</code>.
+		 */
+		public final Builder recall(String key, Double value) {
+			this.recall = _mapPut(this.recall, key, value);
 			return this;
 		}
 
 		/**
 		 * API name: {@code confusion_matrix}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>confusionMatrix</code>. Use
+		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
+		 * <code>confusionMatrix</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetMap()
 		 */
-		public final Builder confusionMatrix(@Nullable Map<String, ConfusionMatrixThreshold> value) {
-			this.confusionMatrix = value;
+		public final Builder confusionMatrix(Map<String, ConfusionMatrixThreshold> map) {
+			this.confusionMatrix = _mapPutAll(this.confusionMatrix, map);
 			return this;
 		}
 
-		public final Builder confusionMatrix(
-				Function<MapBuilder<String, ConfusionMatrixThreshold, ConfusionMatrixThreshold.Builder>, ObjectBuilder<Map<String, ConfusionMatrixThreshold>>> fn) {
-			return confusionMatrix(fn.apply(new MapBuilder<>(ConfusionMatrixThreshold.Builder::new)).build());
+		/**
+		 * API name: {@code confusion_matrix}
+		 * <p>
+		 * Adds an entry to <code>confusionMatrix</code>.
+		 */
+		public final Builder confusionMatrix(String key, ConfusionMatrixThreshold value) {
+			this.confusionMatrix = _mapPut(this.confusionMatrix, key, value);
+			return this;
+		}
+
+		/**
+		 * API name: {@code confusion_matrix}
+		 * <p>
+		 * Adds an entry to <code>confusionMatrix</code> using a builder lambda.
+		 */
+		public final Builder confusionMatrix(String key,
+				Function<ConfusionMatrixThreshold.Builder, ObjectBuilder<ConfusionMatrixThreshold>> fn) {
+			return confusionMatrix(key, fn.apply(new ConfusionMatrixThreshold.Builder()).build());
 		}
 
 		/**

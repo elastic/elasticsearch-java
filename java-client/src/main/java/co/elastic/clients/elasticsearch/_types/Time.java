@@ -39,7 +39,7 @@ import java.lang.Integer;
 import java.lang.Object;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.Time
@@ -89,10 +89,8 @@ public class Time implements TaggedUnion<Time.Kind, Object>, JsonpSerializable {
 
 	}
 
-	public static Time of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static Time of(Function<Builder, ObjectBuilder<Time>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**

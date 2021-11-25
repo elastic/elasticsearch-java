@@ -39,12 +39,11 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
@@ -75,10 +74,8 @@ public class ShardStoresRequest extends RequestBase {
 
 	}
 
-	public static ShardStoresRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static ShardStoresRequest of(Function<Builder, ObjectBuilder<ShardStoresRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -171,9 +168,15 @@ public class ShardStoresRequest extends RequestBase {
 		 * hidden data streams.
 		 * <p>
 		 * API name: {@code expand_wildcards}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>expandWildcards</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>expandWildcards</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder expandWildcards(@Nullable List<ExpandWildcard> value) {
-			this.expandWildcards = value;
+		public final Builder expandWildcards(List<ExpandWildcard> list) {
+			this.expandWildcards = _listAddAll(this.expandWildcards, list);
 			return this;
 		}
 
@@ -183,9 +186,11 @@ public class ShardStoresRequest extends RequestBase {
 		 * hidden data streams.
 		 * <p>
 		 * API name: {@code expand_wildcards}
+		 * <p>
+		 * Adds one or more values to <code>expandWildcards</code>.
 		 */
-		public final Builder expandWildcards(ExpandWildcard... value) {
-			this.expandWildcards = Arrays.asList(value);
+		public final Builder expandWildcards(ExpandWildcard value, ExpandWildcard... values) {
+			this.expandWildcards = _listAdd(this.expandWildcards, value, values);
 			return this;
 		}
 
@@ -203,9 +208,15 @@ public class ShardStoresRequest extends RequestBase {
 		 * List of data streams, indices, and aliases used to limit the request.
 		 * <p>
 		 * API name: {@code index}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>index</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>index</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder index(@Nullable List<String> value) {
-			this.index = value;
+		public final Builder index(List<String> list) {
+			this.index = _listAddAll(this.index, list);
 			return this;
 		}
 
@@ -213,9 +224,11 @@ public class ShardStoresRequest extends RequestBase {
 		 * List of data streams, indices, and aliases used to limit the request.
 		 * <p>
 		 * API name: {@code index}
+		 * <p>
+		 * Adds one or more values to <code>index</code>.
 		 */
-		public final Builder index(String... value) {
-			this.index = Arrays.asList(value);
+		public final Builder index(String value, String... values) {
+			this.index = _listAdd(this.index, value, values);
 			return this;
 		}
 
@@ -223,9 +236,15 @@ public class ShardStoresRequest extends RequestBase {
 		 * List of shard health statuses used to limit the request.
 		 * <p>
 		 * API name: {@code status}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>status</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>status</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder status(@Nullable List<ShardStoreStatus> value) {
-			this.status = value;
+		public final Builder status(List<ShardStoreStatus> list) {
+			this.status = _listAddAll(this.status, list);
 			return this;
 		}
 
@@ -233,9 +252,11 @@ public class ShardStoresRequest extends RequestBase {
 		 * List of shard health statuses used to limit the request.
 		 * <p>
 		 * API name: {@code status}
+		 * <p>
+		 * Adds one or more values to <code>status</code>.
 		 */
-		public final Builder status(ShardStoreStatus... value) {
-			this.status = Arrays.asList(value);
+		public final Builder status(ShardStoreStatus value, ShardStoreStatus... values) {
+			this.status = _listAdd(this.status, value, values);
 			return this;
 		}
 

@@ -40,12 +40,11 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.post_data.Request
@@ -76,10 +75,9 @@ public class PostDataRequest<TData> extends RequestBase implements JsonpSerializ
 
 	}
 
-	public static <TData> PostDataRequest<TData> of(Consumer<Builder<TData>> fn) {
-		Builder<TData> builder = new Builder<>();
-		fn.accept(builder);
-		return builder.build();
+	public static <TData> PostDataRequest<TData> of(
+			Function<Builder<TData>, ObjectBuilder<PostDataRequest<TData>>> fn) {
+		return fn.apply(new Builder<>()).build();
 	}
 
 	/**
@@ -186,9 +184,15 @@ public class PostDataRequest<TData> extends RequestBase implements JsonpSerializ
 		 * Required - Request body.
 		 * <p>
 		 * API name: {@code _value_body}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>data</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>data</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder<TData> data(List<TData> value) {
-			this.data = value;
+		public final Builder<TData> data(List<TData> list) {
+			this.data = _listAddAll(this.data, list);
 			return this;
 		}
 
@@ -196,9 +200,11 @@ public class PostDataRequest<TData> extends RequestBase implements JsonpSerializ
 		 * Required - Request body.
 		 * <p>
 		 * API name: {@code _value_body}
+		 * <p>
+		 * Adds one or more values to <code>data</code>.
 		 */
-		public final Builder<TData> data(TData... value) {
-			this.data = Arrays.asList(value);
+		public final Builder<TData> data(TData value, TData... values) {
+			this.data = _listAdd(this.data, value, values);
 			return this;
 		}
 

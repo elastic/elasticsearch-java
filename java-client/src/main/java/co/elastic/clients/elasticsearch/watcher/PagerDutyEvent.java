@@ -29,17 +29,14 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -77,10 +74,8 @@ public class PagerDutyEvent implements JsonpSerializable {
 
 	}
 
-	public static PagerDutyEvent of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static PagerDutyEvent of(Function<Builder, ObjectBuilder<PagerDutyEvent>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -238,26 +233,35 @@ public class PagerDutyEvent implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code context}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>context</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>context</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder context(List<PagerDutyContext> value) {
-			this.context = value;
+		public final Builder context(List<PagerDutyContext> list) {
+			this.context = _listAddAll(this.context, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code context}
+		 * <p>
+		 * Adds one or more values to <code>context</code>.
 		 */
-		public final Builder context(PagerDutyContext... value) {
-			this.context = Arrays.asList(value);
+		public final Builder context(PagerDutyContext value, PagerDutyContext... values) {
+			this.context = _listAdd(this.context, value, values);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code context}
+		 * <p>
+		 * Adds a value to <code>context</code> using a builder lambda.
 		 */
-		public final Builder context(
-				Function<ListBuilder<PagerDutyContext, PagerDutyContext.Builder>, ObjectBuilder<List<PagerDutyContext>>> fn) {
-			return context(fn.apply(new ListBuilder<>(PagerDutyContext.Builder::new)).build());
+		public final Builder context(Function<PagerDutyContext.Builder, ObjectBuilder<PagerDutyContext>> fn) {
+			return context(fn.apply(new PagerDutyContext.Builder()).build());
 		}
 
 		/**

@@ -35,7 +35,7 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 
 // typedef: _types.CoordsGeoBounds
 @JsonpDeserializable
@@ -59,10 +59,8 @@ public class CoordsGeoBounds implements JsonpSerializable {
 
 	}
 
-	public static CoordsGeoBounds of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static CoordsGeoBounds of(Function<Builder, ObjectBuilder<CoordsGeoBounds>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**

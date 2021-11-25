@@ -35,7 +35,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.bulk.IndexOperation
@@ -56,10 +56,9 @@ public class IndexOperation<TDocument> extends WriteOperation implements NdJsonp
 
 	}
 
-	public static <TDocument> IndexOperation<TDocument> of(Consumer<Builder<TDocument>> fn) {
-		Builder<TDocument> builder = new Builder<>();
-		fn.accept(builder);
-		return builder.build();
+	public static <TDocument> IndexOperation<TDocument> of(
+			Function<Builder<TDocument>, ObjectBuilder<IndexOperation<TDocument>>> fn) {
+		return fn.apply(new Builder<>()).build();
 	}
 
 	/**

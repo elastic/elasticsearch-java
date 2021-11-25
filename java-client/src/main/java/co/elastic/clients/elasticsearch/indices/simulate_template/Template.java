@@ -32,18 +32,14 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ListBuilder;
-import co.elastic.clients.util.MapBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -69,10 +65,8 @@ public class Template implements JsonpSerializable {
 
 	}
 
-	public static Template of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static Template of(Function<Builder, ObjectBuilder<Template>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -168,15 +162,35 @@ public class Template implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code aliases}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>aliases</code>. Use
+		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
+		 * <code>aliases</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetMap()
 		 */
-		public final Builder aliases(Map<String, Alias> value) {
-			this.aliases = value;
+		public final Builder aliases(Map<String, Alias> map) {
+			this.aliases = _mapPutAll(this.aliases, map);
 			return this;
 		}
 
-		public final Builder aliases(
-				Function<MapBuilder<String, Alias, Alias.Builder>, ObjectBuilder<Map<String, Alias>>> fn) {
-			return aliases(fn.apply(new MapBuilder<>(Alias.Builder::new)).build());
+		/**
+		 * Required - API name: {@code aliases}
+		 * <p>
+		 * Adds an entry to <code>aliases</code>.
+		 */
+		public final Builder aliases(String key, Alias value) {
+			this.aliases = _mapPut(this.aliases, key, value);
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code aliases}
+		 * <p>
+		 * Adds an entry to <code>aliases</code> using a builder lambda.
+		 */
+		public final Builder aliases(String key, Function<Alias.Builder, ObjectBuilder<Alias>> fn) {
+			return aliases(key, fn.apply(new Alias.Builder()).build());
 		}
 
 		/**
@@ -190,42 +204,65 @@ public class Template implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code mappings}
 		 */
-		public final Builder mappings(Consumer<TypeMapping.Builder> fn) {
-			TypeMapping.Builder builder = new TypeMapping.Builder();
-			fn.accept(builder);
-			return this.mappings(builder.build());
+		public final Builder mappings(Function<TypeMapping.Builder, ObjectBuilder<TypeMapping>> fn) {
+			return this.mappings(fn.apply(new TypeMapping.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code settings}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>settings</code>. Use
+		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
+		 * <code>settings</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetMap()
 		 */
-		public final Builder settings(Map<String, JsonData> value) {
-			this.settings = value;
+		public final Builder settings(Map<String, JsonData> map) {
+			this.settings = _mapPutAll(this.settings, map);
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code settings}
+		 * <p>
+		 * Adds an entry to <code>settings</code>.
+		 */
+		public final Builder settings(String key, JsonData value) {
+			this.settings = _mapPut(this.settings, key, value);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code overlapping}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>overlapping</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>overlapping</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder overlapping(List<Overlapping> value) {
-			this.overlapping = value;
+		public final Builder overlapping(List<Overlapping> list) {
+			this.overlapping = _listAddAll(this.overlapping, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code overlapping}
+		 * <p>
+		 * Adds one or more values to <code>overlapping</code>.
 		 */
-		public final Builder overlapping(Overlapping... value) {
-			this.overlapping = Arrays.asList(value);
+		public final Builder overlapping(Overlapping value, Overlapping... values) {
+			this.overlapping = _listAdd(this.overlapping, value, values);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code overlapping}
+		 * <p>
+		 * Adds a value to <code>overlapping</code> using a builder lambda.
 		 */
-		public final Builder overlapping(
-				Function<ListBuilder<Overlapping, Overlapping.Builder>, ObjectBuilder<List<Overlapping>>> fn) {
-			return overlapping(fn.apply(new ListBuilder<>(Overlapping.Builder::new)).build());
+		public final Builder overlapping(Function<Overlapping.Builder, ObjectBuilder<Overlapping>> fn) {
+			return overlapping(fn.apply(new Overlapping.Builder()).build());
 		}
 
 		/**

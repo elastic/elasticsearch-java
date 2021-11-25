@@ -36,7 +36,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.BulkIndexByScrollFailure
@@ -64,10 +64,8 @@ public class BulkIndexByScrollFailure implements JsonpSerializable {
 
 	}
 
-	public static BulkIndexByScrollFailure of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static BulkIndexByScrollFailure of(Function<Builder, ObjectBuilder<BulkIndexByScrollFailure>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -160,10 +158,8 @@ public class BulkIndexByScrollFailure implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code cause}
 		 */
-		public final Builder cause(Consumer<ErrorCause.Builder> fn) {
-			ErrorCause.Builder builder = new ErrorCause.Builder();
-			fn.accept(builder);
-			return this.cause(builder.build());
+		public final Builder cause(Function<ErrorCause.Builder, ObjectBuilder<ErrorCause>> fn) {
+			return this.cause(fn.apply(new ErrorCause.Builder()).build());
 		}
 
 		/**

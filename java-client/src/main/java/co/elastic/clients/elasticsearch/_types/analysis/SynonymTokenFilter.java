@@ -33,10 +33,9 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.analysis.SynonymTokenFilter
@@ -77,10 +76,8 @@ public class SynonymTokenFilter extends TokenFilterBase implements TokenFilterDe
 
 	}
 
-	public static SynonymTokenFilter of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static SynonymTokenFilter of(Function<Builder, ObjectBuilder<SynonymTokenFilter>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -247,17 +244,25 @@ public class SynonymTokenFilter extends TokenFilterBase implements TokenFilterDe
 
 		/**
 		 * API name: {@code synonyms}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>synonyms</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>synonyms</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder synonyms(@Nullable List<String> value) {
-			this.synonyms = value;
+		public final Builder synonyms(List<String> list) {
+			this.synonyms = _listAddAll(this.synonyms, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code synonyms}
+		 * <p>
+		 * Adds one or more values to <code>synonyms</code>.
 		 */
-		public final Builder synonyms(String... value) {
-			this.synonyms = Arrays.asList(value);
+		public final Builder synonyms(String value, String... values) {
+			this.synonyms = _listAdd(this.synonyms, value, values);
 			return this;
 		}
 

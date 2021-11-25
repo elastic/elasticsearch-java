@@ -40,7 +40,7 @@ import java.lang.String;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.Percentiles
@@ -78,10 +78,8 @@ public class Percentiles implements TaggedUnion<Percentiles.Kind, Object>, Jsonp
 
 	}
 
-	public static Percentiles of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static Percentiles of(Function<Builder, ObjectBuilder<Percentiles>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**

@@ -39,7 +39,6 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.MapBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
@@ -50,7 +49,6 @@ import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -96,10 +94,8 @@ public class PutComponentTemplateRequest extends RequestBase implements JsonpSer
 
 	}
 
-	public static PutComponentTemplateRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static PutComponentTemplateRequest of(Function<Builder, ObjectBuilder<PutComponentTemplateRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -264,23 +260,59 @@ public class PutComponentTemplateRequest extends RequestBase implements JsonpSer
 
 		/**
 		 * API name: {@code _meta}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>meta</code>. Use
+		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
+		 * <code>meta</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetMap()
 		 */
-		public final Builder meta(@Nullable Map<String, JsonData> value) {
-			this.meta = value;
+		public final Builder meta(Map<String, JsonData> map) {
+			this.meta = _mapPutAll(this.meta, map);
+			return this;
+		}
+
+		/**
+		 * API name: {@code _meta}
+		 * <p>
+		 * Adds an entry to <code>meta</code>.
+		 */
+		public final Builder meta(String key, JsonData value) {
+			this.meta = _mapPut(this.meta, key, value);
 			return this;
 		}
 
 		/**
 		 * API name: {@code aliases}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>aliases</code>. Use
+		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
+		 * <code>aliases</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetMap()
 		 */
-		public final Builder aliases(@Nullable Map<String, AliasDefinition> value) {
-			this.aliases = value;
+		public final Builder aliases(Map<String, AliasDefinition> map) {
+			this.aliases = _mapPutAll(this.aliases, map);
 			return this;
 		}
 
-		public final Builder aliases(
-				Function<MapBuilder<String, AliasDefinition, AliasDefinition.Builder>, ObjectBuilder<Map<String, AliasDefinition>>> fn) {
-			return aliases(fn.apply(new MapBuilder<>(AliasDefinition.Builder::new)).build());
+		/**
+		 * API name: {@code aliases}
+		 * <p>
+		 * Adds an entry to <code>aliases</code>.
+		 */
+		public final Builder aliases(String key, AliasDefinition value) {
+			this.aliases = _mapPut(this.aliases, key, value);
+			return this;
+		}
+
+		/**
+		 * API name: {@code aliases}
+		 * <p>
+		 * Adds an entry to <code>aliases</code> using a builder lambda.
+		 */
+		public final Builder aliases(String key, Function<AliasDefinition.Builder, ObjectBuilder<AliasDefinition>> fn) {
+			return aliases(key, fn.apply(new AliasDefinition.Builder()).build());
 		}
 
 		/**
@@ -305,10 +337,8 @@ public class PutComponentTemplateRequest extends RequestBase implements JsonpSer
 		/**
 		 * API name: {@code mappings}
 		 */
-		public final Builder mappings(Consumer<TypeMapping.Builder> fn) {
-			TypeMapping.Builder builder = new TypeMapping.Builder();
-			fn.accept(builder);
-			return this.mappings(builder.build());
+		public final Builder mappings(Function<TypeMapping.Builder, ObjectBuilder<TypeMapping>> fn) {
+			return this.mappings(fn.apply(new TypeMapping.Builder()).build());
 		}
 
 		/**
@@ -326,10 +356,8 @@ public class PutComponentTemplateRequest extends RequestBase implements JsonpSer
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
-		public final Builder masterTimeout(Consumer<Time.Builder> fn) {
-			Time.Builder builder = new Time.Builder();
-			fn.accept(builder);
-			return this.masterTimeout(builder.build());
+		public final Builder masterTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.masterTimeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -353,10 +381,8 @@ public class PutComponentTemplateRequest extends RequestBase implements JsonpSer
 		/**
 		 * API name: {@code settings}
 		 */
-		public final Builder settings(Consumer<IndexSettings.Builder> fn) {
-			IndexSettings.Builder builder = new IndexSettings.Builder();
-			fn.accept(builder);
-			return this.settings(builder.build());
+		public final Builder settings(Function<IndexSettings.Builder, ObjectBuilder<IndexSettings>> fn) {
+			return this.settings(fn.apply(new IndexSettings.Builder()).build());
 		}
 
 		/**
@@ -370,10 +396,8 @@ public class PutComponentTemplateRequest extends RequestBase implements JsonpSer
 		/**
 		 * Required - API name: {@code template}
 		 */
-		public final Builder template(Consumer<IndexState.Builder> fn) {
-			IndexState.Builder builder = new IndexState.Builder();
-			fn.accept(builder);
-			return this.template(builder.build());
+		public final Builder template(Function<IndexState.Builder, ObjectBuilder<IndexState>> fn) {
+			return this.template(fn.apply(new IndexState.Builder()).build());
 		}
 
 		/**

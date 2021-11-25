@@ -35,7 +35,7 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: snapshot.verify_repository.CompactNodeInfo
@@ -51,10 +51,8 @@ public class CompactNodeInfo implements JsonpSerializable {
 
 	}
 
-	public static CompactNodeInfo of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static CompactNodeInfo of(Function<Builder, ObjectBuilder<CompactNodeInfo>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**

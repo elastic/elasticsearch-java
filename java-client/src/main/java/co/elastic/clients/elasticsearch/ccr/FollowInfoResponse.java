@@ -30,15 +30,12 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -55,10 +52,8 @@ public class FollowInfoResponse implements JsonpSerializable {
 
 	}
 
-	public static FollowInfoResponse of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static FollowInfoResponse of(Function<Builder, ObjectBuilder<FollowInfoResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -102,26 +97,35 @@ public class FollowInfoResponse implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code follower_indices}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>followerIndices</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>followerIndices</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder followerIndices(List<FollowerIndex> value) {
-			this.followerIndices = value;
+		public final Builder followerIndices(List<FollowerIndex> list) {
+			this.followerIndices = _listAddAll(this.followerIndices, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code follower_indices}
+		 * <p>
+		 * Adds one or more values to <code>followerIndices</code>.
 		 */
-		public final Builder followerIndices(FollowerIndex... value) {
-			this.followerIndices = Arrays.asList(value);
+		public final Builder followerIndices(FollowerIndex value, FollowerIndex... values) {
+			this.followerIndices = _listAdd(this.followerIndices, value, values);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code follower_indices}
+		 * <p>
+		 * Adds a value to <code>followerIndices</code> using a builder lambda.
 		 */
-		public final Builder followerIndices(
-				Function<ListBuilder<FollowerIndex, FollowerIndex.Builder>, ObjectBuilder<List<FollowerIndex>>> fn) {
-			return followerIndices(fn.apply(new ListBuilder<>(FollowerIndex.Builder::new)).build());
+		public final Builder followerIndices(Function<FollowerIndex.Builder, ObjectBuilder<FollowerIndex>> fn) {
+			return followerIndices(fn.apply(new FollowerIndex.Builder()).build());
 		}
 
 		/**

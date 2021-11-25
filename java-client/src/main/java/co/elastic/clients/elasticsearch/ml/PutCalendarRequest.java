@@ -38,11 +38,10 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.put_calendar.Request
@@ -65,10 +64,8 @@ public class PutCalendarRequest extends RequestBase implements JsonpSerializable
 
 	}
 
-	public static PutCalendarRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static PutCalendarRequest of(Function<Builder, ObjectBuilder<PutCalendarRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -166,9 +163,15 @@ public class PutCalendarRequest extends RequestBase implements JsonpSerializable
 		 * An array of anomaly detection job identifiers.
 		 * <p>
 		 * API name: {@code job_ids}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>jobIds</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>jobIds</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder jobIds(@Nullable List<String> value) {
-			this.jobIds = value;
+		public final Builder jobIds(List<String> list) {
+			this.jobIds = _listAddAll(this.jobIds, list);
 			return this;
 		}
 
@@ -176,9 +179,11 @@ public class PutCalendarRequest extends RequestBase implements JsonpSerializable
 		 * An array of anomaly detection job identifiers.
 		 * <p>
 		 * API name: {@code job_ids}
+		 * <p>
+		 * Adds one or more values to <code>jobIds</code>.
 		 */
-		public final Builder jobIds(String... value) {
-			this.jobIds = Arrays.asList(value);
+		public final Builder jobIds(String value, String... values) {
+			this.jobIds = _listAdd(this.jobIds, value, values);
 			return this;
 		}
 

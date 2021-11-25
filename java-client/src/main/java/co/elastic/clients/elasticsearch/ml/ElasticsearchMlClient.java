@@ -34,7 +34,7 @@ import co.elastic.clients.transport.TransportOptions;
 import co.elastic.clients.transport.endpoints.EndpointWithResponseMapperAttr;
 import co.elastic.clients.util.ObjectBuilder;
 import java.io.IOException;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 /**
@@ -85,11 +85,9 @@ public class ElasticsearchMlClient extends ApiClient<ElasticsearchTransport, Ela
 	 *      on elastic.co</a>
 	 */
 
-	public final CloseJobResponse closeJob(Consumer<CloseJobRequest.Builder> fn)
+	public final CloseJobResponse closeJob(Function<CloseJobRequest.Builder, ObjectBuilder<CloseJobRequest>> fn)
 			throws IOException, ElasticsearchException {
-		CloseJobRequest.Builder builder = new CloseJobRequest.Builder();
-		fn.accept(builder);
-		return closeJob(builder.build());
+		return closeJob(fn.apply(new CloseJobRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: ml.delete_calendar
@@ -121,11 +119,10 @@ public class ElasticsearchMlClient extends ApiClient<ElasticsearchTransport, Ela
 	 *      on elastic.co</a>
 	 */
 
-	public final DeleteCalendarResponse deleteCalendar(Consumer<DeleteCalendarRequest.Builder> fn)
+	public final DeleteCalendarResponse deleteCalendar(
+			Function<DeleteCalendarRequest.Builder, ObjectBuilder<DeleteCalendarRequest>> fn)
 			throws IOException, ElasticsearchException {
-		DeleteCalendarRequest.Builder builder = new DeleteCalendarRequest.Builder();
-		fn.accept(builder);
-		return deleteCalendar(builder.build());
+		return deleteCalendar(fn.apply(new DeleteCalendarRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: ml.delete_calendar_event
@@ -157,11 +154,10 @@ public class ElasticsearchMlClient extends ApiClient<ElasticsearchTransport, Ela
 	 *      on elastic.co</a>
 	 */
 
-	public final DeleteCalendarEventResponse deleteCalendarEvent(Consumer<DeleteCalendarEventRequest.Builder> fn)
+	public final DeleteCalendarEventResponse deleteCalendarEvent(
+			Function<DeleteCalendarEventRequest.Builder, ObjectBuilder<DeleteCalendarEventRequest>> fn)
 			throws IOException, ElasticsearchException {
-		DeleteCalendarEventRequest.Builder builder = new DeleteCalendarEventRequest.Builder();
-		fn.accept(builder);
-		return deleteCalendarEvent(builder.build());
+		return deleteCalendarEvent(fn.apply(new DeleteCalendarEventRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: ml.delete_calendar_job
@@ -193,11 +189,10 @@ public class ElasticsearchMlClient extends ApiClient<ElasticsearchTransport, Ela
 	 *      on elastic.co</a>
 	 */
 
-	public final DeleteCalendarJobResponse deleteCalendarJob(Consumer<DeleteCalendarJobRequest.Builder> fn)
+	public final DeleteCalendarJobResponse deleteCalendarJob(
+			Function<DeleteCalendarJobRequest.Builder, ObjectBuilder<DeleteCalendarJobRequest>> fn)
 			throws IOException, ElasticsearchException {
-		DeleteCalendarJobRequest.Builder builder = new DeleteCalendarJobRequest.Builder();
-		fn.accept(builder);
-		return deleteCalendarJob(builder.build());
+		return deleteCalendarJob(fn.apply(new DeleteCalendarJobRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: ml.delete_data_frame_analytics
@@ -230,10 +225,9 @@ public class ElasticsearchMlClient extends ApiClient<ElasticsearchTransport, Ela
 	 */
 
 	public final DeleteDataFrameAnalyticsResponse deleteDataFrameAnalytics(
-			Consumer<DeleteDataFrameAnalyticsRequest.Builder> fn) throws IOException, ElasticsearchException {
-		DeleteDataFrameAnalyticsRequest.Builder builder = new DeleteDataFrameAnalyticsRequest.Builder();
-		fn.accept(builder);
-		return deleteDataFrameAnalytics(builder.build());
+			Function<DeleteDataFrameAnalyticsRequest.Builder, ObjectBuilder<DeleteDataFrameAnalyticsRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return deleteDataFrameAnalytics(fn.apply(new DeleteDataFrameAnalyticsRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: ml.delete_datafeed
@@ -265,11 +259,10 @@ public class ElasticsearchMlClient extends ApiClient<ElasticsearchTransport, Ela
 	 *      on elastic.co</a>
 	 */
 
-	public final DeleteDatafeedResponse deleteDatafeed(Consumer<DeleteDatafeedRequest.Builder> fn)
+	public final DeleteDatafeedResponse deleteDatafeed(
+			Function<DeleteDatafeedRequest.Builder, ObjectBuilder<DeleteDatafeedRequest>> fn)
 			throws IOException, ElasticsearchException {
-		DeleteDatafeedRequest.Builder builder = new DeleteDatafeedRequest.Builder();
-		fn.accept(builder);
-		return deleteDatafeed(builder.build());
+		return deleteDatafeed(fn.apply(new DeleteDatafeedRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: ml.delete_expired_data
@@ -301,11 +294,10 @@ public class ElasticsearchMlClient extends ApiClient<ElasticsearchTransport, Ela
 	 *      on elastic.co</a>
 	 */
 
-	public final DeleteExpiredDataResponse deleteExpiredData(Consumer<DeleteExpiredDataRequest.Builder> fn)
+	public final DeleteExpiredDataResponse deleteExpiredData(
+			Function<DeleteExpiredDataRequest.Builder, ObjectBuilder<DeleteExpiredDataRequest>> fn)
 			throws IOException, ElasticsearchException {
-		DeleteExpiredDataRequest.Builder builder = new DeleteExpiredDataRequest.Builder();
-		fn.accept(builder);
-		return deleteExpiredData(builder.build());
+		return deleteExpiredData(fn.apply(new DeleteExpiredDataRequest.Builder()).build());
 	}
 
 	/**
@@ -349,11 +341,10 @@ public class ElasticsearchMlClient extends ApiClient<ElasticsearchTransport, Ela
 	 *      on elastic.co</a>
 	 */
 
-	public final DeleteFilterResponse deleteFilter(Consumer<DeleteFilterRequest.Builder> fn)
+	public final DeleteFilterResponse deleteFilter(
+			Function<DeleteFilterRequest.Builder, ObjectBuilder<DeleteFilterRequest>> fn)
 			throws IOException, ElasticsearchException {
-		DeleteFilterRequest.Builder builder = new DeleteFilterRequest.Builder();
-		fn.accept(builder);
-		return deleteFilter(builder.build());
+		return deleteFilter(fn.apply(new DeleteFilterRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: ml.delete_forecast
@@ -385,11 +376,10 @@ public class ElasticsearchMlClient extends ApiClient<ElasticsearchTransport, Ela
 	 *      on elastic.co</a>
 	 */
 
-	public final DeleteForecastResponse deleteForecast(Consumer<DeleteForecastRequest.Builder> fn)
+	public final DeleteForecastResponse deleteForecast(
+			Function<DeleteForecastRequest.Builder, ObjectBuilder<DeleteForecastRequest>> fn)
 			throws IOException, ElasticsearchException {
-		DeleteForecastRequest.Builder builder = new DeleteForecastRequest.Builder();
-		fn.accept(builder);
-		return deleteForecast(builder.build());
+		return deleteForecast(fn.apply(new DeleteForecastRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: ml.delete_job
@@ -420,11 +410,9 @@ public class ElasticsearchMlClient extends ApiClient<ElasticsearchTransport, Ela
 	 *      on elastic.co</a>
 	 */
 
-	public final DeleteJobResponse deleteJob(Consumer<DeleteJobRequest.Builder> fn)
+	public final DeleteJobResponse deleteJob(Function<DeleteJobRequest.Builder, ObjectBuilder<DeleteJobRequest>> fn)
 			throws IOException, ElasticsearchException {
-		DeleteJobRequest.Builder builder = new DeleteJobRequest.Builder();
-		fn.accept(builder);
-		return deleteJob(builder.build());
+		return deleteJob(fn.apply(new DeleteJobRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: ml.delete_model_snapshot
@@ -456,11 +444,10 @@ public class ElasticsearchMlClient extends ApiClient<ElasticsearchTransport, Ela
 	 *      on elastic.co</a>
 	 */
 
-	public final DeleteModelSnapshotResponse deleteModelSnapshot(Consumer<DeleteModelSnapshotRequest.Builder> fn)
+	public final DeleteModelSnapshotResponse deleteModelSnapshot(
+			Function<DeleteModelSnapshotRequest.Builder, ObjectBuilder<DeleteModelSnapshotRequest>> fn)
 			throws IOException, ElasticsearchException {
-		DeleteModelSnapshotRequest.Builder builder = new DeleteModelSnapshotRequest.Builder();
-		fn.accept(builder);
-		return deleteModelSnapshot(builder.build());
+		return deleteModelSnapshot(fn.apply(new DeleteModelSnapshotRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: ml.delete_trained_model
@@ -494,11 +481,10 @@ public class ElasticsearchMlClient extends ApiClient<ElasticsearchTransport, Ela
 	 *      on elastic.co</a>
 	 */
 
-	public final DeleteTrainedModelResponse deleteTrainedModel(Consumer<DeleteTrainedModelRequest.Builder> fn)
+	public final DeleteTrainedModelResponse deleteTrainedModel(
+			Function<DeleteTrainedModelRequest.Builder, ObjectBuilder<DeleteTrainedModelRequest>> fn)
 			throws IOException, ElasticsearchException {
-		DeleteTrainedModelRequest.Builder builder = new DeleteTrainedModelRequest.Builder();
-		fn.accept(builder);
-		return deleteTrainedModel(builder.build());
+		return deleteTrainedModel(fn.apply(new DeleteTrainedModelRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: ml.delete_trained_model_alias
@@ -531,10 +517,9 @@ public class ElasticsearchMlClient extends ApiClient<ElasticsearchTransport, Ela
 	 */
 
 	public final DeleteTrainedModelAliasResponse deleteTrainedModelAlias(
-			Consumer<DeleteTrainedModelAliasRequest.Builder> fn) throws IOException, ElasticsearchException {
-		DeleteTrainedModelAliasRequest.Builder builder = new DeleteTrainedModelAliasRequest.Builder();
-		fn.accept(builder);
-		return deleteTrainedModelAlias(builder.build());
+			Function<DeleteTrainedModelAliasRequest.Builder, ObjectBuilder<DeleteTrainedModelAliasRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return deleteTrainedModelAlias(fn.apply(new DeleteTrainedModelAliasRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: ml.estimate_model_memory
@@ -566,11 +551,10 @@ public class ElasticsearchMlClient extends ApiClient<ElasticsearchTransport, Ela
 	 *      on elastic.co</a>
 	 */
 
-	public final EstimateModelMemoryResponse estimateModelMemory(Consumer<EstimateModelMemoryRequest.Builder> fn)
+	public final EstimateModelMemoryResponse estimateModelMemory(
+			Function<EstimateModelMemoryRequest.Builder, ObjectBuilder<EstimateModelMemoryRequest>> fn)
 			throws IOException, ElasticsearchException {
-		EstimateModelMemoryRequest.Builder builder = new EstimateModelMemoryRequest.Builder();
-		fn.accept(builder);
-		return estimateModelMemory(builder.build());
+		return estimateModelMemory(fn.apply(new EstimateModelMemoryRequest.Builder()).build());
 	}
 
 	/**
@@ -615,11 +599,10 @@ public class ElasticsearchMlClient extends ApiClient<ElasticsearchTransport, Ela
 	 *      on elastic.co</a>
 	 */
 
-	public final EvaluateDataFrameResponse evaluateDataFrame(Consumer<EvaluateDataFrameRequest.Builder> fn)
+	public final EvaluateDataFrameResponse evaluateDataFrame(
+			Function<EvaluateDataFrameRequest.Builder, ObjectBuilder<EvaluateDataFrameRequest>> fn)
 			throws IOException, ElasticsearchException {
-		EvaluateDataFrameRequest.Builder builder = new EvaluateDataFrameRequest.Builder();
-		fn.accept(builder);
-		return evaluateDataFrame(builder.build());
+		return evaluateDataFrame(fn.apply(new EvaluateDataFrameRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: ml.explain_data_frame_analytics
@@ -652,10 +635,9 @@ public class ElasticsearchMlClient extends ApiClient<ElasticsearchTransport, Ela
 	 */
 
 	public final ExplainDataFrameAnalyticsResponse explainDataFrameAnalytics(
-			Consumer<ExplainDataFrameAnalyticsRequest.Builder> fn) throws IOException, ElasticsearchException {
-		ExplainDataFrameAnalyticsRequest.Builder builder = new ExplainDataFrameAnalyticsRequest.Builder();
-		fn.accept(builder);
-		return explainDataFrameAnalytics(builder.build());
+			Function<ExplainDataFrameAnalyticsRequest.Builder, ObjectBuilder<ExplainDataFrameAnalyticsRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return explainDataFrameAnalytics(fn.apply(new ExplainDataFrameAnalyticsRequest.Builder()).build());
 	}
 
 	/**
@@ -699,11 +681,9 @@ public class ElasticsearchMlClient extends ApiClient<ElasticsearchTransport, Ela
 	 *      on elastic.co</a>
 	 */
 
-	public final FlushJobResponse flushJob(Consumer<FlushJobRequest.Builder> fn)
+	public final FlushJobResponse flushJob(Function<FlushJobRequest.Builder, ObjectBuilder<FlushJobRequest>> fn)
 			throws IOException, ElasticsearchException {
-		FlushJobRequest.Builder builder = new FlushJobRequest.Builder();
-		fn.accept(builder);
-		return flushJob(builder.build());
+		return flushJob(fn.apply(new FlushJobRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: ml.forecast
@@ -736,11 +716,9 @@ public class ElasticsearchMlClient extends ApiClient<ElasticsearchTransport, Ela
 	 *      on elastic.co</a>
 	 */
 
-	public final ForecastResponse forecast(Consumer<ForecastRequest.Builder> fn)
+	public final ForecastResponse forecast(Function<ForecastRequest.Builder, ObjectBuilder<ForecastRequest>> fn)
 			throws IOException, ElasticsearchException {
-		ForecastRequest.Builder builder = new ForecastRequest.Builder();
-		fn.accept(builder);
-		return forecast(builder.build());
+		return forecast(fn.apply(new ForecastRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: ml.get_buckets
@@ -771,11 +749,9 @@ public class ElasticsearchMlClient extends ApiClient<ElasticsearchTransport, Ela
 	 *      on elastic.co</a>
 	 */
 
-	public final GetBucketsResponse getBuckets(Consumer<GetBucketsRequest.Builder> fn)
+	public final GetBucketsResponse getBuckets(Function<GetBucketsRequest.Builder, ObjectBuilder<GetBucketsRequest>> fn)
 			throws IOException, ElasticsearchException {
-		GetBucketsRequest.Builder builder = new GetBucketsRequest.Builder();
-		fn.accept(builder);
-		return getBuckets(builder.build());
+		return getBuckets(fn.apply(new GetBucketsRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: ml.get_calendar_events
@@ -807,11 +783,10 @@ public class ElasticsearchMlClient extends ApiClient<ElasticsearchTransport, Ela
 	 *      on elastic.co</a>
 	 */
 
-	public final GetCalendarEventsResponse getCalendarEvents(Consumer<GetCalendarEventsRequest.Builder> fn)
+	public final GetCalendarEventsResponse getCalendarEvents(
+			Function<GetCalendarEventsRequest.Builder, ObjectBuilder<GetCalendarEventsRequest>> fn)
 			throws IOException, ElasticsearchException {
-		GetCalendarEventsRequest.Builder builder = new GetCalendarEventsRequest.Builder();
-		fn.accept(builder);
-		return getCalendarEvents(builder.build());
+		return getCalendarEvents(fn.apply(new GetCalendarEventsRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: ml.get_calendars
@@ -842,11 +817,10 @@ public class ElasticsearchMlClient extends ApiClient<ElasticsearchTransport, Ela
 	 *      on elastic.co</a>
 	 */
 
-	public final GetCalendarsResponse getCalendars(Consumer<GetCalendarsRequest.Builder> fn)
+	public final GetCalendarsResponse getCalendars(
+			Function<GetCalendarsRequest.Builder, ObjectBuilder<GetCalendarsRequest>> fn)
 			throws IOException, ElasticsearchException {
-		GetCalendarsRequest.Builder builder = new GetCalendarsRequest.Builder();
-		fn.accept(builder);
-		return getCalendars(builder.build());
+		return getCalendars(fn.apply(new GetCalendarsRequest.Builder()).build());
 	}
 
 	/**
@@ -891,11 +865,10 @@ public class ElasticsearchMlClient extends ApiClient<ElasticsearchTransport, Ela
 	 *      on elastic.co</a>
 	 */
 
-	public final GetCategoriesResponse getCategories(Consumer<GetCategoriesRequest.Builder> fn)
+	public final GetCategoriesResponse getCategories(
+			Function<GetCategoriesRequest.Builder, ObjectBuilder<GetCategoriesRequest>> fn)
 			throws IOException, ElasticsearchException {
-		GetCategoriesRequest.Builder builder = new GetCategoriesRequest.Builder();
-		fn.accept(builder);
-		return getCategories(builder.build());
+		return getCategories(fn.apply(new GetCategoriesRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: ml.get_data_frame_analytics
@@ -927,11 +900,10 @@ public class ElasticsearchMlClient extends ApiClient<ElasticsearchTransport, Ela
 	 *      on elastic.co</a>
 	 */
 
-	public final GetDataFrameAnalyticsResponse getDataFrameAnalytics(Consumer<GetDataFrameAnalyticsRequest.Builder> fn)
+	public final GetDataFrameAnalyticsResponse getDataFrameAnalytics(
+			Function<GetDataFrameAnalyticsRequest.Builder, ObjectBuilder<GetDataFrameAnalyticsRequest>> fn)
 			throws IOException, ElasticsearchException {
-		GetDataFrameAnalyticsRequest.Builder builder = new GetDataFrameAnalyticsRequest.Builder();
-		fn.accept(builder);
-		return getDataFrameAnalytics(builder.build());
+		return getDataFrameAnalytics(fn.apply(new GetDataFrameAnalyticsRequest.Builder()).build());
 	}
 
 	/**
@@ -977,10 +949,9 @@ public class ElasticsearchMlClient extends ApiClient<ElasticsearchTransport, Ela
 	 */
 
 	public final GetDataFrameAnalyticsStatsResponse getDataFrameAnalyticsStats(
-			Consumer<GetDataFrameAnalyticsStatsRequest.Builder> fn) throws IOException, ElasticsearchException {
-		GetDataFrameAnalyticsStatsRequest.Builder builder = new GetDataFrameAnalyticsStatsRequest.Builder();
-		fn.accept(builder);
-		return getDataFrameAnalyticsStats(builder.build());
+			Function<GetDataFrameAnalyticsStatsRequest.Builder, ObjectBuilder<GetDataFrameAnalyticsStatsRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return getDataFrameAnalyticsStats(fn.apply(new GetDataFrameAnalyticsStatsRequest.Builder()).build());
 	}
 
 	/**
@@ -1025,11 +996,10 @@ public class ElasticsearchMlClient extends ApiClient<ElasticsearchTransport, Ela
 	 *      on elastic.co</a>
 	 */
 
-	public final GetDatafeedStatsResponse getDatafeedStats(Consumer<GetDatafeedStatsRequest.Builder> fn)
+	public final GetDatafeedStatsResponse getDatafeedStats(
+			Function<GetDatafeedStatsRequest.Builder, ObjectBuilder<GetDatafeedStatsRequest>> fn)
 			throws IOException, ElasticsearchException {
-		GetDatafeedStatsRequest.Builder builder = new GetDatafeedStatsRequest.Builder();
-		fn.accept(builder);
-		return getDatafeedStats(builder.build());
+		return getDatafeedStats(fn.apply(new GetDatafeedStatsRequest.Builder()).build());
 	}
 
 	/**
@@ -1073,11 +1043,10 @@ public class ElasticsearchMlClient extends ApiClient<ElasticsearchTransport, Ela
 	 *      on elastic.co</a>
 	 */
 
-	public final GetDatafeedsResponse getDatafeeds(Consumer<GetDatafeedsRequest.Builder> fn)
+	public final GetDatafeedsResponse getDatafeeds(
+			Function<GetDatafeedsRequest.Builder, ObjectBuilder<GetDatafeedsRequest>> fn)
 			throws IOException, ElasticsearchException {
-		GetDatafeedsRequest.Builder builder = new GetDatafeedsRequest.Builder();
-		fn.accept(builder);
-		return getDatafeeds(builder.build());
+		return getDatafeeds(fn.apply(new GetDatafeedsRequest.Builder()).build());
 	}
 
 	/**
@@ -1121,11 +1090,9 @@ public class ElasticsearchMlClient extends ApiClient<ElasticsearchTransport, Ela
 	 *      on elastic.co</a>
 	 */
 
-	public final GetFiltersResponse getFilters(Consumer<GetFiltersRequest.Builder> fn)
+	public final GetFiltersResponse getFilters(Function<GetFiltersRequest.Builder, ObjectBuilder<GetFiltersRequest>> fn)
 			throws IOException, ElasticsearchException {
-		GetFiltersRequest.Builder builder = new GetFiltersRequest.Builder();
-		fn.accept(builder);
-		return getFilters(builder.build());
+		return getFilters(fn.apply(new GetFiltersRequest.Builder()).build());
 	}
 
 	/**
@@ -1170,11 +1137,10 @@ public class ElasticsearchMlClient extends ApiClient<ElasticsearchTransport, Ela
 	 *      on elastic.co</a>
 	 */
 
-	public final GetInfluencersResponse getInfluencers(Consumer<GetInfluencersRequest.Builder> fn)
+	public final GetInfluencersResponse getInfluencers(
+			Function<GetInfluencersRequest.Builder, ObjectBuilder<GetInfluencersRequest>> fn)
 			throws IOException, ElasticsearchException {
-		GetInfluencersRequest.Builder builder = new GetInfluencersRequest.Builder();
-		fn.accept(builder);
-		return getInfluencers(builder.build());
+		return getInfluencers(fn.apply(new GetInfluencersRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: ml.get_job_stats
@@ -1205,11 +1171,10 @@ public class ElasticsearchMlClient extends ApiClient<ElasticsearchTransport, Ela
 	 *      on elastic.co</a>
 	 */
 
-	public final GetJobStatsResponse getJobStats(Consumer<GetJobStatsRequest.Builder> fn)
+	public final GetJobStatsResponse getJobStats(
+			Function<GetJobStatsRequest.Builder, ObjectBuilder<GetJobStatsRequest>> fn)
 			throws IOException, ElasticsearchException {
-		GetJobStatsRequest.Builder builder = new GetJobStatsRequest.Builder();
-		fn.accept(builder);
-		return getJobStats(builder.build());
+		return getJobStats(fn.apply(new GetJobStatsRequest.Builder()).build());
 	}
 
 	/**
@@ -1253,11 +1218,9 @@ public class ElasticsearchMlClient extends ApiClient<ElasticsearchTransport, Ela
 	 *      on elastic.co</a>
 	 */
 
-	public final GetJobsResponse getJobs(Consumer<GetJobsRequest.Builder> fn)
+	public final GetJobsResponse getJobs(Function<GetJobsRequest.Builder, ObjectBuilder<GetJobsRequest>> fn)
 			throws IOException, ElasticsearchException {
-		GetJobsRequest.Builder builder = new GetJobsRequest.Builder();
-		fn.accept(builder);
-		return getJobs(builder.build());
+		return getJobs(fn.apply(new GetJobsRequest.Builder()).build());
 	}
 
 	/**
@@ -1302,11 +1265,10 @@ public class ElasticsearchMlClient extends ApiClient<ElasticsearchTransport, Ela
 	 *      on elastic.co</a>
 	 */
 
-	public final GetModelSnapshotsResponse getModelSnapshots(Consumer<GetModelSnapshotsRequest.Builder> fn)
+	public final GetModelSnapshotsResponse getModelSnapshots(
+			Function<GetModelSnapshotsRequest.Builder, ObjectBuilder<GetModelSnapshotsRequest>> fn)
 			throws IOException, ElasticsearchException {
-		GetModelSnapshotsRequest.Builder builder = new GetModelSnapshotsRequest.Builder();
-		fn.accept(builder);
-		return getModelSnapshots(builder.build());
+		return getModelSnapshots(fn.apply(new GetModelSnapshotsRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: ml.get_overall_buckets
@@ -1340,11 +1302,10 @@ public class ElasticsearchMlClient extends ApiClient<ElasticsearchTransport, Ela
 	 *      on elastic.co</a>
 	 */
 
-	public final GetOverallBucketsResponse getOverallBuckets(Consumer<GetOverallBucketsRequest.Builder> fn)
+	public final GetOverallBucketsResponse getOverallBuckets(
+			Function<GetOverallBucketsRequest.Builder, ObjectBuilder<GetOverallBucketsRequest>> fn)
 			throws IOException, ElasticsearchException {
-		GetOverallBucketsRequest.Builder builder = new GetOverallBucketsRequest.Builder();
-		fn.accept(builder);
-		return getOverallBuckets(builder.build());
+		return getOverallBuckets(fn.apply(new GetOverallBucketsRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: ml.get_records
@@ -1375,11 +1336,9 @@ public class ElasticsearchMlClient extends ApiClient<ElasticsearchTransport, Ela
 	 *      on elastic.co</a>
 	 */
 
-	public final GetRecordsResponse getRecords(Consumer<GetRecordsRequest.Builder> fn)
+	public final GetRecordsResponse getRecords(Function<GetRecordsRequest.Builder, ObjectBuilder<GetRecordsRequest>> fn)
 			throws IOException, ElasticsearchException {
-		GetRecordsRequest.Builder builder = new GetRecordsRequest.Builder();
-		fn.accept(builder);
-		return getRecords(builder.build());
+		return getRecords(fn.apply(new GetRecordsRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: ml.get_trained_models
@@ -1411,11 +1370,10 @@ public class ElasticsearchMlClient extends ApiClient<ElasticsearchTransport, Ela
 	 *      on elastic.co</a>
 	 */
 
-	public final GetTrainedModelsResponse getTrainedModels(Consumer<GetTrainedModelsRequest.Builder> fn)
+	public final GetTrainedModelsResponse getTrainedModels(
+			Function<GetTrainedModelsRequest.Builder, ObjectBuilder<GetTrainedModelsRequest>> fn)
 			throws IOException, ElasticsearchException {
-		GetTrainedModelsRequest.Builder builder = new GetTrainedModelsRequest.Builder();
-		fn.accept(builder);
-		return getTrainedModels(builder.build());
+		return getTrainedModels(fn.apply(new GetTrainedModelsRequest.Builder()).build());
 	}
 
 	/**
@@ -1460,11 +1418,10 @@ public class ElasticsearchMlClient extends ApiClient<ElasticsearchTransport, Ela
 	 *      on elastic.co</a>
 	 */
 
-	public final GetTrainedModelsStatsResponse getTrainedModelsStats(Consumer<GetTrainedModelsStatsRequest.Builder> fn)
+	public final GetTrainedModelsStatsResponse getTrainedModelsStats(
+			Function<GetTrainedModelsStatsRequest.Builder, ObjectBuilder<GetTrainedModelsStatsRequest>> fn)
 			throws IOException, ElasticsearchException {
-		GetTrainedModelsStatsRequest.Builder builder = new GetTrainedModelsStatsRequest.Builder();
-		fn.accept(builder);
-		return getTrainedModelsStats(builder.build());
+		return getTrainedModelsStats(fn.apply(new GetTrainedModelsStatsRequest.Builder()).build());
 	}
 
 	/**
@@ -1521,11 +1478,9 @@ public class ElasticsearchMlClient extends ApiClient<ElasticsearchTransport, Ela
 	 *      on elastic.co</a>
 	 */
 
-	public final OpenJobResponse openJob(Consumer<OpenJobRequest.Builder> fn)
+	public final OpenJobResponse openJob(Function<OpenJobRequest.Builder, ObjectBuilder<OpenJobRequest>> fn)
 			throws IOException, ElasticsearchException {
-		OpenJobRequest.Builder builder = new OpenJobRequest.Builder();
-		fn.accept(builder);
-		return openJob(builder.build());
+		return openJob(fn.apply(new OpenJobRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: ml.post_calendar_events
@@ -1557,11 +1512,10 @@ public class ElasticsearchMlClient extends ApiClient<ElasticsearchTransport, Ela
 	 *      on elastic.co</a>
 	 */
 
-	public final PostCalendarEventsResponse postCalendarEvents(Consumer<PostCalendarEventsRequest.Builder> fn)
+	public final PostCalendarEventsResponse postCalendarEvents(
+			Function<PostCalendarEventsRequest.Builder, ObjectBuilder<PostCalendarEventsRequest>> fn)
 			throws IOException, ElasticsearchException {
-		PostCalendarEventsRequest.Builder builder = new PostCalendarEventsRequest.Builder();
-		fn.accept(builder);
-		return postCalendarEvents(builder.build());
+		return postCalendarEvents(fn.apply(new PostCalendarEventsRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: ml.post_data
@@ -1593,11 +1547,10 @@ public class ElasticsearchMlClient extends ApiClient<ElasticsearchTransport, Ela
 	 *      on elastic.co</a>
 	 */
 
-	public final <TData> PostDataResponse postData(Consumer<PostDataRequest.Builder<TData>> fn)
+	public final <TData> PostDataResponse postData(
+			Function<PostDataRequest.Builder<TData>, ObjectBuilder<PostDataRequest<TData>>> fn)
 			throws IOException, ElasticsearchException {
-		PostDataRequest.Builder<TData> builder = new PostDataRequest.Builder<TData>();
-		fn.accept(builder);
-		return postData(builder.build());
+		return postData(fn.apply(new PostDataRequest.Builder<TData>()).build());
 	}
 
 	// ----- Endpoint: ml.preview_data_frame_analytics
@@ -1630,10 +1583,9 @@ public class ElasticsearchMlClient extends ApiClient<ElasticsearchTransport, Ela
 	 */
 
 	public final PreviewDataFrameAnalyticsResponse previewDataFrameAnalytics(
-			Consumer<PreviewDataFrameAnalyticsRequest.Builder> fn) throws IOException, ElasticsearchException {
-		PreviewDataFrameAnalyticsRequest.Builder builder = new PreviewDataFrameAnalyticsRequest.Builder();
-		fn.accept(builder);
-		return previewDataFrameAnalytics(builder.build());
+			Function<PreviewDataFrameAnalyticsRequest.Builder, ObjectBuilder<PreviewDataFrameAnalyticsRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return previewDataFrameAnalytics(fn.apply(new PreviewDataFrameAnalyticsRequest.Builder()).build());
 	}
 
 	/**
@@ -1681,11 +1633,9 @@ public class ElasticsearchMlClient extends ApiClient<ElasticsearchTransport, Ela
 	 */
 
 	public final <TDocument> PreviewDatafeedResponse<TDocument> previewDatafeed(
-			Consumer<PreviewDatafeedRequest.Builder> fn, Class<TDocument> tDocumentClass)
-			throws IOException, ElasticsearchException {
-		PreviewDatafeedRequest.Builder builder = new PreviewDatafeedRequest.Builder();
-		fn.accept(builder);
-		return previewDatafeed(builder.build(), tDocumentClass);
+			Function<PreviewDatafeedRequest.Builder, ObjectBuilder<PreviewDatafeedRequest>> fn,
+			Class<TDocument> tDocumentClass) throws IOException, ElasticsearchException {
+		return previewDatafeed(fn.apply(new PreviewDatafeedRequest.Builder()).build(), tDocumentClass);
 	}
 
 	// ----- Endpoint: ml.put_calendar
@@ -1716,11 +1666,10 @@ public class ElasticsearchMlClient extends ApiClient<ElasticsearchTransport, Ela
 	 *      on elastic.co</a>
 	 */
 
-	public final PutCalendarResponse putCalendar(Consumer<PutCalendarRequest.Builder> fn)
+	public final PutCalendarResponse putCalendar(
+			Function<PutCalendarRequest.Builder, ObjectBuilder<PutCalendarRequest>> fn)
 			throws IOException, ElasticsearchException {
-		PutCalendarRequest.Builder builder = new PutCalendarRequest.Builder();
-		fn.accept(builder);
-		return putCalendar(builder.build());
+		return putCalendar(fn.apply(new PutCalendarRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: ml.put_calendar_job
@@ -1752,11 +1701,10 @@ public class ElasticsearchMlClient extends ApiClient<ElasticsearchTransport, Ela
 	 *      on elastic.co</a>
 	 */
 
-	public final PutCalendarJobResponse putCalendarJob(Consumer<PutCalendarJobRequest.Builder> fn)
+	public final PutCalendarJobResponse putCalendarJob(
+			Function<PutCalendarJobRequest.Builder, ObjectBuilder<PutCalendarJobRequest>> fn)
 			throws IOException, ElasticsearchException {
-		PutCalendarJobRequest.Builder builder = new PutCalendarJobRequest.Builder();
-		fn.accept(builder);
-		return putCalendarJob(builder.build());
+		return putCalendarJob(fn.apply(new PutCalendarJobRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: ml.put_data_frame_analytics
@@ -1788,11 +1736,10 @@ public class ElasticsearchMlClient extends ApiClient<ElasticsearchTransport, Ela
 	 *      on elastic.co</a>
 	 */
 
-	public final PutDataFrameAnalyticsResponse putDataFrameAnalytics(Consumer<PutDataFrameAnalyticsRequest.Builder> fn)
+	public final PutDataFrameAnalyticsResponse putDataFrameAnalytics(
+			Function<PutDataFrameAnalyticsRequest.Builder, ObjectBuilder<PutDataFrameAnalyticsRequest>> fn)
 			throws IOException, ElasticsearchException {
-		PutDataFrameAnalyticsRequest.Builder builder = new PutDataFrameAnalyticsRequest.Builder();
-		fn.accept(builder);
-		return putDataFrameAnalytics(builder.build());
+		return putDataFrameAnalytics(fn.apply(new PutDataFrameAnalyticsRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: ml.put_datafeed
@@ -1823,11 +1770,10 @@ public class ElasticsearchMlClient extends ApiClient<ElasticsearchTransport, Ela
 	 *      on elastic.co</a>
 	 */
 
-	public final PutDatafeedResponse putDatafeed(Consumer<PutDatafeedRequest.Builder> fn)
+	public final PutDatafeedResponse putDatafeed(
+			Function<PutDatafeedRequest.Builder, ObjectBuilder<PutDatafeedRequest>> fn)
 			throws IOException, ElasticsearchException {
-		PutDatafeedRequest.Builder builder = new PutDatafeedRequest.Builder();
-		fn.accept(builder);
-		return putDatafeed(builder.build());
+		return putDatafeed(fn.apply(new PutDatafeedRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: ml.put_filter
@@ -1858,11 +1804,9 @@ public class ElasticsearchMlClient extends ApiClient<ElasticsearchTransport, Ela
 	 *      on elastic.co</a>
 	 */
 
-	public final PutFilterResponse putFilter(Consumer<PutFilterRequest.Builder> fn)
+	public final PutFilterResponse putFilter(Function<PutFilterRequest.Builder, ObjectBuilder<PutFilterRequest>> fn)
 			throws IOException, ElasticsearchException {
-		PutFilterRequest.Builder builder = new PutFilterRequest.Builder();
-		fn.accept(builder);
-		return putFilter(builder.build());
+		return putFilter(fn.apply(new PutFilterRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: ml.put_job
@@ -1893,10 +1837,9 @@ public class ElasticsearchMlClient extends ApiClient<ElasticsearchTransport, Ela
 	 *      on elastic.co</a>
 	 */
 
-	public final PutJobResponse putJob(Consumer<PutJobRequest.Builder> fn) throws IOException, ElasticsearchException {
-		PutJobRequest.Builder builder = new PutJobRequest.Builder();
-		fn.accept(builder);
-		return putJob(builder.build());
+	public final PutJobResponse putJob(Function<PutJobRequest.Builder, ObjectBuilder<PutJobRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return putJob(fn.apply(new PutJobRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: ml.put_trained_model
@@ -1928,11 +1871,10 @@ public class ElasticsearchMlClient extends ApiClient<ElasticsearchTransport, Ela
 	 *      on elastic.co</a>
 	 */
 
-	public final PutTrainedModelResponse putTrainedModel(Consumer<PutTrainedModelRequest.Builder> fn)
+	public final PutTrainedModelResponse putTrainedModel(
+			Function<PutTrainedModelRequest.Builder, ObjectBuilder<PutTrainedModelRequest>> fn)
 			throws IOException, ElasticsearchException {
-		PutTrainedModelRequest.Builder builder = new PutTrainedModelRequest.Builder();
-		fn.accept(builder);
-		return putTrainedModel(builder.build());
+		return putTrainedModel(fn.apply(new PutTrainedModelRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: ml.put_trained_model_alias
@@ -1966,11 +1908,10 @@ public class ElasticsearchMlClient extends ApiClient<ElasticsearchTransport, Ela
 	 *      on elastic.co</a>
 	 */
 
-	public final PutTrainedModelAliasResponse putTrainedModelAlias(Consumer<PutTrainedModelAliasRequest.Builder> fn)
+	public final PutTrainedModelAliasResponse putTrainedModelAlias(
+			Function<PutTrainedModelAliasRequest.Builder, ObjectBuilder<PutTrainedModelAliasRequest>> fn)
 			throws IOException, ElasticsearchException {
-		PutTrainedModelAliasRequest.Builder builder = new PutTrainedModelAliasRequest.Builder();
-		fn.accept(builder);
-		return putTrainedModelAlias(builder.build());
+		return putTrainedModelAlias(fn.apply(new PutTrainedModelAliasRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: ml.reset_job
@@ -2001,11 +1942,9 @@ public class ElasticsearchMlClient extends ApiClient<ElasticsearchTransport, Ela
 	 *      on elastic.co</a>
 	 */
 
-	public final ResetJobResponse resetJob(Consumer<ResetJobRequest.Builder> fn)
+	public final ResetJobResponse resetJob(Function<ResetJobRequest.Builder, ObjectBuilder<ResetJobRequest>> fn)
 			throws IOException, ElasticsearchException {
-		ResetJobRequest.Builder builder = new ResetJobRequest.Builder();
-		fn.accept(builder);
-		return resetJob(builder.build());
+		return resetJob(fn.apply(new ResetJobRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: ml.revert_model_snapshot
@@ -2037,11 +1976,10 @@ public class ElasticsearchMlClient extends ApiClient<ElasticsearchTransport, Ela
 	 *      on elastic.co</a>
 	 */
 
-	public final RevertModelSnapshotResponse revertModelSnapshot(Consumer<RevertModelSnapshotRequest.Builder> fn)
+	public final RevertModelSnapshotResponse revertModelSnapshot(
+			Function<RevertModelSnapshotRequest.Builder, ObjectBuilder<RevertModelSnapshotRequest>> fn)
 			throws IOException, ElasticsearchException {
-		RevertModelSnapshotRequest.Builder builder = new RevertModelSnapshotRequest.Builder();
-		fn.accept(builder);
-		return revertModelSnapshot(builder.build());
+		return revertModelSnapshot(fn.apply(new RevertModelSnapshotRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: ml.set_upgrade_mode
@@ -2075,11 +2013,10 @@ public class ElasticsearchMlClient extends ApiClient<ElasticsearchTransport, Ela
 	 *      on elastic.co</a>
 	 */
 
-	public final SetUpgradeModeResponse setUpgradeMode(Consumer<SetUpgradeModeRequest.Builder> fn)
+	public final SetUpgradeModeResponse setUpgradeMode(
+			Function<SetUpgradeModeRequest.Builder, ObjectBuilder<SetUpgradeModeRequest>> fn)
 			throws IOException, ElasticsearchException {
-		SetUpgradeModeRequest.Builder builder = new SetUpgradeModeRequest.Builder();
-		fn.accept(builder);
-		return setUpgradeMode(builder.build());
+		return setUpgradeMode(fn.apply(new SetUpgradeModeRequest.Builder()).build());
 	}
 
 	/**
@@ -2126,10 +2063,9 @@ public class ElasticsearchMlClient extends ApiClient<ElasticsearchTransport, Ela
 	 */
 
 	public final StartDataFrameAnalyticsResponse startDataFrameAnalytics(
-			Consumer<StartDataFrameAnalyticsRequest.Builder> fn) throws IOException, ElasticsearchException {
-		StartDataFrameAnalyticsRequest.Builder builder = new StartDataFrameAnalyticsRequest.Builder();
-		fn.accept(builder);
-		return startDataFrameAnalytics(builder.build());
+			Function<StartDataFrameAnalyticsRequest.Builder, ObjectBuilder<StartDataFrameAnalyticsRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return startDataFrameAnalytics(fn.apply(new StartDataFrameAnalyticsRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: ml.start_datafeed
@@ -2161,11 +2097,10 @@ public class ElasticsearchMlClient extends ApiClient<ElasticsearchTransport, Ela
 	 *      on elastic.co</a>
 	 */
 
-	public final StartDatafeedResponse startDatafeed(Consumer<StartDatafeedRequest.Builder> fn)
+	public final StartDatafeedResponse startDatafeed(
+			Function<StartDatafeedRequest.Builder, ObjectBuilder<StartDatafeedRequest>> fn)
 			throws IOException, ElasticsearchException {
-		StartDatafeedRequest.Builder builder = new StartDatafeedRequest.Builder();
-		fn.accept(builder);
-		return startDatafeed(builder.build());
+		return startDatafeed(fn.apply(new StartDatafeedRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: ml.stop_data_frame_analytics
@@ -2198,10 +2133,9 @@ public class ElasticsearchMlClient extends ApiClient<ElasticsearchTransport, Ela
 	 */
 
 	public final StopDataFrameAnalyticsResponse stopDataFrameAnalytics(
-			Consumer<StopDataFrameAnalyticsRequest.Builder> fn) throws IOException, ElasticsearchException {
-		StopDataFrameAnalyticsRequest.Builder builder = new StopDataFrameAnalyticsRequest.Builder();
-		fn.accept(builder);
-		return stopDataFrameAnalytics(builder.build());
+			Function<StopDataFrameAnalyticsRequest.Builder, ObjectBuilder<StopDataFrameAnalyticsRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return stopDataFrameAnalytics(fn.apply(new StopDataFrameAnalyticsRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: ml.stop_datafeed
@@ -2232,11 +2166,10 @@ public class ElasticsearchMlClient extends ApiClient<ElasticsearchTransport, Ela
 	 *      on elastic.co</a>
 	 */
 
-	public final StopDatafeedResponse stopDatafeed(Consumer<StopDatafeedRequest.Builder> fn)
+	public final StopDatafeedResponse stopDatafeed(
+			Function<StopDatafeedRequest.Builder, ObjectBuilder<StopDatafeedRequest>> fn)
 			throws IOException, ElasticsearchException {
-		StopDatafeedRequest.Builder builder = new StopDatafeedRequest.Builder();
-		fn.accept(builder);
-		return stopDatafeed(builder.build());
+		return stopDatafeed(fn.apply(new StopDatafeedRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: ml.update_data_frame_analytics
@@ -2269,10 +2202,9 @@ public class ElasticsearchMlClient extends ApiClient<ElasticsearchTransport, Ela
 	 */
 
 	public final UpdateDataFrameAnalyticsResponse updateDataFrameAnalytics(
-			Consumer<UpdateDataFrameAnalyticsRequest.Builder> fn) throws IOException, ElasticsearchException {
-		UpdateDataFrameAnalyticsRequest.Builder builder = new UpdateDataFrameAnalyticsRequest.Builder();
-		fn.accept(builder);
-		return updateDataFrameAnalytics(builder.build());
+			Function<UpdateDataFrameAnalyticsRequest.Builder, ObjectBuilder<UpdateDataFrameAnalyticsRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return updateDataFrameAnalytics(fn.apply(new UpdateDataFrameAnalyticsRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: ml.update_datafeed
@@ -2304,11 +2236,10 @@ public class ElasticsearchMlClient extends ApiClient<ElasticsearchTransport, Ela
 	 *      on elastic.co</a>
 	 */
 
-	public final UpdateDatafeedResponse updateDatafeed(Consumer<UpdateDatafeedRequest.Builder> fn)
+	public final UpdateDatafeedResponse updateDatafeed(
+			Function<UpdateDatafeedRequest.Builder, ObjectBuilder<UpdateDatafeedRequest>> fn)
 			throws IOException, ElasticsearchException {
-		UpdateDatafeedRequest.Builder builder = new UpdateDatafeedRequest.Builder();
-		fn.accept(builder);
-		return updateDatafeed(builder.build());
+		return updateDatafeed(fn.apply(new UpdateDatafeedRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: ml.update_filter
@@ -2339,11 +2270,10 @@ public class ElasticsearchMlClient extends ApiClient<ElasticsearchTransport, Ela
 	 *      on elastic.co</a>
 	 */
 
-	public final UpdateFilterResponse updateFilter(Consumer<UpdateFilterRequest.Builder> fn)
+	public final UpdateFilterResponse updateFilter(
+			Function<UpdateFilterRequest.Builder, ObjectBuilder<UpdateFilterRequest>> fn)
 			throws IOException, ElasticsearchException {
-		UpdateFilterRequest.Builder builder = new UpdateFilterRequest.Builder();
-		fn.accept(builder);
-		return updateFilter(builder.build());
+		return updateFilter(fn.apply(new UpdateFilterRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: ml.update_job
@@ -2374,11 +2304,9 @@ public class ElasticsearchMlClient extends ApiClient<ElasticsearchTransport, Ela
 	 *      on elastic.co</a>
 	 */
 
-	public final UpdateJobResponse updateJob(Consumer<UpdateJobRequest.Builder> fn)
+	public final UpdateJobResponse updateJob(Function<UpdateJobRequest.Builder, ObjectBuilder<UpdateJobRequest>> fn)
 			throws IOException, ElasticsearchException {
-		UpdateJobRequest.Builder builder = new UpdateJobRequest.Builder();
-		fn.accept(builder);
-		return updateJob(builder.build());
+		return updateJob(fn.apply(new UpdateJobRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: ml.update_model_snapshot
@@ -2410,11 +2338,10 @@ public class ElasticsearchMlClient extends ApiClient<ElasticsearchTransport, Ela
 	 *      on elastic.co</a>
 	 */
 
-	public final UpdateModelSnapshotResponse updateModelSnapshot(Consumer<UpdateModelSnapshotRequest.Builder> fn)
+	public final UpdateModelSnapshotResponse updateModelSnapshot(
+			Function<UpdateModelSnapshotRequest.Builder, ObjectBuilder<UpdateModelSnapshotRequest>> fn)
 			throws IOException, ElasticsearchException {
-		UpdateModelSnapshotRequest.Builder builder = new UpdateModelSnapshotRequest.Builder();
-		fn.accept(builder);
-		return updateModelSnapshot(builder.build());
+		return updateModelSnapshot(fn.apply(new UpdateModelSnapshotRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: ml.upgrade_job_snapshot
@@ -2446,11 +2373,10 @@ public class ElasticsearchMlClient extends ApiClient<ElasticsearchTransport, Ela
 	 *      on elastic.co</a>
 	 */
 
-	public final UpgradeJobSnapshotResponse upgradeJobSnapshot(Consumer<UpgradeJobSnapshotRequest.Builder> fn)
+	public final UpgradeJobSnapshotResponse upgradeJobSnapshot(
+			Function<UpgradeJobSnapshotRequest.Builder, ObjectBuilder<UpgradeJobSnapshotRequest>> fn)
 			throws IOException, ElasticsearchException {
-		UpgradeJobSnapshotRequest.Builder builder = new UpgradeJobSnapshotRequest.Builder();
-		fn.accept(builder);
-		return upgradeJobSnapshot(builder.build());
+		return upgradeJobSnapshot(fn.apply(new UpgradeJobSnapshotRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: ml.validate
@@ -2481,11 +2407,9 @@ public class ElasticsearchMlClient extends ApiClient<ElasticsearchTransport, Ela
 	 *      on elastic.co</a>
 	 */
 
-	public final ValidateResponse validate(Consumer<ValidateRequest.Builder> fn)
+	public final ValidateResponse validate(Function<ValidateRequest.Builder, ObjectBuilder<ValidateRequest>> fn)
 			throws IOException, ElasticsearchException {
-		ValidateRequest.Builder builder = new ValidateRequest.Builder();
-		fn.accept(builder);
-		return validate(builder.build());
+		return validate(fn.apply(new ValidateRequest.Builder()).build());
 	}
 
 	/**
@@ -2530,11 +2454,10 @@ public class ElasticsearchMlClient extends ApiClient<ElasticsearchTransport, Ela
 	 *      on elastic.co</a>
 	 */
 
-	public final ValidateDetectorResponse validateDetector(Consumer<ValidateDetectorRequest.Builder> fn)
+	public final ValidateDetectorResponse validateDetector(
+			Function<ValidateDetectorRequest.Builder, ObjectBuilder<ValidateDetectorRequest>> fn)
 			throws IOException, ElasticsearchException {
-		ValidateDetectorRequest.Builder builder = new ValidateDetectorRequest.Builder();
-		fn.accept(builder);
-		return validateDetector(builder.build());
+		return validateDetector(fn.apply(new ValidateDetectorRequest.Builder()).build());
 	}
 
 	/**

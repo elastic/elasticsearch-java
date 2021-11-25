@@ -29,7 +29,6 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.MapBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
@@ -38,7 +37,6 @@ import java.lang.Integer;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -58,10 +56,8 @@ public class ClusterIngest implements JsonpSerializable {
 
 	}
 
-	public static ClusterIngest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static ClusterIngest of(Function<Builder, ObjectBuilder<ClusterIngest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -126,15 +122,36 @@ public class ClusterIngest implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code processor_stats}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>processorStats</code>. Use
+		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
+		 * <code>processorStats</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetMap()
 		 */
-		public final Builder processorStats(Map<String, ClusterProcessor> value) {
-			this.processorStats = value;
+		public final Builder processorStats(Map<String, ClusterProcessor> map) {
+			this.processorStats = _mapPutAll(this.processorStats, map);
 			return this;
 		}
 
-		public final Builder processorStats(
-				Function<MapBuilder<String, ClusterProcessor, ClusterProcessor.Builder>, ObjectBuilder<Map<String, ClusterProcessor>>> fn) {
-			return processorStats(fn.apply(new MapBuilder<>(ClusterProcessor.Builder::new)).build());
+		/**
+		 * Required - API name: {@code processor_stats}
+		 * <p>
+		 * Adds an entry to <code>processorStats</code>.
+		 */
+		public final Builder processorStats(String key, ClusterProcessor value) {
+			this.processorStats = _mapPut(this.processorStats, key, value);
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code processor_stats}
+		 * <p>
+		 * Adds an entry to <code>processorStats</code> using a builder lambda.
+		 */
+		public final Builder processorStats(String key,
+				Function<ClusterProcessor.Builder, ObjectBuilder<ClusterProcessor>> fn) {
+			return processorStats(key, fn.apply(new ClusterProcessor.Builder()).build());
 		}
 
 		/**

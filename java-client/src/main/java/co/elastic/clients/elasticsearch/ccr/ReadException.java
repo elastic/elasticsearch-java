@@ -37,7 +37,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.Long;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ccr._types.ReadException
@@ -59,10 +59,8 @@ public class ReadException implements JsonpSerializable {
 
 	}
 
-	public static ReadException of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static ReadException of(Function<Builder, ObjectBuilder<ReadException>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -131,10 +129,8 @@ public class ReadException implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code exception}
 		 */
-		public final Builder exception(Consumer<ErrorCause.Builder> fn) {
-			ErrorCause.Builder builder = new ErrorCause.Builder();
-			fn.accept(builder);
-			return this.exception(builder.build());
+		public final Builder exception(Function<ErrorCause.Builder, ObjectBuilder<ErrorCause>> fn) {
+			return this.exception(fn.apply(new ErrorCause.Builder()).build());
 		}
 
 		/**

@@ -30,17 +30,14 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Double;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -72,10 +69,8 @@ public class CompletionContext implements JsonpSerializable {
 
 	}
 
-	public static CompletionContext of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static CompletionContext of(Function<Builder, ObjectBuilder<CompletionContext>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -197,34 +192,41 @@ public class CompletionContext implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code context}
 		 */
-		public final Builder context(Consumer<Context.Builder> fn) {
-			Context.Builder builder = new Context.Builder();
-			fn.accept(builder);
-			return this.context(builder.build());
+		public final Builder context(Function<Context.Builder, ObjectBuilder<Context>> fn) {
+			return this.context(fn.apply(new Context.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code neighbours}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>neighbours</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>neighbours</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder neighbours(@Nullable List<GeoHashPrecision> value) {
-			this.neighbours = value;
+		public final Builder neighbours(List<GeoHashPrecision> list) {
+			this.neighbours = _listAddAll(this.neighbours, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code neighbours}
+		 * <p>
+		 * Adds one or more values to <code>neighbours</code>.
 		 */
-		public final Builder neighbours(GeoHashPrecision... value) {
-			this.neighbours = Arrays.asList(value);
+		public final Builder neighbours(GeoHashPrecision value, GeoHashPrecision... values) {
+			this.neighbours = _listAdd(this.neighbours, value, values);
 			return this;
 		}
 
 		/**
 		 * API name: {@code neighbours}
+		 * <p>
+		 * Adds a value to <code>neighbours</code> using a builder lambda.
 		 */
-		public final Builder neighbours(
-				Function<ListBuilder<GeoHashPrecision, GeoHashPrecision.Builder>, ObjectBuilder<List<GeoHashPrecision>>> fn) {
-			return neighbours(fn.apply(new ListBuilder<>(GeoHashPrecision.Builder::new)).build());
+		public final Builder neighbours(Function<GeoHashPrecision.Builder, ObjectBuilder<GeoHashPrecision>> fn) {
+			return neighbours(fn.apply(new GeoHashPrecision.Builder()).build());
 		}
 
 		/**
@@ -238,10 +240,8 @@ public class CompletionContext implements JsonpSerializable {
 		/**
 		 * API name: {@code precision}
 		 */
-		public final Builder precision(Consumer<GeoHashPrecision.Builder> fn) {
-			GeoHashPrecision.Builder builder = new GeoHashPrecision.Builder();
-			fn.accept(builder);
-			return this.precision(builder.build());
+		public final Builder precision(Function<GeoHashPrecision.Builder, ObjectBuilder<GeoHashPrecision>> fn) {
+			return this.precision(fn.apply(new GeoHashPrecision.Builder()).build());
 		}
 
 		/**

@@ -36,18 +36,15 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -90,10 +87,8 @@ public class PutRoleRequest extends RequestBase implements JsonpSerializable {
 
 	}
 
-	public static PutRoleRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static PutRoleRequest of(Function<Builder, ObjectBuilder<PutRoleRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -307,9 +302,15 @@ public class PutRoleRequest extends RequestBase implements JsonpSerializable {
 		 * A list of application privilege entries.
 		 * <p>
 		 * API name: {@code applications}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>applications</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>applications</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder applications(@Nullable List<ApplicationPrivileges> value) {
-			this.applications = value;
+		public final Builder applications(List<ApplicationPrivileges> list) {
+			this.applications = _listAddAll(this.applications, list);
 			return this;
 		}
 
@@ -317,9 +318,11 @@ public class PutRoleRequest extends RequestBase implements JsonpSerializable {
 		 * A list of application privilege entries.
 		 * <p>
 		 * API name: {@code applications}
+		 * <p>
+		 * Adds one or more values to <code>applications</code>.
 		 */
-		public final Builder applications(ApplicationPrivileges... value) {
-			this.applications = Arrays.asList(value);
+		public final Builder applications(ApplicationPrivileges value, ApplicationPrivileges... values) {
+			this.applications = _listAdd(this.applications, value, values);
 			return this;
 		}
 
@@ -327,10 +330,12 @@ public class PutRoleRequest extends RequestBase implements JsonpSerializable {
 		 * A list of application privilege entries.
 		 * <p>
 		 * API name: {@code applications}
+		 * <p>
+		 * Adds a value to <code>applications</code> using a builder lambda.
 		 */
 		public final Builder applications(
-				Function<ListBuilder<ApplicationPrivileges, ApplicationPrivileges.Builder>, ObjectBuilder<List<ApplicationPrivileges>>> fn) {
-			return applications(fn.apply(new ListBuilder<>(ApplicationPrivileges.Builder::new)).build());
+				Function<ApplicationPrivileges.Builder, ObjectBuilder<ApplicationPrivileges>> fn) {
+			return applications(fn.apply(new ApplicationPrivileges.Builder()).build());
 		}
 
 		/**
@@ -338,9 +343,15 @@ public class PutRoleRequest extends RequestBase implements JsonpSerializable {
 		 * actions for users with this role.
 		 * <p>
 		 * API name: {@code cluster}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>cluster</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>cluster</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder cluster(@Nullable List<ClusterPrivilege> value) {
-			this.cluster = value;
+		public final Builder cluster(List<ClusterPrivilege> list) {
+			this.cluster = _listAddAll(this.cluster, list);
 			return this;
 		}
 
@@ -349,9 +360,11 @@ public class PutRoleRequest extends RequestBase implements JsonpSerializable {
 		 * actions for users with this role.
 		 * <p>
 		 * API name: {@code cluster}
+		 * <p>
+		 * Adds one or more values to <code>cluster</code>.
 		 */
-		public final Builder cluster(ClusterPrivilege... value) {
-			this.cluster = Arrays.asList(value);
+		public final Builder cluster(ClusterPrivilege value, ClusterPrivilege... values) {
+			this.cluster = _listAdd(this.cluster, value, values);
 			return this;
 		}
 
@@ -361,9 +374,29 @@ public class PutRoleRequest extends RequestBase implements JsonpSerializable {
 		 * limited to the management of application privileges.
 		 * <p>
 		 * API name: {@code global}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>global</code>. Use
+		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
+		 * <code>global</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetMap()
 		 */
-		public final Builder global(@Nullable Map<String, JsonData> value) {
-			this.global = value;
+		public final Builder global(Map<String, JsonData> map) {
+			this.global = _mapPutAll(this.global, map);
+			return this;
+		}
+
+		/**
+		 * An object defining global privileges. A global privilege is a form of cluster
+		 * privilege that is request-aware. Support for global privileges is currently
+		 * limited to the management of application privileges.
+		 * <p>
+		 * API name: {@code global}
+		 * <p>
+		 * Adds an entry to <code>global</code>.
+		 */
+		public final Builder global(String key, JsonData value) {
+			this.global = _mapPut(this.global, key, value);
 			return this;
 		}
 
@@ -371,9 +404,15 @@ public class PutRoleRequest extends RequestBase implements JsonpSerializable {
 		 * A list of indices permissions entries.
 		 * <p>
 		 * API name: {@code indices}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>indices</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>indices</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder indices(@Nullable List<IndicesPrivileges> value) {
-			this.indices = value;
+		public final Builder indices(List<IndicesPrivileges> list) {
+			this.indices = _listAddAll(this.indices, list);
 			return this;
 		}
 
@@ -381,9 +420,11 @@ public class PutRoleRequest extends RequestBase implements JsonpSerializable {
 		 * A list of indices permissions entries.
 		 * <p>
 		 * API name: {@code indices}
+		 * <p>
+		 * Adds one or more values to <code>indices</code>.
 		 */
-		public final Builder indices(IndicesPrivileges... value) {
-			this.indices = Arrays.asList(value);
+		public final Builder indices(IndicesPrivileges value, IndicesPrivileges... values) {
+			this.indices = _listAdd(this.indices, value, values);
 			return this;
 		}
 
@@ -391,10 +432,11 @@ public class PutRoleRequest extends RequestBase implements JsonpSerializable {
 		 * A list of indices permissions entries.
 		 * <p>
 		 * API name: {@code indices}
+		 * <p>
+		 * Adds a value to <code>indices</code> using a builder lambda.
 		 */
-		public final Builder indices(
-				Function<ListBuilder<IndicesPrivileges, IndicesPrivileges.Builder>, ObjectBuilder<List<IndicesPrivileges>>> fn) {
-			return indices(fn.apply(new ListBuilder<>(IndicesPrivileges.Builder::new)).build());
+		public final Builder indices(Function<IndicesPrivileges.Builder, ObjectBuilder<IndicesPrivileges>> fn) {
+			return indices(fn.apply(new IndicesPrivileges.Builder()).build());
 		}
 
 		/**
@@ -402,9 +444,28 @@ public class PutRoleRequest extends RequestBase implements JsonpSerializable {
 		 * underscore (<code>_</code>) are reserved for system use.
 		 * <p>
 		 * API name: {@code metadata}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>metadata</code>. Use
+		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
+		 * <code>metadata</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetMap()
 		 */
-		public final Builder metadata(@Nullable Map<String, JsonData> value) {
-			this.metadata = value;
+		public final Builder metadata(Map<String, JsonData> map) {
+			this.metadata = _mapPutAll(this.metadata, map);
+			return this;
+		}
+
+		/**
+		 * Optional metadata. Within the metadata object, keys that begin with an
+		 * underscore (<code>_</code>) are reserved for system use.
+		 * <p>
+		 * API name: {@code metadata}
+		 * <p>
+		 * Adds an entry to <code>metadata</code>.
+		 */
+		public final Builder metadata(String key, JsonData value) {
+			this.metadata = _mapPut(this.metadata, key, value);
 			return this;
 		}
 
@@ -435,9 +496,15 @@ public class PutRoleRequest extends RequestBase implements JsonpSerializable {
 		 * A list of users that the owners of this role can impersonate.
 		 * <p>
 		 * API name: {@code run_as}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>runAs</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>runAs</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder runAs(@Nullable List<String> value) {
-			this.runAs = value;
+		public final Builder runAs(List<String> list) {
+			this.runAs = _listAddAll(this.runAs, list);
 			return this;
 		}
 
@@ -445,9 +512,11 @@ public class PutRoleRequest extends RequestBase implements JsonpSerializable {
 		 * A list of users that the owners of this role can impersonate.
 		 * <p>
 		 * API name: {@code run_as}
+		 * <p>
+		 * Adds one or more values to <code>runAs</code>.
 		 */
-		public final Builder runAs(String... value) {
-			this.runAs = Arrays.asList(value);
+		public final Builder runAs(String value, String... values) {
+			this.runAs = _listAdd(this.runAs, value, values);
 			return this;
 		}
 
@@ -476,10 +545,9 @@ public class PutRoleRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code transient_metadata}
 		 */
-		public final Builder transientMetadata(Consumer<TransientMetadata.Builder> fn) {
-			TransientMetadata.Builder builder = new TransientMetadata.Builder();
-			fn.accept(builder);
-			return this.transientMetadata(builder.build());
+		public final Builder transientMetadata(
+				Function<TransientMetadata.Builder, ObjectBuilder<TransientMetadata>> fn) {
+			return this.transientMetadata(fn.apply(new TransientMetadata.Builder()).build());
 		}
 
 		/**

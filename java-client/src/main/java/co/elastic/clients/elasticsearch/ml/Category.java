@@ -36,10 +36,9 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.lang.Number;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.Category
@@ -99,10 +98,8 @@ public class Category implements JsonpSerializable {
 
 	}
 
-	public static Category of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static Category of(Function<Builder, ObjectBuilder<Category>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -381,9 +378,15 @@ public class Category implements JsonpSerializable {
 		 * Required - A list of examples of actual values that matched the category.
 		 * <p>
 		 * API name: {@code examples}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>examples</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>examples</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder examples(List<String> value) {
-			this.examples = value;
+		public final Builder examples(List<String> list) {
+			this.examples = _listAddAll(this.examples, list);
 			return this;
 		}
 
@@ -391,9 +394,11 @@ public class Category implements JsonpSerializable {
 		 * Required - A list of examples of actual values that matched the category.
 		 * <p>
 		 * API name: {@code examples}
+		 * <p>
+		 * Adds one or more values to <code>examples</code>.
 		 */
-		public final Builder examples(String... value) {
-			this.examples = Arrays.asList(value);
+		public final Builder examples(String value, String... values) {
+			this.examples = _listAdd(this.examples, value, values);
 			return this;
 		}
 
@@ -497,9 +502,15 @@ public class Category implements JsonpSerializable {
 		 * the latest accurate list of categories after a job _flush or _close
 		 * <p>
 		 * API name: {@code preferred_to_categories}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>preferredToCategories</code>.
+		 * Use <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>preferredToCategories</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder preferredToCategories(@Nullable List<String> value) {
-			this.preferredToCategories = value;
+		public final Builder preferredToCategories(List<String> list) {
+			this.preferredToCategories = _listAddAll(this.preferredToCategories, list);
 			return this;
 		}
 
@@ -510,9 +521,11 @@ public class Category implements JsonpSerializable {
 		 * the latest accurate list of categories after a job _flush or _close
 		 * <p>
 		 * API name: {@code preferred_to_categories}
+		 * <p>
+		 * Adds one or more values to <code>preferredToCategories</code>.
 		 */
-		public final Builder preferredToCategories(String... value) {
-			this.preferredToCategories = Arrays.asList(value);
+		public final Builder preferredToCategories(String value, String... values) {
+			this.preferredToCategories = _listAdd(this.preferredToCategories, value, values);
 			return this;
 		}
 

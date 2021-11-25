@@ -29,7 +29,6 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.MapBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
@@ -37,7 +36,6 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -57,10 +55,8 @@ public class Ingest implements JsonpSerializable {
 
 	}
 
-	public static Ingest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static Ingest of(Function<Builder, ObjectBuilder<Ingest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -116,15 +112,35 @@ public class Ingest implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code pipelines}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>pipelines</code>. Use
+		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
+		 * <code>pipelines</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetMap()
 		 */
-		public final Builder pipelines(Map<String, IngestTotal> value) {
-			this.pipelines = value;
+		public final Builder pipelines(Map<String, IngestTotal> map) {
+			this.pipelines = _mapPutAll(this.pipelines, map);
 			return this;
 		}
 
-		public final Builder pipelines(
-				Function<MapBuilder<String, IngestTotal, IngestTotal.Builder>, ObjectBuilder<Map<String, IngestTotal>>> fn) {
-			return pipelines(fn.apply(new MapBuilder<>(IngestTotal.Builder::new)).build());
+		/**
+		 * Required - API name: {@code pipelines}
+		 * <p>
+		 * Adds an entry to <code>pipelines</code>.
+		 */
+		public final Builder pipelines(String key, IngestTotal value) {
+			this.pipelines = _mapPut(this.pipelines, key, value);
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code pipelines}
+		 * <p>
+		 * Adds an entry to <code>pipelines</code> using a builder lambda.
+		 */
+		public final Builder pipelines(String key, Function<IngestTotal.Builder, ObjectBuilder<IngestTotal>> fn) {
+			return pipelines(key, fn.apply(new IngestTotal.Builder()).build());
 		}
 
 		/**
@@ -138,10 +154,8 @@ public class Ingest implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code total}
 		 */
-		public final Builder total(Consumer<IngestTotal.Builder> fn) {
-			IngestTotal.Builder builder = new IngestTotal.Builder();
-			fn.accept(builder);
-			return this.total(builder.build());
+		public final Builder total(Function<IngestTotal.Builder, ObjectBuilder<IngestTotal>> fn) {
+			return this.total(fn.apply(new IngestTotal.Builder()).build());
 		}
 
 		/**

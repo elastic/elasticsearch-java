@@ -34,7 +34,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ingest._types.SortProcessor
@@ -57,10 +57,8 @@ public class SortProcessor extends ProcessorBase implements ProcessorVariant {
 
 	}
 
-	public static SortProcessor of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static SortProcessor of(Function<Builder, ObjectBuilder<SortProcessor>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**

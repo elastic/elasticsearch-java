@@ -36,7 +36,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: nodes.info.NodeThreadPoolInfo
@@ -71,10 +71,8 @@ public class NodeThreadPoolInfo implements JsonpSerializable {
 
 	}
 
-	public static NodeThreadPoolInfo of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static NodeThreadPoolInfo of(Function<Builder, ObjectBuilder<NodeThreadPoolInfo>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**

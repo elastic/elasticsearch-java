@@ -38,7 +38,7 @@ import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: eql._types.EqlSearchResponseBase
@@ -269,10 +269,8 @@ public abstract class EqlSearchResponseBase<TEvent> implements JsonpSerializable
 		 * <p>
 		 * API name: {@code hits}
 		 */
-		public final BuilderT hits(Consumer<EqlHits.Builder<TEvent>> fn) {
-			EqlHits.Builder<TEvent> builder = new EqlHits.Builder<TEvent>();
-			fn.accept(builder);
-			return this.hits(builder.build());
+		public final BuilderT hits(Function<EqlHits.Builder<TEvent>, ObjectBuilder<EqlHits<TEvent>>> fn) {
+			return this.hits(fn.apply(new EqlHits.Builder<TEvent>()).build());
 		}
 
 		/**

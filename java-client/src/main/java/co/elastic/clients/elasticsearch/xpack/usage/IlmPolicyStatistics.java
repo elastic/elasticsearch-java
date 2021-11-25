@@ -36,7 +36,7 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: xpack.usage.IlmPolicyStatistics
@@ -55,10 +55,8 @@ public class IlmPolicyStatistics implements JsonpSerializable {
 
 	}
 
-	public static IlmPolicyStatistics of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static IlmPolicyStatistics of(Function<Builder, ObjectBuilder<IlmPolicyStatistics>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -123,10 +121,8 @@ public class IlmPolicyStatistics implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code phases}
 		 */
-		public final Builder phases(Consumer<Phases.Builder> fn) {
-			Phases.Builder builder = new Phases.Builder();
-			fn.accept(builder);
-			return this.phases(builder.build());
+		public final Builder phases(Function<Phases.Builder, ObjectBuilder<Phases>> fn) {
+			return this.phases(fn.apply(new Phases.Builder()).build());
 		}
 
 		/**

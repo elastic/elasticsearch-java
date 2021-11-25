@@ -36,11 +36,10 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: slm._types.Configuration
@@ -74,10 +73,8 @@ public class SlmConfiguration implements JsonpSerializable {
 
 	}
 
-	public static SlmConfiguration of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static SlmConfiguration of(Function<Builder, ObjectBuilder<SlmConfiguration>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -254,9 +251,15 @@ public class SlmConfiguration implements JsonpSerializable {
 		 * provided, the snapshot only includes the specified data streams and clusters.
 		 * <p>
 		 * API name: {@code indices}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>indices</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>indices</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder indices(List<String> value) {
-			this.indices = value;
+		public final Builder indices(List<String> list) {
+			this.indices = _listAddAll(this.indices, list);
 			return this;
 		}
 
@@ -267,9 +270,11 @@ public class SlmConfiguration implements JsonpSerializable {
 		 * provided, the snapshot only includes the specified data streams and clusters.
 		 * <p>
 		 * API name: {@code indices}
+		 * <p>
+		 * Adds one or more values to <code>indices</code>.
 		 */
-		public final Builder indices(String... value) {
-			this.indices = Arrays.asList(value);
+		public final Builder indices(String value, String... values) {
+			this.indices = _listAdd(this.indices, value, values);
 			return this;
 		}
 
@@ -294,9 +299,15 @@ public class SlmConfiguration implements JsonpSerializable {
 		 * true, or no feature states if include_global_state is false.
 		 * <p>
 		 * API name: {@code feature_states}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>featureStates</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>featureStates</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder featureStates(@Nullable List<String> value) {
-			this.featureStates = value;
+		public final Builder featureStates(List<String> list) {
+			this.featureStates = _listAddAll(this.featureStates, list);
 			return this;
 		}
 
@@ -311,9 +322,11 @@ public class SlmConfiguration implements JsonpSerializable {
 		 * true, or no feature states if include_global_state is false.
 		 * <p>
 		 * API name: {@code feature_states}
+		 * <p>
+		 * Adds one or more values to <code>featureStates</code>.
 		 */
-		public final Builder featureStates(String... value) {
-			this.featureStates = Arrays.asList(value);
+		public final Builder featureStates(String value, String... values) {
+			this.featureStates = _listAdd(this.featureStates, value, values);
 			return this;
 		}
 
@@ -323,9 +336,29 @@ public class SlmConfiguration implements JsonpSerializable {
 		 * than 1024 bytes.
 		 * <p>
 		 * API name: {@code metadata}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>metadata</code>. Use
+		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
+		 * <code>metadata</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetMap()
 		 */
-		public final Builder metadata(@Nullable Map<String, JsonData> value) {
-			this.metadata = value;
+		public final Builder metadata(Map<String, JsonData> map) {
+			this.metadata = _mapPutAll(this.metadata, map);
+			return this;
+		}
+
+		/**
+		 * Attaches arbitrary metadata to the snapshot, such as a record of who took the
+		 * snapshot, why it was taken, or any other useful data. Metadata must be less
+		 * than 1024 bytes.
+		 * <p>
+		 * API name: {@code metadata}
+		 * <p>
+		 * Adds an entry to <code>metadata</code>.
+		 */
+		public final Builder metadata(String key, JsonData value) {
+			this.metadata = _mapPut(this.metadata, key, value);
 			return this;
 		}
 

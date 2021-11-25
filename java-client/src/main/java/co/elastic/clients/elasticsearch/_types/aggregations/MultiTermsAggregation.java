@@ -28,14 +28,11 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -53,10 +50,8 @@ public class MultiTermsAggregation extends BucketAggregationBase implements Aggr
 
 	}
 
-	public static MultiTermsAggregation of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static MultiTermsAggregation of(Function<Builder, ObjectBuilder<MultiTermsAggregation>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -102,26 +97,35 @@ public class MultiTermsAggregation extends BucketAggregationBase implements Aggr
 
 		/**
 		 * Required - API name: {@code terms}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>terms</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>terms</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder terms(List<MultiTermLookup> value) {
-			this.terms = value;
+		public final Builder terms(List<MultiTermLookup> list) {
+			this.terms = _listAddAll(this.terms, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code terms}
+		 * <p>
+		 * Adds one or more values to <code>terms</code>.
 		 */
-		public final Builder terms(MultiTermLookup... value) {
-			this.terms = Arrays.asList(value);
+		public final Builder terms(MultiTermLookup value, MultiTermLookup... values) {
+			this.terms = _listAdd(this.terms, value, values);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code terms}
+		 * <p>
+		 * Adds a value to <code>terms</code> using a builder lambda.
 		 */
-		public final Builder terms(
-				Function<ListBuilder<MultiTermLookup, MultiTermLookup.Builder>, ObjectBuilder<List<MultiTermLookup>>> fn) {
-			return terms(fn.apply(new ListBuilder<>(MultiTermLookup.Builder::new)).build());
+		public final Builder terms(Function<MultiTermLookup.Builder, ObjectBuilder<MultiTermLookup>> fn) {
+			return terms(fn.apply(new MultiTermLookup.Builder()).build());
 		}
 
 		@Override

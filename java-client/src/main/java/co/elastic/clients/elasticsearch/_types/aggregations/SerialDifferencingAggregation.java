@@ -32,7 +32,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.SerialDifferencingAggregation
@@ -50,10 +50,8 @@ public class SerialDifferencingAggregation extends PipelineAggregationBase imple
 
 	}
 
-	public static SerialDifferencingAggregation of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static SerialDifferencingAggregation of(Function<Builder, ObjectBuilder<SerialDifferencingAggregation>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**

@@ -33,11 +33,10 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.CompositeAggregation
@@ -61,10 +60,8 @@ public class CompositeAggregation extends BucketAggregationBase implements Aggre
 
 	}
 
-	public static CompositeAggregation of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static CompositeAggregation of(Function<Builder, ObjectBuilder<CompositeAggregation>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -156,9 +153,25 @@ public class CompositeAggregation extends BucketAggregationBase implements Aggre
 
 		/**
 		 * API name: {@code after}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>after</code>. Use
+		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
+		 * <code>after</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetMap()
 		 */
-		public final Builder after(@Nullable Map<String, String> value) {
-			this.after = value;
+		public final Builder after(Map<String, String> map) {
+			this.after = _mapPutAll(this.after, map);
+			return this;
+		}
+
+		/**
+		 * API name: {@code after}
+		 * <p>
+		 * Adds an entry to <code>after</code>.
+		 */
+		public final Builder after(String key, String value) {
+			this.after = _mapPut(this.after, key, value);
 			return this;
 		}
 
@@ -172,17 +185,26 @@ public class CompositeAggregation extends BucketAggregationBase implements Aggre
 
 		/**
 		 * API name: {@code sources}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>sources</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>sources</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder sources(@Nullable List<Map<String, CompositeAggregationSource>> value) {
-			this.sources = value;
+		public final Builder sources(List<Map<String, CompositeAggregationSource>> list) {
+			this.sources = _listAddAll(this.sources, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code sources}
+		 * <p>
+		 * Adds one or more values to <code>sources</code>.
 		 */
-		public final Builder sources(Map<String, CompositeAggregationSource>... value) {
-			this.sources = Arrays.asList(value);
+		public final Builder sources(Map<String, CompositeAggregationSource> value,
+				Map<String, CompositeAggregationSource>... values) {
+			this.sources = _listAdd(this.sources, value, values);
 			return this;
 		}
 

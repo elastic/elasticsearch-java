@@ -29,7 +29,6 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -38,11 +37,9 @@ import java.lang.Double;
 import java.lang.Integer;
 import java.lang.Long;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -128,10 +125,8 @@ public class MoreLikeThisQuery extends QueryBase implements QueryVariant {
 
 	}
 
-	public static MoreLikeThisQuery of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static MoreLikeThisQuery of(Function<Builder, ObjectBuilder<MoreLikeThisQuery>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -503,17 +498,25 @@ public class MoreLikeThisQuery extends QueryBase implements QueryVariant {
 
 		/**
 		 * API name: {@code fields}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>fields</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>fields</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder fields(@Nullable List<String> value) {
-			this.fields = value;
+		public final Builder fields(List<String> list) {
+			this.fields = _listAddAll(this.fields, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code fields}
+		 * <p>
+		 * Adds one or more values to <code>fields</code>.
 		 */
-		public final Builder fields(String... value) {
-			this.fields = Arrays.asList(value);
+		public final Builder fields(String value, String... values) {
+			this.fields = _listAdd(this.fields, value, values);
 			return this;
 		}
 
@@ -527,25 +530,35 @@ public class MoreLikeThisQuery extends QueryBase implements QueryVariant {
 
 		/**
 		 * Required - API name: {@code like}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>like</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>like</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder like(List<Like> value) {
-			this.like = value;
+		public final Builder like(List<Like> list) {
+			this.like = _listAddAll(this.like, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code like}
+		 * <p>
+		 * Adds one or more values to <code>like</code>.
 		 */
-		public final Builder like(Like... value) {
-			this.like = Arrays.asList(value);
+		public final Builder like(Like value, Like... values) {
+			this.like = _listAdd(this.like, value, values);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code like}
+		 * <p>
+		 * Adds a value to <code>like</code> using a builder lambda.
 		 */
-		public final Builder like(Function<ListBuilder<Like, Like.Builder>, ObjectBuilder<List<Like>>> fn) {
-			return like(fn.apply(new ListBuilder<>(Like.Builder::new)).build());
+		public final Builder like(Function<Like.Builder, ObjectBuilder<Like>> fn) {
+			return like(fn.apply(new Like.Builder()).build());
 		}
 
 		/**
@@ -606,9 +619,25 @@ public class MoreLikeThisQuery extends QueryBase implements QueryVariant {
 
 		/**
 		 * API name: {@code per_field_analyzer}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>perFieldAnalyzer</code>. Use
+		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
+		 * <code>perFieldAnalyzer</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetMap()
 		 */
-		public final Builder perFieldAnalyzer(@Nullable Map<String, String> value) {
-			this.perFieldAnalyzer = value;
+		public final Builder perFieldAnalyzer(Map<String, String> map) {
+			this.perFieldAnalyzer = _mapPutAll(this.perFieldAnalyzer, map);
+			return this;
+		}
+
+		/**
+		 * API name: {@code per_field_analyzer}
+		 * <p>
+		 * Adds an entry to <code>perFieldAnalyzer</code>.
+		 */
+		public final Builder perFieldAnalyzer(String key, String value) {
+			this.perFieldAnalyzer = _mapPut(this.perFieldAnalyzer, key, value);
 			return this;
 		}
 
@@ -622,41 +651,59 @@ public class MoreLikeThisQuery extends QueryBase implements QueryVariant {
 
 		/**
 		 * API name: {@code stop_words}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>stopWords</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>stopWords</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder stopWords(@Nullable List<String> value) {
-			this.stopWords = value;
+		public final Builder stopWords(List<String> list) {
+			this.stopWords = _listAddAll(this.stopWords, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code stop_words}
+		 * <p>
+		 * Adds one or more values to <code>stopWords</code>.
 		 */
-		public final Builder stopWords(String... value) {
-			this.stopWords = Arrays.asList(value);
+		public final Builder stopWords(String value, String... values) {
+			this.stopWords = _listAdd(this.stopWords, value, values);
 			return this;
 		}
 
 		/**
 		 * API name: {@code unlike}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>unlike</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>unlike</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder unlike(@Nullable List<Like> value) {
-			this.unlike = value;
+		public final Builder unlike(List<Like> list) {
+			this.unlike = _listAddAll(this.unlike, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code unlike}
+		 * <p>
+		 * Adds one or more values to <code>unlike</code>.
 		 */
-		public final Builder unlike(Like... value) {
-			this.unlike = Arrays.asList(value);
+		public final Builder unlike(Like value, Like... values) {
+			this.unlike = _listAdd(this.unlike, value, values);
 			return this;
 		}
 
 		/**
 		 * API name: {@code unlike}
+		 * <p>
+		 * Adds a value to <code>unlike</code> using a builder lambda.
 		 */
-		public final Builder unlike(Function<ListBuilder<Like, Like.Builder>, ObjectBuilder<List<Like>>> fn) {
-			return unlike(fn.apply(new ListBuilder<>(Like.Builder::new)).build());
+		public final Builder unlike(Function<Like.Builder, ObjectBuilder<Like>> fn) {
+			return unlike(fn.apply(new Like.Builder()).build());
 		}
 
 		/**

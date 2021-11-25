@@ -34,7 +34,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.IndexResult
@@ -50,10 +50,8 @@ public class IndexResult implements JsonpSerializable {
 
 	}
 
-	public static IndexResult of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static IndexResult of(Function<Builder, ObjectBuilder<IndexResult>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -98,10 +96,8 @@ public class IndexResult implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code response}
 		 */
-		public final Builder response(Consumer<IndexResultSummary.Builder> fn) {
-			IndexResultSummary.Builder builder = new IndexResultSummary.Builder();
-			fn.accept(builder);
-			return this.response(builder.build());
+		public final Builder response(Function<IndexResultSummary.Builder, ObjectBuilder<IndexResultSummary>> fn) {
+			return this.response(fn.apply(new IndexResultSummary.Builder()).build());
 		}
 
 		/**

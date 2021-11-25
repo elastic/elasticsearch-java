@@ -34,7 +34,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.DistanceFeatureQuery
@@ -57,10 +57,8 @@ public class DistanceFeatureQuery extends QueryBase implements QueryVariant {
 
 	}
 
-	public static DistanceFeatureQuery of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static DistanceFeatureQuery of(Function<Builder, ObjectBuilder<DistanceFeatureQuery>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**

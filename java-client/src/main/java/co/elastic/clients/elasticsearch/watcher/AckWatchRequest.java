@@ -36,11 +36,10 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
@@ -60,10 +59,8 @@ public class AckWatchRequest extends RequestBase {
 
 	}
 
-	public static AckWatchRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static AckWatchRequest of(Function<Builder, ObjectBuilder<AckWatchRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -99,9 +96,15 @@ public class AckWatchRequest extends RequestBase {
 		 * A comma-separated list of the action ids to be acked
 		 * <p>
 		 * API name: {@code action_id}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>actionId</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>actionId</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder actionId(@Nullable List<String> value) {
-			this.actionId = value;
+		public final Builder actionId(List<String> list) {
+			this.actionId = _listAddAll(this.actionId, list);
 			return this;
 		}
 
@@ -109,9 +112,11 @@ public class AckWatchRequest extends RequestBase {
 		 * A comma-separated list of the action ids to be acked
 		 * <p>
 		 * API name: {@code action_id}
+		 * <p>
+		 * Adds one or more values to <code>actionId</code>.
 		 */
-		public final Builder actionId(String... value) {
-			this.actionId = Arrays.asList(value);
+		public final Builder actionId(String value, String... values) {
+			this.actionId = _listAdd(this.actionId, value, values);
 			return this;
 		}
 

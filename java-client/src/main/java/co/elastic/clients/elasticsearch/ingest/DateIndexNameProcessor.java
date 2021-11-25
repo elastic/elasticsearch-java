@@ -32,10 +32,9 @@ import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ingest._types.DateIndexNameProcessor
@@ -70,10 +69,8 @@ public class DateIndexNameProcessor extends ProcessorBase implements ProcessorVa
 
 	}
 
-	public static DateIndexNameProcessor of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static DateIndexNameProcessor of(Function<Builder, ObjectBuilder<DateIndexNameProcessor>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -196,17 +193,25 @@ public class DateIndexNameProcessor extends ProcessorBase implements ProcessorVa
 
 		/**
 		 * Required - API name: {@code date_formats}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>dateFormats</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>dateFormats</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder dateFormats(List<String> value) {
-			this.dateFormats = value;
+		public final Builder dateFormats(List<String> list) {
+			this.dateFormats = _listAddAll(this.dateFormats, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code date_formats}
+		 * <p>
+		 * Adds one or more values to <code>dateFormats</code>.
 		 */
-		public final Builder dateFormats(String... value) {
-			this.dateFormats = Arrays.asList(value);
+		public final Builder dateFormats(String value, String... values) {
+			this.dateFormats = _listAdd(this.dateFormats, value, values);
 			return this;
 		}
 

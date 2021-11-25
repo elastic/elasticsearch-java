@@ -39,11 +39,10 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: security.invalidate_api_key.Request
@@ -79,10 +78,8 @@ public class InvalidateApiKeyRequest extends RequestBase implements JsonpSeriali
 
 	}
 
-	public static InvalidateApiKeyRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static InvalidateApiKeyRequest of(Function<Builder, ObjectBuilder<InvalidateApiKeyRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -215,17 +212,25 @@ public class InvalidateApiKeyRequest extends RequestBase implements JsonpSeriali
 
 		/**
 		 * API name: {@code ids}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>ids</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>ids</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder ids(@Nullable List<String> value) {
-			this.ids = value;
+		public final Builder ids(List<String> list) {
+			this.ids = _listAddAll(this.ids, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code ids}
+		 * <p>
+		 * Adds one or more values to <code>ids</code>.
 		 */
-		public final Builder ids(String... value) {
-			this.ids = Arrays.asList(value);
+		public final Builder ids(String value, String... values) {
+			this.ids = _listAdd(this.ids, value, values);
 			return this;
 		}
 

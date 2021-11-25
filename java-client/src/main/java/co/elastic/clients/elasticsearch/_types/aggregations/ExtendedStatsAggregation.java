@@ -32,7 +32,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.ExtendedStatsAggregation
@@ -50,10 +50,8 @@ public class ExtendedStatsAggregation extends FormatMetricAggregationBase implem
 
 	}
 
-	public static ExtendedStatsAggregation of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static ExtendedStatsAggregation of(Function<Builder, ObjectBuilder<ExtendedStatsAggregation>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**

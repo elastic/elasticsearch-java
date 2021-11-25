@@ -29,7 +29,6 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.MapBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
@@ -38,7 +37,6 @@ import java.lang.Boolean;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -77,10 +75,8 @@ public class Status implements JsonpSerializable {
 
 	}
 
-	public static Status of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static Status of(Function<Builder, ObjectBuilder<Status>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -216,15 +212,36 @@ public class Status implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code indices}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>indices</code>. Use
+		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
+		 * <code>indices</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetMap()
 		 */
-		public final Builder indices(Map<String, SnapshotIndexStats> value) {
-			this.indices = value;
+		public final Builder indices(Map<String, SnapshotIndexStats> map) {
+			this.indices = _mapPutAll(this.indices, map);
 			return this;
 		}
 
-		public final Builder indices(
-				Function<MapBuilder<String, SnapshotIndexStats, SnapshotIndexStats.Builder>, ObjectBuilder<Map<String, SnapshotIndexStats>>> fn) {
-			return indices(fn.apply(new MapBuilder<>(SnapshotIndexStats.Builder::new)).build());
+		/**
+		 * Required - API name: {@code indices}
+		 * <p>
+		 * Adds an entry to <code>indices</code>.
+		 */
+		public final Builder indices(String key, SnapshotIndexStats value) {
+			this.indices = _mapPut(this.indices, key, value);
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code indices}
+		 * <p>
+		 * Adds an entry to <code>indices</code> using a builder lambda.
+		 */
+		public final Builder indices(String key,
+				Function<SnapshotIndexStats.Builder, ObjectBuilder<SnapshotIndexStats>> fn) {
+			return indices(key, fn.apply(new SnapshotIndexStats.Builder()).build());
 		}
 
 		/**
@@ -246,10 +263,8 @@ public class Status implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code shards_stats}
 		 */
-		public final Builder shardsStats(Consumer<ShardsStats.Builder> fn) {
-			ShardsStats.Builder builder = new ShardsStats.Builder();
-			fn.accept(builder);
-			return this.shardsStats(builder.build());
+		public final Builder shardsStats(Function<ShardsStats.Builder, ObjectBuilder<ShardsStats>> fn) {
+			return this.shardsStats(fn.apply(new ShardsStats.Builder()).build());
 		}
 
 		/**
@@ -279,10 +294,8 @@ public class Status implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code stats}
 		 */
-		public final Builder stats(Consumer<SnapshotStats.Builder> fn) {
-			SnapshotStats.Builder builder = new SnapshotStats.Builder();
-			fn.accept(builder);
-			return this.stats(builder.build());
+		public final Builder stats(Function<SnapshotStats.Builder, ObjectBuilder<SnapshotStats>> fn) {
+			return this.stats(fn.apply(new SnapshotStats.Builder()).build());
 		}
 
 		/**

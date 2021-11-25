@@ -29,15 +29,12 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -54,10 +51,8 @@ public class DailySchedule implements ScheduleVariant, JsonpSerializable {
 
 	}
 
-	public static DailySchedule of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static DailySchedule of(Function<Builder, ObjectBuilder<DailySchedule>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -109,26 +104,35 @@ public class DailySchedule implements ScheduleVariant, JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code at}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>at</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset <code>at</code>
+		 * to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder at(List<TimeOfDay> value) {
-			this.at = value;
+		public final Builder at(List<TimeOfDay> list) {
+			this.at = _listAddAll(this.at, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code at}
+		 * <p>
+		 * Adds one or more values to <code>at</code>.
 		 */
-		public final Builder at(TimeOfDay... value) {
-			this.at = Arrays.asList(value);
+		public final Builder at(TimeOfDay value, TimeOfDay... values) {
+			this.at = _listAdd(this.at, value, values);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code at}
+		 * <p>
+		 * Adds a value to <code>at</code> using a builder lambda.
 		 */
-		public final Builder at(
-				Function<ListBuilder<TimeOfDay, TimeOfDay.Builder>, ObjectBuilder<List<TimeOfDay>>> fn) {
-			return at(fn.apply(new ListBuilder<>(TimeOfDay.Builder::new)).build());
+		public final Builder at(Function<TimeOfDay.Builder, ObjectBuilder<TimeOfDay>> fn) {
+			return at(fn.apply(new TimeOfDay.Builder()).build());
 		}
 
 		/**

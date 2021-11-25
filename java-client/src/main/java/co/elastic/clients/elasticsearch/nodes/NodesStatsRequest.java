@@ -39,12 +39,11 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
@@ -103,10 +102,8 @@ public class NodesStatsRequest extends RequestBase {
 
 	}
 
-	public static NodesStatsRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static NodesStatsRequest of(Function<Builder, ObjectBuilder<NodesStatsRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -291,9 +288,15 @@ public class NodesStatsRequest extends RequestBase {
 		 * fielddata and suggest statistics.
 		 * <p>
 		 * API name: {@code completion_fields}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>completionFields</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>completionFields</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder completionFields(@Nullable List<String> value) {
-			this.completionFields = value;
+		public final Builder completionFields(List<String> list) {
+			this.completionFields = _listAddAll(this.completionFields, list);
 			return this;
 		}
 
@@ -302,9 +305,11 @@ public class NodesStatsRequest extends RequestBase {
 		 * fielddata and suggest statistics.
 		 * <p>
 		 * API name: {@code completion_fields}
+		 * <p>
+		 * Adds one or more values to <code>completionFields</code>.
 		 */
-		public final Builder completionFields(String... value) {
-			this.completionFields = Arrays.asList(value);
+		public final Builder completionFields(String value, String... values) {
+			this.completionFields = _listAdd(this.completionFields, value, values);
 			return this;
 		}
 
@@ -313,9 +318,15 @@ public class NodesStatsRequest extends RequestBase {
 		 * fielddata statistics.
 		 * <p>
 		 * API name: {@code fielddata_fields}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>fielddataFields</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>fielddataFields</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder fielddataFields(@Nullable List<String> value) {
-			this.fielddataFields = value;
+		public final Builder fielddataFields(List<String> list) {
+			this.fielddataFields = _listAddAll(this.fielddataFields, list);
 			return this;
 		}
 
@@ -324,9 +335,11 @@ public class NodesStatsRequest extends RequestBase {
 		 * fielddata statistics.
 		 * <p>
 		 * API name: {@code fielddata_fields}
+		 * <p>
+		 * Adds one or more values to <code>fielddataFields</code>.
 		 */
-		public final Builder fielddataFields(String... value) {
-			this.fielddataFields = Arrays.asList(value);
+		public final Builder fielddataFields(String value, String... values) {
+			this.fielddataFields = _listAdd(this.fielddataFields, value, values);
 			return this;
 		}
 
@@ -335,9 +348,15 @@ public class NodesStatsRequest extends RequestBase {
 		 * statistics.
 		 * <p>
 		 * API name: {@code fields}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>fields</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>fields</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder fields(@Nullable List<String> value) {
-			this.fields = value;
+		public final Builder fields(List<String> list) {
+			this.fields = _listAddAll(this.fields, list);
 			return this;
 		}
 
@@ -346,9 +365,11 @@ public class NodesStatsRequest extends RequestBase {
 		 * statistics.
 		 * <p>
 		 * API name: {@code fields}
+		 * <p>
+		 * Adds one or more values to <code>fields</code>.
 		 */
-		public final Builder fields(String... value) {
-			this.fields = Arrays.asList(value);
+		public final Builder fields(String value, String... values) {
+			this.fields = _listAdd(this.fields, value, values);
 			return this;
 		}
 
@@ -389,9 +410,15 @@ public class NodesStatsRequest extends RequestBase {
 		 * metrics. It can be used only if indices (or all) metric is specified.
 		 * <p>
 		 * API name: {@code index_metric}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>indexMetric</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>indexMetric</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder indexMetric(@Nullable List<String> value) {
-			this.indexMetric = value;
+		public final Builder indexMetric(List<String> list) {
+			this.indexMetric = _listAddAll(this.indexMetric, list);
 			return this;
 		}
 
@@ -400,9 +427,11 @@ public class NodesStatsRequest extends RequestBase {
 		 * metrics. It can be used only if indices (or all) metric is specified.
 		 * <p>
 		 * API name: {@code index_metric}
+		 * <p>
+		 * Adds one or more values to <code>indexMetric</code>.
 		 */
-		public final Builder indexMetric(String... value) {
-			this.indexMetric = Arrays.asList(value);
+		public final Builder indexMetric(String value, String... values) {
+			this.indexMetric = _listAdd(this.indexMetric, value, values);
 			return this;
 		}
 
@@ -434,19 +463,23 @@ public class NodesStatsRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
-		public final Builder masterTimeout(Consumer<Time.Builder> fn) {
-			Time.Builder builder = new Time.Builder();
-			fn.accept(builder);
-			return this.masterTimeout(builder.build());
+		public final Builder masterTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.masterTimeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
 		 * Limit the information returned to the specified metrics
 		 * <p>
 		 * API name: {@code metric}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>metric</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>metric</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder metric(@Nullable List<String> value) {
-			this.metric = value;
+		public final Builder metric(List<String> list) {
+			this.metric = _listAddAll(this.metric, list);
 			return this;
 		}
 
@@ -454,9 +487,11 @@ public class NodesStatsRequest extends RequestBase {
 		 * Limit the information returned to the specified metrics
 		 * <p>
 		 * API name: {@code metric}
+		 * <p>
+		 * Adds one or more values to <code>metric</code>.
 		 */
-		public final Builder metric(String... value) {
-			this.metric = Arrays.asList(value);
+		public final Builder metric(String value, String... values) {
+			this.metric = _listAdd(this.metric, value, values);
 			return this;
 		}
 
@@ -464,9 +499,15 @@ public class NodesStatsRequest extends RequestBase {
 		 * Comma-separated list of node IDs or names used to limit returned information.
 		 * <p>
 		 * API name: {@code node_id}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>nodeId</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>nodeId</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder nodeId(@Nullable List<String> value) {
-			this.nodeId = value;
+		public final Builder nodeId(List<String> list) {
+			this.nodeId = _listAddAll(this.nodeId, list);
 			return this;
 		}
 
@@ -474,9 +515,11 @@ public class NodesStatsRequest extends RequestBase {
 		 * Comma-separated list of node IDs or names used to limit returned information.
 		 * <p>
 		 * API name: {@code node_id}
+		 * <p>
+		 * Adds one or more values to <code>nodeId</code>.
 		 */
-		public final Builder nodeId(String... value) {
-			this.nodeId = Arrays.asList(value);
+		public final Builder nodeId(String value, String... values) {
+			this.nodeId = _listAdd(this.nodeId, value, values);
 			return this;
 		}
 
@@ -497,19 +540,23 @@ public class NodesStatsRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code timeout}
 		 */
-		public final Builder timeout(Consumer<Time.Builder> fn) {
-			Time.Builder builder = new Time.Builder();
-			fn.accept(builder);
-			return this.timeout(builder.build());
+		public final Builder timeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.timeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
 		 * A comma-separated list of document types for the indexing index metric.
 		 * <p>
 		 * API name: {@code types}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>types</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>types</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder types(@Nullable List<String> value) {
-			this.types = value;
+		public final Builder types(List<String> list) {
+			this.types = _listAddAll(this.types, list);
 			return this;
 		}
 
@@ -517,9 +564,11 @@ public class NodesStatsRequest extends RequestBase {
 		 * A comma-separated list of document types for the indexing index metric.
 		 * <p>
 		 * API name: {@code types}
+		 * <p>
+		 * Adds one or more values to <code>types</code>.
 		 */
-		public final Builder types(String... value) {
-			this.types = Arrays.asList(value);
+		public final Builder types(String value, String... values) {
+			this.types = _listAdd(this.types, value, values);
 			return this;
 		}
 

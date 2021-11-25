@@ -40,7 +40,7 @@ import java.lang.Integer;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ilm.explain_lifecycle.LifecycleExplainManaged
@@ -102,10 +102,8 @@ public class LifecycleExplainManaged implements LifecycleExplainVariant, JsonpSe
 
 	}
 
-	public static LifecycleExplainManaged of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static LifecycleExplainManaged of(Function<Builder, ObjectBuilder<LifecycleExplainManaged>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -365,10 +363,8 @@ public class LifecycleExplainManaged implements LifecycleExplainVariant, JsonpSe
 		/**
 		 * Required - API name: {@code age}
 		 */
-		public final Builder age(Consumer<Time.Builder> fn) {
-			Time.Builder builder = new Time.Builder();
-			fn.accept(builder);
-			return this.age(builder.build());
+		public final Builder age(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.age(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -445,9 +441,25 @@ public class LifecycleExplainManaged implements LifecycleExplainVariant, JsonpSe
 
 		/**
 		 * API name: {@code step_info}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>stepInfo</code>. Use
+		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
+		 * <code>stepInfo</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetMap()
 		 */
-		public final Builder stepInfo(@Nullable Map<String, JsonData> value) {
-			this.stepInfo = value;
+		public final Builder stepInfo(Map<String, JsonData> map) {
+			this.stepInfo = _mapPutAll(this.stepInfo, map);
+			return this;
+		}
+
+		/**
+		 * API name: {@code step_info}
+		 * <p>
+		 * Adds an entry to <code>stepInfo</code>.
+		 */
+		public final Builder stepInfo(String key, JsonData value) {
+			this.stepInfo = _mapPut(this.stepInfo, key, value);
 			return this;
 		}
 
@@ -470,10 +482,9 @@ public class LifecycleExplainManaged implements LifecycleExplainVariant, JsonpSe
 		/**
 		 * Required - API name: {@code phase_execution}
 		 */
-		public final Builder phaseExecution(Consumer<LifecycleExplainPhaseExecution.Builder> fn) {
-			LifecycleExplainPhaseExecution.Builder builder = new LifecycleExplainPhaseExecution.Builder();
-			fn.accept(builder);
-			return this.phaseExecution(builder.build());
+		public final Builder phaseExecution(
+				Function<LifecycleExplainPhaseExecution.Builder, ObjectBuilder<LifecycleExplainPhaseExecution>> fn) {
+			return this.phaseExecution(fn.apply(new LifecycleExplainPhaseExecution.Builder()).build());
 		}
 
 		/**

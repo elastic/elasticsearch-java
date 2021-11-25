@@ -34,7 +34,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: rollup.get_jobs.RollupJob
@@ -56,10 +56,8 @@ public class RollupJob implements JsonpSerializable {
 
 	}
 
-	public static RollupJob of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static RollupJob of(Function<Builder, ObjectBuilder<RollupJob>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -128,10 +126,9 @@ public class RollupJob implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code config}
 		 */
-		public final Builder config(Consumer<RollupJobConfiguration.Builder> fn) {
-			RollupJobConfiguration.Builder builder = new RollupJobConfiguration.Builder();
-			fn.accept(builder);
-			return this.config(builder.build());
+		public final Builder config(
+				Function<RollupJobConfiguration.Builder, ObjectBuilder<RollupJobConfiguration>> fn) {
+			return this.config(fn.apply(new RollupJobConfiguration.Builder()).build());
 		}
 
 		/**
@@ -145,10 +142,8 @@ public class RollupJob implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code stats}
 		 */
-		public final Builder stats(Consumer<RollupJobStats.Builder> fn) {
-			RollupJobStats.Builder builder = new RollupJobStats.Builder();
-			fn.accept(builder);
-			return this.stats(builder.build());
+		public final Builder stats(Function<RollupJobStats.Builder, ObjectBuilder<RollupJobStats>> fn) {
+			return this.stats(fn.apply(new RollupJobStats.Builder()).build());
 		}
 
 		/**
@@ -162,10 +157,8 @@ public class RollupJob implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code status}
 		 */
-		public final Builder status(Consumer<RollupJobStatus.Builder> fn) {
-			RollupJobStatus.Builder builder = new RollupJobStatus.Builder();
-			fn.accept(builder);
-			return this.status(builder.build());
+		public final Builder status(Function<RollupJobStatus.Builder, ObjectBuilder<RollupJobStatus>> fn) {
+			return this.status(fn.apply(new RollupJobStatus.Builder()).build());
 		}
 
 		/**

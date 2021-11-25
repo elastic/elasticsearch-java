@@ -29,16 +29,13 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -58,10 +55,8 @@ public class QueryWatchesResponse implements JsonpSerializable {
 
 	}
 
-	public static QueryWatchesResponse of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static QueryWatchesResponse of(Function<Builder, ObjectBuilder<QueryWatchesResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -125,26 +120,35 @@ public class QueryWatchesResponse implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code watches}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>watches</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>watches</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder watches(List<QueryWatch> value) {
-			this.watches = value;
+		public final Builder watches(List<QueryWatch> list) {
+			this.watches = _listAddAll(this.watches, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code watches}
+		 * <p>
+		 * Adds one or more values to <code>watches</code>.
 		 */
-		public final Builder watches(QueryWatch... value) {
-			this.watches = Arrays.asList(value);
+		public final Builder watches(QueryWatch value, QueryWatch... values) {
+			this.watches = _listAdd(this.watches, value, values);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code watches}
+		 * <p>
+		 * Adds a value to <code>watches</code> using a builder lambda.
 		 */
-		public final Builder watches(
-				Function<ListBuilder<QueryWatch, QueryWatch.Builder>, ObjectBuilder<List<QueryWatch>>> fn) {
-			return watches(fn.apply(new ListBuilder<>(QueryWatch.Builder::new)).build());
+		public final Builder watches(Function<QueryWatch.Builder, ObjectBuilder<QueryWatch>> fn) {
+			return watches(fn.apply(new QueryWatch.Builder()).build());
 		}
 
 		/**

@@ -30,16 +30,13 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -80,10 +77,8 @@ public class DataframeAnalytics implements JsonpSerializable {
 
 	}
 
-	public static DataframeAnalytics of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static DataframeAnalytics of(Function<Builder, ObjectBuilder<DataframeAnalytics>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -256,10 +251,9 @@ public class DataframeAnalytics implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code analysis_stats}
 		 */
-		public final Builder analysisStats(Consumer<DataframeAnalyticsStats.Builder> fn) {
-			DataframeAnalyticsStats.Builder builder = new DataframeAnalyticsStats.Builder();
-			fn.accept(builder);
-			return this.analysisStats(builder.build());
+		public final Builder analysisStats(
+				Function<DataframeAnalyticsStats.Builder, ObjectBuilder<DataframeAnalyticsStats>> fn) {
+			return this.analysisStats(fn.apply(new DataframeAnalyticsStats.Builder()).build());
 		}
 
 		/**
@@ -290,10 +284,9 @@ public class DataframeAnalytics implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code data_counts}
 		 */
-		public final Builder dataCounts(Consumer<DataframeAnalyticsStatsDataCounts.Builder> fn) {
-			DataframeAnalyticsStatsDataCounts.Builder builder = new DataframeAnalyticsStatsDataCounts.Builder();
-			fn.accept(builder);
-			return this.dataCounts(builder.build());
+		public final Builder dataCounts(
+				Function<DataframeAnalyticsStatsDataCounts.Builder, ObjectBuilder<DataframeAnalyticsStatsDataCounts>> fn) {
+			return this.dataCounts(fn.apply(new DataframeAnalyticsStatsDataCounts.Builder()).build());
 		}
 
 		/**
@@ -323,10 +316,9 @@ public class DataframeAnalytics implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code memory_usage}
 		 */
-		public final Builder memoryUsage(Consumer<DataframeAnalyticsStatsMemoryUsage.Builder> fn) {
-			DataframeAnalyticsStatsMemoryUsage.Builder builder = new DataframeAnalyticsStatsMemoryUsage.Builder();
-			fn.accept(builder);
-			return this.memoryUsage(builder.build());
+		public final Builder memoryUsage(
+				Function<DataframeAnalyticsStatsMemoryUsage.Builder, ObjectBuilder<DataframeAnalyticsStatsMemoryUsage>> fn) {
+			return this.memoryUsage(fn.apply(new DataframeAnalyticsStatsMemoryUsage.Builder()).build());
 		}
 
 		/**
@@ -346,19 +338,23 @@ public class DataframeAnalytics implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code node}
 		 */
-		public final Builder node(Consumer<NodeAttributes.Builder> fn) {
-			NodeAttributes.Builder builder = new NodeAttributes.Builder();
-			fn.accept(builder);
-			return this.node(builder.build());
+		public final Builder node(Function<NodeAttributes.Builder, ObjectBuilder<NodeAttributes>> fn) {
+			return this.node(fn.apply(new NodeAttributes.Builder()).build());
 		}
 
 		/**
 		 * Required - The progress report of the data frame analytics job by phase.
 		 * <p>
 		 * API name: {@code progress}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>progress</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>progress</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder progress(List<DataframeAnalyticsStatsProgress> value) {
-			this.progress = value;
+		public final Builder progress(List<DataframeAnalyticsStatsProgress> list) {
+			this.progress = _listAddAll(this.progress, list);
 			return this;
 		}
 
@@ -366,9 +362,12 @@ public class DataframeAnalytics implements JsonpSerializable {
 		 * Required - The progress report of the data frame analytics job by phase.
 		 * <p>
 		 * API name: {@code progress}
+		 * <p>
+		 * Adds one or more values to <code>progress</code>.
 		 */
-		public final Builder progress(DataframeAnalyticsStatsProgress... value) {
-			this.progress = Arrays.asList(value);
+		public final Builder progress(DataframeAnalyticsStatsProgress value,
+				DataframeAnalyticsStatsProgress... values) {
+			this.progress = _listAdd(this.progress, value, values);
 			return this;
 		}
 
@@ -376,10 +375,12 @@ public class DataframeAnalytics implements JsonpSerializable {
 		 * Required - The progress report of the data frame analytics job by phase.
 		 * <p>
 		 * API name: {@code progress}
+		 * <p>
+		 * Adds a value to <code>progress</code> using a builder lambda.
 		 */
 		public final Builder progress(
-				Function<ListBuilder<DataframeAnalyticsStatsProgress, DataframeAnalyticsStatsProgress.Builder>, ObjectBuilder<List<DataframeAnalyticsStatsProgress>>> fn) {
-			return progress(fn.apply(new ListBuilder<>(DataframeAnalyticsStatsProgress.Builder::new)).build());
+				Function<DataframeAnalyticsStatsProgress.Builder, ObjectBuilder<DataframeAnalyticsStatsProgress>> fn) {
+			return progress(fn.apply(new DataframeAnalyticsStatsProgress.Builder()).build());
 		}
 
 		/**

@@ -32,10 +32,9 @@ import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: xpack.usage.Audit
@@ -52,10 +51,8 @@ public class Audit extends FeatureToggle {
 
 	}
 
-	public static Audit of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static Audit of(Function<Builder, ObjectBuilder<Audit>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -92,17 +89,25 @@ public class Audit extends FeatureToggle {
 
 		/**
 		 * API name: {@code outputs}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>outputs</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>outputs</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder outputs(@Nullable List<String> value) {
-			this.outputs = value;
+		public final Builder outputs(List<String> list) {
+			this.outputs = _listAddAll(this.outputs, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code outputs}
+		 * <p>
+		 * Adds one or more values to <code>outputs</code>.
 		 */
-		public final Builder outputs(String... value) {
-			this.outputs = Arrays.asList(value);
+		public final Builder outputs(String value, String... values) {
+			this.outputs = _listAdd(this.outputs, value, values);
 			return this;
 		}
 

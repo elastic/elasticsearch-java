@@ -39,7 +39,7 @@ import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: license.post_start_trial.Request
@@ -60,10 +60,8 @@ public class PostStartTrialRequest extends RequestBase {
 
 	}
 
-	public static PostStartTrialRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static PostStartTrialRequest of(Function<Builder, ObjectBuilder<PostStartTrialRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**

@@ -35,7 +35,7 @@ import co.elastic.clients.transport.endpoints.BooleanResponse;
 import co.elastic.clients.util.ObjectBuilder;
 import java.io.IOException;
 import java.util.concurrent.CompletableFuture;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 /**
@@ -89,10 +89,9 @@ public class ElasticsearchClusterAsyncClient
 	 */
 
 	public final CompletableFuture<AllocationExplainResponse> allocationExplain(
-			Consumer<AllocationExplainRequest.Builder> fn) throws IOException, ElasticsearchException {
-		AllocationExplainRequest.Builder builder = new AllocationExplainRequest.Builder();
-		fn.accept(builder);
-		return allocationExplain(builder.build());
+			Function<AllocationExplainRequest.Builder, ObjectBuilder<AllocationExplainRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return allocationExplain(fn.apply(new AllocationExplainRequest.Builder()).build());
 	}
 
 	/**
@@ -138,10 +137,9 @@ public class ElasticsearchClusterAsyncClient
 	 */
 
 	public final CompletableFuture<DeleteComponentTemplateResponse> deleteComponentTemplate(
-			Consumer<DeleteComponentTemplateRequest.Builder> fn) throws IOException, ElasticsearchException {
-		DeleteComponentTemplateRequest.Builder builder = new DeleteComponentTemplateRequest.Builder();
-		fn.accept(builder);
-		return deleteComponentTemplate(builder.build());
+			Function<DeleteComponentTemplateRequest.Builder, ObjectBuilder<DeleteComponentTemplateRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return deleteComponentTemplate(fn.apply(new DeleteComponentTemplateRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: cluster.delete_voting_config_exclusions
@@ -174,10 +172,9 @@ public class ElasticsearchClusterAsyncClient
 	 */
 
 	public final CompletableFuture<BooleanResponse> deleteVotingConfigExclusions(
-			Consumer<DeleteVotingConfigExclusionsRequest.Builder> fn) throws IOException, ElasticsearchException {
-		DeleteVotingConfigExclusionsRequest.Builder builder = new DeleteVotingConfigExclusionsRequest.Builder();
-		fn.accept(builder);
-		return deleteVotingConfigExclusions(builder.build());
+			Function<DeleteVotingConfigExclusionsRequest.Builder, ObjectBuilder<DeleteVotingConfigExclusionsRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return deleteVotingConfigExclusions(fn.apply(new DeleteVotingConfigExclusionsRequest.Builder()).build());
 	}
 
 	/**
@@ -224,10 +221,9 @@ public class ElasticsearchClusterAsyncClient
 	 */
 
 	public final CompletableFuture<BooleanResponse> existsComponentTemplate(
-			Consumer<ExistsComponentTemplateRequest.Builder> fn) throws IOException, ElasticsearchException {
-		ExistsComponentTemplateRequest.Builder builder = new ExistsComponentTemplateRequest.Builder();
-		fn.accept(builder);
-		return existsComponentTemplate(builder.build());
+			Function<ExistsComponentTemplateRequest.Builder, ObjectBuilder<ExistsComponentTemplateRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return existsComponentTemplate(fn.apply(new ExistsComponentTemplateRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: cluster.get_component_template
@@ -260,10 +256,9 @@ public class ElasticsearchClusterAsyncClient
 	 */
 
 	public final CompletableFuture<GetComponentTemplateResponse> getComponentTemplate(
-			Consumer<GetComponentTemplateRequest.Builder> fn) throws IOException, ElasticsearchException {
-		GetComponentTemplateRequest.Builder builder = new GetComponentTemplateRequest.Builder();
-		fn.accept(builder);
-		return getComponentTemplate(builder.build());
+			Function<GetComponentTemplateRequest.Builder, ObjectBuilder<GetComponentTemplateRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return getComponentTemplate(fn.apply(new GetComponentTemplateRequest.Builder()).build());
 	}
 
 	/**
@@ -310,10 +305,9 @@ public class ElasticsearchClusterAsyncClient
 	 */
 
 	public final CompletableFuture<GetClusterSettingsResponse> getSettings(
-			Consumer<GetClusterSettingsRequest.Builder> fn) throws IOException, ElasticsearchException {
-		GetClusterSettingsRequest.Builder builder = new GetClusterSettingsRequest.Builder();
-		fn.accept(builder);
-		return getSettings(builder.build());
+			Function<GetClusterSettingsRequest.Builder, ObjectBuilder<GetClusterSettingsRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return getSettings(fn.apply(new GetClusterSettingsRequest.Builder()).build());
 	}
 
 	/**
@@ -357,11 +351,10 @@ public class ElasticsearchClusterAsyncClient
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<HealthResponse> health(Consumer<HealthRequest.Builder> fn)
+	public final CompletableFuture<HealthResponse> health(
+			Function<HealthRequest.Builder, ObjectBuilder<HealthRequest>> fn)
 			throws IOException, ElasticsearchException {
-		HealthRequest.Builder builder = new HealthRequest.Builder();
-		fn.accept(builder);
-		return health(builder.build());
+		return health(fn.apply(new HealthRequest.Builder()).build());
 	}
 
 	/**
@@ -408,11 +401,10 @@ public class ElasticsearchClusterAsyncClient
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<PendingTasksResponse> pendingTasks(Consumer<PendingTasksRequest.Builder> fn)
+	public final CompletableFuture<PendingTasksResponse> pendingTasks(
+			Function<PendingTasksRequest.Builder, ObjectBuilder<PendingTasksRequest>> fn)
 			throws IOException, ElasticsearchException {
-		PendingTasksRequest.Builder builder = new PendingTasksRequest.Builder();
-		fn.accept(builder);
-		return pendingTasks(builder.build());
+		return pendingTasks(fn.apply(new PendingTasksRequest.Builder()).build());
 	}
 
 	/**
@@ -459,10 +451,9 @@ public class ElasticsearchClusterAsyncClient
 	 */
 
 	public final CompletableFuture<BooleanResponse> postVotingConfigExclusions(
-			Consumer<PostVotingConfigExclusionsRequest.Builder> fn) throws IOException, ElasticsearchException {
-		PostVotingConfigExclusionsRequest.Builder builder = new PostVotingConfigExclusionsRequest.Builder();
-		fn.accept(builder);
-		return postVotingConfigExclusions(builder.build());
+			Function<PostVotingConfigExclusionsRequest.Builder, ObjectBuilder<PostVotingConfigExclusionsRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return postVotingConfigExclusions(fn.apply(new PostVotingConfigExclusionsRequest.Builder()).build());
 	}
 
 	/**
@@ -508,10 +499,9 @@ public class ElasticsearchClusterAsyncClient
 	 */
 
 	public final CompletableFuture<PutComponentTemplateResponse> putComponentTemplate(
-			Consumer<PutComponentTemplateRequest.Builder> fn) throws IOException, ElasticsearchException {
-		PutComponentTemplateRequest.Builder builder = new PutComponentTemplateRequest.Builder();
-		fn.accept(builder);
-		return putComponentTemplate(builder.build());
+			Function<PutComponentTemplateRequest.Builder, ObjectBuilder<PutComponentTemplateRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return putComponentTemplate(fn.apply(new PutComponentTemplateRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: cluster.put_settings
@@ -544,10 +534,9 @@ public class ElasticsearchClusterAsyncClient
 	 */
 
 	public final CompletableFuture<PutClusterSettingsResponse> putSettings(
-			Consumer<PutClusterSettingsRequest.Builder> fn) throws IOException, ElasticsearchException {
-		PutClusterSettingsRequest.Builder builder = new PutClusterSettingsRequest.Builder();
-		fn.accept(builder);
-		return putSettings(builder.build());
+			Function<PutClusterSettingsRequest.Builder, ObjectBuilder<PutClusterSettingsRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return putSettings(fn.apply(new PutClusterSettingsRequest.Builder()).build());
 	}
 
 	/**
@@ -606,11 +595,10 @@ public class ElasticsearchClusterAsyncClient
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<RerouteResponse> reroute(Consumer<RerouteRequest.Builder> fn)
+	public final CompletableFuture<RerouteResponse> reroute(
+			Function<RerouteRequest.Builder, ObjectBuilder<RerouteRequest>> fn)
 			throws IOException, ElasticsearchException {
-		RerouteRequest.Builder builder = new RerouteRequest.Builder();
-		fn.accept(builder);
-		return reroute(builder.build());
+		return reroute(fn.apply(new RerouteRequest.Builder()).build());
 	}
 
 	/**
@@ -654,11 +642,9 @@ public class ElasticsearchClusterAsyncClient
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<StateResponse> state(Consumer<StateRequest.Builder> fn)
+	public final CompletableFuture<StateResponse> state(Function<StateRequest.Builder, ObjectBuilder<StateRequest>> fn)
 			throws IOException, ElasticsearchException {
-		StateRequest.Builder builder = new StateRequest.Builder();
-		fn.accept(builder);
-		return state(builder.build());
+		return state(fn.apply(new StateRequest.Builder()).build());
 	}
 
 	/**
@@ -703,11 +689,10 @@ public class ElasticsearchClusterAsyncClient
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<ClusterStatsResponse> stats(Consumer<ClusterStatsRequest.Builder> fn)
+	public final CompletableFuture<ClusterStatsResponse> stats(
+			Function<ClusterStatsRequest.Builder, ObjectBuilder<ClusterStatsRequest>> fn)
 			throws IOException, ElasticsearchException {
-		ClusterStatsRequest.Builder builder = new ClusterStatsRequest.Builder();
-		fn.accept(builder);
-		return stats(builder.build());
+		return stats(fn.apply(new ClusterStatsRequest.Builder()).build());
 	}
 
 	/**

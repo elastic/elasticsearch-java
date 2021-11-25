@@ -34,10 +34,9 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.HttpInput
@@ -65,10 +64,8 @@ public class HttpInput implements InputVariant, JsonpSerializable {
 
 	}
 
-	public static HttpInput of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static HttpInput of(Function<Builder, ObjectBuilder<HttpInput>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -177,25 +174,31 @@ public class HttpInput implements InputVariant, JsonpSerializable {
 		/**
 		 * API name: {@code http}
 		 */
-		public final Builder http(Consumer<HttpInput.Builder> fn) {
-			HttpInput.Builder builder = new HttpInput.Builder();
-			fn.accept(builder);
-			return this.http(builder.build());
+		public final Builder http(Function<HttpInput.Builder, ObjectBuilder<HttpInput>> fn) {
+			return this.http(fn.apply(new HttpInput.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code extract}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>extract</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>extract</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder extract(@Nullable List<String> value) {
-			this.extract = value;
+		public final Builder extract(List<String> list) {
+			this.extract = _listAddAll(this.extract, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code extract}
+		 * <p>
+		 * Adds one or more values to <code>extract</code>.
 		 */
-		public final Builder extract(String... value) {
-			this.extract = Arrays.asList(value);
+		public final Builder extract(String value, String... values) {
+			this.extract = _listAdd(this.extract, value, values);
 			return this;
 		}
 
@@ -210,10 +213,9 @@ public class HttpInput implements InputVariant, JsonpSerializable {
 		/**
 		 * API name: {@code request}
 		 */
-		public final Builder request(Consumer<HttpInputRequestDefinition.Builder> fn) {
-			HttpInputRequestDefinition.Builder builder = new HttpInputRequestDefinition.Builder();
-			fn.accept(builder);
-			return this.request(builder.build());
+		public final Builder request(
+				Function<HttpInputRequestDefinition.Builder, ObjectBuilder<HttpInputRequestDefinition>> fn) {
+			return this.request(fn.apply(new HttpInputRequestDefinition.Builder()).build());
 		}
 
 		/**

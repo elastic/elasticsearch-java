@@ -34,7 +34,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.analysis.IcuCollationTokenFilter
@@ -83,10 +83,8 @@ public class IcuCollationTokenFilter extends TokenFilterBase implements TokenFil
 
 	}
 
-	public static IcuCollationTokenFilter of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static IcuCollationTokenFilter of(Function<Builder, ObjectBuilder<IcuCollationTokenFilter>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**

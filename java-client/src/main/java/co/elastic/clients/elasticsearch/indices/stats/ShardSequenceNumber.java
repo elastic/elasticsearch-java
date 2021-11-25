@@ -35,7 +35,7 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 
 // typedef: indices.stats.ShardSequenceNumber
 @JsonpDeserializable
@@ -56,10 +56,8 @@ public class ShardSequenceNumber implements JsonpSerializable {
 
 	}
 
-	public static ShardSequenceNumber of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static ShardSequenceNumber of(Function<Builder, ObjectBuilder<ShardSequenceNumber>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**

@@ -40,7 +40,7 @@ import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: transform.delete_transform.Request
@@ -60,10 +60,8 @@ public class DeleteTransformRequest extends RequestBase {
 
 	}
 
-	public static DeleteTransformRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static DeleteTransformRequest of(Function<Builder, ObjectBuilder<DeleteTransformRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**

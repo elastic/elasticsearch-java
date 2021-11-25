@@ -36,10 +36,9 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.terms_enum.Response
@@ -61,10 +60,8 @@ public class TermsEnumResponse implements JsonpSerializable {
 
 	}
 
-	public static TermsEnumResponse of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static TermsEnumResponse of(Function<Builder, ObjectBuilder<TermsEnumResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -140,25 +137,31 @@ public class TermsEnumResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code _shards}
 		 */
-		public final Builder shards(Consumer<ShardStatistics.Builder> fn) {
-			ShardStatistics.Builder builder = new ShardStatistics.Builder();
-			fn.accept(builder);
-			return this.shards(builder.build());
+		public final Builder shards(Function<ShardStatistics.Builder, ObjectBuilder<ShardStatistics>> fn) {
+			return this.shards(fn.apply(new ShardStatistics.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code terms}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>terms</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>terms</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder terms(List<String> value) {
-			this.terms = value;
+		public final Builder terms(List<String> list) {
+			this.terms = _listAddAll(this.terms, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code terms}
+		 * <p>
+		 * Adds one or more values to <code>terms</code>.
 		 */
-		public final Builder terms(String... value) {
-			this.terms = Arrays.asList(value);
+		public final Builder terms(String value, String... values) {
+			this.terms = _listAdd(this.terms, value, values);
 			return this;
 		}
 

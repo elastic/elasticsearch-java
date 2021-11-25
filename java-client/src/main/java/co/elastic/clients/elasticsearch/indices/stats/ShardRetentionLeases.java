@@ -29,16 +29,13 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -61,10 +58,8 @@ public class ShardRetentionLeases implements JsonpSerializable {
 
 	}
 
-	public static ShardRetentionLeases of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static ShardRetentionLeases of(Function<Builder, ObjectBuilder<ShardRetentionLeases>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -148,26 +143,35 @@ public class ShardRetentionLeases implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code leases}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>leases</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>leases</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder leases(List<ShardLease> value) {
-			this.leases = value;
+		public final Builder leases(List<ShardLease> list) {
+			this.leases = _listAddAll(this.leases, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code leases}
+		 * <p>
+		 * Adds one or more values to <code>leases</code>.
 		 */
-		public final Builder leases(ShardLease... value) {
-			this.leases = Arrays.asList(value);
+		public final Builder leases(ShardLease value, ShardLease... values) {
+			this.leases = _listAdd(this.leases, value, values);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code leases}
+		 * <p>
+		 * Adds a value to <code>leases</code> using a builder lambda.
 		 */
-		public final Builder leases(
-				Function<ListBuilder<ShardLease, ShardLease.Builder>, ObjectBuilder<List<ShardLease>>> fn) {
-			return leases(fn.apply(new ListBuilder<>(ShardLease.Builder::new)).build());
+		public final Builder leases(Function<ShardLease.Builder, ObjectBuilder<ShardLease>> fn) {
+			return leases(fn.apply(new ShardLease.Builder()).build());
 		}
 
 		/**

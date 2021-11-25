@@ -37,7 +37,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Long;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: monitoring.bulk.Response
@@ -63,10 +63,8 @@ public class BulkResponse implements JsonpSerializable {
 
 	}
 
-	public static BulkResponse of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static BulkResponse of(Function<Builder, ObjectBuilder<BulkResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -155,10 +153,8 @@ public class BulkResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code error}
 		 */
-		public final Builder error(Consumer<ErrorCause.Builder> fn) {
-			ErrorCause.Builder builder = new ErrorCause.Builder();
-			fn.accept(builder);
-			return this.error(builder.build());
+		public final Builder error(Function<ErrorCause.Builder, ObjectBuilder<ErrorCause>> fn) {
+			return this.error(fn.apply(new ErrorCause.Builder()).build());
 		}
 
 		/**

@@ -303,9 +303,25 @@ public class GetResult<TDocument> implements JsonpSerializable {
 
 		/**
 		 * API name: {@code fields}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>fields</code>. Use
+		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
+		 * <code>fields</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetMap()
 		 */
-		public final BuilderT fields(@Nullable Map<String, JsonData> value) {
-			this.fields = value;
+		public final BuilderT fields(Map<String, JsonData> map) {
+			this.fields = _mapPutAll(this.fields, map);
+			return self();
+		}
+
+		/**
+		 * API name: {@code fields}
+		 * <p>
+		 * Adds an entry to <code>fields</code>.
+		 */
+		public final BuilderT fields(String key, JsonData value) {
+			this.fields = _mapPut(this.fields, key, value);
 			return self();
 		}
 

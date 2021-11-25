@@ -30,15 +30,12 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -55,10 +52,8 @@ public class GetApiKeyResponse implements JsonpSerializable {
 
 	}
 
-	public static GetApiKeyResponse of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static GetApiKeyResponse of(Function<Builder, ObjectBuilder<GetApiKeyResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -102,25 +97,35 @@ public class GetApiKeyResponse implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code api_keys}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>apiKeys</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>apiKeys</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder apiKeys(List<ApiKey> value) {
-			this.apiKeys = value;
+		public final Builder apiKeys(List<ApiKey> list) {
+			this.apiKeys = _listAddAll(this.apiKeys, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code api_keys}
+		 * <p>
+		 * Adds one or more values to <code>apiKeys</code>.
 		 */
-		public final Builder apiKeys(ApiKey... value) {
-			this.apiKeys = Arrays.asList(value);
+		public final Builder apiKeys(ApiKey value, ApiKey... values) {
+			this.apiKeys = _listAdd(this.apiKeys, value, values);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code api_keys}
+		 * <p>
+		 * Adds a value to <code>apiKeys</code> using a builder lambda.
 		 */
-		public final Builder apiKeys(Function<ListBuilder<ApiKey, ApiKey.Builder>, ObjectBuilder<List<ApiKey>>> fn) {
-			return apiKeys(fn.apply(new ListBuilder<>(ApiKey.Builder::new)).build());
+		public final Builder apiKeys(Function<ApiKey.Builder, ObjectBuilder<ApiKey>> fn) {
+			return apiKeys(fn.apply(new ApiKey.Builder()).build());
 		}
 
 		/**

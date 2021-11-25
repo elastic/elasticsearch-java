@@ -40,7 +40,7 @@ import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.reindex_rethrottle.Request
@@ -60,10 +60,8 @@ public class ReindexRethrottleRequest extends RequestBase {
 
 	}
 
-	public static ReindexRethrottleRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static ReindexRethrottleRequest of(Function<Builder, ObjectBuilder<ReindexRethrottleRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**

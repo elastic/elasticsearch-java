@@ -34,10 +34,9 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.ValidationLoss
@@ -56,10 +55,8 @@ public class ValidationLoss implements JsonpSerializable {
 
 	}
 
-	public static ValidationLoss of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static ValidationLoss of(Function<Builder, ObjectBuilder<ValidationLoss>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -122,9 +119,15 @@ public class ValidationLoss implements JsonpSerializable {
 		 * forest growing procedure.
 		 * <p>
 		 * API name: {@code fold_values}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>foldValues</code>. Use
+		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
+		 * <code>foldValues</code> to <code>null</code>.
+		 * 
+		 * @see ModelTypeHelper#resetList()
 		 */
-		public final Builder foldValues(List<String> value) {
-			this.foldValues = value;
+		public final Builder foldValues(List<String> list) {
+			this.foldValues = _listAddAll(this.foldValues, list);
 			return this;
 		}
 
@@ -133,9 +136,11 @@ public class ValidationLoss implements JsonpSerializable {
 		 * forest growing procedure.
 		 * <p>
 		 * API name: {@code fold_values}
+		 * <p>
+		 * Adds one or more values to <code>foldValues</code>.
 		 */
-		public final Builder foldValues(String... value) {
-			this.foldValues = Arrays.asList(value);
+		public final Builder foldValues(String value, String... values) {
+			this.foldValues = _listAdd(this.foldValues, value, values);
 			return this;
 		}
 

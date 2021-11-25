@@ -32,7 +32,7 @@ import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: xpack.usage.DataTiers
@@ -62,10 +62,8 @@ public class DataTiers extends Base {
 
 	}
 
-	public static DataTiers of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static DataTiers of(Function<Builder, ObjectBuilder<DataTiers>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -154,10 +152,9 @@ public class DataTiers extends Base {
 		/**
 		 * Required - API name: {@code data_warm}
 		 */
-		public final Builder dataWarm(Consumer<DataTierPhaseStatistics.Builder> fn) {
-			DataTierPhaseStatistics.Builder builder = new DataTierPhaseStatistics.Builder();
-			fn.accept(builder);
-			return this.dataWarm(builder.build());
+		public final Builder dataWarm(
+				Function<DataTierPhaseStatistics.Builder, ObjectBuilder<DataTierPhaseStatistics>> fn) {
+			return this.dataWarm(fn.apply(new DataTierPhaseStatistics.Builder()).build());
 		}
 
 		/**
@@ -171,10 +168,9 @@ public class DataTiers extends Base {
 		/**
 		 * API name: {@code data_frozen}
 		 */
-		public final Builder dataFrozen(Consumer<DataTierPhaseStatistics.Builder> fn) {
-			DataTierPhaseStatistics.Builder builder = new DataTierPhaseStatistics.Builder();
-			fn.accept(builder);
-			return this.dataFrozen(builder.build());
+		public final Builder dataFrozen(
+				Function<DataTierPhaseStatistics.Builder, ObjectBuilder<DataTierPhaseStatistics>> fn) {
+			return this.dataFrozen(fn.apply(new DataTierPhaseStatistics.Builder()).build());
 		}
 
 		/**
@@ -188,10 +184,9 @@ public class DataTiers extends Base {
 		/**
 		 * Required - API name: {@code data_cold}
 		 */
-		public final Builder dataCold(Consumer<DataTierPhaseStatistics.Builder> fn) {
-			DataTierPhaseStatistics.Builder builder = new DataTierPhaseStatistics.Builder();
-			fn.accept(builder);
-			return this.dataCold(builder.build());
+		public final Builder dataCold(
+				Function<DataTierPhaseStatistics.Builder, ObjectBuilder<DataTierPhaseStatistics>> fn) {
+			return this.dataCold(fn.apply(new DataTierPhaseStatistics.Builder()).build());
 		}
 
 		/**
@@ -205,10 +200,9 @@ public class DataTiers extends Base {
 		/**
 		 * Required - API name: {@code data_content}
 		 */
-		public final Builder dataContent(Consumer<DataTierPhaseStatistics.Builder> fn) {
-			DataTierPhaseStatistics.Builder builder = new DataTierPhaseStatistics.Builder();
-			fn.accept(builder);
-			return this.dataContent(builder.build());
+		public final Builder dataContent(
+				Function<DataTierPhaseStatistics.Builder, ObjectBuilder<DataTierPhaseStatistics>> fn) {
+			return this.dataContent(fn.apply(new DataTierPhaseStatistics.Builder()).build());
 		}
 
 		/**
@@ -222,10 +216,9 @@ public class DataTiers extends Base {
 		/**
 		 * Required - API name: {@code data_hot}
 		 */
-		public final Builder dataHot(Consumer<DataTierPhaseStatistics.Builder> fn) {
-			DataTierPhaseStatistics.Builder builder = new DataTierPhaseStatistics.Builder();
-			fn.accept(builder);
-			return this.dataHot(builder.build());
+		public final Builder dataHot(
+				Function<DataTierPhaseStatistics.Builder, ObjectBuilder<DataTierPhaseStatistics>> fn) {
+			return this.dataHot(fn.apply(new DataTierPhaseStatistics.Builder()).build());
 		}
 
 		@Override
